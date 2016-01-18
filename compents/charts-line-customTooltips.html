@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>自定义折线图</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+    <style>
+        #canvas-holder1 {
+            width: 300px;
+            margin: 20px auto;
+        }
+        #canvas-holder2 {
+            width: 50%;
+            margin: 20px 25%;
+        }
+        #chartjs-tooltip {
+            opacity: 1;
+            position: absolute;
+            background: rgba(0, 0, 0, .7);
+            color: white;
+            padding: 3px;
+            border-radius: 3px;
+            -webkit-transition: all .1s ease;
+            transition: all .1s ease;
+            pointer-events: none;
+            -webkit-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+       	.chartjs-tooltip-key{
+       		display:inline-block;
+       		width:10px;
+       		height:10px;
+       	}
+    </style>
+</head>
+
+<body>
+	<header>
+	  <div class="titlebar">
+	    <a href="javascript:history.go(-1)" class="left">
+            <i class="icon-arrowleft"></i>
+        </a>
+	    <h1>自定义折线图</h1>
+	  </div>
+	</header>
+	<article>
+	    <div id="canvas-holder1">
+	        <canvas id="chart1" width="300" height="30" />
+	    </div>
+	    <div id="canvas-holder2">
+	        <canvas id="chart2" width="450" height="600" />
+	    </div>
+	    <div id="chartjs-tooltip"></div>
+    </article>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../js/charts/Chart.min.js"></script>
+    <script>
+        Chart.defaults.global.pointHitDetectionRadius = 1;
+        Chart.defaults.global.customTooltips = function(tooltip) {
+
+            var tooltipEl = $('#chartjs-tooltip');
+
+            if (!tooltip) {
+                tooltipEl.css({
+                    opacity: 0
+                });
+                return;
+            }
+
+            tooltipEl.removeClass('above below');
+            tooltipEl.addClass(tooltip.yAlign);
+
+            var innerHtml = '';
+            for (var i = tooltip.labels.length - 1; i >= 0; i--) {
+            	innerHtml += [
+            		'<div class="chartjs-tooltip-section">',
+            		'	<span class="chartjs-tooltip-key" style="background-color:' + tooltip.legendColors[i].fill + '"></span>',
+            		'	<span class="chartjs-tooltip-value">' + tooltip.labels[i] + '</span>',
+            		'</div>'
+            	].join('');
+            }
+            tooltipEl.html(innerHtml);
+
+            tooltipEl.css({
+                opacity: 1,
+                left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',
+                top: tooltip.chart.canvas.offsetTop + tooltip.y + 'px',
+                fontFamily: tooltip.fontFamily,
+                fontSize: tooltip.fontSize,
+                fontStyle: tooltip.fontStyle,
+            });
+        };
+        var randomScalingFactor = function() {
+            return Math.round(Math.random() * 100);
+        };
+        var lineChartData = {
+            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
+            datasets: [{
+                label: "我的第一份资料组",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            }, {
+                label: "我的第二份资料组",
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            }]
+        };
+
+        window.onload = function() {
+            var ctx1 = document.getElementById("chart1").getContext("2d");
+            window.myLine = new Chart(ctx1).Line(lineChartData, {
+            	showScale: false,
+            	pointDot : true,
+                responsive: true
+            });
+
+            var ctx2 = document.getElementById("chart2").getContext("2d");
+            window.myLine = new Chart(ctx2).Line(lineChartData, {
+                responsive: true
+            });
+        };
+        //定义exmobi返回
+    	function back(){history.go(-1);}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+/*----------------mbox.less(start)--------------*/
+html,body{
+	height:100%;
+}
+body{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	/*平滑滚动*/
+	-webkit-overflow-scrolling : touch;
+	-moz-overflow-scrolling : touch;
+	-ms-overflow-scrolling : touch;
+	-o-overflow-scrolling : touch;
+	overflow-scrolling : touch;
+	/*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	/*禁止文字自适应大小*/
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+	/*禁止或显示系统默认菜单*/
+	/*-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;*/
+}
+section {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	overflow: hidden;
+}
+section.active{
+	display: block;
+}
+article{
+	position: absolute;
+	z-index: 0;
+	top: 44px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow:auto;
+}
+.scroller,.hScroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	
+	box-sizing:border-box;
+}
+.scroller{
+	width: 100%;
+}
+.hScroller {
+	min-width:100%;
+}
+.hScroller.licon,.hScroller.ricon,.hScroller.lricon{
+	box-sizing:border-box;
+	border-style:solid;
+	border-width:0 0 1px 0;
+	
+	border-color:#ddd;
+}
+.hScroller.lricon{
+	padding:0 50px;
+}
+.hScroller.licon{
+	padding:0 0 0 50px;
+}
+.hScroller.ricon{
+	padding:0 50px 0 0;
+}
+
+/*界面开关动画效果*/
+@-webkit-keyframes slideLeftIn {
+	0% { -webkit-transform: translate3d(100%,0,0)}
+	100% { -webkit-transform: translate3d(0,0,0)}
+}
+@-webkit-keyframes slideLeftOut {
+	0% { -webkit-transform: translate3d(0,0,0)}
+	100% { -webkit-transform: translate3d(-100%,0,0)}
+}
+@-webkit-keyframes slideRightIn {
+	0% { -webkit-transform: translate3d(-100%,0,0)}
+	100% { -webkit-transform: translate3d(0%,0,0) }
+}
+@-webkit-keyframes slideRightOut {
+	0% { -webkit-transform: translate3d(0%,0,0)}
+	100% { -webkit-transform: translate3d(100%,0,0)}
+}
+@-webkit-keyframes scaleIn {
+	0% {opacity: 0;-webkit-transform: scale(.5)}
+	100% {opacity: 1;-webkit-transform: scale(1)}
+}
+@-webkit-keyframes scaleOut {
+	0% {opacity: 1;-webkit-transform: scale(1)}
+	100% {opacity: 0;-webkit-transform: scale(.5)}
+}
+@-webkit-keyframes slideDownIn {
+	0% {opacity: 0;-webkit-transform: translate3d(0,-100%,0)}
+	100% {opacity: 1;-webkit-transform: translate3d(0,0,0)}
+}
+@-webkit-keyframes slideUpOut {
+	0% {opacity: 1;-webkit-transform: translate3d(0,0,0)}
+	100% {opacity: 0;-webkit-transform: translate3d(0,-100%,0)}
+}
+@-webkit-keyframes slideDownOut {
+	0% {-webkit-transform: translate3d(0,0,0)}
+	100% {-webkit-transform: translate3d(0,100%,0)}
+}
+@-webkit-keyframes slideUpIn {
+	0% {-webkit-transform: translate3d(0,90%,0)}
+	100% {-webkit-transform: translate3d(0,0,0)}
+}
+.slideLeftOut{
+    -webkit-animation-name: slideLeftOut;
+}
+.slideLeftIn{
+    -webkit-animation-name: slideLeftIn;
+}
+.slideRightIn{
+    -webkit-animation-name: slideRightIn;
+}
+.slideRightOut{
+    -webkit-animation-name: slideRightOut;
+}
+.scaleIn{
+    -webkit-animation-name: scaleIn;
+}
+.scaleOut{
+    -webkit-animation-name: scaleOut;
+}
+.slideDownIn{
+    -webkit-animation-name: slideDownIn;
+}
+.slideDownOut{
+    -webkit-animation-name: slideDownOut;
+}
+.slideUpIn{
+    z-index: 10;
+    -webkit-animation-name: slideUpIn;
+}
+.slideUpOut{
+    -webkit-animation-name: slideUpOut;
+}
+.anim{
+    -webkit-animation-duration: 250ms;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    display: block !important;
+    overflow: hidden;
+}
+.anim:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/*header,footer*/
+header,.header{
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:1;
+}
+footer,.footer{
+	position:fixed;
+	bottom:0;
+	width:100%;
+	z-index:1;
+}
+/*----------------mbox.less(end)--------------*/
+

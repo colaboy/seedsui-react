@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>环形图</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+<body>
+	<header>
+	  <div class="titlebar">
+	    <a href="javascript:history.go(-1)" class="left">
+            <i class="icon-arrowleft"></i>
+        </a>
+	    <h1>环形图</h1>
+	  </div>
+	</header>
+	<article>
+		<canvas id="chart-area" width="200px" style="margin:8px 0;" />
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/charts/Chart.min.js"></script>
+	<script>
+		var doughnutData = [
+			{
+				value: 300,
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "华中区"
+			},
+			{
+				value: 50,
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "华北区"
+			},
+			{
+				value: 100,
+				color: "#FDB45C",
+				highlight: "#FFC870",
+				label: "华南区"
+			},
+			{
+				value: 40,
+				color: "#949FB1",
+				highlight: "#A8B3C5",
+				label: "西北区"
+			},
+			{
+				value: 120,
+				color: "#4D5360",
+				highlight: "#616774",
+				label: "西南区"
+			}
+
+		];
+
+		window.onload = function(){
+			var ctx = document.getElementById("chart-area").getContext("2d");
+			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+		};
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

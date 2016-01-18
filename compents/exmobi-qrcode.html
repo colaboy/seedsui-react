@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>扫码</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<header>
+	    <div class="titlebar">
+	        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
+	        <h1>扫码</h1>
+	    </div>
+	</header>
+	<article>
+	    <div class="input-box margin8 ricon" onclick="Exmobi.qrcode()">
+            <input type="text" class="input-text" placeholder="扫码控件框"/>
+            <i class="icon-qrcodeline"></i>
+        </div>
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script>
+		function qrCodeCallback(){
+			if(!qrcode.isSuccess()){
+				Phone.toast("扫码失败");
+				return;
+			}
+			$("#codetext").html(qrcode.result);
+		}
+		//定义exmobi返回
+		function back(){Exmobi.close();}
+	</script>
+</body>
+</html>

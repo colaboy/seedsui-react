@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>弹出框</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+<body>
+    <header>
+        <div class="titlebar">
+            <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+            <h1>弹出框</h1>
+        </div>
+    </header>
+    <article>
+    	<p class="title">系统弹出框</p>
+    	<div class="card padding8">
+	        <button id="alert">alert</button>
+	        <button id="confirm" class="warn">confirm</button>
+	        <button id="actionsheet" class="info">actionsheet</button>
+	        <button id="toast" class="success">toast</button>
+        </div>
+        
+        <p class="title">自定义弹出框</p>
+        <div class="card padding8">
+	        <button id="middle">middle</button>
+	        <button id="top" class="warn">top</button>
+	        <button id="bottom">bottom</button>
+	        <button id="left" class="info">left</button>
+	        <button id="right" class="success">right</button>
+    	</div>
+    </article>
+	<!--自定义弹出框-->
+    <div id="pop_custom" style="padding:20px 0;background-color:white;display:none;">我是从自定义弹出框</div>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../assets/js/type.js"></script>
+	<script src="../assets/js/alert.js"></script>
+	<script src="../assets/js/confirm.js"></script>
+	<script src="../assets/js/actionsheet.js"></script>
+	<script src="../assets/js/toast.js"></script>
+	<script src="../assets/js/dialog.js"></script>
+	<script type="text/javascript">
+		/*
+		 * 系统弹出框
+		 */
+		//alert
+		var popAlert=new Alert("我是Alert框我是Alert框我是Alert框我是Alert框");
+	    $("#alert").click(function(){
+			popAlert.show();
+	    });
+		//confirm
+		var c1=new Confirm("我是Confirm框",{
+			onClickOk:function(c1this){
+				var c2=new Confirm("您确定要移除此对象？",{
+					onClickOk:function(c2this){
+						c2this.destory();
+						c1this.destory();
+					},
+					onClickCancel:function(c2this){
+						c2this.destory();
+					}
+				});
+				c2.show();
+			}
+		});
+		$("#confirm").click(function(){
+			c1.show();
+	    });
+		
+		//toast
+		var popToast=new Toast("提示信息");
+		$("#toast").click(function(){
+			popToast.show();
+	    });
+	    var c;
+	    //actionsheet
+		var actionsheet=new Actionsheet([
+			{
+				text : '菜单一',
+		        handler : function(s){
+		        	var t=new Toast("您点击了菜单一");
+		        	t.show();
+		        }
+			},{
+				text : '菜单二',
+		        handler : function(s){
+		        	var t=new Toast("您点击了菜单二");
+		        	t.show();
+				}
+		    },{
+				text : '取消',
+		        handler : function(s){
+		        	s.hide();
+				}
+		    },{
+				text : '退出',
+		        handler : function(s){
+		        	if(!c){
+			        	c=new Confirm("您确定要退出吗？",{
+							onClickOk:function(confirm){
+								confirm.destory();
+								s.hide();
+								c=null;
+							}
+						});
+					}
+					c.show();
+				}
+		    }
+		]);
+		$("#actionsheet").click(function(){
+			actionsheet.show();
+	    });
+
+	    /**
+		 * 自定义弹出框
+		 * 
+		 */
+		//middle
+		$("#middle").click(function(){
+			$("#pop_custom").dialog();
+	    });
+		//top
+		$("#top").click(function(){
+			$("#pop_custom").dialog({
+				"pos":"top"
+			});
+	    });
+		//bottom
+		$("#bottom").click(function(){
+			$("#pop_custom").dialog({
+				"pos":"bottom"
+			});
+	    });
+		//left
+		$("#left").click(function(){
+			$("#pop_custom").dialog({
+				"pos":"left"
+			});
+	    });
+		//right
+		$("#right").click(function(){
+			$("#pop_custom").dialog({
+				"pos":"right"
+			});
+	    });
+	    //定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

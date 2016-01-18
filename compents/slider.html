@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>滑动广告</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<!--头部-->
+	<header>
+        <div class="titlebar">
+            <a href="javascript:history.go(-1)" class="left">
+                <i class="icon-arrowleft"></i>
+            </a>
+            <h1>滑动广告</h1>
+        </div>
+    </header>
+
+    <!--主体-->
+	<article>
+        <!--轮播-->
+        <div class="slider-container" id="carousel1">
+            <div class="slider-wrapper">
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+            </div>
+            <div class="slider-pagination"></div>
+        </div>
+        <!--轮播2-->
+        <p class="title">一屏3条</p>
+        <div class="slider-container" id="carousel2">
+            <div class="slider-wrapper">
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+                <div class="slider-slide">
+                    <img src="../img/banner/banner.jpg"/>
+                    <label class="slide-title">新闻标题</label>
+                </div>
+            </div>
+            <div class="slider-pagination"></div>
+        </div>
+    </article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../assets/js/slider.js"></script>
+    <script type="text/javascript">
+        window.onload=function(){
+            var s1=new Slider("#carousel1",{
+                "pagination":"#carousel1 .slider-pagination",
+                "autoplay":"2000"
+            });
+            var s2=new Slider("#carousel2",{
+                "pagination":"#carousel2 .slider-pagination",
+                "slidesPerView":"3"
+            });
+        }
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

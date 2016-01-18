@@ -1,0 +1,124 @@
+/*----------------aside.less(start)--------------*/
+/*主体*/
+#section_container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	z-index: 3;
+	
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	transition:all 0.5s;
+}
+/*主体遮罩*/
+.section_container_mask{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:999;
+	display:none;
+}
+/*侧边栏*/
+aside {
+	position: absolute;
+	width: 264px;
+	top: 0;
+	bottom: 0;
+	z-index: 4;
+}
+/*右侧边栏*/
+aside[data-position="right"] {
+	right: -264px;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	transition:all 0.5s;
+}
+aside[data-position="right"].active{
+	right:0;
+}
+/*push：定义侧边栏宽度*/
+aside[data-position="right"][data-transition="push"].active ~ #section_container {
+	left:-264px;
+}
+/*overlay*/
+aside[data-position="right"][data-transition="overlay"].active {
+}
+/*reveal*/
+aside[data-position="right"][data-transition="reveal"]{
+	right:0;
+	z-index:3;
+	opacity:0;
+	-webkit-transition:opacity 0s linear 0.5s;/*将透明度变0时延迟500毫秒*/
+	-moz-transition:opacity 0s linear 0.5s;
+	-ms-transition:opacity 0s linear 0.5s;
+	transition:opacity 0s linear 0.5s;
+}
+aside[data-position="right"][data-transition="reveal"] ~ #section_container {
+	/*background-color:white;*/
+}
+aside[data-position="right"][data-transition="reveal"].active{
+	opacity:1;
+	-webkit-transition:opacity 0s linear 0s;/*将透明度变1时不延迟*/
+	-moz-transition:opacity 0s linear 0s;
+	-ms-transition:opacity 0s linear 0s;
+	transition:opacity 0s linear 0s;
+}
+aside[data-position="right"][data-transition="reveal"].active ~ #section_container {
+	left:-264px;
+}
+
+/*左侧边栏*/
+aside[data-position="left"] {
+	left: 0;
+	left:-264px;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	transition:all 0.5s;
+}
+aside[data-position="left"].active{
+	left:0;
+}
+/*push：定义侧边栏宽度*/
+aside[data-position="left"][data-transition="push"].active ~ #section_container {
+	left:264px;
+}
+/*overlay*/
+aside[data-position="left"][data-transition="overlay"].active {
+}
+/*reveal*/
+aside[data-position="left"][data-transition="reveal"]{
+	left:0;
+	z-index:3;
+	opacity:0;
+	-webkit-transition:opacity 0s linear 0.5s;/*将透明度变0时延迟500毫秒*/
+	-moz-transition:opacity 0s linear 0.5s;
+	-ms-transition:opacity 0s linear 0.5s;
+	transition:opacity 0s linear 0.5s;
+}
+aside[data-position="left"][data-transition="reveal"] ~ #section_container {
+	/*background-color:white;*/
+}
+aside[data-position="left"][data-transition="reveal"].active{
+	opacity:1;
+	-webkit-transition:opacity 0s linear 0s;/*将透明度变1时不延迟*/
+	-moz-transition:opacity 0s linear 0s;
+	-ms-transition:opacity 0s linear 0s;
+	transition:opacity 0s linear 0s;
+}
+aside[data-position="left"][data-transition="reveal"].active ~ #section_container {
+	left:264px;
+}
+/*显示主体遮罩*/
+aside.active ~ #section_container .section_container_mask{
+	display:block;
+}
+/*----------------aside.less(end)--------------*/

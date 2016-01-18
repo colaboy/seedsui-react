@@ -1,0 +1,138 @@
+/*----------------switch.less(start)--------------*/
+/*关闭状态*/
+.switch {
+	position: relative;
+	display: inline-block;
+	height: 30px;
+	width: 60px;
+	background-color:transparent;
+	border-radius: 30px;
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-ms-transition-duration: .2s;
+	-o-transition-duration: .2s;
+	transition-duration: .2s;
+	-webkit-transition-property: background-color, border;
+	-moz-transition-property: background-color, border;
+	-ms-transition-property: background-color, border;
+	-o-transition-property: background-color, border;
+	transition-property: background-color, border;
+	border-width:1px;
+	border-style:solid;
+	
+	border-color:#ddd;
+}
+/*关闭状态圆点*/
+.switch .switch-handle{
+	position: absolute;
+	left:0;
+	top:50%;
+	-webkit-transform:translate(4px,-50%);
+	-moz-transform:translate(4px,-50%);
+	-ms-transform:translate(4px,-50%);
+	-o-transform:translate(4px,-50%);
+	transform:translate(4px,-50%);
+	width: 20px;
+	height: 20px;
+	border-radius: 100px;
+	-webkit-transition-duration: .2s;
+	-moz-transition-duration: .2s;
+	-ms-transition-duration: .2s;
+	-o-transition-duration: .2s;
+	transition-duration: .2s;
+	-webkit-transition-property:-webkit-transform, border, width;
+	-moz-transition-property:-moz-transform, border, width;
+	-ms-transition-property:-moz-transform, border, width;
+	-o-transition-property:-moz-transform, border, width;
+	transition-property:transform, border, width;
+	z-index: 2;
+	
+	background-color:#ddd;
+}
+/*关闭状态文字off*/
+.switch:after{
+	position: absolute;
+	right: 11px;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+	-moz-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	transform:translateY(-50%);
+	content: attr(data-off);
+	
+	color: #aaa;
+}
+
+/*打开状态*/
+.switch.active {
+	background-color:transparent;
+}
+/*打开状态小圆点*/
+.switch.active .switch-handle{
+	left:0;
+	top:50%;
+	-webkit-transform: translate(34px,-50%);
+	-moz-transform: translate(34px,-50%);
+	-ms-transform: translate(34px,-50%);
+	-o-transform: translate(34px,-50%);
+	transform: translate(34px,-50%);
+}
+/*打开状态文字on*/
+.switch.active:after{
+	right: auto;
+	left: 11px;
+	content: attr(data-on);
+}
+
+/*开关控件toggle-无文字*/
+.notext.switch{
+	width: 50px;
+}
+.notext.switch:after{
+	content:none;
+}
+.notext.switch.active .switch-handle{
+	 -webkit-transform: translate(24px,-50%);
+	 -moz-transform: translate(24px,-50%);
+	 -ms-transform: translate(24px,-50%);
+	 -o-transform: translate(24px,-50%);
+	 transform: translate(24px,-50%);
+}
+
+/*开关控件toggle-反转*/
+.switch.reverse{
+	border:none;
+}
+.switch.reverse .switch-handle{
+	width: 26px;
+	height: 26px;
+	-webkit-transform: translate(2px,-50%);
+	-moz-transform: translate(2px,-50%);
+	-ms-transform: translate(2px,-50%);
+	-o-transform: translate(2px,-50%);
+	transform: translate(2px,-50%);
+
+	background-color:#fff;
+}
+.switch.reverse.active .switch-handle{
+	-webkit-transform: translate(32px,-50%);
+	-moz-transform: translate(32px,-50%);
+	-ms-transform: translate(32px,-50%);
+	-o-transform: translate(32px,-50%);
+	transform: translate(32px,-50%);
+
+	background-color:#fff;
+}
+.switch.reverse.active:after{
+	color:#fff;
+}
+/*无文字状态*/
+.notext.switch.reverse.active .switch-handle{
+	-webkit-transform: translate(22px,-50%);
+	-moz-transform: translate(22px,-50%);
+	-ms-transform: translate(22px,-50%);
+	-o-transform: translate(22px,-50%);
+	transform: translate(22px,-50%);
+}
+/*----------------switch.less(end)--------------*/

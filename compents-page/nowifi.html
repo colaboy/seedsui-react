@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>无网络</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+<header>
+  <div class="titlebar">
+    <a href="javascript:history.go(-1)" class="left">
+        <i class="icon-arrowleft"></i>
+    </a>
+    <h1>无网络</h1>
+  </div>
+</header>
+<article class="box box-middle box-center">
+    <div style="width:200px;">
+        <div class="nowifi"></div>
+        <p class="error">网络未连接，请检查网络设置</p>
+        <a class="button block submit" style="margin:0px 10px 100px 10px;">重试</a>
+    </div>
+</article>
+<script src="../plugin/exmobi/exmobi.js"></script>
+<script>
+//定义exmobi返回
+function back(){history.go(-1);}
+</script>
+</body>
+</html>

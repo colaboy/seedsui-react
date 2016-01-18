@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>加载样式</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<!-- 加载遮罩 -->
+	<div id="loading">
+		<div class="loadcircle"></div>
+	</div>
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+	        <h1>loading</h1>
+	    </div>
+	</header>
+	<article>
+		<img src="https://images.unsplash.com/photo-1438109519352-a52c41243c1a?q=80&fm=jpg&s=5e94365bd19daae00de012e317152490" style="width:100%" alt="加载测试"/>
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script>
+		/*window.addEventListener("load",function(e){
+			document.getElementById("loading").style.display="none";
+		},false);*/
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/*----------------validate.less(start)--------------*/
+/*安全级别*/
+.safelvl{
+	position:absolute;
+	left:0;
+	bottom:-31px;
+	height:30px;
+	width:100%;
+	
+	color:white;
+	background-color:#dddddd;
+}
+.safelvl .progress{
+	position:absolute;
+	top:0;
+	left:0;
+	height:30px;
+	transition:all linear 200ms;
+}
+.safelvl.lvl1 .progress{
+	width:33%;
+	background-color:#f86868;
+}
+.safelvl.lvl2 .progress{
+	width:66%;
+	background-color:#f4984e;
+}
+.safelvl.lvl3 .progress{
+	width:100%;
+	background-color:#88d038;
+}
+.safelvl ul{
+	display:block;
+	position:absolute;
+	width:100%;
+	top:0;
+	left:0;
+	z-index:2;
+}
+.safelvl ul li{
+	display:block;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	width:33%;
+	float:left;
+}
+.safelvl ul li:last-child{
+	width:34%;
+}
+/*----------------validate.less(end)--------------*/

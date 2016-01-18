@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>摇一摇</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<header>
+	  <div class="titlebar">
+	    <a href="javascript:history.go(-1)" class="left">
+            <i class="icon-arrowleft"></i>
+        </a>
+	    <h1>摇一摇</h1>
+	  </div>
+	</header>
+	<article>
+		<div class="card padding8" id="shakecard">用力摇一摇你手机</div>
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script>
+	var SHAKE_THRESHOLD = 3000;  
+	var last_update = 0;  
+	var x = y = z = last_x = last_y = last_z = 0;  
+	function deviceMotionHandler(eventData) {
+		/*document.getElementById("shakecard").innerHTML="摇动了";*/
+		var acceleration = eventData.accelerationIncludingGravity;
+		//document.getElementById("shakecard").innerHTML=acceleration.x;
+		var curTime = new Date().getTime();
+		if((curTime - last_update) > 100) {  
+			var diffTime = curTime - last_update;  
+			last_update = curTime;  
+			x = acceleration.x;
+			y = acceleration.y;
+			z = acceleration.z;
+			var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+			if (speed > SHAKE_THRESHOLD) {
+				document.getElementById("shakecard").innerHTML="摇动了";
+			}
+			last_x = x;
+			last_y = y;
+			last_z = z;
+		}
+	}
+	window.onload=function(){
+		if (window.DeviceMotionEvent){  
+			window.addEventListener('devicemotion',deviceMotionHandler,false);
+		}else{
+			document.getElementById("shakecard").innerHTML="您的手机不支持摇一摇";
+		}
+	}
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

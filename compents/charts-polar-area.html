@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>极地区域图</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<body>
+	<header>
+	  <div class="titlebar">
+	    <a href="javascript:history.go(-1)"><i class="icon back"></i></a>
+	    <h1>极地区域图</h1>
+	  </div>
+	</header>
+	<article>
+		<div id="canvas-holder" style="width:100%">
+			<canvas id="chart-area" width="300" height="300"/>
+		</div>
+	</article>
+<script src="js/charts/Chart.js"></script>
+<script src="js/measy/exmobi.js"></script>
+<script>
+var polarData = [
+		{
+			value: 300,
+			color:"#F7464A",
+		highlight: "#FF5A5E",
+		label: "Red"
+	},
+	{
+		value: 50,
+		color: "#46BFBD",
+		highlight: "#5AD3D1",
+		label: "Green"
+	},
+	{
+		value: 100,
+		color: "#FDB45C",
+		highlight: "#FFC870",
+		label: "Yellow"
+	},
+	{
+		value: 40,
+		color: "#949FB1",
+		highlight: "#A8B3C5",
+		label: "Grey"
+	},
+	{
+		value: 120,
+		color: "#4D5360",
+		highlight: "#616774",
+		label: "Dark Grey"
+	}
+
+];
+
+window.onload = function(){
+	var ctx = document.getElementById("chart-area").getContext("2d");
+	window.myPolarArea = new Chart(ctx).PolarArea(polarData, {
+		responsive:true
+	});
+};
+//定义exmobi返回
+function back(){history.go(-1);}
+</script>
+</body>
+</html>

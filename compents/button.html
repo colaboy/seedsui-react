@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>按钮</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+    <header>
+        <div class="titlebar">
+            <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+            <h1>按钮</h1>
+        </div>
+    </header>
+    <article>
+        <div class="title">普通按钮</div>
+        <div class="card padding8" style="line-height: 50px;">
+            <button>按钮</button>
+            <button class="submit">提交</button>
+            <button class="cancel">取消</button>
+            <button class="info">信息</button>
+            <button class="success">完成</button>
+            <button class="warn">提示或警告</button>
+            <button disable>禁用</button>
+            <button class="link">链接</button>
+        </div>
+
+        <div class="title">框形按钮</div>
+        <div class="card padding8" style="line-height: 50px;">
+            <button class="outline">按钮</button>
+            <button class="desaturate outline">去色按钮</button>
+            <button class="submit outline">提交</button>
+            <button class="cancel outline">取消</button>
+            <button class="info outline">信息</button>
+            <button class="outline" disable>禁用</button>
+            <button class="link outline">链接</button>
+        </div>
+
+        <div class="title">图标按钮</div>
+        <div class="card padding8">
+            <button> <i class="icon-home"></i>
+                <label>按钮</label>
+            </button>
+            <button class="submit">
+                <i class="icon-rdohook"></i>
+                <label>提交</label>
+            </button>
+            <button class="cancel">
+                <i class="icon-rdoclose"></i>
+                <label>取消</label>
+            </button>
+            <button disable>
+                <i class="icon-rdoclose"></i>
+                <label>禁用</label>
+            </button>
+            <button class="link">
+                <span class="icon-link-line"></span>
+                <label>链接</label>
+            </button>
+        </div>
+
+        <div class="title">图标框形按钮</div>
+        <div class="card padding8">
+            <button class="submit outline">
+                <i class="icon-rdohook"></i>
+                <label>提交</label>
+            </button>
+            <button disable class="outline">
+                <i class="icon-rdoclose"></i>
+                <label>禁用</label>
+            </button>
+            <button class="cancel outline">
+                <i class="icon-rdoclose"></i>
+                <label>取消</label>
+            </button>
+        </div>
+
+        <div class="title">纯图标按钮</div>
+        <div class="card padding8">
+            <button class="round onlyicon">
+                <i class="icon-home"></i>
+            </button>
+            <button class="submit rect onlyicon">
+                <i class="icon-rdohook"></i>
+            </button>
+            <button class="cancel onlyicon">
+                <i class="icon-rdoclose"></i>
+            </button>
+        </div>
+
+        <div class="title">3D按钮</div>
+        <div class="card padding8">
+            <button class="button-shadow">
+                <i class="icon-home"></i>
+                <label>按钮</label>
+            </button>
+            <button class="button-shadow">按钮</button>
+            <button class="button-shadow">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="onlyicon cancel button-shadow">
+                <i class="icon-rdoclose"></i>
+            </button>
+        </div>
+
+        <div class="title">汽泡按钮</div>
+        <div class="card padding8" style="line-height: 50px;">
+            <button>
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="submit">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="cancel">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="outline">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="submit outline">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+            <button class="cancel outline">
+                <label>按钮</label>
+                <span class="tip">1</span>
+            </button>
+        </div>
+
+        <div class="title">色彩标签</div>
+        <div class="card margin8 padding8">
+            <span class="mark-info">info</span>
+            <span class="mark-success">success</span>
+            <span class="mark-cancel">cancel</span>
+            <span class="mark-warning">warning</span>
+            <span class="mark-disable">disable</span>
+        </div>
+
+        <div class="title">大按钮</div>
+        <a class="button block margin8">按钮</a>
+        <a class="button block submit margin8">
+            <i class="icon-rdohook"></i>
+            <label>提交</label>
+        </a>
+        <a class="button block cancel margin8">取消重置按钮</a>
+        <a class="button block info margin8">信息按钮</a>
+        <a class="button block outline margin8">
+            <i class="icon-home"></i>
+            <label>按钮</label>
+        </a>
+        <a class="button block submit outline margin8">
+            <i class="icon-rdohook"></i>
+            <label>提交</label>
+        </a>
+        <a class="button block cancel outline margin8">
+            <i class="icon-rdoclose"></i>
+            <label>取消重置按钮</label>
+        </a>
+
+        <div class="title">按钮组</div>
+        <div class="button-group margin8">
+            <span>
+                <input type="text" style="height:100%;line-height:100%;border:none;"/>
+            </span>
+            <span>搜索</span>
+        </div>
+
+        <div class="button-group margin8">
+            <span class="disable">&laquo;</span>
+            <span class="disable">&lt;</span>
+            <span class="active">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>&gt;</span>
+            <span>&raquo;</span>
+        </div>
+
+        <!--分页-->
+        <div class="margin8">
+            <div class="button-group">
+                <span class="disable">上一页</span>
+            </div>
+            <div class="button-group">
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+            <div class="button-group">...</div>
+            <div class="button-group">
+                <span>下一页</span>
+            </div>
+        </div>
+    </article>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script>
+    //定义exmobi返回
+    function back(){history.go(-1);}
+</script>
+</body>
+</html>

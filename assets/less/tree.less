@@ -1,0 +1,82 @@
+/*----------------tree.less(start)--------------*/
+.tree-box{
+	padding:0 0 0 32px;
+
+	color:#393939;
+	background-color:white;
+}
+.tree ul{
+	padding-left:20px;
+	box-sizing:border-box;
+}
+.tree ul{
+	display:none;
+}
+.tree li{
+	display:block;
+}
+.tree{
+	box-sizing:border-box;
+}
+/*树标题*/
+.treetitle{
+	position:relative;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+
+	border-color:#ddd;
+}
+.treetitle:active{
+	background-color:#ddd;
+}
+/*右侧人数*/
+.treetitle small{
+	position: absolute;
+	right:10px;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+}
+/*中间文字*/
+.treetitle a{
+	color:inherit;
+	padding:15px 0 15px 8px;
+}
+/*左侧图标*/
+.treetitle .treeicon{
+	position:absolute;
+	top:8px;
+	left:-25px;
+	width:32px;
+	height:32px;
+	background-size:cover;
+
+	font-family: "iconfont";
+	font-style: normal;
+
+	display: -webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+	display:-webkit-flex;
+	-webkit-justify-content:center;
+	-webkit-align-items:center;
+}
+.treetitle .treeicon:before{
+	content: "\e9bd";
+}
+.treetitle .treeicon.active:before{
+	content: "\e9b5";
+}
+/*无子节点左侧图标*/
+.treetitle:only-child .treeicon{
+	left:-28px;
+	border-radius:100%;
+	font-size:16px;
+	
+	color:white;
+	background-image:none;
+	background-color:#efcb03;
+}
+.treetitle:only-child .treeicon:before{
+	content: '';
+}
+/*----------------tree.less(end)--------------*/

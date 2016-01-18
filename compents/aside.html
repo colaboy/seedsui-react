@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>侧边栏</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<!--左侧边栏-->
+    <aside data-position="left" data-transition="overlay" id="aside_overlay_left">切~压死你！</aside>
+    <aside data-position="left" data-transition="push" id="aside_push_left">你从哪儿来，我从左方来~</aside>
+    <aside data-position="left" data-transition="reveal" id="aside_reveal_left">reveal侧边栏将会一直在此等候被压</aside>
+    <!--右侧边栏-->
+    <aside data-position="right" data-transition="overlay" id="aside_overlay_right">切~压死你！</aside>
+    <aside data-position="right" data-transition="push" id="aside_push_right">你从哪儿来，我从右方来~</aside>
+    <aside data-position="right" data-transition="reveal" id="aside_reveal_right">reveal侧边栏将会一直在此等候覆盖</aside>
+    <!--主体-->
+    <div id="section_container">
+    	<header>
+        	<div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left">
+                    <i class="icon-arrowleft"></i>
+                </a>
+                <h1>侧边栏</h1>
+            </div>
+        </header>
+        <article>
+        	<p class="title">左侧菜单栏</p>
+            <div class="card">
+                <a id="overlayLeft" class="button block margin8">overlay左侧边栏</a>
+                <a id="pushLeft" class="button block margin8 submit">push左侧边栏</a>
+                <a id="revealLeft" class="button block margin8 warn">reveal左侧边栏</a>
+            </div>
+            <p class="title">右侧菜单栏</p>
+            <div class="card">
+                <a id="overlayRight" class="button block margin8">overlay右侧边栏</a>
+                <a id="pushRight" class="button block margin8 submit">push右侧边栏</a>
+                <a id="revealRight" class="button block margin8 warn">reveal右侧边栏</a>
+            </div>
+        </article>
+        <div class="section_container_mask"></div>
+    </div>
+    
+<script src="../plugin/jquery/jquery.min.js"></script>
+<script src="../plugin/exmobi/exmobi.js"></script>
+<script type="text/javascript">
+    window.addEventListener("load",function(e){
+        $("#overlayLeft").click(function(){
+            $("#aside_overlay_left").toggleClass("active");
+        });
+		$("#pushLeft").click(function(){
+            $("#aside_push_left").toggleClass("active");
+        });
+		$("#revealLeft").click(function(){
+            $("#aside_reveal_left").toggleClass("active");
+        });
+		$("#overlayRight").click(function(){
+            $("#aside_overlay_right").toggleClass("active");
+        });
+		$("#pushRight").click(function(){
+            $("#aside_push_right").toggleClass("active");
+        });
+		$("#revealRight").click(function(){
+            $("#aside_reveal_right").toggleClass("active");
+        });
+		$(".section_container_mask").click(function(){
+            $("aside").removeClass("active");
+        });
+    },false);
+    //定义exmobi返回
+	function back(){history.go(-1);}
+</script>
+</body>
+</html>

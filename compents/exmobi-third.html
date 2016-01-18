@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>第三方应用程序</title>
+	<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+</head>
+
+<body>
+	<header>
+	    <div class="titlebar">
+	        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
+	        <h1>第三方应用程序</h1>
+	    </div>
+	</header>
+	<article>
+		<a class="button block margin8" href="javascript:Exmobi.openBrowser('http://www.baidu.com')">打开系统浏览器</a>
+		<a class="button block margin8" href="javascript:Exmobi.openVideo('res:page/www/video.mp4')">打开视频播放</a>
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script>
+		//定义exmobi返回
+		function back(){Exmobi.close();}
+	</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Grid栅格化</title>
+    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+    <style type="text/css">
+		.grid li a{
+			color:white;
+		}
+    </style>
+</head>
+
+<body>
+	<header>
+	    <div class="titlebar">
+	        <a href="javascript:history.go(-1)"><i class="icon-arrowleft"></i></a>
+	        <h1>Grid栅格化</h1>
+	    </div>
+	</header>
+	<article>
+		<p class="title">九宫格</p>
+		<ul class="grid" data-col="3">
+			<li>
+				<a style="background-color:#F39C12;">
+					<i class="icon-contact-fill"></i>
+					<span class="tip">3</span>
+				</a>
+				<label class="grid-label">通讯录</label>
+			</li>
+			<li>
+				<a style="background-color:#1abc9c;">
+					<i class="icon-write-fill"></i>
+				</a>
+				<label class="grid-label">审批</label>
+			</li>
+			<li>
+				<a style="background-color:#e74c3c;">
+					<i class="icon-position-fill"></i>
+				</a>
+				<label class="grid-label">定位</label>
+			</li>
+			<li>
+				<a style="background-color:#78ba00;">
+					<i class="icon-gear-fill"></i>
+				</a>
+				<label class="grid-label">设置</label>
+			</li>
+			<li>
+				<a style="background-color:#8e44ad;">
+					<i class="icon-folder-fill"></i>
+				</a>
+				<label class="grid-label">文档</label>
+			</li>
+			<li>
+				<a style="background-color:#f1c40f;">
+					<i class="icon-chartpie-fill"></i>
+				</a>
+				<label class="grid-label">数据分析</label>
+			</li>
+		</ul>
+		<p class="title">相册</p>
+		<ul class="grid album" data-col="3">
+			<li>
+				<a style="background-image: url(../img/album/1.jpg)"></a>
+			</li>
+			<li>
+				<a style="background-image: url(../img/album/2.jpg)"></a>
+			</li>
+			<li>
+				<a class="grid-photo">
+					<i class="icon-camera"></i>
+				</a>
+			</li>
+		</ul>
+		<ul class="grid album" data-col="3">
+			<li>
+				<a style="background-image: url(../img/album/4.jpg)">
+					<span class="close"><i class="icon-close"></i></span>
+				</a>
+			</li>
+			<li>
+				<a style="background-image: url(../img/album/5.jpg)">
+					<span class="close"><i class="icon-close"></i></span>
+				</a>
+			</li>
+			<li>
+				<a class="grid-photo">
+					<i class="icon-camera"></i>
+				</a>
+			</li>
+		</ul>
+		<p class="title">缩略图</p>
+		<ul class="grid thumbnail" data-col="3">
+			<li>
+				<div><img src="../img/thumbnail/contact.jpg"/></div>
+				<label>通讯录</label>
+			</li>
+			<li>
+				<div><img src="../img/thumbnail/tree.jpg"/></div>
+				<label>树结构</label>
+			</li>
+			<li>
+				<div><img src="../img/thumbnail/contact.jpg"/></div>
+				<label>通讯录</label>
+			</li>
+		</ul>
+	</article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>
