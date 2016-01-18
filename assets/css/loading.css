@@ -1,12 +1,17 @@
 /*-----------------------------loading.less(start)-----------------------------*/
-#loading {
+.loading {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   right: 0;
   bottom: 0;
-  background-color: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
   z-index: 3;
+  -webkit-transform:translate(-50%,-50%);
+
+  background-color: white;
 }
 /*加载动画*/
 .loadcircle {

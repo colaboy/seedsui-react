@@ -20,12 +20,15 @@
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../assets/js/dragrefresh.js"></script>
+    <script src="../assets/js/alert.js"></script>
     <script type="text/javascript">
         for(var i=0;i<100;i++){
             var elLI=document.createElement("li");
             elLI.innerHTML='<div class="justify-content">第'+i+'行列表</div>';
             document.getElementById("list").appendChild(elLI);
         }
+        var a1=new Alert("加载完成");
+        var a2=new Alert("请求超时啦");
         var drag=new Dragrefresh("article",{
             "onRefresh":function(e){
                 setTimeout(function(){
@@ -34,10 +37,10 @@
                 
             },
             "onRefreshComplete":function(e){
-                alert("加载完成");
+                a1.show();
             },
             "onRefreshOvertime":function(e){
-                alert("请求超时啦");
+                a2.show();
             }
         });
     </script>

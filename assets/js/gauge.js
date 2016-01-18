@@ -11,15 +11,6 @@
 */
 (function(window,document,undefined){
 	'use strict';
-	/**
-	 * 可视化数据：指针
-	 * 
-	 * @module Gauge
-	 * @constructor
-	 * @param container //元素对象
-	 * @param params //配置参数，如：{minValue:0,maxValue:400,currentValue:10}
-	 * @return void
-	 */
 	window.Gauge=function(container,params){
 		/*============
 		  Model
