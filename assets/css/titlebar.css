@@ -1,0 +1,88 @@
+/*----------------titlebar.less(start)--------------*/
+.titlebar {
+  position: relative;
+  min-height: 44px;
+  border-bottom: 1px solid;
+  box-sizing: border-box;
+}
+.titlebar h1 {
+  display: block;
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  font-size: 17px;
+  font-weight: normal;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 0 32px;
+  z-index: 0;
+}
+.titlebar a {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  font-size: 0;
+}
+.titlebar a,
+.titlebar [class*="icon-"] {
+  height: 24px;
+  line-height: 24px;
+}
+.titlebar a.left {
+  float: left;
+  margin-left: 4px;
+}
+.titlebar a.right {
+  float: right;
+  margin-right: 4px;
+}
+.titlebar a i,
+.titlebar a span {
+  font-size: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+.titlebar [class*="icon-"] {
+  width: 24px;
+  /*文字图标*/
+  font-size: 24px;
+  /*背景图标*/
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+/*logo*/
+.titlebar .logo,
+.titlebar .logo img {
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  font-size: 30px;
+}
+/*search*/
+.titlebar input[type=text],
+.titlebar input[type=search] {
+  width: 100%;
+  padding: 4px;
+  border-radius: 12px;
+}
+.titlebar input[type=text] + [class*="icon-"],
+.titlebar input[type=search] + [class*="icon-"] {
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  right: 50px;
+}
+/*----------------titlebar.less(end)----------------*/

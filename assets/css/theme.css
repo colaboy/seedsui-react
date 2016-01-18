@@ -1,4 +1,4 @@
-/*控件*/
+/*color.less.less(start)*/
 /*-----------------------------global.less(start)-----------------------------*/
 body {
   background-color: #f4f4f4;
@@ -29,7 +29,7 @@ a {
 }
 a:active,
 .a:active {
-  color: rgba(24, 178, 237, 0.5);
+  opacity: 0.5;
 }
 /*容器样式*/
 .highlight {
@@ -87,7 +87,7 @@ aside {
   opacity: 0.5;
 }
 .titlebar a:active:not(.disable) {
-  color: rgba(54, 172, 244, 0.5);
+  opacity: 0.5;
 }
 .titlebar.reverse {
   background-color: #36acf4;
@@ -98,9 +98,6 @@ aside {
 }
 .titlebar.reverse a {
   color: #ffffff;
-}
-.titlebar.reverse a:active {
-  color: rgba(255, 255, 255, 0.5);
 }
 /*search*/
 .titlebar input[type=text] + [class*="icon-"],
@@ -176,26 +173,17 @@ input[type="button"].outline,
   border-color: #36acf4;
   background-color: transparent;
 }
-button:active,
-input[type="button"]:active,
-input[type="submit"]:active,
-.button:active {
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(54, 172, 244, 0.5);
-}
-button.outline:active,
-input[type="button"].outline:active,
-.button.outline:active {
-  color: rgba(54, 172, 244, 0.5);
-  border-color: rgba(54, 172, 244, 0.5);
-  background-color: transparent;
-}
 /*去色*/
 button.outline.desaturate,
 input[type="button"].outline.desaturate,
 .button.outline.desaturate {
   color: #333333;
   border-color: #dddddd;
+}
+button:active,
+input[type="button"]:active,
+.button:active {
+  opacity: 0.5;
 }
 /*按钮-禁用按钮*/
 button.disable,
@@ -224,21 +212,9 @@ input[type="button"].cancel,
 button.cancel.outline,
 input[type="button"].cancel.outline,
 .button.cancel.outline {
+  background-color: transparent;
   color: #f86868;
   border-color: #f86868;
-  background-color: transparent;
-}
-button.cancel:active,
-input[type="button"].cancel:active,
-.button.cancel:active {
-  background-color: rgba(248, 104, 104, 0.5);
-}
-button.cancel.outline:active,
-input[type="button"].cancel.outline:active,
-.button.cancel.outline:active {
-  color: rgba(248, 104, 104, 0.5);
-  border-color: rgba(248, 104, 104, 0.5);
-  background-color: transparent;
 }
 /*按钮-提交按钮*/
 button.submit,
@@ -251,18 +227,6 @@ input[type="submit"].outline,
 .button.submit.outline {
   color: #88d038;
   border-color: #88d038;
-  background-color: transparent;
-}
-button.submit:active,
-input[type="submit"]:active,
-.button.submit:active {
-  background-color: rgba(136, 208, 56, 0.5);
-}
-button.submit.outline:active,
-input[type="submit"].outline:active,
-.button.submit.outline:active {
-  color: rgba(136, 208, 56, 0.5);
-  border-color: rgba(136, 208, 56, 0.5);
   background-color: transparent;
 }
 /*按钮-信息按钮*/
@@ -278,18 +242,6 @@ input[type="button"].info.outline,
   border-color: #5bc0de;
   background-color: transparent;
 }
-button.info:active,
-input[type="button"].info:active,
-.button.info:active {
-  background-color: rgba(91, 192, 222, 0.5);
-}
-button.info.outline:active,
-input[type="button"].info.outline:active,
-.button.info.outline:active {
-  color: rgba(91, 192, 222, 0.5);
-  border-color: rgba(91, 192, 222, 0.5);
-  background-color: transparent;
-}
 /*按钮-警告按钮*/
 button.warn,
 input[type="button"].warn,
@@ -301,18 +253,6 @@ input[type="button"].warn.outline,
 .button.warn.outline {
   color: #f4984e;
   border-color: #f4984e;
-  background-color: transparent;
-}
-button.warn:active,
-input[type="button"].warn:active,
-.button.warn:active {
-  background-color: rgba(244, 152, 78, 0.5);
-}
-button.warn.outline:active,
-input[type="button"].warn.outline:active,
-.button.warn.outline:active {
-  color: rgba(244, 152, 78, 0.5);
-  border-color: rgba(244, 152, 78, 0.5);
   background-color: transparent;
 }
 /*按钮-完成按钮*/
@@ -328,18 +268,6 @@ input[type="button"].success.outline,
   border-color: #2eb398;
   background-color: transparent;
 }
-button.success:active,
-input[type="button"].success:active,
-.button.success:active {
-  background-color: rgba(46, 179, 152, 0.5);
-}
-button.success.outline:active,
-input[type="button"].success.outline:active,
-.button.success.outline:active {
-  color: rgba(46, 179, 152, 0.5);
-  border-color: rgba(46, 179, 152, 0.5);
-  background-color: transparent;
-}
 /*按钮-链接*/
 button.link,
 input[type="button"].link,
@@ -352,18 +280,6 @@ input[type="button"].link.outline,
 .button.link.outline {
   border-color: #36acf4;
   color: #36acf4;
-}
-button.link:active,
-input[type="button"].link:active,
-.button.link:active {
-  color: rgba(54, 172, 244, 0.5);
-  background-color: transparent;
-}
-button.link.outline:active,
-input[type="button"].link.outline:active,
-.button.link.outline:active {
-  border-color: rgba(54, 172, 244, 0.5);
-  color: rgba(54, 172, 244, 0.5);
 }
 /*按钮-气泡*/
 button .tip,
@@ -394,13 +310,13 @@ input[type="button"].outline .tip,
 /*----------------------------buttongroup.less(start)------------------------------*/
 .button-group > span {
   border-color: #dddddd;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 /*激活状态*/
 .button-group > span:not(.disable).active,
 .button-group > span:not(.disable):active {
   color: #36acf4;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 /*禁用状态*/
 .button-group > .disable {

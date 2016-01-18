@@ -1,0 +1,56 @@
+/*----------------layout.less(start)--------------*/
+/*左右布局*/
+.row {
+  display: flex;
+  display: -webkit-flex;
+  display: box;
+  display: -webkit-box;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+.row > label {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  display: box;
+  display: -webkit-box;
+  box-align: center;
+  -webkit-box-align: center;
+  width: 30%;
+  padding: 0 0 0 8px;
+  color: #666;
+}
+.row > div {
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
+}
+/*分组容器*/
+.group {
+  margin: 20px 0;
+  border-width: 1px 0;
+  border-style: solid;
+  background-color: white;
+}
+.group:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.group .input-box {
+  border-width: 0;
+}
+.group .row:last-of-type {
+  border-width: 0;
+}
+/*卡片容器*/
+.card {
+  display: block;
+  margin: 8px;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
+  background-color: #fff;
+}
+/*----------------layout.less(end)--------------*/

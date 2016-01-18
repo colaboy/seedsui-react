@@ -1,0 +1,101 @@
+/*----------------range.less(start)--------------*/
+/*去除所有原有样式*/
+input[type=range] {
+  margin: 8px 0;
+  -webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  border-color: transparent;
+  color: transparent;
+  background: transparent;
+}
+/*添加轨道样式*/
+/*添加轨道样式-webkit*/
+input[type=range]::-webkit-slider-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  margin-top: -10px;
+  background: #3779d0;
+  opacity: 1;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  height: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
+  background: white;
+}
+input[type=range]:active::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+/*添加轨道样式-moz*/
+input[type=range]::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  margin-top: -10px;
+  background: #3779d0;
+  opacity: 1;
+}
+input[type=range]::-moz-range-track {
+  height: 8px;
+  cursor: pointer;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
+}
+/*添加轨道样式-ms*/
+input[type=range]::-ms-thumb {
+  height: 8px;
+  width: 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #3779d0;
+  opacity: 1;
+}
+input[type=range]::-ms-track {
+  height: 10px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd;
+}
+input[type=range]::-ms-fill-lower {
+  border-radius: 10px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: white;
+  background: #3779d0;
+}
+input[type=range]:focus::-ms-fill-lower {
+  border-radius: 10px;
+  background: #3779d0;
+}
+input[type=range]::-ms-fill-upper {
+  background: white;
+}
+input[type=range]:focus::-ms-fill-upper {
+  border-radius: 10px;
+  background: white;
+}
+/*----------------range.less(end)--------------*/

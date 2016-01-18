@@ -50,23 +50,22 @@
 		s.setText=function(msg){
 			s.toast.innerHTML=msg;
 		};
-		s.hide=function(){
+		s.hide=function(fn){
 			$(s.container).animate(s.hideAnimate,"fast","linear",function(){
 				$(this).css({"display":"none","bottom":"-100%"});
+				if(fn)fn(s);
 			});
 		};
-		s.show=function(){
+		s.show=function(fn){
 			if(s){
 				$(s.container).css("display","block").animate(s.showAnimate,"fast","linear");
 				setTimeout(function(){
-					s.hide();
+					s.hide(fn);
 				},s.params.delay);
 			}
 		};
 		s.destory=function(){
-			$(s.container).animate(s.hideAnimate,"fast","linear",function(){
-				$(this).remove();
-			});
+			$(s.container).remove();
 			s=null;
 		};
 		/*================

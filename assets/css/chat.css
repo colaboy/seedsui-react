@@ -1,0 +1,82 @@
+/*----------------------------chat.less(start)----------------------------*/
+.chat {
+  padding: 8px;
+  box-sizing: border-box;
+}
+.chat li:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.chat .author {
+  width: 40px;
+  display: inline-block;
+  text-align: center;
+  float: left;
+}
+.chat .author img {
+  width: 100%;
+  border-radius: 100%;
+}
+.chat .author i {
+  font-size: 12px;
+  font-style: normal;
+}
+.chat .content-box {
+  display: inline-block;
+  font-size: 12px;
+  float: left;
+  margin-left: 12px;
+  width: 70%;
+}
+.chat .content {
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.chat .content i {
+  display: block;
+  position: relative;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+}
+.chat .content p {
+  margin: 0;
+  padding-top: 3px;
+  text-align: left;
+}
+.chat .content:after {
+  position: absolute;
+  right: 100%;
+  top: 20%;
+  height: 0;
+  width: 0;
+  content: " ";
+  border-width: 5px;
+  margin-top: -5px;
+  border-style: solid;
+  border-color: transparent;
+}
+/*even*/
+.chat li {
+  margin-bottom: 24px;
+}
+.chat .even .author {
+  float: right;
+}
+.chat .even .content-box {
+  width: 70%;
+  margin-right: 12px;
+  text-align: right;
+  float: right;
+}
+.chat .even .content:after {
+  left: 100%;
+  top: 20%;
+  border-color: transparent;
+}
+/*----------------------------chat.less(end)----------------------------*/

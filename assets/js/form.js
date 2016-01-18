@@ -158,6 +158,7 @@
 				var errormsg=s.rule(field);
 				if(errormsg){
 					var t=new Toast(errormsg);
+					t.show(function(s){s.destory();});
 					t=null;
 					field.focus();
 					return false;

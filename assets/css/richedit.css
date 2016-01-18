@@ -1,0 +1,126 @@
+/*----------------richedit.less(start)--------------*/
+.richedit {
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+/*表情区域*/
+.face {
+  display: none;
+  font-size: 0;
+  padding: 8px 0;
+  height: 90px;
+  overflow: auto;
+}
+.face.active {
+  display: block;
+}
+.face [data-face] {
+  display: inline-block;
+  width: 14%;
+  height: 28px;
+  margin: 8px 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.richinput img {
+  width: 24px;
+}
+[data-face="[拜拜]"] {
+  background-image: url(img/face/baibai.png);
+}
+[data-face="[发呆]"] {
+  background-image: url(img/face/fadai.png);
+}
+[data-face="[坏笑]"] {
+  background-image: url(img/face/huaixiao.png);
+}
+[data-face="[流汗]"] {
+  background-image: url(img/face/liuhan.png);
+}
+[data-face="[呕吐]"] {
+  background-image: url(img/face/outu.png);
+}
+[data-face="[微笑]"] {
+  background-image: url(img/face/weixiao.png);
+}
+[data-face="[晕]"] {
+  background-image: url(img/face/yun.png);
+}
+[data-face="[眨眼]"] {
+  background-image: url(img/face/zhayan.png);
+}
+[data-face="[龇牙]"] {
+  background-image: url(img/face/ziya.png);
+}
+/*输入框区域*/
+.richedit figcaption {
+  position: relative;
+  min-height: 44px;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+  background-color: white;
+}
+.richedit .input {
+  margin: 8px 70px 8px 8px;
+  border: none;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 5px;
+  border-color: transparent;
+  border-image: url(img/input.png) 30 30 stretch;
+  overflow: auto;
+}
+.richedit.active .input {
+  border-image: url(img/input-active.png) 30 30 stretch;
+}
+.richedit textarea,
+.richedit pre {
+  padding: 0;
+  line-height: 20px;
+  min-height: 20px;
+  max-height: 60px;
+}
+.richedit pre {
+  position: absolute;
+  left: 0;
+  top: 100px;
+  background-color: red;
+  visibility: hidden;
+}
+/*发送按钮*/
+.richedit .button,
+.richedit button {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  height: 32px;
+  line-height: 32px;
+  width: 54px;
+}
+/*遮罩*/
+.richedit + .mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+/*激活状态*/
+.richedit.active {
+  top: 0;
+  bottom: auto;
+}
+.richedit.active .face {
+  display: block;
+}
+.richedit.active + .mask {
+  display: block;
+}
+/*----------------richedit.less(end)--------------*/

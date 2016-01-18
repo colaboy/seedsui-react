@@ -1,0 +1,253 @@
+/*-----------------------------weather.less(start)-----------------------------*/
+.weather-box {
+  position: relative;
+  height: 60px;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#37acf1), to(#7accfe));
+  transition: height 0.5s linear;
+}
+.weather-box small {
+  color: white;
+}
+.weather-topinfo {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  -webkit-transform: translateY(-100px);
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+.weather-current-city {
+  padding-left: 24px;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  background-image: url(img/weather/location.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left center;
+}
+.weather-current-date {
+  float: right;
+}
+.weather-current-temperature,
+.weather-today-right [class^="weather-icon-"] {
+  height: 40px;
+  margin: 10px 0;
+  text-align: center;
+}
+.sndinfo {
+  -webkit-transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+/*当前温度*/
+.weather-current-temperature {
+  font-size: 32px;
+  height: 40px;
+  margin: 10px 0;
+  text-align: left;
+  text-indent: 8px;
+}
+.weather-today {
+  height: 200px;
+  position: relative;
+}
+.weather-today-left {
+  position: absolute;
+  top: -40px;
+  left: 5px;
+  text-align: center;
+  transition: all 0.5s linear;
+}
+.weather-today-right {
+  position: absolute;
+  top: -40px;
+  right: 5px;
+  text-align: center;
+  transition: all 0.5s linear;
+}
+/*其它天气*/
+ul.weather-otherday {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  font-size: 10px;
+  -webkit-transform: translateY(300px);
+  opacity: 0;
+  transition: all 0.5s linear;
+}
+ul.weather-otherday li {
+  display: inline-block;
+  text-align: center;
+  width: 25%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+.weather-collapse {
+  position: absolute;
+  top: 10px;
+  left: 90px;
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+.weather-collapse .weather-current-city {
+  background-image: none;
+  padding-left: 0;
+}
+.weather-collapse .weather-name {
+  margin-left: 5px;
+}
+/*展开状态*/
+.weather-box.expand {
+  height: 250px;
+}
+.weather-box.expand .weather-topinfo {
+  -webkit-transform: translateY(0);
+  opacity: 1;
+}
+.weather-box.expand .weather-current-temperature {
+  text-align: center;
+}
+.weather-box.expand ul.weather-otherday {
+  -webkit-transform: translateY(0);
+  opacity: 1;
+}
+.weather-box.expand .sndinfo {
+  -webkit-transform: translateY(0);
+  opacity: 1;
+}
+.weather-box.expand .weather-today-left {
+  top: 0;
+  left: 80px;
+}
+.weather-box.expand .weather-today-right {
+  top: 0;
+  right: 80px;
+}
+.weather-box.expand .weather-collapse {
+  top: 300px;
+  opacity: 0;
+}
+/*天气图标*/
+[class^="weather-icon-"] {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+i[class^="weather-icon-"] {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+.weather-icon-qing {
+  background-image: url(img/weather/qing.png);
+}
+.weather-icon-duoyun {
+  background-image: url(img/weather/duoyun.png);
+}
+.weather-icon-zhenyu {
+  background-image: url(img/weather/zhenyu.png);
+}
+.weather-icon-leizhenyu {
+  background-image: url(img/weather/leizhenyu.png);
+}
+.weather-icon-leizhenyubanyoubingbao {
+  background-image: url(img/weather/leizhenyubanyoubingbao.png);
+}
+.weather-icon-yujiaxue {
+  background-image: url(img/weather/yujiaxue.png);
+}
+.weather-icon-light-xiaoyu {
+  background-image: url(img/weather/xiaoyu.png);
+}
+.weather-icon-zhongyu {
+  background-image: url(img/weather/zhongyu.png);
+}
+.weather-icon-dayu {
+  background-image: url(img/weather/dayu.png);
+}
+.weather-icon-baoyu {
+  background-image: url(img/weather/baoyu.png);
+}
+.weather-icon-dabaoyu {
+  background-image: url(img/weather/dabaoyu.png);
+}
+.weather-icon-tedabaoyu {
+  background-image: url(img/weather/tedabaoyu.png);
+}
+.weather-icon-zhenxue {
+  background-image: url(img/weather/zhenxue.png);
+}
+.weather-icon-xiaoxue {
+  background-image: url(img/weather/xiaoxue.png);
+}
+.weather-icon-zhongxue {
+  background-image: url(img/weather/zhongxue.png);
+}
+.weather-icon-daxue {
+  background-image: url(img/weather/daxue.png);
+}
+.weather-icon-baoxue {
+  background-image: url(img/weather/baoxue.png);
+}
+.weather-icon-wu {
+  background-image: url(img/weather/wu.png);
+}
+.weather-icon-dongyu {
+  background-image: url(img/weather/dongyu.png);
+}
+.weather-icon-shachenbao {
+  background-image: url(img/weather/shachenbao.png);
+}
+.weather-icon-xiaoyu {
+  background-image: url(img/weather/xiaoyu.png);
+}
+.weather-icon-xiaoyuzhuanzhongyu {
+  background-image: url(img/weather/xiaoyuzhuanzhongyu.png);
+}
+.weather-icon-zhongyuzhuandayu {
+  background-image: url(img/weather/zhongyuzhuandayu.png);
+}
+.weather-icon-dayuzhuanbaoyu {
+  background-image: url(img/weather/dayuzhuanbaoyu.png);
+}
+.weather-icon-baoyuzhuandabaoyu {
+  background-image: url(img/weather/baoyuzhuandabaoyu.png);
+}
+.weather-icon-dabaoyuzhuantedabaoyu {
+  background-image: url(img/weather/dabaoyuzhuantedabaoyu.png);
+}
+.weather-icon-xiaoxuezhuanzhongxue {
+  background-image: url(img/weather/xiaoxuezhuanzhongxue.png);
+}
+.weather-icon-zhongxuezhuandaxue {
+  background-image: url(img/weather/zhongxuezhuandaxue.png);
+}
+.weather-icon-zhongyuzhuandayu {
+  background-image: url(img/weather/zhongyuzhuandayu.png);
+}
+.weather-icon-daxuezhuanbaoxue {
+  background-image: url(img/weather/daxuezhuanbaoxue.png);
+}
+.weather-icon-yangsha {
+  background-image: url(img/weather/yangsha.png);
+}
+.weather-icon-fuchen {
+  background-image: url(img/weather/fuchen.png);
+}
+.weather-icon-qiangshachenbao {
+  background-image: url(img/weather/qiangshachenbao.png);
+}
+.weather-icon-mai {
+  background-image: url(img/weather/mai.png);
+}
+.weather-icon-yin {
+  background-image: url(img/weather/yin.png);
+}
+/*-----------------------------weather.less(end)-----------------------------*/

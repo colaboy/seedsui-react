@@ -1,0 +1,26 @@
+/*----------------------------summary.less(start)----------------------------*/
+/*隐藏原始图标*/
+summary::-webkit-details-marker {
+  display: none;
+}
+/*图标样式*/
+summary:after {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  content: '';
+  -webkit-transform: translateY(-50%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "iconfont";
+  font-size: 14px;
+  content: "\e9bd";
+}
+/*图标选中样式*/
+details[open] summary:after {
+  content: "\e9b5";
+}
+/*----------------------------summary.less(end)----------------------------*/

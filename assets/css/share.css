@@ -1,0 +1,66 @@
+/*----------------share.less(start)--------------*/
+.sharebox {
+  padding: 12px;
+  background-color: white;
+}
+.sharebox ul li {
+  margin-top: 10px;
+}
+.sharebox ul li a {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  color: white;
+}
+/*#baiduShare{
+	margin-top:20px;
+	padding: 10px;
+	background-color: white;
+}
+#baiduShare .shareto{
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	color: #888888;
+	font-size: 14px;
+}
+ #baiduShare ul{
+	display:block;
+	height:32px;
+	float:left;
+}
+#baiduShare ul li{
+	float:left;
+	margin-left:10px;
+} 
+#baiduShare:after,.mshare:after{
+	clear: both;
+	height: 0;
+	overflow: hidden;
+	display: block;
+	visibility: hidden;
+	content: ".";
+}
+#baiduShare a,.mshare a:not(.button){
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size: cover;
+	width:32px;
+	height:32px;
+	display: block;
+	margin:0;
+	float:none;
+}
+#baiduShare a:hover,.mshare a:not(.button):hover{
+	filter:none;
+	opacity:0.8;
+}
+.mshare{
+	background-color:white;
+	padding:8px 12px;
+}
+.mshare a:not(.button){
+	width:48px;
+	height:48px;
+}*/
+/*----------------share.less(start)--------------*/
