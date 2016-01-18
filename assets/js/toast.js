@@ -57,9 +57,10 @@
 			});
 		};
 		s.show=function(fn){
+			clearTimeout(s.delay);
 			if(s){
 				$(s.container).css("display","block").animate(s.showAnimate,"fast","linear");
-				setTimeout(function(){
+				s.delay=setTimeout(function(){
 					s.hide(fn);
 				},s.params.delay);
 			}
