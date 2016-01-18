@@ -2438,6 +2438,7 @@ button.onlyicon [class*="icon-"] {
   height: 100%;
   line-height: 100%;
   background-color: transparent;
+  padding: 0;
 }
 /*第一个按钮*/
 .button-group > span:first-child {
