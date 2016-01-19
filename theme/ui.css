@@ -4601,7 +4601,6 @@ table th {
   box-sizing: border-box;
   overflow: hidden;
   color: white;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#37acf1), to(#7accfe));
   transition: height 0.5s linear;
 }
 .weather-box small {

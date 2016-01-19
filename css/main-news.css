@@ -19,8 +19,8 @@ input[type="radio"]{ background: url(../img/rdo.png) no-repeat;}
 .icon-quality{ background-image:url(../img/tabbar/tab_quality.png);}
 .icon-mine{	background-image:url(../img/tabbar/tab_mine.png);}
 .mainnews_tit{ border-bottom:#dddddd 1px solid; padding:10px; height:20px; line-height:20px; vertical-align:top;}
-.mainnews_tit i{ background-color:#00b0df; width:4px; height:20px; display:inline-block; margin-right:5px;}
-.mainnews_tit a{ float:right; display:inline; color:#00b0df;}
+.mainnews_tit i{ width:4px; height:20px; display:inline-block; margin-right:5px;}
+.mainnews_tit a{ float:right; display:inline;}
 .mainnews_tit span{ display: inline-block; vertical-align:top;}
 .custom-main.swiper-container{ background-color:#fff;}
 .custom-main .swiper-slide{ background-color:#fff;}
