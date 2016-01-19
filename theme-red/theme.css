@@ -90,17 +90,17 @@ aside {
   color: rgba(255, 255, 255, 0.5);
 }
 .titlebar.reverse {
-  background-color: #f9f9f9;
+  background-color: #be0203;
   border-color: #be0203;
 }
 .titlebar.reverse h1 {
-  color: #be0203;
+  color: #ffffff;
 }
 .titlebar.reverse a {
-  color: #be0203;
+  color: #ffffff;
 }
 .titlebar.reverse a:active {
-  color: rgba(190, 2, 3, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 /*search*/
 .titlebar input[type=text] + [class*="icon-"],

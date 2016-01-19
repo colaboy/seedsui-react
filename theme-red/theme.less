@@ -1,5 +1,77 @@
-@import "../theme-red/variables.less";
+ @color-white:white;
+ @color-black:black;
+ @color-border:#ddd;
+ @color-label:#666;
+ @color-placeholder:#aaa;
+ @color-body-bg:#f4f4f4;
+ @color-body-font:#333;
 
+ @color-link:#18b2ed;
+ @color-link-active:fade(@color-link, 50%);
+
+ @color-primary:#BE0203;
+ @color-primary-active:fade(@color-primary, 50%);
+ @color-primary-title:white;
+ @color-primary-font:white;
+ @color-primary-font-active:fade(@color-primary-font, 30%);
+
+ @color-mask:rgba(0,0,0,.4);
+ 
+ @color-disable:#d9d9d9;
+ @color-submit:#2eb398;
+ @color-submit-active:fade(@color-submit, 50%);
+ @color-cancel:#EBCE77;
+ @color-cancel-active:fade(@color-cancel, 50%);
+ @color-success:#94C8D6;
+ @color-success-active:fade(@color-success, 50%);
+ @color-info:#3D999F;
+ @color-info-active:fade(@color-info, 50%);
+ @color-warn:#E0220C;
+ @color-warn-active:fade(@color-warn, 50%);
+ @color-highlight:#ebebeb;
+ @color-tip:#BE0203;
+ @color-tip-font:white;
+
+/*控件*/
+ @color-titlebar:@color-primary;
+ @color-titlebar-font:#fff;
+ @color-titlebar-link:#fff;
+ @color-titlebar-link-active:fade(@color-titlebar-link,50%);
+ @color-titlebar-border:@color-border;
+ @color-titlebar-reverse:@color-primary;
+ @color-titlebar-reverse-font:white;
+ @color-titlebar-reverse-link:white;
+ @color-titlebar-reverse-link-active:fade(@color-titlebar-reverse-link,50%);
+ @color-titlebar-reverse-border:@color-primary;
+
+ @color-menubar:#f8f8f8;
+ @color-menubar-font:#888;
+ @color-menubar-font-active:@color-primary;
+ @color-menubar-border:@color-border;
+ @color-menubar-reverse:@color-primary;
+ @color-menubar-reverse-font:white;
+ @color-menubar-reverse-border:@color-primary;
+
+ @color-button:@color-primary;
+ @color-button-font:white;
+ @color-button-active:fade(@color-button,50%);
+ @color-button-font-active:fade(@color-button-font,50%);
+ @color-button-tip:rgba(0, 0, 0, .15);
+
+ @color-aside:@color-body-bg;
+
+ @color-list-bg:white;
+ @color-list-bg-active:#f4f4f4;
+
+ @color-chat-odd-bg:#ddd;
+ @color-chat-even-bg:#FDD3C7;
+
+ @color-toast:rgba(0,0,0,.6);
+ @color-chatbg:#d8f2f3;
+ @color-required-border:#e7eabd;
+ @color-required-bg:#faffbd;
+
+ @color-table-font:#888;
 /*-----------------------------global.less(start)-----------------------------*/
 body{
 	background-color:@color-body-bg;
