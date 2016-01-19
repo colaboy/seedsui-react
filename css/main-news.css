@@ -64,4 +64,4 @@ input[type="radio"]{ background: url(../img/rdo.png) no-repeat;}
 
 
 .slide-mainnews-container{ height: 100%;}
-.slider-slide{ height: 100%;}
+.slider-slide{ height: 100%; overflow: auto;}
