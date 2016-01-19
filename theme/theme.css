@@ -6,7 +6,7 @@ body {
 }
 /*标签默认样式*/
 ::selection {
-  background: #36acf4;
+  background: #be0203;
   color: #ffffff;
 }
 ::-webkit-input-placeholder {
@@ -25,11 +25,11 @@ body {
   color: #aaaaaa;
 }
 a {
-  color: #18b2ed;
+  color: #be0203;
 }
 a:active,
 .a:active {
-  color: rgba(24, 178, 237, 0.5);
+  color: rgba(190, 2, 3, 0.5);
 }
 /*容器样式*/
 .highlight {
@@ -39,26 +39,26 @@ a:active,
 /*小汽泡*/
 .tip {
   color: #ffffff;
-  background-color: #fc4349;
+  background-color: #be0203;
 }
 /*常用颜色*/
 .color-primary {
-  color: #36acf4;
+  color: #be0203;
 }
 .bg-primary {
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 .color-placeholder {
   color: #aaaaaa;
 }
 .color-info {
-  color: #5bc0de;
+  color: #3d999f;
 }
 .color-warn {
-  color: #f4984e;
+  color: #e0220c;
 }
 .color-success {
-  color: #2eb398;
+  color: #94c8d6;
 }
 /*条纹线*/
 .stripe:nth-child(even) {
@@ -80,33 +80,33 @@ aside {
 /*----------------aside.less(end)--------------*/
 /*----------------titlebar.less(start)--------------*/
 .titlebar {
-  background-color: #f9f9f9;
+  background-color: #be0203;
   border-color: #dddddd;
 }
 .titlebar h1 {
-  color: #333333;
+  color: #ffffff;
 }
 .titlebar a {
-  color: #36acf4;
+  color: #ffffff;
 }
 .titlebar a.disable {
   opacity: 0.5;
 }
 .titlebar a:active:not(.disable) {
-  color: rgba(54, 172, 244, 0.5);
+  color: rgba(255, 255, 255, 0.5);
 }
 .titlebar.reverse {
-  background-color: #36acf4;
-  border-color: #36acf4;
+  background-color: #f9f9f9;
+  border-color: #be0203;
 }
 .titlebar.reverse h1 {
-  color: #ffffff;
+  color: #be0203;
 }
 .titlebar.reverse a {
-  color: #ffffff;
+  color: #be0203;
 }
 .titlebar.reverse a:active {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(190, 2, 3, 0.5);
 }
 /*search*/
 .titlebar input[type=text] + [class*="icon-"],
@@ -124,7 +124,7 @@ aside {
 }
 .rectbar .tab:active,
 .rectbar .tab.active {
-  color: #36acf4;
+  color: #be0203;
 }
 .rectbar,
 .slidebar {
@@ -132,8 +132,8 @@ aside {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  color: #36acf4;
-  border-color: #36acf4;
+  color: #be0203;
+  border-color: #be0203;
 }
 .menubar {
   color: #888888;
@@ -141,15 +141,15 @@ aside {
 }
 .menubar .tab:active,
 .menubar .tab.active {
-  color: #36acf4;
+  color: #be0203;
 }
 .menubar.reverse .tab {
-  border-color: #36acf4;
+  border-color: #be0203;
 }
 .arrowbar,
 .menubar.reverse {
   color: #ffffff;
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 .arrowbar .tab,
 .menubar.reverse .tab {
@@ -163,7 +163,7 @@ aside {
   opacity: 1;
 }
 .arrowbar .tab.active:after {
-  border-top-color: #36acf4;
+  border-top-color: #be0203;
 }
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
@@ -173,13 +173,13 @@ input[type="button"],
 input[type="submit"],
 .button {
   color: #ffffff;
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 button.outline,
 input[type="button"].outline,
 .button.outline {
-  color: #36acf4;
-  border-color: #36acf4;
+  color: #be0203;
+  border-color: #be0203;
   background-color: transparent;
 }
 button:active,
@@ -187,13 +187,13 @@ input[type="button"]:active,
 input[type="submit"]:active,
 .button:active {
   color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(54, 172, 244, 0.5);
+  background-color: rgba(190, 2, 3, 0.5);
 }
 button.outline:active,
 input[type="button"].outline:active,
 .button.outline:active {
-  color: rgba(54, 172, 244, 0.5);
-  border-color: rgba(54, 172, 244, 0.5);
+  color: rgba(190, 2, 3, 0.5);
+  border-color: rgba(190, 2, 3, 0.5);
   background-color: transparent;
 }
 /*去色*/
@@ -225,151 +225,151 @@ input[type="button"][disable].outline,
 button.cancel,
 input[type="button"].cancel,
 .button.cancel {
-  background-color: #f86868;
+  background-color: #ebce77;
 }
 button.cancel.outline,
 input[type="button"].cancel.outline,
 .button.cancel.outline {
-  color: #f86868;
-  border-color: #f86868;
+  color: #ebce77;
+  border-color: #ebce77;
   background-color: transparent;
 }
 button.cancel:active,
 input[type="button"].cancel:active,
 .button.cancel:active {
-  background-color: rgba(248, 104, 104, 0.5);
+  background-color: rgba(235, 206, 119, 0.5);
 }
 button.cancel.outline:active,
 input[type="button"].cancel.outline:active,
 .button.cancel.outline:active {
-  color: rgba(248, 104, 104, 0.5);
-  border-color: rgba(248, 104, 104, 0.5);
+  color: rgba(235, 206, 119, 0.5);
+  border-color: rgba(235, 206, 119, 0.5);
   background-color: transparent;
 }
 /*按钮-提交按钮*/
 button.submit,
 input[type="submit"],
 .button.submit {
-  background-color: #88d038;
+  background-color: #2eb398;
 }
 button.submit.outline,
 input[type="submit"].outline,
 .button.submit.outline {
-  color: #88d038;
-  border-color: #88d038;
+  color: #2eb398;
+  border-color: #2eb398;
   background-color: transparent;
 }
 button.submit:active,
 input[type="submit"]:active,
 .button.submit:active {
-  background-color: rgba(136, 208, 56, 0.5);
+  background-color: rgba(46, 179, 152, 0.5);
 }
 button.submit.outline:active,
 input[type="submit"].outline:active,
 .button.submit.outline:active {
-  color: rgba(136, 208, 56, 0.5);
-  border-color: rgba(136, 208, 56, 0.5);
+  color: rgba(46, 179, 152, 0.5);
+  border-color: rgba(46, 179, 152, 0.5);
   background-color: transparent;
 }
 /*按钮-信息按钮*/
 button.info,
 input[type="button"].info,
 .button.info {
-  background-color: #5bc0de;
+  background-color: #3d999f;
 }
 button.info.outline,
 input[type="button"].info.outline,
 .button.info.outline {
-  color: #5bc0de;
-  border-color: #5bc0de;
+  color: #3d999f;
+  border-color: #3d999f;
   background-color: transparent;
 }
 button.info:active,
 input[type="button"].info:active,
 .button.info:active {
-  background-color: rgba(91, 192, 222, 0.5);
+  background-color: rgba(61, 153, 159, 0.5);
 }
 button.info.outline:active,
 input[type="button"].info.outline:active,
 .button.info.outline:active {
-  color: rgba(91, 192, 222, 0.5);
-  border-color: rgba(91, 192, 222, 0.5);
+  color: rgba(61, 153, 159, 0.5);
+  border-color: rgba(61, 153, 159, 0.5);
   background-color: transparent;
 }
 /*按钮-警告按钮*/
 button.warn,
 input[type="button"].warn,
 .button.warn {
-  background-color: #f4984e;
+  background-color: #e0220c;
 }
 button.warn.outline,
 input[type="button"].warn.outline,
 .button.warn.outline {
-  color: #f4984e;
-  border-color: #f4984e;
+  color: #e0220c;
+  border-color: #e0220c;
   background-color: transparent;
 }
 button.warn:active,
 input[type="button"].warn:active,
 .button.warn:active {
-  background-color: rgba(244, 152, 78, 0.5);
+  background-color: rgba(224, 34, 12, 0.5);
 }
 button.warn.outline:active,
 input[type="button"].warn.outline:active,
 .button.warn.outline:active {
-  color: rgba(244, 152, 78, 0.5);
-  border-color: rgba(244, 152, 78, 0.5);
+  color: rgba(224, 34, 12, 0.5);
+  border-color: rgba(224, 34, 12, 0.5);
   background-color: transparent;
 }
 /*按钮-完成按钮*/
 button.success,
 input[type="button"].success,
 .button.success {
-  background-color: #2eb398;
+  background-color: #94c8d6;
 }
 button.success.outline,
 input[type="button"].success.outline,
 .button.success.outline {
-  color: #2eb398;
-  border-color: #2eb398;
+  color: #94c8d6;
+  border-color: #94c8d6;
   background-color: transparent;
 }
 button.success:active,
 input[type="button"].success:active,
 .button.success:active {
-  background-color: rgba(46, 179, 152, 0.5);
+  background-color: rgba(148, 200, 214, 0.5);
 }
 button.success.outline:active,
 input[type="button"].success.outline:active,
 .button.success.outline:active {
-  color: rgba(46, 179, 152, 0.5);
-  border-color: rgba(46, 179, 152, 0.5);
+  color: rgba(148, 200, 214, 0.5);
+  border-color: rgba(148, 200, 214, 0.5);
   background-color: transparent;
 }
 /*按钮-链接*/
 button.link,
 input[type="button"].link,
 .button.link {
-  color: #36acf4;
+  color: #be0203;
   background-color: transparent;
 }
 button.link.outline,
 input[type="button"].link.outline,
 .button.link.outline {
-  border-color: #36acf4;
-  color: #36acf4;
+  border-color: #be0203;
+  color: #be0203;
 }
 button.link:active,
 input[type="button"].link:active,
 .button.link:active {
-  color: rgba(54, 172, 244, 0.5);
+  color: rgba(190, 2, 3, 0.5);
   background-color: transparent;
 }
 button.link.outline:active,
 input[type="button"].link.outline:active,
 .button.link.outline:active {
-  border-color: rgba(54, 172, 244, 0.5);
-  color: rgba(54, 172, 244, 0.5);
+  border-color: rgba(190, 2, 3, 0.5);
+  color: rgba(190, 2, 3, 0.5);
 }
 /*按钮-气泡*/
 button .tip,
@@ -382,7 +382,7 @@ button.outline .tip,
 input[type="button"].outline .tip,
 .button.outline .tip {
   color: #ffffff;
-  background-color: #fc4349;
+  background-color: #be0203;
 }
 /*按钮-投影图标*/
 .button-shadow {
@@ -405,7 +405,7 @@ input[type="button"].outline .tip,
 /*激活状态*/
 .button-group > span:not(.disable).active,
 .button-group > span:not(.disable):active {
-  color: #36acf4;
+  color: #be0203;
   background-color: #ffffff;
 }
 /*禁用状态*/
@@ -417,16 +417,16 @@ input[type="button"].outline .tip,
   background-color: #d9d9d9;
 }
 .mark-info {
-  background-color: #5bc0de;
+  background-color: #3d999f;
 }
 .mark-success {
-  background-color: #2eb398;
+  background-color: #94c8d6;
 }
 .mark-cancel {
-  background-color: #f86868;
+  background-color: #ebce77;
 }
 .mark-warning {
-  background-color: #f4984e;
+  background-color: #e0220c;
 }
 /*------------------------------buttongroup.less(end)------------------------------*/
 /*----------------popup.less.less(start)--------------*/
@@ -480,10 +480,10 @@ textarea {
 }
 .input-box [class*="icon-"]:active,
 .input-box [class*="icon-"].active {
-  color: #36acf4;
+  color: #be0203;
 }
 .input-box.active {
-  border-color: #36acf4;
+  border-color: #be0203;
 }
 .input-box {
   border-color: #dddddd;
@@ -498,7 +498,7 @@ textarea {
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  color: #36acf4;
+  color: #be0203;
 }
 /*----------------dragrefresh.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
@@ -522,7 +522,7 @@ input[type=range]::-ms-track {
 /*添加轨道样式*/
 /*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  background: #36acf4;
+  background: #be0203;
   opacity: 1;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -534,7 +534,7 @@ input[type=range]:active::-webkit-slider-runnable-track {
 }
 /*添加轨道样式-moz*/
 input[type=range]::-moz-range-thumb {
-  background: #36acf4;
+  background: #be0203;
   opacity: 1;
 }
 input[type=range]::-moz-range-track {
@@ -543,7 +543,7 @@ input[type=range]::-moz-range-track {
 }
 /*添加轨道样式-ms*/
 input[type=range]::-ms-thumb {
-  background: #36acf4;
+  background: #be0203;
   opacity: 1;
 }
 input[type=range]::-ms-track {
@@ -551,10 +551,10 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
   border-color: #ffffff;
-  background: #36acf4;
+  background: #be0203;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #36acf4;
+  background: #be0203;
 }
 input[type=range]::-ms-fill-upper {
   background: #ffffff;
@@ -570,19 +570,19 @@ input[type=range]:focus::-ms-fill-upper {
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #36acf4;
+  color: #be0203;
   /*IE10*/
-  border-color: #36acf4;
+  border-color: #be0203;
   background-color: #fff;
 }
 progress::-moz-progress-bar {
-  background: #36acf4;
+  background: #be0203;
 }
 progress::-webkit-progress-bar {
   background: #ffffff;
 }
 progress::-webkit-progress-value {
-  background: #36acf4;
+  background: #be0203;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -592,7 +592,7 @@ input[type="radio"] {
 }
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  color: #36acf4;
+  color: #be0203;
 }
 input[type="checkbox"][disabled],
 input[type="radio"][disabled],
@@ -624,7 +624,7 @@ input[type="radio"][disabled]:checked {
 }
 /*打开状态小圆点*/
 .switch.active .switch-handle {
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 /*打开状态文字on*/
 .switch.active:after {
@@ -638,7 +638,7 @@ input[type="radio"][disabled]:checked {
   color: #aaaaaa;
 }
 .switch.reverse.active {
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 /*----------------toggle.less(end)--------------*/
 /*----------------grid.less(start)--------------*/
@@ -656,7 +656,7 @@ input[type="radio"][disabled]:checked {
 }
 /*邮件列表*/
 .list.maillist .licon {
-  background-color: #36acf4;
+  background-color: #be0203;
 }
 /*应用列表*/
 .list.applist .licon {
@@ -667,7 +667,7 @@ input[type="radio"][disabled]:checked {
   color: #aaaaaa;
 }
 .list.applist .justify-content [class^="icon-"].active {
-  color: #f4984e;
+  color: #e0220c;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------chat.less(start)----------------------------*/
@@ -681,10 +681,10 @@ input[type="radio"][disabled]:checked {
   border-right-color: #dddddd;
 }
 .chat .even .content {
-  background-color: #b8daff;
+  background-color: #fdd3c7;
 }
 .chat .even .content:after {
-  border-left-color: #b8daff;
+  border-left-color: #fdd3c7;
 }
 /*----------------------------chat.less(end)----------------------------*/
 /*----------------------------bar.less(start)----------------------------*/
