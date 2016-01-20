@@ -10,6 +10,7 @@
 // @koala-prepend "dragrefresh.js"
 // @koala-prepend "eventutil.js"
 // @koala-prepend "face.js"
+// @koala-prepend "zh_CN.js"
 // @koala-prepend "form.js"
 // @koala-prepend "gauge.js"
 // @koala-prepend "media.js"
@@ -19,4 +20,3 @@
 // @koala-prepend "toast.js"
 // @koala-prepend "type.js"
 // @koala-prepend "weather.js"
-// @koala-prepend "zh_CN.js"

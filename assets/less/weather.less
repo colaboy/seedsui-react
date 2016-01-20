@@ -22,12 +22,13 @@
 	
 	transition:all 0.5s linear;
 }
+.weather-topinfo [class*="icon-"]{
+	font-size: 20px;
+}
 .weather-current-city{
-	padding-left:24px;
 	display:inline-block;
 	height:20px;
 	line-height:20px;
-	background-image:url(img/weather/location.png);
 	background-repeat:no-repeat;
 	background-size:contain;
 	background-position:left center;
@@ -139,121 +140,23 @@ ul.weather-otherday li{
 }
 
 /*天气图标*/
-[class^="weather-icon-"]{
+#weather-current-icon{
+	height: 40px;
+	font-size: 40px;
+	margin: 10px 0;
+}
+.weather-box [class*="icon-"]{
 	background-repeat:no-repeat;
 	background-size:contain;
 	background-position:center center;
 }
-i[class^="weather-icon-"]{
+.weather-otherday [class*="icon-"]{
 	width:24px;
 	height:24px;
+	font-size: 24px;
+	line-height: 24px;
+	text-align: center;
 	display:inline-block;
-}
-
-.weather-icon-qing{
-	background-image:url(img/weather/qing.png);
-}
-.weather-icon-duoyun{
-	background-image:url(img/weather/duoyun.png);
-}
-.weather-icon-zhenyu{
-	background-image:url(img/weather/zhenyu.png);
-}
-.weather-icon-leizhenyu{
-	background-image:url(img/weather/leizhenyu.png);
-}
-.weather-icon-leizhenyubanyoubingbao{
-	background-image:url(img/weather/leizhenyubanyoubingbao.png);
-}
-.weather-icon-yujiaxue{
-	background-image:url(img/weather/yujiaxue.png);
-}
-.weather-icon-light-xiaoyu{
-	background-image:url(img/weather/xiaoyu.png);
-}
-.weather-icon-zhongyu{
-	background-image:url(img/weather/zhongyu.png);
-}
-.weather-icon-dayu{
-	background-image:url(img/weather/dayu.png);
-}
-.weather-icon-baoyu{
-	background-image:url(img/weather/baoyu.png);
-}
-.weather-icon-dabaoyu{
-	background-image:url(img/weather/dabaoyu.png);
-}
-.weather-icon-tedabaoyu{
-	background-image:url(img/weather/tedabaoyu.png);
-}
-.weather-icon-zhenxue{
-	background-image:url(img/weather/zhenxue.png);
-}
-.weather-icon-xiaoxue{
-	background-image:url(img/weather/xiaoxue.png);
-}
-.weather-icon-zhongxue{
-	background-image:url(img/weather/zhongxue.png);
-}
-.weather-icon-daxue{
-	background-image:url(img/weather/daxue.png);
-}
-.weather-icon-baoxue{
-	background-image:url(img/weather/baoxue.png);
-}
-.weather-icon-wu{
-	background-image:url(img/weather/wu.png);
-}
-.weather-icon-dongyu{
-	background-image:url(img/weather/dongyu.png);
-}
-.weather-icon-shachenbao{
-	background-image:url(img/weather/shachenbao.png);
-}
-.weather-icon-xiaoyu{
-	background-image:url(img/weather/xiaoyu.png);
-}
-.weather-icon-xiaoyuzhuanzhongyu{
-	background-image:url(img/weather/xiaoyuzhuanzhongyu.png);
-}
-.weather-icon-zhongyuzhuandayu{
-	background-image:url(img/weather/zhongyuzhuandayu.png);
-}
-.weather-icon-dayuzhuanbaoyu{
-	background-image:url(img/weather/dayuzhuanbaoyu.png);
-}
-.weather-icon-baoyuzhuandabaoyu{
-	background-image:url(img/weather/baoyuzhuandabaoyu.png);
-}
-.weather-icon-dabaoyuzhuantedabaoyu{
-	background-image:url(img/weather/dabaoyuzhuantedabaoyu.png);
-}
-.weather-icon-xiaoxuezhuanzhongxue{
-	background-image:url(img/weather/xiaoxuezhuanzhongxue.png);
-}
-.weather-icon-zhongxuezhuandaxue{
-	background-image:url(img/weather/zhongxuezhuandaxue.png);
-}
-.weather-icon-zhongyuzhuandayu{
-	background-image:url(img/weather/zhongyuzhuandayu.png);
-}
-.weather-icon-daxuezhuanbaoxue{
-	background-image:url(img/weather/daxuezhuanbaoxue.png);
-}
-.weather-icon-yangsha{
-	background-image:url(img/weather/yangsha.png);
-}
-.weather-icon-fuchen{
-	background-image:url(img/weather/fuchen.png);
-}
-.weather-icon-qiangshachenbao{
-	background-image:url(img/weather/qiangshachenbao.png);
-}
-.weather-icon-mai{
-	background-image:url(img/weather/mai.png);
-}
-.weather-icon-yin{
-	background-image:url(img/weather/yin.png);
 }
 /*-----------------------------weather.less(end)-----------------------------*/
 
