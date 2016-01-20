@@ -1,0 +1,64 @@
+.grid {
+	background: #fff;
+	margin:12px 0 0 0;
+	border-top: 1px solid #ddd;	
+	border-bottom: 1px solid #ddd;	
+}
+.grid .grid-icon {
+	border-radius:100px;
+	color:#ffffff;
+}
+.grid .grid1 {
+	background-color:#3498db;
+	-webkit-animation-delay:100ms;
+	-ms-animation-delay:100ms;
+	animation-delay:100ms;
+}
+.grid .grid1:active {
+	background-color: #278CB4;
+}
+.grid .grid2 {
+	background-color:#F39C12;
+	-webkit-animation-delay:200ms;
+	-ms-animation-delay:200ms;
+	animation-delay:200ms;
+}
+.grid .grid3 {
+	background-color:#1abc9c;
+	-webkit-animation-delay:300ms;
+	-ms-animation-delay:300ms;
+	animation-delay:300ms;
+}
+.grid .grid4 {
+	background-color:#e74c3c;
+	-webkit-animation-delay:400ms;
+	-ms-animation-delay:400ms;
+	animation-delay:400ms;
+}
+.grid .grid5 {
+	background-color:#78ba00;
+	-webkit-animation-delay:500ms;
+	-ms-animation-delay:500ms;
+	animation-delay:500ms;
+}
+.grid .grid6 {
+	background-color:#8e44ad;
+	-webkit-animation-delay:600ms;
+	-ms-animation-delay:600ms;
+	animation-delay:600ms;
+}
+.grid .grid7 {
+	background-color:#f1c40f;
+	-webkit-animation-delay:700ms;
+	-ms-animation-delay:700ms;
+	animation-delay:700ms;
+}
+.grid .grid8 {
+	background-color:#2980b9;
+	-webkit-animation-delay:800ms;
+	-ms-animation-delay:800ms;
+	animation-delay:800ms;
+}
+.sliver {
+	background: transparent;
+}
