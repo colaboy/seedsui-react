@@ -2326,9 +2326,9 @@ aside.active ~ #section_container .section_container_mask {
 /*logo*/
 .titlebar .logo,
 .titlebar .logo img {
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
   font-size: 30px;
 }
 /*search*/
