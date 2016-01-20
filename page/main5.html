@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html manifest="main5.appcache">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>主页1</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="..//css/main5.css">
+<!-- Swiper框架的CSS -->
+<link rel="stylesheet" href="../plugin/swiper//swiper.css">
+<link rel="stylesheet" href="../plugin/swiper//swiper.custom.css">
+<style>
+.sliver{
+	border-bottom:0;
+	color:#898989;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.dotgray .swiper-pagination-bullet{
+	background-color: #dcdcdc;
+}
+.dotgray .swiper-pagination-bullet-active {
+	background-color: #18b2ed;
+}
+.rcaption.reply{
+	padding-left:24px;height:20px;line-height:20px;background-image:url(..//img/main5/reply.png);background-size:20px 20px;background-position:left center;background-repeat:no-repeat;
+}
+</style>
+</head>
+<body>
+	<!-- 加载遮罩 -->
+    <div id="_layer_">
+        <div id="_maskLayer_"></div>
+        <div id="_wait_"><div class="loading-spinner"></div><p>正在加载...</p></div>
+    </div>
+    <!--主体-->
+    <section id="main_section" class="active">
+        <header>
+        	<div class="mainbar">
+            	<div class="logo"></div>
+                <div class="search" id="search">
+                	<img src="..//img/main5/search.png" style="height:32px;vertical-align:middle;"/>
+                	<label style="vertical-align:middle;color:#8e8e93;">搜索</label>
+                </div>
+                <div class="mes"></div>
+            </div>
+        </header>
+        <article>
+        	<!--广告轮播-->
+            <div class="swiper-container" id="carrousel1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-href="http://www.baidu.com">
+                        <img src="..//img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                    </div>
+                    <div class="swiper-slide" data-href="http://www.sina.com">
+                        <img src="..//img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                    </div>
+                    <div class="swiper-slide" data-href="http://exmobi.cn">
+                        <img src="..//img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                    </div>
+                    <div class="swiper-slide" data-href="http://exmobi.cn">
+                        <img src="..//img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                    </div>
+                    <div class="swiper-slide" data-href="http://exmobi.cn">
+                        <img src="..//img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                    </div>
+                </div>
+                <!-- 添加分页 -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <!--功能导航-->
+            <div class="swiper-container" id="carrousel2" style="height:250px;background-color:white;">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                 <div class="grid round" data-col="4" style="margin-top:0px;padding:0 10px;">
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#ff6666;">
+                            <span class="iconfont talk"></span>
+                        </div>
+                        <label class="grid-label">交流区</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#0078ff;">
+                            <span class="iconfont topic"></span>
+                        </div>
+                        <label class="grid-label">专题汇</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#a273ff;">
+                            <span class="iconfont write"></span>
+                        </div>
+                        <label class="grid-label">鱼价通</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#38b4f8;">
+                            <span class="iconfont look"></span>
+                        </div>
+                        <label class="grid-label">看世界</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#45c18b;">
+                            <span class="iconfont write"></span>
+                        </div>
+                        <label class="grid-label">鱼病库</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#f3a93f;">
+                            <div class="iconfont signin"></div>
+                        </div>
+                        <label class="grid-label">签到</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#21d3c9;">
+                            <span class="iconfont album"></span>
+                        </div>
+                        <label class="grid-label">相册</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#38b4f8;">
+                            <span class="iconfont group"></span>
+                        </div>
+                        <label class="grid-label">群组</label>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="grid round" data-col="4" style="margin-top:0px;padding:0 10px;">
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#ff6666;">
+                            <span class="iconfont talk"></span>
+                        </div>
+                        <label class="grid-label">交流区</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#0078ff;">
+                            <span class="iconfont topic"></span>
+                        </div>
+                        <label class="grid-label">专题汇</label>
+                    </div>
+                    <div class="grid-cell">
+                        <div class="grid-img" style="background-color:#a273ff;">
+                            <span class="iconfont write"></span>
+                        </div>
+                        <label class="grid-label">鱼价通</label>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- 添加分页 -->
+            <div class="swiper-pagination dotgray"></div>
+            </div>
+            <!--资讯信息-->
+            <ul class="listitem">
+            	<li class="sliver noborder">今日热门</li>
+                <li onClick="openNativePage('title=列表详情&url=http://www.tongwei.cn')">
+                    <img src="..//img/main5/listimg.png" style="width:72px;height:54px;" class="limg">
+                    <div class="text">
+                         关注  极端天气众说纷纭，水产养殖 应该这么办！
+                        <small class="nowrap">
+                        戏里玉人
+                        2015-11-05
+                        </small>
+                    </div>
+                    <small class="rcaption reply">
+                        24
+                    </small>
+                </li>
+                <li onClick="openNativePage('title=列表详情&url=http://www.tongwei.cn')">
+                    <img src="..//img/main5/listimg.png" style="width:72px;height:54px;" class="limg">
+                    <div class="text">
+                         关注  极端天气众说纷纭，水产养殖 应该这么办！
+                        <small class="nowrap">
+                        戏里玉人
+                        2015-11-05
+                        </small>
+                    </div>
+                    <small class="rcaption reply">
+                        24
+                    </small>
+                </li>
+            </ul>
+        </article>
+    </section>
+	<!--自定义弹出框-->
+    <div id="pop_custom" style="display:none;width:100%;">
+        <div class="titlebar lr">
+            <a href="javascript:Popup.close('pop_custom_box')"><i class="icon back"></i></a>
+            <h1>搜索</h1>
+        </div>
+        <div style="box-sizing:border-box;padding:10px 70px 10px 10px;background-color:#c8c8ce;position:relative;">
+        	<input type="text" style="width:100%;background-color:#fff;border:none;border-radius:4px;padding:8px 0;" placeholder="请输入搜索关键字">
+            <button style="position:absolute;right:0;height:36px;line-height:36px;top:10px;right:10px;padding:0 10px;color:#007aff;" class="link">搜索</button>
+        </div>
+    </div>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script src="../plugin/swiper/swiper.js"></script>
+    <script type="text/javascript">
+		var carrousel1,carrousel2;
+		EventUtil.addHandler(window,"load",function(e){
+			Loader.hideMark();
+			//广告轮播
+			carrousel1 = new Swiper('#carrousel1', {
+				pagination: '#carrousel1 .swiper-pagination',
+				autoplayDisableOnInteraction: false,//是否触发事件后停止自动播放
+				autoplay: 3000,
+				loop: true,
+				onSlideChangeStart: function(swiper){
+				  //console.log(swiper.activeIndex);
+				},
+				onClick: function(swiper){
+					var slides=document.querySelectorAll("#carrousel1 .swiper-wrapper .swiper-slide");
+					var param="title=图文详情&url="+slides[swiper.activeIndex].getAttribute("data-href");
+					openNativePage(param);
+				}
+			});
+			//功能导航
+			carrousel2 = new Swiper('#carrousel2', {
+				pagination: '#carrousel2 .swiper-pagination'
+			});
+		});
+		//弹出搜索框
+		$("#search").click(function(){
+			Popup.show({
+				htmlId:"pop_custom",
+				pos:"top"
+			});
+		});
+		function openNativePage(param){
+			var nativePage="res:page/uixml/browser.uixml";
+			ExMobiWindow.open(nativePage, true,false,"",param);
+		}
+		//定义exmobi返回
+		function back(){history.go(-1);}
+		//remove原返回事件绑定
+		EventUtil.removeHandler(document,"backmonitor",back);
+		//添加新的返回事件
+		EventUtil.addHandler(document,"backmonitor",function(){
+			Exmobi.dbclose();
+		});
+	</script>
+</body>
+</html>

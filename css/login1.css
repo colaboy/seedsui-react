@@ -1,0 +1,161 @@
+/*-----------------------------------------------------login1:start-----------------------------------------------------*/
+body{
+	background:url(../img/login1/bg.png) no-repeat left bottom #3376d3;
+	background-size:100% auto;
+	min-height:370px;
+}
+.login-box{
+	position:relative;
+	width:70%;
+	margin:0 auto;
+}
+.login-logo{
+	height:40px;
+	display:block;
+	margin:40px auto 40px auto;
+	-webkit-transform: translateY(-100px);
+	-webkit-animation-name: slide-down;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes slide-down{
+	from{
+		-webkit-transform: translateY(-100px);
+		opacity:0;
+	}to{
+		-webkit-transform: translateY(0);
+		opacity:1;
+	}
+}
+@-webkit-keyframes slide-up{
+	from{
+		-webkit-transform: translateY(500px);
+		opacity:0;
+	}to{
+		-webkit-transform: translateY(0);
+		opacity:1;
+	}
+}
+@-webkit-keyframes slide-right{
+	from{
+		-webkit-transform: translateX(-500px);
+		opacity:0;
+	}to{
+		-webkit-transform: translateX(0);
+		opacity:1;
+	}
+}
+@-webkit-keyframes fade-in{
+	from{
+		opacity:0;
+	}to{
+		opacity:1;
+	}
+}
+.input-icon-username{
+	background-image:url(../img/login1/username.png);
+}
+.input-icon-password{
+	background-image:url(../img/login1/password.png);
+}
+.input-box.feature{
+	margin:10px 0 0 0;
+	border:none;
+	border-bottom:1px solid rgba(255,255,255,.5);
+	
+	-webkit-transform: translateX(-500px);
+	opacity:0;
+	-webkit-animation-name: slide-right;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-delay:0.2s;
+	-webkit-animation-fill-mode: forwards;
+}
+.input-box.feature input{
+	color:white;
+}
+.login-cbo{
+	margin:0 auto;
+	padding: 10px 0 34px 0;
+	-webkit-animation-name: slide-right;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-delay:0.3s;
+	-webkit-animation-fill-mode: forwards;
+	
+	-webkit-transform: translateX(-500px);
+	opacity:0;
+}
+.login-cbo label {
+	float: left;
+	color:white;
+}
+.login-cbo a{
+	float:right;
+	color:#184a9e;
+}
+.login-cbo a:active{
+	color:#1f4d9a;
+}
+.login-cbo label input[type="checkbox"] {
+	vertical-align: middle; margin-right: 3px; color: #6d6d6d;
+}
+.login-cbo label input[type="checkbox"] + span{
+	opacity: 0.5;
+}
+.login-cbo label input[type="checkbox"]:checked + span{
+	opacity: 1;
+}
+.login-cbo label span{
+	display:inline-block;
+	vertical-align:middle;
+}
+input[type="checkbox"].input-login-cbo{
+	background-image:url(../img/login1/cbo2.png);
+}
+a.btn-login{
+	border-radius:0;
+	width:100%;
+	-webkit-animation-name: slide-right;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-delay:0.4s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform: translateX(-500px);
+	opacity:0;
+	
+	background-color:#184a9e;
+}
+a.btn-reg{
+	border-radius:0;
+	color:#2065c4;
+	width:100%;
+	margin-top:10px;
+	-webkit-animation-name: slide-right;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-delay:0.5s;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform: translateX(-500px);
+	opacity:0;
+	
+	background-color:#d2e1f5;
+}
+.btn-login:active{
+	background-color:#2f4684;
+	color:white;
+}
+.btn-reg:active{
+	background-color:#1e54aa;
+	color:white;
+}
+.patternutil{
+	width:32px;
+	height:32px;
+	display:block;
+	margin:40px auto 0 auto;
+	opacity:0;
+	-webkit-animation: fade-in 1s;
+	-webkit-animation-delay: 0.6s;
+	-webkit-animation-fill-mode: forwards;
+}
+.patternutil:active{
+	opacity:.5;
+}
+/*-----------------------------------------------------login1:end-----------------------------------------------------*/

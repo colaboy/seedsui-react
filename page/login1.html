@@ -1,0 +1,41 @@
+<!-- HTML5文件 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>登录1</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="../css/login1.css">
+<style>
+
+</style>
+</head>
+<body style="background-color:#3476d4;">
+    <div class="login-box">
+        <img src="../img/login1/logo.png" class="login-logo"/>
+        <div class="input-box licon feature">
+            <i class="input-icon-username"></i>
+            <input type="text"/>
+        </div>
+        <div class="input-box licon feature">
+            <i class="input-icon-password"></i>
+            <input type="password"/>
+        </div>
+        <div class="login-cbo">
+            <label><input type="checkbox" class="input-login-cbo"/><span>记住工号</span></label>
+            <a href="#">找回密码</a>
+        </div>
+        <a class="button btn-login" href="javascript:history.go(-1)">登录</a>
+        <a class="button btn-reg">注册</a>
+    </div>
+    <img src="../img/login1/patternutil.png" class="patternutil"/>
+
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>主页3</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<style>
+</style>
+</head>
+
+<body>
+    <aside data-position="left" data-transition="push" id="aside_push_left">你从哪儿来，我从左方来~</aside>
+    <!--主体-->
+    <div id="section_container">
+    	<!--头部-->
+    	<header>
+            <div class="titlebar">
+                <a id="pushLeft">
+                	<i class="icon menu"></i>
+                </a>
+                <h1>首页</h1>
+            </div>
+        </header>
+        <!--主体-->
+    	<article style="bottom:54px;">
+        </article>
+        <!--底部-->
+        <footer>
+            <ul class="menubar" id="tabtypeMix1">
+                <li class="tab active">
+                    <div class="tab-icon tab-icon-wbhome"></div>
+                    <label class="tab-label">首页</label>
+                </li>
+                <li class="tab" data-toggleById="resources">
+                    <div class="tab-icon tab-icon-wbmes"><div class="tip"></div></div>
+                    <label class="tab-label">消息</label>
+                </li>
+                <li class="tab">
+                    <div class="tab-icon tab-icon-wbuser"></div>
+                    <label class="tab-label">通讯录</label>
+                </li>
+                <li class="tab">
+                    <div class="tab-icon tab-icon-wbhandbag"></div>
+                    <label class="tab-label">工作台</label>
+                </li>
+            </ul>
+        </footer>
+        <div class="section_container_mask"></div>
+    </div>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="js/swiper/swiper.js"></script>
+    <script type="text/javascript">
+    	$("#pushLeft").click(function(){
+            $("#aside_push_left").toggleClass("active");
+        });
+        $(".section_container_mask").click(function(){
+            $("aside").removeClass("active");
+        });
+        //定义exmobi返回
+    	function back(){history.go(-1);}
+    </script>
+</body>
+</html>

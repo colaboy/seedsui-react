@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>主页4</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="../css/main4.css">
+</head>
+
+<body>
+<header>
+    <div class="titlebar">
+        <a href="javascript:history.go(-1)"><i class="icon back"></i></a>
+        <h1>主页4</h1>
+    </div>
+</header>
+<article>
+	<div class="rbox">
+	    <div class="r1">集团简介</div>
+	    <div class="r2">发展战略</div>
+	    <div class="r3">关于我们</div>
+	    <div class="r4">领导团队</div>
+	    <div class="r5">发展历程</div>
+	    <div class="r6">组织架构</div>
+    </div>
+</article>
+<script src="../plugin/seedsui/seedsui.js"></script>
+<script src="../plugin/exmobi/exmobi.js"></script>
+<script>
+	var r1=document.querySelector(".r1");
+	var r2=document.querySelector(".r2");
+	var r3=document.querySelector(".r3");
+	var r4=document.querySelector(".r4");
+	var r5=document.querySelector(".r5");
+	var r6=document.querySelector(".r6");
+	
+	function breathe(element){
+		element.style.webkitAnimationDelay="0ms";
+		element.style.webkitAnimationDuration="2000ms";
+		element.style.webkitAnimationName="breathing";
+		element.style.webkitAnimationTimingFunction="ease";
+		element.style.webkitAnimationIterationCount="infinite";
+	}
+	EventUtil.addHandler(r1,"animationend",function(e){
+		breathe(r1);
+	});
+	EventUtil.addHandler(r2,"animationend",function(e){
+		breathe(r2);
+	});
+	EventUtil.addHandler(r3,"animationend",function(e){
+		breathe(r3);
+	});
+	EventUtil.addHandler(r4,"animationend",function(e){
+		breathe(r4);
+	});
+	EventUtil.addHandler(r5,"animationend",function(e){
+		breathe(r5);
+	});
+	EventUtil.addHandler(r6,"animationend",function(e){
+		breathe(r6);
+	});
+	//定义exmobi返回
+	function back(){history.go(-1);}
+</script>
+</body>
+</html>

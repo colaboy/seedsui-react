@@ -1,0 +1,41 @@
+/*-----------------------------------------------------login2:start-----------------------------------------------------*/
+body{
+	 background:url(../img/login2/bg.png) no-repeat right bottom;
+	 background-size:100% auto;
+	 min-height:370px;
+}
+.login-box{
+	margin:0 auto;
+	width: 70%;
+}
+.login-logo{
+	margin:30px 0 30px 0;
+	width:60%;
+}
+.input-box.feature{
+	margin:10px 0 0 0;
+	border:none;
+	border-bottom:1px solid #ddd;
+}
+.login-submit{
+	border-radius:40px;
+	width:100%;
+}
+.login-cbo{
+	padding: 10px 0 34px 0;
+}
+.input-icon-username{
+	background-image: url(../img/login2/user.png);
+}
+
+.input-icon-password{
+	background-image: url(../img/login2/key.png);
+}
+.input-icon-reveal{
+	background-image: url(../img/login2/reveal.png);
+	background-size:cover;
+}
+.input-icon-reveal.active{
+	background-image: url(../img/login2/noreveal.png);
+}
+/*-----------------------------------------------------login2:end-----------------------------------------------------*/

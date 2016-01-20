@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>主页1</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="../css/main1.css">
+<!-- Swiper框架的CSS -->
+<link rel="stylesheet" href="../plugin/swiper/swiper.css">
+<link rel="stylesheet" href="../plugin/swiper/swiper.custom.css">
+</head>
+<body style="overflow:hidden;background-color:#3476d4;">
+	<!--侧边栏-->
+    <aside data-position="right" data-transition="push" id="aside_container">
+    	<div class="photo"></div>
+        <p class="text-center">小明</p>
+        <p class="photo-department">IT信息服务部</p>
+        <div class="aside-list">
+            <div class="aside-list-icon lock"></div>
+            <label>修改密码</label>
+         </div>
+         <div class="aside-list">
+            <div class="aside-list-icon pattern"></div>
+            <label>手势密码</label>
+         </div>
+         <div class="aside-list">
+            <div class="aside-list-icon exit"></div>
+            <label>退出系统</label>
+         </div>
+    </aside>
+    <!--主体-->
+	<div id="section_container">
+		<section id="main_section" class="active">
+			<header>
+				<div class="titlebar">
+					<a href="javascript:history.go(-1)" class="left">
+                        <i class="icon-arrowleft"></i>
+                    </a>
+					<h1>主页1</h1>
+					<a id="asidemenu"><i class="icon me"></i></a>
+				</div>
+			</header>
+			<article>
+					<div class="swiper-container custom-main" id="carrousel1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
+                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
+                        </div>
+                        <!-- 添加分页 -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="cell cell1">
+                    	<div class="middlecenter text-center inline-block" style="color:white;">
+                        	<p style="font-size:50px;">300</p>
+                            <small>您的得分</small>
+                        </div>
+                        <label>小明，欢迎您</label>
+                    </div>
+                    <div class="cell" style="width:50%;background-color:#32a9fd;float:left;">
+                    	<div class="cell cell2">
+                        	<ul class="listitem bg-transparent">
+                            	<li><img src="../img/main1/arrow.png" class="iconfont ricon"/>资料1</li>
+                                <li><img src="../img/main1/arrow.png" class="iconfont ricon"/>资料2</li>
+                                <li class="text-right noborder" style="font-size:12px;"><img src="../img/main1/more.png" style="width:20px;margin-right:8px;"/>学习资料</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="cell cell3">
+                        	<img src="../img/main1/people.png" class="middlecenter"/>
+                            <label>海关警员</label>
+                        </div>
+                        <div class="cell cell4">
+                        	<img src="../img/main1/ebook.png" class="middlecenter"/>
+                            <label>电子书</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="cell cell5">
+                    	<img src="../img/main1/direction.png" class="middlecenter"/>
+                        <label>岗位练兵</label>
+                    </div>
+                    <div class="cell cell6">
+                    	<img src="../img/main1/questionnaire.png" class="middlecenter"/>
+                        <label>在线问卷</label>
+                    </div>
+                    <div class="cell cell7">
+                    	<img src="../img/main1/comment.png" class="middlecenter"/>
+                        <label>在线提问</label>
+                    </div>
+                    <div class="cell cell8">
+                    	<img src="../img/main1/link.png" class="middlecenter"/>
+                        <label>友情链接</label>
+                    </div>
+                    <div class="cell cell9">
+                    	<img src="../img/main1/memorandum.png" class="middlecenter"/>
+                        <label>备忘录</label>
+                    </div>
+                    <div class="cell cell10">
+                    	<img src="../img/main1/chat.png" class="middlecenter"/>
+                        <label>消息推送</label>
+                    </div>
+                    <div class="clearfix"></div>
+			</article>
+		</section>
+        <div class="section_container_mask"></div>
+	</div>
+	
+	<script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script src="../plugin/swiper/swiper.js"></script>
+    <script type="text/javascript">
+		EventUtil.addHandler(window,"load",function(e){
+			//广告轮播
+			var carrousel = new Swiper('#carrousel1', {
+				pagination: '#carrousel1 .swiper-pagination',
+				paginationBulletRender: function (index, className) {
+					return '<span class="' + className + '"></span>';
+				}
+			});
+			/*侧边栏*/
+			$("#asidemenu,.section_container_mask").click(function(){
+				$("#aside_container").toggleClass("active");
+			});
+		});
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

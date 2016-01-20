@@ -1,0 +1,42 @@
+<!-- HTML5文件 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>登录2</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="../css/login2.css"/>
+<style>
+
+</style>
+</head>
+<body>
+    <form id="loginbox">
+        <div class="login-box">
+        <img src="js/measy/img/login2/logo.png" class="login-logo"/>
+        <div class="input-box licon feature">
+            <i class="input-icon-username"></i>
+            <input type="text" autocomplete="off" id="login-input-user" placeholder="请输入用户名"/>
+        </div>
+        <div class="input-box lricon feature">
+            <i class="input-icon-password"></i>
+            <input type="password" placeholder="请输入密码"/>
+            <i class="input-icon-reveal" id="input-reveal"></i>
+        </div>
+        <div class="login-cbo">
+            <label style="margin-left:5px;"><input type="checkbox" class="input-login-cbo"/><span>记住密码</span></label>
+        </div>
+        <a class="button login-submit" href="#main" href="javascript:history.go(-1)">立即登录</a>
+        </div>
+	</form>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script>
+	var f=new Form("#loginbox");
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>
