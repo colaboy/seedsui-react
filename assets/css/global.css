@@ -21,6 +21,7 @@ select,
 option,
 textarea {
   font-size: 15px;
+  font-family: arial, sans-serif;
 }
 .appearance-none {
   appearance: none;
