@@ -5,11 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<title>Grid栅格化</title>
     <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
-    <style type="text/css">
-		.grid li a{
-			color:white;
-		}
-    </style>
 </head>
 
 <body>
@@ -21,11 +16,11 @@
 	</header>
 	<article>
 		<p class="title">九宫格</p>
-		<ul class="grid" data-col="3">
+		<ul class="grid app" data-col="3">
 			<li>
 				<a style="background-color:#F39C12;">
 					<i class="icon-contact-fill"></i>
-					<span class="tip">3</span>
+					<span class="tip">999</span>
 				</a>
 				<label class="grid-label">通讯录</label>
 			</li>
@@ -60,6 +55,7 @@
 				<label class="grid-label">数据分析</label>
 			</li>
 		</ul>
+
 		<p class="title">相册</p>
 		<ul class="grid album" data-col="3">
 			<li>
@@ -69,7 +65,7 @@
 				<a style="background-image: url(../img/album/2.jpg)"></a>
 			</li>
 			<li>
-				<a class="grid-photo">
+				<a class="default">
 					<i class="icon-camera"></i>
 				</a>
 			</li>
@@ -86,7 +82,7 @@
 				</a>
 			</li>
 			<li>
-				<a class="grid-photo">
+				<a class="default">
 					<i class="icon-camera"></i>
 				</a>
 			</li>
@@ -94,15 +90,22 @@
 		<p class="title">缩略图</p>
 		<ul class="grid thumbnail" data-col="3">
 			<li>
-				<div><img src="../img/thumbnail/contact.jpg"/></div>
+				<a href="www.baidu.com">
+					<img src="../img/thumbnail/contact.jpg"/>
+					<span class="tip">新</span>
+				</a>
 				<label>通讯录</label>
 			</li>
 			<li>
-				<div><img src="../img/thumbnail/tree.jpg"/></div>
+				<a><img src="../img/thumbnail/tree.jpg"/></a>
 				<label>树结构</label>
 			</li>
 			<li>
-				<div><img src="../img/thumbnail/contact.jpg"/></div>
+				<a><img src="../img/thumbnail/contact.jpg"/></a>
+				<label>通讯录</label>
+			</li>
+			<li>
+				<a><img src="../img/thumbnail/contact.jpg"/></a>
 				<label>通讯录</label>
 			</li>
 		</ul>

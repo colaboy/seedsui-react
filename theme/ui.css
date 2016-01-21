@@ -3809,10 +3809,6 @@ input[type=range]:focus::-ms-fill-upper {
 }
 /*----------------------------chat.less(end)----------------------------*/
 /*----------------grid.less(start)--------------*/
-/*九宫控件*/
-.grid {
-  display: block;
-}
 .grid:after {
   display: table;
   content: '';
@@ -3820,93 +3816,10 @@ input[type=range]:focus::-ms-fill-upper {
   zoom: 1;
 }
 .grid li {
-  margin-top: 20px;
-  display: block;
-  position: relative;
-  width: 25%;
+  width: 33%;
   float: left;
   text-align: center;
-  font-size: 14px;
-  box-sizing: border-box;
 }
-.grid li:last-child {
-  margin-bottom: 8px;
-}
-.grid[data-rowspace="10"] li {
-  margin-top: 10px;
-}
-.grid[data-rowspace="30"] li {
-  margin-top: 30px;
-}
-.grid[data-rowspace="0"] li {
-  margin-top: 0px;
-}
-/*九宫控件-单元格*/
-.grid[data-col="2"] li {
-  width: 50%;
-}
-.grid[data-col="3"] li {
-  width: 33.33%;
-}
-.grid[data-col="4"] li {
-  width: 25%;
-}
-.grid[data-col="5"] li {
-  width: 20%;
-}
-/*九宫控件-图标*/
-.grid li > a {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  margin: 0px auto;
-  border-radius: 8px;
-  display: -moz-box;
-  display: -webkit-box;
-  display: box;
-  box-pack: center;
-  -moz-box-pack: center;
-  -webkit-box-pack: center;
-  box-align: center;
-  -moz-box-align: center;
-  -webkit-box-align: center;
-}
-.grid.round li > a {
-  border-radius: 100%;
-}
-.grid li > a > [class*="icon-"],
-.grid li > a > img {
-  position: absolute;
-  vertical-align: middle;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  /*文字图标*/
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  background-size: cover;
-}
-.grid li > a > img {
-  width: 50px;
-  height: 50px;
-}
-.grid li > a .tip {
-  position: absolute;
-  display: block;
-  top: -5px;
-  right: -5px;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  border-radius: 100%;
-}
-/*九宫控件-文字*/
 .grid li > label {
   display: block;
   width: 80%;
@@ -3919,60 +3832,108 @@ input[type=range]:focus::-ms-fill-upper {
   white-space: nowrap;
   font-size: 12px;
 }
-/*缩略图控件*/
-.grid.thumbnail li > div {
+.grid li a {
   position: relative;
-  display: block;
-  width: 80%;
-  margin: 0px auto;
-  text-align: center;
+  color: white;
+  box-sizing: border-box;
+  display: box;
+  display: -webkit-box;
+  box-pack: center;
+  -webkit-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
-.grid.thumbnail li > div img {
+.grid li .tip,
+.grid li .close {
+  position: absolute;
+  display: block;
+  top: -5px;
+  right: -5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 100%;
+  font-size: 8px;
+}
+.grid li .tip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.grid li .close {
+  /*图片*/
+  background-size: cover;
+  border-radius: 100%;
+  /*文字图标*/
+  border-width: 2px;
+  border-style: solid;
+  color: white;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.grid[data-col="2"] li {
+  width: 50%;
+}
+.grid[data-col="3"] li {
+  width: 33.33%;
+}
+.grid[data-col="4"] li {
+  width: 25%;
+}
+.grid[data-col="5"] li {
+  width: 20%;
+}
+/*应用图标控件*/
+.grid.app li > a {
+  width: 64px;
+  height: 64px;
+  margin: 0px auto;
+  border-radius: 8px;
+  color: white;
+}
+.grid.app li > a > [class*="icon-"],
+.grid.app li > a > img {
+  /*文字图标*/
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-size: cover;
+}
+/*缩略图控件*/
+.grid.thumbnail,
+.grid.thumbnail li,
+.grid.album,
+.grid.album li {
+  box-sizing: border-box;
+  padding: 5px;
+}
+.grid.thumbnail li > a {
+  position: relative;
+  width: 100%;
+}
+.grid.thumbnail li > a img {
   width: 100%;
 }
 /*相册控件*/
-.grid.album {
-  padding: 5px;
-}
-.grid.album li {
-  padding: 5px;
-  margin-top: 0px;
-}
 .grid.album li > a {
   width: 100%;
   height: 110px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 8px;
+}
+.grid.album .default {
   color: #cccccc;
   background-color: #ddd;
-}
-.grid.album li > a > [class*="icon-"] {
-  width: 48px;
-  height: 48px;
-  line-height: 48px;
   font-size: 48px;
-  background-size: 48px 48px;
-}
-.grid.album li > a > .close {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 24px;
-  height: 24px;
-  /*图片*/
-  background-size: cover;
-  border-radius: 100%;
-  /*文字图标*/
-  display: -webkit-box;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  font-size: 8px;
-  border-width: 2px;
-  border-style: solid;
-  color: white;
-  border-color: white;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 /*----------------grid.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
