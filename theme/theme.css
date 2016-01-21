@@ -29,7 +29,7 @@ a {
 }
 a:active,
 .a:active {
-  color: rgba(24, 178, 237, 0.5);
+  opacity: 0.5;
 }
 /*容器样式*/
 .highlight {
