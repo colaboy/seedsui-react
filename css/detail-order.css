@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------常规----------------*/
+body{ background: #fff; }
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+
+/*----------------订单详情----------------*/ 
+.order_detail{ margin:0 10px;}
+.group .input-box .in{ width: 100%; display: inline-block;min-height: 20px; line-height: 20px; padding:2px 0; text-align: right;}
+.slider-slide{ height: 100%; overflow: auto;}
+.group{ margin: 0; }
