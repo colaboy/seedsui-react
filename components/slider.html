@@ -25,15 +25,15 @@
             <div class="slider-wrapper">
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <label class="slide-title">新闻标题1</label>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <label class="slide-title">新闻标题2</label>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <label class="slide-title">新闻标题3</label>
                 </div>
             </div>
             <div class="slider-pagination"></div>
@@ -69,10 +69,14 @@
 	<script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../assets/js/slider.js"></script>
     <script type="text/javascript">
+        /*document.removeListener("touchmove", removeTouchMove,false);
+        function removeTouchMove(e){
+            e.preventDefault();
+        }*/
         window.onload=function(){
             var s1=new Slider("#carousel1",{
                 "pagination":"#carousel1 .slider-pagination",
-                "autoplay":"2000"
+                /*"loop":true*/
             });
             var s2=new Slider("#carousel2",{
                 "pagination":"#carousel2 .slider-pagination",

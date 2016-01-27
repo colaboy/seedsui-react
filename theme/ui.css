@@ -3867,7 +3867,6 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .grid li a {
   position: relative;
-  color: white;
   box-sizing: border-box;
   display: box;
   display: -webkit-box;
@@ -3928,7 +3927,6 @@ input[type=range]:focus::-ms-fill-upper {
   height: 64px;
   margin: 0px auto;
   border-radius: 8px;
-  color: white;
 }
 .grid.app li > a > [class*="icon-"],
 .grid.app li > a > img {
@@ -3967,6 +3965,10 @@ input[type=range]:focus::-ms-fill-upper {
   color: #cccccc;
   background-color: #ddd;
   font-size: 48px;
+}
+/*圆形框*/
+.grid.round li > a {
+  border-radius: 100%;
 }
 /*----------------grid.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
@@ -4446,13 +4448,12 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 12px;
   background-color: white;
 }
-.sharebox ul li {
+.sharebox .grid li {
   margin-top: 10px;
 }
-.sharebox ul li a {
+.sharebox .grid li a {
   width: 56px;
   height: 56px;
-  border-radius: 100%;
   color: white;
 }
 /*#baiduShare{
@@ -4522,6 +4523,7 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   width: 374px;
   float: left;
+  overflow: auto;
   background-size: cover;
 }
 .slider-slide img {
