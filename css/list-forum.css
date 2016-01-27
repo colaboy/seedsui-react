@@ -30,9 +30,4 @@ ul.noclick li:active{ background-color:white;}
 .forumlist li .btmbar .icon{ margin-right:5px;}
 .forumlist li .btmbar a.active,.forumlist li .btmbar a:active{ color:#37acf4;}
 .forumlist li .btmbar a:last-child{ border-right:0;}
-
-
 .arrowbar .tab .tab-label, .menubar .tab .tab-label{ height: 40px; line-height: 40px; }
-
-
-
