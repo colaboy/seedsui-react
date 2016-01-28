@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>新增投票</title>
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<link rel="stylesheet" href="../css/vote-add.css"/>
+</head>
+
+<body>
+<header>
+	<div class="titlebar">
+		<a href="javascript:history.go(-1)" class="left">
+ 			<i class="icon-arrowleft"></i>
+		</a>
+		<h1>发布投票</h1>
+	</div>
+</header>
+<article style="top:44px; bottom:0;">
+	<div class="forum_release_block" style="margin-top:10px;">
+		<textarea placeholder="输入投票主题，2-80字" style="height:60px; border-bottom:0;"></textarea>
+	</div>
+	<div class="vote_block">
+		<div class="optionlist">
+			<input type="text" placeholder="选项1" />
+			<input type="text" placeholder="选项2" />
+		</div>
+		<p class="vote_add" id="addButton"><i class="icon icon-rdoadd"></i>添加选项</p>
+	</div>
+	<p class="vote_add_text">最多支持15个选项，每个选项不超过40字</p>
+	<form id="formlr">
+		<div class="row">
+			<label>投票类型</label>
+			<div class="input-box margin8">
+				<label><input type="radio" value="rdo" name="rdo" checked/><span>单选</span></label>
+				<label style="margin-left:8px;"><input type="radio" value="cbo" name="rdo"/><span>多选</span></label>
+			</div>
+		</div>
+		<div class="row">
+			<label>结束时间</label>
+			<div class="input-box margin8">
+				<input type="date" name="birthday" placeholder="出生日期"/>
+			</div>
+		</div>
+		<div class="row">
+			<label>匿名投票</label>
+			<div class="input-box margin8">
+				<div class="switch notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+			</div>
+		</div>
+	</form>
+	
+	<p class="vote_add_text">开启后，发布者仍可查看投票人详情</p>
+	<a class="button block margin8">提交</a>
+</article>
+
+<!-- 第三方插件 -->
+<script src="../plugin/exmobi/exmobi.js"></script>
+<script src="../plugin/jquery/jquery.min.js"></script>
+<script src="../assets/js/form.js"></script>
+<script>
+	//表单控件初始化(主要是针对小眼睛和开关控件)
+	window.addEventListener("load",function(){
+		var f=new Form("#formlr");
+	},false);
+	/*添加选项*/
+	$("#addButton").bind("click",function(){
+		if($(".optionlist input").length<15){
+        	$(".optionlist").append("<input type='text' placeholder='选项"+eval($(".optionlist input").length+1)+"' />");
+		}else{
+			alert("只允许添加15条选项");
+		}
+    });
+	//定义exmobi返回
+	function back(){history.go(-1);}
+</script>
+</body>
+</html>
