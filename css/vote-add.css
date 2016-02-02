@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------常规----------------*/
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+
+/*----------------发表新帖----------------*/
+.forum_release_block{ background:#fff; border-top:#e3e3e3 1px solid; border-bottom:#e3e3e3 1px solid; overflow:hidden; padding:0 10px;}
+.forum_release_block textarea{ width:100%; border:0; border-bottom:#ddd 1px solid; height:120px; color:#767676; font-size:14px; padding: 10px 0;}
+.button_release{ background-color:#70b92c; width:94%; margin:10px 3%;}
+.button_release:active{ background-color:#669d2a;}
+
+/*----------------新增投票----------------*/ 
+.vote_block{ background-color:white; border-bottom:#e3e3e3 1px solid; border-top:#e3e3e3 1px solid; margin-top:10px; color:#aaaaaa;}
+.optionlist{ padding-left:40px;}
+.optionlist input{ padding:10px 0; height:20px; border:0; border-bottom:#e3e3e3 1px solid; width:100%;}
+.vote_add{ position:relative; height:20px; padding:10px 0; text-indent:25px;}
+.vote_add_text{ color:#aaaaaa; padding:10px 10px;}
+.vote_block .input-box{ border:0;}
+.vote_block .input-box span{ padding:10px 0; height:20px; display:inline-block; vertical-align: middle;}
+
+#formlr{ border-width:1px 0 0 0; border-style:solid; background-color:white; border-color:#dddddd;}
+.input-box { border-width:0;}

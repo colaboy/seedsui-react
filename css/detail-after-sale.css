@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------商品售后-详情----------------*/
+.after_sale_detail_block{ border-top:#e8e8e8 1px solid; margin-bottom: 10px;}
+.after_sale_detail_block .itemblock{ border-bottom:#e8e8e8 1px solid; background:#fff; padding:10px 0; color:#474444;}
+.after_sale_detail_block .itemblock .after_sale_detail_top{ padding:5px 0 5px 0; position:relative; height: 20px;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .mt{ color:#da5324; vertical-align: middle; height: 20px;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .mmtt{ color:#37acf4;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .tel{ position:absolute; right:10px; color:#4d6efe;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .icon{ width:20px; height:20px; line-height:20px; margin:0 10px; display:inline-block; vertical-align: middle;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .icon_after_sale{ background:url(../img/detail-after-sale/icon_after_sale.png) no-repeat; background-size:100% 100%;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .icon_people{ background:url(../img/detail-after-sale/icon_people.png) no-repeat; background-size:100% 100%;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .icon_question{ background:url(../img/detail-after-sale/icon_question.png) no-repeat; background-size:100% 100%;}
+.after_sale_detail_block .itemblock .after_sale_detail_top .icon_store{ background:url(../img/detail-after-sale/icon_store.png) no-repeat; background-size:100% 100%;}
+.after_sale_detail_block .itemblock .mtext{ padding-left:45px;}
+.after_sale_detail_item{ background:#efefef; margin-bottom:10px; background:#fff; overflow:hidden; padding:10px 0;}
+.after_sale_detail_item .limg{ border:#cecece 1px solid; float:left; margin:0 10px; width: 80px;}
+.after_sale_detail_item .text{ margin-right:10px;}
+.after_sale_detail_item .text .mtt{ color:#313131; margin-top:5px; font-size:16px;}
+.after_sale_detail_item .text small{ color:#aaa;}
+.after_sale_detail_item .text .money{ color:#ff2a43;}
+.button_release{ background-color:#70b92c; width:94%; margin:10px 3%;}
+.button_release:active{ background-color:#669d2a;}
