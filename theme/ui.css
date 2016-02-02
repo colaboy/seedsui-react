@@ -19,7 +19,9 @@ button,
 input,
 select,
 option,
-textarea {
+textarea,
+pre,
+p {
   font-size: 15px;
   font-family: arial, sans-serif;
 }
@@ -76,6 +78,9 @@ summary {
   display: block;
 }
 pre {
+  word-wrap: break-word;
+}
+.code {
   display: block;
   font-size: 13px;
   line-height: 1.42857143;
@@ -573,15 +578,6 @@ small {
 }
 .bold {
   font-weight: bold;
-}
-.font-L {
-  font-size: 16px;
-}
-.font-M {
-  font-size: 14px;
-}
-.font-S {
-  font-size: 12px;
 }
 .paragraph {
   margin-top: 10px;
@@ -3773,9 +3769,14 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: 12px;
 }
 .chat .content p {
+  line-height: 24px;
   margin: 0;
   padding-top: 3px;
   text-align: left;
+}
+.chat .content p [data-face] {
+  width: 26px;
+  height: 24px;
 }
 .chat .content:after {
   position: absolute;
@@ -4336,7 +4337,10 @@ input[type=range]:focus::-ms-fill-upper {
 .face.active {
   display: block;
 }
-.face [data-face] {
+.richinput img {
+  width: 24px;
+}
+[data-face] {
   display: inline-block;
   width: 14%;
   height: 28px;
@@ -4344,47 +4348,45 @@ input[type=range]:focus::-ms-fill-upper {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
+  vertical-align: middle;
 }
-.richinput img {
-  width: 24px;
-}
-[data-face="[拜拜]"] {
+[data-face="[baibai]"] {
   background-image: url(img/face/baibai.png);
 }
-[data-face="[发呆]"] {
+[data-face="[fadai]"] {
   background-image: url(img/face/fadai.png);
 }
-[data-face="[坏笑]"] {
+[data-face="[huaixiao]"] {
   background-image: url(img/face/huaixiao.png);
 }
-[data-face="[流汗]"] {
+[data-face="[liuhan]"] {
   background-image: url(img/face/liuhan.png);
 }
-[data-face="[呕吐]"] {
+[data-face="[outu]"] {
   background-image: url(img/face/outu.png);
 }
-[data-face="[微笑]"] {
+[data-face="[weixiao]"] {
   background-image: url(img/face/weixiao.png);
 }
-[data-face="[晕]"] {
+[data-face="[yun]"] {
   background-image: url(img/face/yun.png);
 }
-[data-face="[眨眼]"] {
+[data-face="[zhayan]"] {
   background-image: url(img/face/zhayan.png);
 }
-[data-face="[龇牙]"] {
+[data-face="[ziya]"] {
   background-image: url(img/face/ziya.png);
 }
 /*输入框区域*/
 .richedit figcaption {
   position: relative;
-  min-height: 44px;
   border-style: solid;
   border-width: 1px 0 0 0;
   background-color: white;
+  padding: 8px 70px 8px 8px;
 }
 .richedit .input {
-  margin: 8px 70px 8px 8px;
+  position: relative;
   border: none;
   vertical-align: middle;
   box-sizing: border-box;
@@ -4392,23 +4394,32 @@ input[type=range]:focus::-ms-fill-upper {
   border-width: 5px;
   border-color: transparent;
   border-image: url(img/input.png) 30 30 stretch;
-  overflow: auto;
 }
 .richedit.active .input {
   border-image: url(img/input-active.png) 30 30 stretch;
+}
+.richedit textarea {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  resize: none;
 }
 .richedit textarea,
 .richedit pre {
   padding: 0;
   line-height: 20px;
   min-height: 20px;
+  max-height: 20px;
+  width: 100%;
+}
+.richedit.active textarea,
+.richedit.active pre {
   max-height: 60px;
 }
 .richedit pre {
   position: absolute;
   left: 0;
   top: 100px;
-  background-color: red;
   visibility: hidden;
 }
 /*发送按钮*/
@@ -4525,6 +4536,8 @@ input[type=range]:focus::-ms-fill-upper {
   float: left;
   overflow: auto;
   background-size: cover;
+  text-align: center;
+  box-sizing: border-box;
 }
 .slider-slide img {
   width: 100%;
@@ -4537,7 +4550,9 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 8px;
   background-color: rgba(0, 0, 0, 0.5);
   text-overflow: nowrap;
+  box-sizing: border-box;
   color: white;
+  text-align: left;
 }
 .slider-pagination {
   position: absolute;

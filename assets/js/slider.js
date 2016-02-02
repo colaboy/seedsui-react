@@ -10,8 +10,8 @@
 			"autoplay":false,
 			"loop":false,
 			"slidesPerView":1,
-			"spaceBetween":10,
 			"threshold":"50",
+			"duration":"300",
 
 			//dom class
 			"wrapperClass":"slider-wrapper",
@@ -119,8 +119,14 @@
         	s.wrapper.appendChild(firstChild);
         	s.wrapper.insertBefore(lastChild,s.wrapper.childNodes[0]);
         	s.slide=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
+        	//设置宽度
+        	s.updateSlidesSize();
+        	s.params.duration=0;
+        	s.slideTo(1);
+        	s.params.duration=defaults.duration;
         };
         s.destroyLoop = function () {
+        	s.params.loop=null;
         	var slideDuplicate=s.wrapper.querySelectorAll('.' + s.params.slideDuplicateClass);
         	for(var i=0,sdc;sdc=slideDuplicate[i++];){
         		s.wrapper.removeChild(sdc);
@@ -219,8 +225,8 @@
 			}
 			//清空滑动方向
 			s.touches.direction=null;
-			e.stopPropagation();
 			//开启自动播放
+			s.startAutoplay();
 		};
 		/*=========================
           Autoplay
@@ -246,7 +252,6 @@
           Method
           ===========================*/
         s.slideTo=function(slideIndex){
-        	var duration="300";
         	if(slideIndex){
 				s.index=slideIndex;
 			}
@@ -264,7 +269,7 @@
 			//更新class
 			s.updateClasses();
 			//移动至index
-			s.wrapper.style.webkitTransitionDuration=duration+"ms";
+			s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
 			s.wrapper.style.left=s.touches.posX+"px";
 			s.wrapper.addEventListener("transitionend",function(){
 				this.style.webkitTransitionDuration="0ms";

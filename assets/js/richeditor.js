@@ -178,13 +178,14 @@ var Richeditor={
 		var mask=document.querySelector(selector+"+.mask");
 		var facebox=richEdit.querySelector(".face");
 		var textarea=richEdit.querySelector("textarea");
-		var relTextarea=richEdit.querySelector("pre");
-		var relTextareaFont=relTextarea.querySelector("span");
-		relTextarea.style.width=textarea.clientWidth+"px";
-		textarea.style.height=relTextarea.clientHeight+"px";
+		var pre=richEdit.querySelector("pre");
+		var preSpan=pre.querySelector("span");
+		//pre.style.width=textarea.clientWidth+"px";
+		textarea.style.height=pre.clientHeight+"px";
 		//遮罩层添加点击事件
 		mask.addEventListener("click",function(e){
-			richEdit.className=richEdit.className.replace(/\s{1,}active/,"");
+			richEdit.classList.remove("active");
+			//richEdit.className=richEdit.className.replace(/\s{1,}active/,"");
 			textarea.blur();
 		},false);
 		//获得光标位置
@@ -192,22 +193,23 @@ var Richeditor={
 		document.onselectionchange=function(e){
 			if(Object.prototype.toString.call(e.target.activeElement)=="[object HTMLTextAreaElement]"){
 				//计算textarea高度
-				relTextareaFont.innerText=textarea.value;
-				textarea.style.height=relTextarea.clientHeight+"px";
+				preSpan.innerText=textarea.value;
+				textarea.style.height=pre.clientHeight+"px";
 				//获得光标位置
 				cursorOffset=textarea.selectionStart;
 			}
 		}
 		textarea.addEventListener("input",function(e){
 			//计算textarea高度
-			relTextareaFont.innerText=textarea.value;
-			textarea.style.height=relTextarea.clientHeight+"px";
+			preSpan.innerText=textarea.value;
+			textarea.style.height=pre.clientHeight+"px";
 			//获得光标位置
 			cursorOffset=textarea.selectionStart;
 		},false);
 		//点击input框
 		textarea.addEventListener("click",function(e){
-			richEdit.className=richEdit.className+" active";
+			richEdit.classList.add("active");
+			//richEdit.className=richEdit.className+" active";
 		},false);
 		var self=this;
 		//点击表情
@@ -221,8 +223,8 @@ var Richeditor={
 
 		//插入表情
 		function insertFace(objFace){
-			var faceName=objFace.getAttribute("data-face");
-			var faceSrc=objFace.getAttribute("data-face-src");
+			var faceName=objFace.getAttribute("alt");
+			//var faceSrc=objFace.getAttribute("data-face-src");
 			var editText=textarea.value;
 			var editTextBefore=editText.substr(0,cursorOffset);
 			var editTextAfter=editText.substr(cursorOffset,editText.length);

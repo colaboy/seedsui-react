@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>滑动广告</title>
-    <link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+    <link rel="stylesheet" href="../theme/ui.css">
+    <link rel="stylesheet" href="../theme/theme.css">
 </head>
 
 <body>
-	<!--头部-->
 	<header>
         <div class="titlebar">
             <a href="javascript:history.go(-1)" class="left">
@@ -25,15 +25,15 @@
             <div class="slider-wrapper">
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题1</label>
+                    <div class="slide-title">新闻标题1</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题2</label>
+                    <div class="slide-title">新闻标题2</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题3</label>
+                    <div class="slide-title">新闻标题3</div>
                 </div>
             </div>
             <div class="slider-pagination"></div>
@@ -44,23 +44,23 @@
             <div class="slider-wrapper">
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <div class="slide-title">新闻标题</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <div class="slide-title">新闻标题</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <div class="slide-title">新闻标题</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <div class="slide-title">新闻标题</div>
                 </div>
                 <div class="slider-slide">
                     <img src="../img/banner/banner.jpg"/>
-                    <label class="slide-title">新闻标题</label>
+                    <div class="slide-title">新闻标题</div>
                 </div>
             </div>
             <div class="slider-pagination"></div>
@@ -76,7 +76,7 @@
         window.onload=function(){
             var s1=new Slider("#carousel1",{
                 "pagination":"#carousel1 .slider-pagination",
-                /*"loop":true*/
+                "loop":true
             });
             var s2=new Slider("#carousel2",{
                 "pagination":"#carousel2 .slider-pagination",
