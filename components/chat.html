@@ -73,6 +73,7 @@
 <script src="../assets/js/face.js"></script>
 <script>
     Richeditor.richEdit("#richeditor");
+    var richeditor=document.getElementById("richeditor");
     //发送消息
     var chat=document.getElementById("chat");
     var textarea=document.querySelector("#richeditor textarea");
@@ -82,6 +83,7 @@
             t.show();
             return;
         }
+        richeditor.classList.remove("active");
         var html='<li class="even">'+
             '<div class="author">'+
                 '<img src="../img/list/photo.png" alt="Female">'+
