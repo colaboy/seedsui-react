@@ -4,6 +4,9 @@ body{
 	 background-size:100% auto;
 	 min-height:370px;
 }
+article {
+	top:0;
+}
 .login-box{
 	margin:0 auto;
 	width: 70%;
