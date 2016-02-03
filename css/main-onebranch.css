@@ -1,0 +1,127 @@
+.top-banner {
+	background-image:url('../../../../script/phone/default/flat/image/main/banner-top.jpg');
+	height:100px;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:relative;
+}
+.user-info {
+	position:absolute;
+	bottom:-45px;
+	left:25px;
+}
+.user-img {
+	border:3px #ffffff solid;
+	border-radius:50px;
+	height:90px;
+	width:90px;
+	-webkit-background-size: cover;
+    background-size: cover;
+	overflow:hidden;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	float:left;
+	margin-right:10px;
+}
+.user-img img {
+	height:90px;
+	width:90px;
+}
+.user-name {
+	font-size:20px;
+	color:#ffffff;
+	line-height:50px;
+}
+.user-detail {
+	font-size:14px;
+}
+.v-grid {
+	border-left:1px solid #cccccc;
+	margin:40px 0 0 70px ;
+	padding:10px 0;
+}
+.grid-cell{
+	position:relative;
+	width:100%;
+	margin:0px 0 20px 0;
+}
+.grid-cell .dot{
+	height:10px;
+	width:10px;
+	border-radius:10px;
+	position:absolute;
+	left:-5px;
+	top:25px;
+}
+.grid-cell:active .grid-icon {
+	opacity:0.7;
+}
+.grid-icon {
+	border-radius:50px;
+	width:65px;
+	height:65px;
+	position:relative;
+	text-align:center;
+	color:#ffffff;
+	float:left;
+	margin:0 10px 0 30px;
+}
+.grid-icon span {
+	line-height:70px;
+}
+.grid-icon .tip {
+	position:absolute;
+	right:-3px;
+	top:-3px;
+	border-radius:30px;
+	color:#ffffff;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+}
+.grid-name {
+	float:left;
+	margin-top:10px;
+	text-align:left;
+}
+.grid-name .large-text {
+	font-size:20px;
+	color:#aaaaaa;
+}
+.grid-name .small-text {
+	font-size:14px;
+	color:#cccccc;
+}
+#grid1{
+	-webkit-animation-delay:600ms;
+	-ms-animation-delay:600ms;
+	animation-delay:600ms;
+}
+#grid2{
+	-webkit-animation-delay:700ms;
+	-ms-animation-delay:700ms;
+	animation-delay:700ms;
+}
+#grid3{
+	-webkit-animation-delay:800ms;
+	-ms-animation-delay:800ms;
+	animation-delay:800ms;
+}
+#grid4{
+	-webkit-animation-delay:900ms;
+	-ms-animation-delay:900ms;
+	animation-delay:900ms;
+}
+#grid5{
+	-webkit-animation-delay:1000ms;
+	-ms-animation-delay:1000ms;
+	animation-delay:1000ms;
+}
+#grid6{
+	-webkit-animation-delay:1100ms;
+	-ms-animation-delay:1100ms;
+	animation-delay:1100ms;
+}
