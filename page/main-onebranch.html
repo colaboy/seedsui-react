@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>首页</title>
+
+<link rel="stylesheet" href="../theme/ui.css"><link rel="stylesheet" href="../theme/theme.css">
+<!-- Swiper框架的CSS -->
+<link rel="stylesheet" href="../plugin/animate/animate.css">
+<link rel="stylesheet" href="../css/main-onebranch.css"/>
+</head>
+<body>
+
+<div id="section_container">
+	<section id="animate" class="active">
+	   <header>
+		    <div class="titlebar">
+		    	<a data-target="close" href="#"><i class="iconfont iconline-arrow-left"></i></a>
+		    	<h1>主页</h1>
+		    </div>
+		</header>
+	    <article class="active" data-scroll="true" style="top:44px;bottom:0px">
+	    <div class="scroller">
+	    	<div class="top-banner">
+		    	<div class="user-info">
+		    		<div class="user-img rollIn animated" style="background-image:url('../../../../script/phone/default/flat/image/main/user-pic.jpg')">
+		    		</div>
+		    		<div class="fadeInRight animated" style="float:left;">
+			    		<div class="user-name">
+			    			张三
+			    		</div>
+			    		<div class="user-detail">
+			    			业务产品部  - UED
+			    		</div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="v-grid animated fadeInUp" id="grid_container">
+		    	<div class="grid-cell animated fadeInRight" id="grid1">
+		    		<div class="dot bg-peter-river" style="background-color:red;"></div>
+		    		<div class="grid-icon bg-peter-river">
+						<span class="iconline-mail" style="font-size:30px;"></span>
+						<span class="tip bg-pomegranate">8</span>
+					</div>
+					<div class="grid-name animated fadeInRight">
+						<label class="large-text">邮件</label>
+						<br />
+						<label class="small-text">E-mail</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid2">
+		    		<div class="dot bg-orange"></div>
+		    		<div class="grid-icon bg-orange">
+						<span class="iconline-notebook" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name animated fadeInRight">
+						<label class="large-text">通讯录</label>
+						<br />
+						<label class="small-text">Contacts</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid3">
+		    		<div class="dot bg-turquoise"></div>
+		    		<div class="grid-icon bg-turquoise">
+						<span class="iconline-file" style="font-size:30px;"></span>
+						<span class="tip bg-pomegranate">18</span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">公文审批</label>
+						<br />
+						<label class="small-text">Document Approval</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid4">
+		    		<div class="dot bg-alizarin"></div>
+		    		<div class="grid-icon bg-alizarin">
+						<span class="iconline-map-location" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">地图定位</label>
+						<br />
+						<label class="small-text">Location</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid5">
+		    		<div class="dot bg-emerland"></div>
+		    		<div class="grid-icon bg-emerland">
+						<span class="iconline-setting" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">设置</label>
+						<br />
+						<label class="small-text">Settings</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid6">
+		    		<div class="dot bg-wisteria"></div>
+		    		<div class="grid-icon bg-wisteria">
+						<span class="iconline-chart-pie" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">数据分析</label>
+						<br />
+						<label class="small-text">Statistics</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="clearfix"></div>
+		    </div>
+	    </div>
+	    </article>
+	</section>
+</div>
+<!--- exmobijs --->
+<script type="text/javascript" src="../../../../script/phone/default/exmobijs/bridge.js"></script>
+<!-- agile -->
+<script type="text/javascript" src="../../script/agile/js/zepto.js"></script>
+<script type="text/javascript" src="../../script/agile/js/iscroll.js"></script>
+<script type="text/javascript" src="../../script/agile/js/agile.js"></script>
+<script type="text/javascript" src="../../script/agile/js/agile.exmobi.js"></script>
+<script type="text/javascript" src="../../script/agile/js/touch2mouse.js"></script>
+<script type="text/javascript" src="../../script/agile/js/template-native.js"></script>
+<script type="text/javascript" src="../../script/app/app.js"></script>
+
+<!-- UI界面 -->
+<script type="text/javascript" src="../../script/flat/js/jquery.js"></script>
+<script type="text/javascript" src="../../script/flat/js/h5.base.js"></script>
+
+<script>
+function setGridHeight(){
+	var cHeight = $(window).height();
+    var headerHeight = $("header").height();
+    var bannerHeight = $(".top-banner").height();
+    var gridContainerHeight = cHeight - headerHeight - bannerHeight - 42;
+    $("#grid_container").css("min-height" , gridContainerHeight);
+}
+setGridHeight();
+</script>
+</body>
+</html>
