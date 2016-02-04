@@ -2,14 +2,11 @@
 /* CSS Document */
 
 /*----------------常规----------------*/
-.bg_white{ background-color:#fff;}
-.bg_grey{ background-color:#efefef;}
+body{ background: -webkit-linear-gradient(top, #cce6f5 0%,#f9fcf5 100%); background: linear-gradient(to bottom, #cce6f5 0%,#f9fcf5 100%);}
 .fl{ float:left; display:inline;}
 .fr{ float:right; display:inline;}
-input[type="radio"]{ background: url(../img/rdo.png) no-repeat;}
 
 /*----------------登录----------------*/
-.login_bg{ background:url(../img/login/bg.jpg) no-repeat; background-size:cover;}
 .login-box{ width:100%;}
 .login-logo{ width:25%; margin:30px 37.5% 20px 37.5%; border-radius:100%;}
 .login-box .input-box{ background:#fff; border-top:#f5fafc 1px solid; border-bottom:#ddeef1 1px solid;}

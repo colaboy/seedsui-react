@@ -3,13 +3,12 @@
   padding: 12px;
   background-color: white;
 }
-.sharebox ul li {
+.sharebox .grid li {
   margin-top: 10px;
 }
-.sharebox ul li a {
+.sharebox .grid li a {
   width: 56px;
   height: 56px;
-  border-radius: 100%;
   color: white;
 }
 /*#baiduShare{

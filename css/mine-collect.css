@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------常规----------------*/
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+
+/*----------------我的收藏----------------*/
+.list li { display:block; padding: 0 8px; box-sizing: border-box;}
+.list li .justify-block{
+  display: flex;
+  display: -webkit-flex;
+  display: box;
+  display: -webkit-box;
+}
+.list li {
+  background-color: #ffffff;
+}
+.list li:active {
+  background-color: #f4f4f4;
+}
+.forumdetail li{ padding:10px 10px; margin:0 0 0 0; border-top:0; position: relative;}
+.forumdetail li .text{ height: 32px; padding: 8px 0;}
+.forumdetail li .detailicon{ text-align:right; position: absolute; top:24px; right: 10px; height: 20px;}
+.forumdetail li .detailicon a{ display:inline-block; height:20px; color:#58777f; margin:0 0 0 15px;}
+.forumdetail li .detailicon a i{ vertical-align: middle; margin:0 5px 0 0;}
+.forumdetail li .detailicon a label{ vertical-align: middle;}
+
+.icon_top_delete{ background:url(../img/titlebar/del.png) no-repeat; background-size:100% auto;}
+.icon_top_delete:active{ background:url(../img/titlebar/del-c.png) no-repeat; background-size:100% auto;}
+.mine_collect li .detailicon a{ color:#b7b5b3;}
+.mine_collect li .detailicon a:active{ color:#37acf4}
+.mine_collect_dellist li{ position: relative; padding-right:60px;}
+.mine_collect_dellist li .detailicon{ right:60px;}
+.mine_collect_dellist li .rcaption{ right:60px;}
+.mine_collect_delete{ display:none; position:absolute; right:8px; background-color: #f5376c; color: #fff; border-radius:4px; width: 44px; height:20px; line-height:20px; padding:5px 0; text-align: center; top:50%;margin-top:-10px;}
+.mine_collect_dellist .mine_collect_delete{ display:block;}
+
