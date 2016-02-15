@@ -18,7 +18,7 @@
 	min-width: 32px;
 	max-width: 84px;
 }
-.list .justify,.list .licon,.list .ricon{
+.list .justify,.list .licon,.list .ricon,.list .round{
 	display: flex;
 	display: -webkit-flex;
 	display: box;
@@ -53,6 +53,11 @@
 	display: inline-block;
     vertical-align: middle;
 }
+.list small.right{
+	position: absolute;
+	top:10px;
+	right: 10px;
+}
 /*左右小图标*/
 .list .licon{
 	font-size:20px;
@@ -71,11 +76,32 @@
 	height:40px;
 }
 /*邮件列表*/
-.list.maillist .licon{
+.list .round{
 	width:50px;
 	height:50px;
-	border-radius: 100%;
 	color:white;
+}
+.list .round i,.list .round img{
+	font-size:30px;
+	width:30px;
+	height:30px;
+}
+.list .round{
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+/*联系人列表*/
+.list.contactlist li{
+	border-width: 0;
+}
+.list.contactlist li .justify-content{
+	border-style: solid;
+	border-color: inherit;
+	border-width: 0 0 1px 0;
+}
+.list.contactlist .justify-content small:last-child{
+	margin-top: 8px;
 }
 /*功能列表*/
 .list.fnlist .licon{

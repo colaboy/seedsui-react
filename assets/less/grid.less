@@ -76,8 +76,8 @@
 .grid li .tip,.grid li .close{
 	position: absolute;
     display: block;
-    top: -5px;
-    right: -5px;
+    top: -4px;
+    right: -4px;
     width: 24px;
     height: 24px;
     line-height: 24px;
@@ -118,7 +118,6 @@
 	width:64px;
 	height:64px;
 	margin:0px auto;
-	border-radius:8px;
 }
 .grid.app li>a>[class*="icon-"],.grid.app li>a>img{
 	/*文字图标*/
@@ -128,12 +127,55 @@
 	line-height: 32px;
 	background-size:cover;
 }
-
-/*缩略图控件*/
-.grid.thumbnail,.grid.thumbnail li,.grid.album,.grid.album li{
-	box-sizing:border-box;
-	padding:5px;
+/*圆角控制*/
+.grid.radiusround li>a{
+	border-radius:100%;
 }
+.grid.radius8 li>a{
+	border-radius:8px;
+}
+
+/*Metro风格|缩略图|相册*/
+.grid.thumbnail,.grid.album,.grid.metro{
+	box-sizing: border-box;
+	padding:0 4px;
+}
+.grid.thumbnail li,.grid.album li,.grid.metro li{
+	box-sizing:border-box;
+	padding:4px;
+}
+/*Metro风格*/
+.grid.metro .tip{
+	top:auto;
+	right:10px;
+	bottom:4px;
+	height: 32px;
+    line-height: 32px;
+    width: 32px;
+	font-size:18px;
+	text-align: right;
+	background-color:transparent;
+}
+.grid.metro .tip+label{
+	padding-right:32px;
+}
+.grid.metro li>a{
+	display:block;
+	padding:12px;
+
+	color:white;
+}
+.grid.metro li>a label{
+	display: block;
+	text-align: left;
+	margin-top:10px;
+}
+.grid.metro i,.grid.metro img{
+	font-size:64px;
+	width:64px;
+	height:64px;
+}
+/*缩略图*/
 .grid.thumbnail li>a{
 	position:relative;
 	width:100%;
@@ -141,22 +183,17 @@
 .grid.thumbnail li>a img{
 	width:100%;
 }
-/*相册控件*/
+/*相册*/
 .grid.album li > a {
     width: 100%;
     height: 110px;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 8px;
 }
 .grid.album .default{
 	color: #cccccc;
     background-color: #ddd;
     font-size: 48px;
-}
-/*圆形框*/
-.grid.round li > a{
-	border-radius: 100%;
 }
 /*----------------grid.less(end)----------------*/

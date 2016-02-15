@@ -2256,7 +2256,7 @@ aside.active ~ #section_container .section_container_mask {
 /*----------------------------bar.less(start)----------------------------*/
 .sliver {
   position: relative;
-  padding: 8px !important;
+  padding: 8px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
@@ -3902,8 +3902,8 @@ input[type=range]:focus::-ms-fill-upper {
 .grid li .close {
   position: absolute;
   display: block;
-  top: -5px;
-  right: -5px;
+  top: -4px;
+  right: -4px;
   width: 24px;
   height: 24px;
   line-height: 24px;
@@ -3943,7 +3943,6 @@ input[type=range]:focus::-ms-fill-upper {
   width: 64px;
   height: 64px;
   margin: 0px auto;
-  border-radius: 8px;
 }
 .grid.app li > a > [class*="icon-"],
 .grid.app li > a > img {
@@ -3954,14 +3953,58 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 32px;
   background-size: cover;
 }
-/*缩略图控件*/
-.grid.thumbnail,
-.grid.thumbnail li,
-.grid.album,
-.grid.album li {
-  box-sizing: border-box;
-  padding: 5px;
+/*圆角控制*/
+.grid.radiusround li > a {
+  border-radius: 100%;
 }
+.grid.radius8 li > a {
+  border-radius: 8px;
+}
+/*Metro风格|缩略图|相册*/
+.grid.thumbnail,
+.grid.album,
+.grid.metro {
+  box-sizing: border-box;
+  padding: 0 4px;
+}
+.grid.thumbnail li,
+.grid.album li,
+.grid.metro li {
+  box-sizing: border-box;
+  padding: 4px;
+}
+/*Metro风格*/
+.grid.metro .tip {
+  top: auto;
+  right: 10px;
+  bottom: 4px;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  font-size: 18px;
+  text-align: right;
+  background-color: transparent;
+}
+.grid.metro .tip + label {
+  padding-right: 32px;
+}
+.grid.metro li > a {
+  display: block;
+  padding: 12px;
+  color: white;
+}
+.grid.metro li > a label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+}
+.grid.metro i,
+.grid.metro img {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+}
+/*缩略图*/
 .grid.thumbnail li > a {
   position: relative;
   width: 100%;
@@ -3969,23 +4012,18 @@ input[type=range]:focus::-ms-fill-upper {
 .grid.thumbnail li > a img {
   width: 100%;
 }
-/*相册控件*/
+/*相册*/
 .grid.album li > a {
   width: 100%;
   height: 110px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 8px;
 }
 .grid.album .default {
   color: #cccccc;
   background-color: #ddd;
   font-size: 48px;
-}
-/*圆形框*/
-.grid.round li > a {
-  border-radius: 100%;
 }
 /*----------------grid.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
@@ -4010,7 +4048,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .list .justify,
 .list .licon,
-.list .ricon {
+.list .ricon,
+.list .round {
   display: flex;
   display: -webkit-flex;
   display: box;
@@ -4042,6 +4081,11 @@ input[type=range]:focus::-ms-fill-upper {
   display: inline-block;
   vertical-align: middle;
 }
+.list small.right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 /*左右小图标*/
 .list .licon {
   font-size: 20px;
@@ -4059,11 +4103,33 @@ input[type=range]:focus::-ms-fill-upper {
   height: 40px;
 }
 /*邮件列表*/
-.list.maillist .licon {
+.list .round {
   width: 50px;
   height: 50px;
-  border-radius: 100%;
   color: white;
+}
+.list .round i,
+.list .round img {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+.list .round {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/*联系人列表*/
+.list.contactlist li {
+  border-width: 0;
+}
+.list.contactlist li .justify-content {
+  border-style: solid;
+  border-color: inherit;
+  border-width: 0 0 1px 0;
+}
+.list.contactlist .justify-content small:last-child {
+  margin-top: 8px;
 }
 /*功能列表*/
 .list.fnlist .licon {
@@ -5598,7 +5664,7 @@ input[type="radio"][disabled]:checked {
   background-color: #f4f4f4;
 }
 /*邮件列表*/
-.list.maillist .licon {
+.list .round {
   background-color: #46c2ca;
 }
 /*应用列表*/
@@ -5644,3 +5710,8 @@ table {
 }
 /*---------------table.less(end)---------------*/
 /*color.less.less(end)*/
+/*----------------statistics.less(start)--------------*/
+/* .statistics-bg {
+	background:@color-statistics-bg;
+} */
+/*----------------statistics.less(end)--------------*/
