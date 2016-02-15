@@ -62,16 +62,24 @@ body{
 	margin:10px 0 0 0;
 	border:none;
 	border-bottom:1px solid rgba(255,255,255,.5);
-	
+	background-color: transparent;
 	-webkit-transform: translateX(-500px);
 	opacity:0;
 	-webkit-animation-name: slide-right;
 	-webkit-animation-duration: 0.2s;
 	-webkit-animation-delay:0.2s;
 	-webkit-animation-fill-mode: forwards;
+	width:100%;
 }
 .input-box.feature input{
 	color:white;
+	background-color: transparent;
+}
+.input-box.feature i{
+	color:#ffffff;
+}
+.input-box.licon i {
+	left:0;
 }
 .login-cbo{
 	margin:0 auto;
@@ -110,10 +118,19 @@ body{
 }
 input[type="checkbox"].input-login-cbo{
 	background-image:url(../img/login1/cbo2.png);
+	background-size:cover;
+}
+input[type="checkbox"].input-login-cbo:checked{
+	background-position:-44px 0;
+}
+input[type="checkbox"]:before {
+	content: "";
+}
+input[type="checkbox"]:checked::before {
+	content: "";
 }
 a.btn-login{
 	border-radius:0;
-	width:100%;
 	-webkit-animation-name: slide-right;
 	-webkit-animation-duration: 0.2s;
 	-webkit-animation-delay:0.4s;
@@ -126,7 +143,6 @@ a.btn-login{
 a.btn-reg{
 	border-radius:0;
 	color:#2065c4;
-	width:100%;
 	margin-top:10px;
 	-webkit-animation-name: slide-right;
 	-webkit-animation-duration: 0.2s;
@@ -151,11 +167,16 @@ a.btn-reg{
 	display:block;
 	margin:40px auto 0 auto;
 	opacity:0;
+	font-size:32px;
+	color: #ffffff;
 	-webkit-animation: fade-in 1s;
 	-webkit-animation-delay: 0.6s;
 	-webkit-animation-fill-mode: forwards;
 }
-.patternutil:active{
-	opacity:.5;
+.patternutil a {
+	color:#ffffff;
+}
+.patternutil a:active{
+	opacity:0.5;
 }
 /*-----------------------------------------------------login1:end-----------------------------------------------------*/

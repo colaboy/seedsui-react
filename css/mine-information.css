@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*----------------常规----------------*/
+.fl{ float:left; display:inline;}
+.fr{ float:right; display:inline;}
+
+/*----------------我的-用户/经销商----------------*/ 
+.user_bg{ background:url(../img/mine/img.jpg) no-repeat; background-size:100% 100%; padding:50px 25px;}
+.user_bg .limg{ float:left; margin-right:20px; width:64px; height: 64px; border-radius:100px;}
+.user_bg .text{ margin-top:10px; color:#9d9999;}
+.user_bg .text .mtt,.user_bg .text .mtt a{ font-size:16px; color:#383636;}
+.minelist hr{ margin-top:0; margin-left:10px;}
+.minelist li{ border-bottom:0;}
+.minelist li .licon{ width:20px; height:20px; left:15px;}
+.minelist li .ricon{ width:20px; height:20px;}
+.minelist li .ricon~.text{ color:#333; padding-left:30px; padding-right:60px;}
+.rnum{ position:absolute; top:50%; display: inline-block; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); margin-top: -10px\0;}
+.rcircle{ background-color:#ef490f; border-radius:20px; width:10px; height:10px;}
+.minelist li .rnum{ right:34px; font-style:normal; color:#ef490f;}
+.icon-person{ background:url(../img/mine/mine_person.png) no-repeat; background-size:100% auto;}
+.icon-news{ background:url(../img/mine/mine_news.png) no-repeat; background-size:100% auto;}
+.icon-commodity{ background:url(../img/mine/mine_commodity.png) no-repeat; background-size:100% auto;}
+.icon-repairs{ background:url(../img/mine/mine_repairs.png) no-repeat; background-size:100% auto;}
+.icon-home_furnishing{ background:url(../img/mine/mine_home_furnishing.png) no-repeat; background-size:100% auto;}
+.icon-evaluate{ background:url(../img/mine/mine_evaluate.png) no-repeat; background-size:100% auto;}
+.icon-collect{ background:url(../img/mine/mine_collect.png) no-repeat; background-size:100% auto;}
+.icon-dealer_news{ background:url(../img/mine/mine_dealer_news.png) no-repeat; background-size:100% auto;}
+.icon-search{ background:url(../img/mine/mine_search.png) no-repeat; background-size:100% auto;}
+.icon-exit{ background:url(../img/mine/mine_exit.png) no-repeat; background-size:100% auto;}
+
+/*----------------个人信息-消费者----------------*/
+.button_cancel{ background:#db5324;}
+.button_cancel:active{ background:#cb4415;}
+.customerlist li .licon{ font-style:normal; width:100px;}
+.customerlist li .ricon~.text{ text-align:right; color:#37acf4; padding-right:20px;}
+.customerlist li .ricon~.text a{ color:#37acf4;}
+.customerlist li .ricon~.text.disable{ color:#aaa;}
+.customerlist li .micon~.text{ padding-right:5px;}
+.customerlist li.picbar .licon{ width:44px; height:44px;}
+.customerlist li.picbar .licon img{ width: 100%; border-radius: 100%;}
+.customerlist li.picbar .ricon~.text{ height:44px; line-height:44px; padding-left:50px;}
+
+
+
+.group{ margin:10px 0;}
+.groupin{ padding:5px 0; height: 20px; line-height: 20px;}
+.groupin.disable{ color:#aaa;}
+.group-head{ width:44px; border-radius:100%; margin:5px 0}
+
+

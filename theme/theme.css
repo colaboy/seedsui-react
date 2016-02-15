@@ -708,3 +708,8 @@ table {
 }
 /*---------------table.less(end)---------------*/
 /*color.less.less(end)*/
+/*----------------statistics.less(start)--------------*/
+.statistics-bg {
+  background: rgba(54, 172, 244, 0.1);
+}
+/*----------------statistics.less(end)--------------*/

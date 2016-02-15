@@ -2,6 +2,7 @@
 /* CSS Document */
 
 /*----------------常规----------------*/
+body{ background-color: #fff; }
 .fl{ float:left; display:inline;}
 .fr{ float:right; display:inline;}
 
@@ -17,10 +18,11 @@ ul.noclick li:active{ background-color:white;}
 .votelist .info img{ margin-top:5px;}
 .votelist .text_info{ color:#aaa; margin: 10px 0 0 0;}
 .text_end{ color:#16a7de; text-align:center; font-size:16px; padding:5px 0;}
-.votelist_icon_bg{ -webkit-clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0 50%);clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 0 50%); background-color: #d7d7d7; position:absolute; right:0; top:0; width:64px; height:12px; padding:7px 0 6px 0; color:white; text-align:center; font-size:12px; font-style:normal;}
+.votelist_icon_bg{ background:url(../img/vote/votelist_bg_end.png) no-repeat; background-size:100% auto; position:absolute; right:0; top:0; width:64px; height:12px; padding:7px 0 6px 0; color:white; text-align:center; font-size:12px; font-style:normal;}
 
-/*----------------投票详情----------------*/
-.vote_detail{ padding:10px; background-color: #fff; margin-top: 10px;}
+/*----------------投票详情----------------*/ 
+.vote_detail_line{ background-color:#f0f0f0; height:10px; width:100%; border-top:#c0c0c0 1px solid;}
+.vote_detail{ padding:10px;}
 .vote_detail .limg{ margin-right:10px; float:left;}
 .vote_detail .text{}
 .vote_detail .text small{ margin-top:4px;}
@@ -28,10 +30,17 @@ ul.noclick li:active{ background-color:white;}
 .vote_detail small{ display:block; height: 12px;}
 .vote_detail_bar{ width:100%;}
 .vote_detail_bar li{ width:100%; background:#fbfbfb; border:0; padding:10px 0; margin-bottom:2px; position:relative;}
-.vote_detail_bar li .statistics-bg{ position:absolute; top:0; bottom:0; left:0; z-index:2;}
+.vote_detail_bar li .vote_detail_bg{ position:absolute; top:0; bottom:0; left:0; z-index:2; background:#e4f8ff;}
 .vote_detail_bar li .text{ color:#7d7d7d; position:relative; z-index:9; padding:0 80px 0 20px;}
 .vote_detail_bar li .text .num{ right:10px;}
 .vote_detail_bar li .text .num i{ font-style:normal; font-size:18px; margin:0 5px;}
 .vote_detail_text_end{ color:#aaa; padding:10px 10px;}
-.text_grey{ color:#9f9f9f;}
+
+
 .list .justify-block{ display:flex; display:-webkit-flex; display:box; display:-webkit-box;}
+.vote_choice_bar li{ position: relative;}
+.vote_choice_bar li input{ position: absolute; top:50%; margin-top: -11px; left: 8px;}
+.vote_choice_bar li span{ padding: 0 0 0 25px;}
+
+
+
