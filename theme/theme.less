@@ -1,4 +1,4 @@
-@import "../theme-default/variables.less";
+@import "theme-cyan/variables.less";
 
 /*-----------------------------global.less(start)-----------------------------*/
 body{
@@ -104,11 +104,16 @@ aside {
 .titlebar.reverse h1{
 	color:@color-titlebar-reverse-font;
 }
-.titlebar.reverse a{
-	color:@color-titlebar-reverse-link;
+.titlebar.reverse input[type=text]{
+	border-width: 0;
 }
-.titlebar.reverse a:active{
+.titlebar.reverse a,.titlebar.reverse button{
+	color:@color-titlebar-reverse-link;
+	border-color:fade(@color-titlebar-reverse-link,50%);
+}
+.titlebar.reverse a:active,.titlebar.reverse button:active{
 	color:@color-titlebar-reverse-link-active;
+	border-color:fade(@color-titlebar-reverse-link-active,25%);
 }
 /*search*/
 .titlebar input[type=text]+[class*="icon-"],.titlebar input[type=search]+[class*="icon-"]{

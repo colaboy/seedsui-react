@@ -1,4 +1,3 @@
-<!-- HTML5文件 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +15,7 @@
 	</style>
 </head>
 <body>
+<section id="page_index">
 	<header>
         <div class="titlebar">
             <a href="javascript:history.go(-1)" class="left">
@@ -49,7 +49,7 @@
 				<a href="bar.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">bar</label>
+				<label class="grid-label">Bar</label>
 			</li>
 			<li>
 				<a href="button.html">
@@ -58,16 +58,22 @@
 				<label class="grid-label">按钮</label>
 			</li>
 			<li>
+				<a href="iconfont.html">
+					<img src=""/>
+				</a>
+				<label class="grid-label">文字图标</label>
+			</li>
+			<li>
 				<a href="popup.html">
 					<img src=""/>
 				</a>
 				<label class="grid-label">弹出框</label>
 			</li>
 			<li>
-				<a href="video.html">
+				<a href="shape.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">多媒体</label>
+				<label class="grid-label">形状</label>
 			</li>
 		</ul>
 		
@@ -91,35 +97,15 @@
 				</a>
 				<label class="grid-label">表单验证</label>
 			</li>
-			<li>
-				<a href="form-richeditor.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">富文本编辑</label>
-			</li>
 		</ul>
-		<div class="sliver">树结构</div>
-		<ul class="grid thumbnail">
-			<li>
-				<a href="tree.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">树结构</label>
-			</li>
-		</ul>
+
 		<div class="sliver">栅格</div>
 		<ul class="grid thumbnail">
 			<li>
 				<a href="table.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">表格1</label>
-			</li>
-			<li>
-				<a href="table2.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">表格2</label>
+				<label class="grid-label">表格</label>
 			</li>
 			<li>
 				<a href="grid.html">
@@ -134,13 +120,13 @@
 				<label class="grid-label">列表</label>
 			</li>
 		</ul>
-		<div class="sliver">复杂功能</div>
+		<div class="sliver">常用功能</div>
 		<ul class="grid thumbnail">
 			<li>
-				<a href="imgPreview.html">
+				<a href="tree.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">图片预览</label>
+				<label class="grid-label">树结构</label>
 			</li>
 			<li>
 				<a href="weather.html">
@@ -155,34 +141,40 @@
 				<label class="grid-label">聊天</label>
 			</li>
 			<li>
+				<a href="shake.html">
+					<img src=""/>
+				</a>
+				<label class="grid-label">摇一摇</label>
+			</li>
+			<li>
 				<a href="countto.html">
 					<img src=""/>
 				</a>
 				<label class="grid-label">计数器</label>
 			</li>
 			<li>
-				<a href="page-tabbar.html">
+				<a href="slider.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">页签滑动</label>
+				<label class="grid-label">滑动容器</label>
 			</li>
 			<li>
-				<a href="page-slide.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">多余页签滑动</label>
-			</li>
-			<li>
-				<a href="loader.html">
+				<a href="loading.html">
 					<img src=""/>
 				</a>
 				<label class="grid-label">加载遮罩</label>
+			</li>
+			<li>
+				<a href="dragrefresh.html">
+					<img src=""/>
+				</a>
+				<label class="grid-label">下拉刷新</label>
 			</li>
 		</ul>
 		<div class="sliver">数据可视化</div>
 		<ul class="grid thumbnail">
 			<li>
-				<a href="chart-gauge.html">
+				<a href="gauge.html">
 					<img src=""/>
 				</a>
 				<label class="grid-label">仪表盘</label>
@@ -247,66 +239,24 @@
 			</li>
 		</ul>
 		
-		<div class="sliver">iscroll</div>
-		<ul class="grid thumbnail">
-			<li>
-				<a href="iscroll.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">自定义滚动条</label>
-			</li>
-			<li>
-				<a href="iscroll-pull.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">下拉刷新</label>
-			</li>
-		</ul>
-		
-		<div class="sliver">swiper</div>
-		<ul class="grid thumbnail">
-			<li>
-				<a href="swiper-simple.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">一般滑动</label>
-			</li>
-			<li>
-				<a href="swiper.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">滑动综合示例</label>
-			</li>
-		</ul>
-		
-		<div class="sliver">hammer</div>
-		<ul class="grid thumbnail">
-			<li>
-				<a href="hammerImg.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">图片预览-hammer</label>
-			</li>
-		</ul>
-		
 		<div class="sliver">exmobi本地能力</div>
 		<ul class="grid thumbnail">
 			<li>
-				<div class="grid-thumbnail" onclick="Exmobi.openWebview('res:page/www/exmobi-tel.html')">
+				<a href="javascript:Exmobi.openWebview('res:page/www/exmobi-tel.html')">
 					<img src=""/>
-				</div>
+				</a>
 				<label class="grid-label">电话与通讯</label>
 			</li>
 			<li>
-				<div class="grid-thumbnail" onclick="Exmobi.openWebview('res:page/www/exmobi-camera.html')">
+				<a href="javascript:Exmobi.openWebview('res:page/www/exmobi-camera.html')">
 					<img src=""/>
-				</div>
+				</a>
 				<label class="grid-label">照片选择</label>
 			</li>
 			<li>
-				<div class="grid-thumbnail" onclick="Exmobi.openWebview('res:page/www/exmobi-gps.html')">
+				<a href="javascript:Exmobi.openWebview('res:page/www/exmobi-gps.html')">
 					<img src=""/>
-				</div>
+				</a>
 				<label class="grid-label">定位</label>
 			</li>
 			<li>
@@ -344,10 +294,10 @@
 		<div class="sliver">html5本地能力</div>
 		<ul class="grid thumbnail">
 			<li>
-				<a href="local-video.html">
+				<a href="video.html">
 					<img src=""/>
 				</a>
-				<label class="grid-label">短视频</label>
+				<label class="grid-label">多媒体</label>
 			</li>
 			<li>
 				<a href="local-photoselect.html">
@@ -360,12 +310,6 @@
 					<img src=""/>
 				</a>
 				<label class="grid-label">分享链接</label>
-			</li>
-			<li>
-				<a href="local-webShare.html">
-					<img src=""/>
-				</a>
-				<label class="grid-label">web分享链接</label>
 			</li>
 			<li>
 				<a href="local-gps.html">
@@ -382,30 +326,31 @@
 		</ul>
 		
 	</article>
-	<script src="../plugin/exmobi/exmobi.js"></script>
-	<script src="../plugin/seedsui/seedsui.min.js"></script>
-	<script>
-		//manifest
-		/*window.addEventListener("updateready",function(e){
-			console.log("离线缓存状态："+window.applicationCache.status);
-			if(window.applicationCache.status==window.applicationCache.UPDATEREADY){
-				window.applicationCache.swapCache();
-				if(confirm('发现此manifest文件有更新，是否更新？')){
-					window.location.reload();
-				}
-			}else{
-				console.log('manifest文件没有变化');
+</section>
+<script src="../plugin/exmobi/exmobi.js"></script>
+<script src="../plugin/seedsui/seedsui.min.js"></script>
+<script>
+	//manifest
+	/*window.addEventListener("updateready",function(e){
+		console.log("离线缓存状态："+window.applicationCache.status);
+		if(window.applicationCache.status==window.applicationCache.UPDATEREADY){
+			window.applicationCache.swapCache();
+			if(confirm('发现此manifest文件有更新，是否更新？')){
+				window.location.reload();
 			}
-		},false);*/
-		
-		//定义exmobi返回
-		function back(){history.go(-1);}
-		//remove原返回事件绑定
-		document.removeEventListener("backmonitor",back,false);
-		//添加新的返回事件
-		document.addEventListener("backmonitor",function(){
-			Exmobi.dbclose();
-		},false);
-	</script>
+		}else{
+			console.log('manifest文件没有变化');
+		}
+	},false);*/
+	
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	//remove原返回事件绑定
+	document.removeEventListener("backmonitor",back,false);
+	//添加新的返回事件
+	document.addEventListener("backmonitor",function(){
+		Exmobi.dbclose();
+	},false);
+</script>
 </body>
 </html>
