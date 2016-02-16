@@ -2327,10 +2327,14 @@ aside.active ~ #section_container .section_container_mask {
   background-position: center top;
 }
 /*按钮*/
-.titlebar button {
+.titlebar button,
+.titlebar .button {
   height: 32px;
   border-radius: 16px;
   margin-top: 5px;
+}
+.titlebar .button {
+  line-height: 32px;
 }
 /*logo*/
 .titlebar .logo,
@@ -2482,7 +2486,6 @@ input[type="submit"],
   display: inline-block;
   padding: 0 8px;
   border: 0;
-  font-size: 14px;
   border-radius: 4px;
   height: 40px;
   overflow: hidden;
@@ -2542,16 +2545,21 @@ input[type="submit"].block {
   width: 100%;
 }
 /*图标按钮*/
-button [class^="icon-"],
-.button [class^="icon-"] {
+button i,
+.button i,
+button label,
+.button label {
+  display: inline-block;
+  vertical-align: middle;
+}
+button i,
+.button i {
   background-repeat: no-repeat;
   background-size: 100% auto;
-  display: inline-block;
   font-size: 20px;
   line-height: 20px;
   width: 20px;
   height: 20px;
-  vertical-align: middle;
 }
 /*按钮-仅图标按钮*/
 button.onlyicon {
@@ -4096,6 +4104,13 @@ input[type=range]:focus::-ms-fill-upper {
 /*无边框*/
 .list.noborder li {
   border-width: 0;
+}
+/*无背景*/
+.list.nobg li {
+  background-color: transparent;
+}
+.list.nobg li:active {
+  background-color: transparent;
 }
 /*新闻列表*/
 .list.newlist .justify-content > a {
