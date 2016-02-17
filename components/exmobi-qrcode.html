@@ -3,23 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>扫码</title>
+	<title>exmobi-qrcode</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
-	        <h1>扫码</h1>
-	    </div>
-	</header>
-	<article>
-	    <div class="input-box margin8 ricon" onclick="Exmobi.qrcode()">
-            <input type="text" class="input-text" placeholder="扫码控件框"/>
-            <i class="icon-qrcodeline"></i>
-        </div>
-	</article>
+	<section id="page_exmobi_qrcode" class="active">
+		<header>
+		    <div class="titlebar">
+		        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
+		        <h1>扫码</h1>
+		    </div>
+		</header>
+		<article>
+		    <div class="input-box margin8 ricon" onclick="Exmobi.qrcode()">
+	            <input type="text" class="input-text" placeholder="扫码控件框"/>
+	            <i class="icon-qrcodeline"></i>
+	        </div>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script>

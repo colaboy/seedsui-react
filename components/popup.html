@@ -7,30 +7,32 @@
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 <body>
-    <header>
-        <div class="titlebar">
-            <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-            <h1>弹出框</h1>
-        </div>
-    </header>
-    <article>
-    	<p class="title">系统弹出框</p>
-    	<div class="card padding8">
-	        <button id="alert">alert</button>
-	        <button id="confirm" class="warn">confirm</button>
-	        <button id="actionsheet" class="info">actionsheet</button>
-	        <button id="toast" class="success">toast</button>
-        </div>
-        
-        <p class="title">自定义弹出框</p>
-        <div class="card padding8">
-	        <button id="middle">middle</button>
-	        <button id="top" class="warn">top</button>
-	        <button id="bottom">bottom</button>
-	        <button id="left" class="info">left</button>
-	        <button id="right" class="success">right</button>
-    	</div>
-    </article>
+	<section id="page_popup" class="active">
+	    <header>
+	        <div class="titlebar">
+	            <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+	            <h1>弹出框</h1>
+	        </div>
+	    </header>
+	    <article>
+	    	<p class="title">系统弹出框</p>
+	    	<div class="card padding8">
+		        <button id="alert">alert</button>
+		        <button id="confirm" class="warn">confirm</button>
+		        <button id="actionsheet" class="info">actionsheet</button>
+		        <button id="toast" class="success">toast</button>
+	        </div>
+	        
+	        <p class="title">自定义弹出框</p>
+	        <div class="card padding8">
+		        <button id="middle">middle</button>
+		        <button id="top" class="warn">top</button>
+		        <button id="bottom">bottom</button>
+		        <button id="left" class="info">left</button>
+		        <button id="right" class="success">right</button>
+	    	</div>
+	    </article>
+	</section>
 	<!--自定义弹出框-->
     <div id="pop_custom" style="padding:20px 0;background-color:white;display:none;">我是从自定义弹出框</div>
 	<script src="../plugin/jquery/jquery.min.js"></script>

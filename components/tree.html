@@ -3,164 +3,166 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>树结构</title>
+	<title>tree</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 	
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	    	<a href="javascript:history.go(-1)" class="left">
-	            <i class="icon-arrowleft"></i>
-	        </a>
-	        <h1>树结构</h1>
-	    </div>
-	</header>
-	<article style="top:52px;">
-		<!--
-		<div class="tree-box">
-		<ul class="tree" id="tree">
-			从此处注入数据，格式为:
-			如果有子节点：
-			<li>
-				<div class="treetitle">
-					<i class="treeicon"></i>
-					<a>名称</a>
-					<small>人数</small>
-				</div>
-				
-				<ul>...</ul>
-			</li>
-			如果没有子节点：
-			<li>
-				<div class="treetitle">
-					<i class="treeicon"></i>
-					<a>名称</a>
-					<small>人数</small>
-				</div>
-			</li>
-		</ul>
-		</div>
-		-->
-		<div class="tree-box">
+	<section id="page_tree" class="active">
+		<header>
+		    <div class="titlebar">
+		    	<a href="javascript:history.go(-1)" class="left">
+		            <i class="icon-arrowleft"></i>
+		        </a>
+		        <h1>树结构</h1>
+		    </div>
+		</header>
+		<article style="top:52px;">
+			<!--
+			<div class="tree-box">
 			<ul class="tree" id="tree">
+				从此处注入数据，格式为:
+				如果有子节点：
 				<li>
-					<div class="treetitle"> <i class="treeicon"></i>
-						<a>业务产品部</a>
-						<small>100</small>
+					<div class="treetitle">
+						<i class="treeicon"></i>
+						<a>名称</a>
+						<small>人数</small>
 					</div>
-					<ul>
-						<li>
-							<div class="treetitle">
-								<i class="treeicon"></i>
-								<a>研发体系</a>
-								<small>100</small>
-							</div>
-							<ul>
-								<li>
-									<div class="treetitle">
-										<i class="treeicon"></i>
-										<a>开发一部</a>
-										<small>100</small>
-									</div>
-									<ul>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">波</i>
-												<a>成少波</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">晓</i>
-												<a>王晓</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">健</i>
-												<a>李健</a>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<div class="treetitle">
-										<i class="treeicon"></i>
-										<a>开发二部</a>
-										<small>100</small>
-									</div>
-									<ul>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">泉</i>
-												<a>张泉</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">景</i>
-												<a>李若景</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">源</i>
-												<a>康根源</a>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<div class="treetitle">
-										<i class="treeicon"></i>
-										<a>开发三部</a>
-										<small>100</small>
-									</div>
-									<ul>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">波</i>
-												<a>成少波</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">东</i>
-												<a>张建东</a>
-											</div>
-										</li>
-										<li>
-											<div class="treetitle">
-												<i class="treeicon">进</i>
-												<a>李进</a>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<div class="treetitle">
-								<i class="treeicon"></i>
-								<a>研发二部</a>
-								<small>100</small>
-							</div>
-							<ul>
-								<li>
-									<div class="treetitle">
-										<i class="treeicon">梅</i>
-										<a>许啸梅</a>
-									</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
+					
+					<ul>...</ul>
+				</li>
+				如果没有子节点：
+				<li>
+					<div class="treetitle">
+						<i class="treeicon"></i>
+						<a>名称</a>
+						<small>人数</small>
+					</div>
 				</li>
 			</ul>
-		</div>
-	</article>
+			</div>
+			-->
+			<div class="tree-box">
+				<ul class="tree" id="tree">
+					<li>
+						<div class="treetitle"> <i class="treeicon"></i>
+							<a>业务产品部</a>
+							<small>100</small>
+						</div>
+						<ul>
+							<li>
+								<div class="treetitle">
+									<i class="treeicon"></i>
+									<a>研发体系</a>
+									<small>100</small>
+								</div>
+								<ul>
+									<li>
+										<div class="treetitle">
+											<i class="treeicon"></i>
+											<a>开发一部</a>
+											<small>100</small>
+										</div>
+										<ul>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">波</i>
+													<a>成少波</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">晓</i>
+													<a>王晓</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">健</i>
+													<a>李健</a>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="treetitle">
+											<i class="treeicon"></i>
+											<a>开发二部</a>
+											<small>100</small>
+										</div>
+										<ul>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">泉</i>
+													<a>张泉</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">景</i>
+													<a>李若景</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">源</i>
+													<a>康根源</a>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="treetitle">
+											<i class="treeicon"></i>
+											<a>开发三部</a>
+											<small>100</small>
+										</div>
+										<ul>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">波</i>
+													<a>成少波</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">东</i>
+													<a>张建东</a>
+												</div>
+											</li>
+											<li>
+												<div class="treetitle">
+													<i class="treeicon">进</i>
+													<a>李进</a>
+												</div>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="treetitle">
+									<i class="treeicon"></i>
+									<a>研发二部</a>
+									<small>100</small>
+								</div>
+								<ul>
+									<li>
+										<div class="treetitle">
+											<i class="treeicon">梅</i>
+											<a>许啸梅</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>

@@ -3,116 +3,118 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>表单序列化</title>
+	<title>form-serialize</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
     
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	        <a href="javascript:history.go(-1)"><span>返回</span></a>
-	        <h1 class="text-center">表单序列化</h1>
-	        <a href="javascript:submit()" class="right"><span>完成</span></a>
-	    </div>
-	</header>
-	<article>
-	<form id="form1">
-            <div class="group">
-                <div class="row">
-                    <label>用户名</label>
-                    <div class="input-box margin8">
-                        <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="required username"/>
+    <section id="page_form_serialize" class="active">
+    	<header>
+    	    <div class="titlebar">
+    	        <a href="javascript:history.go(-1)"><span>返回</span></a>
+    	        <h1 class="text-center">表单序列化</h1>
+    	        <a href="javascript:submit()" class="right"><span>完成</span></a>
+    	    </div>
+    	</header>
+    	<article>
+    	<form id="form1">
+                <div class="group">
+                    <div class="row">
+                        <label>用户名</label>
+                        <div class="input-box margin8">
+                            <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="required username"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>密码</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="password" placeholder="密码" name="password" data-rule-field="用户名" data-rule="required password minlength:6"/>
+                            <i class="icon-eye-fill"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>确认</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="password" placeholder="确认" name="reconfirm" data-rule="required password compare:password minlength:6"/>
+                            <i class="icon-eye-fill"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label>密码</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="password" placeholder="密码" name="password" data-rule-field="用户名" data-rule="required password minlength:6"/>
-                        <i class="icon-eye-fill"></i>
+                <div class="group">
+                    <div class="row">
+                        <label>昵称</label>
+                        <div class="input-box margin8">
+                            <input type="text" placeholder="填写昵称" name="nickname"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>性别</label>
+                        <div class="input-box margin8">
+                            <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
+                            <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>出生日期</label>
+                        <div class="input-box margin8">
+                            <input type="date" name="birthday" placeholder="出生日期"/>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label>确认</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="password" placeholder="确认" name="reconfirm" data-rule="required password compare:password minlength:6"/>
-                        <i class="icon-eye-fill"></i>
+                <div class="group">
+                    <div class="row">
+                        <label>职业</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>公司</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="company" placeholder="公司"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>学校</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="school" placeholder="填写学校，发现校友"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>所在地</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="live" readonly="" placeholder="选择所在地"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>故乡</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>邮箱</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="email" placeholder="填写邮箱"/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>昵称</label>
-                    <div class="input-box margin8">
-                        <input type="text" placeholder="填写昵称" name="nickname"/>
+                <div class="group">
+                    <div class="row">
+                        <label>个人说明</label>
+                        <div class="input-box margin8">
+                            <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
+                        </div>
+                        
                     </div>
                 </div>
-                <div class="row">
-                    <label>性别</label>
-                    <div class="input-box margin8">
-                        <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
-                        <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>出生日期</label>
-                    <div class="input-box margin8">
-                        <input type="date" name="birthday" placeholder="出生日期"/>
-                    </div>
-                </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>职业</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
-                        <i class="icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>公司</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="company" placeholder="公司"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>学校</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="school" placeholder="填写学校，发现校友"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>所在地</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="live" readonly="" placeholder="选择所在地"/>
-                        <i class="icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>故乡</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
-                        <i class="icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>邮箱</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="email" placeholder="填写邮箱"/>
-                    </div>
-                </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>个人说明</label>
-                    <div class="input-box margin8">
-                        <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
-                    </div>
-                    
-                </div>
-            </div>
-        </form>
-	</article>
+            </form>
+    	</article>
+    </section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../assets/js/eventutil.js"></script>

@@ -3,75 +3,77 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>表单验证</title>
+    <title>form-validate</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-<header>
-    <div class="titlebar">
-        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-        <h1>表单验证</h1>
-    </div>
-</header>
-<article>
-	<form id="form1" style="padding:10px;">
-        <div class="input-box ricon required">
-            <input type="text" placeholder="用户名" name="username" maxlength="16" data-clear="true" data-rule-field="用户名" data-rule="required username"/>
-            <i class="icon-clear-fill hide" style="font-size:20px;"></i>
-        </div>
-        <div class="rowspace8"></div>
-        <div class="input-box ricon required">
-            <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6"/>
-            <i class="icon-eye-fill"></i>
-            <div class="safelvl lvl0">
-            	<ul>
-            		<li>弱</li>
-            		<li>中</li>
-            		<li>强</li>
-            	</ul>
-            	<div class="progress"></div>
+    <section id="page_form_validate" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+                <h1>表单验证</h1>
             </div>
-        </div>
-        
-        <div class="rowspace40"></div>
-        <div class="input-box ricon required">
-            <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6"/>
-            <i class="icon-eye-fill"></i>
-        </div>
-        <div class="rowspace8"></div>
-        <div class="input-box">
-            <input type="text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
-        </div>
-        <div class="rowspace8"></div>
-        <div class="input-box">
-            <input type="text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
-        </div>
-        <div class="rowspace8"></div>
-        <div class="input-box">
-            <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
-        </div>
-        <div class="rowspace8"></div>
-        <button class="submit block">注册</button>
-	</form>
-</article>
-<script src="../plugin/exmobi/exmobi.js"></script>
-<script src="../plugin/jquery/jquery.min.js"></script>
-<script src="../assets/js/toast.js"></script>
-<script src="../assets/js/zh_CN.js"></script>
-<script src="../assets/js/form.js"></script>
+        </header>
+        <article>
+        	<form id="form1" style="padding:10px;">
+                <div class="input-box ricon required">
+                    <input type="text" placeholder="用户名" name="username" maxlength="16" data-clear="true" data-rule-field="用户名" data-rule="required username"/>
+                    <i class="icon-clear-fill hide" style="font-size:20px;"></i>
+                </div>
+                <div class="rowspace8"></div>
+                <div class="input-box ricon required">
+                    <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6"/>
+                    <i class="icon-eye-fill"></i>
+                    <div class="safelvl lvl0">
+                    	<ul>
+                    		<li>弱</li>
+                    		<li>中</li>
+                    		<li>强</li>
+                    	</ul>
+                    	<div class="progress"></div>
+                    </div>
+                </div>
+                
+                <div class="rowspace40"></div>
+                <div class="input-box ricon required">
+                    <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6"/>
+                    <i class="icon-eye-fill"></i>
+                </div>
+                <div class="rowspace8"></div>
+                <div class="input-box">
+                    <input type="text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
+                </div>
+                <div class="rowspace8"></div>
+                <div class="input-box">
+                    <input type="text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
+                </div>
+                <div class="rowspace8"></div>
+                <div class="input-box">
+                    <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
+                </div>
+                <div class="rowspace8"></div>
+                <button class="submit block">注册</button>
+        	</form>
+        </article>
+    </section>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/zh_CN.js"></script>
+    <script src="../assets/js/form.js"></script>
 
 
-<script>
-window.addEventListener("load",function(){
-    var f=new Form("#form1");
-    f.container.addEventListener("submit",function(e){
-        e.preventDefault();
-        f.validate();
+    <script>
+    window.addEventListener("load",function(){
+        var f=new Form("#form1");
+        f.container.addEventListener("submit",function(e){
+            e.preventDefault();
+            f.validate();
+        },false);
     },false);
-},false);
-//定义exmobi返回
-function back(){history.go(-1);}
-</script>
+    //定义exmobi返回
+    function back(){history.go(-1);}
+    </script>
 </body>
 </html>

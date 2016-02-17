@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>GPS定位</title>
+	<title>local-gps</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 	<style type="text/css">
 	.maparea{
@@ -30,23 +30,25 @@
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-	        <h1>GPS定位</h1>
-	    </div>
-	</header>
-	<article>
-	    <div class="maparea">
-	        <img id="bdmap"/>
-	        <p>南京烽火</p>
-	    </div>
-	    <a class="button cancel block margin8" id="onkeyGuide" title="点击一键导航">点击一键导航</a>
-	    <a class="button info block margin8"  href="tel:4001101111">打电话</a>
-	    <a class="button info block margin8"  href="sms:4001101111">发短信</a>
-	    <a class="button info block margin8"  href="mailto:support@nj.fiberhome.com.cn">发邮件</a>
-	    <div id="location" class="card" style="padding:10px;"></div>
-	</article>
+	<section id="page_local_gps" class="active">
+		<header>
+		    <div class="titlebar">
+		        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+		        <h1>GPS定位</h1>
+		    </div>
+		</header>
+		<article>
+		    <div class="maparea">
+		        <img id="bdmap"/>
+		        <p>南京烽火</p>
+		    </div>
+		    <a class="button cancel block margin8" id="onkeyGuide" title="点击一键导航">点击一键导航</a>
+		    <a class="button info block margin8"  href="tel:4001101111">打电话</a>
+		    <a class="button info block margin8"  href="sms:4001101111">发短信</a>
+		    <a class="button info block margin8"  href="mailto:support@nj.fiberhome.com.cn">发邮件</a>
+		    <div id="location" class="card" style="padding:10px;"></div>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hKVZaBtXr1VA3m1wDZZ2d3VG"></script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>自定义折线图</title>
+    <title>charts-line-customTooltips</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
     <style>
         #canvas-holder1 {
@@ -36,23 +36,25 @@
 </head>
 
 <body>
-	<header>
-	  <div class="titlebar">
-	    <a href="javascript:history.go(-1)" class="left">
-            <i class="icon-arrowleft"></i>
-        </a>
-	    <h1>自定义折线图</h1>
-	  </div>
-	</header>
-	<article>
-	    <div id="canvas-holder1">
-	        <canvas id="chart1" width="300" height="30" />
-	    </div>
-	    <div id="canvas-holder2">
-	        <canvas id="chart2" width="450" height="600" />
-	    </div>
-	    <div id="chartjs-tooltip"></div>
-    </article>
+    <section id="page_charts_line_customTooltips" class="active">
+    	<header>
+    	  <div class="titlebar">
+    	    <a href="javascript:history.go(-1)" class="left">
+                <i class="icon-arrowleft"></i>
+            </a>
+    	    <h1>自定义折线图</h1>
+    	  </div>
+    	</header>
+    	<article>
+    	    <div id="canvas-holder1">
+    	        <canvas id="chart1" width="300" height="30" />
+    	    </div>
+    	    <div id="canvas-holder2">
+    	        <canvas id="chart2" width="450" height="600" />
+    	    </div>
+    	    <div id="chartjs-tooltip"></div>
+        </article>
+    </section>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../js/charts/Chart.min.js"></script>

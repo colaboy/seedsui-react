@@ -80,6 +80,7 @@
 			}
 			//animationend
 			if(type.toLowerCase()==="animationend"){
+				
 				if (element.addEventListener) {
 					element.addEventListener(type, handler, false);
 				}else if(element.attachEvent){

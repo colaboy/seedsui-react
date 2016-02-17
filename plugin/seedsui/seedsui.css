@@ -733,8 +733,38 @@ body {
 	-ms-user-select: none;
 	user-select: none;*/
 }
-section {
+/*主体*/
+#section_container {
   position: absolute;
+  /* top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+/*主体遮罩*/
+.section_container_mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: none;
+}
+section {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -924,18 +954,16 @@ article {
 }
 /*header,footer*/
 header,
-.header {
-  position: fixed;
-  top: 0;
+footer {
+  position: absolute;
   width: 100%;
   z-index: 1;
 }
-footer,
-.footer {
-  position: fixed;
+header {
+  top: 0;
+}
+footer {
   bottom: 0;
-  width: 100%;
-  z-index: 1;
 }
 /*----------------mbox.less(end)--------------*/
 @font-face {
@@ -2132,31 +2160,6 @@ footer,
 }
 /*----------------layout.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
-/*主体*/
-#section_container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  z-index: 3;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  transition: all 0.5s;
-}
-/*主体遮罩*/
-.section_container_mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  display: none;
-}
 /*侧边栏*/
 aside {
   position: absolute;
@@ -5023,7 +5026,7 @@ body {
 }
 /*标签默认样式*/
 ::selection {
-  background: #46c2ca;
+  background: #36acf4;
   color: #ffffff;
 }
 ::-webkit-input-placeholder {
@@ -5060,10 +5063,10 @@ a:active,
 }
 /*常用颜色*/
 .color-primary {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .bg-primary {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 .color-placeholder {
   color: #aaaaaa;
@@ -5104,17 +5107,17 @@ aside {
   color: #333333;
 }
 .titlebar a {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .titlebar a.disable {
   opacity: 0.5;
 }
 .titlebar a:active:not(.disable) {
-  color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
 }
 .titlebar.reverse {
-  background-color: #46c2ca;
-  border-color: #46c2ca;
+  background-color: #36acf4;
+  border-color: #36acf4;
 }
 .titlebar.reverse h1 {
   color: #ffffff;
@@ -5148,7 +5151,7 @@ aside {
 }
 .rectbar .tab:active,
 .rectbar .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .rectbar,
 .slidebar {
@@ -5156,8 +5159,8 @@ aside {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  color: #46c2ca;
-  border-color: #46c2ca;
+  color: #36acf4;
+  border-color: #36acf4;
 }
 .menubar {
   color: #888888;
@@ -5165,15 +5168,15 @@ aside {
 }
 .menubar .tab:active,
 .menubar .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .menubar.reverse .tab {
-  border-color: #46c2ca;
+  border-color: #36acf4;
 }
 .arrowbar,
 .menubar.reverse {
   color: #ffffff;
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 .arrowbar .tab,
 .menubar.reverse .tab {
@@ -5187,7 +5190,7 @@ aside {
   opacity: 1;
 }
 .arrowbar .tab.active:after {
-  border-top-color: #46c2ca;
+  border-top-color: #36acf4;
 }
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
@@ -5197,13 +5200,13 @@ input[type="button"],
 input[type="submit"],
 .button {
   color: #ffffff;
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 button.outline,
 input[type="button"].outline,
 .button.outline {
-  color: #46c2ca;
-  border-color: #46c2ca;
+  color: #36acf4;
+  border-color: #36acf4;
   background-color: transparent;
 }
 button:active,
@@ -5211,13 +5214,13 @@ input[type="button"]:active,
 input[type="submit"]:active,
 .button:active {
   color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(70, 194, 202, 0.5);
+  background-color: rgba(54, 172, 244, 0.5);
 }
 button.outline:active,
 input[type="button"].outline:active,
 .button.outline:active {
-  color: rgba(70, 194, 202, 0.5);
-  border-color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
+  border-color: rgba(54, 172, 244, 0.5);
   background-color: transparent;
 }
 /*去色*/
@@ -5374,26 +5377,26 @@ input[type="button"].success.outline:active,
 button.link,
 input[type="button"].link,
 .button.link {
-  color: #46c2ca;
+  color: #36acf4;
   background-color: transparent;
 }
 button.link.outline,
 input[type="button"].link.outline,
 .button.link.outline {
-  border-color: #46c2ca;
-  color: #46c2ca;
+  border-color: #36acf4;
+  color: #36acf4;
 }
 button.link:active,
 input[type="button"].link:active,
 .button.link:active {
-  color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
   background-color: transparent;
 }
 button.link.outline:active,
 input[type="button"].link.outline:active,
 .button.link.outline:active {
-  border-color: rgba(70, 194, 202, 0.5);
-  color: rgba(70, 194, 202, 0.5);
+  border-color: rgba(54, 172, 244, 0.5);
+  color: rgba(54, 172, 244, 0.5);
 }
 /*按钮-气泡*/
 button .tip,
@@ -5429,7 +5432,7 @@ input[type="button"].outline .tip,
 /*激活状态*/
 .button-group > span:not(.disable).active,
 .button-group > span:not(.disable):active {
-  color: #46c2ca;
+  color: #36acf4;
   background-color: #ffffff;
 }
 /*禁用状态*/
@@ -5504,10 +5507,10 @@ textarea {
 }
 .input-box [class*="icon-"]:active,
 .input-box [class*="icon-"].active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .input-box.active {
-  border-color: #46c2ca;
+  border-color: #36acf4;
 }
 .input-box {
   border-color: #dddddd;
@@ -5522,7 +5525,7 @@ textarea {
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  color: #46c2ca;
+  color: #36acf4;
 }
 /*----------------dragrefresh.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
@@ -5546,7 +5549,7 @@ input[type=range]::-ms-track {
 /*添加轨道样式*/
 /*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -5558,7 +5561,7 @@ input[type=range]:active::-webkit-slider-runnable-track {
 }
 /*添加轨道样式-moz*/
 input[type=range]::-moz-range-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-moz-range-track {
@@ -5567,7 +5570,7 @@ input[type=range]::-moz-range-track {
 }
 /*添加轨道样式-ms*/
 input[type=range]::-ms-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-ms-track {
@@ -5575,10 +5578,10 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
   border-color: #ffffff;
-  background: #46c2ca;
+  background: #36acf4;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #46c2ca;
+  background: #36acf4;
 }
 input[type=range]::-ms-fill-upper {
   background: #ffffff;
@@ -5594,19 +5597,19 @@ input[type=range]:focus::-ms-fill-upper {
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #46c2ca;
+  color: #36acf4;
   /*IE10*/
-  border-color: #46c2ca;
+  border-color: #36acf4;
   background-color: #fff;
 }
 progress::-moz-progress-bar {
-  background: #46c2ca;
+  background: #36acf4;
 }
 progress::-webkit-progress-bar {
   background: #ffffff;
 }
 progress::-webkit-progress-value {
-  background: #46c2ca;
+  background: #36acf4;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -5616,7 +5619,7 @@ input[type="radio"] {
 }
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  color: #46c2ca;
+  color: #36acf4;
 }
 input[type="checkbox"][disabled],
 input[type="radio"][disabled],
@@ -5648,7 +5651,7 @@ input[type="radio"][disabled]:checked {
 }
 /*打开状态小圆点*/
 .switch.active .switch-handle {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*打开状态文字on*/
 .switch.active:after {
@@ -5662,7 +5665,7 @@ input[type="radio"][disabled]:checked {
   color: #aaaaaa;
 }
 .switch.reverse.active {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*----------------toggle.less(end)--------------*/
 /*----------------grid.less(start)--------------*/
@@ -5680,7 +5683,7 @@ input[type="radio"][disabled]:checked {
 }
 /*邮件列表*/
 .list .round {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*应用列表*/
 .list.applist .licon {

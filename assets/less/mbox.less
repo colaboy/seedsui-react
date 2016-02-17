@@ -29,8 +29,39 @@ body{
 	-ms-user-select: none;
 	user-select: none;*/
 }
-section {
+/*主体*/
+#section_container {
 	position: absolute;
+	/* top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0; */
+	top:0;
+	left:0;
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+	-ms-transition:all 0.5s;
+	transition:all 0.5s;
+}
+/*主体遮罩*/
+.section_container_mask{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:999;
+	display:none;
+}
+section {
+	display: none;
+	position: absolute;
+	top:0;
+	left:0;
 	width: 100%;
 	height: 100%;
 	z-index: 1;
@@ -172,17 +203,16 @@ article{
 }
 
 /*header,footer*/
-header,.header{
-	position:fixed;
-	top:0;
+header,footer{
+	position:absolute;
 	width:100%;
 	z-index:1;
 }
-footer,.footer{
-	position:fixed;
+header{
+	top:0;
+}
+footer{
 	bottom:0;
-	width:100%;
-	z-index:1;
 }
 /*----------------mbox.less(end)--------------*/
 

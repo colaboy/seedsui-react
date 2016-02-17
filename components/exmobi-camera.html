@@ -3,30 +3,32 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>照片选择</title>
+	<title>exmobi-camera</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-<header>
-	<div class="titlebar">
-        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
-        <h1>照片选择</h1>
-    </div>
-</header>
-<article>
-	<a class="button block margin8" href="javascript:album(768)">调用系统相册</a>
-	<a class="button block margin8 info" href="javascript:Exmobi.imageChoice(500,5)">相册选择</a>
-	<a class="button block margin8 success" href="javascript:Exmobi.camera()">拍照上传</a>
-	<p class="sliver">图片列表</p>
-	<ul id="imagelist" class="grid album" data-col="3">
-		<li>
-			<a class="grid-photo">
-				<i class="icon-camera"></i>
-			</a>
-		</li>
-	</ul>
-</article>
+	<section id="page_exmobi_camera" class="active">
+		<header>
+			<div class="titlebar">
+		        <a href="javascript:Exmobi.close()" class="left"><i class="icon-arrowleft"></i></a>
+		        <h1>照片选择</h1>
+		    </div>
+		</header>
+		<article>
+			<a class="button block margin8" href="javascript:album(768)">调用系统相册</a>
+			<a class="button block margin8 info" href="javascript:Exmobi.imageChoice(500,5)">相册选择</a>
+			<a class="button block margin8 success" href="javascript:Exmobi.camera()">拍照上传</a>
+			<p class="sliver">图片列表</p>
+			<ul id="imagelist" class="grid album" data-col="3">
+				<li>
+					<a class="grid-photo">
+						<i class="icon-camera"></i>
+					</a>
+				</li>
+			</ul>
+		</article>
+	</section>
 <script src="../plugin/exmobi/exmobi.js"></script>
 <script src="../plugin/jquery/jquery.min.js"></script>
 <script src="../assets/js/eventutil.js"></script>

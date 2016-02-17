@@ -3,275 +3,274 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>Bar</title>
+    <title>bar</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-	<!--头部-->
-	<header>
-        <div class="titlebar">
-            <a href="javascript:history.go(-1)" class="left">
-                <i class="icon-arrowleft"></i>
-            </a>
-            <h1>Bar</h1>
-        </div>
-    </header>
+    <section id="page_bar" class="active">
+    	<header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left">
+                    <i class="icon-arrowleft"></i>
+                </a>
+                <h1>Bar</h1>
+            </div>
+        </header>
+    	<article>
+            <p class="title">titlebar</p>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left">
+                    <i class="icon-arrowleft"></i>
+                </a>
+                <h1>左右图标titlebar</h1>
+                <a class="right">
+                    <i class="icon-rdoadd"></i>
+                </a>
+                <a class="right">
+                    <i class="icon-search"></i>
+                </a>
+            </div>
+            <br/>
+            <div class="titlebar">
+                <h1 style="padding-left:8px;">右按钮titlebar</h1>
+                <button class="outline right">按钮</button>
+                <button class="outline right">
+                    <i class="icon-gear"></i>
+                    <label>设置</label>
+                </button>
+            </div>
+            <br/>
+            <div class="titlebar">
+                <h1 style="padding-left:8px;">右图标titlebar</h1>
+                <a class="right">
+                    <i class="icon-rdoadd"></i>
+                </a>
+                <a class="right">
+                    <i class="icon-search"></i>
+                </a>
+            </div>
+            <br/>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)">
+                    <i class="icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">传统titlebar</h1>
+                <a class="right">
+                    <i class="icon-search"></i>
+                    <span>搜索</span>
+                </a>
+            </div>
+            <br/>
+            <div class="titlebar">
+                <h1 style="padding: 0 42px 0 8px">
+                    <input type="text" placeholder="请输入搜索内容">
+                    <i class="icon-clear-fill"></i>
+                </h1>
+                <a class="right">
+                    <span>搜索</span>
+                </a>
+            </div>
+            <br/>
+            
+            <p class="title">titlebar-reverse</p>
+            <div class="titlebar reverse">
+                <h1>左右图标titlebar</h1>
+                <a href="javascript:history.go(-1)" class="left">
+                    <i class="icon-arrowleft"></i>
+                </a>
+                <a class="right">
+                    <i class="icon-rdoadd"></i>
+                </a>
+                <a class="right">
+                    <i class="icon-search"></i>
+                </a>
+            </div>
+            <br/>
+            <div class="titlebar reverse">
+                <h1 style="padding-left:8px;">右按钮titlebar</h1>
+                <button class="outline right">按钮</button>
+                <button class="outline right">
+                    <i class="icon-gear"></i>
+                    <label>设置</label>
+                </button>
+            </div>
+            <br/>
+            <div class="titlebar reverse">
+                <h1 style="padding-left:8px;">右图标titlebar</h1>
+                <a class="right">
+                    <i class="icon-rdoadd"></i>
+                </a>
+                <a class="right">
+                    <i class="icon-search"></i>
+                </a>
+            </div>
+            <br/>
+            <div class="titlebar reverse">
+                <a href="javascript:history.go(-1)">
+                    <i class="icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">传统titlebar</h1>
+                <a class="right">
+                    <i class="icon-search"></i>
+                    <span>搜索</span>
+                </a>
+            </div>
+            <br/>
 
-    <!--主体-->
-	<article>
-        <p class="title">titlebar</p>
-        <div class="titlebar">
-            <a href="javascript:history.go(-1)" class="left">
-                <i class="icon-arrowleft"></i>
-            </a>
-            <h1>左右图标titlebar</h1>
-            <a class="right">
-                <i class="icon-rdoadd"></i>
-            </a>
-            <a class="right">
-                <i class="icon-search"></i>
-            </a>
-        </div>
-        <br/>
-        <div class="titlebar">
-            <h1 style="padding-left:8px;">右按钮titlebar</h1>
-            <button class="outline right">按钮</button>
-            <button class="outline right">
-                <i class="icon-gear"></i>
-                <label>设置</label>
-            </button>
-        </div>
-        <br/>
-        <div class="titlebar">
-            <h1 style="padding-left:8px;">右图标titlebar</h1>
-            <a class="right">
-                <i class="icon-rdoadd"></i>
-            </a>
-            <a class="right">
-                <i class="icon-search"></i>
-            </a>
-        </div>
-        <br/>
-        <div class="titlebar">
-            <a href="javascript:history.go(-1)">
-                <i class="icon-arrowleft"></i>
-                <span>返回</span>
-            </a>
-            <h1 class="text-center">传统titlebar</h1>
-            <a class="right">
-                <i class="icon-search"></i>
-                <span>搜索</span>
-            </a>
-        </div>
-        <br/>
-        <div class="titlebar">
-            <h1 style="padding: 0 42px 0 8px">
-                <input type="text" placeholder="请输入搜索内容">
-                <i class="icon-clear-fill"></i>
-            </h1>
-            <a class="right">
-                <span>搜索</span>
-            </a>
-        </div>
-        <br/>
-        
-        <p class="title">titlebar-reverse</p>
-        <div class="titlebar reverse">
-            <h1>左右图标titlebar</h1>
-            <a href="javascript:history.go(-1)" class="left">
-                <i class="icon-arrowleft"></i>
-            </a>
-            <a class="right">
-                <i class="icon-rdoadd"></i>
-            </a>
-            <a class="right">
-                <i class="icon-search"></i>
-            </a>
-        </div>
-        <br/>
-        <div class="titlebar reverse">
-            <h1 style="padding-left:8px;">右按钮titlebar</h1>
-            <button class="outline right">按钮</button>
-            <button class="outline right">
-                <i class="icon-gear"></i>
-                <label>设置</label>
-            </button>
-        </div>
-        <br/>
-        <div class="titlebar reverse">
-            <h1 style="padding-left:8px;">右图标titlebar</h1>
-            <a class="right">
-                <i class="icon-rdoadd"></i>
-            </a>
-            <a class="right">
-                <i class="icon-search"></i>
-            </a>
-        </div>
-        <br/>
-        <div class="titlebar reverse">
-            <a href="javascript:history.go(-1)">
-                <i class="icon-arrowleft"></i>
-                <span>返回</span>
-            </a>
-            <h1 class="text-center">传统titlebar</h1>
-            <a class="right">
-                <i class="icon-search"></i>
-                <span>搜索</span>
-            </a>
-        </div>
-        <br/>
+            <div class="titlebar reverse">
+                <h1 style="padding: 0 42px 0 8px">
+                    <input type="text" placeholder="请输入搜索内容">
+                    <i class="icon-clear-fill"></i>
+                </h1>
+                <a class="right">
+                    <span>搜索</span>
+                </a>
+            </div>
+            <br/>
 
-        <div class="titlebar reverse">
-            <h1 style="padding: 0 42px 0 8px">
-                <input type="text" placeholder="请输入搜索内容">
-                <i class="icon-clear-fill"></i>
-            </h1>
-            <a class="right">
-                <span>搜索</span>
-            </a>
-        </div>
-        <br/>
-
-        <div class="title">rectbar</div>
-        <ul class="rectbar" style="margin:0 30px;">
-            <li class="tab active">
-                <label class="tab-label">机构</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">组织</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">收藏</label>
-            </li>
-        </ul>
-        <br/>
-        <ul class="rectbar" style="margin:0 30px;">
-            <li class="tab active">
-                <i class="icon-build-fill"></i>
-                <label class="tab-label">机构</label>
-            </li>
-            <li class="tab">
-                <i class="icon-person"></i>
-                <label class="tab-label">组织</label>
-            </li>
-            <li class="tab">
-                <i class="icon-fav"></i>
-                <label class="tab-label">收藏</label>
-            </li>
-        </ul>
-        <br/>
-        
-        <div class="title">slidebar</div>
-        <ul class="slidebar">
-            <li class="tab active">
-                <label class="tab-label">头条</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">推荐</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">科技</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">舆情</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">动态</label>
-            </li>
-        </ul>
-        <br/>
-        <ul class="slidebar">
-            <li class="tab active">
-                <i class="icon-build-fill"></i>
-                <label class="tab-label">机构</label>
-            </li>
-            <li class="tab">
-                <i class="icon-person"></i>
-                <label class="tab-label">组织</label>
-            </li>
-            <li class="tab">
-                <i class="icon-fav"></i>
-                <label class="tab-label">收藏</label>
-            </li>
-        </ul>
-        <br/>
-        
-        <div class="title">arrowbar</div>
-        <ul class="arrowbar">
-            <li class="tab active">
-                <label class="tab-label">机构</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">组织</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">收藏</label>
-            </li>
-        </ul>
-        <br/>
-        <ul class="arrowbar">
-            <li class="tab active">
-                <i class="icon-build-fill"></i>
-                <label class="tab-label">机构</label>
-            </li>
-            <li class="tab">
-                <i class="icon-person"></i>
-                <label class="tab-label">组织</label>
-            </li>
-            <li class="tab">
-                <i class="icon-fav"></i>
-                <label class="tab-label">收藏</label>
-            </li>
-        </ul>
-        <br/>
-        
-        <div class="title">menubar-rervse</div>
-        <ul class="menubar">
-            <li class="tab active">
-                <i class="icon-home-fill"></i>
-                <label class="tab-label">首页</label>
-            </li>
-            <li class="tab">
-                <i class="icon-chattip"></i>
-                <label class="tab-label">消息</label>
-            </li>
-            <li class="tab">
-                <i class="icon-contact"></i>
-                <label class="tab-label">通讯录</label>
-            </li>
-            <li class="tab">
-                <i class="icon-app"></i>
-                <label class="tab-label">工作台</label>
-            </li>
-            <li class="tab">
-                <i class="icon-rdomore"></i>
-                <label class="tab-label">更多</label>
-            </li>
-        </ul>
-        <ul class="menubar reverse">
-            <li class="tab active">
-                <i class="icon-home-fill"></i>
-                <label class="tab-label">首页</label>
-            </li>
-            <li class="tab">
-                <i class="icon-chattip"></i>
-                <label class="tab-label">消息</label>
-            </li>
-            <li class="tab">
-                <i class="icon-contact"></i>
-                <label class="tab-label">通讯录</label>
-            </li>
-            <li class="tab">
-                <i class="icon-app"></i>
-                <label class="tab-label">工作台</label>
-            </li>
-            <li class="tab">
-                <i class="icon-rdomore"></i>
-                <label class="tab-label">更多</label>
-            </li>
-        </ul>
-    </article>
+            <div class="title">rectbar</div>
+            <ul class="rectbar" style="margin:0 30px;">
+                <li class="tab active">
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+            <br/>
+            <ul class="rectbar" style="margin:0 30px;">
+                <li class="tab active">
+                    <i class="icon-build-fill"></i>
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-person"></i>
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-fav"></i>
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+            <br/>
+            
+            <div class="title">slidebar</div>
+            <ul class="slidebar">
+                <li class="tab active">
+                    <label class="tab-label">头条</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">推荐</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">科技</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">舆情</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">动态</label>
+                </li>
+            </ul>
+            <br/>
+            <ul class="slidebar">
+                <li class="tab active">
+                    <i class="icon-build-fill"></i>
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-person"></i>
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-fav"></i>
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+            <br/>
+            
+            <div class="title">arrowbar</div>
+            <ul class="arrowbar">
+                <li class="tab active">
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+            <br/>
+            <ul class="arrowbar">
+                <li class="tab active">
+                    <i class="icon-build-fill"></i>
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-person"></i>
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-fav"></i>
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+            <br/>
+            
+            <div class="title">menubar-rervse</div>
+            <ul class="menubar">
+                <li class="tab active">
+                    <i class="icon-home-fill"></i>
+                    <label class="tab-label">首页</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-chattip"></i>
+                    <label class="tab-label">消息</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-contact"></i>
+                    <label class="tab-label">通讯录</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-app"></i>
+                    <label class="tab-label">工作台</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-rdomore"></i>
+                    <label class="tab-label">更多</label>
+                </li>
+            </ul>
+            <ul class="menubar reverse">
+                <li class="tab active">
+                    <i class="icon-home-fill"></i>
+                    <label class="tab-label">首页</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-chattip"></i>
+                    <label class="tab-label">消息</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-contact"></i>
+                    <label class="tab-label">通讯录</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-app"></i>
+                    <label class="tab-label">工作台</label>
+                </li>
+                <li class="tab">
+                    <i class="icon-rdomore"></i>
+                    <label class="tab-label">更多</label>
+                </li>
+            </ul>
+        </article>
+    </section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
     <script>
 	//定义exmobi返回

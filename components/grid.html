@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>Grid栅格化</title>
+	<title>grid</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
     <style type="text/css">
 	.grid.app a{
@@ -13,137 +13,139 @@
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	        <a href="javascript:history.go(-1)"><i class="icon-arrowleft"></i></a>
-	        <h1>Grid栅格化</h1>
-	    </div>
-	</header>
-	<article>
-		<p class="title">Metro风格</p>
-		<ul class="grid metro" data-col="2">
-			<li style="width:60%">
-				<a style="background-color:#F39C12;">
-					<i class="icon-contact-fill"></i>
-					<span class="tip">3</span>
-					<label class="grid-label nowrap">通讯录</label>
-				</a>
-			</li>
-			<li style="width:40%">
-				<a style="background-color:#1abc9c;">
-					<i class="icon-write-fill"></i>
+	<section id="page_grid" class="active">
+		<header>
+		    <div class="titlebar">
+		        <a href="javascript:history.go(-1)"><i class="icon-arrowleft"></i></a>
+		        <h1>Grid栅格化</h1>
+		    </div>
+		</header>
+		<article>
+			<p class="title">Metro风格</p>
+			<ul class="grid metro" data-col="2">
+				<li style="width:60%">
+					<a style="background-color:#F39C12;">
+						<i class="icon-contact-fill"></i>
+						<span class="tip">3</span>
+						<label class="grid-label nowrap">通讯录</label>
+					</a>
+				</li>
+				<li style="width:40%">
+					<a style="background-color:#1abc9c;">
+						<i class="icon-write-fill"></i>
+						<label class="grid-label">审批</label>
+					</a>
+				</li>
+				<li style="width:40%">
+					<a style="background-color:#e74c3c;">
+						<i class="icon-position-fill"></i>
+						<label class="grid-label">定位</label>
+					</a>
+				</li>
+				<li style="width:60%">
+					<a style="background-color:#78ba00;">
+						<i class="icon-gear-fill"></i>
+						<label class="grid-label">设置</label>
+					</a>
+				</li>
+			</ul>
+
+			<p class="title">九宫格</p>
+			<ul class="grid app radiusround" data-col="3">
+				<li>
+					<a style="background-color:#F39C12;">
+						<i class="icon-contact-fill"></i>
+						<span class="tip">999</span>
+					</a>
+					<label class="grid-label">通讯录</label>
+				</li>
+				<li>
+					<a style="background-color:#1abc9c;">
+						<i class="icon-write-fill"></i>
+					</a>
 					<label class="grid-label">审批</label>
-				</a>
-			</li>
-			<li style="width:40%">
-				<a style="background-color:#e74c3c;">
-					<i class="icon-position-fill"></i>
+				</li>
+				<li>
+					<a style="background-color:#e74c3c;">
+						<i class="icon-position-fill"></i>
+					</a>
 					<label class="grid-label">定位</label>
-				</a>
-			</li>
-			<li style="width:60%">
-				<a style="background-color:#78ba00;">
-					<i class="icon-gear-fill"></i>
+				</li>
+				<li>
+					<a style="background-color:#78ba00;">
+						<i class="icon-gear-fill"></i>
+					</a>
 					<label class="grid-label">设置</label>
-				</a>
-			</li>
-		</ul>
+				</li>
+				<li>
+					<a style="background-color:#8e44ad;">
+						<i class="icon-folder-fill"></i>
+					</a>
+					<label class="grid-label">文档</label>
+				</li>
+				<li>
+					<a style="background-color:#f1c40f;">
+						<i class="icon-chartpie-fill"></i>
+					</a>
+					<label class="grid-label">数据分析</label>
+				</li>
+			</ul>
 
-		<p class="title">九宫格</p>
-		<ul class="grid app radiusround" data-col="3">
-			<li>
-				<a style="background-color:#F39C12;">
-					<i class="icon-contact-fill"></i>
-					<span class="tip">999</span>
-				</a>
-				<label class="grid-label">通讯录</label>
-			</li>
-			<li>
-				<a style="background-color:#1abc9c;">
-					<i class="icon-write-fill"></i>
-				</a>
-				<label class="grid-label">审批</label>
-			</li>
-			<li>
-				<a style="background-color:#e74c3c;">
-					<i class="icon-position-fill"></i>
-				</a>
-				<label class="grid-label">定位</label>
-			</li>
-			<li>
-				<a style="background-color:#78ba00;">
-					<i class="icon-gear-fill"></i>
-				</a>
-				<label class="grid-label">设置</label>
-			</li>
-			<li>
-				<a style="background-color:#8e44ad;">
-					<i class="icon-folder-fill"></i>
-				</a>
-				<label class="grid-label">文档</label>
-			</li>
-			<li>
-				<a style="background-color:#f1c40f;">
-					<i class="icon-chartpie-fill"></i>
-				</a>
-				<label class="grid-label">数据分析</label>
-			</li>
-		</ul>
-
-		<p class="title">相册</p>
-		<ul class="grid album radius8" data-col="3">
-			<li>
-				<a style="background-image: url(../img/album/1.jpg)"></a>
-			</li>
-			<li>
-				<a style="background-image: url(../img/album/2.jpg)"></a>
-			</li>
-			<li>
-				<a class="default">
-					<i class="icon-camera"></i>
-				</a>
-			</li>
-		</ul>
-		<ul class="grid album radius8" data-col="3">
-			<li>
-				<a style="background-image: url(../img/album/4.jpg)">
-					<span class="close"><i class="icon-close"></i></span>
-				</a>
-			</li>
-			<li>
-				<a style="background-image: url(../img/album/5.jpg)">
-					<span class="close"><i class="icon-close"></i></span>
-				</a>
-			</li>
-			<li>
-				<a class="default">
-					<i class="icon-camera"></i>
-				</a>
-			</li>
-		</ul>
-		<p class="title">缩略图</p>
-		<ul class="grid thumbnail" data-col="3">
-			<li>
-				<a>
-					<img src="../img/thumbnail/contact.jpg"/>
-					<span class="tip">新</span>
-				</a>
-				<label>通讯录</label>
-			</li>
-			<li>
-				<a><img src="../img/thumbnail/tree.jpg"/></a>
-				<label>树结构</label>
-			</li>
-			<li>
-				<a><img src="../img/thumbnail/contact.jpg"/></a>
-				<label>通讯录</label>
-			</li>
-			<li>
-				<a><img src="../img/thumbnail/contact.jpg"/></a>
-				<label>通讯录</label>
-			</li>
-		</ul>
-	</article>
+			<p class="title">相册</p>
+			<ul class="grid album radius8" data-col="3">
+				<li>
+					<a style="background-image: url(../img/album/1.jpg)"></a>
+				</li>
+				<li>
+					<a style="background-image: url(../img/album/2.jpg)"></a>
+				</li>
+				<li>
+					<a class="default">
+						<i class="icon-camera"></i>
+					</a>
+				</li>
+			</ul>
+			<ul class="grid album radius8" data-col="3">
+				<li>
+					<a style="background-image: url(../img/album/4.jpg)">
+						<span class="close"><i class="icon-close"></i></span>
+					</a>
+				</li>
+				<li>
+					<a style="background-image: url(../img/album/5.jpg)">
+						<span class="close"><i class="icon-close"></i></span>
+					</a>
+				</li>
+				<li>
+					<a class="default">
+						<i class="icon-camera"></i>
+					</a>
+				</li>
+			</ul>
+			<p class="title">缩略图</p>
+			<ul class="grid thumbnail" data-col="3">
+				<li>
+					<a>
+						<img src="../img/thumbnail/contact.jpg"/>
+						<span class="tip">新</span>
+					</a>
+					<label>通讯录</label>
+				</li>
+				<li>
+					<a><img src="../img/thumbnail/tree.jpg"/></a>
+					<label>树结构</label>
+				</li>
+				<li>
+					<a><img src="../img/thumbnail/contact.jpg"/></a>
+					<label>通讯录</label>
+				</li>
+				<li>
+					<a><img src="../img/thumbnail/contact.jpg"/></a>
+					<label>通讯录</label>
+				</li>
+			</ul>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
 		//定义exmobi返回

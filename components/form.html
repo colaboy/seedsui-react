@@ -3,260 +3,262 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>常用表单控件</title>
+    <title>form</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
     
 </head>
 
 <body>
-    <header>
-        <div class="titlebar">
-            <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-            <h1>表单样式</h1>
-        </div>
-    </header>
-    <article>
-        <p class="sliver">表单组件</p>
-        <div class="input-box margin8 ricon">
-        	<input type="text" placeholder="搜索框" />
-            <i class="icon-search"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="text" placeholder="密码框" />
-            <i class="icon-eye"></i>
-        </div>
-
-        <div class="input-box ricon nopadding margin8">
-            <select>
-                <option>选项1</option>
-                <option>选项2</option>
-                <option>选项3</option>
-            </select>
-            <i class="icon-arrowdown"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="number" placeholder="手机框" />
-            <i class="icon-phone"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="number" placeholder="电话框" />
-            <i class="icon-tel"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="url" placeholder="链接框"/>
-            <i class="icon-earth"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="date" value="2015-06-16"/>
-            <i class="icon-calendar"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <input type="week" value="2015-W15"/>
-            <i class="icon-calendar"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <input type="month" value="2015-06"/>
-            <i class="icon-calendar"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <input type="datetime-local" value="2015-06-01T10:55:33"/>
-            <i class="icon-calendar"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <input type="time" value="08:30"/>
-            <i class="icon-time"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <input type="text" class="input-text" placeholder="扫码控件框"/>
-            <i class="icon-qrcodeline"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <div class="input-text"></div>
-            <i class="icon-camera"></i>
-        </div>
-
-        <div class="input-box margin8 ricon">
-            <div class="input-text"></div>
-            <i class="icon-record"></i>
-        </div>
-        
-        <div class="input-box margin8 ricon">
-            <input type="text"/>
-            <i class="icon-position"></i>
-        </div>
-
-        <p class="sliver">左右布局</p>
-        <form id="formlr">
-            <div class="row">
-                <label>radio</label>
-                <div class="input-box margin8">
-                    <label><input type="radio" checked="true" name="rdo"><span>选中radio</span></label>
-                    <br/>
-                    <label><input type="radio" name="rdo"><span>普通radio</span></label>
-                    <br/>
-                    <label><input type="radio" checked="true" disabled="true"><span>禁用选中radio</span></label>
-                    <br/>
-                    <label><input type="radio" disabled="true"><span>禁用普通radio</span></label>
-                </div>
+    <section id="page_form" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+                <h1>表单样式</h1>
             </div>
-            <div class="row">
-                <label>checkbox</label>
-                <div class="input-box margin8">
-                    <label><input type="checkbox" checked="true"><span>选中checkbox</span></label>
-                    <br/>
-                    <label><input type="checkbox"><span>普通checkbox</span></label>
-                    <br/>
-                    <label><input type="checkbox" checked="true" disabled="true"><span>禁用选中checkbox</span></label>
-                    <br/>
-                    <label><input type="checkbox" disabled="true"><span>禁用普通checkbox</span></label>
-                </div>
+        </header>
+        <article>
+            <p class="sliver">表单组件</p>
+            <div class="input-box margin8 ricon">
+            	<input type="text" placeholder="搜索框" />
+                <i class="icon-search"></i>
             </div>
-            <div class="row">
-                <label>switch</label>
-                <div class="input-box margin8" style="padding:8px">
-                    <div class="switch" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                    <div class="switch notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                    <div class="rowspace"></div>
-                    <div class="switch reverse" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                    <div class="switch reverse notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                </div>
-            </div>
-            <p class="sliver">兼容性尚未完全普及，还请谨慎使用</p>
-            <div class="row">
-                <label>进度条</label>
-                <div class="input-box margin8" style="padding:8px;">
-                   <progress max="100" value="80">80</progress>
-                </div>
-            </div>
-            <div class="row">
-                <label>拉动条</label>
-                <div class="input-box margin8" style="padding:8px;">
-                   <input type="range" min="32" max="512" step="32" value="32" id="range"/>
-                   <!--
-                    可这样写记录range值
-                    <form oninput="range_output.value=parseInt(range.value)">
-                        <input type="range" min="32" max="512" step="32" value="32" id="range"/>
-                        <output for="range" id="range_output">0</output>
-                    </form>
-                   -->
-                </div>
-            </div>
-            <div class="row">
-                <label>拾色器</label>
-                <div class="input-box margin8" style="padding:8px;">
-                   <input type="color"/>
-                </div>
-            </div>
-        </form>
 
-        <p class="sliver">分组布局</p>
-        <form id="formgroup">
-            <div class="group">
+            <div class="input-box margin8 ricon">
+                <input type="text" placeholder="密码框" />
+                <i class="icon-eye"></i>
+            </div>
+
+            <div class="input-box ricon nopadding margin8">
+                <select>
+                    <option>选项1</option>
+                    <option>选项2</option>
+                    <option>选项3</option>
+                </select>
+                <i class="icon-arrowdown"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <input type="number" placeholder="手机框" />
+                <i class="icon-phone"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <input type="number" placeholder="电话框" />
+                <i class="icon-tel"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <input type="url" placeholder="链接框"/>
+                <i class="icon-earth"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <input type="date" value="2015-06-16"/>
+                <i class="icon-calendar"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <input type="week" value="2015-W15"/>
+                <i class="icon-calendar"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <input type="month" value="2015-06"/>
+                <i class="icon-calendar"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <input type="datetime-local" value="2015-06-01T10:55:33"/>
+                <i class="icon-calendar"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <input type="time" value="08:30"/>
+                <i class="icon-time"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <input type="text" class="input-text" placeholder="扫码控件框"/>
+                <i class="icon-qrcodeline"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <div class="input-text"></div>
+                <i class="icon-camera"></i>
+            </div>
+
+            <div class="input-box margin8 ricon">
+                <div class="input-text"></div>
+                <i class="icon-record"></i>
+            </div>
+            
+            <div class="input-box margin8 ricon">
+                <input type="text"/>
+                <i class="icon-position"></i>
+            </div>
+
+            <p class="sliver">左右布局</p>
+            <form id="formlr">
                 <div class="row">
-                    <label>用户名</label>
+                    <label>radio</label>
                     <div class="input-box margin8">
-                        <input type="text" placeholder="用户名" name="username"/>
+                        <label><input type="radio" checked="true" name="rdo"><span>选中radio</span></label>
+                        <br/>
+                        <label><input type="radio" name="rdo"><span>普通radio</span></label>
+                        <br/>
+                        <label><input type="radio" checked="true" disabled="true"><span>禁用选中radio</span></label>
+                        <br/>
+                        <label><input type="radio" disabled="true"><span>禁用普通radio</span></label>
                     </div>
                 </div>
                 <div class="row">
-                    <label>密码</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" placeholder="密码" name="password"/>
-                        <i class="icon-eye"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>确认</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" placeholder="确认" name="reconfirm"/>
-                        <i class="icon-eye"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>昵称</label>
+                    <label>checkbox</label>
                     <div class="input-box margin8">
-                        <input type="text" placeholder="填写昵称" name="nickname"/>
+                        <label><input type="checkbox" checked="true"><span>选中checkbox</span></label>
+                        <br/>
+                        <label><input type="checkbox"><span>普通checkbox</span></label>
+                        <br/>
+                        <label><input type="checkbox" checked="true" disabled="true"><span>禁用选中checkbox</span></label>
+                        <br/>
+                        <label><input type="checkbox" disabled="true"><span>禁用普通checkbox</span></label>
                     </div>
                 </div>
                 <div class="row">
-                    <label>性别</label>
-                    <div class="input-box margin8">
-                        <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
-                        <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
+                    <label>switch</label>
+                    <div class="input-box margin8" style="padding:8px">
+                        <div class="switch" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                        <div class="switch notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                        <div class="rowspace"></div>
+                        <div class="switch reverse" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                        <div class="switch reverse notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                    </div>
+                </div>
+                <p class="sliver">兼容性尚未完全普及，还请谨慎使用</p>
+                <div class="row">
+                    <label>进度条</label>
+                    <div class="input-box margin8" style="padding:8px;">
+                       <progress max="100" value="80">80</progress>
                     </div>
                 </div>
                 <div class="row">
-                    <label>出生日期</label>
-                    <div class="input-box margin8">
-                        <input type="date" name="birthday" placeholder="出生日期"/>
-                    </div>
-                </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>职业</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
-                        <i class="icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="row">
-                    <label>公司</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="company" placeholder="公司"/>
+                    <label>拉动条</label>
+                    <div class="input-box margin8" style="padding:8px;">
+                       <input type="range" min="32" max="512" step="32" value="32" id="range"/>
+                       <!--
+                        可这样写记录range值
+                        <form oninput="range_output.value=parseInt(range.value)">
+                            <input type="range" min="32" max="512" step="32" value="32" id="range"/>
+                            <output for="range" id="range_output">0</output>
+                        </form>
+                       -->
                     </div>
                 </div>
                 <div class="row">
-                    <label>学校</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" class="school" placeholder="填写学校，发现校友"/>
+                    <label>拾色器</label>
+                    <div class="input-box margin8" style="padding:8px;">
+                       <input type="color"/>
                     </div>
                 </div>
-                <div class="row">
-                    <label>所在地</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="live" readonly="" placeholder="选择所在地"/>
-                        <i class="icon-arrowright"></i>
+            </form>
+
+            <p class="sliver">分组布局</p>
+            <form id="formgroup">
+                <div class="group">
+                    <div class="row">
+                        <label>用户名</label>
+                        <div class="input-box margin8">
+                            <input type="text" placeholder="用户名" name="username"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>密码</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" placeholder="密码" name="password"/>
+                            <i class="icon-eye"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>确认</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" placeholder="确认" name="reconfirm"/>
+                            <i class="icon-eye"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label>故乡</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
-                        <i class="icon-arrowright"></i>
+                <div class="group">
+                    <div class="row">
+                        <label>昵称</label>
+                        <div class="input-box margin8">
+                            <input type="text" placeholder="填写昵称" name="nickname"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>性别</label>
+                        <div class="input-box margin8">
+                            <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
+                            <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>出生日期</label>
+                        <div class="input-box margin8">
+                            <input type="date" name="birthday" placeholder="出生日期"/>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <label>邮箱</label>
-                    <div class="input-box margin8 ricon">
-                        <input type="text" name="email" placeholder="填写邮箱"/>
+                <div class="group">
+                    <div class="row">
+                        <label>职业</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>公司</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="company" placeholder="公司"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>学校</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" class="school" placeholder="填写学校，发现校友"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>所在地</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="live" readonly="" placeholder="选择所在地"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>故乡</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
+                            <i class="icon-arrowright"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label>邮箱</label>
+                        <div class="input-box margin8 ricon">
+                            <input type="text" name="email" placeholder="填写邮箱"/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="group">
-                <div class="row">
-                    <label>个人说明</label>
-                    <div class="input-box margin8">
-                        <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
+                <div class="group">
+                    <div class="row">
+                        <label>个人说明</label>
+                        <div class="input-box margin8">
+                            <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
+                        </div>
+                        
                     </div>
-                    
                 </div>
-            </div>
-        </form>
-    </article>
+            </form>
+        </article>
+    </section>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

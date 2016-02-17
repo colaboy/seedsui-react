@@ -3,30 +3,32 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>媒体播放</title>
+	<title>video</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-	<header>
-	    <div class="titlebar">
-	        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-	        <h1>媒体播放</h1>
-	    </div>
-	</header>
-	<article>
-	    <video id="player1" width="100%" controls>
-	        <source src="video.mp4" type="video/mp4">
-	        您的浏览器不支持 HTML5 video 标签。
-	    </video>
-	    <p class="text-center">
-	    <span id="currentTime">0</span>/<span id="durationTime">0</span><span>秒</span>
-		    <span>当前音量</span><span id="currentVol">0</span>
-		    <a class="button block submit margin8" onclick="resume()">播放与暂停</a>
-		    <a class="button block info margin8" onclick="goPlay(2)">设置播放时间</a>
-		    <a class="button block warn margin8" onclick="playBgSound()">播放背景音乐</a>
-		</p>
-	</article>
+	<section id="page_video" class="active">
+		<header>
+		    <div class="titlebar">
+		        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+		        <h1>媒体播放</h1>
+		    </div>
+		</header>
+		<article>
+		    <video id="player1" width="100%" controls>
+		        <source src="video.mp4" type="video/mp4">
+		        您的浏览器不支持 HTML5 video 标签。
+		    </video>
+		    <p class="text-center">
+		    <span id="currentTime">0</span>/<span id="durationTime">0</span><span>秒</span>
+			    <span>当前音量</span><span id="currentVol">0</span>
+			    <a class="button block submit margin8" onclick="resume()">播放与暂停</a>
+			    <a class="button block info margin8" onclick="goPlay(2)">设置播放时间</a>
+			    <a class="button block warn margin8" onclick="playBgSound()">播放背景音乐</a>
+			</p>
+		</article>
+	</section>
 	<script src="../plugin/js/exmobi.js"></script>
 	<script src="../assets/js/media.js"></script>
 	<script>

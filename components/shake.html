@@ -3,22 +3,24 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>摇一摇</title>
+	<title>shake</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 </head>
 
 <body>
-	<header>
-	  <div class="titlebar">
-	    <a href="javascript:history.go(-1)" class="left">
-            <i class="icon-arrowleft"></i>
-        </a>
-	    <h1>摇一摇</h1>
-	  </div>
-	</header>
-	<article>
-		<div class="card padding8" id="shakecard">用力摇一摇你手机</div>
-	</article>
+	<section id="page_shake" class="active">
+		<header>
+		  <div class="titlebar">
+		    <a href="javascript:history.go(-1)" class="left">
+	            <i class="icon-arrowleft"></i>
+	        </a>
+		    <h1>摇一摇</h1>
+		  </div>
+		</header>
+		<article>
+			<div class="card padding8" id="shakecard">用力摇一摇你手机</div>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
 	var SHAKE_THRESHOLD = 3000;  
