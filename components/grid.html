@@ -50,17 +50,79 @@
 				</li>
 			</ul>
 			<p class="title">Metro复杂布局</p>
-			<div class="box">
-				<div style="height:260px;width:50%;background-color: #32a9fd;color:white;">300</div>
-				<div class="box box-vertical" style="width:50%;background-color:red;-webkit-flex-flow:column;">
-					<div style="background-color:#d9532d;color:white;-webkit-flex:1">
-						1
+			<!--用flex布局更方便灵活-->
+			<div class="box" style="color:white;padding:4px;">
+				<div class="box-flex-1 box box-middlecenter box-vertical relative" style="height:250px;background-color: #32a9fd;margin:4px;">
+					<p style="font-size: 50px;">300</p>
+					<p style="opacity: 0.7;">您的积分</p>
+					<p style="position: absolute;right:10px;bottom:10px;text-align: right;">小明，欢迎您</p>
+				</div>
+				<div class="box box-vertical box-flex-1">
+					<div class="box-flex-1" style="background-color:#d9532d;margin:4px;padding:0 4px;">
+						<ul class="list nobg">
+							<li><div class="justify-content">资料1</div></li>
+							<li><div class="justify-content">资料2</div></li>
+						</ul>
+						<div style="padding:8px 0;text-align: right;"><a style="color:white;">更多资料...</a></div>
 					</div>
-					<div style="background-color:#57b40d;color:white;-webkit-flex:1">
-						1
+					<div class="box-flex-1 box box-horizontal">
+						<ul class="grid metro" data-col="2" style="padding:0;">
+							<li>
+								<a style="background-color:#F39C12;height:125px;">
+									<i class="icon-contact-fill"></i>
+									<label class="grid-label nowrap">通讯录</label>
+								</a>
+							</li>
+							<li>
+								<a style="background-color:#1abc9c;height:125px;">
+									<i class="icon-write-fill"></i>
+									<label class="grid-label">审批</label>
+								</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
+			<!--下部菜单-->
+			<ul class="grid metro" data-col="3">
+				<li style="width:50%">
+					<a style="background-color:#5d90c9;">
+						<i class="icon-chartpie-fill"></i>
+						<label class="grid-label nowrap">数据分析</label>
+					</a>
+				</li>
+				<li style="width:25%">
+					<a style="background-color:#00b9df;">
+						<i class="icon-write-fill"></i>
+						<label class="grid-label">审批</label>
+					</a>
+				</li>
+				<li style="width:25%">
+					<a style="background-color:#5532aa;">
+						<i class="icon-position-fill"></i>
+						<label class="grid-label">定位</label>
+					</a>
+				</li>
+				<li style="width:25%">
+					<a style="background-color:#9e00a6;">
+						<i class="icon-folder-fill"></i>
+						<label class="grid-label">文档</label>
+					</a>
+				</li>
+				<li style="width:25%">
+					<a style="background-color:#00b9df;">
+						<i class="icon-gear-fill"></i>
+						<label class="grid-label">设置</label>
+					</a>
+				</li>
+				<li style="width:50%">
+					<a style="background-color:#e63955;">
+						<i class="icon-contact-fill"></i>
+						<span class="tip">3</span>
+						<label class="grid-label nowrap">通讯录</label>
+					</a>
+				</li>
+			</ul>
 
 			<p class="title">九宫格</p>
 			<ul class="grid app radiusround" data-col="3">

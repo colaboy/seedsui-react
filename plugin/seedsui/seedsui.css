@@ -287,6 +287,7 @@ button.text-left {
   display: -webkit-box;
   display: box;
   display: -webkit-flex;
+  display: flex;
 }
 .box-center,
 .box-middlecenter {
@@ -294,12 +295,14 @@ button.text-left {
   -moz-box-pack: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
+  justify-content: center;
 }
 .box-right {
   box-pack: end;
   -moz-box-pack: end;
   -webkit-box-pack: end;
   -webkit-justify-content: -webkit-flex-end;
+  justify-content: -webkit-flex-end;
 }
 .box-middle,
 .box-middlecenter {
@@ -307,37 +310,49 @@ button.text-left {
   -moz-box-align: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
+  align-items: center;
 }
 .box-bottom {
   box-align: end;
   -moz-box-align: end;
   -webkit-box-align: end;
   -webkit-align-items: -webkit-flex-end;
+  align-items: -webkit-flex-end;
 }
 .box-vertical {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   box-orient: vertical;
+  -webkit-flex-flow: column;
+  flex-flow: column;
 }
 .box-horizontal {
   -moz-box-orient: horizontal;
   -webkit-box-orient: horizontal;
   box-orient: horizontal;
+  -webkit-flex-flow: row;
+  flex-flow: row;
 }
 .box-flex-1 {
   -moz-box-flex: 1.0;
   -webkit-box-flex: 1.0;
   box-flex: 1.0;
+  -webkit-flex: 1;
+  flex: 1;
 }
 .box-flex-2 {
   -moz-box-flex: 2.0;
   -webkit-box-flex: 2.0;
   box-flex: 2.0;
+  -webkit-flex: 2;
+  flex: 2;
 }
 .box-flex-3 {
   -moz-box-flex: 3.0;
   -webkit-box-flex: 3.0;
   box-flex: 3.0;
+  -webkit-flex: 3;
+  flex: 3;
 }
 /*----------------------------box布局方式:end----------------------------*/
 /*----------------------------flex布局方式:start----------------------------*/
@@ -5137,7 +5152,7 @@ body {
 }
 /*标签默认样式*/
 ::selection {
-  background: #36acf4;
+  background: #46c2ca;
   color: #ffffff;
 }
 ::-webkit-input-placeholder {
@@ -5174,10 +5189,10 @@ a:active,
 }
 /*常用颜色*/
 .color-primary {
-  color: #36acf4;
+  color: #46c2ca;
 }
 .bg-primary {
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 .color-placeholder {
   color: #aaaaaa;
@@ -5218,17 +5233,17 @@ aside {
   color: #333333;
 }
 .titlebar a {
-  color: #36acf4;
+  color: #46c2ca;
 }
 .titlebar a.disable {
   opacity: 0.5;
 }
 .titlebar a:active:not(.disable) {
-  color: rgba(54, 172, 244, 0.5);
+  color: rgba(70, 194, 202, 0.5);
 }
 .titlebar.reverse {
-  background-color: #36acf4;
-  border-color: #36acf4;
+  background-color: #46c2ca;
+  border-color: #46c2ca;
 }
 .titlebar.reverse h1 {
   color: #ffffff;
@@ -5262,7 +5277,7 @@ aside {
 }
 .rectbar .tab:active,
 .rectbar .tab.active {
-  color: #36acf4;
+  color: #46c2ca;
 }
 .rectbar,
 .slidebar {
@@ -5270,8 +5285,8 @@ aside {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  color: #36acf4;
-  border-color: #36acf4;
+  color: #46c2ca;
+  border-color: #46c2ca;
 }
 .menubar {
   color: #888888;
@@ -5279,15 +5294,15 @@ aside {
 }
 .menubar .tab:active,
 .menubar .tab.active {
-  color: #36acf4;
+  color: #46c2ca;
 }
 .menubar.reverse .tab {
-  border-color: #36acf4;
+  border-color: #46c2ca;
 }
 .arrowbar,
 .menubar.reverse {
   color: #ffffff;
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 .arrowbar .tab,
 .menubar.reverse .tab {
@@ -5301,7 +5316,7 @@ aside {
   opacity: 1;
 }
 .arrowbar .tab.active:after {
-  border-top-color: #36acf4;
+  border-top-color: #46c2ca;
 }
 .tabbar {
   background-color: #ffffff;
@@ -5333,13 +5348,13 @@ input[type="button"],
 input[type="submit"],
 .button {
   color: #ffffff;
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 button.outline,
 input[type="button"].outline,
 .button.outline {
-  color: #36acf4;
-  border-color: #36acf4;
+  color: #46c2ca;
+  border-color: #46c2ca;
   background-color: transparent;
 }
 button:active,
@@ -5347,13 +5362,13 @@ input[type="button"]:active,
 input[type="submit"]:active,
 .button:active {
   color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(54, 172, 244, 0.5);
+  background-color: rgba(70, 194, 202, 0.5);
 }
 button.outline:active,
 input[type="button"].outline:active,
 .button.outline:active {
-  color: rgba(54, 172, 244, 0.5);
-  border-color: rgba(54, 172, 244, 0.5);
+  color: rgba(70, 194, 202, 0.5);
+  border-color: rgba(70, 194, 202, 0.5);
   background-color: transparent;
 }
 /*去色*/
@@ -5510,26 +5525,26 @@ input[type="button"].success.outline:active,
 button.link,
 input[type="button"].link,
 .button.link {
-  color: #36acf4;
+  color: #46c2ca;
   background-color: transparent;
 }
 button.link.outline,
 input[type="button"].link.outline,
 .button.link.outline {
-  border-color: #36acf4;
-  color: #36acf4;
+  border-color: #46c2ca;
+  color: #46c2ca;
 }
 button.link:active,
 input[type="button"].link:active,
 .button.link:active {
-  color: rgba(54, 172, 244, 0.5);
+  color: rgba(70, 194, 202, 0.5);
   background-color: transparent;
 }
 button.link.outline:active,
 input[type="button"].link.outline:active,
 .button.link.outline:active {
-  border-color: rgba(54, 172, 244, 0.5);
-  color: rgba(54, 172, 244, 0.5);
+  border-color: rgba(70, 194, 202, 0.5);
+  color: rgba(70, 194, 202, 0.5);
 }
 /*按钮-气泡*/
 button .tip,
@@ -5565,7 +5580,7 @@ input[type="button"].outline .tip,
 /*激活状态*/
 .button-group > span:not(.disable).active,
 .button-group > span:not(.disable):active {
-  color: #36acf4;
+  color: #46c2ca;
   background-color: #ffffff;
 }
 /*禁用状态*/
@@ -5640,10 +5655,10 @@ textarea {
 }
 .input-box [class*="icon-"]:active,
 .input-box [class*="icon-"].active {
-  color: #36acf4;
+  color: #46c2ca;
 }
 .input-box.active {
-  border-color: #36acf4;
+  border-color: #46c2ca;
 }
 .input-box {
   border-color: #dddddd;
@@ -5658,7 +5673,7 @@ textarea {
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  color: #36acf4;
+  color: #46c2ca;
 }
 /*----------------dragrefresh.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
@@ -5682,7 +5697,7 @@ input[type=range]::-ms-track {
 /*添加轨道样式*/
 /*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  background: #36acf4;
+  background: #46c2ca;
   opacity: 1;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -5694,7 +5709,7 @@ input[type=range]:active::-webkit-slider-runnable-track {
 }
 /*添加轨道样式-moz*/
 input[type=range]::-moz-range-thumb {
-  background: #36acf4;
+  background: #46c2ca;
   opacity: 1;
 }
 input[type=range]::-moz-range-track {
@@ -5703,7 +5718,7 @@ input[type=range]::-moz-range-track {
 }
 /*添加轨道样式-ms*/
 input[type=range]::-ms-thumb {
-  background: #36acf4;
+  background: #46c2ca;
   opacity: 1;
 }
 input[type=range]::-ms-track {
@@ -5711,10 +5726,10 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
   border-color: #ffffff;
-  background: #36acf4;
+  background: #46c2ca;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #36acf4;
+  background: #46c2ca;
 }
 input[type=range]::-ms-fill-upper {
   background: #ffffff;
@@ -5730,19 +5745,19 @@ input[type=range]:focus::-ms-fill-upper {
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #36acf4;
+  color: #46c2ca;
   /*IE10*/
-  border-color: #36acf4;
+  border-color: #46c2ca;
   background-color: #fff;
 }
 progress::-moz-progress-bar {
-  background: #36acf4;
+  background: #46c2ca;
 }
 progress::-webkit-progress-bar {
   background: #ffffff;
 }
 progress::-webkit-progress-value {
-  background: #36acf4;
+  background: #46c2ca;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -5752,7 +5767,7 @@ input[type="radio"] {
 }
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  color: #36acf4;
+  color: #46c2ca;
 }
 input[type="checkbox"][disabled],
 input[type="radio"][disabled],
@@ -5784,7 +5799,7 @@ input[type="radio"][disabled]:checked {
 }
 /*打开状态小圆点*/
 .switch.active .switch-handle {
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 /*打开状态文字on*/
 .switch.active:after {
@@ -5798,7 +5813,7 @@ input[type="radio"][disabled]:checked {
   color: #aaaaaa;
 }
 .switch.reverse.active {
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 /*----------------toggle.less(end)--------------*/
 /*----------------grid.less(start)--------------*/
@@ -5816,7 +5831,7 @@ input[type="radio"][disabled]:checked {
 }
 /*邮件列表*/
 .list .round {
-  background-color: #36acf4;
+  background-color: #46c2ca;
 }
 /*应用列表*/
 .list.applist .licon {
