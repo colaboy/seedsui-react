@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Animated Tabbar</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+</head>
+
+<body>
+	<!--头部-->
+	<header>
+        <div class="titlebar">
+            <a href="javascript:history.go(-1)" class="left">
+                <i class="icon-arrowleft"></i>
+            </a>
+            <h1>Animated Tabbar</h1>
+        </div>
+    </header>
+
+    <!--主体-->
+	<article>
+        <div class="title">Animated Tabbar</div>
+        <ul class="tabbar animate-slide" id="tabbar">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="line" style="width:20%;"></li><!--注意这里width根据你tab数量要改-->
+        </ul>
+        <br/>
+        <ul class="tabbar animate-twoline" id="tabbar">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+        </ul>
+        <br/>
+        <ul class="tabbar animate-oneline" id="tabbar">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+        </ul>
+        <br/>
+    </article>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script>
+    EventUtil.addHandler(window,"load",function(e){
+        //tabbar
+        [].slice.call(document.querySelectorAll('.tabbar')).forEach(function(menu){
+            var menuItems = menu.querySelectorAll('.tab'),
+            setCurrent = function(ev) {
+                ev.preventDefault();
+                var item = ev.target; // li
+                menu.querySelector('.active').classList.remove("active");
+                item.classList.add("active");
+            };
+
+            [].slice.call(menuItems).forEach(function(el) {
+                el.addEventListener('click', setCurrent);
+            });
+        });
+    });
+	//定义exmobi返回
+	function back(){history.go(-1);}
+
+	</script>
+</body>
+</html>

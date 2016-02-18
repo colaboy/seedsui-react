@@ -164,6 +164,35 @@ aside {
 .arrowbar .tab.active:after{
     border-top-color:@color-menubar-font-active;
 }
+//tabbar 
+.tabbar {
+	background-color: @color-list-bg;
+}
+.tabbar.animate-slide {
+	.tab.active {
+		color: @color-primary;
+	}
+	.line {
+		background: @color-primary;
+	}
+}
+.tabbar.animate-twoline {
+	.tab.active {
+		color: @color-primary;
+	}
+	.tab::before, .tab::after {
+		background:@color-primary;
+	}
+}
+
+.tabbar.animate-oneline {
+	.tab.active {
+		color: @color-primary;
+	}
+	.tab::before{
+		background:@color-primary;
+	}
+}
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/

@@ -172,6 +172,12 @@ aside {
 .arrowbar .tab.active:after {
   border-top-color: #46c2ca;
 }
+.tabbar {
+  background-color: #ffffff;
+}
+.tabbar.animate-slide .line {
+  background: #46c2ca;
+}
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -662,7 +668,7 @@ input[type="radio"][disabled]:checked {
   background-color: #f4f4f4;
 }
 /*邮件列表*/
-.list.maillist .licon {
+.list .round {
   background-color: #46c2ca;
 }
 /*应用列表*/

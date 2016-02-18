@@ -2479,6 +2479,117 @@ aside.active ~ #section_container .section_container_mask {
   border-style: solid;
   border-color: inherit;
 }
+/*animated tabbar*/
+.tabbar .tab {
+  background-color: white;
+  height: 40px;
+  line-height: 40px;
+  border-width: 0px 0px 1px 0;
+}
+.tabbar .tab .tab-label {
+  height: 24px;
+  line-height: 24px;
+  vertical-align: middle;
+}
+.tabbar.animate-slide {
+  position: relative;
+}
+.tabbar.animate-slide .tab {
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+.tabbar.animate-slide .line {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 25%;
+  height: 2px;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  -webkit-transition-timing-function: cubic-bezier(1, 0.01, 0, 1);
+  -webkit-transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
+  transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
+}
+.tabbar.animate-slide .tab:nth-child(1).active ~ .line {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.tabbar.animate-slide .tab:nth-child(2).active ~ .line {
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.tabbar.animate-slide .tab:nth-child(3).active ~ .line {
+  -webkit-transform: translate3d(200%, 0, 0);
+  transform: translate3d(200%, 0, 0);
+}
+.tabbar.animate-slide .tab:nth-child(4).active ~ .line {
+  -webkit-transform: translate3d(300%, 0, 0);
+  transform: translate3d(300%, 0, 0);
+}
+.tabbar.animate-slide .tab:nth-child(5).active ~ .line {
+  -webkit-transform: translate3d(400%, 0, 0);
+  transform: translate3d(400%, 0, 0);
+}
+.tabbar.animate-twoline .tab {
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+.tabbar.animate-twoline .tab::before,
+.tabbar.animate-twoline .tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  -webkit-transform: scale3d(0, 1, 1);
+  transform: scale3d(0, 1, 1);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+}
+.tabbar.animate-twoline .tab::before {
+  top: 0;
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+}
+.tabbar.animate-twoline .tab::after {
+  bottom: 0;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+}
+.tabbar.animate-twoline .tab.active::before,
+.tabbar.animate-twoline .tab.active::after {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.tabbar.animate-oneline .tab {
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+.tabbar.animate-oneline .tab::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  -webkit-transform: scale3d(0, 1, 1);
+  transform: scale3d(0, 1, 1);
+  -webkit-transition: -webkit-transform 0.1s;
+  transition: transform 0.1s;
+}
+.tabbar.animate-oneline .tab.active::before {
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -5191,6 +5302,28 @@ aside {
 }
 .arrowbar .tab.active:after {
   border-top-color: #36acf4;
+}
+.tabbar {
+  background-color: #ffffff;
+}
+.tabbar.animate-slide .tab.active {
+  color: #46c2ca;
+}
+.tabbar.animate-slide .line {
+  background: #46c2ca;
+}
+.tabbar.animate-twoline .tab.active {
+  color: #46c2ca;
+}
+.tabbar.animate-twoline .tab::before,
+.tabbar.animate-twoline .tab::after {
+  background: #46c2ca;
+}
+.tabbar.animate-oneline .tab.active {
+  color: #46c2ca;
+}
+.tabbar.animate-oneline .tab::before {
+  background: #46c2ca;
 }
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
