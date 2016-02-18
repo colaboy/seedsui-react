@@ -3,49 +3,51 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title>登录3</title>
+<title>login3</title>
 <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 <style type="text/css">
 article{
 	min-height:370px;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cce6f6), color-stop(100%,#f9fcf4));
 }
-.login-logo{ width:25%; margin:30px 37.5% 20px 37.5%;}
-.login_btm{ position:absolute; bottom:30px; width:88%; margin-left:6%;}
+.login-logo{
+	width:100px;height:100px;border-radius:100%;background-color:#f8f8f8;border:2px solid white;
+}
+.login-logo img{
+	width:80px;
+}
+.login_btm{position:absolute; bottom:30px; width:88%; margin-left:6%;}
 </style>
 </head>
 
 <body>
-	<header>
-	  <div class="titlebar">
-	    <a href="javascript:history.go(-1)" class="left">
-            <i class="icon-arrowleft"></i>
-        </a>
-	    <h1>登录3</h1>
-	  </div>
-	</header>
-	<article>
-		<img class="login-logo" src="../img/login3/logo.png" />
-		<form id="loginbox">
-		<div class="input-group">
-			<div class="input-box ricon">
-				<input name="username" type="text" data-clear="true" placeholder="请输入账号"/>
-		    	<i class="input-icon-clear opacity0"></i>
+	<section id="page_login3" class="active">
+		<article style="top:0;">
+			<div class="box box-center" style="margin:30px 0 30px 0;">
+				<div class="box box-middle box-center login-logo" style="">
+					<img class="" src="../img/login3/logo.png" />
+				</div>
 			</div>
-			<hr/>
-			<div class="input-box ricon">
-				<input name="password" type="password" placeholder="请输入密码"/>
-		    	<i class="input-icon-reveal"></i>
+			<form id="loginbox">
+			<div class="input-group">
+				<div class="input-box ricon" style="border-width: 1px 0 0 0;">
+					<input name="username" type="text" data-clear="true" placeholder="请输入账号"/>
+			    	<i class="input-icon-clear opacity0"></i>
+				</div>
+				<div class="input-box ricon">
+					<input name="password" type="password" placeholder="请输入密码"/>
+			    	<i class="input-icon-reveal"></i>
+				</div>
 			</div>
-		</div>
-		</form>
-		<a class="button block" style="margin:20px">登录</a>
+			</form>
+			<a class="button block" style="margin:20px 12px;">登录</a>
 
-	</article>
-	<footer style="padding:40px 0;">
-		<a class="float-left" style="margin-left:20px;">忘记密码？</a>
-		<a class="float-right" style="margin-right:20px;">注册</a>
-	</footer>
+		</article>
+		<footer style="padding:40px 0;">
+			<a class="float-left" style="margin-left:20px;">忘记密码？</a>
+			<a class="float-right" style="margin-right:20px;">注册</a>
+		</footer>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

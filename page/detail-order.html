@@ -3,179 +3,181 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title>订单详情</title>
+<title>detail-order</title>
 <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
 <link rel="stylesheet" href="../css/detail-order.css"/>
 </head>
 <body>
-<header>
-	<div class="titlebar">
-		<a href="javascript:history.go(-1)" class="left">
- 			<i class="icon-arrowleft"></i>
-		</a>
-		<h1>订单详情</h1>
-	</div>
-	<ul class="rectbar" id="tabbar" style="margin:10px 30px 0 30px;">
-		<li class="tab active" data-bindpage="0">
-			<label class="tab-label">订单状态</label>
-		</li>
-		<li class="tab" data-bindpage="1">
-			<label class="tab-label">物流相关</label>
-		</li>
-	</ul>
-</header>
-<article style="top:98px; bottom:0;">
-	<div class="slider-container" id="carouselPage" style="height: 100%;">
-	    <div class="slider-wrapper">
-			<!--订单状态-开始-->
-			<div class="slider-slide">
-				<div class="order_detail">
-					<div class="group">
-						<div class="row">
-							<label>订单创建时间</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>产品线</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>订单子类型</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>订单ERP编码</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>物料描述</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>数量</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>现金支付</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>审批状态</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>创建发货计划</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>生产计划接收</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-					</div>
-	        	</div> 
-	        </div>
-	        
-	        <!--物流相关-开始-->
-	        <div class="slider-slide">
-	        	<div class="order_detail">
-	        		<div class="group">
-						<div class="row">
-							<label>发货过账</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>发货方式</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>计划派车日期</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>计划到达日期</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>调度员</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>调动员移动电话</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>调度员办公电话</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>驾驶员</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>驾驶员电话</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>车号</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-						<div class="row">
-							<label>运费金额</label>
-							<div class="input-box margin8">
-								<div class="in">XXXXXXXXXXX</div>
-							</div>
-						</div>
-					</div>
-				</div>          
-			</div>
-		</div>
-	</div>
-</article>
+	<section id="page_detail_order" class="active">
 
+		<header>
+			<div class="titlebar">
+				<a href="javascript:history.go(-1)" class="left">
+		 			<i class="icon-arrowleft"></i>
+				</a>
+				<h1>订单详情</h1>
+			</div>
+			<ul class="rectbar" id="tabbar" style="margin:10px 30px 0 30px;">
+				<li class="tab active" data-bindpage="0">
+					<label class="tab-label">订单状态</label>
+				</li>
+				<li class="tab" data-bindpage="1">
+					<label class="tab-label">物流相关</label>
+				</li>
+			</ul>
+		</header>
+		<article style="top:98px; bottom:0;">
+			<div class="slider-container" id="carouselPage" style="height: 100%;">
+			    <div class="slider-wrapper">
+					<!--订单状态-开始-->
+					<div class="slider-slide">
+						<div class="order_detail">
+							<div class="group">
+								<div class="row">
+									<label>订单创建时间</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>产品线</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>订单子类型</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>订单ERP编码</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>物料描述</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>数量</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>现金支付</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>审批状态</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>创建发货计划</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>生产计划接收</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+							</div>
+			        	</div> 
+			        </div>
+			        
+			        <!--物流相关-开始-->
+			        <div class="slider-slide">
+			        	<div class="order_detail">
+			        		<div class="group">
+								<div class="row">
+									<label>发货过账</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>发货方式</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>计划派车日期</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>计划到达日期</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>调度员</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>调动员移动电话</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>调度员办公电话</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>驾驶员</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>驾驶员电话</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>车号</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+								<div class="row">
+									<label>运费金额</label>
+									<div class="input-box margin8">
+										<div class="in">XXXXXXXXXXX</div>
+									</div>
+								</div>
+							</div>
+						</div>          
+					</div>
+				</div>
+			</div>
+		</article>
+	</section>
 <!-- 第三方插件 -->
 <script src="../plugin/exmobi/exmobi.js"></script>
 <script src="../plugin/jquery/jquery.min.js"></script>
-<script src="../assets/js/slider.js"></script>
+<script src="../plugin/seedsui/seedsui.min.js"></script>
 <script>
 	window.onload=function(){
         var tabbar=document.getElementById("tabbar");
