@@ -583,6 +583,18 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .richedit figcaption{
     border-color:@color-border;
 }
+.richedit .input{
+	border-color:@color-border;
+}
+.richedit .input:before,.richedit .input:after{
+	background-color:@color-border;
+}
+.richedit.active .input{
+	border-color:@color-primary;
+}
+.richedit.active .input:before,.richedit.active .input:after{
+	background-color:@color-primary;
+}
 /*----------------richedit.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
