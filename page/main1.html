@@ -3,128 +3,127 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title>主页1</title>
+<title>main1</title>
 <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
-<link rel="stylesheet" href="../css/main1.css">
-<!-- Swiper框架的CSS -->
-<link rel="stylesheet" href="../plugin/swiper/swiper.css">
-<link rel="stylesheet" href="../plugin/swiper/swiper.custom.css">
 </head>
-<body style="overflow:hidden;background-color:#3476d4;">
-	<!--侧边栏-->
-    <aside data-position="right" data-transition="push" id="aside_container">
-    	<div class="photo"></div>
-        <p class="text-center">小明</p>
-        <p class="photo-department">IT信息服务部</p>
-        <div class="aside-list">
-            <div class="aside-list-icon lock"></div>
-            <label>修改密码</label>
-         </div>
-         <div class="aside-list">
-            <div class="aside-list-icon pattern"></div>
-            <label>手势密码</label>
-         </div>
-         <div class="aside-list">
-            <div class="aside-list-icon exit"></div>
-            <label>退出系统</label>
-         </div>
-    </aside>
-    <!--主体-->
-	<div id="section_container">
-		<section id="main_section" class="active">
-			<header>
-				<div class="titlebar">
-					<a href="javascript:history.go(-1)" class="left">
-                        <i class="icon-arrowleft"></i>
+<body>
+	<section id="page_main1" class="active">
+		<header>
+			<div class="titlebar">
+				<a href="javascript:history.go(-1)" class="left">
+                    <i class="icon-arrowleft"></i>
+                </a>
+				<h1>主页1</h1>
+				<a id="asidemenu"><i class="icon me"></i></a>
+			</div>
+		</header>
+		<article>
+			<div class="slider-container" id="carousel1">
+                <div class="slider-wrapper">
+                    <div class="slider-slide">
+                        <img src="../img/main1/banner.jpg"/>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/main1/banner.jpg"/>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/main1/banner.jpg"/>
+                    </div>
+                </div>
+                <div class="slider-pagination"></div>
+            </div>
+            <!--用flex布局更方便灵活-->
+            <div class="box" style="color:white;padding:4px 4px 0 4px;">
+                <div class="box-flex-1 box box-middlecenter box-vertical relative" style="background-color: #32a9fd;margin:2px;">
+                    <p style="font-size: 50px;">300</p>
+                    <p style="opacity: 0.7;">您的积分</p>
+                    <p style="position: absolute;right:10px;bottom:10px;text-align: right;">小明，欢迎您</p>
+                </div>
+                <div class="box box-vertical box-flex-1" style="margin:2px;">
+                    <div class="box-flex-1" style="background-color:#d9532d;padding:0 4px;margin-bottom:4px;">
+                        <ul class="list nobg">
+                            <li><div class="justify-content">资料1</div></li>
+                            <li><div class="justify-content">资料2</div></li>
+                        </ul>
+                        <div style="padding:8px 0;text-align: right;"><a style="color:white;">更多资料...</a></div>
+                    </div>
+                    <div class="box-flex-1 box box-horizontal">
+                        <ul class="grid metro" data-col="2" style="padding:0;width:100%;">
+                            <li style="padding: 4px 4px 0 0">
+                                <a style="background-color:#F39C12;height:100px;">
+                                    <img src="../img/main1/people.png"/>
+                                    <label class="grid-label nowrap">海关警员</label>
+                                </a>
+                            </li>
+                            <li style="padding: 4px 0 0 4px">
+                                <a style="background-color:#1abc9c;height:100px;">
+                                    <img src="../img/main1/ebook.png"/>
+                                    <label class="grid-label">电子书</label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--下部菜单-->
+            <ul class="grid metro" data-col="3">
+                <li style="width:50%">
+                    <a style="background-color:#5d90c9;">
+                        <img src="../img/main1/direction.png"/>
+                        <label class="grid-label nowrap">岗位练兵</label>
                     </a>
-					<h1>主页1</h1>
-					<a id="asidemenu"><i class="icon me"></i></a>
-				</div>
-			</header>
-			<article>
-					<div class="swiper-container custom-main" id="carrousel1">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
-                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
-                            <div class="swiper-slide" style="background-image:url(../img/main1/banner.jpg)"></div>
-                        </div>
-                        <!-- 添加分页 -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-                    <div class="cell cell1">
-                    	<div class="middlecenter text-center inline-block" style="color:white;">
-                        	<p style="font-size:50px;">300</p>
-                            <small>您的得分</small>
-                        </div>
-                        <label>小明，欢迎您</label>
-                    </div>
-                    <div class="cell" style="width:50%;background-color:#32a9fd;float:left;">
-                    	<div class="cell cell2">
-                        	<ul class="listitem bg-transparent">
-                            	<li><img src="../img/main1/arrow.png" class="iconfont ricon"/>资料1</li>
-                                <li><img src="../img/main1/arrow.png" class="iconfont ricon"/>资料2</li>
-                                <li class="text-right noborder" style="font-size:12px;"><img src="../img/main1/more.png" style="width:20px;margin-right:8px;"/>学习资料</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="cell cell3">
-                        	<img src="../img/main1/people.png" class="middlecenter"/>
-                            <label>海关警员</label>
-                        </div>
-                        <div class="cell cell4">
-                        	<img src="../img/main1/ebook.png" class="middlecenter"/>
-                            <label>电子书</label>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="cell cell5">
-                    	<img src="../img/main1/direction.png" class="middlecenter"/>
-                        <label>岗位练兵</label>
-                    </div>
-                    <div class="cell cell6">
-                    	<img src="../img/main1/questionnaire.png" class="middlecenter"/>
-                        <label>在线问卷</label>
-                    </div>
-                    <div class="cell cell7">
-                    	<img src="../img/main1/comment.png" class="middlecenter"/>
-                        <label>在线提问</label>
-                    </div>
-                    <div class="cell cell8">
-                    	<img src="../img/main1/link.png" class="middlecenter"/>
-                        <label>友情链接</label>
-                    </div>
-                    <div class="cell cell9">
-                    	<img src="../img/main1/memorandum.png" class="middlecenter"/>
-                        <label>备忘录</label>
-                    </div>
-                    <div class="cell cell10">
-                    	<img src="../img/main1/chat.png" class="middlecenter"/>
-                        <label>消息推送</label>
-                    </div>
-                    <div class="clearfix"></div>
-			</article>
-		</section>
-        <div class="section_container_mask"></div>
-	</div>
-	
+                </li>
+                <li style="width:25%">
+                    <a style="background-color:#00b9df;">
+                        <img src="../img/main1/questionnaire.png"/>
+                        <label class="grid-label">在线问卷</label>
+                    </a>
+                </li>
+                <li style="width:25%">
+                    <a style="background-color:#5532aa;">
+                        <img src="../img/main1/comment.png"/>
+                        <label class="grid-label">在线提问</label>
+                    </a>
+                </li>
+                <li style="width:25%">
+                    <a style="background-color:#9e00a6;">
+                        <img src="../img/main1/link.png"/>
+                        <label class="grid-label">友情链接</label>
+                    </a>
+                </li>
+                <li style="width:25%">
+                    <a style="background-color:#00b9df;">
+                        <img src="../img/main1/memorandum.png"/>
+                        <label class="grid-label">备忘录</label>
+                    </a>
+                </li>
+                <li style="width:50%">
+                    <a style="background-color:#e63955;">
+                        <img src="../img/main1/chat.png"/>
+                        <label class="grid-label nowrap">消息推送</label>
+                    </a>
+                </li>
+            </ul>
+		</article>
+	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
-    <script src="../plugin/seedsui/seedsui.min.js"></script>
-	<script src="../plugin/swiper/swiper.js"></script>
+    <!-- <script src="../plugin/seedsui/seedsui.min.js"></script> -->
+    <script src="../assets/js/slider.js"></script>
     <script type="text/javascript">
-		EventUtil.addHandler(window,"load",function(e){
+		window.addEventListener("load",function(e){
 			//广告轮播
-			var carrousel = new Swiper('#carrousel1', {
-				pagination: '#carrousel1 .swiper-pagination',
-				paginationBulletRender: function (index, className) {
-					return '<span class="' + className + '"></span>';
-				}
+			var carrousel = new Slider('#carousel1', {
+				pagination: '#carousel1 .slider-pagination'
 			});
+            /*var carrousel=new Slider("#carousel1",{
+                pagination: '#carousel1 .slider-pagination'
+            });*/
 			/*侧边栏*/
 			$("#asidemenu,.section_container_mask").click(function(){
 				$("#aside_container").toggleClass("active");
 			});
-		});
+		},false);
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

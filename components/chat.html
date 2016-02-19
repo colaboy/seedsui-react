@@ -9,101 +9,101 @@
 </head>
 
 <body>
-<section id="page_chat">
-<header>
-    <div class="titlebar">
-        <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
-        <h1>产品部讨论群</h1>
-    </div>
-</header>
-<article style="bottom:47px;">
-    <ul class="chat" id="chat">
-        <li>
-            <div class="author">
-                <img src="../img/list/photo.png" alt="male">
+    <section id="page_chat" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+                <h1>产品部讨论群</h1>
             </div>
-            <div class="content-box">
-                <div class="content">
-                    <i>张三</i>
-                    <p>Hello!<span data-face="[weixiao]"></span></p>
+        </header>
+        <article style="bottom:47px;">
+            <ul class="chat" id="chat">
+                <li>
+                    <div class="author">
+                        <img src="../img/list/photo.png" alt="male">
+                    </div>
+                    <div class="content-box">
+                        <div class="content">
+                            <i>张三</i>
+                            <p>Hello!<span data-face="[weixiao]"></span></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="even">
+                    <div class="author">
+                        <img src="../img/list/photo.png" alt="Female">
+                    </div>
+                    <div class="content-box">
+                        <div class="content">
+                            <p>啥？你说滴是啥？那啥啥啥东西啊？咋看不懂啊，你说滴到底是个啥？</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </article>
+        <footer>
+            <!--底部富文本输入框-->
+            <figure id="richeditor" class="richedit">
+                <div class="face">
+                    <a data-face="[weixiao]" alt="[微笑]"></a>
+                    <a data-face="[baibai]" alt="[拜拜]"></a>
+                    <a data-face="[fadai]" alt="[发呆]"></a>
+                    <a data-face="[huaixiao]" alt="[坏笑]"></a>
+                    <a data-face="[liuhan]" alt="[流汗]"></a>
                 </div>
-            </div>
-        </li>
-        <li class="even">
-            <div class="author">
-                <img src="../img/list/photo.png" alt="Female">
-            </div>
-            <div class="content-box">
-                <div class="content">
-                    <p>啥？你说滴是啥？那啥啥啥东西啊？咋看不懂啊，你说滴到底是个啥？</p>
-                </div>
-            </div>
-        </li>
-    </ul>
-</article>
-<footer>
-    <!--底部富文本输入框-->
-    <figure id="richeditor" class="richedit">
-        <div class="face">
-            <a data-face="[weixiao]" alt="[微笑]"></a>
-            <a data-face="[baibai]" alt="[拜拜]"></a>
-            <a data-face="[fadai]" alt="[发呆]"></a>
-            <a data-face="[huaixiao]" alt="[坏笑]"></a>
-            <a data-face="[liuhan]" alt="[流汗]"></a>
-        </div>
-        <figcaption>
-            <div class="input">
-                <textarea></textarea>
-                <pre><span></span><br/></pre>
-            </div>
-            <a class="button desaturate outline" href="javascript:sent()">发送</a>
-        </figcaption>
-    </figure>
-    <div class="mask"></div>
-</footer>
-</section>
-<script src="../plugin/exmobi/exmobi.js"></script>
-<script src="../plugin/jquery/jquery.min.js"></script>
-<script src="../assets/js/richeditor.js"></script>
-<script src="../assets/js/eventutil.js"></script>
-<script src="../assets/js/type.js"></script>
-<script src="../assets/js/toast.js"></script>
-<script src="../assets/js/form.js"></script>
-<script src="../assets/js/pinyin.js"></script>
-<script src="../assets/js/face.js"></script>
-<script>
-    Richeditor.richEdit("#richeditor");
-    var richeditor=document.getElementById("richeditor");
-    //发送消息
-    var chat=document.getElementById("chat");
-    var textarea=document.querySelector("#richeditor textarea");
-    var t=new Toast("输入内容不能为空");
-    function sent(){
-        if(textarea.value==""){
-            t.show();
-            return;
-        }
-        richeditor.classList.remove("active");
-        var html='<li class="even">'+
-            '<div class="author">'+
-                '<img src="../img/list/photo.png" alt="Female">'+
-            '</div>'+
-            '<div class="content-box">'+
-                '<div class="content">'+
-                    '<p>'+Face.parse(textarea.value)+'</p>'+
+                <figcaption>
+                    <div class="input">
+                        <textarea></textarea>
+                        <pre><span></span><br/></pre>
+                    </div>
+                    <a class="button desaturate outline" href="javascript:sent()">发送</a>
+                </figcaption>
+            </figure>
+            <div class="mask"></div>
+        </footer>
+    </section>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../assets/js/richeditor.js"></script>
+    <script src="../assets/js/eventutil.js"></script>
+    <script src="../assets/js/type.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/form.js"></script>
+    <script src="../assets/js/pinyin.js"></script>
+    <script src="../assets/js/face.js"></script>
+    <script>
+        Richeditor.richEdit("#richeditor");
+        var richeditor=document.getElementById("richeditor");
+        //发送消息
+        var chat=document.getElementById("chat");
+        var textarea=document.querySelector("#richeditor textarea");
+        var t=new Toast("输入内容不能为空");
+        function sent(){
+            if(textarea.value==""){
+                t.show();
+                return;
+            }
+            richeditor.classList.remove("active");
+            var html='<li class="even">'+
+                '<div class="author">'+
+                    '<img src="../img/list/photo.png" alt="Female">'+
                 '</div>'+
-            '</div>'+
-        '</li>';
-        $(chat).append(html);
-        textarea.value="";
-        scrollToBottom();
-    }
-    var article=document.querySelector("#page_chat article");
-    function scrollToBottom(){
-        article.scrollTop=article.scrollHeight;
-    }
-    //定义exmobi返回
-    function back(){history.go(-1);}
-</script>
+                '<div class="content-box">'+
+                    '<div class="content">'+
+                        '<p>'+Face.parse(textarea.value)+'</p>'+
+                    '</div>'+
+                '</div>'+
+            '</li>';
+            $(chat).append(html);
+            textarea.value="";
+            scrollToBottom();
+        }
+        var article=document.querySelector("#page_chat article");
+        function scrollToBottom(){
+            article.scrollTop=article.scrollHeight;
+        }
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

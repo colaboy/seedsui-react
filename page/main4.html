@@ -10,10 +10,15 @@
 
 <body>
 <header>
-    <div class="titlebar">
-        <a href="javascript:history.go(-1)"><i class="icon back"></i></a>
-        <h1>主页4</h1>
-    </div>
+    <header>
+		<div class="titlebar">
+			<a href="javascript:history.go(-1)" class="left">
+                <i class="icon-arrowleft"></i>
+            </a>
+			<h1>主页4</h1>
+			<a id="asidemenu"><i class="icon me"></i></a>
+		</div>
+	</header>
 </header>
 <article>
 	<div class="rbox">
@@ -25,7 +30,7 @@
 	    <div class="r6">组织架构</div>
     </div>
 </article>
-<script src="../plugin/seedsui/seedsui.js"></script>
+<script src="../plugin/seedsui/seedsui.min.js"></script>
 <script src="../plugin/exmobi/exmobi.js"></script>
 <script>
 	var r1=document.querySelector(".r1");

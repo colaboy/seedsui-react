@@ -55,6 +55,7 @@
         s.updatePagination = function () {
             if (!s.params.pagination) return;
             s.pagination=document.querySelector(s.params.pagination);
+            if(!s.pagination)return;
             s.bullet=[];
             s.pagination.innerHTML="";
 
@@ -293,7 +294,7 @@
 		support:{
 			touch:(function(){return 'ontouchstart' in window})(),
 			animationend:(function(){return 'onanimationend' in window})(),
-			transitionend:(function(){return 'transitionend' in window})(),
+			transitionend:(function(){return 'ontransitionend' in window})(),
 		}
 	}
 })(window,document,undefined)
