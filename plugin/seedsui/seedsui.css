@@ -53,6 +53,9 @@ label,
 :focus {
   outline: 0 none;
 }
+label {
+  vertical-align: middle;
+}
 img {
   border: 0;
   vertical-align: middle;
@@ -76,6 +79,12 @@ nav,
 section,
 summary {
   display: block;
+}
+.stripe li:nth-child(even) {
+  background-color: #f7f7f7;
+}
+.nostripe li:nth-child(even) {
+  background-color: white;
 }
 pre {
   word-wrap: break-word;
@@ -168,10 +177,10 @@ pre {
   text-overflow: ellipsis;
 }
 .noclick {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 .noclick:active {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 .bg-transparent {
   background-color: transparent;
@@ -712,9 +721,6 @@ small {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
-.default-img {
-  background-image: url(../img/picture/default.png);
-}
 /*-----------------------------global.less(end)-----------------------------*/
 /*----------------mbox.less(start)--------------*/
 html,
@@ -791,7 +797,7 @@ section.active {
 article {
   position: absolute;
   z-index: 0;
-  top: 44px;
+  top: 45px;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -2355,7 +2361,11 @@ aside.active ~ #section_container .section_container_mask {
   line-height: 32px;
 }
 /*logo*/
-.titlebar .logo,
+.titlebar .logo {
+  height: 44px;
+  line-height: 44px;
+  margin: 0 4px;
+}
 .titlebar .logo img {
   min-width: 30px;
   height: 30px;
@@ -2666,6 +2676,67 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
+.tabbar.animate-bracket {
+  /* right flip */
+  /* bottom line */
+}
+.tabbar.animate-bracket .tab-label {
+  width: 100%;
+}
+.tabbar.animate-bracket .tab::before,
+.tabbar.animate-bracket .tab-label::before,
+.tabbar.animate-bracket .tab-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 2px;
+  opacity: 0;
+}
+.tabbar.animate-bracket .tab-label::before,
+.tabbar.animate-bracket .tab-label::after {
+  -webkit-transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 10px, 0);
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.tabbar.animate-bracket .tab.active .tab-label::before,
+.tabbar.animate-bracket .tab.active .tab-label::after {
+  opacity: 1;
+}
+.tabbar.animate-bracket .tab-label::before {
+  left: 0;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+}
+.tabbar.animate-bracket .tab.active .tab-label::before {
+  -webkit-transform: rotate3d(0, 0, 1, -90deg);
+  transform: rotate3d(0, 0, 1, -90deg);
+}
+.tabbar.animate-bracket .tab .tab-label::after {
+  right: 0;
+  -webkit-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+}
+.tabbar.animate-bracket .tab.active .tab-label::after {
+  -webkit-transform: rotate3d(0, 0, 1, 90deg);
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.tabbar.animate-bracket .tab::before {
+  left: 0;
+  width: 100%;
+  -webkit-transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 10px, 0);
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.tabbar.animate-bracket .tab.active::before {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.1s;
+  transition: transform 0.3s, opacity 0.1s;
+}
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -2768,12 +2839,15 @@ button.onlyicon [class*="icon-"] {
 .mark-cancel,
 .mark-warning,
 .mark-disable {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  border-radius: 4px;
+  /* display: inline-block;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: 700;
+	text-align: center;
+	border-radius: 4px; */
+  font-size: 0.95em;
+  padding: 2px 5px;
+  border-radius: 3px;
   color: #fff;
 }
 /*------------------------------button.less(end)------------------------------*/
@@ -4070,14 +4144,15 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .grid li > label {
   display: block;
-  width: 80%;
-  height: 30px;
+  padding: 0 4px;
+  height: 24px;
+  line-height: 24px;
   margin: 0px auto;
-  line-height: 30px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  box-sizing: border-box;
   font-size: 12px;
 }
 .grid li a {
@@ -4142,13 +4217,26 @@ input[type=range]:focus::-ms-fill-upper {
   height: 64px;
   margin: 0px auto;
 }
-.grid.app li > a > [class*="icon-"],
+.grid.app li > a > i,
 .grid.app li > a > img {
   /*文字图标*/
   font-size: 32px;
   width: 32px;
   height: 32px;
   line-height: 32px;
+  background-size: cover;
+}
+/*裸图标控件*/
+.grid.icon li > a {
+  width: 50px;
+  margin: 0px auto;
+}
+.grid.icon li > a > i,
+.grid.app li > a > img {
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
   background-size: cover;
 }
 /*圆角控制*/
@@ -4171,6 +4259,9 @@ input[type=range]:focus::-ms-fill-upper {
   box-sizing: border-box;
   padding: 4px;
 }
+.grid.metro li {
+  padding: 2px;
+}
 /*Metro风格*/
 .grid.metro .tip {
   top: auto;
@@ -4188,7 +4279,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .grid.metro li > a {
   display: block;
-  padding: 12px;
+  padding: 12px 8px;
   color: white;
 }
 .grid.metro li > a label {
@@ -4198,9 +4289,9 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .grid.metro i,
 .grid.metro img {
-  font-size: 64px;
-  width: 64px;
-  height: 64px;
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
 }
 /*缩略图*/
 .grid.thumbnail li > a {
@@ -4230,7 +4321,7 @@ input[type=range]:focus::-ms-fill-upper {
   display: -webkit-flex;
   display: box;
   display: -webkit-box;
-  padding: 0 8px;
+  padding: 6px 4px;
   box-sizing: border-box;
   border-width: 0 0 1px 0;
   border-style: solid;
@@ -4241,8 +4332,12 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 32px;
 }
 .list .justify {
-  min-width: 32px;
-  max-width: 84px;
+  min-width: 0px;
+  max-width: 90px;
+}
+.list .justify,
+.list .justify-content {
+  padding: 4px;
 }
 .list .justify,
 .list .licon,
@@ -4265,24 +4360,28 @@ input[type=range]:focus::-ms-fill-upper {
   max-width: 100%;
 }
 .list .justify-content {
-  padding: 12px 6px;
   overflow: hidden;
   position: relative;
   -webkit-box-flex: 1.0;
   box-flex: 1.0;
 }
+.list .justify-content > p,
+.list .justify-content > a {
+  line-height: 1.5em;
+}
 .list .justify-content small {
   display: block;
-  margin: 4px 0;
+  line-height: 1.5em;
 }
 .list [class*="icon-"] {
   display: inline-block;
   vertical-align: middle;
 }
-.list small.right {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+/*标题小标记*/
+.peg {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
 }
 /*左右小图标*/
 .list .licon {
@@ -4302,10 +4401,24 @@ input[type=range]:focus::-ms-fill-upper {
 .list.nobg li:active {
   background-color: transparent;
 }
-/*新闻列表*/
-.list.newlist .justify-content > a {
+/*无点击*/
+.list li.noclick {
+  background-color: white;
+}
+.list li.noclick:active {
+  background-color: white;
+}
+/*无自适应*/
+.list li.nojustify {
   display: block;
-  height: 40px;
+}
+.list li.nojustify .justify {
+  display: block;
+  max-width: 100%;
+}
+/*新闻列表*/
+.list.newlist [class^=mark-] {
+  margin-right: 4px;
 }
 /*邮件列表*/
 .list .round {
@@ -4369,16 +4482,35 @@ input[type=range]:focus::-ms-fill-upper {
   overflow: hidden;
   font-size: 32px;
 }
-.list.applist .justify-content [class^="icon-"] {
+.list.applist .justify-content i {
   font-size: 12px;
 }
-.list.applist .justify-content [class^="icon-"].active-half {
+.list.applist .justify-content i.active-half {
   /* Chrome10-25,Safari5.1-6 */
   background-image: -webkit-linear-gradient(left, #f4984e 0%, #f4984e 50%, #aaaaaa 51%, #aaaaaa 100%);
   /*W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+*/
   background-image: -webkit-linear-gradient(to right, #f4984e 0%, #f4984e 50%, #aaaaaa 51%, #aaaaaa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+/*位置*/
+.list .top,
+.list .bottom,
+.list .left,
+.list .right {
+  position: absolute;
+}
+.list .top {
+  top: 4px;
+}
+.list .bottom {
+  bottom: 4px;
+}
+.list .left {
+  left: 4px;
+}
+.list .right {
+  right: 4px;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
@@ -4678,12 +4810,21 @@ input[type=range]:focus::-ms-fill-upper {
   vertical-align: middle;
   box-sizing: border-box;
   border-style: solid;
-  border-width: 5px;
-  border-color: transparent;
-  border-image: url(img/input.png) 30 30 stretch;
+  border-width: 0 0 1px 0;
 }
-.richedit.active .input {
-  border-image: url(img/input-active.png) 30 30 stretch;
+.richedit .input:before,
+.richedit .input:after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 5px;
+  bottom: 0;
+}
+.richedit .input:before {
+  left: 0;
+}
+.richedit .input:after {
+  right: 0;
 }
 .richedit textarea {
   background-color: transparent;
@@ -4693,10 +4834,10 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .richedit textarea,
 .richedit pre {
-  padding: 0;
-  line-height: 20px;
-  min-height: 20px;
-  max-height: 20px;
+  padding: 0 4px;
+  line-height: 32px;
+  min-height: 32px;
+  max-height: 32px;
   width: 100%;
 }
 .richedit.active textarea,
@@ -5410,6 +5551,15 @@ aside {
 .tabbar.animate-box .tab-label::after {
   background: #46c2ca;
 }
+.tabbar.animate-bracket .tab.active {
+  color: #46c2ca;
+}
+.tabbar.animate-bracket .tab::before,
+.tabbar.animate-bracket .tab::after,
+.tabbar.animate-bracket .tab-label::before,
+.tabbar.animate-bracket .tab-label::after {
+  background: #46c2ca;
+}
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -5853,6 +6003,20 @@ input[type="radio"][disabled]:checked {
 .richedit figcaption {
   border-color: #dddddd;
 }
+.richedit .input {
+  border-color: #dddddd;
+}
+.richedit .input:before,
+.richedit .input:after {
+  background-color: #dddddd;
+}
+.richedit.active .input {
+  border-color: #46c2ca;
+}
+.richedit.active .input:before,
+.richedit.active .input:after {
+  background-color: #46c2ca;
+}
 /*----------------richedit.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
@@ -5913,6 +6077,9 @@ input[type="radio"][disabled]:checked {
 }
 .list.applist .justify-content [class^="icon-"].active {
   color: #f4984e;
+}
+.peg {
+  background-color: #46c2ca;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------chat.less(start)----------------------------*/

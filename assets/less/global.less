@@ -40,6 +40,9 @@ a{
 a,label, :focus{
 	outline:0 none;
 }
+label{
+	vertical-align: middle;
+}
 img {
   border: 0;
   vertical-align:middle;
@@ -63,6 +66,12 @@ nav,
 section,
 summary {
   display: block;
+}
+.stripe li:nth-child(even){
+	background-color:#f7f7f7;
+}
+.nostripe li:nth-child(even){
+	background-color:white;
 }
 pre{
 	word-wrap: break-word;
@@ -156,10 +165,10 @@ pre{
 	text-overflow:ellipsis;
 }
 .noclick{
-	background-color:transparent !important;;
+	background-color:transparent;
 }
 .noclick:active{
-	background-color:transparent !important;;
+	background-color:transparent;
 }
 .bg-transparent{
 	background-color:transparent;
@@ -648,8 +657,5 @@ small {
 .overflow-auto{
 	overflow: auto;
   	-webkit-overflow-scrolling: touch;
-}
-.default-img{
-	background-image:url(../img/picture/default.png);
 }
 /*-----------------------------global.less(end)-----------------------------*/

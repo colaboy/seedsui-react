@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html manifest="main5.appcache">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-<title>main5</title>
-<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
-<style type="text/css">
-    .sliver{
-    border-bottom:0;
-    color:#898989;
-    padding-top:10px;
-    padding-bottom:10px;
-}
-.dotgray .slider-pagination-bullet{
-    background-color: #dcdcdc;
-}
-.dotgray .slider-pagination-bullet-active {
-    background-color: #18b2ed;
-}
-.rcaption.reply{
-    padding-left:24px;height:20px;line-height:20px;background-image:url(..//img/main5/reply.png);background-size:20px 20px;background-position:left center;background-repeat:no-repeat;
-}
-</style>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>main5</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+    <style type="text/css">
+        /*菜单图标*/
+        .grid.icon li > a > i{
+            font-size:30px;
+            width: 30px;
+            height: 30px;
+            line-height:30px;
+        }
+        /*热门推荐*/
+        .list .list-more{
+            color:#7b7b7b;
+        }
+        /*最新活动*/
+        .picmetro{
+            padding:4px;
+            background-color:white;
+        }
+        .picmetro .case1{
+            height: 244px;
+            margin-right:2px
+        }
+        .picmetro .case1,.picmetro .case2 div{
+            background-size:cover;
+            background-position:center center;
+            background-repeat:no-repeat;
+        }
+        .picmetro .case2{
+            margin-left: 2px;
+        }
+        .picmetro .case2 div:nth-child(1){
+            margin-bottom:2px;
+        }
+        .picmetro .case2 div:nth-child(2){
+            margin-top:2px;
+        }
+    </style>
 </head>
 <body>
     <section id="page_main5" class="active">
@@ -35,7 +54,6 @@
                 <a class="right">
                     <i class="icon-rdouser"></i>
                 </a>
-                
             </div>
         </header>
         <article>
@@ -43,25 +61,25 @@
             <div class="slider-container" id="carrousel1">
                 <div class="slider-wrapper">
                     <div class="slider-slide" data-href="http://www.baidu.com">
-                        <img src="../img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                        <img src="../img/main5/banner.jpg" style="width:100%;"/>
                     </div>
                     <div class="slider-slide" data-href="http://www.sina.com">
-                        <img src="../img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                        <img src="../img/main5/banner.jpg" style="width:100%;"/>
                     </div>
                     <div class="slider-slide" data-href="http://exmobi.cn">
-                        <img src="../img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                        <img src="../img/main5/banner.jpg" style="width:100%;"/>
                     </div>
                     <div class="slider-slide" data-href="http://exmobi.cn">
-                        <img src="../img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                        <img src="../img/main5/banner.jpg" style="width:100%;"/>
                     </div>
                     <div class="slider-slide" data-href="http://exmobi.cn">
-                        <img src="../img/main5/banner.jpg" style="width:100%;height:100%;"/>
+                        <img src="../img/main5/banner.jpg" style="width:100%;"/>
                     </div>
                 </div>
                 <!-- 添加分页 -->
                 <div class="slider-pagination"></div>
             </div>
-            <ul class="grid icon" data-col="4">
+            <ul class="grid icon" data-col="4" style="padding:8px 0 5px 0;background-color:white;">
                 <li>
                     <a style="color:#00c2eb;">
                         <i class="icon-contact-fill"></i>
@@ -87,118 +105,95 @@
                     <label class="grid-label">设置</label>
                 </li>
             </ul>
-
-            <!--功能导航-->
-            <div class="slider-container" id="carrousel2" style="height:250px;background-color:white;">
-            <div class="slider-wrapper">
-            <div class="slider-slide">
-                 <div class="grid round" data-col="4" style="margin-top:0px;padding:0 10px;">
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#ff6666;">
-                            <span class="iconfont talk"></span>
-                        </div>
-                        <label class="grid-label">交流区</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#0078ff;">
-                            <span class="iconfont topic"></span>
-                        </div>
-                        <label class="grid-label">专题汇</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#a273ff;">
-                            <span class="iconfont write"></span>
-                        </div>
-                        <label class="grid-label">鱼价通</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#38b4f8;">
-                            <span class="iconfont look"></span>
-                        </div>
-                        <label class="grid-label">看世界</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#45c18b;">
-                            <span class="iconfont write"></span>
-                        </div>
-                        <label class="grid-label">鱼病库</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#f3a93f;">
-                            <div class="iconfont signin"></div>
-                        </div>
-                        <label class="grid-label">签到</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#21d3c9;">
-                            <span class="iconfont album"></span>
-                        </div>
-                        <label class="grid-label">相册</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#38b4f8;">
-                            <span class="iconfont group"></span>
-                        </div>
-                        <label class="grid-label">群组</label>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-slide">
-                <div class="grid round" data-col="4" style="margin-top:0px;padding:0 10px;">
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#ff6666;">
-                            <span class="iconfont talk"></span>
-                        </div>
-                        <label class="grid-label">交流区</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#0078ff;">
-                            <span class="iconfont topic"></span>
-                        </div>
-                        <label class="grid-label">专题汇</label>
-                    </div>
-                    <div class="grid-cell">
-                        <div class="grid-img" style="background-color:#a273ff;">
-                            <span class="iconfont write"></span>
-                        </div>
-                        <label class="grid-label">鱼价通</label>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <!-- 添加分页 -->
-            <div class="slider-pagination dotgray"></div>
-            </div>
             <!--资讯信息-->
-            <ul class="listitem">
-            	<li class="sliver noborder">今日热门</li>
-                <li onClick="openNativePage('title=列表详情&url=http://www.tongwei.cn')">
-                    <img src="..//img/main5/listimg.png" style="width:72px;height:54px;" class="limg">
-                    <div class="text">
-                         关注  极端天气众说纷纭，水产养殖 应该这么办！
-                        <small class="nowrap">
-                        戏里玉人
-                        2015-11-05
-                        </small>
+            <ul class="list newlist" style="margin-top:10px;">
+            	<li class="noclick">
+                    <div class="justify">
+                        <span class="peg"></span>
                     </div>
-                    <small class="rcaption reply">
-                        24
-                    </small>
+                    <div class="justify-content">今日热门</div>
                 </li>
-                <li onClick="openNativePage('title=列表详情&url=http://www.tongwei.cn')">
-                    <img src="..//img/main5/listimg.png" style="width:72px;height:54px;" class="limg">
-                    <div class="text">
-                         关注  极端天气众说纷纭，水产养殖 应该这么办！
-                        <small class="nowrap">
-                        戏里玉人
-                        2015-11-05
-                        </small>
+                <li>
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">行情</span>本年度最后一次出塘鱼价更新！</p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
                     </div>
-                    <small class="rcaption reply">
-                        24
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">财富</span>华东养虾风向标逆势破困局</p>
+                        <small class="nowrap">华东地区位于长江三角洲，素有“鱼米之乡”美誉，是中国重要的水产养殖区。</small>
+                    </div>
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png">
+                    </div>
+                </li>
+
+                <li class="nojustify">
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">典型</span>七旬老人高效养罗非只赚不亏！</p>
+                        <small class="nowrap">”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？</small>
+                    </div>
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png" class="width-full">
+                    </div>
+                </li>
+                <li>
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">推荐</span>养单一品种风险大，看看这些鱼虾套养模式！</p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
+                    </div>
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">天气</span>元旦三天全国以晴为主，南方阴雨</p>
+                        <small class="nowrap">三天假期我国大部地区天气以晴或多云天气为主，风力不大，气温呈明显回升态势。</small>
+                    </div>
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png">
+                    </div>
+                </li>
+                <li>
+                    <div class="justify-content">
+                        <p><span class="mark-cancel">成效</span>华北养鲤鱼，他们年赚60多万！</p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
+                    </div>
+                    <div class="justify">
+                        <img src="../img/main5/listimg.png">
+                    </div>
+                </li>
+                <li class="list-more">
+                    <div class="justify-content text-center">
+                        <label>更多热门资讯</label><i class="icon-arrowright"></i>
+                    </div>
+                </li>
+            </ul>
+            <!--最新活动-->
+            <ul class="list" style="margin-top:10px;">
+                <li class="noclick">
+                    <div class="justify">
+                        <span class="peg"></span>
+                    </div>
+                    <div class="justify-content">最新活动</div>
+                    <small class="justify">
+                            <label>更多</label>
+                            <i class="icon-arrowbittoright"></i>
                     </small>
                 </li>
             </ul>
+            <div class="box picmetro" id="activity">
+                <div class="box-flex-1 case1" style="background-image: url(../img/main5/1.jpg)"></div>
+                <div class="box box-vertical box-flex-1 case2">
+                    <div class="box-flex-1" style="background-image: url(../img/main5/2.png)"></div>
+                    <div class="box-flex-1" style="background-image: url(../img/main5/3.png)"></div>
+                </div>
+            </div>
         </article>
     </section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
@@ -208,7 +203,7 @@
 		var carrousel1;
 		EventUtil.addHandler(window,"load",function(e){
 			//广告轮播
-			carrousel1 = new Swiper('#carrousel1', {
+			carrousel1 = new Slider('#carrousel1', {
 				pagination: '#carrousel1 .slider-pagination'
 			});
 		});

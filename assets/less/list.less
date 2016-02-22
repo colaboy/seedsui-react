@@ -4,7 +4,7 @@
 	display: -webkit-flex;
 	display: box;
 	display: -webkit-box;
-	padding:0 8px;
+	padding:6px 4px;
 	box-sizing: border-box;
 	border-width: 0 0 1px 0;
 	border-style: solid;
@@ -15,8 +15,11 @@
 	line-height: 32px;
 }
 .list .justify{
-	min-width: 32px;
-	max-width: 84px;
+	min-width: 0px;
+	max-width: 90px;
+}
+.list .justify,.list .justify-content{
+	padding:4px;
 }
 .list .justify,.list .licon,.list .ricon,.list .round{
 	display: flex;
@@ -39,7 +42,6 @@
 }
 
 .list .justify-content{
-	padding:12px 6px;
 	overflow: hidden;
 	position:relative;
 	-webkit-box-flex:1.0;
@@ -50,16 +52,17 @@
 }
 .list .justify-content small{
 	display: block;
-	margin:4px 0;
+	line-height: 1.5em;
 }
 .list [class*="icon-"]{
 	display: inline-block;
     vertical-align: middle;
 }
-.list small.right{
-	position: absolute;
-	top:10px;
-	right: 10px;
+/*标题小标记*/
+.peg{
+    display: inline-block;
+    width: 6px;
+    height: 12px;
 }
 /*左右小图标*/
 .list .licon{
@@ -79,10 +82,24 @@
 .list.nobg li:active{
 	background-color:transparent;
 }
-/*新闻列表*/
-.list.newlist .justify-content>a{
+/*无点击*/
+.list li.noclick{
+	background-color:white;
+}
+.list li.noclick:active{
+	background-color:white;
+}
+/*无自适应*/
+.list li.nojustify{
+	display: block;	
+}
+.list li.nojustify .justify{
 	display: block;
-	height:40px;
+	max-width: 100%;
+}
+/*新闻列表*/
+.list.newlist [class^=mark-]{
+	margin-right:4px;
 }
 /*邮件列表*/
 .list .round{
@@ -145,15 +162,31 @@
 	font-size: 32px;
 }
 
-.list.applist .justify-content [class^="icon-"]{
+.list.applist .justify-content i{
 	font-size: 12px;
 }
-.list.applist .justify-content [class^="icon-"].active-half{
+.list.applist .justify-content i.active-half{
 	/* Chrome10-25,Safari5.1-6 */
 	background-image:-webkit-linear-gradient(left, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
 	/*W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+*/
 	background-image:-webkit-linear-gradient(to right, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+/*位置*/
+.list .top,.list .bottom,.list .left,.list .right{
+	position: absolute;
+}
+.list .top{
+	top:4px;
+}
+.list .bottom{
+	bottom:4px;
+}
+.list .left{
+	left:4px;
+}
+.list .right{
+	right:4px;
 }
 /*----------------------------list.less(end)----------------------------*/
