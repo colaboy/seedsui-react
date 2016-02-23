@@ -43,34 +43,34 @@
         <div class="section_container_mask"></div>
     </div>
     
-<script src="../plugin/jquery/jquery.min.js"></script>
-<script src="../plugin/exmobi/exmobi.js"></script>
-<script type="text/javascript">
-    window.addEventListener("load",function(e){
-        $("#overlayLeft").click(function(){
-            $("#aside_overlay_left").toggleClass("active");
-        });
-		$("#pushLeft").click(function(){
-            $("#aside_push_left").toggleClass("active");
-        });
-		$("#revealLeft").click(function(){
-            $("#aside_reveal_left").toggleClass("active");
-        });
-		$("#overlayRight").click(function(){
-            $("#aside_overlay_right").toggleClass("active");
-        });
-		$("#pushRight").click(function(){
-            $("#aside_push_right").toggleClass("active");
-        });
-		$("#revealRight").click(function(){
-            $("#aside_reveal_right").toggleClass("active");
-        });
-		$(".section_container_mask").click(function(){
-            $("aside").removeClass("active");
-        });
-    },false);
-    //定义exmobi返回
-	function back(){history.go(-1);}
-</script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("load",function(e){
+            $("#overlayLeft").click(function(){
+                $("#aside_overlay_left").toggleClass("active");
+            });
+    		$("#pushLeft").click(function(){
+                $("#aside_push_left").toggleClass("active");
+            });
+    		$("#revealLeft").click(function(){
+                $("#aside_reveal_left").toggleClass("active");
+            });
+    		$("#overlayRight").click(function(){
+                $("#aside_overlay_right").toggleClass("active");
+            });
+    		$("#pushRight").click(function(){
+                $("#aside_push_right").toggleClass("active");
+            });
+    		$("#revealRight").click(function(){
+                $("#aside_reveal_right").toggleClass("active");
+            });
+    		$(".section_container_mask").click(function(){
+                $("aside").removeClass("active");
+            });
+        },false);
+        //定义exmobi返回
+    	function back(){history.go(-1);}
+    </script>
 </body>
 </html>

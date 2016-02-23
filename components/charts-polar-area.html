@@ -9,7 +9,9 @@
 	<section id="page_charts_polar_area" class="active">
 		<header>
 		  <div class="titlebar">
-		    <a href="javascript:history.go(-1)"><i class="icon back"></i></a>
+		    <a href="javascript:history.go(-1)" class="left">
+	            <i class="icon-arrowleft"></i>
+	        </a>
 		    <h1>极地区域图</h1>
 		  </div>
 		</header>
@@ -19,51 +21,51 @@
 			</div>
 		</article>
 	</section>
-<script src="js/charts/Chart.js"></script>
-<script src="js/measy/exmobi.js"></script>
-<script>
-var polarData = [
+	<script src="../plugin/charts/Chart.js"></script>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script>
+	var polarData = [
+			{
+				value: 300,
+				color:"#F7464A",
+			highlight: "#FF5A5E",
+			label: "Red"
+		},
 		{
-			value: 300,
-			color:"#F7464A",
-		highlight: "#FF5A5E",
-		label: "Red"
-	},
-	{
-		value: 50,
-		color: "#46BFBD",
-		highlight: "#5AD3D1",
-		label: "Green"
-	},
-	{
-		value: 100,
-		color: "#FDB45C",
-		highlight: "#FFC870",
-		label: "Yellow"
-	},
-	{
-		value: 40,
-		color: "#949FB1",
-		highlight: "#A8B3C5",
-		label: "Grey"
-	},
-	{
-		value: 120,
-		color: "#4D5360",
-		highlight: "#616774",
-		label: "Dark Grey"
-	}
+			value: 50,
+			color: "#46BFBD",
+			highlight: "#5AD3D1",
+			label: "Green"
+		},
+		{
+			value: 100,
+			color: "#FDB45C",
+			highlight: "#FFC870",
+			label: "Yellow"
+		},
+		{
+			value: 40,
+			color: "#949FB1",
+			highlight: "#A8B3C5",
+			label: "Grey"
+		},
+		{
+			value: 120,
+			color: "#4D5360",
+			highlight: "#616774",
+			label: "Dark Grey"
+		}
 
-];
+	];
 
-window.onload = function(){
-	var ctx = document.getElementById("chart-area").getContext("2d");
-	window.myPolarArea = new Chart(ctx).PolarArea(polarData, {
-		responsive:true
-	});
-};
-//定义exmobi返回
-function back(){history.go(-1);}
-</script>
+	window.onload = function(){
+		var ctx = document.getElementById("chart-area").getContext("2d");
+		window.myPolarArea = new Chart(ctx).PolarArea(polarData, {
+			responsive:true
+		});
+	};
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
 </body>
 </html>

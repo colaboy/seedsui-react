@@ -1,9 +1,4 @@
 /*-----------------------------global.less(start)-----------------------------*/
-/*标签默认样式*/
-::selection {
-  background: #3297fd;
-  color: #fff;
-}
 .pointer-events-none {
   pointer-events: none;
 }
@@ -2838,13 +2833,8 @@ button.onlyicon [class*="icon-"] {
 .mark-success,
 .mark-cancel,
 .mark-warning,
-.mark-disable {
-  /* display: inline-block;
-	padding: 4px 8px;
-	font-size: 12px;
-	font-weight: 700;
-	text-align: center;
-	border-radius: 4px; */
+.mark-disable,
+.mark-primary {
   font-size: 0.95em;
   padding: 2px 5px;
   border-radius: 3px;
@@ -5354,7 +5344,7 @@ body {
 }
 /*标签默认样式*/
 ::selection {
-  background: #46c2ca;
+  background: #36acf4;
   color: #ffffff;
 }
 ::-webkit-input-placeholder {
@@ -5391,10 +5381,10 @@ a:active,
 }
 /*常用颜色*/
 .color-primary {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .bg-primary {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 .color-placeholder {
   color: #aaaaaa;
@@ -5435,17 +5425,17 @@ aside {
   color: #333333;
 }
 .titlebar a {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .titlebar a.disable {
   opacity: 0.5;
 }
 .titlebar a:active:not(.disable) {
-  color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
 }
 .titlebar.reverse {
-  background-color: #46c2ca;
-  border-color: #46c2ca;
+  background-color: #36acf4;
+  border-color: #36acf4;
 }
 .titlebar.reverse h1 {
   color: #ffffff;
@@ -5479,7 +5469,7 @@ aside {
 }
 .rectbar .tab:active,
 .rectbar .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .rectbar,
 .slidebar {
@@ -5487,8 +5477,8 @@ aside {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  color: #46c2ca;
-  border-color: #46c2ca;
+  color: #36acf4;
+  border-color: #36acf4;
 }
 .menubar {
   color: #888888;
@@ -5496,15 +5486,15 @@ aside {
 }
 .menubar .tab:active,
 .menubar .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .menubar.reverse .tab {
-  border-color: #46c2ca;
+  border-color: #36acf4;
 }
 .arrowbar,
 .menubar.reverse {
   color: #ffffff;
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 .arrowbar .tab,
 .menubar.reverse .tab {
@@ -5518,47 +5508,47 @@ aside {
   opacity: 1;
 }
 .arrowbar .tab.active:after {
-  border-top-color: #46c2ca;
+  border-top-color: #36acf4;
 }
 .tabbar {
   background-color: #ffffff;
 }
 .tabbar.animate-slide .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .tabbar.animate-slide .line {
-  background: #46c2ca;
+  background: #36acf4;
 }
 .tabbar.animate-twoline .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .tabbar.animate-twoline .tab::before,
 .tabbar.animate-twoline .tab::after {
-  background: #46c2ca;
+  background: #36acf4;
 }
 .tabbar.animate-oneline .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .tabbar.animate-oneline .tab::before {
-  background: #46c2ca;
+  background: #36acf4;
 }
 .tabbar.animate-box .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .tabbar.animate-box .tab::before,
 .tabbar.animate-box .tab::after,
 .tabbar.animate-box .tab-label::before,
 .tabbar.animate-box .tab-label::after {
-  background: #46c2ca;
+  background: #36acf4;
 }
 .tabbar.animate-bracket .tab.active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .tabbar.animate-bracket .tab::before,
 .tabbar.animate-bracket .tab::after,
 .tabbar.animate-bracket .tab-label::before,
 .tabbar.animate-bracket .tab-label::after {
-  background: #46c2ca;
+  background: #36acf4;
 }
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
@@ -5568,13 +5558,13 @@ input[type="button"],
 input[type="submit"],
 .button {
   color: #ffffff;
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 button.outline,
 input[type="button"].outline,
 .button.outline {
-  color: #46c2ca;
-  border-color: #46c2ca;
+  color: #36acf4;
+  border-color: #36acf4;
   background-color: transparent;
 }
 button:active,
@@ -5582,13 +5572,13 @@ input[type="button"]:active,
 input[type="submit"]:active,
 .button:active {
   color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(70, 194, 202, 0.5);
+  background-color: rgba(54, 172, 244, 0.5);
 }
 button.outline:active,
 input[type="button"].outline:active,
 .button.outline:active {
-  color: rgba(70, 194, 202, 0.5);
-  border-color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
+  border-color: rgba(54, 172, 244, 0.5);
   background-color: transparent;
 }
 /*去色*/
@@ -5745,26 +5735,26 @@ input[type="button"].success.outline:active,
 button.link,
 input[type="button"].link,
 .button.link {
-  color: #46c2ca;
+  color: #36acf4;
   background-color: transparent;
 }
 button.link.outline,
 input[type="button"].link.outline,
 .button.link.outline {
-  border-color: #46c2ca;
-  color: #46c2ca;
+  border-color: #36acf4;
+  color: #36acf4;
 }
 button.link:active,
 input[type="button"].link:active,
 .button.link:active {
-  color: rgba(70, 194, 202, 0.5);
+  color: rgba(54, 172, 244, 0.5);
   background-color: transparent;
 }
 button.link.outline:active,
 input[type="button"].link.outline:active,
 .button.link.outline:active {
-  border-color: rgba(70, 194, 202, 0.5);
-  color: rgba(70, 194, 202, 0.5);
+  border-color: rgba(54, 172, 244, 0.5);
+  color: rgba(54, 172, 244, 0.5);
 }
 /*按钮-气泡*/
 button .tip,
@@ -5800,7 +5790,7 @@ input[type="button"].outline .tip,
 /*激活状态*/
 .button-group > span:not(.disable).active,
 .button-group > span:not(.disable):active {
-  color: #46c2ca;
+  color: #36acf4;
   background-color: #ffffff;
 }
 /*禁用状态*/
@@ -5822,6 +5812,9 @@ input[type="button"].outline .tip,
 }
 .mark-warning {
   background-color: #f4984e;
+}
+.mark-primary {
+  background-color: #36acf4;
 }
 /*------------------------------buttongroup.less(end)------------------------------*/
 /*----------------popup.less.less(start)--------------*/
@@ -5875,10 +5868,10 @@ textarea {
 }
 .input-box [class*="icon-"]:active,
 .input-box [class*="icon-"].active {
-  color: #46c2ca;
+  color: #36acf4;
 }
 .input-box.active {
-  border-color: #46c2ca;
+  border-color: #36acf4;
 }
 .input-box {
   border-color: #dddddd;
@@ -5893,7 +5886,7 @@ textarea {
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  color: #46c2ca;
+  color: #36acf4;
 }
 /*----------------dragrefresh.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
@@ -5917,7 +5910,7 @@ input[type=range]::-ms-track {
 /*添加轨道样式*/
 /*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -5929,7 +5922,7 @@ input[type=range]:active::-webkit-slider-runnable-track {
 }
 /*添加轨道样式-moz*/
 input[type=range]::-moz-range-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-moz-range-track {
@@ -5938,7 +5931,7 @@ input[type=range]::-moz-range-track {
 }
 /*添加轨道样式-ms*/
 input[type=range]::-ms-thumb {
-  background: #46c2ca;
+  background: #36acf4;
   opacity: 1;
 }
 input[type=range]::-ms-track {
@@ -5946,10 +5939,10 @@ input[type=range]::-ms-track {
 }
 input[type=range]::-ms-fill-lower {
   border-color: #ffffff;
-  background: #46c2ca;
+  background: #36acf4;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #46c2ca;
+  background: #36acf4;
 }
 input[type=range]::-ms-fill-upper {
   background: #ffffff;
@@ -5965,19 +5958,19 @@ input[type=range]:focus::-ms-fill-upper {
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #46c2ca;
+  color: #36acf4;
   /*IE10*/
-  border-color: #46c2ca;
+  border-color: #36acf4;
   background-color: #fff;
 }
 progress::-moz-progress-bar {
-  background: #46c2ca;
+  background: #36acf4;
 }
 progress::-webkit-progress-bar {
   background: #ffffff;
 }
 progress::-webkit-progress-value {
-  background: #46c2ca;
+  background: #36acf4;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -5987,7 +5980,7 @@ input[type="radio"] {
 }
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  color: #46c2ca;
+  color: #36acf4;
 }
 input[type="checkbox"][disabled],
 input[type="radio"][disabled],
@@ -6011,11 +6004,11 @@ input[type="radio"][disabled]:checked {
   background-color: #dddddd;
 }
 .richedit.active .input {
-  border-color: #46c2ca;
+  border-color: #36acf4;
 }
 .richedit.active .input:before,
 .richedit.active .input:after {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*----------------richedit.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
@@ -6033,7 +6026,7 @@ input[type="radio"][disabled]:checked {
 }
 /*打开状态小圆点*/
 .switch.active .switch-handle {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*打开状态文字on*/
 .switch.active:after {
@@ -6047,7 +6040,7 @@ input[type="radio"][disabled]:checked {
   color: #aaaaaa;
 }
 .switch.reverse.active {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*----------------toggle.less(end)--------------*/
 /*----------------grid.less(start)--------------*/
@@ -6065,7 +6058,7 @@ input[type="radio"][disabled]:checked {
 }
 /*邮件列表*/
 .list .round {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*应用列表*/
 .list.applist .licon {
@@ -6079,7 +6072,7 @@ input[type="radio"][disabled]:checked {
   color: #f4984e;
 }
 .peg {
-  background-color: #46c2ca;
+  background-color: #36acf4;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------chat.less(start)----------------------------*/
