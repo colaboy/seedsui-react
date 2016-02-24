@@ -30,7 +30,7 @@ var Animate=(function(){
 	function countTo(el){
 		var toNumber=el.getAttribute("data-to")||0;
 		var fromNumber=el.getAttribute("data-from")||0;
-		var duration=el.getAttribute("data-from")||500;
+		var duration=el.getAttribute("data-duration")||500;
 		//总值
 		var diffNumber=toNumber-fromNumber;
 		if(diffNumber<0 || isNaN(fromNumber) || isNaN(toNumber)){
