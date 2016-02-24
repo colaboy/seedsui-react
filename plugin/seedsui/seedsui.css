@@ -3223,7 +3223,7 @@ progress::-webkit-progress-value {
   height: 100%;
   overflow: hidden;
   position: relative;
-  animation: progressexpand 0.5s linear;
+  animation: progressexpand 1s linear;
 }
 .progress-bar .text {
   position: relative;
