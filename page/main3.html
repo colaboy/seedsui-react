@@ -50,6 +50,10 @@
                         <!--page3-->
                         第四页
                     </div>
+                    <div class="slider-slide">
+                        <!--page3-->
+                        第五页
+                    </div>
                 </div>
             </div>
         </article>
@@ -84,13 +88,25 @@
             var tab=tabbar.querySelectorAll(".tab");
             var s=new Slider("#carouselPage",{
                 "onSlideChangeEnd":function(e){
-                    $(".tab").removeClass("active");
-                    $(".tab").eq(e.index).addClass("active");
+                    for(var i=0,t;t=tab[i++];){
+                        t.classList.remove("active");
+                    }
+                    console.log(e.index);
+                    tab[e.index].classList.add("active");
                 }
             });
+            //绑定点击事件
+            for(var j=0,t;t=tab[j++];){
+                (function(j){
+                    t.addEventListener("click",function(){
+                        /*console.log(j);*/
+                        s.slideTo(j-1);
+                    },false);
+                })(j);
+            }
         }
         window.addEventListener("load",function(){
-            var carouselPage=new Slider("#carouselPage");
+            slidebindtab();
         },false);
         //定义exmobi返回
     	function back(){history.go(-1);}
