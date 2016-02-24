@@ -27,14 +27,46 @@ var Animate=(function(){
 		window.msCancelAnimationFrame||
 		function (handler) { window.clearTimeout(handler); };
 
-	function countTo(element,fromNumber,toNumber){
-		var fromNum = fromNumber;
-		var toNum=toNumber;
-		var elem=element;
+	function countTo(el){
+		var toNumber=el.getAttribute("data-to")||0;
+		var fromNumber=el.getAttribute("data-from")||0;
+		var duration=el.getAttribute("data-from")||500;
+		//总值
+		var diffNumber=toNumber-fromNumber;
+		if(diffNumber<0 || isNaN(fromNumber) || isNaN(toNumber)){
+			console.log("请确定开始时间与结束时间是否输入正确！");
+			return;
+		}
+		//帧毫秒
+		var milli=10;
+		//总帧数
+		var fps=duration/milli;
+		//每帧增加的数字
+		var plusNumberFps=Math.round(diffNumber/fps);
+		//如果总帧数大于总值，则将帧数缩减等同于总值，并设置正确的帧毫秒
+		if(plusNumberFps<1){
+			fps=diffNumber;
+			milli=duration/fps;
+			plusNumberFps=Math.round(diffNumber/fps);
+		}
+		console.log("总帧数："+fps+";帧毫秒："+milli+";总值："+diffNumber+";递增："+plusNumberFps);
+
+		var countTimer=setInterval(function(){
+			fromNumber=fromNumber+plusNumberFps;
+			el.innerHTML=fromNumber;
+			if (fromNumber >= toNumber) {
+				el.innerHTML=toNumber;
+				clearInterval(countTimer);
+			}
+		},milli);
+	}
+	function rafCountTo(el){
+		var toNumber=el.getAttribute("data-to")||0;
+		var fromNumber=el.getAttribute("data-from")||0;
 		function step() {
-			fromNum += 1;
-			elem.innerHTML=fromNum;
-			if (fromNum < toNum) {
+			fromNumber += 1;
+			el.innerHTML=fromNumber;
+			if (fromNumber < toNumber) {
 				requestAnimationFrame(step);
 			}
 		}
@@ -90,14 +122,8 @@ var Animate=(function(){
 		//计数器
 		counter:function(){
 			var timers=document.querySelectorAll(".timer");
-			for(var i=0;i<timers.length;i++){
-				var dataTo=timers[i].getAttribute("data-to")||0;
-				var dataFrom=timers[i].getAttribute("data-from")||0;
-				if(dataFrom>dataTo){
-					alert("起始值dataFrom不能大于结束值dataTo");
-					return;
-				}
-				countTo(timers[i],dataFrom,dataTo);
+			for(var i=0,t;t=timers[i++];){
+				countTo(t);
 			}
 		}
 	}
