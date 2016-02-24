@@ -3200,6 +3200,65 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background: #3779d0;
 }
+.progress-bar {
+  height: 20px;
+  /* Can be anything */
+  position: relative;
+  margin: 0px 16px;
+}
+.progress-bar.radius8 {
+  border-radius: 8px;
+}
+.progress-bar.radius8 .progress {
+  border-radius: 8px;
+}
+.progress-bar.radiusround {
+  border-radius: 20px;
+}
+.progress-bar.radiusround .progress {
+  border-radius: 20px;
+}
+.progress-bar .progress {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  animation: progressexpand 2s linear;
+}
+.progress-bar.striped .progress:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-size: 50px 50px;
+  overflow: hidden;
+}
+.progress-bar.striped .progress.animated:after {
+  animation: movestripes 2s linear infinite;
+}
+.progress-bar.threed {
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+}
+.progress-bar.threed .progress {
+  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+}
+@keyframes movestripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes progressexpand {
+  0% {
+    width: 0;
+  }
+}
 /*----------------progress.less(end)--------------*/
 /*----------------range.less(start)--------------*/
 /*去除所有原有样式*/
@@ -6004,7 +6063,13 @@ progress::-webkit-progress-bar {
   background: #ffffff;
 }
 progress::-webkit-progress-value {
-  background: #36acf4;
+  background-color: #36acf4;
+}
+.progress-bar {
+  background-color: #cccccc;
+}
+.progress-bar .progress {
+  background-color: #36acf4;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
