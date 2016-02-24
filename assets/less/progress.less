@@ -41,7 +41,29 @@ progress::-webkit-progress-value  {
   		height: 100%;
   		overflow: hidden;
   		position: relative;
-  		animation: progressexpand 2s linear;
+  		animation: progressexpand 0.5s linear;
+	}
+	.text {
+		position: relative;
+		display: block;
+		margin-top: -18px;
+		width:100%;
+		text-align: center;
+		color:#fff;
+		z-index: 99;
+		a {
+			color:#fff;
+		}
+		&.left {
+			width: auto;
+			text-align:left;
+			margin-left: 12px;
+		}
+		&.right {
+			width:auto;
+			text-align:right;
+			margin-right: 12px
+		}
 	}
 	&.striped
 	{
