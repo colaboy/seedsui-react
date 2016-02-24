@@ -70,8 +70,10 @@
             var tab=tabbar.querySelectorAll(".tab");
             var s=new Slider("#carouselPage",{
                 "onSlideChangeEnd":function(e){
-                    $(".tab").removeClass("active");
-                    $(".tab").eq(e.index).addClass("active");
+                    for(var i=0,t;t=tab[i++];){
+                        t.classList.remove("active");
+                    }
+                    tab[e.index].classList.add("active");
                 }
             });
         }

@@ -10,54 +10,88 @@
 </head>
 
 <body>
-    <aside data-position="left" data-transition="push" id="aside_push_left">你从哪儿来，我从左方来~</aside>
-    <!--主体-->
-    <div id="section_container">
-    	<!--头部-->
+    <section id="page_container" class="active">
     	<header>
-            <div class="titlebar">
-                <a id="pushLeft">
-                	<i class="icon menu"></i>
-                </a>
-                <h1>首页</h1>
-            </div>
-        </header>
-        <!--主体-->
-    	<article style="bottom:54px;">
-        </article>
-        <!--底部-->
-        <footer>
-            <ul class="menubar" id="tabtypeMix1">
+            <ul class="tabbar animate-slide width-full" data-col="5" id="tabbar">
                 <li class="tab active">
-                    <div class="tab-icon tab-icon-wbhome"></div>
+                    <label class="tab-label">头条</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">推荐</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">科技</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">舆情</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">动态</label>
+                </li>
+                <hr/>
+            </ul>
+        </header>
+    	<article style="bottom:54px;">
+            <div class="slider-container" id="carouselPage" style="height: 100%;">
+                <div class="slider-wrapper">
+                    <div class="slider-slide">
+                        <!--page1-->
+                        第一页
+                    </div>
+                    <div class="slider-slide">
+                        <!--page2-->
+                        第二页
+                    </div>
+                    <div class="slider-slide">
+                        <!--page3-->
+                        第三页
+                    </div>
+                    <div class="slider-slide">
+                        <!--page3-->
+                        第四页
+                    </div>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <ul class="menubar">
+                <li class="tab active">
+                    <i class="icon-home-fill"></i>
                     <label class="tab-label">首页</label>
                 </li>
-                <li class="tab" data-toggleById="resources">
-                    <div class="tab-icon tab-icon-wbmes"><div class="tip"></div></div>
+                <li class="tab">
+                    <i class="icon-chattip"></i>
                     <label class="tab-label">消息</label>
                 </li>
                 <li class="tab">
-                    <div class="tab-icon tab-icon-wbuser"></div>
+                    <i class="icon-contact"></i>
                     <label class="tab-label">通讯录</label>
                 </li>
                 <li class="tab">
-                    <div class="tab-icon tab-icon-wbhandbag"></div>
+                    <i class="icon-app"></i>
                     <label class="tab-label">工作台</label>
                 </li>
             </ul>
         </footer>
-        <div class="section_container_mask"></div>
-    </div>
+    </section>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script type="text/javascript">
-    	$("#pushLeft").click(function(){
-            $("#aside_push_left").toggleClass("active");
-        });
-        $(".section_container_mask").click(function(){
-            $("aside").removeClass("active");
-        });
+        //绑定tab
+        function slidebindtab(){
+            var tabbar=document.getElementById("tabbar");
+            var tab=tabbar.querySelectorAll(".tab");
+            var s=new Slider("#carouselPage",{
+                "onSlideChangeEnd":function(e){
+                    $(".tab").removeClass("active");
+                    $(".tab").eq(e.index).addClass("active");
+                }
+            });
+        }
+        window.addEventListener("load",function(){
+            var carouselPage=new Slider("#carouselPage");
+        },false);
         //定义exmobi返回
     	function back(){history.go(-1);}
     </script>

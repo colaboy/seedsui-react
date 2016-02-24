@@ -60,6 +60,9 @@ a:active,.a:active{
 .color-success{
 	color:@color-success;
 }
+hr{
+	border-color: @color-border;
+}
 /*条纹线*/
 .stripe:nth-child(even){
 	background-color:@color-highlight;
@@ -123,13 +126,13 @@ aside {
 /*----------------titlebar.less(end)----------------*/
 
 /*----------------tabbar.less(start)--------------*/
-.rectbar,.slidebar,.arrowbar,.menubar{
+.rectbar,.slidebar,.arrowbar,.menubar,.tabbar{
 	border-color:@color-menubar-border;
 }
-.rectbar .tab:active,.rectbar .tab.active{
+.rectbar .tab:active,.rectbar .tab.active,.tabbar .tab.active{
 	color:@color-menubar-font-active;
 }
-.rectbar,.slidebar{
+.rectbar,.slidebar,.tabbar{
 	color:@color-label;
 }
 .slidebar .tab:active,.slidebar .tab.active{
@@ -164,16 +167,13 @@ aside {
 .arrowbar .tab.active:after{
     border-top-color:@color-menubar-font-active;
 }
-//tabbar 
-.tabbar {
-	background-color: @color-list-bg;
-}
+//tabbar
 .tabbar.animate-slide {
 	.tab.active {
 		color: @color-primary;
 	}
-	.line {
-		background: @color-primary;
+	hr {
+		border-color: @color-primary;
 	}
 }
 .tabbar.animate-twoline {

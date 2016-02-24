@@ -1,7 +1,9 @@
 /*----------------tabbar.less(start)--------------*/
-.rectbar,.slidebar,.arrowbar,.menubar{
+.rectbar,.slidebar,.arrowbar,.menubar,.tabbar{
+	position:relative;
 	display:table;
 }
+
 .tab{
 	position:relative;
 	display:table-cell;
@@ -31,19 +33,19 @@
 	white-space: nowrap;
 	pointer-events: none;
 }
-/*rectbar和slidebar*/
-.rectbar .tab,.slidebar .tab{
+/*rectbar | slidebar | tabbar*/
+.rectbar .tab,.slidebar .tab,.tabbar .tab{
 	border-color:inherit;
 	border-style: solid;
 	background-color: white;
 }
-.rectbar .tab-label,.slidebar .tab-label{
+.rectbar .tab-label,.slidebar .tab-label,.tabbar .tab-label{
 	height: 24px;
 	line-height: 24px;
 	vertical-align: middle;
 }
 /*arrowbar和menubar*/
-.arrowbar .tab .tab-label,.menubar .tab .tab-label{
+.arrowbar .tab-label,.menubar .tab-label{
 	display: block;
 	height: 24px;
 	line-height: 24px;
@@ -72,7 +74,7 @@
 	border-bottom-right-radius: 16px;
 }
 /*slidebar*/
-.slidebar .tab{
+.slidebar .tab,.tabbar .tab{
 	height:40px;
 	line-height: 40px;
 	border-width: 0px 0px 1px 0;
@@ -82,7 +84,7 @@
 }
 
 /*arrowbar*/
-.arrowbar .tab .tab-label:only-child{
+.arrowbar .tab-label:only-child{
 	height:40px;
 	line-height: 40px;
 }
@@ -104,34 +106,26 @@
 	border-style: solid;
 	border-color:inherit;
 }
+
 /*animated tabbar*/
-//tabbar 通用
-.tabbar{
-	.tab {
-		background-color: white;
-		height: 40px;
-	    line-height: 40px;
-	    border-width: 0px 0px 1px 0;
-		.tab-label {
-			height: 24px;
-			line-height: 24px;
-			vertical-align: middle;
-		}
-	}
-}
 //tabbar animate-slide
 .tabbar.animate-slide {
-	position: relative;
+	overflow: hidden;
+	display: block;
+    line-height: 0;
+    font-size: 0;
 	.tab {
+		display: inline-block;
 		-webkit-transition: color 0.4s;
 		transition: color 0.4s;
 	}
-	.line{
+	hr{
 		position: absolute;
 		top: 38px;
 		left: 0;
 		width: 25%;
-		height: 2px;
+		border-width: 2px 0 0 0;
+		border-style: solid;
 		pointer-events: none;
 		-webkit-transition: -webkit-transform 0.5s;
 		transition: transform 0.5s;
@@ -139,31 +133,35 @@
 		-webkit-transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
 		transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
 	}
-	.tab:nth-child(1).active ~ .line {
+	.tab:nth-child(1).active ~ hr {
 		-webkit-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
 	}
 
-	.tab:nth-child(2).active ~ .line {
+	.tab:nth-child(2).active ~ hr {
 		-webkit-transform: translate3d(100%, 0, 0);
 		transform: translate3d(100%, 0, 0);
 	}
 
-	.tab:nth-child(3).active ~ .line {
+	.tab:nth-child(3).active ~ hr {
 		-webkit-transform: translate3d(200%, 0, 0);
 		transform: translate3d(200%, 0, 0);
 	}
 
-	.tab:nth-child(4).active ~ .line {
+	.tab:nth-child(4).active ~ hr {
 		-webkit-transform: translate3d(300%, 0, 0);
 		transform: translate3d(300%, 0, 0);
 	}
 
-	.tab:nth-child(5).active ~ .line {
+	.tab:nth-child(5).active ~ hr {
 		-webkit-transform: translate3d(400%, 0, 0);
 		transform: translate3d(400%, 0, 0);
 	}
-}
+	.tab:nth-child(6).active ~ hr {
+		-webkit-transform: translate3d(500%, 0, 0);
+		transform: translate3d(500%, 0, 0);
+	}
+} 
 //tabbar animate-twoline
 .tabbar.animate-twoline {
 	.tab {
@@ -324,7 +322,7 @@
 	}
 
 	/* right flip */
-	.tab .tab-label::after {
+	.tab-label::after {
 		right: 0;
 		-webkit-transform-origin: 100% 0%;
 		transform-origin: 100% 0%;
@@ -353,4 +351,26 @@
 		transition: transform 0.3s, opacity 0.1s;
 	}
 }
+[data-col="3"] .tab,.animate-slide[data-col="3"] hr{
+	width:33%;
+}
+[data-col="3"] .tab:nth-child(2),.animate-slide[data-col="3"] .tab:nth-child(2).active~hr{
+	width:34%;
+}
+[data-col="4"] .tab,.animate-slide[data-col="4"] hr{
+	width:25%;
+}
+[data-col="5"] .tab,.animate-slide[data-col="5"] hr{
+	width:20%;
+}
+[data-col="6"] .tab,.animate-slide[data-col="6"] hr{
+	width:17%;
+}
+[data-col="6"] .tab:nth-last-child(2),[data-col="6"] .tab:nth-last-child(3){
+	width:16%;
+}
+/* [data-col="6"] .tab:nth-child(1),[data-col="6"] .tab:nth-child(2),[data-col="6"] .tab:nth-child(3),[data-col="6"] .tab:nth-child(5),[data-col="6"] .tab:nth-child(6){
+	width:17%;
+	background-color: red;
+} */
 /*----------------tabbar.less(end)--------------*/

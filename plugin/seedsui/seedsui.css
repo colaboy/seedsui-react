@@ -576,7 +576,8 @@ button.text-left {
 hr {
   border: none;
   clear: both;
-  border-top: 1px solid #ddd;
+  border-width: 2px 0 0 0;
+  border-style: solid;
 }
 br {
   clear: both;
@@ -2392,7 +2393,9 @@ aside.active ~ #section_container .section_container_mask {
 .rectbar,
 .slidebar,
 .arrowbar,
-.menubar {
+.menubar,
+.tabbar {
+  position: relative;
   display: table;
 }
 .tab {
@@ -2424,22 +2427,24 @@ aside.active ~ #section_container .section_container_mask {
   white-space: nowrap;
   pointer-events: none;
 }
-/*rectbar和slidebar*/
+/*rectbar | slidebar | tabbar*/
 .rectbar .tab,
-.slidebar .tab {
+.slidebar .tab,
+.tabbar .tab {
   border-color: inherit;
   border-style: solid;
   background-color: white;
 }
 .rectbar .tab-label,
-.slidebar .tab-label {
+.slidebar .tab-label,
+.tabbar .tab-label {
   height: 24px;
   line-height: 24px;
   vertical-align: middle;
 }
 /*arrowbar和menubar*/
-.arrowbar .tab .tab-label,
-.menubar .tab .tab-label {
+.arrowbar .tab-label,
+.menubar .tab-label {
   display: block;
   height: 24px;
   line-height: 24px;
@@ -2467,7 +2472,8 @@ aside.active ~ #section_container .section_container_mask {
   border-bottom-right-radius: 16px;
 }
 /*slidebar*/
-.slidebar .tab {
+.slidebar .tab,
+.tabbar .tab {
   height: 40px;
   line-height: 40px;
   border-width: 0px 0px 1px 0;
@@ -2477,7 +2483,7 @@ aside.active ~ #section_container .section_container_mask {
   border-width: 0px 0px 3px 0;
 }
 /*arrowbar*/
-.arrowbar .tab .tab-label:only-child {
+.arrowbar .tab-label:only-child {
   height: 40px;
   line-height: 40px;
 }
@@ -2500,30 +2506,24 @@ aside.active ~ #section_container .section_container_mask {
   border-color: inherit;
 }
 /*animated tabbar*/
-.tabbar .tab {
-  background-color: white;
-  height: 40px;
-  line-height: 40px;
-  border-width: 0px 0px 1px 0;
-}
-.tabbar .tab .tab-label {
-  height: 24px;
-  line-height: 24px;
-  vertical-align: middle;
-}
 .tabbar.animate-slide {
-  position: relative;
+  overflow: hidden;
+  display: block;
+  line-height: 0;
+  font-size: 0;
 }
 .tabbar.animate-slide .tab {
+  display: inline-block;
   -webkit-transition: color 0.4s;
   transition: color 0.4s;
 }
-.tabbar.animate-slide .line {
+.tabbar.animate-slide hr {
   position: absolute;
   top: 38px;
   left: 0;
   width: 25%;
-  height: 2px;
+  border-width: 2px 0 0 0;
+  border-style: solid;
   pointer-events: none;
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
@@ -2531,25 +2531,29 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
   transition-timing-function: cubic-bezier(1, 0.01, 0, 1.22);
 }
-.tabbar.animate-slide .tab:nth-child(1).active ~ .line {
+.tabbar.animate-slide .tab:nth-child(1).active ~ hr {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-.tabbar.animate-slide .tab:nth-child(2).active ~ .line {
+.tabbar.animate-slide .tab:nth-child(2).active ~ hr {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
-.tabbar.animate-slide .tab:nth-child(3).active ~ .line {
+.tabbar.animate-slide .tab:nth-child(3).active ~ hr {
   -webkit-transform: translate3d(200%, 0, 0);
   transform: translate3d(200%, 0, 0);
 }
-.tabbar.animate-slide .tab:nth-child(4).active ~ .line {
+.tabbar.animate-slide .tab:nth-child(4).active ~ hr {
   -webkit-transform: translate3d(300%, 0, 0);
   transform: translate3d(300%, 0, 0);
 }
-.tabbar.animate-slide .tab:nth-child(5).active ~ .line {
+.tabbar.animate-slide .tab:nth-child(5).active ~ hr {
   -webkit-transform: translate3d(400%, 0, 0);
   transform: translate3d(400%, 0, 0);
+}
+.tabbar.animate-slide .tab:nth-child(6).active ~ hr {
+  -webkit-transform: translate3d(500%, 0, 0);
+  transform: translate3d(500%, 0, 0);
 }
 .tabbar.animate-twoline .tab {
   -webkit-transition: color 0.4s;
@@ -2708,7 +2712,7 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-transform: rotate3d(0, 0, 1, -90deg);
   transform: rotate3d(0, 0, 1, -90deg);
 }
-.tabbar.animate-bracket .tab .tab-label::after {
+.tabbar.animate-bracket .tab-label::after {
   right: 0;
   -webkit-transform-origin: 100% 0%;
   transform-origin: 100% 0%;
@@ -2732,6 +2736,34 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-transition: -webkit-transform 0.3s, opacity 0.1s;
   transition: transform 0.3s, opacity 0.1s;
 }
+[data-col="3"] .tab,
+.animate-slide[data-col="3"] hr {
+  width: 33%;
+}
+[data-col="3"] .tab:nth-child(2),
+.animate-slide[data-col="3"] .tab:nth-child(2).active ~ hr {
+  width: 34%;
+}
+[data-col="4"] .tab,
+.animate-slide[data-col="4"] hr {
+  width: 25%;
+}
+[data-col="5"] .tab,
+.animate-slide[data-col="5"] hr {
+  width: 20%;
+}
+[data-col="6"] .tab,
+.animate-slide[data-col="6"] hr {
+  width: 17%;
+}
+[data-col="6"] .tab:nth-last-child(2),
+[data-col="6"] .tab:nth-last-child(3) {
+  width: 16%;
+}
+/* [data-col="6"] .tab:nth-child(1),[data-col="6"] .tab:nth-child(2),[data-col="6"] .tab:nth-child(3),[data-col="6"] .tab:nth-child(5),[data-col="6"] .tab:nth-child(6){
+	width:17%;
+	background-color: red;
+} */
 /*----------------tabbar.less(end)--------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -4954,7 +4986,6 @@ input[type=range]:focus::-ms-fill-upper {
   float: left;
   overflow: auto;
   background-size: cover;
-  text-align: center;
   box-sizing: border-box;
 }
 .slider-slide img {
@@ -5398,6 +5429,9 @@ a:active,
 .color-success {
   color: #2eb398;
 }
+hr {
+  border-color: #dddddd;
+}
 /*条纹线*/
 .stripe:nth-child(even) {
   background-color: #ebebeb;
@@ -5464,15 +5498,18 @@ aside {
 .rectbar,
 .slidebar,
 .arrowbar,
-.menubar {
+.menubar,
+.tabbar {
   border-color: #dddddd;
 }
 .rectbar .tab:active,
-.rectbar .tab.active {
+.rectbar .tab.active,
+.tabbar .tab.active {
   color: #36acf4;
 }
 .rectbar,
-.slidebar {
+.slidebar,
+.tabbar {
   color: #666666;
 }
 .slidebar .tab:active,
@@ -5510,14 +5547,11 @@ aside {
 .arrowbar .tab.active:after {
   border-top-color: #36acf4;
 }
-.tabbar {
-  background-color: #ffffff;
-}
 .tabbar.animate-slide .tab.active {
   color: #36acf4;
 }
-.tabbar.animate-slide .line {
-  background: #36acf4;
+.tabbar.animate-slide hr {
+  border-color: #36acf4;
 }
 .tabbar.animate-twoline .tab.active {
   color: #36acf4;
