@@ -11,37 +11,37 @@
 	text-align: center;
 }
 .grid[data-rowspace="0"] li{
-	margin-top:0px;
+	padding-top:0px;
 }
 .grid[data-rowspace="6"] li{
-	margin-top:6px;
+	padding-top:6px;
 }
 .grid[data-rowspace="6"] li:last-child{
-	margin-bottom:8px;
+	padding-bottom:8px;
 }
 .grid[data-rowspace="8"] li{
-	margin-top:8px;
+	padding-top:8px;
 }
 .grid[data-rowspace="8"] li:last-child{
-	margin-bottom:10px;
+	padding-bottom:10px;
 }
 .grid[data-rowspace="10"] li{
-	margin-top:10px;
+	padding-top:10px;
 }
 .grid[data-rowspace="10"] li:last-child{
-	margin-bottom:12px;
+	padding-bottom:12px;
 }
 .grid[data-rowspace="12"] li{
-	margin-top:12px;
+	padding-top:12px;
 }
 .grid[data-rowspace="12"] li:last-child{
-	margin-bottom:14px;
+	padding-bottom:14px;
 }
 .grid[data-rowspace="30"] li{
-	margin-top:30px;
+	padding-top:30px;
 }
 .grid[data-rowspace="30"] li:last-child{
-	margin-bottom:32px;
+	padding-bottom:32px;
 }
 .grid li>label{
 	display:block;
@@ -115,10 +115,12 @@
 	width:20%;
 }
 /*应用图标控件*/
-.grid.app li>a{
+.grid.app li>a,.grid.app.border li>a{
 	width:64px;
 	height:64px;
 	margin:0px auto;
+
+	color:white;
 }
 .grid.app li>a>i,.grid.app li>a>img{
 	/*文字图标*/
@@ -127,6 +129,14 @@
 	height:32px;
 	line-height: 32px;
 	background-size:cover;
+}
+/*应用图标控件-线框*/
+.grid.app.border li>a{
+	border-width: 1px;
+	border-style: solid;
+
+	border-color: #afadad;
+	color:#636363;
 }
 /*裸图标控件*/
 .grid.icon li>a{
@@ -139,6 +149,20 @@
 	height:50px;
 	line-height: 50px;
 	background-size:cover;
+}
+/*裸图标控件-border*/
+.grid.icon.border{
+	border-width: 0 0 1px 0;
+	border-style: solid;
+
+	border-color: #ddd;
+}
+.grid.icon.border li{
+	border-width: 1px 1px 0 0;
+	border-style: solid;
+	box-sizing: border-box;
+
+	border-color: #ddd;
 }
 /*圆角控制*/
 .grid.radiusround li>a{

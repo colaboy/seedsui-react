@@ -190,6 +190,7 @@
 			s.stopAutoplay();
 			//runCallBacks
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
+			e.stopPropagation();
 		};
 		s.onTouchmove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
@@ -253,7 +254,7 @@
           Method
           ===========================*/
         s.slideTo=function(slideIndex){
-        	if(slideIndex){
+        	if(slideIndex>=0){
 				s.index=slideIndex;
 			}
 

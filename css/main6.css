@@ -4,9 +4,8 @@
 	border-top: 1px solid #ddd;	
 	border-bottom: 1px solid #ddd;	
 }
-.grid .grid-icon {
-	border-radius:100px;
-	color:#ffffff;
+.grid.app a{
+	color:white;
 }
 .grid .grid1 {
 	background-color:#3498db;
@@ -58,7 +57,4 @@
 	-webkit-animation-delay:800ms;
 	-ms-animation-delay:800ms;
 	animation-delay:800ms;
-}
-.sliver {
-	background: transparent;
 }
