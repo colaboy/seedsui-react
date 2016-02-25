@@ -21,7 +21,6 @@
         </div>
 		</header>
 	    <article class="active" data-scroll="true" style="top:44px;bottom:0px">
-	    <div class="scroller">
 	    	<div class="top-banner">
 		    	<div class="user-info">
 		    		<div class="user-img rollIn animated" style="background-image:url('../img/main7/user.jpg')">
@@ -38,8 +37,8 @@
 		    </div>
 		    <div class="v-grid animated fadeInUp" id="grid_container">
 		    	<div class="grid-cell animated fadeInRight" id="grid1">
-		    		<div class="dot bg-1" style="background-color:red;"></div>
-		    		<div class="grid-icon bg-1">
+		    		<div class="dot bg-1"></div>
+		    		<div class="grid-icon box box-middlecenter bg-1">
 						<span class="icon-mail-fill" style="font-size:30px;"></span>
 						<span class="tip">8</span>
 					</div>
@@ -52,7 +51,7 @@
 		    	</div>
 		    	<div class="grid-cell animated fadeInRight" id="grid2">
 		    		<div class="dot bg-2"></div>
-		    		<div class="grid-icon bg-2">
+		    		<div class="grid-icon box box-middlecenter bg-2">
 						<span class="icon-contact-fill" style="font-size:30px;"></span>
 					</div>
 					<div class="grid-name animated fadeInRight">
@@ -64,7 +63,7 @@
 		    	</div>
 		    	<div class="grid-cell animated fadeInRight" id="grid3">
 		    		<div class="dot bg-3"></div>
-		    		<div class="grid-icon bg-3">
+		    		<div class="grid-icon box box-middlecenter bg-3">
 						<span class="icon-write-fill" style="font-size:30px;"></span>
 						<span class="tip bg-pomegranate">18</span>
 					</div>
@@ -77,7 +76,7 @@
 		    	</div>
 		    	<div class="grid-cell animated fadeInRight" id="grid4">
 		    		<div class="dot bg-4"></div>
-		    		<div class="grid-icon bg-4">
+		    		<div class="grid-icon box box-middlecenter bg-4">
 						<span class="icon-position-fill" style="font-size:30px;"></span>
 					</div>
 					<div class="grid-name">
@@ -89,7 +88,7 @@
 		    	</div>
 		    	<div class="grid-cell animated fadeInRight" id="grid5">
 		    		<div class="dot bg-5"></div>
-		    		<div class="grid-icon bg-5">
+		    		<div class="grid-icon box box-middlecenter bg-5">
 						<span class="icon-gear-fill" style="font-size:30px;"></span>
 					</div>
 					<div class="grid-name">
@@ -101,7 +100,7 @@
 		    	</div>
 		    	<div class="grid-cell animated fadeInRight" id="grid6">
 		    		<div class="dot bg-6"></div>
-		    		<div class="grid-icon bg-6">
+		    		<div class="grid-icon box box-middlecenter bg-6">
 						<span class="icon-chartpie-fill" style="font-size:30px;"></span>
 					</div>
 					<div class="grid-name">
@@ -113,7 +112,6 @@
 		    	</div>
 		    	<div class="clearfix"></div>
 		    </div>
-	    </div>
 	    </article>
 	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
@@ -122,10 +120,7 @@
 
 	<script>
 		function setGridHeight(){
-			var cHeight = $(window).height();
-		    var headerHeight = $("header").height();
-		    var bannerHeight = $(".top-banner").height();
-		    var gridContainerHeight = cHeight - headerHeight - bannerHeight - 42;
+		    var gridContainerHeight = window.innerHeight - 44 - 100 - 60;
 		    $("#grid_container").css("min-height" , gridContainerHeight);
 		}
 		setGridHeight();
