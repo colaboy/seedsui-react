@@ -13,9 +13,7 @@
 	-ms-animation-delay:100ms;
 	animation-delay:100ms;
 }
-.grid .grid1:active {
-	background-color: #278CB4;
-}
+
 .grid .grid2 {
 	background-color:#F39C12;
 	-webkit-animation-delay:200ms;
@@ -57,4 +55,7 @@
 	-webkit-animation-delay:800ms;
 	-ms-animation-delay:800ms;
 	animation-delay:800ms;
+}
+.delay0{
+	
 }

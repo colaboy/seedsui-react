@@ -75,12 +75,6 @@ section,
 summary {
   display: block;
 }
-.stripe li:nth-child(even) {
-  background-color: #f7f7f7;
-}
-.nostripe li:nth-child(even) {
-  background-color: white;
-}
 pre {
   word-wrap: break-word;
 }
@@ -4355,37 +4349,35 @@ input[type=range]:focus::-ms-fill-upper {
   line-height: 32px;
   background-size: cover;
 }
-/*应用图标控件-线框*/
+/*应用图标控件-border*/
 .grid.app.border li > a {
   border-width: 1px;
   border-style: solid;
-  border-color: #afadad;
-  color: #636363;
 }
 /*裸图标控件*/
 .grid.icon li > a {
   width: 50px;
   margin: 0px auto;
 }
-.grid.icon li > a > i,
+.grid.icon li > a > i {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
 .grid.app li > a > img {
-  font-size: 50px;
   width: 50px;
   height: 50px;
-  line-height: 50px;
-  background-size: cover;
 }
 /*裸图标控件-border*/
 .grid.icon.border {
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: #ddd;
 }
 .grid.icon.border li {
   border-width: 1px 1px 0 0;
   border-style: solid;
   box-sizing: border-box;
-  border-color: #ddd;
 }
 /*圆角控制*/
 .grid.radiusround li > a {
@@ -5494,6 +5486,7 @@ ul.weather-otherday li {
 }
 /*-----------------------------weather.less(end)-----------------------------*/
 /*控件*/
+/*常用颜色*/
 /*-----------------------------global.less(start)-----------------------------*/
 body {
   background-color: #f4f4f4;
@@ -6194,6 +6187,16 @@ input[type="radio"][disabled]:checked {
 .grid li > label {
   color: #666666;
 }
+/*应用图标控件-border*/
+.grid.app.border li > a {
+  border-color: #aaaaaa;
+  color: #666666;
+}
+/*裸图标控件-border*/
+.grid.icon.border,
+.grid.icon.border li {
+  border-color: #dddddd;
+}
 /*----------------grid.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
 .list li {
@@ -6254,7 +6257,7 @@ table {
 /*---------------table.less(end)---------------*/
 /*color.less.less(end)*/
 /*----------------theme.less(start)--------------*/
-/*常用颜色*/
+/*控件颜色*/
 .color-primary {
   color: #36acf4;
 }
@@ -6284,5 +6287,67 @@ table {
 }
 .color-tip {
   color: #fc4349;
+}
+/*随机颜色*/
+.color-1 {
+  color: #53c6fd;
+}
+.color-2 {
+  color: #ffae02;
+}
+.color-3 {
+  color: #3ae3ea;
+}
+.color-4 {
+  color: #ff6f36;
+}
+.color-5 {
+  color: #cf7af3;
+}
+.color-6 {
+  color: #4cd32e;
+}
+.color-7 {
+  color: #4587f7;
+}
+.color-8 {
+  color: #00c2eb;
+}
+.color-9 {
+  color: #ff618f;
+}
+.color-10 {
+  color: #21d9a1;
+}
+/*背景颜色*/
+.bg-1 {
+  background-color: #53c6fd;
+}
+.bg-2 {
+  background-color: #ffae02;
+}
+.bg-3 {
+  background-color: #3ae3ea;
+}
+.bg-4 {
+  background-color: #ff6f36;
+}
+.bg-5 {
+  background-color: #cf7af3;
+}
+.bg-6 {
+  background-color: #4cd32e;
+}
+.bg-7 {
+  background-color: #4587f7;
+}
+.bg-8 {
+  background-color: #00c2eb;
+}
+.bg-9 {
+  background-color: #ff618f;
+}
+.bg-10 {
+  background-color: #21d9a1;
 }
 /*----------------theme.less(end)--------------*/

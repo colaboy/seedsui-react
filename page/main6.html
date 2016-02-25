@@ -114,15 +114,22 @@
             </li>
         </ul>
     </article>
-	<!-- 第三方插件 -->
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
-	<!-- 应用js -->
-	<!-- <script src="../js/app.js"></script> -->
 	<script>
-		
+		var gridOpt=document.querySelectorAll(".grid>li>a");
+		[].slice.call(gridOpt).forEach(function(n,i,a){
+			EventUtil.addHandler(n,"animationend",function(){
+				n.classList.remove("animated","flipInX","flipInY");
+				n.style.webkitAnimationDelay="0s";
+			});
+			EventUtil.addHandler(n,"click",function(){
+				n.classList.add("animated","flipInY");
+			});
+		});
+		//定义exmobi返回
+		function back(){history.go(-1);}
 	</script>
-    
 </body>
 </html>

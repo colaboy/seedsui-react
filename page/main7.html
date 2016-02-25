@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>main7</title>
+
+<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+<link rel="stylesheet" href="../plugin/animate/animate.css">
+<link rel="stylesheet" href="../css/main7.css"/>
+</head>
+<body>
+	<section id="page_main7" class="active">
+	   <header>
+		    <div class="titlebar">
+            <a href="javascript:history.go(-1)">
+                <i class="icon-arrowleft"></i>
+            </a>
+            <h1>首页</h1>
+        </div>
+		</header>
+	    <article class="active" data-scroll="true" style="top:44px;bottom:0px">
+	    <div class="scroller">
+	    	<div class="top-banner">
+		    	<div class="user-info">
+		    		<div class="user-img rollIn animated" style="background-image:url('../img/main7/user.jpg')">
+		    		</div>
+		    		<div class="fadeInRight animated" style="float:left;">
+			    		<div class="user-name">
+			    			张三
+			    		</div>
+			    		<div class="user-detail">
+			    			业务产品部  - UED
+			    		</div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="v-grid animated fadeInUp" id="grid_container">
+		    	<div class="grid-cell animated fadeInRight" id="grid1">
+		    		<div class="dot bg-1" style="background-color:red;"></div>
+		    		<div class="grid-icon bg-1">
+						<span class="icon-mail-fill" style="font-size:30px;"></span>
+						<span class="tip">8</span>
+					</div>
+					<div class="grid-name animated fadeInRight">
+						<label class="large-text">邮件</label>
+						<br />
+						<label class="small-text">E-mail</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid2">
+		    		<div class="dot bg-2"></div>
+		    		<div class="grid-icon bg-2">
+						<span class="icon-contact-fill" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name animated fadeInRight">
+						<label class="large-text">通讯录</label>
+						<br />
+						<label class="small-text">Contacts</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid3">
+		    		<div class="dot bg-3"></div>
+		    		<div class="grid-icon bg-3">
+						<span class="icon-write-fill" style="font-size:30px;"></span>
+						<span class="tip bg-pomegranate">18</span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">公文审批</label>
+						<br />
+						<label class="small-text">Document Approval</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid4">
+		    		<div class="dot bg-4"></div>
+		    		<div class="grid-icon bg-4">
+						<span class="icon-position-fill" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">地图定位</label>
+						<br />
+						<label class="small-text">Location</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid5">
+		    		<div class="dot bg-5"></div>
+		    		<div class="grid-icon bg-5">
+						<span class="icon-gear-fill" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">设置</label>
+						<br />
+						<label class="small-text">Settings</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="grid-cell animated fadeInRight" id="grid6">
+		    		<div class="dot bg-6"></div>
+		    		<div class="grid-icon bg-6">
+						<span class="icon-chartpie-fill" style="font-size:30px;"></span>
+					</div>
+					<div class="grid-name">
+						<label class="large-text">数据分析</label>
+						<br />
+						<label class="small-text">Statistics</label>
+					</div>
+					<div class="clearfix"></div>
+		    	</div>
+		    	<div class="clearfix"></div>
+		    </div>
+	    </div>
+	    </article>
+	</section>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script src="../plugin/seedsui/seedsui.min.js"></script>
+
+	<script>
+		function setGridHeight(){
+			var cHeight = $(window).height();
+		    var headerHeight = $("header").height();
+		    var bannerHeight = $(".top-banner").height();
+		    var gridContainerHeight = cHeight - headerHeight - bannerHeight - 42;
+		    $("#grid_container").css("min-height" , gridContainerHeight);
+		}
+		setGridHeight();
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

@@ -58,7 +58,39 @@
 			}
 			return "swiperight";
 		}, false );
-	}
+	};
+	//transtionend事件与animationend兼容写法
+	var transitionend,animationend;
+	function whichTransitionEvent(){
+		var t,
+		el = document.createElement("fakeelement");
+		var transitions = {
+			"transition"      : "transitionend",
+			"OTransition"     : "oTransitionEnd",
+			"MozTransition"   : "transitionend",
+			"WebkitTransition": "webkitTransitionEnd"
+		};
+		for (t in transitions){
+			if (el.style[t] !== undefined){
+				return transitions[t];
+			}
+		}
+	};
+	function whichAnimationEvent(){
+		var t,
+		el = document.createElement("fakeelement");
+		var animations = {
+			"animation"      : "animationend",
+			"OAnimation"     : "oAnimationEnd",
+			"MozAnimation"   : "animationend",
+			"WebkitAnimation": "webkitAnimationEnd"
+		};
+		for (t in animations){
+			if (el.style[t] !== undefined){
+				return animations[t];
+			}
+		}
+	};
 	var EventUtil = {
 		/**
 		 * 绑定事件
@@ -80,23 +112,27 @@
 			}
 			//animationend
 			if(type.toLowerCase()==="animationend"){
-				
-				if (element.addEventListener) {
-					element.addEventListener(type, handler, false);
-				}else if(element.attachEvent){
-					element.attachEvent(type, handler);
+				if(!animationend){
+					animationend=whichAnimationEvent();
 				}
-				//"webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", handler, false
+				if (element.addEventListener) {
+					element.addEventListener(animationend, handler, false);
+				}else if(element.attachEvent){
+					element.attachEvent(animationend, handler);
+				}
+				//webkitAnimationEnd oanimationend msAnimationEnd animationend
 				return;
 			}
 			//TransitionEnd
 			if(type.toLowerCase()==="transitionend"){
-				if (element.addEventListener) {
-					element.addEventListener(type, handler, false);
-				}else if(element.attachEvent){
-					element.attachEvent(type, handler);
+				if(!transitionend){
+					transitionend=whichTransitionEvent();
 				}
-				//"webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend", handler, false
+				if (element.addEventListener) {
+					element.addEventListener(transitionend, handler, false);
+				}else if(element.attachEvent){
+					element.attachEvent(transitionend, handler);
+				}
 				return;
 			}
 			//oninput

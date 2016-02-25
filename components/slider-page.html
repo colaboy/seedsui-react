@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>slider-page</title>
+<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+<style>
+</style>
+</head>
+
+<body>
+    <section id="page_sliderPage" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)" class="left"><i class="icon-arrowleft"></i></a>
+                <h1>滑动页面</h1>
+            </div>
+            <ul class="tabbar animate-slide width-full" data-col="5" id="tabbar">
+                <li class="tab active">
+                    <label class="tab-label">头条</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">推荐</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">科技</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">舆情</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">动态</label>
+                </li>
+                <hr/>
+            </ul>
+        </header>
+        <article style="top:84px;">
+            <div class="slider-container" id="carouselPage" style="height: 100%;">
+                <div class="slider-wrapper">
+                    <div class="slider-slide">
+                        <!--banner:start-->
+                        <div class="slider-container" id="carousel1">
+                            <div class="slider-wrapper">
+                                <div class="slider-slide">
+                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
+                                    <div class="slide-title">新闻标题1</div>
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
+                                    <div class="slide-title">新闻标题2</div>
+                                </div>
+                                <div class="slider-slide">
+                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
+                                    <div class="slide-title">新闻标题3</div>
+                                </div>
+                            </div>
+                            <div class="slider-pagination"></div>
+                        </div>
+                        <!--banner:end-->
+                        第一页
+                    </div>
+                    <div class="slider-slide">
+                        第二页
+                    </div>
+                    <div class="slider-slide">
+                        第三页
+                    </div>
+                    <div class="slider-slide">
+                        第四页
+                    </div>
+                    <div class="slider-slide">
+                        第五页
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script type="text/javascript">
+        var tabbar=document.getElementById("tabbar");
+        var tab=tabbar.querySelectorAll(".tab");
+        var carouselPage;
+        //初始化滑动容器
+        function initSlider(){
+            carouselPage=new Slider("#carouselPage",{
+                "onSlideChangeEnd":function(e){
+                    tabActive(e.index);
+                }
+            });
+            var carousel1=new Slider("#carousel1",{
+                "pagination":"#carousel1 .slider-pagination"
+            });
+        }
+        //选中tab
+        function tabActive(index){
+            for(var i=0,t;t=tab[i++];){
+                t.classList.remove("active");
+            }
+            tab[index].classList.add("active");
+        }
+        //绑定tab点击事件
+        function tabBindClick(){
+            for(var i=0,t;t=tab[i++];){
+                (function(i){
+                    t.addEventListener("click",function(){
+                        carouselPage.slideTo(i-1);
+                        tabActive(i-1);
+                    },false);
+                })(i);
+            }
+        }
+        window.addEventListener("load",function(){
+            initSlider();
+            tabBindClick();
+        },false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>
