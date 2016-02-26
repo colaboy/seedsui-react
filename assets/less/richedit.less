@@ -11,51 +11,13 @@
 	display:none;
 	font-size:0;
 	padding:8px 0;
-	height:90px;
-	overflow:auto;
+	height:170px;
 }
 .face.active{
 	display:block;
 }
 .richinput img{
 	width:24px;
-}
-[data-face]{
-	display:inline-block;
-	width:14%;
-	height: 28px;
-	margin: 8px 0;
-	background-size:contain;
-	background-repeat:no-repeat;
-	background-position:center center;
-	vertical-align: middle;
-}
-[data-face="[baibai]"]{
-	background-image:url(img/face/baibai.png);
-}
-[data-face="[fadai]"]{
-	background-image:url(img/face/fadai.png);
-}
-[data-face="[huaixiao]"]{
-	background-image:url(img/face/huaixiao.png);
-}
-[data-face="[liuhan]"]{
-	background-image:url(img/face/liuhan.png);
-}
-[data-face="[outu]"]{
-	background-image:url(img/face/outu.png);
-}
-[data-face="[weixiao]"]{
-	background-image:url(img/face/weixiao.png);
-}
-[data-face="[yun]"]{
-	background-image:url(img/face/yun.png);
-}
-[data-face="[zhayan]"]{
-	background-image:url(img/face/zhayan.png);
-}
-[data-face="[ziya]"]{
-	background-image:url(img/face/ziya.png);
 }
 
 /*输入框区域*/
@@ -142,5 +104,16 @@
 }
 .richedit.active+.mask{
 	display:block;
+}
+
+/*表情滑动容器小点点*/
+.slider-pagination{
+	text-align:center;
+}
+.slider-pagination .bullet{
+    background-color:#cfcfcf;
+}
+.slider-pagination .bullet.active{
+	background-color:#a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/

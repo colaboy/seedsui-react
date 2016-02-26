@@ -174,6 +174,7 @@ var Richeditor={
 	 * @return void
 	 */
 	richEdit:function(selector){
+		var carouselFace;
 		var richEdit=document.querySelector(selector);
 		var mask=document.querySelector(selector+"+.mask");
 		var facebox=richEdit.querySelector(".face");
@@ -209,6 +210,12 @@ var Richeditor={
 		//点击input框
 		textarea.addEventListener("click",function(e){
 			richEdit.classList.add("active");
+			if(!carouselFace){
+				console.log("加载");
+				carouselFace=new Slider("#richeditor .face",{
+	                "pagination":"#richeditor .slider-pagination"
+	            });
+			}
 			//richEdit.className=richEdit.className+" active";
 		},false);
 		var self=this;
