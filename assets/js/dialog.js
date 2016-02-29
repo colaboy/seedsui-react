@@ -59,7 +59,9 @@
                     $(this).css("display","none");
                 });
                 mask.removeEventListener("click",hideMask,false);
-                $(s).parent().animate(hideAnimate,"fast","linear");
+                $(s).parent().animate(hideAnimate,"fast","linear",function(){
+                    $(this).css("display","none");
+                });
             }
             //显示遮罩与外框
             function showMask(){

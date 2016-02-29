@@ -7,16 +7,16 @@
 	z-index:1;
 }
 /*表情区域*/
-.face{
+.richedit .emoji{
 	display:none;
 	font-size:0;
 	padding:8px 0;
 	height:170px;
 }
-.face.active{
+.richedit .emoji.active{
 	display:block;
 }
-.richinput img{
+.richedit .richinput img{
 	width:24px;
 }
 
@@ -99,7 +99,7 @@
 	top:0;
 	bottom:auto;
 }
-.richedit.active .face{
+.richedit.active .emoji{
 	display:block;
 }
 .richedit.active+.mask{
@@ -107,13 +107,13 @@
 }
 
 /*表情滑动容器小点点*/
-.slider-pagination{
+.richedit .slider-pagination{
 	text-align:center;
 }
-.slider-pagination .bullet{
+.richedit .slider-pagination .bullet{
     background-color:#cfcfcf;
 }
-.slider-pagination .bullet.active{
+.richedit .slider-pagination .bullet.active{
 	background-color:#a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/

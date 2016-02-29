@@ -9,7 +9,7 @@
 // @koala-prepend "dialog.js"
 // @koala-prepend "dragrefresh.js"
 // @koala-prepend "eventutil.js"
-// @koala-prepend "face.js"
+// @koala-prepend "emoji.js"
 // @koala-prepend "zh_CN.js"
 // @koala-prepend "form.js"
 // @koala-prepend "gauge.js"

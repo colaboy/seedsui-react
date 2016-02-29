@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>page</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+    
+	<style>
+	.thumbnail a{
+		border:1px solid #ddd;
+		overflow:hidden;
+		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
+	}
+	</style>
+</head>
+<body>
+	<section id="page_index" class="active">
+		<header>
+	        <div class="titlebar">
+	            <a href="javascript:history.go(-1)" class="left">
+	                <i class="icon-arrowleft"></i>
+	            </a>
+	            <h1>模板页面</h1>
+	        </div>
+	    </header>
+		<article>
+			<div class="sliver">登录</div>
+			<ul class="grid thumbnail">
+				<li>
+					<a href="animate.html">
+						<img src="thumbnail/animate.png"/>
+					</a>
+					<label class="grid-label">登录1</label>
+				</li>
+				<li>
+					<a href="aside.html">
+						<img src="thumbnail/aside.png"/>
+					</a>
+					<label class="grid-label">登录2</label>
+				</li>
+				<li>
+					<a href="bar.html">
+						<img src="thumbnail/bar.png"/>
+					</a>
+					<label class="grid-label">登录3</label>
+				</li>
+			</ul>
+			
+			<div class="sliver">主页</div>
+			<ul class="grid thumbnail">
+				<li>
+					<a href="main1.html">
+						<img src="thumbnail/form.png"/>
+					</a>
+					<label class="grid-label">主页1</label>
+				</li>
+				<li>
+					<a href="main2.html">
+						<img src="thumbnail/form-serialize.png"/>
+					</a>
+					<label class="grid-label">主页2</label>
+				</li>
+				<li>
+					<a href="main3.html">
+						<img src="thumbnail/form-validate.png"/>
+					</a>
+					<label class="grid-label">主页3</label>
+				</li>
+				<li>
+					<a href="main4.html">
+						<img src="thumbnail/form-validate.png"/>
+					</a>
+					<label class="grid-label">主页4</label>
+				</li>
+				<li>
+					<a href="main5.html">
+						<img src="thumbnail/form-validate.png"/>
+					</a>
+					<label class="grid-label">主页5</label>
+				</li>
+				<li>
+					<a href="main6.html">
+						<img src="thumbnail/form-validate.png"/>
+					</a>
+					<label class="grid-label">主页6</label>
+				</li>
+				<li>
+					<a href="main7.html">
+						<img src="thumbnail/form-validate.png"/>
+					</a>
+					<label class="grid-label">主页7</label>
+				</li>
+			</ul>
+		</article>
+	</section>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+		//remove原返回事件绑定
+		document.removeEventListener("backmonitor",back,false);
+		//添加新的返回事件
+		document.addEventListener("backmonitor",function(){
+			Exmobi.dbclose();
+		},false);
+	</script>
+</body>
+</html>

@@ -4159,7 +4159,7 @@ input[type=range]:focus::-ms-fill-upper {
   padding-top: 3px;
   text-align: left;
 }
-.chat .content p [data-face] {
+.chat .content p [data-emoji] {
   width: 26px;
   height: 24px;
 }
@@ -4877,7 +4877,7 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: black\0;
 }
 /*--------------------popup.less(end)----------------------*/
-[data-face] {
+[data-emoji] {
   display: inline-block;
   width: 14%;
   height: 32px;
@@ -4887,260 +4887,260 @@ input[type=range]:focus::-ms-fill-upper {
   background-position: center center;
   vertical-align: middle;
 }
-[data-face="[aoman]"] {
-  background-image: url(img/face/aoman.png);
+[data-emoji="[aoman]"] {
+  background-image: url(img/emoji/aoman.png);
 }
-[data-face="[baibai]"] {
-  background-image: url(img/face/baibai.png);
+[data-emoji="[baibai]"] {
+  background-image: url(img/emoji/baibai.png);
 }
-[data-face="[baiyan]"] {
-  background-image: url(img/face/baiyan.png);
+[data-emoji="[baiyan]"] {
+  background-image: url(img/emoji/baiyan.png);
 }
-[data-face="[baobao]"] {
-  background-image: url(img/face/baobao.png);
+[data-emoji="[baobao]"] {
+  background-image: url(img/emoji/baobao.png);
 }
-[data-face="[baoquan]"] {
-  background-image: url(img/face/baoquan.png);
+[data-emoji="[baoquan]"] {
+  background-image: url(img/emoji/baoquan.png);
 }
-[data-face="[bishi]"] {
-  background-image: url(img/face/bishi.png);
+[data-emoji="[bishi]"] {
+  background-image: url(img/emoji/bishi.png);
 }
-[data-face="[bizui]"] {
-  background-image: url(img/face/bizui.png);
+[data-emoji="[bizui]"] {
+  background-image: url(img/emoji/bizui.png);
 }
-[data-face="[cahan]"] {
-  background-image: url(img/face/cahan.png);
+[data-emoji="[cahan]"] {
+  background-image: url(img/emoji/cahan.png);
 }
-[data-face="[caidao]"] {
-  background-image: url(img/face/caidao.png);
+[data-emoji="[caidao]"] {
+  background-image: url(img/emoji/caidao.png);
 }
-[data-face="[chajin]"] {
-  background-image: url(img/face/chajin.png);
+[data-emoji="[chajin]"] {
+  background-image: url(img/emoji/chajin.png);
 }
-[data-face="[chouyan]"] {
-  background-image: url(img/face/chouyan.png);
+[data-emoji="[chouyan]"] {
+  background-image: url(img/emoji/chouyan.png);
 }
-[data-face="[cool]"] {
-  background-image: url(img/face/cool.png);
+[data-emoji="[cool]"] {
+  background-image: url(img/emoji/cool.png);
 }
-[data-face="[dabian]"] {
-  background-image: url(img/face/dabian.png);
+[data-emoji="[dabian]"] {
+  background-image: url(img/emoji/dabian.png);
 }
-[data-face="[dahaqian]"] {
-  background-image: url(img/face/dahaqian.png);
+[data-emoji="[dahaqian]"] {
+  background-image: url(img/emoji/dahaqian.png);
 }
-[data-face="[dangao]"] {
-  background-image: url(img/face/dangao.png);
+[data-emoji="[dangao]"] {
+  background-image: url(img/emoji/dangao.png);
 }
-[data-face="[daxiao]"] {
-  background-image: url(img/face/daxiao.png);
+[data-emoji="[daxiao]"] {
+  background-image: url(img/emoji/daxiao.png);
 }
-[data-face="[deyi]"] {
-  background-image: url(img/face/deyi.png);
+[data-emoji="[deyi]"] {
+  background-image: url(img/emoji/deyi.png);
 }
-[data-face="[ku]"] {
-  background-image: url(img/face/ku.png);
+[data-emoji="[ku]"] {
+  background-image: url(img/emoji/ku.png);
 }
-[data-face="[fadai]"] {
-  background-image: url(img/face/fadai.png);
+[data-emoji="[fadai]"] {
+  background-image: url(img/emoji/fadai.png);
 }
-[data-face="[fendou]"] {
-  background-image: url(img/face/fendou.png);
+[data-emoji="[fendou]"] {
+  background-image: url(img/emoji/fendou.png);
 }
-[data-face="[ganga]"] {
-  background-image: url(img/face/ganga.png);
+[data-emoji="[ganga]"] {
+  background-image: url(img/emoji/ganga.png);
 }
-[data-face="[gongxi]"] {
-  background-image: url(img/face/gongxi.png);
+[data-emoji="[gongxi]"] {
+  background-image: url(img/emoji/gongxi.png);
 }
-[data-face="[haixiu]"] {
-  background-image: url(img/face/haixiu.png);
+[data-emoji="[haixiu]"] {
+  background-image: url(img/emoji/haixiu.png);
 }
-[data-face="[hanruyuxia]"] {
-  background-image: url(img/face/hanruyuxia.png);
+[data-emoji="[hanruyuxia]"] {
+  background-image: url(img/emoji/hanruyuxia.png);
 }
-[data-face="[hongchun]"] {
-  background-image: url(img/face/hongchun.png);
+[data-emoji="[hongchun]"] {
+  background-image: url(img/emoji/hongchun.png);
 }
-[data-face="[huaixiao]"] {
-  background-image: url(img/face/huaixiao.png);
+[data-emoji="[huaixiao]"] {
+  background-image: url(img/emoji/huaixiao.png);
 }
-[data-face="[huaxiele]"] {
-  background-image: url(img/face/huaxiele.png);
+[data-emoji="[huaxiele]"] {
+  background-image: url(img/emoji/huaxiele.png);
 }
-[data-face="[iloveyou]"] {
-  background-image: url(img/face/iloveyou.png);
+[data-emoji="[iloveyou]"] {
+  background-image: url(img/emoji/iloveyou.png);
 }
-[data-face="[jianxiao]"] {
-  background-image: url(img/face/jianxiao.png);
+[data-emoji="[jianxiao]"] {
+  background-image: url(img/emoji/jianxiao.png);
 }
-[data-face="[jiayou]"] {
-  background-image: url(img/face/jiayou.png);
+[data-emoji="[jiayou]"] {
+  background-image: url(img/emoji/jiayou.png);
 }
-[data-face="[jingxia]"] {
-  background-image: url(img/face/jingxia.png);
+[data-emoji="[jingxia]"] {
+  background-image: url(img/emoji/jingxia.png);
 }
-[data-face="[kafei]"] {
-  background-image: url(img/face/kafei.png);
+[data-emoji="[kafei]"] {
+  background-image: url(img/emoji/kafei.png);
 }
-[data-face="[kaixin]"] {
-  background-image: url(img/face/kaixin.png);
+[data-emoji="[kaixin]"] {
+  background-image: url(img/emoji/kaixin.png);
 }
-[data-face="[kelian]"] {
-  background-image: url(img/face/kelian.png);
+[data-emoji="[kelian]"] {
+  background-image: url(img/emoji/kelian.png);
 }
-[data-face="[daku]"] {
-  background-image: url(img/face/daku.png);
+[data-emoji="[daku]"] {
+  background-image: url(img/emoji/daku.png);
 }
-[data-face="[kulou]"] {
-  background-image: url(img/face/kulou.png);
+[data-emoji="[kulou]"] {
+  background-image: url(img/emoji/kulou.png);
 }
-[data-face="[kun]"] {
-  background-image: url(img/face/kun.png);
+[data-emoji="[kun]"] {
+  background-image: url(img/emoji/kun.png);
 }
-[data-face="[lai]"] {
-  background-image: url(img/face/lai.png);
+[data-emoji="[lai]"] {
+  background-image: url(img/emoji/lai.png);
 }
-[data-face="[lanqiu]"] {
-  background-image: url(img/face/lanqiu.png);
+[data-emoji="[lanqiu]"] {
+  background-image: url(img/emoji/lanqiu.png);
 }
-[data-face="[liuhan]"] {
-  background-image: url(img/face/liuhan.png);
+[data-emoji="[liuhan]"] {
+  background-image: url(img/emoji/liuhan.png);
 }
-[data-face="[liwu]"] {
-  background-image: url(img/face/liwu.png);
+[data-emoji="[liwu]"] {
+  background-image: url(img/emoji/liwu.png);
 }
-[data-face="[maren]"] {
-  background-image: url(img/face/maren.png);
+[data-emoji="[maren]"] {
+  background-image: url(img/emoji/maren.png);
 }
-[data-face="[meigui]"] {
-  background-image: url(img/face/meigui.png);
+[data-emoji="[meigui]"] {
+  background-image: url(img/emoji/meigui.png);
 }
-[data-face="[mifan]"] {
-  background-image: url(img/face/mifan.png);
+[data-emoji="[mifan]"] {
+  background-image: url(img/emoji/mifan.png);
 }
-[data-face="[nanguo]"] {
-  background-image: url(img/face/nanguo.png);
+[data-emoji="[nanguo]"] {
+  background-image: url(img/emoji/nanguo.png);
 }
-[data-face="[no]"] {
-  background-image: url(img/face/no.png);
+[data-emoji="[no]"] {
+  background-image: url(img/emoji/no.png);
 }
-[data-face="[ok]"] {
-  background-image: url(img/face/ok.png);
+[data-emoji="[ok]"] {
+  background-image: url(img/emoji/ok.png);
 }
-[data-face="[outu]"] {
-  background-image: url(img/face/outu.png);
+[data-emoji="[outu]"] {
+  background-image: url(img/emoji/outu.png);
 }
-[data-face="[piaochong]"] {
-  background-image: url(img/face/piaochong.png);
+[data-emoji="[piaochong]"] {
+  background-image: url(img/emoji/piaochong.png);
 }
-[data-face="[pijiu]"] {
-  background-image: url(img/face/pijiu.png);
+[data-emoji="[pijiu]"] {
+  background-image: url(img/emoji/pijiu.png);
 }
-[data-face="[qiang]"] {
-  background-image: url(img/face/qiang.png);
+[data-emoji="[qiang]"] {
+  background-image: url(img/emoji/qiang.png);
 }
-[data-face="[qiaotou]"] {
-  background-image: url(img/face/qiaotou.png);
+[data-emoji="[qiaotou]"] {
+  background-image: url(img/emoji/qiaotou.png);
 }
-[data-face="[qingqing]"] {
-  background-image: url(img/face/qingqing.png);
+[data-emoji="[qingqing]"] {
+  background-image: url(img/emoji/qingqing.png);
 }
-[data-face="[qiu]"] {
-  background-image: url(img/face/qiu.png);
+[data-emoji="[qiu]"] {
+  background-image: url(img/emoji/qiu.png);
 }
-[data-face="[ruo]"] {
-  background-image: url(img/face/ruo.png);
+[data-emoji="[ruo]"] {
+  background-image: url(img/emoji/ruo.png);
 }
-[data-face="[se]"] {
-  background-image: url(img/face/se.png);
+[data-emoji="[se]"] {
+  background-image: url(img/emoji/se.png);
 }
-[data-face="[shandian]"] {
-  background-image: url(img/face/shandian.png);
+[data-emoji="[shandian]"] {
+  background-image: url(img/emoji/shandian.png);
 }
-[data-face="[shangxin]"] {
-  background-image: url(img/face/shangxin.png);
+[data-emoji="[shangxin]"] {
+  background-image: url(img/emoji/shangxin.png);
 }
-[data-face="[shouweiqu]"] {
-  background-image: url(img/face/shouweiqu.png);
+[data-emoji="[shouweiqu]"] {
+  background-image: url(img/emoji/shouweiqu.png);
 }
-[data-face="[shuai]"] {
-  background-image: url(img/face/shuai.png);
+[data-emoji="[shuai]"] {
+  background-image: url(img/emoji/shuai.png);
 }
-[data-face="[shuijiao]"] {
-  background-image: url(img/face/shuijiao.png);
+[data-emoji="[shuijiao]"] {
+  background-image: url(img/emoji/shuijiao.png);
 }
-[data-face="[taiyang]"] {
-  background-image: url(img/face/taiyang.png);
+[data-emoji="[taiyang]"] {
+  background-image: url(img/emoji/taiyang.png);
 }
-[data-face="[touxiao]"] {
-  background-image: url(img/face/touxiao.png);
+[data-emoji="[touxiao]"] {
+  background-image: url(img/emoji/touxiao.png);
 }
-[data-face="[jingya]"] {
-  background-image: url(img/face/jingya.png);
+[data-emoji="[jingya]"] {
+  background-image: url(img/emoji/jingya.png);
 }
-[data-face="[wabikong]"] {
-  background-image: url(img/face/wabikong.png);
+[data-emoji="[wabikong]"] {
+  background-image: url(img/emoji/wabikong.png);
 }
-[data-face="[weiqu]"] {
-  background-image: url(img/face/weiqu.png);
+[data-emoji="[weiqu]"] {
+  background-image: url(img/emoji/weiqu.png);
 }
-[data-face="[weixiao]"] {
-  background-image: url(img/face/weixiao.png);
+[data-emoji="[weixiao]"] {
+  background-image: url(img/emoji/weixiao.png);
 }
-[data-face="[wen]"] {
-  background-image: url(img/face/wen.png);
+[data-emoji="[wen]"] {
+  background-image: url(img/emoji/wen.png);
 }
-[data-face="[woshou]"] {
-  background-image: url(img/face/woshou.png);
+[data-emoji="[woshou]"] {
+  background-image: url(img/emoji/woshou.png);
 }
-[data-face="[xia]"] {
-  background-image: url(img/face/xia.png);
+[data-emoji="[xia]"] {
+  background-image: url(img/emoji/xia.png);
 }
-[data-face="[xigua]"] {
-  background-image: url(img/face/xigua.png);
+[data-emoji="[xigua]"] {
+  background-image: url(img/emoji/xigua.png);
 }
-[data-face="[xin]"] {
-  background-image: url(img/face/xin.png);
+[data-emoji="[xin]"] {
+  background-image: url(img/emoji/xin.png);
 }
-[data-face="[xinsui]"] {
-  background-image: url(img/face/xinsui.png);
+[data-emoji="[xinsui]"] {
+  background-image: url(img/emoji/xinsui.png);
 }
-[data-face="[xu]"] {
-  background-image: url(img/face/xu.png);
+[data-emoji="[xu]"] {
+  background-image: url(img/emoji/xu.png);
 }
-[data-face="[yeah]"] {
-  background-image: url(img/face/yeah.png);
+[data-emoji="[yeah]"] {
+  background-image: url(img/emoji/yeah.png);
 }
-[data-face="[yewan]"] {
-  background-image: url(img/face/yewan.png);
+[data-emoji="[yewan]"] {
+  background-image: url(img/emoji/yewan.png);
 }
-[data-face="[youhengheng]"] {
-  background-image: url(img/face/youhengheng.png);
+[data-emoji="[youhengheng]"] {
+  background-image: url(img/emoji/youhengheng.png);
 }
-[data-face="[yun]"] {
-  background-image: url(img/face/yun.png);
+[data-emoji="[yun]"] {
+  background-image: url(img/emoji/yun.png);
 }
-[data-face="[zhadan]"] {
-  background-image: url(img/face/zhadan.png);
+[data-emoji="[zhadan]"] {
+  background-image: url(img/emoji/zhadan.png);
 }
-[data-face="[zhayan]"] {
-  background-image: url(img/face/zhayan.png);
+[data-emoji="[zhayan]"] {
+  background-image: url(img/emoji/zhayan.png);
 }
-[data-face="[fanu]"] {
-  background-image: url(img/face/fanu.png);
+[data-emoji="[fanu]"] {
+  background-image: url(img/emoji/fanu.png);
 }
-[data-face="[zhutou]"] {
-  background-image: url(img/face/zhutou.png);
+[data-emoji="[zhutou]"] {
+  background-image: url(img/emoji/zhutou.png);
 }
-[data-face="[ziya]"] {
-  background-image: url(img/face/ziya.png);
+[data-emoji="[ziya]"] {
+  background-image: url(img/emoji/ziya.png);
 }
-[data-face="[zuohengheng]"] {
-  background-image: url(img/face/zuohengheng.png);
+[data-emoji="[zuohengheng]"] {
+  background-image: url(img/emoji/zuohengheng.png);
 }
-[data-face="[zuqiu]"] {
-  background-image: url(img/face/zuqiu.png);
+[data-emoji="[zuqiu]"] {
+  background-image: url(img/emoji/zuqiu.png);
 }
 /*----------------share.less(start)--------------*/
 .sharebox {
@@ -5275,16 +5275,16 @@ input[type=range]:focus::-ms-fill-upper {
   z-index: 1;
 }
 /*表情区域*/
-.face {
+.richedit .emoji {
   display: none;
   font-size: 0;
   padding: 8px 0;
   height: 170px;
 }
-.face.active {
+.richedit .emoji.active {
   display: block;
 }
-.richinput img {
+.richedit .richinput img {
   width: 24px;
 }
 /*输入框区域*/
@@ -5366,20 +5366,20 @@ input[type=range]:focus::-ms-fill-upper {
   top: 0;
   bottom: auto;
 }
-.richedit.active .face {
+.richedit.active .emoji {
   display: block;
 }
 .richedit.active + .mask {
   display: block;
 }
 /*表情滑动容器小点点*/
-.slider-pagination {
+.richedit .slider-pagination {
   text-align: center;
 }
-.slider-pagination .bullet {
+.richedit .slider-pagination .bullet {
   background-color: #cfcfcf;
 }
-.slider-pagination .bullet.active {
+.richedit .slider-pagination .bullet.active {
   background-color: #a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/
@@ -6367,7 +6367,7 @@ input[type="radio"][disabled]:checked {
 }
 /*-----------------------------checkbox.less(end)-----------------------------*/
 /*----------------richedit.less(start)--------------*/
-.face {
+.richedit .emoji {
   background-color: #f4f4f4;
 }
 .richedit figcaption {

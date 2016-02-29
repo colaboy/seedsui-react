@@ -177,7 +177,7 @@ var Richeditor={
 		var carouselFace;
 		var richEdit=document.querySelector(selector);
 		var mask=document.querySelector(selector+"+.mask");
-		var facebox=richEdit.querySelector(".face");
+		var emojibox=richEdit.querySelector(".emoji");
 		var textarea=richEdit.querySelector("textarea");
 		var pre=richEdit.querySelector("pre");
 		var preSpan=pre.querySelector("span");
@@ -211,7 +211,7 @@ var Richeditor={
 		textarea.addEventListener("click",function(e){
 			richEdit.classList.add("active");
 			if(!carouselFace){
-				carouselFace=new Slider(selector+" .face",{
+				carouselFace=new Slider(selector+" .emoji",{
 	                "pagination":selector+" .slider-pagination"
 	            });
 			}
@@ -219,8 +219,8 @@ var Richeditor={
 		},false);
 		var self=this;
 		//点击表情
-		facebox.addEventListener("click",function(e){
-			if(e.target.getAttribute("data-face")){
+		emojibox.addEventListener("click",function(e){
+			if(e.target.getAttribute("data-emoji")){
 				insertFace(e.target);
 			}
 			textarea.focus();
@@ -229,13 +229,13 @@ var Richeditor={
 
 		//插入表情
 		function insertFace(objFace){
-			var faceName=objFace.getAttribute("alt");
-			//var faceSrc=objFace.getAttribute("data-face-src");
+			var emojiName=objFace.getAttribute("alt");
+			//var emojiSrc=objFace.getAttribute("data-emoji-src");
 			var editText=textarea.value;
 			var editTextBefore=editText.substr(0,cursorOffset);
 			var editTextAfter=editText.substr(cursorOffset,editText.length);
-			var editTextInsert=faceName;
-			cursorOffset=cursorOffset+faceName.length;
+			var editTextInsert=emojiName;
+			cursorOffset=cursorOffset+emojiName.length;
 			textarea.value=editTextBefore+editTextInsert+editTextAfter;
 		}
 	},
