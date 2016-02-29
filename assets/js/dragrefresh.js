@@ -15,6 +15,7 @@
 			onRefresh:function(Dragrefresh)
 			onRefreshComplete:function(Dragrefresh)
 			onRefreshOvertime:function(Dragrefresh)
+
 			*/	
 		}
 		params=params||{};
@@ -32,7 +33,7 @@
 		  ==================*/
 		s.createRefresh=function(){
 			s.refreshEl=document.createElement("div");
-			s.refreshEl.setAttribute("class","dragrefresh icon-refresh");
+			s.refreshEl.setAttribute("class","dragrefresh refresh");
 			s.container.appendChild(s.refreshEl);
 		};
 		s.hideRefresh=function(){
