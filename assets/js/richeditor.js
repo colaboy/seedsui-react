@@ -211,9 +211,8 @@ var Richeditor={
 		textarea.addEventListener("click",function(e){
 			richEdit.classList.add("active");
 			if(!carouselFace){
-				console.log("加载");
-				carouselFace=new Slider("#richeditor .face",{
-	                "pagination":"#richeditor .slider-pagination"
+				carouselFace=new Slider(selector+" .face",{
+	                "pagination":selector+" .slider-pagination"
 	            });
 			}
 			//richEdit.className=richEdit.className+" active";
