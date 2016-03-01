@@ -31,18 +31,21 @@
         }
         var a1=new Alert("加载完成");
         var a2=new Alert("请求超时啦");
+        var a3=new Alert("到底部啦");
         var drag=new Dragrefresh("article",{
             "onRefresh":function(e){
                 setTimeout(function(){
                     e.refreshComplete();
-                }, 5000);
-                
+                }, 2000);
             },
             "onRefreshComplete":function(e){
                 a1.show();
             },
             "onRefreshOvertime":function(e){
                 a2.show();
+            },
+            "onBottom":function(e){
+                a3.show();
             }
         });
     </script>

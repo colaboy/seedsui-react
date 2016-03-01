@@ -32,8 +32,13 @@
 		  View Refresh
 		  ==================*/
 		s.createRefresh=function(){
+			if(s.refreshEl)return;
 			s.refreshEl=document.createElement("div");
-			s.refreshEl.setAttribute("class","dragrefresh refresh");
+			s.refreshEl.setAttribute("class","dragrefresh box box-middlecenter");
+			var iconSvg='<svg width="1000.6px" height="1000.6px" viewBox="0 0 1000.6 1000.6" xml:space="preserve">'+
+						'<path d="M867.4,456.1c-24.1,0-43.8,19.7-43.8,43.8c0,1.5,0.1,3.1,0.3,4.6c-2.2,176.4-147.1,319.6-323.7,319.6 c-178.5,0-323.8-145.3-323.8-323.8s145.3-323.8,323.8-323.8c62.8,0,122.8,17.7,174.4,50.8l-29,52.2c0,0,138.4,2.2,149.2,2.4 c10.8,0.2,14.6-5.6,14.6-5.6s5.1-5.8,2.4-15.5c-2.6-9.7-43.2-162.2-43.2-162.2l-38.5,61.1c-67.3-45.7-146.7-70.1-229.8-70.1 c-226.6,0-411,184.4-411,411s184.4,411,411,411c225.8,0,410.1-183.7,410.9-407.3l0.2-4.2C911.2,475.7,891.6,456.1,867.4,456.1z"/>'+
+						'</svg>';
+			s.refreshEl.innerHTML=iconSvg;
 			s.container.appendChild(s.refreshEl);
 		};
 		s.hideRefresh=function(){
@@ -125,7 +130,34 @@
 		s.cancelOvertime=function(){
 			if(s.overtime)window.clearTimeout(s.overtime);
 		};
-		
+
+		/*==================
+		  Callback onBottom
+		  ==================*/
+		function createBtmRefresh(){
+			s.btmRefreshEl=document.createElement("div");
+			s.btmRefreshEl.setAttribute("class","loading-more");
+			var spinnerdiv=document.createElement("div");
+			spinnerdiv.setAttribute("class","loading");
+			s.btmRefreshEl.appendChild(spinnerdiv);
+
+			s.container.appendChild(s.btmRefreshEl);
+		}
+		s.bottom=function(){
+			if(!s.params.onBottom)return;
+			//创建底部刷新层
+			s.btmRefreshEl=s.container.querySelector(".loading-more");
+			if(!s.btmRefreshEl){
+				createBtmRefresh();
+			}
+			//判断是否滚动到底部
+			s.container.addEventListener("scroll",function(e){
+	            if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+	                s.params.onBottom(s);
+	            }
+	        },false);
+		};
+
 		//事件管理
 		var touchEvents={
 			"start":"touchstart",
@@ -227,6 +259,8 @@
 		s.init=function(){
 			s.view();
 			s.attach();
+			//底部触发事件
+			s.bottom();
 		};
 
 		s.init();
