@@ -458,6 +458,9 @@ button.outline .tip,input[type="button"].outline .tip,.button.outline .tip{
 .dragrefresh{
     color:@color-primary;
 }
+.dragrefresh svg path{
+	fill:@color-primary;
+}
 /*----------------dragrefresh.less(end)--------------*/
 
 /*----------------layout.less(start)--------------*/
@@ -662,6 +665,19 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
     background-color:@color-primary;
 }
 /*----------------------------list.less(end)----------------------------*/
+
+/*-----------------------------loading.less(start)-----------------------------*/
+.loading {
+	box-shadow:inset 0 0 0 4px @color-primary;
+}
+.loading-more .loading{
+	box-shadow:inset 0 0 0 3px @color-primary;
+}
+.loading-more,.loading-more .loading:before,
+.loading-more .loading:after {
+	background:@color-body-bg;
+}
+/*-----------------------------loading.less(end)-----------------------------*/
 
 /*----------------------------chat.less(start)----------------------------*/
 .chat .author i {

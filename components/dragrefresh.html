@@ -31,18 +31,25 @@
         }
         var a1=new Alert("加载完成");
         var a2=new Alert("请求超时啦");
+        var a3=new Alert("到底部啦");
         var drag=new Dragrefresh("article",{
             "onRefresh":function(e){
                 setTimeout(function(){
                     e.refreshComplete();
-                }, 1000);
-                
+                }, 2000);
             },
             "onRefreshComplete":function(e){
                 a1.show();
             },
             "onRefreshOvertime":function(e){
                 a2.show();
+            },
+            "onBottom":function(e){
+                a3.show();
+                //数据加载完成时，隐藏下面的元素
+                setTimeout(function(){
+                    e.bottomRefreshEl.style.display="none";
+                }, 5000);
             }
         });
     </script>

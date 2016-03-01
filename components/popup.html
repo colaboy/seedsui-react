@@ -34,7 +34,7 @@
 	    </article>
 	</section>
 	<!--自定义弹出框-->
-    <div id="pop_custom" style="padding:20px 0;background-color:white;display:none;">我是从自定义弹出框</div>
+	<div id="pop_custom" style="padding:20px 0;background-color:white;display:none;"><a id="hehe">我是从自定义弹出框</a></div>
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script src="../plugin/exmobi/exmobi.js"></script>
@@ -115,6 +115,7 @@
 		 * 自定义弹出框
 		 * 
 		 */
+		$("#hehe").on("click",function(){alert(1);});
 		//middle
 		$("#middle").click(function(){
 			$("#pop_custom").dialog();
