@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>calendar</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+    <style type="text/css">
+    	/*日历*/
+    	.calendar{
+    		position: relative;
+		    width: 100%;
+		    border-style: solid;
+		    border-width: 0 0 1px 0;
+		    border-color:#ddd;
+		    overflow: hidden;
+    	}
+    	.calendar-title{
+    		font-size: 20px;
+    		text-align: center;
+    	}
+    	.date_container{
+			overflow: hidden;
+		    width: 300%;
+    	}
+    	.day{
+    		width: 300%;
+    	}
+    	.week-day-line{
+		    width: 33%;
+		    display: inline-block;
+    	}
+		.date_container:after{
+			display: table;
+		    content: '';
+		    clear: both;
+		    zoom: 1;
+		}
+		.month-block {
+		    width: 33.333%;
+		    display: inline-block;
+		}
+		.day-name,.day-date{
+			display: inline-block;
+			text-align: center;
+			float:left;
+			width:14.28%;
+		}
+		.day-name{
+		    color: #868686;
+		}
+		.day-date{
+		    padding:7px 0;
+		}
+		.day-date span.show-date{
+			display: inline-block;
+			width:36px;
+			height: 36px;
+			line-height: 36px;
+			border-radius: 36px;
+		}
+		.not-this-month{
+			color: #cccccc;
+		}
+		.day-date .current{
+		    color: #46c2ca;
+		}
+		.day-date .active{
+		    color: #FFFFFF;
+		    background-color: #46c2ca;
+		}
+		.arrowleft,.arrowright{
+			font-size: 20px;
+			color:#dddddd;
+		}
+		.arrowleft:active{
+			color:#46c2ca;
+		}
+	</style>
+</head>
+
+<body>
+	<section id="page_week" class="active">
+		<header>
+	        <div class="titlebar">
+	            <a href="javascript:history.go(-1)" class="left">
+	                <i class="icon-arrowleft"></i>
+	            </a>
+	            <h1>日历</h1>
+	        </div>
+	    </header>
+		<article style="background-color:white;">
+			<div class="calendar" id="calender_select_container">
+				<ul class="list noborder nobg">
+					<li style="padding:10px 0;">
+						<div class="justify arrowleft">
+		                    <i class="icon-arrowleft"></i>
+		                </div>
+		                <div class="justify-content calendar-title">2016-2-15 周一</div>
+		                <div class="justify arrowright">
+		                    <i class="icon-arrowright"></i>
+		                </div>
+		            </li>
+				</ul>
+				<div class="calender_container">
+					<div class='day'>
+						<div class="week-day-line">
+							<div class="day-name">日</div>
+							<div class="day-name">一</div>
+							<div class="day-name">二</div>
+							<div class="day-name">三</div>
+							<div class="day-name">四</div>
+							<div class="day-name">五</div>
+							<div class="day-name">六</div>
+						</div>
+						<div class="week-day-line">
+							<div class="day-name">日</div>
+							<div class="day-name">一</div>
+							<div class="day-name">二</div>
+							<div class="day-name">三</div>
+							<div class="day-name">四</div>
+							<div class="day-name">五</div>
+							<div class="day-name">六</div>
+						</div>
+						<div class="week-day-line">
+							<div class="day-name">日</div>
+							<div class="day-name">一</div>
+							<div class="day-name">二</div>
+							<div class="day-name">三</div>
+							<div class="day-name">四</div>
+							<div class="day-name">五</div>
+							<div class="day-name">六</div>
+						</div>
+					</div>
+					<div class='date_container'>
+						<div class="month_container">
+							<div class="month-block">
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_0_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_0_6 show-date">0</span></div>
+								</div>
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_1_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_6 show-date">0</span></div>
+								</div>
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_1_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_6 show-date">0</span></div>
+								</div>
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_1_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_6 show-date">0</span></div>
+								</div>
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_1_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_6 show-date">0</span></div>
+								</div>
+								<div class="week-line">
+									<div class="day-date"><span class="datenum_0_1_0 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_1 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_2 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_3 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_4 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_5 show-date">0</span></div>
+									<div class="day-date"><span class="datenum_0_1_6 show-date">0</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </article>
+	</section>
+	<script src="../plugin/exmobi/exmobi.js"></script>
+	<script src="calendar.js"></script>
+	<script>
+		//定义exmobi返回
+		function back() {
+			history.go(-1);
+		}
+
+		var tempWeekSelectObject = new DateSelect({
+				activeDate: new Date(1459042657871)
+			}),
+			tempDivId = "calender_select_container";
+
+		var tempCalenderObject = new Calender({
+			dateSelectObject: tempWeekSelectObject,
+			containerDivId: tempDivId,
+			onChange: function(date) {
+				console.log(date);
+			}
+		});
+
+		console.log(tempCalenderObject);
+	</script>
+</body>
+</html>
