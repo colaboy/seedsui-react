@@ -46,6 +46,10 @@
             },
             "onBottom":function(e){
                 a3.show();
+                //数据加载完成时，隐藏下面的元素
+                setTimeout(function(){
+                    e.bottomRefreshEl.style.display="none";
+                }, 5000);
             }
         });
     </script>

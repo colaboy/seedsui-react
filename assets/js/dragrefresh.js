@@ -134,21 +134,21 @@
 		/*==================
 		  Callback onBottom
 		  ==================*/
-		function createBtmRefresh(){
-			s.btmRefreshEl=document.createElement("div");
-			s.btmRefreshEl.setAttribute("class","loading-more");
+		function createBottomRefresh(){
+			s.bottomRefreshEl=document.createElement("div");
+			s.bottomRefreshEl.setAttribute("class","loading-more");
 			var spinnerdiv=document.createElement("div");
 			spinnerdiv.setAttribute("class","loading");
-			s.btmRefreshEl.appendChild(spinnerdiv);
+			s.bottomRefreshEl.appendChild(spinnerdiv);
 
-			s.container.appendChild(s.btmRefreshEl);
+			s.container.appendChild(s.bottomRefreshEl);
 		}
-		s.bottom=function(){
+		s.bottomRefresh=function(){
 			if(!s.params.onBottom)return;
 			//创建底部刷新层
-			s.btmRefreshEl=s.container.querySelector(".loading-more");
-			if(!s.btmRefreshEl){
-				createBtmRefresh();
+			s.bottomRefreshEl=s.container.querySelector(".loading-more");
+			if(!s.bottomRefreshEl){
+				createBottomRefresh();
 			}
 			//判断是否滚动到底部
 			s.container.addEventListener("scroll",function(e){
@@ -260,7 +260,7 @@
 			s.view();
 			s.attach();
 			//底部触发事件
-			s.bottom();
+			s.bottomRefresh();
 		};
 
 		s.init();
