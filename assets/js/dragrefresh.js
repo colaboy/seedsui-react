@@ -26,7 +26,7 @@
 		}
 		var s=this;
 		s.params=params;
-		s.container=container==document.body?document.body:document.querySelector(container);
+		s.container=typeof container=="string"?document.querySelector(container):container;
 
 		/*==================
 		  View Refresh
@@ -134,7 +134,9 @@
 		/*==================
 		  Callback onBottom
 		  ==================*/
+		s.bottomRefreshEl=s.container.querySelector(".loading-more");
 		function createBottomRefresh(){
+			if(s.bottomRefreshEl)return;
 			s.bottomRefreshEl=document.createElement("div");
 			s.bottomRefreshEl.setAttribute("class","loading-more");
 			var spinnerdiv=document.createElement("div");
@@ -145,11 +147,8 @@
 		}
 		s.bottomRefresh=function(){
 			if(!s.params.onBottom)return;
-			//创建底部刷新层
-			s.bottomRefreshEl=s.container.querySelector(".loading-more");
-			if(!s.bottomRefreshEl){
-				createBottomRefresh();
-			}
+			//创建底部刷新块
+			createBottomRefresh();
 			//判断是否滚动到底部
 			s.container.addEventListener("scroll",function(e){
 	            if (this.scrollTop + this.clientHeight >= this.scrollHeight){

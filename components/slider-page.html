@@ -39,25 +39,6 @@
             <div class="slider-container" id="carouselPage" style="height: 100%;">
                 <div class="slider-wrapper">
                     <div class="slider-slide">
-                        <!--banner:start-->
-                        <div class="slider-container" id="carousel1">
-                            <div class="slider-wrapper">
-                                <div class="slider-slide">
-                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
-                                    <div class="slide-title">新闻标题1</div>
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
-                                    <div class="slide-title">新闻标题2</div>
-                                </div>
-                                <div class="slider-slide">
-                                    <img src="../img/banner/banner.jpg" style="width:100%;"/>
-                                    <div class="slide-title">新闻标题3</div>
-                                </div>
-                            </div>
-                            <div class="slider-pagination"></div>
-                        </div>
-                        <!--banner:end-->
                         第一页
                     </div>
                     <div class="slider-slide">
@@ -80,29 +61,36 @@
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script type="text/javascript">
-        var tabbar=document.getElementById("tabbar");
-        var tab=tabbar.querySelectorAll(".tab");
-        var carouselPage;
         //初始化滑动容器
+        var carouselPage;
         function initSlider(){
             carouselPage=new Slider("#carouselPage",{
                 "onSlideChangeEnd":function(e){
                     tabActive(e.index);
                 }
             });
-            var carousel1=new Slider("#carousel1",{
-                "pagination":"#carousel1 .slider-pagination"
-            });
         }
-        //选中tab
+        //初始化数据
+        var pageDataCount=[100,10,30,40,50];
+        function initData(){
+            [].slice.call(carouselPage.slide).forEach(function(n,i,a){
+                var datastr="";
+                for(var j=0;j<pageDataCount[i];j++){
+                    datastr+="<li>第"+i+"页</li>"
+                }
+                n.innerHTML="<ul class='list'>"+datastr+"</ul>";
+            })
+        }
+        //初始化tabbar菜单
+        var tabbar=document.getElementById("tabbar");
+        var tab=tabbar.querySelectorAll(".tab");
         function tabActive(index){
             for(var i=0,t;t=tab[i++];){
                 t.classList.remove("active");
             }
             tab[index].classList.add("active");
         }
-        //绑定tab点击事件
-        function tabBindClick(){
+        function initTabbar(){
             for(var i=0,t;t=tab[i++];){
                 (function(i){
                     t.addEventListener("click",function(){
@@ -112,9 +100,49 @@
                 })(i);
             }
         }
+        //给第一页和第二页添加拖动刷新
+        function initDrag(){
+            var drag1=new Dragrefresh(carouselPage.slide[0],{
+                "onRefresh":function(e){
+                    setTimeout(function(){
+                        e.refreshComplete();
+                    }, 2000);
+                },
+                "onRefreshComplete":function(e){
+                    console.log("加载完成");
+                },
+                "onBottom":function(e){
+                    console.log("滚动到底部啦");
+                    //数据加载完成时，隐藏下面的元素
+                    setTimeout(function(){
+                        e.bottomRefreshEl.style.display="none";
+                    }, 5000);
+                }
+            });
+
+            var drag2=new Dragrefresh(carouselPage.slide[1],{
+                "onRefresh":function(e){
+                    setTimeout(function(){
+                        e.refreshComplete();
+                    }, 2000);
+                },
+                "onRefreshComplete":function(e){
+                    console.log("加载完成");
+                },
+                "onBottom":function(e){
+                    console.log("滚动到底部啦");
+                    //数据加载完成时，隐藏下面的元素
+                    setTimeout(function(){
+                        e.bottomRefreshEl.style.display="none";
+                    }, 5000);
+                }
+            });
+        }
         window.addEventListener("load",function(){
             initSlider();
-            tabBindClick();
+            initTabbar();
+            initData();
+            initDrag();
         },false);
         //定义exmobi返回
         function back(){history.go(-1);}
