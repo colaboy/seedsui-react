@@ -8,10 +8,13 @@
 		var defaults={
 			"pagination":null,
 			"autoplay":false,
-			"loop":false,
 			"slidesPerView":1,
 			"threshold":"50",
 			"duration":"300",
+
+			//loop
+			"loop":false,
+			"slideDuplicateClass":'slider-slide-duplicate',
 
 			//dom class
 			"wrapperClass":"slider-wrapper",
@@ -53,7 +56,22 @@
           Pagination
           ===========================*/
         s.updatePagination = function () {
-            if (!s.params.pagination) return;
+        	if (!s.params.pagination) return;
+            if (s.paginationContainer && s.paginationContainer.length > 0) {
+                var bulletsHTML = '';
+                var numberOfBullets = s.params.loop ? s.slides.length - s.loopedSlides * 2 : s.snapGrid.length;
+                for (var i = 0; i < numberOfBullets; i++) {
+                    if (s.params.paginationBulletRender) {
+                        bulletsHTML += s.params.paginationBulletRender(i, s.params.bulletClass);
+                    }
+                    else {
+                        bulletsHTML += '<span class="' + s.params.bulletClass + '"></span>';
+                    }
+                }
+                s.paginationContainer.html(bulletsHTML);
+                s.bullets = s.paginationContainer.find('.' + s.params.bulletClass);
+            }
+            /*if (!s.params.pagination) return;
             s.pagination=document.querySelector(s.params.pagination);
             if(!s.pagination)return;
             s.bullet=[];
@@ -67,7 +85,7 @@
 				}
 				s.bullet.push(bullet);
 				s.pagination.appendChild(bullet);
-			}
+			}*/
 
 			//s.bullet=s.pagination.querySelectorAll("."+s.params.bulletClass);
         };
@@ -75,6 +93,12 @@
           Slides
           ===========================*/
 		s.updateSlidesSize=function(){
+			s.slide = s.wrapper.querySelectorAll('.' + s.params.slideClass);
+		};
+		/*=========================
+          Container Size
+          ===========================*/
+        s.updateContainerSize=function(){
 			//Slide width
 			s.width=Math.floor(s.container.width/s.params.slidesPerView);
 			if(s.container.clientHeight<=0){
@@ -85,13 +109,14 @@
 			}else{
 				s.height=s.container.clientHeight;
 			}
-			s.wrapper.width=s.width*s.slide.length;
-			s.wrapper.style.width=s.wrapper.width+"px";
-
+			//设置单个slide宽度
 			for(var i=0;i<s.slide.length;i++){
 				s.slide[i].style.width=s.width+"px";
 				s.slide[i].style.height=s.height+"px";
 			}
+			//设置wrapper宽度
+			s.wrapper.width=s.width*s.slide.length;
+			s.wrapper.style.width=s.wrapper.width+"px";
 		};
         /*=========================
           Classes
@@ -113,34 +138,32 @@
         /*=========================
           Loop
           ===========================*/
-        s.updateLoop = function () {
+        s.createLoop = function () {
         	if(!s.params.loop)return;
-        	var firstChild=s.slide[0].cloneNode(true);
-        	var lastChild=s.slide[s.slide.length-1].cloneNode(true);
-        	s.wrapper.appendChild(firstChild);
-        	s.wrapper.insertBefore(lastChild,s.wrapper.childNodes[0]);
-        	s.slide=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
-        	//设置宽度
-        	s.updateSlidesSize();
-        	s.params.duration=0;
+        	if(s.params.slidesPerView>s.slide.length)return;
+        	var prependSlides = [], appendSlides = [],i;
+        	[].slice.call(s.slide).forEach(function(n,i,a){
+        		if (i < s.params.slidesPerView)appendSlides.push(n);
+        		if (i < s.slide.length && i >= s.slide.length - s.params.slidesPerView)prependSlides.push(n);
+        	});
+        	for (i = 0; i < appendSlides.length; i++) {
+                s.wrapper.appendChild(appendSlides[i].cloneNode(true)).classList.add(s.params.slideDuplicateClass);
+            }
+            for (i = prependSlides.length - 1; i >= 0; i--) {
+                s.wrapper.insertBefore(prependSlides[i].cloneNode(true),s.wrapper.firstElementChild).classList.add(s.params.slideDuplicateClass);
+            }
+        	
+        	/*s.params.duration=0;
         	s.slideTo(1);
-        	s.params.duration=defaults.duration;
+        	s.params.duration=defaults.duration;*/
         };
         s.destroyLoop = function () {
         	s.params.loop=null;
         	var slideDuplicate=s.wrapper.querySelectorAll('.' + s.params.slideDuplicateClass);
-        	for(var i=0,sdc;sdc=slideDuplicate[i++];){
-        		s.wrapper.removeChild(sdc);
+        	for(var i=0,slideDu;slideDu=slideDuplicate[i++];){
+        		s.wrapper.removeChild(slideDu);
         	}
         };
-        s.view = function(){
-    		s.updateSlidesSize();
-    		s.updateLoop();
-        	s.updatePagination();
-        	s.updateClasses();
-    		s.startAutoplay();
-        };
-
         //Controller
 		/*=========================
           Touch Events
@@ -203,12 +226,12 @@
 			}
 			//左右滑动
 			if(s.touches.direction=="horizontal"){
-				//判断是否是边缘
+				//x轴距离左边的像素，向左为负数，向右为正数
 				var moveX=s.touches.posX-s.touches.diff;
-				if((moveX>0 || moveX-s.container.width<-s.wrapper.width)&& !s.params.loop){
+				//判断是否是边缘
+				if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
 					return;
 				}
-
 				s.wrapper.style.left=moveX+"px";
 			}
 		};
@@ -225,6 +248,7 @@
 				}
 				s.slideTo();
 			}
+
 			//清空滑动方向
 			s.touches.direction=null;
 			//开启自动播放
@@ -253,37 +277,62 @@
 		/*=========================
           Method
           ===========================*/
+        function updatePosX(){
+        	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
+        	s.touches.posX=-s.index*s.width;
+        	s.wrapper.style.left=s.touches.posX+"px";
+        }
         s.slideTo=function(slideIndex){
         	if(slideIndex>=0){
 				s.index=slideIndex;
 			}
-
 			if(s.index<0){
 				s.index=0;
 			}
 			if(s.index>s.slide.length-1){
 				s.index=s.slide.length-1;
 			}
-			if(s.params.slidesPerView>1 && s.index>s.slide.length-params.slidesPerView && !s.params.loop){
+			if(s.params.slidesPerView>1 && s.index>s.slide.length-params.slidesPerView){
 				s.index=s.slide.length-s.params.slidesPerView;
 			}
-			s.touches.posX=-s.index*s.width;
+			
 			//更新class
 			s.updateClasses();
 			//移动至index
-			s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
-			s.wrapper.style.left=s.touches.posX+"px";
-			s.wrapper.addEventListener("transitionend",function(){
-				this.style.webkitTransitionDuration="0ms";
+			updatePosX();
+			setTimeout(function(){
 				//runCallBacks
 				if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
-			},false);
+				//循环的情况
+				if(s.params.loop){
+					if(s.touches.posX==0){
+						s.index=s.slide.length-s.params.slidesPerView*2;
+						//console.log("最左侧，应跳转到："+s.index);
+						s.params.duration=0;
+						updatePosX();
+						s.params.duration=defaults.duration;
+						return;
+					}
+					if(-s.touches.posX + s.container.width >= s.wrapper.width){
+						s.index=s.params.slidesPerView;
+						//console.log("最右侧，应跳转到："+s.index);
+						s.params.duration=0;
+						updatePosX();
+						s.params.duration=defaults.duration;
+						return;
+					}
+				}
+			},s.params.duration);
         };
 
 		//主函数
 		s.init=function(){
-			s.view();
+			if (s.params.loop) s.createLoop();
+			s.updateSlidesSize();
+            s.updateContainerSize();
+            s.updatePagination();
 			s.attach();
+			if (s.params.autoplay) s.startAutoplay();
 		}
 		//执行主函数
 		s.init();
