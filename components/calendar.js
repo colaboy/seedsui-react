@@ -242,7 +242,7 @@
 				selectedDate = _this.dateSelectObject.getSelected(),
 				tempThisMonthCalenderDate = _this.dateSelectObject.getMonthCalenderDate(),
 				tempSpanElement,
-				i, j, k,today = new Date();
+				i, j, k, today = new Date();
 
 			_this.container_element.getElementsByClassName('calendar-title')[0].innerHTML = selectedDate.getFullYear() + '-' + (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate() + ' ' + '周' + day_num_array[selectedDate.getDay()];
 
@@ -478,12 +478,18 @@
 						} else {
 							_this.dateSelectObject.nextMonth();
 						}
+						if (typeof _this.onChange === "function") {
+							_this.onChange(_this.dateSelectObject.getSelected());
+						}
 						_animationTo(_this, 'x', 1, _redrawCalenderDate);
 					} else if (tempPositionInfo.positonX > -0.8 * _this.keyData.calenderWidth) {
 						if (_this.mode === 'week') {
 							_this.dateSelectObject.prevWeek();
 						} else {
 							_this.dateSelectObject.prevMonth();
+						}
+						if (typeof _this.onChange === "function") {
+							_this.onChange(_this.dateSelectObject.getSelected());
 						}
 						_animationTo(_this, 'x', -1, _redrawCalenderDate);
 					} else {
