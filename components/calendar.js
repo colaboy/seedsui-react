@@ -409,9 +409,11 @@
 			})(_this, direct, positon, finishCB);
 
 			(function(_animationFunction) {
+				clearTimeout(_this.keyData.timeout);
+
 				function _animationLoopFunction() {
 					if (_animationFunction()) {
-						setTimeout(_animationLoopFunction, speed);
+						_this.keyData.timeout = setTimeout(_animationLoopFunction, speed);
 					} else if (typeof finishCB === 'function') {
 						finishCB();
 					}
