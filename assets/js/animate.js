@@ -49,8 +49,6 @@ var Animate=(function(){
 			milli=duration/fps;
 			plusNumberFps=Math.round(diffNumber/fps);
 		}
-		console.log("总帧数："+fps+";帧毫秒："+milli+";总值："+diffNumber+";递增："+plusNumberFps);
-
 		var countTimer=setInterval(function(){
 			fromNumber=fromNumber+plusNumberFps;
 			el.innerHTML=fromNumber;
