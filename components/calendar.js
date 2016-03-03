@@ -242,7 +242,7 @@
 				selectedDate = _this.dateSelectObject.getSelected(),
 				tempThisMonthCalenderDate = _this.dateSelectObject.getMonthCalenderDate(),
 				tempSpanElement,
-				i, j, k;
+				i, j, k,today = new Date();
 
 			_this.container_element.getElementsByClassName('calendar-title')[0].innerHTML = selectedDate.getFullYear() + '-' + (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate() + ' ' + '周' + day_num_array[selectedDate.getDay()];
 
@@ -260,6 +260,11 @@
 					if (tempThisMonthCalenderDate[k].getDate() === selectedDate.getDate() && tempThisMonthCalenderDate[k].getMonth() === selectedDate.getMonth()) {
 						tempSpanElement.className += " active";
 					}
+
+					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
+					if (tempThisMonthCalenderDate[k].getDate() === today.getDate() && tempThisMonthCalenderDate[k].getMonth() === today.getMonth()) {
+						tempSpanElement.className += " today";
+					}
 				}
 			}
 
@@ -276,11 +281,21 @@
 						tempSpanElement.className += " not-this-month";
 					}
 
+					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
+					if (tempPrevWeekDate[i].getDate() === today.getDate() && tempPrevWeekDate[i].getMonth() === today.getMonth()) {
+						tempSpanElement.className += " today";
+					}
+
 					tempSpanElement = month_container.getElementsByClassName('datenum_2_' + lineNum + '_' + i)[0];
 					tempSpanElement.innerHTML = tempNextWeekDate[i].getDate();
 					tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
 					if (tempNextWeekDate[i].getMonth() != selectedDate.getMonth()) {
 						tempSpanElement.className += " not-this-month";
+					}
+
+					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
+					if (tempNextWeekDate[i].getDate() === today.getDate() && tempNextWeekDate[i].getMonth() === today.getMonth()) {
+						tempSpanElement.className += " today";
 					}
 				}
 			} else if (_this.mode === 'month') {
@@ -295,10 +310,20 @@
 						tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
 						tempSpanElement.className += " not-this-month";
 
+						tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
+						if (tempPrevMonthCalenderDate[k].getDate() === today.getDate() && tempPrevMonthCalenderDate[k].getMonth() === today.getMonth()) {
+							tempSpanElement.className += " today";
+						}
+
 						tempSpanElement = month_container.getElementsByClassName('datenum_2_' + i + '_' + j)[0];
 						tempSpanElement.innerHTML = tempNextMonthCalenderDate[k].getDate();
 						tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
 						tempSpanElement.className += " not-this-month";
+
+						tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
+						if (tempNextMonthCalenderDate[k].getDate() === today.getDate() && tempNextMonthCalenderDate[k].getMonth() === today.getMonth()) {
+							tempSpanElement.className += " today";
+						}
 					}
 				}
 			}
@@ -325,8 +350,8 @@
 		}
 
 		function _animationTo(_this, direct, positon, finishCB) {
-			var speed = 40,
-				step = 37,
+			var speed = 30,
+				step = 25,
 				_animationFunction;
 
 			(function(_this, direct, positon, finishCB) {
@@ -482,6 +507,37 @@
 					}
 				}
 			}
+
+			_this.switchMode = function() {
+				if (_this.mode === 'month') {
+					_this.mode = 'week';
+					_animationTo(_this, 'y', 1, _redrawCalenderDate);
+				} else {
+					_this.mode = 'month';
+					_animationTo(_this, 'y', 0, _redrawCalenderDate);
+				}
+			};
+
+			_this.switchToWeek = function() {
+				_this.mode = 'week';
+				_animationTo(_this, 'y', 1, _redrawCalenderDate);
+			};
+
+			_this.switchToMonth = function() {
+				_this.mode = 'month';
+				_animationTo(_this, 'y', 0, _redrawCalenderDate);
+			};
+
+			_this.jumpToDate = function(date) {
+				if (date && date.getTime) {
+					_this.dateSelectObject.setSelected(date.getTime());
+					_drawCalenderDate(_this);
+				}
+			};
+
+			_this.getActiveDate = function(date) {
+				return _this.dateSelectObject.getSelected();
+			};
 
 			_this.keyElement.date_container.addEventListener('touchend', removeFinger, false);
 
