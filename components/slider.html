@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>slider</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
-    
 </head>
 
 <body>
@@ -32,9 +31,7 @@
                         <img src="../img/banner/banner.jpg"/>
                         <div class="slide-title">新闻标题2</div>
                     </div>
-                    <div class="slider-slide">
-                        <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题3</div>
+                    <div class="slider-slide" style="background-color: yellow;">
                     </div>
                 </div>
                 <div class="slider-pagination"></div>
@@ -45,23 +42,23 @@
                 <div class="slider-wrapper">
                     <div class="slider-slide">
                         <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题</div>
+                        <div class="slide-title">新闻标题1</div>
                     </div>
                     <div class="slider-slide">
                         <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题</div>
+                        <div class="slide-title">新闻标题2</div>
                     </div>
                     <div class="slider-slide">
                         <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题</div>
+                        <div class="slide-title">新闻标题3</div>
                     </div>
                     <div class="slider-slide">
                         <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题</div>
+                        <div class="slide-title">新闻标题4</div>
                     </div>
                     <div class="slider-slide">
                         <img src="../img/banner/banner.jpg"/>
-                        <div class="slide-title">新闻标题</div>
+                        <div class="slide-title">新闻标题5</div>
                     </div>
                 </div>
                 <div class="slider-pagination"></div>
@@ -75,14 +72,16 @@
         function removeTouchMove(e){
             e.preventDefault();
         }*/
+
         window.onload=function(){
             var s1=new Slider("#carousel1",{
-                "pagination":"#carousel1 .slider-pagination",
+                "pagination":".slider-pagination",
                 "loop":true
             });
             var s2=new Slider("#carousel2",{
-                "pagination":"#carousel2 .slider-pagination",
-                "slidesPerView":"3"
+                "pagination":".slider-pagination",
+                "slidesPerView":"3",
+                "loop":true
             });
         }
         //定义exmobi返回
