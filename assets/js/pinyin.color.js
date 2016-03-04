@@ -1,34 +1,35 @@
 (function(window,document,undefined){
 	'use strict';
 	var colors={
-		"a":"#FF66FF",
-		"b":"#CC66FF",
-		"c":"#9966FF",
-		"d":"#6666FF",
-		"e":"#3366FF",
-		"f":"#0066FF",
-		"g":"#0066CC",
-		"h":"#3366CC",
-		"i":"#6666CC",
-		"j":"#9966CC",
-		"k":"#CC66CC",
-		"l":"#FF66CC",
-		"m":"#006699",
-		"n":"#666699",
-		"o":"#996699",
-		"p":"#CC6699",
-		"q":"#FF6699",
-		"r":"#FF6666",
-		"s":"#996666",
-		"t":"#336666",
-		"u":"#006633",
-		"v":"#666633",
-		"w":"#CC6633",
-		"x":"#FF6600",
-		"y":"#996600",
-		"z":"#336600"
+		"a":"#52c7fe",
+		"b":"#52c7fe",
+		"c":"#52c7fe",
+		"d":"#52c7fe",
+		"e":"#52c7fe",
+		"f":"#ffaf01",
+		"g":"#ffaf01",
+		"h":"#ffaf01",
+		"i":"#ffaf01",
+		"j":"#ffaf01",
+		"k":"#3ae3eb",
+		"l":"#3ae3eb",
+		"m":"#3ae3eb",
+		"n":"#3ae3eb",
+		"o":"#3ae3eb",
+		"p":"#ff6e36",
+		"q":"#ff6e36",
+		"r":"#ff6e36",
+		"s":"#ff6e36",
+		"t":"#ff6e36",
+		"u":"#cf7af3",
+		"v":"#cf7af3",
+		"w":"#cf7af3",
+		"x":"#cf7af3",
+		"y":"#cf7af3",
+		"z":"#4cd32e"
 	};
 	String.prototype.toColor=function(){
-		return colors[this.toPinyin().substr(0,1).toLowerCase()];
+		if(this.length>1 || !/^[A-Za-z]+$/.test(this))return;
+		return colors[this.toLowerCase()];
 	}
 })(window,document,undefined)

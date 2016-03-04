@@ -21,3 +21,5 @@
 // @koala-prepend "type.js"
 // @koala-prepend "weather.js"
 // @koala-prepend "calendar.js"
+// @koala-prepend "pinyin.js"
+// @koala-prepend "pinyin.color.js"
