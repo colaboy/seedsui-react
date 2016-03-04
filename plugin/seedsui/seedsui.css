@@ -299,8 +299,8 @@ button.text-left {
   box-pack: end;
   -moz-box-pack: end;
   -webkit-box-pack: end;
-  -webkit-justify-content: -webkit-flex-end;
-  justify-content: -webkit-flex-end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
 }
 .box-middle,
 .box-middlecenter {
@@ -314,8 +314,8 @@ button.text-left {
   box-align: end;
   -moz-box-align: end;
   -webkit-box-align: end;
-  -webkit-align-items: -webkit-flex-end;
-  align-items: -webkit-flex-end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
 }
 .box-vertical {
   -moz-box-orient: vertical;
@@ -330,6 +330,16 @@ button.text-left {
   box-orient: horizontal;
   -webkit-flex-flow: row;
   flex-flow: row;
+}
+.box-shrink div {
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  flex-shrink: 0;
 }
 .box-flex-1 {
   -moz-box-flex: 1.0;
