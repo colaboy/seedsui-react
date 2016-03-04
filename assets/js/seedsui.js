@@ -20,3 +20,4 @@
 // @koala-prepend "toast.js"
 // @koala-prepend "type.js"
 // @koala-prepend "weather.js"
+// @koala-prepend "calendar.js"

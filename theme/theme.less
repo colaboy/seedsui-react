@@ -679,6 +679,30 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*-----------------------------loading.less(end)-----------------------------*/
 
+/*-----------------------------calendar.less(start)-----------------------------*/
+.calendar{
+	border-color:@color-border;
+}
+.day-name{
+    color:@color-label;
+}
+.day-date .today:not(.active){
+    color:@color-primary;
+}
+.day-date .active{
+    background-color:@color-primary;
+}
+.arrowleft,.arrowright{
+	color:@color-border;
+}
+.arrowleft:active,.arrowright:active{
+	color:@color-primary;
+}
+.not-this-month{
+	color:@color-border;
+}
+/*-----------------------------calendar.less(end)-----------------------------*/
+
 /*----------------------------chat.less(start)----------------------------*/
 .chat .author i {
 	color:@color-placeholder;
