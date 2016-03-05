@@ -1,3 +1,4 @@
+// @koala-prepend "section.js"
 // @koala-prepend "actionsheet.js"
 // @koala-prepend "alert.js"
 // @koala-prepend "animate.js"
