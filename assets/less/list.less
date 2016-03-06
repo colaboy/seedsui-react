@@ -4,7 +4,7 @@
 	display: -webkit-flex;
 	display: box;
 	display: -webkit-box;
-	padding:6px 4px;
+	padding:0 4px;
 	box-sizing: border-box;
 	border-width: 0 0 1px 0;
 	border-style: solid;
@@ -19,7 +19,7 @@
 	max-width: 90px;
 }
 .list .justify,.list .justify-content{
-	padding:4px;
+	padding:10px 4px;
 }
 .list .justify,.list .licon,.list .ricon,.list .round{
 	display: flex;
@@ -71,23 +71,23 @@
 .list .ricon{
 	font-size:12px;
 }
+/*无点击*/
+.list.noclick li,.list li.noclick{
+	background-color:white;
+}
+.list.noclick li:active,.list li.noclick:active{
+	background-color:white;
+}
 /*无边框*/
-.list.noborder li{
+.list.noborder li,.list li.noborder{
 	border-width:0;
 }
-/*无背景*/
-.list.nobg li{
+/*透明*/
+.list.bg-transparent li,.list li.bg-transparent{
 	background-color:transparent;
 }
-.list.nobg li:active{
+.list.noclick.bg-transparent li:active,.list li.noclick.bg-transparent:active{
 	background-color:transparent;
-}
-/*无点击*/
-.list li.noclick{
-	background-color:white;
-}
-.list li.noclick:active{
-	background-color:white;
 }
 /*无自适应*/
 .list li.nojustify{
@@ -97,11 +97,14 @@
 	display: block;
 	max-width: 100%;
 }
-/*新闻列表*/
-.list.newlist [class^=mark-]{
+.list li.nojustify .justify-content~.justify{
+	padding-top:0;
+}
+/*列表标记*/
+.list [class^=mark-]{
 	margin-right:4px;
 }
-/*邮件列表*/
+/*左圆形列表*/
 .list .round{
 	width:50px;
 	height:50px;
@@ -117,16 +120,8 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-/*联系人列表*/
-.list.contactlist li{
-	border-width: 0;
-}
-.list.contactlist li .justify-content{
-	border-style: solid;
-	border-color: inherit;
-	border-width: 0 0 1px 0;
-}
-.list.contactlist .justify-content small:last-child{
+/*上下两端对齐*/
+.list.between .justify-content small:last-child,.list li.between .justify-content small:last-child{
 	margin-top: 8px;
 }
 /*功能列表*/
@@ -178,15 +173,24 @@
 	position: absolute;
 }
 .list .top{
-	top:4px;
+	top:12px;
 }
 .list .bottom{
-	bottom:4px;
+	bottom:8px;
 }
 .list .left{
 	left:4px;
 }
 .list .right{
 	right:4px;
+}
+/*内容线*/
+.list.border-content li{
+    border-width: 0;
+}
+.list.border-content .justify-content{
+	border-style: solid;
+    border-color: inherit;
+    border-width: 0 0 1px 0;
 }
 /*----------------------------list.less(end)----------------------------*/
