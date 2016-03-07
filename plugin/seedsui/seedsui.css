@@ -574,8 +574,17 @@ button.text-left {
 .noradius {
   border-radius: 0 !important;
 }
-.radius {
+.border-radius6 {
   border-radius: 6px;
+}
+.border-radius8 {
+  border-radius: 8px;
+}
+.border-radius16 {
+  border-radius: 16px;
+}
+.border-radius20 {
+  border-radius: 20px;
 }
 hr {
   border: none;
@@ -5556,7 +5565,7 @@ table th {
   content: "\e90e";
 }
 /*无子节点左侧图标*/
-.treetitle:only-child .treeicon {
+.treetitle.lastchild .treeicon {
   left: -28px;
   border-radius: 100%;
   font-size: 16px;
@@ -5564,7 +5573,7 @@ table th {
   background-image: none;
   background-color: #efcb03;
 }
-.treetitle:only-child .treeicon:before {
+.treetitle.lastchild .treeicon:before {
   content: '';
 }
 /*----------------tree.less(end)--------------*/
@@ -5842,7 +5851,6 @@ ul.weather-otherday li {
 /*常用颜色*/
 /*-----------------------------global.less(start)-----------------------------*/
 body {
-  background-color: #f4f4f4;
   color: #333333;
 }
 /*标签默认样式*/
@@ -5893,6 +5901,11 @@ hr {
   background-color: transparent;
 }
 /*-----------------------------global.less(end)-----------------------------*/
+/*----------------mbox.less(start)--------------*/
+section {
+  background-color: #f4f4f4;
+}
+/*----------------mbox.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
 /*主体遮罩*/
 .section_container_mask {
