@@ -23,6 +23,9 @@
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/charts/Chart.min.js"></script>
 	<script>
+		/*Chart.defaults.global = {
+			
+		};*/
 		var doughnutData = [
 			{
 				value: 300,
@@ -59,7 +62,12 @@
 
 		window.onload = function(){
 			var ctx = document.getElementById("chart-area").getContext("2d");
-			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+			window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+				showTooltips:false,
+				responsive : true,
+				animationEasing : "easeOut",
+				animationSteps:30
+			});
 		};
 		//定义exmobi返回
 		function back(){history.go(-1);}
