@@ -22,21 +22,22 @@
                 <div class="group">
                     <div class="row">
                         <label>用户名</label>
-                        <div class="input-box margin8">
-                            <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="required username"/>
+                        <div class="input-box margin8 ricon" data-input="clear">
+                            <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="username"/>
+                            <i class="icon-clear-fill"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>密码</label>
                         <div class="input-box margin8 ricon">
-                            <input type="password" placeholder="密码" name="password" data-rule-field="用户名" data-rule="required password minlength:6"/>
+                            <input type="password" placeholder="密码" name="password" data-rule-field="密码" data-rule="password"/>
                             <i class="icon-eye-fill"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>确认</label>
                         <div class="input-box margin8 ricon">
-                            <input type="password" placeholder="确认" name="reconfirm" data-rule="required password compare:password minlength:6"/>
+                            <input type="password" placeholder="确认" name="reconfirm" data-rule="password compare:password"/>
                             <i class="icon-eye-fill"></i>
                         </div>
                     </div>
@@ -107,9 +108,18 @@
                     <div class="row">
                         <label>个人说明</label>
                         <div class="input-box margin8">
-                            <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
+                            <textarea class="label-right noborder" name="personal"></textarea>
                         </div>
-                        
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="row">
+                        <label>资料好友可见</label>
+                        <div class="input-box margin8">
+                            <div class="switch" data-on="是" data-off="否" data-value="1" data-name="vis"><div class="switch-handle"></div></div>
+                            <div class="switch" data-on="是" data-off="否" data-value="1" data-name="vis"><div class="switch-handle"></div></div>
+                        </div>
                     </div>
                 </div>
             </form>

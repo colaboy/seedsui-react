@@ -47,7 +47,21 @@
 		s.initFormControl=function(){
 			//开关控件点击
 			$(".switch").click(function(){
-				$(this).toggleClass("active");
+				var name=$(this).data("name");
+				var val=$(this).data("value")||"";
+				var hiddeninput=$("+input[name="+name+"]",this);
+				if(name[0] && !hiddeninput[0]){
+					$('<input type="hidden" name="'+name+'">').insertAfter(this);
+					hiddeninput=$("+input[name="+name+"]",this);
+				}
+				
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					if(hiddeninput[0])hiddeninput.val("");
+				}else{
+					$(this).addClass("active");
+					if(hiddeninput[0])hiddeninput.val(val);
+				}
 			});
 			//密码控件点击小眼睛
 			$("[type=password] + i").click(function(){
@@ -61,17 +75,18 @@
 				$(this).parent().find("input[type]")[0].focus();
 			});
 			//带清空按钮
-			$("input[data-clear='true']").on("input propertychange",function(){
-				if($(this).val().length>0){
-					$("+i",this).css({display:"block"});
-				}else{
-					$("+i",this).css({display:"none"});
-				}
-				$("+i",this).click(function(){
-					$(this).css({display:"none"});
-					$(this).prev().val("");
-				});
-			});
+			$("[data-input='clear'] input").on("input",function(){
+	    		if($(this).val().length>0){
+	    			$("+i",this).css("display","block");
+	    		}else{
+	    			console.log(2);
+	    			$("+i",this).css("display","none");
+	    		}
+	    	});
+	    	$("[data-input='clear'] input+i").css("display","none").on("click",function(){
+	    		$(this).css("display","none");
+	    		$(this).parent().find("input").val("").focus();
+	    	})
 			//安全检测
 			$(".safelvl").parent().find("[type=password]").on("input propertychange",function(){
 				s.checkSafe($(this)[0],$(".safelvl")[0]);

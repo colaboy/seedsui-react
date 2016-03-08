@@ -3104,24 +3104,24 @@ select {
   transform: translateY(-50%);
 }
 .input-box.lricon {
-  padding: 0 40px;
+  padding: 0 34px;
 }
 .input-box.lricon i:first-child {
   left: 8px;
 }
-.input-box.lricon i:last-child {
+.input-box.lricon input + i {
   right: 8px;
 }
 .input-box.licon {
-  padding-left: 40px;
+  padding-left: 34px;
 }
-.input-box.licon i {
+.input-box.licon i:first-child {
   left: 8px;
 }
 .input-box.ricon {
-  padding-right: 40px;
+  padding-right: 34px;
 }
-.input-box.ricon i {
+.input-box.ricon input + i {
   right: 8px;
 }
 /*用图标自身控制位置*/
@@ -3142,6 +3142,16 @@ select {
 /*inputbox内部的label*/
 .input-box label {
   line-height: 30px;
+}
+/*搜索框*/
+input[type=search].search,
+input[type=text].search {
+  height: 32px;
+  box-sizing: border-box;
+}
+/*带清空按钮*/
+div[data-input=clear] input[type] + i {
+  font-size: 20px;
 }
 /*----------------inputbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
