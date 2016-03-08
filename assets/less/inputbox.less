@@ -67,8 +67,11 @@
 .input-box.lricon i:first-child{
 	left:8px;
 }
-.input-box.lricon input+i{
+.input-box.lricon input+i,.input-box.lricon select+i{
 	right:8px;
+}
+.input-box.lricon select+i{
+	pointer-events:none;
 }
 .input-box.licon{
 	padding-left:34px;
@@ -79,10 +82,12 @@
 .input-box.ricon{
 	padding-right:34px;
 }
-.input-box.ricon input+i{
+.input-box.ricon input+i,.input-box.ricon select+i{
 	right:8px;
 }
-
+.input-box.ricon select+i{
+	pointer-events:none;
+}
 /*用图标自身控制位置*/
 .input-box .licon{
 	left:8px;
