@@ -18,12 +18,12 @@
         <article>
         	<form id="form1" style="padding:10px;">
                 <div class="input-box ricon required" data-input="clear">
-                    <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
+                    <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="username"/>
                     <i class="icon-clear-fill"></i>
                 </div>
                 <div class="rowspace8"></div>
                 <div class="input-box ricon required">
-                    <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6"/>
+                    <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="safelvl password minlength:6 maxlength:16"/>
                     <i class="icon-eye-fill"></i>
                     <div class="safelvl lvl0">
                     	<ul>
@@ -37,7 +37,7 @@
                 
                 <div class="rowspace40"></div>
                 <div class="input-box ricon required">
-                    <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6"/>
+                    <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="password compare:password minlength:6 maxlength:16"/>
                     <i class="icon-eye-fill"></i>
                 </div>
                 <div class="rowspace8"></div>

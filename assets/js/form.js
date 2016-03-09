@@ -138,7 +138,7 @@
 					}
 				}else if(rulename.indexOf("minlength")>=0){
 					var minlength=rulename.split(":")[1];
-					if(value.length<minlength){
+					if(value.length>0 && value.length<minlength){
 						errorMsg=ruleField+lang.rule.minlength+ minlength +lang.rule.unit;
 						break;
 					}
@@ -156,7 +156,7 @@
 						break;
 					}
 				}else if(rulename=="safelvl"){
-					if(s.safelvl<3){
+					if(value.length>0 && s.safelvl<3){
 						errorMsg=ruleField+lang.rule[rulename];
 						break;
 					}
