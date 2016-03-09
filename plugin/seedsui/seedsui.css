@@ -522,12 +522,6 @@ button.text-left {
 }
 /*----------------------------flex布局方式:end----------------------------*/
 /*css3 特效*/
-.rect {
-  border-radius: 0;
-}
-.round {
-  border-radius: 100%;
-}
 .shadow {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
   /*分别指投影的：偏右、偏下、模糊度、扩展、颜色*/
@@ -591,6 +585,9 @@ button.text-left {
 }
 .radius40 {
   border-radius: 40px;
+}
+.radiusround {
+  border-radius: 100%;
 }
 hr {
   border: none;
@@ -731,10 +728,6 @@ small {
 }
 .nomargin {
   margin: 0 !important;
-}
-.overflow-auto {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 /*-----------------------------global.less(end)-----------------------------*/
 /*----------------mbox.less(start)--------------*/
