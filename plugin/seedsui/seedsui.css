@@ -574,17 +574,23 @@ button.text-left {
 .noradius {
   border-radius: 0 !important;
 }
-.border-radius6 {
+.radius4 {
+  border-radius: 4px;
+}
+.radius6 {
   border-radius: 6px;
 }
-.border-radius8 {
+.radius8 {
   border-radius: 8px;
 }
-.border-radius16 {
+.radius16 {
   border-radius: 16px;
 }
-.border-radius20 {
+.radius20 {
   border-radius: 20px;
+}
+.radius40 {
+  border-radius: 40px;
 }
 hr {
   border: none;
@@ -2668,7 +2674,6 @@ input[type="submit"],
   display: inline-block;
   padding: 0 8px;
   border: 0;
-  border-radius: 4px;
   height: 40px;
   overflow: hidden;
   text-align: center;
