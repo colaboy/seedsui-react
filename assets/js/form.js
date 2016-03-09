@@ -50,7 +50,7 @@
 				var name=$(this).data("name");
 				var val=$(this).data("value")||"";
 				var hiddeninput=$("+input[name="+name+"]",this);
-				if(name[0] && !hiddeninput[0]){
+				if(name && !hiddeninput[0]){
 					$('<input type="hidden" name="'+name+'">').insertAfter(this);
 					hiddeninput=$("+input[name="+name+"]",this);
 				}

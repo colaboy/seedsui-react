@@ -133,11 +133,19 @@
                 <div class="row">
                     <label>switch</label>
                     <div class="input-box margin8" style="padding:8px">
-                        <div class="switch" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                        <div class="switch notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                        <div class="switch" data-on="是" data-name="vis" data-value="1" data-off="否">
+                            <div class="switch-handle"></div>
+                        </div>
+                        <div class="switch notext" data-on="是" data-value="1" data-off="否">
+                            <div class="switch-handle"></div>
+                        </div>
                         <div class="rowspace"></div>
-                        <div class="switch reverse" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
-                        <div class="switch reverse notext" data-on="是" data-on-value="1" data-off="否" data-off-value="0"><div class="switch-handle"></div></div>
+                        <div class="switch reverse" data-on="是" data-value="1" data-off="否">
+                            <div class="switch-handle"></div>
+                        </div>
+                        <div class="switch reverse notext" data-on="是" data-value="1" data-off="否">
+                            <div class="switch-handle"></div>
+                        </div>
                     </div>
                 </div>
                 <p class="sliver">兼容性尚未完全普及，还请谨慎使用</p>
@@ -268,7 +276,8 @@
     </section>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script src="../plugin/jquery/jquery.min.js"></script>
-    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../assets/js/form.js"></script>
+    <!-- <script src="../plugin/seedsui/seedsui.min.js"></script> -->
     <script>
     	//表单控件初始化(主要是针对小眼睛和开关控件)
     	window.addEventListener("load",function(){
