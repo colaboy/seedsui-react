@@ -226,4 +226,4 @@
 			event("seeking",callback,detach);
 		};
 	};
-})(window,document,undefined)
+})(window,document,undefined);

@@ -90,4 +90,4 @@
 	t.hasEvent=function(element,strEvent){
 		return (document.all(element)[strEvent] == null) ? false : true 
 	}
-})(window,document,undefined)
+})(window,document,undefined);

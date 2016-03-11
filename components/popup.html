@@ -36,8 +36,13 @@
 	<!--自定义弹出框-->
 	<div id="pop_custom" style="padding:20px 0;background-color:white;display:none;"><a id="hehe">我是从自定义弹出框</a></div>
 	<script src="../plugin/jquery/jquery.min.js"></script>
-	<script src="../plugin/seedsui/seedsui.min.js"></script>
-	<script src="../plugin/exmobi/exmobi.js"></script>
+	<!-- <script src="../plugin/seedsui/seedsui.min.js"></script> -->
+	<script src="../assets/js/alert.js"></script>
+	<script src="../assets/js/confirm.js"></script>
+	<script src="../assets/js/toast.js"></script>
+	<script src="../assets/js/actionsheet.js"></script>
+	<script src="../assets/js/dialog.js"></script>
+	<!--  -->
 	<script type="text/javascript">
 		/*
 		 * 系统弹出框
@@ -66,7 +71,7 @@
 			c1.show();
 	    });
 		
-		//toast
+		// //toast
 		var popToast=new Toast("提示信息");
 		$("#toast").click(function(){
 			popToast.show();

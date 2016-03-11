@@ -32,4 +32,4 @@
 		if(this.length>1 || !/^[A-Za-z]+$/.test(this))return;
 		return colors[this.toLowerCase()];
 	}
-})(window,document,undefined)
+})(window,document,undefined);

@@ -347,4 +347,4 @@
 			transitionend:(function(){return 'ontransitionend' in window})(),
 		}
 	}
-})(window,document,undefined)
+})(window,document,undefined);

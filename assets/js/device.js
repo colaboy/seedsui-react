@@ -50,4 +50,4 @@
 		    isOnline:window.navigator.online
 	   }
 	}();
-})(window,document,undefined)
+})(window,document,undefined);

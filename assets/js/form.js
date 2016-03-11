@@ -226,4 +226,4 @@
 		};
 		s.init();
 	}
-})(window,document,undefined)
+})(window,document,undefined);

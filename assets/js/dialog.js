@@ -39,7 +39,6 @@
                 default :params.pos="middle";hideAnimate={opacity:0};showAnimate={opacity:1};
             }
             var s=this;
-
             //生成外框
             if(!containerBox){
                 containerBox=document.createElement("div");

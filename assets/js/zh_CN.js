@@ -13,4 +13,4 @@ var lang = {
 		"compare": "输入不一致",
 		"safelvl":"不安全，请增强"
 	}
-}
+};
