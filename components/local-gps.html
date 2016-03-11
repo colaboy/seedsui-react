@@ -39,14 +39,14 @@
 		</header>
 		<article>
 		    <div class="maparea">
-		        <img id="bdmap"/>
+		    	<img src="" alt="" id="maparea_img" />
 		        <p>南京烽火</p>
 		    </div>
 		    <a class="button cancel block margin8" id="onkeyGuide" title="点击一键导航">点击一键导航</a>
 		    <a class="button info block margin8"  href="tel:4001101111">打电话</a>
 		    <a class="button info block margin8"  href="sms:4001101111">发短信</a>
 		    <a class="button info block margin8"  href="mailto:support@nj.fiberhome.com.cn">发邮件</a>
-		    <div id="location" class="card" style="padding:10px;"></div>
+		    <div id="location" class="card padding8"></div>
 		</article>
 	</section>
 	<script src="../plugin/exmobi/exmobi.js"></script>
@@ -56,7 +56,9 @@
 
 	<script>
 	window.addEventListener("load",function(){
-		BaiduMap.gps(function(point,address){
+		
+		var b=new BaiduMap();
+		b.gps(function(point,address){
 			var y=point.lng,x=point.lat;
 			
 			//将坐标与地址打印
@@ -71,12 +73,13 @@
 				height:"200"
 			}
 			//生成地图图片
-			var mapImgSrc=BaiduMap.mapImg(mapImgOpt);
-			document.getElementById("bdmap").setAttribute("src",mapImgSrc);
+			var mapImgSrc=b.mapImg(mapImgOpt);
+			
+			document.getElementById("maparea_img").setAttribute("src",mapImgSrc);
 			
 			//一键导航
 			document.getElementById("onkeyGuide").addEventListener("click",function(){
-				BaiduMap.mapGuide(mapImgOpt);
+				b.mapGuide(mapImgOpt);
 			},false);
 		});
 	},false);

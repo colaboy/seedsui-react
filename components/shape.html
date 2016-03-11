@@ -291,6 +291,33 @@
 	height:150px;
 	-webkit-clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
 }
+/*地图标记*/
+.pin{
+	display:block;
+	position:relative;
+	width: 30px;
+	height: 30px;
+	border-radius: 50% 50% 50% 0;
+	-webkit-transform: rotate(-45deg);
+	-webkit-transform-origin:center;
+	
+	background: red;
+}
+.pin-label{
+	position: absolute;
+	width:26px;
+	height:26px;
+	text-align:center;
+	line-height:26px;
+	left:2px;
+	top:2px;
+	border-radius: 100%;
+	-webkit-transform:rotate(45deg);
+	-webkit-transform-origin:center; 
+
+	background-color: green;
+	color: white;
+}
 </style>
 </head>
 
@@ -305,6 +332,10 @@
         </div>
 	</header>
 	<article>
+		<div class="sliver">地图标记</div>
+		<div class="box box-center padding8">
+			<div class="pin"><label class="pin-label">1</label></div>
+		</div>
 		<div class="sliver">聊天框</div>
 		<div class="box box-center padding8">
 			<div class="chatbox">
