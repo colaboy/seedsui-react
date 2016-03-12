@@ -212,7 +212,7 @@ var Richeditor={
 			richEdit.classList.add("active");
 			if(!carouselFace){
 				carouselFace=new Slider(selector+" .emoji",{
-	                "pagination":selector+" .slider-pagination"
+	                "pagination":".slider-pagination"
 	            });
 			}
 			//richEdit.className=richEdit.className+" active";
