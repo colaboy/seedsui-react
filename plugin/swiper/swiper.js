@@ -13,7 +13,7 @@
  * Released on: March 6, 2015
  */
 (function () {
-    'use strict';
+    
     /*===========================
     Swiper
     ===========================*/
@@ -3336,7 +3336,7 @@ if (typeof(module) !== 'undefined')
 }
 else if (typeof define === 'function' && define.amd) {
     define([], function () {
-        'use strict';
+        
         return Swiper;
     });
 }

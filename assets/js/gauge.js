@@ -10,7 +10,7 @@
 *  @class gauge
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Gauge=function(container,params){
 		/*============
 		  Model

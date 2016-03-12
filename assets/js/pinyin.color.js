@@ -1,5 +1,5 @@
 (function(window,document,undefined){
-	'use strict';
+	
 	var colors={
 		"a":"#52c7fe",
 		"b":"#52c7fe",

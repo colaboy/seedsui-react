@@ -11,7 +11,7 @@
 *  @class Actionsheet
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Actionsheet=function(params){
 		var defaults=[
 			{

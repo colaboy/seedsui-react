@@ -10,7 +10,7 @@
 *  @class Type
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Type={};
 	var t=Type;
 	/*====================

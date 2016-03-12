@@ -1,5 +1,5 @@
 (function(window,document,undefined){
-    'use strict';
+    
     /*=========================
       jquery|Dom7|zepto 扩展
       ===========================*/

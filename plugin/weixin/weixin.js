@@ -12,7 +12,7 @@
  *  @class Weixin
  */
 (function(window, document, undefined) {
-	'use strict';
+	
 	var appid = "wxad7e7fcdacc939de";
 	var secret = "de2242954dc9082e77a9dff55c8e60c1";
 	var jsapiTicket = "";

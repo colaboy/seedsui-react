@@ -97,7 +97,6 @@ pre {
 }
 .highlight pre {
   word-break: normal;
-  white-space: nowrap;
 }
 .doctype {
   color: #099;
@@ -2631,6 +2630,9 @@ aside.active ~ #section_container .section_container_mask {
   transform: translate3d(0, 0, 0);
   -webkit-transition: -webkit-transform 0.3s, opacity 0.1s;
   transition: transform 0.3s, opacity 0.1s;
+}
+[data-col] .tab {
+  float: left;
 }
 [data-col="3"] .tab,
 .animate-slide[data-col="3"] hr {

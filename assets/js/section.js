@@ -6,7 +6,7 @@
  */
 
 (function(window,document,undefined){
-	'use strict';
+	
 	/*=========================
       Dom Library and plugins
       ===========================*/

@@ -1,5 +1,5 @@
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Slider=function(container,params){
 		//Model
 		/*=========================
@@ -45,11 +45,11 @@
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		s.container.width=s.container.clientWidth;
 		//Wrapper
-		/*s.wrapper=document.querySelector(container+" > ."+s.params.wrapperClass);*/
-		s.wrapper=s.container.querySelector(":scope > ."+s.params.wrapperClass);
+		s.wrapper=document.querySelector(container+" > ."+s.params.wrapperClass);
+		// s.wrapper=s.container.querySelector(":scope > ."+s.params.wrapperClass);
 		//Slides
-		//s.slides=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
-		s.slides=s.wrapper.querySelectorAll(":scope > ."+s.params.slideClass);
+		s.slides=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
+		// s.slides=s.wrapper.querySelectorAll(":scope > ."+s.params.slideClass);
 		if(s.slides.length<=0){
 			return;
 		}
@@ -59,7 +59,9 @@
           ===========================*/
         s.createPagination=function(){
         	if (!s.params.pagination) return;
-        	s.paginationContainer = s.container.querySelector(":scope > "+s.params.pagination);
+        	s.paginationContainer=document.querySelector(container+" > "+s.params.pagination);
+        	//s.paginationContainer = s.container.querySelector(":scope > "+s.params.pagination);
+
         	s.bullets=[];
         	s.paginationContainer.innerHTML="";
             s.numberOfBullets = s.params.loop ? s.slides.length - s.params.slidesPerView * 2 : s.slides.length;
@@ -102,7 +104,8 @@
           Slides
           ===========================*/
 		s.updateSlides=function(){
-			s.slides=s.wrapper.querySelectorAll(":scope > ."+s.params.slideClass);
+			s.slides=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
+			//s.slides=s.wrapper.querySelectorAll(":scope > ."+s.params.slideClass);
 		};
 		/*=========================
           Container Size

@@ -16,7 +16,7 @@
 *  @import DateUtil from './DateUtil.js'
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Weather=function(container,params){
 		var s=this;
 		s.container=document.querySelector(container);

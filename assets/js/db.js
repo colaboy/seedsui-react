@@ -11,7 +11,7 @@
  */
 
 var DB = function() {
-    'use strict';
+    
 
     function checkManifest() {
         window.addEventListener("updateready", function(e) {

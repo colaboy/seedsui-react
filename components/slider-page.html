@@ -73,7 +73,7 @@
         //初始化数据
         var pageDataCount=[100,10,30,40,50];
         function initData(){
-            [].slice.call(carouselPage.slide).forEach(function(n,i,a){
+            [].slice.call(carouselPage.slides).forEach(function(n,i,a){
                 var datastr="";
                 for(var j=0;j<pageDataCount[i];j++){
                     datastr+="<li>第"+i+"页</li>"
@@ -102,7 +102,7 @@
         }
         //给第一页和第二页添加拖动刷新
         function initDrag(){
-            var drag1=new Dragrefresh(carouselPage.slide[0],{
+            var drag1=new Dragrefresh(carouselPage.slides[0],{
                 "onRefresh":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
@@ -120,7 +120,7 @@
                 }
             });
 
-            var drag2=new Dragrefresh(carouselPage.slide[1],{
+            var drag2=new Dragrefresh(carouselPage.slides[1],{
                 "onRefresh":function(e){
                     setTimeout(function(){
                         e.refreshComplete();

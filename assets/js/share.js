@@ -10,7 +10,7 @@
 *  @class Share
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Share=function(params){
 		/*===============
 		Model

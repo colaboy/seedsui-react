@@ -10,7 +10,7 @@
 *  @class EventUtil
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	function _swipe_(element,type,handler){
 		var xDown, yDown,xUp,yUp,xDiff,yDiff;
 		element.addEventListener( 'touchstart', function( e ){

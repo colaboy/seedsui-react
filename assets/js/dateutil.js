@@ -10,7 +10,7 @@
 *  @class DateUtil
 */
 var DateUtil=function(){
-	'use strict';
+	
 	var date = new Date();
 	return {
 		year:function(){

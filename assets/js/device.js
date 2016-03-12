@@ -10,7 +10,7 @@
 *  @class Device
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Device=function(){
 		var u=navigator.userAgent,app=navigator.appVersion;
 		function isPc(){

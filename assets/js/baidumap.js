@@ -10,7 +10,7 @@
 *  @class BaiduMap
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.BaiduMap=function(container,params){
 		/*=========================
           Params

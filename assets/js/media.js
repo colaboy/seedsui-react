@@ -12,7 +12,7 @@
 *  @param media //video dom 或者 audio src(用于播放背景音乐)
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Media=function(media){
 		/*===========================
 	    Model

@@ -11,7 +11,7 @@
 *  @class Actionsheet
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Toast=function(msg,params){
 		/*================
 		Model

@@ -11,7 +11,7 @@
 *  @class Confirm
 */
 (function(window,document,undefined){
-	'use strict';
+	
 	window.Confirm=function(msg,params){
 		/*================
 		Model

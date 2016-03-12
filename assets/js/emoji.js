@@ -3,10 +3,7 @@
  * @version 1.0.0
  * @author WangMingzhu
  */
-
 (function(window,document,undefined){
-	'use strict';
-
 	window.Emoji={
 		icons:{
 			"[微笑]":"[weixiao]",
