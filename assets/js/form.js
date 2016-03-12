@@ -60,6 +60,10 @@
 				s.formElements.push(field);
 			}
 		};
+		//添加formElements对象
+		s.pushElement=function(el){
+			s.formElements.push(el);
+		};
 		//表单控件初始化(主要是针对小眼睛和开关控件)
 		s.initFormControl=function(){
 			//开关控件点击
@@ -70,6 +74,7 @@
 				if(name && !hiddeninput[0]){
 					$('<input type="hidden" name="'+name+'">').insertAfter(this);
 					hiddeninput=$("+input[name="+name+"]",this);
+					s.pushElement(hiddeninput[0]);
 				}
 				
 				if($(this).hasClass("active")){
@@ -132,17 +137,17 @@
 			}
 			return parts.join("&");
 		};
-		//单个验证
+		//单个元素验证
 		s.safelvl=0;//密码安全等级
-		var ruleExpr = {
-			"required":/^.+$/,//不能为空
-			"username":/^[\w]*$/,//只能包括字母、数字和下划线
-			"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
-			"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
-			"phone":/^([1][34578][0-9]{9})?$/,//手机号码输入不正确
-			"chinese":/^[\u4E00-\u9FA5]*$///只能填写中文
-		}
 		s.rule=function(field){
+			var ruleExpr = {
+				"required":/^.+$/,//不能为空
+				"username":/^[\w]*$/,//只能包括字母、数字和下划线
+				"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
+				"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
+				"phone":/^([1][34578][0-9]{9})?$/,//手机号码输入不正确
+				"chinese":/^[\u4E00-\u9FA5]*$///只能填写中文
+			}
 			var ruleField=field.getAttribute("data-rule-field")||"";
 			var rule=field.getAttribute("data-rule").split(" ");
 			var value=field.value||"";
@@ -173,7 +178,7 @@
 						break;
 					}
 				}else if(rulename=="safelvl"){
-					if(value.length>0 && s.safelvl<3){
+					if(value.length>0 && s.safelvl<2){
 						errorMsg=ruleField+lang.rule[rulename];
 						break;
 					}

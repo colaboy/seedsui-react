@@ -41,6 +41,7 @@ progress::-webkit-progress-value  {
   		height: 100%;
   		overflow: hidden;
   		position: relative;
+  		-webkit-animation: progressexpand 1s linear;
   		animation: progressexpand 1s linear;
 	}
 	.text {
@@ -78,6 +79,7 @@ progress::-webkit-progress-value  {
 		}
 		.progress.animated:after{
 			animation: movestripes 2s linear infinite;
+			-webkit-animation: movestripes 2s linear infinite;
 		}
 	}
 	&.threed{
@@ -95,7 +97,18 @@ progress::-webkit-progress-value  {
     background-position: 50px 50px;
   }
 }
+@-webkit-keyframes movestripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
 @keyframes progressexpand {
+   0% { width: 0; }
+}
+@-webkit-keyframes progressexpand {
    0% { width: 0; }
 }
 /*----------------progress.less(end)--------------*/

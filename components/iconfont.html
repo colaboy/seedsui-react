@@ -1534,10 +1534,13 @@
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     
     <script>
-        var popAlert;
         $('.grid li>a').on("click",function(){
-            popAlert=new Alert($(this).find("i").attr("class"));
-            popAlert.show();
+            if(!this.alert){
+                this.alert=new Alert($(this).find("i").attr("class"));
+                this.alert.show();
+            }else{
+                this.alert.show();
+            }
             return false;
         });
         //定义exmobi返回

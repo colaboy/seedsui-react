@@ -224,16 +224,14 @@
 			if(s.touches.direction==null){
 				s.touches.direction=Math.abs(diffY)-Math.abs(s.touches.diff)>0?"vertical":"horizontal";
 			}
-			//左右滑动
-			if(s.touches.direction=="horizontal"){
-				//x轴距离左边的像素，向左为负数，向右为正数
-				var moveX=s.touches.posX-s.touches.diff;
-				//判断是否是边缘
-				if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
-					return;
-				}
-				s.wrapper.style.left=moveX+"px";
+			if(s.touches.direction=="vertical")return;
+			//x轴距离左边的像素，向左为负数，向右为正数
+			var moveX=s.touches.posX-s.touches.diff;
+			//判断是否是边缘
+			if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
+				return;
 			}
+			s.wrapper.style.left=moveX+"px";
 		};
 		s.onTouchend=function(e){
 			//左右拉动
@@ -304,6 +302,7 @@
 			//移动至index
 			moveToIndex();
 			setTimeout(function(){
+				s.wrapper.style.webkitTransitionDuration="0ms";
 				//runCallBacks
 				if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
 				//循环的情况
