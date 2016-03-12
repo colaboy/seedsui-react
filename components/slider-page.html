@@ -76,7 +76,7 @@
             [].slice.call(carouselPage.slides).forEach(function(n,i,a){
                 var datastr="";
                 for(var j=0;j<pageDataCount[i];j++){
-                    datastr+="<li>第"+i+"页</li>"
+                    datastr+="<li><div class='justify-content'>第"+i+"页</div></li>"
                 }
                 n.innerHTML="<ul class='list'>"+datastr+"</ul>";
             })
