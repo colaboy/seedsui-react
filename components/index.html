@@ -63,6 +63,12 @@
 					<label class="grid-label">进度条</label>
 				</li>
 				<li>
+					<a href="bg.html">
+						<img src="thumbnail/bg.png"/>
+					</a>
+					<label class="grid-label">背景</label>
+				</li>
+				<li>
 					<a href="layout.html">
 						<img src="thumbnail/layout.png"/>
 					</a>
@@ -344,6 +350,18 @@
 				</ul>
 			</div>
 
+			<div id="weixinlocal" style="display: none;">
+				<div class="sliver">微信本地能力</div>
+				<ul class="grid thumbnail">
+					<li>
+						<a href="javascript:Exmobi.openWebview('res:page/www/components/weixin.html')">
+							<img src="thumbnail/weixin.png"/>
+						</a>
+						<label class="grid-label">微信本地能力</label>
+					</li>
+				</ul>
+			</div>
+
 			<div class="sliver">html5本地能力</div>
 			<ul class="grid thumbnail">
 				<li>
@@ -386,7 +404,7 @@
 
 		</article>
 	</section>
-	
+	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
 		//manifest
@@ -401,9 +419,14 @@
 				console.log('manifest文件没有变化');
 			}
 		},false);*/
+		//判断是否是exmobi环境
 		document.addEventListener("plusready",function(){
 			document.getElementById("exmobilocal").style.display="block";
 		},false);
+		//判断是否是微信环境
+		if(Device.isWeixin){
+			document.getElementById("weixinlocal").style.display="block";
+		}
 		//定义exmobi返回
 		function back(){history.go(-1);}
 		//remove原返回事件绑定

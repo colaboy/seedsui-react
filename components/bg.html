@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>bg</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.css">
+	<style>
+		.bgbox{
+			width:100%;
+			height:60px;
+			background-repeat:no-repeat;
+			background-color:#f8f8f8;
+			box-sizing:border-box;
+		}
+		p{
+			margin-bottom:20px;
+			color:#aaa;
+		}
+
+		.bgorigin-padding-box{
+			background-image:url(../img/map/marker.svg);
+			background-origin:padding-box;
+			padding:10px;
+		}
+		.bgorigin-border-box{
+			background-image:url(../img/map/marker.svg);
+			background-origin:border-box;
+			border:10px solid #ddd;
+			padding:10px;
+		}
+		.bgorigin-content-box{
+			background-image:url(../img/map/marker.svg);
+			background-origin:padding-box;
+			border:10px solid #ddd;
+			padding:10px;
+		}
+
+		.bgmultiple{
+			background-image:url(../img/map/marker.svg),url(../img/map/marker.svg);
+			background-position:0px 0px,38px 20px;
+			background-size:40px 40px,28px 28px;
+		}
+
+		.bg-clip{
+			background-color:coral;
+			background-clip:content-box;
+			border:1px solid #ddd;
+			padding:10px;
+		}
+		.bg-clip-text{
+			/*文字部分*/
+			font-weight: bold;
+			font-size: 60px;
+			background-color:black;
+			/*背景部分*/
+			background-image:url('../img/map/photo.jpg');
+			-webkit-background-clip: text;
+			color: transparent;
+			background-size: 200px 100px;
+			
+			background-repeat: repeat-x;
+			background-position:left bottom;
+			opacity: 1;
+		}
+		.bg-mask{
+			-webkit-mask-image:url(../img/map/marker.svg);
+			-webkit-mask-repeat:no-repeat;
+			-webkit-mask-position:center;
+			background-color:blue;
+		}
+	</style>
+</head>
+
+<body>
+	<section id="page_bg" class="active" style="background-color: white;">
+		<header>
+	        <div class="titlebar">
+	            <a href="javascript:history.go(-1)" class="left">
+	                <i class="icon-arrowleft"></i>
+	            </a>
+	            <h1>背景</h1>
+	        </div>
+	    </header>
+		<article>
+		    <!--background-origin-->
+			<div class="sliver">background-origin（背景起始）</div>
+		    <div class="bgbox bgorigin-padding-box"></div>
+		    <p>padding-box</p>
+		    <div class="bgbox bgorigin-border-box"></div>
+		    <p>border-box</p>
+		    <div class="bgbox bgorigin-content-box"></div>
+		    <p>content-box</p>
+		    <!--background-clip-->
+		    <div class="sliver">background-clip</div>
+		    <div class="bgbox bg-clip">切掉padding区域</div>
+		    <div class="bgbox bg-clip-text">切成文字形状</div>
+		    <!--多重图片-->
+		    <div class="sliver">多重图片</div>
+		    <div class="bgbox bgmultiple"></div>
+		    <!--多重图片-->
+		    <div class="sliver">剪贴蒙版</div>
+		    <div class="bgbox bg-mask"></div>
+		</article>
+	</section>
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

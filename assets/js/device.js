@@ -10,7 +10,6 @@
 *  @class Device
 */
 (function(window,document,undefined){
-	
 	window.Device=function(){
 		var u=navigator.userAgent,app=navigator.appVersion;
 		function isPc(){
@@ -47,7 +46,8 @@
 		    language:(navigator.browserLanguage || navigator.language).toLowerCase(),
 		    userAgent:u,
 		    appVersion:app,
-		    isOnline:window.navigator.online
+		    isOnline:window.navigator.online,
+		    isExmobi:app.toLowerCase().indexOf("exmobi") > -1//判断是否是Exmobi
 	   }
 	}();
 })(window,document,undefined);
