@@ -58,11 +58,33 @@
 		/*==================
 		  Refresh Animate
 		  ==================*/
+		//transtionend事件兼容写法
+		var transition,transform;
+		function whichKernel(){
+			var t,
+			el = document.createElement("fakeelement");
+			var transitions = {
+				"transition"      : ["transition","transform"],
+				"OTransition"     : ["OTransition","OTransform"],
+				"MozTransition"   : ["MozTransition","MozTransform"],
+				"WebkitTransition": ["WebkitTransition","WebkitTransform"]
+			};
+			for (t in transitions){
+				if (el.style[t] !== undefined){
+					transition=transitions[t][0];
+					transform=transitions[t][1];
+					break;
+				}
+			}
+		};
+		if(!transition){
+			whichKernel();
+		}
 		s.transition=function(){
-			s.refreshEl.style.transition=s.params.duration+"ms";
+			s.refreshEl.style[transition]=s.params.duration+"ms";
 		};
 		s.cancelTransition=function(){
-			s.refreshEl.style.transition="0ms";
+			s.refreshEl.style[transition]="0ms";
 		};
 
 		s.spinner=function(){
@@ -70,7 +92,7 @@
 			if(s.rotate>=360){
 				s.rotate=0;
 			}
-			s.refreshEl.style.transform="rotate("+s.rotate+"deg)";
+			s.refreshEl.style[transform]="rotate("+s.rotate+"deg)";
 			s.rAf=s.requestAnimationFrame(s.spinner);
 		};
 		s.cancelSpinner=function(){
@@ -237,7 +259,7 @@
 			s.touches.posY=s.params.refreshHideTop+s.touches.diff;
 			if(s.touches.posY<s.params.refreshThresholdMax){
 				s.rotate=s.touches.posY*2;
-				s.refreshEl.style.transform="rotate("+s.rotate+"deg)";
+				s.refreshEl.style[transform]="rotate("+s.rotate+"deg)";
 				s.refreshEl.style.top=s.touches.posY+"px";
 			}
 		};

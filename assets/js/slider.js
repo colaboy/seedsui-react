@@ -12,6 +12,9 @@
 			"threshold":"50",
 			"duration":"300",
 
+			//touch
+			simulateTouch: true,
+
 			//loop
 			"loop":false,
 			"slideDuplicateClass":'slider-slide-duplicate',
@@ -168,18 +171,27 @@
 		/*=========================
           Touch Events
           ===========================*/
-		var touchEvents={
+        var desktopEvents = ['mousedown', 'mousemove', 'mouseup'];
+        if (window.navigator.pointerEnabled) desktopEvents = ['pointerdown', 'pointermove', 'pointerup'];
+        else if (window.navigator.msPointerEnabled) desktopEvents = ['MSPointerDown', 'MSPointerMove', 'MSPointerUp'];
+        s.touchEvents = {
+            start : s.support.touch || !s.params.simulateTouch  ? 'touchstart' : desktopEvents[0],
+            move : s.support.touch || !s.params.simulateTouch ? 'touchmove' : desktopEvents[1],
+            end : s.support.touch || !s.params.simulateTouch ? 'touchend' : desktopEvents[2]
+        };
+        console.log(s.touchEvents);
+		/*var touchEvents={
 			"start":"touchstart",
 			"move":"touchmove",
 			"end":"touchend"
-		}
+		}*/
 		//绑定事件
 		s.events=function(detach){
 			var touchTarget=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
-			touchTarget[action](touchEvents.start,s.onTouchstart,false);
-			touchTarget[action](touchEvents.move,s.onTouchmove,false);
-			touchTarget[action](touchEvents.end,s.onTouchend,false);
+			touchTarget[action](s.touchEvents.start,s.onTouchStart,false);
+			touchTarget[action](s.touchEvents.move,s.onTouchMove,false);
+			touchTarget[action](s.touchEvents.end,s.onTouchEnd,false);
 		}
 		//attach、dettach事件
 		s.attach=function(event){
@@ -206,18 +218,23 @@
         //索引
         s.index=0;
         //Handler
-		s.onTouchstart=function(e){
-			s.touches.startX=e.touches[0].clientX;
-			s.touches.startY=e.touches[0].clientY;
+		s.onTouchStart=function(e){
+			s.touches.startX = s.touches.currentX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
+            s.touches.startY = s.touches.currentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
+			/*s.touches.startX=e.touches[0].clientX;
+			s.touches.startY=e.touches[0].clientY;*/
 			//关闭自动播放
 			s.stopAutoplay();
 			//runCallBacks
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
 			e.stopPropagation();
 		};
-		s.onTouchmove=function(e){
-			s.touches.currentX=e.touches[0].clientX;
-			s.touches.currentY=e.touches[0].clientY;
+		s.onTouchMove=function(e){
+			if(e.preventDefault) e.preventDefault();else e.returnValue = false;
+			s.touches.currentX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
+            s.touches.currentY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
+			/*s.touches.currentX=e.touches[0].clientX;
+			s.touches.currentY=e.touches[0].clientY;*/
 			s.touches.diff=s.touches.startX-s.touches.currentX;
 			var diffY=s.touches.startY-s.touches.currentY;
 			//设置滑动方向
@@ -233,7 +250,7 @@
 			}
 			s.wrapper.style.left=moveX+"px";
 		};
-		s.onTouchend=function(e){
+		s.onTouchEnd=function(e){
 			//左右拉动
 			if(s.touches.direction=="horizontal"){
 				//左右拉动
