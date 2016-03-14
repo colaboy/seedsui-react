@@ -86,7 +86,8 @@
 		};
 		s.show=function(){
 			if(s){
-				$(s.mask).css("display","block").animate({opacity:1},"fast","linear");
+				//$(s.mask).css("display","block").animate({opacity:1},"fast","linear");
+				$(s.mask).css({display:"block",opacity:"1"});
 				$(s.container).css("display","block").animate(s.showAnimate,"fast","linear");
 			}
 		};
