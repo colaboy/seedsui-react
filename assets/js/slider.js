@@ -195,7 +195,8 @@
         	currentY:0,
         	endX:0,
         	endY:0,
-        	diff:0,
+        	diffX:0,
+        	diffY:0,
         	posX:0,
         	direction:null
         };
@@ -217,34 +218,34 @@
 		s.onTouchMove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
 			s.touches.currentY=e.touches[0].clientY;
-			s.touches.diff=s.touches.startX-s.touches.currentX;
-			var diffY=s.touches.startY-s.touches.currentY;
+			s.touches.diffX=s.touches.startX-s.touches.currentX;
+			s.touches.diffY=s.touches.startY-s.touches.currentY;
 			//设置滑动方向
 			if(s.touches.direction==null){
-				s.touches.direction=Math.abs(diffY)-Math.abs(s.touches.diff)>0?"vertical":"horizontal";
+				s.touches.direction=Math.abs(s.touches.diffY)-Math.abs(s.touches.diffX)>0?"vertical":"horizontal";
 			}
 			if(s.touches.direction=="vertical"){
 				s.container.removeEventListener("touchmove",preventDefault,false);
 				return;
 			}
 			//x轴距离左边的像素，向左为负数，向右为正数
-			var moveX=s.touches.posX-s.touches.diff;
+			var moveX=s.touches.posX-s.touches.diffX;
 			//判断是否是边缘
 			if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
 				return;
 			}
-			//s.wrapper.style.left=moveX+"px";
-			s.wrapper.style.WebkitTransform='translateX(' + moveX + 'px)';
+			s.wrapper.style.left=moveX+"px";
+			//s.wrapper.style.WebkitTransform='translateX(' + moveX + 'px)';
 		};
 		s.onTouchEnd=function(e){
 			//s.container.removeEventListener("touchmove",preventDefault,false);
 			//左右拉动
 			if(s.touches.direction=="horizontal"){
 				//左右拉动
-				if(s.touches.diff>s.params.threshold){
+				if(s.touches.diffX>s.params.threshold){
 					//下一页
 					s.index++;
-				}else if(s.touches.diff<-s.params.threshold){
+				}else if(s.touches.diffX<-s.params.threshold){
 					//上一页
 					s.index--;
 				}
@@ -281,8 +282,8 @@
         function moveToIndex(){
         	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
         	s.touches.posX=-s.index*s.width;
-        	//s.wrapper.style.left=s.touches.posX+"px";
-        	s.wrapper.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
+        	s.wrapper.style.left=s.touches.posX+"px";
+        	//s.wrapper.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
         }
         s.slideTo=function(slideIndex){
         	if(slideIndex>=0){

@@ -197,14 +197,14 @@
         	currentY:0,
         	endX:0,
         	endY:0,
-        	diff:0,
+        	diffX:0,
+        	diffY:0,
         	posY:0
         };
         function preventDefault(e){
 			e.preventDefault();
 		}
 		s.onTouchStart=function(e){
-			e.preventDefault();
 			//如果不在顶部，则不触发
 			if(s.container.scrollTop>0){
 				s.touches.isTop=false;
@@ -218,13 +218,14 @@
 		s.onTouchMove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
 			s.touches.currentY=e.touches[0].clientY;
-			s.touches.diff=s.touches.currentY-s.touches.startY;
-			var diffX=s.touches.startX-s.touches.currentX;
+			s.touches.diffY=s.touches.currentY-s.touches.startY;
+			s.touches.diffX=s.touches.startX-s.touches.currentX;
 			//不在头部、横向滚动、向上滚动，则不下拉刷新
-			if(!s.touches.isTop || Math.abs(diffX) > Math.abs(s.touches.diff) || s.touches.diff<0){
+			if(!s.touches.isTop || Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) || s.touches.diffY<0){
 				return;
 			}
-			s.touches.posY=s.params.refreshHideTop+s.touches.diff;
+			e.preventDefault();
+			s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
 			console.log(s.touches.posY);
 			if(s.touches.posY<s.params.refreshThresholdMax){
 				s.rotate=s.touches.posY*2;
