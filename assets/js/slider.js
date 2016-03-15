@@ -234,8 +234,8 @@
 			if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
 				return;
 			}
-			s.wrapper.style.left=moveX+"px";
-			//s.wrapper.style.WebkitTransform='translateX(' + moveX + 'px)';
+			//s.wrapper.style.left=moveX+"px";
+			s.wrapper.style.WebkitTransform='translate3d(' + moveX + 'px,0px,0px)';
 		};
 		s.onTouchEnd=function(e){
 			//s.container.removeEventListener("touchmove",preventDefault,false);
@@ -282,8 +282,8 @@
         function moveToIndex(){
         	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
         	s.touches.posX=-s.index*s.width;
-        	s.wrapper.style.left=s.touches.posX+"px";
-        	//s.wrapper.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
+        	//s.wrapper.style.left=s.touches.posX+"px";
+        	s.wrapper.style.WebkitTransform='translate3d(' + s.touches.posX + 'px,0px,0px)';
         }
         s.slideTo=function(slideIndex){
         	if(slideIndex>=0){
