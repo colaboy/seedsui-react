@@ -61,20 +61,33 @@
 	};
 	//transtionend事件与animationend兼容写法
 	var transitionend,animationend;
-	function whichKernel(){
+	function whichTransitionEvent(){
 		var t,
 		el = document.createElement("fakeelement");
 		var transitions = {
-			"transition"      : ["transitionend","animationend"],
-			"OTransition"     : ["oTransitionEnd","oAnimationEnd"],
-			"MozTransition"   : ["transitionend","animationend"],
-			"WebkitTransition": ["webkitTransitionEnd","webkitAnimationEnd"]
+			"transition"      : "transitionend",
+			"OTransition"     : "oTransitionEnd",
+			"MozTransition"   : "transitionend",
+			"WebkitTransition": "webkitTransitionEnd"
 		};
 		for (t in transitions){
 			if (el.style[t] !== undefined){
-				transitionend=transitions[t][0];
-				animationend=transitions[t][1];
-				break;
+				return transitions[t];
+			}
+		}
+	};
+	function whichAnimationEvent(){
+		var t,
+		el = document.createElement("fakeelement");
+		var animations = {
+			"animation"      : "animationend",
+			"OAnimation"     : "oAnimationEnd",
+			"MozAnimation"   : "animationend",
+			"WebkitAnimation": "webkitAnimationEnd"
+		};
+		for (t in animations){
+			if (el.style[t] !== undefined){
+				return animations[t];
 			}
 		}
 	};
@@ -100,7 +113,7 @@
 			//animationend
 			if(type.toLowerCase()==="animationend"){
 				if(!animationend){
-					whichKernel();
+					animationend=whichAnimationEvent();
 				}
 				if (element.addEventListener) {
 					element.addEventListener(animationend, handler, false);
@@ -113,7 +126,7 @@
 			//TransitionEnd
 			if(type.toLowerCase()==="transitionend"){
 				if(!transitionend){
-					whichKernel();
+					transitionend=whichTransitionEvent();
 				}
 				if (element.addEventListener) {
 					element.addEventListener(transitionend, handler, false);

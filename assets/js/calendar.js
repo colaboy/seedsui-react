@@ -188,6 +188,11 @@
 			month_container: this.container_element.getElementsByClassName('month_container')[0]
 		};
 
+		this.keyData = {
+			calenderWidth: this.container_element.clientWidth,
+			calenderHeight: this.keyElement.date_container.getElementsByClassName('day-date')[0].clientHeight
+		};
+
 		if (!this.container_element) {
 			return false;
 		}
@@ -214,18 +219,13 @@
 
 		_initCalenderDom(this, this.container_element);
 
-		this.keyData = {
-			calenderWidth: this.container_element.clientWidth,
-			calenderHeight: this.keyElement.date_container.getElementsByClassName('day-date')[0].clientHeight
-		};
-
 		function _getFirstNumByString(string) {
 			return parseInt(string.match(/-?\d+/)[0], 10);
 		}
 
 		function _getPositionInfo(_this) {
-			var tempXPostion = _getFirstNumByString(_this.keyElement.calender_container.style.WebkitTransform),
-				tempYPostion = _getFirstNumByString(_this.keyElement.month_container.style.WebkitTransform),
+			var tempXPostion = _getFirstNumByString(_this.keyElement.calender_container.style.transform),
+				tempYPostion = _getFirstNumByString(_this.keyElement.month_container.style.transform),
 				tempHeight = _this.keyElement.date_container.style.height;
 
 			tempHeight = parseInt(tempHeight.substring(0, tempHeight.length - 2), 10);
@@ -333,20 +333,20 @@
 
 		function _setPostionAndHeight(_this, positionInfo) {
 			if (positionInfo) {
-				_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + positionInfo.positonX + 'px)';
+				_this.keyElement.calender_container.style.transform = 'translateX(' + positionInfo.positonX + 'px)';
 
 				_this.keyElement.date_container.style.height = positionInfo.height + 'px';
 
-				_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + positionInfo.positonY + 'px)';
+				_this.keyElement.month_container.style.transform = 'translateY(' + positionInfo.positonY + 'px)';
 
 				return true;
 			}
 
-			_this.keyElement.calender_container.style.WebkitTransform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
+			_this.keyElement.calender_container.style.transform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
 
 			_this.keyElement.date_container.style.height = _this.mode == 'week' ? _this.keyData.calenderHeight + 'px' : _this.keyData.calenderHeight * 6 + 'px';
 
-			_this.keyElement.month_container.style.WebkitTransform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
+			_this.keyElement.month_container.style.transform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
 		}
 
 		function _animationTo(_this, direct, positon, finishCB) {
@@ -431,7 +431,6 @@
 				_this.keyData.tempX = firstFinger.clientX;
 				_this.keyData.tempY = firstFinger.clientY;
 				_this.keyData.direct = 0;
-				e.preventDefault();
 			}, false);
 
 			_this.keyElement.date_container.addEventListener('touchmove', function(e) {
@@ -451,11 +450,11 @@
 
 				if (_this.keyData.direct === 1) {
 					if (tempNumX < 0 && tempNumX > -2 * _this.keyData.calenderWidth) {
-						_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + tempNumX + 'px)';
+						_this.keyElement.calender_container.style.transform = 'translateX(' + tempNumX + 'px)';
 					}
 				} else if (_this.keyData.direct === -1) {
 					if (tempNumY < 0 && tempNumY > -6 * _this.keyData.calenderHeight && tempHeightNum > _this.keyData.calenderHeight) {
-						_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + tempNumY + 'px)';
+						_this.keyElement.month_container.style.transform = 'translateY(' + tempNumY + 'px)';
 					}
 
 					if (tempHeightNum > _this.keyData.calenderHeight && tempHeightNum < 6 * _this.keyData.calenderHeight) {
@@ -603,9 +602,7 @@
 			};
 		}
 
-		var __this = this;
-
-		setTimeout(function(){_initDateTouchAndAnimation(__this)},200);
+		_initDateTouchAndAnimation(this);
 	}
 
 	window.DateSelect = DateSelect;
