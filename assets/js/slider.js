@@ -12,9 +12,6 @@
 			"threshold":"50",
 			"duration":"300",
 
-			//touch
-			simulateTouch: true,
-
 			//loop
 			"loop":false,
 			"slideDuplicateClass":'slider-slide-duplicate',
@@ -171,27 +168,14 @@
 		/*=========================
           Touch Events
           ===========================*/
-        var desktopEvents = ['mousedown', 'mousemove', 'mouseup'];
-        if (window.navigator.pointerEnabled) desktopEvents = ['pointerdown', 'pointermove', 'pointerup'];
-        else if (window.navigator.msPointerEnabled) desktopEvents = ['MSPointerDown', 'MSPointerMove', 'MSPointerUp'];
-        s.touchEvents = {
-            start : s.support.touch || !s.params.simulateTouch  ? 'touchstart' : desktopEvents[0],
-            move : s.support.touch || !s.params.simulateTouch ? 'touchmove' : desktopEvents[1],
-            end : s.support.touch || !s.params.simulateTouch ? 'touchend' : desktopEvents[2]
-        };
-        console.log(s.touchEvents);
-		/*var touchEvents={
-			"start":"touchstart",
-			"move":"touchmove",
-			"end":"touchend"
-		}*/
 		//绑定事件
 		s.events=function(detach){
 			var touchTarget=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
-			touchTarget[action](s.touchEvents.start,s.onTouchStart,false);
-			touchTarget[action](s.touchEvents.move,s.onTouchMove,false);
-			touchTarget[action](s.touchEvents.end,s.onTouchEnd,false);
+			touchTarget[action]("touchstart",s.onTouchStart,false);
+			touchTarget[action]("touchmove",s.onTouchMove,false);
+			touchTarget[action]("touchend",s.onTouchEnd,false);
+			touchTarget[action]("touchcancel",s.onTouchEnd,false);
 		}
 		//attach、dettach事件
 		s.attach=function(event){
@@ -217,12 +201,13 @@
         };
         //索引
         s.index=0;
-        //Handler
+        function preventDefault(e){
+			e.preventDefault();
+		}
 		s.onTouchStart=function(e){
-			s.touches.startX = s.touches.currentX = e.type === 'touchstart' ? e.targetTouches[0].pageX : e.pageX;
-            s.touches.startY = s.touches.currentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
-			/*s.touches.startX=e.touches[0].clientX;
-			s.touches.startY=e.touches[0].clientY;*/
+			s.container.addEventListener("touchmove",preventDefault,false);
+			s.touches.startX=e.touches[0].clientX;
+			s.touches.startY=e.touches[0].clientY;
 			//关闭自动播放
 			s.stopAutoplay();
 			//runCallBacks
@@ -230,27 +215,29 @@
 			e.stopPropagation();
 		};
 		s.onTouchMove=function(e){
-			if(e.preventDefault) e.preventDefault();else e.returnValue = false;
-			s.touches.currentX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
-            s.touches.currentY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
-			/*s.touches.currentX=e.touches[0].clientX;
-			s.touches.currentY=e.touches[0].clientY;*/
+			s.touches.currentX=e.touches[0].clientX;
+			s.touches.currentY=e.touches[0].clientY;
 			s.touches.diff=s.touches.startX-s.touches.currentX;
 			var diffY=s.touches.startY-s.touches.currentY;
 			//设置滑动方向
 			if(s.touches.direction==null){
 				s.touches.direction=Math.abs(diffY)-Math.abs(s.touches.diff)>0?"vertical":"horizontal";
 			}
-			if(s.touches.direction=="vertical")return;
+			if(s.touches.direction=="vertical"){
+				s.container.removeEventListener("touchmove",preventDefault,false);
+				return;
+			}
 			//x轴距离左边的像素，向左为负数，向右为正数
 			var moveX=s.touches.posX-s.touches.diff;
 			//判断是否是边缘
 			if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
 				return;
 			}
-			s.wrapper.style.left=moveX+"px";
+			//s.wrapper.style.left=moveX+"px";
+			s.wrapper.style.WebkitTransform='translateX(' + moveX + 'px)';
 		};
 		s.onTouchEnd=function(e){
+			//s.container.removeEventListener("touchmove",preventDefault,false);
 			//左右拉动
 			if(s.touches.direction=="horizontal"){
 				//左右拉动
@@ -263,7 +250,6 @@
 				}
 				s.slideTo();
 			}
-
 			//清空滑动方向
 			s.touches.direction=null;
 			//开启自动播放
@@ -295,7 +281,8 @@
         function moveToIndex(){
         	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
         	s.touches.posX=-s.index*s.width;
-        	s.wrapper.style.left=s.touches.posX+"px";
+        	//s.wrapper.style.left=s.touches.posX+"px";
+        	s.wrapper.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
         }
         s.slideTo=function(slideIndex){
         	if(slideIndex>=0){
@@ -357,9 +344,6 @@
 		s.init();
 	}
 	Slider.prototype={
-		preventDefault:function(e){
-			e.preventDefault();
-		},
 		support:{
 			touch:(function(){return 'ontouchstart' in window})(),
 			animationend:(function(){return 'onanimationend' in window})(),
