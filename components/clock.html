@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>clock</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+    <section id="page_gauge" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:history.go(-1)"><i class="icon-arrowleft"></i></a>
+                <h1>时钟</h1>
+            </div>
+        </header>
+        <article>
+            <div class="clock" id="clock">
+                <div class="hour"></div>
+                <div class="minute"></div>
+                <div class="origin"></div>
+            </div>
+        </article>
+    </section>
+    
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script>
+        
+        window.addEventListener("load",function(){
+            var c=new Clock("#clock",{
+                time:"12:00"
+            });
+        },false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

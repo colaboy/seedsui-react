@@ -343,6 +343,9 @@
 		}
 		//执行主函数
 		s.init();
+		
+		// Return slider instance
+		return s;
 	}
 	Slider.prototype={
 		support:{

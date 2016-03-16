@@ -4044,6 +4044,41 @@ input[type=range]:focus::-ms-fill-upper {
   }
 }
 /*---------------gauge.less(end)---------------*/
+.clock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 2px;
+}
+.clock .origin {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: 50%;
+  left: 50%;
+  margin-left: -2px;
+  margin-top: -2px;
+  border-radius: 100%;
+}
+.clock .hour,
+.clock .minute {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  -webkit-transform-origin: center bottom;
+  -webkit-transition: all 200ms linear;
+}
+.clock .hour {
+  height: 35%;
+}
+.clock .minute {
+  height: 43%;
+}
 /*----------------------------chat.less(start)----------------------------*/
 .chat {
   padding: 8px;
@@ -6292,6 +6327,16 @@ textarea {
   fill: #4587f7;
 }
 /*----------------dragrefresh.less(end)--------------*/
+/*----------------clock.less(start)--------------*/
+.clock {
+  border-color: #4587f7;
+}
+.clock .origin,
+.clock .hour,
+.clock .minute {
+  background-color: #4587f7;
+}
+/*----------------clock.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
 .row {
   border-color: #e8e8e8;
