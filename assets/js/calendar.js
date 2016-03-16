@@ -431,10 +431,10 @@
 				_this.keyData.tempX = firstFinger.clientX;
 				_this.keyData.tempY = firstFinger.clientY;
 				_this.keyData.direct = 0;
-				e.preventDefault();
 			}, false);
 
 			_this.keyElement.date_container.addEventListener('touchmove', function(e) {
+				e.preventDefault();
 				var firstFinger = e.touches[0],
 					diffX = firstFinger.clientX - _this.keyData.tempX,
 					diffY = firstFinger.clientY - _this.keyData.tempY;

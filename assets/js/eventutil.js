@@ -100,7 +100,9 @@
 			//animationend
 			if(type.toLowerCase()==="animationend"){
 				if(!animationend){
-					whichKernel();
+					//whichKernel();
+					transitionend="webkitTransitionEnd";
+					animationend="webkitAnimationEnd";
 				}
 				if (element.addEventListener) {
 					element.addEventListener(animationend, handler, false);
@@ -113,7 +115,9 @@
 			//TransitionEnd
 			if(type.toLowerCase()==="transitionend"){
 				if(!transitionend){
-					whichKernel();
+					//whichKernel();
+					transitionend="webkitTransitionEnd";
+					animationend="webkitAnimationEnd";
 				}
 				if (element.addEventListener) {
 					element.addEventListener(transitionend, handler, false);

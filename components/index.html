@@ -272,12 +272,6 @@
 					<label class="grid-label">折线图</label>
 				</li>
 				<li>
-					<a href="charts-line-customTooltips.html">
-						<img src="thumbnail/charts-line-customTooltips.png"/>
-					</a>
-					<label class="grid-label">折线图</label>
-				</li>
-				<li>
 					<a href="charts-pie.html">
 						<img src="thumbnail/charts-pie.png"/>
 					</a>
@@ -429,6 +423,12 @@
 		document.addEventListener("plusready",function(){
 			document.getElementById("exmobilocal").style.display="block";
 		},false);
+		//remove原返回事件绑定
+		EventUtil.removeHandler(document,"backmonitor",back);
+		//添加新的返回事件
+		EventUtil.addHandler(document,"backmonitor",function(){
+			Exmobi.dbclose();
+		});
 		//判断是否是微信环境
 		if(Device.isWeixin){
 			document.getElementById("weixinlocal").style.display="block";

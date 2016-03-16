@@ -55,4 +55,14 @@
         //Return Clock instance
         return s;
     }
+    window.DataClock=function(){
+        var clocks=document.querySelectorAll("[data-clock]");
+        clocks.containers=[];
+        for(var i=0,clock;clock=clocks[i++];){
+            clocks.containers[i]=new Clock(clock,{
+                "time":clock.getAttribute("data-clock")
+            })
+        }
+        return clocks;
+    }
 })();

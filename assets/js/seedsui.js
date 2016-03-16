@@ -10,6 +10,7 @@
 // @koala-prepend "form.js"
 // @koala-prepend "gauge.js"
 // @koala-prepend "media.js"
+// @koala-prepend "clock.js"
 // @koala-prepend "richeditor.js"
 // @koala-prepend "share.js"
 // @koala-prepend "slider.js"

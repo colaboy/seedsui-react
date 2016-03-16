@@ -74,7 +74,7 @@
 			}else{
 				s.container.className+=" bg"+s.bgLvl;
 			}
-			s.container.setAttribute("style","-webkit-animation-duration:"+s.duration+"s;animation-duration:"+s.duration+"ms;");
+			s.container.style.WebkitAnimationDuration=s.duration+"ms";
 		}
 		//设置波浪
 		s.updateWave=function(){
@@ -83,7 +83,8 @@
 			if(waveTop<0){
 				waveTop=0;
 			}
-			s.wave.setAttribute("style","top:"+waveTop+"%;-webkit-transition:all "+s.duration+"ms");
+			s.wave.style.top=waveTop+"%";
+			s.wave.style.WebkitTransition="all "+s.duration+"ms";
 		}
 		s.view=function(){
 			s.updateBg();

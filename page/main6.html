@@ -6,8 +6,76 @@
 <title>main6</title>
 
 <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-<link rel="stylesheet" href="../plugin/animate/animate.css">
+<!-- <link rel="stylesheet" href="../plugin/animate/animate.css"> -->
 <style type="text/css">
+	.slideInUp {
+	  -webkit-animation-name: slideInUp;
+	}
+	@-webkit-keyframes slideInUp {
+	  0% {
+	    opacity: 0;
+	    -webkit-transform: translateY(2000px);
+	    transform: translateY(2000px);
+	  }
+
+	  100% {
+	    opacity: 1;
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	  }
+	}
+	.flipInX {
+	  -webkit-animation-name: flipInX;
+	}
+	@-webkit-keyframes flipInX {
+	  0% {
+	    -webkit-transform: perspective(400px) rotateX(90deg);
+	    transform: perspective(400px) rotateX(90deg);
+	    opacity: 0;
+	  }
+
+	  40% {
+	    -webkit-transform: perspective(400px) rotateX(-10deg);
+	    transform: perspective(400px) rotateX(-10deg);
+	  }
+
+	  70% {
+	    -webkit-transform: perspective(400px) rotateX(10deg);
+	    transform: perspective(400px) rotateX(10deg);
+	  }
+
+	  100% {
+	    -webkit-transform: perspective(400px) rotateX(0deg);
+	    transform: perspective(400px) rotateX(0deg);
+	    opacity: 1;
+	  }
+	}
+	.flipInY {
+	  -webkit-animation-name: flipInY;
+	}
+	@-webkit-keyframes flipInY {
+	  0% {
+	    -webkit-transform: perspective(400px) rotateY(90deg);
+	    transform: perspective(400px) rotateY(90deg);
+	    opacity: 0;
+	  }
+
+	  40% {
+	    -webkit-transform: perspective(400px) rotateY(-10deg);
+	    transform: perspective(400px) rotateY(-10deg);
+	  }
+
+	  70% {
+	    -webkit-transform: perspective(400px) rotateY(10deg);
+	    transform: perspective(400px) rotateY(10deg);
+	  }
+
+	  100% {
+	    -webkit-transform: perspective(400px) rotateY(0deg);
+	    transform: perspective(400px) rotateY(0deg);
+	    opacity: 1;
+	  }
+	}
 	.grid {
 		background: #fff;
 		margin:12px 0 0 0;
@@ -17,47 +85,46 @@
 	}
 	.grid.app a{
 		color:white;
+		-webkit-animation-duration: 500ms;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-fill-mode: both;
 	}
 	.grid .grid1 {
-		-webkit-animation-delay:100ms;
-		-ms-animation-delay:100ms;
 		animation-delay:100ms;
+		-webkit-animation-delay:100ms;
 	}
-
 	.grid .grid2 {
-		-webkit-animation-delay:200ms;
-		-ms-animation-delay:200ms;
 		animation-delay:200ms;
+		-webkit-animation-delay:200ms;
 	}
 	.grid .grid3 {
-		-webkit-animation-delay:300ms;
-		-ms-animation-delay:300ms;
 		animation-delay:300ms;
+		-webkit-animation-delay:300ms;
 	}
 	.grid .grid4 {
-		-webkit-animation-delay:400ms;
-		-ms-animation-delay:400ms;
 		animation-delay:400ms;
+		-webkit-animation-delay:400ms;
 	}
 	.grid .grid5 {
-		-webkit-animation-delay:500ms;
-		-ms-animation-delay:500ms;
 		animation-delay:500ms;
+		-webkit-animation-delay:500ms;
 	}
 	.grid .grid6 {
-		-webkit-animation-delay:600ms;
-		-ms-animation-delay:600ms;
 		animation-delay:600ms;
+		-webkit-animation-delay:600ms;
 	}
 	.grid .grid7 {
-		-webkit-animation-delay:700ms;
-		-ms-animation-delay:700ms;
 		animation-delay:700ms;
+		-webkit-animation-delay:700ms;
 	}
 	.grid .grid8 {
-		-webkit-animation-delay:800ms;
-		-ms-animation-delay:800ms;
 		animation-delay:800ms;
+		-webkit-animation-delay:800ms;
+	}
+	.maillist{
+		-webkit-animation-duration: 1000ms;
+		-webkit-animation-timing-function:linear;
+		-webkit-animation-fill-mode: both;
 	}
 </style>
 </head>
@@ -75,56 +142,56 @@
 	    <article>
 	    	<ul class="grid app radiusround main6" data-rowspace="12" data-col="4">
 				<li>
-					<a class="grid1 animated flipInX bg-1">
+					<a class="grid1 flipInX bg-1">
 						<i class="icon-contact-fill"></i>
 					</a>
 					<label class="grid-label">通讯录</label>
 				</li>
 				<li>
-					<a class="grid2 animated flipInX bg-2">
+					<a class="grid2 flipInX bg-2">
 						<i class="icon-write-fill"></i>
 					</a>
 					<label class="grid-label">审批</label>
 				</li>
 				<li>
-					<a class="grid3 animated flipInX bg-3">
+					<a class="grid3 flipInX bg-3">
 						<i class="icon-position-fill"></i>
 					</a>
 					<label class="grid-label">定位</label>
 				</li>
 				<li>
-					<a class="grid4 animated flipInX bg-4">
+					<a class="grid4 flipInX bg-4">
 						<i class="icon-gear-fill"></i>
 					</a>
 					<label class="grid-label">设置</label>
 				</li>
 				<li>
-					<a class="grid5 animated flipInX bg-5">
+					<a class="grid5 flipInX bg-5">
 						<i class="icon-folder-fill"></i>
 					</a>
 					<label class="grid-label">文档</label>
 				</li>
 				<li>
-					<a class="grid6 animated flipInX bg-6">
+					<a class="grid6 flipInX bg-6">
 						<i class="icon-chartpie-fill"></i>
 					</a>
 					<label class="grid-label">数据分析</label>
 				</li>
 				<li>
-					<a class="grid7 animated flipInX bg-7">
+					<a class="grid7 flipInX bg-7">
 						<i class="icon-chartbar-fill"></i>
 					</a>
 					<label class="grid-label">其它数据</label>
 				</li>
 				<li>
-					<a class="grid8 animated flipInX bg-8">
+					<a class="grid8 flipInX bg-8">
 						<i class="icon-chatline-fill"></i>
 	                    <span class="tip">3</span>
 					</a>
 					<label class="grid-label">IM</label>
 				</li>
 			</ul>
-			<ul class="list maillist animated slideInUp" style="margin-top: 15px;">
+			<ul class="list maillist slideInUp" style="margin-top: 15px;">
 	            <li class="noclick" style="border-width: 1px 0;">
 	                <div class="justify">
 	                    <span class="peg"></span>
@@ -174,11 +241,11 @@
 		var gridOpt=document.querySelectorAll(".grid>li>a");
 		[].slice.call(gridOpt).forEach(function(n,i,a){
 			EventUtil.addHandler(n,"animationend",function(){
-				n.classList.remove("animated","flipInX","flipInY");
+				n.classList.remove("flipInX","flipInY");
 				n.style.webkitAnimationDelay="0s";
 			});
 			EventUtil.addHandler(n,"click",function(){
-				n.classList.add("animated","flipInY");
+				n.classList.add("flipInY");
 			});
 		});
 		//定义exmobi返回

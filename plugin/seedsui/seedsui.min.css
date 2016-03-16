@@ -20,15 +20,8 @@ p {
   font-size: 15px;
   font-family: arial, sans-serif;
 }
-.appearance-none {
-  appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-}
-.appearance-normal {
-  appearance: normal;
-  -moz-appearance: normal;
-  -webkit-appearance: normal;
+textarea {
+  resize: none;
 }
 ul,
 li,
@@ -3510,6 +3503,8 @@ input[type=range]:focus::-ms-fill-upper {
   background-size: 100% 100%;
   animation-duration: 0.5s;
   -webkit-animation-duration: 0.5s;
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
 }
