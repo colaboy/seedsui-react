@@ -6288,9 +6288,10 @@ keygen,
 input[list],
 textarea {
   border-color: #e8e8e8;
+  background-color: #ffffff;
 }
 .input-box {
-  background-color: white;
+  background-color: #ffffff;
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
