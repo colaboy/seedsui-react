@@ -2,7 +2,7 @@
 /*
 *	兼容html5 的 Exmobi js
 */
-var o=1;//双击关闭，计数器
+var dbcount=0;//双击关闭，计数器
 var qrcode;//扫码控件
 var camerawindow;//拍照控件
 var imageChoice;//照片选择控件
@@ -44,17 +44,21 @@ var Exmobi={
 	close:function(){
 		ExMobiWindow.close();
 	},
-	dbclose:function(){
-		if(o==1){
-			var toast = new Toast();
-			toast.setText("再按一次退出应用");
-			toast.show();
+	dbclick:function(msg){
+		var toast = new Toast();
+		toast.setText(msg);
+		toast.show();
+		setTimeout( function(){dbcount=0} , 2000);
+		if(dbcount==0){
+			dbcount=2;
+			return false;
 		}
-		else if(o==2){
+		return true;
+	},
+	dbclose:function(){
+		if(Exmobi.dbclick("再按一次退出应用")){
 			ExMobiWindow.close();
 		}
-		o++;
-		setTimeout( function(){o=1} , 2000);
 	},
 	exit:function(mes){
 		if(mes){
@@ -64,16 +68,9 @@ var Exmobi={
 		ClientUtil.exitNoAsk();
 	},
 	dbexit:function(){
-		if(o==1){
-			var toast = new Toast();
-			toast.setText("再按一次退出应用");
-			toast.show();
-		}
-		else if(o==2){
+		if(Exmobi.dbclick("再按一次退出应用")){
 			ClientUtil.exitNoAsk();
 		}
-		o++;
-		setTimeout( function(){o=1} , 2000);
 	},
 	qrcode:function(){
 		qrcode = new Decode();
@@ -223,7 +220,6 @@ var Exmobi={
 		CacheUtil.setCache(key,value);
 	},
 	getCache:function(key){
-		alert(CacheUtil.getCache(key));
 		return CacheUtil.getCache(key);
 	},
 	//修改webview地址

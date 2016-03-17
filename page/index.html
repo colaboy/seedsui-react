@@ -18,7 +18,7 @@
 	<section id="page_index" class="active">
 		<header>
 	        <div class="titlebar">
-	            <a href="javascript:history.go(-1)" class="left">
+	            <a href="javascript:Exmobi.close()" class="left">
 	                <i class="icon-arrowleft"></i>
 	            </a>
 	            <h1>模板页面</h1>
@@ -108,14 +108,18 @@
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
-		//定义exmobi返回
-		function back(){history.go(-1);}
+		//判断是否是exmobi环境
+		document.addEventListener("plusready",function(){
+			document.getElementById("exmobilocal").style.display="block";
+		},false);
 		//remove原返回事件绑定
 		document.removeEventListener("backmonitor",back,false);
 		//添加新的返回事件
 		document.addEventListener("backmonitor",function(){
 			Exmobi.dbclose();
 		},false);
+		//定义exmobi返回
+		function back(){history.go(-1);}
 	</script>
 </body>
 </html>

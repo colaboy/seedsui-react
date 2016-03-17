@@ -18,7 +18,7 @@
 	<section id="page_index" class="active">
 		<header>
 			<div class="titlebar">
-				<a href="javascript:history.go(-1)" class="left"> <i class="icon-arrowleft"></i>
+				<a href="javascript:Exmobi.close();" class="left"> <i class="icon-arrowleft"></i>
 				</a>
 				<h1>components</h1>
 			</div>
@@ -243,6 +243,12 @@
 					</a>
 					<label class="grid-label">仪表盘</label>
 				</li>
+				<li>
+					<a href="clock.html">
+						<img src="thumbnail/clock.png"/>
+					</a>
+					<label class="grid-label">时钟</label>
+				</li>
 			</ul>
 
 			<div class="sliver">charts-可视化数据</div>
@@ -337,7 +343,7 @@
 					</li>
 					<li>
 						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-pattern.html')">
-							<img src="thumbnail/animate.png"/>
+							<img src="thumbnail/exmobi-pattern.png"/>
 						</a>
 						<label class="grid-label">手势密码</label>
 					</li>
@@ -424,23 +430,17 @@
 			document.getElementById("exmobilocal").style.display="block";
 		},false);
 		//remove原返回事件绑定
-		EventUtil.removeHandler(document,"backmonitor",back);
+		document.removeEventListener("backmonitor",back,false);
 		//添加新的返回事件
-		EventUtil.addHandler(document,"backmonitor",function(){
+		document.addEventListener("backmonitor",function(){
 			Exmobi.dbclose();
-		});
+		},false);
 		//判断是否是微信环境
 		if(Device.isWeixin){
 			document.getElementById("weixinlocal").style.display="block";
 		}
 		//定义exmobi返回
 		function back(){history.go(-1);}
-		//remove原返回事件绑定
-		document.removeEventListener("backmonitor",back,false);
-		//添加新的返回事件
-		document.addEventListener("backmonitor",function(){
-			Exmobi.dbclose();
-		},false);
 	</script>
 </body>
 </html>

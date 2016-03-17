@@ -17,13 +17,12 @@
 		</header>
 		<article>
 		    <div class="input-box margin8 ricon" onclick="Exmobi.qrcode()">
-	            <input type="text" class="input-text" placeholder="扫码控件框"/>
+	            <input type="text" class="input-text" id="codetext" placeholder="扫码控件框"/>
 	            <i class="icon-qrcodeline"></i>
 	        </div>
 		</article>
 	</section>
 	
-	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
 		function qrCodeCallback(){
@@ -31,7 +30,7 @@
 				Phone.toast("扫码失败");
 				return;
 			}
-			$("#codetext").html(qrcode.result);
+			document.getElementById("codetext").value=qrcode.result;
 		}
 		//定义exmobi返回
 		function back(){Exmobi.close();}
