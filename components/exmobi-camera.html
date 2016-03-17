@@ -22,7 +22,7 @@
 			<p class="sliver">图片列表</p>
 			<ul id="imagelist" class="grid album radius8" data-col="3">
 				<li>
-					<a class="default">
+					<a class="default" href="javascript:Exmobi.camera()">
 						<i class="icon-camera"></i>
 					</a>
 				</li>
@@ -40,7 +40,7 @@
 	//相册选择
 	function imageChoiceCallback(selectPaths){
 		var selectImgs="";
-		var selectPaths = imageChoice.getFilePaths();//获取照片列表
+		var selectPaths = this.getFilePaths();//获取照片列表
 		for(var i=0;i<selectPaths.length;i++){
 			var url = selectPaths[i];
 			selectImgs+=getImgText(url);
@@ -49,7 +49,7 @@
 	}
 	//拍照
 	function cameraCallback(){
-		var selectImg=getImgText(camerawindow.value);//获得拍照返回的路径
+		var selectImg=getImgText(this.value);//获得拍照返回的路径
 		$("#imagelist").prepend(selectImg);
 	}
 	//调用系统相册
@@ -62,26 +62,7 @@
 	}
 	//移除grid-cell
 	function removeCell(thisobj){
-		$(thisobj).parent().remove();
-	}
-	//拍照或者上传
-	function sysImage(){
-		//actionsheet
-        Popup.actionsheet([
-		{
-			text : '拍照',
-	        handler : function(e){
-				Exmobi.camera();
-				this.destroy();
-	        }
-		},{
-			text : '相册',
-	        handler : function(e){
-	        	album(768);
-	        	this.destroy();
-			}
-	    }
-		]);
+		$(thisobj).parent().parent().parent().remove();
 	}
 	//定义exmobi返回
 	function back(){Exmobi.close();}

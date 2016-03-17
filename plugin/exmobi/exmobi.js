@@ -1,12 +1,7 @@
-
 /*
 *	兼容html5 的 Exmobi js
 */
 var dbcount=0;//双击关闭，计数器
-var qrcode;//扫码控件
-var camerawindow;//拍照控件
-var imageChoice;//照片选择控件
-var gpsPosition;//gps定位
 var Exmobi={
 	os:function(){
 		var osname=DeviceUtil.getOs().toLowerCase();
@@ -45,7 +40,7 @@ var Exmobi={
 		ExMobiWindow.close();
 	},
 	dbclick:function(msg){
-		var toast = new Toast();
+		var toast=new Toast();
 		toast.setText(msg);
 		toast.show();
 		setTimeout( function(){dbcount=0} , 2000);
@@ -73,18 +68,18 @@ var Exmobi={
 		}
 	},
 	qrcode:function(){
-		qrcode = new Decode();
+		var qrcode = new Decode();
 		qrcode.onCallback = qrCodeCallback;//设置解码结束回调函数
     	qrcode.startDecode();//开始解码
 	},
 	camera:function(){
-		camerawindow = new CameraWindow();
+		var camerawindow = new CameraWindow();
 		camerawindow.onCallback=cameraCallback;
 		camerawindow.startCamera();
 	},
 	imageChoice:function(pwidth,nums){
 		var folder=new File("res:image/filechoice",true);
-		imageChoice=new ImageChoice();
+		var imageChoice=new ImageChoice();
 		imageChoice.pwidth=600;
 		imageChoice.nums=1;
 		if(pwidth){
@@ -101,34 +96,27 @@ var Exmobi={
 		imageChoice.start();
 	},
 	gps:function(){
-		var gpsLocation;
+		var toast=new Toast();
+		toast.setText("正在定位，请稍后...");
+		toast.show();
+		var objGps;
 		if(Exmobi.os()=="android"){
-			gpsLocation=new BaiduLocation();
+			objGps=new BaiduLocation();
 		}else{
-			gpsLocation=new Gps();
+			objGps=new Gps();
 		}
-		gpsLocation.setTimeout(5000);
-	    gpsLocation.onCallback =function(){
-	    	if(!gpsLocation.isSuccess()){//返回定位是否成功
-		       alert(gpsLocation.objName+"定位失败")//定位失败
-		       gpsLocation.stopPosition()//停止定位
-		       return;
-		    }
-		    var latitude = gpsLocation.latitude;//获得纬度
-		    var longitude = gpsLocation.longitude;//获得经度
-		    var locationtime = gpsLocation.locationtime;//定位成功时间
-		    var accuracy = gpsLocation.accuracy;//获取定位精度
-		    //alert("latitude:"+latitude+";longitude:"+longitude+";locationtime:"+locationtime+";accuracy:"+accuracy);
-		    
-		    //构建location对象
-		    gpsPosition=new Location(); 
-		    //设置回调函数
-		    gpsPosition.onCallback=gpsCallback; 
-		    //设置超时时间 
-		    gpsPosition.setTimeout(5000);
-		    gpsPosition.startGetLocationInfo(latitude,longitude);//通过纬度，经度获取位置信息
-	    };
-	    gpsLocation.startPosition();
+		objGps.setTimeout(5000);
+	    objGps.onCallback=gpsCallback;
+	    objGps.startPosition();
+	},
+	location:function(latitude,longitude){
+		//构建location对象
+	    var objLocation=new Location(); 
+	    //设置回调函数
+	    objLocation.onCallback=gpsCallback; 
+	    //设置超时时间 
+	    objLocation.setTimeout(5000);
+	    objLocation.startGetLocationInfo(latitude,longitude);//通过纬度，经度获取位置信息
 	},
 	tel:function(telnumber){
 		if(telnumber){

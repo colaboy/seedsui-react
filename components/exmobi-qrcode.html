@@ -25,12 +25,13 @@
 	
 	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
+		var popToast=new Toast("扫码失败");
 		function qrCodeCallback(){
-			if(!qrcode.isSuccess()){
-				Phone.toast("扫码失败");
+			if(!this.isSuccess()){
+				popToast.show();
 				return;
 			}
-			document.getElementById("codetext").value=qrcode.result;
+			document.getElementById("codetext").value=this.result;
 		}
 		//定义exmobi返回
 		function back(){Exmobi.close();}

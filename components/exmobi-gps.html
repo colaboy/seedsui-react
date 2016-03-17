@@ -18,7 +18,7 @@
 		<article>
 			<a class="button block margin8 info" href="javascript:Exmobi.gps()">开始定位</a>
 			<div class="sliver">gps定位</div>
-			<div id="location" class="card padding8">定位...</div>
+			<div id="gps" class="card padding8">gps信息</div>
 		</article>
 	</section>
 	
@@ -27,19 +27,16 @@
 	<script>
 		//定位
 		function gpsCallback(){
-			if(!gpsPosition.isSuccess()){//返回定位是否成功
-				var code=gpsPosition.getMessageCode();
-				//定位失败
-				Phone.toast(code+"定位失败")//gps
-				return;
-			}
-			var city=gpsPosition.city;
-			var lat=gpsPosition.latitude;/*纬度*/
-		    var lng=gpsPosition.longitude;/*经度*/
-		    var des=gpsPosition.location;/*位置描述*/
-		    var duration=gpsPosition.locationtime;/*定位时间 */
-		    var gpsinfo="您所在的城市："+city+"，纬度："+lat+";"+lng+"，经度："+des+"，定位用时"+duration;
-			document.getElementById("location").innerHTML=gpsinfo;
+		    var lat = this.latitude;//获得纬度
+		    var lng = this.longitude;//获得经度
+		    var ltime = this.locationtime;//定位成功时间
+		    var gpsinfo="经纬度："+lat+";"+lng+"<br/>定位时间:"+ltime;
+			document.getElementById("gps").innerHTML=gpsinfo;
+			//获取位置
+			if(!this.isSuccess()){
+		       alert("定位失败");
+		       this.stopPosition();
+		    }
 		}
 		//定义exmobi返回
 		function back(){Exmobi.close();}

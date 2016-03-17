@@ -66,60 +66,53 @@
 			<a class="button cancel block" style="margin: 8px 20px;" id="msharecancel">取消</a>
 		</div>
 	</section>
-<script src="../plugin/jquery/jquery.min.js"></script>
-
-<script src="../assets/js/eventutil.js"></script>
-<script src="../assets/js/db.js"></script>
-<script src="../assets/js/device.js"></script>
-<script src="../assets/js/weather.js"></script>
-<script src="../assets/js/share.js"></script>
-<script src="../assets/js/dialog.js"></script>
-<script src="../assets/js/toast.js"></script>
-<script>
-//分享参数
-var shareData={
-	link:'http://exmobi.cn/',
-	title:'简易移动端开发技术！',
-	desc:'狠戳此链接了解，如何让移动开发变的简单',
-	imgUrl:'http://exmobi.cn/2015/images/comm/logo.png',
-	imgTitle:'Exmobi移动开发',
-	from:'烽火星空',
-	cusTxt: "请输入此时此刻想要分享的内容"
-}
-var s=new Share(shareData);
-var t=new Toast("您所要分享的参数不正确");
-//调用分享接口
-document.addEventListener("click",function(e){
-	var target=e.target;
-	if(target.tagName.toLowerCase()=="i"){
-		target=target.parentNode;
-	}
-	if(target.getAttribute("data-share")){
-		var shareTo=target.getAttribute("data-share");
-		switch(shareTo){
-			case "tsina" : s.toTsina(); break;
-			case "weixin" : s.toWeixin(); break;
-			case "fweixin" : s.toFWeixin(); break;
-			case "qq" : s.toQQ(); break;
-			case "tqq" : s.toTqq(); break;
-			case "qzone" : s.toQzone(); break;
-			default : t.show(); break;
+	<script src="../plugin/jquery/jquery.min.js"></script>
+	<script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script>
+		//分享参数
+		var shareData={
+			link:'http://exmobi.cn/',
+			title:'简易移动端开发技术！',
+			desc:'狠戳此链接了解，如何让移动开发变的简单',
+			imgUrl:'http://exmobi.cn/2015/images/comm/logo.png',
+			imgTitle:'Exmobi移动开发',
+			from:'烽火星空',
+			cusTxt: "请输入此时此刻想要分享的内容"
 		}
-	}
-},false);
+		var s=new Share(shareData);
+		var t=new Toast("您所要分享的参数不正确");
+		//调用分享接口
+		document.addEventListener("click",function(e){
+			var target=e.target;
+			if(target.tagName.toLowerCase()=="i"){
+				target=target.parentNode;
+			}
+			if(target.getAttribute("data-share")){
+				var shareTo=target.getAttribute("data-share");
+				switch(shareTo){
+					case "tsina" : s.toTsina(); break;
+					case "weixin" : s.toWeixin(); break;
+					case "fweixin" : s.toFWeixin(); break;
+					case "qq" : s.toQQ(); break;
+					case "tqq" : s.toTqq(); break;
+					case "qzone" : s.toQzone(); break;
+					default : t.show(); break;
+				}
+			}
+		},false);
 
-//弹出框
-var sharepop;
-function showShare(){
-	sharepop=$("#mshare").dialog({"pos":"bottom"});
-}
-//调用分享接口
-var cancelshare=document.getElementById("msharecancel");
-cancelshare.addEventListener("click",function(e){
-	sharepop.hideDialog();
-},false);
-//定义exmobi返回
-function back(){history.go(-1);}
-</script>
+		//弹出框
+		var sharepop;
+		function showShare(){
+			sharepop=$("#mshare").dialog({"pos":"bottom"});
+		}
+		//调用分享接口
+		var cancelshare=document.getElementById("msharecancel");
+		cancelshare.addEventListener("click",function(e){
+			sharepop.hideDialog();
+		},false);
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
 </body>
 </html>
