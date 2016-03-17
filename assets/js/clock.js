@@ -63,7 +63,7 @@
     }
     window.DataClock=function(params){
         /*===============
-        Model
+        Module
         ================*/
         //Containers
         var clocks=document.querySelectorAll("[data-clock]");
