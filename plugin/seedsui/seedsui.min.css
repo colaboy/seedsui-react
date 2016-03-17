@@ -2983,7 +2983,8 @@ select {
   padding-right: 34px;
 }
 .input-box.ricon input + i,
-.input-box.ricon select + i {
+.input-box.ricon select + i,
+.input-box.ricon .input-text + i {
   right: 8px;
 }
 .input-box.ricon select + i {
