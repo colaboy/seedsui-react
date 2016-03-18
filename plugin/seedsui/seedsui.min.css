@@ -302,6 +302,13 @@ button.text-left {
   -webkit-align-items: center;
   align-items: center;
 }
+.box-top {
+  box-align: start;
+  -moz-box-align: start;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
 .box-bottom {
   box-align: end;
   -moz-box-align: end;
@@ -4444,45 +4451,48 @@ input[type=range]:focus::-ms-fill-upper {
   height: 32px;
   line-height: 32px;
 }
-.list .justify {
+.justify {
   min-width: 0px;
   max-width: 90px;
-}
-.list .justify,
-.list .justify-content {
-  padding: 10px 4px;
-}
-.list .justify,
-.list .licon,
-.list .ricon,
-.list .round {
   display: flex;
   display: -webkit-flex;
   display: box;
   display: -webkit-box;
-  box-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-justify-content: center;
-  box-align: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-align-items: center;
 }
-.list .justify img {
+.justify,
+.justify-content {
+  padding: 10px 4px;
+}
+/* .list .justify,.list .licon,.list .ricon,.list .round{
+	display: flex;
+	display: -webkit-flex;
+	display: box;
+	display: -webkit-box;
+
+	box-pack:center;
+	-webkit-box-pack:center;
+	justify-content:center;
+	-webkit-justify-content:center;
+	
+	box-align:center;
+	-webkit-box-align:center;
+	align-items:center;
+	-webkit-align-items:center;
+}  */
+.justify img {
   max-width: 100%;
 }
-.list .justify-content {
+.justify-content {
   overflow: hidden;
   position: relative;
   -webkit-box-flex: 1.0;
   box-flex: 1.0;
 }
-.list .justify-content > p,
-.list .justify-content > a {
+.justify-content > p,
+.justify-content > a {
   line-height: 1.5em;
 }
-.list .justify-content small {
+.justify-content small {
   display: block;
   line-height: 1.5em;
 }
