@@ -29,16 +29,52 @@
 .treetitle:active{
 	background-color:#ddd;
 }
-/*右侧人数*/
-.treetitle small{
+/*树标题-图标*/
+.treetitle .round{
+    background-color: #FFC02C;
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 32px;
+}
+.treetitle [class*=icon-].round{
+	font-size: 24px;
+}
+.treeicon+.round{
+	margin-right: -4px;
+	margin-left: 4px;
+}
+.treetitle .icon{
+	font-size: 24px;
+    color: #aaa;
+}
+.treetitle .top,.treetitle .right,.treetitle .middle,.treetitle .bottom{
 	position: absolute;
-	right:10px;
+}
+.treetitle .right{
+    right: 12px;
+}
+.treetitle .middle{
 	top:50%;
 	-webkit-transform:translateY(-50%);
 }
-/*中间文字*/
+/*树标题-选中效果*/
+.treetitle.active{
+    color: #4587F7;
+}
+.treetitle.active .round{
+	background-color: #4587F7;
+}
+/*树标题-文字颜色*/
 .treetitle a{
 	color:inherit;
+}
+.treetitle .icontitle{
 	padding:15px 0 15px 8px;
 }
 /*左侧图标*/
@@ -66,17 +102,13 @@
 .treetitle .treeicon.active:before{
 	content: "\e90e";
 }
-/*无子节点左侧图标*/
-.treetitle.lastchild .treeicon{
+/*修改左侧箭头图标*/
+.treetitle .treeicon.round{
 	left:-28px;
 	border-radius:100%;
 	font-size:16px;
-	
-	color:white;
-	background-image:none;
-	background-color:#efcb03;
 }
-.treetitle.lastchild .treeicon:before{
+.treetitle .treeicon.round:before{
 	content: '';
 }
 /*----------------tree.less(end)--------------*/
