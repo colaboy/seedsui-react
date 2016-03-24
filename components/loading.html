@@ -5,13 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<title>loading</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+	.hide{
+		display: none!important;
+	}
+	</style>
 </head>
 
 <body>
 	<section id="page_loading" class="active">
 		<!-- 加载遮罩 -->
-		<div class="popup-mask" style="display: block; opacity: 1;"></div>
-		<div class="loading-box box box-middlecenter">
+		<div class="popup-mask hide" style="display: block; opacity: 1;"></div>
+		<div class="loading-box box box-middlecenter hide">
 			<div class="loading"></div>
 		</div>
 		<header>
@@ -26,9 +31,19 @@
 	
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script>
-		/*window.addEventListener("load",function(e){
-			document.getElementById("loading").style.display="none";
-		},false);*/
+		/*=============
+		遮罩
+		==============*/
+		var loadingMask=document.querySelector(".popup-mask"),loadingBox=document.querySelector(".loading-box");
+		function showLoading(){
+			loadingMask.classList.remove("hide");
+			loadingBox.classList.remove("hide");
+		}
+		function hideLoading(){
+			loadingMask.classList.add("hide");
+			loadingBox.classList.add("hide");
+		}
+		showLoading();
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

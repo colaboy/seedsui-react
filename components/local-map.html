@@ -6,12 +6,11 @@
 	<title>local-map</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<style type="text/css">
-		#allmap{
-			height:100%;
+		/*隐藏样式*/
+		.hide{
+			display: none!important;
 		}
-		.shrinkcase{
-			padding:10px 0;
-		}
+		/*地图标记*/
 		.pin-label{
 			position: absolute;
 			width:28px;
@@ -26,12 +25,9 @@
 
 			color: white;
 		}
+		/*人员*/
 		#signPeople{
-			height: 75px;
-    		margin-top: 14px;
-		}
-		#signPeople li{
-			width: 75px;
+			padding: 15px 0;
 		}
 		#signPeople li>a{
 			width:50px;
@@ -44,6 +40,7 @@
 			background-color:white!important;
 			color:#333;
 		}
+		/*悬浮日期框*/
 		.signDate{
 			position: absolute;top:10px;left:10px;z-index: 99999;
 			background-color: #4587F7;
@@ -64,10 +61,7 @@
 			-ms-user-select: none;
 			user-select: none;
 		}
-		#signPeople.grid.app li{
-			float:none; 
-    		display: inline-block;
-		}
+		
 	</style>
 </head>
 
@@ -79,11 +73,11 @@
 		        <h1>签到地图</h1>
 		    </div>
 		</header>
-		<article style="bottom: 150px;">
+		<article style="bottom:150px;">
 			<div class="signDate">
 				<input type="date" id="expireDate"/>
 			</div>
-			<div id="allmap"></div>
+			<div id="allmap" class="height-full"></div>
 		</article>
 		<footer style="height: 150px;background-color:white;">
 			<ul class="list noclick">
@@ -94,8 +88,8 @@
 					</div>
 				</li>
 			</ul>
-			<div class="overflow-x" style="height: 112px;white-space:nowrap;">
-				<ul id="signPeople" class="grid app radiusround">
+			<div id="signPeople">
+				<ul class="grid app radiusround" data-col="4">
 					<li>
 						<a style="background-color: #53c6fd;border-color: #53c6fd;">
 							阳
@@ -119,52 +113,24 @@
 							梅
 						</a>
 						<label class="grid-label">许啸梅</label>
-					</li>
-					<li>
-						<a style="background-color:#cf7af3;border-color: #cf7af3;">
-							婷
-						</a>
-						<label class="grid-label">李婷</label>
-					</li>
-					<li>
-						<a style="background-color: #53c6fd;border-color: #53c6fd;">
-							阳
-						</a>
-						<label class="grid-label">蔡宇阳</label>
-					</li>
-					<li>
-						<a style="background-color: #ffae02;border-color: #ffae02;">
-							波
-						</a>
-						<label class="grid-label">成少波</label>
-					</li>
-					<li>
-						<a style="background-color: #3ae3ea;border-color: #3ae3ea;">
-							进
-						</a>
-						<label class="grid-label">李进</label>
-					</li>
-					<li>
-						<a style="background-color: #ff6f36;border-color: #ff6f36;">
-							梅
-						</a>
-						<label class="grid-label">许啸梅</label>
-					</li>
-					<li>
-						<a style="background-color: #cf7af3;border-color: #cf7af3;">
-							婷
-						</a>
-						<label class="grid-label">李婷</label>
 					</li>
 				</ul>
 			</div>
 		</footer>
 	</section>
-	
+	<!-- 加载遮罩 -->
+	<div class="popup-mask hide" style="opacity: 1;display: block;"></div>
+	<div class="loading-box box box-middlecenter hide">
+		<div class="loading"></div>
+	</div>
+
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8830f84901336e9afd2c6d7033d2ebe5"></script>
 	<script>
+		/*=============
+		地图
+		==============*/
         //定义坐标和文字
         var markerPeople=[[116.417854,39.921988,"<span class='color-1 bold'>蔡宇阳</span>&nbsp;早上8点<br>签到地址：北京市东城区王府井大街88号乐天银泰百货","<label class='pin-label'>阳</label>","#53c6fd"],
         [116.406605,39.921585,"<span class='color-2 bold'>成少波</span>&nbsp;早上8点<br>签到地址：北京市东城区东华门大街","<label class='pin-label'>波</label>","#ffae02"],
@@ -191,29 +157,55 @@
 	            }
 	        });  
 	    }
-
+	    /*=============
+		遮罩
+		==============*/
+		var loadingMask=document.querySelector(".popup-mask"),loadingBox=document.querySelector(".loading-box");
+		function showLoading(){
+			loadingMask.classList.remove("hide");
+			loadingBox.classList.remove("hide");
+		}
+		function hideLoading(){
+			loadingMask.classList.add("hide");
+			loadingBox.classList.add("hide");
+		}
+	    /*=============
+		人员
+		==============*/
+		var signPeople=document.getElementById("signPeople");
 		//一个人与群组切换
-		var signPeople=document.getElementById("signPeople").getElementsByTagName("a");
 		function toogleMarker(target){
 			if(target.classList.contains("active")){
 				target.classList.remove("active");
 				b.show(markerPeople);
 				return;
 			}
-			[].slice.call(signPeople).forEach(function(n,i,a){
+			[].slice.call(signPeople.getElementsByTagName("a")).forEach(function(n,i,a){
 				n.classList.remove("active");
 			})
 			target.classList.add("active");
 			b.show(markerPerson);
 		}
 
-		//点击签名的人
-		document.getElementById("signPeople").addEventListener("click",function(e){
-			var target=e.target;
-			if(target.tagName.toLowerCase()=="a"){
-				toogleMarker(target);
-			}
-		},false)
+		//点击
+		EventUtil.addHandler(signPeople,"tap",function(e){
+			toogleMarker(e.target);
+		})
+		//翻页
+		EventUtil.addHandler(signPeople,"swipeleft",function(){
+			//下一页
+			showLoading();//显示遮罩
+			//重新绘制人员：signPeople.innerHTML=xxx;
+			//重新绘制地图：生成markerPeople，并在重新绘点b.show(markerPeople)
+			hideLoading();//隐藏遮罩
+		})
+		EventUtil.addHandler(signPeople,"swiperight",function(){
+			//上一页
+			showLoading();//显示遮罩
+			//重新绘制人员：signPeople.innerHTML=xxx;
+			//重新绘制地图：生成markerPeople，并在重新绘点b.show(markerPeople)
+			hideLoading();//隐藏遮罩
+		})
 
 	    //Entry
 	    window.addEventListener("load",function(){
