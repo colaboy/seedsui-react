@@ -5494,13 +5494,11 @@ table th {
 }
 /*树标题-图标*/
 .treetitle .round {
-  background-color: #FFC02C;
   display: inline-block;
   vertical-align: middle;
   width: 32px;
   height: 32px;
   font-size: 16px;
-  color: #fff;
   border-radius: 100%;
   text-align: center;
   line-height: 32px;
@@ -5551,7 +5549,6 @@ table th {
   width: 32px;
   height: 32px;
   background-size: cover;
-  font-family: "iconfont";
   font-style: normal;
   display: -webkit-box;
   -webkit-box-pack: center;
@@ -5560,20 +5557,13 @@ table th {
   -webkit-justify-content: center;
   -webkit-align-items: center;
 }
-.treetitle .treeicon:before {
-  content: "\e916";
-}
-.treetitle .treeicon.active:before {
+.treetitle .icon-arrowright.active:before {
+  font-family: "iconfont";
   content: "\e90e";
 }
 /*修改左侧箭头图标*/
 .treetitle .treeicon.round {
   left: -28px;
-  border-radius: 100%;
-  font-size: 16px;
-}
-.treetitle .treeicon.round:before {
-  content: '';
 }
 /*----------------tree.less(end)--------------*/
 /*----------------validate.less(start)--------------*/
@@ -6684,7 +6674,19 @@ table {
   border-color: #e8e8e8;
 }
 /*---------------table.less(end)---------------*/
-/*color.less.less(end)*/
+/*---------------tree.less(start)---------------*/
+table {
+  color: #888888;
+  border-color: #e8e8e8;
+}
+/*---------------tree.less(end)---------------*/
+.treetitle .treeicon {
+  color: #aaaaaa;
+}
+.treetitle .round {
+  background-color: #ffae02;
+  color: #ffffff;
+}
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
 .color-primary {

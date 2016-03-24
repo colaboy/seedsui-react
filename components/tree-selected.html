@@ -25,7 +25,7 @@
             <div class="tree-box">
                 <ul class="tree" id="tree">
                     <li id="group-1" data-name="业务产品部">
-                        <div class="treetitle"> <i class="treeicon"></i>
+                        <div class="treetitle"> <i class="treeicon icon-arrowright"></i>
                             <span class="icon-persons round events-none"></span>
                             <a class="icontitle events-none">业务产品部</a>
                             <a class="icon icon-rdoadd right middle"></a>
@@ -33,7 +33,7 @@
                         <ul>
                             <li id="group-2" data-name="研发体系">
                                 <div class="treetitle">
-                                    <i class="treeicon"></i>
+                                    <i class="treeicon icon-arrowright"></i>
                                     <span class="icon-persons round events-none"></span>
                                     <a class="icontitle events-none">研发体系</a>
                                     <a class="icon icon-rdoadd right middle"></a>
@@ -41,7 +41,7 @@
                                 <ul>
                                     <li id="group-3" data-name="开发一部">
                                         <div class="treetitle">
-                                            <i class="treeicon"></i>
+                                            <i class="treeicon icon-arrowright"></i>
                                             <span class="icon-persons round events-none"></span>
                                             <a class="icontitle events-none">开发一部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
@@ -72,7 +72,7 @@
                                     </li>
                                     <li id="group-7" data-name="开发二部">
                                         <div class="treetitle">
-                                            <i class="treeicon"></i>
+                                            <i class="treeicon icon-arrowright"></i>
                                             <span class="icon-persons round events-none"></span>
                                             <a class="icontitle events-none">开发二部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
@@ -80,7 +80,7 @@
                                     </li>
                                     <li id="group-8" data-name="开发三部">
                                         <div class="treetitle">
-                                            <i class="treeicon"></i>
+                                            <i class="treeicon icon-arrowright"></i>
                                             <span class="icon-persons round events-none"></span>
                                             <a class="icontitle events-none">开发三部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
@@ -88,7 +88,7 @@
                                         <ul>
                                             <li id="group-9" data-name="开发一部">
                                                 <div class="treetitle">
-                                                    <i class="treeicon"></i>
+                                                    <i class="treeicon icon-arrowright"></i>
                                                     <span class="icon-persons round events-none"></span>
                                                     <a class="icontitle events-none">开发一组</a>
                                                     <a class="icon icon-rdoadd right middle"></a>
@@ -100,7 +100,7 @@
                             </li>
                             <li id="group-10" data-name="市场体系">
                                 <div class="treetitle">
-                                    <i class="treeicon"></i>
+                                    <i class="treeicon icon-arrowright"></i>
                                     <span class="icon-persons round events-none"></span>
                                     <a class="icontitle events-none">市场体系</a>
                                     <a class="icon icon-rdoadd right middle"></a>
@@ -108,7 +108,7 @@
                                 <ul>
                                     <li id="group-11" data-name="上海办">
                                         <div class="treetitle">
-                                            <i class="treeicon"></i>
+                                            <i class="treeicon icon-arrowright"></i>
                                             <span class="icon-persons round events-none"></span>
                                             <a class="icontitle events-none">上海办</a>
                                             <a class="icon icon-rdoadd right middle"></a>
@@ -116,7 +116,7 @@
                                     </li>
                                     <li id="group-12" data-name="广州办名字超长超长超长超">
                                         <div class="treetitle">
-                                            <i class="treeicon"></i>
+                                            <i class="treeicon icon-arrowright"></i>
                                             <span class="icon-persons round events-none"></span>
                                             <a class="icontitle events-none">广州办名字超长超长超长超</a>
                                             <a class="icon icon-rdoadd right middle"></a>
@@ -135,9 +135,10 @@
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
+    var tree=document.getElementById("tree");//树容器
     var selectedEl=[];
     function onTapTree(){
-        var noChildToast = new Toast("没有子部门", {delay:2000});
+        var noChildToast = new Toast("没有子节点", {delay:2000});
         /*=============
         Method
         ==============*/
@@ -190,11 +191,9 @@
 
             //当点击标题时，展开与收缩树
             if(target.className.indexOf("treetitle")>=0){
-                selection = e.target;
                 elLI=e.target.parentNode;
             } else if(target.className.indexOf("treeicon")>=0){
                 elLI=e.target.parentNode.parentNode;
-                selection = e.target.parentNode;
             }
             elIcon=elLI.querySelector(".treeicon");
             elChildUL=elLI.querySelector("ul");
@@ -206,11 +205,11 @@
             //展开与收缩树
             if(elChildUL.style.display=="none" || !elChildUL.style.display){
                 //展开
-                elIcon.className="treeicon active";
+                elIcon.classList.add("active");
                 elChildUL.style.display="block";
             }else{
                 //收缩
-                elIcon.className="treeicon";
+                elIcon.classList.remove("active");
                 elChildUL.style.display="none";
             }
         });
