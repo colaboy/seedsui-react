@@ -1,8 +1,8 @@
 /*-----------------------------global.less(start)-----------------------------*/
-.pointer-events-none {
+.events-none {
   pointer-events: none;
 }
-.pointer-events-auto {
+.events-auto {
   pointer-events: auto;
 }
 * {
@@ -138,6 +138,10 @@ pre {
 .overflow-x {
   overflow-y: hidden;
   overflow-x: auto;
+}
+.horizontal {
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .overflow-y {
   overflow-y: hidden;
@@ -803,7 +807,7 @@ section.active {
 article {
   position: absolute;
   z-index: 0;
-  top: 45px;
+  top: 44px;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -2170,8 +2174,18 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-box-align: center;
   -webkit-align-items: center;
 }
-.statusbar {
-  background-color: #dcdbe0;
+.statusbar .mark-desaturate {
+  padding: 8px;
+  margin: 5px 0 5px 8px;
+  background: #fff;
+  display: inline-block;
+}
+.statusbar .mark-desaturate:last-child {
+  margin-right: 8px;
+}
+.statusbar .mark-desaturate [class*="icon-"] {
+  color: #aaa;
+  margin-left: 5px;
 }
 /*----------------------------bar.less(end)----------------------------*/
 /*----------------titlebar.less(start)--------------*/
@@ -2762,11 +2776,11 @@ button.onlyicon [class*="icon-"] {
 .mark-cancel,
 .mark-warn,
 .mark-disable,
-.mark-primary {
+.mark-primary,
+.mark-desaturate {
   font-size: 0.95em;
   padding: 2px 5px;
   border-radius: 3px;
-  color: #fff;
 }
 /*------------------------------button.less(end)------------------------------*/
 /*------------------------------buttongroup.less(start)------------------------------*/
@@ -6283,6 +6297,14 @@ input[type="button"].outline .tip,
   color: #aaaaaa;
 }
 /*多彩标签按钮*/
+.mark-info,
+.mark-success,
+.mark-cancel,
+.mark-warn,
+.mark-disable,
+.mark-primary {
+  color: #ffffff;
+}
 .mark-disable {
   background-color: #d9d9d9;
 }
@@ -6596,6 +6618,9 @@ li.sliver {
   color: #aaaaaa;
   border-color: #e8e8e8;
   background-color: #f4f4f4;
+}
+.statusbar {
+  background-color: #e8e8e8;
 }
 /*----------------------------bar.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
