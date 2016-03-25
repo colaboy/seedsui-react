@@ -70,7 +70,8 @@
 			//开关控件点击
 			$(".switch").click(function(){
 				var name=$(this).data("name");
-				var val=$(this).data("value")||"";
+				var onVal=$(this).data("on-value");
+				var offVal=$(this).data("off-value");
 				var hiddeninput=$("+input[name="+name+"]",this);
 				if(name && !hiddeninput[0]){
 					$('<input type="hidden" name="'+name+'">').insertAfter(this);
@@ -80,10 +81,10 @@
 				
 				if($(this).hasClass("active")){
 					$(this).removeClass("active");
-					if(hiddeninput[0])hiddeninput.val("");
+					if(hiddeninput[0])hiddeninput.val(offVal);
 				}else{
 					$(this).addClass("active");
-					if(hiddeninput[0])hiddeninput.val(val);
+					if(hiddeninput[0])hiddeninput.val(onVal);
 				}
 			});
 			//密码控件点击小眼睛
@@ -189,6 +190,7 @@
 			return errorMsg;
 		};
 		//表单验证
+		var t=new Toast("格式不正确");
 		s.validate=function(){
 			for(var i=0,field;field=s.formElements[i++];){
 				if(!field.getAttribute("data-rule")){
@@ -196,9 +198,8 @@
 				}
 				var errormsg=s.rule(field);
 				if(errormsg){
-					var t=new Toast(errormsg);
-					t.show(function(s){s.destory();});
-					t=null;
+					t.setText(errormsg);
+					t.show();
 					field.focus();
 					return false;
 				}

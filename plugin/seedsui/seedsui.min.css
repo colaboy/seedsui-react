@@ -623,9 +623,6 @@ small {
 .bold {
   font-weight: bold;
 }
-.indent {
-  text-indent: 24px;
-}
 .uppercase {
   text-transform: uppercase;
   /*大写*/
@@ -701,6 +698,9 @@ small {
 .rowspace20 {
   height: 20px;
 }
+.rowspace22 {
+  height: 22px;
+}
 .rowspace40 {
   height: 40px;
 }
@@ -716,6 +716,15 @@ small {
 .padding12 {
   padding: 12px;
 }
+.indent6 {
+  text-indent: 6px !important;
+}
+.indent8 {
+  text-indent: 8px !important;
+}
+.indent24 {
+  text-indent: 24px !important;
+}
 .margin4 {
   margin: 4px;
 }
@@ -728,8 +737,16 @@ small {
 .nopadding {
   padding: 0 !important;
 }
+.nolrpadding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .nomargin {
   margin: 0 !important;
+}
+.nolrmargin {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 /*-----------------------------global.less(end)-----------------------------*/
 /*----------------mbox.less(start)--------------*/
@@ -2033,6 +2050,7 @@ footer {
 }
 .group .input-box {
   border-width: 0;
+  margin: 4px 0;
 }
 .group .row:last-of-type {
   border-width: 0;
@@ -2044,8 +2062,11 @@ footer {
   box-sizing: border-box;
   border-width: 1px;
   border-style: solid;
-  border-radius: 6px;
   background-color: #fff;
+}
+.input-box label,
+.card label {
+  line-height: 30px;
 }
 /*----------------layout.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
@@ -2883,161 +2904,141 @@ input[type="datetime-local"],
 input[type="datetime"],
 input[type="time"],
 keygen,
-input[list] {
+input[list],
+textarea,
+select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  height: 20px;
-  line-height: 20px;
-  padding: 10px 0;
-  text-indent: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
   display: inline-block;
   border-width: 1px;
   border-style: solid;
   text-align: left;
-  text-indent: 0;
-  border-radius: 4px;
 }
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  box-sizing: border-box;
-  padding: 10px 0;
-  display: block;
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="file"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="datetime-local"],
+input[type="datetime"],
+input[type="time"],
+keygen,
+input[list] {
+  height: 20px;
+  line-height: 20px;
 }
 input[type="search"] {
   box-sizing: content-box;
 }
+textarea {
+  display: block;
+}
 select {
-  -webkit-appearance: none;
-  background-color: transparent;
-  padding: 11px 0;
-  text-indent: 8px;
+  height: 40px;
 }
 .input-text {
-  height: 40px;
-  line-height: 40px;
-  text-indent: 8px;
+  min-height: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: #ddd;
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box [class*="icon-"] {
+.input-box {
+  position: relative;
+  display: -webkit-box;
+  display: box;
+  display: -webkit-flex;
+  display: flex;
+  box-align: center;
+  -moz-box-align: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  margin: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+}
+/*box内的表单框*/
+.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
+.input-box select,
+.input-box keygen,
+.input-box textarea,
+.input-box .input-text {
+  display: block;
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
+  -webkit-flex: 1;
+  flex: 1;
+  border: 0;
+  background-color: transparent;
+}
+/*box内图标*/
+.input-box i {
   width: 24px;
   height: 24px;
   line-height: 24px;
   text-align: center;
+  margin: 0 8px;
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: center top;
   font-size: 24px;
 }
-.input-box [class*="icon-"]:active {
+.input-box i:active {
   background-position: center bottom;
 }
-/*图标文本框容器*/
-.input-box {
-  position: relative;
-  display: block;
-  box-sizing: border-box;
-  line-height: 40px;
-  /*margin: 0 9px;*/
-  border-style: solid;
-  border-width: 1px;
-  padding: 0 10px;
-  line-height: 0;
-  border-color: #ddd;
-}
-/*纯文本框容器*/
-.inputbox {
-  position: relative;
-  box-sizing: border-box;
-}
-.inputbox .chat-input {
-  font-size: 14px;
-  width: 100%;
-  height: 32px;
-  padding: 0 4px;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-  background-color: #f7f7f7;
-}
-.inputbox .chat-input:focus {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-  background-color: #fff;
-}
-/*图标文本框容器内图标*/
-.input-box i {
+/*需要顶天立地的控件*/
+.input-box select + i,
+.input-box input[type="date"] + i,
+.input-box input[type="month"] + i,
+.input-box input[type="week"] + i,
+.input-box input[type="datetime-local"] + i,
+.input-box input[type="datetime"] + i,
+.input-box input[type="time"] + i {
   position: absolute;
   top: 50%;
+  right: 0;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
-}
-.input-box.lricon {
-  padding: 0 34px;
-}
-.input-box.lricon i:first-child {
-  left: 8px;
-}
-.input-box.lricon input + i,
-.input-box.lricon select + i {
-  right: 8px;
-}
-.input-box.lricon select + i {
   pointer-events: none;
 }
-.input-box.licon {
-  padding-left: 34px;
+/*图标与框间距*/
+.input-box i + input,
+.input-box i + .input-text,
+.input-box i + select,
+.input-box i + textarea {
+  padding-left: 0;
 }
-.input-box.licon i:first-child {
-  left: 8px;
-}
-.input-box.ricon {
-  padding-right: 34px;
-}
-.input-box.ricon input + i,
-.input-box.ricon select + i,
-.input-box.ricon .input-text + i {
-  right: 8px;
-}
-.input-box.ricon select + i {
-  pointer-events: none;
-}
-/*用图标自身控制位置*/
-.input-box .licon {
-  left: 8px;
-}
-.input-box .ricon {
-  right: 8px;
-}
-.input-box input,
-.input-box select,
-.input-box keygen,
-.input-box textarea,
-.input-box .input-text {
-  width: 100%;
-  border: 0;
-}
-/*inputbox内部的label*/
-.input-box label {
-  line-height: 30px;
+.input-box input + i,
+.input-box .input-text + i,
+.input-box select + i,
+.input-box textarea + i {
+  margin: 0 8px 0 0;
 }
 /*搜索框*/
 input[type=search].search,
 input[type=text].search {
-  height: 32px;
-  box-sizing: border-box;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 /*带清空按钮*/
 div[data-input=clear] input[type] + i {
@@ -3070,7 +3071,7 @@ label input[type="checkbox"] + span,
 label input[type="radio"] + span {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 8px;
+  margin: 0 4px;
 }
 /*checkbox*/
 input[type="checkbox"]:before {
@@ -5436,11 +5437,11 @@ details[open] summary:after {
 /*---------------table.less(start)---------------*/
 .table-box {
   width: 100%;
-  box-sizing: border-box;
   overflow: auto;
   padding: 8px 0;
 }
 table {
+  width: 100%;
   border-collapse: collapse;
   border-style: solid;
   border-width: 1px;
@@ -6335,7 +6336,6 @@ input[type="button"].outline .tip,
 }
 /*----------------popup.less.less(end)--------------*/
 /*----------------form.less(start)--------------*/
-.input-box,
 input[type="text"],
 input[type="password"],
 input[type="search"],
@@ -6352,12 +6352,21 @@ input[type="datetime"],
 input[type="time"],
 keygen,
 input[list],
-textarea {
+textarea,
+select,
+.input-text {
   border-color: #e8e8e8;
   background-color: #ffffff;
 }
 .input-box {
   background-color: #ffffff;
+}
+.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
+.input-box select,
+.input-box keygen,
+.input-box textarea,
+.input-box .input-text {
+  background-color: transparent;
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/

@@ -434,12 +434,18 @@ button.outline .tip,input[type="button"].outline .tip,.button.outline .tip{
 /*----------------popup.less.less(end)--------------*/
 
 /*----------------form.less(start)--------------*/
-.input-box,input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,input[list],textarea{
+input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
+input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
+input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
+input[list],textarea,select,.input-text{
 	border-color:@color-border;
 	background-color:@color-input;
 }
 .input-box{
 	background-color:@color-input;
+}
+.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
+	background-color:transparent;
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/

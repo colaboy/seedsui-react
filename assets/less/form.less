@@ -1,45 +1,44 @@
 /*----------------form.less(start)--------------*/
-input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,input[list]{
+input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
+input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
+input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
+input[list],textarea,select{
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-ms-appearance: none;
 	appearance: none;
-	height:20px;
-	line-height:20px;
-	padding: 10px 0;
-	text-indent: 8px;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:8px;
+	padding-right:8px;
 	display:inline-block;
 	border-width:1px;
 	border-style:solid;
 	text-align:left;
-	text-indent: 0;
-	border-radius: 4px;
 }
-textarea{
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	box-sizing:border-box;
-	padding:10px 0;
-	display:block;
+input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
+input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
+input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
+input[list]{
+	height:20px;
+	line-height:20px;
 }
 input[type="search"]{
 	box-sizing:content-box;
 }
+textarea{
+	display:block;
+}
 select{
-	-webkit-appearance: none;
-	background-color:transparent;
-	padding:11px 0;
-	text-indent: 8px;
+	height: 40px;
 }
 .input-text{
-	height:40px;
-	line-height:40px;
-	text-indent:8px;
+	min-height:20px;
+	padding-left:8px;
+	padding-right:8px;
+	padding-top:10px;
+	padding-bottom:10px;
 	border-width:1px;
 	border-style:solid;
-	
-	border-color:#ddd;
 }
 /*----------------form.less(end)--------------*/

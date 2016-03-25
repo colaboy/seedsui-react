@@ -17,25 +17,25 @@
         </header>
         <article>
             <p class="sliver">表单组件</p>
-            <div class="input-box margin8 licon radius20" data-input="clear">
+            <div class="input-box radius20" data-input="clear">
                 <i class="icon-search"></i>
                 <input type="text" placeholder="搜索框" class="search">
             </div>
-            <div class="input-box margin8 ricon radius20" data-input="clear">
+            <div class="input-box radius20" data-input="clear">
                 <input type="text" placeholder="搜索框" class="search"/>
                 <i class="icon-clear-fill"></i>
             </div>
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
             	<input type="text" placeholder="搜索框" />
                 <i class="icon-search"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <input type="text" placeholder="密码框" />
                 <i class="icon-eye"></i>
             </div>
 
-            <div class="input-box ricon nopadding margin8">
+            <div class="input-box">
                 <select>
                     <option>选项1</option>
                     <option>选项2</option>
@@ -44,63 +44,63 @@
                 <i class="icon-arrowdown"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <input type="number" placeholder="手机框" />
                 <i class="icon-phone"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <input type="number" placeholder="电话框" />
                 <i class="icon-tel"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <input type="url" placeholder="链接框"/>
                 <i class="icon-earth"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box nopadding margin8 ricon">
                 <input type="date" value="2015-06-16"/>
                 <i class="icon-calendar"></i>
             </div>
             
-            <p class="title color-tip">Ios8.x不支持周选择框</p>
-            <div class="input-box margin8 ricon">
-                <input type="week" value="2015-W15"/>
-                <i class="icon-calendar"></i>
-            </div>
-
-            <div class="input-box margin8 ricon">
+            <div class="input-box nopadding margin8 ricon">
                 <input type="month" value="2015-06"/>
                 <i class="icon-calendar"></i>
             </div>
             
-            <div class="input-box margin8 ricon">
+            <div class="input-box nopadding margin8 ricon">
                 <input type="datetime-local" value="2015-06-01T10:55:33"/>
                 <i class="icon-calendar"></i>
             </div>
             
-            <div class="input-box margin8 ricon">
+            <div class="input-box nopadding margin8 ricon">
                 <input type="time" value="08:30"/>
                 <i class="icon-time"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
-                <input type="text" class="input-text" placeholder="扫码控件框"/>
+            <small class="color-tip margin8">苹果Ios8.x不支持周选择框</small>
+            <div class="input-box nopadding margin8 ricon">
+                <input type="week" value="2015-W15"/>
+                <i class="icon-calendar"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="text" placeholder="扫码控件框"/>
                 <i class="icon-qrcodeline"></i>
             </div>
             
-            <div class="input-box margin8 ricon">
-                <div class="input-text"></div>
+            <div class="input-box">
+                <div class="input-text">拍照</div>
                 <i class="icon-camera"></i>
             </div>
 
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <div class="input-text"></div>
                 <i class="icon-record"></i>
             </div>
             
-            <div class="input-box margin8 ricon">
+            <div class="input-box">
                 <input type="text"/>
                 <i class="icon-position"></i>
             </div>
@@ -108,8 +108,14 @@
             <p class="sliver">左右布局</p>
             <form id="formlr">
                 <div class="row">
+                    <label>文本框</label>
+                    <div class="input-box">
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
                     <label>radio</label>
-                    <div class="input-box margin8">
+                    <div class="card padding8">
                         <label><input type="radio" checked="true" name="rdo"><span>选中radio</span></label>
                         <br/>
                         <label><input type="radio" name="rdo"><span>普通radio</span></label>
@@ -121,7 +127,7 @@
                 </div>
                 <div class="row">
                     <label>checkbox</label>
-                    <div class="input-box margin8">
+                    <div class="card padding8">
                         <label><input type="checkbox" checked="true"><span>选中checkbox</span></label>
                         <br/>
                         <label><input type="checkbox"><span>普通checkbox</span></label>
@@ -133,18 +139,18 @@
                 </div>
                 <div class="row">
                     <label>switch</label>
-                    <div class="input-box margin8" style="padding:8px">
-                        <div class="switch" data-on="是" data-name="vis" data-value="1" data-off="否">
+                    <div class="card padding8">
+                        <div class="switch" data-on="是" data-name="switch1" data-on-value="1ok" data-off-value="1off" data-off="否">
                             <div class="switch-handle"></div>
                         </div>
-                        <div class="switch notext" data-on="是" data-value="1" data-off="否">
+                        <div class="switch notext" data-on="是" data-name="switch2" data-on-value="2"  data-off-value="2off" data-off="否">
                             <div class="switch-handle"></div>
                         </div>
                         <div class="rowspace"></div>
-                        <div class="switch reverse" data-on="是" data-value="1" data-off="否">
+                        <div class="switch reverse" data-on="是" data-name="switch3" data-on-value="3"  data-off-value="3off" data-off="否">
                             <div class="switch-handle"></div>
                         </div>
-                        <div class="switch reverse notext" data-on="是" data-value="1" data-off="否">
+                        <div class="switch reverse notext" data-on="是" data-name="switch4" data-on-value="4"  data-off-value="4off" data-off="否">
                             <div class="switch-handle"></div>
                         </div>
                     </div>
@@ -152,13 +158,13 @@
                 <p class="sliver">兼容性尚未完全普及，还请谨慎使用</p>
                 <div class="row">
                     <label>进度条</label>
-                    <div class="input-box margin8" style="padding:8px;">
+                    <div class="card padding8">
                        <progress max="100" value="80">80</progress>
                     </div>
                 </div>
                 <div class="row">
                     <label>拉动条</label>
-                    <div class="input-box margin8" style="padding:8px;">
+                    <div class="card padding8">
                        <input type="range" min="32" max="512" step="32" value="32" id="range"/>
                        <!--
                         可这样写记录range值
@@ -171,7 +177,7 @@
                 </div>
                 <div class="row">
                     <label>拾色器</label>
-                    <div class="input-box margin8" style="padding:8px;">
+                    <div class="card padding8">
                        <input type="color"/>
                     </div>
                 </div>
@@ -182,20 +188,20 @@
                 <div class="group">
                     <div class="row">
                         <label>用户名</label>
-                        <div class="input-box margin8">
+                        <div class="input-box">
                             <input type="text" placeholder="用户名" name="username"/>
                         </div>
                     </div>
                     <div class="row">
                         <label>密码</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" placeholder="密码" name="password"/>
                             <i class="icon-eye"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>确认</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" placeholder="确认" name="reconfirm"/>
                             <i class="icon-eye"></i>
                         </div>
@@ -204,20 +210,20 @@
                 <div class="group">
                     <div class="row">
                         <label>昵称</label>
-                        <div class="input-box margin8">
+                        <div class="input-box">
                             <input type="text" placeholder="填写昵称" name="nickname"/>
                         </div>
                     </div>
                     <div class="row">
                         <label>性别</label>
-                        <div class="input-box margin8">
+                        <div class="input-box input-text">
                             <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
                             <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
                         </div>
                     </div>
                     <div class="row">
                         <label>出生日期</label>
-                        <div class="input-box margin8">
+                        <div class="input-box">
                             <input type="date" name="birthday" placeholder="出生日期"/>
                         </div>
                     </div>
@@ -225,40 +231,40 @@
                 <div class="group">
                     <div class="row">
                         <label>职业</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
                             <i class="icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>公司</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" class="company" placeholder="公司"/>
                         </div>
                     </div>
                     <div class="row">
                         <label>学校</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" class="school" placeholder="填写学校，发现校友"/>
                         </div>
                     </div>
                     <div class="row">
                         <label>所在地</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" name="live" readonly="" placeholder="选择所在地"/>
                             <i class="icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>故乡</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
                             <i class="icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
                         <label>邮箱</label>
-                        <div class="input-box margin8 ricon">
+                        <div class="input-box">
                             <input type="text" name="email" placeholder="填写邮箱"/>
                         </div>
                     </div>
@@ -266,7 +272,7 @@
                 <div class="group">
                     <div class="row">
                         <label>个人说明</label>
-                        <div class="input-box margin8">
+                        <div class="input-box">
                             <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
                         </div>
                         
