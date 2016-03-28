@@ -2173,28 +2173,6 @@ aside.active ~ #section_container .section_container_mask {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-.searchbar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  background-color: #dcdbe0;
-  padding: 4px 8px;
-}
-.searchbar .input-box {
-  -moz-box-flex: 1.0;
-  -webkit-box-flex: 1.0;
-  box-flex: 1.0;
-  -webkit-flex: 1;
-  flex: 1;
-}
-.searchbar a {
-  width: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-}
 .statusbar .mark-desaturate {
   padding: 8px;
   margin: 5px 0 5px 8px;
@@ -2216,7 +2194,7 @@ aside.active ~ #section_container .section_container_mask {
   border-bottom: 1px solid;
   box-sizing: border-box;
 }
-.titlebar h1 {
+.titlebar > h1 {
   display: block;
   width: 100%;
   height: 32px;
@@ -2235,37 +2213,39 @@ aside.active ~ #section_container .section_container_mask {
   padding: 0 32px;
   z-index: 0;
 }
-.titlebar .left {
+.titlebar > .left {
   float: left;
   margin-left: 4px;
 }
-.titlebar .right {
+.titlebar > .right {
   float: right;
   margin-right: 4px;
 }
 /*文字按钮*/
-.titlebar a,
-.titlebar button {
+.titlebar > a,
+.titlebar > button {
   position: relative;
   z-index: 2;
 }
-.titlebar a {
+.titlebar > a {
   margin-top: 10px;
   font-size: 0;
 }
-.titlebar a,
-.titlebar [class*="icon-"] {
+.titlebar > a,
+.titlebar > a > i {
   height: 24px;
   line-height: 24px;
 }
-.titlebar a i,
-.titlebar a span {
-  font-size: 15px;
+.titlebar > a > i,
+.titlebar > a > span {
   display: inline-block;
   vertical-align: middle;
   margin: 0 2px;
 }
-.titlebar [class*="icon-"] {
+.titlebar > a > span {
+  font-size: 15px;
+}
+.titlebar > a > i {
   width: 24px;
   /*文字图标*/
   font-size: 24px;
@@ -2275,47 +2255,45 @@ aside.active ~ #section_container .section_container_mask {
   background-position: center top;
 }
 /*按钮*/
-.titlebar button,
-.titlebar .button {
+.titlebar > button,
+.titlebar > .button {
   height: 32px;
   border-radius: 16px;
   margin-top: 5px;
 }
-.titlebar .button {
+.titlebar > .button {
   line-height: 32px;
 }
 /*logo*/
-.titlebar .logo {
+.titlebar > .logo {
   height: 44px;
   line-height: 44px;
   margin: 0 4px;
 }
-.titlebar .logo img {
+.titlebar > .logo img {
   min-width: 30px;
   height: 30px;
   line-height: 30px;
   font-size: 30px;
 }
 /*search*/
-.titlebar input[type=text],
-.titlebar input[type=search] {
-  width: 100%;
-  height: 32px;
-  padding-left: 10px;
-  border-radius: 16px;
-  box-sizing: border-box;
+/* .titlebar input[type=text],.titlebar input[type=search]{
+	width:100%;
+	height:32px;
+	padding-left:10px;
+	border-radius: 16px;
+	box-sizing: border-box;
 }
-.titlebar input[type=text] + [class*="icon-"],
-.titlebar input[type=search] + [class*="icon-"] {
-  position: absolute;
-  top: 50%;
-  margin-top: -10px;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  font-size: 20px;
-  right: 50px;
-}
+.titlebar input[type=text]+i,.titlebar input[type=search]+i{
+	position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    right: 50px;
+} */
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
 .rectbar,
@@ -2334,7 +2312,7 @@ aside.active ~ #section_container .section_container_mask {
   text-align: center;
   box-sizing: border-box;
 }
-.tab [class*="icon-"] {
+.tab i {
   display: inline-block;
   position: relative;
   width: 24px;
@@ -2345,6 +2323,10 @@ aside.active ~ #section_container .section_container_mask {
   background-repeat: no-repeat;
   background-position: center top;
   vertical-align: middle;
+}
+.tab.active i,
+.tab:active i {
+  background-position: center bottom;
 }
 .tab-label {
   display: inline-block;
@@ -2378,8 +2360,8 @@ aside.active ~ #section_container .section_container_mask {
   height: 24px;
   line-height: 24px;
 }
-.arrowbar .tab [class*="icon-"],
-.menubar .tab [class*="icon-"] {
+.arrowbar .tab i,
+.menubar .tab i {
   margin-top: 5px;
 }
 /*rectbar*/
@@ -2697,6 +2679,29 @@ aside.active ~ #section_container .section_container_mask {
 	background-color: red;
 } */
 /*----------------tabbar.less(end)--------------*/
+/*----------------------------searchbar.less(start)----------------------------*/
+.searchbar {
+  display: -webkit-box;
+  display: -webkit-flex;
+}
+.searchbar .input-box {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.searchbar a {
+  width: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+}
+/*----------------------------searchbar.less(end)----------------------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 button,
@@ -5930,9 +5935,6 @@ aside {
 .titlebar.reverse h1 {
   color: #ffffff;
 }
-.titlebar.reverse input[type=text] {
-  border-width: 0;
-}
 .titlebar.reverse a,
 .titlebar.reverse button {
   color: #ffffff;
@@ -5944,10 +5946,11 @@ aside {
   border-color: rgba(255, 255, 255, 0.25);
 }
 /*search*/
-.titlebar input[type=text] + [class*="icon-"],
-.titlebar input[type=search] + [class*="icon-"] {
-  color: #aaaaaa;
-  opacity: 0.5;
+.titlebar > .searchbar {
+  background-color: transparent;
+}
+.titlebar.reverse > .searchbar .input-box {
+  border-color: #4587f7;
 }
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
@@ -6370,11 +6373,11 @@ select,
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box [class*="icon-"] {
+.input-box i {
   color: #aaaaaa;
 }
-.input-box [class*="icon-"]:active,
-.input-box [class*="icon-"].active {
+.input-box i:active,
+.input-box i.active {
   color: #4587f7;
 }
 .input-box.active {
@@ -6622,6 +6625,11 @@ li.sliver {
   background-color: #e8e8e8;
 }
 /*----------------------------bar.less(end)----------------------------*/
+/*----------------------------searchbar.less(start)----------------------------*/
+.searchbar {
+  background-color: #e8e8e8;
+}
+/*----------------------------searchbar.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading {
   box-shadow: inset 0 0 0 4px #4587f7;

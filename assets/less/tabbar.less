@@ -12,7 +12,7 @@
 	text-align: center;
 	box-sizing: border-box;
 }
-.tab [class*="icon-"]{
+.tab i{
 	display: inline-block;
 	position:relative;
 	width: 24px;
@@ -23,6 +23,9 @@
 	background-repeat:no-repeat;
 	background-position:center top;
 	vertical-align: middle;
+}
+.tab.active i,.tab:active i{
+	background-position:center bottom;
 }
 .tab-label{
 	display:inline-block;
@@ -51,8 +54,8 @@
 	height: 24px;
 	line-height: 24px;
 }
-.arrowbar .tab [class*="icon-"],
-.menubar .tab [class*="icon-"]{
+.arrowbar .tab i,
+.menubar .tab i{
 	margin-top:5px;
 }
 

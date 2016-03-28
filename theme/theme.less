@@ -93,9 +93,6 @@ aside {
 .titlebar.reverse h1{
 	color:@color-titlebar-reverse-font;
 }
-.titlebar.reverse input[type=text]{
-	border-width: 0;
-}
 .titlebar.reverse a,.titlebar.reverse button{
 	color:@color-titlebar-reverse-link;
 	border-color:fade(@color-titlebar-reverse-link,50%);
@@ -105,9 +102,11 @@ aside {
 	border-color:fade(@color-titlebar-reverse-link-active,25%);
 }
 /*search*/
-.titlebar input[type=text]+[class*="icon-"],.titlebar input[type=search]+[class*="icon-"]{
-	color:@color-placeholder;
-	opacity: 0.5;
+.titlebar>.searchbar{
+	background-color:transparent;
+}
+.titlebar.reverse>.searchbar .input-box{
+	border-color:@color-titlebar-reverse-border;
 }
 /*----------------titlebar.less(end)----------------*/
 
@@ -449,10 +448,10 @@ input[list],textarea,select,.input-text{
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box [class*="icon-"]{
+.input-box i{
 	color:@color-placeholder;
 }
-.input-box [class*="icon-"]:active,.input-box [class*="icon-"].active{
+.input-box i:active,.input-box i.active{
 	color:@color-primary;
 }
 .input-box.active{
@@ -699,6 +698,11 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	background-color:@color-border;
 }
 /*----------------------------bar.less(end)----------------------------*/
+/*----------------------------searchbar.less(start)----------------------------*/
+.searchbar{
+    background-color:@color-border;
+}
+/*----------------------------searchbar.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading {
 	box-shadow:inset 0 0 0 4px @color-primary;
