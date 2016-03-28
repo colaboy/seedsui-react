@@ -95,8 +95,25 @@ pre{
 	color:#d44950;
 }
 /*小汽泡*/
-.tip{
+.badge,.tip,.close{
 	display: inline-block;
+	font-size: 8px;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	border-radius:100%;
+}
+.badge{
+	width:30px;
+	height:20px;
+	line-height:20px;
+	border-radius: 10px;
+}
+.tip,.close{
+	width:24px;
+	height:24px;
+	line-height:24px;
 }
 .title,.sliver{
 	padding:8px;
@@ -585,6 +602,12 @@ small {
 	text-indent: 8px;
 }
 /*间距与布局*/
+.size32{
+	font-size: 32px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+}
 .width-full{
 	width:100%;
 }

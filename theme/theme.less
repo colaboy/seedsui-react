@@ -4,6 +4,9 @@
 body{
 	color: @color-body-font;
 }
+[class^="icon-"],[class*=" icon-"]{
+	color: @color-placeholder;
+}
 /*标签默认样式*/
 ::selection{
 	background:@color-primary;
@@ -36,7 +39,7 @@ a:active,.a:active{
 	background-color: @color-highlight;
 }
 /*小汽泡*/
-.tip{
+.tip,.badge{
 	color:@color-tip-font;
 	background-color:@color-tip;
 }
@@ -669,23 +672,29 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .list li:active{
 	background-color:@color-list-bg-active;
 }
-/*邮件列表*/
 .list .round{
+	color:@color-primary-font;
 	background-color:@color-primary;
 }
-/*应用列表*/
-.list.applist .licon{
-	color:@color-border;
-	background-color:@color-body-bg;
+.list .round i{
+	color:@color-primary-font;
 }
-.list.applist .justify-content [class^="icon-"]{
+.appicon{
+	background-color:@color-highlight;
+}
+.list.applist .justify-content i{
 	color:@color-placeholder;
 }
-.list.applist .justify-content [class^="icon-"].active{
+.star.active{
 	color:@color-warn;
 }
-.peg{
-    background-color:@color-primary;
+.star.active-half{
+	/* Chrome10-25,Safari5.1-6 */
+	background-image:-webkit-linear-gradient(left, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
+	/*W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+*/
+	background-image:-webkit-linear-gradient(to right, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------bar.less(start)----------------------------*/
