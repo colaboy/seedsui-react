@@ -5795,10 +5795,6 @@ ul.weather-otherday li {
 body {
   color: #333333;
 }
-[class^="icon-"],
-[class*=" icon-"] {
-  color: #aaaaaa;
-}
 /*标签默认样式*/
 ::selection {
   background: #4587f7;
@@ -6557,7 +6553,8 @@ input[type="radio"][disabled]:checked {
 .appicon {
   background-color: #f4f4f4;
 }
-.list.applist .justify-content i {
+.appicon i,
+.star {
   color: #aaaaaa;
 }
 .star.active {

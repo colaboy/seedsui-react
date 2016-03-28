@@ -4,9 +4,6 @@
 body{
 	color: @color-body-font;
 }
-[class^="icon-"],[class*=" icon-"]{
-	color: @color-placeholder;
-}
 /*标签默认样式*/
 ::selection{
 	background:@color-primary;
@@ -682,8 +679,8 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .appicon{
 	background-color:@color-highlight;
 }
-.list.applist .justify-content i{
-	color:@color-placeholder;
+.appicon i,.star{
+	color: @color-placeholder;
 }
 .star.active{
 	color:@color-warn;
