@@ -4277,9 +4277,7 @@ input[type=range]:focus::-ms-fill-upper {
 .grid li > label {
   display: block;
   padding: 0 4px;
-  height: 24px;
-  line-height: 24px;
-  margin: 0px auto;
+  margin-top: 8px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4386,6 +4384,12 @@ input[type=range]:focus::-ms-fill-upper {
 }
 .grid.radius8 li > a {
   border-radius: 8px;
+}
+.grid.radius6 li > a {
+  border-radius: 6px;
+}
+.grid.radius4 li > a {
+  border-radius: 4px;
 }
 /*Metro风格|缩略图|相册*/
 .grid.thumbnail,
