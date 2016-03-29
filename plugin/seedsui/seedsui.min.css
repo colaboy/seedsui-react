@@ -2257,7 +2257,7 @@ aside.active ~ #section_container .section_container_mask {
   margin-right: 4px;
 }
 .titlebar > a + a {
-  margin-left: 4px;
+  margin-left: 8px;
 }
 .titlebar > a > i {
   width: 24px;
@@ -2681,7 +2681,13 @@ aside.active ~ #section_container .section_container_mask {
 /*----------------------------searchbar.less(start)----------------------------*/
 .searchbar {
   display: -webkit-box;
+  display: box;
   display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 .searchbar .input-box {
   margin-top: 5px;
@@ -2692,13 +2698,11 @@ aside.active ~ #section_container .section_container_mask {
   flex: 1;
 }
 .searchbar a {
-  width: 40px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
+  display: block;
+  padding: 8px;
+}
+.searchbar .input-box + a {
+  padding-left: 0;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
 /*------------------------------button.less(start)------------------------------*/

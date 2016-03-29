@@ -1,7 +1,13 @@
 /*----------------------------searchbar.less(start)----------------------------*/
 .searchbar{
 	display:-webkit-box;
+	display:box;
 	display:-webkit-flex;
+	display:flex;
+	-webkit-box-align: center;
+    box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 .searchbar .input-box{
 	margin-top: 5px;
@@ -12,12 +18,10 @@
     flex: 1;
 }
 .searchbar a{
-	width:40px;
-	display:-webkit-box;
-	display:-webkit-flex;
-	-webkit-box-pack:center;
-	-webkit-justify-content:center;
-	-webkit-box-align:center;
-	-webkit-align-items:center;
+	display:block;
+	padding:8px;
+}
+.searchbar .input-box+a{
+	padding-left:0;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
