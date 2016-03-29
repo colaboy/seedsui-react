@@ -36,7 +36,6 @@
 }
 .titlebar>a>i{
 	width:24px;
-	
 	/*文字图标*/
 	font-size:24px;
 	/*背景图标*/
@@ -44,7 +43,20 @@
 	background-repeat:no-repeat;
 	background-position:center top;
 }
-
+/*左右对齐*/
+.titlebar .left,.titlebar .right{
+	position: absolute;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+}
+.titlebar .left {
+	left:0;
+	margin-left: 4px;
+}
+.titlebar .right {
+	right:0;
+	margin-right: 4px;
+}
 /*按钮*/
 .titlebar>button,.titlebar>.button{
 	height:32px;

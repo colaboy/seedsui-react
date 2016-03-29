@@ -634,7 +634,6 @@ br {
 }
 /*文字*/
 .paragraph {
-  text-indent: 2em;
   line-height: 24px;
   margin: 8px 0;
   padding: 0 8px;
@@ -664,7 +663,7 @@ small {
   /*首字母大写*/
 }
 .indent {
-  text-indent: 8px;
+  text-indent: 2em;
 }
 /*间距与布局*/
 .size32 {
@@ -2267,6 +2266,21 @@ aside.active ~ #section_container .section_container_mask {
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center top;
+}
+/*左右对齐*/
+.titlebar .left,
+.titlebar .right {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+}
+.titlebar .left {
+  left: 0;
+  margin-left: 4px;
+}
+.titlebar .right {
+  right: 0;
+  margin-right: 4px;
 }
 /*按钮*/
 .titlebar > button,
@@ -4547,6 +4561,8 @@ input[type=range]:focus::-ms-fill-upper {
 .list li.nojustify .justify {
   display: block;
   max-width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .list li.nojustify .justify-content ~ .justify {
   padding-top: 0;
