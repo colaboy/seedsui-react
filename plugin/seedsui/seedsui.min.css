@@ -6554,6 +6554,10 @@ input[type="radio"][disabled]:checked {
 .list .round i {
   color: #ffffff;
 }
+/*标题小标记*/
+.peg {
+  background-color: #4587f7;
+}
 .appicon {
   background-color: #f4f4f4;
 }
