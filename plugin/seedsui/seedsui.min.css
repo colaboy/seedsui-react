@@ -9,16 +9,23 @@
   margin: 0;
   padding: 0;
 }
-body,
+body {
+  font-size: 15px;
+  font-family: Arial, "Microsoft Yahei";
+}
+i,
+span {
+  display: inline-block;
+  vertical-align: middle;
+}
 button,
 input,
 select,
 option,
 textarea,
-pre,
-p {
-  font-size: 15px;
-  font-family: arial, sans-serif;
+pre {
+  font-size: inherit;
+  font-family: inherit;
 }
 textarea {
   resize: none;
@@ -304,39 +311,40 @@ button.text-left {
   display: flex;
 }
 .box-center,
-.box-middlecenter {
-  box-pack: center;
+.box-middlecenter,
+.text-center {
   -moz-box-pack: center;
   -webkit-box-pack: center;
+  box-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
 }
 .box-right {
-  box-pack: end;
   -moz-box-pack: end;
   -webkit-box-pack: end;
+  box-pack: end;
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
 .box-middle,
 .box-middlecenter {
-  box-align: center;
   -moz-box-align: center;
   -webkit-box-align: center;
+  box-align: center;
   -webkit-align-items: center;
   align-items: center;
 }
 .box-top {
-  box-align: start;
   -moz-box-align: start;
   -webkit-box-align: start;
+  box-align: start;
   -webkit-align-items: flex-start;
   align-items: flex-start;
 }
 .box-bottom {
-  box-align: end;
   -moz-box-align: end;
   -webkit-box-align: end;
+  box-align: end;
   -webkit-align-items: flex-end;
   align-items: flex-end;
 }
@@ -2220,56 +2228,36 @@ aside.active ~ #section_container .section_container_mask {
   border-bottom: 1px solid;
   box-sizing: border-box;
 }
+.titlebar,
+.titlebar > h1,
+.titlebar > a {
+  position: relative;
+  display: flex;
+  display: -webkit-flex;
+  display: box;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
 .titlebar > h1 {
-  display: block;
-  width: 100%;
-  height: 32px;
-  line-height: 32px;
   font-size: 17px;
   font-weight: normal;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  margin-top: -16px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  z-index: 1;
-  box-sizing: border-box;
-  padding: 0 32px;
-  z-index: 0;
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
 }
-.titlebar > .left {
-  float: left;
+.titlebar > h1:first-child {
+  margin-left: 8px;
+}
+.titlebar > a:first-child {
   margin-left: 4px;
 }
-.titlebar > .right {
-  float: right;
+.titlebar > a:last-child {
   margin-right: 4px;
 }
-/*文字按钮*/
-.titlebar > a,
-.titlebar > button {
-  position: relative;
-  z-index: 2;
-}
-.titlebar > a {
-  margin-top: 10px;
-  font-size: 0;
-}
-.titlebar > a,
-.titlebar > a > i {
-  height: 24px;
-  line-height: 24px;
-}
-.titlebar > a > i,
-.titlebar > a > span {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 2px;
-}
-.titlebar > a > span {
-  font-size: 15px;
+.titlebar > a + a {
+  margin-left: 4px;
 }
 .titlebar > a > i {
   width: 24px;
@@ -2285,7 +2273,6 @@ aside.active ~ #section_container .section_container_mask {
 .titlebar > .button {
   height: 32px;
   border-radius: 16px;
-  margin-top: 5px;
 }
 .titlebar > .button {
   line-height: 32px;
@@ -2301,6 +2288,10 @@ aside.active ~ #section_container .section_container_mask {
   height: 30px;
   line-height: 30px;
   font-size: 30px;
+}
+/*searchbar*/
+.titlebar > .searchbar {
+  width: 100%;
 }
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
@@ -2722,6 +2713,7 @@ input[type="submit"],
   height: 40px;
   overflow: hidden;
   text-align: center;
+  vertical-align: middle;
   /*禁止选中*/
   background-image: none;
   /*清除文本选择与外框*/
@@ -5897,7 +5889,7 @@ aside {
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.25);
 }
-/*search*/
+/*searchbar*/
 .titlebar > .searchbar {
   background-color: transparent;
 }

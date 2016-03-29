@@ -226,7 +226,7 @@
 			}
 			e.preventDefault();
 			s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
-			console.log(s.touches.posY);
+			//console.log(s.touches.posY);
 			if(s.touches.posY<s.params.refreshThresholdMax){
 				s.rotate=s.touches.posY*2;
 				//s.refreshBox.style.top=s.touches.posY + 'px';

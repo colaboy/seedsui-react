@@ -5,54 +5,34 @@
 	border-bottom: 1px solid;
 	box-sizing: border-box;
 }
+.titlebar,.titlebar>h1,.titlebar>a{
+	position:relative;
+	display: flex;
+	display: -webkit-flex;
+	display: box;
+	display: -webkit-box;
+	-webkit-box-align: center;
+    box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
 .titlebar>h1{
-	display: block;
-	width: 100%;
-	height:32px;
-	line-height: 32px;
 	font-size: 17px;
 	font-weight: normal;
-	position: absolute;
-	top:50%;
-	left:0;
-	margin-top:-16px;
-
-	overflow:hidden;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	z-index:1;
-	box-sizing: border-box;
-	padding:0 32px;
-	z-index:0;
+	-webkit-box-flex:1.0;
+	box-flex:1.0;
 }
-.titlebar>.left{
-	float:left;
-	margin-left: 4px;
+.titlebar>h1:first-child{
+	margin-left:8px;
 }
-.titlebar>.right{
-	float:right;
-	margin-right: 4px;
+.titlebar>a:first-child{
+	margin-left:4px;
 }
-/*文字按钮*/
-.titlebar>a,.titlebar>button{
-	position:relative;
-	z-index:2;
+.titlebar>a:last-child{
+	margin-right:4px;
 }
-.titlebar>a{
-	margin-top:10px;
-	font-size: 0;
-}
-.titlebar>a,.titlebar>a>i{
-	height:24px;
-	line-height:24px;
-}
-.titlebar>a>i,.titlebar>a>span{
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0 2px;
-}
-.titlebar>a>span{
-	font-size:15px;
+.titlebar>a+a{
+	margin-left:4px;
 }
 .titlebar>a>i{
 	width:24px;
@@ -69,7 +49,6 @@
 .titlebar>button,.titlebar>.button{
 	height:32px;
 	border-radius:16px;
-	margin-top: 5px;
 }
 .titlebar>.button{
 	line-height:32px;
@@ -85,5 +64,9 @@
 	height:30px;
 	line-height: 30px;
 	font-size:30px;
+}
+/*searchbar*/
+.titlebar>.searchbar{
+	width:100%;
 }
 /*----------------titlebar.less(end)----------------*/
