@@ -2,6 +2,7 @@
 *	兼容html5 的 Exmobi js
 */
 var dbcount=0;//双击关闭，计数器
+var toast=new Toast();//提示框
 var Exmobi={
 	os:function(){
 		var osname=DeviceUtil.getOs().toLowerCase();
@@ -40,10 +41,9 @@ var Exmobi={
 		ExMobiWindow.close();
 	},
 	dbclick:function(msg){
-		var toast=new Toast();
 		toast.setText(msg);
 		toast.show();
-		setTimeout( function(){dbcount=0} , 2000);
+		setTimeout( function(){dbcount=0} , 1000);
 		if(dbcount==0){
 			dbcount=2;
 			return false;

@@ -486,17 +486,19 @@ input[list],textarea,select,.input-text{
 }
 /*----------------clock.less(end)--------------*/
 
-/*----------------layout.less(start)--------------*/
-.row{
+/*----------------row.less(start)--------------*/
+.row,.group,.card{
 	border-color:@color-border;
 }
-.group{
+/*----------------row.less(end)--------------*/
+
+/*----------------card.less(start)--------------*/
+.card-handler>a{
+	color:@color-placeholder;
 	border-color:@color-border;
 }
-.card{
-	border-color:@color-border;
-}
-/*----------------layout.less(end)--------------*/
+/*----------------card.less(end)--------------*/
+
 /*----------------range.less(start)--------------*/
 /*去除所有原有样式*/
 input[type=range]::-ms-track {
