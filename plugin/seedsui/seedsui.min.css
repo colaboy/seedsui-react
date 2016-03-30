@@ -1282,10 +1282,10 @@ footer {
 .icon-tel-fill:before {
   content: "\ea14";
 }
-.icon-text:before {
+.icon-map:before {
   content: "\ea15";
 }
-.icon-text-fill:before {
+.icon-map-fill:before {
   content: "\ea16";
 }
 .icon-thumb:before {
@@ -1581,6 +1581,42 @@ footer {
 }
 .icon-write-fill:before {
   content: "\ea78";
+}
+.icon-add:before {
+  content: "\e920";
+}
+.icon-add-fill:before {
+  content: "\ea79";
+}
+.icon-chartbarl:before {
+  content: "\ea7a";
+}
+.icon-chartbarl-fill:before {
+  content: "\ea7b";
+}
+.icon-chartlinel:before {
+  content: "\ea7c";
+}
+.icon-chartlinel-fill:before {
+  content: "\ea7d";
+}
+.icon-minus:before {
+  content: "\ea7e";
+}
+.icon-minus-fill:before {
+  content: "\ea7f";
+}
+.icon-smile:before {
+  content: "\ea80";
+}
+.icon-smile-fill:before {
+  content: "\ea81";
+}
+.icon-stethoscope:before {
+  content: "\ea82";
+}
+.icon-stethoscope-fill:before {
+  content: "\ea83";
 }
 /*----------------layout.less(start)--------------*/
 /*原始布局方式*/
