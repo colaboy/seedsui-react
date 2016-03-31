@@ -1618,6 +1618,12 @@ footer {
 .icon-stethoscope-fill:before {
   content: "\ea83";
 }
+.icon-news:before {
+  content: "\ea85";
+}
+.icon-news-fill:before {
+  content: "\ea86";
+}
 /*----------------layout.less(start)--------------*/
 /*原始布局方式*/
 .text-ltr {
