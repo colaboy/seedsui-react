@@ -166,9 +166,8 @@
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script>
-        Richeditor.richEdit("#richeditor");
-
-        var richeditor=document.getElementById("richeditor");
+        var r=Richinput("#richeditor");
+        var richeditor=r.container;
         //发送消息
         function sent(){
             var chat=document.getElementById("chat");

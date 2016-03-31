@@ -64,7 +64,11 @@ summary {
   display: block;
 }
 pre{
-	word-wrap: break-word;
+	white-space:pre-wrap;
+	white-space:-moz-pre-wrap;
+	white-space:-pre-wrap;
+	white-space:-o-pre-wrap;
+	word-wrap:break-word;
 }
 .code {
 	display: block;
@@ -123,7 +127,19 @@ pre{
 	height:24px;
 	line-height:24px;
 }
-.title,.sliver{
+.title{
+	font-size:17px;
+	margin:8px;
+	display:block;
+}
+strong.title{
+	margin:8px 0;
+}
+strong.title+small{
+	display:block;
+	margin:8px 0;
+}
+.sliver{
 	padding:8px;
 }
 .relative {

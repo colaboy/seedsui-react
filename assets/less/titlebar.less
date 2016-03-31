@@ -5,8 +5,7 @@
 	border-bottom: 1px solid;
 	box-sizing: border-box;
 }
-.titlebar,.titlebar>h1,.titlebar>a{
-	position:relative;
+.titlebar{
 	display: flex;
 	display: -webkit-flex;
 	display: box;
@@ -16,25 +15,28 @@
     -webkit-align-items: center;
     align-items: center;
 }
-.titlebar>h1{
+.titlebar,.titlebar a,.titlebar h1{
+	position:relative;
+}
+.titlebar h1{
 	font-size: 17px;
 	font-weight: normal;
 	-webkit-box-flex:1.0;
 	box-flex:1.0;
 }
-.titlebar>h1:first-child{
+.titlebar h1:first-child{
 	margin-left:8px;
 }
 .titlebar>a:first-child{
-	margin-left:4px;
-}
-.titlebar>a:last-child{
-	margin-right:4px;
-}
-.titlebar>a+a{
 	margin-left:8px;
 }
-.titlebar>a>i{
+.titlebar>a:last-child{
+	margin-right:8px;
+}
+.titlebar a+a{
+	margin-left:8px;
+}
+.titlebar a>i{
 	width:24px;
 	/*文字图标*/
 	font-size:24px;
@@ -43,6 +45,20 @@
 	background-repeat:no-repeat;
 	background-position:center top;
 }
+/*圆形图标*/
+.titlebar a.radiusround{
+	font-size:0;
+	padding:5px;
+	border-width:1px;
+	border-style:solid;
+	box-sizing:content-box;
+}
+.titlebar a.radiusround>i{
+	width:20px;
+	height:20px;
+	font-size:20px;
+}
+
 /*左右对齐*/
 .titlebar .left,.titlebar .right{
 	position: absolute;
@@ -53,27 +69,27 @@
 }
 .titlebar .left {
 	left:0;
-	margin-left: 4px;
+	margin-left:8px;
 }
 .titlebar .right {
 	right:0;
-	margin-right: 4px;
+	margin-right:8px;
 }
 /*按钮*/
-.titlebar>button,.titlebar>.button{
+.titlebar button,.titlebar .button{
 	height:32px;
 	border-radius:16px;
 }
-.titlebar>.button{
+.titlebar .button{
 	line-height:32px;
 }
 /*logo*/
-.titlebar>.logo{
+.titlebar .logo{
 	height:44px;
 	line-height: 44px;
-	margin:0 4px;
+	margin:0 8px;
 }
-.titlebar>.logo img{
+.titlebar .logo img{
 	min-width:30px;
 	height:30px;
 	line-height: 30px;

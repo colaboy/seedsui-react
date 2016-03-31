@@ -12,6 +12,7 @@
 // @koala-prepend "media.js"
 // @koala-prepend "clock.js"
 // @koala-prepend "richeditor.js"
+// @koala-prepend "richinput.js"
 // @koala-prepend "share.js"
 // @koala-prepend "slider.js"
 // @koala-prepend "type.js"
