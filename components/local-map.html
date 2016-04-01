@@ -30,8 +30,6 @@
 			padding: 15px 0;
 		}
 		#signPeople li>a{
-			width:50px;
-			height: 50px;
 			box-sizing:border-box;
 			border-style:solid;
 			border-width:2px;
@@ -42,26 +40,19 @@
 		}
 		/*悬浮日期框*/
 		.signDate{
-			position: absolute;top:10px;left:10px;z-index: 99999;
+			position: absolute;
+			top:10px;
+			left:10px;
 			background-color: #4587F7;
 			text-align: center;
 			border-radius: 20px;
 			overflow: hidden;
 			box-shadow: 1px 2px 2px 0 rgba(0,0,0,.4);
+			z-index: 99999;
 		}
-		.signDate input[type=date]{
-			width:110px;
-			text-align: center;
+		.signDate input,.signDate i{
 			color:white;
-			border-width:0;
-			background-color: transparent;
-			-webkit-touch-callout: none;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
 		}
-		
 	</style>
 </head>
 
@@ -74,9 +65,14 @@
 		    </div>
 		</header>
 		<article style="bottom:150px;">
-			<div class="signDate">
-				<input type="date" id="expireDate"/>
+			<div class="input-box signDate">
+				<input type="date" id="expireDate" style="width: 110px;">
+				<i class="icon-calendar"></i>
 			</div>
+			<!-- <div class="signDate">
+				<input type="date" id="expireDate"/>
+			</div> -->
+
 			<div id="allmap" class="height-full"></div>
 		</article>
 		<footer style="height: 150px;background-color:white;">
@@ -89,7 +85,7 @@
 				</li>
 			</ul>
 			<div id="signPeople">
-				<ul class="grid app radiusround" data-col="4">
+				<ul class="grid app radiusround size50" data-col="4">
 					<li>
 						<a style="background-color: #53c6fd;border-color: #53c6fd;">
 							阳
