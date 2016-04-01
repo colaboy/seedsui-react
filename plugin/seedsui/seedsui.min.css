@@ -1600,6 +1600,168 @@ footer {
 .icon-news-fill:before {
   content: "\ea86";
 }
+/*----------------------------list.less(start)----------------------------*/
+.list li {
+  display: flex;
+  display: -webkit-flex;
+  display: box;
+  display: -webkit-box;
+  box-sizing: border-box;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+.list button {
+  width: 60px;
+  height: 32px;
+  line-height: 32px;
+}
+.justify {
+  position: relative;
+  min-width: 0px;
+  max-width: 90px;
+  display: flex;
+  display: -webkit-flex;
+  display: box;
+  display: -webkit-box;
+}
+.justify,
+.justify-content {
+  padding: 10px 8px;
+}
+.justify + .justify-content {
+  padding-left: 0;
+}
+.justify-content + .justify {
+  padding-left: 0;
+}
+.justify img {
+  max-width: 100%;
+}
+.justify-content {
+  overflow: hidden;
+  position: relative;
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
+}
+.justify-content > p,
+.justify-content > a {
+  line-height: 1.5em;
+}
+.justify-content small {
+  display: block;
+  line-height: 1.5em;
+}
+.list i {
+  display: inline-block;
+  vertical-align: middle;
+}
+/*标题小标记*/
+.peg {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+}
+/*无点击*/
+.list.noclick li,
+.list li.noclick {
+  background-color: white;
+}
+.list.noclick li:active,
+.list li.noclick:active {
+  background-color: white;
+}
+/*无边框*/
+.list.noborder li,
+.list li.noborder {
+  border-width: 0;
+}
+/*透明*/
+.list.bg-transparent li,
+.list li.bg-transparent {
+  background-color: transparent;
+}
+.list.noclick.bg-transparent li:active,
+.list li.noclick.bg-transparent:active {
+  background-color: transparent;
+}
+/*无自适应*/
+.list li.nojustify {
+  display: block;
+}
+.list li.nojustify .justify {
+  display: block;
+  max-width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.list li.nojustify .justify-content ~ .justify {
+  padding-top: 0;
+}
+/*列表标记*/
+.list [class^=mark-] {
+  margin-right: 4px;
+}
+/*左圆形列表*/
+.list .justify .radiusround {
+  width: 50px;
+  height: 50px;
+}
+.list .justify .radiusround i,
+.list .justify .radiusround img {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+.list .justify .radiusround {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/*上下两端对齐*/
+.list.between .justify-content small:nth-last-of-type(1),
+.list li.between .justify-content small:nth-last-of-type(1) {
+  margin-top: 8px;
+}
+/*应用列表*/
+.appicon {
+  width: 60px;
+  height: 60px;
+  line-height: 52px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 32px;
+}
+/*位置*/
+.list .top,
+.list .bottom,
+.list .left,
+.list .right {
+  position: absolute;
+}
+.list .top {
+  top: 12px;
+}
+.list .bottom {
+  bottom: 8px;
+}
+.list .left {
+  left: 4px;
+}
+.list .right {
+  right: 4px;
+}
+/*内容线*/
+.list.border-content li {
+  border-width: 0;
+}
+.list.border-content .justify-content,
+.list.border-content .justify-content + .justify {
+  border-style: solid;
+  border-color: inherit;
+  border-width: 0 0 1px 0;
+}
+/*----------------------------list.less(end)----------------------------*/
 /*----------------row.less(start)--------------*/
 .row {
   display: flex;
@@ -4174,168 +4336,6 @@ input[type=range]:focus::-ms-fill-upper {
   font-size: 48px;
 }
 /*----------------grid.less(end)----------------*/
-/*----------------------------list.less(start)----------------------------*/
-.list li {
-  display: flex;
-  display: -webkit-flex;
-  display: box;
-  display: -webkit-box;
-  box-sizing: border-box;
-  border-width: 0 0 1px 0;
-  border-style: solid;
-}
-.list button {
-  width: 60px;
-  height: 32px;
-  line-height: 32px;
-}
-.justify {
-  position: relative;
-  min-width: 0px;
-  max-width: 90px;
-  display: flex;
-  display: -webkit-flex;
-  display: box;
-  display: -webkit-box;
-}
-.justify,
-.justify-content {
-  padding: 10px 8px;
-}
-.justify + .justify-content {
-  padding-left: 0;
-}
-.justify-content + .justify {
-  padding-left: 0;
-}
-.justify img {
-  max-width: 100%;
-}
-.justify-content {
-  overflow: hidden;
-  position: relative;
-  -webkit-box-flex: 1.0;
-  box-flex: 1.0;
-}
-.justify-content > p,
-.justify-content > a {
-  line-height: 1.5em;
-}
-.justify-content small {
-  display: block;
-  line-height: 1.5em;
-}
-.list i {
-  display: inline-block;
-  vertical-align: middle;
-}
-/*标题小标记*/
-.peg {
-  display: inline-block;
-  width: 6px;
-  height: 12px;
-}
-/*无点击*/
-.list.noclick li,
-.list li.noclick {
-  background-color: white;
-}
-.list.noclick li:active,
-.list li.noclick:active {
-  background-color: white;
-}
-/*无边框*/
-.list.noborder li,
-.list li.noborder {
-  border-width: 0;
-}
-/*透明*/
-.list.bg-transparent li,
-.list li.bg-transparent {
-  background-color: transparent;
-}
-.list.noclick.bg-transparent li:active,
-.list li.noclick.bg-transparent:active {
-  background-color: transparent;
-}
-/*无自适应*/
-.list li.nojustify {
-  display: block;
-}
-.list li.nojustify .justify {
-  display: block;
-  max-width: 100%;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.list li.nojustify .justify-content ~ .justify {
-  padding-top: 0;
-}
-/*列表标记*/
-.list [class^=mark-] {
-  margin-right: 4px;
-}
-/*左圆形列表*/
-.list .radiusround {
-  width: 50px;
-  height: 50px;
-}
-.list .radiusround i,
-.list .radiusround img {
-  font-size: 30px;
-  width: 30px;
-  height: 30px;
-}
-.list .radiusround {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-/*上下两端对齐*/
-.list.between .justify-content small:nth-last-of-type(1),
-.list li.between .justify-content small:nth-last-of-type(1) {
-  margin-top: 8px;
-}
-/*应用列表*/
-.appicon {
-  width: 60px;
-  height: 60px;
-  line-height: 52px;
-  text-align: center;
-  border-radius: 8px;
-  overflow: hidden;
-  font-size: 32px;
-}
-/*位置*/
-.list .top,
-.list .bottom,
-.list .left,
-.list .right {
-  position: absolute;
-}
-.list .top {
-  top: 12px;
-}
-.list .bottom {
-  bottom: 8px;
-}
-.list .left {
-  left: 4px;
-}
-.list .right {
-  right: 4px;
-}
-/*内容线*/
-.list.border-content li {
-  border-width: 0;
-}
-.list.border-content .justify-content,
-.list.border-content .justify-content + .justify {
-  border-style: solid;
-  border-color: inherit;
-  border-width: 0 0 1px 0;
-}
-/*----------------------------list.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading-box {
   position: fixed;
@@ -6708,11 +6708,11 @@ input[type="radio"][disabled]:checked {
 .list li:active {
   background-color: #f4f4f4;
 }
-.list .radiusround {
+.list .justify .radiusround {
   color: #ffffff;
   background-color: #4587f7;
 }
-.list .radiusround i {
+.list .justify .radiusround i {
   color: #ffffff;
 }
 /*标题小标记*/
