@@ -117,45 +117,6 @@ pre {
 .val {
   color: #d44950;
 }
-/*小汽泡*/
-.badge,
-.tip,
-.close {
-  display: inline-block;
-  font-size: 8px;
-  vertical-align: middle;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 100%;
-}
-.badge {
-  width: 30px;
-  height: 20px;
-  line-height: 20px;
-  border-radius: 10px;
-}
-.tip,
-.close {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-}
-.title {
-  font-size: 17px;
-  margin: 8px;
-  display: block;
-}
-strong.title {
-  margin: 8px 0;
-}
-strong.title + small {
-  display: block;
-  margin: 8px 0;
-}
-.sliver {
-  padding: 8px;
-}
 .relative {
   position: relative;
 }
@@ -1860,13 +1821,27 @@ aside.active ~ #section_container .section_container_mask {
   display: block;
 }
 /*----------------aside.less(end)--------------*/
-/*----------------------------bar.less(start)----------------------------*/
+/*----------------------------title.less(start)----------------------------*/
 .sliver {
   position: relative;
   padding: 8px;
   border-width: 0 0 1px 0;
   border-style: solid;
 }
+.title {
+  font-size: 17px;
+  margin: 8px;
+  display: block;
+}
+strong.title {
+  margin: 8px 0;
+}
+strong.title + small {
+  display: block;
+  margin: 8px 0;
+}
+/*----------------------------title.less(start)----------------------------*/
+/*----------------------------bar.less(start)----------------------------*/
 .statusbar .mark-desaturate {
   padding: 8px;
   margin: 5px 0 5px 8px;
@@ -2401,6 +2376,52 @@ aside.active ~ #section_container .section_container_mask {
   padding-left: 0;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
+/*--------------------badge.less(start)----------------------*/
+.badge,
+.tip,
+.close {
+  position: relative;
+  display: inline-block;
+  font-size: 8px;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 100%;
+}
+.badge {
+  padding: 0 4px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 20px;
+  min-width: 24px;
+}
+.tip,
+.close {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+.badge.arrow {
+  padding: 2px 8px;
+  font-size: 14px;
+  overflow: visible;
+  color: white;
+}
+.badge.arrow:after {
+  position: absolute;
+  right: 10px;
+  top: -4px;
+  height: 0;
+  width: 0;
+  content: " ";
+  border-width: 5px;
+  margin-top: -5px;
+  border-style: solid;
+  border-color: transparent;
+}
+/*--------------------badge.less(start)----------------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 button,
@@ -3994,6 +4015,7 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-align-items: center;
 }
 .grid li .tip,
+.grid li .badge,
 .grid li .close {
   position: absolute;
   display: block;
@@ -4030,14 +4052,6 @@ input[type=range]:focus::-ms-fill-upper {
   height: 64px;
   margin: 0px auto;
   color: white;
-}
-.grid.size50 li > a {
-  width: 50px;
-  height: 50px;
-}
-.grid.size56 li > a {
-  width: 56px;
-  height: 56px;
 }
 .grid.app li > a > i,
 .grid.app li > a > img {
@@ -5439,6 +5453,44 @@ ul.weather-otherday li {
   font-size: 20px;
 }
 /*----------------------------calendar.less(end)----------------------------*/
+/*--------------------size.less(start)----------------------*/
+.badge.size32 {
+  width: 24px;
+}
+/*九宫格*/
+.grid.size50 li > a {
+  width: 50px;
+  height: 50px;
+}
+.grid.size56 li > a {
+  width: 56px;
+  height: 56px;
+}
+/*图标*/
+i.size16 {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+i.size24 {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+i.size32 {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+/*圆形*/
+.radiusround.size40 {
+  width: 40px;
+  height: 40px;
+}
+/*--------------------size.less(end)----------------------*/
 /*----------------layout.less(start)--------------*/
 /*原始布局方式*/
 .text-ltr {
@@ -5783,28 +5835,6 @@ button.text-left {
 .indent {
   text-indent: 2em;
 }
-i.size16 {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-}
-i.size24 {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-}
-i.size32 {
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-}
-.radiusround.size40 {
-  width: 40px;
-  height: 40px;
-}
 .width-full {
   width: 100%;
 }
@@ -5952,12 +5982,6 @@ a:active,
 .highlight {
   border-color: #e8e8e8;
   background-color: #f4f4f4;
-}
-/*小汽泡*/
-.tip,
-.badge {
-  color: #ffffff;
-  background-color: #fc4349;
 }
 hr {
   border-color: #e8e8e8;
@@ -6118,6 +6142,16 @@ aside {
   background: #4587f7;
 }
 /*----------------tabbar.less(end)--------------*/
+/*--------------------badge.less(start)----------------------*/
+.tip,
+.badge {
+  color: #ffffff;
+  background-color: #fc4349;
+}
+.badge.arrow:after {
+  border-bottom-color: #fc4349;
+}
+/*--------------------badge.less(end)----------------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 button,
@@ -6704,17 +6738,19 @@ input[type="radio"][disabled]:checked {
   -webkit-text-fill-color: transparent;
 }
 /*----------------------------list.less(end)----------------------------*/
-/*----------------------------bar.less(start)----------------------------*/
+/*----------------------------title.less(start)----------------------------*/
 .sliver,
 li.sliver {
   color: #aaaaaa;
   border-color: #e8e8e8;
   background-color: #f4f4f4;
 }
+/*----------------------------title.less(end)----------------------------*/
+/*----------------------------statusbar.less(start)----------------------------*/
 .statusbar {
   background-color: #e8e8e8;
 }
-/*----------------------------bar.less(end)----------------------------*/
+/*----------------------------statusbar.less(end)----------------------------*/
 /*----------------------------searchbar.less(start)----------------------------*/
 .searchbar {
   background-color: #e8e8e8;

@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>me1</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+    	.userinfo:before,.photo{
+    		background-repeat:no-repeat;
+    		background-size:cover;
+    		background-position:center;
+    	}
+    	.userinfo{
+    		position:relative;
+    		text-align:center;
+    		z-index:0;
+    		background-color:black;
+    		padding:40px 0;
+    	}
+    	.userinfo:before{
+			content:"";
+			position:absolute;
+			z-index:-1;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
+			background-image:url(../img/me1//mebg.jpg);
+			opacity:0.9;
+			-webkit-filter:blur(2px);
+			overflow: hidden;
+		}
+    	.userinfo .photo{
+    		display:inline-block;
+    		width:80px;
+    		height:80px;
+    		border-radius:100%;
+    		border:2px solid white;
+    	}
+    	.userinfo .photoname{
+    		margin-top:10px;
+    		display:block;
+    		color:white;
+    	}
+    	.userinfo .lvl{
+    		text-align:center;
+    	}
+    	.userinfo .lvl label{
+    		display:inline-block;
+    		height:24px;
+    		line-height:24px;
+    		width:100px;
+    		text-align:center;
+    		border-radius:16px;
+    		color:white;
+    		border:1px solid white;
+    		margin:8px;
+    	}
+    	.card-handler a{
+    		height:54px;
+    		line-height:54px;
+    	}
+    	.list .justify-content{
+		    padding-top: 15px;
+			padding-bottom: 15px;
+    	}
+    </style>
+</head>
+
+<body>
+    <section id="page_container" class="active">
+    	<article style="background-color:white;top:0">
+    		<div style="border-bottom:1px solid #ddd;">
+    			<div class="userinfo">
+	    			<span class="photo" style="background-image:url(../img/me1//me.jpg);"></span>
+	    			<span class="photoname">张无敌</span>
+	    			<div class="lvl">
+	    				<label>Lv5班长</label>
+	    				<label>1485积分</label>
+	    			</div>
+    			</div>
+    			<div class="card-handler border" data-col="3">
+    				<a>
+    					<i class="icon-chatdot"></i>
+    					<span>评论</span>
+    				</a>
+    				<a>
+    					<i class="icon-bell"></i>
+    					<span>消息</span>
+    				</a>
+    				<a>
+    					<i class="icon-fav"></i>
+    					<span>收藏</span>
+    				</a>
+    			</div>
+    		</div>
+    		<div class="rowspace12" style="background-color:#f4f4f4"></div>
+    		<div style="border-top:1px solid #ddd;">
+    			<ul class="list border-content">
+    				<li>
+    					<div class="justify box-middle"><i class="icon-user-fill size24 color-1"></i></div>
+    					<div class="justify-content">个人信息</div>
+    					<div class="justify box-middle"><i class="icon-arrowright color-placeholder"></i></div>
+    				</li>
+    				<li>
+    					<div class="justify box-middle"><i class="icon-news-fill size24 color-2"></i></div>
+    					<div class="justify-content">资讯管理</div>
+    					<div class="justify box-middle"><i class="icon-arrowright color-placeholder"></i></div>
+    				</li>
+    				<li>
+    					<div class="justify box-middle"><i class="icon-mail-fill size24 color-3"></i></div>
+    					<div class="justify-content">反馈</div>
+    					<div class="justify box-middle"><i class="icon-arrowright color-placeholder"></i></div>
+    				</li>
+    				<li>
+    					<div class="justify box-middle"><i class="icon-gear-fill size24 color-4"></i></div>
+    					<div class="justify-content">设置</div>
+    					<div class="justify box-middle"><i class="icon-arrowright color-placeholder"></i></div>
+    				</li>
+    			</ul>
+    		</div>
+        </article>
+    </section>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

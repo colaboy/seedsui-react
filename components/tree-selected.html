@@ -26,7 +26,7 @@
                 <ul class="tree" id="tree">
                     <li id="group-1" data-name="业务产品部">
                         <div class="treetitle"> <i class="treeicon icon-arrowright"></i>
-                            <span class="icon-persons round events-none"></span>
+                            <span class="icon-persons radiusround events-none"></span>
                             <a class="icontitle events-none">业务产品部</a>
                             <a class="icon icon-rdoadd right middle"></a>
                         </div>
@@ -34,7 +34,7 @@
                             <li id="group-2" data-name="研发体系">
                                 <div class="treetitle">
                                     <i class="treeicon icon-arrowright"></i>
-                                    <span class="icon-persons round events-none"></span>
+                                    <span class="icon-persons radiusround events-none"></span>
                                     <a class="icontitle events-none">研发体系</a>
                                     <a class="icon icon-rdoadd right middle"></a>
                                 </div>
@@ -42,28 +42,28 @@
                                     <li id="group-3" data-name="开发一部">
                                         <div class="treetitle">
                                             <i class="treeicon icon-arrowright"></i>
-                                            <span class="icon-persons round events-none"></span>
+                                            <span class="icon-persons radiusround events-none"></span>
                                             <a class="icontitle events-none">开发一部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
                                         </div>
                                         <ul>
                                         	<li id="group-4" data-name="成少波">
                                         		<div class="treetitle">
-                                        			<span class="round" style="background-color: #53c6fd;">波</span>
+                                        			<span class="radiusround" style="background-color: #53c6fd;">波</span>
 		                                            <a class="icontitle events-none">成少波</a>
 		                                            <a class="icon icon-rdoadd right middle"></a>
 		                                        </div>
                                         	</li>
                                         	<li id="group-5" data-name="颜学文">
                                         		<div class="treetitle">
-                                        			<span class="round" style="background-color: #3ae3ea;">文</span>
+                                        			<span class="radiusround" style="background-color: #3ae3ea;">文</span>
 		                                            <a class="icontitle events-none">颜学文</a>
 		                                            <a class="icon icon-rdoadd right middle"></a>
 		                                        </div>
                                         	</li>
                                         	<li id="group-6" data-name="张泉">
                                         		<div class="treetitle">
-                                        			<span class="round" style="background-color: #ff6f36;">泉</span>
+                                        			<span class="radiusround" style="background-color: #ff6f36;">泉</span>
 		                                            <a class="icontitle events-none">张泉</a>
 		                                            <a class="icon icon-rdoadd right middle"></a>
 		                                        </div>
@@ -73,7 +73,7 @@
                                     <li id="group-7" data-name="开发二部">
                                         <div class="treetitle">
                                             <i class="treeicon icon-arrowright"></i>
-                                            <span class="icon-persons round events-none"></span>
+                                            <span class="icon-persons radiusround events-none"></span>
                                             <a class="icontitle events-none">开发二部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
                                         </div>
@@ -81,7 +81,7 @@
                                     <li id="group-8" data-name="开发三部">
                                         <div class="treetitle">
                                             <i class="treeicon icon-arrowright"></i>
-                                            <span class="icon-persons round events-none"></span>
+                                            <span class="icon-persons radiusround events-none"></span>
                                             <a class="icontitle events-none">开发三部</a>
                                             <a class="icon icon-rdoadd right middle"></a>
                                         </div>
@@ -89,7 +89,7 @@
                                             <li id="group-9" data-name="开发一部">
                                                 <div class="treetitle">
                                                     <i class="treeicon icon-arrowright"></i>
-                                                    <span class="icon-persons round events-none"></span>
+                                                    <span class="icon-persons radiusround events-none"></span>
                                                     <a class="icontitle events-none">开发一组</a>
                                                     <a class="icon icon-rdoadd right middle"></a>
                                                 </div>
@@ -101,7 +101,7 @@
                             <li id="group-10" data-name="市场体系">
                                 <div class="treetitle">
                                     <i class="treeicon icon-arrowright"></i>
-                                    <span class="icon-persons round events-none"></span>
+                                    <span class="icon-persons radiusround events-none"></span>
                                     <a class="icontitle events-none">市场体系</a>
                                     <a class="icon icon-rdoadd right middle"></a>
                                 </div>
@@ -109,7 +109,7 @@
                                     <li id="group-11" data-name="上海办">
                                         <div class="treetitle">
                                             <i class="treeicon icon-arrowright"></i>
-                                            <span class="icon-persons round events-none"></span>
+                                            <span class="icon-persons radiusround events-none"></span>
                                             <a class="icontitle events-none">上海办</a>
                                             <a class="icon icon-rdoadd right middle"></a>
                                         </div>
@@ -117,7 +117,7 @@
                                     <li id="group-12" data-name="广州办名字超长超长超长超">
                                         <div class="treetitle">
                                             <i class="treeicon icon-arrowright"></i>
-                                            <span class="icon-persons round events-none"></span>
+                                            <span class="icon-persons radiusround events-none"></span>
                                             <a class="icontitle events-none">广州办名字超长超长超长超</a>
                                             <a class="icon icon-rdoadd right middle"></a>
                                         </div>
@@ -194,6 +194,7 @@
             } else if(target.className.indexOf("treeicon")>=0){
                 elLI=e.target.parentNode.parentNode;
             }
+            if(!elLI)return;
             elIcon=elLI.querySelector(".treeicon");
             elChildUL=elLI.querySelector("ul");
             if(!elChildUL){

@@ -1,0 +1,43 @@
+/*--------------------badge.less(start)----------------------*/
+.badge,.tip,.close{
+	position:relative;
+	display: inline-block;
+	font-size: 8px;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	border-radius:100%;
+}
+.badge{
+	padding:0 4px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	border-radius:20px;
+	min-width:24px;
+}
+.tip,.close{
+	width:24px;
+	height:24px;
+	line-height:24px;
+}
+.badge.arrow{
+	padding:2px 8px;
+    font-size:14px;
+    overflow:visible;
+    color:white;
+}
+.badge.arrow:after {
+    position: absolute;
+    right: 10px;
+    top: -4px;
+    height: 0;
+    width: 0;
+    content: " ";
+    border-width: 5px;
+    margin-top: -5px;
+    border-style: solid;
+    border-color: transparent;
+}
+/*--------------------badge.less(start)----------------------*/

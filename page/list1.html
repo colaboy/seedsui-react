@@ -3,12 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <title>detail1</title>
+    <title>list1</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style>
-        .newlist li:not(.noclick) .justify-content{
-            height:74px;
-        }
+        .list.noclick li, .list li.noclick {
+		    background-color: transparent;
+		}
+		.list.noclick li:active, .list li.noclick:active{
+		    background-color: transparent;
+		}
     </style>
 </head>
 
@@ -16,60 +19,82 @@
     <section id="page_container" class="active">
     	<header>
             <div class="titlebar">
-                <a href="javascript:back()"><i class="icon-arrowleft"></i></a>
-                <a class="badge arrow right">1274跟贴</a>
+                <a href="javascript:back()">
+                    <i class="icon-arrowleft"></i>
+                </a>
             </div>
         </header>
-    	<article style="background-color:white;bottom:50px;">
-    		<ul class="list bg-transparent noborder">
-				<li>
-					<div class="justify-content">
-						<h1 class="article-title">吸引全球目光，四季沐歌世博“浪漫之旅” 信步国际化</h1>
-		    			<small>发稿时间：2015-05-13 | 浏览：687 | 点赞：241</small>
-					</div>
-				</li>
-			</ul>
-			<div class="margin8">
-				<img src="../img/detail1/information.jpg" class="width-full"/>
-			</div>
-			<p class="paragraph">
-				5月13日，四季沐歌在意大利驻华大使馆举行签约意大利设计师发布会暨米兰世博浪漫之旅启动仪式。四季沐歌掀起“意大利设计全球畅饮”的时尚风潮，成为各界关注焦点。
-			</p>
-			<p class="paragraph">
-				世博作为全球三大顶级盛会之一，参与世博，印证了四季沐歌品牌的实力，这也向世界打开了展现中国品牌和中国净水的窗口，这是四季沐歌代表中国净水第一次走出国门，走向国际，征战世界舞台。
-			</p>
-			<p class="paragraph">
-				意大利驻华大使馆参赞、中国国际贸易促进会世博会项目官员、意大利国家旅游局中国代表处官员，微博、新浪财经、百度、世纪佳缘、凯撒旅游、滴滴打车等四季沐歌的合作伙伴莅
-			</p>
-			<hr/>
-			<p class="title text-center">分享至</p>
-			<ul class="grid app radiusround size50" data-col="4">
-				<li>
-					<a style="background-color:#4485fb;" data-share="qq">
-						<i class="icon-qq"></i>
-					</a>
-					<label class="grid-label">QQ好友</label>
-				</li>
-				<li>
-					<a style="background-color:#e55f5f;" data-share="tsina">
-						<i class="icon-tsina"></i>
-					</a>
-					<label class="grid-label">新浪微博</label>
-				</li>
-				<li>
-					<a style="background-color:#38ba35;" data-share="weixin">
-						<i class="icon-weixin"></i>
-					</a>
-					<label class="grid-label">微信</label>
-				</li>
-				<li>
-					<a style="background-color:#41ce29;" data-share="fweixin">
-						<i class="icon-fweixin"></i>
-					</a>
-					<label class="grid-label">微信朋友圈</label>
-				</li>
-			</ul>
-			<div class="rowspace20"></div>
+    	<article style="bottom:50px;">
+    		<div class="text-right"><a class="chattitle" style="margin:8px;">热门评论</a></div>
+    		<ul class="list noclick">
+                    <li>
+                        <div class="justify">
+                            <div class="radiusround box box-middlecenter size40" style="background-image:url(img/photo.png)"></div>
+                        </div>
+                        <div class="justify-content">
+                            <a>广州网友</a>
+                            <a class="top right">
+                                <small>
+                                    <span>116</span>
+                                    <i class="icon-thumb-fill size16"></i>
+                                </small>
+                            </a>
+                            <small class="nowrap">2小时前</small>
+                            <p style="margin-top:8px;">核安全必须顾及全世界的安全</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="justify">
+                            <div class="radiusround box box-middlecenter size40" style="background-image:url(img/photo.png)"></div>
+                        </div>
+                        <div class="justify-content">
+                            <a>广州网友</a>
+                            <a class="top right">
+                                <small>
+                                    <span>116</span>
+                                    <i class="icon-thumb-fill size16"></i>
+                                </small>
+                            </a>
+                            <small class="nowrap">2小时前</small>
+                            <p style="margin-top:8px;">辛苦了，习大大！</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="text-right"><a class="chattitle" style="margin:8px;">最新评论</a></div>
+    			<ul class="list noclick">
+                    <li>
+                        <div class="justify">
+                            <div class="radiusround box box-middlecenter size40" style="background-image:url(img/photo.png)"></div>
+                        </div>
+                        <div class="justify-content">
+                            <a>广州网友</a>
+                            <a class="top right">
+                                <small>
+                                    <span>116</span>
+                                    <i class="icon-thumb-fill size16"></i>
+                                </small>
+                            </a>
+                            <small class="nowrap">2小时前</small>
+                            <p style="margin-top:8px;">核安全必须顾及全世界的安全</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="justify">
+                            <div class="radiusround box box-middlecenter size40" style="background-image:url(img/photo.png)"></div>
+                        </div>
+                        <div class="justify-content">
+                            <a>广州网友</a>
+                            <a class="top right">
+                                <small>
+                                    <span>116</span>
+                                    <i class="icon-thumb-fill size16"></i>
+                                </small>
+                            </a>
+                            <small class="nowrap">2小时前</small>
+                            <p style="margin-top:8px;">辛苦了，习大大！</p>
+                        </div>
+                    </li>
+                </ul>
         </article>
         <footer>
             <!--底部富文本输入框-->
@@ -203,7 +228,7 @@
             t.show();
         }
         //定义exmobi返回
-    	function back(){history.go(-1)}
+    	function back(){Exmobi.close()}
     </script>
 </body>
 </html>

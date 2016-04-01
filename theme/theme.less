@@ -35,11 +35,6 @@ a:active,.a:active{
 	border-color:@color-border;
 	background-color: @color-highlight;
 }
-/*小汽泡*/
-.tip,.badge{
-	color:@color-tip-font;
-	background-color:@color-tip;
-}
 hr{
 	border-color: @color-border;
 }
@@ -195,6 +190,17 @@ aside {
 	}
 }
 /*----------------tabbar.less(end)--------------*/
+
+/*--------------------badge.less(start)----------------------*/
+.tip,.badge{
+	color:@color-tip-font;
+	background-color:@color-tip;
+}
+.badge.arrow:after{
+	border-bottom-color:@color-tip;
+}
+/*--------------------badge.less(end)----------------------*/
+
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 button,input[type="button"],input[type="submit"],.button{
@@ -703,16 +709,18 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	-webkit-text-fill-color: transparent;
 }
 /*----------------------------list.less(end)----------------------------*/
-/*----------------------------bar.less(start)----------------------------*/
+/*----------------------------title.less(start)----------------------------*/
 .sliver,li.sliver{
 	color:@color-placeholder;
 	border-color:@color-border;
 	background-color:@color-highlight;
 }
+/*----------------------------title.less(end)----------------------------*/
+/*----------------------------statusbar.less(start)----------------------------*/
 .statusbar{
 	background-color:@color-border;
 }
-/*----------------------------bar.less(end)----------------------------*/
+/*----------------------------statusbar.less(end)----------------------------*/
 /*----------------------------searchbar.less(start)----------------------------*/
 .searchbar{
     background-color:@color-border;
