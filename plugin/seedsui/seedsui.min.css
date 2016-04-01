@@ -1912,14 +1912,19 @@ aside.active ~ #section_container .section_container_mask {
 .titlebar h1:first-child {
   margin-left: 8px;
 }
-.titlebar > a:first-child {
-  margin-left: 8px;
-}
-.titlebar > a:last-child {
+.titlebar h1:only-child {
   margin-right: 8px;
 }
-.titlebar a + a {
-  margin-left: 8px;
+.titlebar a,
+.titlebar button,
+.titlebar .button {
+  margin: 0 8px;
+}
+.titlebar a + a,
+.titlebar .button + button,
+.titlebar button + .button,
+.titlebar button + button {
+  margin-left: 0px;
 }
 .titlebar a > i {
   width: 24px;
@@ -1954,11 +1959,9 @@ aside.active ~ #section_container .section_container_mask {
 }
 .titlebar .left {
   left: 0;
-  margin-left: 8px;
 }
 .titlebar .right {
   right: 0;
-  margin-right: 8px;
 }
 /*按钮*/
 .titlebar button,
@@ -1967,7 +1970,8 @@ aside.active ~ #section_container .section_container_mask {
   border-radius: 16px;
 }
 .titlebar .button {
-  line-height: 32px;
+  line-height: 0;
+  padding: 5px 8px;
 }
 /*logo*/
 .titlebar .logo {
