@@ -1,66 +1,47 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
-<title>服务评价</title>
-<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-<link rel="stylesheet" href="../css/config2.css"/>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>服务评价</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
 <body>
-<header>
-	<div class="titlebar">
-        <a href="javascript:back()">
-            <i class="icon-arrowleft"></i>
-        </a>
-        <h1>服务评价</h1>
-    </div>
-</header>
-<article>
-	<p class="htit">申请安装-净水机</p>
-	<div class="mine_evaluation_block">
-		<div class="zp">总评</div>
-		<div class="star_text" id="star_text"></div>
-		<span class="inline-rating" id="starlvl">
-			<ul class="star-rating small-star">
-				<li><a href="#" class="one-star"></a></li>
-				<li><a href="#" class="two-stars"></a></li>
-				<li><a href="#" class="three-stars"></a></li>
-				<li><a href="#" class="four-stars"></a></li>
-				<li><a href="#" class="five-stars"></a></li>
-			</ul>
-		</span>
-	</div>
-	<p class="htit">内容</p>
-	<div class="forum_release_block">
-		<textarea placeholder="亲，对这次服务满意吗？欢迎点评！" style="border-bottom: 0;"></textarea>	  
-	</div>
-	<a class="button block margin8" href="#">提交</a>
-</article>
-<!-- 第三方插件 -->
+<section id="page_config2" class="active">
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:back()" class="left">
+	        	<button class="size32 radius4 desaturate outline">取消</button>
+	        </a>
+	        <h1 class="text-center">服务评价</h1>
+	        <a class="right">
+	        	<button class="size32 radius4 warn">发布</button>
+	        </a>
+	    </div>
+	</header>
+	<article>
+		<div class="margin8">
+			<span>点击星星评分：</span>
+			<span>
+	            <i class="star icon-fav-fill size16 active"></i>
+	            <i class="star icon-fav-fill size16 active"></i>
+	            <i class="star icon-fav-fill size16 active-half"></i>
+	            <i class="star icon-fav-fill size16"></i>
+	            <i class="star icon-fav-fill size16"></i>
+	        </span>
+        </div>
+        <div class="input-box radius4">
+        	<textarea style="height:200px;" placeholder="请输入评论信息"></textarea>
+        </div>
+	</article>
+</section>
 
 <script src="../plugin/jquery/jquery.min.js"></script>
 <script>
 //定义exmobi返回
-function back(){Exmobi.close();}
-	
-//评价星级
-$('#starlvl a').click(function(){
-	$('#starlvl a').removeClass("active");
-	$(this).addClass("active");
-    if($(this).hasClass("one-star")){
-		document.getElementById('star_text').innerHTML="极差";
-	}else if($(this).hasClass("two-stars")){
-		document.getElementById('star_text').innerHTML="差评";
-	}else if($(this).hasClass("three-stars")){
-		document.getElementById('star_text').innerHTML="一般";
-	}else if($(this).hasClass("four-stars")){
-		document.getElementById('star_text').innerHTML="满意";
-	}else{
-		document.getElementById('star_text').innerHTML="棒棒哒";
-	}
-});
+function back(){history.go(-1)}
 </script>
 </body>
 </html>
