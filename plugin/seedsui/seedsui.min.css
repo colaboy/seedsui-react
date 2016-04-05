@@ -255,9 +255,6 @@ pre {
 .radiusround {
   border-radius: 100%;
 }
-.round {
-  border-radius: 100%;
-}
 hr {
   border: none;
   clear: both;
@@ -268,16 +265,6 @@ br {
   clear: both;
 }
 /*文字*/
-.paragraph {
-  line-height: 24px;
-  margin: 8px 0;
-  padding: 0 8px;
-}
-.article-title {
-  font-size: 20px;
-  font-weight: 200;
-  margin: 8px 0;
-}
 small {
   font-size: 80%;
   color: #aaa;
@@ -298,6 +285,15 @@ small {
   /*首字母大写*/
 }
 /*-----------------------------global.less(end)-----------------------------*/
+/*----------------i.less(start)--------------*/
+/*图标尺寸*/
+i {
+  font-size: 24px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+/*----------------i.less(end)--------------*/
 /*----------------mbox.less(start)--------------*/
 html,
 body {
@@ -1610,6 +1606,9 @@ footer {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
+.list i {
+  font-size: 12px;
+}
 .list button {
   width: 60px;
   height: 32px;
@@ -1992,11 +1991,8 @@ aside.active ~ #section_container .section_container_mask {
 }
 .title {
   font-size: 17px;
-  margin: 8px;
-  display: block;
-}
-strong.title {
   margin: 8px 0;
+  display: block;
 }
 strong.title + small {
   display: block;
@@ -2053,37 +2049,13 @@ strong.title + small {
   margin-right: 8px;
 }
 .titlebar a,
-.titlebar button,
-.titlebar .button {
+.titlebar button {
   margin: 0 8px;
 }
 .titlebar a + a,
-.titlebar .button + button,
-.titlebar button + .button,
+.titlebar a + button,
 .titlebar button + button {
   margin-left: 0px;
-}
-.titlebar a > i {
-  width: 24px;
-  /*文字图标*/
-  font-size: 24px;
-  /*背景图标*/
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center top;
-}
-/*圆形图标*/
-.titlebar a.radiusround {
-  font-size: 0;
-  padding: 5px;
-  border-width: 1px;
-  border-style: solid;
-  box-sizing: content-box;
-}
-.titlebar a.radiusround > i {
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
 }
 /*左右对齐*/
 .titlebar .left,
@@ -2099,16 +2071,6 @@ strong.title + small {
 }
 .titlebar .right {
   right: 0;
-}
-/*按钮*/
-.titlebar button,
-.titlebar .button {
-  height: 32px;
-  border-radius: 16px;
-}
-.titlebar .button {
-  line-height: 0;
-  padding: 5px 8px;
 }
 /*logo*/
 .titlebar .logo {
@@ -2610,23 +2572,14 @@ input[type="submit"],
   -khtml-user-select: none;
   /*早期浏览器*/
   user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .button {
   line-height: 40px;
 }
-button.outline,
-input[type="button"].outline,
-.button.outline {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-}
-/*按钮-链接*/
-button.link.outline,
-input[type="button"].link.outline,
-.button.link.outline {
+.outline {
   border-width: 1px;
   border-style: solid;
 }
@@ -2659,16 +2612,23 @@ button i,
   width: 20px;
   height: 20px;
 }
-/*按钮-仅图标按钮*/
-button.onlyicon {
-  min-width: 48px;
-  min-height: 48px;
+/*圆形按钮*/
+.button.round,
+button.round,
+input[type="button"].round {
+  width: auto;
+  height: auto;
+  line-height: 0;
+  font-size: 0;
+  padding: 5px;
+  border-radius: 100%;
 }
-button.onlyicon [class*="icon-"] {
-  width: 24px;
-  height: 24px;
-  font-size: 24px;
-  line-height: 24px;
+/*圆角按钮*/
+button.radiusround,
+input[type="button"].radiusround,
+input[type="submit"].radiusround,
+.button.radiusround {
+  border-radius: 32px;
 }
 /*多彩标签按钮*/
 .mark-info,
@@ -4324,6 +4284,8 @@ input[type=range]:focus::-ms-fill-upper {
 .grid.album .default {
   color: #cccccc;
   background-color: #ddd;
+}
+.grid.album .default i {
   font-size: 48px;
 }
 /*----------------grid.less(end)----------------*/
@@ -5156,6 +5118,7 @@ table th {
   left: -25px;
   width: 32px;
   height: 32px;
+  font-size: 16px;
   background-size: cover;
   font-style: normal;
   display: -webkit-box;
@@ -5458,6 +5421,12 @@ ul.weather-otherday li {
   height: 56px;
 }
 /*图标*/
+i.size12 {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+}
 i.size16 {
   font-size: 16px;
   width: 16px;
@@ -5480,6 +5449,16 @@ i.size32 {
 .radiusround.size40 {
   width: 40px;
   height: 40px;
+}
+/*按钮*/
+button.size32,
+input[type="button"].size32,
+input[type="submit"].size32,
+.button.size32 {
+  height: 32px;
+}
+.button.size32 {
+  line-height: 30px;
 }
 /*--------------------size.less(end)----------------------*/
 /*----------------layout.less(start)--------------*/
@@ -5824,7 +5803,7 @@ button.text-left {
 }
 /*间距与布局*/
 .indent {
-  text-indent: 2em;
+  text-indent: 8px;
 }
 .width-full {
   width: 100%;
@@ -5892,16 +5871,16 @@ button.text-left {
   height: 40px;
 }
 .padding4 {
-  padding: 6px;
+  padding: 6px !important;
 }
 .padding6 {
-  padding: 6px;
+  padding: 6px !important;
 }
 .padding8 {
-  padding: 8px;
+  padding: 8px !important;
 }
 .padding12 {
-  padding: 12px;
+  padding: 12px !important;
 }
 .indent6 {
   text-indent: 6px !important;
@@ -5935,6 +5914,16 @@ button.text-left {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+.paragraph {
+  line-height: 24px;
+  margin: 8px 0;
+  padding: 0 8px;
+}
+.article-title {
+  font-size: 20px;
+  font-weight: 200;
+  margin: 8px 0;
+}
 /*----------------layout.less(end)--------------*/
 /*控件*/
 /*常用颜色*/
@@ -5963,10 +5952,12 @@ body {
   color: #aaaaaa;
 }
 a {
-  color: #18b2ed;
+  color: #4587f7;
 }
 a:active,
-.a:active {
+.a:active,
+a.active,
+.a.active {
   opacity: 0.5;
 }
 /*容器样式*/
@@ -6008,14 +5999,14 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-.titlebar a {
-  color: #4587f7;
+/* .titlebar a:not(.button):not(.badge){
+	color:@color-titlebar-link;
 }
+.titlebar a:active:not(.disable){
+	color:@color-titlebar-link-active;
+} */
 .titlebar a.disable {
   opacity: 0.5;
-}
-.titlebar a:active:not(.disable) {
-  color: rgba(69, 135, 247, 0.5);
 }
 .titlebar.reverse {
   background-color: #4587f7;
@@ -6025,12 +6016,17 @@ aside {
   color: #ffffff;
 }
 .titlebar.reverse a,
-.titlebar.reverse button {
+.titlebar.reverse button,
+.titlebar.reverse input[type="button"] {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.5);
 }
 .titlebar.reverse a:active,
-.titlebar.reverse button:active {
+.titlebar.reverse button:active,
+.titlebar.reverse input[type="button"]:active,
+.titlebar.reverse a.active,
+.titlebar.reverse button.active,
+.titlebar.reverse input[type="button"].active {
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.25);
 }
@@ -6162,13 +6158,20 @@ input[type="button"].outline,
 button:active,
 input[type="button"]:active,
 input[type="submit"]:active,
-.button:active {
+.button:active,
+button.active,
+input[type="button"].active,
+input[type="submit"].active,
+.button.active {
   color: rgba(255, 255, 255, 0.5);
   background-color: rgba(69, 135, 247, 0.5);
 }
 button.outline:active,
 input[type="button"].outline:active,
-.button.outline:active {
+.button.outline:active,
+button.outline.active,
+input[type="button"].outline.active,
+.button.outline.active {
   color: rgba(69, 135, 247, 0.5);
   border-color: rgba(69, 135, 247, 0.5);
   background-color: transparent;

@@ -30,35 +30,12 @@
 .titlebar h1:only-child{
 	margin-right:8px;
 }
-.titlebar a,.titlebar button,.titlebar .button{
+.titlebar a,.titlebar button{
 	margin:0 8px;
 }
-.titlebar a+a,.titlebar .button+button,.titlebar button+.button,.titlebar button+button{
+.titlebar a+a,.titlebar a+button,.titlebar button+button{
 	margin-left:0px;
 }
-.titlebar a>i{
-	width:24px;
-	/*文字图标*/
-	font-size:24px;
-	/*背景图标*/
-	background-size:100% auto;
-	background-repeat:no-repeat;
-	background-position:center top;
-}
-/*圆形图标*/
-.titlebar a.radiusround{
-	font-size:0;
-	padding:5px;
-	border-width:1px;
-	border-style:solid;
-	box-sizing:content-box;
-}
-.titlebar a.radiusround>i{
-	width:20px;
-	height:20px;
-	font-size:20px;
-}
-
 /*左右对齐*/
 .titlebar .left,.titlebar .right{
 	position: absolute;
@@ -72,15 +49,6 @@
 }
 .titlebar .right {
 	right:0;
-}
-/*按钮*/
-.titlebar button,.titlebar .button{
-	height:32px;
-	border-radius:16px;
-}
-.titlebar .button{
-	line-height: 0;
-    padding: 5px 8px;
 }
 /*logo*/
 .titlebar .logo{

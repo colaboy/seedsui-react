@@ -23,19 +23,15 @@ button,input[type="button"],input[type="submit"],.button{
 	-ms-user-select: none;   /*IE10*/
 	-khtml-user-select: none; /*早期浏览器*/
 	user-select: none;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .button{
 	line-height: 40px;
 }
-button.outline,input[type="button"].outline,.button.outline{
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	border-width:1px;
-	border-style:solid;
-}
-/*按钮-链接*/
-button.link.outline,input[type="button"].link.outline,.button.link.outline{
+.outline{
 	border-width:1px;
 	border-style:solid;
 }
@@ -59,18 +55,21 @@ button i,.button i{
 	width:20px;
 	height:20px;
 }
+/*圆形按钮*/
+.button.round,button.round,input[type="button"].round{
+    width:auto;
+    height:auto;
+    line-height:0;
+    font-size: 0;
+    padding: 5px;
+    border-radius:100%;
+}
 
-/*按钮-仅图标按钮*/
-button.onlyicon{
-	min-width:48px;
-	min-height:48px;
+/*圆角按钮*/
+button.radiusround,input[type="button"].radiusround,input[type="submit"].radiusround,.button.radiusround{
+	border-radius:32px;
 }
-button.onlyicon [class*="icon-"]{
-	width:24px;
-	height:24px;
-	font-size:24px;
-	line-height: 24px;
-}
+
 /*多彩标签按钮*/
 .mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary,.mark-desaturate{
 	font-size: 0.95em;
