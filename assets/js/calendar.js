@@ -209,6 +209,8 @@
 				html += '</div>';
 			}
 
+			//console.log(html);
+
 			month_container.innerHTML = html;
 		}
 
@@ -238,6 +240,8 @@
 		}
 
 		function _drawCalenderDate(_this) {
+			_setPostionAndHeight(_this);
+
 			var month_container = _this.keyElement.month_container,
 				selectedDate = _this.dateSelectObject.getSelected(),
 				tempThisMonthCalenderDate = _this.dateSelectObject.getMonthCalenderDate(),
@@ -327,26 +331,32 @@
 					}
 				}
 			}
-
-			_setPostionAndHeight(_this);
 		}
 
 		function _setPostionAndHeight(_this, positionInfo) {
 			if (positionInfo) {
 				_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + positionInfo.positonX + 'px)';
 
+				_this.keyElement.calender_container.style.transform = 'translateX(' + positionInfo.positonX + 'px)';
+
 				_this.keyElement.date_container.style.height = positionInfo.height + 'px';
 
 				_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + positionInfo.positonY + 'px)';
+
+				_this.keyElement.month_container.style.transform = 'translateY(' + positionInfo.positonY + 'px)';
 
 				return true;
 			}
 
 			_this.keyElement.calender_container.style.WebkitTransform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
 
+			_this.keyElement.calender_container.style.transform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
+
 			_this.keyElement.date_container.style.height = _this.mode == 'week' ? _this.keyData.calenderHeight + 'px' : _this.keyData.calenderHeight * 6 + 'px';
 
 			_this.keyElement.month_container.style.WebkitTransform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
+
+			_this.keyElement.month_container.style.transform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
 		}
 
 		function _animationTo(_this, direct, positon, finishCB) {
@@ -452,10 +462,14 @@
 				if (_this.keyData.direct === 1) {
 					if (tempNumX < 0 && tempNumX > -2 * _this.keyData.calenderWidth) {
 						_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + tempNumX + 'px)';
+
+						_this.keyElement.calender_container.style.transform = 'translateX(' + tempNumX + 'px)';
 					}
 				} else if (_this.keyData.direct === -1) {
 					if (tempNumY < 0 && tempNumY > -6 * _this.keyData.calenderHeight && tempHeightNum > _this.keyData.calenderHeight) {
 						_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + tempNumY + 'px)';
+
+						_this.keyElement.month_container.style.transform = 'translateY(' + tempNumY + 'px)';
 					}
 
 					if (tempHeightNum > _this.keyData.calenderHeight && tempHeightNum < 6 * _this.keyData.calenderHeight) {
@@ -605,7 +619,9 @@
 
 		var __this = this;
 
-		setTimeout(function(){_initDateTouchAndAnimation(__this)},200);
+		//setTimeout(function(){
+		_initDateTouchAndAnimation(__this);
+		//},1200);
 	}
 
 	window.DateSelect = DateSelect;

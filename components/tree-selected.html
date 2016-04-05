@@ -16,6 +16,7 @@
                     <span>确定</span>
                 </a>
                 <h1 class="text-center">选择人员</h1>
+                <a href="javascript:getSelected()" class="right">确定</a>
             </div>
             <div class="selected-display"></div>
         </header>
@@ -134,112 +135,29 @@
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
-    var tree=document.getElementById("tree");//树容器
-    var selectedEl=[];
-    function onTapTree(){
-        var noChildToast = new Toast("没有子节点", {delay:2000});
-        /*=============
-        Method
-        ==============*/
-        //selected-box是否为空
-        function selectedBox(){
-            if($("#selected-box").is(':empty')){
-                selectedEl=[];
-                $("#selected-box").slideUp();
-            }else{
-                selectedEl=[];
-                $("#selected-box span").each(function(i,n){
-                    selectedEl.push($(this).data("id"));
-                });
-                $("#selected-box").slideDown();
-            }
-            console.log("选中的ID："+selectedEl);
-        }
-        /*=============
-        点击树
-        ==============*/
-        EventUtil.addHandler(tree,"tap",function(e){
-            var target=e.target,elLI,elIcon,elChildUL;
-            //当点击添加时,将所选添加到stautsbar上
-            if(target.className.indexOf("icon-rdoadd")>= 0){
-                elLI=target.parentNode.parentNode;
-                //子节点及自身添加active状态
-                $(elLI).find(".treetitle").addClass('active');
-                $(elLI).find(".icon-rdoadd").fadeOut();
-
-                //添加到selected-box中
-                var treeID=elLI.getAttribute("id");
-                var treeName=elLI.getAttribute("data-name");
-                var span='<span class="mark-desaturate" data-id="'+treeID+'">'+treeName+'<a class="icon-clear-fill delete-selection"></a></span>';
-                $("#selected-box").append(span);
-
-                //selected-box是否为空
-                selectedBox();
-                //删除selected-box上的子节点
-                $(elLI).find("li").each(function(i,n){
-                    var id=n.id;
-                    $("[data-id='"+id+"']").fadeOut(500,function(){
-                        $(this).remove();
-                        //selected-box是否为空
-                        selectedBox();
-                    });
-                });
-
-                return;
-            }
-
-            //当点击标题时，展开与收缩树
-            if(target.className.indexOf("treetitle")>=0){
-                elLI=e.target.parentNode;
-            } else if(target.className.indexOf("treeicon")>=0){
-                elLI=e.target.parentNode.parentNode;
-            }
-            if(!elLI)return;
-            elIcon=elLI.querySelector(".treeicon");
-            elChildUL=elLI.querySelector("ul");
-            if(!elChildUL){
-                noChildToast.show();
-                if(elIcon)$(elIcon).remove();
-                return;
-            }
-            //展开与收缩树
-            if(elChildUL.style.display=="none" || !elChildUL.style.display){
-                //展开
-                elIcon.classList.add("active");
-                elChildUL.style.display="block";
-            }else{
-                //收缩
-                elIcon.classList.remove("active");
-                elChildUL.style.display="none";
-            }
-        });
-
-        /*=============
-        点击selected-box
-        ==============*/
-        document.getElementById("selected-box").addEventListener("click",function(e){
-            var target=e.target;
-            if(target.className.indexOf("icon-clear-fill")>= 0){
-                var markTarget=target.parentNode;
-                var id=$(markTarget).data("id");
-                //还原树结构中的active状态
-                $("#"+id).find(".treetitle").removeClass("active").find(".icon-rdoadd").fadeIn(500);
-                //删除点击的mark
-                $(markTarget).fadeOut(500,function(e){
-                    $(this).remove();
-                    selectedBox();
-                })
-            }
-        },false);
-    }
-
+    var tr;
 	window.addEventListener("load",function(e){
+        var noChildToast = new Toast("没有子节点", {delay:2000});
         //注入数据时，注意根据姓氏获得颜色
         //console.log("成少波".toPinyin().substr(0,1).toColor());
 
-        //给树结构绑定事件
-		onTapTree();
+        //树结构
+        tr=Tree("#tree",{
+            "selectedContainer":"#selected-box",
+            "onTap":function(e){
+                console.log(e.elLI);
+            },
+            "onTapLastChild":function(e){//没有子节点
+                noChildToast.show();
+                if(e.elIcon)$(e.elIcon).remove();
+            }
+        });
+        
 	},false);
+    function getSelected(){
+        var selectedEl=tr.getSelectedEl();
+        console.log(selectedEl);
+    }
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>
