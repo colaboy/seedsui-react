@@ -2630,15 +2630,6 @@ input[type="button"].link.outline,
   border-width: 1px;
   border-style: solid;
 }
-/*按钮-气泡*/
-button .tip,
-input[type="button"] .tip,
-.button .tip {
-  padding: 2px 9px 3px;
-  font-size: 12px;
-  line-height: 1;
-  border-radius: 100px;
-}
 /*按钮-大按钮*/
 button.block,
 input[type="button"].block,
@@ -6358,17 +6349,14 @@ input[type="button"].link.outline:active,
   color: rgba(69, 135, 247, 0.5);
 }
 /*按钮-气泡*/
-button .tip,
-input[type="button"] .tip,
-.button .tip {
+button:not(.outline) .tip,
+input[type="button"]:not(.outline) .tip,
+.button:not(.outline) .tip,
+button:not(.outline) .badge,
+input[type="button"]:not(.outline) .badge,
+.button:not(.outline) .badge {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.15);
-}
-button.outline .tip,
-input[type="button"].outline .tip,
-.button.outline .tip {
-  color: #ffffff;
-  background-color: #fc4349;
 }
 /*按钮-投影图标*/
 .button-shadow {

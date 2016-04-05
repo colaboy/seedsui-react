@@ -354,15 +354,11 @@ button.link.outline:active,input[type="button"].link.outline:active,.button.link
 }
 
 /*按钮-气泡*/
-button .tip,input[type="button"] .tip,.button .tip{
+button:not(.outline) .tip,input[type="button"]:not(.outline) .tip,.button:not(.outline) .tip,
+button:not(.outline) .badge,input[type="button"]:not(.outline) .badge,.button:not(.outline) .badge{
 	color:@color-button-font;
 	background-color: @color-button-tip;
 }
-button.outline .tip,input[type="button"].outline .tip,.button.outline .tip{
-	color:@color-tip-font;
-	background-color:@color-tip;
-}
-
 /*按钮-投影图标*/
 .button-shadow {
 	-webkit-box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
