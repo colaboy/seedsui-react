@@ -1,3 +1,17 @@
+/*!
+ * 多媒体控件
+ * @version 1.0.0
+ * @author WangMingzhu
+ * @require jQuery
+ */
+
+/**
+*  树结构
+* 
+*  @class Tree
+*  @constructor
+*  @param container(ul树容器) params(配置项)
+*/
 (function(window,document,undefined){
 window.Tree=function(container,params){
     //Model
