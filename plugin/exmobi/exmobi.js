@@ -214,8 +214,8 @@ var Exmobi={
 	setWebviewUrl:function(webobj,url){
 	    webobj.loadUrl(url);
 	},
-	openWebview:function(hash, isBlank, transition){
-		var blank=isBlank||true;
+	openWebview:function(hash,isBlank,params){
+		var isBlank=isBlank||true;
 		var url=hash;
 		var urlExpr=/^http/;
 		if(urlExpr.test(hash)){
@@ -223,10 +223,22 @@ var Exmobi={
 		}
 		//var fileName=url.substr(eval(url.lastIndexOf("/")+1));
 		//var fileId=fileName.split(".")[0];
-		
-		var strHtml='<html isbridge="true">\n'+
+
+		//Params
+		var defaults={
+			uixmlId:"",
+			openanimation:"",
+			closeanimation:""
+		}
+		var params=params||{};
+		for(var def in defaults){
+			if(params[def]===undefined){
+				params[def]=defaults[def];
+			}
+		}
+		var uixml='<html isbridge="true" id="'+params.uixmlId+'" openanimation="'+params.openanimation+'" closeanimation="'+params.closeanimation+'">\n'+
 						'<head>\n'+
-							'<title show="false">Agile Lite</title>\n'+
+							'<title show="false">SeedsUI</title>\n'+
 							'<script>\n'+
 							'<![CDATA[\n'+
 								'function doReady(){\n'+
@@ -240,6 +252,6 @@ var Exmobi={
 							'<webview id="newwv" url="'+url.replace(/\&/g,'&amp;')+'" backmonitor="true" plusready="doReady()"></webview>\n'+
 						'</body>\n'+
 					'</html>\n';
-		ExMobiWindow.openData(strHtml, blank, false, '','');
+		ExMobiWindow.openData(uixml, isBlank, false, '','');
 	}
 }
