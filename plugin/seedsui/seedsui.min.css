@@ -2615,12 +2615,19 @@ button i,
 /*圆形按钮*/
 .button.round,
 button.round,
-input[type="button"].round {
+input[type="button"].round,
+.button.rect,
+button.rect,
+input[type="button"].rect {
   width: auto;
   height: auto;
   line-height: 0;
   font-size: 0;
   padding: 5px;
+}
+.button.round,
+button.round,
+input[type="button"].round {
   border-radius: 100%;
 }
 /*圆角按钮*/
@@ -5999,12 +6006,12 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-/* .titlebar a:not(.button):not(.badge){
-	color:@color-titlebar-link;
+.titlebar a:not(.button):not(.badge):not(.tip) {
+  color: #4587f7;
 }
-.titlebar a:active:not(.disable){
-	color:@color-titlebar-link-active;
-} */
+.titlebar a:active:not(.disable):not(.button):not(.badge):not(.tip) {
+  color: rgba(69, 135, 247, 0.5);
+}
 .titlebar a.disable {
   opacity: 0.5;
 }
