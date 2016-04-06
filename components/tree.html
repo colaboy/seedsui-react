@@ -142,38 +142,20 @@
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
-	var tree=document.getElementById("tree");//树容器
-	function onTapTree(){
-		EventUtil.addHandler(tree,"tap",function(e){
-			var target=e.target,elLI,elIcon,elChildUL;
-			//当点击标题时，展开与收缩树
-            if(target.className.indexOf("treetitle")>=0){
-                elLI=e.target.parentNode;
-            } else if(target.className.indexOf("treeicon")>=0){
-                elLI=e.target.parentNode.parentNode;
-            }
-            elIcon=elLI.querySelector(".treeicon");
-            elChildUL=elLI.querySelector("ul");
-            if(!elChildUL){
-                //没有子节点
-                return;
-            }
-            //展开与收缩树
-            if(elChildUL.style.display=="none" || !elChildUL.style.display){
-                //展开
-                elIcon.classList.add("active");
-                elChildUL.style.display="block";
-            }else{
-                //收缩
-                elIcon.classList.remove("active");
-                elChildUL.style.display="none";
-            }
-		});
-	}
+	var tr;
 	window.addEventListener("load",function(e){
-		onTapTree();
-		//根据姓氏获得颜色
-		//console.log("成少波".toPinyin().substr(0,1).toColor());
+		//注入数据时，注意根据姓氏获得颜色
+        //console.log("成少波".toPinyin().substr(0,1).toColor());
+
+		//树结构
+        tr=new Tree("#tree",{
+            "onTap":function(e){
+                console.log(e.elLI);
+            },
+            "onTapLastChild":function(e){//没有子节点
+                console.log("没有子节点");
+            }
+        });
 	},false);
 	//定义exmobi返回
 	function back(){history.go(-1);}

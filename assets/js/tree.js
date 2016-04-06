@@ -49,7 +49,6 @@ window.Tree=function(container,params){
             });
             $(s.params.selectedContainer).slideDown();
         }
-        console.log("选中的ID："+s.selectedEl);
     }
     /*=========================
       Touch Events
@@ -71,7 +70,7 @@ window.Tree=function(container,params){
                 var treeName=s.elLI.getAttribute("data-name");
                 var span='<span class="mark-desaturate" data-id="'+treeID+'">'+treeName+'<a class="icon-clear-fill delete-selection"></a></span>';
                 $(s.params.selectedContainer).append(span);
-                selectedBox();
+                s.selectedBox();
             
                 //删除selected-box上的子节点
                 $(s.elLI).find("li").each(function(i,n){

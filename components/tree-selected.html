@@ -136,13 +136,13 @@
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
     var tr;
+    var noChildToast = new Toast("没有子节点", {delay:2000});
 	window.addEventListener("load",function(e){
-        var noChildToast = new Toast("没有子节点", {delay:2000});
         //注入数据时，注意根据姓氏获得颜色
         //console.log("成少波".toPinyin().substr(0,1).toColor());
 
         //树结构
-        tr=Tree("#tree",{
+        tr=new Tree("#tree",{
             "selectedContainer":"#selected-box",
             "onTap":function(e){
                 console.log(e.elLI);
@@ -154,9 +154,9 @@
         });
         
 	},false);
+    //获得选中元素
     function getSelected(){
-        var selectedEl=tr.getSelectedEl();
-        console.log(selectedEl);
+        console.log(tr.selectedEl);
     }
 	//定义exmobi返回
 	function back(){history.go(-1);}
