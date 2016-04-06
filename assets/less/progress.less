@@ -23,49 +23,6 @@ progress::-webkit-progress-value  {
 .progress-bar {
 	height: 20px;  /* Can be anything */
 	position: relative;
-	margin: 0px 16px;
-	&.radius8 {
-		border-radius:8px;
-		.progress {
-			border-radius:8px;
-		}
-	}
-	&.radiusround {
-		border-radius:20px;
-		.progress {
-			border-radius:20px;
-		}
-	}
-	.progress {
-		display: block;
-  		height: 100%;
-  		overflow: hidden;
-  		position: relative;
-  		-webkit-animation: progressexpand 1s linear;
-  		animation: progressexpand 1s linear;
-	}
-	.text {
-		position: relative;
-		display: block;
-		margin-top: -18px;
-		width:100%;
-		text-align: center;
-		color:#fff;
-		z-index: 99;
-		a {
-			color:#fff;
-		}
-		&.left {
-			width: auto;
-			text-align:left;
-			margin-left: 12px;
-		}
-		&.right {
-			width:auto;
-			text-align:right;
-			margin-right: 12px
-		}
-	}
 	&.striped
 	{
 		.progress:after{
@@ -88,6 +45,41 @@ progress::-webkit-progress-value  {
 			box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
 		}
 	}
+}
+.progress-bar .text,.progress-bar .text a{
+	color:white;
+}
+.text.left,.text.right,.text.center{
+	position:absolute;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+}
+.text.left{
+	left:12px;
+}
+.text.right{
+	right:12px;
+}
+.text.center{
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+}
+.progress-bar.radius4,.progress-bar.radius4 .progress{
+	border-radius:4px;
+}
+.progress-bar.radius8,.progress-bar.radius8 .progress{
+	border-radius:8px;
+}
+.progress-bar.radiusround,.progress-bar.radiusround .progress{
+	border-radius:20px;
+}
+.progress {
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	-webkit-animation: progressexpand 1s linear;
+	animation: progressexpand 1s linear;
 }
 @keyframes movestripes {
   0% {

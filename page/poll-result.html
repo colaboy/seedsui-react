@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>投票</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+	<section id="page_pollPic" class="active">
+		<header>
+			<div class="titlebar">
+                <a class="left" href="javascript:back()">
+                    <i class="icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">投票</h1>
+            </div>
+		</header>
+		<article>
+            <div class="card">
+            <div id="barcharts" style="display: block;">
+                <div class="progress-bar justify-content">
+                    <span class="progress" style="width: 55%"></span>
+                    <span class="text"><a class="timer" data-duration="1000" data-to="25">25</a>/33</span>
+                </div>
+                <div>
+                爬紫金山
+                </div>
+                <ul class="list">
+                    <li>
+                        
+                        
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 15%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="5">5</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去唱歌
+                        </div>
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 24%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="8">8</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去夫子庙
+                        </div>
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 1%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="20">20</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去吃火锅
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
+			<div class="card overflow-hide">
+			<ul class="list noclick">
+				<li class="nojustify nopadding">
+                    <div class="justify-content" style="padding:12px;">
+                        <p>周五出去玩要去哪里？</p>
+                        <small>周五要部门活动了大家投票看看要去哪里做什么。</small>
+                    </div>
+                    <div class="justify nopadding">
+                        <img src="../img/poll/poll-main-default.jpg" class="width-full">
+                    </div>
+                </li>
+			</ul>
+            <div style="background-color:#ebe8e3;" class="text-center">
+                <img src="../img/poll/icon-crown.png" class="crown">
+                <strong class="title">TOP CHOICE</strong>
+                <div class="progress-bar radiusround">
+                    <span class="progress" style="width: 55%"></span>
+                    <span class="text"><a class="timer" data-duration="1000" data-to="18">18</a>/33</span>
+                </div>
+                <p class="text-left padding8">
+                    爬紫金山
+                </p>
+            </div>
+			<ul class="list noclick">
+				<li>
+					<div class="justify-content box box-middle">
+						<p>投票结果</p>
+					</div>
+                    <div class="justify">
+                        <i class="icon-chartpie" style="font-size:24px;color:#4587f7;" onclick="toggleCharts(this)"></i>
+                    </div>
+				</li>
+			</ul>
+            <div id="barcharts">
+                <ul class="list result-list no-img">
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 55%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="25">18</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            爬紫金山
+                        </div>
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 15%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="5">5</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去唱歌
+                        </div>
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 24%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="8">8</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去夫子庙
+                        </div>
+                    </li>
+                    <li class="result-list nopadding box">
+                        <div class="progress-bar float-right box-flex-1">
+                            <span class="progress" style="width: 1%"></span>
+                            <span class="text"><a class="timer" data-duration="1000" data-to="20">2</a>/33</span>
+                        </div>
+                        <div class="selection-text box box-middle">
+                            去吃火锅
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="piecharts"  class="pie-chart" style="display: none;">
+                <ul class="grid" data-col="2">
+                    <li class="doughnutblock text-center">
+                        <div class="doughnutblock-canvas" style="background-color:">
+                            <canvas id="chart1" width="140" height="140"/>
+                        </div>
+                        <div class="doughnutblock-overlay box box-middlecenter">
+                            <div>
+                                <p class="percent">54.6%</p>
+                                <p>18/33</p>
+                            </div>
+                        </div>
+                        <label style="">爬紫金山</label>
+                    </li>
+                    <li class="doughnutblock text-center">
+                        <div class="doughnutblock-canvas" style="background-color:#fff;">
+                            <canvas id="chart2" width="140" height="140"/>
+                        </div>
+                        <div class="doughnutblock-overlay box box-middlecenter">
+                            <div>
+                                <p class="percent">15.2</p>
+                                <p>5/33</p>
+                            </div>
+                        </div>
+                        <label style="">去唱歌</label>
+                    </li>
+                    <li class="doughnutblock text-center">
+                        <div class="doughnutblock-canvas" style="background-color:#fff;">
+                            <canvas id="chart3" width="140" height="140"/>
+                        </div>
+                        <div class="doughnutblock-overlay box box-middlecenter">
+                            <div>
+                                <p class="percent">24.2%</p>
+                                <p>8/33</p>
+                            </div>
+                        </div>
+                        <label style="">去夫子庙</label>
+                    </li>
+                    <li class="doughnutblock text-center">
+                        <div class="doughnutblock-canvas" style="background-color:#fff;">
+                            <canvas id="chart4" width="140" height="140"/>
+                        </div>
+                        <div class="doughnutblock-overlay box box-middlecenter">
+                            <div>
+                                <p class="percent">6%</p>
+                                <p>2/33</p>
+                            </div>
+                        </div>
+                        <label style="">去吃火锅</label>
+                    </li>
+                </ul>
+            </div>
+			<ul class="list noclick noborder">
+				<li class="between">
+					<div class="justify">
+                        <div class="round" style="background-image:url(../img/poll/tx1.jpg)"></div>
+                    </div>
+					<div class="justify-content">
+						<p>Cindy</p>
+						<small class="top right">于2016-02-28截止</small>
+						<small>
+							创建:2016-01-01
+							<div class="progress-bar radiusround float-right" style="width:50%;margin:-2px 0 0 0;">
+                                <span class="progress" style="width: 25%"></span>
+                                <span class="text"><a class="timer" data-duration="1000" data-to="25">25</a>/100</span>
+                            </div>
+						</small>
+					</div>
+				</li>
+			</ul>
+			</div>
+		</article>
+	</section>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../plugin/charts/Chart.min.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        //饼状图参数
+        var colors={fillColor:["#53c6fd","#ffae02","#3ae3ea","#ff6f36","#cf7af3","#4cd32e","#4587f7","#00c2eb","#ff618f","#21d9a1"],default:"#ebe8e3"};
+        var values=[18,5,18,2];
+        var doughnutConfig={
+            segmentShowStroke:false,
+            showTooltips:false,
+            animationEasing : "easeOut",
+            animationSteps:30,
+            percentageInnerCutout:80
+        }
+        var doughnutData1 = [
+            {
+                value:values[0],
+                color:colors.fillColor[0],
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData2 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.fillColor[1],
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData3 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.fillColor[2],
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData4 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.fillColor[3],
+            },
+        ];
+        function toggleCharts(thisobj){
+            //切换到饼图
+            if($(thisobj).hasClass("icon-chartpie")){
+                $(thisobj)[0].className="icon-chartbar";
+                $("#piecharts").css("display","block");
+                $("#barcharts").css("display","none");
+                initCharts();
+            }else{
+                $(thisobj)[0].className="icon-chartpie";
+                $("#piecharts").css("display","none");
+                $("#barcharts").css("display","block");
+            }
+        }
+        function initCharts(){
+            //初始化饼状图
+            var ctx1 = document.getElementById("chart1").getContext("2d");
+            var doughnut1 = new Chart(ctx1).Doughnut(doughnutData1,doughnutConfig);
+            var ctx2 = document.getElementById("chart2").getContext("2d");
+            var doughnut2 = new Chart(ctx2).Doughnut(doughnutData2,doughnutConfig);
+            var ctx3 = document.getElementById("chart3").getContext("2d");
+            var doughnut3 = new Chart(ctx3).Doughnut(doughnutData3,doughnutConfig);
+            var ctx4 = document.getElementById("chart4").getContext("2d");
+            var doughnut4 = new Chart(ctx4).Doughnut(doughnutData4,doughnutConfig);
+        }
+		window.addEventListener("load",function(e){
+			Animate.counter();
+		},false);
+		
+		function back(){Exmobi.close()}
+    </script>
+</body>
+</html>

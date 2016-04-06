@@ -363,12 +363,7 @@ button:not(.outline) .badge,input[type="button"]:not(.outline) .badge,.button:no
 	background-color: @color-button-tip;
 }
 /*按钮-投影图标*/
-.button-shadow {
-	-webkit-box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
-	-moz-box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
-	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
-}
-.button-shadow:active {
+button.shadow:active,.button.shadow:active,input[type="button"].shadow:active{
 	-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 	-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 	box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
@@ -585,9 +580,9 @@ progress::-webkit-progress-value  {
 }
 .progress-bar {
 	background-color: @color-progress-bg;
-	.progress {
-		background-color: @color-progress;
-	}
+}
+.progress {
+	background-color: @color-progress;
 }
 /*----------------progress.less(end)--------------*/
 
