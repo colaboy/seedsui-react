@@ -72,13 +72,13 @@ aside {
 .titlebar h1{
 	color:@color-titlebar-font;
 }
-.titlebar a:not(.button):not(.badge):not(.tip){
+.titlebar a{
 	color:@color-titlebar-link;
 }
-.titlebar a:active:not(.disable):not(.button):not(.badge):not(.tip){
+.titlebar a:active:not(.disable){
 	color:@color-titlebar-link-active;
 } 
-.titlebar a.disable{
+.titlebar a.disable:not(.button){
 	opacity:0.5;
 }
 .titlebar.reverse{

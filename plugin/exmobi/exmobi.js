@@ -214,8 +214,9 @@ var Exmobi={
 	setWebviewUrl:function(webobj,url){
 	    webobj.loadUrl(url);
 	},
-	openWebview:function(hash,isBlank,params){
-		var isBlank=isBlank||true;
+	openWebview:function(hash,isNewWindow,params){
+		var isBlank=true;
+		if(isNewWindow==false)isBlank=false;
 		var url=hash;
 		var urlExpr=/^http/;
 		if(urlExpr.test(hash)){

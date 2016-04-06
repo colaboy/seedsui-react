@@ -1607,7 +1607,7 @@ footer {
   border-style: solid;
 }
 .list i {
-  font-size: 12px;
+  font-size: 16px;
 }
 .list button {
   width: 60px;
@@ -6006,13 +6006,13 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-.titlebar a:not(.button):not(.badge):not(.tip) {
+.titlebar a {
   color: #4587f7;
 }
-.titlebar a:active:not(.disable):not(.button):not(.badge):not(.tip) {
+.titlebar a:active:not(.disable) {
   color: rgba(69, 135, 247, 0.5);
 }
-.titlebar a.disable {
+.titlebar a.disable:not(.button) {
   opacity: 0.5;
 }
 .titlebar.reverse {
