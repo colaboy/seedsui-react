@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>poll-result</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<link rel="stylesheet" href="../css/poll.css">
+</head>
+<body>
+	<section id="page_pollPic" class="active">
+		<header>
+			<div class="titlebar">
+                <a class="left" href="javascript:back()">
+                    <i class="icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">投票结果</h1>
+            </div>
+		</header>
+		<article>
+            <div class="group">
+                <div class="padding12">
+                    <p>早饭吃什么？</p>
+                    <small>改善伙食了，大家投票看看要吃些什么。</small>
+                </div>
+                <div class="box" style="background-color:#ebe8e3">
+                    <div class="result-img" style="background-image:url(../img/poll/poll1-img1.jpg);"></div>
+                    <div class="box-flex-1 padding12 text-center">
+                        <img src="../img/poll/icon-crown.png" class="crown">
+                        <strong class="title">吐司</strong>
+                        <div class="progress-bar radius8">
+                            <span class="progress" style="width: 55%"></span>
+                            <span class="text center">5/12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="title border padding12">
+                    <span>投票详情</span>
+                    <a class="float-right" onclick="toggleCharts(this)">
+                        <i class="icon-chartpie-fill"></i>
+                    </a>
+                </div>
+                <!--柱状图-->
+                <div id="barcharts" style="display: block;">
+                    <div class="box">
+                        <div class="poll-img" style="background-image:url(../img/poll/poll1-img1.jpg);"></div>
+                        <div class="progress-bar bg-white size56 box-flex-1">
+                            <span class="progress bg-1" style="width: 55%"></span>
+                            <span class="text color-placeholder right">
+                                <span class="timer" data-duration="1000" data-to="5">5</span>
+                                <span>/12</span>
+                            </span>
+                            <span class="text left color-default">吐司</span>
+                        </div>
+                    </div>
+                    
+                    <hr/>
+                    <div class="box">
+                        <div class="poll-img" style="background-image:url(../img/poll/poll1-img2.jpg);"></div>
+                        <div class="progress-bar bg-white size56 box-flex-1">
+                            <span class="progress bg-2" style="width:17%"></span>
+                            <span class="text right color-placeholder">
+                                <span class="timer" data-duration="1000" data-to="2">2</span>
+                                <span>/12</span>
+                            </span>
+                            <span class="text left color-default">油条</span>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="box">
+                        <div class="poll-img" style="background-image:url(../img/poll/poll1-img3.jpg);"></div>
+                        <div class="progress-bar bg-white size56 box-flex-1">
+                            <span class="progress bg-3" style="width:17%"></span>
+                            <span class="text right color-placeholder">
+                                <span class="timer" data-duration="1000" data-to="2">2</span>
+                                <span>/12</span>
+                            </span>
+                            <span class="text left color-default">粥</span>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="box">
+                        <div class="poll-img" style="background-image:url(../img/poll/poll1-img4.jpg);"></div>
+                        <div class="progress-bar bg-white size56 box-flex-1">
+                            <span class="progress bg-4" style="width:30%"></span>
+                            <span class="text right color-placeholder">
+                                <span class="timer" data-duration="1000" data-to="3">3</span>
+                                <span>/12</span>
+                            </span>
+                            <span class="text left color-default">三明治</span>
+                        </div>
+                    </div>
+                </div>
+                <!--饼图-->
+                <div id="piecharts"  class="pie-chart" style="display: none;">
+                    <ul class="grid" data-col="2">
+                        <li class="doughnutblock text-center">
+                            <div class="doughnutblock-canvas" style="background-image:url(../img/poll/poll1-img1.jpg)">
+                                <canvas id="chart1" width="140" height="140"/>
+                            </div>
+                            <div class="doughnutblock-overlay box box-middlecenter">
+                                <div>
+                                    <p class="percent">54.6%</p>
+                                    <p>18/33</p>
+                                </div>
+                            </div>
+                            <label style="">吐司</label>
+                        </li>
+                        <li class="doughnutblock text-center">
+                            <div class="doughnutblock-canvas" style="background-image:url(../img/poll/poll1-img2.jpg)">
+                                <canvas id="chart2" width="140" height="140"/>
+                            </div>
+                            <div class="doughnutblock-overlay box box-middlecenter">
+                                <div>
+                                    <p class="percent">15.2</p>
+                                    <p>5/33</p>
+                                </div>
+                            </div>
+                            <label style="">油条</label>
+                        </li>
+                        <li class="doughnutblock text-center">
+                            <div class="doughnutblock-canvas" style="background-image:url(../img/poll/poll1-img3.jpg)">
+                                <canvas id="chart3" width="140" height="140"/>
+                            </div>
+                            <div class="doughnutblock-overlay box box-middlecenter">
+                                <div>
+                                    <p class="percent">24.2%</p>
+                                    <p>8/33</p>
+                                </div>
+                            </div>
+                            <label style="">粥</label>
+                        </li>
+                        <li class="doughnutblock text-center">
+                            <div class="doughnutblock-canvas" style="background-image:url(../img/poll/poll1-img4.jpg)">
+                                <canvas id="chart4" width="140" height="140"/>
+                            </div>
+                            <div class="doughnutblock-overlay box box-middlecenter">
+                                <div>
+                                    <p class="percent">6%</p>
+                                    <p>2/33</p>
+                                </div>
+                            </div>
+                            <label style="">三明治</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+			<ul class="list noclick noborder">
+				<li class="between">
+					<div class="justify">
+                        <div class="radiusround" style="background-image:url(../img/poll/tx1.jpg)"></div>
+                    </div>
+					<div class="justify-content">
+						<p>Cindy</p>
+						<small class="top right">于2016-02-28截止</small>
+						<small>
+							创建:2016-01-01
+						</small>
+					</div>
+				</li>
+			</ul>
+		</article>
+	</section>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../plugin/charts/Chart.min.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        //饼状图参数
+        var colors={fillColor:["#53c6fd","#ffae02","#3ae3ea","#ff6f36","#cf7af3","#4cd32e","#4587f7","#00c2eb","#ff618f","#21d9a1"],default:"#ebe8e3"};
+        var values=[18,5,18,2];
+        var doughnutConfig={
+            segmentShowStroke:false,
+            showTooltips:false,
+            animationEasing : "easeOut",
+            animationSteps:30,
+            percentageInnerCutout:80
+        }
+        var doughnutData1 = [
+            {
+                value:values[0],
+                color:colors.fillColor[0],
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData2 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.fillColor[1],
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData3 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.fillColor[2],
+            },
+            {
+                value:values[3],
+                color:colors.default,
+            },
+        ];
+        var doughnutData4 = [
+            {
+                value:values[0],
+                color:colors.default,
+            },
+            {
+                value:values[1],
+                color:colors.default,
+            },
+            {
+                value:values[2],
+                color:colors.default,
+            },
+            {
+                value:values[3],
+                color:colors.fillColor[3],
+            },
+        ];
+        function toggleCharts(thisobj){
+            //切换到饼图
+            if($("i",thisobj).hasClass("icon-chartpie-fill")){
+                $("i",thisobj)[0].className="icon-chartbar-fill";
+                $("#piecharts").css("display","block");
+                $("#barcharts").css("display","none");
+                initCharts();
+            }else{
+                $("i",thisobj)[0].className="icon-chartpie-fill";
+                $("#piecharts").css("display","none");
+                $("#barcharts").css("display","block");
+            }
+        }
+        function initCharts(){
+            //初始化饼状图
+            var ctx1 = document.getElementById("chart1").getContext("2d");
+            var doughnut1 = new Chart(ctx1).Doughnut(doughnutData1,doughnutConfig);
+            var ctx2 = document.getElementById("chart2").getContext("2d");
+            var doughnut2 = new Chart(ctx2).Doughnut(doughnutData2,doughnutConfig);
+            var ctx3 = document.getElementById("chart3").getContext("2d");
+            var doughnut3 = new Chart(ctx3).Doughnut(doughnutData3,doughnutConfig);
+            var ctx4 = document.getElementById("chart4").getContext("2d");
+            var doughnut4 = new Chart(ctx4).Doughnut(doughnutData4,doughnutConfig);
+        }
+		window.addEventListener("load",function(e){
+			Animate.counter();
+		},false);
+		
+		function back(){Exmobi.close()}
+    </script>
+</body>
+</html>

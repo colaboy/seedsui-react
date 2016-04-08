@@ -1,6 +1,7 @@
 /*----------------card.less(start)--------------*/
 .card{
     display: block;
+    position:relative;
     margin: 8px;
     box-sizing: border-box;
     border-width: 1px;
@@ -9,6 +10,12 @@
 }
 .input-box label,.card label{
     line-height: 30px;
+}
+/*关闭按钮*/
+.card .close{
+	position:absolute;
+	top:-4px;
+	right:-4px;
 }
 /*按钮操作区*/
 .card-handler{

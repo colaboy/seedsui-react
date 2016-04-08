@@ -579,6 +579,7 @@ progress::-webkit-progress-value  {
 	background-color: @color-primary;
 }
 .progress-bar {
+	color:white;
 	background-color: @color-progress-bg;
 }
 .progress {
@@ -587,13 +588,13 @@ progress::-webkit-progress-value  {
 /*----------------progress.less(end)--------------*/
 
 /*-----------------------------checkbox.less(start)-----------------------------*/
-input[type="checkbox"],input[type="radio"]{
+input[type="checkbox"],input[type="radio"],.checkbox,.radio{
 	color:@color-placeholder;
 }
-input[type="checkbox"]:checked , input[type="radio"]:checked{
+input[type="checkbox"]:checked , input[type="radio"]:checked,.checkbox.active,.radio.active{
 	color:@color-primary;
 }
-input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="checkbox"][disabled]:checked , input[type="radio"][disabled]:checked {
+input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="checkbox"][disabled]:checked , input[type="radio"][disabled]:checked,.checkbox.active.disabled,.radio.active.disabled,.checkbox.disabled,.radio.disabled{
 	color:@color-disable;
 }
 /*-----------------------------checkbox.less(end)-----------------------------*/
@@ -704,9 +705,11 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------title.less(start)----------------------------*/
+.sliver,li.sliver,.title{
+	border-color:@color-border;
+}
 .sliver,li.sliver{
 	color:@color-placeholder;
-	border-color:@color-border;
 	background-color:@color-highlight;
 }
 /*----------------------------title.less(end)----------------------------*/
@@ -800,9 +803,6 @@ table{
 .color-primary {
 	color:@color-primary;
 }
-.bg-primary {
-	background-color:@color-primary;
-}
 .color-placeholder{
 	color:@color-placeholder;
 }
@@ -829,6 +829,12 @@ table{
 }
 
 /*随机颜色*/
+.color-white{
+	color:white;
+}
+.color-default{
+	color: @color-body-font;
+}
 .color-1{
 	color:@color-1;
 }
@@ -860,6 +866,15 @@ table{
 	color:@color-10;
 }
 /*背景颜色*/
+.bg-primary {
+	background-color:@color-primary;
+}
+.bg-white{
+	background-color:white;
+}
+.bg-default{
+	background-color:@color-body-bg;
+}
 .bg-1{
 	background-color:@color-1;
 }

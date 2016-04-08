@@ -124,7 +124,7 @@ pre {
   position: absolute;
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 .hidden {
   visibility: hidden;
@@ -168,9 +168,6 @@ pre {
 }
 .bg-transparent {
   background-color: transparent;
-}
-.bg-white {
-  background-color: white !important;
 }
 /*清除浮动*/
 .clearfix:before,
@@ -520,7 +517,7 @@ footer {
   content: "\e91f";
 }
 .icon-bad:before {
-  content: "\e920";
+  content: "\ea84";
 }
 .icon-bad-fill:before {
   content: "\e921";
@@ -1618,10 +1615,11 @@ footer {
   position: relative;
   min-width: 0px;
   max-width: 90px;
-  display: flex;
-  display: -webkit-flex;
-  display: box;
-  display: -webkit-box;
+  display: block;
+  /* display: flex;
+	display: -webkit-flex;
+	display: box;
+	display: -webkit-box; */
 }
 .justify,
 .justify-content {
@@ -1811,6 +1809,7 @@ footer {
 /*----------------card.less(start)--------------*/
 .card {
   display: block;
+  position: relative;
   margin: 8px;
   box-sizing: border-box;
   border-width: 1px;
@@ -1820,6 +1819,12 @@ footer {
 .input-box label,
 .card label {
   line-height: 30px;
+}
+/*关闭按钮*/
+.card .close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
 }
 /*按钮操作区*/
 .card-handler {
@@ -1983,20 +1988,27 @@ aside.active ~ #section_container .section_container_mask {
 }
 /*----------------aside.less(end)--------------*/
 /*----------------------------title.less(start)----------------------------*/
-.sliver {
+.sliver,
+.title {
   position: relative;
+}
+.sliver {
   padding: 8px;
   border-width: 0 0 1px 0;
   border-style: solid;
 }
 .title {
   font-size: 17px;
-  margin: 8px 0;
+  padding: 8px 0;
   display: block;
+}
+.title.border {
+  border-width: 0 0 1px 0;
+  border-style: solid;
 }
 strong.title + small {
   display: block;
-  margin: 8px 0;
+  margin: 0 0 8px 0;
 }
 /*----------------------------title.less(start)----------------------------*/
 /*----------------------------bar.less(start)----------------------------*/
@@ -2305,7 +2317,7 @@ strong.title + small {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
+  height: 2px;
   -webkit-transform: scale3d(0, 1, 1);
   transform: scale3d(0, 1, 1);
   -webkit-transition: -webkit-transform 0.1s;
@@ -2502,16 +2514,31 @@ strong.title + small {
 /*----------------------------searchbar.less(end)----------------------------*/
 /*--------------------badge.less(start)----------------------*/
 .badge,
+.tip {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.badge,
 .tip,
 .close {
   position: relative;
-  display: inline-block;
-  font-size: 8px;
-  vertical-align: middle;
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 100%;
+}
+.badge,
+.tip,
+.close,
+.badge i,
+.tip i,
+.close i {
+  font-size: 8px;
+}
+.tip,
+.close {
+  width: 24px;
+  height: 24px;
 }
 .badge {
   padding: 0 4px;
@@ -2520,12 +2547,6 @@ strong.title + small {
   text-align: center;
   border-radius: 20px;
   min-width: 24px;
-}
-.tip,
-.close {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
 }
 .badge.arrow {
   padding: 2px 8px;
@@ -2544,6 +2565,32 @@ strong.title + small {
   margin-top: -5px;
   border-style: solid;
   border-color: transparent;
+}
+.tip {
+  line-height: 24px;
+}
+.close {
+  /*图片*/
+  background-size: cover;
+  border-radius: 100%;
+  /*文字图标*/
+  border-width: 2px;
+  border-style: solid;
+  color: white;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: box;
+  display: -webkit-box;
+  box-pack: center;
+  -webkit-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
 }
 /*--------------------badge.less(start)----------------------*/
 /*------------------------------button.less(start)------------------------------*/
@@ -2893,7 +2940,9 @@ div[data-input=clear] input[type] + i {
 /*----------------inputbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
 input[type="checkbox"],
-input[type="radio"] {
+input[type="radio"],
+.checkbox,
+.radio {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -2914,23 +2963,27 @@ input[type="radio"] {
   font-size: 22px;
 }
 label input[type="checkbox"] + span,
-label input[type="radio"] + span {
-  display: inline-block;
-  vertical-align: middle;
+label input[type="radio"] + span,
+.checkbox + span,
+.radio + span {
   margin: 0 4px;
 }
 /*checkbox*/
-input[type="checkbox"]:before {
-  content: "\e92d";
+input[type="checkbox"]:before,
+.checkbox:before {
+  content: "\e9dd";
 }
-input[type="checkbox"]:checked:before {
-  content: "\e92f";
+input[type="checkbox"]:checked:before,
+.checkbox.active:before {
+  content: "\e9de";
 }
 /*radio*/
-input[type="radio"]:before {
+input[type="radio"]:before,
+.radio:before {
   content: "\e9b5";
 }
-input[type="radio"]:checked:before {
+input[type="radio"]:checked:before,
+.radio.active:before {
   content: "\e9ba";
 }
 /*-----------------------------checkbox.less(end)-----------------------------*/
@@ -3002,10 +3055,6 @@ progress::-webkit-progress-value {
 }
 .progress-bar.threed .progress {
   box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-}
-.progress-bar .text,
-.progress-bar .text a {
-  color: white;
 }
 .text.left,
 .text.right,
@@ -4136,20 +4185,8 @@ input[type=range]:focus::-ms-fill-upper {
 .grid li .badge,
 .grid li .close {
   position: absolute;
-  display: block;
   top: -4px;
   right: -4px;
-}
-.grid li .close {
-  /*图片*/
-  background-size: cover;
-  border-radius: 100%;
-  /*文字图标*/
-  border-width: 2px;
-  border-style: solid;
-  color: white;
-  border-color: white;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 .grid[data-col="2"] li {
   width: 50%;
@@ -4530,6 +4567,14 @@ input[type=range]:focus::-ms-fill-upper {
   color: white;
   background-color: rgba(0, 0, 0, 0.6);
   background-color: black\0;
+}
+/*custome*/
+.custom {
+  display: none;
+  position: relative;
+  -webkit-transform: translate(0, 0);
+  left: auto;
+  top: auto;
 }
 /*--------------------popup.less(end)----------------------*/
 [data-emoji] {
@@ -5450,6 +5495,12 @@ i.size32 {
   height: 32px;
   line-height: 32px;
 }
+i.size56 {
+  font-size: 56px;
+  width: 56px;
+  height: 56px;
+  line-height: 56px;
+}
 /*圆形*/
 .radiusround.size40 {
   width: 40px;
@@ -5464,6 +5515,13 @@ input[type="submit"].size32,
 }
 .button.size32 {
   line-height: 30px;
+}
+/*进度条*/
+.progress-bar.size50 {
+  height: 50px;
+}
+.progress-bar.size56 {
+  height: 56px;
 }
 /*--------------------size.less(end)----------------------*/
 /*----------------layout.less(start)--------------*/
@@ -5875,6 +5933,18 @@ button.text-left {
 .rowspace40 {
   height: 40px;
 }
+.margin4 {
+  margin: 4px;
+}
+.margin6 {
+  margin: 6px;
+}
+.margin8 {
+  margin: 8px;
+}
+.margin12 {
+  margin: 12px;
+}
 .padding4 {
   padding: 6px !important;
 }
@@ -5895,15 +5965,6 @@ button.text-left {
 }
 .indent24 {
   text-indent: 24px !important;
-}
-.margin4 {
-  margin: 4px;
-}
-.margin6 {
-  margin: 6px;
-}
-.margin8 {
-  margin: 8px;
 }
 .nopadding {
   padding: 0 !important;
@@ -6602,6 +6663,7 @@ progress::-webkit-progress-value {
   background-color: #4587f7;
 }
 .progress-bar {
+  color: white;
   background-color: #cccccc;
 }
 .progress {
@@ -6610,17 +6672,25 @@ progress::-webkit-progress-value {
 /*----------------progress.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
 input[type="checkbox"],
-input[type="radio"] {
+input[type="radio"],
+.checkbox,
+.radio {
   color: #aaaaaa;
 }
 input[type="checkbox"]:checked,
-input[type="radio"]:checked {
+input[type="radio"]:checked,
+.checkbox.active,
+.radio.active {
   color: #4587f7;
 }
 input[type="checkbox"][disabled],
 input[type="radio"][disabled],
 input[type="checkbox"][disabled]:checked,
-input[type="radio"][disabled]:checked {
+input[type="radio"][disabled]:checked,
+.checkbox.active.disabled,
+.radio.active.disabled,
+.checkbox.disabled,
+.radio.disabled {
   color: #d9d9d9;
 }
 /*-----------------------------checkbox.less(end)-----------------------------*/
@@ -6733,9 +6803,13 @@ input[type="radio"][disabled]:checked {
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------title.less(start)----------------------------*/
 .sliver,
+li.sliver,
+.title {
+  border-color: #e8e8e8;
+}
+.sliver,
 li.sliver {
   color: #aaaaaa;
-  border-color: #e8e8e8;
   background-color: #f4f4f4;
 }
 /*----------------------------title.less(end)----------------------------*/
@@ -6828,9 +6902,6 @@ table {
 .color-primary {
   color: #4587f7;
 }
-.bg-primary {
-  background-color: #4587f7;
-}
 .color-placeholder {
   color: #aaaaaa;
 }
@@ -6856,6 +6927,12 @@ table {
   color: #fc4349;
 }
 /*随机颜色*/
+.color-white {
+  color: white;
+}
+.color-default {
+  color: #333333;
+}
 .color-1 {
   color: #53c6fd;
 }
@@ -6887,6 +6964,15 @@ table {
   color: #21d9a1;
 }
 /*背景颜色*/
+.bg-primary {
+  background-color: #4587f7;
+}
+.bg-white {
+  background-color: white;
+}
+.bg-default {
+  background-color: #f4f4f4;
+}
 .bg-1 {
   background-color: #53c6fd;
 }

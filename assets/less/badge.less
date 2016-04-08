@@ -1,13 +1,21 @@
 /*--------------------badge.less(start)----------------------*/
-.badge,.tip,.close{
-	position:relative;
+.badge,.tip{
 	display: inline-block;
-	font-size: 8px;
 	vertical-align: middle;
 	text-align: center;
+}
+.badge,.tip,.close{
+	position:relative;
 	overflow: hidden;
     text-overflow: ellipsis;
 	border-radius:100%;
+}
+.badge,.tip,.close,.badge i,.tip i,.close i{
+	font-size: 8px;
+}
+.tip,.close{
+	width:24px;
+	height:24px;
 }
 .badge{
 	padding:0 4px;
@@ -16,11 +24,6 @@
 	text-align:center;
 	border-radius:20px;
 	min-width:24px;
-}
-.tip,.close{
-	width:24px;
-	height:24px;
-	line-height:24px;
 }
 .badge.arrow{
 	padding:2px 8px;
@@ -39,5 +42,33 @@
     margin-top: -5px;
     border-style: solid;
     border-color: transparent;
+}
+.tip{
+	line-height:24px;
+}
+.close{
+	/*图片*/
+	background-size:cover;
+	border-radius: 100%;
+
+	/*文字图标*/
+	border-width: 2px;
+	border-style: solid;
+	color:white;
+	border-color: white;
+	background-color: rgba(0,0,0,.7);
+
+	display: box;
+	display:-webkit-box;
+	box-pack:center;
+	-webkit-box-pack:center;
+	box-align:center;
+	-webkit-box-align:center;
+	display: flex;
+	display: -webkit-flex;
+	justify-content:center;
+	-webkit-justify-content:center;
+	align-items:center;
+	-webkit-align-items:center;
 }
 /*--------------------badge.less(start)----------------------*/

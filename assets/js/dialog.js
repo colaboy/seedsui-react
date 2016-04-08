@@ -19,7 +19,10 @@
         dialog:function(params){
             //设置参数
             var defaults={
-                pos:"middle"
+                pos:"middle",
+                /*callbacks
+                onClick:function(this)
+                */
             };
             var params=params||{};
             for(var def in defaults){
@@ -85,6 +88,8 @@
             s.hideDialog=hideMask;
             s.showDialog=showMask;
             showMask();
+            //Callback
+            if(params.onClick)$(s).click(function(e){params.onClick(e,s)});
             return s;
         }
     });

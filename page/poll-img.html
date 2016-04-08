@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>poll-img</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<link rel="stylesheet" href="../css/poll.css">
+</head>
+<body>
+	<section id="page_pollPic" class="active">
+		<header>
+			<div class="titlebar">
+                <a class="left" href="javascript:Exmobi.close()">
+                    <i class="icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">投票</h1>
+            </div>
+		</header>
+		<article>
+			<div class="group">
+                <div class="padding12">
+                    <p>周五出去玩要去哪里？</p>
+                    <small>周五要部门活动了大家投票看看要去哪里做什么。</small>
+                </div>
+                <img src="../img/poll/poll-main-default.jpg" class="width-full" />
+                <div class="margin12">
+                	<small class="color-tip">记名投票(最多选2项)</small>
+                	<small class="float-right">33人参与投票</small>
+                </div>
+            </div>
+
+			<ul class="grid thumbnail" data-col="2" style="background-color:white;" id="selImg">
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img1.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>吐司</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img2.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>油条</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img3.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>粥</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img4.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>三明治</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+            </ul>
+			<a class="button block margin8">投票</a>
+		</article>
+	</section>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../js/poll.js"></script>
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        var checkedToast=new Toast("最多选2项");
+        document.getElementById("selImg").addEventListener("click",function(e){
+            selCheckbox(e,this,{
+                cboMaxCount:2,
+                maxCallback:function(){
+                    checkedToast.show();
+                }
+            });
+        },false);
+
+		function back(){history.go(-1)}
+    </script>
+</body>
+</html>

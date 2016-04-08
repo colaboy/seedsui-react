@@ -34,7 +34,18 @@
 	    </article>
 	</section>
 	<!--自定义弹出框-->
-	<div id="pop_custom" style="padding:20px 0;background-color:white;display:none;"><a id="hehe">我是从自定义弹出框</a></div>
+	<div class="popup confirm custom" id="pop_custom">
+        <label class="text-center">
+            <p class="title color-cancel">该投票将永远消失！</p>
+            <p>您确定这么做？！</p>
+            <i class="icon-bad size56 color-primary margin12"></i>
+        </label>
+        <div class="popup-handler">
+            <a>取消</a>
+            <a>确定</a>
+        </div>
+    </div>
+	<!-- <div id="pop_custom" style="padding:20px 0;background-color:white;display:none;"><a id="hehe">我是从自定义弹出框</a></div> -->
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script type="text/javascript">
@@ -117,7 +128,15 @@
 		$("#hehe").on("click",function(){alert(1);});
 		//middle
 		$("#middle").click(function(){
-			$("#pop_custom").dialog();
+			$("#pop_custom").dialog({
+                onClick:function(e,s){
+                    if(e.target.text=="取消"){
+                        s.hideDialog();
+                    }else if(e.target.text=="确定"){
+                        console.log("确定");
+                    }
+                }
+            });
 	    });
 		//top
 		$("#top").click(function(){

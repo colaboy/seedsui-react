@@ -1,5 +1,5 @@
 /*-----------------------------checkbox.less(start)-----------------------------*/
-input[type="checkbox"],input[type="radio"]{
+input[type="checkbox"],input[type="radio"],.checkbox,.radio{
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -20,23 +20,21 @@ input[type="checkbox"],input[type="radio"]{
   font-family: "iconfont";
   font-size: 22px;
 }
-label input[type="checkbox"] + span,label input[type="radio"] + span{
-  display: inline-block;
-  vertical-align: middle;
+label input[type="checkbox"]+span,label input[type="radio"]+span,.checkbox+span,.radio+span{
   margin:0 4px;
 }
 /*checkbox*/
-input[type="checkbox"]:before {
-  content: "\e92d";
+input[type="checkbox"]:before,.checkbox:before{
+  content: "\e9dd";
 }
-input[type="checkbox"]:checked:before{
-  content: "\e92f";
+input[type="checkbox"]:checked:before,.checkbox.active:before{
+  content: "\e9de";
 }
 /*radio*/
-input[type="radio"]:before {
+input[type="radio"]:before,.radio:before{
 	content: "\e9b5";
 }
-input[type="radio"]:checked:before{
+input[type="radio"]:checked:before,.radio.active:before{
   content: "\e9ba";
 }
 /*-----------------------------checkbox.less(end)-----------------------------*/
