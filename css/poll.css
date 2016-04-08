@@ -107,3 +107,11 @@
 #selImg li>a .badge.active:after{
   border-bottom-color: #60c565;
 }
+/*缩略图*/
+.preview{
+  width:100%;
+  height:145px;
+  background-size:cover;
+  background-position:center;
+  background-image:url(../img/poll/poll-main-default.jpg);
+}
