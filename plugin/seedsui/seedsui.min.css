@@ -123,12 +123,6 @@ pre {
 .absolute {
   position: absolute;
 }
-.hide {
-  display: none !important;
-}
-.hidden {
-  visibility: hidden;
-}
 .overflow-hide {
   overflow: hidden;
 }
@@ -145,12 +139,6 @@ pre {
 .overflow-y {
   overflow-y: hidden;
   overflow-x: auto;
-}
-.block {
-  display: block;
-}
-.inline-block {
-  display: inline-block;
 }
 .break-all {
   word-break: break-all;
@@ -5989,6 +5977,19 @@ button.text-left {
   font-size: 20px;
   font-weight: 200;
   margin: 8px 0;
+}
+/*显示与隐藏*/
+.hide {
+  display: none;
+}
+.hidden {
+  visibility: hidden;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
 }
 /*----------------layout.less(end)--------------*/
 /*控件*/

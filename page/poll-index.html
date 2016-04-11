@@ -12,16 +12,16 @@
 	<section id="page_pollPic" class="active">
 		<header>
 			<div class="titlebar">
-                <a class="left" href="javascript:Exmobi.close()">
+                <a class="left" href="javascript:back()">
                     <i class="icon-arrowleft"></i>
                     <span>返回</span>
                 </a>
                 <h1 class="text-center">首页</h1>
                 <div class="right">
-                    <a href="javascript:Exmobi.openWebview('res:page/www/add-poll.html')">
+                    <a>
                         <i class="icon-rdoadd"></i>
                     </a>
-                    <a href="javascript:Exmobi.openWebview('res:page/www/search.html')" id="search-toggle">
+                    <a id="search-toggle">
                         <i class="icon-search"></i>
                     </a>
                 </div>
@@ -285,7 +285,6 @@
     </div>
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <script src="../js/poll.js"></script>
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script type="text/javascript">
         //初始化滑动容器
@@ -389,7 +388,7 @@
             initDelClickEvent();
         },false);
 
-		function back(){Exmobi.close()}
+		function back(){history.go(-1)}
     </script>
 </body>
 </html>
