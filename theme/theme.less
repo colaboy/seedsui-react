@@ -484,6 +484,66 @@ input[list],textarea,select,.input-text{
 .clock .origin,.clock .hour,.clock .minute{
 	background-color:@color-primary;
 }
+.clock.color-1{
+	border-color:@color-1;
+}
+.clock.color-1 .origin,.clock.color-1 .hour,.clock.color-1 .minute{
+	background-color:@color-1;
+}
+.clock.color-2{
+	border-color:@color-2;
+}
+.clock.color-2 .origin,.clock.color-2 .hour,.clock.color-2 .minute{
+	background-color:@color-2;
+}
+.clock.color-3{
+	border-color:@color-3;
+}
+.clock.color-3 .origin,.clock.color-3 .hour,.clock.color-3 .minute{
+	background-color:@color-3;
+}
+.clock.color-4{
+	border-color:@color-4;
+}
+.clock.color-4 .origin,.clock.color-4 .hour,.clock.color-4 .minute{
+	background-color:@color-4;
+}
+.clock.color-5{
+	border-color:@color-5;
+}
+.clock.color-5 .origin,.clock.color-5 .hour,.clock.color-5 .minute{
+	background-color:@color-5;
+}
+.clock.color-6{
+	border-color:@color-6;
+}
+.clock.color-6 .origin,.clock.color-6 .hour,.clock.color-6 .minute{
+	background-color:@color-6;
+}
+.clock.color-7{
+	border-color:@color-7;
+}
+.clock.color-7 .origin,.clock.color-7 .hour,.clock.color-7 .minute{
+	background-color:@color-7;
+}
+.clock.color-8{
+	border-color:@color-8;
+}
+.clock.color-8 .origin,.clock.color-8 .hour,.clock.color-8 .minute{
+	background-color:@color-8;
+}
+.clock.color-9{
+	border-color:@color-9;
+}
+.clock.color-9 .origin,.clock.color-9 .hour,.clock.color-9 .minute{
+	background-color:@color-9;
+}
+.clock.color-10{
+	border-color:@color-10;
+}
+.clock.color-10 .origin,.clock.color-10 .hour,.clock.color-10 .minute{
+	background-color:@color-10;
+}
 /*----------------clock.less(end)--------------*/
 
 /*----------------row.less(start)--------------*/
@@ -656,21 +716,28 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .grid li>label{
     color:@color-label;
 }
-/*应用图标控件-border*/
-.grid.app.border li>a{
-	border-color:@color-placeholder;
-	color:@color-label;
-}
-/*裸图标控件-border*/
-.grid.icon.border,.grid.icon.border li{
+/*边框*/
+.grid.border{
 	border-color:@color-border;
 }
 /*----------------grid.less(end)----------------*/
-
+/*----------------photo.less(start)----------------*/
+.photo{
+	color:@color-photo;
+	background-color:@color-photo-bg;
+}
+.photo.border{
+	color:@color-label;
+	background-color:white;
+}
+/*----------------photo.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
+.list{
+	border-color:@color-border;
+}
 .list li{
-	border-color: @color-border;
-	background-color: @color-list-bg;
+	border-color:inherit;
+	background-color:@color-list-bg;
 }
 .list li:active{
 	background-color:@color-list-bg-active;
@@ -874,6 +941,9 @@ table{
 }
 .bg-default{
 	background-color:@color-body-bg;
+}
+.bg-1,.bg-2,.bg-3,.bg-4,.bg-5,.bg-6,.bg-7,.bg-8,.bg-9,.bg-10{
+	color:white;
 }
 .bg-1{
 	background-color:@color-1;

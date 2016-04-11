@@ -88,7 +88,7 @@
 				}
 			});
 			//密码控件点击小眼睛
-			$("[type=password] + i").click(function(){
+			$("[data-input='reveal'] [type=password] + i").click(function(){
 				if($(this).hasClass("active")){
 					$(this).removeClass("active");
 					$(this).parent().find("input[type]").attr("type","password");
@@ -103,7 +103,6 @@
 	    		if($(this).val().length>0){
 	    			$("+i",this).css("display","block");
 	    		}else{
-	    			console.log(2);
 	    			$("+i",this).css("display","none");
 	    		}
 	    	});

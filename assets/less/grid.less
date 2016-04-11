@@ -5,74 +5,21 @@
 	clear: both;
 	zoom:1;
 }
+.grid i{
+	font-size:32px;
+}
 .grid li{
 	width: 33%;
 	float:left;
 	text-align: center;
+	padding:2px;
+	box-sizing:border-box;
 }
-.grid[data-rowspace="0"] li{
-	padding-top:0px;
+.grid li>a{
+	position:relative;
+	box-sizing:border-box;
+	margin:0px auto;
 }
-.grid.icon.border[data-rowspace="0"] li{
-	padding-top:0px;
-	padding-bottom:0px;
-}
-
-.grid[data-rowspace="6"] li{
-	padding-top:6px;
-}
-.grid[data-rowspace="6"] li:last-child{
-	padding-bottom:6px;
-}
-.grid.icon.border[data-rowspace="6"] li{
-	padding-top:6px;
-	padding-bottom:6px;
-}
-
-.grid[data-rowspace="8"] li{
-	padding-top:8px;
-}
-.grid[data-rowspace="8"] li:last-child{
-	padding-bottom:8px;
-}
-.grid.icon.border[data-rowspace="8"] li{
-	padding-top:8px;
-	padding-bottom:8px;
-}
-
-.grid[data-rowspace="10"] li{
-	padding-top:10px;
-}
-.grid[data-rowspace="10"] li:last-child{
-	padding-bottom:10px;
-}
-.grid.icon.border[data-rowspace="10"] li{
-	padding-top:10px;
-	padding-bottom:10px;
-}
-
-.grid[data-rowspace="12"] li{
-	padding-top:12px;
-}
-.grid[data-rowspace="12"] li:last-child{
-	padding-bottom:12px;
-}
-.grid.icon.border[data-rowspace="12"] li{
-	padding-top:12px;
-	padding-bottom:12px;
-}
-
-.grid[data-rowspace="30"] li{
-	padding-top:30px;
-}
-.grid[data-rowspace="30"] li:last-child{
-	padding-bottom:30px;
-}
-.grid.icon.border[data-rowspace="30"] li{
-	padding-top:30px;
-	padding-bottom:30px;
-}
-
 .grid li>label{
 	display:block;
     padding:0 4px;
@@ -85,28 +32,78 @@
     
     font-size:12px;
 }
-.grid li a{
-	position: relative;
-	box-sizing:border-box;
+.grid li>a>img{
+	max-width:100%;
+}
+/*边框*/
+.grid.border{
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+.grid.border li{
+	border-style: solid;
+	border-width: 1px 1px 0 0;
+	border-color:inherit;
+}
+/*间距控制*/
+.grid[data-rowspace="0"] li{
+	padding-top:0px;
+}
+.grid.border[data-rowspace="0"] li{
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.grid[data-rowspace="6"] li{
+	padding-top:6px;
+}
+.grid[data-rowspace="6"] li:last-child{
+	padding-bottom:6px;
+}
+.grid.border[data-rowspace="6"] li{
+	padding-top:6px;
+	padding-bottom:6px;
+}
+.grid[data-rowspace="8"] li{
+	padding-top:8px;
+}
+.grid[data-rowspace="8"] li:last-child{
+	padding-bottom:8px;
+}
+.grid.border[data-rowspace="8"] li{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+.grid[data-rowspace="10"] li{
+	padding-top:10px;
+}
+.grid[data-rowspace="10"] li:last-child{
+	padding-bottom:10px;
+}
+.grid.border[data-rowspace="10"] li{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.grid[data-rowspace="12"] li{
+	padding-top:12px;
+}
+.grid[data-rowspace="12"] li:last-child{
+	padding-bottom:12px;
+}
+.grid.border[data-rowspace="12"] li{
+	padding-top:12px;
+	padding-bottom:12px;
+}
+.grid[data-rowspace="30"] li{
+	padding-top:30px;
+}
+.grid[data-rowspace="30"] li:last-child{
+	padding-bottom:30px;
+}
+.grid.border[data-rowspace="30"] li{
+	padding-top:30px;
+	padding-bottom:30px;
+}
 
-	display: box;
-	display:-webkit-box;
-	box-pack:center;
-	-webkit-box-pack:center;
-	box-align:center;
-	-webkit-box-align:center;
-	display: flex;
-	display: -webkit-flex;
-	justify-content:center;
-	-webkit-justify-content:center;
-	align-items:center;
-	-webkit-align-items:center;
-}
-.grid li .tip,.grid li .badge,.grid li .close{
-	position: absolute;
-    top: -4px;
-    right: -4px;
-}
 .grid[data-col="2"] li{
 	width:50%;
 }
@@ -119,78 +116,13 @@
 .grid[data-col="5"] li{
 	width:20%;
 }
-/*应用图标控件*/
-.grid.app li>a,.grid.app.border li>a{
-	width:64px;
-	height:64px;
-	margin:0px auto;
-
-	color:white;
-}
-.grid.app li>a>i,.grid.app li>a>img{
-	/*文字图标*/
-    font-size:32px;
-	width:32px;
-	height:32px;
-	line-height: 32px;
-	background-size:cover;
-}
-/*应用图标控件-border*/
-.grid.app.border li>a{
-	border-width: 1px;
-	border-style: solid;
-}
-/*裸图标控件*/
-.grid.icon li>a{
-	width:50px;
-	margin:0px auto;
-}
-.grid.icon li>a>i{
-	font-size:40px;
-	width:40px;
-	height:40px;
-	line-height:40px;
-}
-.grid.app li>a>img{
-	width:50px;
-	height:50px;
-}
-/*裸图标控件-border*/
-.grid.icon.border{
-	border-width: 0 0 1px 0;
-	border-style: solid;
-}
-.grid.icon.border li{
-	border-width: 1px 1px 0 0;
-	border-style: solid;
-	box-sizing: border-box;
+/*小汽泡*/
+.grid li .tip,.grid li .badge,.grid li .close{
+	position: absolute;
+    top: -4px;
+    right: -4px;
 }
 
-/*圆角控制*/
-.grid.radiusround li>a{
-	border-radius:100%;
-}
-.grid.radius8 li>a{
-	border-radius:8px;
-}
-.grid.radius6 li>a{
-	border-radius:6px;
-}
-.grid.radius4 li>a{
-	border-radius:4px;
-}
-/*Metro风格|缩略图|相册*/
-.grid.thumbnail,.grid.album,.grid.metro{
-	box-sizing: border-box;
-	padding:0 4px;
-}
-.grid.thumbnail li,.grid.album li,.grid.metro li{
-	box-sizing:border-box;
-	padding:4px;
-}
-.grid.metro li{
-	padding:2px;
-}
 /*Metro风格*/
 .grid.metro .tip{
 	top:auto;
@@ -223,27 +155,13 @@
 	width:50px;
 	height:50px;
 }
-/*缩略图*/
-.grid.thumbnail li>a{
-	position:relative;
+/*相册展现*/
+.grid.album li>a{
 	width:100%;
+	min-height:110px;
 }
-.grid.thumbnail li>a img{
-	width:100%;
-}
-/*相册*/
-.grid.album li > a {
-    width: 100%;
-    height: 110px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.grid.album .default{
-	color: #cccccc;
-    background-color: #ddd;
-}
+/* 
 .grid.album .default i{
 	font-size: 48px;
-}
+} */
 /*----------------grid.less(end)----------------*/

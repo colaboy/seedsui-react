@@ -23,35 +23,68 @@
 	</section>
 	
 	<script>
-	var SHAKE_THRESHOLD = 3000;  
-	var last_update = 0;  
-	var x = y = z = last_x = last_y = last_z = 0;  
-	function deviceMotionHandler(eventData) {
-		/*document.getElementById("shakecard").innerHTML="摇动了";*/
-		var acceleration = eventData.accelerationIncludingGravity;
-		//document.getElementById("shakecard").innerHTML=acceleration.x;
-		var curTime = new Date().getTime();
-		if((curTime - last_update) > 100) {  
-			var diffTime = curTime - last_update;  
-			last_update = curTime;  
-			x = acceleration.x;
-			y = acceleration.y;
-			z = acceleration.z;
-			var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
-			if (speed > SHAKE_THRESHOLD) {
-				document.getElementById("shakecard").innerHTML="摇动了";
+	(function(window,document,undefined){
+		window.Shake=function(params){
+			/*=========================
+	          Params
+	          ===========================*/
+			var defaults={
+				"threshold":3000,
+				/*callbacks
+				onShook:function(Slider)
+				*/
 			}
-			last_x = x;
-			last_y = y;
-			last_z = z;
+			params=params||{};
+			for(var def in defaults){
+				if(params[def]===undefined){
+					params[def]=defaults[def];
+				}
+			}
+			s.speed=0;
+			//Shake
+			var s=this;
+
+			var last_update = 0;  
+			var x = y = z = lastX = lastY = lastZ = 0;
+			/*=========================
+	          Method
+	          ===========================*/
+			function deviceMotionHandler(e) {
+				var acceleration = e.accelerationIncludingGravity;
+				var curTime = new Date().getTime();
+				if((curTime - last_update) > 100) {  
+					var diffTime = curTime - last_update;  
+					last_update = curTime;  
+					x = acceleration.x;
+					y = acceleration.y;
+					z = acceleration.z;
+					s.speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
+					if (s.speed > s.params.threshold) {
+						//CallBack
+						if(s.params.onShook)onShook(e,s);
+					}
+					lastX = x;
+					lastY = y;
+					lastZ = z;
+				}
+			}
+			if (window.DeviceMotionEvent){  
+				window.addEventListener('devicemotion',deviceMotionHandler,false);
+			}else{
+				if(s.params.onFail)s.params.onError("您的手机不支持重力感应事件");
+			}
 		}
-	}
+	})(window,document,undefined);
+	
 	window.onload=function(){
-		if (window.DeviceMotionEvent){  
-			window.addEventListener('devicemotion',deviceMotionHandler,false);
-		}else{
-			document.getElementById("shakecard").innerHTML="您的手机不支持摇一摇";
-		}
+		var sk=new Shake({
+			"onShook":function(e){
+				document.getElementById("shakecard").innerHTML="摇动了";
+			},
+			"onFail":function(msg){
+				console.log(msg);
+			}
+		});
 	}
 	//定义exmobi返回
 	function back(){history.go(-1);}

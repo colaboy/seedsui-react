@@ -3,34 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>me1</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style>
-    	.userinfo:before,.photo{
+    	.photo{
     		background-repeat:no-repeat;
     		background-size:cover;
     		background-position:center;
     	}
     	.userinfo{
-    		position:relative;
     		text-align:center;
-    		z-index:0;
     		background-color:black;
     		padding:40px 0;
     	}
-    	.userinfo:before{
-			content:"";
-			position:absolute;
-			z-index:-1;
-			top:0;
-			bottom:0;
-			left:0;
-			right:0;
-			background-image:url(../img/info1/mebg.jpg);
-			opacity:0.9;
-			-webkit-filter:blur(2px);
-			overflow: hidden;
-		}
+        .userinfo:before{
+            background-image:url(../img/info1/mebg.jpg);
+            opacity:0.9;
+        }
     	.userinfo .photo{
     		display:inline-block;
     		width:80px;
@@ -72,7 +62,7 @@
     <section id="page_container" class="active">
     	<article style="background-color:white;top:0">
     		<div style="border-bottom:1px solid #ddd;">
-    			<div class="userinfo">
+    			<div class="userinfo before-blur">
 	    			<span class="photo" style="background-image:url(../img/info1/me.jpg);"></span>
 	    			<span class="photoname">张无敌</span>
 	    			<div class="lvl">

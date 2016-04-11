@@ -1,5 +1,6 @@
 /*----------------------------list.less(start)----------------------------*/
 .list li{
+	position:relative;
 	display: flex;
 	display: -webkit-flex;
 	display: box;
@@ -7,6 +8,12 @@
 	box-sizing: border-box;
 	border-width: 0 0 1px 0;
 	border-style: solid;
+}
+.list.dotted li{
+	border-style: dotted;
+}
+.list li.dotted{
+	border-style: dotted;
 }
 .list i{
 	font-size:16px;
@@ -21,10 +28,6 @@
 	min-width: 0px;
 	max-width: 90px;
 	display:block;
-	/* display: flex;
-	display: -webkit-flex;
-	display: box;
-	display: -webkit-box; */
 }
 .justify,.justify-content{
 	padding:10px 8px;
@@ -98,7 +101,7 @@
 	margin-right:4px;
 }
 /*左圆形列表*/
-.list .justify .radiusround{
+/* .list .justify .radiusround{
 	width:50px;
 	height:50px;
 }
@@ -112,7 +115,7 @@
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-}
+} */
 /*上下两端对齐*/
 .list.between .justify-content small:nth-last-of-type(1),.list li.between .justify-content small:nth-last-of-type(1){
 	margin-top: 8px;
@@ -148,8 +151,23 @@
     border-width: 0;
 }
 .list.border-content .justify-content,.list.border-content .justify-content+.justify{
-	border-style: solid;
+	border-style: inherit;
     border-color: inherit;
     border-width: 0 0 1px 0;
+}
+/*时间轴*/
+.timeline{
+	margin-left:24px;
+    padding:0 18px;
+    border-width:0 0 0 1px;
+    border-style:solid;
+}
+.timeline .clock{
+	position:absolute;
+	width:24px;
+    height:24px;
+    top:12px;
+    left:-32px;
+    background-color:#fff;
 }
 /*----------------------------list.less(end)----------------------------*/

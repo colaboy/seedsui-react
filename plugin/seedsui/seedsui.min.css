@@ -206,6 +206,12 @@ pre {
   opacity: 0;
   filter: alpha(opacity=0);
 }
+/*背景*/
+.bg-cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
 /*边框与线条*/
 .borderbox {
   box-sizing: border-box;
@@ -216,35 +222,14 @@ pre {
 .noborder {
   border: none !important;
 }
-.noradius {
-  border-radius: 0 !important;
-}
-.radius4 {
-  border-radius: 4px;
-}
-.radius6 {
-  border-radius: 6px;
-}
-.radius8 {
-  border-radius: 8px;
-}
-.radius16 {
-  border-radius: 16px;
-}
-.radius20 {
-  border-radius: 20px;
-}
-.radius40 {
-  border-radius: 40px;
-}
-.radiusround {
-  border-radius: 100%;
-}
 hr {
   border: none;
   clear: both;
   border-width: 1px 0 0 0;
   border-style: solid;
+}
+hr.dotted {
+  border-style: dotted;
 }
 br {
   clear: both;
@@ -270,15 +255,143 @@ small {
   /*首字母大写*/
 }
 /*-----------------------------global.less(end)-----------------------------*/
-/*----------------i.less(start)--------------*/
-/*图标尺寸*/
-i {
-  font-size: 24px;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center top;
+.before-sepia,
+.before-grayscale,
+.before-blur,
+.before-invert,
+.before-saturate,
+.before-contrast,
+.before-brightness,
+.before-hue-rotate,
+.before-drop-shadow {
+  position: relative;
+  z-index: 0;
 }
-/*----------------i.less(end)--------------*/
+.before-sepia:before,
+.before-grayscale:before,
+.before-blur:before,
+.before-invert:before,
+.before-saturate:before,
+.before-contrast:before,
+.before-brightness:before,
+.before-hue-rotate:before,
+.before-drop-shadow:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.sepia,
+.before-sepia:before {
+  /**  格式，filer: sepia(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+  -webkit-filter: sepia(100%);
+  -moz-filter: sepia(100%);
+  -o-filter: sepia(100%);
+  -ms-filter: sepia(100%);
+  filter: sepia(100%);
+}
+.grayscale,
+.before-grayscale:before {
+  /**  格式，filer: grayscale(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+  -webkit-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.blur,
+.before-blur:before {
+  /**  格式，filer: blur(模糊半径)
+     *  模糊半径，取值范围0~Npx，0为无效果
+     */
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  opacity: 0.9;
+  -webkit-filter: blur(2px);
+}
+.invert,
+.before-invert:before {
+  /**  格式，filer: invert(效果范围)
+     *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
+     */
+  -webkit-filter: invert(1);
+  -moz-filter: invert(1);
+  -o-filter: invert(1);
+  -ms-filter: invert(1);
+  filter: invert(1);
+}
+.saturate,
+.before-saturate:before {
+  /**  格式，filer: saturate(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果，0为灰度图
+     */
+  -webkit-filter: saturate(2);
+  -moz-filter: saturate(2);
+  -o-filter: saturate(2);
+  -ms-filter: saturate(2);
+  filter: saturate(2);
+}
+.contrast,
+.before-contrast:before {
+  /**  格式，filer: contrast(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+  -webkit-filter: contrast(2);
+  -moz-filter: contrast(2);
+  -o-filter: contrast(2);
+  -ms-filter: contrast(2);
+  filter: contrast(2);
+}
+.brightness,
+.before-brightness:before {
+  /**  格式，filer: brightness(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+  -webkit-filter: brightness(2);
+  -moz-filter: brightness(2);
+  -o-filter: brightness(2);
+  -ms-filter: brightness(2);
+  filter: brightness(2);
+}
+.hue-rotate,
+.before-hue-rotate:before {
+  /**  格式，filer: hue-rotate(效果范围)
+     *  效果范围，取值范0deg~365deg，0（默认值）为无效果
+     */
+  -webkit-filter: hue-rotate(200deg);
+  -moz-filter: hue-rotate(200deg);
+  -o-filter: hue-rotate(200deg);
+  -ms-filter: hue-rotate(200deg);
+  filter: hue-rotate(200deg);
+}
+.drop-shadow,
+.before-drop-shadow:before {
+  /**  格式，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
+     *  x-offset和y-offset为阴影的相对于元素左上角的位移距离；
+     * 注意：
+     *     1. 阴影的外观受border-radius样式的影响；
+     *     2. :after和:before等伪元素会继承阴影的效果。
+     */
+  -webkit-filter: drop-shadow(1px 1px 0px #333333);
+  -moz-filter: drop-shadow(1px 1px 0px #333333);
+  -o-filter: drop-shadow(1px 1px 0px #333333);
+  -ms-filter: drop-shadow(1px 1px 0px #333333);
+  filter: drop-shadow(1px 1px 0px #333333);
+  /*圆角*/
+}
 /*----------------mbox.less(start)--------------*/
 html,
 body {
@@ -1583,6 +1696,7 @@ footer {
 }
 /*----------------------------list.less(start)----------------------------*/
 .list li {
+  position: relative;
   display: flex;
   display: -webkit-flex;
   display: box;
@@ -1590,6 +1704,12 @@ footer {
   box-sizing: border-box;
   border-width: 0 0 1px 0;
   border-style: solid;
+}
+.list.dotted li {
+  border-style: dotted;
+}
+.list li.dotted {
+  border-style: dotted;
 }
 .list i {
   font-size: 16px;
@@ -1604,10 +1724,6 @@ footer {
   min-width: 0px;
   max-width: 90px;
   display: block;
-  /* display: flex;
-	display: -webkit-flex;
-	display: box;
-	display: -webkit-box; */
 }
 .justify,
 .justify-content {
@@ -1687,21 +1803,21 @@ footer {
   margin-right: 4px;
 }
 /*左圆形列表*/
-.list .justify .radiusround {
-  width: 50px;
-  height: 50px;
+/* .list .justify .radiusround{
+	width:50px;
+	height:50px;
 }
-.list .justify .radiusround i,
-.list .justify .radiusround img {
-  font-size: 30px;
-  width: 30px;
-  height: 30px;
+
+.list .justify .radiusround i,.list .justify .radiusround img{
+	font-size:30px;
+	width:30px;
+	height:30px;
 }
-.list .justify .radiusround {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
+.list .justify .radiusround{
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+} */
 /*上下两端对齐*/
 .list.between .justify-content small:nth-last-of-type(1),
 .list li.between .justify-content small:nth-last-of-type(1) {
@@ -1742,9 +1858,24 @@ footer {
 }
 .list.border-content .justify-content,
 .list.border-content .justify-content + .justify {
-  border-style: solid;
+  border-style: inherit;
   border-color: inherit;
   border-width: 0 0 1px 0;
+}
+/*时间轴*/
+.timeline {
+  margin-left: 24px;
+  padding: 0 18px;
+  border-width: 0 0 0 1px;
+  border-style: solid;
+}
+.timeline .clock {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  left: -32px;
+  background-color: #fff;
 }
 /*----------------------------list.less(end)----------------------------*/
 /*----------------row.less(start)--------------*/
@@ -1994,7 +2125,9 @@ aside.active ~ #section_container .section_container_mask {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-strong.title + small {
+.title + small,
+.title + p,
+.title + a {
   display: block;
   margin: 0 0 8px 0;
 }
@@ -2020,8 +2153,6 @@ strong.title + small {
   min-height: 44px;
   border-bottom: 1px solid;
   box-sizing: border-box;
-}
-.titlebar {
   display: flex;
   display: -webkit-flex;
   display: box;
@@ -2030,6 +2161,9 @@ strong.title + small {
   box-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+.titlebar i {
+  font-size: 24px;
 }
 .titlebar,
 .titlebar a,
@@ -2500,87 +2634,6 @@ strong.title + small {
   padding-left: 0;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
-/*--------------------badge.less(start)----------------------*/
-.badge,
-.tip {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-}
-.badge,
-.tip,
-.close {
-  position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 100%;
-}
-.badge,
-.tip,
-.close,
-.badge i,
-.tip i,
-.close i {
-  font-size: 8px;
-}
-.tip,
-.close {
-  width: 24px;
-  height: 24px;
-}
-.badge {
-  padding: 0 4px;
-  height: 20px;
-  line-height: 20px;
-  text-align: center;
-  border-radius: 20px;
-  min-width: 24px;
-}
-.badge.arrow {
-  padding: 2px 8px;
-  font-size: 14px;
-  overflow: visible;
-  color: white;
-}
-.badge.arrow:after {
-  position: absolute;
-  right: 10px;
-  top: -4px;
-  height: 0;
-  width: 0;
-  content: " ";
-  border-width: 5px;
-  margin-top: -5px;
-  border-style: solid;
-  border-color: transparent;
-}
-.tip {
-  line-height: 24px;
-}
-.close {
-  /*图片*/
-  background-size: cover;
-  border-radius: 100%;
-  /*文字图标*/
-  border-width: 2px;
-  border-style: solid;
-  color: white;
-  border-color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: box;
-  display: -webkit-box;
-  box-pack: center;
-  -webkit-box-pack: center;
-  box-align: center;
-  -webkit-box-align: center;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-}
-/*--------------------badge.less(start)----------------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 button,
@@ -2924,6 +2977,10 @@ input[type=text].search {
 /*带清空按钮*/
 div[data-input=clear] input[type] + i {
   font-size: 20px;
+}
+/*线型*/
+.input-box.line {
+  border-width: 0 0 1px 0;
 }
 /*----------------inputbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -4080,67 +4137,20 @@ input[type=range]:focus::-ms-fill-upper {
   clear: both;
   zoom: 1;
 }
+.grid i {
+  font-size: 32px;
+}
 .grid li {
   width: 33%;
   float: left;
   text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
 }
-.grid[data-rowspace="0"] li {
-  padding-top: 0px;
-}
-.grid.icon.border[data-rowspace="0"] li {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-.grid[data-rowspace="6"] li {
-  padding-top: 6px;
-}
-.grid[data-rowspace="6"] li:last-child {
-  padding-bottom: 6px;
-}
-.grid.icon.border[data-rowspace="6"] li {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.grid[data-rowspace="8"] li {
-  padding-top: 8px;
-}
-.grid[data-rowspace="8"] li:last-child {
-  padding-bottom: 8px;
-}
-.grid.icon.border[data-rowspace="8"] li {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-.grid[data-rowspace="10"] li {
-  padding-top: 10px;
-}
-.grid[data-rowspace="10"] li:last-child {
-  padding-bottom: 10px;
-}
-.grid.icon.border[data-rowspace="10"] li {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.grid[data-rowspace="12"] li {
-  padding-top: 12px;
-}
-.grid[data-rowspace="12"] li:last-child {
-  padding-bottom: 12px;
-}
-.grid.icon.border[data-rowspace="12"] li {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.grid[data-rowspace="30"] li {
-  padding-top: 30px;
-}
-.grid[data-rowspace="30"] li:last-child {
-  padding-bottom: 30px;
-}
-.grid.icon.border[data-rowspace="30"] li {
-  padding-top: 30px;
-  padding-bottom: 30px;
+.grid li > a {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0px auto;
 }
 .grid li > label {
   display: block;
@@ -4153,28 +4163,76 @@ input[type=range]:focus::-ms-fill-upper {
   box-sizing: border-box;
   font-size: 12px;
 }
-.grid li a {
-  position: relative;
-  box-sizing: border-box;
-  display: box;
-  display: -webkit-box;
-  box-pack: center;
-  -webkit-box-pack: center;
-  box-align: center;
-  -webkit-box-align: center;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
+.grid li > a > img {
+  max-width: 100%;
 }
-.grid li .tip,
-.grid li .badge,
-.grid li .close {
-  position: absolute;
-  top: -4px;
-  right: -4px;
+/*边框*/
+.grid.border {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+.grid.border li {
+  border-style: solid;
+  border-width: 1px 1px 0 0;
+  border-color: inherit;
+}
+/*间距控制*/
+.grid[data-rowspace="0"] li {
+  padding-top: 0px;
+}
+.grid.border[data-rowspace="0"] li {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.grid[data-rowspace="6"] li {
+  padding-top: 6px;
+}
+.grid[data-rowspace="6"] li:last-child {
+  padding-bottom: 6px;
+}
+.grid.border[data-rowspace="6"] li {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.grid[data-rowspace="8"] li {
+  padding-top: 8px;
+}
+.grid[data-rowspace="8"] li:last-child {
+  padding-bottom: 8px;
+}
+.grid.border[data-rowspace="8"] li {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.grid[data-rowspace="10"] li {
+  padding-top: 10px;
+}
+.grid[data-rowspace="10"] li:last-child {
+  padding-bottom: 10px;
+}
+.grid.border[data-rowspace="10"] li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.grid[data-rowspace="12"] li {
+  padding-top: 12px;
+}
+.grid[data-rowspace="12"] li:last-child {
+  padding-bottom: 12px;
+}
+.grid.border[data-rowspace="12"] li {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.grid[data-rowspace="30"] li {
+  padding-top: 30px;
+}
+.grid[data-rowspace="30"] li:last-child {
+  padding-bottom: 30px;
+}
+.grid.border[data-rowspace="30"] li {
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 .grid[data-col="2"] li {
   width: 50%;
@@ -4188,81 +4246,13 @@ input[type=range]:focus::-ms-fill-upper {
 .grid[data-col="5"] li {
   width: 20%;
 }
-/*应用图标控件*/
-.grid.app li > a,
-.grid.app.border li > a {
-  width: 64px;
-  height: 64px;
-  margin: 0px auto;
-  color: white;
-}
-.grid.app li > a > i,
-.grid.app li > a > img {
-  /*文字图标*/
-  font-size: 32px;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  background-size: cover;
-}
-/*应用图标控件-border*/
-.grid.app.border li > a {
-  border-width: 1px;
-  border-style: solid;
-}
-/*裸图标控件*/
-.grid.icon li > a {
-  width: 50px;
-  margin: 0px auto;
-}
-.grid.icon li > a > i {
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
-.grid.app li > a > img {
-  width: 50px;
-  height: 50px;
-}
-/*裸图标控件-border*/
-.grid.icon.border {
-  border-width: 0 0 1px 0;
-  border-style: solid;
-}
-.grid.icon.border li {
-  border-width: 1px 1px 0 0;
-  border-style: solid;
-  box-sizing: border-box;
-}
-/*圆角控制*/
-.grid.radiusround li > a {
-  border-radius: 100%;
-}
-.grid.radius8 li > a {
-  border-radius: 8px;
-}
-.grid.radius6 li > a {
-  border-radius: 6px;
-}
-.grid.radius4 li > a {
-  border-radius: 4px;
-}
-/*Metro风格|缩略图|相册*/
-.grid.thumbnail,
-.grid.album,
-.grid.metro {
-  box-sizing: border-box;
-  padding: 0 4px;
-}
-.grid.thumbnail li,
-.grid.album li,
-.grid.metro li {
-  box-sizing: border-box;
-  padding: 4px;
-}
-.grid.metro li {
-  padding: 2px;
+/*小汽泡*/
+.grid li .tip,
+.grid li .badge,
+.grid li .close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
 }
 /*Metro风格*/
 .grid.metro .tip {
@@ -4295,30 +4285,52 @@ input[type=range]:focus::-ms-fill-upper {
   width: 50px;
   height: 50px;
 }
-/*缩略图*/
-.grid.thumbnail li > a {
-  position: relative;
-  width: 100%;
-}
-.grid.thumbnail li > a img {
-  width: 100%;
-}
-/*相册*/
+/*相册展现*/
 .grid.album li > a {
   width: 100%;
-  height: 110px;
+  min-height: 110px;
+}
+/* 
+.grid.album .default i{
+	font-size: 48px;
+} */
+/*----------------grid.less(end)----------------*/
+/*----------------photo.less(start)----------------*/
+.photo {
+  position: relative;
+  box-sizing: border-box;
+  display: box;
+  display: -webkit-box;
+  box-pack: center;
+  -webkit-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
+  border-radius: 100%;
 }
-.grid.album .default {
-  color: #cccccc;
-  background-color: #ddd;
+.photo > i,
+.photo > img {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
 }
-.grid.album .default i {
-  font-size: 48px;
+/*边框*/
+.photo.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: inherit;
 }
-/*----------------grid.less(end)----------------*/
+/*----------------photo.less(end)----------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading-box {
   position: fixed;
@@ -5445,6 +5457,88 @@ ul.weather-otherday li {
   font-size: 20px;
 }
 /*----------------------------calendar.less(end)----------------------------*/
+/*--------------------badge.less(start)----------------------*/
+.badge,
+.tip {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+.badge,
+.tip,
+.close {
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 100%;
+  z-index: 1;
+}
+.badge,
+.tip,
+.close,
+.badge i,
+.tip i,
+.close i {
+  font-size: 8px;
+}
+.tip,
+.close {
+  width: 24px;
+  height: 24px;
+}
+.badge {
+  padding: 0 4px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 20px;
+  min-width: 24px;
+}
+.badge.arrow {
+  padding: 2px 8px;
+  font-size: 14px;
+  overflow: visible;
+  color: white;
+}
+.badge.arrow:after {
+  position: absolute;
+  right: 10px;
+  top: -4px;
+  height: 0;
+  width: 0;
+  content: " ";
+  border-width: 5px;
+  margin-top: -5px;
+  border-style: solid;
+  border-color: transparent;
+}
+.tip {
+  line-height: 24px;
+}
+.close {
+  /*图片*/
+  background-size: cover;
+  border-radius: 100%;
+  /*文字图标*/
+  border-width: 2px;
+  border-style: solid;
+  color: white;
+  border-color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: box;
+  display: -webkit-box;
+  box-pack: center;
+  -webkit-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+}
+/*--------------------badge.less(start)----------------------*/
 /*--------------------size.less(start)----------------------*/
 .badge.size32 {
   width: 24px;
@@ -5459,6 +5553,15 @@ ul.weather-otherday li {
   height: 56px;
 }
 /*图标*/
+i.size12,
+i.size16,
+i.size24,
+i.size32,
+i.size40,
+i.size56 {
+  background-size: 100% auto;
+  background-position: center top;
+}
 i.size12 {
   font-size: 12px;
   width: 12px;
@@ -5483,6 +5586,12 @@ i.size32 {
   height: 32px;
   line-height: 32px;
 }
+i.size40 {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
 i.size56 {
   font-size: 56px;
   width: 56px;
@@ -5493,6 +5602,14 @@ i.size56 {
 .radiusround.size40 {
   width: 40px;
   height: 40px;
+}
+.photo.size40 {
+  width: 40px;
+  height: 40px;
+}
+.photo.size60 {
+  width: 60px;
+  height: 60px;
 }
 /*按钮*/
 button.size32,
@@ -5510,6 +5627,13 @@ input[type="submit"].size32,
 }
 .progress-bar.size56 {
   height: 56px;
+}
+/*文字*/
+p.size17 {
+  font-size: 17px;
+}
+p.size20 {
+  font-size: 20px;
 }
 /*--------------------size.less(end)----------------------*/
 /*----------------layout.less(start)--------------*/
@@ -5990,6 +6114,31 @@ button.text-left {
 }
 .inline-block {
   display: inline-block;
+}
+/*圆角角度*/
+.noradius {
+  border-radius: 0 !important;
+}
+.radius4 {
+  border-radius: 4px;
+}
+.radius6 {
+  border-radius: 6px;
+}
+.radius8 {
+  border-radius: 8px;
+}
+.radius16 {
+  border-radius: 16px;
+}
+.radius20 {
+  border-radius: 20px;
+}
+.radius40 {
+  border-radius: 40px;
+}
+.radiusround {
+  border-radius: 100%;
 }
 /*----------------layout.less(end)--------------*/
 /*控件*/
@@ -6574,6 +6723,86 @@ select,
 .clock .minute {
   background-color: #4587f7;
 }
+.clock.color-1 {
+  border-color: #53c6fd;
+}
+.clock.color-1 .origin,
+.clock.color-1 .hour,
+.clock.color-1 .minute {
+  background-color: #53c6fd;
+}
+.clock.color-2 {
+  border-color: #ffae02;
+}
+.clock.color-2 .origin,
+.clock.color-2 .hour,
+.clock.color-2 .minute {
+  background-color: #ffae02;
+}
+.clock.color-3 {
+  border-color: #3ae3ea;
+}
+.clock.color-3 .origin,
+.clock.color-3 .hour,
+.clock.color-3 .minute {
+  background-color: #3ae3ea;
+}
+.clock.color-4 {
+  border-color: #ff6f36;
+}
+.clock.color-4 .origin,
+.clock.color-4 .hour,
+.clock.color-4 .minute {
+  background-color: #ff6f36;
+}
+.clock.color-5 {
+  border-color: #cf7af3;
+}
+.clock.color-5 .origin,
+.clock.color-5 .hour,
+.clock.color-5 .minute {
+  background-color: #cf7af3;
+}
+.clock.color-6 {
+  border-color: #4cd32e;
+}
+.clock.color-6 .origin,
+.clock.color-6 .hour,
+.clock.color-6 .minute {
+  background-color: #4cd32e;
+}
+.clock.color-7 {
+  border-color: #4587f7;
+}
+.clock.color-7 .origin,
+.clock.color-7 .hour,
+.clock.color-7 .minute {
+  background-color: #4587f7;
+}
+.clock.color-8 {
+  border-color: #00c2eb;
+}
+.clock.color-8 .origin,
+.clock.color-8 .hour,
+.clock.color-8 .minute {
+  background-color: #00c2eb;
+}
+.clock.color-9 {
+  border-color: #ff618f;
+}
+.clock.color-9 .origin,
+.clock.color-9 .hour,
+.clock.color-9 .minute {
+  background-color: #ff618f;
+}
+.clock.color-10 {
+  border-color: #21d9a1;
+}
+.clock.color-10 .origin,
+.clock.color-10 .hour,
+.clock.color-10 .minute {
+  background-color: #21d9a1;
+}
 /*----------------clock.less(end)--------------*/
 /*----------------row.less(start)--------------*/
 .row,
@@ -6753,20 +6982,27 @@ input[type="radio"][disabled]:checked,
 .grid li > label {
   color: #666666;
 }
-/*应用图标控件-border*/
-.grid.app.border li > a {
-  border-color: #aaaaaa;
-  color: #666666;
-}
-/*裸图标控件-border*/
-.grid.icon.border,
-.grid.icon.border li {
+/*边框*/
+.grid.border {
   border-color: #e8e8e8;
 }
 /*----------------grid.less(end)----------------*/
+/*----------------photo.less(start)----------------*/
+.photo {
+  color: #cccccc;
+  background-color: #dddddd;
+}
+.photo.border {
+  color: #666666;
+  background-color: white;
+}
+/*----------------photo.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
-.list li {
+.list {
   border-color: #e8e8e8;
+}
+.list li {
+  border-color: inherit;
   background-color: #ffffff;
 }
 .list li:active {
@@ -6973,6 +7209,18 @@ table {
 }
 .bg-default {
   background-color: #f4f4f4;
+}
+.bg-1,
+.bg-2,
+.bg-3,
+.bg-4,
+.bg-5,
+.bg-6,
+.bg-7,
+.bg-8,
+.bg-9,
+.bg-10 {
+  color: white;
 }
 .bg-1 {
   background-color: #53c6fd;

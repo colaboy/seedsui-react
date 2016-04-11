@@ -77,7 +77,7 @@ window.Tree=function(container,params){
                 s.elLI=target.parentNode.parentNode;
                 //子节点及自身添加active状态
                 $(s.elLI).find(".treetitle").addClass('active');
-                $(s.elLI).find(".icon-rdoadd").fadeOut();
+                $(s.elLI).find(".icon-rdoadd").css("display","none");
 
                 //添加到selected-box中
                 var treeID=s.elLI.getAttribute("id");
