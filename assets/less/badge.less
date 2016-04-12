@@ -72,4 +72,48 @@
 	align-items:center;
 	-webkit-align-items:center;
 }
+.sticker{
+	position:absolute;
+	width:0px;
+	height:0px;
+	border-width:0;
+	border-style:solid;
+}
+.sticker span{
+	position:absolute;
+	font-size:12px;
+	padding:0 2px;
+}
+.sticker.top,.sticker.top span{
+	top:0;
+}
+.sticker.top{
+	border-top-width:32px;
+}
+.sticker.top span{
+	margin-top:-30px;
+}
+.sticker.left,.sticker.left span{
+	left:0;
+}
+.sticker.left{
+	border-right-width:56px;
+	border-right-color:transparent;
+}
+.sticker.right,.sticker.right span{
+	right:0;
+}
+.sticker.right{
+	border-left-width:56px;
+	border-left-color:transparent;
+}
+.sticker.bottom,.sticker.bottom span{
+	bottom:0;
+}
+.sticker.bottom{
+	border-bottom-width:32px;
+}
+.sticker.bottom span{
+	margin-bottom:-30px;
+}
 /*--------------------badge.less(start)----------------------*/
