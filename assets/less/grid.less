@@ -5,9 +5,6 @@
 	clear: both;
 	zoom:1;
 }
-.grid i{
-	font-size:32px;
-}
 .grid li{
 	width: 33%;
 	float:left;
@@ -16,9 +13,11 @@
 	box-sizing:border-box;
 }
 .grid li>a{
-	position:relative;
+	position: relative;
 	box-sizing:border-box;
 	margin:0px auto;
+	background-size:cover;
+	background-position:center;
 }
 .grid li>label{
 	display:block;
@@ -124,8 +123,8 @@
 }
 
 /*Metro风格*/
-.grid.metro .tip{
-	top:auto;
+.grid.metro .metro-tip{
+	position:absolute;
 	right:10px;
 	bottom:4px;
 	height: 32px;
@@ -135,7 +134,7 @@
 	text-align: right;
 	background-color:transparent;
 }
-.grid.metro .tip+label{
+.grid.metro .metro-tip+label{
 	padding-right:32px;
 }
 .grid.metro li>a{
@@ -150,18 +149,14 @@
 	text-align: left;
 	margin-top:10px;
 }
-.grid.metro i,.grid.metro img{
-	font-size:50px;
-	width:50px;
-	height:50px;
+.grid.metro .icon{
+	font-size:40px;
+	width:40px;
+	height:40px;
 }
 /*相册展现*/
 .grid.album li>a{
 	width:100%;
 	min-height:110px;
 }
-/* 
-.grid.album .default i{
-	font-size: 48px;
-} */
 /*----------------grid.less(end)----------------*/

@@ -1,5 +1,5 @@
 /*----------------photo.less(start)----------------*/
-.photo{
+.photo,.default{
 	position: relative;
 	box-sizing:border-box;
 
@@ -16,17 +16,14 @@
 	align-items:center;
 	-webkit-align-items:center;
 	
-	width:50px;
-	height:50px;
-	background-size: cover;
+	background-size:cover;
 	background-position: center center;
 	background-repeat: no-repeat;
-	border-radius:100%;
 }
-.photo>i,.photo>img{
-	font-size:30px;
-	width:30px;
-	height:30px;
+.photo{
+	width:50px;
+	height:50px;
+	border-radius:100%;
 }
 /*边框*/
 .photo.border{

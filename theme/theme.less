@@ -213,8 +213,7 @@ button.outline,input[type="button"].outline,.button.outline{
 	border-color:@color-button;
 	background-color:transparent;
 }
-button:active,input[type="button"]:active,input[type="submit"]:active,.button:active,
-button.active,input[type="button"].active,input[type="submit"].active,.button.active{
+button:active,input[type="button"]:active,.button:active{
 	color: @color-button-font-active;
 	background-color:@color-button-active;
 }
@@ -229,19 +228,16 @@ button.outline.desaturate,input[type="button"].outline.desaturate,.button.outlin
 	color:@color-body-font;
 	border-color:@color-border;
 }
-
 /*按钮-禁用按钮*/
 button.disable,input[type="button"].disable,.button.disable,button[disable],input[type="button"][disable]{
+	color:@color-button-font;
 	background-color:@color-disable;
-	opacity: 1;
 }
-
 button.disable.outline,input[type="button"].disable.outline,button[disable].outline,input[type="button"][disable].outline,.button.disable.outline{
 	color:@color-disable;
 	border-color:@color-disable;
 	background-color:transparent;
 }
-
 /*按钮-取消按钮*/
 button.cancel,input[type="button"].cancel,.button.cancel{
 	background-color:@color-cancel;
@@ -251,7 +247,6 @@ button.cancel.outline,input[type="button"].cancel.outline,.button.cancel.outline
 	border-color:@color-cancel;
 	background-color:transparent;
 }
-
 button.cancel:active,input[type="button"].cancel:active,.button.cancel:active{
 	background-color:@color-cancel-active;
 }
@@ -335,25 +330,6 @@ button.success.outline:active,input[type="button"].success.outline:active,.butto
 	color:@color-success-active;
 	border-color:@color-success-active;
 	background-color:transparent;
-}
-
-/*按钮-链接*/
-button.link,input[type="button"].link,.button.link{
-	color:@color-button;
-	background-color:transparent;
-}
-button.link.outline,input[type="button"].link.outline,.button.link.outline{
-	border-color:@color-button;
-	color:@color-button;
-}
-
-button.link:active,input[type="button"].link:active,.button.link:active{
-	color:@color-button-active;
-	background-color:transparent;
-}
-button.link.outline:active,input[type="button"].link.outline:active,.button.link.outline:active{
-	border-color:@color-button-active;
-	color:@color-button-active;
 }
 
 /*按钮-气泡*/
@@ -448,10 +424,10 @@ input[list],textarea,select,.input-text{
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box i{
+.input-box .icon{
 	color:@color-placeholder;
 }
-.input-box i:active,.input-box i.active{
+.input-box .icon:active,.input-box .icon.active{
 	color:@color-primary;
 }
 .input-box.active{
@@ -722,7 +698,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
-.photo{
+.photo,.default{
 	color:@color-photo;
 	background-color:@color-photo-bg;
 }
@@ -742,21 +718,11 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .list li:active{
 	background-color:@color-list-bg-active;
 }
-.list .justify .radiusround{
-	color:@color-primary-font;
-	background-color:@color-primary;
-}
-.list .justify .radiusround i{
-	color:@color-primary-font;
-}
 /*标题小标记*/
 .peg{
 	background-color:@color-primary;
 }
-.appicon{
-	background-color:@color-highlight;
-}
-.appicon i,.star{
+.star{
 	color: @color-placeholder;
 }
 .star.active{
@@ -858,9 +824,6 @@ table{
 	border-color:@color-border;
 }
 /*---------------tree.less(end)---------------*/
-.treetitle .treeicon{
-	color:@color-placeholder;
-}
 .treetitle .radiusround{
     background-color:@color-2;
     color:@color-white;
@@ -942,6 +905,28 @@ table{
 .bg-default{
 	background-color:@color-body-bg;
 }
+.bg-disable{
+	background-color:@color-disable;
+}
+.bg-submit{
+	background-color:@color-submit;
+}
+.bg-cancel{
+	background-color:@color-cancel;
+}
+.bg-success{
+	background-color:@color-success;
+}
+.bg-info{
+	background-color:@color-info;
+}
+.bg-warn{
+	background-color:@color-warn;
+}
+.bg-tip{
+	background-color:@color-tip;
+}
+.bg-primary,.bg-default,.bg-disable,.bg-submit,.bg-cancel,.bg-success,.bg-info,.bg-warn,.bg-tip,
 .bg-1,.bg-2,.bg-3,.bg-4,.bg-5,.bg-6,.bg-7,.bg-8,.bg-9,.bg-10{
 	color:white;
 }

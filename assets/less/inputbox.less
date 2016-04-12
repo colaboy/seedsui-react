@@ -32,25 +32,16 @@
 	background-color:transparent;
 }
 /*box内图标*/
-.input-box i{
-	width:24px;
-	height:24px;
-	line-height: 24px;
-	text-align: center;
+.input-box .icon{
 	margin:0 8px;
-	background-repeat:no-repeat;
-	background-size:100% auto;
-	background-position:center top;
-
-	font-size: 24px;
 }
-.input-box i:active{
+.input-box .icon:active{
 	background-position:center bottom;
 }
 /*需要顶天立地的控件*/
-.input-box select+i,.input-box input[type="date"]+i,.input-box input[type="month"]+i,
-.input-box input[type="week"]+i,.input-box input[type="datetime-local"]+i,
-.input-box input[type="datetime"]+i,.input-box input[type="time"]+i{
+.input-box select+.icon,.input-box input[type="date"]+.icon,.input-box input[type="month"]+.icon,
+.input-box input[type="week"]+.icon,.input-box input[type="datetime-local"]+.icon,
+.input-box input[type="datetime"]+.icon,.input-box input[type="time"]+.icon{
 	position:absolute;
 	top:50%;
 	right:0;
@@ -61,10 +52,10 @@
 	pointer-events:none;
 }
 /*图标与框间距*/
-.input-box i+input,.input-box i+.input-text,.input-box i+select,.input-box i+textarea{
+.input-box .icon+.iconnput,.input-box .icon+.input-text,.input-box i+select,.input-box i+textarea{
 	padding-left:0;
 }
-.input-box input+i,.input-box .input-text+i,.input-box select+i,.input-box textarea+i{
+.input-box input+.icon,.input-box .input-text+.icon,.input-box select+.icon,.input-box textarea+.icon{
 	margin:0 8px 0 0;
 }
 
@@ -74,7 +65,7 @@ input[type=search].search,input[type=text].search{
 	padding-bottom:6px;
 }
 /*带清空按钮*/
-div[data-input=clear] input[type] + i{
+div[data-input=clear] input[type]+.icon{
 	font-size:20px;
 }
 /*线型*/

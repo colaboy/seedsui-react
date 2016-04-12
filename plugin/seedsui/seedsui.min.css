@@ -2162,9 +2162,6 @@ aside.active ~ #section_container .section_container_mask {
   -webkit-align-items: center;
   align-items: center;
 }
-.titlebar i {
-  font-size: 24px;
-}
 .titlebar,
 .titlebar a,
 .titlebar h1 {
@@ -2206,18 +2203,6 @@ aside.active ~ #section_container .section_container_mask {
 .titlebar .right {
   right: 0;
 }
-/*logo*/
-.titlebar .logo {
-  height: 44px;
-  line-height: 44px;
-  margin: 0 8px;
-}
-.titlebar .logo img {
-  min-width: 30px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 30px;
-}
 /*searchbar*/
 .titlebar > .searchbar {
   width: 100%;
@@ -2239,22 +2224,6 @@ aside.active ~ #section_container .section_container_mask {
   width: 1%;
   text-align: center;
   box-sizing: border-box;
-}
-.tab i {
-  display: inline-block;
-  position: relative;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  font-size: 24px;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: center top;
-  vertical-align: middle;
-}
-.tab.active i,
-.tab:active i {
-  background-position: center bottom;
 }
 .tab-label {
   display: inline-block;
@@ -2288,8 +2257,8 @@ aside.active ~ #section_container .section_container_mask {
   height: 24px;
   line-height: 24px;
 }
-.arrowbar .tab i,
-.menubar .tab i {
+.arrowbar .tab .icon,
+.menubar .tab .icon {
   margin-top: 5px;
 }
 /*rectbar*/
@@ -2683,23 +2652,6 @@ input[type="button"].block,
 input[type="submit"].block {
   width: 100%;
 }
-/*图标按钮*/
-button i,
-.button i,
-button label,
-.button label {
-  display: inline-block;
-  vertical-align: middle;
-}
-button i,
-.button i {
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  font-size: 20px;
-  line-height: 20px;
-  width: 20px;
-  height: 20px;
-}
 /*圆形按钮*/
 .button.round,
 button.round,
@@ -2924,28 +2876,20 @@ select {
   background-color: transparent;
 }
 /*box内图标*/
-.input-box i {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
+.input-box .icon {
   margin: 0 8px;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center top;
-  font-size: 24px;
 }
-.input-box i:active {
+.input-box .icon:active {
   background-position: center bottom;
 }
 /*需要顶天立地的控件*/
-.input-box select + i,
-.input-box input[type="date"] + i,
-.input-box input[type="month"] + i,
-.input-box input[type="week"] + i,
-.input-box input[type="datetime-local"] + i,
-.input-box input[type="datetime"] + i,
-.input-box input[type="time"] + i {
+.input-box select + .icon,
+.input-box input[type="date"] + .icon,
+.input-box input[type="month"] + .icon,
+.input-box input[type="week"] + .icon,
+.input-box input[type="datetime-local"] + .icon,
+.input-box input[type="datetime"] + .icon,
+.input-box input[type="time"] + .icon {
   position: absolute;
   top: 50%;
   right: 0;
@@ -2956,16 +2900,16 @@ select {
   pointer-events: none;
 }
 /*图标与框间距*/
-.input-box i + input,
-.input-box i + .input-text,
+.input-box .icon + .iconnput,
+.input-box .icon + .input-text,
 .input-box i + select,
 .input-box i + textarea {
   padding-left: 0;
 }
-.input-box input + i,
-.input-box .input-text + i,
-.input-box select + i,
-.input-box textarea + i {
+.input-box input + .icon,
+.input-box .input-text + .icon,
+.input-box select + .icon,
+.input-box textarea + .icon {
   margin: 0 8px 0 0;
 }
 /*搜索框*/
@@ -2975,7 +2919,7 @@ input[type=text].search {
   padding-bottom: 6px;
 }
 /*带清空按钮*/
-div[data-input=clear] input[type] + i {
+div[data-input=clear] input[type] + .icon {
   font-size: 20px;
 }
 /*线型*/
@@ -4137,9 +4081,6 @@ input[type=range]:focus::-ms-fill-upper {
   clear: both;
   zoom: 1;
 }
-.grid i {
-  font-size: 32px;
-}
 .grid li {
   width: 33%;
   float: left;
@@ -4151,6 +4092,8 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
   box-sizing: border-box;
   margin: 0px auto;
+  background-size: cover;
+  background-position: center;
 }
 .grid li > label {
   display: block;
@@ -4255,8 +4198,8 @@ input[type=range]:focus::-ms-fill-upper {
   right: -4px;
 }
 /*Metro风格*/
-.grid.metro .tip {
-  top: auto;
+.grid.metro .metro-tip {
+  position: absolute;
   right: 10px;
   bottom: 4px;
   height: 32px;
@@ -4266,7 +4209,7 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: right;
   background-color: transparent;
 }
-.grid.metro .tip + label {
+.grid.metro .metro-tip + label {
   padding-right: 32px;
 }
 .grid.metro li > a {
@@ -4279,24 +4222,20 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: left;
   margin-top: 10px;
 }
-.grid.metro i,
-.grid.metro img {
-  font-size: 50px;
-  width: 50px;
-  height: 50px;
+.grid.metro .icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
 }
 /*相册展现*/
 .grid.album li > a {
   width: 100%;
   min-height: 110px;
 }
-/* 
-.grid.album .default i{
-	font-size: 48px;
-} */
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
-.photo {
+.photo,
+.default {
   position: relative;
   box-sizing: border-box;
   display: box;
@@ -4311,18 +4250,14 @@ input[type=range]:focus::-ms-fill-upper {
   -webkit-justify-content: center;
   align-items: center;
   -webkit-align-items: center;
-  width: 50px;
-  height: 50px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  border-radius: 100%;
 }
-.photo > i,
-.photo > img {
-  font-size: 30px;
-  width: 30px;
-  height: 30px;
+.photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
 }
 /*边框*/
 .photo.border {
@@ -5475,11 +5410,8 @@ ul.weather-otherday li {
 }
 .badge,
 .tip,
-.close,
-.badge i,
-.tip i,
-.close i {
-  font-size: 8px;
+.close {
+  font-size: 12px;
 }
 .tip,
 .close {
@@ -5539,94 +5471,188 @@ ul.weather-otherday li {
   -webkit-align-items: center;
 }
 /*--------------------badge.less(start)----------------------*/
-/*--------------------size.less(start)----------------------*/
-.badge.size32 {
-  width: 24px;
-}
-/*九宫格*/
-.grid.size50 li > a {
-  width: 50px;
-  height: 50px;
-}
-.grid.size56 li > a {
-  width: 56px;
-  height: 56px;
-}
-/*图标*/
-i.size12,
-i.size16,
-i.size24,
-i.size32,
-i.size40,
-i.size56 {
-  background-size: 100% auto;
-  background-position: center top;
-}
-i.size12 {
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
-  line-height: 12px;
-}
-i.size16 {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-}
-i.size24 {
+/*---------------size.less(start)---------------*/
+/*控件默认图标尺寸*/
+.icon {
   font-size: 24px;
   width: 24px;
   height: 24px;
-  line-height: 24px;
 }
-i.size32 {
+.grid .icon {
   font-size: 32px;
   width: 32px;
   height: 32px;
-  line-height: 32px;
 }
-i.size40 {
+.photo .icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+button .icon,
+input[type="button"],
+.button .icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+.badge .icon,
+.tip .icon,
+.close .icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+/*图标*/
+i,
+.icon {
+  position: relative;
+  background-size: auto 200%;
+  background-position: center top;
+}
+.active .icon,
+.icon.active {
+  background-position: center bottom;
+}
+i.size8,
+.icon.size8 {
+  font-size: 8px;
+  width: 8px;
+  height: 8px;
+}
+.size12 .icon,
+i.size12,
+.icon.size12 {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+.size16 .icon,
+i.size16,
+.icon.size16 {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+.size24 .icon,
+i.size24,
+.icon.size24 {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.size28 .icon,
+i.size28,
+.icon.size28 {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+.size30 .icon,
+i.size30,
+.icon.size30 {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+.size32 .icon,
+i.size32,
+.icon.size32 {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+.size40 .icon,
+i.size40,
+.icon.size40 {
   font-size: 40px;
   width: 40px;
   height: 40px;
-  line-height: 40px;
 }
-i.size56 {
-  font-size: 56px;
-  width: 56px;
-  height: 56px;
-  line-height: 56px;
+.size54 .icon,
+i.size54,
+.icon.size54 {
+  font-size: 54px;
+  width: 54px;
+  height: 54px;
+}
+/*头像*/
+.size32 .photo,
+.photo.size32 {
+  width: 32px;
+  height: 32px;
+}
+.size32 .photo .icon,
+.photo.size32 .icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.size40 .photo,
+.photo.size40 {
+  width: 40px;
+  height: 40px;
+}
+.size40 .photo .icon,
+.photo.size40 .icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.size50 .photo,
+.photo.size50 {
+  width: 50px;
+  height: 50px;
+}
+.size50 .photo .icon,
+.photo.size50 .icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+.size54 .photo,
+.photo.size54 {
+  width: 54px;
+  height: 54px;
+}
+.size54 .photo .icon,
+.photo.size54 .icon {
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+}
+/*小汽泡*/
+.badge.size32 {
+  width: 24px;
 }
 /*圆形*/
 .radiusround.size40 {
   width: 40px;
   height: 40px;
 }
-.photo.size40 {
-  width: 40px;
-  height: 40px;
+/*高度*/
+.height30 {
+  height: 30px;
 }
-.photo.size60 {
-  width: 60px;
-  height: 60px;
+.button.height30 {
+  line-height: 28px;
 }
-/*按钮*/
-button.size32,
-input[type="button"].size32,
-input[type="submit"].size32,
-.button.size32 {
+.height32 {
   height: 32px;
 }
-.button.size32 {
+.button.height32 {
   line-height: 30px;
 }
-/*进度条*/
-.progress-bar.size50 {
+.height50 {
   height: 50px;
 }
-.progress-bar.size56 {
-  height: 56px;
+.button.height50 {
+  line-height: 48px;
+}
+.height54 {
+  height: 54px;
+}
+.button.height54 {
+  line-height: 52px;
 }
 /*文字*/
 p.size17 {
@@ -5635,7 +5661,43 @@ p.size17 {
 p.size20 {
   font-size: 20px;
 }
-/*--------------------size.less(end)----------------------*/
+/*---------------size.less(end)---------------*/
+/*---------------size.less(start)---------------*/
+.noradius {
+  border-radius: 0 !important;
+}
+.radius4,
+.grid.radius4 > li > a {
+  border-radius: 4px;
+}
+.radius6,
+.grid.radius6 > li > a {
+  border-radius: 6px;
+}
+.radius8,
+.grid.radius8 > li > a {
+  border-radius: 8px;
+}
+.radius16,
+.grid.radius16 > li > a {
+  border-radius: 16px;
+}
+.radius20,
+.grid.radius20 > li > a {
+  border-radius: 20px;
+}
+.radius40,
+.grid.radius40 > li > a {
+  border-radius: 40px;
+}
+.radiusround,
+.grid.radiusround > li > a {
+  border-radius: 100%;
+}
+.grid {
+  border-radius: 0;
+}
+/*---------------size.less(end)---------------*/
 /*----------------layout.less(start)--------------*/
 /*原始布局方式*/
 .text-ltr {
@@ -6115,31 +6177,6 @@ button.text-left {
 .inline-block {
   display: inline-block;
 }
-/*圆角角度*/
-.noradius {
-  border-radius: 0 !important;
-}
-.radius4 {
-  border-radius: 4px;
-}
-.radius6 {
-  border-radius: 6px;
-}
-.radius8 {
-  border-radius: 8px;
-}
-.radius16 {
-  border-radius: 16px;
-}
-.radius20 {
-  border-radius: 20px;
-}
-.radius40 {
-  border-radius: 40px;
-}
-.radiusround {
-  border-radius: 100%;
-}
 /*----------------layout.less(end)--------------*/
 /*控件*/
 /*常用颜色*/
@@ -6373,12 +6410,7 @@ input[type="button"].outline,
 }
 button:active,
 input[type="button"]:active,
-input[type="submit"]:active,
-.button:active,
-button.active,
-input[type="button"].active,
-input[type="submit"].active,
-.button.active {
+.button:active {
   color: rgba(255, 255, 255, 0.5);
   background-color: rgba(69, 135, 247, 0.5);
 }
@@ -6405,8 +6437,8 @@ input[type="button"].disable,
 .button.disable,
 button[disable],
 input[type="button"][disable] {
+  color: #ffffff;
   background-color: #d9d9d9;
-  opacity: 1;
 }
 button.disable.outline,
 input[type="button"].disable.outline,
@@ -6542,31 +6574,6 @@ input[type="button"].success.outline:active,
   border-color: rgba(77, 219, 99, 0.5);
   background-color: transparent;
 }
-/*按钮-链接*/
-button.link,
-input[type="button"].link,
-.button.link {
-  color: #4587f7;
-  background-color: transparent;
-}
-button.link.outline,
-input[type="button"].link.outline,
-.button.link.outline {
-  border-color: #4587f7;
-  color: #4587f7;
-}
-button.link:active,
-input[type="button"].link:active,
-.button.link:active {
-  color: rgba(69, 135, 247, 0.5);
-  background-color: transparent;
-}
-button.link.outline:active,
-input[type="button"].link.outline:active,
-.button.link.outline:active {
-  border-color: rgba(69, 135, 247, 0.5);
-  color: rgba(69, 135, 247, 0.5);
-}
 /*按钮-气泡*/
 button:not(.outline) .tip,
 input[type="button"]:not(.outline) .tip,
@@ -6685,11 +6692,11 @@ select,
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box i {
+.input-box .icon {
   color: #aaaaaa;
 }
-.input-box i:active,
-.input-box i.active {
+.input-box .icon:active,
+.input-box .icon.active {
   color: #4587f7;
 }
 .input-box.active {
@@ -6988,7 +6995,8 @@ input[type="radio"][disabled]:checked,
 }
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
-.photo {
+.photo,
+.default {
   color: #cccccc;
   background-color: #dddddd;
 }
@@ -7008,21 +7016,10 @@ input[type="radio"][disabled]:checked,
 .list li:active {
   background-color: #f4f4f4;
 }
-.list .justify .radiusround {
-  color: #ffffff;
-  background-color: #4587f7;
-}
-.list .justify .radiusround i {
-  color: #ffffff;
-}
 /*标题小标记*/
 .peg {
   background-color: #4587f7;
 }
-.appicon {
-  background-color: #f4f4f4;
-}
-.appicon i,
 .star {
   color: #aaaaaa;
 }
@@ -7127,9 +7124,6 @@ table {
   border-color: #e8e8e8;
 }
 /*---------------tree.less(end)---------------*/
-.treetitle .treeicon {
-  color: #aaaaaa;
-}
 .treetitle .radiusround {
   background-color: #ffae02;
   color: #ffffff;
@@ -7210,6 +7204,36 @@ table {
 .bg-default {
   background-color: #f4f4f4;
 }
+.bg-disable {
+  background-color: #d9d9d9;
+}
+.bg-submit {
+  background-color: #88d038;
+}
+.bg-cancel {
+  background-color: #f86868;
+}
+.bg-success {
+  background-color: #4ddb63;
+}
+.bg-info {
+  background-color: #5bc0de;
+}
+.bg-warn {
+  background-color: #f4984e;
+}
+.bg-tip {
+  background-color: #fc4349;
+}
+.bg-primary,
+.bg-default,
+.bg-disable,
+.bg-submit,
+.bg-cancel,
+.bg-success,
+.bg-info,
+.bg-warn,
+.bg-tip,
 .bg-1,
 .bg-2,
 .bg-3,

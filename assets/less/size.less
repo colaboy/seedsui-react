@@ -1,83 +1,154 @@
-/*--------------------size.less(start)----------------------*/
-.badge.size32{
+/*---------------size.less(start)---------------*/
+/*控件默认图标尺寸*/
+.icon{
+	font-size:24px;
 	width:24px;
+	height:24px;
 }
-/*九宫格*/
-.grid.size50 li>a{
+.grid .icon{
+	font-size:32px;
+	width:32px;
+	height:32px;
+}
+.photo .icon{
+	font-size:28px;
+	width:28px;
+	height:28px;
+}
+button .icon,input[type="button"],.button .icon{
+	font-size:20px;
+	width:20px;
+	height:20px;
+}
+.badge .icon,.tip .icon,.close .icon{
+	font-size:12px;
+	width:12px;
+	height:12px;
+}
+/*图标*/
+i,.icon{
+	position:relative;
+	background-size:auto 200%;
+	background-position:center top;
+}
+.active .icon,.icon.active{
+	background-position:center bottom;
+}
+i.size8,.icon.size8{
+	font-size:8px;
+	width:8px;
+    height:8px;
+}
+.size12 .icon,i.size12,.icon.size12{
+	font-size:12px;
+	width:12px;
+    height:12px;
+}
+.size16 .icon,i.size16,.icon.size16{
+	font-size:16px;
+	width:16px;
+    height:16px;
+}
+.size24 .icon,i.size24,.icon.size24{
+	font-size:24px;
+	width:24px;
+    height:24px;
+}
+.size28 .icon,i.size28,.icon.size28{
+	font-size:28px;
+	width:28px;
+    height:28px;
+}
+.size30 .icon,i.size30,.icon.size30{
+	font-size:30px;
+	width:30px;
+    height:30px;
+}
+.size32 .icon,i.size32,.icon.size32{
+	font-size:32px;
+	width:32px;
+    height:32px;
+}
+.size40 .icon,i.size40,.icon.size40{
+	font-size:40px;
+	width:40px;
+    height:40px;
+}
+.size54 .icon,i.size54,.icon.size54{
+	font-size:54px;
+	width:54px;
+    height:54px;
+}
+/*头像*/
+.size32 .photo,.photo.size32{
+	width:32px;
+	height:32px;
+}
+.size32 .photo .icon,.photo.size32 .icon{
+	font-size:18px;
+	width:18px;
+	height:18px;
+}
+.size40 .photo,.photo.size40{
+	width:40px;
+	height:40px;
+}
+.size40 .photo .icon,.photo.size40 .icon{
+	font-size:24px;
+	width:24px;
+	height:24px;
+}
+.size50 .photo,.photo.size50{
 	width:50px;
 	height:50px;
 }
-.grid.size56 li>a{
-	width:56px;
-	height:56px;
+.size50 .photo .icon,.photo.size50 .icon{
+	font-size:28px;
+	width:28px;
+	height:28px;
 }
-/*图标*/
-i.size12,i.size16,i.size24,i.size32,i.size40,i.size56{
-	background-size:100% auto;
-	background-position:center top;
+.size54 .photo,.photo.size54{
+	width:54px;
+	height:54px;
 }
-i.size12{
-	font-size:12px;
-    width:12px;
-    height:12px;
-    line-height:12px;
+.size54 .photo .icon,.photo.size54 .icon{
+	font-size:30px;
+	width:30px;
+	height:30px;
 }
-i.size16{
-	font-size:16px;
-    width:16px;
-    height:16px;
-    line-height:16px;
-}
-i.size24{
-	font-size:24px;
-    width:24px;
-    height:24px;
-    line-height:24px;
-}
-i.size32{
-	font-size:32px;
-    width:32px;
-    height:32px;
-    line-height:32px;
-}
-i.size40{
-	font-size:40px;
-    width:40px;
-    height:40px;
-    line-height:40px;
-}
-i.size56{
-	font-size:56px;
-    width:56px;
-    height:56px;
-    line-height:56px;
+/*小汽泡*/
+.badge.size32{
+	width:24px;
 }
 /*圆形*/
 .radiusround.size40{
 	width:40px;
 	height:40px;
 }
-.photo.size40{
-	width:40px;
-	height:40px;
+/*高度*/
+.height30{
+	height: 30px;
 }
-.photo.size60{
-	width:60px;
-	height:60px;
+.button.height30{
+	line-height:28px;
 }
-/*按钮*/
-button.size32,input[type="button"].size32,input[type="submit"].size32,.button.size32{
+.height32{
 	height: 32px;
 }
-.button.size32{
+.button.height32{
 	line-height:30px;
 }
-/*进度条*/
-.progress-bar.size50{
+.height50{
 	height:50px;
 }
-.progress-bar.size56{
-	height:56px;
+.button.height50{
+	line-height:48px;
+}
+.height54{
+	height:54px;
+}
+.button.height54{
+	line-height:52px;
 }
 /*文字*/
 p.size17{
@@ -86,4 +157,4 @@ p.size17{
 p.size20{
 	font-size:20px;
 }
-/*--------------------size.less(end)----------------------*/
+/*---------------size.less(end)---------------*/

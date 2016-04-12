@@ -12,7 +12,7 @@
 		<header>
 			<div class="titlebar">
                 <a class="left" href="javascript:back()">
-                    <i class="icon-arrowleft"></i>
+                    <i class="icon icon-arrowleft"></i>
                     <span>返回</span>
                 </a>
                 <h1 class="text-center">投票结果</h1>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="box" style="background-color:#ebe8e3">
                     <div class="box-flex-1 padding12 text-center">
-                        <img src="../img/poll/icon-crown.png" class="crown">
+                        <img src="../img/poll/icon icon-crown.png" class="crown">
                         <strong class="title">爬紫金山</strong>
                         <div class="progress-bar radius8">
                             <span class="progress" style="width: 55%"></span>
@@ -40,12 +40,12 @@
                 <div class="title border padding12">
                     <span>投票详情</span>
                     <a class="float-right" onclick="toggleCharts(this)">
-                        <i class="icon-chartpie-fill"></i>
+                        <i class="icon icon-chartpie-fill"></i>
                     </a>
                 </div>
                 <!--柱状图-->
                 <div id="barcharts" style="display: block;">
-                    <div class="progress-bar bg-white size56">
+                    <div class="progress-bar bg-white height54">
                         <span class="progress bg-1" style="width: 55%"></span>
                         <span class="text color-placeholder right">
                             <span class="timer" data-duration="1000" data-to="5">5</span>
@@ -54,7 +54,7 @@
                         <span class="text left color-default">爬紫金山</span>
                     </div>
                     <hr/>
-                    <div class="progress-bar bg-white size56">
+                    <div class="progress-bar bg-white height54">
                         <span class="progress bg-2" style="width:17%"></span>
                         <span class="text right color-placeholder">
                             <span class="timer" data-duration="1000" data-to="2">2</span>
@@ -63,7 +63,7 @@
                         <span class="text left color-default">去唱歌</span>
                     </div>
                     <hr/>
-                    <div class="progress-bar bg-white size56">
+                    <div class="progress-bar bg-white height54">
                         <span class="progress bg-3" style="width:17%"></span>
                         <span class="text right color-placeholder">
                             <span class="timer" data-duration="1000" data-to="2">2</span>
@@ -72,7 +72,7 @@
                         <span class="text left color-default">去夫子庙</span>
                     </div>
                     <hr/>
-                    <div class="progress-bar bg-white size56">
+                    <div class="progress-bar bg-white height54">
                         <span class="progress bg-4" style="width:30%"></span>
                         <span class="text right color-placeholder">
                             <span class="timer" data-duration="1000" data-to="3">3</span>
@@ -240,13 +240,13 @@
         ];
         function toggleCharts(thisobj){
             //切换到饼图
-            if($("i",thisobj).hasClass("icon-chartpie-fill")){
-                $("i",thisobj)[0].className="icon-chartbar-fill";
+            if($("i",thisobj).hasClass("icon icon-chartpie-fill")){
+                $("i",thisobj)[0].className="icon icon-chartbar-fill";
                 $("#piecharts").css("display","block");
                 $("#barcharts").css("display","none");
                 initCharts();
             }else{
-                $("i",thisobj)[0].className="icon-chartpie-fill";
+                $("i",thisobj)[0].className="icon icon-chartpie-fill";
                 $("#piecharts").css("display","none");
                 $("#barcharts").css("display","block");
             }
