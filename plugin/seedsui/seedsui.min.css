@@ -2235,6 +2235,10 @@ aside.active ~ #section_container .section_container_mask {
   white-space: nowrap;
   pointer-events: none;
 }
+.tab:active .icon,
+.tab.active .icon {
+  background-position: center bottom;
+}
 /*rectbar | slidebar | tabbar*/
 .rectbar .tab,
 .slidebar .tab,
@@ -2288,7 +2292,7 @@ aside.active ~ #section_container .section_container_mask {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  border-width: 0px 0px 3px 0;
+  border-width: 0px 0px 2px 0;
 }
 /*arrowbar*/
 .arrowbar .tab-label:only-child {
@@ -5558,7 +5562,6 @@ i,
   background-size: auto 200%;
   background-position: center top;
 }
-.active .icon,
 .icon.active {
   background-position: center bottom;
 }
@@ -6348,9 +6351,8 @@ aside {
 .tabbar {
   border-color: #e8e8e8;
 }
-.rectbar .tab:active,
-.rectbar .tab.active,
-.tabbar .tab.active {
+.tab:active,
+.tab.active {
   color: #4587f7;
 }
 .rectbar,
@@ -6360,16 +6362,11 @@ aside {
 }
 .slidebar .tab:active,
 .slidebar .tab.active {
-  color: #4587f7;
   border-color: #4587f7;
 }
 .menubar {
   color: #888888;
   background-color: #f8f8f8;
-}
-.menubar .tab:active,
-.menubar .tab.active {
-  color: #4587f7;
 }
 .menubar.reverse .tab {
   border-color: #4587f7;
@@ -6745,18 +6742,13 @@ select,
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box .icon {
+.input-box {
   color: #aaaaaa;
+  border-color: #e8e8e8;
 }
 .input-box .icon:active,
 .input-box .icon.active {
   color: #4587f7;
-}
-.input-box.active {
-  border-color: #4587f7;
-}
-.input-box {
-  border-color: #e8e8e8;
 }
 .input-box.required {
   border-color: #e7eabd;
@@ -6764,6 +6756,15 @@ select,
 }
 .input-box.required input {
   background-color: transparent;
+}
+.input-box.reverse {
+  color: #ffffff;
+  border-color: #4587f7;
+  background-color: #4587f7;
+}
+.input-box.reverse input,
+.input-box.reverse input::-webkit-input-placeholder {
+  color: #ffffff;
 }
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/

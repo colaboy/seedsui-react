@@ -110,23 +110,19 @@ aside {
 .rectbar,.slidebar,.arrowbar,.menubar,.tabbar{
 	border-color:@color-menubar-border;
 }
-.rectbar .tab:active,.rectbar .tab.active,.tabbar .tab.active{
+.tab:active,.tab.active{
 	color:@color-menubar-font-active;
 }
 .rectbar,.slidebar,.tabbar{
 	color:@color-label;
 }
 .slidebar .tab:active,.slidebar .tab.active{
-	color:@color-menubar-font-active;
 	border-color:@color-menubar-font-active;
 }
 
 .menubar{
 	color:@color-menubar-font;
 	background-color:@color-menubar;
-}
-.menubar .tab:active,.menubar .tab.active{
-	color:@color-menubar-font-active;
 }
 .menubar.reverse .tab{
 	border-color:@color-menubar-reverse;
@@ -428,17 +424,12 @@ input[list],textarea,select,.input-text{
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box .icon{
+.input-box{
 	color:@color-placeholder;
+	border-color:@color-border;
 }
 .input-box .icon:active,.input-box .icon.active{
 	color:@color-primary;
-}
-.input-box.active{
-	border-color:@color-primary;
-}
-.input-box{
-	border-color:@color-border;
 }
 .input-box.required{
 	border-color:@color-required-border;
@@ -446,6 +437,14 @@ input[list],textarea,select,.input-text{
 }
 .input-box.required input{
 	background-color:transparent;
+}
+.input-box.reverse{
+	color:@color-primary-font;
+	border-color:@color-primary;
+	background-color:@color-primary;
+}
+.input-box.reverse input,.input-box.reverse input::-webkit-input-placeholder{
+	color:@color-primary-font;
 }
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
