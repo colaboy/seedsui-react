@@ -102,13 +102,13 @@ window.Tree=function(container,params){
             }
             if(!s.elLI)return;
             //CallBack onTap
-            if(s.params.onTap)s.params.onTap(s);
+            if(s.params.onTap)s.params.onTap(e,s);
             //展开与收缩
             s.elIcon=s.elLI.querySelector(".treeicon");
             s.elChildUL=s.elLI.querySelector("ul");
             //没有子节点
             if(!s.elChildUL){
-                if(s.params.onTapLastChild)s.params.onTapLastChild(s);
+                if(s.params.onTapLastChild)s.params.onTapLastChild(e,s);
                 return;
             }
             //展开与收缩树
