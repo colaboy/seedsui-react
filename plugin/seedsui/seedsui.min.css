@@ -1746,9 +1746,6 @@ ul.dotted li,
 ul li.dotted {
   border-style: dotted;
 }
-.list .icon {
-  font-size: 16px;
-}
 .list button {
   width: 60px;
   height: 32px;
@@ -1786,10 +1783,6 @@ ul li.dotted {
 .justify-content small {
   display: block;
   line-height: 1.5em;
-}
-.list i {
-  display: inline-block;
-  vertical-align: middle;
 }
 /*标题小标记*/
 .peg {
@@ -1967,9 +1960,6 @@ ul li.dotted {
   border-style: solid;
   border-width: 0;
 }
-.card-handler > a i {
-  font-size: 24px;
-}
 .card-handler.border > a:not(:last-child) {
   border-width: 0 1px 0 0;
 }
@@ -1993,9 +1983,6 @@ ul li.dotted {
 .card-info > label:not(:first-child):not(:last-child),
 .card-info > a:not(:first-child):not(:last-child) {
   margin-left: 18px;
-}
-.card-info i {
-  font-size: 20px;
 }
 .card-info .right {
   float: right;
@@ -2910,6 +2897,8 @@ input[type=text].search {
 /*带清空按钮*/
 div[data-input=clear] input[type] + .icon {
   font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 /*线型*/
 .input-box.line {
@@ -4211,11 +4200,6 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: left;
   margin-top: 10px;
 }
-.grid.metro .icon {
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
-}
 /*相册展现*/
 .grid.album li > a {
   width: 100%;
@@ -5021,10 +5005,6 @@ table th {
   margin-right: -4px;
   margin-left: 4px;
 }
-.treetitle .icon {
-  font-size: 24px;
-  color: #aaa;
-}
 .treetitle .top,
 .treetitle .right,
 .treetitle .middle,
@@ -5483,6 +5463,22 @@ ul.weather-otherday li {
   width: 24px;
   height: 24px;
 }
+.list .icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+.card-info .icon,
+.card-handler .icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+.grid.metro .icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
 .grid .icon {
   font-size: 32px;
   width: 32px;
@@ -5536,6 +5532,13 @@ i.size16,
   font-size: 16px;
   width: 16px;
   height: 16px;
+}
+.size20 .icon,
+i.size20,
+.icon.size20 {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 .size24 .icon,
 i.size24,
@@ -7235,6 +7238,10 @@ table {
 .treetitle .radiusround {
   background-color: #ffae02;
   color: #ffffff;
+}
+.treetitle .treeicon,
+.treetitle .right {
+  color: #aaaaaa;
 }
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
