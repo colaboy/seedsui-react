@@ -1845,6 +1845,8 @@ ul li.dotted {
 .timeline {
   margin-left: 24px;
   padding: 0 18px;
+  border-style: solid;
+  border-width: 0 0 0 1px;
 }
 .timeline li {
   position: relative;
@@ -6256,7 +6258,7 @@ button.text-left {
 /*----------------layout.less(end)--------------*/
 /*控件*/
 /*常用颜色*/
-/*-----------------------------global.less(start)-----------------------------*/
+/*----------------global.less(start)--------------*/
 body {
   color: #333333;
 }
@@ -6304,12 +6306,7 @@ hr {
 .nostripe:nth-child(even) {
   background-color: transparent;
 }
-/*-----------------------------global.less(end)-----------------------------*/
-/*----------------i.less(start)--------------*/
-.icon {
-  color: #aaaaaa;
-}
-/*----------------i.less(end)--------------*/
+/*----------------global.less(end)--------------*/
 /*----------------mbox.less(start)--------------*/
 section {
   background-color: #f4f4f4;
@@ -6333,8 +6330,7 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-.titlebar a,
-.titlebar .icon {
+.titlebar a {
   color: #4587f7;
 }
 .titlebar a:active:not(.disable) {
