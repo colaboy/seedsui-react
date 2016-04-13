@@ -50,16 +50,18 @@ window.Tree=function(container,params){
     }
 
     //SelectedEl
-    s.selectedEl=[];
-
-    s.selectedBox=function(){
+    s.selectedNodes=[];
+    /*=========================
+      SelectedContainer Container
+      ===========================*/
+    s.selectedContainerSize=function(){
         if($(s.params.selectedContainer).is(':empty')){
-            s.selectedEl=[];
+            s.selectedNodes=[];
             $(s.params.selectedContainer).slideUp();
         }else{
-            s.selectedEl=[];
+            s.selectedNodes=[];
             $("span",s.selectedContainer).each(function(i,n){
-                s.selectedEl.push($(this).data("id"));
+                s.selectedNodes.push({"id":$(this).data("id"),"name":$(this).data("name")});
             });
             $(s.params.selectedContainer).slideDown();
         }
@@ -67,7 +69,7 @@ window.Tree=function(container,params){
     /*=========================
       Touch Events
       ===========================*/
-    //onTapTree
+    //点击树
     s.onTapTree=function(){
         //点击树
         EventUtil.addHandler(s.container,"tap",function(e){
@@ -82,17 +84,17 @@ window.Tree=function(container,params){
                 //添加到selected-box中
                 var treeID=s.elLI.getAttribute("id");
                 var treeName=s.elLI.getAttribute("data-name");
-                var span='<span class="mark-desaturate" data-id="'+treeID+'">'+treeName+'<a class="icon-clear-fill delete-selection"></a></span>';
+                var span='<span class="mark-grayscale" data-id="'+treeID+'" data-name="'+treeName+'">'+treeName+'<a class="icon-clear-fill delete-selection"></a></span>';
                 $(s.params.selectedContainer).append(span);
-                s.selectedBox();
-            
+                s.selectedContainerSize();
+
                 //删除selected-box上的子节点
                 $(s.elLI).find("li").each(function(i,n){
                     var id=n.id;
                     $("[data-id='"+id+"']").fadeOut(500,function(){
                         $(this).remove();
                         //selected-box是否为空
-                        s.selectedBox();
+                        s.selectedContainerSize();
                     });
                 });
             }else if(target.className.indexOf("treetitle")>=0){//当点击标题时
@@ -123,7 +125,7 @@ window.Tree=function(container,params){
             }
         });
     }
-    //onTapTreeSelected
+    //点击选中节点框
     s.onTapTreeSelected=function(){
         //点击selected-box
         if(!s.selectedContainer)return;
@@ -137,16 +139,10 @@ window.Tree=function(container,params){
                 //删除点击的mark
                 $(markTarget).fadeOut(500,function(e){
                     $(this).remove();
-                    s.selectedBox();
+                    s.selectedContainerSize();
                 })
             }
         },false);
-    }
-    /*================
-      Method
-    =================*/
-    s.getSelectedEl=function(){
-        if(s.selectedEl)return s.selectedEl;
     }
 
     //主函数

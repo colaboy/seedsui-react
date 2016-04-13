@@ -47,6 +47,12 @@ hr{
 }
 /*-----------------------------global.less(end)-----------------------------*/
 
+/*----------------i.less(start)--------------*/
+.icon{
+	color:@color-placeholder;
+}
+/*----------------i.less(end)--------------*/
+
 /*----------------mbox.less(start)--------------*/
 section{
 	background-color:@color-body-bg;
@@ -188,7 +194,7 @@ aside {
 }
 /*----------------tabbar.less(end)--------------*/
 
-/*--------------------badge.less(start)----------------------*/
+/*----------------badge.less(start)--------------*/
 .tip,.badge{
 	color:@color-tip-font;
 	background-color:@color-tip;
@@ -200,7 +206,15 @@ aside {
 .badge.arrow:after{
 	border-bottom-color:@color-tip;
 }
-/*--------------------badge.less(end)----------------------*/
+/*标题小标记*/
+.peg{
+	background-color:@color-primary;
+}
+/*小点点*/
+.dot{
+    background-color:@color-primary;
+}
+/*----------------badge.less(end)--------------*/
 
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
@@ -456,7 +470,6 @@ input[list],textarea,select,.input-text{
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
 .input-box{
-	color:@color-placeholder;
 	border-color:@color-border;
 }
 .input-box .icon:active,.input-box .icon.active{
@@ -756,10 +769,6 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 .list.bg-transparent li,.list li.bg-transparent{
 	background-color:transparent;
-}
-/*标题小标记*/
-.peg{
-	background-color:@color-primary;
 }
 .star{
 	color: @color-placeholder;

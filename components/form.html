@@ -16,6 +16,56 @@
             </div>
         </header>
         <article>
+            <p class="sliver">个性表单</p>
+            <div class="group">
+                <div class="input-box">
+                    <i class="icon icon-search"></i>
+                    <input type="text" placeholder="投票标题">
+                </div>
+                <hr/>
+                <div class="input-box">
+                    <i class="icon"></i>
+                    <textarea placeholder="填写投票描述，250字以内"></textarea>
+                </div>
+                <div class="input-box text-right">
+                    <i class="icon icon-pic"></i><span>0/255</span>
+                </div>
+                <hr/>
+                <div class="input-box lineheight0 padding8">
+                    <p class="box-flex-1">支持多选</p>
+                    <div class="switch reverse notext" data-on="是" data-name="switch2" data-on-value="2"  data-off-value="2off" data-off="否">
+                        <div class="switch-handle"></div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容" />
+                        <i class="icon icon-pic"></i>
+                        <i class="icon icon-rdocancel-fill color-tip"></i>
+                    </div>
+                </div>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容" />
+                        <i class="icon icon-pic"></i>
+                        <i class="icon icon-rdocancel-fill color-tip"></i>
+                    </div>
+                </div>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容" />
+                        <i class="icon icon-pic"></i>
+                        <i class="icon icon-rdocancel-fill color-tip"></i>
+                    </div>
+                </div>
+                <div class="input-box text-center">
+                    <a class="input-text">＋添加投票选项</a>
+                </div>
+            </div>
             <p class="sliver">表单组件</p>
             <div class="input-box radius20">
                 <i class="icon icon-search"></i>
@@ -108,14 +158,14 @@
             <p class="sliver">左右布局</p>
             <form id="formlr">
                 <div class="row">
-                    <label>文本框</label>
-                    <div class="input-box">
+                    <label class="row-left">文本框</label>
+                    <div class="row-right input-box">
                         <input type="text">
                     </div>
                 </div>
                 <div class="row">
-                    <label>radio</label>
-                    <div class="card padding8">
+                    <label class="row-left">radio</label>
+                    <div class="row-right card padding8">
                         <label><input type="radio" checked="true" name="rdo"><span>选中radio</span></label>
                         <br/>
                         <label><input type="radio" name="rdo"><span>普通radio</span></label>
@@ -126,8 +176,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>checkbox</label>
-                    <div class="card padding8">
+                    <label class="row-left">checkbox</label>
+                    <div class="row-right card padding8">
                         <label><input type="checkbox" checked="true"><span>选中checkbox</span></label>
                         <br/>
                         <label><input type="checkbox"><span>普通checkbox</span></label>
@@ -138,8 +188,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>switch</label>
-                    <div class="card padding8">
+                    <label class="row-left">switch</label>
+                    <div class="row-right card padding8">
                         <div class="switch" data-on="是" data-name="switch1" data-on-value="1ok" data-off-value="1off" data-off="否">
                             <div class="switch-handle"></div>
                         </div>
@@ -157,14 +207,14 @@
                 </div>
                 <p class="sliver">兼容性尚未完全普及，还请谨慎使用</p>
                 <div class="row">
-                    <label>进度条</label>
-                    <div class="card padding8">
+                    <label class="row-left">进度条</label>
+                    <div class="row-right card padding8">
                        <progress max="100" value="80">80</progress>
                     </div>
                 </div>
                 <div class="row">
-                    <label>拉动条</label>
-                    <div class="card padding8">
+                    <label class="row-left">拉动条</label>
+                    <div class="row-right card padding8">
                        <input type="range" min="32" max="512" step="32" value="32" id="range"/>
                        <!--
                         可这样写记录range值
@@ -176,8 +226,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label>拾色器</label>
-                    <div class="card padding8">
+                    <label class="row-left">拾色器</label>
+                    <div class="row-right card padding8">
                        <input type="color"/>
                     </div>
                 </div>
@@ -187,21 +237,21 @@
             <form id="formgroup">
                 <div class="group">
                     <div class="row">
-                        <label>用户名</label>
-                        <div class="input-box">
+                        <label class="row-left">用户名</label>
+                        <div class="row-right input-box">
                             <input type="text" placeholder="用户名" name="username"/>
                         </div>
                     </div>
                     <div class="row">
-                        <label>密码</label>
-                        <div class="input-box">
+                        <label class="row-left">密码</label>
+                        <div class="row-right input-box">
                             <input type="text" placeholder="密码" name="password"/>
                             <i class="icon icon-eye"></i>
                         </div>
                     </div>
                     <div class="row">
-                        <label>确认</label>
-                        <div class="input-box">
+                        <label class="row-left">确认</label>
+                        <div class="row-right input-box">
                             <input type="text" placeholder="确认" name="reconfirm"/>
                             <i class="icon icon-eye"></i>
                         </div>
@@ -209,70 +259,70 @@
                 </div>
                 <div class="group">
                     <div class="row">
-                        <label>昵称</label>
-                        <div class="input-box">
+                        <label class="row-left">昵称</label>
+                        <div class="row-right input-box">
                             <input type="text" placeholder="填写昵称" name="nickname"/>
                         </div>
                     </div>
                     <div class="row">
-                        <label>性别</label>
-                        <div class="input-box input-text">
+                        <label class="row-left">性别</label>
+                        <div class="row-right input-box input-text">
                             <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
                             <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
                         </div>
                     </div>
                     <div class="row">
-                        <label>出生日期</label>
-                        <div class="input-box">
+                        <label class="row-left">出生日期</label>
+                        <div class="row-right input-box">
                             <input type="date" name="birthday" placeholder="出生日期"/>
                         </div>
                     </div>
                 </div>
                 <div class="group">
                     <div class="row">
-                        <label>职业</label>
-                        <div class="input-box">
+                        <label class="row-left">职业</label>
+                        <div class="row-right input-box">
                             <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
                             <i class="icon icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
-                        <label>公司</label>
-                        <div class="input-box">
+                        <label class="row-left">公司</label>
+                        <div class="row-right input-box">
                             <input type="text" class="company" placeholder="公司"/>
                         </div>
                     </div>
                     <div class="row">
-                        <label>学校</label>
-                        <div class="input-box">
+                        <label class="row-left">学校</label>
+                        <div class="row-right input-box">
                             <input type="text" class="school" placeholder="填写学校，发现校友"/>
                         </div>
                     </div>
                     <div class="row">
-                        <label>所在地</label>
-                        <div class="input-box">
+                        <label class="row-left">所在地</label>
+                        <div class="row-right input-box">
                             <input type="text" name="live" readonly="" placeholder="选择所在地"/>
                             <i class="icon icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
-                        <label>故乡</label>
-                        <div class="input-box">
+                        <label class="row-left">故乡</label>
+                        <div class="row-right input-box">
                             <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
                             <i class="icon icon-arrowright"></i>
                         </div>
                     </div>
                     <div class="row">
-                        <label>邮箱</label>
-                        <div class="input-box">
+                        <label class="row-left">邮箱</label>
+                        <div class="row-right input-box">
                             <input type="text" name="email" placeholder="填写邮箱"/>
                         </div>
                     </div>
                 </div>
                 <div class="group">
                     <div class="row">
-                        <label>个人说明</label>
-                        <div class="input-box">
+                        <label class="row-left">个人说明</label>
+                        <div class="row-right input-box">
                             <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>
                         </div>
                         

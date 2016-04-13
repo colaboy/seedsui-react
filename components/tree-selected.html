@@ -20,7 +20,7 @@
             </div>
         </header>
         <article>
-            <div class="statusbar horizontal hide" id="selected-box" style="height:46px;"></div>
+            <div class="statusbar horizontal hide" id="selected-box"></div>
             <!-- tree -->
             <div class="tree-box">
                 <ul class="tree" id="tree">
@@ -156,7 +156,8 @@
 	},false);
     //获得选中元素
     function getSelected(){
-        console.log(tr.selectedEl);
+        console.log("你所选择的树节点Id为：");
+        console.log(tr.selectedNodes);
     }
 	//定义exmobi返回
 	function back(){history.go(-1);}
