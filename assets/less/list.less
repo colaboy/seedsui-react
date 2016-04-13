@@ -1,21 +1,24 @@
-/*----------------------------list.less(start)----------------------------*/
-.list li{
+/*---------------list.less(start)---------------*/
+.list li,.timeline li{
 	position:relative;
-	display: flex;
-	display: -webkit-flex;
-	display: box;
-	display: -webkit-box;
-	box-sizing: border-box;
-	border-width: 0 0 1px 0;
-	border-style: solid;
+	display:flex;
+	display:-webkit-flex;
+	display:box;
+	display:-webkit-box;
+	box-sizing:border-box;
+	border-style:solid;
+	border-width:0;
 }
-.list.dotted li{
+.list li,.timeline li{
+	border-color:inherit;
+}
+.list li{
+	border-width:0 0 1px 0;
+}
+ul.dotted li,ul li.dotted{
 	border-style: dotted;
 }
-.list li.dotted{
-	border-style: dotted;
-}
-.list i{
+.list .icon{
 	font-size:16px;
 }
 .list button{
@@ -65,24 +68,6 @@
     width: 6px;
     height: 12px;
 }
-/*无点击*/
-.list.noclick li,.list li.noclick{
-	background-color:white;
-}
-.list.noclick li:active,.list li.noclick:active{
-	background-color:white;
-}
-/*无边框*/
-.list.noborder li,.list li.noborder{
-	border-width:0;
-}
-/*透明*/
-.list.bg-transparent li,.list li.bg-transparent{
-	background-color:transparent;
-}
-.list.noclick.bg-transparent li:active,.list li.noclick.bg-transparent:active{
-	background-color:transparent;
-}
 /*无自适应*/
 .list li.nojustify{
 	display: block;	
@@ -100,35 +85,9 @@
 .list [class^=mark-]{
 	margin-right:4px;
 }
-/*左圆形列表*/
-/* .list .justify .radiusround{
-	width:50px;
-	height:50px;
-}
-
-.list .justify .radiusround i,.list .justify .radiusround img{
-	font-size:30px;
-	width:30px;
-	height:30px;
-}
-.list .justify .radiusround{
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-} */
 /*上下两端对齐*/
 .list.between .justify-content small:nth-last-of-type(1),.list li.between .justify-content small:nth-last-of-type(1){
 	margin-top: 8px;
-}
-/*应用列表*/
-.appicon{
-	width:60px;
-	height: 60px;
-	line-height: 52px;
-	text-align: center;
-	border-radius: 8px;
-	overflow: hidden;
-	font-size: 32px;
 }
 /*位置*/
 .list .top,.list .bottom,.list .left,.list .right{
@@ -147,6 +106,9 @@
 	right:4px;
 }
 /*内容线*/
+.list.noborder li,.list li.noborder{
+	border-width:0;
+}
 .list.border-content li{
     border-width: 0;
 }
@@ -155,19 +117,4 @@
     border-color: inherit;
     border-width: 0 0 1px 0;
 }
-/*时间轴*/
-.timeline{
-	margin-left:24px;
-    padding:0 18px;
-    border-width:0 0 0 1px;
-    border-style:solid;
-}
-.timeline .clock{
-	position:absolute;
-	width:24px;
-    height:24px;
-    top:12px;
-    left:-32px;
-    background-color:#fff;
-}
-/*----------------------------list.less(end)----------------------------*/
+/*---------------list.less(end)---------------*/

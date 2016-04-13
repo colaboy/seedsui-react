@@ -217,16 +217,47 @@ button:active,input[type="button"]:active,.button:active{
 	color: @color-button-font-active;
 	background-color:@color-button-active;
 }
-button.outline:active,input[type="button"].outline:active,.button.outline:active,
-button.outline.active,input[type="button"].outline.active,.button.outline.active{
+button.outline:active,input[type="button"].outline:active,.button.outline:active{
 	color:@color-button-active;
 	border-color:@color-button-active;
 	background-color:transparent;
 }
 /*去色*/
-button.outline.desaturate,input[type="button"].outline.desaturate,.button.outline.desaturate{
+button.grayscale,input[type="button"].grayscale,.button.grayscale{
+	border-width:1px;
+}
+button.grayscale,input[type="button"].grayscale,.button.grayscale{
 	color:@color-body-font;
 	border-color:@color-border;
+	background-color:@color-body-bg;
+}
+button.grayscale:active,input[type="button"].grayscale:active,.button.grayscale:active{
+	background-color:transparent;
+}
+button.outline.grayscale,input[type="button"].outline.grayscale,.button.outline.grayscale{
+	color:@color-body-font;
+	border-color:@color-border;
+	background-color:transparent;
+}
+button.outline.grayscale:active,input[type="button"].outline.grayscale:active,.button.outline.grayscale:active{
+	background-color:@color-body-bg;
+}
+/*白色*/
+button.white,input[type="button"].white,.button.white{
+	color:@color-body-font;
+	background-color:@color-white;
+}
+button.white:not(.noclick):active,input[type="button"].white:not(.noclick):active,.button.white:not(.noclick):active{
+	background-color:@color-white-active;
+}
+button.outline.white,input[type="button"].outline.white,.button.outline.white{
+	color:@color-white;
+	border-color:@color-white-active;
+	background-color:transparent;
+}
+button.outline.white:not(.noclick):active,input[type="button"].outline.white:not(.noclick):active,.button.outline.white:not(.noclick):active{
+	color:@color-white-active;
+	background-color:transparent;
 }
 /*按钮-禁用按钮*/
 button.disable,input[type="button"].disable,.button.disable,button[disable],input[type="button"][disable]{
@@ -711,15 +742,20 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*----------------photo.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
-.list{
+.list,.timeline{
 	border-color:@color-border;
 }
 .list li{
-	border-color:inherit;
 	background-color:@color-list-bg;
 }
 .list li:active{
 	background-color:@color-list-bg-active;
+}
+.list li.noclick,.list.noclick li{
+	background-color:@color-list-bg;
+}
+.list.bg-transparent li,.list li.bg-transparent{
+	background-color:transparent;
 }
 /*标题小标记*/
 .peg{

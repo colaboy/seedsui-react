@@ -148,12 +148,6 @@ pre {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.noclick {
-  background-color: transparent;
-}
-.noclick:active {
-  background-color: transparent;
-}
 .bg-transparent {
   background-color: transparent;
 }
@@ -1694,24 +1688,65 @@ footer {
 .icon-news-fill:before {
   content: "\ea86";
 }
-/*----------------------------list.less(start)----------------------------*/
-.list li {
+/*----------------photo.less(start)----------------*/
+.photo,
+.default,
+.timeline-dot {
+  position: relative;
+  box-sizing: border-box;
+  display: box;
+  display: -webkit-box;
+  box-pack: center;
+  -webkit-box-pack: center;
+  box-align: center;
+  -webkit-box-align: center;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+.photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+/*边框*/
+.photo.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: inherit;
+}
+/*----------------photo.less(end)----------------*/
+/*---------------list.less(start)---------------*/
+.list li,
+.timeline li {
   position: relative;
   display: flex;
   display: -webkit-flex;
   display: box;
   display: -webkit-box;
   box-sizing: border-box;
-  border-width: 0 0 1px 0;
   border-style: solid;
+  border-width: 0;
 }
-.list.dotted li {
+.list li,
+.timeline li {
+  border-color: inherit;
+}
+.list li {
+  border-width: 0 0 1px 0;
+}
+ul.dotted li,
+ul li.dotted {
   border-style: dotted;
 }
-.list li.dotted {
-  border-style: dotted;
-}
-.list i {
+.list .icon {
   font-size: 16px;
 }
 .list button {
@@ -1762,29 +1797,6 @@ footer {
   width: 6px;
   height: 12px;
 }
-/*无点击*/
-.list.noclick li,
-.list li.noclick {
-  background-color: white;
-}
-.list.noclick li:active,
-.list li.noclick:active {
-  background-color: white;
-}
-/*无边框*/
-.list.noborder li,
-.list li.noborder {
-  border-width: 0;
-}
-/*透明*/
-.list.bg-transparent li,
-.list li.bg-transparent {
-  background-color: transparent;
-}
-.list.noclick.bg-transparent li:active,
-.list li.noclick.bg-transparent:active {
-  background-color: transparent;
-}
 /*无自适应*/
 .list li.nojustify {
   display: block;
@@ -1802,36 +1814,10 @@ footer {
 .list [class^=mark-] {
   margin-right: 4px;
 }
-/*左圆形列表*/
-/* .list .justify .radiusround{
-	width:50px;
-	height:50px;
-}
-
-.list .justify .radiusround i,.list .justify .radiusround img{
-	font-size:30px;
-	width:30px;
-	height:30px;
-}
-.list .justify .radiusround{
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-} */
 /*上下两端对齐*/
 .list.between .justify-content small:nth-last-of-type(1),
 .list li.between .justify-content small:nth-last-of-type(1) {
   margin-top: 8px;
-}
-/*应用列表*/
-.appicon {
-  width: 60px;
-  height: 60px;
-  line-height: 52px;
-  text-align: center;
-  border-radius: 8px;
-  overflow: hidden;
-  font-size: 32px;
 }
 /*位置*/
 .list .top,
@@ -1853,6 +1839,10 @@ footer {
   right: 4px;
 }
 /*内容线*/
+.list.noborder li,
+.list li.noborder {
+  border-width: 0;
+}
 .list.border-content li {
   border-width: 0;
 }
@@ -1862,22 +1852,34 @@ footer {
   border-color: inherit;
   border-width: 0 0 1px 0;
 }
-/*时间轴*/
+/*---------------list.less(end)---------------*/
+/*---------------timeline.less(start)---------------*/
+/*requie photo.less & list.less*/
 .timeline {
   margin-left: 24px;
   padding: 0 18px;
-  border-width: 0 0 0 1px;
-  border-style: solid;
 }
-.timeline .clock {
+.timeline li {
+  position: relative;
+}
+.timeline.border li,
+.timeline.dotted li,
+.timeline li.border,
+.timeline li.dotted {
+  border-width: 0 0 1px 0;
+}
+.timeline .clock,
+.timeline-dot {
   position: absolute;
   width: 24px;
   height: 24px;
   top: 12px;
   left: -32px;
+}
+.timeline .clock {
   background-color: #fff;
 }
-/*----------------------------list.less(end)----------------------------*/
+/*---------------timeline.less(end)---------------*/
 /*----------------row.less(start)--------------*/
 .row {
   display: flex;
@@ -1958,8 +1960,8 @@ footer {
 .card-handler > a {
   width: 33%;
   text-align: center;
-  height: 48px;
-  line-height: 48px;
+  height: 32px;
+  line-height: 32px;
   float: left;
   box-sizing: border-box;
   border-style: solid;
@@ -1967,16 +1969,6 @@ footer {
 }
 .card-handler > a i {
   font-size: 24px;
-}
-.card-handler.padding {
-  padding: 8px 0;
-}
-.card-handler.padding > a {
-  height: 32px;
-  line-height: 32px;
-}
-.card-handler.padding > a i {
-  font-size: 18px;
 }
 .card-handler.border > a:not(:last-child) {
   border-width: 0 1px 0 0;
@@ -2636,13 +2628,13 @@ input[type="submit"],
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border-style: solid;
 }
 .button {
   line-height: 40px;
 }
 .outline {
   border-width: 1px;
-  border-style: solid;
 }
 /*按钮-大按钮*/
 button.block,
@@ -2673,13 +2665,6 @@ input[type="button"].rect {
 button.round,
 input[type="button"].round {
   border-radius: 100%;
-}
-/*圆角按钮*/
-button.radiusround,
-input[type="button"].radiusround,
-input[type="submit"].radiusround,
-.button.radiusround {
-  border-radius: 32px;
 }
 /*多彩标签按钮*/
 .mark-info,
@@ -4237,39 +4222,6 @@ input[type=range]:focus::-ms-fill-upper {
   min-height: 110px;
 }
 /*----------------grid.less(end)----------------*/
-/*----------------photo.less(start)----------------*/
-.photo,
-.default {
-  position: relative;
-  box-sizing: border-box;
-  display: box;
-  display: -webkit-box;
-  box-pack: center;
-  -webkit-box-pack: center;
-  box-align: center;
-  -webkit-box-align: center;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  -webkit-align-items: center;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-.photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-}
-/*边框*/
-.photo.border {
-  border-width: 1px;
-  border-style: solid;
-  border-color: inherit;
-}
-/*----------------photo.less(end)----------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading-box {
   position: fixed;
@@ -5672,6 +5624,17 @@ i.size54,
   width: 30px;
   height: 30px;
 }
+.size80 .photo,
+.photo.size80 {
+  width: 80px;
+  height: 80px;
+}
+.size80 .photo .icon,
+.photo.size80 .icon {
+  font-size: 54px;
+  width: 54px;
+  height: 54px;
+}
 /*小汽泡*/
 .badge.size32 {
   width: 24px;
@@ -5682,11 +5645,25 @@ i.size54,
   height: 40px;
 }
 /*高度*/
+.height26 {
+  height: 26px;
+}
+.button.height26 {
+  line-height: 26px;
+}
+.card-handler.height26 > a {
+  height: 26px;
+  line-height: 26px;
+}
 .height30 {
   height: 30px;
 }
 .button.height30 {
   line-height: 28px;
+}
+.card-handler.height30 > a {
+  height: 30px;
+  line-height: 30px;
 }
 .height32 {
   height: 32px;
@@ -5694,17 +5671,29 @@ i.size54,
 .button.height32 {
   line-height: 30px;
 }
+.card-handler.height32 > a {
+  height: 32px;
+  line-height: 32px;
+}
 .height50 {
   height: 50px;
 }
 .button.height50 {
   line-height: 48px;
 }
+.card-handler.height50 > a {
+  height: 50px;
+  line-height: 50px;
+}
 .height54 {
   height: 54px;
 }
 .button.height54 {
   line-height: 52px;
+}
+.card-handler.height54 > a {
+  height: 54px;
+  line-height: 54px;
 }
 /*文字*/
 p.size17 {
@@ -5715,6 +5704,15 @@ p.size20 {
 }
 /*---------------size.less(end)---------------*/
 /*---------------size.less(start)---------------*/
+/*控制圆角*/
+/*按钮*/
+button.radiusround,
+input[type="button"].radiusround,
+input[type="submit"].radiusround,
+.button.radiusround {
+  border-radius: 32px;
+}
+/*全局圆角*/
 .noradius {
   border-radius: 0 !important;
 }
@@ -6180,6 +6178,9 @@ button.text-left {
 .padding8 {
   padding: 8px !important;
 }
+.tbpadding8 {
+  padding: 8px 0;
+}
 .padding12 {
   padding: 12px !important;
 }
@@ -6466,20 +6467,65 @@ input[type="button"]:active,
 }
 button.outline:active,
 input[type="button"].outline:active,
-.button.outline:active,
-button.outline.active,
-input[type="button"].outline.active,
-.button.outline.active {
+.button.outline:active {
   color: rgba(69, 135, 247, 0.5);
   border-color: rgba(69, 135, 247, 0.5);
   background-color: transparent;
 }
 /*去色*/
-button.outline.desaturate,
-input[type="button"].outline.desaturate,
-.button.outline.desaturate {
+button.grayscale,
+input[type="button"].grayscale,
+.button.grayscale {
+  border-width: 1px;
+}
+button.grayscale,
+input[type="button"].grayscale,
+.button.grayscale {
   color: #333333;
   border-color: #e8e8e8;
+  background-color: #f4f4f4;
+}
+button.grayscale:active,
+input[type="button"].grayscale:active,
+.button.grayscale:active {
+  background-color: transparent;
+}
+button.outline.grayscale,
+input[type="button"].outline.grayscale,
+.button.outline.grayscale {
+  color: #333333;
+  border-color: #e8e8e8;
+  background-color: transparent;
+}
+button.outline.grayscale:active,
+input[type="button"].outline.grayscale:active,
+.button.outline.grayscale:active {
+  background-color: #f4f4f4;
+}
+/*白色*/
+button.white,
+input[type="button"].white,
+.button.white {
+  color: #333333;
+  background-color: #ffffff;
+}
+button.white:not(.noclick):active,
+input[type="button"].white:not(.noclick):active,
+.button.white:not(.noclick):active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+button.outline.white,
+input[type="button"].outline.white,
+.button.outline.white {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+}
+button.outline.white:not(.noclick):active,
+input[type="button"].outline.white:not(.noclick):active,
+.button.outline.white:not(.noclick):active {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: transparent;
 }
 /*按钮-禁用按钮*/
 button.disable,
@@ -7060,15 +7106,23 @@ input[type="radio"][disabled]:checked,
 }
 /*----------------photo.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
-.list {
+.list,
+.timeline {
   border-color: #e8e8e8;
 }
 .list li {
-  border-color: inherit;
   background-color: #ffffff;
 }
 .list li:active {
   background-color: #f4f4f4;
+}
+.list li.noclick,
+.list.noclick li {
+  background-color: #ffffff;
+}
+.list.bg-transparent li,
+.list li.bg-transparent {
+  background-color: transparent;
 }
 /*标题小标记*/
 .peg {
