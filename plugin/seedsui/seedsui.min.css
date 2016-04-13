@@ -6333,7 +6333,8 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-.titlebar a {
+.titlebar a,
+.titlebar .icon {
   color: #4587f7;
 }
 .titlebar a:active:not(.disable) {
