@@ -6294,10 +6294,8 @@ body {
 a {
   color: #4587f7;
 }
-a:active,
-.a:active,
-a.active,
-.a.active {
+a:not(.noclick):active,
+a.active {
   opacity: 0.5;
 }
 /*容器样式*/
@@ -6501,15 +6499,15 @@ input[type="button"].outline,
   border-color: #4587f7;
   background-color: transparent;
 }
-button:active,
-input[type="button"]:active,
-.button:active {
+button:not(.noclick):active,
+input[type="button"]:not(.noclick):active,
+.button:not(.noclick):active {
   color: rgba(255, 255, 255, 0.5);
   background-color: rgba(69, 135, 247, 0.5);
 }
-button.outline:active,
-input[type="button"].outline:active,
-.button.outline:active {
+button.outline:not(.noclick):active,
+input[type="button"].outline:not(.noclick):active,
+.button.outline:not(.noclick):active {
   color: rgba(69, 135, 247, 0.5);
   border-color: rgba(69, 135, 247, 0.5);
   background-color: transparent;
@@ -6527,9 +6525,11 @@ input[type="button"].grayscale,
   border-color: #e8e8e8;
   background-color: #f4f4f4;
 }
-button.grayscale:active,
-input[type="button"].grayscale:active,
-.button.grayscale:active {
+button.grayscale:not(.noclick):active,
+input[type="button"].grayscale:not(.noclick):active,
+.button.grayscale:not(.noclick):active {
+  color: inherit;
+  border-color: inherit;
   background-color: transparent;
 }
 button.outline.grayscale,
@@ -6539,9 +6539,11 @@ input[type="button"].outline.grayscale,
   border-color: #e8e8e8;
   background-color: transparent;
 }
-button.outline.grayscale:active,
-input[type="button"].outline.grayscale:active,
-.button.outline.grayscale:active {
+button.outline.grayscale:not(.noclick):active,
+input[type="button"].outline.grayscale:not(.noclick):active,
+.button.outline.grayscale:not(.noclick):active {
+  color: inherit;
+  border-color: inherit;
   background-color: #f4f4f4;
 }
 /*白色*/
@@ -6554,6 +6556,7 @@ input[type="button"].white,
 button.white:not(.noclick):active,
 input[type="button"].white:not(.noclick):active,
 .button.white:not(.noclick):active {
+  color: #333333;
   background-color: rgba(255, 255, 255, 0.5);
 }
 button.outline.white,
@@ -6567,6 +6570,7 @@ button.outline.white:not(.noclick):active,
 input[type="button"].outline.white:not(.noclick):active,
 .button.outline.white:not(.noclick):active {
   color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
 /*按钮-禁用按钮*/
@@ -6574,7 +6578,12 @@ button.disable,
 input[type="button"].disable,
 .button.disable,
 button[disable],
-input[type="button"][disable] {
+input[type="button"][disable],
+button.disable:not(.noclick):active,
+input[type="button"].disable:not(.noclick):active,
+.button.disable:not(.noclick):active,
+button[disable]:not(.noclick),
+input[type="button"][disable]:not(.noclick):active {
   color: #ffffff;
   background-color: #d9d9d9;
 }
@@ -6582,7 +6591,12 @@ button.disable.outline,
 input[type="button"].disable.outline,
 button[disable].outline,
 input[type="button"][disable].outline,
-.button.disable.outline {
+.button.disable.outline,
+button.disable.outline:not(.noclick):active,
+input[type="button"].disable.outline:not(.noclick):active,
+button[disable].outline:not(.noclick):active,
+input[type="button"][disable].outline:not(.noclick):active,
+.button.disable.outline:not(.noclick):active {
   color: #d9d9d9;
   border-color: #d9d9d9;
   background-color: transparent;
@@ -6600,14 +6614,14 @@ input[type="button"].cancel.outline,
   border-color: #f86868;
   background-color: transparent;
 }
-button.cancel:active,
-input[type="button"].cancel:active,
-.button.cancel:active {
+button.cancel:not(.noclick):active,
+input[type="button"].cancel:not(.noclick):active,
+.button.cancel:not(.noclick):active {
   background-color: rgba(248, 104, 104, 0.5);
 }
-button.cancel.outline:active,
-input[type="button"].cancel.outline:active,
-.button.cancel.outline:active {
+button.cancel.outline:not(.noclick):active,
+input[type="button"].cancel.outline:not(.noclick):active,
+.button.cancel.outline:not(.noclick):active {
   color: rgba(248, 104, 104, 0.5);
   border-color: rgba(248, 104, 104, 0.5);
   background-color: transparent;
@@ -6625,14 +6639,14 @@ input[type="submit"].outline,
   border-color: #88d038;
   background-color: transparent;
 }
-button.submit:active,
-input[type="submit"]:active,
-.button.submit:active {
+button.submit:not(.noclick):active,
+input[type="submit"]:not(.noclick):active,
+.button.submit:not(.noclick):active {
   background-color: rgba(136, 208, 56, 0.5);
 }
-button.submit.outline:active,
-input[type="submit"].outline:active,
-.button.submit.outline:active {
+button.submit.outline:not(.noclick):active,
+input[type="submit"].outline:not(.noclick):active,
+.button.submit.outline:not(.noclick):active {
   color: rgba(136, 208, 56, 0.5);
   border-color: rgba(136, 208, 56, 0.5);
   background-color: transparent;
@@ -6650,14 +6664,14 @@ input[type="button"].info.outline,
   border-color: #5bc0de;
   background-color: transparent;
 }
-button.info:active,
-input[type="button"].info:active,
-.button.info:active {
+button.info:not(.noclick):active,
+input[type="button"].info:not(.noclick):active,
+.button.info:not(.noclick):active {
   background-color: rgba(91, 192, 222, 0.5);
 }
-button.info.outline:active,
-input[type="button"].info.outline:active,
-.button.info.outline:active {
+button.info.outline:not(.noclick):active,
+input[type="button"].info.outline:not(.noclick):active,
+.button.info.outline:not(.noclick):active {
   color: rgba(91, 192, 222, 0.5);
   border-color: rgba(91, 192, 222, 0.5);
   background-color: transparent;
@@ -6680,9 +6694,9 @@ input[type="button"].warn:active,
 .button.warn:active {
   background-color: rgba(244, 152, 78, 0.5);
 }
-button.warn.outline:active,
-input[type="button"].warn.outline:active,
-.button.warn.outline:active {
+button.warn.outline:not(.noclick):active,
+input[type="button"].warn.outline:not(.noclick):active,
+.button.warn.outline:not(.noclick):active {
   color: rgba(244, 152, 78, 0.5);
   border-color: rgba(244, 152, 78, 0.5);
   background-color: transparent;
@@ -6700,14 +6714,14 @@ input[type="button"].success.outline,
   border-color: #4ddb63;
   background-color: transparent;
 }
-button.success:active,
-input[type="button"].success:active,
-.button.success:active {
+button.success:not(.noclick):active,
+input[type="button"].success:not(.noclick):active,
+.button.success:not(.noclick):active {
   background-color: rgba(77, 219, 99, 0.5);
 }
-button.success.outline:active,
-input[type="button"].success.outline:active,
-.button.success.outline:active {
+button.success.outline:not(.noclick):active,
+input[type="button"].success.outline:not(.noclick):active,
+.button.success.outline:not(.noclick):active {
   color: rgba(77, 219, 99, 0.5);
   border-color: rgba(77, 219, 99, 0.5);
   background-color: transparent;
@@ -6723,9 +6737,9 @@ input[type="button"]:not(.outline) .badge,
   background-color: rgba(0, 0, 0, 0.15);
 }
 /*按钮-投影图标*/
-button.shadow:active,
-.button.shadow:active,
-input[type="button"].shadow:active {
+button.shadow:not(.noclick):active,
+.button.shadow:not(.noclick):active,
+input[type="button"].shadow:not(.noclick):active {
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
@@ -6833,7 +6847,8 @@ select,
 .input-box {
   border-color: #e8e8e8;
 }
-.input-box .icon:active,
+.input-box.click .icon:active,
+.input-box .icon.click:active,
 .input-box .icon.active {
   color: #4587f7;
 }
@@ -7159,11 +7174,10 @@ input[type="radio"][disabled]:checked,
 .list li {
   background-color: #ffffff;
 }
-.list li:active {
+.list:not(.noclick) li:active {
   background-color: #f4f4f4;
 }
-.list li.noclick,
-.list.noclick li {
+.list li.noclick:active {
   background-color: #ffffff;
 }
 .list.bg-transparent li,
