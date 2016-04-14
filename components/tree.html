@@ -149,11 +149,13 @@
 
 		//树结构
         tr=new Tree("#tree",{
-            "onTap":function(e,s){
-            	console.log("您点击了："+e.target);
-                console.log("当前节点的li为："+s.elLI);
+            "onTap":function(s){
+            	console.log("您点击了：");
+            	console.log(s.target);
+                console.log("当前节点的li为：");
+                console.log(s.elLI);
             },
-            "onTapLastChild":function(e,s){//没有子节点
+            "onTapLastChild":function(s){//没有子节点
                 console.log("没有子节点");
             }
         });

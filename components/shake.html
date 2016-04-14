@@ -40,9 +40,10 @@
 					params[def]=defaults[def];
 				}
 			}
-			s.speed=0;
 			//Shake
 			var s=this;
+
+			s.speed=0;
 
 			var last_update = 0;  
 			var x = y = z = lastX = lastY = lastZ = 0;
@@ -50,6 +51,7 @@
 	          Method
 	          ===========================*/
 			function deviceMotionHandler(e) {
+				s.target=e.target;
 				var acceleration = e.accelerationIncludingGravity;
 				var curTime = new Date().getTime();
 				if((curTime - last_update) > 100) {  
@@ -61,7 +63,7 @@
 					s.speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
 					if (s.speed > s.params.threshold) {
 						//CallBack
-						if(s.params.onShook)onShook(e,s);
+						if(s.params.onShook)onShook(s);
 					}
 					lastX = x;
 					lastY = y;
