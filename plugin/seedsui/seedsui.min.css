@@ -2815,11 +2815,6 @@ select {
   -webkit-align-items: center;
   align-items: center;
 }
-.input-box .icon + .icon,
-.row .icon + .icon,
-.titlebar .icon + .icon {
-  margin-left: 0px;
-}
 .input-box {
   margin: 8px;
   border-style: solid;
@@ -2842,7 +2837,8 @@ select {
 }
 /*box内图标*/
 .input-box .icon {
-  margin: 0 8px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 .input-box .icon:active {
   background-position: center bottom;
@@ -2875,7 +2871,12 @@ select {
 .input-box .input-text + .icon,
 .input-box select + .icon,
 .input-box textarea + .icon {
-  margin: 0 8px 0 0;
+  margin-left: 0;
+}
+.input-box .icon + .icon,
+.row .icon + .icon,
+.titlebar .icon + .icon {
+  margin-left: 0px;
 }
 /*搜索框*/
 input[type=search].search,
@@ -2888,6 +2889,7 @@ div[data-input=clear] input[type] + .icon {
   font-size: 20px;
   width: 20px;
   height: 20px;
+  margin-right: 10px;
 }
 /*线型*/
 .input-box.line {
@@ -4165,7 +4167,7 @@ input[type=range]:focus::-ms-fill-upper {
   right: -4px;
 }
 /*Metro风格*/
-.grid.metro .metro-tip {
+.metro-tip {
   position: absolute;
   right: 10px;
   bottom: 4px;
@@ -4176,13 +4178,12 @@ input[type=range]:focus::-ms-fill-upper {
   text-align: right;
   background-color: transparent;
 }
-.grid.metro .metro-tip + label {
+.metro-tip + label {
   padding-right: 32px;
 }
 .grid.metro li > a {
   display: block;
   padding: 12px 8px;
-  color: white;
 }
 .grid.metro li > a label {
   display: block;
@@ -5477,15 +5478,15 @@ ul.weather-otherday li {
   width: 20px;
   height: 20px;
 }
-.grid.metro .icon {
-  font-size: 40px;
-  width: 40px;
-  height: 40px;
-}
 .grid .icon {
   font-size: 32px;
   width: 32px;
   height: 32px;
+}
+.metro .icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
 }
 .photo .icon {
   font-size: 28px;
@@ -7129,8 +7130,13 @@ input[type="radio"][disabled]:checked,
 /*----------------photo.less(start)----------------*/
 .photo,
 .default {
-  color: #cccccc;
   background-color: #dddddd;
+}
+.photo {
+  color: #ffffff;
+}
+.default {
+  color: #cccccc;
 }
 .photo.border {
   color: #666666;

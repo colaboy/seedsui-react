@@ -10,9 +10,6 @@
     -webkit-align-items: center;
     align-items: center;
 }
-.input-box .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
-	margin-left:0px;
-}
 .input-box{
 	margin:8px;
 
@@ -34,7 +31,8 @@
 }
 /*box内图标*/
 .input-box .icon{
-	margin:0 8px;
+	margin-left:8px;
+	margin-right:8px;
 }
 .input-box .icon:active{
 	background-position:center bottom;
@@ -57,9 +55,11 @@
 	padding-left:0;
 }
 .input-box input+.icon,.input-box .input-text+.icon,.input-box select+.icon,.input-box textarea+.icon{
-	margin:0 8px 0 0;
+	margin-left:0;
 }
-
+.input-box .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
+	margin-left:0px;
+}
 /*搜索框*/
 input[type=search].search,input[type=text].search{
 	padding-top:6px;
@@ -70,6 +70,7 @@ div[data-input=clear] input[type]+.icon{
 	font-size:20px;
 	width:20px;
 	height:20px;
+	margin-right:10px;
 }
 /*线型*/
 .input-box.line{
