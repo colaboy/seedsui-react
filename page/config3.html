@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>config2</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<link rel="stylesheet" href="../plugin/animate/animate.css">
+</head>
+
+<body>
+<section id="page_config2" class="active">
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:back()" class="left">
+	        	<button class="height32 radius4 grayscale outline noborder">取消</button>
+	        </a>
+	        <h1 class="text-center">发文</h1>
+	        <a class="right">
+	        	<button class="height32 radius4 warn" onclick="submit()">发送</button>
+	        </a>
+	    </div>
+	</header>
+	<article>
+	<form id="form1" style="padding:10px;">
+		<div class="group">
+            <div class="input-box box-top">
+                <i class="icon icon-typetext" style="margin-top:6px"></i>
+                <textarea placeholder="填写描述，150字以内" id="description" name="description" data-rule="required maxlength:150"></textarea>
+            </div>
+            <div class="input-box box-right">
+            	<span id="description-count"></span>
+            	<i name="uploadPic" class="color-placeholder icon icon-pic"></i>
+            </div>
+        </div>
+    </form>
+	</article>
+</section>
+
+<script src="../plugin/jquery/jquery.min.js"></script>
+<script src="../plugin/seedsui/seedsui.min.js"></script>
+<script>
+	//表单提交验证
+	var f=new Form("#form1");
+	function submit(){
+		f.validate();
+	}
+	
+	//数字计数器
+	var fc=new FontCount("#description",{
+		"onInput":function(s){
+			console.log("输入中");
+			//s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
+		},
+		"onMoreThanCount":function(s){
+			console.log("超过数字限制时");
+			s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
+			s.fieldCount.addClass("color-tip");
+		},
+		"onNotMoreThanCout":function(s){
+			console.log("没有超过数字限制时");
+			s.fieldCount.html("");
+			s.fieldCount.removeClass("color-tip");
+		}
+	});
+
+	//图片上传
+	var actionsheet=null;
+	$("[name='uploadPic']").click(function(){
+		var iconPic=$(this);
+		var appendhtml='<div class="card-preview animated zoomIn" style="background-image:url(../img/config3/preview-default.jpg)"><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div></div>'
+		if(!actionsheet){
+			actionsheet=new Actionsheet([
+				{
+					text : '拍照',
+			        handler : function(s){
+			        	iconPic.css("display","none");
+			        	iconPic.parent().after(appendhtml);
+			        	s.hide();
+			        }
+				},{
+					text : '相册',
+			        handler : function(s){
+			        	iconPic.css("display","none");
+			        	iconPic.parent().after(appendhtml);
+			        	s.hide();
+					}
+			    }
+			]);
+		}
+		actionsheet.show();
+		//$(this).parent().after()
+	})
+	function delPhoto(objthis){
+		var photo=$(objthis).parent();
+		photo[0].className="card-preview animated zoomOut";
+		EventUtil.addHandler(photo[0],"animationend",function(){
+			photo.slideUp(300, function(){
+				$(this).prev().find("[name='uploadPic']").css("display","block");
+                $(this).remove();
+            });
+		})
+	}
+	//定义exmobi返回
+	function back(){history.go(-1)}
+</script>
+</body>
+</html>

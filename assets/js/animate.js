@@ -27,7 +27,7 @@ var Animate=(function(){
 		window.msCancelAnimationFrame||
 		function (handler) { window.clearTimeout(handler); };
 
-	function countTo(el){
+	function intervalNumber(el){
 		var toNumber=el.getAttribute("data-to")||0;
 		var fromNumber=el.getAttribute("data-from")||0;
 		var duration=el.getAttribute("data-duration")||500;
@@ -58,7 +58,7 @@ var Animate=(function(){
 			}
 		},milli);
 	}
-	function rafCountTo(el){
+	function rafNumber(el){
 		var toNumber=el.getAttribute("data-to")||0;
 		var fromNumber=el.getAttribute("data-from")||0;
 		function step() {
@@ -121,7 +121,7 @@ var Animate=(function(){
 		counter:function(){
 			var timers=document.querySelectorAll(".timer");
 			for(var i=0,t;t=timers[i++];){
-				countTo(t);
+				intervalNumber(t);
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 // @koala-prepend "eventutil.js"
 // @koala-prepend "emoji.js"
 // @koala-prepend "form.js"
+// @koala-prepend "fontcount.js"
 // @koala-prepend "gauge.js"
 // @koala-prepend "media.js"
 // @koala-prepend "clock.js"

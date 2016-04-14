@@ -1,24 +1,30 @@
 /*----------------layout.less(start)--------------*/
-/*原始布局方式*/
-.text-ltr{
-	writing-mode: horizontal-tb;/*横向写，从左向右写*/
+.tb{
+	-webkit-writing-mode:horizontal-tb;
 }
-.text-ttb-right{
-	writing-mode: vertical-rl;/*竖向写，从右开始写*/
+.bt{
+	-webkit-writing-mode:horizontal-bt;
 }
-.text-ttb{
-	writing-mode: vertical-lr;/*竖向写，从左开始写*/
+.tb-rl{
+	-webkit-writing-mode:vertical-rl;
 }
-.text-center,td.text-center,th.text-center,.button.text-center,button.text-center{
-	text-align:center;
+.tb-lr{
+	-webkit-writing-mode:vertical-lr;
 }
-.text-right,td.text-right,th.text-right,.button.text-right,button.text-right{
-	text-align:right;
+.lr{
+	direction:ltr;
+}
+.rl{
 	direction:rtl;
 }
-.text-left,td.text-left,th.text-left,.button.text-left,button.text-left{
+.text-center{
+	text-align:center;
+}
+.text-right{
+	text-align:right;
+}
+.text-left{
 	text-align:left;
-	direction:ltr;
 }
 .float-left{
 	float:left;

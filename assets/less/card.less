@@ -1,7 +1,9 @@
 /*----------------card.less(start)--------------*/
-.card{
-    display: block;
+.card,.card-preview{
+	display: block;
     position:relative;
+}
+.card{
     margin: 8px;
     box-sizing: border-box;
     border-width: 1px;
@@ -11,8 +13,14 @@
 .input-box label,.card label{
     line-height: 30px;
 }
+/*预览图*/
+.card-preview{
+	height: 145px;
+    background-size: cover;
+    background-position: center;
+}
 /*关闭按钮*/
-.card .close{
+.card .close,.card-preview .close{
 	position:absolute;
 	top:-4px;
 	right:-4px;

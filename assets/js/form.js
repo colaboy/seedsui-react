@@ -142,7 +142,7 @@
 		s.safelvl=0;//密码安全等级
 		s.rule=function(field){
 			var ruleExpr = {
-				"required":/^.+$/,//不能为空
+				"required":/.+/,//不能为空
 				"username":/^[\w]*$/,//只能包括字母、数字和下划线
 				"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
 				"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
@@ -169,7 +169,7 @@
 				}else if(rulename.indexOf("maxlength")>=0){
 					var maxlength=rulename.split(":")[1];
 					if(value.length>maxlength){
-						errorMsg=ruleField+lang.rule.maxlength+ maxlength +lang.rule.unit;
+						errorMsg=ruleField+lang.rule.maxlength+ maxlength +lang.rule.unit+"，超出"+eval(value.length-maxlength)+lang.rule.unit;
 						break;
 					}
 				}else if(rulename.indexOf("compare")>=0){
