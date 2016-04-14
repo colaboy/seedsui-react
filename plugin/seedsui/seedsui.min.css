@@ -135,10 +135,11 @@ pre {
 .overflow-x {
   overflow-y: hidden;
   overflow-x: auto;
+  white-space: nowrap;
 }
 .overflow-y {
-  overflow-y: hidden;
-  overflow-x: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .break-all {
   word-break: break-all;
@@ -5834,7 +5835,8 @@ input[type="submit"].radiusround,
   -webkit-flex-flow: row;
   flex-flow: row;
 }
-.box-shrink div {
+.box-shrink > div,
+.box-shrink > button {
   width: 100%;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
@@ -7292,7 +7294,7 @@ table {
   background-color: #ffae02;
   color: #ffffff;
 }
-.treetitle .treeicon,
+.treetitle .treeicon:not(.radiusround),
 .treetitle .right {
   color: #aaaaaa;
 }

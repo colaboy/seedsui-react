@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
     <title>form</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="../plugin/animate/animate.css">
 </head>
 
 <body>
@@ -25,10 +26,11 @@
                 <hr/>
                 <div class="input-box">
                     <i class="icon"></i>
-                    <textarea placeholder="填写投票描述，250字以内"></textarea>
+                    <textarea placeholder="填写描述，150字以内" id="description" name="description" data-rule="required maxlength:150"></textarea>
                 </div>
-                <div class="input-box text-right">
-                    <i class="color-placeholder icon icon-pic"></i><span>0/255</span>
+                <div class="input-box box-right">
+                    <span id="description-count"></span>
+                    <i class="color-placeholder icon icon-pic"></i>
                 </div>
                 <hr/>
                 <div class="input-box lineheight0 padding8">
@@ -40,7 +42,7 @@
                 <hr/>
                 <div class="input-box lrpadding8">
                     <p class="box-flex-1">最多投几项</p>
-                    <select class="text-right" style="padding-right:24px;">
+                    <select class="rl" style="padding-right:24px;">
                         <option>无限制</option>
                         <option>2</option>
                         <option>3</option>
@@ -55,32 +57,51 @@
                     <i class="icon icon-arrowright color-placeholder"></i>
                 </div>
                 <hr/>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容" />
-                        <i class="icon icon-pic color-placeholder"></i>
-                        <a class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24"></i>
-                        </a>
+                <div id="formOption">
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="input-box box-flex-1 line">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <div class="nowrap" style="width:40px;height:40px;">
+                                <button name="del" class="nolrpadding noclick bg-transparent color-tip">
+                                    <i class="icon icon-rdocancel-fill size24"></i>
+                                </button>
+                                <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
+                                    <i class="icon icon-trash size24"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容" />
-                        <i class="icon icon-pic color-placeholder"></i>
-                        <a class="button nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24"></i>
-                        </a>
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="input-box box-flex-1 line">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <div class="nowrap" style="width:40px;height:40px;">
+                                <button name="del" class="nolrpadding noclick bg-transparent color-tip">
+                                    <i class="icon icon-rdocancel-fill size24"></i>
+                                </button>
+                                <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
+                                    <i class="icon icon-trash size24"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容" />
-                        <i class="icon icon-pic color-placeholder"></i>
-                        <i class="icon icon-rdocancel-fill color-tip"></i>
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="input-box box-flex-1 line">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <div class="nowrap" style="width:40px;height:40px;">
+                                <button name="del" class="nolrpadding noclick bg-transparent color-tip">
+                                    <i class="icon icon-rdocancel-fill size24"></i>
+                                </button>
+                                <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
+                                    <i class="icon icon-trash size24"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="input-box text-center">

@@ -52,15 +52,20 @@
 	<script>
 		Section.init({
 			"onSectionOpenStart":function(e){
+				console.log("您点击了：");
+				console.log(e.target);
 				console.log("页面加载前"+e.sectionId);
 			},
 			"onSectionOpenEnd":function(e){
+				console.log("您点击了："+e.target);
 				console.log("页面加载完成"+e.sectionId);
 			},
 			"onSectionCloseStart":function(e){
+				console.log("您点击了："+e.target);
 				console.log("页面关闭前"+e.sectionId);
 			},
 			"onSectionCloseEnd":function(e){
+				console.log("您点击了："+e.target);
 				console.log("页面关闭完成"+e.sectionId);
 			}
 		});

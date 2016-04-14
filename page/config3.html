@@ -16,7 +16,7 @@
 	        <a href="javascript:back()" class="left">
 	        	<button class="height32 radius4 grayscale outline noborder">取消</button>
 	        </a>
-	        <h1 class="text-center">发文</h1>
+	        <h1 class="text-center">发起投票</h1>
 	        <a class="right">
 	        	<button class="height32 radius4 warn" onclick="submit()">发送</button>
 	        </a>
@@ -24,14 +24,92 @@
 	</header>
 	<article>
 	<form id="form1" style="padding:10px;">
-		<div class="group">
-            <div class="input-box box-top">
-                <i class="icon icon-typetext" style="margin-top:6px"></i>
+		<div class="group" id="pollcontent">
+            <div class="input-box">
+                <i class="color-placeholder icon icon-search"></i>
+                <input type="text" placeholder="投票标题">
+            </div>
+            <hr/>
+            <div class="input-box">
+                <i class="icon"></i>
                 <textarea placeholder="填写描述，150字以内" id="description" name="description" data-rule="required maxlength:150"></textarea>
             </div>
             <div class="input-box box-right">
-            	<span id="description-count"></span>
-            	<i name="uploadPic" class="color-placeholder icon icon-pic"></i>
+                <span id="description-count"></span>
+                <i name="uploadPic" class="color-placeholder icon icon-pic"></i>
+            </div>
+            <hr/>
+            <div class="input-box lineheight0 padding8">
+                <p class="box-flex-1">支持多选</p>
+                <div class="switch reverse notext" data-on="是" data-name="switch2" data-on-value="2"  data-off-value="2off" data-off="否">
+                    <div class="switch-handle"></div>
+                </div>
+            </div>
+            <hr/>
+            <div class="input-box lrpadding8">
+                <p class="box-flex-1">最多投几项</p>
+                <select class="rl" style="padding-right:24px;">
+                    <option>无限制</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <i class="icon icon-arrowright color-placeholder"></i>
+            </div>
+            <hr/>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容" />
+                    <i class="icon icon-pic color-placeholder" name="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a name="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容" />
+                    <i class="icon icon-pic color-placeholder" name="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a name="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容" />
+                    <i class="icon icon-pic color-placeholder" name="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a name="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box text-center">
+                <a class="input-text">＋添加投票选项</a>
             </div>
         </div>
     </form>
@@ -48,60 +126,89 @@
 	}
 	
 	//数字计数器
-	var fc=new FontCount("#description",{
-		"onInput":function(s){
-			console.log("输入中");
-			//s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
-		},
-		"onMoreThanCount":function(s){
-			console.log("超过数字限制时");
-			s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
-			s.fieldCount.addClass("color-tip");
-		},
-		"onNotMoreThanCout":function(s){
-			console.log("没有超过数字限制时");
-			s.fieldCount.html("");
-			s.fieldCount.removeClass("color-tip");
-		}
-	});
-
+	function initTopicContent(){
+		var fc=new FontCount("#description",{
+			"onInput":function(s){
+				console.log("输入中");
+				//s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
+			},
+			"onMoreThanCount":function(s){
+				console.log("超过数字限制时");
+				s.fieldCount.html(Math.round(s.maxlenth-s.currentLenth));
+				s.fieldCount.addClass("color-tip");
+			},
+			"onNotMoreThanCout":function(s){
+				console.log("没有超过数字限制时");
+				s.fieldCount.html("");
+				s.fieldCount.removeClass("color-tip");
+			}
+		});
+	}
 	//图片上传
 	var actionsheet=null;
-	$("[name='uploadPic']").click(function(){
-		var iconPic=$(this);
+	function uploadPhoto(objthis){
+		var uploadIcon=objthis;
+		var uploadOption=uploadIcon.parentNode.parentNode;
+		console.log();
 		var appendhtml='<div class="card-preview animated zoomIn" style="background-image:url(../img/config3/preview-default.jpg)"><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div></div>'
 		if(!actionsheet){
 			actionsheet=new Actionsheet([
 				{
 					text : '拍照',
 			        handler : function(s){
-			        	iconPic.css("display","none");
-			        	iconPic.parent().after(appendhtml);
+			        	uploadIcon.style.display="none";
+			        	uploadOption.parentNode.insertBefore(appendhtml,uploadOption.nextElementSibling);
+			        	//uploadIcon.parent().parent().after(appendhtml);
 			        	s.hide();
 			        }
 				},{
 					text : '相册',
 			        handler : function(s){
-			        	iconPic.css("display","none");
-			        	iconPic.parent().after(appendhtml);
+			        	uploadIcon.css("display","none");
+			        	uploadIcon.parent().parent().after(appendhtml);
 			        	s.hide();
 					}
 			    }
 			]);
 		}
 		actionsheet.show();
-		//$(this).parent().after()
-	})
+	}
 	function delPhoto(objthis){
 		var photo=$(objthis).parent();
 		photo[0].className="card-preview animated zoomOut";
 		EventUtil.addHandler(photo[0],"animationend",function(){
 			photo.slideUp(300, function(){
-				$(this).prev().find("[name='uploadPic']").css("display","block");
+				var uploadIcon=this.previousElementSibling.querySelector("[name=uploadPhoto]");
+				console.log();
+				uploadIcon.style.display="block";
                 $(this).remove();
             });
 		})
 	}
+	//投票选项
+	function onClickPoll(){
+		document.getElementById("pollcontent").addEventListener("click",function(e){
+			var target=e.target;
+			console.log(target);
+			if(target.getAttribute("name")=="del"){
+				console.log(1);
+				$(target).fadeOut("normal",function(){
+					$(this).next().removeClass("hide");
+				});
+				return;
+			}
+			if(target.getAttribute("name")=="delVerify"){
+				$(target).parent().parent().parent().remove();
+				return;
+			}
+			if(target.getAttribute("name")=="uploadPhoto"){
+				uploadPhoto(target);
+			}
+		},false)
+	}
+
+	initTopicContent();
+	onClickPoll();
 	//定义exmobi返回
 	function back(){history.go(-1)}
 </script>

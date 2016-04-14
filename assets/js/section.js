@@ -122,10 +122,12 @@
 				if(s.params.onSectionCloseEnd)s.params.onSectionCloseEnd(s);
 			});
 		}
+		s.target="";
 		/*=========================
           Events Click
           ===========================*/
-		$("[data-target=section]").click(function(){
+		$("[data-target=section]").click(function(e){
+			s.target=e.target;
 			s.sectionId=$(this).attr("href");
 			if($.inArray(s.sectionId,s.history)>=0)return false;
 			//开窗

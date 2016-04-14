@@ -89,9 +89,13 @@
             s.showDialog=showMask;
             showMask();
             //Callback
-            if(params.onClick)$(s).click(function(e){params.onClick(e,s)});
+            if(params.onClick){
+                $(s).click(function(e){
+                    s.target=e.target;
+                    params.onClick(s)
+                });
+            }
             return s;
         }
     });
-
 })(window,document,undefined);

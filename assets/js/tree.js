@@ -73,10 +73,10 @@ window.Tree=function(container,params){
     s.onTapTree=function(){
         //点击树
         EventUtil.addHandler(s.container,"tap",function(e){
-            var target=e.target;
+            s.target=e.target;
             //当点击添加时,将所选添加到stautsbar上
-            if(target.className.indexOf("icon-rdoadd")>= 0 && s.params.selectedContainer){
-                s.elLI=target.parentNode.parentNode;
+            if(s.target.className.indexOf("icon-rdoadd")>= 0 && s.params.selectedContainer){
+                s.elLI=s.target.parentNode.parentNode;
                 //子节点及自身添加active状态
                 $(s.elLI).find(".treetitle").addClass('active');
                 $(s.elLI).find(".icon-rdoadd").css("display","none");
@@ -97,20 +97,20 @@ window.Tree=function(container,params){
                         s.selectedContainerSize();
                     });
                 });
-            }else if(target.className.indexOf("treetitle")>=0){//当点击标题时
-                s.elLI=e.target.parentNode;
-            } else if(target.className.indexOf("treeicon")>=0){//当点击左侧箭头时
-                s.elLI=e.target.parentNode.parentNode;
+            }else if(s.target.className.indexOf("treetitle")>=0){//当点击标题时
+                s.elLI=s.target.parentNode;
+            } else if(s.target.className.indexOf("treeicon")>=0){//当点击左侧箭头时
+                s.elLI=s.target.parentNode.parentNode;
             }
             if(!s.elLI)return;
             //CallBack onTap
-            if(s.params.onTap)s.params.onTap(e,s);
+            if(s.params.onTap)s.params.onTap(s);
             //展开与收缩
             s.elIcon=s.elLI.querySelector(".treeicon");
             s.elChildUL=s.elLI.querySelector("ul");
             //没有子节点
             if(!s.elChildUL){
-                if(s.params.onTapLastChild)s.params.onTapLastChild(e,s);
+                if(s.params.onTapLastChild)s.params.onTapLastChild(s);
                 return;
             }
             //展开与收缩树

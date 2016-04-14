@@ -129,10 +129,10 @@
 		//middle
 		$("#middle").click(function(){
 			$("#pop_custom").dialog({
-                onClick:function(e,s){
-                    if(e.target.text=="取消"){
+                onClick:function(s){
+                    if(s.target.text=="取消"){
                         s.hideDialog();
-                    }else if(e.target.text=="确定"){
+                    }else if(s.target.text=="确定"){
                         console.log("确定");
                     }
                 }
