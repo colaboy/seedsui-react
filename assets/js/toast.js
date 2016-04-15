@@ -25,6 +25,7 @@
 				params[def]=defaults[def];
 			}
 		}
+		var msg=msg||"";
 		var s=this;
 		s.params=params;
 		//开关动画

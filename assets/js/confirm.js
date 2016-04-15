@@ -42,14 +42,12 @@
 		Method
 		================*/
 		s.createMask=function(){
-			if(s.mask)return;
-			s.mask=document.createElement("div");
+			if(!s.mask)s.mask=document.createElement("div");
 			s.mask.setAttribute("class","popup-mask");
 			document.body.appendChild(s.mask);
 		};
 		s.createContainer=function(){
-			if(s.container)return;
-			s.container=document.createElement("div");
+			if(!s.container)s.container=document.createElement("div");
 			s.container.setAttribute("class","popup confirm");
 			var title=document.createElement("h1");
 			title.innerHTML=s.params.title;
@@ -77,7 +75,9 @@
 			s.buttonOk.addEventListener("click",s.onClickOk,false);
 			s.buttonCancel.addEventListener("click",s.onClickCancel,false);
 		}
-		
+		s.destoryContainer=function(){
+			s.container.innerHTML="";
+		}
 		/*================
 		Controller
 		================*/
@@ -111,14 +111,16 @@
 		/*================
 		Event
 		================*/
-		s.onClickOk=function(){
+		s.onClickOk=function(e){
 			if(s.params.onClickOk){
+				s.target=e.target;
 				s.params.onClickOk(s);
 				return;
 			}
 		};
-		s.onClickCancel=function(){
+		s.onClickCancel=function(e){
 			if(s.params.onClickCancel){
+				s.target=e.target;
 				s.params.onClickCancel(s);
 				return;
 			}
@@ -132,5 +134,13 @@
 			s.createContainer();
 		}
 		s.init();
+		/*================
+		Set
+		================*/
+		s.setParams=function(params){
+			s.params=params;
+			s.destoryContainer();
+			s.createContainer();
+		}
 	}
 })(window,document,undefined);

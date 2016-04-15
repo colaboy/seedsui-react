@@ -59,17 +59,11 @@
 	    });
 		//confirm
 		var c1=new Confirm("我是Confirm框",{
-			onClickOk:function(c1this){
-				var c2=new Confirm("您确定要移除此对象？",{
-					onClickOk:function(c2this){
-						c2this.destory();
-						c1this.destory();
-					},
-					onClickCancel:function(c2this){
-						c2this.destory();
-					}
-				});
-				c2.show();
+			onClickOk:function(e){
+				console.log(e.target);
+			},onClickCancel:function(e){
+				console.log(e.target);
+				e.hide();
 			}
 		});
 		$("#confirm").click(function(){
@@ -83,22 +77,26 @@
 	    });
 	    var c;
 	    //actionsheet
-		var actionsheet=new Actionsheet([
+	    var t=new Toast("您点击了菜单一");
+	    var actionsheetParams=[
 			{
 				text : '菜单一',
 		        handler : function(s){
-		        	var t=new Toast("您点击了菜单一");
+		        	console.log(s.target);
+		        	t.setText("您点击了菜单一");
 		        	t.show();
 		        }
 			},{
 				text : '菜单二',
 		        handler : function(s){
-		        	var t=new Toast("您点击了菜单二");
+		        	console.log(s.target);
+		        	t.setText("您点击了菜单二");
 		        	t.show();
 				}
 		    },{
 				text : '取消',
 		        handler : function(s){
+		        	console.log(s.target);
 		        	s.hide();
 				}
 		    },{
@@ -116,8 +114,10 @@
 					c.show();
 				}
 		    }
-		]);
+		];
+		var actionsheet=new Actionsheet();
 		$("#actionsheet").click(function(){
+			actionsheet.setParams(actionsheetParams);
 			actionsheet.show();
 	    });
 

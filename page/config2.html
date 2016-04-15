@@ -33,15 +33,37 @@
 	        </span>
         </div>
         <div class="input-box radius4">
-        	<textarea style="height:200px;" placeholder="请输入评论信息"></textarea>
+        	<textarea data-fontcounter="description1" placeholder="请输入评论信息" data-rule="required maxlength:10"></textarea>
         </div>
+        <p data-fontcounter-for="description1" class="margin8 text-right"></p>
 	</article>
 </section>
 
 <script src="../plugin/jquery/jquery.min.js"></script>
+<script src="../plugin/seedsui/seedsui.min.js"></script>
+<script src="../plugin/exmobi/exmobi.js"></script>
 <script>
-//定义exmobi返回
-function back(){history.go(-1)}
+	//数字计数器
+	function listenerFontcount(){
+		var fc=new FontCounter({
+			"onInput":function(s){
+				//console.log("输入中");
+			},
+			"onMoreThanCount":function(s){
+				//console.log("超过数字限制时");
+				s.fieldCounter.innerHTML=Math.round(s.maxlength-s.currentlength);
+				s.fieldCounter.classList.add("color-tip");
+			},
+			"onNotMoreThanCout":function(s){
+				//console.log("没有超过数字限制时");
+				s.fieldCounter.innerHTML="";
+				s.fieldCounter.classList.remove("color-tip");
+			}
+		});
+	}
+	listenerFontcount();
+	//定义exmobi返回
+	function back(){history.go(-1)}
 </script>
 </body>
 </html>

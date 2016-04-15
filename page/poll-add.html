@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>config3</title>
+	<title>poll-add</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<link rel="stylesheet" href="../plugin/animate/animate.css">
 </head>
@@ -13,17 +13,15 @@
 <section id="page_config2" class="active">
 	<header>
 		<div class="titlebar">
-	        <a href="javascript:back()" class="left">
-	        	<button class="height32 radius4 grayscale outline noborder">取消</button>
-	        </a>
-	        <h1 class="text-center">发起投票</h1>
-	        <a class="right">
-	        	<button class="height32 radius4 warn" onclick="submit()">发送</button>
-	        </a>
-	    </div>
+            <a class="left" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+                <span>返回</span>
+            </a>
+            <h1 class="text-center">投票</h1>
+        </div>
 	</header>
 	<article>
-	<form id="form1" style="padding:10px;">
+	<form id="form1">
 		<div class="group" id="pollcontent">
             <div class="input-box">
                 <i class="color-placeholder icon icon-typetext"></i>
@@ -65,7 +63,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容1" />
+                    <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -80,7 +78,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容2" />
+                    <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -95,7 +93,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容3" />
+                    <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -112,9 +110,74 @@
             </div>
         </div>
     </form>
+    <a class="button block margin8" onclick="submit('sent')">发送</a>
+    <a class="button block outline margin8" onclick="submit('preview')">预览</a>
 	</article>
 </section>
+<section id="page_pollPic">
+	<header>
+		<div class="titlebar">
+            <a class="left" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+                <span>返回</span>
+            </a>
+            <h1 class="text-center">投票</h1>
+        </div>
+	</header>
+	<article>
+		<div class="group">
+            <div class="padding12">
+                <p id="topic">公司早餐因该添加什么？</p>
+                <small>要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
+            </div>
+            <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
+            <div class="margin12">
+            	<small class="color-tip">记名投票(最多选2项)</small>
+            	<small class="float-right">33人参与投票</small>
+            </div>
+        </div>
 
+		<ul class="grid album" data-col="2" style="background-color:white;" id="selImg">
+            <li>
+                <a style="background-image: url(../img/poll/poll1-img1.jpg);">
+                    <div class="badge arrow" data-toggle="active">
+                        <span class="checkbox" data-toggle="active"></span>
+                        <span>吐司</span>
+                        <input type="checkbox" class="hide">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a style="background-image: url(../img/poll/poll1-img2.jpg);">
+                    <div class="badge arrow" data-toggle="active">
+                        <span class="checkbox" data-toggle="active"></span>
+                        <span>油条</span>
+                        <input type="checkbox" class="hide">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a style="background-image: url(../img/poll/poll1-img3.jpg);">
+                    <div class="badge arrow" data-toggle="active">
+                        <span class="checkbox" data-toggle="active"></span>
+                        <span>粥</span>
+                        <input type="checkbox" class="hide">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a style="background-image: url(../img/poll/poll1-img4.jpg);">
+                    <div class="badge arrow" data-toggle="active">
+                        <span class="checkbox" data-toggle="active"></span>
+                        <span>三明治</span>
+                        <input type="checkbox" class="hide">
+                    </div>
+                </a>
+            </li>
+        </ul>
+		<a class="button block margin8">投票</a>
+	</article>
+</section>
 <script src="../plugin/jquery/jquery.min.js"></script>
 <script src="../plugin/seedsui/seedsui.min.js"></script>
 <script src="../plugin/exmobi/exmobi.js"></script>
@@ -188,7 +251,7 @@
 	var pollOptionText='<div class="row noborder">'+
                 '<div class="dot" style="margin: 10px 20px 10px 24px;"></div>'+
                 '<div class="input-box box-flex-1 line">'+
-                    '<input type="text" placeholder="输入选项内容2" />'+
+                    '<input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>'+
                     '<i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>'+
                     '<div class="nowrap" style="width:40px;height:40px;">'+
                         '<a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">'+

@@ -13,24 +13,13 @@
 (function(window,document,undefined){
 	
 	window.Actionsheet=function(params){
-		var defaults=[
-			{
-				text : '退出',
-		        handler : function(e){
-		        	Popup.confirm("您确定要退出吗",function(){
-						this.toast("确定")
-					},function(){
-						this.destroy();
-					});
-				}
-		    }
-		];
+		/*var defaults=[];
 		params=params||null;
 		if(params==null){
 			params=defaults;
-		}
+		}*/
 		var s=this;
-		s.params=params;
+		s.params=params||[];
 		//开关动画
 		s.hideAnimate={bottom:"-100%"};
 		s.showAnimate={bottom:"0%"};
@@ -44,17 +33,14 @@
 			return el;
 		}
 		s.createMask=function(){
-			if(s.mask)return;
-			s.mask=createEl("div","popup-mask");
+			if(!s.mask)s.mask=createEl("div","popup-mask");
 			document.body.appendChild(s.mask);
 
 			//遮罩绑定点击事件
 			s.mask.addEventListener("click",s.onClickCancel,false);
 		};
 		s.createContainer=function(){
-			if(s.container)return;
-			s.container=createEl("div","popup actionsheet");
-
+			if(!s.container)s.container=createEl("div","popup actionsheet");
 			var group=createEl("div","actionsheet-group");
 			for(var i=0,param;param=s.params[i++];){
 				var btn=createEl("a");
@@ -62,7 +48,8 @@
 				group.appendChild(btn);
 				//绑定事件
 				(function(param){
-					btn.addEventListener("click",function(){
+					btn.addEventListener("click",function(e){
+						s.target=e.target;
 						param.handler(s);
 					},false);
 				})(param)
@@ -78,6 +65,9 @@
 
 			//取消按钮绑定点击事件
 			cancel.addEventListener("click",s.onClickCancel,false);
+		}
+		s.destoryContainer=function(){
+			s.container.innerHTML="";
 		}
 		/*================
 		Method
@@ -123,5 +113,13 @@
 			s.createContainer();
 		}
 		s.init();
+		/*================
+		Set
+		================*/
+		s.setParams=function(params){
+			s.params=params;
+			s.destoryContainer();
+			s.createContainer();
+		}
 	}
 })(window,document,undefined);
