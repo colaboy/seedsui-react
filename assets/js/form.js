@@ -13,7 +13,6 @@
 *  @class Form
 */
 (function(window,document,undefined){
-	
 	//国际化
 	var lang = {
 		"rule": {
@@ -37,9 +36,9 @@
 		Model
 		================*/
 		var s=this;
-		s.container=document.querySelector(container);
-		s.formElements=[];//表单元素
 		s.getFormElements=function(){
+			s.container=document.querySelector(container);
+			s.formElements=[];//表单元素
 			//获取有效的表单元素
 			for(var i=0;i<s.container.elements.length;i++){
 				var field=s.container.elements[i];
@@ -118,9 +117,11 @@
 		/*================
 		Method
 		================*/
-		//表单序列化
-		s.serialize=function(){
+
+		//表单Json化
+		s.serializeJson=function(){
 			var parts=[],field=null;
+			s.serializeString=[];
 			for(var i=0;i<s.formElements.length;i++){
 				field=s.formElements[i];
 				//如果是多选框，则每个值单独一个条目
@@ -128,15 +129,24 @@
 					for(var j=0;j<field.options.length;j++){
 						var option=field.options[j];
 						if(option.selected){
-							parts.push(field.name+"="+option.value);
+							parts.push({[field.name]:field.value});
+							s.serializeString.push(field.name+"="+field.value);
 						}
 					}
 				}else{
 					//push到数组里
-					parts.push(field.name+"="+field.value);
+					parts.push({[field.name]:field.value});
+					s.serializeString.push(field.name+"="+field.value);
 				}
 			}
-			return parts.join("&");
+			return eval(parts);
+		};
+		//表单序列化
+		s.serialize=function(){
+			//序列化
+			s.serializeJson();
+			//获得字符串
+			return s.serializeString.join("&");
 		};
 		//单个元素验证
 		s.safelvl=0;//密码安全等级

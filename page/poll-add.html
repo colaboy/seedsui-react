@@ -7,10 +7,11 @@
 	<title>poll-add</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<link rel="stylesheet" href="../plugin/animate/animate.css">
+    <link rel="stylesheet" href="../css/poll.css">
 </head>
 
 <body>
-<section id="page_config2" class="active">
+<section id="page_pollWrite" class="active">
 	<header>
 		<div class="titlebar">
             <a class="left" href="javascript:back()">
@@ -30,7 +31,7 @@
             <hr/>
             <div class="input-box">
                 <i class="icon"></i>
-                <textarea placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
+                <textarea name="description" placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
             </div>
             <div class="input-box box-right">
                 <span data-fontcounter-for="description1"></span>
@@ -39,7 +40,7 @@
             <hr/>
             <div class="input-box lineheight0 padding8">
                 <p class="box-flex-1">支持多选</p>
-                <div class="switch reverse notext" data-on="是" data-name="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
+                <div class="switch reverse notext" data-on="是" data-click="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
                     <div class="switch-handle events-none"></div>
                 </div>
             </div>
@@ -60,48 +61,50 @@
                 </select>
                 <i class="icon icon-arrowright color-placeholder"></i>
             </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+            <div class="inputoptions">
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 line">
+                        <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,11 +113,11 @@
             </div>
         </div>
     </form>
-    <a class="button block margin8" onclick="submit('sent')">发送</a>
-    <a class="button block outline margin8" onclick="submit('preview')">预览</a>
+    <a class="button block margin8" onclick="submit()">发送</a>
+    <a class="button block outline margin8" onclick="preview()">预览</a>
 	</article>
 </section>
-<section id="page_pollPic">
+<section id="page_preview">
 	<header>
 		<div class="titlebar">
             <a class="left" href="javascript:back()">
@@ -128,7 +131,7 @@
 		<div class="group">
             <div class="padding12">
                 <p id="topic">公司早餐因该添加什么？</p>
-                <small>要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
+                <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
             </div>
             <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
             <div class="margin12">
@@ -183,10 +186,24 @@
 <script src="../plugin/exmobi/exmobi.js"></script>
 <script>
 	//表单提交验证
-	var f=new Form("#form1");
-	function submit(){
-		f.validate();
-	}
+	var f;
+    //提交
+    function submit(){
+        f=new Form("#form1");
+        f.validate();
+    }
+    //预览
+    var sec=new Section();
+    function preview(){
+        f=new Form("#form1");
+        if(!f.validate())return;
+        var parts=f.serializeJson();
+        for(var n in parts){
+            console.log(n);
+            $("#"+n).html(parts[n]);
+        }
+        sec.openSection("#page_preview");
+    }
 	
 	//数字计数器
 	function listenerFontcount(){
@@ -208,13 +225,13 @@
 	}
 	//图片上传
 	var actionsheet=new Actionsheet();
-	function uploadPhoto(uploadPhotoIcon){
+	function uploadPhoto(uploadPhotoIcon,itemNumber){
 		var uploadIcon=uploadPhotoIcon;
 		var uploadOption=uploadIcon.parentNode.parentNode;
 		var cardPreview=document.createElement("div");
-		cardPreview.setAttribute("class","card-preview animated zoomIn");
-		cardPreview.setAttribute("style","background-image:url(../img/config3/preview-default.jpg)");
-		var appendHtml='<div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
+		cardPreview.setAttribute("class","card-preview animated zoomIn lrmargin8");
+		cardPreview.setAttribute("style","background-image:url(../img/poll/poll-main1.jpg)");
+		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" value="background-image:url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
 		cardPreview.innerHTML=appendHtml;
 		var actionsheetParams=[
 			{
@@ -238,7 +255,7 @@
 	}
 	function delPhoto(objthis){
 		var photo=$(objthis).parent();
-		photo[0].className="card-preview animated zoomOut";
+		photo[0].className="card-preview animated zoomOut lrmargin8";
 		EventUtil.addHandler(photo[0],"animationend",function(){
 			photo.slideUp(300, function(){
 				var uploadIcon=this.previousElementSibling.querySelector("[data-click=uploadPhoto]");
@@ -272,19 +289,33 @@
 				});
 				return;
 			}
-			if(target.getAttribute("data-name")=="delVerify"){
-				$(target).parent().parent().parent().remove();
+			if(target.getAttribute("data-click")=="delVerify"){
+                console.log("delverify");
+                var selfInput=$(target).parent().parent().parent();
+                var selfPhoto=selfInput.next();
+				
+                if(selfPhoto.hasClass("card-preview")){
+                    selfPhoto.remove();
+                }
+                selfInput.remove();
 				return;
 			}
 			if(target.getAttribute("data-click")=="uploadPhoto"){
-				uploadPhoto(target);
+                var upphotoBtns=document.querySelectorAll("[data-click='uploadPhoto']");
+                var targetIndex=0;
+                [].slice.call(upphotoBtns).forEach(function(n,i,a){
+                    if(target==n){
+                        targetIndex=i;
+                    }
+                })
+				uploadPhoto(target,targetIndex);
 				return;
 			}
 			if(target.getAttribute("data-click")=="addPollOption"){
 				$(target).before(pollOptionText);
 				return;
 			}
-			if(target.getAttribute("data-name")=="toogleMultiSel"){
+			if(target.getAttribute("data-click")=="toogleMultiSel"){
 				if(target.classList.contains("active")){
 					$(target).parent().next().next().slideDown();
 				}else{
