@@ -130,14 +130,13 @@
 	<script>
 	window.addEventListener("load",function(){
 		var f=new Form("#form1");
+        var a=new Alert();
 		window.submit=function(){
 			var isOk=f.validate();
 	        if(isOk){
 	        	var args=f.serialize();
-                console.log(args);
-	        	//var a=new Alert("你所要提交的参数是："+args);
-                //a.show();
-	        	//a=null;
+	        	a.setText("你所要提交的参数是："+args);
+                a.show();
 	        }
 		}
 	},false);

@@ -61,50 +61,48 @@
                 </select>
                 <i class="icon icon-arrowright color-placeholder"></i>
             </div>
-            <div class="inputoptions">
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
-                        </div>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
+                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
-                        </div>
+            </div>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
+                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 line">
-                        <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
-                        </div>
+            </div>
+            <div class="row noborder">
+                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                <div class="input-box box-flex-1 line">
+                    <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
+                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                    <div class="nowrap" style="width:40px;height:40px;">
+                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                        </a>
+                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                            <i class="icon icon-trash size24 events-none"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -120,7 +118,7 @@
 <section id="page_preview">
 	<header>
 		<div class="titlebar">
-            <a class="left" href="javascript:back()">
+            <a class="left" href="javascript:backPrev()">
                 <i class="icon icon-arrowleft"></i>
                 <span>返回</span>
             </a>
@@ -133,7 +131,7 @@
                 <p id="topic">公司早餐因该添加什么？</p>
                 <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
             </div>
-            <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
+            <div id="pollimg0" class="preview"></div>
             <div class="margin12">
             	<small class="color-tip">记名投票(最多选2项)</small>
             	<small class="float-right">33人参与投票</small>
@@ -196,15 +194,29 @@
     var sec=new Section();
     function preview(){
         f=new Form("#form1");
-        if(!f.validate())return;
+        //if(!f.validate())return;
         var parts=f.serializeJson();
-        for(var n in parts){
-            console.log(n);
-            $("#"+n).html(parts[n]);
+        for(var i in parts){
+            for(var n in parts[i]){
+                //console.log(n);
+                //$("#"+n).html(parts[i][n]);
+                if(n.indexOf("pollimg")>=0){
+                    var number=n.substr(n.length-1,1);
+                    if(number==0){
+                        $("#pollimg0").css("backgroundImage",parts[i][n]);
+                    }
+                    console.log(parts[i][n]);
+                }else{
+                    $("#"+n).html(parts[i][n]);
+                }
+            }
         }
         sec.openSection("#page_preview");
     }
-	
+	//返回
+    function backPrev(){
+        sec.backSection();
+    }
 	//数字计数器
 	function listenerFontcount(){
 		var fc=new FontCounter({
@@ -231,7 +243,7 @@
 		var cardPreview=document.createElement("div");
 		cardPreview.setAttribute("class","card-preview animated zoomIn lrmargin8");
 		cardPreview.setAttribute("style","background-image:url(../img/poll/poll-main1.jpg)");
-		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" value="background-image:url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
+		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" value="url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
 		cardPreview.innerHTML=appendHtml;
 		var actionsheetParams=[
 			{
