@@ -59,13 +59,13 @@
 	<section id="page_local_db" class="active">
 		<header>
 		    <div class="titlebar">
-		        <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+		        <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
 		        <h1>签到地图</h1>
 		    </div>
 		</header>
 		<article style="bottom:150px;">
 			<div class="input-box reverse radius20 height32 signDate">
-				<input type="date" id="expireDate">
+				<input type="date" id="expireDate" style="padding-top:0;padding-bottom:0;">
 				<i class="icon icon-calendar"></i>
 			</div>
 			<div id="allmap" class="height-full"></div>
@@ -117,6 +117,7 @@
 
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script src="../plugin/exmobi/exmobi.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8830f84901336e9afd2c6d7033d2ebe5"></script>
 	<script>
 		/*=============

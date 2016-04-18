@@ -96,7 +96,6 @@ var Exmobi={
 		imageChoice.start();
 	},
 	gps:function(){
-		var toast=new Toast();
 		toast.setText("正在定位，请稍后...");
 		toast.show();
 		var objGps;

@@ -3,15 +3,9 @@
  * @version 1.0.0
  * @author WangMingzhu
  *
- * @requie datatype.js
  * @requie jquery.js
  */
 
-/**
-*  表单序列化
-* 
-*  @class Form
-*/
 (function(window,document,undefined){
 	//国际化
 	var lang = {
@@ -119,9 +113,8 @@
 		================*/
 
 		//表单Json化
-		s.serializeJson=function(){
+		s.serializeArray=function(){
 			var parts=[],field=null;
-			s.serializeString=[];
 			for(var i=0;i<s.formElements.length;i++){
 				field=s.formElements[i];
 				//如果是多选框，则每个值单独一个条目
@@ -129,24 +122,22 @@
 					for(var j=0;j<field.options.length;j++){
 						var option=field.options[j];
 						if(option.selected){
-							parts.push({[field.name]:field.value});
-							s.serializeString.push(field.name+"="+field.value);
+							parts.push(field.name+"="+field.value);
 						}
 					}
 				}else{
 					//push到数组里
-					parts.push({[field.name]:field.value});
-					s.serializeString.push(field.name+"="+field.value);
+					parts.push(field.name+"="+field.value);
 				}
 			}
-			return eval(parts);
+			return parts;
 		};
 		//表单序列化
 		s.serialize=function(){
 			//序列化
-			s.serializeJson();
+			var parts=s.serializeArray();
 			//获得字符串
-			return s.serializeString.join("&");
+			return parts.join("&");
 		};
 		//单个元素验证
 		s.safelvl=0;//密码安全等级

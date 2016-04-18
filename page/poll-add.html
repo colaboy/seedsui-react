@@ -18,14 +18,14 @@
                 <i class="icon icon-arrowleft"></i>
                 <span>返回</span>
             </a>
-            <h1 class="text-center">投票</h1>
+            <h1 class="text-center">新建投票</h1>
         </div>
 	</header>
 	<article>
 	<form id="form1">
 		<div class="group" id="pollcontent">
             <div class="input-box">
-                <i class="color-placeholder icon icon-typetext"></i>
+                <span class="icon" style="background-image:url(../img/poll/icon-tag.png);background-size:contain"></span>
                 <input type="text" placeholder="投票标题" name="topic" data-rule="required">
             </div>
             <hr/>
@@ -64,7 +64,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容1" name="inputoption" data-rule="required"/>
+                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -79,7 +79,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>
+                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -94,7 +94,7 @@
             <div class="row noborder">
                 <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
                 <div class="input-box box-flex-1 line">
-                    <input type="text" placeholder="输入选项内容3" name="inputoption" data-rule="required"/>
+                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                     <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                     <div class="nowrap" style="width:40px;height:40px;">
                         <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
@@ -181,10 +181,11 @@
 </section>
 <script src="../plugin/jquery/jquery.min.js"></script>
 <script src="../plugin/seedsui/seedsui.min.js"></script>
+<script src="../js/poll.js"></script>
 <script src="../plugin/exmobi/exmobi.js"></script>
 <script>
 	//表单提交验证
-	var f;
+	var f=new Form("#form1");
     //提交
     function submit(){
         f=new Form("#form1");
@@ -194,29 +195,24 @@
     var sec=new Section();
     function preview(){
         f=new Form("#form1");
-        //if(!f.validate())return;
-        var parts=f.serializeJson();
-        for(var i in parts){
-            for(var n in parts[i]){
-                //console.log(n);
-                //$("#"+n).html(parts[i][n]);
-                if(n.indexOf("pollimg")>=0){
-                    var number=n.substr(n.length-1,1);
-                    if(number==0){
-                        $("#pollimg0").css("backgroundImage",parts[i][n]);
-                    }
-                    console.log(parts[i][n]);
-                }else{
-                    $("#"+n).html(parts[i][n]);
-                }
-            }
+        if(f.validate()){
+            sec.openSection("#page_preview");
         }
-        sec.openSection("#page_preview");
     }
 	//返回
     function backPrev(){
         sec.backSection();
     }
+    //最多选2项
+    var checkedToast=new Toast("最多选2项");
+    document.getElementById("selImg").addEventListener("click",function(e){
+        selCheckbox(e,this,{
+            cboMaxCount:2,
+            maxCallback:function(){
+                checkedToast.show();
+            }
+        });
+    },false);
 	//数字计数器
 	function listenerFontcount(){
 		var fc=new FontCounter({
@@ -239,11 +235,12 @@
 	var actionsheet=new Actionsheet();
 	function uploadPhoto(uploadPhotoIcon,itemNumber){
 		var uploadIcon=uploadPhotoIcon;
+        var uploadInput=uploadPhotoIcon.previousElementSibling;
 		var uploadOption=uploadIcon.parentNode.parentNode;
 		var cardPreview=document.createElement("div");
 		cardPreview.setAttribute("class","card-preview animated zoomIn lrmargin8");
 		cardPreview.setAttribute("style","background-image:url(../img/poll/poll-main1.jpg)");
-		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" value="url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
+		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" data-value="'+$(uploadInput).val()+'" value="url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
 		cardPreview.innerHTML=appendHtml;
 		var actionsheetParams=[
 			{
@@ -280,7 +277,7 @@
 	var pollOptionText='<div class="row noborder">'+
                 '<div class="dot" style="margin: 10px 20px 10px 24px;"></div>'+
                 '<div class="input-box box-flex-1 line">'+
-                    '<input type="text" placeholder="输入选项内容2" name="inputoption" data-rule="required"/>'+
+                    '<input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>'+
                     '<i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>'+
                     '<div class="nowrap" style="width:40px;height:40px;">'+
                         '<a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">'+
@@ -302,7 +299,6 @@
 				return;
 			}
 			if(target.getAttribute("data-click")=="delVerify"){
-                console.log("delverify");
                 var selfInput=$(target).parent().parent().parent();
                 var selfPhoto=selfInput.next();
 				
@@ -333,7 +329,10 @@
 				}else{
 					$(target).parent().next().next().slideUp();
 				}
+                return;
 			}
+            $("[data-click=delVerify]").addClass("hide");
+            $("[data-click=del]").fadeIn("fast");
 		},false)
 	}
 
