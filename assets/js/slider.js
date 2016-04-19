@@ -206,7 +206,7 @@
 			e.preventDefault();
 		}
 		s.onTouchStart=function(e){
-			s.container.addEventListener("touchmove",preventDefault,false);
+			//s.container.addEventListener("touchmove",preventDefault,false);
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
 			//关闭自动播放
@@ -308,6 +308,7 @@
 			moveToIndex();
 			setTimeout(function(){
 				s.wrapper.style.webkitTransitionDuration="0ms";
+				s.target=s.slides[s.index];
 				//runCallBacks
 				if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
 				//循环的情况

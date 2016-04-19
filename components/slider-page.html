@@ -67,6 +67,7 @@
             carouselPage=new Slider("#carouselPage",{
                 "onSlideChangeEnd":function(e){
                     tabActive(e.index);
+                    compatibleIosScroll(e);
                 }
             });
         }
@@ -78,7 +79,7 @@
                 for(var j=0;j<pageDataCount[i];j++){
                     datastr+="<li><div class='justify-content'>第"+i+"页</div></li>"
                 }
-                n.innerHTML="<ul class='list'>"+datastr+"</ul>";
+                n.innerHTML='<ul class="list">'+datastr+'</ul>';
             })
         }
         //初始化tabbar菜单
@@ -114,9 +115,9 @@
                 "onBottom":function(e){
                     console.log("滚动到底部啦");
                     //数据加载完成时，隐藏下面的元素
-                    setTimeout(function(){
+                    /*setTimeout(function(){
                         e.bottomRefreshEl.style.display="none";
-                    }, 5000);
+                    }, 5000);*/
                 }
             });
 
@@ -144,6 +145,26 @@
             initData();
             initDrag();
         },false);
+
+        /*兼容Ios浏览器滚动到最底或者最顶，不能滚动的问题*/
+        var slides=document.querySelectorAll(".slider-slide");
+        [].slice.call(slides).forEach(function(n,i,a){
+            n.onscroll=function(e){
+                compatibleIosScroll(e);
+            }
+        })
+        function compatibleIosScroll(e){
+            var container=e.target;
+            var clientHeight=container.clientHeight; 
+            var scrollTop=container.scrollTop; 
+            var scrollHeight=container.scrollHeight;
+            if(scrollTop==0){
+                container.scrollTop=1;
+            }
+            if (clientHeight+scrollTop>=scrollHeight){
+                container.scrollTop=container.scrollTop-1;
+            }
+        }
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>
