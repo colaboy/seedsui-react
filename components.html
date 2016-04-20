@@ -86,17 +86,6 @@
 
             <li>
               <a href="#glyphicons">文字图标</a>
-              <ul class="nav">
-                <li>
-                  <a href="#glyphicons-glyphs">可用的图标</a>
-                </li>
-                <li>
-                  <a href="#glyphicons-how-to-use">如何使用</a>
-                </li>
-                <li>
-                  <a href="#glyphicons-examples">案例</a>
-                </li>
-              </ul>
             </li>
             <li>
               <a href="#dropdowns">导航</a>
@@ -123,18 +112,6 @@
                 </li>
                 <li>
                   <a href="#btn-groups-toolbar">按钮组</a>
-                </li>
-                <li>
-                  <a href="#btn-groups-sizing">尺寸</a>
-                </li>
-                <li>
-                  <a href="#btn-groups-nested">嵌套</a>
-                </li>
-                <li>
-                  <a href="#btn-groups-vertical">垂直排列</a>
-                </li>
-                <li>
-                  <a href="#btn-groups-justified">两端对齐的链接排列</a>
                 </li>
               </ul>
             </li>
@@ -368,11 +345,7 @@
               <div class="page-header">
                 <h1 id="glyphicons">文字图标</h1>
               </div>
-
-              <h2 id="glyphicons-glyphs">可用的图标</h2>
-              <p>
-                包括300多个SeedsUI的字体图标
-              </p>
+              <p class="lead">包括300多个SeedsUI的字体图标</p>
               <div class="bs-glyphicons">
                 <ul class="bs-glyphicons-list">
                   <li>
@@ -1941,15 +1914,12 @@
                 </li>
                 </ul>
               </div>
-
-              <h2 id="glyphicons-how-to-use">如何使用</h2>
+              <p class="lead">单独使用</p>
               <div class="highlight">
                 <pre><code class="language-html">&lt;i class=&quot;icon icon-search&quot;&gt;&lt;/i&gt;</code></pre>
 
               </div>
-
-              <h2 id="glyphicons-examples">案例</h2>
-              <p>把它们放在按钮，工具栏的按钮组中，导航或输入栏的前面都可以。</p>
+              <p class="lead">在控件中使用</p>
               <div class="bs-example">
                 <div class="btn-toolbar" role="toolbar">
                   <button type="button" class="btn btn-default btn-lg">
@@ -2209,307 +2179,84 @@
   ================================================== -->
             <div class="bs-docs-section">
               <div class="page-header">
-                <h1 id="btn-groups">按钮组</h1>
+                <h1 id="btn-groups">按钮</h1>
               </div>
-              <p class="lead">用按钮组把一组按钮放在同一行里。通过a href="../javascript/#buttons">我们按钮插件</a>
-              可以设置为单选框或多选框样式。
-            </p>
+              <p class="lead">SeedsUI为系统按钮默认加了一套样式。根据不同场景使用不同的按钮。</p>
 
-            <div class="bs-callout bs-callout-info">
-              <h4>按钮组中的工具提示和弹出框需要特别的设置</h4>
-              <p>
-                当为
-                <code>.btn-group</code>
-                中的元素应用工具提示或弹出框时，必须指定
-                <code>container: 'body'</code>
-                选项，这样可以避免不必要的副作用（例如工具提示或弹出框触发时，会让页面元素变宽和/或失去圆角）。
-              </p>
-            </div>
 
-            <h3 id="btn-groups-single">基本案例</h3>
-            <p>
-              把一系列的
-              <code>.btn</code>
-              按钮放入
-              <code>.btn-group</code>
-              。
-            </p>
+            <h3 id="btn-groups-single">按钮</h3>
             <div class="bs-example">
-              <div class="btn-group" style="margin: 9px 0 5px;">
-                <button type="button" class="btn btn-default">Left</button>
-                <button type="button" class="btn btn-default">Middle</button>
-                <button type="button" class="btn btn-default">Right</button>
-              </div>
+              <img src="images/button.png"/>
             </div>
             <div class="highlight">
-              <pre><code class="language-html">&lt;div class=&quot;btn-group&quot;&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Left&lt;/button&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Middle&lt;/button&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;Right&lt;/button&gt;
+              <pre><code class="language-html">&lt;button class="radius4 submit"&gt;
+    &lt;i class="icon icon-rdohook"&gt;&lt;/i&gt;
+    &lt;label&gt;提交&lt;/label&gt;
+&lt;/button&gt;</code></pre>
+
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>元素</th>
+                  <th>属性</th>
+                  <th>值</th>
+                  <th>描述</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">I.按钮button,input[type=button],a</td>
+                  <td>class</td>
+                  <td>无 | button | outline | submit | cancel | disable | info | success | warn | grayscale | white</td>
+                  <td>主样式 | 主样式 | 边框型 | 提交按钮 | 取消按钮 | 禁用按钮 | 信息按钮 | 成功按钮 | 警告按钮 | 无色按钮 | 白色按钮</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 id="btn-groups-toolbar">按钮组</h3>
+            <div class="bs-example">
+              <img src="images/buttongroup.png"/>
+            </div>
+            <div class="highlight">
+              <pre><code class="language-html">&lt;div class="button-group margin8"&gt;
+    &lt;span class="disable"&gt;«&lt;/span&gt;
+    &lt;span class="disable"&gt;&lt;&lt;/span&gt;
+    &lt;span class="active"&gt;1&lt;/span&gt;
+    &lt;span&gt;2&lt;/span&gt;
+    &lt;span&gt;3&lt;/span&gt;
+    &lt;span&gt;4&lt;/span&gt;
+    &lt;span&gt;5&lt;/span&gt;
+    &lt;span&gt;&gt;&lt;/span&gt;
+    &lt;span&gt;»&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
             </div>
-
-            <h3 id="btn-groups-toolbar">按钮工具栏</h3>
-            <p>
-              把一组
-              <code>&lt;div class="btn-group"&gt;</code>
-              组合进一个
-              <code>&lt;div class="btn-toolbar"&gt;</code>
-              做成更复杂的组件。
-            </p>
-            <div class="bs-example">
-              <div class="btn-toolbar" role="toolbar" style="margin: 0;">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">1</button>
-                  <button type="button" class="btn btn-default">2</button>
-                  <button type="button" class="btn btn-default">3</button>
-                  <button type="button" class="btn btn-default">4</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">5</button>
-                  <button type="button" class="btn btn-default">6</button>
-                  <button type="button" class="btn btn-default">7</button>
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">8</button>
-                </div>
-              </div>
-            </div>
-            <div class="highlight">
-              <pre><code class="language-html">&lt;div class=&quot;btn-toolbar&quot; role=&quot;toolbar&quot;&gt;
-  &lt;div class=&quot;btn-group&quot;&gt;...&lt;/div&gt;
-  &lt;div class=&quot;btn-group&quot;&gt;...&lt;/div&gt;
-  &lt;div class=&quot;btn-group&quot;&gt;...&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-            </div>
-
-            <h3 id="btn-groups-sizing">尺寸</h3>
-            <p>
-              只要给
-              <code>.btn-group</code>
-              加上
-              <code>.btn-group-*</code>
-              ，而不是给组中每个按钮都应用大小类。
-            </p>
-            <div class="bs-example">
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group btn-group-lg">
-                  <button type="button" class="btn btn-default">Left</button>
-                  <button type="button" class="btn btn-default">Middle</button>
-                  <button type="button" class="btn btn-default">Right</button>
-                </div>
-              </div>
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default">Left</button>
-                  <button type="button" class="btn btn-default">Middle</button>
-                  <button type="button" class="btn btn-default">Right</button>
-                </div>
-              </div>
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group btn-group-sm">
-                  <button type="button" class="btn btn-default">Left</button>
-                  <button type="button" class="btn btn-default">Middle</button>
-                  <button type="button" class="btn btn-default">Right</button>
-                </div>
-              </div>
-              <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group btn-group-xs">
-                  <button type="button" class="btn btn-default">Left</button>
-                  <button type="button" class="btn btn-default">Middle</button>
-                  <button type="button" class="btn btn-default">Right</button>
-                </div>
-              </div>
-            </div>
-            <div class="highlight">
-              <pre><code class="language-html">&lt;div class=&quot;btn-group btn-group-lg&quot;&gt;...&lt;/div&gt;
-&lt;div class=&quot;btn-group&quot;&gt;...&lt;/div&gt;
-&lt;div class=&quot;btn-group btn-group-sm&quot;&gt;...&lt;/div&gt;
-&lt;div class=&quot;btn-group btn-group-xs&quot;&gt;...&lt;/div&gt;</code></pre>
-
-            </div>
-
-            <h3 id="btn-groups-nested">嵌套</h3>
-            <p>
-              想要把下拉菜单混合到一系列按钮中，就把
-              <code>.btn-group</code>
-              放入另一个
-              <code>.btn-group</code>
-              中。
-            </p>
-            <div class="bs-example">
-              <div class="btn-group">
-                <button type="button" class="btn btn-default">1</button>
-                <button type="button" class="btn btn-default">2</button>
-
-                <div class="btn-group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Dropdown
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupDrop1">
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="highlight">
-              <pre><code class="language-html">&lt;div class=&quot;btn-group&quot;&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;1&lt;/button&gt;
-  &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot;&gt;2&lt;/button&gt;
-
-  &lt;div class=&quot;btn-group&quot;&gt;
-    &lt;button type=&quot;button&quot; class=&quot;btn btn-default dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
-      Dropdown
-      &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;ul class=&quot;dropdown-menu&quot;&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Dropdown link&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Dropdown link&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-            </div>
-
-            <h3 id="btn-groups-vertical">垂直排列</h3>
-            <p>
-              让一组按钮竖直显示而不是水平显示。 <strong class="text-danger">不支持分列式按钮下拉菜单。</strong>
-            </p>
-            <div class="bs-example">
-              <div class="btn-group-vertical">
-                <button type="button" class="btn btn-default">Button</button>
-                <button type="button" class="btn btn-default">Button</button>
-                <div class="btn-group">
-                  <button id="btnGroupVerticalDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Dropdown
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop1">
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-default">Button</button>
-                <button type="button" class="btn btn-default">Button</button>
-                <div class="btn-group">
-                  <button id="btnGroupVerticalDrop2" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Dropdown
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop2">
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="btn-group">
-                  <button id="btnGroupVerticalDrop3" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Dropdown
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop3">
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="btn-group">
-                  <button id="btnGroupVerticalDrop4" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Dropdown
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop4">
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                    <li>
-                      <a href="#">Dropdown link</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="highlight">
-              <pre><code class="language-html">&lt;div class=&quot;btn-group-vertical&quot;&gt;
-  ...
-&lt;/div&gt;</code></pre>
-
-            </div>
-
-            <h3 id="btn-groups-justified">两端对齐的链接排列</h3>
-            <p>让一组按钮拉长为相同的尺寸，适应父元素的宽度。对于按钮组中的按钮下拉菜单也同样适用。</p>
-
-            <div class="bs-callout bs-callout-warning">
-              <h4>特定元素的用法</h4>
-              <p>
-                这只适用
-                <code>&lt;a&gt;</code>
-                元素，因为
-                <code>&lt;button&gt;</code>
-                元素不能应用这些样式并将其所包含的内容两端对齐（就像
-                <code>display: table-cell;</code>
-                之类的表现形式）。
-                <p></div>
-
-                <div class="bs-example">
-                  <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default" role="button">Left</a>
-                    <a class="btn btn-default" role="button">Middle</a>
-                    <a class="btn btn-default" role="button">Right</a>
-                  </div>
-                  <br>
-                  <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default" role="button">Left</a>
-                    <a class="btn btn-default" role="button">Middle</a>
-                    <div class="btn-group">
-                      <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Dropdown
-                        <span class="caret"></span>
-                      </a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li>
-                          <a href="#">Action</a>
-                        </li>
-                        <li>
-                          <a href="#">Another action</a>
-                        </li>
-                        <li>
-                          <a href="#">Something else here</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#">Separated link</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="highlight">
-                  <pre><code class="language-html">&lt;div class=&quot;btn-group btn-group-justified&quot;&gt;
-  ...
-&lt;/div&gt;</code></pre>
-
-                </div>
-
-              </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>元素</th>
+                  <th>属性</th>
+                  <th>值</th>
+                  <th>描述</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>I.按钮组div</td>
+                  <td>class</td>
+                  <td>button-group</td>
+                  <td>按钮组包裹span</td>
+                </tr>
+                <tr>
+                  <td>II.按钮span</td>
+                  <td>class</td>
+                  <td>无 | disable | active</td>
+                  <td>普通按钮 | 禁用状态 | 激活状态</td>
+                </tr>
+              </tbody>
+            </table>
+         </div>
 
               <!-- Split button dropdowns
   ================================================== -->
