@@ -206,12 +206,13 @@
 			e.preventDefault();
 		}
 		s.onTouchStart=function(e){
-			//s.container.addEventListener("touchmove",preventDefault,false);
+			s.container.addEventListener("touchmove",preventDefault,false);
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
 			//关闭自动播放
 			s.stopAutoplay();
-			//runCallBacks
+			//runCallBack
+			s.target=s.slides[s.index];
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
 			e.stopPropagation();
 		};
@@ -308,8 +309,8 @@
 			moveToIndex();
 			setTimeout(function(){
 				s.wrapper.style.webkitTransitionDuration="0ms";
+				//runCallBack
 				s.target=s.slides[s.index];
-				//runCallBacks
 				if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
 				//循环的情况
 				if(s.params.loop){
@@ -335,16 +336,18 @@
 
 		//主函数
 		s.init=function(){
-			if (s.params.loop)s.createLoop();
+			if(s.params.loop)s.createLoop();
 			s.updateSlides();
 			if(s.params.pagination)s.createPagination();
             s.updateContainerSize();
 			s.attach();
-			if (s.params.autoplay) s.startAutoplay();
+			if(s.params.autoplay) s.startAutoplay();
+			//runCallBack
+			s.target=s.slides[s.index];
+			if(s.params.onInit)s.params.onInit(s);
 		}
 		//执行主函数
 		s.init();
-		
 		// Return slider instance
 		return s;
 	}
