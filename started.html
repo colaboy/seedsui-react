@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
 
-  <title>起步 &middot; Bootstrap</title>
+  <title>起步 &middot; SeedsUI</title>
 
   <!-- Bootstrap core CSS 
   注意：此文件跟随官网最新版本更新，随时会有改变。建议使用下面v3.0.3版本的CDN链接！
@@ -23,9 +23,6 @@
   <link href="stylesheets/docs.css" rel="stylesheet">
   <link href="stylesheets/github.min.css" rel="stylesheet">
   <style>
-body{font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;}
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead {font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
-pre code { background: transparent; }
 @media (min-width: 768px) {
     .bs-docs-home .bs-social, 
     .bs-docs-home .bs-masthead-links {
@@ -94,7 +91,7 @@ pre code { background: transparent; }
   <div class="bs-header" id="content">
     <div class="container">
       <h1>起步</h1>
-      <p>简要介绍SeedsUI，以及如何下载、使用，基本模版和案例，等等。</p>
+      <p>使用SeedsUI前的准备工作。</p>
 
     </div>
   </div>
@@ -112,15 +109,10 @@ pre code { background: transparent; }
             <li>
               <a href="#template">基本模版</a>
             </li>
-            <li>
-              <a href="#examples">案例</a>
-            </li>
           </ul>
         </div>
       </div>
       <div class="col-md-9" role="main">
-        <!-- File structure
-  ================================================== -->
         <div class="bs-docs-section">
           <div class="page-header">
             <h1 id="whats-included">包含了哪些文件</h1>
@@ -128,10 +120,7 @@ pre code { background: transparent; }
           <p class="lead">
             SeedsUI 源码包含了预先编译的 CSS、JavaScript 和图标字体文件，并且还有 LESS、JavaScript 和文档的源码。具体来说，主要文件组织结构如下：
           </p>
-          <!-- NOTE: This info is intentionally duplicated in the README.
-Copy any changes made here over to the README too. -->
-          <div class="highlight">
-            <pre><code class="language-bash">
+          <div class="highlight"><pre><code class="language-bash">
 seedsui/
 ├── assets/
 ├── components/
@@ -149,39 +138,34 @@ seedsui/
 │   ├── swiper/
 │   └── weixin/
 └── theme/
-    └── theme-default/
-    └── theme-blue/
-    └── theme-cyan/
-    </code></pre>
-
-          </div>
+└── theme-default/
+└── theme-blue/
+└── theme-cyan/
+                </code></pre></div>
+          <p>
+            <code>less/</code>
+            、
+            <code>js/</code>
+            和
+            <code>fonts/</code>
+            分别包含了CSS、JS和字体图标的源码。
+            <code>dist/</code>
+            目录包含了上面所说的预编译Bootstrap包内的所有文件。
+            <code>docs-assets/</code>
+            、
+            <code>examples/</code>
+            和所有
+            <code>*.html</code>
+            文件是文档的源码文件。除了前面提到的这些文件，还包含package定义文件、许可证文件等。
+          </p>
         </div>
-        <p>
-          <code>less/</code>
-          、
-          <code>js/</code>
-          和
-          <code>fonts/</code>
-          分别包含了CSS、JS和字体图标的源码。
-          <code>dist/</code>
-          目录包含了上面所说的预编译Bootstrap包内的所有文件。
-          <code>docs-assets/</code>
-          、
-          <code>examples/</code>
-          和所有
-          <code>*.html</code>
-          文件是文档的源码文件。除了前面提到的这些文件，还包含package定义文件、许可证文件等。
-        </p>
-
-        <!-- Template
-  ================================================== -->
         <div class="bs-docs-section">
           <div class="page-header">
             <h1 id="template">基本模版</h1>
           </div>
           <p class="lead">
             使用以下给出的这份超级简单的HTML模版，或者修改这些案例
-            。我们强烈建议你对这些案例按照自己的需求进行修改，而不要简单的复制、粘贴。
+。我们强烈建议你对这些案例按照自己的需求进行修改，而不要简单的复制、粘贴。
           </p>
 
           <p>拷贝并粘贴下面给出的HTML代码，这就是一个最简单的SeedsUI页面了。</p>
@@ -190,111 +174,70 @@ seedsui/
 &lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
-    &lt;meta charset="utf-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"&gt;
-    &lt;meta name="format-detection" content="telephone=no"&gt;
-    &lt;title&gt;SeedsUI模板&lt;/title&gt;
-    &lt;link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css"&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"&gt;
+&lt;meta name="format-detection" content="telephone=no"&gt;
+&lt;title&gt;SeedsUI模板&lt;/title&gt;
+&lt;link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css"&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
-    &lt;section id="page_button" class="active"&gt;
-        &lt;header&gt;
-            &lt;div class="titlebar"&gt;
-                &lt;a href="javascript:history.go(-1)"&gt;&lt;i class="icon icon-arrowleft"&gt;&lt;/i&gt;&lt;/a&gt;
-                &lt;h1&gt;标题&lt;/h1&gt;
-            &lt;/div&gt;
-        &lt;/header&gt;
-        &lt;article&gt;
-            &lt;!--页面内容--&gt;
-        &lt;/article&gt;
-    &lt;/section&gt;
-    &lt;script src="../plugin/jquery/jquery.min.js"&gt;&lt;/script&gt;
-    &lt;script src="../plugin/seedsui/seedsui.min.js"&gt;&lt;/script&gt;
-    &lt;script&gt;
-      //定义exmobi返回
-      function back(){history.go(-1);}
-    &lt;/script&gt;
+&lt;section id="page_button" class="active"&gt;
+&lt;header&gt;
+&lt;div class="titlebar"&gt;
+&lt;a href="javascript:history.go(-1)"&gt;&lt;i class="icon icon-arrowleft"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;h1&gt;标题&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/header&gt;
+&lt;article&gt;
+&lt;!--页面内容--&gt;
+&lt;/article&gt;
+&lt;/section&gt;
+&lt;script src="../plugin/jquery/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="../plugin/seedsui/seedsui.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+//定义exmobi返回
+function back(){history.go(-1);}
+&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-            </code></pre>
+</code></pre>
           </div>
         </div>
-
-        <!-- Template
-  ================================================== -->
-        <div class="bs-docs-section">
-          <div class="page-header">
-            <h1 id="examples">案例</h1>
-          </div>
-          <p class="lead">以下实例全部基于前面所讲的基本模板并配合 SeedsUI 的众多组件开发而成，但所有的跳转全部使用Exmobi的能力，如果是纯h5应用，则需要修改跳转方式。我们鼓励你根据自身项目的需要对 SeedsUI 进行定制和修改。</p>
-
-          <div class="row bs-examples">
-            <div class="col-xs-6 col-md-4">
-              <a class="thumbnail">
-                <img src="images/sign.jpg" alt=""></a>
-              <h4>签到</h4>
-              <p>签到app</p>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <a class="thumbnail">
-                <img src="images/poll.jpg" alt=""></a>
-              <h4>投票</h4>
-              <p>投票app</p>
-            </div>
-            <div class="clearfix visible-xs"></div>
-
-            <div class="col-xs-6 col-md-4">
-              <a class="thumbnail">
-                <img src="images/news.jpg" alt=""></a>
-              <h4>新闻</h4>
-              <p>
-                新闻app
-              </p>
-            </div>
-            <div class="col-xs-6 col-md-4">
-              <a class="thumbnail">
-                <img src="images/doctor.jpg" alt=""></a>
-              <h4>医生</h4>
-              <p>
-                医生app
-              </p>
-            </div>
-            <div class="clearfix visible-xs"></div>
-
       </div>
-      <!-- Footer
-    ================================================== -->
-  <footer class="bs-footer" role="contentinfo">
-    abcdefg
-  </footer>
-      <!-- JS and analytics only. -->
-      <!-- Bootstrap core JavaScript
-================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="javascripts/jquery.min.js"></script>
+    </div>
+  </div>
 
-      <!-- Bootstrap core JS file
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="javascripts/jquery.min.js"></script>
+
+  <!-- Bootstrap core JS file
   注意：此文件跟随官网最新版本更新，随时会有改变。建议使用下面v3.0.3版本的CDN链接！
  -->
-      <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
 
-      <!-- Hi，如果你要在自己的网站上引入bootstrap JS文件的话，请使用当前最新版本v3.0.3的CDN链接，页面加载速度会更快！
+  <!-- Hi，如果你要在自己的网站上引入bootstrap JS文件的话，请使用当前最新版本v3.0.3的CDN链接，页面加载速度会更快！
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    -->
-    <script src="javascripts/holder.min.js"></script>
-    <script src="javascripts/highlight.min.js"></script>
-    <script >hljs.initHighlightingOnLoad();</script>
+-->
+<script src="javascripts/holder.min.js"></script>
+<script src="javascripts/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
 
-    <script src="javascripts/application.js"></script>
+<script src="javascripts/application.js"></script>
 
-    <!-- Analytics
+<!-- Analytics
 ================================================== -->
-    <script type="text/javascript">
+<script type="text/javascript">
     var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
     document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3d8e7fc0de8a2a75f2ca3bfe128e6391' type='text/javascript'%3E%3C/script%3E"));
     </script>
 
 </body>
 
-    <!-- Mirrored from v3.bootcss.com/getting-started/ by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 18 Dec 2013 02:07:00 GMT --> </html>
+<!-- Mirrored from v3.bootcss.com/getting-started/ by HTTrack Website Copier/3.x [XR&CO'2013], Wed, 18 Dec 2013 02:07:00 GMT -->
+</html>

@@ -38,7 +38,9 @@
  *
  * Update the basics of our documents to prep for docs content.
  */
-
+body{font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead {font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
+pre code { background: transparent; }
 body {
   position: relative; /* For scrollyspy */
   padding-top: 50px; /* Account for fixed navbar */
@@ -146,7 +148,7 @@ body {
 
 @media (min-width: 768px) {
   .bs-footer {
-    text-align: left;
+    text-align: center;
   }
   .bs-footer p {
     margin-bottom: 0;
@@ -222,11 +224,12 @@ body {
   position: relative;
   padding: 30px 15px;
   text-align: center;
-  text-shadow: 0 1px 0 rgba(0,0,0,.15);
 }
 .bs-masthead h1 {
   font-size: 50px;
   line-height: 1;
+}
+.bs-masthead h1.reverse{
   color: #fff;
 }
 .bs-masthead .btn-outline-inverse {
@@ -253,7 +256,7 @@ body {
 
 @media (min-width: 768px) {
   .bs-masthead {
-    text-align: left;
+    text-align: center;
     padding-top:    140px;
     padding-bottom: 140px;
   }
@@ -261,7 +264,6 @@ body {
     font-size: 100px;
   }
   .bs-masthead .lead {
-    margin-right: 25%;
     font-size: 30px;
   }
   .bs-masthead .btn-outline-inverse {
