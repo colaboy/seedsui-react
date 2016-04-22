@@ -66,16 +66,16 @@
             <a href="started.html">起步</a>
           </li>
           <li class="active">
-            <a href="index.html">CSS</a>
+            <a href="index.html">全局CSS</a>
           </li>
           <li>
             <a href="components.html">组件</a>
           </li>
           <li>
-            <a href="javascript.html">JavaScript插件</a>
+            <a href="javascript.html">其它插件</a>
           </li>
           <li>
-            <a href="customize.html">定制</a>
+            <a href="customize.html">换肤</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -91,7 +91,7 @@
   <div class="bs-header" id="content">
     <div class="container">
       <h1>CSS</h1>
-      <p>设置全局CSS样式，基本的HTML元素均可以通过class设置样式并得到增强效果，还有先进的栅格系统。</p>
+      <p>设置全局CSS样式，定义圆角、边框、尺寸等。</p>
 
     </div>
   </div>
@@ -105,27 +105,7 @@
           <ul class="nav bs-sidenav">
 
             <li>
-              <a href="#overview">概览</a>
-              <ul class="nav">
-                <li>
-                  <a href="#overview-doctype">HTML5文档类型</a>
-                </li>
-                <li>
-                  <a href="#overview-mobile">移动设备优先</a>
-                </li>
-                <li>
-                  <a href="#overview-responsive-images">响应式图片</a>
-                </li>
-                <li>
-                  <a href="#overview-type-links">排版和链接</a>
-                </li>
-                <li>
-                  <a href="#overview-normalize">Normalize</a>
-                </li>
-                <li>
-                  <a href="#overview-container">Containers</a>
-                </li>
-              </ul>
+              <a href="#overview">圆角</a>
             </li>
             <li>
               <a href="#grid">栅格系统</a>
@@ -351,125 +331,27 @@
   ================================================== -->
         <div class="bs-docs-section">
           <div class="page-header">
-            <h1 id="overview">概览</h1>
+            <h1 id="overview">圆角</h1>
           </div>
-          <p class="lead">深入了解Bootstrap底层结构的关键部分，包括我们让web开发变得更好、更快、更强壮的最佳实践。</p>
-
-          <h3 id="overview-doctype">HTML5文档类型</h3>
-          <p>
-            Bootstrap使用到的某些HTML元素和CSS属性需要将页面设置为HTML5文档类型。在你项目中的每个页面都要参照下面的格式进行设置。
-          </p>
-          <div class="highlight">
-            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;zh-CN&quot;&gt;
-  ...
-&lt;/html&gt;</code></pre>
-
-          </div>
-
-          <h3 id="overview-mobile">移动设备优先</h3>
-          <p>
-            在Bootstrap 2中，我们对框架中的某些关键部分增加了对移动设备友好的样式。而在Bootstrap 3中，我们重写了整个框架，使其一开始就是对移动设备友好的。这次不是简单的增加一些可选的针对移动设备的样式，而是直接融合进了框架的内核中。也就是说， <strong>Bootstrap是移动设备优先的</strong>
-            。针对移动设备的样式融合进了框架的每个角落，而不是一个单一的文件。
-          </p>
-          <p>
-            为了确保适当的绘制和触屏缩放，需要在
-            <code>&lt;head&gt;</code>
-            之中 <strong>添加viewport元数据标签</strong>
-            。
-          </p>
-          <div class="highlight">
-            <pre><code class="language-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code></pre>
-
-          </div>
-          <p>
-            在移动设备浏览器上，通过为viewport meta标签添加
-            <code>user-scalable=no</code>
-            可以禁用其缩放（zooming）功能。这样禁用缩放功能后，用户只能滚动屏幕，就能让你的网站看上去更像原生应用的感觉。注意，这种方式我们并不推荐所有网站使用，还是要看你自己的情况而定！
-          </p>
-          <div class="highlight">
-            <pre><code class="language-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</code></pre>
-
-          </div>
-
-          <h3 id="overview-responsive-images">响应式图片</h3>
-          <p>
-            通过添加
-            <code>.img-responsive</code>
-            class可以让Bootstrap 3中的图片对响应式布局的支持更友好。其实质是为图片赋予了
-            <code>max-width: 100%;</code>
-            和
-            <code>height: auto;</code>
-            属性，可以让图片按比例缩放，不超过其父元素的尺寸。
-          </p>
-          <div class="highlight">
-            <pre><code class="language-html">&lt;img src=&quot;...&quot; class=&quot;img-responsive&quot; alt=&quot;Responsive image&quot;&gt;</code></pre>
-
-          </div>
-
-          <h3 id="overview-type-links">排版和链接</h3>
-          <p>Bootstrap设置了全局样式，包括显示、排版和链接。尤其是，我们还：</p>
-          <ul>
-            <li>
-              为
-              <code>body</code>
-              标签设置了
-              <code>background-color:  #fff;</code>
-              样式
-            </li>
-            <li>
-              设置了排版的基本属性
-              <code>@font-family-base</code>
-              、
-              <code>@font-size-base</code>
-              和
-              <code>@line-height-base</code>
-            </li>
-            <li>
-              Set the global link color via
-              <code>@link-color</code>
-              and apply link underlines only on
-              <code>:hover</code>
-            </li>
-          </ul>
-          <p>
-            这些样式可以在
-            <code>scaffolding.less</code>
-            文件中找到。
-          </p>
-
-          <h3 id="overview-normalize">Normalize</h3>
-          <p>
-            为了增强跨浏览器表现的一致性，我们使用了
-            <a href="http://necolas.github.io/normalize.css/" target="_blank">Normalize</a>
-            ，这是由
-            <a href="http://twitter.com/necolas" target="_blank">Nicolas Gallagher</a>
-            和
-            <a href="http://twitter.com/jon_neal" target="_blank">Jonathan Neal</a>
-            维护的一个reset库。
-          </p>
-
-          <h3 id="overview-container">Containers</h3>
-          <p>
-            用
-            <code>.container</code>
-            包裹页面上的内容即可实现居中对齐。在不同的媒体查询阈值范围内都为container设置了
-            <code>width</code>
-            ，用以匹配栅格系统。
-          </p>
-          <p>
-            注意，由于设置了
-            <code>padding</code>
-            和 固定宽度，
-            <code>.container</code>
-            不能嵌套。
-          </p>
-          <div class="highlight">
-            <pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
-  ...
-&lt;/div&gt;</code></pre>
-
-          </div>
+          <p class="lead">定义元素的圆角半径。</p>
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>元素</th>
+                  <th>属性</th>
+                  <th>值</th>
+                  <th>描述</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>任何元素</td>
+                  <td>class</td>
+                  <td>radius4 | radius6 | radius8 | radius16 | radius20 | radius40 | radiusround</td>
+                  <td>圆角半径</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
 
         <!-- Grid system
