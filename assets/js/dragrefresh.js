@@ -5,6 +5,7 @@
 		  Model
 		  ==================*/
 		var defaults={
+			"minScrollTop":0,
 			"refreshThreshold":100,
 			"refreshThresholdMax":200,
 			"refreshHideTop":0,
@@ -15,8 +16,7 @@
 			onRefresh:function(Dragrefresh)
 			onRefreshComplete:function(Dragrefresh)
 			onRefreshOvertime:function(Dragrefresh)
-
-			*/	
+			*/
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -206,7 +206,7 @@
 		}
 		s.onTouchStart=function(e){
 			//如果不在顶部，则不触发
-			if(s.container.scrollTop>0){
+			if(s.container.scrollTop>s.params.minScrollTop){
 				s.touches.isTop=false;
 			}else{
 				s.touches.isTop=true;
@@ -258,9 +258,9 @@
 		s.init();
 	};
 	Dragrefresh.prototype={
-		scrollTop:(function(){
+		/*scrollTop:(function(){
 			 return document.body.scrollTop;
-		})(),
+		})(),*/
 		requestAnimationFrame:function(callback){
 			var rAF = window.requestAnimationFrame	||
 			window.webkitRequestAnimationFrame	||

@@ -11,11 +11,12 @@
     <section id="page_form_validate" class="active">
         <header>
             <div class="titlebar">
-                <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>表单验证</h1>
             </div>
         </header>
         <article>
+		<div class="scroller">
         	<form id="form1" style="padding:10px;">
                 <div class="input-box nolrmargin required" data-input="clear">
                     <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
@@ -55,7 +56,8 @@
 
                 <button class="submit block">注册</button>
         	</form>
-        </article>
+        </div>
+	</article>
     </section>
     
     <script src="../plugin/jquery/jquery.min.js"></script>

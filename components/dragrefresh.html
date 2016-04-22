@@ -11,13 +11,15 @@
     <section id="page_dragrefresh" class="active">
         <header>
             <div class="titlebar">
-            	<a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+            	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>下拉刷新</h1>
             </div>
         </header>
         <article>
+		<div class="scroller">
             <ul class="list" id="list"></ul>
-        </article>
+        </div>
+	</article>
     </section>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

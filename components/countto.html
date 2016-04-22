@@ -11,11 +11,12 @@
     <section id="page_countto" class="active">
         <header>
             <div class="titlebar">
-                <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>计数器</h1>
             </div>
         </header>
         <article>
+		<div class="scroller">
             <p class="title">计数器</p>
             <div class="card padding8">
                 <span class="timer" data-duration="5000" data-to="5">0</span>
@@ -31,7 +32,8 @@
             	<span id="fps1"></span>
             </div>
 
-        </article>
+        </div>
+	</article>
     </section>
     
     <script src="../plugin/seedsui/seedsui.min.js"></script>

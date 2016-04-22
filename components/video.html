@@ -11,11 +11,12 @@
 	<section id="page_video" class="active">
 		<header>
 		    <div class="titlebar">
-		        <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+		        <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
 		        <h1>媒体播放</h1>
 		    </div>
 		</header>
 		<article>
+		<div class="scroller">
 		    <video id="player1" width="100%" controls>
 		        <source src="video.mp4" type="video/mp4">
 		        您的浏览器不支持 HTML5 video 标签。
@@ -27,7 +28,8 @@
 			    <a class="button block info margin8" onclick="goPlay(2)">设置播放时间</a>
 			    <a class="button block warn margin8" onclick="playBgSound()">播放背景音乐</a>
 			</p>
-		</article>
+		</div>
+	</article>
 	</section>
 	
 	<script src="../plugin/seedsui/seedsui.min.js"></script>

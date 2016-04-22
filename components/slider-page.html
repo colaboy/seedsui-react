@@ -13,7 +13,7 @@
     <section id="page_sliderPage" class="active">
         <header>
             <div class="titlebar">
-                <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>滑动页面</h1>
             </div>
             <ul class="tabbar animate-slide width-full" data-col="5" id="tabbar">
@@ -36,6 +36,7 @@
             </ul>
         </header>
         <article style="top:84px;">
+        <div class="scroller">
             <div class="slider-container" id="carouselPage" style="height: 100%;">
                 <div class="slider-wrapper">
                     <div class="slider-slide">
@@ -55,16 +56,21 @@
                     </div>
                 </div>
             </div>
-        </article>
+        </div>
+	    </article>
     </section>
     
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script type="text/javascript">
+        var slides=document.querySelectorAll("#carouselPage .slider-slide");
         //初始化滑动容器
         var carouselPage;
         function initSlider(){
             carouselPage=new Slider("#carouselPage",{
+                "onInit":function(e){
+                    compatibleIosScroll(e);
+                },
                 "onSlideChangeEnd":function(e){
                     tabActive(e.index);
                     compatibleIosScroll(e);
@@ -74,7 +80,7 @@
         //初始化数据
         var pageDataCount=[100,10,30,40,50];
         function initData(){
-            [].slice.call(carouselPage.slides).forEach(function(n,i,a){
+            [].slice.call(slides).forEach(function(n,i,a){
                 var datastr="";
                 for(var j=0;j<pageDataCount[i];j++){
                     datastr+="<li><div class='justify-content'>第"+i+"页</div></li>"
@@ -104,6 +110,7 @@
         //给第一页和第二页添加拖动刷新
         function initDrag(){
             var drag1=new Dragrefresh(carouselPage.slides[0],{
+                "minScrollTop":1,
                 "onRefresh":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
@@ -140,18 +147,17 @@
             });
         }
         window.addEventListener("load",function(){
+            initData();
             initSlider();
             initTabbar();
-            initData();
             initDrag();
         },false);
 
         /*兼容Ios浏览器滚动到最底或者最顶，不能滚动的问题*/
-        var slides=document.querySelectorAll(".slider-slide");
         [].slice.call(slides).forEach(function(n,i,a){
-            n.onscroll=function(e){
+            n.addEventListener("scroll",function(e){
                 compatibleIosScroll(e);
-            }
+            },false);
         })
         function compatibleIosScroll(e){
             var container=e.target;
@@ -160,6 +166,7 @@
             var scrollHeight=container.scrollHeight;
             if(scrollTop==0){
                 container.scrollTop=1;
+                return;
             }
             if (clientHeight+scrollTop>=scrollHeight){
                 container.scrollTop=container.scrollTop-1;

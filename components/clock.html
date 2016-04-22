@@ -11,11 +11,12 @@
     <section id="page_gauge" class="active">
         <header>
             <div class="titlebar">
-                <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>时钟</h1>
             </div>
         </header>
         <article>
+		<div class="scroller">
             <div class="clock" data-clock="11:30" style="margin: 20px auto;">
                 <div class="hour"></div>
                 <div class="minute"></div>
@@ -26,7 +27,8 @@
                 <div class="minute"></div>
                 <div class="origin"></div>
             </div>
-        </article>
+        </div>
+	</article>
     </section>
     
     <script src="../plugin/seedsui/seedsui.min.js"></script>

@@ -39,13 +39,14 @@
     <section id="page_charts_line_customTooltips" class="active">
     	<header>
     	  <div class="titlebar">
-    	    <a href="javascript:history.go(-1)">
+    	    <a href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
     	    <h1>自定义折线图</h1>
     	  </div>
     	</header>
     	<article>
+		<div class="scroller">
     	    <div id="canvas-holder1">
     	        <canvas id="chart1" width="300" height="30" />
     	    </div>
@@ -53,7 +54,8 @@
     	        <canvas id="chart2" width="450" height="600" />
     	    </div>
     	    <div id="chartjs-tooltip"></div>
-        </article>
+        </div>
+	</article>
     </section>
     
     <script src="../plugin/jquery/jquery.min.js"></script>

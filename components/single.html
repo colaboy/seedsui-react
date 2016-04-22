@@ -11,13 +11,14 @@
 	<section id="page_single_0" class="active">
 		<header>
 		  <div class="titlebar">
-		    <a href="javascript:history.go(-1)">
+		    <a href="javascript:back()">
 	            <i class="icon icon-arrowleft"></i>
 	        </a>
 		    <h1>单页模式</h1>
 		  </div>
 		</header>
 		<article>
+		<div class="scroller">
 			<a class="button block margin8 bg-1" href="#page_single_1" data-target="section">slideleft</a>
 		    <a class="button block margin8 bg-2" href="#page_single_2" data-target="section">slideright</a>
 		    <a class="button block margin8 bg-3" href="#page_single_3" data-target="section">slideup</a>
@@ -27,7 +28,8 @@
 		    <div class="card padding8">
 		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
 		    </div>
-		</article>
+		</div>
+	</article>
 	</section>
 	<section id="page_single_1" data-sectionanimation="slideleft" class="bg-1">
 		slideleft

@@ -11,14 +11,16 @@
 	<section id="page_local_db" class="active">
 		<header>
 		    <div class="titlebar">
-		        <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+		        <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
 		        <h1>本地数据</h1>
 		    </div>
 		</header>
 		<article>
+		<div class="scroller">
 			<a class="button block margin8 warn" href="javascript:DB.set('test','test值')">key为“test”value为“test值”，存到localstore</a>
 			<a class="button block margin8 info" href="javascript:alertVal(DB.get('test'))">获得localstore里key为“test”的值</a>
-		</article>
+		</div>
+	</article>
 	</section>
 	
 	<script src="../plugin/jquery/jquery.min.js"></script>

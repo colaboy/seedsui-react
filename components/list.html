@@ -11,11 +11,12 @@
     <section id="page_index" class="active">
         <header>
             <div class="titlebar">
-            	<a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+            	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1>列表</h1>
             </div>
         </header>
         <article>
+		<div class="scroller">
             <details open>
                 <summary class="sliver">单行列表</summary>
                 <ul class="list noclick">
@@ -356,7 +357,8 @@
                     </li>
                 </ul>
             </details>
-        </article>
+        </div>
+	</article>
     </section>
     <script src="../plugin/jquery/jquery.min.js"></script>
     

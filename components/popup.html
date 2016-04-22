@@ -10,11 +10,12 @@
 	<section id="page_popup" class="active">
 	    <header>
 	        <div class="titlebar">
-	            <a href="javascript:history.go(-1)"><i class="icon icon-arrowleft"></i></a>
+	            <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
 	            <h1>弹出框</h1>
 	        </div>
 	    </header>
 	    <article>
+		<div class="scroller">
 	    	<p class="title">系统弹出框</p>
 	    	<div class="card padding8">
 		        <button id="alert">alert</button>
@@ -31,7 +32,8 @@
 		        <button id="left" class="info">left</button>
 		        <button id="right" class="success">right</button>
 	    	</div>
-	    </article>
+	    </div>
+	</article>
 	</section>
 	<!--自定义弹出框-->
 	<div class="popup confirm custom" id="pop_custom">

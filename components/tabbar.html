@@ -11,7 +11,7 @@
 	<!--头部-->
 	<header>
         <div class="titlebar">
-            <a href="javascript:history.go(-1)">
+            <a href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1>Animated Tabbar</h1>
@@ -20,6 +20,7 @@
 
     <!--主体-->
 	<article>
+		<div class="scroller">
         <div class="sliver">tabbar animate-slide</div>
         <ul class="tabbar animate-slide width-full" data-col="6" id="tabbar">
             <li class="tab active">
@@ -115,7 +116,8 @@
             </li>
         </ul>
         <br/>
-    </article>
+    </div>
+	</article>
 	
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

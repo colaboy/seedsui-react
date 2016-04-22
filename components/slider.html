@@ -11,7 +11,7 @@
     <section id="page_slider" class="active">
     	<header>
             <div class="titlebar">
-                <a href="javascript:history.go(-1)">
+                <a href="javascript:back()">
                     <i class="icon icon-arrowleft"></i>
                 </a>
                 <h1>滑动广告</h1>
@@ -20,6 +20,7 @@
 
         <!--主体-->
     	<article>
+		<div class="scroller">
             <!--轮播-->
             <div class="slider-container" id="carousel1">
                 <div class="slider-wrapper">
@@ -63,7 +64,8 @@
                 </div>
                 <div class="slider-pagination"></div>
             </div>
-        </article>
+        </div>
+	</article>
     </section>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>

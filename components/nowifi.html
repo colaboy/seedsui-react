@@ -8,25 +8,27 @@
 </head>
 
 <body>
-<header>
-  <div class="titlebar">
-    <a href="javascript:history.go(-1)">
-        <i class="icon icon-arrowleft"></i>
-    </a>
-    <h1>无网络</h1>
-  </div>
-</header>
-<article class="box box-middle box-center">
-    <div style="width:200px;">
-        <div class="nowifi"></div>
-        <p class="error">网络未连接，请检查网络设置</p>
-        <a class="button block submit" style="margin:0px 10px 100px 10px;">重试</a>
+    <header>
+      <div class="titlebar">
+        <a href="javascript:back()">
+            <i class="icon icon-arrowleft"></i>
+        </a>
+        <h1>无网络</h1>
+      </div>
+    </header>
+    <article class="box box-middle box-center">
+    <div class="scroller">
+        <div style="width:200px;">
+            <div class="nowifi"></div>
+            <p class="error">网络未连接，请检查网络设置</p>
+            <a class="button block submit" style="margin:0px 10px 100px 10px;">重试</a>
+        </div>
     </div>
-</article>
+	</article>
 
-<script>
-//定义exmobi返回
-function back(){history.go(-1);}
-</script>
+    <script>
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

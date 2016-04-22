@@ -11,7 +11,7 @@
 	<!--头部-->
 	<header>
         <div class="titlebar">
-            <a href="javascript:history.go(-1)">
+            <a href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1>ProgressBar</h1>
@@ -21,6 +21,7 @@
 
     <!--主体-->
 	<article>
+		<div class="scroller">
         <div class="title">Progress Bar</div>
         <div class="progress-bar radius8">
             <span class="progress" style="width: 35%"></span>
@@ -86,7 +87,8 @@
         </div>
         <br>
         
-    </article>
+    </div>
+	</article>
 	
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

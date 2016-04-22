@@ -11,13 +11,14 @@
 	<section id="page_week" class="active">
 		<header>
 	        <div class="titlebar">
-	            <a href="javascript:history.go(-1)">
+	            <a href="javascript:back()">
 	                <i class="icon icon-arrowleft"></i>
 	            </a>
 	            <h1>日历</h1>
 	        </div>
 	    </header>
 		<article style="background-color:white;">
+		<div class="scroller">
 			<div class="calendar" id="calender_select_container">
 				<ul class="list noborder nobg">
 					<li style="padding:10px 0;">
@@ -70,7 +71,8 @@
 			<a class="button block radius8 margin8 bg-1" onclick="calendarExpand()">月</a>
 			<a class="button block radius8 margin8 bg-2" onclick="calendarCollapse()">周</a>
 			<a class="button block radius8 margin8 bg-3" onclick="today()">今天</a>
-	    </article>
+	</div>
+	</article>
 	</section>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script>
