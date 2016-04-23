@@ -146,7 +146,10 @@
               <a href="#form">表单</a>
               <ul class="nav">
                 <li>
-                  <a href="#form-style">表单样式</a>
+                  <a href="#inputbox">表单元素</a>
+                </li>
+                <li>
+                  <a href="#row">弹性行</a>
                 </li>
                 <li>
                   <a href="#form-validate">表单验证</a>
@@ -160,37 +163,90 @@
               </ul>
             </li>
             <li>
+              <a href="#badge">徽章</a>
+              <ul class="nav">
+                <li>
+                  <a href="#badge-badge">宽形徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-tip">圆形徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-sticker">边角徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-dot">圆点徽章</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#group">分组</a>
+              <ul class="nav">
+                <li>
+                  <a href="#group-group">块级分组</a>
+                </li>
+                <li>
+                  <a href="#group-card">卡片分组</a>
+                </li>
+              </ul>
+            </li>
+            <li>
               <a href="#table">表格</a>
             </li>
             <li>
               <a href="#grid">栅格</a>
+              <ul class="nav">
+                <li>
+                  <a href="#grid-metro">metro风格</a>
+                </li>
+                <li>
+                  <a href="#grid-app">应用图标</a>
+                </li>
+                <li>
+                  <a href="#grid-album">相册</a>
+                </li>
+                <li>
+                  <a href="#grid-thumbnail">缩略图</a>
+                </li>
+              </ul>
             </li>
             <li>
-              <a href="#grid">列表</a>
+              <a href="#list">列表</a>
             </li>
             <li>
-              <a href="#grid">日历</a>
+              <a href="#timeline">时间轴</a>
             </li>
             <li>
-              <a href="#grid">树结构</a>
+              <a href="#calendar">日历</a>
             </li>
             <li>
-              <a href="#grid">计数器</a>
+              <a href="#tree">树结构</a>
+              <ul class="nav">
+                <li>
+                  <a href="#tree-person">人员查找</a>
+                </li>
+                <li>
+                  <a href="#tree-selected">部门选择</a>
+                </li>
+              </ul>
             </li>
             <li>
-              <a href="#grid">loading</a>
+              <a href="#counter">计数器</a>
             </li>
             <li>
-              <a href="#grid">滑动容器</a>
+              <a href="#loading">加载</a>
             </li>
             <li>
-              <a href="#grid">下拉刷新</a>
+              <a href="#slider">滑动容器</a>
             </li>
             <li>
-              <a href="#grid">仪表盘</a>
+              <a href="#dragrefresh">下拉刷新</a>
             </li>
             <li>
-              <a href="#grid">时钟</a>
+              <a href="#gauge">仪表盘</a>
+            </li>
+            <li>
+              <a href="#clock">时钟</a>
             </li>
           </ul>
         </div>
@@ -2219,7 +2275,7 @@
             <tbody>
               <tr>
                 <td>onSectionOpenEnd</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2229,7 +2285,7 @@
               </tr>
               <tr>
                 <td>onSectionCloseStart</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2239,7 +2295,7 @@
               </tr>
               <tr>
                 <td>onSectionCloseEnd</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2249,7 +2305,7 @@
               </tr>
               <tr>
                 <td>onSectionOpenStart</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2465,7 +2521,7 @@ $("#id").click(function(){
               </tr>
               <tr>
                 <td>onClickOk(Alert)</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2515,15 +2571,22 @@ $("#id").click(function(){
             </tbody>
           </table>
           <!--提示框-->
-          <h3 id="popup-alert">提示框</h3>
+          <h3 id="popup-confirm">提示框</h3>
           <div class="highlight">
-            <pre><code class="language-javascript">var popAlert=new Alert("我是Alert框");
-$("#id").click(function(){
-  popAlert.show();
+            <pre><code class="language-javascript">var c1=new Confirm("我是Confirm框",{
+  onClickOk:function(e){
+    console.log(e.target);
+  },onClickCancel:function(e){
+    console.log(e.target);
+    e.hide();
+  }
+});
+$("#confirm").click(function(){
+  c1.show();
 });</code></pre>
 
           </div>
-          <p>Alert初始化，支持下列两个参数msg和params</p>
+          <p>Comfirm初始化，支持下列两个参数msg和params</p>
           <p>参数1:String msg</p>
           <table class="table table-bordered">
             <thead>
@@ -2575,17 +2638,37 @@ $("#id").click(function(){
                   "确定"
                 </td>
                 <td>
-                  按钮文字
+                  确定按钮文字
                 </td>
               </tr>
               <tr>
-                <td>onClickOk(Alert)</td>
-                <td>Function</td>
+                <td>buttonCancel</td>
+                <td>String</td>
+                <td>
+                  "取消"
+                </td>
+                <td>
+                  取消按钮文字
+                </td>
+              </tr>
+              <tr>
+                <td>onClickOk</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
                 <td>
-                  点击按钮时触发
+                  点击确定按钮时触发
+                </td>
+              </tr>
+              <tr>
+                <td>onClickCancel</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击取消按钮时触发
                 </td>
               </tr>
             </tbody>
@@ -2625,6 +2708,13 @@ $("#id").click(function(){
                 <td>无</td>
                 <td>
                   清除
+                </td>
+              </tr>
+              <tr>
+                <td>setParams</td>
+                <td>Json params</td>
+                <td>
+                  参数设置
                 </td>
               </tr>
             </tbody>
@@ -2694,7 +2784,7 @@ $("#actionsheet").click(function(){
               </tr>
               <tr>
                 <td>onClickOk(Alert)</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2739,6 +2829,13 @@ $("#actionsheet").click(function(){
                 <td>无</td>
                 <td>
                   清除
+                </td>
+              </tr>
+              <tr>
+                <td>setParams</td>
+                <td>Json params</td>
+                <td>
+                  参数设置
                 </td>
               </tr>
             </tbody>
@@ -2866,7 +2963,7 @@ $("#toast").click(function(){
             <tbody>
               <tr>
                 <td>onClick(Dialog)</td>
-                <td>Function</td>
+                <td>Callback</td>
                 <td>
                   无
                 </td>
@@ -2903,6 +3000,1663 @@ $("#toast").click(function(){
           </table>
 
         </div>
+
+        <!-- 表单
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="form">表单</h1>
+          </div>
+          <p class="lead">提供丰富的表单样式及Js控制</p>
+          <!--表单元素-->
+          <h3 id="inputbox">表单元素</h3>
+          <h4>input-box能实现带图标输入框，它使用弹性布局，所有内部元素将会在一行显示。</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="input-box"&gt;
+  &lt;input type="text" placeholder="搜索框"&gt;
+    &lt;i class="color-placeholder icon icon-search"&gt;&lt;/i&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.元素盒子div</td>
+                <td>class</td>
+                <td>input-box | underline | noborder</td>
+                <td>元素盒子 | 下划线 | 无边框</td>
+              </tr>
+              <tr>
+                <td>II.表单元素input</td>
+                <td>type</td>
+                <td>text | date | search...</td>
+                <td>任意表单元素</td>
+              </tr>
+              <tr>
+                <td>II.图标i</td>
+                <td>class</td>
+                <td>icon | icon-...</td>
+                <td>图标 | 图标地址</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--弹性行-->
+          <h3 id="row">弹性行</h3>
+          <p>弹性行<code>class="row"</code>使用弹性布局，它会使元素在一行排列，所有元素垂直居中对齐。</p>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="row"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--表单验证-->
+          <h3 id="form-validate">表单验证</h3>
+          <h4>data-rule属性用于表单验证</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="input-box"&gt;
+  &lt;input type="text" data-rule="required chinese" placeholder="按中文名搜索"&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="11">表单元素input</td>
+                <td rowspan="11">data-rule</td>
+                <td>required</td>
+                <td>非空验证</td>
+              </tr>
+              <tr>
+                <td>username</td>
+                <td>用户名验证，只能包括字母、数字和下划线</td>
+              </tr>
+              <tr>
+                <td>password</td>
+                <td>密码验证，只能是字母、数字、下划线、或者-~!@#$</td>
+              </tr>
+              <tr>
+                <td>compare:元素name</td>
+                <td>比较是否一致</td>
+              </tr>
+              <tr>
+                <td>mail</td>
+                <td>邮箱格式是否正确</td>
+              </tr>
+              <tr>
+                <td>phone</td>
+                <td>手机号码是否正确</td>
+              </tr>
+              <tr>
+                <td>chinese</td>
+                <td>是否为中文</td>
+              </tr>
+              <tr>
+                <td>specialchar</td>
+                <td>是否包括特殊字符</td>
+              </tr>
+              <tr>
+                <td>minlength:x位</td>
+                <td>最小字符数</td>
+              </tr>
+              <tr>
+                <td>maxlength:x位</td>
+                <td>最大字符数</td>
+              </tr>
+              <tr>
+                <td>safelvl</td>
+                <td>安全等级，寻找到同级的下一个class为safelvl的div，用其记录此密码框的安全等级</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Js验证<code>new Form("#id").validate()</code></p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var f=new Form("#form1");
+var isSuccess=f.validate();
+if(isSuccess)console.log("验证通过");
+</code></pre>
+
+          </div>
+          <!--表单序列化-->
+          <h3 id="form-serialize">表单序列化</h3>
+          <p>Js表单序列化<code>new Form("#id").serialize()</code></p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var f=new Form("#form1");
+var args=f.serialize();
+console.log("你所要提交的参数是："+args);
+</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>serialize</td>
+                <td>无</td>
+                <td>
+                  返回表单元素的值拼接成xx=xx&amp;xx=xx的字符串。
+                </td>
+              </tr>
+              <tr>
+                <td>serializeArray</td>
+                <td>无</td>
+                <td>
+                  返回表单元素的值拼接成xx=xx的数组。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--文字计数器-->
+          <h3 id="form-fontcount">文字计数器</h3>
+          <p>文字计数器使用<code>data-fontcounter</code>和<code>data-fontcounter-for</code>搭配计数，<code>data-fontcounter</code>用于输入，<code>data-fontcounter-for</code>用于记录字数</p>
+          <h4>html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;textarea data-fontcounter="description1" placeholder="请输入评论信息" data-rule="required maxlength:10"&gt;&lt;/textarea&gt;
+&lt;p data-fontcounter-for="description1"&gt;&lt;/p&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I.输入框</td>
+                <td>data-fontcounter</td>
+                <td>自定义名称</td>
+                <td>计数器录入</td>
+              </tr>
+              <tr>
+                <td>data-rule</td>
+                <td>maxlength:xx位</td>
+                <td>定义超过字数</td>
+              </tr>
+              <tr>
+                <td>I.显示框</td>
+                <td>data-fontcounter-for</td>
+                <td>对应data-fontcounter名称</td>
+                <td>显示字数</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">//数字计数器
+function listenerFontcount(){
+  var fc=new FontCounter({
+    "onInput":function(s){
+      //console.log("输入中");
+    },
+    "onMoreThanCount":function(s){
+      //console.log("超过数字限制时");
+      s.fieldCounter.innerHTML=Math.round(s.maxlength-s.currentlength);
+      s.fieldCounter.classList.add("color-tip");
+    },
+    "onNotMoreThanCout":function(s){
+      //console.log("没有超过数字限制时");
+      s.fieldCounter.innerHTML="";
+      s.fieldCounter.classList.remove("color-tip");
+    }
+  });
+}
+listenerFontcount();</code></pre>
+
+          </div>
+
+          <p>参数:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>onInput</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  输入中回调
+                </td>
+              </tr>
+              <tr>
+                <td>onMoreThanCount</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  超过字数限制时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onNotMoreThanCout</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  没有超过字数限制时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 徽章
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="badge">徽章</h1>
+          </div>
+          <p class="lead">提供宽形徽章、圆形徽章、边角徽章等</p>
+          <!--宽形徽章-->
+          <h3 id="badge-badge">宽形徽章</h3>
+          <p class="lead"><code>class="badge"</code>，当class中没有设定宽度(sizexx)时，则自适应宽度</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/badge.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class="badge size32"&gt;1&lt;/span&gt;</code></pre>
+
+          </div>
+          <!--圆形徽章-->
+          <h3 id="badge-tip">圆形徽章</h3>
+          <p class="lead"><code>class="tip"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tip.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class="tip"&gt;1&lt;/span&gt;</code></pre>
+
+          </div>
+          <!--边角徽章-->
+          <h3 id="badge-sticker">边角徽章</h3>
+          <p class="lead"><code>class="sticker left|top|right|bottom"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/sticker.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="sticker top right"&gt;&lt;span&gt;NEW&lt;/span&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--圆点徽章-->
+          <h3 id="badge-dot">圆点徽章</h3>
+          <p class="lead"><code>class="dot"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <div style="display: inline-block;border-radius: 100%;height: 4px;width: 4px;vertical-align: middle;background-color: #4587f7;margin:10px;"></div>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="dot"&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 分组
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="group">分组</h1>
+          </div>
+          <p class="lead">分组是布局上常用的方式，SeedsUI提供了块级分组、卡片分组和一行布局，我们鼓励您尝试与其它元素结合使用</p>
+          <!--块级分组-->
+          <h3 id="group-group">块级分组</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="group"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--卡片分组-->
+          <h3 id="group-card">卡片分组</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="card"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- 表格
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="table">表格</h1>
+          </div>
+          <p class="lead">提供了表格滑动盒子与表格样式</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/table.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="table-box"&gt;
+    &lt;div style="width:700px;"&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th class="text-center"&gt;&lt;input type="checkbox"&gt;&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+            &lt;th&gt;性别&lt;/th&gt;
+            &lt;th&gt;邮箱&lt;/th&gt;
+            &lt;th&gt;创建时间&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.div标签</td>
+                <td>class</td>
+                <td>
+                  table-box
+                </td>
+                <td>表格盒子</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+
+        <!-- 栅格
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="grid">栅格</h1>
+          </div>
+          <p class="lead">提供metro、应用图标、相册、缩略图风格的栅格样式</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ul标签</td>
+                <td>class</td>
+                <td>
+                  grid | metro | album | radiusXX | border | sizeXX
+                </td>
+                <td>栅格 | Metro风格 | 相册 | 图标圆角 | 边框分割 | 图标尺寸</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 id="grid-metro">Metro风格</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-metro.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid metro" data-col="2"&gt;
+  &lt;li style="width:60%"&gt;
+    &lt;a class="bg-1"&gt;
+      
+      &lt;i class="icon icon-contact-fill"&gt;&lt;/i&gt;
+      &lt;span class="metro-tip"&gt;3&lt;/span&gt;
+      &lt;label class="nowrap"&gt;通讯录&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:40%"&gt;
+    &lt;a class="bg-2"&gt;
+      &lt;i class="icon icon-write-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;审批&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:40%"&gt;
+    &lt;a class="bg-3"&gt;
+      &lt;i class="icon icon-position-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;定位&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:60%"&gt;
+    &lt;a class="bg-4"&gt;
+      &lt;i class="icon icon-gear-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;设置&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <h3 id="grid-app">应用图标</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-app.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid border" data-col="3" data-rowspace="8"&gt;
+  &lt;li&gt;
+    &lt;a class="color-1"&gt;
+      &lt;i class="icon icon-contact-fill"&gt;&lt;/i&gt;
+      &lt;span class="tip"&gt;999&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="color-2"&gt;
+      &lt;i class="icon icon-write-fill"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;label&gt;审批&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="color-3"&gt;
+      &lt;i class="icon icon-position-fill"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;label&gt;定位&lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <h3 id="grid-album">相册</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-album.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid radius8 album" data-col="3"&gt;
+  &lt;li&gt;
+    &lt;a style="background-image: url(../img/components/1.jpg)"&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a style="background-image: url(../img/components/2.jpg)"&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="default"&gt;
+      &lt;i class="icon icon-camera size54"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+
+          <h3 id="grid-thumbnail">缩略图</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-thumbnail.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid album" data-rowspace="8" data-col="3"&gt;
+  &lt;li&gt;
+    &lt;a&gt;
+      &lt;img src="../img/components/contact.jpg"&gt;
+      &lt;span class="tip"&gt;新&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a&gt;&lt;img src="../img/components/tree.jpg"&gt;&lt;/a&gt;
+    &lt;label&gt;树结构&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a&gt;&lt;img src="../img/components/contact.jpg"&gt;&lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          
+        </div>
+
+        <!-- 列表
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="list">列表</h1>
+          </div>
+          <p class="lead">定义了列表样式，详见<code>list.html</code></p>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;li&gt;
+    &lt;div class="justify box box-middle"&gt;
+        &lt;i class="icon icon-fav-fill"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="justify-content box box box-middle"&gt;
+        &lt;p class="nowrap"&gt;列表标题&lt;/p&gt;
+        &lt;small class="nowrap"&gt;副标题&lt;/small&gt;
+    &lt;/div&gt;
+    &lt;div class="justify"&gt;
+        &lt;button&gt;按钮&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 时间轴
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="timeline">时间轴</h1>
+          </div>
+          <p class="lead">定义了时间轴样式，详见<code>list.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/timeline.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="timeline dotted bg-white"&gt;
+    &lt;li&gt;
+        &lt;div class="clock color-1" data-clock="11:24"&gt;
+            &lt;div class="hour" style="transform: rotate(330deg);"&gt;&lt;/div&gt;
+            &lt;div class="minute" style="transform: rotate(144deg);"&gt;&lt;/div&gt;
+            &lt;div class="origin"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="justify-content"&gt;
+            &lt;p class="size20"&gt;11:24&lt;/p&gt;
+            &lt;a&gt;&lt;i class="icon icon-position size24"&gt;&lt;/i&gt;&lt;span&gt;江苏省南京市&lt;/span&gt;&lt;/a&gt;
+            &lt;small class="nowrap"&gt;我来上班啦&lt;/small&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="clock color-2" data-clock="11:24"&gt;
+            &lt;div class="hour" style="transform: rotate(330deg);"&gt;&lt;/div&gt;
+            &lt;div class="minute" style="transform: rotate(144deg);"&gt;&lt;/div&gt;
+            &lt;div class="origin"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="justify-content"&gt;
+            &lt;p class="size20"&gt;11:24&lt;/p&gt;
+            &lt;a&gt;&lt;i class="icon icon-position size24"&gt;&lt;/i&gt;&lt;span&gt;江苏省南京市&lt;/span&gt;&lt;/a&gt;
+            &lt;small class="nowrap"&gt;我来上班啦&lt;/small&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 日历
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="calendar">日历</h1>
+          </div>
+          <p class="lead">定义了时间轴样式，详见<code>list.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/calendar.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="calendar" id="calender_select_container"&gt;
+    &lt;ul class="list noborder nobg"&gt;
+        &lt;li style="padding:10px 0;"&gt;
+            &lt;div class="justify arrowleft"&gt;
+                &lt;i class="icon icon-arrowleft"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class="justify-content calendar-title"&gt;2016-2-15 周一&lt;/div&gt;
+            &lt;div class="justify arrowright"&gt;
+                &lt;i class="icon icon-arrowright"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="calender_container"&gt;
+        &lt;div class='day'&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class='date_container'&gt;
+            &lt;div class="month_container"&gt;
+                
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <p>Javascript初始化与几个方法</p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var tempWeekSelectObject = new DateSelect({
+        activeDate: new Date()
+    }),
+    tempDivId = "calender_select_container";
+var tempCalenderObject = new Calender({
+    dateSelectObject: tempWeekSelectObject,
+    containerDivId: tempDivId,
+    onChange: function(date) {
+        console.log(date);
+    }
+});
+function calendarCollapse(){
+    tempCalenderObject.switchToWeek();
+}
+function calendarExpand(){
+    tempCalenderObject.switchToMonth();
+}
+function today(){
+    tempCalenderObject.jumpToDate(new Date());
+}</code></pre>
+
+          </div>
+
+
+        </div>
+
+        <!-- 树结构
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="tree">树结构</h1>
+          </div>
+          <p class="lead">提供两种树结构分别是：人员查找、部门选择</p>
+          <p><code>new Tree(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String|DOM container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String|DOM</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  树结构的id或者树结构DOM
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>selectedContainer</td>
+                <td>String|DOM</td>
+                <td>
+                  null
+                </td>
+                <td>
+                  选中节点展示区
+                </td>
+              </tr>
+              <tr>
+                <td>onTap</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构回调
+                </td>
+              </tr>
+              <tr>
+                <td>onTapLastChild</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构底层节点回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="tree-person">人员查找</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tree.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;tree-box&quot;&gt;
+    &lt;ul class=&quot;tree&quot; id=&quot;tree&quot;&gt;
+        &lt;li&gt;
+            &lt;div class=&quot;treetitle&quot;&gt; &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                &lt;a class=&quot;icontitle events-none&quot;&gt;业务产品部&lt;/a&gt;
+                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发体系&lt;/a&gt;
+                        &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发一部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;波&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;晓&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;王晓&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;健&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李健&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发二部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;泉&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张泉&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;景&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李若景&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;源&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;康根源&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright lastchild&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发三部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;波&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;东&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张建东&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;进&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李进&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发二部&lt;/a&gt;
+                        &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon radiusround&quot;&gt;梅&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;许啸梅&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h3 id="tree-selected">部门选择</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tree-selected.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;statusbar horizontal hide&quot; id=&quot;selected-box&quot;&gt;&lt;/div&gt;
+&lt;!-- tree --&gt;
+&lt;div class=&quot;tree-box&quot;&gt;
+    &lt;ul class=&quot;tree&quot; id=&quot;tree&quot;&gt;
+        &lt;li id=&quot;group-1&quot; data-name=&quot;业务产品部&quot;&gt;
+            &lt;div class=&quot;treetitle&quot;&gt; &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                &lt;a class=&quot;icontitle events-none&quot;&gt;业务产品部&lt;/a&gt;
+                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li id=&quot;group-2&quot; data-name=&quot;研发体系&quot;&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发体系&lt;/a&gt;
+                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li id=&quot;group-3&quot; data-name=&quot;开发一部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发一部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li id=&quot;group-4&quot; data-name=&quot;成少波&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #53c6fd;&quot;&gt;波&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li id=&quot;group-5&quot; data-name=&quot;颜学文&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #3ae3ea;&quot;&gt;文&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;颜学文&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li id=&quot;group-6&quot; data-name=&quot;张泉&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #ff6f36;&quot;&gt;泉&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张泉&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-7&quot; data-name=&quot;开发二部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发二部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-8&quot; data-name=&quot;开发三部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发三部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li id=&quot;group-9&quot; data-name=&quot;开发一部&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;开发一组&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li id=&quot;group-10&quot; data-name=&quot;市场体系&quot;&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;市场体系&lt;/a&gt;
+                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li id=&quot;group-11&quot; data-name=&quot;上海办&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;上海办&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-12&quot; data-name=&quot;广州办名字超长超长超长超&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;广州办名字超长超长超长超&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- 计数器
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="counter">计数器</h1>
+          </div>
+          <p class="lead">数字帧动画跳转至设定的值</p>
+          <h4>html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class=&quot;timer&quot; data-duration=&quot;5000&quot; data-to=&quot;600&quot;&gt;600&lt;/span&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="3">文字元素</td>
+                <td>class</td>
+                <td>timer</td>
+                <td>计数器</td>
+              </tr>
+              <tr>
+                <td>data-duration</td>
+                <td>Number</td>
+                <td>动画时间总长</td>
+              </tr>
+              <tr>
+                <td>data-to</td>
+                <td>Number</td>
+                <td>最终值</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">Animate.counter();</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 加载
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="loading">加载</h1>
+          </div>
+          <p class="lead">SeedsUI加载样式，详见<code>loading.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+        </div>
+      <!-- 滑动容器
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="slider">滑动容器</h1>
+          </div>
+          <p class="lead">滑动容器只支持触屏滑动，可支持循环滑动、一屏多页等滑动模式，详见<code>slider.html</code>页面和<code>slider-page.html</code>页面</p>
+          <h4>html</h4>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/slider.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;slider-container&quot; id=&quot;carousel1&quot;&gt;
+    &lt;div class=&quot;slider-wrapper&quot;&gt;
+        &lt;div class=&quot;slider-slide&quot;&gt;
+            &lt;img src=&quot;../img/components/banner.jpg&quot;/&gt;
+            &lt;div class=&quot;slide-title&quot;&gt;新闻标题1&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slider-slide&quot;&gt;
+            &lt;img src=&quot;../img/components/banner.jpg&quot;/&gt;
+            &lt;div class=&quot;slide-title&quot;&gt;新闻标题2&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slider-pagination&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">var s1=new Slider("#carousel1",{
+    "pagination":".slider-pagination",
+    "loop":true
+});</code></pre>
+
+          </div>
+          <p><code>new Slider(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动容器的id
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pagination</td>
+                <td>String</td>
+                <td>
+                  null
+                </td>
+                <td>
+                  .class|#id，滑动容器内部的滑动页
+                </td>
+              </tr>
+              <tr>
+                <td>autoplay</td>
+                <td>Boolean</td>
+                <td>
+                  false
+                </td>
+                <td>
+                  true|false，为true则自动播放
+                </td>
+              </tr>
+              <tr>
+                <td>slidesPerView</td>
+                <td>Number</td>
+                <td>
+                  1
+                </td>
+                <td>
+                  一屏几页，默认一屏1页
+                </td>
+              </tr>
+              <tr>
+                <td>threshold</td>
+                <td>Number</td>
+                <td>
+                  50
+                </td>
+                <td>
+                  滑动多少像素，则翻页
+                </td>
+              </tr>
+              <tr>
+                <td>duration</td>
+                <td>Number</td>
+                <td>
+                  300
+                </td>
+                <td>
+                  翻页动画时长
+                </td>
+              </tr>
+              <tr>
+                <td>loop</td>
+                <td>Boolean</td>
+                <td>
+                  false
+                </td>
+                <td>
+                  true|false，设为true则循环
+                </td>
+              </tr>
+              <tr>
+                <td>slideDuplicateClass</td>
+                <td>String</td>
+                <td>
+                  "slider-slide-duplicate"
+                </td>
+                <td>
+                  循环状态时，复制出来的slide的额外增加的class名称，用于标识出复制的slide
+                </td>
+              </tr>
+              <tr>
+                <td>wrapperClass</td>
+                <td>String</td>
+                <td>
+                  "slider-wrapper"
+                </td>
+                <td>
+                  画布class名称
+                </td>
+              </tr>
+              <tr>
+                <td>slideActiveClass</td>
+                <td>String</td>
+                <td>
+                  "active"
+                </td>
+                <td>
+                  激活状态slide的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>bulletClass</td>
+                <td>String</td>
+                <td>
+                  "bullet"
+                </td>
+                <td>
+                  小点点的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>bulletActiveClass</td>
+                <td>String</td>
+                <td>
+                  "active"
+                </td>
+                <td>
+                  激活状态小点点的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>onInit</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动容器初始化完成时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onSlideChangeStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  开始滑动时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onSlideChangeEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动结束后回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 下拉刷新
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="dragrefresh">下拉刷新</h1>
+          </div>
+          <p class="lead">下拉刷新除了提供下拉刷新外，还提供了滚动至底部刷新</p>
+          <p><code>new Dragrefresh(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  下拉刷新容器的id、class、标签、DOM皆可
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>refreshThreshold</td>
+                <td>Number</td>
+                <td>
+                  100
+                </td>
+                <td>
+                  下拉多少像素刷新
+                </td>
+              </tr>
+              <tr>
+                <td>refreshThresholdMax</td>
+                <td>Number</td>
+                <td>
+                  200
+                </td>
+                <td>
+                  最大能拉多少像素
+                </td>
+              </tr>
+              <tr>
+                <td>refreshHideTop</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  下拉完成后，收缩到什么位置
+                </td>
+              </tr>
+              <tr>
+                <td>duration</td>
+                <td>Number</td>
+                <td>
+                  300
+                </td>
+                <td>
+                  下拉完，收缩动画时长
+                </td>
+              </tr>
+              <tr>
+                <td>timeout</td>
+                <td>Number</td>
+                <td>
+                  5000
+                </td>
+                <td>
+                  超时毫秒
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  开始刷新时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  刷新完成时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshTimeout</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  刷新超时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onBottom</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滚动到底部时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+
+        <!-- 仪表盘
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="gauge">仪表盘</h1>
+          </div>
+          <p class="lead">提供了可视化数据仪表盘</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/gauge.jpg">
+            </div>
+          </div>
+          <h4>Html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;gauge-box&quot; id=&quot;gauge&quot;&gt;
+    &lt;div class=&quot;gauge&quot;&gt;
+        &lt;div class=&quot;gauge-pointer&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;gauge-text&quot;&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">var g=new Gauge("#gauge",{
+    minValue:100,
+    maxValue:400,
+    currentValue:200
+});</code></pre>
+
+          </div>
+          <p><code>new Gauge(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String|DOM</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  仪表盘容器的参数用id、class、标签皆可
+                </td>
+              </tr>
+              <tr>
+                <td>onTap</td>
+                <td>Function</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构回调
+                </td>
+              </tr>
+              <tr>
+                <td>onTapLastChild</td>
+                <td>Function</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构底层节点回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>minValue</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  最小值
+                </td>
+              </tr>
+              <tr>
+                <td>maxValue</td>
+                <td>Number</td>
+                <td>
+                  360
+                </td>
+                <td>
+                  最大值
+                </td>
+              </tr>
+              <tr>
+                <td>currentValue</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  当前值
+                </td>
+              </tr>
+              <tr>
+                <td>pointClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-pointer"
+                </td>
+                <td>
+                  指针class名称
+                </td>
+              </tr>
+              <tr>
+                <td>waveClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-wave"
+                </td>
+                <td>
+                  波浪class名称
+                </td>
+              </tr>
+              <tr>
+                <td>valueClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-value"
+                </td>
+                <td>
+                  值class名称
+                </td>
+              </tr>
+              <tr>
+                <td>durationall</td>
+                <td>Number</td>
+                <td>
+                  2000
+                </td>
+                <td>
+                  从最小值到最大值动画时长，一般动画时长低于此值
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+        <!-- 时钟
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="clock">时钟</h1>
+          </div>
+          <p class="lead">根据设置的参数显示对应的点数</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/clock.jpg">
+            </div>
+          </div>
+          <h4>Html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;clock&quot; data-clock=&quot;11:30&quot;&gt;
+    &lt;div class=&quot;hour&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;minute&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;origin&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>div标签</td>
+                <td>data-clock</td>
+                <td>
+                  Time
+                </td>
+                <td>显示时间</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Javascript</h4>
+          <p>时钟初始化</p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var c=DataClock();</code></pre>
+
+          </div>
+
+        </div>
+
         <!-- The End
   ================================================== --> </div>
     </div>
