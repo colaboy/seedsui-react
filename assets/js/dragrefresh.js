@@ -10,12 +10,12 @@
 			"refreshThresholdMax":200,
 			"refreshHideTop":0,
 			"duration":300,
-			"overtime":5000
+			"timeout":5000
 
 			/*callbacks
-			onRefresh:function(Dragrefresh)
-			onRefreshComplete:function(Dragrefresh)
-			onRefreshOvertime:function(Dragrefresh)
+			onRefreshStart:function(Dragrefresh)
+			onRefreshEnd:function(Dragrefresh)
+			onRefreshTimeout:function(Dragrefresh)
 			*/
 		}
 		params=params||{};
@@ -75,7 +75,7 @@
 
 		//Controller
 		/*==================
-		  Callback onRefresh
+		  Callback onRefreshStart
 		  ==================*/
 		s.refresh=function(){
 			s.transition();
@@ -84,42 +84,42 @@
 				s.cancelTransition();
 				s.spinner();
 			}, s.params.duration);
-			//callback onRefresh
-			if(s.params.onRefresh){
-				s.params.onRefresh(s);
+			//callback onRefreshStart
+			if(s.params.onRefreshStart){
+				s.params.onRefreshStart(s);
 			}
 			//callback onOvertime
-			if(s.params.onRefreshOvertime){
+			if(s.params.onRefreshTimeout){
 				s.refreshOvertime();
 			}
 		};
 		/*==================
-		  Callback onRefreshComplete
+		  Callback onRefreshEnd
 		  ==================*/
 		s.refreshComplete=function(){
 			s.cancelOvertime();
 			s.cancelSpinner();
 			s.hideRefresh();
 			s.attach();
-			//callback onRefreshComplete
-			if(s.params.onRefreshComplete){
-				s.params.onRefreshComplete(s);
+			//callback onRefreshEnd
+			if(s.params.onRefreshEnd){
+				s.params.onRefreshEnd(s);
 			}
 		}
 		/*==================
-		  Callback onRefreshOvertime
+		  Callback onRefreshTimeout
 		  ==================*/
 		s.refreshOvertime=function(){
-			//callback onRefreshComplete
-			s.overtime=setTimeout(function(){
+			//callback onRefreshEnd
+			s.timeout=setTimeout(function(){
 				s.cancelSpinner();
 				s.hideRefresh();
 				s.attach();
-				s.params.onRefreshOvertime(s);
-			}, s.params.overtime);
+				s.params.onRefreshTimeout(s);
+			}, s.params.timeout);
 		};
 		s.cancelOvertime=function(){
-			if(s.overtime)window.clearTimeout(s.overtime);
+			if(s.timeout)window.clearTimeout(s.timeout);
 		};
 
 		/*==================

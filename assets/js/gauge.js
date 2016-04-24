@@ -21,12 +21,18 @@
             currentValue:0,
 
             //dom
-            point:".gauge-pointer",
-            wave:".gauge-wave",
-            val:".gauge-text",
+            pointClass:".gauge-pointer",
+            waveClass:".gauge-wave",
+            valueClass:".gauge-text",
 
             //animate
             durationall:2000
+
+            /*callbacks
+			onInit:function(Gauge)
+			onPointChangeStart:function(Gauge)
+			onPointChangeEnd:function(Gauge)
+			*/
 		}
 		for(var def in defaults){
 			if(params[def]==undefined){
@@ -36,9 +42,9 @@
 		var s=this;
 		s.params=params;
 		s.container=document.querySelector(container);//容器
-		s.point=s.container.querySelector(s.params.point);//指针
-		s.wave=s.container.querySelector(s.params.wave)||null;//波浪
-		s.val=s.container.querySelector(s.params.val);//指针值
+		s.point=s.container.querySelector(s.params.pointClass);//指针
+		s.wave=s.container.querySelector(s.params.waveClass)||null;//波浪
+		s.value=s.container.querySelector(s.params.valueClass);//指针值
 
 		s.percent=(s.params.currentValue-s.params.minValue)/(s.params.maxValue-s.params.minValue);//当前值所占比例
 		s.duration=Math.round(s.percent*s.params.durationall);//执行时间长度
@@ -60,11 +66,16 @@
 		  ==============*/
 		//旋转指针
 		s.updatePoint=function(){
+			if(s.params.onPointChangeStart)s.params.onPointChangeStart(s);
 			s.point.setAttribute("style","-webkit-transform:rotate("+s.pointRotate+"deg);-webkit-transition:all "+s.duration+"ms");
+			if(!s.params.onPointChangeEnd)return;
+			setTimeout(function(){
+				s.params.onPointChangeEnd(s);
+			},s.duration);
 		}
 		//设置数字
-		s.updateVal=function(){
-			s.val.innerHTML=s.params.currentValue;
+		s.updateValue=function(){
+			s.value.innerHTML=s.params.currentValue;
 		}
 		//更改背景色
 		s.updateBg=function(){
@@ -89,8 +100,9 @@
 		s.view=function(){
 			s.updateBg();
 			s.updatePoint();
-			s.updateVal();
-			//s.updateWave();
+			s.updateValue();
+			s.updateWave();
+			if(s.params.onInit)s.params.onInit(s);
 		}
 		/*============
 		  Controller

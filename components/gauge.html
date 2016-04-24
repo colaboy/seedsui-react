@@ -31,12 +31,17 @@
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script>
         window.addEventListener("load",function(e){
-             var gaugeOption={
+        	var g=new Gauge("#gauge",{
                 minValue:-100,
                 maxValue:400,
-                currentValue:200
-            };
-        	var g=new Gauge("#gauge",gaugeOption);
+                currentValue:100,
+                onPointChangeStart:function(e){
+                    console.log("指针开始旋转，共需时间："+e.duration);
+                },
+                onPointChangeEnd:function(e){
+                    console.log("指针旋转完成");
+                }
+            });
         	//若是爆表，可获得爆表值
         	if(g.burst>0){
         		alert("已爆表"+g.burst);

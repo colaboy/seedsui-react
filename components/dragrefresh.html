@@ -33,15 +33,15 @@
         var a2=new Alert("请求超时啦");
         var a3=new Alert("到底部啦");
         var drag=new Dragrefresh("article",{
-            "onRefresh":function(e){
+            "onRefreshStart":function(e){
                 setTimeout(function(){
                     e.refreshComplete();
                 }, 2000);
             },
-            "onRefreshComplete":function(e){
+            "onRefreshEnd":function(e){
                 a1.show();
             },
-            "onRefreshOvertime":function(e){
+            "onRefreshTimeout":function(e){
                 a2.show();
             },
             "onBottom":function(e){

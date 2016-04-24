@@ -2512,6 +2512,10 @@ aside.active ~ #section_container .section_container_mask {
 [data-col] .tab {
   float: left;
 }
+[data-col="2"] .tab,
+.animate-slide[data-col="2"] hr {
+  width: 50%;
+}
 [data-col="3"] .tab,
 .animate-slide[data-col="3"] hr {
   width: 33%;
@@ -2894,7 +2898,7 @@ div[data-input=clear] input[type] + .icon {
   margin-right: 10px;
 }
 /*线型*/
-.input-box.line {
+.input-box.underline {
   border-width: 0 0 1px 0;
 }
 /*----------------inputbox.less(end)--------------*/

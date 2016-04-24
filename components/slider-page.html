@@ -111,12 +111,12 @@
         function initDrag(){
             var drag1=new Dragrefresh(carouselPage.slides[0],{
                 "minScrollTop":1,
-                "onRefresh":function(e){
+                "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
                     }, 2000);
                 },
-                "onRefreshComplete":function(e){
+                "onRefreshEnd":function(e){
                     console.log("加载完成");
                 },
                 "onBottom":function(e){
@@ -134,7 +134,7 @@
                         e.refreshComplete();
                     }, 2000);
                 },
-                "onRefreshComplete":function(e){
+                "onRefreshEnd":function(e){
                     console.log("加载完成");
                 },
                 "onBottom":function(e){
