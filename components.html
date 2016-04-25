@@ -2896,6 +2896,7 @@ $("#toast").click(function(){
               </tr>
             </tbody>
           </table>
+          <p>方法</p>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -2938,19 +2939,15 @@ $("#toast").click(function(){
           <!--自定义弹出框-->
           <h3 id="popup-custom">自定义弹出框</h3>
           <div class="highlight">
-            <pre><code class="language-javascript">$("#pop_custom").dialog({
-    onClick:function(s){
-        if(s.target.text=="取消"){
-            s.hideDialog();
-        }else if(s.target.text=="确定"){
-            console.log("确定");
-        }
-    }
+            <pre><code class="language-javascript">var dialog=new Dialog("#pop_custom");
+$("#id").click(function(){
+  dialog.setPos("middle");
+  dialog.show();
 });</code></pre>
 
           </div>
-          <p>dialog扩展$，支持下列params</p>
-          <p>参数:Json params</p>
+          <p>Dialog初始化，支持下列两个参数container和params</p>
+          <p>参数1:String|DOM container</p>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -2962,17 +2959,103 @@ $("#toast").click(function(){
             </thead>
             <tbody>
               <tr>
-                <td>onClick(Dialog)</td>
-                <td>Callback</td>
+                <td>container</td>
+                <td>String|DOM</td>
                 <td>
                   无
                 </td>
                 <td>
-                  点击回调
+                  自定义弹框的容器
                 </td>
               </tr>
             </tbody>
           </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>取值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="5">pos</td>
+                <td rowspan="5">String</td>
+                <td rowspan="5">无</td>
+                <td>
+                  "top"
+                </td>
+                <td>
+                  从上边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "middle"
+                </td>
+                <td>
+                  从中间弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "bottom"
+                </td>
+                <td>
+                  从下边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "left"
+                </td>
+                <td>
+                  从左边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "right"
+                </td>
+                <td>
+                  从右边弹出
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">isClickMaskHide</td>
+                <td rowspan="2">Boolean</td>
+                <td rowspan="2">true</td>
+                <td>
+                  true
+                </td>
+                <td>
+                  点击遮罩隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  false
+                </td>
+                <td>
+                  点击遮罩不隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>onClick</td>
+                <td>Callback</td>
+                <td>无</td>
+                <td>function(Dialog)</td>
+                <td>
+                  点击自定义层时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>方法</p>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -2983,17 +3066,24 @@ $("#toast").click(function(){
             </thead>
             <tbody>
               <tr>
-                <td>showDialog</td>
-                <td>无</td>
+                <td>setPos</td>
+                <td>String pos</td>
                 <td>
-                  显示
+                  修改弹出位置
                 </td>
               </tr>
               <tr>
-                <td>hideDialog</td>
+                <td>hide</td>
                 <td>无</td>
                 <td>
                   隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
                 </td>
               </tr>
             </tbody>
