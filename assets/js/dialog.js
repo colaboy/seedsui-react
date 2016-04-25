@@ -6,6 +6,7 @@
           ===========================*/
         var defaults={
             pos:"middle",
+            isClickMaskHide:true
             /*callbacks
             onClick:function(this)
             */
@@ -38,9 +39,8 @@
         if(!s.mask){
             s.mask=document.createElement("div");
             s.mask.setAttribute("class","popup-mask");
-            console.log(s.containerBox);
             s.containerBox.parentNode.insertBefore(s.mask,s.containerBox);
-            s.mask.addEventListener("click",hideDialog,false);
+            if(s.params.isClickMaskHide==true)s.mask.addEventListener("click",hideDialog,false);
         }
         //设置动画
         var hideAnimate={opacity:0};
