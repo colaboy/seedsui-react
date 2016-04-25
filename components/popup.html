@@ -45,7 +45,6 @@
             <a>确定</a>
         </div>
     </div>
-	<!-- <div id="pop_custom" style="padding:20px 0;background-color:white;display:none;"><a id="hehe">我是从自定义弹出框</a></div> -->
 	<script src="../plugin/jquery/jquery.min.js"></script>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
 	<script type="text/javascript">
@@ -125,44 +124,40 @@
 		 * 自定义弹出框
 		 * 
 		 */
-		$("#hehe").on("click",function(){alert(1);});
+		var dialog=new Dialog("#pop_custom",{
+			onClick:function(s){
+            	console.log(s.target);
+                if(s.target.text=="取消"){
+                    s.hide();
+                }else if(s.target.text=="确定"){
+                    console.log("确定");
+                }
+            }
+		});
 		//middle
 		$("#middle").click(function(){
-			$("#pop_custom").dialog({
-                onClick:function(s){
-                	console.log(s.target);
-                    if(s.target.text=="取消"){
-                    	console.log(s.hideDialog);
-                        s.hideDialog();
-                    }else if(s.target.text=="确定"){
-                        console.log("确定");
-                    }
-                }
-            });
+			dialog.setPos("middle");
+			dialog.show();
 	    });
 		//top
 		$("#top").click(function(){
-			$("#pop_custom").dialog({
-				"pos":"top"
-			});
+			dialog.setPos("top");
+			dialog.show();
 	    });
 		//bottom
 		$("#bottom").click(function(){
-			$("#pop_custom").dialog({
-				"pos":"bottom"
-			});
+			dialog.setPos("bottom");
+			dialog.show();
 	    });
 		//left
 		$("#left").click(function(){
-			$("#pop_custom").dialog({
-				"pos":"left"
-			});
+			dialog.setPos("left");
+			dialog.show();
 	    });
 		//right
 		$("#right").click(function(){
-			$("#pop_custom").dialog({
-				"pos":"right"
-			});
+			dialog.setPos("right");
+			dialog.show();
 	    });
 	    //定义exmobi返回
 		function back(){history.go(-1);}
