@@ -35,6 +35,9 @@
                 minValue:-100,
                 maxValue:400,
                 currentValue:100,
+                onInit:function(e){
+                    console.log("初始化完成");
+                },
                 onPointChangeStart:function(e){
                     console.log("指针开始旋转，共需时间："+e.duration);
                 },
