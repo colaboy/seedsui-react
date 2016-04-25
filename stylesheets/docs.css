@@ -60,7 +60,7 @@ body {
 
 /* Outline button for use within the docs */
 .btn-outline {
-  color: #563d7c;
+  color: #8dc63f;
   background-color: #fff;
   border-color: #e5e5e5;
 }
@@ -68,20 +68,20 @@ body {
 .btn-outline:focus,
 .btn-outline:active {
   color: #fff;
-  background-color: #563d7c;
-  border-color: #563d7c;
+  background-color: #8dc63f;
+  border-color: #8dc63f;
 }
 
 /* Inverted outline button (white on dark) */
 .btn-outline-inverse {
   color: #fff;
   background-color: transparent;
-  border-color: #cdbfe3;
+  border-color: #ddeec6;
 }
 .btn-outline-inverse:hover,
 .btn-outline-inverse:focus,
 .btn-outline-inverse:active {
-  color: #563d7c;
+  color: #8dc63f;
   text-shadow: none;
   background-color: #fff;
   border-color: #fff;
@@ -96,18 +96,18 @@ body {
 
 .bs-docs-nav {
   text-shadow: 0 -1px 0 rgba(0,0,0,.15);
-  background-color: #563d7c;
-  border-color: #463265;
+  background-color: #8dc63f;
+  border-color: #71b42d;
   box-shadow: 0 1px 0 rgba(255,255,255,.1);
 }
 .bs-docs-nav .navbar-collapse {
-  border-color: #463265;
+  border-color: #71b42d;
 }
 .bs-docs-nav .navbar-brand {
   color: #fff;
 }
 .bs-docs-nav .navbar-nav > li > a {
-  color: #cdbfe3;
+  color: #ddeec6;
 }
 .bs-docs-nav .navbar-nav > li > a:hover {
   color: #fff;
@@ -115,14 +115,14 @@ body {
 .bs-docs-nav .navbar-nav > .active > a,
 .bs-docs-nav .navbar-nav > .active > a:hover {
   color: #fff;
-  background-color: #463265;
+  background-color: #71b42d;
 }
 .bs-docs-nav .navbar-toggle {
-  border-color: #563d7c;
+  border-color: #8dc63f;
 }
 .bs-docs-nav .navbar-toggle:hover {
-  background-color: #463265;
-  border-color: #463265;
+  background-color: #71b42d;
+  border-color: #71b42d;
 }
 
 
@@ -214,8 +214,8 @@ body {
 
 .bs-docs-home,
 .bs-header {
-  color: #cdbfe3;
-  background-color: #563d7c;
+  color: #ddeec6;
+  background-color: #8dc63f;
 }
 
 
@@ -345,7 +345,7 @@ body {
   font-size: 13px !important;
   line-height: 16px !important;
   text-align: left;
-  background: #463265 !important;
+  background: #71b42d !important;
   border: 0 !important;
   box-shadow: inset 0 3px 5px rgba(0,0,0,.075);
 }
@@ -365,7 +365,7 @@ body {
   padding-top: 0 !important;
 }
 .carbonad-tag {
-  color: #cdbfe3 !important;
+  color: #ddeec6 !important;
   text-align: left !important;
 }
 .carbonad-text a,
@@ -492,9 +492,9 @@ body {
 .bs-sidebar .nav > .active:hover > a,
 .bs-sidebar .nav > .active:focus > a {
   font-weight: bold;
-  color: #563d7c;
+  color: #8dc63f;
   background-color: transparent;
-  border-right: 1px solid #563d7c;
+  border-right: 1px solid #8dc63f;
 }
 
 /* Nav: second level (shown on .active) */
