@@ -15,7 +15,6 @@
 	        </div>
 	    </header>
 	    <article>
-		<div class="scroller">
 	    	<p class="title">系统弹出框</p>
 	    	<div class="card padding8">
 		        <button id="alert">alert</button>
@@ -32,8 +31,7 @@
 		        <button id="left" class="info">left</button>
 		        <button id="right" class="success">right</button>
 	    	</div>
-	    </div>
-	</article>
+		</article>
 	</section>
 	<!--自定义弹出框-->
 	<div class="popup confirm custom" id="pop_custom">
@@ -132,7 +130,9 @@
 		$("#middle").click(function(){
 			$("#pop_custom").dialog({
                 onClick:function(s){
+                	console.log(s.target);
                     if(s.target.text=="取消"){
+                    	console.log(s.hideDialog);
                         s.hideDialog();
                     }else if(s.target.text=="确定"){
                         console.log("确定");

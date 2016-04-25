@@ -92,6 +92,7 @@
             if(params.onClick){
                 $(s).click(function(e){
                     s.target=e.target;
+                    console.log(s.target);
                     params.onClick(s)
                 });
             }
