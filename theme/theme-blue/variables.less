@@ -1,88 +1,91 @@
- @color-white:white;
- @color-white-active:fade(@color-white, 50%);
- @color-black:black;
- @color-border: #E8E8E8;
- @color-label:#666;
- @color-placeholder:#aaa;
- @color-body-bg:#f4f4f4;
- @color-body-font:#333;
+ @white:white;
+ @white-active-color:fade(@white, 50%);
+ @black:black;
 
- @color-link:#4587F7;
- @property-link-active:opacity;
- @color-link-active:0.5;
+ @body-bg:#f4f4f4;
+ @body-color:#333;
+ @border-color:#E8E8E8;
+ @label-color:#666;
+ @placeholder-color:#aaa;
 
- @color-primary:#4587F7;
- @color-primary-active:fade(@color-primary, 50%);
- @color-primary-title:white;
- @color-primary-font:white;
- @color-primary-font-active:fade(@color-primary-font, 30%);
+ @link-color:#4587F7;
+ @link-active-property:opacity;
+ @link-active-value:0.5;
 
- @color-mask:rgba(0,0,0,.4);
+ @primary-bg:#4587F7;
+ @primary-active-bg:fade(@primary-bg, 50%);
+ @primary-title-color:white;
+ @primary-color:white;
+ @primary-active-color:fade(@primary-color, 30%);
+
+ @mask-bg:rgba(0,0,0,.4);
  
- @color-disable:#d9d9d9;
- @color-submit:#88d038;
- @color-submit-active:fade(@color-submit, 50%);
- @color-cancel:#F86868;
- @color-cancel-active:fade(@color-cancel, 50%);
- @color-success:#4DDB63;
- @color-success-active:fade(@color-success, 50%);
- @color-info:#5bc0de;
- @color-info-active:fade(@color-info, 50%);
- @color-warn:#f4984e;
- @color-warn-active:fade(@color-warn, 50%);
- @color-highlight:#f4f4f4;
- @color-tip:#fc4349;
- @color-tip-font:white;
- @color-title-font:darken(@color-primary, 10%);
+ @disable-bg:#d9d9d9;
+ @submit-bg:#88d038;
+ @submit-active-bg:fade(@submit-bg, 50%);
+ @cancel-bg:#F86868;
+ @cancel-active-bg:fade(@cancel-bg, 50%);
+ @success-bg:#4DDB63;
+ @success-active-bg:fade(@success-bg, 50%);
+ @info-bg:#5bc0de;
+ @info-active-bg:fade(@info-bg, 50%);
+ @warn-bg:#f4984e;
+ @warn-active-bg:fade(@warn-bg, 50%);
+ @highlight-bg:#f4f4f4;
+ @tip-bg:#fc4349;
+ @tip-color:white;
+ @title-color:darken(@primary-bg, 10%);
 
 /*控件*/
- @color-input:white;
+ @input-bg:white;
  
- @color-titlebar:#f9f9f9;
- @color-titlebar-font:#333;
- @color-titlebar-link:@color-primary;
- @color-titlebar-link-active:fade(@color-titlebar-link,50%);
- @color-titlebar-border:@color-border;
- @color-titlebar-reverse:@color-primary;
- @color-titlebar-reverse-font:white;
- @color-titlebar-reverse-link:white;
- @color-titlebar-reverse-link-active:fade(@color-titlebar-reverse-link,50%);
- @color-titlebar-reverse-border:@color-primary;
+ @titlebar-bg:#f9f9f9;
+ @titlebar-color:#333;
+ @titlebar-link-color:@primary-bg;
+ @titlebar-link-active-color:fade(@titlebar-link-color,50%);
+ @titlebar-border:@border-color;
+ @titlebar-reverse-bg:@primary-bg;
+ @titlebar-reverse-color:white;
+ @titlebar-reverse-color:white;
+ @titlebar-reverse-active-color:fade(@titlebar-reverse-color,50%);
+ @titlebar-reverse-border:@primary-bg;
 
- @color-menubar:#f8f8f8;
- @color-menubar-font:#888;
- @color-menubar-font-active:@color-primary;
- @color-menubar-border:@color-border;
- @color-menubar-reverse:@color-primary;
- @color-menubar-reverse-font:white;
- @color-menubar-reverse-border:@color-primary;
+ @menubar-bg:#f8f8f8;
+ @menubar-color:#888;
+ @menubar-active-color:@primary-bg;
+ @menubar-border:@border-color;
 
- @color-button:@color-primary;
- @color-button-font:white;
- @color-button-active:fade(@color-button,50%);
- @color-button-font-active:fade(@color-button-font,50%);
- @color-button-tip:rgba(0, 0, 0, .15);
+ @menubar-reverse-bg:@primary-bg;
+ @menubar-reverse-color:white;
+ @menubar-reverse-active-color:white;
+ @menubar-reverse-border:@primary-bg;
 
- @color-aside:@color-body-bg;
+ @button-bg:@primary-bg;
+ @button-color:white;
+ @button-active-bg:fade(@button-bg,50%);
+ @button-active-color:fade(@button-color,50%);
+ @button-tip-bg:rgba(0, 0, 0, .15);
 
- @color-list-bg:white;
- @color-list-bg-active:#f4f4f4;
+ @aside-bg:@body-bg;
 
- @color-chat-odd-bg:#ddd;
- @color-chat-even-bg:#b8daff;
+ @list-bg:white;
+ @list-active-bg:#f4f4f4;
 
- @color-toast:rgba(0,0,0,.6);
- @color-chatbg:#d8f2f3;
- @color-required-border:#e7eabd;
- @color-required-bg:#faffbd;
+ @chat-bg:#d8f2f3;
+ @chat-odd-bg:#ddd;
+ @chat-even-bg:#b8daff;
 
- @color-table-font:#888;
+ @toast-bg:rgba(0,0,0,.6);
+ @required-border:#e7eabd;
+ @required-bg:#faffbd;
 
- @color-progress-bg:#ccc;
- @color-progress:@color-primary;
+ @table-color:#888;
 
- @color-photo-bg:#ddd;
- @color-photo:#ccc;
+ @progress-bg:#ccc;
+ @progress-color:@primary-bg;
+
+ @photo-bg:#ddd;
+ @photo-color:#ccc;
  
  /*常用颜色*/
  @color-1:#53c6fd;

@@ -107,13 +107,16 @@
 
 		//弹出框
 		var sharepop;
+		var sharepop=new Dialog("#mshare",{
+			pos:"bottom"
+		});
 		function showShare(){
-			sharepop=$("#mshare").dialog({"pos":"bottom"});
+			sharepop.show();
 		}
 		//调用分享接口
 		var cancelshare=document.getElementById("msharecancel");
 		cancelshare.addEventListener("click",function(e){
-			sharepop.hideDialog();
+			sharepop.hide();
 		},false);
 		//定义exmobi返回
 		function back(){history.go(-1);}

@@ -281,11 +281,13 @@
                 $("#nodata").removeClass("hide");
             }
         }
+        var popDelete=new Dialog("#popDelete");
         function delCard(n){
-            $("#popDelete").dialog({
-                onClick:function(s){
+            popDelete.removeOnClick();
+            popDelete.addOnClick(
+                function(s){
                     if(s.target.text=="取消"){
-                        s.hideDialog();
+                        s.hide();
                     }else if(s.target.text=="确定"){
                         $(n).addClass("animated zoomOut");
                         EventUtil.addHandler(n, "animationend", function(){
@@ -293,12 +295,12 @@
                                 $(n).remove();
                                 nodata();
                             });
-                            //card.remove();
                         });
-                        s.hideDialog();
+                        s.hide();
                     }
                 }
-            });
+            );
+            popDelete.show();
         }
         function initDelClickEvent(){
             var deleteBtn = document.querySelectorAll('.close');
@@ -316,7 +318,7 @@
             initDelClickEvent();
         },false);
 
-		function back(){history.go(-1)}
+		function back(){history.go(-1);}
     </script>
 </body>
 </html>

@@ -55,6 +55,7 @@
                 default :s.params.pos="middle";hideAnimate={opacity:0};showAnimate={opacity:1};
             }
         }
+        updateAnimate();
         /*=========================
           Method
           ===========================*/
@@ -94,14 +95,23 @@
             s.params.pos=pos;
             updateAnimate();
         }
+        //设置回调
+        s.removeOnClick=function(){
+            s.container.removeEventListener("click",onClickCallback,false);
+        }
+        s.addOnClick=function(onclickFn){
+            s.params.onClick=onclickFn;
+            s.container.addEventListener("click",onClickCallback,false);
+        }
 
         //Callback
         if(s.params.onClick){
             s.container.addEventListener("click",onClickCallback,false);
-            function onClickCallback(e){
-                s.target=e.target;
-                s.params.onClick(s)
-            };
         }
+        function onClickCallback(e){
+            s.target=e.target;
+            s.params.onClick(s)
+        };
+        return s;
     }
 })(window,document,undefined);
