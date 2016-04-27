@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
+  <title>全局CSS &middot; SeedsUI</title>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="stylesheets/docs.css" rel="stylesheet">
+  <link href="stylesheets/github.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="../docs-assets/js/ie8-responsive-file-warning.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="images/favicon.png"></head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">SeedsUI</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="started.html">起步</a>
+          </li>
+          <li class="active">
+            <a href="index.html">全局CSS</a>
+          </li>
+          <li>
+            <a href="components.html">组件</a>
+          </li>
+          <li>
+            <a href="javascript.html">其它插件</a>
+          </li>
+          <li>
+            <a href="customize.html">换肤</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="about.html">关于</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Docs page layout -->
+  <div class="bs-header" id="content">
+    <div class="container">
+      <h1>CSS</h1>
+      <p>设置全局CSS样式，定义圆角、边框、尺寸等。</p>
+
+    </div>
+  </div>
+
+  <!-- Callout for the old docs link -->
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+              <a href="#radius">圆角</a>
+            </li>
+            <li>
+              <a href="#height">高度</a>
+            </li>
+            <li>
+              <a href="#size">元素尺寸</a>
+            </li>
+            <li>
+              <a href="#space">间距</a>
+            </li>
+            <li>
+              <a href="#font">文字</a>
+            </li>
+            <li>
+              <a href="#align">对齐</a>
+            </li>
+            <li>
+              <a href="#border">边框</a>
+            </li>
+            <li>
+              <a href="#click">点击状态</a>
+            </li>
+            <li>
+              <a href="#datacol">每行列数</a>
+            </li>
+            <li>
+              <a href="#reverse">反转</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+        <!-- 圆角
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="radius">圆角</h1>
+          </div>
+          <p class="lead">定义元素的圆角半径radius</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  radius4 | radius6 | radius8 | radius16 | radius20 | radius40 | radiusround
+                </td>
+                <td>圆角半径</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 高度
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="height">高度</h1>
+          </div>
+          <p class="lead">定义了元素的高度height</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  height26 | height30 | height32 | height40 | height50 | height54
+                </td>
+                <td>定义宽高，字体大小</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 元素尺寸
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="size">元素尺寸</h1>
+          </div>
+          <p class="lead">定义了元素的宽高尺寸size</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>i标签</td>
+                <td>class</td>
+                <td>
+                  size8 | size12 | size16 | size20 | size24 | size28 | size30 | size32 | size40 | size54
+                </td>
+                <td>定义宽高，字体大小</td>
+              </tr>
+              <tr>
+                <td>头像控件</td>
+                <td>class</td>
+                <td>
+                  photo | size32 | size40 | size50 | size54 | size80
+                </td>
+                <td>照片 | 定义宽高，和photo内部字体大小</td>
+              </tr>
+              <tr>
+                <td>徽章控件</td>
+                <td>class</td>
+                <td>
+                  badge | size32
+                </td>
+                <td>徽章 | 定义总宽度</td>
+              </tr>
+              <tr>
+                <td>p标签(文字)</td>
+                <td>class</td>
+                <td>
+                  size17 | size20
+                </td>
+                <td>文字大小</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 间距
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="space">间距</h1>
+          </div>
+          <p class="lead">定义了元素的高度margin|padding|space|rowspace|indent</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  margin4 | margin6 | margin8 | margin12 | lrmargin8 | nomargin | nolrmargin | notbmargin
+                </td>
+                <td>定义外间距</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  padding4 | padding6 | padding8 | padding12 | lrpadding8 | nopadding | nolrpadding | notbpadding
+                </td>
+                <td>定义内间距</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  space4 | space6 | space8 | space12 | space14 | space16
+                </td>
+                <td>宽度间距</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  rowspace4 | rowspace6 | rowspace8 | rowspace12 | rowspace20 | rowspace40
+                </td>
+                <td>高度间距</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  indent6 | indent8 | indent24
+                </td>
+                <td>道行缩进</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  lineheight0
+                </td>
+                <td>行高为0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 文字
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="font">文字</h1>
+          </div>
+          <p class="lead">定义了文字的样式title|sliver|article-title|small|paragraph|capitalize|uppercase|lowercase|bold</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  title
+                </td>
+                <td>标题</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  sliver
+                </td>
+                <td>条子标题</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  article-title
+                </td>
+                <td>文章标题</td>
+              </tr>
+              <tr>
+                <td>small</td>
+                <td>class</td>
+                <td>
+                  无
+                </td>
+                <td>副标题</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  paragraph
+                </td>
+                <td>段落</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  capitalize
+                </td>
+                <td>首字母大写</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  uppercase
+                </td>
+                <td>大写</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  lowercase
+                </td>
+                <td>小写</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  bold
+                </td>
+                <td>加粗</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 对齐
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="align">对齐</h1>
+          </div>
+          <p class="lead">定义了很多元素对齐方式box..|self-middle..|horizontal|float-left..|tb..|text-left..</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>div弹性盒子(盒子内部)</td>
+                <td>class</td>
+                <td>
+                  box | box-left | box-center | box-right | box-top | box-middle | box-bottom | box-middlecenter
+                </td>
+                <td>弹性盒子 | 自适应区域 | 左对齐 | 水平居中 | 右对齐 | 上对齐 | 垂直居中 | 下对齐 | 水平垂直居中</td>
+              </tr>
+              <tr>
+                <td>弹性盒子内部元素</td>
+                <td>class</td>
+                <td>
+                  box-flex-1 | box-flex-2 | box-flex-3 | justify | justify-content
+                </td>
+                <td>弹性率1 | 弹性率2 | 弹性率3 | 与justify-content搭配最大占用90px的宽度 | 与justify搭配，自适应剩余宽度</td>
+              </tr>
+              <tr>
+                <td>任何元素(自身)</td>
+                <td>class</td>
+                <td>
+                  self-middle | self-center | self-middlecenter
+                </td>
+                <td>垂直居中 | 水平居中 | 垂直水平居中</td>
+              </tr>
+              <tr>
+                <td>任何元素(内部文字)</td>
+                <td>class</td>
+                <td>
+                  tb | bt | tb-rl | tb-lr | lr | rl
+                </td>
+                <td>上下 | 下上 | 上下，左右 | 上下，右左 | 左右 | 右左</td>
+              </tr>
+              <tr>
+                <td>div标签(内部元素)</td>
+                <td>class</td>
+                <td>
+                  horizontal
+                </td>
+                <td>水平排列</td>
+              </tr>
+              <tr>
+                <td>任何元素(自身浮动)</td>
+                <td>class</td>
+                <td>
+                  float-left | float-right
+                </td>
+                <td>左浮动 | 右浮动</td>
+              </tr>
+              <tr>
+                <td>内部文字</td>
+                <td>class</td>
+                <td>
+                  text-left | text-center | text-right
+                </td>
+                <td>左对齐 | 水平居中 | 右对齐</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 边框
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="border">边框</h1>
+          </div>
+          <p class="lead">定义了控件线条的样式border|dotted|underline</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>hr</td>
+                <td>class</td>
+                <td>
+                  无 | dotted
+                </td>
+                <td>显示实线 | 显示虚线</td>
+              </tr>
+              <tr>
+                <td>ul</td>
+                <td>class</td>
+                <td>
+                  dotted
+                </td>
+                <td>子级li底部显示虚线</td>
+              </tr>
+              <tr>
+                <td>li</td>
+                <td>class</td>
+                <td>
+                  dotted
+                </td>
+                <td>底部显示虚线</td>
+              </tr>
+              <tr>
+                <td>.list控件</td>
+                <td>class</td>
+                <td>
+                  list | border-content | dotted
+                </td>
+                <td>列表控件 | 内容部分显示实线 | 底部虚线</td>
+              </tr>
+              <tr>
+                <td>.photo控件</td>
+                <td>class</td>
+                <td>
+                  photo | border
+                </td>
+                <td>头像控件 | 边框显示实线</td>
+              </tr>
+              <tr>
+                <td>.timeline控件</td>
+                <td>class</td>
+                <td>
+                  timeline | border | dotted
+                </td>
+                <td>时间轴控件 | 每行底部显示实线 | 每行底部显示虚线</td>
+              </tr>
+              <tr>
+                <td>.card>.card-handler控件</td>
+                <td>class</td>
+                <td>
+                  card-handler | border
+                </td>
+                <td>卡片操作区 | 操作按钮间显示实线分割</td>
+              </tr>
+              <tr>
+                <td>.title控件</td>
+                <td>class</td>
+                <td>
+                  title | border
+                </td>
+                <td>标题 | 底部显示实线</td>
+              </tr>
+              <tr>
+                <td>.grid控件</td>
+                <td>class</td>
+                <td>
+                  grid | border
+                </td>
+                <td>栅格控件 | 栅格间显示实线</td>
+              </tr>
+              <tr>
+                <td>.input-box控件</td>
+                <td>class</td>
+                <td>
+                  underline
+                </td>
+                <td>下划线</td>
+              </tr>
+              <tr>
+                <td>任何元素</td>
+                <td>class</td>
+                <td>
+                  noborder
+                </td>
+                <td>去线或者去边框</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 点击状态
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="click">点击状态</h1>
+          </div>
+          <p class="lead">定义了元素点击状态click|noclick</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SeedsUI中所有含有点击效果的元素</td>
+                <td>class</td>
+                <td>
+                  noclick
+                </td>
+                <td>无点击</td>
+              </tr>
+              <tr>
+                <td>.input-box</td>
+                <td>class</td>
+                <td>
+                  click
+                </td>
+                <td>添加点击效果</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 每行列数
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="datacol">每行列数</h1>
+          </div>
+          <p class="lead">定义了元素每行列数</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>.card>.card-handler控件</td>
+                <td>data-col</td>
+                <td>
+                  2,3,4
+                </td>
+                <td>每行列数</td>
+              </tr>
+              <tr>
+                <td>包含.tab的元素</td>
+                <td>data-col</td>
+                <td>
+                  2,3,4,5,6
+                </td>
+                <td>每行列数</td>
+              </tr>
+              <tr>
+                <td>.grid栅格控件</td>
+                <td>data-col</td>
+                <td>
+                  2,3,4,5
+                </td>
+                <td>每行列数</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 颜色反转
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="reverse">颜色反转</h1>
+          </div>
+          <p class="lead">定义了部分元素反转色</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>.switch开关控件</td>
+                <td>class</td>
+                <td>
+                  reverse
+                </td>
+                <td>颜色反转</td>
+              </tr>
+              <tr>
+                <td>.titlebar头部导航控件</td>
+                <td>class</td>
+                <td>
+                  reverse
+                </td>
+                <td>颜色反转</td>
+              </tr>
+              <tr>
+                <td>.titlebar头部导航控件</td>
+                <td>class</td>
+                <td>
+                  reverse
+                </td>
+                <td>颜色反转</td>
+              </tr>
+              <tr>
+                <td>.menubar底部导航控件</td>
+                <td>class</td>
+                <td>
+                  reverse
+                </td>
+                <td>颜色反转</td>
+              </tr>
+              <tr>
+                <td>.input-box表单元素框控件</td>
+                <td>class</td>
+                <td>
+                  reverse
+                </td>
+                <td>颜色反转</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- The End
+  ================================================== --> </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+
+  <!-- JS and analytics only. -->
+  <!-- Bootstrap core JavaScript
+================================================== -->
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/holder.min.js"></script>
+  <script src="javascripts/highlight.min.js"></script>
+  <script >hljs.initHighlightingOnLoad();</script>
+  <script src="javascripts/application.js"></script>
+</body>
+</html>

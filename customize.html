@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
+  <title>CSS &middot; SeedsUI</title>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="stylesheets/docs.css" rel="stylesheet">
+  <link href="stylesheets/github.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="../docs-assets/js/ie8-responsive-file-warning.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="images/favicon.png"></head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">SeedsUI</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="started.html">起步</a>
+          </li>
+          <li>
+            <a href="css.html">全局CSS</a>
+          </li>
+          <li>
+            <a href="components.html">组件</a>
+          </li>
+          <li>
+            <a href="javascript.html">其它插件</a>
+          </li>
+          <li class="active">
+            <a href="customize.html">换肤</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="about.html">关于</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Docs page layout -->
+  <div class="bs-header" id="content">
+    <div class="container">
+      <h1>换肤</h1>
+      <p>通过自定义SeedsUI组件、LESS变量，定制一份属于你自己的SeedsUI版本吧。variables.less文件</p>
+
+    </div>
+  </div>
+
+  <!-- Callout for the old docs link -->
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+              <a href="#globaltheme">全局颜色</a>
+            </li>
+            <li>
+              <a href="#componentstheme">组件颜色</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <!-- 全局颜色
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="globaltheme">全局颜色</h1>
+          </div>
+          <p class="lead">定义全局范围内可使用的颜色值</p>
+          <h3 id="appearanceColor">黑白色</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-white</td>
+                <td>白色</td>
+              </tr>
+              <tr>
+                <td>@color-white-active</td>
+                <td>白色点击色</td>
+              </tr>
+              <tr>
+                <td>@color-black</td>
+                <td>黑色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="tagColor">默认控件色</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-border</td>
+                <td>边框色</td>
+              </tr>
+              <tr>
+                <td>@color-label</td>
+                <td>标签色</td>
+              </tr>
+              <tr>
+                <td>@color-placeholder</td>
+                <td>占位符色</td>
+              </tr>
+              <tr>
+                <td>@color-body-bg</td>
+                <td>默认背景色</td>
+              </tr>
+              <tr>
+                <td>@color-body-font</td>
+                <td>默认文字色</td>
+              </tr>
+              <tr>
+                <td>@color-link</td>
+                <td>链接色</td>
+              </tr>
+              <tr>
+                <td>@property-link-active</td>
+                <td>链接点击属性</td>
+              </tr>
+              <tr>
+                <td>@color-link-active</td>
+                <td>链接点击值</td>
+              </tr>
+              <tr>
+                <td>@color-mask</td>
+                <td>遮罩颜色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="primaryColor">主色调</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-primary</td>
+                <td>主色</td>
+              </tr>
+              <tr>
+                <td>@color-primary-active</td>
+                <td>主色点击色</td>
+              </tr>
+              <tr>
+                <td>@color-primary-title</td>
+                <td>主色上的标题色</td>
+              </tr>
+              <tr>
+                <td>@color-primary-font</td>
+                <td>主色上的文字色</td>
+              </tr>
+              <tr>
+                <td>@color-primary-font-active</td>
+                <td>主色上的文字点击色</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 id="featureColor">功能颜色</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-disable</td>
+                <td>禁用色</td>
+              </tr>
+              <tr>
+                <td>@color-submit</td>
+                <td>提交色</td>
+              </tr>
+              <tr>
+                <td>@color-submit-active</td>
+                <td>提交点击色</td>
+              </tr>
+              <tr>
+                <td>@color-cancel</td>
+                <td>取消色</td>
+              </tr>
+              <tr>
+                <td>@color-cancel-active</td>
+                <td>取消点击色</td>
+              </tr>
+              <tr>
+                <td>@color-success</td>
+                <td>成功色</td>
+              </tr>
+              <tr>
+                <td>@color-success-active</td>
+                <td>成功点击色</td>
+              </tr>
+              <tr>
+                <td>@color-info</td>
+                <td>信息色</td>
+              </tr>
+              <tr>
+                <td>@color-info-active</td>
+                <td>信息点击色</td>
+              </tr>
+              <tr>
+                <td>@color-warn</td>
+                <td>警告色</td>
+              </tr>
+              <tr>
+                <td>@color-warn-active</td>
+                <td>警告点击色</td>
+              </tr>
+              <tr>
+                <td>@color-highlight</td>
+                <td>高亮色</td>
+              </tr>
+              <tr>
+                <td>@color-tip</td>
+                <td>消息提示色</td>
+              </tr>
+              <tr>
+                <td>@color-tip-font</td>
+                <td>消息提示上文字色</td>
+              </tr>
+              <tr>
+                <td>@color-tip-font</td>
+                <td>标题文字色</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- 组件颜色
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="globaltheme">组件颜色</h1>
+          </div>
+          <p class="lead">定义各个组件的颜色色值</p>
+          <h3 id="inputColor">文本框</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-input</td>
+                <td>文本框背景色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="titlebarColor">头部导航</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-titlebar</td>
+                <td>头部导航背景色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-font</td>
+                <td>头部导航文字色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-link</td>
+                <td>头部导航链接色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-link-active</td>
+                <td>头部导航链接点击色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-border</td>
+                <td>头部导航边框色</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>头部导航反转色</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-titlebar-reverse</td>
+                <td>头部导航背景反转色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-reverse-font</td>
+                <td>头部导航文字反转色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-reverse-link</td>
+                <td>头部导航链接反转色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-reverse-link-active</td>
+                <td>头部导航链接点击反转色</td>
+              </tr>
+              <tr>
+                <td>@color-titlebar-reverse-border</td>
+                <td>头部导航边框反转色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="menubarColor">底部导航</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-menubar</td>
+                <td>底部导航背景色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-font</td>
+                <td>底部导航文字色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-font-active</td>
+                <td>底部导航文字点击色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-border</td>
+                <td>底部导航边框色</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>底部导航反转色</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-menubar-reverse</td>
+                <td>底部导航背景反转色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-reverse-font</td>
+                <td>底部导航文字反转色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-reverse-font-active</td>
+                <td>底部导航文字点击反转色</td>
+              </tr>
+              <tr>
+                <td>@color-menubar-reverse-border</td>
+                <td>底部导航边框反转色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="buttonColor">按钮颜色</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-button</td>
+                <td>按钮背景色</td>
+              </tr>
+              <tr>
+                <td>@color-button-font</td>
+                <td>按钮文字色</td>
+              </tr>
+              <tr>
+                <td>@color-button-active</td>
+                <td>提交点击背景色</td>
+              </tr>
+              <tr>
+                <td>@color-button-font-active</td>
+                <td>提交点击文字色</td>
+              </tr>
+              <tr>
+                <td>@color-cancel-active</td>
+                <td>取消点击色</td>
+              </tr>
+              <tr>
+                <td>@color-button-tip</td>
+                <td>按钮上提示消息背景色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="asideColor">侧边栏</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-aside</td>
+                <td>侧边栏背景色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="listColor">列表</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@color-list</td>
+                <td>列表背景色</td>
+              </tr>
+              <tr>
+                <td>@color-list-active</td>
+                <td>列表背景点击色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="listColor">聊天框</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@bg-chat</td>
+                <td>聊天框背景色</td>
+              </tr>
+              <tr>
+                <td>@color-chat-odd</td>
+                <td>聊天奇行背景色</td>
+              </tr>
+              <tr>
+                <td>@color-chat-even</td>
+                <td>聊天偶行背景色</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="listColor">弹出框</h3>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>变量名称</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@bg-toast</td>
+                <td>小弹框背景色</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- The End
+  ================================================== --> </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+
+  <!-- JavaScript
+================================================== -->
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/holder.min.js"></script>
+  <script src="javascripts/highlight.min.js"></script>
+  <script >hljs.initHighlightingOnLoad();</script>
+  <script src="javascripts/application.js"></script>
+</body>
+</html>

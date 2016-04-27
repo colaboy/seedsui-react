@@ -1,0 +1,4798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
+  <title>组件 &middot; SeedsUI</title>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="stylesheets/docs.css" rel="stylesheet">
+  <link href="stylesheets/github.min.css" rel="stylesheet">
+  <link href="stylesheets/icon.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="../docs-assets/js/ie8-responsive-file-warning.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="images/favicon.png"></head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">SeedsUI</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="started.html">起步</a>
+          </li>
+          <li>
+            <a href="css.html">全局CSS</a>
+          </li>
+          <li class="active">
+            <a href="index.html">组件</a>
+          </li>
+          <li>
+            <a href="javascript.html">其它插件</a>
+          </li>
+          <li>
+            <a href="customize.html">换肤</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="about.html">关于</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Docs page layout -->
+  <div class="bs-header" id="content">
+    <div class="container">
+      <h1>组件</h1>
+      <p>无数可复用的组件，包括文字图标，导航，弹出框等更多功能。</p>
+
+    </div>
+  </div>
+
+  <!-- Callout for the old docs link -->
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+              <a href="#icons">文字图标</a>
+            </li>
+            <li>
+              <a href="#bar">导航</a>
+              <ul class="nav">
+                <li>
+                  <a href="#bar-titlebar">头部导航</a>
+                </li>
+                <li>
+                  <a href="#bar-searchbar">搜索导航</a>
+                </li>
+                <li>
+                  <a href="#bar-navbar">页签导航</a>
+                </li>
+                <li>
+                  <a href="#bar-tabbar">动画页签</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#btn-groups">按钮</a>
+              <ul class="nav">
+                <li>
+                  <a href="#button">按钮</a>
+                </li>
+                <li>
+                  <a href="#button-group">按钮组</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#singlepage">单页模式</a>
+            </li>
+            <li>
+              <a href="#side">侧边栏</a>
+            </li>
+            <li>
+              <a href="#prograssbar">进度条</a>
+            </li>
+            <li>
+              <a href="#popup">弹出框</a>
+              <ul class="nav">
+                <li>
+                  <a href="#popup-alert">提示框</a>
+                </li>
+                <li>
+                  <a href="#popup-confirm">对话框</a>
+                </li>
+                <li>
+                  <a href="#popup-actionsheet">卡片框</a>
+                </li>
+                <li>
+                  <a href="#popup-toast">小弹框</a>
+                </li>
+                <li>
+                  <a href="#popup-custom">自定义弹出框</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#form">表单</a>
+              <ul class="nav">
+                <li>
+                  <a href="#inputbox">表单元素</a>
+                </li>
+                <li>
+                  <a href="#row">弹性行</a>
+                </li>
+                <li>
+                  <a href="#form-validate">表单验证</a>
+                </li>
+                <li>
+                  <a href="#form-serialize">表单序列化</a>
+                </li>
+                <li>
+                  <a href="#form-fontcount">文字计数器</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#badge">徽章</a>
+              <ul class="nav">
+                <li>
+                  <a href="#badge-badge">宽形徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-tip">圆形徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-sticker">边角徽章</a>
+                </li>
+                <li>
+                  <a href="#badge-dot">圆点徽章</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#group">分组</a>
+              <ul class="nav">
+                <li>
+                  <a href="#group-group">块级分组</a>
+                </li>
+                <li>
+                  <a href="#group-card">卡片分组</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#table">表格</a>
+            </li>
+            <li>
+              <a href="#grid">栅格</a>
+              <ul class="nav">
+                <li>
+                  <a href="#grid-metro">metro风格</a>
+                </li>
+                <li>
+                  <a href="#grid-app">应用图标</a>
+                </li>
+                <li>
+                  <a href="#grid-album">相册</a>
+                </li>
+                <li>
+                  <a href="#grid-thumbnail">缩略图</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#list">列表</a>
+            </li>
+            <li>
+              <a href="#timeline">时间轴</a>
+            </li>
+            <li>
+              <a href="#calendar">日历</a>
+            </li>
+            <li>
+              <a href="#tree">树结构</a>
+              <ul class="nav">
+                <li>
+                  <a href="#tree-person">人员查找</a>
+                </li>
+                <li>
+                  <a href="#tree-selected">部门选择</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#counter">计数器</a>
+            </li>
+            <li>
+              <a href="#loading">加载</a>
+            </li>
+            <li>
+              <a href="#slider">滑动容器</a>
+            </li>
+            <li>
+              <a href="#dragrefresh">下拉刷新</a>
+            </li>
+            <li>
+              <a href="#gauge">仪表盘</a>
+            </li>
+            <li>
+              <a href="#clock">时钟</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <!-- 文字图标
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="icons">文字图标</h1>
+          </div>
+          <p class="lead">包括300多个SeedsUI的字体图标</p>
+          <div class="bs-glyphicons">
+            <ul class="bs-glyphicons-list">
+              <li>
+                <span class="glyphicon icon-android"></span>
+                <span class="glyphicon-class">icon-android</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-app"></span>
+                <span class="glyphicon-class">icon-app</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appbag"></span>
+                <span class="glyphicon-class">icon-appbag</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appbag-fill"></span>
+                <span class="glyphicon-class">icon-appbag-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-app-fill"></span>
+                <span class="glyphicon-class">icon-app-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-apple"></span>
+                <span class="glyphicon-class">icon-apple</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appscatter"></span>
+                <span class="glyphicon-class">icon-appscatter</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appscatter-fill"></span>
+                <span class="glyphicon-class">icon-appscatter-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appshop"></span>
+                <span class="glyphicon-class">icon-appshop</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-appshop-fill"></span>
+                <span class="glyphicon-class">icon-appshop-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowbittoleft"></span>
+                <span class="glyphicon-class">icon-arrowbittoleft</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowbittoleft-fill"></span>
+                <span class="glyphicon-class">icon-arrowbittoleft-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowbittoright"></span>
+                <span class="glyphicon-class">icon-arrowbittoright</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowbittoright-fill"></span>
+                <span class="glyphicon-class">icon-arrowbittoright-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowdown"></span>
+                <span class="glyphicon-class">icon-arrowdown</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowdown-fill"></span>
+                <span class="glyphicon-class">icon-arrowdown-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowleft"></span>
+                <span class="glyphicon-class">icon-arrowleft</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowleft-fill"></span>
+                <span class="glyphicon-class">icon-arrowleft-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowrefresh2"></span>
+                <span class="glyphicon-class">icon-arrowrefresh2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowrefresh2-fill"></span>
+                <span class="glyphicon-class">icon-arrowrefresh2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowreply"></span>
+                <span class="glyphicon-class">icon-arrowreply</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowreply-fill"></span>
+                <span class="glyphicon-class">icon-arrowreply-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowright"></span>
+                <span class="glyphicon-class">icon-arrowright</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowright-fill"></span>
+                <span class="glyphicon-class">icon-arrowright-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowsent"></span>
+                <span class="glyphicon-class">icon-arrowsent</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowsent-fill"></span>
+                <span class="glyphicon-class">icon-arrowsent-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowup"></span>
+                <span class="glyphicon-class">icon-arrowup</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-arrowup-fill"></span>
+                <span class="glyphicon-class">icon-arrowup-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-attach"></span>
+                <span class="glyphicon-class">icon-attach</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-attach-fill"></span>
+                <span class="glyphicon-class">icon-attach-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-attachv"></span>
+                <span class="glyphicon-class">icon-attachv</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-attachv-fill"></span>
+                <span class="glyphicon-class">icon-attachv-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-bad"></span>
+                <span class="glyphicon-class">icon-bad</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-bad-fill"></span>
+                <span class="glyphicon-class">icon-bad-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-baidu"></span>
+                <span class="glyphicon-class">icon-baidu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-bell"></span>
+                <span class="glyphicon-class">icon-bell</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-bell-fill"></span>
+                <span class="glyphicon-class">icon-bell-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-build"></span>
+                <span class="glyphicon-class">icon-build</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-build-fill"></span>
+                <span class="glyphicon-class">icon-build-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-calendar"></span>
+                <span class="glyphicon-class">icon-calendar</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-calendar-fill"></span>
+                <span class="glyphicon-class">icon-calendar-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-camera"></span>
+                <span class="glyphicon-class">icon-camera</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-camera-fill"></span>
+                <span class="glyphicon-class">icon-camera-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-car"></span>
+                <span class="glyphicon-class">icon-car</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-car-fill"></span>
+                <span class="glyphicon-class">icon-car-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-cbo"></span>
+                <span class="glyphicon-class">icon-cbo</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-cbo-fill"></span>
+                <span class="glyphicon-class">icon-cbo-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-cbook"></span>
+                <span class="glyphicon-class">icon-cbook</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-cbook-fill"></span>
+                <span class="glyphicon-class">icon-cbook-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartbar"></span>
+                <span class="glyphicon-class">icon-chartbar</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartbar-fill"></span>
+                <span class="glyphicon-class">icon-chartbar-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartline"></span>
+                <span class="glyphicon-class">icon-chartline</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartline-fill"></span>
+                <span class="glyphicon-class">icon-chartline-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartpie"></span>
+                <span class="glyphicon-class">icon-chartpie</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartpie-fill"></span>
+                <span class="glyphicon-class">icon-chartpie-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chat"></span>
+                <span class="glyphicon-class">icon-chat</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatdot"></span>
+                <span class="glyphicon-class">icon-chatdot</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatdot-fill"></span>
+                <span class="glyphicon-class">icon-chatdot-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chat-fill"></span>
+                <span class="glyphicon-class">icon-chat-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatline"></span>
+                <span class="glyphicon-class">icon-chatline</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatline-fill"></span>
+                <span class="glyphicon-class">icon-chatline-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chats"></span>
+                <span class="glyphicon-class">icon-chats</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chats-fill"></span>
+                <span class="glyphicon-class">icon-chats-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatsquare"></span>
+                <span class="glyphicon-class">icon-chatsquare</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chatsquare-fill"></span>
+                <span class="glyphicon-class">icon-chatsquare-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chattip"></span>
+                <span class="glyphicon-class">icon-chattip</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chattip-fill"></span>
+                <span class="glyphicon-class">icon-chattip-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-clear"></span>
+                <span class="glyphicon-class">icon-clear</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-clear-fill"></span>
+                <span class="glyphicon-class">icon-clear-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-close"></span>
+                <span class="glyphicon-class">icon-close</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-close-fill"></span>
+                <span class="glyphicon-class">icon-close-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-computer"></span>
+                <span class="glyphicon-class">icon-computer</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-computer-fill"></span>
+                <span class="glyphicon-class">icon-computer-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-contact"></span>
+                <span class="glyphicon-class">icon-contact</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-contact-fill"></span>
+                <span class="glyphicon-class">icon-contact-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-dog"></span>
+                <span class="glyphicon-class">icon-dog</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-dog-fill"></span>
+                <span class="glyphicon-class">icon-dog-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-download"></span>
+                <span class="glyphicon-class">icon-download</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-download2"></span>
+                <span class="glyphicon-class">icon-download2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-download2-fill"></span>
+                <span class="glyphicon-class">icon-download2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-download-fill"></span>
+                <span class="glyphicon-class">icon-download-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-earth"></span>
+                <span class="glyphicon-class">icon-earth</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-earth-fill"></span>
+                <span class="glyphicon-class">icon-earth-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-eye"></span>
+                <span class="glyphicon-class">icon-eye</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-eye-fill"></span>
+                <span class="glyphicon-class">icon-eye-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-face"></span>
+                <span class="glyphicon-class">icon-face</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-face-fill"></span>
+                <span class="glyphicon-class">icon-face-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fav"></span>
+                <span class="glyphicon-class">icon-fav</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fav-fill"></span>
+                <span class="glyphicon-class">icon-fav-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-femalesign"></span>
+                <span class="glyphicon-class">icon-femalesign</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-femalesign-fill"></span>
+                <span class="glyphicon-class">icon-femalesign-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-file"></span>
+                <span class="glyphicon-class">icon-file</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fileadd"></span>
+                <span class="glyphicon-class">icon-fileadd</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fileadd-fill"></span>
+                <span class="glyphicon-class">icon-fileadd-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-filefav"></span>
+                <span class="glyphicon-class">icon-filefav</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-filefav-fill"></span>
+                <span class="glyphicon-class">icon-filefav-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-file-fill"></span>
+                <span class="glyphicon-class">icon-file-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fileperson"></span>
+                <span class="glyphicon-class">icon-fileperson</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fileperson-fill"></span>
+                <span class="glyphicon-class">icon-fileperson-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-filesearch"></span>
+                <span class="glyphicon-class">icon-filesearch</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-filesearch-fill"></span>
+                <span class="glyphicon-class">icon-filesearch-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-flag"></span>
+                <span class="glyphicon-class">icon-flag</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-flag-fill"></span>
+                <span class="glyphicon-class">icon-flag-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-folder"></span>
+                <span class="glyphicon-class">icon-folder</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-folder-fill"></span>
+                <span class="glyphicon-class">icon-folder-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-fweixin"></span>
+                <span class="glyphicon-class">icon-fweixin</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-gear"></span>
+                <span class="glyphicon-class">icon-gear</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-gear-fill"></span>
+                <span class="glyphicon-class">icon-gear-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-guide"></span>
+                <span class="glyphicon-class">icon-guide</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-guide-fill"></span>
+                <span class="glyphicon-class">icon-guide-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-handbag"></span>
+                <span class="glyphicon-class">icon-handbag</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-handbag-fill"></span>
+                <span class="glyphicon-class">icon-handbag-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-heart"></span>
+                <span class="glyphicon-class">icon-heart</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-heart-fill"></span>
+                <span class="glyphicon-class">icon-heart-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-home"></span>
+                <span class="glyphicon-class">icon-home</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-home-fill"></span>
+                <span class="glyphicon-class">icon-home-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-hook"></span>
+                <span class="glyphicon-class">icon-hook</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-hook-fill"></span>
+                <span class="glyphicon-class">icon-hook-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-layer"></span>
+                <span class="glyphicon-class">icon-layer</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-layer-fill"></span>
+                <span class="glyphicon-class">icon-layer-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-load"></span>
+                <span class="glyphicon-class">icon-load</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-load-fill"></span>
+                <span class="glyphicon-class">icon-load-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lock"></span>
+                <span class="glyphicon-class">icon-lock</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lock2"></span>
+                <span class="glyphicon-class">icon-lock2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lock2-fill"></span>
+                <span class="glyphicon-class">icon-lock2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lock-fill"></span>
+                <span class="glyphicon-class">icon-lock-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lockopen"></span>
+                <span class="glyphicon-class">icon-lockopen</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lockopen2"></span>
+                <span class="glyphicon-class">icon-lockopen2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lockopen2-fill"></span>
+                <span class="glyphicon-class">icon-lockopen2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lockopen-fill"></span>
+                <span class="glyphicon-class">icon-lockopen-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lorry"></span>
+                <span class="glyphicon-class">icon-lorry</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-lorry-fill"></span>
+                <span class="glyphicon-class">icon-lorry-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-mail"></span>
+                <span class="glyphicon-class">icon-mail</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-mail-fill"></span>
+                <span class="glyphicon-class">icon-mail-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-malesign"></span>
+                <span class="glyphicon-class">icon-malesign</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-malesign-fill"></span>
+                <span class="glyphicon-class">icon-malesign-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-medal"></span>
+                <span class="glyphicon-class">icon-medal</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-medal-fill"></span>
+                <span class="glyphicon-class">icon-medal-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menu"></span>
+                <span class="glyphicon-class">icon-menu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menudot"></span>
+                <span class="glyphicon-class">icon-menudot</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menudot-fill"></span>
+                <span class="glyphicon-class">icon-menudot-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menudown"></span>
+                <span class="glyphicon-class">icon-menudown</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menudown-fill"></span>
+                <span class="glyphicon-class">icon-menudown-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menu-fill"></span>
+                <span class="glyphicon-class">icon-menu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menuup"></span>
+                <span class="glyphicon-class">icon-menuup</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-menuup-fill"></span>
+                <span class="glyphicon-class">icon-menuup-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-moreh"></span>
+                <span class="glyphicon-class">icon-moreh</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-moreh-fill"></span>
+                <span class="glyphicon-class">icon-moreh-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-morev"></span>
+                <span class="glyphicon-class">icon-morev</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-morev-fill"></span>
+                <span class="glyphicon-class">icon-morev-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-notepad"></span>
+                <span class="glyphicon-class">icon-notepad</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-notepad-fill"></span>
+                <span class="glyphicon-class">icon-notepad-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pad"></span>
+                <span class="glyphicon-class">icon-pad</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pad-fill"></span>
+                <span class="glyphicon-class">icon-pad-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-paperplane"></span>
+                <span class="glyphicon-class">icon-paperplane</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-paperplane-fill"></span>
+                <span class="glyphicon-class">icon-paperplane-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pattern"></span>
+                <span class="glyphicon-class">icon-pattern</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pattern-fill"></span>
+                <span class="glyphicon-class">icon-pattern-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-person"></span>
+                <span class="glyphicon-class">icon-person</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-person-fill"></span>
+                <span class="glyphicon-class">icon-person-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-persons"></span>
+                <span class="glyphicon-class">icon-persons</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-persons-fill"></span>
+                <span class="glyphicon-class">icon-persons-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phone"></span>
+                <span class="glyphicon-class">icon-phone</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phone-fill"></span>
+                <span class="glyphicon-class">icon-phone-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phonemotion"></span>
+                <span class="glyphicon-class">icon-phonemotion</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phonemotion-fill"></span>
+                <span class="glyphicon-class">icon-phonemotion-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phoneorientation"></span>
+                <span class="glyphicon-class">icon-phoneorientation</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phoneorientation-fill"></span>
+                <span class="glyphicon-class">icon-phoneorientation-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phonetransfer"></span>
+                <span class="glyphicon-class">icon-phonetransfer</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-phonetransfer-fill"></span>
+                <span class="glyphicon-class">icon-phonetransfer-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pic"></span>
+                <span class="glyphicon-class">icon-pic</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-pic-fill"></span>
+                <span class="glyphicon-class">icon-pic-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-position"></span>
+                <span class="glyphicon-class">icon-position</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-position-fill"></span>
+                <span class="glyphicon-class">icon-position-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qq"></span>
+                <span class="glyphicon-class">icon-qq</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qq-line"></span>
+                <span class="glyphicon-class">icon-qq-line</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qqzone"></span>
+                <span class="glyphicon-class">icon-qqzone</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qrcode"></span>
+                <span class="glyphicon-class">icon-qrcode</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qrcode-fill"></span>
+                <span class="glyphicon-class">icon-qrcode-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qrcodeline"></span>
+                <span class="glyphicon-class">icon-qrcodeline</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-qrcodeline-fill"></span>
+                <span class="glyphicon-class">icon-qrcodeline-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdo"></span>
+                <span class="glyphicon-class">icon-rdo</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoadd"></span>
+                <span class="glyphicon-class">icon-rdoadd</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoadd-fill"></span>
+                <span class="glyphicon-class">icon-rdoadd-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdocancel"></span>
+                <span class="glyphicon-class">icon-rdocancel</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdocancel-fill"></span>
+                <span class="glyphicon-class">icon-rdocancel-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdochecked"></span>
+                <span class="glyphicon-class">icon-rdochecked</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdochecked-fill"></span>
+                <span class="glyphicon-class">icon-rdochecked-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoclose"></span>
+                <span class="glyphicon-class">icon-rdoclose</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoclose-fill"></span>
+                <span class="glyphicon-class">icon-rdoclose-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdocompass"></span>
+                <span class="glyphicon-class">icon-rdocompass</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdocompass-fill"></span>
+                <span class="glyphicon-class">icon-rdocompass-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodisk"></span>
+                <span class="glyphicon-class">icon-rdodisk</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodisk-fill"></span>
+                <span class="glyphicon-class">icon-rdodisk-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodollar"></span>
+                <span class="glyphicon-class">icon-rdodollar</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodollar-fill"></span>
+                <span class="glyphicon-class">icon-rdodollar-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodown"></span>
+                <span class="glyphicon-class">icon-rdodown</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdodown-fill"></span>
+                <span class="glyphicon-class">icon-rdodown-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoeuro"></span>
+                <span class="glyphicon-class">icon-rdoeuro</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoeuro-fill"></span>
+                <span class="glyphicon-class">icon-rdoeuro-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdofemale"></span>
+                <span class="glyphicon-class">icon-rdofemale</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdofemale-fill"></span>
+                <span class="glyphicon-class">icon-rdofemale-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdo-fill"></span>
+                <span class="glyphicon-class">icon-rdo-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdohistory"></span>
+                <span class="glyphicon-class">icon-rdohistory</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdohistory-fill"></span>
+                <span class="glyphicon-class">icon-rdohistory-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdohook"></span>
+                <span class="glyphicon-class">icon-rdohook</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdohook-fill"></span>
+                <span class="glyphicon-class">icon-rdohook-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoinfo"></span>
+                <span class="glyphicon-class">icon-rdoinfo</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoinfo-fill"></span>
+                <span class="glyphicon-class">icon-rdoinfo-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomale"></span>
+                <span class="glyphicon-class">icon-rdomale</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomale-fill"></span>
+                <span class="glyphicon-class">icon-rdomale-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomark"></span>
+                <span class="glyphicon-class">icon-rdomark</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomark-fill"></span>
+                <span class="glyphicon-class">icon-rdomark-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomenu"></span>
+                <span class="glyphicon-class">icon-rdomenu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomenudown"></span>
+                <span class="glyphicon-class">icon-rdomenudown</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomenudown-fill"></span>
+                <span class="glyphicon-class">icon-rdomenudown-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomenu-fill"></span>
+                <span class="glyphicon-class">icon-rdomenu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdominus"></span>
+                <span class="glyphicon-class">icon-rdominus</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdominus-fill"></span>
+                <span class="glyphicon-class">icon-rdominus-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomore"></span>
+                <span class="glyphicon-class">icon-rdomore</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdomore-fill"></span>
+                <span class="glyphicon-class">icon-rdomore-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdook"></span>
+                <span class="glyphicon-class">icon-rdook</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdook-fill"></span>
+                <span class="glyphicon-class">icon-rdook-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdopause"></span>
+                <span class="glyphicon-class">icon-rdopause</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdopause-fill"></span>
+                <span class="glyphicon-class">icon-rdopause-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoperson"></span>
+                <span class="glyphicon-class">icon-rdoperson</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoperson-fill"></span>
+                <span class="glyphicon-class">icon-rdoperson-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdopersons"></span>
+                <span class="glyphicon-class">icon-rdopersons</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdopersons-fill"></span>
+                <span class="glyphicon-class">icon-rdopersons-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoplay"></span>
+                <span class="glyphicon-class">icon-rdoplay</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoplay-fill"></span>
+                <span class="glyphicon-class">icon-rdoplay-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoquestion"></span>
+                <span class="glyphicon-class">icon-rdoquestion</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoquestion-fill"></span>
+                <span class="glyphicon-class">icon-rdoquestion-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdorem"></span>
+                <span class="glyphicon-class">icon-rdorem</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdorem-fill"></span>
+                <span class="glyphicon-class">icon-rdorem-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoright"></span>
+                <span class="glyphicon-class">icon-rdoright</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoright-fill"></span>
+                <span class="glyphicon-class">icon-rdoright-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdospanner"></span>
+                <span class="glyphicon-class">icon-rdospanner</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdospanner-fill"></span>
+                <span class="glyphicon-class">icon-rdospanner-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdostop"></span>
+                <span class="glyphicon-class">icon-rdostop</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdostop-fill"></span>
+                <span class="glyphicon-class">icon-rdostop-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdotobottom"></span>
+                <span class="glyphicon-class">icon-rdotobottom</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdotobottom-fill"></span>
+                <span class="glyphicon-class">icon-rdotobottom-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdototop"></span>
+                <span class="glyphicon-class">icon-rdototop</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdototop-fill"></span>
+                <span class="glyphicon-class">icon-rdototop-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoup"></span>
+                <span class="glyphicon-class">icon-rdoup</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdoup-fill"></span>
+                <span class="glyphicon-class">icon-rdoup-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdouser"></span>
+                <span class="glyphicon-class">icon-rdouser</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdouser-fill"></span>
+                <span class="glyphicon-class">icon-rdouser-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdowarn"></span>
+                <span class="glyphicon-class">icon-rdowarn</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-rdowarn-fill"></span>
+                <span class="glyphicon-class">icon-rdowarn-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-record"></span>
+                <span class="glyphicon-class">icon-record</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-record-fill"></span>
+                <span class="glyphicon-class">icon-record-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-refresh"></span>
+                <span class="glyphicon-class">icon-refresh</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-refresh-fill"></span>
+                <span class="glyphicon-class">icon-refresh-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-search"></span>
+                <span class="glyphicon-class">icon-search</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-search2"></span>
+                <span class="glyphicon-class">icon-search2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-search2-fill"></span>
+                <span class="glyphicon-class">icon-search2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-search-fill"></span>
+                <span class="glyphicon-class">icon-search-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-share"></span>
+                <span class="glyphicon-class">icon-share</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-share-fill"></span>
+                <span class="glyphicon-class">icon-share-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shop"></span>
+                <span class="glyphicon-class">icon-shop</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shopbag"></span>
+                <span class="glyphicon-class">icon-shopbag</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shopbag-fill"></span>
+                <span class="glyphicon-class">icon-shopbag-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shopcart"></span>
+                <span class="glyphicon-class">icon-shopcart</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shopcart-fill"></span>
+                <span class="glyphicon-class">icon-shopcart-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-shop-fill"></span>
+                <span class="glyphicon-class">icon-shop-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-sound"></span>
+                <span class="glyphicon-class">icon-sound</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-sound-fill"></span>
+                <span class="glyphicon-class">icon-sound-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-soundmax"></span>
+                <span class="glyphicon-class">icon-soundmax</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-soundmax-fill"></span>
+                <span class="glyphicon-class">icon-soundmax-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-soundmute"></span>
+                <span class="glyphicon-class">icon-soundmute</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-soundmute-fill"></span>
+                <span class="glyphicon-class">icon-soundmute-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-spanner"></span>
+                <span class="glyphicon-class">icon-spanner</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-spanner-fill"></span>
+                <span class="glyphicon-class">icon-spanner-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-tel"></span>
+                <span class="glyphicon-class">icon-tel</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-tel-fill"></span>
+                <span class="glyphicon-class">icon-tel-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-map"></span>
+                <span class="glyphicon-class">icon-map</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-map-fill"></span>
+                <span class="glyphicon-class">icon-map-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-thumb"></span>
+                <span class="glyphicon-class">icon-thumb</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-thumb-fill"></span>
+                <span class="glyphicon-class">icon-thumb-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-time"></span>
+                <span class="glyphicon-class">icon-time</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-time-fill"></span>
+                <span class="glyphicon-class">icon-time-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-tqq"></span>
+                <span class="glyphicon-class">icon-tqq</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-trash"></span>
+                <span class="glyphicon-class">icon-trash</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-trash-fill"></span>
+                <span class="glyphicon-class">icon-trash-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-tsina"></span>
+                <span class="glyphicon-class">icon-tsina</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeaudio"></span>
+                <span class="glyphicon-class">icon-typeaudio</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeaudio-fill"></span>
+                <span class="glyphicon-class">icon-typeaudio-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeexcel"></span>
+                <span class="glyphicon-class">icon-typeexcel</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeexcel-fill"></span>
+                <span class="glyphicon-class">icon-typeexcel-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepack"></span>
+                <span class="glyphicon-class">icon-typepack</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepack-fill"></span>
+                <span class="glyphicon-class">icon-typepack-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepdf"></span>
+                <span class="glyphicon-class">icon-typepdf</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepdf-fill"></span>
+                <span class="glyphicon-class">icon-typepdf-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepic"></span>
+                <span class="glyphicon-class">icon-typepic</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typepic-fill"></span>
+                <span class="glyphicon-class">icon-typepic-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeppt"></span>
+                <span class="glyphicon-class">icon-typeppt</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeppt-fill"></span>
+                <span class="glyphicon-class">icon-typeppt-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typetext"></span>
+                <span class="glyphicon-class">icon-typetext</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typetext-fill"></span>
+                <span class="glyphicon-class">icon-typetext-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typevideo"></span>
+                <span class="glyphicon-class">icon-typevideo</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typevideo-fill"></span>
+                <span class="glyphicon-class">icon-typevideo-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeword"></span>
+                <span class="glyphicon-class">icon-typeword</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-typeword-fill"></span>
+                <span class="glyphicon-class">icon-typeword-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-unrecord"></span>
+                <span class="glyphicon-class">icon-unrecord</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-unrecord-fill"></span>
+                <span class="glyphicon-class">icon-unrecord-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-upload"></span>
+                <span class="glyphicon-class">icon-upload</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-upload2"></span>
+                <span class="glyphicon-class">icon-upload2</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-upload2-fill"></span>
+                <span class="glyphicon-class">icon-upload2-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-upload-fill"></span>
+                <span class="glyphicon-class">icon-upload-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-user"></span>
+                <span class="glyphicon-class">icon-user</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-user-fill"></span>
+                <span class="glyphicon-class">icon-user-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-usermenu"></span>
+                <span class="glyphicon-class">icon-usermenu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-usermenu-fill"></span>
+                <span class="glyphicon-class">icon-usermenu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-video"></span>
+                <span class="glyphicon-class">icon-video</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-video-fill"></span>
+                <span class="glyphicon-class">icon-video-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wallet"></span>
+                <span class="glyphicon-class">icon-wallet</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wallet-fill"></span>
+                <span class="glyphicon-class">icon-wallet-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weabaoxue"></span>
+                <span class="glyphicon-class">icon-weabaoxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weabaoxue-fill"></span>
+                <span class="glyphicon-class">icon-weabaoxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weabaoyu"></span>
+                <span class="glyphicon-class">icon-weabaoyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weabaoyu-fill"></span>
+                <span class="glyphicon-class">icon-weabaoyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadabaoyu"></span>
+                <span class="glyphicon-class">icon-weadabaoyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadabaoyu-fill"></span>
+                <span class="glyphicon-class">icon-weadabaoyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadaxue"></span>
+                <span class="glyphicon-class">icon-weadaxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadaxue-fill"></span>
+                <span class="glyphicon-class">icon-weadaxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadayu"></span>
+                <span class="glyphicon-class">icon-weadayu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadayu-fill"></span>
+                <span class="glyphicon-class">icon-weadayu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadongyu"></span>
+                <span class="glyphicon-class">icon-weadongyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weadongyu-fill"></span>
+                <span class="glyphicon-class">icon-weadongyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaduoyun"></span>
+                <span class="glyphicon-class">icon-weaduoyun</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaduoyun-fill"></span>
+                <span class="glyphicon-class">icon-weaduoyun-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weafuchen"></span>
+                <span class="glyphicon-class">icon-weafuchen</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weafuchen-fill"></span>
+                <span class="glyphicon-class">icon-weafuchen-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wealeizhenyu"></span>
+                <span class="glyphicon-class">icon-wealeizhenyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wealeizhenyubanyoubingbao"></span>
+                <span class="glyphicon-class">icon-wealeizhenyubanyoubingbao</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wealeizhenyubanyoubingbao-fill"></span>
+                <span class="glyphicon-class">icon-wealeizhenyubanyoubingbao-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wealeizhenyu-fill"></span>
+                <span class="glyphicon-class">icon-wealeizhenyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weamai"></span>
+                <span class="glyphicon-class">icon-weamai</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weamai-fill"></span>
+                <span class="glyphicon-class">icon-weamai-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaqiangshachenbao"></span>
+                <span class="glyphicon-class">icon-weaqiangshachenbao</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaqiangshachenbao-fill"></span>
+                <span class="glyphicon-class">icon-weaqiangshachenbao-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaqing"></span>
+                <span class="glyphicon-class">icon-weaqing</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaqing-fill"></span>
+                <span class="glyphicon-class">icon-weaqing-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weashachenbao"></span>
+                <span class="glyphicon-class">icon-weashachenbao</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weashachenbao-fill"></span>
+                <span class="glyphicon-class">icon-weashachenbao-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weatedabaoyu"></span>
+                <span class="glyphicon-class">icon-weatedabaoyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weatedabaoyu-fill"></span>
+                <span class="glyphicon-class">icon-weatedabaoyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weawu"></span>
+                <span class="glyphicon-class">icon-weawu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weawu-fill"></span>
+                <span class="glyphicon-class">icon-weawu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaxiaoxue"></span>
+                <span class="glyphicon-class">icon-weaxiaoxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaxiaoxue-fill"></span>
+                <span class="glyphicon-class">icon-weaxiaoxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaxiaoyu"></span>
+                <span class="glyphicon-class">icon-weaxiaoyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weaxiaoyu-fill"></span>
+                <span class="glyphicon-class">icon-weaxiaoyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayangsha"></span>
+                <span class="glyphicon-class">icon-weayangsha</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayangsha-fill"></span>
+                <span class="glyphicon-class">icon-weayangsha-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayin"></span>
+                <span class="glyphicon-class">icon-weayin</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayin-fill"></span>
+                <span class="glyphicon-class">icon-weayin-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayujiabing"></span>
+                <span class="glyphicon-class">icon-weayujiabing</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayujiabing-fill"></span>
+                <span class="glyphicon-class">icon-weayujiabing-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayujiaxue"></span>
+                <span class="glyphicon-class">icon-weayujiaxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weayujiaxue-fill"></span>
+                <span class="glyphicon-class">icon-weayujiaxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhenxue"></span>
+                <span class="glyphicon-class">icon-weazhenxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhenxue-fill"></span>
+                <span class="glyphicon-class">icon-weazhenxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhenyu"></span>
+                <span class="glyphicon-class">icon-weazhenyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhenyu-fill"></span>
+                <span class="glyphicon-class">icon-weazhenyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhongxue"></span>
+                <span class="glyphicon-class">icon-weazhongxue</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhongxue-fill"></span>
+                <span class="glyphicon-class">icon-weazhongxue-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhongyu"></span>
+                <span class="glyphicon-class">icon-weazhongyu</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weazhongyu-fill"></span>
+                <span class="glyphicon-class">icon-weazhongyu-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-weixin"></span>
+                <span class="glyphicon-class">icon-weixin</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wifi"></span>
+                <span class="glyphicon-class">icon-wifi</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-wifi-fill"></span>
+                <span class="glyphicon-class">icon-wifi-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-windows"></span>
+                <span class="glyphicon-class">icon-windows</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-write"></span>
+                <span class="glyphicon-class">icon-write</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-write-fill"></span>
+                <span class="glyphicon-class">icon-write-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-add"></span>
+                <span class="glyphicon-class">icon-add</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-add-fill"></span>
+                <span class="glyphicon-class">icon-add-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartbarl"></span>
+                <span class="glyphicon-class">icon-chartbarl</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartbarl-fill"></span>
+                <span class="glyphicon-class">icon-chartbarl-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartlinel"></span>
+                <span class="glyphicon-class">icon-chartlinel</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-chartlinel-fill"></span>
+                <span class="glyphicon-class">icon-chartlinel-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-minus"></span>
+                <span class="glyphicon-class">icon-minus</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-minus-fill"></span>
+                <span class="glyphicon-class">icon-minus-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-smile"></span>
+                <span class="glyphicon-class">icon-smile</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-smile-fill"></span>
+                <span class="glyphicon-class">icon-smile-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-stethoscope"></span>
+                <span class="glyphicon-class">icon-stethoscope-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-stethoscope-fill"></span>
+                <span class="glyphicon-class">icon-stethoscope-fill</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-news"></span>
+                <span class="glyphicon-class">icon-news</span>
+              </li>
+              <li>
+                <span class="glyphicon icon-news-fill"></span>
+                <span class="glyphicon-class">icon-news-fill</span>
+              </li>
+            </ul>
+          </div>
+          <p class="lead">单独使用</p>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;i class=&quot;icon icon-search&quot;&gt;&lt;/i&gt;</code></pre>
+
+          </div>
+          <p class="lead">在控件中使用</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <button type="button" class="btn btn-default btn-lg"> <i class="glyphicon icon-write-fill"></i>
+                Write
+              </button>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;button class="radius4 grayscale outline"&gt;
+  &lt;i class=&quot;icon icon-write-fill&quot;&gt;&lt;/i&gt; 
+  &lt;label&gt;Write&lt;/label&gt;
+&lt;/button&gt;</code></pre>
+
+          </div>
+
+        </div>
+        <!-- 导航
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="bar">导航</h1>
+          </div>
+          <p class="lead">用于头部导航、搜索导航、页签导航和底部导航。</p>
+
+          <h3 id="bar-titlebar">头部导航</h3>
+          <div class="bs-example">
+            <img src="images/titlebar.png"/>
+          </div>
+          <!-- /example -->
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="titlebar"&gt;
+    &lt;a href="javascript:history.go(-1)"&gt;
+        &lt;i class="icon icon-arrowleft"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;h1&gt;左右图标titlebar&lt;/h1&gt;
+    &lt;a&gt;
+        &lt;i class="icon icon-rdoadd"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a&gt;
+        &lt;i class="icon icon-search"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <p>
+            头部导航titlebar以自适应方式布局，在此容器内的元素都将
+            <code>排成一行</code>
+            ，而文字区域为自适应的区域，
+            <code>其它区域越大，文字区域就越小</code>
+            ，具体示例：
+            <code>bar.html</code>
+            页面。
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.导航盒子div</td>
+                <td>class</td>
+                <td>.titlebar | .reverse</td>
+                <td>导航盒子 | 盒子的颜色反转</td>
+              </tr>
+              <tr>
+                <td>II.文字区域h1</td>
+                <td>class</td>
+                <td>无 | .text-center</td>
+                <td>自动被左侧元素挤压 | 文字水平居中</td>
+              </tr>
+              <tr>
+                <td>II.左侧元素a或button</td>
+                <td>class</td>
+                <td>无 |.left</td>
+                <td>占用左侧区域 | 绝对定位于左侧，不占用区域</td>
+              </tr>
+              <tr>
+                <td>II.右侧元素a或button</td>
+                <td>class</td>
+                <td>无 |.right</td>
+                <td>占用右侧区域 | 绝对定位于右侧，不占用区域</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="bar-searchbar">搜索导航</h3>
+          <div class="bs-example">
+            <img src="images/searchbar.png"/>
+          </div>
+          <!-- /example -->
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="searchbar"&gt;
+    &lt;div class="input-box radius20" data-input="clear"&gt;
+        &lt;input type="search" placeholder="搜索框" class="search"&gt;
+        &lt;i class="icon icon-clear-fill color-placeholder"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;a&gt;搜索&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <p>
+            搜索导航searchbar以自适应方式布局，在此容器内的元素都将
+            <code>排成一行</code>
+            ，而文字区域为自适应的区域，
+            <code>其它区域越大，文字区域就越小</code>
+            ，具体示例：
+            <code>bar.html</code>
+            页面。
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.搜索盒子div</td>
+                <td>class</td>
+                <td>.searchbar</td>
+                <td>搜索盒子</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="bar-navbar">页签导航</h3>
+          <div class="bs-example">
+            <img src="images/tabbar.png"/>
+          </div>
+          <!-- /example -->
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="slidebar"&gt;
+    &lt;li class="tab active"&gt;
+        &lt;i class="icon icon-build-fill"&gt;&lt;/i&gt;
+        &lt;label class="tab-label"&gt;机构&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;i class="icon icon-person"&gt;&lt;/i&gt;
+        &lt;label class="tab-label"&gt;组织&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;i class="icon icon-fav"&gt;&lt;/i&gt;
+        &lt;label class="tab-label"&gt;收藏&lt;/label&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <p>
+            页签导航slidebar|rectbar|arrowbar|menubar使用table-cell布局，默认为
+            <code>自适应</code>
+            ，也可以通过data-col每个页签
+            <code>强制宽度</code>
+            ，具体示例：
+            <code>bar.html</code>
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I.页签盒子ul</td>
+                <td>class</td>
+                <td>slidebar | rectbar | arrowbar | menubar</td>
+                <td>滑片型 | 区块型 | 箭头型 | 菜单型</td>
+              </tr>
+              <tr>
+                <td>data-col</td>
+                <td>[2-6]</td>
+                <td>定义一行的显示的列数，并且强制等宽</td>
+              </tr>
+              <tr>
+                <td>II.页签li</td>
+                <td>class</td>
+                <td>tab | active</td>
+                <td>页签 | 激活状态</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="bar-tabbar">动画页签</h3>
+          <div class="bs-example">
+            <img src="images/tabbar-animate.png"/>
+          </div>
+          <!-- /example -->
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="tabbar animate-bracket" id="tabbar"&gt;
+    &lt;li class="tab active"&gt;
+        &lt;label class="tab-label"&gt;头条&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;label class="tab-label"&gt;推荐&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;label class="tab-label"&gt;科技&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;label class="tab-label"&gt;舆情&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li class="tab"&gt;
+        &lt;label class="tab-label"&gt;舆情&lt;/label&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <p>
+            页签导航slidebar|rectbar|arrowbar|menubar使用table-cell布局，默认为
+            <code>自适应</code>
+            ，也可以通过data-col每个页签
+            <code>强制宽度</code>
+            ，具体示例：
+            <code>tabbar.html</code>
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I.页签盒子ul</td>
+                <td>class</td>
+                <td>
+                  tabbar | animate-slide | animate-bracket | animate-box | animate-oneline | animate-twoline
+                </td>
+                <td>动画页签 | 滑片型 | 下框型 | 整框型 | 下线型 | 双线型</td>
+              </tr>
+              <tr>
+                <td>data-col</td>
+                <td>[2-6]</td>
+                <td>定义一行的显示的列数，并且强制等宽</td>
+              </tr>
+              <tr>
+                <td>II.页签li</td>
+                <td>class</td>
+                <td>tab | active</td>
+                <td>页签 | 激活状态</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- 按钮
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="btn-groups">按钮</h1>
+          </div>
+          <p class="lead">SeedsUI为系统按钮默认加了一套样式。根据不同场景使用不同的按钮。</p>
+
+          <h3 id="button">按钮</h3>
+          <div class="bs-example">
+            <img src="images/button.png"/>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;button class="radius4 submit"&gt;
+    &lt;i class="icon icon-rdohook"&gt;&lt;/i&gt;
+    &lt;label&gt;提交&lt;/label&gt;
+&lt;/button&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I.按钮button,input[type=button],a</td>
+                <td>class</td>
+                <td>
+                  无 | button | outline | submit | cancel | disable | info | success | warn | grayscale | white
+                </td>
+                <td>
+                  主样式 | 主样式 | 边框型 | 提交按钮 | 取消按钮 | 禁用按钮 | 信息按钮 | 成功按钮 | 警告按钮 | 无色按钮 | 白色按钮
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="button-group">按钮组</h3>
+          <div class="bs-example">
+            <img src="images/buttongroup.png"/>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="button-group margin8"&gt;
+    &lt;span class="disable"&gt;«&lt;/span&gt;
+    &lt;span class="disable"&gt;&lt;&lt;/span&gt;
+    &lt;span class="active"&gt;1&lt;/span&gt;
+    &lt;span&gt;2&lt;/span&gt;
+    &lt;span&gt;3&lt;/span&gt;
+    &lt;span&gt;4&lt;/span&gt;
+    &lt;span&gt;5&lt;/span&gt;
+    &lt;span&gt;&gt;&lt;/span&gt;
+    &lt;span&gt;»&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.按钮组div</td>
+                <td>class</td>
+                <td>button-group</td>
+                <td>按钮组包裹span</td>
+              </tr>
+              <tr>
+                <td>II.按钮span</td>
+                <td>class</td>
+                <td>无 | disable | active</td>
+                <td>普通按钮 | 禁用状态 | 激活状态</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 单页模式
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="singlepage">单页模式</h1>
+          </div>
+          <p class="lead">单页模式包含:section容器间动画跳转、返回的功能。它会监听来判断android返回按键，并提供相关回调</p>
+          <h3>HTML</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;section id="page_single_0" class="active"&gt;
+  &lt;a href="#page_single_1" data-target="section"&gt;进入第二页&lt;/a&gt;
+&lt;/section&gt;
+&lt;section id="page_single_1" data-sectionanimation="slideleft"&gt;
+  &lt;a href="#page_single_1" data-target="section"&gt;进入第三页&lt;/a&gt;
+&lt;/section&gt;
+&lt;section id="page_single_2" data-sectionanimation="slideright"&gt;
+  第三页
+&lt;/section&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">section标签</td>
+                <td>data-sectionanimation</td>
+                <td>none | slideleft | slideright | slideup | slidedown | fade</td>
+                <td>无动画 | 左右 | 右左 | 上下 | 下上 | 淡入淡出</td>
+              </tr>
+              <tr>
+                <td>data-target</td>
+                <td>section</td>
+                <td>用单页模式打开</td>
+              </tr>
+              <tr>
+                <td rowspan="2">任何元素</td>
+                <td>href</td>
+                <td>#id</td>
+                <td>连接等于section的ID</td>
+              </tr>
+              <tr>
+                <td>data-target</td>
+                <td>section</td>
+                <td>用单页模式打开</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Javascript</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var sec=new Section({
+  "onSectionOpenStart":function(e){
+    console.log("您点击了：");
+    console.log(e.target);
+    console.log("页面加载前"+e.sectionId);
+  },
+  "onSectionOpenEnd":function(e){
+    console.log("您点击了：");
+    console.log(e.target);
+    console.log("页面加载完成"+e.sectionId);
+    console.log(e.history);
+  },
+  "onSectionCloseStart":function(e){
+    console.log("您点击了：");
+    console.log(e.target);
+    console.log("页面关闭前"+e.sectionId);
+  },
+  "onSectionCloseEnd":function(e){
+    console.log("您点击了：");
+    console.log(e.target);
+    console.log("页面关闭完成"+e.sectionId);
+  }
+});</code></pre>
+
+          </div>
+          <p>Section初始化，支持下列参数</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>onSectionOpenEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  页面加载完成
+                </td>
+              </tr>
+              <tr>
+                <td>onSectionCloseStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  页面关闭前
+                </td>
+              </tr>
+              <tr>
+                <td>onSectionCloseEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  页面加载前
+                </td>
+              </tr>
+              <tr>
+                <td>onSectionOpenStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  页面关闭完成
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>openSection</td>
+                <td>String sectionId</td>
+                <td>
+                  根据id打开传入的section
+                </td>
+              </tr>
+              <tr>
+                <td>backSection</td>
+                <td>无</td>
+                <td>
+                  返回上一页
+                </td>
+              </tr>
+              <tr>
+                <td>closeSection</td>
+                <td>String sectionId,String animation(可不填)</td>
+                <td>
+                  关闭指定的section，可以设置动画
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- 侧边栏
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="side">侧边栏</h1>
+          </div>
+          <p class="lead">提供丰富的侧边弹出栏</p>
+          <h3>HTML</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;aside data-position="left" data-transition="overlay" id="aside_overlay_left" class="active"&gt;
+侧边栏
+&lt;/aside&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">aside标签</td>
+                <td>data-position</td>
+                <td>left | right</td>
+                <td>左侧弹出 | 右侧弹出</td>
+              </tr>
+              <tr>
+                <td>data-transition</td>
+                <td>overlay | push | reveal</td>
+                <td>覆盖 | 推动 | 显露</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Javascript</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">$("#aside_overlay_left").toggleClass("active");</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- 进度条
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="prograssbar">进度条</h1>
+          </div>
+          <p class="lead">提供丰富的进度条样式</p>
+          <h3>HTML</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="progress-bar radius8"&gt;
+    &lt;span class="progress" style="width: 35%"&gt;&lt;/span&gt;
+    &lt;span class="text left"&gt;
+        &lt;span class="timer" data-duration="1000" data-to="35"&gt;35&lt;/span&gt;
+        &lt;span&gt;%&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.进度条div</td>
+                <td>class</td>
+                <td>progress-bar</td>
+                <td>进度条</td>
+              </tr>
+              <tr>
+                <td>II.水柱div或span</td>
+                <td>class</td>
+                <td>progress</td>
+                <td>水柱</td>
+              </tr>
+              <tr>
+                <td>II.进度文字span</td>
+                <td>class</td>
+                <td>text | left | center | right</td>
+                <td>进度文字 | 左对齐 | 水平居中 | 右对齐</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- 弹出框
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="popup">弹出框</h1>
+          </div>
+          <p class="lead">提供丰富的弹出框样式</p>
+          <!--提示框-->
+          <h3 id="popup-alert">提示框</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var popAlert=new Alert("我是Alert框");
+$("#id").click(function(){
+  popAlert.show();
+});</code></pre>
+
+          </div>
+          <p>Alert初始化，支持下列两个参数msg和params</p>
+          <p>参数1:String msg</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>msg</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  提示文字
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>String</td>
+                <td>
+                  "提示"
+                </td>
+                <td>
+                  标题文字
+                </td>
+              </tr>
+              <tr>
+                <td>buttonOk</td>
+                <td>String</td>
+                <td>
+                  "确定"
+                </td>
+                <td>
+                  按钮文字
+                </td>
+              </tr>
+              <tr>
+                <td>onClickOk(Alert)</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击按钮时触发
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>setText</td>
+                <td>String msg</td>
+                <td>
+                  修改提示文字
+                </td>
+              </tr>
+              <tr>
+                <td>hide</td>
+                <td>无</td>
+                <td>
+                  隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
+                </td>
+              </tr>
+              <tr>
+                <td>destory</td>
+                <td>无</td>
+                <td>
+                  清除
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--提示框-->
+          <h3 id="popup-confirm">提示框</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var c1=new Confirm("我是Confirm框",{
+  onClickOk:function(e){
+    console.log(e.target);
+  },onClickCancel:function(e){
+    console.log(e.target);
+    e.hide();
+  }
+});
+$("#confirm").click(function(){
+  c1.show();
+});</code></pre>
+
+          </div>
+          <p>Comfirm初始化，支持下列两个参数msg和params</p>
+          <p>参数1:String msg</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>msg</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  提示文字
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>String</td>
+                <td>
+                  "提示"
+                </td>
+                <td>
+                  标题文字
+                </td>
+              </tr>
+              <tr>
+                <td>buttonOk</td>
+                <td>String</td>
+                <td>
+                  "确定"
+                </td>
+                <td>
+                  确定按钮文字
+                </td>
+              </tr>
+              <tr>
+                <td>buttonCancel</td>
+                <td>String</td>
+                <td>
+                  "取消"
+                </td>
+                <td>
+                  取消按钮文字
+                </td>
+              </tr>
+              <tr>
+                <td>onClickOk</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击确定按钮时触发
+                </td>
+              </tr>
+              <tr>
+                <td>onClickCancel</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击取消按钮时触发
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>setText</td>
+                <td>String msg</td>
+                <td>
+                  修改提示文字
+                </td>
+              </tr>
+              <tr>
+                <td>hide</td>
+                <td>无</td>
+                <td>
+                  隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
+                </td>
+              </tr>
+              <tr>
+                <td>destory</td>
+                <td>无</td>
+                <td>
+                  清除
+                </td>
+              </tr>
+              <tr>
+                <td>setParams</td>
+                <td>Json params</td>
+                <td>
+                  参数设置
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--卡片框-->
+          <h3 id="popup-actionsheet">卡片框</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var actionsheetParams=[
+  {
+    text : '菜单一',
+    handler : function(s){
+          console.log(s.target);
+          console.log("您点击了菜单一");
+        }
+  },{
+    text : '菜单二',
+    handler : function(s){
+          console.log(s.target);
+          console.log("您点击了菜单二");
+    }
+    },{
+    text : '取消',
+    handler : function(s){
+          console.log(s.target);
+          console.log("您点击了取消");
+          s.hide();
+    }
+];
+var actionsheet=new Actionsheet();
+$("#actionsheet").click(function(){
+  actionsheet.setParams(actionsheetParams);
+  actionsheet.show();
+});</code></pre>
+
+          </div>
+          <p>Actionsheet初始化，支持下列参数params</p>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>String</td>
+                <td>
+                  "提示"
+                </td>
+                <td>
+                  标题文字
+                </td>
+              </tr>
+              <tr>
+                <td>buttonOk</td>
+                <td>String</td>
+                <td>
+                  "确定"
+                </td>
+                <td>
+                  按钮文字
+                </td>
+              </tr>
+              <tr>
+                <td>onClickOk(Alert)</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击按钮时触发
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>setText</td>
+                <td>String msg</td>
+                <td>
+                  修改提示文字
+                </td>
+              </tr>
+              <tr>
+                <td>hide</td>
+                <td>无</td>
+                <td>
+                  隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
+                </td>
+              </tr>
+              <tr>
+                <td>destory</td>
+                <td>无</td>
+                <td>
+                  清除
+                </td>
+              </tr>
+              <tr>
+                <td>setParams</td>
+                <td>Json params</td>
+                <td>
+                  参数设置
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--小弹框-->
+          <h3 id="popup-toast">小弹框</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var popToast=new Toast("小弹框");
+$("#toast").click(function(){
+  popToast.show();
+});</code></pre>
+
+          </div>
+          <p>Toast初始化，支持下列两个参数msg和params</p>
+          <p>参数1:String msg</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>msg</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  提示文字
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>delay</td>
+                <td>Int</td>
+                <td>
+                  1000
+                </td>
+                <td>
+                  显示时长
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>方法</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>setText</td>
+                <td>String msg</td>
+                <td>
+                  修改提示文字
+                </td>
+              </tr>
+              <tr>
+                <td>hide</td>
+                <td>无</td>
+                <td>
+                  隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
+                </td>
+              </tr>
+              <tr>
+                <td>destory</td>
+                <td>无</td>
+                <td>
+                  清除
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--自定义弹出框-->
+          <h3 id="popup-custom">自定义弹出框</h3>
+          <div class="highlight">
+            <pre><code class="language-javascript">var dialog=new Dialog("#pop_custom");
+$("#id").click(function(){
+  dialog.setPos("middle");
+  dialog.show();
+});</code></pre>
+
+          </div>
+          <p>Dialog初始化，支持下列两个参数container和params</p>
+          <p>参数1:String|DOM container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String|DOM</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  自定义弹框的容器
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>取值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="5">pos</td>
+                <td rowspan="5">String</td>
+                <td rowspan="5">无</td>
+                <td>
+                  "top"
+                </td>
+                <td>
+                  从上边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "middle"
+                </td>
+                <td>
+                  从中间弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "bottom"
+                </td>
+                <td>
+                  从下边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "left"
+                </td>
+                <td>
+                  从左边弹出
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  "right"
+                </td>
+                <td>
+                  从右边弹出
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">isClickMaskHide</td>
+                <td rowspan="2">Boolean</td>
+                <td rowspan="2">true</td>
+                <td>
+                  true
+                </td>
+                <td>
+                  点击遮罩隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  false
+                </td>
+                <td>
+                  点击遮罩不隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>onClick</td>
+                <td>Callback</td>
+                <td>无</td>
+                <td>function(Dialog)</td>
+                <td>
+                  点击自定义层时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>方法</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>setPos</td>
+                <td>String pos</td>
+                <td>
+                  修改弹出位置
+                </td>
+              </tr>
+              <tr>
+                <td>hide</td>
+                <td>无</td>
+                <td>
+                  隐藏
+                </td>
+              </tr>
+              <tr>
+                <td>show</td>
+                <td>无</td>
+                <td>
+                  显示
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- 表单
+  ================================================== -->
+      <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="form">表单</h1>
+          </div>
+          <p class="lead">提供丰富的表单样式及Js控制</p>
+          <!--表单元素-->
+          <h3 id="inputbox">表单元素</h3>
+          <h4>input-box能实现带图标输入框，它使用弹性布局，所有内部元素将会在一行显示。</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="input-box"&gt;
+  &lt;input type="text" placeholder="搜索框"&gt;
+    &lt;i class="color-placeholder icon icon-search"&gt;&lt;/i&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.元素盒子div</td>
+                <td>class</td>
+                <td>input-box | underline | noborder</td>
+                <td>元素盒子 | 下划线 | 无边框</td>
+              </tr>
+              <tr>
+                <td>II.表单元素input</td>
+                <td>type</td>
+                <td>text | date | search...</td>
+                <td>任意表单元素</td>
+              </tr>
+              <tr>
+                <td>II.图标i</td>
+                <td>class</td>
+                <td>icon | icon-...</td>
+                <td>图标 | 图标地址</td>
+              </tr>
+            </tbody>
+          </table>
+          <!--弹性行-->
+          <h3 id="row">弹性行</h3>
+          <p>弹性行<code>class="row"</code>使用弹性布局，它会使元素在一行排列，所有元素垂直居中对齐。</p>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="row"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--表单验证-->
+          <h3 id="form-validate">表单验证</h3>
+          <h4>data-rule属性用于表单验证</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="input-box"&gt;
+  &lt;input type="text" data-rule="required chinese" placeholder="按中文名搜索"&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="11">表单元素input</td>
+                <td rowspan="11">data-rule</td>
+                <td>required</td>
+                <td>非空验证</td>
+              </tr>
+              <tr>
+                <td>username</td>
+                <td>用户名验证，只能包括字母、数字和下划线</td>
+              </tr>
+              <tr>
+                <td>password</td>
+                <td>密码验证，只能是字母、数字、下划线、或者-~!@#$</td>
+              </tr>
+              <tr>
+                <td>compare:元素name</td>
+                <td>比较是否一致</td>
+              </tr>
+              <tr>
+                <td>mail</td>
+                <td>邮箱格式是否正确</td>
+              </tr>
+              <tr>
+                <td>phone</td>
+                <td>手机号码是否正确</td>
+              </tr>
+              <tr>
+                <td>chinese</td>
+                <td>是否为中文</td>
+              </tr>
+              <tr>
+                <td>specialchar</td>
+                <td>是否包括特殊字符</td>
+              </tr>
+              <tr>
+                <td>minlength:x位</td>
+                <td>最小字符数</td>
+              </tr>
+              <tr>
+                <td>maxlength:x位</td>
+                <td>最大字符数</td>
+              </tr>
+              <tr>
+                <td>safelvl</td>
+                <td>安全等级，寻找到同级的下一个class为safelvl的div，用其记录此密码框的安全等级</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Js验证<code>new Form("#id").validate()</code></p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var f=new Form("#form1");
+var isSuccess=f.validate();
+if(isSuccess)console.log("验证通过");
+</code></pre>
+
+          </div>
+          <!--表单序列化-->
+          <h3 id="form-serialize">表单序列化</h3>
+          <p>Js表单序列化<code>new Form("#id").serialize()</code></p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var f=new Form("#form1");
+var args=f.serialize();
+console.log("你所要提交的参数是："+args);
+</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>serialize</td>
+                <td>无</td>
+                <td>
+                  返回表单元素的值拼接成xx=xx&amp;xx=xx的字符串。
+                </td>
+              </tr>
+              <tr>
+                <td>serializeArray</td>
+                <td>无</td>
+                <td>
+                  返回表单元素的值拼接成xx=xx的数组。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--文字计数器-->
+          <h3 id="form-fontcount">文字计数器</h3>
+          <p>文字计数器使用<code>data-fontcounter</code>和<code>data-fontcounter-for</code>搭配计数，<code>data-fontcounter</code>用于输入，<code>data-fontcounter-for</code>用于记录字数</p>
+          <h4>html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;textarea data-fontcounter="description1" placeholder="请输入评论信息" data-rule="required maxlength:10"&gt;&lt;/textarea&gt;
+&lt;p data-fontcounter-for="description1"&gt;&lt;/p&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">I.输入框</td>
+                <td>data-fontcounter</td>
+                <td>自定义名称</td>
+                <td>计数器录入</td>
+              </tr>
+              <tr>
+                <td>data-rule</td>
+                <td>maxlength:xx位</td>
+                <td>定义超过字数</td>
+              </tr>
+              <tr>
+                <td>I.显示框</td>
+                <td>data-fontcounter-for</td>
+                <td>对应data-fontcounter名称</td>
+                <td>显示字数</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">//数字计数器
+function listenerFontcount(){
+  var fc=new FontCounter({
+    "onInput":function(s){
+      //console.log("输入中");
+    },
+    "onMoreThanCount":function(s){
+      //console.log("超过数字限制时");
+      s.fieldCounter.innerHTML=Math.round(s.maxlength-s.currentlength);
+      s.fieldCounter.classList.add("color-tip");
+    },
+    "onNotMoreThanCout":function(s){
+      //console.log("没有超过数字限制时");
+      s.fieldCounter.innerHTML="";
+      s.fieldCounter.classList.remove("color-tip");
+    }
+  });
+}
+listenerFontcount();</code></pre>
+
+          </div>
+
+          <p>参数:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>onInput</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  输入中回调
+                </td>
+              </tr>
+              <tr>
+                <td>onMoreThanCount</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  超过字数限制时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onNotMoreThanCout</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  没有超过字数限制时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 徽章
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="badge">徽章</h1>
+          </div>
+          <p class="lead">提供宽形徽章、圆形徽章、边角徽章等</p>
+          <!--宽形徽章-->
+          <h3 id="badge-badge">宽形徽章</h3>
+          <p class="lead"><code>class="badge"</code>，当class中没有设定宽度(sizexx)时，则自适应宽度</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/badge.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class="badge size32"&gt;1&lt;/span&gt;</code></pre>
+
+          </div>
+          <!--圆形徽章-->
+          <h3 id="badge-tip">圆形徽章</h3>
+          <p class="lead"><code>class="tip"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tip.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class="tip"&gt;1&lt;/span&gt;</code></pre>
+
+          </div>
+          <!--边角徽章-->
+          <h3 id="badge-sticker">边角徽章</h3>
+          <p class="lead"><code>class="sticker left|top|right|bottom"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/sticker.gif"/>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="sticker top right"&gt;&lt;span&gt;NEW&lt;/span&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--圆点徽章-->
+          <h3 id="badge-dot">圆点徽章</h3>
+          <p class="lead"><code>class="dot"</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <div style="display: inline-block;border-radius: 100%;height: 4px;width: 4px;vertical-align: middle;background-color: #4587f7;margin:10px;"></div>
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="dot"&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 分组
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="group">分组</h1>
+          </div>
+          <p class="lead">分组是布局上常用的方式，SeedsUI提供了块级分组、卡片分组和一行布局，我们鼓励您尝试与其它元素结合使用</p>
+          <!--块级分组-->
+          <h3 id="group-group">块级分组</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="group"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+          <!--卡片分组-->
+          <h3 id="group-card">卡片分组</h3>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="card"&gt;元素&lt;/div&gt;</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- 表格
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="table">表格</h1>
+          </div>
+          <p class="lead">提供了表格滑动盒子与表格样式</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/table.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="table-box"&gt;
+    &lt;div style="width:700px;"&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th class="text-center"&gt;&lt;input type="checkbox"&gt;&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+            &lt;th&gt;性别&lt;/th&gt;
+            &lt;th&gt;邮箱&lt;/th&gt;
+            &lt;th&gt;创建时间&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>I.div标签</td>
+                <td>class</td>
+                <td>
+                  table-box
+                </td>
+                <td>表格盒子</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+
+        <!-- 栅格
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="grid">栅格</h1>
+          </div>
+          <p class="lead">提供metro、应用图标、相册、缩略图风格的栅格样式</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ul标签</td>
+                <td>class</td>
+                <td>
+                  grid | metro | album | radiusXX | border | sizeXX
+                </td>
+                <td>栅格 | Metro风格 | 相册 | 图标圆角 | 边框分割 | 图标尺寸</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 id="grid-metro">Metro风格</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-metro.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid metro" data-col="2"&gt;
+  &lt;li style="width:60%"&gt;
+    &lt;a class="bg-1"&gt;
+      
+      &lt;i class="icon icon-contact-fill"&gt;&lt;/i&gt;
+      &lt;span class="metro-tip"&gt;3&lt;/span&gt;
+      &lt;label class="nowrap"&gt;通讯录&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:40%"&gt;
+    &lt;a class="bg-2"&gt;
+      &lt;i class="icon icon-write-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;审批&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:40%"&gt;
+    &lt;a class="bg-3"&gt;
+      &lt;i class="icon icon-position-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;定位&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li style="width:60%"&gt;
+    &lt;a class="bg-4"&gt;
+      &lt;i class="icon icon-gear-fill"&gt;&lt;/i&gt;
+      &lt;label&gt;设置&lt;/label&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <h3 id="grid-app">应用图标</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-app.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid border" data-col="3" data-rowspace="8"&gt;
+  &lt;li&gt;
+    &lt;a class="color-1"&gt;
+      &lt;i class="icon icon-contact-fill"&gt;&lt;/i&gt;
+      &lt;span class="tip"&gt;999&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="color-2"&gt;
+      &lt;i class="icon icon-write-fill"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;label&gt;审批&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="color-3"&gt;
+      &lt;i class="icon icon-position-fill"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;label&gt;定位&lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          <h3 id="grid-album">相册</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-album.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid radius8 album" data-col="3"&gt;
+  &lt;li&gt;
+    &lt;a style="background-image: url(../img/components/1.jpg)"&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a style="background-image: url(../img/components/2.jpg)"&gt;&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a class="default"&gt;
+      &lt;i class="icon icon-camera size54"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+
+          <h3 id="grid-thumbnail">缩略图</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/grid-thumbnail.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="grid album" data-rowspace="8" data-col="3"&gt;
+  &lt;li&gt;
+    &lt;a&gt;
+      &lt;img src="../img/components/contact.jpg"&gt;
+      &lt;span class="tip"&gt;新&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a&gt;&lt;img src="../img/components/tree.jpg"&gt;&lt;/a&gt;
+    &lt;label&gt;树结构&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a&gt;&lt;img src="../img/components/contact.jpg"&gt;&lt;/a&gt;
+    &lt;label&gt;通讯录&lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+          
+        </div>
+
+        <!-- 列表
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="list">列表</h1>
+          </div>
+          <p class="lead">定义了列表样式，详见<code>list.html</code></p>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;li&gt;
+    &lt;div class="justify box box-middle"&gt;
+        &lt;i class="icon icon-fav-fill"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="justify-content box box box-middle"&gt;
+        &lt;p class="nowrap"&gt;列表标题&lt;/p&gt;
+        &lt;small class="nowrap"&gt;副标题&lt;/small&gt;
+    &lt;/div&gt;
+    &lt;div class="justify"&gt;
+        &lt;button&gt;按钮&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/li&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 时间轴
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="timeline">时间轴</h1>
+          </div>
+          <p class="lead">定义了时间轴样式，详见<code>list.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/timeline.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;ul class="timeline dotted bg-white"&gt;
+    &lt;li&gt;
+        &lt;div class="clock color-1" data-clock="11:24"&gt;
+            &lt;div class="hour" style="transform: rotate(330deg);"&gt;&lt;/div&gt;
+            &lt;div class="minute" style="transform: rotate(144deg);"&gt;&lt;/div&gt;
+            &lt;div class="origin"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="justify-content"&gt;
+            &lt;p class="size20"&gt;11:24&lt;/p&gt;
+            &lt;a&gt;&lt;i class="icon icon-position size24"&gt;&lt;/i&gt;&lt;span&gt;江苏省南京市&lt;/span&gt;&lt;/a&gt;
+            &lt;small class="nowrap"&gt;我来上班啦&lt;/small&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="clock color-2" data-clock="11:24"&gt;
+            &lt;div class="hour" style="transform: rotate(330deg);"&gt;&lt;/div&gt;
+            &lt;div class="minute" style="transform: rotate(144deg);"&gt;&lt;/div&gt;
+            &lt;div class="origin"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="justify-content"&gt;
+            &lt;p class="size20"&gt;11:24&lt;/p&gt;
+            &lt;a&gt;&lt;i class="icon icon-position size24"&gt;&lt;/i&gt;&lt;span&gt;江苏省南京市&lt;/span&gt;&lt;/a&gt;
+            &lt;small class="nowrap"&gt;我来上班啦&lt;/small&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 日历
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="calendar">日历</h1>
+          </div>
+          <p class="lead">定义了时间轴样式，详见<code>list.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/calendar.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class="calendar" id="calender_select_container"&gt;
+    &lt;ul class="list noborder nobg"&gt;
+        &lt;li style="padding:10px 0;"&gt;
+            &lt;div class="justify arrowleft"&gt;
+                &lt;i class="icon icon-arrowleft"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+            &lt;div class="justify-content calendar-title"&gt;2016-2-15 周一&lt;/div&gt;
+            &lt;div class="justify arrowright"&gt;
+                &lt;i class="icon icon-arrowright"&gt;&lt;/i&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="calender_container"&gt;
+        &lt;div class='day'&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="week-day-line"&gt;
+                &lt;div class="day-name"&gt;日&lt;/div&gt;
+                &lt;div class="day-name"&gt;一&lt;/div&gt;
+                &lt;div class="day-name"&gt;二&lt;/div&gt;
+                &lt;div class="day-name"&gt;三&lt;/div&gt;
+                &lt;div class="day-name"&gt;四&lt;/div&gt;
+                &lt;div class="day-name"&gt;五&lt;/div&gt;
+                &lt;div class="day-name"&gt;六&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class='date_container'&gt;
+            &lt;div class="month_container"&gt;
+                
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <p>Javascript初始化与几个方法</p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var tempWeekSelectObject = new DateSelect({
+        activeDate: new Date()
+    }),
+    tempDivId = "calender_select_container";
+var tempCalenderObject = new Calender({
+    dateSelectObject: tempWeekSelectObject,
+    containerDivId: tempDivId,
+    onChange: function(date) {
+        console.log(date);
+    }
+});
+function calendarCollapse(){
+    tempCalenderObject.switchToWeek();
+}
+function calendarExpand(){
+    tempCalenderObject.switchToMonth();
+}
+function today(){
+    tempCalenderObject.jumpToDate(new Date());
+}</code></pre>
+
+          </div>
+
+
+        </div>
+
+        <!-- 树结构
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="tree">树结构</h1>
+          </div>
+          <p class="lead">提供两种树结构分别是：人员查找、部门选择</p>
+          <p><code>new Tree(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String|DOM container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String|DOM</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  树结构的id或者树结构DOM
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>selectedContainer</td>
+                <td>String|DOM</td>
+                <td>
+                  null
+                </td>
+                <td>
+                  选中节点展示区
+                </td>
+              </tr>
+              <tr>
+                <td>onTap</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构回调
+                </td>
+              </tr>
+              <tr>
+                <td>onTapLastChild</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构底层节点回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="tree-person">人员查找</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tree.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;tree-box&quot;&gt;
+    &lt;ul class=&quot;tree&quot; id=&quot;tree&quot;&gt;
+        &lt;li&gt;
+            &lt;div class=&quot;treetitle&quot;&gt; &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                &lt;a class=&quot;icontitle events-none&quot;&gt;业务产品部&lt;/a&gt;
+                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发体系&lt;/a&gt;
+                        &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发一部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;波&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;晓&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;王晓&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;健&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李健&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发二部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;泉&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张泉&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;景&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李若景&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;源&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;康根源&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright lastchild&quot;&gt;&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发三部&lt;/a&gt;
+                                &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;波&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;东&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张建东&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon radiusround&quot;&gt;进&lt;/i&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;李进&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发二部&lt;/a&gt;
+                        &lt;small class=&quot;right middle events-none&quot;&gt;100&lt;/small&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon radiusround&quot;&gt;梅&lt;/i&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;许啸梅&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h3 id="tree-selected">部门选择</h3>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/tree-selected.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;statusbar horizontal hide&quot; id=&quot;selected-box&quot;&gt;&lt;/div&gt;
+&lt;!-- tree --&gt;
+&lt;div class=&quot;tree-box&quot;&gt;
+    &lt;ul class=&quot;tree&quot; id=&quot;tree&quot;&gt;
+        &lt;li id=&quot;group-1&quot; data-name=&quot;业务产品部&quot;&gt;
+            &lt;div class=&quot;treetitle&quot;&gt; &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                &lt;a class=&quot;icontitle events-none&quot;&gt;业务产品部&lt;/a&gt;
+                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;ul&gt;
+                &lt;li id=&quot;group-2&quot; data-name=&quot;研发体系&quot;&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;研发体系&lt;/a&gt;
+                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li id=&quot;group-3&quot; data-name=&quot;开发一部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发一部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li id=&quot;group-4&quot; data-name=&quot;成少波&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #53c6fd;&quot;&gt;波&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;成少波&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li id=&quot;group-5&quot; data-name=&quot;颜学文&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #3ae3ea;&quot;&gt;文&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;颜学文&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                                &lt;li id=&quot;group-6&quot; data-name=&quot;张泉&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;span class=&quot;radiusround&quot; style=&quot;background-color: #ff6f36;&quot;&gt;泉&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;张泉&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-7&quot; data-name=&quot;开发二部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发二部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-8&quot; data-name=&quot;开发三部&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;开发三部&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                            &lt;ul&gt;
+                                &lt;li id=&quot;group-9&quot; data-name=&quot;开发一部&quot;&gt;
+                                    &lt;div class=&quot;treetitle&quot;&gt;
+                                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                        &lt;a class=&quot;icontitle events-none&quot;&gt;开发一组&lt;/a&gt;
+                                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li id=&quot;group-10&quot; data-name=&quot;市场体系&quot;&gt;
+                    &lt;div class=&quot;treetitle&quot;&gt;
+                        &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                        &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                        &lt;a class=&quot;icontitle events-none&quot;&gt;市场体系&lt;/a&gt;
+                        &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                    &lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li id=&quot;group-11&quot; data-name=&quot;上海办&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;上海办&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                        &lt;li id=&quot;group-12&quot; data-name=&quot;广州办名字超长超长超长超&quot;&gt;
+                            &lt;div class=&quot;treetitle&quot;&gt;
+                                &lt;i class=&quot;treeicon icon-arrowright&quot;&gt;&lt;/i&gt;
+                                &lt;span class=&quot;icon icon-persons radiusround events-none&quot;&gt;&lt;/span&gt;
+                                &lt;a class=&quot;icontitle events-none&quot;&gt;广州办名字超长超长超长超&lt;/a&gt;
+                                &lt;a class=&quot;icon icon-rdoadd right middle&quot;&gt;&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- 计数器
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="counter">计数器</h1>
+          </div>
+          <p class="lead">数字帧动画跳转至设定的值</p>
+          <h4>html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;span class=&quot;timer&quot; data-duration=&quot;5000&quot; data-to=&quot;600&quot;&gt;600&lt;/span&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="3">文字元素</td>
+                <td>class</td>
+                <td>timer</td>
+                <td>计数器</td>
+              </tr>
+              <tr>
+                <td>data-duration</td>
+                <td>Number</td>
+                <td>动画时间总长</td>
+              </tr>
+              <tr>
+                <td>data-to</td>
+                <td>Number</td>
+                <td>最终值</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">Animate.counter();</code></pre>
+
+          </div>
+        </div>
+
+        <!-- 加载
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="loading">加载</h1>
+          </div>
+          <p class="lead">SeedsUI加载样式，详见<code>loading.html</code></p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/loading.gif">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;</code></pre>
+
+          </div>
+        </div>
+      <!-- 滑动容器
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="slider">滑动容器</h1>
+          </div>
+          <p class="lead">滑动容器只支持触屏滑动，可支持循环滑动、一屏多页等滑动模式，详见<code>slider.html</code>页面和<code>slider-page.html</code>页面</p>
+          <h4>html</h4>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/slider.jpg">
+            </div>
+          </div>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;slider-container&quot; id=&quot;carousel1&quot;&gt;
+    &lt;div class=&quot;slider-wrapper&quot;&gt;
+        &lt;div class=&quot;slider-slide&quot;&gt;
+            &lt;img src=&quot;../img/components/banner.jpg&quot;/&gt;
+            &lt;div class=&quot;slide-title&quot;&gt;新闻标题1&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;slider-slide&quot;&gt;
+            &lt;img src=&quot;../img/components/banner.jpg&quot;/&gt;
+            &lt;div class=&quot;slide-title&quot;&gt;新闻标题2&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;slider-pagination&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">var s1=new Slider("#carousel1",{
+    "pagination":".slider-pagination",
+    "loop":true
+});</code></pre>
+
+          </div>
+          <p><code>new Slider(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动容器的id
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pagination</td>
+                <td>String</td>
+                <td>
+                  null
+                </td>
+                <td>
+                  .class|#id，滑动容器内部的滑动页
+                </td>
+              </tr>
+              <tr>
+                <td>autoplay</td>
+                <td>Boolean</td>
+                <td>
+                  false
+                </td>
+                <td>
+                  true|false，为true则自动播放
+                </td>
+              </tr>
+              <tr>
+                <td>slidesPerView</td>
+                <td>Number</td>
+                <td>
+                  1
+                </td>
+                <td>
+                  一屏几页，默认一屏1页
+                </td>
+              </tr>
+              <tr>
+                <td>threshold</td>
+                <td>Number</td>
+                <td>
+                  50
+                </td>
+                <td>
+                  滑动多少像素，则翻页
+                </td>
+              </tr>
+              <tr>
+                <td>duration</td>
+                <td>Number</td>
+                <td>
+                  300
+                </td>
+                <td>
+                  翻页动画时长
+                </td>
+              </tr>
+              <tr>
+                <td>loop</td>
+                <td>Boolean</td>
+                <td>
+                  false
+                </td>
+                <td>
+                  true|false，设为true则循环
+                </td>
+              </tr>
+              <tr>
+                <td>slideDuplicateClass</td>
+                <td>String</td>
+                <td>
+                  "slider-slide-duplicate"
+                </td>
+                <td>
+                  循环状态时，复制出来的slide的额外增加的class名称，用于标识出复制的slide
+                </td>
+              </tr>
+              <tr>
+                <td>wrapperClass</td>
+                <td>String</td>
+                <td>
+                  "slider-wrapper"
+                </td>
+                <td>
+                  画布class名称
+                </td>
+              </tr>
+              <tr>
+                <td>slideActiveClass</td>
+                <td>String</td>
+                <td>
+                  "active"
+                </td>
+                <td>
+                  激活状态slide的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>bulletClass</td>
+                <td>String</td>
+                <td>
+                  "bullet"
+                </td>
+                <td>
+                  小点点的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>bulletActiveClass</td>
+                <td>String</td>
+                <td>
+                  "active"
+                </td>
+                <td>
+                  激活状态小点点的class名称
+                </td>
+              </tr>
+              <tr>
+                <td>onInit</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动容器初始化完成时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onSlideChangeStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  开始滑动时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onSlideChangeEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滑动结束后回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- 下拉刷新
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="dragrefresh">下拉刷新</h1>
+          </div>
+          <p class="lead">下拉刷新除了提供下拉刷新外，还提供了滚动至底部刷新</p>
+          <p><code>new Dragrefresh(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String container</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  下拉刷新容器的id、class、标签、DOM皆可
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>refreshThreshold</td>
+                <td>Number</td>
+                <td>
+                  100
+                </td>
+                <td>
+                  下拉多少像素刷新
+                </td>
+              </tr>
+              <tr>
+                <td>refreshThresholdMax</td>
+                <td>Number</td>
+                <td>
+                  200
+                </td>
+                <td>
+                  最大能拉多少像素
+                </td>
+              </tr>
+              <tr>
+                <td>refreshHideTop</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  下拉完成后，收缩到什么位置
+                </td>
+              </tr>
+              <tr>
+                <td>duration</td>
+                <td>Number</td>
+                <td>
+                  300
+                </td>
+                <td>
+                  下拉完，收缩动画时长
+                </td>
+              </tr>
+              <tr>
+                <td>timeout</td>
+                <td>Number</td>
+                <td>
+                  5000
+                </td>
+                <td>
+                  超时毫秒
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  开始刷新时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  刷新完成时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onRefreshTimeout</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  刷新超时回调
+                </td>
+              </tr>
+              <tr>
+                <td>onBottom</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  滚动到底部时回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+
+        <!-- 仪表盘
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="gauge">仪表盘</h1>
+          </div>
+          <p class="lead">提供了可视化数据仪表盘</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/gauge.jpg">
+            </div>
+          </div>
+          <h4>Html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;gauge-box&quot; id=&quot;gauge&quot;&gt;
+    &lt;div class=&quot;gauge&quot;&gt;
+        &lt;div class=&quot;gauge-pointer&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;gauge-text&quot;&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <h4>Javascript</h4>
+          <div class="highlight">
+            <pre><code class="language-javascript">var g=new Gauge("#gauge",{
+    minValue:100,
+    maxValue:400,
+    currentValue:200
+});</code></pre>
+
+          </div>
+          <p><code>new Gauge(container,params)</code>初始化，支持下列两个参数container和params</p>
+          <p>参数1:String</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>container</td>
+                <td>String|DOM</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  仪表盘容器的参数用id、class、标签皆可
+                </td>
+              </tr>
+              <tr>
+                <td>onTap</td>
+                <td>Function</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构回调
+                </td>
+              </tr>
+              <tr>
+                <td>onTapLastChild</td>
+                <td>Function</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  点击树结构底层节点回调
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>参数2:Json params</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>参数</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>minValue</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  最小值
+                </td>
+              </tr>
+              <tr>
+                <td>maxValue</td>
+                <td>Number</td>
+                <td>
+                  360
+                </td>
+                <td>
+                  最大值
+                </td>
+              </tr>
+              <tr>
+                <td>currentValue</td>
+                <td>Number</td>
+                <td>
+                  0
+                </td>
+                <td>
+                  当前值
+                </td>
+              </tr>
+              <tr>
+                <td>pointClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-pointer"
+                </td>
+                <td>
+                  指针class名称
+                </td>
+              </tr>
+              <tr>
+                <td>waveClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-wave"
+                </td>
+                <td>
+                  波浪class名称
+                </td>
+              </tr>
+              <tr>
+                <td>valueClass</td>
+                <td>String</td>
+                <td>
+                  ".gauge-value"
+                </td>
+                <td>
+                  值class名称
+                </td>
+              </tr>
+              <tr>
+                <td>durationall</td>
+                <td>Number</td>
+                <td>
+                  2000
+                </td>
+                <td>
+                  从最小值到最大值动画时长，一般动画时长低于此值
+                </td>
+              </tr>
+              <tr>
+                <td>onInit</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  完成初始化时触发
+                </td>
+              </tr>
+              <tr>
+                <td>onPointChangeStart</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  指针开始旋转时触发
+                </td>
+              </tr>
+              <tr>
+                <td>onPointChangeEnd</td>
+                <td>Callback</td>
+                <td>
+                  无
+                </td>
+                <td>
+                  指针完成旋转时触发
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+        <!-- 时钟
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="clock">时钟</h1>
+          </div>
+          <p class="lead">根据设置的参数显示对应的点数</p>
+          <div class="bs-example">
+            <div class="btn-toolbar" role="toolbar">
+              <img src="images/clock.jpg">
+            </div>
+          </div>
+          <h4>Html</h4>
+          <div class="highlight">
+            <pre><code class="language-html">&lt;div class=&quot;clock&quot; data-clock=&quot;11:30&quot;&gt;
+    &lt;div class=&quot;hour&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;minute&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;origin&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>元素</th>
+                <th>属性</th>
+                <th>值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>div标签</td>
+                <td>data-clock</td>
+                <td>
+                  Time
+                </td>
+                <td>显示时间</td>
+              </tr>
+            </tbody>
+          </table>
+          <h4>Javascript</h4>
+          <p>时钟初始化</p>
+          <div class="highlight">
+            <pre><code class="language-javascript">var c=DataClock();</code></pre>
+
+          </div>
+
+        </div>
+
+        <!-- The End
+  ================================================== --> </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+
+  <!-- JavaScript
+================================================== -->
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/holder.min.js"></script>
+  <script src="javascripts/highlight.min.js"></script>
+  <script >hljs.initHighlightingOnLoad();</script>
+  <script src="javascripts/application.js"></script>
+</body>
+</html>

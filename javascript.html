@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
+  <title>CSS &middot; SeedsUI</title>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="stylesheets/docs.css" rel="stylesheet">
+  <link href="stylesheets/github.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="../docs-assets/js/ie8-responsive-file-warning.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="images/favicon.png"></head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">SeedsUI</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="started.html">起步</a>
+          </li>
+          <li>
+            <a href="css.html">全局CSS</a>
+          </li>
+          <li>
+            <a href="components.html">组件</a>
+          </li>
+          <li class="active">
+            <a href="index.html">其它插件</a>
+          </li>
+          <li>
+            <a href="customize.html">换肤</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="about.html">关于</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Docs page layout -->
+  <div class="bs-header" id="content">
+    <div class="container">
+      <h1>其它插件</h1>
+      <p>除了SeedsUI插件，还有很多优秀的插件(plugin目录中)，它们可以解决不同的问题</p>
+
+    </div>
+  </div>
+
+  <!-- Callout for the old docs link -->
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+              <a href="#jquery">jQuery</a>
+            </li>
+            <li>
+              <a href="#exmobi">原生能力(exmobi)</a>
+            </li>
+            <li>
+              <a href="#inobounce">禁止弹性(inobounce)</a>
+            </li>
+            <li>
+              <a href="#animate">css3动画(animate)</a>
+            </li>
+            <li>
+              <a href="#chart">可视化数据(chart)</a>
+            </li>
+            <li>
+              <a href="#iscroll">滚动条(iscroll)</a>
+            </li>
+            <li>
+              <a href="#swiper">滑动容器(swiper)</a>
+            </li>
+            <li>
+              <a href="#segment">绘制svg(segments)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <!-- jQuery插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="jquery">jQuery</h1>
+          </div>
+          <p class="lead">SeedsUI有30%的js结合了jQuery插件，它为SeedsUI的众多组件赋予了“生命”。只要有SeedsUI插件，就必须引用的jQuery插件。</p>
+          <p>jquery的API网上有很多，有chm格式本地版的，也有官网的网络版的，如果不熟悉它的话，可以百度一下。</p>
+        </div>
+        <!-- exmobi插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="exmobi">原生能力(exmobi)</h1>
+          </div>
+          <p class="lead">Exmobi是一个很不错的移动开发中间件，它支持原生与h5混合的方式，它提供了丰富的本地能力调用，如：相册、拍照、打电话、分享、GPS定位等等很好的功能。如果想使用它的功能，则需要基本exmobi的平台，详见：<code>exmobi.cn</code>。exmobi插件是作者总结出常用的功能js，可以直接调用。</p>
+          <p>方法</p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>方法</th>
+                <th>参数</th>
+                <th>返回值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>os</td>
+                <td>无</td>
+                <td>"android"|"ios"|"winphone"</td>
+                <td>
+                  获得系统类型
+                </td>
+              </tr>
+              <tr>
+                <td>showProgress</td>
+                <td>Callback fn</td>
+                <td>无</td>
+                <td>
+                  显示Exmobi平台进度条，进度完成后回调传入的fn
+                </td>
+              </tr>
+              <tr>
+                <td>hideProgress</td>
+                <td>Callback fn</td>
+                <td>无</td>
+                <td>
+                  隐藏Exmobi平台进度条，隐藏后回调传入的fn
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">alert</td>
+                <td>String str</td>
+                <td>无</td>
+                <td>
+                  调用Exmobi平台提示框，提示信息
+                </td>
+              </tr>
+              <tr>
+                <td>Callback fn</td>
+                <td>无</td>
+                <td>
+                  点击确定按钮回调
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="3">confirm</td>
+                <td>String str</td>
+                <td>无</td>
+                <td>
+                  调用Exmobi平台对话框，提示信息
+                </td>
+              </tr>
+              <tr>
+                <td>Callback okFn</td>
+                <td>无</td>
+                <td>
+                  点击确定按钮回调
+                </td>
+              </tr>
+              <tr>
+                <td>Callback cancelFn</td>
+                <td>无</td>
+                <td>
+                  点击取消按钮回调
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">open</td>
+                <td>String hash</td>
+                <td>无</td>
+                <td>
+                  打开Exmobi平台页面(uixml文件)，地址
+                </td>
+              </tr>
+              <tr>
+                <td>Boolean isBlank</td>
+                <td>无</td>
+                <td>
+                  是否打开新窗口，true为打开新容器，false则相反，默认为true
+                </td>
+              </tr>
+              <tr>
+                <td>close</td>
+                <td>无</td>
+                <td>无</td>
+                <td>
+                  关闭当前Exmobi平台页面(uixml文件)
+                </td>
+              </tr>
+              <tr>
+                <td>dbclick</td>
+                <td>String msg</td>
+                <td>true | false</td>
+                <td>
+                  双击弹出小弹框
+                </td>
+              </tr>
+              <tr>
+                <td>close</td>
+                <td>无</td>
+                <td>无</td>
+                <td>
+                  双击关闭当前Exmobi平台页面(uixml文件)
+                </td>
+              </tr>
+              <tr>
+                <td>exit</td>
+                <td>String msg</td>
+                <td>无</td>
+                <td>
+                  退出整个应用，msg为提示信息
+                </td>
+              </tr>
+              <tr>
+                <td>dbexit</td>
+                <td>无</td>
+                <td>无</td>
+                <td>
+                  双击退出整个应用
+                </td>
+              </tr>
+              <tr>
+                <td>qrcode</td>
+                <td>无</td>
+                <td>String</td>
+                <td>
+                  调用解码控件，返回解码值
+                </td>
+              </tr>
+              <tr>
+                <td>camera</td>
+                <td>无</td>
+                <td>CallBack</td>
+                <td>
+                  调用拍照控件，在回调中传入图片路径
+                  function cameraCallback(){this.value}
+                </td>
+              </tr>
+              <tr>
+                <td>album</td>
+                <td>无</td>
+                <td>CallBack</td>
+                <td>
+                  调用相册控件，在回调中传入图片路径
+                  function albumCallback(path){}
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">imageChoice</td>
+                <td>Int pwidth</td>
+                <td rowspan="2">CallBack</td>
+                <td rowspan="2">
+                  批量选图，返回图片列表，pwidth指图片宽度，nums指的是可选照片数量。
+                  <div class="highlight">
+                  <pre><code class="language-javascript">
+function cameraCallback(){
+    //获得拍照返回的路径
+    var selectImg=this.value;
+}
+                  </code></pre>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Int nums</td>
+              </tr>
+              <tr>
+                <td>gps</td>
+                <td>无</td>
+                <td>CallBack</td>
+                <td>
+                  gps定位，在回调中传入定位信息
+                  <div class="highlight">
+                  <pre><code class="language-javascript">
+function gpsCallback(){
+    var lat = this.latitude;//获得纬度
+    var lng = this.longitude;//获得经度
+    //定位成功时间
+    var ltime = this.locationtime;
+    if(!this.isSuccess()){
+       alert("定位失败");
+       this.stopPosition();
+    }
+}
+                  </code></pre>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>tel</td>
+                <td>Number telnumber</td>
+                <td>无</td>
+                <td>
+                  打电话，telnumber是指电话号码
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">askTel</td>
+                <td>Number telnumber</td>
+                <td>无</td>
+                <td>
+                  询问是否打电话，telnumber是指电话号码
+                </td>
+              </tr>
+              <tr>
+                <td>Number telname</td>
+                <td>无</td>
+                <td>
+                  telname是指联系人姓名
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="3">sms</td>
+                <td>Number telnumber</td>
+                <td rowspan="3">无</td>
+                <td>
+                  发送至
+                </td>
+              </tr>
+              <tr>
+                <td>String content</td>
+                <td>
+                  短信内容，不传短信内容，则会直接调用系统短信
+                </td>
+              </tr>
+              <tr>
+                <td>Boolean isSent</td>
+                <td>
+                  是否直接发送短信，为true则直接发送，false则相反
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="5">mail</td>
+                <td>String mailTo</td>
+                <td rowspan="5">无</td>
+                <td>
+                  发送至
+                </td>
+              </tr>
+              <tr>
+                <td>String mailTitle</td>
+                <td>
+                  邮件标题
+                </td>
+              </tr>
+              <tr>
+                <td>String mailContent</td>
+                <td>
+                  邮件内容
+                </td>
+              </tr>
+              <tr>
+                <td>String mailCC</td>
+                <td>
+                  抄送人
+                </td>
+              </tr>
+              <tr>
+                <td>String mailBcc</td>
+                <td>
+                  密送人
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="3">addContact</td>
+                <td>String name</td>
+                <td rowspan="3">无</td>
+                <td>
+                  联系人姓名
+                </td>
+              </tr>
+              <tr>
+                <td>Number phone</td>
+                <td>
+                  联系人电话号码
+                </td>
+              </tr>
+              <tr>
+                <td>String address</td>
+                <td>
+                  联系人地址
+                </td>
+              </tr>
+              <tr>
+                <td>openBrowser</td>
+                <td>String url</td>
+                <td>无</td>
+                <td>
+                  打开系统浏览器
+                </td>
+              </tr>
+              <tr>
+                <td>openVideo</td>
+                <td>String path</td>
+                <td>无</td>
+                <td>
+                  打开视频
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">setCache</td>
+                <td>String key</td>
+                <td rowspan="2">无</td>
+                <td rowspan="2">
+                  设置缓存
+                </td>
+              </tr>
+              <tr>
+                <td>Object value</td>
+              </tr>
+              <tr>
+                <td>getCache</td>
+                <td>String key</td>
+                <td>Object</td>
+                <td>
+                  获取缓存
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="2">setWebviewUrl</td>
+                <td>Webview webobj</td>
+                <td rowspan="2">无</td>
+                <td rowspan="2">
+                  修改webview地址
+                </td>
+              </tr>
+              <tr>
+                <td>String url</td>
+              </tr>
+              <tr>
+                <td rowspan="3">openWebview</td>
+                <td>String hash</td>
+                <td rowspan="3">无</td>
+                <td>
+                  webview地址
+                </td>
+              </tr>
+              <tr>
+                <td>Boolean isNewWindow</td>
+                <td>
+                  是否用新窗口打开
+                </td>
+              </tr>
+              <tr>
+                <td>Json params</td>
+                <td>
+                  打开新建的uixml页面参数设置
+                  <div class="highlight">
+                  <pre><code class="language-javascript">
+{
+  uixmlId:"",//设置打开的uixml页面ID
+  openanimation:"",//打开页面动画
+  closeanimation:""//关闭页面动画
+}
+                  </code></pre>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- inobounce插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="inobounce">禁止弹性(inobounce)</h1>
+          </div>
+          <p class="lead">inobounce插件主要是用于禁止ios自带弹性。ios的webview在与Slider一起使用时，弹性过程中有时候会白屏。它实际上监测滚动条，如果为顶或者为底，就preventDefault，禁用所有事件，而达到无弹性的效果。</p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="https://github.com/lazd/iNoBounce">
+                <strong>github资源下载</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- animate插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="animate">css3动画(animate)</h1>
+          </div>
+          <p class="lead">animate插件实际上就是一个包含很多动画的css文件，有很多不错的css3动画。</p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://daneden.github.io/animate.css/">
+                <strong>animate插件地址</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- chart插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="chart">可视化数据(chart)</h1>
+          </div>
+          <p class="lead">chart插件是一个简单、面向对象、为设计者和开发者准备的图表绘制工具库。</p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://www.bootcss.com/p/chart.js/">
+                <strong>chart官方网站</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- iscroll插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="iscroll">滚动条(iscroll)</h1>
+          </div>
+          <p class="lead">iscroll是一种高性能、体积小、无依赖性、多平台的JavaScript自定义滚动条，它能解决一些手机滚动卡顿的问题 </p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://iscrolljs.com/">
+                <strong>iscroll官方网站</strong>
+              </a>
+            </div>
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://www.tuicool.com/articles/vMn2u2">
+                <strong>中文API</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- swiper插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="swiper">滑动容器(swiper)</h1>
+          </div>
+          <p class="lead">swiper是一款开源、免费、强大的移动端触摸滑动插件。但在一些旧手机上有兼容性问题，如果只考虑主流机型，它是很不错的选择。</p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://www.swiper.com.cn/">
+                <strong>swiper官方网站</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- segment插件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="segment">绘制svg(segments)</h1>
+          </div>
+          <p class="lead">一款专门用于绘制svg动画的Js库，你可以看到SeedsUI首页的Logo动画就是用它画的。有需要这svg动画效果的可以用它来做。</p>
+          <div class="list-group bs-team">
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="https://github.com/lmgonzalves/segment">
+                <strong>github资源下载</strong>
+              </a>
+            </div>
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://lmgonzalves.github.io/segment/">
+                <strong>基础示例</strong>
+              </a>
+            </div>
+            <div class="list-group-item">
+              <a class="team-member" target="_blank" href="http://tympanus.net/codrops/2015/11/12/animating-svg-menu-icon-segment/">
+                <strong>复杂示例</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- The End
+  ================================================== --> </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+
+  <!-- JavaScript
+================================================== -->
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/holder.min.js"></script>
+  <script src="javascripts/highlight.min.js"></script>
+  <script >hljs.initHighlightingOnLoad();</script>
+  <script src="javascripts/application.js"></script>
+</body>
+</html>

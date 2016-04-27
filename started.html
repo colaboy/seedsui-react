@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, seedsui, web development">
+  <title>CSS &middot; SeedsUI</title>
+  <link href="stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="stylesheets/docs.css" rel="stylesheet">
+  <link href="stylesheets/github.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+  <script src="../docs-assets/js/ie8-responsive-file-warning.js"></script>
+  <![endif]-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+  <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="images/favicon.png"></head>
+<body>
+  <a class="sr-only" href="#content">Skip to main content</a>
+
+  <!-- Docs master nav -->
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="index.html" class="navbar-brand">SeedsUI</a>
+      </div>
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="index.html">起步</a>
+          </li>
+          <li>
+            <a href="css.html">全局CSS</a>
+          </li>
+          <li>
+            <a href="components.html">组件</a>
+          </li>
+          <li>
+            <a href="javascript.html">其它插件</a>
+          </li>
+          <li>
+            <a href="customize.html">换肤</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="about.html">关于</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Docs page layout -->
+  <div class="bs-header" id="content">
+    <div class="container">
+      <h1>起步</h1>
+      <p>使用SeedsUI前的准备工作。</p>
+
+    </div>
+  </div>
+
+  <!-- Callout for the old docs link -->
+
+  <div class="container bs-docs-container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+            <li>
+              <a href="#catalogue">包含了哪些文件</a>
+            </li>
+            <li>
+              <a href="#basetemplate">基本模版</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" role="main">
+
+        <!-- 包含了哪些文件
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="catalogue">包含了哪些文件</h1>
+          </div>
+          <p class="lead">SeedsUI 源码包含了预先编译的 CSS、JavaScript 和图标字体文件，并且还有 LESS、JavaScript 和文档的源码。具体来说，主要文件组织结构如下：</p>
+          <div class="highlight"><pre><code class="language-bash">
+seedsui/
+├── assets/
+├── components/
+├── css/
+├── img/
+├── js/
+├── page/
+├── plugin/
+│   ├── animate/
+│   ├── charts/
+│   ├── exmobi/
+│   ├── iscroll/
+│   ├── jquery/
+│   ├── seedsui/
+│   ├── swiper/
+│   └── weixin/
+└── theme/
+└── theme-default/
+└── theme-blue/
+└── theme-cyan/
+                </code></pre></div>
+          <p>
+            1.<code>assets/</code>
+            目录包含了预编译SeedsUI包内的所有文件，包含导航、按钮、单页模式等等单个组件。
+          </p>
+          <p>
+            2.<code>css/</code>
+            、
+            <code>img/</code>
+            和
+            <code>js/</code>
+            是应用级的目录，分别包含了应用中所使用的CSS、应用图片、JS文件。
+          </p>
+          <p>
+            3.<code>components/</code>
+            和
+            <code>page/</code>
+            文件是文档的源码文件。分别是指组件页面和综合示例页面。
+          </p>
+          <p>
+            4.<code>plugin/</code>
+            包含了生成后的SeedsUI插件和常用的h5插件。
+          <p>
+            5.<code>theme/</code>
+            包含预编译的皮肤文件，可通过修改目录theme-XX/下的variable.less文件，生成换肤文件，再替换到plugin/seedsui/seedsui.min.css，而达到换肤的效果。
+          </p>
+        </div>
+
+        <!-- 基本模版
+  ================================================== -->
+        <div class="bs-docs-section">
+          <div class="page-header">
+            <h1 id="basetemplate">基本模版</h1>
+          </div>
+          <p class="lead">使用以下给出的这份超级简单的HTML模版，或者修改这些案例 。我们强烈建议你对这些案例按照自己的需求进行修改，而不要简单的复制、粘贴。</p>
+          <p>拷贝并粘贴下面给出的HTML代码，这就是一个最简单的SeedsUI页面了。</p>
+          <div class="highlight">
+            <pre><code class="language-html xml">
+<span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"format-detection"</span> <span class="attribute">content</span>=<span class="value">"telephone=no"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">title</span>&gt;</span>SeedsUI模板<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"../plugin/seedsui/seedsui.min.css"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"page_button"</span> <span class="attribute">class</span>=<span class="value">"active"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">header</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"titlebar"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"javascript:history.go(-1)"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"icon icon-arrowleft"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;<span class="title">h1</span>&gt;</span>标题<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">header</span>&gt;</span>
+<span class="tag">&lt;<span class="title">article</span>&gt;</span>
+<span class="comment">&lt;!--页面内容--&gt;</span>
+<span class="tag">&lt;/<span class="title">article</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">section</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../plugin/jquery/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../plugin/seedsui/seedsui.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+<span class="comment">//定义exmobi返回</span>
+<span class="function"><span class="keyword">function</span> <span class="title">back</span><span class="params">()</span>{</span>history.go(-<span class="number">1</span>);}
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre>
+          </div>
+        </div>
+
+        <!-- The End
+  ================================================== --> </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bs-footer" role="contentinfo">CopyRight 烽火星空</footer>
+
+  <!-- JavaScript
+================================================== -->
+  <script src="javascripts/jquery.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="javascripts/holder.min.js"></script>
+  <script src="javascripts/highlight.min.js"></script>
+  <script >hljs.initHighlightingOnLoad();</script>
+  <script src="javascripts/application.js"></script>
+</body>
+</html>
