@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>countto</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+    <section id="page_countto" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1>计数器</h1>
+            </div>
+        </header>
+        <article>
+            <p class="title">计数器</p>
+            <div class="card padding8">
+                <span class="timer" data-duration="5000" data-to="5">0</span>
+                <span class="timer" data-duration="5000" data-to="600">0</span>
+            </div>
+
+            <p class="title">帧率测试</p>
+            <div class="card padding8">
+                <span>requestAnimationFrame 1s帧率测试</span>
+                <span id="fps2"></span>
+                <br/>
+            	<span>setInterval 1s帧率测试</span>
+            	<span id="fps1"></span>
+            </div>
+
+        </article>
+    </section>
+    
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--禁止ios弹性-->
+    <script src="../plugin/inobounce/inobounce.min.js"></script>
+    <script>
+    	Animate.testSiFps(function(fps){
+    		document.getElementById("fps1").innerHTML=fps;
+    	});
+    	Animate.testRafFps(function(fps){
+    		document.getElementById("fps2").innerHTML=fps;
+    	});
+		Animate.counter();
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

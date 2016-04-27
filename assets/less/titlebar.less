@@ -1,0 +1,47 @@
+/*----------------titlebar.less(start)--------------*/
+/*require inputbox.less*/
+.titlebar{
+	min-height:44px;
+	border-bottom: 1px solid;
+	box-sizing: border-box;
+}
+.titlebar,.titlebar a,.titlebar h1{
+	position:relative;
+}
+.titlebar h1{
+	font-size: 17px;
+	font-weight: normal;
+	-webkit-box-flex:1.0;
+	box-flex:1.0;
+}
+.titlebar h1:first-child{
+	margin-left:8px;
+}
+.titlebar h1:only-child{
+	margin-right:8px;
+}
+.titlebar a,.titlebar button{
+	margin:0 8px;
+}
+.titlebar a+a,.titlebar a+button,.titlebar button+button{
+	margin-left:0px;
+}
+/*左右对齐*/
+.titlebar .left,.titlebar .right{
+	position: absolute;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+	transform:translateY(-50%);
+	z-index:1;
+}
+.titlebar .left {
+	left:0;
+}
+.titlebar .right {
+	right:0;
+}
+/*searchbar*/
+.titlebar>.searchbar{
+	width:100%;
+}
+/*----------------titlebar.less(end)----------------*/

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>clock</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+    <section id="page_gauge" class="active">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1>时钟</h1>
+            </div>
+        </header>
+        <article>
+            <div class="clock" data-clock="11:30" style="margin: 20px auto;">
+                <div class="hour"></div>
+                <div class="minute"></div>
+                <div class="origin"></div>
+            </div>
+            <div class="clock" data-clock="8:30" style="margin: 20px auto;">
+                <div class="hour"></div>
+                <div class="minute"></div>
+                <div class="origin"></div>
+            </div>
+        </article>
+    </section>
+    
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--禁止ios弹性-->
+    <script src="../plugin/inobounce/inobounce.min.js"></script>
+    <script>
+        window.addEventListener("load",function(){
+            var c=DataClock();
+        },false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

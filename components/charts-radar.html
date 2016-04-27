@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<title>charts-radar</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+<body>
+	<section id="page_charts_radar" class="active">
+		<header>
+		  <div class="titlebar">
+		    <a href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1>雷达图</h1>
+		  </div>
+		</header>
+		<article>
+			<div style="width:100%">
+				<canvas id="canvas" height="450" width="450"></canvas>
+			</div>
+		</article>
+	</section>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--禁止ios弹性-->
+    <script src="../plugin/inobounce/inobounce.min.js"></script>
+    <!--chartJs-->
+    <script src="../plugin/charts/Chart.min.js"></script>
+	<script>
+	var radarChartData = {
+		labels: ["销售", "管理", "市场", "信息技术", "研发", "客服", "商务"],
+		datasets: [
+			{
+				label: "我的第一份资料组",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: [65,59,90,81,56,55,40]
+			},
+			{
+				label: "我的第二份资料组",
+				fillColor: "rgba(151,187,205,0.2)",
+				strokeColor: "rgba(151,187,205,1)",
+				pointColor: "rgba(151,187,205,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data: [28,48,40,19,96,27,100]
+			}
+		]
+	};
+
+	window.onload = function(){
+		window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+			responsive: true
+		});
+	}
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

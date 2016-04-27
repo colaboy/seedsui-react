@@ -1,0 +1,117 @@
+/*首页*/
+.tabbar.animate-oneline .tab.active::before {
+    -webkit-transform: translateX(-50%) scale3d(1, 1, 1);
+}
+.tabbar.animate-oneline .tab::before {
+    width: 60%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale3d(0, 1, 1);
+}
+.card-poll .icon-rdo-fill{
+    margin-top:12px;
+}
+.card-poll .progress-bar{
+    margin-top: 4px;
+}
+.card-poll .hint{
+    padding:8px 0;
+}
+.card-poll .enddate{
+    padding:8px 0;
+    color:#aaa;
+}
+.card-poll .justiry:last-child{
+    padding-left:8px;
+}
+#nodata{
+  height:80%;
+}
+#nodata img{
+  width:240px;
+}
+/*投票页面*/
+.pie-chart {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 12px;
+}
+.doughnutblock {
+  position: relative;
+  padding: 0;
+  margin: 8px 0;
+}
+.doughnutblock label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+.doughnutblock-canvas {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  box-shadow: 0px 0px 0px 10px white inset;
+}
+.doughnutblock-overlay {
+  position: absolute;
+  z-index: 999;
+  width: 110px;
+  height: 110px;
+  color: white;
+  border-radius: 100%;
+  left: 50%;
+  top: 15px;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.doughnutblock .percent {
+  font-size: 26px;
+}
+.poll-img {
+  max-width: 54px;
+  width: 54px;
+  height: 54px;
+  background-size: cover;
+  background-position: center;
+}
+.result-img {
+  width: 40%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+#selImg li > a{
+  min-height: 280px;
+  background-size: cover;
+  background-position: center;
+}
+#selImg li>a .checkbox{
+  color:white;
+}
+#selImg li>a .badge{
+  top: 10px;
+  right: 4px;
+  background-color: #aaa;
+}
+#selImg li>a .badge:after{
+  border-bottom-color: #aaa;
+}
+#selImg li>a .badge.active{
+  background-color:#60c565;
+}
+#selImg li>a .badge.active:after{
+  border-bottom-color: #60c565;
+}
+/*缩略图*/
+.preview{
+  width:100%;
+  height:145px;
+  background-size:cover;
+  background-position:center;
+  background-image:url(../img/poll/poll-main-default.jpg);
+}

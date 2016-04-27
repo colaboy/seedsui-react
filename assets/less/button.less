@@ -1,0 +1,65 @@
+/*------------------------------button.less(start)------------------------------*/
+/*按钮-普通按钮*/
+button,input[type="button"],input[type="submit"],.button{
+	display:inline-block;
+	padding:0 8px;
+	border: 0;
+	height:40px;
+	overflow:hidden;
+	text-align:center;
+	vertical-align:middle;
+	
+	/*禁止选中*/
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	
+	/*清除文本选择与外框*/
+	outline:none;
+	-moz-user-select: none; /*火狐*/
+	-webkit-user-select: none;  /*webkit浏览器*/
+	-ms-user-select: none;   /*IE10*/
+	-khtml-user-select: none; /*早期浏览器*/
+	user-select: none;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	border-style:solid;
+}
+.button{
+	line-height: 40px;
+}
+.outline{
+	border-width:1px;
+}
+/*按钮-大按钮*/
+button.block,input[type="button"].block,input[type="submit"].block,.button.block{
+	display: block;
+}
+button.block,input[type="button"].block,input[type="submit"].block{
+	width:100%;
+}
+/*圆形按钮*/
+.button.round,button.round,input[type="button"].round,
+.button.rect,button.rect,input[type="button"].rect{
+    width:auto;
+    height:auto;
+    line-height:0;
+    font-size: 0;
+    padding: 5px;
+}
+.button.round,button.round,input[type="button"].round{
+	border-radius:100%;
+}
+
+/*多彩标签按钮*/
+.mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary,.mark-grayscale{
+	font-size: 0.95em;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+/*------------------------------button.less(end)------------------------------*/

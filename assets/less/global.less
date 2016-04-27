@@ -1,0 +1,235 @@
+/*-----------------------------global.less(start)-----------------------------*/
+.events-none{
+	pointer-events:none;
+}
+.events-auto{
+	pointer-events:auto;
+}
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:15px;
+	font-family:Arial,"Microsoft Yahei";
+}
+i,span{
+	display:inline-block;
+	vertical-align:middle;
+}
+button,input,select,option,textarea,pre{
+	font-size:inherit;
+	font-family:inherit;
+}
+textarea{
+	resize:none;
+}
+ul,li,dl,dt,dd {
+	list-style: none;
+}
+a{
+	text-decoration:none;
+	outline:none;
+	cursor:pointer;
+	display:inline-block;
+}
+a,label, :focus{
+	outline:0 none;
+}
+label{
+	vertical-align: middle;
+}
+img {
+  border: 0;
+  vertical-align:middle;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+dfn {
+  font-style: italic;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+pre{
+	white-space:pre-wrap;
+	white-space:-moz-pre-wrap;
+	white-space:-pre-wrap;
+	white-space:-o-pre-wrap;
+	word-wrap:break-word;
+}
+.code {
+	display: block;
+	font-size: 13px;
+	line-height: 1.42857143;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+/*容器样式*/
+.highlight {
+	padding: 9px 14px;
+	margin: 14px;
+	border-radius: 4px;
+	border-width:1px;
+	border-style:solid;
+	
+	border-color:#ddd;
+	background-color: #f7f7f7;
+}
+.highlight pre {
+	word-break: normal;
+}
+.doctype{
+	color: #099;
+}
+.comment{
+	color:#094;
+}
+.tag{
+	color:#2f6f9f;
+}
+.property{
+	color:#4f9fcf;
+}
+.val{
+	color:#d44950;
+}
+.relative {
+	position: relative;
+}
+.absolute{
+	position:absolute;
+}
+.overflow-hide{
+	overflow:hidden;
+}
+.overflow-auto{
+	overflow:hidden;
+}
+.overflow-scroll{
+	overflow:scroll;
+}
+.overflow-x{
+	overflow-y:hidden;
+	overflow-x:auto;
+	white-space:nowrap;
+}
+.overflow-y{
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+.break-all{
+	word-break:break-all;
+}
+.nowrap{
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix{
+	zoom:1;
+}
+.clear{
+	clear:both;
+}
+
+/*css3 特效*/
+.shadow{
+	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：偏右、偏下、模糊度、扩展、颜色*/
+}
+/*倒影*/
+.reflect-below{
+	-webkit-box-reflect: below 5px -webkit-linear-gradient(transparent,transparent 60%,rgba(0,0,0,.2));
+}
+.bg-gradient {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#eeeeee));
+	border-top: 1px solid #fff;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.1) inset;
+}
+.noopacity {
+	opacity:1;
+	filter:Alpha(opacity=100);
+}
+.opacity7 {
+	opacity:0.7;
+	filter:Alpha(opacity=70);
+}
+.opacity6 {
+	opacity:0.6;
+	filter:Alpha(opacity=60);
+}
+.opacity3{
+	opacity:0.3;
+	filter:Alpha(opacity=30);
+}
+.opacity0{
+	opacity:0;
+	filter:Alpha(opacity=0);
+}
+/*背景*/
+.bg-cover{
+	background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+
+/*边框与线条*/
+.borderbox{
+	box-sizing:border-box;
+}
+.contentbox{
+	box-sizing:content-box;
+}
+.noborder{
+	border:none !important;
+}
+hr{
+	border:none;
+	clear:both;
+	border-width:1px 0 0 0;
+	border-style:solid;
+}
+hr.dotted{
+	border-style:dotted;
+}
+br{
+	clear:both;
+}
+/*文字*/
+small {
+  font-size: 80%;
+  color:#aaa;
+}
+.bold{
+	font-weight:bold;
+}
+.uppercase{
+	text-transform:uppercase;/*大写*/
+}
+.lowercase {
+	text-transform: lowercase;/*小写*/
+}
+.capitalize {
+	text-transform: capitalize;/*首字母大写*/
+}
+/*-----------------------------global.less(end)-----------------------------*/

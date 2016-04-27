@@ -1,0 +1,103 @@
+/*----------------progress.less(start)--------------*/
+progress {
+    width: 160px;
+    height: 10px;
+    border-width:1px;
+	border-style:solid;
+    
+    color: #3779d0; /*IE10*/
+	border-color:#ddd;
+    background-color:#fff;
+}
+
+progress::-moz-progress-bar {
+	background: #3779d0;
+}
+progress::-webkit-progress-bar {
+	background: white;
+}
+progress::-webkit-progress-value  {
+	background: #3779d0;
+}
+//custom progressbar
+.progress-bar {
+	height: 20px;  /* Can be anything */
+	position: relative;
+	&.striped
+	{
+		.progress:after{
+			content: "";
+			position: absolute;
+			top: 0; left: 0; bottom: 0; right: 0;
+			z-index: 1;
+			background-image:linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+			background-size: 50px 50px;
+			overflow: hidden;
+		}
+		.progress.animated:after{
+			animation: movestripes 2s linear infinite;
+			-webkit-animation: movestripes 2s linear infinite;
+		}
+	}
+	&.threed{
+		box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+		.progress {
+			box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4);
+		}
+	}
+}
+.text.left,.text.right,.text.center{
+	position:absolute;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+}
+.text.left{
+	left:12px;
+}
+.text.right{
+	right:12px;
+}
+.text.center{
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+}
+.progress-bar.radius4,.progress-bar.radius4 .progress{
+	border-radius:4px;
+}
+.progress-bar.radius8,.progress-bar.radius8 .progress{
+	border-radius:8px;
+}
+.progress-bar.radiusround,.progress-bar.radiusround .progress{
+	border-radius:20px;
+}
+.progress {
+	display: block;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	-webkit-animation: progressexpand 1s linear;
+	animation: progressexpand 1s linear;
+}
+@keyframes movestripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes movestripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes progressexpand {
+   0% { width: 0; }
+}
+@-webkit-keyframes progressexpand {
+   0% { width: 0; }
+}
+/*----------------progress.less(end)--------------*/

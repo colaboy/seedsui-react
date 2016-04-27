@@ -1,0 +1,133 @@
+/*--------------------badge.less(start)----------------------*/
+.badge,.tip{
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+}
+.badge,.tip,.close{
+	position:relative;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	border-radius:100%;
+	z-index:1;
+}
+/*小点点*/
+.dot{
+    display:inline-block;
+    border-radius:100%;
+    height:4px;
+    width:4px;
+    vertical-align:middle;
+}
+/*标题小标记*/
+.peg{
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+}
+.badge,.tip,.close{
+	font-size:12px;
+}
+.tip,.close{
+	width:24px;
+	height:24px;
+}
+.badge{
+	padding:0 4px;
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	border-radius:20px;
+	min-width:24px;
+}
+.badge.arrow{
+	padding:2px 8px;
+    font-size:14px;
+    overflow:visible;
+    color:white;
+}
+.badge.arrow:after {
+    position: absolute;
+    right: 10px;
+    top: -4px;
+    height: 0;
+    width: 0;
+    content: " ";
+    border-width: 5px;
+    margin-top: -5px;
+    border-style: solid;
+    border-color: transparent;
+}
+.tip{
+	line-height:24px;
+}
+.close{
+	/*图片*/
+	background-size:cover;
+	border-radius: 100%;
+
+	/*文字图标*/
+	border-width: 2px;
+	border-style: solid;
+	color:white;
+	border-color: white;
+	background-color: rgba(0,0,0,.7);
+
+	display: box;
+	display:-webkit-box;
+	box-pack:center;
+	-webkit-box-pack:center;
+	box-align:center;
+	-webkit-box-align:center;
+	display: flex;
+	display: -webkit-flex;
+	justify-content:center;
+	-webkit-justify-content:center;
+	align-items:center;
+	-webkit-align-items:center;
+}
+.sticker{
+	position:absolute;
+	width:0px;
+	height:0px;
+	border-width:0;
+	border-style:solid;
+}
+.sticker span{
+	position:absolute;
+	font-size:12px;
+	padding:0 2px;
+}
+.sticker.top,.sticker.top span{
+	top:0;
+}
+.sticker.top{
+	border-top-width:32px;
+}
+.sticker.top span{
+	margin-top:-30px;
+}
+.sticker.left,.sticker.left span{
+	left:0;
+}
+.sticker.left{
+	border-right-width:56px;
+	border-right-color:transparent;
+}
+.sticker.right,.sticker.right span{
+	right:0;
+}
+.sticker.right{
+	border-left-width:56px;
+	border-left-color:transparent;
+}
+.sticker.bottom,.sticker.bottom span{
+	bottom:0;
+}
+.sticker.bottom{
+	border-bottom-width:32px;
+}
+.sticker.bottom span{
+	margin-bottom:-30px;
+}
+/*--------------------badge.less(start)----------------------*/

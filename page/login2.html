@@ -1,0 +1,76 @@
+<!-- HTML5文件 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>login2</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+        .login-box{
+            margin:0 auto;
+            width: 70%;
+        }
+        .login-logo{
+            margin:30px 0 30px 0;
+            width:60%;
+        }
+        .login-cbo{
+            padding: 10px 0 34px 10px;
+        }
+        .login-box .input-box i:first-child{
+            font-size: 30px;
+            left:0px!important;
+        }
+        .login-box .input-box .icon icon-eye-fill{
+            color:#e1e1e1;
+        }
+        .login-box input[type="checkbox"]{
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size:24px;
+        }
+        .login-box input[type="checkbox"]:before {
+            content: "\e9b5";
+        }
+        .login-box input[type="checkbox"]:checked:before{
+            content: "\e9de";
+        }
+    </style>
+</head>
+<body style="min-height:370px;">
+    <section id="page_login" class="active" style="background:url(../img/login2/bg.png) no-repeat right bottom;background-size:100% auto;">
+        <article style="top:0;">
+            <form id="loginbox">
+                <div class="login-box">
+                <img src="../img/login2/logo.png" class="login-logo"/>
+                <div class="input-box line nolrmargin">
+                    <i class="icon icon-user color-placeholder"></i>
+                    <input type="text" autocomplete="off" id="login-input-user" placeholder="请输入用户名"/>
+                </div>
+                <div class="input-box line nolrmargin" data-input="reveal">
+                    <i class="icon icon-lock2 color-placeholder"></i>
+                    <input type="password" placeholder="请输入密码"/>
+                    <i class="icon icon-eye-fill color-placeholder"></i>
+                </div>
+                <div class="login-cbo">
+                    <label>
+                        <input type="checkbox"/><span style="margin-left:5px;">记住密码</span>
+                    </label>
+                </div>
+                <a class="button login-submit block radius20" href="javascript:history.go(-1)">立即登录</a>
+                </div>
+        	</form>
+	    </article>
+    </section>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script>
+    var f=new Form("#loginbox");
+    //定义exmobi返回
+    function back(){history.go(-1);}
+    </script>
+</body>
+</html>

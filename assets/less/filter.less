@@ -1,0 +1,103 @@
+.before-sepia,.before-grayscale,.before-blur,.before-invert,.before-saturate,.before-contrast,.before-brightness,.before-hue-rotate,.before-drop-shadow{
+    position:relative;
+    z-index:0;
+}
+.before-sepia:before,.before-grayscale:before,.before-blur:before,.before-invert:before,.before-saturate:before,.before-contrast:before,.before-brightness:before,.before-hue-rotate:before,.before-drop-shadow:before{
+	content:"";
+	position:absolute;
+	z-index:-1;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	overflow: hidden;
+}
+.sepia,.before-sepia:before{ /**  格式，filer: sepia(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+    -webkit-filter: sepia(100%);
+    -moz-filter: sepia(100%);
+    -o-filter: sepia(100%);
+    -ms-filter: sepia(100%);
+    filter: sepia(100%);
+}
+.grayscale,.before-grayscale:before{ /**  格式，filer: grayscale(效果范围)
+     *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
+     */
+    -webkit-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+.blur,.before-blur:before{ /**  格式，filer: blur(模糊半径)
+     *  模糊半径，取值范围0~Npx，0为无效果
+     */
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+    opacity:0.9;
+	-webkit-filter:blur(2px);
+}
+.invert,.before-invert:before{ /**  格式，filer: invert(效果范围)
+     *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
+     */
+    -webkit-filter: invert(1);
+    -moz-filter: invert(1);
+    -o-filter: invert(1);
+    -ms-filter: invert(1);
+    filter: invert(1);
+}
+.saturate,.before-saturate:before{ /**  格式，filer: saturate(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果，0为灰度图
+     */
+    -webkit-filter: saturate(2);
+    -moz-filter: saturate(2);
+    -o-filter: saturate(2);
+    -ms-filter: saturate(2);
+    filter: saturate(2);
+}
+.contrast,.before-contrast:before{ /**  格式，filer: contrast(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+    -webkit-filter: contrast(2);
+    -moz-filter: contrast(2);
+    -o-filter: contrast(2);
+    -ms-filter: contrast(2);
+    filter: contrast(2);
+}
+.brightness,.before-brightness:before{ /**  格式，filer: brightness(效果范围)
+     *  效果范围，取值范围>=0的数字或百分数，1为无效果
+     */
+    -webkit-filter: brightness(2);
+    -moz-filter: brightness(2);
+    -o-filter: brightness(2);
+    -ms-filter: brightness(2);
+    filter: brightness(2);
+}
+.hue-rotate,.before-hue-rotate:before{ /**  格式，filer: hue-rotate(效果范围)
+     *  效果范围，取值范0deg~365deg，0（默认值）为无效果
+     */
+    -webkit-filter: hue-rotate(200deg);
+    -moz-filter: hue-rotate(200deg);
+    -o-filter: hue-rotate(200deg);
+    -ms-filter: hue-rotate(200deg);
+    filter: hue-rotate(200deg);
+}
+.drop-shadow,.before-drop-shadow:before{ /**  格式，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
+     *  x-offset和y-offset为阴影的相对于元素左上角的位移距离；
+     * 注意：
+     *     1. 阴影的外观受border-radius样式的影响；
+     *     2. :after和:before等伪元素会继承阴影的效果。
+     */
+    -webkit-filter: drop-shadow(1px 1px 0px #333);
+    -moz-filter: drop-shadow(1px 1px 0px #333);
+    -o-filter: drop-shadow(1px 1px 0px #333);
+    -ms-filter: drop-shadow(1px 1px 0px #333);
+    filter: drop-shadow(1px 1px 0px #333); /*圆角*/
+}

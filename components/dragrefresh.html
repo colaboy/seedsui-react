@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>dragrefresh</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+    <section id="page_dragrefresh" class="active">
+        <header>
+            <div class="titlebar">
+            	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1>下拉刷新</h1>
+            </div>
+        </header>
+        <article>
+            <ul class="list" id="list"></ul>
+	    </article>
+    </section>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--禁止ios弹性-->
+    <script src="../plugin/inobounce/inobounce.min.js"></script>
+    <script type="text/javascript">
+        var a1=new Alert("加载完成");
+        var a2=new Alert("请求超时啦");
+        var a3=new Alert("到底部啦");
+        function initData(){
+            for(var i=0;i<100;i++){
+                var elLI=document.createElement("li");
+                elLI.innerHTML='<div class="justify-content">第'+i+'行列表</div>';
+                document.getElementById("list").appendChild(elLI);
+            }
+        }
+        function initDrag(){
+            var drag=new Dragrefresh("article",{
+                "onRefreshStart":function(e){
+                    setTimeout(function(){
+                        e.refreshComplete();
+                    }, 2000);
+                },
+                "onRefreshEnd":function(e){
+                    a1.show();
+                },
+                "onRefreshTimeout":function(e){
+                    a2.show();
+                },
+                "onBottom":function(e){
+                    a3.show();
+                    //数据加载完成时，隐藏下面的元素
+                    setTimeout(function(){
+                        e.bottomRefreshEl.style.display="none";
+                    }, 5000);
+                }
+            });
+        }
+        window.addEventListener("load",function(){
+            initData();
+            initDrag();
+        },false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

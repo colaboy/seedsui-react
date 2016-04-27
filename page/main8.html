@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <title>main8</title>
+        <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+        <link rel="stylesheet" href="../plugin/animate/animate.css">
+        <link rel="stylesheet" href="../css/delay.css">
+        <style type="text/css">
+        #menubox .box{
+            margin:12px 0;
+            overflow-x:hidden;
+        }
+        #menubox .box div{
+            width:50%;
+            background-color:white;
+            padding:8px;
+            box-shadow:1px 1px 0px 0 rgba(0, 0, 0, 0.1);
+            -webkit-animation-duration: 500ms;
+        }
+        #menubox .box div:active{
+            background-color:#ddd;
+        }
+        #menubox .box div img{
+            width:48px;
+            height:48px;
+            margin-right:8px;
+        }
+        #menubox .box div:nth-child(odd){
+            margin:0px 6px 0px 12px;
+        }
+        #menubox .box div:nth-child(even){
+            margin:0px 12px 0px 6px;
+        }
+        </style>
+    </head>
+<body>
+	<section id="page_main8" data-role="section" class="active">
+    	<header>
+			<div class="titlebar reverse">
+				<a href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+				<h1>主页8</h1>
+			</div>
+		</header>
+		<article style="bottom:54px;">
+            <div class="slider-container animated fadeInDown" id="carousel1">
+                <div class="slider-wrapper">
+                    <div class="slider-slide">
+                        <img src="../img/main8/banner.jpg"/>
+                        <div class="slide-title">新闻标题1</div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/main8/banner.jpg"/>
+                        <div class="slide-title">新闻标题2</div>
+                    </div>
+                    <div class="slider-slide">
+                        <img src="../img/main8/banner.jpg"/>
+                        <div class="slide-title">新闻标题2</div>
+                    </div>
+                </div>
+                <div class="slider-pagination"></div>
+            </div>
+            <div id="menubox">
+                <div class="box">
+                    <div class="animated fadeInLeft delay1">
+                        <img src="../img/main8/pic.png"/>
+                        行业动态
+                    </div>
+                    <div class="animated fadeInRight delay2">
+                        <img src="../img/main8/video.png"/>
+                        路况视频
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="animated fadeInLeft delay2">
+                        <img src="../img/main8/folder.png"/>
+                        通知公告
+                    </div>
+                    <div class="animated fadeInRight delay3">
+                        <img src="../img/main8/globe.png"/>
+                        政策法规
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="animated fadeInLeft delay3">
+                        <img src="../img/main8/win.png"/>
+                        产品展示
+                    </div>
+                    <div class="animated fadeInRight delay4">
+                        <img src="../img/main8/fire.png"/>
+                        协会专题
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="animated fadeInLeft delay4">
+                        <img src="../img/main8/search.png"/>
+                        技术交流
+                    </div>
+                    <div class="animated fadeInRight delay5">
+                        <img src="../img/main8/position.png"/>
+                        应用案例
+                    </div>
+                </div>
+            </div>
+	    </article>
+        <footer>
+            <ul class="menubar animated fadeInUp delay6">
+                <li class="tab active">
+                    <i class="icon" style="background-image:url(../img/main8/home.png);"></i>
+                    <label class="tab-label">首页</label>
+                </li>
+                <li class="tab">
+                    <i class="icon" style="background-image:url(../img/main8/trends.png);"></i>
+                    <label class="tab-label">动态</label>
+                </li>
+                <li class="tab">
+                    <i class="icon" style="background-image:url(../img/main8/forum.png);"></i>
+                    <label class="tab-label">论坛</label>
+                </li>
+                <li class="tab">
+                    <i class="icon" style="background-image:url(../img/main8/me.png);"></i>
+                    <label class="tab-label">我</label>
+                </li>
+            </ul>
+        </footer>
+	</section>
+	
+	
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script>
+        window.onload=function(){
+            var s1=new Slider("#carousel1",{
+                "pagination":".slider-pagination",
+                "loop":true
+            });
+        }
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

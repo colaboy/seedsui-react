@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>progressbar</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+	<!--头部-->
+	<header>
+        <div class="titlebar">
+            <a href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>ProgressBar</h1>
+            
+        </div>
+    </header>
+
+    <!--主体-->
+	<article>
+        <div class="title">Progress Bar</div>
+        <div class="progress-bar radius8">
+            <span class="progress" style="width: 35%"></span>
+            <span class="text left">
+                <span class="timer" data-duration="1000" data-to="35">0</span>
+                <span>%</span>
+            </span>
+        </div>
+        <br>
+        <div class="progress-bar radiusround">
+            <span class="progress" style="width: 45%"></span>
+            <span class="text right">
+                <span class="timer" data-duration="1000" data-to="16">0</span>
+                <span>/36</span>
+            </span>
+        </div>
+        <br>
+        <div class="progress-bar">
+            <span class="progress" style="width: 25%"></span>
+        </div>
+        <br>
+        <div class="progress-bar radius8">
+            <span class="progress" style="width: 35%"></span>
+        </div>
+        <br>
+        <div class="progress-bar radiusround">
+            <span class="progress" style="width: 45%"></span>
+        </div>
+        <br>
+        <div class="title">Progress 3D</div>
+        <div class="progress-bar threed">
+            <span class="progress" style="width: 25%"></span>
+        </div>
+        <br>
+        <div class="progress-bar threed radius8">
+            <span class="progress" style="width: 35%"></span>
+        </div>
+        <br>
+        <div class="progress-bar threed radiusround">
+            <span class="progress" style="width: 45%"></span>
+        </div>
+        <br>
+        <div class="title">Progress Striped (can animate stripe example 2)</div>
+        <div class="progress-bar striped">
+            <span class="progress" style="width: 25%"></span>
+        </div>
+        <br>
+        <div class="progress-bar striped radius8">
+            <span class="progress animated" style="width: 35%"></span>
+        </div>
+        <br>
+        <div class="progress-bar striped radiusround">
+            <span class="progress" style="width: 45%"></span>
+        </div>
+        <br>
+        <div class="title">Progress Bar with Text</div>
+        <div class="progress-bar">
+            <span class="progress" style="width: 25%"></span>
+            <span class="text center">
+                <span class="timer" data-duration="1000" data-to="25">0</span>
+                <span>%</span>
+            </span>
+        </div>
+        <br>
+        
+    </article>
+	
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--禁止ios弹性-->
+    <script src="../plugin/inobounce/inobounce.min.js"></script>
+    <script>
+	//定义exmobi返回
+	function back(){history.go(-1);}
+    Animate.counter();
+
+	</script>
+</body>
+</html>

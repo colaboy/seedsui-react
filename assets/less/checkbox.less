@@ -1,0 +1,40 @@
+/*-----------------------------checkbox.less(start)-----------------------------*/
+input[type="checkbox"],input[type="radio"],.checkbox,.radio{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  background-position:0 0;
+  background-repeat:no-repeat;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  background-size:auto 100%;
+  vertical-align: middle;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+
+  font-family: "iconfont";
+  font-size: 22px;
+}
+label input[type="checkbox"]+span,label input[type="radio"]+span,.checkbox+span,.radio+span{
+  margin:0 4px;
+}
+/*checkbox*/
+input[type="checkbox"]:before,.checkbox:before{
+  content: "\e9dd";
+}
+input[type="checkbox"]:checked:before,.checkbox.active:before{
+  content: "\e9de";
+}
+/*radio*/
+input[type="radio"]:before,.radio:before{
+	content: "\e9b5";
+}
+input[type="radio"]:checked:before,.radio.active:before{
+  content: "\e9ba";
+}
+/*-----------------------------checkbox.less(end)-----------------------------*/

@@ -1,0 +1,154 @@
+/*----------------grid.less(start)--------------*/
+.grid:after{
+	display:table;
+	content:'';
+	clear: both;
+	zoom:1;
+}
+.grid li{
+	width: 33%;
+	float:left;
+	text-align: center;
+	padding:2px;
+	box-sizing:border-box;
+}
+.grid li>a{
+	position: relative;
+	box-sizing:border-box;
+	margin:0px auto;
+	background-size:cover;
+	background-position:center;
+}
+.grid li>label{
+	display:block;
+    padding:0 4px;
+    margin-top:8px;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    box-sizing:border-box;
+    
+    font-size:12px;
+}
+.grid li>a>img{
+	max-width:100%;
+}
+/*边框*/
+.grid.border{
+	border-width: 0 0 1px 0;
+	border-style: solid;
+}
+.grid.border li{
+	border-style: solid;
+	border-width: 1px 1px 0 0;
+	border-color:inherit;
+}
+/*间距控制*/
+.grid[data-rowspace="0"] li{
+	padding-top:0px;
+}
+.grid.border[data-rowspace="0"] li{
+	padding-top:0px;
+	padding-bottom:0px;
+}
+.grid[data-rowspace="6"] li{
+	padding-top:6px;
+}
+.grid[data-rowspace="6"] li:last-child{
+	padding-bottom:6px;
+}
+.grid.border[data-rowspace="6"] li{
+	padding-top:6px;
+	padding-bottom:6px;
+}
+.grid[data-rowspace="8"] li{
+	padding-top:8px;
+}
+.grid[data-rowspace="8"] li:last-child{
+	padding-bottom:8px;
+}
+.grid.border[data-rowspace="8"] li{
+	padding-top:8px;
+	padding-bottom:8px;
+}
+.grid[data-rowspace="10"] li{
+	padding-top:10px;
+}
+.grid[data-rowspace="10"] li:last-child{
+	padding-bottom:10px;
+}
+.grid.border[data-rowspace="10"] li{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.grid[data-rowspace="12"] li{
+	padding-top:12px;
+}
+.grid[data-rowspace="12"] li:last-child{
+	padding-bottom:12px;
+}
+.grid.border[data-rowspace="12"] li{
+	padding-top:12px;
+	padding-bottom:12px;
+}
+.grid[data-rowspace="30"] li{
+	padding-top:30px;
+}
+.grid[data-rowspace="30"] li:last-child{
+	padding-bottom:30px;
+}
+.grid.border[data-rowspace="30"] li{
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+.grid[data-col="2"] li{
+	width:50%;
+}
+.grid[data-col="3"] li{
+	width:33.33%;
+}
+.grid[data-col="4"] li{
+	width:25%;
+}
+.grid[data-col="5"] li{
+	width:20%;
+}
+/*小汽泡*/
+.grid li .tip,.grid li .badge,.grid li .close{
+	position: absolute;
+    top: -4px;
+    right: -4px;
+}
+
+/*Metro风格*/
+.metro-tip{
+	position:absolute;
+	right:10px;
+	bottom:4px;
+	height: 32px;
+    line-height: 32px;
+    width: 32px;
+	font-size:18px;
+	text-align: right;
+	background-color:transparent;
+}
+.metro-tip+label{
+	padding-right:32px;
+}
+.grid.metro li>a{
+	display:block;
+	padding:12px 8px;
+}
+.grid.metro li>a label{
+	display: block;
+	text-align: left;
+	margin-top:10px;
+}
+/*相册展现*/
+.grid.album li>a{
+	width:100%;
+	min-height:110px;
+}
+/*----------------grid.less(end)----------------*/

@@ -1,0 +1,79 @@
+/*----------------inputbox.less(start)--------------*/
+.input-box,.row,.titlebar{
+	position:relative;
+	display: flex;
+	display: -webkit-flex;
+	display: box;
+	display: -webkit-box;
+	box-align: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.input-box{
+	margin:8px;
+
+	border-style:solid;
+	border-width:1px;
+	border-color:#ddd;
+}
+/*box内的表单框*/
+.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
+	display:block;
+	-webkit-box-flex:1.0;
+	box-flex:1.0;
+
+	-webkit-flex:1;
+	flex:1;
+	border:0;
+
+	background-color:transparent;
+}
+/*box内图标*/
+.input-box .icon{
+	margin-left:8px;
+	margin-right:8px;
+}
+.input-box .icon:active{
+	background-position:center bottom;
+}
+/*需要顶天立地的控件*/
+.input-box select+.icon,.input-box input[type="date"]+.icon,.input-box input[type="month"]+.icon,
+.input-box input[type="week"]+.icon,.input-box input[type="datetime-local"]+.icon,
+.input-box input[type="datetime"]+.icon,.input-box input[type="time"]+.icon{
+	position:absolute;
+	top:50%;
+	right:0;
+	-webkit-transform:translateY(-50%);
+	-moz-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	transform:translateY(-50%);
+	pointer-events:none;
+}
+/*图标与框间距*/
+.input-box .icon+input,.input-box .icon+.input-text,.input-box .icon+select,.input-box .icon+textarea{
+	padding-left:0;
+}
+.input-box input+.icon,.input-box .input-text+.icon,.input-box select+.icon,.input-box textarea+.icon{
+	margin-left:0;
+}
+.input-box .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
+	margin-left:0px;
+}
+/*搜索框*/
+input[type=search].search,input[type=text].search{
+	padding-top:6px;
+	padding-bottom:6px;
+}
+/*带清空按钮*/
+div[data-input=clear] input[type]+.icon{
+	font-size:20px;
+	width:20px;
+	height:20px;
+	margin-right:10px;
+}
+/*线型*/
+.input-box.underline{
+	border-width:0 0 1px 0;
+}
+/*----------------inputbox.less(end)--------------*/

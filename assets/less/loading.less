@@ -1,0 +1,74 @@
+/*-----------------------------loading.less(start)-----------------------------*/
+.loading-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  z-index: 10;
+  -webkit-transform:translate(-50%,-50%);
+
+  background-color: white;
+}
+/*加载动画*/
+.loading {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position:relative;
+}
+.loading:before,
+.loading:after {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 42px;
+  background:white;
+}
+
+.loading:before {
+  top: -1px;
+  left: -1px;
+  -webkit-transform-origin: 100% 50%;
+  -webkit-animation: loading 1.2s ease 0.9s infinite;
+}
+.loading:after {
+  top: -1px;
+  left: 50%;
+  -webkit-transform-origin: 0 50%;
+  -webkit-animation: loading 1.2s infinite ease;
+}
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/*加载更多*/
+.loading-more{
+  padding:12px 0;
+  text-align: center;
+}
+.loading-more .loading{
+  width: 30px;
+  height: 30px;
+}
+.loading-more label{
+  margin-left: 10px;
+}
+.loading-more .loading:before,
+.loading-more .loading:after {
+  width: 17px;
+  height: 32px;
+}
+/*-----------------------------loading.less(end)----------------------------*/
