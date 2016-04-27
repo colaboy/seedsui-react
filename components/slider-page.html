@@ -155,7 +155,7 @@
             initDrag();
         },false);
 
-        /*兼容Ios浏览器滚动到最底或者最顶，不能滚动的问题*/
+        /*兼容Ios浏览器滚动到最底或者最顶，不能滑动的问题*/
         [].slice.call(slides).forEach(function(n,i,a){
             n.addEventListener("scroll",function(e){
                 compatibleIosScroll(e);

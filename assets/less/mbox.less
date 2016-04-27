@@ -3,12 +3,12 @@ html,body{
 	height:100%;
 }
 body{
-	position:fixed;
+	/* position:fixed;
 	top:0;
 	right:0;
 	bottom:0;
 	left:0;
-	overflow:hidden;
+	overflow:hidden; */
 	/*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	/*禁止文字自适应大小*/
@@ -17,12 +17,6 @@ body{
 	-ms-text-size-adjust: none;
 	-o-text-size-adjust: none;
 	text-size-adjust: none;
-	/*禁止或显示系统默认菜单*/
-	/*-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;*/
 }
 /*主体*/
 #section_container {
@@ -72,11 +66,11 @@ article{
 	width:100%;
 	overflow:auto;
 	/*平滑滚动*/
-	-webkit-overflow-scrolling : touch;
-	-moz-overflow-scrolling : touch;
-	-ms-overflow-scrolling : touch;
-	-o-overflow-scrolling : touch;
-	overflow-scrolling : touch;
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-ms-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	overflow-scrolling:touch;
 }
 .scroller{
 	position:relative;
