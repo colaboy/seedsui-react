@@ -77,6 +77,10 @@ var Exmobi={
 		camerawindow.onCallback=cameraCallback;
 		camerawindow.startCamera();
 	},
+	album:function(argPwidth){
+		var pwidth=argPwidth||768;
+		NativeUtil.selectCameraPhoto(albumCallback,pwidth,true);
+	},
 	imageChoice:function(pwidth,nums){
 		var folder=new File("res:image/filechoice",true);
 		var imageChoice=new ImageChoice();
