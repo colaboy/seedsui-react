@@ -32,11 +32,11 @@ a:not(.noclick):active,a.active{
 }
 /*容器样式*/
 .highlight {
-	border-color:@border-color;
+	border-color:@border;
 	background-color: @highlight-bg;
 }
 hr{
-	border-color: @border-color;
+	border-color: @border;
 }
 /*条纹线*/
 .stripe:nth-child(even){
@@ -236,7 +236,7 @@ button.grayscale,input[type="button"].grayscale,.button.grayscale{
 }
 button.grayscale,input[type="button"].grayscale,.button.grayscale{
 	color:@body-color;
-	border-color:@border-color;
+	border-color:@border;
 	background-color:@body-bg;
 }
 button.grayscale:not(.noclick):active,input[type="button"].grayscale:not(.noclick):active,.button.grayscale:not(.noclick):active{
@@ -246,7 +246,7 @@ button.grayscale:not(.noclick):active,input[type="button"].grayscale:not(.noclic
 }
 button.outline.grayscale,input[type="button"].outline.grayscale,.button.outline.grayscale{
 	color:@body-color;
-	border-color:@border-color;
+	border-color:@border;
 	background-color:transparent;
 }
 button.outline.grayscale:not(.noclick):active,input[type="button"].outline.grayscale:not(.noclick):active,.button.outline.grayscale:not(.noclick):active{
@@ -396,7 +396,7 @@ button.shadow:not(.noclick):active,.button.shadow:not(.noclick):active,input[typ
 
 /*----------------------------buttongroup.less(start)------------------------------*/
 .button-group>span{
-	border-color:@border-color;
+	border-color:@border;
 	background-color: @white;
 }
 /*激活状态*/
@@ -434,7 +434,7 @@ button.shadow:not(.noclick):active,.button.shadow:not(.noclick):active,input[typ
 /*----------------popup.less.less(start)--------------*/
 /*pop-box*/
 .popup{
-	border-color:@border-color;
+	border-color:@border;
 }
 
 /*pop-遮罩*/
@@ -444,7 +444,7 @@ button.shadow:not(.noclick):active,.button.shadow:not(.noclick):active,input[typ
 /*actionsheet*/
 .actionsheet button {
 	color: #007aff;
-	border-bottom-color:@border-color;
+	border-bottom-color:@border;
 	background-color:rgba(255,255,255,.9);
 }
 
@@ -460,12 +460,12 @@ input[type="text"],input[type="password"],input[type="search"],input[type="file"
 input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
 input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
 input[list],textarea,select,.input-text{
-	border-color:@border-color;
+	border-color:@border;
 	background-color:@input-bg;
 }
 .input-box{
 	background-color:@input-bg;
-	border-color:@border-color;
+	border-color:@border;
 }
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
 	background-color:transparent;
@@ -473,7 +473,7 @@ input[list],textarea,select,.input-text{
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
 .input-box{
-	border-color:@border-color;
+	border-color:@border;
 }
 .input-box.click .icon:active,.input-box .icon.click:active,.input-box .icon.active{
 	color:@primary-bg;
@@ -574,14 +574,14 @@ input[list],textarea,select,.input-text{
 
 /*----------------row.less(start)--------------*/
 .row,.group,.card{
-	border-color:@border-color;
+	border-color:@border;
 }
 /*----------------row.less(end)--------------*/
 
 /*----------------card.less(start)--------------*/
 .card-handler>a{
 	color:@placeholder-color;
-	border-color:@border-color;
+	border-color:@border;
 }
 .card-info{
 	color:@placeholder-color;
@@ -590,7 +590,7 @@ input[list],textarea,select,.input-text{
 
 /*----------------range.less(start)--------------*/
 input[type=range]{
-	background-color:@border-color;
+	background-color:@border;
 }
 input[type=range]::-webkit-slider-thumb{
 	background-color:@primary-bg;
@@ -600,14 +600,14 @@ input[type=range]::-webkit-slider-thumb{
 
 /*----------------inputcolor.less(start)--------------*/
 ::-webkit-color-swatch-wrapper {
-	border-color:@border-color;
+	border-color:@border;
 }
 /*----------------inputcolor.less(end)--------------*/
 
 /*----------------progress.less(end)--------------*/
 progress {
-	color:@border-color; /*IE10*/
-    border-color:@border-color;  
+	color:@border; /*IE10*/
+    border-color:@border;  
     background-color:transparent;
 }
 
@@ -645,13 +645,13 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	background-color:@body-bg;
 }
 .richedit figcaption{
-    border-color:@border-color;
+    border-color:@border;
 }
 .richedit .input{
-	border-color:@border-color;
+	border-color:@border;
 }
 .richedit .input:before,.richedit .input:after{
-	background-color:@border-color;
+	background-color:@border;
 }
 .richedit.active .input{
 	border-color:@primary-bg;
@@ -663,11 +663,11 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
 .switch {
-	border-color:@border-color;
+	border-color:@border;
 }
 /*关闭状态圆点*/
 .switch .switch-handle{
-	background-color:@border-color;
+	background-color:@border;
 }
 /*关闭状态文字off*/
 .switch:after{
@@ -684,7 +684,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 
 /*开关控件toggle-反转*/
 .switch.reverse{
-	background-color:@border-color;
+	background-color:@border;
 }
 .switch.reverse:after{
 	color:@placeholder-color;
@@ -700,7 +700,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*边框*/
 .grid.border{
-	border-color:@border-color;
+	border-color:@border;
 }
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
@@ -720,7 +720,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------photo.less(end)----------------*/
 /*----------------------------list.less(start)----------------------------*/
 .list,.timeline{
-	border-color:@border-color;
+	border-color:@border;
 }
 .list li{
 	background-color:@list-bg;
@@ -751,7 +751,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------------------list.less(end)----------------------------*/
 /*----------------------------title.less(start)----------------------------*/
 .sliver,li.sliver,.title{
-	border-color:@border-color;
+	border-color:@border;
 }
 .sliver,li.sliver{
 	color:@placeholder-color;
@@ -760,12 +760,12 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------------------title.less(end)----------------------------*/
 /*----------------------------statusbar.less(start)----------------------------*/
 .statusbar{
-	background-color:@border-color;
+	background-color:@border;
 }
 /*----------------------------statusbar.less(end)----------------------------*/
 /*----------------------------searchbar.less(start)----------------------------*/
 .searchbar{
-    background-color:@border-color;
+    background-color:@border;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
@@ -783,7 +783,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 
 /*-----------------------------calendar.less(start)-----------------------------*/
 .calendar{
-	border-color:@border-color;
+	border-color:@border;
 }
 .day-name{
     color:@label-color;
@@ -795,13 +795,13 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
     background-color:@primary-bg;
 }
 .arrowleft,.arrowright{
-	color:@border-color;
+	color:@border;
 }
 .arrowleft:active,.arrowright:active{
 	color:@primary-bg;
 }
 .not-this-month{
-	color:@border-color;
+	color:@border;
 }
 /*-----------------------------calendar.less(end)-----------------------------*/
 
@@ -826,14 +826,14 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*---------------table.less(start)---------------*/
 table{
 	color:@table-color;
-	border-color:@border-color;
+	border-color:@border;
 }
 /*---------------table.less(end)---------------*/
 
 /*---------------tree.less(start)---------------*/
 table{
 	color:@table-color;
-	border-color:@border-color;
+	border-color:@border;
 }
 /*---------------tree.less(end)---------------*/
 .treetitle .radiusround{
@@ -845,7 +845,7 @@ table{
 }
 /*----------------layout.less(start)--------------*/
 .underline{
-	border-color:@border-color;
+	border-color:@border;
 }
 /*----------------layout.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
