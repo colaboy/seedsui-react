@@ -465,6 +465,7 @@ input[list],textarea,select,.input-text{
 }
 .input-box{
 	background-color:@input-bg;
+	border-color:@border-color;
 }
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
 	background-color:transparent;
@@ -588,56 +589,12 @@ input[list],textarea,select,.input-text{
 /*----------------card.less(end)--------------*/
 
 /*----------------range.less(start)--------------*/
-/*去除所有原有样式*/
-input[type=range]::-ms-track {
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
+input[type=range]{
+	background-color:@border-color;
 }
-
-/*添加轨道样式*/
-/*添加轨道样式-webkit*/
-input[type=range]::-webkit-slider-thumb {
-  background: @primary-bg;
-  opacity:1;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  border-color:@border-color;
-  background:@white;
-}
-
-input[type=range]:active::-webkit-slider-runnable-track {
-  background:@border-color;
-}
-/*添加轨道样式-moz*/
-input[type=range]::-moz-range-thumb {
-  background: @primary-bg;
-  opacity:1;
-}
-input[type=range]::-moz-range-track {
-	background: #fff;
-	border-color:@border-color;
-}
-/*添加轨道样式-ms*/
-input[type=range]::-ms-thumb {
-	background: @primary-bg;
-	opacity:1;
-}
-input[type=range]::-ms-track {
-	border-color:@border-color;
-}
-input[type=range]::-ms-fill-lower {
-	border-color:@white;
-	background: @primary-bg;
-}
-input[type=range]:focus::-ms-fill-lower {
-	background: @primary-bg;
-}
-input[type=range]::-ms-fill-upper {
-	background:@white;
-}
-input[type=range]:focus::-ms-fill-upper {
-	background:@white;
+input[type=range]::-webkit-slider-thumb{
+	background-color:@primary-bg;
+	border-color:red;
 }
 /*----------------range.less(end)--------------*/
 
@@ -649,26 +606,26 @@ input[type=range]:focus::-ms-fill-upper {
 
 /*----------------progress.less(end)--------------*/
 progress {
-	color: @primary-bg; /*IE10*/
-    border-color:@primary-bg;  
-    background-color:#fff;
+	color:@border-color; /*IE10*/
+    border-color:@border-color;  
+    background-color:transparent;
 }
 
 progress::-moz-progress-bar {
-	background: @primary-bg;
+	background:@primary-bg;
 }
 progress::-webkit-progress-bar {
-	background: @white;
+	background:transparent;
 }
 progress::-webkit-progress-value  {
-	background-color: @primary-bg;
+	background-color:@primary-bg;
 }
 .progress-bar {
 	color:white;
-	background-color: @progress-bg;
+	background-color:@progress-bg;
 }
 .progress {
-	background-color: @progress-color;
+	background-color:@progress-color;
 }
 /*----------------progress.less(end)--------------*/
 
@@ -886,6 +843,11 @@ table{
 .treetitle .treeicon:not(.radiusround),.treetitle .right{
     color:@placeholder-color;
 }
+/*----------------layout.less(start)--------------*/
+.underline{
+	border-color:@border-color;
+}
+/*----------------layout.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
 .color-primary {

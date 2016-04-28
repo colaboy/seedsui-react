@@ -1891,8 +1891,6 @@ ul li.dotted {
 .group .input-box {
   border-width: 0;
   margin: 0;
-  padding-top: 4px;
-  padding-bottom: 4px;
 }
 .group .row:last-of-type {
   border-width: 0;
@@ -1911,6 +1909,7 @@ ul li.dotted {
   border-style: solid;
   background-color: #fff;
 }
+.row label,
 .input-box label,
 .card label {
   line-height: 30px;
@@ -2820,10 +2819,8 @@ select {
   align-items: center;
 }
 .input-box {
-  margin: 8px;
   border-style: solid;
   border-width: 1px;
-  border-color: #ddd;
 }
 /*box内的表单框*/
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
@@ -2894,10 +2891,6 @@ div[data-input=clear] input[type] + .icon {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-}
-/*线型*/
-.input-box.underline {
-  border-width: 0 0 1px 0;
 }
 /*----------------inputbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
@@ -2971,25 +2964,31 @@ input[type="color"] {
   border: none;
 }
 /*----------------inputcolor.less(end)--------------*/
+/*---------------tooltip.less(start)---------------*/
+.tooltip {
+  display: none;
+  position: absolute;
+  top: -50px;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  line-height: 48px;
+  text-align: center;
+  text-shadow: 0 1px 0 #f3f3f3;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  opacity: .8;
+}
+/*---------------tooltip.less(end)---------------*/
 /*----------------progress.less(start)--------------*/
 progress {
-  width: 160px;
   height: 10px;
   border-width: 1px;
   border-style: solid;
-  color: #3779d0;
-  /*IE10*/
-  border-color: #ddd;
-  background-color: #fff;
-}
-progress::-moz-progress-bar {
-  background: #3779d0;
-}
-progress::-webkit-progress-bar {
-  background: white;
-}
-progress::-webkit-progress-value {
-  background: #3779d0;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .progress-bar {
   height: 20px;
@@ -3083,104 +3082,25 @@ progress::-webkit-progress-value {
 }
 /*----------------progress.less(end)--------------*/
 /*----------------range.less(start)--------------*/
-/*去除所有原有样式*/
 input[type=range] {
-  margin: 8px 0;
-  -webkit-appearance: none;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-ms-track {
+  -webkit-appearance: none!important;
+  position: relative;
   width: 100%;
+  height: 2px;
+  padding: 0;
+  margin: 17px 0;
   cursor: pointer;
-  border-color: transparent;
-  color: transparent;
-  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
 }
-/*添加轨道样式*/
-/*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 24px;
-  border: none;
-  cursor: pointer;
-  margin-top: -10px;
-  background: #3779d0;
-  opacity: 1;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  height: 8px;
-  cursor: pointer;
-  border-radius: 8px;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-  background: white;
-}
-input[type=range]:active::-webkit-slider-runnable-track {
-  background: #ddd;
-}
-/*添加轨道样式-moz*/
-input[type=range]::-moz-range-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 24px;
-  border: none;
-  cursor: pointer;
-  margin-top: -10px;
-  background: #3779d0;
-  opacity: 1;
-}
-input[type=range]::-moz-range-track {
-  height: 8px;
-  cursor: pointer;
-  background: #fff;
-  box-sizing: border-box;
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-}
-/*添加轨道样式-ms*/
-input[type=range]::-ms-thumb {
-  height: 8px;
-  width: 8px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background: #3779d0;
-  opacity: 1;
-}
-input[type=range]::-ms-track {
-  height: 10px;
-  border-radius: 10px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ddd;
-}
-input[type=range]::-ms-fill-lower {
-  border-radius: 10px;
-  border-width: 3px;
-  border-style: solid;
-  border-color: white;
-  background: #3779d0;
-}
-input[type=range]:focus::-ms-fill-lower {
-  border-radius: 10px;
-  background: #3779d0;
-}
-input[type=range]::-ms-fill-upper {
-  background: white;
-}
-input[type=range]:focus::-ms-fill-upper {
-  border-radius: 10px;
-  background: white;
+  -webkit-appearance: none!important;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background-clip: padding-box;
+  border-radius: 50%;
 }
 /*----------------range.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
@@ -5499,7 +5419,7 @@ ul.weather-otherday li {
   height: 28px;
 }
 button .icon,
-input[type="button"],
+input[type="button"] .icon,
 .button .icon {
   font-size: 20px;
   width: 20px;
@@ -6193,6 +6113,14 @@ input[type="submit"].radiusround,
   margin-left: 8px;
   margin-right: 8px;
 }
+.tbmargin4 {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.tbmargin8 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 .nomargin {
   margin: 0 !important;
 }
@@ -6213,9 +6141,17 @@ input[type="submit"].radiusround,
 .padding8 {
   padding: 8px;
 }
+.lrpadding4 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
 .lrpadding8 {
   padding-left: 8px;
   padding-right: 8px;
+}
+.tbpadding4 {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 .tbpadding8 {
   padding-top: 8px;
@@ -6266,6 +6202,11 @@ input[type="submit"].radiusround,
 }
 .inline-block {
   display: inline-block;
+}
+/*线条*/
+.underline {
+  border-style: solid;
+  border-width: 0 0 1px 0;
 }
 /*----------------layout.less(end)--------------*/
 /*控件*/
@@ -6837,6 +6778,7 @@ select,
 }
 .input-box {
   background-color: #ffffff;
+  border-color: #dddddd;
 }
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
 .input-box select,
@@ -6987,54 +6929,12 @@ select,
 }
 /*----------------card.less(end)--------------*/
 /*----------------range.less(start)--------------*/
-/*去除所有原有样式*/
-input[type=range]::-ms-track {
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
+input[type=range] {
+  background-color: #dddddd;
 }
-/*添加轨道样式*/
-/*添加轨道样式-webkit*/
 input[type=range]::-webkit-slider-thumb {
-  background: #36acf4;
-  opacity: 1;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  border-color: #dddddd;
-  background: #ffffff;
-}
-input[type=range]:active::-webkit-slider-runnable-track {
-  background: #dddddd;
-}
-/*添加轨道样式-moz*/
-input[type=range]::-moz-range-thumb {
-  background: #36acf4;
-  opacity: 1;
-}
-input[type=range]::-moz-range-track {
-  background: #fff;
-  border-color: #dddddd;
-}
-/*添加轨道样式-ms*/
-input[type=range]::-ms-thumb {
-  background: #36acf4;
-  opacity: 1;
-}
-input[type=range]::-ms-track {
-  border-color: #dddddd;
-}
-input[type=range]::-ms-fill-lower {
-  border-color: #ffffff;
-  background: #36acf4;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #36acf4;
-}
-input[type=range]::-ms-fill-upper {
-  background: #ffffff;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #ffffff;
+  background-color: #36acf4;
+  border-color: red;
 }
 /*----------------range.less(end)--------------*/
 /*----------------inputcolor.less(start)--------------*/
@@ -7044,16 +6944,16 @@ input[type=range]:focus::-ms-fill-upper {
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #36acf4;
+  color: #dddddd;
   /*IE10*/
-  border-color: #36acf4;
-  background-color: #fff;
+  border-color: #dddddd;
+  background-color: transparent;
 }
 progress::-moz-progress-bar {
   background: #36acf4;
 }
 progress::-webkit-progress-bar {
-  background: #ffffff;
+  background: transparent;
 }
 progress::-webkit-progress-value {
   background-color: #36acf4;
@@ -7299,6 +7199,11 @@ table {
 .treetitle .right {
   color: #aaaaaa;
 }
+/*----------------layout.less(start)--------------*/
+.underline {
+  border-color: #dddddd;
+}
+/*----------------layout.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
 .color-primary {

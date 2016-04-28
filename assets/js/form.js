@@ -107,6 +107,35 @@
 			$(".safelvl").parent().find("[type=password]").on("input propertychange",function(){
 				s.checkSafe($(this)[0],$(".safelvl")[0]);
 			});
+			//range控件
+			var hideTooltipTimer;
+			$(".tooltip+input[type=range]").on("touchstart input",function(){
+				/*=========================
+		          显示tooltip
+		          ===========================*/
+		        if(hideTooltipTimer)clearTimeout(hideTooltipTimer);
+		        var tooltip=$(this).prev();
+		        tooltip.css({"display":"block"});
+				/*=========================
+		          计算tooltip位置
+		          ===========================*/
+				//当前值所占百分比
+				var percent=((this.value-this.min)/(this.max-this.min)).toFixed(2);
+				//距左的位置
+				var offsetLeft=$(this).offset().left+($(this).width()*percent-10);
+				var currentOffsetLeft=offsetLeft-$(this).parent().offset().left;
+				//滑块内部的实际位置
+				var currentBallLeft=28*percent;
+				//当前值的位置-滑块的位置=小球正中间的位置
+				var left=currentOffsetLeft-currentBallLeft;
+				tooltip.html(this.value).css({"left":left});
+				/*=========================
+		          隐藏tooltip
+		          ===========================*/
+		        hideTooltipTimer=setTimeout(function(){
+		        	tooltip.css({"display":"none"});
+		        },1000);
+			})
 		};
 		/*================
 		Method
