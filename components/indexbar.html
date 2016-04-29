@@ -5,48 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
     <title>indexbar</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-    <style type="text/css">
-    .indexbar{
-        position:absolute;
-        top:44px;
-        right:0;
-        bottom:0;
-        font-size:11px;
-        z-index:9;
-    }
-    .indexbar a{
-        display:block;
-        height:3.8%;
-        width:23px;
-        text-align:center;
-        color:#ddd;
-    }
-    .indexbar a.active{
-        color:#333;
-    }
-
-    .indexlist li:not(.sliver){
-        padding:0 28px;
-    }
-    .indexbar-tooltip{
-        position: absolute;
-        z-index: 20;
-        background-color: rgba(0, 0, 0, 0.5);
-        width: 80px;
-        height: 80px;
-        left: 50%;
-        top: 50%;
-        margin-left: -40px;
-        margin-top: -40px;
-        border-radius: 40px;
-        text-align: center;
-        line-height: 80px;
-        font-size: 35px;
-        color: #fff;
-        display: none;
-        -webkit-transition: .2s;
-    }
-    </style>
 </head>
 
 <body>
@@ -54,12 +12,12 @@
         <header>
             <div class="titlebar">
             	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-                <h1>索引控件</h1>
+                <h1>索引栏</h1>
             </div>
         </header>
         <div class="indexbar">
-            <a href="#A">A</a>
-            <a href="#B" class="active">B</a>
+            <a>A</a>
+            <a>B</a>
             <a>C</a>
             <a>D</a>
             <a>E</a>
@@ -85,12 +43,10 @@
             <a>Y</a>
             <a>Z</a>
         </div>
+        <div class="indexbar-tooltip">H</div>
         <article>
-            <div class="indexbar-tooltip">
-                H
-            </div>
-            <ul class="list indexlist border-content">
-                <li class="sliver" id="A">A</li>
+            <ul class="indexlist border-content">
+                <li class="sliver" data-index="A">A</li>
                 <li>
                     <div class="justify-content">阿华</div>
                 </li>
@@ -100,24 +56,20 @@
                 <li>
                     <div class="justify-content">阿全</div>
                 </li>
-                <li>
+                <li class="noborder">
                     <div class="justify-content">阿达</div>
                 </li>
-                <li class="sliver" id="B">
-                    <div>B</div>
-                </li>
+                <li class="sliver" data-index="B">B</li>
                 <li>
                     <div class="justify-content">白起</div>
                 </li>
                 <li>
                     <div class="justify-content">白旭</div>
                 </li>
-                <li>
+                <li class="noborder">
                     <div class="justify-content">冰冰</div>
                 </li>
-                <li class="sliver" id="C">
-                    <div>C</div>
-                </li>
+                <li class="sliver" data-index="C">C</li>
                 <li>
                     <div class="justify-content">曹操</div>
                 </li>
@@ -154,8 +106,88 @@
                 <li>
                     <div class="justify-content">成婷</div>
                 </li>
-                <li>
+                <li class="noborder">
                     <div class="justify-content">成龙</div>
+                </li>
+                <li class="sliver" data-index="D">D</li>
+                <li>
+                    <div class="justify-content">大成子</div>
+                </li>
+                <li>
+                    <div class="justify-content">大舅子</div>
+                </li>
+                <li>
+                    <div class="justify-content">戴笠</div>
+                </li>
+                <li>
+                    <div class="justify-content">戴坤</div>
+                </li>
+                <li>
+                    <div class="justify-content">戴成虎</div>
+                </li>
+                <li>
+                    <div class="justify-content">邓小平</div>
+                </li>
+                <li>
+                    <div class="justify-content">邓稼先</div>
+                </li>
+                <li>
+                    <div class="justify-content">邓文迪</div>
+                </li>
+                <li>
+                    <div class="justify-content">邓等</div>
+                </li>
+                <li>
+                    <div class="justify-content">狄仁杰</div>
+                </li>
+                <li>
+                    <div class="justify-content">狄弟</div>
+                </li>
+                <li>
+                    <div class="justify-content">董文华</div>
+                </li>
+                <li>
+                    <div class="justify-content">董事</div>
+                </li>
+                <li class="sliver" data-index="F">F</li>
+                <li>
+                    <div class="justify-content">樊哙</div>
+                </li>
+                <li>
+                    <div class="justify-content">樊心</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯晨晨</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯敬尧</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯成虎</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯小平</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯稼先</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯文迪</div>
+                </li>
+                <li>
+                    <div class="justify-content">冯晨</div>
+                </li>
+                <li>
+                    <div class="justify-content">福尔杰</div>
+                </li>
+                <li>
+                    <div class="justify-content">福尔康</div>
+                </li>
+                <li>
+                    <div class="justify-content">福文华</div>
+                </li>
+                <li>
+                    <div class="justify-content">方文山</div>
                 </li>
             </ul>
         </article>
@@ -167,10 +199,7 @@
     <!--禁止ios弹性-->
     <script src="../plugin/inobounce/inobounce.min.js"></script>
     <script type="text/javascript">
-        var indexbar=document.querySelector(".indexbar");
-        indexbar.addEventListener("touchmove",function(e){
-            console.log(e.target);
-        },false)
+        var indexbar=new Indexbar(".indexbar");
     </script>
 </body>
 </html>

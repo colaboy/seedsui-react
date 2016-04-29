@@ -27,3 +27,4 @@
 // @koala-prepend "actionsheet.js"
 // @koala-prepend "dialog.js"
 // @koala-prepend "tree.js"
+// @koala-prepend "indexbar.js"

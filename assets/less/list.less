@@ -1,5 +1,5 @@
 /*---------------list.less(start)---------------*/
-.list li,.timeline li{
+.indexlist li,.list li,.timeline li{
 	position:relative;
 	display:flex;
 	display:-webkit-flex;
@@ -8,15 +8,6 @@
 	box-sizing:border-box;
 	border-style:solid;
 	border-width:0;
-}
-.list li,.timeline li{
-	border-color:inherit;
-}
-.list li{
-	border-width:0 0 1px 0;
-}
-ul.dotted li,ul li.dotted{
-	border-style: dotted;
 }
 .list button{
 	width:60px;
@@ -41,7 +32,6 @@ ul.dotted li,ul li.dotted{
 .justify img{
 	max-width: 100%;
 }
-
 .justify-content{
 	overflow: hidden;
 	position:relative;
@@ -92,14 +82,23 @@ ul.dotted li,ul li.dotted{
 .list .right{
 	right:4px;
 }
-/*内容线*/
-.list.noborder li,.list li.noborder{
+/*底线*/
+.list li,.timeline li{
+	border-color:inherit;
+}
+.list li{
+	border-width:0 0 1px 0;
+}
+ul.dotted li,ul li.dotted{
+	border-style: dotted;
+}
+ul.noborder li,ul li.noborder{
 	border-width:0;
 }
-.list.border-content li{
+ul.border-content li{
     border-width: 0;
 }
-.list.border-content .justify-content,.list.border-content .justify-content+.justify{
+.border-content .justify-content,.justify-content+.justify{
 	border-style: inherit;
     border-color: inherit;
     border-width: 0 0 1px 0;

@@ -718,20 +718,20 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	background-color:white;
 }
 /*----------------photo.less(end)----------------*/
-/*----------------------------list.less(start)----------------------------*/
-.list,.timeline{
+/*----------------list.less(start)----------------*/
+.indexlist li,.list,.timeline{
 	border-color:@border;
 }
-.list li{
+.indexlist,.list{
 	background-color:@list-bg;
 }
-.list:not(.noclick) li:active{
+.indexlist:not(.noclick) li:active,.list:not(.noclick) li:active{
 	background-color:@list-active-bg;
 }
 .list li.noclick:active{
 	background-color:@list-bg;
 }
-.list.bg-transparent li,.list li.bg-transparent{
+ul.bg-transparent,ul.bg-transparent li,ul li.bg-transparent{
 	background-color:transparent;
 }
 .star{
@@ -748,8 +748,16 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-/*----------------------------list.less(end)----------------------------*/
-/*----------------------------title.less(start)----------------------------*/
+/*----------------list.less(end)----------------*/
+/*----------------indexbar.less(start)----------------*/
+.indexbar.active a{
+    color:@body-color;
+}
+.indexbar-tooltip{
+	background-color:@mask-bg;
+}
+/*----------------indexbar.less(end)----------------*/
+/*----------------title.less(start)----------------*/
 .sliver,li.sliver,.title{
 	border-color:@border;
 }
@@ -757,18 +765,18 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	color:@placeholder-color;
 	background-color:@highlight-bg;
 }
-/*----------------------------title.less(end)----------------------------*/
-/*----------------------------statusbar.less(start)----------------------------*/
+/*----------------title.less(end)----------------*/
+/*----------------statusbar.less(start)----------------*/
 .statusbar{
 	background-color:@border;
 }
-/*----------------------------statusbar.less(end)----------------------------*/
-/*----------------------------searchbar.less(start)----------------------------*/
+/*----------------statusbar.less(end)----------------*/
+/*----------------searchbar.less(start)----------------*/
 .searchbar{
     background-color:@border;
 }
-/*----------------------------searchbar.less(end)----------------------------*/
-/*-----------------------------loading.less(start)-----------------------------*/
+/*----------------searchbar.less(end)----------------*/
+/*----------------loading.less(start)----------------*/
 .loading {
 	box-shadow:inset 0 0 0 4px @primary-bg;
 }
@@ -779,9 +787,8 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .loading-more .loading:after {
 	background:@body-bg;
 }
-/*-----------------------------loading.less(end)-----------------------------*/
-
-/*-----------------------------calendar.less(start)-----------------------------*/
+/*----------------loading.less(end)----------------*/
+/*----------------calendar.less(start)----------------*/
 .calendar{
 	border-color:@border;
 }
@@ -803,9 +810,8 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .not-this-month{
 	color:@border;
 }
-/*-----------------------------calendar.less(end)-----------------------------*/
-
-/*----------------------------chat.less(start)----------------------------*/
+/*----------------calendar.less(end)----------------*/
+/*----------------chat.less(start)----------------*/
 .chat .author i {
 	color:@placeholder-color;
 }
@@ -821,7 +827,7 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .chat .even .content:after {
 	border-left-color: @chat-even-bg;
 }
-/*----------------------------chat.less(end)----------------------------*/
+/*----------------chat.less(end)----------------*/
 
 /*---------------table.less(start)---------------*/
 table{
