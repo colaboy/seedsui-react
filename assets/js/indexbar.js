@@ -7,12 +7,6 @@
 			"indexbarActiveClass":"active",
 			"indexActiveClass":"active",
 			"tooltipClass":"indexbar-tooltip"
-
-			/*callbacks
-			onInit:function(Indexbar)
-			onSlideChangeStart:function(Indexbar)
-			onSlideChangeEnd:function(Indexbar)
-			*/
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -38,11 +32,14 @@
 		
 		//Indexs
 		s.indexs=s.container.querySelectorAll("a");
-		s.indexHeight=s.article.clientHeight/s.indexs.length;
-		[].slice.call(s.indexs).forEach(function(n,i,a){
-			n.style.height=s.indexHeight+"px";
-			n.style.lineHeight=s.indexHeight+"px";
-		})
+		s.updateContainerSize=function(){
+			s.indexHeight=s.article.clientHeight/s.indexs.length;
+			[].slice.call(s.indexs).forEach(function(n,i,a){
+				n.style.height=s.indexHeight+"px";
+				n.style.lineHeight=s.indexHeight+"px";
+			})
+		}
+		s.updateContainerSize();
 
 		//Tooltip
 		s.tooltip=s.section.querySelector("."+s.params.tooltipClass);
