@@ -444,18 +444,12 @@
 		document.addEventListener("plusready",function(){
 			document.getElementById("exmobilocal").style.display="block";
 		},false);
-		//remove原返回事件绑定
-		document.removeEventListener("backmonitor",back,false);
-		//添加新的返回事件
-		document.addEventListener("backmonitor",function(){
-			Exmobi.dbclose();
-		},false);
 		//判断是否是微信环境
 		if(Device.isWeixin){
 			document.getElementById("weixinlocal").style.display="block";
 		}
 		//定义exmobi返回
-		function back(){history.go(-1);}
+		function back(){Exmobi.dbclose();}
 	</script>
 </body>
 </html>
