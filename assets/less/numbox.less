@@ -1,0 +1,36 @@
+/*----------------numbox.less(start)--------------*/
+.numbox{
+    display:inline-block;
+    position:relative;
+    height:32px;
+    width:120px;
+    overflow:hidden;
+    text-align:center;
+}
+.numbox input[type=button]{
+    position:absolute;
+    top:0;
+    width:32px;
+    height:32px;
+    font-size:18px;
+    font-weight:400;
+}
+.numbox input[type=button]:first-child{
+    left:0;
+}
+.numbox input[type=button]:nth-last-of-type(1){
+    right:0;
+}
+.numbox input[type=number],.numbox input[type=text]{
+    padding:6px 0;
+    width:56px;
+    text-align:center;
+    text-overflow:ellipsis;
+    border-width:0;
+}
+
+.numbox.border input[type=number],.numbox.border input[type=text]{
+    width:54px;
+    border-width:0 1px;
+} 
+/*----------------numbox.less(end)--------------*/

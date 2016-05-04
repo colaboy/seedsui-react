@@ -274,13 +274,13 @@ button.outline.white:not(.noclick):active,input[type="button"].outline.white:not
 	background-color:transparent;
 }
 /*按钮-禁用按钮*/
-button.disable,input[type="button"].disable,.button.disable,button[disable],input[type="button"][disable],
-button.disable:not(.noclick):active,input[type="button"].disable:not(.noclick):active,.button.disable:not(.noclick):active,button[disable]:not(.noclick),input[type="button"][disable]:not(.noclick):active{
+button.disable,input[type="button"].disable,.button.disable,button[disabled],input[type="button"][disabled],
+button.disable:not(.noclick):active,input[type="button"].disable:not(.noclick):active,.button.disable:not(.noclick):active,button[disabled]:not(.noclick),input[type="button"][disabled]:not(.noclick):active{
 	color:@button-color;
 	background-color:@disable-bg;
 }
-button.disable.outline,input[type="button"].disable.outline,button[disable].outline,input[type="button"][disable].outline,.button.disable.outline,
-button.disable.outline:not(.noclick):active,input[type="button"].disable.outline:not(.noclick):active,button[disable].outline:not(.noclick):active,input[type="button"][disable].outline:not(.noclick):active,.button.disable.outline:not(.noclick):active{
+button.disable.outline,input[type="button"].disable.outline,button[disabled].outline,input[type="button"][disabled].outline,.button.disable.outline,
+button.disable.outline:not(.noclick):active,input[type="button"].disable.outline:not(.noclick):active,button[disabled].outline:not(.noclick):active,input[type="button"][disabled].outline:not(.noclick):active,.button.disable.outline:not(.noclick):active{
 	color:@disable-bg;
 	border-color:@disable-bg;
 	background-color:transparent;
@@ -463,11 +463,12 @@ input[list],textarea,select,.input-text{
 	border-color:@border;
 	background-color:@input-bg;
 }
-.input-box{
+.input-box,.numbox{
 	background-color:@input-bg;
 	border-color:@border;
 }
-.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
+.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text,
+.numbox input[type=number],.numbox input[type=text]{
 	background-color:transparent;
 }
 /*----------------form.less(end)--------------*/

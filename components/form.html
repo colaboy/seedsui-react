@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>form</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <link rel="stylesheet" href="../plugin/animate/animate.css">
@@ -18,6 +19,17 @@
         </header>
         <article>
             <p class="sliver">表单组件</p>
+            <div class="numbox border margin8">
+                <input type="button" disabled class="grayscale outline noborder" value="-" />
+                <input type="number" value="0" />
+                <input type="button" class="grayscale outline noborder" value="+" />
+            </div>
+            <div class="numbox margin8">
+                <input type="button" value="-" disabled />
+                <input type="number" value="0"/>
+                <input type="button" value="+" />
+            </div>
+
             <div class="input-box margin8 radius20">
                 <i class="color-placeholder icon icon-search"></i>
                 <input type="text" placeholder="搜索框" class="search">
@@ -398,7 +410,6 @@
     <!--禁止ios弹性-->
     <script src="../plugin/inobounce/inobounce.min.js"></script>
     <script>
-    	//表单控件初始化(主要是针对小眼睛和开关控件)
     	window.addEventListener("load",function(){
     		var f=new Form("#formlr");
     	},false);

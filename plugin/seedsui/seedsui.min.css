@@ -2628,7 +2628,7 @@ input[type="submit"],
 .button {
   display: inline-block;
   padding: 0 8px;
-  border: 0;
+  border-width: 0;
   height: 40px;
   overflow: hidden;
   text-align: center;
@@ -2869,7 +2869,8 @@ select {
   -webkit-align-items: center;
   align-items: center;
 }
-.input-box {
+.input-box,
+.numbox {
   border-style: solid;
   border-width: 1px;
 }
@@ -2884,8 +2885,7 @@ select {
   box-flex: 1.0;
   -webkit-flex: 1;
   flex: 1;
-  border: 0;
-  background-color: transparent;
+  border-width: 0;
 }
 /*box内图标*/
 .input-box .icon {
@@ -2944,6 +2944,43 @@ div[data-input=clear] input[type] + .icon {
   margin-right: 10px;
 }
 /*----------------inputbox.less(end)--------------*/
+/*----------------numbox.less(start)--------------*/
+.numbox {
+  display: inline-block;
+  position: relative;
+  height: 32px;
+  width: 120px;
+  overflow: hidden;
+  text-align: center;
+}
+.numbox input[type=button] {
+  position: absolute;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.numbox input[type=button]:first-child {
+  left: 0;
+}
+.numbox input[type=button]:nth-last-of-type(1) {
+  right: 0;
+}
+.numbox input[type=number],
+.numbox input[type=text] {
+  padding: 6px 0;
+  width: 56px;
+  text-align: center;
+  text-overflow: ellipsis;
+  border-width: 0;
+}
+.numbox.border input[type=number],
+.numbox.border input[type=text] {
+  width: 54px;
+  border-width: 0 1px;
+}
+/*----------------numbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
 input[type="checkbox"],
 input[type="radio"],
@@ -2997,7 +3034,7 @@ input[type="radio"]:checked:before,
 input[type="color"] {
   width: 44px;
   height: 24px;
-  border: 0;
+  border-width: 0;
   padding: 0;
   background-color: #eee;
 }
@@ -3141,7 +3178,7 @@ input[type=range] {
   padding: 0;
   margin: 17px 0;
   cursor: pointer;
-  border: 0;
+  border-width: 0;
   border-radius: 3px;
   outline: 0;
 }
@@ -3149,7 +3186,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none!important;
   width: 28px;
   height: 28px;
-  border: 0;
+  border-width: 0;
   background-clip: padding-box;
   border-radius: 50%;
 }
@@ -6572,25 +6609,25 @@ input[type="button"].outline.white:not(.noclick):active,
 button.disable,
 input[type="button"].disable,
 .button.disable,
-button[disable],
-input[type="button"][disable],
+button[disabled],
+input[type="button"][disabled],
 button.disable:not(.noclick):active,
 input[type="button"].disable:not(.noclick):active,
 .button.disable:not(.noclick):active,
-button[disable]:not(.noclick),
-input[type="button"][disable]:not(.noclick):active {
+button[disabled]:not(.noclick),
+input[type="button"][disabled]:not(.noclick):active {
   color: #ffffff;
   background-color: #d9d9d9;
 }
 button.disable.outline,
 input[type="button"].disable.outline,
-button[disable].outline,
-input[type="button"][disable].outline,
+button[disabled].outline,
+input[type="button"][disabled].outline,
 .button.disable.outline,
 button.disable.outline:not(.noclick):active,
 input[type="button"].disable.outline:not(.noclick):active,
-button[disable].outline:not(.noclick):active,
-input[type="button"][disable].outline:not(.noclick):active,
+button[disabled].outline:not(.noclick):active,
+input[type="button"][disabled].outline:not(.noclick):active,
 .button.disable.outline:not(.noclick):active {
   color: #d9d9d9;
   border-color: #d9d9d9;
@@ -6827,7 +6864,8 @@ select,
   border-color: #dddddd;
   background-color: #ffffff;
 }
-.input-box {
+.input-box,
+.numbox {
   background-color: #ffffff;
   border-color: #dddddd;
 }
@@ -6835,7 +6873,9 @@ select,
 .input-box select,
 .input-box keygen,
 .input-box textarea,
-.input-box .input-text {
+.input-box .input-text,
+.numbox input[type=number],
+.numbox input[type=text] {
   background-color: transparent;
 }
 /*----------------form.less(end)--------------*/
