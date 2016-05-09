@@ -55,7 +55,7 @@
 				s.target=e.target;
 				var acceleration = e.accelerationIncludingGravity;
 				var curTime = new Date().getTime();
-				if((curTime - last_update) > 100) {  
+				if((curTime - last_update) > 100) {
 					var diffTime = curTime - last_update;  
 					last_update = curTime;  
 					x = acceleration.x;
@@ -63,6 +63,7 @@
 					z = acceleration.z;
 					s.speed = Math.abs(x + y + z - lastX - lastY - lastZ) / diffTime * 10000;
 					if (s.speed > s.params.threshold) {
+						alert(2);
 						//CallBack
 						if(s.params.onShook)onShook(s);
 					}
@@ -74,18 +75,20 @@
 			if (window.DeviceMotionEvent){  
 				window.addEventListener('devicemotion',deviceMotionHandler,false);
 			}else{
-				if(s.params.onFail)s.params.onError("您的手机不支持重力感应事件");
+				if(s.params.onFail)s.params.onFail("您的手机不支持重力感应事件");
 			}
 		}
 	})(window,document,undefined);
 	
 	window.onload=function(){
+		alert(1);
 		var sk=new Shake({
 			"onShook":function(e){
+				alert("摇动了");
 				document.getElementById("shakecard").innerHTML="摇动了";
 			},
 			"onFail":function(msg){
-				console.log(msg);
+				alert(msg);
 			}
 		});
 	}

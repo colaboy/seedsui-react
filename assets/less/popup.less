@@ -3,7 +3,6 @@
 .popup{
 	position:fixed;
 	z-index:10;
-	width:100%;
 	border-style:solid;
 	border-width:0;
 }
@@ -25,7 +24,8 @@
 	transform:translateX(-50%);
 }
 .popup[data-pos=left],.popup[data-pos=right]{
-	height:100%;
+	top:0;
+	bottom:0;
 	max-width:270px;
 	background-color:white;
 }
