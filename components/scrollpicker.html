@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<title>scrollpicker</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body>
+		<header>
+			<div class="titlebar">
+		        <a href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+		        <h1>滚动选择器</h1>
+		    </div>
+		</header>
+		<article>
+			<button onclick="openOneSlot()">一列</button>
+			<button onclick="openBirthDate()">三列</button>
+			<button onclick="openWeight()">多列</button>
+			<p id="result">results</p>
+			<p><a href="http://cubiq.org/spinning-wheel-on-webkit-for-iphone-ipod-touch/11">Read the related article on cubiq.org</a></p>
+
+		</article>
+	<script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../assets/js/scrollpicker.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+	function openWeight() {
+		var numbers = {0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9};
+		SpinningWheel.addSlot(numbers, 'text-center');
+		SpinningWheel.addSlot(numbers, 'text-center');
+		SpinningWheel.addSlot(numbers, 'text-center');
+		SpinningWheel.addSlot({separator:'.'},'separator shrink');
+		SpinningWheel.addSlot(numbers, 'text-center');
+		SpinningWheel.addSlot({ Kg: 'Kg', Lb: 'Lb', St: 'St' },'shrink');
+		
+		SpinningWheel.setCancelAction(cancel);
+		SpinningWheel.setDoneAction(done);
+		
+		SpinningWheel.open();
+	}
+
+	function openBirthDate() {
+		var now = new Date();
+		var days = { };
+		var years = { };
+		var months = { 1: '01', 2: '02', 3: '03', 4: '04', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
+		
+		for( var i = 1; i < 32; i += 1 ) {
+			days[i] = i;
+		}
+
+		for( i = now.getFullYear()-100; i < now.getFullYear()+1; i += 1 ) {
+			years[i] = i;
+		}
+
+		SpinningWheel.addSlot(years, 'text-center', 1999);
+		SpinningWheel.addSlot(months, '', 4);
+		SpinningWheel.addSlot(days, 'text-center', 12);
+		
+		SpinningWheel.setCancelAction(cancel);
+		SpinningWheel.setDoneAction(done);
+		
+		SpinningWheel.open();
+	}
+
+	function openOneSlot() {
+		SpinningWheel.addSlot({1: 'Ichi', 2: 'Ni', 3: 'San', 4: 'Shi', 5: 'Go'});
+		
+		SpinningWheel.setCancelAction(cancel);
+		SpinningWheel.setDoneAction(done);
+		
+		SpinningWheel.open();
+	}
+
+	function done() {
+		var results = SpinningWheel.getSelectedValues();
+		document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
+	}
+
+	function cancel() {
+		document.getElementById('result').innerHTML = 'cancelled!';
+	}
+
+
+	window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0,0); }, 100); }, true);
+
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

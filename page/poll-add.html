@@ -11,335 +11,337 @@
 </head>
 
 <body>
-<section id="page_pollWrite" class="active">
-	<header>
-		<div class="titlebar">
-            <a class="left" href="javascript:back()">
-                <i class="icon icon-arrowleft"></i>
-                <span>返回</span>
-            </a>
-            <h1 class="text-center">新建投票</h1>
-        </div>
-	</header>
-	<article>
-	<form id="form1">
-		<div class="group" id="pollcontent">
-            <div class="input-box">
-                <span class="icon" style="background-image:url(../img/poll/icon-tag.png);background-size:contain"></span>
-                <input type="text" placeholder="投票标题" name="topic" data-rule="required">
+    <section id="page_pollWrite" class="active">
+    	<header>
+    		<div class="titlebar">
+                <a class="left" href="javascript:back()">
+                    <i class="icon icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">新建投票</h1>
             </div>
-            <hr/>
-            <div class="input-box">
-                <i class="icon"></i>
-                <textarea name="description" placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
-            </div>
-            <div class="input-box box-right">
-                <span data-fontcounter-for="description1"></span>
-                <span><i data-click="uploadPhoto" class="color-placeholder icon icon-pic"></i></span>
-            </div>
-            <hr/>
-            <div class="input-box lineheight0 padding8">
-                <p class="box-flex-1">支持多选</p>
-                <div class="switch reverse notext" data-on="是" data-click="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
-                    <div class="switch-handle events-none"></div>
+    	</header>
+    	<article>
+    	<form id="form1">
+    		<div class="group" id="pollcontent">
+                <div class="input-box">
+                    <span class="icon" style="background-image:url(../img/poll/icon-tag.png);background-size:contain"></span>
+                    <input type="text" placeholder="投票标题" name="topic" data-rule="required">
                 </div>
-            </div>
-            <hr/>
-            <div class="input-box lrpadding8 underline" style="display:none">
-                <p class="box-flex-1">最多投几项</p>
-                <select name="max" class="rl" style="padding-right:24px;">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                </select>
-                <i class="icon icon-arrowright color-placeholder"></i>
-            </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 underline">
-                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+                <hr/>
+                <div class="input-box">
+                    <i class="icon"></i>
+                    <textarea name="description" placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
+                </div>
+                <div class="input-box box-right">
+                    <span data-fontcounter-for="description1"></span>
+                    <span><i data-click="uploadPhoto" class="color-placeholder icon icon-pic"></i></span>
+                </div>
+                <hr/>
+                <div class="input-box lineheight0 padding8">
+                    <p class="box-flex-1">支持多选</p>
+                    <div class="switch reverse notext" data-on="是" data-click="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
+                        <div class="switch-handle events-none"></div>
                     </div>
                 </div>
-            </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 underline">
-                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+                <hr/>
+                <div class="input-box lrpadding8 underline" style="display:none">
+                    <p class="box-flex-1">最多投几项</p>
+                    <select name="max" class="rl" style="padding-right:24px;">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                    <i class="icon icon-arrowright color-placeholder"></i>
+                </div>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 underline">
+                        <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row noborder">
-                <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                <div class="input-box box-flex-1 underline">
-                    <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                    <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                    <div class="nowrap" style="width:40px;height:40px;">
-                        <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                            <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                        </a>
-                        <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                            <i class="icon icon-trash size24 events-none"></i>
-                        </a>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 underline">
+                        <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 underline">
+                        <input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
+                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
+                            </a>
+                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24 events-none"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-box text-center" data-click="addPollOption">
+                    <a class="input-text events-none">＋添加投票选项</a>
+                </div>
             </div>
-            <div class="input-box text-center" data-click="addPollOption">
-                <a class="input-text events-none">＋添加投票选项</a>
+        </form>
+        <a class="button block margin8" onclick="submit()">发送</a>
+        <a class="button block outline margin8" onclick="preview()">预览</a>
+    	</article>
+    </section>
+    <section id="page_preview">
+    	<header>
+    		<div class="titlebar">
+                <a class="left" href="javascript:backPrev()">
+                    <i class="icon icon-arrowleft"></i>
+                    <span>返回</span>
+                </a>
+                <h1 class="text-center">投票</h1>
             </div>
-        </div>
-    </form>
-    <a class="button block margin8" onclick="submit()">发送</a>
-    <a class="button block outline margin8" onclick="preview()">预览</a>
-	</article>
-</section>
-<section id="page_preview">
-	<header>
-		<div class="titlebar">
-            <a class="left" href="javascript:backPrev()">
-                <i class="icon icon-arrowleft"></i>
-                <span>返回</span>
-            </a>
-            <h1 class="text-center">投票</h1>
-        </div>
-	</header>
-	<article>
-		<div class="group">
-            <div class="padding12">
-                <p id="topic">公司早餐因该添加什么？</p>
-                <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
+    	</header>
+    	<article>
+    		<div class="group">
+                <div class="padding12">
+                    <p id="topic">公司早餐因该添加什么？</p>
+                    <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
+                </div>
+                <div id="pollimg0" class="preview"></div>
+                <div class="margin12">
+                	<small class="color-tip">记名投票(最多选2项)</small>
+                	<small class="float-right">33人参与投票</small>
+                </div>
             </div>
-            <div id="pollimg0" class="preview"></div>
-            <div class="margin12">
-            	<small class="color-tip">记名投票(最多选2项)</small>
-            	<small class="float-right">33人参与投票</small>
-            </div>
-        </div>
 
-		<ul class="grid album" data-col="2" style="background-color:white;" id="selImg">
-            <li>
-                <a style="background-image: url(../img/poll/poll1-img1.jpg);">
-                    <div class="badge arrow" data-toggle="active">
-                        <span class="checkbox" data-toggle="active"></span>
-                        <span>吐司</span>
-                        <input type="checkbox" class="hide">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a style="background-image: url(../img/poll/poll1-img2.jpg);">
-                    <div class="badge arrow" data-toggle="active">
-                        <span class="checkbox" data-toggle="active"></span>
-                        <span>油条</span>
-                        <input type="checkbox" class="hide">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a style="background-image: url(../img/poll/poll1-img3.jpg);">
-                    <div class="badge arrow" data-toggle="active">
-                        <span class="checkbox" data-toggle="active"></span>
-                        <span>粥</span>
-                        <input type="checkbox" class="hide">
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a style="background-image: url(../img/poll/poll1-img4.jpg);">
-                    <div class="badge arrow" data-toggle="active">
-                        <span class="checkbox" data-toggle="active"></span>
-                        <span>三明治</span>
-                        <input type="checkbox" class="hide">
-                    </div>
-                </a>
-            </li>
-        </ul>
-		<a class="button block margin8">投票</a>
-	</article>
-</section>
-<script src="../plugin/jquery/jquery.min.js"></script>
-<script src="../plugin/seedsui/seedsui.min.js"></script>
-<script src="../js/poll.js"></script>
-<script src="../plugin/exmobi/exmobi.js"></script>
-<script>
-	//表单提交验证
-	var f=new Form("#form1");
-    //提交
-    function submit(){
-        f=new Form("#form1");
-        f.validate();
-    }
-    //预览
-    var sec=new Section();
-    function preview(){
-        f=new Form("#form1");
-        if(f.validate()){
-            sec.openSection("#page_preview");
+    		<ul class="grid album" data-col="2" style="background-color:white;" id="selImg">
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img1.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>吐司</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img2.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>油条</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img3.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>粥</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a style="background-image: url(../img/poll/poll1-img4.jpg);">
+                        <div class="badge arrow" data-toggle="active">
+                            <span class="checkbox" data-toggle="active"></span>
+                            <span>三明治</span>
+                            <input type="checkbox" class="hide">
+                        </div>
+                    </a>
+                </li>
+            </ul>
+    		<a class="button block margin8">投票</a>
+    	</article>
+    </section>
+    <script src="../plugin/jquery/jquery.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--投票-->
+    <script src="../js/poll.js"></script>
+    <script>
+    	//表单提交验证
+    	var f=new Form("#form1");
+        //提交
+        function submit(){
+            f=new Form("#form1");
+            f.validate();
         }
-    }
-	//返回
-    function backPrev(){
-        sec.backSection();
-    }
-    //最多选2项
-    var checkedToast=new Toast("最多选2项");
-    document.getElementById("selImg").addEventListener("click",function(e){
-        selCheckbox(e,this,{
-            cboMaxCount:2,
-            maxCallback:function(){
-                checkedToast.show();
+        //预览
+        var sec=new Section();
+        function preview(){
+            f=new Form("#form1");
+            if(f.validate()){
+                sec.openSection("#page_preview");
             }
-        });
-    },false);
-	//数字计数器
-	function listenerFontcount(){
-		var fc=new FontCounter({
-			"onInput":function(s){
-				//console.log("输入中");
-			},
-			"onMoreThanCount":function(s){
-				//console.log("超过数字限制时");
-				s.fieldCounter.innerHTML=Math.round(s.maxlength-s.currentlength);
-				s.fieldCounter.classList.add("color-tip");
-			},
-			"onNotMoreThanCout":function(s){
-				//console.log("没有超过数字限制时");
-				s.fieldCounter.innerHTML="";
-				s.fieldCounter.classList.remove("color-tip");
-			}
-		});
-	}
-	//图片上传
-	var actionsheet=new Actionsheet();
-	function uploadPhoto(uploadPhotoIcon,itemNumber){
-		var uploadIcon=uploadPhotoIcon;
-        var uploadInput=uploadPhotoIcon.previousElementSibling;
-		var uploadOption=uploadIcon.parentNode.parentNode;
-		var cardPreview=document.createElement("div");
-		cardPreview.setAttribute("class","card-preview animated zoomIn lrmargin8");
-		cardPreview.setAttribute("style","background-image:url(../img/poll/poll-main1.jpg)");
-		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" data-value="'+$(uploadInput).val()+'" value="url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
-		cardPreview.innerHTML=appendHtml;
-		var actionsheetParams=[
-			{
-				text : '拍照',
-		        handler : function(s){
-		        	uploadOption.parentNode.insertBefore(cardPreview,uploadOption.nextElementSibling);
-		        	uploadIcon.style.display="none";
-		        	s.hide();
-		        }
-			},{
-				text : '相册',
-		        handler : function(s){
-		        	uploadOption.parentNode.insertBefore(cardPreview,uploadOption.nextElementSibling);
-		        	uploadIcon.style.display="none";
-		        	s.hide();
-				}
-		    }
-		];
-		actionsheet.setParams(actionsheetParams);
-		actionsheet.show();
-	}
-	function delPhoto(objthis){
-		var photo=$(objthis).parent();
-		photo[0].className="card-preview animated zoomOut lrmargin8";
-		EventUtil.addHandler(photo[0],"animationend",function(){
-			photo.slideUp(300, function(){
-				var uploadIcon=this.previousElementSibling.querySelector("[data-click=uploadPhoto]");
-				uploadIcon.style.display="block";
-                $(this).remove();
-            });
-		})
-	}
-	//投票选项
-	var pollOptionText='<div class="row noborder">'+
-                '<div class="dot" style="margin: 10px 20px 10px 24px;"></div>'+
-                '<div class="input-box box-flex-1 underline">'+
-                    '<input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>'+
-                    '<i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>'+
-                    '<div class="nowrap" style="width:40px;height:40px;">'+
-                        '<a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">'+
-                            '<i class="icon icon-rdocancel-fill size24 events-none"></i>'+
-                        '</a>'+
-                        '<a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">'+
-                            '<i class="icon icon-trash size24 events-none"></i>'+
-                        '</a>'+
-                    '</div>'+
-                '</div>'+
-            '</div>';
-	function onClickPoll(){
-		document.getElementById("pollcontent").addEventListener("click",function(e){
-			var target=e.target;
-			if(target.getAttribute("data-click")=="del"){
-				$(target).fadeOut("fast",function(){
-					$(this).next().removeClass("hide");
-				});
-				return;
-			}
-			if(target.getAttribute("data-click")=="delVerify"){
-                var selfInput=$(target).parent().parent().parent();
-                var selfPhoto=selfInput.next();
-				
-                if(selfPhoto.hasClass("card-preview")){
-                    selfPhoto.remove();
+        }
+    	//返回
+        function backPrev(){
+            sec.backSection();
+        }
+        //最多选2项
+        var checkedToast=new Toast("最多选2项");
+        document.getElementById("selImg").addEventListener("click",function(e){
+            selCheckbox(e,this,{
+                cboMaxCount:2,
+                maxCallback:function(){
+                    checkedToast.show();
                 }
-                selfInput.remove();
-				return;
-			}
-			if(target.getAttribute("data-click")=="uploadPhoto"){
-                var upphotoBtns=document.querySelectorAll("[data-click='uploadPhoto']");
-                var targetIndex=0;
-                [].slice.call(upphotoBtns).forEach(function(n,i,a){
-                    if(target==n){
-                        targetIndex=i;
+            });
+        },false);
+    	//数字计数器
+    	function listenerFontcount(){
+    		var fc=new FontCounter({
+    			"onInput":function(s){
+    				//console.log("输入中");
+    			},
+    			"onMoreThanCount":function(s){
+    				//console.log("超过数字限制时");
+    				s.fieldCounter.innerHTML=Math.round(s.maxlength-s.currentlength);
+    				s.fieldCounter.classList.add("color-tip");
+    			},
+    			"onNotMoreThanCout":function(s){
+    				//console.log("没有超过数字限制时");
+    				s.fieldCounter.innerHTML="";
+    				s.fieldCounter.classList.remove("color-tip");
+    			}
+    		});
+    	}
+    	//图片上传
+    	var actionsheet=new Actionsheet();
+    	function uploadPhoto(uploadPhotoIcon,itemNumber){
+    		var uploadIcon=uploadPhotoIcon;
+            var uploadInput=uploadPhotoIcon.previousElementSibling;
+    		var uploadOption=uploadIcon.parentNode.parentNode;
+    		var cardPreview=document.createElement("div");
+    		cardPreview.setAttribute("class","card-preview animated zoomIn lrmargin8");
+    		cardPreview.setAttribute("style","background-image:url(../img/poll/poll-main1.jpg)");
+    		var appendHtml='<input type="hidden" name="pollimg'+itemNumber+'" data-value="'+$(uploadInput).val()+'" value="url(../img/poll/poll-main1.jpg)"/><div onclick="delPhoto(this)" class="close"><i class="icon icon-close"></i></div>';
+    		cardPreview.innerHTML=appendHtml;
+    		var actionsheetParams=[
+    			{
+    				text : '拍照',
+    		        handler : function(s){
+    		        	uploadOption.parentNode.insertBefore(cardPreview,uploadOption.nextElementSibling);
+    		        	uploadIcon.style.display="none";
+    		        	s.hide();
+    		        }
+    			},{
+    				text : '相册',
+    		        handler : function(s){
+    		        	uploadOption.parentNode.insertBefore(cardPreview,uploadOption.nextElementSibling);
+    		        	uploadIcon.style.display="none";
+    		        	s.hide();
+    				}
+    		    }
+    		];
+    		actionsheet.setParams(actionsheetParams);
+    		actionsheet.show();
+    	}
+    	function delPhoto(objthis){
+    		var photo=$(objthis).parent();
+    		photo[0].className="card-preview animated zoomOut lrmargin8";
+    		EventUtil.addHandler(photo[0],"animationend",function(){
+    			photo.slideUp(300, function(){
+    				var uploadIcon=this.previousElementSibling.querySelector("[data-click=uploadPhoto]");
+    				uploadIcon.style.display="block";
+                    $(this).remove();
+                });
+    		})
+    	}
+    	//投票选项
+    	var pollOptionText='<div class="row noborder">'+
+                    '<div class="dot" style="margin: 10px 20px 10px 24px;"></div>'+
+                    '<div class="input-box box-flex-1 underline">'+
+                        '<input type="text" name="polloptiontext" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>'+
+                        '<i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>'+
+                        '<div class="nowrap" style="width:40px;height:40px;">'+
+                            '<a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">'+
+                                '<i class="icon icon-rdocancel-fill size24 events-none"></i>'+
+                            '</a>'+
+                            '<a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">'+
+                                '<i class="icon icon-trash size24 events-none"></i>'+
+                            '</a>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+    	function onClickPoll(){
+    		document.getElementById("pollcontent").addEventListener("click",function(e){
+    			var target=e.target;
+    			if(target.getAttribute("data-click")=="del"){
+    				$(target).fadeOut("fast",function(){
+    					$(this).next().removeClass("hide");
+    				});
+    				return;
+    			}
+    			if(target.getAttribute("data-click")=="delVerify"){
+                    var selfInput=$(target).parent().parent().parent();
+                    var selfPhoto=selfInput.next();
+    				
+                    if(selfPhoto.hasClass("card-preview")){
+                        selfPhoto.remove();
                     }
-                })
-				uploadPhoto(target,targetIndex);
-				return;
-			}
-			if(target.getAttribute("data-click")=="addPollOption"){
-				$(target).before(pollOptionText);
-				return;
-			}
-			if(target.getAttribute("data-click")=="toogleMultiSel"){
-				if(target.classList.contains("active")){
-					$(target).parent().next().next().slideDown();
-				}else{
-					$(target).parent().next().next().slideUp();
-				}
-                return;
-			}
-            $("[data-click=delVerify]").addClass("hide");
-            $("[data-click=del]").fadeIn("fast");
-		},false)
-	}
+                    selfInput.remove();
+    				return;
+    			}
+    			if(target.getAttribute("data-click")=="uploadPhoto"){
+                    var upphotoBtns=document.querySelectorAll("[data-click='uploadPhoto']");
+                    var targetIndex=0;
+                    [].slice.call(upphotoBtns).forEach(function(n,i,a){
+                        if(target==n){
+                            targetIndex=i;
+                        }
+                    })
+    				uploadPhoto(target,targetIndex);
+    				return;
+    			}
+    			if(target.getAttribute("data-click")=="addPollOption"){
+    				$(target).before(pollOptionText);
+    				return;
+    			}
+    			if(target.getAttribute("data-click")=="toogleMultiSel"){
+    				if(target.classList.contains("active")){
+    					$(target).parent().next().next().slideDown();
+    				}else{
+    					$(target).parent().next().next().slideUp();
+    				}
+                    return;
+    			}
+                $("[data-click=delVerify]").addClass("hide");
+                $("[data-click=del]").fadeIn("fast");
+    		},false)
+    	}
 
-	listenerFontcount();
-	onClickPoll();
-	//定义exmobi返回
-	function back(){history.go(-1)}
-</script>
+    	listenerFontcount();
+    	onClickPoll();
+    	//定义exmobi返回
+    	function back(){history.go(-1)}
+    </script>
 </body>
 </html>

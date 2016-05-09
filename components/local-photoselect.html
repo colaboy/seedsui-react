@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <section id="page_local_photoselect" class="active">
         <header>
             <div class="titlebar">
                 <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -29,14 +28,11 @@
         	<div class="sliver">上传的图片</div>
             <ul class="grid album" data-col="3" id="photoshow"></ul>
         </article>
-    </section>
     
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
-    <!--禁止ios弹性-->
-    <script src="../plugin/inobounce/inobounce.min.js"></script>
     <script>
     function fileSelect(fileId,handler){
     	var takePicture=document.querySelector(fileId);

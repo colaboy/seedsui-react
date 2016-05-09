@@ -398,12 +398,6 @@ body {
   height: 100%;
 }
 body {
-  /* position:fixed;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	overflow:hidden; */
   /*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /*禁止文字自适应大小*/
@@ -412,8 +406,15 @@ body {
   -ms-text-size-adjust: none;
   -o-text-size-adjust: none;
   text-size-adjust: none;
+  /*平滑滚动*/
+  -webkit-overflow-scrolling: touch;
+  -moz-overflow-scrolling: touch;
+  -ms-overflow-scrolling: touch;
+  -o-overflow-scrolling: touch;
+  overflow-scrolling: touch;
 }
 /*主体*/
+.body-box,
 #section_container {
   position: absolute;
   top: 0;
@@ -451,21 +452,6 @@ section {
 section.active {
   display: block;
 }
-article {
-  position: absolute;
-  z-index: 0;
-  top: 44px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: auto;
-  /*平滑滚动*/
-  -webkit-overflow-scrolling: touch;
-  -moz-overflow-scrolling: touch;
-  -ms-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-  overflow-scrolling: touch;
-}
 .scroller {
   position: relative;
   width: 100%;
@@ -473,7 +459,7 @@ article {
 /*header,footer*/
 header,
 footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 1;
 }
@@ -482,6 +468,30 @@ header {
 }
 footer {
   bottom: 0;
+}
+section > header,
+section > footer {
+  position: absolute;
+}
+/*content*/
+/*引用inobounce时(无弹性)，则释放*/
+/* body>article, */
+article.scroller {
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+}
+body > header + article {
+  padding-top: 44px;
+}
+section > article {
+  position: absolute;
+  z-index: 0;
+  top: 44px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
 }
 /*----------------mbox.less(end)--------------*/
 @font-face {
@@ -2869,8 +2879,7 @@ select {
   -webkit-align-items: center;
   align-items: center;
 }
-.input-box,
-.numbox {
+.input-box {
   border-style: solid;
   border-width: 1px;
 }
@@ -2952,6 +2961,8 @@ div[data-input=clear] input[type] + .icon {
   width: 120px;
   overflow: hidden;
   text-align: center;
+  border-style: solid;
+  border-width: 1px;
 }
 .numbox input[type=button] {
   position: absolute;
@@ -4904,6 +4915,108 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/
+/*----------------scrollpicker.less(start)--------------*/
+#scrollpicker {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  z-index: 1000;
+}
+#scrollpicker-header {
+  position: relative;
+  width: 100%;
+  height: 43px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f4f4f4;
+}
+#scrollpicker-cancel,
+#scrollpicker-done {
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 5px;
+}
+#scrollpicker-cancel {
+  left: 7px;
+  float: left;
+}
+#scrollpicker-done {
+  right: 7px;
+  float: right;
+}
+.sw-pressed {
+  opacity: 0.4;
+}
+#scrollpicker-body {
+  position: relative;
+  z-index: 999;
+  display: block;
+  height: 215px;
+  overflow: hidden;
+  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
+}
+#scrollpicker-slots {
+  display: table;
+  width: 100%;
+  background: #fcfcfc;
+}
+#scrollpicker-slots div {
+  display: table-cell;
+  height: 100%;
+  padding-top: 86px;
+}
+#scrollpicker-slots div:first-child {
+  border: 0;
+}
+#scrollpicker-slots ul {
+  padding: 0 0 85px 0;
+  margin: 0;
+  list-style: none;
+}
+#scrollpicker-slots .shrink {
+  width: 1%;
+}
+#scrollpicker-slots .separator {
+  background-color: #f4f4f4;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+#scrollpicker-slots li {
+  padding: 0 8px;
+  height: 44px;
+  line-height: 44px;
+  overflow: hidden;
+  font-size: 20px;
+  color: #aaa;
+}
+#scrollpicker-slots li.active {
+  color: #333;
+}
+#scrollpicker-touchlayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 215px;
+  border-width: 16px;
+  z-index: 1000;
+}
+.scrollpicker-touchlayer-activebox {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  height: 46px;
+  width: 100%;
+  border-width: 1px 0;
+  border-color: #ddd;
+  border-style: solid;
+}
+/*----------------scrollpicker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/
 /*隐藏原始图标*/
 summary::-webkit-details-marker {
@@ -6302,6 +6415,7 @@ input[type="submit"].radiusround,
 /*----------------global.less(start)--------------*/
 body {
   color: #333333;
+  background-color: #f4f4f4;
 }
 /*标签默认样式*/
 ::selection {
@@ -6346,11 +6460,6 @@ hr {
   background-color: transparent;
 }
 /*----------------global.less(end)--------------*/
-/*----------------mbox.less(start)--------------*/
-section {
-  background-color: #f4f4f4;
-}
-/*----------------mbox.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
 /*主体遮罩*/
 .section_container_mask {
@@ -6578,6 +6687,17 @@ input[type="button"].outline.grayscale:not(.noclick):active,
   border-color: inherit;
   background-color: #f4f4f4;
 }
+button.grayscale.disable,
+input[type="button"].grayscale.disable,
+.button.grayscale.disable,
+button[disabled].grayscale,
+input[type="button"][disabled].grayscale,
+button.grayscale.disable:not(.noclick):active,
+input[type="button"].grayscale.disable:not(.noclick):active,
+.button.grayscale.disable:not(.noclick):active {
+  color: #d9d9d9;
+  background-color: #f4f4f4;
+}
 /*白色*/
 button.white,
 input[type="button"].white,
@@ -6613,9 +6733,7 @@ button[disabled],
 input[type="button"][disabled],
 button.disable:not(.noclick):active,
 input[type="button"].disable:not(.noclick):active,
-.button.disable:not(.noclick):active,
-button[disabled]:not(.noclick),
-input[type="button"][disabled]:not(.noclick):active {
+.button.disable:not(.noclick):active {
   color: #ffffff;
   background-color: #d9d9d9;
 }
@@ -6626,8 +6744,6 @@ input[type="button"][disabled].outline,
 .button.disable.outline,
 button.disable.outline:not(.noclick):active,
 input[type="button"].disable.outline:not(.noclick):active,
-button[disabled].outline:not(.noclick):active,
-input[type="button"][disabled].outline:not(.noclick):active,
 .button.disable.outline:not(.noclick):active {
   color: #d9d9d9;
   border-color: #d9d9d9;
@@ -6873,9 +6989,7 @@ select,
 .input-box select,
 .input-box keygen,
 .input-box textarea,
-.input-box .input-text,
-.numbox input[type=number],
-.numbox input[type=text] {
+.input-box .input-text {
   background-color: transparent;
 }
 /*----------------form.less(end)--------------*/

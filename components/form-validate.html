@@ -8,62 +8,58 @@
 </head>
 
 <body>
-    <section id="page_form_validate" class="active">
-        <header>
-            <div class="titlebar">
-                <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-                <h1>表单验证</h1>
+    <header>
+        <div class="titlebar">
+            <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>表单验证</h1>
+        </div>
+    </header>
+    <article>
+    	<form id="form1" style="padding:10px;">
+            <div class="input-box margin8 nolrmargin required" data-input="clear">
+                <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
+                <i class="icon icon-clear-fill color-placeholder"></i>
             </div>
-        </header>
-        <article>
-        	<form id="form1" style="padding:10px;">
-                <div class="input-box margin8 nolrmargin required" data-input="clear">
-                    <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
-                    <i class="icon icon-clear-fill color-placeholder"></i>
+            <div class="input-box margin8 nolrmargin required" data-input="reveal">
+                <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
+                <i class="icon icon-eye-fill color-placeholder"></i>
+                <div class="safelvl lvl0">
+                	<ul>
+                		<li>弱</li>
+                		<li>中</li>
+                		<li>强</li>
+                	</ul>
+                	<div class="progress"></div>
                 </div>
-                <div class="input-box margin8 nolrmargin required" data-input="reveal">
-                    <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
-                    <i class="icon icon-eye-fill color-placeholder"></i>
-                    <div class="safelvl lvl0">
-                    	<ul>
-                    		<li>弱</li>
-                    		<li>中</li>
-                    		<li>强</li>
-                    	</ul>
-                    	<div class="progress"></div>
-                    </div>
-                </div>
-                
-                <div class="rowspace22"></div>
+            </div>
+            
+            <div class="rowspace22"></div>
 
-                <div class="input-box margin8 nolrmargin required" data-input="reveal">
-                    <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6 maxlength:16"/>
-                    <i class="icon icon-eye-fill color-placeholder"></i>
-                </div>
+            <div class="input-box margin8 nolrmargin required" data-input="reveal">
+                <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6 maxlength:16"/>
+                <i class="icon icon-eye-fill color-placeholder"></i>
+            </div>
 
-                <div class="input-box margin8 nolrmargin">
-                    <input type="text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
-                </div>
+            <div class="input-box margin8 nolrmargin">
+                <input type="text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
+            </div>
 
-                <div class="input-box margin8 nolrmargin">
-                    <input type="text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
-                </div>
+            <div class="input-box margin8 nolrmargin">
+                <input type="text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
+            </div>
 
-                <div class="input-box margin8 nolrmargin">
-                    <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
-                </div>
+            <div class="input-box margin8 nolrmargin">
+                <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
+            </div>
 
-                <button class="submit block">注册</button>
-        	</form>
-        </article>
-    </section>
+            <button class="submit block">注册</button>
+    	</form>
+    </article>
     
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
-    <!--禁止ios弹性-->
-    <script src="../plugin/inobounce/inobounce.min.js"></script>
     <script>
     window.addEventListener("load",function(){
         var f=new Form("#form1");

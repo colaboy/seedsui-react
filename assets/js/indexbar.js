@@ -33,7 +33,7 @@
 		//Indexs
 		s.indexs=s.container.querySelectorAll("a");
 		s.updateContainerSize=function(){
-			s.indexHeight=s.article.clientHeight/s.indexs.length;
+			s.indexHeight=s.container.clientHeight/s.indexs.length;
 			[].slice.call(s.indexs).forEach(function(n,i,a){
 				n.style.height=s.indexHeight+"px";
 				n.style.lineHeight=s.indexHeight+"px";

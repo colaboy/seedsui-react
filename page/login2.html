@@ -36,37 +36,35 @@
         }
     </style>
 </head>
-<body style="min-height:370px;">
-    <section id="page_login" class="active" style="background:url(../img/login2/bg.png) no-repeat right bottom;background-size:100% auto;">
-        <article style="top:0;">
-            <form id="loginbox">
-                <div class="login-box">
-                <img src="../img/login2/logo.png" class="login-logo"/>
-                <div class="input-box underline nolrmargin">
-                    <i class="icon-user color-placeholder size30"></i>
-                    <input type="text" autocomplete="off" id="login-input-user" placeholder="请输入用户名"/>
-                </div>
-                <div class="input-box underline nolrmargin" data-input="reveal">
-                    <i class="icon-lock2 color-placeholder size30"></i>
-                    <input type="password" placeholder="请输入密码"/>
-                    <i class="icon icon-eye-fill color-placeholder"></i>
-                </div>
-                <div class="login-cbo">
-                    <label>
-                        <input type="checkbox"/><span style="margin-left:8px;">记住密码</span>
-                    </label>
-                </div>
-                <a class="button login-submit block radius20" href="javascript:history.go(-1)">立即登录</a>
-                </div>
-        	</form>
-	    </article>
-    </section>
+<body style="min-height:370px;background:url(../img/login2/bg.png) no-repeat right bottom;background-size:100% auto;">
+    <form id="loginbox">
+        <div class="login-box">
+        <img src="../img/login2/logo.png" class="login-logo"/>
+        <div class="input-box underline nolrmargin">
+            <i class="icon-user color-placeholder size30"></i>
+            <input type="text" autocomplete="off" id="login-input-user" placeholder="请输入用户名"/>
+        </div>
+        <div class="input-box underline nolrmargin" data-input="reveal">
+            <i class="icon-lock2 color-placeholder size30"></i>
+            <input type="password" placeholder="请输入密码"/>
+            <i class="icon icon-eye-fill color-placeholder"></i>
+        </div>
+        <div class="login-cbo">
+            <label>
+                <input type="checkbox"/><span style="margin-left:8px;">记住密码</span>
+            </label>
+        </div>
+        <a class="button login-submit block radius20" href="javascript:history.go(-1)">立即登录</a>
+        </div>
+	</form>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <script src="../plugin/exmobi/exmobi.js"></script>
     <script>
-    var f=new Form("#loginbox");
-    //定义exmobi返回
-    function back(){history.go(-1);}
+        var f=new Form("#loginbox");
+        //定义exmobi返回
+        function back(){history.go(-1);}
     </script>
 </body>
 </html>

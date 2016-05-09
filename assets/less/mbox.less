@@ -3,12 +3,6 @@ html,body{
 	height:100%;
 }
 body{
-	/* position:fixed;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	overflow:hidden; */
 	/*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	/*禁止文字自适应大小*/
@@ -17,9 +11,15 @@ body{
 	-ms-text-size-adjust: none;
 	-o-text-size-adjust: none;
 	text-size-adjust: none;
+	/*平滑滚动*/
+	-webkit-overflow-scrolling:touch;
+	-moz-overflow-scrolling:touch;
+	-ms-overflow-scrolling:touch;
+	-o-overflow-scrolling:touch;
+	overflow-scrolling:touch;
 }
 /*主体*/
-#section_container {
+.body-box,#section_container {
 	position: absolute;
 	top:0;
 	left:0;
@@ -57,28 +57,14 @@ section {
 section.active{
 	display:block;
 }
-article{
-	position:absolute;
-	z-index:0;
-	top:44px;
-	bottom:0;
-	left:0;
-	width:100%;
-	overflow:auto;
-	/*平滑滚动*/
-	-webkit-overflow-scrolling:touch;
-	-moz-overflow-scrolling:touch;
-	-ms-overflow-scrolling:touch;
-	-o-overflow-scrolling:touch;
-	overflow-scrolling:touch;
-}
+
 .scroller{
 	position:relative;
 	width:100%;
 }
 /*header,footer*/
 header,footer{
-	position:absolute;
+	position:fixed;
 	width:100%;
 	z-index:1;
 }
@@ -87,6 +73,29 @@ header{
 }
 footer{
 	bottom:0;
+}
+section>header,section>footer{
+	position:absolute;
+}
+/*content*/
+/*引用inobounce时(无弹性)，则释放*/
+/* body>article, */
+article.scroller{
+	height:100%;
+	overflow:auto;
+	box-sizing:border-box;
+} 
+body>header+article{
+	padding-top:44px;
+}
+section>article{
+	position:absolute;
+	z-index:0;
+	top:44px;
+	bottom:0;
+	left:0;
+	width:100%;
+	overflow:auto;
 }
 /*----------------mbox.less(end)--------------*/
 

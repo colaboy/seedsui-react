@@ -9,9 +9,9 @@
 	<link rel="stylesheet" href="../css/poll.css">
 </head>
 <body>
-	<section id="page_pollPic" class="active">
-		<header>
-			<div class="titlebar">
+    <section class="active">
+    	<header>
+    		<div class="titlebar">
                 <a class="left" href="javascript:back()">
                     <i class="icon icon-arrowleft"></i>
                     <span>返回</span>
@@ -34,8 +34,8 @@
                     <label class="tab-label">我的创建</label>
                 </li>
             </ul>
-		</header>
-		<article style="top:84px;">
+    	</header>
+    	<article style="top:84px;">
             <div class="slider-container" id="carouselPage" style="height: 100%;">
             <div class="slider-wrapper">
                 <div class="slider-slide" id="page1">
@@ -198,22 +198,25 @@
                 
             </div>
             </div>
-		</article>
-	</section>
-    <div class="popup confirm custom" id="popDelete" style="display:none;">
-        <label class="text-center">
-            <p class="title color-cancel">该投票将永远消失！</p>
-            <p>您确定这么做？！</p>
-            <i class="icon icon-bad size54 color-primary margin12"></i>
-        </label>
-        <div class="popup-handler">
-            <a>取消</a>
-            <a>确定</a>
+    	</article>
+        <div class="popup confirm custom" id="popDelete" style="display:none;">
+            <label class="text-center">
+                <p class="title color-cancel">该投票将永远消失！</p>
+                <p>您确定这么做？！</p>
+                <i class="icon icon-bad size54 color-primary margin12"></i>
+            </label>
+            <div class="popup-handler">
+                <a>取消</a>
+                <a>确定</a>
+            </div>
         </div>
-    </div>
+    </section>
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--投票-->
+    <script src="../js/poll.js"></script>
     <script type="text/javascript">
         //初始化滑动容器
         var carouselPage;
