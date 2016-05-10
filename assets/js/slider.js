@@ -26,6 +26,7 @@
 			/*callbacks
 			onInit:function(Slider)
 			onSlideChangeStart:function(Slider)
+			onSlideChange:function(Slider)
 			onSlideChangeEnd:function(Slider)
 			*/
 		}
@@ -221,6 +222,8 @@
 			s.touches.currentY=e.touches[0].clientY;
 			s.touches.diffX=s.touches.startX-s.touches.currentX;
 			s.touches.diffY=s.touches.startY-s.touches.currentY;
+			//runCallBack
+			if(s.params.onSlideChange)s.params.onSlideChange(s);
 			//设置滑动方向
 			if(s.touches.direction==null){
 				s.touches.direction=Math.abs(s.touches.diffY)-Math.abs(s.touches.diffX)>0?"vertical":"horizontal";
