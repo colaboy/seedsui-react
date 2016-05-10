@@ -84,12 +84,12 @@ aside {
 .titlebar.reverse h1{
 	color:@titlebar-reverse-color;
 }
-.titlebar.reverse a,.titlebar.reverse button,.titlebar.reverse input[type="button"]{
+.titlebar.reverse a,.titlebar.reverse .button{
 	color:@titlebar-reverse-color;
 	border-color:fade(@titlebar-reverse-color,50%);
 }
-.titlebar.reverse a:active,.titlebar.reverse button:active,.titlebar.reverse input[type="button"]:active,
-.titlebar.reverse a.active,.titlebar.reverse button.active,.titlebar.reverse input[type="button"].active{
+.titlebar.reverse a:active,.titlebar.reverse .button:active,
+.titlebar.reverse a.active,.titlebar.reverse .button.active{
 	color:@titlebar-reverse-active-color;
 	border-color:fade(@titlebar-reverse-active-color,25%);
 }
@@ -206,196 +206,196 @@ aside {
 }
 /*----------------badge.less(end)--------------*/
 
-/*------------------------------button.less(start)------------------------------*/
+/*----------------button.less(start)--------------*/
 /*按钮-普通按钮*/
-button,input[type="button"],input[type="submit"],.button{
+.button{
 	color: @button-color;
 	background-color:@button-bg;
 }
-button.outline,input[type="button"].outline,.button.outline{
+.button.outline{
 	color:@button-bg;
 	border-color:@button-bg;
 	background-color:transparent;
 }
-button:not(.noclick):active,input[type="button"]:not(.noclick):active,.button:not(.noclick):active{
+.button:not(.noclick):active{
 	color: @button-active-color;
 	background-color:@button-active-bg;
 }
-button.outline:not(.noclick):active,input[type="button"].outline:not(.noclick):active,.button.outline:not(.noclick):active{
+.button.outline:not(.noclick):active{
 	color:@button-active-bg;
 	border-color:@button-active-bg;
 	background-color:transparent;
 }
 /*去色*/
-button.grayscale,input[type="button"].grayscale,.button.grayscale{
+.button.grayscale{
 	border-width:1px;
 }
-button.grayscale,input[type="button"].grayscale,.button.grayscale{
+.button.grayscale{
 	color:@body-color;
 	border-color:@border;
 	background-color:@body-bg;
 }
-button.grayscale:not(.noclick):active,input[type="button"].grayscale:not(.noclick):active,.button.grayscale:not(.noclick):active{
+.button.grayscale:not(.noclick):active{
 	color:inherit;
 	border-color:inherit;
 	background-color:transparent;
 }
-button.outline.grayscale,input[type="button"].outline.grayscale,.button.outline.grayscale{
+.button.outline.grayscale{
 	color:@body-color;
 	border-color:@border;
 	background-color:transparent;
 }
-button.outline.grayscale:not(.noclick):active,input[type="button"].outline.grayscale:not(.noclick):active,.button.outline.grayscale:not(.noclick):active{
+.button.outline.grayscale:not(.noclick):active{
 	color:inherit;
 	border-color:inherit;
 	background-color:@body-bg;
 }
-button.grayscale.disable,input[type="button"].grayscale.disable,.button.grayscale.disable,button[disabled].grayscale,input[type="button"][disabled].grayscale,
-button.grayscale.disable:not(.noclick):active,input[type="button"].grayscale.disable:not(.noclick):active,.button.grayscale.disable:not(.noclick):active{
+.button.grayscale.disable,.button.grayscale[disabled],
+.button.grayscale.disable:not(.noclick):active{
 	color:@disable-bg;
 	background-color:@body-bg;
 }
 /*白色*/
-button.white,input[type="button"].white,.button.white{
+.button.white{
 	color:@body-color;
 	background-color:@white;
 }
-button.white:not(.noclick):active,input[type="button"].white:not(.noclick):active,.button.white:not(.noclick):active{
+.button.white:not(.noclick):active{
 	color:@body-color;
 	background-color:@white-active-color;
 }
-button.outline.white,input[type="button"].outline.white,.button.outline.white{
+.button.outline.white{
 	color:@white;
 	border-color:@white-active-color;
 	background-color:transparent;
 }
-button.outline.white:not(.noclick):active,input[type="button"].outline.white:not(.noclick):active,.button.outline.white:not(.noclick):active{
+.button.outline.white:not(.noclick):active{
 	color:@white-active-color;
 	border-color:@white-active-color;
 	background-color:transparent;
 }
 /*按钮-禁用按钮*/
-button.disable,input[type="button"].disable,.button.disable,button[disabled],input[type="button"][disabled],
-button.disable:not(.noclick):active,input[type="button"].disable:not(.noclick):active,.button.disable:not(.noclick):active{
+.button.disable,.button[disabled],
+.button.disable:not(.noclick):active{
 	color:@button-color;
 	background-color:@disable-bg; 
 }
-button.disable.outline,input[type="button"].disable.outline,button[disabled].outline,input[type="button"][disabled].outline,.button.disable.outline,
-button.disable.outline:not(.noclick):active,input[type="button"].disable.outline:not(.noclick):active,.button.disable.outline:not(.noclick):active{
+.button.disable.outline,.button[disabled].outline,
+.button.disable.outline:not(.noclick):active{
 	color:@disable-bg;
 	border-color:@disable-bg;
 	background-color:transparent;
 }
 /*按钮-取消按钮*/
-button.cancel,input[type="button"].cancel,.button.cancel{
+.button.cancel{
 	background-color:@cancel-bg;
 }
-button.cancel.outline,input[type="button"].cancel.outline,.button.cancel.outline{
+.button.cancel.outline{
 	color:@cancel-bg;
 	border-color:@cancel-bg;
 	background-color:transparent;
 }
-button.cancel:not(.noclick):active,input[type="button"].cancel:not(.noclick):active,.button.cancel:not(.noclick):active{
+.button.cancel:not(.noclick):active{
 	background-color:@cancel-active-bg;
 }
-button.cancel.outline:not(.noclick):active,input[type="button"].cancel.outline:not(.noclick):active,.button.cancel.outline:not(.noclick):active{
+.button.cancel.outline:not(.noclick):active{
 	color:@cancel-active-bg;
 	border-color:@cancel-active-bg;
 	background-color:transparent;
 }
 
 /*按钮-提交按钮*/
-button.submit,input[type="submit"],.button.submit{
+.button.submit{
 	background-color:@submit-bg;
 }
-button.submit.outline,input[type="submit"].outline,.button.submit.outline{
+.button.submit.outline{
 	color:@submit-bg;
 	border-color:@submit-bg;
 	background-color:transparent;
 }
 
-button.submit:not(.noclick):active,input[type="submit"]:not(.noclick):active,.button.submit:not(.noclick):active{
+.button.submit:not(.noclick):active{
 	background-color:@submit-active-bg;
 }
-button.submit.outline:not(.noclick):active,input[type="submit"].outline:not(.noclick):active,.button.submit.outline:not(.noclick):active{
+.button.submit.outline:not(.noclick):active{
 	color:@submit-active-bg;
 	border-color:@submit-active-bg;
 	background-color:transparent;
 }
 
 /*按钮-信息按钮*/
-button.info,input[type="button"].info,.button.info{
+.button.info{
 	background-color:@info-bg;
 }
-button.info.outline,input[type="button"].info.outline,.button.info.outline{
+.button.info.outline{
 	color:@info-bg;
 	border-color:@info-bg;
 	background-color:transparent;
 }
 
-button.info:not(.noclick):active,input[type="button"].info:not(.noclick):active,.button.info:not(.noclick):active{
+.button.info:not(.noclick):active{
 	background-color:@info-active-bg;
 }
-button.info.outline:not(.noclick):active,input[type="button"].info.outline:not(.noclick):active,.button.info.outline:not(.noclick):active{
+.button.info.outline:not(.noclick):active{
 	color:@info-active-bg;
 	border-color:@info-active-bg;
 	background-color:transparent;
 }
 
 /*按钮-警告按钮*/
-button.warn,input[type="button"].warn,.button.warn{
+.button.warn{
 	background-color:@warn-bg;
 }
-button.warn.outline,input[type="button"].warn.outline,.button.warn.outline{
+.button.warn.outline{
 	color:@warn-bg;
 	border-color:@warn-bg;
 	background-color:transparent;
 }
 
-button.warn:active,input[type="button"].warn:active,.button.warn:active{
+.button.warn:active{
 	background-color:@warn-active-bg;
 }
-button.warn.outline:not(.noclick):active,input[type="button"].warn.outline:not(.noclick):active,.button.warn.outline:not(.noclick):active{
+.button.warn.outline:not(.noclick):active{
 	color:@warn-active-bg;
 	border-color:@warn-active-bg;
 	background-color:transparent;
 }
 
 /*按钮-完成按钮*/
-button.success,input[type="button"].success,.button.success{
+.button.success{
 	background-color:@success-bg;
 }
-button.success.outline,input[type="button"].success.outline,.button.success.outline{
+.button.success.outline{
 	color:@success-bg;
 	border-color:@success-bg;
 	background-color:transparent;
 }
 
-button.success:not(.noclick):active,input[type="button"].success:not(.noclick):active,.button.success:not(.noclick):active{
+.button.success:not(.noclick):active{
 	background-color:@success-active-bg;
 }
-button.success.outline:not(.noclick):active,input[type="button"].success.outline:not(.noclick):active,.button.success.outline:not(.noclick):active{
+.button.success.outline:not(.noclick):active{
 	color:@success-active-bg;
 	border-color:@success-active-bg;
 	background-color:transparent;
 }
 
 /*按钮-气泡*/
-button:not(.outline) .tip,input[type="button"]:not(.outline) .tip,.button:not(.outline) .tip,
-button:not(.outline) .badge,input[type="button"]:not(.outline) .badge,.button:not(.outline) .badge{
+.button:not(.outline) .tip,
+.button:not(.outline) .badge{
 	color:@button-color;
 	background-color: @button-tip-bg;
 }
 /*按钮-投影图标*/
-button.shadow:not(.noclick):active,.button.shadow:not(.noclick):active,input[type="button"].shadow:not(.noclick):active{
+.shadow:not(.noclick):active{
 	-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 	-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 	box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 	margin:2px 0 -2px 0;
 }
-/*------------------------------button.less(end)------------------------------*/
+/*----------------button.less(end)--------------*/
 
-/*----------------------------buttongroup.less(start)------------------------------*/
+/*----------------buttongroup.less(start)--------------*/
 .button-group>span{
 	border-color:@border;
 	background-color: @white;
@@ -431,7 +431,7 @@ button.shadow:not(.noclick):active,.button.shadow:not(.noclick):active,input[typ
 .mark-primary{
 	background-color: @primary-bg;
 }
-/*------------------------------buttongroup.less(end)------------------------------*/
+/*----------------buttongroup.less(end)--------------*/
 /*----------------popup.less.less(start)--------------*/
 /*pop-box*/
 .popup{

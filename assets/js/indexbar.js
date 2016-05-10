@@ -26,12 +26,12 @@
 		if(!s.container)return;
 
 		//IndexbarContainer
-		s.indexbar=s.container.parentNode.querySelector("."+s.params.indexbarClass);
+		s.indexbarContainer=s.container.parentNode.querySelector("."+s.params.indexbarClass);
 
 		//Indexs
-		s.indexs=s.indexbar.querySelectorAll("a");
+		s.indexs=s.indexbarContainer.querySelectorAll("a");
 		s.updateContainerSize=function(){
-			s.indexHeight=s.indexbar.clientHeight/s.indexs.length;
+			s.indexHeight=s.indexbarContainer.clientHeight/s.indexs.length;
 			[].slice.call(s.indexs).forEach(function(n,i,a){
 				n.style.height=s.indexHeight+"px";
 				n.style.lineHeight=s.indexHeight+"px";
@@ -40,7 +40,7 @@
 		s.updateContainerSize();
 
 		//Tooltip
-		s.tooltip=s.indexbar.parentNode.querySelector("."+s.params.indexbarTooltipClass);
+		s.tooltip=s.indexbarContainer.parentNode.querySelector("."+s.params.indexbarTooltipClass);
 
 		//Controller
 		/*=========================
@@ -85,9 +85,9 @@
 			touchTarget.removeEventListener("touchmove",preventDefault,false);
 			s.bodyDetach();
 			//移除激活indexbar
-			s.indexbar.classList.remove(s.params.indexbarActiveClass);
+			s.indexbarContainer.classList.remove(s.params.indexbarActiveClass);
 		};
-		s.indexbar.addEventListener("touchstart",function(e){
+		s.indexbarContainer.addEventListener("touchstart",function(e){
 			touchTarget.addEventListener("touchmove",preventDefault,false);
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
@@ -96,7 +96,7 @@
 			//滚动到指定位置
 			s.goIndex(s.touches.startY);
 			//激活indexbar
-			s.indexbar.classList.add(s.params.indexbarActiveClass);
+			s.indexbarContainer.classList.add(s.params.indexbarActiveClass);
 		},false);
 		/*=========================
           Method
@@ -105,7 +105,7 @@
         s.goIndex=function(y){
         	//修改文字
         	s.index=document.elementFromPoint(s.touches.startX,y);
-        	if(s.index.parentNode!=s.indexbar)return;
+        	if(s.index.parentNode!=s.indexbarContainer)return;
         	s.indexHTML=s.index.innerHTML;
         	s.tooltip.innerHTML=s.indexHTML;
         	s.indexLI=s.container.querySelector('[data-index='+s.indexHTML+']');

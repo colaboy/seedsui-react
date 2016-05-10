@@ -20,7 +20,7 @@
 	</style>
 </head>
 
-<body>
+<body ontouchstart="">
 		<header>
 			<div class="titlebar">
 				<a href="javascript:back()">
@@ -32,14 +32,14 @@
 
 		<article>
 			<div class="config_block">
-				<button class="radiusround outline height32" href="#">鲜动态</button>
-				<button class="radiusround outline height32" href="#">最生活</button>
-				<button class="radiusround outline height32" href="#">趣科技</button>
-				<button class="radiusround outline height32" href="#">妙铺子</button>
-				<button class="radiusround outline height32" href="#">阅国际</button>
-				<button class="radiusround outline height32 active" href="#">最生活</button>
-				<button class="radiusround outline height32 active" href="#">鲜动态</button>
-				<button class="radiusround outline height32 active" href="#">妙铺子</button>
+				<button class="button radiusround outline height32" href="#">鲜动态</button>
+				<button class="button radiusround outline height32" href="#">最生活</button>
+				<button class="button radiusround outline height32" href="#">趣科技</button>
+				<button class="button radiusround outline height32" href="#">妙铺子</button>
+				<button class="button radiusround outline height32" href="#">阅国际</button>
+				<button class="button radiusround outline height32 active" href="#">最生活</button>
+				<button class="button radiusround outline height32 active" href="#">鲜动态</button>
+				<button class="button radiusround outline height32 active" href="#">妙铺子</button>
 			</div>
 			<p class="color-placeholder text-center padding8">您最多可选择5个配置!</p>
 		</article>
@@ -49,7 +49,7 @@
     <script src="../plugin/exmobi/exmobi.js"></script>
 	<script>
 		//定义exmobi返回
-		function back(){Exmobi.close();}
+		function back(){history.go(-1)}
 	</script>
 </body>
 </html>

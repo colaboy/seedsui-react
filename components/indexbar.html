@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
-<body>
+<body ontouchstart="">
     <section class="active">
         <header>
             <div class="titlebar">
@@ -194,11 +194,11 @@
     </section>
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <script src="../assets/js/indexbar.js"></script>
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script type="text/javascript">
         var indexbar=new Indexbar("#indexbar_article");
+        function back(){history.go(-1)}
     </script>
 </body>
 </html>

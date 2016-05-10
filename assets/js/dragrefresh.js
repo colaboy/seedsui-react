@@ -1,5 +1,4 @@
 (function(window,document,undefined){
-	'use strict'
 	window.Dragrefresh=function(container,params){
 		/*==================
 		  Model

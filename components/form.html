@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../plugin/animate/animate.css">
 </head>
 
-<body>
+<body ontouchstart="">
     <header>
         <div class="titlebar">
             <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -102,14 +102,14 @@
         </div>
 
         <div class="numbox border margin8">
-            <input type="button" disabled class="grayscale outline noborder" value="-" />
+            <input type="button" disabled class="button grayscale outline noborder" value="-" />
             <input type="number" value="0"/>
-            <input type="button" class="grayscale outline noborder" value="+" />
+            <input type="button" class="button grayscale outline noborder" value="+" />
         </div>
         <div class="numbox margin8">
-            <input type="button" value="-" disabled />
+            <input type="button" class="button" value="-" disabled />
             <input type="number" value="10" step="10" min="10" max="100"/>
-            <input type="button" value="+" />
+            <input type="button" class="button" value="+" />
         </div>
 
         <div class="margin8 lineheight0">
@@ -208,7 +208,7 @@
                 <div class="row-right input-box margin8">
                     <input type="text">
                 </div>
-                <input type="button" value="发送验证码" style="margin-right:8px;" />
+                <input type="button" class="button" value="发送验证码" style="margin-right:8px;" />
             </div>
         </form>
 
@@ -355,9 +355,24 @@
                         <input type="text" placeholder="输入选项内容" />
                         <i class="icon icon-pic color-placeholder"></i>
                         <div class="nowrap" style="width:40px;height:40px;">
-                            <button name="del" class="nolrpadding noclick bg-transparent color-tip">
+                            <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
                                 <i class="icon icon-rdocancel-fill size24"></i>
+                            </a>
+                            <button name="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
+                                <i class="icon icon-trash size24"></i>
                             </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row noborder">
+                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                    <div class="input-box box-flex-1 underline">
+                        <input type="text" placeholder="输入选项内容" />
+                        <i class="icon icon-pic color-placeholder"></i>
+                        <div class="nowrap" style="width:40px;height:40px;">
+                            <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
+                                <i class="icon icon-rdocancel-fill size24"></i>
+                            </a>
                             <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
                                 <i class="icon icon-trash size24"></i>
                             </button>
@@ -370,24 +385,9 @@
                         <input type="text" placeholder="输入选项内容" />
                         <i class="icon icon-pic color-placeholder"></i>
                         <div class="nowrap" style="width:40px;height:40px;">
-                            <button name="del" class="nolrpadding noclick bg-transparent color-tip">
+                            <a name="del" class="button nolrpadding noclick bg-transparent color-tip">
                                 <i class="icon icon-rdocancel-fill size24"></i>
-                            </button>
-                            <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 underline">
-                        <input type="text" placeholder="输入选项内容" />
-                        <i class="icon icon-pic color-placeholder"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <button name="del" class="nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24"></i>
-                            </button>
+                            </a>
                             <button name="delVerify" class="hide animated fadeInRight nolrpadding noclick bg-tip">
                                 <i class="icon icon-trash size24"></i>
                             </button>

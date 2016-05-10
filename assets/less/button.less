@@ -1,6 +1,6 @@
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
-button,input[type="button"],input[type="submit"],.button{
+.button{
 	display:inline-block;
 	padding:0 8px;
 	border-width:0;
@@ -29,6 +29,7 @@ button,input[type="button"],input[type="submit"],.button{
 	box-sizing: border-box;
 
 	border-style:solid;
+	border-radius:0;
 }
 .button{
 	line-height: 40px;
@@ -37,22 +38,21 @@ button,input[type="button"],input[type="submit"],.button{
 	border-width:1px;
 }
 /*按钮-大按钮*/
-button.block,input[type="button"].block,input[type="submit"].block,.button.block{
+.button.block{
 	display: block;
 }
 button.block,input[type="button"].block,input[type="submit"].block{
 	width:100%;
 }
 /*圆形按钮*/
-.button.round,button.round,input[type="button"].round,
-.button.rect,button.rect,input[type="button"].rect{
+.button.round,.button.rect{
     width:auto;
     height:auto;
     line-height:0;
     font-size: 0;
     padding: 5px;
 }
-.button.round,button.round,input[type="button"].round{
+.button.round{
 	border-radius:100%;
 }
 

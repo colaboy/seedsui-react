@@ -6,6 +6,7 @@
           ===========================*/
         var defaults={
             pos:"middle",
+            width:null,
             isClickMaskHide:true
             /*callbacks
             onClick:function(this)
@@ -42,6 +43,8 @@
             s.containerBox.parentNode.insertBefore(s.mask,s.containerBox);
             if(s.params.isClickMaskHide==true)s.mask.addEventListener("click",hideDialog,false);
         }
+        //设置宽度
+        s.params.width=s.container.style.width;
         //设置动画
         var hideAnimate={opacity:0};
         var showAnimate={opacity:1};
@@ -74,11 +77,6 @@
         function showDialog(){
             //显示遮罩
             $(s.mask).css("display","block").animate({opacity:1},"fast","linear");
-            //设置宽度
-            var popw=s.container.style.width;
-            if(!popw){
-                popw="100%";
-            }
             //初始化容器
             s.containerBox.setAttribute("style","");
             $(s.containerBox).css(hideAnimate);
@@ -86,6 +84,11 @@
             //显示容器
             s.container.style.display="block";
             $(s.containerBox).animate(showAnimate,"fast","linear");
+            //设置宽度
+            if(s.params.width){
+                s.container.style.width="100%";
+                s.containerBox.style.width=s.params.width;
+            }
         }
         s.show=showDialog;
 

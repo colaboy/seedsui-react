@@ -10,18 +10,19 @@
     border-style:solid;
     border-width:1px;
 }
-.numbox input[type=button]{
+.numbox .button{
     position:absolute;
     top:0;
     width:32px;
     height:32px;
+    line-height:32px;
     font-size:18px;
     font-weight:400;
 }
-.numbox input[type=button]:first-child{
+.numbox .button:first-child{
     left:0;
 }
-.numbox input[type=button]:nth-last-of-type(1){
+.numbox .button:nth-last-of-type(1){
     right:0;
 }
 .numbox input[type=number],.numbox input[type=text]{
@@ -31,7 +32,6 @@
     text-overflow:ellipsis;
     border-width:0;
 }
-
 .numbox.border input[type=number],.numbox.border input[type=text]{
     width:54px;
     border-width:0 1px;

@@ -1,15 +1,14 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
-<title>slider-page</title>
-<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-<style>
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>slider-page</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
-<body>
+<body ontouchstart="">
     <section class="active">
         <header>
             <div class="titlebar">
@@ -68,11 +67,11 @@
         function initSlider(){
             carouselPage=new Slider("#carouselPage",{
                 "onInit":function(e){
-                    compatibleIosScroll(e);
+                    //compatibleIosScroll(e);
                 },
                 "onSlideChangeEnd":function(e){
                     tabActive(e.index);
-                    compatibleIosScroll(e);
+                    //compatibleIosScroll(e);
                 }
             });
         }
@@ -153,7 +152,7 @@
         },false);
 
         /*兼容Ios浏览器滚动到最底或者最顶，不能滑动的问题*/
-        [].slice.call(slides).forEach(function(n,i,a){
+        /*[].slice.call(slides).forEach(function(n,i,a){
             n.addEventListener("scroll",function(e){
                 compatibleIosScroll(e);
             },false);
@@ -170,7 +169,7 @@
             if (clientHeight+scrollTop>=scrollHeight){
                 container.scrollTop=container.scrollTop-1;
             }
-        }
+        }*/
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

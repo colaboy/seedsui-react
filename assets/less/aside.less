@@ -1,11 +1,10 @@
 /*----------------aside.less(start)--------------*/
 /*侧边栏*/
-aside {
+aside{
 	position: absolute;
 	width: 264px;
 	top: 0;
 	bottom: 0;
-	z-index: 4;
 }
 /*右侧边栏*/
 aside[data-position="right"] {
@@ -18,40 +17,8 @@ aside[data-position="right"] {
 aside[data-position="right"].active{
 	right:0;
 }
-/*push：定义侧边栏宽度*/
-aside[data-position="right"][data-transition="push"].active ~ #section_container {
-	left:-264px;
-}
-/*overlay*/
-aside[data-position="right"][data-transition="overlay"].active {
-}
-/*reveal*/
-aside[data-position="right"][data-transition="reveal"]{
-	right:0;
-	z-index:3;
-	opacity:0;
-	-webkit-transition:opacity 0s linear 0.5s;/*将透明度变0时延迟500毫秒*/
-	-moz-transition:opacity 0s linear 0.5s;
-	-ms-transition:opacity 0s linear 0.5s;
-	transition:opacity 0s linear 0.5s;
-}
-aside[data-position="right"][data-transition="reveal"] ~ #section_container {
-	/*background-color:white;*/
-}
-aside[data-position="right"][data-transition="reveal"].active{
-	opacity:1;
-	-webkit-transition:opacity 0s linear 0s;/*将透明度变1时不延迟*/
-	-moz-transition:opacity 0s linear 0s;
-	-ms-transition:opacity 0s linear 0s;
-	transition:opacity 0s linear 0s;
-}
-aside[data-position="right"][data-transition="reveal"].active ~ #section_container {
-	left:-264px;
-}
-
 /*左侧边栏*/
 aside[data-position="left"] {
-	left: 0;
 	left:-264px;
 	-webkit-transition:all 0.5s;
 	-moz-transition:all 0.5s;
@@ -61,6 +28,40 @@ aside[data-position="left"] {
 aside[data-position="left"].active{
 	left:0;
 }
+
+/*push*/
+aside[data-position="right"][data-transition="push"].active ~ #section_container {
+	left:-264px;
+}
+/*overlay*/
+aside[data-transition="overlay"].active {
+	z-index:4;
+}
+
+/*reveal*/
+aside[data-transition="reveal"]{
+	opacity:0;
+	display:none;
+	-webkit-transition:opacity 0s linear 0.5s;/*将透明度变0时延迟500毫秒*/
+	-moz-transition:opacity 0s linear 0.5s;
+	-ms-transition:opacity 0s linear 0.5s;
+	transition:opacity 0s linear 0.5s;
+}
+aside[data-position="right"][data-transition="reveal"]{
+	right:0;
+}
+aside[data-position="left"][data-transition="reveal"]{
+	left:0;
+}
+
+aside[data-position="right"][data-transition="reveal"].active{
+	opacity:1;
+}
+aside[data-position="right"][data-transition="reveal"].active ~ #section_container {
+	left:-264px;
+}
+
+
 /*push：定义侧边栏宽度*/
 aside[data-position="left"][data-transition="push"].active ~ #section_container {
 	left:264px;
@@ -69,20 +70,13 @@ aside[data-position="left"][data-transition="push"].active ~ #section_container 
 aside[data-position="left"][data-transition="overlay"].active {
 }
 /*reveal*/
-aside[data-position="left"][data-transition="reveal"]{
-	left:0;
-	z-index:3;
-	opacity:0;
-	-webkit-transition:opacity 0s linear 0.5s;/*将透明度变0时延迟500毫秒*/
-	-moz-transition:opacity 0s linear 0.5s;
-	-ms-transition:opacity 0s linear 0.5s;
-	transition:opacity 0s linear 0.5s;
-}
+
 aside[data-position="left"][data-transition="reveal"] ~ #section_container {
 	/*background-color:white;*/
 }
 aside[data-position="left"][data-transition="reveal"].active{
 	opacity:1;
+	display:block;
 	-webkit-transition:opacity 0s linear 0s;/*将透明度变1时不延迟*/
 	-moz-transition:opacity 0s linear 0s;
 	-ms-transition:opacity 0s linear 0s;

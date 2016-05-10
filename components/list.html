@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
-<body>
+<body ontouchstart="">
         <header>
             <div class="titlebar">
             	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -35,7 +35,7 @@
                             <p class="nowrap">ExMobi全面支持HTML5和Native融合，此版UI的名称真是还没想好呢？因为注重通用性，叫种子UI？</p>
                         </div>
                         <div class="justify">
-                            <button>按钮</button>
+                            <button class="button" >按钮</button>
                         </div>
                     </li>
                 </ul>
@@ -68,7 +68,7 @@
                             <small class="nowrap">Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式，让代码更容易维护</small>
                         </div>
                         <div class="justify">
-                            <button>按钮</button>
+                            <button class="button" >按钮</button>
                         </div>
                     </li>
                 </ul>
@@ -219,9 +219,9 @@
                 <ul class="list">
                     <li>
                         <div class="justify">
-                            <div class="tip" style="position:absolute;top:0px;right:0px;">12</div>
                             <div class="photo size60 radius4" style="background-image:url(../img/list/weixin.png)">
                             </div>
+                            <div class="tip" style="position:absolute;top:0px;right:0px;">12</div>
                         </div>
                         <div class="justify-content nowrap">
                             <p>微信</p>
@@ -235,7 +235,7 @@
                             <small>聊天与社交 31.9M</small>
                         </div>
                         <div class="justify box box-middle">
-                            <button class="desaturate outline">打开</button>
+                            <button class="button"  class="desaturate outline">打开</button>
                         </div>
                     </li>
                     <li>
@@ -256,7 +256,7 @@
                             <small>聊天与社交 27.2M</small>
                         </div>
                         <div class="justify box box-middle">
-                            <button class="success outline">安装</button>
+                            <button class="button"  class="success outline">安装</button>
                         </div>
                     </li>
                 </ul>
@@ -360,6 +360,9 @@
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
-    
+    <script>
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

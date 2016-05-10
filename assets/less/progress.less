@@ -13,13 +13,15 @@ progress {
 	&.striped
 	{
 		.progress:after{
-			content: "";
-			position: absolute;
-			top: 0; left: 0; bottom: 0; right: 0;
-			z-index: 1;
+			content:"";
+			position:absolute;
+			top:0;
+			left:0;
+			bottom:0;
+			right:0;
 			background-image:linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-			background-size: 50px 50px;
-			overflow: hidden;
+			background-size:50px 50px;
+			overflow:hidden;
 		}
 		.progress.animated:after{
 			animation: movestripes 2s linear infinite;

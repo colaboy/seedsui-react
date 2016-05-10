@@ -4,6 +4,7 @@
 // @koala-prepend "dateutil.js"
 // @koala-prepend "db.js"
 // @koala-prepend "device.js"
+// @koala-prepend "shake.js"
 // @koala-prepend "dragrefresh.js"
 // @koala-prepend "eventutil.js"
 // @koala-prepend "emoji.js"
@@ -27,3 +28,4 @@
 // @koala-prepend "actionsheet.js"
 // @koala-prepend "dialog.js"
 // @koala-prepend "tree.js"
+// @koala-prepend "indexbar.js"

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
-<body>
+<body ontouchstart="">
     <header>
         <div class="titlebar">
             <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -24,12 +24,12 @@
                 <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
                 <div class="safelvl lvl0">
+                    <div class="progress"></div>
                 	<ul>
                 		<li>弱</li>
                 		<li>中</li>
                 		<li>强</li>
                 	</ul>
-                	<div class="progress"></div>
                 </div>
             </div>
             
@@ -52,7 +52,7 @@
                 <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
             </div>
 
-            <button class="submit block">注册</button>
+            <button class="button submit block">注册</button>
     	</form>
     </article>
     
