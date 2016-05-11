@@ -255,27 +255,27 @@ small {
   /*首字母大写*/
 }
 /*-----------------------------global.less(end)-----------------------------*/
-.before-sepia,
-.before-grayscale,
-.before-blur,
-.before-invert,
-.before-saturate,
-.before-contrast,
-.before-brightness,
-.before-hue-rotate,
-.before-drop-shadow {
+.before-filter-sepia,
+.before-filter-grayscale,
+.before-filter-blur,
+.before-filter-invert,
+.before-filter-saturate,
+.before-filter-contrast,
+.before-filter-brightness,
+.before-filter-hue-rotate,
+.before-filter-drop-shadow {
   position: relative;
   z-index: 0;
 }
-.before-sepia:before,
-.before-grayscale:before,
-.before-blur:before,
-.before-invert:before,
-.before-saturate:before,
-.before-contrast:before,
-.before-brightness:before,
-.before-hue-rotate:before,
-.before-drop-shadow:before {
+.before-filter-sepia:before,
+.before-filter-grayscale:before,
+.before-filter-blur:before,
+.before-filter-invert:before,
+.before-filter-saturate:before,
+.before-filter-contrast:before,
+.before-filter-brightness:before,
+.before-filter-hue-rotate:before,
+.before-filter-drop-shadow:before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -288,8 +288,8 @@ small {
   background-position: center;
   overflow: hidden;
 }
-.sepia,
-.before-sepia:before {
+.filter-sepia,
+.before-filter-sepia:before {
   /**  格式，filer: sepia(效果范围)
      *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
      */
@@ -299,8 +299,8 @@ small {
   -ms-filter: sepia(100%);
   filter: sepia(100%);
 }
-.grayscale,
-.before-grayscale:before {
+.filter-grayscale,
+.before-filter-grayscale:before {
   /**  格式，filer: grayscale(效果范围)
      *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
      */
@@ -310,8 +310,8 @@ small {
   -ms-filter: grayscale(100%);
   filter: grayscale(100%);
 }
-.blur,
-.before-blur:before {
+.filter-blur,
+.before-filter-blur:before {
   /**  格式，filer: blur(模糊半径)
      *  模糊半径，取值范围0~Npx，0为无效果
      */
@@ -322,8 +322,8 @@ small {
   opacity: 0.9;
   -webkit-filter: blur(2px);
 }
-.invert,
-.before-invert:before {
+.filter-invert,
+.before-filter-invert:before {
   /**  格式，filer: invert(效果范围)
      *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
      */
@@ -333,8 +333,8 @@ small {
   -ms-filter: invert(1);
   filter: invert(1);
 }
-.saturate,
-.before-saturate:before {
+.filter-saturate,
+.before-filter-saturate:before {
   /**  格式，filer: saturate(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果，0为灰度图
      */
@@ -344,8 +344,8 @@ small {
   -ms-filter: saturate(2);
   filter: saturate(2);
 }
-.contrast,
-.before-contrast:before {
+.filter-contrast,
+.before-filter-contrast:before {
   /**  格式，filer: contrast(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果
      */
@@ -355,8 +355,8 @@ small {
   -ms-filter: contrast(2);
   filter: contrast(2);
 }
-.brightness,
-.before-brightness:before {
+.filter-brightness,
+.before-filter-brightness:before {
   /**  格式，filer: brightness(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果
      */
@@ -366,8 +366,8 @@ small {
   -ms-filter: brightness(2);
   filter: brightness(2);
 }
-.hue-rotate,
-.before-hue-rotate:before {
+.filter-hue-rotate,
+.before-filter-hue-rotate:before {
   /**  格式，filer: hue-rotate(效果范围)
      *  效果范围，取值范0deg~365deg，0（默认值）为无效果
      */
@@ -377,8 +377,8 @@ small {
   -ms-filter: hue-rotate(200deg);
   filter: hue-rotate(200deg);
 }
-.drop-shadow,
-.before-drop-shadow:before {
+.filter-drop-shadow,
+.before-filter-drop-shadow:before {
   /**  格式，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
      *  x-offset和y-offset为阴影的相对于元素左上角的位移距离；
      * 注意：
@@ -398,12 +398,6 @@ body {
   height: 100%;
 }
 body {
-  /* position:fixed;
-	top:0;
-	right:0;
-	bottom:0;
-	left:0;
-	overflow:hidden; */
   /*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /*禁止文字自适应大小*/
@@ -412,20 +406,31 @@ body {
   -ms-text-size-adjust: none;
   -o-text-size-adjust: none;
   text-size-adjust: none;
+  /*平滑滚动*/
+  -webkit-overflow-scrolling: touch;
+  -moz-overflow-scrolling: touch;
+  -ms-overflow-scrolling: touch;
+  -o-overflow-scrolling: touch;
+  overflow-scrolling: touch;
 }
 /*主体*/
+.body-box,
 #section_container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
   overflow: hidden;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   transition: all 0.5s;
+}
+.body-scroller {
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
 }
 /*主体遮罩*/
 .section_container_mask {
@@ -434,7 +439,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
   overflow: hidden;
   display: none;
 }
@@ -445,26 +449,11 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
   overflow: hidden;
+  z-index: 0;
 }
 section.active {
   display: block;
-}
-article {
-  position: absolute;
-  z-index: 0;
-  top: 44px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: auto;
-  /*平滑滚动*/
-  -webkit-overflow-scrolling: touch;
-  -moz-overflow-scrolling: touch;
-  -ms-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-  overflow-scrolling: touch;
 }
 .scroller {
   position: relative;
@@ -473,9 +462,9 @@ article {
 /*header,footer*/
 header,
 footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 header {
   top: 0;
@@ -483,7 +472,56 @@ header {
 footer {
   bottom: 0;
 }
+section > header,
+section > footer {
+  position: absolute;
+}
+/*content*/
+body > header + article {
+  padding-top: 44px;
+}
+section > article {
+  position: absolute;
+  top: 44px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+}
 /*----------------mbox.less(end)--------------*/
+/*----------------appearance.less(start)--------------*/
+button,
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="file"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="datetime-local"],
+input[type="datetime"],
+input[type="time"],
+keygen,
+input[list],
+textarea,
+select,
+input[type=range],
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+/*----------------appearance.less(end)--------------*/
 @font-face {
   font-family: 'iconfont';
   src: url('fonts/iconfont.eot?m6ldtb');
@@ -1867,7 +1905,6 @@ ul.border-content li {
   right: 0;
   bottom: 0;
   font-size: 12px;
-  z-index: 9;
   font-weight: bold;
 }
 .indexbar a {
@@ -1892,7 +1929,6 @@ ul.border-content li {
 .indexbar-tooltip {
   display: none;
   position: absolute;
-  z-index: 20;
   width: 80px;
   height: 80px;
   left: 50%;
@@ -2026,103 +2062,7 @@ ul.border-content li {
   float: right;
 }
 /*----------------card.less(end)--------------*/
-/*----------------aside.less(start)--------------*/
-/*侧边栏*/
-aside {
-  position: absolute;
-  width: 264px;
-  top: 0;
-  bottom: 0;
-  z-index: 4;
-}
-/*右侧边栏*/
-aside[data-position="right"] {
-  right: -264px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  transition: all 0.5s;
-}
-aside[data-position="right"].active {
-  right: 0;
-}
-/*push：定义侧边栏宽度*/
-aside[data-position="right"][data-transition="push"].active ~ #section_container {
-  left: -264px;
-}
-/*overlay*/
-/*reveal*/
-aside[data-position="right"][data-transition="reveal"] {
-  right: 0;
-  z-index: 3;
-  opacity: 0;
-  -webkit-transition: opacity 0s linear 0.5s;
-  /*将透明度变0时延迟500毫秒*/
-  -moz-transition: opacity 0s linear 0.5s;
-  -ms-transition: opacity 0s linear 0.5s;
-  transition: opacity 0s linear 0.5s;
-}
-aside[data-position="right"][data-transition="reveal"] ~ #section_container {
-  /*background-color:white;*/
-}
-aside[data-position="right"][data-transition="reveal"].active {
-  opacity: 1;
-  -webkit-transition: opacity 0s linear 0s;
-  /*将透明度变1时不延迟*/
-  -moz-transition: opacity 0s linear 0s;
-  -ms-transition: opacity 0s linear 0s;
-  transition: opacity 0s linear 0s;
-}
-aside[data-position="right"][data-transition="reveal"].active ~ #section_container {
-  left: -264px;
-}
-/*左侧边栏*/
-aside[data-position="left"] {
-  left: 0;
-  left: -264px;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  transition: all 0.5s;
-}
-aside[data-position="left"].active {
-  left: 0;
-}
-/*push：定义侧边栏宽度*/
-aside[data-position="left"][data-transition="push"].active ~ #section_container {
-  left: 264px;
-}
-/*overlay*/
-/*reveal*/
-aside[data-position="left"][data-transition="reveal"] {
-  left: 0;
-  z-index: 3;
-  opacity: 0;
-  -webkit-transition: opacity 0s linear 0.5s;
-  /*将透明度变0时延迟500毫秒*/
-  -moz-transition: opacity 0s linear 0.5s;
-  -ms-transition: opacity 0s linear 0.5s;
-  transition: opacity 0s linear 0.5s;
-}
-aside[data-position="left"][data-transition="reveal"] ~ #section_container {
-  /*background-color:white;*/
-}
-aside[data-position="left"][data-transition="reveal"].active {
-  opacity: 1;
-  -webkit-transition: opacity 0s linear 0s;
-  /*将透明度变1时不延迟*/
-  -moz-transition: opacity 0s linear 0s;
-  -ms-transition: opacity 0s linear 0s;
-  transition: opacity 0s linear 0s;
-}
-aside[data-position="left"][data-transition="reveal"].active ~ #section_container {
-  left: 264px;
-}
-/*显示主体遮罩*/
-aside.active ~ #section_container .section_container_mask {
-  display: block;
-}
-/*----------------aside.less(end)--------------*/
+/* @import "../assets/less/aside.less"; */
 /*----------------------------title.less(start)----------------------------*/
 .sliver,
 .title {
@@ -2622,13 +2562,10 @@ aside.active ~ #section_container .section_container_mask {
 /*----------------------------searchbar.less(end)----------------------------*/
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
-button,
-input[type="button"],
-input[type="submit"],
 .button {
   display: inline-block;
   padding: 0 8px;
-  border: 0;
+  border-width: 0;
   height: 40px;
   overflow: hidden;
   text-align: center;
@@ -2650,6 +2587,7 @@ input[type="submit"],
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-style: solid;
+  border-radius: 0;
 }
 .button {
   line-height: 40px;
@@ -2658,9 +2596,6 @@ input[type="submit"],
   border-width: 1px;
 }
 /*按钮-大按钮*/
-button.block,
-input[type="button"].block,
-input[type="submit"].block,
 .button.block {
   display: block;
 }
@@ -2671,20 +2606,14 @@ input[type="submit"].block {
 }
 /*圆形按钮*/
 .button.round,
-button.round,
-input[type="button"].round,
-.button.rect,
-button.rect,
-input[type="button"].rect {
+.button.rect {
   width: auto;
   height: auto;
   line-height: 0;
   font-size: 0;
   padding: 5px;
 }
-.button.round,
-button.round,
-input[type="button"].round {
+.button.round {
   border-radius: 100%;
 }
 /*多彩标签按钮*/
@@ -2803,10 +2732,6 @@ keygen,
 input[list],
 textarea,
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 8px;
@@ -2884,8 +2809,7 @@ select {
   box-flex: 1.0;
   -webkit-flex: 1;
   flex: 1;
-  border: 0;
-  background-color: transparent;
+  border-width: 0;
 }
 /*box内图标*/
 .input-box .icon {
@@ -2944,16 +2868,51 @@ div[data-input=clear] input[type] + .icon {
   margin-right: 10px;
 }
 /*----------------inputbox.less(end)--------------*/
+/*----------------numbox.less(start)--------------*/
+.numbox {
+  display: inline-block;
+  position: relative;
+  height: 32px;
+  width: 120px;
+  overflow: hidden;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+}
+.numbox .button {
+  position: absolute;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.numbox .button:first-child {
+  left: 0;
+}
+.numbox .button:nth-last-of-type(1) {
+  right: 0;
+}
+.numbox input[type=number],
+.numbox input[type=text] {
+  padding: 6px 0;
+  width: 56px;
+  text-align: center;
+  text-overflow: ellipsis;
+  border-width: 0;
+}
+.numbox.border input[type=number],
+.numbox.border input[type=text] {
+  width: 54px;
+  border-width: 0 1px;
+}
+/*----------------numbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
 input[type="checkbox"],
 input[type="radio"],
 .checkbox,
 .radio {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
   background-position: 0 0;
   background-repeat: no-repeat;
   height: 22px;
@@ -2997,7 +2956,7 @@ input[type="radio"]:checked:before,
 input[type="color"] {
   width: 44px;
   height: 24px;
-  border: 0;
+  border-width: 0;
   padding: 0;
   background-color: #eee;
 }
@@ -3020,7 +2979,6 @@ input[type="color"] {
   display: none;
   position: absolute;
   top: -50px;
-  z-index: 1;
   width: 48px;
   height: 48px;
   font-size: 20px;
@@ -3053,7 +3011,6 @@ progress {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
   background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
   background-size: 50px 50px;
   overflow: hidden;
@@ -3134,22 +3091,20 @@ progress {
 /*----------------progress.less(end)--------------*/
 /*----------------range.less(start)--------------*/
 input[type=range] {
-  -webkit-appearance: none!important;
   position: relative;
   width: 100%;
   height: 2px;
   padding: 0;
   margin: 17px 0;
   cursor: pointer;
-  border: 0;
+  border-width: 0;
   border-radius: 3px;
   outline: 0;
 }
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none!important;
   width: 28px;
   height: 28px;
-  border: 0;
+  border-width: 0;
   background-clip: padding-box;
   border-radius: 50%;
 }
@@ -3200,7 +3155,6 @@ input[type=range]::-webkit-slider-thumb {
   -ms-transition-property: -moz-transform, border, width;
   -o-transition-property: -moz-transform, border, width;
   transition-property: transform, border, width;
-  z-index: 2;
   background-color: #ddd;
 }
 /*关闭状态文字off*/
@@ -3294,7 +3248,6 @@ input[type=range]::-webkit-slider-thumb {
   background-position: center center;
   background-repeat: no-repeat;
   background-color: white;
-  z-index: 5;
   width: 48px;
   height: 48px;
   border-radius: 100%;
@@ -4049,6 +4002,7 @@ input[type=range]::-webkit-slider-thumb {
   white-space: nowrap;
   box-sizing: border-box;
   font-size: 12px;
+  min-height: 16px;
 }
 .grid li > a > img {
   max-width: 100%;
@@ -4247,7 +4201,6 @@ input[type=range]::-webkit-slider-thumb {
 .popup {
   position: fixed;
   z-index: 10;
-  width: 100%;
   border-style: solid;
   border-width: 0;
 }
@@ -4273,7 +4226,8 @@ input[type=range]::-webkit-slider-thumb {
 }
 .popup[data-pos=left],
 .popup[data-pos=right] {
-  height: 100%;
+  top: 0;
+  bottom: 0;
   max-width: 270px;
   background-color: white;
 }
@@ -4686,6 +4640,7 @@ input[type=range]::-webkit-slider-thumb {
 .sharebox {
   padding: 12px;
   background-color: white;
+  box-sizing: border-box;
 }
 /*----------------share.less(start)--------------*/
 /*----------------------------slider.less(start)----------------------------*/
@@ -4867,6 +4822,108 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/
+/*----------------scrollpicker.less(start)--------------*/
+#scrollpicker {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  text-align: left;
+  z-index: 1000;
+}
+#scrollpicker-header {
+  position: relative;
+  width: 100%;
+  height: 43px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f4f4f4;
+}
+#scrollpicker-cancel,
+#scrollpicker-done {
+  display: inline-block;
+  position: absolute;
+  top: 4px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 5px;
+}
+#scrollpicker-cancel {
+  left: 7px;
+  float: left;
+}
+#scrollpicker-done {
+  right: 7px;
+  float: right;
+}
+.sw-pressed {
+  opacity: 0.4;
+}
+#scrollpicker-body {
+  position: relative;
+  z-index: 999;
+  display: block;
+  height: 215px;
+  overflow: hidden;
+  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
+}
+#scrollpicker-slots {
+  display: table;
+  width: 100%;
+  background: #fcfcfc;
+}
+#scrollpicker-slots div {
+  display: table-cell;
+  height: 100%;
+  padding-top: 86px;
+}
+#scrollpicker-slots div:first-child {
+  border: 0;
+}
+#scrollpicker-slots ul {
+  padding: 0 0 85px 0;
+  margin: 0;
+  list-style: none;
+}
+#scrollpicker-slots .shrink {
+  width: 1%;
+}
+#scrollpicker-slots .separator {
+  background-color: #f4f4f4;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+#scrollpicker-slots li {
+  padding: 0 8px;
+  height: 44px;
+  line-height: 44px;
+  overflow: hidden;
+  font-size: 20px;
+  color: #aaa;
+}
+#scrollpicker-slots li.active {
+  color: #333;
+}
+#scrollpicker-touchlayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 215px;
+  border-width: 16px;
+  z-index: 1000;
+}
+.scrollpicker-touchlayer-activebox {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  height: 46px;
+  width: 100%;
+  border-width: 1px 0;
+  border-color: #ddd;
+  border-style: solid;
+}
+/*----------------scrollpicker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/
 /*隐藏原始图标*/
 summary::-webkit-details-marker {
@@ -5060,7 +5117,6 @@ table th {
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
 }
 .safelvl ul li {
   display: block;
@@ -5293,6 +5349,12 @@ ul.weather-otherday li {
 .arrowright {
   font-size: 20px;
 }
+/*今天*/
+.day-date .today:not(.active) {
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+}
 /*----------------------------calendar.less(end)----------------------------*/
 /*--------------------badge.less(start)----------------------*/
 .badge,
@@ -5308,7 +5370,6 @@ ul.weather-otherday li {
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 100%;
-  z-index: 1;
 }
 /*小点点*/
 .dot {
@@ -6265,6 +6326,7 @@ input[type="submit"].radiusround,
 /*----------------global.less(start)--------------*/
 body {
   color: #333333;
+  background-color: #f4f4f4;
 }
 /*标签默认样式*/
 ::selection {
@@ -6309,11 +6371,6 @@ hr {
   background-color: transparent;
 }
 /*----------------global.less(end)--------------*/
-/*----------------mbox.less(start)--------------*/
-section {
-  background-color: #f4f4f4;
-}
-/*----------------mbox.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
 /*主体遮罩*/
 .section_container_mask {
@@ -6349,17 +6406,14 @@ aside {
   color: #ffffff;
 }
 .titlebar.reverse a,
-.titlebar.reverse button,
-.titlebar.reverse input[type="button"] {
+.titlebar.reverse .button {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.5);
 }
 .titlebar.reverse a:active,
-.titlebar.reverse button:active,
-.titlebar.reverse input[type="button"]:active,
+.titlebar.reverse .button:active,
 .titlebar.reverse a.active,
-.titlebar.reverse button.active,
-.titlebar.reverse input[type="button"].active {
+.titlebar.reverse .button.active {
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.25);
 }
@@ -6478,270 +6532,189 @@ aside {
   background-color: #36acf4;
 }
 /*----------------badge.less(end)--------------*/
-/*------------------------------button.less(start)------------------------------*/
+/*----------------button.less(start)--------------*/
 /*按钮-普通按钮*/
-button,
-input[type="button"],
-input[type="submit"],
 .button {
   color: #ffffff;
   background-color: #36acf4;
 }
-button.outline,
-input[type="button"].outline,
 .button.outline {
   color: #36acf4;
   border-color: #36acf4;
   background-color: transparent;
 }
-button:not(.noclick):active,
-input[type="button"]:not(.noclick):active,
 .button:not(.noclick):active {
   color: rgba(255, 255, 255, 0.5);
   background-color: rgba(54, 172, 244, 0.5);
 }
-button.outline:not(.noclick):active,
-input[type="button"].outline:not(.noclick):active,
 .button.outline:not(.noclick):active {
   color: rgba(54, 172, 244, 0.5);
   border-color: rgba(54, 172, 244, 0.5);
   background-color: transparent;
 }
 /*去色*/
-button.grayscale,
-input[type="button"].grayscale,
 .button.grayscale {
   border-width: 1px;
 }
-button.grayscale,
-input[type="button"].grayscale,
 .button.grayscale {
   color: #333333;
   border-color: #dddddd;
   background-color: #f4f4f4;
 }
-button.grayscale:not(.noclick):active,
-input[type="button"].grayscale:not(.noclick):active,
 .button.grayscale:not(.noclick):active {
   color: inherit;
   border-color: inherit;
   background-color: transparent;
 }
-button.outline.grayscale,
-input[type="button"].outline.grayscale,
 .button.outline.grayscale {
   color: #333333;
   border-color: #dddddd;
   background-color: transparent;
 }
-button.outline.grayscale:not(.noclick):active,
-input[type="button"].outline.grayscale:not(.noclick):active,
 .button.outline.grayscale:not(.noclick):active {
   color: inherit;
   border-color: inherit;
   background-color: #f4f4f4;
 }
+.button.grayscale.disable,
+.button.grayscale[disabled],
+.button.grayscale.disable:not(.noclick):active {
+  color: #d9d9d9;
+  background-color: #f4f4f4;
+}
 /*白色*/
-button.white,
-input[type="button"].white,
 .button.white {
   color: #333333;
   background-color: #ffffff;
 }
-button.white:not(.noclick):active,
-input[type="button"].white:not(.noclick):active,
 .button.white:not(.noclick):active {
   color: #333333;
   background-color: rgba(255, 255, 255, 0.5);
 }
-button.outline.white,
-input[type="button"].outline.white,
 .button.outline.white {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
-button.outline.white:not(.noclick):active,
-input[type="button"].outline.white:not(.noclick):active,
 .button.outline.white:not(.noclick):active {
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
 /*按钮-禁用按钮*/
-button.disable,
-input[type="button"].disable,
 .button.disable,
-button[disable],
-input[type="button"][disable],
-button.disable:not(.noclick):active,
-input[type="button"].disable:not(.noclick):active,
-.button.disable:not(.noclick):active,
-button[disable]:not(.noclick),
-input[type="button"][disable]:not(.noclick):active {
+.button[disabled],
+.button.disable:not(.noclick):active {
   color: #ffffff;
   background-color: #d9d9d9;
 }
-button.disable.outline,
-input[type="button"].disable.outline,
-button[disable].outline,
-input[type="button"][disable].outline,
 .button.disable.outline,
-button.disable.outline:not(.noclick):active,
-input[type="button"].disable.outline:not(.noclick):active,
-button[disable].outline:not(.noclick):active,
-input[type="button"][disable].outline:not(.noclick):active,
+.button[disabled].outline,
 .button.disable.outline:not(.noclick):active {
   color: #d9d9d9;
   border-color: #d9d9d9;
   background-color: transparent;
 }
 /*按钮-取消按钮*/
-button.cancel,
-input[type="button"].cancel,
 .button.cancel {
   background-color: #f86868;
 }
-button.cancel.outline,
-input[type="button"].cancel.outline,
 .button.cancel.outline {
   color: #f86868;
   border-color: #f86868;
   background-color: transparent;
 }
-button.cancel:not(.noclick):active,
-input[type="button"].cancel:not(.noclick):active,
 .button.cancel:not(.noclick):active {
   background-color: rgba(248, 104, 104, 0.5);
 }
-button.cancel.outline:not(.noclick):active,
-input[type="button"].cancel.outline:not(.noclick):active,
 .button.cancel.outline:not(.noclick):active {
   color: rgba(248, 104, 104, 0.5);
   border-color: rgba(248, 104, 104, 0.5);
   background-color: transparent;
 }
 /*按钮-提交按钮*/
-button.submit,
-input[type="submit"],
 .button.submit {
   background-color: #88d038;
 }
-button.submit.outline,
-input[type="submit"].outline,
 .button.submit.outline {
   color: #88d038;
   border-color: #88d038;
   background-color: transparent;
 }
-button.submit:not(.noclick):active,
-input[type="submit"]:not(.noclick):active,
 .button.submit:not(.noclick):active {
   background-color: rgba(136, 208, 56, 0.5);
 }
-button.submit.outline:not(.noclick):active,
-input[type="submit"].outline:not(.noclick):active,
 .button.submit.outline:not(.noclick):active {
   color: rgba(136, 208, 56, 0.5);
   border-color: rgba(136, 208, 56, 0.5);
   background-color: transparent;
 }
 /*按钮-信息按钮*/
-button.info,
-input[type="button"].info,
 .button.info {
   background-color: #5bc0de;
 }
-button.info.outline,
-input[type="button"].info.outline,
 .button.info.outline {
   color: #5bc0de;
   border-color: #5bc0de;
   background-color: transparent;
 }
-button.info:not(.noclick):active,
-input[type="button"].info:not(.noclick):active,
 .button.info:not(.noclick):active {
   background-color: rgba(91, 192, 222, 0.5);
 }
-button.info.outline:not(.noclick):active,
-input[type="button"].info.outline:not(.noclick):active,
 .button.info.outline:not(.noclick):active {
   color: rgba(91, 192, 222, 0.5);
   border-color: rgba(91, 192, 222, 0.5);
   background-color: transparent;
 }
 /*按钮-警告按钮*/
-button.warn,
-input[type="button"].warn,
 .button.warn {
   background-color: #f4984e;
 }
-button.warn.outline,
-input[type="button"].warn.outline,
 .button.warn.outline {
   color: #f4984e;
   border-color: #f4984e;
   background-color: transparent;
 }
-button.warn:active,
-input[type="button"].warn:active,
 .button.warn:active {
   background-color: rgba(244, 152, 78, 0.5);
 }
-button.warn.outline:not(.noclick):active,
-input[type="button"].warn.outline:not(.noclick):active,
 .button.warn.outline:not(.noclick):active {
   color: rgba(244, 152, 78, 0.5);
   border-color: rgba(244, 152, 78, 0.5);
   background-color: transparent;
 }
 /*按钮-完成按钮*/
-button.success,
-input[type="button"].success,
 .button.success {
   background-color: #4ddb63;
 }
-button.success.outline,
-input[type="button"].success.outline,
 .button.success.outline {
   color: #4ddb63;
   border-color: #4ddb63;
   background-color: transparent;
 }
-button.success:not(.noclick):active,
-input[type="button"].success:not(.noclick):active,
 .button.success:not(.noclick):active {
   background-color: rgba(77, 219, 99, 0.5);
 }
-button.success.outline:not(.noclick):active,
-input[type="button"].success.outline:not(.noclick):active,
 .button.success.outline:not(.noclick):active {
   color: rgba(77, 219, 99, 0.5);
   border-color: rgba(77, 219, 99, 0.5);
   background-color: transparent;
 }
 /*按钮-气泡*/
-button:not(.outline) .tip,
-input[type="button"]:not(.outline) .tip,
 .button:not(.outline) .tip,
-button:not(.outline) .badge,
-input[type="button"]:not(.outline) .badge,
 .button:not(.outline) .badge {
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.15);
 }
 /*按钮-投影图标*/
-button.shadow:not(.noclick):active,
-.button.shadow:not(.noclick):active,
-input[type="button"].shadow:not(.noclick):active {
+.shadow:not(.noclick):active {
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   margin: 2px 0 -2px 0;
 }
-/*------------------------------button.less(end)------------------------------*/
-/*----------------------------buttongroup.less(start)------------------------------*/
+/*----------------button.less(end)--------------*/
+/*----------------buttongroup.less(start)--------------*/
 .button-group > span {
   border-color: #dddddd;
   background-color: #ffffff;
@@ -6783,7 +6756,7 @@ input[type="button"].shadow:not(.noclick):active {
 .mark-primary {
   background-color: #36acf4;
 }
-/*------------------------------buttongroup.less(end)------------------------------*/
+/*----------------buttongroup.less(end)--------------*/
 /*----------------popup.less.less(start)--------------*/
 /*pop-box*/
 .popup {
@@ -6827,7 +6800,8 @@ select,
   border-color: #dddddd;
   background-color: #ffffff;
 }
-.input-box {
+.input-box,
+.numbox {
   background-color: #ffffff;
   border-color: #dddddd;
 }
@@ -7209,6 +7183,7 @@ li.sliver {
 }
 .day-date .today:not(.active) {
   color: #36acf4;
+  border-color: #36acf4;
 }
 .day-date .active {
   background-color: #36acf4;
