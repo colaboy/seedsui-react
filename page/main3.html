@@ -630,10 +630,10 @@
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script type="text/javascript">
-        var tabbar=document.getElementById("tabbar");
-        var tab=tabbar.querySelectorAll(".tab");
+        /*==========
+        滑动页
+        ===========*/
         var carouselPage;
-        //初始化滑动容器
         function initSlider(){
             carouselPage=new Slider("#carouselPage",{
                 "onSlideChangeEnd":function(e){
@@ -644,6 +644,11 @@
                 "pagination":".slider-pagination"
             });
         }
+        /*==========
+        页签
+        ===========*/
+        var tabbar=document.getElementById("tabbar");
+        var tab=tabbar.querySelectorAll(".tab");
         //选中tab
         function tabActive(index){
             for(var i=0,t;t=tab[i++];){
@@ -651,8 +656,8 @@
             }
             tab[index].classList.add("active");
         }
-        //绑定tab点击事件
-        function tabBindClick(){
+        //初始化tabbar
+        function initTabbar(){
             for(var i=0,t;t=tab[i++];){
                 (function(i){
                     t.addEventListener("click",function(){
@@ -662,9 +667,32 @@
                 })(i);
             }
         }
+        /*==========
+        下拉刷新
+        ===========*/
+        function initDrag(){
+            var drag=new Dragrefresh(carouselPage.slides[0],{
+                "onRefreshStart":function(e){
+                    setTimeout(function(){
+                        e.refreshComplete();
+                    }, 2000);
+                },
+                "onRefreshEnd":function(e){
+                    console.log("刷新完成");
+                },
+                "onBottom":function(e){
+                    console.log("滚动到底部啦");
+                    //数据加载完成时，隐藏下面的元素
+                    setTimeout(function(){
+                        e.bottomRefreshEl.style.display="none";
+                    }, 5000);
+                }
+            });
+        }
         window.addEventListener("load",function(){
             initSlider();
-            tabBindClick();
+            initTabbar();
+            initDrag();
         },false);
         //定义exmobi返回
     	function back(){history.go(-1);}

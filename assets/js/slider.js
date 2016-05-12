@@ -215,7 +215,7 @@
 			//runCallBack
 			s.target=s.slides[s.index];
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
-			e.stopPropagation();
+			//e.stopPropagation();
 		};
 		s.onTouchMove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
