@@ -11,6 +11,7 @@
 			"slidesPerView":1,
 			"threshold":"50",
 			"duration":"300",
+			"stopPropagation":false,
 
 			//loop
 			"loop":false,
@@ -215,7 +216,7 @@
 			//runCallBack
 			s.target=s.slides[s.index];
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
-			//e.stopPropagation();
+			if(s.params.stopPropagation==true)e.stopPropagation();
 		};
 		s.onTouchMove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
