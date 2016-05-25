@@ -47,7 +47,7 @@
         //Dom元素
         s.container,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
         //槽元素与其值
-        s.slots=[],s.slots.col=0,s.activeNode,s.activeOptions=[],s.activeOption={};
+        s.slots=[],s.slots.col=0,s.activeOptions=[],s.activeOption={};
         //是否渲染
         s.isRendered=false;
         /*=========================
@@ -328,11 +328,6 @@
                 isTransitionEnd=true;
             }
         }
-        //根据值跳转到指定位置
-        s.scrollToValueIndex=function(slot,valueIndex){
-            var posY=-valueIndex*s.params.cellHeight;
-            slot.style.WebkitTransform='translate3d(0px,' + posY + 'px,0px)';
-        }
         //计算超出边缘时新的时间
         s.sideDuration=function(posY,bouncePosY,duration){
             return Math.round(duration/(posY/bouncePosY));
@@ -344,7 +339,7 @@
                 n.classList.remove("active");
                 if(i==index){
                     n.classList.add("active");
-                    s.activeNode=n;
+                    //s.activeNode=n;
                 }
             });
             //添加到激活项
@@ -512,5 +507,6 @@
                 s.attach();
             }
         }
+        init();
     }
 })(window,document,undefined);
