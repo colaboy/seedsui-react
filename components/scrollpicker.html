@@ -2,96 +2,151 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
 	<title>scrollpicker</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+	.citycol{
+		width:33%;
+	}
+	.citycol:nth-child(2){
+		width:34%;
+	}
+	</style>
 </head>
 
 <body ontouchstart="">
-		<header>
-			<div class="titlebar">
-		        <a href="javascript:back()">
-		            <i class="icon icon-arrowleft"></i>
-		        </a>
-		        <h1>滚动选择器</h1>
-		    </div>
-		</header>
-		<article>
-			<button class="button" onclick="openOneSlot()">一列</button>
-			<button class="button" onclick="openBirthDate()">三列</button>
-			<button class="button" onclick="openWeight()">多列</button>
-			<p id="result">results</p>
-			<p><a href="http://cubiq.org/spinning-wheel-on-webkit-for-iphone-ipod-touch/11">Read the related article on cubiq.org</a></p>
-
-		</article>
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>滚动选择器</h1>
+	    </div>
+	</header>
+	<article>
+		<a class="button block bg-1 margin8" onclick="openOneSlot()">简单两列</a>
+		<a class="button block bg-2 margin8" onclick="openWeight()">级联更新</a>
+		<div class="card padding8"><p id="result">结果</p></div>
+	</article>
+	<!--数据-->
+	<script src="../plugin/data/data.city.js"></script>
+	<!--SeedsUI-->
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <script src="../assets/js/scrollpicker.js"></script>
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script type="text/javascript">
+    /*=========================
+      简单两列
+      ===========================*/
+    var nums1=[
+	    {'key':'a','value':'0'},
+	    {'key':'b','value':'1'},
+	    {'key':'c','value':'2'},
+	    {'key':'d','value':'3'},
+	    {'key':'e','value':'4'},
+	    {'key':'f','value':'5'},
+	    {'key':'g','value':'6'},
+    ];
+    var nums2=[
+	    {'key':'I','value':'0'},
+	    {'key':'II','value':'1'},
+	    {'key':'III','value':'2'},
+	    {'key':'IV','value':'3'},
+	    {'key':'V','value':'4'},
+	    {'key':'VI','value':'5'},
+	    {'key':'VII','value':'6'},
+    ];
+    var sp1=new Scrollpicker({
+    	"onClickDone":function(e){
+    		//获得全部选中项
+    		//console.log(e.activeOptions);
+    		//打印值
+    		var activeText="";
+    		e.activeOptions.forEach(function(n,i,a){
+    			activeText+=n["value"]+",";
+    		});
+    		document.getElementById("result").innerHTML="您选中的值为："+activeText;
+    		e.hide();
+    	},
+    	"onClickCancel":function(e){
+    		e.updateSlots();
+    		e.hide();
+    	},
+    	"onScrollEnd":function(e){
+    		//获得当前选中项
+    		//console.log(e.activeOption);
+    	}
+    });
+    function addSlot1(){
+	    sp1.addSlot(nums1,'','5');
+	    sp1.addSlot(nums2);
+	}
+	addSlot1();
+    function openOneSlot() {
+    	sp1.show();
+	}
+
+	/*=========================
+      级联更新
+      ===========================*/
+    //初始化数据
+	var province=[],city=[];
+	citys.forEach(function(n,i,a){
+		province.push(n);
+		if(i==0){
+			city=n.children;
+		}
+	})
+	//初始化滚动控件
+	var sp2=new Scrollpicker({
+		"isCascade":true,//是否开启级联更新
+		"onClickDone":function(e){
+    		var activeText="";
+    		e.activeOptions.forEach(function(n,i,a){
+    			activeText+=n["value"]+",";
+    		});
+    		document.getElementById("result").innerHTML="您选中的值为："+activeText;
+    		e.hide();
+    	},
+    	"onClickCancel":function(e){
+    		//清空所有数据
+    		e.reset();
+    		//重新添加数据
+    		addSlot2();
+    		e.hide();
+    	},
+		"onScrollEnd":function(e){
+			renderAfter(e.activeSlotIndex);
+			function renderAfter(index){
+				//获得当前选中数据
+				var nextSlotIndex=index+1;
+				var slot=e.slots[index];
+				var activeIndex=slot.activeIndex;
+				var childrenData=slot.values[activeIndex].children;
+				//如果有子级
+	    		if(childrenData){
+	    			//修改下一列数据
+	    			e.replaceSlot(nextSlotIndex,childrenData,'text-center citycol');
+	    			//递归
+	    			renderAfter(nextSlotIndex);
+	    		}
+			}
+    	}
+	});
+	function addSlot2(){
+		sp2.addSlot(province,'text-center citycol');
+		sp2.addSlot(city,'text-center citycol');
+		sp2.addSlot([{'key':'-','value':'----'}],'text-center citycol');
+	}
+	addSlot2();
 	function openWeight() {
-		var numbers = {0:0,1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9};
-		SpinningWheel.addSlot(numbers, 'text-center');
-		SpinningWheel.addSlot(numbers, 'text-center');
-		SpinningWheel.addSlot(numbers, 'text-center');
-		SpinningWheel.addSlot({separator:'.'},'separator shrink');
-		SpinningWheel.addSlot(numbers, 'text-center');
-		SpinningWheel.addSlot({ Kg: 'Kg', Lb: 'Lb', St: 'St' },'shrink');
-		
-		SpinningWheel.setCancelAction(cancel);
-		SpinningWheel.setDoneAction(done);
-		
-		SpinningWheel.open();
+		sp2.show();
 	}
-
-	function openBirthDate() {
-		var now = new Date();
-		var days = { };
-		var years = { };
-		var months = { 1: '01', 2: '02', 3: '03', 4: '04', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
-		
-		for( var i = 1; i < 32; i += 1 ) {
-			days[i] = i;
-		}
-
-		for( i = now.getFullYear()-100; i < now.getFullYear()+1; i += 1 ) {
-			years[i] = i;
-		}
-
-		SpinningWheel.addSlot(years, 'text-center', 1999);
-		SpinningWheel.addSlot(months, '', 4);
-		SpinningWheel.addSlot(days, 'text-center', 12);
-		
-		SpinningWheel.setCancelAction(cancel);
-		SpinningWheel.setDoneAction(done);
-		
-		SpinningWheel.open();
-	}
-
-	function openOneSlot() {
-		SpinningWheel.addSlot({1: 'Ichi', 2: 'Ni', 3: 'San', 4: 'Shi', 5: 'Go'});
-		
-		SpinningWheel.setCancelAction(cancel);
-		SpinningWheel.setDoneAction(done);
-		
-		SpinningWheel.open();
-	}
-
-	function done() {
-		var results = SpinningWheel.getSelectedValues();
-		document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
-	}
-
-	function cancel() {
-		document.getElementById('result').innerHTML = 'cancelled!';
-	}
-
-
-	window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0,0); }, 100); }, true);
-
-		//定义exmobi返回
-		function back(){history.go(-1);}
+	//定义exmobi返回
+	function back(){history.go(-1);}
 	</script>
 </body>
 </html>

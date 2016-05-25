@@ -4332,7 +4332,6 @@ input[type=range]::-webkit-slider-thumb {
 .popup-mask {
   display: none;
   opacity: 0;
-  filter: alpha(opacity=0);
   position: fixed;
   z-index: 10;
   left: 0;
@@ -4823,15 +4822,16 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*----------------richedit.less(end)--------------*/
 /*----------------scrollpicker.less(start)--------------*/
-#scrollpicker {
+.scrollpicker {
   position: fixed;
-  left: 0;
+  bottom: 0;
   width: 100%;
+  z-index: 10;
   background-color: white;
-  text-align: left;
-  z-index: 1000;
+  -webkit-transition: all 500ms;
+  -webkit-transform: translate3d(0px, 100%, 0px);
 }
-#scrollpicker-header {
+.scrollpicker-header {
   position: relative;
   width: 100%;
   height: 43px;
@@ -4839,8 +4839,8 @@ input[type=range]::-webkit-slider-thumb {
   border-bottom: 1px solid #ddd;
   background-color: #f4f4f4;
 }
-#scrollpicker-cancel,
-#scrollpicker-done {
+.scrollpicker-cancel,
+.scrollpicker-done {
   display: inline-block;
   position: absolute;
   top: 4px;
@@ -4848,80 +4848,64 @@ input[type=range]::-webkit-slider-thumb {
   line-height: 32px;
   padding: 0 5px;
 }
-#scrollpicker-cancel {
-  left: 7px;
-  float: left;
+.scrollpicker-cancel {
+  left: 8px;
 }
-#scrollpicker-done {
-  right: 7px;
-  float: right;
+.scrollpicker-done {
+  right: 8px;
 }
-.sw-pressed {
-  opacity: 0.4;
-}
-#scrollpicker-body {
-  position: relative;
-  z-index: 999;
+.scrollpicker-wrapper {
   display: block;
+  position: relative;
   height: 215px;
   overflow: hidden;
   -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
 }
-#scrollpicker-slots {
-  display: table;
+.scrollpicker-slots {
   width: 100%;
-  background: #fcfcfc;
+  display: table;
+  table-layout: fixed;
 }
-#scrollpicker-slots div {
+.scrollpicker-slot {
   display: table-cell;
-  height: 100%;
+  height: 215px;
+  overflow: hidden;
+}
+ul.scrollpicker-slot,
+.scrollpicker-slot ul {
   padding-top: 86px;
+  padding-bottom: 86px;
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
-#scrollpicker-slots div:first-child {
-  border: 0;
-}
-#scrollpicker-slots ul {
-  padding: 0 0 85px 0;
-  margin: 0;
-  list-style: none;
-}
-#scrollpicker-slots .shrink {
-  width: 1%;
-}
-#scrollpicker-slots .separator {
-  background-color: #f4f4f4;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-}
-#scrollpicker-slots li {
-  padding: 0 8px;
+.scrollpicker-slot li {
   height: 44px;
   line-height: 44px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 20px;
+  padding: 0 8px;
+  font-size: 17px;
   color: #aaa;
 }
-#scrollpicker-slots li.active {
+.scrollpicker-slot li.active {
   color: #333;
 }
-#scrollpicker-touchlayer {
+.scrollpicker-layer {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 215px;
-  border-width: 16px;
-  z-index: 1000;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }
-.scrollpicker-touchlayer-activebox {
+.scrollpicker-layer-frame {
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
   height: 46px;
   width: 100%;
+  pointer-events: none;
+  -webkit-transform: translateY(-50%);
   border-width: 1px 0;
-  border-color: #ddd;
   border-style: solid;
+  border-color: #ddd;
 }
 /*----------------scrollpicker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/

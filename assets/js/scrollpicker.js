@@ -1,542 +1,516 @@
-/**
- * 
- * Find more about the Spinning Wheel function at
- * http://cubiq.org/spinning-wheel-on-webkit-for-iphone-ipod-touch/11
- *
- * Copyright (c) 2009 Matteo Spinelli, http://cubiq.org/
- * Released under MIT license
- * http://cubiq.org/dropbox/mit-license.txt
- * 
- * Version 1.4 - Last updated: 2009.07.09
- * 
- */
+(function(window,document,undefined){
+    window.Scrollpicker=function(params){
+        /*=========================
+          Model
+          ===========================*/
+        var defaults={
+            container:null,
+            headerClass:"scrollpicker-header",
+            headerDoneClass:"scrollpicker-done",
+            headerDoneText:"完成",
+            headerCancelClass:"scrollpicker-cancel",
+            headerCancelText:"取消",
+            wrapperClass:"scrollpicker-wrapper",
+            layerClass:"scrollpicker-layer",
+            layerFrameClass:"scrollpicker-layer-frame",
+            slotsClass:"scrollpicker-slots",
+            slotClass:"scrollpicker-slot",
+            slotActiveClass:"active",
+            slotListActiveClass:"active",
+            cellHeight:44,
+            friction:0.002,//摩擦力
+            bounceRange:44,//弹性值
+            isClickMaskHide:true,
+            isCascade:false,//是否清除后面的值
+            defaultValues:[{'key':null,'value':'----'}]
 
-var SpinningWheel = {
-	cellHeight: 44,
-	friction: 0.003,
-	slotData: [],
+            /*callbacks
+            onClickCancel:function(Scrollpicker)
+            onClickDone:function(Scrollpicker)
+            onScrollStart:function(Scrollpicker)
+            onScroll:function(Scrollpicker)
+            onScrollEnd:function(Scrollpicker)
+            */
+        }
+        params=params||{};
+        for(var def in defaults){
+            if(params[def]===undefined){
+                params[def]=defaults[def];
+            }
+        }
+        //Scrollpicker
+        var s=this;
 
+        //Params
+        s.params = params;
 
-	/**
-	 *
-	 * Event handler
-	 *
-	 */
+        //Dom元素
+        s.container,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
+        //槽元素与其值
+        s.slots=[],s.slots.col=0,s.activeNode,s.activeOptions=[],s.activeOption={};
+        //是否渲染
+        s.isRendered=false;
+        /*=========================
+          View
+          ===========================*/
+        //新建Container
+        s.createContainer=function(){
+            var container=document.createElement("div")
+            container.setAttribute("class","scrollpicker");
+            return container;
+        }
+        //新建Header
+        s.createHeader=function(){
+            var header=document.createElement("div");
+            header.setAttribute("class",s.params.headerClass);
+            return header;
+        }
+        //新建Header按钮
+        s.createHeaderDone=function(){
+            var headerDone=document.createElement("a");
+            headerDone.setAttribute("class",s.params.headerDoneClass);
+            headerDone.innerHTML=s.params.headerDoneText;
+            return headerDone;
+        }
+        s.createHeaderCancel=function(){
+            var headerCancel=document.createElement("a");
+            headerCancel.setAttribute("class",s.params.headerCancelClass);
+            headerCancel.innerHTML=s.params.headerCancelText;
+            return headerCancel;
+        }
+        //新建Wrapper
+        s.createWrapper=function(){
+            var wrapper=document.createElement("div");
+            wrapper.setAttribute("class",s.params.wrapperClass);
+            return wrapper;
+        }
+        //新建Slotbox
+        s.createSlotbox=function(){
+            var slotbox=document.createElement("div");
+            slotbox.setAttribute("class",s.params.slotsClass);
+            return slotbox;
+        }
+        //新建Layer
+        s.createLayer=function(){
+            var layer=document.createElement("div");
+            layer.setAttribute("class",s.params.layerClass);
+            var layerFrame=document.createElement("div");
+            layerFrame.setAttribute("class",s.params.layerFrameClass);
+            layer.appendChild(layerFrame);
+            return layer;
+        }
+        //新建Mask
+        s.createMask=function(){
+            var mask=document.createElement("div");
+            mask.setAttribute("class","popup-mask");
+            return mask;
+        }
+        //新建一行List
+        s.createLi=function(value,classes){
+            var li=document.createElement("li");
+            li.setAttribute("class",classes);
+            li.innerHTML=value;
+            return li;
+        }
+        //创建DOM
+        s.create=function(){
+            if(s.params.container){
+                s.container=typeof container=="string"?document.querySelector(container):container;
+                s.mask=s.container.previousElementSibling;
+                s.header=s.container.querySelector("."+s.params.headerClass);
+                s.headerDone=s.container.querySelector("."+s.params.headerDoneClass);
+                s.headerCancel=s.container.querySelector("."+s.params.headerCancelClass);
+                s.wrapper=s.container.querySelector("."+s.params.wrapperClass);
+                s.slotbox=s.container.querySelector("."+s.params.slotsClass);
+                s.layer=s.container.querySelector("."+s.params.layerClass);
+            }else{
+                s.container=s.createContainer();
+                s.mask=s.createMask();
+                s.header=s.createHeader();
+                s.headerDone=s.createHeaderDone();
+                s.headerCancel=s.createHeaderCancel();
+                s.wrapper=s.createWrapper();
+                s.slotbox=s.createSlotbox();
+                s.layer=s.createLayer();
 
-	handleEvent: function (e) {
-		if (e.type == 'touchstart') {
-			if(e.target.id == 'scrollpicker-mask'){
-				this.close();
-				return;
-			}
-			//this.lockScreen(e);
-			if (e.currentTarget.id == 'scrollpicker-cancel' || e.currentTarget.id == 'scrollpicker-done') {
-				this.tapDown(e);
-			} else if (e.currentTarget.id == 'scrollpicker-touchlayer') {
-				this.scrollStart(e);
-			}
-		} else if (e.type == 'touchmove') {
-			//this.lockScreen(e);
-			
-			if (e.currentTarget.id == 'scrollpicker-cancel' || e.currentTarget.id == 'scrollpicker-done') {
-				this.tapCancel(e);
-			} else if (e.currentTarget.id == 'scrollpicker-touchlayer') {
-				this.scrollMove(e);
-			}
-		} else if (e.type == 'touchend') {
-			if (e.currentTarget.id == 'scrollpicker-cancel' || e.currentTarget.id == 'scrollpicker-done') {
-				this.tapUp(e);
-			} else if (e.currentTarget.id == 'scrollpicker-touchlayer') {
-				this.scrollEnd(e);
-			}
-		} else if (e.type == 'webkitTransitionEnd') {
-			if (e.target.id == 'scrollpicker') {
-				this.destroy();
-			} else {
-				this.backWithinBoundaries(e);
-			}
-		} else if (e.type == 'orientationchange') {
-			this.onOrientationChange(e);
-		} else if (e.type == 'scroll') {
-			this.onScroll(e);
-		}
-	},
+                s.header.appendChild(s.headerCancel);
+                s.header.appendChild(s.headerDone);
 
+                s.wrapper.appendChild(s.slotbox);
+                s.wrapper.appendChild(s.layer);
 
-	/**
-	 *
-	 * Global events
-	 *
-	 */
+                s.container.appendChild(s.header);
+                s.container.appendChild(s.wrapper);
 
-	onOrientationChange: function (e) {
-		window.scrollTo(0, 0);
-		this.swWrapper.style.top = window.innerHeight + window.pageYOffset + 'px';
-		this.calculateSlotsWidth();
-	},
-	
-	onScroll: function (e) {
-		this.swWrapper.style.top = window.innerHeight + window.pageYOffset + 'px';
-	},
+                document.body.appendChild(s.mask);
+                document.body.appendChild(s.container);
+            }
+        }
+        s.create();
+        /*=========================
+          Method
+          ===========================*/
+        //添加一列
+        s.addSlot=function(values,classes,defaultValue){
+            if (!classes){
+                classes='';
+            }
+            //设置属性
+            var slot=document.createElement("ul");
+            slot.setAttribute("class",s.params.slotClass+" "+classes);
+            slot.values=values;
+            slot.defaultValue=defaultValue;
+            slot.col=s.slots.col;
+            //渲染
+            s.slots.col++;
+            s.renderSlot(slot);
+            s.slotbox.appendChild(slot);
+            //添加到集合里
+            s.slots.push(slot);
+        }
+        //修改一列
+        s.replaceSlot=function(col,values,classes,defaultValue){
+            //设置属性
+            var slot=s.slots[col];
+            slot.setAttribute("class",s.params.slotClass+" "+classes);
+            slot.values=values;
+            slot.defaultValue=defaultValue;
+            //重新渲染
+            s.renderSlot(slot);
+            if(s.params.isCascade)clearAfterSlot(col);
+        }
+        //清空下列
+        function clearAfterSlot(col){
+            var nextCol=++col;
+            var nextSlot=s.slots[nextCol];
+            if(nextSlot){
+                nextSlot.innerHTML="<li>"+s.params.defaultValues[0].value+"</li>"
+                s.updateSlot(nextSlot);
+                clearAfterSlot(nextCol);
+                //设置选中项
+                s.activeOptions[nextCol]=s.params.defaultValues[0];
+            }
+        }
+        //渲染一列
+        s.renderSlot=function(slot){
+            //初始化一列值
+            slot.innerHTML="";
+            slot.activeIndex=0;
+            slot.defaultIndex=0;
+            var col=slot.col;
+            var values=slot.values;
+            var defaultValue=slot.defaultValue;
+            //渲染
+            for(var i=0,rowData;rowData=values[i];i++){
+                //记录默认值项数
+                var li,liClasses;
+                if(defaultValue && defaultValue==rowData["value"]){
+                    slot.activeIndex=i;
+                    slot.defaultIndex=i;
+                    liClasses="active";
+                    //添加到激活项
+                    s.activeOptions[col]=rowData;
+                }else if(i==0){
+                    liClasses="active";
+                    //添加到激活项
+                    s.activeOptions[col]=rowData;
+                }else{
+                    liClasses="";
+                }
+                li=s.createLi(rowData["value"],liClasses);
+                slot.appendChild(li);
+            }
+            //更新此列
+            s.updateSlot(slot);
+        }
+        //更新DOM数据，获得所有槽和槽内list列表
+        s.updateSlot=function(slot){
+            slot["list"]=[].slice.call(slot.querySelectorAll("li"));
+            slot["defaultPosY"]=-slot.defaultIndex*s.params.cellHeight;
+            slot["posY"]=slot["defaultPosY"];
+            slot["minPosY"]=0;
+            slot["maxPosY"]=-(slot["list"].length-1)*s.params.cellHeight;
+            slot["minBouncePosY"]=s.params.bounceRange;
+            slot["maxBouncePosY"]=slot["maxPosY"]-s.params.bounceRange;
+            slot.style.WebkitTransform='translate3d(0px,'+slot["defaultPosY"]+'px,0px)';
+            slot["list"].forEach(function(n,i,arr){
+                n.className="";
+                if(i==slot.defaultIndex){
+                    n.className="active";
+                }
+            });
+        }
+        s.updateSlots=function(){
+            s.slots=[].slice.call(s.container.querySelectorAll("."+s.params.slotClass));
+            s.slots.forEach(function(n,i,a){
+                s.renderSlot(n);
+            });
+        }
+        
+        //显示
+        s.show=function(){
+            if(s.isRendered==false){
+                s.attach();
+            }
+            s.mask.style.display="block";
+            s.mask.style.opacity="1";
+            s.container.style.WebkitTransform='translate3d(0px,0px,0px)';
+        }
+        //隐藏
+        s.hide=function(){
+            s.mask.style.opacity="0";
+            s.mask.style.display="none";
+            s.container.style.WebkitTransform='translate3d(0px,100%,0px)';
+        }
+        //重置
+        s.reset=function(){
+            //清空指向
+            s.slots=[];
+            //清空数据
+            s.isRendered=false;
+            s.slotbox.innerHTML="";
+        }
+        //清除
+        s.destroy=function(){
+            s.detach();
+            document.body.removeChild(s.mask);
+            document.body.removeChild(s.container);
+        }
+        
+        s.slotPosY=function(slot,posY){
+            slot.style.WebkitTransform='translate3d(0px,' + posY + 'px,0px)';
+        }
+        s.updateActiveSlot=function(xPos){
+            var xPos=xPos||0;
+            var slotPos=0;
+            for(var i=0;i<s.slots.length;i++){
+                slotPos+=s.slots[i].clientWidth;
+                if (xPos<slotPos) {
+                    s.activeSlot=s.slots[i];
+                    s.activeSlotIndex=i;
+                    break;
+                }
+            }
+        }
+        //计算惯性时间与坐标，返回距离和时间
+        s.getInertance=function(distance,duration,friction){
+            //使用公式算出惯性执行时间与距离
+            var newDuration=(2*distance/duration)/friction;
+            var newDistance=-(friction/2)*(newDuration*newDuration);
+            //如果惯性执行时间为负值，则为向上拖动
+            if(newDuration<0){
+                newDuration=-newDuration;
+                newDistance=-newDistance;
+            }
+            return {distance:newDistance,duration:newDuration}
+        }
+        var isTransitionEnd=true;//有时候原坐标和目标坐标相同时，不会执行transition事件，用此值来记录是否执行的状态
+        //滚动至
+        s.scrollTo=function(slot,posY,duration){
+            slot.posY=posY;
+            if(duration==0 || duration){
+                var duration=duration;
+            }else{
+                duration=100;
+            }
+            if(posY>slot.minBouncePosY){
+                slot.posY=slot.minBouncePosY;
+                duration=s.sideDuration(posY,slot.minBouncePosY,duration);//计算新的执行时间
+            }else if(posY<slot.maxBouncePosY){
+                slot.posY=slot.maxBouncePosY;
+                duration=s.sideDuration(posY,slot.maxBouncePosY,duration);//计算新的执行时间
+            }
+            slot.style.webkitTransitionDuration=duration+"ms";
+            slot.style.WebkitTransform='translate3d(0px,' + slot.posY + 'px,0px)';
+            //如果不执行onTransitionEnd
+            if(isTransitionEnd==false || duration==0){
+                s.onTransitionEnd();
+                isTransitionEnd=true;
+            }
+        }
+        //根据值跳转到指定位置
+        s.scrollToValueIndex=function(slot,valueIndex){
+            var posY=-valueIndex*s.params.cellHeight;
+            slot.style.WebkitTransform='translate3d(0px,' + posY + 'px,0px)';
+        }
+        //计算超出边缘时新的时间
+        s.sideDuration=function(posY,bouncePosY,duration){
+            return Math.round(duration/(posY/bouncePosY));
+        }
+        //更新列表激活状态
+        s.updateActiveList=function(posY){
+            var index=-Math.round((posY-s.params.cellHeight*2)/s.params.cellHeight)-2;
+            s.activeSlot.list.forEach(function(n,i,a){
+                n.classList.remove("active");
+                if(i==index){
+                    n.classList.add("active");
+                    s.activeNode=n;
+                }
+            });
+            //添加到激活项
+            s.activeOption=s.slots[s.activeSlotIndex].values[index];
+            s.activeOptions[s.activeSlotIndex]=s.activeOption;
+            //设置选中项
+            s.slots[s.activeSlotIndex].activeIndex=index;
+        }
+        //位置矫正
+        s.posCorrect=function(){
+            s.activeSlot.style.webkitTransitionDuration='500ms';
+            var remainder=s.activeSlot.posY%s.params.cellHeight;
+            if(remainder!=0){
+                //算出比例
+                var divided=Math.round(s.activeSlot.posY/s.params.cellHeight);
+                //对准位置
+                var top=s.params.cellHeight*divided;
+                s.activeSlot.posY=top;
+                s.activeSlot.style.WebkitTransform='translate3d(0px,' + top + 'px,0px)';
+            }
+            s.updateActiveList(s.activeSlot.posY);
+            //动画时间回0
+            s.activeSlot.style.webkitTransitionDuration='0ms';
+            //Callback
+            if(s.params.onScrollEnd)s.params.onScrollEnd(s);
+        }
+        /*=========================
+          Control
+          ===========================*/
+        s.events=function(detach){
+            var touchTarget=s.layer;
+            var action=detach?"removeEventListener":"addEventListener";
+            touchTarget[action]("touchstart",s.onTouchStart,false);
+            touchTarget[action]("touchmove",s.onTouchMove,false);
+            touchTarget[action]("touchend",s.onTouchEnd,false);
+            touchTarget[action]("touchcancel",s.onTouchEnd,false);
+            //preventDefault
+            s.mask[action]("touchmove",preventDefault,false);
+            s.header[action]("touchmove",preventDefault,false);
+            touchTarget[action]("touchmove",preventDefault,false);
+            //transitionEnd
+            s.slots.forEach(function(n,i,a){
+                n[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+            });
+            //mask
+            if(s.params.isClickMaskHide==true)s.mask[action]("click",s.hide,false);
+            //确定和取消按钮
+            if(s.params.onClickDone)s.headerDone[action]("click",s.onClickDone,false);
+            if(s.params.onClickCancel)s.headerCancel[action]("click",s.onClickCancel,false);
+        }
+        //attach、dettach事件
+        s.attach=function(event){
+            s.events();
+        }
+        s.detach=function(event){
+            s.events(true);
+        }
+        s.touches={
+            startX:0,
+            startY:0,
+            currentX:0,
+            currentY:0,
+            endX:0,
+            endY:0,
+            startTimeStamp:0,
+            duration:0,
+            diffX:0,
+            diffY:0,
+            direction:null
+        };
+        function preventDefault(e){
+            e.preventDefault();
+        }
+        //取消和确定按钮
+        s.onClickDone=function(e){
+            s.target=e.target;
+            s.params.onClickDone(s);
+        }
+        s.onClickCancel=function(e){
+            s.target=e.target;
+            s.params.onClickCancel(s);
+        }
+        //添加和删除取消和确定按钮点击
+        s.addOnClickDone=function(callback){
+            s.params.onClickDone=callback;
+            s.headerDone.addEventListener("click",onClickDoneCallback,false);
+        }
+        s.removeOnClickDone=function(){
+            s.params.onClickDone=null;
+            s.headerDone.removeEventListener("click",onClickDoneCallback,false);
+        }
+        function onClickDoneCallback(e){
+            s.target=e.target;
+            s.params.onClickDone(s)
+        };
+        s.addOnClickCancel=function(callback){
+            s.params.onClickCancel=callback;
+            s.headerCancel.addEventListener("click",onClickCancelCallback,false);
+        }
+        s.removeOnClickCancel=function(){
+            s.params.onClickCancel=null;
+            s.headerCancel.removeEventListener("click",onClickCancelCallback,false);
+        }
+        function onClickCancelCallback(e){
+            s.target=e.target;
+            s.params.onClickCancel(s)
+        };
+        //触摸事件
+        s.onTouchStart=function(e){
+            //s.layer.addEventListener("touchmove",preventDefault,false);
+            s.touches.startX=e.touches[0].clientX;
+            s.touches.startY=e.touches[0].clientY;
+            //寻找当前点击的槽
+            s.updateActiveSlot(s.touches.startX);
+            //记录点击时间
+            s.touches.startTimeStamp=e.timeStamp;
+            //Callback
+            if(s.params.onScrollStart)s.params.onScrollStart(s);
+        }
+        s.onTouchMove=function(e){
+            s.touches.currentY=e.touches[0].clientY;
+            s.touches.diffY=s.touches.startY-s.touches.currentY;
+            s.activeSlot.moveY=s.activeSlot.posY-s.touches.diffY;
+            if(s.activeSlot.moveY>s.activeSlot.minBouncePosY){
+                s.activeSlot.moveY=s.activeSlot.minBouncePosY;
+            }else if(s.activeSlot.moveY<s.activeSlot.maxBouncePosY){
+                s.activeSlot.moveY=s.activeSlot.maxBouncePosY;
+            }
+            s.activeSlot.style.WebkitTransform='translate3d(0px,' + s.activeSlot.moveY + 'px,0px)';
+            s.updateActiveList(s.activeSlot.moveY);
 
-	lockScreen: function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-	},
-
-
-	/**
-	 *
-	 * Initialization
-	 *
-	 */
-
-	reset: function () {
-		this.slotEl = [];
-
-		this.activeSlot = null;
-		
-		this.swWrapper = undefined;
-		this.swSlotWrapper = undefined;
-		this.swSlots = undefined;
-		this.swFrame = undefined;
-	},
-
-	calculateSlotsWidth: function () {
-		var div = this.swSlots.getElementsByTagName('div');
-		for (var i = 0; i < div.length; i += 1) {
-			this.slotEl[i].slotWidth = div[i].offsetWidth;
-		}
-	},
-
-	create:function(){
-		var i,l,out,ul,div,mask;
-
-		this.reset();//初始化变量
-		//创建遮罩
-		mask=document.createElement('div');
-		mask.id='scrollpicker-mask';
-		mask.setAttribute("class","popup-mask");
-		mask.setAttribute("style","display: block; opacity: 1;");
-
-		//创建滚动选择器DOM
-		div=document.createElement('div');
-		div.id='scrollpicker';
-		div.style.top=window.innerHeight+window.pageYOffset+'px';//放置在实际的观看屏幕上
-		div.style.webkitTransitionProperty='-webkit-transform';
-		div.innerHTML = '<div id="scrollpicker-header">'+
-		'<a id="scrollpicker-cancel">取消</a>'+
-		'<a id="scrollpicker-done">完成</a>'+
-		'</div>'+
-		'<div id="scrollpicker-body"><div id="scrollpicker-slots"></div></div>'+
-		'<div id="scrollpicker-touchlayer"><div class="scrollpicker-touchlayer-activebox"></div></div>';
-
-		document.body.appendChild(mask);
-		document.body.appendChild(div);
-
-		this.swWrapper = div;
-		this.scrollpickerMask=mask;										// The SW wrapper
-		this.swSlotWrapper = document.getElementById('scrollpicker-body');		// Slots visible area
-		this.swSlots = document.getElementById('scrollpicker-slots');						// Pseudo table element (inner wrapper)
-		this.swFrame = document.getElementById('scrollpicker-touchlayer');						// The scrolling controller
-
-		//创建一槽DOM
-		for (l = 0; l < this.slotData.length; l += 1) {
-			// Create the slot
-			ul = document.createElement('ul');
-			out = '';
-			for (i in this.slotData[l].values) {
-				out += '<li>' + this.slotData[l].values[i] + '</li>';
-			}
-			ul.innerHTML = out;
-
-			div = document.createElement('div');// Create slot container
-			div.className = this.slotData[l].style;// Add styles to the container
-			div.appendChild(ul);
-	
-			// Append the slot to the wrapper
-			this.swSlots.appendChild(div);
-			
-			ul.slotPosition = l;			// Save the slot position inside the wrapper
-			ul.slotYPosition = 0;
-			ul.slotWidth = 0;
-			ul.slotMaxScroll = this.swSlotWrapper.clientHeight - ul.clientHeight - 86;
-			ul.style.webkitTransitionTimingFunction = 'cubic-bezier(0, 0, 0.2, 1)';		// Add default transition
-			
-			this.slotEl.push(ul);			// Save the slot for later use
-			
-			// Place the slot to its default position (if other than 0)
-			if (this.slotData[l].defaultValue) {
-				this.scrollToValue(l, this.slotData[l].defaultValue);	
-			}
-		}
-		
-		this.calculateSlotsWidth();
-		
-		// Global events
-		document.addEventListener('touchstart', this, false);			// Prevent page scrolling
-		document.addEventListener('touchmove', this, false);			// Prevent page scrolling
-		window.addEventListener('orientationchange', this, true);		// Optimize SW on orientation change
-		window.addEventListener('scroll', this, true);				// Reposition SW on page scroll
-
-		// Cancel/Done buttons events
-		document.getElementById('scrollpicker-cancel').addEventListener('touchstart', this, false);
-		document.getElementById('scrollpicker-done').addEventListener('touchstart', this, false);
-
-		// Add scrolling to the slots
-		this.swFrame.addEventListener('touchstart', this, false);
-	},
-
-	open: function () {
-		this.create();
-
-		this.swWrapper.style.webkitTransitionTimingFunction = 'ease-out';
-		this.swWrapper.style.webkitTransitionDuration = '400ms';
-		this.swWrapper.style.webkitTransform = 'translate3d(0, -260px, 0)';
-		this.updateActiveClass();
-	},
-	
-	
-	/**
-	 *
-	 * Unload
-	 *
-	 */
-
-	destroy: function () {
-		this.swWrapper.removeEventListener('webkitTransitionEnd', this, false);
-
-		this.swFrame.removeEventListener('touchstart', this, false);
-
-		document.getElementById('scrollpicker-cancel').removeEventListener('touchstart', this, false);
-		document.getElementById('scrollpicker-done').removeEventListener('touchstart', this, false);
-
-		document.removeEventListener('touchstart', this, false);
-		document.removeEventListener('touchmove', this, false);
-		window.removeEventListener('orientationchange', this, true);
-		window.removeEventListener('scroll', this, true);
-		
-		this.slotData = [];
-		this.cancelAction = function () {
-			return false;
-		};
-		
-		this.cancelDone = function () {
-			return true;
-		};
-		
-		this.reset();
-		document.body.removeChild(document.getElementById('scrollpicker-mask'));
-		document.body.removeChild(document.getElementById('scrollpicker'));
-	},
-	
-	close: function () {
-		this.swWrapper.style.webkitTransitionTimingFunction = 'ease-in';
-		this.swWrapper.style.webkitTransitionDuration = '400ms';
-		this.swWrapper.style.webkitTransform = 'translate3d(0, 0, 0)';
-
-		this.scrollpickerMask.style.display="none";
-		
-		this.swWrapper.addEventListener('webkitTransitionEnd', this, false);
-	},
-
-
-	/*=========================
-      Methods
-      ===========================*/
-	getJsonLenth:function(json){
-		var i=0;
-		for(var obj in json){
-			i++;
-		}
-		return i;
-	},
-	addSlot:function(values, style, defaultValue) {
-		if (!style){
-			style='';
-		}
-		style=style.split(' ');
-
-		for(var i=0;i<style.length;i+=1){
-			style[i]=style[i];
-		}
-		
-		style = style.join(' ');
-		var len=this.getJsonLenth(values);
-		var obj = {'values':values,'style':style,'defaultValue':defaultValue,'length':len};
-		this.slotData.push(obj);
-	},
-	replaceSlot:function(slotIndex,values, style, defaultValue){
-		var obj = {'values':values,'style':style,'defaultValue':defaultValue,'length':len};
-		this.slotData[slotIndex]=obj;
-		document.getElementById("")
-	},
-	//更新状态
-	updateActiveClass:function(){
-		for(var i in this.slotEl) {
-			[].slice.call(this.slotEl[i].getElementsByTagName("li")).forEach(function(n,i,a){
-				n.classList.remove("active");
-			})
-		}
-		var selectedel=this.getSelectedValues();
-		if(!selectedel.elements)return;
-		selectedel.elements.forEach(function(n,i,a){
-			n.classList.add("active");
-		});
-	},
-	//恢复位置初始值
-	updateScrollPosition:function(){
-		for(i in this.slotEl) {
-			//移除滚动动画
-			this.slotEl[i].removeEventListener('webkitTransitionEnd', this, false);
-			this.slotEl[i].style.webkitTransitionDuration = '0';
-			//恢复至原始位置
-			if(this.slotEl[i].slotYPosition > 0) {
-				this.setPosition(i, 0);
-			}else if(this.slotEl[i].slotYPosition < this.slotEl[i].slotMaxScroll) {
-				this.setPosition(i, this.slotEl[i].slotMaxScroll);
-			}
-		}
-	},
-	//获取选中的值
-	getSelectedValues: function () {
-		var index, count,
-		    i, l,
-			keys = [], values = [],elements=[];
-			
-		for (i in this.slotEl) {
-			index = -Math.round(this.slotEl[i].slotYPosition / this.cellHeight);
-			if (index < 0) {
-				index=0;
-			}else if(index >= this.slotData[i].length) {
-				index=this.slotData[i].length-1;
-			}
-			count = 0;
-			for (l in this.slotData[i].values) {
-				if (count == index) {
-					keys.push(l);
-					values.push(this.slotData[i].values[l]);
-					var activeEl=this.slotEl[i].childNodes[index];
-					elements.push(activeEl);
-					break;
-				}
-				count += 1;
-			}
-		}
-		return { 'keys': keys, 'values': values ,'elements':elements};
-	},
-
-
-	/**
-	 *
-	 * Rolling slots
-	 *
-	 */
-
-	setPosition: function (slot, pos) {
-		this.slotEl[slot].slotYPosition = pos;
-		this.slotEl[slot].style.webkitTransform = 'translate3d(0, ' + pos + 'px, 0)';
-	},
-
-	/*=========================
-      Touch Handler
-      ===========================*/
-	//开始滚动
-	scrollStart: function (e) {
-		// Find the clicked slot
-		var xPos = e.targetTouches[0].clientX - this.swSlots.offsetLeft;	// Clicked position minus left offset (should be 11px)
-
-		// Find tapped slot
-		var slot = 0;
-		for (var i = 0; i < this.slotEl.length; i += 1) {
-			slot += this.slotEl[i].slotWidth;
-			
-			if (xPos < slot) {
-				this.activeSlot = i;
-				break;
-			}
-		}
-
-		// If slot is readonly do nothing
-		if (this.slotData[this.activeSlot].style.match('readonly')) {
-			this.swFrame.removeEventListener('touchmove', this, false);
-			this.swFrame.removeEventListener('touchend', this, false);
-			return false;
-		}
-
-		this.slotEl[this.activeSlot].removeEventListener('webkitTransitionEnd', this, false);	// Remove transition event (if any)
-		this.slotEl[this.activeSlot].style.webkitTransitionDuration = '0';		// Remove any residual transition
-		
-		// Stop and hold slot position
-		var theTransform = window.getComputedStyle(this.slotEl[this.activeSlot]).webkitTransform;
-		theTransform = new WebKitCSSMatrix(theTransform).m42;
-		if (theTransform != this.slotEl[this.activeSlot].slotYPosition) {
-			this.setPosition(this.activeSlot, theTransform);
-		}
-		
-		this.startY = e.targetTouches[0].clientY;
-		this.scrollStartY = this.slotEl[this.activeSlot].slotYPosition;
-		this.scrollStartTime = e.timeStamp;
-
-		this.swFrame.addEventListener('touchmove', this, false);
-		this.swFrame.addEventListener('touchend', this, false);
-		
-		return true;
-	},
-	//滚动中
-	scrollMove: function (e) {
-		var topDelta = e.targetTouches[0].clientY - this.startY;
-
-		if (this.slotEl[this.activeSlot].slotYPosition > 0 || this.slotEl[this.activeSlot].slotYPosition < this.slotEl[this.activeSlot].slotMaxScroll) {
-			topDelta /= 2;
-		}
-		
-		this.setPosition(this.activeSlot, this.slotEl[this.activeSlot].slotYPosition + topDelta);
-		this.startY = e.targetTouches[0].clientY;
-
-		// Prevent slingshot effect
-		if (e.timeStamp - this.scrollStartTime > 80) {
-			this.scrollStartY = this.slotEl[this.activeSlot].slotYPosition;
-			this.scrollStartTime = e.timeStamp;
-		}
-		this.updateActiveClass();
-	},
-	//滚动完成
-	scrollEnd: function (e) {
-		this.swFrame.removeEventListener('touchmove', this, false);
-		this.swFrame.removeEventListener('touchend', this, false);
-
-		// If we are outside of the boundaries, let's go back to the sheepfold
-		if (this.slotEl[this.activeSlot].slotYPosition > 0 || this.slotEl[this.activeSlot].slotYPosition < this.slotEl[this.activeSlot].slotMaxScroll) {
-			this.scrollTo(this.activeSlot, this.slotEl[this.activeSlot].slotYPosition > 0 ? 0 : this.slotEl[this.activeSlot].slotMaxScroll);
-			return false;
-		}
-
-		// Lame formula to calculate a fake deceleration
-		var scrollDistance = this.slotEl[this.activeSlot].slotYPosition - this.scrollStartY;
-
-		// The drag session was too short
-		if (scrollDistance < this.cellHeight / 1.5 && scrollDistance > -this.cellHeight / 1.5) {
-			if (this.slotEl[this.activeSlot].slotYPosition % this.cellHeight) {
-				this.scrollTo(this.activeSlot, Math.round(this.slotEl[this.activeSlot].slotYPosition / this.cellHeight) * this.cellHeight, '100ms');
-			}
-
-			return false;
-		}
-
-		var scrollDuration = e.timeStamp - this.scrollStartTime;
-
-		var newDuration = (2 * scrollDistance / scrollDuration) / this.friction;
-		var newScrollDistance = (this.friction / 2) * (newDuration * newDuration);
-		
-		if (newDuration < 0) {
-			newDuration = -newDuration;
-			newScrollDistance = -newScrollDistance;
-		}
-
-		var newPosition = this.slotEl[this.activeSlot].slotYPosition + newScrollDistance;
-
-		if (newPosition > 0) {
-			// Prevent the slot to be dragged outside the visible area (top margin)
-			newPosition /= 2;
-			newDuration /= 3;
-
-			if (newPosition > this.swSlotWrapper.clientHeight / 4) {
-				newPosition = this.swSlotWrapper.clientHeight / 4;
-			}
-		} else if (newPosition < this.slotEl[this.activeSlot].slotMaxScroll) {
-			// Prevent the slot to be dragged outside the visible area (bottom margin)
-			newPosition = (newPosition - this.slotEl[this.activeSlot].slotMaxScroll) / 2 + this.slotEl[this.activeSlot].slotMaxScroll;
-			newDuration /= 3;
-			
-			if (newPosition < this.slotEl[this.activeSlot].slotMaxScroll - this.swSlotWrapper.clientHeight / 4) {
-				newPosition = this.slotEl[this.activeSlot].slotMaxScroll - this.swSlotWrapper.clientHeight / 4;
-			}
-		} else {
-			newPosition = Math.round(newPosition / this.cellHeight) * this.cellHeight;
-		}
-
-		this.scrollTo(this.activeSlot, Math.round(newPosition), Math.round(newDuration) + 'ms');
-		this.updateActiveClass();
-		return true;
-	},
-	/*=========================
-      Method
-      ===========================*/
-    //滚动至(列数，Y轴位置，运行时间)
-	scrollTo: function (slotNum, dest, runtime) {
-		this.slotEl[slotNum].style.webkitTransitionDuration = runtime ? runtime : '100ms';
-		this.setPosition(slotNum, dest ? dest : 0);
-
-		// If we are outside of the boundaries go back to the sheepfold
-		if (this.slotEl[slotNum].slotYPosition > 0 || this.slotEl[slotNum].slotYPosition < this.slotEl[slotNum].slotMaxScroll) {
-			this.slotEl[slotNum].addEventListener('webkitTransitionEnd', this, false);
-		}
-	},
-	//滚动至(Y轴位置)
-	scrollToValue: function (slot, value) {
-		var yPos, count, i;
-
-		this.slotEl[slot].removeEventListener('webkitTransitionEnd', this, false);
-		this.slotEl[slot].style.webkitTransitionDuration = '0';
-		
-		count = 0;
-		for (i in this.slotData[slot].values) {
-			if (i == value) {
-				yPos = count * this.cellHeight;
-				this.setPosition(slot, yPos);
-				break;
-			}
-			
-			count -= 1;
-		}
-	},
-	
-	backWithinBoundaries: function (e) {
-		e.target.removeEventListener('webkitTransitionEnd', this, false);
-
-		this.scrollTo(e.target.slotPosition, e.target.slotYPosition > 0 ? 0 : e.target.slotMaxScroll, '150ms');
-		return false;
-	},
-
-
-	/*=========================
-      Buttons Event
-      ===========================*/
-    //按钮按下
-	tapDown: function (e) {
-		e.currentTarget.addEventListener('touchmove', this, false);
-		e.currentTarget.addEventListener('touchend', this, false);
-		e.currentTarget.className = 'sw-pressed';
-	},
-	//点击取消
-	tapCancel: function (e) {
-		e.currentTarget.removeEventListener('touchmove', this, false);
-		e.currentTarget.removeEventListener('touchend', this, false);
-		e.currentTarget.className = '';
-	},
-	//按钮按下后弹上
-	tapUp: function (e) {
-		this.tapCancel(e);
-
-		if (e.currentTarget.id == 'scrollpicker-cancel') {
-			this.cancelAction();
-		} else {
-			this.doneAction();
-		}
-		
-		this.close();
-	},
-	setCancelAction: function (action) {
-		this.cancelAction = action;
-	},
-	setDoneAction: function (action) {
-		this.doneAction = action;
-	},
-	cancelAction: function () {
-		return false;
-	},
-	cancelDone: function () {
-		return true;
-	}
-};
+            //Callback
+            if(s.params.onScroll)s.params.onScroll(s);
+        }
+        s.onTouchEnd=function(e){
+            //设置当前坐标值
+            s.activeSlot.posY=s.activeSlot.moveY;
+            //计算拖动时间
+            s.touches.duration=e.timeStamp-s.touches.startTimeStamp;
+            //惯性值计算
+            var inertance=s.getInertance(s.touches.diffY,s.touches.duration,s.params.friction);
+            //惯性Y坐标
+            var newPosY=s.activeSlot.posY + inertance.distance;
+            //如果原坐标和目标坐标相同，则不执行transitionEnd
+            if(s.activeSlot.moveY==s.activeSlot.minBouncePosY || s.activeSlot.moveY==s.activeSlot.maxBouncePosY){
+                isTransitionEnd=false;
+            }
+            //滚动到指定位置
+            s.scrollTo(s.activeSlot,newPosY,inertance.duration);
+        }
+        //惯性滚动结束后
+        s.onTransitionEnd=function(){
+            //如果跑到边界之外回到圈内
+            if (s.activeSlot.posY > 0){
+                s.activeSlot.posY=0;
+            }else if(s.activeSlot.posY < s.activeSlot.maxPosY) {
+                s.activeSlot.posY=s.activeSlot.maxPosY;
+            }
+            s.activeSlot.style.WebkitTransform='translate3d(0px,' + s.activeSlot.posY + 'px,0px)';
+            //位置矫正
+            s.posCorrect();
+        }
+        function init(){
+            if(s.params.container){
+                s.attach();
+            }
+        }
+    }
+})(window,document,undefined);

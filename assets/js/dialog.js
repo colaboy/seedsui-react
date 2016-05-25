@@ -100,6 +100,7 @@
         }
         //设置回调
         s.removeOnClick=function(){
+            s.params.onClick=null;
             s.container.removeEventListener("click",onClickCallback,false);
         }
         s.addOnClick=function(onclickFn){
