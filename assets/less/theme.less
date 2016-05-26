@@ -628,7 +628,7 @@ progress::-webkit-progress-value  {
 }
 /*----------------progress.less(end)--------------*/
 
-/*-----------------------------checkbox.less(start)-----------------------------*/
+/*----------------checkbox.less(start)----------------*/
 input[type="checkbox"],input[type="radio"],.checkbox,.radio{
 	color:@placeholder-color;
 }
@@ -638,7 +638,7 @@ input[type="checkbox"]:checked , input[type="radio"]:checked,.checkbox.active,.r
 input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="checkbox"][disabled]:checked , input[type="radio"][disabled]:checked,.checkbox.active.disabled,.radio.active.disabled,.checkbox.disabled,.radio.disabled{
 	color:@disable-bg;
 }
-/*-----------------------------checkbox.less(end)-----------------------------*/
+/*----------------checkbox.less(end)----------------*/
 /*----------------richedit.less(start)--------------*/
 .richedit .emoji{
 	background-color:@body-bg;
@@ -659,6 +659,27 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	background-color:@primary-bg;
 }
 /*----------------richedit.less(end)--------------*/
+/*----------------scrollpicker.less(start)--------------*/
+.scrollpicker{
+	background-color:@white;
+}
+.scrollpicker-header{
+	border-color:@border;
+	background-color:@body-bg;
+}
+.scrollpicker-wrapper{
+	-webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, @white 40%, @white 60%, transparent 100%, transparent);
+}
+.scrollpicker-slot li{
+    color:@placeholder-color;
+}
+.scrollpicker-slot li.active{
+	color:@body-color;
+}
+.scrollpicker-layer-frame{
+    border-color:@border;
+}
+/*----------------scrollpicker.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
 .switch {

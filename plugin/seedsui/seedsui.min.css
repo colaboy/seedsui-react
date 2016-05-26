@@ -4823,7 +4823,6 @@ input[type=range]::-webkit-slider-thumb {
   bottom: 0;
   width: 100%;
   z-index: 10;
-  background-color: white;
   -webkit-transition: all 500ms;
   -webkit-transform: translate3d(0px, 100%, 0px);
 }
@@ -4831,9 +4830,8 @@ input[type=range]::-webkit-slider-thumb {
   position: relative;
   width: 100%;
   height: 43px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: #f4f4f4;
+  border-style: solid;
+  border-width: 1px 0;
 }
 .scrollpicker-cancel,
 .scrollpicker-done {
@@ -4855,7 +4853,6 @@ input[type=range]::-webkit-slider-thumb {
   position: relative;
   height: 215px;
   overflow: hidden;
-  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
 }
 .scrollpicker-slots {
   width: 100%;
@@ -4881,10 +4878,6 @@ ul.scrollpicker-slot,
   overflow: hidden;
   padding: 0 8px;
   font-size: 17px;
-  color: #aaa;
-}
-.scrollpicker-slot li.active {
-  color: #333;
 }
 .scrollpicker-layer {
   position: absolute;
@@ -4901,7 +4894,6 @@ ul.scrollpicker-slot,
   -webkit-transform: translateY(-50%);
   border-width: 1px 0;
   border-style: solid;
-  border-color: #ddd;
 }
 /*----------------scrollpicker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/
@@ -6969,7 +6961,7 @@ progress::-webkit-progress-value {
   background-color: #18b2ed;
 }
 /*----------------progress.less(end)--------------*/
-/*-----------------------------checkbox.less(start)-----------------------------*/
+/*----------------checkbox.less(start)----------------*/
 input[type="checkbox"],
 input[type="radio"],
 .checkbox,
@@ -6992,7 +6984,7 @@ input[type="radio"][disabled]:checked,
 .radio.disabled {
   color: #d9d9d9;
 }
-/*-----------------------------checkbox.less(end)-----------------------------*/
+/*----------------checkbox.less(end)----------------*/
 /*----------------richedit.less(start)--------------*/
 .richedit .emoji {
   background-color: #f4f4f4;
@@ -7015,6 +7007,27 @@ input[type="radio"][disabled]:checked,
   background-color: #18b2ed;
 }
 /*----------------richedit.less(end)--------------*/
+/*----------------scrollpicker.less(start)--------------*/
+.scrollpicker {
+  background-color: #ffffff;
+}
+.scrollpicker-header {
+  border-color: #dddddd;
+  background-color: #f4f4f4;
+}
+.scrollpicker-wrapper {
+  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
+}
+.scrollpicker-slot li {
+  color: #aaaaaa;
+}
+.scrollpicker-slot li.active {
+  color: #333333;
+}
+.scrollpicker-layer-frame {
+  border-color: #dddddd;
+}
+/*----------------scrollpicker.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
 .switch {
