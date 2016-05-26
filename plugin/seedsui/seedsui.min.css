@@ -1,3 +1,5 @@
+/*控件*/
+/*常用颜色*/
 /*-----------------------------global.less(start)-----------------------------*/
 .events-none {
   pointer-events: none;
@@ -2053,7 +2055,7 @@ ul.border-content li {
   float: right;
 }
 /*----------------card.less(end)--------------*/
-/* @import "../assets/less/aside.less"; */
+/* @import "aside.less"; */
 /*----------------------------title.less(start)----------------------------*/
 .sliver,
 .title {
@@ -6299,8 +6301,6 @@ input[type="submit"].radiusround,
   border-width: 0 0 1px 0;
 }
 /*----------------layout.less(end)--------------*/
-/*控件*/
-/*常用颜色*/
 /*----------------global.less(start)--------------*/
 body {
   color: #333333;
