@@ -36,6 +36,7 @@
         }
         function initDrag(){
             var drag=new Dragrefresh("article",{
+                "refreshThreshold":130,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
