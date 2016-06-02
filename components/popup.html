@@ -1,4 +1,4 @@
-.scrollpicker<!doctype html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8"/>
@@ -7,30 +7,31 @@
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 <body ontouchstart="">
-	    <header>
-	        <div class="titlebar">
-	            <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-	            <h1>弹出框</h1>
-	        </div>
-	    </header>
-	    <article>
-	    	<p class="title">系统弹出框</p>
-	    	<div class="card padding8">
-		        <button class="button" id="alert">alert</button>
-		        <button class="button warn" id="confirm">confirm</button>
-		        <button class="button info" id="actionsheet">actionsheet</button>
-		        <button class="button success" id="toast">toast</button>
-	        </div>
-	        
-	        <p class="title">自定义弹出框</p>
-	        <div class="card padding8">
-		        <button class="button" id="middle">middle</button>
-		        <button class="button warn" id="top">top</button>
-		        <button class="button" id="bottom">bottom</button>
-		        <button class="button info" id="left">left</button>
-		        <button class="button success" id="right">right</button>
-	    	</div>
-		</article>
+    <header>
+        <div class="titlebar">
+            <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>弹出框</h1>
+        </div>
+    </header>
+    <article>
+    	<p class="title">系统弹出框</p>
+    	<div class="card padding8">
+	        <button class="button" id="alert">alert</button>
+	        <button class="button warn" id="confirm">confirm</button>
+	        <button class="button info" id="actionsheet">actionsheet</button>
+	        <button class="button success" id="toast">toast</button>
+	        <button class="button cancel" id="prompt">prompt</button>
+        </div>
+        
+        <p class="title">自定义弹出框</p>
+        <div class="card padding8">
+	        <button class="button" id="middle">middle</button>
+	        <button class="button warn" id="top">top</button>
+	        <button class="button" id="bottom">bottom</button>
+	        <button class="button info" id="left">left</button>
+	        <button class="button success" id="right">right</button>
+    	</div>
+	</article>
 	<!--自定义弹出框-->
 	<div class="popup confirm custom" id="pop_custom">
         <label class="text-center">
@@ -119,6 +120,12 @@
 			actionsheet.setParams(actionsheetParams);
 			actionsheet.show();
 	    });
+	    //Prompt框
+	    var prompt=new Prompt();
+	    $("#prompt").click(function(){
+	    	prompt.setText("更新成功");
+	    	prompt.show();
+	    })
 
 	    /**
 		 * 自定义弹出框

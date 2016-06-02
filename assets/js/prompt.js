@@ -1,14 +1,13 @@
-//Toast弹出框
+//Prompt提示框
 (function(window,document,undefined){
 	
-	window.Toast=function(msg,params){
+	window.Prompt=function(msg,params){
 		/*================
 		Model
 		================*/
 		var defaults={
-			"toastBoxClass":"toast-box",
-			"toastClass":"toast",
-			"delay":1000
+			promptClass:"prompt",
+			delay:1000
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -19,37 +18,33 @@
 		var msg=msg||"";
 		var s=this;
 		s.params=params;
+		//创建容器
+		s.container=null;
 		s.createContainer=function(){
 			if(s.container)return;
 			s.container=document.createElement("div");
-			s.container.setAttribute("class",s.params.toastBoxClass);
-			s.toast=document.createElement("div");
-			s.toast.setAttribute("class",s.params.toastClass);
-			s.toast.innerHTML=msg;
-			s.container.appendChild(s.toast);
+			s.container.setAttribute("class",s.params.promptClass);
+			s.container.innerHTML=msg;
 			document.body.appendChild(s.container);
 		}
 		s.createContainer();
-
 		/*================
 		Method
 		================*/
 		s.setText=function(msg){
-			s.toast.innerHTML=msg;
+			s.container.innerHTML=msg;
 		};
 		s.isHid=true;
-		s.hide=function(){
+		s.hide=function(fn){
 			s.isHid=true;
-			s.container.style.webkitTransform='translate3d(0,150px,0)';
+			s.container.style.opacity="0";
 		};
-		s.show=function(){
+		s.show=function(fn){
 			s.isHid=false;
-			s.container.style.webkitTransform='translate3d(0,0,0)';
+			s.container.style.visibility="visible";
+			s.container.style.opacity="1";
 		};
-		s.destory=function(){
-			s.detach();
-			document.body.removeChild(s.container);
-		};
+		
 		/*================
 		Controller
 		================*/
@@ -67,6 +62,7 @@
 		//Events Handler
 		s.onTransitionEnd=function(){
 			if(s.isHid){
+				s.container.style.visibility="hidden";
 				if(s.delayer)window.clearTimeout(s.delayer);
 			}else{
 				//延迟时间后自动消失

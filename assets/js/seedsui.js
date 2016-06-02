@@ -25,6 +25,7 @@
 // @koala-prepend "alert.js"
 // @koala-prepend "confirm.js"
 // @koala-prepend "toast.js"
+// @koala-prepend "prompt.js"
 // @koala-prepend "actionsheet.js"
 // @koala-prepend "dialog.js"
 // @koala-prepend "scrollpicker.js"

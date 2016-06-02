@@ -47,7 +47,26 @@
 		    userAgent:u,
 		    appVersion:app,
 		    isOnline:window.navigator.online,
-		    isExmobi:app.toLowerCase().indexOf("exmobi") > -1//判断是否是Exmobi
+		    isExmobi:app.toLowerCase().indexOf("exmobi") > -1,//判断是否是Exmobi
+		    requestAnimationFrame:function(callback){
+				var rAF = window.requestAnimationFrame	||
+				window.webkitRequestAnimationFrame	||
+				window.mozRequestAnimationFrame		||
+				window.oRequestAnimationFrame		||
+				window.msRequestAnimationFrame		||
+				function (callback) { window.setTimeout(callback, 1000 / 60); };
+				var r=rAF(callback);
+				return r;
+			},
+			cancelAnimationFrame:function(callback){
+				var cAF = window.cancelAnimationFrame	||
+				window.webkitCancelAnimationFrame	||
+				window.mozCancelAnimationFrame		||
+				window.oCancelAnimationFrame		||
+				window.msCancelAnimationFrame		||
+				function (callback) { window.clearTimeout(callback); };
+				cAF(callback);
+			}
 	   }
 	}();
 })(window,document,undefined);

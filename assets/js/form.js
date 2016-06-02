@@ -254,7 +254,7 @@
 			return errorMsg;
 		};
 		//表单验证
-		var t=new Toast("格式不正确");
+		var t=new Prompt("格式不正确");
 		s.validate=function(){
 			for(var i=0,field;field=s.formElements[i++];){
 				if(!field.getAttribute("data-rule")){

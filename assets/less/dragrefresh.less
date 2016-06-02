@@ -1,6 +1,6 @@
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh{
-    position:absolute;
+    position:fixed;
     top:-58px;
     left:50%;
     margin-left:-20px;
@@ -12,15 +12,20 @@
     height:48px;
     border-radius: 100%;
     box-shadow:0 0 6px 0 rgba(0,0,0,.2);
+    
+    -webkit-transition-property:transform;
+    -webkit-transition-duration:30s;
+    -webkit-transition-timing-function:linear;
+    -webkit-transform:rotate(0deg);
 }
 .dragrefresh i,.dragrefresh img,.dragrefresh svg{
+    position:absolute;
+    left:50%;
+    top:50%;
     width: 32px;
     height:32px;
+    margin-left:-16px;
+    margin-top:-16px;
     font-size: 32px;
-    transform-origin:50% 50%;
-    -ms-transform-origin:50% 50%;
-    -webkit-transform-origin:50% 50%;
-    -moz-transform-origin:50% 50%;
-    -o-transform-origin:50% 50%;
 }
 /*----------------dragrefresh.less(end)--------------*/

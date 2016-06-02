@@ -442,13 +442,15 @@ body {
 /*section*/
 section {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 0;
+}
+section.page-single {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 section.active {
   display: block;
@@ -2055,7 +2057,44 @@ ul.border-content li {
   float: right;
 }
 /*----------------card.less(end)--------------*/
-/* @import "aside.less"; */
+/*----------------aside.less(start)--------------*/
+.asidecontainer,
+.asidecontainer-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.asidecontainer {
+  overflow: hidden;
+}
+aside {
+  visibility: hidden;
+  position: absolute;
+  width: 264px;
+  top: 0;
+  bottom: 0;
+}
+aside[data-position="left"] {
+  left: 0;
+}
+aside[data-position="left"][data-transition="push"] {
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+aside[data-position="left"][data-transition="overlay"] {
+  -webkit-transform: translate3d(-100%, 0, 0);
+  z-index: 11;
+}
+aside[data-position="right"] {
+  right: 0;
+}
+aside[data-position="right"][data-transition="push"] {
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+aside[data-position="right"][data-transition="overlay"] {
+  -webkit-transform: translate3d(100%, 0, 0);
+  z-index: 11;
+}
+/*----------------aside.less(end)--------------*/
 /*----------------------------title.less(start)----------------------------*/
 .sliver,
 .title {
@@ -2075,9 +2114,7 @@ ul.border-content li {
   border-width: 0 0 1px 0;
   border-style: solid;
 }
-.title + small,
-.title + p,
-.title + a {
+.subtitle {
   display: block;
   margin: 0 0 8px 0;
 }
@@ -3233,7 +3270,7 @@ input[type=range]::-webkit-slider-thumb {
 /*----------------switch.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  position: absolute;
+  position: fixed;
   top: -58px;
   left: 50%;
   margin-left: -20px;
@@ -3245,18 +3282,22 @@ input[type=range]::-webkit-slider-thumb {
   height: 48px;
   border-radius: 100%;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition-property: transform;
+  -webkit-transition-duration: 30s;
+  -webkit-transition-timing-function: linear;
+  -webkit-transform: rotate(0deg);
 }
 .dragrefresh i,
 .dragrefresh img,
 .dragrefresh svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 32px;
   height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
   font-size: 32px;
-  transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
 }
 /*----------------dragrefresh.less(end)--------------*/
 /*----------------error.less(start)--------------*/
@@ -4335,13 +4376,27 @@ input[type=range]::-webkit-slider-thumb {
   top: 0;
   bottom: 0;
 }
+/*custome*/
+.custom {
+  display: none;
+  position: relative;
+  -webkit-transform: translate(0, 0);
+  left: auto;
+  top: auto;
+}
+/*--------------------popup.less(end)----------------------*/
+/*----------------toast.less(start)--------------*/
 /*toast框*/
 .toast-box {
   position: fixed;
-  z-index: 999;
-  bottom: -100%;
+  bottom: 50px;
   width: 100%;
   text-align: center;
+  -webkit-transform: translate3d(0, 150px, 0);
+  -webkit-transition-property: transform;
+  -webkit-transition-duration: 150ms;
+  -webkit-transition-timing-function: ease;
+  z-index: 999;
 }
 .toast {
   display: inline-block;
@@ -4353,19 +4408,26 @@ input[type=range]::-webkit-slider-thumb {
   line-height: 20px;
   overflow: hidden;
   text-align: left;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  background-color: black\0;
 }
-/*custome*/
-.custom {
-  display: none;
-  position: relative;
-  -webkit-transform: translate(0, 0);
-  left: auto;
-  top: auto;
+/*----------------toast.less(end)--------------*/
+/*----------------prompt.less(start)--------------*/
+/*顶部弹出框*/
+.prompt {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  left: 0;
+  top: 44px;
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  z-index: 9999;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
+  -webkit-transition-timing-function: linear;
 }
-/*--------------------popup.less(end)----------------------*/
+/*----------------prompt.less(end)--------------*/
 [data-emoji] {
   display: inline-block;
   width: 14%;
@@ -6727,7 +6789,7 @@ aside {
   background-color: #18b2ed;
 }
 /*----------------buttongroup.less(end)--------------*/
-/*----------------popup.less.less(start)--------------*/
+/*----------------popup.less(start)--------------*/
 /*pop-box*/
 .popup {
   border-color: #dddddd;
@@ -6742,11 +6804,15 @@ aside {
   border-bottom-color: #dddddd;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/*toast框*/
-.popup-toast {
+/*----------------popup.less(end)--------------*/
+/*----------------toast.less(start)--------------*/
+/*toast框与prompt框*/
+.toast,
+.prompt {
+  color: #ffffff;
   background-color: rgba(0, 0, 0, 0.6);
 }
-/*----------------popup.less.less(end)--------------*/
+/*----------------toast.less(end)--------------*/
 /*----------------form.less(start)--------------*/
 input[type="text"],
 input[type="password"],

@@ -24,9 +24,7 @@
     <!--Exmobi能力-->
     <script src="../plugin/exmobi/exmobi.js"></script>
     <script type="text/javascript">
-        var a1=new Alert("加载完成");
         var a2=new Alert("请求超时啦");
-        var a3=new Alert("到底部啦");
         function initData(){
             for(var i=0;i<100;i++){
                 var elLI=document.createElement("li");
@@ -43,16 +41,16 @@
                     }, 2000);
                 },
                 "onRefreshEnd":function(e){
-                    a1.show();
+                    console.log("加载完成");
                 },
                 "onRefreshTimeout":function(e){
                     a2.show();
                 },
                 "onBottom":function(e){
-                    a3.show();
+                    console.log("到底部啦");
                     //数据加载完成时，隐藏下面的元素
                     setTimeout(function(){
-                        e.bottomRefreshEl.style.display="none";
+                        e.bottomContainer.style.display="none";
                     }, 5000);
                 }
             });

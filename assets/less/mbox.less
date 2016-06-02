@@ -43,15 +43,17 @@ body{
 	display:none;
 }
 /*section*/
-section {
+section{
 	display:none;
-	position:absolute;
-	top:0;
-	left:0;
+	position:relative;
 	width:100%;
 	height:100%;
 	overflow:hidden;
-	z-index:0;
+}
+section.page-single{
+	position:absolute;
+	top:0;
+	left:0;
 }
 section.active{
 	display:block;
