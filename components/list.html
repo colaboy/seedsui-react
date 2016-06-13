@@ -305,10 +305,10 @@
                 <summary class="sliver">时间轴列表</summary>
                 <ul class="timeline dotted bg-white">
                     <li>
-                        <div class="clock color-1" data-clock="11:24">
-                            <div class="hour" style="transform: rotate(330deg);"></div>
-                            <div class="minute" style="transform: rotate(144deg);"></div>
-                            <div class="origin"></div>
+                        <div class="clock border-color-1" data-clock="11:24">
+                            <div class="clock-hour bg-1" style="transform: rotate(330deg);"></div>
+                            <div class="clock-minute bg-1" style="transform: rotate(144deg);"></div>
+                            <div class="clock-origin bg-1"></div>
                         </div>
                         <div class="justify-content">
                             <p class="size20">11:24</p>
@@ -318,9 +318,9 @@
                     </li>
                     <li>
                         <div class="clock color-2" data-clock="11:24">
-                            <div class="hour" style="transform: rotate(330deg);"></div>
-                            <div class="minute" style="transform: rotate(144deg);"></div>
-                            <div class="origin"></div>
+                            <div class="clock-hour bg-2" style="transform: rotate(330deg);"></div>
+                            <div class="clock-minute bg-2" style="transform: rotate(144deg);"></div>
+                            <div class="clock-origin bg-2"></div>
                         </div>
                         <div class="justify-content">
                             <p class="size20">11:24</p>
@@ -359,7 +359,7 @@
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
         //定义exmobi返回
         function back(){history.go(-1);}

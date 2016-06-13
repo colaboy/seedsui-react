@@ -1,7 +1,21 @@
 /*---------------indexbar.less(start)---------------*/
+.indexbox,.indexlist{
+    position:relative;
+    height:100%;
+}
+/*列表*/
+.indexlist .sliver{
+    padding-top:4px;
+    padding-bottom:4px;
+}
+.indexlist .justify-content{
+    padding-left:0;
+    padding-right:0;
+}
+/*Bar*/
 .indexbar{
     position:absolute;
-    top:44px;
+    top:0;
     right:0;
     bottom:0;
     font-size:12px;
@@ -14,18 +28,14 @@
     text-align:center;
     color:#ddd;
 }
+.indexlist{
+    overflow:auto;
+}
 .indexlist li{
     padding-left:24px;
     padding-right:24px;
 }
-.indexlist .sliver{
-    padding-top:4px;
-    padding-bottom:4px;
-}
-.indexlist .justify-content{
-    padding-left:0;
-    padding-right:0;
-}
+/*Tooltip*/
 .indexbar-tooltip{
     display:none;
     position: absolute;
@@ -40,7 +50,6 @@
     line-height: 80px;
     font-size: 35px;
     color: #fff;
-    /* display: none; */
     -webkit-transition: .2s;
 }
 .indexbar.active+.indexbar-tooltip{

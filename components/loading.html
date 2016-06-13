@@ -13,38 +13,29 @@
 </head>
 
 <body ontouchstart="">
-		<!-- 加载遮罩 -->
-		<div class="popup-mask hide" style="display: block; opacity: 1;"></div>
-		<div class="loading-box box box-middlecenter hide">
-			<div class="loading"></div>
-		</div>
-		<header>
-			<div class="titlebar">
-		        <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-		        <h1>loading</h1>
-		    </div>
-		</header>
-		<article>
-		</article>
-	
+	<!-- 加载遮罩 -->
+	<div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	<div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		<div class="loading"></div>
+	</div>
+
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+	        <h1>loading</h1>
+	    </div>
+	</header>
+	<article>
+	</article>
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		/*=============
-		遮罩
-		==============*/
-		var loadingMask=document.querySelector(".popup-mask"),loadingBox=document.querySelector(".loading-box");
-		function showLoading(){
-			loadingMask.classList.remove("hide");
-			loadingBox.classList.remove("hide");
-		}
-		function hideLoading(){
-			loadingMask.classList.add("hide");
-			loadingBox.classList.add("hide");
-		}
-		showLoading();
+		var loading=new Loading("#loadingBox","#loadingMask");
+		setTimeout(function(){
+			loading.hide();
+		},3000);
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

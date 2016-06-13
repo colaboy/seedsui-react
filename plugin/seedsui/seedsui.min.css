@@ -1,4 +1,6 @@
 /*控件*/
+/* @button-active-bg:fade(@button-bg,50%);
+ @button-active-color:fade(@button-color,50%); */
 /*常用颜色*/
 /*-----------------------------global.less(start)-----------------------------*/
 .events-none {
@@ -415,45 +417,13 @@ body {
   -o-overflow-scrolling: touch;
   overflow-scrolling: touch;
 }
-/*主体*/
-.body-box,
-#section_container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  transition: all 0.5s;
-}
-/*主体遮罩*/
-.section_container_mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: none;
-}
 /*section*/
 section {
-  display: none;
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-}
-section.page-single {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-section.active {
-  display: block;
+  overflow: auto;
+  z-index: 0;
 }
 /*header,footer*/
 header,
@@ -468,10 +438,6 @@ header {
 footer {
   bottom: 0;
 }
-section > header,
-section > footer {
-  position: absolute;
-}
 /*article*/
 article {
   box-sizing: border-box;
@@ -479,11 +445,51 @@ article {
 header + article {
   padding-top: 44px;
 }
-section > article {
+.scrollbox {
   height: 100%;
   overflow: auto;
 }
 /*----------------mbox.less(end)--------------*/
+/*----------------page.less(start)--------------*/
+.page {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  z-index: 0;
+}
+.page[data-animation="slideLeft"] {
+  left: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+.page[data-animation="slideRight"] {
+  left: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.page[data-animation="slideUp"] {
+  top: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+.page[data-animation="slideDown"] {
+  top: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.page[data-animation="zoom"] {
+  -webkit-transform: scale(0, 0);
+}
+.page[data-animation="fade"] {
+  opacity: 0;
+}
+.page[data-animation="none"] {
+  visibility: hidden;
+}
+/* section.page.active{
+	visibility:visible;
+	opacity:1;
+} */
+/*----------------page.less(end)--------------*/
 /*----------------appearance.less(start)--------------*/
 button,
 input[type="button"],
@@ -1894,9 +1900,24 @@ ul.border-content li {
 }
 /*---------------timeline.less(end)---------------*/
 /*---------------indexbar.less(start)---------------*/
+.indexbox,
+.indexlist {
+  position: relative;
+  height: 100%;
+}
+/*列表*/
+.indexlist .sliver {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.indexlist .justify-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+/*Bar*/
 .indexbar {
   position: absolute;
-  top: 44px;
+  top: 0;
   right: 0;
   bottom: 0;
   font-size: 12px;
@@ -1909,18 +1930,14 @@ ul.border-content li {
   text-align: center;
   color: #ddd;
 }
+.indexlist {
+  overflow: auto;
+}
 .indexlist li {
   padding-left: 24px;
   padding-right: 24px;
 }
-.indexlist .sliver {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-.indexlist .justify-content {
-  padding-left: 0;
-  padding-right: 0;
-}
+/*Tooltip*/
 .indexbar-tooltip {
   display: none;
   position: absolute;
@@ -1935,7 +1952,6 @@ ul.border-content li {
   line-height: 80px;
   font-size: 35px;
   color: #fff;
-  /* display: none; */
   -webkit-transition: .2s;
 }
 .indexbar.active + .indexbar-tooltip {
@@ -2058,13 +2074,18 @@ ul.border-content li {
 }
 /*----------------card.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
-.asidecontainer,
-.asidecontainer-wrapper {
+.aside,
+.aside-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.asidecontainer {
+.aside-wrapper,
+aside,
+section {
+  -webkit-transition-property: transform;
+}
+.aside {
   overflow: hidden;
 }
 aside {
@@ -2074,6 +2095,9 @@ aside {
   top: 0;
   bottom: 0;
 }
+aside[data-transition="overlay"] {
+  z-index: 1;
+}
 aside[data-position="left"] {
   left: 0;
 }
@@ -2082,7 +2106,6 @@ aside[data-position="left"][data-transition="push"] {
 }
 aside[data-position="left"][data-transition="overlay"] {
   -webkit-transform: translate3d(-100%, 0, 0);
-  z-index: 11;
 }
 aside[data-position="right"] {
   right: 0;
@@ -2092,7 +2115,6 @@ aside[data-position="right"][data-transition="push"] {
 }
 aside[data-position="right"][data-transition="overlay"] {
   -webkit-transform: translate3d(100%, 0, 0);
-  z-index: 11;
 }
 /*----------------aside.less(end)--------------*/
 /*----------------------------title.less(start)----------------------------*/
@@ -3888,7 +3910,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-transition-duration: 500ms;
   -webkit-transition-delay: 0;
 }
-.clock .origin {
+.clock-origin {
   position: absolute;
   width: 4px;
   height: 4px;
@@ -3898,8 +3920,8 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -2px;
   border-radius: 100%;
 }
-.clock .hour,
-.clock .minute {
+.clock-hour,
+.clock-minute {
   position: absolute;
   bottom: 50%;
   left: 50%;
@@ -3912,10 +3934,10 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-transition-duration: inherit;
   -webkit-transition-delay: inherit;
 }
-.clock .hour {
+.clock-hour {
   height: 35%;
 }
-.clock .minute {
+.clock-minute {
   height: 43%;
 }
 /*----------------------------chat.less(start)----------------------------*/
@@ -4164,6 +4186,10 @@ input[type=range]::-webkit-slider-thumb {
 /*----------------grid.less(end)----------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading-box {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -4175,6 +4201,9 @@ input[type=range]::-webkit-slider-thumb {
   z-index: 10;
   -webkit-transform: translate(-50%, -50%);
   background-color: white;
+}
+.loading-box .loading {
+  margin: 30px;
 }
 /*加载动画*/
 .loading {
@@ -4233,71 +4262,138 @@ input[type=range]::-webkit-slider-thumb {
   height: 32px;
 }
 /*-----------------------------loading.less(end)----------------------------*/
-/*----------------popup.less(start)--------------*/
-/*pop-box*/
-.popup {
+/*--------------------mask.less(start)----------------------*/
+.mask {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+/*--------------------mask.less(end)----------------------*/
+/*----------------dialog.less(start)--------------*/
+/*系统弹出框*/
+.alert,
+.actionsheet,
+.dialog {
   position: fixed;
   z-index: 10;
   border-style: solid;
   border-width: 0;
 }
 .alert,
-.confirm,
-.popup[data-pos=middle] {
+.dialog[data-position=middle] {
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate3d(-50%, -50%, 0);
 }
-.popup[data-pos=top],
-.popup[data-pos=bottom] {
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
+.dialog {
+  visibility: hidden;
 }
-.popup[data-pos=left],
-.popup[data-pos=right] {
+/*top*/
+.dialog[data-position=top],
+.dialog[data-position=top-center],
+.dialog[data-position=top-right] {
   top: 0;
+}
+.dialog[data-position=top] {
+  left: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+}
+.dialog[data-position=top-center] {
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -100%, 0);
+}
+.dialog[data-position=top-right] {
+  right: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+}
+/*bottom*/
+.dialog[data-position=bottom],
+.dialog[data-position=bottom-center],
+.dialog[data-position=bottom-right] {
   bottom: 0;
-  max-width: 270px;
-  background-color: white;
 }
-/*系统弹出框*/
-.alert,
-.confirm,
-.toast,
-.actionsheet {
-  display: none;
+.dialog[data-position=bottom] {
+  left: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
 }
-/*alert&confirm*/
-.alert,
-.confirm {
+.dialog[data-position=bottom-center] {
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -100%, 0);
+}
+.dialog[data-position=bottom-right] {
+  right: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+}
+/*left*/
+.dialog[data-position=left],
+.dialog[data-position=left-middle],
+.dialog[data-position=left-bottom] {
+  left: 0;
+}
+.dialog[data-position=left] {
+  top: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.dialog[data-position=left-middle] {
+  top: 50%;
+  -webkit-transform: translate3d(-100%, -50%, 0);
+}
+.dialog[data-position=left-bottom] {
+  bottom: 0;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+/*right*/
+.dialog[data-position=right],
+.dialog[data-position=right-middle],
+.dialog[data-position=right-bottom] {
+  right: 0;
+}
+.dialog[data-position=right] {
+  top: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+.dialog[data-position=right-middle] {
+  top: 50%;
+  -webkit-transform: translate3d(100%, -50%, 0);
+}
+.dialog[data-position=right-bottom] {
+  bottom: 0;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+/*--------------------dialog.less(end)----------------------*/
+/*----------------alert.less(start)--------------*/
+/*@require dialog.less*/
+.alert {
+  visibility: hidden;
+  opacity: 0;
   width: 270px;
   border-radius: 6px;
   margin: 0 auto;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
   background-color: white;
 }
-.alert h1,
-.confirm h1 {
+.alert h1 {
   padding: 15px 0 5px 0;
   font-weight: 500;
   font-size: 18px;
   text-align: center;
 }
-.alert label,
-.confirm label {
+.alert label {
   display: block;
   padding: 10px 12px 15px 12px;
   line-height: 1.2em;
   word-wrap: break-word;
 }
-.popup-handler {
+/*底部按钮区*/
+.alert-handler {
   display: block;
   text-align: center;
   white-space: nowrap;
@@ -4306,31 +4402,41 @@ input[type=range]::-webkit-slider-thumb {
   border-style: inherit;
   border-width: 1px 0 0 0;
 }
-.popup-handler a,
+.alert-handler a,
 .actionsheet a {
   display: inline-block;
   padding: 12px;
   font-size: 17px;
   box-sizing: border-box;
 }
-.popup-handler a {
+.alert-handler a {
   width: 50%;
   border-width: 0;
 }
-.popup-handler a:nth-of-type(2) {
+.alert-handler a:nth-of-type(2) {
   border-style: solid;
   border-width: 0 0 0 1px;
   border-color: inherit;
 }
-.popup-handler a:only-child {
+.alert-handler a:only-child {
   width: 100%;
 }
-/*actionsheet*/
+.alert-handler a:active,
+.actionsheet a:active {
+  background-color: #ddd;
+  border-color: #ddd;
+}
+/*----------------alert.less(end)--------------*/
+/*----------------actionsheet.less(start)--------------*/
+/*@require dialog.less*/
 .actionsheet {
   padding: 0 6px;
   box-sizing: border-box;
   width: 100%;
-  bottom: -100%;
+  bottom: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -webkit-transition-property: transform;
+  -webkit-transition-duration: 300ms;
 }
 .actionsheet a {
   width: 100%;
@@ -4360,31 +4466,7 @@ input[type=range]::-webkit-slider-thumb {
   background-color: rgba(255, 255, 255, 0.9);
   background-color: white\0;
 }
-.popup-handler a:active,
-.actionsheet a:active {
-  background-color: #ddd;
-  border-color: #ddd;
-}
-/*pop-遮罩*/
-.popup-mask {
-  display: none;
-  opacity: 0;
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-/*custome*/
-.custom {
-  display: none;
-  position: relative;
-  -webkit-transform: translate(0, 0);
-  left: auto;
-  top: auto;
-}
-/*--------------------popup.less(end)----------------------*/
+/*----------------actionsheet.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
 /*toast框*/
 .toast-box {
@@ -6576,14 +6658,12 @@ aside {
   background-color: transparent;
 }
 .button:not(.noclick):active {
-  color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(24, 178, 237, 0.5);
+  opacity: 0.5;
 }
-.button.outline:not(.noclick):active {
-  color: rgba(24, 178, 237, 0.5);
-  border-color: rgba(24, 178, 237, 0.5);
-  background-color: transparent;
-}
+/* .button:not(.noclick):active{
+	color:@button-active-color;
+	background-color:@button-active-bg;
+} */
 /*去色*/
 .button.grayscale {
   border-width: 1px;
@@ -6594,6 +6674,7 @@ aside {
   background-color: #f4f4f4;
 }
 .button.grayscale:not(.noclick):active {
+  opacity: 1;
   color: inherit;
   border-color: inherit;
   background-color: transparent;
@@ -6604,6 +6685,7 @@ aside {
   background-color: transparent;
 }
 .button.outline.grayscale:not(.noclick):active {
+  opacity: 1;
   color: inherit;
   border-color: inherit;
   background-color: #f4f4f4;
@@ -6620,6 +6702,7 @@ aside {
   background-color: #ffffff;
 }
 .button.white:not(.noclick):active {
+  opacity: 1;
   color: #333333;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -6629,6 +6712,7 @@ aside {
   background-color: transparent;
 }
 .button.outline.white:not(.noclick):active {
+  opacity: 1;
   color: rgba(255, 255, 255, 0.5);
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
@@ -6637,12 +6721,14 @@ aside {
 .button.disable,
 .button[disabled],
 .button.disable:not(.noclick):active {
+  opacity: 1;
   color: #ffffff;
   background-color: #d9d9d9;
 }
 .button.disable.outline,
 .button[disabled].outline,
 .button.disable.outline:not(.noclick):active {
+  opacity: 1;
   color: #d9d9d9;
   border-color: #d9d9d9;
   background-color: transparent;
@@ -6656,14 +6742,14 @@ aside {
   border-color: #f86868;
   background-color: transparent;
 }
-.button.cancel:not(.noclick):active {
-  background-color: rgba(248, 104, 104, 0.5);
+/* .button.cancel:not(.noclick):active{
+	background-color:@cancel-active-bg;
 }
-.button.cancel.outline:not(.noclick):active {
-  color: rgba(248, 104, 104, 0.5);
-  border-color: rgba(248, 104, 104, 0.5);
-  background-color: transparent;
-}
+.button.cancel.outline:not(.noclick):active{
+	color:@cancel-active-bg;
+	border-color:@cancel-active-bg;
+	background-color:transparent;
+} */
 /*按钮-提交按钮*/
 .button.submit {
   background-color: #88d038;
@@ -6673,14 +6759,14 @@ aside {
   border-color: #88d038;
   background-color: transparent;
 }
-.button.submit:not(.noclick):active {
-  background-color: rgba(136, 208, 56, 0.5);
+/* .button.submit:not(.noclick):active{
+	background-color:@submit-active-bg;
 }
-.button.submit.outline:not(.noclick):active {
-  color: rgba(136, 208, 56, 0.5);
-  border-color: rgba(136, 208, 56, 0.5);
-  background-color: transparent;
-}
+.button.submit.outline:not(.noclick):active{
+	color:@submit-active-bg;
+	border-color:@submit-active-bg;
+	background-color:transparent;
+} */
 /*按钮-信息按钮*/
 .button.info {
   background-color: #5bc0de;
@@ -6690,14 +6776,14 @@ aside {
   border-color: #5bc0de;
   background-color: transparent;
 }
-.button.info:not(.noclick):active {
-  background-color: rgba(91, 192, 222, 0.5);
+/* .button.info:not(.noclick):active{
+	background-color:@info-active-bg;
 }
-.button.info.outline:not(.noclick):active {
-  color: rgba(91, 192, 222, 0.5);
-  border-color: rgba(91, 192, 222, 0.5);
-  background-color: transparent;
-}
+.button.info.outline:not(.noclick):active{
+	color:@info-active-bg;
+	border-color:@info-active-bg;
+	background-color:transparent;
+} */
 /*按钮-警告按钮*/
 .button.warn {
   background-color: #f4984e;
@@ -6707,14 +6793,14 @@ aside {
   border-color: #f4984e;
   background-color: transparent;
 }
-.button.warn:active {
-  background-color: rgba(244, 152, 78, 0.5);
+/* .button.warn:active{
+	background-color:@warn-active-bg;
 }
-.button.warn.outline:not(.noclick):active {
-  color: rgba(244, 152, 78, 0.5);
-  border-color: rgba(244, 152, 78, 0.5);
-  background-color: transparent;
-}
+.button.warn.outline:not(.noclick):active{
+	color:@warn-active-bg;
+	border-color:@warn-active-bg;
+	background-color:transparent;
+} */
 /*按钮-完成按钮*/
 .button.success {
   background-color: #4ddb63;
@@ -6724,14 +6810,14 @@ aside {
   border-color: #4ddb63;
   background-color: transparent;
 }
-.button.success:not(.noclick):active {
-  background-color: rgba(77, 219, 99, 0.5);
+/* .button.success:not(.noclick):active{
+	background-color:@success-active-bg;
 }
-.button.success.outline:not(.noclick):active {
-  color: rgba(77, 219, 99, 0.5);
-  border-color: rgba(77, 219, 99, 0.5);
-  background-color: transparent;
-}
+.button.success.outline:not(.noclick):active{
+	color:@success-active-bg;
+	border-color:@success-active-bg;
+	background-color:transparent;
+} */
 /*按钮-气泡*/
 .button:not(.outline) .tip,
 .button:not(.outline) .badge {
@@ -6789,14 +6875,12 @@ aside {
   background-color: #18b2ed;
 }
 /*----------------buttongroup.less(end)--------------*/
-/*----------------popup.less(start)--------------*/
+/*----------------dialog.less(start)--------------*/
 /*pop-box*/
-.popup {
+.alert,
+.actionsheet,
+.dialog {
   border-color: #dddddd;
-}
-/*pop-遮罩*/
-.popup-mask {
-  background-color: rgba(0, 0, 0, 0.4);
 }
 /*actionsheet*/
 .actionsheet button {
@@ -6804,7 +6888,12 @@ aside {
   border-bottom-color: #dddddd;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/*----------------popup.less(end)--------------*/
+/*----------------dialog.less(end)--------------*/
+/*----------------mask.less(start)--------------*/
+.mask {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/*----------------mask.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
 /*toast框与prompt框*/
 .toast,
@@ -6887,90 +6976,10 @@ select,
 .clock {
   border-color: #18b2ed;
 }
-.clock .origin,
-.clock .hour,
-.clock .minute {
+.clock-origin,
+.clock-hour,
+.clock-minute {
   background-color: #18b2ed;
-}
-.clock.color-1 {
-  border-color: #53c6fd;
-}
-.clock.color-1 .origin,
-.clock.color-1 .hour,
-.clock.color-1 .minute {
-  background-color: #53c6fd;
-}
-.clock.color-2 {
-  border-color: #ffae02;
-}
-.clock.color-2 .origin,
-.clock.color-2 .hour,
-.clock.color-2 .minute {
-  background-color: #ffae02;
-}
-.clock.color-3 {
-  border-color: #3ae3ea;
-}
-.clock.color-3 .origin,
-.clock.color-3 .hour,
-.clock.color-3 .minute {
-  background-color: #3ae3ea;
-}
-.clock.color-4 {
-  border-color: #ff6f36;
-}
-.clock.color-4 .origin,
-.clock.color-4 .hour,
-.clock.color-4 .minute {
-  background-color: #ff6f36;
-}
-.clock.color-5 {
-  border-color: #cf7af3;
-}
-.clock.color-5 .origin,
-.clock.color-5 .hour,
-.clock.color-5 .minute {
-  background-color: #cf7af3;
-}
-.clock.color-6 {
-  border-color: #4cd32e;
-}
-.clock.color-6 .origin,
-.clock.color-6 .hour,
-.clock.color-6 .minute {
-  background-color: #4cd32e;
-}
-.clock.color-7 {
-  border-color: #4587f7;
-}
-.clock.color-7 .origin,
-.clock.color-7 .hour,
-.clock.color-7 .minute {
-  background-color: #4587f7;
-}
-.clock.color-8 {
-  border-color: #00c2eb;
-}
-.clock.color-8 .origin,
-.clock.color-8 .hour,
-.clock.color-8 .minute {
-  background-color: #00c2eb;
-}
-.clock.color-9 {
-  border-color: #ff618f;
-}
-.clock.color-9 .origin,
-.clock.color-9 .hour,
-.clock.color-9 .minute {
-  background-color: #ff618f;
-}
-.clock.color-10 {
-  border-color: #21d9a1;
-}
-.clock.color-10 .origin,
-.clock.color-10 .hour,
-.clock.color-10 .minute {
-  background-color: #21d9a1;
 }
 /*----------------clock.less(end)--------------*/
 /*----------------row.less(start)--------------*/
@@ -7364,6 +7373,37 @@ table {
 }
 .color-10 {
   color: #21d9a1;
+}
+/*边框颜色*/
+.border-color-1 {
+  border-color: #53c6fd;
+}
+.border-color-2 {
+  border-color: #ffae02;
+}
+.border-color-3 {
+  border-color: #3ae3ea;
+}
+.border-color-4 {
+  border-color: #ff6f36;
+}
+.border-color-5 {
+  border-color: #cf7af3;
+}
+.border-color-6 {
+  border-color: #4cd32e;
+}
+.border-color-7 {
+  border-color: #4587f7;
+}
+.border-color-8 {
+  border-color: #00c2eb;
+}
+.border-color-9 {
+  border-color: #ff618f;
+}
+.border-color-10 {
+  border-color: #21d9a1;
 }
 /*背景颜色*/
 .bg-transparent {

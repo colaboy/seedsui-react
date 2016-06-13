@@ -18,45 +18,13 @@ body{
 	-o-overflow-scrolling:touch;
 	overflow-scrolling:touch;
 }
-/*主体*/
-.body-box,#section_container{
-	position: absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	overflow:hidden;
-	
-	-webkit-transition:all 0.5s;
-	-moz-transition:all 0.5s;
-	-ms-transition:all 0.5s;
-	transition:all 0.5s;
-}
-/*主体遮罩*/
-.section_container_mask{
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	overflow:hidden;
-	display:none;
-}
 /*section*/
 section{
-	display:none;
 	position:relative;
 	width:100%;
 	height:100%;
-	overflow:hidden;
-}
-section.page-single{
-	position:absolute;
-	top:0;
-	left:0;
-}
-section.active{
-	display:block;
+	overflow:auto;
+	z-index:0;
 }
 
 /*header,footer*/
@@ -71,9 +39,6 @@ header{
 footer{
 	bottom:0;
 }
-section>header,section>footer{
-	position:absolute;
-}
 /*article*/
 article{
 	box-sizing:border-box;
@@ -81,7 +46,7 @@ article{
 header+article{
 	padding-top:44px;
 }
-section>article{
+.scrollbox{
 	height:100%;
 	overflow:auto;
 }

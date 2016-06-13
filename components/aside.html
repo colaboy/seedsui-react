@@ -9,16 +9,16 @@
 </head>
 
 <body ontouchstart="">
-    <div class="asidecontainer" id="asidecontainer">
-        <div class="asidecontainer-wrapper">
-            <aside id="asidecontainer-left" data-position="left" style="background-color:#333;color:white;">
+    <div class="aside" id="aside">
+        <div class="aside-wrapper">
+            <aside id="aside-left" data-transition="overlay" style="background-color:#333;color:white;">
                 <p class="title lrmargin8">侧边栏</p>
                 <p class="subtitle lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用<br/>
                 data-position制定从哪边弹出，值为：left和right。<br/>
                 data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)</p>
                 <a class="button block cancel margin8" id="hideAside1">关闭侧滑</a>
             </aside>
-            <aside id="asidecontainer-right" data-position="left" style="background-color:#333;color:white;">
+            <aside id="aside-right" data-transition="push" style="background-color:#333;color:white;">
                 <p class="title lrmargin8">右侧边栏</p>
                 <p class="subtitle lrmargin8" style="opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
                 <a class="button block cancel margin8" id="hideAside2">关闭侧滑</a>
@@ -32,79 +32,77 @@
                         <h1>侧边栏</h1>
                     </div>
                 </header>
-                <article>
+                <article class="scrollbox">
                     <p class="title">左侧菜单栏</p>
                     <div class="card">
-                        <a id="overlayLeft" class="button block margin8">overlay左侧边栏</a>
-                        <a id="pushLeft" class="button block margin8 submit">push左侧边栏</a>
-                        <a id="revealLeft" class="button block margin8 warn">reveal左侧边栏</a>
+                        <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
+                        <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
+                        <a id="revealLeft" class="button block margin8 warn">左侧栏-默认</a>
                     </div>
                     <p class="title">右侧菜单栏</p>
                     <div class="card">
-                        <a id="overlayRight" class="button block margin8">overlay右侧边栏</a>
-                        <a id="pushRight" class="button block margin8 submit">push右侧边栏</a>
-                        <a id="revealRight" class="button block margin8 warn">reveal右侧边栏</a>
+                        <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
+                        <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>
+                        <a id="revealRight" class="button block margin8 warn">右侧栏-默认</a>
+                    </div>
+                    <div class="card padding8">
+                        <h1 class="text-center">这是侧滑菜单的示例</h1>
+                        <br/>
+                        <h4 class="paragraph">标签属性</h4>
+                        <p class="paragraph">data-position制定从哪边弹出，值为：left和right。</p>
+                        <p class="paragraph">data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)</p>
                     </div>
                 </article>
             </section>
         </div>
     </div>
-    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <script src="../assets/js/asidecontainer.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
         window.addEventListener("load",function(e){
-            var asidecontainer=new Asidecontainer("#asidecontainer");
-            $("#overlayLeft").click(function(){
-                asidecontainer.setAside("#asidecontainer-left");
-                asidecontainer.aside.setAttribute("data-position","left");
-                asidecontainer.aside.setAttribute("data-transition","overlay");
-                asidecontainer.update();
-                asidecontainer.show();
+            var aside=new Aside("#aside",{
+                "isDrag":true,
+                "sides":{"left":"#aside-left","right":"#aside-right"}
+                //"sides":{"left":"#aside-left"}
             });
-    		$("#pushLeft").click(function(){
-                asidecontainer.setAside("#asidecontainer-left");
-                asidecontainer.aside.setAttribute("data-position","left");
-                asidecontainer.aside.setAttribute("data-transition","push");
-                asidecontainer.update();
-                asidecontainer.show();
-            });
-    		$("#revealLeft").click(function(){
-                asidecontainer.setAside("#asidecontainer-left");
-                asidecontainer.aside.setAttribute("data-position","left");
-                asidecontainer.aside.setAttribute("data-transition","");
-                asidecontainer.update();
-                asidecontainer.show();
-            });
-    		$("#overlayRight").click(function(){
-                asidecontainer.setAside("#asidecontainer-right");
-                asidecontainer.aside.setAttribute("data-position","right");
-                asidecontainer.aside.setAttribute("data-transition","overlay");
-                asidecontainer.update();
-                asidecontainer.show();
-            });
-    		$("#pushRight").click(function(){
-                asidecontainer.setAside("#asidecontainer-right");
-                asidecontainer.aside.setAttribute("data-position","right");
-                asidecontainer.aside.setAttribute("data-transition","push");
-                asidecontainer.update();
-                asidecontainer.show();
-            });
-    		$("#revealRight").click(function(){
-                asidecontainer.setAside("#asidecontainer-right");
-                asidecontainer.aside.setAttribute("data-position","right");
-                asidecontainer.aside.setAttribute("data-transition","");
-                asidecontainer.update();
-                asidecontainer.show();
-            });
-    		$(".section_container_mask").click(function(){
-                $("aside").removeClass("active");
-            });
-            $("#hideAside1,#hideAside2").click(function(){
-                asidecontainer.hide();
-            })
+            document.getElementById("overlayLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","overlay");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("pushLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","push");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("revealLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("overlayRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","overlay");
+                aside.update();
+                aside.show("right");
+            };
+    		document.getElementById("pushRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","push");
+                aside.update();
+                aside.show("right");
+            };
+    		document.getElementById("revealRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","");
+                aside.update();
+                aside.show("right");
+            };
+            //关闭按钮
+            document.getElementById("hideAside1").onclick=function(e){
+                aside.hide();
+            };
+            document.getElementById("hideAside2").onclick=function(e){
+                aside.hide();
+            };
         },false);
         //定义exmobi返回
     	function back(){history.go(-1);}

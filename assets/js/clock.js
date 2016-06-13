@@ -1,12 +1,11 @@
 (function(){
     window.Clock=function(container,params){
         /*================
-        Module
+        Model
         =================*/
         var defaults={
-            "time":"00:00",
-            "hourClass":"hour",
-            "minuteClass":"minute",
+            "hourClass":"clock-hour",
+            "minuteClass":"clock-minute",
             /*
             "duration":"500",
             "delay":"0"
@@ -23,26 +22,29 @@
         s.params = params;
         //Container
         s.container=typeof container === "string"?document.querySelector(container):container;
-        //Container-Hour|Minute
-        s.hour=s.container.querySelector("."+s.params.hourClass);
-        s.minute=s.container.querySelector("."+s.params.minuteClass);
+        s.hour,s.minute,s.time;
 
         /*================
         Method
         =================*/
-        s.updateClock=function(time){
-            if(time)s.params.time=time;
-            if(!/\d{1,2}:\d{1,2}/.test(s.params.time)){
+        s.update=function(time){
+            s.hour=s.container.querySelector("."+s.params.hourClass);
+            s.minute=s.container.querySelector("."+s.params.minuteClass);
+            s.time=s.container.getAttribute("data-clock");
+            if(!s.time || !/\d{1,2}:\d{1,2}/.test(s.time)){
                 console.log("时间格式应为xx:xx");
                 return;
             }
-            var hourMinute=s.params.time.split(":");
+
+            var hourMinute=s.time.split(":");
             var hourDeg=s.getHourDeg(hourMinute[0]);
             var minuteDeg=s.getMinuteDeg(hourMinute[1]);
-            s.hour.style.WebkitTransform="rotate("+hourDeg+"deg)";
-            s.minute.style.WebkitTransform="rotate("+minuteDeg+"deg)";
+
             if(!isNaN(s.params.duration))s.container.style.WebkitTransitionDuration=s.params.duration+"ms";
             if(!isNaN(s.params.delay))s.container.style.WebkitTransitionDelay=s.params.delay+"ms";
+
+            s.hour.style.webkitTransform="rotate("+hourDeg+"deg)";
+            s.minute.style.webkitTransform="rotate("+minuteDeg+"deg)";
         }
         s.getHourDeg=function(hour){
             return hour*30;
@@ -50,34 +52,22 @@
         s.getMinuteDeg=function(minute){
             return minute*6;
         }
-
-        /*================
-        Entry
-        =================*/
-        s.init=function(){
-            s.updateClock();
-        }
-        s.init();
-        //Return Clock instance
-        return s;
+        s.update();
     }
     window.DataClock=function(params){
-        /*===============
-        Module
+        var s=this;
+        /*==============
+        Model
         ================*/
-        //Containers
-        var clocks=document.querySelectorAll("[data-clock]");
-        clocks.containers=[];
-        //Params
+        s.clocks=document.querySelectorAll("[data-clock]");
+        s.clocks.containers=[];
         var jsonParams={};
         if(params)jsonParams=params;
         /*==============
-        Entry
+        Method
         ================*/
-        for(var i=0,clock;clock=clocks[i++];){
-            jsonParams.time=clock.getAttribute("data-clock");
-            clocks.containers[i]=new Clock(clock,jsonParams);
+        for(var i=0,clock;clock=s.clocks[i++];){
+            s.clocks.containers[i]=new Clock(clock,jsonParams);
         }
-        return clocks;
     }
 })();

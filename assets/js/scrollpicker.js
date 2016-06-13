@@ -102,7 +102,7 @@
         //新建Mask
         s.createMask=function(){
             var mask=document.createElement("div");
-            mask.setAttribute("class","popup-mask");
+            mask.setAttribute("class","mask");
             return mask;
         }
         //新建一行List

@@ -1,5 +1,10 @@
 /*-----------------------------loading.less(start)-----------------------------*/
 .loading-box {
+  visibility:hidden;
+  opacity:0;
+  -webkit-transition-property:opacity;
+  -webkit-transition-duration:300ms;
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -12,6 +17,9 @@
   -webkit-transform:translate(-50%,-50%);
 
   background-color: white;
+}
+.loading-box .loading{
+  margin:30px;
 }
 /*加载动画*/
 .loading {

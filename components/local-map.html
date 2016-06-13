@@ -42,7 +42,7 @@
 		/*悬浮日期框*/
 		.signDate{
 			position: absolute;
-			top:10px;
+			top:60px;
 			left:10px;
 			width: 120px;
 			overflow: hidden;
@@ -63,7 +63,7 @@
 		        <h1>签到地图</h1>
 		    </div>
 		</header>
-		<article style="padding-bottom:150px;">
+		<article class="scrollbox" style="padding-bottom:150px;">
 			<div class="input-box reverse radius20 height32 signDate">
 				<input type="date" id="expireDate" style="padding-top:0;padding-bottom:0;">
 				<i class="icon icon-calendar"></i>
@@ -110,7 +110,7 @@
 		</footer>
 	</section>
 	<!-- 加载遮罩 -->
-	<div class="popup-mask hide" style="opacity: 1;display: block;"></div>
+	<div class="mask hide" style="opacity: 1;display: block;"></div>
 	<div class="loading-box box box-middlecenter hide">
 		<div class="loading"></div>
 	</div>
@@ -118,7 +118,7 @@
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <!--百度地图-->
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8830f84901336e9afd2c6d7033d2ebe5"></script>
 	<script>
@@ -154,7 +154,7 @@
 	    /*=============
 		遮罩
 		==============*/
-		var loadingMask=document.querySelector(".popup-mask"),loadingBox=document.querySelector(".loading-box");
+		var loadingMask=document.querySelector(".mask"),loadingBox=document.querySelector(".loading-box");
 		function showLoading(){
 			loadingMask.classList.remove("hide");
 			loadingBox.classList.remove("hide");

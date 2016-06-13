@@ -207,7 +207,7 @@ aside {
 /*----------------button.less(start)--------------*/
 /*按钮-普通按钮*/
 .button{
-	color: @button-color;
+	color:@button-color;
 	background-color:@button-bg;
 }
 .button.outline{
@@ -215,15 +215,14 @@ aside {
 	border-color:@button-bg;
 	background-color:transparent;
 }
+
 .button:not(.noclick):active{
-	color: @button-active-color;
+	@{button-active-property}:@button-active-value;
+}
+/* .button:not(.noclick):active{
+	color:@button-active-color;
 	background-color:@button-active-bg;
-}
-.button.outline:not(.noclick):active{
-	color:@button-active-bg;
-	border-color:@button-active-bg;
-	background-color:transparent;
-}
+} */
 /*去色*/
 .button.grayscale{
 	border-width:1px;
@@ -234,6 +233,7 @@ aside {
 	background-color:@body-bg;
 }
 .button.grayscale:not(.noclick):active{
+	opacity:1;
 	color:inherit;
 	border-color:inherit;
 	background-color:transparent;
@@ -244,6 +244,7 @@ aside {
 	background-color:transparent;
 }
 .button.outline.grayscale:not(.noclick):active{
+	opacity:1;
 	color:inherit;
 	border-color:inherit;
 	background-color:@body-bg;
@@ -259,6 +260,7 @@ aside {
 	background-color:@white;
 }
 .button.white:not(.noclick):active{
+	opacity:1;
 	color:@body-color;
 	background-color:@white-active-color;
 }
@@ -268,6 +270,7 @@ aside {
 	background-color:transparent;
 }
 .button.outline.white:not(.noclick):active{
+	opacity:1;
 	color:@white-active-color;
 	border-color:@white-active-color;
 	background-color:transparent;
@@ -275,11 +278,13 @@ aside {
 /*按钮-禁用按钮*/
 .button.disable,.button[disabled],
 .button.disable:not(.noclick):active{
+	opacity:1;
 	color:@button-color;
-	background-color:@disable-bg; 
+	background-color:@disable-bg;
 }
 .button.disable.outline,.button[disabled].outline,
 .button.disable.outline:not(.noclick):active{
+	opacity:1;
 	color:@disable-bg;
 	border-color:@disable-bg;
 	background-color:transparent;
@@ -293,14 +298,14 @@ aside {
 	border-color:@cancel-bg;
 	background-color:transparent;
 }
-.button.cancel:not(.noclick):active{
+/* .button.cancel:not(.noclick):active{
 	background-color:@cancel-active-bg;
 }
 .button.cancel.outline:not(.noclick):active{
 	color:@cancel-active-bg;
 	border-color:@cancel-active-bg;
 	background-color:transparent;
-}
+} */
 
 /*按钮-提交按钮*/
 .button.submit{
@@ -312,14 +317,14 @@ aside {
 	background-color:transparent;
 }
 
-.button.submit:not(.noclick):active{
+/* .button.submit:not(.noclick):active{
 	background-color:@submit-active-bg;
 }
 .button.submit.outline:not(.noclick):active{
 	color:@submit-active-bg;
 	border-color:@submit-active-bg;
 	background-color:transparent;
-}
+} */
 
 /*按钮-信息按钮*/
 .button.info{
@@ -331,14 +336,14 @@ aside {
 	background-color:transparent;
 }
 
-.button.info:not(.noclick):active{
+/* .button.info:not(.noclick):active{
 	background-color:@info-active-bg;
 }
 .button.info.outline:not(.noclick):active{
 	color:@info-active-bg;
 	border-color:@info-active-bg;
 	background-color:transparent;
-}
+} */
 
 /*按钮-警告按钮*/
 .button.warn{
@@ -350,14 +355,14 @@ aside {
 	background-color:transparent;
 }
 
-.button.warn:active{
+/* .button.warn:active{
 	background-color:@warn-active-bg;
 }
 .button.warn.outline:not(.noclick):active{
 	color:@warn-active-bg;
 	border-color:@warn-active-bg;
 	background-color:transparent;
-}
+} */
 
 /*按钮-完成按钮*/
 .button.success{
@@ -369,14 +374,14 @@ aside {
 	background-color:transparent;
 }
 
-.button.success:not(.noclick):active{
+/* .button.success:not(.noclick):active{
 	background-color:@success-active-bg;
 }
 .button.success.outline:not(.noclick):active{
 	color:@success-active-bg;
 	border-color:@success-active-bg;
 	background-color:transparent;
-}
+} */
 
 /*按钮-气泡*/
 .button:not(.outline) .tip,
@@ -430,15 +435,10 @@ aside {
 	background-color: @primary-bg;
 }
 /*----------------buttongroup.less(end)--------------*/
-/*----------------popup.less(start)--------------*/
+/*----------------dialog.less(start)--------------*/
 /*pop-box*/
-.popup{
+.alert,.actionsheet,.dialog{
 	border-color:@border;
-}
-
-/*pop-遮罩*/
-.popup-mask{
-	background-color: @mask-bg;
 }
 /*actionsheet*/
 .actionsheet button {
@@ -446,8 +446,12 @@ aside {
 	border-bottom-color:@border;
 	background-color:rgba(255,255,255,.9);
 }
-/*----------------popup.less(end)--------------*/
-
+/*----------------dialog.less(end)--------------*/
+/*----------------mask.less(start)--------------*/
+.mask{
+	background-color: @mask-bg;
+}
+/*----------------mask.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
 /*toast框与prompt框*/
 .toast,.prompt{
@@ -508,68 +512,8 @@ input[list],textarea,select,.input-text{
 .clock{
 	border-color:@primary-bg;
 }
-.clock .origin,.clock .hour,.clock .minute{
+.clock-origin,.clock-hour,.clock-minute{
 	background-color:@primary-bg;
-}
-.clock.color-1{
-	border-color:@color-1;
-}
-.clock.color-1 .origin,.clock.color-1 .hour,.clock.color-1 .minute{
-	background-color:@color-1;
-}
-.clock.color-2{
-	border-color:@color-2;
-}
-.clock.color-2 .origin,.clock.color-2 .hour,.clock.color-2 .minute{
-	background-color:@color-2;
-}
-.clock.color-3{
-	border-color:@color-3;
-}
-.clock.color-3 .origin,.clock.color-3 .hour,.clock.color-3 .minute{
-	background-color:@color-3;
-}
-.clock.color-4{
-	border-color:@color-4;
-}
-.clock.color-4 .origin,.clock.color-4 .hour,.clock.color-4 .minute{
-	background-color:@color-4;
-}
-.clock.color-5{
-	border-color:@color-5;
-}
-.clock.color-5 .origin,.clock.color-5 .hour,.clock.color-5 .minute{
-	background-color:@color-5;
-}
-.clock.color-6{
-	border-color:@color-6;
-}
-.clock.color-6 .origin,.clock.color-6 .hour,.clock.color-6 .minute{
-	background-color:@color-6;
-}
-.clock.color-7{
-	border-color:@color-7;
-}
-.clock.color-7 .origin,.clock.color-7 .hour,.clock.color-7 .minute{
-	background-color:@color-7;
-}
-.clock.color-8{
-	border-color:@color-8;
-}
-.clock.color-8 .origin,.clock.color-8 .hour,.clock.color-8 .minute{
-	background-color:@color-8;
-}
-.clock.color-9{
-	border-color:@color-9;
-}
-.clock.color-9 .origin,.clock.color-9 .hour,.clock.color-9 .minute{
-	background-color:@color-9;
-}
-.clock.color-10{
-	border-color:@color-10;
-}
-.clock.color-10 .origin,.clock.color-10 .hour,.clock.color-10 .minute{
-	background-color:@color-10;
 }
 /*----------------clock.less(end)--------------*/
 
@@ -866,7 +810,7 @@ table{
 }
 /*---------------tree.less(end)---------------*/
 .treetitle .radiusround{
-    background-color:@color-2;
+    background-color:@2-bg;
     color:@white;
 }
 .treetitle .treeicon:not(.radiusround),.treetitle .right{
@@ -915,34 +859,65 @@ table{
 	color: @body-color;
 }
 .color-1{
-	color:@color-1;
+	color:@1-bg;
 }
 .color-2{
-	color:@color-2;
+	color:@2-bg;
 }
 .color-3{
-	color:@color-3;
+	color:@3-bg;
 }
 .color-4{
-	color:@color-4;
+	color:@4-bg;
 }
 .color-5{
-	color:@color-5;
+	color:@5-bg;
 }
 .color-6{
-	color:@color-6;
+	color:@6-bg;
 }
 .color-7{
-	color:@color-7;
+	color:@7-bg;
 }
 .color-8{
-	color:@color-8;
+	color:@8-bg;
 }
 .color-9{
-	color:@color-9;
+	color:@9-bg;
 }
 .color-10{
-	color:@color-10;
+	color:@10-bg;
+}
+/*边框颜色*/
+.border-color-1{
+	border-color:@1-bg;
+}
+.border-color-2{
+	border-color:@2-bg;
+}
+.border-color-3{
+	border-color:@3-bg;
+}
+.border-color-4{
+	border-color:@4-bg;
+}
+.border-color-5{
+	border-color:@5-bg;
+}
+.border-color-6{
+	border-color:@6-bg;
+}
+.border-color-7{
+	border-color:@7-bg;
+}
+.border-color-8{
+	border-color:@8-bg;
+}
+.border-color-9{
+	border-color:@9-bg;
+}
+.border-color-10{
+	border-color:@10-bg;
 }
 /*背景颜色*/
 .bg-transparent{
@@ -983,33 +958,33 @@ table{
 	color:white;
 }
 .bg-1{
-	background-color:@color-1;
+	background-color:@1-bg;
 }
 .bg-2{
-	background-color:@color-2;
+	background-color:@2-bg;
 }
 .bg-3{
-	background-color:@color-3;
+	background-color:@3-bg;
 }
 .bg-4{
-	background-color:@color-4;
+	background-color:@4-bg;
 }
 .bg-5{
-	background-color:@color-5;
+	background-color:@5-bg;
 }
 .bg-6{
-	background-color:@color-6;
+	background-color:@6-bg;
 }
 .bg-7{
-	background-color:@color-7;
+	background-color:@7-bg;
 }
 .bg-8{
-	background-color:@color-8;
+	background-color:@8-bg;
 }
 .bg-9{
-	background-color:@color-9;
+	background-color:@9-bg;
 }
 .bg-10{
-	background-color:@color-10;
+	background-color:@10-bg;
 }
 /*----------------theme.less(end)--------------*/

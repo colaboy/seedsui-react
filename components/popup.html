@@ -5,6 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
 	<title>popup</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+    .dialog-middle,.dialog-top,.dialog-bottom,.dialog-left,.dialog-right{
+    	display:none;
+    	background-color:white;
+    	width:200px;
+    	height:100px;
+    	text-align:center;
+    }
+    </style>
 </head>
 <body ontouchstart="">
     <header>
@@ -16,49 +25,87 @@
     <article>
     	<p class="title">系统弹出框</p>
     	<div class="card padding8">
-	        <button class="button" id="alert">alert</button>
-	        <button class="button warn" id="confirm">confirm</button>
-	        <button class="button info" id="actionsheet">actionsheet</button>
-	        <button class="button success" id="toast">toast</button>
-	        <button class="button cancel" id="prompt">prompt</button>
+	        <button class="button bg-1" id="alertBtn">alert</button>
+	        <button class="button bg-2" id="confirmBtn">alert2</button>
+	        <button class="button bg-3" id="actionsheetBtn">actionsheet</button>
+	        <button class="button bg-4" id="toastBtn">toast</button>
+	        <button class="button bg-5" id="promptBtn">prompt</button>
         </div>
         
-        <p class="title">自定义弹出框</p>
+        <p class="title">左弹出框</p>
         <div class="card padding8">
-	        <button class="button" id="middle">middle</button>
-	        <button class="button warn" id="top">top</button>
-	        <button class="button" id="bottom">bottom</button>
-	        <button class="button info" id="left">left</button>
-	        <button class="button success" id="right">right</button>
+        	<button class="button bg-1" id="leftTopBtn">left-top</button>
+        	<button class="button bg-2" id="leftMiddleBtn">left-middle</button>
+        	<button class="button bg-3" id="leftBottomBtn">left-bottom</button>
+        	<button class="button bg-4" id="leftFullBtn">left-full</button>
+    	</div>
+    	<p class="title">右弹出框</p>
+    	<div class="card padding8">
+			<button class="button bg-1" id="rightTopBtn">right-top</button>
+	        <button class="button bg-2" id="rightMiddleBtn">right-middle</button>
+        	<button class="button bg-3" id="rightBottomBtn">right-bottom</button>
+        	<button class="button bg-4" id="rightFullBtn">right-full</button>
+    	</div>
+
+    	<p class="title">上弹出框</p>
+    	<div class="card padding8">
+    		<button class="button bg-1" id="topLeftBtn">top-left</button>
+	        <button class="button bg-2" id="topCenterBtn">top-center</button>
+	        <button class="button bg-3" id="topRightBtn">top-right</button>
+	        <button class="button bg-4" id="topFullBtn">top-full</button>
+    	</div>
+
+    	<p class="title">下弹出框</p>
+    	<div class="card padding8">
+    		<button class="button bg-1" id="bottomLeftBtn">bottom-left</button>
+	        <button class="button bg-2" id="bottomCenterBtn">bottom-center</button>
+	        <button class="button bg-3" id="bottomRightBtn">bottom-right</button>
+	        <button class="button bg-4" id="bottomFullBtn">bottom-full</button>
+    	</div>
+
+    	<p class="title">中弹出框</p>
+    	<div class="card padding8">
+    		<button class="button bg-1" id="middleBtn">middle</button>
     	</div>
 	</article>
 	<!--自定义弹出框-->
-	<div class="popup confirm custom" id="pop_custom">
-        <label class="text-center">
-            <p class="title color-cancel">该投票将永远消失！</p>
-            <p>您确定这么做？！</p>
-            <i class="icon icon-bad size54 color-primary margin12"></i>
-        </label>
-        <div class="popup-handler">
-            <a>取消</a>
-            <a>确定</a>
-        </div>
-    </div>
+	<div id="middleDiv" class="dialog-middle">中间弹出框</div>
+
+    <div id="topLeftDiv" class="dialog-top">头部弹出框</div>
+    <div id="topCenterDiv" class="dialog-top">头部弹出框</div>
+	<div id="topRightDiv" class="dialog-top">头部弹出框</div>
+	<div id="topFullDiv" class="dialog-top" style="width:100%">头部弹出框</div>
+
+    <div id="bottomLeftDiv" class="dialog-bottom">底部弹出框</div>
+    <div id="bottomCenterDiv" class="dialog-bottom">底部弹出框</div>
+    <div id="bottomRightDiv" class="dialog-bottom">底部弹出框</div>
+    <div id="bottomFullDiv" class="dialog-bottom" style="width:100%">底部弹出框</div>
+
+    <div id="leftTopDiv" class="dialog-left">左边弹出框</div>
+    <div id="leftMiddleDiv" class="dialog-left">左边弹出框</div>
+    <div id="leftBottomDiv" class="dialog-left">左边弹出框</div>
+    <div id="leftFullDiv" class="dialog-left" style="height:100%">左边弹出框</div>
+
+    <div id="rightTopDiv" class="dialog-right">右边弹出框</div>
+    <div id="rightMiddleDiv" class="dialog-right">右边弹出框</div>
+    <div id="rightBottomDiv" class="dialog-right">右边弹出框</div>
+    <div id="rightFullDiv" class="dialog-right" style="height:100%">右边弹出框</div>
+
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script type="text/javascript">
 		/*
 		 * 系统弹出框
 		 */
 		//alert
 		var popAlert=new Alert("我是Alert框我是Alert框我是Alert框我是Alert框");
-	    $("#alert").click(function(){
+	    document.getElementById("alertBtn").onclick=function(){
 			popAlert.show();
-	    });
+	    };
 		//confirm
-		var c1=new Confirm("我是Confirm框",{
+		var popConfirm=new Alert("我是Confirm框",{
 			onClickOk:function(e){
 				console.log(e.target);
 			},onClickCancel:function(e){
@@ -66,106 +113,185 @@
 				e.hide();
 			}
 		});
-		$("#confirm").click(function(){
-			c1.show();
-	    });
+		document.getElementById("confirmBtn").onclick=function(){
+			popConfirm.show();
+	    };
 		
-		// //toast
+		//toast
 		var popToast=new Toast("提示信息");
-		$("#toast").click(function(){
+		document.getElementById("toastBtn").onclick=function(){
 			popToast.show();
-	    });
+	    };
 	    var c;
 	    //actionsheet
 	    var t=new Toast("您点击了菜单一");
-	    var actionsheetParams=[
-			{
-				text : '菜单一',
-		        handler : function(s){
-		        	console.log(s.target);
-		        	t.setText("您点击了菜单一");
-		        	t.show();
-		        }
-			},{
-				text : '菜单二',
-		        handler : function(s){
-		        	console.log(s.target);
-		        	t.setText("您点击了菜单二");
-		        	t.show();
-				}
-		    },{
-				text : '取消',
-		        handler : function(s){
-		        	console.log(s.target);
-		        	s.hide();
-				}
-		    },{
-				text : '退出',
-		        handler : function(s){
-		        	if(!c){
-			        	c=new Confirm("您确定要退出吗？",{
-							onClickOk:function(confirm){
-								confirm.destory();
-								s.hide();
-								c=null;
-							}
-						});
+	    var actionAlert=null;
+		var actionsheet=new Actionsheet({
+			data:[
+				{
+					text : '菜单一',
+			        handler : function(s){
+			        	console.log(s.target);
+			        	t.setText("您点击了菜单一");
+			        	t.show();
+			        }
+				},{
+					text : '菜单二',
+			        handler : function(s){
+			        	console.log(s.target);
+			        	t.setText("您点击了菜单二");
+			        	t.show();
 					}
-					c.show();
-				}
-		    }
-		];
-		var actionsheet=new Actionsheet();
-		$("#actionsheet").click(function(){
-			actionsheet.setParams(actionsheetParams);
+			    },{
+					text : '退出',
+			        handler : function(s){
+			        	if(!actionAlert){
+				        	actionAlert=new Alert();
+				        	actionAlert.setText("您确定要退出吗？");
+				        	actionAlert.setOnClickOk(function(e){
+				        		s.hide();
+				        		e.hide();
+				        	});
+				        	actionAlert.setOnClickCancel(function(e){
+				        		e.hide();
+				        	});
+			        	}
+			        	s.hide();
+						actionAlert.show();
+					}
+			    }
+			],
+			onClickCancel:function(s){
+				t.setText("您点击了取消按钮");
+			    t.show();
+			    s.hide();
+			}
+		});
+		document.getElementById("actionsheetBtn").onclick=function(){
+			//actionsheet.setParams(actionsheetParams);
 			actionsheet.show();
-	    });
+	    };
 	    //Prompt框
 	    var prompt=new Prompt();
-	    $("#prompt").click(function(){
+	    document.getElementById("promptBtn").onclick=function(){
 	    	prompt.setText("更新成功");
 	    	prompt.show();
-	    })
+	    };
 
-	    /**
-		 * 自定义弹出框
-		 * 
-		 */
-		var dialog=new Dialog("#pop_custom",{
-			onClick:function(s){
-            	console.log(s.target);
-                if(s.target.text=="取消"){
-                    s.hide();
-                }else if(s.target.text=="确定"){
-                    console.log("确定");
-                }
-            }
-		});
 		//middle
-		$("#middle").click(function(){
-			dialog.setPos("middle");
-			dialog.show();
-	    });
+		var midDialog=new Dialog("#middleDiv",{position:"middle"});
+
+		document.getElementById("middleBtn").onclick=function(){
+			midDialog.show();
+	    };
 		//top
-		$("#top").click(function(){
-			dialog.setPos("top");
-			dialog.show();
-	    });
+		var topLeftDialog=new Dialog("#topLeftDiv",{
+			position:"top"
+		});
+		document.getElementById("topLeftBtn").onclick=function(){
+			topLeftDialog.show();
+	    };
+	    var topCenterDialog=new Dialog("#topCenterDiv",{
+			position:"top-center"
+		});
+		document.getElementById("topCenterBtn").onclick=function(){
+			topCenterDialog.show();
+	    };
+	    var topRightDialog=new Dialog("#topRightDiv",{
+			position:"top-right"
+		});
+		document.getElementById("topRightBtn").onclick=function(){
+			topRightDialog.show();
+	    };
+	    var topFullDialog=new Dialog("#topFullDiv",{
+			position:"top",
+			css:{width:"100%"}
+		});
+		document.getElementById("topFullBtn").onclick=function(){
+			topFullDialog.show();
+	    };
+
 		//bottom
-		$("#bottom").click(function(){
-			dialog.setPos("bottom");
-			dialog.show();
-	    });
+		var btmLeftDialog=new Dialog("#bottomLeftDiv",{
+			position:"bottom"
+		});
+		document.getElementById("bottomLeftBtn").onclick=function(){
+			btmLeftDialog.show();
+	    };
+	    var btmCenterDialog=new Dialog("#bottomCenterDiv",{
+			position:"bottom-center"
+		});
+		document.getElementById("bottomCenterBtn").onclick=function(){
+			btmCenterDialog.show();
+	    };
+	    var btmRightDialog=new Dialog("#bottomRightDiv",{
+			position:"bottom-right"
+		});
+		document.getElementById("bottomRightBtn").onclick=function(){
+			btmRightDialog.show();
+	    };
+	    var bottomFullDialog=new Dialog("#bottomFullDiv",{
+			position:"bottom",
+			css:{width:"100%"}
+		});
+		document.getElementById("bottomFullBtn").onclick=function(){
+			bottomFullDialog.show();
+	    };
+
 		//left
-		$("#left").click(function(){
-			dialog.setPos("left");
-			dialog.show();
-	    });
+		var leftDialog=new Dialog("#leftTopDiv",{
+			position:"left"
+		});
+		document.getElementById("leftTopBtn").onclick=function(){
+			leftDialog.show();
+	    };
+	    var leftMiddleDialog=new Dialog("#leftMiddleDiv",{
+			position:"left-middle"
+		});
+		document.getElementById("leftMiddleBtn").onclick=function(){
+			leftMiddleDialog.show();
+	    };
+	    var leftBottomDialog=new Dialog("#leftBottomDiv",{
+			position:"left-bottom"
+		});
+		document.getElementById("leftBottomBtn").onclick=function(){
+			leftBottomDialog.show();
+	    };
+	    var leftFullDialog=new Dialog("#leftFullDiv",{
+			position:"left",
+			css:{height:"100%"}
+		});
+		document.getElementById("leftFullBtn").onclick=function(){
+			leftFullDialog.show();
+	    };
+
 		//right
-		$("#right").click(function(){
-			dialog.setPos("right");
-			dialog.show();
-	    });
+		var rightTopDialog=new Dialog("#rightTopDiv",{
+			position:"right"
+		});
+		document.getElementById("rightTopBtn").onclick=function(){
+			rightTopDialog.show();
+	    };
+	    var rightMiddleDialog=new Dialog("#rightMiddleDiv",{
+			position:"right-middle"
+		});
+		document.getElementById("rightMiddleBtn").onclick=function(){
+			rightMiddleDialog.show();
+	    };
+	    var rightBottomDialog=new Dialog("#rightBottomDiv",{
+			position:"right-bottom"
+		});
+		document.getElementById("rightBottomBtn").onclick=function(){
+			rightBottomDialog.show();
+	    };
+	    var rightFullDialog=new Dialog("#rightFullDiv",{
+			position:"right",
+			css:{height:"100%"}
+		});
+		document.getElementById("rightFullBtn").onclick=function(){
+			rightFullDialog.show();
+	    };
+
 	    //定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

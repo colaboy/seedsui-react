@@ -1,12 +1,15 @@
 (function(window,document,undefined){
-    window.Dialog=function(container,params){
-        //Model
+    window.Dialog=function(wrapper,params){
         /*=========================
-          Params
+          Model
           ===========================*/
         var defaults={
-            pos:"middle",
-            width:null,
+            dialogClass:"dialog",
+            maskClass:"mask",
+            position:null,
+            defaultPosition:"middle",
+            css:{},
+            duration:"300",
             isClickMaskHide:true
             /*callbacks
             onClick:function(this)
@@ -25,97 +28,195 @@
         s.params = params;
 
         //Container
-        s.container=typeof container=="string"?document.querySelector(container):container;
-
-        //ContainerBox
-        s.containerBox;
-        if(!s.containerBox){
-            s.containerBox=document.createElement("div");
-            s.containerBox.setAttribute("class","popup");
-            s.containerBox.appendChild(s.container);
-            document.body.appendChild(s.containerBox);
-        }
+        s.dialog,s.mask,s.wrapper=typeof wrapper=="string"?document.querySelector(wrapper):wrapper;
+        s.container=s.wrapper.parentNode;
+        if(!s.wrapper)return;
         //Mask
-        s.mask;
-        if(!s.mask){
-            s.mask=document.createElement("div");
-            s.mask.setAttribute("class","popup-mask");
-            s.containerBox.parentNode.insertBefore(s.mask,s.containerBox);
-            if(s.params.isClickMaskHide==true)s.mask.addEventListener("click",hideDialog,false);
+        s.createMask=function(){
+            var mask=document.createElement("div");
+            mask.setAttribute("class",s.params.maskClass);
+            return mask;
         }
-        //设置宽度
-        s.params.width=s.container.style.width;
-        //设置动画
-        var hideAnimate={opacity:0};
-        var showAnimate={opacity:1};
-        function updateAnimate(){
-            switch(s.params.pos){
-                case "middle":hideAnimate={opacity:0};showAnimate={opacity:1};break;
-                case "top":hideAnimate={top:"-100%"};showAnimate={top:"0%"};break;
-                case "bottom":hideAnimate={bottom:"-100%"};showAnimate={bottom:"0%"};break;
-                case "left":hideAnimate={left:"-100%"};showAnimate={left:"0%"};break;
-                case "right":hideAnimate={right:"-100%"};showAnimate={right:"0%"};break;
-                default :s.params.pos="middle";hideAnimate={opacity:0};showAnimate={opacity:1};
+        //ContainerBox
+        s.createContainerBox=function(){
+            var dialog=document.createElement("div");
+            dialog.setAttribute("class",s.params.dialogClass);
+            return dialog;
+        }
+        s.create=function(){
+            //插入Dialog
+            s.dialog=s.createContainerBox();
+            s.container.insertBefore(s.dialog,s.wrapper);
+            s.dialog.appendChild(s.wrapper);
+            //插入遮罩
+            s.mask=s.createMask();
+            s.container.insertBefore(s.mask,s.dialog);
+        }
+        s.create();
+
+        s.update=function(){
+            s.wrapper.style.display="block";
+            s.dialog.setAttribute("style","");
+            if(s.params.position){
+                s.dialog.setAttribute("data-position",s.params.position);
+            }else if(s.dialog.getAttribute("data-position")){
+                s.params.position=s.dialog.getAttribute("data-position");
+            }else{
+                s.params.position=s.params.defaultPosition;
+                s.dialog.setAttribute("data-position",s.params.position);
             }
+
+            for(var c in s.params.css){
+                s.dialog.style[c]=s.params.css[c];
+            }
+            
+            switch(s.params.position){
+                case "top":case "top-right":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(0,-100%,0)"},
+                s.dialog.style.webkitTransform="translate3d(0,-100%,0)";
+                break;
+                case "top-center":
+                s.dialog.showAnimation={webkitTransform:"translate3d(-50%,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(-50%,-100%,0)"},
+                s.dialog.style.webkitTransform="translate3d(-50%,-100%,0)";
+                break;
+
+                case "bottom":case "bottom-right":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(0,100%,0)"},
+                s.dialog.style.webkitTransform="translate3d(0,100%,0)";
+                break;
+                case "bottom-center":
+                s.dialog.showAnimation={webkitTransform:"translate3d(-50%,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(-50%,100%,0)"},
+                s.dialog.style.webkitTransform="translate3d(-50%,100%,0)";
+                break;
+
+                case "left":case "left-bottom":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(-100%,0,0)"},
+                s.dialog.style.webkitTransform="translate3d(-100%,0,0)";
+                break;
+                case "left-middle":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,-50%,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(-100%,-50%,0)"},
+                s.dialog.style.webkitTransform="translate3d(-100%,-50%,0)";
+                break;
+
+                case "right":case "right-bottom":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,0,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(100%,0,0)"},
+                s.dialog.style.webkitTransform="translate3d(100%,0,0)";
+                break;
+
+                case "right-middle":
+                s.dialog.showAnimation={webkitTransform:"translate3d(0,-50%,0)"},
+                s.dialog.hideAnimation={webkitTransform:"translate3d(100%,-50%,0)"},
+                s.dialog.style.webkitTransform="translate3d(100%,-50%,0)";
+                break;
+
+                default:
+                s.dialog.showAnimation={opacity:1},
+                s.dialog.hideAnimation={opacity:0},
+                s.dialog.style.opacity=0;
+                break;
+            }
+            s.dialog.style.webkitTransitionDuration=s.params.duration+"ms";
         }
-        updateAnimate();
+        s.update();
         /*=========================
           Method
           ===========================*/
-        //隐藏遮罩与外框
-        function hideDialog(){
-            $(s.mask).animate({opacity:0},"fast","linear",function(){
-                $(this).css("display","none");
-            });
-            $(s.containerBox).animate(hideAnimate,"fast","linear",function(){
-                $(this).css("display","none");
-            });
+        s.showMask=function(){
+            s.mask.style.visibility="visible";
+            s.mask.style.opacity="1";
         }
-        s.hide=hideDialog;
-
-        //显示遮罩与外框
-        function showDialog(){
-            //显示遮罩
-            $(s.mask).css("display","block").animate({opacity:1},"fast","linear");
-            //初始化容器
-            s.containerBox.setAttribute("style","");
-            $(s.containerBox).css(hideAnimate);
-            s.containerBox.setAttribute("data-pos",s.params.pos);
-            //显示容器
-            s.container.style.display="block";
-            $(s.containerBox).animate(showAnimate,"fast","linear");
-            //设置宽度
-            if(s.params.width){
-                s.container.style.width="100%";
-                s.containerBox.style.width=s.params.width;
+        s.hideMask=function(){
+            s.mask.style.opacity="0";
+        }
+        s.destoryMask=function(){
+            s.container.removeChild(s.mask);
+        }
+        s.showDialog=function(){
+            s.dialog.style.visibility="visible";
+            for(var ani in s.dialog.showAnimation){
+                s.dialog.style[ani]=s.dialog.showAnimation[ani];
             }
         }
-        s.show=showDialog;
-
+        s.hideDialog=function(){
+            for(var ani in s.dialog.hideAnimation){
+                s.dialog.style[ani]=s.dialog.hideAnimation[ani];
+            }
+        }
+        s.destoryDialog=function(){
+            s.container.removeChild(s.dialog);
+        }
+        s.isHid=true;
+        s.show=function(){
+            s.isHid=false;
+            s.showMask();
+            s.showDialog();
+        }
+        s.hide=function(){
+            s.isHid=true;
+            s.hideMask();
+            s.hideDialog();
+        }
+        s.destory=function(){
+            s.destoryMask();
+            s.destoryDialog();
+        }
         //设置位置
-        s.setPos=function(pos){
-            if(!pos)return;
-            s.params.pos=pos;
-            updateAnimate();
-        }
-        //设置回调
-        s.removeOnClick=function(){
-            s.params.onClick=null;
-            s.container.removeEventListener("click",onClickCallback,false);
-        }
-        s.addOnClick=function(onclickFn){
-            s.params.onClick=onclickFn;
-            s.container.addEventListener("click",onClickCallback,false);
+        s.setPosition=function(pos){
+            s.params.position=pos;
+            s.update();
         }
 
         //Callback
         if(s.params.onClick){
-            s.container.addEventListener("click",onClickCallback,false);
+            s.wrapper.addEventListener("click",onClickCallback,false);
         }
         function onClickCallback(e){
             s.target=e.target;
             s.params.onClick(s)
         };
-        return s;
+        /*================
+        Control
+        ================*/
+        s.events=function(detach){
+            var touchTarget=s.dialog;
+            var action=detach?"removeEventListener":"addEventListener";
+            touchTarget[action]("click",s.onClick,false);
+            touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+            //遮罩
+            s.mask[action]("click",s.onClickMask,false);
+        }
+        //attach、dettach事件
+        s.attach=function(event){
+            s.events();
+        }
+        s.detach=function(event){
+            s.events(true);
+        }
+        s.onClick=function(e){
+            s.target=e.target;
+
+            if(s.params.onClick)s.params.onClick(s);
+        }
+        s.onClickMask=function(){
+            if(s.params.isClickMaskHide)s.hide();
+        }
+        s.onTransitionEnd=function(e){
+            if(s.isHid){
+                s.dialog.style.visibility="hidden";
+                s.mask.style.visibility="hidden";
+            }
+        }
+
+        s.init=function(){
+            s.attach();
+        }
+        s.init();
     }
 })(window,document,undefined);

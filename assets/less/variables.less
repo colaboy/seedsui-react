@@ -8,10 +8,6 @@
  @label-color:#666;
  @placeholder-color:#aaa;
 
- @link-color:#18b2ed;
- @link-active-property:opacity;
- @link-active-value:0.5;
-
  @primary-bg:#18b2ed;
  @primary-active-bg:fade(@primary-bg, 50%);
  @primary-title-color:white;
@@ -22,21 +18,33 @@
  
  @disable-bg:#d9d9d9;
  @submit-bg:#88d038;
- @submit-active-bg:fade(@submit-bg, 50%);
+ //@submit-active-bg:fade(@submit-bg, 50%);
  @cancel-bg:#F86868;
- @cancel-active-bg:fade(@cancel-bg, 50%);
+ //@cancel-active-bg:fade(@cancel-bg, 50%);
  @success-bg:#4DDB63;
- @success-active-bg:fade(@success-bg, 50%);
+ //@success-active-bg:fade(@success-bg, 50%);
  @info-bg:#5bc0de;
- @info-active-bg:fade(@info-bg, 50%);
+ //@info-active-bg:fade(@info-bg, 50%);
  @warn-bg:#f4984e;
- @warn-active-bg:fade(@warn-bg, 50%);
+ //@warn-active-bg:fade(@warn-bg, 50%);
  @highlight-bg:#f4f4f4;
  @tip-bg:#fc4349;
  @tip-color:white;
  @title-color:darken(@primary-bg, 10%);
 
+ @link-color:#18b2ed;
+ @link-active-property:opacity;
+ @link-active-value:0.5;
+
 /*控件*/
+ @button-bg:@primary-bg;
+ @button-color:white;
+ @button-active-property:opacity;
+ @button-active-value:0.5;
+ @button-tip-bg:rgba(0, 0, 0, .15);
+ /* @button-active-bg:fade(@button-bg,50%);
+ @button-active-color:fade(@button-color,50%); */
+
  @input-bg:white;
  
  @titlebar-bg:#f9f9f9;
@@ -59,11 +67,7 @@
  @menubar-reverse-active-color:white;
  @menubar-reverse-border:@primary-bg;
 
- @button-bg:@primary-bg;
- @button-color:white;
- @button-active-bg:fade(@button-bg,50%);
- @button-active-color:fade(@button-color,50%);
- @button-tip-bg:rgba(0, 0, 0, .15);
+ 
 
  @aside-bg:@body-bg;
 
@@ -86,13 +90,23 @@
  @photo-color:#ccc;
  
  /*常用颜色*/
- @color-1:#53c6fd;
- @color-2:#ffae02;
- @color-3:#3ae3ea;
- @color-4:#ff6f36;
- @color-5:#cf7af3;
- @color-6:#4cd32e;
- @color-7:#4587f7;
- @color-8:#00c2eb;
- @color-9:#ff618f;
- @color-10:#21d9a1;
+ @1-bg:#53c6fd;
+ @2-bg:#ffae02;
+ @3-bg:#3ae3ea;
+ @4-bg:#ff6f36;
+ @5-bg:#cf7af3;
+ @6-bg:#4cd32e;
+ @7-bg:#4587f7;
+ @8-bg:#00c2eb;
+ @9-bg:#ff618f;
+ @10-bg:#21d9a1;
+ @1-active-bg:fade(@1-bg,50%);
+ @2-active-bg:fade(@2-bg,50%);
+ @3-active-bg:fade(@3-bg,50%);
+ @4-active-bg:fade(@4-bg,50%);
+ @5-active-bg:fade(@5-bg,50%);
+ @6-active-bg:fade(@6-bg,50%);
+ @7-active-bg:fade(@7-bg,50%);
+ @8-active-bg:fade(@8-bg,50%);
+ @9-active-bg:fade(@9-bg,50%);
+ @10-active-bg:fade(@10-bg,50%);

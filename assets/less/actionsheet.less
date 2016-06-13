@@ -1,0 +1,42 @@
+/*----------------actionsheet.less(start)--------------*/
+/*@require dialog.less*/
+.actionsheet{
+	padding:0 6px;
+	box-sizing:border-box;
+	width:100%;
+	bottom:0;
+	-webkit-transform:translate3d(0,100%,0);
+	-webkit-transition-property:transform;
+	-webkit-transition-duration:300ms;
+}
+.actionsheet a{
+	width:100%;
+	text-align:center;
+}
+.actionsheet-group{
+	border-radius:4px;
+	overflow:hidden;
+	border-style:solid;
+	border-width:0;
+	
+	border-color:#ddd;
+	background-color: rgba(255, 255, 255, 0.9);
+	background-color: white\0;
+}
+.actionsheet-group a{
+	border-style:solid;
+	border-width:0 0 1px 0;
+	border-color:inherit;
+}
+.actionsheet-group a:last-child{
+	border-width:0;
+}
+.actionsheet-cancel{
+	width:100%;
+	border-radius:4px;
+	margin:6px 0;
+	
+	background-color: rgba(255, 255, 255, 0.9);
+	background-color: white\0;
+}
+/*----------------actionsheet.less(end)--------------*/

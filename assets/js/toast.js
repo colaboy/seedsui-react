@@ -19,17 +19,25 @@
 		var msg=msg||"";
 		var s=this;
 		s.params=params;
-		s.createContainer=function(){
-			if(s.container)return;
-			s.container=document.createElement("div");
-			s.container.setAttribute("class",s.params.toastBoxClass);
-			s.toast=document.createElement("div");
-			s.toast.setAttribute("class",s.params.toastClass);
-			s.toast.innerHTML=msg;
-			s.container.appendChild(s.toast);
-			document.body.appendChild(s.container);
+		s.container=document.body,s.toastBox,s.toast;
+		s.createToastBox=function(){
+			var toastBox=document.createElement("div");
+			toastBox.setAttribute("class",s.params.toastBoxClass);
+			return toastBox;
 		}
-		s.createContainer();
+		s.createToast=function(){
+			var toast=document.createElement("div");
+			toast.setAttribute("class",s.params.toastClass);
+			if(msg)toast.innerHTML=msg;
+			return toast;
+		}
+		s.create=function(){
+			s.toastBox=s.createToastBox();
+			s.toast=s.createToast();
+			s.toastBox.appendChild(s.toast);
+			s.container.appendChild(s.toastBox);
+		}
+		s.create();
 
 		/*================
 		Method
@@ -40,21 +48,21 @@
 		s.isHid=true;
 		s.hide=function(){
 			s.isHid=true;
-			s.container.style.webkitTransform='translate3d(0,150px,0)';
+			s.toastBox.style.webkitTransform='translate3d(0,150px,0)';
 		};
 		s.show=function(){
 			s.isHid=false;
-			s.container.style.webkitTransform='translate3d(0,0,0)';
+			s.toastBox.style.webkitTransform='translate3d(0,0,0)';
 		};
 		s.destory=function(){
 			s.detach();
-			document.body.removeChild(s.container);
+			s.container.removeChild(s.toastBox);
 		};
 		/*================
 		Controller
 		================*/
 		s.events=function(detach){
-			var target=s.container;
+			var target=s.toastBox;
 			var action=detach?"removeEventListener":"addEventListener";
 			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 		}
@@ -69,7 +77,7 @@
 			if(s.isHid){
 				if(s.delayer)window.clearTimeout(s.delayer);
 			}else{
-				//延迟时间后自动消失
+				//已显示状态
 				s.delayer=setTimeout(function(){
 					s.hide();
 				}, s.params.delay);

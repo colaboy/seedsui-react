@@ -16,24 +16,24 @@
         </header>
         <article>
             <div class="clock" data-clock="11:30" style="margin: 20px auto;">
-                <div class="hour"></div>
-                <div class="minute"></div>
-                <div class="origin"></div>
+                <div class="clock-hour"></div>
+                <div class="clock-minute"></div>
+                <div class="clock-origin"></div>
             </div>
-            <div class="clock" data-clock="8:30" style="margin: 20px auto;">
-                <div class="hour"></div>
-                <div class="minute"></div>
-                <div class="origin"></div>
+            <div class="clock border-color-2" data-clock="8:30" style="margin: 20px auto;">
+                <div class="clock-hour bg-2"></div>
+                <div class="clock-minute bg-2"></div>
+                <div class="clock-origin bg-2"></div>
             </div>
         </article>
     
     <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
         window.addEventListener("load",function(){
-            var c=DataClock();
+            var dc=new DataClock();
         },false);
         //定义exmobi返回
         function back(){history.go(-1);}

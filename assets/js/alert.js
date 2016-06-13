@@ -1,15 +1,4 @@
-/*!
- * 对话框
- * @version 1.0.0
- * @author WangMingzhu
- * @requie jquery.js
- */
-
-/**
-*  对话框
-* 
-*  @class Confirm
-*/
+//Alert
 (function(window,document,undefined){
 	
 	window.Alert=function(msg,params){
@@ -17,12 +6,18 @@
 		Model
 		================*/
 		var defaults={
+			"maskClass":"mask",
+			"alertClass":"alert",
+			"handlerClass":"alert-handler",
 			"title":"提示",
-			"buttonOk":"确定"
+			"buttonOk":"确定",
+			"buttonCancel":"取消",
+			"isClickMaskHide":false
 			/*
             Callbacks:
-			onClickOk:function(alert)
-			onClickCancel:function(alert)
+            onClick:function(Alert)
+			onClickOk:function(Alert)
+			onClickCancel:function(Alert)
 			*/
 		}
 		params=params||{};
@@ -33,89 +28,165 @@
 		}
 		var s=this;
 		s.params=params;
-		//开关动画
-		s.hideAnimate={"opacity":"0"};
-		s.showAnimate={"opacity":"1"};
+		s.container=document.body,s.alert,s.mask;
+		//Mask
+		s.createMask=function(){
+            var mask=document.createElement("div");
+            mask.setAttribute("class",s.params.maskClass);
+            return mask;
+        }
+        //Alert
+        s.createButtonCancel=function(){
+        	var buttonCancel=document.createElement("a");
+			buttonCancel.innerHTML=s.params.buttonCancel;
+			return buttonCancel;
+        }
+		s.createAlert=function(){
+			var alert=document.createElement("div");
+			alert.setAttribute("class",s.params.alertClass);
+
+			alert.caption=document.createElement("h1");
+			alert.caption.innerHTML=s.params.title;
+
+			alert.content=document.createElement("label");
+			alert.content.innerHTML=msg;
+
+			alert.handler=document.createElement("div");
+			alert.handler.setAttribute("class",s.params.handlerClass);
+
+			//如果有取消按钮
+			if(s.params.onClickCancel){
+				alert.buttonCancel=s.createButtonCancel();
+				alert.handler.appendChild(alert.buttonCancel);
+			}
+			alert.buttonOk=document.createElement("a");
+			alert.buttonOk.innerHTML=s.params.buttonOk;
+
+			alert.handler.appendChild(alert.buttonOk);
+			
+			alert.appendChild(alert.caption);
+			alert.appendChild(alert.content);
+			alert.appendChild(alert.handler);
+
+			return alert;
+		}
+		s.create=function(){
+			s.mask=s.createMask();
+			s.alert=s.createAlert();
+			s.container.appendChild(s.mask);
+			s.container.appendChild(s.alert);
+		}
+		s.create();
 		/*================
 		Method
 		================*/
-		s.createMask=function(){
-			if(s.mask)return;
-			s.mask=document.createElement("div");
-			s.mask.setAttribute("class","popup-mask");
-			document.body.appendChild(s.mask);
-		};
-		s.createContainer=function(){
-			if(s.container)return;
-			s.container=document.createElement("div");
-			s.container.setAttribute("class","popup confirm");
-			var title=document.createElement("h1");
-			title.innerHTML=s.params.title;
-			s.content=document.createElement("label");
-			s.content.innerHTML=msg;
-			var handler=document.createElement("div");
-			handler.setAttribute("class","popup-handler");
-
-			s.buttonOk=document.createElement("a");
-			s.buttonOk.innerHTML=s.params.buttonOk;
-
-			handler.appendChild(s.buttonOk);
-			
-			s.container.appendChild(title);
-			s.container.appendChild(s.content);
-			s.container.appendChild(handler);
-
-			document.body.appendChild(s.container);
-
-			//ok按钮绑定点击事件
-			s.buttonOk.addEventListener("click",s.onClickOk,false);
-		}
-		/*================
-		Controller
-		================*/
-		s.setText=function(msg){
-			s.content.innerHTML=msg;
-		};
+		s.showMask=function(){
+            s.mask.style.visibility="visible";
+            s.mask.style.opacity="1";
+        }
+        s.hideMask=function(){
+        	s.mask.style.opacity="0";
+        }
+        s.destoryMask=function(){
+        	s.container.removeChild(s.mask);
+        }
+        s.showAlert=function(){
+        	s.alert.style.visibility="visible";
+            s.alert.style.opacity="1";
+        }
+        s.hideAlert=function(){
+        	s.alert.style.opacity="0";
+        }
+        s.destoryAlert=function(){
+        	s.container.removeChild(s.alert);
+        }
+		s.isHid=true;
 		s.hide=function(){
-			$(s.mask).animate({opacity:0},"fast","linear",function(){
-				$(this).css("display","none");
-			});
-			$(s.container).animate(s.hideAnimate,"fast","linear",function(){
-				$(this).css("display","none");
-			});
+			s.isHid=true;
+			//显示遮罩
+			s.hideMask();
+			//显示弹出框
+			s.hideAlert();
 		};
 		s.show=function(){
-			if(s){
-				//$(s.mask).css("display","block").animate({opacity:1},"fast","linear");
-				$(s.mask).css({display:"block",opacity:"1"});
-				$(s.container).css("display","block").animate(s.showAnimate,"fast","linear");
-			}
+			s.isHid=false;
+			//显示遮罩
+			s.showMask();
+			//显示弹出框
+			s.showAlert();
 		};
 		s.destory=function(){
-			$(s.mask).animate({opacity:0},"fast","linear",function(){
-				$(this).remove();
-			});
-			$(s.container).animate(s.hideAnimate,"fast","linear",function(){
-				$(this).remove();
-			});
+			//移动事件监听
+			s.detach();
+			//移除遮罩
+			s.destoryMask();
+			//移除弹出框
+			s.destoryAlert();
 			s=null;
 		};
-		/*================
-		Event
-		================*/
-		s.onClickOk=function(){
-			if(s.params.onClickOk){
-				s.params.onClickOk(s);
-				return;
-			}
-			s.hide();
+		//动态设置
+		s.setText=function(msg){
+			s.alert.content.innerHTML=msg;
 		};
+		s.setOnClick=function(fn){
+        	s.params.onClick=fn;
+        }
+		s.setOnClickOk=function(fn){
+        	s.params.onClickOk=fn;
+        }
+        s.setOnClickCancel=function(fn){
+        	//如果没有取消按钮，创建一个
+        	if(!s.params.onClickCancel){
+				s.alert.buttonCancel=s.createButtonCancel();
+				s.alert.handler.insertBefore(s.alert.buttonCancel,s.alert.buttonOk);
+			}
+        	s.params.onClickCancel=fn;
+        }
+		/*================
+		Control
+		================*/
+        s.events=function(detach){
+            var touchTarget=s.alert;
+            var action=detach?"removeEventListener":"addEventListener";
+            touchTarget[action]("click",s.onClick,false);
+            touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+            //遮罩
+            s.mask[action]("click",s.onClickMask,false);
+        }
+        //attach、dettach事件
+        s.attach=function(event){
+            s.events();
+        }
+        s.detach=function(event){
+            s.events(true);
+        }
+		s.onClick=function(e){
+			s.target=e.target;
+			
+			if(s.params.onClick)s.params.onClick(s);
+			
+			if(e.target==s.alert.buttonOk){
+				if(s.params.onClickOk)s.params.onClickOk(s);
+				else s.hide();
+			}else if(s.alert.buttonCancel && e.target==s.alert.buttonCancel){
+				if(s.params.onClickCancel)s.params.onClickCancel(s);
+				else s.hide();
+			}
+		}
+		s.onClickMask=function(){
+			if(s.params.isClickMaskHide)s.hide();
+		}
+		s.onTransitionEnd=function(e){
+			if(s.isHid){
+				s.alert.style.visibility="hidden";
+				s.mask.style.visibility="hidden";
+			}
+		}
 		/*================
 		Init
 		================*/
 		s.init=function(){
-			s.createMask();
-			s.createContainer();
+			s.attach();
 		}
 		s.init();
 	}
