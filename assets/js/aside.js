@@ -37,6 +37,8 @@
         s.wrapper=s.container.querySelector("."+s.params.wrapperClass);
         //Section
         s.section=s.container.querySelector("section");
+        //Article
+        s.article=s.section.querySelector("article");
         //Mask
         s.createMask=function(){
             var mask=document.createElement("div");
@@ -128,7 +130,7 @@
             //记录触摸值
             s.touches.posX=s.sides[s.position].width;
             //隐藏滚动条
-            s.section.style.overflow="hidden";
+            s.article.style.overflow="hidden";
         }
         s.hide=function(){
             if(!s.sides[s.position]){
@@ -144,7 +146,7 @@
             //记录触摸值
             s.touches.posX=0;
             //显示滚动条
-            s.section.style.overflow="auto";
+            s.article.style.overflow="auto";
         }
         s.setLeftSide=function(argAside){
             s.params.sides["left"]=argAside;
