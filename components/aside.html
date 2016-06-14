@@ -16,7 +16,7 @@
                 <p class="subtitle lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用
                 <br/>
                 【属性】
-                data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)
+                data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)
                 <br/>
                 <br/>
                 【Javascript】
@@ -43,20 +43,19 @@
                     <div class="card">
                         <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
                         <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
-                        <a id="revealLeft" class="button block margin8 warn">左侧栏-默认</a>
+                        <a id="revealLeft" class="button block margin8 warn">左侧栏-reveal</a>
                     </div>
                     <p class="title">右侧菜单栏</p>
                     <div class="card">
                         <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
                         <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>
-                        <a id="revealRight" class="button block margin8 warn">右侧栏-默认</a>
+                        <a id="revealRight" class="button block margin8 warn">右侧栏-reveal</a>
                     </div>
                     <div class="card padding8">
                         <h1 class="text-center">这是侧滑菜单的示例</h1>
                         <br/>
                         <h4 class="paragraph">标签属性</h4>
-                        <p class="paragraph">data-position制定从哪边弹出，值为：left和right。</p>
-                        <p class="paragraph">data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)</p>
+                        <p class="paragraph">data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)</p>
                         <h4 class="paragraph">Javascript</h4>
                         <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) </p>
                     </div>
@@ -71,8 +70,14 @@
         window.addEventListener("load",function(e){
             var aside=new Aside("#aside",{
                 "isDrag":true,
-                "sides":{"left":"#aside-left","right":"#aside-right"}
-                //"sides":{"left":"#aside-left"}
+                "sides":{"left":"#aside-left","right":"#aside-right"},
+                "onSlideChangeEnd":function(e){
+                    if(e.isHid){
+                        console.log("隐藏完成");
+                    }else{
+                        console.log("显示完成");
+                    }
+                }
             });
             document.getElementById("overlayLeft").onclick=function(){
                 aside.sides["left"].setAttribute("data-transition","overlay");
@@ -85,7 +90,7 @@
                 aside.show("left");
             };
     		document.getElementById("revealLeft").onclick=function(){
-                aside.sides["left"].setAttribute("data-transition","");
+                aside.sides["left"].setAttribute("data-transition","reveal");
                 aside.update();
                 aside.show("left");
             };
@@ -100,7 +105,7 @@
                 aside.show("right");
             };
     		document.getElementById("revealRight").onclick=function(){
-                aside.sides["right"].setAttribute("data-transition","");
+                aside.sides["right"].setAttribute("data-transition","reveal");
                 aside.update();
                 aside.show("right");
             };

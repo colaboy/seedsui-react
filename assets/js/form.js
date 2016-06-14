@@ -1,11 +1,4 @@
-/*!
- * form表单类库
- * @version 1.0.0
- * @author WangMingzhu
- *
- * @requie jquery.js
- */
-
+//Form
 (function(window,document,undefined){
 	//国际化
 	var lang = {
@@ -30,9 +23,9 @@
 		Model
 		================*/
 		var s=this;
+		s.container=document.querySelector(container);
+		s.formElements=[];//表单元素
 		s.getFormElements=function(){
-			s.container=document.querySelector(container);
-			s.formElements=[];//表单元素
 			//获取有效的表单元素
 			for(var i=0;i<s.container.elements.length;i++){
 				var field=s.container.elements[i];
@@ -54,128 +47,14 @@
 				s.formElements.push(field);
 			}
 		};
+		s.getFormElements();
 		//添加formElements对象
 		s.pushElement=function(el){
 			s.formElements.push(el);
 		};
-		//表单控件初始化(主要是针对小眼睛和开关控件)
-		s.initFormControl=function(){
-			//开关控件点击
-			$(".switch").click(function(){
-				var name=$(this).data("name");
-				var onVal=$(this).data("on-value");
-				var offVal=$(this).data("off-value");
-				var hiddeninput=$("+input[name="+name+"]",this);
-				if(name && !hiddeninput[0]){
-					$('<input type="hidden" name="'+name+'">').insertAfter(this);
-					hiddeninput=$("+input[name="+name+"]",this);
-					s.pushElement(hiddeninput[0]);
-				}
-				
-				if($(this).hasClass("active")){
-					$(this).removeClass("active");
-					if(hiddeninput[0])hiddeninput.val(offVal);
-				}else{
-					$(this).addClass("active");
-					if(hiddeninput[0])hiddeninput.val(onVal);
-				}
-			});
-			//密码控件点击小眼睛
-			$("[data-input='reveal'] [type=password] + i").click(function(){
-				if($(this).hasClass("active")){
-					$(this).removeClass("active");
-					$(this).parent().find("input[type]").attr("type","password");
-				}else{
-					$(this).parent().find("input[type]").attr("type","text");
-					$(this).addClass("active");
-				}
-				$(this).parent().find("input[type]")[0].focus();
-			});
-			//带清空按钮
-			$("[data-input='clear'] input").on("input",function(){
-	    		if($(this).val().length>0){
-	    			$("+i",this).css("display","block");
-	    		}else{
-	    			$("+i",this).css("display","none");
-	    		}
-	    	});
-	    	$("[data-input='clear'] input+i").css("display","none").on("click",function(){
-	    		$(this).css("display","none");
-	    		$(this).parent().find("input").val("").focus();
-	    	})
-			//安全检测
-			$(".safelvl").parent().find("[type=password]").on("input propertychange",function(){
-				s.checkSafe($(this)[0],$(".safelvl")[0]);
-			});
-			//range控件
-			var hideTooltipTimer;
-			$(".tooltip+input[type=range]").on("touchstart input",function(){
-				/*=========================
-		          显示tooltip
-		          ===========================*/
-		        if(hideTooltipTimer)clearTimeout(hideTooltipTimer);
-		        var tooltip=$(this).prev();
-		        tooltip.css({"display":"block"});
-				/*=========================
-		          计算tooltip位置
-		          ===========================*/
-				//当前值所占百分比
-				var percent=((this.value-this.min)/(this.max-this.min)).toFixed(2);
-				//距左的位置
-				var offsetLeft=$(this).offset().left+($(this).width()*percent-10);
-				var currentOffsetLeft=offsetLeft-$(this).parent().offset().left;
-				//滑块内部的实际位置
-				var currentBallLeft=28*percent;
-				//当前值的位置-滑块的位置=小球正中间的位置
-				var left=currentOffsetLeft-currentBallLeft;
-				tooltip.html(this.value).css({"left":left});
-				/*=========================
-		          隐藏tooltip
-		          ===========================*/
-		        hideTooltipTimer=setTimeout(function(){
-		        	tooltip.css({"display":"none"});
-		        },1000);
-			});
-			//数字控件
-			$(".numbox input[type=number]").prev().click(function(e){
-				//数字框
-				var inputNumber=$(this).next();
-				var inputNumberMin=inputNumber.attr("min")||0;
-				var inputNumberMax=inputNumber.attr("max")||9999;
-				var inputNumberStep=inputNumber.attr("step")||1;
-				//加按钮
-				var btnPlus=inputNumber.next();
-				btnPlus.attr("disabled",false);
-				//操作数字
-				var num=inputNumber.val()-inputNumberStep;
-				if(num<=inputNumberMin){
-					num=inputNumberMin;
-					$(this).attr("disabled",true);
-				}
-				inputNumber.val(num);
-			});
-			$(".numbox input[type=number]").next().click(function(e){
-				//数字框
-				var inputNumber=$(this).prev();
-				var inputNumberMin=inputNumber.attr("min")||0;
-				var inputNumberMax=inputNumber.attr("max")||9999;
-				var inputNumberStep=inputNumber.attr("step")||1;
-				//减按钮
-				var btnMinus=inputNumber.prev();
-				btnMinus.attr("disabled",false);
-				//操作数字
-				var num=parseInt(inputNumber.val())+parseInt(inputNumberStep);
-				if(num>=inputNumberMax){
-					num=inputNumberMax;
-					$(this).attr("disabled",true);
-				}
-				inputNumber.val(num);
-			});
-		};
 		/*================
 		Method
 		================*/
-
 		//表单Json化
 		s.serializeArray=function(){
 			var parts=[],field=null;
@@ -309,9 +188,184 @@
 	    /*================
 		Controller
 		================*/
+		s.events=function(detach){
+			var action=detach?"removeEventListener":"addEventListener";
+			//开关控件
+			var switches=document.querySelectorAll(".switch");
+			
+			for(var i=0,swi;swi=switches[i++];){
+				swi[action]("click",s.onSwitch,false);
+			}
+			//密码小眼睛
+			var reveals=document.querySelectorAll("[data-input=reveal] [type=password] + i");
+			for(var j=0,reveal;reveal=reveals[j++];){
+				reveal[action]("click",s.onReveal,false);
+			}
+			//清除按钮框
+			var clears=document.querySelectorAll("[data-input=clear] input");
+			var clearIcons=document.querySelectorAll("[data-input=clear] input+i");
+			for(var k=0;k<clears.length;k++){
+				clears[k][action]("input",s.onClear,false);
+				clearIcons[k][action]("click",s.onClearIcon,false);
+			}
+			//安全检测框
+			var safes=document.querySelectorAll(".safelvl");
+			for(var l=0,safe;safe=safes[l++];){
+				var safeInput=safe.parentNode.querySelector("input[type]");
+				safeInput[action]("input",s.onSafeLvl,false);
+			}
+			//拖动条
+			var ranges=document.querySelectorAll(".tooltip+input[type=range]");
+			for(var m=0,range;range=ranges[m++];){
+				range[action]("touchstart",s.onRangeStart,false);
+				range[action]("touchmove",s.onRangeMove,false);
+				range[action]("input",s.onRangeMove,false);
+				range[action]("touchend",s.onRangeEnd,false);
+			}
+			//数字框
+			var numboxs=document.querySelectorAll(".numbox input[type=number]");
+			for(var n=0,numbox;numbox=numboxs[n++];){
+				numbox.nextElementSibling[action]("click",s.onNumboxPlus,false);
+				numbox.previousElementSibling[action]("click",s.onNumboxMinus,false);
+			}
+		}
+		s.attach=function(event){
+			s.events();
+		}
+		s.detach=function(event){
+			s.events(true);
+		}
+		//开关控件
+		s.createHiddenInput=function(name){
+			var hiddenInput=document.createElement("input");
+			hiddenInput.setAttribute("type","hidden");
+			if(name)hiddenInput.setAttribute("name",name);
+			return hiddenInput;
+		}
+		s.onSwitch=function(e){
+			var parentNode=this.parentNode;
+			var name=this.getAttribute("data-name");
+			var onVal=this.getAttribute("data-on-value");
+			var offVal=this.getAttribute("data-off-value");
+			var hiddenInput=this.nextElementSibling;
+			if(hiddenInput && (!hiddenInput.type || hiddenInput.type!="hidden"))hiddenInput=null;
+			if(name && !hiddenInput){
+				hiddenInput=s.createHiddenInput(name);
+				parentNode.insertBefore(hiddenInput,this.nextSibling);
+			}
+			if(this.classList.contains("active")){
+				this.classList.remove("active");
+				if(hiddenInput)hiddenInput.value=offVal;
+			}else{
+				this.classList.add("active");
+				if(hiddenInput)hiddenInput.value=onVal;
+			}
+		}
+		//密码小眼睛
+		s.onReveal=function(e){
+			var pwdInput=this.parentNode.querySelector("input[type]");
+			if(this.classList.contains("active")){
+				this.classList.remove("active");
+				pwdInput.type="password";
+			}else{
+				this.classList.add("active");
+				pwdInput.type="text";
+			}
+			pwdInput.focus();
+		}
+		//清除按钮框
+		s.onClear=function(e){
+			var clearIcon=this.nextElementSibling;
+			if(!clearIcon || clearIcon.tagName!="I")return;
+			if(this.value.length>0){
+				clearIcon.style.display="block";
+			}else{
+				clearIcon.style.display="none";
+			}
+		}
+		s.onClearIcon=function(e){
+			var txtInput=this.parentNode.querySelector("input[type]");
+			this.style.display="none";
+			txtInput.value="";
+			txtInput.focus();
+		}
+		//安全检测框
+		s.onSafeLvl=function(e){
+			var lvlField=this.parentNode.querySelector(".safelvl");
+			s.checkSafe(this,lvlField);
+		}
+		//拖动条
+		s.showToolTip=function(tooltip,rangeInput){
+			//当前值所占百分比
+			var percent=((rangeInput.value-rangeInput.min)/(rangeInput.max-rangeInput.min)).toFixed(2);
+			
+			//距左的位置
+			var dragRange=rangeInput.clientWidth*percent;
+			var offsetLeft=rangeInput.offsetLeft+dragRange-10;
+			//var currentOffsetLeft=offsetLeft-rangeInput.parentNode.offsetLeft;
+
+			//滑块内部的实际位置
+			var currentBallLeft=28*percent;
+
+			//当前值的位置-滑块的位置=小球正中间的位置
+			var left=offsetLeft-currentBallLeft;
+			tooltip.innerHTML=rangeInput.value;
+			tooltip.setAttribute("style","display:block;left:"+left+"px");
+		}
+		s.rangeTooltip,s.rangeInput;
+		s.onRangeStart=function(e){
+			s.rangeTooltip=this.previousElementSibling;
+			s.rangeInput=this;
+			s.showToolTip(s.rangeTooltip,s.rangeInput);
+		}
+		s.onRangeMove=function(e){
+			s.showToolTip(s.rangeTooltip,s.rangeInput);
+		}
+		s.onRangeEnd=function(e){
+			setTimeout(function(){
+				s.rangeTooltip.style.display="none";
+	        },1000);
+		}
+		//数字框
+		s.numboxSum=function(inputNumber,btnPlus,btnMinus,operate){
+			var min=inputNumber.getAttribute("min")||0;
+			var max=inputNumber.getAttribute("max")||9999;
+			var step=inputNumber.getAttribute("step")||1;
+
+			var result;
+
+			if(operate){//加运算
+				btnMinus.disabled=false;
+				result=parseInt(inputNumber.value)+parseInt(step);
+				if(result>=max){
+					result=max;
+					btnPlus.disabled=true;
+				}
+			}else{//减运算
+				btnPlus.disabled=false;
+				result=inputNumber.value-step;
+				if(result<=min){
+					result=min;
+					btnMinus.disabled=true;
+				}
+			}
+			inputNumber.value=result;
+		}
+		s.onNumboxPlus=function(e){
+			var inputNumber=this.previousElementSibling;
+			var btnPlus=this;
+			var btnMinus=inputNumber.previousElementSibling;
+			s.numboxSum(inputNumber,btnPlus,btnMinus,true);
+		}
+		s.onNumboxMinus=function(e){
+			var inputNumber=this.nextElementSibling;
+			var btnPlus=inputNumber.nextElementSibling;
+			var btnMinus=this;
+			s.numboxSum(inputNumber,btnPlus,btnMinus,false);
+		}
+		//初始化
 		s.init=function(){
-			s.getFormElements();
-			s.initFormControl();
+			s.attach();
 		};
 		s.init();
 	}

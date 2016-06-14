@@ -79,7 +79,7 @@
                 aside.elTransform=s.wrapper;
                 break;
 
-                default:
+                case "reveal":
                 aside.showTransform='translate3d('+aside.width+'px,0,0)',
                 aside.hideTransform='translate3d(0,0,0)',
                 aside.elTransform=s.section;
@@ -227,6 +227,11 @@
             s.container.addEventListener("touchmove",s.preventDefault,false);
             s.touches.startX=e.touches[0].clientX;
             s.touches.startY=e.touches[0].clientY;
+            //Callback
+            if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
+                s.target=e.target;
+                if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
+            }
         }
         s.showSide;
         s.onTouchMove=function(e){
@@ -279,12 +284,17 @@
             
             //移动位置
             s.showSide.style.visibility="visible";
-            if(s.showSide.transition=="overlay"){
+            /*if(s.showSide.transition=="overlay"){
                 var translateX=-(s.showSide.width-moveX);
                 s.transformTarget(s.showSide.elTransform,'translate3d('+translateX+'px,0,0)');
-            }else if(s.showSide.transition=="push" || !s.showSide.transition || s.showSide.transition==""){
+            }else if(s.showSide.transition=="push" || !s.showSide.transition || s.showSide.transition=="reveal"){
                 s.transformTarget(s.showSide.elTransform,'translate3d('+moveX+'px,0,0)');
-            }
+            }*/
+            var translateX=moveX;
+            if(s.showSide.transition=="overlay")translateX=-(s.showSide.width-moveX);
+            s.transformTarget(s.showSide.elTransform,'translate3d('+translateX+'px,0,0)');
+
+            if(s.params.onSlideChange)s.params.onSlideChange(s);
         }
         s.onTouchEnd=function(e){
             var sidePos=s.position;
@@ -333,9 +343,15 @@
             if(s.isHid==true){
                 s.clearChange();
             }
+            //Callback
+            if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
+                s.target=e.target;
+                if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
+            }
         }
         function init(){
             s.attach();
+            if(s.params.init)s.params.init(s);
         }
         init();
     }

@@ -1,17 +1,4 @@
-/*!
- * 多媒体控件
- * @version 1.0.0
- * @author WangMingzhu
- * @require jQuery
- */
-
-/**
-*  树结构
-* 
-*  @class Tree
-*  @constructor
-*  @param container(ul树容器) params(配置项)
-*/
+//Tree
 (function(window,document,undefined){
 window.Tree=function(container,params){
     //Model
@@ -55,6 +42,7 @@ window.Tree=function(container,params){
       SelectedContainer Container
       ===========================*/
     s.selectedContainerSize=function(){
+        
         if($(s.params.selectedContainer).is(':empty')){
             s.selectedNodes=[];
             $(s.params.selectedContainer).slideUp();
