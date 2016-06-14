@@ -13,9 +13,15 @@
         <div class="aside-wrapper">
             <aside id="aside-left" data-transition="overlay" style="background-color:#333;color:white;">
                 <p class="title lrmargin8">侧边栏</p>
-                <p class="subtitle lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用<br/>
-                data-position制定从哪边弹出，值为：left和right。<br/>
-                data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)</p>
+                <p class="subtitle lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用
+                <br/>
+                【属性】
+                data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)
+                <br/>
+                <br/>
+                【Javascript】
+                new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) 
+                </p>
                 <a class="button block cancel margin8" id="hideAside1">关闭侧滑</a>
             </aside>
             <aside id="aside-right" data-transition="push" style="background-color:#333;color:white;">
@@ -51,6 +57,8 @@
                         <h4 class="paragraph">标签属性</h4>
                         <p class="paragraph">data-position制定从哪边弹出，值为：left和right。</p>
                         <p class="paragraph">data-transition制定以何种方式弹出，值为：默认为section动，overlay(aside覆盖)|push(section和aside都动)</p>
+                        <h4 class="paragraph">Javascript</h4>
+                        <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) </p>
                     </div>
                 </article>
             </section>
