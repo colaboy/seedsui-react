@@ -201,6 +201,7 @@
 			//console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
 		};
 		s.onTransitionEnd=function(e){
+			if(!e.target.classList.contains("page"))return;
 			s.targetPage=e.target;
 			//隐藏完成
 			if(s.isHid){
