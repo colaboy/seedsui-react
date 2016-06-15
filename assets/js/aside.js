@@ -16,6 +16,7 @@
             "isDrag":false,
             /*callbacks
             onInit:function(Aside)
+            onClick:function(Aside)
             onSlideChangeStart:function(Aside)
             onSlideChange:function(Aside)
             onSlideChangeEnd:function(Aside)
@@ -329,6 +330,8 @@
             s.showSide=null;
         }
         s.onClick=function(e){
+            s.target=e.target;
+            if(s.params.onClick)s.params.onClick(s);
             if(s.params.isClickMaskHide && e.target==s.mask && s.isHid==false){
                 s.hide();
                 s.preventDefault(e);
