@@ -1,3 +1,4 @@
+// @koala-prepend "device.js"
 // @koala-prepend "eventutil.js"
 // @koala-prepend "page.js"
 // @koala-prepend "aside.js"
@@ -5,7 +6,6 @@
 // @koala-prepend "baidumap.js"
 // @koala-prepend "dateutil.js"
 // @koala-prepend "db.js"
-// @koala-prepend "device.js"
 // @koala-prepend "shake.js"
 // @koala-prepend "dragrefresh.js"
 // @koala-prepend "emoji.js"

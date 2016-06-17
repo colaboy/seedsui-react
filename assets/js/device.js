@@ -48,24 +48,23 @@
 		    appVersion:app,
 		    isOnline:window.navigator.online,
 		    isExmobi:app.toLowerCase().indexOf("exmobi") > -1,//判断是否是Exmobi
-		    requestAnimationFrame:function(callback){
+		    getRaf:function(){
 				var rAF = window.requestAnimationFrame	||
 				window.webkitRequestAnimationFrame	||
 				window.mozRequestAnimationFrame		||
 				window.oRequestAnimationFrame		||
 				window.msRequestAnimationFrame		||
 				function (callback) { window.setTimeout(callback, 1000 / 60); };
-				var r=rAF(callback);
-				return r;
+				return rAF;
 			},
-			cancelAnimationFrame:function(callback){
+			getCaf:function(){
 				var cAF = window.cancelAnimationFrame	||
 				window.webkitCancelAnimationFrame	||
 				window.mozCancelAnimationFrame		||
 				window.oCancelAnimationFrame		||
 				window.msCancelAnimationFrame		||
 				function (callback) { window.clearTimeout(callback); };
-				cAF(callback);
+				return cAF;
 			}
 	   }
 	}();

@@ -1,16 +1,5 @@
-/*!
- * 日期能力扩展
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  日期能力扩展
-* 
-*  @class DateUtil
-*/
+//DateUtil
 var DateUtil=function(){
-	
 	var date = new Date();
 	return {
 		year:function(){

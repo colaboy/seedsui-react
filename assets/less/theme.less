@@ -809,12 +809,28 @@ table{
 	border-color:@border;
 }
 /*---------------tree.less(end)---------------*/
-.treetitle .radiusround{
+.tree-box{
+	background-color:@white;
+}
+.tree-line{
+	border-color:@border;
+}
+.tree-line:active{
+	background-color:@border;
+}
+.tree-ticon{
     background-color:@2-bg;
     color:@white;
 }
-.treetitle .treeicon:not(.radiusround),.treetitle .right{
+.tree-licon,.tree-ricon,.tree-right{
     color:@placeholder-color;
+}
+/*树标题-选中效果*/
+.tree-line.active,.tree-line.active+ul .tree-line{
+    color:@primary-bg;
+}
+.tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
+	background-color:@primary-bg;
 }
 /*----------------layout.less(start)--------------*/
 .underline{

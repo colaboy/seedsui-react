@@ -16,7 +16,6 @@
             "isDrag":false,
             /*callbacks
             onInit:function(Aside)
-            onClick:function(Aside)
             onSlideChangeStart:function(Aside)
             onSlideChange:function(Aside)
             onSlideChangeEnd:function(Aside)
@@ -192,7 +191,8 @@
                 touchTarget[action]("touchend",s.onTouchEnd,false);
                 touchTarget[action]("touchcancel",s.onTouchEnd,false);
             }
-            touchTarget[action]("click",s.onClick,false);
+            //clickMask
+            s.mask[action]("click",s.onClickMask,false);
             //transitionEnd
             s.wrapper[action]("webkitTransitionEnd",s.onTransitionEnd,false);
         }
@@ -329,10 +329,8 @@
             s.touches.position=null;
             s.showSide=null;
         }
-        s.onClick=function(e){
-            s.target=e.target;
-            if(s.params.onClick)s.params.onClick(s);
-            if(s.params.isClickMaskHide && e.target==s.mask && s.isHid==false){
+        s.onClickMask=function(e){
+            if(s.params.isClickMaskHide){
                 s.hide();
                 s.preventDefault(e);
             }

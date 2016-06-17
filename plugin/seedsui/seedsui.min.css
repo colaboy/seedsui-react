@@ -5100,8 +5100,9 @@ table th {
 /*----------------tree.less(start)--------------*/
 .tree-box {
   padding: 0 0 0 32px;
-  color: #393939;
-  background-color: white;
+}
+.tree {
+  box-sizing: border-box;
 }
 .tree ul {
   padding-left: 20px;
@@ -5110,69 +5111,47 @@ table th {
 .tree ul {
   display: none;
 }
-.tree li {
-  display: block;
+.tree a {
+  color: inherit;
 }
-.tree {
-  box-sizing: border-box;
+.tree-licon,
+.tree-ticon,
+.tree-ricon {
+  font-style: normal;
 }
-/*树标题*/
-.treetitle {
+.tree-licon,
+.tree-ticon {
+  font-size: 16px;
+}
+.tree-ticon::before,
+.tree-ricon {
+  font-size: 24px;
+}
+/*一行*/
+.tree-line {
   position: relative;
   border-style: solid;
   border-width: 0 0 1px 0;
-  border-color: #ddd;
 }
-.treetitle:active {
-  background-color: #ddd;
+/*标题*/
+.tree-title {
+  padding: 15px 0 15px 8px;
 }
-/*树标题-图标*/
-.treetitle .radiusround {
+/*标题图标*/
+.tree-ticon {
   display: inline-block;
   vertical-align: middle;
   width: 32px;
   height: 32px;
-  font-size: 16px;
   border-radius: 100%;
   text-align: center;
   line-height: 32px;
 }
-.treetitle [class*=icon-].radiusround {
-  font-size: 24px;
-}
-.treeicon + .radiusround {
-  margin-right: -4px;
-  margin-left: 4px;
-}
-.treetitle .top,
-.treetitle .right,
-.treetitle .middle,
-.treetitle .bottom {
-  position: absolute;
-}
-.treetitle .right {
-  right: 12px;
-}
-.treetitle .middle {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-}
-/*树标题-选中效果*/
-.treetitle.active {
-  color: #4587F7;
-}
-.treetitle.active .radiusround {
-  background-color: #4587F7;
-}
-/*树标题-文字颜色*/
-.treetitle a {
-  color: inherit;
-}
-.treetitle .icontitle {
-  padding: 15px 0 15px 8px;
+.tree-ticon.farleft {
+  margin-left: -28px;
 }
 /*左侧图标*/
-.treetitle .treeicon {
+.tree-licon {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -5189,13 +5168,24 @@ table th {
   -webkit-justify-content: center;
   -webkit-align-items: center;
 }
-.treetitle .icon-arrowright.active:before {
+.tree-line.extand + ul {
+  display: block;
+}
+.tree-line.extand > .tree-licon.icon-arrowright:before {
   font-family: "iconfont";
   content: "\e90e";
 }
-/*修改左侧箭头图标*/
-.treetitle .treeicon.radiusround {
-  left: -28px;
+/*右图标*/
+.tree-licon + .tree-ticon {
+  margin-right: -4px;
+  margin-left: 4px;
+}
+.tree-ricon,
+.tree-right {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
 }
 /*----------------tree.less(end)--------------*/
 /*----------------validate.less(start)--------------*/
@@ -7296,13 +7286,32 @@ table {
   border-color: #dddddd;
 }
 /*---------------tree.less(end)---------------*/
-.treetitle .radiusround {
+.tree-box {
+  background-color: #ffffff;
+}
+.tree-line {
+  border-color: #dddddd;
+}
+.tree-line:active {
+  background-color: #dddddd;
+}
+.tree-ticon {
   background-color: #ffae02;
   color: #ffffff;
 }
-.treetitle .treeicon:not(.radiusround),
-.treetitle .right {
+.tree-licon,
+.tree-ricon,
+.tree-right {
   color: #aaaaaa;
+}
+/*树标题-选中效果*/
+.tree-line.active,
+.tree-line.active + ul .tree-line {
+  color: #18b2ed;
+}
+.tree-line.active .tree-ticon,
+.tree-line.active + ul .tree-ticon {
+  background-color: #18b2ed;
 }
 /*----------------layout.less(start)--------------*/
 .underline {
