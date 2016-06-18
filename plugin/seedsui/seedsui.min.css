@@ -1794,6 +1794,8 @@ input[type=range]::-webkit-slider-thumb {
   position: relative;
   -webkit-box-flex: 1.0;
   box-flex: 1.0;
+  -webkit-flex: 1.0;
+  flex: 1.0;
 }
 .justify-content > p,
 .justify-content > a {
@@ -3293,7 +3295,7 @@ input[type=range]::-webkit-slider-thumb {
 /*----------------switch.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  position: fixed;
+  position: absolute;
   top: -58px;
   left: 50%;
   margin-left: -20px;
@@ -4793,6 +4795,7 @@ input[type=range]::-webkit-slider-thumb {
   position: absolute;
   width: 1122px;
   left: 0;
+  /* -webkit-transform:translate3d(0,0,0); */
 }
 .slider-slide {
   position: relative;
@@ -4848,7 +4851,7 @@ input[type=range]::-webkit-slider-thumb {
   top: auto;
   bottom: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 11;
 }
 /*表情区域*/
 .richedit .emoji {
@@ -4930,16 +4933,6 @@ input[type=range]::-webkit-slider-thumb {
   line-height: 32px;
   width: 54px;
 }
-/*遮罩*/
-.richedit + .mask {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-}
 /*激活状态*/
 .richedit.active {
   top: 0;
@@ -4949,7 +4942,8 @@ input[type=range]::-webkit-slider-thumb {
   display: block;
 }
 .richedit.active + .mask {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 /*表情滑动容器小点点*/
 .richedit .slider-pagination {
@@ -6462,11 +6456,11 @@ a.active {
 }
 /*容器样式*/
 .highlight {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: #f4f4f4;
 }
 hr {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*条纹线*/
 .stripe:nth-child(even) {
@@ -6489,7 +6483,7 @@ aside {
 /*----------------titlebar.less(start)--------------*/
 .titlebar {
   background-color: #f9f9f9;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .titlebar h1 {
   color: #333333;
@@ -6536,7 +6530,7 @@ aside {
 .arrowbar,
 .menubar,
 .tabbar {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .tab:active,
 .tab.active {
@@ -6661,7 +6655,7 @@ aside {
 }
 .button.grayscale {
   color: #333333;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: #f4f4f4;
 }
 .button.grayscale:not(.noclick):active {
@@ -6672,7 +6666,7 @@ aside {
 }
 .button.outline.grayscale {
   color: #333333;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: transparent;
 }
 .button.outline.grayscale:not(.noclick):active {
@@ -6825,7 +6819,7 @@ aside {
 /*----------------button.less(end)--------------*/
 /*----------------buttongroup.less(start)--------------*/
 .button-group > span {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: #ffffff;
 }
 /*激活状态*/
@@ -6871,12 +6865,12 @@ aside {
 .alert,
 .actionsheet,
 .dialog {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*actionsheet*/
 .actionsheet button {
   color: #007aff;
-  border-bottom-color: #dddddd;
+  border-bottom-color: #e6e6e6;
   background-color: rgba(255, 255, 255, 0.9);
 }
 /*----------------dialog.less(end)--------------*/
@@ -6913,13 +6907,13 @@ input[list],
 textarea,
 select,
 .input-text {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: #ffffff;
 }
 .input-box,
 .numbox {
   background-color: #ffffff;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
 .input-box select,
@@ -6931,7 +6925,7 @@ select,
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
 .input-box {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .input-box.click .icon:active,
 .input-box .icon.click:active,
@@ -6977,13 +6971,13 @@ select,
 .row,
 .group,
 .card {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*----------------row.less(end)--------------*/
 /*----------------card.less(start)--------------*/
 .card-handler > a {
   color: #aaaaaa;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .card-info {
   color: #aaaaaa;
@@ -6991,7 +6985,7 @@ select,
 /*----------------card.less(end)--------------*/
 /*----------------range.less(start)--------------*/
 input[type=range] {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 input[type=range]::-webkit-slider-thumb {
   background-color: #18b2ed;
@@ -7000,14 +6994,14 @@ input[type=range]::-webkit-slider-thumb {
 /*----------------range.less(end)--------------*/
 /*----------------inputcolor.less(start)--------------*/
 ::-webkit-color-swatch-wrapper {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*----------------inputcolor.less(end)--------------*/
 /*----------------progress.less(end)--------------*/
 progress {
-  color: #dddddd;
+  color: #e6e6e6;
   /*IE10*/
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: transparent;
 }
 progress::-moz-progress-bar {
@@ -7056,14 +7050,14 @@ input[type="radio"][disabled]:checked,
   background-color: #f4f4f4;
 }
 .richedit figcaption {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .richedit .input {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .richedit .input:before,
 .richedit .input:after {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 .richedit.active .input {
   border-color: #18b2ed;
@@ -7078,7 +7072,7 @@ input[type="radio"][disabled]:checked,
   background-color: #ffffff;
 }
 .scrollpicker-header {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
   background-color: #f4f4f4;
 }
 .scrollpicker-wrapper {
@@ -7091,17 +7085,17 @@ input[type="radio"][disabled]:checked,
   color: #333333;
 }
 .scrollpicker-layer-frame {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*----------------scrollpicker.less(end)--------------*/
 /*----------------switch.less(start)--------------*/
 /*关闭状态*/
 .switch {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*关闭状态圆点*/
 .switch .switch-handle {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 /*关闭状态文字off*/
 .switch:after {
@@ -7117,7 +7111,7 @@ input[type="radio"][disabled]:checked,
 }
 /*开关控件toggle-反转*/
 .switch.reverse {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 .switch.reverse:after {
   color: #aaaaaa;
@@ -7132,7 +7126,7 @@ input[type="radio"][disabled]:checked,
 }
 /*边框*/
 .grid.border {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
@@ -7155,7 +7149,7 @@ input[type="radio"][disabled]:checked,
 .indexlist li,
 .list,
 .timeline {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .indexlist,
 .list {
@@ -7200,7 +7194,7 @@ ul li.bg-transparent {
 .sliver,
 li.sliver,
 .title {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .sliver,
 li.sliver {
@@ -7210,12 +7204,12 @@ li.sliver {
 /*----------------title.less(end)----------------*/
 /*----------------statusbar.less(start)----------------*/
 .statusbar {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 /*----------------statusbar.less(end)----------------*/
 /*----------------searchbar.less(start)----------------*/
 .searchbar {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 /*----------------searchbar.less(end)----------------*/
 /*----------------loading.less(start)----------------*/
@@ -7233,7 +7227,7 @@ li.sliver {
 /*----------------loading.less(end)----------------*/
 /*----------------calendar.less(start)----------------*/
 .calendar {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .day-name {
   color: #666666;
@@ -7247,14 +7241,14 @@ li.sliver {
 }
 .arrowleft,
 .arrowright {
-  color: #dddddd;
+  color: #e6e6e6;
 }
 .arrowleft:active,
 .arrowright:active {
   color: #18b2ed;
 }
 .not-this-month {
-  color: #dddddd;
+  color: #e6e6e6;
 }
 /*----------------calendar.less(end)----------------*/
 /*----------------chat.less(start)----------------*/
@@ -7277,23 +7271,23 @@ li.sliver {
 /*---------------table.less(start)---------------*/
 table {
   color: #888888;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*---------------table.less(end)---------------*/
 /*---------------tree.less(start)---------------*/
 table {
   color: #888888;
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*---------------tree.less(end)---------------*/
 .tree-box {
   background-color: #ffffff;
 }
 .tree-line {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 .tree-line:active {
-  background-color: #dddddd;
+  background-color: #e6e6e6;
 }
 .tree-ticon {
   background-color: #ffae02;
@@ -7315,7 +7309,7 @@ table {
 }
 /*----------------layout.less(start)--------------*/
 .underline {
-  border-color: #dddddd;
+  border-color: #e6e6e6;
 }
 /*----------------layout.less(end)--------------*/
 /*----------------theme.less(start)--------------*/

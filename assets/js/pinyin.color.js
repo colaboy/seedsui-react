@@ -1,3 +1,4 @@
+//toColor字母转颜色
 (function(window,document,undefined){
 	
 	var colors={

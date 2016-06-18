@@ -1,8 +1,4 @@
-/*!
- * 表情工具库
- * @version 1.0.0
- * @author WangMingzhu
- */
+//Emoji 表情管理
 (function(window,document,undefined){
 	window.Emoji={
 		icons:{

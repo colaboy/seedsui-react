@@ -11,7 +11,7 @@
 </head>
 
 <body ontouchstart="">
-    <section id="page_pollWrite" class="active">
+    <section id="page_pollWrite">
     	<header>
     		<div class="titlebar">
                 <a class="left" href="javascript:back()">
@@ -115,7 +115,7 @@
         <a class="button block outline margin8" onclick="preview()">预览</a>
     	</article>
     </section>
-    <section id="page_preview">
+    <section id="page_preview" data-animation="slideLeft" class="page">
     	<header>
     		<div class="titlebar">
                 <a class="left" href="javascript:backPrev()">
@@ -190,31 +190,19 @@
     	var f=new Form("#form1");
         //提交
         function submit(){
-            f=new Form("#form1");
             f.validate();
         }
         //预览
-        var sec=new Section();
+        var singlePage=new Page();
         function preview(){
-            f=new Form("#form1");
             if(f.validate()){
-                sec.openSection("#page_preview");
+                singlePage.open("#page_preview");
             }
         }
     	//返回
         function backPrev(){
-            sec.backSection();
+            sec.back();
         }
-        //最多选2项
-        var checkedToast=new Toast("最多选2项");
-        document.getElementById("selImg").addEventListener("click",function(e){
-            selCheckbox(e,this,{
-                cboMaxCount:2,
-                maxCallback:function(){
-                    checkedToast.show();
-                }
-            });
-        },false);
     	//数字计数器
     	function listenerFontcount(){
     		var fc=new FontCounter({

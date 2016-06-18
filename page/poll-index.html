@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<title>poll-index</title>
-	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-    <link rel="stylesheet" href="../plugin/animate/animate.css">
-	<link rel="stylesheet" href="../css/poll.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>poll-index</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="../css/poll.css">
 </head>
+
 <body ontouchstart="">
     <section class="active">
-    	<header>
-    		<div class="titlebar">
+        <header>
+            <div class="titlebar">
                 <a class="left" href="javascript:back()">
                     <i class="icon icon-arrowleft"></i>
                     <span>返回</span>
@@ -34,268 +35,99 @@
                     <label class="tab-label">我的创建</label>
                 </li>
             </ul>
-    	</header>
-    	<article style="padding-top:84px;">
+        </header>
+        <article style="padding-top:84px;" class="scrollbox">
             <div class="slider-container" id="carouselPage" style="height: 100%;">
-            <div class="slider-wrapper">
-                <div class="slider-slide" id="page1">
-                    <div class="card">
-                        <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
+                <div class="slider-wrapper">
+                    <div class="slider-slide">
+                        <!--card-->
+                        <div class="card box card-poll">
+                            <div class="justify">
+                                <i class="icon icon-rdo-fill color-primary size12"></i>
+                            </div>
+                            <div class="justify-content">
+                                <p class="title">公司早餐因该添加什么？</p>
+                                <div class="progress-bar radiusround">
+                                    <span class="progress" style="width: 12%"></span>
+                                    <span class="text center">
+                                    <span class="timer" data-duration="1000" data-to="12">12</span>
+                                    <span>/100</span>
+                                    </span>
                                 </div>
-                                <div class="justify-content">
-                                    <p class="title">公司早餐因该添加什么？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
+                            </div>
+                            <div class="justify text-right">
+                                <p class="enddate">2016-04-24</p>
+                                <p class="color-submit hint">未投</p>
+                            </div>
+                        </div>
+                        <!--card-->
+                        <div class="card box card-poll">
+                            <div class="justify">
+                                <i class="icon icon-rdo-fill color-primary size12"></i>
+                            </div>
+                            <div class="justify-content">
+                                <p class="title">周五出去玩要去哪里？</p>
+                                <div class="progress-bar radiusround">
+                                    <span class="progress" style="width: 33%"></span>
+                                    <span class="text center">
+                                    <span class="timer" data-duration="1000" data-to="33">33</span>
+                                    <span>/100</span>
+                                    </span>
                                 </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">未投</p>
+                            </div>
+                            <div class="justify text-right">
+                                <p class="enddate">2016-04-24</p>
+                                <p class="color-submit hint">未投</p>
+                            </div>
+                        </div>
+                        <!--card-->
+                        <div class="card box card-poll">
+                            <div class="justify">
+                                <i class="icon icon-rdo-fill color-primary size12"></i>
+                            </div>
+                            <div class="justify-content">
+                                <p class="title">Alige Logo选哪个好？</p>
+                                <div class="progress-bar radiusround">
+                                    <span class="progress" style="width: 80%"></span>
+                                    <span class="text center">
+                                    <span class="timer" data-duration="1000" data-to="80">80</span>
+                                    <span>/100</span>
+                                    </span>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                            <div class="justify text-right">
+                                <p class="enddate">2016-04-24</p>
+                                <p class="color-submit hint">未投</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card">
-                        <div class="preview"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">周五出去玩要去哪里？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">未投</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="preview" style="background-image:url(../img/poll/poll-main3.jpg)"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">Alige Logo选哪个好？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-placeholder hint">已投</p>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="slider-slide">
+                        <div id="nodata" class="box box-middlecenter animated zoomIn">
+                            <div>
+                                <img src="../img/poll/nodata.png">
+                                <p class="title text-center">暂无投票，快去创建一个吧！</p>
+                            </div> 
+                        </div>
                     </div>
                 </div>
-                <div class="slider-slide" id="page2">
-                     <div class="card">
-                        <span class="close"><i class="icon icon-close"></i></span>
-                        <div class="preview"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">周五出去玩要去哪里？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">进行中</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <span class="close"><i class="icon icon-close"></i></span>
-                        <div class="preview"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">周五出去玩要去哪里？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">进行中</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <span class="close"><i class="icon icon-close"></i></span>
-                        <div class="preview"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">周五出去玩要去哪里？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-placeholder hint">已完成</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">公司早餐因该添加什么？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">未投</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">公司早餐因该添加什么？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">未投</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <div class="preview" style="background-image:url(../img/poll/poll-main1.jpg)"></div>
-                        <ul class="list card-poll noclick noborder">
-                            <li>
-                                <div class="justify">
-                                    <i class="icon icon-rdo-fill color-primary size12"></i>
-                                </div>
-                                <div class="justify-content">
-                                    <p class="title">公司早餐因该添加什么？</p>
-                                    <div class="progress-bar radiusround">
-                                        <span class="progress" style="width: 12%"></span>
-                                        <span class="text center">
-                                        <span class="timer" data-duration="1000" data-to="12">12</span>
-                                        <span>/100</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="justify text-right">
-                                    <p class="enddate">2016-04-24</p>
-                                    <p class="color-submit hint">未投</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="nodata" class="box box-middlecenter hide animated zoomIn"><!--暂无数据-->
-                        <div>
-                            <img src="../img/poll/nodata.png">
-                            <p class="title text-center">暂无投票，快去创建一个吧！</p>
-                        </div> 
-                    </div>
-                </div>
-                
             </div>
-            </div>
-    	</article>
-        <div class="popup confirm custom" id="popDelete" style="display:none;">
-            <label class="text-center">
-                <p class="title color-cancel">该投票将永远消失！</p>
-                <p>您确定这么做？！</p>
-                <i class="icon icon-bad size54 color-primary margin12"></i>
-            </label>
-            <div class="popup-handler">
-                <a>取消</a>
-                <a>确定</a>
-            </div>
-        </div>
+        </article>
     </section>
-	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
-    <!--投票-->
-    <script src="../js/poll.js"></script>
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
+        var slides=document.querySelectorAll("#carouselPage .slider-slide");
         //初始化滑动容器
         var carouselPage;
         function initSlider(){
             carouselPage=new Slider("#carouselPage",{
+                "onInit":function(e){
+                    //compatibleIosScroll(e);
+                },
                 "onSlideChangeEnd":function(e){
                     tabActive(e.index);
+                    //compatibleIosScroll(e);
                 }
             });
         }
@@ -321,6 +153,7 @@
         //给第一页和第二页添加拖动刷新
         function initDrag(){
             var drag1=new Dragrefresh(carouselPage.slides[0],{
+                "refreshThreshold":100,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
@@ -328,13 +161,6 @@
                 },
                 "onRefreshEnd":function(e){
                     console.log("加载完成");
-                },
-                "onBottom":function(e){
-                    console.log("滚动到底部啦");
-                    //数据加载完成时，隐藏下面的元素
-                    setTimeout(function(){
-                        e.bottomRefreshEl.style.display="none";
-                    }, 5000);
                 }
             });
 
@@ -349,51 +175,33 @@
                 }
             });
         }
-        //删除卡片
-        function nodata(){
-            var card=document.getElementById("page2").querySelector(".card");
-            if(!card){
-                $("#nodata").removeClass("hide");
-            }
-        }
-        var popDelete=new Dialog("#popDelete");
-        function delCard(n){
-            popDelete.removeOnClick();
-            popDelete.addOnClick(
-                function(s){
-                    if(s.target.text=="取消"){
-                        s.hide();
-                    }else if(s.target.text=="确定"){
-                        $(n).addClass("animated zoomOut");
-                        EventUtil.addHandler(n, "animationend", function(){
-                            $(n).slideUp(300, function(){
-                                $(n).remove();
-                                nodata();
-                            });
-                        });
-                        s.hide();
-                    }
-                }
-            );
-            popDelete.show();
-        }
-        function initDelClickEvent(){
-            var deleteBtn = document.querySelectorAll('.close');
-            [].slice.call(deleteBtn).forEach(function(n,i,a){
-                n.addEventListener("click",function(e){
-                    delCard(n.parentNode)
-                    e.stopPropagation();
-                },false);
-            });
-        }
         window.addEventListener("load",function(){
             initSlider();
             initTabbar();
             initDrag();
-            initDelClickEvent();
         },false);
 
-		function back(){history.go(-1);}
+        /*兼容Ios浏览器滚动到最底或者最顶，不能滑动的问题*/
+        /*[].slice.call(slides).forEach(function(n,i,a){
+            n.addEventListener("scroll",function(e){
+                compatibleIosScroll(e);
+            },false);
+        })
+        function compatibleIosScroll(e){
+            var container=e.target;
+            var clientHeight=container.clientHeight; 
+            var scrollTop=container.scrollTop; 
+            var scrollHeight=container.scrollHeight;
+            if(scrollTop==0){
+                container.scrollTop=1;
+                return;
+            }
+            if (clientHeight+scrollTop>=scrollHeight){
+                container.scrollTop=container.scrollTop-1;
+            }
+        }*/
+        //定义exmobi返回
+        function back(){history.go(-1);}
     </script>
 </body>
 </html>

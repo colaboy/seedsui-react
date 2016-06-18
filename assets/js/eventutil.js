@@ -1,14 +1,4 @@
-/*!
- * 事件函数库
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  事件函数库，兼容性强
-* 
-*  @class EventUtil
-*/
+//事件函数
 (function(window,document,undefined){
 	
 	function _swipe_(element,type,handler){

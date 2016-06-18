@@ -1,14 +1,4 @@
-/*!
-*	富文本编辑
-*	@version 1.0.0
-*	@author WangMingzhu
-*/
-
-/**
-*  富文本编辑，主要用于编辑模式框（contenteditable="true"）或者 iFrame富文本框，背景色、加粗、链接、插入图片等功能
-* 
-*  @class RichEditor
-*/
+//富文本编辑框
 var Richeditor={
 	//获取选区
 	selection:function(){

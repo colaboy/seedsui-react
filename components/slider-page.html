@@ -76,7 +76,7 @@
             });
         }
         //初始化数据
-        var pageDataCount=[100,10,30,40,50];
+        var pageDataCount=[100,10,30,40,50];//每页数据条数
         function initData(){
             [].slice.call(slides).forEach(function(n,i,a){
                 var datastr="";
@@ -106,9 +106,10 @@
             }
         }
         //给第一页和第二页添加拖动刷新
+
         function initDrag(){
             var drag1=new Dragrefresh(carouselPage.slides[0],{
-                "minScrollTop":1,
+                "refreshThreshold":100,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
@@ -121,7 +122,7 @@
                     console.log("滚动到底部啦");
                     //数据加载完成时，隐藏下面的元素
                     setTimeout(function(){
-                        e.bottomRefreshEl.style.display="none";
+                        e.bottomContainer.style.display="none";
                     }, 5000);
                 }
             });
@@ -139,7 +140,7 @@
                     console.log("滚动到底部啦");
                     //数据加载完成时，隐藏下面的元素
                     setTimeout(function(){
-                        e.bottomRefreshEl.style.display="none";
+                        e.bottomContainer.style.display="none";
                     }, 5000);
                 }
             });

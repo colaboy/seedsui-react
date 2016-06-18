@@ -115,3 +115,10 @@
   background-position:center;
   background-image:url(../img/poll/poll-main-default.jpg);
 }
+/*柱状图背景色*/
+.bg-odd{
+    background-color:#eaf6f7;
+}
+.bg-even{
+    background-color:#d4edf0;
+}

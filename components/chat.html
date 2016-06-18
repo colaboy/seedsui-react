@@ -9,7 +9,6 @@
 </head>
 
 <body ontouchstart="">
-    <section id="page_chat" class="active">
         <header>
             <div class="titlebar">
                 <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -161,19 +160,17 @@
             </figure>
             <div class="mask"></div>
         </footer>
-    </section>
-    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-        var r=Richinput("#richeditor");
+        var r=new Richinput("#richeditor");
         var richeditor=r.container;
+        var t=new Toast("输入内容不能为空");
         //发送消息
         function sent(){
             var chat=document.getElementById("chat");
             var textarea=document.querySelector("#richeditor textarea");
-            var t=new Toast("输入内容不能为空");
 
             if(textarea.value==""){
                 t.show();
@@ -190,13 +187,19 @@
                     '</div>'+
                 '</div>'+
             '</li>';
-            $(chat).append(html);
+            chat.innerHTML+=html;
+            //$(chat).append(html);
             textarea.value="";
             scrollToBottom();
         }
-        var article=document.querySelector("#page_chat article");
+        //动画滚动至底部
+        var scrollbox=document.body;
+        var scrollboxHeight=scrollbox.clientHeight;
         function scrollToBottom(){
-            article.scrollTop=article.scrollHeight;
+            scrollbox.scrollTop+=10;
+            if(scrollbox.scrollTop+scrollboxHeight<scrollbox.scrollHeight){
+                requestAnimationFrame(scrollToBottom);
+            }
         }
         //定义exmobi返回
         function back(){history.go(-1);}

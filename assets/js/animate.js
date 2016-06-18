@@ -1,33 +1,30 @@
-/*!
- * 动画库
- * @version 1.0.0
- * @author WangMingzhu
- * 
- * @import EventUtil from './eventutil.js'
- */
-
-/**
-*  常用的动画库
-* 
-*  @class Animate
-*/
-
-var Animate=(function(){
-	var requestAnimationFrame = window.requestAnimationFrame||
+//Animate
+window.Animate={
+	raf:window.requestAnimationFrame||
 		window.webkitRequestAnimationFrame||
 		window.mozRequestAnimationFrame||
 		window.oRequestAnimationFrame||
 		window.msRequestAnimationFrame||
-		function (callback) { window.setTimeout(callback, 1000 / 60); };
+		function (callback) { window.setTimeout(callback, 1000 / 60); },
 
-	var cancelAnimationFrame = window.cancelAnimationFrame||
+	caf:window.cancelAnimationFrame||
 		window.webkitCancelAnimationFrame||
 		window.mozCancelAnimationFrame||
 		window.oCancelAnimationFrame||
 		window.msCancelAnimationFrame||
-		function (handler) { window.clearTimeout(handler); };
-
-	function intervalNumber(el){
+		function (handler) { window.clearTimeout(handler); },
+	//动画执行一次后销毁
+	one:function(el,aniname){
+		var animExpr=new RegExp("\\s{0,}"+aniname,"g");
+		if(el.className.match(animExpr)){
+			el.className=el.className.replace(animExpr,"");
+		}
+		el.className+=" "+aniname;
+		EventUtil.addHandler(el,"animationend",function(e){
+			el.className=el.className.replace(animExpr,"");
+		});
+	},
+	intervalNumber:function(el){
 		var toNumber=el.getAttribute("data-to")||0;
 		var fromNumber=el.getAttribute("data-from")||0;
 		var duration=el.getAttribute("data-duration")||500;
@@ -57,8 +54,8 @@ var Animate=(function(){
 				clearInterval(countTimer);
 			}
 		},milli);
-	}
-	function rafNumber(el){
+	},
+	rafNumber:function(el){
 		var toNumber=el.getAttribute("data-to")||0;
 		var fromNumber=el.getAttribute("data-from")||0;
 		function step() {
@@ -69,9 +66,9 @@ var Animate=(function(){
 			}
 		}
 		step();
-	}
+	},
 	//setInterval帧率测试
-	function testSiFps(callback){
+	testSiFps:function(callback){
     	var fps=0;
     	var si=setInterval(function(){
     		fps++;
@@ -83,9 +80,9 @@ var Animate=(function(){
     		}
 			clearInterval(si);
 		},1000);
-	}
+	},
 	//requestAnimationFrame帧率测试
-	function testRafFps(callback){
+	testRafFps:function(callback){
     	var fps=0;
     	function fpstest(timestamp){
     		fps++;
@@ -99,30 +96,12 @@ var Animate=(function(){
     		}
     	}
     	requestAnimationFrame(fpstest);
-	}
-
-	return{
-		//动画执行一次后销毁
-		one:function(el,aniname){
-			var animExpr=new RegExp("\\s{0,}"+aniname,"g");
-			if(el.className.match(animExpr)){
-				el.className=el.className.replace(animExpr,"");
-			}
-			el.className+=" "+aniname;
-			EventUtil.addHandler(el,"animationend",function(e){
-				el.className=el.className.replace(animExpr,"");
-			});
-		},
-		//setTime帧率测试
-		testSiFps:testSiFps,
-		//requestAnimation帧率测试
-		testRafFps:testRafFps,
-		//计数器
-		counter:function(){
-			var timers=document.querySelectorAll(".timer");
-			for(var i=0,t;t=timers[i++];){
-				intervalNumber(t);
-			}
+	},
+	//计数器
+	counter:function(){
+		var timers=document.querySelectorAll(".timer");
+		for(var i=0,t;t=timers[i++];){
+			this.intervalNumber(t);
 		}
 	}
-})();
+};

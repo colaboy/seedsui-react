@@ -25,6 +25,7 @@
 		    <a class="button block margin8 bg-5" href="#page_5" data-target="page">fade</a>
 		    <a class="button block margin8 bg-6" href="#page_6" data-target="page">zoom</a>
 		    <a class="button block margin8 bg-7" href="#page_7" data-target="page">none</a>
+		    <a type="button" class="button block margin8 bg-8" onclick="openPage('#page_2')">用JS打开打二页</a>
 		    <div class="card padding8">
 		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
 		    </div>
@@ -128,12 +129,11 @@
 			none
 		</article>
 	</section>
-	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		var sec=new Page({
+		var singlePage=new Page({
 			"onOpenStart":function(e){
 				/*console.log("开始打开点击了：");
 				console.log(e.target);*/
@@ -159,6 +159,11 @@
 				console.log(e.targetPage);
 			}
 		});
+		//打指定页
+		function openPage(id){
+			singlePage.open(id);
+		}
+		
 		//var sec=new Page();
 		//定义exmobi返回
 		function back(){history.go(-1);}

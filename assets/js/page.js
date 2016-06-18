@@ -1,13 +1,14 @@
-//Page
+//Page 单页模式
 (function(window,document,undefined){
     window.Page=function(params){
     	/*=========================
           Model
           ===========================*/
 		var defaults={
+			"pageBtn":"[data-target=page]",
 			"pageClass":"page",
-			"defaultAnimation":"slideleft",
 			"pageActiveClass":"active",
+			"defaultAnimation":"slideleft",
 			"duration":"300"
 
 			/*callbacks
@@ -24,7 +25,7 @@
 				params[def]=defaults[def];
 			}
 		}
-		var s={};
+		var s=this;
 		s.params=params;
 		//Pages
 		s.pages;
@@ -34,7 +35,7 @@
 				if(!page.getAttribute("data-animation")){
 	                page.setAttribute("data-animation",s.params.defaultAnimation);
 	            }
-	            var isActive=page.classList.contains("active");
+	            var isActive=page.classList.contains(s.params.pageActiveClass);
 	            var animation=page.getAttribute("data-animation");
 	            if(animation=="slideDown"){
 	            	page.showAnimation={webkitTransform:"translate3d(0,0,0)"};
@@ -108,7 +109,7 @@
         s.isHid=true;
         s.showPage=function(page){
         	s.isHid=false;
-        	page.classList.add("active");
+        	page.classList.add(s.params.pageActiveClass);
         	page.style.visibility="visible";
             for(var ani in page.showAnimation){
                 page.style[ani]=page.showAnimation[ani];
@@ -122,7 +123,7 @@
         }
         s.hidePage=function(page){
         	s.isHid=true;
-        	page.classList.remove("active");
+        	page.classList.remove(s.params.pageActiveClass);
             for(var ani in page.hideAnimation){
                 page.style[ani]=page.hideAnimation[ani];
             }
@@ -146,6 +147,7 @@
 		}
 		//开窗函数
 		s.open=function(pageId){
+			console.log(pageId);
 			var page=document.querySelector(pageId);
 			//添加历史记录，并修改浏览器地址
 			s.addHistory(pageId);
@@ -172,7 +174,7 @@
             //hash值监听
             window[action]("popstate",s.onPopstate,false);
             //按钮监听
-            var pageBtns=document.querySelectorAll("[data-target=page]");
+            var pageBtns=document.querySelectorAll(s.params.pageBtn);
             for(var i=0,btn;btn=pageBtns[i++];){
         		btn.addEventListener("click",s.onClickBtn,false);
             }

@@ -1,3 +1,4 @@
+//文字计数器
 (function(window,document,undefined){
 	window.FontCounter=function(params){
 		var fontcounters=document.querySelectorAll("[data-fontcounter]");

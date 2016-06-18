@@ -1,3 +1,4 @@
+//Clock
 (function(){
     window.Clock=function(container,params){
         /*================

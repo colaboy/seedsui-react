@@ -1,12 +1,11 @@
-/**
- * 富文本带表情编辑框
- */
+//带表情输入框
 (function(window,document,undefined){
 	window.Richinput=function(container,params){
 		/*=========================
           Params
           ===========================*/
         var defaults={
+        	"maskClass":"mask",
 			"emojiBoxClass":"emoji",
 			"sliderParam":{
 				"pagination":".slider-pagination"
@@ -32,7 +31,7 @@
 		s.slider;
 
 		//Mask Div
-		s.mask=document.querySelector(container+"+.mask");
+		s.mask=document.querySelector(container+"+."+s.params.maskClass);
 
 		//表情容器
 		s.emojiBox=s.container.querySelector("."+s.params.emojiBoxClass);
@@ -96,7 +95,6 @@
 			if(!s.slider){
 				s.slider=new Slider(container+" ."+s.params.emojiBoxClass,s.params.sliderParam);
 			}
-			//s.container.className=s.container.className+" active";
 		},false);
 
 		//点击表情
@@ -107,6 +105,5 @@
 			s.textarea.focus();
 			Richeditor.setCaretPosition(s.textarea,cursorOffset);
 		},false);
-		return s;
 	}
 })(window,document,undefined);

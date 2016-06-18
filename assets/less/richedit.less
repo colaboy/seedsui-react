@@ -4,7 +4,7 @@
 	top:auto;
 	bottom:0;
 	width:100%;
-	z-index:1;
+	z-index:11;
 }
 /*表情区域*/
 .richedit .emoji{
@@ -85,17 +85,6 @@
 	width:54px;
 }
 
-/*遮罩*/
-.richedit+.mask{
-	display:none;
-	position:fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	
-	background-color:rgba(0,0,0,.6);
-}
 
 /*激活状态*/
 .richedit.active{
@@ -106,7 +95,8 @@
 	display:block;
 }
 .richedit.active+.mask{
-	display:block;
+	opacity:1;
+	visibility:visible;
 }
 
 /*表情滑动容器小点点*/

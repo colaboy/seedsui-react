@@ -1,20 +1,4 @@
-/*!
- * 天气控件
- * @version 1.0.0
- * @author WangMingzhu
- * @require db.js & dateutil.js
- */
-
-/**
-*  天气控件
-* 
-*  @class Weather
-*  @constructor
-*  @param container //选择dom .weatherbox
-*  @param params //配置项，如{"city":"扬州","expires":0.1}
-*  @return {josn}
-*  @import DateUtil from './DateUtil.js'
-*/
+//Weather 天气控件
 (function(window,document,undefined){
 	window.Weather=function(container,params){
 		//Model

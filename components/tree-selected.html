@@ -154,7 +154,11 @@
                 console.log("当前选中的节点有：");
                 console.log(e.selected);
             },
-            "onTapLastChild":function(s){//没有子节点
+            "onTapLastChild":function(e){//没有子节点
+                //隐藏左侧图标
+                var licon=e.targetLine.querySelector(".tree-licon");
+                e.targetLine.removeChild(licon);
+                //显示提示
                 noChildToast.show();
             }
         });

@@ -1,14 +1,4 @@
-/*!
-*	类型判断
-*	@version 1.0.0
-*	@author WangMingzhu
-*/
-
-/**
-*  数据类型判断，主要用于是否是字符串、boolean值、Josn数据类型判断
-* 
-*  @class Type
-*/
+//Type 类型判断
 (function(window,document,undefined){
 	
 	window.Type={};

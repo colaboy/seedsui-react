@@ -1,4 +1,4 @@
-//Tree
+//Tree 树结构
 (function(window,document,undefined){
 window.Tree=function(container,params){
     /*=========================

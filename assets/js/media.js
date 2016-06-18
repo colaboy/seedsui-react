@@ -1,16 +1,4 @@
-/*!
- * 多媒体控件
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  系统多媒体控件api
-* 
-*  @class Media
-*  @constructor
-*  @param media //video dom 或者 audio src(用于播放背景音乐)
-*/
+//多媒体控件
 (function(window,document,undefined){
 	
 	window.Media=function(media){

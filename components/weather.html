@@ -90,16 +90,13 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		/*function jsonpCallback(data){
-	        console.log(data);
-	    }*/
 		window.addEventListener("load",function(){
 			var w=new Weather("#weather",{
-				"city":"合肥",
+				"city":"南京",
 				"expires":"today"
 			});
 			w.container.addEventListener("click",function(){
-				$('.weather-box').toggleClass('expand');
+				this.classList.toggle("expand");
 			},false);
 		},false);
 		//定义exmobi返回

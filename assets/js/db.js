@@ -1,15 +1,4 @@
-/*!
- * 本地数据库
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
- *  本地数据库
- * 
- *  @class DB
- */
-
+//DB 本地数据库
 var DB = function() {
     
 

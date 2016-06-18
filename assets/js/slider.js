@@ -1,3 +1,4 @@
+//Slider 滑动控件
 (function(window,document,undefined){
 	
 	window.Slider=function(container,params){

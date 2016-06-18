@@ -1,14 +1,4 @@
-/*!
- * 可视化数据
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  仪表盘
-* 
-*  @class gauge
-*/
+//Gauge 仪表盘
 (function(window,document,undefined){
 	
 	window.Gauge=function(container,params){

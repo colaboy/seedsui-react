@@ -1,3 +1,4 @@
+//Dialog
 (function(window,document,undefined){
     window.Dialog=function(wrapper,params){
         /*=========================
@@ -203,6 +204,9 @@
             s.target=e.target;
 
             if(s.params.onClick)s.params.onClick(s);
+        }
+        s.setOnClick=function(fn){
+            s.params.onClick=fn;
         }
         s.onClickMask=function(){
             if(s.params.isClickMaskHide)s.hide();

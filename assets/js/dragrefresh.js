@@ -1,3 +1,4 @@
+//Dragrefresh 下拉刷新
 (function(window,document,undefined){
 	window.Dragrefresh=function(container,params){
 		/*==================
@@ -6,7 +7,7 @@
 		var defaults={
 			"minScrollTop":0,
 			"refreshThreshold":100,
-			"refreshThresholdMax":200,
+			"refreshThresholdMax":100,
 			"refreshHideTop":0,
 			"duration":150,
 			"timeout":5000,
@@ -28,6 +29,9 @@
 		}
 		var s=this;
 		s.params=params;
+		//最大拉动值
+		s.params.refreshThresholdMax=s.params.refreshThreshold+s.params.refreshThresholdMax;
+		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		//创建DOM
 		s.createRefresh=function(){
@@ -62,7 +66,6 @@
 		s.addTransition=function(duration){
 			if(!duration)duration=s.params.duration;
 			s.topContainer.style.webkitTransitionDuration=duration+"ms";
-			//alert(s.topContainer.style.webkitTransitionDuration);
 		};
 		//移除动画
 		s.removeTransition=function(){
@@ -74,7 +77,7 @@
 			if(!deg)deg=s.touches.rotateDeg;
 			s.topContainer.style.WebkitTransform='translate3d(0,' + y + 'px,0) rotate(' + deg + 'deg)';
 		}
-		//旋转
+		//旋转,10W毫秒，旋转4万6千度
 		s.spinner=function(){
 			s.addTransition("100000");
 			s.transform(null,"46000");

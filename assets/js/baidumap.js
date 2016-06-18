@@ -1,14 +1,4 @@
-/*!
- * 百度地图api
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  百度地图api调用
-* 
-*  @class BaiduMap
-*/
+//BaiduMap
 (function(window,document,undefined){
 	
 	window.BaiduMap=function(container,params){

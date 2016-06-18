@@ -1,3 +1,4 @@
+//Shake 摇一摇
 (function(window,document,undefined){
 	window.Shake=function(params){
 		/*=========================

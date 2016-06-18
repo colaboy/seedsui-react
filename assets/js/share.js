@@ -1,14 +1,4 @@
-/*!
- * 社会化分享
- * @version 1.0.0
- * @author WangMingzhu
- */
-
-/**
-*  获取设备信息
-* 
-*  @class Share
-*/
+//Share 社会化分享
 (function(window,document,undefined){
 	
 	window.Share=function(params){

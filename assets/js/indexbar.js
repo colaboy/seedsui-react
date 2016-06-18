@@ -1,3 +1,4 @@
+//Indexbar
 (function(window,document,undefined){
 	window.Indexbar=function(container,params){
 		/*=========================
