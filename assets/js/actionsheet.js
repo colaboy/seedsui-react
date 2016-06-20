@@ -15,8 +15,8 @@
 			data:[]
 			/*
             Callbacks:
-            option.onClick:function(Alert)
-			onClickCancel:function(Alert)
+            option.onClick:function(Actionsheet)
+			onClickCancel:function(Actionsheet)
 			*/
 		}
 		params=params||{};
@@ -41,15 +41,9 @@
 
         	actionsheet.group=document.createElement("div");
         	actionsheet.group.setAttribute("class",s.params.groupClass);
+        	
+        	s.updateData(actionsheet);
 
-        	actionsheet.options=[];
-        	for(var i=0,dat;dat=s.params.data[i++];){
-				var option=document.createElement("a");
-				option.innerHTML=dat.text;
-				option.onClick=dat.handler;
-				actionsheet.options.push(option);
-				actionsheet.group.appendChild(option);
-			}
 			actionsheet.appendChild(actionsheet.group);
 			//创建取消按钮
 			if(s.params.buttonCancel){
@@ -61,6 +55,17 @@
 			}
 			return actionsheet;
         }
+        s.updateData=function(actionsheet){
+        	actionsheet.group.innerHTML="";
+        	actionsheet.options=[];
+        	for(var i=0,dat;dat=s.params.data[i++];){
+				var option=document.createElement("a");
+				option.innerHTML=dat.text;
+				option.onClick=dat.handler;
+				actionsheet.options.push(option);
+				actionsheet.group.appendChild(option);
+			}
+        }
         s.create=function(){
         	s.mask=s.createMask();
         	s.actionsheet=s.createActionsheet();
@@ -68,6 +73,12 @@
         	s.container.appendChild(s.actionsheet);
         }
         s.create();
+        //设置数据
+        s.setData=function(data){
+        	s.params.data=data;
+        	if(s.actionsheet)s.updateData(s.actionsheet);
+        	else s.createActionsheet();
+        }
 
 		/*================
 		Method
@@ -140,6 +151,7 @@
         	var options=s.actionsheet.options;
         	for(var i=0,opt;opt=options[i++];){
         		if(opt==s.target){
+        			//Callback
         			opt.onClick(s);
         			return;
         		}
@@ -151,7 +163,7 @@
         	}
         	s.hide();
 		};
-		s.onClickMask=function(){
+		s.onClickMask=function(e){
 			if(s.params.isClickMaskHide)s.hide();
 		}
 		s.onTransitionEnd=function(e){

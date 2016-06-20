@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>form-fontcount</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+        <header>
+            <div class="titlebar">
+                <a href="javascript:back()" class="left">
+                    <button class="button height32 radius4 grayscale outline">取消</button>
+                </a>
+                <h1 class="text-center">文字计数</h1>
+                <a class="right">
+                    <button class="button height32 radius4 warn">发布</button>
+                </a>
+            </div>
+        </header>
+        <article>
+            <div class="input-box radius4 margin8">
+                <textarea data-fontcounter="description1" placeholder="请输入评论信息" data-rule="required maxlength:10"></textarea>
+            </div>
+            <p data-fontcounter-for="description1" class="margin8 text-right"></p>
+        </article>
+
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!-- <script src="../plugin/exmobi/exmobi.js"></script> -->
+    <script>
+        //数字计数器
+        function listenerFontcount(){
+            var fc=new FontCounter({
+                "onInput":function(e){
+                    //console.log("输入中");
+                },
+                "onInputOut":function(e){
+                    //console.log("超过数字限制时");
+                    var input=e.target;
+                    input.forContainer.innerHTML=Math.round(input.maxlength-input.value.length);
+                    input.forContainer.classList.add("color-tip");
+                },
+                "onInputIn":function(e){
+                    //console.log("没有超过数字限制时");
+                    var input=e.target;
+                    input.forContainer.innerHTML="";
+                    input.forContainer.classList.remove("color-tip");
+                }
+            });
+        }
+        listenerFontcount();
+        //定义exmobi返回
+        function back(){history.go(-1)}
+    </script>
+</body>
+</html>
