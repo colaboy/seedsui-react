@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>scrollpicker</title>
+	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+	.citycol{
+		width:33%;
+	}
+	.citycol:nth-child(2){
+		width:34%;
+	}
+	</style>
+</head>
+
+<body ontouchstart="">
+	<header>
+		<div class="titlebar">
+	        <a href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>日期选择器</h1>
+	    </div>
+	</header>
+	<article>
+		<a class="button block bg-1 margin8" onclick="openDate()">日期</a>
+		<a class="button block bg-2 margin8" onclick="openTime()">时间</a>
+		<a class="button block bg-3 margin8" onclick="openDateTime()">日期时间</a>
+		<div class="card padding8"><p id="result">结果</p></div>
+	</article>
+	<!--SeedsUI-->
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+    /*===========
+    日期
+    =============*/
+    //初始化数据
+    var date = new Date();
+    var years=[];
+    years.current=date.year();
+    years.unit="年";
+    years.default=years.current+years.unit;
+    for(var y=years.current-5;y<=years.current+5;y++){
+    	years.push({"key":y,"value":y+years.unit});
+    }
+    var months=[];
+    months.current=date.month();
+    months.unit="月";
+    months.default=months.current+months.unit;
+    for(var m=1;m<=12;m++){
+    	months.push({"key":m,"value":m+months.unit});
+    }
+    var days=[];
+    days.current=date.day();
+    days.unit="日";
+    days.default=days.current+days.unit;
+    for(var d=1;d<=date.days();d++){
+    	days.push({"key":d,"value":d+days.unit});
+    }
+    function replaceDays(maxDay){
+    	days.length=0;
+    	console.log(days.unit);
+    	for(var d=1;d<=maxDay;d++){
+	    	days.push({"key":d,"value":d+days.unit});
+	    }
+    }
+    //滑动面板初始化
+    var dateSp=new Scrollpicker({
+    	"onClickDone":function(e){
+    		//获得全部选中项
+    		//console.log(e.activeOptions);
+    		//打印值
+    		var activeText="";
+    		e.activeOptions.forEach(function(n,i,a){
+    			activeText+=n["value"]+",";
+    		});
+    		document.getElementById("result").innerHTML="您选中的值为："+activeText;
+    		e.hide();
+    	},
+    	"onScrollEnd":function(e){
+    		if(e.activeSlotIndex!=2){
+    			var year=e.activeOptions[0]["key"];
+				var month=e.activeOptions[1]["key"];
+				var maxDay=date.days(year,month);
+				replaceDays(maxDay);//更新总天数
+				renderDay();//渲染天
+    		}
+    	}
+    });
+    function renderDay(){
+		dateSp.mergeSlot(2,days);//修改第三项
+	}
+
+    //添加数据
+    dateSp.addSlot(years,'',years.default);
+    dateSp.addSlot(months,'',months.default);
+    dateSp.addSlot(days,'',days.default);
+
+    //打开函数
+    function openDate(){
+    	dateSp.show();
+    }
+    //时间
+    function openTime(){
+
+    }
+    //日期时间
+    function openDateTime(){
+
+    }
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

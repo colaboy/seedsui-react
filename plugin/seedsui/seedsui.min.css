@@ -7084,6 +7084,9 @@ input[type="radio"][disabled]:checked,
 .scrollpicker-slot li.active {
   color: #333333;
 }
+.scrollpicker-slot.lock li.active {
+  color: #aaaaaa;
+}
 .scrollpicker-layer-frame {
   border-color: #e6e6e6;
 }

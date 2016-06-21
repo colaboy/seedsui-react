@@ -16,6 +16,7 @@
             layerFrameClass:"scrollpicker-layer-frame",
             slotsClass:"scrollpicker-slots",
             slotClass:"scrollpicker-slot",
+            lockClass:"lock",
             slotActiveClass:"active",
             slotListActiveClass:"active",
             cellHeight:44,
@@ -162,6 +163,9 @@
             slot.values=values;
             slot.defaultValue=defaultValue;
             slot.col=s.slots.col;
+            //判断是否有锁定
+            if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
+            else slot.isLock=false;
             //渲染
             s.slots.col++;
             s.renderSlot(slot);
@@ -169,16 +173,26 @@
             //添加到集合里
             s.slots.push(slot);
         }
-        //修改一列
+        //替换一列
         s.replaceSlot=function(col,values,classes,defaultValue){
             //设置属性
             var slot=s.slots[col];
             slot.setAttribute("class",s.params.slotClass+" "+classes);
             slot.values=values;
             slot.defaultValue=defaultValue;
+            //清空此列
+            s.clearSlot(slot);
             //重新渲染
             s.renderSlot(slot);
             if(s.params.isCascade)clearAfterSlot(col);
+        }
+        //修改一列
+        s.mergeSlot=function(col,values){
+            //设置属性
+            var slot=s.slots[col];
+            slot.values=values;
+            //更新此列
+            s.renderSlot(slot);
         }
         //清空下列
         function clearAfterSlot(col){
@@ -192,51 +206,66 @@
                 s.activeOptions[nextCol]=s.params.defaultValues[0];
             }
         }
+        //清空一列
+        s.clearSlot=function(slot){
+            //初始化一列值
+            slot.activeIndex=null;
+            slot.defaultIndex=null;
+        }
         //渲染一列
         s.renderSlot=function(slot){
-            //初始化一列值
             slot.innerHTML="";
-            slot.activeIndex=0;
-            slot.defaultIndex=0;
+            slot["list"]=[];
             var col=slot.col;
             var values=slot.values;
             var defaultValue=slot.defaultValue;
+            //选中项不能超过总项数
+            if(slot.activeIndex && slot.activeIndex>=values.length-1){
+                slot.activeIndex=values.length-1;
+            }
             //渲染
             for(var i=0,rowData;rowData=values[i];i++){
-                //记录默认值项数
-                var li,liClasses;
+                //获得activeIndex
                 if(defaultValue && defaultValue==rowData["value"]){
-                    slot.activeIndex=i;
+                    if(!slot.activeIndex){
+                        slot.activeIndex=i;
+                    }
                     slot.defaultIndex=i;
-                    liClasses="active";
-                    //添加到激活项
-                    s.activeOptions[col]=rowData;
-                }else if(i==0){
-                    liClasses="active";
-                    //添加到激活项
-                    s.activeOptions[col]=rowData;
                 }else{
-                    liClasses="";
+                    if(!slot.activeIndex){
+                        slot.activeIndex=0;
+                    }
+                    slot.defaultIndex=0;
                 }
+
+                //添加到选中项
+                var li,liClasses="";
+                if(i==slot.activeIndex){
+                    liClasses="active";
+                    s.activeOptions[col]=rowData;
+                }
+
                 li=s.createLi(rowData["value"],liClasses);
                 slot.appendChild(li);
+                slot["list"].push(li);
             }
             //更新此列
             s.updateSlot(slot);
         }
         //更新DOM数据，获得所有槽和槽内list列表
         s.updateSlot=function(slot){
-            slot["list"]=[].slice.call(slot.querySelectorAll("li"));
+            //slot["list"]=[].slice.call(slot.querySelectorAll("li"));
             slot["defaultPosY"]=-slot.defaultIndex*s.params.cellHeight;
-            slot["posY"]=slot["defaultPosY"];
+            slot["activePosY"]=-slot.activeIndex*s.params.cellHeight;
+            slot["posY"]=slot["activePosY"];
             slot["minPosY"]=0;
             slot["maxPosY"]=-(slot["list"].length-1)*s.params.cellHeight;
             slot["minBouncePosY"]=s.params.bounceRange;
             slot["maxBouncePosY"]=slot["maxPosY"]-s.params.bounceRange;
-            slot.style.WebkitTransform='translate3d(0px,'+slot["defaultPosY"]+'px,0px)';
+            slot.style.WebkitTransform='translate3d(0px,'+slot["activePosY"]+'px,0px)';
             slot["list"].forEach(function(n,i,arr){
                 n.className="";
-                if(i==slot.defaultIndex){
+                if(i==slot.activeIndex){
                     n.className="active";
                 }
             });
@@ -244,6 +273,7 @@
         s.updateSlots=function(){
             s.slots=[].slice.call(s.container.querySelectorAll("."+s.params.slotClass));
             s.slots.forEach(function(n,i,a){
+                s.clearSlot(n);
                 s.renderSlot(n);
             });
         }
@@ -253,14 +283,14 @@
             if(s.isRendered==false){
                 s.attach();
             }
-            s.mask.style.display="block";
+            s.mask.style.visibility="visible";
             s.mask.style.opacity="1";
             s.container.style.WebkitTransform='translate3d(0px,0px,0px)';
         }
         //隐藏
         s.hide=function(){
             s.mask.style.opacity="0";
-            s.mask.style.display="none";
+            s.mask.style.visibility="hidden";
             s.container.style.WebkitTransform='translate3d(0px,100%,0px)';
         }
         //重置
@@ -461,6 +491,7 @@
             if(s.params.onScrollStart)s.params.onScrollStart(s);
         }
         s.onTouchMove=function(e){
+            if(s.activeSlot.isLock)return;
             s.touches.currentY=e.touches[0].clientY;
             s.touches.diffY=s.touches.startY-s.touches.currentY;
             s.activeSlot.moveY=s.activeSlot.posY-s.touches.diffY;
@@ -476,6 +507,7 @@
             if(s.params.onScroll)s.params.onScroll(s);
         }
         s.onTouchEnd=function(e){
+            if(s.activeSlot.isLock)return;
             //设置当前坐标值
             s.activeSlot.posY=s.activeSlot.moveY;
             //计算拖动时间
