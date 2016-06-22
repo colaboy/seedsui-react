@@ -16,11 +16,13 @@
 	    s.params=params;
 	    //Expires
 	    s.expires;
+	    //Date
+	    var date=new Date();
 		if((!s.params.expires=="today" || s.params.expires==0) && typeof s.params.expires=="number"){
 			return;
 		}
 		s.getExpires=function(){
-			s.expires=DateUtil.format(DateUtil.expires(s.params.expires));
+			s.expires=date.expires(s.params.expires);
 		}
 		s.getExpires();
 		//URL
@@ -149,8 +151,10 @@
 		s.initData=function(){
 			var cache=JSON.parse(DB.get("weatherJson"));
 			var cacheExpires=DB.get("weatherJson_expires");
-			var now=DateUtil.format(DateUtil.todayNow());
-			if(!cache || cache.status!="success" || cacheExpires<=now){
+			//var now=date.format(date.datetime());
+			console.log(date);
+			console.log(cacheExpires);
+			if(!cache || cache.status!="success" || cacheExpires<=date){
 				console.log("不读缓存");
 				s.loadData();
 				return;
@@ -200,7 +204,7 @@
 		    		"temprature":otherTemprature,
 		    		"week":otherWeek
 		    	}
-				/*if (6 < DateUtil.hour() < 18) {
+				/*if (6 < date.hour() < 18) {
 					s.otherDaysEl[i].querySelector("i").setAttribute("class",s.parseIcon(json.results[0].weather_data[i].dayPictureUrl));
 				}else{
 					s.otherDaysEl[i].querySelector("i").setAttribute("class",s.parseIcon(json.results[0].weather_data[i].dayPictureUrl));

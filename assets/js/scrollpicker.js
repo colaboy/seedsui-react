@@ -454,7 +454,7 @@
             s.params.onClickCancel(s);
         }
         //添加和删除取消和确定按钮点击
-        s.addOnClickDone=function(callback){
+        s.setOnClickDone=function(callback){
             s.params.onClickDone=callback;
             s.headerDone.addEventListener("click",onClickDoneCallback,false);
         }
@@ -466,7 +466,7 @@
             s.target=e.target;
             s.params.onClickDone(s)
         };
-        s.addOnClickCancel=function(callback){
+        s.setOnClickCancel=function(callback){
             s.params.onClickCancel=callback;
             s.headerCancel.addEventListener("click",onClickCancelCallback,false);
         }
