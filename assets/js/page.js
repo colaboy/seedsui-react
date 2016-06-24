@@ -137,6 +137,10 @@
 		//关窗函数
 		s.close=function(pageId,animation){
 			var page=document.querySelector(pageId);
+			if(animation){
+				page.setAttribute("data-animation",animation);
+				s.update();
+			}
 			//删除对应的历史记录
 			s.removeHistory(pageId);
 			//隐藏Page
@@ -146,9 +150,12 @@
 			if(s.params.onCloseStart)s.params.onCloseStart(s);
 		}
 		//开窗函数
-		s.open=function(pageId){
-			console.log(pageId);
+		s.open=function(pageId,animation){
 			var page=document.querySelector(pageId);
+			if(animation){
+				page.setAttribute("data-animation",animation);
+				s.update();
+			}
 			//添加历史记录，并修改浏览器地址
 			s.addHistory(pageId);
 			//显示Page
@@ -188,7 +195,6 @@
         s.onClickBtn=function(e){
     		s.target=e.target;
 			s.pageId=s.target.getAttribute("href");
-			/*if(!isHasHistory)return;*/
 			s.open(s.pageId);
 			e.preventDefault();
 		}

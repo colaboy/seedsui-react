@@ -29,7 +29,6 @@
             <ul class="grid album" data-col="3" id="photoshow"></ul>
         </article>
     
-    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
@@ -63,9 +62,14 @@
             }
         };
     };
+    var photoshow=document.getElementById("photoshow");
     fileSelect("#takePicture",function(path){
         if(path){
-    	   $("#photoshow").append('<li><a style="background-image: url('+path+')"></a></li>');
+            var li=document.createElement("li");
+            var a=document.createElement("a");
+            a.setAttribute("style","background-image: url("+path+")");
+            li.appendChild(a);
+            photoshow.insertBefore(li,photoshow.childNodes[0]);
         }
     });
     //定义exmobi返回

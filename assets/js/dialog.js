@@ -13,7 +13,7 @@
             duration:"300",
             isClickMaskHide:true
             /*callbacks
-            onClick:function(this)
+            onClick:function(Dialog)
             */
         }
         params=params||{};

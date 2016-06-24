@@ -428,19 +428,6 @@
         s.detach=function(event){
             s.events(true);
         }
-        s.touches={
-            startX:0,
-            startY:0,
-            currentX:0,
-            currentY:0,
-            endX:0,
-            endY:0,
-            startTimeStamp:0,
-            duration:0,
-            diffX:0,
-            diffY:0,
-            direction:null
-        };
         function preventDefault(e){
             e.preventDefault();
         }
@@ -478,6 +465,19 @@
             s.target=e.target;
             s.params.onClickCancel(s)
         };
+        s.touches={
+            startX:0,
+            startY:0,
+            currentX:0,
+            currentY:0,
+            endX:0,
+            endY:0,
+            startTimeStamp:0,
+            duration:0,
+            diffX:0,
+            diffY:0,
+            direction:null
+        };
         //触摸事件
         s.onTouchStart=function(e){
             //s.layer.addEventListener("touchmove",preventDefault,false);
@@ -508,6 +508,14 @@
         }
         s.onTouchEnd=function(e){
             if(s.activeSlot.isLock)return;
+            //判断是否是tap
+            s.touches.endX=e.changedTouches[0].clientX;
+            s.touches.endY=e.changedTouches[0].clientY;
+            s.touches.diffX=s.touches.startX-s.touches.endX;
+            s.touches.diffY=s.touches.startY-s.touches.endY;
+            if(Math.abs(s.touches.diffX) < 6 && Math.abs(s.touches.diffY) < 6 ){
+                return;
+            }
             //设置当前坐标值
             s.activeSlot.posY=s.activeSlot.moveY;
             //计算拖动时间

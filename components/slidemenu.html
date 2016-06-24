@@ -3,37 +3,35 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
-	<title>shake</title>
+	<title>slidemenu</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
 <body ontouchstart="">
 	<header>
-	  <div class="titlebar">
-	    <a href="javascript:back()">
-            <i class="icon icon-arrowleft"></i>
-        </a>
-	    <h1>摇一摇</h1>
-	  </div>
+		<div class="titlebar">
+	        <a href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>滑动菜单</h1>
+	    </div>
 	</header>
 	<article>
-		<div class="card padding8" id="shakecard">用力摇一摇你手机</div>
+		<ul class="list">
+			<li>
+                <div class="justify-content">
+                    <p>Agile Lite轻量级HTML5框架介绍</p>
+                    <small>Agile Lite是一个基于HTML5+CSS3+JS的移动前端框架</small>
+                </div>
+            </li>
+		</ul>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-	
-	
-	window.onload=function(){
-		var sk=new Shake({
-			"onShook":function(e){
-				document.getElementById("shakecard").innerHTML="摇动了";
-			}
-		});
-	}
-	//定义exmobi返回
-	function back(){history.go(-1);}
+		//定义exmobi返回
+		function back(){history.go(-1);}
 	</script>
 </body>
 </html>

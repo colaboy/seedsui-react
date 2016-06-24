@@ -28,38 +28,55 @@
 			</ul>
 		</article>
 
-	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
 		//生成选择图片字符串
 		function getImgText(path){
-			return '<li><a style="background-image: url('+path+')"><span class="close"><i class="icon icon-close" onclick="removeCell(this)"></i></span></a></li>';
+			var li=document.createElement("li");
+			var a=document.createElement("a");
+			a.setAttribute("style","background-image: url("+path+")");
+			var span=document.createElement("span");
+			span.setAttribute("class","close");
+			var i=document.createElement("i");
+			i.setAttribute("class","icon icon-close");
+			i.setAttribute("onclick","removeCell(this)");
+			span.appendChild(i);
+			a.appendChild(span);
+			li.appendChild(a);
+			return li;
+			/*return '<li><a style="background-image: url('+path+')"><span class="close"><i class="icon icon-close" onclick="removeCell(this)"></i></span></a></li>';*/
 		}
+		var imagelist=document.getElementById("imagelist");
 		//相册选择
 		function imageChoiceCallback(selectPaths){
-			var selectImgs="";
 			var selectPaths = this.getFilePaths();//获取照片列表
 			for(var i=0;i<selectPaths.length;i++){
 				var url = selectPaths[i];
-				selectImgs+=getImgText(url);
+				var selectImg=getImgText(url);
+				imagelist.parentNode.insertBefore(selectImg,imagelist.childNodes[0]);
 			}
-			$("#imagelist").prepend(selectImgs);
+			
+			//$("#imagelist").prepend(selectImgs);
 		}
 		//拍照
 		function cameraCallback(){
 			var selectImg=getImgText(this.value);//获得拍照返回的路径
-			$("#imagelist").prepend(selectImg);
+			imagelist.parentNode.insertBefore(selectImg,imagelist.childNodes[0]);
+			//$("#imagelist").prepend(selectImg);
 		}
 		//调用系统相册
 		function albumCallback(path){
 			var selectImg=getImgText(path);
-			$("#imagelist").prepend(selectImg);
+			imagelist.parentNode.insertBefore(selectImg,imagelist.childNodes[0]);
+			//$("#imagelist").prepend(selectImg);
 		}
 		//移除grid-cell
 		function removeCell(thisobj){
-			$(thisobj).parent().parent().parent().remove();
+			var img=thisobj.parentNode.parentNode.parentNode;
+			img.parentNode.removeChild(img);
+			//$(thisobj).parent().parent().parent().remove();
 		}
 		//定义exmobi返回
 		function back(){Exmobi.close();}

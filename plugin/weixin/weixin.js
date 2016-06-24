@@ -12,6 +12,7 @@
  *  @class Weixin
  */
 (function(window, document, undefined) {
+	window.Weixin=function(appid,secret){
 		var s=this;
 		//Date
 		var date=new Date();

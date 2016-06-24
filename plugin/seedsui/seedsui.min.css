@@ -2794,7 +2794,7 @@ select {
   display: inline-block;
   border-width: 1px;
   border-style: solid;
-  text-align: left;
+  /* text-align:left; */
 }
 input[type="text"],
 input[type="password"],
@@ -6172,6 +6172,9 @@ input[type="submit"].radiusround,
 }
 .rl {
   direction: rtl;
+}
+.vmiddle {
+  vertical-align: middle;
 }
 .text-center {
   text-align: center;

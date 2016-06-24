@@ -29,6 +29,7 @@
 // @koala-prepend "prompt.js"
 // @koala-prepend "dialog.js"
 // @koala-prepend "scrollpicker.js"
+// @koala-prepend "scrollpicker.date.js"
 // @koala-prepend "tree.js"
 // @koala-prepend "indexbar.js"
 // @koala-prepend "loading.js"

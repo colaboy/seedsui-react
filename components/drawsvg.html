@@ -7,17 +7,22 @@
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     
 <style>
-	.phone-solid {
+	#phone-solid{
+		opacity:0;
+		-webkit-transition-property:opacity;
+		-webkit-transition-duration:1s;
 		width:100%;
 		text-align: center;
 		position: absolute;
 		top:20px;
 		left:0;
-		display: none;
 		height:100%;
 	}
-	.phone-solid .phone {
+	#phone-solid .phone {
 		width:220px;
+		-webkit-transform:scale(1);
+		-webkit-transition-property:scale;
+		-webkit-transition-duration:5s;
 	}
 </style>
 </head>
@@ -63,36 +68,7 @@
 			<path fill="none" id="phone-line6" stroke="#50A6FC" stroke-width="5" stroke-miterlimit="10" d="M502.45,795.55c18,0,32.6,14.6,32.6,32.6
 				s-14.6,32.6-32.6,32.6c-18,0-32.6-14.6-32.6-32.6S484.45,795.55,502.45,795.55z"/>
 		</svg>
-		<!-- <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 	width="1000px" height="1000px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
-			<g>
-				<path fill="none" stroke="#231F20" stroke-width="11.6787" stroke-miterlimit="10" d="M550.6,157.7c-48.9,4.1-35.4,29.7-35.4,29.7
-					c31.1,62.8,80.3,108.2,152,112.8C667.2,300.2,685.5,152,550.6,157.7z"/>
-				<path fill="none" stroke="#231F20" stroke-width="11.6787" stroke-miterlimit="10" d="M686.4,575.5c0.4-42-15.6-81.6-45-111.6
-					c-27.2-27.7-64-44.2-104.1-46.4l-12.6-0.2l-148.3,1l-3.7,147.4l-0.1,14c0.2,5.6,0.7,11.1,1.5,16.6c2.4,17,7.3,33.2,14.8,48.3
-					c7.2,14.6,16.7,27.9,28.2,39.6c29.4,30,68.7,46.7,110.7,47.1c42,0.4,81.7-15.6,111.6-45C669.3,656.8,686,617.5,686.4,575.5z"/>
-				<path fill="none" stroke="#231F20" stroke-width="11.6787" stroke-miterlimit="10" d="M629.9,335.2
-					c-246.7-19.6-190.1-319.1,49-289.1c-118.7-16.9-195.4,16.4-234.7,68.1c-10.8-10.4-31.3-19.6-69.2-22.8
-					C83.8,79.1,123.3,399.3,123.3,399.3c128.2-8.2,223-76.8,290-177.2c5.8,73.8,60.5,146.1,156.7,163.7c93,17,122.8,97.2,131.5,152.9
-					c2.9,13.1,4.8,26.4,4.6,40.1c-0.5,47.1-19.2,91.2-52.8,124.1c-22,21.6-49,36.1-78.1,43.9C823.1,738.5,823.5,350.6,629.9,335.2z"/>
-			</g>
-			<path fill="none" stroke="#231F20" stroke-width="7.7858" stroke-miterlimit="10" d="M261.7,821.9c0,0-22.7,0-45.6,0
-				c-25.8,0-32.1,33.1-3.9,40.4c0,0,23.4,5.9,31.1,8.1c32,6.8,27.7,46.4-3.9,46.4c-35.5,0-49.1,0-49.1,0"/>
-			<path fill="none" stroke="#231F20" stroke-width="7.7099" stroke-miterlimit="10" d="M376.6,870.8c-1.2,26.2-22.8,47.2-49.3,47.2
-				c-27.3,0-49.4-22.1-49.4-49.4c0-27.3,22.1-49.4,49.4-49.4c16.3,0,30.7,7.9,39.7,20l-79.6,56.2"/>
-			<path fill="none" stroke="#231F20" stroke-width="7.7099" stroke-miterlimit="10" d="M485.4,870.8c-1.2,26.2-22.8,47.2-49.3,47.2
-				c-27.3,0-49.4-22.1-49.4-49.4c0-27.3,22.1-49.4,49.4-49.4c16.3,0,30.7,7.9,39.7,20l-79.6,56.2"/>
-			<path fill="none" stroke="#231F20" stroke-width="7.7099" stroke-miterlimit="10" d="M585.5,769.6c0,0,0,79,0,103.8
-				c0,24.8-20,45-45,45c-32.4,0-45.1-28.6-45.1-49.8c0-21.2,10.7-49.4,44.1-49.4c21.6-0.3,32.2,15.3,32.2,15.3"/>
-			<path fill="none" stroke="#231F20" stroke-width="7.7858" stroke-miterlimit="10" d="M671,821.9c0,0-22.7,0-45.6,0
-				c-25.8,0-32.1,33.1-3.9,40.4c0,0,23.4,5.9,31.1,8.1c32,6.8,27.7,46.4-3.9,46.4c-35.5,0-49.1,0-49.1,0"/>
-			<path fill="none" stroke="#231F20" stroke-width="27.2503" stroke-miterlimit="10" d="M779.2,816.5c0,0,0,39.8,0,65.1
-				s-22.5,28.5-28.5,28.5c-6,0-28.5-3.2-28.5-28.5s0-65.1,0-65.1"/>
-			<line fill="none" stroke="#231F20" stroke-width="27.2503" stroke-miterlimit="10" x1="819.1" y1="816.5" x2="819.1" y2="921.6"/>
-			<line fill="none" stroke="#231F20" stroke-width="29.1968" stroke-linecap="round" stroke-miterlimit="10" x1="819.1" y1="785.1" x2="819.1" y2="785.8"/>
-		</svg>
- -->
-		<div class="phone-solid">
+		<div id="phone-solid">
 			<img src="../img/components/iphone5.png" class="phone">
 		</div>
 	</article>
@@ -123,16 +99,24 @@
 		segment5.draw("0%", "0%", 1, {delay:1});
 		segment6.draw("0%", "0%", 1, {delay:1, callback: showPhone});
 	}
-
+	var phone=document.querySelector(".phone");
+	var phoneSolid=document.getElementById("phone-solid");
+	phoneSolid.addEventListener("webkitTransitionEnd",transitionEnd,false);
+	var phoneOutline=document.getElementById("phoneOutline");
 	function showPhone(){
-		var zoomIn = function(){
-			$(".phone").css({
-				WebkitTransition:"all 5s",
-				WebkitTransform:"scale(50)"
-			});
+		/*var zoomIn = function(){
+			phone.style.webkitTransition="all 5s";
+			phone.style.WebkitTransform="scale(50)";
 		}
 		$(".phone-solid").fadeIn(1000,zoomIn);
-		$("#phoneOutline").fadeOut();
+		$("#phoneOutline").fadeOut();*/
+		phoneSolid.style.opacity="1";
+	}
+	function transitionEnd(e){
+		if(e.target==phoneSolid){
+			phone.style.WebkitTransform="scale(50)";
+		}
+		console.log(e.target);
 	}
 
 	function back(){history.go(-1);}

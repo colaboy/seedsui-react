@@ -18,103 +18,51 @@
 	    </div>
 	</header>
 	<article>
-		<a class="button block bg-1 margin8" onclick="openDateTime()">日期时间</a>
-		<div class="card padding8"><p id="result">结果</p></div>
+		<p class="color-placeholder text-center" style="margin-top:8px;">起止时间</p>
+        <div class="input-box margin8">
+            <input type="text" class="text-center" placeholder="开始时间" readonly="readonly" id="time1"/>
+            <small class="margin8 inline-block vmiddle">到</small>
+            <input type="text" class="text-center" placeholder="结束时间" readonly="readonly" id="time2"/>
+        </div>
 	</article>
 	<!--SeedsUI-->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    /*===========
-    日期
-    =============*/
-    //初始化数据
-    var date = new Date();
-    var years=[];
-    years.current=date.year();
-    years.unit="年";
-    years.default=years.current+years.unit;
-    for(var y=years.current-5;y<=years.current+5;y++){
-    	years.push({"key":y,"value":y+years.unit});
-    }
-    var months=[];
-    months.current=date.month();
-    months.unit="月";
-    months.default=months.current+months.unit;
-    for(var m=1;m<=12;m++){
-    	months.push({"key":m,"value":m+months.unit});
-    }
-    var days=[];
-    days.current=date.day();
-    days.unit="日";
-    days.default=days.current+days.unit;
-    for(var d=1;d<=date.days();d++){
-    	days.push({"key":d,"value":d+days.unit});
-    }
-    function replaceDays(maxDay){
-    	days.length=0;
-    	for(var d=1;d<=maxDay;d++){
-	    	days.push({"key":d,"value":d+days.unit});
-	    }
-    }
-
-    var hours=[];
-    hours.unit="时";
-    hours.default=date.hour()+hours.unit;
-    for(var h=1;h<=24;h++){
-        hours.push({"key":h,"value":h+hours.unit});
-    }
-    var seconds=[];
-    seconds.unit="分";
-    seconds=[{"key":0,"value":"0"+seconds.unit},{"key":30,"value":"30"+seconds.unit}];
-
-    //滑动面板初始化
-    var datetimeSp=new Scrollpicker({
-    	"onClickDone":function(e){
-    		//获得全部选中项
-    		//console.log(e.activeOptions);
-    		//打印值
-    		var activeText="";
-    		e.activeOptions.forEach(function(n,i,a){
-    			activeText+=n["value"]+",";
-    		});
-    		document.getElementById("result").innerHTML="您选中的值为："+activeText;
-    		e.hide();
-    	},
-        "onClickCancel":function(e){
-            //清空所有数据
-            e.reset();
-            //重新添加数据
-            addSlot();
-            e.hide();
-        },
-    	"onScrollEnd":function(e){
-    		if(e.activeSlotIndex!=2){
-    			var year=e.activeOptions[0]["key"];
-				var month=e.activeOptions[1]["key"];
-				var maxDay=date.days(year,month);
-				replaceDays(maxDay);//更新总天数
-				renderDay();//渲染天
-    		}
-    	}
+    var timeStart=new SpDate({
+        "dateType":"datetime",
+        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
+        "yearClass":"text-center",
+        "monthClass":"text-center",
+        "dayClass":"text-center",
+        "hourClass":"text-center",
+        "minuteClass":"text-center",
     });
-    function renderDay(){
-		datetimeSp.mergeSlot(2,days);//修改第三项
-	}
-
-    //添加数据
-    function addSlot(){
-        datetimeSp.addSlot(years,'text-center',years.default);
-        datetimeSp.addSlot(months,'text-center',months.default);
-        datetimeSp.addSlot(days,'text-center',days.default);
-        datetimeSp.addSlot(hours,'text-center',hours.default);
-        datetimeSp.addSlot(seconds,'text-center');
+    document.getElementById("time1").onclick=function(){
+        var input=this;
+        timeStart.setOnClickDone(function(e){
+            input.value=e.activeText;
+            e.hide();
+        });
+        timeStart.show();
     }
-    addSlot();
-    //打开函数
-    function openDateTime(){
-    	datetimeSp.show();
+    var timeEnd=new SpDate({
+        "dateType":"datetime",
+        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
+        "yearClass":"text-center",
+        "monthClass":"text-center",
+        "dayClass":"text-center",
+        "hourClass":"text-center",
+        "minuteClass":"text-center",
+    });
+    document.getElementById("time2").onclick=function(){
+        var input=this;
+        timeEnd.setOnClickDone(function(e){
+            input.value=e.activeText;
+            e.hide();
+        });
+        timeEnd.show();
     }
 	//定义exmobi返回
 	function back(){history.go(-1);}

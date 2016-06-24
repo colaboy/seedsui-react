@@ -16,7 +16,7 @@
             </div>
         </header>
         <article>
-            <ul class="grid" data-rowspace="8">
+            <ul class="grid" data-rowspace="8" id="grid">
                 <li>
                     <a> <i class="icon icon-android"></i>
                     </a>
@@ -2364,21 +2364,24 @@
                 </li>
             </ul>
         </article>
-    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 
     <script>
-        $('.grid li>a').on("click",function(){
-            if(!this.alert){
-                this.alert=new Alert($(this).find("i").attr("class"));
-                this.alert.show();
+        var alert=new Alert();
+        document.getElementById("grid").addEventListener("click",function(e){
+            var target=e.target;
+            if(target.tagName=="A"){
+                var icon=target.querySelector("i");
+            }else if(target.tagName=="I"){
+                var icon=target;
             }else{
-                this.alert.show();
+                return;
             }
-            return false;
-        });
+            alert.setText(icon.className);
+            alert.show();
+        },false);
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

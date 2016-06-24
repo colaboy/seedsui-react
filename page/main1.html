@@ -108,22 +108,14 @@
             </ul>
 		</article>
 	
-    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <script src="../plugin/exmobi/exmobi.js"></script>
+    <!-- <!--<script src="../plugin/exmobi/exmobi.js"></script>--> -->
     <script type="text/javascript">
 		window.addEventListener("load",function(e){
 			//广告轮播
 			var carrousel = new Slider('#carousel1', {
 				pagination: '.slider-pagination'
-			});
-            /*var carrousel=new Slider("#carousel1",{
-                pagination: '#carousel1 .slider-pagination'
-            });*/
-			/*侧边栏*/
-			$("#asidemenu,.section_container_mask").click(function(){
-				$("#aside_container").toggleClass("active");
 			});
 		},false);
 		//定义exmobi返回

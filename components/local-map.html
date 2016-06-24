@@ -115,7 +115,6 @@
 		<div class="loading"></div>
 	</div>
 
-	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
@@ -143,13 +142,13 @@
 	        dateInput = document.getElementById('expireDate'),
 	        today = new Date();
 	        dateInput.valueAsDate = today;
-	        $(dateInput).change(function(){
+	        dateInput.onchange=function(){
 	            var inputDate = dateInput.valueAsDate;
 	            if (inputDate > today){
 	                dateToast.show();
 	                dateInput.valueAsDate = today;
 	            }
-	        });  
+	        };  
 	    }
 	    /*=============
 		遮罩

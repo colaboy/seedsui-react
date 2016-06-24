@@ -4,7 +4,7 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>scrollpicker-date</title>
+	<title>scrollpicker-city</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
@@ -14,43 +14,37 @@
 	        <a href="javascript:back()">
 	            <i class="icon icon-arrowleft"></i>
 	        </a>
-	        <h1>日期选择器</h1>
+	        <h1>地区选择器</h1>
 	    </div>
 	</header>
 	<article>
         <div class="input-box margin8">
-            <input type="text" class="text-center" placeholder="请选择日期" readonly="readonly" id="time1"/>
-        </div>
-        <div class="input-box margin8">
-            <input type="text" class="text-center" placeholder="请选择时间" readonly="readonly" id="time2"/>
+            <input type="text" placeholder="请选择地区" readonly="readonly" id="area1"/>
         </div>
 	</article>
+    <!--数据-->
+    <script src="../plugin/data/data.city.js"></script>
 	<!--SeedsUI-->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../assets/js/scrollpicker.city.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    var spDate=new SpDate({
-        "viewType":"date",
+    var spCity=new SpCity({
+        viewType:"area",
+        data:citys,
+        provinceClass:"text-center citycol",
+        cityClass:"text-center citycol",
+        areaClass:"text-center citycol"
     });
-    document.getElementById("time1").onclick=function(){
+    console.log(spCity);
+    document.getElementById("area1").onclick=function(){
         var input=this;
-        spDate.setOnClickDone(function(e){
+        spCity.setOnClickDone(function(e){
             input.value=e.activeText;
             e.hide();
         });
-        spDate.show();
-    }
-    var spTime=new SpDate({
-        "viewType":"time",
-    });
-    document.getElementById("time2").onclick=function(){
-        var input=this;
-        spTime.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        spTime.show();
+        spCity.show();
     }
 	//定义exmobi返回
 	function back(){history.go(-1);}

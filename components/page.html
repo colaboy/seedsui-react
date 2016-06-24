@@ -43,7 +43,22 @@
 		  </div>
 		</header>
 		<article>
-			slideLeft
+			<a class="button block margin8 bg-1" href="#page_1_close" data-target="page">进入下一页</a>
+		</article>
+	</section>
+	<!--page1_close-->
+	<section id="page_1_close" data-animation="slideLeft" class="page" style="background-color:#f4f4f4;">
+		<header>
+		  <div class="titlebar">
+		    <a href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1>slideLeft</h1>
+		  </div>
+		</header>
+		<article>
+			<a class="button block margin8 bg-1" href="javascript:closePage('#page_1','none')">关闭上一页</a>
+			<a class="button block margin8 bg-2" href="javascript:closePage('#page_1_close')">关闭此页面</a>
 		</article>
 	</section>
 	<!--page2-->
@@ -164,10 +179,20 @@
 		function openPage(id){
 			singlePage.open(id);
 		}
+		//关闭指定页面
+		function closePage(id,animation){
+			singlePage.close(id,animation);
+		}
 		
 		//var sec=new Page();
 		//定义exmobi返回
-		function back(){history.go(-1);}
+		function back(){
+			if(history){
+				history.go(-1)
+			}else{
+				singlePage.back();
+			}
+		}
 	</script>
 </body>
 </html>
