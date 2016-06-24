@@ -6,14 +6,6 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>scrollpicker</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-	<style type="text/css">
-	.citycol{
-		width:33%;
-	}
-	.citycol:nth-child(2){
-		width:34%;
-	}
-	</style>
 </head>
 
 <body ontouchstart="">
@@ -26,9 +18,9 @@
 	    </div>
 	</header>
 	<article>
-		<a class="button block bg-1 margin8" onclick="openOneSlot()">简单两列</a>
-		<a class="button block bg-2 margin8" onclick="openWeight()">级联更新</a>
-		<div class="card padding8"><p id="result">结果</p></div>
+		<div class="input-box margin8">
+            <input type="text" class="text-center" placeholder="滚动选择器" readonly="readonly" id="sp1"/>
+        </div>
 	</article>
 	<!--SeedsUI-->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
@@ -56,7 +48,7 @@
 	    {'key':'VI','value':'5'},
 	    {'key':'VII','value':'6'},
     ];
-    var sp1=new Scrollpicker({
+    var sp=new Scrollpicker({
     	"onClickDone":function(e){
     		//获得全部选中项
     		//console.log(e.activeOptions);
@@ -77,19 +69,27 @@
     		//console.log(e.activeOption);
     	}
     });
-    function addSlot1(){
-	    sp1.addSlot(nums1,'lock','5');
-	    sp1.addSlot(nums2);
+    function addSlot(){
+	    sp.addSlot(nums1,'lock','5');
+	    sp.addSlot(nums2);
 	}
-	addSlot1();
-    function openOneSlot() {
-    	sp1.show();
+	addSlot();
+	document.getElementById("sp1").onclick=function(e){
+		var input=this;
+		sp.setOnClickDone(function(e){
+            var activeText="";
+    		e.activeOptions.forEach(function(n,i,a){
+    			if(i==e.activeOptions.length-1){
+    				activeText+=n["value"];
+    			}else{
+    				activeText+=n["value"]+"-";
+    			}
+    		});
+    		input.value=activeText;
+    		e.hide();
+        });
+        sp.show();
 	}
-
-	/*=========================
-      级联更新
-      ===========================*/
-    
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>
