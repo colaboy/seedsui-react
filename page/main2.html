@@ -6,9 +6,22 @@
         <meta name="format-detection" content="telephone=no">
         <title>main2</title>
         <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-        <link rel="stylesheet" href="../css/main2.css"/>
+        <style type="text/css">
+        .blockcase li{
+            text-align:left;
+        }
+        .grid.album li > a{
+            min-height:90px;
+        }
+        .blockcase li:nth-child(odd){
+            padding:8px 4px 16px 8px;
+        }
+        .blockcase li:nth-child(even){
+            padding:8px 8px 16px 4px;
+        }
+        </style>
     </head>
-<body ontouchstart="">
+<body ontouchstart="" style="background-color: white;">
 	<header>
 		<div class="titlebar">
 			<a href="javascript:back()">
@@ -18,40 +31,47 @@
 		</div>
 	</header>
 	<article>
-        <div class="modebox mode-area" id="modebox">
-        	<div class="topic">
-        		<img src="../img/main2/banner.jpg" class="width-full"/>
-            	<ul class="introduce">
-            		<li class="title"><div class="dot"></div><label>专题介绍</label></li>
-            		<li>专题介绍内容专题介绍内容专题介绍内容专题介绍内容专题介绍内容专题介绍内容专题介绍内容专题介绍内容</li>
-            		<li class="title"><div class="dot"></div><label>学习资料</label></li>
-            	</ul>
-        	</div>
-        	<div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case1.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
+        <div class="row">
+            <div class="justify box box-middle">
+                <span class="peg"></span>
             </div>
-            <div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case2.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
-            </div>
-            <div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case3.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
-            </div>
-            <div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case4.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
-            </div>
-            <div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case5.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
-            </div>
-            <div class="modecase">
-            	<div class="modecase-img" style="background-image:url(../img/main2/case6.png)"></div>
-                <div class="modecase-title">交通部：沉船救援下一步重点在抽水起浮打捞</div>
-            </div>
+            <div class="justify-content">最新资讯</div>
+            <small class="justify">
+                <a>查看全部</a>
+            </small>
         </div>
+        <ul class="grid album blockcase" data-col="2" data-rowspace="8">
+            <li>
+                <a style="background-image:url(../img/main2/case1.png)"></a>
+                <label class="text-left">沉船救援下一步重点在抽水起浮打捞</label>
+                <small>交通部</small>
+            </li>
+            <li>
+                <a style="background-image:url(../img/main2/case2.png)"></a>
+                <label class="text-left">听听音乐吧</label>
+                <small>烽火音乐</small>
+            </li>
+            <li>
+                <a style="background-image:url(../img/main2/case3.png)"></a>
+                <label class="text-left">听听音乐吧</label>
+                <small>烽火音乐</small>
+            </li>
+            <li>
+                <a style="background-image:url(../img/main2/case4.png)"></a>
+                <label class="text-left">听听音乐吧</label>
+                <small>烽火音乐</small>
+            </li>
+            <li>
+                <a style="background-image:url(../img/main2/case5.png)"></a>
+                <label class="text-left">听听音乐吧</label>
+                <small>烽火音乐</small>
+            </li>
+            <li>
+                <a style="background-image:url(../img/main2/case6.png)"></a>
+                <label class="text-left">听听音乐吧</label>
+                <small>烽火音乐</small>
+            </li>
+        </ul>
 	</article>
 	
 	

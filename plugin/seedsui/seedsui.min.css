@@ -4053,14 +4053,12 @@ input[type=range]::-webkit-slider-thumb {
 }
 .grid li > label {
   display: block;
-  padding: 0 4px;
   margin-top: 8px;
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
-  font-size: 12px;
+  /* font-size:12px; */
   min-height: 16px;
 }
 .grid li > a > img {
@@ -4169,16 +4167,12 @@ input[type=range]::-webkit-slider-thumb {
   text-align: right;
   background-color: transparent;
 }
-.metro-tip + label {
-  padding-right: 32px;
-}
 .grid.metro li > a {
   display: block;
   padding: 12px 8px;
 }
 .grid.metro li > a label {
   display: block;
-  text-align: left;
   margin-top: 10px;
 }
 /*相册展现*/

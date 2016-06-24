@@ -103,7 +103,7 @@
 	    function replaceDays(maxDay){
 	    	s.days=[];
 	    	for(var d=1;d<=maxDay;d++){
-		    	s.days.push({"key":d,"value":d+s.params.ddUnit});
+		    	s.days.push({"key":d,"value":d+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
 
@@ -213,12 +213,16 @@
 	    	datetimeSp.addSlot(s.hours,s.classes.hour,s.defaults.hour);
 	        datetimeSp.addSlot(s.minutes,s.classes.minute,s.defaults.minute);
 	    }
+	    function addDateTime(){
+	    	addDateSlot();
+	    	addTimeSlot()
+	    }
 	    function addSlot(){
 	        switch(s.params.viewType){
 	        	case "date":addDateSlot();break;
 	        	case "month":addMonthSlot();break;
 	        	case "time":addTimeSlot();break;
-	        	case "datetime":addDateSlot(),addTimeSlot();break;
+	        	case "datetime":addDateTime();break;
 	        }
 	    }
 	    addSlot();
