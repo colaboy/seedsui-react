@@ -223,9 +223,6 @@ pre {
 .contentbox {
   box-sizing: content-box;
 }
-.noborder {
-  border: none !important;
-}
 hr {
   border: none;
   clear: both;
@@ -1753,9 +1750,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*----------------photo.less(end)----------------*/
 /*---------------list.less(start)---------------*/
-.indexlist li,
-.list li,
-.timeline li {
+.list li {
   position: relative;
   display: flex;
   display: -webkit-flex;
@@ -1847,8 +1842,7 @@ input[type=range]::-webkit-slider-thumb {
   right: 4px;
 }
 /*底线*/
-.list li,
-.timeline li {
+.list li {
   border-color: inherit;
 }
 .list li {
@@ -1857,6 +1851,10 @@ input[type=range]::-webkit-slider-thumb {
 ul.dotted li,
 ul li.dotted {
   border-style: dotted;
+}
+ul.solid li,
+ul li.solid {
+  border-style: solid;
 }
 ul.noborder li,
 ul li.noborder {
@@ -1872,33 +1870,58 @@ ul.border-content li {
   border-width: 0 0 1px 0;
 }
 /*---------------list.less(end)---------------*/
+.clock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border-style: solid;
+  border-width: 2px;
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-delay: 0;
+}
+.clock-origin {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: 50%;
+  left: 50%;
+  margin-left: -2px;
+  margin-top: -2px;
+  border-radius: 100%;
+}
+.clock-hour,
+.clock-minute {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 1px;
+  -webkit-transform-origin: center bottom;
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: ease;
+  -webkit-transition-duration: inherit;
+  -webkit-transition-delay: inherit;
+}
+.clock-hour {
+  height: 35%;
+}
+.clock-minute {
+  height: 43%;
+}
 /*---------------timeline.less(start)---------------*/
-/*requie photo.less & list.less*/
 .timeline {
   margin-left: 24px;
   padding: 0 18px;
   border-style: solid;
   border-width: 0 0 0 1px;
 }
-.timeline li {
-  position: relative;
-}
-.timeline.border li,
-.timeline.dotted li,
-.timeline li.border,
-.timeline li.dotted {
-  border-width: 0 0 1px 0;
-}
-.timeline .clock,
-.timeline-dot {
+.timeline-badge {
   position: absolute;
-  width: 24px;
-  height: 24px;
   top: 12px;
-  left: -32px;
-}
-.timeline .clock {
-  background-color: #fff;
+  left: -18px;
+  transform: translateX(-50%);
 }
 /*---------------timeline.less(end)---------------*/
 /*---------------indexbar.less(start)---------------*/
@@ -1906,15 +1929,6 @@ ul.border-content li {
 .indexlist {
   position: relative;
   height: 100%;
-}
-/*列表*/
-.indexlist .sliver {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-.indexlist .justify-content {
-  padding-left: 0;
-  padding-right: 0;
 }
 /*Bar*/
 .indexbar {
@@ -3903,46 +3917,6 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 /*---------------gauge.less(end)---------------*/
-.clock {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
-  border-style: solid;
-  border-width: 2px;
-  -webkit-transition-duration: 500ms;
-  -webkit-transition-delay: 0;
-}
-.clock-origin {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  top: 50%;
-  left: 50%;
-  margin-left: -2px;
-  margin-top: -2px;
-  border-radius: 100%;
-}
-.clock-hour,
-.clock-minute {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  width: 2px;
-  margin-left: -1px;
-  border-radius: 1px;
-  -webkit-transform-origin: center bottom;
-  -webkit-transition-property: all;
-  -webkit-transition-timing-function: ease;
-  -webkit-transition-duration: inherit;
-  -webkit-transition-delay: inherit;
-}
-.clock-hour {
-  height: 35%;
-}
-.clock-minute {
-  height: 43%;
-}
 /*----------------------------chat.less(start)----------------------------*/
 .chat {
   padding: 8px;
@@ -5470,8 +5444,8 @@ ul.weather-otherday li {
 .dot {
   display: inline-block;
   border-radius: 100%;
-  height: 4px;
-  width: 4px;
+  height: 10px;
+  width: 10px;
   vertical-align: middle;
 }
 /*标题小标记*/
@@ -5650,6 +5624,7 @@ i,
 }
 /*---------------i.less(end)---------------*/
 /*---------------size.less(start)---------------*/
+/*图标*/
 i.size8,
 .icon.size8 {
   font-size: 8px;
@@ -5718,6 +5693,11 @@ i.size54,
   font-size: 54px;
   width: 54px;
   height: 54px;
+}
+/*时钟*/
+.clock.size24 {
+  width: 24px;
+  height: 24px;
 }
 /*头像*/
 .size32 .photo,
@@ -6639,7 +6619,8 @@ aside {
   border-color: #18b2ed;
   background-color: transparent;
 }
-.button:not(.noclick):active {
+.button:not(.noclick):active,
+.button.active {
   opacity: 0.5;
 }
 /* .button:not(.noclick):active{
@@ -7146,16 +7127,13 @@ input[type="radio"][disabled]:checked,
 }
 /*----------------photo.less(end)----------------*/
 /*----------------list.less(start)----------------*/
-.indexlist li,
 .list,
 .timeline {
   border-color: #e6e6e6;
 }
-.indexlist,
 .list {
   background-color: #ffffff;
 }
-.indexlist:not(.noclick) li:active,
 .list:not(.noclick) li:active {
   background-color: #f4f4f4;
 }

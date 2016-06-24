@@ -1,5 +1,5 @@
 /*---------------list.less(start)---------------*/
-.indexlist li,.list li,.timeline li{
+.list li{
 	position:relative;
 	display:flex;
 	display:-webkit-flex;
@@ -85,14 +85,17 @@
 	right:4px;
 }
 /*底线*/
-.list li,.timeline li{
+.list li{
 	border-color:inherit;
 }
 .list li{
 	border-width:0 0 1px 0;
 }
 ul.dotted li,ul li.dotted{
-	border-style: dotted;
+	border-style:dotted;
+}
+ul.solid li,ul li.solid{
+	border-style:solid;
 }
 ul.noborder li,ul li.noborder{
 	border-width:0;

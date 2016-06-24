@@ -216,7 +216,7 @@ aside {
 	background-color:transparent;
 }
 
-.button:not(.noclick):active{
+.button:not(.noclick):active,.button.active{
 	@{button-active-property}:@button-active-value;
 }
 /* .button:not(.noclick):active{
@@ -688,13 +688,13 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*----------------photo.less(end)----------------*/
 /*----------------list.less(start)----------------*/
-.indexlist li,.list,.timeline{
+.list,.timeline{
 	border-color:@border;
 }
-.indexlist,.list{
+.list{
 	background-color:@list-bg;
 }
-.indexlist:not(.noclick) li:active,.list:not(.noclick) li:active{
+.list:not(.noclick) li:active{
 	background-color:@list-active-bg;
 }
 .list li.noclick:active{

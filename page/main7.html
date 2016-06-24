@@ -8,7 +8,53 @@
 
 		<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 		<link rel="stylesheet" href="../plugin/animate/animate.css">
-		<link rel="stylesheet" href="../css/main7.css"/>
+		<style type="text/css">
+		.timeline-badge{
+			top:25px;
+		} 
+		.top-banner {
+			background-image:url('../img/main7/banner-top.jpg');
+			height:100px;
+			-webkit-background-size: cover;
+		    -moz-background-size: cover;
+		    -o-background-size: cover;
+		    background-size: cover;
+		    position:relative;
+		}
+		.user-info {
+			position:absolute;
+			bottom:-45px;
+			left:25px;
+		}
+		.user-img {
+			/* 
+			border-radius:50px;
+			height:80px;
+			width:80px;
+			-webkit-background-size: cover;
+					    background-size: cover;
+			overflow:hidden; */
+			border:3px #ffffff solid;
+			-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+			float:left;
+			margin-right:10px;
+		}
+		.user-img img {
+			height:90px;
+			width:90px;
+		}
+		.user-name {
+			font-size:20px;
+			color:#ffffff;
+			line-height:50px;
+		}
+		.user-detail {
+			font-size:14px;
+			margin-top: 10px;
+		}
+		
+		</style>
 	</head>
 <body ontouchstart="">
 	   <header>
@@ -19,10 +65,10 @@
             <h1>首页</h1>
         </div>
 		</header>
-	    <article class="active" data-scroll="true" style="top:44px;bottom:0px">
+	    <article>
 	    	<div class="top-banner">
 		    	<div class="user-info">
-		    		<div class="user-img rollIn animated" style="background-image:url('../img/main7/user.jpg')">
+		    		<div class="photo size80 user-img rollIn animated" style="background-image:url('../img/main7/user.jpg')">
 		    		</div>
 		    		<div class="fadeInRight animated" style="float:left;">
 			    		<div class="user-name">
@@ -34,82 +80,84 @@
 		    		</div>
 		    	</div>
 		    </div>
-		    <div class="v-grid animated fadeInUp" id="grid_container">
-		    	<div class="grid-cell animated fadeInRight" id="grid1">
-		    		<div class="dot bg-1"></div>
-		    		<div class="grid-icon box box-middlecenter bg-1">
-						<span class="icon-mail-fill" style="font-size:30px;"></span>
-						<span class="tip">8</span>
-					</div>
-					<div class="grid-name animated fadeInRight">
-						<label class="large-text">邮件</label>
-						<br />
-						<label class="small-text">E-mail</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="grid-cell animated fadeInRight" id="grid2">
-		    		<div class="dot bg-2"></div>
-		    		<div class="grid-icon box box-middlecenter bg-2">
-						<span class="icon-contact-fill" style="font-size:30px;"></span>
-					</div>
-					<div class="grid-name animated fadeInRight">
-						<label class="large-text">通讯录</label>
-						<br />
-						<label class="small-text">Contacts</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="grid-cell animated fadeInRight" id="grid3">
-		    		<div class="dot bg-3"></div>
-		    		<div class="grid-icon box box-middlecenter bg-3">
-						<span class="icon-write-fill" style="font-size:30px;"></span>
-						<span class="tip bg-pomegranate">18</span>
-					</div>
-					<div class="grid-name">
-						<label class="large-text">公文审批</label>
-						<br />
-						<label class="small-text">Document Approval</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="grid-cell animated fadeInRight" id="grid4">
-		    		<div class="dot bg-4"></div>
-		    		<div class="grid-icon box box-middlecenter bg-4">
-						<span class="icon-position-fill" style="font-size:30px;"></span>
-					</div>
-					<div class="grid-name">
-						<label class="large-text">地图定位</label>
-						<br />
-						<label class="small-text">Location</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="grid-cell animated fadeInRight" id="grid5">
-		    		<div class="dot bg-5"></div>
-		    		<div class="grid-icon box box-middlecenter bg-5">
-						<span class="icon-gear-fill" style="font-size:30px;"></span>
-					</div>
-					<div class="grid-name">
-						<label class="large-text">设置</label>
-						<br />
-						<label class="small-text">Settings</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="grid-cell animated fadeInRight" id="grid6">
-		    		<div class="dot bg-6"></div>
-		    		<div class="grid-icon box box-middlecenter bg-6">
-						<span class="icon-chartpie-fill" style="font-size:30px;"></span>
-					</div>
-					<div class="grid-name">
-						<label class="large-text">数据分析</label>
-						<br />
-						<label class="small-text">Statistics</label>
-					</div>
-					<div class="clearfix"></div>
-		    	</div>
-		    	<div class="clearfix"></div>
+		    <div id="grid_container">
+			    <ul class="list timeline between noborder bg-transparent" style="margin-left:65px;">
+			    	<li style="height:60px"></li>
+	                <li class="animated fadeInRight" id="grid1">
+	                    <div class="timeline-badge dot bg-1"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-1">
+		                        <i class="icon icon-chatdot-fill"></i>
+		                        <span class="tip">12</span>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>邮件</p>
+	                    	<small>E-Mail</small>
+	                    </div>
+	                </li>
+	                <li class="animated fadeInRight" id="grid2">
+	                    <div class="timeline-badge dot bg-2"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-2">
+		                        <i class="icon icon-contact-fill"></i>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>通讯录</p>
+	                    	<small>Contacts</small>
+	                    </div>
+	                </li>
+	                <li class="animated fadeInRight" id="grid3">
+	                    <div class="timeline-badge dot bg-3"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-3">
+		                        <i class="icon icon-write-fill"></i>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>公文审批</p>
+	                    	<small>Document Approval</small>
+	                    </div>
+	                </li>
+	                <li class="animated fadeInRight" id="grid4">
+	                    <div class="timeline-badge dot bg-4"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-4">
+		                        <i class="icon icon-position-fill"></i>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>地图定位</p>
+	                    	<small>Location</small>
+	                    </div>
+	                </li>
+	                <li class="animated fadeInRight" id="grid5">
+	                    <div class="timeline-badge dot bg-5"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-5">
+		                        <i class="icon icon-gear-fill"></i>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>设置</p>
+	                    	<small>Setting</small>
+	                    </div>
+	                </li>
+	                <li class="animated fadeInRight" id="grid6">
+	                    <div class="timeline-badge dot bg-6"></div>
+	                    <div class="justify">
+		                    <div class="photo bg-6">
+		                        <i class="icon icon-chartpie-fill"></i>
+		                    </div>
+		                </div>
+	                    <div class="justify-content">
+	                    	<p>数据分析</p>
+	                    	<small>Statistics</small>
+	                    </div>
+	                </li>
+	                <li id="supply"></li>
+	            </ul>
 		    </div>
 		</article>
 	
@@ -118,9 +166,12 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 
 	<script>
+		var supplyContainer=document.getElementById("supply");
 		function setGridHeight(){
-		    var gridContainerHeight = window.innerHeight - 44 - 100 - 60;
-		    $("#grid_container").css("min-height" , gridContainerHeight);
+			var article=document.getElementsByTagName("article")[0];
+		    var supply=window.innerHeight-article.clientHeight;
+		    if(supply<0)return;
+		    supplyContainer.style.height=supply+"px";
 		}
 		setGridHeight();
 		//定义exmobi返回
