@@ -2,6 +2,7 @@
 // @koala-prepend "eventutil.js"
 // @koala-prepend "page.js"
 // @koala-prepend "aside.js"
+// @koala-prepend "counter.js"
 // @koala-prepend "animate.js"
 // @koala-prepend "baidumap.js"
 // @koala-prepend "dateutil.js"

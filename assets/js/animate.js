@@ -20,52 +20,12 @@ window.Animate={
 			el.className=el.className.replace(animExpr,"");
 		}
 		el.className+=" "+aniname;
-		EventUtil.addHandler(el,"animationend",function(e){
-			el.className=el.className.replace(animExpr,"");
-		});
-	},
-	intervalNumber:function(el){
-		var toNumber=el.getAttribute("data-to")||0;
-		var fromNumber=el.getAttribute("data-from")||0;
-		var duration=el.getAttribute("data-duration")||500;
-		//总值
-		var diffNumber=toNumber-fromNumber;
-		if(diffNumber<0 || isNaN(fromNumber) || isNaN(toNumber)){
-			console.log("请确定开始时间与结束时间是否输入正确！");
-			return;
+		if(!el.hasEndEvent){
+			el.addEventListener("webkitAnimationEnd",function(e){
+				el.className=el.className.replace(animExpr,"");
+			},false);
+			el.hasEndEvent=true;
 		}
-		//帧毫秒
-		var milli=10;
-		//总帧数
-		var fps=duration/milli;
-		//每帧增加的数字
-		var plusNumberFps=Math.round(diffNumber/fps);
-		//如果总帧数大于总值，则将帧数缩减等同于总值，并设置正确的帧毫秒
-		if(plusNumberFps<1){
-			fps=diffNumber;
-			milli=duration/fps;
-			plusNumberFps=Math.round(diffNumber/fps);
-		}
-		var countTimer=setInterval(function(){
-			fromNumber=fromNumber+plusNumberFps;
-			el.innerHTML=fromNumber;
-			if (fromNumber >= toNumber) {
-				el.innerHTML=toNumber;
-				clearInterval(countTimer);
-			}
-		},milli);
-	},
-	rafNumber:function(el){
-		var toNumber=el.getAttribute("data-to")||0;
-		var fromNumber=el.getAttribute("data-from")||0;
-		function step() {
-			fromNumber += 1;
-			el.innerHTML=fromNumber;
-			if (fromNumber < toNumber) {
-				requestAnimationFrame(step);
-			}
-		}
-		step();
 	},
 	//setInterval帧率测试
 	testSiFps:function(callback){
@@ -88,7 +48,6 @@ window.Animate={
     		fps++;
     		var raf=requestAnimationFrame(fpstest);
     		if(timestamp>=1000){
-    			//alert("requestAnimationFrame帧率："+count1);
     			if(callback){
 	    			callback(fps);
 	    		}
@@ -96,12 +55,5 @@ window.Animate={
     		}
     	}
     	requestAnimationFrame(fpstest);
-	},
-	//计数器
-	counter:function(){
-		var timers=document.querySelectorAll(".timer");
-		for(var i=0,t;t=timers[i++];){
-			this.intervalNumber(t);
-		}
 	}
 };

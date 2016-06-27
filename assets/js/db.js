@@ -1,7 +1,5 @@
 //DB 本地数据库
-var DB = function() {
-    
-
+var DB=(function(){
     function checkManifest() {
         window.addEventListener("updateready", function(e) {
             console.log("离线缓存状态：" + window.applicationCache.status);
@@ -136,4 +134,4 @@ var DB = function() {
             return param ? param[1] : param;
         }
     };
-}();
+})();

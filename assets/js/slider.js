@@ -2,9 +2,8 @@
 (function(window,document,undefined){
 	
 	window.Slider=function(container,params){
-		//Model
 		/*=========================
-          Params
+          Model
           ===========================*/
 		var defaults={
 			"pagination":null,
@@ -55,7 +54,7 @@
 		if(s.slides.length<=0){
 			return;
 		}
-		//View
+		//Method
 		/*=========================
           Pagination
           ===========================*/
