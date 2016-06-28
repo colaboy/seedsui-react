@@ -19,25 +19,33 @@
 	</header>
 	<article>
         <div class="input-box margin8">
-            <input type="text" placeholder="请选择地区" readonly="readonly" id="area1"/>
+            <input type="text" placeholder="请选择城市" readonly="readonly" id="area1"/>
+        </div>
+        <div class="input-box margin8">
+            <input type="text" placeholder="请选择地区" readonly="readonly" id="area2"/>
         </div>
 	</article>
     <!--数据-->
     <script src="../plugin/data/data.city.js"></script>
 	<!--SeedsUI-->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <script src="../assets/js/scrollpicker.city.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
     var spCity=new SpCity({
+        viewType:"city",
+        data:citys,
+        provinceClass:"text-center citycol",
+        cityClass:"text-center citycol",
+        areaClass:"text-center citycol"
+    });
+    var spArea=new SpCity({
         viewType:"area",
         data:citys,
         provinceClass:"text-center citycol",
         cityClass:"text-center citycol",
         areaClass:"text-center citycol"
     });
-    console.log(spCity);
     document.getElementById("area1").onclick=function(){
         var input=this;
         spCity.setOnClickDone(function(e){
@@ -45,6 +53,14 @@
             e.hide();
         });
         spCity.show();
+    }
+    document.getElementById("area2").onclick=function(){
+        var input=this;
+        spArea.setOnClickDone(function(e){
+            input.value=e.activeText;
+            e.hide();
+        });
+        spArea.show();
     }
 	//定义exmobi返回
 	function back(){history.go(-1);}

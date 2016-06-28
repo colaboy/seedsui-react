@@ -6,15 +6,24 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>page</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+	.page-wrapper{
+		position:relative;
+	    width:100%;
+	    height:100%;
+	    overflow:hidden;
+	}
+	</style>
 </head>
 
 <body ontouchstart="">
-	<section id="page_0" class="active">
-		<header>
+<!-- <div class="page-wrapper"> -->
+	<section id="page_0">
+		<header style="position: absolute;">
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>单页模式</h1>
 		  </div>
 		</header>
@@ -30,7 +39,6 @@
 		    <div class="card padding8">
 		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
 		    </div>
-		    <input type="text"/>
 		</article>
 	</section>
 	<!--page1-->
@@ -38,8 +46,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>slideLeft</h1>
 		  </div>
 		</header>
@@ -52,8 +60,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>slideLeft</h1>
 		  </div>
 		</header>
@@ -67,8 +75,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>slideRight</h1>
 		  </div>
 		</header>
@@ -81,8 +89,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>slideUp</h1>
 		  </div>
 		</header>
@@ -95,8 +103,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>slideDown</h1>
 		  </div>
 		</header>
@@ -109,8 +117,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>fade</h1>
 		  </div>
 		</header>
@@ -123,8 +131,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>zoom</h1>
 		  </div>
 		</header>
@@ -137,8 +145,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
+			            <i class="icon icon-arrowleft"></i>
+			        </a>
 		    <h1>none</h1>
 		  </div>
 		</header>
@@ -146,6 +154,7 @@
 			none
 		</article>
 	</section>
+<!-- </div> -->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->

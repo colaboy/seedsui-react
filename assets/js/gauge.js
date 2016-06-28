@@ -52,7 +52,7 @@
 			console.log("已爆表");
 		}
 		/*============
-		  View
+		  Method
 		  ==============*/
 		//旋转指针
 		s.updatePoint=function(){
@@ -87,16 +87,13 @@
 			s.wave.style.top=waveTop+"%";
 			s.wave.style.WebkitTransition="all "+s.duration+"ms";
 		}
-		s.view=function(){
+		s.update=function(){
 			s.updateBg();
 			s.updatePoint();
 			s.updateValue();
 			s.updateWave();
 			if(s.params.onInit)s.params.onInit(s);
 		}
-		/*============
-		  Controller
-		  ==============*/
-		s.view();
+		s.update();
 	}
 })(window,document,undefined);

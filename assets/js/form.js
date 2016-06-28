@@ -143,7 +143,7 @@
 				if(errormsg){
 					t.setText(errormsg);
 					t.show();
-					field.focus();
+					//field.focus();
 					return false;
 				}
 			}
@@ -229,8 +229,9 @@
 				numbox.previousElementSibling[action]("click",s.onNumboxMinus,false);
 			}
 		}
+		s.hasEvents=false;
 		s.attach=function(event){
-			s.events();
+			if(!s.hasEvents)s.events();
 		}
 		s.detach=function(event){
 			s.events(true);

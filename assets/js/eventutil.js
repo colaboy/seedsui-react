@@ -68,7 +68,7 @@
 			}
 		}
 	};
-	var EventUtil = {
+	window.EventUtil = {
 		/**
 		 * 绑定事件
 		 * 
@@ -165,5 +165,4 @@
 			return e.target || e.srcElement;
 		}
 	};
-	window.EventUtil=EventUtil;
 })(window,document,undefined);

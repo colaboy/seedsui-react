@@ -1,14 +1,17 @@
 //Counter
 (function(window,document,undefined){
-	window.Counter=function(params){
+	window.Counter=function(counter,params){
 		/*=========================
-          Model
-          ===========================*/
-		var defaults={
-			"timerClass":"timer",
+        Model
+        ===========================*/
+        var defaults={
+			"fromAttr":"data-from",
+			"toAttr":"data-to",
+			"durationAttr":"data-duration",
 			"defaultDuration":500,
 			"defaultFrom":0,
-			"defaultTo":0
+			"defaultTo":0,
+			"minMilli":10
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -20,60 +23,69 @@
 		var s=this;
 
 		//Params
-		s.params = params;
+		s.params=params;
 
-		//Timers
+		//Counter
+		s.counter=typeof counter === "string"?document.querySelector(counter):counter;
 		s.timers=document.querySelectorAll("."+s.params.timerClass);
+
+		//From(开始数字) | To(结束数字) | Duration(执行时长) | Current(当前数字)
+		s.from=s.counter.getAttribute(s.params.fromAttr)||s.params.defaultFrom;
+		s.to=s.counter.getAttribute(s.params.toAttr)||s.params.defaultTo;
+		s.duration=s.counter.getAttribute(s.params.durationAttr)||s.params.defaultDuration;
+		s.current=s.from;
+
+		//Diff(差值)
+		s.diff=s.to-s.from;
+
+		if(s.diff<0 || isNaN(s.from) || isNaN(s.to)){
+			console.log("请确定开始时间与结束时间是否输入正确！");
+			return;
+		}
+
+		//NumFps(递增值)
+		s.numFps=1;
+
+		//Milli(毫秒/帧)
+		s.milli=s.duration/s.diff;
+		if(s.milli<s.minMilli){
+			s.milli=s.minMilli;
+			//总值/执行次数=递增值
+			s.numFps=s.diff/(s.duration/s.milli)
+		}
+
+		//console.log("差值:"+s.diff+" ;递增:"+s.numFps+" ;毫秒/帧:"+s.milli);
+
 		//Interval
-		s.intervalTimer;
+		s.interval;
 		/*=========================
           Method
           ===========================*/
-		//计数器
-		s.intervalNumber=function(el){
-			var toNumber=el.getAttribute("data-to")||s.params.defaultTo;
-			var fromNumber=el.getAttribute("data-from")||s.params.defaultFrom;
-			var duration=el.getAttribute("data-duration")||s.params.defaultDuration;
-			//总值
-			var diffNumber=toNumber-fromNumber;
-			if(diffNumber<0 || isNaN(fromNumber) || isNaN(toNumber)){
-				console.log("请确定开始时间与结束时间是否输入正确！");
-				return;
-			}
-			//帧毫秒
-			var milli=10;
-			//总帧数
-			var fps=duration/milli;
-			//每帧增加的数字
-			var plusNumberFps=Math.round(diffNumber/fps);
-			//如果总帧数大于总值，则将帧数缩减等同于总值，并设置正确的帧毫秒
-			if(plusNumberFps<1){
-				fps=diffNumber;
-				milli=duration/fps;
-				plusNumberFps=Math.round(diffNumber/fps);
-			}
-			s.intervalTimer=setInterval(function(){
-				fromNumber=fromNumber+plusNumberFps;
-				el.innerHTML=fromNumber;
-				if (fromNumber >= toNumber) {
-					el.innerHTML=toNumber;
-					clearInterval(s.intervalTimer);
+		s.play=function(){
+			s.interval=window.setInterval(function(){
+				s.current=eval(s.current+s.numFps);
+				s.counter.innerHTML=s.current;
+				if (s.current >= s.to) {
+					s.counter.innerHTML=s.to;
+					clearInterval(s.interval);
 				}
-			},milli);
-		}
-
-		//计数器
-		s.counter=function(){
-			for(var i=0,t;t=s.timers[i++];){
-				s.intervalNumber(t);
-			}
+			},s.milli);
 		}
 		/*=========================
           Control
           ===========================*/
-        s.init=function(){
-        	s.counter();
+        s.play();
+	}
+	window.Counters=function(params){
+		var s=this;
+        //获得所有元素
+        s.counters=document.querySelectorAll(".counter");
+        s.counters.counters=[];
+        var jsonParams={};
+        if(params)jsonParams=params;
+        //实例化所有元素
+        for(var i=0,counter;counter=s.counters[i++];){
+            s.counters.counters[i]=new Counter(counter,jsonParams);
         }
-        s.init();
 	}
 })(window,document,undefined);

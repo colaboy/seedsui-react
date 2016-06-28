@@ -2,7 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
 	<title>local-share</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
@@ -101,9 +102,9 @@
 		},false);
 
 		//弹出框
-		var sharepop;
 		var sharepop=new Dialog("#mshare",{
-			position:"bottom"
+			position:"bottom",
+			css:{width:"100%"}
 		});
 		function showShare(){
 			sharepop.show();

@@ -17,8 +17,8 @@
         <article>
             <p class="title">计数器</p>
             <div class="card padding8">
-                <span class="timer" data-duration="5000" data-to="5">0</span>
-                <span class="timer" data-duration="5000" data-to="600">0</span>
+                <span class="counter" data-duration="5000" data-to="5">0</span>
+                <span class="counter" data-duration="5000" data-from="0" data-to="200">0</span>
             </div>
 
             <p class="title">帧率测试</p>
@@ -43,7 +43,7 @@
     		document.getElementById("fps2").innerHTML=fps;
     	});
         //计数器
-		var counter=new Counter();
+		var counter=new Counters();
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

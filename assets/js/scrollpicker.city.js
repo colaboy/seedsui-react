@@ -96,7 +96,7 @@
 					var slot=e.slots[index];
 					var activeIndex=slot.activeIndex;
 					var childrenData=slot.values[activeIndex].children;
-					if(s.params.viewType="city"){
+					if(s.params.viewType=="city"){
 						if(nextSlotIndex>=2){
 							return;
 						}
