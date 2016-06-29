@@ -434,7 +434,7 @@ article {
 header + article {
   padding-top: 44px;
 }
-/*section*/
+/*section与aside*/
 section {
   position: relative;
   width: 100%;
@@ -443,10 +443,13 @@ section {
   z-index: 0;
 }
 section header,
-section footer {
+section footer,
+aside header,
+aside footer {
   position: absolute;
 }
 section article,
+aside article,
 .scrollbox {
   height: 100%;
   overflow: auto;

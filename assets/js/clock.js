@@ -55,7 +55,7 @@
         }
         s.play();
     }
-    window.DataClock=function(params){
+    window.Clocks=function(params){
         var s=this;
         //获得所有元素
         s.clocks=document.querySelectorAll("[data-clock]");
