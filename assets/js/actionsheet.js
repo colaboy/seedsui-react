@@ -17,6 +17,7 @@
             Callbacks:
             option.onClick:function(Actionsheet)
 			onClickCancel:function(Actionsheet)
+			onClickMask:function(Actionsheet)
 			*/
 		}
 		params=params||{};
@@ -147,6 +148,8 @@
         }
         s.onClick=function(e){
         	s.target=e.target;
+        	//点击容器
+        	if(s.params.onClick)s.params.onClick(s);
         	//点击项
         	var options=s.actionsheet.options;
         	for(var i=0,opt;opt=options[i++];){
@@ -163,9 +166,17 @@
         	}
         	s.hide();
 		};
+		s.setOnClick=function(fn){
+            s.params.onClick=fn;
+        }
 		s.onClickMask=function(e){
+			s.target=e.target;
+			if(s.params.onClickMask)s.params.onClickMask(s);
 			if(s.params.isClickMaskHide)s.hide();
 		}
+		s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
+        }
 		s.onTransitionEnd=function(e){
 			if(s.isHid){
 				s.mask.style.visibility="hidden";

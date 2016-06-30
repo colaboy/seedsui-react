@@ -1776,7 +1776,7 @@ input[type=range]::-webkit-slider-thumb {
 .justify {
   position: relative;
   min-width: 0px;
-  max-width: 90px;
+  max-width: 110px;
   display: block;
 }
 .justify,
@@ -4274,8 +4274,15 @@ input[type=range]::-webkit-slider-thumb {
   left: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
 }
+/*dialog*/
 .dialog {
   visibility: hidden;
+  -webkit-transition-duration: 0;
+  -webkit-transition-property: transform;
+}
+/*动画设置*/
+.dialog[data-position=middle] {
+  -webkit-transition-property: opacity;
 }
 /*top*/
 .dialog[data-position=top],
@@ -4403,11 +4410,6 @@ input[type=range]::-webkit-slider-thumb {
 .alert-handler a:only-child {
   width: 100%;
 }
-.alert-handler a:active,
-.actionsheet a:active {
-  background-color: #ddd;
-  border-color: #ddd;
-}
 /*----------------alert.less(end)--------------*/
 /*----------------actionsheet.less(start)--------------*/
 /*@require dialog.less*/
@@ -4429,7 +4431,6 @@ input[type=range]::-webkit-slider-thumb {
   overflow: hidden;
   border-style: solid;
   border-width: 0;
-  border-color: #ddd;
   background-color: rgba(255, 255, 255, 0.9);
   background-color: white\0;
 }
@@ -6856,13 +6857,27 @@ aside {
 .dialog {
   border-color: #e6e6e6;
 }
-/*actionsheet*/
+/*----------------dialog.less(end)--------------*/
+/*----------------alert.less(start)--------------*/
+.alert-handler a:active {
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+}
+/*----------------alert.less(end)--------------*/
+/*----------------actionsheet.less(start)--------------*/
 .actionsheet button {
-  color: #007aff;
+  color: #18b2ed;
   border-bottom-color: #e6e6e6;
   background-color: rgba(255, 255, 255, 0.9);
 }
-/*----------------dialog.less(end)--------------*/
+.actionsheet a:active {
+  background-color: #e6e6e6;
+  border-color: #e6e6e6;
+}
+.actionsheet-group {
+  border-color: #e6e6e6;
+}
+/*----------------actionsheet.less(end)--------------*/
 /*----------------mask.less(start)--------------*/
 .mask {
   background-color: rgba(0, 0, 0, 0.4);

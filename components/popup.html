@@ -178,7 +178,10 @@
 	    };
 
 		//middle
-		var midDialog=new Dialog("#middleDiv",{position:"middle"});
+		var midDialog=new Dialog("#middleDiv",{
+			position:"middle",
+			onClick:function(e){console.log(e.target)}
+		});
 
 		document.getElementById("middleBtn").onclick=function(){
 			midDialog.show();

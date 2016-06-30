@@ -11,13 +11,21 @@
 	left:50%;
 	-webkit-transform:translate3d(-50%,-50%,0);
 }
+/*dialog*/
 .dialog{
 	visibility:hidden;
+	-webkit-transition-duration:0;
+	-webkit-transition-property:transform;
+}
+/*动画设置*/
+.dialog[data-position=middle]{
+	-webkit-transition-property:opacity;
 }
 /*top*/
 .dialog[data-position=top],.dialog[data-position=top-center],.dialog[data-position=top-right]{
 	top:0;
 }
+
 .dialog[data-position=top]{
 	left:0;
 	-webkit-transform:translate3d(0,-100%,0);

@@ -10,10 +10,13 @@
             position:null,
             defaultPosition:"middle",
             css:{},
-            duration:"300",
+            maskCss:{},
+            duration:300,
             isClickMaskHide:true
             /*callbacks
             onClick:function(Dialog)
+            onClickMask:function(Dialog)
+            onTransitionEnd:function(Dialog)
             */
         }
         params=params||{};
@@ -66,11 +69,14 @@
                 s.params.position=s.params.defaultPosition;
                 s.dialog.setAttribute("data-position",s.params.position);
             }
-
+            //Dialog Css
             for(var c in s.params.css){
                 s.dialog.style[c]=s.params.css[c];
             }
-            
+            //Mask Css
+            for(var maskc in s.params.maskCss){
+                s.mask.style[maskc]=s.params.maskCss[maskc];
+            }
             switch(s.params.position){
                 case "top":case "top-right":
                 s.dialog.showAnimation={webkitTransform:"translate3d(0,0,0)"},
@@ -123,6 +129,7 @@
                 s.dialog.style.opacity=0;
                 break;
             }
+            //设置动画毫秒数
             s.dialog.style.webkitTransitionDuration=s.params.duration+"ms";
         }
         s.update();
@@ -154,15 +161,19 @@
             s.container.removeChild(s.dialog);
         }
         s.isHid=true;
-        s.show=function(){
+        s.showCallback=null;//显示动画结束后回调
+        s.show=function(fn){
             s.isHid=false;
             s.showMask();
             s.showDialog();
+            if(fn)s.showCallback=fn;
         }
-        s.hide=function(){
+        s.hideCallback=null;//隐藏动画结束后回调
+        s.hide=function(fn){
             s.isHid=true;
             s.hideMask();
             s.hideDialog();
+            if(fn)s.hideCallback=fn;
         }
         s.destory=function(){
             s.destoryMask();
@@ -173,15 +184,6 @@
             s.params.position=pos;
             s.update();
         }
-
-        //Callback
-        if(s.params.onClick){
-            s.wrapper.addEventListener("click",onClickCallback,false);
-        }
-        function onClickCallback(e){
-            s.target=e.target;
-            s.params.onClick(s)
-        };
         /*================
         Control
         ================*/
@@ -202,19 +204,28 @@
         }
         s.onClick=function(e){
             s.target=e.target;
-
             if(s.params.onClick)s.params.onClick(s);
         }
         s.setOnClick=function(fn){
             s.params.onClick=fn;
         }
-        s.onClickMask=function(){
+        s.onClickMask=function(e){
+            s.target=e.target;
+            if(s.params.onClickMask)s.params.onClickMask(s);
             if(s.params.isClickMaskHide)s.hide();
         }
+        s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
+        }
         s.onTransitionEnd=function(e){
+            s.target=e.target;
+            if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
             if(s.isHid){
                 s.dialog.style.visibility="hidden";
                 s.mask.style.visibility="hidden";
+                if(s.hideCallback)s.hideCallback(s);
+            }else{
+                if(s.showCallback)s.showCallback(s);
             }
         }
 

@@ -440,13 +440,27 @@ aside {
 .alert,.actionsheet,.dialog{
 	border-color:@border;
 }
-/*actionsheet*/
-.actionsheet button {
-	color: #007aff;
+/*----------------dialog.less(end)--------------*/
+/*----------------alert.less(start)--------------*/
+.alert-handler a:active{
+	background-color:@border;
+	border-color:@border;
+}
+/*----------------alert.less(end)--------------*/
+/*----------------actionsheet.less(start)--------------*/
+.actionsheet button{
+	color:@primary-bg;
 	border-bottom-color:@border;
 	background-color:rgba(255,255,255,.9);
 }
-/*----------------dialog.less(end)--------------*/
+.actionsheet a:active{
+	background-color:@border;
+	border-color:@border;
+}
+.actionsheet-group{
+	border-color:@border;
+}
+/*----------------actionsheet.less(end)--------------*/
 /*----------------mask.less(start)--------------*/
 .mask{
 	background-color: @mask-bg;

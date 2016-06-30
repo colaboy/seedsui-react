@@ -18,6 +18,7 @@
             onClick:function(Alert)
 			onClickOk:function(Alert)
 			onClickCancel:function(Alert)
+			onClickMask:function(Alert)
 			*/
 		}
 		params=params||{};
@@ -173,9 +174,17 @@
 				else s.hide();
 			}
 		}
-		s.onClickMask=function(){
+		s.setOnClick=function(fn){
+            s.params.onClick=fn;
+        }
+		s.onClickMask=function(e){
+			s.target=e.target;
+			if(s.params.onClickMask)s.params.onClickMask(s);
 			if(s.params.isClickMaskHide)s.hide();
 		}
+		s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
+        }
 		s.onTransitionEnd=function(e){
 			if(s.isHid){
 				s.alert.style.visibility="hidden";

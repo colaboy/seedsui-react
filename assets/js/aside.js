@@ -20,6 +20,7 @@
             onSlideChangeStart:function(Aside)
             onSlideChange:function(Aside)
             onSlideChangeEnd:function(Aside)
+            onClickMask:function(Aside)
             */
         }
         params=params||{};
@@ -114,7 +115,10 @@
             target.style.webkitTransform=transform;
         }
         s.isHid=true;
-        s.show=function(pos){
+        s.showCallback=null;//显示动画结束后回调
+        s.show=function(pos,fn){
+            //设置显示回调
+            if(fn)s.showCallback=fn;
             //设置显示侧边
             if(pos)s.position=pos;
             if(!s.sides[s.position]){
@@ -133,7 +137,9 @@
             //隐藏滚动条
             s.article.style.overflow="hidden";
         }
-        s.hide=function(){
+        s.hideCallback=null;//隐藏动画结束后回调
+        s.hide=function(fn){
+            if(fn)s.hideCallback=fn;
             if(!s.sides[s.position]){
                 s.position=null;
                 return;
@@ -331,10 +337,15 @@
             s.showSide=null;
         }
         s.onClickMask=function(e){
+            s.target=e.target;
+            if(s.params.onClickMask)s.params.onClickMask(s);
             if(s.params.isClickMaskHide){
                 s.hide();
-                s.preventDefault(e);
             }
+            s.preventDefault(e);
+        }
+        s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
         }
         s.onTransitionEnd=function(e){
             if(s.mask==e.target)return;
@@ -344,6 +355,9 @@
             //如果是隐藏状态，清除修改项
             if(s.isHid==true){
                 s.clearChange();
+                if(s.hideCallback)s.hideCallback(s);
+            }else{
+                if(s.showCallback)s.showCallback(s);
             }
             //Callback
             if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
