@@ -17,6 +17,8 @@
             onClick:function(Dialog)
             onClickMask:function(Dialog)
             onTransitionEnd:function(Dialog)
+            onShowed(Dialog)//显示动画结束后回调
+            onHid(Dialog)//隐藏动画结束后回调
             */
         }
         params=params||{};
@@ -161,19 +163,21 @@
             s.container.removeChild(s.dialog);
         }
         s.isHid=true;
-        s.showCallback=null;//显示动画结束后回调
         s.show=function(fn){
             s.isHid=false;
             s.showMask();
             s.showDialog();
-            if(fn)s.showCallback=fn;
+            if(fn)s.params.onShowed=fn;
+            //禁用滚动条
+            document.body.style.overflow="hidden";
         }
-        s.hideCallback=null;//隐藏动画结束后回调
         s.hide=function(fn){
             s.isHid=true;
             s.hideMask();
             s.hideDialog();
-            if(fn)s.hideCallback=fn;
+            if(fn)s.params.onHid=fn;
+            //显示滚动条
+            document.body.style.overflow="auto";
         }
         s.destory=function(){
             s.destoryMask();
@@ -223,9 +227,9 @@
             if(s.isHid){
                 s.dialog.style.visibility="hidden";
                 s.mask.style.visibility="hidden";
-                if(s.hideCallback)s.hideCallback(s);
+                if(s.params.onHid)s.params.onHid(s);
             }else{
-                if(s.showCallback)s.showCallback(s);
+                if(s.params.onShowed)s.params.onShowed(s);
             }
         }
 

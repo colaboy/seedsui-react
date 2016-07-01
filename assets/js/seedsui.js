@@ -1,3 +1,5 @@
+// @koala-prepend "data.lang.js"
+// @koala-prepend "data.city.js"
 // @koala-prepend "device.js"
 // @koala-prepend "eventutil.js"
 // @koala-prepend "page.js"

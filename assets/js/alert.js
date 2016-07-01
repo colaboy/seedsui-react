@@ -46,9 +46,6 @@
 			var alert=document.createElement("div");
 			alert.setAttribute("class",s.params.alertClass);
 
-			alert.caption=document.createElement("h1");
-			alert.caption.innerHTML=s.params.title;
-
 			alert.content=document.createElement("label");
 			alert.content.innerHTML=msg;
 
@@ -65,7 +62,12 @@
 
 			alert.handler.appendChild(alert.buttonOk);
 			
-			alert.appendChild(alert.caption);
+			if(s.params.title){
+				alert.caption=document.createElement("h1");
+				alert.caption.innerHTML=s.params.title;
+				alert.appendChild(alert.caption);
+			}
+
 			alert.appendChild(alert.content);
 			alert.appendChild(alert.handler);
 
@@ -108,6 +110,8 @@
 			s.hideMask();
 			//显示弹出框
 			s.hideAlert();
+			//显示滚动条
+            document.body.style.overflow="auto";
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -115,6 +119,8 @@
 			s.showMask();
 			//显示弹出框
 			s.showAlert();
+			//禁用滚动条
+            document.body.style.overflow="hidden";
 		};
 		s.destory=function(){
 			//移动事件监听

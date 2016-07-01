@@ -156,10 +156,26 @@ pre {
 .break-all {
   word-break: break-all;
 }
-.nowrap {
-  white-space: nowrap;
+.nowrap,
+.nowrap2,
+.nowrap3 {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.nowrap2,
+.nowrap3 {
+  -webkit-box-orient: vertical;
+}
+.nowrap2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+}
+.nowrap3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
 }
 /*清除浮动*/
 .clearfix:before,
@@ -254,6 +270,25 @@ small {
 .capitalize {
   text-transform: capitalize;
   /*首字母大写*/
+}
+/*对齐*/
+.top,
+.bottom,
+.left,
+.right {
+  position: absolute;
+}
+.top {
+  top: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
 }
 /*-----------------------------global.less(end)-----------------------------*/
 .before-filter-sepia,
@@ -2218,18 +2253,18 @@ aside[data-position="right"][data-transition="overlay"] {
   margin-left: 0px;
 }
 /*左右对齐*/
-.titlebar .left,
-.titlebar .right {
+.titlebar > .left,
+.titlebar > .right {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 1;
 }
-.titlebar .left {
+.titlebar > .left {
   left: 0;
 }
-.titlebar .right {
+.titlebar > .right {
   right: 0;
 }
 /*searchbar*/
@@ -2635,9 +2670,6 @@ aside[data-position="right"][data-transition="overlay"] {
 .searchbar a {
   display: block;
   padding: 8px;
-}
-.searchbar .input-box + a {
-  padding-left: 0;
 }
 /*----------------------------searchbar.less(end)----------------------------*/
 /*------------------------------button.less(start)------------------------------*/
@@ -4388,7 +4420,7 @@ input[type=range]::-webkit-slider-thumb {
   white-space: nowrap;
   font-size: 0;
   border-color: inherit;
-  border-style: inherit;
+  border-style: solid;
   border-width: 1px 0 0 0;
 }
 .alert-handler a,

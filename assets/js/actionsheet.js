@@ -111,6 +111,8 @@
 			s.hideMask();
 			//显示弹出框
 			s.hideActionsheet();
+			//显示滚动条
+            document.body.style.overflow="auto";
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -118,6 +120,8 @@
 			s.showMask();
 			//显示弹出框
 			s.showActionsheet();
+			//禁用滚动条
+            document.body.style.overflow="hidden";
 		};
 		s.destory=function(){
 			//移动事件监听
