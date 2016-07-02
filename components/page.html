@@ -18,7 +18,7 @@
 
 <body ontouchstart="">
 	<section id="page_0">
-		<header style="position: absolute;">
+		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
 			            <i class="icon icon-arrowleft"></i>
@@ -27,13 +27,13 @@
 		  </div>
 		</header>
 		<article>
-			<a class="button block margin8 bg-1" href="#page_1" data-target="page">slideLeft</a>
-		    <a class="button block margin8 bg-2" href="#page_2" data-target="page">slideRight</a>
-		    <a class="button block margin8 bg-3" href="#page_3" data-target="page">slideUp</a>
-		    <a class="button block margin8 bg-4" href="#page_4" data-target="page">slideDown</a>
-		    <a class="button block margin8 bg-5" href="#page_5" data-target="page">fade</a>
-		    <a class="button block margin8 bg-6" href="#page_6" data-target="page">zoom</a>
-		    <a class="button block margin8 bg-7" href="#page_7" data-target="page">none</a>
+			<a class="button block margin8 bg-1" href="#page_1" data-toggle="page">slideLeft</a>
+		    <a class="button block margin8 bg-2" href="#page_2" data-toggle="page">slideRight</a>
+		    <a class="button block margin8 bg-3" href="#page_3" data-toggle="page">slideUp</a>
+		    <a class="button block margin8 bg-4" href="#page_4" data-toggle="page">slideDown</a>
+		    <a class="button block margin8 bg-5" href="#page_5" data-toggle="page">fade</a>
+		    <a class="button block margin8 bg-6" href="#page_6" data-toggle="page">zoom</a>
+		    <a class="button block margin8 bg-7" href="#page_7" data-toggle="page">none</a>
 		    <a type="button" class="button block margin8 bg-8" onclick="openPage('#page_2')">用JS打开打二页</a>
 		    <div class="card padding8">
 		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
@@ -51,7 +51,8 @@
 		  </div>
 		</header>
 		<article>
-			<a class="button block margin8 bg-1" href="#page_1_close" data-target="page">进入下一页</a>
+			<a class="button block margin8 bg-1" target="_self" href="#page_1_close" data-toggle="page">_self打开下一页</a>
+			<a class="button block margin8 bg-2" href="#page_1_close" data-toggle="page">_blank打开下一页</a>
 		</article>
 	</section>
 	<!--page1_close-->
@@ -65,8 +66,7 @@
 		  </div>
 		</header>
 		<article>
-			<a class="button block margin8 bg-1" href="javascript:closePage('#page_1','none')">关闭上一页</a>
-			<a class="button block margin8 bg-2" href="javascript:closePage('#page_1_close')">关闭此页面</a>
+			Close页面
 		</article>
 	</section>
 	<!--page2-->
@@ -88,8 +88,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-			            <i class="icon icon-arrowleft"></i>
-			        </a>
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
 		    <h1>slideUp</h1>
 		  </div>
 		</header>
@@ -102,8 +102,8 @@
 		<header>
 		  <div class="titlebar">
 		    <a href="javascript:back()">
-			            <i class="icon icon-arrowleft"></i>
-			        </a>
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
 		    <h1>slideDown</h1>
 		  </div>
 		</header>
@@ -159,43 +159,43 @@
 	<script>
 		var singlePage=new Page({
 			"onOpenStart":function(e){
-				/*console.log("开始打开点击了：");
+				/*console.log("点击了：");
 				console.log(e.target);*/
 				console.log("开始打开：");
 				console.log(e.targetPage);
 			},
 			"onOpenEnd":function(e){
-				/*console.log("已经打开点击了：");
+				/*console.log("点击了：");
 				console.log(e.target);*/
 				console.log("已经打开：");
 				console.log(e.targetPage);
 			},
 			"onCloseStart":function(e){
-				/*console.log("开始关闭点击了：");
+				/*console.log("点击了：");
 				console.log(e.target);*/
 				console.log("开始关闭：");
 				console.log(e.targetPage);
 			},
 			"onCloseEnd":function(e){
-				/*console.log("已经关闭点击了：");
+				/*console.log("点击了：");
 				console.log(e.target);*/
 				console.log("已经关闭：");
 				console.log(e.targetPage);
 			}
 		});
 		//打指定页
-		function openPage(id){
-			singlePage.open(id);
+		function openPage(id,target){
+			var openType=target||"";
+			singlePage.open(id,openType);
 		}
-		//关闭指定页面
+		//关闭指定页面(仅在不记录浏览器历史记录时使用，否则会导致层级混乱)
 		function closePage(id,animation){
 			singlePage.close(id,animation);
 		}
 		
 		//定义exmobi返回
 		function back(){
-			console.log(window.history.pushState);
-			if(window.history){
+			if(window.location.href.indexOf("http")>=0){
 				history.go(-1)
 			}else{
 				singlePage.back();

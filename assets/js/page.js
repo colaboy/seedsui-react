@@ -5,7 +5,8 @@
           Model
           ===========================*/
 		var defaults={
-			"pageBtn":"[data-target=page]",
+			"isTakeHistory":true,
+			"pageBtn":"[data-toggle=page]",
 			"pageClass":"page",
 			"pageActiveClass":"active",
 			"defaultAnimation":"slideleft",
@@ -70,9 +71,14 @@
 	                page.hideAnimation={webkitTransform:"translate3d(100%,0,0)"};
 	                if(!isActive)page.style.webkitTransform="translate3d(100%,0,0)";
 	            }
-	            page.style.webkitTransitionDuration=s.params.duration+"ms";
 	            page.style.webkitTransitionProperty="transform,opacity";
+	            s.durationPage(page);
 			}
+        }
+        s.durationPage=function(page){
+        	setTimeout(function(){
+        		page.style.webkitTransitionDuration=s.params.duration+"ms";
+        	},100);
         }
         s.update();
 		//History
@@ -87,6 +93,7 @@
         }
         s.addHistory=function(pageId){
         	s.history.push(pageId);
+        	if(s.params.isTakeHistory==false)return;
 			try{
 		        window.history.pushState({href:pageId},document.title, pageId);
 		    }catch(err){
@@ -94,8 +101,13 @@
 		    }
         }
         s.replaceHistory=function(pageId){
-        	s.history.pop();
+        	//移除最新一条，关闭上一页
+        	var prePageId=s.history.pop();
+        	var prePage=document.querySelector(prePageId);
+        	s.durationHidePage(prePage);
+        	//添加新记录
         	s.history.push(pageId);
+        	if(s.params.isTakeHistory==false)return;
 			try{
 		        window.history.replaceState({href:pageId},document.title, pageId);
 		    }catch(err){
@@ -122,6 +134,11 @@
             	s.onTransitionEnd(e);
             }*/
         }
+        s.durationHidePage=function(page){
+        	setTimeout(function(){
+        		s.hidePage(page);
+        	},500);
+        }
         s.hidePage=function(page){
         	s.isHid=true;
         	page.classList.remove(s.params.pageActiveClass);
@@ -134,6 +151,14 @@
             	e.target=page;
             	s.onTransitionEnd(e);
             }*/
+        }
+        s.hideAllPage=function(exceptPageId){
+        	for(var i=0,page;page=s.pages[i++];){
+        		if(exceptPageId && "#"+page.id==exceptPageId){
+        			continue;
+        		}
+        		s.hidePage(page);
+        	}
         }
 		//关窗函数
 		s.close=function(pageId,animation){
@@ -151,14 +176,18 @@
 			if(s.params.onCloseStart)s.params.onCloseStart(s);
 		}
 		//开窗函数
-		s.open=function(pageId,animation){
+		s.open=function(pageId,target,animation){
 			var page=document.querySelector(pageId);
 			if(animation){
 				page.setAttribute("data-animation",animation);
 				s.update();
 			}
 			//添加历史记录，并修改浏览器地址
-			s.addHistory(pageId);
+			if(target=="_self"){
+				s.replaceHistory(pageId);
+			}else{
+				s.addHistory(pageId);
+			}
 			//显示Page
 			s.showPage(page);
 			//Callback
@@ -167,10 +196,25 @@
 		}
 		//回退函数
 		s.back=function(){
+			var pageId,page;
+			//如果本地历史记录为空，而浏览器历史记录不为空，则证明刷新过页面了(防刷新)
+			if(s.history.length==0 && window.history.state && window.history.state.href){
+				console.log("无本地记录，但浏览器有历史记录");
+				pageId=window.history.state.href;
+				page=document.getElementById(pageId.substring(1));
+				s.hideAllPage(pageId);
+				s.showPage(page);
+				return;
+			}
+			//如果本地历史为空，浏览器历史也为空，却可以按返回按键，证明目前处于第二层(防刷新后第二层回不到第一层)
+			if(s.history.length==0){
+				s.hideAllPage();
+				return;
+			}
 			//清除顶层历史记录
-			s.pageId=s.history[s.history.length-1];
+			pageId=s.history[s.history.length-1];
 			//关闭清除的那层
-			s.close(s.pageId);
+			s.close(pageId);
 		}
 		/*=========================
           Control
@@ -181,6 +225,9 @@
             document[action]("webkitTransitionEnd",s.onTransitionEnd,false);
             //hash值监听
             window[action]("popstate",s.onPopstate,false);
+            //页面初始化
+            window[action]("load",s.onLoad,false);
+            //window[action]("hashchange",s.onPopstate,false);
             //按钮监听
             var pageBtns=document.querySelectorAll(s.params.pageBtn);
             for(var i=0,btn;btn=pageBtns[i++];){
@@ -193,18 +240,24 @@
         s.detach=function(event){
             s.events(true);
         }
+        s.onLoad=function(e){
+        	if(window.history.state && window.history.state.href){
+        		var pageId=window.history.state.href;
+        		var page=document.querySelector(pageId);
+        		//关闭所有页面
+        		s.hideAllPage(pageId);
+        		//显示hash页面
+        		s.showPage(page);
+        	}
+        }
         s.onClickBtn=function(e){
     		s.target=e.target;
-			s.pageId=s.target.getAttribute("href");
-			s.open(s.pageId);
+			var pageId=s.target.getAttribute("href");
+			var openType=s.target.getAttribute("target");
+			s.open(pageId,openType);
 			e.preventDefault();
 		}
-        s.onPopstate=function(event) {
-			if(event.state && event.state.href && s.pageId==event.state.href){
-				s.open(event.state.href);
-				console.log("不允许前进");
-				return;
-			}
+        s.onPopstate=function(e) {
 			//后退
 			s.back();
 			//console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
