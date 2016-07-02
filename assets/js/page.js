@@ -94,6 +94,7 @@
 		    }
         }
         s.replaceHistory=function(pageId){
+        	s.history.pop();
         	s.history.push(pageId);
 			try{
 		        window.history.replaceState({href:pageId},document.title, pageId);

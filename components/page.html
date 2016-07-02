@@ -17,7 +17,6 @@
 </head>
 
 <body ontouchstart="">
-<!-- <div class="page-wrapper"> -->
 	<section id="page_0">
 		<header style="position: absolute;">
 		  <div class="titlebar">
@@ -154,7 +153,6 @@
 			none
 		</article>
 	</section>
-<!-- </div> -->
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
@@ -194,10 +192,10 @@
 			singlePage.close(id,animation);
 		}
 		
-		//var sec=new Page();
 		//定义exmobi返回
 		function back(){
-			if(history){
+			console.log(window.history.pushState);
+			if(window.history){
 				history.go(-1)
 			}else{
 				singlePage.back();
