@@ -475,10 +475,7 @@ aside {
 /*----------------toast.less(end)--------------*/
 
 /*----------------form.less(start)--------------*/
-input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
-input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
-input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
-input[list],textarea,select,.input-text{
+input,keygen,textarea,select,.input-text{
 	border-color:@border;
 	background-color:@input-bg;
 }
@@ -496,13 +493,6 @@ input[list],textarea,select,.input-text{
 }
 .input-box.click .icon:active,.input-box .icon.click:active,.input-box .icon.active{
 	color:@primary-bg;
-}
-.input-box.required{
-	border-color:@required-border;
-	background-color:@required-bg;
-}
-.input-box.required input{
-	background-color:transparent;
 }
 .input-box.reverse{
 	color:@primary-color;

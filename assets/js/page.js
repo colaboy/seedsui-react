@@ -9,7 +9,7 @@
 			"pageBtn":"[data-toggle=page]",
 			"pageClass":"page",
 			"pageActiveClass":"active",
-			"defaultAnimation":"slideleft",
+			"defaultAnimation":"slideLeft",
 			"duration":"300"
 
 			/*callbacks

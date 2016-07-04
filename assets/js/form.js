@@ -5,7 +5,8 @@
 		Model
 		================*/
 		var s=this;
-		s.container=document.querySelector(container);
+		s.container=typeof container=="string"?document.querySelector(container):container;
+		//s.container=document.querySelector(container);
 		s.formElements=[];//表单元素
 		s.getFormElements=function(){
 			//获取有效的表单元素
@@ -66,29 +67,33 @@
 		};
 		//单个元素验证
 		s.safelvl=0;//密码安全等级
+		var ruleExpr={
+			"required":/.+/,//不能为空
+			"username":/^[\w]*$/,//只能包括字母、数字和下划线
+			"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
+			"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
+			"phone":/^([1][34578][0-9]{9})?$/,//手机号码输入不正确
+			"chinese":/^[\u4E00-\u9FA5]*$/,//只能填写中文
+			"specialchar":/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$///不能为特殊字符
+		}
 		s.rule=function(field){
-			var ruleExpr = {
-				"required":/.+/,//不能为空
-				"username":/^[\w]*$/,//只能包括字母、数字和下划线
-				"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
-				"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
-				"phone":/^([1][34578][0-9]{9})?$/,//手机号码输入不正确
-				"chinese":/^[\u4E00-\u9FA5]*$/,//只能填写中文
-				"specialchar":/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$///不能为特殊字符
-			}
 			var ruleField=field.getAttribute("data-rule-field")||"";
 			var rule=field.getAttribute("data-rule").split(" ");
 			var value=field.value||"";
 			var errorMsg=null;
 			for(var i=0,rulename;rulename=rule[i++];){
-				if(ruleExpr[rulename]){
+				if(ruleExpr[rulename]){//正则验证
 					if(!ruleExpr[rulename].test(value)){
 						errorMsg=ruleField+lang.rule[rulename];
 						break;
 					}
-				}else if(rulename.indexOf("minlength")>=0){
+				}
+				if(value.length<=0){//如果为空
+					break;
+				}
+				if(rulename.indexOf("minlength")>=0){
 					var minlength=rulename.split(":")[1];
-					if(value.length>0 && value.length<minlength){
+					if(value.length<minlength){
 						errorMsg=ruleField+lang.rule.minlength+ minlength +lang.rule.unit;
 						break;
 					}
@@ -96,6 +101,23 @@
 					var maxlength=rulename.split(":")[1];
 					if(value.length>maxlength){
 						errorMsg=ruleField+lang.rule.maxlength+ maxlength +lang.rule.unit+"，超出"+eval(value.length-maxlength)+lang.rule.unit;
+						break;
+					}
+				}else if(rulename.indexOf("number")>=0){
+					if(!Number(value)){
+						errorMsg=ruleField+lang.rule.number;
+						break;
+					}
+				}else if(rulename.indexOf("minnumber")>=0){
+					var minnumber=rulename.split(":")[1];
+					if(Number(value)<Number(minnumber)){
+						errorMsg=ruleField+lang.rule.minnumber+minnumber;
+						break;
+					}
+				}else if(rulename.indexOf("maxnumber")>=0){
+					var maxnumber=rulename.split(":")[1];
+					if(Number(value)>Number(maxnumber)){
+						errorMsg=ruleField+lang.rule.maxnumber+maxnumber;
 						break;
 					}
 				}else if(rulename.indexOf("compare")>=0){
@@ -106,7 +128,7 @@
 						break;
 					}
 				}else if(rulename=="safelvl"){
-					if(value.length>0 && s.safelvl<2){
+					if(s.safelvl<2){
 						errorMsg=ruleField+lang.rule[rulename];
 						break;
 					}
@@ -115,16 +137,22 @@
 			return errorMsg;
 		};
 		//表单验证
-		var t=new Prompt("格式不正确");
-		s.validate=function(){
+		var t=new Toast("格式不正确");
+		s.validate=function(fn){
 			for(var i=0,field;field=s.formElements[i++];){
 				if(!field.getAttribute("data-rule")){
 					continue;
 				}
 				var errormsg=s.rule(field);
 				if(errormsg){
-					t.setText(errormsg);
-					t.show();
+					if(fn){
+						s.field=field;
+						s.errormsg=errormsg;
+						fn(s);
+					}else{
+						t.setText(errormsg);
+						t.show();
+					}
 					//field.focus();
 					return false;
 				}

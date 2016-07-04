@@ -2,9 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>form-validate</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+    .input-box.required{
+        border-color:#e7eabd;
+        background-color:#faffbd;
+    }
+    .input-box.required input{
+        background-color:transparent;
+    }
+    .input-box.error{
+        background-color:#ffecec;
+        border-color:#ff635b;
+    }
+    .input-box.error input{
+        background-color:transparent;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -16,11 +33,11 @@
     </header>
     <article>
     	<form id="form1" style="padding:10px;">
-            <div class="input-box margin8 nolrmargin required" data-input="clear">
+            <div class="input-box margin8 nolrmargin" data-input="clear">
                 <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
                 <i class="icon icon-clear-fill color-placeholder hide"></i>
             </div>
-            <div class="input-box margin8 nolrmargin required" data-input="reveal">
+            <div class="input-box margin8 nolrmargin" data-input="reveal">
                 <input type="password" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
                 <div class="safelvl lvl0">
@@ -35,7 +52,7 @@
             
             <div class="rowspace22"></div>
 
-            <div class="input-box margin8 nolrmargin required" data-input="reveal">
+            <div class="input-box margin8 nolrmargin" data-input="reveal">
                 <input type="password" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
             </div>
@@ -50,6 +67,10 @@
 
             <div class="input-box margin8 nolrmargin">
                 <input type="text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
+            </div>
+
+            <div class="input-box margin8 nolrmargin">
+                <input type="number" placeholder="年龄" name="age" data-rule-field="年龄" data-rule="number minnumber:18 maxnumber:48"/>
             </div>
 
             <button class="button submit block">注册</button>

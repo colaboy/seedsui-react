@@ -2,6 +2,7 @@
 var lang = {
 	"rule": {
 		"required": "不能为空",
+		"number":"只能为数字",
 		"username": "只能包括字母、数字和下划线",
 		"password": "格式不正确",
 		"phone": "手机号码输入不正确",
@@ -10,6 +11,8 @@ var lang = {
 		"minlength": "最小长度为",
 		"maxlength": "最大长度为",
 		"unit": "位",
+		"minnumber":"最小值为",
+		"maxnumber":"最大值为",
 		"twice": "两次",
 		"compare": "输入不一致",
 		"safelvl":"不安全，请增强",
