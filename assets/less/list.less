@@ -40,29 +40,21 @@
 	-webkit-flex:1.0;
 	flex:1.0;
 }
-.justify-content>p,.justify-content>a{
-	line-height:1.5em;
-}
 .justify-content small{
 	display: block;
-	line-height: 1.5em;
 }
 /*无自适应*/
-.list li.nojustify{
+.list li.nojustify,.nojustify{
 	display: block;	
 }
-.list li.nojustify .justify{
+.nojustify .justify{
 	display: block;
 	max-width: 100%;
 	padding-left:8px;
 	padding-right:8px;
 }
-.list li.nojustify .justify-content~.justify{
+.nojustify .justify-content~.justify{
 	padding-top:0;
-}
-/*列表标记*/
-.list [class^=mark-]{
-	margin-right:4px;
 }
 /*上下两端对齐*/
 .list.between .justify-content small:nth-last-of-type(1),.list li.between .justify-content small:nth-last-of-type(1){

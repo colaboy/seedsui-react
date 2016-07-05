@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>list2</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+    body{
+        background-color:white;
+    }
+    .justify, .justify-content{
+        padding:5px 8px 10px 8px;
+    }
+    .timeline-badge{
+        top:10px;
+        left:-19px;
+    }
+    .timeline{
+        border-width:0 0 0 2px;
+        border-color:#57b3fa;
+    }
+    .timeline .dot{
+        width:12px;
+        height:12px;
+        background-color:#57b3fa;
+    }
+    .timeline .linedot{
+        border-width:3px;
+        border-color:white;
+        border-style:solid;
+        text-align:center;
+    }
+    .timeline .linedot .dot{
+        display:none;
+    }
+    .timeline .listtitle{
+        padding: 4px 0;
+    }
+    .timeline .active .listtitle,.timeline .active small{
+        color:#006dff;
+    }
+    .timeline .active .timeline-badge{
+        top:0px;
+    }
+    .timeline .active .linedot{
+        width:30px;
+        height:30px;
+        line-height:30px;
+        font-size:0;
+        background-color:#cce1ef;
+    }
+    .timeline .active .linedot .dot{
+        width:18px;
+        height:18px;
+        display:inline-block;
+    }
+    .timeline .arrowchat{
+        font-size:16px;
+        margin:10px 0;
+        padding:8px;
+        border-radius:8px;
+        background-color:#eff6fa;
+        border-color:#cce1ef;
+    }
+    .timeline .arrowchat .toparrow{
+        width:13px;
+        position:absolute;
+        top:-8px;
+        left:10px;
+    }
+    .mark-success,.mark-cancel,.mark-disable{
+        padding:0 4px;
+        font-size:12px;
+        margin-left:4px;
+    }
+    .mark-success{
+        color:#d45802;
+        background-color:#ffc9a3;
+        border:1px solid #eb6100;
+    }
+    .mark-cancel{
+        color:#006dff;
+        background-color:#a5d8ff;
+        border:1px solid #006dff;
+    }
+    .mark-disable{
+        color:#9a9a9a;
+        background-color:#e5e5e5;
+        border:1px solid #c9c9c9;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+        	<a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>列表</h1>
+        </div>
+    </header>
+    <article>
+        <ul class="list noclick timeline noborder" style="margin-top:10px;">
+            <li class="active">
+                <div class="timeline-badge">
+                    <div class="dot linedot"><div class="dot"></div></div>
+                </div>
+                <div class="justify-content">
+                    <p>
+                        <span class="listtitle">分管领导：陈孝正</span>
+                        <span class="mark-success">已查看</span>
+                    </p>
+                    
+                    <div class="card arrowchat">
+                        <img class="toparrow" src="../img/list2/arrow.png">
+                        测试过测试过，测试过测试过测过测过测过。
+                    </div>
+                    <small class="nowrap">2016-06-08 10:45:34</small>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge">
+                    <div class="dot linedot"><div class="dot"></div></div>
+                </div>
+                <div class="justify-content">
+                    <p>
+                        <span class="listtitle">分管领导：陈孝正</span>
+                        <span class="mark-success">已查看</span>
+                    </p>
+                    <div class="card arrowchat">
+                        <img class="toparrow" src="../img/list2/arrow.png">
+                        测试过测试过，测试过测试过测过测过测过。
+                    </div>
+                    <small class="nowrap">2016-06-08 10:45:34</small>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge">
+                    <div class="dot linedot"><div class="dot"></div></div>
+                </div>
+                <div class="justify-content">
+                    <p>
+                        <span class="listtitle">分管领导：陈孝正</span>
+                        <span class="mark-cancel">未查看</span>
+                    </p>
+                    <div class="card arrowchat">
+                        <img class="toparrow" src="../img/list2/arrow.png">
+                        测试过测试过，测试过测试过测过测过测过。
+                    </div>
+                    <small class="nowrap">2016-06-08 10:45:34</small>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge">
+                    <div class="dot linedot"><div class="dot"></div></div>
+                </div>
+                <div class="justify-content">
+                    <p>
+                        <span class="listtitle">分管领导：陈孝正</span>
+                        <span class="mark-disable">已提交</span>
+                    </p>
+                    <div class="card arrowchat">
+                        <img class="toparrow" src="../img/list2/arrow.png">
+                        测试过测试过，测试过测试过测过测过测过。
+                    </div>
+                    <small class="nowrap">2016-06-08 10:45:34</small>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-badge">
+                    <div class="dot linedot"><div class="dot"></div></div>
+                </div>
+                <div class="justify-content">
+                    <p>
+                        <span class="listtitle">分管领导：陈孝正</span>
+                        <span class="mark-disable">已提交</span>
+                    </p>
+                    <div class="card arrowchat">
+                        <img class="toparrow" src="../img/list2/arrow.png">
+                        测试过测试过，测试过测试过测过测过测过。
+                    </div>
+                    <small class="nowrap">2016-06-08 10:45:34</small>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
+    <script>
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>
