@@ -326,107 +326,70 @@ small {
 }
 .filter-sepia,
 .before-filter-sepia:before {
-  /**  格式，filer: sepia(效果范围)
+  /**  对比，filer: sepia(效果范围)
      *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
      */
   -webkit-filter: sepia(100%);
-  -moz-filter: sepia(100%);
-  -o-filter: sepia(100%);
-  -ms-filter: sepia(100%);
-  filter: sepia(100%);
 }
 .filter-grayscale,
 .before-filter-grayscale:before {
-  /**  格式，filer: grayscale(效果范围)
+  /**  去色，filer: grayscale(效果范围)
      *  效果范围，取值范围为0-1或0-100%；0表示无效果，1或100%表示最大效果
      */
   -webkit-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  filter: grayscale(100%);
 }
 .filter-blur,
 .before-filter-blur:before {
-  /**  格式，filer: blur(模糊半径)
+  /**  模糊，filer: blur(模糊半径)
      *  模糊半径，取值范围0~Npx，0为无效果
      */
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
   opacity: 0.9;
   -webkit-filter: blur(2px);
 }
 .filter-invert,
 .before-filter-invert:before {
-  /**  格式，filer: invert(效果范围)
+  /**  反转，filer: invert(效果范围)
      *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
      */
   -webkit-filter: invert(1);
-  -moz-filter: invert(1);
-  -o-filter: invert(1);
-  -ms-filter: invert(1);
-  filter: invert(1);
 }
 .filter-saturate,
 .before-filter-saturate:before {
-  /**  格式，filer: saturate(效果范围)
+  /**  饱合度，filer: saturate(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果，0为灰度图
      */
   -webkit-filter: saturate(2);
-  -moz-filter: saturate(2);
-  -o-filter: saturate(2);
-  -ms-filter: saturate(2);
-  filter: saturate(2);
 }
 .filter-contrast,
 .before-filter-contrast:before {
-  /**  格式，filer: contrast(效果范围)
+  /**  对比度，filer: contrast(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果
      */
   -webkit-filter: contrast(2);
-  -moz-filter: contrast(2);
-  -o-filter: contrast(2);
-  -ms-filter: contrast(2);
-  filter: contrast(2);
 }
 .filter-brightness,
 .before-filter-brightness:before {
-  /**  格式，filer: brightness(效果范围)
+  /**  明度，filer: brightness(效果范围)
      *  效果范围，取值范围>=0的数字或百分数，1为无效果
      */
   -webkit-filter: brightness(2);
-  -moz-filter: brightness(2);
-  -o-filter: brightness(2);
-  -ms-filter: brightness(2);
-  filter: brightness(2);
 }
 .filter-hue-rotate,
 .before-filter-hue-rotate:before {
-  /**  格式，filer: hue-rotate(效果范围)
+  /**  色相，filer: hue-rotate(效果范围)
      *  效果范围，取值范0deg~365deg，0（默认值）为无效果
      */
   -webkit-filter: hue-rotate(200deg);
-  -moz-filter: hue-rotate(200deg);
-  -o-filter: hue-rotate(200deg);
-  -ms-filter: hue-rotate(200deg);
-  filter: hue-rotate(200deg);
 }
 .filter-drop-shadow,
 .before-filter-drop-shadow:before {
-  /**  格式，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
+  /**  内阴影，filer: drop-shadow(x-offset y-offset 阴影模糊半径 阴影颜色)
      *  x-offset和y-offset为阴影的相对于元素左上角的位移距离；
      * 注意：
      *     1. 阴影的外观受border-radius样式的影响；
      *     2. :after和:before等伪元素会继承阴影的效果。
      */
   -webkit-filter: drop-shadow(1px 1px 0px #333333);
-  -moz-filter: drop-shadow(1px 1px 0px #333333);
-  -o-filter: drop-shadow(1px 1px 0px #333333);
-  -ms-filter: drop-shadow(1px 1px 0px #333333);
-  filter: drop-shadow(1px 1px 0px #333333);
-  /*圆角*/
 }
 /*----------------mbox.less(start)--------------*/
 html,
@@ -1763,17 +1726,11 @@ input[type=range]::-webkit-slider-thumb {
 .timeline-dot {
   position: relative;
   box-sizing: border-box;
-  display: box;
   display: -webkit-box;
-  box-pack: center;
   -webkit-box-pack: center;
-  box-align: center;
   -webkit-box-align: center;
-  display: flex;
   display: -webkit-flex;
-  justify-content: center;
   -webkit-justify-content: center;
-  align-items: center;
   -webkit-align-items: center;
   background-size: cover;
   background-position: center center;
@@ -1853,8 +1810,7 @@ input[type=range]::-webkit-slider-thumb {
   padding-top: 0;
 }
 /*上下两端对齐*/
-.list.between .justify-content small:nth-last-of-type(1),
-.list li.between .justify-content small:nth-last-of-type(1) {
+.between .justify-content small:nth-last-of-type(1) {
   margin-top: 8px;
 }
 /*位置*/
@@ -2892,14 +2848,10 @@ select {
 .row,
 .titlebar {
   position: relative;
-  display: flex;
   display: -webkit-flex;
-  display: box;
   display: -webkit-box;
-  box-align: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center;
 }
 .input-box {
   border-style: solid;
@@ -2913,9 +2865,7 @@ select {
 .input-box .input-text {
   display: block;
   -webkit-box-flex: 1.0;
-  box-flex: 1.0;
   -webkit-flex: 1;
-  flex: 1;
   border-width: 0;
 }
 /*box内图标*/
@@ -2938,9 +2888,6 @@ select {
   top: 50%;
   right: 0;
   -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
   pointer-events: none;
 }
 /*图标与框间距*/
@@ -3417,24 +3364,12 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #1693ce;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  animation-duration: 0.5s;
   -webkit-animation-duration: 0.5s;
-  animation-timing-function: linear;
   -webkit-animation-timing-function: linear;
-  animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
 }
 .gauge-box.bg1 {
-  animation-name: gauge-box-bg1;
   -webkit-animation-name: gauge-box-bg1;
-}
-@keyframes gauge-box-bg1 {
-  0% {
-    background-color: #1693ce;
-  }
-  100% {
-    background-color: #19a4e5;
-  }
 }
 @-webkit-keyframes gauge-box-bg1 {
   0% {
@@ -3445,19 +3380,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg2 {
-  animation-name: gauge-box-bg2;
   -webkit-animation-name: gauge-box-bg2;
-}
-@keyframes gauge-box-bg2 {
-  0% {
-    background-color: #1693ce;
-  }
-  50% {
-    background-color: #19a4e5;
-  }
-  100% {
-    background-color: #14ba91;
-  }
 }
 @-webkit-keyframes gauge-box-bg2 {
   0% {
@@ -3471,22 +3394,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg3 {
-  animation-name: gauge-box-bg3;
   -webkit-animation-name: gauge-box-bg3;
-}
-@keyframes gauge-box-bg3 {
-  0% {
-    background-color: #1693ce;
-  }
-  33% {
-    background-color: #19a4e5;
-  }
-  67% {
-    background-color: #14ba91;
-  }
-  100% {
-    background-color: #16c447;
-  }
 }
 @-webkit-keyframes gauge-box-bg3 {
   0% {
@@ -3503,25 +3411,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg4 {
-  animation-name: gauge-box-bg4;
   -webkit-animation-name: gauge-box-bg4;
-}
-@keyframes gauge-box-bg4 {
-  0% {
-    background-color: #1693ce;
-  }
-  25% {
-    background-color: #19a4e5;
-  }
-  50% {
-    background-color: #14ba91;
-  }
-  75% {
-    background-color: #16c447;
-  }
-  100% {
-    background-color: #2fcf1f;
-  }
 }
 @-webkit-keyframes gauge-box-bg4 {
   0% {
@@ -3541,28 +3431,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg5 {
-  animation-name: gauge-box-bg5;
   -webkit-animation-name: gauge-box-bg5;
-}
-@keyframes gauge-box-bg5 {
-  0% {
-    background-color: #1693ce;
-  }
-  20% {
-    background-color: #19a4e5;
-  }
-  40% {
-    background-color: #14ba91;
-  }
-  60% {
-    background-color: #16c447;
-  }
-  80% {
-    background-color: #2fcf1f;
-  }
-  100% {
-    background-color: #7cce16;
-  }
 }
 @-webkit-keyframes gauge-box-bg5 {
   0% {
@@ -3585,31 +3454,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg6 {
-  animation-name: gauge-box-bg6;
   -webkit-animation-name: gauge-box-bg6;
-}
-@keyframes gauge-box-bg6 {
-  0% {
-    background-color: #1693ce;
-  }
-  16% {
-    background-color: #19a4e5;
-  }
-  33% {
-    background-color: #14ba91;
-  }
-  50% {
-    background-color: #16c447;
-  }
-  66% {
-    background-color: #2fcf1f;
-  }
-  87% {
-    background-color: #7cce16;
-  }
-  100% {
-    background-color: #c0ac05;
-  }
 }
 @-webkit-keyframes gauge-box-bg6 {
   0% {
@@ -3635,34 +3480,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg7 {
-  animation-name: gauge-box-bg7;
   -webkit-animation-name: gauge-box-bg7;
-}
-@keyframes gauge-box-bg7 {
-  0% {
-    background-color: #1693ce;
-  }
-  14% {
-    background-color: #19a4e5;
-  }
-  28% {
-    background-color: #14ba91;
-  }
-  43% {
-    background-color: #16c447;
-  }
-  57% {
-    background-color: #2fcf1f;
-  }
-  71% {
-    background-color: #7cce16;
-  }
-  86% {
-    background-color: #c0ac05;
-  }
-  100% {
-    background-color: #c26900;
-  }
 }
 @-webkit-keyframes gauge-box-bg7 {
   0% {
@@ -3691,37 +3509,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg8 {
-  animation-name: gauge-box-bg8;
   -webkit-animation-name: gauge-box-bg8;
-}
-@keyframes gauge-box-bg8 {
-  0% {
-    background-color: #1693ce;
-  }
-  12% {
-    background-color: #19a4e5;
-  }
-  25% {
-    background-color: #14ba91;
-  }
-  37% {
-    background-color: #16c447;
-  }
-  50% {
-    background-color: #2fcf1f;
-  }
-  62% {
-    background-color: #7cce16;
-  }
-  75% {
-    background-color: #c0ac05;
-  }
-  87% {
-    background-color: #c26900;
-  }
-  100% {
-    background-color: #c02e00;
-  }
 }
 @-webkit-keyframes gauge-box-bg8 {
   0% {
@@ -3753,40 +3541,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg9 {
-  animation-name: gauge-box-bg9;
   -webkit-animation-name: gauge-box-bg9;
-}
-@keyframes gauge-box-bg9 {
-  0% {
-    background-color: #1693ce;
-  }
-  11% {
-    background-color: #19a4e5;
-  }
-  22% {
-    background-color: #14ba91;
-  }
-  33% {
-    background-color: #16c447;
-  }
-  44% {
-    background-color: #2fcf1f;
-  }
-  55% {
-    background-color: #7cce16;
-  }
-  67% {
-    background-color: #c0ac05;
-  }
-  78% {
-    background-color: #c26900;
-  }
-  89% {
-    background-color: #c02e00;
-  }
-  100% {
-    background-color: #bf1200;
-  }
 }
 @-webkit-keyframes gauge-box-bg9 {
   0% {
@@ -3821,43 +3576,7 @@ input[type=range]::-webkit-slider-thumb {
   }
 }
 .gauge-box.bg10 {
-  animation-name: gauge-box-bg10;
   -webkit-animation-name: gauge-box-bg10;
-}
-@keyframes gauge-box-bg10 {
-  0% {
-    background-color: #1693ce;
-  }
-  10% {
-    background-color: #19a4e5;
-  }
-  20% {
-    background-color: #14ba91;
-  }
-  30% {
-    background-color: #16c447;
-  }
-  40% {
-    background-color: #2fcf1f;
-  }
-  50% {
-    background-color: #7cce16;
-  }
-  60% {
-    background-color: #c0ac05;
-  }
-  70% {
-    background-color: #c26900;
-  }
-  80% {
-    background-color: #c02e00;
-  }
-  90% {
-    background-color: #bf1200;
-  }
-  100% {
-    background-color: #760403;
-  }
 }
 @-webkit-keyframes gauge-box-bg10 {
   0% {
@@ -5542,17 +5261,11 @@ ul.weather-otherday li {
   color: white;
   border-color: white;
   background-color: rgba(0, 0, 0, 0.7);
-  display: box;
   display: -webkit-box;
-  box-pack: center;
   -webkit-box-pack: center;
-  box-align: center;
   -webkit-box-align: center;
-  display: flex;
   display: -webkit-flex;
-  justify-content: center;
   -webkit-justify-content: center;
-  align-items: center;
   -webkit-align-items: center;
 }
 .sticker {
@@ -5615,12 +5328,6 @@ ul.weather-otherday li {
   font-size: 16px;
   width: 16px;
   height: 16px;
-}
-.card-info .icon,
-.card-handler .icon {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
 }
 .grid .icon {
   font-size: 32px;
@@ -5919,136 +5626,64 @@ input[type="submit"].radiusround,
 /*---------------radius.less(end)---------------*/
 /*----------------box.less(start)--------------*/
 .box {
-  display: -moz-box;
   display: -webkit-box;
-  display: box;
   display: -webkit-flex;
-  display: flex;
 }
 .box-center,
 .box-middlecenter,
 .text-center {
-  -moz-box-pack: center;
   -webkit-box-pack: center;
-  box-pack: center;
   -webkit-justify-content: center;
-  justify-content: center;
 }
 .box-right {
-  -moz-box-pack: end;
   -webkit-box-pack: end;
-  box-pack: end;
   -webkit-justify-content: flex-end;
-  justify-content: flex-end;
 }
 .box-middle,
 .box-middlecenter {
-  -moz-box-align: center;
   -webkit-box-align: center;
-  box-align: center;
   -webkit-align-items: center;
-  align-items: center;
 }
 .box-top {
-  -moz-box-align: start;
   -webkit-box-align: start;
-  box-align: start;
   -webkit-align-items: flex-start;
-  align-items: flex-start;
 }
 .box-bottom {
-  -moz-box-align: end;
   -webkit-box-align: end;
-  box-align: end;
   -webkit-align-items: flex-end;
-  align-items: flex-end;
 }
 .box-vertical {
-  -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
-  box-orient: vertical;
   -webkit-flex-flow: column;
-  flex-flow: column;
 }
 .box-horizontal {
-  -moz-box-orient: horizontal;
   -webkit-box-orient: horizontal;
-  box-orient: horizontal;
   -webkit-flex-flow: row;
-  flex-flow: row;
 }
 .box-shrink > div,
 .box-shrink > button {
   width: 100%;
   -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   -webkit-flex-shrink: 0;
-  -ms-flex: 0 0 auto;
-  flex-shrink: 0;
 }
 .box-flex-1 {
-  -moz-box-flex: 1.0;
   -webkit-box-flex: 1.0;
-  box-flex: 1.0;
   -webkit-flex: 1;
-  flex: 1;
 }
 .box-flex-2 {
-  -moz-box-flex: 2.0;
   -webkit-box-flex: 2.0;
-  box-flex: 2.0;
   -webkit-flex: 2;
-  flex: 2;
 }
 .box-flex-3 {
-  -moz-box-flex: 3.0;
   -webkit-box-flex: 3.0;
-  box-flex: 3.0;
   -webkit-flex: 3;
-  flex: 3;
 }
 /*flex布局方式*/
 .flex {
   display: -webkit-flex;
-  display: flex;
 }
 .flex-1 {
   -webkit-flex: 1;
-  flex: 1;
-}
-.flex-2 {
-  -webkit-flex: 2;
-  flex: 2;
-}
-.flex-3 {
-  -webkit-flex: 3;
-  flex: 3;
-}
-.flex-4 {
-  -webkit-flex: 4;
-  flex: 4;
-}
-.flex-5 {
-  -webkit-flex: 5;
-  flex: 5;
-}
-.flex-6 {
-  -webkit-flex: 6;
-  flex: 6;
-}
-.flex-7 {
-  -webkit-flex: 7;
-  flex: 7;
-}
-.flex-8 {
-  -webkit-flex: 8;
-  flex: 8;
-}
-.flex-9 {
-  -webkit-flex: 9;
-  flex: 9;
 }
 /*--------------flex-flow--------------*/
 /*横向*/
@@ -6207,39 +5842,18 @@ input[type="submit"].radiusround,
 .self-middle {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  /* IE 9 */
-  -moz-transform: translateY(-50%);
-  /* Firefox */
   -webkit-transform: translateY(-50%);
-  /* Safari 和 Chrome */
-  -o-transform: translateY(-50%);
 }
 .self-center {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  /* IE 9 */
-  -moz-transform: translateX(-50%);
-  /* Firefox */
   -webkit-transform: translateX(-50%);
-  /* Safari 和 Chrome */
-  -o-transform: translateX(-50%);
 }
 .self-middlecenter {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  /* IE 9 */
-  -moz-transform: translate(-50%, -50%);
-  /* Firefox */
   -webkit-transform: translate(-50%, -50%);
-  /* Safari 和 Chrome */
-  -o-transform: translate(-50%, -50%);
 }
 .table {
   display: table;
@@ -6254,76 +5868,33 @@ input[type="submit"].radiusround,
   white-space: nowrap;
 }
 /*间距与布局*/
-.indent {
-  text-indent: 8px;
-}
 .width-full {
   width: 100%;
-}
-.lineheight0 {
-  line-height: 0;
 }
 .height-full {
   height: 100%;
 }
-.width-auto {
-  width: auto;
+.lineheight0 {
+  line-height: 0;
 }
-.height-auto {
-  height: auto;
+.indent8 {
+  text-indent: 8px;
 }
-.space6,
-.space12,
-.space14,
-.space16 {
+.space8 {
   display: inline-block;
-  *display: inline;
-  *zoom: 1;
   width: 12px;
   height: 12px;
 }
-.space6 {
-  width: 6px;
+.space8 {
+  width: 8px;
 }
-.space14 {
-  width: 14px;
-  height: 12px;
-}
-.space16 {
-  width: 16px;
-  height: 12px;
-}
-.rowspace,
-.rowspace4,
-.rowspace6,
-.rowspace8,
-.rowspace12,
-.rowspace20,
-.rowspace40 {
+.rowspace8 {
   display: block;
   border: none;
   clear: both;
 }
-.rowspace4 {
-  height: 4px;
-}
-.rowspace {
-  height: 8px;
-}
 .rowspace8 {
   height: 8px;
-}
-.rowspace12 {
-  height: 12px;
-}
-.rowspace20 {
-  height: 20px;
-}
-.rowspace22 {
-  height: 22px;
-}
-.rowspace40 {
-  height: 40px;
 }
 .margin4 {
   margin: 4px;
@@ -6401,12 +5972,6 @@ input[type="submit"].radiusround,
 }
 .indent6 {
   text-indent: 6px;
-}
-.indent8 {
-  text-indent: 8px;
-}
-.indent24 {
-  text-indent: 24px;
 }
 .paragraph {
   line-height: 24px;
@@ -6988,9 +6553,6 @@ select,
 .card-handler > a {
   color: #aaaaaa;
   border-color: #e6e6e6;
-}
-.card-info {
-  color: #aaaaaa;
 }
 /*----------------card.less(end)--------------*/
 /*----------------range.less(start)--------------*/

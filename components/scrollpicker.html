@@ -31,22 +31,28 @@
       简单两列
       ===========================*/
     var nums1=[
-	    {'key':'a','value':'0'},
-	    {'key':'b','value':'1'},
-	    {'key':'c','value':'2'},
-	    {'key':'d','value':'3'},
-	    {'key':'e','value':'4'},
-	    {'key':'f','value':'5'},
-	    {'key':'g','value':'6'},
+	    {'key':'a','value':'1'},
+	    {'key':'b','value':'2'},
+	    {'key':'c','value':'3'},
+	    {'key':'d','value':'4'},
+	    {'key':'e','value':'5'},
+	    {'key':'f','value':'6'},
+	    {'key':'g','value':'7'},
+        {'key':'h','value':'8'},
+        {'key':'i','value':'9'},
+        {'key':'j','value':'10'},
     ];
     var nums2=[
-	    {'key':'I','value':'0'},
-	    {'key':'II','value':'1'},
-	    {'key':'III','value':'2'},
-	    {'key':'IV','value':'3'},
-	    {'key':'V','value':'4'},
-	    {'key':'VI','value':'5'},
-	    {'key':'VII','value':'6'},
+	    {'key':'I','value':'1'},
+	    {'key':'II','value':'2'},
+	    {'key':'III','value':'3'},
+	    {'key':'IV','value':'4'},
+	    {'key':'V','value':'5'},
+	    {'key':'VI','value':'6'},
+	    {'key':'VII','value':'7'},
+        {'key':'VIII','value':'8'},
+        {'key':'IX','value':'9'},
+        {'key':'X','value':'10'},
     ];
     var sp=new Scrollpicker({
     	"onClickDone":function(e){
@@ -70,7 +76,7 @@
     	}
     });
     function addSlot(){
-	    sp.addSlot(nums1,'lock','5');
+	    sp.addSlot(nums1,'','5');
 	    sp.addSlot(nums2);
 	}
 	addSlot();

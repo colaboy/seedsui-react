@@ -1,14 +1,10 @@
 /*----------------inputbox.less(start)--------------*/
 .input-box,.row,.titlebar{
 	position:relative;
-	display: flex;
 	display: -webkit-flex;
-	display: box;
 	display: -webkit-box;
-	box-align: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
-    align-items: center;
 }
 .input-box{
 	border-style:solid;
@@ -18,10 +14,8 @@
 .input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
 	display:block;
 	-webkit-box-flex:1.0;
-	box-flex:1.0;
 
 	-webkit-flex:1;
-	flex:1;
 	border-width:0;
 }
 /*box内图标*/
@@ -40,9 +34,6 @@
 	top:50%;
 	right:0;
 	-webkit-transform:translateY(-50%);
-	-moz-transform:translateY(-50%);
-	-o-transform:translateY(-50%);
-	transform:translateY(-50%);
 	pointer-events:none;
 }
 /*图标与框间距*/

@@ -38,30 +38,18 @@
 .self-middle{
 	position:absolute;
 	top:50%;
-	transform:translateY(-50%);
-	-ms-transform:translateY(-50%); 	/* IE 9 */
-	-moz-transform:translateY(-50%); 	/* Firefox */
-	-webkit-transform:translateY(-50%); /* Safari 和 Chrome */
-	-o-transform:translateY(-50%); 
+	-webkit-transform:translateY(-50%);
 }
 .self-center{
 	position:absolute;
 	left:50%;
-	transform:translateX(-50%);
-	-ms-transform:translateX(-50%); 	/* IE 9 */
-	-moz-transform:translateX(-50%); 	/* Firefox */
-	-webkit-transform:translateX(-50%); /* Safari 和 Chrome */
-	-o-transform:translateX(-50%); 
+	-webkit-transform:translateX(-50%);
 }
 .self-middlecenter{
 	position:absolute;
 	top:50%;
 	left:50%;
-	transform:translate(-50%,-50%);
-	-ms-transform:translate(-50%,-50%); 	/* IE 9 */
-	-moz-transform:translate(-50%,-50%); 	/* Firefox */
-	-webkit-transform:translate(-50%,-50%); /* Safari 和 Chrome */
-	-o-transform:translate(-50%,-50%); 
+	-webkit-transform:translate(-50%,-50%);
 }
 .table{
 	display:table;
@@ -77,67 +65,33 @@
     white-space:nowrap;
 }
 /*间距与布局*/
-.indent{
-	text-indent:8px;
-}
 .width-full{
 	width:100%;
-}
-.lineheight0{
-	line-height:0;
 }
 .height-full{
 	height:100%;
 }
-.width-auto{
-	width:auto;
+.lineheight0{
+	line-height:0;
 }
-.height-auto{
-	height:auto;
+.indent8{
+	text-indent:8px;
 }
-.space6, .space12, .space14, .space16 {
+.space8{
 	display: inline-block;
-	*display:inline;
-	*zoom:1;
 	width:12px;
 	height:12px
 }
-.space6 {
-	width:6px
+.space8{
+	width:8px
 }
-.space14 {
-	width:14px;
-	height:12px
-}
-.space16 {
-	width:16px;
-	height:12px
-}
-.rowspace,.rowspace4,.rowspace6,.rowspace8,.rowspace12,.rowspace20,.rowspace40{
+.rowspace8{
 	display:block;
 	border:none;
 	clear:both;
 }
-.rowspace4{
-	height:4px;
-}
-.rowspace{
-	height:8px;
-}
 .rowspace8{
 	height:8px;
-}
-.rowspace12{
-	height:12px;
-}
-.rowspace20{
-	height:20px;
-}
-.rowspace22{
-	height:22px;
-}
-.rowspace40{
-	height:40px;
 }
 .margin4{
 	margin:4px;
@@ -216,16 +170,10 @@
 .indent6{
 	text-indent:6px;
 }
-.indent8{
-	text-indent:8px;
-}
-.indent24{
-	text-indent:24px;
-}
 .paragraph{
 	line-height: 24px;
 	margin:8px 0;
-	padding: 0 8px;
+	padding:0 8px;
 }
 .article-title{
 	font-size: 20px;
