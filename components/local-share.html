@@ -6,6 +6,13 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>local-share</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+	<style>
+	.app-sharebox{
+		padding:12px;
+		background-color:white;
+		box-sizing:border-box;
+	}
+	</style>
 </head>
 
 <body ontouchstart="">
@@ -24,40 +31,40 @@
 			<a class="button submit block margin8" href="javascript:showShare()">点击分享</a>
 		</article>
 		<!-- 分享到-->
-		<div id="mshare" class="hide sharebox" style="width:100%">
-			<ul class="grid size54" data-rowspace="8" data-col="3">
+		<div id="mshare" class="hide app-sharebox" style="width:100%">
+			<ul class="grid" data-rowspace="8" data-col="3">
 				<li>
-					<a class="photo color-white" style="background-color:#e55f5f;" data-share="tsina">
+					<a class="size40 radiusround color-white" style="background-color:#e55f5f;" data-share="tsina">
 						<i class="icon icon-tsina"></i>
 					</a>
 					<label class="grid-label">新浪微博</label>
 				</li>
 				<li>
-					<a class="photo color-white" style="background-color:#eda200;" data-share="qzone">
+					<a class="size40 radiusround color-white" style="background-color:#eda200;" data-share="qzone">
 						<i class="icon icon-qqzone"></i>
 					</a>
 					<label class="grid-label">QQ空间</label>
 				</li>
 				<li>
-					<a class="photo color-white" style="background-color:#45aaf2;" data-share="tqq">
+					<a class="size40 radiusround color-white" style="background-color:#45aaf2;" data-share="tqq">
 						<i class="icon icon-tqq"></i>
 					</a>
 					<label class="grid-label">QQ微博</label>
 				</li>
 				<li>
-					<a class="photo color-white" style="background-color:#4485fb;" data-share="qq">
+					<a class="size40 radiusround color-white" style="background-color:#4485fb;" data-share="qq">
 						<i class="icon icon-qq"></i>
 					</a>
 					<label class="grid-label">QQ好友</label>
 				</li>
 				<li>
-					<a class="photo color-white" style="background-color:#38ba35;" data-share="weixin">
+					<a class="size40 radiusround color-white" style="background-color:#38ba35;" data-share="weixin">
 						<i class="icon icon-weixin"></i>
 					</a>
 					<label class="grid-label">微信</label>
 				</li>
 				<li>
-					<a class="photo color-white" style="background-color:#41ce29;" data-share="fweixin">
+					<a class="size40 radiusround color-white" style="background-color:#41ce29;" data-share="fweixin">
 						<i class="icon icon-fweixin"></i>
 					</a>
 					<label class="grid-label">微信朋友圈</label>

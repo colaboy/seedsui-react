@@ -1,35 +1,24 @@
 /*----------------inputbox.less(start)--------------*/
-.input-box,.row,.titlebar{
+.inputbox{
 	position:relative;
-	display: -webkit-flex;
-	display: -webkit-box;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-}
-.input-box{
-	border-style:solid;
-	border-width:1px;
+	display:-webkit-box;
+    -webkit-box-align:center;
 }
 /*box内的表单框*/
-.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
+.inputbox input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.inputbox select,.inputbox keygen,.inputbox textarea,.inputbox .input-text{
 	display:block;
 	-webkit-box-flex:1.0;
-
-	-webkit-flex:1;
 	border-width:0;
 }
 /*box内图标*/
-.input-box .icon{
+.inputbox .icon{
 	margin-left:8px;
 	margin-right:8px;
 }
-.input-box .icon:active{
-	background-position:center bottom;
-}
 /*需要顶天立地的控件*/
-.input-box select+.icon,.input-box input[type="date"]+.icon,.input-box input[type="month"]+.icon,
-.input-box input[type="week"]+.icon,.input-box input[type="datetime-local"]+.icon,
-.input-box input[type="datetime"]+.icon,.input-box input[type="time"]+.icon{
+.inputbox select+.icon,.inputbox input[type="date"]+.icon,.inputbox input[type="month"]+.icon,
+.inputbox input[type="week"]+.icon,.inputbox input[type="datetime-local"]+.icon,
+.inputbox input[type="datetime"]+.icon,.inputbox input[type="time"]+.icon{
 	position:absolute;
 	top:50%;
 	right:0;
@@ -37,13 +26,13 @@
 	pointer-events:none;
 }
 /*图标与框间距*/
-.input-box .icon+input,.input-box .icon+.input-text,.input-box .icon+select,.input-box .icon+textarea{
+.inputbox .icon+input,.inputbox .icon+.input-text,.inputbox .icon+select,.inputbox .icon+textarea{
 	padding-left:0;
 }
-.input-box input+.icon,.input-box .input-text+.icon,.input-box select+.icon,.input-box textarea+.icon{
+.inputbox input+.icon,.inputbox .input-text+.icon,.inputbox select+.icon,.inputbox textarea+.icon{
 	margin-left:0;
 }
-.input-box .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
+.inputbox .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
 	margin-left:0px;
 }
 /*搜索框*/

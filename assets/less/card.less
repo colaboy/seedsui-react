@@ -1,26 +1,18 @@
 /*----------------card.less(start)--------------*/
-.card,.card-preview{
+.card{
 	display: block;
     position:relative;
 }
 .card{
     margin: 8px;
     box-sizing: border-box;
-    border-width: 1px;
-    border-style: solid;
     background-color:#fff;
 }
-.row label,.input-box label,.card label{
+.row label,.inputbox label,.card label{
     line-height: 30px;
 }
-/*预览图*/
-.card-preview{
-	height: 145px;
-    background-size: cover;
-    background-position: center;
-}
 /*关闭按钮*/
-.card .close,.card-preview .close{
+.card .close{
 	position:absolute;
 	top:-4px;
 	right:-4px;
@@ -45,7 +37,7 @@
 	border-style:solid;
 	border-width:0;
 }
-.card-handler.border>a:not(:last-child){
+.card-handler.card-handler-bordered>a:not(:last-child){
 	border-width:0 1px 0 0;
 }
 .card-handler[data-col="2"]>a{
@@ -58,19 +50,7 @@
 .card-handler[data-col="3"]>a:nth-child(2){
 	width:32%;
 }
-
 .card-handler[data-col="4"]>a{
 	width:25%;
-}
-/*信息按钮区*/
-.card-info{
-	height:40px;
-	line-height:40px;
-}
-.card-info>label:not(:first-child):not(:last-child),.card-info>a:not(:first-child):not(:last-child){
-	margin-left:18px;
-}
-.card-info .right{
-	float:right;
 }
 /*----------------card.less(end)--------------*/

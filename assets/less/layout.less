@@ -35,36 +35,34 @@
 .float-right{
 	float:right;
 }
-.self-middle{
+/*绝对定位*/
+.relative{
+	position: relative;
+}
+.absolute{
 	position:absolute;
-	top:50%;
-	-webkit-transform:translateY(-50%);
 }
-.self-center{
-	position:absolute;
-	left:50%;
-	-webkit-transform:translateX(-50%);
+.top{
+	top:0;
 }
-.self-middlecenter{
-	position:absolute;
-	top:50%;
-	left:50%;
-	-webkit-transform:translate(-50%,-50%);
+.bottom{
+	bottom:0;
 }
-.table{
-	display:table;
+.left{
+	left:0;
 }
-.table-cell-bottom{
-	display:table-cell;
-	vertical-align:bottom;
+.right{
+	right:0;
 }
-
 /*水平排列*/
 .horizontal{
 	overflow-x:auto;
     white-space:nowrap;
 }
 /*间距与布局*/
+.border-box{
+	box-sizing:border-box;
+}
 .width-full{
 	width:100%;
 }
@@ -79,7 +77,6 @@
 }
 .space8{
 	display: inline-block;
-	width:12px;
 	height:12px
 }
 .space8{
@@ -93,92 +90,35 @@
 .rowspace8{
 	height:8px;
 }
-.margin4{
-	margin:4px;
-}
-.margin6{
-	margin:6px;
-}
 .margin8{
 	margin:8px;
 }
-.margin12{
-	margin:12px;
-}
 .lrmargin8{
-	margin-left:8px;
-	margin-right:8px;
-}
-.tbmargin4{
-	margin-top:4px;
-	margin-bottom:4px;
+	margin:0 8px;
 }
 .tbmargin8{
-	margin-top:8px;
-	margin-bottom:8px;
+	margin:8px 0;
 }
 .nomargin{
 	margin:0 !important;
 }
-.nolrmargin{
-	margin-left:0 !important;
-	margin-right:0 !important;
-}
-.notbmargin{
-	margin-top:0 !important;
-	margin-bottom:0 !important;
-}
-.padding4{
-	padding:4px;
-}
-.padding6{
-	padding:6px;
-}
 .padding8{
 	padding:8px;
 }
-.lrpadding4{
-	padding-left:4px;
-	padding-right:4px;
-}
 .lrpadding8{
-	padding-left:8px;
-	padding-right:8px;
-}
-.tbpadding4{
-	padding-top:4px;
-	padding-bottom:4px;
+	padding:0 8px;
 }
 .tbpadding8{
-	padding-top:8px;
-	padding-bottom:8px;
-}
-.padding12{
-	padding:12px;
+	padding:8px 0;
 }
 .nopadding{
 	padding:0 !important;
 }
-.nolrpadding{
-	padding-left:0 !important;
-	padding-right:0 !important;
-}
-.notbpadding{
-	padding-top:0 !important;
-	padding-bottom:0 !important;
-}
-.indent6{
-	text-indent:6px;
-}
+/*段落*/
 .paragraph{
 	line-height: 24px;
 	margin:8px 0;
 	padding:0 8px;
-}
-.article-title{
-	font-size: 20px;
-	font-weight: 200;
-	margin:8px 0;
 }
 /*显示与隐藏*/
 .hide{
@@ -187,15 +127,13 @@
 .hidden{
 	visibility:hidden;
 }
+.overflow-hidden{
+	overflow:hidden;
+}
 .block{
 	display:block;
 }
 .inline-block{
 	display:inline-block;
-}
-/*线条*/
-.underline,.input-box.underline{
-	border-style:solid;
-	border-width:0 0 1px 0;
 }
 /*----------------layout.less(end)--------------*/

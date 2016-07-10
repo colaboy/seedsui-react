@@ -6,9 +6,6 @@
     width:120px;
     overflow:hidden;
     text-align:center;
-
-    border-style:solid;
-    border-width:1px;
 }
 .numbox .button{
     position:absolute;
@@ -25,6 +22,9 @@
 .numbox .button:nth-last-of-type(1){
     right:0;
 }
+.numbox .button{
+    border:0;
+}
 .numbox input[type=number],.numbox input[type=text]{
     padding:6px 0;
     width:56px;
@@ -32,7 +32,7 @@
     text-overflow:ellipsis;
     border-width:0;
 }
-.numbox.border input[type=number],.numbox.border input[type=text]{
+.numbox.bordered input[type=number],.numbox.bordered input[type=text]{
     width:54px;
     border-width:0 1px;
 } 

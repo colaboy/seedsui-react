@@ -8,6 +8,23 @@
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<link rel="stylesheet" href="../plugin/animate/animate.css">
     <link rel="stylesheet" href="../css/poll.css">
+    <style type="text/css">
+    .card-preview{
+        display: block;
+        position:relative;
+    }
+    /*预览图*/
+    .card-preview{
+        height: 145px;
+        background-size: cover;
+        background-position: center;
+    }
+    .card-preview .close{
+        position:absolute;
+        top:-4px;
+        right:-4px;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -24,28 +41,28 @@
     	<article>
     	<form id="form1">
     		<div class="group" id="pollcontent">
-                <div class="input-box">
+                <div class="inputbox">
                     <span class="icon" style="background-image:url(../img/poll/icon-tag.png);background-size:contain"></span>
                     <input type="text" placeholder="投票标题" name="topic" data-rule="required">
                 </div>
                 <hr/>
-                <div class="input-box">
+                <div class="inputbox">
                     <i class="icon"></i>
                     <textarea name="description" placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
                 </div>
-                <div class="input-box box-right">
+                <div class="inputbox box-right">
                     <span data-fontcounter-for="description1"></span>
                     <span><i data-click="uploadPhoto" class="color-placeholder icon icon-pic"></i></span>
                 </div>
                 <hr/>
-                <div class="input-box lineheight0 padding8">
+                <div class="inputbox lineheight0 padding8">
                     <p class="box-flex-1">支持多选</p>
                     <div class="switch reverse notext" data-on="是" data-click="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
                         <div class="switch-handle events-none"></div>
                     </div>
                 </div>
                 <hr/>
-                <div class="input-box lrpadding8 underline" style="display:none">
+                <div class="inputbox lrpadding8 underline" style="display:none">
                     <p class="box-flex-1">最多投几项</p>
                     <select name="max" class="rl" style="padding-right:24px;">
                         <option>1</option>
@@ -63,7 +80,7 @@
                 </div>
                 <div class="row noborder">
                     <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 underline">
+                    <div class="inputbox box-flex-1 underline">
                         <input type="text" name="polltext1" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                         <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                         <div class="nowrap" style="width:40px;height:40px;">
@@ -78,7 +95,7 @@
                 </div>
                 <div class="row noborder">
                     <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 underline">
+                    <div class="inputbox box-flex-1 underline">
                         <input type="text" name="polltext2" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                         <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                         <div class="nowrap" style="width:40px;height:40px;">
@@ -93,7 +110,7 @@
                 </div>
                 <div class="row noborder">
                     <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="input-box box-flex-1 underline">
+                    <div class="inputbox box-flex-1 underline">
                         <input type="text" name="polltext3" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
                         <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
                         <div class="nowrap" style="width:40px;height:40px;">
@@ -106,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="input-box text-center" data-click="addPollOption">
+                <div class="inputbox text-center" data-click="addPollOption">
                     <a class="input-text events-none">＋添加投票选项</a>
                 </div>
             </div>
@@ -127,12 +144,12 @@
     	</header>
     	<article>
     		<div class="group">
-                <div class="padding12">
+                <div class="padding8">
                     <p id="topic">公司早餐因该添加什么？</p>
                     <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
                 </div>
                 <div id="pollimg0" class="preview"></div>
-                <div class="margin12">
+                <div class="margin8">
                 	<small class="color-tip">记名投票(最多选2项)</small>
                 	<small class="float-right">33人参与投票</small>
                 </div>

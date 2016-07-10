@@ -6,6 +6,24 @@
     <meta name="format-detection" content="telephone=no">
 	<title>tree-selected</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+    .app-statusbar{
+        background-color:#ddd;
+    }
+    .app-statusbar .mark-grayscale{
+        padding: 8px;
+        margin: 5px 0 5px 8px;
+        background: #fff;
+        display: inline-block;
+    }
+    .app-statusbar .mark-grayscale:last-child{
+        margin-right: 8px;
+    }
+    .app-statusbar .mark-grayscale [class*="icon-"]{
+        color:#aaa;
+        margin-left:5px;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -20,7 +38,7 @@
         </div>
     </header>
     <article>
-        <div class="statusbar horizontal" style="display:none;" id="selected-box"></div>
+        <div class="app-statusbar horizontal" style="display:none;" id="selected-box"></div>
         <!-- tree -->
         <div class="tree-box">
             <ul class="tree" id="tree">

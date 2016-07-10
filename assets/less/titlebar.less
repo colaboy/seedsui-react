@@ -1,6 +1,7 @@
 /*----------------titlebar.less(start)--------------*/
-/*require inputbox.less*/
 .titlebar{
+	display:-webkit-box;
+    -webkit-box-align:center;
 	min-height:44px;
 	border-bottom: 1px solid;
 	box-sizing: border-box;
@@ -11,8 +12,9 @@
 .titlebar h1{
 	font-size: 17px;
 	font-weight: normal;
+}
+.titlebar h1,.titlebar>.inputbox{
 	-webkit-box-flex:1.0;
-	box-flex:1.0;
 }
 .titlebar h1:first-child{
 	margin-left:8px;
@@ -39,9 +41,5 @@
 }
 .titlebar>.right {
 	right:0;
-}
-/*searchbar*/
-.titlebar>.searchbar{
-	width:100%;
 }
 /*----------------titlebar.less(end)----------------*/

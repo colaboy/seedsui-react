@@ -5,7 +5,6 @@
 .events-auto{
 	pointer-events:auto;
 }
-/*禁止或显示系统默认菜单*/
 .noselect{
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
@@ -34,6 +33,9 @@ textarea{
 }
 ul,li,dl,dt,dd {
 	list-style: none;
+}
+small{
+	font-size:80%;
 }
 a{
 	text-decoration:none;
@@ -68,8 +70,8 @@ hgroup,
 main,
 nav,
 section,
-summary {
-  display: block;
+summary{
+	display:block;
 }
 pre{
 	white-space:pre-wrap;
@@ -78,7 +80,7 @@ pre{
 	white-space:-o-pre-wrap;
 	word-wrap:break-word;
 }
-.code {
+.code{
 	display: block;
 	font-size: 13px;
 	line-height: 1.42857143;
@@ -86,58 +88,6 @@ pre{
 	word-wrap: break-word;
 }
 /*容器样式*/
-.highlight {
-	padding: 9px 14px;
-	margin: 14px;
-	border-radius: 4px;
-	border-width:1px;
-	border-style:solid;
-	
-	border-color:#ddd;
-	background-color: #f7f7f7;
-}
-.highlight pre {
-	word-break: normal;
-}
-.doctype{
-	color: #099;
-}
-.comment{
-	color:#094;
-}
-.tag{
-	color:#2f6f9f;
-}
-.property{
-	color:#4f9fcf;
-}
-.val{
-	color:#d44950;
-}
-.relative {
-	position: relative;
-}
-.absolute{
-	position:absolute;
-}
-.overflow-hide{
-	overflow:hidden;
-}
-.overflow-auto{
-	overflow:hidden;
-}
-.overflow-scroll{
-	overflow:scroll;
-}
-.overflow-x{
-	overflow-y:hidden;
-	overflow-x:auto;
-	white-space:nowrap;
-}
-.overflow-y{
-	overflow-y:auto;
-	overflow-x:hidden;
-}
 .break-all{
 	word-break:break-all;
 }
@@ -173,10 +123,13 @@ pre{
 .clear{
 	clear:both;
 }
-
+br{
+	clear:both;
+}
 /*css3 特效*/
 .shadow{
-	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：偏右、偏下、模糊度、扩展、颜色*/
+	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
+	/*分别指投影的：偏右、偏下、模糊度、扩展、颜色*/
 }
 /*倒影*/
 .reflect-below{
@@ -187,83 +140,24 @@ pre{
 	border-top: 1px solid #fff;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.1) inset;
 }
-.noopacity {
-	opacity:1;
-	filter:Alpha(opacity=100);
-}
-.opacity7 {
-	opacity:0.7;
-	filter:Alpha(opacity=70);
-}
-.opacity6 {
-	opacity:0.6;
-	filter:Alpha(opacity=60);
-}
-.opacity3{
-	opacity:0.3;
-	filter:Alpha(opacity=30);
-}
-.opacity0{
-	opacity:0;
-	filter:Alpha(opacity=0);
-}
-/*背景*/
-.bg-cover{
-	background-size:cover;
-    background-position:center center;
-    background-repeat:no-repeat;
-}
-
 /*边框与线条*/
-.borderbox{
-	box-sizing:border-box;
-}
-.contentbox{
-	box-sizing:content-box;
-}
 hr{
 	border:none;
 	clear:both;
 	border-width:1px 0 0 0;
 	border-style:solid;
 }
-hr.dotted{
-	border-style:dotted;
-}
-br{
-	clear:both;
-}
 /*文字*/
-small {
-  font-size: 80%;
-  color:#aaa;
-}
 .bold{
 	font-weight:bold;
 }
 .uppercase{
 	text-transform:uppercase;/*大写*/
 }
-.lowercase {
-	text-transform: lowercase;/*小写*/
+.lowercase{
+	text-transform:lowercase;/*小写*/
 }
-.capitalize {
-	text-transform: capitalize;/*首字母大写*/
-}
-/*对齐*/
-.top,.bottom,.left,.right{
-	position:absolute;
-}
-.top{
-	top:0;
-}
-.bottom{
-	bottom:0;
-}
-.left{
-	left:0;
-}
-.right{
-	right:0;
+.capitalize{
+	text-transform:capitalize;/*首字母大写*/
 }
 /*-----------------------------global.less(end)-----------------------------*/

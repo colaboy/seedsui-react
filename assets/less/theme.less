@@ -3,6 +3,9 @@ body{
 	color: @body-color;
 	background-color:@body-bg;
 }
+small{
+	color:@placeholder-color;
+}
 /*标签默认样式*/
 ::selection{
 	background:@primary-bg;
@@ -90,13 +93,6 @@ aside {
 .titlebar.reverse a.active,.titlebar.reverse .button.active{
 	color:@titlebar-reverse-active-color;
 	border-color:fade(@titlebar-reverse-active-color,25%);
-}
-/*searchbar*/
-.titlebar>.searchbar{
-	background-color:transparent;
-}
-.titlebar.reverse>.searchbar .input-box{
-	border-color:@titlebar-reverse-border;
 }
 /*----------------titlebar.less(end)----------------*/
 
@@ -193,10 +189,6 @@ aside {
 }
 .badge.arrow:after{
 	border-bottom-color:@tip-bg;
-}
-/*标题小标记*/
-.peg{
-	background-color:@primary-bg;
 }
 /*小点点*/
 .dot{
@@ -479,27 +471,20 @@ input,keygen,textarea,select,.input-text{
 	border-color:@border;
 	background-color:@input-bg;
 }
-.input-box,.numbox{
+.inputbox,.numbox{
 	background-color:@input-bg;
-	border-color:@border;
-}
-.input-box input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.input-box select,.input-box keygen,.input-box textarea,.input-box .input-text{
-	background-color:transparent;
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
-.input-box{
-	border-color:@border;
-}
-.input-box.click .icon:active,.input-box .icon.click:active,.input-box .icon.active{
+.inputbox.click .icon:active,.inputbox .icon.click:active,.inputbox .icon.active{
 	color:@primary-bg;
 }
-.input-box.reverse{
+.inputbox.reverse{
 	color:@primary-color;
 	border-color:@primary-bg;
 	background-color:@primary-bg;
 }
-.input-box.reverse input,.input-box.reverse input::-webkit-input-placeholder{
+.inputbox.reverse input,.inputbox.reverse input::-webkit-input-placeholder{
 	color:@primary-color;
 }
 /*----------------inputbox.less(end)--------------*/
@@ -521,11 +506,11 @@ input,keygen,textarea,select,.input-text{
 }
 /*----------------clock.less(end)--------------*/
 
-/*----------------row.less(start)--------------*/
-.row,.group,.card{
+/*----------------group.less(start)--------------*/
+.group{
 	border-color:@border;
 }
-/*----------------row.less(end)--------------*/
+/*----------------group.less(end)--------------*/
 
 /*----------------card.less(start)--------------*/
 .card-handler>a{
@@ -669,23 +654,14 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
     color:@label-color;
 }
 /*边框*/
-.grid.border{
+.grid.grid-bordered{
 	border-color:@border;
 }
 /*----------------grid.less(end)----------------*/
 /*----------------photo.less(start)----------------*/
 .photo,.default{
-	background-color:@photo-bg;
-}
-.photo{
-	color:@white;
-}
-.default{
 	color:@photo-color;
-}
-.photo.border{
-	color:@label-color;
-	background-color:white;
+	background-color:@photo-bg;
 }
 /*----------------photo.less(end)----------------*/
 /*----------------list.less(start)----------------*/
@@ -728,24 +704,11 @@ ul.bg-transparent,ul.bg-transparent li,ul li.bg-transparent{
 }
 /*----------------indexbar.less(end)----------------*/
 /*----------------title.less(start)----------------*/
-.sliver,li.sliver,.title{
-	border-color:@border;
-}
 .sliver,li.sliver{
 	color:@placeholder-color;
 	background-color:@highlight-bg;
 }
 /*----------------title.less(end)----------------*/
-/*----------------statusbar.less(start)----------------*/
-.statusbar{
-	background-color:@border;
-}
-/*----------------statusbar.less(end)----------------*/
-/*----------------searchbar.less(start)----------------*/
-.searchbar{
-    background-color:@border;
-}
-/*----------------searchbar.less(end)----------------*/
 /*----------------loading.less(start)----------------*/
 .loading {
 	box-shadow:inset 0 0 0 4px @primary-bg;
@@ -836,13 +799,16 @@ table{
 .tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
 	background-color:@primary-bg;
 }
-/*----------------layout.less(start)--------------*/
-.underline{
+/*----------------border.less(start)--------------*/
+.underline,.bordered{
 	border-color:@border;
 }
-/*----------------layout.less(end)--------------*/
+/*----------------border.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
+.color-label{
+	color:@label-color;
+}
 .color-primary {
 	color:@primary-bg;
 }

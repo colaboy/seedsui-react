@@ -1,42 +1,58 @@
 /*----------------box.less(start)--------------*/
 .box{
 	display:-webkit-box;
-
+}
+.flex{
 	display:-webkit-flex;
 }
-.box-center,.box-middlecenter,.text-center{
+.box-center{
 	-webkit-box-pack:center;
-
+}
+.flex-center{
 	-webkit-justify-content:center;
 }
 .box-right{
 	-webkit-box-pack:end;
-	
+}
+.flex-right{
 	-webkit-justify-content:flex-end;
 }
-.box-middle,.box-middlecenter{
+.box-middle{
 	-webkit-box-align:center;
-
+}
+.flex-middle{
 	-webkit-align-items:center;
 }
 .box-top{
 	-webkit-box-align:start;
-
+}
+.flex-top{
 	-webkit-align-items:flex-start;
 }
 .box-bottom{
 	-webkit-box-align:end;
-
+}
+.flex-bottom{
 	-webkit-align-items:flex-end;
+}
+.box-middlecenter{
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+}
+.flex-middlecenter{
+	-webkit-justify-content:center;
+	-webkit-align-items:center;
 }
 .box-vertical{
     -webkit-box-orient:vertical;
-
+}
+.flex-vertical{
 	-webkit-flex-flow:column;
 }
 .box-horizontal{
 	-webkit-box-orient:horizontal;
-
+}
+.flex-horizontal{
     -webkit-flex-flow:row;
 }
 .box-shrink>div,.box-shrink>button{
@@ -46,23 +62,6 @@
 }
 .box-flex-1{
 	-webkit-box-flex:1.0;
-
-	-webkit-flex:1;
-}
-.box-flex-2{
-	-webkit-box-flex:2.0;
-
-	-webkit-flex:2;
-}
-.box-flex-3{
-	-webkit-box-flex:3.0;
-
-	-webkit-flex:3;
-}
-
-/*flex布局方式*/
-.flex{
-	display:-webkit-flex;
 }
 .flex-1{
 	-webkit-flex:1;
