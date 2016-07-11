@@ -7,6 +7,40 @@
 	<title>shape</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<style>
+	/*箭头*/
+	.arrow-top:after,.arrow-bottom:after,.arrow-left:after,.arrow-right:after{
+		content:'';
+	    position:absolute;
+	    width:0;
+	    height:0;
+	    border-width:5px;
+	    border-style:solid;
+	    border-color:transparent;
+	}
+	.arrow-middle:after{
+		top:50%;
+		-webkit-transform:translateY(-50%);
+	}
+	.arrow-center:after{
+		left:50%;
+		-webkit-transform:translateX(-50%);
+	}
+	.arrow-top:after{
+		bottom:100%;
+	    border-bottom-color:#b8daff;
+	}
+	.arrow-bottom:after{
+		top:100%;
+	    border-top-color:#b8daff;
+	}
+	.arrow-left:after{
+		right:100%;
+	    border-right-color:#b8daff;
+	}
+	.arrow-right:after{
+		left:100%;
+	    border-left-color:red;
+	}
 	/*聊天框*/
 	.chatbox{
 		position: relative;
@@ -335,6 +369,13 @@
 		<div class="box box-center padding8">
 			<div class="chatbox">
 		         <p>聊天框</p>
+		    </div>
+		</div>
+
+		<div class="sliver">箭头</div>
+		<div class="box box-center padding8">
+			<div class="arrow-top arrow-center" style="position:relative;padding:10px;border-radius:3px;background-color: #b8daff;display:inline-block;">
+		         <p>箭头</p>
 		    </div>
 		</div>
 
