@@ -5,6 +5,8 @@
 		Model
 		================*/
 		var s=this;
+		s.params={};
+		s.params.rangeTipClass="range-tooltip";
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		//s.container=document.querySelector(container);
 		s.formElements=[];//表单元素
@@ -225,7 +227,7 @@
 				safeInput[action]("input",s.onSafeLvl,false);
 			}
 			//拖动条
-			var ranges=document.querySelectorAll(".tooltip+input[type=range]");
+			var ranges=document.querySelectorAll("."+s.params.rangeTipClass+"+input[type=range]");
 			for(var m=0,range;range=ranges[m++];){
 				range[action]("touchstart",s.onRangeStart,false);
 				range[action]("touchmove",s.onRangeMove,false);
