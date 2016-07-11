@@ -40,32 +40,24 @@
     	</header>
     	<article>
     	<form id="form1">
-    		<div class="group" id="pollcontent">
-                <div class="inputbox">
-                    <span class="icon" style="background-image:url(../img/poll/icon-tag.png);background-size:contain"></span>
-                    <input type="text" placeholder="投票标题" name="topic" data-rule="required">
+    		<div class="group">
+                <div class="inputbox underline">
+                    <input type="text" placeholder="投票标题">
                 </div>
-                <hr/>
-                <div class="inputbox">
-                    <i class="icon"></i>
-                    <textarea name="description" placeholder="填写描述，150字以内" data-fontcounter="description1" data-rule="required maxlength:150"></textarea>
+                <div class="inputbox underline">
+                    <textarea placeholder="填写描述，150字以内" id="description" name="description" data-rule="required maxlength:150"></textarea>
                 </div>
-                <div class="inputbox box-right">
-                    <span data-fontcounter-for="description1"></span>
-                    <span><i data-click="uploadPhoto" class="color-placeholder icon icon-pic"></i></span>
-                </div>
-                <hr/>
                 <div class="inputbox lineheight0 padding8">
                     <p class="box-flex-1">支持多选</p>
-                    <div class="switch reverse notext" data-on="是" data-click="toogleMultiSel" data-on-value="2"  data-off-value="2off" data-off="否">
-                        <div class="switch-handle events-none"></div>
+                    <div class="switch reverse notext" data-on="是" data-name="switch2" data-on-value="2"  data-off-value="2off" data-off="否">
+                        <div class="switch-handle"></div>
                     </div>
                 </div>
                 <hr/>
-                <div class="inputbox lrpadding8 underline" style="display:none">
+                <div class="inputbox lrpadding8">
                     <p class="box-flex-1">最多投几项</p>
-                    <select name="max" class="rl" style="padding-right:24px;">
-                        <option>1</option>
+                    <select class="rl" style="padding-right:24px;">
+                        <option>无限制</option>
                         <option>2</option>
                         <option>3</option>
                         <option>4</option>
@@ -78,53 +70,35 @@
                     </select>
                     <i class="icon icon-arrowright color-placeholder"></i>
                 </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="inputbox box-flex-1 underline">
-                        <input type="text" name="polltext1" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
+                <hr/>
+                <div id="formOption">
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="inputbox box-flex-1 underline">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <i class="icon icon-rdocancel-fill size24 color-tip"></i>
+                        </div>
+                    </div>
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="inputbox box-flex-1 underline">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <i class="icon icon-rdocancel-fill size24 color-tip"></i>
+                        </div>
+                    </div>
+                    <div class="row noborder">
+                        <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
+                        <div class="inputbox box-flex-1 underline">
+                            <input type="text" placeholder="输入选项内容" />
+                            <i class="icon icon-pic color-placeholder"></i>
+                            <i class="icon icon-rdocancel-fill size24 color-tip"></i>
                         </div>
                     </div>
                 </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="inputbox box-flex-1 underline">
-                        <input type="text" name="polltext2" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row noborder">
-                    <div class="dot" style="margin: 10px 20px 10px 24px;"></div>
-                    <div class="inputbox box-flex-1 underline">
-                        <input type="text" name="polltext3" placeholder="输入选项内容" data-click="inputoption" data-rule="required"/>
-                        <i class="icon icon-pic color-placeholder" data-click="uploadPhoto"></i>
-                        <div class="nowrap" style="width:40px;height:40px;">
-                            <a data-click="del" class="button nolrpadding noclick bg-transparent color-tip">
-                                <i class="icon icon-rdocancel-fill size24 events-none"></i>
-                            </a>
-                            <a data-click="delVerify" class="button hide animated fadeInRight nolrpadding noclick bg-tip">
-                                <i class="icon icon-trash size24 events-none"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="inputbox text-center" data-click="addPollOption">
-                    <a class="input-text events-none">＋添加投票选项</a>
+                <div class="inputbox text-center">
+                    <a class="input-text">＋添加投票选项</a>
                 </div>
             </div>
         </form>
@@ -133,68 +107,11 @@
     	</article>
     </section>
     <section id="page_preview" data-animation="slideLeft" class="page" style="background-color:#f4f4f4;">
-    	<header>
-    		<div class="titlebar">
-                <a class="left" href="javascript:backPrev()">
-                    <i class="icon icon-arrowleft"></i>
-                    <span>返回</span>
-                </a>
-                <h1 class="text-center">投票</h1>
-            </div>
-    	</header>
-    	<article>
-    		<div class="group">
-                <div class="padding8">
-                    <p id="topic">公司早餐因该添加什么？</p>
-                    <small id="description">要改善伙食了，大家喜欢吃哪个，赶快投吧。</small>
-                </div>
-                <div id="pollimg0" class="preview"></div>
-                <div class="margin8">
-                	<small class="color-tip">记名投票(最多选2项)</small>
-                	<small class="float-right">33人参与投票</small>
-                </div>
-            </div>
-
-    		<ul class="grid album" data-col="2" style="background-color:white;" id="selImg">
-                <li>
-                    <a style="background-image: url(../img/poll/poll1-img1.jpg);">
-                        <div class="badge arrow" data-toggle="active">
-                            <span class="checkbox" data-toggle="active"></span>
-                            <span>吐司</span>
-                            <input type="checkbox" class="hide">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a style="background-image: url(../img/poll/poll1-img2.jpg);">
-                        <div class="badge arrow" data-toggle="active">
-                            <span class="checkbox" data-toggle="active"></span>
-                            <span>油条</span>
-                            <input type="checkbox" class="hide">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a style="background-image: url(../img/poll/poll1-img3.jpg);">
-                        <div class="badge arrow" data-toggle="active">
-                            <span class="checkbox" data-toggle="active"></span>
-                            <span>粥</span>
-                            <input type="checkbox" class="hide">
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a style="background-image: url(../img/poll/poll1-img4.jpg);">
-                        <div class="badge arrow" data-toggle="active">
-                            <span class="checkbox" data-toggle="active"></span>
-                            <span>三明治</span>
-                            <input type="checkbox" class="hide">
-                        </div>
-                    </a>
-                </li>
-            </ul>
-    		<a class="button block margin8">投票</a>
-    	</article>
+    	<!-- 加载遮罩 -->
+        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+            <div class="loading"></div>
+        </div>
     </section>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -208,13 +125,33 @@
         function submit(){
             f.validate();
         }
+        
         //预览
+        var pagePreview=document.getElementById("page_preview");
         var singlePage=new Page();
         function preview(){
             if(f.validate()){
                 singlePage.open("#page_preview");
             }
         }
+        //Ajax添加预览页面
+        function loadXMLDoc(){
+            var xmlhttp;
+            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }else{// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+                //console.log(xmlhttp.status+";"+xmlhttp.statusText+";"+xmlhttp.responseText);
+                if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                    pagePreview.innerHTML=xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET","poll-add-preview.html",true);
+            xmlhttp.send();
+        }
+        loadXMLDoc();
     	//返回
         function backPrev(){
             singlePage.back();

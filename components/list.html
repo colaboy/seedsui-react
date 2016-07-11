@@ -14,10 +14,13 @@
     .app-fontsize20{
         font-size:20px;
     }
-    .list button{
-        width:60px;
-        height: 32px;
-        line-height: 32px;
+    .app-marklist p{
+        line-height:24px;
+    }
+    .app-marklist p span{
+        margin-right:5px;
+        line-height:18px;
+        float:left;
     }
     </style>
 </head>
@@ -32,17 +35,17 @@
     <article>
         <details open>
             <summary class="sliver">单行列表</summary>
-            <ul class="list noclick">
-                <li>
+            <ul class="list">
+                <li class="underline">
                     <div class="justify-content">Agile Lite轻量级HTML5框架介绍</div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">ExMobi+Agile开发注意事项</div>
                     <div class="justify">
                         <i class="size16 size16 icon icon-arrowright"></i>
                     </div>
                 </li>
-                <li>
+                <li class="underline noclick">
                     <div class="justify box box-middle">
                         <i class="size16 size16 icon icon-fav-fill"></i>
                     </div>
@@ -59,13 +62,13 @@
         <details open>
             <summary class="sliver">双行列表</summary>
             <ul class="list">
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p>Agile Lite轻量级HTML5框架介绍</p>
                         <small>Agile Lite是一个基于HTML5+CSS3+JS的移动前端框架</small>
                     </div>
                 </li>
-                <li class="noclick">
+                <li class="underline">
                     <div class="justify-content">
                         <p>ExMobi+Agile开发注意事项</p>
                         <small>Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式，让代码更容易维护</small>
@@ -74,7 +77,7 @@
                         <i class="size16 size16 icon icon-arrowright"></i>
                     </div>
                 </li>
-                <li>
+                <li class="underline noclick">
                     <div class="justify">
                         <i class="size16 size16 icon icon-fav-fill"></i>
                     </div>
@@ -91,21 +94,21 @@
 
         <details open>
             <summary class="sliver">新闻列表</summary>
-            <ul class="list">
-                <li>
+            <ul class="list app-marklist">
+                <li class="underline">
                     <div class="justify">
                         <img src="../img/list/1.jpg"/>
                     </div>
                     <div class="justify-content" style="height:67px;">
                         <a>习近平主席全面从严治党大韬略：剑指顽疾</a>
-                        <small class="bottom left">12-24</small>
-                        <small class="bottom right">
+                        <small class="absolute" style="bottom:0px;left:0;">12-24</small>
+                        <small class="absolute" style="bottom:0px;right:4px;">
                             <label>511</label>
                             <i class="size16 icon icon-chat"></i>
                         </small>
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p>
                             <span class="mark-cancel">时政</span>习近平主席全面从严治党大韬略：剑指顽疾
@@ -118,11 +121,14 @@
                 </li>
                 <li class="nojustify">
                     <div class="justify-content">
-                        <p><span class="mark-info">典型</span>七旬老人高效养罗非只赚不亏！</p>
-                        <small class="nowrap">”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？</small>
-                    </div>
-                    <div class="justify">
-                        <img src="../img/components/banner.jpg" class="width-full">
+                        <p>
+                            <span class="mark-info">典型</span>
+                            七旬老人高效养罗非只赚不亏！
+                        </p>
+                        <small class="nowrap">
+                            ”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？
+                        </small>
+                        <img src="../img/components/banner.jpg" class="width-full" style="margin-top:8px;">
                     </div>
                 </li>
             </ul>
@@ -135,9 +141,9 @@
                     <div class="justify">
                         <div class="photo size40" style="background-image:url(../img/list/photo.png)"></div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <a>广州网友</a>
-                        <a class="top right">
+                        <a class="absolute" style="top:12px;right:4px;">
                             <small>
                                 <span>116</span>
                                 <i class="size16 icon icon-thumb-fill"></i>
@@ -151,9 +157,9 @@
                     <div class="justify">
                         <div class="photo size40" style="background-image:url(../img/list/photo.png)"></div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <a>广州网友</a>
-                        <a class="top right">
+                        <a class="absolute" style="top:12px;right:4px;">
                             <small>
                                 <span>116</span>
                                 <i class="size16 icon icon-thumb-fill"></i>
@@ -172,14 +178,14 @@
             <ul class="list">
                 <li>
                     <div class="justify box box-middle">
-                        <div class="photo bg-1">少波</div>
+                        <div class="photo radiusround bg-1">少波</div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <small>
                             <i class="bg-warn radiusround size8"></i>
                             <label class="bold">张少波</label>
                             <label class="float-right">12月21日</label>
-                            <i class="size16 icon icon-fav-fill float-right color-warn"></i>
+                            <i class="size12 icon icon-fav-fill float-right color-warn"></i>
                         </small>
                         <p>您的圣诞礼物已经备好，看看咋样</p>
                         <small class="nowrap">[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
@@ -187,14 +193,14 @@
                 </li>
                 <li>
                     <div class="justify box box-middle">
-                        <div class="photo bg-primary"><i class="icon icon-person"></i></div>
+                        <div class="photo radiusround bg-primary"><i class="icon icon-person"></i></div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <small>
                             <i class="bg-warn radiusround size8"></i>
                             <label class="bold">张少波</label>
                             <label class="float-right">12月21日</label>
-                            <i class="size16 icon icon-fav-fill float-right color-warn"></i>
+                            <i class="size12 icon icon-fav-fill float-right color-warn"></i>
                         </small>
                         <p>您的圣诞礼物已经备好，看看咋样</p>
                         <small class="nowrap">[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
@@ -205,12 +211,12 @@
 
         <details open>
             <summary class="sliver">功能列表</summary>
-            <ul class="list border-content">
+            <ul class="list">
                 <li>
                     <div class="justify">
                         <i class="size32 icon-folder-fill color-info"></i>
                     </div>
-                    <div class="justify-content nowrap box box box-middle">
+                    <div class="justify-content underline nowrap box box box-middle">
                         最新文档
                     </div>
                     <div class="justify box box-middle">
@@ -221,7 +227,7 @@
                     <div class="justify">
                         <i class="size32 icon-chat-fill color-warn"></i>
                     </div>
-                    <div class="justify-content nowrap box box box-middle">
+                    <div class="justify-content underline nowrap box box box-middle">
                         通知公告
                     </div>
                     <div class="justify box box-middle">
@@ -234,10 +240,10 @@
         <details open>
             <summary class="sliver">应用列表</summary>
             <ul class="list">
-                <li>
+                <li class="underline">
                     <div class="justify">
                         <div class="photo size60 radius4" style="background-image:url(../img/list/weixin.png)">
-                            <span class="tip">12</span>
+                            <span class="tip absolute" style="top:-4px;right:-4px;">12</span>
                         </div>
                     </div>
                     <div class="justify-content nowrap">
@@ -255,9 +261,9 @@
                         <button class="button"  class="desaturate outline">打开</button>
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify">
-                        <div class="photo default size60 radius4">
+                        <div class="photo size60 radius4">
                             <i class="icon icon-appbag-fill"></i>
                         </div>
                     </div>
@@ -284,34 +290,34 @@
             <ul class="list between border-content">
                 <li>
                     <div class="justify">
-                        <div class="photo bg-6">
+                        <div class="photo radiusround bg-6">
                             <i class="icon icon-chatdot-fill"></i>
-                            <span class="tip">12</span>
+                            <span class="tip absolute" style="top:-4px;right:-4px;">12</span>
                         </div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <p>小助手</p>
-                        <small class="top right">昨天 11:50</small>
+                        <small class="absolute" style="top:12px;right:4px;">昨天 11:50</small>
                         <small class="nowrap">会话已完成，请您在会话记录中填写报告</small>
                     </div>
                 </li>
                 <li>
                     <div class="justify">
-                        <div class="photo bg-2">少波</div>
+                        <div class="photo radiusround bg-2">少波</div>
                     </div>
-                    <div class="justify-content">
+                    <div class="justify-content underline">
                         <p>张少波</p>
-                        <small class="top right">昨天 11:50</small>
+                        <small class="absolute" style="top:12px;right:4px;">昨天 11:50</small>
                         <small class="nowrap">本次会话结束，感谢您的使用</small>
                     </div>
                 </li>
                 <li>
                     <div class="justify">
-                        <div class="photo" style="background-image:url(../img/components/banner.jpg)"></div>
+                        <div class="photo radiusround" style="background-image:url(../img/components/banner.jpg)"></div>
                     </div>
                     <div class="justify-content">
                         <p>张少波</p>
-                        <small class="top right">昨天 11:30</small>
+                        <small class="absolute" style="top:12px;right:4px;">昨天 11:30</small>
                         <small class="nowrap">本次会话结束，感谢您的使用</small>
                     </div>
                 </li>
@@ -321,7 +327,7 @@
         <details open>
             <summary class="sliver">时间轴列表</summary>
             <ul class="list timeline dotted bg-white">
-                <li>
+                <li class="underline dotted">
                     <div class="timeline-badge clock app-clocksize24 border-color-1" data-clock="11:24">
                         <div class="clock-hour bg-1"></div>
                         <div class="clock-minute bg-1"></div>
@@ -333,7 +339,7 @@
                         <small class="nowrap">我来上班啦</small>
                     </div>
                 </li>
-                <li>
+                <li class="underline dotted">
                     <div class="timeline-badge clock app-clocksize24 border-color-2" data-clock="8:30">
                         <div class="clock-hour bg-2"></div>
                         <div class="clock-minute bg-2"></div>
@@ -350,7 +356,7 @@
 
         <details open>
             <summary class="sliver">时间轴列表</summary>
-            <ul class="list bg-transparent noborder noclick timeline">
+            <ul class="list bg-transparent noclick timeline">
                 <li>
                     <div class="timeline-badge">
                         Any

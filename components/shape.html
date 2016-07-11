@@ -2,10 +2,10 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
 	<title>shape</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-    
 	<style>
 	/*聊天框*/
 	.chatbox{
@@ -301,7 +301,7 @@
 		-webkit-transform: rotate(-45deg);
 		-webkit-transform-origin:center;
 		
-		background: red;
+		background-color:red;
 	}
 	.pin-label{
 		position: absolute;
@@ -315,8 +315,8 @@
 		-webkit-transform:rotate(45deg);
 		-webkit-transform-origin:center; 
 
-		background-color: green;
-		color: white;
+		background-color:red;
+		color:white;
 	}
 	</style>
 	</head>
@@ -331,10 +331,6 @@
         </div>
 	</header>
 	<article>
-		<div class="sliver">地图标记</div>
-		<div class="box box-center padding8">
-			<div class="pin"><label class="pin-label">1</label></div>
-		</div>
 		<div class="sliver">聊天框</div>
 		<div class="box box-center padding8">
 			<div class="chatbox">
@@ -445,6 +441,11 @@
 		<div class="sliver">clip</div>
 		<div class="box box-center padding8">
 			<div class="arrowr"></div>
+		</div>
+
+		<div class="sliver">地图标记</div>
+		<div class="box box-center padding8">
+			<div class="pin"><label class="pin-label">1</label></div>
 		</div>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>

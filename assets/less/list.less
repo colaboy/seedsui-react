@@ -3,8 +3,6 @@
 	position:relative;
 	display:-webkit-box;
 	box-sizing:border-box;
-	border-style:solid;
-	border-width:0;
 }
 .justify{
 	position:relative;
@@ -13,7 +11,7 @@
 	display:block;
 }
 .justify,.justify-content{
-	padding:10px 8px;
+	padding:8px;
 }
 .justify+.justify-content{
 	padding-left:0;
@@ -21,7 +19,7 @@
 .justify-content+.justify{
 	padding-left:0;
 }
-.justify img{
+.justify>img{
 	max-width: 100%;
 }
 .justify-content{
@@ -29,64 +27,11 @@
 	position:relative;
 	-webkit-box-flex:1.0;
 }
-.justify-content small{
+.justify-content>small{
 	display: block;
-}
-/*无自适应*/
-.list li.nojustify,.nojustify{
-	display: block;	
-}
-.nojustify .justify{
-	display: block;
-	max-width: 100%;
-	padding-left:8px;
-	padding-right:8px;
-}
-.nojustify .justify-content~.justify{
-	padding-top:0;
 }
 /*上下两端对齐*/
-.between .justify-content small:nth-last-of-type(1){
+.between .justify-content>small:nth-last-of-type(1){
 	margin-top: 8px;
-}
-/*位置*/
-.list .top,.list .bottom,.list .left,.list .right{
-	position: absolute;
-}
-.list .top{
-	top:12px;
-}
-.list .bottom{
-	bottom:8px;
-}
-.list .left{
-	left:4px;
-}
-.list .right{
-	right:4px;
-}
-/*底线*/
-.list li{
-	border-color:inherit;
-}
-.list li{
-	border-width:0 0 1px 0;
-}
-ul.dotted li,ul li.dotted{
-	border-style:dotted;
-}
-ul.solid li,ul li.solid{
-	border-style:solid;
-}
-ul.noborder li,ul li.noborder{
-	border-width:0;
-}
-ul.border-content li{
-    border-width: 0;
-}
-.border-content .justify-content,.border-content .justify-content+.justify{
-	border-style: inherit;
-    border-color: inherit;
-    border-width: 0 0 1px 0;
 }
 /*---------------list.less(end)---------------*/

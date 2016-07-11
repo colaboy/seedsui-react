@@ -7,24 +7,52 @@
 	<title>components</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 	<style>
-	.thumbnail a{
+	body{
+		background-color:white;
+	}
+	.app-sliver{
+		font-size:12px;
+		padding:8px 0;
+		border-bottom:1px solid #ddd;
+		margin:8px;
+		color:#aaa;
+	}
+	.app-thumbnail{
+		padding-left:4px;
+		padding-right:4px;
+	}
+	.app-thumbnail li{
+		padding-left:4px;
+		padding-right:4px;
+		padding-top:12px;
+	}
+	.app-thumbnail a{
 		border:1px solid #ddd;
 		overflow:hidden;
-		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
+		border-radius:8px;
+		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
 	}
 	</style>
 </head>
 <body ontouchstart="">
 		<header>
 			<div class="titlebar">
-				<a href="javascript:back()"> <i class="icon icon-arrowleft"></i>
+				<!-- <a href="javascript:back()"> <i class="icon icon-arrowleft"></i>
 				</a>
-				<h1>components</h1>
+				<h1>components</h1> -->
+				<ul class="rectbar reverse">
+		            <li class="tab active">
+		                <label class="tab-label">Css组件</label>
+		            </li>
+		            <li class="tab">
+		                <label class="tab-label">Javascript组件</label>
+		            </li>
+		        </ul>
 			</div>
 		</header>
-		<article>
-			<div class="sliver">基础组件</div>
-			<ul class="grid thumbnail" data-rowspace="8">
+		<article style="padding-top:94px">
+			<div class="app-sliver">基础组件</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="page.html">
 						<img src="thumbnail/page.png"/>
@@ -105,8 +133,8 @@
 				</li>
 			</ul>
 
-			<div class="sliver">表单</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">表单</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="form.html">
 						<img src="thumbnail/form.png"/>
@@ -157,8 +185,8 @@
 				</li>
 			</ul>
 
-			<div class="sliver">栅格</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">栅格</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="table.html">
 						<img src="thumbnail/table.png"/>
@@ -191,8 +219,8 @@
 				</li>
 			</ul>
 
-			<div class="sliver">错误页面</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">错误页面</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="404.html">
 						<img src="thumbnail/404.png"/>
@@ -213,8 +241,8 @@
 				</li>
 			</ul>
 
-			<div class="sliver">常用功能</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">常用功能</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="calendar.html">
 						<img src="thumbnail/calendar.png"/>
@@ -282,8 +310,8 @@
 					<label class="grid-label">下拉刷新</label>
 				</li>
 			</ul>
-			<div class="sliver">数据可视化</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">数据可视化</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="gauge.html">
 						<img src="thumbnail/gauge.png"/>
@@ -298,8 +326,8 @@
 				</li>
 			</ul>
 
-			<div class="sliver">charts-可视化数据</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">charts-可视化数据</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="charts-bar.html">
 						<img src="thumbnail/charts-bar.png"/>
@@ -350,8 +378,8 @@
 				</li>
 			</ul>
 			<div id="exmobilocal" style="display: none;">
-				<div class="sliver">exmobi本地能力</div>
-				<ul class="grid thumbnail">
+				<div class="app-sliver">exmobi本地能力</div>
+				<ul class="grid app-thumbnail">
 					<li>
 						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-tel.html')">
 							<img src="thumbnail/exmobi-tel.png"/>
@@ -404,8 +432,8 @@
 			</div>
 
 			<div id="weixinlocal" style="display: none;">
-				<div class="sliver">微信本地能力</div>
-				<ul class="grid thumbnail">
+				<div class="app-sliver">微信本地能力</div>
+				<ul class="grid app-thumbnail">
 					<li>
 						<a href="weixin.html">
 							<img src="thumbnail/weixin.png"/>
@@ -415,8 +443,8 @@
 				</ul>
 			</div>
 
-			<div class="sliver">html5本地能力</div>
-			<ul class="grid thumbnail">
+			<div class="app-sliver">html5本地能力</div>
+			<ul class="grid app-thumbnail">
 				<li>
 					<a href="video.html">
 						<img src="thumbnail/video.png"/>

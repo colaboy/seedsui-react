@@ -6,6 +6,45 @@
         <meta name="format-detection" content="telephone=no">
         <title>main1</title>
         <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+        <style type="text/css">
+        /*metro风格*/
+        .app-metro{
+            padding:2px;
+        }
+        .app-metro:after {
+            display:table;
+            content:'';
+            clear:both;
+            zoom:1;
+        }
+        .app-metro .sticker{
+            top:2px;
+            left:2px;
+        }
+        .app-metro-tip{
+            position:absolute;
+            right:10px;
+            bottom:4px;
+            height: 32px;
+            line-height: 32px;
+            width: 32px;
+            font-size:18px;
+            text-align: right;
+            background-color:transparent;
+        }
+        .app-metro-cell{
+            position:relative;
+            float:left;
+            box-sizing:border-box;
+            padding:2px;
+        }
+        .app-metro-cell-inner{
+            width: 100%;
+            text-align: center;
+            padding:8px 0;
+            box-sizing:border-box;
+        }
+        </style>
     </head>
 <body ontouchstart="">
 		<header>
@@ -33,79 +72,79 @@
                 <div class="slider-pagination"></div>
             </div>
             <!--用flex布局更方便灵活-->
-            <!--用flex布局更方便灵活-->
-            <div class="box" style="padding:2px 2px 0 2px;">
-                <div class="box-flex-1 box box-middlecenter box-vertical relative bg-1" style="margin:2px;">
-                    <p style="font-size: 50px;">300</p>
-                    <p style="opacity: 0.7;">您的积分</p>
-                    <p style="position: absolute;right:10px;bottom:10px;text-align: right;">小明，欢迎您</p>
+            <div class="app-metro">
+                <div class="app-metro-cell" style="width:50%;">
+                    <div class="app-metro-cell-inner box box-middlecenter box-vertical bg-1" style="height:208px;">
+                        <p style="font-size: 50px;">300</p>
+                        <p style="opacity: 0.7;">您的积分</p>
+                        <p style="position: absolute;right:10px;bottom:10px;text-align: right;">小明，欢迎您</p>
+                    </div>
                 </div>
-                <div class="box box-vertical box-flex-1" style="margin:2px;">
-                    <div class="box-flex-1 bg-2" style="padding:0 4px;margin-bottom:4px;">
-                        <ul class="list bg-transparent noclick">
-                            <li><div class="justify-content">资料1</div></li>
-                            <li><div class="justify-content">资料2</div></li>
-                        </ul>
-                        <div style="padding:8px 0;text-align: right;"><a style="color:white;">更多资料...</a></div>
+                <div class="app-metro-cell" style="width:50%;padding:0;">
+                    <div class="app-metro-cell" style="width:100%">
+                        <div class="app-metro-cell-inner bg-2" style="padding:8px;">
+                            <div class="underline text-left" style="height:32px;line-height:32px;">
+                                资料1
+                            </div>
+                            <div class="underline text-left" style="height:32px;line-height:32px;">
+                                资料2
+                            </div>
+                            <div style="padding:8px 0;text-align: right;">
+                                <a style="color:white;">更多资料...</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="box-flex-1 box box-horizontal">
-                        <ul class="grid metro" data-col="2" style="padding:0;width:100%;">
-                            <li style="padding:0 2px 0 0">
-                                <a class="bg-3" style="height:100px;">
-                                    <i class="icon icon-contact-fill"></i>
-                                    <label class="nowrap">海关警员</label>
-                                </a>
-                            </li>
-                            <li style="padding:0 0 0 2px">
-                                <a class="bg-4" style="height:100px;">
-                                    <i class="icon icon-write-fill"></i>
-                                    <label>电子书</label>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="app-metro-cell" style="width:50%">
+                        <a class="app-metro-cell-inner bg-3">
+                            <i class="icon icon-contact-fill size40"></i>
+                            <p class="nowrap" style="margin-top:10px;">海关警员</p>
+                        </a>
                     </div>
+                    <div class="app-metro-cell" style="width:50%">
+                        <a class="app-metro-cell-inner bg-4">
+                            <i class="icon icon-write-fill size40"></i>
+                            <p class="nowrap" style="margin-top:10px;">电子书</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-metro-cell" style="width:50%">
+                    <a class="app-metro-cell-inner bg-5">
+                        <i class="icon icon-chartpie-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">岗位练兵</p>
+                    </a>
+                </div>
+                <div class="app-metro-cell" style="width:25%">
+                    <a class="app-metro-cell-inner bg-6">
+                        <i class="icon icon-write-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">在线问卷</p>
+                    </a>
+                </div>
+                <div class="app-metro-cell" style="width:25%">
+                    <a class="app-metro-cell-inner bg-7">
+                        <i class="icon icon-position-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">在线提问</p>
+                    </a>
+                </div>
+                <div class="app-metro-cell" style="width:25%">
+                    <a class="app-metro-cell-inner bg-8">
+                        <i class="icon icon-chartpie-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">岗位练兵</p>
+                    </a>
+                </div>
+                <div class="app-metro-cell" style="width:25%">
+                    <a class="app-metro-cell-inner bg-9">
+                        <i class="icon icon-rdoquestion-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">在线问卷</p>
+                    </a>
+                </div>
+                <div class="app-metro-cell" style="width:50%">
+                    <a class="app-metro-cell-inner bg-10">
+                        <span class="app-metro-tip">3</span>
+                        <i class="icon icon-chatdot-fill size40"></i>
+                        <p class="nowrap" style="margin-top:10px;">消息推送</p>
+                    </a>
                 </div>
             </div>
-            <!--下部菜单-->
-            <ul class="grid metro" data-col="3" style="padding:0 2px;">
-                <li style="width:50%">
-                    <a class="bg-5">
-                        <i class="icon icon-chartpie-fill"></i>
-                        <label class="nowrap">岗位练兵</label>
-                    </a>
-                </li>
-                <li style="width:25%">
-                    <a class="bg-6">
-                        <i class="icon icon-write-fill"></i>
-                        <label class="nowrap">在线问卷</label>
-                    </a>
-                </li>
-                <li style="width:25%">
-                    <a class="bg-7">
-                        <i class="icon icon-position-fill"></i>
-                        <label class="nowrap">在线提问</label>
-                    </a>
-                </li>
-                <li style="width:25%">
-                    <a class="bg-8">
-                        <i class="icon icon-folder-fill"></i>
-                        <label class="nowrap">友情链接</label>
-                    </a>
-                </li>
-                <li style="width:25%">
-                    <a class="bg-9">
-                        <i class="icon icon-gear-fill"></i>
-                        <label class="nowrap">备忘录</label>
-                    </a>
-                </li>
-                <li style="width:50%">
-                    <a class="bg-10">
-                        <i class="icon icon-contact-fill"></i>
-                        <span class="metro-tip">3</span>
-                        <label class="nowrap">消息推送</label>
-                    </a>
-                </li>
-            </ul>
 		</article>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>

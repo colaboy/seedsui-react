@@ -6,16 +6,14 @@
     <title>main5</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style type="text/css">
-        /*菜单图标*/
-        .grid.icon li > a > i{
-            font-size:30px;
-            width: 30px;
-            height: 30px;
-            line-height:30px;
-        }
         /*热门推荐*/
-        .list .list-more{
-            color:#7b7b7b;
+        .app-marklist p{
+            line-height:24px;
+        }
+        .app-marklist p span{
+            margin-right:5px;
+            line-height:18px;
+            float:left;
         }
         /*最新活动*/
         .picmetro{
@@ -41,7 +39,7 @@
             margin-top:2px;
         }
         /*标题小标记*/
-        .peg{
+        .app-peg{
             display:inline-block;
             width:6px;
             height:12px;
@@ -112,23 +110,26 @@
                 </li>
             </ul>
             <!--资讯信息-->
-            <ul class="list" style="margin-top:10px;">
-            	<li class="noclick">
+            <ul class="list app-marklist" style="margin-top:10px;">
+            	<li class="underline noclick">
                     <div class="justify">
-                        <span class="peg"></span>
+                        <span class="app-peg"></span>
                     </div>
                     <div class="justify-content">今日热门</div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
-                        <p><span class="mark-primary">行情</span>本年度最后一次出塘鱼价更新！</p>
+                        <p>
+                        <span class="mark-primary">行情</span>
+                        本年度最后一次出塘鱼价更新！
+                        </p>
                         <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
                     </div>
                     <div class="justify">
                         <img src="../img/main5/listimg.png">
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p><span class="mark-warn">财富</span>华东养虾风向标逆势破困局</p>
                         <small class="nowrap">华东地区位于长江三角洲，素有“鱼米之乡”美誉，是中国重要的水产养殖区。</small>
@@ -138,16 +139,19 @@
                     </div>
                 </li>
 
-                <li class="nojustify">
+                <li class="underline">
                     <div class="justify-content">
-                        <p><span class="mark-info">典型</span>七旬老人高效养罗非只赚不亏！</p>
-                        <small class="nowrap">”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？</small>
-                    </div>
-                    <div class="justify">
-                        <img src="../img/main5/listimg.png" class="width-full">
+                        <p>
+                            <span class="mark-info">典型</span>
+                            七旬老人高效养罗非只赚不亏！
+                        </p>
+                        <small class="nowrap">
+                            ”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？
+                        </small>
+                        <img src="../img/main5/listimg.png" class="width-full" style="margin-top:8px;">
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p><span class="mark-cancel">推荐</span>养单一品种风险大，看看这些鱼虾套养模式！</p>
                         <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
@@ -156,7 +160,7 @@
                         <img src="../img/main5/listimg.png">
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p><span class="mark-cancel">天气</span>元旦三天全国以晴为主，南方阴雨</p>
                         <small class="nowrap">三天假期我国大部地区天气以晴或多云天气为主，风力不大，气温呈明显回升态势。</small>
@@ -165,7 +169,7 @@
                         <img src="../img/main5/listimg.png">
                     </div>
                 </li>
-                <li>
+                <li class="underline">
                     <div class="justify-content">
                         <p><span class="mark-cancel">成效</span>华北养鲤鱼，他们年赚60多万！</p>
                         <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
@@ -176,20 +180,21 @@
                 </li>
                 <li class="list-more">
                     <div class="justify-content text-center">
-                        <label>更多热门资讯</label><i class="icon icon-arrowright"></i>
+                        <label>更多热门资讯</label>
+                        <i class="icon icon-arrowright size12"></i>
                     </div>
                 </li>
             </ul>
             <!--最新活动-->
             <ul class="list" style="margin-top:10px;">
-                <li class="noclick">
+                <li class="noclick underline">
                     <div class="justify">
-                        <span class="peg"></span>
+                        <span class="app-peg"></span>
                     </div>
                     <div class="justify-content">最新活动</div>
                     <small class="justify">
                             <label>更多</label>
-                            <i class="icon icon-arrowbittoright"></i>
+                            <i class="icon icon-arrowbittoright size12"></i>
                     </small>
                 </li>
             </ul>

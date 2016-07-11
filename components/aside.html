@@ -6,13 +6,20 @@
     <meta name="format-detection" content="telephone=no">
     <title>aside</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+    .app-title{
+        font-size:17px;
+        margin:8px 0;
+        display:block;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
     <div class="aside" id="aside">
         <div class="aside-wrapper">
             <aside id="aside-left" data-transition="overlay" style="background-color:#333;color:white;">
-                <p class="title lrmargin8">侧边栏</p>
+                <p class="app-title lrmargin8">侧边栏</p>
                 <p class="lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用
                 <br/>
                 【属性】
@@ -25,7 +32,7 @@
                 <a class="button block cancel margin8" id="hideAside1">关闭侧滑</a>
             </aside>
             <aside id="aside-right" data-transition="push" style="background-color:#333;color:white;">
-                <p class="title lrmargin8">右侧边栏</p>
+                <p class="app-title lrmargin8">右侧边栏</p>
                 <p class="lrmargin8" style="opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
                 <a class="button block cancel margin8" id="hideAside2">关闭侧滑</a>
             </aside>
@@ -39,13 +46,13 @@
                     </div>
                 </header>
                 <article class="scrollbox">
-                    <p class="title">左侧菜单栏</p>
+                    <p class="app-title">左侧菜单栏</p>
                     <div class="card">
                         <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
                         <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
                         <a id="revealLeft" class="button block margin8 warn">左侧栏-reveal</a>
                     </div>
-                    <p class="title">右侧菜单栏</p>
+                    <p class="app-title">右侧菜单栏</p>
                     <div class="card">
                         <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
                         <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>

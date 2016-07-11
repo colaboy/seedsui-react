@@ -1,5 +1,6 @@
 /*----------------tabbar.less(start)--------------*/
-.rectbar,.slidebar,.arrowbar,.menubar,.tabbar{
+/*tabbar|menubar*/
+.tabbar,.menubar{
 	position:relative;
 	display:table;
 	margin:0 auto;
@@ -8,94 +9,71 @@
 	position:relative;
 	display:table-cell;
 	width:1%;
-	text-align: center;
-	box-sizing: border-box;
-}
-.tab-label{
-	display:inline-block;
-	font-size: 13px;
-	height:13px;
-	line-height:13px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	pointer-events: none;
+	text-align:center;
+	box-sizing:border-box;
+	border-color:inherit;
+	border-style:solid;
 }
 .tab:active .icon,.tab.active .icon{
 	background-position:center bottom;
 }
-/*rectbar | slidebar | tabbar*/
-.rectbar .tab,.slidebar .tab,.tabbar .tab{
-	border-color:inherit;
-	border-style: solid;
-	background-color: white;
+.tab-label{
+	display:inline-block;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	pointer-events:none;
+
+	height:24px;
+	line-height:24px;
+	vertical-align:middle;
 }
-.rectbar .tab-label,.slidebar .tab-label,.tabbar .tab-label{
-	height: 24px;
-	line-height: 24px;
-	vertical-align: middle;
+/*menubar*/
+.menubar .tab{
+	border-width:1px 0 0 0;
 }
-/*arrowbar和menubar*/
-.arrowbar .tab-label,.menubar .tab-label{
-	display: block;
-	height: 24px;
-	line-height: 24px;
-}
-.arrowbar .tab .icon,
-.menubar .tab .icon{
-	margin-top:5px;
+.menubar .tab-label{
+	font-size:13px;
+	height:13px;
+	line-height:13px;
+	margin:4px 0 6px 0;
+	display:block;
 }
 
-/*rectbar*/
-.rectbar{
+/*tabbar*/
+.tabbar .tab{
+	height:40px;
+	line-height:40px;
+	border-width:0px 0px 1px 0;
+}
+
+/*矩形*/
+.tabbar[data-type=rect]{
 	max-width:96%; 
 }
-.rectbar .tab{
-	height:34px;
-	line-height: 30px;
-	border-width: 1px 1px 1px 0;
+.tabbar[data-type=rect] .tab{
+	height:32px;
+	line-height:30px;
+	border-width:1px 1px 1px 0;
 }
-.rectbar .tab:first-child{
+.tabbar[data-type=rect] .tab:first-child{
 	border-top-left-radius: 16px;
 	border-bottom-left-radius: 16px;
 	border-left-width:1px;
 }
-.rectbar .tab:last-child{
+.tabbar[data-type=rect] .tab:last-child{
 	border-top-right-radius: 16px;
 	border-bottom-right-radius: 16px;
 }
-/*slidebar*/
-.slidebar .tab,.tabbar .tab{
-	height:40px;
-	line-height: 40px;
-	border-width: 0px 0px 1px 0;
-}
-.slidebar .tab:active,.slidebar .tab.active{
+/*滑片形*/
+.tabbar[data-type=slide] .tab:active,.tabbar[data-type=slide] .tab.active{
 	border-width: 0px 0px 2px 0;
 }
 
-/*arrowbar*/
-.arrowbar .tab-label:only-child{
-	height:40px;
-	line-height: 40px;
-}
-.arrowbar .tab.active:after{
-	content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent;
-}
+
 /*menubar*/
-.menubar .tab{
-	border-width: 1px 0 0 0;
-	border-style: solid;
-	border-color:inherit;
+.menubar .tab .icon{
+	margin-top:6px;
 }
 
 /*animated tabbar*/

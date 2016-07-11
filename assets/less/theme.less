@@ -32,17 +32,12 @@ a{
 a:not(.noclick):active,a.active{
 	@{link-active-property}:@link-active-value;
 }
-/*容器样式*/
-.highlight {
-	border-color:@border;
-	background-color: @highlight-bg;
-}
 hr{
 	border-color: @border;
 }
 /*条纹线*/
 .stripe:nth-child(even){
-	background-color:@highlight-bg;
+	background-color:@sliver-bg;
 }
 .nostripe:nth-child(even){
 	background-color:transparent;
@@ -97,42 +92,41 @@ aside {
 /*----------------titlebar.less(end)----------------*/
 
 /*----------------tabbar.less(start)--------------*/
-.rectbar,.slidebar,.arrowbar,.menubar,.tabbar{
-	border-color:@menubar-border;
+.tabbar{
+	color:@label-color;
+	border-color:@tabbar-border;
+	background-color:@tabbar-bg;
+}
+.active-arrow{
+	border-top-color:@tabbar-active-color;
 }
 .tab:active,.tab.active{
-	color:@menubar-active-color;
+	color:@tabbar-active-color;
 }
-.rectbar,.slidebar,.tabbar{
-	color:@label-color;
-}
-.slidebar .tab:active,.slidebar .tab.active{
-	border-color:@menubar-active-color;
+.tabbar[data-type=slide] .tab:active,.tabbar[data-type=slide] .tab.active{
+	border-color:@tabbar-active-color;
 }
 
+/*menubar*/
 .menubar{
-	color:@menubar-color;
+	color:@label-color;
+	border-color:@menubar-border;
 	background-color:@menubar-bg;
 }
+/*menubar-reverse*/
 .menubar.reverse .tab{
 	border-color:@menubar-reverse-bg;
 }
-.arrowbar,
 .menubar.reverse{
 	color:@menubar-reverse-color;
 	background-color:@menubar-reverse-bg;
 }
-.arrowbar .tab,
 .menubar.reverse .tab{
 	opacity: 0.5;
 }
-.arrowbar .tab:active,.arrowbar .tab.active,
 .menubar.reverse .tab:active,.menubar.reverse .tab.active{
 	color:@menubar-reverse-active-color;
 	opacity: 1;
-}
-.arrowbar .tab.active:after{
-    border-top-color:@menubar-reverse-active-color;
 }
 //tabbar
 .tabbar.animate-slide {
@@ -479,14 +473,6 @@ input,keygen,textarea,select,.input-text{
 .inputbox.click .icon:active,.inputbox .icon.click:active,.inputbox .icon.active{
 	color:@primary-bg;
 }
-.inputbox.reverse{
-	color:@primary-color;
-	border-color:@primary-bg;
-	background-color:@primary-bg;
-}
-.inputbox.reverse input,.inputbox.reverse input::-webkit-input-placeholder{
-	color:@primary-color;
-}
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh{
@@ -674,23 +660,14 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 }
 /*----------------photo.less(end)----------------*/
 /*----------------list.less(start)----------------*/
-.list,.timeline{
-	border-color:@border;
-}
 .list{
 	background-color:@list-bg;
 }
-.list:not(.noclick) li:active{
+.list:not(.noclick) li:not(.noclick):active{
 	background-color:@list-active-bg;
 }
-.list li.noclick:active{
-	background-color:@list-bg;
-}
-ul.bg-transparent,ul.bg-transparent li,ul li.bg-transparent{
-	background-color:transparent;
-}
 .star{
-	color: @placeholder-color;
+	color:@placeholder-color;
 }
 .star.active{
 	color:@warn-bg;
@@ -700,10 +677,15 @@ ul.bg-transparent,ul.bg-transparent li,ul li.bg-transparent{
 	background-image:-webkit-linear-gradient(left, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
 	/*W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+*/
 	background-image:-webkit-linear-gradient(to right, rgba(244,152,78,1) 0%,rgba(244,152,78,1) 50%,rgba(170,170,170,1) 51%,rgba(170,170,170,1) 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
 }
 /*----------------list.less(end)----------------*/
+/*----------------timeline.less(start)----------------*/
+.timeline{
+	border-color:@border;
+}
+/*----------------timeline.less(end)----------------*/
 /*----------------indexbar.less(start)----------------*/
 .indexbar.active a{
     color:@body-color;
@@ -712,12 +694,12 @@ ul.bg-transparent,ul.bg-transparent li,ul li.bg-transparent{
 	background-color:@mask-bg;
 }
 /*----------------indexbar.less(end)----------------*/
-/*----------------title.less(start)----------------*/
+/*----------------sliver.less(start)----------------*/
 .sliver,li.sliver{
 	color:@placeholder-color;
-	background-color:@highlight-bg;
+	background-color:@sliver-bg;
 }
-/*----------------title.less(end)----------------*/
+/*----------------sliver.less(end)----------------*/
 /*----------------loading.less(start)----------------*/
 .loading {
 	box-shadow:inset 0 0 0 4px @primary-bg;

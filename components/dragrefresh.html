@@ -26,6 +26,7 @@
         function initData(){
             for(var i=0;i<100;i++){
                 var elLI=document.createElement("li");
+                elLI.setAttribute("class","underline");
                 elLI.innerHTML='<div class="justify-content">第'+i+'行列表</div>';
                 document.getElementById("list").appendChild(elLI);
             }

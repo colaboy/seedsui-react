@@ -249,7 +249,7 @@
 				tempSpanElement,
 				i, j, k, today = new Date();
 
-			_this.container_element.getElementsByClassName('calendar-title')[0].innerHTML = selectedDate.getFullYear() + '-' + (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate() + ' ' + '周' + day_num_array[selectedDate.getDay()];
+			document.getElementById('calendarTitle').innerHTML = selectedDate.getFullYear() + '-' + (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate() + ' ' + '周' + day_num_array[selectedDate.getDay()];
 
 			for (i = 0; i < 6; ++i) {
 				for (j = 0; j < 7; ++j) {
@@ -599,7 +599,7 @@
 				day_date_element_array[i].onclick = handleDateClick;
 			}
 
-			_this.container_element.getElementsByClassName("arrowleft")[0].onclick = function(e) {
+			document.getElementById("calendarPrev").onclick = function(e) {
 				if (_this.mode == 'week') {
 					_this.dateSelectObject.prevWeek();
 				} else {
@@ -608,7 +608,7 @@
 				_animationTo(_this, 'x', -1, _redrawCalenderDate);
 			};
 
-			_this.container_element.getElementsByClassName("arrowright")[0].onclick = function(e) {
+			document.getElementById("calendarNext").onclick = function(e) {
 				if (_this.mode == 'week') {
 					_this.dateSelectObject.nextWeek();
 				} else {
