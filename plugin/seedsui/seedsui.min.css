@@ -405,10 +405,6 @@ select,
 input[type=range],
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
 }
 /*----------------appearance.less(end)--------------*/
 @font-face {
@@ -1634,11 +1630,6 @@ input[type=range]::-webkit-slider-thumb {
   border-style: solid;
   border-width: 0;
 }
-.list button {
-  width: 60px;
-  height: 32px;
-  line-height: 32px;
-}
 .justify {
   position: relative;
   min-width: 0px;
@@ -1762,7 +1753,7 @@ ul.border-content li {
   margin-left: -1px;
   border-radius: 1px;
   -webkit-transform-origin: center bottom;
-  -webkit-transition-property: all;
+  -webkit-transition-property: transform;
   -webkit-transition-timing-function: ease;
   -webkit-transition-duration: inherit;
   -webkit-transition-delay: inherit;
@@ -1851,11 +1842,9 @@ ul.border-content li {
   display: block;
   width: 30%;
   padding: 8px;
-  color: #666;
 }
 .row-right {
   -webkit-box-flex: 1.0;
-  box-flex: 1.0;
 }
 /*----------------row.less(end)--------------*/
 /*----------------group.less(end)--------------*/
@@ -3281,7 +3270,9 @@ input[type=range]::-webkit-slider-thumb {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-transform-origin: 48px 13.5px;
-  -webkit-transition: all 0.5s;
+  -webkit-transition-property: transform;
+  -webkit-transition-timing-function: linear;
+  -webkit-transition-duration: 500ms;
 }
 .gauge-text {
   position: absolute;
@@ -3305,17 +3296,8 @@ input[type=range]::-webkit-slider-thumb {
   background-size: 960px auto;
   opacity: 0.2;
   -webkit-animation: lrWave 10s linear infinite;
-  animation: lrWave 10s linear infinite;
 }
 @-webkit-keyframes lrWave {
-  0% {
-    background-position-x: 0;
-  }
-  100% {
-    background-position-x: 960px;
-  }
-}
-@keyframes lrWave {
   0% {
     background-position-x: 0;
   }
@@ -3784,7 +3766,6 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*----------------actionsheet.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
-/*toast框*/
 .toast-box {
   position: fixed;
   bottom: 50px;
@@ -5023,15 +5004,6 @@ i.size80,
 }
 /*---------------size.less(end)---------------*/
 /*---------------radius.less(start)---------------*/
-/*控制圆角*/
-/*按钮*/
-button.radiusround,
-input[type="button"].radiusround,
-input[type="submit"].radiusround,
-.button.radiusround {
-  border-radius: 32px;
-}
-/*全局圆角*/
 .noradius {
   border-radius: 0 !important;
 }
@@ -5911,6 +5883,11 @@ select,
   border-color: #e6e6e6;
 }
 /*----------------group.less(end)--------------*/
+/*----------------card.less(start)--------------*/
+.row-left {
+  color: #666666;
+}
+/*----------------card.less(end)--------------*/
 /*----------------card.less(start)--------------*/
 .card-handler > a {
   color: #aaaaaa;

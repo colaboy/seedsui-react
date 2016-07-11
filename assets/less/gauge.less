@@ -7,7 +7,7 @@
 	background-color:#1693ce;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
-	
+
 	-webkit-animation-duration:0.5s;
 	-webkit-animation-timing-function:linear;
 	-webkit-animation-fill-mode:forwards;
@@ -139,25 +139,27 @@
 
 .gauge{
 	position:relative;
-	width: 200px;
-	height: 200px;
+	width:200px;
+	height:200px;
 	margin:0 auto;
-	background-image: url(img/gauge/gauge.png);
-	background-size: 100% 100%;
+	background-image:url(img/gauge/gauge.png);
+	background-size:100% 100%;
 }
-.gauge-pointer {
+.gauge-pointer{
 	position:absolute;
 	bottom:45px;
 	left:52px;
 	height:60px;
 	width:60px;
-	background-image: url(img/gauge/gauge-pointer.png);
-	background-repeat: no-repeat;
+	background-image:url(img/gauge/gauge-pointer.png);
+	background-repeat:no-repeat;
 	background-size:100% 100%;
-	-webkit-transform-origin: 48px 13.5px;
-	-webkit-transition:all 0.5s;
+	-webkit-transform-origin:48px 13.5px;
+	-webkit-transition-property:transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-duration:500ms;
 }
-.gauge-text {
+.gauge-text{
 	position:absolute;
 	bottom:25px;
 	width:100%;
@@ -180,13 +182,8 @@
 	opacity:0.2;
 	
 	-webkit-animation:lrWave 10s linear infinite;
-	animation:lrWave 10s linear infinite;
 }
 @-webkit-keyframes lrWave{
-	0%{background-position-x:0}
-  	100%{background-position-x:960px}
-}
-@keyframes lrWave{
 	0%{background-position-x:0}
   	100%{background-position-x:960px}
 }
