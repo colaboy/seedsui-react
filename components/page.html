@@ -6,23 +6,15 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>page</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-	<style type="text/css">
-	.page-wrapper{
-		position:relative;
-	    width:100%;
-	    height:100%;
-	    overflow:hidden;
-	}
-	</style>
 </head>
 
 <body ontouchstart="">
 	<section id="page_0">
 		<header>
 		  <div class="titlebar">
-		    <a href="javascript:back()">
-			            <i class="icon icon-arrowleft"></i>
-			        </a>
+		    <a href="javascript:history.go(-1)">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
 		    <h1>单页模式</h1>
 		  </div>
 		</header>
@@ -158,30 +150,27 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
 		var singlePage=new Page({
-			"onOpenStart":function(e){
-				/*console.log("点击了：");
-				console.log(e.target);*/
-				console.log("开始打开：");
-				console.log(e.targetPage);
+			"onLoad":function(e){
+				var targetPageId;
+				if(e.isRoot){
+					console.log("根页面");
+				}else{
+					console.log("当前页面ID:"+e.targetPageId);
+					//console.log("当前页面:"+e.targetPage);
+				}
 			},
-			"onOpenEnd":function(e){
-				/*console.log("点击了：");
-				console.log(e.target);*/
+			/*"onOpenEnd":function(e){
+				console.log("点击了：");
+				console.log(e.target);
 				console.log("已经打开：");
 				console.log(e.targetPage);
 			},
-			"onCloseStart":function(e){
-				/*console.log("点击了：");
-				console.log(e.target);*/
-				console.log("开始关闭：");
-				console.log(e.targetPage);
-			},
 			"onCloseEnd":function(e){
-				/*console.log("点击了：");
-				console.log(e.target);*/
+				console.log("点击了：");
+				console.log(e.target);
 				console.log("已经关闭：");
 				console.log(e.targetPage);
-			}
+			}*/
 		});
 		//打指定页
 		function openPage(id,target){
@@ -195,11 +184,12 @@
 		
 		//定义exmobi返回
 		function back(){
-			if(window.location.href.indexOf("http")>=0){
+			history.go(-1);
+			/*if(window.location.href.indexOf("http")>=0){
 				history.go(-1)
 			}else{
 				singlePage.back();
-			}
+			}*/
 		}
 	</script>
 </body>

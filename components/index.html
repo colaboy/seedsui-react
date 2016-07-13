@@ -32,457 +32,56 @@
 		border-radius:8px;
 		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
 	}
+	/*单页模式*/
+	.app-page[data-animation="none"]{
+		display:none;
+	}
+	.app-page.active{
+		display:block;
+	}
 	</style>
 </head>
 <body ontouchstart="">
 		<header>
-			<div class="titlebar">
-				<!-- <a href="javascript:back()"> <i class="icon icon-arrowleft"></i>
-				</a>
-				<h1>components</h1> -->
-				<ul class="rectbar reverse">
-		            <li class="tab active">
+			<div class="titlebar reverse" style="height:50px;">
+				<ul class="tabbar reverse" data-type="rect" data-col="3" style="width:80%">
+		            <li class="tab active" href="#ID-CssCompoents" data-toggle="page">
 		                <label class="tab-label">Css组件</label>
 		            </li>
-		            <li class="tab">
-		                <label class="tab-label">Javascript组件</label>
+		            <li class="tab" href="#ID-JsCompoents" data-toggle="page">
+		                <label class="tab-label">Js组件</label>
+		            </li>
+		            <li class="tab" href="#ID-LocCompoents" data-toggle="page">
+		                <label class="tab-label">本地能力</label>
 		            </li>
 		        </ul>
 			</div>
 		</header>
-		<article style="padding-top:94px">
-			<div class="app-sliver">基础组件</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="page.html">
-						<img src="thumbnail/page.png"/>
-					</a>
-					<label class="grid-label">单页模式</label>
-				</li>
-				<li>
-					<a href="animate.html">
-						<img src="thumbnail/animate.png"/>
-					</a>
-					<label class="grid-label">动画</label>
-				</li>
-				<li>
-					<a href="aside.html">
-						<img src="thumbnail/aside.png"/>
-					</a>
-					<label class="grid-label">侧边栏</label>
-				</li>
-				<li>
-					<a href="bar.html">
-						<img src="thumbnail/bar.png"/>
-					</a>
-					<label class="grid-label">Bar</label>
-				</li>
-				<li>
-					<a href="tabbar.html">
-						<img src="thumbnail/tabbar.png"/>
-					</a>
-					<label class="grid-label">动画Bar</label>
-				</li>
-				<li>
-					<a href="progressbar.html">
-						<img src="thumbnail/progressbar.png"/>
-					</a>
-					<label class="grid-label">进度条</label>
-				</li>
-				<li>
-					<a href="bg.html">
-						<img src="thumbnail/bg.png"/>
-					</a>
-					<label class="grid-label">背景</label>
-				</li>
-				<li>
-					<a href="layout.html">
-						<img src="thumbnail/layout.png"/>
-					</a>
-					<label class="grid-label">布局</label>
-				</li>
-				<li>
-					<a href="button.html">
-						<img src="thumbnail/button.png"/>
-					</a>
-					<label class="grid-label">按钮</label>
-				</li>
-				<li>
-					<a href="iconfont.html">
-						<img src="thumbnail/iconfont.png"/>
-					</a>
-					<label class="grid-label">文字图标</label>
-				</li>
-				<li>
-					<a href="popup.html">
-						<img src="thumbnail/popup.png"/>
-					</a>
-					<label class="grid-label">弹出框</label>
-				</li>
-				<li>
-					<a href="shape.html">
-						<img src="thumbnail/shape.png"/>
-					</a>
-					<label class="grid-label">形状</label>
-				</li>
-				<li>
-					<a href="code.html">
-						<img src="thumbnail/code.png"/>
-					</a>
-					<label class="grid-label">代码展现</label>
-				</li>
-			</ul>
-
-			<div class="app-sliver">表单</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="form.html">
-						<img src="thumbnail/form.png"/>
-					</a>
-					<label class="grid-label">表单样式</label>
-				</li>
-				<li>
-					<a href="form-serialize.html">
-						<img src="thumbnail/form-serialize.png"/>
-					</a>
-					<label class="grid-label">表单序列化</label>
-				</li>
-				<li>
-					<a href="form-validate.html">
-						<img src="thumbnail/form-validate.png"/>
-					</a>
-					<label class="grid-label">表单验证</label>
-				</li>
-				<li>
-					<a href="form-countval.html">
-						<img src="thumbnail/form-countval.png"/>
-					</a>
-					<label class="grid-label">文字计数</label>
-				</li>
-				<li>
-					<a href="scrollpicker.html">
-						<img src="thumbnail/scrollpicker.png"/>
-					</a>
-					<label class="grid-label">滚动选择器</label>
-				</li>
-				<li>
-					<a href="scrollpicker-city.html">
-						<img src="thumbnail/scrollpicker-city.png"/>
-					</a>
-					<label class="grid-label">地区选择器</label>
-				</li>
-				<li>
-					<a href="scrollpicker-date.html">
-						<img src="thumbnail/scrollpicker-date.png"/>
-					</a>
-					<label class="grid-label">日期选择器</label>
-				</li>
-				<li>
-					<a href="scrollpicker-datetime.html">
-						<img src="thumbnail/scrollpicker-datetime.png"/>
-					</a>
-					<label class="grid-label">日期时间选择器</label>
-				</li>
-			</ul>
-
-			<div class="app-sliver">栅格</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="table.html">
-						<img src="thumbnail/table.png"/>
-					</a>
-					<label class="grid-label">表格</label>
-				</li>
-				<li>
-					<a href="grid.html">
-						<img src="thumbnail/grid.png"/>
-					</a>
-					<label class="grid-label">九宫格</label>
-				</li>
-				<li>
-					<a href="grid-metro.html">
-						<img src="thumbnail/grid-metro.png"/>
-					</a>
-					<label class="grid-label">九宫格-自定义</label>
-				</li>
-				<li>
-					<a href="list.html">
-						<img src="thumbnail/list.png"/>
-					</a>
-					<label class="grid-label">列表</label>
-				</li>
-				<li>
-					<a href="indexbar.html">
-						<img src="thumbnail/indexbar.png"/>
-					</a>
-					<label class="grid-label">索引栏</label>
-				</li>
-			</ul>
-
-			<div class="app-sliver">错误页面</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="404.html">
-						<img src="thumbnail/404.png"/>
-					</a>
-					<label class="grid-label">找不到页面</label>
-				</li>
-				<li>
-					<a href="500.html">
-						<img src="thumbnail/500.png"/>
-					</a>
-					<label class="grid-label">页面错误</label>
-				</li>
-				<li>
-					<a href="nowifi.html">
-						<img src="thumbnail/nowifi.png"/>
-					</a>
-					<label class="grid-label">无网络</label>
-				</li>
-			</ul>
-
-			<div class="app-sliver">常用功能</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="calendar.html">
-						<img src="thumbnail/calendar.png"/>
-					</a>
-					<label class="grid-label">日历</label>
-				</li>
-				<li>
-					<a href="tree.html">
-						<img src="thumbnail/tree.png"/>
-					</a>
-					<label class="grid-label">树结构</label>
-				</li>
-				<li>
-					<a href="tree-selected.html">
-						<img src="thumbnail/tree-selected.png"/>
-					</a>
-					<label class="grid-label">树结构-部门选择</label>
-				</li>
-				<li>
-					<a href="weather.html">
-						<img src="thumbnail/weather.png"/>
-					</a>
-					<label class="grid-label">天气</label>
-				</li>
-				<li>
-					<a href="chat.html">
-						<img src="thumbnail/chat.png"/>
-					</a>
-					<label class="grid-label">聊天</label>
-				</li>
-				<li>
-					<a href="shake.html">
-						<img src="thumbnail/shake.png"/>
-					</a>
-					<label class="grid-label">摇一摇</label>
-				</li>
-				<li>
-					<a href="counter.html">
-						<img src="thumbnail/counter.png"/>
-					</a>
-					<label class="grid-label">计数器</label>
-				</li>
-				<li>
-					<a href="slider.html">
-						<img src="thumbnail/slider.png"/>
-					</a>
-					<label class="grid-label">滑动容器</label>
-				</li>
-				<li>
-					<a href="slider-page.html">
-						<img src="thumbnail/slider-page.png"/>
-					</a>
-					<label class="grid-label">滑动页面</label>
-				</li>
-				<li>
-					<a href="loading.html">
-						<img src="thumbnail/loading.png"/>
-					</a>
-					<label class="grid-label">加载遮罩</label>
-				</li>
-				<li>
-					<a href="dragrefresh.html">
-						<img src="thumbnail/dragrefresh.png"/>
-					</a>
-					<label class="grid-label">下拉刷新</label>
-				</li>
-			</ul>
-			<div class="app-sliver">数据可视化</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="gauge.html">
-						<img src="thumbnail/gauge.png"/>
-					</a>
-					<label class="grid-label">仪表盘</label>
-				</li>
-				<li>
-					<a href="clock.html">
-						<img src="thumbnail/clock.png"/>
-					</a>
-					<label class="grid-label">时钟</label>
-				</li>
-			</ul>
-
-			<div class="app-sliver">charts-可视化数据</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="charts-bar.html">
-						<img src="thumbnail/charts-bar.png"/>
-					</a>
-					<label class="grid-label">柱状图</label>
-				</li>
-				<li>
-					<a href="charts-doughnut.html">
-						<img src="thumbnail/charts-doughnut.png"/>
-					</a>
-					<label class="grid-label">环形图</label>
-				</li>
-				<li>
-					<a href="charts-doughnut.color.html">
-						<img src="thumbnail/charts-doughnut.color.png"/>
-					</a>
-					<label class="grid-label">环形图</label>
-				</li>
-				<li>
-					<a href="charts-line.html">
-						<img src="thumbnail/charts-line.png"/>
-					</a>
-					<label class="grid-label">折线图</label>
-				</li>
-				<li>
-					<a href="charts-pie.html">
-						<img src="thumbnail/charts-pie.png"/>
-					</a>
-					<label class="grid-label">饼图</label>
-				</li>
-				<li>
-					<a href="charts-pie-customTooltips.html">
-						<img src="thumbnail/charts-pie-customTooltips.png"/>
-					</a>
-					<label class="grid-label">饼图</label>
-				</li>
-				<li>
-					<a href="charts-polar-area.html">
-						<img src="thumbnail/charts-polar-area.png"/>
-					</a>
-					<label class="grid-label">极地区域图</label>
-				</li>
-				<li>
-					<a href="charts-radar.html">
-						<img src="thumbnail/charts-radar.png"/>
-					</a>
-					<label class="grid-label">雷达图</label>
-				</li>
-			</ul>
-			<div id="exmobilocal" style="display: none;">
-				<div class="app-sliver">exmobi本地能力</div>
-				<ul class="grid app-thumbnail">
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-tel.html')">
-							<img src="thumbnail/exmobi-tel.png"/>
-						</a>
-						<label class="grid-label">电话与通讯</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-camera.html')">
-							<img src="thumbnail/exmobi-camera.png"/>
-						</a>
-						<label class="grid-label">照片选择</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-gps.html')">
-							<img src="thumbnail/exmobi-gps.png"/>
-						</a>
-						<label class="grid-label">定位</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-qrcode.html')">
-							<img src="thumbnail/exmobi-qrcode.png"/>
-						</a>
-						<label class="grid-label">扫码</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-third.html')">
-							<img src="thumbnail/exmobi-third.png"/>
-						</a>
-						<label class="grid-label">调用第三方</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-webview.html')">
-							<img src="thumbnail/exmobi-webview.png"/>
-						</a>
-						<label class="grid-label">webview控件</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-pattern.html')">
-							<img src="thumbnail/exmobi-pattern.png"/>
-						</a>
-						<label class="grid-label">手势密码</label>
-					</li>
-					<li>
-						<a href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-cache.html')">
-							<img src="thumbnail/exmobi-cache.png"/>
-						</a>
-						<label class="grid-label">缓存</label>
-					</li>
-				</ul>
+		<article style="padding-top:50px">
+			<!--Css组件-->
+			<div id="ID-CssCompoents" data-animation="none" class="app-page active">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
 			</div>
-
-			<div id="weixinlocal" style="display: none;">
-				<div class="app-sliver">微信本地能力</div>
-				<ul class="grid app-thumbnail">
-					<li>
-						<a href="weixin.html">
-							<img src="thumbnail/weixin.png"/>
-						</a>
-						<label class="grid-label">微信本地能力</label>
-					</li>
-				</ul>
+			<!--Js组件-->
+			<div id="ID-JsCompoents" data-animation="none" class="app-page">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
 			</div>
-
-			<div class="app-sliver">html5本地能力</div>
-			<ul class="grid app-thumbnail">
-				<li>
-					<a href="video.html">
-						<img src="thumbnail/video.png"/>
-					</a>
-					<label class="grid-label">多媒体</label>
-				</li>
-				<li>
-					<a href="local-photoselect.html">
-						<img src="thumbnail/local-photoselect.png"/>
-					</a>
-					<label class="grid-label">照片选择</label>
-				</li>
-				<li>
-					<a href="local-share.html">
-						<img src="thumbnail/local-share.png"/>
-					</a>
-					<label class="grid-label">分享链接</label>
-				</li>
-				<li>
-					<a href="local-map.html">
-						<img src="thumbnail/local-map.png"/>
-					</a>
-					<label class="grid-label">签到地图</label>
-				</li>
-				<li>
-					<a href="local-gps.html">
-						<img src="thumbnail/local-gps.png"/>
-					</a>
-					<label class="grid-label">定位</label>
-				</li>
-				<li>
-					<a href="local-db.html">
-						<img src="thumbnail/local-db.png"/>
-					</a>
-					<label class="grid-label">本地数据库</label>
-				</li>
-			</ul>
-
+			<!--本地能力-->
+			<div id="ID-LocCompoents" data-animation="none" class="app-page">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
+			</div>
 		</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -500,14 +99,127 @@
 				console.log('manifest文件没有变化');
 			}
 		},false);*/
-		//判断是否是exmobi环境
-		document.addEventListener("plusready",function(){
-			document.getElementById("exmobilocal").style.display="block";
-		},false);
-		//判断是否是微信环境
-		if(Device.isWeixin){
-			document.getElementById("weixinlocal").style.display="block";
+		/*================
+		判断本地能力
+		================*/
+		//exmobi环境
+		function exmobiLocal(){
+			document.addEventListener("plusready",function(){
+				document.getElementById("exmobilocal").style.display="block";
+			},false);
 		}
+		//微信环境
+		function weixinLocal(){
+			if(Device.isWeixin){
+				document.getElementById("weixinlocal").style.display="block";
+			}
+		}
+		/*================
+		Ajax页面加载
+		================*/
+		//三个容器和三个按钮
+		var compoentBtns={};
+		compoentBtns["ID-CssCompoents"]=document.querySelector('[href="#ID-CssCompoents"]');
+		compoentBtns["ID-JsCompoents"]=document.querySelector('[href="#ID-JsCompoents"]');
+		compoentBtns["ID-LocCompoents"]=document.querySelector('[href="#ID-LocCompoents"]');
+
+
+		var compoentContainers={};
+		compoentContainers["ID-CssCompoents"]=document.getElementById("ID-CssCompoents");
+		compoentContainers["ID-JsCompoents"]=document.getElementById("ID-JsCompoents");
+		compoentContainers["ID-LocCompoents"]=document.getElementById("ID-LocCompoents");
+		//菜单切换
+		function hideContainers(){
+			for(var name in compoentContainers){
+				compoentContainers[name].style.display="none";
+			}
+		}
+		var singlePage=new Page({
+			"isDisableSameClick":true,
+			"pageClass":"app-page",
+			"onLoad":function(e){
+				var targetBtn,targetPageId;
+				if(e.isRoot){
+					targetBtn=compoentBtns["ID-CssCompoents"];
+					targetPage=compoentContainers["ID-CssCompoents"];
+				}else{
+					targetBtn=compoentBtns[e.targetPageId.substring(1)];
+					targetPage=compoentContainers[e.targetPageId.substring(1)];
+				}
+				//还原状态
+				e.buttons.forEach(function(btn){
+					btn.classList.remove("active");
+				});
+				e.pages.forEach(function(page){
+					page.style.display="none";
+				});
+				//显示对应的层
+				if(targetBtn){
+					//console.log(targetBtn);
+					targetBtn.classList.add("active");
+				}
+				if(targetPage)targetPage.style.display="block";
+			}
+		});
+		/*function activeContainer(id){
+			for(var name in compoentContainers){
+				compoentContainers[name].style.display="none";
+			}
+			compoentContainers[id].style.display="block";
+		}
+		var tabbars=[].slice.call(document.querySelectorAll('.tabbar'));
+		tabbars.forEach(function(tabbar){
+			tabbar.tabs=[].slice.call(tabbar.querySelectorAll('.tab'));
+        });
+		function clickMenu(){
+			tabbars.forEach(function(tabbar){
+	            tabbar.onclick=function(e){
+	                tabbar.tabs.forEach(function(tab) {
+	                    tab.classList.remove("active");
+	                });
+	                var id=e.target.getAttribute("data-id");
+	                activeContainer(id);
+	                e.target.classList.add("active");
+	            }
+	        });
+		}*/
+		//加载数据
+		function loadCssCompoents(){
+			new Ajax({
+                url:"index-css.html",
+                onSuccess:function(data){
+                    compoentContainers["ID-CssCompoents"].innerHTML=data;
+                }
+            });
+		}
+		function loadJsCompoents(){
+			new Ajax({
+                url:"index-js.html",
+                onSuccess:function(data){
+                    compoentContainers["ID-JsCompoents"].innerHTML=data;
+                }
+            });
+		}
+		function loadLocCompoents(){
+			new Ajax({
+                url:"index-local.html",
+                onSuccess:function(data){
+                	compoentContainers["ID-LocCompoents"].innerHTML=data;
+                	//本地能力
+                	exmobiLocal();
+                	weixinLocal();
+                }
+            });
+		}
+		/*================
+		初始化
+		================*/
+		window.addEventListener("load",function(){
+			//clickMenu();
+			loadCssCompoents();
+			loadJsCompoents();
+			loadLocCompoents();
+		},false);
 		//定义exmobi返回
 		function back(){Exmobi.dbclose();}
 	</script>

@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>tabbar</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
@@ -14,14 +15,14 @@
             <a href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
-            <h1>Animated Tabbar</h1>
+            <h1>Tabbar</h1>
         </div>
     </header>
 
     <!--主体-->
 	<article>
-        <div class="sliver">tabbar animate-slide</div>
-        <ul class="tabbar animate-slide width-full" data-col="6" id="tabbar">
+        <div class="sliver">单线形(动画)</div>
+        <ul class="tabbar" data-type="animate-oneline">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -29,57 +30,51 @@
                 <label class="tab-label">推荐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">科技</label>
+                <label class="tab-label">娱乐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情舆情</label>
+                <label class="tab-label">本地</label>
             </li>
             <li class="tab">
-                <label class="tab-label">动态</label>
+                <label class="tab-label">财经</label>
             </li>
             <li class="tab">
-                <label class="tab-label">动态</label>
-            </li>
-            <hr/>
-        </ul>
-        <div class="sliver">tabbar animate-twoline</div>
-        <ul class="tabbar animate-twoline" id="tabbar">
-            <li class="tab active">
-                <label class="tab-label">头条</label>
-            </li>
-            <li class="tab">
-                <label class="tab-label">推荐</label>
+                <label class="tab-label">自媒体</label>
             </li>
             <li class="tab">
                 <label class="tab-label">科技</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">美女</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
-            </li>
-        </ul>
-        <div class="sliver">tabbar animate-oneline</div>
-        <ul class="tabbar animate-oneline" id="tabbar">
-            <li class="tab active">
-                <label class="tab-label">头条</label>
+                <label class="tab-label">军事</label>
             </li>
             <li class="tab">
-                <label class="tab-label">推荐</label>
+                <label class="tab-label">体育</label>
             </li>
             <li class="tab">
-                <label class="tab-label">科技</label>
+                <label class="tab-label">历史</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">汽车</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">时尚</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">房产</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">段子</label>
             </li>
             <li class="tab">
                 <label class="tab-label">舆情</label>
             </li>
         </ul>
-        <div class="sliver">tabbar animate-box</div>
-        <ul class="tabbar animate-box" id="tabbar">
+
+        <div class="sliver">双线形(动画)</div>
+        <ul class="tabbar" data-type="animate-twoline">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -87,17 +82,18 @@
                 <label class="tab-label">推荐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">科技</label>
+                <label class="tab-label">娱乐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">本地</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">财经</label>
             </li>
         </ul>
-        <div class="sliver">tabbar animate-bracket</div>
-        <ul class="tabbar animate-bracket" id="tabbar">
+        
+        <div class="sliver">盒子形(动画)</div>
+        <ul class="tabbar" data-type="animate-box">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -105,38 +101,239 @@
                 <label class="tab-label">推荐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">科技</label>
+                <label class="tab-label">娱乐</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">本地</label>
             </li>
             <li class="tab">
-                <label class="tab-label">舆情</label>
+                <label class="tab-label">财经</label>
+            </li>
+        </ul>
+        <div class="sliver">括弧形(动画)</div>
+        <ul class="tabbar" data-type="animate-bracket">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">娱乐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">本地</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">财经</label>
             </li>
         </ul>
         <br/>
+        <div class="sliver">滑片形(动画):<small style="margin-left:4px;">不允许超过一屏，必须配合data-col使用</small></div>
+        <ul class="tabbar width-full" data-type="animate-slide" data-col="6">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">娱乐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">本地</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">财经</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">段子</label>
+            </li>
+            <hr/>
+        </ul>
+        <div class="sliver">矩形</div>
+        <br/>
+        <ul class="tabbar" data-type="rect" style="width:50%;">
+            <li class="tab arrow-top active">
+                <label class="tab-label">机构</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">组织</label>
+            </li>
+        </ul>
+        <br/>
+        <ul class="tabbar" data-type="rect">
+            <li class="tab active">
+                <i class="icon icon-build-fill"></i>
+                <label class="tab-label">机构</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-person"></i>
+                <label class="tab-label">组织</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-fav"></i>
+                <label class="tab-label">收藏</label>
+            </li>
+        </ul>
+        <br/>
+        <div class="sliver">矩形-reverse</div>
+        <br/>
+        <div class="bg-primary tbpadding8">
+            <ul class="tabbar reverse" data-type="rect" style="width:50%;">
+                <li class="tab arrow-top active">
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <label class="tab-label">组织</label>
+                </li>
+            </ul>
+        </div>
+        <br/>
+        <div class="bg-primary tbpadding8">
+            <ul class="tabbar reverse" data-type="rect">
+                <li class="tab active">
+                    <i class="icon icon-build-fill"></i>
+                    <label class="tab-label">机构</label>
+                </li>
+                <li class="tab">
+                    <i class="icon icon-person"></i>
+                    <label class="tab-label">组织</label>
+                </li>
+                <li class="tab">
+                    <i class="icon icon-fav"></i>
+                    <label class="tab-label">收藏</label>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="sliver">滑片形</div>
+        <ul class="tabbar" data-type="slide">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">动态</label>
+            </li>
+        </ul>
+        <ul class="tabbar" data-type="slide">
+            <li class="tab active">
+                <i class="icon icon-build-fill"></i>
+                <label class="tab-label">机构</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-person"></i>
+                <label class="tab-label">组织</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-fav"></i>
+                <label class="tab-label">收藏</label>
+            </li>
+        </ul>
+        <div class="sliver">滑片形-reverse</div>
+        <ul class="tabbar reverse" data-type="slide">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">动态</label>
+            </li>
+        </ul>
+        <ul class="tabbar reverse" data-type="slide">
+            <li class="tab active">
+                <i class="icon icon-build-fill"></i>
+                <label class="tab-label">机构</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-person"></i>
+                <label class="tab-label">组织</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-fav"></i>
+                <label class="tab-label">收藏</label>
+            </li>
+        </ul>
+        <br/>
+        
+        <div class="sliver">menubar</div>
+        <ul class="menubar">
+            <li class="tab active">
+                <i class="icon icon-home-fill"></i>
+                <label class="tab-label">首页</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-chattip"></i>
+                <label class="tab-label">消息</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-contact"></i>
+                <label class="tab-label">通讯录</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-app"></i>
+                <label class="tab-label">工作台</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-rdomore"></i>
+                <label class="tab-label">更多</label>
+            </li>
+        </ul>
+        <ul class="menubar reverse">
+            <li class="tab active">
+                <i class="icon icon-home-fill"></i>
+                <label class="tab-label">首页</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-chattip"></i>
+                <label class="tab-label">消息</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-contact"></i>
+                <label class="tab-label">通讯录</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-app"></i>
+                <label class="tab-label">工作台</label>
+            </li>
+            <li class="tab">
+                <i class="icon icon-rdomore"></i>
+                <label class="tab-label">更多</label>
+            </li>
+        </ul>
     </article>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-    EventUtil.addHandler(window,"load",function(e){
-        //tabbar
-        [].slice.call(document.querySelectorAll('.tabbar')).forEach(function(menu){
-            var menuItems = menu.querySelectorAll('.tab'),
-            setCurrent = function(ev) {
-                ev.preventDefault();
-                var item = ev.target; // li
-                menu.querySelector('.active').classList.remove("active");
-                item.classList.add("active");
-            };
-
-            [].slice.call(menuItems).forEach(function(el) {
-                el.addEventListener('click', setCurrent);
-            });
+    window.addEventListener("load",function(e){
+        [].slice.call(document.querySelectorAll('.tabbar')).forEach(function(tabbar){
+            tabbar.onclick=function(e){
+                [].slice.call(tabbar.querySelectorAll('.tab')).forEach(function(tab) {
+                    tab.classList.remove("active");
+                });
+                e.target.classList.add("active");
+            }
         });
-    });
+    },false);
 	//定义exmobi返回
 	function back(){history.go(-1);}
 

@@ -1,4 +1,5 @@
 // @koala-prepend "data.lang.js"
+// @koala-prepend "ajax.js"
 // @koala-prepend "device.js"
 // @koala-prepend "eventutil.js"
 // @koala-prepend "page.js"

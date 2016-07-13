@@ -1,0 +1,69 @@
+//Ajax
+(function(window,document,undefined){
+	window.Ajax=function(params){
+		/*================
+		Model
+		================*/
+		var defaults={
+			"url":null,
+			"type":"get",
+			"async":true,
+			"context":null,
+			/*
+            Callbacks:
+            onSuccess:function(Alert)
+			onFail:function(Alert)
+			*/
+		}
+		params=params||{};
+		for(var def in defaults){
+			if(params[def]==undefined){
+				params[def]=defaults[def];
+			}
+		}
+		var s=this;
+		s.xhr=new XMLHttpRequest();
+		s.params=params;
+		/*================
+		Method
+		================*/
+		s.openConnect=function(){
+			s.xhr.open(s.params.type,s.params.url,s.params.async);
+            s.xhr.send();
+		}
+		/*================
+		Control
+		================*/
+        s.events=function(detach){
+            var target=s.xhr;
+            var action=detach?"removeEventListener":"addEventListener";
+            target[action]("readystatechange",s.onReadystateChange,false);
+        }
+        //attach、dettach事件
+        s.attach=function(event){
+            s.events();
+        }
+        s.detach=function(event){
+            s.events(true);
+        }
+		s.onReadystateChange=function(e){
+			/*console.log("readyState:"+s.xhr.readyState+
+                    ";status:"+s.xhr.status+
+                    ";statusText:"+s.xhr.statusText+
+                    ";responseText:"+s.xhr.responseText);*/
+            if(s.xhr.responseText){
+            	if(s.params.onSuccess)s.params.onSuccess(s.xhr.responseText);
+            }else{
+            	if(s.params.onFail)s.params.onFail();
+            }
+		}
+		/*================
+		Init
+		================*/
+		s.init=function(){
+			s.attach();
+			s.openConnect();
+		}
+		s.init();
+	}
+})(window,document,undefined);

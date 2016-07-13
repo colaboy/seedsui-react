@@ -92,83 +92,87 @@ aside {
 /*----------------titlebar.less(end)----------------*/
 
 /*----------------tabbar.less(start)--------------*/
-.tabbar{
-	color:@label-color;
-	border-color:@tabbar-border;
+/*tabbar*/
+.tabbar .tab{
+	color:@tabbar-color;
 	background-color:@tabbar-bg;
+	border-color:@tabbar-border;
 }
-.active-arrow{
-	border-top-color:@tabbar-active-color;
-}
-.tab:active,.tab.active{
+.tabbar .tab:active,.tabbar .tab.active{
 	color:@tabbar-active-color;
+	background-color:@tabbar-active-bg;
+	border-color:@tabbar-active-border;
 }
-.tabbar[data-type=slide] .tab:active,.tabbar[data-type=slide] .tab.active{
+.tabbar.reverse .tab{
+	color:@tabbar-reverse-color;
+	background-color:@tabbar-reverse-bg;
+	border-color:@tabbar-reverse-border;
+}
+.tabbar.reverse .tab:active,.tabbar.reverse .tab.active{
+	color:@tabbar-reverse-active-color;
+	background-color:@tabbar-reverse-active-bg;
+	border-color:@tabbar-reverse-active-border;
+}
+.tabbar:not(.reverse)[data-type=rect] .tab:active,.tabbar[data-type=rect]:not(.reverse) .tab.active{
+	color:white;
+	background-color:@tabbar-active-color;
 	border-color:@tabbar-active-color;
 }
-
+.tabbar[data-type^="animate-"] .tab:active,.tabbar[data-type^="animate-"] .tab.active{
+	border-color:@tabbar-border;
+}
+.tabbar[data-type=animate-slide] hr{
+	border-color:@tabbar-active-border;
+}
+.tabbar[data-type=animate-oneline]{
+	.tab.active {
+		color:@tabbar-active-border;
+	}
+	.tab::before{
+		background:@tabbar-active-border;
+	}
+}
+.tabbar[data-type=animate-twoline] .tab::before,
+.tabbar[data-type=animate-twoline] .tab::after{
+	background:@tabbar-active-border;
+}
+.tabbar[data-type=animate-box]{
+	.tab.active{
+		color:@tabbar-active-color;
+	}
+	.tab::before,.tab::after,.tab-label::before,.tab-label::after{
+		background:@tabbar-active-border;
+	}
+}
+.tabbar[data-type=animate-bracket]{
+	.tab.active{
+		color:@tabbar-active-color;
+	}
+	.tab::before,.tab::after,.tab-label::before,.tab-label::after{
+		background:@tabbar-active-border;
+	}
+}
 /*menubar*/
-.menubar{
-	color:@label-color;
+.menubar .tab{
+	color:@menubar-color;
 	border-color:@menubar-border;
 	background-color:@menubar-bg;
 }
+.menubar .tab:active,.menubar .tab.active{
+	color:@menubar-active-color;
+	border-color:@menubar-active-border;
+	background-color:@menubar-active-bg;
+}
 /*menubar-reverse*/
 .menubar.reverse .tab{
-	border-color:@menubar-reverse-bg;
-}
-.menubar.reverse{
 	color:@menubar-reverse-color;
+	border-color:@menubar-reverse-border;
 	background-color:@menubar-reverse-bg;
-}
-.menubar.reverse .tab{
-	opacity: 0.5;
 }
 .menubar.reverse .tab:active,.menubar.reverse .tab.active{
 	color:@menubar-reverse-active-color;
-	opacity: 1;
-}
-//tabbar
-.tabbar.animate-slide {
-	.tab.active {
-		color: @primary-bg;
-	}
-	hr {
-		border-color: @primary-bg;
-	}
-}
-.tabbar.animate-twoline {
-	.tab.active {
-		color: @primary-bg;
-	}
-	.tab::before, .tab::after {
-		background:@primary-bg;
-	}
-}
-
-.tabbar.animate-oneline {
-	.tab.active {
-		color: @primary-bg;
-	}
-	.tab::before{
-		background:@primary-bg;
-	}
-}
-.tabbar.animate-box {
-	.tab.active {
-		color: @primary-bg;
-	}
-	.tab::before, .tab::after, .tab-label::before, .tab-label::after{
-		background:@primary-bg;
-	}
-}
-.tabbar.animate-bracket {
-	.tab.active {
-		color: @primary-bg;
-	}
-	.tab::before, .tab::after, .tab-label::before, .tab-label::after{
-		background:@primary-bg;
-	}
+	border-color:@menubar-reverse-active-border;
+	background-color:@menubar-reverse-active-bg;
 }
 /*----------------tabbar.less(end)--------------*/
 

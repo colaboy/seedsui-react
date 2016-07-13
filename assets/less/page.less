@@ -1,38 +1,44 @@
 /*----------------page.less(start)--------------*/
 .page{
-	visibility:hidden;
-
 	position:fixed;
 	top:0;
 	width:100%;
 	height:100%;
 	overflow:auto;
 	z-index:0;
+
+	-webkit-transition-property:-webkit-transform, opacity;
 }
 .page[data-animation="slideLeft"]{
+	visibility:hidden;
 	left:0;
 	-webkit-transform:translate3d(100%,0,0);
 }
 .page[data-animation="slideRight"]{
+	visibility:hidden;
 	left:0;
 	-webkit-transform:translate3d(-100%,0,0);
 }
 .page[data-animation="slideUp"]{
+	visibility:hidden;
 	top:0;
 	-webkit-transform:translate3d(100%,0,0);
 }
 .page[data-animation="slideDown"]{
+	visibility:hidden;
 	top:0;
 	-webkit-transform:translate3d(-100%,0,0);
 }
 .page[data-animation="zoom"]{
+	visibility:hidden;
 	-webkit-transform:scale(0,0);
 }
 .page[data-animation="fade"]{
+	visibility:hidden;
 	opacity:0;
 }
 .page[data-animation="none"]{
-	visibility:hidden;
+	display:none;
 }
 /* section.page.active{
 	visibility:visible;

@@ -5,17 +5,18 @@
           Model
           ===========================*/
 		var defaults={
-			"isTakeHistory":true,
-			"pageBtn":"[data-toggle=page]",
+			"isDisableSameClick":false,//是否禁止重复点击相同按钮
+			"isTakeHistory":true,//是否添加浏览器历史记录
+			"button":"[data-toggle=page]",
+			"buttonActiveClass":"active",
 			"pageClass":"page",
 			"pageActiveClass":"active",
 			"defaultAnimation":"slideLeft",
 			"duration":"300"
 
 			/*callbacks
-			onOpenStart:function(Page)//开窗前
+			onLoad:function(Page)//加载中
 			onOpenEnd:function(Page)//开窗完成时动画
-			onCloseStart:function(Page)//关窗前
 			onCloseEnd:function(Page)//关窗完成时动画
 			*/
 		}
@@ -28,10 +29,12 @@
 		}
 		var s=this;
 		s.params=params;
+		//Btns
+        s.buttons=[].slice.call(document.querySelectorAll(s.params.button));
 		//Pages
 		s.pages;
 		s.update=function(){
-			s.pages=document.querySelectorAll("."+s.params.pageClass);
+			s.pages=[].slice.call(document.querySelectorAll("."+s.params.pageClass));
 			for(var i=0,page;page=s.pages[i++];){
 				if(!page.getAttribute("data-animation")){
 	                page.setAttribute("data-animation",s.params.defaultAnimation);
@@ -39,40 +42,42 @@
 	            var isActive=page.classList.contains(s.params.pageActiveClass);
 	            var animation=page.getAttribute("data-animation");
 	            if(animation=="slideDown"){
-	            	page.showAnimation={webkitTransform:"translate3d(0,0,0)"};
+	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
 	                page.hideAnimation={webkitTransform:"translate3d(0,-100%,0)"};
 	                if(!isActive)page.style.webkitTransform="translate3d(0,-100%,0)";
 	            }else if(animation=="slideUp"){
-	            	page.showAnimation={webkitTransform:"translate3d(0,0,0)"};
+	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
 	                page.hideAnimation={webkitTransform:"translate3d(0,100%,0)"};
 	                if(!isActive)page.style.webkitTransform="translate3d(0,100%,0)";
 	            }
 	            else if(animation=="fade"){
-	            	page.showAnimation={opacity:1};
+	            	page.showAnimation={visibility:"visible",opacity:1};
 	                page.hideAnimation={opacity:0};
 	                if(!isActive)page.style.opacity=0;
 	            }
 	            else if(animation=="none"){
-	            	page.showAnimation={visibility:"visible",noAnimation:true};
-	                page.hideAnimation={visibility:"hidden"};
-	                if(!isActive)page.style.visibility="hidden";
+	            	page.showAnimation={display:"block",noAnimation:true};
+	                page.hideAnimation={display:"none"};
+	                if(!isActive)page.style.display="none";
 	            }
 	            else if(animation=="zoom"){
-	            	page.showAnimation={webkitTransform:"scale(1,1)"};
+	            	page.showAnimation={visibility:"visible",webkitTransform:"scale(1,1)"};
 	                page.hideAnimation={webkitTransform:"scale(0,0)"};
 	                if(!isActive)page.style.webkitTransform="scale(0,0)";
 	            }
 	            else if(animation=="slideRight"){
-	            	page.showAnimation={webkitTransform:"translate3d(0,0,0)"};
+	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
 	                page.hideAnimation={webkitTransform:"translate3d(-100%,0,0)"};
 	                if(!isActive)page.style.webkitTransform="translate3d(-100%,0,0)";
-	            }else{
-	            	page.showAnimation={webkitTransform:"translate3d(0,0,0)"};
+	            }else if(animation=="slideLeft"){
+	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
 	                page.hideAnimation={webkitTransform:"translate3d(100%,0,0)"};
 	                if(!isActive)page.style.webkitTransform="translate3d(100%,0,0)";
 	            }
-	            page.style.webkitTransitionProperty="transform,opacity";
-	            s.durationPage(page);
+	            //page.style.webkitTransitionProperty="transform,opacity";
+	            if(animation!="none"){
+	            	s.durationPage(page);
+	            }
 			}
         }
         s.durationPage=function(page){
@@ -121,18 +126,15 @@
         }
         s.isHid=true;
         s.showPage=function(page){
+        	s.isRoot=false;
         	s.isHid=false;
+        	//Callback onLoad
+        	if(s.params.onLoad)s.params.onLoad(s);
+
         	page.classList.add(s.params.pageActiveClass);
-        	page.style.visibility="visible";
             for(var ani in page.showAnimation){
                 page.style[ani]=page.showAnimation[ani];
             }
-            //如果窗口选择为无动画
-            /*if(page.showAnimation["noAnimation"]){
-            	var e={};
-            	e.target=page;
-            	s.onTransitionEnd(e);
-            }*/
         }
         s.durationHidePage=function(page){
         	setTimeout(function(){
@@ -145,12 +147,6 @@
             for(var ani in page.hideAnimation){
                 page.style[ani]=page.hideAnimation[ani];
             }
-            //如果窗口选择为无动画
-            /*if(page.showAnimation["noAnimation"]){
-            	var e={};
-            	e.target=page;
-            	s.onTransitionEnd(e);
-            }*/
         }
         s.hideAllPage=function(exceptPageId){
         	for(var i=0,page;page=s.pages[i++];){
@@ -162,7 +158,7 @@
         }
 		//关窗函数
 		s.close=function(pageId,animation){
-			var page=document.querySelector(pageId);
+			var page=document.getElementById(pageId.substring(1));
 			if(animation){
 				page.setAttribute("data-animation",animation);
 				s.update();
@@ -170,14 +166,11 @@
 			//删除对应的历史记录
 			s.removeHistory(pageId);
 			//隐藏Page
-			s.hidePage(page);
-			//Callback
-			s.targetPage=page;
-			if(s.params.onCloseStart)s.params.onCloseStart(s);
+			if(page)s.hidePage(page);
 		}
 		//开窗函数
 		s.open=function(pageId,target,animation){
-			var page=document.querySelector(pageId);
+			var page=document.getElementById(pageId.substring(1));
 			if(animation){
 				page.setAttribute("data-animation",animation);
 				s.update();
@@ -188,33 +181,59 @@
 			}else{
 				s.addHistory(pageId);
 			}
+			//Callback onLoad
+			s.targetPageId=pageId;
+			s.targetPage=page;
 			//显示Page
 			s.showPage(page);
-			//Callback
-			s.targetPage=page;
-			if(s.params.onOpenStart)s.params.onOpenStart(s);
 		}
 		//回退函数
 		s.back=function(){
-			var pageId,page;
-			//如果本地历史记录为空，而浏览器历史记录不为空，则证明刷新过页面了(防刷新)
+			var targetPageId=null,targetPage=null;
+			//如果本地历史记录为空(刷新导致)，而浏览器历史记录不为空，则监听浏览器历史记录
 			if(s.history.length==0 && window.history.state && window.history.state.href){
-				console.log("无本地记录，但浏览器有历史记录");
-				pageId=window.history.state.href;
-				page=document.getElementById(pageId.substring(1));
-				s.hideAllPage(pageId);
-				s.showPage(page);
+				targetPageId=window.history.state.href;
+				//console.log("无本地记录，但有浏览器历史记录"+targetPageId);
+				targetPage=document.getElementById(targetPageId.substring(1));
+				s.hideAllPage(targetPageId);
+				//Callback onLoad
+				s.targetPageId=targetPageId;
+				s.targetPage=targetPage;
+				s.showPage(targetPage);
 				return;
 			}
-			//如果本地历史为空，浏览器历史也为空，却可以按返回按键，证明目前处于第二层(防刷新后第二层回不到第一层)
 			if(s.history.length==0){
+				//console.log("无本地记录，也无浏览器有历史记录");
+				s.isRoot=true;//底层标识
+				targetPageId=null;
+				targetPage=null;
 				s.hideAllPage();
-				return;
+			}else{
+				//获得最新历史记录，并关闭那个页面
+				var pageId=s.history[s.history.length-1];
+				if(pageId)s.close(pageId);
+				//获得关闭后的最新历史记录
+				targetPageId=s.history[s.history.length-1];
+				if(targetPageId)targetPage=document.getElementById(targetPageId.substring(1));
+				//目录是否处于底层
+				if(s.history.length==0){
+					s.isRoot=true;//底层标识
+					targetPageId=null;
+					targetPage=null;
+					//console.log("目前处于底层");
+				}
 			}
-			//清除顶层历史记录
-			pageId=s.history[s.history.length-1];
-			//关闭清除的那层
-			s.close(pageId);
+			//Callback onLoad
+        	s.targetPage=targetPage;
+        	s.targetPageId=targetPageId;
+        	if(s.params.onLoad)s.params.onLoad(s);
+		}
+		//清空按钮选中样式
+		s.activeButton=function(activebtn){
+			s.buttons.forEach(function(btn){
+				btn.classList.remove(s.params.buttonActiveClass);
+			})
+			activebtn.classList.add(s.params.buttonActiveClass);
 		}
 		/*=========================
           Control
@@ -228,9 +247,7 @@
             //页面初始化
             window[action]("load",s.onLoad,false);
             //window[action]("hashchange",s.onPopstate,false);
-            //按钮监听
-            var pageBtns=document.querySelectorAll(s.params.pageBtn);
-            for(var i=0,btn;btn=pageBtns[i++];){
+            for(var i=0,btn;btn=s.buttons[i++];){
         		btn.addEventListener("click",s.onClickBtn,false);
             }
         }
@@ -242,15 +259,19 @@
         }
         s.onLoad=function(e){
         	if(window.history.state && window.history.state.href){
-        		var pageId=window.history.state.href;
-        		var page=document.querySelector(pageId);
+        		s.targetPageId=window.history.state.href;
+        		s.targetPage=document.querySelector(s.targetPageId);
         		//关闭所有页面
-        		s.hideAllPage(pageId);
+        		s.hideAllPage(s.targetPageId);
         		//显示hash页面
-        		s.showPage(page);
+        		s.showPage(s.targetPage);
         	}
         }
         s.onClickBtn=function(e){
+        	if(s.params.isDisableSameClick){
+	        	if(e.target.classList.contains(s.params.buttonActiveClass))return;
+	        	s.activeButton(e.target);
+        	}
     		s.target=e.target;
 			var pageId=s.target.getAttribute("href");
 			var openType=s.target.getAttribute("target");
@@ -267,13 +288,13 @@
 			s.targetPage=e.target;
 			//隐藏完成
 			if(s.isHid){
-				s.targetPage.style.visibility="hidden";
-				//CallBack
+				if(s.targetPage.showAnimation.visibility)s.targetPage.style.visibility="hidden";
+				//CallBack onCloseEnd
 				if(s.params.onCloseEnd)s.params.onCloseEnd(s);
 				return;
 			}
 			//显示完成
-			//CallBack
+			//CallBack onOpenEnd
 			if(s.params.onOpenEnd)s.params.onOpenEnd(s);
 		};
 		s.init=function(){

@@ -136,20 +136,12 @@
         }
         //Ajax添加预览页面
         function loadXMLDoc(){
-            var xmlhttp;
-            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp=new XMLHttpRequest();
-            }else{// code for IE6, IE5
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange=function(){
-                //console.log(xmlhttp.status+";"+xmlhttp.statusText+";"+xmlhttp.responseText);
-                if(xmlhttp.readyState==4 && xmlhttp.status==200){
-                    pagePreview.innerHTML=xmlhttp.responseText;
+            var ajax=new Ajax({
+                url:"poll-add-preview.html",
+                onSuccess:function(data){
+                    pagePreview.innerHTML=data;
                 }
-            }
-            xmlhttp.open("GET","poll-add-preview.html",true);
-            xmlhttp.send();
+            });
         }
         loadXMLDoc();
     	//返回
