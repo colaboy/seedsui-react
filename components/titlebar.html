@@ -4,44 +4,44 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>bar</title>
+    <title>titlebar</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
 
 <body ontouchstart="">
 	<header>
         <div class="titlebar">
-            <a href="javascript:back()">
+            <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
-            <h1>Bar</h1>
+            <h1>Titlebar</h1>
         </div>
     </header>
 	<article>
         <p class="sliver">titlebar</p>
         <div class="titlebar">
-            <a href="javascript:back()">
+            <a class="titlebar-button">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1>左右图标titlebar</h1>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-rdoadd"></i>
             </a>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-search"></i>
             </a>
         </div>
         <br/>
         <div class="titlebar">
-            <a class="button round outline left" href="javascript:history.go(-1)">
+            <a class="titlebar-button button size32 radiusround outline left" href="javascript:history.go(-1)">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1 class="text-center">titlebar圆形图标</h1>
             <div class="right">
-                <a class="button round outline">
+                <a class="titlebar-button button size32 radiusround outline">
                     <i class="icon icon-rdoadd"></i>
                 </a>
-                <a class="button round outline">
+                <a class="titlebar-button button size32 radiusround outline">
                     <i class="icon icon-search"></i>
                 </a>
             </div>
@@ -50,11 +50,11 @@
         <div class="titlebar">
             <h1>右按钮titlebar</h1>
             <div class="right">
-            <button class="button outline radius40" style="height:32px;line-height:32px;">按钮</button>
-            <button class="button outline radius40" style="height:32px;line-height:32px;">
+            <a class="titlebar-button button outline radius40 lrpadding8">按钮</a>
+            <a class="titlebar-button button outline radius40 lrpadding8">
                 <i class="icon icon-gear"></i>
                 <label>设置</label>
-            </button>
+            </a>
             </div>
         </div>
         <br/>
@@ -80,12 +80,12 @@
         </div>
         <br/>
         <div class="titlebar">
-            <a href="javascript:back()">
+            <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
                 <span>返回</span>
             </a>
             <h1 class="text-center">传统titlebar</h1>
-            <a>
+            <a class="titlebar-button">
                 <span>搜索</span>
                 <i class="icon icon-search"></i>
             </a>
@@ -97,34 +97,34 @@
                 <input type="search" placeholder="请输入搜索内容" class="search" />
                 <i class="icon icon-clear-fill color-placeholder"></i>
             </div>
-            <a>搜索</a>
+            <a class="titlebar-button">搜索</a>
         </div>
         <br/>
         
         <p class="sliver">titlebar-reverse</p>
         <div class="titlebar reverse">
-            <a href="javascript:back()">
+            <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1>左右图标titlebar</h1>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-rdoadd"></i>
             </a>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-search"></i>
             </a>
         </div>
         <br/>
         <div class="titlebar reverse">
-            <a class="button round outline left" href="javascript:history.go(-1)">
+            <a class="titlebar-button button size32 radiusround outline left" href="javascript:history.go(-1)">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1 class="text-center">titlebar圆形图标</h1>
             <div class="right">
-                <a class="button round outline">
+                <a class="titlebar-button button size32 radiusround outline">
                     <i class="icon icon-rdoadd"></i>
                 </a>
-                <a class="button round outline">
+                <a class="titlebar-button button size32 radiusround outline">
                     <i class="icon icon-search"></i>
                 </a>
             </div>
@@ -132,31 +132,31 @@
         <br/>
         <div class="titlebar reverse">
             <h1>右按钮titlebar</h1>
-            <button class="button outline radius40" style="height:32px;line-height:32px;">按钮</button>
-            <button class="button outline radius40" style="height:32px;line-height:32px;">
+            <a class="titlebar-button button outline radius40 lrpadding8">按钮</a>
+            <a class="titlebar-button button outline radius40 lrpadding8">
                 <i class="icon icon-gear"></i>
                 <label>设置</label>
-            </button>
+            </a>
         </div>
         <br/>
         <div class="titlebar reverse">
             <h1>右图标titlebar</h1>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-rdoadd"></i>
             </a>
-            <a>
+            <a class="titlebar-button">
                 <i class="icon icon-search"></i>
             </a>
         </div>
         <br/>
 
         <div class="titlebar reverse">
-            <a href="javascript:back()">
+            <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
                 <span>返回</span>
             </a>
             <h1 class="text-center">传统titlebar</h1>
-            <a>
+            <a class="titlebar-button">
                 <span>搜索</span>
                 <i class="icon icon-search"></i>
             </a>
@@ -167,12 +167,12 @@
                 <input type="search" placeholder="请输入搜索内容" class="search" />
                 <i class="icon icon-clear-fill color-placeholder"></i>
             </div>
-            <a>搜索</a>
+            <a class="titlebar-button">搜索</a>
         </div>
         <br/>
 
         <div class="titlebar reverse">
-            <a><img style="height:30px;" src="../img/main5/logo.png"/></a>
+            <a class="titlebar-button"><img style="height:30px;" src="../img/main5/logo.png"/></a>
             <h1></h1>
             <a>
                 <i class="icon icon-search"></i>

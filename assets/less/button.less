@@ -1,49 +1,37 @@
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 .button{
-	display:inline-block;
-	padding:0 8px;
-	border-width:0;
+	display:-webkit-inline-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+
 	height:40px;
-	overflow:hidden;
-	text-align:center;
+	line-height:normal;
+	/* padding:0 8px; */
+	border-width:0;
 	vertical-align:middle;
 	
 	/*禁止选中*/
-	-webkit-user-select: none;
-	background-image: none;
+	/* -webkit-user-select: none;
+	background-image: none; */
 	
 	/*清除文本选择与外框*/
 	outline:none;
 
-	box-sizing: border-box;
+	box-sizing:border-box;
 
 	border-style:solid;
 	border-radius:0;
 }
-.button{
-	line-height: 40px;
-} 
 .outline{
 	border-width:1px;
 }
 /*按钮-大按钮*/
 .button.block{
-	display: block;
+	display:-webkit-box;
 }
 button.block,input[type="button"].block,input[type="submit"].block{
 	width:100%;
-}
-/*圆形按钮*/
-.button.round,.button.rect{
-    width:auto;
-    height:auto;
-    line-height:0;
-    font-size: 0;
-    padding: 5px;
-}
-.button.round{
-	border-radius:100%;
 }
 
 /*多彩标签按钮*/

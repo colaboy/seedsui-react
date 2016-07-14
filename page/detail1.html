@@ -14,14 +14,36 @@
         .newlist li:not(.noclick) .justify-content{
             height:74px;
         }
+        /*徽章箭头*/
+        .badge.app-badge-arrow{
+			padding:2px 8px;
+		    font-size:14px;
+		    overflow:visible;
+		    color:white;
+		}
+		.badge.app-badge-arrow:after {
+		    position: absolute;
+		    right: 10px;
+		    top: -4px;
+		    height: 0;
+		    width: 0;
+		    content: " ";
+		    border-width: 5px;
+		    margin-top: -5px;
+		    border-style: solid;
+		    border-color: transparent;
+		}
+		.badge.app-badge-arrow:after{
+			border-bottom-color:#fc4349;
+		}
     </style>
 </head>
 
 <body ontouchstart="">
 	<header>
         <div class="titlebar">
-            <a href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-            <a class="badge arrow right">1274跟贴</a>
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <a class="titlebar-button badge app-badge-arrow right">1274跟贴</a>
         </div>
     </header>
 	<article style="background-color:white;">
@@ -42,25 +64,25 @@
 		<hr/>
 		<ul class="grid tbmargin8" data-col="4">
 			<li>
-				<a class="photo radiusround" style="background-color:#4485fb;color:white;" data-share="qq">
+				<a class="size50 radiusround" style="background-color:#4485fb;color:white;" data-share="qq">
 					<i class="icon icon-qq"></i>
 				</a>
 				<label class="grid-label">QQ好友</label>
 			</li>
 			<li>
-				<a class="photo radiusround" style="background-color:#e55f5f;color:white;" data-share="tsina">
+				<a class="size50 radiusround" style="background-color:#e55f5f;color:white;" data-share="tsina">
 					<i class="icon icon-tsina"></i>
 				</a>
 				<label class="grid-label">新浪微博</label>
 			</li>
 			<li>
-				<a class="photo radiusround" style="background-color:#38ba35;color:white;" data-share="weixin">
+				<a class="size50 radiusround" style="background-color:#38ba35;color:white;" data-share="weixin">
 					<i class="icon icon-weixin"></i>
 				</a>
 				<label class="grid-label">微信</label>
 			</li>
 			<li>
-				<a class="photo radiusround" style="background-color:#41ce29;color:white;" data-share="fweixin">
+				<a class="size50 radiusround" style="background-color:#41ce29;color:white;" data-share="fweixin">
 					<i class="icon icon-fweixin"></i>
 				</a>
 				<label class="grid-label">微信朋友圈</label>
@@ -71,5 +93,9 @@
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        //定义exmobi返回
+    	function back(){history.go(-1)}
+    </script>
 </body>
 </html>

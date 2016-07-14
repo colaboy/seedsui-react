@@ -3,10 +3,10 @@
 	display:-webkit-box;
     -webkit-box-align:center;
 	min-height:44px;
-	border-bottom: 1px solid;
-	box-sizing: border-box;
+	border-bottom:1px solid;
+	box-sizing:border-box;
 }
-.titlebar,.titlebar a,.titlebar h1{
+.titlebar,.titlebar-button,.titlebar h1{
 	position:relative;
 }
 .titlebar h1{
@@ -22,24 +22,19 @@
 .titlebar h1:only-child{
 	margin-right:8px;
 }
-.titlebar a,.titlebar button{
+.titlebar-button{
+	max-height:32px;
 	margin:0 8px;
 }
-.titlebar a+a,.titlebar a+button,.titlebar button+button{
+.titlebar-button+.titlebar-button{
 	margin-left:0px;
 }
 /*左右对齐*/
 .titlebar>.left,.titlebar>.right{
-	position: absolute;
+	position:absolute;
 	top:50%;
 	-webkit-transform:translateY(-50%);
 	transform:translateY(-50%);
 	z-index:1;
-}
-.titlebar>.left {
-	left:0;
-}
-.titlebar>.right {
-	right:0;
 }
 /*----------------titlebar.less(end)----------------*/

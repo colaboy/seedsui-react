@@ -37,11 +37,15 @@ ul,li,dl,dt,dd {
 small{
 	font-size:80%;
 }
+/*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
+button,input[type="button"],input[type="submit"],input[type="reset"]{
+	display:inline-block;
+}
 a{
 	text-decoration:none;
 	outline:none;
 	cursor:pointer;
-	display:inline-block;
+	display:inline-block; 
 }
 a,label, :focus{
 	outline:0 none;

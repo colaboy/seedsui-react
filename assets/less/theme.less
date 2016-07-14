@@ -1,6 +1,6 @@
 /*----------------global.less(start)--------------*/
 body{
-	color: @body-color;
+	color:@body-color;
 	background-color:@body-bg;
 }
 small{
@@ -62,32 +62,31 @@ aside {
 	border-color:@titlebar-border;
 }
 .titlebar h1{
+	color:@titlebar-h1-color;
+}
+.titlebar-button{
 	color:@titlebar-color;
+	border-color:@titlebar-color;
 }
-.titlebar a{
-	color:@titlebar-link-color;
-}
-.titlebar a:active:not(.disable){
-	color:@titlebar-link-active-color;
-}
-.titlebar a.disable:not(.button){
-	opacity:0.5;
+.titlebar-button:active{
+	color:@titlebar-active-color;
+	border-color:@titlebar-active-color;
 }
 .titlebar.reverse{
 	background-color:@titlebar-reverse-bg;
 	border-color:@titlebar-reverse-border;
 }
 .titlebar.reverse h1{
-	color:@titlebar-reverse-color;
+	color:@titlebar-reverse-h1-color;
 }
-.titlebar.reverse a,.titlebar.reverse .button{
+.titlebar.reverse .titlebar-button{
 	color:@titlebar-reverse-color;
-	border-color:fade(@titlebar-reverse-color,50%);
+	border-color:@titlebar-reverse-color;
 }
-.titlebar.reverse a:active,.titlebar.reverse .button:active,
-.titlebar.reverse a.active,.titlebar.reverse .button.active{
+.titlebar.reverse .titlebar-button:active,
+.titlebar.reverse .titlebar-button.active{
 	color:@titlebar-reverse-active-color;
-	border-color:fade(@titlebar-reverse-active-color,25%);
+	border-color:@titlebar-reverse-active-color;
 }
 /*----------------titlebar.less(end)----------------*/
 
@@ -185,9 +184,6 @@ aside {
 	color:@tip-color;
 	border-color:@tip-bg;
 }
-.badge.arrow:after{
-	border-bottom-color:@tip-bg;
-}
 /*小点点*/
 .dot{
     background-color:@primary-bg;
@@ -224,19 +220,19 @@ aside {
 }
 .button.grayscale:not(.noclick):active{
 	opacity:1;
-	color:inherit;
-	border-color:inherit;
-	background-color:transparent;
+	color:@body-color;
+	border-color:@border;
+	background-color:white;
 }
 .button.outline.grayscale{
 	color:@body-color;
 	border-color:@border;
-	background-color:transparent;
+	background-color:white;
 }
 .button.outline.grayscale:not(.noclick):active{
 	opacity:1;
-	color:inherit;
-	border-color:inherit;
+	color:@body-color;
+	border-color:@border;
 	background-color:@body-bg;
 }
 .button.grayscale.disable,.button.grayscale[disabled],

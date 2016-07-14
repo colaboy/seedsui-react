@@ -51,6 +51,13 @@ dd {
 small {
   font-size: 80%;
 }
+/*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  display: inline-block;
+}
 a {
   text-decoration: none;
   outline: none;
@@ -385,6 +392,7 @@ aside article,
 } */
 /*----------------page.less(end)--------------*/
 /*----------------appearance.less(start)--------------*/
+a,
 button,
 input[type="button"],
 input[type="submit"],
@@ -411,6 +419,7 @@ select,
 input[type=range],
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
+  appearance: none;
 }
 /*----------------appearance.less(end)--------------*/
 @font-face {
@@ -1907,7 +1916,7 @@ aside[data-position="right"][data-transition="overlay"] {
   box-sizing: border-box;
 }
 .titlebar,
-.titlebar a,
+.titlebar-button,
 .titlebar h1 {
   position: relative;
 }
@@ -1925,13 +1934,11 @@ aside[data-position="right"][data-transition="overlay"] {
 .titlebar h1:only-child {
   margin-right: 8px;
 }
-.titlebar a,
-.titlebar button {
+.titlebar-button {
+  max-height: 32px;
   margin: 0 8px;
 }
-.titlebar a + a,
-.titlebar a + button,
-.titlebar button + button {
+.titlebar-button + .titlebar-button {
   margin-left: 0px;
 }
 /*左右对齐*/
@@ -1942,12 +1949,6 @@ aside[data-position="right"][data-transition="overlay"] {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 1;
-}
-.titlebar > .left {
-  left: 0;
-}
-.titlebar > .right {
-  right: 0;
 }
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
@@ -2264,48 +2265,34 @@ aside[data-position="right"][data-transition="overlay"] {
 /*------------------------------button.less(start)------------------------------*/
 /*按钮-普通按钮*/
 .button {
-  display: inline-block;
-  padding: 0 8px;
-  border-width: 0;
+  display: -webkit-inline-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
   height: 40px;
-  overflow: hidden;
-  text-align: center;
+  line-height: normal;
+  /* padding:0 8px; */
+  border-width: 0;
   vertical-align: middle;
   /*禁止选中*/
-  -webkit-user-select: none;
-  background-image: none;
+  /* -webkit-user-select: none;
+	background-image: none; */
   /*清除文本选择与外框*/
   outline: none;
   box-sizing: border-box;
   border-style: solid;
   border-radius: 0;
 }
-.button {
-  line-height: 40px;
-}
 .outline {
   border-width: 1px;
 }
 /*按钮-大按钮*/
 .button.block {
-  display: block;
+  display: -webkit-box;
 }
 button.block,
 input[type="button"].block,
 input[type="submit"].block {
   width: 100%;
-}
-/*圆形按钮*/
-.button.round,
-.button.rect {
-  width: auto;
-  height: auto;
-  line-height: 0;
-  font-size: 0;
-  padding: 5px;
-}
-.button.round {
-  border-radius: 100%;
 }
 /*多彩标签按钮*/
 .mark-info,
@@ -4627,24 +4614,6 @@ ul.weather-otherday li {
   border-radius: 20px;
   min-width: 24px;
 }
-.badge.arrow {
-  padding: 2px 8px;
-  font-size: 14px;
-  overflow: visible;
-  color: white;
-}
-.badge.arrow:after {
-  position: absolute;
-  right: 10px;
-  top: -4px;
-  height: 0;
-  width: 0;
-  content: " ";
-  border-width: 5px;
-  margin-top: -5px;
-  border-style: solid;
-  border-color: transparent;
-}
 .tip {
   line-height: 24px;
 }
@@ -4874,8 +4843,14 @@ i.size80,
 .box {
   display: -webkit-box;
 }
+.inline-box {
+  display: -webkit-inline-box;
+}
 .flex {
   display: -webkit-flex;
+}
+.inline-flex {
+  display: -webkit-inline-flex;
 }
 .box-center {
   -webkit-box-pack: center;
@@ -5272,14 +5247,13 @@ aside {
 .titlebar h1 {
   color: #333333;
 }
-.titlebar a {
+.titlebar-button {
   color: #18b2ed;
+  border-color: #18b2ed;
 }
-.titlebar a:active:not(.disable) {
+.titlebar-button:active {
   color: rgba(24, 178, 237, 0.5);
-}
-.titlebar a.disable:not(.button) {
-  opacity: 0.5;
+  border-color: rgba(24, 178, 237, 0.5);
 }
 .titlebar.reverse {
   background-color: #18b2ed;
@@ -5288,17 +5262,14 @@ aside {
 .titlebar.reverse h1 {
   color: #ffffff;
 }
-.titlebar.reverse a,
-.titlebar.reverse .button {
+.titlebar.reverse .titlebar-button {
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: #ffffff;
 }
-.titlebar.reverse a:active,
-.titlebar.reverse .button:active,
-.titlebar.reverse a.active,
-.titlebar.reverse .button.active {
+.titlebar.reverse .titlebar-button:active,
+.titlebar.reverse .titlebar-button.active {
   color: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
@@ -5401,9 +5372,6 @@ aside {
   color: #ffffff;
   border-color: #fc4349;
 }
-.badge.arrow:after {
-  border-bottom-color: #fc4349;
-}
 /*小点点*/
 .dot {
   background-color: #18b2ed;
@@ -5439,19 +5407,19 @@ aside {
 }
 .button.grayscale:not(.noclick):active {
   opacity: 1;
-  color: inherit;
-  border-color: inherit;
-  background-color: transparent;
+  color: #333333;
+  border-color: #e6e6e6;
+  background-color: white;
 }
 .button.outline.grayscale {
   color: #333333;
   border-color: #e6e6e6;
-  background-color: transparent;
+  background-color: white;
 }
 .button.outline.grayscale:not(.noclick):active {
   opacity: 1;
-  color: inherit;
-  border-color: inherit;
+  color: #333333;
+  border-color: #e6e6e6;
   background-color: #f4f4f4;
 }
 .button.grayscale.disable,

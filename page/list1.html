@@ -5,18 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <title>list1</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+    /*徽章箭头*/
+    .badge.app-badge-arrow{
+        padding:2px 8px;
+        font-size:14px;
+        overflow:visible;
+        color:white;
+    }
+    .badge.app-badge-arrow:after {
+        position: absolute;
+        right: 10px;
+        top: -4px;
+        height: 0;
+        width: 0;
+        content: " ";
+        border-width: 5px;
+        margin-top: -5px;
+        border-style: solid;
+        border-color: transparent;
+    }
+    .badge.app-badge-arrow:after{
+        border-bottom-color:#fc4349;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
 	<header>
         <div class="titlebar">
-            <a href="javascript:back()">
+            <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
         </div>
     </header>
 	<article style="padding-bottom:50px;">
-		<div class="text-right"><a class="badge arrow margin8">热门评论</a></div>
+		<div class="text-right"><a class="badge app-badge-arrow margin8">热门评论</a></div>
 		<ul class="list bg-transparent">
                 <li class="underline">
                     <div class="justify">
@@ -51,7 +75,7 @@
                     </div>
                 </li>
             </ul>
-            <div class="text-right"><a class="badge arrow margin8">最新评论</a></div>
+            <div class="text-right"><a class="badge app-badge-arrow margin8">最新评论</a></div>
 			<ul class="list bg-transparent">
                 <li class="underline">
                     <div class="justify">

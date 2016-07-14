@@ -8,220 +8,237 @@
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     
 	<style>
-	.thumbnail a{
+	body{
+		background-color:white;
+	}
+	/*栏目标题*/
+	.app-sliver{
+		font-size:12px;
+		padding:8px 0;
+		border-bottom:1px solid #ddd;
+		margin:8px;
+		color:#aaa;
+	}
+	/*缩略图*/
+	.app-thumbnail{
+		padding-left:4px;
+		padding-right:4px;
+	}
+	.app-thumbnail li{
+		padding-left:4px;
+		padding-right:4px;
+		padding-top:12px;
+	}
+	.app-thumbnail a{
 		border:1px solid #ddd;
 		overflow:hidden;
-		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
+		border-radius:8px;
+		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
+	}
+	/*单页模式*/
+	.app-page[data-animation="none"]{
+		display:none;
+	}
+	.app-page.active{
+		display:block;
 	}
 	</style>
 </head>
 <body ontouchstart="">
-		<header>
-	        <div class="titlebar">
-	            <a href="javascript:back()">
-	                <i class="icon icon-arrowleft"></i>
-	            </a>
-	            <h1>模板页面</h1>
+	<header>
+        <ul class="tabbar" data-type="slide">
+            <li class="tab active" href="#ID-Login" data-toggle="page">
+                <label class="tab-label">登录</label>
+            </li>
+            <li class="tab" href="#ID-Main" data-toggle="page">
+                <label class="tab-label">主页</label>
+            </li>
+            <li class="tab" href="#ID-List" data-toggle="page">
+                <label class="tab-label">列表</label>
+            </li>
+            <li class="tab" href="#ID-Detail" data-toggle="page">
+                <label class="tab-label">详情</label>
+            </li>
+            <li class="tab" href="#ID-Input" data-toggle="page">
+                <label class="tab-label">数据录入</label>
+            </li>
+            <li class="tab" href="#ID-Poll" data-toggle="page">
+                <label class="tab-label">投票</label>
+            </li>
+        </ul>
+    </header>
+	<article>
+		<!--登录-->
+		<div id="ID-Login" data-animation="none" class="app-page active">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
 	        </div>
-	    </header>
-		<article>
-			<div class="sliver">登录</div>
-			<ul class="grid thumbnail" data-rowspace="8">
-				<li>
-					<a href="login1.html">
-						<img src="thumbnail/login1.png"/>
-					</a>
-					<label class="grid-label">登录1</label>
-				</li>
-				<li>
-					<a href="login2.html">
-						<img src="thumbnail/login2.png"/>
-					</a>
-					<label class="grid-label">登录2</label>
-				</li>
-				<li>
-					<a href="login3.html">
-						<img src="thumbnail/login3.png"/>
-					</a>
-					<label class="grid-label">登录3</label>
-				</li>
-			</ul>
-			
-			<div class="sliver">主页</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="main1.html">
-						<img src="thumbnail/main1.png"/>
-					</a>
-					<label class="grid-label">主页1</label>
-				</li>
-				<li>
-					<a href="main2.html">
-						<img src="thumbnail/main2.png"/>
-					</a>
-					<label class="grid-label">主页2</label>
-				</li>
-				<li>
-					<a href="main3.html">
-						<img src="thumbnail/main3.png"/>
-					</a>
-					<label class="grid-label">主页3</label>
-				</li>
-				<li>
-					<a href="main4.html">
-						<img src="thumbnail/main4.png"/>
-					</a>
-					<label class="grid-label">主页4</label>
-				</li>
-				<li>
-					<a href="main5.html">
-						<img src="thumbnail/main5.png"/>
-					</a>
-					<label class="grid-label">主页5</label>
-				</li>
-				<li>
-					<a href="main6.html">
-						<img src="thumbnail/main6.png"/>
-					</a>
-					<label class="grid-label">主页6</label>
-				</li>
-				<li>
-					<a href="main7.html">
-						<img src="thumbnail/main7.png"/>
-					</a>
-					<label class="grid-label">主页7</label>
-				</li>
-				<li>
-					<a href="main8.html">
-						<img src="thumbnail/main8.png"/>
-					</a>
-					<label class="grid-label">主页8</label>
-				</li>
-			</ul>
-
-			<div class="sliver">列表</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="list1.html">
-						<img src="thumbnail/list1.png"/>
-					</a>
-					<label class="grid-label">列表1</label>
-				</li>
-				<li>
-					<a href="list2.html">
-						<img src="thumbnail/list2.png"/>
-					</a>
-					<label class="grid-label">列表2</label>
-				</li>
-			</ul>
-
-			<div class="sliver">详情</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="detail1.html">
-						<img src="thumbnail/detail1.png"/>
-					</a>
-					<label class="grid-label">详情1</label>
-				</li>
-			</ul>
-
-			<div class="sliver">分组</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="group1.html">
-						<img src="thumbnail/group1.png"/>
-					</a>
-					<label class="grid-label">分组1</label>
-				</li>
-				<li>
-					<a href="group2.html">
-						<img src="thumbnail/group2.png"/>
-					</a>
-					<label class="grid-label">分组2</label>
-				</li>
-			</ul>
-
-			<div class="sliver">信息详情</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="info1.html">
-						<img src="thumbnail/info1.png"/>
-					</a>
-					<label class="grid-label">信息1</label>
-				</li>
-				<li>
-					<a href="info2.html">
-						<img src="thumbnail/info2.png"/>
-					</a>
-					<label class="grid-label">信息2</label>
-				</li>
-			</ul>
-
-			<div class="sliver">信息录入</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="config1.html">
-						<img src="thumbnail/config1.png"/>
-					</a>
-					<label class="grid-label">设置1</label>
-				</li>
-				<li>
-					<a href="config2.html">
-						<img src="thumbnail/config2.png"/>
-					</a>
-					<label class="grid-label">设置2</label>
-				</li>
-			</ul>
-
-			<div class="sliver">投票</div>
-			<ul class="grid thumbnail">
-				<li>
-					<a href="poll-index.html">
-						<img src="thumbnail/poll-index.png"/>
-					</a>
-					<label class="grid-label">投票首页</label>
-				</li>
-				<li>
-					<a href="poll-font.html">
-						<img src="thumbnail/poll-font.png"/>
-					</a>
-					<label class="grid-label">投票</label>
-				</li>
-				<li>
-					<a href="poll-img.html">
-						<img src="thumbnail/poll-img.png"/>
-					</a>
-					<label class="grid-label">投票(图)</label>
-				</li>
-				<li>
-					<a href="poll-result-font.html">
-						<img src="thumbnail/poll-result-font.png"/>
-					</a>
-					<label class="grid-label">投票结果</label>
-				</li>
-				<li>
-					<a href="poll-result-img.html">
-						<img src="thumbnail/poll-result-img.png"/>
-					</a>
-					<label class="grid-label">投票结果(图)</label>
-				</li>
-				<li>
-					<a href="poll-add.html">
-						<img src="thumbnail/poll-add.png"/>
-					</a>
-					<label class="grid-label">新建投票</label>
-				</li>
-			</ul>
-		</article>
+		</div>
+		<!--主页-->
+		<div id="ID-Main" data-animation="none" class="app-page">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
+	        </div>
+		</div>
+		<!--列表-->
+		<div id="ID-List" data-animation="none" class="app-page">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
+	        </div>
+		</div>
+		<!--详情-->
+		<div id="ID-Detail" data-animation="none" class="app-page">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
+	        </div>
+		</div>
+		<!--数据录入-->
+		<div id="ID-Input" data-animation="none" class="app-page">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
+	        </div>
+		</div>
+		<!--投票-->
+		<div id="ID-Poll" data-animation="none" class="app-page">
+			<!-- 加载遮罩 -->
+	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	            <div class="loading"></div>
+	        </div>
+		</div>
+	</article>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     
 	<script>
-		//判断是否是exmobi环境
-		document.addEventListener("plusready",function(){
-			document.getElementById("exmobilocal").style.display="block";
+		/*================
+		Ajax页面加载
+		================*/
+		//容器和按钮
+		var tabs={};
+		tabs["ID-Login"]=document.querySelector('[href="#ID-Login"]');
+		tabs["ID-Main"]=document.querySelector('[href="#ID-Main"]');
+		tabs["ID-List"]=document.querySelector('[href="#ID-List"]');
+		tabs["ID-Detail"]=document.querySelector('[href="#ID-Detail"]');
+		tabs["ID-Input"]=document.querySelector('[href="#ID-Input"]');
+		tabs["ID-Poll"]=document.querySelector('[href="#ID-Poll"]');
+
+		var containers={};
+		containers["ID-Login"]=document.getElementById("ID-Login");
+		containers["ID-Main"]=document.getElementById("ID-Main");
+		containers["ID-List"]=document.getElementById("ID-List");
+		containers["ID-Detail"]=document.getElementById("ID-Detail");
+		containers["ID-Input"]=document.getElementById("ID-Input");
+		containers["ID-Poll"]=document.getElementById("ID-Poll");
+
+		//菜单切换
+		function hideContainers(){
+			for(var name in containers){
+				containers[name].style.display="none";
+			}
+		}
+		var singlePage=new Page({
+			"isDisableSameClick":true,
+			"pageClass":"app-page",
+			"onLoad":function(e){
+				var targetBtn,targetPageId;
+				if(e.isRoot){
+					targetBtn=tabs["ID-Login"];
+					targetPage=containers["ID-Login"];
+				}else{
+					targetBtn=tabs[e.targetPageId.substring(1)];
+					targetPage=containers[e.targetPageId.substring(1)];
+				}
+				//还原状态
+				e.buttons.forEach(function(btn){
+					btn.classList.remove("active");
+				});
+				e.pages.forEach(function(page){
+					page.style.display="none";
+				});
+				//显示对应的层
+				if(targetBtn){
+					//console.log(targetBtn);
+					targetBtn.classList.add("active");
+				}
+				if(targetPage)targetPage.style.display="block";
+			}
+		});
+
+		//加载数据
+		function loadLogin(){
+			new Ajax({
+                url:"index-login.html",
+                onSuccess:function(data){
+                    containers["ID-Login"].innerHTML=data;
+                }
+            });
+		}
+		function loadMain(){
+			new Ajax({
+                url:"index-main.html",
+                onSuccess:function(data){
+                    containers["ID-Main"].innerHTML=data;
+                }
+            });
+		}
+		function loadList(){
+			new Ajax({
+                url:"index-list.html",
+                onSuccess:function(data){
+                	containers["ID-List"].innerHTML=data;
+                }
+            });
+		}
+		function loadDetail(){
+			new Ajax({
+                url:"index-detail.html",
+                onSuccess:function(data){
+                	containers["ID-Detail"].innerHTML=data;
+                }
+            });
+		}
+		function loadInput(){
+			new Ajax({
+                url:"index-input.html",
+                onSuccess:function(data){
+                	containers["ID-Input"].innerHTML=data;
+                }
+            });
+		}
+		function loadPoll(){
+			new Ajax({
+                url:"index-poll.html",
+                onSuccess:function(data){
+                	containers["ID-Poll"].innerHTML=data;
+                }
+            });
+		}
+		function loadData(){
+			loadLogin();
+			loadMain();
+			loadList();
+			loadDetail();
+			loadInput();
+			loadPoll();
+		}
+		/*================
+		初始化
+		================*/
+		window.addEventListener("load",function(){
+			loadData();
 		},false);
 		//定义exmobi返回
 		function back(){Exmobi.dbclose();}
