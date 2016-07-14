@@ -2389,6 +2389,7 @@ select {
   display: block;
   -webkit-box-flex: 1.0;
   border-width: 0;
+  background-color: transparent;
 }
 /*box内图标*/
 .inputbox .icon {
