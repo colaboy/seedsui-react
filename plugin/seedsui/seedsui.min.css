@@ -1813,7 +1813,6 @@ input[type=range]::-webkit-slider-thumb {
 .card {
   margin: 8px;
   box-sizing: border-box;
-  background-color: #fff;
 }
 .row label,
 .inputbox label,
@@ -1822,6 +1821,8 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*按钮操作区*/
 .card-handler {
+  border-style: solid;
+  border-width: 1px 0 0 0;
   width: 100%;
 }
 .card-handler:after {
@@ -4554,6 +4555,9 @@ ul.weather-otherday li {
   line-height: 24px;
 }
 .close {
+  display: -webkit-inline-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
   /*图片*/
   background-size: cover;
   border-radius: 100%;
@@ -4563,12 +4567,10 @@ ul.weather-otherday li {
   color: white;
   border-color: white;
   background-color: rgba(0, 0, 0, 0.7);
-  display: -webkit-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-  display: -webkit-flex;
-  -webkit-justify-content: center;
-  -webkit-align-items: center;
+}
+.close i,
+.close .icon {
+  display: block;
 }
 .sticker {
   position: absolute;
@@ -5639,9 +5641,15 @@ select,
 }
 /*----------------card.less(end)--------------*/
 /*----------------card.less(start)--------------*/
+.card {
+  background-color: #ffffff;
+}
+.card-handler {
+  border-color: #e6e6e6;
+}
 .card-handler > a {
   color: #aaaaaa;
-  border-color: #e6e6e6;
+  border-color: inherit;
 }
 /*----------------card.less(end)--------------*/
 /*----------------range.less(start)--------------*/

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>badge</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+    /*sticker自定义样式*/
+    .sticker.top{
+        border-top-width: 28px;
+    }
+    .sticker.top span {
+        margin-top: -26px;
+    }
+    .sticker.left{
+        border-right-width: 28px;
+    }
+    .sticker.right{
+        border-left-width: 28px;
+    }
+    .sticker.bottom{
+        border-bottom-width: 28px;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>徽章</h1>
+        </div>
+    </header>
+    <article>
+        <p class="sliver">badge | tip | dot | close | sticker</p>
+        <div class="card bordered padding8">
+            <span class="badge">badge</span>
+            <span class="tip">tip</span>
+            <span class="dot"></span>
+            <span class="close"><i class="icon icon-close"></i></span>
+            <span class="sticker top right"><span class="size12 icon-fav-fill"></span></span>
+        </div>
+    </article>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
+    <script>
+    //定义exmobi返回
+    function back(){history.go(-1);}
+</script>
+</body>
+</html>

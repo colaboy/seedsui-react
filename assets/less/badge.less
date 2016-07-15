@@ -37,6 +37,10 @@
 	line-height:24px;
 }
 .close{
+	display:-webkit-inline-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+
 	/*图片*/
 	background-size:cover;
 	border-radius: 100%;
@@ -47,13 +51,9 @@
 	color:white;
 	border-color: white;
 	background-color: rgba(0,0,0,.7);
-
-	display:-webkit-box;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
-	display: -webkit-flex;
-	-webkit-justify-content:center;
-	-webkit-align-items:center;
+}
+.close i,.close .icon{
+	display:block;
 }
 .sticker{
 	position:absolute;

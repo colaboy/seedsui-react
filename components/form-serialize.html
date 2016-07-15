@@ -13,27 +13,27 @@
 	    <div class="titlebar">
 	        <a class="titlebar-button" href="javascript:back()"><span>返回</span></a>
 	        <h1 class="text-center">表单序列化</h1>
-	        <a href="javascript:submit()"><span>完成</span></a>
+	        <a class="titlebar-button" href="javascript:submit()"><span>完成</span></a>
 	    </div>
 	</header>
 	<article>
 	<form id="form1">
             <div class="group">
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">用户名</label>
                     <div class="row-right inputbox" data-input="clear">
                         <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="username"/>
                         <i class="icon icon-clear-fill color-placeholder"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">密码</label>
                     <div class="row-right inputbox" data-input="reveal">
                         <input type="password" placeholder="密码" name="password" data-rule-field="密码" data-rule="password"/>
                         <i class="icon icon-eye-fill color-placeholder"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">确认</label>
                     <div class="row-right inputbox" data-input="reveal">
                         <input type="password" placeholder="确认" name="reconfirm" data-rule="password compare:password"/>
@@ -42,20 +42,28 @@
                 </div>
             </div>
             <div class="group">
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">昵称</label>
                     <div class="row-right inputbox">
                         <input type="text" placeholder="填写昵称" name="nickname"/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">性别</label>
-                    <div class="inputbox input-text">
-                        <label><input type="radio" value="male" name="sex" checked/><span>男</span></label>
-                        <label style="margin-left:8px;"><input type="radio" value="female" name="sex"/><span>女</span></label>
+                    <div class="inputbox">
+                        <div class="input-text">
+                            <label>
+                                <input type="radio" value="male" name="sex" checked/>
+                                <span>男</span>
+                            </label>
+                            <label style="margin-left:8px;">
+                                <input type="radio" value="female" name="sex"/>
+                                <span>女</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">出生日期</label>
                     <div class="row-right inputbox">
                         <input type="date" name="birthday" placeholder="出生日期"/>
@@ -63,40 +71,40 @@
                 </div>
             </div>
             <div class="group">
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">职业</label>
                     <div class="row-right inputbox">
                         <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
                         <i class="icon icon-arrowright color-placeholder"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">公司</label>
                     <div class="row-right inputbox">
                         <input type="text" class="company" placeholder="公司"/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">学校</label>
                     <div class="row-right inputbox">
                         <input type="text" class="school" placeholder="填写学校，发现校友"/>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">所在地</label>
                     <div class="row-right inputbox">
                         <input type="text" name="live" readonly="" placeholder="选择所在地"/>
                         <i class="icon icon-arrowright color-placeholder"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">故乡</label>
                     <div class="row-right inputbox">
                         <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
                         <i class="icon icon-arrowright color-placeholder"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">邮箱</label>
                     <div class="row-right inputbox">
                         <input type="text" name="email" placeholder="填写邮箱"/>
@@ -104,7 +112,7 @@
                 </div>
             </div>
             <div class="group">
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">个人说明</label>
                     <div class="row-right inputbox">
                         <textarea class="label-right noborder" name="personal"></textarea>
@@ -113,7 +121,7 @@
             </div>
 
             <div class="group">
-                <div class="row">
+                <div class="row underline">
                     <label class="row-left">资料好友可见</label>
                     <div class="row-right input-text lineheight0 noborder">
                         <div class="switch" data-on="是" data-off="否" data-on-value="1" data-off-value="0" data-name="vis"><div class="switch-handle"></div></div>
