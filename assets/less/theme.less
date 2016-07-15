@@ -120,9 +120,11 @@ aside {
 .tabbar[data-type^="animate-"] .tab:active,.tabbar[data-type^="animate-"] .tab.active{
 	border-color:@tabbar-border;
 }
+/*滑片形(动画)*/
 .tabbar[data-type=animate-slide] hr{
 	border-color:@tabbar-active-border;
 }
+/*单线形(动画)*/
 .tabbar[data-type=animate-oneline]{
 	.tab.active {
 		color:@tabbar-active-border;
@@ -131,18 +133,26 @@ aside {
 		background:@tabbar-active-border;
 	}
 }
-.tabbar[data-type=animate-twoline] .tab::before,
-.tabbar[data-type=animate-twoline] .tab::after{
-	background:@tabbar-active-border;
+/*滑块形(动画)*/
+.tabbar[data-type=lump]{
+	.tab.active .tab-label{
+		color:white;
+		background-color:@tabbar-active-border;
+	}
 }
-.tabbar[data-type=animate-box]{
+.tabbar.reverse[data-type=lump]{
+	.tab{
+		border-color:@tabbar-active-border;
+	}
 	.tab.active{
-		color:@tabbar-active-color;
+		background-color:@tabbar-active-border;
 	}
-	.tab::before,.tab::after,.tab-label::before,.tab-label::after{
-		background:@tabbar-active-border;
+	.tab.active .tab-label{
+		color:@tabbar-active-border;
+		background-color:white;
 	}
 }
+/*括弧形(动画)*/
 .tabbar[data-type=animate-bracket]{
 	.tab.active{
 		color:@tabbar-active-color;

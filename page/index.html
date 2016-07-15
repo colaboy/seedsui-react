@@ -36,17 +36,23 @@
 		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
 	}
 	/*单页模式*/
-	.app-page[data-animation="none"]{
-		display:none;
+	/* .app-page[data-animation="none"]{
+		 display:none; 
 	}
 	.app-page.active{
 		display:block;
+	} */
+	.app-page .mask{
+		position:absolute;
+	}
+	.app-page .loading-box{
+		position:absolute;
 	}
 	</style>
 </head>
 <body ontouchstart="">
 	<header>
-        <ul class="tabbar" data-type="slide">
+        <ul class="tabbar reverse" data-type="lump" id="ID-Tabbar">
             <li class="tab active" href="#ID-Login" data-toggle="page">
                 <label class="tab-label">登录</label>
             </li>
@@ -67,55 +73,71 @@
             </li>
         </ul>
     </header>
-	<article>
-		<!--登录-->
-		<div id="ID-Login" data-animation="none" class="app-page active">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
-		<!--主页-->
-		<div id="ID-Main" data-animation="none" class="app-page">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
-		<!--列表-->
-		<div id="ID-List" data-animation="none" class="app-page">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
-		<!--详情-->
-		<div id="ID-Detail" data-animation="none" class="app-page">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
-		<!--数据录入-->
-		<div id="ID-Input" data-animation="none" class="app-page">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
-		<!--投票-->
-		<div id="ID-Poll" data-animation="none" class="app-page">
-			<!-- 加载遮罩 -->
-	        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-	            <div class="loading"></div>
-	        </div>
-		</div>
+	<article style="padding-top:41px;" class="scrollbox">
+		<div class="slider-container" id="carouselPage" style="height: 100%;">
+            <div class="slider-wrapper">
+                <div class="slider-slide">
+                    <!--登录-->
+					<div id="ID-Login" data-animation="none" class="app-page active">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--主页-->
+					<div id="ID-Main" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--列表-->
+					<div id="ID-List" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--详情-->
+					<div id="ID-Detail" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--数据录入-->
+					<div id="ID-Input" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                	<!--投票-->
+					<div id="ID-Poll" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+            </div>
+        </div>
 	</article>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>
@@ -127,13 +149,26 @@
 		Ajax页面加载
 		================*/
 		//容器和按钮
-		var tabs={};
-		tabs["ID-Login"]=document.querySelector('[href="#ID-Login"]');
-		tabs["ID-Main"]=document.querySelector('[href="#ID-Main"]');
-		tabs["ID-List"]=document.querySelector('[href="#ID-List"]');
-		tabs["ID-Detail"]=document.querySelector('[href="#ID-Detail"]');
-		tabs["ID-Input"]=document.querySelector('[href="#ID-Input"]');
-		tabs["ID-Poll"]=document.querySelector('[href="#ID-Poll"]');
+		var tabbar=document.getElementById("ID-Tabbar");
+		var tabs=[{
+			tabId:"ID-Login",
+			tabEl:tabbar.querySelector('[href="#ID-Login"]')
+		},{
+			tabId:"ID-Main",
+			tabEl:tabbar.querySelector('[href="#ID-Main"]')
+		},{
+			tabId:"ID-List",
+			tabEl:tabbar.querySelector('[href="#ID-List"]')
+		},{
+			tabId:"ID-Detail",
+			tabEl:tabbar.querySelector('[href="#ID-Detail"]')
+		},{
+			tabId:"ID-Input",
+			tabEl:tabbar.querySelector('[href="#ID-Input"]')
+		},{
+			tabId:"ID-Poll",
+			tabEl:tabbar.querySelector('[href="#ID-Poll"]')
+		}];
 
 		var containers={};
 		containers["ID-Login"]=document.getElementById("ID-Login");
@@ -143,8 +178,8 @@
 		containers["ID-Input"]=document.getElementById("ID-Input");
 		containers["ID-Poll"]=document.getElementById("ID-Poll");
 
-		//菜单切换
-		function hideContainers(){
+		//单页模式
+		/*function hideContainers(){
 			for(var name in containers){
 				containers[name].style.display="none";
 			}
@@ -175,8 +210,34 @@
 				}
 				if(targetPage)targetPage.style.display="block";
 			}
-		});
-
+		});*/
+		
+		function tabActive(index){
+            for(var i=0,tab;tab=tabs[i++];){
+            	tab.tabEl.classList.remove("active");
+            }
+            tabs[index].tabEl.classList.add("active");
+        }
+		var carouselPage=new Slider("#carouselPage",{
+            "onInit":function(e){
+                //compatibleIosScroll(e);
+            },
+            "onSlideChangeEnd":function(e){
+                tabActive(e.index);
+                //compatibleIosScroll(e);
+            }
+        });
+        function addClickTabbar(){
+            for(var i=0,tab;tab=tabs[i++];){
+                (function(i){
+                    tab.tabEl.addEventListener("click",function(){
+                        carouselPage.slideTo(i-1);
+                        tabActive(i-1);
+                    },false);
+                })(i);
+            }
+        }
+        addClickTabbar();
 		//加载数据
 		function loadLogin(){
 			new Ajax({

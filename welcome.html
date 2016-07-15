@@ -4,10 +4,56 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
-	<title>Document</title>
+	<title>Hello SeedsUI</title>
+	<style type="text/css">
+	html,body{
+		height:100%;
+	}
+	*{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+		outline:none;
+		cursor:pointer;
+		display:inline-block; 
+	}
+	.template_case{
+		position:relative;
+		display:table;
+		height:50%;
+		width:100%;
+		text-align:center;
+		font-size:24px;
+		color:white;
+	}
+	.template_case:nth-child(1){
+		background-color:#8dc63f;
+	}
+	.template_case:nth-child(2){
+		background-color:#36acf4;
+	}
+	.template_case:nth-child(1):active{
+		opacity:1;
+		background-color:#c6e29f;
+	}
+	.template_case:nth-child(2):active{
+		opacity:1;
+		background-color:#9ad5f9;
+	}
+	.template_case span{
+		display:table-cell; 
+		vertical-align:middle; 
+	}
+	</style>
 </head>
 <body>
-	<a class="button" href="components/index.html">组件页面</a>
-	<a class="button" href="page/index.html">综合示例</a>
+	<a class="template_case" href="components/index.html">
+		<span class="case">SeedsUI组件示例</span>
+	</a>
+	<a class="template_case" href="page/index.html">
+		<span class="case">SeedsUI综合示例</span>
+	</a>
 </body>
 </html>

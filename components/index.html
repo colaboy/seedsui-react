@@ -44,14 +44,14 @@
 <body ontouchstart="">
 		<header>
 			<div class="titlebar reverse" style="height:50px;">
-				<ul class="tabbar reverse" data-type="rect" data-col="3" style="width:80%">
-		            <li class="tab active" href="#ID-CssCompoents" data-toggle="page">
+				<ul class="tabbar reverse" data-type="rect" data-col="3" id="ID-Tabbar" style="width:80%">
+		            <li class="tab active" data-id="ID-CssCompoents">
 		                <label class="tab-label">Css组件</label>
 		            </li>
-		            <li class="tab" href="#ID-JsCompoents" data-toggle="page">
+		            <li class="tab" data-id="ID-JsCompoents">
 		                <label class="tab-label">Js组件</label>
 		            </li>
-		            <li class="tab" href="#ID-LocCompoents" data-toggle="page">
+		            <li class="tab" data-id="ID-LocCompoents">
 		                <label class="tab-label">本地能力</label>
 		            </li>
 		        </ul>
@@ -134,7 +134,7 @@
 				compoentContainers[name].style.display="none";
 			}
 		}
-		var singlePage=new Page({
+		/*var singlePage=new Page({
 			"isDisableSameClick":true,
 			"pageClass":"app-page",
 			"onLoad":function(e){
@@ -160,29 +160,28 @@
 				}
 				if(targetPage)targetPage.style.display="block";
 			}
-		});
-		/*function activeContainer(id){
+		});*/
+		var tabbar=document.getElementById('ID-Tabbar');
+		var tabs=[].slice.call(tabbar.querySelectorAll('.tab'));
+		function activeTabbar(activeTab){
+			tabs.forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+			activeTab.classList.add("active");
+		}
+		function activeContainer(id){
 			for(var name in compoentContainers){
 				compoentContainers[name].style.display="none";
 			}
 			compoentContainers[id].style.display="block";
 		}
-		var tabbars=[].slice.call(document.querySelectorAll('.tabbar'));
-		tabbars.forEach(function(tabbar){
-			tabbar.tabs=[].slice.call(tabbar.querySelectorAll('.tab'));
-        });
-		function clickMenu(){
-			tabbars.forEach(function(tabbar){
-	            tabbar.onclick=function(e){
-	                tabbar.tabs.forEach(function(tab) {
-	                    tab.classList.remove("active");
-	                });
-	                var id=e.target.getAttribute("data-id");
-	                activeContainer(id);
-	                e.target.classList.add("active");
-	            }
-	        });
-		}*/
+		function addClickMenu(){
+            tabbar.onclick=function(e){
+                activeTabbar(e.target);
+                var id=e.target.getAttribute("data-id");
+                activeContainer(id);
+            }
+		}
 		//加载数据
 		function loadCssCompoents(){
 			new Ajax({
@@ -211,14 +210,17 @@
                 }
             });
 		}
+		function loadData(){
+			loadCssCompoents();
+			loadJsCompoents();
+			loadLocCompoents();
+		}
 		/*================
 		初始化
 		================*/
 		window.addEventListener("load",function(){
-			//clickMenu();
-			loadCssCompoents();
-			loadJsCompoents();
-			loadLocCompoents();
+			addClickMenu();
+			loadData();
 		},false);
 		//定义exmobi返回
 		function back(){Exmobi.dbclose();}
