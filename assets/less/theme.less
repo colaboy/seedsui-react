@@ -731,25 +731,27 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------calendar.less(start)----------------*/
 .calendar{
 	border-color:@border;
+	background-color:@white;
 }
-.day-name{
-    color:@label-color;
+.calendar-prev,.calendar-next{
+	color:@calendar-arrow-color;
 }
-.day-date .today:not(.active){
-    color:@primary-bg;
+.calendar-weeks{
+	color:@calendar-weeks-color;
+}
+.calendar-current{
+    color:@calendar-current-color;
+}
+.calendar-notcurrent{
+    color:@calendar-notcurrent-color;
+}
+.calendar-today{
+    border-color:@placeholder-color;
+}
+.calendar-active{
+    color:@primary-color;
     border-color:@primary-bg;
-}
-.day-date .active{
     background-color:@primary-bg;
-}
-.arrowleft,.arrowright{
-	color:@border;
-}
-.arrowleft:active,.arrowright:active{
-	color:@primary-bg;
-}
-.not-this-month{
-	color:@border;
 }
 /*----------------calendar.less(end)----------------*/
 /*----------------chat.less(start)----------------*/

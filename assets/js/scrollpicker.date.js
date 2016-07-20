@@ -112,7 +112,8 @@
 	    if(s.params.daysData){
 	    	s.hours=s.params.hoursData;
 	    }else{
-	    	for(var hour=1;hour<=24;hour++){
+	    	for(var hour=0;hour<=23;hour++){
+	    		if(hour<10)hour="0"+hour;
 		        s.hours.push({"key":hour,"value":hour+s.params.hhUnit,"flag":"time"});
 		    }
 	    }

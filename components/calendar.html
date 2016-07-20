@@ -9,91 +9,48 @@
 </head>
 
 <body ontouchstart="">
-		<header>
-	        <div class="titlebar">
-	            <a class="titlebar-button" href="javascript:back()">
-	                <i class="icon icon-arrowleft"></i>
-	            </a>
-	            <h1>日历</h1>
-	        </div>
-	    </header>
-		<article style="background-color:white;">
-			<div class="calendar" id="calender_select_container">
-				<div class="box box-middle tbpadding8">
-					<i class="icon icon-arrowleft size16 margin8 color-placeholder" id="calendarPrev"></i>
-					<div class="box-flex-1 text-center tbpadding8" id="calendarTitle" style="font-size:17px;">2016-2-15 周一</div>
-					<i class="icon icon-arrowright size16 margin8 color-placeholder" id="calendarNext"></i>
-				</div>
-				<div class="calender_container">
-					<div class='day'>
-						<div class="week-day-line">
-							<div class="day-name">日</div>
-							<div class="day-name">一</div>
-							<div class="day-name">二</div>
-							<div class="day-name">三</div>
-							<div class="day-name">四</div>
-							<div class="day-name">五</div>
-							<div class="day-name">六</div>
-						</div>
-						<div class="week-day-line">
-							<div class="day-name">日</div>
-							<div class="day-name">一</div>
-							<div class="day-name">二</div>
-							<div class="day-name">三</div>
-							<div class="day-name">四</div>
-							<div class="day-name">五</div>
-							<div class="day-name">六</div>
-						</div>
-						<div class="week-day-line">
-							<div class="day-name">日</div>
-							<div class="day-name">一</div>
-							<div class="day-name">二</div>
-							<div class="day-name">三</div>
-							<div class="day-name">四</div>
-							<div class="day-name">五</div>
-							<div class="day-name">六</div>
-						</div>
-					</div>
-					<div class='date_container'>
-						<div class="month_container">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<a class="button block radius8 margin8 bg-1" onclick="calendarExpand()">月</a>
-			<a class="button block radius8 margin8 bg-2" onclick="calendarCollapse()">周</a>
-			<a class="button block radius8 margin8 bg-3" onclick="today()">今天</a>
+	<header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>日历</h1>
+        </div>
+    </header>
+	<article>
+		<div class="calendar" id="ID-Calendar"></div>
+		<a class="button block radius8 margin8 bg-1" id="ID-Month">月</a>
+		<a class="button block radius8 margin8 bg-2" id="ID-Week">周</a>
+		<a class="button block radius8 margin8 bg-3" id="ID-Today">今天</a>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
+		var calendar=new Calen("#ID-Calendar",{
+            activeDate:new Date("2016-7-22"),
+            prevHTML:'<i class="icon-arrowleft"></i>',
+            nextHTML:'<i class="icon-arrowright"></i>',
+            onChange:function(e){
+                console.log(e.activeDate);
+            }
+        });
+        var btnMonth=document.getElementById("ID-Month");
+        var btnWeek=document.getElementById("ID-Week");
+        var btnToday=document.getElementById("ID-Today");
+        btnMonth.onclick=function(){
+            calendar.showMonth();
+        }
+        btnWeek.onclick=function(){
+            calendar.showWeek();
+        }
+        btnToday.onclick=function(){
+            calendar.showToday();
+        }
 		//定义exmobi返回
 		function back() {
 			history.go(-1);
 		}
-		var tempWeekSelectObject = new DateSelect({
-				activeDate: new Date()
-			}),
-			tempDivId = "calender_select_container";
-		var tempCalenderObject = new Calender({
-			dateSelectObject: tempWeekSelectObject,
-			containerDivId: tempDivId,
-			onChange: function(date) {
-				console.log(date);
-			}
-		});
-		function calendarCollapse(){
-			tempCalenderObject.switchToWeek();
-		}
-		function calendarExpand(){
-			tempCalenderObject.switchToMonth();
-		}
-		function today(){
-			tempCalenderObject.jumpToDate(new Date());
-		}
-		console.log(tempCalenderObject);
 	</script>
 </body>
 </html>

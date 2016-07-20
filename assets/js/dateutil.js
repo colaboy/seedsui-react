@@ -1,4 +1,22 @@
 //DateUtil
+Date.prototype.compareDate=function(date1,date2){//类型[Date]
+	var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
+	var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
+	var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
+	var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
+	console.log(t1);
+	console.log(t2);
+	if(t1==t2)return 0;
+	else return t1>t2;
+}
+Date.prototype.compareTime=function(time1,time2){//格式hh:ss,大于返回1,等于返回0,小于返回-1
+	var preTime1=time1.split(":");
+	var t1=Math.abs(-preTime1[0]*60-preTime1[1]);
+	var preTime2=time2.split(":");
+	var t2=Math.abs(-preTime2[0]*60-preTime2[1]);
+	if(t1==t2)return 0;
+	return t1>t2;
+}
 Date.prototype.year=function(){
 	return this.getFullYear();
 }
@@ -14,14 +32,20 @@ Date.prototype.hour=function(){
 Date.prototype.minute=function(){
 	return this.getMinutes();
 }
+Date.prototype.week=function(date){//周
+	if(date){
+		return new Date(date).getDay();
+	}
+	return this.getDay();
+}
 Date.prototype.seconds=function(){
 	return this.getSeconds();
 }
-Date.prototype.quarter=function(){//第几季
-	return Math.floor((this.getMonth()+3)/3);
-}
-Date.prototype.milliseconds=function(){//获得时间的毫秒
+Date.prototype.milliseconds=function(){//毫秒
 	return this.getMilliseconds();
+}
+Date.prototype.quarter=function(){//季
+	return Math.floor((this.getMonth()+3)/3);
 }
 Date.prototype.date=function(){//yy-HH-dd
 	return this.getFullYear()+"-"+this.month()+"-"+this.day();

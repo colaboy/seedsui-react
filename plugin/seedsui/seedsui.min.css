@@ -4447,67 +4447,105 @@ ul.weather-otherday li {
   border-style: solid;
   border-width: 0 0 1px 0;
   overflow: hidden;
+  -webkit-transition-property: height;
+}
+/*头部*/
+.calendar-header {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  padding: 8px 0;
 }
 .calendar-title {
-  font-size: 20px;
+  -webkit-box-flex: 1.0;
+  font-size: 17px;
   text-align: center;
+  padding: 8px 0;
 }
-.date_container {
-  overflow: hidden;
-  width: 300%;
+.calendar-prev,
+.calendar-next {
+  font-size: 16px;
+  width: 15%;
+  height: 32px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  color: #aaaaaa;
 }
-.day {
-  width: 300%;
-}
-.week-day-line {
-  width: 33%;
-  display: inline-block;
-}
-.date_container:after {
-  display: table;
+/*周*/
+.calendar-weeks:after {
   content: '';
+  display: table;
   clear: both;
   zoom: 1;
 }
-.month-block {
-  width: 33%;
-  display: inline-block;
-}
-.day-name,
-.day-date {
+.calendar-week {
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
   display: inline-block;
   text-align: center;
   float: left;
   width: 14%;
 }
-.day-name:first-child,
-.day-name:last-child,
-.day-date:first-child,
-.day-date:last-child {
+.calendar-week:nth-of-type(1),
+.calendar-week:nth-last-of-type(1) {
   width: 15%;
 }
-.day-date {
-  padding: 7px 0;
+/*主体*/
+.calendar-wrapper {
+  height: 300px;
+  overflow: hidden;
 }
-.day-date span.show-date {
+.calendar-wrapper-y {
+  width: 300%;
+  height: 300px;
+  -webkit-transition-property: -webkit-transform;
+}
+.calendar-wrapper-x {
+  -webkit-transition-property: -webkit-transform;
+}
+.calendar-wrapper-x:after {
+  content: '';
+  display: table;
+  zoom: 1;
+  clear: both;
+}
+.calendar-month {
+  width: 33%;
+  float: left;
+}
+.calendar-monthrow:after {
+  content: '';
+  display: table;
+  zoom: 1;
+  clear: both;
+}
+.calendar-day {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  float: left;
+  width: 14%;
+}
+.calendar-day:nth-of-type(1),
+.calendar-day:nth-last-of-type(1) {
+  width: 15%;
+}
+.calendar-daynum {
   display: inline-block;
   width: 36px;
   height: 36px;
   line-height: 36px;
-  border-radius: 36px;
 }
-.day-date .active {
-  color: #fff;
-}
-.arrowleft,
-.arrowright {
-  font-size: 20px;
-}
-/*今天*/
-.day-date .today:not(.active) {
-  border-style: solid;
+.calendar-today {
+  border-radius: 100%;
   border-width: 1px;
-  box-sizing: border-box;
+  border-style: solid;
+}
+.calendar-active {
+  font-weight: 600;
+  border-radius: 100%;
 }
 /*----------------------------calendar.less(end)----------------------------*/
 /*--------------------badge.less(start)----------------------*/
@@ -5871,27 +5909,28 @@ li.sliver {
 /*----------------calendar.less(start)----------------*/
 .calendar {
   border-color: #e6e6e6;
+  background-color: #ffffff;
 }
-.day-name {
-  color: #666666;
+.calendar-prev,
+.calendar-next {
+  color: #333333;
 }
-.day-date .today:not(.active) {
-  color: #18b2ed;
+.calendar-weeks {
+  color: #aaaaaa;
+}
+.calendar-current {
+  color: #333333;
+}
+.calendar-notcurrent {
+  color: #cccccc;
+}
+.calendar-today {
+  border-color: #aaaaaa;
+}
+.calendar-active {
+  color: #ffffff;
   border-color: #18b2ed;
-}
-.day-date .active {
   background-color: #18b2ed;
-}
-.arrowleft,
-.arrowright {
-  color: #e6e6e6;
-}
-.arrowleft:active,
-.arrowright:active {
-  color: #18b2ed;
-}
-.not-this-month {
-  color: #e6e6e6;
 }
 /*----------------calendar.less(end)----------------*/
 /*----------------chat.less(start)----------------*/

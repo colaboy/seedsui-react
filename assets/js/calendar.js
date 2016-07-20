@@ -1,630 +1,638 @@
 //Calendar
-(function() {
-	function DateSelect(opt) {
-		this.temp_date_array = [];
-		this.temp_prev_date_array = [];
-		this.temp_next_date_array = [];
-		this.temp_month_calender_date_array = [];
-		this.temp_prev_month_calender_date_array = [];
-		this.temp_next_month_calender_date_array = [];
+(function(window,document,undefined){
+	
+	window.Calen=function(container,params){
+		/*================
+		Model
+		================*/
+		var defaults={
+			"viewType":"month",//值为month|week
+			"activeDate":new Date(),
+			"threshold":"50",
+			"duration":"300",
+			"wrapperHeight":"300",
+			"dayHeight":"50",
+			"isYTouch":true,
+			//DOM
+			"calendarClass":"calendar",
 
-		var i = 0,
-			weekMilliSecound = 7 * 24 * 60 * 60 * 1000,
-			dayMilliSecound = 24 * 60 * 60 * 1000;
+			"headerClass":"calendar-header",
+			"titleClass":"calendar-title",
+			"prevClass":"calendar-prev",
+			"nextClass":"calendar-next",
+			"prevHTML":"&lt;",
+			"nextHTML":"&gt;",
 
-		if (opt.activeDate) {
-			this.active_date = opt.activeDate;
-		} else {
-			this.active_date = new Date();
+			"weeksClass":"calendar-weeks",
+			"weekClass":"calendar-week",
+
+			"wrapperClass":"calendar-wrapper",
+			"wrapperXClass":"calendar-wrapper-x",
+			"wrapperYClass":"calendar-wrapper-y",
+			"monthClass":"calendar-month",
+			"monthRowClass":"calendar-monthrow",
+			"dayClass":"calendar-day",
+			"dayNumClass":"calendar-daynum",
+
+			//状态
+			"currentClass":"calendar-current",
+			"notcurrentClass":"calendar-notcurrent",
+			"todayClass":"calendar-today",
+			"activeClass":"calendar-active",
+
+			/*
+            Callbacks:
+            onClick:function(Calendar)
+            onChange:function(Calendar)
+			*/
 		}
-
-		for (i = 0; i < 7; ++i) {
-			this.temp_date_array.push(new Date());
-			this.temp_prev_date_array.push(new Date());
-			this.temp_next_date_array.push(new Date());
+		params=params||{};
+		for(var def in defaults){
+			if(params[def]==undefined){
+				params[def]=defaults[def];
+			}
 		}
+		var s=this;
+		s.params=params;
+		//日历工具箱
+		s.calendarUtil=new CalendarUtil(s.params.activeDate);
+		s.today=new Date();
+		s.activeDate;
+		//Container
+		s.container=typeof container=="string"?document.querySelector(container):container;
+		s.container.width=s.container.clientWidth;
+		//Header
+		s.header,s.title,s.prev,s.next;
+		//Week
+		s.weekContainer,s.weeks=[];
+		//Wrapper
+		s.wrapper,s.wrapperX,s.wrapperY,s.months=new Array(3),s.days=[];
+		//Touch信息
+        s.touches={
+        	startX:0,
+        	startY:0,
+        	currentX:0,
+        	currentY:0,
+        	endX:0,
+        	endY:0,
+        	diffX:0,
+        	diffY:0,
+        	posX:0,
+        	posY:0,
+        	maxPosY:s.params.wrapperHeight-s.params.dayHeight,
+        	h:300,
+        	direction:0,
+        	horizontal:0,
+        	vertical:0
+        };
+		//Header
+		s.createHeader=function(){
+            var header=document.createElement("div");
+            header.setAttribute("class",s.params.headerClass);
+            return header;
+        }
+        s.createPrev=function(){
+            var prev=document.createElement("div");
+            prev.setAttribute("class",s.params.prevClass);
+            prev.innerHTML=s.params.prevHTML;
+            return prev;
+        }
+        s.createNext=function(){
+            var next=document.createElement("div");
+            next.setAttribute("class",s.params.nextClass);
+            next.innerHTML=s.params.nextHTML;
+            return next;
+        }
+        s.createTitle=function(){
+            var title=document.createElement("div");
+            title.setAttribute("class",s.params.titleClass);
+            return title;
+        }
+        //WeekContainer
+		s.createWeekContainer=function(){
+			var weekContainer=document.createElement("div");
+			weekContainer.setAttribute("class",s.params.weeksClass);
 
-		for (i = 0; i < 42; ++i) {
-			this.temp_month_calender_date_array.push(new Date());
-			this.temp_prev_month_calender_date_array.push(new Date());
-			this.temp_next_month_calender_date_array.push(new Date());
-		}
-
-		function _prevWeek() {
-			this.active_date.setTime(this.active_date.getTime() - weekMilliSecound);
-		}
-
-		function _nextWeek() {
-			this.active_date.setTime(this.active_date.getTime() + weekMilliSecound);
-		}
-
-		function _prevMonth() {
-			this.active_date.setMonth(this.active_date.getMonth() - 1);
-		}
-
-		function _nextMonth() {
-			this.active_date.setMonth(this.active_date.getMonth() + 1);
-		}
-
-		function _getSelected() {
-			return this.active_date;
-		}
-
-		function _setSelected(activeDate) {
-			this.active_date.setTime(activeDate);
-		}
-
-		function _setSelectedDay(day) {
-			this.active_date.setTime(this.active_date.getTime() + dayMilliSecound * (parseInt(day, 10) - this.active_date.getDay()));
-		}
-
-		function _getWeekArrayByTimeAndArray(date_array, time) {
-			var j = 1;
-
-			date_array[0].setTime(time);
-
-			for (j = 1; j < 7; ++j) {
-				date_array[j].setTime(date_array[j - 1].getTime() + dayMilliSecound);
+			var weekNames=["日", "一", "二", "三", "四", "五", "六"];
+			for(var i=0,weekName;weekName=weekNames[i++];){
+				var week=document.createElement("div");
+				week.setAttribute("class",s.params.weekClass);
+				week.innerHTML=weekName;
+				weekContainer.appendChild(week);
+				s.weeks.push(week);
 			}
 
-			return date_array;
+			return weekContainer;
 		}
-
-		function _getWeekDate() {
-			var day = this.active_date.getDay();
-
-			var first_date_time = this.active_date.getTime() - dayMilliSecound * day;
-
-			return _getWeekArrayByTimeAndArray(this.temp_date_array, first_date_time);
+		//Wrapper
+		s.createWrapper=function(){
+			var wrapper=document.createElement("div");
+			wrapper.setAttribute("class",s.params.wrapperClass);
+			return wrapper;
 		}
-
-		function _getPrevWeekDate() {
-			var day = this.active_date.getDay();
-
-			var first_date_time = this.active_date.getTime() - dayMilliSecound * day - weekMilliSecound;
-
-			return _getWeekArrayByTimeAndArray(this.temp_prev_date_array, first_date_time);
+		s.createWrapperY=function(){
+			var wrapperY=document.createElement("div");
+			wrapperY.setAttribute("class",s.params.wrapperYClass);
+			return wrapperY;
 		}
-
-		function _getNextWeekDate() {
-			var day = this.active_date.getDay();
-
-			var first_date_time = this.active_date.getTime() - dayMilliSecound * day + weekMilliSecound;
-
-			return _getWeekArrayByTimeAndArray(this.temp_next_date_array, first_date_time);
-		}
-
-		function _getMonthCalenderArrayByTimeAndArray(date_array, time) {
-			var j = 1;
-
-			date_array[0].setTime(time);
-
-			for (j = 1; j < 42; ++j) {
-				date_array[j].setTime(date_array[j - 1].getTime() + dayMilliSecound);
+		s.createWrapperX=function(){
+			var wrapperX=document.createElement("div");
+			wrapperX.setAttribute("class",s.params.wrapperXClass);
+			wrapperX.width=s.container.width*3;
+			wrapperX.style.width=wrapperX.width+"px";
+			for(var i=0;i<3;i++){
+				s.months[i]=document.createElement("div");
+				s.months[i].setAttribute("class",s.params.monthClass);
+				s.months[i].style.width=s.container.width+"px";
+				wrapperX.appendChild(s.months[i]);
 			}
-
-			return date_array;
+			return wrapperX;
 		}
+		s.createDays=function(){
+			for(var i=0;i<3;i++){//注入到月
+				
+				for(var j=0;j<6;j++){//注入行
 
-		var tempMonthCalenderDate = new Date();
+					var monthRow=document.createElement("div");
+					monthRow.setAttribute("class",s.params.monthRowClass);
 
-		function _getMonthCalenderDate() {
-			tempMonthCalenderDate.setTime(this.active_date.getTime() - dayMilliSecound * (this.active_date.getDate() - 1));
+					for(var k=0;k<7;k++){//注入到星期
 
-			var day = tempMonthCalenderDate.getDay();
+						var day=document.createElement("div");
+						day.setAttribute("class",s.params.dayClass);
+						var dayNum=document.createElement("div");
+						dayNum.setAttribute("class",s.params.dayNumClass);
 
-			var first_date_time = tempMonthCalenderDate.getTime() - dayMilliSecound * day;
+						day.appendChild(dayNum);
+						monthRow.appendChild(day);
 
-			return _getMonthCalenderArrayByTimeAndArray(this.temp_month_calender_date_array, first_date_time);
+						s.days.push(dayNum);
+					}
+					s.months[i].appendChild(monthRow);
+				}
+			}
 		}
+		//创建DOM
+		s.create=function(){
+			//创建头部
+			if(s.container.querySelector("."+s.params.headerClass)){
+				s.header=s.container.querySelector("."+s.params.headerClass);
+				s.prev=s.container.querySelector("."+s.params.prevClass);
+				s.next=s.container.querySelector("."+s.params.nextClass);
+				s.title=s.container.querySelector("."+s.params.titleClass);
+			}else{
+				s.header=s.createHeader();
+				s.prev=s.createPrev();
+				s.next=s.createNext();
+				s.title=s.createTitle();
 
-		function _getPrevMonthCalenderDate() {
-			tempMonthCalenderDate.setTime(this.active_date.getTime() - dayMilliSecound * (this.active_date.getDate() - 1));
+				s.header.appendChild(s.prev);
+				s.header.appendChild(s.title);
+				s.header.appendChild(s.next);
+				s.container.appendChild(s.header);
+			}
+			//创建周
+			if(s.container.querySelector("."+s.params.weeksClass)){
+				s.weekContainer=s.container.querySelector("."+s.params.weeksClass);
+			}else{
+				s.weekContainer=s.createWeekContainer();
 
-			tempMonthCalenderDate.setMonth(tempMonthCalenderDate.getMonth() - 1);
-
-			var day = tempMonthCalenderDate.getDay();
-
-			var first_date_time = tempMonthCalenderDate.getTime() - dayMilliSecound * day;
-
-			return _getMonthCalenderArrayByTimeAndArray(this.temp_prev_month_calender_date_array, first_date_time);
+				s.container.appendChild(s.weekContainer);
+			}
+			//创建主体
+			s.wrapper=s.createWrapper();
+			s.wrapperX=s.createWrapperX();
+			s.wrapperY=s.createWrapperY();
+			s.wrapperY.appendChild(s.wrapperX);
+			s.wrapper.appendChild(s.wrapperY);
+			s.container.appendChild(s.wrapper);
+			s.createDays();
 		}
-
-		function _getNextMonthCalenderDate() {
-			tempMonthCalenderDate.setTime(this.active_date.getTime() - dayMilliSecound * (this.active_date.getDate() - 1));
-
-			tempMonthCalenderDate.setMonth(tempMonthCalenderDate.getMonth() + 1);
-
-			var day = tempMonthCalenderDate.getDay();
-
-			var first_date_time = tempMonthCalenderDate.getTime() - dayMilliSecound * day;
-
-			return _getMonthCalenderArrayByTimeAndArray(this.temp_next_month_calender_date_array, first_date_time);
-		}
-
-		function _getWeekNumInCalender() {
-			tempMonthCalenderDate.setTime(this.active_date.getTime() - dayMilliSecound * (this.active_date.getDate() - 1));
-
-			return Math.floor((tempMonthCalenderDate.getDay() + this.active_date.getDate() - 1) / 7);
-		}
-
-		function _getMonthCalenderDateTimeByIndex(index) {
-			tempMonthCalenderDate.setTime(this.active_date.getTime() - dayMilliSecound * (this.active_date.getDate() - 1));
-
-			tempMonthCalenderDate.setTime(tempMonthCalenderDate.getTime() + dayMilliSecound * (index - tempMonthCalenderDate.getDay()));
-
-			return tempMonthCalenderDate.getTime();
-		}
-
-
-		this.prevWeek = _prevWeek;
-		this.nextWeek = _nextWeek;
-		this.prevMonth = _prevMonth;
-		this.nextMonth = _nextMonth;
-		this.getSelected = _getSelected;
-		this.setSelected = _setSelected;
-		this.setSelectedDay = _setSelectedDay;
-		this.getWeekDate = _getWeekDate;
-		this.getPrevWeekDate = _getPrevWeekDate;
-		this.getNextWeekDate = _getNextWeekDate;
-		this.getMonthCalenderDate = _getMonthCalenderDate;
-		this.getPrevMonthCalenderDate = _getPrevMonthCalenderDate;
-		this.getNextMonthCalenderDate = _getNextMonthCalenderDate;
-		this.getWeekNumInCalender = _getWeekNumInCalender;
-		this.getMonthCalenderDateTimeByIndex = _getMonthCalenderDateTimeByIndex;
-	}
-
-
-	function Calender(opt) {
-		var day_num_array = ["日", "一", "二", "三", "四", "五", "六"];
-
-		this.container_element = document.getElementById(opt.containerDivId);
-		this.mode = opt.mode ? opt.mode : 'week';
-		this.dateSelectObject = opt.dateSelectObject;
-		this.onChange = opt.onChange;
-
-		this.keyElement = {
-			calender_container: this.container_element.getElementsByClassName('calender_container')[0],
-			date_container: this.container_element.getElementsByClassName('date_container')[0],
-			month_container: this.container_element.getElementsByClassName('month_container')[0]
-		};
-
-		if (!this.container_element) {
+		s.create();
+		/*================
+		Method
+		================*/
+        //容器操作类
+        s.addDuration=function(){
+        	s.wrapper.style.WebkitTransitionDuration=s.params.duration+"ms";
+        	s.wrapperY.style.WebkitTransitionDuration=s.params.duration+"ms";
+        	s.wrapperX.style.WebkitTransitionDuration=s.params.duration+"ms";
+        }
+        s.removeDuration=function(){
+        	s.wrapper.style.WebkitTransitionDuration="0ms";
+        	s.wrapperY.style.WebkitTransitionDuration="0ms";
+        	s.wrapperX.style.WebkitTransitionDuration="0ms";
+        }
+        s.updateTranslateX=function(){
+        	s.removeDuration();
+        	s.touches.posX=-s.container.width;
+        	s.wrapperX.style.WebkitTransform="translateX("+s.touches.posX+"px)";
+        }
+        s.updateContainerSize=function(){
+        	if(s.params.viewType==="month"){//展开
+        		s.touches.h=s.params.wrapperHeight;
+        	}else if(s.params.viewType==="week"){//收缩
+        		s.touches.h=s.params.dayHeight;
+        	}
+        	s.wrapper.style.height=s.touches.h+'px';
+        	s.wrapperY.style.WebkitTransform="translateY(-"+s.touches.posY+"px)";
+        }
+        s.updateClasses=function(){
+        	//更新容器尺寸
+        	s.updateContainerSize();
+        	//位置还原
+        	s.updateTranslateX();
+        }
+        s.updateClasses();
+        //左右滑动
+        s.slideXTo=function(index){
+        	s.touches.posX=-s.container.width*index;
+        	s.addDuration();
+        	s.wrapperX.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
+        	//刷新数据
+        	if(index===0){//上一页
+        		if(s.params.viewType==="month"){
+        			s.calendarUtil.activePrevMonth();
+				}else if(s.params.viewType==="week"){
+					s.wrapperY.style.WebkitTransitionDuration="0ms";
+					s.calendarUtil.activePrevWeek();
+				}
+				s.draw();
+        	}else if(index===2){//下一页
+        		if(s.params.viewType==="month"){
+        			s.calendarUtil.activeNextMonth();
+				}else if(s.params.viewType==="week"){
+					s.wrapperY.style.WebkitTransitionDuration="0ms";
+					s.calendarUtil.activeNextWeek();
+				}
+				s.draw();
+			}
+        }
+        //上下滑动
+        s.dragY=function(heightY){
+        	s.wrapper.style.height=heightY+'px';
+        	var translateY=s.params.wrapperHeight-heightY;
+        	if(translateY<=s.touches.maxPosY){
+        		s.wrapperY.style.WebkitTransform="translateY(-"+translateY+"px)";
+        	}
+        }
+        s.slideYTo=function(index){
+        	s.addDuration();
+        	if(index===1){//展开
+        		s.params.viewType="month";
+        		s.touches.posY=0;
+        		s.draw();
+        	}else if(index===-1){//收缩
+        		s.params.viewType="week";
+        		s.touches.posY=s.touches.maxPosY;
+        		s.draw();
+        	}else{
+        		s.dragY(s.touches.h);
+        	}
+        }
+		//绘制日历
+		var today=new Date();
+		s.isToday=function(date){
+			if(date.getDate()==today.getDate() && date.getMonth()==today.getMonth() &&  date.getFullYear()==today.getFullYear())return true;
 			return false;
 		}
-
-		function _initCalenderDom(_this, containerElement) {
-			var month_container = _this.keyElement.month_container,
-				html = '',
-				i, j, k;
-
-			for (i = 0; i < 3; ++i) {
-				html += '<div class="month-block">';
-				for (j = 0; j < 6; ++j) {
-					html += '<div class="week-line">';
-					for (k = 0; k < 7; ++k) {
-						html += '<div class="day-date"><span class="datenum_' + i + '_' + j + '_' + k + ' show-date">' + j + i + '</span></div>';
-					}
-					html += '</div>';
+		s.data=[];
+		s.updateData=function(){
+			s.data=s.calendarUtil.getCalendarData();
+			s.data.activeIndex=s.calendarUtil.activeIndex;
+			var activeRowIndex=s.calendarUtil.activeRowIndex;
+			if(s.params.viewType==="week"){
+				s.touches.maxPosY=activeRowIndex*s.params.dayHeight;
+				s.touches.posY=s.touches.maxPosY;
+				var prevWeek=s.calendarUtil.getPrevWeek();
+				var nextWeek=s.calendarUtil.getNextWeek();
+				var start1=activeRowIndex*7;
+				var start2=start1+84;
+				//上周
+				for(var i=0,datIndex1=start1;i<7;i++){
+					s.data[datIndex1]=prevWeek[i];
+					datIndex1++;
 				}
-				html += '</div>';
+				//下周
+				for(var j=0,datIndex2=start2;j<7;j++){
+					s.data[datIndex2]=nextWeek[j];
+					datIndex2++;
+				}
 			}
-
-			//console.log(html);
-
-			month_container.innerHTML = html;
 		}
+		s.drawHeader=function(){
+			var activeDate=s.calendarUtil.activeDate;
+			//注入头部数据
+			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.day();
+		}
+		s.draw=function(){
+			s.updateData();
+			//注入头部
+			s.drawHeader();
+			//注入身体
+			var activeIndex=s.data.activeIndex;
+			var activeRowIndex=s.data.activeRowIndex;
+			for(var i=0;i<s.days.length;i++){
+				s.days[i].innerHTML=s.data[i].getDate();
+				//index
+				s.days[i].index=i;
+				//class
+				s.days[i].className=s.params.dayNumClass;
+				//class-currentClass
+				if(s.data[i].isCurrent)s.days[i].classList.add(s.params.currentClass);
+				else s.days[i].classList.add(s.params.notcurrentClass);
+				//class-todayClass
+				if(s.isToday(s.data[i]))s.days[i].classList.add(s.params.todayClass);
+				//class-activeClass
+				if(i==activeIndex)s.days[i].classList.add(s.params.activeClass);
+			}
+			s.updateContainerSize();
+			//Callback onChange
+			if(s.params.onChange){
+				s.activeDate=s.calendarUtil.activeDate;
+				s.params.onChange(s);
+			}
+		}
+		s.draw();
+		s.activeDay=function(target){
+			for(var i=0;i<s.days.length;i++){
+				s.days[i].classList.remove(s.params.activeClass);
+			}
+			//选中日期
+			s.calendarUtil.setActiveDate(s.data[target.index]);
+			//重新绘制
+			s.draw();
 
-		_initCalenderDom(this, this.container_element);
+			//target.classList.add(s.params.activeClass);
+			//s.drawHeader();
+		}
+		s.showMonth=function(){
+			s.slideYTo(1);
+        }
+        s.showWeek=function(){
+        	s.slideYTo(-1);
+        }
+        s.showToday=function(){
+        	s.calendarUtil.setActiveDate(s.today);
+        	s.draw();
+        }
+		/*================
+		Control
+		================*/
+        s.events=function(detach){
+			var action=detach?"removeEventListener":"addEventListener";
+			s.wrapper[action]("touchstart",s.onTouchStart,false);
+			s.wrapper[action]("touchmove",s.onTouchMove,false);
+			s.wrapper[action]("touchend",s.onTouchEnd,false);
+			s.wrapper[action]("touchcancel",s.onTouchEnd,false);
+			s.wrapper[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+			s.wrapper[action]("click",s.onClick,false);
 
-		this.keyData = {
-			calenderWidth: this.container_element.clientWidth,
-			calenderHeight: this.keyElement.date_container.getElementsByClassName('day-date')[0].clientHeight
+			s.prev[action]("click",s.onClickPrev,false);
+			s.next[action]("click",s.onClickNext,false);
+        }
+        //attach、dettach事件
+        s.attach=function(event){
+            s.events();
+        }
+        s.detach=function(event){
+            s.events(true);
+        }
+        s.preventDefault=function(e){
+			e.preventDefault();
+		}
+		//Event Handler
+		s.onClickPrev=function(e){
+			s.slideXTo(0);
+		}
+		s.onClickNext=function(e){
+			s.slideXTo(2);
+		}
+		s.onClick=function(e){
+			s.target=e.target;
+			if(e.target.classList.contains(s.params.dayNumClass))s.activeDay(e.target);
+			//Callback onClick
+			if(s.params.onClick)s.params.onClick(s);
+		}
+		s.onTouchStart=function(e){
+			s.container.addEventListener("touchmove",s.preventDefault,false);
+			s.touches.startX=e.touches[0].clientX;
+			s.touches.startY=e.touches[0].clientY;
 		};
+		s.onTouchMove=function(e){
+			s.touches.currentX=e.touches[0].clientX;
+			s.touches.currentY=e.touches[0].clientY;
+			s.touches.diffX=s.touches.startX-s.touches.currentX;
+			s.touches.diffY=s.touches.startY-s.touches.currentY;
 
-		function _getFirstNumByString(string) {
-			return parseInt(string.match(/-?\d+/)[0], 10);
-		}
-
-		function _getPositionInfo(_this) {
-			var tempXPostion = _getFirstNumByString(_this.keyElement.calender_container.style.WebkitTransform),
-				tempYPostion = _getFirstNumByString(_this.keyElement.month_container.style.WebkitTransform),
-				tempHeight = _this.keyElement.date_container.style.height;
-
-			tempHeight = parseInt(tempHeight.substring(0, tempHeight.length - 2), 10);
-
-			return {
-				positonX: tempXPostion,
-				positonY: tempYPostion,
-				height: tempHeight
-			};
-		}
-
-		function _drawCalenderDate(_this) {
-			_setPostionAndHeight(_this);
-
-			var month_container = _this.keyElement.month_container,
-				selectedDate = _this.dateSelectObject.getSelected(),
-				tempThisMonthCalenderDate = _this.dateSelectObject.getMonthCalenderDate(),
-				tempSpanElement,
-				i, j, k, today = new Date();
-
-			document.getElementById('calendarTitle').innerHTML = selectedDate.getFullYear() + '-' + (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate() + ' ' + '周' + day_num_array[selectedDate.getDay()];
-
-			for (i = 0; i < 6; ++i) {
-				for (j = 0; j < 7; ++j) {
-					k = i * 7 + j;
-					tempSpanElement = month_container.getElementsByClassName('datenum_1_' + i + '_' + j)[0];
-					tempSpanElement.innerHTML = tempThisMonthCalenderDate[k].getDate();
-					tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
-					if (tempThisMonthCalenderDate[k].getMonth() != selectedDate.getMonth()) {
-						tempSpanElement.className += " not-this-month";
-					}
-
-					tempSpanElement.className = tempSpanElement.className.replace(/ active/g, '');
-					if (tempThisMonthCalenderDate[k].getDate() === selectedDate.getDate() && tempThisMonthCalenderDate[k].getMonth() === selectedDate.getMonth()) {
-						tempSpanElement.className += " active";
-					}
-
-					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
-					if (tempThisMonthCalenderDate[k].getDate() === today.getDate() && tempThisMonthCalenderDate[k].getMonth() === today.getMonth()) {
-						tempSpanElement.className += " today";
-					}
-				}
+			//设置滑动方向(上下|左右)
+			if(s.touches.direction === 0) {
+				s.touches.direction = Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) ? 1 : -1;
 			}
 
-			if (_this.mode === 'week') {
-				var lineNum = _this.dateSelectObject.getWeekNumInCalender(),
-					tempPrevWeekDate = _this.dateSelectObject.getPrevWeekDate(),
-					tempNextWeekDate = _this.dateSelectObject.getNextWeekDate();
-
-				for (i = 0; i < 7; ++i) {
-					tempSpanElement = month_container.getElementsByClassName('datenum_0_' + lineNum + '_' + i)[0];
-					tempSpanElement.innerHTML = tempPrevWeekDate[i].getDate();
-					tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
-					if (tempPrevWeekDate[i].getMonth() != selectedDate.getMonth()) {
-						tempSpanElement.className += " not-this-month";
-					}
-
-					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
-					if (tempPrevWeekDate[i].getDate() === today.getDate() && tempPrevWeekDate[i].getMonth() === today.getMonth()) {
-						tempSpanElement.className += " today";
-					}
-
-					tempSpanElement = month_container.getElementsByClassName('datenum_2_' + lineNum + '_' + i)[0];
-					tempSpanElement.innerHTML = tempNextWeekDate[i].getDate();
-					tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
-					if (tempNextWeekDate[i].getMonth() != selectedDate.getMonth()) {
-						tempSpanElement.className += " not-this-month";
-					}
-
-					tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
-					if (tempNextWeekDate[i].getDate() === today.getDate() && tempNextWeekDate[i].getMonth() === today.getMonth()) {
-						tempSpanElement.className += " today";
-					}
+			if(s.touches.direction === 1) {//左右滑动
+				var moveX=s.touches.posX-s.touches.diffX;
+				if(moveX<0 && Math.abs(moveX-s.container.width)<s.wrapperX.width){//判断是否是边缘
+					s.touches.horizontal = moveX < s.touches.posX ? 1 : -1;//设置方向(左右)
+					s.wrapperX.style.WebkitTransform = 'translateX(' + moveX + 'px)';
 				}
-			} else if (_this.mode === 'month') {
-				var tempPrevMonthCalenderDate = _this.dateSelectObject.getPrevMonthCalenderDate(),
-					tempNextMonthCalenderDate = _this.dateSelectObject.getNextMonthCalenderDate();
-
-				for (i = 0; i < 6; ++i) {
-					for (j = 0; j < 7; ++j) {
-						k = i * 7 + j;
-						tempSpanElement = month_container.getElementsByClassName('datenum_0_' + i + '_' + j)[0];
-						tempSpanElement.innerHTML = tempPrevMonthCalenderDate[k].getDate();
-						tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
-						tempSpanElement.className += " not-this-month";
-
-						tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
-						if (tempPrevMonthCalenderDate[k].getDate() === today.getDate() && tempPrevMonthCalenderDate[k].getMonth() === today.getMonth()) {
-							tempSpanElement.className += " today";
-						}
-
-						tempSpanElement = month_container.getElementsByClassName('datenum_2_' + i + '_' + j)[0];
-						tempSpanElement.innerHTML = tempNextMonthCalenderDate[k].getDate();
-						tempSpanElement.className = tempSpanElement.className.replace(/ not-this-month/g, '');
-						tempSpanElement.className += " not-this-month";
-
-						tempSpanElement.className = tempSpanElement.className.replace(/ today/g, '');
-						if (tempNextMonthCalenderDate[k].getDate() === today.getDate() && tempNextMonthCalenderDate[k].getMonth() === today.getMonth()) {
-							tempSpanElement.className += " today";
-						}
-					}
+			}else if (s.touches.direction === -1 && s.params.isYTouch===true) {//上下滑动
+				var heightY=s.touches.h-s.touches.diffY;
+				if(heightY>s.params.dayHeight && heightY<s.params.wrapperHeight){//判断是否是边缘
+					s.touches.vertical = heightY > s.touches.h ? 1 : -1;//设置方向(上下)
+					s.dragY(heightY);
 				}
+			}
+		};
+		s.onTouchEnd=function(e){
+			if(s.touches.direction === 1) {//左右滑动
+
+				if(Math.abs(s.touches.diffX)<s.params.threshold)s.touches.horizontal=0;
+				if(s.touches.horizontal===1)s.slideXTo(2); //下一页
+				else if(s.touches.horizontal===-1)s.slideXTo(0);//上一页
+				else s.slideXTo(1);//还原当前页
+
+			}else if (s.touches.direction === -1 && s.params.isYTouch===true) {//上下滑动
+
+				if(Math.abs(s.touches.diffY)<s.params.threshold)s.touches.vertical=0;
+				if(s.touches.vertical===1)s.slideYTo(1);//展开
+				else if(s.touches.vertical===-1)s.slideYTo(-1);//收缩
+				else s.slideYTo(0);//还原当前页
+				//s.swipeVer();
+			}
+			
+			//清空滑动方向
+			s.touches.direction=0;
+			s.touches.horizontal=0;
+			s.touches.vertical=0;
+		};
+		s.onTransitionEnd=function(e){
+			//还原位置
+			s.updateTranslateX();
+		}
+		/*================
+		Init
+		================*/
+		s.init=function(){
+			s.attach();
+		}
+		s.init();
+	};
+
+	window.CalendarUtil=function(activeDate){
+		/*================
+		Model
+		================*/
+		var weekMilliSecound = 7 * 24 * 60 * 60 * 1000,
+			dayMilliSecound = 24 * 60 * 60 * 1000;
+		var s=this;
+		//选中日期
+		s.activeDate=activeDate?activeDate:new Date();
+		//周视图
+		s.week=[],s.prevWeek=[],s.nextWeek=[];
+		s.createWeeks=function(){
+			for(var i = 0; i < 7; i++) {
+				s.week.push(new Date());
+				s.prevWeek.push(new Date());
+				s.nextWeek.push(new Date());
 			}
 		}
-
-		function _setPostionAndHeight(_this, positionInfo) {
-			if (positionInfo) {
-				_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + positionInfo.positonX + 'px)';
-
-				_this.keyElement.calender_container.style.transform = 'translateX(' + positionInfo.positonX + 'px)';
-
-				_this.keyElement.date_container.style.height = positionInfo.height + 'px';
-
-				_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + positionInfo.positonY + 'px)';
-
-				_this.keyElement.month_container.style.transform = 'translateY(' + positionInfo.positonY + 'px)';
-
-				return true;
+		s.createWeeks();
+		//月视图
+		s.midMonth=[],s.prevMonth=[],s.nextMonth=[];
+		s.createMonths=function(){
+			for(var i=0;i<42;i++) {
+				s.midMonth.push(new Date());
+				s.prevMonth.push(new Date());
+				s.nextMonth.push(new Date());
 			}
-
-			_this.keyElement.calender_container.style.WebkitTransform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
-
-			_this.keyElement.calender_container.style.transform = 'translateX(-' + _this.keyData.calenderWidth + 'px)';
-
-			_this.keyElement.date_container.style.height = _this.mode == 'week' ? _this.keyData.calenderHeight + 'px' : _this.keyData.calenderHeight * 6 + 'px';
-
-			_this.keyElement.month_container.style.WebkitTransform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
-
-			_this.keyElement.month_container.style.transform = _this.mode == 'week' ? 'translateY(' + (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight) + 'px)' : 'translateY(0px)';
 		}
-
-		function _animationTo(_this, direct, positon, finishCB) {
-			var speed = 30,
-				step = 25,
-				_animationFunction;
-
-			(function(_this, direct, positon, finishCB) {
-				var targetPostion = {
-					'x': {
-						'0': {
-							positonX: (-1 * _this.keyData.calenderWidth)
-						},
-						'1': {
-							positonX: (-2 * _this.keyData.calenderWidth)
-						},
-						'-1': {
-							positonX: 0
-						}
-					},
-					'y': {
-						'0': {
-							positonY: 0,
-							height: _this.keyData.calenderHeight * 6
-						},
-						'1': {
-							positonY: (-1 * _this.dateSelectObject.getWeekNumInCalender() * _this.keyData.calenderHeight),
-							height: _this.keyData.calenderHeight
-						}
-					}
-				};
-
-				_animationFunction = function() {
-					var tempPositionInfo = _getPositionInfo(_this);
-
-					var tempTargetPostion = targetPostion[direct][positon];
-
-					var key, animationSign = false;
-
-					for (key in tempTargetPostion) {
-						if (tempTargetPostion[key] != tempPositionInfo[key]) {
-							if ((tempTargetPostion[key] > tempPositionInfo[key]) && (tempTargetPostion[key] > tempPositionInfo[key] + step)) {
-								tempPositionInfo[key] = tempPositionInfo[key] + step;
-							} else if ((tempTargetPostion[key] < tempPositionInfo[key]) && (tempTargetPostion[key] < tempPositionInfo[key] - step)) {
-								tempPositionInfo[key] = tempPositionInfo[key] - step;
-							} else {
-								tempPositionInfo[key] = tempTargetPostion[key];
-							}
-							animationSign = true;
-						}
-					}
-
-					if (animationSign) {
-						_setPostionAndHeight(_this, tempPositionInfo);
-						return true;
-					}
-
-					return false;
-				};
-			})(_this, direct, positon, finishCB);
-
-			(function(_animationFunction) {
-				clearTimeout(_this.keyData.timeout);
-
-				function _animationLoopFunction() {
-					if (_animationFunction()) {
-						_this.keyData.timeout = setTimeout(_animationLoopFunction, speed);
-					} else if (typeof finishCB === 'function') {
-						finishCB();
-					}
-				}
-
-				_animationLoopFunction();
-			})(_animationFunction);
+		s.createMonths();
+		/*================
+		Method
+		================*/
+		//日期比较
+		s.compareDate=function(date1,date2){
+			var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
+			var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
+			var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
+			var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
+			if(t1==t2)return 0;
+			else return t1>t2;
 		}
-
-		function _initDateTouchAndAnimation(_this) {
-			_drawCalenderDate(_this);
-
-			_this.keyElement.date_container.addEventListener('touchstart', function(e) {
-				var firstFinger = e.touches[0];
-				_this.keyData.tempX = firstFinger.clientX;
-				_this.keyData.tempY = firstFinger.clientY;
-				_this.keyData.direct = 0;
-			}, false);
-
-			_this.keyElement.date_container.addEventListener('touchmove', function(e) {
-				e.preventDefault();
-				var firstFinger = e.touches[0],
-					diffX = firstFinger.clientX - _this.keyData.tempX,
-					diffY = firstFinger.clientY - _this.keyData.tempY;
-
-				var tempPositionInfo = _getPositionInfo(_this);
-
-				var tempNumX = tempPositionInfo.positonX + (diffX),
-					tempNumY = tempPositionInfo.positonY + diffY,
-					tempHeightNum = tempPositionInfo.height + diffY;
-
-				if (_this.keyData.direct === 0) {
-					_this.keyData.direct = Math.abs(diffX) > Math.abs(diffY) ? 1 : -1;
-				}
-
-				if (_this.keyData.direct === 1) {
-					if (tempNumX < 0 && tempNumX > -2 * _this.keyData.calenderWidth) {
-						_this.keyElement.calender_container.style.WebkitTransform = 'translateX(' + tempNumX + 'px)';
-
-						_this.keyElement.calender_container.style.transform = 'translateX(' + tempNumX + 'px)';
-					}
-				} else if (_this.keyData.direct === -1) {
-					if (tempNumY < 0 && tempNumY > -6 * _this.keyData.calenderHeight && tempHeightNum > _this.keyData.calenderHeight) {
-						_this.keyElement.month_container.style.WebkitTransform = 'translateY(' + tempNumY + 'px)';
-
-						_this.keyElement.month_container.style.transform = 'translateY(' + tempNumY + 'px)';
-					}
-
-					if (tempHeightNum > _this.keyData.calenderHeight && tempHeightNum < 6 * _this.keyData.calenderHeight) {
-						_this.keyElement.date_container.style.height = tempHeightNum + 'px';
-					}
-				}
-
-				_this.keyData.tempX = firstFinger.clientX;
-				_this.keyData.tempY = firstFinger.clientY;
-			}, false);
-
-			function _redrawCalenderDate() {
-				_drawCalenderDate(_this);
+		//周视图
+		s.updateWeekByStartDayMs=function(startDayMs,week){//根据第一天的毫秒数获得一周
+			week[0].setTime(startDayMs);
+			for (var i=1;i<7;i++) {
+				week[i].setTime(week[i-1].getTime()+dayMilliSecound);
+				week[i].isCurrent=true;
 			}
-
-			function removeFinger() {
-				var tempPositionInfo = _getPositionInfo(_this);
-
-				if (_this.keyData.direct === 1) {
-					if (tempPositionInfo.positonX < -1.2 * _this.keyData.calenderWidth) {
-						if (_this.mode === 'week') {
-							_this.dateSelectObject.nextWeek();
-						} else {
-							_this.dateSelectObject.nextMonth();
-						}
-						if (typeof _this.onChange === "function") {
-							_this.onChange(_this.dateSelectObject.getSelected());
-						}
-						_animationTo(_this, 'x', 1, _redrawCalenderDate);
-					} else if (tempPositionInfo.positonX > -0.8 * _this.keyData.calenderWidth) {
-						if (_this.mode === 'week') {
-							_this.dateSelectObject.prevWeek();
-						} else {
-							_this.dateSelectObject.prevMonth();
-						}
-						if (typeof _this.onChange === "function") {
-							_this.onChange(_this.dateSelectObject.getSelected());
-						}
-						_animationTo(_this, 'x', -1, _redrawCalenderDate);
-					} else {
-						_animationTo(_this, 'x', 0, _redrawCalenderDate);
-					}
-				} else if (_this.keyData.direct === -1) {
-					var turnTo = _this.mode;
-
-					if (turnTo === 'week' && (tempPositionInfo.height > _this.keyData.calenderHeight * 2)) {
-						turnTo = 'month';
-					} else if (turnTo === 'month' && (tempPositionInfo.height < _this.keyData.calenderHeight * 4)) {
-						turnTo = 'week';
-					}
-
-					if (turnTo === 'week') {
-						_this.mode = 'week';
-						_animationTo(_this, 'y', 1, _redrawCalenderDate);
-					} else {
-						_this.mode = 'month';
-						_animationTo(_this, 'y', 0, _redrawCalenderDate);
-					}
-				}
-			}
-
-			_this.switchMode = function() {
-				if (_this.mode === 'month') {
-					_this.mode = 'week';
-					_animationTo(_this, 'y', 1, _redrawCalenderDate);
-				} else {
-					_this.mode = 'month';
-					_animationTo(_this, 'y', 0, _redrawCalenderDate);
-				}
-			};
-
-			_this.switchToWeek = function() {
-				_this.mode = 'week';
-				_animationTo(_this, 'y', 1, _redrawCalenderDate);
-			};
-
-			_this.switchToMonth = function() {
-				_this.mode = 'month';
-				_animationTo(_this, 'y', 0, _redrawCalenderDate);
-			};
-
-			_this.jumpToDate = function(date) {
-				if (date && date.getTime) {
-					_this.dateSelectObject.setSelected(date.getTime());
-					_drawCalenderDate(_this);
-				}
-			};
-
-			_this.getActiveDate = function(date) {
-				return _this.dateSelectObject.getSelected();
-			};
-
-			_this.keyElement.date_container.addEventListener('touchend', removeFinger, false);
-
-			_this.keyElement.date_container.addEventListener('touchcancel', removeFinger, false);
-
-			var day_date_element_array = _this.container_element.getElementsByClassName("show-date"),
-				day_date_length = day_date_element_array.length,
-				i, tempHandleDateClickDate = new Date();
-
-			function handleDateClick(e) {
-				var className, indexArray, dateIndex;
-
-				className = e.target.className;
-
-				indexArray = className.substr(className.indexOf('date_num_') + 9, 5).split('_');
-
-				dateIndex = parseInt(indexArray[1], 10) * 7 + parseInt(indexArray[2], 10);
-
-				tempHandleDateClickDate.setTime(_this.dateSelectObject.getMonthCalenderDateTimeByIndex(dateIndex));
-
-
-				if (tempHandleDateClickDate.getMonth() == _this.dateSelectObject.getSelected().getMonth() && tempHandleDateClickDate.getDate() == _this.dateSelectObject.getSelected().getDate()) {
-					return;
-				}
-
-				_this.dateSelectObject.setSelected(tempHandleDateClickDate.getTime());
-
-				if (typeof _this.onChange === "function") {
-					_this.onChange(_this.dateSelectObject.getSelected());
-				}
-				_drawCalenderDate(_this);
-			}
-
-			for (i = 0; i < day_date_length; ++i) {
-				day_date_element_array[i].onclick = handleDateClick;
-			}
-
-			document.getElementById("calendarPrev").onclick = function(e) {
-				if (_this.mode == 'week') {
-					_this.dateSelectObject.prevWeek();
-				} else {
-					_this.dateSelectObject.prevMonth();
-				}
-				_animationTo(_this, 'x', -1, _redrawCalenderDate);
-			};
-
-			document.getElementById("calendarNext").onclick = function(e) {
-				if (_this.mode == 'week') {
-					_this.dateSelectObject.nextWeek();
-				} else {
-					_this.dateSelectObject.nextMonth();
-				}
-				_animationTo(_this, 'x', 1, _redrawCalenderDate);
-			};
+			return week;
 		}
+		s.getWeek=function(){//获得本周
+			var day=s.activeDate.getDay();
+			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day;
+			return s.updateWeekByStartDayMs(startDayMs,s.week);
+		}
+		s.getPrevWeek=function(){//获得上周
+			var day=s.activeDate.getDay();
+			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day - weekMilliSecound;
+			return s.updateWeekByStartDayMs(startDayMs,s.prevWeek);
+		}
+		s.getNextWeek=function(){//获得下周
+			var day=s.activeDate.getDay();
+			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day + weekMilliSecound;
+			return s.updateWeekByStartDayMs(startDayMs,s.nextWeek);
+		}
+		//月视图
+		s.currentMonth=null;
+		s.activeIndex=null;
+		s.activeRowIndex=null;
+		s.updateMonthByStartDayMs=function(startDayMs,month,firstNum,lastNum){
+			//生成日期
+			for(var i=0;i<42;i++){
+				if(i==0)month[0].setTime(startDayMs);
+				else month[i].setTime(month[i-1].getTime()+dayMilliSecound);
 
-		var __this = this;
+				//设置选中项
+				if(s.compareDate(month[i],s.activeDate)===0 && s.currentMonth==="midMonth"){
+					s.activeIndex=i+42;
+					s.activeRowIndex=Math.floor(i/7);
+				}
 
-		//setTimeout(function(){
-		_initDateTouchAndAnimation(__this);
-		//},1200);
+				//设置当月标识isCurrent
+				month[i].isCurrent=false;
+				if(i>=firstNum && i<lastNum)month[i].isCurrent=true;
+			}
+			return month;
+		}
+		var firstDay=new Date();//将在函数中初始化为1日的毫秒数
+		s.getPrevMonth=function(){//获得上月
+			s.currentMonth="prevMonth";
+			//上月1日
+			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
+			firstDay.setMonth(firstDay.getMonth()-1);
+			//上月起始日
+			var day = firstDay.getDay();//周
+			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
+			//上月开始结束天
+			var firstNum=day;
+			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
+			var lastNum=firstNum+monthDays;
+			//返回上月所有日期
+			return s.updateMonthByStartDayMs(startDayMs,s.prevMonth,firstNum,lastNum);
+		}
+		s.getMidMonth=function(){//获得本月
+			s.currentMonth="midMonth";
+			//1日
+			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
+			//起始日
+			var day = firstDay.getDay();
+			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
+			//开始结束天
+			var firstNum=day;
+			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
+			var lastNum=firstNum+monthDays;
+			//返回所有日期
+			return s.updateMonthByStartDayMs(startDayMs,s.midMonth,firstNum,lastNum);
+		}
+		s.getNextMonth=function(){//获得下月
+			s.currentMonth="nextMonth";
+			//下月1日
+			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
+			firstDay.setMonth(firstDay.getMonth()+1);
+			//下月起始日
+			var day = firstDay.getDay();
+			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
+			//下月开始结束天
+			var firstNum=day;
+			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
+			var lastNum=firstNum+monthDays;
+			//返回下月所有日期
+			return s.updateMonthByStartDayMs(startDayMs,s.nextMonth,firstNum,lastNum);
+		}
+		s.getCalendarData=function(){
+			return s.getPrevMonth().concat(s.getMidMonth()).concat(s.getNextMonth());
+		}
+		//设置选中日期
+		s.setActiveDate=function(activeDate){
+			s.activeDate.setTime(activeDate.getTime());
+		}
+		s.activePrevWeek=function(){
+			var ms=s.activeDate.getTime()-weekMilliSecound;
+			s.activeDate.setTime(ms);
+		}
+		s.activeNextWeek=function(){
+			var ms=s.activeDate.getTime()+weekMilliSecound;
+			s.activeDate.setTime(ms);
+		}
+		s.activePrevMonth=function(){
+			var month=s.activeDate.getMonth() - 1;
+			s.activeDate.setMonth(month);
+		}
+		s.activeNextMonth=function(){
+			var month=s.activeDate.getMonth() + 1;
+			s.activeDate.setMonth(month);
+		}
 	}
-
-	window.DateSelect = DateSelect;
-	window.Calender = Calender;
-})();
+})(window,document,undefined);
