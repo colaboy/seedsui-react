@@ -97,59 +97,13 @@ aside {
 	background-color:@tabbar-bg;
 	border-color:@tabbar-border;
 }
-.tabbar .tab:active,.tabbar .tab.active{
-	color:@tabbar-active-color;
-	background-color:@tabbar-active-bg;
-	border-color:@tabbar-active-border;
-}
-.tabbar.reverse .tab{
-	color:@tabbar-reverse-color;
-	background-color:@tabbar-reverse-bg;
-	border-color:@tabbar-reverse-border;
-}
-.tabbar.reverse .tab:active,.tabbar.reverse .tab.active{
-	color:@tabbar-reverse-active-color;
-	background-color:@tabbar-reverse-active-bg;
-	border-color:@tabbar-reverse-active-border;
-}
-.tabbar:not(.reverse)[data-type=rect] .tab:active,.tabbar[data-type=rect]:not(.reverse) .tab.active{
-	color:white;
-	background-color:@tabbar-active-color;
-	border-color:@tabbar-active-color;
-}
-.tabbar[data-type^="animate-"] .tab:active,.tabbar[data-type^="animate-"] .tab.active{
-	border-color:@tabbar-border;
-}
-/*滑片形(动画)*/
-.tabbar[data-type=animate-slide] hr{
-	border-color:@tabbar-active-border;
-}
 /*单线形(动画)*/
 .tabbar[data-type=animate-oneline]{
-	.tab.active {
-		color:@tabbar-active-border;
-	}
-	.tab::before{
-		background:@tabbar-active-border;
-	}
-}
-/*滑块形(动画)*/
-.tabbar[data-type=lump]{
-	.tab.active .tab-label{
-		color:white;
-		background-color:@tabbar-active-border;
-	}
-}
-.tabbar.reverse[data-type=lump]{
-	.tab{
-		border-color:@tabbar-active-border;
-	}
 	.tab.active{
-		background-color:@tabbar-active-border;
-	}
-	.tab.active .tab-label{
 		color:@tabbar-active-border;
-		background-color:white;
+	}
+	.tab.active::before{
+		background:@tabbar-active-border;
 	}
 }
 /*括弧形(动画)*/
@@ -157,10 +111,75 @@ aside {
 	.tab.active{
 		color:@tabbar-active-color;
 	}
-	.tab::before,.tab::after,.tab-label::before,.tab-label::after{
+	.tab.active::before,.tab.active .tab-label::before,.tab.active .tab-label::after{
 		background:@tabbar-active-border;
 	}
 }
+/*滑片形(动画)*/
+.tabbar[data-type=animate-slide] hr{
+	border-color:@tabbar-active-border;
+}
+/*滑块形*/
+.tabbar[data-type=lump]{
+	.tab.active .tab-label,.tab:active .tab-label{
+		color:white;
+		background-color:@tabbar-active-border;
+	}
+}
+.tabbar.reverse[data-type=lump]{
+	.tab{
+		color:@tabbar-reverse-color;
+		background-color:@tabbar-reverse-bg;
+	}
+	.tab.active,.tab:active{
+		background-color:@tabbar-active-border;
+	}
+	.tab.active .tab-label,.tab:active .tab-label{
+		color:@tabbar-active-border;
+		background-color:white;
+	}
+}
+/*矩形*/
+.tabbar[data-type=rect]{
+	.tab.active,.tab:active{
+		color:white;
+		background-color:@tabbar-active-color;
+		border-color:@tabbar-active-color;
+	}
+}
+.tabbar.reverse[data-type=rect]{
+	.tab{
+		color:@tabbar-reverse-color;
+		background-color:@tabbar-reverse-bg;
+		border-color:@tabbar-reverse-border;
+	}
+	.tab.active,.tab:active{
+		color:@tabbar-reverse-active-color;
+		background-color:@tabbar-reverse-active-bg;
+		border-color:@tabbar-reverse-active-border;
+	}
+}
+/*滑片形*/
+.tabbar[data-type=slide]{
+	.tab.active,.tab:active{
+		color:@tabbar-active-color;
+		background-color:@tabbar-active-bg;
+		border-color:@tabbar-active-border;
+	}
+}
+.tabbar.reverse[data-type=slide]{
+	.tab{
+		color:@tabbar-reverse-color;
+		background-color:@tabbar-reverse-bg;
+		border-color:@tabbar-reverse-border;
+	}
+	.tab.active,.tab:active{
+		color:@tabbar-reverse-active-color;
+		background-color:@tabbar-reverse-active-bg;
+		border-color:@tabbar-reverse-active-border;
+	}
+}
+
 /*menubar*/
 .menubar .tab{
 	color:@menubar-color;

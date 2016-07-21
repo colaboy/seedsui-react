@@ -156,7 +156,7 @@ br {
 /*css3 特效*/
 .shadow {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-  /*分别指投影的：偏右、偏下、模糊度、扩展、颜色*/
+  /*分别指投影的：右、下、模糊、扩展、颜色*/
 }
 /*倒影*/
 .reflect-below {
@@ -1956,7 +1956,6 @@ aside[data-position="right"][data-transition="overlay"] {
 /*tabbar|menubar*/
 .tabbar,
 .menubar {
-  /* display:-webkit-box; */
   display: block;
   position: relative;
   margin: 0 auto;
@@ -1966,8 +1965,6 @@ aside[data-position="right"][data-transition="overlay"] {
   white-space: nowrap;
 }
 .tab {
-  /* -webkit-box-flex:1;
-	-webkit-box-orient:horizontal; */
   display: table-cell;
   width: 1%;
   padding: 0 12px;
@@ -1996,8 +1993,6 @@ aside[data-position="right"][data-transition="overlay"] {
 }
 /*menubar*/
 .menubar .tab {
-  /* -webkit-box-flex:1;
-	-webkit-box-orient:vertical; */
   border-width: 1px 0 0 0;
 }
 .menubar .tab .icon {
@@ -2034,12 +2029,12 @@ aside[data-position="right"][data-transition="overlay"] {
   line-height: 28px;
   border-width: 1px 1px 1px 0;
 }
-.tabbar[data-type=rect] .tab:first-child {
+.tabbar[data-type=rect] .tab:nth-of-type(1) {
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
   border-left-width: 1px;
 }
-.tabbar[data-type=rect] .tab:last-child {
+.tabbar[data-type=rect] .tab:nth-last-of-type(1) {
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
 }
@@ -2205,8 +2200,8 @@ aside[data-position="right"][data-transition="overlay"] {
   -webkit-box-align: center;
   -webkit-box-pack: center;
   height: 40px;
-  line-height: normal;
-  /* padding:0 8px; */
+  /* line-height:normal; */
+  line-height: 0;
   border-width: 0;
   vertical-align: middle;
   /*禁止选中*/
@@ -4094,24 +4089,14 @@ summary::-webkit-details-marker {
   display: none;
 }
 /*图标样式*/
-summary:after {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  content: '';
-  -webkit-transform: translateY(-50%);
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: "iconfont";
-  font-size: 14px;
-  content: "\e91a";
+summary .summary-icon {
+  background-image: url(img/summary-icon.png);
+  background-size: 100% auto;
+  background-position: center top;
 }
 /*图标选中样式*/
-details[open] summary:after {
-  content: "\e90e";
+details[open] summary .summary-icon {
+  background-position: center bottom;
 }
 /*----------------------------summary.less(end)----------------------------*/
 /*---------------table.less(start)---------------*/
@@ -4661,13 +4646,13 @@ ul.weather-otherday li {
 /*--------------------badge.less(start)----------------------*/
 /*---------------i.less(start)---------------*/
 /*图标*/
-i,
 .icon {
   position: relative;
+  font-style: normal;
   background-size: 100% auto;
   background-position: center top;
 }
-i.active,
+.active,
 .icon.active {
   background-position: center bottom;
 }
@@ -4676,13 +4661,6 @@ i.active,
   font-size: 24px;
   width: 24px;
   height: 24px;
-}
-button .icon,
-input[type="button"] .icon,
-.button .icon {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
 }
 .badge .icon,
 .tip .icon,
@@ -5255,68 +5233,80 @@ aside {
   background-color: #f8f8f8;
   border-color: #e6e6e6;
 }
-.tabbar .tab:active,
-.tabbar .tab.active {
-  color: #18b2ed;
-  background-color: #f8f8f8;
-  border-color: #18b2ed;
-}
-.tabbar.reverse .tab {
-  color: #ffffff;
-  background-color: #18b2ed;
-  border-color: #ffffff;
-}
-.tabbar.reverse .tab:active,
-.tabbar.reverse .tab.active {
-  color: #18b2ed;
-  background-color: #ffffff;
-  border-color: #ffffff;
-}
-.tabbar:not(.reverse)[data-type=rect] .tab:active,
-.tabbar[data-type=rect]:not(.reverse) .tab.active {
-  color: white;
-  background-color: #18b2ed;
-  border-color: #18b2ed;
-}
-.tabbar[data-type^="animate-"] .tab:active,
-.tabbar[data-type^="animate-"] .tab.active {
-  border-color: #e6e6e6;
-}
-/*滑片形(动画)*/
-.tabbar[data-type=animate-slide] hr {
-  border-color: #18b2ed;
-}
 /*单线形(动画)*/
 .tabbar[data-type=animate-oneline] .tab.active {
   color: #18b2ed;
 }
-.tabbar[data-type=animate-oneline] .tab::before {
+.tabbar[data-type=animate-oneline] .tab.active::before {
   background: #18b2ed;
-}
-/*滑块形(动画)*/
-.tabbar[data-type=lump] .tab.active .tab-label {
-  color: white;
-  background-color: #18b2ed;
-}
-.tabbar.reverse[data-type=lump] .tab {
-  border-color: #18b2ed;
-}
-.tabbar.reverse[data-type=lump] .tab.active {
-  background-color: #18b2ed;
-}
-.tabbar.reverse[data-type=lump] .tab.active .tab-label {
-  color: #18b2ed;
-  background-color: white;
 }
 /*括弧形(动画)*/
 .tabbar[data-type=animate-bracket] .tab.active {
   color: #18b2ed;
 }
-.tabbar[data-type=animate-bracket] .tab::before,
-.tabbar[data-type=animate-bracket] .tab::after,
-.tabbar[data-type=animate-bracket] .tab-label::before,
-.tabbar[data-type=animate-bracket] .tab-label::after {
+.tabbar[data-type=animate-bracket] .tab.active::before,
+.tabbar[data-type=animate-bracket] .tab.active .tab-label::before,
+.tabbar[data-type=animate-bracket] .tab.active .tab-label::after {
   background: #18b2ed;
+}
+/*滑片形(动画)*/
+.tabbar[data-type=animate-slide] hr {
+  border-color: #18b2ed;
+}
+/*滑块形*/
+.tabbar[data-type=lump] .tab.active .tab-label,
+.tabbar[data-type=lump] .tab:active .tab-label {
+  color: white;
+  background-color: #18b2ed;
+}
+.tabbar.reverse[data-type=lump] .tab {
+  color: #ffffff;
+  background-color: #18b2ed;
+}
+.tabbar.reverse[data-type=lump] .tab.active,
+.tabbar.reverse[data-type=lump] .tab:active {
+  background-color: #18b2ed;
+}
+.tabbar.reverse[data-type=lump] .tab.active .tab-label,
+.tabbar.reverse[data-type=lump] .tab:active .tab-label {
+  color: #18b2ed;
+  background-color: white;
+}
+/*矩形*/
+.tabbar[data-type=rect] .tab.active,
+.tabbar[data-type=rect] .tab:active {
+  color: white;
+  background-color: #18b2ed;
+  border-color: #18b2ed;
+}
+.tabbar.reverse[data-type=rect] .tab {
+  color: #ffffff;
+  background-color: #18b2ed;
+  border-color: #ffffff;
+}
+.tabbar.reverse[data-type=rect] .tab.active,
+.tabbar.reverse[data-type=rect] .tab:active {
+  color: #18b2ed;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+/*滑片形*/
+.tabbar[data-type=slide] .tab.active,
+.tabbar[data-type=slide] .tab:active {
+  color: #18b2ed;
+  background-color: #f8f8f8;
+  border-color: #18b2ed;
+}
+.tabbar.reverse[data-type=slide] .tab {
+  color: #ffffff;
+  background-color: #18b2ed;
+  border-color: #ffffff;
+}
+.tabbar.reverse[data-type=slide] .tab.active,
+.tabbar.reverse[data-type=slide] .tab:active {
+  color: #18b2ed;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 /*menubar*/
 .menubar .tab {

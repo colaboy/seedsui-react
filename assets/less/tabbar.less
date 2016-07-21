@@ -1,7 +1,6 @@
 /*----------------tabbar.less(start)--------------*/
 /*tabbar|menubar*/
 .tabbar,.menubar{
-	/* display:-webkit-box; */
 	display:block;
 	position:relative;
 	margin:0 auto;
@@ -11,8 +10,6 @@
     white-space:nowrap;
 }
 .tab{
-	/* -webkit-box-flex:1;
-	-webkit-box-orient:horizontal; */
 	display:table-cell;
 	width:1%;
 	padding:0 12px;
@@ -41,8 +38,6 @@
 }
 /*menubar*/
 .menubar .tab{
-	/* -webkit-box-flex:1;
-	-webkit-box-orient:vertical; */
 	border-width:1px 0 0 0;
 }
 .menubar .tab .icon{
@@ -79,12 +74,12 @@
 	line-height:28px;
 	border-width:1px 1px 1px 0;
 }
-.tabbar[data-type=rect] .tab:first-child{
+.tabbar[data-type=rect] .tab:nth-of-type(1){
 	border-top-left-radius: 16px;
 	border-bottom-left-radius: 16px;
 	border-left-width:1px;
 }
-.tabbar[data-type=rect] .tab:last-child{
+.tabbar[data-type=rect] .tab:nth-last-of-type(1){
 	border-top-right-radius: 16px;
 	border-bottom-right-radius: 16px;
 }

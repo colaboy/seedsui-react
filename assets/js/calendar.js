@@ -1,18 +1,19 @@
 //Calendar
 (function(window,document,undefined){
 	
-	window.Calen=function(container,params){
+	window.Calendar=function(container,params){
 		/*================
 		Model
 		================*/
 		var defaults={
 			"viewType":"month",//值为month|week
-			"activeDate":new Date(),
+			"defaultActiveDate":new Date(),
+			"activeDate":null,
 			"threshold":"50",
 			"duration":"300",
 			"wrapperHeight":"300",
 			"dayHeight":"50",
-			"isYTouch":true,
+			"isYTouch":true,//是否允许上下滑动
 			//DOM
 			"calendarClass":"calendar",
 
@@ -54,10 +55,22 @@
 		}
 		var s=this;
 		s.params=params;
+		//禁止修改默认值
+		Object.defineProperty(s.params,"defaultActiveDate",{
+			enumerable:true,
+			configurable:true,
+			writable:false
+		})
+		
+		//今天和选中天
+		s.today=new Date(),s.activeDate=null;
 		//日历工具箱
-		s.calendarUtil=new CalendarUtil(s.params.activeDate);
-		s.today=new Date();
-		s.activeDate;
+		if(s.params.activeDate){//如果有选中天，则初始化为选中天
+			s.calendarUtil=new CalendarUtil(s.params.activeDate);
+			s.activeDate=s.params.activeDate;
+		}else{//否则，则初始化为默认天
+			s.calendarUtil=new CalendarUtil(s.params.defaultActiveDate);
+		}
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		s.container.width=s.container.clientWidth;
@@ -344,14 +357,12 @@
 				//class-todayClass
 				if(s.isToday(s.data[i]))s.days[i].classList.add(s.params.todayClass);
 				//class-activeClass
-				if(i==activeIndex)s.days[i].classList.add(s.params.activeClass);
+				if(i==activeIndex && s.activeDate)s.days[i].classList.add(s.params.activeClass);
 			}
 			s.updateContainerSize();
+			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
 			//Callback onChange
-			if(s.params.onChange){
-				s.activeDate=s.calendarUtil.activeDate;
-				s.params.onChange(s);
-			}
+			if(s.params.onChange)s.params.onChange(s);
 		}
 		s.draw();
 		s.activeDay=function(target){
@@ -359,7 +370,8 @@
 				s.days[i].classList.remove(s.params.activeClass);
 			}
 			//选中日期
-			s.calendarUtil.setActiveDate(s.data[target.index]);
+			s.activeDate=s.data[target.index];
+			s.calendarUtil.setActiveDate(s.activeDate);
 			//重新绘制
 			s.draw();
 
@@ -375,6 +387,13 @@
         s.showToday=function(){
         	s.calendarUtil.setActiveDate(s.today);
         	s.draw();
+        }
+        s.reset=function(){
+        	//选中日期
+			s.activeDate=s.params.activeDate;
+			s.calendarUtil.setActiveDate(s.params.defaultActiveDate);
+			//重新绘制
+			s.draw();
         }
 		/*================
 		Control
@@ -487,7 +506,7 @@
 			dayMilliSecound = 24 * 60 * 60 * 1000;
 		var s=this;
 		//选中日期
-		s.activeDate=activeDate?activeDate:new Date();
+		s.activeDate=activeDate?new Date(activeDate):new Date();
 		//周视图
 		s.week=[],s.prevWeek=[],s.nextWeek=[];
 		s.createWeeks=function(){

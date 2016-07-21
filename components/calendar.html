@@ -22,12 +22,13 @@
 		<a class="button block radius8 margin8 bg-1" id="ID-Month">月</a>
 		<a class="button block radius8 margin8 bg-2" id="ID-Week">周</a>
 		<a class="button block radius8 margin8 bg-3" id="ID-Today">今天</a>
+        <a class="button block radius8 margin8 bg-4" id="ID-Reset">重置</a>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		var calendar=new Calen("#ID-Calendar",{
+		var calendar=new Calendar("#ID-Calendar",{
             activeDate:new Date("2016-7-22"),
             prevHTML:'<i class="icon-arrowleft"></i>',
             nextHTML:'<i class="icon-arrowright"></i>',
@@ -38,6 +39,7 @@
         var btnMonth=document.getElementById("ID-Month");
         var btnWeek=document.getElementById("ID-Week");
         var btnToday=document.getElementById("ID-Today");
+        var btnReset=document.getElementById("ID-Reset");
         btnMonth.onclick=function(){
             calendar.showMonth();
         }
@@ -46,6 +48,9 @@
         }
         btnToday.onclick=function(){
             calendar.showToday();
+        }
+        btnReset.onclick=function(){
+            calendar.reset();
         }
 		//定义exmobi返回
 		function back() {
