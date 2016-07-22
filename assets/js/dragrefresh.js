@@ -19,6 +19,8 @@
 			onRefreshStart:function(Dragrefresh)
 			onRefreshEnd:function(Dragrefresh)
 			onRefreshTimeout:function(Dragrefresh)
+			onScroll:function(Dragrefresh)
+			onBottom:function(Dragrefresh)
 			*/
 		}
 		params=params||{};
@@ -248,6 +250,8 @@
 			}
 		}
 		s.onScroll=function(e){
+			s.target=e.target;
+			if(s.params.onScroll)s.params.onScroll(s);
 			if (this.scrollTop + this.clientHeight >= this.scrollHeight){
                 s.params.onBottom(s);
             }
