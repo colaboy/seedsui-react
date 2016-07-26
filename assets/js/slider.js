@@ -158,7 +158,7 @@
             }
             s.index=s.params.slidesPerView;
         };
-        s.destroyLoop = function () {
+        s.destoryLoop = function () {
         	s.params.loop=null;
         	var slideDuplicate=s.wrapper.querySelectorAll('.' + s.params.slideDuplicateClass);
         	for(var i=0,slideDu;slideDu=slideDuplicate[i++];){

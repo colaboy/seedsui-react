@@ -2628,6 +2628,9 @@ input[type=range]::-webkit-slider-thumb {
   border-style: solid;
   border-color: #ddd;
 }
+.switch-handle {
+  pointer-events: none;
+}
 /*关闭状态圆点*/
 .switch .switch-handle {
   position: absolute;
@@ -4155,7 +4158,6 @@ table th {
 .tree-ticon {
   font-size: 16px;
 }
-.tree-ticon::before,
 .tree-ricon {
   font-size: 24px;
 }
@@ -4482,11 +4484,11 @@ ul.weather-otherday li {
   overflow: hidden;
 }
 .calendar-wrapper-y {
-  width: 300%;
   height: 300px;
   -webkit-transition-property: -webkit-transform;
 }
 .calendar-wrapper-x {
+  width: 300%;
   -webkit-transition-property: -webkit-transform;
 }
 .calendar-wrapper-x:after {

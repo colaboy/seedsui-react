@@ -114,7 +114,21 @@
 				s.spinner();
 			}, s.params.duration);*/
 		}
-
+		//销毁对象
+		s.destoryTop=function(){
+			s.container.removeChild(s.topContainer);
+		}
+		s.destoryBottom=function(){
+			s.container.removeChild(s.bottomContainer);
+			s.params.onBottom==null;
+		}
+		s.destory=function(){
+			s.destoryTop();
+			s.destoryBottom();
+			//销毁事件
+			s.touchDetach();
+            s.detach();
+		}
 		//Callback 刷新中
 		s.refresh=function(){
 			s.show();
@@ -140,14 +154,14 @@
 				s.params.onRefreshEnd(s);
 			}
 			//重新绑定事件
-			if(s.isAttached==false)s.attach();
+			if(s.isAttached==false)s.touchAttach();
 		}
 		//Callback 刷新超时
 		s.refreshTimeout=function(){
 			s.hide();
 			s.params.onRefreshTimeout(s);
 			//重新绑定事件
-			if(s.isAttached==false)s.attach();
+			if(s.isAttached==false)s.touchAttach();
 		};
 
 		/*==================
@@ -155,7 +169,7 @@
 		  ==================*/
 		s.isAttached=true;
 		//结束时需要取消绑定的事件
-		s.events=function(detach){
+		s.touchEvents=function(detach){
 			var touchTarget=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
 			touchTarget[action]("touchstart",s.onTouchStart,false);
@@ -164,7 +178,7 @@
 			touchTarget[action]("touchcancel",s.onTouchEnd,false);
 		}
 		//一直监听的事件
-		s.finalEvents=function(detach){
+		s.events=function(detach){
 			//头部动画事件
 			var action=detach?"removeEventListener":"addEventListener";
 			s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -172,14 +186,20 @@
 			if(s.bottomContainer)s.container[action]("scroll",s.onScroll,false);
 		}
 		//attach、detach事件
-		s.attach=function(){
+		s.touchAttach=function(){
 			s.isAttached=true;
-			s.events();
+			s.touchEvents();
 		};
-		s.detach=function(){
+		s.touchDetach=function(){
 			s.isAttached=false;
-			s.events(true);
+			s.touchEvents(true);
 		};
+		s.attach=function(){
+			s.events();
+		}
+		s.detach=function(){
+			s.events(true);
+		}
 
 		//Touch信息
         s.touches={
@@ -241,8 +261,8 @@
 			}
 			//刷新
 			s.refresh();
-			//移动事件绑定，否则会在刷新过程中重新触发下拉刷新
-			s.detach();
+			//移除滑动事件绑定，否则会在刷新过程中重新触发下拉刷新
+			s.touchDetach();
 		};
 		s.onTransitionEnd=function(e){
 			if(s.showed==true){
@@ -252,14 +272,14 @@
 		s.onScroll=function(e){
 			s.target=e.target;
 			if(s.params.onScroll)s.params.onScroll(s);
-			if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+			if (s.params.onBottom && this.scrollTop + this.clientHeight >= this.scrollHeight){
                 s.params.onBottom(s);
             }
 		}
 		//主函数
 		s.init=function(){
+			s.touchAttach();
 			s.attach();
-			s.finalEvents();
 		};
 
 		s.init();

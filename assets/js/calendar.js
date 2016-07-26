@@ -152,7 +152,8 @@
 			var wrapperX=document.createElement("div");
 			wrapperX.setAttribute("class",s.params.wrapperXClass);
 			wrapperX.width=s.container.width*3;
-			wrapperX.style.width=wrapperX.width+"px";
+			/*wrapperX.width=s.container.width*3;
+			wrapperX.style.width=wrapperX.width+"px";*/
 			for(var i=0;i<3;i++){
 				s.months[i]=document.createElement("div");
 				s.months[i].setAttribute("class",s.params.monthClass);
@@ -241,7 +242,7 @@
         	s.touches.posX=-s.container.width;
         	s.wrapperX.style.WebkitTransform="translateX("+s.touches.posX+"px)";
         }
-        s.updateContainerSize=function(){
+        s.updateContainerHeight=function(){//更新高度
         	if(s.params.viewType==="month"){//展开
         		s.touches.h=s.params.wrapperHeight;
         	}else if(s.params.viewType==="week"){//收缩
@@ -250,9 +251,23 @@
         	s.wrapper.style.height=s.touches.h+'px';
         	s.wrapperY.style.WebkitTransform="translateY(-"+s.touches.posY+"px)";
         }
+        s.updateContainerWidth=function(){//更新宽度
+        	s.container.width=s.container.clientWidth;
+        	s.wrapperX.width=s.wrapperX.clientWidth;
+        	/*s.wrapperX.width=s.container.width*3;
+			s.wrapperX.style.width=s.wrapperX.width.width+"px";*/
+        	for(var i=0;i<3;i++){
+				s.months[i].style.width=s.container.width+"px";
+			}
+        }
+        s.updateContainerSize=function(){
+        	s.updateContainerHeight();
+        	s.updateContainerWidth();
+        	s.updateTranslateX();
+        }
         s.updateClasses=function(){
         	//更新容器尺寸
-        	s.updateContainerSize();
+        	s.updateContainerHeight();
         	//位置还原
         	s.updateTranslateX();
         }
@@ -359,7 +374,7 @@
 				//class-activeClass
 				if(i==activeIndex && s.activeDate)s.days[i].classList.add(s.params.activeClass);
 			}
-			s.updateContainerSize();
+			s.updateContainerHeight();
 			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
 			//Callback onChange
 			if(s.params.onChange)s.params.onChange(s);

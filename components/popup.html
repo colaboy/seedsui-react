@@ -181,7 +181,10 @@
 		//middle
 		var midDialog=new Dialog("#middleDiv",{
 			position:"middle",
-			onClick:function(e){console.log(e.target)}
+			onClick:function(e){console.log(e.target)},
+			onShowed:function(e){
+				alert(1);
+			},
 		});
 
 		document.getElementById("middleBtn").onclick=function(){

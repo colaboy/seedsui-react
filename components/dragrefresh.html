@@ -13,6 +13,8 @@
         <div class="titlebar">
         	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1>下拉刷新</h1>
+            <a class="titlebar-button" onclick="attach()">绑定</a>
+            <a class="titlebar-button" onclick="detach()">注销</a>
         </div>
     </header>
     <article class="scrollbox">
@@ -31,8 +33,9 @@
                 document.getElementById("list").appendChild(elLI);
             }
         }
+        var drag;
         function initDrag(){
-            var drag=new Dragrefresh("article",{
+            drag=new Dragrefresh("article",{
                 "refreshThreshold":130,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
@@ -56,6 +59,17 @@
                     }, 5000);
                 }
             });
+        }
+        function destory(){
+            drag.destory();
+        }
+        function detach(){
+            drag.touchDetach();
+            drag.detach();
+        }
+        function attach(){
+            drag.touchAttach();
+            drag.attach();
         }
         window.addEventListener("load",function(){
             initData();

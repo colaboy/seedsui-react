@@ -5,9 +5,9 @@ window.Tree=function(container,params){
       Model
       ===========================*/
     var defaults={
-        "addButton":"[data-click=add]",
         "removeButton":"[data-click=remove]",
         "selectedContainer":null,
+        "addButtonClass":"tree-btnadd",
         "optionClass":"mark-grayscale",
         "extandClass":"extand",
         "collapseClass":"collapse",
@@ -84,14 +84,14 @@ window.Tree=function(container,params){
     //显示添加按钮
     s.showAddBtn=function(id){
         var node=s.getTreeNodeById(id);
-        var addBtns=[].slice.call(node.parentNode.querySelectorAll(s.params.addButton));
+        var addBtns=[].slice.call(node.parentNode.querySelectorAll("."+s.params.addButtonClass));
         addBtns.forEach(function(n,i,a){
             n.style.display="block";
         })
     }
     //隐藏添加按钮
     s.hideAddBtn=function(id){
-        var addBtns=[].slice.call(node.parentNode.querySelectorAll(s.params.addButton));
+        var addBtns=[].slice.call(node.parentNode.querySelectorAll("."+s.params.addButtonClass));
         addBtns.forEach(function(n,i,a){
             n.style.display="none";
         })
@@ -195,7 +195,8 @@ window.Tree=function(container,params){
         }
 
         //点击添加
-        if(s.target.getAttribute(s.addButtonKey)==s.addButtonVal){
+        //if(s.target.getAttribute(s.addButtonKey)==s.addButtonVal){
+        if(s.target.classList.contains(s.addButtonClass)){
             s.onClickAddBtn(s.targetLi);
             //Callback onTap
             if(s.params.onTap)s.params.onTap(s);
@@ -219,7 +220,7 @@ window.Tree=function(container,params){
         //选中的节点
         var activeList=elLists[0];
         //当前及以下的添加按钮
-        var addBtns=elLi.querySelectorAll(s.params.addButton);
+        var addBtns=elLi.querySelectorAll("."+s.params.addButtonClass);
         for(var i=0;i<elLists.length;i++){
             var id=elLists[i].getAttribute(s.params.dataId);
             //隐藏添加按钮
