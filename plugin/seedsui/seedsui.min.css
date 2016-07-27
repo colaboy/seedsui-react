@@ -4161,12 +4161,6 @@ table th {
 .tree-ricon {
   font-size: 24px;
 }
-/*一行*/
-.tree-line {
-  position: relative;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-}
 /*标题*/
 .tree-title {
   padding: 15px 0 15px 8px;
@@ -4202,8 +4196,18 @@ table th {
   -webkit-justify-content: center;
   -webkit-align-items: center;
 }
+/*===========作用行===========*/
+.tree-line {
+  position: relative;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+}
 .tree-line.extand + ul {
   display: block;
+}
+.tree-line.active .tree-btnadd,
+.tree-line.active + ul .tree-btnadd {
+  display: none;
 }
 .tree-line.extand > .tree-licon.icon-arrowright:before {
   font-family: "iconfont";
@@ -4220,6 +4224,31 @@ table th {
   right: 12px;
   top: 50%;
   -webkit-transform: translateY(-50%);
+}
+/*===========树bar===========*/
+.tree-bar {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 5px 0;
+}
+.tree-bar-button {
+  padding: 4px 8px;
+  margin: 0 0 0 8px;
+  display: inline-block;
+  font-size: 13px;
+}
+.tree-bar-button:last-child {
+  margin: 0 8px;
+}
+/*删除图标*/
+.tree-btnremove {
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.tree-btnremove:before {
+  font-family: 'iconfont';
+  content: "\e944";
 }
 /*----------------tree.less(end)--------------*/
 /*----------------validate.less(start)--------------*/
@@ -5949,11 +5978,6 @@ table {
 }
 /*---------------table.less(end)---------------*/
 /*---------------tree.less(start)---------------*/
-table {
-  color: #888888;
-  border-color: #e6e6e6;
-}
-/*---------------tree.less(end)---------------*/
 .tree-box {
   background-color: #ffffff;
 }
@@ -5981,6 +6005,18 @@ table {
 .tree-line.active + ul .tree-ticon {
   background-color: #18b2ed;
 }
+/*树bar*/
+.tree-bar {
+  background-color: #e6e6e6;
+}
+.tree-bar-button {
+  background-color: #ffffff;
+}
+/*删除图标*/
+.tree-btnremove {
+  color: #aaaaaa;
+}
+/*---------------tree.less(end)---------------*/
 /*----------------border.less(start)--------------*/
 .underline,
 .bordered {

@@ -799,11 +799,6 @@ table{
 /*---------------table.less(end)---------------*/
 
 /*---------------tree.less(start)---------------*/
-table{
-	color:@table-color;
-	border-color:@border;
-}
-/*---------------tree.less(end)---------------*/
 .tree-box{
 	background-color:@white;
 }
@@ -827,6 +822,19 @@ table{
 .tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
 	background-color:@primary-bg;
 }
+/*树bar*/
+.tree-bar{
+    background-color:@border;
+}
+.tree-bar-button{
+    background-color:@white;
+}
+/*删除图标*/
+.tree-btnremove{
+    color:@placeholder-color;
+}
+/*---------------tree.less(end)---------------*/
+
 /*----------------border.less(start)--------------*/
 .underline,.bordered{
 	border-color:@border;
