@@ -20,7 +20,7 @@
         </div>
     </header>
     <article>
-        <div class="tree-bar" style="display:none;" id="selected-box"></div>
+        <div class="tree-bar" style="display:none;" id="ID-Treebar"></div>
         <!-- tree -->
         <div class="tree-box">
             <ul class="tree" id="tree">
@@ -143,7 +143,7 @@
 
         //树结构
         tr=new Tree("#tree",{
-            "selectedContainer":"#selected-box",
+            "selectedContainer":"#ID-Treebar",
             "onTap":function(e){
                 console.log("您点击了：");
                 console.log(e.target);
