@@ -90,7 +90,7 @@
         s.hideMask=function(){
         	s.mask.style.opacity="0";
         }
-        s.destoryMask=function(){
+        s.destroyMask=function(){
         	s.container.removeChild(s.mask);
         }
         s.showAlert=function(){
@@ -100,7 +100,7 @@
         s.hideAlert=function(){
         	s.alert.style.opacity="0";
         }
-        s.destoryAlert=function(){
+        s.destroyAlert=function(){
         	s.container.removeChild(s.alert);
         }
 		s.isHid=true;
@@ -122,13 +122,13 @@
 			//禁用滚动条
             document.body.style.overflow="hidden";
 		};
-		s.destory=function(){
+		s.destroy=function(){
 			//移动事件监听
 			s.detach();
 			//移除遮罩
-			s.destoryMask();
+			s.destroyMask();
 			//移除弹出框
-			s.destoryAlert();
+			s.destroyAlert();
 			s=null;
 		};
 		//动态设置

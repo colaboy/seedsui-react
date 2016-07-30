@@ -10,11 +10,16 @@
 			defaultValue:"----",
 			provinceClass:"",
 			cityClass:"",
-			areaClass:""
+			areaClass:"",
+
+			isClickMaskHide:true,
 
 			/*callbacks
-			onClickDone:function(SpDate)
-			onClickCancel:function(SpDate)
+			onClickDone:function(Scrollpicker)
+			onClickCancel:function(Scrollpicker)
+			onTransitionEnd:function(Scrollpicker)
+            onShowed(Scrollpicker)//显示动画结束后回调
+            onHid(Scrollpicker)//隐藏动画结束后回调
 			*/
 		}
 		params=params||{};
@@ -72,6 +77,7 @@
 	    ==================*/
 		//初始化滚动控件
 		var citySp=new Scrollpicker({
+			"isClickMaskHide":s.params.isClickMaskHide,
 			"isCascade":true,//是否开启级联更新
 			"onClickDone":function(e){
 				e.activeText=s.getActiveText(e.activeOptions);
@@ -82,11 +88,6 @@
 	    		e.activeText=s.getActiveText(e.activeOptions);
 	            if(s.params.onClickCancel)s.params.onClickCancel(e);
 	            else e.hide();
-	            //还原为初始状态
-	            //e.updateSlots()
-	            //清空数据再注入
-	            /*e.reset();
-	            addSlot();*/
 	    	},
 			"onScrollEnd":function(e){
 				renderAfter(e.activeSlotIndex);
@@ -109,6 +110,15 @@
 		    			renderAfter(nextSlotIndex);
 		    		}
 				}
+	    	},
+	    	"onTransitionEnd":function(e){
+	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(e);
+	    	},
+	    	"onShowed":function(e){
+	    		if(s.params.onShowed)s.params.onShowed(e);
+	    	},
+	    	"onHid":function(e){
+	    		if(s.params.onHid)s.params.onHid(e);
 	    	}
 		});
 		function addSlot(){

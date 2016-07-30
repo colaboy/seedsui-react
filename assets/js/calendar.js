@@ -228,19 +228,19 @@
 		================*/
         //容器操作类
         s.addDuration=function(){
-        	s.wrapper.style.WebkitTransitionDuration=s.params.duration+"ms";
-        	s.wrapperY.style.WebkitTransitionDuration=s.params.duration+"ms";
-        	s.wrapperX.style.WebkitTransitionDuration=s.params.duration+"ms";
+        	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
+        	s.wrapperY.style.webkitTransitionDuration=s.params.duration+"ms";
+        	s.wrapperX.style.webkitTransitionDuration=s.params.duration+"ms";
         }
         s.removeDuration=function(){
-        	s.wrapper.style.WebkitTransitionDuration="0ms";
-        	s.wrapperY.style.WebkitTransitionDuration="0ms";
-        	s.wrapperX.style.WebkitTransitionDuration="0ms";
+        	s.wrapper.style.webkitTransitionDuration="0ms";
+        	s.wrapperY.style.webkitTransitionDuration="0ms";
+        	s.wrapperX.style.webkitTransitionDuration="0ms";
         }
         s.updateTranslateX=function(){
         	s.removeDuration();
         	s.touches.posX=-s.container.width;
-        	s.wrapperX.style.WebkitTransform="translateX("+s.touches.posX+"px)";
+        	s.wrapperX.style.webkitTransform="translateX("+s.touches.posX+"px)";
         }
         s.updateContainerHeight=function(){//更新高度
         	if(s.params.viewType==="month"){//展开
@@ -249,7 +249,7 @@
         		s.touches.h=s.params.dayHeight;
         	}
         	s.wrapper.style.height=s.touches.h+'px';
-        	s.wrapperY.style.WebkitTransform="translateY(-"+s.touches.posY+"px)";
+        	s.wrapperY.style.webkitTransform="translateY(-"+s.touches.posY+"px)";
         }
         s.updateContainerWidth=function(){//更新宽度
         	s.container.width=s.container.clientWidth;
@@ -276,13 +276,13 @@
         s.slideXTo=function(index){
         	s.touches.posX=-s.container.width*index;
         	s.addDuration();
-        	s.wrapperX.style.WebkitTransform='translateX(' + s.touches.posX + 'px)';
+        	s.wrapperX.style.webkitTransform='translateX(' + s.touches.posX + 'px)';
         	//刷新数据
         	if(index===0){//上一页
         		if(s.params.viewType==="month"){
         			s.calendarUtil.activePrevMonth();
 				}else if(s.params.viewType==="week"){
-					s.wrapperY.style.WebkitTransitionDuration="0ms";
+					s.wrapperY.style.webkitTransitionDuration="0ms";
 					s.calendarUtil.activePrevWeek();
 				}
 				s.draw();
@@ -290,7 +290,7 @@
         		if(s.params.viewType==="month"){
         			s.calendarUtil.activeNextMonth();
 				}else if(s.params.viewType==="week"){
-					s.wrapperY.style.WebkitTransitionDuration="0ms";
+					s.wrapperY.style.webkitTransitionDuration="0ms";
 					s.calendarUtil.activeNextWeek();
 				}
 				s.draw();
@@ -301,7 +301,7 @@
         	s.wrapper.style.height=heightY+'px';
         	var translateY=s.params.wrapperHeight-heightY;
         	if(translateY<=s.touches.maxPosY){
-        		s.wrapperY.style.WebkitTransform="translateY(-"+translateY+"px)";
+        		s.wrapperY.style.webkitTransform="translateY(-"+translateY+"px)";
         	}
         }
         s.slideYTo=function(index){
@@ -468,7 +468,7 @@
 				var moveX=s.touches.posX-s.touches.diffX;
 				if(moveX<0 && Math.abs(moveX-s.container.width)<s.wrapperX.width){//判断是否是边缘
 					s.touches.horizontal = moveX < s.touches.posX ? 1 : -1;//设置方向(左右)
-					s.wrapperX.style.WebkitTransform = 'translateX(' + moveX + 'px)';
+					s.wrapperX.style.webkitTransform = 'translateX(' + moveX + 'px)';
 				}
 			}else if (s.touches.direction === -1 && s.params.isYTouch===true) {//上下滑动
 				var heightY=s.touches.h-s.touches.diffY;

@@ -145,7 +145,7 @@
         s.hideMask=function(){
             s.mask.style.opacity="0";
         }
-        s.destoryMask=function(){
+        s.destroyMask=function(){
             s.container.removeChild(s.mask);
         }
         s.showDialog=function(){
@@ -159,7 +159,7 @@
                 s.dialog.style[ani]=s.dialog.hideAnimation[ani];
             }
         }
-        s.destoryDialog=function(){
+        s.destroyDialog=function(){
             s.container.removeChild(s.dialog);
         }
         s.isHid=true;
@@ -179,9 +179,9 @@
             //显示滚动条
             document.body.style.overflow="auto";
         }
-        s.destory=function(){
-            s.destoryMask();
-            s.destoryDialog();
+        s.destroy=function(){
+            s.destroyMask();
+            s.destroyDialog();
         }
         //设置位置
         s.setPosition=function(pos){

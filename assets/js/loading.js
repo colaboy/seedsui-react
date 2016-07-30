@@ -68,7 +68,7 @@
         s.hideMask=function(){
         	s.mask.style.opacity="0";
         }
-        s.destoryMask=function(){
+        s.destroyMask=function(){
         	s.container.removeChild(s.mask);
         }
         s.showLoading=function(){
@@ -78,7 +78,7 @@
         s.hideLoading=function(){
         	s.loadingBox.style.opacity="0";
         }
-        s.destoryLoading=function(){
+        s.destroyLoading=function(){
         	s.container.removeChild(s.loadingBox);
         }
 		s.isHid=true;
@@ -96,13 +96,13 @@
 			//显示弹出框
 			s.showLoading();
 		};
-		s.destory=function(){
+		s.destroy=function(){
 			//移动事件监听
 			s.detach();
 			//移除遮罩
-			s.destoryMask();
+			s.destroyMask();
 			//移除弹出框
-			s.destoryLoading();
+			s.destroyLoading();
 			s=null;
 		};
 		//动态设置

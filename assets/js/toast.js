@@ -54,7 +54,7 @@
 			s.isHid=false;
 			s.toastBox.style.webkitTransform='translate3d(0,0,0)';
 		};
-		s.destory=function(){
+		s.destroy=function(){
 			s.detach();
 			s.container.removeChild(s.toastBox);
 		};

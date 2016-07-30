@@ -48,8 +48,8 @@
         }
         s.update();
         s.play=function(){
-            if(!isNaN(s.params.duration))s.clock.style.WebkitTransitionDuration=s.params.duration+"ms";
-            if(!isNaN(s.params.delay))s.clock.style.WebkitTransitionDelay=s.params.delay+"ms";
+            if(!isNaN(s.params.duration))s.clock.style.webkitTransitionDuration=s.params.duration+"ms";
+            if(!isNaN(s.params.delay))s.clock.style.webkitTransitionDelay=s.params.delay+"ms";
             s.hour.style.webkitTransform="rotate("+s.hourDeg+"deg)";
             s.minute.style.webkitTransform="rotate("+s.minuteDeg+"deg)";
         }

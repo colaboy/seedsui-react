@@ -10,7 +10,8 @@
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		//s.container=document.querySelector(container);
 		s.formElements=[];//表单元素
-		s.getFormElements=function(){
+		s.updateFormElements=function(){
+			s.formElements=[];
 			//获取有效的表单元素
 			for(var i=0;i<s.container.elements.length;i++){
 				var field=s.container.elements[i];
@@ -32,7 +33,7 @@
 				s.formElements.push(field);
 			}
 		};
-		s.getFormElements();
+		s.updateFormElements();
 		//添加formElements对象
 		s.pushElement=function(el){
 			s.formElements.push(el);

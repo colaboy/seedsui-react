@@ -18,11 +18,14 @@
 			"hourClass":null,
 			"minuteClass":null,
 
-			"yearDefault":null,
-			"monthDefault":null,
-			"dayDefault":null,
-			"hourDefault":null,
-			"minuteDefault":null,
+			"defaultYear":null,
+			"defaultMonth":null,
+			"defaultDay":null,
+			"defaultHour":null,
+			"defaultMinute":null,
+
+			"minYear":1950,
+			"maxYear":2050,
 
 			"yyUnit":"年",
 			"MMUnit":"月",
@@ -30,9 +33,14 @@
 			"hhUnit":"时",
 			"mmUnit":"分",
 
+			isClickMaskHide:true,
+
 			/*callbacks
-			onClickDone:function(SpDate)
-			onClickCancel:function(SpDate)
+			onClickDone:function(Scrollpicker)
+			onClickCancel:function(Scrollpicker)
+			onTransitionEnd:function(Scrollpicker)
+            onShowed(Scrollpicker)//显示动画结束后回调
+            onHid(Scrollpicker)//隐藏动画结束后回调
 			*/
 		}
 		params=params||{};
@@ -48,36 +56,39 @@
 		s.params = params;
 
 		//Date
-	    s.date = new Date();
-	    s.currents={},s.defaults={},s.classes={};
-	    s.updateDatetime=function(){
-	    	//当前值
-	    	s.currents.year=s.date.year();
-		    s.currents.month=s.date.month();
-		    s.currents.day=s.date.day();
-		    s.currents.hour=s.date.hour();
-		    s.currents.minute=s.date.minute();
+	    s.date;
+	    s.updateDetault=function(){
+	    	s.date = new Date();
 		    //默认值
-		    s.defaults.year=s.currents.year+s.params.yyUnit;
-		    s.defaults.month=s.currents.month+s.params.MMUnit;
-		    s.defaults.day=s.currents.day+s.params.ddUnit;
-		    s.defaults.hour=s.currents.hour+s.params.hhUnit;
-		    s.defaults.minute=s.currents.minute+s.params.mmUnit;
-		    //样式值
-		    s.classes.year=s.params.yearClass||"";
-		    s.classes.month=s.params.monthClass||"";
-		    s.classes.day=s.params.dayClass||"";
-		    s.classes.hour=s.params.hourClass||"";
-		    s.classes.minute=s.params.minuteClass||"";
+		    if(!s.params.defaultYear)s.params.defaultYear=s.date.getFullYear();
+		    if(!s.params.defaultMonth)s.params.defaultMonth=s.date.getMonth()+1;
+		    if(!s.params.defaultDay)s.params.defaultDay=s.date.getDate();
+		    if(!s.params.defaultHour)s.params.defaultHour=s.date.getHours();
+		    if(!s.params.defaultMinute)s.params.defaultMinute=s.date.getMinutes();
 	    }
-	    s.updateDatetime();
-
+	    s.updateDetault();
+	    //设置默认值
+	    s.setDefaultYear=function(year){
+	    	s.params.defaultYear=year;
+	    }
+	    s.setDefaultMonth=function(monthKey){
+	    	s.params.defaultMonth=monthKey;
+	    }
+	    s.setDefaultDay=function(dayKey){
+	    	s.params.defaultDay=dayKey;
+	    }
+	    s.setDefaultHour=function(hourKey){
+	    	s.params.defaultHour=hourKey;
+	    }
+	    s.setDefaultMinute=function(minuteKey){
+	    	s.params.defaultMinute=minuteKey;
+	    }
 	    //年
 	    s.years=[];
 	    if(s.params.yearsData){
 	    	s.years=s.params.yearsData;
 	    }else{
-		    for(var y=s.currents.year-5;y<=s.currents.year+5;y++){
+		    for(var y=s.params.minYear;y<=s.params.maxYear;y++){
 		    	s.years.push({"key":y,"value":y+s.params.yyUnit,"flag":"date"});
 		    }
 	    }
@@ -90,13 +101,13 @@
 		    	s.months.push({"key":m,"value":m+s.params.MMUnit,"flag":"date"});
 		    }
 	    }
-	    
 	    //日
 	    s.days=[];
+	    var currentMaxday=new Date(s.date.getFullYear(),s.date.getMonth()+1,0).getDate();
 	    if(s.params.daysData){
 	    	s.days=s.params.daysData;
 	    }else{
-	    	for(var d=1;d<=s.date.days();d++){
+	    	for(var d=1;d<=currentMaxday;d++){
 		    	s.days.push({"key":d,"value":d+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
@@ -132,7 +143,7 @@
 	    Method
 	    ==================*/
 	    s.show=function(){
-	    	datetimeSp.show();
+	    	s.scrollpicker.show();
 	    }
 	    s.getActiveText=function(activeData){
 	    	var activeText="";
@@ -172,7 +183,8 @@
 	    Control
 	    ==================*/
 	    //滑动面板初始化
-	    var datetimeSp=new Scrollpicker({
+	    s.scrollpicker=new Scrollpicker({
+	    	"isClickMaskHide":s.params.isClickMaskHide,
 	    	"onClickDone":function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);
 	    		if(s.params.onClickDone)s.params.onClickDone(e);
@@ -191,34 +203,43 @@
 	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && e.activeSlotIndex!=2){
 	    			var year=e.activeOptions[0]["key"];
 					var month=e.activeOptions[1]["key"];
-					var maxDay=s.date.days(year,month);
+					var maxDay=new Date(year,month,0).getDate();
 					replaceDays(maxDay);//更新总天数
 					renderDay();//渲染天
 	    		}
+	    	},
+	    	"onTransitionEnd":function(e){
+	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(e);
+	    	},
+	    	"onShowed":function(e){
+	    		if(s.params.onShowed)s.params.onShowed(e);
+	    	},
+	    	"onHid":function(e){
+	    		if(s.params.onHid)s.params.onHid(e);
 	    	}
 	    });
 	    function renderDay(){
-			datetimeSp.mergeSlot(2,s.days);//修改第三项
+			s.scrollpicker.mergeSlot(2,s.days);//修改第三项
 		}
 
 	    //添加数据
 	    function addMonthSlot(){
-	    	datetimeSp.addSlot(s.years,s.classes.year,s.defaults.year);
-	        datetimeSp.addSlot(s.months,s.classes.month,s.defaults.month);
+	    	s.scrollpicker.addSlot(s.years,s.params.yearClass,'',s.params.defaultYear);
+	        s.scrollpicker.addSlot(s.months,s.params.monthClass,'',s.params.defaultMonth);
 	    }
 	    function addDateSlot(){
 	    	addMonthSlot();
-	        datetimeSp.addSlot(s.days,s.classes.day,s.defaults.day);
+	        s.scrollpicker.addSlot(s.days,s.params.dayClass,'',s.params.defaultDay);
 	    }
 	    function addTimeSlot(){
-	    	datetimeSp.addSlot(s.hours,s.classes.hour,s.defaults.hour);
-	        datetimeSp.addSlot(s.minutes,s.classes.minute,s.defaults.minute);
+	    	s.scrollpicker.addSlot(s.hours,s.params.hourClass,'',s.params.defaultHour);
+	        s.scrollpicker.addSlot(s.minutes,s.params.minuteClass,'',s.params.defaultMinute);
 	    }
 	    function addDateTime(){
 	    	addDateSlot();
 	    	addTimeSlot()
 	    }
-	    function addSlot(){
+	    s.addSlot=function(){
 	        switch(s.params.viewType){
 	        	case "date":addDateSlot();break;
 	        	case "month":addMonthSlot();break;
@@ -226,6 +247,13 @@
 	        	case "datetime":addDateTime();break;
 	        }
 	    }
-	    addSlot();
+	    s.update=function(){
+	    	s.scrollpicker.reset();
+	    	s.addSlot();
+	    }
+	    s.init=function(){
+	    	s.addSlot();
+	    }
+	    s.init();
 	}
 })(window,document,undefined);

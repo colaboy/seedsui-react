@@ -19,10 +19,13 @@
 	</header>
 	<article>
         <div class="inputbox margin8">
-            <input type="text" class="text-center" placeholder="请选择日期" readonly="readonly" id="time1"/>
+            <input type="text" class="text-center SID-DateTime" placeholder="请选择日期时间" readonly="readonly"/>
         </div>
         <div class="inputbox margin8">
-            <input type="text" class="text-center" placeholder="请选择时间" readonly="readonly" id="time2"/>
+            <input type="text" class="text-center SID-Date" placeholder="请选择日期" readonly="readonly"/>
+        </div>
+        <div class="inputbox margin8">
+            <input type="text" class="text-center SID-Time" placeholder="请选择时间" readonly="readonly"/>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -30,28 +33,193 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    var spDate=new SpDate({
-        "viewType":"date",
-    });
-    document.getElementById("time1").onclick=function(){
-        var input=this;
-        spDate.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        spDate.show();
+    var views={
+        /*=========================
+          Model
+          ===========================*/
+        initialize:function(){
+            //Data
+            
+            //DOM
+            this.textDate,this.textDateClass="SID-Date",
+            this.textTime,this.textTimeClass="SID-Time",
+            this.textDateTime,this.textDateTimeClass="SID-DateTime";
+            
+            //Plugin
+            this.spDate,this.spTime,this.spDateTime;
+        },
+        /*=========================
+          Method
+          ===========================*/
+        _newSpDate:function(defaultYMD){
+            var self=this;
+            this.spDate=new SpDate({
+                "viewType":"date",
+                "yearClass":"text-center",
+                "monthClass":"text-center",
+                "dayClass":"text-center",
+                "isClickMaskHide":false,
+                "onClickDone":function(e){
+                    self.textDate.value=e.activeText;
+                    e.hide();
+                },
+                "onShowed":function(e){
+                    e.setIsClickMaskHide(true);
+                },
+                "onHid":function(e){
+                    e.destroy();
+                }
+            });
+            if(defaultYMD && defaultYMD.length>0){
+                this.spDate.setDefaultYear(defaultYMD[0]);
+                this.spDate.setDefaultMonth(defaultYMD[1]);
+                this.spDate.setDefaultDay(defaultYMD[2]);
+                this.spDate.update();
+            }
+        },
+        _newSpTime:function(defaultHS){
+            var self=this;
+            this.spTime=new SpDate({
+                "viewType":"time",
+                "hourClass":"text-center",
+                "minuteClass":"text-center",
+                "isClickMaskHide":false,
+                "onClickDone":function(e){
+                    self.textTime.value=e.activeText;
+                    e.hide();
+                },
+                "onShowed":function(e){
+                    e.setIsClickMaskHide(true);
+                },
+                "onHid":function(e){
+                    e.destroy();
+                }
+            });
+            if(defaultHS && defaultHS.length>0){
+                this.spTime.setDefaultHour(defaultHS[0]);
+                this.spTime.setDefaultMinute(defaultHS[1]);
+                this.spTime.update();
+            }
+        },
+        _newSpDateTime:function(defaults){
+            var self=this;
+            this.spDateTime=new SpDate({
+                "viewType":"datetime",
+                "yearClass":"text-center",
+                "monthClass":"text-center",
+                "dayClass":"text-center",
+                "hourClass":"text-center",
+                "minuteClass":"text-center",
+                "isClickMaskHide":false,
+                "onClickDone":function(e){
+                    self.textDateTime.value=e.activeText;
+                    e.hide();
+                },
+                "onShowed":function(e){
+                    e.setIsClickMaskHide(true);
+                },
+                "onHid":function(e){
+                    e.destroy();
+                }
+            });
+            if(defaults && defaults.length>0){
+                this.spDateTime.setDefaultYear(defaults[0]);
+                this.spDateTime.setDefaultMonth(defaults[1]);
+                this.spDateTime.setDefaultDay(defaults[2]);
+                this.spDateTime.setDefaultHour(defaults[3]);
+                this.spDateTime.setDefaultMinute(defaults[4]);
+                this.spDateTime.update();
+            }
+        },
+
+        /*=========================
+          Event Handler
+          ===========================*/
+        _onClickTextDate:function(e){
+            var self=this;
+            var defaultYMD=[];
+            if(this.textDate.value!=""){
+                defaultYMD=this.textDate.value.split("-");
+            }
+            this._newSpDate(defaultYMD);
+            setTimeout(function(){
+                self.spDate.show();
+            },10);
+            //self.spDate.show();
+        },
+        _onClickTextTime:function(e){
+            var self=this;
+            var defaultHS=[];
+            if(this.textTime.value!=""){
+                defaultHS=this.textTime.value.split(":");
+            }
+            this._newSpTime(defaultHS);
+            //this.spTime.show();
+            setTimeout(function(){
+                self.spTime.show();
+            },10);
+        },
+        _onClickTextDateTime:function(e){
+            var self=this;
+            var defaults=[];
+            if(this.textDateTime.value!=""){
+                var split=this.textDateTime.value.split(" ");
+                var split1=split[0].split("-");
+                var split2=split[1].split(":");
+                defaults[0]=split1[0];
+                defaults[1]=split1[1];
+                defaults[2]=split1[2];
+                defaults[3]=split2[0];
+                defaults[4]=split2[1];
+            }
+            this._newSpDateTime(defaults);
+            //this.spDateTime.show();
+            setTimeout(function(){
+                self.spDateTime.show();
+            },10);
+        },
+        
+        /*=========================
+          OnLoad
+          ===========================*/
+        _onLoad:function(){
+            var self=this;
+            //DOM
+            this.textDate=document.querySelector("."+this.textDateClass);
+            this.textTime=document.querySelector("."+this.textTimeClass);
+            this.textDateTime=document.querySelector("."+this.textDateTimeClass);
+
+            //Events
+            EventUtil.addHandler(this.textDate,"tap",function(e){
+                self._onClickTextDate(e);
+            });
+            EventUtil.addHandler(this.textTime,"tap",function(e){
+                self._onClickTextTime(e);
+            });
+            EventUtil.addHandler(this.textDateTime,"tap",function(e){
+                self._onClickTextDateTime(e);
+            });
+            /*this.textDate.onclick=function(e){
+                self._onClickTextDate(e);
+            }
+            this.textTime.onclick=function(e){
+                self._onClickTextTime(e);
+            }
+            this.textDateTime.onclick=function(e){
+                self._onClickTextDateTime(e);
+            }*/
+
+            //Plugin
+        }
     }
-    var spTime=new SpDate({
-        "viewType":"time",
-    });
-    document.getElementById("time2").onclick=function(){
-        var input=this;
-        spTime.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        spTime.show();
-    }
+
+    window.addEventListener("load",function(){
+        views._onLoad();
+    }, false);
+
+    document.addEventListener("DOMContentLoaded",function(){
+        views.initialize();
+    }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

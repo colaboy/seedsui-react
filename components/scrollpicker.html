@@ -19,7 +19,7 @@
 	</header>
 	<article>
 		<div class="inputbox margin8">
-            <input type="text" class="text-center" placeholder="滚动选择器" readonly="readonly" id="sp1"/>
+            <input type="text" class="text-center" placeholder="滚动选择器" readonly="readonly" id="ID-Sp"/>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -27,75 +27,117 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    /*=========================
-      简单两列
-      ===========================*/
-    var nums1=[
-	    {'key':'a','value':'1'},
-	    {'key':'b','value':'2'},
-	    {'key':'c','value':'3'},
-	    {'key':'d','value':'4'},
-	    {'key':'e','value':'5'},
-	    {'key':'f','value':'6'},
-	    {'key':'g','value':'7'},
-        {'key':'h','value':'8'},
-        {'key':'i','value':'9'},
-        {'key':'j','value':'10'},
-    ];
-    var nums2=[
-	    {'key':'I','value':'1'},
-	    {'key':'II','value':'2'},
-	    {'key':'III','value':'3'},
-	    {'key':'IV','value':'4'},
-	    {'key':'V','value':'5'},
-	    {'key':'VI','value':'6'},
-	    {'key':'VII','value':'7'},
-        {'key':'VIII','value':'8'},
-        {'key':'IX','value':'9'},
-        {'key':'X','value':'10'},
-    ];
-    var sp=new Scrollpicker({
-    	"onClickDone":function(e){
-    		//获得全部选中项
-    		//console.log(e.activeOptions);
-    		//打印值
-    		var activeText="";
-    		e.activeOptions.forEach(function(n,i,a){
-    			activeText+=n["value"]+",";
-    		});
-    		document.getElementById("result").innerHTML="您选中的值为："+activeText;
-    		e.hide();
-    	},
-    	"onClickCancel":function(e){
-    		e.updateSlots();
-    		e.hide();
-    	},
-    	"onScrollEnd":function(e){
-    		//获得当前选中项
-    		//console.log(e.activeOption);
-    	}
-    });
-    function addSlot(){
-	    sp.addSlot(nums1,'','5');
-	    sp.addSlot(nums2);
-	}
-	addSlot();
-	document.getElementById("sp1").onclick=function(e){
-		var input=this;
-		sp.setOnClickDone(function(e){
-            var activeText="";
-    		e.activeOptions.forEach(function(n,i,a){
-    			if(i==e.activeOptions.length-1){
-    				activeText+=n["value"];
-    			}else{
-    				activeText+=n["value"]+"-";
-    			}
-    		});
-    		input.value=activeText;
-    		e.hide();
-        });
-        sp.show();
-	}
+    var views={
+        /*=========================
+          Model
+          ===========================*/
+        initialize:function(){
+            //DOM
+            this.textSp;
+            //Data
+            this.nums1=[
+                {'key':'a','value':'1'},
+                {'key':'b','value':'2'},
+                {'key':'c','value':'3'},
+                {'key':'d','value':'4'},
+                {'key':'e','value':'5'},
+                {'key':'f','value':'6'},
+                {'key':'g','value':'7'},
+                {'key':'h','value':'8'},
+                {'key':'i','value':'9'},
+                {'key':'j','value':'10'},
+            ];
+            this.nums2=[
+                {'key':'I','value':'1'},
+                {'key':'II','value':'2'},
+                {'key':'III','value':'3'},
+                {'key':'IV','value':'4'},
+                {'key':'V','value':'5'},
+                {'key':'VI','value':'6'},
+                {'key':'VII','value':'7'},
+                {'key':'VIII','value':'8'},
+                {'key':'IX','value':'9'},
+                {'key':'X','value':'10'},
+            ];
+            //Plugin
+            this.scrollpicker;
+        },
+        /*=========================
+          Method
+          ===========================*/
+        _initScrollPicker:function(){
+            var self=this;
+            this.scrollpicker=new Scrollpicker({
+                "onClickDone":function(e){
+                    //获得全部选中项
+                    //console.log(e.activeOptions);
+                    //打印值
+                    var activeText="";
+                    e.activeOptions.forEach(function(n,i,a){
+                        if(i==e.activeOptions.length-1){
+                            activeText+=n["value"];
+                        }else{
+                            activeText+=n["value"]+"-";
+                        }
+                    });
+                    self.textSp.value=activeText;
+                    e.hide();
+                },
+                "onClickCancel":function(e){
+                    e.updateSlots();
+                    e.hide();
+                },
+                "onScrollEnd":function(e){
+                    //获得当前选中项
+                    //console.log(e.activeOption);
+                },
+                "onShowed":function(e){
+                    console.log("已显示");
+                },
+                "onHid":function(e){
+                    console.log("已隐藏");
+                },
+                "onLoad":function(e){
+                    console.log("已加载");
+                }
+            });
+        },
+        _addScrollpickerData:function(){
+            this.scrollpicker.addSlot(this.nums1,'','','d');//数据,样式,默认value，默认key
+            this.scrollpicker.addSlot(this.nums2);
+        },
+        /*=========================
+          Event Handler
+          ===========================*/
+        _onClickTextSp:function(e){
+            this.scrollpicker.show();
+        },
+        /*=========================
+          OnLoad
+          ===========================*/
+        _onLoad:function(){
+            var self=this;
+            //DOM
+            this.textSp=document.getElementById("ID-Sp");
+
+            //Plugin
+            this._initScrollPicker();
+            this._addScrollpickerData();
+
+            //Events
+            this.textSp.onclick=function(e){
+                self._onClickTextSp(e);
+            }
+        }
+    }
+
+    window.addEventListener("load",function(){
+        views._onLoad();
+    }, false);
+
+    document.addEventListener("DOMContentLoaded",function(){
+        views.initialize();
+    }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

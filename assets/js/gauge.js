@@ -75,7 +75,7 @@
 			}else{
 				s.container.className+=" bg"+s.bgLvl;
 			}
-			s.container.style.WebkitAnimationDuration=s.duration+"ms";
+			s.container.style.webkitAnimationDuration=s.duration+"ms";
 		}
 		//设置波浪
 		s.updateWave=function(){
@@ -85,7 +85,7 @@
 				waveTop=0;
 			}
 			s.wave.style.top=waveTop+"%";
-			s.wave.style.WebkitTransition="all "+s.duration+"ms";
+			s.wave.style.webkitTransition="all "+s.duration+"ms";
 		}
 		s.update=function(){
 			s.updateBg();

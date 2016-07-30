@@ -77,7 +77,7 @@
 		s.transform=function(y,deg){
 			if(!y)y=s.touches.posY;
 			if(!deg)deg=s.touches.rotateDeg;
-			s.topContainer.style.WebkitTransform='translate3d(0,' + y + 'px,0) rotate(' + deg + 'deg)';
+			s.topContainer.style.webkitTransform='translate3d(0,' + y + 'px,0) rotate(' + deg + 'deg)';
 		}
 		//旋转,10W毫秒，旋转4万6千度
 		s.spinner=function(){
@@ -115,16 +115,16 @@
 			}, s.params.duration);*/
 		}
 		//销毁对象
-		s.destoryTop=function(){
+		s.destroyTop=function(){
 			s.container.removeChild(s.topContainer);
 		}
-		s.destoryBottom=function(){
+		s.destroyBottom=function(){
 			s.container.removeChild(s.bottomContainer);
 			s.params.onBottom==null;
 		}
-		s.destory=function(){
-			s.destoryTop();
-			s.destoryBottom();
+		s.destroy=function(){
+			s.destroyTop();
+			s.destroyBottom();
 			//销毁事件
 			s.touchDetach();
             s.detach();

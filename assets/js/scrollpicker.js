@@ -6,6 +6,7 @@
           ===========================*/
         var defaults={
             container:null,
+            containerClass:"scrollpicker",
             headerClass:"scrollpicker-header",
             headerDoneClass:"scrollpicker-done",
             headerDoneText:"完成",
@@ -32,6 +33,9 @@
             onScrollStart:function(Scrollpicker)
             onScroll:function(Scrollpicker)
             onScrollEnd:function(Scrollpicker)
+            onTransitionEnd:function(Scrollpicker)
+            onShowed(Scrollpicker)//显示动画结束后回调
+            onHid(Scrollpicker)//隐藏动画结束后回调
             */
         }
         params=params||{};
@@ -51,14 +55,21 @@
         //槽元素与其值
         s.slots=[],s.slots.col=0,s.activeOptions=[],s.activeOption={};
         //是否渲染
-        s.isRendered=false;
-        /*=========================
-          View
-          ===========================*/
+        //s.isRendered=false;
+        //修改Param
+        s.setIsClickMaskHide=function(bool){
+            s.params.isClickMaskHide=bool;
+        }
+         s.setOnClickDone=function(callback){
+            s.params.onClickDone=callback;
+        }
+        s.setOnClickCancel=function(callback){
+            s.params.onClickCancel=callback;
+        }
         //新建Container
         s.createContainer=function(){
             var container=document.createElement("div")
-            container.setAttribute("class","scrollpicker");
+            container.setAttribute("class",s.params.containerClass);
             return container;
         }
         //新建Header
@@ -152,8 +163,16 @@
         /*=========================
           Method
           ===========================*/
+        //修改默认value
+        s.setDefaultValue=function(slot,value){
+            slot.defaultValue=value;
+        }
+        //修改默认key
+        s.setDefaultKey=function(slot,key){
+            slot.defaultKey=key;
+        }
         //添加一列
-        s.addSlot=function(values,classes,defaultValue){
+        s.addSlot=function(values,classes,defaultValue,defaultKey){
             if (!classes){
                 classes='';
             }
@@ -162,6 +181,7 @@
             slot.setAttribute("class",s.params.slotClass+" "+classes);
             slot.values=values;
             slot.defaultValue=defaultValue;
+            slot.defaultKey=defaultKey;
             slot.col=s.slots.col;
             //判断是否有锁定
             if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
@@ -174,12 +194,13 @@
             s.slots.push(slot);
         }
         //替换一列
-        s.replaceSlot=function(col,values,classes,defaultValue){
+        s.replaceSlot=function(col,values,classes,defaultValue,defaultKey){
             //设置属性
             var slot=s.slots[col];
             slot.setAttribute("class",s.params.slotClass+" "+classes);
             slot.values=values;
             slot.defaultValue=defaultValue;
+            slot.defaultKey=defaultKey;
             //清空此列
             s.clearSlot(slot);
             //重新渲染
@@ -218,7 +239,13 @@
             slot["list"]=[];
             var col=slot.col;
             var values=slot.values;
-            var defaultValue=slot.defaultValue;
+            //设置默认value或者默认key
+            var compareDefaultType="value";
+            var compareDefaultValue=slot.defaultValue;
+            if(slot.defaultKey){//如果设置了key比较，则优先比较key值
+                compareDefaultType="key";
+                compareDefaultValue=slot.defaultKey;
+            }
             //选中项不能超过总项数
             if(slot.activeIndex && slot.activeIndex>=values.length-1){
                 slot.activeIndex=values.length-1;
@@ -226,7 +253,7 @@
             //渲染
             for(var i=0,rowData;rowData=values[i];i++){
                 //获得activeIndex
-                if(defaultValue && defaultValue==rowData["value"]){
+                if(compareDefaultValue && compareDefaultValue==rowData[compareDefaultType]){
                     if(!slot.activeIndex){
                         slot.activeIndex=i;
                     }
@@ -262,7 +289,7 @@
             slot["maxPosY"]=-(slot["list"].length-1)*s.params.cellHeight;
             slot["minBouncePosY"]=s.params.bounceRange;
             slot["maxBouncePosY"]=slot["maxPosY"]-s.params.bounceRange;
-            slot.style.WebkitTransform='translate3d(0px,'+slot["activePosY"]+'px,0px)';
+            slot.style.webkitTransform='translate3d(0px,'+slot["activePosY"]+'px,0px)';
             slot["list"].forEach(function(n,i,arr){
                 n.className="";
                 if(i==slot.activeIndex){
@@ -271,34 +298,36 @@
             });
         }
         s.updateSlots=function(){
-            s.slots=[].slice.call(s.container.querySelectorAll("."+s.params.slotClass));
+            //s.slots=[].slice.call(s.container.querySelectorAll("."+s.params.slotClass));
             s.slots.forEach(function(n,i,a){
-                s.clearSlot(n);
-                s.renderSlot(n);
+                s.updateSlot(n);
             });
         }
-        
+        s.isHid=true;
         //显示
         s.show=function(){
-            if(s.isRendered==false){
+            s.isHid=false;
+            /*if(s.isRendered==false){
                 s.attach();
-            }
+            }*/
             s.mask.style.visibility="visible";
             s.mask.style.opacity="1";
-            s.container.style.WebkitTransform='translate3d(0px,0px,0px)';
+            s.container.style.webkitTransform='translate3d(0px,0px,0px)';
         }
         //隐藏
         s.hide=function(){
+            s.isHid=true;
             s.mask.style.opacity="0";
             s.mask.style.visibility="hidden";
-            s.container.style.WebkitTransform='translate3d(0px,100%,0px)';
+            s.container.style.webkitTransform='translate3d(0px,100%,0px)';
         }
         //重置
         s.reset=function(){
             //清空指向
             s.slots=[];
+            s.slots.col=0;
             //清空数据
-            s.isRendered=false;
+            //s.isRendered=false;
             s.slotbox.innerHTML="";
         }
         //清除
@@ -309,7 +338,7 @@
         }
         
         s.slotPosY=function(slot,posY){
-            slot.style.WebkitTransform='translate3d(0px,' + posY + 'px,0px)';
+            slot.style.webkitTransform='translate3d(0px,' + posY + 'px,0px)';
         }
         s.updateActiveSlot=function(xPos){
             var xPos=xPos||0;
@@ -352,7 +381,7 @@
                 duration=s.sideDuration(posY,slot.maxBouncePosY,duration);//计算新的执行时间
             }
             slot.style.webkitTransitionDuration=duration+"ms";
-            slot.style.WebkitTransform='translate3d(0px,' + slot.posY + 'px,0px)';
+            slot.style.webkitTransform='translate3d(0px,' + slot.posY + 'px,0px)';
             //如果不执行onTransitionEnd
             if(isTransitionEnd==false || duration==0){
                 var e={};
@@ -391,7 +420,7 @@
                 //对准位置
                 var top=s.params.cellHeight*divided;
                 slot.posY=top;
-                slot.style.WebkitTransform='translate3d(0px,' + top + 'px,0px)';
+                slot.style.webkitTransform='translate3d(0px,' + top + 'px,0px)';
             }
             s.updateActiveList(slot,slot.posY);
             //动画时间回0
@@ -414,11 +443,9 @@
             s.header[action]("touchmove",preventDefault,false);
             touchTarget[action]("touchmove",preventDefault,false);
             //transitionEnd
-            s.slots.forEach(function(n,i,a){
-                n[action]("webkitTransitionEnd",s.onTransitionEnd,false);
-            });
+            s.container[action]("webkitTransitionEnd",s.onTransitionEnd,false);
             //mask
-            if(s.params.isClickMaskHide==true)s.mask[action]("click",s.hide,false);
+            s.mask[action]("click",s.onClickMask,false);
             //确定和取消按钮
             if(s.params.onClickDone)s.headerDone[action]("click",s.onClickDone,false);
             if(s.params.onClickCancel)s.headerCancel[action]("click",s.onClickCancel,false);
@@ -433,7 +460,11 @@
         function preventDefault(e){
             e.preventDefault();
         }
-        //取消和确定按钮
+        //Mask
+        s.onClickMask=function(e){
+            if(s.params.isClickMaskHide==true)s.hide();
+        }
+        //Done|Cancel
         s.onClickDone=function(e){
             s.target=e.target;
             s.params.onClickDone(s);
@@ -442,31 +473,7 @@
             s.target=e.target;
             s.params.onClickCancel(s);
         }
-        //添加和删除取消和确定按钮点击
-        s.setOnClickDone=function(callback){
-            s.params.onClickDone=callback;
-            s.headerDone.addEventListener("click",onClickDoneCallback,false);
-        }
-        s.removeOnClickDone=function(){
-            s.params.onClickDone=null;
-            s.headerDone.removeEventListener("click",onClickDoneCallback,false);
-        }
-        function onClickDoneCallback(e){
-            s.target=e.target;
-            s.params.onClickDone(s)
-        };
-        s.setOnClickCancel=function(callback){
-            s.params.onClickCancel=callback;
-            s.headerCancel.addEventListener("click",onClickCancelCallback,false);
-        }
-        s.removeOnClickCancel=function(){
-            s.params.onClickCancel=null;
-            s.headerCancel.removeEventListener("click",onClickCancelCallback,false);
-        }
-        function onClickCancelCallback(e){
-            s.target=e.target;
-            s.params.onClickCancel(s)
-        };
+
         s.touches={
             startX:0,
             startY:0,
@@ -502,7 +509,7 @@
             }else if(s.activeSlot.moveY<s.activeSlot.maxBouncePosY){
                 s.activeSlot.moveY=s.activeSlot.maxBouncePosY;
             }
-            s.activeSlot.style.WebkitTransform='translate3d(0px,' + s.activeSlot.moveY + 'px,0px)';
+            s.activeSlot.style.webkitTransform='translate3d(0px,' + s.activeSlot.moveY + 'px,0px)';
             s.updateActiveList(s.activeSlot,s.activeSlot.moveY);
 
             //Callback
@@ -535,22 +542,35 @@
         }
         //惯性滚动结束后
         s.onTransitionEnd=function(e){
-            var slot=e.target;
-            //if(!target.classList.contains("scrollpicker-slot"))return;
-            //如果跑到边界之外回到圈内
-            if (slot.posY > 0){
-                slot.posY=0;
-            }else if(slot.posY < slot.maxPosY) {
-                slot.posY=slot.maxPosY;
+            var target=e.target;
+            if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
+
+            if(target.classList.contains(s.params.slotClass)){//slot
+                if (target.posY > 0){
+                    target.posY=0;
+                }else if(target.posY < target.maxPosY) {
+                    target.posY=target.maxPosY;
+                }
+                target.style.webkitTransform='translate3d(0px,' + target.posY + 'px,0px)';
+                //位置矫正
+                s.posCorrect(target);
+            }else if(target.classList.contains(s.params.containerClass)){
+                if(s.isHid){
+                    if(s.params.onHid)s.params.onHid(s);
+                }else{
+                    if(s.params.onShowed)s.params.onShowed(s);
+                }
             }
-            slot.style.WebkitTransform='translate3d(0px,' + slot.posY + 'px,0px)';
-            //位置矫正
-            s.posCorrect(slot);
+        }
+        s.onLoad=function(){
+            if(s.params.onLoad)s.params.onLoad(s);
         }
         function init(){
-            if(s.params.container){
+            /*if(s.params.container){
                 s.attach();
-            }
+            }*/
+            s.attach();
+            //s.onLoad();
         }
         init();
     }
