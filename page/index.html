@@ -59,6 +59,9 @@
             <li class="tab" href="#ID-Main" data-toggle="page">
                 <label class="tab-label">主页</label>
             </li>
+            <li class="tab" href="#ID-Reg" data-toggle="page">
+                <label class="tab-label">注册</label>
+            </li>
             <li class="tab" href="#ID-List" data-toggle="page">
                 <label class="tab-label">列表</label>
             </li>
@@ -67,9 +70,6 @@
             </li>
             <li class="tab" href="#ID-Input" data-toggle="page">
                 <label class="tab-label">数据录入</label>
-            </li>
-            <li class="tab" href="#ID-Poll" data-toggle="page">
-                <label class="tab-label">投票</label>
             </li>
         </ul>
     </header>
@@ -89,6 +89,16 @@
                 <div class="slider-slide">
                     <!--主页-->
 					<div id="ID-Main" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--注册-->
+					<div id="ID-Reg" data-animation="none" class="app-page">
 						<!-- 加载遮罩 -->
 				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
 				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
@@ -126,16 +136,6 @@
 				        </div>
 					</div>
                 </div>
-                <div class="slider-slide">
-                	<!--投票-->
-					<div id="ID-Poll" data-animation="none" class="app-page">
-						<!-- 加载遮罩 -->
-				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-				            <div class="loading"></div>
-				        </div>
-					</div>
-                </div>
             </div>
         </div>
 	</article>
@@ -157,6 +157,9 @@
 			tabId:"ID-Main",
 			tabEl:tabbar.querySelector('[href="#ID-Main"]')
 		},{
+			tabId:"ID-Reg",
+			tabEl:tabbar.querySelector('[href="#ID-Reg"]')
+		},{
 			tabId:"ID-List",
 			tabEl:tabbar.querySelector('[href="#ID-List"]')
 		},{
@@ -165,18 +168,15 @@
 		},{
 			tabId:"ID-Input",
 			tabEl:tabbar.querySelector('[href="#ID-Input"]')
-		},{
-			tabId:"ID-Poll",
-			tabEl:tabbar.querySelector('[href="#ID-Poll"]')
 		}];
 
 		var containers={};
 		containers["ID-Login"]=document.getElementById("ID-Login");
 		containers["ID-Main"]=document.getElementById("ID-Main");
+		containers["ID-Reg"]=document.getElementById("ID-Reg");
 		containers["ID-List"]=document.getElementById("ID-List");
 		containers["ID-Detail"]=document.getElementById("ID-Detail");
 		containers["ID-Input"]=document.getElementById("ID-Input");
-		containers["ID-Poll"]=document.getElementById("ID-Poll");
 
 		//单页模式
 		/*function hideContainers(){
@@ -255,6 +255,14 @@
                 }
             });
 		}
+		function loadReg(){
+			new Ajax({
+                url:"index-reg.html",
+                onSuccess:function(data){
+                    containers["ID-Reg"].innerHTML=data;
+                }
+            });
+		}
 		function loadList(){
 			new Ajax({
                 url:"index-list.html",
@@ -279,21 +287,13 @@
                 }
             });
 		}
-		function loadPoll(){
-			new Ajax({
-                url:"index-poll.html",
-                onSuccess:function(data){
-                	containers["ID-Poll"].innerHTML=data;
-                }
-            });
-		}
 		function loadData(){
 			loadLogin();
 			loadMain();
+			loadReg();
 			loadList();
 			loadDetail();
 			loadInput();
-			loadPoll();
 		}
 		/*================
 		初始化

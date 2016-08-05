@@ -1,15 +1,35 @@
 //Form
 (function(window,document,undefined){
-	window.Form=function(container){
+	window.Form=function(container,params){
 		/*================
 		Model
 		================*/
+		var defaults={
+			"formFilterClass":null,//过滤表单元素
+
+			"rangeTipClass":"range-tooltip",//滑动条弹出框
+
+			"toastParent":document.body,//提示框的父元素
+			
+			/*callbacks
+			onSuccess:function(Form)
+			onFail:function(Form)
+			*/
+		}
+		params=params||{};
+		for(var def in defaults){
+			if(params[def]===undefined){
+				params[def]=defaults[def];
+			}
+		}
+		//Slider
 		var s=this;
-		s.params={};
-		s.params.rangeTipClass="range-tooltip";
+		//Params
+		s.params = params;
+		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
-		//s.container=document.querySelector(container);
-		s.formElements=[];//表单元素
+		//表单元素
+		s.formElements=[];
 		s.updateFormElements=function(){
 			s.formElements=[];
 			//获取有效的表单元素
@@ -28,6 +48,9 @@
 					if(!field.checked){
 						continue;
 					}
+				}
+				if(s.params.formFilterClass && field.classList.contains(s.params.formFilterClass)){
+					continue;
 				}
 				//push到数组里
 				s.formElements.push(field);
@@ -140,26 +163,29 @@
 			return errorMsg;
 		};
 		//表单验证
-		var t=new Toast("格式不正确");
-		s.validate=function(fn){
+		s.toast=new Toast("格式不正确",{
+			"parent":s.params.toastParent
+		});
+		s.validate=function(){
 			for(var i=0,field;field=s.formElements[i++];){
 				if(!field.getAttribute("data-rule")){
 					continue;
 				}
 				var errormsg=s.rule(field);
 				if(errormsg){
-					if(fn){
-						s.field=field;
-						s.errormsg=errormsg;
-						fn(s);
+					s.field=field;
+					s.errormsg=errormsg;
+					s.toast.setText(errormsg);
+					if(s.params.onFail){
+						s.params.onFail(s);
 					}else{
-						t.setText(errormsg);
-						t.show();
+						s.toast.show();
 					}
 					//field.focus();
 					return false;
 				}
 			}
+			if(s.params.onSuccess)s.params.onSuccess(s);
 			return true;
 		};
 		//字符类型

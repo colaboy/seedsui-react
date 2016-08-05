@@ -499,6 +499,9 @@ input,keygen,textarea,select,.input-text{
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
+.inputbox-left{
+	color:@label-color;
+}
 .inputbox.click .icon:active,.inputbox .icon.click:active,.inputbox .icon.active{
 	color:@primary-bg;
 }
@@ -526,11 +529,6 @@ input,keygen,textarea,select,.input-text{
 	border-color:@border;
 }
 /*----------------group.less(end)--------------*/
-/*----------------card.less(start)--------------*/
-.row-left{
-	color:@label-color;
-}
-/*----------------card.less(end)--------------*/
 /*----------------card.less(start)--------------*/
 .card{
 	background-color:@white;
@@ -701,7 +699,11 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 .list:not(.noclick) li:not(.noclick):active{
 	background-color:@list-active-bg;
 }
+/*----------------list.less(end)----------------*/
+
+/*----------------star.less(start)----------------*/
 .star{
+	font-size: 12px;
 	color:@placeholder-color;
 }
 .star.active{
@@ -715,7 +717,8 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
 }
-/*----------------list.less(end)----------------*/
+/*----------------star.less(end)----------------*/
+
 /*----------------timeline.less(start)----------------*/
 .timeline{
 	border-color:@border;
@@ -771,6 +774,14 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
     color:@primary-color;
     border-color:@primary-bg;
     background-color:@primary-bg;
+}
+.calendar-disable{
+	color:@calendar-notcurrent-color;
+}
+.calendar-disable.calendar-active{
+	font-weight:normal;
+	background-color:transparent;
+	border-color:transparent;
 }
 /*----------------calendar.less(end)----------------*/
 /*----------------chat.less(start)----------------*/

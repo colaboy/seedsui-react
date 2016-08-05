@@ -28,15 +28,15 @@
         function initData(){
             for(var i=0;i<100;i++){
                 var elLI=document.createElement("li");
-                elLI.setAttribute("class","underline");
-                elLI.innerHTML='<div class="justify-content">第'+i+'行列表</div>';
+                elLI.setAttribute("class","underline padding8");
+                elLI.innerHTML='<p>第'+i+'行列表</p>';
                 document.getElementById("list").appendChild(elLI);
             }
         }
         var drag;
         function initDrag(){
             drag=new Dragrefresh("article",{
-                "refreshThreshold":130,
+                "threshold":130,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();
@@ -64,11 +64,9 @@
             drag.destroy();
         }
         function detach(){
-            drag.touchDetach();
             drag.detach();
         }
         function attach(){
-            drag.touchAttach();
             drag.attach();
         }
         window.addEventListener("load",function(){

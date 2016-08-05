@@ -105,6 +105,9 @@
             var self=this;
             this.spDateTime=new SpDate({
                 "viewType":"datetime",
+                "isSimpleYear":true,
+                "minYear":new Date().getFullYear()-5,
+                "maxYear":new Date().getFullYear()+5,
                 "yearClass":"text-center",
                 "monthClass":"text-center",
                 "dayClass":"text-center",

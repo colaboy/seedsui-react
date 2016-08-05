@@ -6,8 +6,8 @@
 		  ==================*/
 		var defaults={
 			"minScrollTop":0,
-			"refreshThreshold":100,
-			"refreshThresholdMax":100,
+			"threshold":100,
+			"thresholdMaxRange":100,
 			"refreshHideTop":0,
 			"duration":150,
 			"timeout":5000,
@@ -32,7 +32,7 @@
 		var s=this;
 		s.params=params;
 		//最大拉动值
-		s.params.refreshThresholdMax=s.params.refreshThreshold+s.params.refreshThresholdMax;
+		s.params.thresholdMax=s.params.threshold+s.params.thresholdMaxRange;
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
 		//创建DOM
@@ -65,54 +65,65 @@
 		  Mothod
 		  ==================*/
 		//添加动画
-		s.addTransition=function(duration){
+		/*s.addTransition=function(duration){
 			if(!duration)duration=s.params.duration;
 			s.topContainer.style.webkitTransitionDuration=duration+"ms";
-		};
+		};*/
 		//移除动画
-		s.removeTransition=function(){
+		/*s.removeTransition=function(){
 			s.topContainer.style.webkitTransitionDuration="0ms";
-		};
+		};*/
 		//变形
-		s.transform=function(y,deg){
+		/*s.transform=function(y,deg){
 			if(!y)y=s.touches.posY;
 			if(!deg)deg=s.touches.rotateDeg;
 			s.topContainer.style.webkitTransform='translate3d(0,' + y + 'px,0) rotate(' + deg + 'deg)';
-		}
+		}*/
 		//旋转,10W毫秒，旋转4万6千度
 		s.spinner=function(){
-			s.addTransition("100000");
-			s.transform(null,"46000");
-		};
+			/*s.addTransition("100000");
+			s.transform(null,"46000");*/
+			s.topContainer.style.webkitTransitionDuration="100000ms";
+			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(46000deg)';
+		}
+		s.delaySpinner=function(){//兼容一些不旋转的问题
+			s.topContainer.style.webkitTransitionDuration="100000ms";
+			setTimeout(function(){
+				s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(46000deg)';
+			},100);
+		}
 		s.cancelSpinner=function(){
-			s.removeTransition();
-			s.transform(null,"0");
+			/*s.removeTransition();
+			s.transform(null,"0");*/
+			s.topContainer.style.webkitTransitionDuration="0ms";
+			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(0deg)';
 		};
+		s.isHid=false;
 		//隐藏
 		s.hide=function(){
 			//停止旋转
 			s.cancelSpinner();
 			//收起
-			s.addTransition();
+			//s.addTransition();
+			s.topContainer.style.webkitTransitionDuration=s.params.duration+"ms";
 			s.touches.posY=s.params.refreshHideTop;
-			s.transform(s.touches.posY,s.touches.rotateDeg);
+			//s.transform(s.touches.posY,s.touches.rotateDeg);
+			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
 
-			s.showed=false;
+			s.isHid=true;
 		};
-		s.showed=false;
 		//显示
 		s.show=function(){
+			s.isHid=false;
 			//收到指定位置
-			s.addTransition();
-			s.touches.posY=s.params.refreshThreshold;
-			s.transform(s.touches.posY);
-
-			s.showed=true;
-			//开始旋转
-			/*setTimeout(function(){
-				alert("开始旋转");
-				s.spinner();
-			}, s.params.duration);*/
+			//s.addTransition();
+			s.topContainer.style.webkitTransitionDuration=s.params.duration+"ms";
+			if(s.touches.posY==s.params.threshold){//不执行onTransitionEnd的情况，直接旋转
+				s.delaySpinner();
+			}
+			s.touches.posY=s.params.threshold;
+			//s.transform(s.touches.posY);
+			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
 		}
 		//销毁对象
 		s.destroyTop=function(){
@@ -120,14 +131,12 @@
 		}
 		s.destroyBottom=function(){
 			s.container.removeChild(s.bottomContainer);
-			s.params.onBottom==null;
 		}
 		s.destroy=function(){
 			s.destroyTop();
 			s.destroyBottom();
 			//销毁事件
-			s.touchDetach();
-            s.detach();
+			s.detach();
 		}
 		//Callback 刷新中
 		s.refresh=function(){
@@ -153,57 +162,41 @@
 			if(s.params.onRefreshEnd){
 				s.params.onRefreshEnd(s);
 			}
-			//重新绑定事件
-			if(s.isAttached==false)s.touchAttach();
 		}
 		//Callback 刷新超时
 		s.refreshTimeout=function(){
 			s.hide();
 			s.params.onRefreshTimeout(s);
-			//重新绑定事件
-			if(s.isAttached==false)s.touchAttach();
 		};
 
 		/*==================
 		  Controller
 		  ==================*/
-		s.isAttached=true;
-		//结束时需要取消绑定的事件
-		s.touchEvents=function(detach){
+		s.isRefreshEnd=true;
+		s.events=function(detach){
 			var touchTarget=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
 			touchTarget[action]("touchstart",s.onTouchStart,false);
 			touchTarget[action]("touchmove",s.onTouchMove,false);
 			touchTarget[action]("touchend",s.onTouchEnd,false);
 			touchTarget[action]("touchcancel",s.onTouchEnd,false);
-		}
-		//一直监听的事件
-		s.events=function(detach){
-			//头部动画事件
-			var action=detach?"removeEventListener":"addEventListener";
+			//头部动画监听
 			s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			//绑定底部事件
 			if(s.bottomContainer)s.container[action]("scroll",s.onScroll,false);
 		}
 		//attach、detach事件
-		s.touchAttach=function(){
-			s.isAttached=true;
-			s.touchEvents();
-		};
-		s.touchDetach=function(){
-			s.isAttached=false;
-			s.touchEvents(true);
-		};
 		s.attach=function(){
 			s.events();
-		}
+		};
 		s.detach=function(){
 			s.events(true);
-		}
+		};
 
 		//Touch信息
         s.touches={
-        	direction:null,
+        	direction:0,
+        	vertical:0,
         	isTop:true,
         	startX:0,
         	startY:0,
@@ -220,53 +213,71 @@
 			e.preventDefault();
 		}
 		s.onTouchStart=function(e){
+			if(s.isRefreshEnd===false)return;
+
 			s.container.addEventListener("touchmove",s.preventDefault,false);
 			//如果不在顶部，则不触发
 			if(s.container.scrollTop>s.params.minScrollTop)s.touches.isTop=false;
 			else s.touches.isTop=true;
-			s.removeTransition();
+
+			//s.removeTransition();
+			s.topContainer.style.webkitTransitionDuration="0ms";
+
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
 		};
 		
 		s.onTouchMove=function(e){
+			if(s.isRefreshEnd===false)return;
+
 			s.touches.currentX=e.touches[0].clientX;
 			s.touches.currentY=e.touches[0].clientY;
 			s.touches.diffY=s.touches.currentY-s.touches.startY;
 			s.touches.diffX=s.touches.startX-s.touches.currentX;
-			//设置滑动方向
-			if(s.touches.direction==null){
-				s.touches.direction=s.touches.diffY<0?"down":"up";
+
+			//设置滑动方向(-1上下 | 1左右)
+			if(s.touches.direction === 0) {
+				s.touches.direction = Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) ? 1 : -1;
 			}
-			//不能下拉刷新
-			if(s.touches.direction=="down" || !s.touches.isTop){
+			//设置垂直方向(-1上 | 1下)
+			if (s.touches.direction === -1) {
+				s.touches.vertical = s.touches.diffY < 0 ? 1 : -1;
+			}
+			
+			if(s.touches.vertical==1 || !s.touches.isTop){//向上滑动或者不在顶部
 				s.container.removeEventListener("touchmove",s.preventDefault,false);	
-				return;
-			}
-			//下拉刷新
-			s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
-			if(s.touches.posY<s.params.refreshThresholdMax){
-				s.touches.rotateDeg=s.touches.posY*2;
-				s.transform(s.touches.posY,s.touches.rotateDeg);
+			}else if(s.touches.vertical===-1){//下拉
+				s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
+				if(s.touches.posY<s.params.thresholdMax){
+					s.touches.rotateDeg=s.touches.posY*2;
+					//s.transform(s.touches.posY,s.touches.rotateDeg);
+					s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
+				}
 			}
 		};
 		s.onTouchEnd=function(e){
-			s.container.removeEventListener("touchmove",s.preventDefault,false);
+			//清除move时记录的方向
+			s.touches.direction=0;
+			s.touches.vertical=0;
 
-			s.touches.direction=null;
-			//如果小于hold值，则收起刷新
-			if(s.touches.posY<s.params.refreshThreshold){
-				s.hide();
-				return;
+			if(s.isRefreshEnd===false)return;
+
+			s.container.removeEventListener("touchmove",s.preventDefault,false);
+			if(s.touches.posY!=0){//下拉情况下
+				if(s.touches.posY<s.params.threshold){//如果小于hold值，则收起刷新
+					s.hide();
+				}else{//刷新
+					s.refresh();
+				}
+				//标识是否刷新结束，防止重复下拉
+				s.isRefreshEnd=false;
 			}
-			//刷新
-			s.refresh();
-			//移除滑动事件绑定，否则会在刷新过程中重新触发下拉刷新
-			s.touchDetach();
 		};
 		s.onTransitionEnd=function(e){
-			if(s.showed==true){
+			if(s.isHid===false){
 				s.spinner();
+			}else if(s.isHid===true){
+				s.isRefreshEnd=true;
 			}
 		}
 		s.onScroll=function(e){
@@ -278,7 +289,6 @@
 		}
 		//主函数
 		s.init=function(){
-			s.touchAttach();
 			s.attach();
 		};
 

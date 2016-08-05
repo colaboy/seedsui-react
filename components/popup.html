@@ -118,8 +118,15 @@
 	    };
 		
 		//toast
-		var popToast=new Toast("提示信息");
+		var popToast;//自动销毁的toast
 		document.getElementById("toastBtn").onclick=function(){
+			if(!popToast || popToast&&!popToast.toastBox){
+				popToast=new Toast("提示信息",{
+					"onHid":function(e){
+						e.destroy();
+					}
+				});
+			}
 			popToast.show();
 	    };
 	    var c;

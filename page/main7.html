@@ -12,7 +12,8 @@
 		.timeline-badge{
 			top:25px;
 		}
-		.top-banner {
+		/*用户信息*/
+		.app-userBanner {
 			background-image:url('../img/main7/banner-top.jpg');
 			height:100px;
 			-webkit-background-size: cover;
@@ -21,19 +22,12 @@
 		    background-size: cover;
 		    position:relative;
 		}
-		.user-info {
+		.app-userInfo {
 			position:absolute;
-			bottom:-45px;
+			bottom:-30px;
 			left:25px;
 		}
-		.user-img {
-			/* 
-			border-radius:50px;
-			height:80px;
-			width:80px;
-			-webkit-background-size: cover;
-					    background-size: cover;
-			overflow:hidden; */
+		.app-userImg {
 			border:3px #ffffff solid;
 			-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
 			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
@@ -41,20 +35,55 @@
 			margin-right:10px;
 			border-radius:100%;
 		}
-		.user-img img {
+		.app-userImg img {
 			height:90px;
 			width:90px;
 		}
-		.user-name {
+		.app-userName {
 			font-size:20px;
 			color:#ffffff;
 			line-height:50px;
 		}
-		.user-detail {
+		.app-userDetail {
 			font-size:14px;
 			margin-top: 10px;
 		}
-		
+		/*轴列表*/
+		.app-lineList{
+			margin-left: 65px;
+			border-color: #e6e6e6;
+			padding: 0 18px;
+			border-style: solid;
+			border-width: 0 0 0 1px;
+		}
+		.app-lineList li{
+			position: relative;
+			display: -webkit-box;
+			box-sizing: border-box;
+			-webkit-box-align: center;
+			margin-top: 10px;
+		}
+		.app-lineList .photo{
+			border-radius: 100%;
+			display:-webkit-inline-box;
+			margin:8px;
+		}
+		.app-lineList .photo .tip{
+			position: absolute;
+			top: -4px;
+			right: -4px;
+			font-size: 12px;
+			width: 24px;
+			height: 24px;
+			line-height: 24px;
+		}
+		.app-lineList .app-lineContent{
+			-webkit-box-flex: 1;
+    		padding: 8px 8px 8px 0;
+		}
+		.app-lineList .app-lineContent small{
+			margin-top: 8px;
+		}
 		</style>
 	</head>
 <body ontouchstart="">
@@ -67,99 +96,85 @@
         </div>
 		</header>
 	    <article>
-	    	<div class="top-banner">
-		    	<div class="user-info">
-		    		<div class="photo size80 user-img rollIn animated" style="background-image:url('../img/main7/user.jpg')">
+	    	<div class="app-userBanner">
+		    	<div class="app-userInfo">
+		    		<div class="photo size80 app-userImg rollIn animated" style="background-image:url('../img/main7/user.jpg')">
 		    		</div>
 		    		<div class="fadeInRight animated" style="float:left;">
-			    		<div class="user-name">
+			    		<div class="app-userName">
 			    			张三
 			    		</div>
-			    		<div class="user-detail">
+			    		<div class="app-userDetail">
 			    			业务产品部  - UED
 			    		</div>
 		    		</div>
 		    	</div>
 		    </div>
-		    <div id="grid_container">
-			    <ul class="list timeline between bg-transparent" style="margin-left:65px;">
-			    	<li style="height:60px"></li>
-	                <li class="animated fadeInRight" id="grid1">
-	                    <div class="timeline-badge dot bg-1"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-1">
-		                        <i class="icon icon-chatdot-fill"></i>
-		                        <span class="tip absolute" style="top:-4px;right:-4px;">12</span>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>邮件</p>
-	                    	<small>E-Mail</small>
-	                    </div>
-	                </li>
-	                <li class="animated fadeInRight" id="grid2">
-	                    <div class="timeline-badge dot bg-2"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-2">
-		                        <i class="icon icon-contact-fill"></i>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>通讯录</p>
-	                    	<small>Contacts</small>
-	                    </div>
-	                </li>
-	                <li class="animated fadeInRight" id="grid3">
-	                    <div class="timeline-badge dot bg-3"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-3">
-		                        <i class="icon icon-write-fill"></i>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>公文审批</p>
-	                    	<small>Document Approval</small>
-	                    </div>
-	                </li>
-	                <li class="animated fadeInRight" id="grid4">
-	                    <div class="timeline-badge dot bg-4"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-4">
-		                        <i class="icon icon-position-fill"></i>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>地图定位</p>
-	                    	<small>Location</small>
-	                    </div>
-	                </li>
-	                <li class="animated fadeInRight" id="grid5">
-	                    <div class="timeline-badge dot bg-5"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-5">
-		                        <i class="icon icon-gear-fill"></i>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>设置</p>
-	                    	<small>Setting</small>
-	                    </div>
-	                </li>
-	                <li class="animated fadeInRight" id="grid6">
-	                    <div class="timeline-badge dot bg-6"></div>
-	                    <div class="justify">
-		                    <div class="photo radiusround bg-6">
-		                        <i class="icon icon-chartpie-fill"></i>
-		                    </div>
-		                </div>
-	                    <div class="justify-content">
-	                    	<p>数据分析</p>
-	                    	<small>Statistics</small>
-	                    </div>
-	                </li>
-	                <li id="supply"></li>
-	            </ul>
-		    </div>
+		    <ul class="app-lineList">
+		    	<li style="height:30px"></li>
+                <li class="animated fadeInRight" id="grid1">
+                    <div class="timeline-badge dot bg-1"></div>
+                    <div class="photo bg-1">
+                        <i class="icon icon-chatdot-fill"></i>
+                        <span class="tip">12</span>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>邮件</p>
+                    	<small>E-Mail</small>
+                    </div>
+                </li>
+                <li class="animated fadeInRight" id="grid2">
+                    <div class="timeline-badge dot bg-2"></div>
+                    <div class="photo bg-2">
+                        <i class="icon icon-contact-fill"></i>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>通讯录</p>
+                    	<small>Contacts</small>
+                    </div>
+                </li>
+                <li class="animated fadeInRight" id="grid3">
+                    <div class="timeline-badge dot bg-3"></div>
+                    <div class="photo bg-3">
+                        <i class="icon icon-write-fill"></i>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>公文审批</p>
+                    	<small>Document Approval</small>
+                    </div>
+                </li>
+                <li class="animated fadeInRight" id="grid4">
+                    <div class="timeline-badge dot bg-4"></div>
+                    <div class="photo bg-4">
+                        <i class="icon icon-position-fill"></i>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>地图定位</p>
+                    	<small>Location</small>
+                    </div>
+                </li>
+                <li class="animated fadeInRight" id="grid5">
+                    <div class="timeline-badge dot bg-5"></div>
+                    <div class="photo bg-5">
+                        <i class="icon icon-gear-fill"></i>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>设置</p>
+                    	<small>Setting</small>
+                    </div>
+                </li>
+                <li class="animated fadeInRight" id="grid6">
+                    <div class="timeline-badge dot bg-6"></div>
+                    <div class="photo bg-6">
+                        <i class="icon icon-chartpie-fill"></i>
+                    </div>
+                    <div class="app-lineContent">
+                    	<p>数据分析</p>
+                    	<small>Statistics</small>
+                    </div>
+                </li>
+                <li id="ID-Supply"></li>
+            </ul>
 		</article>
 	
     <script src="../plugin/seedsui/seedsui.min.js"></script>
@@ -167,12 +182,12 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 
 	<script>
-		var supplyContainer=document.getElementById("supply");
+		var SupplyContainer=document.getElementById("ID-Supply");
 		function setGridHeight(){
 			var article=document.getElementsByTagName("article")[0];
-		    var supply=window.innerHeight-article.clientHeight;
-		    if(supply<0)return;
-		    supplyContainer.style.height=supply+"px";
+		    var Supply=window.innerHeight-article.clientHeight;
+		    if(Supply<0)return;
+		    SupplyContainer.style.height=Supply+"px";
 		}
 		setGridHeight();
 		//定义exmobi返回

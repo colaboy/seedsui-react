@@ -14,7 +14,7 @@
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1>滑动页面</h1>
         </div>
-        <ul class="tabbar animate-slide width-full" data-col="5" id="tabbar">
+        <ul class="tabbar" data-type="slide" data-col="5" id="tabbar">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -30,7 +30,6 @@
             <li class="tab">
                 <label class="tab-label">动态</label>
             </li>
-            <hr/>
         </ul>
     </header>
     <article style="padding-top:84px;" class="scrollbox">
@@ -78,7 +77,7 @@
             [].slice.call(slides).forEach(function(n,i,a){
                 var datastr="";
                 for(var j=0;j<pageDataCount[i];j++){
-                    datastr+="<li><div class='justify-content'>第"+i+"页</div></li>"
+                    datastr+='<li class="padding8 underline"><p>第'+i+'页</p></li>'
                 }
                 n.innerHTML='<ul class="list">'+datastr+'</ul>';
             })
@@ -106,7 +105,7 @@
 
         function initDrag(){
             var drag1=new Dragrefresh(carouselPage.slides[0],{
-                "refreshThreshold":100,
+                "threshold":100,
                 "onRefreshStart":function(e){
                     setTimeout(function(){
                         e.refreshComplete();

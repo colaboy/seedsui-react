@@ -6,6 +6,40 @@
     <title>list1</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style>
+    /*评论列表*/
+    .app-commentList li{
+        position: relative;
+        display: -webkit-box;
+        box-sizing: border-box;
+    }
+    .app-commentList li .photo{
+        display:-webkit-inline-box;
+        margin: 8px;
+        width: 40px;
+        height: 40px;
+    }
+    .app-commentContent{
+        position: relative;
+        padding: 8px 8px 8px 0;
+        -webkit-box-flex: 1.0;
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        border-color: #e6e6e6;
+    }
+    .app-commentContent .app-commentLaud{
+        position: absolute;
+        top: 12px;
+        right: 4px;
+    }
+    .app-commentContent small{
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .app-commentContent p{
+        margin-top: 8px;
+    }
     /*徽章箭头*/
     .badge.app-badge-arrow{
         padding:2px 8px;
@@ -41,75 +75,36 @@
     </header>
 	<article style="padding-bottom:50px;">
 		<div class="text-right"><a class="badge app-badge-arrow margin8">热门评论</a></div>
-		<ul class="list bg-transparent">
-                <li class="underline">
-                    <div class="justify">
-                        <div class="photo size40" style="background-image:url(../img/list1/photo.png)"></div>
-                    </div>
-                    <div class="justify-content">
-                        <a>广州网友</a>
-                        <a class="absolute" style="top:12px;right:4px;">
-                            <small>
-                                <span>116</span>
-                                <i class="icon icon-thumb-fill size16"></i>
-                            </small>
-                        </a>
-                        <small class="nowrap">2小时前</small>
-                        <p style="margin-top:8px;">核安全必须顾及全世界的安全</p>
-                    </div>
-                </li>
-                <li class="underline">
-                    <div class="justify">
-                        <div class="photo size40" style="background-image:url(../img/list1/photo.png)"></div>
-                    </div>
-                    <div class="justify-content">
-                        <a>广州网友</a>
-                        <a class="absolute" style="top:12px;right:4px;">
-                            <small>
-                                <span>116</span>
-                                <i class="icon icon-thumb-fill size16"></i>
-                            </small>
-                        </a>
-                        <small class="nowrap">2小时前</small>
-                        <p style="margin-top:8px;">辛苦了，习大大！</p>
-                    </div>
-                </li>
-            </ul>
-            <div class="text-right"><a class="badge app-badge-arrow margin8">最新评论</a></div>
-			<ul class="list bg-transparent">
-                <li class="underline">
-                    <div class="justify">
-                        <div class="photo size40" style="background-image:url(../img/list1/photo.png)"></div>
-                    </div>
-                    <div class="justify-content">
-                        <a>广州网友</a>
-                        <a class="absolute" style="top:12px;right:4px;">
-                            <small>
-                                <span>116</span>
-                                <i class="icon icon-thumb-fill size16"></i>
-                            </small>
-                        </a>
-                        <small class="nowrap">2小时前</small>
-                        <p style="margin-top:8px;">核安全必须顾及全世界的安全</p>
-                    </div>
-                </li>
-                <li class="underline">
-                    <div class="justify">
-                        <div class="photo size40" style="background-image:url(../img/list1/photo.png)"></div>
-                    </div>
-                    <div class="justify-content">
-                        <a>广州网友</a>
-                        <a class="absolute" style="top:12px;right:4px;">
-                            <small>
-                                <span>116</span>
-                                <i class="icon icon-thumb-fill size16"></i>
-                            </small>
-                        </a>
-                        <small class="nowrap">2小时前</small>
-                        <p style="margin-top:8px;">辛苦了，习大大！</p>
-                    </div>
-                </li>
-            </ul>
+        <ul class="app-commentList">
+            <li>
+                <div class="photo" style="background-image:url(../img/list/photo.png)"></div>
+                <div class="app-commentContent">
+                    <a>广州网友</a>
+                    <a class="app-commentLaud">
+                        <small>
+                            <span>116</span>
+                            <i class="size16 icon icon-thumb-fill"></i>
+                        </small>
+                    </a>
+                    <small>2小时前</small>
+                    <p>辛苦了，习大大！</p>
+                </div>
+            </li>
+            <li>
+                <div class="photo" style="background-image:url(../img/list/photo.png)"></div>
+                <div class="app-commentContent">
+                    <a>广州网友</a>
+                    <a class="app-commentLaud">
+                        <small>
+                            <span>116</span>
+                            <i class="size16 icon icon-thumb-fill"></i>
+                        </small>
+                    </a>
+                    <small>2小时前</small>
+                    <p>辛苦了，习大大！</p>
+                </div>
+            </li>
+        </ul>
     </article>
     <footer>
         <!--底部富文本输入框-->

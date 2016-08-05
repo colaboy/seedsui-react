@@ -7,7 +7,36 @@
         <title>main2</title>
         <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
         <style type="text/css">
-        .blockcase li{
+        /*列表标题*/
+        .app-listBar{
+            display: -webkit-box;
+            -webkit-box-align:center;
+            background-color: white;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-peg{
+            display:inline-block;
+            width:6px;
+            height:12px;
+            background-color:#18b2ed;
+        }
+        .app-listBar .app-peg{
+            margin: 8px;
+        }
+        .app-listBar .app-listBarTitle{
+            display: block;
+            padding: 8px 0;
+            -webkit-box-flex:1;
+        }
+        .app-listBar .app-listBarMore{
+            font-size: 12px;
+            color: #aaaaaa;
+            margin: 8px;
+        }
+        /*块级列表*/
+        .app-block li{
             text-align:left;
         }
         .app-block li > a{
@@ -18,13 +47,6 @@
         }
         .blockcase li:nth-child(even){
             padding:8px 8px 16px 4px;
-        }
-        /*标题小标记*/
-        .peg{
-            display:inline-block;
-            width:6px;
-            height:12px;
-            background-color:#18b2ed;
         }
         </style>
     </head>
@@ -38,16 +60,15 @@
 		</div>
 	</header>
 	<article>
-        <div class="row underline">
-            <div class="justify box box-middle">
-                <span class="peg"></span>
-            </div>
-            <div class="justify-content">最新资讯</div>
-            <small class="justify">
-                <a>查看全部</a>
-            </small>
+        <div class="app-listBar">
+            <span class="app-peg"></span>
+            <p class="app-listBarTitle">最新资讯</p>
+            <a class="app-listBarMore">
+                <label>查看全部</label>
+                <i class="icon icon-arrowbittoright size12"></i>
+            </a>
         </div>
-        <ul class="grid app-block blockcase" data-col="2" data-rowspace="8">
+        <ul class="grid app-block" data-col="2" data-rowspace="8">
             <li>
                 <a style="background-image:url(../img/main2/case1.png)"></a>
                 <label class="text-left">沉船救援下一步重点在抽水起浮打捞</label>

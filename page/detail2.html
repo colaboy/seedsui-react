@@ -25,6 +25,29 @@
 		    padding-top: 15px;
 			padding-bottom: 15px;
     	}
+        .app-userMenuList li{
+            -webkit-box-align:center;
+        }
+        .app-userMenuList li div{
+            display: -webkit-box;
+            -webkit-box-flex: 1;
+            -webkit-box-align:center;
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+        .app-userMenuList li p{
+            -webkit-box-flex: 1;
+        }
+        .app-userMenuList li i:nth-of-type(1){
+            margin:0 8px;
+        }
+        .app-userMenuList li i:last-child{
+            width: 12px;
+            height: 12px;
+            font-size: 12px;
+            color:#aaaaaa;
+            margin:8px;
+        }
     </style>
 </head>
 
@@ -56,27 +79,35 @@
     		</div>
     		<div style="height:12px;background-color:#f4f4f4"></div>
     		<div style="border-top:1px solid #ddd;">
-    			<ul class="list">
+    			<ul class="list app-userMenuList">
     				<li>
-    					<div class="justify box box-middle"><i class="icon icon-user-fill size24 color-1"></i></div>
-    					<div class="justify-content underline">个人信息</div>
-    					<div class="justify underline box box-middle"><i class="icon icon-arrowright color-placeholder size12"></i></div>
+                        <i class="icon icon-user-fill color-1"></i>
+                        <div>
+                            <p>个人信息</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
     				</li>
-    				<li>
-    					<div class="justify box box-middle"><i class="icon icon-news-fill size24 color-2"></i></div>
-    					<div class="justify-content underline">资讯管理</div>
-    					<div class="justify underline box box-middle"><i class="icon icon-arrowright color-placeholder size12"></i></div>
-    				</li>
-    				<li>
-    					<div class="justify box box-middle"><i class="icon icon-mail-fill size24 color-3"></i></div>
-    					<div class="justify-content underline">反馈</div>
-    					<div class="justify underline box box-middle"><i class="icon icon-arrowright color-placeholder size12"></i></div>
-    				</li>
-    				<li>
-    					<div class="justify box box-middle"><i class="icon icon-gear-fill size24 color-4"></i></div>
-    					<div class="justify-content underline">设置</div>
-    					<div class="justify underline box box-middle"><i class="icon icon-arrowright color-placeholder size12"></i></div>
-    				</li>
+                    <li>
+                        <i class="icon icon-news-fill color-2"></i>
+                        <div>
+                            <p>资讯管理</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon icon-mail-fill color-3"></i>
+                        <div>
+                            <p>反馈</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon icon-gear-fill color-3"></i>
+                        <div>
+                            <p>设置</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
     			</ul>
     		</div>
 	    </article>

@@ -13,7 +13,7 @@
 // @koala-prepend "dragrefresh.js"
 // @koala-prepend "emoji.js"
 // @koala-prepend "form.js"
-// @koala-prepend "countval.js"
+// @koala-prepend "countvalue.js"
 // @koala-prepend "gauge.js"
 // @koala-prepend "media.js"
 // @koala-prepend "clock.js"

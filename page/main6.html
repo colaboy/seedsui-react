@@ -9,65 +9,111 @@
 		<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 		<link rel="stylesheet" href="../plugin/animate/animate.css">
 		<style type="text/css">
-			.grid {
+			.app-grid {
 				background: #fff;
-				margin:12px 0 0 0;
-				border-top: 1px solid #ddd;	
-				border-bottom: 1px solid #ddd;
-				border-radius: 0 !important;
+				padding:10px 0;
 			}
-			.grid a{
+			.app-grid a{
 				border-radius:100%;
 			}
-			/* .grid.app a{
-				color:white;
-				-webkit-animation-duration: 500ms;
-				-webkit-animation-timing-function:linear;
-				-webkit-animation-fill-mode: both;
-			} */
-			.grid .grid1 {
+			.app-grid .app-grid1 {
 				animation-delay:100ms;
 				-webkit-animation-delay:100ms;
 			}
-			.grid .grid2 {
+			.app-grid .app-grid2 {
 				animation-delay:200ms;
 				-webkit-animation-delay:200ms;
 			}
-			.grid .grid3 {
+			.app-grid .app-grid3 {
 				animation-delay:300ms;
 				-webkit-animation-delay:300ms;
 			}
-			.grid .grid4 {
+			.app-grid .app-grid4 {
 				animation-delay:400ms;
 				-webkit-animation-delay:400ms;
 			}
-			.grid .grid5 {
+			.app-grid .app-grid5 {
 				animation-delay:500ms;
 				-webkit-animation-delay:500ms;
 			}
-			.grid .grid6 {
+			.app-grid .app-grid6 {
 				animation-delay:600ms;
 				-webkit-animation-delay:600ms;
 			}
-			.grid .grid7 {
+			.app-grid .app-grid7 {
 				animation-delay:700ms;
 				-webkit-animation-delay:700ms;
 			}
-			.grid .grid8 {
+			.app-grid .app-grid8 {
 				animation-delay:800ms;
 				-webkit-animation-delay:800ms;
 			} 
-			.maillist{
-				-webkit-animation-duration: 1000ms;
-				-webkit-animation-timing-function:linear;
-				-webkit-animation-fill-mode: both;
-			}
-			/*标题小标记*/
-	        .peg{
+			/*列表标题*/
+	        .app-listBar{
+	            display: -webkit-box;
+	            -webkit-box-align:center;
+	            background-color: white;
+	            border-style: solid;
+	            border-width: 0 0 1px 0;
+	            border-color: #e6e6e6;
+	        }
+	        .app-listBar .app-peg{
+	            margin: 8px;
+	        }
+	        .app-listBar .app-listBarTitle{
+	            display: block;
+	            padding: 8px 0;
+	            -webkit-box-flex:1;
+	        }
+	        .app-listBar .app-listBarMore{
+	            font-size: 12px;
+	            color: #aaaaaa;
+	            margin: 8px;
+	        }
+	        .app-peg{
 	            display:inline-block;
 	            width:6px;
 	            height:12px;
 	            background-color:#18b2ed;
+	        }
+	        /*邮件列表1*/
+	        .app-mailList1{
+	            background-color: #ffffff;
+	        }
+	        .app-mailList1 li{
+	            position: relative;
+	            display: -webkit-box;
+	            box-sizing: border-box;
+	            -webkit-box-align: center;
+	        }
+	        .app-mailList1 .photo{
+	            border-radius: 100%;
+	            margin: 8px;
+	        }
+	        .app-mailList1 .app-mailContent{
+	            position: relative;
+	            -webkit-box-flex: 1.0;
+	            padding: 8px 8px 8px 0;
+	            border-style: solid;
+	            border-width: 0 0 1px 0;
+	            border-color: #e6e6e6;
+	        }
+	        .app-mailList1 .app-mailContent>p{
+	            margin: 4px 0;
+	        }
+	        .app-mailList1 .app-mailContent small:last-child{
+	            display: block;
+	            white-space: nowrap;
+	            overflow: hidden;
+	            text-overflow: ellipsis;
+	        }
+	        .app-mailDot{
+	            width: 8px;
+	            height: 8px;
+	            border-radius: 100%;
+	            background-color: #f4984e;
+	            display: inline-block;
+	            vertical-align: middle;
 	        }
 		</style>
 	</head>
@@ -82,105 +128,99 @@
 	        </div>
 	    </header>
 	    <article>
-	    	<ul class="grid" data-rowspace="8" data-col="4">
-				<li>
-					<a class="grid1 photo animated flipInX bg-1">
-						<i class="icon icon-contact-fill"></i>
-					</a>
-					<label class="grid-label">通讯录</label>
-				</li>
-				<li>
-					<a class="grid2 photo animated flipInX bg-2">
-						<i class="icon icon-write-fill"></i>
-					</a>
-					<label class="grid-label">审批</label>
-				</li>
-				<li>
-					<a class="grid3 photo animated flipInX bg-3">
-						<i class="icon icon-position-fill"></i>
-					</a>
-					<label class="grid-label">定位</label>
-				</li>
-				<li>
-					<a class="grid4 photo animated flipInX bg-4">
-						<i class="icon icon-gear-fill"></i>
-					</a>
-					<label class="grid-label">设置</label>
-				</li>
-				<li>
-					<a class="grid5 photo animated flipInX bg-5">
-						<i class="icon icon-folder-fill"></i>
-					</a>
-					<label class="grid-label">文档</label>
-				</li>
-				<li>
-					<a class="grid6 photo animated flipInX bg-6">
-						<i class="icon icon-chartpie-fill"></i>
-					</a>
-					<label class="grid-label">数据分析</label>
-				</li>
-				<li>
-					<a class="grid7 photo animated flipInX bg-7">
-						<i class="icon icon-chartbar-fill"></i>
-					</a>
-					<label class="grid-label">其它数据</label>
-				</li>
-				<li>
-					<a class="grid8 photo animated flipInX bg-8">
-						<i class="icon icon-chatline-fill"></i>
-	                    <span class="tip absolute" style="top:-4px;right:-4px;">3</span>
-					</a>
-					<label class="grid-label">IM</label>
-				</li>
-			</ul>
-			<ul class="list" style="margin-top: 15px;">
-	            <li class="underline noclick">
-	                <div class="justify">
-	                    <span class="peg"></span>
-	                </div>
-	                <div class="justify-content">最新邮件</div>
-	                <small class="justify">
-	                        <label>更多</label>
-	                        <i class="icon size12 icon-arrowbittoright"></i>
-	                </small>
-	            </li>
-	            <li class="underline">
-	                <div class="justify box box-middle">
-	                    <div class="photo radiusround bg-1">少波</div>
-	                </div>
-	                <div class="justify-content">
-	                    <small>
-	                        <i class="icon icon-rdo-fill color-warn size12"></i>
-	                        <label class="bold">张少波</label>
-	                        <label class="float-right">12月21日</label>
-	                        <i class="icon size14 icon-fav-fill float-right color-warn"></i>
-	                    </small>
-	                    <p>您的圣诞礼物已经备好，看看咋样</p>
-	                    <small class="nowrap">[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
-	                </div>
-	            </li>
-	            <li class="underline">
-	                <div class="justify box box-middle">
-	                    <div class="photo radiusround bg-2">少波</div>
-	                </div>
-	                <div class="justify-content">
-	                    <small>
-	                        <i class="icon icon-rdo-fill color-warn size12"></i>
-	                        <label class="bold">张少波</label>
-	                        <label class="float-right">12月21日</label>
-	                        <i class="icon size14 icon-fav-fill float-right color-warn"></i>
-	                    </small>
-	                    <p>您的圣诞礼物已经备好，看看咋样</p>
-	                    <small class="nowrap">[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
-	                </div>
-	            </li>
-	        </ul>
+	    	<div class="group">
+		    	<ul class="grid app-grid" data-rowspace="8" data-col="4">
+					<li>
+						<a class="app-grid1 photo animated flipInX bg-1">
+							<i class="icon icon-contact-fill"></i>
+						</a>
+						<label class="app-grid-label">通讯录</label>
+					</li>
+					<li>
+						<a class="app-grid2 photo animated flipInX bg-2">
+							<i class="icon icon-write-fill"></i>
+						</a>
+						<label class="app-grid-label">审批</label>
+					</li>
+					<li>
+						<a class="app-grid3 photo animated flipInX bg-3">
+							<i class="icon icon-position-fill"></i>
+						</a>
+						<label class="app-grid-label">定位</label>
+					</li>
+					<li>
+						<a class="app-grid4 photo animated flipInX bg-4">
+							<i class="icon icon-gear-fill"></i>
+						</a>
+						<label class="app-grid-label">设置</label>
+					</li>
+					<li>
+						<a class="app-grid5 photo animated flipInX bg-5">
+							<i class="icon icon-folder-fill"></i>
+						</a>
+						<label class="app-grid-label">文档</label>
+					</li>
+					<li>
+						<a class="app-grid6 photo animated flipInX bg-6">
+							<i class="icon icon-chartpie-fill"></i>
+						</a>
+						<label class="app-grid-label">数据分析</label>
+					</li>
+					<li>
+						<a class="app-grid7 photo animated flipInX bg-7">
+							<i class="icon icon-chartbar-fill"></i>
+						</a>
+						<label class="app-grid-label">其它数据</label>
+					</li>
+					<li>
+						<a class="app-grid8 photo animated flipInX bg-8">
+							<i class="icon icon-chatline-fill"></i>
+		                    <span class="tip absolute" style="top:-4px;right:-4px;">3</span>
+						</a>
+						<label class="app-grid-label">IM</label>
+					</li>
+				</ul>
+			</div>
+			<div class="group">
+				<div class="app-listBar">
+	                <span class="app-peg"></span>
+	                <p class="app-listBarTitle">今日热门</p>
+	            </div>
+				<ul class="app-mailList1">
+	                <li>
+	                    <div class="photo bg-1">少波</div>
+	                    <div class="app-mailContent">
+	                        <small>
+	                            <i class="app-mailDot"></i>
+	                            <label class="bold">张少波</label>
+	                            <label class="float-right">12月21日</label>
+	                            <i class="size12 icon icon-fav-fill float-right color-warn"></i>
+	                        </small>
+	                        <p>您的圣诞礼物已经备好，看看咋样</p>
+	                        <small>[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
+	                    </div>
+	                </li>
+	                <li class="box-middle">
+	                    <div class="photo bg-1"><i class="icon icon-person"></i></div>
+	                    <div class="app-mailContent">
+	                        <small>
+	                            <i class="app-mailDot"></i>
+	                            <label class="bold">张少波</label>
+	                            <label class="float-right">12月21日</label>
+	                            <i class="size12 icon icon-fav-fill float-right color-warn"></i>
+	                        </small>
+	                        <p>您的圣诞礼物已经备好，看看咋样</p>
+	                        <small>[图片]Hi,柱子:圣诞节到了，给您的圣诞礼物已经备好，来看看喜不喜欢</small>
+	                    </div>
+	                </li>
+	            </ul>
+            </div>
 	    </article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		var gridOpt=document.querySelectorAll(".grid>li>a");
+		var gridOpt=document.querySelectorAll(".app-grid>li>a");
 		[].slice.call(gridOpt).forEach(function(n,i,a){
 			EventUtil.addHandler(n,"animationend",function(){
 				n.classList.remove("flipInX","flipInY");

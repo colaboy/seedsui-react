@@ -1640,38 +1640,12 @@ input[type=range]::-webkit-slider-thumb {
   display: -webkit-box;
   box-sizing: border-box;
 }
-.justify {
-  position: relative;
-  min-width: 0px;
-  max-width: 110px;
-  display: block;
-}
-.justify,
-.justify-content {
-  padding: 8px;
-}
-.justify + .justify-content {
-  padding-left: 0;
-}
-.justify-content + .justify {
-  padding-left: 0;
-}
-.justify > img {
-  max-width: 100%;
-}
-.justify-content {
-  overflow: hidden;
-  position: relative;
-  -webkit-box-flex: 1.0;
-}
-.justify-content > small {
-  display: block;
-}
-/*上下两端对齐*/
-.between .justify-content > small:nth-last-of-type(1) {
-  margin-top: 8px;
-}
 /*---------------list.less(end)---------------*/
+/*----------------star.less(start)----------------*/
+.star {
+  font-size: 12px;
+}
+/*----------------star.less(end)----------------*/
 /*----------checkbox.less(start)----------*/
 .clock {
   position: relative;
@@ -1777,21 +1751,6 @@ input[type=range]::-webkit-slider-thumb {
   display: block;
 }
 /*---------------indexbar.less(end)---------------*/
-/*----------------row.less(start)--------------*/
-.row {
-  position: relative;
-  display: -webkit-box;
-  -webkit-box-align: center;
-}
-.row-left {
-  display: block;
-  width: 30%;
-  padding: 8px;
-}
-.row-right {
-  -webkit-box-flex: 1.0;
-}
-/*----------------row.less(end)--------------*/
 /*----------------group.less(end)--------------*/
 .group {
   margin: 20px 0;
@@ -1814,10 +1773,9 @@ input[type=range]::-webkit-slider-thumb {
   margin: 8px;
   box-sizing: border-box;
 }
-.row label,
 .inputbox label,
 .card label {
-  line-height: 30px;
+  line-height: 24px;
 }
 /*按钮操作区*/
 .card-handler {
@@ -2045,7 +2003,7 @@ aside[data-position="right"][data-transition="overlay"] {
 }
 .tabbar[data-type=animate-slide] hr {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 25%;
   border-width: 2px 0 0 0;
@@ -2083,7 +2041,7 @@ aside[data-position="right"][data-transition="overlay"] {
 .tabbar[data-type=animate-oneline] .tab::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 100%;
   height: 2px;
@@ -2120,7 +2078,7 @@ aside[data-position="right"][data-transition="overlay"] {
 .tabbar[data-type=animate-bracket] .tab-label::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   width: 10px;
   height: 2px;
   opacity: 0;
@@ -2311,30 +2269,43 @@ select {
   display: -webkit-box;
   -webkit-box-align: center;
 }
+.inputbox-left {
+  display: block;
+  width: 30%;
+  padding: 8px;
+}
+.inputbox-right {
+  -webkit-box-flex: 1.0;
+}
 /*box内的表单框*/
-.inputbox input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
-.inputbox select,
-.inputbox keygen,
-.inputbox textarea,
-.inputbox .input-text {
+.inputbox > input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
+.inputbox > select,
+.inputbox > keygen,
+.inputbox > textarea,
+.inputbox > .input-text {
   display: block;
   -webkit-box-flex: 1.0;
   border-width: 0;
+}
+.inputbox > input:not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="range"]),
+.inputbox > select,
+.inputbox > keygen,
+.inputbox > textarea,
+.inputbox > .input-text {
   background-color: transparent;
 }
 /*box内图标*/
 .inputbox .icon {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin: 0 8px;
 }
 /*需要顶天立地的控件*/
-.inputbox select + .icon,
-.inputbox input[type="date"] + .icon,
-.inputbox input[type="month"] + .icon,
-.inputbox input[type="week"] + .icon,
-.inputbox input[type="datetime-local"] + .icon,
-.inputbox input[type="datetime"] + .icon,
-.inputbox input[type="time"] + .icon {
+.inputbox > select + .icon,
+.inputbox > input[type="date"] + .icon,
+.inputbox > input[type="month"] + .icon,
+.inputbox > input[type="week"] + .icon,
+.inputbox > input[type="datetime-local"] + .icon,
+.inputbox > input[type="datetime"] + .icon,
+.inputbox > input[type="time"] + .icon {
   position: absolute;
   top: 50%;
   right: 0;
@@ -3536,9 +3507,12 @@ input[type=range]::-webkit-slider-thumb {
   width: 100%;
   text-align: center;
   -webkit-transform: translate3d(0, 150px, 0);
-  -webkit-transition-property: transform;
+  -webkit-transition-property: -webkit-transform;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
+  -webkit-animation-duration: 300ms;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-timing-function: ease;
   z-index: 999;
 }
 .toast {
@@ -3551,6 +3525,29 @@ input[type=range]::-webkit-slider-thumb {
   line-height: 20px;
   overflow: hidden;
   text-align: left;
+}
+@-webkit-keyframes toast-hide {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 150px, 0);
+  }
+}
+.toast-box.toast-hide {
+  -webkit-animation-delay: 1000ms;
+  -webkit-animation-name: toast-hide;
+}
+@-webkit-keyframes toast-show {
+  0% {
+    -webkit-transform: translate3d(0, 150px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+.toast-box.toast-show {
+  -webkit-animation-name: toast-show;
 }
 /*----------------toast.less(end)--------------*/
 /*----------------prompt.less(start)--------------*/
@@ -4539,8 +4536,8 @@ ul.weather-otherday li {
 }
 .calendar-day {
   display: inline-block;
-  height: 50px;
-  line-height: 50px;
+  /* height:40px;
+    line-height: 40px;  */
   text-align: center;
   float: left;
   width: 14%;
@@ -4798,6 +4795,14 @@ i.size50,
 i.size54,
 .icon.size54 {
   font-size: 54px;
+}
+.size60 {
+  width: 60px;
+  height: 60px;
+}
+i.size60,
+.icon.size60 {
+  font-size: 60px;
 }
 .size80 {
   width: 80px;
@@ -5167,6 +5172,9 @@ i.size80,
 }
 .dotted {
   border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
 }
 /*----------------border.less(end)--------------*/
 /*----------------global.less(start)--------------*/
@@ -5666,6 +5674,9 @@ select,
 }
 /*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
+.inputbox-left {
+  color: #666666;
+}
 .inputbox.click .icon:active,
 .inputbox .icon.click:active,
 .inputbox .icon.active {
@@ -5695,11 +5706,6 @@ select,
   border-color: #e6e6e6;
 }
 /*----------------group.less(end)--------------*/
-/*----------------card.less(start)--------------*/
-.row-left {
-  color: #666666;
-}
-/*----------------card.less(end)--------------*/
 /*----------------card.less(start)--------------*/
 .card {
   background-color: #ffffff;
@@ -5880,7 +5886,10 @@ input[type="radio"][disabled]:checked,
 .list:not(.noclick) li:not(.noclick):active {
   background-color: #f4f4f4;
 }
+/*----------------list.less(end)----------------*/
+/*----------------star.less(start)----------------*/
 .star {
+  font-size: 12px;
   color: #aaaaaa;
 }
 .star.active {
@@ -5894,7 +5903,7 @@ input[type="radio"][disabled]:checked,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-/*----------------list.less(end)----------------*/
+/*----------------star.less(end)----------------*/
 /*----------------timeline.less(start)----------------*/
 .timeline {
   border-color: #e6e6e6;
@@ -5953,6 +5962,14 @@ li.sliver {
   color: #ffffff;
   border-color: #18b2ed;
   background-color: #18b2ed;
+}
+.calendar-disable {
+  color: #cccccc;
+}
+.calendar-disable.calendar-active {
+  font-weight: normal;
+  background-color: transparent;
+  border-color: transparent;
 }
 /*----------------calendar.less(end)----------------*/
 /*----------------chat.less(start)----------------*/

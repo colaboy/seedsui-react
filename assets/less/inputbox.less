@@ -4,22 +4,44 @@
 	display:-webkit-box;
     -webkit-box-align:center;
 }
+.inputbox-left{
+	display:block;
+
+	width:30%;
+	padding:8px;
+}
+.inputbox-right{
+	-webkit-box-flex:1.0;
+}
 /*box内的表单框*/
-.inputbox input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),.inputbox select,.inputbox keygen,.inputbox textarea,.inputbox .input-text{
+.inputbox > input:not([type="button"]):not([type="radio"]):not([type="checkbox"]),
+.inputbox > select,
+.inputbox > keygen,
+.inputbox > textarea,
+.inputbox > .input-text{
 	display:block;
 	-webkit-box-flex:1.0;
 	border-width:0;
+}
+.inputbox > input:not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="range"]),
+.inputbox > select,
+.inputbox > keygen,
+.inputbox > textarea,
+.inputbox > .input-text{
 	background-color:transparent;
 }
 /*box内图标*/
 .inputbox .icon{
-	margin-left:8px;
-	margin-right:8px;
+	margin:0 8px;
 }
 /*需要顶天立地的控件*/
-.inputbox select+.icon,.inputbox input[type="date"]+.icon,.inputbox input[type="month"]+.icon,
-.inputbox input[type="week"]+.icon,.inputbox input[type="datetime-local"]+.icon,
-.inputbox input[type="datetime"]+.icon,.inputbox input[type="time"]+.icon{
+.inputbox > select+.icon,
+.inputbox > input[type="date"]+.icon,
+.inputbox > input[type="month"]+.icon,
+.inputbox > input[type="week"]+.icon,
+.inputbox > input[type="datetime-local"]+.icon,
+.inputbox > input[type="datetime"]+.icon,
+.inputbox > input[type="time"]+.icon{
 	position:absolute;
 	top:50%;
 	right:0;

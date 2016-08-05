@@ -7,10 +7,9 @@
     <title>calendar</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style type="text/css">
-    .calendar{
+    .SID-Calendar{
         display: none;
     }
-
     </style>
 </head>
 
@@ -24,7 +23,7 @@
         </div>
     </header>
 	<article>
-		<div class="calendar" id="ID-Calendar"></div>
+		<div class="calendar SID-Calendar" id="ID-Calendar"></div>
 		<a class="button block radius8 margin8 bg-1" id="ID-Month">月</a>
 		<a class="button block radius8 margin8 bg-2" id="ID-Week">周</a>
 		<a class="button block radius8 margin8 bg-3" id="ID-Today">今天</a>
@@ -36,7 +35,10 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
 		var calendar=new Calendar("#ID-Calendar",{
-            viewType:"week",
+            dayHeight:"50",
+            viewType:"month",
+            disablePrevDate:new Date(),
+            //isYTouch:false,//是否允许竖向滑动
             activeDate:new Date("2016-7-22"),
             prevHTML:'<i class="icon-arrowleft"></i>',
             nextHTML:'<i class="icon-arrowright"></i>',
@@ -62,7 +64,7 @@
             calendar.reset();
         }
         btnShow.onclick=function(){
-            document.querySelector(".calendar").style.display="block";
+            document.querySelector(".SID-Calendar").style.display="block";
             calendar.updateContainerSize();
         }
 		//定义exmobi返回

@@ -7,22 +7,71 @@
     <title>main3</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style>
-        .app-newlist li:not(.noclick) .justify-content{
-            height:74px;
+        /*新闻列表*/
+        .app-newList1{
+            background-color: white;
         }
-        /*标题小标记*/
+        .app-newList1 li{
+            position: relative;
+            display: -webkit-box;
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-newList1 li img{
+            width: 110px;
+            margin:8px;
+        }
+        .app-newList1 li div{
+            -webkit-box-flex:1;
+            position: relative;
+            margin:8px 8px 8px 0;
+        }
+        .app-newList1 li div small:nth-of-type(1){
+            position: absolute;
+            bottom:0px;
+            left:0px;
+        }
+        .app-newList1 li div small:nth-of-type(2){
+            position: absolute;
+            bottom:0px;
+            right:4px;
+        }
         .app-peg{
             display:inline-block;
             width:6px;
             height:12px;
             background-color:#18b2ed;
         }
+        /*标题bar*/
+        .app-listBar{
+            display: -webkit-box;
+            -webkit-box-align:center;
+            background-color: white;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-listBar .app-peg{
+            margin: 8px;
+        }
+        .app-listBar .app-listBarTitle{
+            display: block;
+            padding: 8px 0;
+            -webkit-box-flex:1;
+        }
+        .app-listBar .app-listBarMore{
+            font-size: 12px;
+            color: #aaaaaa;
+            margin: 8px;
+        }
     </style>
 </head>
 
 <body ontouchstart="">
-	<header>
-        <ul class="tabbar" data-type="animate-oneline" data-col="5" id="tabbar">
+    <header>
+        <ul class="tabbar" data-type="animate-oneline" id="tabbar">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -38,10 +87,9 @@
             <li class="tab">
                 <label class="tab-label">动态</label>
             </li>
-            <hr/>
         </ul>
     </header>
-	<article class="scrollbox" style="padding-top:40px;padding-bottom:54px;">
+    <article class="scrollbox" style="padding-top:40px;padding-bottom:54px;">
         <div class="slider-container" id="carouselPage" style="height: 100%;">
             <div class="slider-wrapper">
                 <div class="slider-slide">
@@ -65,133 +113,111 @@
                     </div>
                     <!--banner:end-->
                     <!--最新资讯:start-->
-                    <ul class="list app-newlist">
-                        <li class="underline noclick">
-                            <div class="justify">
-                                <span class="app-peg"></span>
-                            </div>
-                            <div class="justify-content">最新资讯</div>
-                            <small class="justify">
-                                    <label>更多</label>
-                                    <i class="icon icon-arrowbittoright size12"></i>
-                            </small>
+                    <ul class="app-newList1">
+                        <li class="app-listBar">
+                            <span class="app-peg"></span>
+                            <p class="app-listBarTitle">最新资讯</p>
+                            <a class="app-listBarMore">
+                                <label>更多</label>
+                                <i class="icon icon-arrowbittoright size12"></i>
+                            </a>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
@@ -201,51 +227,43 @@
                 </div>
                 <div class="slider-slide">
                     <!--最新资讯:start-->
-                    <ul class="list app-newlist">
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                    <ul class="list app-newList1">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
@@ -255,99 +273,83 @@
                 </div>
                 <div class="slider-slide">
                     <!--最新资讯:start-->
-                    <ul class="list app-newlist">
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                    <ul class="list app-newList1">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
@@ -357,123 +359,103 @@
                 </div>
                 <div class="slider-slide">
                     <!--最新资讯:start-->
-                    <ul class="list app-newlist">
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                    <ul class="list app-newList1">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
@@ -483,123 +465,103 @@
                 </div>
                 <div class="slider-slide">
                     <!--最新资讯:start-->
-                    <ul class="list app-newlist">
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                    <ul class="list app-newList1">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
                         </li>
-                        <li class="underline">
-                            <div class="justify">
-                                <img src="../img/main5/listimg.png">
-                            </div>
-                            <div class="justify-content">
+                        <li>
+                            <img src="../img/main5/listimg.png">
+                            <div>
                                 <p>公益15载  阳光助学再升级</p>
-                                <small class="absolute" style="bottom:0px;left:0px;">12-24</small>
-                                <small class="absolute" style="bottom:0px;right:4px;">
+                                <small>12-24</small>
+                                <small>
                                     <label><span class="color-warn">42</span>浏览</label>
                                 </small>
                             </div>
@@ -700,7 +662,7 @@
             initDrag();
         },false);
         //定义exmobi返回
-    	function back(){history.go(-1);}
+        function back(){history.go(-1);}
     </script>
 </body>
 </html>

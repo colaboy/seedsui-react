@@ -8,14 +8,16 @@
 		var defaults={
 			"viewType":"month",//值为month|week
 			"defaultActiveDate":new Date(),
+			"disablePrevDate":null,
+			"disableAfterDate":null,
 			"activeDate":null,
 			"threshold":"50",
 			"duration":"300",
-			"wrapperHeight":"300",
 			"dayHeight":"50",
 			"isYTouch":true,//是否允许上下滑动
 			//DOM
 			"calendarClass":"calendar",
+			"disableClass":"calendar-disable",
 
 			"headerClass":"calendar-header",
 			"titleClass":"calendar-title",
@@ -55,6 +57,7 @@
 		}
 		var s=this;
 		s.params=params;
+		s.params.wrapperHeight=s.params.dayHeight*6;
 		//禁止修改默认值
 		Object.defineProperty(s.params,"defaultActiveDate",{
 			enumerable:true,
@@ -93,7 +96,7 @@
         	posX:0,
         	posY:0,
         	maxPosY:s.params.wrapperHeight-s.params.dayHeight,
-        	h:300,
+        	h:s.params.wrapperHeight,
         	direction:0,
         	horizontal:0,
         	vertical:0
@@ -174,6 +177,8 @@
 
 						var day=document.createElement("div");
 						day.setAttribute("class",s.params.dayClass);
+						day.style.height=s.params.dayHeight+"px";
+						day.style.lineHeight=s.params.dayHeight+"px";
 						var dayNum=document.createElement("div");
 						dayNum.setAttribute("class",s.params.dayNumClass);
 
@@ -373,6 +378,13 @@
 				if(s.isToday(s.data[i]))s.days[i].classList.add(s.params.todayClass);
 				//class-activeClass
 				if(i==activeIndex && s.activeDate)s.days[i].classList.add(s.params.activeClass);
+				//禁用日期
+				if(s.params.disablePrevDate && s.data[i].setHours(0,0,0,0)<s.params.disablePrevDate.setHours(0,0,0,0)){
+					s.days[i].classList.add(s.params.disableClass);
+				}
+				if(s.params.disableAfterDate && s.data[i].setHours(0,0,0,0)>s.params.disableAfterDate.setHours(0,0,0,0)){
+					s.days[i].classList.add(s.params.disableClass);
+				}
 			}
 			s.updateContainerHeight();
 			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
@@ -444,6 +456,9 @@
 		}
 		s.onClick=function(e){
 			s.target=e.target;
+			//禁用状态
+			if(e.target.classList.contains(s.params.disableClass))return;
+
 			if(e.target.classList.contains(s.params.dayNumClass))s.activeDay(e.target);
 			//Callback onClick
 			if(s.params.onClick)s.params.onClick(s);
@@ -459,7 +474,7 @@
 			s.touches.diffX=s.touches.startX-s.touches.currentX;
 			s.touches.diffY=s.touches.startY-s.touches.currentY;
 
-			//设置滑动方向(上下|左右)
+			//设置滑动方向(-1上下 | 1左右)
 			if(s.touches.direction === 0) {
 				s.touches.direction = Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) ? 1 : -1;
 			}
@@ -470,11 +485,15 @@
 					s.touches.horizontal = moveX < s.touches.posX ? 1 : -1;//设置方向(左右)
 					s.wrapperX.style.webkitTransform = 'translateX(' + moveX + 'px)';
 				}
-			}else if (s.touches.direction === -1 && s.params.isYTouch===true) {//上下滑动
-				var heightY=s.touches.h-s.touches.diffY;
-				if(heightY>s.params.dayHeight && heightY<s.params.wrapperHeight){//判断是否是边缘
-					s.touches.vertical = heightY > s.touches.h ? 1 : -1;//设置方向(上下)
-					s.dragY(heightY);
+			}else if (s.touches.direction === -1) {//上下滑动
+				if(s.params.isYTouch===true){//允许Y滑动的情况下
+					var heightY=s.touches.h-s.touches.diffY;
+					if(heightY>s.params.dayHeight && heightY<s.params.wrapperHeight){//判断是否是边缘
+						s.touches.vertical = heightY > s.touches.h ? 1 : -1;//设置方向(上下)
+						s.dragY(heightY);
+					}
+				}else{
+					s.container.removeEventListener("touchmove",s.preventDefault,false);
 				}
 			}
 		};
@@ -486,13 +505,13 @@
 				else if(s.touches.horizontal===-1)s.slideXTo(0);//上一页
 				else s.slideXTo(1);//还原当前页
 
-			}else if (s.touches.direction === -1 && s.params.isYTouch===true) {//上下滑动
-
-				if(Math.abs(s.touches.diffY)<s.params.threshold)s.touches.vertical=0;
-				if(s.touches.vertical===1)s.slideYTo(1);//展开
-				else if(s.touches.vertical===-1)s.slideYTo(-1);//收缩
-				else s.slideYTo(0);//还原当前页
-				//s.swipeVer();
+			}else if (s.touches.direction === -1) {//上下滑动
+				if(s.params.isYTouch===true){//允许Y滑动的情况下
+					if(Math.abs(s.touches.diffY)<s.params.threshold)s.touches.vertical=0;
+					if(s.touches.vertical===1)s.slideYTo(1);//展开
+					else if(s.touches.vertical===-1)s.slideYTo(-1);//收缩
+					else s.slideYTo(0);//还原当前页
+				}
 			}
 			
 			//清空滑动方向

@@ -60,7 +60,8 @@
                 {'key':'X','value':'10'},
             ];
             //Plugin
-            this.scrollpicker;
+            this.scrollpicker={};
+            this.scrollpicker.hasEvent=false;
         },
         /*=========================
           Method
@@ -68,6 +69,7 @@
         _initScrollPicker:function(){
             var self=this;
             this.scrollpicker=new Scrollpicker({
+                "parent":"article",
                 "onClickDone":function(e){
                     //获得全部选中项
                     //console.log(e.activeOptions);
@@ -107,6 +109,18 @@
             this.scrollpicker.addSlot(this.nums2);
         },
         /*=========================
+          Events
+          ===========================*/
+        _attach:function(e){
+            var self=this;
+            if(!self.textSp.hasEvent){
+                this.textSp.addEventListener("click",function(e){
+                    self._onClickTextSp(e);
+                },false);
+                self.textSp.hasEvent=true;
+            }
+        },
+        /*=========================
           Event Handler
           ===========================*/
         _onClickTextSp:function(e){
@@ -125,9 +139,7 @@
             this._addScrollpickerData();
 
             //Events
-            this.textSp.onclick=function(e){
-                self._onClickTextSp(e);
-            }
+            this._attach();
         }
     }
 

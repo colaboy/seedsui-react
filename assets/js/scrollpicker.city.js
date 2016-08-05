@@ -5,6 +5,7 @@
 	    Model
 	    ==================*/
 		var defaults={
+			parent:document.body,
 			viewType:"city",//"city","area"
 			data:null,
 			defaultValue:"----",
@@ -77,6 +78,7 @@
 	    ==================*/
 		//初始化滚动控件
 		var citySp=new Scrollpicker({
+			"parent":s.params.parent,
 			"isClickMaskHide":s.params.isClickMaskHide,
 			"isCascade":true,//是否开启级联更新
 			"onClickDone":function(e){

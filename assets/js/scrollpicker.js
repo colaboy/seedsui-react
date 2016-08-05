@@ -5,8 +5,9 @@
           Model
           ===========================*/
         var defaults={
-            container:null,
-            containerClass:"scrollpicker",
+            parent:document.body,
+            //picker:null,
+            pickerClass:"scrollpicker",
             headerClass:"scrollpicker-header",
             headerDoneClass:"scrollpicker-done",
             headerDoneText:"完成",
@@ -51,7 +52,8 @@
         s.params = params;
 
         //Dom元素
-        s.container,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
+        s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+        s.picker,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
         //槽元素与其值
         s.slots=[],s.slots.col=0,s.activeOptions=[],s.activeOption={};
         //是否渲染
@@ -67,10 +69,10 @@
             s.params.onClickCancel=callback;
         }
         //新建Container
-        s.createContainer=function(){
-            var container=document.createElement("div")
-            container.setAttribute("class",s.params.containerClass);
-            return container;
+        s.createPicker=function(){
+            var picker=document.createElement("div")
+            picker.setAttribute("class",s.params.pickerClass);
+            return picker;
         }
         //新建Header
         s.createHeader=function(){
@@ -127,17 +129,17 @@
         }
         //创建DOM
         s.create=function(){
-            if(s.params.container){
-                s.container=typeof container=="string"?document.querySelector(container):container;
-                s.mask=s.container.previousElementSibling;
-                s.header=s.container.querySelector("."+s.params.headerClass);
-                s.headerDone=s.container.querySelector("."+s.params.headerDoneClass);
-                s.headerCancel=s.container.querySelector("."+s.params.headerCancelClass);
-                s.wrapper=s.container.querySelector("."+s.params.wrapperClass);
-                s.slotbox=s.container.querySelector("."+s.params.slotsClass);
-                s.layer=s.container.querySelector("."+s.params.layerClass);
-            }else{
-                s.container=s.createContainer();
+            /*if(s.params.picker){
+                s.picker=typeof picker=="string"?document.querySelector(picker):picker;
+                s.mask=s.picker.previousElementSibling;
+                s.header=s.picker.querySelector("."+s.params.headerClass);
+                s.headerDone=s.picker.querySelector("."+s.params.headerDoneClass);
+                s.headerCancel=s.picker.querySelector("."+s.params.headerCancelClass);
+                s.wrapper=s.picker.querySelector("."+s.params.wrapperClass);
+                s.slotbox=s.picker.querySelector("."+s.params.slotsClass);
+                s.layer=s.picker.querySelector("."+s.params.layerClass);
+            }else{*/
+                s.picker=s.createPicker();
                 s.mask=s.createMask();
                 s.header=s.createHeader();
                 s.headerDone=s.createHeaderDone();
@@ -152,12 +154,12 @@
                 s.wrapper.appendChild(s.slotbox);
                 s.wrapper.appendChild(s.layer);
 
-                s.container.appendChild(s.header);
-                s.container.appendChild(s.wrapper);
+                s.picker.appendChild(s.header);
+                s.picker.appendChild(s.wrapper);
 
-                document.body.appendChild(s.mask);
-                document.body.appendChild(s.container);
-            }
+                s.parent.appendChild(s.mask);
+                s.parent.appendChild(s.picker);
+            /*}*/
         }
         s.create();
         /*=========================
@@ -298,7 +300,7 @@
             });
         }
         s.updateSlots=function(){
-            //s.slots=[].slice.call(s.container.querySelectorAll("."+s.params.slotClass));
+            //s.slots=[].slice.call(s.picker.querySelectorAll("."+s.params.slotClass));
             s.slots.forEach(function(n,i,a){
                 s.updateSlot(n);
             });
@@ -312,14 +314,14 @@
             }*/
             s.mask.style.visibility="visible";
             s.mask.style.opacity="1";
-            s.container.style.webkitTransform='translate3d(0px,0px,0px)';
+            s.picker.style.webkitTransform='translate3d(0px,0px,0px)';
         }
         //隐藏
         s.hide=function(){
             s.isHid=true;
             s.mask.style.opacity="0";
             s.mask.style.visibility="hidden";
-            s.container.style.webkitTransform='translate3d(0px,100%,0px)';
+            s.picker.style.webkitTransform='translate3d(0px,100%,0px)';
         }
         //重置
         s.reset=function(){
@@ -333,8 +335,8 @@
         //清除
         s.destroy=function(){
             s.detach();
-            document.body.removeChild(s.mask);
-            document.body.removeChild(s.container);
+            s.parent.removeChild(s.mask);
+            s.parent.removeChild(s.picker);
         }
         
         s.slotPosY=function(slot,posY){
@@ -443,7 +445,7 @@
             s.header[action]("touchmove",preventDefault,false);
             touchTarget[action]("touchmove",preventDefault,false);
             //transitionEnd
-            s.container[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+            s.picker[action]("webkitTransitionEnd",s.onTransitionEnd,false);
             //mask
             s.mask[action]("click",s.onClickMask,false);
             //确定和取消按钮
@@ -554,7 +556,7 @@
                 target.style.webkitTransform='translate3d(0px,' + target.posY + 'px,0px)';
                 //位置矫正
                 s.posCorrect(target);
-            }else if(target.classList.contains(s.params.containerClass)){
+            }else if(target.classList.contains(s.params.pickerClass)){
                 if(s.isHid){
                     if(s.params.onHid)s.params.onHid(s);
                 }else{
@@ -566,7 +568,7 @@
             if(s.params.onLoad)s.params.onLoad(s);
         }
         function init(){
-            /*if(s.params.container){
+            /*if(s.params.picker){
                 s.attach();
             }*/
             s.attach();

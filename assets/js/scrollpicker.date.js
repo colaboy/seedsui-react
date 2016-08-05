@@ -5,7 +5,9 @@
 	    Model
 	    ==================*/
 		var defaults={
+			"parent":document.body,
 			"viewType":"date",//"date","month","time","datetime"
+			"isSimpleYear":false,
 			"yearsData":null,
 			"monthsData":null,
 			"daysData":null,
@@ -89,7 +91,7 @@
 	    	s.years=s.params.yearsData;
 	    }else{
 		    for(var y=s.params.minYear;y<=s.params.maxYear;y++){
-		    	s.years.push({"key":y,"value":y+s.params.yyUnit,"flag":"date"});
+		    	s.years.push({"key":y,"value":s.params.isSimpleYear?y.toString().substring(2,4)+s.params.yyUnit:y+s.params.yyUnit,"flag":"date"});
 		    }
 	    }
 	    //月
@@ -184,6 +186,7 @@
 	    ==================*/
 	    //滑动面板初始化
 	    s.scrollpicker=new Scrollpicker({
+	    	"parent":s.params.parent,
 	    	"isClickMaskHide":s.params.isClickMaskHide,
 	    	"onClickDone":function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);

@@ -7,19 +7,8 @@
     <title>form-validate</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style type="text/css">
-    .inputbox bordered.required{
-        border-color:#e7eabd;
-        background-color:#faffbd;
-    }
-    .inputbox bordered.required input{
-        background-color:transparent;
-    }
-    .inputbox bordered.error{
-        background-color:#ffecec;
-        border-color:#ff635b;
-    }
-    .inputbox bordered.error input{
-        background-color:transparent;
+    .app-active-error {
+        background-color: #ffecec;
     }
     </style>
 </head>
@@ -82,7 +71,23 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
     window.addEventListener("load",function(){
-        var f=new Form("#form1");
+        var f=new Form("#form1",{
+            "toastParent":"article",
+            "formFilterClass":"form-filter",
+            "onFail":function(e){
+                for(var i=0,el;el=e.formElements[i++];){
+                    el.parentNode.classList.remove("app-active-error");
+                }
+                e.field.parentNode.classList.add("app-active-error");
+                e.toast.show();
+            },
+            "onSuccess":function(e){
+                for(var i=0,el;el=e.formElements[i++];){
+                    el.parentNode.classList.remove("app-active-error");
+                }
+                console.log("提交");
+            }
+        });
         f.container.addEventListener("submit",function(e){
             e.preventDefault();
             f.validate();
