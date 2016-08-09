@@ -6,6 +6,7 @@
 		Model
 		================*/
 		var defaults={
+			parent:document.body,
 			promptClass:"prompt",
 			delay:1000
 		}
@@ -18,38 +19,40 @@
 		var msg=msg||"";
 		var s=this;
 		s.params=params;
+		//Parent
+		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		//创建容器
-		s.container=null;
+		s.prompt=null;
 		s.createContainer=function(){
-			if(s.container)return;
-			s.container=document.createElement("div");
-			s.container.setAttribute("class",s.params.promptClass);
-			s.container.innerHTML=msg;
-			document.body.appendChild(s.container);
+			if(s.prompt)return;
+			s.prompt=document.createElement("div");
+			s.prompt.setAttribute("class",s.params.promptClass);
+			s.prompt.innerHTML=msg;
+			s.params.parent.appendChild(s.prompt);
 		}
 		s.createContainer();
 		/*================
 		Method
 		================*/
 		s.setText=function(msg){
-			s.container.innerHTML=msg;
+			s.prompt.innerHTML=msg;
 		};
 		s.isHid=true;
 		s.hide=function(fn){
 			s.isHid=true;
-			s.container.style.opacity="0";
+			s.prompt.style.opacity="0";
 		};
 		s.show=function(fn){
 			s.isHid=false;
-			s.container.style.visibility="visible";
-			s.container.style.opacity="1";
+			s.prompt.style.visibility="visible";
+			s.prompt.style.opacity="1";
 		};
 		
 		/*================
 		Controller
 		================*/
 		s.events=function(detach){
-			var target=s.container;
+			var target=s.prompt;
 			var action=detach?"removeEventListener":"addEventListener";
 			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 		}
@@ -62,7 +65,7 @@
 		//Events Handler
 		s.onTransitionEnd=function(){
 			if(s.isHid){
-				s.container.style.visibility="hidden";
+				s.prompt.style.visibility="hidden";
 				if(s.delayer)window.clearTimeout(s.delayer);
 			}else{
 				//延迟时间后自动消失

@@ -35,13 +35,7 @@
 	margin:0 8px;
 }
 /*需要顶天立地的控件*/
-.inputbox > select+.icon,
-.inputbox > input[type="date"]+.icon,
-.inputbox > input[type="month"]+.icon,
-.inputbox > input[type="week"]+.icon,
-.inputbox > input[type="datetime-local"]+.icon,
-.inputbox > input[type="datetime"]+.icon,
-.inputbox > input[type="time"]+.icon{
+.inputbox > .inputbox-input+.icon{
 	position:absolute;
 	top:50%;
 	right:0;
@@ -57,17 +51,5 @@
 }
 .inputbox .icon+.icon,.row .icon+.icon,.titlebar .icon+.icon{
 	margin-left:0px;
-}
-/*搜索框*/
-input[type=search].search,input[type=text].search{
-	padding-top:6px;
-	padding-bottom:6px;
-}
-/*带清空按钮*/
-div[data-input=clear] input[type]+.icon{
-	font-size:20px;
-	width:20px;
-	height:20px;
-	margin-right:10px;
 }
 /*----------------inputbox.less(end)--------------*/

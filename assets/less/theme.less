@@ -502,9 +502,6 @@ input,keygen,textarea,select,.input-text{
 .inputbox-left{
 	color:@label-color;
 }
-.inputbox.click .icon:active,.inputbox .icon.click:active,.inputbox .icon.active{
-	color:@primary-bg;
-}
 /*----------------inputbox.less(end)--------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh{
@@ -720,8 +717,8 @@ input[type="checkbox"][disabled] , input[type="radio"][disabled] , input[type="c
 /*----------------star.less(end)----------------*/
 
 /*----------------timeline.less(start)----------------*/
-.timeline{
-	border-color:@border;
+.timeline:after {
+	background-color:@border;
 }
 /*----------------timeline.less(end)----------------*/
 /*----------------indexbar.less(start)----------------*/

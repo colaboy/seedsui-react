@@ -8,7 +8,7 @@
 		var defaults={
 			"viewType":"month",//值为month|week
 			"defaultActiveDate":new Date(),
-			"disablePrevDate":null,
+			"disableBeforeDate":null,
 			"disableAfterDate":null,
 			"activeDate":null,
 			"threshold":"50",
@@ -379,7 +379,7 @@
 				//class-activeClass
 				if(i==activeIndex && s.activeDate)s.days[i].classList.add(s.params.activeClass);
 				//禁用日期
-				if(s.params.disablePrevDate && s.data[i].setHours(0,0,0,0)<s.params.disablePrevDate.setHours(0,0,0,0)){
+				if(s.params.disableBeforeDate && s.data[i].setHours(0,0,0,0)<s.params.disableBeforeDate.setHours(0,0,0,0)){
 					s.days[i].classList.add(s.params.disableClass);
 				}
 				if(s.params.disableAfterDate && s.data[i].setHours(0,0,0,0)>s.params.disableAfterDate.setHours(0,0,0,0)){

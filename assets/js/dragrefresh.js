@@ -5,6 +5,8 @@
 		  Model
 		  ==================*/
 		var defaults={
+			"isDisableTop":false,
+			"isDisableBottom":false,
 			"minScrollTop":0,
 			"threshold":100,
 			"thresholdMaxRange":100,
@@ -174,16 +176,20 @@
 		  ==================*/
 		s.isRefreshEnd=true;
 		s.events=function(detach){
-			var touchTarget=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
-			touchTarget[action]("touchstart",s.onTouchStart,false);
-			touchTarget[action]("touchmove",s.onTouchMove,false);
-			touchTarget[action]("touchend",s.onTouchEnd,false);
-			touchTarget[action]("touchcancel",s.onTouchEnd,false);
-			//头部动画监听
-			s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
-			//绑定底部事件
-			if(s.bottomContainer)s.container[action]("scroll",s.onScroll,false);
+			if(s.params.isDisableTop===false){
+				var touchTarget=s.container;
+				touchTarget[action]("touchstart",s.onTouchStart,false);
+				touchTarget[action]("touchmove",s.onTouchMove,false);
+				touchTarget[action]("touchend",s.onTouchEnd,false);
+				touchTarget[action]("touchcancel",s.onTouchEnd,false);
+				//头部动画监听
+				s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+			}
+			if(s.params.isDisableBottom===false){
+				//绑定底部事件
+				if(s.bottomContainer)s.container[action]("scroll",s.onScroll,false);
+			}
 		}
 		//attach、detach事件
 		s.attach=function(){

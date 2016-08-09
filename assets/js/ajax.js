@@ -8,6 +8,7 @@
 			"url":null,
 			"type":"get",
 			"async":true,
+			"dataType":null,
 			"context":null,
 			"contentType":"application/x-www-form-urlencoded",
 			"timeout":5000,
@@ -33,6 +34,9 @@
 		/*================
 		Method
 		================*/
+		Ajax.jsonpCallback=function(data){
+			if(s.params.onSuccess)s.params.onSuccess(data);
+		}
 		s.setUrl=function(url){
 			s.params.url=url;
 		}
@@ -56,11 +60,23 @@
 		}
 		s.connect=function(){
 			if(!s.params.url)return;
-			//非Jsonp
-			s.xhr.timeout=s.params.timeout;
-			s.xhr.open(s.params.type,s.params.url,s.params.async);
-			s.xhr.setRequestHeader("Content-Type",s.params.contentType);
-            s.xhr.send(s.formData);
+			if(s.params.dataType==="jsonp"){//Jsonp
+				var url=s.params.url;
+				url+=(url.indexOf("?")==-1?"?":"&");
+				if(s.script){
+					document.body.removeChild(s.script);
+					s.script=null;
+				}
+				s.script=document.createElement("script");
+				s.script.src=url+"callback=Ajax.jsonpCallback";
+				s.script.onerror=s.onScriptError;
+				document.body.insertBefore(s.script,document.body.firstChild);
+			}else{//非Jsonp
+				s.xhr.timeout=s.params.timeout;
+				s.xhr.open(s.params.type,s.params.url,s.params.async);
+				s.xhr.setRequestHeader("Content-Type",s.params.contentType);
+	            s.xhr.send(s.formData);
+			}
 		}
 		s.abort=function(){
 			s.xhr.abort();
@@ -68,6 +84,9 @@
 		/*================
 		Control
 		================*/
+		s.onScriptError=function(){
+			if(s.params.onFail)s.params.onFail(e);
+		}
         s.events=function(detach){
             var target=s.xhr;
             var action=detach?"removeEventListener":"addEventListener";

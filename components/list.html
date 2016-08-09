@@ -7,139 +7,6 @@
     <title>list</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <style type="text/css">
-        /*列表标题*/
-        .app-listBar{
-            display: -webkit-box;
-            -webkit-box-align:center;
-            background-color: white;
-            border-style: solid;
-            border-width: 0 0 1px 0;
-            border-color: #e6e6e6;
-        }
-        .app-listBar .app-peg{
-            margin: 8px;
-        }
-        .app-listBar .app-listBarTitle{
-            display: block;
-            padding: 8px 0;
-            -webkit-box-flex:1;
-        }
-        .app-listBar .app-listBarMore{
-            font-size: 12px;
-            color: #aaaaaa;
-            margin: 8px;
-        }
-        .app-peg{
-            display:inline-block;
-            width:6px;
-            height:12px;
-            background-color:#18b2ed;
-        }
-        /*新闻列表1*/
-        .app-newList1{
-            background-color: white;
-        }
-        .app-newList1 li{
-            position: relative;
-            display: -webkit-box;
-            box-sizing: border-box;
-            border-style: solid;
-            border-width: 0 0 1px 0;
-            border-color: #e6e6e6;
-        }
-        .app-newList1 li img{
-            width: 110px;
-            margin:8px;
-        }
-        .app-newList1 li div{
-            -webkit-box-flex:1;
-            position: relative;
-            margin:8px 8px 8px 0;
-        }
-        .app-newList1 li div small:nth-of-type(1){
-            position: absolute;
-            bottom:0px;
-            left:0px;
-        }
-        .app-newList1 li div small:nth-of-type(2){
-            position: absolute;
-            bottom:0px;
-            right:4px;
-        }
-        /*新闻列表2*/
-        .app-newList2{
-            background-color: #ffffff;
-        }
-        .app-newList2 li {
-            position: relative;
-            display: -webkit-box;
-            box-sizing: border-box;
-            border-style: solid;
-            border-width: 0 0 1px 0;
-            border-color: #e6e6e6;
-        }
-        .app-newList2 li img{
-            width: 110px;
-            margin:8px 8px 8px 0;
-        }
-        .app-newList2 li small{
-            display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .app-newList2 div{
-            position: relative;
-            -webkit-box-flex: 1.0;
-            margin:8px;
-        }
-        .app-newList2 p{
-            line-height:24px;
-        }
-        .app-newList2 p span{
-            margin-right:5px;
-            line-height:18px;
-            float:left;
-        }
-        /*邮件列表1*/
-        .app-mailList1{
-            background-color: #ffffff;
-        }
-        .app-mailList1 li{
-            position: relative;
-            display: -webkit-box;
-            box-sizing: border-box;
-            -webkit-box-align: center;
-        }
-        .app-mailList1 .photo{
-            border-radius: 100%;
-            margin: 8px;
-        }
-        .app-mailList1 .app-mailContent{
-            position: relative;
-            -webkit-box-flex: 1.0;
-            padding: 8px 8px 8px 0;
-            border-style: solid;
-            border-width: 0 0 1px 0;
-            border-color: #e6e6e6;
-        }
-        .app-mailList1 .app-mailContent>p{
-            margin: 4px 0;
-        }
-        .app-mailList1 .app-mailContent small:last-child{
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .app-mailDot{
-            width: 8px;
-            height: 8px;
-            border-radius: 100%;
-            background-color: #f4984e;
-            display: inline-block;
-            vertical-align: middle;
-        }
     </style>
 </head>
 
@@ -188,14 +55,18 @@
                 <li class="box-middle underline">
                     <div class="padding8 box-flex-1">
                         <p>ExMobi+Agile开发注意事项</p>
-                        <small>Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式，让代码更容易维护</small>
+                        <small class="nowrap2">
+                        Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式，让代码更容易维护，Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式
+                        </small>
                     </div>
                     <i class="size16 icon icon-arrowright margin8"></i>
                 </li>
                 <li class="box-middle underline noclick">
                     <i class="size16 icon icon-fav-fill margin8"></i>
                     <div class="box-flex-1">
-                        <p class="nowrap">ExMobi全面支持HTML5和Native融合，此版UI的名称真是还没想好呢？因为比较硬，叫汗子UI？</p>
+                        <p class="nowrap">
+                        ExMobi全面支持HTML5和Native融合，此版UI的名称真是还没想好呢？因为比较硬，叫汗子UI？
+                        </p>
                         <small class="block nowrap">Agile支持单页和多页模式开发，在ExMobi中建议使用多页模式，让代码更容易维护</small>
                     </div>
                     <a class="button lrpadding8 margin8">按钮</a>
@@ -204,164 +75,17 @@
         </details>
 
 
-
-        <details open>
-            <summary class="sliver">
-                功能列表
-                <i class="size16 summary-icon float-right"></i>
-            </summary>
-            <ul class="list">
-                <li>
-                    <div class="box box-middle" style="margin:0 8px;">
-                        <i class="size32 icon-folder-fill color-info"></i>
-                    </div>
-                    <p class="underline box-flex-1 nowrap" style="display:block;padding:12px 0;">
-                        最新文档
-                    </p>
-                    <div class="box box-middle underline" style="padding:0 8px;">
-                        <span class="badge">1</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="box box-middle" style="margin:0 8px;">
-                        <i class="size32 icon-chat-fill color-warn"></i>
-                    </div>
-                    <p class="underline box-flex-1 nowrap" style="display:block;padding:12px 0;">
-                        通知公告
-                    </p>
-                    <div class="box box-middle underline" style="padding:0 8px;">
-                        <span class="tip">1</span>
-                    </div>
-                </li>
-            </ul>
-        </details>
-        
-        <details open>
-            <summary class="sliver">
-                应用列表
-                <i class="size16 summary-icon float-right"></i>
-            </summary>
-            <ul class="list">
-                <li class="underline box-middle">
-                    <div class="photo size54 radius4 margin8" style="background-image:url(../img/list/weixin.png)">
-                        <span class="tip absolute" style="top:-4px;right:-4px;">12</span>
-                    </div>
-                    <div class="box-flex-1" style="padding: 8px 8px 8px 0">
-                        <p class="nowrap">微信</p>
-                        <p style="margin:0 0 3px 0">
-                            <i class="star icon-fav-fill active"></i>
-                            <i class="star icon-fav-fill active"></i>
-                            <i class="star icon-fav-fill active-half"></i>
-                            <i class="star icon-fav-fill"></i>
-                            <i class="star icon-fav-fill"></i>
-                        </p>
-                        <small>聊天与社交 31.9M</small>
-                    </div>
-                    <a class="button lrpadding8 lrmargin8"  class="desaturate outline">打开</a>
-                </li>
-                <li class="underline box-middle">
-                    <div class="photo size54 radius4 margin8">
-                        <i class="icon icon-appbag-fill"></i>
-                    </div>
-                    <div class="box-flex-1" style="padding: 8px 8px 8px 0">
-                        <p class="nowrap">QQ</p>
-                        <p style="margin:0 0 3px 0">
-                            <i class="star icon-fav-fill active"></i>
-                            <i class="star icon-fav-fill active"></i>
-                            <i class="star icon-fav-fill active-half"></i>
-                            <i class="star icon-fav-fill"></i>
-                            <i class="star icon-fav-fill"></i>
-                        </p>
-                        <small>聊天与社交 27.9M</small>
-                    </div>
-                    <a class="button lrpadding8 lrmargin8"  class="desaturate outline">打开</a>
-                </li>
-            </ul>
-        </details>
-
-        <details open>
-            <summary class="sliver">
-                联系人列表
-                <i class="size16 summary-icon float-right"></i>
-            </summary>
-            <ul class="list">
-                <li class="box box-middle">
-                    <div class="photo radiusround bg-6 lrmargin8">
-                        <i class="icon icon-chatdot-fill"></i>
-                        <span class="tip absolute" style="top:-4px;right:-4px;">12</span>
-                    </div>
-                    <div class="underline box-flex-1" style="padding: 8px 8px 8px 0">
-                        <p>小助手</p>
-                        <small class="absolute" style="top:12px;right:4px;">昨天 11:50</small>
-                        <small class="block nowrap" style="margin-top:8px;">会话已完成，请您在会话记录中填写报告</small>
-                    </div>
-                </li>
-                <li class="box box-middle">
-                    <div class="photo radiusround bg-2 lrmargin8">
-                        少波
-                    </div>
-                    <div class="underline box-flex-1" style="padding: 8px 8px 8px 0">
-                        <p>张少波</p>
-                        <small class="absolute" style="top:12px;right:4px;">昨天 11:50</small>
-                        <small class="block nowrap" style="margin-top:8px;">本次会话结束，感谢您的使用</small>
-                    </div>
-                </li>
-                <li class="box box-middle">
-                    <div class="photo radiusround bg-2 lrmargin8" style="background-image:url(../img/components/banner.jpg)">
-                    </div>
-                    <div class="underline box-flex-1" style="padding: 8px 8px 8px 0">
-                        <p>张少波</p>
-                        <small class="absolute" style="top:12px;right:4px;">昨天 11:50</small>
-                        <small class="block nowrap" style="margin-top:8px;">本次会话结束，感谢您的使用</small>
-                    </div>
-                </li>
-            </ul>
-        </details>
-
         <details open>
             <summary class="sliver">
                 时间轴列表
                 <i class="size16 summary-icon float-right"></i>
             </summary>
-            <ul class="list timeline bg-white">
-                <li class="underline dotted">
-                    <div class="timeline-badge clock size24 border-color-1" data-clock="11:24">
-                        <div class="clock-hour bg-1"></div>
-                        <div class="clock-minute bg-1"></div>
-                        <div class="clock-origin bg-1"></div>
-                    </div>
-                    <div class="box-flex-1 padding8">
-                        <p style="font-size:20px">11:24</p>
-                        <a style="margin:4px 0;"><i class="size16 icon icon-position-fill"></i><span>江苏省南京市</span></a>
-                        <small class="block nowrap">我来上班啦</small>
-                    </div>
-                </li>
-                <li class="underline dotted">
-                    <div class="timeline-badge clock size24 border-color-2" data-clock="11:24">
-                        <div class="clock-hour bg-2"></div>
-                        <div class="clock-minute bg-2"></div>
-                        <div class="clock-origin bg-2"></div>
-                    </div>
-                    <div class="box-flex-1 padding8">
-                        <p style="font-size:20px">11:24</p>
-                        <a style="margin:4px 0;"><i class="size16 icon icon-position-fill"></i><span>江苏省南京市</span></a>
-                        <small class="block nowrap">我来上班啦</small>
-                    </div>
-                </li>
-            </ul>
-        </details>
-
-        <details open>
-            <summary class="sliver">
-                时间轴列表
-                <i class="size16 summary-icon float-right"></i>
-            </summary>
-            <ul class="list bg-transparent noclick timeline">
+            <ul class="timeline">
                 <li>
                     <div class="timeline-badge">
                         Any
                     </div>
-                    <div class="card width-full padding8">
+                    <div class="card box-flex-1 padding8">
                         <div class="sticker top right"><span>NEW</span></div>
                         <p style="font-size:20px">11:24</p>
                         <small class="nowrap">到达南京南站</small>
@@ -371,7 +95,7 @@
                     <div class="timeline-badge">
                         Any
                     </div>
-                    <div class="card width-full padding8">
+                    <div class="card box-flex-1 padding8">
                         <p style="font-size:20px">11:24</p>
                         <small class="nowrap">进入南京中转站</small>
                     </div>

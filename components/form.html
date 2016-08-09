@@ -7,6 +7,12 @@
     <title>form</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <link rel="stylesheet" href="../plugin/animate/animate.css">
+    <style>
+    input[type=search].search,input[type=text].search{
+        padding-top:6px;
+        padding-bottom:6px;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -38,7 +44,7 @@
         </div>
 
         <div class="inputbox margin8">
-            <select>
+            <select class="inputbox-input">
                 <option>选项1</option>
                 <option>选项2</option>
                 <option>选项3</option>
@@ -62,22 +68,22 @@
         </div>
 
         <div class="inputbox margin8">
-            <input class="text-left" type="date" value="2015-06-16"/>
+            <input class="text-left inputbox-input" type="date" value="2015-06-16"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
         <div class="inputbox margin8">
-            <input class="text-left" type="month" value="2015-06"/>
+            <input class="text-left inputbox-input" type="month" value="2015-06"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
         <div class="inputbox margin8">
-            <input class="text-left" type="datetime-local" value="2015-06-01T10:55:33"/>
+            <input class="text-left inputbox-input" type="datetime-local" value="2015-06-01T10:55:33"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
         <div class="inputbox margin8">
-            <input class="text-left" type="time" value="08:30"/>
+            <input class="text-left inputbox-input" type="time" value="08:30"/>
             <i class="color-placeholder icon icon-time"></i>
         </div>
 
@@ -188,7 +194,7 @@
         </div>
         <p class="sliver">下列控件兼容性尚未完全普及，还请谨慎使用</p>
         <div class="inputbox margin8">
-            <input class="text-left" type="week" value="2015-W15"/>
+            <input class="text-left inputbox-input" type="week" value="2015-W15"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         <div class="card">
@@ -228,7 +234,7 @@
                         <i class="color-placeholder icon icon-eye"></i>
                     </div>
                 </div>
-                <div class="inputbox underline">
+                <div class="inputbox">
                     <label class="inputbox-left">确认</label>
                     <div class="inputbox-right inputbox">
                         <input type="text" placeholder="确认" name="reconfirm"/>
@@ -258,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="inputbox underline">
+                <div class="inputbox">
                     <label class="inputbox-left">出生日期</label>
                     <div class="inputbox-right inputbox">
                         <input type="date" name="birthday" placeholder="出生日期"/>
@@ -299,7 +305,7 @@
                         <i class="color-placeholder icon icon-arrowright"></i>
                     </div>
                 </div>
-                <div class="inputbox underline">
+                <div class="inputbox">
                     <label class="inputbox-left">邮箱</label>
                     <div class="inputbox-right inputbox">
                         <input type="text" name="email" placeholder="填写邮箱"/>
@@ -307,7 +313,7 @@
                 </div>
             </div>
             <div class="group">
-                <div class="inputbox underline box-top">
+                <div class="inputbox box-top">
                     <label class="inputbox-left">个人说明</label>
                     <div class="inputbox-right inputbox">
                         <textarea class="label-right noborder" name="note" placeholder="个人说明"></textarea>

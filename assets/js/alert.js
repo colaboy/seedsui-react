@@ -6,13 +6,15 @@
 		Model
 		================*/
 		var defaults={
-			"maskClass":"mask",
-			"alertClass":"alert",
-			"handlerClass":"alert-handler",
-			"title":"提示",
-			"buttonOk":"确定",
-			"buttonCancel":"取消",
-			"isClickMaskHide":false
+			overflowContainer:document.body,
+			parent:document.body,
+			maskClass:"mask",
+			alertClass:"alert",
+			handlerClass:"alert-handler",
+			title:"提示",
+			buttonOk:"确定",
+			buttonCancel:"取消",
+			isClickMaskHide:false
 			/*
             Callbacks:
             onClick:function(Alert)
@@ -29,7 +31,11 @@
 		}
 		var s=this;
 		s.params=params;
-		s.container=document.body,s.alert,s.mask;
+		//Parent | OverflowContainer
+		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
+		//Alert | Mask
+		s.alert,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -76,8 +82,8 @@
 		s.create=function(){
 			s.mask=s.createMask();
 			s.alert=s.createAlert();
-			s.container.appendChild(s.mask);
-			s.container.appendChild(s.alert);
+			s.parent.appendChild(s.mask);
+			s.parent.appendChild(s.alert);
 		}
 		s.create();
 		/*================
@@ -91,7 +97,7 @@
         	s.mask.style.opacity="0";
         }
         s.destroyMask=function(){
-        	s.container.removeChild(s.mask);
+        	s.parent.removeChild(s.mask);
         }
         s.showAlert=function(){
         	s.alert.style.visibility="visible";
@@ -101,7 +107,7 @@
         	s.alert.style.opacity="0";
         }
         s.destroyAlert=function(){
-        	s.container.removeChild(s.alert);
+        	s.parent.removeChild(s.alert);
         }
 		s.isHid=true;
 		s.hide=function(){
@@ -111,7 +117,8 @@
 			//显示弹出框
 			s.hideAlert();
 			//显示滚动条
-            document.body.style.overflow="auto";
+			if(s.overflowContainer)
+            s.overflowContainer.style.overflow="auto";
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -120,7 +127,8 @@
 			//显示弹出框
 			s.showAlert();
 			//禁用滚动条
-            document.body.style.overflow="hidden";
+			if(s.overflowContainer)
+            s.overflowContainer.style.overflow="hidden";
 		};
 		s.destroy=function(){
 			//移动事件监听

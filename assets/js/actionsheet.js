@@ -6,6 +6,8 @@
 		Model
 		================*/
 		var defaults={
+			overflowContainer:document.body,
+			parent:document.body,
 			maskClass:"mask",
 			actionsheetClass:"actionsheet",
 			groupClass:"actionsheet-group",
@@ -28,7 +30,11 @@
 		}
 		var s=this;
 		s.params=params;
-		s.container=document.body,s.actionsheet,s.mask;
+		//Parent | OverflowContainer
+		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
+		//Actionsheet | Mask
+		s.actionsheet,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -70,8 +76,8 @@
         s.create=function(){
         	s.mask=s.createMask();
         	s.actionsheet=s.createActionsheet();
-        	s.container.appendChild(s.mask);
-        	s.container.appendChild(s.actionsheet);
+        	s.parent.appendChild(s.mask);
+        	s.parent.appendChild(s.actionsheet);
         }
         s.create();
         //设置数据
@@ -92,7 +98,7 @@
         	s.mask.style.opacity="0";
         }
         s.destroyMask=function(){
-        	s.container.removeChild(s.mask);
+        	s.parent.removeChild(s.mask);
         }
         s.showActionsheet=function(){
         	s.actionsheet.style.webkitTransform="translate3d(0,0,0)";
@@ -101,7 +107,7 @@
         	s.actionsheet.style.webkitTransform="translate3d(0,100%,0)";
         }
         s.destroyActionsheet=function(){
-        	s.container.removeChild(s.actionsheet);
+        	s.parent.removeChild(s.actionsheet);
         }
 
 		s.isHid=true;
@@ -112,7 +118,7 @@
 			//显示弹出框
 			s.hideActionsheet();
 			//显示滚动条
-            document.body.style.overflow="auto";
+            s.overflowContainer.style.overflow="auto";
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -121,7 +127,7 @@
 			//显示弹出框
 			s.showActionsheet();
 			//禁用滚动条
-            document.body.style.overflow="hidden";
+            s.overflowContainer.style.overflow="hidden";
 		};
 		s.destroy=function(){
 			//移动事件监听

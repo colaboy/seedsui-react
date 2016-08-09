@@ -3,6 +3,7 @@ var lang = {
 	"rule": {
 		"required": "不能为空",
 		"number":"只能为数字",
+		"positiveInteger":"只能为正整数",
 		"username": "只能包括字母、数字和下划线",
 		"password": "格式不正确",
 		"phone": "手机号码输入不正确",

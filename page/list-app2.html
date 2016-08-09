@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>list-app1</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+        .app-listAppIcon{
+            display: -webkit-box;
+            -webkit-box-align:center;
+            margin:0 8px;
+        }
+        .app-listAppContent{
+            display:block;
+            padding:12px 0;
+            -webkit-box-flex: 1.0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-listAppBadge{
+            padding:0 8px;
+            display: -webkit-box;
+            -webkit-box-align:center;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+    </style>
+</head>
+
+<body ontouchstart="">
+	<header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>
+            <h1>应用列表2</h1>
+        </div>
+    </header>
+	<article>
+        <ul class="list">
+            <li>
+                <div class="app-listAppIcon">
+                    <i class="size32 icon-folder-fill color-info"></i>
+                </div>
+                <p class="app-listAppContent">
+                    最新文档
+                </p>
+                <div class="app-listAppBadge">
+                    <span class="badge">1</span>
+                </div>
+            </li>
+            <li>
+                <div class="app-listAppIcon">
+                    <i class="size32 icon-chat-fill color-warn"></i>
+                </div>
+                <p class="app-listAppContent">
+                    通知公告
+                </p>
+                <div class="app-listAppBadge">
+                    <span class="tip">1</span>
+                </div>
+            </li>
+        </ul>
+    </article>
+    <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        //定义exmobi返回
+    	function back(){history.go(-1)}
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
           Model
           ===========================*/
         var defaults={
+            overflowContainer:document.body,
             dialogClass:"dialog",
             maskClass:"mask",
             position:null,
@@ -32,11 +33,18 @@
 
         //Params
         s.params = params;
-
-        //Container
-        s.dialog,s.mask,s.wrapper=typeof wrapper=="string"?document.querySelector(wrapper):wrapper;
-        s.container=s.wrapper.parentNode;
+        //Mask
+        s.mask;
+        //Dialog(外层生成的包裹容器)
+        s.dialog;
+        //Wrapper(源容器)
+        s.wrapper=typeof wrapper=="string"?document.querySelector(wrapper):wrapper;
         if(!s.wrapper)return;
+        //Parent(父容器，为了方便在源容器处插入包裹容器)
+        s.parent=s.wrapper.parentNode;
+        //OverflowContainer
+        s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
+        
         //Mask
         s.createMask=function(){
             var mask=document.createElement("div");
@@ -52,11 +60,11 @@
         s.create=function(){
             //插入Dialog
             s.dialog=s.createContainerBox();
-            s.container.insertBefore(s.dialog,s.wrapper);
+            s.parent.insertBefore(s.dialog,s.wrapper);
             s.dialog.appendChild(s.wrapper);
             //插入遮罩
             s.mask=s.createMask();
-            s.container.insertBefore(s.mask,s.dialog);
+            s.parent.insertBefore(s.mask,s.dialog);
         }
         s.create();
 
@@ -146,7 +154,7 @@
             s.mask.style.opacity="0";
         }
         s.destroyMask=function(){
-            s.container.removeChild(s.mask);
+            s.parent.removeChild(s.mask);
         }
         s.showDialog=function(){
             s.dialog.style.visibility="visible";
@@ -160,7 +168,7 @@
             }
         }
         s.destroyDialog=function(){
-            s.container.removeChild(s.dialog);
+            s.parent.removeChild(s.dialog);
         }
         s.isHid=true;
         s.show=function(fn){
@@ -169,7 +177,8 @@
             s.showDialog();
             if(fn)s.params.onShowed=fn;
             //禁用滚动条
-            document.body.style.overflow="hidden";
+            if(s.overflowContainer)
+            s.overflowContainer.style.overflow="hidden";
         }
         s.hide=function(fn){
             s.isHid=true;
@@ -177,7 +186,8 @@
             s.hideDialog();
             if(fn)s.params.onHid=fn;
             //显示滚动条
-            document.body.style.overflow="auto";
+            if(s.overflowContainer)
+            s.overflowContainer.style.overflow="auto";
         }
         s.destroy=function(){
             s.destroyMask();

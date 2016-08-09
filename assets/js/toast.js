@@ -6,12 +6,12 @@
 		Model
 		================*/
 		var defaults={
-			"parent":document.body,
-			"toastBoxClass":"toast-box",
-			"toastClass":"toast",
+			parent:document.body,
+			toastBoxClass:"toast-box",
+			toastClass:"toast",
 			//"delay":1000,
-			"showAnimateClass":"toast-show",
-			"hideAnimateClass":"toast-hide"
+			showAnimateClass:"toast-show",
+			hideAnimateClass:"toast-hide"
 			/*callbacks
             onShowed(Toast)//显示动画结束后回调
             onHid(Toast)//隐藏动画结束后回调

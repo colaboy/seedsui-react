@@ -24,55 +24,90 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-        var a2=new Alert("请求超时啦");
-        function initData(){
-            for(var i=0;i<100;i++){
-                var elLI=document.createElement("li");
-                elLI.setAttribute("class","underline padding8");
-                elLI.innerHTML='<p>第'+i+'行列表</p>';
-                document.getElementById("list").appendChild(elLI);
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.drag={};
+                this.alert={};
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initData:function(){
+                for(var i=0;i<100;i++){
+                    var elLI=document.createElement("li");
+                    elLI.setAttribute("class","underline padding8");
+                    elLI.innerHTML='<p>第'+i+'行列表</p>';
+                    document.getElementById("list").appendChild(elLI);
+                }
+            },
+            _initDrag:function(){
+                this.drag=new Dragrefresh("article",{
+                    threshold:130,
+                    onRefreshStart:function(e){
+                        setTimeout(function(){
+                            e.refreshComplete();
+                        }, 2000);
+                    },
+                    onRefreshEnd:function(e){
+                        console.log("加载完成");
+                    },
+                    onRefreshTimeout:function(e){
+                        a2.show();
+                    },
+                    onScroll:function(e){
+                        //console.log(e.conttainer.scrollTop);
+                    },
+                    onBottom:function(e){
+                        console.log("到底部啦");
+                        //数据加载完成时，隐藏下面的元素
+                        setTimeout(function(){
+                            e.bottomContainer.style.display="none";
+                        }, 5000);
+                    }
+                });
+            },
+            _initAlert:function(){
+                this.alert=new Alert("请求超时啦");
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this._initData();
+
+                //Plugin
+                this._initDrag();
+                this._initAlert();
+
+                //Events
+                //this._attach();
             }
         }
-        var drag;
-        function initDrag(){
-            drag=new Dragrefresh("article",{
-                "threshold":130,
-                "onRefreshStart":function(e){
-                    setTimeout(function(){
-                        e.refreshComplete();
-                    }, 2000);
-                },
-                "onRefreshEnd":function(e){
-                    console.log("加载完成");
-                },
-                "onRefreshTimeout":function(e){
-                    a2.show();
-                },
-                "onScroll":function(e){
-                    //console.log(e.conttainer.scrollTop);
-                },
-                "onBottom":function(e){
-                    console.log("到底部啦");
-                    //数据加载完成时，隐藏下面的元素
-                    setTimeout(function(){
-                        e.bottomContainer.style.display="none";
-                    }, 5000);
-                }
-            });
-        }
-        function destroy(){
-            drag.destroy();
-        }
-        function detach(){
-            drag.detach();
-        }
-        function attach(){
-            drag.attach();
-        }
+
         window.addEventListener("load",function(){
-            initData();
-            initDrag();
-        },false);
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+        
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

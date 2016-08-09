@@ -4,7 +4,7 @@
 		//Model
 	    var defaults={
 	    	"city":"南京",
-	    	"expires":"today"
+	    	"expires":null
 	    };
 	    params=params||{};
 	    for(var def in defaults){
@@ -14,17 +14,14 @@
 	    };
 	    var s=this;
 	    s.params=params;
-	    //Expires
-	    s.expires;
+	    
 	    //Date
 	    var date=new Date();
 		if((!s.params.expires=="today" || s.params.expires==0) && typeof s.params.expires=="number"){
 			return;
 		}
-		s.getExpires=function(){
-			s.expires=date.expires(s.params.expires);
-		}
-		s.getExpires();
+		//Expires
+		s.expires=s.params.expires?date.expires(s.params.expires):null;
 		//URL
 	    s.weatherURL='http://api.map.baidu.com/telematics/v3/weather?location='+s.params.city+'&output=json&ak=W79uNeeyw7QXp6FGUzR6r8lY';
 	    //s.weatherURL='http://api.map.baidu.com/telematics/v3/weather?location=南京';
@@ -152,8 +149,6 @@
 			var cache=JSON.parse(DB.get("weatherJson"));
 			var cacheExpires=DB.get("weatherJson_expires");
 			//var now=date.format(date.datetime());
-			console.log(date);
-			console.log(cacheExpires);
 			if(!cache || cache.status!="success" || cacheExpires<=date){
 				console.log("不读缓存");
 				s.loadData();
@@ -258,9 +253,10 @@
 			console.log("正在读取服务器天气..");
 			
 			console.log("正在定义缓存时效，时效截止于"+s.expires);
-			DB.set("weatherJson",JSON.stringify(data));
-			DB.set("weatherJson_expires",s.expires);
-			
+			if(s.expires){
+				DB.set("weatherJson",JSON.stringify(data));
+				DB.set("weatherJson_expires",s.expires);
+			}
 			s.render(data);
 		},
 		s.onError=function(msg){
