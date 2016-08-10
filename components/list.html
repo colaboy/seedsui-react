@@ -107,9 +107,50 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initClocks:function(){
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+
+                //Events
+                //this._attach();
+            }
+        }
+
         window.addEventListener("load",function(){
-            var dc=new Clocks();
-        },false);
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

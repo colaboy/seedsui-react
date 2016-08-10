@@ -84,7 +84,6 @@
 			"onClickDone":function(e){
 				e.activeText=s.getActiveText(e.activeOptions);
 		    	if(s.params.onClickDone)s.params.onClickDone(e);
-	    		var activeText="";
 	    	},
 	    	"onClickCancel":function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);

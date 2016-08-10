@@ -25,7 +25,8 @@ body {
   font-family: Arial, "Microsoft Yahei";
 }
 i,
-span {
+span,
+label {
   display: inline-block;
   vertical-align: middle;
 }

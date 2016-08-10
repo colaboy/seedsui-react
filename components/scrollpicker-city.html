@@ -19,10 +19,10 @@
 	</header>
 	<article>
         <div class="inputbox margin8">
-            <input type="text" placeholder="请选择城市" readonly="readonly" id="area1"/>
+            <input type="text" placeholder="请选择城市" readonly="readonly" id="ID-City"/>
         </div>
         <div class="inputbox margin8">
-            <input type="text" placeholder="请选择地区" readonly="readonly" id="area2"/>
+            <input type="text" placeholder="请选择地区" readonly="readonly" id="ID-Area"/>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -31,36 +31,95 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    var spCity=new SpCity({
-        viewType:"city",
-        data:citys,
-        provinceClass:"text-center citycol",
-        cityClass:"text-center citycol",
-        areaClass:"text-center citycol"
-    });
-    var spArea=new SpCity({
-        viewType:"area",
-        data:citys,
-        provinceClass:"text-center citycol",
-        cityClass:"text-center citycol",
-        areaClass:"text-center citycol"
-    });
-    document.getElementById("area1").onclick=function(){
-        var input=this;
-        spCity.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        spCity.show();
+    var views={
+        /*=========================
+          Model
+          ===========================*/
+        initialize:function(){
+            //DOM
+            this.textCity,this.textCityId="ID-City";
+            this.textArea,this.textAreaId="ID-Area";
+            //Data
+            //Plugin
+            this.spCity={};
+            this.spArea={};
+        },
+        /*=========================
+          Method
+          ===========================*/
+        _initSpCity:function(){
+            this.spCity=new SpCity({
+                viewType:"city",
+                data:citys,
+                provinceClass:"text-center citycol",
+                cityClass:"text-center citycol",
+                areaClass:"text-center citycol"
+            });
+        },
+        _initSpArea:function(){
+            this.spArea=new SpCity({
+                viewType:"area",
+                data:citys,
+                provinceClass:"text-center citycol",
+                cityClass:"text-center citycol",
+                areaClass:"text-center citycol"
+            });
+        },
+        /*=========================
+          Events
+          ===========================*/
+        _attach:function(e){
+            var self=this;
+            this.textCity.addEventListener("click",function(e){
+                self._onClickTextCity(e);
+            },false);
+            this.textArea.addEventListener("click",function(e){
+                self._onClickTextCity(e);
+            },false);
+        },
+        /*=========================
+          Event Handler
+          ===========================*/
+        _onClickTextCity:function(e){
+            var input=e.target;
+            this.spCity.setOnClickDone(function(e){
+                input.value=e.activeText;
+                e.hide();
+            });
+            this.spCity.show();
+        },
+        _onClickTextArea:function(e){
+            var input=e.target;
+            this.spArea.setOnClickDone(function(e){
+                input.value=e.activeText;
+                e.hide();
+            });
+            this.spArea.show();
+        },
+        /*=========================
+          OnLoad
+          ===========================*/
+        _onLoad:function(){
+            var self=this;
+            //DOM
+            this.textCity=document.getElementById(this.textCityId);
+            this.textArea=document.getElementById(this.textAreaId);
+            //Plugin
+            this._initSpCity();
+            this._initSpArea();
+
+            //Events
+            this._attach();
+        }
     }
-    document.getElementById("area2").onclick=function(){
-        var input=this;
-        spArea.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        spArea.show();
-    }
+
+    window.addEventListener("load",function(){
+        views._onLoad();
+    }, false);
+
+    document.addEventListener("DOMContentLoaded",function(){
+        views.initialize();
+    }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>
