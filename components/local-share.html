@@ -12,6 +12,43 @@
 		background-color:white;
 		box-sizing:border-box;
 	}
+	.app-shareboxTitle{
+		font-size: 17px;
+		text-align: center;
+		padding:10px 0;
+	}
+	.app-shareboxClose{
+		display: block;
+		margin: 16px 0 12px 0;
+		text-align: center;
+	}
+	.app-shareboxClose .icon{
+		font-size: 36px;
+		width: 36px;
+		height: 36px;
+		color: #363434;
+	}
+	.app-sharebox .grid{
+		padding: 0 20px;
+	}
+	.app-sharebox li{
+		padding-top: 12px;
+	}
+	.app-sharebox li a{
+		width: 50px;
+		height: 50px;
+		border-radius: 100%;
+		color: white;
+	}
+	.app-sharebox li label{
+		margin-top: 6px;
+	}
+	.app-sharebox li a i{
+		font-size: 30px;
+		width: 30px;
+		height: 30px;
+		pointer-events:none;
+	}
 	</style>
 </head>
 
@@ -28,99 +65,160 @@
 			<div class="card padding8">
 				分享功能目前只支持uc与微信浏览器
 			</div>
-			<a class="button submit block margin8" href="javascript:showShare()">点击分享</a>
+			<a class="button submit block margin8 SID-BtnShare">点击分享</a>
 		</article>
 		<!-- 分享到-->
-		<div id="mshare" class="hide app-sharebox" style="width:100%">
-			<ul class="grid" data-rowspace="8" data-col="3">
+		<div id="ID-PopShare" class="hide app-sharebox" style="width:100%">
+			<div class="app-shareboxTitle">
+				分享至
+			</div>
+			<ul class="grid" data-col="3">
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#e55f5f;" data-share="tsina">
+					<a style="background-color:#e55f5f;" data-share="tsina">
 						<i class="icon icon-tsina"></i>
 					</a>
 					<label class="grid-label">新浪微博</label>
 				</li>
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#eda200;" data-share="qzone">
+					<a style="background-color:#eda200;" data-share="qzone">
 						<i class="icon icon-qqzone"></i>
 					</a>
 					<label class="grid-label">QQ空间</label>
 				</li>
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#45aaf2;" data-share="tqq">
+					<a style="background-color:#45aaf2;" data-share="tqq">
 						<i class="icon icon-tqq"></i>
 					</a>
 					<label class="grid-label">QQ微博</label>
 				</li>
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#4485fb;" data-share="qq">
+					<a style="background-color:#4485fb;" data-share="qq">
 						<i class="icon icon-qq"></i>
 					</a>
 					<label class="grid-label">QQ好友</label>
 				</li>
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#38ba35;" data-share="weixin">
+					<a style="background-color:#38ba35;" data-share="weixin">
 						<i class="icon icon-weixin"></i>
 					</a>
 					<label class="grid-label">微信</label>
 				</li>
 				<li>
-					<a class="size40 radiusround color-white" style="background-color:#41ce29;" data-share="fweixin">
+					<a style="background-color:#41ce29;" data-share="fweixin">
 						<i class="icon icon-fweixin"></i>
 					</a>
 					<label class="grid-label">微信朋友圈</label>
 				</li>
 			</ul>
-			<a class="button cancel block" style="margin: 8px 20px;" id="msharecancel">取消</a>
+			<div class="app-shareboxClose">
+				<a class="icon icon-rdoclose SID-Close"></a>
+			</div>
 		</div>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		//分享参数
-		var shareData={
-			link:'http://exmobi.cn/',
-			title:'简易移动端开发技术！',
-			desc:'狠戳此链接了解，如何让移动开发变的简单',
-			imgUrl:'http://exmobi.cn/2015/images/comm/logo.png',
-			imgTitle:'Exmobi移动开发',
-			from:'烽火星空',
-			cusTxt: "请输入此时此刻想要分享的内容"
-		}
-		var s=new Share(shareData);
-		var t=new Toast("您所要分享的参数不正确");
-		//调用分享接口
-		document.addEventListener("click",function(e){
-			var target=e.target;
-			if(target.tagName.toLowerCase()=="i"){
-				target=target.parentNode;
-			}
-			if(target.getAttribute("data-share")){
-				var shareTo=target.getAttribute("data-share");
-				switch(shareTo){
-					case "tsina" : s.toTsina(); break;
-					case "weixin" : s.toWeixin(); break;
-					case "fweixin" : s.toFWeixin(); break;
-					case "qq" : s.toQQ(); break;
-					case "tqq" : s.toTqq(); break;
-					case "qzone" : s.toQzone(); break;
-					default : t.show(); break;
+		var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.btnShare,this.btnShareClass="SID-BtnShare";
+                this.popShare,this.popShareId="ID-PopShare";
+                this.btnCloseClass="SID-Close";
+				
+                //Data
+                //Plugin
+				/*this.shareData={
+					link:'http://exmobi.cn/',
+					title:'简易移动端开发技术！',
+					desc:'狠戳此链接了解，如何让移动开发变的简单',
+					imgUrl:'http://exmobi.cn/2015/images/comm/logo.png',
+					imgTitle:'Exmobi移动开发',
+					from:'烽火星空',
+					cusTxt: "请输入此时此刻想要分享的内容"
 				}
-			}
-		},false);
+				this.s=new Share(this.shareData);*/
 
-		//弹出框
-		var sharepop=new Dialog("#mshare",{
-			position:"bottom",
-			css:{width:"100%"}
-		});
-		function showShare(){
-			sharepop.show();
-		}
-		//调用分享接口
-		var cancelshare=document.getElementById("msharecancel");
-		cancelshare.addEventListener("click",function(e){
-			sharepop.hide();
-		},false);
+				this.sharepop;
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initShareDialog:function(e){
+                this.sharepop=new Dialog("#"+this.popShareId,{//弹出框
+                    position:"bottom",
+                    css:{width:"100%"}
+                });
+            },
+            _initPlugin:function(e){
+                this._initShareDialog();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+            	var self=this;
+            	//点击分享按钮
+            	this.btnShare.addEventListener("click",function(e){
+            		self._onClickBtnShare(e);
+            	},false);
+            	//点击分享框
+            	this.popShare.addEventListener("click",function(e){
+            		self._onClickPopShare(e);
+            	},false);
+            	
+            },
+
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnShare:function(e){
+            	this.sharepop.show();
+            },
+            _onClickPopShare:function(e){
+            	var target=e.target;
+				
+				if(target.getAttribute("data-share")){
+					var shareTo=target.getAttribute("data-share");
+					switch(shareTo){
+						case "tsina" : console.log("分享到新浪"); break;
+						case "weixin" : console.log("分享到微信"); break;
+						case "fweixin" : console.log("分享到朋友圈"); break;
+						case "qq" : console.log("分享到QQ"); break;
+						case "tqq" : console.log("分享到QQ微博"); break;
+						case "qzone" : console.log("分享到QQ空间"); break;
+						default : console.log("其它"); break;
+					}
+				}else if(target.classList.contains(this.btnCloseClass)){
+					this.sharepop.hide();
+				}
+
+            },
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this.btnShare=document.querySelector("."+this.btnShareClass);
+                this.popShare=document.getElementById(this.popShareId);
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

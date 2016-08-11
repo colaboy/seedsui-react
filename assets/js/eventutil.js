@@ -1,127 +1,115 @@
 //事件函数
 (function(window,document,undefined){
-	
-	function _swipe_(element,type,handler){
-		var xDown, yDown,xUp,yUp,xDiff,yDiff;
-		element.addEventListener( 'touchstart', function( e ){
-			var touches = e.touches[0];
-			xDown = touches.clientX;
-			yDown = touches.clientY;
-		}, false);
-		
-		element.addEventListener( 'touchend', function( e ){
-			var touches = e.changedTouches[0],
-			xUp = touches.clientX,
-			yUp = touches.clientY;
-			xDiff=xDown - xUp;
-			yDiff=yDown - yUp;
-			//单击事件
-			if( Math.abs(xDown - xUp) < 6 && Math.abs(yDown - yUp) < 6 ){
-				if(type==="tap"){
-					handler(e);
-				}
-				return "tap";
-			}
-			//上下滑动
-			if(Math.abs(yDiff)>Math.abs(xDiff)){
-				if(yDiff>0){
-					if(type==="swipeup"){
-						handler(e);
-					}
-					return "swipeup";
-				}
-				
-				if(type==="swipedown"){
-					handler(e);
-				}
-				return "swipedown";
-			}
-			//左右滑动
-			if(xDiff>0){
-				if(type==="swipeleft"){
-					handler(e);
-				}
-				return "swipeleft";
-			}
-			if(type==="swiperight"){
-				handler(e);
-			}
-			return "swiperight";
-		}, false );
-	};
-	//transtionend事件与animationend兼容写法
-	var transitionend,animationend;
-	function whichKernel(){
-		var t,
-		el = document.createElement("fakeelement");
-		var transitions = {
-			"transition"      : ["transitionend","animationend"],
-			"OTransition"     : ["oTransitionEnd","oAnimationEnd"],
-			"MozTransition"   : ["transitionend","animationend"],
-			"WebkitTransition": ["webkitTransitionEnd","webkitAnimationEnd"]
-		};
-		for (t in transitions){
-			if (el.style[t] !== undefined){
-				transitionend=transitions[t][0];
-				animationend=transitions[t][1];
-				break;
-			}
+	window.TapSwipe=function(element,type,handler){
+		var s=this;
+		s.params={
+			threshold:0
 		}
-	};
+		/*=========================
+          Model
+          ===========================*/
+		s.touches={
+			direction:0,
+			vertical:0,
+			horizontal:0,
+			startX:0,
+			startY:0,
+			endX:0,
+			endY:0,
+			diffX:0,
+			diffY:0,
+		}
+		//s.element,s.type,s.handler;
+		s.element=element;
+    	s.type=type;
+		s.handler=handler;
+		/*=========================
+          Method
+          ===========================*/
+
+        /*=========================
+          Touch Events
+          ===========================*/
+		//绑定事件
+		s.events=function(detach){
+			var touchTarget=s.element;
+			var action=detach?"removeEventListener":"addEventListener";
+			touchTarget[action]("touchstart",s.onTouchStart,false);
+			touchTarget[action]("touchend",s.onTouchEnd,false);
+		}
+		//attach、dettach事件
+		s.attach=function(event){
+			s.events();
+		}
+		s.detach=function(event){
+			s.events(true);
+		}
+		/*=========================
+          Touch Handler
+          ===========================*/
+        s.onTouchStart=function(e){
+			s.touches.startX = e.touches[0].clientX;
+			s.touches.startY = e.touches[0].clientY;
+		}
+		s.onTouchEnd=function(e){
+			s.touches.endX = e.changedTouches[0].clientX,
+			s.touches.endY = e.changedTouches[0].clientY;
+			s.touches.diffX=s.touches.startX - s.touches.endX;
+			s.touches.diffY=s.touches.startY - s.touches.endY;
+			//单击事件
+			if(s.type==="tap" && Math.abs(s.touches.diffX) < 6 && Math.abs(s.touches.diffY) < 6 ){
+				s.handler(e);
+				return;
+			}
+
+			/*设置方向*/
+			if(s.touches.direction === 0) {//设置滑动方向(-1上下 | 1左右)
+				s.touches.direction = Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) ? 1 : -1;
+			}
+			if (s.touches.direction === -1) {//设置垂直方向(-1上 | 1下)
+				s.touches.vertical = s.touches.diffY < 0 ? 1 : -1;
+			}
+			if (s.touches.direction === 1) {//设置左右方向(-1左 | 1右)
+				s.touches.horizontal = s.touches.diffX < 0 ? 1 : -1;
+			}
+
+			/*swipeleft | swiperight | swipedown | swipeup 事件*/
+			if(s.type==="swipeup" && s.touches.vertical === -1){//上
+				if(Math.abs(s.touches.diffY) > s.params.threshold){
+					s.handler(e);
+				}
+			}else if(s.type==="swipedown" && s.touches.vertical === 1){//下
+				if(Math.abs(s.touches.diffY) > s.params.threshold){
+					s.handler(e);
+				}
+			}else if(s.type==="swipeleft" && s.touches.horizontal === -1){//左
+				if(Math.abs(s.touches.diffY) > s.params.threshold){
+					s.handler(e);
+				}
+			}else if(s.type==="swiperight" && s.touches.horizontal === 1){//右
+				if(Math.abs(s.touches.diffY) > s.params.threshold){
+					s.handler(e);
+				}
+			}
+
+			/*清空方向*/
+			s.touches.direction=0;
+		}
+		/*=========================
+          Init
+          ===========================*/
+        s.init=function(){
+        	s.attach();
+        }
+        s.init();
+	}
+	var touchEvent=[];
 	window.EventUtil = {
-		/**
-		 * 绑定事件
-		 * 
-		 * @method addHandler
-		 * @param element //元素对象
-		 * @param type //事件类型
-		 * @param handler //响应函数
-		 * @return void
-		 */
-		callback:function(fun,event){
-			fun(event);
-		},
 		addHandler:function (element, type, handler) {
-			//tap、swipeleft、swiperight、swipedown、swipeup
+			//tap | swipeleft | swiperight | swipedown | swipeup 事件
 			if(type==="tap" || type==="swipeleft" ||  type==="swiperight" ||  type==="swipedown" ||  type==="swipeup"){
-				_swipe_(element,type,handler);
+				if(!touchEvent[element])touchEvent[element]=new TapSwipe(element,type,handler);
 				return;
-			}
-			//animationend
-			if(type.toLowerCase()==="animationend"){
-				if(!animationend){
-					//whichKernel();
-					transitionend="webkitTransitionEnd";
-					animationend="webkitAnimationEnd";
-				}
-				if (element.addEventListener) {
-					element.addEventListener(animationend, handler, false);
-				}else if(element.attachEvent){
-					element.attachEvent(animationend, handler);
-				}
-				//webkitAnimationEnd oanimationend msAnimationEnd animationend
-				return;
-			}
-			//TransitionEnd
-			if(type.toLowerCase()==="transitionend"){
-				if(!transitionend){
-					//whichKernel();
-					transitionend="webkitTransitionEnd";
-					animationend="webkitAnimationEnd";
-				}
-				if (element.addEventListener) {
-					element.addEventListener(transitionend, handler, false);
-				}else if(element.attachEvent){
-					element.attachEvent(transitionend, handler);
-				}
-				return;
-			}
-			//oninput
-			if(type.toLowerCase()==="input" || type.toLowerCase()==="propertychange"){
-				type="input";
-				if(element.attachEvent){
-					type="propertychange";
-				}
 			}
 			//系统事件
 			if (element.addEventListener) {
@@ -133,6 +121,12 @@
 			}
 		},
 		removeHandler:function(element, type, handler) {
+			//tap、swipeleft、swiperight、swipedown、swipeup
+			if(type==="tap" || type==="swipeleft" ||  type==="swiperight" ||  type==="swipedown" ||  type==="swipeup"){
+				touchEvent[element].detach();
+				return;
+			}
+			//系统事件
 			if (element.removeEventListener) {
 				element.removeEventListener(type, handler, false);
 			} else if (element.detachEvent) {

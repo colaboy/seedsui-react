@@ -70,9 +70,6 @@ label,
 :focus {
   outline: 0 none;
 }
-label {
-  vertical-align: middle;
-}
 img {
   border: 0;
   vertical-align: middle;
