@@ -121,10 +121,14 @@
               ===========================*/
             _initClocks:function(){
             },
+            _initPlugin:function(){
+
+            },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
+                var self=this;
             },
             /*=========================
               Event Handler
@@ -137,7 +141,7 @@
                 //DOM
 
                 //Plugin
-
+                this._initPlugin();
                 //Events
                 this._attach();
             }

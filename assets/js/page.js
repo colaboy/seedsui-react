@@ -5,14 +5,14 @@
           Model
           ===========================*/
 		var defaults={
-			"isDisableSameClick":false,//是否禁止重复点击相同按钮
-			"isTakeHistory":true,//是否添加浏览器历史记录
-			"button":"[data-toggle=page]",
-			"buttonActiveClass":"active",
-			"pageClass":"page",
-			"pageActiveClass":"active",
-			"defaultAnimation":"slideLeft",
-			"duration":"300"
+			isDisableSameClick:false,//是否禁止重复点击相同按钮
+			isTakeHistory:true,//是否添加浏览器历史记录
+			buttonAttr:"[data-toggle=page]",
+			buttonActiveClass:"active",
+			pageClass:"page",
+			pageActiveClass:"active",
+			defaultAnimation:"slideLeft",
+			duration:"300"
 
 			/*callbacks
 			onLoad:function(Page)//加载中
@@ -30,7 +30,7 @@
 		var s=this;
 		s.params=params;
 		//Btns
-        s.buttons=[].slice.call(document.querySelectorAll(s.params.button));
+        s.buttons=[].slice.call(document.querySelectorAll(s.params.buttonAttr));
 		//Pages
 		s.pages;
 		s.update=function(){

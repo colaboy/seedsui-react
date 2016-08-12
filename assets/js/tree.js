@@ -1,4 +1,4 @@
-//Tree 树结构
+//Tree 树结构(require EventUtil.js)
 (function(window,document,undefined){
 window.Tree=function(container,params){
     /*=========================

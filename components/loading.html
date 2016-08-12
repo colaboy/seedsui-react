@@ -14,10 +14,10 @@
 
 <body ontouchstart="">
 	<!-- 加载遮罩 -->
-	<div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-	<div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+	<!-- <div class="mask" id="ID-LoadingMask" style="visibility:visible;opacity:1;"></div>
+	<div class="loading-box" id="ID-LoadingBox" style="visibility:visible;opacity:1;">
 		<div class="loading"></div>
-	</div>
+	</div> -->
 
 	<header>
 		<div class="titlebar">
@@ -31,10 +31,64 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		var loading=new Loading("#loadingBox","#loadingMask");
-		setTimeout(function(){
-			loading.hide();
-		},3000);
+		var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.loading;
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initLoading:function(){
+            	var self=this;
+            	this.loading=new Loading();
+            	this.loading.show();
+            	/*this.loading=new Loading({//第二种方法:默认创建好DOM更快
+					loadContainer:"#ID-LoadingBox",
+					mask:"#ID-LoadingMask"
+				});*/
+				setTimeout(function(){
+					self.loading.hide();
+				},1000);
+            },
+            _initPlugin:function(){
+            	this._initLoading();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

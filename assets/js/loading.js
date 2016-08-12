@@ -1,15 +1,18 @@
 //Loading
 (function(window,document,undefined){
 	
-	window.Loading=function(loadContainer,maskContainer,params){
+	window.Loading=function(params){
 		/*================
 		Model
 		================*/
 		var defaults={
-			"maskClass":"mask",
-			"loadingBoxClass":"loading-box",
-			"loadingClass":"loading",
-			"isClickMaskHide":false
+			parent:document.body,
+			loadContainer:null,
+			mask:null,
+			maskClass:"mask",
+			loadingContainerClass:"loading-box",
+			loadingClass:"loading",
+			isClickMaskHide:false
 			/*
             Callbacks:
             onClick:function(Loading)
@@ -23,7 +26,8 @@
 		}
 		var s=this;
 		s.params=params;
-		s.container=document.body,s.mask,s.loadingBox;
+		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+		s.mask,s.loadingContainer;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -32,32 +36,33 @@
         }
         //LoadingBox
 		s.createLoadingBox=function(){
-			var loadingBox=document.createElement("div");
-			loadingBox.setAttribute("class",s.params.loadingBoxClass);
+			var loadingContainer=document.createElement("div");
+			loadingContainer.setAttribute("class",s.params.loadingContainerClass);
 
-			loadingBox.loading=document.createElement("div");
-			loadingBox.loading.setAttribute("class",s.params.loadingClass);
+			loadingContainer.loading=document.createElement("div");
+			loadingContainer.loading.setAttribute("class",s.params.loadingClass);
 
-			loadingBox.appendChild(loadingBox.loading);
+			loadingContainer.appendChild(loadingContainer.loading);
 
-			return loadingBox;
+			return loadingContainer;
 		}
 		s.create=function(){
-			if(loadContainer){
-				s.loadingBox=typeof loadContainer=="string"?document.querySelector(loadContainer):loadContainer;
+			if(s.params.loadContainer){
+				s.loadingContainer=typeof s.params.loadContainer=="string"?document.querySelector(s.params.loadContainer):s.params.loadContainer;
 			}else{
-				s.loadingBox=s.createLoadingBox();
-				s.container.appendChild(s.loadingBox);
+				s.loadingContainer=s.createLoadingBox();
+				s.parent.appendChild(s.loadingContainer);
 			}
 
-			if(maskContainer){
-				s.mask=typeof maskContainer=="string"?document.querySelector(maskContainer):maskContainer;
+			if(s.params.mask){
+				s.mask=typeof s.params.mask=="string"?document.querySelector(s.params.mask):s.params.mask;
 			}else{
 				s.mask=s.createMask();
-				s.container.insertBefore(s.mask,s.loadingBox);
+				s.parent.insertBefore(s.mask,s.loadingContainer);
 			}
 		}
 		s.create();
+		if(!s.mask || !s.loadingContainer)return;
 		/*================
 		Method
 		================*/
@@ -69,17 +74,17 @@
         	s.mask.style.opacity="0";
         }
         s.destroyMask=function(){
-        	s.container.removeChild(s.mask);
+        	s.parent.removeChild(s.mask);
         }
         s.showLoading=function(){
-        	s.loadingBox.style.visibility="visible";
-            s.loadingBox.style.opacity="1";
+        	s.loadingContainer.style.visibility="visible";
+            s.loadingContainer.style.opacity="1";
         }
         s.hideLoading=function(){
-        	s.loadingBox.style.opacity="0";
+        	s.loadingContainer.style.opacity="0";
         }
         s.destroyLoading=function(){
-        	s.container.removeChild(s.loadingBox);
+        	s.parent.removeChild(s.loadingContainer);
         }
 		s.isHid=true;
 		s.hide=function(){
@@ -113,7 +118,7 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.loadingBox;
+            var touchTarget=s.loadingContainer;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -136,7 +141,7 @@
 		}
 		s.onTransitionEnd=function(e){
 			if(s.isHid){
-				s.loadingBox.style.visibility="hidden";
+				s.loadingContainer.style.visibility="hidden";
 				s.mask.style.visibility="hidden";
 			}
 		}

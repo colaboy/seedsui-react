@@ -10,6 +10,9 @@
     .app-active-error {
         background-color: #ffecec;
     }
+    .icon-eye-fill.active{
+        color: #18b2ed;
+    }
     </style>
 </head>
 
@@ -21,7 +24,7 @@
         </div>
     </header>
     <article>
-    	<form id="form1" style="padding:10px;">
+    	<form id="ID-Form" style="padding:10px;">
             <div class="inputbox bordered tbmargin8" data-input="clear">
                 <input type="text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
                 <i class="icon icon-clear-fill color-placeholder hide"></i>
@@ -70,31 +73,83 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-    window.addEventListener("load",function(){
-        var f=new Form("#form1",{
-            "toastParent":"article",
-            "formFilterClass":"form-filter",
-            "onFail":function(e){
-                for(var i=0,el;el=e.formElements[i++];){
-                    el.parentNode.classList.remove("app-active-error");
-                }
-                e.field.parentNode.classList.add("app-active-error");
-                e.toast.show();
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.form,this.formId="ID-Form";
+                this.formControls;
             },
-            "onSuccess":function(e){
-                for(var i=0,el;el=e.formElements[i++];){
-                    el.parentNode.classList.remove("app-active-error");
-                }
-                console.log("提交");
+            /*=========================
+              Method
+              ===========================*/
+            _initFormControls:function(){
+                this.formControls=new Formcontrols();
+            },
+            _initForm:function(){
+                var self=this;
+                this.form=new Form("#"+this.formId,{
+                    "toastParent":"article",
+                    "formFilterClass":"form-filter",
+                    "onFail":function(e){
+                        for(var i=0,el;el=e.formElements[i++];){
+                            el.parentNode.classList.remove("app-active-error");
+                        }
+                        e.field.parentNode.classList.add("app-active-error");
+                        e.toast.show();
+                    },
+                    "onSuccess":function(e){
+                        for(var i=0,el;el=e.formElements[i++];){
+                            el.parentNode.classList.remove("app-active-error");
+                        }
+                        console.log("提交");
+                    }
+                });
+                this.form.container.addEventListener("submit",function(e){
+                    e.preventDefault();
+                    self.form.validate();
+                },false);
+            },
+            _initPlugin:function(){
+                this._initFormControls();
+                this._initForm();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
             }
-        });
-        f.container.addEventListener("submit",function(e){
-            e.preventDefault();
-            f.validate();
-        },false);
-    },false);
-    //定义exmobi返回
-    function back(){history.go(-1);}
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
     </script>
 </body>
 </html>

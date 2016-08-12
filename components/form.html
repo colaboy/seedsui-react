@@ -7,12 +7,6 @@
     <title>form</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
     <link rel="stylesheet" href="../plugin/animate/animate.css">
-    <style>
-    input[type=search].search,input[type=text].search{
-        padding-top:6px;
-        padding-bottom:6px;
-    }
-    </style>
 </head>
 
 <body ontouchstart="">
@@ -25,18 +19,19 @@
     <article>
         <p class="sliver">表单组件</p>
 
-        <div class="inputbox margin8 radius20 overflow-hidden">
+        <form class="inputbox margin8 radius20 overflow-hidden" data-input="clear">
             <i class="color-placeholder icon icon-search"></i>
-            <input type="text" placeholder="搜索框" class="search">
-        </div>
-        <div class="inputbox margin8 radius20" data-input="clear">
-            <input type="text" placeholder="搜索框" class="search"/>
-            <i class="color-placeholder icon icon-clear-fill hide"></i>
-        </div>
-        <div class="inputbox margin8">
-            <input type="text" placeholder="搜索框" />
+            <input type="search" placeholder="搜索框" class="search">
+            <i class="color-placeholder icon icon-clear-fill hide size20"></i>
+        </form>
+        <form class="inputbox margin8 radius20" data-input="clear">
+            <input type="search" placeholder="搜索框" class="search"/>
+            <i class="color-placeholder icon icon-clear-fill hide size20"></i>
+        </form>
+        <form class="inputbox margin8">
+            <input type="search" placeholder="搜索框" />
             <i class="color-placeholder icon icon-search"></i>
-        </div>
+        </form>
 
         <div class="inputbox margin8" data-input="reveal">
             <input type="password" placeholder="密码框" />
@@ -326,9 +321,55 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-    	window.addEventListener("load",function(){
-    		var f=new Form("#formlr");
-    	},false);
+    	var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.formControls;
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initFormControls:function(){
+                this.formControls=new Formcontrols();
+            },
+            _initPlugin:function(){
+                this._initFormControls();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
     	//定义exmobi返回
     	function back(){history.go(-1);}
     </script>
