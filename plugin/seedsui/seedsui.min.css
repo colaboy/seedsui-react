@@ -2288,19 +2288,17 @@ select {
 /*----------------inputbox.less(end)--------------*/
 /*----------------numbox.less(start)--------------*/
 .numbox {
-  display: inline-block;
+  display: -webkit-inline-box;
   position: relative;
-  height: 32px;
-  width: 120px;
+  height: 24px;
+  width: 94px;
   overflow: hidden;
   text-align: center;
+  vertical-align: middle;
 }
 .numbox .button {
-  position: absolute;
-  top: 0;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
+  width: 24px;
+  height: 24px;
   font-size: 18px;
   font-weight: 400;
 }
@@ -2313,43 +2311,38 @@ select {
 .numbox .button {
   border: 0;
 }
-.numbox input[type=number],
-.numbox input[type=text] {
-  padding: 6px 0;
-  width: 56px;
+.numbox input[type=number] {
+  display: block;
+  -webkit-box-flex: 1;
+  padding: 2px;
   text-align: center;
   text-overflow: ellipsis;
   border-width: 0;
 }
-.numbox.bordered input[type=number],
-.numbox.bordered input[type=text] {
+.numbox.bordered input[type=number] {
   width: 54px;
   border-width: 0 1px;
 }
 /*----------------numbox.less(end)--------------*/
 /*-----------------------------checkbox.less(start)-----------------------------*/
 input[type="checkbox"],
-input[type="radio"],
-.checkbox,
-.radio {
-  background-position: 0 0;
-  background-repeat: no-repeat;
+input[type="radio"] {
   height: 22px;
   width: 22px;
   line-height: 22px;
-  background-size: auto 100%;
   vertical-align: middle;
   outline: none;
   border-radius: 0;
   border: none;
   background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
   font-family: "iconfont";
   font-size: 22px;
 }
 label input[type="checkbox"] + span,
-label input[type="radio"] + span,
-.checkbox + span,
-.radio + span {
+label input[type="radio"] + span {
   margin: 0 4px;
 }
 /*checkbox*/
@@ -5216,7 +5209,7 @@ aside {
   color: #18b2ed;
 }
 .tabbar[data-type=animate-oneline] .tab.active::before {
-  background: #18b2ed;
+  background-color: #18b2ed;
 }
 /*括弧形(动画)*/
 .tabbar[data-type=animate-bracket] .tab.active {
@@ -5225,7 +5218,7 @@ aside {
 .tabbar[data-type=animate-bracket] .tab.active::before,
 .tabbar[data-type=animate-bracket] .tab.active .tab-label::before,
 .tabbar[data-type=animate-bracket] .tab.active .tab-label::after {
-  background: #18b2ed;
+  background-color: #18b2ed;
 }
 /*滑片形(动画)*/
 .tabbar[data-type=animate-slide] hr {

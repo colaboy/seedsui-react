@@ -6,22 +6,22 @@
           Model
           ===========================*/
 		var defaults={
-			"pagination":null,
-			"autoplay":false,
-			"slidesPerView":1,
-			"threshold":"50",
-			"duration":"300",
+			pagination:null,
+			autoplay:false,
+			slidesPerView:1,
+			threshold:"50",
+			duration:"300",
 
 			//loop
-			"loop":false,
-			"slideDuplicateClass":'slider-slide-duplicate',
+			loop:false,
+			slideDuplicateClass:'slider-slide-duplicate',
 
 			//dom class
-			"wrapperClass":"slider-wrapper",
-			"slideClass":"slider-slide",
-			"slideActiveClass":"active",
-			"bulletClass":"bullet",
-			"bulletActiveClass":"active"
+			wrapperClass:"slider-wrapper",
+			slideClass:"slider-slide",
+			slideActiveClass:"active",
+			bulletClass:"bullet",
+			bulletActiveClass:"active"
 
 			/*callbacks
 			onInit:function(Slider)

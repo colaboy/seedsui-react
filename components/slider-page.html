@@ -14,7 +14,7 @@
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1>滑动页面</h1>
         </div>
-        <ul class="tabbar" data-type="slide" data-col="5" id="tabbar">
+        <ul class="tabbar" data-type="slide" data-col="5" id="ID-Tabbar">
             <li class="tab active">
                 <label class="tab-label">头条</label>
             </li>
@@ -33,120 +33,35 @@
         </ul>
     </header>
     <article style="padding-top:84px;" class="scrollbox">
-        <div class="slider-container" id="carouselPage" style="height: 100%;">
-            <div class="slider-wrapper">
-                <div class="slider-slide">
-                    第一页
-                </div>
-                <div class="slider-slide">
-                    第二页
-                </div>
-                <div class="slider-slide">
-                    第三页
-                </div>
-                <div class="slider-slide">
-                    第四页
-                </div>
-                <div class="slider-slide">
-                    第五页
-                </div>
-            </div>
+        <div class="slider-container" id="ID-CarouselPage" style="height: 100%;">
+        <div class="slider-wrapper">
+        <div class="slider-slide">
+            <!--第一页:start-->
+            <!--第一页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第二页:start-->
+            <!--第二页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第三页:start-->
+            <!--第三页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第四页:start-->
+            <!--第四页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第五页:start-->
+            <!--第五页:end-->
+        </div>
+        </div>
         </div>
     </article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-        var slides=document.querySelectorAll("#carouselPage .slider-slide");
-        //初始化滑动容器
-        var carouselPage;
-        function initSlider(){
-            carouselPage=new Slider("#carouselPage",{
-                "onInit":function(e){
-                    //compatibleIosScroll(e);
-                },
-                "onSlideChangeEnd":function(e){
-                    tabActive(e.index);
-                    //compatibleIosScroll(e);
-                }
-            });
-        }
-        //初始化数据
-        var pageDataCount=[100,10,30,40,50];//每页数据条数
-        function initData(){
-            [].slice.call(slides).forEach(function(n,i,a){
-                var datastr="";
-                for(var j=0;j<pageDataCount[i];j++){
-                    datastr+='<li class="padding8 underline"><p>第'+i+'页</p></li>'
-                }
-                n.innerHTML='<ul class="list">'+datastr+'</ul>';
-            })
-        }
-        //初始化tabbar菜单
-        var tabbar=document.getElementById("tabbar");
-        var tab=tabbar.querySelectorAll(".tab");
-        function tabActive(index){
-            for(var i=0,t;t=tab[i++];){
-                t.classList.remove("active");
-            }
-            tab[index].classList.add("active");
-        }
-        function initTabbar(){
-            for(var i=0,t;t=tab[i++];){
-                (function(i){
-                    t.addEventListener("click",function(){
-                        carouselPage.slideTo(i-1);
-                        tabActive(i-1);
-                    },false);
-                })(i);
-            }
-        }
-        //给第一页和第二页添加拖动刷新
-
-        function initDrag(){
-            var drag1=new Dragrefresh(carouselPage.slides[0],{
-                "threshold":100,
-                "onRefreshStart":function(e){
-                    setTimeout(function(){
-                        e.refreshComplete();
-                    }, 2000);
-                },
-                "onRefreshEnd":function(e){
-                    console.log("加载完成");
-                },
-                "onBottom":function(e){
-                    console.log("滚动到底部啦");
-                    //数据加载完成时，隐藏下面的元素
-                    setTimeout(function(){
-                        e.bottomContainer.style.display="none";
-                    }, 5000);
-                }
-            });
-
-            var drag2=new Dragrefresh(carouselPage.slides[1],{
-                "onRefresh":function(e){
-                    setTimeout(function(){
-                        e.refreshComplete();
-                    }, 2000);
-                },
-                "onRefreshEnd":function(e){
-                    console.log("加载完成");
-                },
-                "onBottom":function(e){
-                    console.log("滚动到底部啦");
-                    //数据加载完成时，隐藏下面的元素
-                    setTimeout(function(){
-                        e.bottomContainer.style.display="none";
-                    }, 5000);
-                }
-            });
-        }
-        window.addEventListener("load",function(){
-            initData();
-            initSlider();
-            initTabbar();
-            initDrag();
-        },false);
 
         /*兼容Ios浏览器滚动到最底或者最顶，不能滑动的问题*/
         /*[].slice.call(slides).forEach(function(n,i,a){
@@ -167,6 +82,102 @@
                 container.scrollTop=container.scrollTop-1;
             }
         }*/
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.slides,this.slidesId="ID-CarouselPage";
+                this.tabbar,this.tabbarId="ID-Tabbar";
+                this.tabs;
+                //Data
+                //Plugin
+                this.carouselPage={};
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _tabActive:function(index){
+                for(var i=0,t;t=this.tabs[i++];){
+                    t.classList.remove("active");
+                }
+                this.tabs[index].classList.add("active");
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initData:function(){
+                var self=this;
+                var pageDataCount=[100,10,30,40,50];//每页数据条数
+                [].slice.call(self.slides).forEach(function(n,i,a){
+                    var datastr="";
+                    for(var j=0;j<pageDataCount[i];j++){
+                        datastr+='<li class="padding8 underline"><p>第'+i+'页</p></li>'
+                    }
+                    n.innerHTML='<ul class="list">'+datastr+'</ul>';
+                })
+            },
+            _initTabbar:function(){
+                var self=this;
+                for(var i=0,t;t=this.tabs[i++];){
+                    (function(i){
+                        t.addEventListener("click",function(){
+                            self.carouselPage.slideTo(i-1);
+                            self._tabActive(i-1);
+                        },false);
+                    })(i);
+                }
+            },
+            _initSlider:function(){
+                var self=this;
+                this.carouselPage=new Slider("#"+this.slidesId,{
+                    "onInit":function(e){
+                        //compatibleIosScroll(e);
+                    },
+                    "onSlideChangeEnd":function(e){
+                        self._tabActive(e.index);
+                        //compatibleIosScroll(e);
+                    }
+                });
+            },
+            _initPlugin:function(){
+                this._initData();
+                this._initSlider();
+                this._initTabbar();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this.slides=document.querySelectorAll("#"+this.slidesId+" .slider-slide");
+                this.tabbar=document.getElementById(this.tabbarId);
+                this.tabs=this.tabbar.querySelectorAll(".tab");
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

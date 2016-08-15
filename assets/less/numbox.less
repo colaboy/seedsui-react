@@ -1,18 +1,16 @@
 /*----------------numbox.less(start)--------------*/
 .numbox{
-    display:inline-block;
+    display:-webkit-inline-box;
     position:relative;
-    height:32px;
-    width:120px;
+    height:24px;
+    width:94px;
     overflow:hidden;
     text-align:center;
+    vertical-align: middle;
 }
 .numbox .button{
-    position:absolute;
-    top:0;
-    width:32px;
-    height:32px;
-    line-height:32px;
+    width:24px;
+    height:24px;
     font-size:18px;
     font-weight:400;
 }
@@ -25,14 +23,15 @@
 .numbox .button{
     border:0;
 }
-.numbox input[type=number],.numbox input[type=text]{
-    padding:6px 0;
-    width:56px;
+.numbox input[type=number]{
+    display: block;
+    -webkit-box-flex:1;
+    padding:2px;
     text-align:center;
     text-overflow:ellipsis;
     border-width:0;
 }
-.numbox.bordered input[type=number],.numbox.bordered input[type=text]{
+.numbox.bordered input[type=number]{
     width:54px;
     border-width:0 1px;
 } 

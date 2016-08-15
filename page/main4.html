@@ -22,13 +22,13 @@
 		</header>
 	</header>
 	<article>
-		<div class="rbox">
-		    <div class="r1">集团简介</div>
-		    <div class="r2">发展战略</div>
-		    <div class="r3">关于我们</div>
-		    <div class="r4">领导团队</div>
-		    <div class="r5">发展历程</div>
-		    <div class="r6">组织架构</div>
+		<div class="SID-Rbox">
+		    <div class="SID-R1">集团简介</div>
+		    <div class="SID-R2">发展战略</div>
+		    <div class="SID-R3">关于我们</div>
+		    <div class="SID-R4">领导团队</div>
+		    <div class="SID-R5">发展历程</div>
+		    <div class="SID-R6">组织架构</div>
 	    </div>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
@@ -36,38 +36,81 @@
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 
 	<script>
-		var r1=document.querySelector(".r1");
-		var r2=document.querySelector(".r2");
-		var r3=document.querySelector(".r3");
-		var r4=document.querySelector(".r4");
-		var r5=document.querySelector(".r5");
-		var r6=document.querySelector(".r6");
 		
-		function breathe(element){
+		var aniBreathe=function(element){
 			element.style.webkitAnimationDelay="0ms";
 			element.style.webkitAnimationDuration="2000ms";
 			element.style.webkitAnimationName="breathing";
 			element.style.webkitAnimationTimingFunction="ease";
 			element.style.webkitAnimationIterationCount="infinite";
 		}
-		EventUtil.addHandler(r1,"animationend",function(e){
-			breathe(r1);
-		});
-		EventUtil.addHandler(r2,"animationend",function(e){
-			breathe(r2);
-		});
-		EventUtil.addHandler(r3,"animationend",function(e){
-			breathe(r3);
-		});
-		EventUtil.addHandler(r4,"animationend",function(e){
-			breathe(r4);
-		});
-		EventUtil.addHandler(r5,"animationend",function(e){
-			breathe(r5);
-		});
-		EventUtil.addHandler(r6,"animationend",function(e){
-			breathe(r6);
-		});
+		var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.divR1,this.divR2,this.divR3,this.divR4,this.divR5,this.divR6,
+                this.divR1Class="SID-R1",this.divR2Class="SID-R2",this.divR3Class="SID-R3",
+                this.divR4Class="SID-R4",this.divR5Class="SID-R5",this.divR6Class="SID-R6";
+                //Data
+                //Plugin
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initClocks:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                if(this.divR1)this.divR1.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                if(this.divR2)this.divR2.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                if(this.divR3)this.divR3.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                if(this.divR4)this.divR4.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                if(this.divR5)this.divR5.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                if(this.divR6)this.divR6.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onAnimationEnd:function(e){
+            	aniBreathe(e.target);
+            },
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this.divR1=document.querySelector("."+this.divR1Class);
+				this.divR2=document.querySelector("."+this.divR2Class);
+				this.divR3=document.querySelector("."+this.divR3Class);
+				this.divR4=document.querySelector("."+this.divR4Class);
+				this.divR5=document.querySelector("."+this.divR5Class);
+				this.divR6=document.querySelector("."+this.divR6Class);
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>
