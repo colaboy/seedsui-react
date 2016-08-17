@@ -22,13 +22,13 @@
 		</header>
 	</header>
 	<article>
-		<div class="SID-Rbox">
-		    <div class="SID-R1">集团简介</div>
-		    <div class="SID-R2">发展战略</div>
-		    <div class="SID-R3">关于我们</div>
-		    <div class="SID-R4">领导团队</div>
-		    <div class="SID-R5">发展历程</div>
-		    <div class="SID-R6">组织架构</div>
+		<div class="app-rbox">
+		    <div class="app-r1 SID-BtnRound">集团简介</div>
+		    <div class="app-r2 SID-BtnRound">发展战略</div>
+		    <div class="app-r3 SID-BtnRound">关于我们</div>
+		    <div class="app-r4 SID-BtnRound">领导团队</div>
+		    <div class="app-r5 SID-BtnRound">发展历程</div>
+		    <div class="app-r6 SID-BtnRound">组织架构</div>
 	    </div>
 	</article>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
@@ -50,9 +50,7 @@
               ===========================*/
             initialize:function(){
                 //DOM
-                this.divR1,this.divR2,this.divR3,this.divR4,this.divR5,this.divR6,
-                this.divR1Class="SID-R1",this.divR2Class="SID-R2",this.divR3Class="SID-R3",
-                this.divR4Class="SID-R4",this.divR5Class="SID-R5",this.divR6Class="SID-R6";
+                this.btnRounds,this.btnRoundClass="SID-BtnRound";
                 //Data
                 //Plugin
             },
@@ -72,12 +70,9 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
-                if(this.divR1)this.divR1.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
-                if(this.divR2)this.divR2.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
-                if(this.divR3)this.divR3.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
-                if(this.divR4)this.divR4.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
-                if(this.divR5)this.divR5.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
-                if(this.divR6)this.divR6.addEventListener("webkitAnimationEnd",this._onAnimationEnd,false);
+                [].slice.call(this.btnRounds).forEach(function(n,i){
+                        n.addEventListener("webkitAnimationEnd",self._onAnimationEnd,false);
+                });
             },
             /*=========================
               Event Handler
@@ -91,12 +86,7 @@
             _onLoad:function(){
                 var self=this;
                 //DOM
-                this.divR1=document.querySelector("."+this.divR1Class);
-				this.divR2=document.querySelector("."+this.divR2Class);
-				this.divR3=document.querySelector("."+this.divR3Class);
-				this.divR4=document.querySelector("."+this.divR4Class);
-				this.divR5=document.querySelector("."+this.divR5Class);
-				this.divR6=document.querySelector("."+this.divR6Class);
+                this.btnRounds=document.querySelectorAll("."+this.btnRoundClass);
                 //Plugin
                 this._initPlugin();
                 //Events
