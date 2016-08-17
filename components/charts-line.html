@@ -1,66 +1,190 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
-	<title>charts-line</title>
-	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-<body ontouchstart="">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1>折线图</h1>
-		  </div>
-		</header>
-		<article>
-			<canvas id="canvas" height="70px" width="100%"></canvas>
-		</article>
-    <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <!--chartJs-->
-	<script src="../plugin/charts/Chart.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>charts-line</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+<body>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>
+            <h1>折线图</h1>
+        </div>
+    </header>
+    <article>
+	   <div id="ID-ChartLine" style="width: 100%;height:300px;"></div>
+    </article>
+	<script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script src="../plugin/echarts/echarts.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
-    
-	<script>
-	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-	var lineChartData = {
-		labels : ["1月","2月","3月","4月","5月","6月","7月"],
-		datasets : [
-			{
-				label: "My First dataset",
-				fillColor : "rgba(220,220,220,0.2)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(220,220,220,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			},
-			{
-				label: "My Second dataset",
-				fillColor : "rgba(151,187,205,0.2)",
-				strokeColor : "rgba(151,187,205,1)",
-				pointColor : "rgba(151,187,205,1)",
-				pointStrokeColor : "#fff",
-				pointHighlightFill : "#fff",
-				pointHighlightStroke : "rgba(151,187,205,1)",
-				data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-			}
-		]
+    <script>
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.chartLineData,this.chartLine={},this.chartLineId="ID-ChartLine";
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initChartLine:function(){
+            	this.chartLine = echarts.init(document.getElementById(this.chartLineId));
+            	this.chartLineData = {
+                    /*提示*/
+            		tooltip : {
+                        trigger: 'axis',//触发类型，可选为：'axis' | 'item'
+                        triggerOn:'click',
+                        formatter: function(obj){
+                            console.log(obj);
+                            var params=obj[0];
+                            return obj[0].name+":"+obj[0].data.value;
+                        },
+                        //当触发类型为axis，可设置此项
+                        axisPointer : {// 坐标轴指示器，坐标轴触发有效
+                            type : 'line',// 默认为直线，可选为：'line' | 'shadow'
+                            lineStyle:{
+                                color:'#adadad'
+                            }
+                        }
+            		},
+                    /*容器*/
+            		grid : {
+                        top:20,
+            			left:50,
+            			right:20,
+                        bottom:50
+            		},
+                    /*x轴*/
+            		xAxis : {
+            			data : ["1月","2月","3月","4月","5月","6月","7月"],
+                        axisLabel:{//文字
+                            show:true,
+                            textStyle :{
+                                color:'#707070'
+                            },
+                        },
+                        splitLine : {//分割线
+                            show:true,
+                            lineStyle: {
+                                color: ['#ddd', '#ddd']// 使用深浅的间隔色
+                            },
+                        },
+                        axisLine : {//轴线
+                            show:true,
+                            lineStyle: {
+                                color: ['#cfcfcf']
+                            }
+                        },
+                        axisTick : {//刻度线
+                            show:true,
+                            lineStyle: {
+                                color: ['#ddd']
+                            }
+                        },
+            		},
+                    /*y轴*/
+                    yAxis : {
+                        axisLabel:{//文字
+                            show:true,
+                            textStyle :{
+                                color:'#666666'
+                            },
+                        },
+                        splitLine : {//分割线
+                            show:true,
+                            lineStyle: {
+                                color: ['#ddd', '#ddd']// 使用深浅的间隔色
+                            },
+                        },
+                        axisLine : {//轴线
+                            show:true,
+                            lineStyle: {
+                                color: ['#adadad']
+                            }
+                        },
+                        axisTick : {//刻度线
+                            show:true,
+                            lineStyle: {
+                                color: ['#ddd']
+                            }
+                        },
+                    },
+                    /*系列*/
+                    series : [
+                    {
+                        name:"月",
+                        type:"line",
+                        itemStyle: {//type为bar时,设置柱的颜色
+                            normal: {
+                                color: '#4bc0c0'
+                            }
+                        },
+                        lineStyle:{//type为line时,设置线的颜色
+                            normal: {
+                                color: '#4bc0c0'
+                            }
+                        },
+                        data : [
+                            {value:"65",name:"111"},
+                            {value:"18",name:"222"},
+                            {value:"78",name:"333"},
+                            {value:"12",name:"444"},
+                            {value:"95",name:"555"},
+                            {value:"23",name:"666"},
+                            {value:"88",name:"777"},
+                        ]
+                    }
+                    ]
+            	}
+            	this.chartLine.setOption(this.chartLineData);
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+            	this._initChartLine();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
 
-	}
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
 
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx).Line(lineChartData, {
-			responsive: true
-		});
-	}
-	//定义exmobi返回
-	function back(){history.go(-1);}
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
 
-	</script>
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

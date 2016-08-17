@@ -1665,6 +1665,62 @@ input[type="search"]::-webkit-search-results-decoration {
   z-index: 1;
 }
 /*---------------timeline.less(end)---------------*/
+/*----------------timepart.less(start)--------------*/
+.timepart-row {
+  margin: 20px 20px 40px 20px;
+  background-color: white;
+}
+.timepart-row:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+.timepart-row label {
+  float: left;
+  width: 16%;
+  height: 18px;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  box-sizing: border-box;
+  border-color: #c1c1c1;
+}
+.timepart-row label:nth-of-type(1),
+.timepart-row label:nth-of-type(2),
+.timepart-row label:nth-last-of-type(1),
+.timepart-row label:nth-last-of-type(2) {
+  width: 17%;
+}
+.timepart-row label.active {
+  background-color: #18b2ed;
+}
+.timepart label.disable {
+  color: #aaa;
+  background-color: #ebebeb;
+}
+.timepart-row label:first-child {
+  border-width: 1px;
+}
+.timepart-row label:nth-of-type(even) span {
+  display: none;
+}
+.timepart-row label:nth-last-of-type(1) span {
+  display: inline-block;
+}
+.timepart-row label:first-child span {
+  margin-left: -7px;
+}
+.timepart-row label:last-child span {
+  float: right;
+  margin-right: -7px;
+}
+.timepart-row label span {
+  float: left;
+  margin-top: 22px;
+  font-size: 13px;
+  margin-left: -16px;
+  color: #515151;
+}
+/*----------------timepart.less(end)--------------*/
 /*---------------indexbar.less(start)---------------*/
 .indexbox,
 .indexlist {

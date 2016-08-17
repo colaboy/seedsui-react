@@ -5,8 +5,8 @@
 		Model
 		================*/
 		var defaults={
-			"formFilterClass":null,//过滤表单元素
-			"toastParent":document.body,//提示框的父元素
+			formFilterClass:null,//过滤表单元素
+			toastParent:document.body,//提示框的父元素
 			
 			/*callbacks
 			onSuccess:function(Form)

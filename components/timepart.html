@@ -4,63 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>scraper</title>
+    <title>timepart</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-    <style type="text/css">
-    /*时间选择*/
-    .scraper-row{
-        margin:15px 10px 30px 10px;
-        background-color:white;
-    }
-    .scraper-row:after{
-        display:table;
-        content:"";
-        clear:both;
-    }
-    .scraper-row label{
-        float:left;
-        width:16%;
-        height:18px;
-        border-width:1px 1px 1px 0;
-        border-style:solid;
-        box-sizing:border-box;
-        border-color:#c1c1c1;
-    }
-    .scraper-row label:nth-of-type(1),.scraper-row label:nth-of-type(2),.scraper-row label:nth-last-of-type(1),.scraper-row label:nth-last-of-type(2){
-        width:17%;
-    }
-    .scraper-row label.active{
-        background-color: #18b2ed;
-    }
-    .scraper label.disable{
-        color:#aaa;
-        background-color:#ebebeb;
-        pointer-events:none;
-    }
-    .scraper-row label:first-child{
-        border-width:1px;
-    }
-    .scraper-row label:nth-of-type(even) span{
-        display:none;
-    }
-    .scraper-row label:nth-last-of-type(1) span{
-        display:inline-block;
-    }
-    .scraper-row label:first-child span{
-        margin-left:-7px;
-    }
-    .scraper-row label:last-child span{
-        float:right;
-        margin-right:-7px;
-    }
-    .scraper-row label span{
-        float:left;
-        margin-top:22px;
-        font-size:13px;
-        margin-left:-16px;
-        color:#515151;
-    }
-    </style>
 </head>
 
 <body ontouchstart="">
@@ -69,12 +14,12 @@
             <a class="titlebar-button" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
-            <h1>铲土机控件</h1>
+            <h1>时间段控件</h1>
         </div>
     </header>
 	<article>
-		<div class="scraper" id="scraperTime">
-            <div class="scraper-row">
+		<div class="timepart" id="ID-Timepart">
+            <div class="timepart-row">
                 <label data-num="1" data-range="08:00-08:30">
                     <span>08:00</span>
                 </label>
@@ -94,7 +39,7 @@
                     <span>11:00</span>
                 </label>
             </div>
-            <div class="scraper-row">
+            <div class="timepart-row">
                 <label data-num="7" data-range="11:00-11:30">
                     <span>11:00</span>
                 </label>
@@ -114,7 +59,7 @@
                     <span>14:00</span>
                 </label>
             </div>
-            <div class="scraper-row">
+            <div class="timepart-row">
                 <label data-num="13" data-range="14:00-14:30">
                     <span>14:00</span>
                 </label>
@@ -134,7 +79,7 @@
                     <span>17:00</span>
                 </label>
             </div>
-            <div class="scraper-row">
+            <div class="timepart-row">
                 <label data-num="19" data-range="17:00-17:30">
                     <span>17:00</span>
                 </label>
@@ -161,61 +106,7 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-		var scraperTime=document.getElementById("scraperTime");
-        EventUtil.addHandler(scraperTime,"tap",function(e){
-            if(e.target.getAttribute("data-num")){
-                clickChooseTime(e);
-            }
-        });
-        var clickCount=0;
-        var selectTimes=[];
-        function clickChooseTime(e){
-            clickCount++;//记录点击次数
-            var target=e.target;
-            var num=target.getAttribute("data-num");
-            if(clickCount==3){//如果点击了三次
-                clearChooseTime();
-                return;
-            }
-            if(clickCount==1){//如果点击了一次
-                selectTimes[0]=num;
-                target.classList.add("active");
-                console.log("点击第一次："+selectTimes);
-            }else if(clickCount==2){//如果点击了两次
-                selectTimes[1]=num;
-                selectChooseTime();
-                console.log("点击第二次："+selectTimes);
-            }
-        }
-        var toast=new Toast();
-        //获得所有的时间
-        var times=[].slice.call(document.querySelectorAll("[data-num]"));
-        function selectChooseTime(){
-            if(parseInt(selectTimes[0])>parseInt(selectTimes[1])){
-                var temp=selectTimes[0];
-                selectTimes[0]=selectTimes[1];
-                selectTimes[1]=temp;
-            }
-            var num1=selectTimes[0];
-            var num2=selectTimes[1];
-            for(var i=num1-1;i<num2;i++){
-                if(times[i].classList.contains("disable")){
-                    toast.setText("不跨选禁用段时间");
-                    toast.show();
-                    clearChooseTime();
-                    return;
-                }
-                times[i].classList.add("active");
-            }
-        }
-        function clearChooseTime(){
-            clickCount=0;
-            selectTimes=[];
-            for(var i=0,time;time=times[i++];){
-                time.classList.remove("active");
-            }
-            console.log("修改count："+clickCount);
-        }
+        var timepart=new Timepart("#ID-Timepart");
 		//定义exmobi返回
 		function back() {
 			history.go(-1);

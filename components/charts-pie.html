@@ -1,72 +1,141 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
-	<title>charts-pie</title>
-	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
-<body ontouchstart="">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1>饼图</h1>
-		  </div>
-		</header>
-		<article>
-			<canvas id="chart-area" style="width:100%;margin:8px 0;" />
-			<!-- <div id="canvas-holder">
-				<canvas id="chart-area" width="300" height="300"/>
-			</div> -->
-		</article>
-    <script src="../plugin/seedsui/seedsui.min.js"></script>
-    <!--chartJs-->
-	<script src="../plugin/charts/Chart.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>charts-pie</title>
+    <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+</head>
+<body>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>
+            <h1>饼图</h1>
+        </div>
+    </header>
+    <article>
+	   <div id="ID-ChartPie" style="width: 100%;height:300px;"></div>
+    </article>
+	<script src="../plugin/seedsui/seedsui.min.js"></script>
+	<script src="../plugin/echarts/echarts.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
-    
-	<script>
-	var pieData = [
-		{
-			value: 300,
-			color:"#F7464A",
-			highlight: "#FF5A5E",
-			label: "Red"
-		},
-		{
-			value: 50,
-			color: "#46BFBD",
-			highlight: "#5AD3D1",
-			label: "Green"
-		},
-		{
-			value: 100,
-			color: "#FDB45C",
-			highlight: "#FFC870",
-			label: "Yellow"
-		},
-		{
-			value: 40,
-			color: "#949FB1",
-			highlight: "#A8B3C5",
-			label: "Grey"
-		},
-		{
-			value: 120,
-			color: "#4D5360",
-			highlight: "#616774",
-			label: "Dark Grey"
-		}
+    <script>
+        var views={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.chartPieData,this.chartPie={},this.chartPieId="ID-ChartPie";
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initChartPie:function(){
+            	this.chartPie = echarts.init(document.getElementById(this.chartPieId));
+                this.chartPieData = {
+                    /*提示*/
+                    tooltip : {
+                        trigger: 'item',//触发类型，可选为：'axis' | 'item'
+                        triggerOn:'click',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    /*图例*/
+                    legend: {
+                        show:true,
+                        orient: 'horizontal',
+                        bottom:10,
+                        left: 'center',
+                        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
+                        formatter: function (name) {
+                            return '';
+                        },
+                        tooltip:{
+                            show:true,    
+                        },
+                    },
+                    /*容器*/
+                    /*系列*/
+                    series : [
+                    {
+                        name:"访问来源",
+                        type:"pie",
+                        radius:"60%",
+                        center: ['50%', '40%'],
+                        itemStyle: {//type为bar时,设置柱的颜色
+                            normal: {
+                                color: function(params) {
+                                    var colorList = ['#53c6fd','#ffae02','#3ae3ea','#ff6f36','#cf7af3','#4cd32e','#4587f7','#00c2eb','#ff618f','#21d9a1'];
+                                    return colorList[params.dataIndex];
+                                }
+                            }
+                        },
+                        lineStyle:{//type为line时,设置线的颜色
+                            normal: {
+                                color: '#4bc0c0'
+                            }
+                        },
+                        data : [
+                            {value:"65",name:"直接访问"},
+                            {value:"18",name:"邮件营销"},
+                            {value:"78",name:"联盟广告"},
+                            {value:"12",name:"视频广告"},
+                            {value:"95",name:"搜索引擎"}
+                        ]
+                    }
+                    ]
+                }
+                this.chartPie.setOption(this.chartPieData);
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+            	this._initChartPie();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                this.chartPie.on("click",function(e){
+                    self._onClickChartPie(e);
+                });
+            },
+            _onClickChartPie:function(e){
+                console.log(e);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
 
-	];
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
 
-	window.onload = function(){
-		var ctx = document.getElementById("chart-area").getContext("2d");
-		window.myPie = new Chart(ctx).Pie(pieData);
-	};
-	//定义exmobi返回
-	function back(){history.go(-1);}
-	</script>
+        window.addEventListener("load",function(){
+            views._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            views.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

@@ -32,3 +32,4 @@
 // @koala-prepend "tree.js"
 // @koala-prepend "indexbar.js"
 // @koala-prepend "loading.js"
+// @koala-prepend "timepart.js"
