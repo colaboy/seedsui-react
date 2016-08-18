@@ -104,8 +104,8 @@
 				<label class="grid-label">新浪微博</label>
 			</li>
 			<li>
-				<a style="background-color:#e55f5f;" data-share="copylink">
-					<i class="icon icon-link"></i>
+				<a style="background-color:#eecf3d;" data-share="link">
+					<i class="icon icon-link-fill"></i>
 				</a>
 				<label class="grid-label">复制链接</label>
 			</li>
@@ -126,7 +126,7 @@
             initialize:function(){
                 //DOM
                 this.btnShare,this.btnShareClass="SID-BtnShare";
-                this.popShare,this.popShareId="ID-PopShare";
+                this.divShare,this.divShareId="ID-PopShare";
                 this.btnCloseClass="SID-Close";
 				
                 //Data
@@ -142,19 +142,19 @@
 				}
 				this.s=new Share(this.shareData);*/
 
-				this.sharepop;
+				this.popDivShare;
             },
             /*=========================
               Method
               ===========================*/
-            _initShareDialog:function(e){
-                this.sharepop=new Dialog("#"+this.popShareId,{//弹出框
+            _initPopDivShare:function(e){
+                this.popDivShare=new Dialog("#"+this.divShareId,{//弹出框
                     position:"bottom",
                     css:{width:"100%"}
                 });
             },
             _initPlugin:function(e){
-                this._initShareDialog();
+                this._initPopDivShare();
             },
             /*=========================
               Events
@@ -166,8 +166,8 @@
             		self._onClickBtnShare(e);
             	},false);
             	//点击分享框
-            	this.popShare.addEventListener("click",function(e){
-            		self._onClickPopShare(e);
+            	this.divShare.addEventListener("click",function(e){
+            		self._onClickDivShare(e);
             	},false);
             	
             },
@@ -176,25 +176,32 @@
               Event Handler
               ===========================*/
             _onClickBtnShare:function(e){
-            	this.sharepop.show();
+            	this.popDivShare.show();
             },
-            _onClickPopShare:function(e){
+            _onClickDivShare:function(e){
             	var target=e.target;
-				
 				if(target.getAttribute("data-share")){
-					var shareTo=target.getAttribute("data-share");
-					switch(shareTo){
-						case "tsina" : console.log("分享到新浪"); break;
-						case "weixin" : console.log("分享到微信"); break;
-						case "fweixin" : console.log("分享到朋友圈"); break;
-						case "qq" : console.log("分享到QQ"); break;
-						case "tqq" : console.log("分享到QQ微博"); break;
-						case "qzone" : console.log("分享到QQ空间"); break;
-						default : console.log("其它"); break;
-					}
-				}else if(target.classList.contains(this.btnCloseClass)){
-					this.sharepop.hide();
-				}
+                    var shareTo=target.getAttribute("data-share");
+                    if(shareTo=="tsina"){
+                        console.log("分享到新浪");
+                    }else if(shareTo=="weixin"){
+                        console.log("分享到微信");
+                    }else if(shareTo=="fweixin"){
+                        console.log("分享到朋友圈");
+                    }else if(shareTo=="qq"){
+                        console.log("分享到QQ");
+                    }else if(shareTo=="tqq"){
+                        console.log("分享到QQ微博");
+                    }else if(shareTo=="qzone"){
+                        console.log("分享到QQ空间");
+                    }else if(shareTo=="phone"){
+                        console.log("分享到手机联系人");
+                    }else if(shareTo=="link"){
+                        console.log("复制链接");
+                    }
+                }else if(target.classList.contains(this.btnCloseClass)){
+                    this.popDivShare.hide();
+                }
 
             },
             /*=========================
@@ -204,7 +211,7 @@
                 var self=this;
                 //DOM
                 this.btnShare=document.querySelector("."+this.btnShareClass);
-                this.popShare=document.getElementById(this.popShareId);
+                this.divShare=document.getElementById(this.divShareId);
                 //Plugin
                 this._initPlugin();
                 //Events
