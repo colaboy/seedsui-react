@@ -8,6 +8,7 @@
             parent:document.body,
             //picker:null,
             pickerClass:"scrollpicker",
+            pickerActiveClass:"active",
             headerClass:"scrollpicker-header",
             headerDoneClass:"scrollpicker-done",
             headerDoneText:"完成",
@@ -314,14 +315,16 @@
             }*/
             s.mask.style.visibility="visible";
             s.mask.style.opacity="1";
-            s.picker.style.webkitTransform='translate3d(0px,0px,0px)';
+            //s.picker.style.webkitTransform='translate3d(0px,0px,0px)';
+            s.picker.classList.add(s.params.pickerActiveClass);
         }
         //隐藏
         s.hide=function(){
             s.isHid=true;
             s.mask.style.opacity="0";
             s.mask.style.visibility="hidden";
-            s.picker.style.webkitTransform='translate3d(0px,100%,0px)';
+            //s.picker.style.webkitTransform='translate3d(0px,100%,0px)';
+            s.picker.classList.remove(s.params.pickerActiveClass);
         }
         //重置
         s.reset=function(){

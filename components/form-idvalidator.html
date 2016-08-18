@@ -104,8 +104,8 @@
 		    },
 		    _onClickBtnInfo:function(e){
 		    	var code = this.txtInfo.value;
-				var bool = this.idvalidator.getInfo(code);
-				this.divInfoShow.innerHTML= bool == false ? "号码不合法" : JSON.stringify(i);
+				var info = this.idvalidator.getInfo(code);
+				this.divInfoShow.innerHTML= info == false ? "号码不合法" : JSON.stringify(info);
 		    },
 		    _onClickBtnMake18:function(e){
 		    	this.divMake18Show.innerHTML=this.idvalidator.makeID();
