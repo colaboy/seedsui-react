@@ -42,7 +42,7 @@
                     tooltip : {
                         trigger: 'item',//触发类型，可选为：'axis' | 'item'
                         triggerOn:'click',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"//{a}: series[].name ,{b}: series[].data[].name , {c}: series[].data[].value ,{d}: 占比
                     },
                     /*图例*/
                     legend: {
@@ -58,7 +58,6 @@
                             show:true,    
                         },
                     },
-                    /*容器*/
                     /*系列*/
                     series : [
                     {

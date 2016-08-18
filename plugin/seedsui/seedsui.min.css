@@ -426,8 +426,8 @@ input[type="search"]::-webkit-search-results-decoration {
 /*----------------appearance.less(end)--------------*/
 @font-face {
   font-family: 'iconfont';
-  src: url('fonts/iconfont.eot?18ea7h');
-  src: url('fonts/iconfont.eot?18ea7h#iefix') format('embedded-opentype'), url('fonts/iconfont.ttf?18ea7h') format('truetype'), url('fonts/iconfont.woff?18ea7h') format('woff'), url('fonts/iconfont.svg?18ea7h#iconfont') format('svg');
+  src: url('fonts/iconfont.eot?maqwvs');
+  src: url('fonts/iconfont.eot?maqwvs#iefix') format('embedded-opentype'), url('fonts/iconfont.ttf?maqwvs') format('truetype'), url('fonts/iconfont.woff?maqwvs') format('woff'), url('fonts/iconfont.svg?maqwvs#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -445,14 +445,17 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-link:before {
+  content: "\e902";
+}
+.icon-link-fill:before {
+  content: "\ea64";
+}
 .icon-android:before {
   content: "\e900";
 }
 .icon-apple:before {
   content: "\e901";
-}
-.icon-baidu:before {
-  content: "\e902";
 }
 .icon-fweixin:before {
   content: "\e903";
@@ -1512,12 +1515,6 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .icon-fileadd-fill:before {
   content: "\ea63";
-}
-.icon-filefav:before {
-  content: "\ea64";
-}
-.icon-filefav-fill:before {
-  content: "\ea65";
 }
 .icon-file-fill:before {
   content: "\ea66";
