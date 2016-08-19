@@ -16,7 +16,8 @@
             headerCancelText:"取消",
             wrapperClass:"scrollpicker-wrapper",
             layerClass:"scrollpicker-layer",
-            layerFrameClass:"scrollpicker-layer-frame",
+            layerFrameClass:'scrollpicker-layer-frame',
+            layerFrameHTML:'<div class="scrollpicker-layer-frame"></div>',
             slotsClass:"scrollpicker-slots",
             slotClass:"scrollpicker-slot",
             lockClass:"lock",
@@ -110,9 +111,7 @@
         s.createLayer=function(){
             var layer=document.createElement("div");
             layer.setAttribute("class",s.params.layerClass);
-            var layerFrame=document.createElement("div");
-            layerFrame.setAttribute("class",s.params.layerFrameClass);
-            layer.appendChild(layerFrame);
+            layer.innerHTML=s.params.layerFrameHTML;
             return layer;
         }
         //新建Mask
