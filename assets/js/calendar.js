@@ -533,159 +533,192 @@
 	};
 
 	window.CalendarUtil=function(activeDate){
-		/*================
-		Model
-		================*/
-		var weekMilliSecound = 7 * 24 * 60 * 60 * 1000,
-			dayMilliSecound = 24 * 60 * 60 * 1000;
-		var s=this;
-		//选中日期
-		s.activeDate=activeDate?new Date(activeDate):new Date();
-		//周视图
-		s.week=[],s.prevWeek=[],s.nextWeek=[];
-		s.createWeeks=function(){
-			for(var i = 0; i < 7; i++) {
-				s.week.push(new Date());
-				s.prevWeek.push(new Date());
-				s.nextWeek.push(new Date());
-			}
-		}
-		s.createWeeks();
-		//月视图
-		s.midMonth=[],s.prevMonth=[],s.nextMonth=[];
-		s.createMonths=function(){
-			for(var i=0;i<42;i++) {
-				s.midMonth.push(new Date());
-				s.prevMonth.push(new Date());
-				s.nextMonth.push(new Date());
-			}
-		}
-		s.createMonths();
-		/*================
-		Method
-		================*/
-		//日期比较
-		s.compareDate=function(date1,date2){
-			var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
-			var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
-			var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
-			var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
-			if(t1==t2)return 0;
-			else return t1>t2;
-		}
-		//周视图
-		s.updateWeekByStartDayMs=function(startDayMs,week){//根据第一天的毫秒数获得一周
-			week[0].setTime(startDayMs);
-			for (var i=1;i<7;i++) {
-				week[i].setTime(week[i-1].getTime()+dayMilliSecound);
-				week[i].isCurrent=true;
-			}
-			return week;
-		}
-		s.getWeek=function(){//获得本周
-			var day=s.activeDate.getDay();
-			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day;
-			return s.updateWeekByStartDayMs(startDayMs,s.week);
-		}
-		s.getPrevWeek=function(){//获得上周
-			var day=s.activeDate.getDay();
-			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day - weekMilliSecound;
-			return s.updateWeekByStartDayMs(startDayMs,s.prevWeek);
-		}
-		s.getNextWeek=function(){//获得下周
-			var day=s.activeDate.getDay();
-			var startDayMs=s.activeDate.getTime()-dayMilliSecound*day + weekMilliSecound;
-			return s.updateWeekByStartDayMs(startDayMs,s.nextWeek);
-		}
-		//月视图
-		s.currentMonth=null;
-		s.activeIndex=null;
-		s.activeRowIndex=null;
-		s.updateMonthByStartDayMs=function(startDayMs,month,firstNum,lastNum){
-			//生成日期
-			for(var i=0;i<42;i++){
-				if(i==0)month[0].setTime(startDayMs);
-				else month[i].setTime(month[i-1].getTime()+dayMilliSecound);
+        /*================
+        Model
+        ================*/
+        var s=this;
+        s.weekMilliSecound = 7 * 24 * 60 * 60 * 1000;
+        s.dayMilliSecound = 24 * 60 * 60 * 1000;
+        //选中日期
+        s.activeDate=activeDate?new Date(activeDate):new Date();
+        //周视图
+        s.midWeek=[],s.prevWeek=[],s.nextWeek=[],s.tempWeek=[];
 
-				//设置选中项
-				if(s.compareDate(month[i],s.activeDate)===0 && s.currentMonth==="midMonth"){
-					s.activeIndex=i+42;
-					s.activeRowIndex=Math.floor(i/7);
-				}
+        s.createWeeks=function(){
+            for(var i = 0; i < 7; i++) {
+                s.midWeek.push(new Date());
+                s.prevWeek.push(new Date());
+                s.nextWeek.push(new Date());
+                s.tempWeek.push(new Date());
+            }
+        }
+        s.createWeeks();
+        //月视图
+        s.midMonth=[],s.prevMonth=[],s.nextMonth=[],s.tempMonth=[];
+        s.createMonths=function(){
+            for(var i=0;i<42;i++) {
+                s.midMonth.push(new Date());
+                s.prevMonth.push(new Date());
+                s.nextMonth.push(new Date());
+                s.tempMonth.push(new Date());
+            }
+        }
+        s.createMonths();
+        /*================
+        Method
+        ================*/
+        //日期比较
+        s.compareDate=function(date1,date2){
+            var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
+            var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
+            var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
+            var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
+            if(t1==t2)return 0;
+            else return t1>t2;
+        }
+        //周视图
+        s.updateWeekByDate=function(date,week){
+        	var day=date.getDay();
+            var startDayMs=date.getTime()-s.dayMilliSecound*day;
+            if(!week){
+            	week=s.tempWeek;
+            }
+            week[0].setTime(startDayMs);
+            for (var i=1;i<7;i++) {
+                week[i].setTime(week[i-1].getTime()+s.dayMilliSecound);
+            }
+            return week;
+        }
+        s.getMidWeek=function(){//获得本周
+            return s.updateWeekByDate(s.activeDate,s.midWeek);
+        }
+        s.getPrevWeek=function(){//获得上周
+        	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecound;
+            return s.updateWeekByDate(new Date(prevWeekDateMs),s.prevWeek);
+        }
+        s.getNextWeek=function(){//获得下周
+        	var nextWeekDateMs=s.activeDate.getTime()+s.weekMilliSecound;
+            return s.updateWeekByDate(new Date(nextWeekDateMs),s.nextWeek);
+        }
+        //月视图
+        s.currentMonth=null;
+        s.activeIndex=null;
+        s.activeRowIndex=null;
+        s.updateMonthByDate=function(date,month){
+        	//1日
+        	var firstDay=new Date();
+            firstDay.setTime(date.getTime()-s.dayMilliSecound*(date.getDate()-1));
+            var firstDayIndex = firstDay.getDay();
 
-				//设置当月标识isCurrent
-				month[i].isCurrent=false;
-				if(i>=firstNum && i<lastNum)month[i].isCurrent=true;
-			}
-			return month;
-		}
-		var firstDay=new Date();//将在函数中初始化为1日的毫秒数
-		s.getPrevMonth=function(){//获得上月
-			s.currentMonth="prevMonth";
-			//上月1日
-			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
-			firstDay.setMonth(firstDay.getMonth()-1);
-			//上月起始日
-			var day = firstDay.getDay();//周
-			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
-			//上月开始结束天
-			var firstNum=day;
-			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
-			var lastNum=firstNum+monthDays;
-			//返回上月所有日期
-			return s.updateMonthByStartDayMs(startDayMs,s.prevMonth,firstNum,lastNum);
-		}
-		s.getMidMonth=function(){//获得本月
-			s.currentMonth="midMonth";
-			//1日
-			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
-			//起始日
-			var day = firstDay.getDay();
-			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
-			//开始结束天
-			var firstNum=day;
-			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
-			var lastNum=firstNum+monthDays;
-			//返回所有日期
-			return s.updateMonthByStartDayMs(startDayMs,s.midMonth,firstNum,lastNum);
-		}
-		s.getNextMonth=function(){//获得下月
-			s.currentMonth="nextMonth";
-			//下月1日
-			firstDay.setTime(s.activeDate.getTime()-dayMilliSecound*(s.activeDate.getDate()-1));
-			firstDay.setMonth(firstDay.getMonth()+1);
-			//下月起始日
-			var day = firstDay.getDay();
-			var startDayMs = firstDay.getTime()-dayMilliSecound*day;
-			//下月开始结束天
-			var firstNum=day;
-			var monthDays=new Date(firstDay.getFullYear(),firstDay.getMonth()+1,0).getDate();
-			var lastNum=firstNum+monthDays;
-			//返回下月所有日期
-			return s.updateMonthByStartDayMs(startDayMs,s.nextMonth,firstNum,lastNum);
-		}
-		s.getCalendarData=function(){
-			return s.getPrevMonth().concat(s.getMidMonth()).concat(s.getNextMonth());
-		}
-		//设置选中日期
-		s.setActiveDate=function(activeDate){
-			s.activeDate.setTime(activeDate.getTime());
-		}
-		s.activePrevWeek=function(){
-			var ms=s.activeDate.getTime()-weekMilliSecound;
-			s.activeDate.setTime(ms);
-		}
-		s.activeNextWeek=function(){
-			var ms=s.activeDate.getTime()+weekMilliSecound;
-			s.activeDate.setTime(ms);
-		}
-		s.activePrevMonth=function(){
-			var month=s.activeDate.getMonth() - 1;
-			s.activeDate.setMonth(month);
-		}
-		s.activeNextMonth=function(){
-			var month=s.activeDate.getMonth() + 1;
-			s.activeDate.setMonth(month);
-		}
-	}
+            //31日
+            var monthDays=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
+            var lastDayIndex=firstDayIndex+monthDays;
+
+            //起始日
+            var startDayMs = firstDay.getTime()-s.dayMilliSecound*firstDayIndex;
+
+        	if(!month){
+            	month=s.tempMonth;
+            }
+
+            //生成月
+            for(var i=0;i<42;i++){
+                if(i==0)month[0].setTime(startDayMs);
+                else month[i].setTime(month[i-1].getTime()+s.dayMilliSecound);
+                //设置选中项
+                if(s.currentMonth==="midMonth" && s.compareDate(month[i],date)===0){
+                    s.activeIndex=i+42;
+                    s.activeRowIndex=Math.floor(i/7);
+                }
+
+                //设置当月标识isCurrent
+                month[i].isCurrent=false;
+                if(i>=firstDayIndex && i<lastDayIndex)month[i].isCurrent=true;
+            }
+            return month;
+        }
+        s.getPrevMonth=function(){//获得上月
+            s.currentMonth="prevMonth";
+
+            var prevDate=new Date();
+            prevDate.setMonth(s.activeDate.getMonth()-1);
+            return s.updateMonthByDate(prevDate,s.prevMonth);
+        }
+        s.getMidMonth=function(){//获得本月
+            s.currentMonth="midMonth";
+
+            return s.updateMonthByDate(s.activeDate,s.midMonth);
+        }
+        s.getNextMonth=function(){//获得下月
+            s.currentMonth="nextMonth";
+
+            var nextDate=new Date();
+            nextDate.setMonth(s.activeDate.getMonth()+1);
+            return s.updateMonthByDate(nextDate,s.nextMonth);
+        }
+        s.getCalendarData=function(){
+            return s.getPrevMonth().concat(s.getMidMonth()).concat(s.getNextMonth());
+        }
+        //设置选中日期
+        s.setActiveDate=function(activeDate){
+            s.activeDate.setTime(activeDate.getTime());
+        }
+        s.activePrevWeek=function(){
+            var ms=s.activeDate.getTime()-s.weekMilliSecound;
+            s.activeDate.setTime(ms);
+        }
+        s.activeNextWeek=function(){
+            var ms=s.activeDate.getTime()+s.weekMilliSecound;
+            s.activeDate.setTime(ms);
+        }
+        s.activePrevMonth=function(){
+            var tempDate=new Date(s.activeDate);
+            tempDate.setMonth(s.activeDate.getMonth() - 1);
+            if(s.activeDate.getMonth()===tempDate.getMonth()){
+            	tempDate=new Date(tempDate.getFullYear(),tempDate.getMonth(),0);
+            }
+            s.activeDate=tempDate;
+        }
+        s.activeNextMonth=function(){
+        	var tempDate=new Date(s.activeDate);
+            tempDate.setMonth(s.activeDate.getMonth() + 1);
+            if(s.activeDate.getMonth()===tempDate.getMonth()-2){
+            	tempDate=new Date(tempDate.getFullYear(),tempDate.getMonth(),0);
+            }
+            s.activeDate=tempDate;
+        }
+        /*其它工具*/
+        //推前天数
+        s.getBeforeDays=function(beforenum){
+            var days=[];
+            for(var i=1;i<=beforenum;i++){
+                days.push(new Date(s.activeDate.getTime()-i*s.dayMilliSecound));
+            }
+            return days.reverse();
+        }
+        //推前月
+        s.getBeforeMonths=function(beforenum){
+            var months=[];
+            var tempDate=new Date(s.activeDate.getFullYear(),s.activeDate.getMonth()+1);
+            for(var i=1;i<=beforenum;i++){
+                var tempDate2=new Date();
+                tempDate2.setMonth(tempDate.getMonth()-i);
+                months.push(tempDate2);
+            }
+            return months.reverse();
+        }
+        //推前周
+        s.getBeforeWeeks=function(beforenum){
+        	 var weeks=new Array(beforenum);
+        	 for(var i=0;i<beforenum;i++){
+        	 	weeks[i]=[];
+        	 	for(var j=0;j<7;j++){
+        	 		weeks[i].push(new Date());
+        	 	}
+        	 	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecound*(i+1);
+        	 	s.updateWeekByDate(new Date(prevWeekDateMs),weeks[i]);
+        	 }
+        	 return weeks;
+        }
+    };
 })(window,document,undefined);
