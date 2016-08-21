@@ -504,7 +504,7 @@
             if(s.params.onScrollStart)s.params.onScrollStart(s);
         }
         s.onTouchMove=function(e){
-            if(s.activeSlot.isLock)return;
+            if(s.activeSlot && s.activeSlot.isLock)return;
             s.touches.currentY=e.touches[0].clientY;
             s.touches.diffY=s.touches.startY-s.touches.currentY;
             s.activeSlot.moveY=s.activeSlot.posY-s.touches.diffY;

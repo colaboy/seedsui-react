@@ -4,8 +4,6 @@ Date.prototype.compareDate=function(date1,date2){//类型[Date]
 	var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
 	var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
 	var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
-	console.log(t1);
-	console.log(t2);
 	if(t1==t2)return 0;
 	else return t1>t2;
 }
@@ -21,16 +19,32 @@ Date.prototype.year=function(){
 	return this.getFullYear();
 }
 Date.prototype.month=function(){
-	return this.getMonth()+1;
+	var monthNum=this.getMonth()+1;
+    if(monthNum<10){
+        monthNum="0"+monthNum;
+    }
+    return monthNum;
 }
 Date.prototype.day=function(){
-	return this.getDate();
+	var dayNum=this.getDate();
+    if(dayNum<10){
+        dayNum="0"+dayNum;
+    }
+    return dayNum;
 }
 Date.prototype.hour=function(){
-	return this.getHours();
+	var hourNum=this.getHours();
+    if(hourNum<10){
+        hourNum="0"+hourNum;
+    }
+    return hourNum;
 }
 Date.prototype.minute=function(){
-	return this.getMinutes();
+	var minuteNum=this.getMinutes();
+    if(minuteNum<10){
+        minuteNum="0"+minuteNum;
+    }
+    return minuteNum;
 }
 Date.prototype.week=function(date){//周
 	if(date){

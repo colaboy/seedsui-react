@@ -27,25 +27,48 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
-                this.chartBarData,this.chartBar={},this.chartBarId="ID-ChartBar";
+                /*DOM*/
+                /*Data*/
+                //数据
+                this.chartBarData=[
+                    {value:"65",name:"1月份"},
+                    {value:"18",name:"2月"},
+                    {value:"78",name:"3月"},
+                    {value:"12",name:"4月"},
+                    {value:"95",name:"5月"},
+                    {value:"23",name:"6月"},
+                    {value:"88",name:"7月"},
+                ];
+                //提示信息
+                this.chartBarTip="{b} : {c}";//{a}: series[].name ,{b}: series[].data[].name , {c}: series[].data[].value ,{d}: 占比
+
+                /*或者用回调的方式
+                function(params){
+                    console.log(params);
+                    return params.data.name+":"+params.value;
+                },*/
+                //x轴数据
+                this.chartBarXAxisData=[];
+                for(var i=0,cb;cb=this.chartBarData[i++];){
+                    this.chartBarXAxisData.push(cb.name);
+                }
+                //色轮
+                this.colorList=['#53c6fd','#ffae02','#3ae3ea','#ff6f36','#cf7af3','#4cd32e','#4587f7','#00c2eb','#ff618f','#21d9a1'];
+                /*Plugin*/
+                this.chartBarId="ID-ChartBar",this.chartBarOption,this.chartBar={};
             },
             /*=========================
               Method
               ===========================*/
             _initChartBar:function(){
+                var self=this;
             	this.chartBar = echarts.init(document.getElementById(this.chartBarId));
-            	this.chartBarData = {
+            	this.chartBarOption = {
                     /*提示*/
             		tooltip : {
                         trigger: 'item',//触发类型，可选为：'axis' | 'item'
                         triggerOn:'click',
-                        formatter: function(params){
-                            console.log(params);
-                            return params.name+":"+params.value;
-                        },
+                        formatter: self.chartBarTip,
                         //当触发类型为axis，可设置此项
                         axisPointer : {// 坐标轴指示器，坐标轴触发有效
                             type : 'shadow',// 默认为直线，可选为：'line' | 'shadow'
@@ -63,7 +86,7 @@
             		},
                     /*x轴*/
             		xAxis : {
-            			data : ["1月","2月","3月","4月","5月","6月","7月"],
+            			data : this.chartBarXAxisData,
                         axisLabel:{//文字
                             show:true,
                             textStyle :{
@@ -124,8 +147,7 @@
                         itemStyle: {//type为bar时,设置柱的颜色
                             normal: {
                                 color: function(params) {
-                                    var colorList = ['#53c6fd','#ffae02','#3ae3ea','#ff6f36','#cf7af3','#4cd32e','#4587f7','#00c2eb','#ff618f','#21d9a1'];
-                                    return colorList[params.dataIndex];
+                                    return self.colorList[params.dataIndex];
                                 }
                             }
                         },
@@ -134,19 +156,11 @@
                                 color: '#4bc0c0'
                             }
                         },
-                        data : [
-                            {value:"65",name:"111"},
-                            {value:"18",name:"222"},
-                            {value:"78",name:"333"},
-                            {value:"12",name:"444"},
-                            {value:"95",name:"555"},
-                            {value:"23",name:"666"},
-                            {value:"88",name:"777"},
-                        ]
+                        data : this.chartBarData
                     }
                     ]
             	}
-            	this.chartBar.setOption(this.chartBarData);
+            	this.chartBar.setOption(this.chartBarOption);
             },
             /*=========================
               Plugin

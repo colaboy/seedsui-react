@@ -699,7 +699,7 @@
         //推前月
         s.getBeforeMonths=function(beforenum){
             var months=[];
-            var tempDate=new Date(s.activeDate.getFullYear(),s.activeDate.getMonth()+1);
+            var tempDate=new Date(s.activeDate.getFullYear(),s.activeDate.getMonth());
             for(var i=1;i<=beforenum;i++){
                 var tempDate2=new Date();
                 tempDate2.setMonth(tempDate.getMonth()-i);

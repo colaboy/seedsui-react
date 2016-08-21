@@ -27,26 +27,48 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
-                this.chartLineData,this.chartLine={},this.chartLineId="ID-ChartLine";
+                /*DOM*/
+                /*Data*/
+                //数据
+                this.chartLineData=[
+                    {value:"65",name:"1月份"},
+                    {value:"18",name:"2月"},
+                    {value:"78",name:"3月"},
+                    {value:"12",name:"4月"},
+                    {value:"95",name:"5月"},
+                    {value:"23",name:"6月"},
+                    {value:"88",name:"7月"},
+                ];
+                //提示信息
+                this.chartLineTip="{b} : {c}";//{a}: series[].name ,{b}: series[].data[].name , {c}: series[].data[].value ,{d}: 占比
+                
+                /*或者用回调的方式
+                function(obj){
+                    console.log(obj);
+                    var params=obj[0];
+                    return obj[0].name+":"+obj[0].data.value;
+                },*/
+
+                //x轴数据
+                this.chartLineXAxisData=[];
+                for(var i=0,cb;cb=this.chartLineData[i++];){
+                    this.chartLineXAxisData.push(cb.name);
+                }
+                /*Plugin*/
+                this.chartLineId="ID-ChartLine",this.chartLineData,this.chartLine={};
             },
             /*=========================
               Method
               ===========================*/
             _initChartLine:function(){
+                var self=this;
             	this.chartLine = echarts.init(document.getElementById(this.chartLineId));
             	this.chartLineData = {
                     /*提示*/
             		tooltip : {
                         trigger: 'axis',//触发类型，可选为：'axis' | 'item'
                         triggerOn:'click',
-                        formatter: function(obj){
-                            console.log(obj);
-                            var params=obj[0];
-                            return obj[0].name+":"+obj[0].data.value;
-                        },
+                        formatter: this.chartLineTip,
                         //当触发类型为axis，可设置此项
                         axisPointer : {// 坐标轴指示器，坐标轴触发有效
                             type : 'line',// 默认为直线，可选为：'line' | 'shadow'
@@ -64,7 +86,7 @@
             		},
                     /*x轴*/
             		xAxis : {
-            			data : ["1月","2月","3月","4月","5月","6月","7月"],
+            			data : self.chartLineXAxisData,
                         axisLabel:{//文字
                             show:true,
                             textStyle :{
@@ -132,15 +154,7 @@
                                 color: '#4bc0c0'
                             }
                         },
-                        data : [
-                            {value:"65",name:"111"},
-                            {value:"18",name:"222"},
-                            {value:"78",name:"333"},
-                            {value:"12",name:"444"},
-                            {value:"95",name:"555"},
-                            {value:"23",name:"666"},
-                            {value:"88",name:"777"},
-                        ]
+                        data : self.chartLineData
                     }
                     ]
             	}
