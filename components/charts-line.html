@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+   <meta name="format-detection" content="telephone=no">
     <title>charts-line</title>
     <link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
 </head>
@@ -18,11 +18,11 @@
 	   <div id="ID-ChartLine" style="width: 100%;height:300px;"></div>
     </article>
 	<script src="../plugin/seedsui/seedsui.min.js"></script>
-	<script src="../plugin/echarts/echarts.min.js"></script>
+	<script src="../plugin/echarts/echarts.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-        var views={
+        var view={
             /*=========================
               Model
               ===========================*/
@@ -31,7 +31,7 @@
                 /*Data*/
                 //数据
                 this.chartLineData=[
-                    {value:"65",name:"1月份"},
+                    {value:"65",name:"1月"},
                     {value:"18",name:"2月"},
                     {value:"78",name:"3月"},
                     {value:"12",name:"4月"},
@@ -41,7 +41,6 @@
                 ];
                 //提示信息
                 this.chartLineTip="{b} : {c}";//{a}: series[].name ,{b}: series[].data[].name , {c}: series[].data[].value ,{d}: 占比
-                
                 /*或者用回调的方式
                 function(obj){
                     console.log(obj);
@@ -49,7 +48,7 @@
                     return obj[0].name+":"+obj[0].data.value;
                 },*/
 
-                //x轴数据
+                //x轴
                 this.chartLineXAxisData=[];
                 for(var i=0,cb;cb=this.chartLineData[i++];){
                     this.chartLineXAxisData.push(cb.name);
@@ -63,8 +62,8 @@
             _initChartLine:function(){
                 var self=this;
             	this.chartLine = echarts.init(document.getElementById(this.chartLineId));
-            	this.chartLineData = {
-                    /*提示*/
+            	this.chartLineOption = {
+                    //提示
             		tooltip : {
                         trigger: 'axis',//触发类型，可选为：'axis' | 'item'
                         triggerOn:'click',
@@ -77,15 +76,17 @@
                             }
                         }
             		},
-                    /*容器*/
+                    //容器
             		grid : {
-                        top:20,
+                        top:50,
             			left:50,
             			right:20,
                         bottom:50
             		},
-                    /*x轴*/
+                    //x轴
             		xAxis : {
+                        type: 'category',
+                        boundaryGap: false,//x轴文字与线居中对齐
             			data : self.chartLineXAxisData,
                         axisLabel:{//文字
                             show:true,
@@ -112,13 +113,17 @@
                             }
                         },
             		},
-                    /*y轴*/
+                    //y轴
                     yAxis : {
+                        name: '万元',
+                        type: 'value',
+                        boundaryGap: [0, 0],//Y轴数据全展现
                         axisLabel:{//文字
                             show:true,
                             textStyle :{
                                 color:'#666666'
                             },
+                            formatter: '{value}'
                         },
                         splitLine : {//分割线
                             show:true,
@@ -139,7 +144,7 @@
                             }
                         },
                     },
-                    /*系列*/
+                    //系列
                     series : [
                     {
                         name:"月",
@@ -154,11 +159,22 @@
                                 color: '#4bc0c0'
                             }
                         },
-                        data : self.chartLineData
+                        data : self.chartLineData,
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
                     }
                     ]
             	}
-            	this.chartLine.setOption(this.chartLineData);
+            	this.chartLine.setOption(this.chartLineOption);
             },
             /*=========================
               Plugin
@@ -190,11 +206,11 @@
         }
 
         window.addEventListener("load",function(){
-            views._onLoad();
+            view._onLoad();
         }, false);
 
         document.addEventListener("DOMContentLoaded",function(){
-            views.initialize();
+            view.initialize();
         }, false);
 
         //定义exmobi返回

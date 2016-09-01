@@ -22,7 +22,7 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-        var views={
+        var view={
             /*=========================
               Model
               ===========================*/
@@ -57,7 +57,7 @@
                         triggerOn:'click',
                         formatter: self.chartPieTip
                     },
-                    /*图例*/
+                    //图例
                     legend: {
                         show:true,
                         orient: 'horizontal',
@@ -132,11 +132,11 @@
         }
 
         window.addEventListener("load",function(){
-            views._onLoad();
+            view._onLoad();
         }, false);
 
         document.addEventListener("DOMContentLoaded",function(){
-            views.initialize();
+            view.initialize();
         }, false);
 
         //定义exmobi返回

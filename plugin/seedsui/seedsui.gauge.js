@@ -10,6 +10,8 @@
             maxValue:360,
             currentValue:0,
 
+            maxPointRotate:270,
+
             //dom
             pointClass:".gauge-pointer",
             waveClass:".gauge-wave",
@@ -19,9 +21,9 @@
             durationall:2000
 
             /*callbacks
-			onInit:function(Gauge)
 			onPointChangeStart:function(Gauge)
 			onPointChangeEnd:function(Gauge)
+			onPointOut:function(Gauge)
 			*/
 		}
 		for(var def in defaults){
@@ -37,31 +39,42 @@
 		s.value=s.container.querySelector(s.params.valueClass);//指针值
 
 		s.percent=(s.params.currentValue-s.params.minValue)/(s.params.maxValue-s.params.minValue);//当前值所占比例
+		
 		s.duration=Math.round(s.percent*s.params.durationall);//执行时间长度
+		if(s.duration>s.params.durationall){
+			s.duration=s.params.durationall
+		}
 		s.bgLvl=Math.round(s.percent*10)+1;//背景等级
-		if(s.bgLvl<1){
-			s.bgLvl=1;
-		}
-		if(s.bgLvl>10){
-			s.bgLvl=10;
-		}
-		s.pointRotate=eval(270*s.percent);//指针旋转角度
-		if(s.pointRotate>270){
-			s.pointRotate=270;
-			s.burst=s.params.currentValue-s.params.maxValue;//爆表值
-			console.log("已爆表");
-		}
+		if(s.bgLvl<1)s.bgLvl=1;
+		if(s.bgLvl>10)s.bgLvl=10;
+		
 		/*============
 		  Method
 		  ==============*/
 		//旋转指针
 		s.updatePoint=function(){
+			//指针旋转角度
+			s.pointRotate=eval(s.params.maxPointRotate*s.percent);
+
+			//CallBack onPointOut
+			if(s.pointRotate>s.params.maxPointRotate){
+				s.pointRotate=s.params.maxPointRotate;
+
+				if(s.params.onPointOut)s.params.onPointOut(s);
+			}
+
+			//CallBack onPointChangeStart
 			if(s.params.onPointChangeStart)s.params.onPointChangeStart(s);
-			s.point.setAttribute("style","-webkit-transform:rotate("+s.pointRotate+"deg);-webkit-transition:all "+s.duration+"ms");
-			if(!s.params.onPointChangeEnd)return;
-			setTimeout(function(){
-				s.params.onPointChangeEnd(s);
-			},s.duration);
+
+			//开始旋转
+			s.point.setAttribute("style","-webkit-transform:rotate("+s.pointRotate+"deg);-webkit-transition:transform "+s.duration+"ms");
+
+			//CallBack onPointChangeEnd
+			/*if(s.params.onPointChangeEnd){
+				setTimeout(function(){
+					s.params.onPointChangeEnd(s);
+				},s.duration);
+			}*/
 		}
 		//设置数字
 		s.updateValue=function(){
@@ -92,8 +105,30 @@
 			s.updatePoint();
 			s.updateValue();
 			s.updateWave();
-			if(s.params.onInit)s.params.onInit(s);
 		}
-		s.update();
+		/*==================
+		  Events
+		  ==================*/
+		s.events=function(detach){
+			var action=detach?"removeEventListener":"addEventListener";
+			s.point[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+		}
+		//attach、detach事件
+		s.attach=function(){
+			s.events();
+		};
+		s.detach=function(){
+			s.events(true);
+		};
+		s.onTransitionEnd=function(e){
+			//CallBack onPointChangeEnd
+			if(s.params.onPointChangeEnd)s.params.onPointChangeEnd(s);
+		}
+		//Init
+		s.init=function(){
+			s.update();
+			s.attach();
+		}
+		s.init();
 	}
 })(window,document,undefined);

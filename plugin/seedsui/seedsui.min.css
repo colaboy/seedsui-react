@@ -1766,7 +1766,7 @@ input[type="search"]::-webkit-search-results-decoration {
 /*---------------indexbar.less(end)---------------*/
 /*----------------group.less(end)--------------*/
 .group {
-  margin: 20px 0;
+  margin: 8px 0;
   border-width: 1px 0;
   border-style: solid;
   background-color: white;
@@ -2721,13 +2721,227 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*----------------error.less(end)--------------*/
 /*---------------gauge.less(start)---------------*/
+@-webkit-keyframes gauge-box-bg1 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  100% {
+    background-color: #1693ce;
+  }
+}
+@-webkit-keyframes gauge-box-bg2 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  50% {
+    background-color: #1693ce;
+  }
+  100% {
+    background-color: #19a4e5;
+  }
+}
+@-webkit-keyframes gauge-box-bg3 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  33% {
+    background-color: #1693ce;
+  }
+  67% {
+    background-color: #19a4e5;
+  }
+  100% {
+    background-color: #14ba91;
+  }
+}
+@-webkit-keyframes gauge-box-bg4 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  25% {
+    background-color: #1693ce;
+  }
+  50% {
+    background-color: #19a4e5;
+  }
+  75% {
+    background-color: #14ba91;
+  }
+  100% {
+    background-color: #16c447;
+  }
+}
+@-webkit-keyframes gauge-box-bg5 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  20% {
+    background-color: #1693ce;
+  }
+  40% {
+    background-color: #19a4e5;
+  }
+  60% {
+    background-color: #14ba91;
+  }
+  80% {
+    background-color: #16c447;
+  }
+  100% {
+    background-color: #2fcf1f;
+  }
+}
+@-webkit-keyframes gauge-box-bg6 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  16% {
+    background-color: #1693ce;
+  }
+  33% {
+    background-color: #19a4e5;
+  }
+  50% {
+    background-color: #14ba91;
+  }
+  66% {
+    background-color: #16c447;
+  }
+  87% {
+    background-color: #2fcf1f;
+  }
+  100% {
+    background-color: #7cce16;
+  }
+}
+@-webkit-keyframes gauge-box-bg7 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  14% {
+    background-color: #1693ce;
+  }
+  28% {
+    background-color: #19a4e5;
+  }
+  43% {
+    background-color: #14ba91;
+  }
+  57% {
+    background-color: #16c447;
+  }
+  71% {
+    background-color: #2fcf1f;
+  }
+  86% {
+    background-color: #7cce16;
+  }
+  100% {
+    background-color: #c0ac05;
+  }
+}
+@-webkit-keyframes gauge-box-bg8 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  12% {
+    background-color: #1693ce;
+  }
+  25% {
+    background-color: #19a4e5;
+  }
+  37% {
+    background-color: #14ba91;
+  }
+  50% {
+    background-color: #16c447;
+  }
+  62% {
+    background-color: #2fcf1f;
+  }
+  75% {
+    background-color: #7cce16;
+  }
+  87% {
+    background-color: #c0ac05;
+  }
+  100% {
+    background-color: #c26900;
+  }
+}
+@-webkit-keyframes gauge-box-bg9 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  11% {
+    background-color: #1693ce;
+  }
+  22% {
+    background-color: #19a4e5;
+  }
+  33% {
+    background-color: #14ba91;
+  }
+  44% {
+    background-color: #16c447;
+  }
+  55% {
+    background-color: #2fcf1f;
+  }
+  67% {
+    background-color: #7cce16;
+  }
+  78% {
+    background-color: #c0ac05;
+  }
+  89% {
+    background-color: #c26900;
+  }
+  100% {
+    background-color: #c02e00;
+  }
+}
+@-webkit-keyframes gauge-box-bg10 {
+  0% {
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
+  }
+  10% {
+    background-color: #1693ce;
+  }
+  20% {
+    background-color: #19a4e5;
+  }
+  30% {
+    background-color: #14ba91;
+  }
+  40% {
+    background-color: #16c447;
+  }
+  50% {
+    background-color: #2fcf1f;
+  }
+  60% {
+    background-color: #7cce16;
+  }
+  70% {
+    background-color: #c0ac05;
+  }
+  80% {
+    background-color: #c26900;
+  }
+  90% {
+    background-color: #c02e00;
+  }
+  100% {
+    background-color: #bf1200;
+  }
+}
 .gauge-box {
   position: relative;
-  height: 400px;
   overflow: hidden;
-  background-color: #1693ce;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-fill-mode: forwards;
@@ -2735,247 +2949,32 @@ input[type=range]::-webkit-slider-thumb {
 .gauge-box.bg1 {
   -webkit-animation-name: gauge-box-bg1;
 }
-@-webkit-keyframes gauge-box-bg1 {
-  0% {
-    background-color: #1693ce;
-  }
-  100% {
-    background-color: #19a4e5;
-  }
-}
 .gauge-box.bg2 {
   -webkit-animation-name: gauge-box-bg2;
-}
-@-webkit-keyframes gauge-box-bg2 {
-  0% {
-    background-color: #1693ce;
-  }
-  50% {
-    background-color: #19a4e5;
-  }
-  100% {
-    background-color: #14ba91;
-  }
 }
 .gauge-box.bg3 {
   -webkit-animation-name: gauge-box-bg3;
 }
-@-webkit-keyframes gauge-box-bg3 {
-  0% {
-    background-color: #1693ce;
-  }
-  33% {
-    background-color: #19a4e5;
-  }
-  67% {
-    background-color: #14ba91;
-  }
-  100% {
-    background-color: #16c447;
-  }
-}
 .gauge-box.bg4 {
   -webkit-animation-name: gauge-box-bg4;
-}
-@-webkit-keyframes gauge-box-bg4 {
-  0% {
-    background-color: #1693ce;
-  }
-  25% {
-    background-color: #19a4e5;
-  }
-  50% {
-    background-color: #14ba91;
-  }
-  75% {
-    background-color: #16c447;
-  }
-  100% {
-    background-color: #2fcf1f;
-  }
 }
 .gauge-box.bg5 {
   -webkit-animation-name: gauge-box-bg5;
 }
-@-webkit-keyframes gauge-box-bg5 {
-  0% {
-    background-color: #1693ce;
-  }
-  20% {
-    background-color: #19a4e5;
-  }
-  40% {
-    background-color: #14ba91;
-  }
-  60% {
-    background-color: #16c447;
-  }
-  80% {
-    background-color: #2fcf1f;
-  }
-  100% {
-    background-color: #7cce16;
-  }
-}
 .gauge-box.bg6 {
   -webkit-animation-name: gauge-box-bg6;
-}
-@-webkit-keyframes gauge-box-bg6 {
-  0% {
-    background-color: #1693ce;
-  }
-  16% {
-    background-color: #19a4e5;
-  }
-  33% {
-    background-color: #14ba91;
-  }
-  50% {
-    background-color: #16c447;
-  }
-  66% {
-    background-color: #2fcf1f;
-  }
-  87% {
-    background-color: #7cce16;
-  }
-  100% {
-    background-color: #c0ac05;
-  }
 }
 .gauge-box.bg7 {
   -webkit-animation-name: gauge-box-bg7;
 }
-@-webkit-keyframes gauge-box-bg7 {
-  0% {
-    background-color: #1693ce;
-  }
-  14% {
-    background-color: #19a4e5;
-  }
-  28% {
-    background-color: #14ba91;
-  }
-  43% {
-    background-color: #16c447;
-  }
-  57% {
-    background-color: #2fcf1f;
-  }
-  71% {
-    background-color: #7cce16;
-  }
-  86% {
-    background-color: #c0ac05;
-  }
-  100% {
-    background-color: #c26900;
-  }
-}
 .gauge-box.bg8 {
   -webkit-animation-name: gauge-box-bg8;
-}
-@-webkit-keyframes gauge-box-bg8 {
-  0% {
-    background-color: #1693ce;
-  }
-  12% {
-    background-color: #19a4e5;
-  }
-  25% {
-    background-color: #14ba91;
-  }
-  37% {
-    background-color: #16c447;
-  }
-  50% {
-    background-color: #2fcf1f;
-  }
-  62% {
-    background-color: #7cce16;
-  }
-  75% {
-    background-color: #c0ac05;
-  }
-  87% {
-    background-color: #c26900;
-  }
-  100% {
-    background-color: #c02e00;
-  }
 }
 .gauge-box.bg9 {
   -webkit-animation-name: gauge-box-bg9;
 }
-@-webkit-keyframes gauge-box-bg9 {
-  0% {
-    background-color: #1693ce;
-  }
-  11% {
-    background-color: #19a4e5;
-  }
-  22% {
-    background-color: #14ba91;
-  }
-  33% {
-    background-color: #16c447;
-  }
-  44% {
-    background-color: #2fcf1f;
-  }
-  55% {
-    background-color: #7cce16;
-  }
-  67% {
-    background-color: #c0ac05;
-  }
-  78% {
-    background-color: #c26900;
-  }
-  89% {
-    background-color: #c02e00;
-  }
-  100% {
-    background-color: #bf1200;
-  }
-}
 .gauge-box.bg10 {
   -webkit-animation-name: gauge-box-bg10;
-}
-@-webkit-keyframes gauge-box-bg10 {
-  0% {
-    background-color: #1693ce;
-  }
-  10% {
-    background-color: #19a4e5;
-  }
-  20% {
-    background-color: #14ba91;
-  }
-  30% {
-    background-color: #16c447;
-  }
-  40% {
-    background-color: #2fcf1f;
-  }
-  50% {
-    background-color: #7cce16;
-  }
-  60% {
-    background-color: #c0ac05;
-  }
-  70% {
-    background-color: #c26900;
-  }
-  80% {
-    background-color: #c02e00;
-  }
-  90% {
-    background-color: #bf1200;
-  }
-  100% {
-    background-color: #760403;
-  }
 }
 .gauge {
   position: relative;
@@ -3008,6 +3007,14 @@ input[type=range]::-webkit-slider-thumb {
   font-weight: 600;
   color: #59bdfc;
 }
+@-webkit-keyframes lrWave {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 960px;
+  }
+}
 .gauge-wave {
   position: absolute;
   top: 80%;
@@ -3021,14 +3028,6 @@ input[type=range]::-webkit-slider-thumb {
   background-size: 960px auto;
   opacity: 0.2;
   -webkit-animation: lrWave 10s linear infinite;
-}
-@-webkit-keyframes lrWave {
-  0% {
-    background-position-x: 0;
-  }
-  100% {
-    background-position-x: 960px;
-  }
 }
 /*---------------gauge.less(end)---------------*/
 /*----------------------------chat.less(start)----------------------------*/

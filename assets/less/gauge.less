@@ -1,12 +1,98 @@
 /*---------------gauge.less(start)---------------*/
+@gauge-bgs: #1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403;
+@-webkit-keyframes gauge-box-bg1{
+	0% {background-color:extract(@gauge-bgs, 0);}
+	100% {background-color:extract(@gauge-bgs, 1);}
+}
+@-webkit-keyframes gauge-box-bg2{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	50%{background-color:extract(@gauge-bgs, 1);}
+  	100%{background-color:extract(@gauge-bgs, 2);}
+}
+@-webkit-keyframes gauge-box-bg3{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	33%{background-color:extract(@gauge-bgs, 1);}
+	67%{background-color:extract(@gauge-bgs, 2);}
+  	100%{background-color:extract(@gauge-bgs, 3);}
+}
+@-webkit-keyframes gauge-box-bg4{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	25%{background-color:extract(@gauge-bgs, 1);}
+	50%{background-color:extract(@gauge-bgs, 2);}
+	75%{background-color:extract(@gauge-bgs, 3);}
+  	100%{background-color:extract(@gauge-bgs, 4);}
+}
+@-webkit-keyframes gauge-box-bg5{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	20%{background-color:extract(@gauge-bgs, 1);}
+	40%{background-color:extract(@gauge-bgs, 2);}
+	60%{background-color:extract(@gauge-bgs, 3);}
+  	80%{background-color:extract(@gauge-bgs, 4);}
+	100%{background-color:extract(@gauge-bgs, 5);}
+}
+@-webkit-keyframes gauge-box-bg6{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	16%{background-color:extract(@gauge-bgs, 1);}
+	33%{background-color:extract(@gauge-bgs, 2);}
+	50%{background-color:extract(@gauge-bgs, 3);}
+  	66%{background-color:extract(@gauge-bgs, 4);}
+	87%{background-color:extract(@gauge-bgs, 5);}
+	100%{background-color:extract(@gauge-bgs, 6);}
+}
+@-webkit-keyframes gauge-box-bg7{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	14%{background-color:extract(@gauge-bgs, 1);}
+	28%{background-color:extract(@gauge-bgs, 2);}
+	43%{background-color:extract(@gauge-bgs, 3);}
+  	57%{background-color:extract(@gauge-bgs, 4);}
+	71%{background-color:extract(@gauge-bgs, 5);}
+	86%{background-color:extract(@gauge-bgs, 6);}
+	100%{background-color:extract(@gauge-bgs, 7);}
+}
+@-webkit-keyframes gauge-box-bg8{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	12%{background-color:extract(@gauge-bgs, 1);}
+	25%{background-color:extract(@gauge-bgs, 2);}
+	37%{background-color:extract(@gauge-bgs, 3);}
+  	50%{background-color:extract(@gauge-bgs, 4);}
+	62%{background-color:extract(@gauge-bgs, 5);}
+	75%{background-color:extract(@gauge-bgs, 6);}
+	87%{background-color:extract(@gauge-bgs, 7);}
+	100%{background-color:extract(@gauge-bgs, 8);}
+}
+@-webkit-keyframes gauge-box-bg9{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	11%{background-color:extract(@gauge-bgs, 1);}
+	22%{background-color:extract(@gauge-bgs, 2);}
+	33%{background-color:extract(@gauge-bgs, 3);}
+  	44%{background-color:extract(@gauge-bgs, 4);}
+	55%{background-color:extract(@gauge-bgs, 5);}
+	67%{background-color:extract(@gauge-bgs, 6);}
+	78%{background-color:extract(@gauge-bgs, 7);}
+	89%{background-color:extract(@gauge-bgs, 8);}
+	100%{background-color:extract(@gauge-bgs, 9);}
+}
+@-webkit-keyframes gauge-box-bg10{
+	0%{background-color:extract(@gauge-bgs, 0);}
+	10%{background-color:extract(@gauge-bgs, 1);}
+	20%{background-color:extract(@gauge-bgs, 2);}
+	30%{background-color:extract(@gauge-bgs, 3);}
+  	40%{background-color:extract(@gauge-bgs, 4);}
+	50%{background-color:extract(@gauge-bgs, 5);}
+	60%{background-color:extract(@gauge-bgs, 6);}
+	70%{background-color:extract(@gauge-bgs, 7);}
+	80%{background-color:extract(@gauge-bgs, 8);}
+	90%{background-color:extract(@gauge-bgs, 9);}
+	100%{background-color:extract(@gauge-bgs, 10);}
+}
+
 .gauge-box{
 	position:relative;
-	height:400px;
 	overflow:hidden;
 	
-	background-color:#1693ce;
 	background-repeat:no-repeat;
 	background-size:100% 100%;
+	background-color:extract(@gauge-bgs, 0);
 
 	-webkit-animation-duration:0.5s;
 	-webkit-animation-timing-function:linear;
@@ -15,128 +101,33 @@
 .gauge-box.bg1{
 	-webkit-animation-name:gauge-box-bg1;
 }
-@-webkit-keyframes gauge-box-bg1{
-	0% {background-color:#1693ce;}
-	100% {background-color:#19a4e5;}
-}
-
 .gauge-box.bg2{
 	-webkit-animation-name:gauge-box-bg2;
 }
-@-webkit-keyframes gauge-box-bg2{
-	0%{background-color:#1693ce;}
-	50%{background-color:#19a4e5;}
-  	100%{background-color:#14ba91;}
-}
-
 .gauge-box.bg3{
 	-webkit-animation-name:gauge-box-bg3;
 }
-@-webkit-keyframes gauge-box-bg3{
-	0%{background-color:#1693ce;}
-	33%{background-color:#19a4e5;}
-	67%{background-color:#14ba91;}
-  	100%{background-color:#16c447;}
-}
-
 .gauge-box.bg4{
 	-webkit-animation-name:gauge-box-bg4;
 }
-@-webkit-keyframes gauge-box-bg4{
-	0%{background-color:#1693ce;}
-	25%{background-color:#19a4e5;}
-	50%{background-color:#14ba91;}
-	75%{background-color:#16c447;}
-  	100%{background-color:#2fcf1f;}
-}
-
 .gauge-box.bg5{
 	-webkit-animation-name:gauge-box-bg5;
 }
-@-webkit-keyframes gauge-box-bg5{
-	0%{background-color:#1693ce;}
-	20%{background-color:#19a4e5;}
-	40%{background-color:#14ba91;}
-	60%{background-color:#16c447;}
-  	80%{background-color:#2fcf1f;}
-	100%{background-color:#7cce16;}
-}
-
 .gauge-box.bg6{
 	-webkit-animation-name:gauge-box-bg6;
 }
-@-webkit-keyframes gauge-box-bg6{
-	0%{background-color:#1693ce;}
-	16%{background-color:#19a4e5;}
-	33%{background-color:#14ba91;}
-	50%{background-color:#16c447;}
-  	66%{background-color:#2fcf1f;}
-	87%{background-color:#7cce16;}
-	100%{background-color:#c0ac05;}
-}
-
 .gauge-box.bg7{
 	-webkit-animation-name:gauge-box-bg7;
 }
-@-webkit-keyframes gauge-box-bg7{
-	0%{background-color:#1693ce;}
-	14%{background-color:#19a4e5;}
-	28%{background-color:#14ba91;}
-	43%{background-color:#16c447;}
-  	57%{background-color:#2fcf1f;}
-	71%{background-color:#7cce16;}
-	86%{background-color:#c0ac05;}
-	100%{background-color:#c26900;}
-}
-
 .gauge-box.bg8{
 	-webkit-animation-name:gauge-box-bg8;
 }
-@-webkit-keyframes gauge-box-bg8{
-	0%{background-color:#1693ce;}
-	12%{background-color:#19a4e5;}
-	25%{background-color:#14ba91;}
-	37%{background-color:#16c447;}
-  	50%{background-color:#2fcf1f;}
-	62%{background-color:#7cce16;}
-	75%{background-color:#c0ac05;}
-	87%{background-color:#c26900;}
-	100%{background-color:#c02e00;}
-}
-
 .gauge-box.bg9{
 	-webkit-animation-name:gauge-box-bg9;
 }
-@-webkit-keyframes gauge-box-bg9{
-	0%{background-color:#1693ce;}
-	11%{background-color:#19a4e5;}
-	22%{background-color:#14ba91;}
-	33%{background-color:#16c447;}
-  	44%{background-color:#2fcf1f;}
-	55%{background-color:#7cce16;}
-	67%{background-color:#c0ac05;}
-	78%{background-color:#c26900;}
-	89%{background-color:#c02e00;}
-	100%{background-color:#bf1200;}
-}
-
 .gauge-box.bg10{
 	-webkit-animation-name:gauge-box-bg10;
 }
-@-webkit-keyframes gauge-box-bg10{
-	0%{background-color:#1693ce;}
-	10%{background-color:#19a4e5;}
-	20%{background-color:#14ba91;}
-	30%{background-color:#16c447;}
-  	40%{background-color:#2fcf1f;}
-	50%{background-color:#7cce16;}
-	60%{background-color:#c0ac05;}
-	70%{background-color:#c26900;}
-	80%{background-color:#c02e00;}
-	90%{background-color:#bf1200;}
-	100%{background-color:#760403;}
-}
-
 .gauge{
 	position:relative;
 	width:200px;
@@ -168,6 +159,10 @@
 	font-weight: 600;
 	color: #59bdfc;
 }
+@-webkit-keyframes lrWave{
+	0%{background-position-x:0}
+  	100%{background-position-x:960px}
+}
 .gauge-wave{
 	position:absolute;
 	top:80%;
@@ -182,9 +177,5 @@
 	opacity:0.2;
 	
 	-webkit-animation:lrWave 10s linear infinite;
-}
-@-webkit-keyframes lrWave{
-	0%{background-position-x:0}
-  	100%{background-position-x:960px}
 }
 /*---------------gauge.less(end)---------------*/

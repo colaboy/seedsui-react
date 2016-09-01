@@ -27,7 +27,7 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    var views={
+    var view={
         /*=========================
           Model
           ===========================*/
@@ -144,11 +144,11 @@
     }
 
     window.addEventListener("load",function(){
-        views._onLoad();
+        view._onLoad();
     }, false);
 
     document.addEventListener("DOMContentLoaded",function(){
-        views.initialize();
+        view.initialize();
     }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}

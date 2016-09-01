@@ -29,26 +29,75 @@
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
     <script>
-        window.addEventListener("load",function(e){
-        	var g=new Gauge("#gauge",{
-                minValue:-100,
-                maxValue:400,
-                currentValue:100,
-                onInit:function(e){
-                    console.log("初始化完成");
-                },
-                onPointChangeStart:function(e){
-                    console.log("指针开始旋转，共需时间："+e.duration);
-                },
-                onPointChangeEnd:function(e){
-                    console.log("指针旋转完成");
-                }
-            });
-        	//若是爆表，可获得爆表值
-        	if(g.burst>0){
-        		alert("已爆表"+g.burst);
-        	}
-        },false);
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*Data*/
+
+                /*DOM*/
+                
+                /*Plugin*/
+                this.gauge={},this.gaugeId="gauge";
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initGauge:function(){
+                this.gauge=new Gauge("#"+this.gaugeId,{
+                    minValue:-100,
+                    maxValue:400,
+                    currentValue:200,
+                    onPointOut:function(e){
+                        console.log("已爆表"+eval(e.params.currentValue-e.params.maxValue));
+                    },
+                    onPointChangeStart:function(e){
+                        console.log("指针开始旋转，共需时间："+e.duration);
+                    },
+                    onPointChangeEnd:function(e){
+                        console.log("指针旋转完成");
+                    }
+                });
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+                this._initGauge();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                /*DOM*/
+
+                /*Plugin*/
+                this._initPlugin();
+                
+                /*Events*/
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>

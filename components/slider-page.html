@@ -82,7 +82,7 @@
                 container.scrollTop=container.scrollTop-1;
             }
         }*/
-        var views={
+        var view={
             /*=========================
               Model
               ===========================*/
@@ -172,11 +172,11 @@
         }
 
         window.addEventListener("load",function(){
-            views._onLoad();
+            view._onLoad();
         }, false);
 
         document.addEventListener("DOMContentLoaded",function(){
-            views.initialize();
+            view.initialize();
         }, false);
         //定义exmobi返回
         function back(){history.go(-1);}

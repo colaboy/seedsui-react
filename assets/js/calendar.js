@@ -694,7 +694,7 @@
             for(var i=1;i<=beforenum;i++){
                 days.push(new Date(s.activeDate.getTime()-i*s.dayMilliSecound));
             }
-            return days.reverse();
+            return days;
         }
         //推前月
         s.getBeforeMonths=function(beforenum){
@@ -705,7 +705,7 @@
                 tempDate2.setMonth(tempDate.getMonth()-i);
                 months.push(tempDate2);
             }
-            return months.reverse();
+            return months;
         }
         //推前周
         s.getBeforeWeeks=function(beforenum){
