@@ -115,13 +115,20 @@
                 /*Data*/
 
                 /*DOM*/
+
+                /*Render*/
+                this.render();
                 
-                /*Plugin*/
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
               ===========================*/
-            _initClocks:function(){
+            _update:function(){
             },
             /*=========================
               Plugin
@@ -138,26 +145,9 @@
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                /*DOM*/
-
-                /*Plugin*/
-                this._initPlugin();
-                
-                /*Events*/
-                this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
 
