@@ -1,4 +1,4 @@
-//Calendar
+//Calendar 日历 | CalendarUtil 日历工具箱
 (function(window,document,undefined){
 	
 	window.Calendar=function(container,params){

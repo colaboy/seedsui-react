@@ -1,4 +1,4 @@
-//SpCity 扩展scrollpicker地区控件
+//SpCity 扩展scrollpicker地区控件 (require scrollpikcer.js)
 (function(window,document,undefined){
 	window.SpCity=function(params){
 		/*================

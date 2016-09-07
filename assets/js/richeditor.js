@@ -1,4 +1,4 @@
-//富文本编辑框
+//Richeditor 富文本编辑框
 var Richeditor={
 	//获取选区
 	selection:function(){

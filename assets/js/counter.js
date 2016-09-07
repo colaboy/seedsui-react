@@ -1,4 +1,4 @@
-//Counter
+//Counter 动态数字
 (function(window,document,undefined){
 	window.Counter=function(counter,params){
 		/*=========================

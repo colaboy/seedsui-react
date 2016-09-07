@@ -1,4 +1,4 @@
-//事件函数
+//EventUtil 事件函数
 (function(window,document,undefined){
 	window.TapSwipe=function(element,type,handler){
 		var s=this;

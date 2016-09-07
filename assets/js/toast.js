@@ -1,4 +1,4 @@
-//Toast弹出框
+//Toast 提示框
 (function(window,document,undefined){
 	
 	window.Toast=function(msg,params){

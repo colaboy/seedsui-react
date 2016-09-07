@@ -1,4 +1,4 @@
-//Aside
+//Aside 侧边栏
 (function(window,document,undefined){
     window.Aside=function(container,params){
         /*=========================

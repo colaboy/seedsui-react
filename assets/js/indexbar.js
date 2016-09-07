@@ -1,4 +1,4 @@
-//Indexbar
+//Indexbar 索引控件
 (function(window,document,undefined){
 	window.Indexbar=function(container,params){
 		/*=========================

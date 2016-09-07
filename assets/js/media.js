@@ -1,4 +1,4 @@
-//多媒体控件
+//Media 多媒体控件
 (function(window,document,undefined){
 	
 	window.Media=function(media){

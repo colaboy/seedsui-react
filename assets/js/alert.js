@@ -1,4 +1,4 @@
-//Alert
+//Alert 提示框
 (function(window,document,undefined){
 	
 	window.Alert=function(msg,params){

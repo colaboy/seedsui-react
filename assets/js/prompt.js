@@ -1,4 +1,4 @@
-//Prompt提示框
+//Prompt 提示框
 (function(window,document,undefined){
 	
 	window.Prompt=function(msg,params){

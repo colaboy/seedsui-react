@@ -1,4 +1,4 @@
-//Clock
+//Clock 时钟控件
 (function(window,document,undefined){
     window.Clock=function(clock,params){
         /*================

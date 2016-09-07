@@ -1,4 +1,4 @@
-//Dialog
+//Dialog 自定义弹出框
 (function(window,document,undefined){
     window.Dialog=function(wrapper,params){
         /*=========================

@@ -1,4 +1,4 @@
-//SpDate 扩展scrollpicker日期控件
+//SpDate 扩展scrollpicker日期控件 (require scrollpikcer.js)
 (function(window,document,undefined){
 	window.SpDate=function(params){
 		/*================

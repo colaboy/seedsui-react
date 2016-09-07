@@ -1,3 +1,4 @@
+//SafeLvl 密码安全级别
 (function(window,document,undefined){
 	window.SafeLvl={
 		/*字符类型*/
