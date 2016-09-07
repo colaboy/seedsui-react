@@ -1,4 +1,4 @@
-//Tree 树结构(require EventUtil.js)
+//Tree 树结构
 (function(window,document,undefined){
 window.Tree=function(container,params){
     /*=========================
@@ -123,15 +123,18 @@ window.Tree=function(container,params){
         return option;
     }
     /*=========================
-      Control
+      Events
       ===========================*/
     //绑定事件
     s.events=function(detach){
-        var action=detach?"removeHandler":"addHandler";
+        var action=detach?"removeEventListener":"addEventListener";
         //树结构
-        EventUtil[action](s.container,"tap",s.onTapTree);
+        s.container[action]("touchstart",s.onTouchStart,false);
+        s.container[action]("touchend",s.onTouchEnd,false);
         //选中容器
-        if(s.selectedContainer)EventUtil[action](s.selectedContainer,"tap",s.onTapTreebar,false);
+        if(s.selectedContainer){
+            s.selectedContainer[action]("click",s.onTapTreebar,false);
+        }
     }
     //attach、dettach事件
     s.attach=function(event){
@@ -139,6 +142,32 @@ window.Tree=function(container,params){
     }
     s.detach=function(event){
         s.events(true);
+    }
+    /*=========================
+      Event Handler
+      ===========================*/
+    //Tap
+    s.touches={
+        startX:0,
+        startY:0,
+        endX:0,
+        endY:0,
+        diffX:0,
+        diffY:0,
+    };
+    s.onTouchStart=function(e){
+        s.touches.startX = e.touches[0].clientX;
+        s.touches.startY = e.touches[0].clientY;
+    }
+    s.onTouchEnd=function(e){
+        s.touches.endX = e.changedTouches[0].clientX,
+        s.touches.endY = e.changedTouches[0].clientY;
+        s.touches.diffX=s.touches.startX - s.touches.endX;
+        s.touches.diffY=s.touches.startY - s.touches.endY;
+        //单击事件
+        if(Math.abs(s.touches.diffX) < 6 && Math.abs(s.touches.diffY) < 6 ){
+            s.onTapTree(e);
+        }
     }
     //点击树
     s.onTapTree=function(e){

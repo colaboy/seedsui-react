@@ -15,7 +15,7 @@
     }
     .app-axis1:after{
         left:-2px;
-        top:20px;
+        top:25px;
         width:2px;
         background-color:#57b3fa;
     }
@@ -65,12 +65,16 @@
     }
     /*聊天框*/
     .app-chatbox{
+        display: inline-block;
         position: relative;
         font-size:16px;
         margin:10px 0;
         padding:8px;
         border-radius:8px;
         background-color:#e0f4ff;
+    }
+    .app-chatbox+small{
+        display: block;
     }
     .app-chatbox:after {
         content: '';
@@ -134,7 +138,7 @@
                     </p>
                     
                     <div class="app-chatbox">
-                        测试过测试过，测试过测试过测过测过测过。
+                        测试过。
                     </div>
                     <small class="nowrap">2016-06-08 10:45:34</small>
                 </div>
