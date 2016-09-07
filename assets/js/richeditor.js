@@ -176,13 +176,13 @@ var Richeditor={
 	},
 	isEnter:function(){
 		//监听键盘输入
-		EventUtil.addHandler(window,"keydown",function(e){
+		window.addEventListener("keydown",function(e){
 			keynum = e.which || e.keyCode;
 			if(keynum=="13"){
 				return true;
 			}
 			return false;
-		})
+		},false);
 	},
 	queryInput:function(queryExtend,queryCollapse){
 		var winHeight=window.innerHeight,currentWinHeight=window.innerHeight;

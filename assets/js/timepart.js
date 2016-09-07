@@ -1,4 +1,4 @@
-//Timepart 时间段(require EventUtil.js)
+//Timepart 时间段
 (function(window,document,undefined){
 	window.Timepart=function(container,params){
 		/*================
