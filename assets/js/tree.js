@@ -71,7 +71,7 @@ window.Tree=function(container,params){
         var elOption,id;
         if(typeof elOrId=="string"){
             id=elOrId;
-            elOption=s.selectedContainer.querySelector("["+s.params.dataId+"="+id+"]");
+            elOption=s.selectedContainer.querySelector("["+s.params.dataId+"='"+id+"']");
         }else{
             elOption=elOrId;
             id=elOption.getAttribute(s.params.dataId);
@@ -212,7 +212,7 @@ window.Tree=function(container,params){
     s.onClickRemoveBtn=function(e){
         var elOption=e.target.parentNode;
         var id=elOption.getAttribute(s.params.dataId);
-        var elLine=s.container.querySelector("["+s.params.dataId+"="+id+"]");
+        var elLine=s.container.querySelector("["+s.params.dataId+"='"+id+"']");
         
         //选中容器删除选中项
         s.removeSelected(elOption);

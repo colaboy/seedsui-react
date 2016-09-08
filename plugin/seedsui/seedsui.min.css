@@ -4609,6 +4609,7 @@ ul.weather-otherday li {
   border-top-width: 32px;
 }
 .sticker.top span {
+  min-width: 30px;
   margin-top: -30px;
 }
 .sticker.left,
@@ -4622,6 +4623,7 @@ ul.weather-otherday li {
 .sticker.right,
 .sticker.right span {
   right: 0;
+  text-align: right;
 }
 .sticker.right {
   border-left-width: 56px;
