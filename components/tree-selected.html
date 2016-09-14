@@ -310,16 +310,16 @@
                     var suffixName=people.name.substr(people.name.length-1,1);
                     var suffixColor=suffixName.toPinyin().toColor();
                     if(bool){
-                        str+='<div class="tree-line active" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
+                        str+='<div class="tree-line active" style="padding-left:10px" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
                             '<span class="tree-ticon" style="background-color:'+suffixColor+'">'+suffixName+'</span>'+
                             '<a class="tree-title">'+people.name+'</a>'+
-                            '<small class="tree-right">研发一部</small>'+
+                            '<small class="tree-right" style="right:45px;">研发一部</small>'+
                         '</div>';
                     }else{
-                        str+='<div class="tree-line" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
+                        str+='<div class="tree-line" style="padding-left:10px" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
                             '<span class="tree-ticon" style="background-color:'+suffixColor+'">'+suffixName+'</span>'+
                             '<a class="tree-title">'+people.name+'</a>'+
-                            '<small class="tree-right" style="right:42px;">研发一部</small>'+
+                            '<small class="tree-right" style="right:45px;">研发一部</small>'+
                             '<i class="tree-ricon SID-BtnAsynAdd icon-rdoadd tree-btnadd"></i>'+
                         '</div>';
                     }
