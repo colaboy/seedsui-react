@@ -52,7 +52,6 @@
 
         //Params
         s.params = params;
-
         //Dom元素
         s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
         s.picker,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
@@ -466,7 +465,7 @@
         }
         //Mask
         s.onClickMask=function(e){
-            if(s.params.isClickMaskHide==true)s.hide();
+            if(s.params.isClickMaskHide===true)s.hide();
         }
         //Done|Cancel
         s.onClickDone=function(e){

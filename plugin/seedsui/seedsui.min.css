@@ -348,7 +348,7 @@ aside article,
   width: 100%;
   height: 100%;
   overflow: auto;
-  z-index: 0;
+  z-index: 2;
   -webkit-transition-property: -webkit-transform, opacity;
 }
 .page[data-animation="slideLeft"] {
@@ -4109,9 +4109,6 @@ table th {
 .tree ul {
   display: none;
 }
-.tree a {
-  color: inherit;
-}
 .tree-licon,
 .tree-ticon,
 .tree-ricon {
@@ -4120,9 +4117,6 @@ table th {
 .tree-licon,
 .tree-ticon {
   font-size: 16px;
-}
-.tree-ricon {
-  font-size: 24px;
 }
 /*标题*/
 .tree-title {
@@ -4167,6 +4161,9 @@ table th {
 }
 .tree-line.extand + ul {
   display: block;
+}
+.tree-btnadd {
+  font-size: 24px;
 }
 .tree-line.active .tree-btnadd,
 .tree-line.active + ul .tree-btnadd {
@@ -4648,7 +4645,6 @@ ul.weather-otherday li {
   background-size: 100% auto;
   background-position: center top;
 }
-.active,
 .icon.active {
   background-position: center bottom;
 }
@@ -5976,14 +5972,18 @@ table {
 .tree-right {
   color: #aaaaaa;
 }
+/*标题*/
+.tree-title {
+  color: #333333;
+}
 /*树标题-选中效果*/
-.tree-line.active,
-.tree-line.active + ul .tree-line {
+.tree-line.active .tree-title,
+.tree-line.active + ul .tree-title {
   color: #18b2ed;
 }
 .tree-line.active .tree-ticon,
 .tree-line.active + ul .tree-ticon {
-  background-color: #18b2ed;
+  background-color: #18b2ed !important;
 }
 /*树bar*/
 .tree-bar {

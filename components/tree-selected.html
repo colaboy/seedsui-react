@@ -6,17 +6,55 @@
     <meta name="format-detection" content="telephone=no">
 	<title>tree-selected</title>
 	<link rel="stylesheet" href="../plugin/seedsui/seedsui.min.css">
+    <style>
+    body{
+        background-color: white;
+    }
+    .app-titleSearch{
+        position: relative;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        margin: 0 8px 0 40px;
+        -webkit-box-flex: 1.0;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 40px;
+        background-color: #ffffff;
+        border-color: #e6e6e6;
+    }
+    .app-titleSearch .icon{
+        margin:0 8px;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        color: #ccc;
+    }
+    .app-titleSearch input[type=search]{
+        display: block;
+        -webkit-box-flex: 1.0;
+        border-width: 0;
+        padding: 4px 8px 4px 0;
+        background-color: transparent;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
     <header>
-       <div class="titlebar">
+       <div class="titlebar reverse">
             <a class="titlebar-button left" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
                 <span>返回</span>
             </a>
-            <h1 class="text-center">选择人员</h1>
-            <a class="titlebar-button right" href="javascript:getSelected()">确定</a>
+            <h1 class="text-center">人员选择</h1>
+            <div class="right">
+                <a class="titlebar-button" id="ID-BtnSearch">
+                    <i class="icon icon-search"></i>
+                </a>
+                <a class="titlebar-button" id="ID-BtnOk">
+                    <i class="icon icon-rdohook"></i>
+                </a>
+            </div>
         </div>
     </header>
     <article>
@@ -49,21 +87,21 @@
                                     </div>
                                     <ul>
                                     	<li>
-                                    		<div class="tree-line" data-id="group-4" data-name="成少波">
+                                    		<div class="tree-line" data-id="group-4" data-previd="group-3" data-name="成少波">
                                     			<span class="tree-ticon bg-1">波</span>
 	                                            <a class="tree-title">成少波</a>
 	                                            <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
 	                                        </div>
                                     	</li>
                                     	<li>
-                                    		<div class="tree-line" data-id="group-5" data-name="颜学文">
-                                    			<span class="tree-ticon bg-3">文</span>
+                                    		<div class="tree-line" data-id="group-5" data-previd="group-3" data-name="颜学文">
+                                    			<span class="tree-ticon" style="background-color: #cf7af3;">文</span>
 	                                            <a class="tree-title">颜学文</a>
 	                                            <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
 	                                        </div>
                                     	</li>
                                     	<li>
-                                    		<div class="tree-line" data-id="group-6" data-name="张泉">
+                                    		<div class="tree-line" data-id="group-6" data-previd="group-3" data-name="张泉">
                                     			<span class="tree-ticon bg-4">泉</span>
 	                                            <a class="tree-title">张泉</a>
 	                                            <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
@@ -129,167 +167,177 @@
                 </li>
             </ul>
         </div>
-        <!-- tree2 -->
-        <div class="tree-bar" style="display:none;" id="ID-Treebar2"></div>
-        <div class="tree-box">
-            <ul class="tree" id="ID-Tree2">
-                <li>
-                    <div class="tree-line" data-id="group-1" data-name="业务产品部">
-                        <i class="tree-licon icon-arrowright"></i>
-                        <span class="tree-ticon icon-persons"></span>
-                        <a class="tree-title">业务产品部</a>
-                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                    </div>
-                    <ul>
-                        <li>
-                            <div class="tree-line" data-id="group-2" data-name="研发体系">
-                                <i class="tree-licon icon-arrowright"></i>
-                                <span class="tree-ticon icon-persons"></span>
-                                <a class="tree-title">研发体系</a>
-                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="tree-line" data-id="group-3" data-name="开发一部">
-                                        <i class="tree-licon icon-arrowright"></i>
-                                        <span class="tree-ticon icon-persons"></span>
-                                        <a class="tree-title">开发一部</a>
-                                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="tree-line" data-id="group-4" data-name="成少波">
-                                                <span class="tree-ticon bg-1">波</span>
-                                                <a class="tree-title">成少波</a>
-                                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="tree-line" data-id="group-5" data-name="颜学文">
-                                                <span class="tree-ticon bg-3">文</span>
-                                                <a class="tree-title">颜学文</a>
-                                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="tree-line" data-id="group-6" data-name="张泉">
-                                                <span class="tree-ticon bg-4">泉</span>
-                                                <a class="tree-title">张泉</a>
-                                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-7" data-name="开发二部">
-                                        <i class="tree-licon icon-arrowright"></i>
-                                        <span class="tree-ticon icon-persons"></span>
-                                        <a class="tree-title">开发二部</a>
-                                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-8" data-name="开发三部">
-                                        <i class="tree-licon icon-arrowright"></i>
-                                        <span class="tree-ticon icon-persons"></span>
-                                        <a class="tree-title">开发三部</a>
-                                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="tree-line" data-id="group-9" data-name="开发一部">
-                                                <i class="tree-licon icon-arrowright"></i>
-                                                <span class="tree-ticon icon-persons"></span>
-                                                <a class="tree-title">开发一组</a>
-                                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="tree-line" data-id="group-10" data-name="市场体系">
-                                <i class="tree-licon icon-arrowright"></i>
-                                <span class="tree-ticon icon-persons"></span>
-                                <a class="tree-title">市场体系</a>
-                                <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="tree-line" data-id="group-11" data-name="上海办">
-                                        <i class="tree-licon icon-arrowright"></i>
-                                        <span class="tree-ticon icon-persons"></span>
-                                        <a class="tree-title">上海办</a>
-                                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-12" data-name="广州办名字超长超长超长超">
-                                        <i class="tree-licon icon-arrowright"></i>
-                                        <span class="tree-ticon icon-persons"></span>
-                                        <a class="tree-title">广州办名字超长超长超长超</a>
-                                        <span class="tree-ricon icon-rdoadd tree-btnadd"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
     </article>
 	
+    <!--page1-->
+    <section id="ID-PageSearchResult" data-animation="none" class="page">
+        <header>
+            <div class="titlebar reverse">
+                <a class="titlebar-button left" href="javascript:back()">
+                    <i class="icon icon-arrowleft"></i>
+                </a>
+                <form id="ID-FormSearch" class="app-titleSearch" data-input="clear">
+                    <i class="icon icon-search-fill color-placeholder size20"></i>
+                    <input type="search" placeholder="请输入搜索内容" class="search">
+                    <i class="icon icon-clear-fill color-placeholder hide size20"></i>
+                </form>
+            </div>
+        </header>
+        <article style="background-color: white;">
+            <div id="ID-BoxSearchResult" style="padding: 0 12px"></div>
+        </article>
+    </section>
+
     <script src="../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../plugin/seedsui/seedsui.pinyin.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../plugin/exmobi/exmobi.js"></script>-->
 	<script>
-    var tr1,tr2;
-    var noChildToast = new Toast("没有子节点", {delay:2000});
-	window.addEventListener("load",function(e){
-        //注入数据时，注意根据姓氏获得颜色
-        //console.log("成少波".toPinyin().substr(0,1).toColor());
+    var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*DOM*/
+                this.btnAsynAdds;
+                this.btnOk=document.getElementById("ID-BtnOk");
+                this.btnSearch=document.getElementById("ID-BtnSearch");
+                this.formSearch=document.getElementById("ID-FormSearch");
+                this.boxSearchResult=document.getElementById("ID-BoxSearchResult");
 
-        //树结构
-        tr1=new Tree("#ID-Tree1",{
-            "selectedContainer":"#ID-Treebar1",
-            "onTap":function(e){
-                console.log("您点击了：");
-                console.log(e.target);
-                console.log("点击的li为：");
-                console.log(e.targetLi);
-                console.log("点击的行为：");
-                console.log(e.targetLine);
-                console.log("当前选中的节点有：");
-                console.log(e.selected);
+                /*Plugin*/
+                this.tr1;
+                this.toast = new Toast("没有子节点");
+                this.formControls=new Formcontrols();
+                this.singlePage;
+
+                /*Data*/
+                this.dataPeople=[
+                    {id:"group-4",prevId:"group-3",name:"成少波"},
+                    {id:"group-5",prevId:"group-3",name:"颜学文"},
+                    {id:"group-6",prevId:"group-3",name:"张泉"}
+                ];
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
             },
-            "onTapLastChild":function(e){//没有子节点
-                noChildToast.show();
-            }
-        });
-        tr2=new Tree("#ID-Tree2",{
-            "selectedContainer":"#ID-Treebar2",
-            "onTap":function(e){
-                console.log("您点击了：");
-                console.log(e.target);
-                console.log("点击的li为：");
-                console.log(e.targetLi);
-                console.log("点击的行为：");
-                console.log(e.targetLine);
-                console.log("当前选中的节点有：");
-                console.log(e.selected);
+            render:function(){
+                this._initPlugin();
             },
-            "onTapLastChild":function(e){//没有子节点
-                noChildToast.show();
+            /*=========================
+              Method
+              ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initTree:function(){
+                var self=this;
+                this.tr1=new Tree("#ID-Tree1",{
+                    selectedContainer:"#ID-Treebar1",
+                    onTap:function(e){
+                        /*console.log("您点击了：");
+                        console.log(e.target);
+                        console.log("点击的li为：");
+                        console.log(e.targetLi);
+                        console.log("点击的行为：");
+                        console.log(e.targetLine);
+                        console.log("当前选中的节点有：");
+                        console.log(e.selected);*/
+                    },
+                    onTapLastChild:function(e){//没有子节点
+                        self.toast.show();
+                    },
+                    onClickTreebarDel:function(e){
+                        var dataId=e.option.getAttribute(e.params.dataId);;
+                        var elLines=document.querySelectorAll("["+e.params.dataId+"='"+dataId+"']");
+                        [].slice.call(elLines).forEach(function(n,i,a){
+                            n.classList.remove(e.params.lineActiveClass);
+                        })
+                    }
+                });
+            },
+            _initPage:function(){
+                this.singlePage=new Page();
+            },
+            _initPlugin:function(){
+                this._initPage();
+                this._initTree();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                //点击确定按钮
+                this.btnOk.addEventListener("click",function(e){
+                    self._onClickBtnOk(e);
+                },false);
+                //点击搜索按钮
+                this.btnSearch.addEventListener("click",function(e){
+                    self._onClickBtnSearch(e);
+                },false);
+                //提交搜索表单
+                this.formSearch.addEventListener("submit",function(e){
+                    self._onSubmitFormSearch(e);
+                },false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnAsynAdd:function(e){
+                var node=e.target.parentNode;
+                this.tr1.addSelectNode(node);
+            },
+            _onClickBtnOk:function(e){
+                console.log("你所选择的树节点Id为：");
+                console.log(this.tr1.selected);
+            },
+            _onClickBtnSearch:function(e){
+                this.boxSearchResult.innerHTML="";
+                this.singlePage.open("#ID-PageSearchResult");
+            },
+            _onSubmitFormSearch:function(e){
+                e.preventDefault();
+                var self=this;
+                var str="";
+                for(var i=0,people;people=this.dataPeople[i++];){
+                    var bool=this.tr1.hasSelectOption(people.id,people.prevId);
+                    var suffixName=people.name.substr(people.name.length-1,1);
+                    var suffixColor=suffixName.toPinyin().toColor();
+                    if(bool){
+                        str+='<div class="tree-line active" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
+                            '<span class="tree-ticon" style="background-color:'+suffixColor+'">'+suffixName+'</span>'+
+                            '<a class="tree-title">'+people.name+'</a>'+
+                            '<small class="tree-right">研发一部</small>'+
+                        '</div>';
+                    }else{
+                        str+='<div class="tree-line" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
+                            '<span class="tree-ticon" style="background-color:'+suffixColor+'">'+suffixName+'</span>'+
+                            '<a class="tree-title">'+people.name+'</a>'+
+                            '<small class="tree-right" style="right:42px;">研发一部</small>'+
+                            '<i class="tree-ricon SID-BtnAsynAdd icon-rdoadd tree-btnadd"></i>'+
+                        '</div>';
+                    }
+                }
+                this.boxSearchResult.innerHTML=str;
+                //点击添加按钮
+                this.btnAsynAdds=document.querySelectorAll(".SID-BtnAsynAdd");
+                [].slice.call(this.btnAsynAdds).forEach(function(n){
+                    n.addEventListener("click",function(e){
+                        self._onClickBtnAsynAdd(e);
+                    },false);
+                })
             }
-        });
-        
-	},false);
-    //获得选中元素
-    function getSelected(){
-        console.log("你所选择的树节点Id为：");
-        console.log(tr.selected);
-    }
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

@@ -51,7 +51,7 @@
 	    Method
 	    ==================*/
 		s.show=function(){
-			citySp.show();
+			s.scrollpicker.show();
 		}
 		s.getActiveText=function(activeData){
 	    	var activeText="";
@@ -77,7 +77,7 @@
 	    Control
 	    ==================*/
 		//初始化滚动控件
-		var citySp=new Scrollpicker({
+		s.scrollpicker=new Scrollpicker({
 			"parent":s.params.parent,
 			"isClickMaskHide":s.params.isClickMaskHide,
 			"isCascade":true,//是否开启级联更新
@@ -122,16 +122,16 @@
 	    		if(s.params.onHid)s.params.onHid(e);
 	    	}
 		});
-		function addSlot(){
-			citySp.addSlot(province,s.params.provinceClass);
-			citySp.addSlot(city,s.params.cityClass);
+		function initSlots(){
+			s.scrollpicker.addSlot(province,s.params.provinceClass);
+			s.scrollpicker.addSlot(city,s.params.cityClass);
 			if(s.params.viewType=="area"){
-				citySp.addSlot([{'key':'-','value':s.params.defaultValue}],s.params.areaClass);
+				s.scrollpicker.addSlot([{'key':'-','value':s.params.defaultValue}],s.params.areaClass);
 			}
 		}
-		addSlot();
-		/*function openWeight() {
-			citySp.show();
-		}*/
+		s.init=function(){
+	    	initSlots();
+	    }
+	    s.init();
 	}
 })(window,document,undefined);

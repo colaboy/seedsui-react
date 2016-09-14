@@ -32,9 +32,12 @@
           Model
           ===========================*/
         initialize:function(){
-            //DOM
-            this.textSp;
-            //Data
+            /*DOM*/
+            this.textSp=document.getElementById("ID-Sp");
+
+            /*Plugin*/
+            this.scrollpicker={};
+            this.scrollpicker.hasEvent=false;
             this.nums1=[
                 {'key':'a','value':'1'},
                 {'key':'b','value':'2'},
@@ -59,12 +62,20 @@
                 {'key':'IX','value':'9'},
                 {'key':'X','value':'10'},
             ];
-            //Plugin
-            this.scrollpicker={};
-            this.scrollpicker.hasEvent=false;
+
+            /*Data*/
+
+            /*Render*/
+            this.render();
+            
+            /*Events*/
+            this._attach();
+        },
+        render:function(){
+            this._initPlugin();
         },
         /*=========================
-          Method
+          Plugin
           ===========================*/
         _initScrollPicker:function(){
             var self=this;
@@ -108,6 +119,10 @@
             this.scrollpicker.addSlot(this.nums1,'','','d');//数据,样式,默认value，默认key
             this.scrollpicker.addSlot(this.nums2);
         },
+        _initPlugin:function(){
+            this._initScrollPicker();
+            this._addScrollpickerData();
+        },
         /*=========================
           Events
           ===========================*/
@@ -125,31 +140,13 @@
           ===========================*/
         _onClickTextSp:function(e){
             this.scrollpicker.show();
-        },
-        /*=========================
-          OnLoad
-          ===========================*/
-        _onLoad:function(){
-            var self=this;
-            //DOM
-            this.textSp=document.getElementById("ID-Sp");
-
-            //Plugin
-            this._initScrollPicker();
-            this._addScrollpickerData();
-
-            //Events
-            this._attach();
         }
     }
 
     window.addEventListener("load",function(){
-        view._onLoad();
-    }, false);
-
-    document.addEventListener("DOMContentLoaded",function(){
         view.initialize();
     }, false);
+
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

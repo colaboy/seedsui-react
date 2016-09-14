@@ -823,12 +823,16 @@ table{
 .tree-licon,.tree-ricon,.tree-right{
     color:@placeholder-color;
 }
+/*标题*/
+.tree-title{
+	color:@body-color;
+}
 /*树标题-选中效果*/
-.tree-line.active,.tree-line.active+ul .tree-line{
+.tree-line.active .tree-title,.tree-line.active+ul .tree-title{
     color:@primary-bg;
 }
 .tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
-	background-color:@primary-bg;
+	background-color:@primary-bg !important;
 }
 /*树bar*/
 .tree-bar{

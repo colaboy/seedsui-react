@@ -186,8 +186,8 @@
 	    ==================*/
 	    //滑动面板初始化
 	    s.scrollpicker=new Scrollpicker({
-	    	"parent":s.params.parent,
-	    	"isClickMaskHide":s.params.isClickMaskHide,
+	    	parent:s.params.parent,
+	    	isClickMaskHide:s.params.isClickMaskHide,
 	    	"onClickDone":function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);
 	    		if(s.params.onClickDone)s.params.onClickDone(e);
@@ -242,7 +242,7 @@
 	    	addDateSlot();
 	    	addTimeSlot()
 	    }
-	    s.addSlot=function(){
+	    function initSlots(){
 	        switch(s.params.viewType){
 	        	case "date":addDateSlot();break;
 	        	case "month":addMonthSlot();break;
@@ -255,7 +255,7 @@
 	    	s.addSlot();
 	    }
 	    s.init=function(){
-	    	s.addSlot();
+	    	initSlots();
 	    }
 	    s.init();
 	}

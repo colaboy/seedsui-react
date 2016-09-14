@@ -5,24 +5,28 @@ window.Tree=function(container,params){
       Model
       ===========================*/
     var defaults={
-        "selectedContainer":null,
-        "barButtonClass":"tree-bar-button",
-        "removeButtonClass":"tree-btnremove",
-        "addButtonClass":"tree-btnadd",
-        "extandClass":"extand",
-        "collapseClass":"collapse",
-        "liconClass":"tree-licon",
-        "riconClass":"tree-ricon",
-        "ticonClass":"tree-ticon",
-        "rightClass":"tree-right",
-        "titleClass":"tree-title",
-        "dataId":"data-id",
-        "dataName":"data-name",
-        "lineClass":"tree-line",
-        "lineActiveClass":"active"
+        selectedContainer:null,
+        barButtonClass:"tree-bar-button",
+        removeButtonClass:"tree-btnremove",
+        addButtonClass:"tree-btnadd",
+        extandClass:"extand",
+        collapseClass:"collapse",
+        treeClass:"tree",
+        liconClass:"tree-licon",
+        riconClass:"tree-ricon",
+        ticonClass:"tree-ticon",
+        rightClass:"tree-right",
+        titleClass:"tree-title",
+        dataId:"data-id",
+        dataPrevId:"data-previd",
+        dataName:"data-name",
+        lineClass:"tree-line",
+        lineActiveClass:"active"
         /*callbacks
         onTap:function(Tree)
         onTapLastChild:function(Tree)
+        onClickTreebar:function(Tree)
+        onClickTreebarDel:function(Tree)
         */
     }
     params=params||{};
@@ -102,6 +106,59 @@ window.Tree=function(container,params){
 
         s.selected[id]=elLine;
         s.showSelected();
+    }
+    //异步添加节点
+    s.hasSelectOption=function(dataId,dataPrevId){
+        //判断树中是否存在此ID
+        var prevNode=s.container.querySelector("["+s.params.dataId+"='"+dataPrevId+"']");
+        if(!prevNode){
+            return false;
+        }
+
+        //判断选中列表是否存在
+        if(s.selected[dataId] || s.selected[dataPrevId]){
+            return true;
+        }
+
+        //向上查询是否已添加到选中项
+        while(!prevNode.classList.contains(s.params.treeClass) && prevNode.tagName!="BODY"){
+            prevNode=prevNode.parentNode;
+            var siblingNode=prevNode.previousElementSibling;
+            if(siblingNode && siblingNode.getAttribute(s.params.dataId)){
+                var prevId=siblingNode.getAttribute(s.params.dataId);
+                if(s.selected[prevId]){
+                    return true;
+                }
+            }
+        }
+
+        //经过以上过滤，仍然未找到存在于选中项的迹象，说明没有存在于选中列表中
+        return false;
+    }
+    s.addSelectNode=function(node){
+        var elId=node.getAttribute(s.params.dataId);
+        var elPrevId=node.getAttribute(s.params.dataPrevId);
+        var elName=node.getAttribute(s.params.dataName);
+        if(!elPrevId){
+            alert("Tree.addSelectNode:没有找到dataPrevId");
+            return;
+        }
+        if(s.hasSelectOption(elId,elPrevId)){
+            console.log("Tree.addSelectNode:已经选中了");
+        }else{
+            //当前节点选中
+            node.classList.add(s.params.lineActiveClass);
+            //树结构中对应节点选中
+            var treeSameNode=s.container.querySelector("["+s.params.dataId+"='"+elId+"']");
+            treeSameNode.classList.add(s.params.lineActiveClass);
+
+            //创建选中项
+            var elOption=s.createSelectedOption(elId,elName);
+            s.selectedContainer.appendChild(elOption);
+            //添加选中
+            s.selected[elId]=node;
+            s.showSelected();
+        }
     }
     //显示选中项
     s.showSelected=function(){
@@ -202,6 +259,9 @@ window.Tree=function(container,params){
         if(e.target.classList.contains(s.params.removeButtonClass)){
             s.onClickRemoveBtn(e);
         }
+        //Callback onTapLastChild(点击底层)
+        s.target=e.target;
+        if(s.params.onClickTreebar)s.params.onClickTreebar(s);
     }
     //点击添加按钮
     s.onClickAddBtn=function(elLine){
@@ -210,12 +270,16 @@ window.Tree=function(container,params){
 
     //点击删除按钮
     s.onClickRemoveBtn=function(e){
-        var elOption=e.target.parentNode;
-        var id=elOption.getAttribute(s.params.dataId);
+        s.option=e.target.parentNode;
+
+        //Callback onTapLastChild(点击底层)
+        s.target=e.target;
+        if(s.params.onClickTreebarDel)s.params.onClickTreebarDel(s);
+
+        var id=s.option.getAttribute(s.params.dataId);
         var elLine=s.container.querySelector("["+s.params.dataId+"='"+id+"']");
-        
         //选中容器删除选中项
-        s.removeSelected(elOption);
+        s.removeSelected(s.option);
 
         //移除active
         elLine.classList.remove(s.params.lineActiveClass);

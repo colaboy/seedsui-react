@@ -38,35 +38,49 @@
           Model
           ===========================*/
         initialize:function(){
-            //Data
-            
-            //DOM
-            this.textDate,this.textDateClass="SID-Date",
-            this.textTime,this.textTimeClass="SID-Time",
-            this.textDateTime,this.textDateTimeClass="SID-DateTime";
-            
-            //Plugin
+            /*Data*/
+
+            /*DOM*/
+            this.textDate=document.querySelector(".SID-Date");
+            this.textTime=document.querySelector(".SID-Time");
+            this.textDateTime=document.querySelector(".SID-DateTime");
+
+            /*Plugin*/
             this.spDate,this.spTime,this.spDateTime;
+            //定义5分钟间隔的分钟数据
+            this.minutesData=[];
+            this.minuteInterval=5;
+            for(var minute=this.minuteInterval;minute<=60;minute=minute+this.minuteInterval){
+                this.minutesData.push({"key":minute,"value":minute+"分","flag":"time"});
+            }
+
+            /*Render*/
+            this.render();
+            
+            /*Events*/
+            this._attach();
+        },
+        render:function(){
+            this._initPlugin();
         },
         /*=========================
-          Method
+          Plugin
           ===========================*/
         _newSpDate:function(defaultYMD){
             var self=this;
             this.spDate=new SpDate({
-                "viewType":"date",
-                "yearClass":"text-center",
-                "monthClass":"text-center",
-                "dayClass":"text-center",
-                "isClickMaskHide":false,
-                "onClickDone":function(e){
+                viewType:"date",
+                yearClass:"text-center",
+                monthClass:"text-center",
+                dayClass:"text-center",
+                onClickDone:function(e){
                     self.textDate.value=e.activeText;
                     e.hide();
                 },
-                "onShowed":function(e){
-                    e.setIsClickMaskHide(true);
+                onShowed:function(e){
+                    //e.setIsClickMaskHide(true);
                 },
-                "onHid":function(e){
+                onHid:function(e){
                     e.destroy();
                 }
             });
@@ -80,18 +94,17 @@
         _newSpTime:function(defaultHS){
             var self=this;
             this.spTime=new SpDate({
-                "viewType":"time",
-                "hourClass":"text-center",
-                "minuteClass":"text-center",
-                "isClickMaskHide":false,
-                "onClickDone":function(e){
+                viewType:"time",
+                hourClass:"text-center",
+                minuteClass:"text-center",
+                onClickDone:function(e){
                     self.textTime.value=e.activeText;
                     e.hide();
                 },
-                "onShowed":function(e){
-                    e.setIsClickMaskHide(true);
+                onShowed:function(e){
+                    //e.setIsClickMaskHide(true);
                 },
-                "onHid":function(e){
+                onHid:function(e){
                     e.destroy();
                 }
             });
@@ -104,24 +117,24 @@
         _newSpDateTime:function(defaults){
             var self=this;
             this.spDateTime=new SpDate({
-                "viewType":"datetime",
-                "isSimpleYear":true,
-                "minYear":new Date().getFullYear()-5,
-                "maxYear":new Date().getFullYear()+5,
-                "yearClass":"text-center",
-                "monthClass":"text-center",
-                "dayClass":"text-center",
-                "hourClass":"text-center",
-                "minuteClass":"text-center",
-                "isClickMaskHide":false,
-                "onClickDone":function(e){
+                viewType:"datetime",
+                isSimpleYear:true,
+                minYear:new Date().getFullYear()-5,
+                maxYear:new Date().getFullYear()+5,
+                yearClass:"text-center",
+                monthClass:"text-center",
+                dayClass:"text-center",
+                hourClass:"text-center",
+                minuteClass:"text-center",
+                minutesData:self.minutesData,
+                onClickDone:function(e){
                     self.textDateTime.value=e.activeText;
                     e.hide();
                 },
-                "onShowed":function(e){
-                    e.setIsClickMaskHide(true);
+                onShowed:function(e){
+                    //e.setIsClickMaskHide(true);
                 },
-                "onHid":function(e){
+                onHid:function(e){
                     e.destroy();
                 }
             });
@@ -134,7 +147,24 @@
                 this.spDateTime.update();
             }
         },
+        _initPlugin:function(){
 
+        },
+        /*=========================
+          Events
+          ===========================*/
+        _attach:function(e){
+            var self=this;
+            this.textDate.onclick=function(e){
+                self._onClickTextDate(e);
+            }
+            this.textTime.onclick=function(e){
+                self._onClickTextTime(e);
+            }
+            this.textDateTime.onclick=function(e){
+                self._onClickTextDateTime(e);
+            }
+        },
         /*=========================
           Event Handler
           ===========================*/
@@ -180,40 +210,13 @@
             setTimeout(function(){
                 self.spDateTime.show();
             },10);
-        },
-        
-        /*=========================
-          OnLoad
-          ===========================*/
-        _onLoad:function(){
-            var self=this;
-            //DOM
-            this.textDate=document.querySelector("."+this.textDateClass);
-            this.textTime=document.querySelector("."+this.textTimeClass);
-            this.textDateTime=document.querySelector("."+this.textDateTimeClass);
-
-            //Events
-            this.textDate.onclick=function(e){
-                self._onClickTextDate(e);
-            }
-            this.textTime.onclick=function(e){
-                self._onClickTextTime(e);
-            }
-            this.textDateTime.onclick=function(e){
-                self._onClickTextDateTime(e);
-            }
-
-            //Plugin
         }
     }
 
     window.addEventListener("load",function(){
-        view._onLoad();
-    }, false);
-
-    document.addEventListener("DOMContentLoaded",function(){
         view.initialize();
     }, false);
+
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

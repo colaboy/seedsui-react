@@ -36,16 +36,25 @@
           Model
           ===========================*/
         initialize:function(){
-            //DOM
-            this.textCity,this.textCityId="ID-City";
-            this.textArea,this.textAreaId="ID-Area";
-            //Data
-            //Plugin
+            /*DOM*/
+            this.textCity=document.getElementById("ID-City");
+            this.textArea=document.getElementById("ID-Area");
+            /*Plugin*/
             this.spCity={};
             this.spArea={};
+            /*Data*/
+
+            /*Render*/
+            this.render();
+            
+            /*Events*/
+            this._attach();
+        },
+        render:function(){
+            this._initPlugin();
         },
         /*=========================
-          Method
+          Plugin
           ===========================*/
         _initSpCity:function(){
             this.spCity=new SpCity({
@@ -53,7 +62,8 @@
                 data:citys,
                 provinceClass:"text-center citycol",
                 cityClass:"text-center citycol",
-                areaClass:"text-center citycol"
+                areaClass:"text-center citycol",
+                isClickMaskHide:false
             });
         },
         _initSpArea:function(){
@@ -64,6 +74,10 @@
                 cityClass:"text-center citycol",
                 areaClass:"text-center citycol"
             });
+        },
+        _initPlugin:function(){
+            this._initSpCity();
+            this._initSpArea();
         },
         /*=========================
           Events
@@ -95,31 +109,13 @@
                 e.hide();
             });
             this.spArea.show();
-        },
-        /*=========================
-          OnLoad
-          ===========================*/
-        _onLoad:function(){
-            var self=this;
-            //DOM
-            this.textCity=document.getElementById(this.textCityId);
-            this.textArea=document.getElementById(this.textAreaId);
-            //Plugin
-            this._initSpCity();
-            this._initSpArea();
-
-            //Events
-            this._attach();
         }
     }
 
     window.addEventListener("load",function(){
-        view._onLoad();
-    }, false);
-
-    document.addEventListener("DOMContentLoaded",function(){
         view.initialize();
     }, false);
+
 	//定义exmobi返回
 	function back(){history.go(-1);}
 	</script>

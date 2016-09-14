@@ -68,7 +68,8 @@
 		"z":"#4cd32e"
 	};
 	String.prototype.toColor=function(){
-		if(this.length>1 || !/^[A-Za-z]+$/.test(this))return;
+		if(!/^[A-Za-z]+$/.test(this))return;
+		if(this.length>1)return colors[this.substring(0,1).toLowerCase()];
 		return colors[this.toLowerCase()];
 	}
 })(window,document,undefined);
