@@ -187,7 +187,7 @@
             <div id="ID-BoxSearchResult" style="padding: 0 12px"></div>
         </article>
     </section>
-
+    <script src="../plugin/jquery/jquery.min.js"></script>
     <script src="../plugin/seedsui/seedsui.min.js"></script>
     <script src="../plugin/seedsui/seedsui.pinyin.js"></script>
     <!--Exmobi能力-->
@@ -212,11 +212,6 @@
                 this.singlePage;
 
                 /*Data*/
-                this.dataPeople=[
-                    {id:"group-4",prevId:"group-3",name:"成少波"},
-                    {id:"group-5",prevId:"group-3",name:"颜学文"},
-                    {id:"group-6",prevId:"group-3",name:"张泉"}
-                ];
 
                 /*Render*/
                 this.render();
@@ -239,15 +234,22 @@
                 var self=this;
                 this.tr1=new Tree("#ID-Tree1",{
                     selectedContainer:"#ID-Treebar1",
+                    //需自定义：点击树展开
                     onTap:function(e){
                         /*console.log("您点击了：");
                         console.log(e.target);
                         console.log("点击的li为：");
                         console.log(e.targetLi);
-                        console.log("点击的行为：");
-                        console.log(e.targetLine);
                         console.log("当前选中的节点有：");
-                        console.log(e.selected);*/
+                        console.log(e.selected);
+                        console.log("点击的行为：");
+                        console.log(e.targetLine);*/
+                        //点击添加子节点
+                        /*if(!e.targetLi.querySelector("ul")){
+                            var ul=document.createElement("ul");
+                            ul.innerHTML="<li>子节点</li>";
+                            e.targetLi.insertBefore(ul,e.targetLine.nextElementSibling);
+                        }*/
                     },
                     onTapLastChild:function(e){//没有子节点
                         self.toast.show();
@@ -293,6 +295,7 @@
                 var node=e.target.parentNode;
                 this.tr1.addSelectNode(node);
             },
+            //需自定义：点击提交按钮
             _onClickBtnOk:function(e){
                 console.log("你所选择的树节点Id为：");
                 console.log(this.tr1.selected);
@@ -301,10 +304,16 @@
                 this.boxSearchResult.innerHTML="";
                 this.singlePage.open("#ID-PageSearchResult");
             },
+            //需自定义：软键盘搜索
             _onSubmitFormSearch:function(e){
                 e.preventDefault();
                 var self=this;
                 var str="";
+                this.dataPeople=[
+                    {id:"group-1001",prevId:"group-3",name:"成婷"},
+                    {id:"group-1002",prevId:"group-3",name:"寅东"},
+                    {id:"group-1003",prevId:"group-3",name:"张清"}
+                ];
                 for(var i=0,people;people=this.dataPeople[i++];){
                     var bool=this.tr1.hasSelectOption(people.id,people.prevId);
                     var suffixName=people.name.substr(people.name.length-1,1);

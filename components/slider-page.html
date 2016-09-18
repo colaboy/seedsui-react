@@ -87,13 +87,24 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                this.slides,this.slidesId="ID-CarouselPage";
-                this.tabbar,this.tabbarId="ID-Tabbar";
-                this.tabs;
-                //Data
-                //Plugin
+                /*DOM*/
+                this.slides=document.querySelectorAll("#ID-CarouselPage .slider-slide");
+                this.tabbar=document.getElementById("ID-Tabbar");
+                this.tabs=this.tabbar.querySelectorAll(".tab");
+
+                /*Plugin*/
                 this.carouselPage={};
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
@@ -131,7 +142,7 @@
             },
             _initSlider:function(){
                 var self=this;
-                this.carouselPage=new Slider("#"+this.slidesId,{
+                this.carouselPage=new Slider("#ID-CarouselPage",{
                     "onInit":function(e){
                         //compatibleIosScroll(e);
                     },
@@ -155,27 +166,9 @@
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-                this.slides=document.querySelectorAll("#"+this.slidesId+" .slider-slide");
-                this.tabbar=document.getElementById(this.tabbarId);
-                this.tabs=this.tabbar.querySelectorAll(".tab");
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
         //定义exmobi返回

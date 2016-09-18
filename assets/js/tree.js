@@ -150,7 +150,7 @@ window.Tree=function(container,params){
             node.classList.add(s.params.lineActiveClass);
             //树结构中对应节点选中
             var treeSameNode=s.container.querySelector("["+s.params.dataId+"='"+elId+"']");
-            treeSameNode.classList.add(s.params.lineActiveClass);
+            if(treeSameNode)treeSameNode.classList.add(s.params.lineActiveClass);
 
             //创建选中项
             var elOption=s.createSelectedOption(elId,elName);
@@ -282,7 +282,7 @@ window.Tree=function(container,params){
         s.removeSelected(s.option);
 
         //移除active
-        elLine.classList.remove(s.params.lineActiveClass);
+        if(elLine)elLine.classList.remove(s.params.lineActiveClass);
 
         //如果为空，则隐藏选中容器
         if(s.isEmptyJson(s.selected)){

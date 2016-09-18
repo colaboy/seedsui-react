@@ -113,10 +113,13 @@
           ===========================*/
         s.updateContainerSize=function(){
 			//Slide width
+			s.container.width=s.container.clientWidth;
 			s.width=Math.floor(s.container.width/s.params.slidesPerView);
+
 			//设置wrapper宽度
 			s.wrapper.width=s.width*s.slides.length;
 			s.wrapper.style.width=s.wrapper.width+"px";
+
 			//设置单个slide宽度
 			[].slice.call(s.slides).forEach(function(n,i,a){
 				n.style.width=s.width+"px";
@@ -127,10 +130,12 @@
 			[].slice.call(s.slides).forEach(function(n,i,a){
 				n.style.height=s.height+"px";
 			});
-			s.container.style.height=s.height+"px";			
+
+			if(s.height)s.container.style.height=s.height+"px";
 
 			//更新active index
 			s.updateClasses();
+			
 			//如果有循环的话
 			if(s.params.loop){
 				s.params.duration=0;
