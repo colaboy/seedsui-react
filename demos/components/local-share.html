@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>local-share</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+	<style>
+	.app-sharebox{
+		padding:12px;
+		background-color:white;
+		box-sizing:border-box;
+	}
+	.app-shareboxTitle{
+		font-size: 17px;
+		text-align: center;
+		padding:10px 0;
+	}
+	.app-shareboxClose{
+		display: block;
+		margin: 16px 0 12px 0;
+		text-align: center;
+	}
+	.app-shareboxClose .icon{
+		font-size: 36px;
+		width: 36px;
+		height: 36px;
+		color: #363434;
+	}
+	.app-sharebox .grid{
+		padding: 0 20px;
+	}
+	.app-sharebox li{
+		padding-top: 12px;
+	}
+	.app-sharebox li a{
+		width: 50px;
+		height: 50px;
+		border-radius: 100%;
+		color: white;
+	}
+	.app-sharebox li label{
+		margin-top: 6px;
+	}
+	.app-sharebox li a i{
+		font-size: 30px;
+		width: 30px;
+		height: 30px;
+		pointer-events:none;
+	}
+	</style>
+</head>
+
+<body ontouchstart="">
+	<header>
+	    <div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>分享</h1>
+	    </div>
+	</header>
+	<article>
+		<div class="card padding8">
+			分享功能目前只支持uc与微信浏览器
+		</div>
+		<a class="button submit block margin8 SID-BtnShare">点击分享</a>
+	</article>
+	<!-- 分享到-->
+	<div id="ID-PopShare" class="hide app-sharebox" style="width:100%">
+		<div class="app-shareboxTitle">
+			分享至
+		</div>
+		<ul class="grid" data-col="3">
+			<li>
+				<a style="background-color:#4485fb;" data-share="qq">
+					<i class="icon icon-qq"></i>
+				</a>
+				<label class="grid-label">QQ好友</label>
+			</li>
+			<li>
+				<a style="background-color:#eda200;" data-share="qzone">
+					<i class="icon icon-qqzone"></i>
+				</a>
+				<label class="grid-label">QQ空间</label>
+			</li>
+			<li>
+				<a style="background-color:#38ba35;" data-share="weixin">
+					<i class="icon icon-weixin"></i>
+				</a>
+				<label class="grid-label">微信</label>
+			</li>
+			<li>
+				<a style="background-color:#41ce29;" data-share="fweixin">
+					<i class="icon icon-fweixin"></i>
+				</a>
+				<label class="grid-label">微信朋友圈</label>
+			</li>
+			<li>
+				<a style="background-color:#e55f5f;" data-share="tsina">
+					<i class="icon icon-tsina"></i>
+				</a>
+				<label class="grid-label">新浪微博</label>
+			</li>
+			<li>
+				<a style="background-color:#eecf3d;" data-share="link">
+					<i class="icon icon-link-fill"></i>
+				</a>
+				<label class="grid-label">复制链接</label>
+			</li>
+		</ul>
+		<div class="app-shareboxClose">
+			<a class="icon icon-rdoclose SID-Close"></a>
+		</div>
+	</div>
+	<!-- <script src="../../plugin/seedsui/seedsui.share.js"></script> -->
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+		var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.btnShare,this.btnShareClass="SID-BtnShare";
+                this.divShare,this.divShareId="ID-PopShare";
+                this.btnCloseClass="SID-Close";
+				
+                //Data
+                //Plugin
+				/*this.shareData={
+					link:'http://exmobi.cn/',
+					title:'简易移动端开发技术！',
+					desc:'狠戳此链接了解，如何让移动开发变的简单',
+					imgUrl:'http://exmobi.cn/2015/images/comm/logo.png',
+					imgTitle:'Exmobi移动开发',
+					from:'烽火星空',
+					cusTxt: "请输入此时此刻想要分享的内容"
+				}
+				this.s=new Share(this.shareData);*/
+
+				this.popDivShare;
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initPopDivShare:function(e){
+                this.popDivShare=new Dialog("#"+this.divShareId,{//弹出框
+                    position:"bottom",
+                    css:{width:"100%"}
+                });
+            },
+            _initPlugin:function(e){
+                this._initPopDivShare();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+            	var self=this;
+            	//点击分享按钮
+            	this.btnShare.addEventListener("click",function(e){
+            		self._onClickBtnShare(e);
+            	},false);
+            	//点击分享框
+            	this.divShare.addEventListener("click",function(e){
+            		self._onClickDivShare(e);
+            	},false);
+            	
+            },
+
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnShare:function(e){
+            	this.popDivShare.show();
+            },
+            _onClickDivShare:function(e){
+            	var target=e.target;
+				if(target.getAttribute("data-share")){
+                    var shareTo=target.getAttribute("data-share");
+                    if(shareTo=="tsina"){
+                        console.log("分享到新浪");
+                    }else if(shareTo=="weixin"){
+                        console.log("分享到微信");
+                    }else if(shareTo=="fweixin"){
+                        console.log("分享到朋友圈");
+                    }else if(shareTo=="qq"){
+                        console.log("分享到QQ");
+                    }else if(shareTo=="tqq"){
+                        console.log("分享到QQ微博");
+                    }else if(shareTo=="qzone"){
+                        console.log("分享到QQ空间");
+                    }else if(shareTo=="phone"){
+                        console.log("分享到手机联系人");
+                    }else if(shareTo=="link"){
+                        console.log("复制链接");
+                    }
+                }else if(target.classList.contains(this.btnCloseClass)){
+                    this.popDivShare.hide();
+                }
+
+            },
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this.btnShare=document.querySelector("."+this.btnShareClass);
+                this.divShare=document.getElementById(this.divShareId);
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

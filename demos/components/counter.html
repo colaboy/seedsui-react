@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>countto</title>
+    <link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+        <header>
+            <div class="titlebar">
+                <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1>计数器</h1>
+            </div>
+        </header>
+        <article>
+            <p class="sliver">计数器</p>
+            <div class="card padding8">
+                <span class="counter" data-duration="5000" data-to="5">0</span>
+                <span class="counter" data-duration="5000" data-from="0" data-to="200">0</span>
+            </div>
+
+            <p class="sliver">帧率测试</p>
+            <div class="card padding8">
+                <span>requestAnimationFrame 1s帧率测试</span>
+                <span id="fps2"></span>
+                <br/>
+            	<span>setInterval 1s帧率测试</span>
+            	<span id="fps1"></span>
+            </div>
+
+        </article>
+    
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    <script>
+    	Animate.testSiFps(function(fps){
+    		document.getElementById("fps1").innerHTML=fps;
+    	});
+    	Animate.testRafFps(function(fps){
+    		document.getElementById("fps2").innerHTML=fps;
+    	});
+        //计数器
+		var counter=new Counters();
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

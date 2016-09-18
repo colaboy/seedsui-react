@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>config1</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+		.config_block button{
+			width:30%;
+			margin:10px 1.65%;
+			float:left;
+		}
+		.config_block:after{
+			display:table;
+			content:"";
+			clear:both;
+		}
+	</style>
+</head>
+
+<body ontouchstart="">
+		<header>
+			<div class="titlebar">
+				<a class="titlebar-button" href="javascript:back()">
+					<i class="icon icon-arrowleft"></i>
+				</a>
+				<h1>资讯配置</h1>
+			</div>
+		</header>
+
+		<article>
+			<div class="config_block">
+				<button class="button radius40 outline" style="height:32px;" href="#">鲜动态</button>
+				<button class="button radius40 outline" style="height:32px;" href="#">最生活</button>
+				<button class="button radius40 outline" style="height:32px;" href="#">趣科技</button>
+				<button class="button radius40 outline" style="height:32px;" href="#">妙铺子</button>
+				<button class="button radius40 outline" style="height:32px;" href="#">阅国际</button>
+				<button class="button radius40 outline" style="height:32px;" disabled href="#">最生活</button>
+				<button class="button radius40 outline" style="height:32px;" disabled href="#">鲜动态</button>
+				<button class="button radius40 outline" style="height:32px;" disabled href="#">妙铺子</button>
+			</div>
+			<p class="color-placeholder text-center padding8">您最多可选择5个配置!</p>
+		</article>
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1)}
+	</script>
+</body>
+</html>

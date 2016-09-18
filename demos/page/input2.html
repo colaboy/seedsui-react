@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>config2</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+		<header>
+			<div class="titlebar">
+		        <a href="javascript:back()" class="titlebar-button left">
+		        	<button class="button radius4 grayscale outline lrpadding8" style="height:32px;">取消</button>
+		        </a>
+		        <h1 class="text-center">评价</h1>
+		        <a class="titlebar-button right">
+		        	<button class="button radius4 warn lrpadding8" style="height:32px;">发布</button>
+		        </a>
+		    </div>
+		</header>
+		<article>
+			<div class="margin8">
+				<span>点击星星评分：</span>
+				<span>
+		            <i class="star icon icon-fav-fill size16 active"></i>
+		            <i class="star icon icon-fav-fill size16 active"></i>
+		            <i class="star icon icon-fav-fill size16 active-half"></i>
+		            <i class="star icon icon-fav-fill size16"></i>
+		            <i class="star icon icon-fav-fill size16"></i>
+		        </span>
+	        </div>
+	        <div class="inputbox radius4">
+	        	<textarea data-countval="description1" placeholder="请输入评论信息" data-rule="required maxlength:10"></textarea>
+	        </div>
+	        <p data-countval-for="description1" class="margin8 text-right"></p>
+		</article>
+
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+		//数字计数器
+        function listenerFontcount(){
+            var fc=new CountVals({
+                "onInput":function(e){
+                    //console.log("输入中");
+                },
+                "onInputOut":function(e){
+                    //console.log("超过数字限制时");
+                    var input=e.target;
+                    input.forField.innerHTML=Math.round(input.maxlength-input.value.length);
+                    input.forField.classList.add("color-tip");
+                },
+                "onInputIn":function(e){
+                    //console.log("没有超过数字限制时");
+                    var input=e.target;
+                    input.forField.innerHTML="";
+                    input.forField.classList.remove("color-tip");
+                }
+            });
+        }
+        listenerFontcount();
+		//定义exmobi返回
+		function back(){history.go(-1)}
+	</script>
+</body>
+</html>

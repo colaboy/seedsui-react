@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<title>local-db</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+		<header>
+		    <div class="titlebar">
+		        <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+		        <h1>本地数据</h1>
+		    </div>
+		</header>
+		<article>
+			<a class="button block margin8 warn" href="javascript:DB.set('test','test值')">key为“test”value为“test值”，存到localstore</a>
+			<a class="button block margin8 info" href="javascript:alertVal(DB.get('test'))">获得localstore里key为“test”的值</a>
+		</article>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+	function alertVal(val){
+		var at=new Alert("存储于数据库的值为："+val);
+		at.show();
+	}
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<title>exmobi-webview-second</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+		<header>
+		    <div class="titlebar">
+		        <a href="javascript:Exmobi.close()"><i class="icon icon-arrowleft"></i></a>
+		        <h1>webview内部返回</h1>
+		    </div>
+		</header>
+		<article>
+			<div class="card padding8">
+				android机按返回按键将返回上一个页面，而不是关闭webview
+			</div>
+		</article>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

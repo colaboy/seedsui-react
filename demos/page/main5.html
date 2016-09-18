@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>main5</title>
+    <link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+    <style type="text/css">
+        /*列表标题*/
+        .app-listBar{
+            display: -webkit-box;
+            -webkit-box-align:center;
+            background-color: white;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-listBar .app-peg{
+            margin: 8px;
+        }
+        .app-listBar .app-listBarTitle{
+            display: block;
+            padding: 8px 0;
+            -webkit-box-flex:1;
+        }
+        .app-listBar .app-listBarMore{
+            font-size: 12px;
+            color: #aaaaaa;
+            margin: 8px;
+        }
+        .app-peg{
+            display:inline-block;
+            width:6px;
+            height:12px;
+            background-color:#18b2ed;
+        }
+        /*热门推荐*/
+        .app-newList2{
+            background-color: #ffffff;
+        }
+        .app-newList2 li {
+            position: relative;
+            display: -webkit-box;
+            box-sizing: border-box;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: #e6e6e6;
+        }
+        .app-newList2 li img{
+            width: 110px;
+            margin:8px 8px 8px 0;
+        }
+        .app-newList2 li small{
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .app-newList2 div{
+            position: relative;
+            -webkit-box-flex: 1.0;
+            margin:8px;
+        }
+        .app-newList2 p{
+            line-height:24px;
+        }
+        .app-newList2 p span{
+            margin-right:5px;
+            line-height:18px;
+            float:left;
+        }
+        
+        /*最新活动*/
+        .app-picmetro{
+            padding:4px;
+            background-color:white;
+        }
+        .app-picmetro .case1{
+            height: 244px;
+            margin-right:2px
+        }
+        .app-picmetro .case1,.app-picmetro .case2 div{
+            background-size:cover;
+            background-position:center center;
+            background-repeat:no-repeat;
+        }
+        .app-picmetro .case2{
+            margin-left: 2px;
+        }
+        .app-picmetro .case2 div:nth-child(1){
+            margin-bottom:2px;
+        }
+        .app-picmetro .case2 div:nth-child(2){
+            margin-top:2px;
+        }
+    </style>
+</head>
+<body ontouchstart="">
+        <header>
+        	<div class="titlebar reverse">
+                <a class="titlebar-button"><img style="height:30px;" src="../img/main5/logo.png"/></a>
+                <h1></h1>
+                <a class="titlebar-button">
+                    <i class="icon icon-search"></i>
+                </a>
+                <a class="titlebar-button">
+                    <i class="icon icon-rdouser"></i>
+                </a>
+            </div>
+        </header>
+        <article>
+        	<!--广告轮播-->
+            <div class="slider-container" id="ID-Carrousel">
+                <div class="slider-wrapper">
+                    <div class="slider-slide" data-href="http://www.baidu.com">
+                        <img class="slide-banner" src="../img/main5/banner.jpg" style="width:100%;"/>
+                    </div>
+                    <div class="slider-slide" data-href="http://www.sina.com">
+                        <img class="slide-banner" src="../img/main5/banner.jpg" style="width:100%;"/>
+                    </div>
+                    <div class="slider-slide" data-href="http://exmobi.cn">
+                        <img class="slide-banner" src="../img/main5/banner.jpg" style="width:100%;"/>
+                    </div>
+                    <div class="slider-slide" data-href="http://exmobi.cn">
+                        <img class="slide-banner" src="../img/main5/banner.jpg" style="width:100%;"/>
+                    </div>
+                    <div class="slider-slide" data-href="http://exmobi.cn">
+                        <img class="slide-banner" src="../img/main5/banner.jpg" style="width:100%;"/>
+                    </div>
+                </div>
+                <!-- 添加分页 -->
+                <div class="slider-pagination"></div>
+            </div>
+            <!--主菜单-->
+            <ul class="grid" data-col="4" style="padding:8px 0 5px 0;background-color:white;">
+                <li>
+                    <a style="color:#00c2eb;">
+                        <i class="icon icon-contact-fill"></i>
+                    </a>
+                    <label class="grid-label">交流区</label>
+                </li>
+                <li>
+                    <a style="color:#1bce8d;">
+                        <i class="icon icon-write-fill"></i>
+                    </a>
+                    <label class="grid-label">审批</label>
+                </li>
+                <li>
+                    <a style="color:#b674d2;">
+                        <i class="icon icon-position-fill"></i>
+                    </a>
+                    <label class="grid-label">定位</label>
+                </li>
+                <li>
+                    <a style="color:#ff618f;">
+                        <i class="icon icon-gear-fill"></i>
+                    </a>
+                    <label class="grid-label">设置</label>
+                </li>
+            </ul>
+            <!--今日热门-->
+            <div class="app-listBar" style="margin-top:10px;">
+                <span class="app-peg"></span>
+                <p class="app-listBarTitle">今日热门</p>
+            </div>
+            <ul class="app-newList2">
+                <li>
+                    <div>
+                        <p>
+                        <span class="mark-primary">行情</span>
+                        本年度最后一次出塘鱼价更新！
+                        </p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
+                    </div>
+                    <img src="../img/main5/listimg.png">
+                </li>
+                <li>
+                    <div>
+                        <p><span class="mark-warn">财富</span>华东养虾风向标逆势破困局</p>
+                        <small class="nowrap">华东地区位于长江三角洲，素有“鱼米之乡”美誉，是中国重要的水产养殖区。</small>
+                    </div>
+                    <img src="../img/main5/listimg.png">
+                </li>
+
+                <li>
+                    <div>
+                        <p>
+                            <span class="mark-info">典型</span>
+                            七旬老人高效养罗非只赚不亏！
+                        </p>
+                        <small class="nowrap">
+                            ”陈叔“运用科技的力量高效养殖，保持盈利，他是如何养罗非赚钱的？
+                        </small>
+                        <img src="../img/main5/listimg.png" style="margin:8px 0;width:100%;">
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <p><span class="mark-cancel">推荐</span>养单一品种风险大，看看这些鱼虾套养模式！</p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
+                    </div>
+                    <img src="../img/main5/listimg.png">
+                </li>
+                <li>
+                    <div>
+                        <p><span class="mark-cancel">天气</span>元旦三天全国以晴为主，南方阴雨</p>
+                        <small class="nowrap">三天假期我国大部地区天气以晴或多云天气为主，风力不大，气温呈明显回升态势。</small>
+                    </div>
+                    <img src="../img/main5/listimg.png">
+                </li>
+                <li>
+                    <div>
+                        <p><span class="mark-cancel">成效</span>华北养鲤鱼，他们年赚60多万！</p>
+                        <small class="nowrap">今年还有十几个小时就要结束了，您的鱼卖得怎么样了呢？</small>
+                    </div>
+                    <img src="../img/main5/listimg.png">
+                </li>
+                <li>
+                    <div class="text-center">
+                        <label>更多热门资讯</label>
+                        <i class="icon icon-arrowright size12"></i>
+                    </div>
+                </li>
+            </ul>
+            <!--最新活动-->
+            <div class="app-listBar" style="margin-top: 10px;">
+                <span class="app-peg"></span>
+                <p class="app-listBarTitle">最新活动</p>
+                <a class="app-listBarMore">
+                    <label>更多</label>
+                    <i class="icon icon-arrowbittoright size12"></i>
+                </a>
+            </div>
+            <div class="box app-picmetro" id="activity">
+                <div class="box-flex-1 case1" style="background-image: url(../img/main5/1.jpg)"></div>
+                <div class="box box-vertical box-flex-1 case2">
+                    <div class="box-flex-1" style="background-image: url(../img/main5/2.png)"></div>
+                    <div class="box-flex-1" style="background-image: url(../img/main5/3.png)"></div>
+                </div>
+            </div>
+        </article>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.sliderContainerId="ID-Carrousel"
+                //Data
+                //Plugin
+                this.slider={};//轮播广告
+            },
+            /*=========================
+              Method
+              ===========================*/
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                //轮播广告
+                this.slider= new Slider('#'+this.sliderContainerId, {
+                    pagination: '.slider-pagination'
+                });
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

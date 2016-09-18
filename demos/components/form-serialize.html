@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<title>form-serialize</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+	    <div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()"><span>返回</span></a>
+	        <h1 class="text-center">表单序列化</h1>
+	        <a class="titlebar-button SID-BtnSubmit"><span>完成</span></a>
+	    </div>
+	</header>
+	<article>
+	<form id="ID-Form">
+            <div class="group">
+                <div class="inputbox underline">
+                    <label class="inputbox-left">用户名</label>
+                    <div class="inputbox-right inputbox" data-input="clear">
+                        <input type="text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="username"/>
+                        <i class="icon icon-clear-fill color-placeholder" style="font-size: 20px;line-height: 24px;text-align: center;display: none;"></i>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">密码</label>
+                    <div class="inputbox-right inputbox" data-input="reveal">
+                        <input type="password" placeholder="密码" name="password" data-rule-field="密码" data-rule="password"/>
+                        <i class="icon icon-eye-fill color-placeholder"></i>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">确认</label>
+                    <div class="inputbox-right inputbox" data-input="reveal">
+                        <input type="password" placeholder="确认" name="reconfirm" data-rule="password compare:password"/>
+                        <i class="icon icon-eye-fill color-placeholder"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="inputbox underline">
+                    <label class="inputbox-left">昵称</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" placeholder="填写昵称" name="nickname"/>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">性别</label>
+                    <div class="inputbox">
+                        <div class="input-text">
+                            <label>
+                                <input type="radio" value="male" name="sex" checked/>
+                                <span>男</span>
+                            </label>
+                            <label style="margin-left:8px;">
+                                <input type="radio" value="female" name="sex"/>
+                                <span>女</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">出生日期</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="date" name="birthday" placeholder="出生日期"/>
+                    </div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="inputbox underline">
+                    <label class="inputbox-left">职业</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                        <i class="icon icon-arrowright color-placeholder"></i>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">公司</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" class="company" placeholder="公司"/>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">学校</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" class="school" placeholder="填写学校，发现校友"/>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">所在地</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="live" readonly="" placeholder="选择所在地"/>
+                        <i class="icon icon-arrowright color-placeholder"></i>
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">故乡</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="hometown" readonly="" placeholder="选择所在地"/>
+                        <i class="icon icon-arrowright color-placeholder"></i>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <label class="inputbox-left">邮箱</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="email" placeholder="填写邮箱"/>
+                    </div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="inputbox">
+                    <label class="inputbox-left">个人说明</label>
+                    <div class="inputbox-right inputbox">
+                        <textarea class="label-right noborder" name="personal"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="inputbox">
+                    <label class="inputbox-left">资料好友可见</label>
+                    <div class="inputbox-right input-text lineheight0 noborder">
+                        <div class="switch" data-on="是" data-off="否" data-on-value="1" data-off-value="0" data-name="vis"><div class="switch-handle"></div></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+	</article>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                this.btnSubmit,this.btnSubmitClass="SID-BtnSubmit";
+                //Data
+                //Plugin
+                this.form,this.formId="ID-Form";
+                this.alert;
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initAlert:function(){
+                this.alert=new Alert();
+            },
+            _initFormControls:function(){
+                this.formControls=new Formcontrols();
+            },
+            _initForm:function(){
+                var self=this;
+                this.form=new Form("#"+this.formId);
+            },
+            _initPlugin:function(){
+                this._initFormControls();
+                this._initAlert();
+                this._initForm();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                this.btnSubmit.addEventListener("click",function(){
+                    self._onClickBtnSubmit(e);
+                },false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnSubmit:function(e){
+                var isOk=this.form.validate();
+                if(isOk){
+                    var args=this.form.serialize();
+                    this.alert.setText("你所要提交的参数是："+args);
+                    this.alert.show();
+                }
+            },
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this.btnSubmit=document.querySelector("."+this.btnSubmitClass);
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+
+    	//定义exmobi返回
+    	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

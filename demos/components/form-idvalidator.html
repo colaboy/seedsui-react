@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>form-idvalidator</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+		<div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>身份证验证</h1>
+	    </div>
+	</header>
+	<article>
+		<div class="inputbox bordered margin8">
+			<input type="text" id="ID-TxtVali" />
+			<a class="button lrpadding8" id="ID-BtnVali">检验</a>
+		</div>
+		<div class="card bordered padding8" id="ID-DivValiShow">
+			检验结果
+		</div>
+		<div class="inputbox bordered margin8">
+			<input type="text" id="ID-TxtInfo" />
+			<a class="button lrpadding8" id="ID-BtnInfo">信息</a>
+		</div>
+		<div class="card bordered padding8" id="ID-DivInfoShow">
+			信息结果
+		</div>
+		<div class="inputbox bordered margin8" style="margin-top: 50px;">
+			<div class="box-flex-1 lrpadding8" id="ID-DivMake18Show"></div>
+			<a class="button lrpadding8" id="ID-BtnMake18">生成18位身份证号</a>
+		</div>
+		<div class="rowspace8"></div>
+		<div class="inputbox bordered margin8">
+			<div class="box-flex-1 lrpadding8" id="ID-DivMake15Show"></div>
+			<a class="button lrpadding8" id="ID-BtnMake15">生成15位身份证号</a>
+		</div>
+	</article>
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <script src="../../plugin/seedsui/seedsui.idvalidator.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+		var view={
+		    /*=========================
+		      Model
+		      ===========================*/
+		    initialize:function(){
+		        //DOM
+		        this.txtVali,this.txtValiId="ID-TxtVali";
+		        this.btnVali,this.btnValiId="ID-BtnVali";
+		        this.divValiShow,this.divValiShowId="ID-DivValiShow";
+
+		        this.txtInfo,this.txtInfoId="ID-TxtInfo";
+		        this.btnInfo,this.btnInfoId="ID-BtnInfo";
+		        this.divInfoShow,this.divInfoShowId="ID-DivInfoShow";
+
+		        this.btnMake18,this.btnMake18Id="ID-BtnMake18";
+		        this.divMake18Show,this.divMake18ShowId="ID-DivMake18Show";
+
+		        this.btnMake15,this.btnMake15Id="ID-BtnMake15";
+		        this.divMake15Show,this.divMake15ShowId="ID-DivMake15Show";
+		        //Data
+		        //Plugin
+		        this.idvalidator={};
+		    },
+		    /*=========================
+		      Method
+		      ===========================*/
+		    _initIDValidator:function(){
+		    	this.idvalidator = new IDValidator();
+		    },
+		    /*=========================
+		      Events
+		      ===========================*/
+		    _attach:function(e){
+		    	var self=this;
+		    	this.btnVali.addEventListener("click",function(e){
+		    		self._onClickBtnVali(e);
+		    	},false);
+		    	this.btnInfo.addEventListener("click",function(e){
+		    		self._onClickBtnInfo(e);
+		    	},false);
+		    	this.btnMake18.addEventListener("click",function(e){
+		    		self._onClickBtnMake18(e);
+		    	},false);
+		    	this.btnMake15.addEventListener("click",function(e){
+		    		self._onClickBtnMake15(e);
+		    	},false);
+		    },
+		    /*=========================
+		      Event Handler
+		      ===========================*/
+		    _onClickBtnVali:function(e){
+				var code = this.txtVali.value;
+				var bool = this.idvalidator.isValid(code);
+				this.divValiShow.innerHTML= bool == false ? "号码不合法" : "号码合法";
+		    },
+		    _onClickBtnInfo:function(e){
+		    	var code = this.txtInfo.value;
+				var info = this.idvalidator.getInfo(code);
+				this.divInfoShow.innerHTML= info == false ? "号码不合法" : JSON.stringify(info);
+		    },
+		    _onClickBtnMake18:function(e){
+		    	this.divMake18Show.innerHTML=this.idvalidator.makeID();
+		    },
+		    _onClickBtnMake15:function(e){
+		    	this.divMake15Show.innerHTML=this.idvalidator.makeID(true);
+		    },
+		    /*=========================
+		      OnLoad
+		      ===========================*/
+		    _onLoad:function(){
+		        var self=this;
+		        //DOM
+		        this.txtVali=document.getElementById(this.txtValiId);
+		        this.btnVali=document.getElementById(this.btnValiId);
+		        this.divValiShow=document.getElementById(this.divValiShowId);
+
+		        this.txtInfo=document.getElementById(this.txtInfoId);
+		        this.btnInfo=document.getElementById(this.btnInfoId);
+		        this.divInfoShow=document.getElementById(this.divInfoShowId);
+
+		        this.btnMake18=document.getElementById(this.btnMake18Id);
+		        this.divMake18Show=document.getElementById(this.divMake18ShowId);
+
+		        this.btnMake15=document.getElementById(this.btnMake15Id);
+		        this.divMake15Show=document.getElementById(this.divMake15ShowId);
+		        //Plugin
+		        this._initIDValidator();
+		        //Events
+		        this._attach();
+		    }
+		}
+
+		window.addEventListener("load",function(){
+		    view._onLoad();
+		}, false);
+
+		document.addEventListener("DOMContentLoaded",function(){
+		    view.initialize();
+		}, false);
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

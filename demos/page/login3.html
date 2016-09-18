@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>login3</title>
+    <link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+	<style type="text/css">
+		#loginbox{
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cce6f6), color-stop(100%,#f9fcf4));
+			min-height:370px;
+		}
+		.login-logo{
+			width:88px;
+			height:88px;
+			border-radius:100%;
+			background-color:#f8f8f8;
+			text-align:center;
+			background-image:url(../img/login3/logo.png);
+			background-size:70px 70px;
+			background-position:center center;
+			background-repeat:no-repeat;
+			border:2px solid white;
+			margin:30px auto 20px auto;
+		}
+		.login_btm{
+			position:absolute; 
+			bottom:30px; 
+			width:88%; 
+			margin-left:6%;
+		}
+	</style>
+</head>
+
+<body ontouchstart="">
+	<form id="loginbox" class="scrollbox">
+		<div class="login-logo"></div>
+		<div class="group">
+			<div class="inputbox" data-input="clear" style="border-width:0 0 1px 0;">
+				<input name="username" type="text" placeholder="请输入账号"/>
+		    	<i class="icon icon-clear-fill color-placeholder hide"></i>
+			</div>
+			<div class="inputbox" data-input="reveal">
+				<input name="password" type="password" placeholder="请输入密码"/>
+		    	<i class="icon icon-eye-fill color-placeholder"></i>
+			</div>
+		</div>
+		<a class="button block" style="margin:20px 12px;" href="javascript:history.go(-1)">登录</a>
+		<footer style="padding:40px 0;">
+			<a class="float-left" style="margin-left:20px;">忘记密码？</a>
+			<a class="float-right" style="margin-right:20px;">注册</a>
+		</footer>
+	</form>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+	var f=new Form("#loginbox");
+	//定义exmobi返回
+	//function back(){history.go(-1);}
+	</script>
+</body>
+</html>

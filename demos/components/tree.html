@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>tree</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+	    <div class="titlebar">
+	    	<a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>树结构</h1>
+	    </div>
+	</header>
+	<article style="padding-top:52px;">
+		<div class="tree-box">
+			<ul class="tree" id="tree">
+				<li>
+					<div class="tree-line"> <i class="tree-licon icon-arrowright"></i>
+						<a class="tree-title events-none">业务产品部</a>
+						<small class="tree-right">100</small>
+					</div>
+					<ul>
+						<li>
+							<div class="tree-line">
+								<i class="tree-licon icon-arrowright"></i>
+								<a class="tree-title events-none">研发体系</a>
+								<small class="tree-right">100</small>
+							</div>
+							<ul>
+								<li>
+									<div class="tree-line">
+										<i class="tree-licon icon-arrowright"></i>
+										<a class="tree-title events-none">开发一部</a>
+										<small class="tree-right">100</small>
+									</div>
+									<ul>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">波</i>
+												<a class="tree-title events-none">成少波</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">晓</i>
+												<a class="tree-title events-none">王晓</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">健</i>
+												<a class="tree-title events-none">李健</a>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<div class="tree-line">
+										<i class="tree-licon icon-arrowright"></i>
+										<a class="tree-title events-none">开发二部</a>
+										<small class="tree-right">100</small>
+									</div>
+									<ul>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">泉</i>
+												<a class="tree-title events-none">张泉</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">景</i>
+												<a class="tree-title events-none">李若景</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">源</i>
+												<a class="tree-title events-none">康根源</a>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<div class="tree-line">
+										<i class="tree-licon icon-arrowright lastchild"></i>
+										<a class="tree-title events-none">开发三部</a>
+										<small class="tree-right">100</small>
+									</div>
+									<ul>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">波</i>
+												<a class="tree-title events-none">成少波</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">东</i>
+												<a class="tree-title events-none">张建东</a>
+											</div>
+										</li>
+										<li>
+											<div class="tree-line">
+												<i class="tree-ticon farleft">进</i>
+												<a class="tree-title events-none">李进</a>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="tree-line">
+								<i class="tree-licon icon-arrowright"></i>
+								<a class="tree-title events-none">研发二部</a>
+								<small class="tree-right">100</small>
+							</div>
+							<ul>
+								<li>
+									<div class="tree-line">
+										<i class="tree-ticon farleft">梅</i>
+										<a class="tree-title events-none">许啸梅</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</article>
+	<!--SeedsUI-->
+	<script src="../../plugin/seedsui/seedsui.pinyin.js"></script>
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+	<script>
+	var tr;
+	window.addEventListener("load",function(e){
+		//注入数据时，注意根据姓氏获得颜色
+        //console.log("成少波".toPinyin().substr(0,1).toColor());
+
+		//树结构
+        tr=new Tree("#tree",{
+            "onTap":function(e){
+            	console.log("您点击了：");
+                console.log(e.target);
+                console.log("点击的li为：");
+                console.log(e.targetLi);
+                console.log("点击的行为：");
+                console.log(e.targetLine);
+                console.log("当前选中的节点有：");
+                console.log(e.selected);
+            },
+            "onTapLastChild":function(s){//没有子节点
+                console.log("没有子节点");
+            }
+        });
+	},false);
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

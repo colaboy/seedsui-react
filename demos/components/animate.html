@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>animate</title>
+    <link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+    
+    <link rel="stylesheet" href="../../plugin/animate/animate.css">
+    <style>
+    button{
+    	width:40%;
+    	margin:8px 4%;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>动画效果</h1>
+        </div>
+    </header>
+    <article>
+        <button class="button" onclick="Animate.one(this,'bounce animated');">bounce</button>
+        <button class="button" onclick="Animate.one(this,'flash animated');">flash</button>
+        <button class="button" onclick="Animate.one(this,'pulse animated');">pulse</button>
+        <button class="button" onclick="Animate.one(this,'rubberBand animated');">rubberBand</button>
+        <button class="button" onclick="Animate.one(this,'shake animated');">shake</button>
+        <button class="button" onclick="Animate.one(this,'swing animated');">swing</button>
+        <button class="button" onclick="Animate.one(this,'tada animated');">tada</button>
+        <button class="button" onclick="Animate.one(this,'wobble animated');">wobble</button>
+        <button class="button" onclick="Animate.one(this,'bounceIn animated');">bounceIn</button>
+        <button class="button" onclick="Animate.one(this,'bounceInDown animated');">bounceInDown</button>
+        <button class="button" onclick="Animate.one(this,'bounceInLeft animated');">bounceInLeft</button>
+        <button class="button" onclick="Animate.one(this,'bounceInRight animated');">bounceInRight</button>
+        <button class="button" onclick="Animate.one(this,'bounceInUp animated');">bounceInUp</button>
+        <button class="button" onclick="Animate.one(this,'bounceOut animated');">bounceOut</button>
+        <button class="button" onclick="Animate.one(this,'bounceOutDown animated');">bounceOutDown</button>
+        <button class="button" onclick="Animate.one(this,'bounceOutLeft animated');">bounceOutLeft</button>
+        <button class="button" onclick="Animate.one(this,'bounceOutRight animated');">bounceOutRight</button>
+        <button class="button" onclick="Animate.one(this,'bounceOutUp animated');">bounceOutUp</button>
+        <button class="button" onclick="Animate.one(this,'fadeIn animated');">fadeIn</button>
+        <button class="button" onclick="Animate.one(this,'fadeInDown animated');">fadeInDown</button>
+        <button class="button" onclick="Animate.one(this,'fadeInDownBig animated');">fadeInDownBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeInLeft animated');">fadeInLeft</button>
+        <button class="button" onclick="Animate.one(this,'fadeInLeftBig animated');">fadeInLeftBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeInRightBig animated');">fadeInRightBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeInUp animated');">fadeInUp</button>
+        <button class="button" onclick="Animate.one(this,'fadeInUpBig animated');">fadeInUpBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeOut animated');">fadeOut</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutDownBig animated');">fadeOutDownBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutLeft animated');">fadeOutLeft</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutLeftBig animated');">fadeOutLeftBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutRight animated');">fadeOutRight</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutRightBig animated');">fadeOutRightBig</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutUp animated');">fadeOutUp</button>
+        <button class="button" onclick="Animate.one(this,'fadeOutUpBig animated');">fadeOutUpBig</button>
+        <button class="button" onclick="Animate.one(this,'flip animated');">flip</button>
+        <button class="button" onclick="Animate.one(this,'flipInX animated');">flipInX</button>
+        <button class="button" onclick="Animate.one(this,'flipInY animated');">flipInY</button>
+        <button class="button" onclick="Animate.one(this,'flipOutX animated');">flipOutX</button>
+        <button class="button" onclick="Animate.one(this,'flipOutY animated');">flipOutY</button>
+        <button class="button" onclick="Animate.one(this,'lightSpeedIn animated');">lightSpeedIn</button>
+        <button class="button" onclick="Animate.one(this,'lightSpeedOut animated');">lightSpeedOut</button>
+        <button class="button" onclick="Animate.one(this,'rotateIn animated');">rotateIn</button>
+        <button class="button" onclick="Animate.one(this,'rotateInDownLeft animated');">rotateInDownLeft</button>
+        <button class="button" onclick="Animate.one(this,'rotateInDownRight animated');">rotateInDownRight</button>
+        <button class="button" onclick="Animate.one(this,'rotateInUpLeft animated');">rotateInUpLeft</button>
+        <button class="button" onclick="Animate.one(this,'rotateInUpRight animated');">rotateInUpRight</button>
+        <button class="button" onclick="Animate.one(this,'rotateOut animated');">rotateOut</button>
+        <button class="button" onclick="Animate.one(this,'rotateOutDownLeft animated');">rotateOutDownLeft</button>
+        <button class="button" onclick="Animate.one(this,'rotateOutDownRight animated');">rotateOutDownRight</button>
+        <button class="button" onclick="Animate.one(this,'rotateOutUpLeft animated');">rotateOutUpLeft</button>
+        <button class="button" onclick="Animate.one(this,'rotateOutUpRight animated');">rotateOutUpRight</button>
+        <button class="button" onclick="Animate.one(this,'hinge animated');">hinge</button>
+        <button class="button" onclick="Animate.one(this,'rollIn animated');">rollIn</button>
+        <button class="button" onclick="Animate.one(this,'rollOut animated');">rollOut</button>
+        <button class="button" onclick="Animate.one(this,'zoomIn animated');">zoomIn</button>
+        <button class="button" onclick="Animate.one(this,'zoomInDown animated');">zoomInDown</button>
+        <button class="button" onclick="Animate.one(this,'zoomInLeft animated');">zoomInLeft</button>
+        <button class="button" onclick="Animate.one(this,'zoomInRight animated');">zoomInRight</button>
+        <button class="button" onclick="Animate.one(this,'zoomInUp animated');">zoomInUp</button>
+        <button class="button" onclick="Animate.one(this,'zoomOut animated');">zoomOut</button>
+        <button class="button" onclick="Animate.one(this,'zoomOutDown animated');">zoomOutDown</button>
+        <button class="button" onclick="Animate.one(this,'zoomOutLeft animated');">zoomOutLeft</button>
+        <button class="button" onclick="Animate.one(this,'zoomOutRight animated');">zoomOutRight</button>
+        <button class="button" onclick="Animate.one(this,'zoomOutUp animated');">zoomOutUp</button>
+    </article>
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    <script>
+    	//定义exmobi返回
+    	function back(){history.go(-1);}
+    </script>
+</body>
+</html>

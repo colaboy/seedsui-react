@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>page</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+    
+	<style>
+	body{
+		background-color:white;
+	}
+	/*栏目标题*/
+	.app-sliver{
+		font-size:12px;
+		padding:8px 0;
+		border-bottom:1px solid #ddd;
+		margin:8px;
+		color:#aaa;
+	}
+	/*缩略图*/
+	.app-thumbnail{
+		padding-left:4px;
+		padding-right:4px;
+	}
+	.app-thumbnail li{
+		padding-left:4px;
+		padding-right:4px;
+		padding-top:12px;
+	}
+	.app-thumbnail a{
+		border:1px solid #ddd;
+		overflow:hidden;
+		border-radius:8px;
+		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
+	}
+	/*单页模式*/
+	/* .app-page[data-animation="none"]{
+		 display:none; 
+	}
+	.app-page.active{
+		display:block;
+	} */
+	.app-page .mask{
+		position:absolute;
+	}
+	.app-page .loading-box{
+		position:absolute;
+	}
+	</style>
+</head>
+<body ontouchstart="">
+	<header>
+        <ul class="tabbar reverse" data-type="lump" id="ID-Tabbar">
+            <li class="tab active" href="#ID-Login" data-toggle="page">
+                <label class="tab-label">登录</label>
+            </li>
+            <li class="tab" href="#ID-Main" data-toggle="page">
+                <label class="tab-label">主页</label>
+            </li>
+            <li class="tab" href="#ID-Reg" data-toggle="page">
+                <label class="tab-label">注册</label>
+            </li>
+            <li class="tab" href="#ID-List" data-toggle="page">
+                <label class="tab-label">列表</label>
+            </li>
+            <li class="tab" href="#ID-Detail" data-toggle="page">
+                <label class="tab-label">详情</label>
+            </li>
+            <li class="tab" href="#ID-Input" data-toggle="page">
+                <label class="tab-label">数据录入</label>
+            </li>
+        </ul>
+    </header>
+	<article style="padding-top:41px;" class="scrollbox">
+		<div class="slider-container" id="carouselPage" style="height: 100%;">
+            <div class="slider-wrapper">
+                <div class="slider-slide">
+                    <!--登录-->
+					<div id="ID-Login" data-animation="none" class="app-page active">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--主页-->
+					<div id="ID-Main" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--注册-->
+					<div id="ID-Reg" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--列表-->
+					<div id="ID-List" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--详情-->
+					<div id="ID-Detail" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+                <div class="slider-slide">
+                    <!--数据录入-->
+					<div id="ID-Input" data-animation="none" class="app-page">
+						<!-- 加载遮罩 -->
+				        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+				        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+				            <div class="loading"></div>
+				        </div>
+					</div>
+                </div>
+            </div>
+        </div>
+	</article>
+	
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    
+	<script>
+		/*================
+		Ajax页面加载
+		================*/
+		//容器和按钮
+		var tabbar=document.getElementById("ID-Tabbar");
+		var tabs=[{
+			tabId:"ID-Login",
+			tabEl:tabbar.querySelector('[href="#ID-Login"]')
+		},{
+			tabId:"ID-Main",
+			tabEl:tabbar.querySelector('[href="#ID-Main"]')
+		},{
+			tabId:"ID-Reg",
+			tabEl:tabbar.querySelector('[href="#ID-Reg"]')
+		},{
+			tabId:"ID-List",
+			tabEl:tabbar.querySelector('[href="#ID-List"]')
+		},{
+			tabId:"ID-Detail",
+			tabEl:tabbar.querySelector('[href="#ID-Detail"]')
+		},{
+			tabId:"ID-Input",
+			tabEl:tabbar.querySelector('[href="#ID-Input"]')
+		}];
+
+		var containers={};
+		containers["ID-Login"]=document.getElementById("ID-Login");
+		containers["ID-Main"]=document.getElementById("ID-Main");
+		containers["ID-Reg"]=document.getElementById("ID-Reg");
+		containers["ID-List"]=document.getElementById("ID-List");
+		containers["ID-Detail"]=document.getElementById("ID-Detail");
+		containers["ID-Input"]=document.getElementById("ID-Input");
+
+		//单页模式
+		/*function hideContainers(){
+			for(var name in containers){
+				containers[name].style.display="none";
+			}
+		}
+		var singlePage=new Page({
+			"isDisableSameClick":true,
+			"pageClass":"app-page",
+			"onLoad":function(e){
+				var targetBtn,targetPageId;
+				if(e.isRoot){
+					targetBtn=tabs["ID-Login"];
+					targetPage=containers["ID-Login"];
+				}else{
+					targetBtn=tabs[e.targetPageId.substring(1)];
+					targetPage=containers[e.targetPageId.substring(1)];
+				}
+				//还原状态
+				e.buttons.forEach(function(btn){
+					btn.classList.remove("active");
+				});
+				e.pages.forEach(function(page){
+					page.style.display="none";
+				});
+				//显示对应的层
+				if(targetBtn){
+					//console.log(targetBtn);
+					targetBtn.classList.add("active");
+				}
+				if(targetPage)targetPage.style.display="block";
+			}
+		});*/
+		
+		function tabActive(index){
+            for(var i=0,tab;tab=tabs[i++];){
+            	tab.tabEl.classList.remove("active");
+            }
+            tabs[index].tabEl.classList.add("active");
+        }
+		var carouselPage=new Slider("#carouselPage",{
+            "onInit":function(e){
+                //compatibleIosScroll(e);
+            },
+            "onSlideChangeEnd":function(e){
+                tabActive(e.index);
+                //compatibleIosScroll(e);
+            }
+        });
+        function addClickTabbar(){
+            for(var i=0,tab;tab=tabs[i++];){
+                (function(i){
+                    tab.tabEl.addEventListener("click",function(){
+                        carouselPage.slideTo(i-1);
+                        tabActive(i-1);
+                    },false);
+                })(i);
+            }
+        }
+        addClickTabbar();
+		//加载数据
+		function loadLogin(){
+			new Ajax({
+                url:"index-login.html",
+                onSuccess:function(data){
+                    containers["ID-Login"].innerHTML=data;
+                }
+            });
+		}
+		function loadMain(){
+			new Ajax({
+                url:"index-main.html",
+                onSuccess:function(data){
+                    containers["ID-Main"].innerHTML=data;
+                }
+            });
+		}
+		function loadReg(){
+			new Ajax({
+                url:"index-reg.html",
+                onSuccess:function(data){
+                    containers["ID-Reg"].innerHTML=data;
+                }
+            });
+		}
+		function loadList(){
+			new Ajax({
+                url:"index-list.html",
+                onSuccess:function(data){
+                	containers["ID-List"].innerHTML=data;
+                }
+            });
+		}
+		function loadDetail(){
+			new Ajax({
+                url:"index-detail.html",
+                onSuccess:function(data){
+                	containers["ID-Detail"].innerHTML=data;
+                }
+            });
+		}
+		function loadInput(){
+			new Ajax({
+                url:"index-input.html",
+                onSuccess:function(data){
+                	containers["ID-Input"].innerHTML=data;
+                }
+            });
+		}
+		function loadData(){
+			loadLogin();
+			loadMain();
+			loadReg();
+			loadList();
+			loadDetail();
+			loadInput();
+		}
+		/*================
+		初始化
+		================*/
+		window.addEventListener("load",function(){
+			loadData();
+		},false);
+		//定义exmobi返回
+		function back(){Exmobi.dbclose();}
+	</script>
+</body>
+</html>

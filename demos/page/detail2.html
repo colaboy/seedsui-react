@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>detail2</title>
+    <link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+    <style>
+    	.userinfo{
+    		text-align:center;
+    		background-color:black;
+    		padding:40px 0;
+    	}
+        .userinfo:before{
+            background-image:url(../img/detail2/mebg.jpg);
+            opacity:0.9;
+        }
+    	.userinfo .photoname{
+    		margin-top:10px;
+    		display:block;
+    		color:white;
+    	}
+    	.list .justify-content{
+		    padding-top: 15px;
+			padding-bottom: 15px;
+    	}
+        .app-userMenuList li{
+            -webkit-box-align:center;
+        }
+        .app-userMenuList li div{
+            display: -webkit-box;
+            -webkit-box-flex: 1;
+            -webkit-box-align:center;
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+        .app-userMenuList li p{
+            -webkit-box-flex: 1;
+        }
+        .app-userMenuList li i:nth-of-type(1){
+            margin:0 8px;
+        }
+        .app-userMenuList li i:last-child{
+            width: 12px;
+            height: 12px;
+            font-size: 12px;
+            color:#aaaaaa;
+            margin:8px;
+        }
+    </style>
+</head>
+
+<body ontouchstart="">
+    	<article style="background-color:white;">
+    		<div style="border-bottom:1px solid #ddd;">
+    			<div class="userinfo before-filter-blur">
+	    			<span class="photo radiusround size80" style="border:2px solid white;background-image:url(../img/detail2/me.jpg);"></span>
+	    			<span class="photoname">张无敌</span>
+	    			<div class="text-center padding8">
+                        <button style="width:100px;height:26px;line-height:26px;" class="button radius40 outline white noclick">Lv5班长</button>
+                        <button style="width:100px;height:26px;line-height:26px;" class="button radius40 outline white noclick">1485积分</button>
+	    			</div>
+    			</div>
+    			<div class="card-handler card-handler-bordered" data-col="3" style="padding:10px 0;">
+    				<a>
+    					<i class="icon icon-chatdot"></i>
+    					<span>评论</span>
+    				</a>
+    				<a>
+    					<i class="icon icon-bell"></i>
+    					<span>消息</span>
+    				</a>
+    				<a>
+    					<i class="icon icon-fav"></i>
+    					<span>收藏</span>
+    				</a>
+    			</div>
+    		</div>
+    		<div style="height:12px;background-color:#f4f4f4"></div>
+    		<div style="border-top:1px solid #ddd;">
+    			<ul class="list app-userMenuList">
+    				<li>
+                        <i class="icon icon-user-fill color-1"></i>
+                        <div>
+                            <p>个人信息</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+    				</li>
+                    <li>
+                        <i class="icon icon-news-fill color-2"></i>
+                        <div>
+                            <p>资讯管理</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon icon-mail-fill color-3"></i>
+                        <div>
+                            <p>反馈</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="icon icon-gear-fill color-3"></i>
+                        <div>
+                            <p>设置</p>
+                            <i class="icon icon-arrowright"></i>
+                        </div>
+                    </li>
+    			</ul>
+    		</div>
+	    </article>
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

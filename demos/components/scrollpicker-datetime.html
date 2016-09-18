@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>scrollpicker-datetime</title>
+	<link rel="stylesheet" href="../../plugin/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+		<div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1>日期选择器</h1>
+	    </div>
+	</header>
+	<article>
+		<p class="color-placeholder text-center" style="margin-top:8px;">起止时间</p>
+        <div class="inputbox margin8">
+            <input type="text" class="text-center" placeholder="开始时间" readonly="readonly" id="time1"/>
+            <small class="margin8 inline-block vmiddle">到</small>
+            <input type="text" class="text-center" placeholder="结束时间" readonly="readonly" id="time2"/>
+        </div>
+	</article>
+	<!--SeedsUI-->
+    <script src="../../plugin/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+    var timeStart=new SpDate({
+        "viewType":"datetime",
+        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
+        "yearClass":"text-center",
+        "monthClass":"text-center",
+        "dayClass":"text-center",
+        "hourClass":"text-center",
+        "minuteClass":"text-center",
+    });
+    document.getElementById("time1").onclick=function(){
+        var input=this;
+        timeStart.setOnClickDone(function(e){
+            input.value=e.activeText;
+            e.hide();
+        });
+        timeStart.show();
+    }
+    var timeEnd=new SpDate({
+        "viewType":"datetime",
+        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
+        "yearClass":"text-center",
+        "monthClass":"text-center",
+        "dayClass":"text-center",
+        "hourClass":"text-center",
+        "minuteClass":"text-center",
+    });
+    document.getElementById("time2").onclick=function(){
+        var input=this;
+        timeEnd.setOnClickDone(function(e){
+            input.value=e.activeText;
+            e.hide();
+        });
+        timeEnd.show();
+    }
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>
