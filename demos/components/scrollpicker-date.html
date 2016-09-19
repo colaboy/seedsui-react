@@ -50,7 +50,7 @@
             //定义5分钟间隔的分钟数据
             this.minutesData=[];
             this.minuteInterval=5;
-            for(var minute=this.minuteInterval;minute<=60;minute=minute+this.minuteInterval){
+            for(var minute=0;minute<60;minute=minute+this.minuteInterval){
                 this.minutesData.push({"key":minute,"value":minute+"分","flag":"time"});
             }
 

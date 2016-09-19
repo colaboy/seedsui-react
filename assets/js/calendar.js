@@ -720,5 +720,13 @@
         	 }
         	 return weeks;
         }
+        //分秒向上档位
+        s.ceilMinute=function(minute,space){
+            var percentNum = Math.ceil(minute / space);
+            percentNum = minute % space == 0 ? parseInt(percentNum)+1 : percentNum;
+            var result = percentNum * space;
+            if(result>=60)result=0;
+            return result;
+        }
     };
 })(window,document,undefined);

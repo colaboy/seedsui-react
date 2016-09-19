@@ -15,12 +15,17 @@
 
 			isClickMaskHide:true,
 
+			onScrollStart:null,
+            onScroll:null
 			/*callbacks
 			onClickDone:function(Scrollpicker)
 			onClickCancel:function(Scrollpicker)
 			onTransitionEnd:function(Scrollpicker)
             onShowed(Scrollpicker)//显示动画结束后回调
             onHid(Scrollpicker)//隐藏动画结束后回调
+            onScrollStart:function(Scrollpicker)
+            onScroll:function(Scrollpicker)
+            onScrollEnd:function(Scrollpicker)
 			*/
 		}
 		params=params||{};
@@ -77,6 +82,7 @@
 	    Control
 	    ==================*/
 		//初始化滚动控件
+		var activeSlotIndex="unknow";//记录锁定滚动
 		s.scrollpicker=new Scrollpicker({
 			"parent":s.params.parent,
 			"isClickMaskHide":s.params.isClickMaskHide,
@@ -90,8 +96,20 @@
 	            if(s.params.onClickCancel)s.params.onClickCancel(e);
 	            else e.hide();
 	    	},
-			"onScrollEnd":function(e){
-				renderAfter(e.activeSlotIndex);
+	    	onScrollStart:function(e){
+	    		if(activeSlotIndex=="unknow"){
+	    			activeSlotIndex=e.activeSlotIndex;//开始锁定滚动
+	    			for(var i=0,slot;slot=e.slots[i++];){
+		    			slot.isLock=true;
+		    		}
+		    		e.slots[activeSlotIndex].isLock=false;
+	    		}
+            },
+            onScroll:s.params.onScroll,
+			onScrollEnd:function(e){
+				console.log(1);
+				renderAfter(activeSlotIndex);
+				activeSlotIndex="unknow";//解除锁定滚动
 				function renderAfter(index){
 					//获得当前选中数据
 					var nextSlotIndex=index+1;
@@ -111,14 +129,16 @@
 		    			renderAfter(nextSlotIndex);
 		    		}
 				}
+				//Callback
+            	if(s.params.onScrollEnd)s.params.onScrollEnd(e);
 	    	},
-	    	"onTransitionEnd":function(e){
+	    	onTransitionEnd:function(e){
 	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(e);
 	    	},
-	    	"onShowed":function(e){
+	    	onShowed:function(e){
 	    		if(s.params.onShowed)s.params.onShowed(e);
 	    	},
-	    	"onHid":function(e){
+	    	onHid:function(e){
 	    		if(s.params.onHid)s.params.onHid(e);
 	    	}
 		});

@@ -252,7 +252,7 @@
 	    }
 	    s.update=function(){
 	    	s.scrollpicker.reset();
-	    	s.addSlot();
+	    	initSlots();
 	    }
 	    s.init=function(){
 	    	initSlots();
