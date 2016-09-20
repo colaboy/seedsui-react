@@ -58,7 +58,7 @@
         </div>
     </header>
     <article>
-        <div class="tree-bar" style="display:none;" id="ID-Treebar1"></div>
+        <div class="tree-bar" id="ID-Treebar1"></div>
         <!-- tree1 -->
         <div class="tree-box">
             <ul class="tree" id="ID-Tree1">
@@ -244,14 +244,16 @@
                         console.log(e.selected);
                         console.log("点击的行为：");
                         console.log(e.targetLine);*/
+                    },
+                    onTapLastChild:function(e){//没有子节点
                         //点击添加子节点
-                        /*if(!e.targetLi.querySelector("ul")){
+                        if(!e.targetLine.getAttribute("data-previd")){//如果是组织，且无子节点，则添加子节点
                             var ul=document.createElement("ul");
                             ul.innerHTML="<li>子节点</li>";
                             e.targetLi.insertBefore(ul,e.targetLine.nextElementSibling);
-                        }*/
-                    },
-                    onTapLastChild:function(e){//没有子节点
+                        }
+                        
+                        //提示到底了
                         self.toast.show();
                     },
                     onClickTreebarDel:function(e){

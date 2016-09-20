@@ -59,6 +59,7 @@
 	position:relative;
 	border-style:solid;
 	border-width:0 0 1px 0;
+	min-width: 200px;
 }
 .tree-line.extand+ul{
 	display:block;
@@ -86,9 +87,21 @@
 }
 /*===========树bar===========*/
 .tree-bar{
+	display: none;
+	position: fixed;
+    top:44px;
+    left:0;
+    width: 100%;
+    z-index: 1;
 	overflow-x: auto;
     white-space: nowrap;
     padding: 5px 0;
+}
+.tree-bar.active{
+	display: block;
+}
+.tree-bar.active + .tree-box{
+    padding-top: 41px;
 }
 .tree-bar-button{
     padding: 4px 8px;
