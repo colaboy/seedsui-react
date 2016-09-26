@@ -1,6 +1,13 @@
 /*----------------alert.less(start)--------------*/
-/*@require dialog.less*/
 .alert{
+	position:fixed;
+	z-index:10;
+	border-style:solid;
+	border-width:0;
+
+	top:50%;
+	left:50%;
+	-webkit-transform:translate3d(-50%,-50%,0);
 	visibility:hidden;
 	opacity:0;
 	
@@ -12,19 +19,21 @@
 	-webkit-transition-duration:300ms;
 
 	background-color:white;
-}
-.alert h1{
-	text-align: center;
-	padding:15px 0 5px 0;
-	font-weight: 500;
-	font-size: 18px;
-	text-align: center;
-}
-.alert label{
-	display: block;
-	padding: 10px 12px 15px 12px;
-	line-height: 1.2em;
-	word-wrap: break-word;
+	border-color:@border;
+	
+	h1{
+		text-align: center;
+		padding:15px 0 5px 0;
+		font-weight: 500;
+		font-size: 18px;
+		text-align: center;
+	}
+	label{
+		display: block;
+		padding: 10px 12px 15px 12px;
+		line-height: 1.2em;
+		word-wrap: break-word;
+	}
 }
 /*底部按钮区*/
 .alert-handler{
@@ -54,5 +63,9 @@
 }
 .alert-handler a:only-child{
 	width:100%;
+}
+.alert-handler a:active{
+	background-color:@border;
+	border-color:@border;
 }
 /*----------------alert.less(end)--------------*/

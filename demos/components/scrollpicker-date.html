@@ -19,13 +19,13 @@
 	</header>
 	<article>
         <div class="inputbox margin8">
-            <input type="text" class="text-center SID-DateTime" placeholder="请选择日期时间" readonly="readonly"/>
+            <input type="text" class="input-text text-center SID-DateTime" placeholder="请选择日期时间" readonly="readonly"/>
         </div>
         <div class="inputbox margin8">
-            <input type="text" class="text-center SID-Date" placeholder="请选择日期" readonly="readonly"/>
+            <input type="text" class="input-text text-center SID-Date" placeholder="请选择日期" readonly="readonly"/>
         </div>
         <div class="inputbox margin8">
-            <input type="text" class="text-center SID-Time" placeholder="请选择时间" readonly="readonly"/>
+            <input type="text" class="input-text text-center SID-Time" placeholder="请选择时间" readonly="readonly"/>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -51,7 +51,9 @@
             this.minutesData=[];
             this.minuteInterval=5;
             for(var minute=0;minute<60;minute=minute+this.minuteInterval){
-                this.minutesData.push({"key":minute,"value":minute+"分","flag":"time"});
+                //if(minute<10)minute="0"+minute;
+                var tempMinute=minute<10?"0"+minute:minute;
+                this.minutesData.push({"key":tempMinute,"value":tempMinute+"分","flag":"time"});
             }
 
             /*Render*/

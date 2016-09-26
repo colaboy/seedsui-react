@@ -1,86 +1,85 @@
 /*----------------grid.less(start)--------------*/
-.grid:after{
-	display:table;
-	content:'';
-	clear: both;
-	zoom:1;
+.grid{
+	&:after{
+		display:table;
+		content:'';
+		clear: both;
+		zoom:1;
+	}
+	li{
+		width:33%;
+		float:left;
+		text-align:center;
+		padding:2px;
+		box-sizing:border-box;
+		/*图标区域*/
+		&>a{
+			display:-webkit-box;
+			-webkit-box-align:center;
+			-webkit-box-pack:center;
+			position:relative;
+			box-sizing:border-box;
+			margin:0px auto;
+			background-size:cover;
+			background-position:center;
+		}
+		/*文字区域*/
+		&>label{
+			display:block;
+		    margin-top:8px;
+		    overflow:hidden;
+		    text-overflow:ellipsis;
+		    white-space:nowrap;
+		    box-sizing:border-box;
+		    
+		    /* font-size:12px; */
+		    min-height:16px;
+
+		    color:@label-color;
+		}
+		&>a>img{
+			max-width:100%;
+			max-height: 100%;
+		}
+	}
+	/*圆角*/
+	&.grid-radius8>li>a{
+		border-radius: 8px;
+	}
+	/*边框*/
+	&.grid-bordered{
+		border-width:0 0 1px 0;
+		border-style:solid;
+
+		border-color:@border;
+		li{
+			border-style:solid;
+			border-width:1px 1px 0 0;
+			border-color:inherit;
+		}
+		&[data-rowspace="8"] li{
+			padding-top:8px;
+			padding-bottom:8px;
+		}
+	}
+	/*间距控制*/
+	&[data-rowspace="8"] li{
+		padding-top:8px;
+	}
+	&[data-rowspace="8"] li:last-child{
+		padding-bottom:8px;
+	}
+	&[data-col="2"] li{
+		width:50%;
+	}
+	&[data-col="3"] li{
+		width:33.33%;
+	}
+	&[data-col="4"] li{
+		width:25%;
+	}
+	&[data-col="5"] li{
+		width:20%;
+	}
 }
-.grid li{
-	width:33%;
-	float:left;
-	text-align:center;
-	padding:2px;
-	box-sizing:border-box;
-}
-/*图标区域*/
-.grid li>a{
-	display:-webkit-box;
-	-webkit-box-align:center;
-	-webkit-box-pack:center;
-	position:relative;
-	box-sizing:border-box;
-	margin:0px auto;
-	background-size:cover;
-	background-position:center;
-}
-/*文字区域*/
-.grid li>label{
-	display:block;
-    margin-top:8px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    box-sizing:border-box;
-    
-    /* font-size:12px; */
-    min-height:16px;
-}
-.grid li>a>img{
-	max-width:100%;
-	max-height: 100%;
-}
-/*圆角*/
-.grid.grid-radius8>li>a{
-	border-radius: 8px;
-}
-/*边框*/
-.grid.grid-bordered{
-	border-width:0 0 1px 0;
-	border-style:solid;
-}
-.grid.grid-bordered li{
-	border-style:solid;
-	border-width:1px 1px 0 0;
-	border-color:inherit;
-}
-/*间距控制*/
-.grid[data-rowspace="8"] li{
-	padding-top:8px;
-}
-.grid[data-rowspace="8"] li:last-child{
-	padding-bottom:8px;
-}
-.grid.grid-bordered[data-rowspace="8"] li{
-	padding-top:8px;
-	padding-bottom:8px;
-}
-.grid[data-col="2"] li{
-	width:50%;
-}
-.grid[data-col="3"] li{
-	width:33.33%;
-}
-.grid[data-col="4"] li{
-	width:25%;
-}
-.grid[data-col="5"] li{
-	width:20%;
-}
-/*小汽泡*/
-/* .grid li .tip,.grid li .badge,.grid li .close,
-.photo .tip,.photo .badge,.photo .close{
-	position: absolute;
-    top: -4px;
-    right: -4px;
-} */
 /*----------------grid.less(end)----------------*/

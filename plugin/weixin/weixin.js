@@ -1,16 +1,4 @@
-/*!
- * 微信开放api，此js仅用于个人订阅号
- * @version 1.0.0
- * @author WangMingzhu
- * @requie db.js
- * @requie sha.js
- */
-
-/**
- *  信息接口
- * 
- *  @class Weixin
- */
+//Weixin 初始化微信环境 @requie db.js @requie dateutil.js @requie sha.js
 (function(window, document, undefined) {
 	window.Weixin=function(appid,secret){
 		var s=this;
@@ -19,6 +7,7 @@
 		//其它信息
 		s.appid=appid || "wxad7e7fcdacc939de";
 		s.secret=secret || "de2242954dc9082e77a9dff55c8e60c1";
+		s.jsapiToken="";
 		s.jsapiTicket="";
 		//ascii码排序
 		function raw(args) {
@@ -36,14 +25,7 @@
 			string = string.substr(1);
 			return string;
 		};
-		/**
-		 * @method 签名算法 
-		 *
-		 * @param jsapi_ticket 用于签名的 jsapi_ticket
-		 * @param url 用于签名的 url ，注意必须动态获取，不能 hardcode
-		 *
-		 * @returns {jsapi_ticket:xxx,timestamp:xxx,url:xxx,signature:xxx}
-		 */
+		
 		function createNonceStr() {
 			return Math.random().toString(36).substr(2, 15); //随机串
 		}
@@ -51,7 +33,14 @@
 		function createTimestamp() {
 			return parseInt(new Date().getTime() / 1000) + ''; //时间戳
 		}
-
+		/**
+		 * @method sign签名算法 
+		 *
+		 * @param jsapi_ticket 用于签名的 jsapi_ticket
+		 * @param url 用于签名的 url ，注意必须动态获取，不能 hardcode
+		 *
+		 * @returns {jsapi_ticket:xxx,timestamp:xxx,url:xxx,signature:xxx}
+		 */
 		function sign(jsapi_ticket, url) {
 			var ret = {
 				jsapi_ticket: jsapi_ticket,
@@ -69,7 +58,7 @@
 		//第一步获得token
 		function getToken() {
 			//如果本地数据库已存在，优先读取本地数据库，则不往下执行
-			jsapiToken = DB.get("jsapiToken");
+			s.jsapiToken = DB.get("jsapiToken");
 			var jsapiTicket_expires = DB.get("jsapiTicket_expires");
 			var nonce = date.format(date.datetime());
 			if (jsapiTicket_expires && jsapiTicket_expires > nonce) {
@@ -93,7 +82,7 @@
 			}
 			DB.set("jsapiToken", token);
 			DB.set("jsapiToken_expires", date.format(date.expires(2)));
-			jsapiToken = token;
+			s.jsapiToken = token;
 			//第二步，获得ticket
 			$.getJSON("http://query.yahooapis.com/v1/public/yql", {
 				q: "select * from json where url=\"https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + token + "&type=jsapi\"",

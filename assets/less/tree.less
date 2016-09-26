@@ -1,6 +1,7 @@
 /*----------------tree.less(start)--------------*/
 .tree-box{
 	padding:0 0 0 32px;
+	background-color:@white;
 }
 .tree{
 	box-sizing:border-box;
@@ -21,6 +22,7 @@
 /*标题*/
 .tree-title{
 	padding:15px 0 15px 8px;
+	color:@body-color;
 }
 /*标题图标*/
 .tree-ticon{
@@ -31,6 +33,8 @@
     border-radius:100%;
     text-align:center;
     line-height:32px;
+    background-color:@2-bg;
+    color:@white;
 }
 .tree-ticon.farleft{
 	margin-left:-28px;
@@ -54,12 +58,19 @@
 	-webkit-justify-content:center;
 	-webkit-align-items:center;
 }
+.tree-licon,.tree-ricon,.tree-right{
+    color:@placeholder-color;
+}
 /*===========作用行===========*/
 .tree-line{
 	position:relative;
 	border-style:solid;
 	border-width:0 0 1px 0;
 	min-width: 200px;
+	border-color:@border;
+}
+.tree-line:active{
+	background-color:@border;
 }
 .tree-line.extand+ul{
 	display:block;
@@ -85,6 +96,13 @@
 	top:50%;
 	-webkit-transform:translateY(-50%);
 }
+/*树标题-选中效果*/
+.tree-line.active .tree-title,.tree-line.active+ul .tree-title{
+    color:@primary-bg;
+}
+.tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
+	background-color:@primary-bg !important;
+}
 /*===========树bar===========*/
 .tree-bar{
 	display: none;
@@ -96,6 +114,7 @@
 	overflow-x: auto;
     white-space: nowrap;
     padding: 5px 0;
+    background-color:@border;
 }
 .tree-bar.active{
 	display: block;
@@ -108,6 +127,7 @@
     margin:0 0 0 8px;
     display: inline-block;
     font-size: 13px;
+    background-color:@white;
 }
 .tree-bar-button:last-child{
     margin:0 8px;
@@ -117,6 +137,8 @@
 	font-size:20px;
 	vertical-align:middle;
 	margin-left:4px;
+
+	color:@placeholder-color;
 }
 .tree-btnremove:before {
 	font-family:'iconfont';

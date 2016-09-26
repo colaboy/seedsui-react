@@ -100,7 +100,8 @@
 	    	s.months=s.params.monthsData;
 	    }else{
 	    	for(var m=1;m<=12;m++){
-		    	s.months.push({"key":m,"value":m+s.params.MMUnit,"flag":"date"});
+	    		var tempM=m<10?"0"+m:m;
+		    	s.months.push({"key":tempM,"value":tempM+s.params.MMUnit,"flag":"date"});
 		    }
 	    }
 	    //日
@@ -109,14 +110,17 @@
 	    if(s.params.daysData){
 	    	s.days=s.params.daysData;
 	    }else{
+	    	console.log(1);
 	    	for(var d=1;d<=currentMaxday;d++){
-		    	s.days.push({"key":d,"value":d+s.params.ddUnit,"flag":"date"});
+	    		var tempD=d<10?"0"+d:d;
+		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
-	    function replaceDays(maxDay){
+	    function updateDays(maxDay){
 	    	s.days=[];
 	    	for(var d=1;d<=maxDay;d++){
-		    	s.days.push({"key":d,"value":d+s.params.ddUnit,"flag":"date"});
+	    		var tempD=d<10?"0"+d:d;
+		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
 
@@ -126,8 +130,8 @@
 	    	s.hours=s.params.hoursData;
 	    }else{
 	    	for(var hour=0;hour<=23;hour++){
-	    		if(hour<10)hour="0"+hour;
-		        s.hours.push({"key":hour,"value":hour+s.params.hhUnit,"flag":"time"});
+	    		var tempHour=hour<10?"0"+hour:hour;
+		        s.hours.push({"key":tempHour,"value":tempHour+s.params.hhUnit,"flag":"time"});
 		    }
 	    }
 	    
@@ -137,7 +141,8 @@
 	    	s.minutes=s.params.minutesData;
 	    }else{
 	    	for(var minute=1;minute<=60;minute++){
-		        s.minutes.push({"key":minute,"value":minute+s.params.mmUnit,"flag":"time"});
+	    		var tempMinute=minute<10?"0"+minute:minute;
+		        s.minutes.push({"key":tempMinute,"value":tempMinute+s.params.mmUnit,"flag":"time"});
 		    }
 	    }
 
@@ -207,7 +212,7 @@
 	    			var year=e.activeOptions[0]["key"];
 					var month=e.activeOptions[1]["key"];
 					var maxDay=new Date(year,month,0).getDate();
-					replaceDays(maxDay);//更新总天数
+					updateDays(maxDay);//更新总天数
 					renderDay();//渲染天
 	    		}
 	    	},

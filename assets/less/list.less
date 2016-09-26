@@ -1,7 +1,13 @@
 /*---------------list.less(start)---------------*/
-.list li{
-	position:relative;
-	display:-webkit-box;
-	box-sizing:border-box;
+.list{
+	background-color:@list-bg;
+	li{
+		position:relative;
+		display:-webkit-box;
+		box-sizing:border-box;
+	}
+	&:not(.noclick) li:not(.noclick):active{
+		background-color:@list-active-bg;
+	}
 }
 /*---------------list.less(end)---------------*/

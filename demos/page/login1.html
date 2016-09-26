@@ -112,30 +112,30 @@
         .login-cbo a:active{
             color:#1f4d9a;
         }
-        .login-cbo label input[type="checkbox"] {
+        .login-cbo label input[type="checkbox" class="input-checkbox" ] {
             vertical-align: middle; margin-right: 3px; color: #6d6d6d;
         }
-        .login-cbo label input[type="checkbox"] + span{
+        .login-cbo label input[type="checkbox" class="input-checkbox" ] + span{
             opacity: 0.5;
         }
-        .login-cbo label input[type="checkbox"]:checked + span{
+        .login-cbo label input[type="checkbox" class="input-checkbox" ]:checked + span{
             opacity: 1;
         }
         .login-cbo label span{
             display:inline-block;
             vertical-align:middle;
         }
-        input[type="checkbox"].input-login-cbo{
+        input[type="checkbox" class="input-checkbox" ].input-login-cbo{
             background-image:url(../img/login1/cbo2.png);
             background-size:cover;
         }
-        input[type="checkbox"].input-login-cbo:checked{
+        input[type="checkbox" class="input-checkbox" ].input-login-cbo:checked{
             background-position:-44px 0;
         }
-        input[type="checkbox"]:before {
+        input[type="checkbox" class="input-checkbox" ]:before {
             content: "";
         }
-        input[type="checkbox"]:checked::before {
+        input[type="checkbox" class="input-checkbox" ]:checked::before {
             content: "";
         }
         a.btn-login{
@@ -203,7 +203,7 @@
                 <input type="password">
             </div>
             <div class="login-cbo">
-                <label><input type="checkbox" class="input-login-cbo"/><span>记住工号</span></label>
+                <label><input type="checkbox" class="input-checkbox"  class="input-login-cbo"/><span>记住工号</span></label>
                 <a href="#">找回密码</a>
             </div>
             <a class="button block btn-login" href="javascript:history.go(-1)">登录</a>

@@ -721,12 +721,32 @@
         	 return weeks;
         }
         //分秒向上档位
-        s.ceilMinute=function(minute,space){
-            var percentNum = Math.ceil(minute / space);
-            percentNum = minute % space == 0 ? parseInt(percentNum)+1 : percentNum;
-            var result = percentNum * space;
-            if(result>=60)result=0;
-            return result;
+        s.ceilMinute=function(date,space){
+        	var date=date?date:new Date();//日期
+        	var space=space?space:5;//间隔
+        	var minute=date.getMinutes();//分钟
+        	var hasRemainder = minute % space == 0;//是否有余数
+
+            var percentNum=Math.ceil(minute / space);//档位
+            percentNum = hasRemainder ? parseInt(percentNum)+1 : percentNum;
+
+            var result=percentNum*space;//根据档位计算结果
+            date.setMinutes(result);
+            return date;
+        }
+        //分秒向下档位
+        s.floorMinute=function(date,space){
+        	var date=date?date:new Date();//日期
+        	var space=space?space:5;//间隔
+        	var minute=date.getMinutes();//分钟
+        	var hasRemainder = minute % space == 0;//是否有余数
+
+            var percentNum=Math.floor(minute / space);//档位
+            percentNum = hasRemainder ? parseInt(percentNum)-1 : percentNum;
+
+            var result=percentNum*space;//根据档位计算结果
+            date.setMinutes(result);
+            return date;
         }
     };
 })(window,document,undefined);

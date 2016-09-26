@@ -5,13 +5,21 @@
 	min-height:44px;
 	border-bottom:1px solid;
 	box-sizing:border-box;
+
+	background-color:@titlebar-bg;
+	border-color:@titlebar-border;
 }
 .titlebar,.titlebar-button,.titlebar h1{
 	position:relative;
 }
+.titlebar .icon+.icon{
+	margin-left: 0;
+}
 .titlebar h1{
 	font-size: 17px;
 	font-weight: normal;
+
+	color:@titlebar-h1-color;
 }
 .titlebar h1,.titlebar>.inputbox{
 	-webkit-box-flex:1.0;
@@ -25,9 +33,32 @@
 .titlebar-button{
 	max-height:32px;
 	margin:0 8px;
+
+	color:@titlebar-color;
+	border-color:@titlebar-color;
 }
 .titlebar-button+.titlebar-button{
 	margin-left:0px;
+}
+.titlebar-button:active{
+	color:@titlebar-active-color;
+	border-color:@titlebar-active-color;
+}
+.titlebar.reverse{
+	background-color:@titlebar-reverse-bg;
+	border-color:@titlebar-reverse-border;
+}
+.titlebar.reverse h1{
+	color:@titlebar-reverse-h1-color;
+}
+.titlebar.reverse .titlebar-button{
+	color:@titlebar-reverse-color;
+	border-color:@titlebar-reverse-color;
+}
+.titlebar.reverse .titlebar-button:active,
+.titlebar.reverse .titlebar-button.active{
+	color:@titlebar-reverse-active-color;
+	border-color:@titlebar-reverse-active-color;
 }
 /*左右对齐*/
 .titlebar>.left,.titlebar>.right{

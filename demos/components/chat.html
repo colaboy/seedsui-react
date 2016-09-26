@@ -18,22 +18,22 @@
         <article style="padding-bottom:47px;">
             <ul class="chat" id="chat">
                 <li>
-                    <div class="author">
+                    <div class="chat-photo">
                         <img src="../img/list/photo.png" alt="male">
                     </div>
-                    <div class="content-box">
-                        <div class="content">
+                    <div class="chat-content-box">
+                        <div class="chat-content">
                             <i>张三</i>
                             <p>Hello!<span data-emoji="[weixiao]"></span></p>
                         </div>
                     </div>
                 </li>
                 <li class="even">
-                    <div class="author">
+                    <div class="chat-photo">
                         <img src="../img/list/photo.png" alt="Female">
                     </div>
-                    <div class="content-box">
-                        <div class="content">
+                    <div class="chat-content-box">
+                        <div class="chat-content">
                             <p>啥？你说滴是啥？那啥啥啥东西啊？咋看不懂啊，你说滴到底是个啥？</p>
                         </div>
                     </div>
@@ -178,11 +178,11 @@
             }
             richeditor.classList.remove("active");
             var html='<li class="even">'+
-                '<div class="author">'+
+                '<div class="chat-photo">'+
                     '<img src="../img/list/photo.png" alt="Female">'+
                 '</div>'+
-                '<div class="content-box">'+
-                    '<div class="content">'+
+                '<div class="chat-content-box">'+
+                    '<div class="chat-content">'+
                         '<p>'+Emoji.parse(textarea.value)+'</p>'+
                     '</div>'+
                 '</div>'+

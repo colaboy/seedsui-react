@@ -7,6 +7,8 @@
 	-webkit-transition-property:-webkit-transform;
 	-webkit-transition-duration:500ms;
 	-webkit-transform:translate3d(0px,100%,0px);
+
+	background-color:@white;
 }
 .scrollpicker.active{
 	-webkit-transform:translate3d(0px,0px,0px);
@@ -17,6 +19,9 @@
 	height:43px;
 	border-style:solid;
 	border-width:1px 0;
+
+	border-color:@border;
+	background-color:@body-bg;
 }
 .scrollpicker-cancel,.scrollpicker-done{
 	display:inline-block;
@@ -37,6 +42,8 @@
 	position:relative;
 	height:215px;
 	overflow:hidden;
+
+	-webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, @white 40%, @white 60%, transparent 100%, transparent);
 }
 .scrollpicker-slots{
 	width:100%;
@@ -53,15 +60,25 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
 	padding-top:86px;
 	padding-bottom:86px;
 	-webkit-transition-timing-function:cubic-bezier(0,0,0.2,1);
+	li{
+		height:44px;
+	    line-height:44px;
+	    white-space:nowrap;
+	    text-overflow:ellipsis;
+	    overflow:hidden;
+	    padding:0 8px;
+	    font-size:17px;
+
+	    color:@placeholder-color;
+	    &.active{
+			color:@body-color;
+		}
+
+	}
+
 }
-.scrollpicker-slot li{
-	height:44px;
-    line-height:44px;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    overflow:hidden;
-    padding:0 8px;
-    font-size:17px;
+.scrollpicker-slot.lock li.active{
+	color:@placeholder-color;
 }
 .scrollpicker-layer{
 	position:absolute;
@@ -78,5 +95,7 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
     -webkit-transform:translateY(-50%);
     border-width:1px 0;
     border-style:solid;
+
+    border-color:@border;
 }
 /*----------------scrollpicker.less(end)--------------*/

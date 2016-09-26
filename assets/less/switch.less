@@ -12,85 +12,94 @@
 	border-width:1px;
 	border-style:solid;
 	
-	border-color:#ddd;
-}
-.switch-handle{
-	pointer-events:none;
-}
-/*关闭状态圆点*/
-.switch .switch-handle{
-	position: absolute;
-	left:0;
-	top:50%;
-	-webkit-transform:translate(4px,-50%);
-	width: 20px;
-	height: 20px;
-	border-radius: 100px;
-	-webkit-transition-duration: .2s;
-	-webkit-transition-property:-webkit-transform, border, width;
-	
-	background-color:#ddd;
-}
-/*关闭状态文字off*/
-.switch:after{
-	position: absolute;
-	right: 11px;
-	top:50%;
-	-webkit-transform:translateY(-50%);
-	content: attr(data-off);
-	
-	color: #aaa;
-}
+	border-color:@border;
 
-/*打开状态*/
-.switch.active {
-	background-color:transparent;
-}
-/*打开状态小圆点*/
-.switch.active .switch-handle{
-	left:0;
-	top:50%;
-	-webkit-transform: translate(34px,-50%);
-}
-/*打开状态文字on*/
-.switch.active:after{
-	right: auto;
-	left: 11px;
-	content: attr(data-on);
-}
+	/*关闭状态文字off*/
+	&:after{
+		position: absolute;
+		right: 11px;
+		top:50%;
+		-webkit-transform:translateY(-50%);
+		content: attr(data-off);
+		
+		color: @placeholder-color;
+	}
+	/*关闭状态圆点*/
+	.switch-handle{
+		pointer-events:none;
+		position: absolute;
+		left:0;
+		top:50%;
+		-webkit-transform:translate(4px,-50%);
+		width: 20px;
+		height: 20px;
+		border-radius: 100px;
+		-webkit-transition-duration: .2s;
+		-webkit-transition-property:-webkit-transform, border, width;
+		
+		background-color:@border;
+	}
+	/*打开状态*/
+	&.active {
+		background-color:transparent;
+		/*打开状态文字on*/
+		&:after{
+			right: auto;
+			left: 11px;
+			content: attr(data-on);
 
+			color: @placeholder-color;
+		}
+		/*打开状态小圆点*/
+		.switch-handle{
+			left:0;
+			top:50%;
+			-webkit-transform: translate(34px,-50%);
+
+			background-color: @primary-bg;
+		}
+	}
+	/*开关控件toggle-反转*/
+	&.reverse{
+		border:none;
+		background-color:@border;
+		
+		.switch-handle{
+			width: 26px;
+			height: 26px;
+			-webkit-transform: translate(2px,-50%);
+
+			background-color:#fff;
+		}
+		&.active{
+			background-color:@primary-bg;
+			&:after{
+				color:#fff;
+			}
+			.switch-handle{
+				-webkit-transform: translate(32px,-50%);
+
+				background-color:#fff;
+			}
+		}
+		&:after{
+			color:@placeholder-color;
+		}
+	}
+}
 /*开关控件toggle-无文字*/
 .notext.switch{
 	width: 50px;
-}
-.notext.switch:after{
-	content:none;
-}
-.notext.switch.active .switch-handle{
-	 -webkit-transform: translate(24px,-50%);
-}
-
-/*开关控件toggle-反转*/
-.switch.reverse{
-	border:none;
-}
-.switch.reverse .switch-handle{
-	width: 26px;
-	height: 26px;
-	-webkit-transform: translate(2px,-50%);
-
-	background-color:#fff;
-}
-.switch.reverse.active .switch-handle{
-	-webkit-transform: translate(32px,-50%);
-
-	background-color:#fff;
-}
-.switch.reverse.active:after{
-	color:#fff;
-}
-/*无文字状态*/
-.notext.switch.reverse.active .switch-handle{
-	-webkit-transform: translate(22px,-50%);
+	&.active{
+		.switch-handle{
+			 -webkit-transform: translate(24px,-50%);
+		}
+	}
+	&:after{
+		content:none;
+	}
+	&.reverse.active .switch-handle{
+		-webkit-transform: translate(22px,-50%);
+	}
 }
 /*----------------switch.less(end)--------------*/

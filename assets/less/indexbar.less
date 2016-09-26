@@ -3,6 +3,10 @@
     position:relative;
     height:100%;
 }
+/*列表*/
+.indexlist{
+    overflow:auto;
+}
 /*Bar*/
 .indexbar{
     position:absolute;
@@ -11,16 +15,16 @@
     bottom:0;
     font-size:12px;
     font-weight:bold;
-}
-.indexbar a{
-    display:block;
-    height:3.8%;
-    width:24px;
-    text-align:center;
-    color:#ddd;
-}
-.indexlist{
-    overflow:auto;
+    a{
+        display:block;
+        height:3.8%;
+        width:24px;
+        text-align:center;
+        color:@border;
+    }
+    &.active a{
+        color:@body-color;
+    }
 }
 /*Tooltip*/
 .indexbar-tooltip{
@@ -38,6 +42,8 @@
     font-size: 35px;
     color: #fff;
     -webkit-transition: .2s;
+
+    background-color:@mask-bg;
 }
 .indexbar.active+.indexbar-tooltip{
     display:block;

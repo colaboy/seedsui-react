@@ -1,5 +1,4 @@
 /*------------------------------button.less(start)------------------------------*/
-/*按钮-普通按钮*/
 .button{
 	display:-webkit-inline-box;
     -webkit-box-align:center;
@@ -22,16 +21,161 @@
 
 	border-style:solid;
 	border-radius:0;
+
+	color:@button-color;
+	background-color:@button-bg;
+
+	&:not(.noclick):active,&.active{
+		@{button-active-property}:@button-active-value;
+	}
+	&.block{
+		display:-webkit-box;
+	}
+	
+	/*取消按钮*/
+	&.cancel{
+		background-color:@cancel-bg;
+	}
+	/*提交按钮*/
+	&.submit{
+		background-color:@submit-bg;
+	}
+	/*信息按钮*/
+	&.info{
+		background-color:@info-bg;
+	}
+	/*警告按钮*/
+	&.warn{
+		background-color:@warn-bg;
+	}
+	/*完成按钮*/
+	&.success{
+		background-color:@success-bg;
+	}
+	/*去色按钮*/
+	&.grayscale{
+		border-width:1px;
+
+		color:@body-color;
+		border-color:@border;
+		background-color:@body-bg;
+
+		&:not(.noclick):active{
+			opacity:1;
+			color:@body-color;
+			border-color:@border;
+			background-color:white;
+		}
+	}
+	/*白色按钮*/
+	&.white{
+		color:@body-color;
+		background-color:@white;
+		&:not(.noclick):active{
+			opacity:1;
+			color:@body-color;
+			background-color:@white-active-color;
+		}
+	}
+	/*投影按钮*/
+	&.shadow{
+		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
+		&:not(.noclick):active{
+			-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			margin:2px 0 -2px 0;
+		}
+	}
+	/*线框按钮*/
+	&.outline{
+		color:@button-bg;
+		border-color:@button-bg;
+		background-color:transparent;
+		/*线框-去色按钮*/
+		&.grayscale{
+			color:@body-color;
+			border-color:@border;
+			background-color:white;
+		}
+		&.grayscale:not(.noclick):active{
+			opacity:1;
+			color:@body-color;
+			border-color:@border;
+			background-color:@body-bg;
+		}
+		/*线框-取消按钮*/
+		&.cancel{
+			color:@cancel-bg;
+			border-color:@cancel-bg;
+			background-color:transparent;
+		}
+		/*线框-提交按钮*/
+		&.submit{
+			color:@submit-bg;
+			border-color:@submit-bg;
+			background-color:transparent;
+		}
+		/*线框-信息按钮*/
+		&.info{
+			color:@info-bg;
+			border-color:@info-bg;
+			background-color:transparent;
+		}
+		/*线框-警告按钮*/
+		&.warn{
+			color:@warn-bg;
+			border-color:@warn-bg;
+			background-color:transparent;
+		}
+		/*线框-完成按钮*/
+		&.success{
+			color:@success-bg;
+			border-color:@success-bg;
+			background-color:transparent;
+		}
+		/*线框-白色按钮*/
+		&.white{
+			color:@white;
+			border-color:@white-active-color;
+			background-color:transparent;
+			&:not(.noclick):active{
+				opacity:1;
+				color:@white-active-color;
+				border-color:@white-active-color;
+				background-color:transparent;
+			}
+		}
+	}
+	/*禁用按钮*/
+	&.disable,&[disabled]{
+		opacity:1;
+		color:@button-color;
+		background-color:@disable-bg;
+		&:active{
+			opacity:1;
+		}
+		&.outline{
+			opacity:1;
+			color:@disable-bg;
+			border-color:@disable-bg;
+			background-color:transparent;
+		}
+		/*禁用-去色按钮*/
+		&.grayscale,&.grayscale:active,&.grayscale.outline,&.grayscale.outline:active{
+			color:@disable-bg;
+			background-color:@body-bg;
+			border-color:@border;
+		}
+	}
+	/*小汽泡*/
+	&:not(.outline) .tip,&:not(.outline) .badge{
+		color:@button-color;
+		background-color: @button-tip-bg;
+	}
 }
 .outline{
 	border-width:1px;
-}
-/*按钮-大按钮*/
-.button.block{
-	display:-webkit-box;
-}
-button.block,input[type="button"].block,input[type="submit"].block{
-	width:100%;
 }
 
 /*多彩标签按钮*/
@@ -39,5 +183,26 @@ button.block,input[type="button"].block,input[type="submit"].block{
 	font-size:0.95em;
     padding:2px 5px;
     border-radius:3px;
+}
+.mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary{
+	color: @white;
+}
+.mark-disable{
+	background-color: @disable-bg;
+}
+.mark-info{
+	background-color: @info-bg;
+}
+.mark-success{
+	background-color: @success-bg;
+}
+.mark-cancel{
+	background-color: @cancel-bg;
+}
+.mark-warn{
+	background-color: @warn-bg;
+}
+.mark-primary{
+	background-color: @primary-bg;
 }
 /*------------------------------button.less(end)------------------------------*/

@@ -7,11 +7,8 @@
 }
 .noselect{
 	-webkit-touch-callout:none;
-	-webkit-user-select:none;
-	-moz-user-select:none;
-	-ms-user-select:none;
-	user-select:none;
 }
+
 *{
 	margin:0;
 	padding:0;
@@ -19,6 +16,19 @@
 body{
 	font-size:15px;
 	font-family:Arial,"Microsoft Yahei";
+
+	color:@body-color;
+	background-color:@body-bg;
+}
+::selection{
+	background:@primary-bg;
+	color:@primary-color;
+}
+::-webkit-input-placeholder{
+	color:@placeholder-color;	
+}
+.placeholder{
+	color:@placeholder-color;
 }
 i,span,label{
 	display:inline-block;
@@ -36,10 +46,11 @@ ul,li,dl,dt,dd {
 }
 small{
 	font-size:80%;
+
+	color:@placeholder-color;
 }
 /*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
-/* button,input[type="button"],input[type="submit"],input[type="reset"]{ */
-button,input{
+button,input[type="button"],input[type="submit"],input[type="reset"]{
 	display:inline-block;
 }
 a{
@@ -47,6 +58,11 @@ a{
 	outline:none;
 	cursor:pointer;
 	display:inline-block; 
+
+	color:@link-color;
+}
+a:not(.noclick):active,a.active{
+	@{link-active-property}:@link-active-value;
 }
 a,label, :focus{
 	outline:0 none;
@@ -112,11 +128,11 @@ pre{
 }
 /*清除浮动*/
 .clearfix:before, .clearfix:after {
-  display: table;
-  content: " ";
+	display: table;
+	content: " ";
 }
 .clearfix:after {
-  clear: both;
+	clear: both;
 }
 .clearfix{
 	zoom:1;
@@ -147,7 +163,13 @@ hr{
 	clear:both;
 	border-width:1px 0 0 0;
 	border-style:solid;
+
+	border-color: @border;
 }
+.stripe:nth-child(even){
+	background-color:@sliver-bg;
+}
+
 /*文字*/
 .bold{
 	font-weight:bold;

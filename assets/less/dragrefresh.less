@@ -16,16 +16,22 @@
     -webkit-transition-property:transform;
     -webkit-transition-duration:30s;
     -webkit-transition-timing-function:linear;
-    -webkit-transform:rotate(0deg); 
-}
-.dragrefresh i,.dragrefresh img,.dragrefresh svg{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width: 32px;
-    height:32px;
-    margin-left:-16px;
-    margin-top:-16px;
-    font-size: 32px;
+    -webkit-transform:rotate(0deg);
+
+    color:@primary-bg;
+
+    i,img,svg{
+        position:absolute;
+        left:50%;
+        top:50%;
+        width: 32px;
+        height:32px;
+        margin-left:-16px;
+        margin-top:-16px;
+        font-size: 32px;
+    }
+    svg path{
+        fill:@primary-bg;
+    }
 }
 /*----------------dragrefresh.less(end)--------------*/

@@ -1,41 +1,20 @@
 /*----------------form.less(start)--------------*/
-input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
-input[type="tel"],input[type="email"],input[type="url"],keygen,
-input[list],textarea,select,input[type="date"],input[type="month"],
-input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"]{
-	padding-top:10px;
-	padding-bottom:10px;
-	padding-left:8px;
-	padding-right:8px;
-	display:inline-block;
-	border-width:1px;
-	border-style:solid;
-	/* text-align:left; */
-}
-input[type="text"],input[type="password"],input[type="search"],input[type="file"],input[type="number"],
-input[type="tel"],input[type="email"],input[type="url"],input[type="date"],input[type="month"],
-input[type="week"],input[type="datetime-local"],input[type="datetime"],input[type="time"],keygen,
-input[list]{
-	height:20px;
-	line-height:20px;
-}
-input[type="search"]{
-	box-sizing:content-box;
-}
-textarea{
-	height:100px;
-	display:block;
-}
-select{
-	height: 40px;
-}
 .input-text{
 	min-height:20px;
-	padding-left:8px;
-	padding-right:8px;
-	padding-top:10px;
-	padding-bottom:10px;
+	line-height:20px;
+	padding:10px 8px;
 	border-width:1px;
 	border-style:solid;
+	display:inline-block;
+	box-sizing:content-box;
+	text-align: left;
+
+	border-color:@border;
+	background-color:@input-bg;
+}
+.input-textarea{
+	height:60px;
+	display:block;
+	padding:10px 8px;
 }
 /*----------------form.less(end)--------------*/
