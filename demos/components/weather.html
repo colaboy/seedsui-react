@@ -71,7 +71,7 @@
 		<!--天气:end-->
 		<p class="sliver">调用方法</p>
 		<div class="card padding8">
-			<p class="indent8 paragraph">通过new Weather("#weather",{"city":"城市名称","expires":"时效"})即可。</p>
+			<p class="indent8 paragraph">通过new Weather("#weather",{"city":"城市名称","expires":"时效(Date类型)"})即可。</p>
 		</div>
 
 		<p class="sliver">时效性</p>
@@ -86,15 +86,15 @@
 		另外要注意weather-box内部的样式可以都改掉，但唯独含有id，以及class名称不能更改，class为weather-otherday的内部结构不能更改，样式可随意发挥，建议不要更改结构，只改样式。
 		</div>
 	</article>
-	<script src="../../plugin/seedsui/seedsui.weather.js"></script>
 	<script src="../../plugin/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
 	<script>
 		window.addEventListener("load",function(){
+			var d=new Date("2016-09-28");
 			var w=new Weather("#weather",{
 				"city":"南京",
-				"expires":"today"
+				"expires":d
 			});
 			w.container.addEventListener("click",function(){
 				this.classList.toggle("expand");

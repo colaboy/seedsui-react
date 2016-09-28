@@ -5,13 +5,13 @@
 		Model
 		================*/
 		var defaults={
-			"url":null,
-			"type":"get",
-			"async":true,
-			"dataType":null,
-			"context":null,
-			"contentType":"application/x-www-form-urlencoded",
-			"timeout":5000,
+			url:null,
+			type:"get",
+			async:true,
+			dataType:null,
+			context:null,
+			contentType:"application/x-www-form-urlencoded",
+			timeout:5000,
 			/*
             Callbacks:
             onSuccess:function(text)

@@ -1,10 +1,10 @@
-//Weather 天气控件
+//Weather 天气控件 @require Ajax
 (function(window,document,undefined){
 	window.Weather=function(container,params){
 		//Model
 	    var defaults={
-	    	"city":"南京",
-	    	"expires":null
+	    	city:"南京",
+	    	expires:null
 	    };
 	    params=params||{};
 	    for(var def in defaults){
@@ -14,17 +14,12 @@
 	    };
 	    var s=this;
 	    s.params=params;
-	    
-	    //Date
-	    var date=new Date();
-		if((!s.params.expires=="today" || s.params.expires==0) && typeof s.params.expires=="number"){
-			return;
-		}
-		//Expires
-		s.expires=s.params.expires?date.expires(s.params.expires):null;
+
 		//URL
 	    s.weatherURL='http://api.map.baidu.com/telematics/v3/weather?location='+s.params.city+'&output=json&ak=W79uNeeyw7QXp6FGUzR6r8lY';
 	    //s.weatherURL='http://api.map.baidu.com/telematics/v3/weather?location=南京';
+	    //Ajax
+	    s.ajax;
 		//Icon
 		s.icon={
 			"qing" : "icon-weaqing",
@@ -63,6 +58,11 @@
 		};
 		//Container
 	    s.container=document.querySelector(container);
+	    //Expires保存时效
+		if(s.params.expires instanceof Date == false){
+			console.log("expires参数:请传入Date对象");
+			return;
+		}
 	    //Citys
 	    s.citysEl=[].slice.call(s.container.querySelectorAll(".weather-current-city"));
 	    //Date
@@ -104,30 +104,11 @@
 		/*===========================
 	    Method
 	    ===========================*/
-	    //Ajax
-	    Weather.jsonpFn={};
-	    Weather.jsonpCallback=function(data){
-	        Weather.jsonpFn(data);
-	    }
-	    s.script;
-	    s.jsonp=function(url,fn){
-	    	var head=document.getElementsByTagName('head')[0];
-	    	if(s.script)head.removeChild(s.script);
-            Weather.jsonpFn=fn;
-            var url=encodeURI(url+'&callback=Weather.jsonpCallback');
-            s.script=document.createElement('script');
-            s.script.type="text/javascript";
-            s.script.src=url;
-            s.script.onerror=function(){
-                s.onError("s.jsonp方法136行");
-            };
-            head.appendChild(s.script);
-        }
 	    s.parseIcon=function(weatherImg){
 	    	var weatherImgName = weatherImg.substring(weatherImg.lastIndexOf('/')+1, weatherImg.lastIndexOf('.'));
 			return this.icon[weatherImgName];
 	    }
-	    s.getStainLvl=function(pm25){
+	    s.getAirLvl=function(pm25){
 	    	var airquality="";
 			if(pm25<=50){
 				airquality="优";
@@ -144,12 +125,10 @@
 			}
 			return airquality;
 	    }
-	    
 		s.initData=function(){
-			var cache=JSON.parse(DB.get("weatherJson"));
-			var cacheExpires=DB.get("weatherJson_expires");
-			//var now=date.format(date.datetime());
-			if(!cache || cache.status!="success" || cacheExpires<=date){
+			var cache=JSON.parse(window.localStorage.getItem("weatherJson"));
+			var cacheExpires=new Date(window.localStorage.getItem("weatherJson_expires"));
+			if(!cache || cache.status != "success" || cacheExpires < new Date()){
 				console.log("不读缓存");
 				s.loadData();
 				return;
@@ -157,7 +136,11 @@
 			s.render(cache);
 		};
 		s.loadData=function(){
-			s.jsonp(s.weatherURL,s.onSuccess);
+			s.ajax=new Ajax({
+				dataType:"jsonp",
+                url:s.weatherURL,
+                onSuccess:s.onSuccess
+            });
 		};
 		//适配数据
 	    s.adapterData=function(data){
@@ -173,7 +156,7 @@
 			var temprature=temperatureExpr.exec(todayData)[0];
 			var nowTemprature=temperatureExpr.exec(todayData)[0];
 			var pm25=data.results[0].pm25;
-			var quality=s.getStainLvl(pm25);
+			var quality=s.getAirLvl(pm25);
 			var wind=data.results[0].weather_data[0].wind;
 
 	    	s.todayData={
@@ -199,6 +182,7 @@
 		    		"temprature":otherTemprature,
 		    		"week":otherWeek
 		    	}
+		    	//白天与夜间判断
 				/*if (6 < date.hour() < 18) {
 					s.otherDaysEl[i].querySelector("i").setAttribute("class",s.parseIcon(json.results[0].weather_data[i].dayPictureUrl));
 				}else{
@@ -246,17 +230,17 @@
 
 		//Controller
 		s.onSuccess=function(data){
+			console.log("读取天气");
 			if (!data) {
 				alert("你填写的现居地有误 ");
 				return;
 			}
 			console.log("正在读取服务器天气..");
 			
-			console.log("正在定义缓存时效，时效截止于"+s.expires);
-			if(s.expires){
-				DB.set("weatherJson",JSON.stringify(data));
-				DB.set("weatherJson_expires",s.expires);
-			}
+			console.log("正在定义缓存时效，时效截止于"+s.params.expires);
+
+			window.localStorage.setItem("weatherJson",JSON.stringify(data));
+			window.localStorage.setItem("weatherJson_expires",s.params.expires);
 			s.render(data);
 		},
 		s.onError=function(msg){
