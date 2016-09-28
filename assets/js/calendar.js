@@ -6,42 +6,43 @@
 		Model
 		================*/
 		var defaults={
-			"viewType":"month",//值为month|week
-			"defaultActiveDate":new Date(),
-			"disableBeforeDate":null,
-			"disableAfterDate":null,
-			"activeDate":null,
-			"threshold":"50",
-			"duration":"300",
-			"dayHeight":"50",
-			"isYTouch":true,//是否允许上下滑动
+			viewType:"month",//值为month|week
+			defaultActiveDate:new Date(),
+			disableBeforeDate:null,
+			disableAfterDate:null,
+			activeDate:null,
+			threshold:"50",
+			duration:"300",
+			dayHeight:"50",
+			isYTouch:true,//是否允许上下滑动
+			isShowWeekNum:false,//是否显示周数
 			//DOM
-			"calendarClass":"calendar",
-			"disableClass":"calendar-disable",
+			calendarClass:"calendar",
+			disableClass:"calendar-disable",
 
-			"headerClass":"calendar-header",
-			"titleClass":"calendar-title",
-			"prevClass":"calendar-prev",
-			"nextClass":"calendar-next",
-			"prevHTML":"&lt;",
-			"nextHTML":"&gt;",
+			headerClass:"calendar-header",
+			titleClass:"calendar-title",
+			prevClass:"calendar-prev",
+			nextClass:"calendar-next",
+			prevHTML:"&lt;",
+			nextHTML:"&gt;",
 
-			"weeksClass":"calendar-weeks",
-			"weekClass":"calendar-week",
+			weeksClass:"calendar-weeks",
+			weekClass:"calendar-week",
 
-			"wrapperClass":"calendar-wrapper",
-			"wrapperXClass":"calendar-wrapper-x",
-			"wrapperYClass":"calendar-wrapper-y",
-			"monthClass":"calendar-month",
-			"monthRowClass":"calendar-monthrow",
-			"dayClass":"calendar-day",
-			"dayNumClass":"calendar-daynum",
+			wrapperClass:"calendar-wrapper",
+			wrapperXClass:"calendar-wrapper-x",
+			wrapperYClass:"calendar-wrapper-y",
+			monthClass:"calendar-month",
+			monthRowClass:"calendar-monthrow",
+			dayClass:"calendar-day",
+			dayNumClass:"calendar-daynum",
 
 			//状态
-			"currentClass":"calendar-current",
-			"notcurrentClass":"calendar-notcurrent",
-			"todayClass":"calendar-today",
-			"activeClass":"calendar-active",
+			currentClass:"calendar-current",
+			notcurrentClass:"calendar-notcurrent",
+			todayClass:"calendar-today",
+			activeClass:"calendar-active",
 
 			/*
             Callbacks:
@@ -355,8 +356,12 @@
 		}
 		s.drawHeader=function(){
 			var activeDate=s.calendarUtil.activeDate;
+			var activeDay="";
+			if(s.params.isShowWeekNum){
+				activeDay="&nbsp;&nbsp;第"+s.calendarUtil.getWeekNum(s.calendarUtil.activeDate)+"周";
+			}
 			//注入头部数据
-			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.day();
+			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.day()+activeDay;
 		}
 		s.draw=function(){
 			s.updateData();
@@ -576,7 +581,7 @@
             if(t1==t2)return 0;
             else return t1>t2;
         }
-        //周视图
+        //周视图，根据日期获得一周
         s.updateWeekByDate=function(date,week){
         	var day=date.getDay();
             var startDayMs=date.getTime()-s.dayMilliSecound*day;
@@ -688,7 +693,18 @@
             s.activeDate=tempDate;
         }
         /*其它工具*/
-        //推前天数
+        //根据日期，获得周数
+        s.getWeekNum=function(currentDate){
+		    var startDate=new Date(currentDate.getFullYear(), 0, 1);
+		    var startDay=startDate.getDay(); if(startDay==0) startDay=7;
+
+		    currentDate.setHours(0,0,0,0);
+		    var currentDay=currentDate.getDay(); if(currentDay==0) currentDay=7;
+		    
+		    var dateNum = Math.round((currentDate.getTime() - startDate.getTime()+(startDay-currentDay)*s.dayMilliSecound) / s.dayMilliSecound);
+		    return Math.ceil(dateNum / 7) + 1;
+		}
+        //激活天为准，推前天数
         s.getBeforeDays=function(beforenum){
             var days=[];
             for(var i=1;i<=beforenum;i++){
@@ -696,7 +712,7 @@
             }
             return days;
         }
-        //推前月
+        //激活月为准，推前月
         s.getBeforeMonths=function(beforenum){
             var months=[];
             var tempDate=new Date(s.activeDate.getFullYear(),s.activeDate.getMonth());
@@ -707,7 +723,7 @@
             }
             return months;
         }
-        //推前周
+        //激活周为准，推前周
         s.getBeforeWeeks=function(beforenum){
         	 var weeks=new Array(beforenum);
         	 for(var i=0;i<beforenum;i++){
@@ -720,7 +736,7 @@
         	 }
         	 return weeks;
         }
-        //分秒向上档位
+        //分秒向上档位，返回日期的档位时间
         s.ceilMinute=function(date,space){
         	var date=date?date:new Date();//日期
         	var space=space?space:5;//间隔
@@ -734,7 +750,7 @@
             date.setMinutes(result);
             return date;
         }
-        //分秒向下档位
+        //分秒向下档位，返回日期的档位时间
         s.floorMinute=function(date,space){
         	var date=date?date:new Date();//日期
         	var space=space?space:5;//间隔

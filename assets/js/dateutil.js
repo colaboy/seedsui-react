@@ -1,11 +1,12 @@
 //DateUtil
-Date.prototype.compareDate=function(date1,date2){//类型[Date]
-	var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
-	var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
-	var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
-	var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
+Date.prototype.compareDate=function(date1,date2){//Date对象，格式yy-HH-dd hh:mm,大于返回1,等于返回0,小于返回-1
+	date1.setSeconds(0,0);
+	date2.setSeconds(0,0);
+	var t1=date1.getTime();
+	var t2=date2.getTime();
+
 	if(t1==t2)return 0;
-	else return t1>t2;
+	return t1>t2==true?1:-1;
 }
 Date.prototype.compareTime=function(time1,time2){//格式hh:ss,大于返回1,等于返回0,小于返回-1
 	var preTime1=time1.split(":");
@@ -13,7 +14,7 @@ Date.prototype.compareTime=function(time1,time2){//格式hh:ss,大于返回1,等
 	var preTime2=time2.split(":");
 	var t2=Math.abs(-preTime2[0]*60-preTime2[1]);
 	if(t1==t2)return 0;
-	return t1>t2;
+	return t1>t2==true?1:-1;
 }
 Date.prototype.year=function(){
 	return this.getFullYear();
