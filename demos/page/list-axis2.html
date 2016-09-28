@@ -61,7 +61,7 @@
                     <div class="clock-origin"></div>
                 </div>
                 <div class="app-axisContent">
-                    <p style="font-size:20px">11:24</p>
+                    <p style="font-size:20px">10:00～11:00</p>
                     <a style="margin:4px 0;"><i class="size16 icon icon-position-fill"></i><span>江苏省南京市</span></a>
                     <small class="block nowrap">我来上班啦</small>
                 </div>
@@ -89,47 +89,50 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
-                this.clocks={};
+                /*DOM*/
+
+                /*Plugin*/
+                this.clocks;
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
               ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
             _initClocks:function(){
                 this.clocks=new Clocks();
+            },
+            _initPlugin:function(){
+                this._initClocks();
             },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
+                var self=this;
             },
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-
-                //Plugin
-                this._initClocks();
-
-                //Events
-                //this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
+
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>
