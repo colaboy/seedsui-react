@@ -1,51 +1,21 @@
- @white:white;
- @white-active-color:fade(@white, 50%);
- @black:black;
+ @primary-bg:#18b2ed;
+ @primary-active-bg:fade(@primary-bg, 50%);
+ @primary-color:white;
+ @primary-active-color:fade(@primary-color, 30%);
+ @mask-bg:rgba(0,0,0,.4);
 
  @body-bg:#f4f4f4;
  @body-color:#333;
  @border:#e6e6e6;
  @label-color:#666;
  @placeholder-color:#aaa;
-
- @primary-bg:#18b2ed;
- @primary-active-bg:fade(@primary-bg, 50%);
- @primary-color:white;
- @primary-active-color:fade(@primary-color, 30%);
-
- @mask-bg:rgba(0,0,0,.4);
- 
- @disable-bg:#d9d9d9;
- @submit-bg:#88d038;
- //@submit-active-bg:fade(@submit-bg, 50%);
- @cancel-bg:#F86868;
- //@cancel-active-bg:fade(@cancel-bg, 50%);
- @success-bg:#4DDB63;
- //@success-active-bg:fade(@success-bg, 50%);
- @info-bg:#5bc0de;
- //@info-active-bg:fade(@info-bg, 50%);
- @warn-bg:#f4984e;
- //@warn-active-bg:fade(@warn-bg, 50%);
- @sliver-bg:#ececec;
- @tip-bg:#fc4349;
- @tip-color:white;
- @title-color:darken(@primary-bg, 10%);
-
  @link-color:#18b2ed;
  @link-active-property:opacity;
  @link-active-value:0.5;
 
 /*控件*/
- @button-bg:@primary-bg;
- @button-color:white;
- @button-active-property:opacity;
- @button-active-value:0.5;
- @button-tip-bg:rgba(0, 0, 0, .15);
- /* @button-active-bg:fade(@button-bg,50%);
- @button-active-color:fade(@button-color,50%); */
-
  @input-bg:white;
- 
+
  @titlebar-bg:#f9f9f9;
  @titlebar-h1-color:#333;
  @titlebar-color:@primary-bg;
@@ -58,33 +28,38 @@
  @titlebar-reverse-border:@primary-bg;
 
  @tabbar-bg:#f8f8f8;
- @tabbar-color:#888;
  @tabbar-border:@border;
- @tabbar-active-bg:#f8f8f8;
+ @tabbar-color:#888;
  @tabbar-active-color:@primary-bg;
+ @tabbar-active-bg:#f8f8f8;
  @tabbar-active-border:@primary-bg;
 
- @tabbar-reverse-color:white;
  @tabbar-reverse-bg:@primary-bg;
  @tabbar-reverse-border:white;
+ @tabbar-reverse-color:white;
  @tabbar-reverse-active-color:@primary-bg;
  @tabbar-reverse-active-bg:white;
  @tabbar-reverse-active-border:white;
 
- @menubar-color:#888;
  @menubar-bg:#f8f8f8;
  @menubar-border:@border;
+ @menubar-color:#888;
  @menubar-active-color:@primary-bg;
  @menubar-active-bg:#f8f8f8;
  @menubar-active-border:@border;
 
- @menubar-reverse-color:fade(white,60%);
  @menubar-reverse-bg:@primary-bg;
  @menubar-reverse-border:@primary-bg;
+ @menubar-reverse-color:fade(white,60%);
  @menubar-reverse-active-color:white;
  @menubar-reverse-active-bg:@primary-bg;
  @menubar-reverse-active-border:@primary-bg;
  
+ @button-bg:@primary-bg;
+ @button-color:white;
+ @button-active-property:opacity;
+ @button-active-value:0.5;
+ @button-tip-bg:rgba(0, 0, 0, .15);
 
  @aside-bg:@body-bg;
 
@@ -109,8 +84,21 @@
  @calendar-current-color:@body-color;
  @calendar-notcurrent-color:#ccc;
  @calendar-today-border:#b2b2b2;
+ @calendar-active-color:@primary-color;
+ @calendar-active-border:@primary-bg;
+ @calendar-active-bg:@primary-bg;
  
  /*常用颜色*/
+ @disable-bg:#d9d9d9;
+ @submit-bg:#88d038;
+ @cancel-bg:#F86868;
+ @success-bg:#4DDB63;
+ @info-bg:#5bc0de;
+ @warn-bg:#f4984e;
+ @sliver-bg:#ececec;
+ @tip-bg:#fc4349;
+ @tip-color:white;
+
  @1-bg:#53c6fd;
  @2-bg:#ffae02;
  @3-bg:#3ae3ea;
@@ -121,13 +109,3 @@
  @8-bg:#00c2eb;
  @9-bg:#ff618f;
  @10-bg:#21d9a1;
- @1-active-bg:fade(@1-bg,50%);
- @2-active-bg:fade(@2-bg,50%);
- @3-active-bg:fade(@3-bg,50%);
- @4-active-bg:fade(@4-bg,50%);
- @5-active-bg:fade(@5-bg,50%);
- @6-active-bg:fade(@6-bg,50%);
- @7-active-bg:fade(@7-bg,50%);
- @8-active-bg:fade(@8-bg,50%);
- @9-active-bg:fade(@9-bg,50%);
- @10-active-bg:fade(@10-bg,50%);

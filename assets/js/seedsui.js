@@ -39,5 +39,7 @@
 // @koala-prepend "baidumap.js"
 // @koala-prepend "idvalidator.js"
 // @koala-prepend "pinyin.js"
+// @koala-prepend "string.js"
+// @koala-prepend "imglazy.js"
 // @koala-prepend "data.city.js"
 // @koala-prepend "scrollpicker.city.js"

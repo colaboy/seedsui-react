@@ -1,6 +1,4 @@
 /*控件*/
-/* @button-active-bg:fade(@button-bg,50%);
- @button-active-color:fade(@button-color,50%); */
 /*常用颜色*/
 /*-----------------------------global.less(start)-----------------------------*/
 .events-none {
@@ -1813,7 +1811,7 @@ input[type="search"]::-webkit-search-results-decoration {
   position: relative;
   margin: 8px;
   box-sizing: border-box;
-  background-color: #ffffff;
+  background-color: white;
 }
 .card label {
   line-height: 24px;
@@ -2381,7 +2379,7 @@ aside[data-position="right"][data-transition="overlay"] {
 }
 .button.white {
   color: #333333;
-  background-color: #ffffff;
+  background-color: white;
 }
 .button.white:not(.noclick):active {
   opacity: 1;
@@ -2447,7 +2445,7 @@ aside[data-position="right"][data-transition="overlay"] {
   background-color: transparent;
 }
 .button.outline.white {
-  color: #ffffff;
+  color: white;
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
@@ -2513,7 +2511,7 @@ aside[data-position="right"][data-transition="overlay"] {
 .mark-warn,
 .mark-disable,
 .mark-primary {
-  color: #ffffff;
+  color: white;
 }
 .mark-disable {
   background-color: #d9d9d9;
@@ -2595,6 +2593,7 @@ aside[data-position="right"][data-transition="overlay"] {
   color: #666666;
 }
 .inputbox-right {
+  display: block;
   -webkit-box-flex: 1.0;
 }
 /*----------------inputbox.less(end)--------------*/
@@ -2841,7 +2840,7 @@ input[type=range]::-webkit-slider-thumb {
   border-width: 1px;
   border-style: solid;
   text-shadow: 0 1px 0 #f3f3f3;
-  background-color: #ffffff;
+  background-color: white;
   border-color: #e6e6e6;
   opacity: .8;
 }
@@ -3829,7 +3828,7 @@ input[type=range]::-webkit-slider-thumb {
   line-height: 20px;
   overflow: hidden;
   text-align: left;
-  color: #ffffff;
+  color: white;
   background-color: rgba(0, 0, 0, 0.6);
 }
 @-webkit-keyframes toast-hide {
@@ -3872,7 +3871,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-transition-property: opacity;
   -webkit-transition-duration: 300ms;
   -webkit-transition-timing-function: linear;
-  color: #ffffff;
+  color: white;
   background-color: rgba(0, 0, 0, 0.6);
 }
 /*----------------prompt.less(end)--------------*/
@@ -4331,7 +4330,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-transition-property: -webkit-transform;
   -webkit-transition-duration: 500ms;
   -webkit-transform: translate3d(0px, 100%, 0px);
-  background-color: #ffffff;
+  background-color: white;
 }
 .scrollpicker.active {
   -webkit-transform: translate3d(0px, 0px, 0px);
@@ -4467,7 +4466,7 @@ details[open] summary .summary-icon {
 /*----------------tree.less(start)--------------*/
 .tree-box {
   padding: 0 0 0 32px;
-  background-color: #ffffff;
+  background-color: white;
 }
 .tree {
   box-sizing: border-box;
@@ -4503,7 +4502,7 @@ details[open] summary .summary-icon {
   text-align: center;
   line-height: 32px;
   background-color: #ffae02;
-  color: #ffffff;
+  color: white;
 }
 .tree-ticon.farleft {
   margin-left: -28px;
@@ -4601,7 +4600,7 @@ details[open] summary .summary-icon {
   margin: 0 0 0 8px;
   display: inline-block;
   font-size: 13px;
-  background-color: #ffffff;
+  background-color: white;
 }
 .tree-bar-button:last-child {
   margin: 0 8px;
@@ -4832,7 +4831,7 @@ ul.weather-otherday li {
   overflow: hidden;
   -webkit-transition-property: height;
   border-color: #e6e6e6;
-  background-color: #ffffff;
+  background-color: white;
 }
 /*头部*/
 .calendar-header {

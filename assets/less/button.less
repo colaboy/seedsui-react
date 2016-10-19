@@ -70,11 +70,11 @@
 	/*白色按钮*/
 	&.white{
 		color:@body-color;
-		background-color:@white;
+		background-color:white;
 		&:not(.noclick):active{
 			opacity:1;
 			color:@body-color;
-			background-color:@white-active-color;
+			background-color:fade(white, 50%);
 		}
 	}
 	/*投影按钮*/
@@ -136,13 +136,13 @@
 		}
 		/*线框-白色按钮*/
 		&.white{
-			color:@white;
-			border-color:@white-active-color;
+			color:white;
+			border-color:fade(white, 50%);
 			background-color:transparent;
 			&:not(.noclick):active{
 				opacity:1;
-				color:@white-active-color;
-				border-color:@white-active-color;
+				color:fade(white, 50%);
+				border-color:fade(white, 50%);
 				background-color:transparent;
 			}
 		}
@@ -185,7 +185,7 @@
     border-radius:3px;
 }
 .mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary{
-	color: @white;
+	color: white;
 }
 .mark-disable{
 	background-color: @disable-bg;
