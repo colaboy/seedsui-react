@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+    <title>progress</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<!--头部-->
+	<header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>Progress</h1>
+            
+        </div>
+    </header>
+
+    <!--主体-->
+	<article>
+        <div class="sliver">Progress Bar</div>
+        <div class="progress radius40 margin8">
+            <span class="progress-bar radius40" style="width: 35%"></span>
+            <span class="progress-text left">
+                <span class="counter" data-duration="1000" data-to="35">0</span>
+                <span>%</span>
+            </span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar radius40" style="width: 25%"></span>
+            <span class="progress-text center">
+                <span class="counter" data-duration="1000" data-to="25">0</span>
+                <span>%</span>
+            </span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar radius40" style="width: 45%"></span>
+            <span class="progress-text right">
+                <span class="counter" data-duration="1000" data-to="16">0</span>
+                <span>/36</span>
+            </span>
+        </div>
+
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar radius40" style="width: 35%"></span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar radius40" style="width: 45%"></span>
+        </div>
+
+        <div class="sliver">Progress 3D</div>
+        <div class="progress radius40 margin8">
+            <span class="progress-bar threed radius40" style="width: 25%"></span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar threed radius40" style="width: 35%"></span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar threed radius40" style="width: 45%"></span>
+        </div>
+
+        <div class="sliver">Progress Striped (can animate stripe example 2)</div>
+        <div class="progress radius40 margin8">
+            <span class="progress-bar striped radius40" style="width: 25%"></span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar striped animated radius40" style="width: 35%"></span>
+        </div>
+
+        <div class="progress radius40 margin8">
+            <span class="progress-bar striped radius40" style="width: 45%"></span>
+        </div>
+    </article>
+	
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+    //计数器
+    var counter=new Counters();
+	//定义exmobi返回
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>indexbar</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style type="text/css">
+    .indexlist li{
+        padding-left:24px;
+        padding-right:24px;
+    }
+    .indexlist li p{
+        -webkit-box-flex:1;
+        padding:8px 0;
+        border-bottom:1px solid #ddd;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+        	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>索引栏</h1>
+        </div>
+    </header>
+    <article style="height:100%;overflow:hidden;">
+        <div class="indexbox" id="ID-IndexBox">
+            <div class="indexlist">
+            <ul class="list">
+                <li class="sliver" data-index="A">A</li>
+                <li>
+                    <p>阿华</p>
+                </li>
+                <li>
+                    <p>阿敏</p>
+                </li>
+                <li>
+                    <p>阿全</p>
+                </li>
+                <li class="noborder">
+                    <p>阿达</p>
+                </li>
+                <li class="sliver" data-index="B">B</li>
+                <li>
+                    <p>白起</p>
+                </li>
+                <li>
+                    <p>白旭</p>
+                </li>
+                <li class="noborder">
+                    <p>冰冰</p>
+                </li>
+                <li class="sliver" data-index="C">C</li>
+                <li>
+                    <p>曹操</p>
+                </li>
+                <li>
+                    <p>曹鸣</p>
+                </li>
+                <li>
+                    <p>曹捷</p>
+                </li>
+                <li>
+                    <p>陈真</p>
+                </li>
+                <li>
+                    <p>陈进</p>
+                </li>
+                <li>
+                    <p>陈明</p>
+                </li>
+                <li>
+                    <p>陈伟</p>
+                </li>
+                <li>
+                    <p>陈文</p>
+                </li>
+                <li>
+                    <p>陈晓</p>
+                </li>
+                <li>
+                    <p>陈娟</p>
+                </li>
+                <li>
+                    <p>成勇</p>
+                </li>
+                <li>
+                    <p>成婷</p>
+                </li>
+                <li class="noborder">
+                    <p>成龙</p>
+                </li>
+                <li class="sliver" data-index="D">D</li>
+                <li>
+                    <p>大成子</p>
+                </li>
+                <li>
+                    <p>大舅子</p>
+                </li>
+                <li>
+                    <p>戴笠</p>
+                </li>
+                <li>
+                    <p>戴坤</p>
+                </li>
+                <li>
+                    <p>戴成虎</p>
+                </li>
+                <li>
+                    <p>邓小平</p>
+                </li>
+                <li>
+                    <p>邓稼先</p>
+                </li>
+                <li>
+                    <p>邓文迪</p>
+                </li>
+                <li>
+                    <p>邓等</p>
+                </li>
+                <li>
+                    <p>狄仁杰</p>
+                </li>
+                <li>
+                    <p>狄弟</p>
+                </li>
+                <li>
+                    <p>董文华</p>
+                </li>
+                <li class="noborder">
+                    <p>董事</p>
+                </li>
+                <li class="sliver" data-index="F">F</li>
+                <li>
+                    <p>樊哙</p>
+                </li>
+                <li>
+                    <p>樊心</p>
+                </li>
+                <li>
+                    <p>冯晨晨</p>
+                </li>
+                <li>
+                    <p>冯敬尧</p>
+                </li>
+                <li>
+                    <p>冯成虎</p>
+                </li>
+                <li>
+                    <p>冯小平</p>
+                </li>
+                <li>
+                    <p>冯稼先</p>
+                </li>
+                <li>
+                    <p>冯文迪</p>
+                </li>
+                <li>
+                    <p>冯晨</p>
+                </li>
+                <li>
+                    <p>福尔杰</p>
+                </li>
+                <li>
+                    <p>福尔康</p>
+                </li>
+                <li>
+                    <p>福文华</p>
+                </li>
+                <li>
+                    <p>方文山</p>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        var indexbar=new Indexbar("#ID-IndexBox");
+        function back(){history.go(-1)}
+    </script>
+</body>
+</html>

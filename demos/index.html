@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>components</title>
+	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+	<style>
+	body{
+		background-color:white;
+	}
+	.app-sliver{
+		font-size:12px;
+		padding:8px 0;
+		border-bottom:1px solid #ddd;
+		margin:8px;
+		color:#aaa;
+	}
+	.app-thumbnail{
+		padding-left:4px;
+		padding-right:4px;
+	}
+	.app-thumbnail li{
+		padding-left:4px;
+		padding-right:4px;
+		padding-top:12px;
+	}
+	.app-thumbnail a{
+		border:1px solid #ddd;
+		overflow:hidden;
+		border-radius:8px;
+		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
+	}
+	/*单页模式*/
+	.app-page[data-animation="none"]{
+		display:none;
+	}
+	.app-page.active{
+		display:block;
+	}
+	</style>
+</head>
+<body ontouchstart="">
+		<header>
+			<div class="titlebar reverse" style="height:50px;">
+				<ul class="tabbar reverse" data-type="rect" data-col="3" id="ID-Tabbar" style="width:80%">
+		            <li class="tab active" data-id="ID-CssCompoents">
+		                <label class="tab-label">Css组件</label>
+		            </li>
+		            <li class="tab" data-id="ID-JsCompoents">
+		                <label class="tab-label">Js组件</label>
+		            </li>
+		            <li class="tab" data-id="ID-LocCompoents">
+		                <label class="tab-label">本地能力</label>
+		            </li>
+		        </ul>
+			</div>
+		</header>
+		<article style="padding-top:50px">
+			<!--Css组件-->
+			<div id="ID-CssCompoents" data-animation="none" class="app-page active">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
+			</div>
+			<!--Js组件-->
+			<div id="ID-JsCompoents" data-animation="none" class="app-page">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
+			</div>
+			<!--本地能力-->
+			<div id="ID-LocCompoents" data-animation="none" class="app-page">
+				<!-- 加载遮罩 -->
+		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
+		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
+		            <div class="loading"></div>
+		        </div>
+			</div>
+		</article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+	<script>
+		//manifest
+		/*window.addEventListener("updateready",function(e){
+			console.log("离线缓存状态："+window.applicationCache.status);
+			if(window.applicationCache.status==window.applicationCache.UPDATEREADY){
+				window.applicationCache.swapCache();
+				if(confirm('发现此manifest文件有更新，是否更新？')){
+					window.location.reload();
+				}
+			}else{
+				console.log('manifest文件没有变化');
+			}
+		},false);*/
+		/*================
+		判断本地能力
+		================*/
+		//exmobi环境
+		function exmobiLocal(){
+			document.addEventListener("plusready",function(){
+				document.getElementById("exmobilocal").style.display="block";
+			},false);
+		}
+		//微信环境
+		function weixinLocal(){
+			if(Device.isWeixin){
+				document.getElementById("weixinlocal").style.display="block";
+			}
+		}
+		/*================
+		Ajax页面加载
+		================*/
+		//容器和按钮
+		var compoentBtns={};
+		compoentBtns["ID-CssCompoents"]=document.querySelector('[href="#ID-CssCompoents"]');
+		compoentBtns["ID-JsCompoents"]=document.querySelector('[href="#ID-JsCompoents"]');
+		compoentBtns["ID-LocCompoents"]=document.querySelector('[href="#ID-LocCompoents"]');
+
+
+		var compoentContainers={};
+		compoentContainers["ID-CssCompoents"]=document.getElementById("ID-CssCompoents");
+		compoentContainers["ID-JsCompoents"]=document.getElementById("ID-JsCompoents");
+		compoentContainers["ID-LocCompoents"]=document.getElementById("ID-LocCompoents");
+		//菜单切换
+		function hideContainers(){
+			for(var name in compoentContainers){
+				compoentContainers[name].style.display="none";
+			}
+		}
+		/*var singlePage=new Page({
+			"isDisableSameClick":true,
+			"pageClass":"app-page",
+			"onLoad":function(e){
+				var targetBtn,targetPageId;
+				if(e.isRoot){
+					targetBtn=compoentBtns["ID-CssCompoents"];
+					targetPage=compoentContainers["ID-CssCompoents"];
+				}else{
+					targetBtn=compoentBtns[e.targetPageId.substring(1)];
+					targetPage=compoentContainers[e.targetPageId.substring(1)];
+				}
+				//还原状态
+				e.buttons.forEach(function(btn){
+					btn.classList.remove("active");
+				});
+				e.pages.forEach(function(page){
+					page.style.display="none";
+				});
+				//显示对应的层
+				if(targetBtn){
+					//console.log(targetBtn);
+					targetBtn.classList.add("active");
+				}
+				if(targetPage)targetPage.style.display="block";
+			}
+		});*/
+		var tabbar=document.getElementById('ID-Tabbar');
+		var tabs=[].slice.call(tabbar.querySelectorAll('.tab'));
+		function activeTabbar(activeTab){
+			tabs.forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+			activeTab.classList.add("active");
+		}
+		function activeContainer(id){
+			for(var name in compoentContainers){
+				compoentContainers[name].style.display="none";
+			}
+			compoentContainers[id].style.display="block";
+		}
+		function addClickMenu(){
+            tabbar.onclick=function(e){
+                activeTabbar(e.target);
+                var id=e.target.getAttribute("data-id");
+                activeContainer(id);
+            }
+		}
+		//加载数据
+		function loadCssCompoents(){
+			new Ajax({
+                url:"index-css.html",
+                onSuccess:function(data){
+                    compoentContainers["ID-CssCompoents"].innerHTML=data;
+                }
+            });
+		}
+		function loadJsCompoents(){
+			new Ajax({
+                url:"index-js.html",
+                onSuccess:function(data){
+                    compoentContainers["ID-JsCompoents"].innerHTML=data;
+                }
+            });
+		}
+		function loadLocCompoents(){
+			new Ajax({
+                url:"index-local.html",
+                onSuccess:function(data){
+                	compoentContainers["ID-LocCompoents"].innerHTML=data;
+                	//本地能力
+                	exmobiLocal();
+                	weixinLocal();
+                }
+            });
+		}
+		function loadData(){
+			loadCssCompoents();
+			loadJsCompoents();
+			loadLocCompoents();
+		}
+		/*================
+		初始化
+		================*/
+		window.addEventListener("load",function(){
+			addClickMenu();
+			loadData();
+		},false);
+		//定义exmobi返回
+		function back(){Exmobi.dbclose();}
+	</script>
+</body>
+</html>

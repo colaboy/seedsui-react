@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>charts-doughnut</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+<body>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>
+            <h1>环形图</h1>
+        </div>
+    </header>
+    <article>
+	   <div id="ID-ChartDoughnut" style="width: 100%;height:500px;"></div>
+    </article>
+	<script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+	<script src="../scripts/lib/echarts/echarts.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.chartDoughnutData,this.chartDoughnut={},this.chartDoughnutId="ID-ChartDoughnut";
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initChartDoughnut:function(){
+            	this.chartDoughnut = echarts.init(document.getElementById(this.chartDoughnutId));
+                var labelTop = {
+                    normal : {
+                        label : {
+                            show : true,
+                            position : 'center',
+                            formatter : '{b}',
+                            textStyle: {
+                                baseline : 'bottom'
+                            }
+                        },
+                        labelLine : {
+                            show : false
+                        }
+                    }
+                };
+                var labelFromatter = {//百分比
+                    formatter : function (params){
+                        return 100 - params.value + '%'
+                    }
+                }
+                var labelBottom = {
+                    normal : {
+                        color: '#ccc',
+                        label : {
+                            show : true,
+                            position : 'center'
+                        },
+                        labelLine : {
+                            show : false
+                        }
+                    },
+                    emphasis: {
+                        color: 'rgba(0,0,0,0)'
+                    }
+                };
+                var radius = ["28%", "35%"];//半径
+                var centerX=[];//X距离
+                for(var i=0;i<6;i++){
+                    if(i%2===0){
+                        centerX.push("74%");
+                    }else{
+                        centerX.push("28%");
+                    }
+                }
+                var centerXood="28%";//奇数Y距离
+                var centerY=[];//Y距离
+                for(var j=1;j<=3;j++){
+                    centerY.push(100/3*j-(100/3/2)+"%");
+                    centerY.push(100/3*j-(100/3/2)+"%");
+                }
+                var pieColors=['#53c6fd','#ffae02','#3ae3ea','#ff6f36','#cf7af3','#4cd32e','#4587f7','#00c2eb','#ff618f','#21d9a1'];//饼颜色
+                this.chartDoughnutData = {
+                    series : [
+                        {
+                            type : 'pie',
+                            center : [centerX[0], centerY[0]],
+                            radius : radius,
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[0],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:46, itemStyle : labelBottom},
+                                {name:'社交平台', value:54,itemStyle : labelTop}
+                            ]
+                        },
+                        {
+                            type : 'pie',
+                            center : [centerX[1], centerY[1]],
+                            //right:0,
+                            radius : radius,
+                            //x:'20%', // for funnel
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[1],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:56, itemStyle : labelBottom},
+                                {name:'直接访问', value:44,itemStyle : labelTop}
+                            ]
+                        },
+                        {
+                            type : 'pie',
+                            center : [centerX[2], centerY[2]],
+                            radius : radius,
+                            //x:'40%', // for funnel
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[2],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:65, itemStyle : labelBottom},
+                                {name:'邮件营销', value:35,itemStyle : labelTop}
+                            ]
+                        },
+                        {
+                            type : 'pie',
+                            center : [centerX[3], centerY[3]],
+                            radius : radius,
+                            //x:'60%', // for funnel
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[3],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:70, itemStyle : labelBottom},
+                                {name:'联盟广告', value:30,itemStyle : labelTop}
+                            ]
+                        },
+                        {
+                            type : 'pie',
+                            center : [centerX[4], centerY[4]],
+                            radius : radius,
+                            //x:'80%', // for funnel
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[4],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:73, itemStyle : labelBottom},
+                                {name:'视频广告', value:27,itemStyle : labelTop}
+                            ]
+                        },
+                        {
+                            type : 'pie',
+                            center : [centerX[5], centerY[5]],
+                            radius : radius,
+                            //y: '55%',   // for funnel
+                            //x: '0%',    // for funnel
+                            itemStyle : {
+                                normal : {
+                                    color : pieColors[5],
+                                    label : labelFromatter,
+                                },
+                            },
+                            data : [
+                                {name:'other', value:78, itemStyle : labelBottom},
+                                {name:'搜索引擎', value:22,itemStyle : labelTop}
+                            ]
+                        },
+                    ]
+                };
+                this.chartDoughnut.setOption(this.chartDoughnutData);
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+            	this._initChartDoughnut();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                this.chartDoughnut.on("click",function(e){
+                    self._onClickChartDoughnut(e);
+                });
+            },
+            _onClickChartDoughnut:function(e){
+                console.log(e);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+
+                //Plugin
+                this._initPlugin();
+                //Events
+                this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

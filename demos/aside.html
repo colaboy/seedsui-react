@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>aside</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .app-title{
+        font-size:17px;
+        margin:8px 0;
+        display:block;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <div class="aside" id="aside">
+        <div class="aside-wrapper">
+            <aside id="aside-left" data-transition="overlay" style="background-color:#333;color:white;">
+                <p class="app-title lrmargin8">侧边栏</p>
+                <p class="lrmargin8" style="opacity:0.7;">这是侧滑菜单的示例，通常用
+                <br/>
+                【属性】
+                data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)
+                <br/>
+                <br/>
+                【Javascript】
+                new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) 
+                </p>
+                <a class="button block cancel margin8" id="hideAside1">关闭侧滑</a>
+            </aside>
+            <aside id="aside-right" data-transition="push" style="background-color:#333;color:white;">
+                <p class="app-title lrmargin8">右侧边栏</p>
+                <p class="lrmargin8" style="opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
+                <a class="button block cancel margin8" id="hideAside2">关闭侧滑</a>
+            </aside>
+            <section style="background-color:white;">
+                <header>
+                    <div class="titlebar">
+                        <a class="titlebar-button" href="javascript:back()">
+                            <i class="icon icon-arrowleft"></i>
+                        </a>
+                        <h1>侧边栏</h1>
+                    </div>
+                </header>
+                <article class="scrollbox">
+                    <p class="app-title">左侧菜单栏</p>
+                    <div class="card">
+                        <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
+                        <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
+                        <a id="revealLeft" class="button block margin8 warn">左侧栏-reveal</a>
+                    </div>
+                    <p class="app-title">右侧菜单栏</p>
+                    <div class="card">
+                        <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
+                        <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>
+                        <a id="revealRight" class="button block margin8 warn">右侧栏-reveal</a>
+                    </div>
+                    <div class="card padding8">
+                        <h1 class="text-center">这是侧滑菜单的示例</h1>
+                        <br/>
+                        <h4 class="paragraph">标签属性</h4>
+                        <p class="paragraph">data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)</p>
+                        <h4 class="paragraph">Javascript</h4>
+                        <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) </p>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        window.addEventListener("load",function(e){
+            var aside=new Aside("#aside",{
+                "isDrag":true,
+                "sides":{"left":"#aside-left","right":"#aside-right"},
+                "onSlideChangeEnd":function(e){
+                    if(e.isHid){
+                        console.log("隐藏完成");
+                    }else{
+                        console.log("显示完成");
+                    }
+                }
+            });
+            document.getElementById("overlayLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","overlay");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("pushLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","push");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("revealLeft").onclick=function(){
+                aside.sides["left"].setAttribute("data-transition","reveal");
+                aside.update();
+                aside.show("left");
+            };
+    		document.getElementById("overlayRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","overlay");
+                aside.update();
+                aside.show("right");
+            };
+    		document.getElementById("pushRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","push");
+                aside.update();
+                aside.show("right");
+            };
+    		document.getElementById("revealRight").onclick=function(){
+                aside.sides["right"].setAttribute("data-transition","reveal");
+                aside.update();
+                aside.show("right");
+            };
+            //关闭按钮
+            document.getElementById("hideAside1").onclick=function(e){
+                aside.hide();
+            };
+            document.getElementById("hideAside2").onclick=function(e){
+                aside.hide();
+            };
+        },false);
+        //定义exmobi返回
+    	function back(){history.go(-1);}
+    </script>
+</body>
+</html>

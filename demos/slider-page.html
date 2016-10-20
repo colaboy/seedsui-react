@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>slider-page</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+        <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>滑动页面</h1>
+        </div>
+        <ul class="tabbar" data-type="slide" data-col="5" id="ID-Tabbar">
+            <li class="tab active">
+                <label class="tab-label">头条</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">推荐</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">科技</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">舆情</label>
+            </li>
+            <li class="tab">
+                <label class="tab-label">动态</label>
+            </li>
+        </ul>
+    </header>
+    <article style="padding-top:84px;" class="scrollbox">
+        <div class="slider-container" id="ID-CarouselPage" style="height: 100%;">
+        <div class="slider-wrapper">
+        <div class="slider-slide">
+            <!--第一页:start-->
+            <!--第一页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第二页:start-->
+            <!--第二页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第三页:start-->
+            <!--第三页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第四页:start-->
+            <!--第四页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第五页:start-->
+            <!--第五页:end-->
+        </div>
+        </div>
+        </div>
+    </article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+
+        /*兼容Ios浏览器滚动到最底或者最顶，不能滑动的问题*/
+        /*[].slice.call(slides).forEach(function(n,i,a){
+            n.addEventListener("scroll",function(e){
+                compatibleIosScroll(e);
+            },false);
+        })
+        function compatibleIosScroll(e){
+            var container=e.target;
+            var clientHeight=container.clientHeight; 
+            var scrollTop=container.scrollTop; 
+            var scrollHeight=container.scrollHeight;
+            if(scrollTop==0){
+                container.scrollTop=1;
+                return;
+            }
+            if (clientHeight+scrollTop>=scrollHeight){
+                container.scrollTop=container.scrollTop-1;
+            }
+        }*/
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*DOM*/
+                this.slides=document.querySelectorAll("#ID-CarouselPage .slider-slide");
+                this.tabbar=document.getElementById("ID-Tabbar");
+                this.tabs=this.tabbar.querySelectorAll(".tab");
+
+                /*Plugin*/
+                this.carouselPage={};
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _tabActive:function(index){
+                for(var i=0,t;t=this.tabs[i++];){
+                    t.classList.remove("active");
+                }
+                this.tabs[index].classList.add("active");
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initData:function(){
+                var self=this;
+                var pageDataCount=[100,10,30,40,50];//每页数据条数
+                [].slice.call(self.slides).forEach(function(n,i,a){
+                    var datastr="";
+                    for(var j=0;j<pageDataCount[i];j++){
+                        datastr+='<li class="padding8 underline"><p>第'+i+'页</p></li>'
+                    }
+                    n.innerHTML='<ul class="list">'+datastr+'</ul>';
+                })
+            },
+            _initTabbar:function(){
+                var self=this;
+                for(var i=0,t;t=this.tabs[i++];){
+                    (function(i){
+                        t.addEventListener("click",function(){
+                            self.carouselPage.slideTo(i-1);
+                            self._tabActive(i-1);
+                        },false);
+                    })(i);
+                }
+            },
+            _initSlider:function(){
+                var self=this;
+                this.carouselPage=new Slider("#ID-CarouselPage",{
+                    "onInit":function(e){
+                        //compatibleIosScroll(e);
+                    },
+                    "onSlideChangeEnd":function(e){
+                        self._tabActive(e.index);
+                        //compatibleIosScroll(e);
+                    }
+                });
+            },
+            _initPlugin:function(){
+                this._initData();
+                this._initSlider();
+                this._initTabbar();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

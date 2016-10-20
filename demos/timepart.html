@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>timepart</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>时间段控件</h1>
+        </div>
+    </header>
+	<article>
+		<div class="timepart" id="ID-Timepart">
+            <div class="timepart-row">
+                <label data-num="1" data-range="08:00-08:30">
+                    <span>08:00</span>
+                </label>
+                <label data-num="2" data-range="08:30-09:00">
+                    <span>08:30</span>
+                </label>
+                <label data-num="3" data-range="09:00-09:30">
+                    <span>09:00</span>
+                </label>
+                <label data-num="4" data-range="09:30-10:00">
+                    <span>09:30</span>
+                </label>
+                <label data-num="5" data-range="10:00-10:30">
+                    <span>10:00</span>
+                </label>
+                <label data-num="6" data-range="10:30-11:00">
+                    <span>11:00</span>
+                </label>
+            </div>
+            <div class="timepart-row">
+                <label data-num="7" data-range="11:00-11:30">
+                    <span>11:00</span>
+                </label>
+                <label data-num="8" class="disable" data-range="11:30-12:00">
+                    <span>11:30</span>
+                </label>
+                <label data-num="9" class="disable" data-range="12:00-12:30">
+                    <span>12:00</span>
+                </label>
+                <label data-num="10" data-range="12:30-13:00">
+                    <span>12:30</span>
+                </label>
+                <label data-num="11" data-range="13:00-13:30">
+                    <span>13:00</span>
+                </label>
+                <label data-num="12" data-range="13:30-14:00">
+                    <span>14:00</span>
+                </label>
+            </div>
+            <div class="timepart-row">
+                <label data-num="13" data-range="14:00-14:30">
+                    <span>14:00</span>
+                </label>
+                <label data-num="14" data-range="14:30-15:00">
+                    <span>14:30</span>
+                </label>
+                <label data-num="15" class="disable" data-range="15:00-15:30">
+                    <span>15:00</span>
+                </label>
+                <label data-num="16" class="disable" data-range="15:30-16:00">
+                    <span>15:30</span>
+                </label>
+                <label data-num="17" data-range="16:00-16:30">
+                    <span>16:00</span>
+                </label>
+                <label data-num="18" data-range="16:30-17:00">
+                    <span>17:00</span>
+                </label>
+            </div>
+            <div class="timepart-row">
+                <label data-num="19" data-range="17:00-17:30">
+                    <span>17:00</span>
+                </label>
+                <label data-num="20" data-range="17:30-18:00">
+                    <span>17:30</span>
+                </label>
+                <label data-num="21" data-range="18:00-18:30">
+                    <span>18:00</span>
+                </label>
+                <label data-num="22" data-range="18:30-19:00">
+                    <span>18:30</span>
+                </label>
+                <label data-num="23" data-range="19:00-19:30">
+                    <span>19:00</span>
+                </label>
+                <label data-num="24" data-range="19:30-20:00">
+                    <span>20:00</span>
+                </label>
+            </div>
+        </div>
+        <a class="radius4 button block margin8" id="submit">预约</a>
+	</article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+	<script>
+        var timepart=new Timepart("#ID-Timepart");
+		//定义exmobi返回
+		function back() {
+			history.go(-1);
+		}
+	</script>
+</body>
+</html>

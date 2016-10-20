@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>dragrefresh</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+        	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>下拉刷新</h1>
+        </div>
+    </header>
+    <article class="scrollbox">
+        <ul class="list" id="list"></ul>
+    </article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script type="text/javascript">
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                //DOM
+                //Data
+                //Plugin
+                this.drag={};
+                this.alert={};
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initData:function(){
+                for(var i=0;i<100;i++){
+                    var elLI=document.createElement("li");
+                    elLI.setAttribute("class","underline padding8");
+                    elLI.innerHTML='<p>第'+i+'行列表</p>';
+                    document.getElementById("list").appendChild(elLI);
+                }
+            },
+            _initDrag:function(){
+                this.drag=new Dragrefresh("article",{
+                    threshold:130,
+                    onRefreshStart:function(e){
+                        setTimeout(function(){
+                            e.refreshComplete();
+                        }, 2000);
+                    },
+                    onRefreshEnd:function(e){
+                        console.log("加载完成");
+                    },
+                    onRefreshTimeout:function(e){
+                        a2.show();
+                    },
+                    onScroll:function(e){
+                        //console.log(e.conttainer.scrollTop);
+                    },
+                    onBottom:function(e){
+                        console.log("到底部啦");
+                        //数据加载完成时，隐藏下面的元素
+                        setTimeout(function(){
+                            e.bottomContainer.style.display="none";
+                        }, 5000);
+                    }
+                });
+            },
+            _initAlert:function(){
+                this.alert=new Alert("请求超时啦");
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            /*=========================
+              OnLoad
+              ===========================*/
+            _onLoad:function(){
+                var self=this;
+                //DOM
+                this._initData();
+
+                //Plugin
+                this._initDrag();
+                this._initAlert();
+
+                //Events
+                //this._attach();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view._onLoad();
+        }, false);
+
+        document.addEventListener("DOMContentLoaded",function(){
+            view.initialize();
+        }, false);
+        
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>
