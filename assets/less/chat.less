@@ -19,7 +19,7 @@
 			width: 100%;
 			border-radius: 100%;
 		}
-		i {
+		.chat-photo-author {
 			font-size: 12px;
 			font-style: normal;
 			color:@placeholder-color;
@@ -43,6 +43,7 @@
 		background-color: @chat-odd-bg;
 
 		&:after {
+			border-color:transparent;
 			border-right-color:@chat-odd-bg;
 
 			position: absolute;
@@ -54,9 +55,8 @@
 			border-width: 5px;
 			margin-top: -5px;
 			border-style:solid;
-			border-color:transparent;
 		}
-		i {
+		.chat-content-author {
 			display: block;
 			position: relative;
 			font-style: normal;

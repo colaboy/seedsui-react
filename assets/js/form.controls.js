@@ -7,9 +7,11 @@
 		var defaults={
 			rangeTipClass:"range-tooltip",//滑动条弹出框
 			numboxClass:"numbox",//数字框
-			revealAttr:"[data-input=reveal]",
-			clearAttr:"[data-input=clear]",
-			safelvlClass:"safelvl"
+			switchClass:"switch",//开关控件
+			revealAttr:"[data-input=reveal]",//密码小眼睛
+			clearAttr:"[data-input=clear]",//清空按钮
+			safelvlClass:"safelvl",//密码安全等级
+			inputpreClass:"input-pre"//自动增高控件
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -25,6 +27,14 @@
 		/*================
 		Method
 		================*/
+		//自动增高控件，创建pre元素
+		s.createPreAfter=function(el){
+			var pre=document.createElement("pre");
+			var span=document.createElement("span");
+			pre.appendChild(span);
+			pre.style.width=el.clientWidth+"px";
+			el.parentNode.insertBefore(pre,el.nextSibling);
+		}
 		s.update=function(){
 			s.detach();
 			s.attach();
@@ -35,7 +45,7 @@
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
 			//开关控件
-			var switches=document.querySelectorAll(".switch");
+			var switches=document.querySelectorAll("."+s.params.switchClass);
 			
 			for(var i=0,swi;swi=switches[i++];){
 				swi[action]("click",s.onSwitch,false);
@@ -71,6 +81,16 @@
 			for(var n=0,numbox;numbox=numboxs[n++];){
 				numbox.nextElementSibling[action]("click",s.onNumboxPlus,false);
 				numbox.previousElementSibling[action]("click",s.onNumboxMinus,false);
+			}
+			//自动增高控件
+			var inputpres=document.querySelectorAll("."+s.params.inputpreClass);
+			for(var o=0,inputpre;inputpre=inputpres[o++];){
+				if(!inputpre.nextElementSibling || inputpre.nextElementSibling.tagName!="PRE"){
+					s.createPreAfter(inputpre);
+				}
+				inputpre.pre=inputpre.nextElementSibling;
+				inputpre.preSpan=inputpre.pre.childNodes[0];
+				inputpre[action]("input",s.onInputpre,false);
 			}
 		}
 		s.hasEvents=false;
@@ -174,7 +194,7 @@
 				s.rangeTooltip.style.display="none";
 	        },1000);
 		}
-		//数字框
+		/*数字框*/
 		s.numboxSum=function(inputNumber,btnPlus,btnMinus,operate){
 			var min=inputNumber.getAttribute("min")||0;
 			var max=inputNumber.getAttribute("max")||9999;
@@ -210,6 +230,15 @@
 			var btnPlus=inputNumber.nextElementSibling;
 			var btnMinus=this;
 			s.numboxSum(inputNumber,btnPlus,btnMinus,false);
+		}
+		/*自动增高控件*/
+		s.onInputpre=function(e){
+			var thisEl=e.target;
+			var pre=thisEl.pre;
+			var preSpan=thisEl.preSpan;
+			//计算textarea高度
+			preSpan.innerText=this.value;
+			this.style.height=pre.clientHeight+"px";
 		}
 		//初始化
 		s.init=function(){
