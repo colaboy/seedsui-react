@@ -1,71 +1,231 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
-	<title>scrollpicker-datetime</title>
-	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>scrollpicker-datetime</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
 </head>
 
 <body ontouchstart="">
-	<header>
-		<div class="titlebar">
-	        <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-	        <h1>日期选择器</h1>
-	    </div>
-	</header>
-	<article>
-		<p class="color-placeholder text-center" style="margin-top:8px;">起止时间</p>
-        <div class="inputbox margin8">
-            <input type="text" class="input-text text-center" placeholder="开始时间" readonly="readonly" id="time1"/>
-            <small class="margin8 inline-block vmiddle">到</small>
-            <input type="text" class="input-text text-center" placeholder="结束时间" readonly="readonly" id="time2"/>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1>日期选择器</h1>
         </div>
-	</article>
-	<!--SeedsUI-->
+    </header>
+    <article>
+        <p class="color-placeholder text-center margin8">起止时间</p>
+        <div class="box bordered">
+            <div class="inputbox box-flex-1 SID-DivDate">
+                <input type="text" class="input-text text-center SID-Date SID-DateStart" readonly="" placeholder="开始时间" style="pointer-events: none;">
+                <i class="color-primary icon icon-time" style="pointer-events: none;"></i>
+            </div>
+            <div class="inputbox box-flex-1 SID-DivDate" style="border-left: 1px solid #ddd">
+                <input type="text" class="input-text text-center SID-Date SID-DateEnd" readonly="" placeholder="结束时间" style="pointer-events: none;">
+                <i class="color-primary icon icon-time" style="pointer-events: none;"></i>
+            </div>
+        </div>
+        <a class="button block SID-BtnSubmit margin8">提交</a>
+    </article>
+    <!--SeedsUI-->
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
-    var timeStart=new SpDate({
-        "viewType":"datetime",
-        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
-        "yearClass":"text-center",
-        "monthClass":"text-center",
-        "dayClass":"text-center",
-        "hourClass":"text-center",
-        "minuteClass":"text-center",
-    });
-    document.getElementById("time1").onclick=function(){
-        var input=this;
-        timeStart.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        timeStart.show();
-    }
-    var timeEnd=new SpDate({
-        "viewType":"datetime",
-        "minutesData":[{"key":0,"value":"0分"},{"key":30,"value":"30分"}],
-        "yearClass":"text-center",
-        "monthClass":"text-center",
-        "dayClass":"text-center",
-        "hourClass":"text-center",
-        "minuteClass":"text-center",
-    });
-    document.getElementById("time2").onclick=function(){
-        var input=this;
-        timeEnd.setOnClickDone(function(e){
-            input.value=e.activeText;
-            e.hide();
-        });
-        timeEnd.show();
-    }
-	//定义exmobi返回
-	function back(){history.go(-1);}
-	</script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*DOM*/
+                this.dateStarts=document.querySelectorAll(".SID-DateStart");
+                this.dateEnds=document.querySelectorAll(".SID-DateEnd");
+                
+                this.divDateClass="SID-DivDate";
+                this.txtDateClass="SID-Date";
+                this.txtDateStartClass="SID-DateStart";
+                this.txtDateEndClass="SID-DateEnd";
+
+                this.btnSubmitClass="SID-BtnSubmit";
+                /*Plugin*/
+                this.toast=new Prompt("提示","");
+                this.calendarUtil=new CalendarUtil();
+                /*Data*/
+                this.minutesData=[];
+                this.minuteInterval=5;//分钟间隔
+                for(var minute=0;minute<60;minute=minute+this.minuteInterval){
+                    var tempMinute=minute<10?"0"+minute:minute;
+                    this.minutesData.push({"key":tempMinute,"value":tempMinute+"分","flag":"time"});
+                }
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
+            },
+            /*=========================
+              Method
+              ===========================*/
+            //时间控件
+            _newSpDateTime:function(defaults,input){
+                var self=this;
+                this.spDateTime=new SpDate({
+                    viewType:"datetime",
+                    minutesData:self.minutesData,
+                    isSimpleYear:true,
+                    minYear:new Date().getFullYear()-5,
+                    maxYear:new Date().getFullYear()+5,
+                    yearClass:"text-center",
+                    monthClass:"text-center",
+                    dayClass:"text-center",
+                    hourClass:"text-center",
+                    minuteClass:"text-center",
+                    isClickMaskHide:false,
+                    onClickDone:function(e){
+                        if(new Date(e.activeText)<=new Date()){
+                            self.toast.setText("不能早于当前时间");
+                            self.toast.show();
+                            return;
+                        }
+                        if(input.classList.contains(self.txtDateStartClass)){//点击开始时间
+                            var nextInputbox=input.parentNode;
+                            var endInput=nextInputbox.parentNode.querySelector("."+self.txtDateEndClass);
+                            if(endInput){
+                                var startDate=new Date(e.activeText).setSeconds(0,0);
+                                var endDate=new Date(endInput.value).setSeconds(0,0);
+                                if(endInput.value==""){
+                                    endInput.value=e.activeText;
+                                }else if(startDate >= endDate){
+                                    self.toast.setText("开始时间不能晚于结束时间");
+                                    self.toast.show();
+                                    return;
+                                }
+                            }
+                            nextInputbox.classList.remove("app-active-error");
+                        }else if(input.classList.contains(self.txtDateEndClass)){//点击结束时间
+                            var prevInputbox=input.parentNode;
+                            var prevInput=prevInputbox.parentNode.querySelector("."+self.txtDateStartClass);
+                            if(prevInput){
+                                var startDate=new Date(prevInput.value).setSeconds(0,0);
+                                var endDate=new Date(e.activeText).setSeconds(0,0);
+                                if(prevInput.value==""){
+                                    prevInput.value=e.activeText;
+                                }else if(startDate >= endDate){
+                                    self.toast.setText("开始时间不能晚于结束时间");
+                                    self.toast.show();
+                                    return;
+                                }
+                            }
+                            prevInputbox.classList.remove("app-active-error");
+                        }
+                        
+                        input.value=e.activeText;
+                        input.parentNode.classList.remove("app-active-error");
+                        e.hide();
+                    },
+                    "onShowed":function(e){
+                        e.setIsClickMaskHide(true);
+                    },
+                    "onHid":function(e){
+                        e.destroy();
+                    }
+                });
+                if(defaults && defaults.length>0){
+                    this.spDateTime.setDefaultYear(defaults[0]);
+                    this.spDateTime.setDefaultMonth(defaults[1]);
+                    this.spDateTime.setDefaultDay(defaults[2]);
+                    this.spDateTime.setDefaultHour(defaults[3]);
+                    this.spDateTime.setDefaultMinute(defaults[4]);
+                    this.spDateTime.update();
+                }
+            },
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initPlugin:function(){
+
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                //点击页面
+                document.body.addEventListener("click",function(e){
+                    self._onClickPage(e);
+                },false)
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            //点击页面
+            _onClickPage:function(e){
+                var self=this;
+                var target=e.target;
+                if(target.classList.contains(this.btnSubmitClass)){
+                    this._onClickSubmit(e);
+                }else if(target.classList.contains(this.divDateClass)){
+                    this._onClickDivDate(e);
+                }
+            },
+            //点击日期选择
+            _onClickDivDate:function(e){
+                var self=this;
+                var txtDate=e.target.querySelector("."+self.txtDateClass);//文本框
+
+                var defaults=[];
+                if(txtDate.value!=""){
+                    var split=txtDate.value.split(" ");
+                    var split1=split[0].split("-");
+                    var split2=split[1].split(":");
+                    defaults[0]=split1[0];
+                    defaults[1]=split1[1];
+                    defaults[2]=split1[2];
+                    defaults[3]=split2[0];
+                    defaults[4]=split2[1];
+                }else{
+                    var date=this.calendarUtil.ceilMinute();
+                    console.log(date.getMinutes());
+                    defaults[0]=date.getFullYear();
+                    defaults[1]=date.getMonth()+1;
+                    defaults[2]=date.getDate();
+                    defaults[3]=date.getHours();
+                    defaults[4]=date.getMinutes();
+                }
+                this._newSpDateTime(defaults,txtDate);
+                setTimeout(function(){
+                    self.spDateTime.show();
+                },10);
+            },
+            _onClickSubmit:function(){
+                var date=new Date();
+                for(var i=0;i<this.dateStarts.length;i++){
+                    var startDate=new Date(this.dateStarts[i].value).setSeconds(0,0);
+                    var endDate=new Date(this.dateEnds[i].value).setSeconds(0,0);
+                    if(startDate >= endDate){
+                        this.toast.setText("开始时间不能晚于结束时间");
+                        this.toast.show();
+                        return;
+                    }
+                }
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

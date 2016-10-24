@@ -110,7 +110,6 @@
 	    if(s.params.daysData){
 	    	s.days=s.params.daysData;
 	    }else{
-	    	console.log(1);
 	    	for(var d=1;d<=currentMaxday;d++){
 	    		var tempD=d<10?"0"+d:d;
 		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
