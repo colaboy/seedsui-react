@@ -16,22 +16,34 @@
     </header>
     <article>
         <ul class="grid grid-bordered" data-col="4">
-            <li class="box box-center" style="padding: 16px 0">
-                <div id="ID-ChartBegin" style="width: 50px;height:50px;"></div>
+            <li style="padding: 16px 0;">
+                <div class="SID-ChartBegin" style="width: 50px;height:50px;margin:0 auto;"></div>
             </li>
-            <li class="box box-center" style="padding: 16px 0">
-                <div id="ID-ChartReady" style="width: 48px;height:48px;"></div>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartReady" style="width: 50px;height:50px;margin:0 auto;"></div>
             </li>
-            <li class="box box-center" style="padding: 16px 0">
-                <div id="ID-ChartFinish" style="width: 48px;height:48px;"></div>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartFinish" style="width: 50px;height:50px;margin:0 auto;"></div>
             </li>
-            <li class="box box-center" style="padding: 16px 0">
-                <div id="ID-ChartCancel" style="width: 48px;height:48px;"></div>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartCancel" style="width: 50px;height:50px;margin:0 auto;"></div>
+            </li>
+            <li style="padding: 16px 0;">
+                <div class="SID-ChartBegin" style="width: 50px;height:50px;margin:0 auto;"></div>
+            </li>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartReady" style="width: 50px;height:50px;margin:0 auto;"></div>
+            </li>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartFinish" style="width: 50px;height:50px;margin:0 auto;"></div>
+            </li>
+            <li style="padding: 16px 0">
+                <div class="SID-ChartCancel" style="width: 50px;height:50px;margin:0 auto;"></div>
             </li>
         </ul>
     </article>
 	<script src="../scripts/lib/seedsui/seedsui.min.js"></script>
-	<script src="../scripts/lib/echarts/echarts.simple.min.js"></script>
+    <script src="../scripts/lib/echarts/echarts.simple.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script>
@@ -41,12 +53,12 @@
               ===========================*/
             initialize:function(){
                 /*DOM*/
-
+                
                 /*Plugin*/
-                this.chartBegin={},this.chartBeginId="ID-ChartBegin";
-                this.chartReady={},this.chartReadyId="ID-ChartReady";
-                this.chartFinish={},this.chartFinishId="ID-ChartFinish";
-                this.chartCancel={},this.chartCancelId="ID-ChartCancel";
+                this.chartBegins=document.querySelectorAll(".SID-ChartBegin");
+                this.chartReadys=document.querySelectorAll(".SID-ChartReady");
+                this.chartFinishs=document.querySelectorAll(".SID-ChartFinish");
+                this.chartCancels=document.querySelectorAll(".SID-ChartCancel");
                 /*Data*/
 
                 /*Render*/
@@ -63,6 +75,9 @@
               ===========================*/
             _update:function(){
             },
+            /*=========================
+              Plugin
+              ===========================*/
             _getChartOption:function(data){
                 return {
                     series: [
@@ -84,92 +99,89 @@
                     ]
                 };
             },
-            /*=========================
-              Plugin
-              ===========================*/
             _initChartBegin:function(){
-                this.chartBegin = echarts.init(document.getElementById(this.chartBeginId));
-
-                var data=[//各项数据
-                    {name:'进行中', value:80,itemStyle : {
-                        normal : {
-                            color: '#01cd78',
-                            label : {show : true}
-                        }
-                    }},
-                    {name:'剩余部分', value:20, itemStyle : {
-                        normal : {
-                            color: '#c7ffe8'
-                        }
-                    }},
-                ];
-
-                var chartOption = this._getChartOption(data);
-
-                this.chartBegin.setOption(chartOption);
+                if(this.chartBegins.length<=0)return;
+                for(var i=0,div;div=this.chartBegins[i++];){
+                    var chart = echarts.init(div);
+                    var data=[//各项数据
+                        {name:'进行中', value:80,itemStyle : {
+                            normal : {
+                                color: '#01cd78',
+                                label : {show : true}
+                            }
+                        }},
+                        {name:'剩余部分', value:20, itemStyle : {
+                            normal : {
+                                color: '#c7ffe8'
+                            }
+                        }},
+                    ];
+                    var chartOption = this._getChartOption(data);
+                    chart.setOption(chartOption);
+                }
             },
             _initChartReady:function(){
-                this.chartReady = echarts.init(document.getElementById(this.chartReadyId));
-
-                var data=[//各项数据
-                    {name:'准备中', value:20,itemStyle : {
-                        normal : {
-                            color: '#ffa274',
-                            label : {show : true}
-                        }
-                    }},
-                    {name:'剩余部分', value:80, itemStyle : {
-                        normal : {
-                            color: '#ffdbcd'
-                        }
-                    }},
-                ];
-
-                var chartOption = this._getChartOption(data);
-
-                this.chartReady.setOption(chartOption);
+                if(this.chartReadys.length<=0)return;
+                for(var i=0,div;div=this.chartReadys[i++];){
+                    var chart = echarts.init(div);
+                    var data=[//各项数据
+                        {name:'准备中', value:20,itemStyle : {
+                            normal : {
+                                color: '#ffa274',
+                                label : {show : true}
+                            }
+                        }},
+                        {name:'剩余部分', value:80, itemStyle : {
+                            normal : {
+                                color: '#ffdbcd'
+                            }
+                        }},
+                    ];
+                    var chartOption = this._getChartOption(data);
+                    chart.setOption(chartOption);
+                }
             },
             _initChartFinish:function(){
-                this.chartFinish = echarts.init(document.getElementById(this.chartFinishId));
-
-                var data=[//各项数据
-                    {name:'已结束', value:100,itemStyle : {
-                        normal : {
-                            color: '#ff7664',
-                            label : {show : true}
-                        }
-                    }},
-                    {name:'剩余部分', value:0, itemStyle : {
-                        normal : {
-                            color: '#ffbab1'
-                        }
-                    }},
-                ];
-
-                var chartOption = this._getChartOption(data);
-
-                this.chartFinish.setOption(chartOption);
+                if(this.chartFinishs.length<=0)return;
+                for(var i=0,div;div=this.chartFinishs[i++];){
+                    var chart = echarts.init(div);
+                    var data=[//各项数据
+                        {name:'已结束', value:100,itemStyle : {
+                            normal : {
+                                color: '#ff7664',
+                                label : {show : true}
+                            }
+                        }},
+                        {name:'剩余部分', value:0, itemStyle : {
+                            normal : {
+                                color: '#ffbab1'
+                            }
+                        }},
+                    ];
+                    var chartOption = this._getChartOption(data);
+                    chart.setOption(chartOption);
+                }
             },
             _initChartCancel:function(){
-                this.chartCancel = echarts.init(document.getElementById(this.chartCancelId));
-
-                var data=[//各项数据
-                    {name:'已取消', value:100,itemStyle : {
-                        normal : {
-                            color: '#e0e0e0',
-                            label : {show : true}
-                        }
-                    }},
-                    {name:'剩余部分', value:0, itemStyle : {
-                        normal : {
-                            color: '#e0e0e0'
-                        }
-                    }},
-                ];
-
-                var chartOption = this._getChartOption(data);
-
-                this.chartCancel.setOption(chartOption);
+                if(this.chartCancels.length<=0)return;
+                for(var i=0,div;div=this.chartCancels[i++];){
+                    var chart = echarts.init(div);
+                    var data=[//各项数据
+                        {name:'已取消', value:100,itemStyle : {
+                            normal : {
+                                color: '#e0e0e0',
+                                label : {show : true}
+                            }
+                        }},
+                        {name:'剩余部分', value:0, itemStyle : {
+                            normal : {
+                                color: '#e0e0e0'
+                            }
+                        }},
+                    ];
+                    var chartOption = this._getChartOption(data);
+                    chart.setOption(chartOption);
+                }
             },
             _initPlugin:function(){
                 this._initChartBegin();

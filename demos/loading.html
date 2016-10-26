@@ -31,33 +31,48 @@
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
-		var view={
+        var view={
             /*=========================
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
+                /*DOM*/
+
+                /*Plugin*/
                 this.loading;
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
               ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
             _initLoading:function(){
-            	var self=this;
-            	this.loading=new Loading();
-            	this.loading.show();
-            	/*this.loading=new Loading({//第二种方法:默认创建好DOM更快
-					loadContainer:"#ID-LoadingBox",
-					mask:"#ID-LoadingMask"
-				});*/
-				setTimeout(function(){
-					self.loading.hide();
-				},1000);
+                var self=this;
+                this.loading=new Loading();
+                this.loading.show();
+                /*this.loading=new Loading({//第二种方法:默认创建好DOM更快
+                    loadContainer:"#ID-LoadingBox",
+                    mask:"#ID-LoadingMask"
+                });*/
+                /*setTimeout(function(){
+                    self.loading.hide();
+                },1000);*/
             },
             _initPlugin:function(){
-            	this._initLoading();
+                this._initLoading();
             },
             /*=========================
               Events
@@ -68,25 +83,9 @@
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
 		//定义exmobi返回
