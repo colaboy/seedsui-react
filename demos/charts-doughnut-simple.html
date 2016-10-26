@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>charts-doughnut-simple</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+<body>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>
+            <h1>简单环形图</h1>
+        </div>
+    </header>
+    <article>
+        <ul class="grid grid-bordered" data-col="4">
+            <li class="box box-center" style="padding: 16px 0">
+                <div id="ID-ChartBegin" style="width: 50px;height:50px;"></div>
+            </li>
+            <li class="box box-center" style="padding: 16px 0">
+                <div id="ID-ChartReady" style="width: 48px;height:48px;"></div>
+            </li>
+            <li class="box box-center" style="padding: 16px 0">
+                <div id="ID-ChartFinish" style="width: 48px;height:48px;"></div>
+            </li>
+            <li class="box box-center" style="padding: 16px 0">
+                <div id="ID-ChartCancel" style="width: 48px;height:48px;"></div>
+            </li>
+        </ul>
+    </article>
+	<script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+	<script src="../scripts/lib/echarts/echarts.simple.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*DOM*/
+
+                /*Plugin*/
+                this.chartBegin={},this.chartBeginId="ID-ChartBegin";
+                this.chartReady={},this.chartReadyId="ID-ChartReady";
+                this.chartFinish={},this.chartFinishId="ID-ChartFinish";
+                this.chartCancel={},this.chartCancelId="ID-ChartCancel";
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _update:function(){
+            },
+            _getChartOption:function(data){
+                return {
+                    series: [
+                        {
+                            type:'pie',
+                            radius: ['88%', '100%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                normal: {//等同于data各项数据中的itemStyle.normal.label(文字样式全书设置)
+                                    show: false,
+                                    position: 'center',
+                                    textStyle:{
+                                        fontSize:10
+                                    }
+                                }
+                            },
+                            data:data
+                        }
+                    ]
+                };
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initChartBegin:function(){
+                this.chartBegin = echarts.init(document.getElementById(this.chartBeginId));
+
+                var data=[//各项数据
+                    {name:'进行中', value:80,itemStyle : {
+                        normal : {
+                            color: '#01cd78',
+                            label : {show : true}
+                        }
+                    }},
+                    {name:'剩余部分', value:20, itemStyle : {
+                        normal : {
+                            color: '#c7ffe8'
+                        }
+                    }},
+                ];
+
+                var chartOption = this._getChartOption(data);
+
+                this.chartBegin.setOption(chartOption);
+            },
+            _initChartReady:function(){
+                this.chartReady = echarts.init(document.getElementById(this.chartReadyId));
+
+                var data=[//各项数据
+                    {name:'准备中', value:20,itemStyle : {
+                        normal : {
+                            color: '#ffa274',
+                            label : {show : true}
+                        }
+                    }},
+                    {name:'剩余部分', value:80, itemStyle : {
+                        normal : {
+                            color: '#ffdbcd'
+                        }
+                    }},
+                ];
+
+                var chartOption = this._getChartOption(data);
+
+                this.chartReady.setOption(chartOption);
+            },
+            _initChartFinish:function(){
+                this.chartFinish = echarts.init(document.getElementById(this.chartFinishId));
+
+                var data=[//各项数据
+                    {name:'已结束', value:100,itemStyle : {
+                        normal : {
+                            color: '#ff7664',
+                            label : {show : true}
+                        }
+                    }},
+                    {name:'剩余部分', value:0, itemStyle : {
+                        normal : {
+                            color: '#ffbab1'
+                        }
+                    }},
+                ];
+
+                var chartOption = this._getChartOption(data);
+
+                this.chartFinish.setOption(chartOption);
+            },
+            _initChartCancel:function(){
+                this.chartCancel = echarts.init(document.getElementById(this.chartCancelId));
+
+                var data=[//各项数据
+                    {name:'已取消', value:100,itemStyle : {
+                        normal : {
+                            color: '#e0e0e0',
+                            label : {show : true}
+                        }
+                    }},
+                    {name:'剩余部分', value:0, itemStyle : {
+                        normal : {
+                            color: '#e0e0e0'
+                        }
+                    }},
+                ];
+
+                var chartOption = this._getChartOption(data);
+
+                this.chartCancel.setOption(chartOption);
+            },
+            _initPlugin:function(){
+                this._initChartBegin();
+                this._initChartReady();
+                this._initChartFinish();
+                this._initChartCancel();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

@@ -27,16 +27,31 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
-                this.chartDoughnutData,this.chartDoughnut={},this.chartDoughnutId="ID-ChartDoughnut";
+                /*DOM*/
+
+                /*Plugin*/
+                this.chartDoughnut={},this.chartDoughnutId="ID-ChartDoughnut";
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
               ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
             _initChartDoughnut:function(){
-            	this.chartDoughnut = echarts.init(document.getElementById(this.chartDoughnutId));
+                this.chartDoughnut = echarts.init(document.getElementById(this.chartDoughnutId));
                 var labelTop = {
                     normal : {
                         label : {
@@ -88,7 +103,7 @@
                     centerY.push(100/3*j-(100/3/2)+"%");
                 }
                 var pieColors=['#53c6fd','#ffae02','#3ae3ea','#ff6f36','#cf7af3','#4cd32e','#4587f7','#00c2eb','#ff618f','#21d9a1'];//饼颜色
-                this.chartDoughnutData = {
+                var chartOption = {
                     series : [
                         {
                             type : 'pie',
@@ -189,13 +204,10 @@
                         },
                     ]
                 };
-                this.chartDoughnut.setOption(this.chartDoughnutData);
+                this.chartDoughnut.setOption(chartOption);
             },
-            /*=========================
-              Plugin
-              ===========================*/
             _initPlugin:function(){
-            	this._initChartDoughnut();
+                this._initChartDoughnut();
             },
             /*=========================
               Events
@@ -206,34 +218,17 @@
                     self._onClickChartDoughnut(e);
                 });
             },
-            _onClickChartDoughnut:function(e){
-                console.log(e);
-            },
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
-            }
+            _onClickChartDoughnut:function(e){
+                console.log(e);
+            },
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
-
         //定义exmobi返回
         function back(){history.go(-1);}
     </script>
