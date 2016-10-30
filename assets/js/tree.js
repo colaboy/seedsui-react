@@ -9,14 +9,12 @@ window.Tree=function(container,params){
         selectedContainerActiveClass:"active",
         barButtonClass:"tree-bar-button",
         removeButtonClass:"tree-btnremove",
+        removeButtonIconClass:"icon-rdoclose-fill",
         addButtonClass:"tree-btnadd",
         extandClass:"extand",
         collapseClass:"collapse",
         treeClass:"tree",
-        liconClass:"tree-licon",
-        riconClass:"tree-ricon",
-        ticonClass:"tree-ticon",
-        rightClass:"tree-right",
+        iconClass:"tree-icon",
         titleClass:"tree-title",
         dataId:"data-id",
         dataPrevId:"data-previd",
@@ -181,7 +179,7 @@ window.Tree=function(container,params){
         option.setAttribute(s.params.dataId,id);
         if(prevId)option.setAttribute(s.params.dataPrevId,prevId);
         option.setAttribute(s.params.dataName,name);
-        var optionHTML='<label>'+name+'</label><a class="'+s.params.removeButtonClass+'"></a>';
+        var optionHTML='<label>'+name+'</label><a class="'+s.params.removeButtonClass+' '+s.params.removeButtonIconClass+'"></a>';
         option.innerHTML=optionHTML;
         return option;
     }
@@ -240,10 +238,7 @@ window.Tree=function(container,params){
         if(s.target.classList.contains(s.params.lineClass)){//点击二级
             s.targetLine=s.target;
             s.targetLi=s.target.parentNode;
-        }else if(s.target.classList.contains(s.params.liconClass)||
-        s.target.classList.contains(s.params.riconClass)||
-        s.target.classList.contains(s.params.ticonClass)||
-        s.target.classList.contains(s.params.rightClass)||
+        }else if(s.target.classList.contains(s.params.iconClass)||
         s.target.classList.contains(s.params.titleClass)){//点击三级
             s.targetLine=s.target.parentNode;
             s.targetLi=s.target.parentNode.parentNode;

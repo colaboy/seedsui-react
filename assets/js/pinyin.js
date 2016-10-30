@@ -65,10 +65,20 @@
 		"w":"#cf7af3",
 		"x":"#cf7af3",
 		"y":"#cf7af3",
-		"z":"#4cd32e"
+		"z":"#4cd32e",
+		"0":"#52c7fe",
+		"1":"#52c7fe",
+		"2":"#52c7fe",
+		"3":"#52c7fe",
+		"4":"#52c7fe",
+		"5":"#ffaf01",
+		"6":"#ffaf01",
+		"7":"#ffaf01",
+		"8":"#ffaf01",
+		"9":"#ffaf01"
 	};
 	String.prototype.toColor=function(){
-		if(!/^[A-Za-z]+$/.test(this))return;
+		if(!/^[A-Za-z0-9]+$/.test(this))return;
 		if(this.length>1)return colors[this.substring(0,1).toLowerCase()];
 		return colors[this.toLowerCase()];
 	}

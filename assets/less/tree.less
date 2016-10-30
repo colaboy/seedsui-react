@@ -1,73 +1,19 @@
 /*----------------tree.less(start)--------------*/
 .tree-box{
-	padding:0 0 0 32px;
 	background-color:white;
 }
 .tree{
 	box-sizing:border-box;
 }
 .tree ul{
-	padding-left:20px;
-	box-sizing:border-box;
-}
-.tree ul{
 	display:none;
+	padding-left:10px;
 }
-.tree-licon,.tree-ticon,.tree-ricon{
-	font-style: normal;
-}
-.tree-licon,.tree-ticon{
-	font-size:16px;
-}
-/*标题*/
-.tree-title{
-	padding:15px 0 15px 8px;
-	color:@body-color;
-}
-/*标题图标*/
-.tree-ticon{
-    display:inline-block;
-    vertical-align:middle;
-    width:32px;
-    height:32px;
-    border-radius:100%;
-    text-align:center;
-    line-height:32px;
-    background-color:@2-bg;
-    color:white;
-}
-.tree-ticon.farleft{
-	margin-left:-28px;
-}
-/*左侧图标*/
-.tree-licon{
-	position:absolute;
-	top:50%;
-	-webkit-transform:translateY(-50%);
-	left:-25px;
-	width:32px;
-	height:32px;
-	font-size: 16px;
-	background-size:cover;
-	font-style: normal;
-
-	display: -webkit-box;
-	-webkit-box-pack:center;
-	-webkit-box-align:center;
-	display:-webkit-flex;
-	-webkit-justify-content:center;
-	-webkit-align-items:center;
-}
-.tree-licon,.tree-ricon,.tree-right{
-    color:@placeholder-color;
-}
-/*===========作用行===========*/
+/*一行*/
 .tree-line{
+	display: -webkit-box;
 	position:relative;
-	border-style:solid;
-	border-width:0 0 1px 0;
 	min-width: 200px;
-	border-color:@border;
 }
 .tree-line:active{
 	background-color:@border;
@@ -75,33 +21,62 @@
 .tree-line.extand+ul{
 	display:block;
 }
+/*一行中的元素*/
+.tree-icon{
+	display: -webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+	padding: 0 12px;
+	color:@placeholder-color;
+}
+.tree-icon+.tree-icon{
+	padding-left: 0;
+}
+.tree-photo{
+	display: -webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+    width:42px;
+    height:42px;
+    border-radius:100%;
+    background-color:@2-bg;
+    color:white;
+    pointer-events: none;
+}
+.tree-title{
+	display: -webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-flex:1;
+	height: 50px;
+}
+.tree-title,.tree-title~.tree-icon{
+	border-style:solid;
+	border-width:0 0 1px 0;
+	border-color:@border;
+}
 .tree-btnadd{
 	font-size: 24px;
 }
-.tree-line.active .tree-btnadd,.tree-line.active+ul .tree-btnadd{
+.tree-line.active,.tree-line.active+ul .tree-line{
+	color: @primary-bg;
+}
+.tree-line.active .tree-photo,.tree-line.active+ul .tree-photo{
+	background-color: @primary-bg;
+}
+.tree-line.active .tree-btnadd:before,.tree-line.active+ul .tree-btnadd:before{
 	display:none;
 }
-.tree-line.extand>.tree-licon.icon-arrowright:before{
-	font-family: "iconfont";
-	content: "\e9ed";
+/*左侧小箭头*/
+.tree-icon-arrow{
+	width: 16px;
+	height: 16px;
+	background-image:url(img/arrow.png);
+	background-size:100% auto;
+	background-position:center 34%;
+	pointer-events: none;
 }
-/*右图标*/
-.tree-licon+.tree-ticon{
-	margin-right:-4px;
-	margin-left:4px;
-}
-.tree-ricon,.tree-right{
-	position:absolute;
-	right:12px;
-	top:50%;
-	-webkit-transform:translateY(-50%);
-}
-/*树标题-选中效果*/
-.tree-line.active .tree-title,.tree-line.active+ul .tree-title{
-    color:@primary-bg;
-}
-.tree-line.active .tree-ticon,.tree-line.active+ul .tree-ticon{
-	background-color:@primary-bg !important;
+.tree-line.extand .tree-icon-arrow{
+	background-position: center 66%;
 }
 /*===========树bar===========*/
 .tree-bar{
@@ -138,10 +113,6 @@
 	vertical-align:middle;
 	margin-left:4px;
 
-	color:@placeholder-color;
-}
-.tree-btnremove:before {
-	font-family:'iconfont';
-    content: "\e9da";
+	color:@tip-bg;
 }
 /*----------------tree.less(end)--------------*/
