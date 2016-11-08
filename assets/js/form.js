@@ -1,4 +1,4 @@
-//Form(require toast.js)
+//Form(require Prompt.js)
 (function(window,document,undefined){
 	window.Form=function(container,params){
 		/*================
@@ -168,8 +168,8 @@
 			return errorMsg;
 		};
 		/*表单验证*/
-		s.toast=new Toast("格式不正确",{
-			"parent":s.params.toastParent
+		s.prompt=new Prompt("格式不正确",{
+			"parent":s.params.parent
 		});
 		s.validate=function(){
 			for(var i=0,field;field=s.formElements[i++];){
@@ -180,11 +180,11 @@
 				if(errormsg){
 					s.field=field;
 					s.errormsg=errormsg;
-					s.toast.setText(errormsg);
+					s.prompt.setText(errormsg);
 					if(s.params.onFail){
 						s.params.onFail(s);
 					}else{
-						s.toast.show();
+						//s.prompt.show();
 					}
 					//field.focus();
 					return false;

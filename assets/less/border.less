@@ -1,14 +1,63 @@
 /*----------------border.less(start)--------------*/
-.underline{
-	border-style:solid;
-	border-width:0 0 1px 0;
+.underline:after,.topline:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: auto;
+	height: 1px;
+	width: 100%;
+	display: block;
+	z-index: 15;
+	-webkit-transform-origin: 50% 100%;
+	background-color: @border;
+}
+.underline:after {
+	top: auto;
+	bottom: 0;
+}
+.topline:after {
+	top: 0;
+	bottom: auto;
+}
+.leftline:after,.rightline:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: auto;
+	width: 1px;
+	height: 100%;
+	display: block;
+	z-index: 15;
+	-webkit-transform-origin: 100% 50%;
+	background-color: @border;
+}
+.leftline:after {
+	left: 0;
+	right: auto;
+}
+.rightline:after {
+	left: auto;
+	right: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.underline:after,.topline:after {
+		-webkit-transform: scaleY(0.5);
+	}
+	.leftline:after,.rightline:after {
+		-webkit-transform: scaleX(0.5);
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+	.underline:after,.topline:after {
+		-webkit-transform: scaleY(0.33);
+	}
+	.leftline:after,.rightline:after {
+		-webkit-transform: scaleX(0.33);
+	}
 }
 .bordered{
 	border-style:solid;
 	border-width:1px;
-}
-.underline,.bordered{
-	border-color:@border;
 }
 .dotted{
 	border-style:dotted;

@@ -11,6 +11,7 @@
 			slidesPerView:1,
 			threshold:"50",
 			duration:"300",
+			height:0,
 
 			//loop
 			loop:false,
@@ -126,12 +127,19 @@
 			});
 
 			//Slide height
-			s.height=s.container.clientHeight?s.container.clientHeight:s.wrapper.clientHeight;
+			if(s.params.height){
+				s.height=s.params.height;
+			}else{
+				s.height=s.container.clientHeight?s.container.clientHeight+"px":s.wrapper.clientHeight+"px";
+			}
 			[].slice.call(s.slides).forEach(function(n,i,a){
-				n.style.height=s.height+"px";
+				n.style.height=s.height;
 			});
 
-			if(s.height)s.container.style.height=s.height+"px";
+			if(s.height){
+				s.container.style.height=s.height;
+				s.wrapper.style.height=s.height;
+			}
 
 			//更新active index
 			s.updateClasses();

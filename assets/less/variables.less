@@ -1,59 +1,43 @@
- @primary-bg:#18b2ed;
+ @primary-bg:#20aeff;
  @primary-active-bg:fade(@primary-bg, 50%);
  @primary-color:white;
  @primary-active-color:fade(@primary-color, 30%);
  @mask-bg:rgba(0,0,0,.4);
 
- @body-bg:#f4f4f4;
+ @body-bg:#eaeaea;
  @body-color:#333;
- @border:#e6e6e6;
  @label-color:#666;
- @placeholder-color:#aaa;
- @link-color:#18b2ed;
+ @placeholder-color:#cccccc;
+ @link:@primary-bg;
  @link-active-property:opacity;
  @link-active-value:0.5;
+ @border:#d1d1d1;
 
 /*控件*/
  @input-bg:white;
 
- @titlebar-bg:#f9f9f9;
- @titlebar-h1-color:#333;
- @titlebar-color:@primary-bg;
- @titlebar-active-color:fade(@titlebar-color,50%);
- @titlebar-border:@border;
- @titlebar-reverse-bg:@primary-bg;
- @titlebar-reverse-h1-color:white;
- @titlebar-reverse-color:white;
- @titlebar-reverse-active-color:fade(@titlebar-reverse-color,50%);
- @titlebar-reverse-border:@primary-bg;
+ @bar-bg:#f9f9f9;
+ @bar-bg-active:#f9f9f9;
+ @bar-border:@border;
+ @bar-border-active:@primary-bg;
+ @bar-link:@primary-bg;
+ @bar-link-active:fade(@bar-link,50%);
+ @bar-color:#333;
+ @bar-color-active:@primary-bg;
 
- @tabbar-bg:#f8f8f8;
- @tabbar-border:@border;
- @tabbar-color:#888;
- @tabbar-active-color:@primary-bg;
- @tabbar-active-bg:#f8f8f8;
- @tabbar-active-border:@primary-bg;
+ @bar-reverse-bg:@primary-bg;
+ @bar-reverse-bg-active:@primary-bg;
+ @bar-reverse-border:@primary-bg;
+ @bar-reverse-border-active:white;
+ @bar-reverse-link:white;
+ @bar-reverse-link-active:fade(@bar-reverse-link,50%);
+ @bar-reverse-color:fade(white,70%);
+ @bar-reverse-color-active:white;
 
- @tabbar-reverse-bg:@primary-bg;
  @tabbar-reverse-border:white;
- @tabbar-reverse-color:white;
  @tabbar-reverse-active-color:@primary-bg;
- @tabbar-reverse-active-bg:white;
+ 
  @tabbar-reverse-active-border:white;
-
- @menubar-bg:#f8f8f8;
- @menubar-border:@border;
- @menubar-color:#888;
- @menubar-active-color:@primary-bg;
- @menubar-active-bg:#f8f8f8;
- @menubar-active-border:@border;
-
- @menubar-reverse-bg:@primary-bg;
- @menubar-reverse-border:@primary-bg;
- @menubar-reverse-color:fade(white,60%);
- @menubar-reverse-active-color:white;
- @menubar-reverse-active-bg:@primary-bg;
- @menubar-reverse-active-border:@primary-bg;
  
  @button-bg:@primary-bg;
  @button-color:white;
@@ -64,14 +48,14 @@
  @aside-bg:@body-bg;
 
  @list-bg:white;
- @list-active-bg:#f4f4f4;
+ @list-active-bg:#eaeaea;
 
  @chat-odd-bg:#ddd;
  @chat-even-bg:#b8daff;
 
  @toast-bg:rgba(0,0,0,.6);
 
- @table-color:#888;
+ @table-color:@body-color;
 
  @progress-bg:#ccc;
  @progress-color:@primary-bg;
@@ -79,11 +63,11 @@
  @photo-bg:#ddd;
  @photo-color:#ccc;
 
- @calendar-weeks-color:#aaa;
+ @calendar-weeks-color:@label-color;
  @calendar-arrow-color:@body-color;
  @calendar-current-color:@body-color;
- @calendar-notcurrent-color:#ccc;
- @calendar-today-border:#b2b2b2;
+ @calendar-notcurrent-color:@placeholder-color;
+ @calendar-today-border:@border;
  @calendar-active-color:@primary-color;
  @calendar-active-border:@primary-bg;
  @calendar-active-bg:@primary-bg;
@@ -95,7 +79,6 @@
  @success-bg:#4DDB63;
  @info-bg:#5bc0de;
  @warn-bg:#f4984e;
- @sliver-bg:#ececec;
  @tip-bg:#fc4349;
  @tip-color:white;
 

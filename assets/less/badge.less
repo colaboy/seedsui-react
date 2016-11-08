@@ -1,35 +1,15 @@
 /*--------------------badge.less(start)----------------------*/
-.badge,.tip{
+.badge,.tip,.close,.dot{
+	position:relative;
 	display: inline-block;
 	vertical-align: middle;
 	text-align: center;
-
-	color:@tip-color;
-	background-color:@tip-bg;
-}
-.badge,.tip,.close{
-	position:relative;
 	overflow: hidden;
     text-overflow: ellipsis;
 	border-radius:100%;
-}
-/*小点点*/
-.dot{
-    display:inline-block;
-    border-radius:100%;
-    height:10px;
-    width:10px;
-    vertical-align:middle;
-
-    background-color:@primary-bg;
-}
-.badge,.tip,.close{
 	font-size:12px;
 }
-.tip,.close{
-	width:24px;
-	height:24px;
-}
+/*徽章*/
 .badge{
 	padding:0 4px;
 	height:20px;
@@ -37,11 +17,24 @@
 	text-align:center;
 	border-radius:20px;
 	min-width:24px;
+
+	color:@tip-color;
+	background-color:@tip-bg;
 }
+/*圆形徽章*/
 .tip{
+	width:24px;
+	height:24px;
 	line-height:24px;
+
+	color:@tip-color;
+	background-color:@tip-bg;
 }
+/*关闭*/
 .close{
+	width:24px;
+	height:24px;
+
 	display:-webkit-inline-box;
     -webkit-box-align:center;
     -webkit-box-pack:center;
@@ -56,10 +49,26 @@
 	color:white;
 	border-color: white;
 	background-color: rgba(0,0,0,.7);
+
+	i,.icon{
+		display:block;
+	}
 }
-.close i,.close .icon{
-	display:block;
+/*小点点*/
+.dot{
+    height:10px;
+    width:10px;
+
+    background-color:@primary-bg;
 }
+/*小竖条*/
+.peg {
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background-color: @primary-bg;
+}
+/*标签贴*/
 .sticker{
 	position:absolute;
 	width:0px;
@@ -69,44 +78,44 @@
 
 	color:@tip-color;
 	border-color:@tip-bg;
-}
-.sticker span{
-	position:absolute;
-	font-size:12px;
-	padding:0 2px;
-}
-.sticker.top,.sticker.top span{
-	top:0;
-}
-.sticker.top{
-	border-top-width:32px;
-}
-.sticker.top span{
-	min-width: 30px;
-	margin-top:-30px;
-}
-.sticker.left,.sticker.left span{
-	left:0;
-}
-.sticker.left{
-	border-right-width:56px;
-	border-right-color:transparent;
-}
-.sticker.right,.sticker.right span{
-	right:0;
-	text-align: right;
-}
-.sticker.right{
-	border-left-width:56px;
-	border-left-color:transparent;
-}
-.sticker.bottom,.sticker.bottom span{
-	bottom:0;
-}
-.sticker.bottom{
-	border-bottom-width:32px;
-}
-.sticker.bottom span{
-	margin-bottom:-30px;
+	span{
+		position:absolute;
+		font-size:12px;
+		padding:0 2px;
+	}
+	&.top,&.top span{
+		top:0;
+	}
+	&.top{
+		border-top-width:32px;
+	}
+	&.top span{
+		min-width: 30px;
+		margin-top:-30px;
+	}
+	&.left,&.left span{
+		left:0;
+	}
+	&.left{
+		border-right-width:56px;
+		border-right-color:transparent;
+	}
+	&.right,&.right span{
+		right:0;
+		text-align: right;
+	}
+	&.right{
+		border-left-width:56px;
+		border-left-color:transparent;
+	}
+	&.bottom,&.bottom span{
+		bottom:0;
+	}
+	&.bottom{
+		border-bottom-width:32px;
+	}
+	&.bottom span{
+		margin-bottom:-30px;
+	}
 }
 /*--------------------badge.less(start)----------------------*/

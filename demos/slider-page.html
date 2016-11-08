@@ -143,10 +143,11 @@
             _initSlider:function(){
                 var self=this;
                 this.carouselPage=new Slider("#ID-CarouselPage",{
-                    "onInit":function(e){
+                    //height:"100%",
+                    onInit:function(e){
                         //compatibleIosScroll(e);
                     },
-                    "onSlideChangeEnd":function(e){
+                    onSlideChangeEnd:function(e){
                         self._tabActive(e.index);
                         //compatibleIosScroll(e);
                     }

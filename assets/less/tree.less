@@ -55,14 +55,15 @@
 	border-color:@border;
 }
 .tree-btnadd{
+	color: @success-bg;
 	font-size: 24px;
 }
-.tree-line.active,.tree-line.active+ul .tree-line{
+/* .tree-line.active,.tree-line.active+ul .tree-line{
 	color: @primary-bg;
 }
 .tree-line.active .tree-photo,.tree-line.active+ul .tree-photo{
 	background-color: @primary-bg;
-}
+} */
 .tree-line.active .tree-btnadd:before,.tree-line.active+ul .tree-btnadd:before{
 	display:none;
 }
@@ -102,6 +103,7 @@
     margin:0 0 0 8px;
     display: inline-block;
     font-size: 13px;
+    border-radius: 4px;
     background-color:white;
 }
 .tree-bar-button:last-child{
