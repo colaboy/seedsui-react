@@ -1,13 +1,13 @@
  @primary-bg:#20aeff;
- @primary-active-bg:fade(@primary-bg, 50%);
+ @primary-bg-active:fade(@primary-bg, 50%);
  @primary-color:white;
- @primary-active-color:fade(@primary-color, 30%);
+ @primary-color-active:fade(@primary-color, 30%);
  @mask-bg:rgba(0,0,0,.4);
 
  @body-bg:#eaeaea;
  @body-color:#333;
- @label-color:#666;
- @placeholder-color:#cccccc;
+ @sub-color:#9e9e9e;
+ @placeholder-color:#ccc;
  @link:@primary-bg;
  @link-active-property:opacity;
  @link-active-value:0.5;
@@ -40,16 +40,12 @@
  @button-active-value:0.5;
  @button-tip-bg:rgba(0, 0, 0, .15);
 
+ @prompt-bg:rgba(0,0,0,.6);
  @toast-bg:rgba(0,0,0,.6);
 
  @photo-bg:#ddd;
- @photo-color:#ccc;
+ @photo-color:@placeholder-color;
 
- @calendar-weeks-color:@label-color;
- @calendar-arrow-color:@body-color;
- @calendar-current-color:@body-color;
- @calendar-notcurrent-color:@placeholder-color;
- @calendar-today-border:@border;
  @calendar-active-color:@primary-color;
  @calendar-active-border:@primary-bg;
  @calendar-active-bg:@primary-bg;

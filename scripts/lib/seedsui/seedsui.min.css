@@ -822,6 +822,7 @@ hr {
 /*----------------button.less(end)----------------*/
 /*----------------grid.less(start)--------------*/
 .grid {
+  position: relative;
   /*圆角*/
   /*边框*/
   /*间距控制*/
@@ -838,10 +839,6 @@ hr {
   text-align: center;
   padding: 2px;
   box-sizing: border-box;
-  /* display: -webkit-box;
-			    -webkit-box-orient: vertical;
-			    -webkit-box-align: center;
-			    -webkit-box-pack: center; */
   /*图标区域*/
   /*文字区域*/
 }
@@ -864,7 +861,7 @@ hr {
   box-sizing: border-box;
   /* font-size:12px; */
   min-height: 16px;
-  color: #666666;
+  color: #9e9e9e;
 }
 .grid li > a > img {
   max-width: 100%;
@@ -874,18 +871,81 @@ hr {
   border-radius: 8px;
 }
 .grid.grid-bordered {
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  border-color: #d1d1d1;
+  /* border-width:0 0 1px 0;
+		border-style:solid;
+		
+		border-color:@border; */
+}
+.grid.grid-bordered:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  height: 1px;
+  width: 100%;
+  display: block;
+  -webkit-transform-origin: 50% 100%;
+  background-color: #d1d1d1;
 }
 .grid.grid-bordered li {
-  border-style: solid;
-  border-width: 1px 1px 0 0;
-  border-color: inherit;
+  position: relative;
+  /* border-style:solid;
+			border-width:1px 1px 0 0;
+			border-color:inherit; */
+}
+.grid.grid-bordered li:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: auto;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  display: block;
+  -webkit-transform-origin: 100% 50%;
+  background-color: #d1d1d1;
+}
+.grid.grid-bordered li:after {
+  content: '';
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  height: 1px;
+  width: 100%;
+  display: block;
+  -webkit-transform-origin: 50% 100%;
+  background-color: #d1d1d1;
 }
 .grid.grid-bordered[data-rowspace="8"] li {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .grid.grid-bordered:before {
+    -webkit-transform: scaleY(0.5);
+  }
+  .grid.grid-bordered li:after {
+    -webkit-transform: scaleY(0.5);
+  }
+  .grid.grid-bordered li:before {
+    -webkit-transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .grid.grid-bordered:before {
+    -webkit-transform: scaleY(0.33);
+  }
+  .grid.grid-bordered li:after {
+    -webkit-transform: scaleY(0.33);
+  }
+  .grid.grid-bordered li:before {
+    -webkit-transform: scaleX(0.33);
+  }
 }
 .grid[data-rowspace="8"] li {
   padding-top: 8px;
@@ -1125,7 +1185,7 @@ hr {
   display: block;
   width: 30%;
   padding: 10px 8px;
-  color: #666666;
+  color: #9e9e9e;
 }
 .inputbox-right {
   -webkit-box-flex: 1.0;
@@ -5063,7 +5123,7 @@ ul.weather-otherday li {
 }
 /*周*/
 .calendar-weeks {
-  color: #666666;
+  color: #9e9e9e;
 }
 .calendar-weeks:after {
   content: '';
@@ -5722,8 +5782,11 @@ i.size80,
 /*----------------box.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
-.color-label {
-  color: #666666;
+.color-body {
+  color: #333333;
+}
+.color-sub {
+  color: #9e9e9e;
 }
 .color-primary {
   color: #20aeff;

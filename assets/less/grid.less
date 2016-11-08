@@ -1,5 +1,6 @@
 /*----------------grid.less(start)--------------*/
 .grid{
+	position: relative;
 	&:after{
 		display:table;
 		content:'';
@@ -12,10 +13,6 @@
 		text-align:center;
 		padding:2px;
 		box-sizing:border-box;
-		/* display: -webkit-box;
-			    -webkit-box-orient: vertical;
-			    -webkit-box-align: center;
-			    -webkit-box-pack: center; */
 		/*图标区域*/
 		&>a{
 			display:-webkit-box;
@@ -39,7 +36,7 @@
 		    /* font-size:12px; */
 		    min-height:16px;
 
-		    color:@label-color;
+		    color:@sub-color;
 		}
 		&>a>img{
 			max-width:100%;
@@ -52,18 +49,89 @@
 	}
 	/*边框*/
 	&.grid-bordered{
-		border-width:0 0 1px 0;
+		/* border-width:0 0 1px 0;
 		border-style:solid;
-
-		border-color:@border;
+		
+		border-color:@border; */
+		//上边线
+		&:before{
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: auto;
+			left: 0;
+			right: auto;
+			height: 1px;
+			width: 100%;
+			display: block;
+			-webkit-transform-origin: 50% 100%;
+			background-color: @border;
+		}
 		li{
-			border-style:solid;
+			position: relative;
+			/* border-style:solid;
 			border-width:1px 1px 0 0;
-			border-color:inherit;
+			border-color:inherit; */
+			//右边线
+			&:before{
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: auto;
+				left: auto;
+				right: 0;
+				width: 1px;
+				height: 100%;
+				display: block;
+				-webkit-transform-origin: 100% 50%;
+				background-color: @border;
+			}
+			//下边线
+			&:after{
+				content: '';
+				position: absolute;
+				top: auto;
+				bottom: 0;
+				left: 0;
+				right: auto;
+				height: 1px;
+				width: 100%;
+				display: block;
+				-webkit-transform-origin: 50% 100%;
+				background-color: @border;
+			}
 		}
 		&[data-rowspace="8"] li{
 			padding-top:8px;
 			padding-bottom:8px;
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+			//上边线
+			&:before {
+				-webkit-transform: scaleY(0.5);
+			}
+			//下边线
+			li:after {
+				-webkit-transform: scaleY(0.5);
+			}
+			//右边线
+			li:before {
+				-webkit-transform: scaleX(0.5);
+			}
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+			//上边线
+			&:before {
+				-webkit-transform: scaleY(0.33);
+			}
+			//下边线
+			li:after {
+				-webkit-transform: scaleY(0.33);
+			}
+			//右边线
+			li:before {
+				-webkit-transform: scaleX(0.33);
+			}
 		}
 	}
 	/*间距控制*/
