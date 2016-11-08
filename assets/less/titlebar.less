@@ -3,33 +3,69 @@
 	display:-webkit-box;
     -webkit-box-align:center;
 	min-height:44px;
-	border-bottom:1px solid;
 	box-sizing:border-box;
 
-	background-color:@bar-bg;
+	/* 
+	border-bottom:1px solid;
 	border-color:@bar-border;
+	*/
+	background-color:@bar-bg;
+	
+
+	//标题
+	h1{
+		font-size: 17px;
+		font-weight: normal;
+
+		color:@bar-color;
+		&:first-child{
+			margin-left:8px;
+		}
+		&:only-child{
+			margin-right:8px;
+		}
+	}
+
+	//底线
+	&:after{
+		content: '';
+		position: absolute;
+		top: auto;
+		bottom: 0;
+		left: 0;
+		right: auto;
+		height: 1px;
+		width: 100%;
+		display: block;
+		-webkit-transform-origin: 50% 100%;
+		background-color: @border;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		&:after {
+			-webkit-transform: scaleY(0.5);
+		}
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:after {
+			-webkit-transform: scaleY(0.33);
+		}
+	}
+
 }
+
+
+
+
 .titlebar,.titlebar-button,.titlebar h1{
 	position:relative;
 }
 .titlebar .icon+.icon{
 	margin-left: 0;
 }
-.titlebar h1{
-	font-size: 17px;
-	font-weight: normal;
-
-	color:@bar-color;
-}
 .titlebar h1,.titlebar>.inputbox{
 	-webkit-box-flex:1.0;
 }
-.titlebar h1:first-child{
-	margin-left:8px;
-}
-.titlebar h1:only-child{
-	margin-right:8px;
-}
+
 .titlebar-button{
 	max-height:32px;
 	margin:0 8px;

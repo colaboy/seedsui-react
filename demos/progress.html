@@ -21,65 +21,99 @@
 
     <!--主体-->
 	<article>
-        <div class="sliver">Progress Bar</div>
-        <div class="progress radius40 margin8">
-            <span class="progress-bar radius40" style="width: 35%"></span>
-            <span class="progress-text left">
-                <span class="counter" data-duration="1000" data-to="35">0</span>
-                <span>%</span>
-            </span>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">Progress Bar</p>
+            </div>
+            <div class="progressbox-content">
+                <div class="progress radius40">
+                    <span class="progress-bar theme-1 radius40" style="width: 35%"></span>
+                    <!-- <span class="progress-text left">
+                        <span class="counter" data-duration="1000" data-to="35">0</span>
+                        <span>%</span>
+                    </span> -->
+                </div>
+                <label>
+                    <span class="counter" data-duration="1000" data-to="35">0</span><span>%</span>
+                </label>
+            </div>
+
+            <div class="progressbox-content">
+                <div class="progress radius40">
+                    <span class="progress-bar theme-2 radius40" style="width: 25%"></span>
+                    <!-- <span class="progress-text center">
+                        <span class="counter" data-duration="1000" data-to="25">0</span>
+                        <span>%</span>
+                    </span> -->
+                </div>
+                <label>
+                    <span class="counter" data-duration="1000" data-to="25">0</span><span>%</span>
+                </label>
+            </div>
+
+            <div class="progressbox-content">
+                <div class="progress radius40">
+                    <span class="progress-bar theme-3 radius40" style="width: 45%"></span>
+                    <!-- <span class="progress-text right">
+                        <span class="counter" data-duration="1000" data-to="16">0</span>
+                        <span>/36</span>
+                    </span> -->
+                </div>
+                <label>
+                    <span class="counter" data-duration="1000" data-to="45">0</span><span>%</span>
+                </label>
+            </div>
+
+            <div class="progressbox-content">
+                <div class="progress radius40">
+                    <span class="progress-bar theme-4 radius40" style="width: 35%"></span>
+                </div>
+                <label>
+                    <span class="counter" data-duration="1000" data-to="35">0</span><span>%</span>
+                </label>
+            </div>
+
+            <div class="progressbox-content">
+                <div class="progress radius40">
+                    <span class="progress-bar theme-5 radius40" style="width: 45%"></span>
+                </div>
+                <label>
+                    <span class="counter" data-duration="1000" data-to="45">0</span><span>%</span>
+                </label>
+            </div>
         </div>
 
-        <div class="progress radius40 margin8">
-            <span class="progress-bar radius40" style="width: 25%"></span>
-            <span class="progress-text center">
-                <span class="counter" data-duration="1000" data-to="25">0</span>
-                <span>%</span>
-            </span>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">Progress 3D</p>
+            </div>
+            <div class="progress radius40 margin8">
+                <span class="progress-bar threed radius40" style="width: 25%"></span>
+            </div>
+
+            <div class="progress radius40 margin8">
+                <span class="progress-bar threed radius40" style="width: 35%"></span>
+            </div>
+            <div class="clearfix"></div>
         </div>
 
-        <div class="progress radius40 margin8">
-            <span class="progress-bar radius40" style="width: 45%"></span>
-            <span class="progress-text right">
-                <span class="counter" data-duration="1000" data-to="16">0</span>
-                <span>/36</span>
-            </span>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">Progress Striped</p>
+            </div>
+            <div class="progress radius40 margin8">
+                <span class="progress-bar striped radius40" style="width: 25%"></span>
+            </div>
+
+            <div class="progress radius40 margin8">
+                <span class="progress-bar striped animated radius40" style="width: 35%"></span>
+            </div>
+            <div class="clearfix"></div>
         </div>
 
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar radius40" style="width: 35%"></span>
-        </div>
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar radius40" style="width: 45%"></span>
-        </div>
-
-        <div class="sliver">Progress 3D</div>
-        <div class="progress radius40 margin8">
-            <span class="progress-bar threed radius40" style="width: 25%"></span>
-        </div>
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar threed radius40" style="width: 35%"></span>
-        </div>
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar threed radius40" style="width: 45%"></span>
-        </div>
-
-        <div class="sliver">Progress Striped (can animate stripe example 2)</div>
-        <div class="progress radius40 margin8">
-            <span class="progress-bar striped radius40" style="width: 25%"></span>
-        </div>
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar striped animated radius40" style="width: 35%"></span>
-        </div>
-
-        <div class="progress radius40 margin8">
-            <span class="progress-bar striped radius40" style="width: 45%"></span>
-        </div>
     </article>
 	
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>

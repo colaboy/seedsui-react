@@ -49,7 +49,10 @@
 		line-height:40px;
 		border-width:0px 0px 1px 0;
 	}
-	.tab:active,.tab.active{
+	.tab:active{
+		color:@bar-color-active;
+	}
+	.tab.active{
 		color:@bar-color-active;
 		border-color:@bar-border-active;
 		background-color:@bar-bg-active;
@@ -61,7 +64,10 @@
 		border-color:@bar-reverse-border;
 		background-color:@bar-reverse-bg;
 	}
-	.tab:active,.tab.active{
+	.tab:active{
+		color:@bar-reverse-color-active;
+	}
+	.tab.active{
 		color:@bar-reverse-color-active;
 		border-color:@bar-reverse-border-active;
 		background-color:@bar-reverse-bg-active;
@@ -100,7 +106,7 @@
 
 //单线形
 .tabbar-line{
-	.tab.active,.tab:active{
+	.tab.active{
 		border-width: 0px 0px 2px 0;
 	}
 }
@@ -228,9 +234,9 @@
 		line-height:13px;
 		margin:4px 0 6px 0;
 	}
-	.tab:active,.tab.active{
+	/* .tab:active,.tab.active{
 		color:@bar-color-active;
-	}
+	} */
 }
 .tabbar-footer.reverse{
 	.tab{
@@ -238,8 +244,8 @@
 		border-color:@bar-reverse-border;
 		background-color:@bar-reverse-bg;
 	}
-	.tab:active,.tab.active{
+	/* .tab:active,.tab.active{
 		color:@bar-reverse-color-active;
-	}
+	} */
 }
 /*----------------tabbar.less(end)--------------*/

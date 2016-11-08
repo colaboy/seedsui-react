@@ -1,14 +1,46 @@
 /*----------------group.less(end)--------------*/
 .group{
+	position: relative;
 	margin:8px 0;
+	background-color:white;
+	/* 
 	border-width:1px 0;
 	border-style:solid;
-	background-color:white;
 	border-color:@border;
 	&:after{
 		display:block;
 		clear:both;
 		content:"";
+	} */
+	//上下线
+	&:before,&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: auto;
+		height: 1px;
+		width: 100%;
+		display: block;
+		-webkit-transform-origin: 50% 100%;
+		background-color: @border;
+	}
+	&:before {
+		top: auto;
+		bottom: 0;
+	}
+	&:after {
+		top: 0;
+		bottom: auto;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		&:before,&:after {
+			-webkit-transform: scaleY(0.5);
+		}
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:before,&:after {
+			-webkit-transform: scaleY(0.33);
+		}
 	}
 }
 /*----------------group.less(end)--------------*/
