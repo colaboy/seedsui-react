@@ -17,7 +17,10 @@
         </div>
     </header>
     <article>
-        <p class="sliver">表单组件</p>
+        <div class="sliver underline">
+            <span class="peg"></span>
+            <p class="sliver-title">表单组件</p>
+        </div>
 
         <form class="inputbox margin8 radius20 overflow-hidden" data-input="clear">
             <i class="color-placeholder icon icon-search"></i>
@@ -221,107 +224,110 @@
             </div>
         </form>
 
-        <p class="sliver">分组布局</p>
-            <div class="group">
-                <div class="inputbox underline">
-                    <label class="inputbox-left">用户名</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="用户名" name="username"/>
-                    </div>
+        <div class="sliver underline">
+            <span class="peg"></span>
+            <p class="sliver-title">分组布局</p>
+        </div>
+        <div class="group">
+            <div class="inputbox underline">
+                <label class="inputbox-left">用户名</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="用户名" name="username"/>
                 </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">密码</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="密码" name="password"/>
-                        <i class="color-placeholder icon icon-eye"></i>
-                    </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">密码</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="密码" name="password"/>
+                    <i class="color-placeholder icon icon-eye"></i>
                 </div>
-                <div class="inputbox">
-                    <label class="inputbox-left">确认</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="确认" name="reconfirm"/>
-                        <i class="color-placeholder icon icon-eye"></i>
+            </div>
+            <div class="inputbox">
+                <label class="inputbox-left">确认</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="确认" name="reconfirm"/>
+                    <i class="color-placeholder icon icon-eye"></i>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="inputbox underline">
+                <label class="inputbox-left">昵称</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写昵称" name="nickname"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">性别</label>
+                <div class="inputbox-right inputbox">
+                    <div class="input-text">
+                        <label>
+                            <input type="radio" class="input-radio"  value="male" name="sex" checked/>
+                            <span>男</span>
+                        </label>
+                        <label style="margin-left:8px;">
+                            <input type="radio" class="input-radio"  value="female" name="sex"/>
+                            <span>女</span>
+                        </label>
                     </div>
                 </div>
             </div>
-            <div class="group">
-                <div class="inputbox underline">
-                    <label class="inputbox-left">昵称</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="填写昵称" name="nickname"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">性别</label>
-                    <div class="inputbox-right inputbox">
-                        <div class="input-text">
-                            <label>
-                                <input type="radio" class="input-radio"  value="male" name="sex" checked/>
-                                <span>男</span>
-                            </label>
-                            <label style="margin-left:8px;">
-                                <input type="radio" class="input-radio"  value="female" name="sex"/>
-                                <span>女</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="inputbox">
-                    <label class="inputbox-left">出生日期</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="date" class="input-text" name="birthday" placeholder="出生日期"/>
-                    </div>
+            <div class="inputbox">
+                <label class="inputbox-left">出生日期</label>
+                <div class="inputbox-right inputbox">
+                    <input type="date" class="input-text" name="birthday" placeholder="出生日期"/>
                 </div>
             </div>
-            <div class="group">
-                <div class="inputbox underline">
-                    <label class="inputbox-left">职业</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行"/>
-                        <i class="color-placeholder icon icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">公司</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="company" placeholder="公司"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">学校</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">所在地</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" name="live" readonly="" placeholder="选择所在地"/>
-                        <i class="color-placeholder icon icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left">故乡</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" name="hometown" readonly="" placeholder="选择所在地"/>
-                        <i class="color-placeholder icon icon-arrowright"></i>
-                    </div>
-                </div>
-                <div class="inputbox">
-                    <label class="inputbox-left">邮箱</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" name="email" placeholder="填写邮箱"/>
-                    </div>
+        </div>
+        <div class="group">
+            <div class="inputbox underline">
+                <label class="inputbox-left">职业</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                    <i class="color-placeholder icon icon-arrowright"></i>
                 </div>
             </div>
-            <div class="group">
-                <div class="inputbox box-top">
-                    <label class="inputbox-left">个人说明</label>
-                    <div class="inputbox-right inputbox">
-                        <textarea class="label-right input-textarea" name="note" placeholder="个人说明"></textarea>
-                    </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">公司</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="company" placeholder="公司"/>
                 </div>
             </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">学校</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">所在地</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="live" readonly="" placeholder="选择所在地"/>
+                    <i class="color-placeholder icon icon-arrowright"></i>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left">故乡</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="hometown" readonly="" placeholder="选择所在地"/>
+                    <i class="color-placeholder icon icon-arrowright"></i>
+                </div>
+            </div>
+            <div class="inputbox">
+                <label class="inputbox-left">邮箱</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="email" placeholder="填写邮箱"/>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="inputbox box-top">
+                <label class="inputbox-left">个人说明</label>
+                <div class="inputbox-right inputbox">
+                    <textarea class="label-right input-textarea" name="note" placeholder="个人说明"></textarea>
+                </div>
+            </div>
+        </div>
     </article>
     
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>

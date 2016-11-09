@@ -56,23 +56,26 @@
 			top:50%;
 			-webkit-transform: translate(34px,-50%);
 
-			background-color: @primary-bg;
+			background-color: @success-bg;
 		}
 	}
 	/*开关控件toggle-反转*/
 	&.reverse{
 		border:none;
-		background-color:@border;
+		background-color:white;
+		box-shadow: inset 0 0 0 2px #e2e2e2;
 		
 		.switch-handle{
 			width: 26px;
 			height: 26px;
 			-webkit-transform: translate(2px,-50%);
 
-			background-color:#fff;
+			background-color:white;
+			-webkit-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.2);
 		}
 		&.active{
-			background-color:@primary-bg;
+			background-color:@success-bg;
+			-webkit-box-shadow: none;
 			&:after{
 				color:#fff;
 			}

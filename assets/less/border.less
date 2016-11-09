@@ -1,35 +1,39 @@
 /*----------------border.less(start)--------------*/
-.underline:after,.topline:after {
+.topline:before,.underline:after {
 	content: '';
+	display: block;
 	position: absolute;
+	
 	left: 0;
 	right: auto;
 	height: 1px;
 	width: 100%;
-	display: block;
+	
 	-webkit-transform-origin: 50% 100%;
 	background-color: @border;
+}
+.topline:before {
+	top: 0;
+	bottom: auto;
 }
 .underline:after {
 	top: auto;
 	bottom: 0;
 }
-.topline:after {
-	top: 0;
-	bottom: auto;
-}
-.leftline:after,.rightline:after {
+.leftline:before,.rightline:after {
 	content: '';
+	display: block;
 	position: absolute;
+
 	top: 0;
 	bottom: auto;
 	width: 1px;
 	height: 100%;
-	display: block;
+	
 	-webkit-transform-origin: 100% 50%;
 	background-color: @border;
 }
-.leftline:after {
+.leftline:before {
 	left: 0;
 	right: auto;
 }
@@ -38,18 +42,18 @@
 	right: 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.underline:after,.topline:after {
+	.topline:before,.underline:after {
 		-webkit-transform: scaleY(0.5);
 	}
-	.leftline:after,.rightline:after {
+	.leftline:before,.rightline:after {
 		-webkit-transform: scaleX(0.5);
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-	.underline:after,.topline:after {
+	.topline:before,.underline:after {
 		-webkit-transform: scaleY(0.33);
 	}
-	.leftline:after,.rightline:after {
+	.leftline:before,.rightline:after {
 		-webkit-transform: scaleX(0.33);
 	}
 }

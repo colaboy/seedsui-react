@@ -16,10 +16,11 @@
 	text-align:center;
 	box-sizing:border-box;
 	border-style:solid;
+	border-width:0;
 
+	border-color:@dpborder;
 	color:@bar-color;
 	background-color:@bar-bg;
-	border-color:@bar-border;
 
 	.icon{
 		pointer-events:none;
@@ -47,7 +48,6 @@
 	.tab{
 		height:40px;
 		line-height:40px;
-		border-width:0px 0px 1px 0;
 	}
 	.tab:active{
 		color:@bar-color-active;
@@ -104,52 +104,74 @@
 	width:16%;
 }
 
-//单线形
+//单线形tabbar-line
 .tabbar-line{
-	.tab.active{
-		border-width: 0px 0px 2px 0;
-	}
-}
-
-//单线形(动画)
-.tabbar-line-animate{
-	.tab {
-		-webkit-transition: color 0.3s;
-		transition:color 0.3s;
-	}
-	.tab::before {
+	.tab:before,.tab:after {
 		content:'';
 		position:absolute;
-		bottom:-1px;
-		left:50%;
+		bottom:0px;
 		width:100%;
-		height:2px;
 		-webkit-transform-origin:0 0;
-		-webkit-transform:scale3d(0, 1, 1) translateX(-50%);
-		-webkit-transition:-webkit-transform 0.1s;
+	}
+	.tab{
+		&:before{
+			left:0;
+			height: 1px;
+			background-color: @bar-border;
+		}
+		&:after{
+			left:50%;
+			-webkit-transform:scale3d(0, 1, 1) translateX(-50%);
+			height:2px;
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+			&:before {
+				-webkit-transform: scaleY(0.5);
+			}
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+			&:before {
+				-webkit-transform: scaleY(0.33);
+			}
+		}
 	}
 	.tab.active{
-		border-color: @bar-border;
-		color:@bar-border-active;
-	}
-	.tab.active::before {
-		-webkit-transform:scale3d(1, 1, 1) translateX(-50%);
-		-webkit-transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
-		-webkit-transition-duration:0.3s;
+		color:@bar-color-active;
+		&:after {
+			-webkit-transform:scale3d(1, 1, 1) translateX(-50%);
 
-		background-color:@bar-border-active;
+			background-color:@bar-border-active;
+		}
 	}
 }
-.tabbar-line-animate.reverse{
+.tabbar-line.reverse{
+	.tab{
+		&:before{
+			background-color:@bar-reverse-border;
+		}
+	}
 	.tab.active {
-		border-color: @bar-reverse-border;
+		&:after {
+			background-color:@bar-reverse-border-active;
+		}
 	}
-	.tab.active::before {
-		background-color:@bar-reverse-border-active;
+}
+.tabbar-line.animated{
+	.tab{
+		-webkit-transition: color 0.3s;
+		&:after{
+			-webkit-transition:-webkit-transform 0.1s;
+		}
+	}
+	.tab.active{
+		&:after {
+			-webkit-transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);
+			-webkit-transition-duration:0.3s;
+		}
 	}
 }
 
-//矩形
+//矩形tabbar-rect
 .tabbar-rect{
 	max-width:96%;
 	.tab{
@@ -184,10 +206,9 @@
 }
 
 
-//滑块形(动画)
+//滑块形tabbar-lump
 .tabbar-lump{
 	.tab{
-		border-width: 0;
 		.tab-label{
 			padding:0 12px;
 			border-radius:28px;
@@ -217,12 +238,11 @@
 	}
 }
 
-//底部tabbar
+//底部tabbar-footer
 .tabbar-footer{
 	.tab{
 		height: auto;
     	line-height: 0;
-		border-width:0;
 	}
 	.tab .icon{
 		margin-top:6px;
