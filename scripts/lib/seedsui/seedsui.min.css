@@ -1115,6 +1115,21 @@ hr {
 .sticker.bottom span {
   margin-bottom: -30px;
 }
+.sticker.sticker-icon.top {
+  border-top-width: 28px;
+}
+.sticker.sticker-icon.top span {
+  margin-top: -26px;
+}
+.sticker.sticker-icon.left {
+  border-right-width: 28px;
+}
+.sticker.sticker-icon.right {
+  border-left-width: 28px;
+}
+.sticker.sticker-icon.bottom {
+  border-bottom-width: 28px;
+}
 /*--------------------badge.less(start)----------------------*/
 /*----------------form.less(start)--------------*/
 .input-text {
@@ -2576,10 +2591,62 @@ input[type=range]::-webkit-slider-thumb {
 .list li {
   position: relative;
   display: -webkit-box;
-  box-sizing: border-box;
+  padding: 10px 12px;
+  -webkit-box-align: center;
 }
 .list:not(.noclick) li:not(.noclick):active {
   background-color: #f9f9f9;
+}
+.list-thumbnail {
+  pointer-events: none;
+  position: relative;
+  width: 97px;
+  height: 62px;
+  background-size: cover;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.list-thumbnail img {
+  width: 100%;
+  height: 100%;
+}
+.list-container {
+  -webkit-box-flex: 1.0;
+  margin-right: 10px;
+}
+.list-title {
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1px 0;
+}
+.list-row {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  padding: 1px 0;
+  font-size: 13px;
+  color: #9e9e9e;
+}
+.list-icon {
+  display: block;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  color: #cccccc;
+}
+.list-font {
+  height: 20px;
+  display: block;
+  line-height: 22px;
+  -webkit-box-flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #9e9e9e;
+}
+.list-icon + .list-font {
+  margin-left: 8px;
 }
 /*---------------list.less(end)---------------*/
 /*---------------timeline.less(start)---------------*/
@@ -5188,7 +5255,7 @@ ul.weather-otherday li {
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
-  color: #333333;
+  color: #cccccc;
 }
 /*周*/
 .calendar-weeks {
