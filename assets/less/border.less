@@ -1,5 +1,10 @@
 /*----------------border.less(start)--------------*/
-.topline:before,.underline:after {
+hr{
+    position: relative;
+    border:0;
+    clear:both;
+}
+.topline:before,.underline:after,hr:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -16,7 +21,7 @@
 	top: 0;
 	bottom: auto;
 }
-.underline:after {
+.underline:after,hr:after {
 	top: auto;
 	bottom: 0;
 }
@@ -42,7 +47,7 @@
 	right: 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.topline:before,.underline:after {
+	.topline:before,.underline:after,hr:after {
 		-webkit-transform: scaleY(0.5);
 	}
 	.leftline:before,.rightline:after {
@@ -50,7 +55,7 @@
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-	.topline:before,.underline:after {
+	.topline:before,.underline:after,hr:after {
 		-webkit-transform: scaleY(0.33);
 	}
 	.leftline:before,.rightline:after {

@@ -260,14 +260,6 @@ br {
   border-top: 1px solid #fff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/*边框与线条*/
-hr {
-  border: none;
-  clear: both;
-  border-width: 1px 0 0 0;
-  border-style: solid;
-  border-color: #d1d1d1;
-}
 /*文字*/
 .bold {
   font-weight: bold;
@@ -5228,30 +5220,26 @@ ul.weather-otherday li {
 .calendar {
   position: relative;
   width: 100%;
-  border-style: solid;
-  border-width: 0 0 1px 0;
   overflow: hidden;
   -webkit-transition-property: height;
-  border-color: #d1d1d1;
   background-color: white;
 }
 /*头部*/
 .calendar-header {
   display: -webkit-box;
   -webkit-box-align: center;
-  padding: 8px 0;
+  padding: 6px 0;
 }
 .calendar-title {
   -webkit-box-flex: 1.0;
-  font-size: 17px;
   text-align: center;
-  padding: 8px 0;
+  padding: 6px 0;
 }
 .calendar-prev,
 .calendar-next {
   font-size: 16px;
   width: 15%;
-  height: 32px;
+  height: 30px;
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
@@ -5323,9 +5311,9 @@ ul.weather-otherday li {
 }
 .calendar-daynum {
   display: inline-block;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
 }
 .calendar-today {
   border-radius: 100%;
@@ -5513,8 +5501,14 @@ i.size80,
 }
 /*---------------size.less(end)---------------*/
 /*----------------border.less(start)--------------*/
+hr {
+  position: relative;
+  border: 0;
+  clear: both;
+}
 .topline:before,
-.underline:after {
+.underline:after,
+hr:after {
   content: '';
   display: block;
   position: absolute;
@@ -5529,7 +5523,8 @@ i.size80,
   top: 0;
   bottom: auto;
 }
-.underline:after {
+.underline:after,
+hr:after {
   top: auto;
   bottom: 0;
 }
@@ -5555,7 +5550,8 @@ i.size80,
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   .topline:before,
-  .underline:after {
+  .underline:after,
+  hr:after {
     -webkit-transform: scaleY(0.5);
   }
   .leftline:before,
@@ -5565,7 +5561,8 @@ i.size80,
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
   .topline:before,
-  .underline:after {
+  .underline:after,
+  hr:after {
     -webkit-transform: scaleY(0.33);
   }
   .leftline:before,
