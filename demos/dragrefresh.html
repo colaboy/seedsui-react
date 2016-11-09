@@ -15,7 +15,7 @@
             <h1>下拉刷新</h1>
         </div>
     </header>
-    <article class="scrollbox">
+    <article class="article-absolute">
         <ul class="list" id="list"></ul>
     </article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -45,7 +45,7 @@
                 }
             },
             _initDrag:function(){
-                this.drag=new Dragrefresh("article",{
+                this.drag=new Dragrefresh({
                     threshold:130,
                     onRefreshStart:function(e){
                         setTimeout(function(){

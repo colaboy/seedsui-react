@@ -1,4 +1,4 @@
-/*----------------mbox.less(start)--------------*/
+/*----------------body.less(start)--------------*/
 html,body{
 	height:100%;
 }
@@ -30,28 +30,29 @@ article{
 header+article{
 	padding-top:44px;
 }
-.article-absolute{
+
+/*section与aside*/
+section{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    background-color: @body-bg;
+}
+section header,section footer,aside header,aside footer,{
+	position:absolute;
+}
+section article,aside article,.article-absolute{
 	position: absolute;
     top: 44px;
     bottom: 0;
     left: 0;
     right: 0;
     padding-top: 0;
+    overflow: auto;
 }
-/*section与aside*/
-section{
-	position:relative;
-	width:100%;
-	height:100%;
-	overflow:auto;
-	z-index:0;
-}
-section header,section footer,aside header,aside footer,{
-	position:absolute;
-}
-section article,aside article,.scrollbox{
-	height:100%;
-	overflow:auto;
-}
-/*----------------mbox.less(end)--------------*/
-
+/*----------------body.less(end)--------------*/

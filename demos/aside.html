@@ -9,7 +9,7 @@
     <style>
     .app-title{
         font-size:17px;
-        margin:8px 0;
+        margin:8px;
         display:block;
     }
     </style>
@@ -36,7 +36,7 @@
                 <p class="lrmargin8" style="opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
                 <a class="button block cancel margin8" id="hideAside2">关闭侧滑</a>
             </aside>
-            <section style="background-color:white;">
+            <section>
                 <header>
                     <div class="titlebar">
                         <a class="titlebar-button" href="javascript:back()">
@@ -45,19 +45,17 @@
                         <h1>侧边栏</h1>
                     </div>
                 </header>
-                <article class="scrollbox">
+                <article class="article-absolute">
                     <p class="app-title">左侧菜单栏</p>
-                    <div class="card">
-                        <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
-                        <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
-                        <a id="revealLeft" class="button block margin8 warn">左侧栏-reveal</a>
-                    </div>
+                    <a id="overlayLeft" class="button block margin8">左侧栏-overlay</a>
+                    <a id="pushLeft" class="button block margin8 submit">左侧栏-push</a>
+                    <a id="revealLeft" class="button block margin8 warn">左侧栏-reveal</a>
+
                     <p class="app-title">右侧菜单栏</p>
-                    <div class="card">
-                        <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
-                        <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>
-                        <a id="revealRight" class="button block margin8 warn">右侧栏-reveal</a>
-                    </div>
+                    <a id="overlayRight" class="button block margin8">右侧栏-overlay</a>
+                    <a id="pushRight" class="button block margin8 submit">右侧栏-push</a>
+                    <a id="revealRight" class="button block margin8 warn">右侧栏-reveal</a>
+                    
                     <div class="card padding8">
                         <h1 class="text-center">这是侧滑菜单的示例</h1>
                         <br/>
