@@ -26,6 +26,7 @@
 		pointer-events:none;
 	}
 	&:active,&.active{
+		color:@bar-color-active;
 		.icon{
 			background-position:center bottom;
 		}
@@ -48,14 +49,6 @@
 	.tab{
 		height:40px;
 		line-height:40px;
-	}
-	.tab:active{
-		color:@bar-color-active;
-	}
-	.tab.active{
-		color:@bar-color-active;
-		border-color:@bar-border-active;
-		background-color:@bar-bg-active;
 	}
 }
 .tabbar.reverse{

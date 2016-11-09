@@ -408,6 +408,10 @@ hr {
 .tab .icon {
   pointer-events: none;
 }
+.tab:active,
+.tab.active {
+  color: #20aeff;
+}
 .tab:active .icon,
 .tab.active .icon {
   background-position: center bottom;
@@ -427,14 +431,6 @@ hr {
 .tabbar .tab {
   height: 40px;
   line-height: 40px;
-}
-.tabbar .tab:active {
-  color: #20aeff;
-}
-.tabbar .tab.active {
-  color: #20aeff;
-  border-color: #20aeff;
-  background-color: #f9f9f9;
 }
 .tabbar.reverse .tab {
   color: #ffffff;
