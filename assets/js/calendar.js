@@ -542,8 +542,8 @@
         Model
         ================*/
         var s=this;
-        s.weekMilliSecound = 7 * 24 * 60 * 60 * 1000;
-        s.dayMilliSecound = 24 * 60 * 60 * 1000;
+        s.weekMilliSecond = 7 * 24 * 60 * 60 * 1000;
+        s.dayMilliSecond = 24 * 60 * 60 * 1000;
         //选中日期
         s.activeDate=activeDate?new Date(activeDate):new Date();
         //周视图
@@ -584,13 +584,13 @@
         //周视图，根据日期获得一周
         s.updateWeekByDate=function(date,week){
         	var day=date.getDay();
-            var startDayMs=date.getTime()-s.dayMilliSecound*day;
+            var startDayMs=date.getTime()-s.dayMilliSecond*day;
             if(!week){
             	week=s.tempWeek;
             }
             week[0].setTime(startDayMs);
             for (var i=1;i<7;i++) {
-                week[i].setTime(week[i-1].getTime()+s.dayMilliSecound);
+                week[i].setTime(week[i-1].getTime()+s.dayMilliSecond);
             }
             return week;
         }
@@ -598,11 +598,11 @@
             return s.updateWeekByDate(s.activeDate,s.midWeek);
         }
         s.getPrevWeek=function(){//获得上周
-        	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecound;
+        	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecond;
             return s.updateWeekByDate(new Date(prevWeekDateMs),s.prevWeek);
         }
         s.getNextWeek=function(){//获得下周
-        	var nextWeekDateMs=s.activeDate.getTime()+s.weekMilliSecound;
+        	var nextWeekDateMs=s.activeDate.getTime()+s.weekMilliSecond;
             return s.updateWeekByDate(new Date(nextWeekDateMs),s.nextWeek);
         }
         //月视图
@@ -612,7 +612,7 @@
         s.updateMonthByDate=function(date,month){
         	//1日
         	var firstDay=new Date();
-            firstDay.setTime(date.getTime()-s.dayMilliSecound*(date.getDate()-1));
+            firstDay.setTime(date.getTime()-s.dayMilliSecond*(date.getDate()-1));
             var firstDayIndex = firstDay.getDay();
 
             //31日
@@ -620,7 +620,7 @@
             var lastDayIndex=firstDayIndex+monthDays;
 
             //起始日
-            var startDayMs = firstDay.getTime()-s.dayMilliSecound*firstDayIndex;
+            var startDayMs = firstDay.getTime()-s.dayMilliSecond*firstDayIndex;
 
         	if(!month){
             	month=s.tempMonth;
@@ -629,7 +629,7 @@
             //生成月
             for(var i=0;i<42;i++){
                 if(i==0)month[0].setTime(startDayMs);
-                else month[i].setTime(month[i-1].getTime()+s.dayMilliSecound);
+                else month[i].setTime(month[i-1].getTime()+s.dayMilliSecond);
                 //设置选中项
                 if(s.currentMonth==="midMonth" && s.compareDate(month[i],date)===0){
                     s.activeIndex=i+42;
@@ -669,11 +669,11 @@
             s.activeDate.setTime(activeDate.getTime());
         }
         s.activePrevWeek=function(){
-            var ms=s.activeDate.getTime()-s.weekMilliSecound;
+            var ms=s.activeDate.getTime()-s.weekMilliSecond;
             s.activeDate.setTime(ms);
         }
         s.activeNextWeek=function(){
-            var ms=s.activeDate.getTime()+s.weekMilliSecound;
+            var ms=s.activeDate.getTime()+s.weekMilliSecond;
             s.activeDate.setTime(ms);
         }
         s.activePrevMonth=function(){
@@ -701,14 +701,14 @@
 		    currentDate.setHours(0,0,0,0);
 		    var currentDay=currentDate.getDay(); if(currentDay==0) currentDay=7;
 		    
-		    var dateNum = Math.round((currentDate.getTime() - startDate.getTime()+(startDay-currentDay)*s.dayMilliSecound) / s.dayMilliSecound);
+		    var dateNum = Math.round((currentDate.getTime() - startDate.getTime()+(startDay-currentDay)*s.dayMilliSecond) / s.dayMilliSecond);
 		    return Math.ceil(dateNum / 7) + 1;
 		}
         //激活天为准，推前天数
         s.getBeforeDays=function(beforenum){
             var days=[];
             for(var i=1;i<=beforenum;i++){
-                days.push(new Date(s.activeDate.getTime()-i*s.dayMilliSecound));
+                days.push(new Date(s.activeDate.getTime()-i*s.dayMilliSecond));
             }
             return days;
         }
@@ -731,38 +731,10 @@
         	 	for(var j=0;j<7;j++){
         	 		weeks[i].push(new Date());
         	 	}
-        	 	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecound*(i+1);
+        	 	var prevWeekDateMs=s.activeDate.getTime()-s.weekMilliSecond*(i+1);
         	 	s.updateWeekByDate(new Date(prevWeekDateMs),weeks[i]);
         	 }
         	 return weeks;
-        }
-        //分秒向上档位，返回日期的档位时间
-        s.ceilMinute=function(date,space){
-        	var date=date?date:new Date();//日期
-        	var space=space?space:5;//间隔
-        	var minute=date.getMinutes();//分钟
-        	var hasRemainder = minute % space == 0;//是否有余数
-
-            var percentNum=Math.ceil(minute / space);//档位
-            percentNum = hasRemainder ? parseInt(percentNum)+1 : percentNum;
-
-            var result=percentNum*space;//根据档位计算结果
-            date.setMinutes(result);
-            return date;
-        }
-        //分秒向下档位，返回日期的档位时间
-        s.floorMinute=function(date,space){
-        	var date=date?date:new Date();//日期
-        	var space=space?space:5;//间隔
-        	var minute=date.getMinutes();//分钟
-        	var hasRemainder = minute % space == 0;//是否有余数
-
-            var percentNum=Math.floor(minute / space);//档位
-            percentNum = hasRemainder ? parseInt(percentNum)-1 : percentNum;
-
-            var result=percentNum*space;//根据档位计算结果
-            date.setMinutes(result);
-            return date;
         }
     };
 })(window,document,undefined);
