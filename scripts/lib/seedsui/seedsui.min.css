@@ -7,11 +7,8 @@ body {
   height: 100%;
 }
 body {
-  /*ios点击一个链接时产生的半透明灰色背景，设置它为透明色*/
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /*禁止文字自适应大小*/
   -webkit-text-size-adjust: none;
-  /*平滑滚动*/
   -webkit-overflow-scrolling: touch;
 }
 /*header,footer*/
