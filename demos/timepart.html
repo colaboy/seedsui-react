@@ -18,87 +18,27 @@
         </div>
     </header>
 	<article>
-		<div class="timepart" id="ID-Timepart">
-            <div class="timepart-row">
-                <label data-num="1" data-range="08:00-08:30">
+        <div class="timepart group" id="ID-Timepart">
+            <!-- <div class="timepart-row">
+                <label class="timepart-part" data-timepart-start="07:00" data-timepart-end="07:30">
+                    <span>07:00</span>
+                </label>
+                <label class="timepart-part" data-timepart-start="07:30" data-timepart-end="08:00">
+                    <span>07:30</span>
+                </label>
+                <label class="timepart-part" data-timepart-start="08:00" data-timepart-end="08:30">
                     <span>08:00</span>
                 </label>
-                <label data-num="2" data-range="08:30-09:00">
+                <label class="timepart-part" data-timepart-start="08:30" data-timepart-end="9:00">
                     <span>08:30</span>
                 </label>
-                <label data-num="3" data-range="09:00-09:30">
+                <label class="timepart-part" data-timepart-start="09:00" data-timepart-end="9:30">
                     <span>09:00</span>
                 </label>
-                <label data-num="4" data-range="09:30-10:00">
-                    <span>09:30</span>
-                </label>
-                <label data-num="5" data-range="10:00-10:30">
+                <label class="timepart-part" data-timepart-start="09:30" data-timepart-end="10:00">
                     <span>10:00</span>
                 </label>
-                <label data-num="6" data-range="10:30-11:00">
-                    <span>11:00</span>
-                </label>
-            </div>
-            <div class="timepart-row">
-                <label data-num="7" data-range="11:00-11:30">
-                    <span>11:00</span>
-                </label>
-                <label data-num="8" class="disable" data-range="11:30-12:00">
-                    <span>11:30</span>
-                </label>
-                <label data-num="9" class="disable" data-range="12:00-12:30">
-                    <span>12:00</span>
-                </label>
-                <label data-num="10" data-range="12:30-13:00">
-                    <span>12:30</span>
-                </label>
-                <label data-num="11" data-range="13:00-13:30">
-                    <span>13:00</span>
-                </label>
-                <label data-num="12" data-range="13:30-14:00">
-                    <span>14:00</span>
-                </label>
-            </div>
-            <div class="timepart-row">
-                <label data-num="13" data-range="14:00-14:30">
-                    <span>14:00</span>
-                </label>
-                <label data-num="14" data-range="14:30-15:00">
-                    <span>14:30</span>
-                </label>
-                <label data-num="15" class="disable" data-range="15:00-15:30">
-                    <span>15:00</span>
-                </label>
-                <label data-num="16" class="disable" data-range="15:30-16:00">
-                    <span>15:30</span>
-                </label>
-                <label data-num="17" data-range="16:00-16:30">
-                    <span>16:00</span>
-                </label>
-                <label data-num="18" data-range="16:30-17:00">
-                    <span>17:00</span>
-                </label>
-            </div>
-            <div class="timepart-row">
-                <label data-num="19" data-range="17:00-17:30">
-                    <span>17:00</span>
-                </label>
-                <label data-num="20" data-range="17:30-18:00">
-                    <span>17:30</span>
-                </label>
-                <label data-num="21" data-range="18:00-18:30">
-                    <span>18:00</span>
-                </label>
-                <label data-num="22" data-range="18:30-19:00">
-                    <span>18:30</span>
-                </label>
-                <label data-num="23" data-range="19:00-19:30">
-                    <span>19:00</span>
-                </label>
-                <label data-num="24" data-range="19:30-20:00">
-                    <span>20:00</span>
-                </label>
-            </div>
+            </div> -->
         </div>
         <a class="radius4 button block margin8" id="submit">预约</a>
 	</article>
@@ -107,6 +47,11 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
         var timepart=new Timepart("#ID-Timepart");
+        timepart.disablePartsByRange(0,"8:00");
+        timepart.disablePartsByRange("9:00","10:30");
+        timepart.activePartsByRange("20:00","22:00");
+        var range=timepart.getActiveRange();
+        console.log("选中的时间段："+range);
 		//定义exmobi返回
 		function back() {
 			history.go(-1);

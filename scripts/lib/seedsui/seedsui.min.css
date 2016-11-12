@@ -744,33 +744,33 @@ br {
   border-color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
 }
-.button.disable,
+.button.disabled,
 .button[disabled] {
   opacity: 1;
   color: #ffffff;
-  background-color: #d9d9d9;
+  background-color: #ebebeb;
   /*禁用-去色按钮*/
 }
-.button.disable:active,
+.button.disabled:active,
 .button[disabled]:active {
   opacity: 1;
 }
-.button.disable.outline,
+.button.disabled.outline,
 .button[disabled].outline {
   opacity: 1;
-  color: #d9d9d9;
-  border-color: #d9d9d9;
+  color: #ebebeb;
+  border-color: #ebebeb;
   background-color: transparent;
 }
-.button.disable.grayscale,
+.button.disabled.grayscale,
 .button[disabled].grayscale,
-.button.disable.grayscale:active,
+.button.disabled.grayscale:active,
 .button[disabled].grayscale:active,
-.button.disable.grayscale.outline,
+.button.disabled.grayscale.outline,
 .button[disabled].grayscale.outline,
-.button.disable.grayscale.outline:active,
+.button.disabled.grayscale.outline:active,
 .button[disabled].grayscale.outline:active {
-  color: #d9d9d9;
+  color: #ebebeb;
   background-color: #eaeaea;
   border-color: #d1d1d1;
 }
@@ -803,7 +803,7 @@ br {
   color: white;
 }
 .mark-disable {
-  background-color: #d9d9d9;
+  background-color: #ebebeb;
 }
 .mark-info {
   background-color: #5bc0de;
@@ -1270,7 +1270,7 @@ br {
 }
 .input-checkbox[disabled],
 .input-radio[disabled] {
-  color: #d9d9d9;
+  color: #ebebeb;
 }
 /*checkbox*/
 .input-checkbox:before {
@@ -2864,59 +2864,70 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*----------checkbox.less(end)----------*/
 /*----------------timepart.less(start)--------------*/
-.timepart-row {
-  margin: 20px 20px 40px 20px;
+.timepart {
+  padding: 1px 0;
   background-color: white;
 }
-.timepart-row:after {
-  display: table;
-  content: "";
-  clear: both;
+.timepart-row {
+  display: -webkit-box;
+  margin: 20px 20px 40px 20px;
 }
-.timepart-row label {
-  float: left;
+.timepart-row .timepart-part {
+  display: block;
   width: 16%;
   height: 18px;
   border-width: 1px 1px 1px 0;
   border-style: solid;
   box-sizing: border-box;
-  border-color: #c1c1c1;
+  border-color: #d1d1d1;
 }
-.timepart-row label:nth-of-type(1),
-.timepart-row label:nth-of-type(2),
-.timepart-row label:nth-last-of-type(1),
-.timepart-row label:nth-last-of-type(2) {
-  width: 17%;
-}
-.timepart-row label.active {
-  background-color: #18b2ed;
-}
-.timepart label.disable {
-  color: #aaa;
-  background-color: #ebebeb;
-}
-.timepart-row label:first-child {
-  border-width: 1px;
-}
-.timepart-row label:nth-of-type(even) span {
-  display: none;
-}
-.timepart-row label:nth-last-of-type(1) span {
-  display: inline-block;
-}
-.timepart-row label:first-child span {
-  margin-left: -7px;
-}
-.timepart-row label:last-child span {
-  float: right;
-  margin-right: -7px;
-}
-.timepart-row label span {
+.timepart-row .timepart-part span {
   float: left;
   margin-top: 22px;
   font-size: 13px;
   margin-left: -16px;
-  color: #515151;
+}
+.timepart-row .timepart-part:nth-of-type(even) span {
+  display: none;
+}
+.timepart-row .timepart-part:nth-of-type(1) {
+  border-width: 1px;
+}
+.timepart-row .timepart-part:nth-of-type(1) span {
+  margin-left: -7px;
+}
+.timepart-row .timepart-part:nth-last-of-type(1) span {
+  display: inline-block;
+  float: right;
+  margin-right: -7px;
+}
+.timepart-row .timepart-part.active {
+  background-color: #20aeff;
+}
+.timepart-row .timepart-part.disabled {
+  color: #9e9e9e;
+  background-color: #ebebeb;
+}
+.timepart[data-col="2"] .timepart-row .timepart-part {
+  width: 50%;
+}
+.timepart[data-col="3"] .timepart-row .timepart-part {
+  width: 33%;
+}
+.timepart[data-col="3"] .timepart-row .timepart-part:nth-of-type(even) {
+  width: 34%;
+}
+.timepart[data-col="4"] .timepart-row .timepart-part {
+  width: 25%;
+}
+.timepart[data-col="5"] .timepart-row .timepart-part {
+  width: 20%;
+}
+.timepart[data-col="6"] .timepart-row .timepart-part {
+  width: 17%;
+}
+.timepart[data-col="6"] .timepart-row .timepart-part:nth-of-type(even) {
+  width: 16%;
 }
 /*----------------timepart.less(end)--------------*/
 /*---------------indexbar.less(start)---------------*/
@@ -5928,7 +5939,7 @@ hr:after {
   color: #cccccc;
 }
 .color-disable {
-  color: #d9d9d9;
+  color: #ebebeb;
 }
 .color-submit {
   color: #88d038;
@@ -6030,7 +6041,7 @@ hr:after {
   background-color: #eaeaea;
 }
 .bg-disable {
-  background-color: #d9d9d9;
+  background-color: #ebebeb;
 }
 .bg-submit {
   background-color: #88d038;

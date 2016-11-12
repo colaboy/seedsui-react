@@ -83,26 +83,71 @@ Date.prototype.days=function(year,month){//返回当月共多少天
 	}
 	return new Date(this.year(),this.month(),0).getDate();
 }
-Date.prototype.diff=function(date1,date2){
-	var dateStart=new Date(date1);//开始时间
-	var dateEnd=new Date(date2);//结束时间
-	var dateDiffTime=dateStart.getTime()-dateEnd.getTime(); //时间差秒
+Date.prototype.diffDateTime=function(date1,date2){
+	var dateStart=date1;//开始时间
+	var dateEnd=date2;//结束时间
+	if(!date1 instanceof Date)dateStart=new Date(date1);
+	if(!date2 instanceof Date)dateEnd=new Date(date2);
+
+	var secondMilli = 1000;//一分钟的毫秒数
+	var minuteMilli = 60*secondMilli;//一分钟的毫秒数
+	var hourMilli = 60 * minuteMilli;//一小时的毫秒数
+	var dayMilli = 24 * hourMilli;//一天的毫秒数
+
+	var timeDiff=dateEnd.getTime()-dateStart.getTime(); //毫秒差
+
 	//计算出相差天数
-	var daysDiff=Math.floor(dateDiffTime/(24*3600*1000));
+	var daysDiff=Math.floor(timeDiff/dayMilli);
 
 	//计算出小时数
-	var leave1=dateDiffTime%(24*3600*1000); //计算天数后剩余的毫秒数
-	var hoursDiff=Math.floor(leave1/(3600*1000));
+	var dayMilliRemainder=timeDiff % dayMilli; //计算天数后剩余的毫秒数
+	var hoursDiff=Math.floor(dayMilliRemainder / hourMilli);
 
 	//计算相差分钟数
-	var leave2=leave1%(3600*1000); //计算小时数后剩余的毫秒数
-	var minutesDiff=Math.floor(leave2/(60*1000));
+	var minuteMilliRemainder=dayMilliRemainder % hourMilli; //计算小时数后剩余的毫秒数
+	var minutesDiff=Math.floor(minuteMilliRemainder / minuteMilli);
 
 	//计算相差秒数
-	var leave3=leave2%(60*1000); //计算分钟数后剩余的毫秒数
-	var secondsDiff=Math.round(leave3/1000);
+	var secondMilliRemainder=minuteMilliRemainder % minuteMilli; //计算分钟数后剩余的毫秒数
+	var secondsDiff=Math.round(secondMilliRemainder / secondMilli);
 
-	return daysDiff+" "+hoursDiff+" "+minutesDiff+" "+secondsDiff;
+	return {
+		days:daysDiff,
+		hours:hoursDiff,
+		minutes:minutesDiff,
+		seconds:secondsDiff
+	}
+}
+Date.prototype.diff=function(date1,date2){
+	var dateStart=date1;//开始时间
+	var dateEnd=date2;//结束时间
+	if(!date1 instanceof Date)dateStart=new Date(date1);
+	if(!date2 instanceof Date)dateEnd=new Date(date2);
+
+	var secondMilli = 1000;//一分钟的毫秒数
+	var minuteMilli = 60*secondMilli;//一分钟的毫秒数
+	var hourMilli = 60 * minuteMilli;//一小时的毫秒数
+	var dayMilli = 24 * hourMilli;//一天的毫秒数
+
+	var timeDiff=dateEnd.getTime()-dateStart.getTime(); //毫秒差
+	//计算出相差天数
+	var daysDiff=timeDiff/dayMilli;
+
+	//计算出小时数
+	var hoursDiff=timeDiff/hourMilli;
+
+	//计算相差分钟数
+	var minutesDiff=timeDiff/minuteMilli;
+
+	//计算相差秒数
+	var secondsDiff=timeDiff/secondMilli;
+
+	return {
+		days:daysDiff,
+		hours:hoursDiff,
+		minutes:minutesDiff,
+		seconds:secondsDiff
+	}
 }
 Date.prototype.minusday=function(num){
 	var numTimestamp=num*1000*60*60*24;
@@ -200,4 +245,28 @@ Date.prototype.format=function(fmtDate,fmtType){//格式化日期yyyy-MM-dd hh:m
 		}
 	}
 	return fmt;
+}
+Date.prototype.setMinuteCeil=function(space){//分秒向上档位，返回日期的档位时间
+	var space=space?space:5;//间隔
+	var minute=this.getMinutes();//分钟
+	var hasRemainder = minute % space == 0;//是否有余数
+
+    var percentNum=Math.ceil(minute / space);//档位
+    percentNum = hasRemainder ? parseInt(percentNum)+1 : percentNum;
+
+    var result=percentNum*space;//根据档位计算结果
+    this.setMinutes(result);
+    return this;
+}
+Date.prototype.setMinuteFloor=function(space){//分秒向下档位，返回日期的档位时间
+	var space=space?space:5;//间隔
+	var minute=this.getMinutes();//分钟
+	var hasRemainder = minute % space == 0;//是否有余数
+
+    var percentNum=Math.floor(minute / space);//档位
+    percentNum = hasRemainder ? parseInt(percentNum)-1 : percentNum;
+
+    var result=percentNum*space;//根据档位计算结果
+    this.setMinutes(result);
+    return this;
 }
