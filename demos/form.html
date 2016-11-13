@@ -51,7 +51,7 @@
         </div>
 
         <div class="inputbox margin8">
-            <textarea class="input-pre" placeholder="增高控件" style="margin:9px 8px"></textarea>
+            <textarea class="input-pre" placeholder="增高控件" style="margin:9px 12px"></textarea>
             <i class="color-placeholder icon icon-rdomore"></i>
         </div>
         
@@ -110,157 +110,175 @@
             <input type="text" class="input-text"/>
             <i class="color-placeholder icon icon-position"></i>
         </div>
-
-        <div class="inputbox margin8 bg-transparent">
-            <progress max="100" value="80" class="width-full">80</progress>
-        </div>
-
-        <div class="inputbox margin8 bg-transparent">
-            <div class="range-tooltip">8080</div>
-            <input type="range" class="block" min="1" max="100" step="1" value="32" id="range"/>
+        <div class="group">
+            <div class="inputbox underline" style="padding: 20px 12px;">
+                <progress max="100" value="80" class="width-full">80</progress>
+            </div>
+            <div class="inputbox underline" style="padding: 7px 12px;">
+                <div class="range-tooltip">8080</div>
+                <input type="range" class="input-range block" min="1" max="100" step="1" value="32" id="range"/>
+            </div>
         </div>
 
         <div class="numbox bordered margin8">
-            <input type="button" disabled class="button grayscale outline" value="-" />
+            <input type="button" disabled class="button grayscale" value="-" />
             <input type="number" class="input-text" value="0"/>
-            <input type="button" class="button grayscale outline" value="+" />
+            <input type="button" class="button grayscale" value="+" />
         </div>
         <div class="numbox bordered margin8">
-            <input type="button" class="button" value="-" disabled />
+            <input type="button" class="button success" value="-" disabled />
             <input type="number" class="input-text" value="10" step="10" min="10" max="100"/>
             <!-- <input type="button" class="button" value="+" /> -->
-            <input type="button" value="+" class="button" style="width: 24px;height:24px;"/>
+            <input type="button" class="button success" value="+" style="width: 24px;height:24px;"/>
         </div>
 
-        <div class="card">
-            <label class="inputbox underline padding8">
+        <div class="group">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="radio" class="input-radio"  checked="true" name="rdo">
                 <span>选中radio</span>
             </label>
-            <label class="inputbox underline padding8">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="radio" class="input-radio"  name="rdo">
                 <span>普通radio</span>
             </label>
-            <label class="inputbox underline padding8">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="radio" class="input-radio"  checked="true" disabled="true">
                 <span>禁用选中radio</span>
             </label>
-            <label class="inputbox underline padding8 noborder">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="radio" class="input-radio"  disabled="true">
                 <span>禁用普通radio</span>
             </label>
         </div>
 
-        <div class="card">
-            <label class="inputbox underline padding8">
+        <div class="group">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="checkbox" class="input-checkbox"  checked="true" name="rdo">
                 <span>选中checkbox</span>
             </label>
-            <label class="inputbox underline padding8">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="checkbox" class="input-checkbox"  name="rdo">
                 <span>普通checkbox</span>
             </label>
-            <label class="inputbox underline padding8">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="checkbox" class="input-checkbox"  checked="true" disabled="true">
                 <span>禁用选中checkbox</span>
             </label>
-            <label class="inputbox underline padding8 noborder">
+            <label class="inputbox underline" style="padding: 10px 12px;">
                 <input type="checkbox" class="input-checkbox"  disabled="true">
                 <span>禁用普通checkbox</span>
             </label>
         </div>
 
-        <div class="card">
-            <div class="box box-middle underline padding8">
+        <div class="group">
+            <div class="inputbox underline" style="padding: 10px 12px;">
                 <div class="box-flex-1">有文字switch</div>
                 <div class="switch" data-on="是" data-name="switch1" data-on-value="1ok" data-off-value="1off" data-off="否">
                     <div class="switch-handle"></div>
                 </div>
-                <div></div>
             </div>
-            <div class="inputbox underline padding8">
+            <div class="inputbox underline" style="padding: 10px 12px;">
                 <div class="box-flex-1">有文字反转色switch</div>
                 <div class="switch reverse" data-on="是" data-name="switch3" data-on-value="3ok" data-off-value="3off" data-off="否">
                     <div class="switch-handle"></div>
                 </div>
             </div>
-            <div class="inputbox underline padding8">
+            <div class="inputbox underline" style="padding: 10px 12px;">
                 <div class="box-flex-1">无文字switch</div>
                 <div class="switch notext" data-on="是" data-name="switch2" data-on-value="2ok" data-off-value="2off" data-off="否">
                         <div class="switch-handle"></div>
                 </div>
             </div>
-            <div class="inputbox underline padding8 noborder">
+            <div class="inputbox underline" style="padding: 10px 12px;">
                 <div class="box-flex-1">无文字反转色switch</div>
                 <div class="switch reverse notext" data-on="是" data-name="switch4" data-on-value="4" data-off-value="4off" data-off="否">
                     <div class="switch-handle"></div>
                 </div>
             </div>
         </div>
-        <p class="sliver">下列控件兼容性尚未完全普及，还请谨慎使用</p>
-        <div class="inputbox margin8">
-            <input class="input-text block" type="week" value="2015-W15"/>
-            <i class="color-placeholder icon icon-calendar"></i>
-        </div>
-        <div class="card">
-            <input type="color"/>
-        </div>
-
-
-        <p class="sliver">左右布局</p>
-        <form id="formlr">
-            <div class="inputbox underline">
-                <label class="inputbox-left">手机号码</label>
-                <div class="inputbox-right inputbox margin8">
-                    <input type="text" class="input-text">
-                </div>
-            </div>
-            <div class="inputbox underline">
-                <label class="inputbox-left">验证码</label>
-                <div class="inputbox-right inputbox margin8">
-                    <input type="text" class="input-text">
-                </div>
-                <input type="button" class="button" value="发送验证码" style="margin-right:8px;" />
-            </div>
-        </form>
-
-        <div class="sliver underline">
-            <span class="peg"></span>
-            <p class="sliver-title">分组布局</p>
-        </div>
+        
         <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">下列控件兼容性尚未完全普及，还请谨慎使用</p>
+            </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">用户名</label>
+                <div class="inputbox-left" style="padding: 10px 0 10px 12px;">周选择框</div>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" placeholder="用户名" name="username"/>
+                    <input class="input-text block" type="week" value="2015-W15" style="padding:15px 12px;" />
+                    <i class="color-placeholder icon icon-calendar"></i>
+                </div>
+            </div>
+            <div class="inputbox">
+                <div class="inputbox-left" style="padding: 10px 0 10px 12px;">颜色控件</div>
+                <div class="inputbox-right input-text text-right">
+                    <input type="color"/>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">左右布局</p>
+            </div>
+            <div class="inputbox underline" style="margin: 0 12px;">
+                <label class="inputbox-left">手机号码</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" style="padding:15px 12px;">
+                </div>
+            </div>
+            <div class="inputbox underline" style="margin: 0 12px;">
+                <label class="inputbox-left">验证码</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" style="padding:15px 12px;">
+                </div>
+                <input type="button" class="button radius4" value="发送验证码" style="margin-right:12px;padding: 0 8px;height: 32px;" />
+            </div>
+            <div style="padding:10px 12px;">
+                <a class="button block radius4">发送</a>
+            </div>
+        </div>
+
+        
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">分组布局</p>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">用户名</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="用户名" name="username" style="padding:15px 12px;"/>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">密码</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">密码</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" placeholder="密码" name="password"/>
+                    <input type="text" class="input-text" placeholder="密码" name="password" style="padding:15px 12px;"/>
                     <i class="color-placeholder icon icon-eye"></i>
                 </div>
             </div>
             <div class="inputbox">
-                <label class="inputbox-left">确认</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">确认</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" placeholder="确认" name="reconfirm"/>
+                    <input type="text" class="input-text" placeholder="确认" name="reconfirm" style="padding:15px 12px;"/>
                     <i class="color-placeholder icon icon-eye"></i>
                 </div>
             </div>
         </div>
         <div class="group">
             <div class="inputbox underline">
-                <label class="inputbox-left">昵称</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">昵称</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" placeholder="填写昵称" name="nickname"/>
+                    <input type="text" class="input-text" placeholder="填写昵称" name="nickname" style="padding:15px 12px;"/>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">性别</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">性别</label>
                 <div class="inputbox-right inputbox">
-                    <div class="input-text">
+                    <div class="input-text" style="padding:15px 12px;">
                         <label>
                             <input type="radio" class="input-radio"  value="male" name="sex" checked/>
                             <span>男</span>
@@ -273,56 +291,56 @@
                 </div>
             </div>
             <div class="inputbox">
-                <label class="inputbox-left">出生日期</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">出生日期</label>
                 <div class="inputbox-right inputbox">
-                    <input type="date" class="input-text" name="birthday" placeholder="出生日期"/>
+                    <input type="date" class="input-text" name="birthday" placeholder="出生日期" style="padding:15px 12px;"/>
                 </div>
             </div>
         </div>
         <div class="group">
             <div class="inputbox underline">
-                <label class="inputbox-left">职业</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">职业</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行"/>
-                    <i class="color-placeholder icon icon-arrowright"></i>
+                    <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行" style="padding:15px 12px;"/>
+                    <i class="icon list-icon icon-arrowright"></i>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">公司</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">公司</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" class="company" placeholder="公司"/>
+                    <input type="text" class="input-text" class="company" placeholder="公司" style="padding:15px 12px;"/>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">学校</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">学校</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友"/>
+                    <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友" style="padding:15px 12px;"/>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">所在地</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">所在地</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" name="live" readonly="" placeholder="选择所在地"/>
-                    <i class="color-placeholder icon icon-arrowright"></i>
+                    <input type="text" class="input-text" name="live" readonly="" placeholder="选择所在地" style="padding:15px 12px;"/>
+                    <i class="icon list-icon icon-arrowright"></i>
                 </div>
             </div>
             <div class="inputbox underline">
-                <label class="inputbox-left">故乡</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">故乡</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" name="hometown" readonly="" placeholder="选择所在地"/>
-                    <i class="color-placeholder icon icon-arrowright"></i>
+                    <input type="text" class="input-text" name="hometown" readonly="" placeholder="选择所在地" style="padding:15px 12px;"/>
+                    <i class="icon list-icon icon-arrowright"></i>
                 </div>
             </div>
             <div class="inputbox">
-                <label class="inputbox-left">邮箱</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">邮箱</label>
                 <div class="inputbox-right inputbox">
-                    <input type="text" class="input-text" name="email" placeholder="填写邮箱"/>
+                    <input type="text" class="input-text" name="email" placeholder="填写邮箱" style="padding:15px 12px;"/>
                 </div>
             </div>
         </div>
         <div class="group">
             <div class="inputbox box-top">
-                <label class="inputbox-left">个人说明</label>
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">个人说明</label>
                 <div class="inputbox-right inputbox">
                     <textarea class="label-right input-textarea" name="note" placeholder="个人说明"></textarea>
                 </div>

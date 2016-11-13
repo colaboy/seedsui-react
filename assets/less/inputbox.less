@@ -6,20 +6,20 @@
     background-color:@input-bg;
     /*box内图标*/
     >.icon{
-		margin:0 0 0 8px;
-	}
+		margin:0 0 0 12px;
+	} 
     /*box内的表单框*/
-    > .input-text,> .input-textarea,> .input-pre{
+    .input-text,.input-textarea,.input-pre{
     	display:block;
 		-webkit-box-flex:1.0;
 		border-width:0;
 		background-color:transparent;
 		~.icon{
-			margin:0 8px 0 0;
+			margin:0 12px 0 0;
 		}
     }
     /*box内顶天立地的控件*/
-    > .block+.icon{
+    .block+.icon{
 		position:absolute;
 		top:50%;
 		right:0;
@@ -33,11 +33,9 @@
 }
 .inputbox-left{
 	display:block;
+	/* padding: 10px 12px; */
 
 	width:30%;
-	padding:10px 8px;
-
-	color:@sub-color;
 }
 .inputbox-right{
 	-webkit-box-flex:1.0;

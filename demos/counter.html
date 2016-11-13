@@ -15,21 +15,30 @@
             </div>
         </header>
         <article>
-            <p class="sliver">计数器</p>
-            <div class="card padding8">
-                <span class="counter" data-duration="5000" data-to="5">0</span>
-                <span class="counter" data-duration="5000" data-from="0" data-to="200">0</span>
+            <div class="group">
+                <div class="sliver underline">
+                    <span class="peg"></span>
+                    <p class="sliver-title">计数器</p>
+                </div>
+                <div style="padding: 10px 12px;">
+                    <span class="counter" data-duration="5000" data-from="1" data-to="5">1</span>
+                    <span class="counter" data-duration="5000" data-from="1" data-to="1000000">1</span>
+                </div>
             </div>
 
-            <p class="sliver">帧率测试</p>
-            <div class="card padding8">
-                <span>requestAnimationFrame 1s帧率测试</span>
-                <span id="fps2"></span>
-                <br/>
-            	<span>setInterval 1s帧率测试</span>
-            	<span id="fps1"></span>
+            <div class="group">
+                <div class="sliver underline">
+                    <span class="peg"></span>
+                    <p class="sliver-title">帧率测试</p>
+                </div>
+                <div style="padding: 10px 12px;">
+                    <span>requestAnimationFrame 1s帧率测试</span>
+                    <span id="fps2"></span>
+                    <br/>
+                	<span>setInterval 1s帧率测试</span>
+                	<span id="fps1"></span>
+                </div>
             </div>
-
         </article>
     
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>

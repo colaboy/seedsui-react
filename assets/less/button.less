@@ -57,14 +57,12 @@
 		border-width:1px;
 
 		color:@body-color;
-		border-color:@border;
-		background-color:@body-bg;
+		border-color:@dpborder;
+		background-color:white;
 
 		&:not(.noclick):active{
-			opacity:1;
-			color:@body-color;
-			border-color:@border;
-			background-color:white;
+			opacity: 1;
+			background-color:@disable-bg;
 		}
 	}
 	/*白色按钮*/
@@ -92,18 +90,6 @@
 		color:@button-bg;
 		border-color:@button-bg;
 		background-color:transparent;
-		/*线框-去色按钮*/
-		&.grayscale{
-			color:@body-color;
-			border-color:@border;
-			background-color:white;
-		}
-		&.grayscale:not(.noclick):active{
-			opacity:1;
-			color:@body-color;
-			border-color:@border;
-			background-color:@body-bg;
-		}
 		/*线框-取消按钮*/
 		&.cancel{
 			color:@cancel-bg;
@@ -149,24 +135,22 @@
 	}
 	/*禁用按钮*/
 	&.disabled,&[disabled]{
-		opacity:1;
-		color:@button-color;
+		color:@border;
 		background-color:@disable-bg;
 		&:active{
 			opacity:1;
 		}
 		&.outline{
-			opacity:1;
-			color:@disable-bg;
-			border-color:@disable-bg;
+			color:@border;
+			border-color:@dpborder;
 			background-color:transparent;
 		}
 		/*禁用-去色按钮*/
-		&.grayscale,&.grayscale:active,&.grayscale.outline,&.grayscale.outline:active{
+		/* &.grayscale,&.grayscale:active,&.grayscale.outline,&.grayscale.outline:active{
 			color:@disable-bg;
 			background-color:@body-bg;
 			border-color:@border;
-		}
+		} */
 	}
 	/*小汽泡*/
 	&:not(.outline) .tip,&:not(.outline) .badge{
