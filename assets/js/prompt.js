@@ -28,7 +28,7 @@
 			s.prompt=document.createElement("div");
 			s.prompt.setAttribute("class",s.params.promptClass);
 			s.prompt.innerHTML=msg;
-			s.params.parent.appendChild(s.prompt);
+			s.parent.appendChild(s.prompt);
 		}
 		s.createContainer();
 		/*================

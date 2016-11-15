@@ -12,7 +12,7 @@
     <header>
         <div class="titlebar">
             <a href="javascript:back()" class="titlebar-button left">
-                <button class="button radius4 grayscale outline" style="height:32px;line-height:32px;padding:0 8px;">取消</button>
+                <button class="button radius4 grayscale" style="height:32px;line-height:32px;padding:0 8px;">取消</button>
             </a>
             <h1 class="text-center">文字计数</h1>
             <a class="titlebar-button right">
@@ -36,11 +36,22 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
+                /*DOM*/
+
+                /*Plugin*/
                 this.countValues={};//数字计数器
                 this.countValues.hasEvent=false;
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
@@ -48,52 +59,48 @@
             _updateCountValues:function(e){
                 this.countValues.update();
             },
+            _update:function(){
+                this._updateCountValues();
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initCountValues:function(){
+                if(this.countValues.hasEvent)return;
+                this.countValues=new CountValues({
+                    "onInput":function(e){
+                        //console.log("输入中");
+                    },
+                    "onInputOut":function(e){
+                        //console.log("超过数字限制时");
+                        var input=e.target;
+                        input.nextElementSibling.innerHTML=Math.round(e.maxLength-input.value.length);
+                        input.nextElementSibling.classList.add("color-tip");
+                    },
+                    "onInputIn":function(e){
+                        //console.log("没有超过数字限制时");
+                        var input=e.target;
+                        input.nextElementSibling.innerHTML="";
+                        input.nextElementSibling.classList.remove("color-tip");
+                    }
+                });
+                this.countValues.hasEvent=true;
+            },
+            _initPlugin:function(){
+                this._initCountValues();
+            },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
-                if(!this.countValues.hasEvent){
-                    this.countValues=new CountValues({
-                        "onInput":function(e){
-                            //console.log("输入中");
-                        },
-                        "onInputOut":function(e){
-                            //console.log("超过数字限制时");
-                            var input=e.target;
-                            input.nextElementSibling.innerHTML=Math.round(e.maxLength-input.value.length);
-                            input.nextElementSibling.classList.add("color-tip");
-                        },
-                        "onInputIn":function(e){
-                            //console.log("没有超过数字限制时");
-                            var input=e.target;
-                            input.nextElementSibling.innerHTML="";
-                            input.nextElementSibling.classList.remove("color-tip");
-                        }
-                    });
-                    this.countValues.hasEvent=true;
-                }
             },
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-
-                //Events
-                this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
 

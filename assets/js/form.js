@@ -6,7 +6,7 @@
 		================*/
 		var defaults={
 			formFilterClass:null,//过滤表单元素
-			toastParent:document.body,//提示框的父元素
+			promptParent:document.body,//提示框的父元素
 			
 			/*callbacks
 			onSuccess:function(Form)
@@ -169,7 +169,7 @@
 		};
 		/*表单验证*/
 		s.prompt=new Prompt("格式不正确",{
-			"parent":s.params.parent
+			"parent":s.params.promptParent
 		});
 		s.validate=function(){
 			for(var i=0,field;field=s.formElements[i++];){
@@ -180,11 +180,12 @@
 				if(errormsg){
 					s.field=field;
 					s.errormsg=errormsg;
-					s.prompt.setText(errormsg);
+					
 					if(s.params.onFail){
 						s.params.onFail(s);
 					}else{
-						//s.prompt.show();
+						s.prompt.setText(errormsg);
+						s.prompt.show();
 					}
 					//field.focus();
 					return false;

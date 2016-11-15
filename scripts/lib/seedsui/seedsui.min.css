@@ -640,7 +640,7 @@ br {
   background-color: #f86868;
 }
 .button.submit {
-  background-color: #88d038;
+  background-color: #68c75f;
 }
 .button.info {
   background-color: #5bc0de;
@@ -697,8 +697,8 @@ br {
   background-color: transparent;
 }
 .button.outline.submit {
-  color: #88d038;
-  border-color: #88d038;
+  color: #68c75f;
+  border-color: #68c75f;
   background-color: transparent;
 }
 .button.outline.info {
@@ -984,7 +984,7 @@ br {
   border-radius: 20px;
   min-width: 24px;
   color: #ffffff;
-  background-color: #fc4349;
+  background-color: #ff5656;
 }
 /*圆形徽章*/
 .tip {
@@ -992,7 +992,7 @@ br {
   height: 24px;
   line-height: 24px;
   color: #ffffff;
-  background-color: #fc4349;
+  background-color: #ff5656;
 }
 /*关闭*/
 .close {
@@ -1036,7 +1036,7 @@ br {
   border-width: 0;
   border-style: solid;
   color: #ffffff;
-  border-color: #fc4349;
+  border-color: #ff5656;
 }
 .sticker span {
   position: absolute;
@@ -5017,11 +5017,10 @@ details[open] summary .summary-icon {
   font-size: 20px;
   vertical-align: middle;
   margin-left: 4px;
-  color: #fc4349;
+  color: #ff5656;
 }
 /*----------------tree.less(end)--------------*/
 /*----------------validate.less(start)--------------*/
-/*安全级别*/
 .safelvl {
   position: absolute;
   left: 0;
@@ -5030,25 +5029,6 @@ details[open] summary .summary-icon {
   width: 100%;
   color: white;
   background-color: #dddddd;
-}
-.safelvl .progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 30px;
-  transition: all linear 200ms;
-}
-.safelvl.lvl1 .progress {
-  width: 33%;
-  background-color: #f86868;
-}
-.safelvl.lvl2 .progress {
-  width: 66%;
-  background-color: #f4984e;
-}
-.safelvl.lvl3 .progress {
-  width: 100%;
-  background-color: #88d038;
 }
 .safelvl ul {
   display: block;
@@ -5067,6 +5047,25 @@ details[open] summary .summary-icon {
 }
 .safelvl ul li:last-child {
   width: 34%;
+}
+.safelvl .safelvl-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  transition: all linear 200ms;
+}
+.safelvl.lvl1 .safelvl-progress {
+  width: 33%;
+  background-color: #f86868;
+}
+.safelvl.lvl2 .safelvl-progress {
+  width: 66%;
+  background-color: #f4984e;
+}
+.safelvl.lvl3 .safelvl-progress {
+  width: 100%;
+  background-color: #88d038;
 }
 /*----------------validate.less(end)--------------*/
 /*-----------------------------weather.less(start)-----------------------------*/
@@ -5915,7 +5914,7 @@ hr:after {
   color: #f5f5f5;
 }
 .color-submit {
-  color: #88d038;
+  color: #68c75f;
 }
 .color-cancel {
   color: #f86868;
@@ -5930,7 +5929,7 @@ hr:after {
   color: #f4984e;
 }
 .color-tip {
-  color: #fc4349;
+  color: #ff5656;
 }
 /*随机颜色*/
 .color-white {
@@ -6017,7 +6016,7 @@ hr:after {
   background-color: #f5f5f5;
 }
 .bg-submit {
-  background-color: #88d038;
+  background-color: #68c75f;
 }
 .bg-cancel {
   background-color: #f86868;
@@ -6032,7 +6031,7 @@ hr:after {
   background-color: #f4984e;
 }
 .bg-tip {
-  background-color: #fc4349;
+  background-color: #ff5656;
 }
 .bg-primary,
 .bg-default,

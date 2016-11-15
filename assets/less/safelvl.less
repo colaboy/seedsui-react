@@ -1,5 +1,4 @@
 /*----------------validate.less(start)--------------*/
-/*安全级别*/
 .safelvl{
 	position:absolute;
 	left:0;
@@ -9,42 +8,42 @@
 	
 	color:white;
 	background-color:#dddddd;
+	ul{
+		display:block;
+		position:absolute;
+		width:100%;
+		top:0;
+		left:0;
+		li{
+			display:block;
+			height:30px;
+			line-height:30px;
+			text-align:center;
+			width:33%;
+			float:left;
+		}
+		li:last-child{
+			width:34%;
+		}
+	}
 }
-.safelvl .progress{
+.safelvl .safelvl-progress{
 	position:absolute;
 	top:0;
 	left:0;
 	height:30px;
 	transition:all linear 200ms;
 }
-.safelvl.lvl1 .progress{
+.safelvl.lvl1 .safelvl-progress{
 	width:33%;
 	background-color:#f86868;
 }
-.safelvl.lvl2 .progress{
+.safelvl.lvl2 .safelvl-progress{
 	width:66%;
 	background-color:#f4984e;
 }
-.safelvl.lvl3 .progress{
+.safelvl.lvl3 .safelvl-progress{
 	width:100%;
 	background-color:#88d038;
-}
-.safelvl ul{
-	display:block;
-	position:absolute;
-	width:100%;
-	top:0;
-	left:0;
-}
-.safelvl ul li{
-	display:block;
-	height:30px;
-	line-height:30px;
-	text-align:center;
-	width:33%;
-	float:left;
-}
-.safelvl ul li:last-child{
-	width:34%;
 }
 /*----------------validate.less(end)--------------*/

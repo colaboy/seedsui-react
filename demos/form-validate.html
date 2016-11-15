@@ -33,7 +33,7 @@
                 <input type="password" class="input-text" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
                 <div class="safelvl lvl0">
-                    <div class="progress"></div>
+                    <div class="safelvl-progress"></div>
                 	<ul>
                 		<li>弱</li>
                 		<li>中</li>
@@ -65,7 +65,7 @@
                 <input type="number" class="input-text" placeholder="年龄" name="age" data-rule-field="年龄" data-rule="number minnumber:18 maxnumber:48"/>
             </div>
 
-            <a class="button submit block">注册</a>
+            <a class="button submit block SID-BtnSubmit">注册</a>
     	</form>
     </article>
     
@@ -78,14 +78,31 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
+                /*DOM*/
                 this.form,this.formId="ID-Form";
+                this.btnSubmit=document.querySelector(".SID-BtnSubmit");
+                
+                /*Plugin*/
                 this.formControls;
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
+              ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
               ===========================*/
             _initFormControls:function(){
                 this.formControls=new Formcontrols();
@@ -93,16 +110,16 @@
             _initForm:function(){
                 var self=this;
                 this.form=new Form("#"+this.formId,{
-                    "toastParent":"article",
-                    "formFilterClass":"form-filter",
-                    "onFail":function(e){
+                    promptParent:"article",
+                    formFilterClass:"form-filter",
+                    onFail:function(e){
                         for(var i=0,el;el=e.formElements[i++];){
                             el.parentNode.classList.remove("app-active-error");
                         }
                         e.field.parentNode.classList.add("app-active-error");
-                        e.toast.show();
+                        e.prompt.show();
                     },
-                    "onSuccess":function(e){
+                    onSuccess:function(e){
                         for(var i=0,el;el=e.formElements[i++];){
                             el.parentNode.classList.remove("app-active-error");
                         }
@@ -123,29 +140,20 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
+                this.btnSubmit.addEventListener("click",function(e){
+                    self._onClickBtnSubmit(e);
+                },false);
             },
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
+            _onClickBtnSubmit:function(e){
+                var isOk=this.form.validate();
+                console.log(isOk);
             }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
         //定义exmobi返回
