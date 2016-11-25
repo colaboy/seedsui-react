@@ -187,16 +187,37 @@
             }
             return false;
         }
-        //获得选中的时间段
-        s.getActiveRange=function(){
+        //更新选中的时间段
+        s.activeStartTime,s.activeEndTime;
+        s.updateActive=function(){
             var activeParts=[];
             s.parts.forEach(function(part){
                 if(part.classList.contains(s.params.partActiveClass))activeParts.push(part);
             });
             if(activeParts.length<=0)return false;
-            var startTime=activeParts[0].getAttribute(s.params.partStartTimeAttr);
-            var endTime=activeParts[activeParts.length-1].getAttribute(s.params.partEndTimeAttr);
-            return startTime+s.params.tillUnit+endTime;
+            s.activeStartTime=activeParts[0].getAttribute(s.params.partStartTimeAttr);
+            s.activeEndTime=activeParts[activeParts.length-1].getAttribute(s.params.partEndTimeAttr);
+        }
+        //获取选中的开始时间段
+        s.getActiveStartTime=function(){
+            if(s.activeStartTime)return s.activeStartTime;
+            s.updateActive();
+            return s.activeStartTime;
+        }
+        //获取选中的结束时间段
+        s.getActiveEndTime=function(){
+            if(s.activeEndTime)return s.activeEndTime;
+            s.updateActive();
+            return s.activeEndTime;
+        }
+        //获得选中的时间段
+        s.getActiveRange=function(){
+            if(s.activeStartTime && s.activeEndTime)return s.activeStartTime + s.params.tillUnit + s.activeEndTime;
+            s.updateActive();
+            
+            if(!s.activeStartTime && !s.activeEndTime)return null;
+
+            return s.activeStartTime + s.params.tillUnit + s.activeEndTime;
         }
 
         //根据序号选中时间段
@@ -256,6 +277,8 @@
         //移除所有选中状态
         s.removeAllActive=function(){
             s.clickCount=0;
+            s.activeStartTime=null,s.activeEndTime=null;
+
             for(var i=0,part;part=s.parts[i++];){
                 part.classList.remove(s.params.partActiveClass);
             }
@@ -311,16 +334,15 @@
             s.clickCount++;
             var num=target.getAttribute(s.params.partNumAttr);
 
-            if(s.clickCount==3){//如果点击了三次
-                s.removeAllActive();
-                return;
-            }
+            
             if(s.clickCount==1){//如果点击了一次
                 num1=num;
                 target.classList.add(s.params.partActiveClass);
             }else if(s.clickCount==2){//如果点击了两次
                 num2=num;
                 s.activePartsByNum(num1,num2);
+            }else if(s.clickCount==3){//如果点击了三次
+                s.removeAllActive();
             }
         }
 		/*================

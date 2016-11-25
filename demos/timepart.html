@@ -40,7 +40,7 @@
                 </label>
             </div> -->
         </div>
-        <a class="radius4 button block margin8" id="submit">预约</a>
+        <a class="radius4 button block margin8" id="ID-BtnSubmit">预约</a>
 	</article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -50,8 +50,15 @@
         timepart.disablePartsByRange(0,"8:00");
         timepart.disablePartsByRange("9:00","10:30");
         timepart.activePartsByRange("20:00","22:00");
-        var range=timepart.getActiveRange();
-        console.log("选中的时间段："+range);
+        
+        document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
+            var starttime=timepart.getActiveStartTime();
+            console.log("选中的开始时间："+starttime);
+            var endtime=timepart.getActiveEndTime();
+            console.log("选中的结束时间："+endtime);
+            var range=timepart.getActiveRange();
+            console.log("选中的时间段："+range);
+        },false);
 		//定义exmobi返回
 		function back() {
 			history.go(-1);
