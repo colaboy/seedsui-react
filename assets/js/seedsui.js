@@ -1,6 +1,7 @@
 // @koala-prepend "data.lang.js"
 // @koala-prepend "ajax.js"
 // @koala-prepend "eventutil.js"
+// @koala-prepend "router.js"
 // @koala-prepend "page.js"
 // @koala-prepend "aside.js"
 // @koala-prepend "counter.js"

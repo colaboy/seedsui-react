@@ -47,9 +47,9 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
         var timepart=new Timepart("#ID-Timepart");
-        timepart.disablePartsByRange(0,"8:00");
-        timepart.disablePartsByRange("9:00","10:30");
-        timepart.activePartsByRange("20:00","22:00");
+        timepart.disableBeforeTime("9:00");
+        timepart.disableAfterTime("20:00");
+        timepart.disablePartsByRange("10:30","11:30");
         
         document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
             var starttime=timepart.getActiveStartTime();

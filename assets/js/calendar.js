@@ -361,7 +361,7 @@
 				activeDay="&nbsp;&nbsp;第"+s.calendarUtil.getWeekNum(s.calendarUtil.activeDate)+"周";
 			}
 			//注入头部数据
-			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.day()+activeDay;
+			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.date()+activeDay;
 		}
 		s.draw=function(){
 			s.updateData();
@@ -572,15 +572,6 @@
         /*================
         Method
         ================*/
-        //日期比较
-        s.compareDate=function(date1,date2){
-            var t1days=new Date(date1.getFullYear(),date1.getMonth(),0).getDate();
-            var t1=date1.getFullYear()+date1.getMonth()/12+date1.getDate()/t1days/12;
-            var t2days=new Date(date2.getFullYear(),date2.getMonth(),0).getDate();
-            var t2=date2.getFullYear()+date2.getMonth()/12+date2.getDate()/t2days/12;
-            if(t1==t2)return 0;
-            else return t1>t2;
-        }
         //周视图，根据日期获得一周
         s.updateWeekByDate=function(date,week){
         	var day=date.getDay();
@@ -631,7 +622,7 @@
                 if(i==0)month[0].setTime(startDayMs);
                 else month[i].setTime(month[i-1].getTime()+s.dayMilliSecond);
                 //设置选中项
-                if(s.currentMonth==="midMonth" && s.compareDate(month[i],date)===0){
+                if(s.currentMonth==="midMonth" && month[i].compareDate(date)===0){
                     s.activeIndex=i+42;
                     s.activeRowIndex=Math.floor(i/7);
                 }

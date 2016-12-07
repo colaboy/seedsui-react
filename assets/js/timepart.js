@@ -23,7 +23,7 @@
             partEndTimeAttr:"data-timepart-end",
             partNumAttr:"data-timepart-num",
 
-            msgErrorClickDisable:"不能选择禁用时间",
+            msgErrorClickDisable:"该时间段不可选",
             msgErrorOverDisable:"不能跨选禁用段时间",
 			/*
             Callbacks:
@@ -85,10 +85,10 @@
             var startTime=s.getDateByTimeStr(s.startTime);
             var endTime=s.getDateByTimeStr(s.endTime);
             //时间差
-            var diffTime=new Date().diff(startTime,endTime);
+            var diffTime=startTime.diff(endTime);
             //总格数
-            s.partsCount=diffTime.minutes / s.params.partMinute;
-            if(diffTime.minutes % s.params.partMinute != 0){//有分钟余数
+            s.partsCount=diffTime.minutesAll / s.params.partMinute;
+            if(diffTime.minutesAll % s.params.partMinute != 0){//有分钟余数
                 s.toast.setText("时间区间不正确");
                 s.toast.show();
                 return;
@@ -272,6 +272,14 @@
             if(nums){
                 s.disablePartsByNum(nums[0],nums[1]);
             }
+        }
+        //禁用之前的时间
+        s.disableBeforeTime=function(time){
+            s.disablePartsByRange(0,time);
+        }
+        //禁用之后的时间
+        s.disableAfterTime=function(time){
+            s.disablePartsByRange(time,0);
         }
 
         //移除所有选中状态

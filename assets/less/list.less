@@ -7,22 +7,25 @@
 		padding: 10px 12px;
 		-webkit-box-align: center;
 	}
-	&:not(.noclick) li:not(.noclick):active{
+	li:active{
 		background-color:@bar-bg;
 	}
 }
 .list-thumbnail{
-	pointer-events: none;
+    display: -webkit-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
     position:relative;
     width:97px;
-    min-height:62px;
+    height:62px;
     overflow:hidden;
     margin-right: 10px;
     background-size:cover;
     background-color: @photo-bg;
 }
 .list-thumbnail img{
-    width:100%;
+    max-width: 97px;
+    max-height: 62px;
 }
 
 .list-container{

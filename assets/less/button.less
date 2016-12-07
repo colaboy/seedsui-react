@@ -25,7 +25,7 @@
 	color:@button-color;
 	background-color:@button-bg;
 
-	&:not(.noclick):active,&.active{
+	&:active,&.active{
 		@{button-active-property}:@button-active-value;
 	}
 	&.block{
@@ -60,7 +60,7 @@
 		border-color:@dpborder;
 		background-color:white;
 
-		&:not(.noclick):active{
+		&:active{
 			opacity: 1;
 			background-color:@disable-bg;
 		}
@@ -69,7 +69,7 @@
 	&.white{
 		color:@body-color;
 		background-color:white;
-		&:not(.noclick):active{
+		&:active{
 			opacity:1;
 			color:@body-color;
 			background-color:fade(white, 50%);
@@ -78,7 +78,7 @@
 	/*投影按钮*/
 	&.shadow{
 		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
-		&:not(.noclick):active{
+		&:active{
 			-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 			-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 			box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
@@ -125,7 +125,7 @@
 			color:white;
 			border-color:fade(white, 50%);
 			background-color:transparent;
-			&:not(.noclick):active{
+			&:active{
 				opacity:1;
 				color:fade(white, 50%);
 				border-color:fade(white, 50%);
