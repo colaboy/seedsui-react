@@ -77,7 +77,7 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 /*----------------appearance.less(end)--------------*/
-/*-----------------------------global.less(start)-----------------------------*/
+/*----------------global.less(start)----------------*/
 .events-none {
   pointer-events: none;
 }
@@ -87,6 +87,14 @@ input[type="search"]::-webkit-search-results-decoration {
 .noselect {
   -webkit-touch-callout: none;
 }
+::selection {
+  background: #20aeff;
+  color: #ffffff;
+}
+::-webkit-input-placeholder {
+  color: #cccccc;
+}
+/*标签默认样式*/
 * {
   margin: 0;
   padding: 0;
@@ -96,13 +104,6 @@ body {
   font-family: Arial, "Microsoft Yahei";
   color: #333333;
   background-color: #eaeaea;
-}
-::selection {
-  background: #20aeff;
-  color: #ffffff;
-}
-::-webkit-input-placeholder {
-  color: #cccccc;
 }
 .placeholder {
   color: #cccccc;
@@ -122,6 +123,13 @@ pre {
   font-size: inherit;
   font-family: inherit;
 }
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  /*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
+  display: inline-block;
+}
 textarea {
   resize: none;
 }
@@ -135,13 +143,6 @@ dd {
 small {
   font-size: 80%;
   color: #cccccc;
-}
-/*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-  display: inline-block;
 }
 a {
   text-decoration: none;
@@ -197,7 +198,57 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
 }
-/*容器样式*/
+/*显示与隐藏*/
+.hide {
+  display: none;
+}
+.hidden {
+  visibility: hidden;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+/*清除浮动*/
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+.clear {
+  clear: both;
+}
+br {
+  clear: both;
+}
+/*文字样式*/
+.bold {
+  font-weight: bold;
+}
+.uppercase {
+  text-transform: uppercase;
+  /*大写*/
+}
+.lowercase {
+  text-transform: lowercase;
+  /*小写*/
+}
+.capitalize {
+  text-transform: capitalize;
+  /*首字母大写*/
+}
+/*文字换行*/
 .break-all {
   word-break: break-all;
 }
@@ -221,25 +272,83 @@ pre {
 .nowrap3 {
   -webkit-line-clamp: 3;
 }
-/*清除浮动*/
-.clearfix:before,
-.clearfix:after {
+/*文字排列*/
+.tb {
+  -webkit-writing-mode: horizontal-tb;
+}
+.bt {
+  -webkit-writing-mode: horizontal-bt;
+}
+.tb-rl {
+  -webkit-writing-mode: vertical-rl;
+}
+.tb-lr {
+  -webkit-writing-mode: vertical-lr;
+}
+.lr {
+  direction: ltr;
+}
+.rl {
+  direction: rtl;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+/*浮动*/
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+/*层定位*/
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+/*层模型*/
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.table {
   display: table;
-  content: " ";
 }
-.clearfix:after {
-  clear: both;
+.table-fixed {
+  table-layout: fixed;
 }
-.clearfix {
-  zoom: 1;
+.table-cell {
+  display: table-cell;
 }
-.clear {
-  clear: both;
+/*水平排列*/
+.horizontal {
+  overflow-x: auto;
+  white-space: nowrap;
 }
-br {
-  clear: both;
+/*边框盒子*/
+.border-box {
+  box-sizing: border-box;
 }
-/*css3 特效*/
+/*段落*/
+.paragraph {
+  line-height: 24px;
+  margin: 8px 0;
+  padding: 0 8px;
+}
+/*阴影*/
 .shadow {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
   /*分别指投影的：x、y、模糊、扩展、颜色*/
@@ -257,23 +366,7 @@ br {
   border-top: 1px solid #fff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
-/*文字*/
-.bold {
-  font-weight: bold;
-}
-.uppercase {
-  text-transform: uppercase;
-  /*大写*/
-}
-.lowercase {
-  text-transform: lowercase;
-  /*小写*/
-}
-.capitalize {
-  text-transform: capitalize;
-  /*首字母大写*/
-}
-/*-----------------------------global.less(end)-----------------------------*/
+/*----------------global.less(end)----------------*/
 /*----------------titlebar.less(start)--------------*/
 .titlebar {
   display: -webkit-box;
@@ -1417,7 +1510,7 @@ label .input-radio + span {
   background-color: rgba(0, 0, 0, 0.4);
 }
 /*--------------------mask.less(end)----------------------*/
-/*---------------i.less(start)---------------*/
+/*---------------icon.less(start)---------------*/
 /*图标*/
 .icon {
   position: relative;
@@ -1441,7 +1534,7 @@ label .input-radio + span {
   width: 12px;
   height: 12px;
 }
-/*---------------i.less(end)---------------*/
+/*---------------icon.less(end)---------------*/
 /*控件Less*/
 @font-face {
   font-family: 'iconfont';
@@ -5355,24 +5448,8 @@ ul.weather-otherday li {
 }
 /*----------------------------calendar.less(end)----------------------------*/
 /*基础Less:工具类*/
-/*---------------radius.less(start)---------------*/
-.noradius {
-  border-radius: 0 !important;
-}
-.radius4 {
-  border-radius: 4px;
-}
-.radius8 {
-  border-radius: 8px;
-}
-.radius40 {
-  border-radius: 40px;
-}
-.radiusround {
-  border-radius: 100%;
-}
-/*---------------radius.less(end)---------------*/
 /*---------------size.less(start)---------------*/
+/*宽高大小*/
 .size8 {
   width: 8px;
   height: 8px;
@@ -5485,6 +5562,74 @@ i.size80,
 .icon.size80 {
   font-size: 80px;
 }
+/*间距大小*/
+.width-full {
+  width: 100%;
+}
+.height-full {
+  height: 100%;
+}
+.lineheight0 {
+  line-height: 0;
+}
+.indent8 {
+  text-indent: 8px;
+}
+.space8 {
+  display: inline-block;
+  height: 12px;
+}
+.space8 {
+  width: 8px;
+}
+.rowspace8 {
+  display: block;
+  border: none;
+  clear: both;
+}
+.rowspace8 {
+  height: 8px;
+}
+.margin8 {
+  margin: 8px;
+}
+.lrmargin8 {
+  margin: 0 8px;
+}
+.tbmargin8 {
+  margin: 8px 0;
+}
+.nomargin {
+  margin: 0 !important;
+}
+.padding8 {
+  padding: 8px;
+}
+.lrpadding8 {
+  padding: 0 8px;
+}
+.tbpadding8 {
+  padding: 8px 0;
+}
+.nopadding {
+  padding: 0 !important;
+}
+/*圆角大小*/
+.noradius {
+  border-radius: 0 !important;
+}
+.radius4 {
+  border-radius: 4px;
+}
+.radius8 {
+  border-radius: 8px;
+}
+.radius40 {
+  border-radius: 40px;
+}
+.radiusround {
+  border-radius: 100%;
+}
 /*---------------size.less(end)---------------*/
 /*----------------border.less(start)--------------*/
 hr {
@@ -5568,145 +5713,6 @@ hr:after {
   border-style: dashed;
 }
 /*----------------border.less(end)--------------*/
-/*----------------layout.less(start)--------------*/
-.tb {
-  -webkit-writing-mode: horizontal-tb;
-}
-.bt {
-  -webkit-writing-mode: horizontal-bt;
-}
-.tb-rl {
-  -webkit-writing-mode: vertical-rl;
-}
-.tb-lr {
-  -webkit-writing-mode: vertical-lr;
-}
-.lr {
-  direction: ltr;
-}
-.rl {
-  direction: rtl;
-}
-.vmiddle {
-  vertical-align: middle;
-}
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
-.text-left {
-  text-align: left;
-}
-.float-left {
-  float: left;
-}
-.float-right {
-  float: right;
-}
-/*绝对定位*/
-.relative {
-  position: relative;
-}
-.absolute {
-  position: absolute;
-}
-.top {
-  top: 0;
-}
-.bottom {
-  bottom: 0;
-}
-.left {
-  left: 0;
-}
-.right {
-  right: 0;
-}
-/*水平排列*/
-.horizontal {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-/*间距与布局*/
-.border-box {
-  box-sizing: border-box;
-}
-.width-full {
-  width: 100%;
-}
-.height-full {
-  height: 100%;
-}
-.lineheight0 {
-  line-height: 0;
-}
-.indent8 {
-  text-indent: 8px;
-}
-.space8 {
-  display: inline-block;
-  height: 12px;
-}
-.space8 {
-  width: 8px;
-}
-.rowspace8 {
-  display: block;
-  border: none;
-  clear: both;
-}
-.rowspace8 {
-  height: 8px;
-}
-.margin8 {
-  margin: 8px;
-}
-.lrmargin8 {
-  margin: 0 8px;
-}
-.tbmargin8 {
-  margin: 8px 0;
-}
-.nomargin {
-  margin: 0 !important;
-}
-.padding8 {
-  padding: 8px;
-}
-.lrpadding8 {
-  padding: 0 8px;
-}
-.tbpadding8 {
-  padding: 8px 0;
-}
-.nopadding {
-  padding: 0 !important;
-}
-/*段落*/
-.paragraph {
-  line-height: 24px;
-  margin: 8px 0;
-  padding: 0 8px;
-}
-/*显示与隐藏*/
-.hide {
-  display: none;
-}
-.hidden {
-  visibility: hidden;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-.block {
-  display: block;
-}
-.inline-block {
-  display: inline-block;
-}
-/*----------------layout.less(end)--------------*/
 /*----------------box.less(start)--------------*/
 .box {
   display: -webkit-box;
