@@ -1,0 +1,76 @@
+/*----------------border.less(start)--------------*/
+hr{
+    position: relative;
+    border:0;
+    clear:both;
+}
+.topline:before,.underline:after,hr:after {
+	content: '';
+	display: block;
+	position: absolute;
+	
+	left: 0;
+	right: auto;
+	height: 1px;
+	width: 100%;
+	
+	-webkit-transform-origin: 50% 100%;
+	background-color: $border;
+}
+.topline:before {
+	top: 0;
+	bottom: auto;
+}
+.underline:after,hr:after {
+	top: auto;
+	bottom: 0;
+}
+.leftline:before,.rightline:after {
+	content: '';
+	display: block;
+	position: absolute;
+
+	top: 0;
+	bottom: auto;
+	width: 1px;
+	height: 100%;
+	
+	-webkit-transform-origin: 100% 50%;
+	background-color: $border;
+}
+.leftline:before {
+	left: 0;
+	right: auto;
+}
+.rightline:after {
+	left: auto;
+	right: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.topline:before,.underline:after,hr:after {
+		-webkit-transform: scaleY(0.5);
+	}
+	.leftline:before,.rightline:after {
+		-webkit-transform: scaleX(0.5);
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+	.topline:before,.underline:after,hr:after {
+		-webkit-transform: scaleY(0.33);
+	}
+	.leftline:before,.rightline:after {
+		-webkit-transform: scaleX(0.33);
+	}
+}
+.bordered{
+	border-style:solid;
+	border-width:1px;
+	border-color: $border;
+}
+.dotted{
+	border-style:dotted;
+}
+.dashed{
+	border-style:dashed;
+}
+/*----------------border.less(end)--------------*/

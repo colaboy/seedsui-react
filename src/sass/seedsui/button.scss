@@ -1,0 +1,230 @@
+/*----------------button.less(start)----------------*/
+.button{
+	display:-webkit-inline-box;
+    -webkit-box-align:center;
+    -webkit-box-pack:center;
+
+	height:40px;
+	/* line-height:normal; */
+	line-height:0;
+	border-width:0;
+	vertical-align:middle;
+
+	box-sizing:border-box;
+
+	border-style:solid;
+	border-width: 1px;
+	border-radius:0;
+
+	color:$button-color;
+	background-color:$button-bg;
+	border-color: $button-border;
+
+	&:active{
+		background-color:$button-bg-active;
+	}
+
+	&.block{
+		display:-webkit-box;
+	}
+	/*主色按钮*/
+	&.primary{
+		color: white;
+		background-color:$primary-bg;
+		border-color: $primary-bg;
+		&:active{
+			background-color:$primary-bg-active;
+			border-color:$primary-bg-active;
+		}
+	}
+	/*取消按钮*/
+	&.cancel{
+		color: white;
+		background-color:$cancel-bg;
+		border-color: $cancel-bg;
+		&:active{
+			background-color:$cancel-bg-active;
+			border-color:$cancel-bg-active;
+		}
+	}
+	/*提交按钮*/
+	&.submit{
+		color: white;
+		background-color:$submit-bg;
+		border-color: $submit-bg;
+		&:active{
+			background-color:$submit-bg-active;
+			border-color:$submit-bg-active;
+		}
+	}
+	/*信息按钮*/
+	&.info{
+		color: white;
+		background-color:$info-bg;
+		border-color: $info-bg;
+		&:active{
+			background-color:$info-bg-active;
+			border-color:$info-bg-active;
+		}
+	}
+	/*警告按钮*/
+	&.warn{
+		color: white;
+		background-color:$warn-bg;
+		border-color: $warn-bg;
+		&:active{
+			background-color:$warn-bg-active;
+			border-color:$warn-bg-active;
+		}
+	}
+	/*完成按钮*/
+	&.success{
+		color: white;
+		background-color:$success-bg;
+		border-color: $success-bg;
+		&:active{
+			background-color:$success-bg-active;
+			border-color:$success-bg-active;
+		}
+	}
+	/*禁用按钮*/
+	&.disabled,&[disabled]{
+		color:$disable-bg;
+		background-color:transparent;
+		border-color:$button-border;
+		&:active{
+			color:$disable-bg;
+			border-color:$button-border;
+		}
+	}
+	/*白色按钮*/
+	&.white{
+		color:$body-color;
+		background-color:white;
+		border-color:white;
+		&:active{
+			background-color:transparentize(white, .5);
+			border-color:transparent;
+		}
+	}
+	/*投影按钮*/
+	&.shadow{
+		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
+		&:active{
+			-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+			margin:2px 0 -2px 0;
+		}
+	}
+	
+	
+	/*小汽泡*/
+	/* &:not(.outline) .tip,&:not(.outline) .badge{
+		color:$button-color;
+		background-color: $button-tip-bg;
+	} */
+}
+
+.button.outline{
+	/*线框-主色按钮*/
+	&.primary{
+		color: $primary-bg;
+		background-color:transparent;
+		border-color: $primary-bg;
+		&:active{
+			color:$primary-bg-active;
+			border-color:$primary-bg-active;
+		}
+	}
+	/*线框-取消按钮*/
+	&.cancel{
+		color:$cancel-bg;
+		background-color:transparent;
+		border-color:$cancel-bg;
+		&:active{
+			color:$cancel-bg-active;
+			border-color:$cancel-bg-active;
+		}
+	}
+	/*线框-提交按钮*/
+	&.submit{
+		color:$submit-bg;
+		background-color:transparent;
+		border-color:$submit-bg;
+		&:active{
+			color:$submit-bg-active;
+			border-color:$submit-bg-active;
+		}
+	}
+	/*线框-信息按钮*/
+	&.info{
+		color:$info-bg;
+		background-color:transparent;
+		border-color:$info-bg;
+		&:active{
+			color:$info-bg-active;
+			border-color:$info-bg-active;
+		}
+	}
+	/*线框-警告按钮*/
+	&.warn{
+		color:$warn-bg;
+		background-color:transparent;
+		border-color:$warn-bg;
+		&:active{
+			color:$warn-bg-active;
+			border-color:$warn-bg-active;
+		}
+	}
+	/*线框-完成按钮*/
+	&.success{
+		color:$success-bg;
+		background-color:transparent;
+		border-color:$success-bg;
+		&:active{
+			color:$success-bg-active;
+			border-color:$success-bg-active;
+		}
+	}
+
+	/*线框-白色按钮*/
+	&.white{
+		color:white;
+		background-color:transparent;
+		border-color:white;
+		&:active{
+			color:transparentize(white,.5);
+			border-color:transparentize(white,.5);
+		}
+	}
+}
+
+/*多彩标签按钮*/
+.mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary,.mark-grayscale{
+	font-size:0.95em;
+    padding:2px 5px;
+    border-radius:3px;
+}
+.mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary{
+	color: white;
+}
+.mark-disable{
+	background-color: $disable-bg;
+}
+.mark-info{
+	background-color: $info-bg;
+}
+.mark-success{
+	background-color: $success-bg;
+}
+.mark-cancel{
+	background-color: $cancel-bg;
+}
+.mark-warn{
+	background-color: $warn-bg;
+}
+.mark-primary{
+	background-color: $primary-bg;
+}
+/*----------------button.less(end)----------------*/

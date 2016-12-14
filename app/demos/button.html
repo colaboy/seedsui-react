@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>button</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1>按钮</h1>
+        </div>
+    </header>
+    <article>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">普通按钮</p>
+            </div>
+            <div style="line-height: 50px;padding: 4px 12px 8px 12px;">
+                <a class="button lrpadding8">
+                    <span>默认</span>
+                    <span class="tip">1</span>
+                </a>
+                <a class="button lrpadding8" disabled>
+                    <span>禁用</span>
+                    <span class="tip">1</span>
+                </a>
+                <a class="button lrpadding8 primary">
+                    <span>主色</span>
+                    <span class="badge">99+</span>
+                </a>
+                <a class="button lrpadding8 submit">
+                    <i class="icon icon-rdohook"></i>
+                    <span>提交</span>
+                </a>
+                <a class="button lrpadding8 cancel">
+                    <i class="icon icon-rdoclose"></i>
+                    <span>取消</span>
+                </a>
+                <a class="button lrpadding8 info">
+                    <i class="icon icon-rdoinfo"></i>
+                    <span>信息</span>
+                </a>
+                <a class="button lrpadding8 success">完成</a>
+                <a class="button lrpadding8 warn">警告</a>
+                
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">框形按钮</p>
+            </div>
+            <div style="line-height: 50px;padding: 4px 12px 8px 12px;">
+                <a class="button outline lrpadding8">
+                    <span>默认</span>
+                    <span class="tip">1</span>
+                </a>
+                <a class="button outline lrpadding8" disabled>
+                    <span>禁用</span>
+                    <span class="tip">1</span>
+                </a>
+                <a class="button lrpadding8 primary outline">
+                    <span>主色</span>
+                    <span class="badge">99+</span>
+                </a>
+                <a class="button lrpadding8 submit outline">
+                    <i class="icon icon-rdohook"></i>
+                    <span>提交</span>
+                </a>
+                <a class="button lrpadding8 cancel outline">
+                    <i class="icon icon-rdoclose"></i>
+                    <span>取消</span>
+                </a>
+                <a class="button lrpadding8 info outline">
+                    <i class="icon icon-rdoinfo"></i>
+                    <span>信息</span>
+                </a>
+                <a class="button lrpadding8 success outline">完成</a>
+                <a class="button lrpadding8 warn outline">警告</a>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">白色按钮</p>
+            </div>
+            <div style="line-height: 50px;padding: 4px 12px 8px 12px;" class="bg-primary">
+                <a class="button lrpadding8 white">白色按钮</a>
+                <a class="button lrpadding8 white outline">白色按钮</a>
+            </div>
+        </div>
+
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">3D按钮</p>
+            </div>
+            <div style="line-height: 50px;padding: 4px 12px 8px 12px;">
+                <a class="button primary lrpadding8 shadow">
+                    <i class="icon icon-home"></i>
+                    <span>按钮</span>
+                </a>
+                <a class="button primary cancel shadow size32 radiusround">
+                    <i class="icon icon-rdoclose"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">色彩标签</p>
+            </div>
+            <div style="padding: 10px 12px;">
+                <span class="mark-info">info</span>
+                <span class="mark-success">success</span>
+                <span class="mark-cancel">cancel</span>
+                <span class="mark-warn">warn</span>
+                <span class="mark-disable">disable</span>
+                <span class="mark-grayscale">grayscale</span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">大按钮</p>
+            </div>
+            <div style="line-height: 50px;padding: 4px 12px 8px 12px;">
+                <a class="radius4 button block margin8">按钮</a>
+                <a class="radius4 button block submit margin8">
+                    <i class="icon icon-rdohook"></i>
+                    <span>提交</span>
+                </a>
+                <a class="radius4 button block cancel margin8">
+                    <i class="icon icon-rdoclose"></i>
+                    <span>取消</span>
+                </a>
+                <a class="radius4 button block info margin8">
+                    <i class="icon icon-rdoinfo"></i>
+                    <span>信息</span>
+                </a>
+            </div>
+        </div>
+
+    </article>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+    //定义exmobi返回
+    function back(){history.go(-1);}
+</script>
+</body>
+</html>

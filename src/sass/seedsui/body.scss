@@ -1,0 +1,46 @@
+/*----------------body.less(start)--------------*/
+/*header,footer*/
+header,footer{
+	position:fixed;
+	width:100%;
+	z-index:2;
+}
+header{
+	top:0;
+}
+footer{
+	bottom:0;
+}
+/*article*/
+article{
+	box-sizing:border-box;
+}
+header+article{
+	padding-top:44px;
+}
+
+/*section与aside*/
+section{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    background-color: $body-bg;
+}
+section header,section footer,aside header,aside footer,{
+	position:absolute;
+}
+section article,aside article,.article-absolute{
+	position: absolute;
+    top: 44px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 0;
+    overflow: auto;
+}
+/*----------------body.less(end)--------------*/

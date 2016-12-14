@@ -1,0 +1,121 @@
+/*----------------richedit.less(start)--------------*/
+.richedit{
+	position:fixed;
+	top:auto;
+	bottom:0;
+	width:100%;
+	z-index:11;
+	/*表情区域*/
+	.emoji{
+		display:none;
+		font-size:0;
+		padding:8px 0;
+		height:170px;
+
+		background-color:$body-bg;
+		&.active{
+			display:block;
+		}
+	}
+	.richinput img{
+		width:24px;
+	}
+	/*输入框区域*/
+	figcaption{
+		position: relative;
+	    border-style: solid;
+	    border-width: 1px 0 0 0;
+	    background-color: white;
+	    padding: 8px 70px 8px 8px;
+
+	    border-color:$border;
+	}
+	.input{
+		position: relative;
+		border:none;
+		vertical-align:middle;
+		box-sizing:border-box;
+		border-style: solid;
+		border-width:0 0 1px 0;
+
+		border-color:$border;
+		&:before,&:after{
+			content: '';
+			position: absolute;
+			width:1px;
+			height:5px;
+			bottom:0;
+
+			background-color:$border;
+		}
+		&:before{
+			left:0;
+		}
+		&:after{
+			right:0;
+		}
+	}
+	textarea{
+		background-color:transparent;
+		width:100%;
+		border:none;
+		resize:none;
+	}
+	textarea,pre{
+		padding:0 4px;
+		line-height:32px;
+		min-height:32px;
+		max-height:32px;
+		width:100%;
+	}
+	pre{
+		position:absolute;
+		left:0;
+		top:100px;
+		visibility:hidden;
+	}
+	pre span{
+		display:inline;
+	}
+	/*发送按钮*/
+	.button{
+		position:absolute;
+		right:8px;
+		bottom:8px;
+		height: 32px;
+		line-height: 32px;
+		width:54px;
+	}
+	/*激活状态*/
+	&.active{
+		top:0;
+		bottom:auto;
+		.emoji{
+			display:block;
+		}
+		+.mask{
+			opacity:1;
+			visibility:visible;
+		}
+		.input{
+			border-color:$primary-bg;
+		}
+		.input:before,.input:after{
+			background-color:$primary-bg;
+		}
+		textarea,pre{
+			max-height:60px;
+		}
+	}
+	/*表情滑动容器小点点*/
+	.slider-pagination{
+		text-align:center;
+		.bullet{
+		    background-color:#cfcfcf;
+		    &.active{
+				background-color:#a1a1a1;
+			}
+		}
+	}
+}
+/*----------------richedit.less(end)--------------*/
