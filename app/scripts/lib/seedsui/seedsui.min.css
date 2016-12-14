@@ -637,12 +637,7 @@ br {
   /*完成按钮*/
   /*禁用按钮*/
   /*白色按钮*/
-  /*投影按钮*/
-  /*小汽泡*/
-  /* &:not(.outline) .tip,&:not(.outline) .badge{
-  	color:$button-color;
-  	background-color: $button-tip-bg;
-  } */ }
+  /*小汽泡*/ }
   .button:active {
     background-color: #f4f4f4; }
   .button.block {
@@ -696,6 +691,8 @@ br {
     .button.disabled:active, .button[disabled]:active {
       color: #d1d1d1;
       border-color: #e5e5e5; }
+    .button.disabled .tip, .button.disabled .badge, .button[disabled] .tip, .button[disabled] .badge {
+      background-color: #d1d1d1; }
   .button.white {
     color: #333;
     background-color: white;
@@ -703,14 +700,8 @@ br {
     .button.white:active {
       background-color: rgba(255, 255, 255, 0.5);
       border-color: transparent; }
-  .button.shadow {
-    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
-    /*分别指投影的：右、下、模糊、扩展、颜色*/ }
-    .button.shadow:active {
-      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
-      -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
-      margin: 2px 0 -2px 0; }
+  .button.primary .tip, .button.primary .badge, .button.cancel .tip, .button.cancel .badge, .button.submit .tip, .button.submit .badge, .button.info .tip, .button.info .badge, .button.warn .tip, .button.warn .badge, .button.success .tip, .button.success .badge {
+    background-color: rgba(0, 0, 0, 0.15); }
 
 .button.outline {
   /*线框-主色按钮*/
@@ -719,7 +710,8 @@ br {
   /*线框-信息按钮*/
   /*线框-警告按钮*/
   /*线框-完成按钮*/
-  /*线框-白色按钮*/ }
+  /*线框-白色按钮*/
+  /*小汽泡*/ }
   .button.outline.primary {
     color: #20aeff;
     background-color: transparent;
@@ -769,6 +761,18 @@ br {
     .button.outline.white:active {
       color: rgba(255, 255, 255, 0.5);
       border-color: rgba(255, 255, 255, 0.5); }
+  .button.outline.primary .tip, .button.outline.primary .badge, .button.outline.cancel .tip, .button.outline.cancel .badge, .button.outline.submit .tip, .button.outline.submit .badge, .button.outline.info .tip, .button.outline.info .badge, .button.outline.warn .tip, .button.outline.warn .badge, .button.outline.success .tip, .button.outline.success .badge {
+    background-color: #ff5656; }
+
+/*投影按钮*/
+.button.shadow {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  /*分别指投影的：右、下、模糊、扩展、颜色*/ }
+  .button.shadow:active {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    margin: 2px 0 -2px 0; }
 
 /*多彩标签按钮*/
 .mark-info, .mark-success, .mark-cancel, .mark-warn, .mark-disable, .mark-primary, .mark-grayscale {

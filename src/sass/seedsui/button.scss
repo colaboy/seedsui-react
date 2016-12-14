@@ -96,6 +96,9 @@
 			color:$disable-bg;
 			border-color:$button-border;
 		}
+		.tip,.badge{
+			background-color: $disable-bg;
+		}
 	}
 	/*白色按钮*/
 	&.white{
@@ -107,23 +110,12 @@
 			border-color:transparent;
 		}
 	}
-	/*投影按钮*/
-	&.shadow{
-		box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
-		&:active{
-			-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
-			-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
-			box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
-			margin:2px 0 -2px 0;
+	/*小汽泡*/
+	&.primary,&.cancel,&.submit,&.info,&.warn,&.success{
+		.tip,.badge{
+			background-color: $button-tip-bg;
 		}
 	}
-	
-	
-	/*小汽泡*/
-	/* &:not(.outline) .tip,&:not(.outline) .badge{
-		color:$button-color;
-		background-color: $button-tip-bg;
-	} */
 }
 
 .button.outline{
@@ -198,8 +190,23 @@
 			border-color:transparentize(white,.5);
 		}
 	}
+	/*小汽泡*/
+	&.primary,&.cancel,&.submit,&.info,&.warn,&.success{
+		.tip,.badge{
+			background-color: $tip-bg;
+		}
+	}
 }
-
+/*投影按钮*/
+.button.shadow{
+	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
+	&:active{
+		-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+		-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+		box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
+		margin:2px 0 -2px 0;
+	}
+}
 /*多彩标签按钮*/
 .mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary,.mark-grayscale{
 	font-size:0.95em;
