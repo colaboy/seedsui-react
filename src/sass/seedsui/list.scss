@@ -16,7 +16,6 @@
     -webkit-box-align:center;
     -webkit-box-pack:center;
     position:relative;
-    width:97px;
     height:62px;
     overflow:hidden;
     margin-right: 10px;
@@ -34,9 +33,6 @@
 }
 .list-title{
     font-size: 17px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     padding: 1px 0;
 }
 .list-row{

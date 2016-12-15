@@ -128,17 +128,17 @@
 
 			//Slide height
 			if(s.params.height){
-				s.height=s.params.height;
+				s.height=s.params.height.indexOf("px")>0?s.params.height.substring(0,s.params.height.indexOf("px")):s.params.height;
 			}else{
-				s.height=s.container.clientHeight?s.container.clientHeight+"px":s.wrapper.clientHeight+"px";
+				s.height=s.container.clientHeight?s.container.clientHeight:s.wrapper.clientHeight;
 			}
 			[].slice.call(s.slides).forEach(function(n,i,a){
-				n.style.height=s.height;
+				n.style.height=s.height+"px";
 			});
 
 			if(s.height){
-				s.container.style.height=s.height;
-				s.wrapper.style.height=s.height;
+				s.container.style.height=s.height+"px";
+				s.wrapper.style.height=s.height+"px";
 			}
 
 			//更新active index
