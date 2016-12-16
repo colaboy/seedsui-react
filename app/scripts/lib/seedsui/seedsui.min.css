@@ -2,7 +2,7 @@
 /*基础Less:控件类*/
 /*控件*/
 /*常用颜色*/
-/*----------------body.less(start)--------------*/
+/*----------------layout.less(start)--------------*/
 /*header,footer*/
 header, footer {
   position: fixed;
@@ -45,7 +45,7 @@ section article, aside article, .article-absolute {
   padding-top: 0;
   overflow: auto; }
 
-/*----------------body.less(end)--------------*/
+/*----------------layout.less(end)--------------*/
 /*----------------appearance.less(start)--------------*/
 a, button, textarea, select, keygen,
 input,
@@ -67,7 +67,10 @@ input[type="search"]::-webkit-search-results-decoration {
   pointer-events: auto; }
 
 .noselect {
-  -webkit-touch-callout: none; }
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none; }
 
 ::selection {
   background: #20aeff;
@@ -124,10 +127,9 @@ a {
   cursor: pointer;
   display: inline-block;
   color: #20aeff; }
+  a:active {
+    color: #86d3ff; }
 
-/* a:active,a.active{
-	${link-active-property}:$link-active-value;
-} */
 a, label, :focus {
   outline: 0 none; }
 
@@ -340,10 +342,6 @@ br {
   -webkit-box-align: center;
   min-height: 44px;
   box-sizing: border-box;
-  /* 
-  border-bottom:1px solid;
-  border-color:$bar-border;
-  */
   background-color: #f9f9f9;
   /*左右对齐*/ }
   .titlebar h1 {
@@ -389,14 +387,9 @@ br {
 .titlebar .icon + .icon {
   margin-left: 0; }
 
-.titlebar h1, .titlebar > .inputbox {
-  -webkit-box-flex: 1.0; }
-
 .titlebar-button {
   max-height: 32px;
-  margin: 0 8px;
-  /* color:$bar-link;
-  border-color:$bar-link; */ }
+  margin: 0 8px; }
 
 .titlebar-button + .titlebar-button {
   margin-left: 0px; }
@@ -412,15 +405,6 @@ br {
 .titlebar.reverse h1 {
   color: white; }
 
-/* .titlebar.reverse .titlebar-button{
-	color:$bar-reverse-link;
-	border-color:$bar-reverse-link;
-}
-.titlebar.reverse .titlebar-button:active,
-.titlebar.reverse .titlebar-button.active{
-	color:$bar-reverse-link-active;
-	border-color:$bar-reverse-link-active;
-} */
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
 .tabbar {
@@ -589,30 +573,21 @@ br {
   color: #20aeff;
   background-color: white; }
 
-.tabbar-footer {
-  /* .tab:active,.tab.active{
-  	color:$bar-color-active;
-  } */ }
-  .tabbar-footer .tab {
-    height: auto;
-    line-height: 0; }
-  .tabbar-footer .tab .icon {
-    margin-top: 6px; }
-  .tabbar-footer .tab-label {
-    display: block;
-    font-size: 13px;
-    height: 13px;
-    line-height: 13px;
-    margin: 4px 0 6px 0; }
+.tabbar-footer .tab {
+  height: auto;
+  line-height: 0;
+  padding: 6px 0; }
+.tabbar-footer .tab-label {
+  display: block;
+  font-size: 13px;
+  height: 13px;
+  line-height: 13px;
+  margin: 4px 0 0 0; }
 
-.tabbar-footer.reverse {
-  /* .tab:active,.tab.active{
-  	color:$bar-reverse-color-active;
-  } */ }
-  .tabbar-footer.reverse .tab {
-    color: white;
-    border-color: #20aeff;
-    background-color: #20aeff; }
+.tabbar-footer.reverse .tab {
+  color: white;
+  border-color: #20aeff;
+  background-color: #20aeff; }
 
 /*----------------tabbar.less(end)--------------*/
 /*----------------button.less(start)----------------*/
@@ -642,6 +617,7 @@ br {
   /*白色按钮*/
   /*小汽泡*/ }
   .button:active {
+    color: #333;
     background-color: #f4f4f4; }
   .button.block {
     display: -webkit-box; }
@@ -5048,62 +5024,7 @@ i.size60, .icon.size60 {
 i.size80, .icon.size80 {
   font-size: 80px; }
 
-/*间距大小*/
-.width-full {
-  width: 100%; }
-
-.height-full {
-  height: 100%; }
-
-.lineheight0 {
-  line-height: 0; }
-
-.indent8 {
-  text-indent: 8px; }
-
-.space8 {
-  display: inline-block;
-  height: 12px; }
-
-.space8 {
-  width: 8px; }
-
-.rowspace8 {
-  display: block;
-  border: none;
-  clear: both; }
-
-.rowspace8 {
-  height: 8px; }
-
-.margin8 {
-  margin: 8px; }
-
-.lrmargin8 {
-  margin: 0 8px; }
-
-.tbmargin8 {
-  margin: 8px 0; }
-
-.nomargin {
-  margin: 0 !important; }
-
-.padding8 {
-  padding: 8px; }
-
-.lrpadding8 {
-  padding: 0 8px; }
-
-.tbpadding8 {
-  padding: 8px 0; }
-
-.nopadding {
-  padding: 0 !important; }
-
 /*圆角大小*/
-.noradius {
-  border-radius: 0 !important; }
-
 .radius4 {
   border-radius: 4px; }
 

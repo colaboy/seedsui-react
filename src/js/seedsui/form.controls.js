@@ -1,6 +1,6 @@
 //Formcontrols (require form.safelvl.js)
 (function(window,document,undefined){
-	window.Formcontrols=function(params){
+	window.FormControls=function(params){
 		/*================
 		Model
 		================*/

@@ -236,20 +236,15 @@
 	.tab{
 		height: auto;
     	line-height: 0;
-	}
-	.tab .icon{
-		margin-top:6px;
+    	padding: 6px 0;
 	}
 	.tab-label{
 		display:block;
 		font-size:13px;
 		height:13px;
 		line-height:13px;
-		margin:4px 0 6px 0;
+		margin:4px 0 0 0;
 	}
-	/* .tab:active,.tab.active{
-		color:$bar-color-active;
-	} */
 }
 .tabbar-footer.reverse{
 	.tab{
@@ -257,8 +252,5 @@
 		border-color:$bar-reverse-border;
 		background-color:$bar-reverse-bg;
 	}
-	/* .tab:active,.tab.active{
-		color:$bar-reverse-color-active;
-	} */
 }
 /*----------------tabbar.less(end)--------------*/

@@ -13,6 +13,7 @@
 // @koala-prepend "seedsui/emoji.js"
 // @koala-prepend "seedsui/form.safelvl.js"
 // @koala-prepend "seedsui/form.controls.js"
+// @koala-prepend "seedsui/form.validate.js"
 // @koala-prepend "seedsui/form.js"
 // @koala-prepend "seedsui/countvalue.js"
 // @koala-prepend "seedsui/media.js"

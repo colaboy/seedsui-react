@@ -70,19 +70,19 @@
 		</div>
 		<!--天气:end-->
 		<p class="sliver">调用方法</p>
-		<div class="card padding8">
-			<p class="indent8 paragraph">通过new Weather("#weather",{"city":"城市名称","expires":"时效(Date类型)"})即可。</p>
+		<div class="card" style="padding:8px;">
+			<p class="paragraph">通过new Weather("#weather",{"city":"城市名称","expires":"时效(Date类型)"})即可。</p>
 		</div>
 
 		<p class="sliver">时效性</p>
-		<div class="card padding8">
-			<p class="indent8 paragraph">为了不要频繁访问服务器天气json数据（百度天气只允许每个ak每天访问5000次）。</p>
-			<p class="indent8 paragraph">默认缓存了1天的天气，当然您也可以设置指定的缓存时间，通过设置时效来控制缓存时间。</p>
-			<p class="indent8 paragraph">例如：Weather(elem).showWeather(城市,时效性（1表示1小时，today表示只有今天生效）);</p>
+		<div class="card" style="padding:8px;">
+			<p class="paragraph">为了不要频繁访问服务器天气json数据（百度天气只允许每个ak每天访问5000次）。</p>
+			<p class="paragraph">默认缓存了1天的天气，当然您也可以设置指定的缓存时间，通过设置时效来控制缓存时间。</p>
+			<p class="paragraph">例如：Weather(elem).showWeather(城市,时效性（1表示1小时，today表示只有今天生效）);</p>
 		</div>
 
 		<p class="sliver">样式修改</p>
-		<div class="card padding8">
+		<div class="card" style="padding:8px;">
 		另外要注意weather-box内部的样式可以都改掉，但唯独含有id，以及class名称不能更改，class为weather-otherday的内部结构不能更改，样式可随意发挥，建议不要更改结构，只改样式。
 		</div>
 	</article>

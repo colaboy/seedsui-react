@@ -5,10 +5,6 @@
 	min-height:44px;
 	box-sizing:border-box;
 
-	/* 
-	border-bottom:1px solid;
-	border-color:$bar-border;
-	*/
 	background-color:$bar-bg;
 	
 
@@ -76,16 +72,9 @@
 .titlebar .icon+.icon{
 	margin-left: 0;
 }
-.titlebar h1,.titlebar>.inputbox{
-	-webkit-box-flex:1.0;
-}
-
 .titlebar-button{
 	max-height:32px;
 	margin:0 8px;
-
-	/* color:$bar-link;
-	border-color:$bar-link; */
 }
 .titlebar-button+.titlebar-button{
 	margin-left:0px;
@@ -101,14 +90,4 @@
 .titlebar.reverse h1{
 	color:$bar-reverse-color;
 }
-/* .titlebar.reverse .titlebar-button{
-	color:$bar-reverse-link;
-	border-color:$bar-reverse-link;
-}
-.titlebar.reverse .titlebar-button:active,
-.titlebar.reverse .titlebar-button.active{
-	color:$bar-reverse-link-active;
-	border-color:$bar-reverse-link-active;
-} */
-
 /*----------------titlebar.less(end)----------------*/

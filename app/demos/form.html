@@ -22,26 +22,26 @@
             <p class="sliver-title">表单组件</p>
         </div>
 
-        <form class="inputbox margin8 radius20 overflow-hidden" data-input="clear">
+        <form style="margin:8px" class="inputbox radius20 overflow-hidden" data-input="clear">
             <i class="color-placeholder icon icon-search"></i>
             <input type="search" placeholder="搜索框" class="search input-text">
             <i class="color-placeholder icon icon-clear-fill hide size20"></i>
         </form>
-        <form class="inputbox margin8 radius20" data-input="clear">
+        <form style="margin:8px" class="inputbox radius20" data-input="clear">
             <input type="search" placeholder="搜索框" class="search input-text"/>
             <i class="color-placeholder icon icon-clear-fill hide size20"></i>
         </form>
-        <form class="inputbox margin8">
+        <form style="margin:8px" class="inputbox">
             <input type="search" placeholder="搜索框" class="input-text" />
             <i class="color-placeholder icon icon-search"></i>
         </form>
 
-        <div class="inputbox margin8" data-input="reveal">
+        <div style="margin:8px" class="inputbox" data-input="reveal">
             <input type="password" placeholder="密码框" class="input-text" />
             <i class="color-placeholder icon icon-eye"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <select class="input-text">
                 <option>选项1</option>
                 <option>选项2</option>
@@ -50,69 +50,69 @@
             <i class="color-placeholder icon icon-arrowdown"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <textarea class="input-pre" placeholder="增高控件" style="margin:9px 12px"></textarea>
             <i class="color-placeholder icon icon-rdomore"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input type="number" class="input-text" placeholder="手机框" />
             <i class="color-placeholder icon icon-phone"></i>
         </div>
 
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input type="number" class="input-text" placeholder="电话框" />
             <i class="color-placeholder icon icon-tel"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input type="url" class="input-text" placeholder="链接框"/>
             <i class="color-placeholder icon icon-earth"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input class="input-text block" type="date" class="input-text" value="2015-06-16"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input class="input-text block" type="month" value="2015-06"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input class="input-text block" type="datetime-local" value="2015-06-01T10:55:33"/>
             <i class="color-placeholder icon icon-calendar"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input class="input-text block" type="time" value="08:30"/>
             <i class="color-placeholder icon icon-time"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input type="text" class="input-text" placeholder="扫码控件框"/>
             <i class="color-placeholder icon icon-qrcodeline"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <div class="input-text">拍照</div>
             <i class="color-placeholder icon icon-camera"></i>
         </div>
 
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <div class="input-text"></div>
             <i class="color-placeholder icon icon-record"></i>
         </div>
         
-        <div class="inputbox margin8">
+        <div style="margin:8px" class="inputbox">
             <input type="text" class="input-text"/>
             <i class="color-placeholder icon icon-position"></i>
         </div>
         <div class="group">
             <div class="inputbox underline" style="padding: 20px 12px;">
-                <progress max="100" value="80" class="width-full">80</progress>
+                <progress max="100" value="80" style="width: 100%">80</progress>
             </div>
             <div class="inputbox underline" style="padding: 7px 12px;">
                 <div class="range-tooltip">8080</div>
@@ -120,12 +120,12 @@
             </div>
         </div>
 
-        <div class="numbox bordered margin8">
+        <div class="numbox bordered" style="margin:8px">
             <input type="button" disabled class="button grayscale" value="-" />
             <input type="number" class="input-text" value="0"/>
             <input type="button" class="button grayscale" value="+" />
         </div>
-        <div class="numbox bordered margin8">
+        <div class="numbox bordered" style="margin:8px">
             <input type="button" class="button success" value="-" disabled />
             <input type="number" class="input-text" value="10" step="10" min="10" max="100"/>
             <!-- <input type="button" class="button" value="+" /> -->
@@ -366,7 +366,7 @@
               Method
               ===========================*/
             _initFormControls:function(){
-                this.formControls=new Formcontrols();
+                this.formControls=new FormControls();
             },
             _initPlugin:function(){
                 this._initFormControls();

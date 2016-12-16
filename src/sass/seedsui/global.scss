@@ -7,6 +7,9 @@
 }
 .noselect{
 	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-moz-user-select:none;
 }
 ::selection{
 	background:$primary-bg;
@@ -14,9 +17,6 @@
 }
 ::-webkit-input-placeholder{
 	color:$placeholder-color;	
-}
-body{
-	
 }
 
 /*标签默认样式*/
@@ -74,10 +74,10 @@ a{
 	display:inline-block; 
 
 	color:$link;
+	&:active{
+        color:$link-active;
+    }
 }
-/* a:active,a.active{
-	${link-active-property}:$link-active-value;
-} */
 a,label, :focus{
 	outline:0 none;
 }

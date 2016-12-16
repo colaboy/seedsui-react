@@ -39,7 +39,8 @@
             _initData:function(){
                 for(var i=0;i<100;i++){
                     var elLI=document.createElement("li");
-                    elLI.setAttribute("class","underline padding8");
+                    elLI.setAttribute("class","underline");
+                    elLI.style.padding="12px 10px";
                     elLI.innerHTML='<p>第'+i+'行列表</p>';
                     document.getElementById("list").appendChild(elLI);
                 }

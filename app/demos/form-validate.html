@@ -25,11 +25,11 @@
     </header>
     <article>
     	<form id="ID-Form" style="padding:10px;">
-            <div class="inputbox bordered tbmargin8" data-input="clear">
+            <div class="inputbox bordered" style="margin:8px 0;" data-input="clear">
                 <input type="text" class="input-text" placeholder="用户名" name="username" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
                 <i class="icon icon-clear-fill color-placeholder hide"></i>
             </div>
-            <div class="inputbox bordered tbmargin8" data-input="reveal">
+            <div class="inputbox bordered" style="margin:8px 0;" data-input="reveal">
                 <input type="password" class="input-text" placeholder="密码" name="password" id="password" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
                 <div class="safelvl lvl0">
@@ -44,24 +44,24 @@
             
             <div style="height:22px;"></div>
 
-            <div class="inputbox bordered tbmargin8" data-input="reveal">
+            <div class="inputbox bordered" style="margin:8px 0;" data-input="reveal">
                 <input type="password" class="input-text" placeholder="确认" name="repassword" data-rule-field="密码" data-rule="required password compare:password minlength:6 maxlength:16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
             </div>
 
-            <div class="inputbox bordered tbmargin8">
+            <div class="inputbox bordered" style="margin:8px 0;">
                 <input type="text" class="input-text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
             </div>
 
-            <div class="inputbox bordered tbmargin8">
+            <div class="inputbox bordered" style="margin:8px 0;">
                 <input type="text" class="input-text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
             </div>
 
-            <div class="inputbox bordered tbmargin8">
+            <div class="inputbox bordered" style="margin:8px 0;">
                 <input type="text" class="input-text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
             </div>
 
-            <div class="inputbox bordered tbmargin8">
+            <div class="inputbox bordered" style="margin:8px 0;">
                 <input type="number" class="input-text" placeholder="年龄" name="age" data-rule-field="年龄" data-rule="number minnumber:18 maxnumber:48"/>
             </div>
 
@@ -79,7 +79,7 @@
               ===========================*/
             initialize:function(){
                 /*DOM*/
-                this.form,this.formId="ID-Form";
+                this.form,this.formId="ID-Form",this.formValidate;
                 this.btnSubmit=document.querySelector(".SID-BtnSubmit");
                 
                 /*Plugin*/
@@ -105,13 +105,11 @@
               Plugin
               ===========================*/
             _initFormControls:function(){
-                this.formControls=new Formcontrols();
+                this.formControls=new FormControls();
             },
-            _initForm:function(){
-                var self=this;
-                this.form=new Form("#"+this.formId,{
+            _initFormValidate:function(){
+                this.formValidate=new FormValidate(this.form.formElements,{
                     promptParent:"article",
-                    formFilterClass:"form-filter",
                     onFail:function(e){
                         for(var i=0,el;el=e.formElements[i++];){
                             el.parentNode.classList.remove("app-active-error");
@@ -126,14 +124,21 @@
                         console.log("提交");
                     }
                 });
+            },
+            _initForm:function(){
+                var self=this;
+                this.form=new Form("#"+this.formId,{
+                    formFilterClass:"form-filter"
+                });
                 this.form.container.addEventListener("submit",function(e){
                     e.preventDefault();
-                    self.form.validate();
+                    self.formValidate.validate();
                 },false);
             },
             _initPlugin:function(){
                 this._initFormControls();
                 this._initForm();
+                this._initFormValidate();
             },
             /*=========================
               Events
@@ -148,8 +153,8 @@
               Event Handler
               ===========================*/
             _onClickBtnSubmit:function(e){
-                var isOk=this.form.validate();
-                console.log(isOk);
+                var isOk=this.formValidate.validate();
+                console.log("验证是否通过:"+isOk);
             }
         }
 
