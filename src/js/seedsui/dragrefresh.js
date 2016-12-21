@@ -5,7 +5,7 @@
 		  Model
 		  ==================*/
 		var defaults={
-			parent:"article",
+			parent:document.body,
 			isDisableTop:false,
 			isDisableBottom:false,
 			minScrollTop:0,
@@ -48,7 +48,7 @@
 						'<path d="M867.4,456.1c-24.1,0-43.8,19.7-43.8,43.8c0,1.5,0.1,3.1,0.3,4.6c-2.2,176.4-147.1,319.6-323.7,319.6 c-178.5,0-323.8-145.3-323.8-323.8s145.3-323.8,323.8-323.8c62.8,0,122.8,17.7,174.4,50.8l-29,52.2c0,0,138.4,2.2,149.2,2.4 c10.8,0.2,14.6-5.6,14.6-5.6s5.1-5.8,2.4-15.5c-2.6-9.7-43.2-162.2-43.2-162.2l-38.5,61.1c-67.3-45.7-146.7-70.1-229.8-70.1 c-226.6,0-411,184.4-411,411s184.4,411,411,411c225.8,0,410.1-183.7,410.9-407.3l0.2-4.2C911.2,475.7,891.6,456.1,867.4,456.1z"/>'+
 						'</svg>';
 			s.topContainer.innerHTML=iconSvg;
-			s.parent.parentNode.appendChild(s.topContainer);
+			s.parent.appendChild(s.topContainer);
 		};
 		s.createRefresh();
 		s.bottomContainer=null;
@@ -167,7 +167,10 @@
 			}
 			if(s.params.isDisableBottom===false){
 				//绑定底部事件
-				if(s.bottomContainer)s.parent[action]("scroll",s.onScroll,false);
+				if(s.bottomContainer){
+					if(s.parent==document.body)window[action]("scroll",s.onWindowScroll,false);
+					else s.parent[action]("scroll",s.onScroll,false);
+				}
 			}
 		}
 		//attach、detach事件
@@ -271,6 +274,15 @@
 			if (s.params.onBottom && this.scrollTop + this.clientHeight >= this.scrollHeight){
                 s.params.onBottom(s);
             }
+		}
+		s.onWindowScroll=function(e){
+			var clientHeight=window.innerHeight || document.documentElement.clientHeight; 
+	        var scrollTop=document.body.scrollTop+document.documentElement.scrollTop;
+	        var scrollHeight=document.body.clientHeight;
+	        
+	        if(s.params.onBottom && clientHeight+scrollTop>=scrollHeight){
+	            s.params.onBottom(s);
+	        }
 		}
 		//主函数
 		s.init=function(){

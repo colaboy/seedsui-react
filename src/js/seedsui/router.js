@@ -139,8 +139,16 @@
 			e.preventDefault();
 		}
         s.onPopstate=function(e) {
-			//console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-			var targetPageId=null,targetPage=null;
+        	//console.log(e);
+			//console.log("location: " + document.location + ", state: " + JSON.stringify(e.state));
+			if(e.state==null){
+				console.log("返回到底层");
+				return;
+			}
+			var href=e.state.href;
+			console.log(href);
+			s.history.push(href);
+			/*var targetPageId=null,targetPage=null;
 			//如果本地历史记录为空(刷新导致)，而浏览器历史记录不为空，则监听浏览器历史记录
 			if(s.history.length==0 && window.history.state && window.history.state.href){
 				console.log("刷新和前进");
@@ -183,7 +191,7 @@
 					targetPage=null;
 					//console.log("目前处于底层");
 				}
-			}
+			}*/
 		};
 		s.init=function(){
 			s.attach();
