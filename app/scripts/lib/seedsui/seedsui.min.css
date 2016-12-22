@@ -337,31 +337,17 @@ br {
 
 /*----------------global.less(end)----------------*/
 /*----------------titlebar.less(start)--------------*/
+.titlebar, .titlebar-button, .titlebar-title {
+  position: relative; }
+
 .titlebar {
   display: -webkit-box;
   -webkit-box-align: center;
   min-height: 44px;
   box-sizing: border-box;
-  background-color: #f9f9f9;
-  /*左右对齐*/ }
-  .titlebar h1 {
-    font-size: 17px;
-    font-weight: normal;
-    color: #333; }
-    .titlebar h1:first-child {
-      margin-left: 8px; }
-    .titlebar h1:only-child {
-      margin-right: 8px; }
-  .titlebar .titlebar-left, .titlebar .titlebar-right {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    z-index: 1; }
-  .titlebar .titlebar-left {
-    left: 0; }
-  .titlebar .titlebar-right {
-    right: 0; }
+  background-color: #f9f9f9; }
+  .titlebar .inputbox {
+    -webkit-box-flex: 1; }
   .titlebar:after {
     content: '';
     position: absolute;
@@ -381,29 +367,54 @@ br {
     .titlebar:after {
       -webkit-transform: scaleY(0.33); } }
 
-.titlebar, .titlebar-button, .titlebar h1 {
-  position: relative; }
+/*左右对齐*/
+.titlebar-left, .titlebar-right {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 1; }
 
-.titlebar .icon + .icon {
-  margin-left: 0; }
+.titlebar-left {
+  left: 0; }
 
+.titlebar-right {
+  right: 0; }
+
+.titlebar-title {
+  font-size: 17px;
+  font-weight: normal;
+  -webkit-box-flex: 1;
+  color: #333; }
+  .titlebar-title:first-child {
+    padding-left: 10px; }
+  .titlebar-title:last-child {
+    padding-right: 10px; }
+
+/*按钮*/
 .titlebar-button {
   max-height: 32px;
-  margin: 0 8px; }
-
-.titlebar-button + .titlebar-button {
-  margin-left: 0px; }
-
-.titlebar-button:active {
-  color: fade(#20aeff, 50%);
-  border-color: fade(#20aeff, 50%); }
+  margin: 0 8px;
+  color: #20aeff;
+  border-color: #20aeff; }
+  .titlebar-button:active {
+    color: rgba(32, 174, 255, 0.5);
+    border-color: rgba(32, 174, 255, 0.5); }
 
 .titlebar.reverse {
   background-color: #20aeff;
   border-color: #20aeff; }
+  .titlebar.reverse .titlebar-title {
+    color: white; }
+  .titlebar.reverse .titlebar-button {
+    color: white;
+    border-color: white; }
+    .titlebar.reverse .titlebar-button:active {
+      color: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.5); }
 
-.titlebar.reverse h1 {
-  color: white; }
+.titlebar-button + .titlebar-button {
+  margin-left: 0px; }
 
 /*----------------titlebar.less(end)----------------*/
 /*----------------tabbar.less(start)--------------*/
@@ -618,7 +629,8 @@ br {
   /*小汽泡*/ }
   .button:active {
     color: #333;
-    background-color: #f4f4f4; }
+    background-color: #f4f4f4;
+    border-color: #e5e5e5; }
   .button.block {
     display: -webkit-box; }
   .button.primary {

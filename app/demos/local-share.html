@@ -58,7 +58,7 @@
 	        <a class="titlebar-button" href="javascript:back()">
 	            <i class="icon icon-arrowleft"></i>
 	        </a>
-	        <h1>分享</h1>
+	        <h1 class="titlebar-title">分享</h1>
 	    </div>
 	</header>
 	<article>
@@ -124,21 +124,29 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                this.btnShare,this.btnShareClass="SID-BtnShare";
-                this.divShare,this.divShareId="ID-PopShare";
+                /*DOM*/
                 this.btnCloseClass="SID-Close";
-				
-                //Data
-                //Plugin
-
+                this.btnShare=document.querySelector(".SID-BtnShare");
+                this.divShare=document.getElementById("ID-PopShare");
+				/*Plugin*/
 				this.popDivShare;
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+
+                /*Events*/
+				this._attach();
+            },
+            render:function(){
+                this._initPlugin();
             },
             /*=========================
               Method
               ===========================*/
             _initPopDivShare:function(e){
-                this.popDivShare=new Dialog("#"+this.divShareId,{//弹出框
+                this.popDivShare=new Dialog(this.divShare,{//弹出框
                     position:"bottom",
                     css:{width:"100%"}
                 });
@@ -193,27 +201,10 @@
                     this.popDivShare.hide();
                 }
 
-            },
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-                this.btnShare=document.querySelector("."+this.btnShareClass);
-                this.divShare=document.getElementById(this.divShareId);
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
             }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
 

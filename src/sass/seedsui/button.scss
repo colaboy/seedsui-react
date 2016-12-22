@@ -23,6 +23,7 @@
 	&:active{
 		color:$button-color;
 		background-color:$button-bg-active;
+		border-color: $button-border;
 	}
 
 	&.block{

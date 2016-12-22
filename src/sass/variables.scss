@@ -24,8 +24,8 @@ $bar-bg:#f9f9f9;
 $bar-bg-active:#f9f9f9;
 $bar-border:$border;
 $bar-border-active:$primary-bg;
-$bar-link:$primary-bg;
-$bar-link-active:fade($bar-link,50%);
+$bar-button:$primary-bg;
+$bar-button-active:transparentize($bar-button,0.5);
 $bar-color:#333;
 $bar-color-active:$primary-bg;
 
@@ -33,8 +33,8 @@ $bar-reverse-bg:$primary-bg;
 $bar-reverse-bg-active:$primary-bg;
 $bar-reverse-border:$primary-bg;
 $bar-reverse-border-active:white;
-$bar-reverse-link:white;
-$bar-reverse-link-active:fade($bar-reverse-link,50%);
+$bar-reverse-button:white;
+$bar-reverse-button-active:transparentize($bar-reverse-button,0.5);
 $bar-reverse-color:white;
 $bar-reverse-color-active:white;
 

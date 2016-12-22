@@ -1,4 +1,7 @@
 /*----------------titlebar.less(start)--------------*/
+.titlebar,.titlebar-button,.titlebar-title{
+	position:relative;
+}
 .titlebar{
 	display:-webkit-box;
     -webkit-box-align:center;
@@ -6,35 +9,9 @@
 	box-sizing:border-box;
 
 	background-color:$bar-bg;
-	
 
-	//标题
-	h1{
-		font-size: 17px;
-		font-weight: normal;
-
-		color:$bar-color;
-		&:first-child{
-			margin-left:8px;
-		}
-		&:only-child{
-			margin-right:8px;
-		}
-	}
-
-	/*左右对齐*/
-	.titlebar-left,.titlebar-right{
-		position:absolute;
-		top:50%;
-		-webkit-transform:translateY(-50%);
-		transform:translateY(-50%);
-		z-index:1;
-	}
-	.titlebar-left{
-		left:0;
-	}
-	.titlebar-right{
-		right:0;
+	.inputbox{
+		-webkit-box-flex:1;
 	}
 
 	//底线
@@ -63,31 +40,64 @@
 	}
 }
 
-
-
-
-.titlebar,.titlebar-button,.titlebar h1{
-	position:relative;
+/*左右对齐*/
+.titlebar-left,.titlebar-right{
+	position:absolute;
+	top:50%;
+	-webkit-transform:translateY(-50%);
+	transform:translateY(-50%);
+	z-index:1;
 }
-.titlebar .icon+.icon{
-	margin-left: 0;
+.titlebar-left{
+	left:0;
 }
+.titlebar-right{
+	right:0;
+}
+
+//标题
+.titlebar-title{
+	font-size: 17px;
+	font-weight: normal;
+	-webkit-box-flex:1;
+
+	color:$bar-color;
+	&:first-child{
+		padding-left: 10px;
+	}
+	&:last-child{
+		padding-right: 10px;
+	}
+}
+
+/*按钮*/
 .titlebar-button{
 	max-height:32px;
 	margin:0 8px;
-}
-.titlebar-button+.titlebar-button{
-	margin-left:0px;
-}
-.titlebar-button:active{
-	color:$bar-link-active;
-	border-color:$bar-link-active;
+	color:$bar-button;
+	border-color:$bar-button;
+	&:active{
+		color:$bar-button-active;
+		border-color:$bar-button-active;
+	}
 }
 .titlebar.reverse{
 	background-color:$bar-reverse-bg;
 	border-color:$bar-reverse-border;
+	.titlebar-title{
+		color:$bar-reverse-color;
+	}
+	.titlebar-button{
+		color:$bar-reverse-button;
+		border-color:$bar-reverse-button;
+		&:active{
+			color:$bar-reverse-button-active;
+			border-color:$bar-reverse-button-active;
+		}
+	}
 }
-.titlebar.reverse h1{
-	color:$bar-reverse-color;
+
+.titlebar-button+.titlebar-button{
+	margin-left:0px;
 }
 /*----------------titlebar.less(end)----------------*/
