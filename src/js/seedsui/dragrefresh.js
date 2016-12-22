@@ -16,6 +16,7 @@
 			timeout:5000,
 
 			topContainerClass:"dragrefresh",
+			bottomContainer:null,
 			bottomContainerClass:"loading-more",
 			bottomContainerLoadingClass:"loading",
 
@@ -51,7 +52,8 @@
 			s.parent.appendChild(s.topContainer);
 		};
 		s.createRefresh();
-		s.bottomContainer=null;
+		s.bottomContainer=typeof s.params.bottomContainer=="string"?document.querySelector(s.params.bottomContainer):s.params.bottomContainer;
+
 		s.createBottomContainer=function(){
 			s.bottomContainer=s.parent.querySelector("."+s.params.bottomContainerClass);
 			if(!s.bottomContainer){
@@ -63,7 +65,7 @@
 				s.parent.appendChild(s.bottomContainer);
 			}
 		}
-		if(s.params.onBottom)s.createBottomContainer();
+		if(!s.bottomContainer && s.params.onBottom)s.createBottomContainer();
 
 		/*==================
 		  Mothod
@@ -165,12 +167,11 @@
 				//头部动画监听
 				s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			}
-			if(s.params.isDisableBottom===false){
+			if(s.params.isDisableBottom===false && s.bottomContainer){
 				//绑定底部事件
-				if(s.bottomContainer){
-					if(s.parent==document.body)window[action]("scroll",s.onWindowScroll,false);
-					else s.parent[action]("scroll",s.onScroll,false);
-				}
+				if(s.parent==document.body)window[action]("scroll",s.onWindowScroll,false);
+				else s.parent[action]("scroll",s.onScroll,false);
+				/*s.parent[action]("scroll",s.onScroll,false);*/
 			}
 		}
 		//attach、detach事件
@@ -276,10 +277,9 @@
             }
 		}
 		s.onWindowScroll=function(e){
-			var clientHeight=window.innerHeight || document.documentElement.clientHeight; 
-	        var scrollTop=document.body.scrollTop+document.documentElement.scrollTop;
-	        var scrollHeight=document.body.clientHeight;
-	        
+			var clientHeight=window.innerHeight; 
+	        var scrollTop=document.body.scrollTop;
+	        var scrollHeight=document.body.scrollHeight;
 	        if(s.params.onBottom && clientHeight+scrollTop>=scrollHeight){
 	            s.params.onBottom(s);
 	        }
