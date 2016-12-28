@@ -55,29 +55,10 @@
 		if(s.slides.length<=0){
 			return;
 		}
-		//Method
 		/*=========================
-          Pagination
+          Method
           ===========================*/
-        s.createPagination=function(){
-        	if (!s.params.pagination) return;
-        	s.paginationContainer=document.querySelector(container+" > "+s.params.pagination);
-        	//s.paginationContainer = s.container.querySelector(":scope > "+s.params.pagination);
-
-        	s.bullets=[];
-        	s.paginationContainer.innerHTML="";
-            s.numberOfBullets = s.params.loop ? s.slides.length - s.params.slidesPerView * 2 : s.slides.length;
-            for (var i = 0; i < s.numberOfBullets; i++) {
-            	var bullet=document.createElement("span");
-				bullet.setAttribute("class",s.params.bulletClass);
-				s.paginationContainer.appendChild(bullet);
-				s.bullets.push(bullet);
-            }
-            //s.bullets = s.paginationContainer.querySelectorAll(":scope > "+s.params.bulletClass);
-        };
-        /*=========================
-          Classes
-          ===========================*/
+        //根据index更新选中class
         s.updateClasses = function () {
         	//Slide
         	for(var i=0;i<s.slides.length;i++){
@@ -102,16 +83,12 @@
 			}
 			s.bullets[index].className+=" "+s.params.bulletActiveClass;
         };
-        /*=========================
-          Slides
-          ===========================*/
+        //更新子容器
 		s.updateSlides=function(){
 			s.slides=document.querySelectorAll(container+" > ."+s.params.wrapperClass+" > ."+s.params.slideClass+"");
 			//s.slides=s.wrapper.querySelectorAll(":scope > ."+s.params.slideClass);
 		};
-		/*=========================
-          Container Size
-          ===========================*/
+		//更新容器尺寸
         s.updateContainerSize=function(){
 			//Slide width
 			s.container.width=s.container.clientWidth;
@@ -151,7 +128,30 @@
 				s.params.duration=defaults.duration;
 			}
 		};
-        
+		//更新小点点
+        s.updatePagination=function(){
+        	if (!s.params.pagination) return;
+        	s.paginationContainer=document.querySelector(container+" > "+s.params.pagination);
+        	//s.paginationContainer = s.container.querySelector(":scope > "+s.params.pagination);
+
+        	s.bullets=[];
+        	s.paginationContainer.innerHTML="";
+            s.numberOfBullets = s.params.loop ? s.slides.length - s.params.slidesPerView * 2 : s.slides.length;
+            for (var i = 0; i < s.numberOfBullets; i++) {
+            	var bullet=document.createElement("span");
+				bullet.setAttribute("class",s.params.bulletClass);
+				s.paginationContainer.appendChild(bullet);
+				s.bullets.push(bullet);
+            }
+            //s.bullets = s.paginationContainer.querySelectorAll(":scope > "+s.params.bulletClass);
+        };
+        //更新
+        s.update=function(){
+        	if(s.params.loop)s.createLoop();
+			s.updateSlides();
+			if(s.params.pagination)s.updatePagination();
+            s.updateContainerSize();
+        }
         /*=========================
           Loop
           ===========================*/
@@ -352,10 +352,7 @@
 
 		//主函数
 		s.init=function(){
-			if(s.params.loop)s.createLoop();
-			s.updateSlides();
-			if(s.params.pagination)s.createPagination();
-            s.updateContainerSize();
+			s.update();
 			s.attach();
 			if(s.params.autoplay) s.startAutoplay();
 			//runCallBack

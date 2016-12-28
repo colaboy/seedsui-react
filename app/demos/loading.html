@@ -14,10 +14,11 @@
 
 <body ontouchstart="">
 	<!-- 加载遮罩 -->
-	<!-- <div class="mask" id="ID-LoadingMask" style="visibility:visible;opacity:1;"></div>
-	<div class="loading-box" id="ID-LoadingBox" style="visibility:visible;opacity:1;">
-		<div class="loading"></div>
-	</div> -->
+    <div class="loading" id="ID-Loading" style="display: block;">
+        <div class="loading-progress-box">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
 
 	<header>
 		<div class="titlebar">
@@ -26,6 +27,7 @@
 	    </div>
 	</header>
 	<article>
+        <a class="button submit block" style="margin:12px 10px;" id="ID-BtnShowLoad">显示遮罩</a>
 	</article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -37,7 +39,7 @@
               ===========================*/
             initialize:function(){
                 /*DOM*/
-
+                this.btnShowLoad=document.getElementById("ID-BtnShowLoad");
                 /*Plugin*/
                 this.loading;
                 /*Data*/
@@ -61,15 +63,14 @@
               ===========================*/
             _initLoading:function(){
                 var self=this;
-                this.loading=new Loading();
-                this.loading.show();
-                /*this.loading=new Loading({//第二种方法:默认创建好DOM更快
-                    loadContainer:"#ID-LoadingBox",
-                    mask:"#ID-LoadingMask"
-                });*/
-                /*setTimeout(function(){
+                /*this.loading=new Loading();
+                this.loading.show();*/
+                this.loading=new Loading({//第二种方法:默认创建好DOM更快
+                    container:"#ID-Loading"
+                });
+                setTimeout(function(){
                     self.loading.hide();
-                },1000);*/
+                },1000);
             },
             _initPlugin:function(){
                 this._initLoading();
@@ -79,10 +80,17 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
+                this.btnShowLoad.addEventListener("click",self._onClickBtnShowLoad,false);
             },
             /*=========================
               Event Handler
               ===========================*/
+            _onClickBtnShowLoad:function(e){
+                view.loading.show();
+                setTimeout(function(){
+                    view.loading.hide();
+                },5000);
+            }
         }
 
         window.addEventListener("load",function(){

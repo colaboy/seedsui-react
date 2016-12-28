@@ -18,7 +18,7 @@
 			topContainerClass:"dragrefresh",
 			bottomContainer:null,
 			bottomContainerClass:"loading-more",
-			bottomContainerLoadingClass:"loading",
+			bottomContainerLoadingClass:"loading-progress",
 
 			/*callbacks
 			onRefreshStart:function(Dragrefresh)
@@ -52,7 +52,7 @@
 			s.parent.appendChild(s.topContainer);
 		};
 		s.createRefresh();
-		s.bottomContainer=typeof s.params.bottomContainer=="string"?document.querySelector(s.params.bottomContainer):s.params.bottomContainer;
+		s.bottomContainer=typeof s.params.bottomContainer=="string"?s.parent.querySelector(s.params.bottomContainer):s.params.bottomContainer;
 
 		s.createBottomContainer=function(){
 			s.bottomContainer=s.parent.querySelector("."+s.params.bottomContainerClass);

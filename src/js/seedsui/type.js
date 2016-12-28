@@ -1,25 +1,23 @@
 //Type 类型判断
 (function(window,document,undefined){
-	
 	window.Type={};
-	var t=Type;
+
 	/*====================
-	动态添加方法Method:isString | isBoolean | isNumber | isArray | isObject | isHTMLElement
+	基本类型
 	=====================*/
-	for(var i=0,type;type=["String","Boolean","Number","Array","Object","HTMLElement","Function"][i++];){
+	var types=["String","Boolean","Number","Array","Object","HTMLElement","Function"];
+	for(var i=0,type;type=types[i++];){
 		(function(type){
-			t["is"+type]=function(obj){
-				if(type=="HTMLElement" && Object.prototype.toString.call(obj).indexOf("HTML")){
-					return true;
-				}
-				return Object.prototype.toString.call(obj)==="[object "+type+"]";
+			Type['is'+type]=function(obj){
+				return Object.prototype.toString.call(obj)==='[object '+type+']';
 			}
 		})(type);
 	}
+
 	/*====================
-	Other Method
+	其它类型
 	=====================*/
-	t.isJson=function(obj){
+	Type.isJson=function(obj){
 		if(!obj){
 			return false;
 		}
@@ -40,44 +38,42 @@
 		}else{
 			return false;
 		}
-	},
-	t.isQueryId=function(id){
+	}
+	Type.isQueryId=function(id){
 		var idExpr=/^#([\w-]*)$/;
 		var match=idExpr.exec(id);
 		if(match && match.length>0){
 			return match[1];
 		}
 		return false;
-	},
-	t.isQueryClass=function(classname){
+	}
+	Type.isQueryClass=function(classname){
 		var classExpr=/^\.([\w-]*)$/;
 		var match=classExpr.exec(classname);
 		if(match && match.length>0){
 			return match[1];
 		}
 		return false;
-	},
-	t.isId=function(id){
+	}
+	Type.isId=function(id){
 		if(typeof id === "string" && document.getElementById(id)){
 			return true;
 		}
 		return false;
-	},
-	t.isClass=function(classname){
+	}
+	Type.isClass=function(classname){
 		if(typeof classname === "string" && document.getElementsByClassName(classname)){
 			return true;
 		}
 		return false;
-	},
-	t.isTag=function(str){
+	}
+	Type.isTag=function(str){
 		var tagExpr=/^<(\w+)\s*.*\/\w*>$/im;
 		var match=tagExpr.exec(str);
 		if(match && match.length>0){
 			return true;
 		}
 		return false;
-	},
-	t.hasEvent=function(element,strEvent){
-		return (document.all(element)[strEvent] == null) ? false : true 
 	}
+	
 })(window,document,undefined);

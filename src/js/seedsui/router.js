@@ -1,4 +1,4 @@
-//Page 单页模式
+//Router 单页模式
 (function(window,document,undefined){
     window.Router=function(params){
     	/*=========================
@@ -60,9 +60,9 @@
 		    	console.log("请检查您当前运行的环境是否为服务器端");
 		    }
         }
-        s.removeHistory=function(pageId){
+        s.removeHistory=function(href){
         	s.history=s.history.filter(function(n,i,a){
-				return n!=pageId;
+				return n!=href;
 			})
         }
         /*
@@ -146,8 +146,13 @@
 				return;
 			}
 			var href=e.state.href;
-			console.log(href);
-			s.history.push(href);
+			console.log(s.history);
+			if(s.history.indexOf(href)==-1){
+				console.log("打开");
+				s.history.push(href);
+			}else{
+				console.log("返回");
+			}
 			/*var targetPageId=null,targetPage=null;
 			//如果本地历史记录为空(刷新导致)，而浏览器历史记录不为空，则监听浏览器历史记录
 			if(s.history.length==0 && window.history.state && window.history.state.href){

@@ -7,12 +7,12 @@
 		================*/
 		var defaults={
 			parent:document.body,
-			loadContainer:null,
-			mask:null,
-			maskClass:"mask",
-			loadingContainerClass:"loading-box",
-			loadingClass:"loading",
-			isClickMaskHide:false
+			container:null,
+
+			containerClass:"loading",
+			progressBoxClass:"loading-progress-box",
+			progressClass:"loading-progress",
+
 			/*
             Callbacks:
             onClick:function(Loading)
@@ -27,88 +27,61 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.mask,s.loadingContainer;
-		//Mask
-		s.createMask=function(){
-            var mask=document.createElement("div");
-            mask.setAttribute("class",s.params.maskClass);
-            return mask;
-        }
-        //LoadingBox
-		s.createLoadingBox=function(){
-			var loadingContainer=document.createElement("div");
-			loadingContainer.setAttribute("class",s.params.loadingContainerClass);
-
-			loadingContainer.loading=document.createElement("div");
-			loadingContainer.loading.setAttribute("class",s.params.loadingClass);
-
-			loadingContainer.appendChild(loadingContainer.loading);
-
-			return loadingContainer;
+		s.container,s.progressBox,s.progress;
+		//Container
+		s.createContainer=function(){
+			var container=document.createElement("div");
+            container.setAttribute("class",s.params.containerClass);
+            return container;
 		}
+        //ProgressBox
+		s.createProgressBox=function(){
+			var progressBox=document.createElement("div");
+			progressBox.setAttribute("class",s.params.progressBoxClass);
+			return progressBox;
+		}
+		//Progress
+		s.createProgress=function(){
+            var progress=document.createElement("div");
+            progress.setAttribute("class",s.params.progressClass);
+            return progress;
+        }
 		s.create=function(){
-			if(s.params.loadContainer){
-				s.loadingContainer=typeof s.params.loadContainer=="string"?document.querySelector(s.params.loadContainer):s.params.loadContainer;
-			}else{
-				s.loadingContainer=s.createLoadingBox();
-				s.parent.appendChild(s.loadingContainer);
+			if(s.params.container){
+				s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
+				s.progress=s.container.querySelector("."+s.params.progressClass);
+				s.progressBox=s.container.querySelector("."+s.params.progressBoxClass);
 			}
+			if(s.container)return;
 
-			if(s.params.mask){
-				s.mask=typeof s.params.mask=="string"?document.querySelector(s.params.mask):s.params.mask;
-			}else{
-				s.mask=s.createMask();
-				s.parent.insertBefore(s.mask,s.loadingContainer);
-			}
+			s.container=s.createContainer();
+			s.progressBox=s.createProgressBox();
+			s.progress=s.createProgress();
+			s.progressBox.appendChild(s.progress);
+
+			s.container.appendChild(s.progressBox);
+
+			s.parent.appendChild(s.container);
 		}
 		s.create();
-		if(!s.mask || !s.loadingContainer)return;
 		/*================
 		Method
 		================*/
-		s.showMask=function(){
-            s.mask.style.visibility="visible";
-            s.mask.style.opacity="1";
-        }
-        s.hideMask=function(){
-        	s.mask.style.opacity="0";
-        }
-        s.destroyMask=function(){
-        	s.parent.removeChild(s.mask);
-        }
-        s.showLoading=function(){
-        	s.loadingContainer.style.visibility="visible";
-            s.loadingContainer.style.opacity="1";
-        }
-        s.hideLoading=function(){
-        	s.loadingContainer.style.opacity="0";
-        }
-        s.destroyLoading=function(){
-        	s.parent.removeChild(s.loadingContainer);
-        }
 		s.isHid=true;
 		s.hide=function(){
 			s.isHid=true;
-			//显示遮罩
-			s.hideMask();
-			//显示弹出框
-			s.hideLoading();
+        	s.container.style.display="none";
+
 		};
 		s.show=function(){
 			s.isHid=false;
-			//显示遮罩
-			s.showMask();
-			//显示弹出框
-			s.showLoading();
+            s.container.style.display="block";
 		};
 		s.destroy=function(){
 			//移动事件监听
 			s.detach();
 			//移除遮罩
-			s.destroyMask();
-			//移除弹出框
-			s.destroyLoading();
-			s=null;
+			s.parent.removeChild(s.container);
 		};
 		//动态设置
 		s.setOnClick=function(fn){
@@ -118,12 +91,9 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.loadingContainer;
+            var touchTarget=s.container;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
-            touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
-            //遮罩
-            s.mask[action]("click",s.onClickMask,false);
         }
         //attach、dettach事件
         s.attach=function(event){
@@ -135,15 +105,6 @@
 		s.onClick=function(e){
 			s.target=e.target;
 			if(s.params.onClick)s.params.onClick(s);
-		}
-		s.onClickMask=function(){
-			if(s.params.isClickMaskHide)s.hide();
-		}
-		s.onTransitionEnd=function(e){
-			if(s.isHid){
-				s.loadingContainer.style.visibility="hidden";
-				s.mask.style.visibility="hidden";
-			}
 		}
 		/*================
 		Init

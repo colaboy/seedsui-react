@@ -3127,11 +3127,30 @@ progress::-webkit-progress-value {
 
 /*----------------progress.less(end)--------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
-.loading-box {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -webkit-transition-duration: 300ms;
+.loading {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); }
+
+/* .loading-mask{
+	display: block;
+
+	position:fixed;
+	z-index:10;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+
+	background-color: $mask-bg;
+} */
+.loading-progress-box {
+  display: block;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -3143,18 +3162,18 @@ progress::-webkit-progress-value {
   z-index: 10;
   -webkit-transform: translate(-50%, -50%);
   background-color: white; }
-  .loading-box .loading {
+  .loading-progress-box .loading-progress {
     margin: 30px; }
 
 /*加载动画*/
-@-webkit-keyframes loading {
+@-webkit-keyframes loading-progress {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
-.loading {
+.loading-progress {
   display: inline-block;
   vertical-align: middle;
   width: 40px;
@@ -3162,33 +3181,33 @@ progress::-webkit-progress-value {
   border-radius: 50%;
   position: relative;
   box-shadow: inset 0 0 0 4px #20aeff; }
-  .loading:before, .loading:after {
+  .loading-progress:before, .loading-progress:after {
     position: absolute;
     content: '';
     width: 22px;
     height: 42px;
     background: white; }
-  .loading:before {
+  .loading-progress:before {
     top: -1px;
     left: -1px;
     -webkit-transform-origin: 100% 50%;
-    -webkit-animation: loading 1.2s ease 0.9s infinite; }
-  .loading:after {
+    -webkit-animation: loading-progress 1.2s ease 0.9s infinite; }
+  .loading-progress:after {
     top: -1px;
     left: 50%;
     -webkit-transform-origin: 0 50%;
-    -webkit-animation: loading 1.2s infinite ease; }
+    -webkit-animation: loading-progress 1.2s infinite ease; }
 
 /*加载更多*/
 .loading-more {
   padding: 12px 0;
   text-align: center;
   background: #eaeaea; }
-  .loading-more .loading {
+  .loading-more .loading-progress {
     width: 30px;
     height: 30px;
     box-shadow: inset 0 0 0 3px #20aeff; }
-    .loading-more .loading:before, .loading-more .loading:after {
+    .loading-more .loading-progress:before, .loading-more .loading-progress:after {
       width: 17px;
       height: 32px;
       background: #eaeaea; }
