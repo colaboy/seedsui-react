@@ -1,4 +1,4 @@
-//Router 单页模式
+//History 单页模式
 (function(window,document,undefined){
     window.History=function(params){
     	/*=========================
