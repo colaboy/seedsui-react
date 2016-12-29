@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>section</title>
+	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+	<style type="text/css">
+	section{
+		background-color:#f4f4f4;
+	}
+	.button{
+		margin:8px;
+	}
+	</style>
+</head>
+
+<body ontouchstart="">
+	<section id="ID-Page0">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:history.go(-1)">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">单页模式</h1>
+		  </div>
+		</header>
+		<article>
+			<a class="button block bg-1 SID-BtnGoPage" data-href="ID-Page1">slideLeft</a>
+		    <a class="button block bg-2 SID-BtnGoPage" data-href="ID-Page2">slideRight</a>
+		    <a class="button block bg-3 SID-BtnGoPage" data-href="ID-Page3">slideUp</a>
+		    <a class="button block bg-4 SID-BtnGoPage" data-href="ID-Page4">slideDown</a>
+		    <a class="button block bg-5 SID-BtnGoPage" data-href="ID-Page5">fade</a>
+		    <a class="button block bg-6 SID-BtnGoPage" data-href="ID-Page6">zoom</a>
+		    <a class="button block bg-7 SID-BtnGoPage" data-href="ID-Page7">none</a>
+		    <!-- <a type="button"style="margin:8px" class="button block bg-8" onclick="openPage('#ID-Page2')">用JS打开打二页</a> -->
+		    <div class="card" style="padding:8px;">
+		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
+		    </div>
+		    <div class="card" style="padding:8px;">
+		    	适用于简单的单页处理，如需要大量使用单页模式，还请使用专业的backbone router或者angularjs router框架处理单页。
+		    </div>
+		</article>
+	</section>
+	<!--page1-->
+	<section id="ID-Page1" data-animation="slideLeft">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">slideLeft</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			<a class="button block bg-1 SID-BtnGoPage" data-href="ID-Page1-Page1" target="_self">_self打开下一页</a>
+			<a class="button block bg-2 SID-BtnGoPage" data-href="ID-Page1-Page1" target="_blank">_blank打开下一页</a>
+		</article>
+	</section>
+	<!--page1_close-->
+	<section id="ID-Page1-Page1" data-animation="slideLeft">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">slideLeft</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			Close页面
+		</article>
+	</section>
+	<!--page2-->
+	<section id="ID-Page2" data-animation="slideRight">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">slideRight</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			slideRight
+		</article>
+	</section>
+	<!--page3-->
+	<section id="ID-Page3" data-animation="slideUp">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">slideUp</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			slideUp
+		</article>
+	</section>
+	<!--page4-->
+	<section id="ID-Page4" data-animation="slideDown">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">slideDown</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			slideDown
+		</article>
+	</section>
+	<!--page5-->
+	<section id="ID-Page5" data-animation="fade">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">fade</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			fade
+		</article>
+	</section>
+	<!--page6-->
+	<section id="ID-Page6" data-animation="zoom">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">zoom</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			zoom
+		</article>
+	</section>
+	<!--page7-->
+	<section id="ID-Page7" data-animation="none">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">none</h1>
+		    <a class="titlebar-button SID-BtnClose">
+	            <i class="icon icon-rdoclose"></i>
+	        </a>
+		  </div>
+		</header>
+		<article>
+			none
+		</article>
+	</section>
+    <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+	<script>
+		var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                /*DOM*/
+                this.btnGoPages=document.querySelectorAll(".SID-BtnGoPage");
+                this.btnCloses=document.querySelectorAll(".SID-BtnClose");
+                /*Plugin*/
+                this.sections={};
+                this.history={};
+                /*Data*/
+
+                /*Render*/
+                this.render();
+                
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Plugin
+              ===========================*/
+            _initSection:function(){
+            	this.sections=new Sections({
+                	onLoad:function(e){
+                		//console.log("开始加载："+e.container.id);
+                	},
+                	onShowed:function(e){
+                		//console.log("加载完成："+e.container.id);
+                	},
+                	onHid:function(e){
+                		//console.log("隐藏完成："+e.container.id);
+                	}
+                });
+            },
+            _initHistory:function(){
+            	this.history=new History({
+                	onBack:function(e){
+                		console.log("后退"+e.prevHash);
+                		if(e.prevHash)view.sections[e.prevHash.substring(1)].hide();
+                		if(e.currentHash)view.sections[e.currentHash.substring(1)].show();
+                	},
+                	onForward:function(e){
+                		console.log("前进"+e.currentHash);
+                		view.sections[e.currentHash.substring(1)].show();
+                	}
+                });
+                //初始化时，历史记录就有了，说明刷新过了
+                if(this.history.list.length>0){
+                	for(var i=0,hash;hash=this.history.list[i++];){
+                		this.sections[hash.substring(1)].show();
+                	}
+                }
+            },
+            _initPlugin:function(){
+            	this._initSection();
+            	this._initHistory();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                for(var i=0,btnGoPage;btnGoPage=this.btnGoPages[i++];){
+                	btnGoPage.addEventListener("click",this._onClickBtnGoPage,false);
+                }
+                for(var i=0,btnClose;btnClose=this.btnCloses[i++];){
+					btnClose.addEventListener('click',this._onClickBtnClose,false);
+				}
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnGoPage:function(e){
+            	var href=this.getAttribute("data-href");
+            	var target=this.getAttribute("target")||"_blank";
+
+            	if(target=="_blank"){
+            		view.history.add("#"+href);
+            	}else{
+            		view.history.replace("#"+href);
+            		setTimeout(function(){
+            			view.sections[view.history.prevHash.substring(1)].hide();
+            		},500);
+            	}
+
+            	view.sections[href].show();
+            },
+            _onClickBtnClose:function(e){
+            	this.parentNode.parentNode.parentNode.classList.remove("active");
+            	window.history.go(-1);
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+	</script>
+</body>
+</html>

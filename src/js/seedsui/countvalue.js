@@ -38,10 +38,7 @@
 		================*/
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
-			if(!s.hasInputEvent){
-				s.field[action]("input",s.onInput,false);
-				s.hasInputEvent=true;
-			}
+			s.field[action]("input",s.onInput,false);
 		}
 		s.attach=function(event){
             s.events();
@@ -85,34 +82,26 @@
 			}
 		}
 		var s=this;
+		s.countValues=[];
 		//Params
 		s.params=params;
         //获得所有元素
-        s.updateFields=function(){
-        	s.fields=document.querySelectorAll("."+s.params.fieldClass);
+        s.update=function(){
+        	var elements=document.querySelectorAll("."+s.params.fieldClass);
+        	for(var i=0,el;el=elements[i++];){
+        		s.countValues[i]=new CountValue(el,s.params);
+        	}
         }
-        s.updateFields();
+        s.update();
         /*================
 		Method
 		================*/
-		//实例化所有元素
-        s.loadCountValue=function(){
-        	for(var i=0;i<s.fields.length;i++){
-	            s.fields[i].countValue=new CountValue(s.fields[i],s.params);
+        s.destroy=function(){
+        	for(var i=0;i<s.countvalues.length;i++){
+	            s.countValues[i].destroy();
 	        }
+	        s.countValues=null;
         }
-        s.loadCountValue();
-        s.destroyCountValue=function(){
-        	for(var i=0;i<s.fields.length;i++){
-	            s.fields[i].countValue.destroy();
-	        }
-	        s.fields=null;
-        }
-        //更新
-        s.update=function(){
-        	s.destroyCountValue();//清除对象
-        	s.updateFields();//重新获得DOM
-        	s.loadCountValue();//重新实例化
-        }
+        return s.countValues;
 	}
 })(window,document,undefined);

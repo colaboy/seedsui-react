@@ -22,7 +22,11 @@
     </header>
     <article>
         <div class="inputbox radius4" style="margin:8px;">
-            <textarea class="countvalue input-textarea" data-maxlength="10" placeholder="请输入评论信息"></textarea>
+            <input type="text" class="countvalue input-text" data-maxlength="10" placeholder="请输入标题"/>
+            <p class="absolute" style="bottom: 10px;right:10px;"></p>
+        </div>
+        <div class="inputbox radius4" style="margin:8px;">
+            <textarea class="countvalue input-textarea" data-maxlength="30" placeholder="请输入评论信息"></textarea>
             <p class="absolute" style="bottom: 10px;right:10px;"></p>
         </div>
     </article>
@@ -40,7 +44,6 @@
 
                 /*Plugin*/
                 this.countValues={};//数字计数器
-                this.countValues.hasEvent=false;
 
                 /*Data*/
 
@@ -66,7 +69,6 @@
               Plugin
               ===========================*/
             _initCountValues:function(){
-                if(this.countValues.hasEvent)return;
                 this.countValues=new CountValues({
                     "onInput":function(e){
                         //console.log("输入中");
@@ -84,7 +86,6 @@
                         input.nextElementSibling.classList.remove("color-tip");
                     }
                 });
-                this.countValues.hasEvent=true;
             },
             _initPlugin:function(){
                 this._initCountValues();

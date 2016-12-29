@@ -56,15 +56,33 @@
         s.play();
     }
     window.Clocks=function(params){
-        var s=this;
-        //获得所有元素
-        s.clocks=document.querySelectorAll("[data-clock]");
-        s.clocks.clocks=[];
-        var jsonParams={};
-        if(params)jsonParams=params;
-        //实例化所有元素
-        for(var i=0,clock;clock=s.clocks[i++];){
-            s.clocks.clocks[i]=new Clock(clock,jsonParams);
+        /*================
+        Model
+        ================*/
+        var defaults={
+            clockAttr:"data-clock",
         }
+        params=params||{};
+        for(var def in defaults){
+            if(params[def]===undefined){
+                params[def]=defaults[def];
+            }
+        }
+        var s=this;
+        s.clocks=[];
+        //Params
+        s.params=params;
+        //获得所有元素
+        s.update=function(){
+            var elements=document.querySelectorAll("["+s.params.clockAttr+"]");
+            for(var i=0,el;el=elements[i++];){
+                s.clocks[i]=new Clock(el,s.params);
+            }
+        }
+        s.update();
+        /*================
+        Method
+        ================*/
+        return s.clocks;
     }
 })(window,document,undefined);

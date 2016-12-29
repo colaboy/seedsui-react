@@ -35,55 +35,6 @@
 		s.pages;
 		s.update=function(){
 			s.pages=[].slice.call(document.querySelectorAll("."+s.params.pageClass));
-			for(var i=0,page;page=s.pages[i++];){
-				if(!page.getAttribute("data-animation")){
-	                page.setAttribute("data-animation",s.params.defaultAnimation);
-	            }
-	            var isActive=page.classList.contains(s.params.pageActiveClass);
-	            var animation=page.getAttribute("data-animation");
-	            if(animation=="slideDown"){
-	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
-	                page.hideAnimation={webkitTransform:"translate3d(0,-100%,0)"};
-	                if(!isActive)page.style.webkitTransform="translate3d(0,-100%,0)";
-	            }else if(animation=="slideUp"){
-	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
-	                page.hideAnimation={webkitTransform:"translate3d(0,100%,0)"};
-	                if(!isActive)page.style.webkitTransform="translate3d(0,100%,0)";
-	            }
-	            else if(animation=="fade"){
-	            	page.showAnimation={visibility:"visible",opacity:1};
-	                page.hideAnimation={opacity:0};
-	                if(!isActive)page.style.opacity=0;
-	            }
-	            else if(animation=="none"){
-	            	page.showAnimation={display:"block",noAnimation:true};
-	                page.hideAnimation={display:"none"};
-	                if(!isActive)page.style.display="none";
-	            }
-	            else if(animation=="zoom"){
-	            	page.showAnimation={visibility:"visible",webkitTransform:"scale(1,1)"};
-	                page.hideAnimation={webkitTransform:"scale(0,0)"};
-	                if(!isActive)page.style.webkitTransform="scale(0,0)";
-	            }
-	            else if(animation=="slideRight"){
-	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
-	                page.hideAnimation={webkitTransform:"translate3d(-100%,0,0)"};
-	                if(!isActive)page.style.webkitTransform="translate3d(-100%,0,0)";
-	            }else if(animation=="slideLeft"){
-	            	page.showAnimation={visibility:"visible",webkitTransform:"translate3d(0,0,0)"};
-	                page.hideAnimation={webkitTransform:"translate3d(100%,0,0)"};
-	                if(!isActive)page.style.webkitTransform="translate3d(100%,0,0)";
-	            }
-	            //page.style.webkitTransitionProperty="transform,opacity";
-	            if(animation!="none"){
-	            	s.durationPage(page);
-	            }
-			}
-        }
-        s.durationPage=function(page){
-        	setTimeout(function(){
-        		page.style.webkitTransitionDuration=s.params.duration+"ms";
-        	},100);
         }
         s.update();
 		//History
@@ -132,9 +83,6 @@
         	if(s.params.onLoad)s.params.onLoad(s);
 
         	page.classList.add(s.params.pageActiveClass);
-            for(var ani in page.showAnimation){
-                page.style[ani]=page.showAnimation[ani];
-            }
         }
         s.durationHidePage=function(page){
         	setTimeout(function(){
@@ -144,9 +92,6 @@
         s.hidePage=function(page){
         	s.isHid=true;
         	page.classList.remove(s.params.pageActiveClass);
-            for(var ani in page.hideAnimation){
-                page.style[ani]=page.hideAnimation[ani];
-            }
         }
         s.hideAllPage=function(exceptPageId){
         	for(var i=0,page;page=s.pages[i++];){
@@ -157,24 +102,16 @@
         	}
         }
 		//关窗函数
-		s.close=function(pageId,animation){
+		s.close=function(pageId){
 			var page=document.getElementById(pageId.substring(1));
-			if(animation){
-				page.setAttribute("data-animation",animation);
-				s.update();
-			}
 			//删除对应的历史记录
 			s.removeHistory(pageId);
 			//隐藏Page
 			if(page)s.hidePage(page);
 		}
 		//开窗函数
-		s.open=function(pageId,target,animation){
+		s.open=function(pageId,target){
 			var page=document.getElementById(pageId.substring(1));
-			if(animation){
-				page.setAttribute("data-animation",animation);
-				s.update();
-			}
 			//添加历史记录，并修改浏览器地址
 			if(target=="_self"){
 				s.replaceHistory(pageId);
@@ -244,9 +181,9 @@
             document[action]("webkitTransitionEnd",s.onTransitionEnd,false);
             //hash值监听
             window[action]("popstate",s.onPopstate,false);
+            //window[action]("hashchange",s.onPopstate,false);
             //页面初始化
             window[action]("load",s.onLoad,false);
-            //window[action]("hashchange",s.onPopstate,false);
             for(var i=0,btn;btn=s.buttons[i++];){
         		btn.addEventListener("click",s.onClickBtn,false);
             }
@@ -288,7 +225,6 @@
 			s.targetPage=e.target;
 			//隐藏完成
 			if(s.isHid){
-				if(s.targetPage.showAnimation.visibility)s.targetPage.style.visibility="hidden";
 				//CallBack onCloseEnd
 				if(s.params.onCloseEnd)s.params.onCloseEnd(s);
 				return;

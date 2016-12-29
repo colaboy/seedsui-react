@@ -80,15 +80,33 @@
         s.play();
 	}
 	window.Counters=function(params){
+		/*================
+		Model
+		================*/
+		var defaults={
+			counterClass:"counter",
+		}
+		params=params||{};
+		for(var def in defaults){
+			if(params[def]===undefined){
+				params[def]=defaults[def];
+			}
+		}
 		var s=this;
+		s.counters=[];
+		//Params
+		s.params=params;
         //获得所有元素
-        s.counters=document.querySelectorAll(".counter");
-        s.counters.counters=[];
-        var jsonParams={};
-        if(params)jsonParams=params;
-        //实例化所有元素
-        for(var i=0,counter;counter=s.counters[i++];){
-            s.counters.counters[i]=new Counter(counter,jsonParams);
+        s.update=function(){
+        	var elements=document.querySelectorAll("."+s.params.counterClass);
+        	for(var i=0,el;el=elements[i++];){
+        		s.counters[i]=new Counter(el,s.params);
+        	}
         }
+        s.update();
+        /*================
+		Method
+		================*/
+        return s.counters;
 	}
 })(window,document,undefined);

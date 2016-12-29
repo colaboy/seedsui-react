@@ -1,11 +1,10 @@
 /*----------------aside.less(start)--------------*/
-$aside-bg:$body-bg;
 .aside,.aside-wrapper{
 	position:relative;
     width:100%;
     height:100%;
 }
-.aside-wrapper,aside,section{
+.aside-wrapper,aside{
 	-webkit-transition-property:transform;
 }
 .aside{
