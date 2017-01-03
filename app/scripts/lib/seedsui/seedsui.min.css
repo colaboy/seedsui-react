@@ -22,18 +22,22 @@ article {
 header + article {
   padding-top: 44px; }
 
-/*section与aside*/
-section {
+/*section*/
+.sections, section {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-  background-color: #eaeaea; }
+  right: 0;
+  bottom: 0;
+  overflow: hidden; }
 
-section header, section footer, aside header, aside footer {
+section {
+  background-color: #eaeaea; }
+  section header, section footer {
+    position: absolute; }
+
+/*aside*/
+aside header, aside footer {
   position: absolute; }
 
 section article, aside article, .article-absolute {
@@ -1054,8 +1058,7 @@ br {
   display: inline-block;
   box-sizing: content-box;
   text-align: left;
-  border-color: #e5e5e5;
-  background-color: white; }
+  border-color: #e5e5e5; }
 
 .input-textarea {
   height: 60px;

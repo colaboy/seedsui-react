@@ -75,5 +75,14 @@
 		}
 		return false;
 	}
-	
+	Type.char=function(char){
+		if (char>=48 && char <=57) //数字
+            return "number";
+        if (char>=65 && char <=90) //大写
+            return "capitalize";
+        if (char>=97 && char <=122) //小写
+            return "lowercase";
+        else
+            return "other";
+	}
 })(window,document,undefined);

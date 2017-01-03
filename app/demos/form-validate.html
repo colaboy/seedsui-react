@@ -7,7 +7,7 @@
     <title>form-validate</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
     <style type="text/css">
-    .app-active-error {
+    .app-error-active {
         background-color: #ffecec;
     }
     .icon-eye-fill.active{
@@ -24,13 +24,13 @@
         </div>
     </header>
     <article>
-    	<form id="ID-Form" style="padding:10px;">
+    	<form id="ID-Form" method="post" style="padding:10px;">
             <div class="inputbox bordered" style="margin:8px 0;" data-input="clear">
-                <input type="text" class="input-text" placeholder="用户名" name="NID-UserName" maxlength="16" data-rule-field="用户名" data-rule="required username"/>
+                <input type="text" class="input-text" placeholder="用户名" name="NID-UserName" maxlength="16"/>
                 <i class="icon icon-clear-fill color-placeholder hide"></i>
             </div>
             <div class="inputbox bordered" style="margin:8px 0;" data-input="reveal">
-                <input type="password" class="input-text" placeholder="密码" name="NID-RePwd" maxlength="16" data-rule-field="密码" data-rule="required safelvl password minlength:6 maxlength:16"/>
+                <input type="password" class="input-text" placeholder="密码" name="NID-Pwd" maxlength="16"/>
                 <i class="icon icon-eye-fill color-placeholder"></i>
                 <div class="safelvl lvl0">
                     <div class="safelvl-progress"></div>
@@ -50,22 +50,22 @@
             </div>
 
             <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="手机号码" name="phone" data-rule-field="手机号码" data-rule="phone"/>
+                <input type="text" class="input-text" placeholder="手机号码" name="NID-Phone"/>
             </div>
 
             <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="中文姓名" name="mail" data-rule-field="姓名" data-rule="chinese"/>
+                <input type="text" class="input-text" placeholder="中文姓名" name="NID-Name"/>
             </div>
 
             <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="邮箱" name="mail" data-rule-field="邮箱" data-rule="mail"/>
+                <input type="text" class="input-text" placeholder="邮箱" name="NID-Mail"/>
             </div>
 
             <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="number" class="input-text" placeholder="年龄" name="age" data-rule-field="年龄" data-rule="number minnumber:18 maxnumber:48"/>
+                <input type="number" class="input-text" placeholder="年龄" name="NID-Age"/>
             </div>
 
-            <a class="button submit block SID-BtnSubmit">注册</a>
+            <input type="submit" class="button submit block SID-BtnSubmit" style="width: 100%;" value="注册"/>
     	</form>
     </article>
     
@@ -79,11 +79,15 @@
               ===========================*/
             initialize:function(){
                 /*DOM*/
-                this.formId="ID-Form",this.formValidate;
+                this.form=new Form("#ID-Form",{
+                    formFilterClass:"form-filter"
+                });
+                this.formContainer=this.form.container;
+                this.formElements=this.form.formElements;
                 this.btnSubmit=document.querySelector(".SID-BtnSubmit");
                 
                 /*Plugin*/
-                this.form;
+                this.prompt;
                 this.formControls;
 
                 /*Data*/
@@ -100,55 +104,110 @@
             /*=========================
               Method
               ===========================*/
+            _validateForm:function(){
+                var validator=new Validator();
+                validator.add(this.formContainer["NID-UserName"],[
+                    {
+                        rule:'required',
+                        errorMsg:'用户名不能为空'
+                    },{
+                        rule:'minLength:6',
+                        errorMsg:'用户名不能低于6位'
+                    },{
+                        rule:'username',
+                        errorMsg:'用户名必须为字母数字或者下划线'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-Pwd"],[
+                    {
+                        rule:'required',
+                        errorMsg:'密码不能为空'
+                    },{
+                        rule:'minLength:6',
+                        errorMsg:'密码不能低于6位'
+                    },{
+                        rule:'maxLength:16',
+                        errorMsg:'密码不能超过16位'
+                    },{
+                        rule:'password',
+                        errorMsg:'密码格式不正确'
+                    },{
+                        rule:'safeLvl:3',
+                        errorMsg:'密码强度不够'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-RePwd"],[
+                    {
+                        rule:'required',
+                        errorMsg:'密码不能为空'
+                    },{
+                        rule:'minLength:6',
+                        errorMsg:'密码不能低于6位'
+                    },{
+                        rule:'maxLength:16',
+                        errorMsg:'密码不能超过16位'
+                    },{
+                        rule:'password',
+                        errorMsg:'密码格式不正确'
+                    },{
+                        rule:'compare:'+this.formContainer["NID-Pwd"].value,
+                        errorMsg:'两次密码输入不一致'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-Phone"],[
+                    {
+                        rule:'phone',
+                        errorMsg:'手机号码不正确'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-Name"],[
+                    {
+                        rule:'chinese',
+                        errorMsg:'姓名请输入中文'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-Mail"],[
+                    {
+                        rule:'mail',
+                        errorMsg:'邮箱格式不正确'
+                    }
+                ]);
+                validator.add(this.formContainer["NID-Age"],[
+                    {
+                        rule:'number',
+                        errorMsg:'年龄只能为数字'
+                    },{
+                        rule:'minNumber:18',
+                        errorMsg:'年龄最小18岁'
+                    },{
+                        rule:'maxNumber:48',
+                        errorMsg:'年龄最大48岁'
+                    }
+                ]);
+                var error=validator.start();
+                return error;
+            },
             _update:function(){
             },
             /*=========================
               Plugin
               ===========================*/
+            _initPrompt:function(){
+                this.prompt=new Prompt();
+            },
             _initFormControls:function(){
                 this.formControls=new FormControls();
             },
-            _initFormValidate:function(){
-                this.formValidate=new FormValidate(this.form.formElements,{
-                    promptParent:"article",
-                    onFail:function(e){
-                        for(var i=0,el;el=e.formElements[i++];){
-                            el.parentNode.classList.remove("app-active-error");
-                        }
-                        e.field.parentNode.classList.add("app-active-error");
-                        e.prompt.show();
-                    },
-                    onSuccess:function(e){
-                        for(var i=0,el;el=e.formElements[i++];){
-                            el.parentNode.classList.remove("app-active-error");
-                        }
-                        console.log("提交");
-                    }
-                });
-            },
-            _initForm:function(){
-                var self=this;
-                this.form=new Form("#"+this.formId,{
-                    formFilterClass:"form-filter"
-                });
-                this.form.container.addEventListener("submit",function(e){
-                    e.preventDefault();
-                    self.formValidate.validate();
-                },false);
-            },
             _initPlugin:function(){
+                this._initPrompt();
                 this._initFormControls();
-                this._initForm();
-                this._initFormValidate();
             },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
-                this.btnSubmit.addEventListener("click",function(e){
-                    self._onClickBtnSubmit(e);
-                },false);
+                this.formContainer.addEventListener("submit",this._onSubmit,false);
             },
             /*=========================
               Event Handler
@@ -156,6 +215,20 @@
             _onClickBtnSubmit:function(e){
                 var isOk=this.formValidate.validate();
                 console.log("验证是否通过:"+isOk);
+            },
+            _onSubmit:function(e){
+                //重置错误样式
+                for(var i=0,el;el=view.formElements[i++];){
+                    el.parentNode.classList.remove("app-error-active");
+                }
+                //表单验证
+                var error=view._validateForm();
+                if(error){
+                    view.prompt.setText(error.errorMsg);
+                    view.prompt.show();
+                    error.field.parentNode.classList.add("app-error-active");
+                    e.preventDefault();
+                }
             }
         }
 

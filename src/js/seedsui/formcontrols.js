@@ -1,4 +1,4 @@
-//Formcontrols (require form.safelvl.js)
+//Formcontrols (require safelvl.js)
 (function(window,document,undefined){
 	window.FormControls=function(params){
 		/*================
@@ -160,7 +160,7 @@
 		/*安全检测框*/
 		s.onSafeLvl=function(e){
 			var lvlField=this.parentNode.querySelector("."+s.params.safelvlClass);
-			if(SafeLvl)SafeLvl.checkSafe(this,lvlField);
+			if(SafeLvl)SafeLvl.fields(this,lvlField);
 		}
 		/*拖动条*/
 		s.showToolTip=function(tooltip,rangeInput){

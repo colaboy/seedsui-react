@@ -6,7 +6,6 @@
 		================*/
 		var defaults={
 			formFilterClass:null,//过滤表单元素
-			promptParent:document.body,//提示框的父元素
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -88,5 +87,6 @@
 			//获得字符串
 			return parts.join("&");
 		};
+		return s;
 	}
 })(window,document,undefined);
