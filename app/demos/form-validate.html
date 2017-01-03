@@ -212,10 +212,6 @@
             /*=========================
               Event Handler
               ===========================*/
-            _onClickBtnSubmit:function(e){
-                var isOk=this.formValidate.validate();
-                console.log("验证是否通过:"+isOk);
-            },
             _onSubmit:function(e){
                 //重置错误样式
                 for(var i=0,el;el=view.formElements[i++];){
