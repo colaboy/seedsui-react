@@ -20,15 +20,14 @@ header+article{
 }
 
 /*section*/
-.sections,section{
-    position: absolute;
+section{
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     overflow: hidden;
-}
-section{
+
     background-color: $body-bg;
 
     header,footer{

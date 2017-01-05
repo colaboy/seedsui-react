@@ -8,7 +8,7 @@
 			sectionActiveClass:"active",
 
 			/*callbacks
-			onLoad:function(Page)//加载中
+			onStart:function(Page)//加载中
 			onShowed:function(Page)//开窗完成时动画
 			onHid:function(Page)//关窗完成时动画
 			*/
@@ -32,8 +32,8 @@
         s.isHid=true;
         s.show=function(){
         	s.isHid=false;
-        	//Callback onLoad
-        	if(s.params.onLoad)s.params.onLoad(s);
+        	//Callback onStart
+        	if(s.params.onStart)s.params.onStart(s);
 
         	s.container.classList.add(s.params.sectionActiveClass);
         }
@@ -57,10 +57,11 @@
         }
 		s.onTransitionEnd=function(e){
 			if(e.propertyName=="visibility")return;
-			//显示完成 & 隐藏完成 回调
 			if(s.container.classList.contains(s.params.sectionActiveClass)){
+				//Callback onShowed
 				if(s.params.onShowed)s.params.onShowed(s);
 			}else{
+				//Callback onHid
 				if(s.params.onHid)s.params.onHid(s);
 			}
 		};
@@ -78,7 +79,7 @@
 			sectionAttr:"data-animation",
 
 			/*callbacks
-			onLoad:function(Page)//加载中
+			onStart:function(Page)//加载中
 			onShowed:function(Page)//开窗完成时动画
 			onHid:function(Page)//关窗完成时动画
 			*/

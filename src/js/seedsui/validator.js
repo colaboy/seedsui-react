@@ -1,5 +1,6 @@
 //Validator 表单验证 (require safelvl.js)
 (function(window,document,undefined){
+	/********************验证策略类********************/
 	var ruleExpress={
 		"required":/.+/,//不能为空
 		"integer":/^[1-9]{1,}[0-9]*$/,//正整数
@@ -10,7 +11,7 @@
 		"chinese":/^[\u4E00-\u9FA5]*$/,//只能填写中文
 		"specialchar":/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$///不能为特殊字符
 	};
-	window.ruleMethods={
+	window.Rules={
 		required:function(value,errorMsg){
 			if(!ruleExpress["required"].test(value)){
 				return errorMsg;
@@ -88,7 +89,8 @@
 	        }
 	    }
 	};
-	//Validator类
+
+	/********************Validator类********************/
 	window.Validator=function(){
 		var s=this;
 		s.caches=[];
@@ -103,7 +105,7 @@
 						var ruleName=ruleArray.shift();
 						ruleArray.unshift(field.value);
 						ruleArray.push(errorMsg);//此时ruleArray的值为 ruleValue,fieldValue,errorMsg
-						var ruleErrorMsg=ruleMethods[ruleName].apply(null,ruleArray);
+						var ruleErrorMsg=Rules[ruleName].apply(null,ruleArray);
 						if(ruleErrorMsg) return {field:field,errorMsg:ruleErrorMsg};
 					});
 				})(strategy);

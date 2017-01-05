@@ -2,6 +2,7 @@
 section{
 	-webkit-transition-property:-webkit-transform,opacity,visibility;
 	-webkit-transition-duration:300ms;
+	z-index: 0;
 	&[data-animation]{
 		visibility:hidden;
 		&.active{

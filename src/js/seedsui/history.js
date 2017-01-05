@@ -102,7 +102,7 @@
         s.onPopstate=function(e) {
 			//console.log("location: " + document.location + ", state: " + JSON.stringify(e.state));
 			//返回到根部
-			if(e.state==null){
+			if(location.hash==""){
 				s.back();
 				s.currentHash="";
 				//Callback onBack
@@ -113,7 +113,7 @@
 			}
 
 			
-			s.currentHash=e.state.href;
+			s.currentHash=location.hash;
 
 			//前进与后退
 			if(s.list.indexOf(s.currentHash)==-1){//前进

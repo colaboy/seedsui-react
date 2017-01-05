@@ -5,21 +5,22 @@
           Model
           ===========================*/
         var defaults={
-            "wrapperClass":"aside-wrapper",
-            "leftSide":null,
-            "rightSide":null,
-            "asideContainerClass":"aside",
-            "sides":{"left":null,"right":null},
+            wrapperClass:"aside-wrapper",
+
+            asideContainerClass:"aside",
+            sectionClass:"aside-middle",
+
+            sides:{"left":null,"right":null},
+            
             "threshold":{"left":60,"right":60},
 
             "duration":300,
             "isClickMaskHide":true,
             "isDrag":false,
             /*callbacks
-            onInit:function(Aside)
-            onSlideChangeStart:function(Aside)
-            onSlideChange:function(Aside)
-            onSlideChangeEnd:function(Aside)
+            onStart:function(Aside)
+            onShowed:function(Aside)
+            onHid:function(Aside)
             onClickMask:function(Aside)
             */
         }
@@ -38,9 +39,7 @@
         //Wrapper
         s.wrapper=s.container.querySelector("."+s.params.wrapperClass);
         //Section
-        s.section=s.container.querySelector("section");
-        //Article
-        s.article=s.section.querySelector("article");
+        s.section=s.container.querySelector("."+s.params.sectionClass);
         //Mask
         s.createMask=function(){
             var mask=document.createElement("div");
@@ -115,10 +114,9 @@
             target.style.webkitTransform=transform;
         }
         s.isHid=true;
-        s.showCallback=null;//显示动画结束后回调
         s.show=function(pos,fn){
             //设置显示回调
-            if(fn)s.showCallback=fn;
+            if(fn)s.params.onShowed=fn;
             //设置显示侧边
             if(pos)s.position=pos;
             if(!s.sides[s.position]){
@@ -134,12 +132,12 @@
 
             //记录触摸值
             s.touches.posX=s.sides[s.position].width;
-            //隐藏滚动条
-            s.article.style.overflow="hidden";
+
+            //Callback onStart
+            if(s.params.onStart)s.params.onStart(s);
         }
-        s.hideCallback=null;//隐藏动画结束后回调
         s.hide=function(fn){
-            if(fn)s.hideCallback=fn;
+            if(fn)s.params.onHid=fn;
             if(!s.sides[s.position]){
                 s.position=null;
                 return;
@@ -152,8 +150,6 @@
 
             //记录触摸值
             s.touches.posX=0;
-            //显示滚动条
-            s.article.style.overflow="auto";
         }
         s.setLeftSide=function(argAside){
             s.params.sides["left"]=argAside;
@@ -236,10 +232,10 @@
             s.touches.startX=e.touches[0].clientX;
             s.touches.startY=e.touches[0].clientY;
             //Callback
-            if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
+            /*if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
                 s.target=e.target;
                 if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
-            }
+            }*/
         }
         s.showSide;
         s.onTouchMove=function(e){
@@ -302,7 +298,7 @@
             if(s.showSide.transition=="overlay")translateX=-(s.showSide.width-moveX);
             s.transformTarget(s.showSide.elTransform,'translate3d('+translateX+'px,0,0)');
 
-            if(s.params.onSlideChange)s.params.onSlideChange(s);
+            //if(s.params.onSlideChange)s.params.onSlideChange(s);
         }
         s.onTouchEnd=function(e){
             var sidePos=s.position;
@@ -355,19 +351,18 @@
             //如果是隐藏状态，清除修改项
             if(s.isHid==true){
                 s.clearChange();
-                if(s.hideCallback)s.hideCallback(s);
+                if(s.params.onHid)s.params.onHid(s);
             }else{
-                if(s.showCallback)s.showCallback(s);
+                if(s.params.onShowed)s.params.onShowed(s);
             }
             //Callback
-            if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
+            /*if(e.target==s.wrapper || e.target==s.section || e.target.getAttribute("data-transition")){
                 s.target=e.target;
                 if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
-            }
+            }*/
         }
         function init(){
             s.attach();
-            if(s.params.onInit)s.params.onInit(s);
         }
         init();
     }

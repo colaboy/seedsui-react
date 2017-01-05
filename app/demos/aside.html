@@ -36,7 +36,7 @@
                 <p style="margin:0 8px;opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
                 <a class="button block cancel" style="margin:8px;" id="hideAside2">关闭侧滑</a>
             </aside>
-            <section>
+            <section class="aside-middle">
                 <header>
                     <div class="titlebar">
                         <a class="titlebar-button" href="javascript:back()">
@@ -45,7 +45,7 @@
                         <h1 class="titlebar-title">侧边栏</h1>
                     </div>
                 </header>
-                <article class="article-absolute">
+                <article>
                     <p class="app-title">左侧菜单栏</p>
                     <a id="overlayLeft" class="button block" style="margin:8px;">左侧栏-overlay</a>
                     <a id="pushLeft" style="margin:8px" class="button block submit">左侧栏-push</a>
@@ -73,15 +73,21 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
         window.addEventListener("load",function(e){
+            var article=document.querySelector("article");
             var aside=new Aside("#aside",{
-                "isDrag":true,
-                "sides":{"left":"#aside-left","right":"#aside-right"},
-                "onSlideChangeEnd":function(e){
-                    if(e.isHid){
-                        console.log("隐藏完成");
-                    }else{
-                        console.log("显示完成");
-                    }
+                isDrag:true,
+                sides:{"left":"#aside-left","right":"#aside-right"},
+                onStart:function(e){
+                    console.log("开始显示");
+                    article.style.overflow="hidden";
+                },
+                onShowed:function(e){
+                    console.log("显示结束");
+                    article.style.overflow="hidden";
+                },
+                onHid:function(e){
+                    console.log("隐藏结束");
+                    article.style.overflow="auto";
                 }
             });
             document.getElementById("overlayLeft").onclick=function(){
