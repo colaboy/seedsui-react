@@ -1,9 +1,9 @@
 /*----------------layout.less(start)--------------*/
-/*header,footer*/
-header,footer{
+/*section,header,footer*/
+section,header,footer{
 	position:fixed;
 	width:100%;
-	z-index:2;
+	z-index:1;
 }
 header{
 	top:0;
@@ -11,6 +11,18 @@ header{
 footer{
 	bottom:0;
 }
+
+/*section*/
+section{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+
+    background-color: $body-bg;
+}
+
 /*article*/
 article{
 	box-sizing:border-box;
@@ -18,37 +30,35 @@ article{
 header+article{
 	padding-top:44px;
 }
-
-/*section*/
-section{
+.article-absolute{
+    position: absolute;
+}
+.article-fixed{
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-
-    background-color: $body-bg;
-
-    header,footer{
-        position:absolute;
-    }
 }
-
-/*aside*/
-aside{
-	header,footer{
-        position:absolute;
-    }
-}
-
-section article,aside article,.article-absolute{
-	position: absolute;
+.article-absolute,.article-fixed{
     top: 44px;
     bottom: 0;
     left: 0;
     right: 0;
     padding-top: 0;
     overflow: auto;
+}
+
+/*aside*/
+aside{
+    position:absolute;
+    width:264px;
+    top:0;
+    bottom:0;
+    visibility:hidden;
+
+    background-color: $aside-bg;
+    header,footer{
+        position:absolute;
+    }
+    article{
+        @extend .article-absolute;
+    }
 }
 /*----------------layout.less(end)--------------*/

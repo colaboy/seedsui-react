@@ -4,7 +4,7 @@ hr{
     border:0;
     clear:both;
 }
-.topline:before,.underline:after,hr:after {
+.line,.topline:before,.underline:after,hr:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -47,7 +47,7 @@ hr{
 	right: 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.topline:before,.underline:after,hr:after {
+	.line,.topline:before,.underline:after,hr:after {
 		-webkit-transform: scaleY(0.5);
 	}
 	.leftline:before,.rightline:after {
@@ -55,7 +55,7 @@ hr{
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-	.topline:before,.underline:after,hr:after {
+	.line,.topline:before,.underline:after,hr:after {
 		-webkit-transform: scaleY(0.33);
 	}
 	.leftline:before,.rightline:after {

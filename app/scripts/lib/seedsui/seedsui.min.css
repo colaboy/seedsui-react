@@ -3,17 +3,26 @@
 /*控件*/
 /*常用颜色*/
 /*----------------layout.less(start)--------------*/
-/*header,footer*/
-header, footer {
+/*section,header,footer*/
+section, header, footer {
   position: fixed;
   width: 100%;
-  z-index: 2; }
+  z-index: 1; }
 
 header {
   top: 0; }
 
 footer {
   bottom: 0; }
+
+/*section*/
+section {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: #eaeaea; }
 
 /*article*/
 article {
@@ -22,30 +31,30 @@ article {
 header + article {
   padding-top: 44px; }
 
-/*section*/
-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  background-color: #eaeaea; }
-  section header, section footer {
-    position: absolute; }
-
-/*aside*/
-aside header, aside footer {
+.article-absolute, aside article {
   position: absolute; }
 
-section article, aside article, .article-absolute {
-  position: absolute;
+.article-fixed {
+  position: fixed; }
+
+.article-absolute, aside article, .article-fixed {
   top: 44px;
   bottom: 0;
   left: 0;
   right: 0;
   padding-top: 0;
   overflow: auto; }
+
+/*aside*/
+aside {
+  position: absolute;
+  width: 264px;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  background-color: #eaeaea; }
+  aside header, aside footer {
+    position: absolute; }
 
 /*----------------layout.less(end)--------------*/
 /*----------------appearance.less(start)--------------*/
@@ -2717,8 +2726,7 @@ label .input-checkbox + span, label .input-radio + span {
 /*----------------section.less(start)--------------*/
 section {
   -webkit-transition-property: -webkit-transform,opacity,visibility;
-  -webkit-transition-duration: 300ms;
-  z-index: 0; }
+  -webkit-transition-duration: 300ms; }
   section[data-animation] {
     visibility: hidden; }
     section[data-animation].active {
@@ -3026,14 +3034,6 @@ section {
 
 .aside {
   overflow: hidden; }
-
-aside {
-  visibility: hidden;
-  position: absolute;
-  width: 264px;
-  top: 0;
-  bottom: 0;
-  background-color: #eaeaea; }
 
 aside[data-transition="overlay"], aside[data-transition="push"] {
   z-index: 1; }
@@ -5185,7 +5185,7 @@ hr {
   border: 0;
   clear: both; }
 
-.topline:before, .underline:after, hr:after {
+.line, .topline:before, .underline:after, hr:after {
   content: '';
   display: block;
   position: absolute;
@@ -5224,13 +5224,13 @@ hr {
   right: 0; }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .topline:before, .underline:after, hr:after {
+  .line, .topline:before, .underline:after, hr:after {
     -webkit-transform: scaleY(0.5); }
 
   .leftline:before, .rightline:after {
     -webkit-transform: scaleX(0.5); } }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .topline:before, .underline:after, hr:after {
+  .line, .topline:before, .underline:after, hr:after {
     -webkit-transform: scaleY(0.33); }
 
   .leftline:before, .rightline:after {

@@ -7,6 +7,9 @@
     <title>aside</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
     <style>
+    aside{
+        background-color:#f4f4f4;
+    }
     .app-title{
         font-size:17px;
         margin:8px;
@@ -18,24 +21,6 @@
 <body ontouchstart="">
     <div class="aside" id="aside">
         <div class="aside-wrapper">
-            <aside id="aside-left" data-transition="overlay" style="background-color:#333;color:white;">
-                <p class="app-title" style="margin:0 8px;">侧边栏</p>
-                <p style="margin:0 8px;opacity:0.7;">这是侧滑菜单的示例，通常用
-                <br/>
-                【属性】
-                data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)
-                <br/>
-                <br/>
-                【Javascript】
-                new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) 
-                </p>
-                <a class="button block cancel" style="margin:8px;" id="hideAside1">关闭侧滑</a>
-            </aside>
-            <aside id="aside-right" data-transition="push" style="background-color:#333;color:white;">
-                <p class="app-title" style="margin:0 8px;">右侧边栏</p>
-                <p style="margin:0 8px;opacity:0.7;">AsideContainer可随时更换绑定的侧边栏</p>
-                <a class="button block cancel" style="margin:8px;" id="hideAside2">关闭侧滑</a>
-            </aside>
             <section class="aside-middle">
                 <header>
                     <div class="titlebar">
@@ -49,12 +34,10 @@
                     <p class="app-title">左侧菜单栏</p>
                     <a id="overlayLeft" class="button block" style="margin:8px;">左侧栏-overlay</a>
                     <a id="pushLeft" style="margin:8px" class="button block submit">左侧栏-push</a>
-                    <a id="revealLeft" style="margin:8px" class="button block warn">左侧栏-reveal</a>
 
                     <p class="app-title">右侧菜单栏</p>
                     <a id="overlayRight" class="button block" style="margin:8px;">右侧栏-overlay</a>
                     <a id="pushRight" style="margin:8px" class="button block submit">右侧栏-push</a>
-                    <a id="revealRight" style="margin:8px" class="button block warn">右侧栏-reveal</a>
                     
                     <div class="card" style="padding:8px;">
                         <h1 class="titlebar-title text-center">这是侧滑菜单的示例</h1>
@@ -66,6 +49,42 @@
                     </div>
                 </article>
             </section>
+            <!--左侧边栏-->
+            <aside id="aside-left" data-transition="overlay">
+                <header>
+                    <div class="titlebar">
+                        <h1 class="titlebar-title text-center">左侧边栏</h1>
+                    </div>
+                </header>
+                <article style="padding: 10px;">
+                    <p class="paragraph">这是侧滑菜单的示例，通常用</p>
+                    【属性】
+                    <p class="paragraph">data-transition动画，值如下：</p>
+                    <p class="paragraph">1.reveal(section动)</p>
+                    <p class="paragraph">2.overlay(aside覆盖)</p>
+                    <p class="paragraph">3.push(wrapper动)</p>
+                    【Javascript】
+                    <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"})</p>
+                    
+                </article>
+                <footer>
+                    <a class="button block cancel" style="margin:8px;" id="hideAside1">关闭侧滑</a>
+                </footer>
+            </aside>
+            <!--右侧边栏-->
+            <aside id="aside-right" data-transition="push">
+                <header>
+                    <div class="titlebar">
+                        <h1 class="titlebar-title text-center">右侧边栏</h1>
+                    </div>
+                </header>
+                <article style="padding: 10px;">
+                    <p class="paragraph">右侧边栏</p>
+                </article>
+                <footer>
+                    <a class="button block cancel" style="margin:8px;" id="hideAside2">关闭侧滑</a>
+                </footer>
+            </aside>
         </div>
     </div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -100,11 +119,6 @@
                 aside.update();
                 aside.show("left");
             };
-    		document.getElementById("revealLeft").onclick=function(){
-                aside.sides["left"].setAttribute("data-transition","reveal");
-                aside.update();
-                aside.show("left");
-            };
     		document.getElementById("overlayRight").onclick=function(){
                 aside.sides["right"].setAttribute("data-transition","overlay");
                 aside.update();
@@ -112,11 +126,6 @@
             };
     		document.getElementById("pushRight").onclick=function(){
                 aside.sides["right"].setAttribute("data-transition","push");
-                aside.update();
-                aside.show("right");
-            };
-    		document.getElementById("revealRight").onclick=function(){
-                aside.sides["right"].setAttribute("data-transition","reveal");
                 aside.update();
                 aside.show("right");
             };

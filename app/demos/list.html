@@ -15,7 +15,7 @@
             <h1 class="titlebar-title">列表</h1>
         </div>
     </header>
-    <article>
+    <article class="article-fixed">
         <details open>
             <summary class="underline" style="padding: 8px 12px;position: relative;">
                 <span>单行列表</span>
@@ -44,6 +44,54 @@
                             <p class="list-font">音箱，大屏，投影仪，WIFI，麦克风</p>
                         </div>
                     </div>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">工作圈启动会议</p>
+                    <i class="list-icon icon-arrowright"></i>
+                </li>
+                <li class="underline">
+                    <p  class="list-container">产品分享会议</p>
                     <i class="list-icon icon-arrowright"></i>
                 </li>
                 <li class="underline">
@@ -91,45 +139,53 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script>
         var view={
-            /*=========================
-              Model
-              ===========================*/
             initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                /*渲染数据*/
+                this.load();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            load:function(){
                 /*DOM*/
 
                 /*Plugin*/
 
-                /*Data*/
+                this._attach();//使用backbone时，此行无用
+            },
 
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
-            render:function(){
-                this._initPlugin();
-            },
             /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Plugin
+              Model
               ===========================*/
             _initPlugin:function(){
 
             },
+
+            /*=========================
+              Method
+              ===========================*/
+            _method:function(){
+            },
+            
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
             },
+
             /*=========================
               Event Handler
               ===========================*/
+            _onEvent:function(e){
+                
+            }
         }
 
         window.addEventListener("load",function(){

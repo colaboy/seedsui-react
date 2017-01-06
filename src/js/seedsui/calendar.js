@@ -15,7 +15,8 @@
 			duration:"300",
 			dayHeight:"40",
 			isYTouch:true,//是否允许上下滑动
-			isShowWeekNum:false,//是否显示周数
+			isShowWeeksNum:false,//是否显示周数
+			isShowDayNum:false,//是否显示周几
 			//DOM
 			calendarClass:"calendar",
 			disableClass:"calendar-disable",
@@ -301,7 +302,7 @@
 				}
 				s.draw();
 			}
-        }
+        };
         //上下滑动
         s.dragY=function(heightY){
         	s.wrapper.style.height=heightY+'px';
@@ -309,7 +310,7 @@
         	if(translateY<=s.touches.maxPosY){
         		s.wrapperY.style.webkitTransform="translateY(-"+translateY+"px)";
         	}
-        }
+        };
         s.slideYTo=function(index){
         	s.addDuration();
         	if(index===1){//展开
@@ -323,13 +324,13 @@
         	}else{
         		s.dragY(s.touches.h);
         	}
-        }
+        };
 		//绘制日历
 		var today=new Date();
 		s.isToday=function(date){
 			if(date.getDate()==today.getDate() && date.getMonth()==today.getMonth() &&  date.getFullYear()==today.getFullYear())return true;
 			return false;
-		}
+		};
 		s.data=[];
 		s.updateData=function(){
 			s.data=s.calendarUtil.getCalendarData();
@@ -353,16 +354,21 @@
 					datIndex2++;
 				}
 			}
-		}
+		};
+		var chinaWeek={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'日'};
 		s.drawHeader=function(){
 			var activeDate=s.calendarUtil.activeDate;
 			var activeDay="";
-			if(s.params.isShowWeekNum){
-				activeDay="&nbsp;&nbsp;第"+s.calendarUtil.getWeekNum(s.calendarUtil.activeDate)+"周";
+			if(s.params.isShowDayNum){
+				activeDay="&nbsp;&nbsp;周"+chinaWeek[s.calendarUtil.activeDate.getDay()];
+			}
+			var activeWeeks="";
+			if(s.params.isShowWeeksNum){
+				activeWeeks="&nbsp;&nbsp;第"+s.calendarUtil.getWeeksNum(s.calendarUtil.activeDate)+"周";
 			}
 			//注入头部数据
-			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.date()+activeDay;
-		}
+			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.date()+activeDay+activeWeeks;
+		};
 		s.draw=function(){
 			s.updateData();
 			//注入头部
@@ -395,7 +401,7 @@
 			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
 			//Callback onChange
 			if(s.params.onChange)s.params.onChange(s);
-		}
+		};
 		s.draw();
 		s.activeDay=function(target){
 			for(var i=0;i<s.days.length;i++){
@@ -409,24 +415,24 @@
 
 			//target.classList.add(s.params.activeClass);
 			//s.drawHeader();
-		}
+		};
 		s.showMonth=function(){
 			s.slideYTo(1);
-        }
+        };
         s.showWeek=function(){
         	s.slideYTo(-1);
-        }
+        };
         s.showToday=function(){
         	s.calendarUtil.setActiveDate(s.today);
         	s.draw();
-        }
+        };
         s.reset=function(){
         	//选中日期
 			s.activeDate=s.params.activeDate;
 			s.calendarUtil.setActiveDate(s.params.defaultActiveDate);
 			//重新绘制
 			s.draw();
-        }
+        };
 		/*================
 		Control
 		================*/
@@ -441,24 +447,24 @@
 
 			s.prev[action]("click",s.onClickPrev,false);
 			s.next[action]("click",s.onClickNext,false);
-        }
+        };
         //attach、dettach事件
         s.attach=function(event){
             s.events();
-        }
+        };
         s.detach=function(event){
             s.events(true);
-        }
+        };
         s.preventDefault=function(e){
 			e.preventDefault();
-		}
+		};
 		//Event Handler
 		s.onClickPrev=function(e){
 			s.slideXTo(0);
-		}
+		};
 		s.onClickNext=function(e){
 			s.slideXTo(2);
-		}
+		};
 		s.onClick=function(e){
 			s.target=e.target;
 			//禁用状态
@@ -467,7 +473,7 @@
 			if(e.target.classList.contains(s.params.dayNumClass))s.activeDay(e.target);
 			//Callback onClick
 			if(s.params.onClick)s.params.onClick(s);
-		}
+		};
 		s.onTouchStart=function(e){
 			s.container.addEventListener("touchmove",s.preventDefault,false);
 			s.touches.startX=e.touches[0].clientX;
@@ -527,7 +533,7 @@
 		s.onTransitionEnd=function(e){
 			//还原位置
 			s.updateTranslateX();
-		}
+		};
 		/*================
 		Init
 		================*/
@@ -685,7 +691,7 @@
         }
         /*其它工具*/
         //根据日期，获得周数
-        s.getWeekNum=function(currentDate){
+        s.getWeeksNum=function(currentDate){
 		    var startDate=new Date(currentDate.getFullYear(), 0, 1);
 		    var startDay=startDate.getDay(); if(startDay==0) startDay=7;
 

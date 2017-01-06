@@ -156,35 +156,26 @@
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
 		var view={
+            initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+            	/*渲染数据*/
+                this.load();
+            },
+            load:function(){
+            	/*DOM*/
+                /*Plugin*/
+                this.sections=this._initSection();
+                this.history=this._initHistory();
+
+                this._attach();//使用backbone时，此行无用
+            },
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                /*DOM*/
-                /*Plugin*/
-                this.sections={};
-                this.history={};
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
-            render:function(){
-                this._initPlugin();
-            },
-            /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Plugin
-              ===========================*/
             _initSection:function(){
-            	this.sections=new Sections({
+            	return new Sections({
                 	onStart:function(e){
                 		//console.log("开始显示："+e.container.id);
                 	},
@@ -197,7 +188,7 @@
                 });
             },
             _initHistory:function(){
-            	this.history=new History({
+            	return new History({
                 	onBack:function(e){
                 		console.log("后退："+e.prevHash);
                 		if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
@@ -214,10 +205,6 @@
                 		document.querySelector(hash).classList.add("active");
                 	}
                 }
-            },
-            _initPlugin:function(){
-            	this._initSection();
-            	this._initHistory();
             },
             /*=========================
               Events

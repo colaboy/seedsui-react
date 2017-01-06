@@ -23,7 +23,7 @@
         </div>
     </header>
 	<article>
-		<div class="calendar SID-Calendar" id="ID-Calendar"></div>
+		<div class="calendar" id="ID-Calendar"></div>
         <a style="margin:8px" class="button block bg-6" id="ID-Show">显示日历</a>
         <a style="margin:8px" class="button block bg-5" id="ID-Hide">隐藏日历</a>
 		<a style="margin:8px" class="button block bg-1" id="ID-Month">月</a>
@@ -36,10 +36,14 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
         var view={
-            /*=========================
-              Model
-              ===========================*/
             initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                /*渲染数据*/
+                this.load();
+            },
+            load:function(){
                 /*DOM*/
                 this.btnMonth=document.getElementById("ID-Month");
                 this.btnWeek=document.getElementById("ID-Week");
@@ -47,30 +51,19 @@
                 this.btnReset=document.getElementById("ID-Reset");
                 this.btnShow=document.getElementById("ID-Show");
                 this.btnHide=document.getElementById("ID-Hide");
+                this.divCalendar=document.getElementById("ID-Calendar");
                 /*Plugin*/
-                this.calendar;
-                /*Data*/
+                this.calendar=this._initCalendar();
 
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
+                this._attach();//使用backbone时，此行无用
             },
-            render:function(){
-                this._initPlugin();
-            },
+
             /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Plugin
+              Model
               ===========================*/
             _initCalendar:function(){
-                this.calendar=new Calendar("#ID-Calendar",{
-                    viewType:"month",
+                return new Calendar(this.divCalendar,{
+                    viewType:"week",
                     isShowWeekNum:true,
                     //disableBeforeDate:new Date(),
                     //isYTouch:false,//是否允许竖向滑动
@@ -81,9 +74,6 @@
                         //console.log(e.activeDate);
                     }
                 });
-            },
-            _initPlugin:function(){
-                this._initCalendar();
             },
             /*=========================
               Events

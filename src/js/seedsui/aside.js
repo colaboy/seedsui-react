@@ -79,12 +79,6 @@
                 aside.hideTransform='translate3d(0,0,0)',
                 aside.elTransform=s.wrapper;
                 break;
-
-                case "reveal":
-                aside.showTransform='translate3d('+aside.width+'px,0,0)',
-                aside.hideTransform='translate3d(0,0,0)',
-                aside.elTransform=s.section;
-                break;
             }
         }
         s.update();
@@ -288,12 +282,6 @@
             
             //移动位置
             s.showSide.style.visibility="visible";
-            /*if(s.showSide.transition=="overlay"){
-                var translateX=-(s.showSide.width-moveX);
-                s.transformTarget(s.showSide.elTransform,'translate3d('+translateX+'px,0,0)');
-            }else if(s.showSide.transition=="push" || !s.showSide.transition || s.showSide.transition=="reveal"){
-                s.transformTarget(s.showSide.elTransform,'translate3d('+moveX+'px,0,0)');
-            }*/
             var translateX=moveX;
             if(s.showSide.transition=="overlay")translateX=-(s.showSide.width-moveX);
             s.transformTarget(s.showSide.elTransform,'translate3d('+translateX+'px,0,0)');

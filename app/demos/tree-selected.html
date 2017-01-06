@@ -68,11 +68,11 @@
 <body ontouchstart="">
     <header>
        <div class="titlebar">
-            <a class="titlebar-button left" href="javascript:back()">
+            <a class="titlebar-button titlebar-left" href="javascript:back()">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1 class="titlebar-title text-center">人员选择</h1>
-            <div class="right">
+            <div class="titlebar-right">
                 <a class="titlebar-button" id="ID-BtnSearch">
                     <i class="icon icon-search"></i>
                 </a>
@@ -201,10 +201,10 @@
     </article>
 	
     <!--page1-->
-    <section id="ID-PageSearchResult" data-animation="none" class="page" style="background-color: #f4f4f4">
+    <section id="ID-PageSearchResult" data-animation="slideLeft" style="background-color: #f4f4f4">
         <header>
             <div class="titlebar">
-                <a class="titlebar-button left" href="javascript:back()">
+                <a class="titlebar-button titlebar-left" href="javascript:back()">
                     <i class="icon icon-arrowleft"></i>
                 </a>
                 <h1 class="titlebar-title text-center">搜索人员</h1>
@@ -217,19 +217,27 @@
                 </form>
             </div>
         </header>
-        <article style="padding-top: 87px">
+        <article style="top: 87px">
             <div id="ID-BoxSearchResult" class="group" style="margin-top: 0;"></div>
         </article>
     </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
-    <!--Exmobi能力-->
-    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
     var view={
-            /*=========================
-              Model
-              ===========================*/
             initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            render:function(){
+                /*渲染数据*/
+                this.load();
+            },
+            load:function(){
                 /*DOM*/
                 this.btnAsynAdds;
                 this.btnOk=document.getElementById("ID-BtnOk");
@@ -238,33 +246,20 @@
                 this.boxSearchResult=document.getElementById("ID-BoxSearchResult");
 
                 /*Plugin*/
-                this.tr1;
+                this.history=this._initHistory();;
+
+                this.tr1=this._initTree();
                 this.toast = new Toast("没有子节点");
                 this.formControls=new FormControls();
-                this.singlePage;
 
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
-            render:function(){
-                this._initPlugin();
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Plugin
+              Model
               ===========================*/
             _initTree:function(){
                 var self=this;
-                this.tr1=new Tree("#ID-Tree1",{
+                return new Tree("#ID-Tree1",{
                     selectedContainer:"#ID-Treebar1",
                     //需自定义：点击树展开
                     onTap:function(e){
@@ -298,12 +293,24 @@
                     }
                 });
             },
-            _initPage:function(){
-                this.singlePage=new Page();
-            },
-            _initPlugin:function(){
-                this._initPage();
-                this._initTree();
+            _initHistory:function(){
+                return new History({
+                    onBack:function(e){
+                        console.log("后退："+e.prevHash);
+                        if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
+                        if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
+                    },
+                    onForward:function(e){
+                        console.log("前进："+e.currentHash);
+                        document.querySelector(e.currentHash).classList.add("active");
+                    }
+                });
+                //初始化时，历史记录就有了，说明刷新过了
+                if(this.history.list.length>0){
+                    for(var i=0,hash;hash=this.history.list[i++];){
+                        document.querySelector(hash).classList.add("active");
+                    }
+                }
             },
             /*=========================
               Events
@@ -337,7 +344,7 @@
             },
             _onClickBtnSearch:function(e){
                 this.boxSearchResult.innerHTML="";
-                this.singlePage.open("#ID-PageSearchResult");
+                window.location.href="#ID-PageSearchResult";
             },
             //需自定义：软键盘搜索
             _onSubmitFormSearch:function(e){
