@@ -23,6 +23,10 @@
 		s.params=params;
 		//Container
 		s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Imglazy的容器DOM对象，请检查传入参数是否正确");
+            return;
+        }
 		//所有图片
 		s.imgs=[];
 		//对应缓存图片

@@ -53,6 +53,7 @@
 		<article>
 			<a class="button block bg-1 SID-BtnSelf" data-href="#ID-Page1-Page1" target="_self">_self打开</a>
 			<a class="button block bg-2" href="#ID-Page1-Page1">普通打开</a>
+			<div class="bg-1" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page1_close-->
@@ -66,7 +67,8 @@
 		  </div>
 		</header>
 		<article>
-			Close页面
+			<div style="padding: 100px 0;text-align: center;">Close页面</div>
+			<div class="bg-1" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page2-->
@@ -80,7 +82,8 @@
 		  </div>
 		</header>
 		<article>
-			slideRight
+			<div style="padding: 100px 0;text-align: center;">slideRight页面</div>
+			<div class="bg-2" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page3-->
@@ -94,7 +97,8 @@
 		  </div>
 		</header>
 		<article>
-			slideUp
+			<div style="padding: 100px 0;text-align: center;">slideUp页面</div>
+			<div class="bg-3" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page4-->
@@ -108,7 +112,8 @@
 		  </div>
 		</header>
 		<article>
-			slideDown
+			<div style="padding: 100px 0;text-align: center;">slideDown页面</div>
+			<div class="bg-4" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page5-->
@@ -122,7 +127,8 @@
 		  </div>
 		</header>
 		<article>
-			fade
+			<div style="padding: 100px 0;text-align: center;">fade页面</div>
+			<div class="bg-5" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page6-->
@@ -136,7 +142,8 @@
 		  </div>
 		</header>
 		<article>
-			zoom
+			<div style="padding: 100px 0;text-align: center;">zoom页面</div>
+			<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
 	<!--page7-->
@@ -150,7 +157,8 @@
 		  </div>
 		</header>
 		<article>
-			none
+			<div style="padding: 100px 0;text-align: center;">none页面</div>
+			<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -180,10 +188,10 @@
                 		//console.log("开始显示："+e.container.id);
                 	},
                 	onShowed:function(e){
-                		//console.log("显示完成："+e.container.id);
+                		console.log("显示完成："+e.container.id);
                 	},
                 	onHid:function(e){
-                		//console.log("隐藏完成："+e.container.id);
+                		console.log("隐藏完成："+e.container.id);
                 	}
                 });
             },

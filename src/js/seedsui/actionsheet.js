@@ -34,7 +34,7 @@
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
 		//Actionsheet | Mask
-		s.actionsheet,s.mask;
+		s.container,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -75,15 +75,15 @@
         }
         s.create=function(){
         	s.mask=s.createMask();
-        	s.actionsheet=s.createActionsheet();
+        	s.container=s.createActionsheet();
         	s.parent.appendChild(s.mask);
-        	s.parent.appendChild(s.actionsheet);
+        	s.parent.appendChild(s.container);
         }
         s.create();
         //设置数据
         s.setData=function(data){
         	s.params.data=data;
-        	if(s.actionsheet)s.updateData(s.actionsheet);
+        	if(s.container)s.updateData(s.container);
         	else s.createActionsheet();
         }
 
@@ -101,13 +101,13 @@
         	s.parent.removeChild(s.mask);
         }
         s.showActionsheet=function(){
-        	s.actionsheet.style.webkitTransform="translate3d(0,0,0)";
+        	s.container.style.webkitTransform="translate3d(0,0,0)";
         }
         s.hideActionsheet=function(){
-        	s.actionsheet.style.webkitTransform="translate3d(0,100%,0)";
+        	s.container.style.webkitTransform="translate3d(0,100%,0)";
         }
         s.destroyActionsheet=function(){
-        	s.parent.removeChild(s.actionsheet);
+        	s.parent.removeChild(s.container);
         }
 
 		s.isHid=true;
@@ -142,7 +142,7 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.actionsheet;
+            var touchTarget=s.container;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -161,7 +161,7 @@
         	//点击容器
         	if(s.params.onClick)s.params.onClick(s);
         	//点击项
-        	var options=s.actionsheet.options;
+        	var options=s.container.options;
         	for(var i=0,opt;opt=options[i++];){
         		if(opt==s.target){
         			//Callback
@@ -170,7 +170,7 @@
         		}
         	}
         	//点击取消按钮
-        	if(s.params.onClickCancel && s.actionsheet.buttonCancel==s.target){
+        	if(s.params.onClickCancel && s.container.buttonCancel==s.target){
         		s.params.onClickCancel(s);
         		return;
         	}

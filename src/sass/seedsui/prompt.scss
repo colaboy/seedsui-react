@@ -1,6 +1,7 @@
 /*----------------prompt.less(start)--------------*/
 /*顶部弹出框*/
 .prompt{
+	display: block;
 	visibility:hidden;
 	opacity:0;
 	position:fixed;
@@ -12,11 +13,15 @@
 	text-align:center;
 	z-index:999;
 
-	-webkit-transition-property:opacity;
+	-webkit-transition-property:opacity,visibility;
     -webkit-transition-duration:300ms;
     -webkit-transition-timing-function:linear;
 
     color:white;
 	background-color:$prompt-bg;
+	&.active{
+		visibility:visible;
+		opacity: 1;
+	}
 }
 /*----------------prompt.less(end)--------------*/

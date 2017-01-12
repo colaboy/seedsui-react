@@ -19,6 +19,10 @@
 		s.params = params;
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Form表单的DOM对象，请检查传入参数是否正确");
+            return;
+        }
 		//表单元素
 		s.formElements=[];
 		s.update=function(){

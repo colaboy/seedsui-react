@@ -87,24 +87,37 @@
               Model
               ===========================*/
             initialize:function(){
-                /*DOM*/
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                var self = this;
+                //渲染页面
                 this.slides=document.querySelectorAll("#ID-CarouselPage .slider-slide");
                 this.tabbar=document.getElementById("ID-Tabbar");
                 this.tabs=this.tabbar.querySelectorAll(".tab");
+                this.carouselPage=this._initSlider();
 
-                /*Plugin*/
-                this.carouselPage={};
-
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
+                //加载数据
+                this.loadData();
             },
-            render:function(){
-                this._initPlugin();
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+                var self=this;
+                var pageDataCount=[100,10,30,40,50];//每页数据条数
+                [].slice.call(self.slides).forEach(function(n,i,a){
+                    var datastr="";
+                    for(var j=0;j<pageDataCount[i];j++){
+                        datastr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'页</p></li>'
+                    }
+                    n.innerHTML='<ul class="list">'+datastr+'</ul>';
+                })
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Method
@@ -115,34 +128,9 @@
                 }
                 this.tabs[index].classList.add("active");
             },
-            /*=========================
-              Plugin
-              ===========================*/
-            _initData:function(){
-                var self=this;
-                var pageDataCount=[100,10,30,40,50];//每页数据条数
-                [].slice.call(self.slides).forEach(function(n,i,a){
-                    var datastr="";
-                    for(var j=0;j<pageDataCount[i];j++){
-                        datastr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'页</p></li>'
-                    }
-                    n.innerHTML='<ul class="list">'+datastr+'</ul>';
-                })
-            },
-            _initTabbar:function(){
-                var self=this;
-                for(var i=0,t;t=this.tabs[i++];){
-                    (function(i){
-                        t.addEventListener("click",function(){
-                            self.carouselPage.slideTo(i-1);
-                            self._tabActive(i-1);
-                        },false);
-                    })(i);
-                }
-            },
             _initSlider:function(){
                 var self=this;
-                this.carouselPage=new Slider("#ID-CarouselPage",{
+                return new Slider("#ID-CarouselPage",{
                     //height:"100%",
                     onInit:function(e){
                         //compatibleIosScroll(e);
@@ -153,16 +141,19 @@
                     }
                 });
             },
-            _initPlugin:function(){
-                this._initData();
-                this._initSlider();
-                this._initTabbar();
-            },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
+                for(var i=0,t;t=this.tabs[i++];){
+                    (function(i){
+                        t.addEventListener("click",function(){
+                            self.carouselPage.slideTo(i-1);
+                            self._tabActive(i-1);
+                        },false);
+                    })(i);
+                }
             },
             /*=========================
               Event Handler

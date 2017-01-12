@@ -78,28 +78,33 @@
               Model
               ===========================*/
             initialize:function(){
-                /*DOM*/
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                var self = this;
+                this.validator={};
+                //渲染页面
                 this.form=new Form("#ID-Form",{
                     formFilterClass:"form-filter"
                 });
                 this.formContainer=this.form.container;
                 this.formElements=this.form.formElements;
                 this.btnSubmit=document.querySelector(".SID-BtnSubmit");
-                
-                /*Plugin*/
-                this.prompt;
-                this.formControls;
 
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
+                this.prompt=new Prompt();
+                this.formControls=new FormControls();;
+                //加载数据
+                this.loadData();
             },
-            render:function(){
-                this._initPlugin();
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Method
@@ -192,16 +197,6 @@
             /*=========================
               Plugin
               ===========================*/
-            _initPrompt:function(){
-                this.prompt=new Prompt();
-            },
-            _initFormControls:function(){
-                this.formControls=new FormControls();
-            },
-            _initPlugin:function(){
-                this._initPrompt();
-                this._initFormControls();
-            },
             /*=========================
               Events
               ===========================*/

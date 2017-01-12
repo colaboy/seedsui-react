@@ -25,7 +25,10 @@
 
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
-		if(!s.container)return;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Indexbar的DOM对象，请检查传入参数是否正确");
+            return;
+        }
 
 		//IndexList
 		s.indexList=s.container.querySelector("."+s.params.indexlistClass);

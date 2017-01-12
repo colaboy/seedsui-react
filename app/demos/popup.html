@@ -14,6 +14,32 @@
     	height:100px;
     	text-align:center;
     }
+    .tt{
+    	position: fixed;
+    	left:50%;
+    	bottom:-100px;
+    	z-index: 999;
+    	-webkit-transform:translate3d(-50%,0,0);
+
+    	display: block;
+	    padding: 10px;
+	    border-radius: 6px;
+	    font-size: 12px;
+	    max-width: 90%;
+	    max-height: 35px;
+	    line-height: 20px;
+	    overflow: hidden;
+	    text-align: left;
+	    color: white;
+	    background-color: rgba(0, 0, 0, 0.6);
+
+	    -webkit-transition-property:-webkit-transform;
+	    -webkit-transition-duration:150ms;
+	    -webkit-transition-timing-function:ease;
+    }
+    .tt.active{
+    	-webkit-transform:translate3d(-50%,-150px,0);
+    }
     </style>
 </head>
 <body ontouchstart="">
@@ -24,49 +50,50 @@
         </div>
     </header>
     <article>
-    	<p class="sliver">系统弹出框</p>
-    	<div class="card" style="padding:8px;">
-	        <button class="button bg-1" id="alertBtn">alert</button>
-	        <button class="button bg-2" id="confirmBtn">alert2</button>
-	        <button class="button bg-3" id="actionsheetBtn">actionsheet</button>
-	        <button class="button bg-4" id="toastBtn">toast</button>
-	        <button class="button bg-5" id="promptBtn">prompt</button>
+    	<div class="card" style="padding:10px 12px;">
+    		<p class="color-primary" style="padding: 0 0 6px 0;">系统弹出框</p>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="alertBtn">alert</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="confirmBtn">alert2</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="actionsheetBtn">actionsheet</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="toastBtn">toast</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="promptBtn">prompt</button>
         </div>
         
-        <p class="sliver">左弹出框</p>
-        <div class="card" style="padding:8px;">
-        	<button class="button bg-1" id="leftTopBtn">left-top</button>
-        	<button class="button bg-2" id="leftMiddleBtn">left-middle</button>
-        	<button class="button bg-3" id="leftBottomBtn">left-bottom</button>
-        	<button class="button bg-4" id="leftFullBtn">left-full</button>
+        <div class="card" style="padding:10px 12px;">
+        	<p class="color-primary" style="padding: 0 0 6px 0;">左弹出框</p>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="leftTopBtn">left-top</button>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="leftMiddleBtn">left-middle</button>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="leftBottomBtn">left-bottom</button>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="leftFullBtn">left-full</button>
     	</div>
-    	<p class="sliver">右弹出框</p>
-    	<div class="card" style="padding:8px;">
-			<button class="button bg-1" id="rightTopBtn">right-top</button>
-	        <button class="button bg-2" id="rightMiddleBtn">right-middle</button>
-        	<button class="button bg-3" id="rightBottomBtn">right-bottom</button>
-        	<button class="button bg-4" id="rightFullBtn">right-full</button>
-    	</div>
-
-    	<p class="sliver">上弹出框</p>
-    	<div class="card" style="padding:8px;">
-    		<button class="button bg-1" id="topLeftBtn">top-left</button>
-	        <button class="button bg-2" id="topCenterBtn">top-center</button>
-	        <button class="button bg-3" id="topRightBtn">top-right</button>
-	        <button class="button bg-4" id="topFullBtn">top-full</button>
+    	
+    	<div class="card" style="padding:10px 12px;">
+    		<p class="color-primary" style="padding: 0 0 6px 0;">右弹出框</p>
+			<button class="button" style="padding:0 8px;margin:2px 0;" id="rightTopBtn">right-top</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="rightMiddleBtn">right-middle</button>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="rightBottomBtn">right-bottom</button>
+        	<button class="button" style="padding:0 8px;margin:2px 0;" id="rightFullBtn">right-full</button>
     	</div>
 
-    	<p class="sliver">下弹出框</p>
-    	<div class="card" style="padding:8px;">
-    		<button class="button bg-1" id="bottomLeftBtn">bottom-left</button>
-	        <button class="button bg-2" id="bottomCenterBtn">bottom-center</button>
-	        <button class="button bg-3" id="bottomRightBtn">bottom-right</button>
-	        <button class="button bg-4" id="bottomFullBtn">bottom-full</button>
+    	<div class="card" style="padding:10px 12px;">
+    		<p class="color-primary" style="padding: 0 0 6px 0;">上弹出框</p>
+    		<button class="button" style="padding:0 8px;margin:2px 0;" id="topLeftBtn">top-left</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="topCenterBtn">top-center</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="topRightBtn">top-right</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="topFullBtn">top-full</button>
     	</div>
 
-    	<p class="sliver">中弹出框</p>
-    	<div class="card" style="padding:8px;">
-    		<button class="button bg-1" id="middleBtn">middle</button>
+    	<div class="card" style="padding:10px 12px;">
+    		<p class="color-primary" style="padding: 0 0 6px 0;">下弹出框</p>
+    		<button class="button" style="padding:0 8px;margin:2px 0;" id="bottomLeftBtn">bottom-left</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="bottomCenterBtn">bottom-center</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="bottomRightBtn">bottom-right</button>
+	        <button class="button" style="padding:0 8px;margin:2px 0;" id="bottomFullBtn">bottom-full</button>
+    	</div>
+
+    	<div class="card" style="padding:10px 12px;">
+    		<p class="color-primary" style="padding: 0 0 6px 0;">中弹出框</p>
+    		<button class="button" style="padding:0 8px;margin:2px 0;" id="middleBtn">middle</button>
     	</div>
 	</article>
 	<!--自定义弹出框-->
@@ -118,15 +145,8 @@
 	    };
 		
 		//toast
-		var popToast;//自动销毁的toast
+		var popToast=new Toast("提示信息");
 		document.getElementById("toastBtn").onclick=function(){
-			if(!popToast || popToast&&!popToast.toastBox){
-				popToast=new Toast("提示信息",{
-					"onHid":function(e){
-						e.destroy();
-					}
-				});
-			}
 			popToast.show();
 	    };
 	    var c;

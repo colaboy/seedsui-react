@@ -45,6 +45,10 @@
 
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Slider的ID，请检查传入参数是否正确");
+            return;
+        }
 		s.container.width=s.container.clientWidth;
 		//Wrapper
 		s.wrapper=document.querySelector(container+" > ."+s.params.wrapperClass);

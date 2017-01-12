@@ -9,15 +9,17 @@
 </head>
 
 <body ontouchstart="">
-    <header>
-        <div class="titlebar">
-        	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-            <h1 class="titlebar-title">下拉刷新</h1>
-        </div>
-    </header>
-    <article>
-        <ul class="list" id="list"></ul>
-    </article>
+    <section>
+        <header>
+            <div class="titlebar">
+            	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1 class="titlebar-title">下拉刷新</h1>
+            </div>
+        </header>
+        <article class="article-fixed" style="top:55px;">
+            <ul class="list" id="list"></ul>
+        </article>
+    </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
@@ -27,16 +29,26 @@
               Model
               ===========================*/
             initialize:function(){
-                //DOM
-                //Data
-                //Plugin
-                this.drag={};
-                this.alert={};
+                this.render();//使用backbone时，此行无用
             },
-            /*=========================
-              Method
-              ===========================*/
-            _initData:function(){
+            render:function(){
+                var self = this;
+                //插件
+                this.drag=this._initDrag();
+                this.alert=this._initAlert();
+
+                //渲染页面
+                
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
                 for(var i=0;i<100;i++){
                     var elLI=document.createElement("li");
                     elLI.setAttribute("class","underline");
@@ -44,9 +56,16 @@
                     elLI.innerHTML='<p>第'+i+'行列表</p>';
                     document.getElementById("list").appendChild(elLI);
                 }
+
+                this._attach();//使用backbone时，此行无用
             },
+            /*=========================
+              Method
+              ===========================*/
             _initDrag:function(){
-                this.drag=new Dragrefresh({
+                return new Dragrefresh({
+                    parent:"article",
+                    top:-20,
                     threshold:130,
                     onRefreshStart:function(e){
                         setTimeout(function(){
@@ -72,7 +91,7 @@
                 });
             },
             _initAlert:function(){
-                this.alert=new Alert("请求超时啦");
+                return new Alert("请求超时啦");
             },
             /*=========================
               Events
@@ -82,28 +101,9 @@
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-                this._initData();
-
-                //Plugin
-                this._initDrag();
-                this._initAlert();
-
-                //Events
-                //this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
             view.initialize();
         }, false);
         

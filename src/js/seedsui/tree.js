@@ -42,7 +42,10 @@ window.Tree=function(container,params){
     
     //Container
     s.container=typeof container=="string"?document.querySelector(container):container;
-    if(!s.container)return;
+    if(!s.container){
+        console.log("SeedsUI Error：未找到Tree的DOM对象，请检查传入参数是否正确");
+        return;
+    }
 
     //SelectedContainer
     if(s.params.selectedContainer){

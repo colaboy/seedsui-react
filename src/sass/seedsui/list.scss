@@ -31,16 +31,16 @@
     -webkit-box-flex: 1.0;
     margin-right: 10px;
 }
-.list-title{
-    font-size: 17px;
-    padding: 1px 0;
-}
+
 .list-row{
     display: -webkit-box;
     -webkit-box-align:center;
     padding: 1px 0;
     font-size: 13px;
-    color: $sub-color;
+}
+.list-title{
+    font-size: 17px;
+    padding: 1px 0;
 }
 .list-icon{
     display: block;

@@ -57,7 +57,11 @@
 			"yin" : "icon-weayin"
 		};
 		//Container
-	    s.container=document.querySelector(container);
+	    s.container=typeof container=="string"?document.querySelector(container):container;
+	    if(!s.container){
+            console.log("SeedsUI Error：未找到Aside的DOM对象，请检查传入参数是否正确");
+            return;
+        }
 	    //Expires保存时效
 		if(s.params.expires instanceof Date == false){
 			console.log("expires参数:请传入Date对象");

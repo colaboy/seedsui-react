@@ -36,6 +36,10 @@
         s.params=params;
         //Container
         s.container=typeof container=="string"?document.querySelector(container):container;
+        if(!s.container){
+            console.log("SeedsUI Error：未找到Aside的DOM对象，请检查传入参数是否正确");
+            return;
+        }
         //Wrapper
         s.wrapper=s.container.querySelector("."+s.params.wrapperClass);
         //Section

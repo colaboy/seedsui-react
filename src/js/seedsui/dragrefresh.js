@@ -9,13 +9,15 @@
 			isDisableTop:false,
 			isDisableBottom:false,
 			minScrollTop:0,
+			top:-58,
 			threshold:100,
-			thresholdMaxRange:100,
+			thresholdMax:200,//最大拉动值
 			refreshHideTop:0,
 			duration:150,
 			timeout:5000,
 
 			topContainerClass:"dragrefresh",
+			hiddenClass:"overflow-hidden",
 			bottomContainer:null,
 			bottomContainerClass:"loading-more",
 			bottomContainerLoadingClass:"loading-progress",
@@ -36,8 +38,6 @@
 		}
 		var s=this;
 		s.params=params;
-		//最大拉动值
-		s.params.thresholdMax=s.params.threshold+s.params.thresholdMaxRange;
 		//Container
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		//创建DOM
@@ -49,6 +49,7 @@
 						'<path d="M867.4,456.1c-24.1,0-43.8,19.7-43.8,43.8c0,1.5,0.1,3.1,0.3,4.6c-2.2,176.4-147.1,319.6-323.7,319.6 c-178.5,0-323.8-145.3-323.8-323.8s145.3-323.8,323.8-323.8c62.8,0,122.8,17.7,174.4,50.8l-29,52.2c0,0,138.4,2.2,149.2,2.4 c10.8,0.2,14.6-5.6,14.6-5.6s5.1-5.8,2.4-15.5c-2.6-9.7-43.2-162.2-43.2-162.2l-38.5,61.1c-67.3-45.7-146.7-70.1-229.8-70.1 c-226.6,0-411,184.4-411,411s184.4,411,411,411c225.8,0,410.1-183.7,410.9-407.3l0.2-4.2C911.2,475.7,891.6,456.1,867.4,456.1z"/>'+
 						'</svg>';
 			s.topContainer.innerHTML=iconSvg;
+			s.topContainer.style.top=s.params.top+"px";
 			s.parent.appendChild(s.topContainer);
 		};
 		s.createRefresh();
@@ -236,6 +237,7 @@
 			if(s.touches.vertical==1 || !s.touches.isTop){//向上滑动或者不在顶部
 				s.parent.removeEventListener("touchmove",s.preventDefault,false);	
 			}else if(s.touches.vertical===-1){//下拉
+				s.parent.classList.add(s.params.hiddenClass);
 				s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
 				if(s.touches.posY<s.params.thresholdMax){
 					s.touches.rotateDeg=s.touches.posY*2;
@@ -253,6 +255,7 @@
 
 			s.parent.removeEventListener("touchmove",s.preventDefault,false);
 			if(s.touches.posY!=0){//下拉情况下
+				s.parent.classList.remove(s.params.hiddenClass);
 				if(s.touches.posY<s.params.threshold){//如果小于hold值，则收起刷新
 					s.hide();
 				}else{//刷新

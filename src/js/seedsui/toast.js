@@ -7,12 +7,13 @@
 		================*/
 		var defaults={
 			parent:document.body,
-			toastBoxClass:"toast-box",
 			toastClass:"toast",
+			toastActiveClass:"active",
+			css:{},
+			delay:1500,
+
+			toastContentClass:"toast-content",
 			
-			showAnimateClass:"toast-show",
-			hideAnimateClass:"toast-hide"
-			//"delay":1000,
 			/*callbacks
             onShowed(Toast)//显示动画结束后回调
             onHid(Toast)//隐藏动画结束后回调
@@ -28,62 +29,64 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.toastBox,s.toast;
-		s.createToastBox=function(){
-			var toastBox=document.createElement("div");
-			toastBox.setAttribute("class",s.params.toastBoxClass);
-			return toastBox;
+		s.container,s.toastContent;
+		s.createContainer=function(){
+			var container=document.createElement("div");
+			container.setAttribute("class",s.params.toastClass);
+			return container;
 		}
-		s.createToast=function(){
-			var toast=document.createElement("div");
-			toast.setAttribute("class",s.params.toastClass);
-			if(msg)toast.innerHTML=msg;
-			return toast;
+		s.createToastContent=function(){
+			var toastContent=document.createElement("div");
+			toastContent.setAttribute("class",s.params.toastContentClass);
+			if(msg)toastContent.innerHTML=msg;
+			return toastContent;
 		}
 		s.create=function(){
-			s.toastBox=s.createToastBox();
-			s.toast=s.createToast();
-			s.toastBox.appendChild(s.toast);
-			s.parent.appendChild(s.toastBox);
+			s.container=s.createContainer();
+			s.toastContent=s.createToastContent();
+			s.container.appendChild(s.toastContent);
+			s.parent.appendChild(s.container);
 		}
 		s.create();
+		s.update=function(){
+            for(var c in s.params.css){
+                s.toastContent.style[c]=s.params.css[c];
+            }
+		}
+		s.update();
 
 		/*================
 		Method
 		================*/
 		s.setText=function(msg){
-			s.toast.innerHTML=msg;
+			s.toastContent.innerHTML=msg;
 		};
 		s.isHid=true;
-		s.disableShow=false;//允许show点击
-		s.hide=function(){
+		s.hide=function(fn){
 			s.isHid=true;
-			s.disableShow=true;//禁止show点击
-			s.toastBox.classList.remove(s.params.showAnimateClass);
-			s.toastBox.classList.add(s.params.hideAnimateClass);
-			//s.toastBox.style.webkitTransform='translate3d(0,150px,0)';
+			s.container.classList.remove(s.params.toastActiveClass);
 		};
-		s.show=function(){
-			if(s.isHid==false || s.disableShow==true){
-				return;
-			}
+		s.show=function(fn){
 			s.isHid=false;
-			s.toastBox.classList.add(s.params.showAnimateClass);
-			//s.toastBox.style.webkitTransform='translate3d(0,0,0)';
+			s.container.classList.add(s.params.toastActiveClass);
+
+			//显示数秒后，自动消失
+			if(s.delayer)window.clearTimeout(s.delayer);
+			s.delayer=setTimeout(function(){
+				s.hide();
+			}, s.params.delay);
 		};
 		s.destroy=function(){
-			s.detach();
-			s.parent.removeChild(s.toastBox);
-			s.toastBox=null;
+			s.parent.removeChild(s.container);
 		};
 		/*================
 		Controller
 		================*/
 		s.events=function(detach){
-			var target=s.toastBox;
+			var target=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
-			//target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
-			target[action]("webkitAnimationEnd",s.onAnimationEnd,false);
+			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+			//target[action]("webkitAnimationEnd",s.onAnimationEnd,false);
 		}
 		s.attach=function(){
 			s.events();
@@ -92,24 +95,14 @@
 			s.events(false);
 		}
 		//Events Handler
-		/*s.onTransitionEnd=function(){
-			if(s.isHid){//已隐藏状态
-				if(s.delayer)window.clearTimeout(s.delayer);
-			}else{//已显示状态
-				s.delayer=setTimeout(function(){
-					s.hide();
-				}, s.params.delay);
-			}
-		}*/
-		s.onAnimationEnd=function(){
-			if(s.isHid){//已隐藏状态
-				s.disableShow=false;//解禁show点击
-				s.toastBox.classList.remove("toast-hide");
-				//CallBack onHid
-				if(s.params.onHid)s.params.onHid(s);
-			}else{//已显示状态
-				s.hide();
-				if(s.params.onShowed)s.params.onShowed(s);
+		s.onTransitionEnd=function(e){
+			if(e.propertyName=="visibility")return;
+			if(s.isHid){
+				//Callback onHid
+				if(s.params.onHid)s.params.onHid();
+			}else{
+				//Callback onShowed
+				if(s.params.onShowed)s.params.onShowed();
 			}
 		}
 		/*================

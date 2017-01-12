@@ -15,7 +15,7 @@
             <h1 class="titlebar-title">列表</h1>
         </div>
     </header>
-    <article class="article-fixed">
+    <article>
         <details open>
             <summary class="underline" style="padding: 8px 12px;position: relative;">
                 <span>单行列表</span>
@@ -143,8 +143,11 @@
                 this.render();//使用backbone时，此行无用
             },
             render:function(){
-                /*渲染数据*/
-                this.load();
+                var self = this;
+                /*渲染页面*/
+                /*DOM*/
+                /*加载数据*/
+                this.loadData();
             },
             refresh:function(){
                 console.log("刷新");
@@ -152,10 +155,7 @@
             destroy:function(){
                 console.log("移除");
             },
-            load:function(){
-                /*DOM*/
-
-                /*Plugin*/
+            loadData:function(){
 
                 this._attach();//使用backbone时，此行无用
             },

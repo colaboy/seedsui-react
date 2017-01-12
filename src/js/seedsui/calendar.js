@@ -78,6 +78,10 @@
 		}
 		//Container
 		s.container=typeof container=="string"?document.querySelector(container):container;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Calendar的DOM对象，请检查传入参数是否正确");
+            return;
+        }
 		s.container.width=s.container.clientWidth;
 		//Header
 		s.header,s.title,s.prev,s.next;
@@ -355,7 +359,7 @@
 				}
 			}
 		};
-		var chinaWeek={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'日'};
+		var chinaWeek={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',0:'日'};
 		s.drawHeader=function(){
 			var activeDate=s.calendarUtil.activeDate;
 			var activeDay="";

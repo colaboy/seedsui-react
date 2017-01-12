@@ -639,9 +639,7 @@ br {
   /*白色按钮*/
   /*小汽泡*/ }
   .button:active {
-    color: #333;
-    background-color: #f4f4f4;
-    border-color: #e5e5e5; }
+    background-color: #f4f4f4; }
   .button.block {
     display: -webkit-box; }
   .button.primary {
@@ -2516,16 +2514,15 @@ label .input-checkbox + span, label .input-radio + span {
   -webkit-box-flex: 1.0;
   margin-right: 10px; }
 
-.list-title {
-  font-size: 17px;
-  padding: 1px 0; }
-
 .list-row {
   display: -webkit-box;
   -webkit-box-align: center;
   padding: 1px 0;
-  font-size: 13px;
-  color: #9e9e9e; }
+  font-size: 13px; }
+
+.list-title {
+  font-size: 17px;
+  padding: 1px 0; }
 
 .list-icon {
   display: block;
@@ -2735,26 +2732,26 @@ section {
     left: 0;
     -webkit-transform: translate3d(100%, 0, 0); }
     section[data-animation="slideLeft"].active {
-      -webkit-transform: translate3d(0, 0, 0); }
+      -webkit-transform: none; }
   section[data-animation="slideRight"] {
     left: 0;
     -webkit-transform: translate3d(-100%, 0, 0); }
     section[data-animation="slideRight"].active {
-      -webkit-transform: translate3d(0, 0, 0); }
+      -webkit-transform: none; }
   section[data-animation="slideUp"] {
     top: 0;
     -webkit-transform: translate3d(0, 100%, 0); }
     section[data-animation="slideUp"].active {
-      -webkit-transform: translate3d(0, 0, 0); }
+      -webkit-transform: none; }
   section[data-animation="slideDown"] {
     top: 0;
     -webkit-transform: translate3d(0, -100%, 0); }
     section[data-animation="slideDown"].active {
-      -webkit-transform: translate3d(0, 0, 0); }
+      -webkit-transform: none; }
   section[data-animation="zoom"] {
     -webkit-transform: scale(0, 0); }
     section[data-animation="zoom"].active {
-      -webkit-transform: scale(1, 1); }
+      -webkit-transform: none; }
   section[data-animation="fade"] {
     opacity: 0; }
     section[data-animation="fade"].active {
@@ -3313,7 +3310,7 @@ progress::-webkit-progress-value {
 /*-----------------------------loading.less(end)----------------------------*/
 /*----------------dragrefresh.less(start)--------------*/
 .dragrefresh {
-  position: absolute;
+  position: fixed;
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
@@ -3950,21 +3947,20 @@ progress::-webkit-progress-value {
 
 /*----------------actionsheet.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
-.toast-box {
+.toast {
   position: fixed;
-  bottom: 50px;
+  bottom: -50px;
   width: 100%;
   text-align: center;
-  -webkit-transform: translate3d(0, 150px, 0);
+  pointer-events: none;
   -webkit-transition-property: -webkit-transform;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
-  -webkit-animation-duration: 300ms;
-  -webkit-animation-fill-mode: both;
-  -webkit-animation-timing-function: ease;
   z-index: 999; }
+  .toast.active {
+    -webkit-transform: translate3d(0, -100px, 0); }
 
-.toast {
+.toast-content {
   display: inline-block;
   padding: 10px;
   border-radius: 6px;
@@ -3977,27 +3973,11 @@ progress::-webkit-progress-value {
   color: white;
   background-color: rgba(0, 0, 0, 0.6); }
 
-@-webkit-keyframes toast-hide {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0); }
-  100% {
-    -webkit-transform: translate3d(0, 150px, 0); } }
-.toast-box.toast-hide {
-  -webkit-animation-delay: 1000ms;
-  -webkit-animation-name: toast-hide; }
-
-@-webkit-keyframes toast-show {
-  0% {
-    -webkit-transform: translate3d(0, 150px, 0); }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0); } }
-.toast-box.toast-show {
-  -webkit-animation-name: toast-show; }
-
 /*----------------toast.less(end)--------------*/
 /*----------------prompt.less(start)--------------*/
 /*顶部弹出框*/
 .prompt {
+  display: block;
   visibility: hidden;
   opacity: 0;
   position: fixed;
@@ -4008,11 +3988,14 @@ progress::-webkit-progress-value {
   line-height: 32px;
   text-align: center;
   z-index: 999;
-  -webkit-transition-property: opacity;
+  -webkit-transition-property: opacity,visibility;
   -webkit-transition-duration: 300ms;
   -webkit-transition-timing-function: linear;
   color: white;
   background-color: rgba(0, 0, 0, 0.6); }
+  .prompt.active {
+    visibility: visible;
+    opacity: 1; }
 
 /*----------------prompt.less(end)--------------*/
 [data-emoji] {

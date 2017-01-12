@@ -33,7 +33,11 @@
 		}
 		var s=this;
 		s.params=params;
-		s.container=document.querySelector(container);//容器
+		s.container=typeof container=="string"?document.querySelector(container):container;
+		if(!s.container){
+            console.log("SeedsUI Error：未找到Gauge的DOM对象，请检查传入参数是否正确");
+            return;
+        }
 		s.point=s.container.querySelector(s.params.pointClass);//指针
 		s.wave=s.container.querySelector(s.params.waveClass)||null;//波浪
 		s.value=s.container.querySelector(s.params.valueClass);//指针值

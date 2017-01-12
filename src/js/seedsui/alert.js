@@ -35,7 +35,7 @@
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
 		//Alert | Mask
-		s.alert,s.mask;
+		s.container,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -81,9 +81,9 @@
 		}
 		s.create=function(){
 			s.mask=s.createMask();
-			s.alert=s.createAlert();
+			s.container=s.createAlert();
 			s.parent.appendChild(s.mask);
-			s.parent.appendChild(s.alert);
+			s.parent.appendChild(s.container);
 		}
 		s.create();
 		/*================
@@ -100,14 +100,14 @@
         	s.parent.removeChild(s.mask);
         }
         s.showAlert=function(){
-        	s.alert.style.visibility="visible";
-            s.alert.style.opacity="1";
+        	s.container.style.visibility="visible";
+            s.container.style.opacity="1";
         }
         s.hideAlert=function(){
-        	s.alert.style.opacity="0";
+        	s.container.style.opacity="0";
         }
         s.destroyAlert=function(){
-        	s.parent.removeChild(s.alert);
+        	s.parent.removeChild(s.container);
         }
 		s.isHid=true;
 		s.hide=function(){
@@ -141,7 +141,7 @@
 		};
 		//动态设置
 		s.setText=function(msg){
-			s.alert.content.innerHTML=msg;
+			s.container.content.innerHTML=msg;
 		};
 		s.setOnClick=function(fn){
         	s.params.onClick=fn;
@@ -152,8 +152,8 @@
         s.setOnClickCancel=function(fn){
         	//如果没有取消按钮，创建一个
         	if(!s.params.onClickCancel){
-				s.alert.buttonCancel=s.createButtonCancel();
-				s.alert.handler.insertBefore(s.alert.buttonCancel,s.alert.buttonOk);
+				s.container.buttonCancel=s.createButtonCancel();
+				s.container.handler.insertBefore(s.container.buttonCancel,s.container.buttonOk);
 			}
         	s.params.onClickCancel=fn;
         }
@@ -161,7 +161,7 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.alert;
+            var touchTarget=s.container;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -180,10 +180,10 @@
 			
 			if(s.params.onClick)s.params.onClick(s);
 			
-			if(e.target==s.alert.buttonOk){
+			if(e.target==s.container.buttonOk){
 				if(s.params.onClickOk)s.params.onClickOk(s);
 				else s.hide();
-			}else if(s.alert.buttonCancel && e.target==s.alert.buttonCancel){
+			}else if(s.container.buttonCancel && e.target==s.container.buttonCancel){
 				if(s.params.onClickCancel)s.params.onClickCancel(s);
 				else s.hide();
 			}
@@ -201,7 +201,7 @@
         }
 		s.onTransitionEnd=function(e){
 			if(s.isHid){
-				s.alert.style.visibility="hidden";
+				s.container.style.visibility="hidden";
 				s.mask.style.visibility="hidden";
 			}
 		}
