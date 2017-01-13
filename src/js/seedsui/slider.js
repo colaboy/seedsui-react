@@ -68,17 +68,17 @@
         	for(var i=0;i<s.slides.length;i++){
 				s.slides[i].className=s.slides[i].className.replace(/\s{1,}active/,"");
 			}
-			s.slides[s.index].className+=" "+s.params.slideActiveClass;
+			s.slides[s.activeIndex].className+=" "+s.params.slideActiveClass;
 
 			// Pagination
-			var index=s.index;
+			var index=s.activeIndex;
 			if(s.params.loop){
-				if(s.index>=s.params.slidesPerView && s.index<=s.slides.length-1-s.params.slidesPerView){
+				if(s.activeIndex>=s.params.slidesPerView && s.activeIndex<=s.slides.length-1-s.params.slidesPerView){
 					//console.log("原稿处");
-					index=Math.abs(s.index-s.params.slidesPerView);
+					index=Math.abs(s.activeIndex-s.params.slidesPerView);
 				}else{
 					//console.log("左右复稿处");
-					index=Math.abs(s.numberOfBullets-Math.abs(s.index-s.params.slidesPerView));
+					index=Math.abs(s.numberOfBullets-Math.abs(s.activeIndex-s.params.slidesPerView));
 				}
 			}
 			if (!s.paginationContainer) return;
@@ -173,7 +173,7 @@
             for (i = prependSlides.length - 1; i >= 0; i--) {
                 s.wrapper.insertBefore(prependSlides[i].cloneNode(true),s.wrapper.firstElementChild).classList.add(s.params.slideDuplicateClass);
             }
-            s.index=s.params.slidesPerView;
+            s.activeIndex=s.params.slidesPerView;
         };
         s.destroyLoop = function () {
         	s.params.loop=null;
@@ -219,7 +219,7 @@
         	direction:null
         };
         //索引
-        s.index=0;
+        s.activeIndex=0;
         function preventDefault(e){
 			e.preventDefault();
 		}
@@ -230,7 +230,7 @@
 			//关闭自动播放
 			s.stopAutoplay();
 			//runCallBack
-			s.target=s.slides[s.index];
+			s.target=s.slides[s.activeIndex];
 			if(s.params.onSlideChangeStart)s.params.onSlideChangeStart(s);
 		};
 		s.onTouchMove=function(e){
@@ -265,10 +265,10 @@
 				//左右拉动
 				if(s.touches.diffX>s.params.threshold){
 					//下一页
-					s.index++;
+					s.activeIndex++;
 				}else if(s.touches.diffX<-s.params.threshold){
 					//上一页
-					s.index--;
+					s.activeIndex--;
 				}
 				s.slideTo();
 			}
@@ -283,11 +283,11 @@
         s.startAutoplay = function () {
         	if(!s.params.autoplay)return;
 			s.autoplayer=window.setInterval(function(){
-				s.index++;
-				if(s.index>=s.slides.length){
-					s.index=0;
+				s.activeIndex++;
+				if(s.activeIndex>=s.slides.length){
+					s.activeIndex=0;
 				}
-				s.slideTo(s.index);
+				s.slideTo(s.activeIndex);
 			},s.params["autoplay"]);
         };
 
@@ -302,25 +302,25 @@
           ===========================*/
         function moveToIndex(){
         	s.wrapper.style.webkitTransitionDuration=s.params.duration+"ms";
-        	s.touches.posX=-s.index*s.width;
+        	s.touches.posX=-s.activeIndex*s.width;
         	//s.wrapper.style.left=s.touches.posX+"px";
         	s.wrapper.style.webkitTransform='translate3d(' + s.touches.posX + 'px,0px,0px)';
         }
         s.slideTo=function(slideIndex){
         	if(slideIndex>=0){
-				s.index=slideIndex;
+				s.activeIndex=slideIndex;
 			}
 			//索引不能小于0
-			if(s.index<0){
-				s.index=0;
+			if(s.activeIndex<0){
+				s.activeIndex=0;
 			}
 			//索引不能大于slide总数
-			if(s.index>s.slides.length-1){
-				s.index=s.slides.length-1;
+			if(s.activeIndex>s.slides.length-1){
+				s.activeIndex=s.slides.length-1;
 			}
 			//一页多屏，索引不能露出空白区域
-			if(s.params.slidesPerView>1 && s.index>s.slides.length-params.slidesPerView){
-				s.index=s.slides.length-s.params.slidesPerView;
+			if(s.params.slidesPerView>1 && s.activeIndex>s.slides.length-params.slidesPerView){
+				s.activeIndex=s.slides.length-s.params.slidesPerView;
 			}
 			
 			//更新class
@@ -330,21 +330,21 @@
 			setTimeout(function(){
 				s.wrapper.style.webkitTransitionDuration="0ms";
 				//runCallBack
-				s.target=s.slides[s.index];
+				s.target=s.slides[s.activeIndex];
 				if(s.params.onSlideChangeEnd)s.params.onSlideChangeEnd(s);
 				//循环的情况
 				if(s.params.loop){
 					if(s.touches.posX==0){
-						s.index=s.slides.length-s.params.slidesPerView*2;
-						//console.log("最左侧，应跳转到："+s.index);
+						s.activeIndex=s.slides.length-s.params.slidesPerView*2;
+						//console.log("最左侧，应跳转到："+s.activeIndex);
 						s.params.duration=0;
 						moveToIndex();
 						s.params.duration=defaults.duration;
 						return;
 					}
 					if(-s.touches.posX + s.container.width >= s.wrapper.width){
-						s.index=s.params.slidesPerView;
-						//console.log("最右侧，应跳转到："+s.index);
+						s.activeIndex=s.params.slidesPerView;
+						//console.log("最右侧，应跳转到："+s.activeIndex);
 						s.params.duration=0;
 						moveToIndex();
 						s.params.duration=defaults.duration;
@@ -360,7 +360,7 @@
 			s.attach();
 			if(s.params.autoplay) s.startAutoplay();
 			//runCallBack
-			s.target=s.slides[s.index];
+			s.target=s.slides[s.activeIndex];
 			if(s.params.onInit)s.params.onInit(s);
 		}
 		//执行主函数

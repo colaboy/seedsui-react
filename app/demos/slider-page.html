@@ -32,8 +32,8 @@
             </li>
         </ul>
     </header>
-    <article class="article-absolute" style="top:84px">
-        <div class="slider-container" id="ID-CarouselPage" style="height: 100%;">
+    <article style="padding-top:84px">
+        <div class="slider-container" id="ID-Pages" style="height: 300px;">
         <div class="slider-wrapper">
         <div class="slider-slide">
             <!--第一页:start-->
@@ -92,10 +92,14 @@
             render:function(){
                 var self = this;
                 //渲染页面
-                this.slides=document.querySelectorAll("#ID-CarouselPage .slider-slide");
-                this.tabbar=document.getElementById("ID-Tabbar");
-                this.tabs=this.tabbar.querySelectorAll(".tab");
-                this.carouselPage=this._initSlider();
+                this.slides=document.querySelectorAll("#ID-Pages > .slider-wrapper > .slider-slide");
+                this.sliderContainer=document.getElementById("ID-Pages");
+                this.sliderContainer.style.height=(window.innerHeight-84)+"px";
+
+                this.tabbarContainer=document.getElementById("ID-Tabbar");
+                this.tabs=this.tabbarContainer.querySelectorAll(".tab");
+
+                this.slider=this._initSlider();
 
                 //加载数据
                 this.loadData();
@@ -122,6 +126,11 @@
             /*=========================
               Method
               ===========================*/
+            _eachBreak:function(arr,fn){
+                for(var i=0;i<arr.length;i++){
+                    if(fn(arr[i],i)==false)break;
+                }
+            },
             _tabActive:function(index){
                 for(var i=0,t;t=this.tabs[i++];){
                     t.classList.remove("active");
@@ -130,14 +139,9 @@
             },
             _initSlider:function(){
                 var self=this;
-                return new Slider("#ID-CarouselPage",{
-                    //height:"100%",
-                    onInit:function(e){
-                        //compatibleIosScroll(e);
-                    },
+                return new Slider("#ID-Pages",{
                     onSlideChangeEnd:function(e){
-                        self._tabActive(e.index);
-                        //compatibleIosScroll(e);
+                        self._tabActive(e.activeIndex);
                     }
                 });
             },
@@ -147,17 +151,25 @@
             _attach:function(e){
                 var self=this;
                 for(var i=0,t;t=this.tabs[i++];){
-                    (function(i){
-                        t.addEventListener("click",function(){
-                            self.carouselPage.slideTo(i-1);
-                            self._tabActive(i-1);
-                        },false);
-                    })(i);
+                    t.addEventListener("click",function(e){
+                        self._onClickTab(e);
+                    },false);
                 }
             },
             /*=========================
               Event Handler
               ===========================*/
+            _onClickTab:function(e){
+                var index=0;
+                this._eachBreak(this.tabs,function(n,i){
+                    if(n==e.target){
+                        index=i;
+                        return false;
+                    }
+                });
+                this._tabActive(index);
+                this.slider.slideTo(index);
+            }
         }
 
         window.addEventListener("load",function(){

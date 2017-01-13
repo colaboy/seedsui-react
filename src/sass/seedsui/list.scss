@@ -1,13 +1,13 @@
 /*---------------list.less(start)---------------*/
 .list{
 	background-color: white;
-	li{
+	li,.li{
 		position:relative;
 		display:-webkit-box;
 		padding: 10px 12px;
 		-webkit-box-align: center;
 	}
-	li:active{
+	li:active,.li:active{
 		background-color:$bar-bg;
 	}
 }
@@ -59,7 +59,7 @@
     text-overflow: ellipsis;
     color: $sub-color;
 }
-.list-icon+.list-font{
+.list-icon+.list-font,.list-icon+.list-title{
 	margin-left: 8px;
 }
 /*---------------list.less(end)---------------*/
