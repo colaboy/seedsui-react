@@ -192,6 +192,13 @@
             if(s.overflowContainer)
             s.overflowContainer.style.overflow="auto";
         }
+        s.toggle=function(fn){
+            if(s.isHid){
+                s.show(fn);
+            }else{
+                s.hide(fn);
+            }
+        }
         s.destroy=function(){
             s.destroyMask();
             s.destroyDialog();

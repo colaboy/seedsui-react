@@ -16,7 +16,7 @@
                 <h1 class="titlebar-title">下拉刷新</h1>
             </div>
         </header>
-        <article class="article-fixed" style="top:55px;">
+        <article>
             <ul class="list" id="list"></ul>
         </article>
     </section>
@@ -28,14 +28,37 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
             render:function(){
                 var self = this;
                 //插件
-                this.drag=this._initDrag();
-                this.alert=this._initAlert();
+                this.drag=new Dragrefresh({
+                    overflowContainer:"section",
+                    parent:"article",
+                    top:-20,
+                    threshold:130,
+                    onRefreshStart:function(e){
+                        setTimeout(function(){
+                            e.refreshComplete();
+                        }, 2000);
+                    },
+                    onRefreshEnd:function(e){
+                        console.log("加载完成");
+                    },
+                    onRefreshTimeout:function(e){
+                        console.log("请求超时");
+                    },
+                    onScroll:function(e){
+                        //console.log(e.conttainer.scrollTop);
+                    },
+                    onBottom:function(e){
+                        console.log("到底部啦");
+                    }
+                });
+                //数据加载完成时，隐藏下面的元素
+                /*setTimeout(function(){
+                    self.drag.bottomContainer.style.display="none";
+                }, 5000);*/
+                this.alert=new Alert("请求超时啦");
 
                 //渲染页面
                 
@@ -62,37 +85,6 @@
             /*=========================
               Method
               ===========================*/
-            _initDrag:function(){
-                return new Dragrefresh({
-                    parent:"article",
-                    top:-20,
-                    threshold:130,
-                    onRefreshStart:function(e){
-                        setTimeout(function(){
-                            e.refreshComplete();
-                        }, 2000);
-                    },
-                    onRefreshEnd:function(e){
-                        console.log("加载完成");
-                    },
-                    onRefreshTimeout:function(e){
-                        a2.show();
-                    },
-                    onScroll:function(e){
-                        //console.log(e.conttainer.scrollTop);
-                    },
-                    onBottom:function(e){
-                        console.log("到底部啦");
-                        //数据加载完成时，隐藏下面的元素
-                        /*setTimeout(function(){
-                            e.bottomContainer.style.display="none";
-                        }, 5000);*/
-                    }
-                });
-            },
-            _initAlert:function(){
-                return new Alert("请求超时啦");
-            },
             /*=========================
               Events
               ===========================*/
@@ -104,7 +96,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
         
         //定义exmobi返回

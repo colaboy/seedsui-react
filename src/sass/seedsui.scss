@@ -1,7 +1,10 @@
 /*基础Less:控件类*/
 @import "variables.scss";
-@import "seedsui/layout.scss";
 @import "seedsui/appearance.scss";
+
+@import "seedsui/input.scss";
+@import "seedsui/layout.scss";
+
 @import "seedsui/global.scss";
 
 @import "seedsui/titlebar.scss";
@@ -10,12 +13,13 @@
 @import "seedsui/grid.scss";
 @import "seedsui/photo.scss";
 @import "seedsui/badge.scss";
-@import "seedsui/input.scss";
+
 @import "seedsui/inputbox.scss";
 @import "seedsui/numbox.scss";
 @import "seedsui/checkbox.scss";
 @import "seedsui/range.scss";
 @import "seedsui/switch.scss";
+@import "seedsui/turn.scss";
 @import "seedsui/mask.scss";
 @import "seedsui/icon.scss";
 

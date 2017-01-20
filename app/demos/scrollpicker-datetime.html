@@ -6,6 +6,27 @@
     <meta name="format-detection" content="telephone=no">
     <title>scrollpicker-datetime</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .inputrow{
+        position: relative;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        margin: 0 12px;
+        overflow: hidden;
+    }
+    .inputrow .inputbox{
+        -webkit-box-flex: 1;
+    }
+    .inputrow .inputbox>.icon{
+        font-size: 20px;
+        height: 20px;
+        width: 20px;
+        color: #20aeff;
+    }
+    .SID-DivDateTime .input-text, .SID-DivDateTime .icon {
+        pointer-events: none;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -18,56 +39,57 @@
         </div>
     </header>
     <article>
-        <p class="color-placeholder text-center" style="margin:8px">起止时间</p>
-        <div class="box bordered">
-            <div class="inputbox box-flex-1 SID-DivDate">
-                <i class="color-primary icon icon-time" style="pointer-events: none;"></i>
-                <input type="text" class="input-text SID-Date SID-DateStart" readonly="" placeholder="开始时间" style="pointer-events: none;">
+        <div class="group" id="ID-MeetAdd-GroupAdd">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">起止时间</p>
             </div>
-            <div class="inputbox box-flex-1 SID-DivDate" style="border-left: 1px solid #ddd">
-                <i class="color-primary icon icon-time" style="pointer-events: none;"></i>
-                <input type="text" class="input-text SID-Date SID-DateEnd" readonly="" placeholder="结束时间" style="pointer-events: none;">
+            <div class="inputrow underline">
+                <div class="inputbox SID-DivDateTime">
+                    <i class="icon icon-time"></i>
+                    <input type="text" class="input-text SID-DateTimeStart" readonly placeholder="开始时间">
+                </div>
+                <div class="inputbox leftline SID-DivDateTime">
+                    <i class="icon icon-time" style="margin-left: 8px"></i>
+                    <input type="text" class="input-text SID-DateTimeEnd" readonly placeholder="结束时间">
+                </div>
             </div>
         </div>
-        <a class="button block SID-BtnSubmit" style="margin:8px">提交</a>
     </article>
     <!--SeedsUI-->
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
+        var app={};
+        app.prompt=new Prompt();
         var view={
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                /*DOM*/
-                this.dateStarts=document.querySelectorAll(".SID-DateStart");
-                this.dateEnds=document.querySelectorAll(".SID-DateEnd");
-                
-                this.divDateClass="SID-DivDate";
-                this.txtDateClass="SID-Date";
-                this.txtDateStartClass="SID-DateStart";
-                this.txtDateEndClass="SID-DateEnd";
-
-                this.btnSubmitClass="SID-BtnSubmit";
-                /*Plugin*/
-                this.toast=new Prompt("提示","");
-                /*Data*/
-                this.minutesData=[];
-                this.minuteInterval=5;//分钟间隔
-                for(var minute=0;minute<60;minute=minute+this.minuteInterval){
-                    var tempMinute=minute<10?"0"+minute:minute;
-                    this.minutesData.push({"key":tempMinute,"value":tempMinute+"分","flag":"time"});
-                }
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
             render:function(){
-                this._initPlugin();
+                var self = this;
+                //时间控件分钟数据
+                this.minutesData=function(){
+                    var data=[];
+                    for(var i=0;i<60;i=i+10){
+                        var temp=i<10?"0"+i:i;
+                        data.push({key:temp,value:temp+"分"});
+                    }
+                    return data;
+                }();
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Method
@@ -76,6 +98,7 @@
             _newSpDateTime:function(defaults,input){
                 var self=this;
                 this.spDateTime=new SpDate({
+                    //parent:self.$el[0],
                     viewType:"datetime",
                     minutesData:self.minutesData,
                     isSimpleYear:true,
@@ -89,44 +112,37 @@
                     isClickMaskHide:false,
                     onClickDone:function(e){
                         if(new Date(e.activeText)<=new Date()){
-                            self.toast.setText("不能早于当前时间");
-                            self.toast.show();
+                            app.prompt.setText("时间不能早于当前时间");
+                            app.prompt.show();
                             return;
                         }
-                        if(input.classList.contains(self.txtDateStartClass)){//点击开始时间
-                            var nextInputbox=input.parentNode;
-                            var endInput=nextInputbox.parentNode.querySelector("."+self.txtDateEndClass);
-                            if(endInput){
-                                var startDate=new Date(e.activeText).setSeconds(0,0);
-                                var endDate=new Date(endInput.value).setSeconds(0,0);
-                                if(endInput.value==""){
-                                    endInput.value=e.activeText;
-                                }else if(startDate >= endDate){
-                                    self.toast.setText("开始时间不能晚于结束时间");
-                                    self.toast.show();
-                                    return;
-                                }
+                        if(input.classList.contains("SID-DateTimeStart")){//点击开始时间
+                            var endInput=input.parentNode.nextElementSibling.querySelector(".SID-DateTimeEnd");
+                            if(endInput.value==""){
+                                var endTime=new Date(e.activeText).plusMinute(30);
+                                endInput.value=endTime.format("yyyy-MM-dd hh:mm");
+                            }else if(new Date(e.activeText) >= new Date(endInput.value)){
+                                app.prompt.setText("开始时间不能晚于结束时间");
+                                app.prompt.show();
+                                return;
                             }
-                            nextInputbox.classList.remove("app-active-error");
-                        }else if(input.classList.contains(self.txtDateEndClass)){//点击结束时间
-                            var prevInputbox=input.parentNode;
-                            var prevInput=prevInputbox.parentNode.querySelector("."+self.txtDateStartClass);
-                            if(prevInput){
-                                var startDate=new Date(prevInput.value).setSeconds(0,0);
-                                var endDate=new Date(e.activeText).setSeconds(0,0);
-                                if(prevInput.value==""){
-                                    prevInput.value=e.activeText;
-                                }else if(startDate >= endDate){
-                                    self.toast.setText("开始时间不能晚于结束时间");
-                                    self.toast.show();
-                                    return;
-                                }
+                        }else if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
+                            var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
+                            var startTime=new Date().setMinuteCeil(10);
+                            if(new Date(e.activeText)<=startTime){
+                                app.prompt.setText("结束时间太早啦~");
+                                app.prompt.show();
+                                return;
                             }
-                            prevInputbox.classList.remove("app-active-error");
+                            if(prevInput.value==""){
+                                prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
+                            }else if(new Date(prevInput.value) >= new Date(e.activeText)){
+                                app.prompt.setText("开始时间不能晚于结束时间");
+                                app.prompt.show();
+                                return;
+                            }
                         }
-                        
                         input.value=e.activeText;
-                        input.parentNode.classList.remove("app-active-error");
                         e.hide();
                     },
                     "onShowed":function(e){
@@ -145,45 +161,29 @@
                     this.spDateTime.update();
                 }
             },
-            _update:function(){
-            },
-            /*=========================
-              Plugin
-              ===========================*/
-            _initPlugin:function(){
-
-            },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
-                //点击页面
-                document.body.addEventListener("click",function(e){
-                    self._onClickPage(e);
-                },false)
+                //点击选择
+                var dateTimeBoxes=document.querySelectorAll(".SID-DivDateTime");
+                for(var i=0,div;div=dateTimeBoxes[i++];){
+                    div.addEventListener("click",function(e){
+                        self._onClickDivDateTime(e);
+                    },false)
+                }
             },
             /*=========================
               Event Handler
               ===========================*/
-            //点击页面
-            _onClickPage:function(e){
-                var self=this;
-                var target=e.target;
-                if(target.classList.contains(this.btnSubmitClass)){
-                    this._onClickSubmit(e);
-                }else if(target.classList.contains(this.divDateClass)){
-                    this._onClickDivDate(e);
-                }
-            },
             //点击日期选择
-            _onClickDivDate:function(e){
+            _onClickDivDateTime:function(e){
                 var self=this;
-                var txtDate=e.target.querySelector("."+self.txtDateClass);//文本框
-
                 var defaults=[];
-                if(txtDate.value!=""){
-                    var split=txtDate.value.split(" ");
+                var input=e.target.querySelector(".input-text");
+                if(input.value!=""){
+                    var split=input.value.split(" ");
                     var split1=split[0].split("-");
                     var split2=split[1].split(":");
                     defaults[0]=split1[0];
@@ -192,35 +192,25 @@
                     defaults[3]=split2[0];
                     defaults[4]=split2[1];
                 }else{
-                    var date=new Date();
-                    date.setMinuteCeil();
+                    var date=new Date().setMinuteCeil(10);
+                    if(input.classList.contains("SID-DateTimeEnd")){
+                        date.plusMinute(20);
+                    }
                     defaults[0]=date.getFullYear();
                     defaults[1]=date.getMonth()+1;
                     defaults[2]=date.getDate();
                     defaults[3]=date.getHours();
                     defaults[4]=date.getMinutes();
                 }
-                this._newSpDateTime(defaults,txtDate);
+                this._newSpDateTime(defaults,input);
                 setTimeout(function(){
                     self.spDateTime.show();
                 },10);
             },
-            _onClickSubmit:function(){
-                var date=new Date();
-                for(var i=0;i<this.dateStarts.length;i++){
-                    var startDate=new Date(this.dateStarts[i].value).setSeconds(0,0);
-                    var endDate=new Date(this.dateEnds[i].value).setSeconds(0,0);
-                    if(startDate >= endDate){
-                        this.toast.setText("开始时间不能晚于结束时间");
-                        this.toast.show();
-                        return;
-                    }
-                }
-            }
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回

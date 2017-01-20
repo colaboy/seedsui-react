@@ -5,7 +5,7 @@
 		Model
 		================*/
 		var defaults={
-			formFilterClass:null,//过滤表单元素
+			ignoreFieldClass:null,//过滤表单元素
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -24,9 +24,9 @@
             return;
         }
 		//表单元素
-		s.formElements=[];
+		s.fields=[];
 		s.update=function(){
-			s.formElements=[];
+			s.fields=[];
 			//获取有效的表单元素
 			for(var i=0;i<s.container.elements.length;i++){
 				var field=s.container.elements[i];
@@ -44,11 +44,11 @@
 						continue;
 					}
 				}
-				if(s.params.formFilterClass && field.classList.contains(s.params.formFilterClass)){
+				if(s.params.ignoreFieldClass && field.classList.contains(s.params.ignoreFieldClass)){
 					continue;
 				}
 				//push到数组里
-				s.formElements.push(field);
+				s.fields.push(field);
 			}
 		};
 		s.update();
@@ -56,19 +56,19 @@
 		/*================
 		Method
 		================*/
-		//设置formElements对象
-		s.setFormElements=function(formElements){
-			s.formElements=formElements;
+		//设置fields对象
+		s.setFields=function(fields){
+			s.fields=fields;
 		};
-		//添加formElements对象
-		s.pushElement=function(el){
-			s.formElements.push(el);
+		//添加fields对象
+		s.pushField=function(field){
+			s.fields.push(field);
 		};
 		/*表单Json化*/
 		s.serializeArray=function(){
 			var parts=[],field=null;
-			for(var i=0;i<s.formElements.length;i++){
-				field=s.formElements[i];
+			for(var i=0;i<s.fields.length;i++){
+				field=s.fields[i];
 				//如果是多选框，则每个值单独一个条目
 				if(field.type=="select-one" || field.type=="select-multiple"){
 					for(var j=0;j<field.options.length;j++){

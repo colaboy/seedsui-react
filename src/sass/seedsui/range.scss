@@ -12,6 +12,7 @@
 	background-color:$dpborder;
 
 	&::-webkit-slider-thumb{
+		-webkit-appearance:none;
 		width:28px;
 		height:28px;
 		border-width:0;

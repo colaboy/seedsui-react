@@ -1,8 +1,8 @@
 /*----------------------------calendar.less(start)----------------------------*/
 $calendar-weeks-color:$sub-color;
-$calendar-arrow-color:$placeholder-color;
+$calendar-arrow-color:$placeholder;
 $calendar-current-color:$body-color;
-$calendar-notcurrent-color:$placeholder-color;
+$calendar-notcurrent-color:$placeholder;
 $calendar-today-border:$border;
 .calendar{
 	position: relative;

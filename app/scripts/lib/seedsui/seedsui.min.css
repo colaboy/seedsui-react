@@ -2,6 +2,49 @@
 /*基础Less:控件类*/
 /*控件*/
 /*常用颜色*/
+/*----------------appearance.less(start)--------------*/
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none; }
+
+.button, .input-range, .input-text, .input-textarea, .input-pre, .input-radio, .input-checkbox {
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
+
+/*----------------appearance.less(end)--------------*/
+/*----------------form.less(start)--------------*/
+.input-text {
+  display: inline-block;
+  box-sizing: content-box;
+  min-height: 20px;
+  line-height: 20px;
+  padding: 12px 8px;
+  text-align: left; }
+
+.input-textarea {
+  height: 60px;
+  display: block;
+  padding: 12px 8px; }
+
+.input-pre {
+  height: 22px;
+  margin: 12px 8px; }
+  .input-pre, .input-pre + pre {
+    padding: 0px;
+    line-height: 22px;
+    min-height: 22px; }
+  .input-pre + pre {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    visibility: hidden; }
+    .input-pre + pre span {
+      display: inline; }
+
+/*----------------form.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
 /*section,header,footer*/
 section, header, footer {
@@ -57,19 +100,6 @@ aside {
     position: absolute; }
 
 /*----------------layout.less(end)--------------*/
-/*----------------appearance.less(start)--------------*/
-a, button, textarea, select, keygen,
-input,
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; }
-
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
-  display: none; }
-
-/*----------------appearance.less(end)--------------*/
 /*----------------global.less(start)----------------*/
 .events-none {
   pointer-events: none; }
@@ -138,8 +168,6 @@ a {
   cursor: pointer;
   display: inline-block;
   color: #20aeff; }
-  a:active {
-    color: #86d3ff; }
 
 a, label, :focus {
   outline: 0 none; }
@@ -1053,57 +1081,17 @@ br {
   border-bottom-width: 28px; }
 
 /*--------------------badge.less(start)----------------------*/
-/*----------------form.less(start)--------------*/
-.input-text {
-  min-height: 20px;
-  line-height: 20px;
-  padding: 10px 12px;
-  border-width: 1px;
-  border-style: solid;
-  display: inline-block;
-  box-sizing: content-box;
-  text-align: left;
-  border-color: #e5e5e5; }
-
-.input-textarea {
-  height: 60px;
-  display: block;
-  padding: 10px 12px; }
-
-.input-pre {
-  height: 22px; }
-  .input-pre, .input-pre + pre {
-    padding: 0px;
-    line-height: 22px;
-    min-height: 22px; }
-  .input-pre + pre {
-    position: absolute;
-    left: 0;
-    top: 100px;
-    visibility: hidden; }
-    .input-pre + pre span {
-      display: inline; }
-
-/*----------------form.less(end)--------------*/
 /*----------------inputbox.less(start)--------------*/
 .inputbox {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
-  background-color: white;
-  /*box内图标*/
   /*box内的表单框*/
   /*box内顶天立地的控件*/
   /*box内文字*/ }
-  .inputbox > .icon {
-    margin: 0 0 0 12px; }
   .inputbox .input-text, .inputbox .input-textarea, .inputbox .input-pre {
     display: block;
-    -webkit-box-flex: 1.0;
-    border-width: 0;
-    background-color: transparent; }
-    .inputbox .input-text ~ .icon, .inputbox .input-textarea ~ .icon, .inputbox .input-pre ~ .icon {
-      margin: 0 12px 0 0; }
+    -webkit-box-flex: 1.0; }
   .inputbox .block + .icon {
     position: absolute;
     top: 50%;
@@ -1115,12 +1103,45 @@ br {
 
 .inputbox-left {
   display: block;
-  /* padding: 10px 12px; */
   width: 30%; }
 
 .inputbox-right {
   -webkit-box-flex: 1.0; }
 
+.inputbox-search .inputbox-search-placeholder {
+  pointer-events: none;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  color: #ccc; }
+  .inputbox-search .inputbox-search-placeholder .inputbox-search-icon {
+    font-size: 20px;
+    height: 20px;
+    width: 20px; }
+.inputbox-search input[type=search]:focus ~ .inputbox-search-placeholder {
+  display: none; }
+
+.inputbox-error {
+  background-color: transparent;
+  -webkit-animation-duration: 1000ms;
+  -webkit-animation-fill-mode: both;
+  -webkit-animation-name: inputboxError; }
+
+@-webkit-keyframes inputboxError {
+  0% {
+    background-color: transparent; }
+  33% {
+    background-color: #ffecec; }
+  66% {
+    background-color: transparent; }
+  100% {
+    background-color: #ffecec; } }
 /*----------------inputbox.less(end)--------------*/
 /*----------------numbox.less(start)--------------*/
 .numbox {
@@ -1207,6 +1228,7 @@ label .input-checkbox + span, label .input-radio + span {
   outline: 0;
   background-color: #e5e5e5; }
   .input-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
     width: 28px;
     height: 28px;
     border-width: 0;
@@ -1316,6 +1338,43 @@ label .input-checkbox + span, label .input-radio + span {
     -webkit-transform: translate(22px, -50%); }
 
 /*----------------switch.less(end)--------------*/
+/*----------------turn.less(start)--------------*/
+.turn {
+  position: relative;
+  border-radius: 4px;
+  width: 74px;
+  height: 30px;
+  overflow: hidden;
+  background-color: #20aeff;
+  border: 1px solid #20aeff; }
+
+.turn-on, .turn-off {
+  position: absolute;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  width: 50%;
+  height: 100%;
+  top: 0; }
+
+.turn-on {
+  left: 0;
+  background-color: white;
+  color: #20aeff; }
+
+.turn-off {
+  right: 0;
+  background-color: #20aeff;
+  color: white; }
+
+.turn.active .turn-on {
+  background-color: #20aeff;
+  color: white; }
+.turn.active .turn-off {
+  background-color: white;
+  color: #20aeff; }
+
+/*----------------turn.less(end)--------------*/
 /*--------------------mask.less(start)----------------------*/
 .mask {
   visibility: hidden;
@@ -2517,11 +2576,10 @@ label .input-checkbox + span, label .input-radio + span {
 .list-row {
   display: -webkit-box;
   -webkit-box-align: center;
-  padding: 1px 0;
-  font-size: 13px; }
+  padding: 1px 0; }
 
 .list-title {
-  font-size: 17px;
+  font-size: 16px;
   padding: 1px 0; }
 
 .list-icon {
@@ -4727,47 +4785,60 @@ details[open] summary .summary-icon {
 /*----------------tree.less(end)--------------*/
 /*----------------validate.less(start)--------------*/
 .safelvl {
+  display: -webkit-box;
   position: absolute;
   left: 0;
   bottom: -31px;
   height: 30px;
   width: 100%;
-  color: white;
-  background-color: #dddddd; }
-  .safelvl ul {
+  color: white; }
+  .safelvl li {
+    position: relative;
     display: block;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0; }
-    .safelvl ul li {
-      display: block;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      width: 33%;
-      float: left; }
-    .safelvl ul li:last-child {
-      width: 34%; }
+    -webkit-box-flex: 1;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 33%;
+    box-sizing: border-box;
+    margin-left: 1px;
+    background-color: #ccc; }
+    .safelvl li:nth-of-type(1) {
+      width: 34%;
+      margin-left: 0px; }
+      .safelvl li:nth-of-type(1) .safelvl-progress {
+        background-color: #F86868; }
+    .safelvl li:nth-of-type(2) .safelvl-progress {
+      background-color: #f4984e; }
+    .safelvl li:nth-of-type(3) .safelvl-progress {
+      background-color: #68c75f; }
+  .safelvl.lvl1 li:nth-of-type(1) .safelvl-progress {
+    width: 100%; }
+  .safelvl.lvl2 li:nth-of-type(1) .safelvl-progress {
+    width: 100%; }
+  .safelvl.lvl2 li:nth-of-type(2) .safelvl-progress {
+    width: 100%; }
+  .safelvl.lvl3 li:nth-of-type(1) .safelvl-progress {
+    width: 100%; }
+  .safelvl.lvl3 li:nth-of-type(2) .safelvl-progress {
+    width: 100%; }
+  .safelvl.lvl3 li:nth-of-type(3) .safelvl-progress {
+    width: 100%; }
 
-.safelvl .safelvl-progress {
+.safelvl-progress {
   position: absolute;
   top: 0;
   left: 0;
-  height: 30px;
-  transition: all linear 200ms; }
+  height: 100%;
+  width: 0;
+  -webkit-transition-property: width;
+  -webkit-transition-duration: 300ms; }
 
-.safelvl.lvl1 .safelvl-progress {
-  width: 33%;
-  background-color: #f86868; }
-
-.safelvl.lvl2 .safelvl-progress {
-  width: 66%;
-  background-color: #f4984e; }
-
-.safelvl.lvl3 .safelvl-progress {
-  width: 100%;
-  background-color: #88d038; }
+.safelvl-font {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0); }
 
 /*----------------validate.less(end)--------------*/
 /*-----------------------------weather.less(start)-----------------------------*/
@@ -5221,7 +5292,7 @@ hr {
 .bordered {
   border-style: solid;
   border-width: 1px;
-  border-color: #d1d1d1; }
+  border-color: #e5e5e5; }
 
 .dotted {
   border-style: dotted; }

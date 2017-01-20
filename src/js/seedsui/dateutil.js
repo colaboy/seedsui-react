@@ -121,16 +121,54 @@ Date.prototype.diff=function(date){//Date对象，返回相差天数等
 		secondsAll:secondsAllDiff
 	}
 }
-Date.prototype.minusDay=function(num){
+Date.prototype.minusDate=function(num){
 	var numMilli=num*1000*60*60*24;
 	this.setTime(this.getTime()-numMilli);
 	return this;
 }
-Date.prototype.plusDay=function(num){
+Date.prototype.plusDate=function(num){
 	var numMilli=num*1000*60*60*24;
 	this.setTime(this.getTime()+numMilli);
 	return this;
 }
+Date.prototype.minusMinute=function(num){
+	var numMilli=num*1000*60;
+	this.setTime(this.getTime()-numMilli);
+	return this;
+}
+Date.prototype.plusMinute=function(num){
+	var numMilli=num*1000*60;
+	this.setTime(this.getTime()+numMilli);
+	return this;
+}
+//整数时间，返回日期的档位时间
+Date.prototype.setMinuteCeil=function(space){
+	var space=space?space:5;//间隔
+	var minute=this.getMinutes();//分钟
+	var hasRemainder = minute % space == 0;//是否有余数
+
+    var percentNum=Math.ceil(minute / space);//档位
+    percentNum = hasRemainder ? parseInt(percentNum)+1 : percentNum;
+
+    var result=percentNum*space;//根据档位计算结果
+    this.setMinutes(result);
+    return this;
+}
+//整数时间，返回日期的档位时间
+Date.prototype.setMinuteFloor=function(space){
+	var space=space?space:5;//间隔
+	var minute=this.getMinutes();//分钟
+	var hasRemainder = minute % space == 0;//是否有余数
+
+    var percentNum=Math.floor(minute / space);//档位
+    percentNum = hasRemainder ? parseInt(percentNum)-1 : percentNum;
+
+    var result=percentNum*space;//根据档位计算结果
+    this.setMinutes(result);
+    return this;
+}
+
+
 Date.prototype.expires=function(expiresTime){//时效性，以当前时间为基准，传入"日期对象"、"小时"或者"today"
 	if(!expiresTime)return;
 	var endTime=new Date(this);
@@ -183,28 +221,4 @@ Date.prototype.format=function(fmtModel){//参数：yyyy-MM-dd hh:mm:ss
 		}
 	}
 	return fmt;
-}
-Date.prototype.setMinuteCeil=function(space){//分秒向上档位，返回日期的档位时间
-	var space=space?space:5;//间隔
-	var minute=this.getMinutes();//分钟
-	var hasRemainder = minute % space == 0;//是否有余数
-
-    var percentNum=Math.ceil(minute / space);//档位
-    percentNum = hasRemainder ? parseInt(percentNum)+1 : percentNum;
-
-    var result=percentNum*space;//根据档位计算结果
-    this.setMinutes(result);
-    return this;
-}
-Date.prototype.setMinuteFloor=function(space){//分秒向下档位，返回日期的档位时间
-	var space=space?space:5;//间隔
-	var minute=this.getMinutes();//分钟
-	var hasRemainder = minute % space == 0;//是否有余数
-
-    var percentNum=Math.floor(minute / space);//档位
-    percentNum = hasRemainder ? parseInt(percentNum)-1 : percentNum;
-
-    var result=percentNum*space;//根据档位计算结果
-    this.setMinutes(result);
-    return this;
 }

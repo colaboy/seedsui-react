@@ -5,6 +5,7 @@
 		  Model
 		  ==================*/
 		var defaults={
+			overflowContainer:null,
 			parent:document.body,
 			isDisableTop:false,
 			isDisableBottom:false,
@@ -21,6 +22,7 @@
 			bottomContainer:null,
 			bottomContainerClass:"loading-more",
 			bottomContainerLoadingClass:"loading-progress",
+			onBottomSpaceDuration:2000
 
 			/*callbacks
 			onRefreshStart:function(Dragrefresh)
@@ -40,6 +42,11 @@
 		s.params=params;
 		//Container
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+		if(s.params.overflowContainer){
+			s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
+		}else{
+			s.overflowContainer=s.parent;
+		}
 		//创建DOM
 		s.createRefresh=function(){
 			if(s.topContainer)return;
@@ -159,20 +166,19 @@
 		s.isRefreshEnd=true;
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
+			var touchTarget=s.overflowContainer;
 			if(s.params.isDisableTop===false){
-				var touchTarget=s.parent;
-				touchTarget[action]("touchstart",s.onTouchStart,false);
-				touchTarget[action]("touchmove",s.onTouchMove,false);
-				touchTarget[action]("touchend",s.onTouchEnd,false);
-				touchTarget[action]("touchcancel",s.onTouchEnd,false);
+				s.parent[action]("touchstart",s.onTouchStart,false);
+				s.parent[action]("touchmove",s.onTouchMove,false);
+				s.parent[action]("touchend",s.onTouchEnd,false);
+				s.parent[action]("touchcancel",s.onTouchEnd,false);
 				//头部动画监听
 				s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			}
 			if(s.params.isDisableBottom===false && s.bottomContainer){
 				//绑定底部事件
-				if(s.parent==document.body)window[action]("scroll",s.onWindowScroll,false);
-				else s.parent[action]("scroll",s.onScroll,false);
-				/*s.parent[action]("scroll",s.onScroll,false);*/
+				if(touchTarget==document.body)window[action]("scroll",s.onWindowScroll,false);
+				else touchTarget[action]("scroll",s.onScroll,false);
 			}
 		}
 		//attach、detach事件
@@ -205,9 +211,9 @@
 		s.onTouchStart=function(e){
 			if(s.isRefreshEnd===false)return;
 
-			s.parent.addEventListener("touchmove",s.preventDefault,false);
+			s.overflowContainer.addEventListener("touchmove",s.preventDefault,false);
 			//如果不在顶部，则不触发
-			if(s.parent.scrollTop>s.params.minScrollTop)s.touches.isTop=false;
+			if(s.overflowContainer.scrollTop>s.params.minScrollTop)s.touches.isTop=false;
 			else s.touches.isTop=true;
 
 			//s.removeTransition();
@@ -235,13 +241,12 @@
 			}
 			
 			if(s.touches.vertical==1 || !s.touches.isTop){//向上滑动或者不在顶部
-				s.parent.removeEventListener("touchmove",s.preventDefault,false);	
+				s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);	
 			}else if(s.touches.vertical===-1){//下拉
-				s.parent.classList.add(s.params.hiddenClass);
+				s.overflowContainer.classList.add(s.params.hiddenClass);
 				s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
 				if(s.touches.posY<s.params.thresholdMax){
 					s.touches.rotateDeg=s.touches.posY*2;
-					//s.transform(s.touches.posY,s.touches.rotateDeg);
 					s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
 				}
 			}
@@ -253,9 +258,9 @@
 
 			if(s.isRefreshEnd===false)return;
 
-			s.parent.removeEventListener("touchmove",s.preventDefault,false);
+			s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);
 			if(s.touches.posY!=0){//下拉情况下
-				s.parent.classList.remove(s.params.hiddenClass);
+				s.overflowContainer.classList.remove(s.params.hiddenClass);
 				if(s.touches.posY<s.params.threshold){//如果小于hold值，则收起刷新
 					s.hide();
 				}else{//刷新
@@ -272,20 +277,32 @@
 				s.isRefreshEnd=true;
 			}
 		}
+		
 		s.onScroll=function(e){
 			s.target=e.target;
 			if(s.params.onScroll)s.params.onScroll(s);
-			if (s.params.onBottom && this.scrollTop + this.clientHeight >= this.scrollHeight){
-                s.params.onBottom(s);
+			if (s.isOnBottomOk && s.params.onBottom && (this.scrollTop + this.clientHeight >= this.scrollHeight)){
+				s.onBottom();
             }
 		}
 		s.onWindowScroll=function(e){
+			s.target=e.target;
 			var clientHeight=window.innerHeight; 
 	        var scrollTop=document.body.scrollTop;
 	        var scrollHeight=document.body.scrollHeight;
-	        if(s.params.onBottom && clientHeight+scrollTop>=scrollHeight){
-	            s.params.onBottom(s);
+	        if(s.isOnBottomOk && s.params.onBottom && (clientHeight+scrollTop>=scrollHeight)){
+	            s.onBottom();
 	        }
+		}
+		s.isOnBottomOk=true;
+		s.onBottom=function(e){
+			s.isOnBottomOk=false;
+
+            s.params.onBottom(s);
+
+            setTimeout(function(){
+            	s.isOnBottomOk=true;
+            }, s.params.onBottomSpaceDuration);
 		}
 		//主函数
 		s.init=function(){

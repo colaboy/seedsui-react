@@ -164,39 +164,23 @@
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
 		var view={
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
-            render:function(){
-            	/*渲染数据*/
-                this.load();
-            },
-            load:function(){
-            	/*DOM*/
-                /*Plugin*/
-                this.sections=this._initSection();
-                this.history=this._initHistory();
-
-                this._attach();//使用backbone时，此行无用
-            },
-            /*=========================
+			/*=========================
               Model
               ===========================*/
-            _initSection:function(){
-            	return new Sections({
+            render:function(){
+
+            	this.sections=new Sections({
                 	onStart:function(e){
                 		//console.log("开始显示："+e.container.id);
                 	},
                 	onShowed:function(e){
-                		console.log("显示完成："+e.container.id);
+                		//console.log("显示完成："+e.container.id);
                 	},
                 	onHid:function(e){
-                		console.log("隐藏完成："+e.container.id);
+                		//console.log("隐藏完成："+e.container.id);
                 	}
                 });
-            },
-            _initHistory:function(){
-            	return new History({
+                this.history=new History({
                 	onBack:function(e){
                 		console.log("后退："+e.prevHash);
                 		if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
@@ -213,7 +197,14 @@
                 		document.querySelector(hash).classList.add("active");
                 	}
                 }
+
+            	/*加载数据*/
+                this.loadData();
             },
+            loadData:function(){
+                this._attach();//使用backbone时，此行无用
+            },
+            
             /*=========================
               Events
               ===========================*/
@@ -236,7 +227,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回

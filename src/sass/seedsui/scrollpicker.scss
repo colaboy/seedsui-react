@@ -93,7 +93,7 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
 	    padding:0 8px;
 	    font-size:17px;
 
-	    color:$placeholder-color;
+	    color:$placeholder;
 	    &.active{
 			color:$body-color;
 		}
@@ -102,7 +102,7 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
 
 }
 .scrollpicker-slot.lock li.active{
-	color:$placeholder-color;
+	color:$placeholder;
 }
 .scrollpicker-layer{
 	position:absolute;

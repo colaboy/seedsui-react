@@ -16,7 +16,7 @@
 	color:$primary-color;
 }
 ::-webkit-input-placeholder{
-	color:$placeholder-color;	
+	color:$placeholder;	
 }
 
 /*标签默认样式*/
@@ -42,7 +42,7 @@ body{
 	background-color:$body-bg;
 }
 .placeholder{
-	color:$placeholder-color;
+	color:$placeholder;
 }
 i,span,label{
 	display:inline;
@@ -65,7 +65,7 @@ ul,li,dl,dt,dd {
 small{
 	font-size:80%;
 
-	color:$placeholder-color;
+	color:$placeholder;
 }
 a{
 	text-decoration:none;
@@ -75,7 +75,7 @@ a{
 
 	color:$link;
 	&:active{
-        color:$link-active;
+        //color:$link-active;
     }
 }
 a,label, :focus{

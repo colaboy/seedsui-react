@@ -22,7 +22,7 @@
 		-webkit-transform:translateY(-50%);
 		content: attr(data-off);
 		
-		color: $placeholder-color;
+		color: $placeholder;
 	}
 	/*关闭状态圆点*/
 	.switch-handle{
@@ -48,7 +48,7 @@
 			left: 11px;
 			content: attr(data-on);
 
-			color: $placeholder-color;
+			color: $placeholder;
 		}
 		/*打开状态小圆点*/
 		.switch-handle{
@@ -86,7 +86,7 @@
 			}
 		}
 		&:after{
-			color:$placeholder-color;
+			color:$placeholder;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 /*----------------validate.less(start)--------------*/
 .safelvl{
+	display:-webkit-box;
 	position:absolute;
 	left:0;
 	bottom:-31px;
@@ -7,43 +8,67 @@
 	width:100%;
 	
 	color:white;
-	background-color:#dddddd;
-	ul{
+	li{
+		position: relative;
 		display:block;
-		position:absolute;
-		width:100%;
-		top:0;
-		left:0;
-		li{
-			display:block;
-			height:30px;
-			line-height:30px;
-			text-align:center;
-			width:33%;
-			float:left;
-		}
-		li:last-child{
+		-webkit-box-flex:1;
+		height:30px;
+		line-height:30px;
+		text-align:center;
+		width:33%;
+		box-sizing:border-box;
+		margin-left:1px;
+		background-color:$placeholder;
+		&:nth-of-type(1){
 			width:34%;
+			margin-left:0px;
+			.safelvl-progress{background-color:$cancel-bg;}
+		}
+		&:nth-of-type(2){
+			.safelvl-progress{background-color:$warn-bg;}
+		}
+		&:nth-of-type(3){
+			.safelvl-progress{background-color:$submit-bg;}
+		}
+	}
+	&.lvl1{
+		li:nth-of-type(1) .safelvl-progress{
+			width: 100%;
+		}
+	}
+	&.lvl2{
+		li:nth-of-type(1) .safelvl-progress{
+			width: 100%;
+		}
+		li:nth-of-type(2) .safelvl-progress{
+			width: 100%;
+		}
+	}
+	&.lvl3{
+		li:nth-of-type(1) .safelvl-progress{
+			width: 100%;
+		}
+		li:nth-of-type(2) .safelvl-progress{
+			width: 100%;
+		}
+		li:nth-of-type(3) .safelvl-progress{
+			width: 100%;
 		}
 	}
 }
-.safelvl .safelvl-progress{
+.safelvl-progress{
 	position:absolute;
 	top:0;
 	left:0;
-	height:30px;
-	transition:all linear 200ms;
+	height:100%;
+	width:0;
+	-webkit-transition-property:width;
+	-webkit-transition-duration:300ms;
 }
-.safelvl.lvl1 .safelvl-progress{
-	width:33%;
-	background-color:#f86868;
-}
-.safelvl.lvl2 .safelvl-progress{
-	width:66%;
-	background-color:#f4984e;
-}
-.safelvl.lvl3 .safelvl-progress{
-	width:100%;
-	background-color:#88d038;
+.safelvl-font{
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate3d(-50%,-50%,0);
 }
 /*----------------validate.less(end)--------------*/

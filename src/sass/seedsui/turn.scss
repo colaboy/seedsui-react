@@ -1,0 +1,40 @@
+/*----------------turn.less(start)--------------*/
+.turn{
+	position: relative;
+	border-radius:4px;
+	width: 74px;
+	height: 30px;
+	overflow: hidden;
+	background-color: $primary-bg;
+	border:1px solid $primary-bg;
+}
+.turn-on,.turn-off{
+	position: absolute;
+	display: -webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	width: 50%;
+	height: 100%;
+	top:0;
+}
+.turn-on{
+	left: 0;
+	background-color: white;
+	color: $primary-bg;
+}
+.turn-off{
+	right: 0;
+	background-color: $primary-bg;
+	color: white;
+}
+.turn.active{
+	.turn-on{
+		background-color: $primary-bg;
+		color: white;
+	}
+	.turn-off{
+		background-color: white;
+		color: $primary-bg;
+	}
+}
+/*----------------turn.less(end)--------------*/

@@ -11,7 +11,7 @@ $primary-color-active:lighten($primary-color, 10%);
 $mask-bg:rgba(0,0,0,.4);
 
 $sub-color:#9e9e9e;
-$placeholder-color:#ccc;
+$placeholder:#ccc;
 $link:$primary-bg;
 $link-active:$primary-bg-active;
 $border:#d1d1d1;
@@ -51,7 +51,7 @@ $prompt-bg:rgba(0,0,0,.6);
 $toast-bg:rgba(0,0,0,.6);
 
 $photo-bg:#ddd;
-$photo-color:$placeholder-color;
+$photo-color:$placeholder;
 
 $calendar-active-color:$primary-color;
 $calendar-active-border:$primary-bg;

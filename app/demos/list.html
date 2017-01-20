@@ -139,9 +139,9 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script>
         var view={
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
+            /*=========================
+              Model
+              ===========================*/
             render:function(){
                 var self = this;
                 /*渲染页面*/
@@ -158,13 +158,6 @@
             loadData:function(){
 
                 this._attach();//使用backbone时，此行无用
-            },
-
-            /*=========================
-              Model
-              ===========================*/
-            _initPlugin:function(){
-
             },
 
             /*=========================
@@ -189,7 +182,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回

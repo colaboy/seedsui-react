@@ -106,7 +106,7 @@
 						ruleArray.unshift(field.value);
 						ruleArray.push(errorMsg);//此时ruleArray的值为 ruleValue,fieldValue,errorMsg
 						var ruleErrorMsg=Rules[ruleName].apply(null,ruleArray);
-						if(ruleErrorMsg) return {field:field,errorMsg:ruleErrorMsg};
+						if(ruleErrorMsg) return {field:field,msg:ruleErrorMsg};
 					});
 				})(strategy);
 			}

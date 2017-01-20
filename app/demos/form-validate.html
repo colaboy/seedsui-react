@@ -7,9 +7,6 @@
     <title>form-validate</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
     <style type="text/css">
-    .app-error-active {
-        background-color: #ffecec;
-    }
     .icon-eye-fill.active{
         color: #18b2ed;
     }
@@ -24,48 +21,79 @@
         </div>
     </header>
     <article>
-    	<form id="ID-Form" method="post" style="padding:10px;">
-            <div class="inputbox bordered" style="margin:8px 0;" data-input="clear">
-                <input type="text" class="input-text" placeholder="用户名" name="NID-UserName" maxlength="16"/>
-                <i class="icon icon-clear-fill color-placeholder hide"></i>
-            </div>
-            <div class="inputbox bordered" style="margin:8px 0;" data-input="reveal">
-                <input type="password" class="input-text" placeholder="密码" name="NID-Pwd" maxlength="16"/>
-                <i class="icon icon-eye-fill color-placeholder"></i>
-                <div class="safelvl lvl0">
-                    <div class="safelvl-progress"></div>
-                	<ul>
-                		<li>弱</li>
-                		<li>中</li>
-                		<li>强</li>
-                	</ul>
+    	<form id="ID-Form" method="post">
+            <div class="group" style="padding:0 12px;">
+                <div class="inputbox underline">
+                    <label class="inputbox-left">用户</label>
+                    <div class="inputbox-right inputbox" data-input="clear">
+                        <input type="text" class="input-text" name="NID-UserName" maxlength="16"/>
+                        <i class="icon icon-clear-fill color-placeholder hide"></i>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <label class="inputbox-left">密码</label>
+                    <div class="inputbox-right inputbox" data-input="reveal">
+                        <input type="password" class="input-text" name="NID-Pwd" maxlength="16"/>
+                        <i class="icon icon-eye-fill color-placeholder"></i>
+                    </div>
+                    <ul class="safelvl lvl0">
+                        <li>
+                            <div class="safelvl-progress"></div>
+                            <span class="safelvl-font">弱</span>
+                        </li>
+                        <li>
+                            <div class="safelvl-progress"></div>
+                            <span class="safelvl-font">中</span>
+                        </li>
+                        <li>
+                            <div class="safelvl-progress"></div>
+                            <span class="safelvl-font">强</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div style="height:40px;"></div>
+                <hr/>
+
+                <div class="inputbox underline">
+                    <label class="inputbox-left">确认</label>
+                    <div class="inputbox-right inputbox" data-input="reveal">
+                        <input type="password" name="NID-RePwd" class="input-text"/>
+                        <i class="icon icon-eye-fill color-placeholder"></i>
+                    </div>
+                </div>
+
+                <div class="inputbox underline">
+                    <label class="inputbox-left">手机</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="NID-Phone" class="input-text"/>
+                    </div>
+                </div>
+
+                <div class="inputbox underline">
+                    <label class="inputbox-left">姓名</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="NID-Name" class="input-text"/>
+                    </div>
+                </div>
+
+                <div class="inputbox underline">
+                    <label class="inputbox-left">邮箱</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" name="NID-Mail" class="input-text"/>
+                    </div>
+                </div>
+
+                <div class="inputbox">
+                    <label class="inputbox-left">年龄</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="number" name="NID-Age" class="input-text"/>
+                    </div>
                 </div>
             </div>
-            
-            <div style="height:22px;"></div>
-
-            <div class="inputbox bordered" style="margin:8px 0;" data-input="reveal">
-                <input type="password" class="input-text" placeholder="确认" name="NID-RePwd" data-rule-field="密码" data-rule="required password compare:NID-RePwd minlength:6 maxlength:16"/>
-                <i class="icon icon-eye-fill color-placeholder"></i>
+            <div style="margin:0 12px;">
+                <input type="submit" class="button submit block SID-BtnSubmit" style="width: 100%;" value="注册"/>
             </div>
-
-            <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="手机号码" name="NID-Phone"/>
-            </div>
-
-            <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="中文姓名" name="NID-Name"/>
-            </div>
-
-            <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="text" class="input-text" placeholder="邮箱" name="NID-Mail"/>
-            </div>
-
-            <div class="inputbox bordered" style="margin:8px 0;">
-                <input type="number" class="input-text" placeholder="年龄" name="NID-Age"/>
-            </div>
-
-            <input type="submit" class="button submit block SID-BtnSubmit" style="width: 100%;" value="注册"/>
     	</form>
     </article>
     
@@ -84,11 +112,9 @@
                 var self = this;
                 this.validator={};
                 //渲染页面
-                this.form=new Form("#ID-Form",{
-                    formFilterClass:"form-filter"
-                });
+                this.form=new Form("#ID-Form");
                 this.formContainer=this.form.container;
-                this.formElements=this.form.formElements;
+                this.formFields=this.form.fields;
                 this.btnSubmit=document.querySelector(".SID-BtnSubmit");
 
                 this.prompt=new Prompt();
@@ -209,15 +235,15 @@
               ===========================*/
             _onSubmit:function(e){
                 //重置错误样式
-                for(var i=0,el;el=view.formElements[i++];){
-                    el.parentNode.classList.remove("app-error-active");
+                for(var i=0,el;el=view.formFields[i++];){
+                    el.parentNode.parentNode.classList.remove("inputbox-error");
                 }
                 //表单验证
                 var error=view._validateForm();
                 if(error){
-                    view.prompt.setText(error.errorMsg);
+                    view.prompt.setText(error.msg);
                     view.prompt.show();
-                    error.field.parentNode.classList.add("app-error-active");
+                    error.field.parentNode.parentNode.classList.add("inputbox-error");
                     e.preventDefault();
                 }
             }

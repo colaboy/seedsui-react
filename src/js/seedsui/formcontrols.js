@@ -8,6 +8,7 @@
 			rangeTipClass:"range-tooltip",//滑动条弹出框
 			numboxClass:"numbox",//数字框
 			switchClass:"switch",//开关控件
+			turnClass:"turn",//开关控件
 			revealAttr:"[data-input=reveal]",//密码小眼睛
 			clearAttr:"[data-input=clear]",//清空按钮
 			safelvlClass:"safelvl",//密码安全等级
@@ -50,14 +51,20 @@
 			for(var i=0,swi;swi=switches[i++];){
 				swi[action]("click",s.onSwitch,false);
 			}
+			//开关控件
+			var turns=document.querySelectorAll("."+s.params.turnClass);
+			
+			for(var i=0,turn;turn=turns[i++];){
+				turn[action]("click",s.onSwitch,false);
+			}
 			//密码小眼睛
-			var reveals=document.querySelectorAll(s.params.revealAttr+" [type=password] + i");
+			var reveals=document.querySelectorAll(s.params.revealAttr+" > [type=password] + i");
 			for(var j=0,reveal;reveal=reveals[j++];){
 				reveal[action]("click",s.onReveal,false);
 			}
 			//清除按钮框
-			var clears=document.querySelectorAll(s.params.clearAttr+" input");
-			var clearIcons=document.querySelectorAll(s.params.clearAttr+" input+i");
+			var clears=document.querySelectorAll(s.params.clearAttr+" > input");
+			var clearIcons=document.querySelectorAll(s.params.clearAttr+"> input+i");
 			for(var k=0;k<clears.length;k++){
 				clears[k][action]("input",s.onClear,false);
 				if(clearIcons[k])clearIcons[k][action]("click",s.onClearIcon,false);
@@ -66,6 +73,7 @@
 			var safes=document.querySelectorAll("."+s.params.safelvlClass);
 			for(var l=0,safe;safe=safes[l++];){
 				var safeInput=safe.parentNode.querySelector("input[type]");
+				safeInput.safe=safe;
 				safeInput[action]("input",s.onSafeLvl,false);
 			}
 			//拖动条
@@ -107,7 +115,7 @@
 		s.createHiddenInput=function(name){
 			var hiddenInput=document.createElement("input");
 			hiddenInput.setAttribute("type","hidden");
-			if(name)hiddenInput.setAttribute("name",name);
+			hiddenInput.setAttribute("name",name);
 			return hiddenInput;
 		}
 		s.onSwitch=function(e){
@@ -115,18 +123,19 @@
 			var name=this.getAttribute("data-name");
 			var onVal=this.getAttribute("data-on-value");
 			var offVal=this.getAttribute("data-off-value");
-			var hiddenInput=this.nextElementSibling;
-			if(hiddenInput && (!hiddenInput.type || hiddenInput.type!="hidden"))hiddenInput=null;
-			if(name && !hiddenInput){
-				hiddenInput=s.createHiddenInput(name);
+			var hiddenInput=null;
+			if(name){
+				hiddenInput=this.nextElementSibling && this.nextElementSibling.type=="hidden" && this.nextElementSibling.name==name? this.nextElementSibling : s.createHiddenInput(name);
 				parentNode.insertBefore(hiddenInput,this.nextSibling);
 			}
+			
+			//切换状态
 			if(this.classList.contains("active")){
 				this.classList.remove("active");
-				if(hiddenInput)hiddenInput.value=offVal;
+				if(hiddenInput)hiddenInput.value=offVal||"0";
 			}else{
 				this.classList.add("active");
-				if(hiddenInput)hiddenInput.value=onVal;
+				if(hiddenInput)hiddenInput.value=onVal||"1";
 			}
 		}
 		/*密码小眼睛*/
@@ -159,8 +168,7 @@
 		}
 		/*安全检测框*/
 		s.onSafeLvl=function(e){
-			var lvlField=this.parentNode.querySelector("."+s.params.safelvlClass);
-			if(SafeLvl)SafeLvl.fields(this,lvlField);
+			if(SafeLvl)SafeLvl.fields(this,this.safe);
 		}
 		/*拖动条*/
 		s.showToolTip=function(tooltip,rangeInput){
