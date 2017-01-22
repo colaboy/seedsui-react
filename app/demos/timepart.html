@@ -19,23 +19,24 @@
     </header>
 	<article>
         <div class="timepart group" id="ID-Timepart">
-            <!-- <div class="timepart-row">
-                <label class="timepart-part" data-timepart-start="07:00" data-timepart-end="07:30">
+            <!-- <div class="timepart-row" data-timeStart="07:00" data-timeEnd="10:00">
+                <div class="timepart-progress"></div>
+                <label class="timepart-part" data-timeStart="07:00" data-timeEnd="07:30">
                     <span>07:00</span>
                 </label>
-                <label class="timepart-part" data-timepart-start="07:30" data-timepart-end="08:00">
+                <label class="timepart-part" data-timeStart="07:30" data-timeEnd="08:00">
                     <span>07:30</span>
                 </label>
-                <label class="timepart-part" data-timepart-start="08:00" data-timepart-end="08:30">
+                <label class="timepart-part" data-timeStart="08:00" data-timeEnd="08:30">
                     <span>08:00</span>
                 </label>
-                <label class="timepart-part" data-timepart-start="08:30" data-timepart-end="9:00">
+                <label class="timepart-part" data-timeStart="08:30" data-timeEnd="9:00">
                     <span>08:30</span>
                 </label>
-                <label class="timepart-part" data-timepart-start="09:00" data-timepart-end="9:30">
+                <label class="timepart-part" data-timeStart="09:00" data-timeEnd="9:30">
                     <span>09:00</span>
                 </label>
-                <label class="timepart-part" data-timepart-start="09:30" data-timepart-end="10:00">
+                <label class="timepart-part" data-timeStart="09:30" data-timeEnd="10:00">
                     <span>10:00</span>
                 </label>
             </div> -->
@@ -43,21 +44,28 @@
         <a class="radius4 button block" style="margin:8px" id="ID-BtnSubmit">预约</a>
 	</article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
-    <!--Exmobi能力-->
-    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
-        var timepart=new Timepart("#ID-Timepart");
-        timepart.disableBeforeTime("9:00");
-        timepart.disableAfterTime("20:00");
-        timepart.disablePartsByRange("10:30","11:30");
+        var toast=new Toast("");
+        var timepart=new Timepart("#ID-Timepart",{
+            startTime:"7:00",
+            endTime:"21:00",
+            onClickDisabled:function(e){
+                toast.setText("不能选择禁用时间段");
+                toast.show();
+            },
+            onOverDisabled:function(e){
+                toast.setText("不能跨选禁用时间段");
+                toast.show();
+            }
+        });
+        timepart.disableTimes("7:10","8:10");
+        timepart.disableTimes("9:00","9:10");
         
         document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
             var starttime=timepart.getActiveStartTime();
             console.log("选中的开始时间："+starttime);
             var endtime=timepart.getActiveEndTime();
             console.log("选中的结束时间："+endtime);
-            var range=timepart.getActiveRange();
-            console.log("选中的时间段："+range);
         },false);
 		//定义exmobi返回
 		function back() {

@@ -5,7 +5,7 @@
 	/*====================
 	基本类型
 	=====================*/
-	var types=["String","Boolean","Number","Array","Object","HTMLElement","Function"];
+	var types=["String","Boolean","Number","Array","Date","Object","HTMLElement","Function"];
 	for(var i=0,type;type=types[i++];){
 		(function(type){
 			Type['is'+type]=function(obj){
