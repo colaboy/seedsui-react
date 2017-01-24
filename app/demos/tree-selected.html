@@ -210,56 +210,53 @@
                 <h1 class="titlebar-title text-center">搜索人员</h1>
             </div>
             <div class="app-blockSearch">
-                <form id="ID-FormSearch" data-input="clear">
-                    <i class="icon icon-search"></i>
-                    <input type="search" placeholder="请输入人员姓名">
-                    <i class="icon icon-clear-fill hide"></i>
+                <form id="ID-FormSearch" class="inputbox inputbox-search underline" data-input="clear">
+                    <input type="search" class="search input-text" style="padding: 6px 12px;">
+                    <i class="color-placeholder icon icon-clear-fill hide size20"></i>
+                    <div class="inputbox-search-placeholder">
+                        <i class="inputbox-search-icon icon icon-search"></i>
+                        <span>请输入人员姓名</span>
+                    </div>
                 </form>
             </div>
         </header>
-        <article style="top: 87px">
+        <article style="padding-top: 87px">
             <div id="ID-BoxSearchResult" class="group" style="margin-top: 0;"></div>
         </article>
     </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
     var view={
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
-            refresh:function(){
-                console.log("刷新");
-            },
-            destroy:function(){
-                console.log("移除");
-            },
-            render:function(){
-                /*渲染数据*/
-                this.load();
-            },
-            load:function(){
-                /*DOM*/
-                this.btnAsynAdds;
-                this.btnOk=document.getElementById("ID-BtnOk");
-                this.btnSearch=document.getElementById("ID-BtnSearch");
-                this.formSearch=document.getElementById("ID-FormSearch");
-                this.boxSearchResult=document.getElementById("ID-BoxSearchResult");
-
-                /*Plugin*/
-                this.history=this._initHistory();;
-
-                this.tr1=this._initTree();
-                this.toast = new Toast("没有子节点");
-                this.formControls=new FormControls();
-
-                this._attach();//使用backbone时，此行无用
-            },
             /*=========================
               Model
               ===========================*/
-            _initTree:function(){
-                var self=this;
-                return new Tree("#ID-Tree1",{
+            render:function(){
+                var self = this;
+
+                this.toast = new Toast("没有子节点");
+                this.formControls=new FormControls();
+
+                //历史记录
+                this.history = new History({
+                    onBack:function(e){
+                        console.log("后退："+e.prevHash);
+                        if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
+                        if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
+                    },
+                    onForward:function(e){
+                        console.log("前进："+e.currentHash);
+                        document.querySelector(e.currentHash).classList.add("active");
+                    }
+                });
+                //初始化时，历史记录就有了，说明刷新过了
+                if(this.history.list.length>0){
+                    for(var i=0,hash;hash=this.history.list[i++];){
+                        document.querySelector(hash).classList.add("active");
+                    }
+                }
+
+                //树结构
+                this.tree=new Tree("#ID-Tree1",{
                     selectedContainer:"#ID-Treebar1",
                     //需自定义：点击树展开
                     onTap:function(e){
@@ -292,31 +289,31 @@
                         })
                     }
                 });
+                //加载数据
+                this.loadData();
             },
-            _initHistory:function(){
-                return new History({
-                    onBack:function(e){
-                        console.log("后退："+e.prevHash);
-                        if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
-                        if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
-                    },
-                    onForward:function(e){
-                        console.log("前进："+e.currentHash);
-                        document.querySelector(e.currentHash).classList.add("active");
-                    }
-                });
-                //初始化时，历史记录就有了，说明刷新过了
-                if(this.history.list.length>0){
-                    for(var i=0,hash;hash=this.history.list[i++];){
-                        document.querySelector(hash).classList.add("active");
-                    }
-                }
+            refresh:function(){
+                console.log("刷新");
             },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Model
+              ===========================*/
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
+                this.btnOk=document.getElementById("ID-BtnOk");
+                this.btnSearch=document.getElementById("ID-BtnSearch");
+                this.formSearch=document.getElementById("ID-FormSearch");
+                this.boxSearchResult=document.getElementById("ID-BoxSearchResult");
                 //点击确定按钮
                 this.btnOk.addEventListener("click",function(e){
                     self._onClickBtnOk(e);
@@ -387,7 +384,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 	//定义exmobi返回
 	function back(){history.go(-1);}

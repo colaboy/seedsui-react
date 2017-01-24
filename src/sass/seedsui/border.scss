@@ -4,64 +4,64 @@ hr{
     border:0;
     clear:both;
 }
-.line,.topline:before,.underline:after,hr:after {
+.hline,.vline,hr:after,.topline:before,.underline:after,.leftline:before,.rightline:after {
 	content: '';
-	display: block;
-	position: absolute;
-	
+    display: block;
+    position: absolute;
+    background-color: $border;
+}
+//上横线
+.topline:before{
 	left: 0;
-	right: auto;
-	height: 1px;
-	width: 100%;
-	
-	-webkit-transform-origin: 50% 100%;
-	background-color: $border;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 100%;
 }
-.topline:before {
+//下横线
+.underline:after,.hline,hr:after{
+	left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 100%;
+}
+//左竖线
+.leftline:before{
 	top: 0;
-	bottom: auto;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
 }
-.underline:after,hr:after {
-	top: auto;
-	bottom: 0;
+//右竖线
+.rightline:after,.vline{
+	top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
 }
-.leftline:before,.rightline:after {
-	content: '';
-	display: block;
-	position: absolute;
 
-	top: 0;
-	bottom: auto;
-	width: 1px;
-	height: 100%;
-	
-	-webkit-transform-origin: 100% 50%;
-	background-color: $border;
-}
-.leftline:before {
-	left: 0;
-	right: auto;
-}
-.rightline:after {
-	left: auto;
-	right: 0;
-}
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.line,.topline:before,.underline:after,hr:after {
+	//横线
+	.topline:before,.underline:after,.hline,hr:after {
 		-webkit-transform: scaleY(0.5);
 	}
-	.leftline:before,.rightline:after {
+	//竖线
+	.leftline:before,.rightline:after,.vline {
 		-webkit-transform: scaleX(0.5);
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-	.line,.topline:before,.underline:after,hr:after {
+	.topline:before,.underline:after,.hline,hr:after {
 		-webkit-transform: scaleY(0.33);
 	}
-	.leftline:before,.rightline:after {
+	.leftline:before,.rightline:after,.vline {
 		-webkit-transform: scaleX(0.33);
 	}
 }
+
 .bordered{
 	border-style:solid;
 	border-width:1px;

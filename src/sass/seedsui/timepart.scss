@@ -3,22 +3,25 @@
     padding: 1px 0;
     background-color:white;
 }
+//行
 .timepart-row{
     position: relative;
     display: -webkit-box;
     margin: 20px 20px 40px 20px;
 }
+//进度条
 .timepart-progress{
+    position: relative;
     pointer-events:none;
     display: none;
     position: absolute;
     top:0;
     left:0;
     bottom:0;
-    border-width: 1px;
+    /* border-width: 1px;
     border-style: solid;
     box-sizing: border-box;
-    border-color: $dpborder;
+    border-color: $dpborder; */
     &.active{
         background-color: $primary-bg;
     }
@@ -26,15 +29,15 @@
         background-color: $body-bg;
     }
 }
-
+//段
 .timepart-part{
+    position: relative;
     display: block;
-    width:16%;
     height:18px;
-    border-width:1px 1px 1px 0;
+    /* border-width:1px 1px 1px 0;
     border-style:solid;
     box-sizing:border-box;
-    border-color:$dpborder;
+    border-color:$dpborder; */
     //开始和结束时间
     .timepart-startTime,.timepart-endTime{
         float:left;
@@ -81,6 +84,7 @@
         //background-color: $body-bg;
     }
 }
+
 .timepart[data-col="2"] .timepart-row .timepart-part{
     width:50%;
 }
@@ -96,10 +100,92 @@
 .timepart[data-col="5"] .timepart-row .timepart-part{
     width:20%;
 }
-.timepart[data-col="6"] .timepart-row .timepart-part{
-    width:17%;
+.timepart[data-col="6"] .timepart-row{
+    .timepart-part{
+        width:17%;
+    }
+    .timepart-part:nth-of-type(2){
+        width:16%;
+    }
+    .timepart-part:nth-of-type(5){
+        width:16%;
+    }
 }
-.timepart[data-col="6"] .timepart-row .timepart-part:nth-of-type(even){
-    width:16%;
+
+/*=======边框=======*/
+.timepart-row:before,.timepart-row:after,.timepart-part:before,.timepart-part:after,.timepart-progress:before,.timepart-progress:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $border;
+    z-index: 1;
+}
+//row左竖线
+.timepart-row:before{
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
+}
+//row上横线
+.timepart-row:after{
+    left: 0;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 100%;
+}
+//part右竖线
+.timepart-part:before{
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
+}
+//part下横线
+.timepart-part:after{
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 100%;
+}
+//progress左竖线
+.timepart-progress:before{
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
+}
+//progress右竖线
+.timepart-progress:after{
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    -webkit-transform-origin: 100% 50%;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    //横线
+    .timepart-row:after,.timepart-part:after {
+        -webkit-transform: scaleY(0.5);
+    }
+    //竖线
+    .timepart-row:before,.timepart-part:before,.timepart-progress:before,.timepart-progress:after {
+        -webkit-transform: scaleX(0.5);
+    }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+    //横线
+    .timepart-row:after,.timepart-part:after {
+        -webkit-transform: scaleY(0.33);
+    }
+    //竖线
+    .timepart-row:before,.timepart-part:before,.timepart-progress:before,.timepart-progress:after {
+        -webkit-transform: scaleX(0.33);
+    }
 }
 /*----------------timepart.less(end)--------------*/

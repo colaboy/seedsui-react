@@ -36,33 +36,13 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
         var view={
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
-            render:function(){
-                /*渲染数据*/
-                this.load();
-            },
-            load:function(){
-                /*DOM*/
-                this.btnMonth=document.getElementById("ID-Month");
-                this.btnWeek=document.getElementById("ID-Week");
-                this.btnToday=document.getElementById("ID-Today");
-                this.btnReset=document.getElementById("ID-Reset");
-                this.btnShow=document.getElementById("ID-Show");
-                this.btnHide=document.getElementById("ID-Hide");
-                this.divCalendar=document.getElementById("ID-Calendar");
-                /*Plugin*/
-                this.calendar=this._initCalendar();
-
-                this._attach();//使用backbone时，此行无用
-            },
-
             /*=========================
               Model
               ===========================*/
-            _initCalendar:function(){
-                return new Calendar(this.divCalendar,{
+            render:function(){
+                var self = this;
+                //日历
+                this.calendar=new Calendar("#ID-Calendar",{
                     viewType:"week",
                     isShowDayNum:true,
                     //disableBeforeDate:new Date(),
@@ -74,12 +54,33 @@
                         //console.log(e.activeDate);
                     }
                 });
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
+
+                this.btnMonth=document.getElementById("ID-Month");
+                this.btnWeek=document.getElementById("ID-Week");
+                this.btnToday=document.getElementById("ID-Today");
+                this.btnReset=document.getElementById("ID-Reset");
+                this.btnShow=document.getElementById("ID-Show");
+                this.btnHide=document.getElementById("ID-Hide");
+                this.divCalendar=document.getElementById("ID-Calendar");
+
                 this.btnMonth.onclick=function(){
                     self.calendar.showMonth();
                 }
@@ -106,7 +107,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回

@@ -47,28 +47,53 @@
 		    <a class="titlebar-button" href="javascript:back()">
 	            <i class="icon icon-arrowleft"></i>
 	        </a>
-		    <h1 class="titlebar-title">slideLeft</h1>
+		    <h1 class="titlebar-title">二级页面</h1>
 		  </div>
 		</header>
 		<article>
-			<a class="button block bg-1 SID-BtnSelf" data-href="#ID-Page1-Page1" target="_self">_self打开</a>
-			<a class="button block bg-2" href="#ID-Page1-Page1">普通打开</a>
-			<div class="bg-1" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			<a class="button block" href="#ID-Page1Lvl3">进入三级页面</a>
+			<a class="button block SID-BtnSelf" data-href="#ID-Page1Lvl3" target="_self">_self打开</a>
 		</article>
 	</section>
-	<!--page1_close-->
-	<section id="ID-Page1-Page1" data-animation="slideLeft">
+	<section id="ID-Page1Lvl3" data-animation="slideLeft">
 		<header>
 		  <div class="titlebar">
 		    <a class="titlebar-button" href="javascript:back()">
 	            <i class="icon icon-arrowleft"></i>
 	        </a>
-		    <h1 class="titlebar-title">slideLeft</h1>
+		    <h1 class="titlebar-title">三级页面</h1>
 		  </div>
 		</header>
 		<article>
-			<div style="padding: 100px 0;text-align: center;">Close页面</div>
-			<div class="bg-1" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			<a class="button block" href="#ID-Page1Lvl4">进入四级页面</a>
+		</article>
+	</section>
+	<section id="ID-Page1Lvl4" data-animation="slideLeft">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">四级页面</h1>
+		  </div>
+		</header>
+		<article>
+			<a class="button block" href="#ID-Page1Lvl5">进入五级页面</a>
+		</article>
+	</section>
+	<section id="ID-Page1Lvl5" data-animation="slideLeft">
+		<header>
+		  <div class="titlebar">
+		    <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+		    <h1 class="titlebar-title">五级页面</h1>
+		  </div>
+		</header>
+		<article>
+			<a class="button block" href="javascript:history.go(-1)">history.go(-1)</a>
+			<a class="button block" href="javascript:history.go(-2)">history.go(-2)</a>
+			<a class="button block" href="javascript:history.go(-3)">history.go(-3)</a>
 		</article>
 	</section>
 	<!--page2-->
@@ -158,7 +183,7 @@
 		</header>
 		<article>
 			<div style="padding: 100px 0;text-align: center;">none页面</div>
-			<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			<div class="bg-7" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 		</article>
 	</section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -168,8 +193,25 @@
               Model
               ===========================*/
             render:function(){
+            	var self=this;
+                this.history=new History({
+                	onBack:function(e){
+                		if(e.discardList){
+                			for(var i=0,discardLi;discardLi=e.discardList[i++];){
+                				document.querySelector(discardLi).classList.remove("active");
+                			}
+                		}
+                		//console.log("后退："+e.prevHash);
+                		if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
+                		if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
+                	},
+                	onForward:function(e){
+                		//console.log("前进："+e.currentHash);
+                		document.querySelector(e.currentHash).classList.add("active");
+                	}
+                });
 
-            	this.sections=new Sections({
+                this.sections=new Sections({
                 	onStart:function(e){
                 		//console.log("开始显示："+e.container.id);
                 	},
@@ -180,17 +222,7 @@
                 		//console.log("隐藏完成："+e.container.id);
                 	}
                 });
-                this.history=new History({
-                	onBack:function(e){
-                		console.log("后退："+e.prevHash);
-                		if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
-                		if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
-                	},
-                	onForward:function(e){
-                		console.log("前进："+e.currentHash);
-                		document.querySelector(e.currentHash).classList.add("active");
-                	}
-                });
+
                 //初始化时，历史记录就有了，说明刷新过了
                 if(this.history.list.length>0){
                 	for(var i=0,hash;hash=this.history.list[i++];){

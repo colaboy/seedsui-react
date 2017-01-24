@@ -16,7 +16,7 @@
 	min-width: 200px;
 }
 .tree-line:active{
-	background-color:$border;
+	background-color:$bar-bg;
 }
 .tree-line.extand+ul{
 	display:block;
@@ -69,6 +69,7 @@
 }
 /*左侧小箭头*/
 .tree-icon-arrow{
+	display: block;
 	width: 16px;
 	height: 16px;
 	background-image:url(img/arrow.png);

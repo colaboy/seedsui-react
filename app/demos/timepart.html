@@ -19,25 +19,30 @@
     </header>
 	<article>
         <div class="timepart group" id="ID-Timepart">
-            <!-- <div class="timepart-row" data-timeStart="07:00" data-timeEnd="10:00">
-                <div class="timepart-progress"></div>
-                <label class="timepart-part" data-timeStart="07:00" data-timeEnd="07:30">
-                    <span>07:00</span>
+            <!-- <div class="timepart-row">
+                <label class="timepart-part">
+                    <span class="timepart-startTime">07:00</span>
+                    <span class="timepart-endTime">07:30</span>
                 </label>
-                <label class="timepart-part" data-timeStart="07:30" data-timeEnd="08:00">
-                    <span>07:30</span>
+                <label class="timepart-part">
+                    <span class="timepart-startTime">07:30</span>
+                    <span class="timepart-endTime">08:00</span>
                 </label>
-                <label class="timepart-part" data-timeStart="08:00" data-timeEnd="08:30">
-                    <span>08:00</span>
+                <label class="timepart-part">
+                    <span class="timepart-startTime">08:00</span>
+                    <span class="timepart-endTime">08:30</span>
                 </label>
-                <label class="timepart-part" data-timeStart="08:30" data-timeEnd="9:00">
-                    <span>08:30</span>
+                <label class="timepart-part">
+                    <span class="timepart-startTime">08:30</span>
+                    <span class="timepart-endTime">09:00</span>
                 </label>
-                <label class="timepart-part" data-timeStart="09:00" data-timeEnd="9:30">
-                    <span>09:00</span>
+                <label class="timepart-part">
+                    <span class="timepart-startTime">09:00</span>
+                    <span class="timepart-endTime">09:30</span>
                 </label>
-                <label class="timepart-part" data-timeStart="09:30" data-timeEnd="10:00">
-                    <span>10:00</span>
+                <label class="timepart-part">
+                    <span class="timepart-startTime">09:30</span>
+                    <span class="timepart-endTime">10:00</span>
                 </label>
             </div> -->
         </div>
@@ -45,28 +50,87 @@
 	</article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
-        var toast=new Toast("");
-        var timepart=new Timepart("#ID-Timepart",{
-            startTime:"7:00",
-            endTime:"21:00",
-            onClickDisabled:function(e){
-                toast.setText("不能选择禁用时间段");
-                toast.show();
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            render:function(){
+                var self = this;
+                //提示框
+                this.toast=new Toast("");
+                //时间段
+                this.part1,this.part2;
+                this.timepart=new Timepart("#ID-Timepart",{
+                    startTime:"0:00",
+                    endTime:"24:00",
+                    
+                    onConflictOver:function(e){
+                        self.toast.setText("不能跨选禁用时间段");
+                        self.toast.show();
+                        //移除所有选中效果
+                        e.removeAllActive();
+                    },
+                    onConflictContain:function(e){
+                        self.toast.setText("选择的时间段已经有时间段被选了");
+                        self.toast.show();
+                    },
+                    onClickActive:function(s){
+                        s.removeAllActive();
+                    },
+                    onClickDisabled:function(e){
+                        self.toast.setText("不能选择禁用时间段");
+                        self.toast.show();
+                    },
+                    onClickValid:function(s){
+                        if(s.clickCount==1){//如果点击了一次
+                            self.part1=s.target;
+                            self.part1.classList.add(s.params.activeClass);
+                        }else if(s.clickCount==2){//如果点击了两次
+                            self.part2=s.target;
+                            //选中
+                            var times=s.getTimesByParts(self.part1,self.part2);
+                            s.activeTimes(times.startTime,times.endTime);
+                        }else if(s.clickCount==3){//如果点击了三次
+                            s.removeAllActive();
+                        }
+                    },
+                });
+                this.timepart.disableTimes(null,new Date(),["SID-DisabledBefore"]);
+                this.timepart.disableTimes("11:00","12:00");
+                //加载数据
+                this.loadData();
             },
-            onOverDisabled:function(e){
-                toast.setText("不能跨选禁用时间段");
-                toast.show();
-            }
-        });
-        timepart.disableTimes("7:10","8:10");
-        timepart.disableTimes("9:00","9:10");
-        
-        document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
-            var starttime=timepart.getActiveStartTime();
-            console.log("选中的开始时间："+starttime);
-            var endtime=timepart.getActiveEndTime();
-            console.log("选中的结束时间："+endtime);
-        },false);
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
+                    var times=self.timepart.getActiveTimes();
+                    var starttime=times.startTime;
+                    var endtime=times.endTime;
+                    console.log("选中时间："+starttime+" ~ "+endtime);
+                },false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+        }
+
+        window.addEventListener("load",function(){
+            view.render();
+        }, false);
+
 		//定义exmobi返回
 		function back() {
 			history.go(-1);
