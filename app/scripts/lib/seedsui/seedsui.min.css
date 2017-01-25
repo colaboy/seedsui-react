@@ -960,6 +960,8 @@ aside {
     font-size: 20px;
     height: 20px;
     width: 20px; }
+.inputbox-search.active .inputbox-search-placeholder {
+  display: none; }
 .inputbox-search input[type=search]:focus ~ .inputbox-search-placeholder {
   display: none; }
 
@@ -4627,6 +4629,8 @@ details[open] summary .summary-icon {
   width: 42px;
   height: 42px;
   border-radius: 100%;
+  background-size: cover;
+  background-position: center;
   background-color: #ffae02;
   color: white;
   pointer-events: none; }
@@ -4699,7 +4703,7 @@ details[open] summary .summary-icon {
   margin: 0 8px; }
 
 /*删除图标*/
-.tree-btnremove {
+.tree-btndel {
   font-size: 20px;
   vertical-align: middle;
   margin-left: 4px;

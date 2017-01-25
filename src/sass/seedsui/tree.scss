@@ -39,6 +39,8 @@
     width:42px;
     height:42px;
     border-radius:100%;
+    background-size: cover;
+    background-position: center;
     background-color:$random2-bg;
     color:white;
     pointer-events: none;
@@ -111,7 +113,7 @@
     margin:0 8px;
 }
 /*删除图标*/
-.tree-btnremove{
+.tree-btndel{
 	font-size:20px;
 	vertical-align:middle;
 	margin-left:4px;

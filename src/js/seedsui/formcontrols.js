@@ -6,6 +6,7 @@
 		================*/
 		var defaults={
 			rangeTipClass:"range-tooltip",//滑动条弹出框
+			searchClass:"inputbox-search",
 			numboxClass:"numbox",//数字框
 			switchClass:"switch",//开关控件
 			turnClass:"turn",//开关控件
@@ -99,6 +100,11 @@
 				inputpre.pre=inputpre.nextElementSibling;
 				inputpre.preSpan=inputpre.pre.childNodes[0];
 				inputpre[action]("input",s.onInputpre,false);
+			}
+			//搜索框
+			var inputSearchs=document.querySelectorAll("."+s.params.searchClass+" input[type='search']");
+			for(var p=0,inputSearch;inputSearch=inputSearchs[p++];){
+				inputSearch[action]("blur",s.onBlurSearch,false);
 			}
 		}
 		s.hasEvents=false;
@@ -239,7 +245,7 @@
 			var btnMinus=this;
 			s.numboxSum(inputNumber,btnPlus,btnMinus,false);
 		}
-		/*自动增高控件*/
+		//自动增高控件
 		s.onInputpre=function(e){
 			var thisEl=e.target;
 			var pre=thisEl.pre;
@@ -247,6 +253,15 @@
 			//计算textarea高度
 			preSpan.innerText=this.value;
 			this.style.height=pre.clientHeight+"px";
+		}
+		//搜索框
+		s.onBlurSearch=function(e){
+			console.log(e.target.value);
+			if(e.target.value==""){
+				e.target.parentNode.classList.remove("active");
+			}else{
+				e.target.parentNode.classList.add("active");
+			}
 		}
 		//初始化
 		s.init=function(){

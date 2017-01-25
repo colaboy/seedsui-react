@@ -52,6 +52,12 @@
 		
 		}
 	}
+	//input[type=search]:focus,&.active{
+	&.active{
+		.inputbox-search-placeholder{
+			display: none;
+		}
+	}
 	input[type=search]:focus{
 		~.inputbox-search-placeholder{
 			display: none;

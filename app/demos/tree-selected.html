@@ -6,300 +6,78 @@
     <meta name="format-detection" content="telephone=no">
 	<title>tree-selected</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-    <style>
-    .app-blockSearch {
-        background-color: #e0e0e0;
-        padding:6px 10px;
-    }
-    .app-blockSearch form{
-        position: relative;
-        display: -webkit-box;
-        -webkit-box-align: center;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 6px;
-        background-color: #ffffff;
-        border-color: #e6e6e6;
-    }
-    .app-blockSearch .icon {
-        margin: 0 8px;
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        color: #ccc;
-    }
-    .app-blockSearch input[type=search] {
-        display: block;
-        -webkit-box-flex: 1.0;
-        border-width: 0;
-        padding: 6px 8px 6px 0;
-        background-color: transparent;
-    }
-/* 
-    .app-titleSearch{
-        position: relative;
-        display: -webkit-box;
-        -webkit-box-align: center;
-        margin: 0 12px 0 40px;
-        -webkit-box-flex: 1.0;
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 40px;
-        background-color: #ffffff;
-        border-color: #e6e6e6;
-    }
-    .app-titleSearch .icon{
-        margin:0 8px;
-        font-size: 20px;
-        width: 20px;
-        height: 20px;
-        color: #ccc;
-    }
-    .app-titleSearch input[type=search]{
-        display: block;
-        -webkit-box-flex: 1.0;
-        border-width: 0;
-        padding: 4px 8px 4px 0;
-        background-color: transparent;
-    } */
-    </style>
 </head>
 
 <body ontouchstart="">
     <header>
-       <div class="titlebar">
-            <a class="titlebar-button titlebar-left" href="javascript:back()">
+        <div class="titlebar">
+            <a class="titlebar-button titlebar-left" href="javascript:history.go(-1)">
                 <i class="icon icon-arrowleft"></i>
             </a>
             <h1 class="titlebar-title text-center">人员选择</h1>
             <div class="titlebar-right">
-                <a class="titlebar-button" id="ID-BtnSearch">
-                    <i class="icon icon-search"></i>
+                <a class="titlebar-button" id="ID-Tree-BtnClear">
+                    <i class="icon icon-rdoclose"></i>
                 </a>
-                <a class="titlebar-button" id="ID-BtnOk">
+                <a class="titlebar-button" id="ID-Tree-BtnSubmit">
                     <i class="icon icon-rdohook"></i>
                 </a>
             </div>
         </div>
     </header>
     <article>
-        <div class="tree-bar" id="ID-Treebar1"></div>
-        <!-- tree1 -->
-        <div class="tree-box">
-            <ul class="tree" id="ID-Tree1">
-                <li>
-                    <div class="tree-line" data-id="group-1" data-name="业务产品部">
-                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                        
-                        <div class="tree-title">业务产品部</div>
-                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                    </div>
-                    <ul>
-                        <li>
-                            <div class="tree-line" data-id="group-2" data-name="研发体系">
-                                <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                
-                                <div class="tree-title">研发体系</div>
-                                <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="tree-line" data-id="group-3" data-name="开发一部">
-                                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                        
-                                        <div class="tree-title">开发一部</div>
-                                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                    </div>
-                                    <ul>
-                                    	<li>
-                                    		<div class="tree-line" data-id="group-4" data-previd="group-3" data-name="成少波">
-                                                <div class="tree-icon">
-                                        			<span class="tree-photo bg-1">少波</span>
-                                                </div>
-	                                            <div class="tree-title">成少波</div>
-	                                            <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-	                                        </div>
-                                    	</li>
-                                    	<li>
-                                    		<div class="tree-line" data-id="group-5" data-previd="group-3" data-name="颜学文">
-                                                <div class="tree-icon">
-                                        			<span class="tree-photo bg-2">学文</span>
-                                                </div>
-	                                            <div class="tree-title">颜学文</div>
-	                                            <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-	                                        </div>
-                                    	</li>
-                                    	<li>
-                                    		<div class="tree-line" data-id="group-6" data-previd="group-3" data-name="张泉">
-                                                <div class="tree-icon">
-                                        			<span class="tree-photo bg-4">张泉</span>
-                                                </div>
-	                                            <div class="tree-title">张泉</div>
-	                                            <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-	                                        </div>
-                                    	</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-7" data-name="开发二部">
-                                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                        
-                                        <div class="tree-title">开发二部</div>
-                                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-8" data-name="开发三部">
-                                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                        
-                                        <div class="tree-title">开发三部</div>
-                                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="tree-line" data-id="group-9" data-name="开发一部">
-                                                <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                                
-                                                <div class="tree-title">开发一组</div>
-                                                <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <div class="tree-line" data-id="group-10" data-name="市场体系">
-                                <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                
-                                <div class="tree-title">市场体系</div>
-                                <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="tree-line" data-id="group-11" data-name="上海办">
-                                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                        
-                                        <div class="tree-title">上海办</div>
-                                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="tree-line" data-id="group-12" data-name="广州办名字超长超长超长超">
-                                        <div class="tree-icon"><i class="tree-icon-arrow"></i></div>
-                                        
-                                        <div class="tree-title">广州办名字超长超长超长超</div>
-                                        <span class="tree-icon icon-rdoadd-fill tree-btnadd"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <!-- tree bar -->
+        <div class="tree-bar" id="ID-Tree-Bar"></div>
+        <!-- tree -->
+        <div class="tree-box" id="ID-Tree-Box">
+            <ul class="tree" id="ID-Tree-List"></ul>
         </div>
     </article>
-	
-    <!--page1-->
-    <section id="ID-PageSearchResult" data-animation="slideLeft" style="background-color: #f4f4f4">
-        <header>
-            <div class="titlebar">
-                <a class="titlebar-button titlebar-left" href="javascript:back()">
-                    <i class="icon icon-arrowleft"></i>
-                </a>
-                <h1 class="titlebar-title text-center">搜索人员</h1>
-            </div>
-            <div class="app-blockSearch">
-                <form id="ID-FormSearch" class="inputbox inputbox-search underline" data-input="clear">
-                    <input type="search" class="search input-text" style="padding: 6px 12px;">
-                    <i class="color-placeholder icon icon-clear-fill hide size20"></i>
-                    <div class="inputbox-search-placeholder">
-                        <i class="inputbox-search-icon icon icon-search"></i>
-                        <span>请输入人员姓名</span>
-                    </div>
-                </form>
-            </div>
-        </header>
-        <article style="padding-top: 87px">
-            <div id="ID-BoxSearchResult" class="group" style="margin-top: 0;"></div>
-        </article>
-    </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
+    <script src="tree.data.js"></script>
 	<script>
-    var view={
+        var view={
             /*=========================
               Model
               ===========================*/
             render:function(){
                 var self = this;
 
-                this.toast = new Toast("没有子节点");
-                this.formControls=new FormControls();
-
-                //历史记录
-                this.history = new History({
-                    onBack:function(e){
-                        console.log("后退："+e.prevHash);
-                        if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
-                        if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
-                    },
-                    onForward:function(e){
-                        console.log("前进："+e.currentHash);
-                        document.querySelector(e.currentHash).classList.add("active");
-                    }
-                });
-                //初始化时，历史记录就有了，说明刷新过了
-                if(this.history.list.length>0){
-                    for(var i=0,hash;hash=this.history.list[i++];){
-                        document.querySelector(hash).classList.add("active");
-                    }
-                }
-
                 //树结构
-                this.tree=new Tree("#ID-Tree1",{
-                    selectedContainer:"#ID-Treebar1",
-                    //需自定义：点击树展开
-                    onTap:function(e){
-                        /*console.log("您点击了：");
-                        console.log(e.target);
-                        console.log("点击的li为：");
-                        console.log(e.targetLi);
-                        console.log("当前选中的节点有：");
-                        console.log(e.selected);
-                        console.log("点击的行为：");
-                        console.log(e.targetLine);*/
-                    },
-                    onTapLastChild:function(e){//没有子节点
-                        //点击添加子节点
-                        if(!e.targetLine.getAttribute("data-previd")){
-                            //如果是组织，且无子节点，则添加子节点
-                            /*var ul=document.createElement("ul");
-                            ul.innerHTML='<li><div class="tree-line">子节点</div></li>';
-                            e.targetLi.insertBefore(ul,e.targetLine.nextElementSibling);*/
+                this.tree=new Tree("#ID-Tree-List",{
+                    data:data,
+                    enableSelected:true,
+                    bar:"#ID-Tree-Bar",
+                    onData:function(option){
+                        if(option.loginId){
+                            var photo="";
+                            if(option.avatarUrl){
+                                photo='<span class="tree-photo" style="background-image:url('+option.avatarUrl+')"></span>';
+                            }else{
+                                photo='<span class="tree-photo" style="background-color:'+option.name.substr(0,1).toPinyin().substr(0,1).toColor()+'">'+option.name.substr(option.name.length-2,2)+'</span>';
+                            }
+                            option.html='<div class="tree-icon">'+photo+'</div>'+
+                            '<div class="tree-title">'+option.name+'</div>';
                         }
-                        
-                        //提示到底了
-                        self.toast.show();
                     },
-                    onClickTreebarDel:function(e){
-                        var dataId=e.option.getAttribute(e.params.dataId);;
-                        var elLines=document.querySelectorAll("["+e.params.dataId+"='"+dataId+"']");
-                        [].slice.call(elLines).forEach(function(n,i,a){
-                            n.classList.remove(e.params.lineActiveClass);
-                        })
+                    onClick:function(e){
+                        /*console.log("点击行："+e.targetLine);
+                        console.log("点击元素："+e.target);
+                        console.log("点击的li："+e.targetLi);*/
+                    },
+                    onClickLastChild:function(e){//没有子节点
+                        console.log("没有子节点");
+                        var id=e.targetLine.getAttribute("data-id");
+                        if(id==="c6e56510-c293-48bc-ac8e-bfa3a1926417"){
+                            console.log("立刻加载");
+                            e.addData(userData,id,e.targetLine.nextElementSibling);
+                        }
                     }
                 });
                 //加载数据
                 this.loadData();
             },
-            refresh:function(){
-                console.log("刷新");
-            },
-            destroy:function(){
-                console.log("移除");
-            },
             loadData:function(){
-
                 this._attach();//使用backbone时，此行无用
             },
             /*=========================
@@ -310,84 +88,37 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
-                this.btnOk=document.getElementById("ID-BtnOk");
-                this.btnSearch=document.getElementById("ID-BtnSearch");
-                this.formSearch=document.getElementById("ID-FormSearch");
-                this.boxSearchResult=document.getElementById("ID-BoxSearchResult");
+                //点击清空按钮
+                document.getElementById("ID-Tree-BtnClear").addEventListener("click",function(e){
+                    self._onClickClear(e);
+                },false);
                 //点击确定按钮
-                this.btnOk.addEventListener("click",function(e){
-                    self._onClickBtnOk(e);
-                },false);
-                //点击搜索按钮
-                this.btnSearch.addEventListener("click",function(e){
-                    self._onClickBtnSearch(e);
-                },false);
-                //提交搜索表单
-                this.formSearch.addEventListener("submit",function(e){
-                    self._onSubmitFormSearch(e);
+                document.getElementById("ID-Tree-BtnSubmit").addEventListener("click",function(e){
+                    self._onClickSubmit(e);
                 },false);
             },
             /*=========================
               Event Handler
               ===========================*/
-            _onClickBtnAsynAdd:function(e){
-                var node=e.target.parentNode;
-                this.tr1.addSelectNode(node);
-            },
-            //需自定义：点击提交按钮
-            _onClickBtnOk:function(e){
-                console.log("你所选择的树节点Id为：");
-                console.log(this.tr1.selected);
-            },
-            _onClickBtnSearch:function(e){
-                this.boxSearchResult.innerHTML="";
-                window.location.href="#ID-PageSearchResult";
-            },
-            //需自定义：软键盘搜索
-            _onSubmitFormSearch:function(e){
-                e.preventDefault();
-                var self=this;
-                var str="";
-                this.dataPeople=[
-                    {id:"group-1001",prevId:"group-3",name:"成婷"},
-                    {id:"group-1002",prevId:"group-3",name:"寅东"},
-                    {id:"group-1003",prevId:"group-3",name:"张清"}
-                ];
-                for(var i=0,people;people=this.dataPeople[i++];){
-                    var bool=this.tr1.hasSelectOption(people.id,people.prevId);
-                    var suffixName=people.name.substr(people.name.length-2,2);
-                    var suffixColor=suffixName.toPinyin().toColor();
-                    if(bool){
-                        str+='<div class="tree-line active" style="padding-left:10px" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
-                        '<div class="tree-icon"><span class="tree-photo" style="background-color:'+suffixColor+'">'+suffixName+'</span></div>'+
-                            '<div class="tree-title">'+people.name+'</div>'+
-                            '<small class="tree-icon">研发一部</small>'+
-                        '</div>';
-                    }else{
-                        str+='<div class="tree-line" style="padding-left:10px" data-id="'+people.id+'" data-previd="'+people.prevId+'" data-name="'+people.name+'">'+
-                        '<div class="tree-icon"><span class="tree-photo" style="background-color:'+suffixColor+'">'+suffixName+'</span></div>'+
-                            '<div class="tree-title">'+people.name+'</div>'+
-                            '<small class="tree-icon">研发一部</small>'+
-                            '<i class="tree-icon SID-BtnAsynAdd icon-rdoadd-fill tree-btnadd"></i>'+
-                        '</div>';
-                    }
+            _onClickSubmit:function(e){
+                //获得值
+                var selected=this.tree.selected,name="",id="";
+                for(var n in selected){
+                    id+=n+",";
+                    name+=selected[n].getAttribute("data-name")+",";
                 }
-                this.boxSearchResult.innerHTML=str;
-                //点击添加按钮
-                this.btnAsynAdds=document.querySelectorAll(".SID-BtnAsynAdd");
-                [].slice.call(this.btnAsynAdds).forEach(function(n){
-                    n.addEventListener("click",function(e){
-                        self._onClickBtnAsynAdd(e);
-                    },false);
-                })
+                name=name.substr(0,name.length-1);
+                id=id.substr(0,id.length-1);
+                console.log(name,id);
+            },
+            _onClickClear:function(e){
+                this.tree.reset();
             }
         }
 
         window.addEventListener("load",function(){
             view.render();
         }, false);
-	//定义exmobi返回
-	function back(){history.go(-1);}
 	</script>
 </body>
 </html>
