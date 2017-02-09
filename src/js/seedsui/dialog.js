@@ -7,12 +7,12 @@
         var defaults={
             overflowContainer:document.body,
             dialogClass:"dialog",
+            position:"middle",
+            animationAttr:"data-animation",
+            animation:"fade",
             maskClass:"mask",
-            position:null,
-            defaultPosition:"middle",
             css:{},
             maskCss:{},
-            duration:300,
             isClickMaskHide:true
             /*callbacks
             onClick:function(Dialog)
@@ -57,7 +57,8 @@
         //ContainerBox
         s.createContainerBox=function(){
             var dialog=document.createElement("div");
-            dialog.setAttribute("class",s.params.dialogClass);
+            dialog.classList.add(s.params.dialogClass,s.params.position);
+            dialog.setAttribute(s.params.animationAttr,s.params.animation);
             return dialog;
         }
         s.create=function(){
@@ -70,143 +71,74 @@
             s.parent.insertBefore(s.mask,s.container);
         }
         s.create();
-
         s.update=function(){
-            s.wrapper.style.display="block";
-            s.container.setAttribute("style","");
-            if(s.params.position){
-                s.container.setAttribute("data-position",s.params.position);
-            }else if(s.container.getAttribute("data-position")){
-                s.params.position=s.container.getAttribute("data-position");
-            }else{
-                s.params.position=s.params.defaultPosition;
-                s.container.setAttribute("data-position",s.params.position);
-            }
             //Dialog Css
-            for(var c in s.params.css){
-                s.container.style[c]=s.params.css[c];
+            for(var style in s.params.css){
+                s.container.style[style]=s.params.css[style];
             }
             //Mask Css
-            for(var maskc in s.params.maskCss){
-                s.mask.style[maskc]=s.params.maskCss[maskc];
+            for(var style in s.params.maskCss){
+                s.mask.style[style]=s.params.maskCss[style];
             }
-            switch(s.params.position){
-                case "top":case "top-right":
-                s.container.showAnimation={webkitTransform:"translate3d(0,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(0,-100%,0)"},
-                s.container.style.webkitTransform="translate3d(0,-100%,0)";
-                break;
-                case "top-center":
-                s.container.showAnimation={webkitTransform:"translate3d(-50%,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(-50%,-100%,0)"},
-                s.container.style.webkitTransform="translate3d(-50%,-100%,0)";
-                break;
-
-                case "bottom":case "bottom-right":
-                s.container.showAnimation={webkitTransform:"translate3d(0,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(0,100%,0)"},
-                s.container.style.webkitTransform="translate3d(0,100%,0)";
-                break;
-                case "bottom-center":
-                s.container.showAnimation={webkitTransform:"translate3d(-50%,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(-50%,100%,0)"},
-                s.container.style.webkitTransform="translate3d(-50%,100%,0)";
-                break;
-
-                case "left":case "left-bottom":
-                s.container.showAnimation={webkitTransform:"translate3d(0,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(-100%,0,0)"},
-                s.container.style.webkitTransform="translate3d(-100%,0,0)";
-                break;
-                case "left-middle":
-                s.container.showAnimation={webkitTransform:"translate3d(0,-50%,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(-100%,-50%,0)"},
-                s.container.style.webkitTransform="translate3d(-100%,-50%,0)";
-                break;
-
-                case "right":case "right-bottom":
-                s.container.showAnimation={webkitTransform:"translate3d(0,0,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(100%,0,0)"},
-                s.container.style.webkitTransform="translate3d(100%,0,0)";
-                break;
-
-                case "right-middle":
-                s.container.showAnimation={webkitTransform:"translate3d(0,-50%,0)"},
-                s.container.hideAnimation={webkitTransform:"translate3d(100%,-50%,0)"},
-                s.container.style.webkitTransform="translate3d(100%,-50%,0)";
-                break;
-
-                default:
-                s.container.showAnimation={opacity:1},
-                s.container.hideAnimation={opacity:0},
-                s.container.style.opacity=0;
-                break;
-            }
-            //设置动画毫秒数
-            s.container.style.webkitTransitionDuration=s.params.duration+"ms";
+            //源容器显示
+            s.wrapper.style.display="block";
         }
         s.update();
         /*=========================
           Method
           ===========================*/
         s.showMask=function(){
-            s.mask.style.visibility="visible";
-            s.mask.style.opacity="1";
+            s.mask.classList.add("active");
         }
         s.hideMask=function(){
-            s.mask.style.opacity="0";
+            s.mask.classList.remove("active");
         }
         s.destroyMask=function(){
             s.parent.removeChild(s.mask);
         }
         s.showDialog=function(){
-            s.container.style.visibility="visible";
-            for(var ani in s.container.showAnimation){
-                s.container.style[ani]=s.container.showAnimation[ani];
-            }
+            s.container.classList.add("active");
         }
         s.hideDialog=function(){
-            for(var ani in s.container.hideAnimation){
-                s.container.style[ani]=s.container.hideAnimation[ani];
-            }
+            s.container.classList.remove("active");
         }
         s.destroyDialog=function(){
             s.parent.removeChild(s.container);
         }
         s.isHid=true;
-        s.show=function(fn){
+        s.show=function(){
             s.isHid=false;
             s.showMask();
             s.showDialog();
-            if(fn)s.params.onShowed=fn;
             //禁用滚动条
             if(s.overflowContainer)
             s.overflowContainer.style.overflow="hidden";
         }
-        s.hide=function(fn){
+        s.hide=function(){
             s.isHid=true;
             s.hideMask();
             s.hideDialog();
-            if(fn)s.params.onHid=fn;
             //显示滚动条
             if(s.overflowContainer)
             s.overflowContainer.style.overflow="auto";
         }
-        s.toggle=function(fn){
+        s.toggle=function(){
             if(s.isHid){
-                s.show(fn);
+                s.show();
             }else{
-                s.hide(fn);
+                s.hide();
             }
         }
         s.destroy=function(){
             s.destroyMask();
             s.destroyDialog();
         }
-        //设置位置
-        s.setPosition=function(pos){
-            s.params.position=pos;
-            s.update();
+        //设置
+        s.setOnClick=function(fn){
+            s.params.onClick=fn;
+        }
+        s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
         }
         /*================
         Control
@@ -228,27 +160,25 @@
         }
         s.onClick=function(e){
             s.target=e.target;
+            //CallBack onClick
             if(s.params.onClick)s.params.onClick(s);
-        }
-        s.setOnClick=function(fn){
-            s.params.onClick=fn;
         }
         s.onClickMask=function(e){
             s.target=e.target;
+            //CallBack onClickMask
             if(s.params.onClickMask)s.params.onClickMask(s);
             if(s.params.isClickMaskHide)s.hide();
         }
-        s.setOnClickMask=function(fn){
-            s.params.onClickMask=fn;
-        }
         s.onTransitionEnd=function(e){
+            if(e.propertyName=="visibility")return;
             s.target=e.target;
+            //Callback onTransitionEnd
             if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
             if(s.isHid){
-                s.container.style.visibility="hidden";
-                s.mask.style.visibility="hidden";
+                //Callback onHid
                 if(s.params.onHid)s.params.onHid(s);
             }else{
+                //Callback onShowed
                 if(s.params.onShowed)s.params.onShowed(s);
             }
         }

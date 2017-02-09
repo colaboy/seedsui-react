@@ -13,5 +13,9 @@
 	bottom:0;
 
 	background-color: $mask-bg;
+	&.active{
+		visibility:visible;
+		opacity:1;
+	}
 }
 /*--------------------mask.less(end)----------------------*/

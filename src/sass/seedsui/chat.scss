@@ -22,14 +22,13 @@ $chat-even-bg:#b8daff;
 			border-radius: 100%;
 		}
 		.chat-photo-author {
-			font-size: 12px;
+			font-size: $font-size-S;
 			font-style: normal;
 			color:$placeholder;
 		}
 	}
 	.chat-content-box {
 		display: inline-block;
-		font-size: 12px;
 		float: left;
 		margin-left: 12px;
 		width: 70%;
@@ -62,8 +61,7 @@ $chat-even-bg:#b8daff;
 			display: block;
 			position: relative;
 			font-style: normal;
-			font-weight: 700;
-			font-size: 12px;
+			font-size: $font-size-S;
 		}
 		p {
 			line-height: 24px;

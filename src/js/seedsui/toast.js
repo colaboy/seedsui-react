@@ -8,7 +8,7 @@
 		var defaults={
 			parent:document.body,
 			toastClass:"toast",
-			toastActiveClass:"active",
+			activeClass:"active",
 			css:{},
 			delay:1500,
 
@@ -64,11 +64,11 @@
 		s.isHid=true;
 		s.hide=function(fn){
 			s.isHid=true;
-			s.container.classList.remove(s.params.toastActiveClass);
+			s.container.classList.remove(s.params.activeClass);
 		};
 		s.show=function(fn){
 			s.isHid=false;
-			s.container.classList.add(s.params.toastActiveClass);
+			s.container.classList.add(s.params.activeClass);
 
 			//显示数秒后，自动消失
 			if(s.delayer)window.clearTimeout(s.delayer);
@@ -99,10 +99,10 @@
 			if(e.propertyName=="visibility")return;
 			if(s.isHid){
 				//Callback onHid
-				if(s.params.onHid)s.params.onHid();
+				if(s.params.onHid)s.params.onHid(s);
 			}else{
 				//Callback onShowed
-				if(s.params.onShowed)s.params.onShowed();
+				if(s.params.onShowed)s.params.onShowed(s);
 			}
 		}
 		/*================

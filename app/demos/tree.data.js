@@ -1,16 +1,16 @@
-var data=[
+var groupData=[
     {
         "id": "97666a35-778e-4d28-a973-df7144fe5887", 
         "name": "开发二部一室", 
         "parentId": "3fbb06c3-6ac5-4a19-9252-898818da5c30", 
         "description": "5001500250065003"
-    }, 
+    },
     {
         "id": "93fe4fa2-e75e-4e98-833d-7cdecdf2e3f9", 
         "name": "开发一部", 
         "parentId": "96a2835b-a1b2-4556-bf68-cb0038042b57", 
         "description": "500150025007"
-    }, 
+    },
     {
         "id": "afb6ae14-5d23-4117-b819-cc7e705e8ddb", 
         "name": "开发一部一室", 

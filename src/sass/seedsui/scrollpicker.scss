@@ -134,7 +134,7 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
 		background-color: $border;
 	}
 	&:before {
-		top: 0;
+		top: -1px;
 		bottom: auto;
 	}
 	&:after {

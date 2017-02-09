@@ -18,6 +18,10 @@
 	border-style:solid;
 	border-width:0;
 
+	vertical-align:top;
+	line-height: 0;
+	font-size: 0;
+
 	border-color:$dpborder;
 	color:$bar-color;
 	background-color:$bar-bg;
@@ -34,14 +38,12 @@
 }
 .tab-label{
 	display:inline-block;
+	font-size: $font-size-M;
 	max-width:100%;
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
 	pointer-events:none;
-
-	height:24px;
-	line-height:24px;
 	vertical-align:middle;
 }
 /*tabbar*/
@@ -71,7 +73,6 @@
 	line-height:0;
 	display:block;
 	.tab{
-		font-size:15px;
 		display:inline-block;
 	}
 }
@@ -169,7 +170,7 @@
 	max-width:96%;
 	.tab{
 		height:32px;
-		line-height:28px;
+		line-height:30px;
 		border-width:1px 1px 1px 0;
 	}
 	.tab:nth-of-type(1){

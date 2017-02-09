@@ -3,7 +3,11 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>section</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
 	<style type="text/css">
@@ -14,178 +18,181 @@
 </head>
 
 <body ontouchstart="">
-	<section id="ID-Page0">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:history.go(-1)">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">单页模式</h1>
-		  </div>
-		</header>
-		<article>
-			<a class="button block bg-1" href="#ID-Page1">slideLeft</a>
-		    <a class="button block bg-2" href="#ID-Page2">slideRight</a>
-		    <a class="button block bg-3" href="#ID-Page3">slideUp</a>
-		    <a class="button block bg-4" href="#ID-Page4">slideDown</a>
-		    <a class="button block bg-5" href="#ID-Page5">fade</a>
-		    <a class="button block bg-6" href="#ID-Page6">zoom</a>
-		    <a class="button block bg-7" href="#ID-Page7">none</a>
-		    <!-- <a type="button"style="margin:8px" class="button block bg-8" onclick="openPage('#ID-Page2')">用JS打开打二页</a> -->
-		    <div class="card" style="padding:8px;">
-		    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
-		    </div>
-		    <div class="card" style="padding:8px;">
-		    	适用于简单的单页处理，如需要大量使用单页模式，还请使用专业的backbone router或者angularjs router框架处理单页。
-		    </div>
-		</article>
-	</section>
-	<!--page1-->
-	<section id="ID-Page1" data-animation="slideLeft">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">二级页面</h1>
-		  </div>
-		</header>
-		<article>
-			<a class="button block" href="#ID-Page1Lvl3">进入三级页面</a>
-			<a class="button block SID-BtnSelf" data-href="#ID-Page1Lvl3" target="_self">_self打开</a>
-		</article>
-	</section>
-	<section id="ID-Page1Lvl3" data-animation="slideLeft">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">三级页面</h1>
-		  </div>
-		</header>
-		<article>
-			<a class="button block" href="#ID-Page1Lvl4">进入四级页面</a>
-		</article>
-	</section>
-	<section id="ID-Page1Lvl4" data-animation="slideLeft">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">四级页面</h1>
-		  </div>
-		</header>
-		<article>
-			<a class="button block" href="#ID-Page1Lvl5">进入五级页面</a>
-		</article>
-	</section>
-	<section id="ID-Page1Lvl5" data-animation="slideLeft">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">五级页面</h1>
-		  </div>
-		</header>
-		<article>
-			<a class="button block" href="javascript:history.go(-1)">history.go(-1)</a>
-			<a class="button block" href="javascript:history.go(-2)">history.go(-2)</a>
-			<a class="button block" href="javascript:history.go(-3)">history.go(-3)</a>
-		</article>
-	</section>
-	<!--page2-->
-	<section id="ID-Page2" data-animation="slideRight">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">slideRight</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">slideRight页面</div>
-			<div class="bg-2" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
-	<!--page3-->
-	<section id="ID-Page3" data-animation="slideUp">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">slideUp</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">slideUp页面</div>
-			<div class="bg-3" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
-	<!--page4-->
-	<section id="ID-Page4" data-animation="slideDown">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">slideDown</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">slideDown页面</div>
-			<div class="bg-4" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
-	<!--page5-->
-	<section id="ID-Page5" data-animation="fade">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">fade</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">fade页面</div>
-			<div class="bg-5" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
-	<!--page6-->
-	<section id="ID-Page6" data-animation="zoom">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">zoom</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">zoom页面</div>
-			<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
-	<!--page7-->
-	<section id="ID-Page7" data-animation="none">
-		<header>
-		  <div class="titlebar">
-		    <a class="titlebar-button" href="javascript:back()">
-	            <i class="icon icon-arrowleft"></i>
-	        </a>
-		    <h1 class="titlebar-title">none</h1>
-		  </div>
-		</header>
-		<article>
-			<div style="padding: 100px 0;text-align: center;">none页面</div>
-			<div class="bg-7" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
-		</article>
-	</section>
+	<div class="pages">
+		<section id="ID-Page0" class="active">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:history.go(-1)">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">单页模式</h1>
+			  </div>
+			</header>
+			<article>
+				<a class="button block bg-1" href="#ID-Page1">slideLeft</a>
+				<!-- <a class="button block bg-1" onclick="document.getElementById('ID-Page1').classList.add('active')">slideLeft</a> -->
+			    <a class="button block bg-2" href="#ID-Page2">slideRight</a>
+			    <a class="button block bg-3" href="#ID-Page3">slideUp</a>
+			    <a class="button block bg-4" href="#ID-Page4">slideDown</a>
+			    <a class="button block bg-5" href="#ID-Page5">fade</a>
+			    <a class="button block bg-6" href="#ID-Page6">zoom</a>
+			    <a class="button block bg-7" href="#ID-Page7">none</a>
+			    <!-- <a type="button"style="margin:8px" class="button block bg-8" onclick="openPage('#ID-Page2')">用JS打开打二页</a> -->
+			    <div class="card" style="padding:8px;">
+			    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
+			    </div>
+			    <div class="card" style="padding:8px;">
+			    	适用于简单的单页处理，如需要大量使用单页模式，还请使用专业的backbone router或者angularjs router框架处理单页。
+			    </div>
+			</article>
+		</section>
+		<!--page1-->
+		<section id="ID-Page1-Section" data-animation="slideLeft">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">二级页面</h1>
+			  </div>
+			</header>
+			<article>
+				<a class="button block" href="#ID-Page1Lvl3">进入三级页面</a>
+				<a class="button block SID-BtnSelf" data-href="#ID-Page1Lvl3" target="_self">_self打开</a>
+			</article>
+		</section>
+		<section id="ID-Page1Lvl3-Section" data-animation="slideLeft">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">三级页面</h1>
+			  </div>
+			</header>
+			<article>
+				<a class="button block" href="#ID-Page1Lvl4">进入四级页面</a>
+			</article>
+		</section>
+		<section id="ID-Page1Lvl4-Section" data-animation="slideLeft">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">四级页面</h1>
+			  </div>
+			</header>
+			<article>
+				<a class="button block" href="#ID-Page1Lvl5">进入五级页面</a>
+			</article>
+		</section>
+		<section id="ID-Page1Lvl5-Section" data-animation="slideLeft">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">五级页面</h1>
+			  </div>
+			</header>
+			<article>
+				<a class="button block" href="javascript:history.go(-1)">history.go(-1)</a>
+				<a class="button block" href="javascript:history.go(-2)">history.go(-2)</a>
+				<a class="button block" href="javascript:history.go(-3)">history.go(-3)</a>
+			</article>
+		</section>
+		<!--page2-->
+		<section id="ID-Page2-Section" data-animation="slideRight">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">slideRight</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">slideRight页面</div>
+				<div class="bg-2" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+		<!--page3-->
+		<section id="ID-Page3-Section" data-animation="slideUp">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">slideUp</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">slideUp页面</div>
+				<div class="bg-3" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+		<!--page4-->
+		<section id="ID-Page4-Section" data-animation="slideDown">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">slideDown</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">slideDown页面</div>
+				<div class="bg-4" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+		<!--page5-->
+		<section id="ID-Page5-Section" data-animation="fade">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">fade</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">fade页面</div>
+				<div class="bg-5" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+		<!--page6-->
+		<section id="ID-Page6-Section" data-animation="zoom">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">zoom</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">zoom页面</div>
+				<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+		<!--page7-->
+		<section id="ID-Page7-Section" data-animation="none">
+			<header>
+			  <div class="titlebar">
+			    <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+			    <h1 class="titlebar-title">none</h1>
+			  </div>
+			</header>
+			<article>
+				<div style="padding: 100px 0;text-align: center;">none页面</div>
+				<div class="bg-7" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
+			</article>
+		</section>
+	</div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
 		var view={
@@ -198,20 +205,26 @@
                 	onBack:function(e){
                 		if(e.discardList){
                 			for(var i=0,discardLi;discardLi=e.discardList[i++];){
-                				document.querySelector(discardLi).classList.remove("active");
+                				document.querySelector(discardLi+"-Section").classList.remove("active");
                 			}
                 		}
                 		//console.log("后退："+e.prevHash);
-                		if(e.prevHash)document.querySelector(e.prevHash).classList.remove("active");
-                		if(e.currentHash)document.querySelector(e.currentHash).classList.add("active");
+                		if(e.prevHash)document.querySelector(e.prevHash+"-Section").classList.remove("active");
+                		if(e.currentHash)document.querySelector(e.currentHash+"-Section").classList.add("active");
                 	},
                 	onForward:function(e){
                 		//console.log("前进："+e.currentHash);
-                		document.querySelector(e.currentHash).classList.add("active");
+                		document.querySelector(e.currentHash+"-Section").classList.add("active");
                 	}
                 });
+                //初始化时，历史记录就有了，说明刷新过了
+                if(this.history.list.length>0){
+                	for(var i=0,hash;hash=this.history.list[i++];){
+                		document.querySelector(hash+"-Section").classList.add("active");
+                	}
+                }
 
-                this.sections=new Sections({
+                /*this.sections=new Sections({
                 	onStart:function(e){
                 		//console.log("开始显示："+e.container.id);
                 	},
@@ -221,14 +234,9 @@
                 	onHid:function(e){
                 		//console.log("隐藏完成："+e.container.id);
                 	}
-                });
+                });*/
 
-                //初始化时，历史记录就有了，说明刷新过了
-                if(this.history.list.length>0){
-                	for(var i=0,hash;hash=this.history.list[i++];){
-                		document.querySelector(hash).classList.add("active");
-                	}
-                }
+                
 
             	/*加载数据*/
                 this.loadData();
@@ -250,7 +258,7 @@
             _onClickBtnSelf:function(e){
             	var href=this.getAttribute("data-href");
             	view.history.replace(href);
-            	document.querySelector(href).classList.add("active");
+            	document.querySelector(href+"_Section").classList.add("active");
         		setTimeout(function(){
         			document.querySelector(view.history.prevHash).classList.remove("active");
         		},500);

@@ -35,7 +35,7 @@ body{
 	//平滑滚动
 	-webkit-overflow-scrolling:touch;
 
-	font-size:$font-size;
+	font-size:$font-size-M;
 	font-family:$font-family;
 
 	color:$body-color;
@@ -44,8 +44,8 @@ body{
 .placeholder{
 	color:$placeholder;
 }
-i,span,label{
-	display:inline;
+i,span,label,small{
+	display:inline-block;
 	vertical-align:middle;
 }
 button,input,select,option,textarea,pre{

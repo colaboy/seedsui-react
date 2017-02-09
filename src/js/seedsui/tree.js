@@ -20,7 +20,6 @@ window.Tree=function(container,params){
         arrowClass:"tree-icon-arrow",
         iconClass:"tree-icon",//左侧图标
 
-        enableSelected:false,
         btnAddFinalClass:"tree-btnadd",
         btnAddClass:"icon-rdoadd-fill",
         btnDelFinalClass:"tree-btndel",
@@ -57,8 +56,18 @@ window.Tree=function(container,params){
     }
 
     //Bar
-    if(s.params.bar){
-        s.bar=typeof s.params.bar=="string"?document.querySelector(s.params.bar):s.params.bar;
+    s.updateBar=function(){
+        if(s.params.bar){
+            s.bar=typeof s.params.bar=="string"?document.querySelector(s.params.bar):s.params.bar;
+            if(!s.bar){
+                console.log("SeedsUI Error：未找到Bar的DOM对象，请检查传入参数是否正确");
+                return;
+            }
+        }
+    }
+    s.updateBar();
+    s.setBar=function(bar){
+        s.params.bar=bar;
     }
 
     //Selected
@@ -73,54 +82,63 @@ window.Tree=function(container,params){
         }
         return children;
     }
-    s.initData=function(id,childNode){//指定的部门id，根节点为-1
+    s.initData=function(id,ulContainer){//指定的部门id，根节点为-1
         var group = this.getChildren(id);
         for(var i=0,option; option=group[i++];) {
-            //tree-line的data-xxx
+            //拷贝option，方便传入回调中而不影响原option
+            var copyOption=Object.create(option);
+            //line的data-xxx属性html
             var lineDataHTML="";
             for(var n in option){
                 lineDataHTML+='data-'+n+'="'+option[n]+'" ';
             }
 
             //tree-icon和tree-title的html
-            option.html='<div class="'+s.params.iconClass+'">'+
+            copyOption.html='<div class="'+s.params.iconClass+'">'+
                             '<i class="'+s.params.arrowClass+'"></i>'+
                         '</div>'+
                         '<div class="'+s.params.titleClass+'">'+option.name+'</div>';
             //Callback onData
-            if(s.params.onData)s.params.onData(option);
+            if(s.params.onData)s.params.onData(copyOption);
+
             var li = document.createElement("li");
+            
             //tree-btnadd
             var addBtnHTML="";
-            if(s.params.enableSelected){
+            if(s.bar){
                 addBtnHTML='<span class="'+s.params.iconClass+' '+s.params.btnAddClass+' '+s.params.btnAddFinalClass+'"></span>';
             }else{
                 addBtnHTML='';
             }
+
+            //判断当前option和父级是否已经被选中
+            var activeClass="",isSelected=s.isSelected(option.id,option.parentId);
+            if(isSelected==2){//父级和当前都被选中
+                s.removeSelected(option.id);
+            }else if(isSelected==1){//当前选中
+                activeClass=" "+s.params.activeClass;
+            }
             //生成完整的html
-            //var html='<div class="'+s.params.lineClass+'" '+s.params.idAttr+'="'+option.id+'" '+s.params.nameAttr+'="'+option.name+'">'+option.html+addBtnHTML+'</div><ul></ul>';
-            var html='<div class="'+s.params.lineClass+'" '+lineDataHTML+'>'+option.html+addBtnHTML+'</div><ul></ul>';
+            var html='<div class="'+s.params.lineClass+activeClass+'" '+lineDataHTML+'>'+copyOption.html+addBtnHTML+'</div><ul></ul>';
             li.innerHTML=html;
 
-            /*if (id == "-1") {//根节点
-                s.container.appendChild(li);
-            } else {
-                childNode.appendChild(li);
-            }*/
-            childNode.appendChild(li);
+            ulContainer.appendChild(li);
             var ul = s.container.querySelector("["+s.params.idAttr+"='"+option.id+"']").nextElementSibling;
             s.initData(option.id,ul);
         }
     }
     s.update=function(){
         if(!s.params.data){
-            console.log("SeedsUI Error：未找到Tree的Data数据，请检查data参数");
+            console.log("SeedsUI Warn：未找到Tree的Data数据，可在初始化时传入data参数，或者通过setData方法设置数据");
             return;
         }
         if(!s.params.data[0].id || !s.params.data[0].parentId || !s.params.data[0].name){
             console.log("SeedsUI Error：Tree的Data数据格式不正确，请检查data参数是否有id、parentId、name属性");
             return;
         }
+        s.updateBar();
+
+        s.container.innerHTML="";
         s.initData(-1,s.container);//根节点
     }
     s.update();
@@ -136,33 +154,74 @@ window.Tree=function(container,params){
         s.initData(id,childNode);
     }
     //异步添加节点，判断节点是否已经被选中
+    //当前被选中返回1，父级被选中返回-1，当前和父级都被选中返回2，没有被选中返回0
     s.isSelected=function(id,parentId){
-        //判断选中列表是否存在
-        if(s.selected[id] || s.selected[parentId]){
-            return true;
+        var flag=0,currentFlag=0,parentFlag=0;
+        //判断当前是否被选中
+        if(s.selected[id]){
+            currentFlag=1;
+        }
+        //判断父级是否被选中
+        if(s.selected[parentId]){
+            parentFlag=-1;
         }
 
         //判断树中是否存在此ID
         var parentNode=s.container.querySelector("["+s.params.idAttr+"='"+parentId+"']");
         if(!parentNode){
-            return false;
+            return 0;
         }
 
         //向上查询是否已添加到选中项，一直查到顶级
         while(!parentNode.classList.contains(s.params.treeClass) && parentNode.tagName!="BODY"){
             parentNode=parentNode.parentNode.parentNode;
             var lineNode=parentNode.previousElementSibling;
-            if(lineNode.classList.contains(s.params.lineClass)){
+            if(lineNode && lineNode.classList.contains(s.params.lineClass)){
                 var id=lineNode.getAttribute(s.params.idAttr);
                 if(s.selected[id]){
-                    return true;
+                    parentFlag=-1;
+                    break;
+                }
+            }
+        }
+
+        if(currentFlag && parentFlag)return 2;
+        return currentFlag+parentFlag;
+
+        //经过以上过滤，仍然未找到存在于选中项的迹象，说明没有存在于选中列表中
+        return 0;
+    }
+    /*s.isSelected=function(id,parentId){
+        //判断当前是否被选中
+        if(s.selected[id]){
+            return 1;
+        }
+        //判断父级是否被选中
+        if(s.selected[parentId]){
+            return -1;
+        }
+
+        //判断树中是否存在此ID
+        var parentNode=s.container.querySelector("["+s.params.idAttr+"='"+parentId+"']");
+        if(!parentNode){
+            return 0;
+        }
+
+        //向上查询是否已添加到选中项，一直查到顶级
+        while(!parentNode.classList.contains(s.params.treeClass) && parentNode.tagName!="BODY"){
+            parentNode=parentNode.parentNode.parentNode;
+            var lineNode=parentNode.previousElementSibling;
+            if(lineNode && lineNode.classList.contains(s.params.lineClass)){
+                var id=lineNode.getAttribute(s.params.idAttr);
+                if(s.selected[id]){
+                    return -1;
                 }
             }
         }
 
         //经过以上过滤，仍然未找到存在于选中项的迹象，说明没有存在于选中列表中
-        return false;
-    }
+        return 0;
+    }*/
 
     //Json是否为空
     s.isEmptyJson=function(json){
@@ -215,24 +274,36 @@ window.Tree=function(container,params){
             ex.classList.remove(s.params.extandClass);
         }
     }
-    s.addSelected=function(elLine){
-        //删除子级
-        var elLines=elLine.parentNode.querySelectorAll("."+s.params.lineClass);
-        for(var i=0,el;el=elLines[i++];){
-            var elId=el.getAttribute(s.params.idAttr);
-            s.removeSelected(elId);
+    s.addSelected=function(id,name,parentId,elLine){
+        if(!id || !name || !parentId){
+            console.log("SeedsUI Error:id、name、parentId三个参数不正确");
+            return;
         }
-        //显示此级
-        elLine.classList.add(s.params.activeClass);
-        var id=elLine.getAttribute(s.params.idAttr);
-        var name=elLine.getAttribute(s.params.nameAttr);
-        var parentId=elLine.getAttribute(s.params.parentIdAttr);
+        if(s.selected[id]){
+            console.log("SeedsUI Info:您要选中的节点已经选中");
+            return;
+        }
+        if(s.isSelected(id,parentId)){
+            console.log("SeedsUI Info:您要选中的节点已经选中");
+            return;
+        }
 
+        //bar上添加选中
         var barOption=s.createBarOption(id,name,parentId);
         s.bar.appendChild(barOption);
-
-        s.selected[id]=elLine;
         s.showBar();
+
+        //tree中激活选中
+        var treeOption=s.container.querySelector("["+s.params.idAttr+"='"+id+"']");
+        if(treeOption)treeOption.classList.add(s.params.activeClass)
+
+        //s.selected中添加选中
+        s.selected[id]={
+            id:id,
+            name:name,
+            parentId:parentId,
+            target:elLine||null
+        };
     }
     //显示选中项
     s.showBar=function(){
@@ -311,17 +382,38 @@ window.Tree=function(container,params){
         if(s.target.classList.contains(s.params.btnAddFinalClass)){//点击添加
             s.onClickBtnAdd(s.targetLine);
         }else{//点击其它元素
-            //Callback onClickLastChild(点击底层)
-            if((!s.targetLine.nextElementSibling || !s.targetLine.nextElementSibling.hasChildNodes()) && s.params.onClickLastChild)s.params.onClickLastChild(s);
+            
             //展开与收缩
             s.targetLine.classList.toggle(s.params.extandClass);
+            var lines=s.targetLine.nextElementSibling.querySelectorAll("li > ."+s.params.lineClass)
+            for(var i=0,line;line=lines[i++];){
+                if(s.selected[line.getAttribute(s.params.idAttr)]){
+                    line.classList.add(s.params.activeClass);
+                }
+            }
+
+            //Callback onClickLastChild(点击底层)
+            if((!s.targetLine.nextElementSibling || !s.targetLine.nextElementSibling.hasChildNodes()) && s.params.onClickLastChild)s.params.onClickLastChild(s);
         }
         //Callback onClick
         if(s.params.onClick)s.params.onClick(s);
     }
     //点击添加按钮
     s.onClickBtnAdd=function(elLine){
-        s.addSelected(elLine);
+        //删除子级
+        var elLines=elLine.parentNode.querySelectorAll("."+s.params.lineClass);
+        for(var i=0,el;el=elLines[i++];){
+            var elId=el.getAttribute(s.params.idAttr);
+            s.removeSelected(elId);
+        }
+        //显示此级
+        elLine.classList.add(s.params.activeClass);
+        var id=elLine.getAttribute(s.params.idAttr);
+        var name=elLine.getAttribute(s.params.nameAttr);
+        var parentId=elLine.getAttribute(s.params.parentIdAttr);
+
+        //添加到s.selected
+        s.addSelected(id,name,parentId,elLine);
     }
     //点击树bar
     s.onClickBar=function(e){

@@ -29,7 +29,7 @@
 		bottom: 0;
 	}
 	&:after {
-		top: 0;
+		top: -1px;
 		bottom: auto;
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {

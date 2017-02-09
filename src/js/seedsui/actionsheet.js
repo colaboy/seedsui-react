@@ -91,20 +91,19 @@
 		Method
 		================*/
 		s.showMask=function(){
-            s.mask.style.visibility="visible";
-            s.mask.style.opacity="1";
+            s.mask.classList.add("active");
         }
         s.hideMask=function(){
-        	s.mask.style.opacity="0";
+        	s.mask.classList.remove("active");
         }
         s.destroyMask=function(){
         	s.parent.removeChild(s.mask);
         }
         s.showActionsheet=function(){
-        	s.container.style.webkitTransform="translate3d(0,0,0)";
+        	s.container.classList.add("active");
         }
         s.hideActionsheet=function(){
-        	s.container.style.webkitTransform="translate3d(0,100%,0)";
+        	s.container.classList.remove("active");
         }
         s.destroyActionsheet=function(){
         	s.parent.removeChild(s.container);
@@ -136,8 +135,14 @@
 			s.destroyMask();
 			//移除弹出框
 			s.destroyActionsheet();
-			s=null;
 		};
+		//设置
+		s.setOnClick=function(fn){
+            s.params.onClick=fn;
+        }
+		s.setOnClickMask=function(fn){
+            s.params.onClickMask=fn;
+        }
 		/*================
 		Control
 		================*/
@@ -176,21 +181,15 @@
         	}
         	s.hide();
 		};
-		s.setOnClick=function(fn){
-            s.params.onClick=fn;
-        }
+		
 		s.onClickMask=function(e){
 			s.target=e.target;
 			if(s.params.onClickMask)s.params.onClickMask(s);
 			if(s.params.isClickMaskHide)s.hide();
 		}
-		s.setOnClickMask=function(fn){
-            s.params.onClickMask=fn;
-        }
+
 		s.onTransitionEnd=function(e){
-			if(s.isHid){
-				s.mask.style.visibility="hidden";
-			}
+			if(e.propertyName=="visibility")return;
 		}
 		/*================
 		Init

@@ -131,7 +131,7 @@
 //row上横线
 .timepart-row:after{
     left: 0;
-    top: 0;
+    top: -1px;
     height: 1px;
     width: 100%;
     -webkit-transform-origin: 50% 100%;

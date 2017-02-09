@@ -9,38 +9,43 @@ hr{
     display: block;
     position: absolute;
     background-color: $border;
+    z-index: 0;
 }
 //上横线
 .topline:before{
-	left: 0;
-    top: 0;
+    top: -1px;
+	right: auto;
+    bottom: auto;
+    left: 0;
     height: 1px;
     width: 100%;
-    -webkit-transform-origin: 50% 100%;
 }
 //下横线
 .underline:after,.hline,hr:after{
-	left: 0;
+	top: auto;
+	right: auto;
     bottom: 0;
+    left: 0;
     height: 1px;
     width: 100%;
-    -webkit-transform-origin: 50% 100%;
 }
 //左竖线
 .leftline:before{
 	top: 0;
+    right: auto;
+    bottom: auto;
     left: 0;
     width: 1px;
     height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
 //右竖线
 .rightline:after,.vline{
 	top: 0;
+	bottom: auto;
+	left: auto;
     right: 0;
     width: 1px;
     height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -54,9 +59,11 @@ hr{
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+	//横线
 	.topline:before,.underline:after,.hline,hr:after {
 		-webkit-transform: scaleY(0.33);
 	}
+	//竖线
 	.leftline:before,.rightline:after,.vline {
 		-webkit-transform: scaleX(0.33);
 	}

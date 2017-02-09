@@ -3,9 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>grid</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .grid{
+    	background-color: white;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -16,11 +25,11 @@
 		    </div>
 		</header>
 		<article>
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">应用图标</p>
 			</div>
-			<br/>
 			<ul class="grid" data-col="3" data-rowspace="8">
 				<li>
 					<a class="size50 bg-1">
@@ -61,12 +70,13 @@
 					<label>数据分析</label>
 				</li>
 			</ul>
+			</div>
 
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">应用图标-bordered</p>
 			</div>
-			<br/>
 			<ul class="grid grid-bordered" data-col="3" data-rowspace="8">
 				<li>
 					<a class="size54 bordered radiusround color-body">
@@ -106,12 +116,13 @@
 					<label>数据分析</label>
 				</li>
 			</ul>
+			</div>
 
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">裸图标</p>
 			</div>
-			<br/>
 			<ul class="grid" data-col="3" data-rowspace="8">
 				<li>
 					<a class="color-1 size32">
@@ -151,12 +162,13 @@
 					<label>数据分析</label>
 				</li>
 			</ul>
+			</div>
 
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">裸图标-bordered</p>
 			</div>
-			<br/>
 			<ul class="grid grid-bordered" data-col="3" data-rowspace="8">
 				<li>
 					<a class="color-1 size32">
@@ -196,12 +208,13 @@
 					<label>数据分析</label>
 				</li>
 			</ul>
+			</div>
 
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">相册</p>
 			</div>
-			<br/>
 			<ul class="grid grid-radius8" data-col="3">
 				<li>
 					<a style="height:110px;background-image: url(../images/1.jpg)"></a>
@@ -232,11 +245,12 @@
 					</a>
 				</li>
 			</ul>
+			</div>
+			<div class="group">
 			<div class="sliver underline">
 				<span class="peg"></span>
 				<p class="sliver-title">缩略图</p>
 			</div>
-			<br/>
 			<ul class="grid" data-rowspace="8" data-col="3">
 				<li>
 					<a>
@@ -258,6 +272,7 @@
 					<label>通讯录</label>
 				</li>
 			</ul>
+			</div>
 		</article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->

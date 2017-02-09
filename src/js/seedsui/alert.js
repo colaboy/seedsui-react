@@ -90,21 +90,19 @@
 		Method
 		================*/
 		s.showMask=function(){
-            s.mask.style.visibility="visible";
-            s.mask.style.opacity="1";
+            s.mask.classList.add("active");
         }
         s.hideMask=function(){
-        	s.mask.style.opacity="0";
+        	s.mask.classList.remove("active");
         }
         s.destroyMask=function(){
         	s.parent.removeChild(s.mask);
         }
         s.showAlert=function(){
-        	s.container.style.visibility="visible";
-            s.container.style.opacity="1";
+        	s.container.classList.add("active");
         }
         s.hideAlert=function(){
-        	s.container.style.opacity="0";
+        	s.container.classList.remove("active");
         }
         s.destroyAlert=function(){
         	s.parent.removeChild(s.container);
@@ -137,7 +135,6 @@
 			s.destroyMask();
 			//移除弹出框
 			s.destroyAlert();
-			s=null;
 		};
 		//动态设置
 		s.setText=function(msg){
@@ -200,10 +197,7 @@
             s.params.onClickMask=fn;
         }
 		s.onTransitionEnd=function(e){
-			if(s.isHid){
-				s.container.style.visibility="hidden";
-				s.mask.style.visibility="hidden";
-			}
+			if(e.propertyName=="visibility")return;
 		}
 		/*================
 		Init

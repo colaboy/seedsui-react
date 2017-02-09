@@ -30,7 +30,6 @@
 	-webkit-box-flex:1.0;
 }
 .inputbox-search{
-
 	.inputbox-search-placeholder{
 		pointer-events:none;
 		display: -webkit-box;
@@ -44,12 +43,16 @@
 	    text-align: center;
 	    color: $placeholder;
 		.inputbox-search-icon{
+			display: block;
 			font-size: 20px;
 			height: 20px;
 			width: 20px;
 		}
 		.inputbox-search-font{
-		
+			display: block;
+			height: 20px;
+			line-height: 22px;
+			margin-left: 4px;
 		}
 	}
 	//input[type=search]:focus,&.active{

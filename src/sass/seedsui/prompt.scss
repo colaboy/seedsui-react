@@ -1,5 +1,4 @@
 /*----------------prompt.less(start)--------------*/
-/*顶部弹出框*/
 .prompt{
 	display: block;
 	visibility:hidden;
@@ -13,7 +12,7 @@
 	text-align:center;
 	z-index:999;
 
-	-webkit-transition-property:opacity,visibility;
+	-webkit-transition-property:-webkit-transform,opacity,visibility;
     -webkit-transition-duration:300ms;
     -webkit-transition-timing-function:linear;
 

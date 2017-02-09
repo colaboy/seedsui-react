@@ -2,7 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"><meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>loading</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
 	<style type="text/css">
@@ -14,11 +19,11 @@
 
 <body ontouchstart="">
 	<!-- 加载遮罩 -->
-    <div class="loading" id="ID-Loading" style="display: block;">
+    <!-- <div class="loading" id="ID-Loading" style="display: block;">
         <div class="loading-progress-box">
             <div class="loading-progress"></div>
         </div>
-    </div>
+    </div> -->
 
 	<header>
 		<div class="titlebar">
@@ -37,65 +42,55 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                /*DOM*/
-                this.btnShowLoad=document.getElementById("ID-BtnShowLoad");
-                /*Plugin*/
-                this.loading;
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
             render:function(){
-                this._initPlugin();
-            },
-            /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Plugin
-              ===========================*/
-            _initLoading:function(){
-                var self=this;
-                /*this.loading=new Loading();
-                this.loading.show();*/
+                var self = this;
+                //渲染页面
+                this.loading=new Loading();
+                this.loading.show();
                 //第二种方法:默认创建好DOM更快
-                this.loading=new Loading({
+                /*this.loading=new Loading({
                     container:"#ID-Loading"
-                });
+                });*/
                 setTimeout(function(){
                     self.loading.hide();
                 },1000);
+
+                //加载数据
+                this.loadData();
             },
-            _initPlugin:function(){
-                this._initLoading();
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
-                this.btnShowLoad.addEventListener("click",self._onClickBtnShowLoad,false);
+                document.getElementById("ID-BtnShowLoad").addEventListener("click",function(e){
+                    self._onClickBtnShowLoad(e);
+                },false);
             },
             /*=========================
               Event Handler
               ===========================*/
             _onClickBtnShowLoad:function(e){
-                view.loading.show();
+                var self=this;
+                this.loading.show();
                 setTimeout(function(){
-                    view.loading.hide();
+                    self.loading.hide();
                 },5000);
             }
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 		//定义exmobi返回
 		function back(){history.go(-1);}

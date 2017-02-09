@@ -1,0 +1,36 @@
+{
+    "code": "1", 
+    "message": "", 
+    "userList": [
+        {
+            "userUuid": "liguanghui", 
+            "userName": "李广辉", 
+            "deptUuid": "96a2835b-a1b2-4556-bf68-cb0038042b57", 
+            "deptName": "移动平台产品线", 
+            "deptFullName": "业务产品部\\移动平台产品线", 
+            "phoneNum": "", 
+            "loginId": "liguanghui", 
+            "avatarUrl": ""
+        }, 
+        {
+            "userUuid": "xuguolong", 
+            "userName": "徐国龙", 
+            "deptUuid": "96a2835b-a1b2-4556-bf68-cb0038042b57", 
+            "deptName": "移动平台产品线", 
+            "deptFullName": "业务产品部\\移动平台产品线", 
+            "phoneNum": "", 
+            "loginId": "xuguolong", 
+            "avatarUrl": ""
+        }, 
+        {
+            "userUuid": "zhujingjing", 
+            "userName": "朱晶晶", 
+            "deptUuid": "96a2835b-a1b2-4556-bf68-cb0038042b57", 
+            "deptName": "移动平台产品线", 
+            "deptFullName": "业务产品部\\移动平台产品线", 
+            "phoneNum": "", 
+            "loginId": "zhujingjing", 
+            "avatarUrl": ""
+        }
+    ]
+}

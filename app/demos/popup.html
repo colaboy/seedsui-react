@@ -3,7 +3,11 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>popup</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
     <style type="text/css">
@@ -97,27 +101,27 @@
     	</div>
 	</article>
 	<!--自定义弹出框-->
-	<div id="middleDiv" class="dialog-middle">中间弹出框</div>
+	<div id="ID-Dialog-Mid" class="dialog-middle">中间弹出框</div>
 
-    <div id="topLeftDiv" class="dialog-top">头部弹出框</div>
-    <div id="topCenterDiv" class="dialog-top">头部弹出框</div>
-	<div id="topRightDiv" class="dialog-top">头部弹出框</div>
-	<div id="topFullDiv" class="dialog-top" style="width:100%">头部弹出框</div>
+    <div id="ID-Dialog-TopLeft" class="dialog-top">头部弹出框</div>
+    <div id="ID-Dialog-TopCenter" class="dialog-top">头部弹出框</div>
+	<div id="ID-Dialog-TopRight" class="dialog-top">头部弹出框</div>
+	<div id="ID-Dialog-TopFull" class="dialog-top" style="width:100%">头部弹出框</div>
 
-    <div id="bottomLeftDiv" class="dialog-bottom">底部弹出框</div>
-    <div id="bottomCenterDiv" class="dialog-bottom">底部弹出框</div>
-    <div id="bottomRightDiv" class="dialog-bottom">底部弹出框</div>
-    <div id="bottomFullDiv" class="dialog-bottom" style="width:100%">底部弹出框</div>
+    <div id="ID-Dialog-BtmLeft" class="dialog-bottom">底部弹出框</div>
+    <div id="ID-Dialog-BtmCenter" class="dialog-bottom">底部弹出框</div>
+    <div id="ID-Dialog-BtmRight" class="dialog-bottom">底部弹出框</div>
+    <div id="ID-Dialog-BtmFull" class="dialog-bottom" style="width:100%">底部弹出框</div>
 
-    <div id="leftTopDiv" class="dialog-left">左边弹出框</div>
-    <div id="leftMiddleDiv" class="dialog-left">左边弹出框</div>
-    <div id="leftBottomDiv" class="dialog-left">左边弹出框</div>
-    <div id="leftFullDiv" class="dialog-left" style="height:100%">左边弹出框</div>
+    <div id="ID-Dialog-LeftTop" class="dialog-left">左边弹出框</div>
+    <div id="ID-Dialog-LeftMid" class="dialog-left">左边弹出框</div>
+    <div id="ID-Dialog-LeftBtm" class="dialog-left">左边弹出框</div>
+    <div id="ID-Dialog-LeftFull" class="dialog-left" style="height:100%">左边弹出框</div>
 
-    <div id="rightTopDiv" class="dialog-right">右边弹出框</div>
-    <div id="rightMiddleDiv" class="dialog-right">右边弹出框</div>
-    <div id="rightBottomDiv" class="dialog-right">右边弹出框</div>
-    <div id="rightFullDiv" class="dialog-right" style="height:100%">右边弹出框</div>
+    <div id="ID-Dialog-RightTop" class="dialog-right">右边弹出框</div>
+    <div id="ID-Dialog-RightMid" class="dialog-right">右边弹出框</div>
+    <div id="ID-Dialog-RightBtm" class="dialog-right">右边弹出框</div>
+    <div id="ID-Dialog-RightFull" class="dialog-right" style="height:100%">右边弹出框</div>
 
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -206,7 +210,7 @@
 	    };
 
 		//middle
-		var midDialog=new Dialog("#middleDiv",{
+		var dialogMid=new Dialog("#ID-Dialog-Mid",{
 			overflowContainer:null,
 			position:"middle",
 			onClick:function(e){console.log(e.target)},
@@ -216,29 +220,33 @@
 		});
 
 		document.getElementById("middleBtn").onclick=function(){
-			midDialog.show();
+			dialogMid.show();
 	    };
 		//top
-		var topLeftDialog=new Dialog("#topLeftDiv",{
-			position:"top"
+		var topLeftDialog=new Dialog("#ID-Dialog-TopLeft",{
+			position:"top",
+			animation:"zoom"
 		});
 		document.getElementById("topLeftBtn").onclick=function(){
 			topLeftDialog.show();
 	    };
-	    var topCenterDialog=new Dialog("#topCenterDiv",{
-			position:"top-center"
+	    var topCenterDialog=new Dialog("#ID-Dialog-TopCenter",{
+			position:"top-center",
+			animation:"zoom"
 		});
 		document.getElementById("topCenterBtn").onclick=function(){
 			topCenterDialog.show();
 	    };
-	    var topRightDialog=new Dialog("#topRightDiv",{
-			position:"top-right"
+	    var topRightDialog=new Dialog("#ID-Dialog-TopRight",{
+			position:"top-right",
+			animation:"zoom"
 		});
 		document.getElementById("topRightBtn").onclick=function(){
 			topRightDialog.show();
 	    };
-	    var topFullDialog=new Dialog("#topFullDiv",{
-			position:"top",
+	    var topFullDialog=new Dialog("#ID-Dialog-TopFull",{
+			position:"top-center",
+			animation:"slideDown",
 			css:{width:"100%"}
 		});
 		document.getElementById("topFullBtn").onclick=function(){
@@ -246,26 +254,30 @@
 	    };
 
 		//bottom
-		var btmLeftDialog=new Dialog("#bottomLeftDiv",{
-			position:"bottom"
+		var btmLeftDialog=new Dialog("#ID-Dialog-BtmLeft",{
+			position:"bottom",
+			animation:"zoom"
 		});
 		document.getElementById("bottomLeftBtn").onclick=function(){
 			btmLeftDialog.show();
 	    };
-	    var btmCenterDialog=new Dialog("#bottomCenterDiv",{
-			position:"bottom-center"
+	    var btmCenterDialog=new Dialog("#ID-Dialog-BtmCenter",{
+			position:"bottom-center",
+			animation:"zoom"
 		});
 		document.getElementById("bottomCenterBtn").onclick=function(){
 			btmCenterDialog.show();
 	    };
-	    var btmRightDialog=new Dialog("#bottomRightDiv",{
-			position:"bottom-right"
+	    var btmRightDialog=new Dialog("#ID-Dialog-BtmRight",{
+			position:"bottom-right",
+			animation:"zoom"
 		});
 		document.getElementById("bottomRightBtn").onclick=function(){
 			btmRightDialog.show();
 	    };
-	    var bottomFullDialog=new Dialog("#bottomFullDiv",{
-			position:"bottom",
+	    var bottomFullDialog=new Dialog("#ID-Dialog-BtmFull",{
+			position:"bottom-center",
+			animation:"slideUp",
 			css:{width:"100%"}
 		});
 		document.getElementById("bottomFullBtn").onclick=function(){
@@ -273,26 +285,30 @@
 	    };
 
 		//left
-		var leftDialog=new Dialog("#leftTopDiv",{
-			position:"left"
+		var leftDialog=new Dialog("#ID-Dialog-LeftTop",{
+			position:"left",
+			animation:"slideRight"
 		});
 		document.getElementById("leftTopBtn").onclick=function(){
 			leftDialog.show();
 	    };
-	    var leftMiddleDialog=new Dialog("#leftMiddleDiv",{
-			position:"left-middle"
+	    var leftMiddleDialog=new Dialog("#ID-Dialog-LeftMid",{
+			position:"left-middle",
+			animation:"slideRight"
 		});
 		document.getElementById("leftMiddleBtn").onclick=function(){
 			leftMiddleDialog.show();
 	    };
-	    var leftBottomDialog=new Dialog("#leftBottomDiv",{
-			position:"left-bottom"
+	    var leftBottomDialog=new Dialog("#ID-Dialog-LeftBtm",{
+			position:"left-bottom",
+			animation:"slideRight"
 		});
 		document.getElementById("leftBottomBtn").onclick=function(){
 			leftBottomDialog.show();
 	    };
-	    var leftFullDialog=new Dialog("#leftFullDiv",{
-			position:"left",
+	    var leftFullDialog=new Dialog("#ID-Dialog-LeftFull",{
+			position:"left-middle",
+			animation:"slideRight",
 			css:{height:"100%"}
 		});
 		document.getElementById("leftFullBtn").onclick=function(){
@@ -300,26 +316,30 @@
 	    };
 
 		//right
-		var rightTopDialog=new Dialog("#rightTopDiv",{
-			position:"right"
+		var rightTopDialog=new Dialog("#ID-Dialog-RightTop",{
+			position:"right",
+			animation:"slideLeft"
 		});
 		document.getElementById("rightTopBtn").onclick=function(){
 			rightTopDialog.show();
 	    };
-	    var rightMiddleDialog=new Dialog("#rightMiddleDiv",{
-			position:"right-middle"
+	    var rightMiddleDialog=new Dialog("#ID-Dialog-RightMid",{
+			position:"right-middle",
+			animation:"slideLeft"
 		});
 		document.getElementById("rightMiddleBtn").onclick=function(){
 			rightMiddleDialog.show();
 	    };
-	    var rightBottomDialog=new Dialog("#rightBottomDiv",{
-			position:"right-bottom"
+	    var rightBottomDialog=new Dialog("#ID-Dialog-RightBtm",{
+			position:"right-bottom",
+			animation:"slideLeft"
 		});
 		document.getElementById("rightBottomBtn").onclick=function(){
 			rightBottomDialog.show();
 	    };
-	    var rightFullDialog=new Dialog("#rightFullDiv",{
-			position:"right",
+	    var rightFullDialog=new Dialog("#ID-Dialog-RightFull",{
+			position:"right-middle",
+			animation:"slideLeft",
 			css:{height:"100%"}
 		});
 		document.getElementById("rightFullBtn").onclick=function(){

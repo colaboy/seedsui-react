@@ -5,7 +5,7 @@
           Model
           ===========================*/
 		var defaults={
-			sectionActiveClass:"active",
+			activeClass:"active",
 
 			/*callbacks
 			onStart:function(Page)//加载中
@@ -39,11 +39,11 @@
         	//Callback onStart
         	if(s.params.onStart)s.params.onStart(s);
 
-        	s.container.classList.add(s.params.sectionActiveClass);
+        	s.container.classList.add(s.params.activeClass);
         }
         s.hide=function(){
         	s.isHid=true;
-        	s.container.classList.remove(s.params.sectionActiveClass);
+        	s.container.classList.remove(s.params.activeClass);
         }
 		/*=========================
           Control
@@ -61,7 +61,7 @@
         }
 		s.onTransitionEnd=function(e){
 			if(e.propertyName=="visibility")return;
-			if(s.container.classList.contains(s.params.sectionActiveClass)){
+			if(s.container.classList.contains(s.params.activeClass)){
 				//Callback onShowed
 				if(s.params.onShowed)s.params.onShowed(s);
 			}else{

@@ -3,71 +3,13 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>doughnut</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-	<style type="text/css">
-	/*绿色*/
-	.doughnut-color-green .doughtut-circle{
-		border: 3px solid #c7ffe8;
-	}
-	.doughnut-color-green .doughtut-label{
-		color: #01cd78;
-	}
-	.doughnut-color-green .doughtut-circle.left{
-		border-bottom: 3px solid #01cd78;
-    	border-left: 3px solid #01cd78; 
-	}
-	.doughnut-color-green .doughtut-circle.right{
-		border-top: 3px solid #01cd78;
-    	border-right: 3px solid #01cd78;
-	}
-	/*橙色*/
-	.doughnut-color-orange .doughtut-circle{
-		border: 3px solid #ffbab1;
-	}
-	.doughnut-color-orange .doughtut-label{
-		color: #ffa274;
-	}
-	.doughnut-color-orange .doughtut-circle.left{
-		border-bottom: 3px solid #ffa274;
-    	border-left: 3px solid #ffa274; 
-	}
-	.doughnut-color-orange .doughtut-circle.right{
-		border-top: 3px solid #ffa274;
-    	border-right: 3px solid #ffa274;
-	}
-	/*红色*/
-	.doughnut-color-red .doughtut-circle{
-		border: 3px solid #ffbab1;
-	}
-	.doughnut-color-red .doughtut-label{
-		color: #ff7664;
-	}
-	.doughnut-color-red .doughtut-circle.left{
-		border-bottom: 3px solid #ff7664;
-    	border-left: 3px solid #ff7664; 
-	}
-	.doughnut-color-red .doughtut-circle.right{
-		border-top: 3px solid #ff7664;
-    	border-right: 3px solid #ff7664;
-	}
-	/*灰色*/
-	.doughnut-color-gray .doughtut-circle{
-		border: 3px solid #e0e0e0;
-	}
-	.doughnut-color-gray .doughtut-label{
-		color: #acacac;
-	}
-	.doughnut-color-gray .doughtut-circle.left{
-		border-bottom: 3px solid #e0e0e0;
-    	border-left: 3px solid #e0e0e0; 
-	}
-	.doughnut-color-gray .doughtut-circle.right{
-		border-top: 3px solid #e0e0e0;
-    	border-right: 3px solid #e0e0e0;
-	}
-    </style>
 </head>
 
 <body ontouchstart="">
@@ -82,8 +24,20 @@
 		<article>
 			<ul class="grid grid-bordered" data-col="4">
 				<li style="padding: 16px 0">
+	                <!--待审批-->
+			        <div class="doughtut yellow rotate15" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">待审批</div>
+			        </div>
+	            </li>
+				<li style="padding: 16px 0">
 	                <!--准备中-->
-			        <div class="doughtut doughnut-color-orange rotate45" style="margin:0 auto;">
+			        <div class="doughtut orange rotate45" style="margin:0 auto;">
 			            <div class="doughtut-wrapper left">
 			                <div class="doughtut-circle left"></div>
 			            </div>
@@ -95,7 +49,7 @@
 	            </li>
 	            <li style="padding: 16px 0;">
 	                <!--进行中-->
-					<div class="doughtut doughnut-color-green rotate315" style="margin:0 auto;">
+					<div class="doughtut green rotate315" style="margin:0 auto;">
 			            <div class="doughtut-wrapper left">
 			                <div class="doughtut-circle left"></div>
 			            </div>
@@ -107,7 +61,7 @@
 	            </li>
 	            <li style="padding: 16px 0">
 	                <!--已结束-->
-			        <div class="doughtut doughnut-color-red rotate360" style="margin:0 auto;">
+			        <div class="doughtut red rotate360" style="margin:0 auto;">
 			            <div class="doughtut-wrapper left">
 			                <div class="doughtut-circle left"></div>
 			            </div>
@@ -119,7 +73,7 @@
 	            </li>
 	            <li style="padding: 16px 0">
 	                <!--已取消-->
-			        <div class="doughtut doughnut-color-gray rotate360" style="margin:0 auto;">
+			        <div class="doughtut gray rotate360" style="margin:0 auto;">
 			            <div class="doughtut-wrapper left">
 			                <div class="doughtut-circle left"></div>
 			            </div>
