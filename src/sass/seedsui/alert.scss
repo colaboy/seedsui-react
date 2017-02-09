@@ -39,7 +39,7 @@
 		opacity:1;
 	}
 }
-/*底部按钮区*/
+//底部按钮区
 .alert-handler{
 	position: relative;
 	display:block;
@@ -47,19 +47,6 @@
 	white-space:nowrap;
 	font-size:0;
 }
-.alert-handler:before{
-	content: '';
-    display: block;
-    position: absolute;
-    background-color: $border;
-
-	left: 0;
-    top: -1px;
-    height: 1px;
-    width: 100%;
-    -webkit-transform-origin: 50% 100%;
-}
-
 .alert-handler a,.actionsheet a{
 	display:inline-block;
 	padding:12px;
@@ -71,17 +58,32 @@
 	width:50%;
 	border-width:0;
 }
-.alert-handler a:nth-of-type(2):before{
+.alert-handler:before,.alert-handler a:nth-of-type(2):before{
 	content: '';
     display: block;
     position: absolute;
     background-color: $border;
-
+    
+    //兼容UC线条不显示的BUG
+    z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
+}
+//上横线
+.alert-handler:before{
+	top: -1px;
+	right: auto;
+    bottom: auto;
+    left: 0;
+    height: 1px;
+    width: 100%;
+}
+//左竖线
+.alert-handler a:nth-of-type(2):before{
 	top: 0;
+    right: auto;
+    bottom: auto;
     left: 0;
     width: 1px;
     height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
 
 .alert-handler a:only-child{

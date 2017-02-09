@@ -17,16 +17,20 @@
 	//底线
 	&:after{
 		content: '';
-		position: absolute;
-		top: auto;
-		bottom: 0;
-		left: 0;
+	    display: block;
+	    position: absolute;
+	    background-color: $border;
+
+	    top: auto;
 		right: auto;
-		height: 1px;
-		width: 100%;
-		display: block;
-		-webkit-transform-origin: 50% 100%;
+	    bottom: 0;
+	    left: 0;
+	    height: 1px;
+	    width: 100%;
 		background-color: $border;
+
+		//兼容UC线条不显示的BUG
+    	z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 		&:after {

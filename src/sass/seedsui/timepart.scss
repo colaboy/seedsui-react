@@ -7,6 +7,7 @@
 .timepart-row{
     position: relative;
     display: -webkit-box;
+    height: 18px;
     margin: 20px 20px 40px 20px;
 }
 //进度条
@@ -18,10 +19,6 @@
     top:0;
     left:0;
     bottom:0;
-    /* border-width: 1px;
-    border-style: solid;
-    box-sizing: border-box;
-    border-color: $dpborder; */
     &.active{
         background-color: $primary-bg;
     }
@@ -33,11 +30,7 @@
 .timepart-part{
     position: relative;
     display: block;
-    height:18px;
-    /* border-width:1px 1px 1px 0;
-    border-style:solid;
-    box-sizing:border-box;
-    border-color:$dpborder; */
+    height:100%;
     //开始和结束时间
     .timepart-startTime,.timepart-endTime{
         float:left;
@@ -81,7 +74,6 @@
     }
     &.disabled{
         color:$sub-color;
-        //background-color: $body-bg;
     }
 }
 
@@ -118,55 +110,45 @@
     display: block;
     position: absolute;
     background-color: $border;
-    z-index: 1;
+
+    //兼容UC线条不显示的BUG
+    z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 }
-//row左竖线
-.timepart-row:before{
+//左竖线
+.timepart-row:before,.timepart-progress:before{
     top: 0;
+    right: auto;
+    bottom: auto;
     left: 0;
     width: 1px;
     height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
-//row上横线
+//上横线
 .timepart-row:after{
+    top: 0;
+    right: auto;
+    bottom: auto;
     left: 0;
-    top: -1px;
     height: 1px;
     width: 100%;
-    -webkit-transform-origin: 50% 100%;
 }
-//part右竖线
-.timepart-part:before{
+//右竖线
+.timepart-part:before,.timepart-progress:after{
     top: 0;
+    bottom: auto;
+    left: auto;
     right: 0;
     width: 1px;
     height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
-//part下横线
+//下横线
 .timepart-part:after{
-    left: 0;
+    top: auto;
+    right: auto;
     bottom: 0;
+    left: 0;
     height: 1px;
     width: 100%;
-    -webkit-transform-origin: 50% 100%;
-}
-//progress左竖线
-.timepart-progress:before{
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    -webkit-transform-origin: 100% 50%;
-}
-//progress右竖线
-.timepart-progress:after{
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    -webkit-transform-origin: 100% 50%;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
     //横线

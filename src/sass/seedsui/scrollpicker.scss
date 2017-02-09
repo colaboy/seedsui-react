@@ -17,35 +17,7 @@
 	position:relative;
 	width:100%;
 	height:43px;
-	/* border-style:solid;
-	border-width:1px 0;
-	
-	border-color:$border; */
 	background-color:$bar-bg;
-	//底线
-	&:after{
-		content: '';
-		position: absolute;
-		top: auto;
-		bottom: 0;
-		left: 0;
-		right: auto;
-		height: 1px;
-		width: 100%;
-		display: block;
-		-webkit-transform-origin: 50% 100%;
-		background-color: $border;
-	}
-	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-		&:after {
-			-webkit-transform: scaleY(0.5);
-		}
-	}
-	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-		&:after {
-			-webkit-transform: scaleY(0.33);
-		}
-	}
 }
 .scrollpicker-cancel,.scrollpicker-done{
 	display:inline-block;
@@ -117,40 +89,48 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
     width:100%;
     pointer-events:none;
     -webkit-transform:translateY(-50%);
-    /* border-width:1px 0;
-    border-style:solid;
-    
-    border-color:$border; */
-    //上下线
-	&:before,&:after{
-		content: '';
-		position: absolute;
-		left: 0;
-		right: auto;
-		height: 1px;
-		width: 100%;
-		display: block;
-		-webkit-transform-origin: 50% 100%;
-		background-color: $border;
+}
+
+.scrollpicker-layer-frame:before,.scrollpicker-layer-frame:after,.scrollpicker-header:after{
+	content: '';
+    display: block;
+    position: absolute;
+    background-color: $border;
+    //兼容UC线条不显示的BUG
+    z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
+}
+.scrollpicker-layer-frame:before {
+	top: -1px;
+	bottom: auto;
+}
+//上横线
+.scrollpicker-layer-frame:before{
+	top: -1px;
+	right: auto;
+    bottom: auto;
+    left: 0;
+    height: 1px;
+    width: 100%;
+}
+//下横线
+.scrollpicker-layer-frame:after,.scrollpicker-header:after{
+    top: auto;
+	right: auto;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	//横线
+	.scrollpicker-layer-frame:before,.scrollpicker-layer-frame:after,.scrollpicker-header:after {
+		-webkit-transform: scaleY(0.5);
 	}
-	&:before {
-		top: -1px;
-		bottom: auto;
-	}
-	&:after {
-		top: auto;
-		bottom: 0;
-	}
-	
-	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-		&:before,&:after {
-			-webkit-transform: scaleY(0.5);
-		}
-	}
-	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-		&:before,&:after {
-			-webkit-transform: scaleY(0.33);
-		}
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+	//横线
+	.scrollpicker-layer-frame:before,.scrollpicker-layer-frame:after,.scrollpicker-header:after {
+		-webkit-transform: scaleY(0.33);
 	}
 }
 /*----------------scrollpicker.less(end)--------------*/

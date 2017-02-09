@@ -9,7 +9,9 @@ hr{
     display: block;
     position: absolute;
     background-color: $border;
-    z-index: 0;
+    
+    //兼容UC线条不显示的BUG
+    z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 }
 //上横线
 .topline:before{

@@ -49,92 +49,62 @@
 	}
 	/*边框*/
 	&.grid-bordered{
-		/* border-width:0 0 1px 0;
-		border-style:solid;
-		
-		border-color:$border; */
-		//上边线
-		&:before{
-			content: '';
-			position: absolute;
-			top: -1px;
-			bottom: auto;
-			left: 0;
-			right: auto;
-			height: 1px;
-			width: 100%;
-			display: block;
-			-webkit-transform-origin: 50% 100%;
-			background-color: $border;
-		}
-		li{
-			position: relative;
-			/* border-style:solid;
-			border-width:1px 1px 0 0;
-			border-color:inherit; */
-			//右边线
-			&:before{
-				content: '';
-				position: absolute;
-				top: 0;
-				bottom: auto;
-				left: auto;
-				right: 0;
-				width: 1px;
-				height: 100%;
-				display: block;
-				-webkit-transform-origin: 100% 50%;
-				background-color: $border;
-			}
-			//下边线
-			&:after{
-				content: '';
-				position: absolute;
-				top: auto;
-				bottom: 0;
-				left: 0;
-				right: auto;
-				height: 1px;
-				width: 100%;
-				display: block;
-				-webkit-transform-origin: 50% 100%;
-				background-color: $border;
-			}
-		}
 		&[data-rowspace="8"] li{
 			padding-top:8px;
 			padding-bottom:8px;
 		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-			//上边线
-			&:before {
-				-webkit-transform: scaleY(0.5);
+		li{
+			position: relative;
+			&:before,&:after{
+				content: '';
+			    display: block;
+			    position: absolute;
+			    background-color: $border;
+
+			    //兼容UC线条不显示的BUG
+    			z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 			}
-			//下边线
+			//右竖线
+			&:before{
+				top: 0;
+				bottom: auto;
+				left: auto;
+			    right: 0;
+			    width: 1px;
+			    height: 100%;
+			}
+			//下横线
+			&:after{
+				top: auto;
+				right: auto;
+			    bottom: 0;
+			    left: 0;
+			    height: 1px;
+			    width: 100%;
+			}
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+			//下横线
 			li:after {
 				-webkit-transform: scaleY(0.5);
 			}
-			//右边线
+			//右竖线
 			li:before {
 				-webkit-transform: scaleX(0.5);
 			}
 		}
 		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-			//上边线
-			&:before {
-				-webkit-transform: scaleY(0.33);
-			}
-			//下边线
+			//下横线
 			li:after {
 				-webkit-transform: scaleY(0.33);
 			}
-			//右边线
+			//右竖线
 			li:before {
 				-webkit-transform: scaleX(0.33);
 			}
 		}
 	}
-	/*间距控制*/
+	//间距控制
 	&[data-rowspace="8"] li{
 		padding-top:8px;
 	}
@@ -143,15 +113,35 @@
 	}
 	&[data-col="2"] li{
 		width:50%;
+		&:nth-of-type(2n){
+			&:before{
+				height: 0;
+			}
+		}
 	}
 	&[data-col="3"] li{
 		width:33.33%;
+		&:nth-of-type(3n){
+			&:before{
+				height: 0;
+			}
+		}
 	}
 	&[data-col="4"] li{
 		width:25%;
+		&:nth-of-type(4n){
+			&:before{
+				height: 0;
+			}
+		}
 	}
 	&[data-col="5"] li{
 		width:20%;
+		&:nth-of-type(5n){
+			&:before{
+				height: 0;
+			}
+		}
 	}
 }
 /*----------------grid.less(end)----------------*/

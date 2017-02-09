@@ -13,6 +13,7 @@
 </head>
 
 <body ontouchstart="">
+<section>
 	<header>
         <div class="titlebar">
             <a class="titlebar-button" href="javascript:back()">
@@ -22,36 +23,10 @@
         </div>
     </header>
 	<article>
-        <div class="timepart group" id="ID-Timepart">
-            <!-- <div class="timepart-row">
-                <label class="timepart-part">
-                    <span class="timepart-startTime">07:00</span>
-                    <span class="timepart-endTime">07:30</span>
-                </label>
-                <label class="timepart-part">
-                    <span class="timepart-startTime">07:30</span>
-                    <span class="timepart-endTime">08:00</span>
-                </label>
-                <label class="timepart-part">
-                    <span class="timepart-startTime">08:00</span>
-                    <span class="timepart-endTime">08:30</span>
-                </label>
-                <label class="timepart-part">
-                    <span class="timepart-startTime">08:30</span>
-                    <span class="timepart-endTime">09:00</span>
-                </label>
-                <label class="timepart-part">
-                    <span class="timepart-startTime">09:00</span>
-                    <span class="timepart-endTime">09:30</span>
-                </label>
-                <label class="timepart-part">
-                    <span class="timepart-startTime">09:30</span>
-                    <span class="timepart-endTime">10:00</span>
-                </label>
-            </div> -->
-        </div>
+        <div class="timepart group" id="ID-Timepart"></div>
         <a class="radius4 button block" style="margin:8px" id="ID-BtnSubmit">预约</a>
 	</article>
+</section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
         var view={
@@ -100,7 +75,7 @@
                     },
                 });
                 this.timepart.disableTimes(null,new Date(),["SID-DisabledBefore"]);
-                this.timepart.disableTimes("11:00","12:00");
+                this.timepart.disableTimes("22:20","23:20");
                 //加载数据
                 this.loadData();
             },

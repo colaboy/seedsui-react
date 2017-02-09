@@ -101,22 +101,36 @@
 //单线形tabbar-line
 .tabbar-line{
 	.tab:before,.tab:after {
-		content:'';
-		position:absolute;
-		bottom:0px;
-		width:100%;
-		-webkit-transform-origin:0 0;
+		content: '';
+	    display: block;
+	    position: absolute;
+	    background-color: $border;
+	    
+	    //兼容UC线条不显示的BUG
+    	z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
 	.tab{
+		//下横线
 		&:before{
-			left:0;
-			height: 1px;
-			background-color: $bar-border;
+			top: auto;
+			right: auto;
+		    bottom: 0;
+		    left: 0;
+		    height: 1px;
+		    width: 100%;
 		}
+		//选中状态下横线
 		&:after{
-			left:50%;
-			-webkit-transform:scale3d(0, 1, 1) translateX(-50%);
-			height:2px;
+			top: auto;
+			right: auto;
+		    bottom: 0;
+		    left: 0;
+		    height: 2px;
+		    width: 100%;
+
+		    background-color:$bar-border-active;
+		    -webkit-transform-origin:center center;
+		    -webkit-transform:scale(0,0);
 		}
 		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 			&:before {
@@ -132,9 +146,7 @@
 	.tab.active{
 		color:$bar-color-active;
 		&:after {
-			-webkit-transform:scale3d(1, 1, 1) translateX(-50%);
-
-			background-color:$bar-border-active;
+			-webkit-transform:none;
 		}
 	}
 }
