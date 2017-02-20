@@ -17,9 +17,11 @@
 			/*callbacks
 			onTopRefresh:function(Dragrefresh)//头部刷新
 			onTopComplete:function(Dragrefresh)//头部完成加载
+			onTopNoData:function(Dragrefresh)//头部无数据
 			onBottomRefresh:function(Dragrefresh)//底部刷新
 			onBottomComplete:function(Dragrefresh)//底部完成加载
 			onBottomNoData:function(Dragrefresh)//底部无数据
+			
 			onTransitionEnd:function(Dragrefresh)//头部动画结束
             onTopShowed(Dragrefresh)//头部显示动画结束
             onTopHid(Dragrefresh)//头部隐藏动画结束
@@ -99,6 +101,7 @@
 		};
 		//头部刷新完成
 		s.topComplete=function(){
+			if(!s.topContainer)return;
 			//收起
 			s.hideTop();
 			//底部刷新又有数据了
@@ -112,9 +115,24 @@
 				s.onBottomRefresh();
 			}
 		};
-		
+		//头部刷新无数据
+		s.topNoData=function(){
+			if(!s.topContainer)return;
+			//收起
+			s.hideTop();
+			//头部刷新无数据，底部肯定也没有数据
+			s.isTopRefreshing=false;
+			s.isBottomNoData=true;
+			s.isBottomRefreshing=false;
+			//Callback onTopNoData
+			if(s.params.onTopNoData){
+				s.params.onTopNoData(s);
+			}
+		};
 		//底部刷新完成
 		s.bottomComplete=function(){
+			if(!s.bottomContainer)return;
+			//标识底部刷新状态
 			s.isBottomRefreshing=false;
 			//Callback onBottomComplete
 			if(s.params.onBottomComplete){
@@ -127,6 +145,8 @@
 		};
 		//底部刷新无数据
 		s.bottomNoData=function(){
+			if(!s.bottomContainer)return;
+			//标识底部刷新状态
 			s.isBottomNoData=true;
 			s.isBottomRefreshing=false;
 			//Callback onBottomNoData
@@ -140,7 +160,7 @@
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
 			var touchTarget=s.overflowContainer;
-			if(s.params.topContainer && s.topContainer){
+			if(s.topContainer){
 				s.overflowContainer[action]("touchstart",s.onTouchStart,false);
 				s.overflowContainer[action]("touchmove",s.onTouchMove,false);
 				s.overflowContainer[action]("touchend",s.onTouchEnd,false);
@@ -148,7 +168,7 @@
 				//头部动画监听
 				s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			}
-			if(s.params.bottomContainer && s.bottomContainer){
+			if(s.bottomContainer){
 				//绑定底部事件，区分一般容器和body
 				if(touchTarget==document.body){
 					touchTarget=window;
@@ -243,7 +263,7 @@
 				if(s.params.onTopRefresh)s.params.onTopRefresh(s);
 			}
 
-			//显示与隐藏
+			//显示与隐藏的回调
 			//Callback onTransitionEnd
             if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
             if(s.isHid){

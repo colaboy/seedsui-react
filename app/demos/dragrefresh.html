@@ -44,6 +44,8 @@
                 this.drag=DfPull({
                     overflowContainer:document.body,
                     //overflowContainer:"article",
+                    //topContainer:false,
+                    //bottomContainer:false,
                     parent:"article",
                     onTopRefresh:function(e){
                         console.log("头部刷新");
@@ -84,7 +86,7 @@
             _loadData:function(){
                 var self=this;
                 var liStr="";
-                for(var i=0;i<3;i++){
+                for(var i=0;i<20;i++){
                     liStr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'行列表</p></li>';
                 }
                 setTimeout(function(){
@@ -92,7 +94,7 @@
                     self.pagination.current=1;
                     //drag标识头部状态
                     self.drag.topComplete();
-                }, 3000);
+                }, 2000);
             },
             _loadNextPage:function(){
                 var self=this;

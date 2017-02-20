@@ -10,55 +10,67 @@
             return;
         }
 
-		var topContainer=document.createElement("div");
-		topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-circle");
-		topContainer.innerHTML='<div class="df-circle-icon"></div>';
-        parent.appendChild(topContainer);
-        var topIcon=topContainer.querySelector(".df-circle-icon");
+        var topContainer=params.topContainer;
+        if(params.topContainer==undefined){
+            topContainer=parent.querySelector(".SID-Dragrefresh-TopContainer");
+            if(!topContainer){
+        		topContainer=document.createElement("div");
+        		topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-circle");
+        		topContainer.innerHTML='<div class="df-circle-icon"></div>';
+                parent.appendChild(topContainer);
+            }
+            var topIcon=topContainer.querySelector(".df-circle-icon");
+        }
 
-
-		var bottomContainer=document.createElement("div");
-		bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-circle-icon df-circle-icon-loading");
-        bottomContainer.setAttribute("style","height:50px");
-		parent.appendChild(bottomContainer);
+        var bottomContainer=params.bottomContainer;
+        if(params.bottomContainer==undefined){
+            bottomContainer=parent.querySelector(".SID-Dragrefresh-BottomContainer");
+            if(!bottomContainer){
+        		bottomContainer=document.createElement("div");
+        		bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-circle-icon df-circle-icon-loading");
+                bottomContainer.setAttribute("style","height:50px");
+        		parent.appendChild(bottomContainer);
+            }
+        }
 		/*==================
 		  params
 		  ==================*/
 		var defaults={
-            overflowContainer:params.overflowContainer,
+            overflowContainer:params.overflowContainer||document.body,
             topContainer:topContainer,
             bottomContainer:bottomContainer,
-            baseline:-50,
-            threshold:120,
-            onTopRefresh:params.onTopRefresh,
-            onTopComplete:function(e){
-                params.onTopComplete(e);
-                bottomContainer.classList.remove("df-circle-icon-none");
-            },
-            onBottomRefresh:params.onBottomRefresh,
-            onBottomComplete:params.onBottomComplete,
-            onBottomNoData:function(e){
+            baseline:params.baseline||-50,
+            threshold:params.threshold||120,
+            onTopRefresh:topContainer&&params.onTopRefresh?params.onTopRefresh:null,
+            onTopComplete:topContainer?function(e){
+                if(params.onTopComplete)params.onTopComplete(e);
+                if(bottomContainer)bottomContainer.classList.remove("df-circle-icon-none");
+            }:null,
+            onTopNoData:topContainer&&params.onTopNoData?params.onTopNoData:null,
+            onBottomRefresh:bottomContainer&&params.onBottomRefresh?params.onBottomRefresh:null,
+            onBottomComplete:bottomContainer&&params.onBottomComplete?params.onBottomComplete:null,
+            onBottomNoData:bottomContainer?function(e){
                 bottomContainer.classList.add("df-circle-icon-none");
-            },
+            }:null,
             //实体操作
-            onPull:function(e){
+            onPull:topContainer?function(e){
                 if(!e.isTopRefreshing){
                     rotateDeg=e.touches.currentPosY*2;
                     topContainer.style.webkitTransform='translate3d(0,' + e.touches.currentPosY + 'px,0) rotate(' + rotateDeg + 'deg)';
                 }
-            },
-            onShowTop:function(e){
+            }:null,
+            onShowTop:topContainer?function(e){
                 topContainer.style.webkitTransform='translate3d(0,120px,0) rotate(0deg)';
-            },
-            onHideTop:function(e){
+            }:null,
+            onHideTop:topContainer?function(e){
                 topContainer.style.webkitTransform='translate3d(0,0,0) rotate(0deg)';
-            },
-            onTopShowed:function(e){
+            }:null,
+            onTopShowed:topContainer?function(e){
                 topIcon.classList.add("df-circle-icon-loading");
-            },
-            onTopHid:function(e){
+            }:null,
+            onTopHid:topContainer?function(e){
                 topIcon.classList.remove("df-circle-icon-loading");
-            },
+            }:null,
         };
         /*==================
 		  Plugin
