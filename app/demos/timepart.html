@@ -53,7 +53,7 @@
                     },
                     onConflictContain:function(e){
                         if(e.target.status=="disabled"){
-                            self.toast.setText("此时间段已经有时间段被选了");
+                            self.toast.setText("时间段冲突");
                             self.toast.show();
                         }
                     },
@@ -62,8 +62,8 @@
                         e.removeAllActive();
                     },
                     onClickDisabled:function(e){
-                        var dataPart=JSON.parse(e.target.getAttribute("data-part"));
-                        self.toast.setText("开始时间:"+dataPart.startTime+",结束时间:"+dataPart.endTime);
+                        var data=JSON.parse(e.target.getAttribute("data-progress"));
+                        self.toast.setText("开始时间:"+data.startTime+",结束时间:"+data.endTime);
                         self.toast.show();
                     },
                     onClickValid:function(s){//点击有效区域
@@ -80,9 +80,9 @@
                         }
                     },
                 });
-                var dataPart=JSON.stringify({startTime:"3:00",endTime:"5:00"});
-                //this.timepart.disableTimes(null,"19:00",["SID-DisabledInfo"],dataPart);
-                this.timepart.disableTimes(null,new Date().setMinuteCeil(30),["SID-DisabledBefore"]);
+                var data=JSON.stringify({startTime:"3:00",endTime:"5:00"});
+                //this.timepart.disableTimes(null,"17:50",["SID-DisabledInfo"],data);
+                this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);
                 //加载数据
                 this.loadData();
             },

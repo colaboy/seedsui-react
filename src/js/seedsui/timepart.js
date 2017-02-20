@@ -7,6 +7,7 @@
 		var defaults={
             rowClass:"timepart-row",
             progressClass:"timepart-progress",
+            dataProgressAttr:"data-progress",
             partClass:"timepart-part",
             partStartClass:"timepart-startTime",
             partEndClass:"timepart-endTime",
@@ -17,7 +18,6 @@
             partMinute:30,//一格的30分钟
             startTime:"7:00",
             endTime:"22:00",
-            dataPartAttr:"data-part",
 
             colAttr:"data-col",
 
@@ -162,7 +162,7 @@
              *段数:开始结束段数字
              */
             var startNum=Math.floor(startRatio*s.params.colCount);
-            var endNum=Math.floor(endRatio*s.params.colCount);
+            var endNum=Math.floor(endRatio*s.params.colCount)-1;//半格的情况，则此格为正常状态，所以-1
             /*
              *整比例
              */
@@ -172,9 +172,9 @@
                 right=0;
             }
             //结束时间是一格的倍数得减1
-            if(endTime.getMinutes()%s.params.partMinute===0){
-                endNum--;
-            }
+            /*if(endTime.getMinutes()%s.params.partMinute===0){
+                endNum++;
+            }*/
             //如果开始位置在最左边，则左边间距为0
             if(startRatio%1===0){
                 left=0;
@@ -195,7 +195,7 @@
             }
         };
         s.hasProgress=function(startTime,endTime,isCallback){
-            var progress=s.container.querySelectorAll(".progress-first");
+            var progress=s.container.querySelectorAll(".progress-caption");
             var e={
                 conflictStartTime:startTime,
                 conflictEndTime:endTime
@@ -221,8 +221,6 @@
         s.setProgress=function(startTime,endTime,classes,data){
             var startTime=Object.prototype.toString.call(startTime)==='[object Date]'?startTime:s.parseDate(startTime||s.params.startTime);
             var endTime=Object.prototype.toString.call(endTime)==='[object Date]'?endTime:s.parseDate(endTime||s.params.endTime);
-            /*startTime.setYear(0);startTime.setMonth(0,0).setSeconds(0);
-            endTime.setYear(0);endTime.setMonth(0,0).setSeconds(0);*/
             startTime.setYear(0);
             startTime.setMonth(0,0);
             startTime.setSeconds(0,0);
@@ -251,7 +249,6 @@
             for(var i=range.startNum;i<=range.endNum;i++){
                 for(var k=0,className;className=classes[k++];){
                     s.parts[i].classList.add(className);
-                    s.parts[i].setAttribute(s.params.dataPartAttr,data);
                 }
             }
 
@@ -265,9 +262,13 @@
                      progress.classList.add(className);
                 }
 
+                //设置style
                 progress.style.display="block";
                 progress.style.left=0;
                 progress.style.right=0;
+
+                //设置data
+                progress.setAttribute(s.params.dataProgressAttr,data);
                 
                 if(j==range.startRow){
                     progress.style.left=range.left+"%";
@@ -279,7 +280,7 @@
                     }else if(progress.classList.contains(s.params.disableClass)){
                         progress.status=s.params.disableClass;
                     }
-                    progress.classList.add("progress-first");
+                    progress.classList.add("progress-caption");
                 }
                 if(j==range.endRow){
                     progress.style.right=range.right+"%";
@@ -383,7 +384,7 @@
 		Events Handler
 		================*/
 		s.onClickContainer=function(e){
-            if(e.target.classList.contains(s.params.partClass)){//点击part
+            if(e.target.classList.contains(s.params.partClass) || e.target.classList.contains(s.params.progressClass)){//点击part
                 s.onClickPart(e);
             }
 		};

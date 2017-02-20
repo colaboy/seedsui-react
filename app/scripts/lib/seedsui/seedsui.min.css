@@ -2730,7 +2730,6 @@ section {
 
 .timepart-progress {
   position: relative;
-  pointer-events: none;
   display: none;
   position: absolute;
   top: 0;
