@@ -58,7 +58,7 @@
 			</header>
 			<article>
 				<a class="button block" href="#ID-Page1Lvl3">进入三级页面</a>
-				<a class="button block SID-BtnSelf" data-href="#ID-Page1Lvl3" target="_self">_self打开</a>
+				<a class="button block SID-BtnSelf" data-self-href="#ID-Page1Lvl3" target="_self">_self打开</a>
 			</article>
 		</section>
 		<section id="ID-Page1Lvl3-Section" data-animation="slideLeft">
@@ -203,23 +203,30 @@
             	var self=this;
                 this.history=new History({
                 	onBack:function(e){
-                		if(e.discardList){
-                			for(var i=0,discardLi;discardLi=e.discardList[i++];){
-                				document.querySelector(discardLi+"-Section").classList.remove("active");
-                			}
-                		}
-                		//console.log("后退："+e.prevHash);
-                		if(e.prevHash)document.querySelector(e.prevHash+"-Section").classList.remove("active");
-                		if(e.currentHash)document.querySelector(e.currentHash+"-Section").classList.add("active");
-                	},
-                	onForward:function(e){
-                		//console.log("前进："+e.currentHash);
-                		document.querySelector(e.currentHash+"-Section").classList.add("active");
-                	}
+		                if(e.discardList){
+		                    for(var i=0,discardLi;discardLi=e.discardList[i++];){
+		                        var hash=discardLi.indexOf("/")>=0?discardLi.substring(0,discardLi.indexOf("/")):discardLi;
+		                        document.querySelector(hash+"-Section").classList.remove("active");
+		                    }
+		                }
+		                //console.log("后退："+e.prevHash);
+		                //app.isBack=true;
+		                if(e.prevHash){
+		                    var prevHash=e.prevHash.indexOf("/")>=0?e.prevHash.substring(0,e.prevHash.indexOf("/")):e.prevHash;
+		                    document.querySelector(prevHash+"-Section").classList.remove("active");
+		                }
+		            },
+		            onForward:function(e){
+		                //console.log("前进："+e.currentHash);
+		                //app.isBack=false;
+		                var currentHash=e.currentHash.indexOf("/")>=0?e.currentHash.substring(0,e.currentHash.indexOf("/")):e.currentHash;
+		                document.querySelector(currentHash+"-Section").classList.add("active");
+		            }
                 });
                 //初始化时，历史记录就有了，说明刷新过了
                 if(this.history.list.length>0){
-                	for(var i=0,hash;hash=this.history.list[i++];){
+                	for(var i=0,hashLi;hashLi=this.history.list[i++];){
+                		var hash=hashLi.indexOf("/")>=0?hashLi.substring(0,hashLi.indexOf("/")):hashLi;
                 		document.querySelector(hash+"-Section").classList.add("active");
                 	}
                 }
@@ -244,25 +251,33 @@
             loadData:function(){
                 this._attach();//使用backbone时，此行无用
             },
-            
+            /*=========================
+              Method
+              ===========================*/
+            _targetSelf:function(href){
+            	var self=this;
+            	var hash=href.indexOf("/")>=0?href.substring(0,href.indexOf("/")):href;
+            	this.history.replace(hash);
+            	document.querySelector(hash+"-Section").classList.add("active");
+        		setTimeout(function(){
+        			document.querySelector(self.history.prevHash+"-Section").classList.remove("active");
+        		},500);
+            },
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
-                document.querySelector(".SID-BtnSelf").addEventListener("click",this._onClickBtnSelf,false);
+                document.querySelector(".SID-BtnSelf").addEventListener("click",function(e){
+                	self._onClickBtnSelf(e);
+                },false);
             },
             /*=========================
               Event Handler
               ===========================*/
             _onClickBtnSelf:function(e){
-            	var href=this.getAttribute("data-href");
-            	view.history.replace(href);
-            	document.querySelector(href+"_Section").classList.add("active");
-        		setTimeout(function(){
-        			document.querySelector(view.history.prevHash).classList.remove("active");
-        		},500);
-        		
+            	var href=e.currentTarget.getAttribute("data-self-href");
+            	this._targetSelf(href);
             },
         }
 

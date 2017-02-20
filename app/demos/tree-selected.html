@@ -85,8 +85,8 @@
                 $.ajax({
                     url: "../scripts/dummydata/group.json",
                     success:function(data){
-                        //格式化数据字段为:id、name、parentId
-                        var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name");
+                        //格式化数据字段为:id、name、parentid
+                        var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
                         self.groupData=JSON.parse(data).depList;
                         //没有数据
                         if(self.groupData.length<=0){
@@ -115,7 +115,7 @@
                 $.ajax({
                     url: url,
                     success:function(data){
-                        var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentId").replace(/userName/mgi,"name");
+                        var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
                         var userData=JSON.parse(data).userList;
                         //没有数据
                         if(userData.length<=0){
@@ -162,6 +162,7 @@
                         /*console.log("点击行："+e.targetLine);
                         console.log("点击元素："+e.target);
                         console.log("点击的li："+e.targetLi);*/
+                        if(e.target.classList.contains("tree-btnadd"))return;
                         if(e.targetLine.hasData){
                             return;
                         }
@@ -185,7 +186,11 @@
                 var selArr=selected.split(",");
                 for(var i=0,opt;opt=selArr[i++];){
                     var optArr=opt.split(":");
-                    this.tree.addSelected(optArr[0],optArr[1],optArr[2]);
+                    var opts={};
+                    opts.id=optArr[0];
+                    opts.name=optArr[1];
+                    opts.parentid=optArr[2]
+                    this.tree.addSelected(opts);
                 }
             },
             _reset:function(){
@@ -226,12 +231,11 @@
                 //app.router.navigate(hash, { trigger : true, replace : false });
             },
             _onClickSubmit:function(e){
-                console.log(1);
                 //获得值
                 var selected=this.tree.selected,name="",opts="";
                 for(var n in selected){
                     name+=selected[n].name+",";
-                    opts+=selected[n].id+":"+selected[n].name+":"+selected[n].parentId+",";
+                    opts+=selected[n].id+":"+selected[n].name+":"+selected[n].parentid+",";
                 }
                 name=name.substr(0,name.length-1);
                 opts=opts.substr(0,opts.length-1);

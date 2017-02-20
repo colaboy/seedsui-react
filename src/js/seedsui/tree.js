@@ -26,7 +26,7 @@ window.Tree=function(container,params){
         btnDelClass:"icon-clear-fill",
 
         idAttr:"data-id",
-        parentIdAttr:"data-parentId",
+        parentidAttr:"data-parentid",
         nameAttr:"data-name",
 
         
@@ -72,11 +72,11 @@ window.Tree=function(container,params){
 
     //Selected
     s.selected={};
-    s.data=s.params.data;
+    var _data=s.params.data;
     s.getChildren=function(id){
         var children = [];
-        for(var i=0,child; child=s.data[i++];) {
-            if (id && child.parentId == id) {
+        for(var i=0,child; child=_data[i++];) {
+            if (id && child.parentid == id) {
                 children.push(child);
             }
         }
@@ -112,7 +112,7 @@ window.Tree=function(container,params){
             }
 
             //判断当前option和父级是否已经被选中
-            var activeClass="",isSelected=s.isSelected(option.id,option.parentId);
+            var activeClass="",isSelected=s.isSelected(option.id,option.parentid);
             if(isSelected==2){//父级和当前都被选中
                 s.removeSelected(option.id);
             }else if(isSelected==1){//当前选中
@@ -132,8 +132,8 @@ window.Tree=function(container,params){
             console.log("SeedsUI Warn：未找到Tree的Data数据，可在初始化时传入data参数，或者通过setData方法设置数据");
             return;
         }
-        if(!s.params.data[0].id || !s.params.data[0].parentId || !s.params.data[0].name){
-            console.log("SeedsUI Error：Tree的Data数据格式不正确，请检查data参数是否有id、parentId、name属性");
+        if(!s.params.data[0].id || !s.params.data[0].parentid || !s.params.data[0].name){
+            console.log("SeedsUI Error：Tree的Data数据格式不正确，请检查data参数是否有id、name、parentid属性");
             return;
         }
         s.updateBar();
@@ -146,28 +146,38 @@ window.Tree=function(container,params){
       Method
       ===========================*/
     s.setData=function(data){
-        s.data=s.params.data=data;
+        _data=s.params.data=data;
     }
     //添加数据
     s.addData=function(data,id,childNode){
-        s.data=data;
+        _data=data;
         s.initData(id,childNode);
+    }
+    //获得数据
+    s.getDataByTarget=function(target){
+        var opts={};
+        for (var i=0,att;att=target.attributes[i++];){
+            if(att.nodeName.indexOf("data-")!=-1){
+                opts[att.nodeName.substring(5)]=att.nodeValue;
+            }
+        }
+        return opts;
     }
     //异步添加节点，判断节点是否已经被选中
     //当前被选中返回1，父级被选中返回-1，当前和父级都被选中返回2，没有被选中返回0
-    s.isSelected=function(id,parentId){
+    s.isSelected=function(id,parentid){
         var flag=0,currentFlag=0,parentFlag=0;
         //判断当前是否被选中
         if(s.selected[id]){
             currentFlag=1;
         }
         //判断父级是否被选中
-        if(s.selected[parentId]){
+        if(s.selected[parentid]){
             parentFlag=-1;
         }
 
         //判断树中是否存在此ID
-        var parentNode=s.container.querySelector("["+s.params.idAttr+"='"+parentId+"']");
+        var parentNode=s.container.querySelector("["+s.params.idAttr+"='"+parentid+"']");
         if(!parentNode){
             return 0;
         }
@@ -191,37 +201,6 @@ window.Tree=function(container,params){
         //经过以上过滤，仍然未找到存在于选中项的迹象，说明没有存在于选中列表中
         return 0;
     }
-    /*s.isSelected=function(id,parentId){
-        //判断当前是否被选中
-        if(s.selected[id]){
-            return 1;
-        }
-        //判断父级是否被选中
-        if(s.selected[parentId]){
-            return -1;
-        }
-
-        //判断树中是否存在此ID
-        var parentNode=s.container.querySelector("["+s.params.idAttr+"='"+parentId+"']");
-        if(!parentNode){
-            return 0;
-        }
-
-        //向上查询是否已添加到选中项，一直查到顶级
-        while(!parentNode.classList.contains(s.params.treeClass) && parentNode.tagName!="BODY"){
-            parentNode=parentNode.parentNode.parentNode;
-            var lineNode=parentNode.previousElementSibling;
-            if(lineNode && lineNode.classList.contains(s.params.lineClass)){
-                var id=lineNode.getAttribute(s.params.idAttr);
-                if(s.selected[id]){
-                    return -1;
-                }
-            }
-        }
-
-        //经过以上过滤，仍然未找到存在于选中项的迹象，说明没有存在于选中列表中
-        return 0;
-    }*/
 
     //Json是否为空
     s.isEmptyJson=function(json){
@@ -233,11 +212,11 @@ window.Tree=function(container,params){
         return false;
     }
     //创建选中项
-    s.createBarOption=function(id,name,parentId){
+    s.createBarOption=function(id,name,parentid){
         var div=document.createElement("span");
         div.setAttribute("class",s.params.barOptionClass);
         div.setAttribute(s.params.idAttr,id);
-        if(parentId)div.setAttribute(s.params.parentIdAttr,parentId);
+        if(parentid)div.setAttribute(s.params.parentidAttr,parentid);
         div.setAttribute(s.params.nameAttr,name);
 
         var label=document.createElement("label");
@@ -274,36 +253,31 @@ window.Tree=function(container,params){
             ex.classList.remove(s.params.extandClass);
         }
     }
-    s.addSelected=function(id,name,parentId,elLine){
-        if(!id || !name || !parentId){
-            console.log("SeedsUI Error:id、name、parentId三个参数不正确");
+    s.addSelected=function(opts){
+        if(!opts.id || !opts.name || !opts.parentid){
+            console.log("SeedsUI Error:id、name、parentid三个参数不正确");
             return;
         }
-        if(s.selected[id]){
+        if(s.selected[opts.id]){
             console.log("SeedsUI Info:您要选中的节点已经选中");
             return;
         }
-        if(s.isSelected(id,parentId)){
+        if(s.isSelected(opts.id,opts.parentid)){
             console.log("SeedsUI Info:您要选中的节点已经选中");
             return;
         }
 
         //bar上添加选中
-        var barOption=s.createBarOption(id,name,parentId);
+        var barOption=s.createBarOption(opts.id,opts.name,opts.parentid);
         s.bar.appendChild(barOption);
         s.showBar();
 
         //tree中激活选中
-        var treeOption=s.container.querySelector("["+s.params.idAttr+"='"+id+"']");
+        var treeOption=s.container.querySelector("["+s.params.idAttr+"='"+opts.id+"']");
         if(treeOption)treeOption.classList.add(s.params.activeClass)
 
         //s.selected中添加选中
-        s.selected[id]={
-            id:id,
-            name:name,
-            parentId:parentId,
-            target:elLine||null
-        };
+        s.selected[opts.id]=opts;
     }
     //显示选中项
     s.showBar=function(){
@@ -408,12 +382,12 @@ window.Tree=function(container,params){
         }
         //显示此级
         elLine.classList.add(s.params.activeClass);
-        var id=elLine.getAttribute(s.params.idAttr);
+        /*var id=elLine.getAttribute(s.params.idAttr);
         var name=elLine.getAttribute(s.params.nameAttr);
-        var parentId=elLine.getAttribute(s.params.parentIdAttr);
-
+        var parentid=elLine.getAttribute(s.params.parentidAttr);*/
+        var opts=s.getDataByTarget(elLine);
         //添加到s.selected
-        s.addSelected(id,name,parentId,elLine);
+        s.addSelected(opts);
     }
     //点击树bar
     s.onClickBar=function(e){

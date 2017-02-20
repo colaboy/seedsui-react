@@ -10,6 +10,8 @@
 // @koala-prepend "seedsui/db.js"
 // @koala-prepend "seedsui/shake.js"
 // @koala-prepend "seedsui/dragrefresh.js"
+// @koala-prepend "seedsui/dragrefresh.pull.js"
+// @koala-prepend "seedsui/dragrefresh.circle.js"
 // @koala-prepend "seedsui/emoji.js"
 // @koala-prepend "seedsui/safelvl.js"
 // @koala-prepend "seedsui/formcontrols.js"

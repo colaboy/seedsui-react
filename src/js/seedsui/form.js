@@ -5,7 +5,7 @@
 		Model
 		================*/
 		var defaults={
-			ignoreFieldClass:null,//过滤表单元素
+			ignoreClass:null,//过滤表单元素
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -44,7 +44,7 @@
 						continue;
 					}
 				}
-				if(s.params.ignoreFieldClass && field.classList.contains(s.params.ignoreFieldClass)){
+				if(s.params.ignoreClass && field.classList.contains(s.params.ignoreClass)){
 					continue;
 				}
 				//push到数组里
@@ -64,9 +64,23 @@
 		s.pushField=function(field){
 			s.fields.push(field);
 		};
+
+		s.selected={},s.selectedString=[];
+		//添加已填值
+		s.addSelected=function(field){
+			//字符串格式
+			s.selectedString.push(field.name+"="+field.value);
+			//Json格式
+			if(s.selected[field.name]){
+				s.selected[field.name].push(field.value);
+			}else{
+				s.selected[field.name]=[];
+				s.selected[field.name].push(field.value);
+			}
+		};
 		/*表单Json化*/
-		s.serializeArray=function(){
-			var parts=[],field=null;
+		s.serializeJson=function(){
+			var field=null;
 			for(var i=0;i<s.fields.length;i++){
 				field=s.fields[i];
 				//如果是多选框，则每个值单独一个条目
@@ -74,22 +88,19 @@
 					for(var j=0;j<field.options.length;j++){
 						var option=field.options[j];
 						if(option.selected){
-							parts.push(field.name+"="+field.value);
+							s.addSelected(field);
 						}
 					}
 				}else{
-					//push到数组里
-					parts.push(field.name+"="+field.value);
+					s.addSelected(field);
 				}
 			}
-			return parts;
+			return s.selected;
 		};
 		/*表单序列化*/
 		s.serialize=function(){
-			//序列化
-			var parts=s.serializeArray();
 			//获得字符串
-			return parts.join("&");
+			return s.selectedString.join("&");
 		};
 		return s;
 	}

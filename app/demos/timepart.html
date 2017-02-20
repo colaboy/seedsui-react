@@ -40,27 +40,33 @@
                 //时间段
                 this.part1,this.part2;
                 this.timepart=new Timepart("#ID-Timepart",{
-                    startTime:"0:00",
-                    endTime:"24:00",
+                    startTime:"7:00",
+                    endTime:"22:00",
                     
                     onConflictOver:function(e){
-                        self.toast.setText("不能跨选禁用时间段");
-                        self.toast.show();
-                        //移除所有选中效果
-                        e.removeAllActive();
+                        if(e.target.status=="active"){
+                            self.toast.setText("不能跨选禁用时间段");
+                            self.toast.show();
+                            //移除所有选中效果
+                            e.removeAllActive();
+                        }
                     },
                     onConflictContain:function(e){
-                        self.toast.setText("选择的时间段已经有时间段被选了");
-                        self.toast.show();
+                        if(e.target.status=="disabled"){
+                            self.toast.setText("此时间段已经有时间段被选了");
+                            self.toast.show();
+                        }
                     },
-                    onClickActive:function(s){
-                        s.removeAllActive();
+                    onClickActive:function(e){
+                        console.log(e.target);
+                        e.removeAllActive();
                     },
                     onClickDisabled:function(e){
-                        self.toast.setText("不能选择禁用时间段");
+                        var dataPart=JSON.parse(e.target.getAttribute("data-part"));
+                        self.toast.setText("开始时间:"+dataPart.startTime+",结束时间:"+dataPart.endTime);
                         self.toast.show();
                     },
-                    onClickValid:function(s){
+                    onClickValid:function(s){//点击有效区域
                         if(s.clickCount==1){//如果点击了一次
                             self.part1=s.target;
                             self.part1.classList.add(s.params.activeClass);
@@ -74,8 +80,9 @@
                         }
                     },
                 });
-                this.timepart.disableTimes(null,new Date(),["SID-DisabledBefore"]);
-                this.timepart.disableTimes("22:20","23:20");
+                var dataPart=JSON.stringify({startTime:"3:00",endTime:"5:00"});
+                //this.timepart.disableTimes(null,"19:00",["SID-DisabledInfo"],dataPart);
+                this.timepart.disableTimes(null,new Date().setMinuteCeil(30),["SID-DisabledBefore"]);
                 //加载数据
                 this.loadData();
             },

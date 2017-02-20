@@ -10,11 +10,6 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>calendar</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-    <style type="text/css">
-    /* .SID-Calendar{
-        display: none;
-    } */
-    </style>
 </head>
 
 <body ontouchstart="">
@@ -49,13 +44,13 @@
                 this.calendar=new Calendar("#ID-Calendar",{
                     viewType:"week",
                     isShowDayNum:true,
-                    //disableBeforeDate:new Date(),
+                    disableBeforeDate:new Date(),
                     //isYTouch:false,//是否允许竖向滑动
                     activeDate:new Date(),
                     prevHTML:'<i class="icon-arrowleft"></i>',
                     nextHTML:'<i class="icon-arrowright"></i>',
                     onChange:function(e){
-                        //console.log(e.activeDate);
+                        console.log(e.activeDate);
                     }
                 });
                 //加载数据
@@ -99,7 +94,8 @@
                 }
                 this.btnShow.onclick=function(){
                     self.calendar.container.style.display="block";
-                    self.calendar.updateContainerSize();
+                    //self.calendar.updateContainerSize();
+                    self.calendar.draw();
                 }
                 this.btnHide.onclick=function(){
                     self.calendar.container.style.display="none";

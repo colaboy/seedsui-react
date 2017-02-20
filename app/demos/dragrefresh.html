@@ -13,7 +13,7 @@
 </head>
 
 <body ontouchstart="">
-    <section>
+    <!-- <section> -->
         <header>
             <div class="titlebar">
             	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -21,53 +21,55 @@
             </div>
         </header>
         <article>
+            <hr/>
             <ul class="list" id="list"></ul>
         </article>
-    </section>
+    <!-- </section> -->
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
+
         var view={
             /*=========================
               Model
               ===========================*/
             render:function(){
                 var self = this;
+                this.pagination={
+                    count:5,
+                    current:0
+                }
                 //插件
-                this.drag=new Dragrefresh({
-                    overflowContainer:"section",
+                this.drag=DfPull({
+                    overflowContainer:document.body,
+                    //overflowContainer:"article",
                     parent:"article",
-                    top:-20,
-                    threshold:130,
-                    onRefreshStart:function(e){
-                        setTimeout(function(){
-                            e.refreshComplete();
-                        }, 2000);
+                    onTopRefresh:function(e){
+                        console.log("头部刷新");
+                        self._loadData();
                     },
-                    onRefreshEnd:function(e){
-                        console.log("加载完成");
+                    onTopComplete:function(e){
+                        console.log("头部完成");
                     },
-                    onRefreshTimeout:function(e){
-                        console.log("请求超时");
+                    onBottomRefresh:function(e){
+                        console.log("底部刷新");
+                        self._loadNextPage();
                     },
-                    onScroll:function(e){
-                        //console.log(e.conttainer.scrollTop);
+                    onBottomComplete:function(e){
+                        console.log("底部完成");
                     },
-                    onBottom:function(e){
-                        console.log("到底部啦");
+                    onBottomNoData:function(e){
+                        console.log("底部无数据了");
                     }
                 });
-                //数据加载完成时，隐藏下面的元素
-                /*setTimeout(function(){
-                    self.drag.bottomContainer.style.display="none";
-                }, 5000);*/
-                this.alert=new Alert("请求超时啦");
 
                 //渲染页面
                 
                 //加载数据
-                this.loadData();
+                this._loadData();
+
+                this._attach();//使用backbone时，此行无用
             },
             refresh:function(){
                 console.log("刷新");
@@ -75,20 +77,42 @@
             destroy:function(){
                 console.log("移除");
             },
-            loadData:function(){
-                for(var i=0;i<100;i++){
-                    var elLI=document.createElement("li");
-                    elLI.setAttribute("class","underline");
-                    elLI.style.padding="12px 10px";
-                    elLI.innerHTML='<p>第'+i+'行列表</p>';
-                    document.getElementById("list").appendChild(elLI);
-                }
-
-                this._attach();//使用backbone时，此行无用
-            },
+            
             /*=========================
               Method
               ===========================*/
+            _loadData:function(){
+                var self=this;
+                var liStr="";
+                for(var i=0;i<3;i++){
+                    liStr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'行列表</p></li>';
+                }
+                setTimeout(function(){
+                    document.querySelector(".list").innerHTML=liStr;
+                    self.pagination.current=1;
+                    //drag标识头部状态
+                    self.drag.topComplete();
+                }, 3000);
+            },
+            _loadNextPage:function(){
+                var self=this;
+                if(this.pagination.current==this.pagination.count){
+                    //drag标识底部状态
+                    this.drag.bottomNoData();
+                    return;
+                }
+                var liStr="";
+                for(var i=0;i<10;i++){
+                    liStr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'行列表</p></li>';
+                }
+                
+                setTimeout(function(){
+                    document.querySelector(".list").innerHTML+=liStr;
+                    self.pagination.current++;
+                    //drag标识底部状态
+                    self.drag.bottomComplete();
+                }, 500);
+            },
             /*=========================
               Events
               ===========================*/

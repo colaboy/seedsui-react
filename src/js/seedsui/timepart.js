@@ -17,6 +17,7 @@
             partMinute:30,//一格的30分钟
             startTime:"7:00",
             endTime:"22:00",
+            dataPartAttr:"data-part",
 
             colAttr:"data-col",
 
@@ -65,6 +66,8 @@
             var date=new Date();
             var hour=timeStr.split(":")[0];
             var minute=timeStr.split(":")[1];
+            date.setYear(0);
+            date.setMonth(0,0);
             date.setHours(hour);
             date.setMinutes(minute);
             date.setSeconds(0,0);
@@ -148,28 +151,35 @@
              *行数:开始结束位置行数
              */
             var startRow=Math.floor(startRatio);
-            var endRow=Math.floor(endRatio);//为整数时得减1
+            var endRow=Math.floor(endRatio);
             /*
              *左右:开始结束行左右值
              */
             var left=Math.round(startRatio.replace(/\d+\./,"0.")*100);
             var right=Math.round(100-endRatio.replace(/\d+\./,"0.")*100);
-            
-            //如果结束位置在最右边，则结束行-1 右边间距为0
-            if(/^[1-9]{1,}[0-9]*$/.test(endRatio)){
-                endRow=endRow-1;
-                right=0;
-            }
-            //如果开始位置在最左边，则左边间距为0
-            if(/^[1-9]{1,}[0-9]*$/.test(startRatio)){
-                left=0;
-            }
 
             /*
              *段数:开始结束段数字
              */
             var startNum=Math.floor(startRatio*s.params.colCount);
-            var endNum=Math.ceil(endRatio*s.params.colCount)-1;
+            var endNum=Math.floor(endRatio*s.params.colCount);
+            /*
+             *整比例
+             */
+            //结束比例为整数时得减1
+            if(endRatio%1===0){
+                endRow--;
+                right=0;
+            }
+            //结束时间是一格的倍数得减1
+            if(endTime.getMinutes()%s.params.partMinute===0){
+                endNum--;
+            }
+            //如果开始位置在最左边，则左边间距为0
+            if(startRatio%1===0){
+                left=0;
+            }
+
             return{
                 startRatio:startRatio,
                 endRatio:endRatio,
@@ -184,17 +194,23 @@
                 endNum:endNum
             }
         };
-        s.hasProgress=function(startTime,endTime){
+        s.hasProgress=function(startTime,endTime,isCallback){
             var progress=s.container.querySelectorAll(".progress-first");
+            var e={
+                conflictStartTime:startTime,
+                conflictEndTime:endTime
+            };
             for(var i=0,pro;pro=progress[i++];){
                 //相交
                 if((startTime > pro.startTime && startTime < pro.endTime)||(endTime > pro.startTime && endTime < pro.endTime)){
-                    if(s.params.onConflictContain)s.params.onConflictContain(s);
+                    e.target=pro;
+                    if(s.params.onConflictContain && isCallback)s.params.onConflictContain(e);
                     return true;
                 }
                 //包含
                 if((pro.startTime > startTime && pro.startTime < endTime)||(pro.endTime > startTime && pro.endTime < endTime)){
-                    if(s.params.onConflictOver)s.params.onConflictOver(s);
+                    e.target=pro;
+                    if(s.params.onConflictOver && isCallback)s.params.onConflictOver(e);
                     return true;
                 }
             }
@@ -202,24 +218,42 @@
         };
 
         //设置进度条
-        s.setProgress=function(startTime,endTime,classes){
+        s.setProgress=function(startTime,endTime,classes,data){
             var startTime=Object.prototype.toString.call(startTime)==='[object Date]'?startTime:s.parseDate(startTime||s.params.startTime);
             var endTime=Object.prototype.toString.call(endTime)==='[object Date]'?endTime:s.parseDate(endTime||s.params.endTime);
+            /*startTime.setYear(0);startTime.setMonth(0,0).setSeconds(0);
+            endTime.setYear(0);endTime.setMonth(0,0).setSeconds(0);*/
+            startTime.setYear(0);
+            startTime.setMonth(0,0);
+            startTime.setSeconds(0,0);
 
-            if(s.hasProgress(startTime,endTime))return;
+            endTime.setYear(0);
+            endTime.setMonth(0,0);
+            endTime.setSeconds(0,0);
 
-            var range=s.getTimesRange(startTime,endTime);
-            //console.log(range);
-            
+            //时间范围限制
+            if(startTime.getTime() < s.startTime.getTime()){
+                startTime=s.startTime;
+            }else if(startTime.getTime() > s.endTime.getTime()){
+                startTime=s.endTime;
+            }
+            if(endTime.getTime() < s.startTime.getTime()){
+                endTime=s.startTime;
+            }else if(endTime.getTime() > s.endTime.getTime()){
+                endTime=s.endTime;
+            }
 
-            //设置parts的class
+            if(s.hasProgress(startTime,endTime,true))return;
+
+            var range=s.getTimesRange(startTime,endTime);            
+
+            //设置parts的class与data
             for(var i=range.startNum;i<=range.endNum;i++){
                 for(var k=0,className;className=classes[k++];){
                     s.parts[i].classList.add(className);
+                    s.parts[i].setAttribute(s.params.dataPartAttr,data);
                 }
             }
-
-            
 
             //设置progress的left和right
             for(var j=range.startRow;j<=range.endRow;j++){
@@ -240,6 +274,11 @@
 
                     progress.startTime=startTime;
                     progress.endTime=endTime;
+                    if(progress.classList.contains(s.params.activeClass)){
+                        progress.status=s.params.activeClass;
+                    }else if(progress.classList.contains(s.params.disableClass)){
+                        progress.status=s.params.disableClass;
+                    }
                     progress.classList.add("progress-first");
                 }
                 if(j==range.endRow){
@@ -249,13 +288,15 @@
                 s.rows[j].appendChild(progress);
             }
         };
-        s.activeTimes=function(startTime,endTime,classes){
+        s.activeTimes=function(startTime,endTime,classes,data){
             var classes=classes?[s.params.activeClass].concat(classes):[s.params.activeClass];
-            s.setProgress(startTime,endTime,classes);
+            var data=data||"";
+            s.setProgress(startTime,endTime,classes,data);
         };
-        s.disableTimes=function(startTime,endTime,classes){
+        s.disableTimes=function(startTime,endTime,classes,data){
             var classes=Object.prototype.toString.call(classes)==='[object Array]'?[s.params.disableClass].concat(classes):[s.params.disableClass];
-            s.setProgress(startTime,endTime,classes);
+            var data=data||"";
+            s.setProgress(startTime,endTime,classes,data);
         };
         //获取选中的时间段
         s.getActiveTimes=function(){

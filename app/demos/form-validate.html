@@ -238,6 +238,7 @@
               Event Handler
               ===========================*/
             _onSubmit:function(e){
+                e.preventDefault();
                 //重置错误样式
                 for(var i=0,el;el=view.formFields[i++];){
                     el.parentNode.parentNode.classList.remove("inputbox-error");
@@ -248,8 +249,11 @@
                     view.prompt.setText(error.msg);
                     view.prompt.show();
                     error.field.parentNode.parentNode.classList.add("inputbox-error");
-                    e.preventDefault();
+                    return;
                 }
+                var formArr=new Form("#ID-Form").serializeJson();
+                console.log(formArr);
+                
             }
         }
 

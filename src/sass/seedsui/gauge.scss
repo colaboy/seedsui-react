@@ -133,7 +133,7 @@ $gauge-bgs: #1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c269
 	width:200px;
 	height:200px;
 	margin:0 auto;
-	background-image:url(img/gauge/gauge.png);
+	background-image:url(images/gauge/gauge.png);
 	background-size:100% 100%;
 }
 .gauge-pointer{
@@ -142,7 +142,7 @@ $gauge-bgs: #1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c269
 	left:52px;
 	height:60px;
 	width:60px;
-	background-image:url(img/gauge/gauge-pointer.png);
+	background-image:url(images/gauge/gauge-pointer.png);
 	background-repeat:no-repeat;
 	background-size:100% 100%;
 	-webkit-transform-origin:48px 13.5px;
@@ -169,7 +169,7 @@ $gauge-bgs: #1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c269
 	left:0;
 	width:100%;
 	height:1136px;
-	background-image: url(img/gauge/wave.png);
+	background-image: url(images/gauge/wave.png);
 	background-repeat:repeat-x;
 	background-position-x:0;
 	background-position-y:top;

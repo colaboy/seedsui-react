@@ -5,31 +5,24 @@
 		  Model
 		  ==================*/
 		var defaults={
-			overflowContainer:null,
-			parent:document.body,
-			isDisableTop:false,
-			isDisableBottom:false,
-			minScrollTop:0,
-			top:-58,
+			overflowContainer:document.body,
+			baseline:0,
 			threshold:100,
-			thresholdMax:200,//最大拉动值
-			refreshHideTop:0,
 			duration:150,
-			timeout:5000,
 
-			topContainerClass:"dragrefresh",
-			hiddenClass:"overflow-hidden",
+			topContainer:null,
 			bottomContainer:null,
-			bottomContainerClass:"loading-more",
-			bottomContainerLoadingClass:"loading-progress",
-			onBottomSpaceDuration:2000
+			bottomRefreshDelay:1000
 
 			/*callbacks
-			onRefreshStart:function(Dragrefresh)
-			onRefreshEnd:function(Dragrefresh)
-			onRefreshTimeout:function(Dragrefresh)
-			onScroll:function(Dragrefresh)
-			onBottom:function(Dragrefresh)
+			onTopRefresh:function(Dragrefresh)//头部刷新
+			onTopComplete:function(Dragrefresh)//头部完成加载
+			onBottomRefresh:function(Dragrefresh)//底部刷新
+			onBottomComplete:function(Dragrefresh)//底部完成加载
+			onBottomNoData:function(Dragrefresh)//底部无数据
+			onTransitionEnd:function(Dragrefresh)//头部动画结束
+            onTopShowed(Dragrefresh)//头部显示动画结束
+            onTopHid(Dragrefresh)//头部隐藏动画结束
 			*/
 		}
 		params=params||{};
@@ -41,144 +34,126 @@
 		var s=this;
 		s.params=params;
 		//Container
-		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		if(s.params.overflowContainer){
-			s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
-		}else{
-			s.overflowContainer=s.parent;
+		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
+		if(!s.overflowContainer){
+			console.log("SeedsUI Error : overflowContainer不存在，请检查页面中是否有此元素");
+			return;
 		}
-		//创建DOM
-		s.createRefresh=function(){
-			if(s.topContainer)return;
-			s.topContainer=document.createElement("div");
-			s.topContainer.setAttribute("class",s.params.topContainerClass);
-			var iconSvg='<svg width="1000.6px" height="1000.6px" viewBox="0 0 1000.6 1000.6" xml:space="preserve">'+
-						'<path d="M867.4,456.1c-24.1,0-43.8,19.7-43.8,43.8c0,1.5,0.1,3.1,0.3,4.6c-2.2,176.4-147.1,319.6-323.7,319.6 c-178.5,0-323.8-145.3-323.8-323.8s145.3-323.8,323.8-323.8c62.8,0,122.8,17.7,174.4,50.8l-29,52.2c0,0,138.4,2.2,149.2,2.4 c10.8,0.2,14.6-5.6,14.6-5.6s5.1-5.8,2.4-15.5c-2.6-9.7-43.2-162.2-43.2-162.2l-38.5,61.1c-67.3-45.7-146.7-70.1-229.8-70.1 c-226.6,0-411,184.4-411,411s184.4,411,411,411c225.8,0,410.1-183.7,410.9-407.3l0.2-4.2C911.2,475.7,891.6,456.1,867.4,456.1z"/>'+
-						'</svg>';
-			s.topContainer.innerHTML=iconSvg;
-			s.topContainer.style.top=s.params.top+"px";
-			s.parent.appendChild(s.topContainer);
-		};
-		s.createRefresh();
-		s.bottomContainer=typeof s.params.bottomContainer=="string"?s.parent.querySelector(s.params.bottomContainer):s.params.bottomContainer;
-
-		s.createBottomContainer=function(){
-			s.bottomContainer=s.parent.querySelector("."+s.params.bottomContainerClass);
-			if(!s.bottomContainer){
-				s.bottomContainer=document.createElement("div");
-				s.bottomContainer.setAttribute("class",s.params.bottomContainerClass);
-				var spinnerdiv=document.createElement("div");
-				spinnerdiv.setAttribute("class",s.params.bottomContainerLoadingClass);
-				s.bottomContainer.appendChild(spinnerdiv);
-				s.parent.appendChild(s.bottomContainer);
-			}
+		//topContainer
+		s.topContainer=typeof s.params.topContainer=="string"?document.querySelector(s.params.topContainer):s.params.topContainer;
+		if(!s.topContainer){
+			console.log("SeedsUI Warn : topContainer不存在，请检查页面中是否有此元素");
 		}
-		if(!s.bottomContainer && s.params.onBottom)s.createBottomContainer();
-
+		//bottomContainer
+		s.bottomContainer=typeof s.params.bottomContainer=="string"?document.querySelector(s.params.bottomContainer):s.params.bottomContainer;
+		if(!s.bottomContainer){
+			console.log("SeedsUI Warn : bottomContainer不存在，请检查页面中是否有此元素");
+		}
 		/*==================
 		  Mothod
 		  ==================*/
-		//旋转,10W毫秒，旋转4万6千度
-		s.spinner=function(){
-			s.topContainer.style.webkitTransitionDuration="100000ms";
-			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(46000deg)';
-		}
-		s.delaySpinner=function(){//兼容一些不旋转的问题
-			s.topContainer.style.webkitTransitionDuration="100000ms";
-			setTimeout(function(){
-				s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(46000deg)';
-			},100);
-		}
-		s.cancelSpinner=function(){
-			s.topContainer.style.webkitTransitionDuration="0ms";
-			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(0deg)';
-		};
 		s.isHid=false;
 		//隐藏
-		s.hide=function(){
-			//停止旋转
-			s.cancelSpinner();
-			//收起
+		s.hideTop=function(){
 			s.topContainer.style.webkitTransitionDuration=s.params.duration+"ms";
-			s.touches.posY=s.params.refreshHideTop;
-			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
-
+			s.touches.posY=s.params.baseline;
+			s.touches.currentPosY=s.params.baseline;
+			s.isTopRefreshing=false;//标识正在刷新状态清除
 			s.isHid=true;
+			//实体操作
+			if(s.params.onHideTop)s.params.onHideTop(s);
 		};
 		//显示
-		s.show=function(){
-			s.isHid=false;
-			//收到指定位置
+		s.showTop=function(){
 			s.topContainer.style.webkitTransitionDuration=s.params.duration+"ms";
-			if(s.touches.posY==s.params.threshold){//不执行onTransitionEnd的情况，直接旋转
-				s.delaySpinner();
-			}
 			s.touches.posY=s.params.threshold;
-			s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
-		}
+			s.touches.currentPosY=s.params.baseline;
+			s.isHid=false;
+			//实体操作
+			if(s.params.onShowTop)s.params.onShowTop(s);
+		};
 		//销毁对象
 		s.destroyTop=function(){
-			s.parent.parentNode.removeChild(s.topContainer);
-		}
+			s.overflowContainer.removeChild(s.topContainer);
+		};
 		s.destroyBottom=function(){
-			s.parent.removeChild(s.bottomContainer);
-		}
+			s.overflowContainer.removeChild(s.bottomContainer);
+		};
 		s.destroy=function(){
 			s.destroyTop();
 			s.destroyBottom();
 			//销毁事件
 			s.detach();
-		}
-		//Callback 刷新中
-		s.refresh=function(){
-			s.show();
-			//callback onRefreshStart
-			if(s.params.onRefreshStart){
-				s.params.onRefreshStart(s);
-			}
-			//callback 超时
-			if(s.params.onRefreshTimeout){
-				s.timeout=setTimeout(function(){
-					s.params.onRefreshTimeout(s);
-				}, s.params.timeout);
-			}
 		};
-		//Callback 刷新完成
-		s.refreshComplete=function(){
-			//清除超时
-			if(s.timeout)window.clearTimeout(s.timeout);
-			//收起
-			s.hide();
-			//callback 刷新结束
-			if(s.params.onRefreshEnd){
-				s.params.onRefreshEnd(s);
-			}
-		}
-		//Callback 刷新超时
-		s.refreshTimeout=function(){
-			s.hide();
-			s.params.onRefreshTimeout(s);
-		};
+		//是否有滚动条
+		s.hasScroll=function(){
+			var clientHeight=s.overflowContainer.clientHeight || window.innerHeight;
+			var scrollHeight=s.overflowContainer.scrollHeight || document.body.scrollHeight;
+			var scrollTop=s.overflowContainer.scrollTop || document.body.scrollTop;
+			//console.log(clientHeight+":"+scrollHeight+":"+scrollTop);
 
+			if(clientHeight == scrollHeight){
+				return false;
+            }
+            return true;
+		};
+		//头部刷新完成
+		s.topComplete=function(){
+			//收起
+			s.hideTop();
+			//底部刷新又有数据了
+			s.isBottomNoData=false;
+			//Callback onTopComplete
+			if(s.params.onTopComplete){
+				s.params.onTopComplete(s);
+			}
+			//如果没有滚动条，则刷新底部数据
+			if(!s.hasScroll()){
+				s.onBottomRefresh();
+			}
+		};
+		
+		//底部刷新完成
+		s.bottomComplete=function(){
+			s.isBottomRefreshing=false;
+			//Callback onBottomComplete
+			if(s.params.onBottomComplete){
+				s.params.onBottomComplete(s);
+			}
+			//如果没有滚动条，则再次刷新
+			if(!s.hasScroll()){
+				s.onBottomRefresh();
+			}
+		};
+		//底部刷新无数据
+		s.bottomNoData=function(){
+			s.isBottomNoData=true;
+			s.isBottomRefreshing=false;
+			//Callback onBottomNoData
+			if(s.params.onBottomNoData){
+				s.params.onBottomNoData(s);
+			}
+		};
 		/*==================
 		  Controller
 		  ==================*/
-		s.isRefreshEnd=true;
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
 			var touchTarget=s.overflowContainer;
-			if(s.params.isDisableTop===false){
-				s.parent[action]("touchstart",s.onTouchStart,false);
-				s.parent[action]("touchmove",s.onTouchMove,false);
-				s.parent[action]("touchend",s.onTouchEnd,false);
-				s.parent[action]("touchcancel",s.onTouchEnd,false);
+			if(s.params.topContainer && s.topContainer){
+				s.overflowContainer[action]("touchstart",s.onTouchStart,false);
+				s.overflowContainer[action]("touchmove",s.onTouchMove,false);
+				s.overflowContainer[action]("touchend",s.onTouchEnd,false);
+				s.overflowContainer[action]("touchcancel",s.onTouchEnd,false);
 				//头部动画监听
 				s.topContainer[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			}
-			if(s.params.isDisableBottom===false && s.bottomContainer){
-				//绑定底部事件
-				if(touchTarget==document.body)window[action]("scroll",s.onWindowScroll,false);
-				else touchTarget[action]("scroll",s.onScroll,false);
+			if(s.params.bottomContainer && s.bottomContainer){
+				//绑定底部事件，区分一般容器和body
+				if(touchTarget==document.body){
+					touchTarget=window;
+				}
+				touchTarget[action]("scroll",s.onScroll,false);
 			}
 		}
 		//attach、detach事件
@@ -203,29 +178,23 @@
         	diffX:0,
         	diffY:0,
         	posY:0,
-        	rotateDeg:0
+        	currentPosY:0
         };
         s.preventDefault=function(e){
 			e.preventDefault();
 		}
 		s.onTouchStart=function(e){
-			if(s.isRefreshEnd===false)return;
-
 			s.overflowContainer.addEventListener("touchmove",s.preventDefault,false);
 			//如果不在顶部，则不触发
-			if(s.overflowContainer.scrollTop>s.params.minScrollTop)s.touches.isTop=false;
+			if(s.overflowContainer.scrollTop>0)s.touches.isTop=false;
 			else s.touches.isTop=true;
 
-			//s.removeTransition();
 			s.topContainer.style.webkitTransitionDuration="0ms";
 
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
 		};
-		
 		s.onTouchMove=function(e){
-			if(s.isRefreshEnd===false)return;
-
 			s.touches.currentX=e.touches[0].clientX;
 			s.touches.currentY=e.touches[0].clientY;
 			s.touches.diffY=s.touches.currentY-s.touches.startY;
@@ -239,70 +208,70 @@
 			if (s.touches.direction === -1) {
 				s.touches.vertical = s.touches.diffY < 0 ? 1 : -1;
 			}
-			
-			if(s.touches.vertical==1 || !s.touches.isTop){//向上滑动或者不在顶部
-				s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);	
-			}else if(s.touches.vertical===-1){//下拉
-				s.overflowContainer.classList.add(s.params.hiddenClass);
-				s.touches.posY=s.params.refreshHideTop+s.touches.diffY;
-				if(s.touches.posY<s.params.thresholdMax){
-					s.touches.rotateDeg=s.touches.posY*2;
-					s.topContainer.style.webkitTransform='translate3d(0,' + s.touches.posY + 'px,0) rotate(' + s.touches.rotateDeg + 'deg)';
-				}
+			//在顶部下拉
+			if(s.touches.isTop && s.touches.vertical==-1){
+				s.overflowContainer.addEventListener("touchmove",s.preventDefault,false);
+				s.touches.currentPosY=s.touches.posY+s.touches.diffY;
+				//实体操作
+				if(s.params.onPull)s.params.onPull(s);
+			}else{
+				s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);
 			}
 		};
 		s.onTouchEnd=function(e){
 			//清除move时记录的方向
 			s.touches.direction=0;
 			s.touches.vertical=0;
-
-			if(s.isRefreshEnd===false)return;
-
-			s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);
-			if(s.touches.posY!=0){//下拉情况下
-				s.overflowContainer.classList.remove(s.params.hiddenClass);
-				if(s.touches.posY<s.params.threshold){//如果小于hold值，则收起刷新
-					s.hide();
-				}else{//刷新
-					s.refresh();
+			//下拉的情况
+			if(s.touches.currentPosY>0){
+				if(s.touches.currentPosY>s.params.threshold){//如果大于hold值，则展示
+					s.showTop();
+				}else{//小于则收起
+					s.hideTop();
 				}
-				//标识是否刷新结束，防止重复下拉
-				s.isRefreshEnd=false;
 			}
 		};
+		s.isTopRefreshing=false;
 		s.onTransitionEnd=function(e){
-			if(s.isHid===false){
-				s.spinner();
-			}else if(s.isHid===true){
-				s.isRefreshEnd=true;
+			if(e.target!=s.topContainer || e.propertyName=="visibility")return;
+			//有效的显示状态
+			if(s.touches.posY==s.params.threshold && s.isTopRefreshing==false){
+				//标识正在刷新，防止重复刷新
+				s.isTopRefreshing=true;
+
+				//CallBack onTopRefresh
+				if(s.params.onTopRefresh)s.params.onTopRefresh(s);
 			}
-		}
-		
+
+			//显示与隐藏
+			//Callback onTransitionEnd
+            if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
+            if(s.isHid){
+                //Callback onTopHid
+                if(s.params.onTopHid)s.params.onTopHid(s);
+            }else{
+                //Callback onTopShowed
+                if(s.params.onTopShowed)s.params.onTopShowed(s);
+            }
+		};
+		s.isBottomNoData=false;
+		s.isBottomRefreshing=false;
 		s.onScroll=function(e){
-			s.target=e.target;
-			if(s.params.onScroll)s.params.onScroll(s);
-			if (s.isOnBottomOk && s.params.onBottom && (this.scrollTop + this.clientHeight >= this.scrollHeight)){
-				s.onBottom();
+			var clientHeight=this.clientHeight || window.innerHeight;
+			var scrollHeight=this.scrollHeight || document.body.scrollHeight;
+			var scrollTop=this.scrollTop || document.body.scrollTop;
+
+			if(scrollTop + clientHeight >= scrollHeight-2){
+				s.onBottomRefresh();
             }
 		}
-		s.onWindowScroll=function(e){
-			s.target=e.target;
-			var clientHeight=window.innerHeight; 
-	        var scrollTop=document.body.scrollTop;
-	        var scrollHeight=document.body.scrollHeight;
-	        if(s.isOnBottomOk && s.params.onBottom && (clientHeight+scrollTop>=scrollHeight)){
-	            s.onBottom();
-	        }
-		}
-		s.isOnBottomOk=true;
-		s.onBottom=function(e){
-			s.isOnBottomOk=false;
+		s.onBottomRefresh=function(){
+			//优先保证头部刷新
+			if(s.isBottomNoData || s.isBottomRefreshing || s.isTopRefreshing)return;
 
-            s.params.onBottom(s);
-
-            setTimeout(function(){
-            	s.isOnBottomOk=true;
-            }, s.params.onBottomSpaceDuration);
+			s.isBottomRefreshing=true;
+			//CallBack onBottomRefresh
+            if(s.params.onBottomRefresh)s.params.onBottomRefresh(s);
 		}
 		//主函数
 		s.init=function(){

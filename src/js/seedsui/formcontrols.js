@@ -36,6 +36,9 @@
 			pre.appendChild(span);
 			pre.style.width=el.clientWidth+"px";
 			el.parentNode.insertBefore(pre,el.nextSibling);
+			setTimeout(function() {
+				pre.style.width=el.clientWidth+"px";
+			}, 100);
 		}
 		s.update=function(){
 			s.detach();
@@ -107,9 +110,8 @@
 				inputSearch[action]("blur",s.onBlurSearch,false);
 			}
 		}
-		s.hasEvents=false;
 		s.attach=function(event){
-			if(!s.hasEvents)s.events();
+			s.events();
 		}
 		s.detach=function(event){
 			s.events(true);
@@ -127,11 +129,14 @@
 		s.onSwitch=function(e){
 			var parentNode=this.parentNode;
 			var name=this.getAttribute("data-name");
+			var className=this.getAttribute("data-class");
 			var onVal=this.getAttribute("data-on-value");
 			var offVal=this.getAttribute("data-off-value");
+
 			var hiddenInput=null;
 			if(name){
 				hiddenInput=this.nextElementSibling && this.nextElementSibling.type=="hidden" && this.nextElementSibling.name==name? this.nextElementSibling : s.createHiddenInput(name);
+				if(className)hiddenInput.setAttribute("class",className);
 				parentNode.insertBefore(hiddenInput,this.nextSibling);
 			}
 			
@@ -256,7 +261,6 @@
 		}
 		//搜索框
 		s.onBlurSearch=function(e){
-			console.log(e.target.value);
 			if(e.target.value==""){
 				e.target.parentNode.classList.remove("active");
 			}else{

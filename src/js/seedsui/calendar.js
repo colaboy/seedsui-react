@@ -65,14 +65,14 @@
 			enumerable:true,
 			configurable:true,
 			writable:false
-		})
+		});
 		
 		//今天和选中天
 		s.today=new Date(),s.activeDate=null;
 		//日历工具箱
 		if(s.params.activeDate){//如果有选中天，则初始化为选中天
-			s.calendarUtil=new CalendarUtil(s.params.activeDate);
 			s.activeDate=s.params.activeDate;
+			s.calendarUtil=new CalendarUtil(s.activeDate);
 		}else{//否则，则初始化为默认天
 			s.calendarUtil=new CalendarUtil(s.params.defaultActiveDate);
 		}
@@ -296,7 +296,6 @@
 					s.wrapperY.style.webkitTransitionDuration="0ms";
 					s.calendarUtil.activePrevWeek();
 				}
-				s.draw();
         	}else if(index===2){//下一页
         		if(s.params.viewType==="month"){
         			s.calendarUtil.activeNextMonth();
@@ -304,8 +303,12 @@
 					s.wrapperY.style.webkitTransitionDuration="0ms";
 					s.calendarUtil.activeNextWeek();
 				}
-				s.draw();
 			}
+			if((s.params.disableBeforeDate && s.calendarUtil.activeDate < s.params.disableBeforeDate)||(s.params.disableAfterDate && s.calendarUtil.activeDate > s.params.disableAfterDate)){
+				s.calendarUtil.activeDate = s.activeDate;
+				return;
+			}
+			s.draw();
         };
         //上下滑动
         s.dragY=function(heightY){
@@ -671,11 +674,11 @@
         }
         s.activePrevWeek=function(){
             var ms=s.activeDate.getTime()-s.weekMilliSecond;
-            s.activeDate.setTime(ms);
+            s.activeDate=new Date(ms);
         }
         s.activeNextWeek=function(){
             var ms=s.activeDate.getTime()+s.weekMilliSecond;
-            s.activeDate.setTime(ms);
+            s.activeDate=new Date(ms);
         }
         s.activePrevMonth=function(){
             var tempDate=new Date(s.activeDate);
