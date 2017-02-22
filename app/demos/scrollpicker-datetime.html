@@ -115,7 +115,8 @@
                     minuteClass:"text-center",
                     isClickMaskHide:false,
                     onClickDone:function(e){
-                        if(new Date(e.activeText)<=new Date()){
+                        var activeText=e.activeText.replace(/-/g,"/");
+                        if(new Date(activeText)<=new Date()){
                             app.prompt.setText("时间不能早于当前时间");
                             app.prompt.show();
                             return;
@@ -123,9 +124,9 @@
                         if(input.classList.contains("SID-DateTimeStart")){//点击开始时间
                             var endInput=input.parentNode.nextElementSibling.querySelector(".SID-DateTimeEnd");
                             if(endInput.value==""){
-                                var endTime=new Date(e.activeText).plusMinute(30);
+                                var endTime=new Date(activeText).plusMinute(30);
                                 endInput.value=endTime.format("yyyy-MM-dd hh:mm");
-                            }else if(new Date(e.activeText) >= new Date(endInput.value)){
+                            }else if(new Date(activeText) >= new Date(endInput.value.replace(/-/g,"/"))){
                                 app.prompt.setText("开始时间不能晚于结束时间");
                                 app.prompt.show();
                                 return;
@@ -133,14 +134,14 @@
                         }else if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
                             var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
                             var startTime=new Date().setMinuteCeil(10);
-                            if(new Date(e.activeText)<=startTime){
+                            if(new Date(activeText)<=startTime){
                                 app.prompt.setText("结束时间太早啦~");
                                 app.prompt.show();
                                 return;
                             }
                             if(prevInput.value==""){
                                 prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
-                            }else if(new Date(prevInput.value) >= new Date(e.activeText)){
+                            }else if(new Date(prevInput.value.replace(/-/g,"/")) >= new Date(activeText)){
                                 app.prompt.setText("开始时间不能晚于结束时间");
                                 app.prompt.show();
                                 return;

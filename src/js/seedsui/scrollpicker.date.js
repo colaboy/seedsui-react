@@ -139,7 +139,7 @@
 	    if(s.params.minutesData){
 	    	s.minutes=s.params.minutesData;
 	    }else{
-	    	for(var minute=1;minute<=60;minute++){
+	    	for(var minute=0;minute<=59;minute++){
 	    		var tempMinute=minute<10?"0"+minute:minute;
 		        s.minutes.push({"key":tempMinute,"value":tempMinute+s.params.mmUnit,"flag":"time"});
 		    }

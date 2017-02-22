@@ -77,6 +77,8 @@
         		for(var i=0;i<discardLen;i++){
         			s.discardList.push(s.list.pop());
         		}
+        	}else{
+        		s.discardList=[];
         	}
         	//Callback onBack
 			if(s.params.onBack)s.params.onBack(s);

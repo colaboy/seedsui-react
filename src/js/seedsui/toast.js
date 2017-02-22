@@ -7,12 +7,13 @@
 		================*/
 		var defaults={
 			parent:document.body,
-			toastClass:"toast",
+			containerClass:"toast",
 			activeClass:"active",
+			containerCss:{},
 			css:{},
 			delay:1500,
 
-			toastContentClass:"toast-content",
+			wrapperClass:"toast-wrapper",
 			
 			/*callbacks
             onShowed(Toast)//显示动画结束后回调
@@ -29,28 +30,31 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.container,s.toastContent;
+		s.container,s.wrapper;
 		s.createContainer=function(){
 			var container=document.createElement("div");
-			container.setAttribute("class",s.params.toastClass);
+			container.setAttribute("class",s.params.containerClass);
 			return container;
 		}
 		s.createToastContent=function(){
-			var toastContent=document.createElement("div");
-			toastContent.setAttribute("class",s.params.toastContentClass);
-			if(msg)toastContent.innerHTML=msg;
-			return toastContent;
+			var wrapper=document.createElement("div");
+			wrapper.setAttribute("class",s.params.wrapperClass);
+			if(msg)wrapper.innerHTML=msg;
+			return wrapper;
 		}
 		s.create=function(){
 			s.container=s.createContainer();
-			s.toastContent=s.createToastContent();
-			s.container.appendChild(s.toastContent);
+			s.wrapper=s.createToastContent();
+			s.container.appendChild(s.wrapper);
 			s.parent.appendChild(s.container);
 		}
 		s.create();
 		s.update=function(){
+            for(var c in s.params.containerCss){
+                s.container.style[c]=s.params.containerCss[c];
+            }
             for(var c in s.params.css){
-                s.toastContent.style[c]=s.params.css[c];
+                s.wrapper.style[c]=s.params.css[c];
             }
 		}
 		s.update();
@@ -59,7 +63,7 @@
 		Method
 		================*/
 		s.setText=function(msg){
-			s.toastContent.innerHTML=msg;
+			s.wrapper.innerHTML=msg;
 		};
 		s.isHid=true;
 		s.hide=function(fn){

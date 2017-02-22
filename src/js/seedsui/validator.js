@@ -1,54 +1,54 @@
 //Validator 表单验证 (require safelvl.js)
 (function(window,document,undefined){
 	/********************验证策略类********************/
-	var ruleExpress={
-		"required":/.+/,//不能为空
-		"integer":/^[1-9]{1,}[0-9]*$/,//正整数
-		"username":/^[\w]*$/,//只能包括字母、数字和下划线
-		"password":/^[0-9_a-zA-Z-~!@#$]*$/,//密码格式不正确
-		"mail":/^(\w+@\w+\.[\.\w]+)?$/,//邮箱格式不正确
-		"phone":/^([1][34578][0-9]{9})?$/,//手机号码输入不正确
-		"chinese":/^[\u4E00-\u9FA5]*$/,//只能填写中文
-		"specialchar":/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$///不能为特殊字符
-	};
 	window.Rules={
 		required:function(value,errorMsg){
-			if(!ruleExpress["required"].test(value)){
+			if(!/.+/.test(value)){
 				return errorMsg;
 			}
 		},
 		integer:function(value,errorMsg){
-			if(!ruleExpress["integer"].test(value)){
+			if(value%1!=0){
+				return errorMsg;
+			}
+		},
+		negativeInteger:function(value,errorMsg){
+			if(!/^[1-9]{1,}[0-9]*$/.test(value)){
+				return errorMsg;
+			}
+		},
+		positiveInteger:function(value,errorMsg){
+			if(!/^-[1-9]{1,}[0-9]*$/.test(value)){
 				return errorMsg;
 			}
 		},
 		username:function(value,errorMsg){
-			if(!ruleExpress["username"].test(value)){
+			if(!/^[\w]*$/.test(value)){
 				return errorMsg;
 			}
 		},
 		password:function(value,errorMsg){
-			if(!ruleExpress["password"].test(value)){
+			if(!/^[0-9_a-zA-Z-~!@#$]*$/.test(value)){
 				return errorMsg;
 			}
 		},
 		mail:function(value,errorMsg){
-			if(!ruleExpress["mail"].test(value)){
+			if(!/^(\w+@\w+\.[\.\w]+)?$/.test(value)){
 				return errorMsg;
 			}
 		},
 		phone:function(value,errorMsg){
-			if(!ruleExpress["phone"].test(value)){
+			if(!/^([1][34578][0-9]{9})?$/.test(value)){
 				return errorMsg;
 			}
 		},
 		chinese:function(value,errorMsg){
-			if(!ruleExpress["chinese"].test(value)){
+			if(!/^[\u4E00-\u9FA5]*$/.test(value)){
 				return errorMsg;
 			}
 		},
 		specialchar:function(value,errorMsg){
-			if(!ruleExpress["specialchar"].test(value)){
+			if(!/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/.test(value)){
 				return errorMsg;
 			}
 		},
@@ -63,7 +63,7 @@
 			}
 		},
 		maxNumber:function(value,max,errorMsg){
-			if(value.length != 0 && value < max){
+			if(value.length != 0 && value > max){
 				return errorMsg;
 			}
 		},

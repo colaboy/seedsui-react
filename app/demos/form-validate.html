@@ -209,11 +209,11 @@
                 ]);
                 validator.add(this.formContainer["NID-Age"],[
                     {
-                        rule:'number',
-                        errorMsg:'年龄只能为数字'
+                        rule:'negativeInteger',
+                        errorMsg:'年龄只能为正整数'
                     },{
-                        rule:'minNumber:18',
-                        errorMsg:'年龄最小18岁'
+                        rule:'minNumber:1',
+                        errorMsg:'年龄最小1岁'
                     },{
                         rule:'maxNumber:48',
                         errorMsg:'年龄最大48岁'
