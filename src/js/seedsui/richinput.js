@@ -43,11 +43,10 @@
 		s.textarea=s.container.querySelector("textarea");
 
 		//辅助计算textarea高度的pre和preSpan
-		var pre=s.container.querySelector("pre");
+		/*var pre=s.container.querySelector("pre");
 		var preSpan=pre.querySelector("span");
 
-		//pre.style.width=s.textarea.clientWidth+"px";
-		s.textarea.style.height=pre.clientHeight+"px";
+		s.textarea.style.height=pre.clientHeight+"px";*/
 
 		/*=========================
           Method
@@ -79,16 +78,16 @@
 		document.onselectionchange=function(e){
 			if(Object.prototype.toString.call(e.target.activeElement)=="[object HTMLTextAreaElement]"){
 				//计算textarea高度
-				preSpan.innerText=s.textarea.value;
-				s.textarea.style.height=pre.clientHeight+"px";
+				/*preSpan.innerText=s.textarea.value;
+				s.textarea.style.height=pre.clientHeight+"px";*/
 				//获得光标位置
 				cursorOffset=s.textarea.selectionStart;
 			}
 		}
 		s.textarea.addEventListener("input",function(e){
 			//计算textarea高度
-			preSpan.innerText=s.textarea.value;
-			s.textarea.style.height=pre.clientHeight+"px";
+			/*preSpan.innerText=s.textarea.value;
+			s.textarea.style.height=pre.clientHeight+"px";*/
 			//获得光标位置
 			cursorOffset=s.textarea.selectionStart;
 		},false);

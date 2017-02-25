@@ -160,9 +160,9 @@
                     <div class="slider-pagination"></div>
                 </div>
                 <figcaption>
-                    <div class="input">
-                        <textarea></textarea>
-                        <pre><span></span><br/></pre>
+                    <div class="inputbox basketline">
+                        <textarea class="input-pre"></textarea>
+                        <div class="hline"></div>
                     </div>
                     <a class="button grayscale outline" href="javascript:sent()">发送</a>
                 </figcaption>
@@ -176,6 +176,7 @@
         var r=new Richinput("#richeditor");
         var richeditor=r.container;
         var t=new Toast("输入内容不能为空");
+        var formControls=new FormControls();
         //发送消息
         function sent(){
             var chat=document.getElementById("chat");
@@ -188,7 +189,7 @@
             richeditor.classList.remove("active");
             var html='<li class="even">'+
                 '<div class="chat-photo">'+
-                    '<img src="../img/list/photo.png" alt="Female">'+
+                    '<div class="photo size40 radiusround"><i class="icon icon-user-fill"></i></div>'+
                 '</div>'+
                 '<div class="chat-content-box">'+
                     '<div class="chat-content">'+
@@ -197,7 +198,6 @@
                 '</div>'+
             '</li>';
             chat.innerHTML+=html;
-            //$(chat).append(html);
             textarea.value="";
             scrollToBottom();
         }

@@ -66,7 +66,7 @@
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
         var app={};
-        app.prompt=new Prompt();
+        app.toast=new Toast();
         var view={
             /*=========================
               Model
@@ -117,34 +117,31 @@
                     onClickDone:function(e){
                         var activeText=e.activeText.replace(/-/g,"/");
                         if(new Date(activeText)<=new Date()){
-                            app.prompt.setText("时间不能早于当前时间");
-                            app.prompt.show();
+                            app.toast.setText("时间不能早于当前时间");
+                            app.toast.show();
                             return;
                         }
                         if(input.classList.contains("SID-DateTimeStart")){//点击开始时间
                             var endInput=input.parentNode.nextElementSibling.querySelector(".SID-DateTimeEnd");
-                            if(endInput.value==""){
+                            //如果结束时间为空或者开始时间大于结束时间
+                            if((endInput.value=="") || (new Date(activeText) >= new Date(endInput.value.replace(/-/g,"/")))){
+                                //设置结束时间
                                 var endTime=new Date(activeText).plusMinute(30);
                                 endInput.value=endTime.format("yyyy-MM-dd hh:mm");
-                            }else if(new Date(activeText) >= new Date(endInput.value.replace(/-/g,"/"))){
-                                app.prompt.setText("开始时间不能晚于结束时间");
-                                app.prompt.show();
-                                return;
                             }
                         }else if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
                             var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
                             var startTime=new Date().setMinuteCeil(10);
+                            //结束时间小于过早
                             if(new Date(activeText)<=startTime){
-                                app.prompt.setText("结束时间太早啦~");
-                                app.prompt.show();
+                                app.toast.setText("结束时间过早");
+                                app.toast.show();
                                 return;
                             }
-                            if(prevInput.value==""){
+                            //如果开始时间为空或者结束时间小于开始时间
+                            if((prevInput.value=="") || (new Date(prevInput.value.replace(/-/g,"/")) >= new Date(activeText))){
+                                //设置开始时间
                                 prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
-                            }else if(new Date(prevInput.value.replace(/-/g,"/")) >= new Date(activeText)){
-                                app.prompt.setText("开始时间不能晚于结束时间");
-                                app.prompt.show();
-                                return;
                             }
                         }
                         input.value=e.activeText;

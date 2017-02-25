@@ -4,7 +4,10 @@ hr{
     border:0;
     clear:both;
 }
-.hline,.vline,hr:after,.topline:before,.underline:after,.leftline:before,.rightline:after {
+.vline,.hline,hr:after,
+.topline:before,.underline:after,
+.leftline:before,.rightline:after,
+.basketline:before,.basketline:after {
 	content: '';
     display: block;
     position: absolute;
@@ -49,24 +52,43 @@ hr{
     width: 1px;
     height: 100%;
 }
-
+//篮子线
+.basketline{
+	&:before,&:after{
+		width:1px;
+		height:5px;
+		bottom:0;
+	}
+	&:before{
+		left:0;
+	}
+	&:after{
+		right:0;
+	}
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	//横线
-	.topline:before,.underline:after,.hline,hr:after {
+	.topline:before,.underline:after,
+	.hline,hr:after {
 		-webkit-transform: scaleY(0.5);
 	}
 	//竖线
-	.leftline:before,.rightline:after,.vline {
+	.leftline:before,.rightline:after,
+	.basketline:before,.basketline:after,
+	.vline {
 		-webkit-transform: scaleX(0.5);
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
 	//横线
-	.topline:before,.underline:after,.hline,hr:after {
+	.topline:before,.underline:after,
+	.hline,hr:after {
 		-webkit-transform: scaleY(0.33);
 	}
 	//竖线
-	.leftline:before,.rightline:after,.vline {
+	.leftline:before,.rightline:after,
+	.basketline:before,.basketline:after,
+	.vline {
 		-webkit-transform: scaleX(0.33);
 	}
 }

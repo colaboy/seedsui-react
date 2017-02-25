@@ -30,32 +30,8 @@
 
 	    border-color:$border;
 	}
-	.input{
-		position: relative;
-		border:none;
-		vertical-align:middle;
-		box-sizing:border-box;
-		border-style: solid;
-		border-width:0 0 1px 0;
-
-		border-color:$border;
-		&:before,&:after{
-			content: '';
-			position: absolute;
-			width:1px;
-			height:5px;
-			bottom:0;
-
-			background-color:$border;
-		}
-		&:before{
-			left:0;
-		}
-		&:after{
-			right:0;
-		}
-	}
-	textarea{
+	
+	/* textarea{
 		background-color:transparent;
 		width:100%;
 		border:none;
@@ -76,7 +52,7 @@
 	}
 	pre span{
 		display:inline;
-	}
+	} */
 	/*发送按钮*/
 	.button{
 		position:absolute;

@@ -5,7 +5,7 @@
           Model
           ===========================*/
 		var defaults={
-			storageHistoryKey:"history",
+			historyKey:"history",
 			isTakeHistory:true,//是否添加浏览器历史记录
 
 			/*callbacks
@@ -28,20 +28,23 @@
 
 		//保存到storage中
 		var storage=window.sessionStorage;
-		var storageHistory=storage.getItem(s.params.storageHistoryKey);
+		var storageHistory=storage.getItem(s.params.historyKey);
 		if(storageHistory)s.list=storageHistory.split(",");
 
 		/*=========================
           Method
           ===========================*/
-        var saveHistoryToStorage=function(){
-        	storage.setItem(s.params.storageHistoryKey,s.list);
+        s.saveList=function(){
+        	storage.setItem(s.params.historyKey,s.list);
+        }
+        s.clearList=function(){
+        	storage.removeItem(s.params.historyKey);
         }
 
         s.add=function(hash){
         	s.list.push(hash);
         	//历史记录保存到本地数据库中
-        	saveHistoryToStorage();
+        	s.saveList();
 			try{
 		        window.history.pushState({href:hash},document.title, hash);
 		    }catch(err){
@@ -52,7 +55,7 @@
         	s.prevHash=s.list.pop();
         	s.list.push(hash);
         	//历史记录保存到本地数据库中
-        	saveHistoryToStorage();
+        	s.saveList();
 			try{
 		        window.history.replaceState({href:hash},document.title, hash);
 		    }catch(err){
@@ -65,7 +68,7 @@
 				return n!=hash;
 			});
 			//历史记录保存到本地数据库中
-			saveHistoryToStorage();
+			s.saveList();
         }
 
         s.back=function(){
@@ -83,13 +86,13 @@
         	//Callback onBack
 			if(s.params.onBack)s.params.onBack(s);
         	//历史记录保存到本地数据库中
-			saveHistoryToStorage();
+			s.saveList();
         }
         s.forward=function(){
         	s.prevHash=s.list[s.list.length-1]||"";
         	s.list.push(s.currentHash);
         	//历史记录保存到本地数据库中
-			saveHistoryToStorage();
+			s.saveList();
         }
 
 		/*=========================
