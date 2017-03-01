@@ -62,8 +62,6 @@
     </article>
     <!--SeedsUI-->
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
-    <!--Exmobi能力-->
-    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script type="text/javascript">
         var app={};
         app.toast=new Toast();
@@ -79,6 +77,15 @@
                     for(var i=0;i<60;i=i+10){
                         var temp=i<10?"0"+i:i;
                         data.push({key:temp,value:temp+"分"});
+                    }
+                    return data;
+                }();
+                //时间控件小时数据
+                this.hoursData=function(){
+                    var data=[];
+                    for(var i=7;i<=22;i++){
+                        var temp=i<10?"0"+i:i;
+                        data.push({key:temp,value:temp+"时"});
                     }
                     return data;
                 }();
@@ -104,6 +111,7 @@
                 this.spDateTime=new SpDate({
                     //parent:self.$el[0],
                     viewType:"datetime",
+                    hoursData:self.hoursData,
                     minutesData:self.minutesData,
                     isSimpleYear:true,
                     minYear:new Date().getFullYear()-5,

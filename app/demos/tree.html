@@ -34,7 +34,8 @@
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
 	<script>
 	    var app={
-            loading:{}
+            loading:{},
+            nodataHTML:'<div>没有数据</div>'
         }
         var view={
             /*=========================
@@ -83,7 +84,7 @@
                         self.tree.setData(self.groupData);
                         self.tree.update();
                     },
-                    fail:function(msg){
+                    error:function(msg){
                         self.listContainer[0].innerHTML=app.errorHTML;
                     },
                     complete:function(){
@@ -113,7 +114,7 @@
                         self.tree.addData(userData,id,ul);
                         e.targetLine.hasData=true;
                     },
-                    fail:function(msg){
+                    error:function(msg){
                         self.toast.setText("加载数据失败");
                         self.toast.show();
                     },

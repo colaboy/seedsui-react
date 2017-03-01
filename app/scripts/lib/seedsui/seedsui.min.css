@@ -1183,7 +1183,6 @@ label .input-checkbox + span, label .input-radio + span {
   border-radius: 4px;
   width: 74px;
   height: 30px;
-  overflow: hidden;
   background-color: #20aeff;
   border: 1px solid #20aeff; }
 
@@ -1197,14 +1196,18 @@ label .input-checkbox + span, label .input-radio + span {
   top: 0; }
 
 .turn-on {
-  left: 0;
+  right: 0;
   background-color: white;
-  color: #20aeff; }
+  color: #20aeff;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px; }
 
 .turn-off {
-  right: 0;
+  left: 0;
   background-color: #20aeff;
-  color: white; }
+  color: white;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; }
 
 .turn.active .turn-on {
   background-color: #20aeff;

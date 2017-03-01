@@ -105,7 +105,7 @@
 		    		e.slots[activeSlotIndex].isLock=false;
 	    		}
             },
-            onScroll:s.params.onScroll,
+            onScroll:s.params.onScroll?s.params.onScroll:null,
 			onScrollEnd:function(e){
 				console.log(1);
 				renderAfter(activeSlotIndex);
@@ -132,15 +132,9 @@
 				//Callback
             	if(s.params.onScrollEnd)s.params.onScrollEnd(e);
 	    	},
-	    	onTransitionEnd:function(e){
-	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(e);
-	    	},
-	    	onShowed:function(e){
-	    		if(s.params.onShowed)s.params.onShowed(e);
-	    	},
-	    	onHid:function(e){
-	    		if(s.params.onHid)s.params.onHid(e);
-	    	}
+	    	onTransitionEnd:s.params.onTransitionEnd?s.params.onTransitionEnd:null,
+	    	onShowed:s.params.onShowed?s.params.onShowed:null,
+	    	onHid:s.params.onHid?s.params.onHid:null
 		});
 		function initSlots(){
 			s.scrollpicker.addSlot(province,s.params.provinceClass);

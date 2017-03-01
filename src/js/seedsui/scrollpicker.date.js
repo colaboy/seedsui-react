@@ -5,35 +5,43 @@
 	    Model
 	    ==================*/
 		var defaults={
-			"parent":document.body,
-			"viewType":"date",//"date","month","time","datetime"
-			"isSimpleYear":false,
-			"yearsData":null,
-			"monthsData":null,
-			"daysData":null,
-			"hoursData":null,
-			"minutesData":null,
+			parent:document.body,
+			viewType:"date",//"date","month","time","datetime"
+			isSimpleYear:false,
 
-			"yearClass":null,
-			"monthClass":null,
-			"dayClass":null,
-			"hourClass":null,
-			"minuteClass":null,
+			yearClass:null,
+			monthClass:null,
+			dayClass:null,
+			hourClass:null,
+			minuteClass:null,
 
-			"defaultYear":null,
-			"defaultMonth":null,
-			"defaultDay":null,
-			"defaultHour":null,
-			"defaultMinute":null,
+			yearsData:null,
+			monthsData:null,
+			daysData:null,
+			hoursData:null,
+			minutesData:null,
 
-			"minYear":1950,
-			"maxYear":2050,
+			defaultYear:null,
+			defaultMonth:null,
+			defaultDay:null,
+			defaultHour:null,
+			defaultMinute:null,
 
-			"yyUnit":"年",
-			"MMUnit":"月",
-			"ddUnit":"日",
-			"hhUnit":"时",
-			"mmUnit":"分",
+			disableYears:null,
+			disableMonths:null,
+			disableDays:null,
+			disableHours:null,
+			disableMinutes:null,
+			disableDateTime:null,
+
+			minYear:1950,
+			maxYear:2050,
+
+			yyUnit:"年",
+			MMUnit:"月",
+			ddUnit:"日",
+			hhUnit:"时",
+			mmUnit:"分",
 
 			isClickMaskHide:true,
 
@@ -115,17 +123,19 @@
 		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
-	    function updateDays(maxDay){
+	    function updateDays(year,month){
+	    	var maxDay=new Date(year,month,0).getDate();
 	    	s.days=[];
 	    	for(var d=1;d<=maxDay;d++){
 	    		var tempD=d<10?"0"+d:d;
 		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
+		    s.scrollpicker.mergeSlot(2,s.days);//修改第三项
 	    }
 
 	    //时
 	    s.hours=[];
-	    if(s.params.daysData){
+	    if(s.params.hoursData){
 	    	s.hours=s.params.hoursData;
 	    }else{
 	    	for(var hour=0;hour<=23;hour++){
@@ -192,11 +202,11 @@
 	    s.scrollpicker=new Scrollpicker({
 	    	parent:s.params.parent,
 	    	isClickMaskHide:s.params.isClickMaskHide,
-	    	"onClickDone":function(e){
+	    	onClickDone:function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);
 	    		if(s.params.onClickDone)s.params.onClickDone(e);
 	    	},
-	        "onClickCancel":function(e){
+	        onClickCancel:function(e){
 	        	e.activeText=s.getActiveText(e.activeOptions);
 	            if(s.params.onClickCancel)s.params.onClickCancel(e);
 	            else e.hide();
@@ -206,28 +216,18 @@
 	            /*e.reset();
 	            addSlot();*/
 	        },
-	    	"onScrollEnd":function(e){
+	    	onScrollEnd:function(e){
 	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && e.activeSlotIndex!=2){
 	    			var year=e.activeOptions[0]["key"];
 					var month=e.activeOptions[1]["key"];
-					var maxDay=new Date(year,month,0).getDate();
-					updateDays(maxDay);//更新总天数
-					renderDay();//渲染天
+					
+					updateDays(year,month);//更新总天数
 	    		}
 	    	},
-	    	"onTransitionEnd":function(e){
-	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(e);
-	    	},
-	    	"onShowed":function(e){
-	    		if(s.params.onShowed)s.params.onShowed(e);
-	    	},
-	    	"onHid":function(e){
-	    		if(s.params.onHid)s.params.onHid(e);
-	    	}
+	    	onTransitionEnd:s.params.onTransitionEnd?s.params.onTransitionEnd:null,
+	    	onShowed:s.params.onShowed?s.params.onShowed:null,
+	    	onHid:s.params.onHid?s.params.onHid:null
 	    });
-	    function renderDay(){
-			s.scrollpicker.mergeSlot(2,s.days);//修改第三项
-		}
 
 	    //添加数据
 	    function addMonthSlot(){

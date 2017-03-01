@@ -1,5 +1,6 @@
 // @koala-prepend "seedsui/getsingle.js"
 // @koala-prepend "seedsui/ajax.js"
+// @koala-prepend "seedsui/event.js"
 // @koala-prepend "seedsui/eventutil.js"
 // @koala-prepend "seedsui/section.js"
 // @koala-prepend "seedsui/history.js"

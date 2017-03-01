@@ -23,7 +23,7 @@
 	</header>
 	<article>
 		<!--天气:start-->
-		<div class="weather-box bg-primary" id="weather">
+		<div class="weather-box bg-primary" id="ID-WeatherContainer">
 			<div class="weather-collapse">
 			<p><span class="weather-current-city">地区</span><span class="weather-name">天气名称</span></p>
 		    	<p><span>空气</span><span class="weather-air-quality">良</span><span class="weather-current-pm25">load</span></p>
@@ -94,17 +94,19 @@
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
-		window.addEventListener("load",function(){
-			var d=new Date("2016-09-28");
-			var w=new Weather("#weather",{
-				"city":"南京",
-				"expires":d
-			});
-			w.container.addEventListener("click",function(){
-				this.classList.toggle("expand");
-			},false);
-		},false);
-		var card=document.querySelector(".card");
+		var article=document.querySelector("article");
+		var weatherContainer=document.getElementById("ID-WeatherContainer");
+		var weather=new Weather(weatherContainer,{
+			"city":"南京",
+			"expires":new Date("2017/09/28")
+		});
+		EventUtil.addHandler(article,"swipedown",function(e){
+			weatherContainer.classList.add("expand");
+		});
+		EventUtil.addHandler(article,"tap",function(e){
+			weatherContainer.classList.toggle("expand");
+		});
+		//EventUtil.removeHandler(article,"tap");
 		//定义exmobi返回
 		function back(){history.go(-1);}
 	</script>

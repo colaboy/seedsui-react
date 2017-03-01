@@ -17,25 +17,25 @@
 	/*====================
 	其它类型
 	=====================*/
+	Type.isWindow=function(obj){
+		return obj===window;
+	}
+	Type.isPlainObject=function( obj ) {
+        if(!obj || !Type.isObject(obj) || obj.nodeType || Type.isWindow(obj))return false;
+        return obj.constructor===Object;
+    }
+	Type.isEmptyObject=function(obj){
+		var key;
+        for(key in obj){};
+        //return key===undefined || obj.hasOwnProperty(key);
+    	return key===undefined;
+	}
 	Type.isJson=function(obj){
-		if(!obj){
-			return false;
-		}
-		if(this.isObject(obj)){
-			try{
-				JSON.stringify(obj);
-				return true;
-			}catch(e){
-				return false;
-			}
-		}else if(this.isString(obj)){
-			try{
-				JSON.parse(obj);
-				return true;
-			}catch(e){
-				return false;
-			}
-		}else{
+		if(!Type.isPlainObject(obj))return false;
+		try{
+			JSON.stringify(obj);
+			return true;
+		}catch(e){
 			return false;
 		}
 	}

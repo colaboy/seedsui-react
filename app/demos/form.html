@@ -225,6 +225,19 @@
             </div>
         </div>
 
+        <div class="group">
+            <div class="inputbox" style="margin:0 12px;background-color: transparent;">
+                <div>时间提醒</div>
+                <div class="text-right box-flex-1">
+                    <input type="number" name="NID-Alarm" class="input-text form-ignore" value="15" style="width: 25px;border:none;display:inline-block;"  oninput="if(value.length>2)value=value.slice(0,2)">
+                </div>
+                <div class="turn" data-name="NID-AlarmUnit" data-on-value="60" data-off-value="1">
+                    <div class="turn-on">时</div>
+                    <div class="turn-off">分钟</div>
+                </div>
+                <input type="hidden" class="input-text form-ignore" name="NID-AlarmUnit" value="1">
+            </div>
+        </div>
         
         <div class="group">
             <div class="sliver underline">
