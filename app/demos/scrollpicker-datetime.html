@@ -110,7 +110,8 @@
             /*=========================
               Method
               ===========================*/
-            updateMinutes:function(hourKey,minuteKey){
+            //时间控件-动态更新分钟
+            _newSpMinutes:function(hourKey,minuteKey){
                 var self=this;
                 var minuteKey=minuteKey;
                 var minutes=this.minutesData.slice(0);
@@ -153,7 +154,7 @@
                         if(e.scrollpicker.activeSlot.index==3){
                             hourKey=e.scrollpicker.activeOptions[3]["key"];
                             minuteKey=e.scrollpicker.activeOptions[4]["key"];
-                            self.updateMinutes(hourKey,minuteKey);//更新总天数
+                            self._newSpMinutes(hourKey,minuteKey);//更新总天数
                         }
                     },
                     onClickDone:function(e){
@@ -201,7 +202,7 @@
                         if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
                             var hourKey=e.scrollpicker.activeOptions[3]["key"];
                             var minuteKey=e.scrollpicker.activeOptions[4]["key"];
-                            self.updateMinutes(hourKey,minuteKey);
+                            self._newSpMinutes(hourKey,minuteKey);
                         }
                     },
                     onHid:function(e){
