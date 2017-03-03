@@ -22,7 +22,7 @@
             slotClass:"scrollpicker-slot",
             lockClass:"lock",
             slotActiveClass:"active",
-            slotListActiveClass:"active",
+            slotLiActiveClass:"active",
             cellHeight:44,
             friction:0.002,//摩擦力
             bounceRange:44,//弹性值
@@ -31,12 +31,13 @@
             defaultValues:[{'key':null,'value':'----'}]
 
             /*callbacks
+            onInit:function(Scrollpicker)
             onClickCancel:function(Scrollpicker)
             onClickDone:function(Scrollpicker)
             onScrollStart:function(Scrollpicker)
             onScroll:function(Scrollpicker)
             onScrollEnd:function(Scrollpicker)
-            onTransitionEnd:function(Scrollpicker)
+            onTransitionEnd:function(Scrollpicker)//动画结束后回调
             onShowed(Scrollpicker)//显示动画结束后回调
             onHid(Scrollpicker)//隐藏动画结束后回调
             */
@@ -56,19 +57,7 @@
         s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
         s.picker,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
         //槽元素与其值
-        s.slots=[],s.slots.col=0,s.activeOptions=[],s.activeOption={};
-        //是否渲染
-        //s.isRendered=false;
-        //修改Param
-        s.setIsClickMaskHide=function(bool){
-            s.params.isClickMaskHide=bool;
-        }
-         s.setOnClickDone=function(callback){
-            s.params.onClickDone=callback;
-        }
-        s.setOnClickCancel=function(callback){
-            s.params.onClickCancel=callback;
-        }
+        s.slots=[],s.activeOptions=[];
         //新建Container
         s.createPicker=function(){
             var picker=document.createElement("div")
@@ -120,101 +109,70 @@
             return mask;
         }
         //新建一行List
-        s.createLi=function(value,classes){
+        s.createLi=function(value){
             var li=document.createElement("li");
-            li.setAttribute("class",classes);
             li.innerHTML=value;
             return li;
         }
         //创建DOM
         s.create=function(){
-            /*if(s.params.picker){
-                s.picker=typeof picker=="string"?document.querySelector(picker):picker;
-                s.mask=s.picker.previousElementSibling;
-                s.header=s.picker.querySelector("."+s.params.headerClass);
-                s.headerDone=s.picker.querySelector("."+s.params.headerDoneClass);
-                s.headerCancel=s.picker.querySelector("."+s.params.headerCancelClass);
-                s.wrapper=s.picker.querySelector("."+s.params.wrapperClass);
-                s.slotbox=s.picker.querySelector("."+s.params.slotsClass);
-                s.layer=s.picker.querySelector("."+s.params.layerClass);
-            }else{*/
-                s.picker=s.createPicker();
-                s.mask=s.createMask();
-                s.header=s.createHeader();
-                s.headerDone=s.createHeaderDone();
-                s.headerCancel=s.createHeaderCancel();
-                s.wrapper=s.createWrapper();
-                s.slotbox=s.createSlotbox();
-                s.layer=s.createLayer();
+            s.picker=s.createPicker();
+            s.mask=s.createMask();
+            s.header=s.createHeader();
+            s.headerDone=s.createHeaderDone();
+            s.headerCancel=s.createHeaderCancel();
+            s.wrapper=s.createWrapper();
+            s.slotbox=s.createSlotbox();
+            s.layer=s.createLayer();
 
-                s.header.appendChild(s.headerCancel);
-                s.header.appendChild(s.headerDone);
+            s.header.appendChild(s.headerCancel);
+            s.header.appendChild(s.headerDone);
 
-                s.wrapper.appendChild(s.slotbox);
-                s.wrapper.appendChild(s.layer);
+            s.wrapper.appendChild(s.slotbox);
+            s.wrapper.appendChild(s.layer);
 
-                s.picker.appendChild(s.header);
-                s.picker.appendChild(s.wrapper);
+            s.picker.appendChild(s.header);
+            s.picker.appendChild(s.wrapper);
 
-                s.parent.appendChild(s.mask);
-                s.parent.appendChild(s.picker);
-            /*}*/
+            s.parent.appendChild(s.mask);
+            s.parent.appendChild(s.picker);
         }
         s.create();
         /*=========================
           Method
           ===========================*/
-        //修改默认value
-        s.setDefaultValue=function(slot,value){
-            slot.defaultValue=value;
-        }
-        //修改默认key
-        s.setDefaultKey=function(slot,key){
-            slot.defaultKey=key;
-        }
         //添加一列
-        s.addSlot=function(values,classes,defaultValue,defaultKey){
-            if (!classes){
-                classes='';
-            }
+        s.addSlot=function(values,defaultKey,classes){
+            if (!classes)classes='';
             //设置属性
             var slot=document.createElement("ul");
             slot.setAttribute("class",s.params.slotClass+" "+classes);
             slot.values=values;
-            slot.defaultValue=defaultValue;
             slot.defaultKey=defaultKey;
-            slot.col=s.slots.col;
-            //判断是否有锁定
             if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
             else slot.isLock=false;
+
             //渲染
-            s.slots.col++;
-            s.renderSlot(slot);
-            s.slotbox.appendChild(slot);
+            s.renderSlot(s.slots.length,slot);
             //添加到集合里
             s.slots.push(slot);
         }
         //替换一列
-        s.replaceSlot=function(col,values,classes,defaultValue,defaultKey){
+        s.replaceSlot=function(index,values,defaultKey,classes,fn){
+            if (!classes)classes='';
             //设置属性
-            var slot=s.slots[col];
+            var slot=s.slots[index];
             slot.setAttribute("class",s.params.slotClass+" "+classes);
             slot.values=values;
-            slot.defaultValue=defaultValue;
             slot.defaultKey=defaultKey;
-            //清空此列
-            s.clearSlot(slot);
-            //重新渲染
-            s.renderSlot(slot);
-            if(s.params.isCascade)clearAfterSlot(col);
-        }
-        //修改一列
-        s.mergeSlot=function(col,values){
-            //设置属性
-            var slot=s.slots[col];
-            slot.values=values;
-            //更新此列
-            s.renderSlot(slot);
+            if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
+            else slot.isLock=false;
+
+            //渲染
+            s.renderSlot(index,slot);
+            //级联更新
+            //if(s.params.isCascade)clearAfterSlot(index);
+            //if(fn)fn(s);
         }
         //清空下列
         function clearAfterSlot(col){
@@ -222,98 +180,60 @@
             var nextSlot=s.slots[nextCol];
             if(nextSlot){
                 nextSlot.innerHTML="<li>"+s.params.defaultValues[0].value+"</li>"
-                s.updateSlot(nextSlot);
+                //s.updateSlot(nextSlot);
+                console.log(nextSlot);
+                s.renderSlot(nextCol,nextSlot);
                 clearAfterSlot(nextCol);
                 //设置选中项
                 s.activeOptions[nextCol]=s.params.defaultValues[0];
             }
         }
-        //清空一列
-        s.clearSlot=function(slot){
-            //初始化一列值
-            slot.activeIndex=null;
-            slot.defaultIndex=null;
-        }
         //渲染一列
-        s.renderSlot=function(slot){
+        s.renderSlot=function(index,slot){
             slot.innerHTML="";
-            slot["list"]=[];
-            var col=slot.col;
-            var values=slot.values;
-            //设置默认value或者默认key
-            var compareDefaultType="value";
-            var compareDefaultValue=slot.defaultValue;
-            if(slot.defaultKey){//如果设置了key比较，则优先比较key值
-                compareDefaultType="key";
-                compareDefaultValue=slot.defaultKey;
-            }
-            //选中项不能超过总项数
-            if(slot.activeIndex && slot.activeIndex>=values.length-1){
-                slot.activeIndex=values.length-1;
-            }
             //渲染
-            for(var i=0,rowData;rowData=values[i];i++){
-                //获得activeIndex
-                if(compareDefaultValue && compareDefaultValue==rowData[compareDefaultType]){
-                    if(!slot.activeIndex){
-                        slot.activeIndex=i;
-                    }
+            slot.defaultIndex=0;
+            slot.list=[];
+            for(var i=0,value;value=slot.values[i];i++){
+                //获得defaultIndex
+                if(!slot.defaultIndex && slot.defaultKey && slot.defaultKey==value["key"]){
                     slot.defaultIndex=i;
-                }else{
-                    if(!slot.activeIndex){
-                        slot.activeIndex=0;
-                    }
-                    slot.defaultIndex=0;
                 }
 
-                //添加到选中项
-                var li,liClasses="";
-                if(i==slot.activeIndex){
-                    liClasses="active";
-                    s.activeOptions[col]=rowData;
-                }
-
-                li=s.createLi(rowData["value"],liClasses);
+                //把li添加到槽中
+                var li=s.createLi(value["value"]);
+                slot.list.push(li);
                 slot.appendChild(li);
-                slot["list"].push(li);
             }
-            //更新此列
-            s.updateSlot(slot);
-        }
-        //更新DOM数据，获得所有槽和槽内list列表
-        s.updateSlot=function(slot){
-            //slot["list"]=[].slice.call(slot.querySelectorAll("li"));
-            slot["defaultPosY"]=-slot.defaultIndex*s.params.cellHeight;
-            slot["activePosY"]=-slot.activeIndex*s.params.cellHeight;
-            slot["posY"]=slot["activePosY"];
-            slot["minPosY"]=0;
-            slot["maxPosY"]=-(slot["list"].length-1)*s.params.cellHeight;
-            slot["minBouncePosY"]=s.params.bounceRange;
-            slot["maxBouncePosY"]=slot["maxPosY"]-s.params.bounceRange;
-            slot.style.webkitTransform='translate3d(0px,'+slot["activePosY"]+'px,0px)';
-            slot["list"].forEach(function(n,i,arr){
-                n.className="";
-                if(i==slot.activeIndex){
-                    n.className="active";
-                }
-            });
-        }
-        s.updateSlots=function(){
-            //s.slots=[].slice.call(s.picker.querySelectorAll("."+s.params.slotClass));
-            s.slots.forEach(function(n,i,a){
-                s.updateSlot(n);
-            });
+            slot.activeIndex=slot.defaultIndex;
+            //选中项
+            s.activeOptions[index]=slot.values[slot.activeIndex];
+            slot.list[slot.activeIndex].className=s.params.slotLiActiveClass;
+            //设置一槽的属性
+            /*
+            slot.values
+            slot.defaultKey
+            slot.defaultIndex
+            slot.activeIndex
+            slot.index
+            slot.list
+            */
+            slot.index=index;
+            slot.defaultPosY=-slot.defaultIndex*s.params.cellHeight;
+            slot.activePosY=-slot.activeIndex*s.params.cellHeight;
+            slot.minPosY=0;
+            slot.maxPosY=-(slot.values.length-1)*s.params.cellHeight;
+            slot.minBouncePosY=s.params.bounceRange;
+            slot.maxBouncePosY=slot.maxPosY-s.params.bounceRange;
+            s.slotbox.appendChild(slot);
+            slot.style.webkitTransform='translate3d(0px,'+slot.activePosY+'px,0px)';
         }
         s.isHid=true;
         //显示
         s.show=function(){
             s.isHid=false;
-            /*if(s.isRendered==false){
-                s.attach();
-            }*/
             s.mask.style.visibility="visible";
             s.mask.style.opacity="1";
-            //s.picker.style.webkitTransform='translate3d(0px,0px,0px)';
             s.picker.classList.add(s.params.pickerActiveClass);
         }
         //隐藏
@@ -321,16 +241,13 @@
             s.isHid=true;
             s.mask.style.opacity="0";
             s.mask.style.visibility="hidden";
-            //s.picker.style.webkitTransform='translate3d(0px,100%,0px)';
             s.picker.classList.remove(s.params.pickerActiveClass);
         }
         //重置
         s.reset=function(){
             //清空指向
             s.slots=[];
-            s.slots.col=0;
             //清空数据
-            //s.isRendered=false;
             s.slotbox.innerHTML="";
         }
         //清除
@@ -339,10 +256,7 @@
             s.parent.removeChild(s.mask);
             s.parent.removeChild(s.picker);
         }
-        
-        s.slotPosY=function(slot,posY){
-            slot.style.webkitTransform='translate3d(0px,' + posY + 'px,0px)';
-        }
+        //寻找当前点击的槽
         s.updateActiveSlot=function(xPos){
             var xPos=xPos||0;
             var slotPos=0;
@@ -350,52 +264,52 @@
                 slotPos+=s.slots[i].clientWidth;
                 if (xPos<slotPos) {
                     s.activeSlot=s.slots[i];
-                    s.activeSlotIndex=i;
                     break;
                 }
             }
         }
         //计算惯性时间与坐标，返回距离和时间
-        s.getInertance=function(distance,duration,friction){
-            //使用公式算出惯性执行时间与距离
-            var newDuration=(2*distance/duration)/friction;
-            var newDistance=-(friction/2)*(newDuration*newDuration);
-            //如果惯性执行时间为负值，则为向上拖动
-            if(newDuration<0){
+        s.getInertance=function(opts){
+            var range=opts.range,//滑动距离(正数)
+                duration=opts.duration,//滑动时长
+                friction=opts.friction,//惯性强度
+                value=opts.value,//当前值(负数)
+                min=opts.min,//最小值(正数)
+                max=opts.max;//最大值(负数)
+
+            //使用公式算出duration(新时长)与range(新距离)
+            var newDuration=(2*range/duration)/friction;
+            if(!newDuration && newDuration!==0){
+                newDuration=100;
+            }
+            //使用公式算出range(新距离)
+            var newRange=-(friction/2)*(newDuration*newDuration);//(负数)
+            if(range<0){//如果拖动间距为负值，则为向下拖动
                 newDuration=-newDuration;
-                newDistance=-newDistance;
+                newRange=-newRange;
             }
-            return {distance:newDistance,duration:newDuration}
-        }
-        var isTransitionEnd=true;//有时候原坐标和目标坐标相同时，不会执行transition事件，用此值来记录是否执行的状态
-        //滚动至
-        s.scrollTo=function(slot,posY,duration){
-            slot.posY=posY;
-            if(duration==0 || duration){
-                var duration=duration;
-            }else{
-                duration=100;
+            //计算value(新值)
+            var newValue=value+newRange;
+
+            //如果超出边缘，重新计算duration(新时间)与value(新值)
+            if(newValue>min){//顶部
+                newRange=Math.abs(value-min);
+                newDuration=Math.abs(Math.round(range/duration*100));
+                newValue=min;
+                //console.log("value:"+value+";min:"+min+";newRange:"+newRange+";newDuration:"+newDuration);
+            }else if(newValue<max){//底部
+                newValue=max;
+                newDuration=Math.abs(Math.round(range/duration*100));
+                newRange=max-value;
+                //console.log("value:"+value+";max:"+max+";newRange:"+newRange+";newDuration:"+newDuration);
             }
-            if(posY>slot.minBouncePosY){
-                slot.posY=slot.minBouncePosY;
-                duration=s.sideDuration(posY,slot.minBouncePosY,duration);//计算新的执行时间
-            }else if(posY<slot.maxBouncePosY){
-                slot.posY=slot.maxBouncePosY;
-                duration=s.sideDuration(posY,slot.maxBouncePosY,duration);//计算新的执行时间
+
+            //返回值
+            return {
+                range:newRange,
+                duration:newDuration,
+                value:newValue
             }
-            slot.style.webkitTransitionDuration=duration+"ms";
-            slot.style.webkitTransform='translate3d(0px,' + slot.posY + 'px,0px)';
-            //如果不执行onTransitionEnd
-            if(isTransitionEnd==false || duration==0){
-                var e={};
-                e.target=slot;
-                s.onTransitionEnd(e);
-                isTransitionEnd=true;
-            }
-        }
-        //计算超出边缘时新的时间
-        s.sideDuration=function(posY,bouncePosY,duration){
-            return Math.round(duration/(posY/bouncePosY));
         }
         //更新列表激活状态
         s.updateActiveList=function(slot,posY){
@@ -408,26 +322,33 @@
                 }
             });
             //添加到激活项
-            s.activeOption=s.slots[slot.col].values[index];
-            s.activeOptions[slot.col]=s.activeOption;
+            var activeOption=s.slots[slot.index].values[index];
+            s.activeOptions[slot.index]=activeOption;
             //设置选中项
-            s.slots[slot.col].activeIndex=index;
+            s.slots[slot.index].activeIndex=index;
         }
         //位置矫正
         s.posCorrect=function(slot){
             slot.style.webkitTransitionDuration='500ms';
-            var remainder=slot.posY%s.params.cellHeight;
-            if(remainder!=0){
-                //算出比例
-                var divided=Math.round(slot.posY/s.params.cellHeight);
-                //对准位置
-                var top=s.params.cellHeight*divided;
-                slot.posY=top;
-                slot.style.webkitTransform='translate3d(0px,' + top + 'px,0px)';
+            if (slot.activePosY > slot.minPosY){//最上面
+                slot.activePosY=slot.minPosY;
+            }else if(slot.activePosY < slot.maxPosY) {//最下面
+                slot.activePosY=slot.maxPosY;
+            }else{//在中间
+                var remainder=slot.activePosY%s.params.cellHeight;
+                if(remainder!=0){
+                    //算出比例
+                    var divided=Math.round(slot.activePosY/s.params.cellHeight);
+                    //对准位置
+                    slot.activePosY=s.params.cellHeight*divided;
+                }
             }
-            s.updateActiveList(slot,slot.posY);
+            slot.style.webkitTransform='translate3d(0px,' + slot.activePosY + 'px,0px)';
+            s.updateActiveList(slot,slot.activePosY);
             //动画时间回0
             slot.style.webkitTransitionDuration='0ms';
+            //标识正在刷新，防止重复刷新
+            s.isRefreshing=false;
             //Callback
             if(s.params.onScrollEnd)s.params.onScrollEnd(s);
         }
@@ -488,38 +409,67 @@
             duration:0,
             diffX:0,
             diffY:0,
+            posY:0,
+            currentPosY:0,
             direction:null
         };
+        //标识正在刷新，防止重复刷新
+        s.isRefreshing=false;
+        s.lockScroll=function(){
+            s.layer.removeEventListener("touchmove",s.onTouchMove,false);
+            s.layer.removeEventListener("touchend",s.onTouchEnd,false);
+            s.layer.removeEventListener("touchcancel",s.onTouchEnd,false);
+        }
+        s.unLockScroll=function(){
+            s.layer.addEventListener("touchmove",s.onTouchMove,false);
+            s.layer.addEventListener("touchend",s.onTouchEnd,false);
+            s.layer.addEventListener("touchcancel",s.onTouchEnd,false);
+        }
         //触摸事件
         s.onTouchStart=function(e){
-            //s.layer.addEventListener("touchmove",preventDefault,false);
+            //正在刷新将不工作
+            if(s.isRefreshing){
+                s.lockScroll();
+                return;
+            }
             s.touches.startX=e.touches[0].clientX;
             s.touches.startY=e.touches[0].clientY;
             //寻找当前点击的槽
             s.updateActiveSlot(s.touches.startX);
+
+            //锁定的槽将不工作
+            if(s.activeSlot.isLock){
+                s.lockScroll();
+                return;
+            }
+            s.touches.posY=s.activeSlot.activePosY;
+            //解除锁定
+            s.unLockScroll();
+            
             //记录点击时间
             s.touches.startTimeStamp=e.timeStamp;
             //Callback
             if(s.params.onScrollStart)s.params.onScrollStart(s);
         }
         s.onTouchMove=function(e){
-            if(s.activeSlot && s.activeSlot.isLock)return;
             s.touches.currentY=e.touches[0].clientY;
             s.touches.diffY=s.touches.startY-s.touches.currentY;
-            s.activeSlot.moveY=s.activeSlot.posY-s.touches.diffY;
-            if(s.activeSlot.moveY>s.activeSlot.minBouncePosY){
-                s.activeSlot.moveY=s.activeSlot.minBouncePosY;
-            }else if(s.activeSlot.moveY<s.activeSlot.maxBouncePosY){
-                s.activeSlot.moveY=s.activeSlot.maxBouncePosY;
+            s.touches.currentPosY=s.touches.posY-s.touches.diffY;
+            if(s.touches.currentPosY > s.activeSlot.minBouncePosY){
+                s.touches.currentPosY=s.activeSlot.minBouncePosY;
+            }else if(s.touches.currentPosY<s.activeSlot.maxBouncePosY){
+                s.touches.currentPosY=s.activeSlot.maxBouncePosY;
             }
-            s.activeSlot.style.webkitTransform='translate3d(0px,' + s.activeSlot.moveY + 'px,0px)';
-            s.updateActiveList(s.activeSlot,s.activeSlot.moveY);
+            s.activeSlot.style.webkitTransform='translate3d(0px,' + s.touches.currentPosY + 'px,0px)';
+            //当前槽选中行
+            s.updateActiveList(s.activeSlot,s.touches.currentPosY);
 
             //Callback
             if(s.params.onScroll)s.params.onScroll(s);
         }
         s.onTouchEnd=function(e){
-            if(s.activeSlot.isLock)return;
+            //标识正在刷新，防止重复刷新
+            s.isRefreshing=true;
             //判断是否是tap
             s.touches.endX=e.changedTouches[0].clientX;
             s.touches.endY=e.changedTouches[0].clientY;
@@ -528,36 +478,35 @@
             if(Math.abs(s.touches.diffX) < 6 && Math.abs(s.touches.diffY) < 6 ){
                 return;
             }
-            //设置当前坐标值
-            s.activeSlot.posY=s.activeSlot.moveY;
             //计算拖动时间
             s.touches.duration=e.timeStamp-s.touches.startTimeStamp;
             //惯性值计算
-            var inertance=s.getInertance(s.touches.diffY,s.touches.duration,s.params.friction);
-            //惯性Y坐标
-            var newPosY=s.activeSlot.posY + inertance.distance;
-            //如果原坐标和目标坐标相同，则不执行transitionEnd
-            if(s.activeSlot.moveY==s.activeSlot.minBouncePosY || s.activeSlot.moveY==s.activeSlot.maxBouncePosY){
-                isTransitionEnd=false;
-            }
+            var inertance=s.getInertance({
+                range:s.touches.diffY,
+                duration:s.touches.duration,
+                friction:s.params.friction,
+                value:s.touches.currentPosY,
+                min:s.activeSlot.minBouncePosY,
+                max:s.activeSlot.maxBouncePosY
+            });
             //滚动到指定位置
-            s.scrollTo(s.activeSlot,newPosY,inertance.duration);
+            s.activeSlot.style.webkitTransitionDuration=inertance.duration+"ms";
+            s.activeSlot.activePosY=inertance.value;
+            s.activeSlot.style.webkitTransform='translate3d(0px,' + inertance.value + 'px,0px)';
+            //不执行onTransitionEnd的情况，则需要手动执行onTransitionEnd
+            if(s.touches.currentPosY==s.activeSlot.minBouncePosY || s.touches.currentPosY==s.activeSlot.maxBouncePosY){
+                var e={};
+                e.target=s.activeSlot;
+                s.onTransitionEnd(e);
+            }
         }
         //惯性滚动结束后
         s.onTransitionEnd=function(e){
             var target=e.target;
-            if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
-
-            if(target.classList.contains(s.params.slotClass)){//slot
-                if (target.posY > 0){
-                    target.posY=0;
-                }else if(target.posY < target.maxPosY) {
-                    target.posY=target.maxPosY;
-                }
-                target.style.webkitTransform='translate3d(0px,' + target.posY + 'px,0px)';
-                //位置矫正
-                s.posCorrect(target);
-            }else if(target.classList.contains(s.params.pickerClass)){
+            if(target.classList.contains(s.params.slotClass)){//slot槽结束
+                s.posCorrect(target);//位置矫正
+            }else if(target.classList.contains(s.params.pickerClass)){//容器
+                if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
                 if(s.isHid){
                     if(s.params.onHid)s.params.onHid(s);
                 }else{
@@ -565,15 +514,9 @@
                 }
             }
         }
-        s.onLoad=function(){
-            if(s.params.onLoad)s.params.onLoad(s);
-        }
         function init(){
-            /*if(s.params.picker){
-                s.attach();
-            }*/
+            if(s.params.onInit)s.params.onInit(s);
             s.attach();
-            //s.onLoad();
         }
         init();
     }

@@ -72,7 +72,6 @@
             this._attach();
         },
         render:function(){
-            this._initPlugin();
         },
         /*=========================
           Plugin
@@ -86,13 +85,13 @@
                 dayClass:"text-center",
                 onClickDone:function(e){
                     self.textDate.value=e.activeText;
-                    e.hide();
+                    e.scrollpicker.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.destroy();
+                    e.scrollpicker.destroy();
                 }
             });
             if(defaultYMD && defaultYMD.length>0){
@@ -110,13 +109,13 @@
                 minuteClass:"text-center",
                 onClickDone:function(e){
                     self.textTime.value=e.activeText;
-                    e.hide();
+                    e.scrollpicker.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.destroy();
+                    e.scrollpicker.destroy();
                 }
             });
             if(defaultHS && defaultHS.length>0){
@@ -140,13 +139,13 @@
                 minutesData:self.minutesData,
                 onClickDone:function(e){
                     self.textDateTime.value=e.activeText;
-                    e.hide();
+                    e.scrollpicker.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.destroy();
+                    e.scrollpicker.destroy();
                 }
             });
             if(defaults && defaults.length>0){
@@ -157,9 +156,6 @@
                 this.spDateTime.setDefaultMinute(defaults[4]);
                 this.spDateTime.update();
             }
-        },
-        _initPlugin:function(){
-
         },
         /*=========================
           Events
@@ -187,9 +183,8 @@
             }
             this._newSpDate(defaultYMD);
             setTimeout(function(){
-                self.spDate.show();
+                self.spDate.scrollpicker.show();
             },10);
-            //self.spDate.show();
         },
         _onClickTextTime:function(e){
             var self=this;
@@ -198,9 +193,8 @@
                 defaultHS=this.textTime.value.split(":");
             }
             this._newSpTime(defaultHS);
-            //this.spTime.show();
             setTimeout(function(){
-                self.spTime.show();
+                self.spTime.scrollpicker.show();;
             },10);
         },
         _onClickTextDateTime:function(e){

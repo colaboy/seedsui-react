@@ -118,6 +118,7 @@
 		    left: 0;
 		    height: 1px;
 		    width: 100%;
+		    -webkit-transform-origin:center bottom;
 		}
 		//选中状态下横线
 		&:after{

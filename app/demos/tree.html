@@ -73,7 +73,7 @@
                     url: "../scripts/dummydata/group.json",
                     success:function(data){
                         //格式化数据字段为:id、name、parentId
-                        var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name");
+                        var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
                         self.groupData=JSON.parse(data).depList;
                         //没有数据
                         if(self.groupData.length<=0){
@@ -102,7 +102,7 @@
                 $.ajax({
                     url: url,
                     success:function(data){
-                        var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentId").replace(/userName/mgi,"name");
+                        var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
                         var userData=JSON.parse(data).userList;
                         //没有数据
                         if(userData.length<=0){
@@ -114,7 +114,7 @@
                         self.tree.addData(userData,id,ul);
                         e.targetLine.hasData=true;
                     },
-                    error:function(msg){
+                    fail:function(msg){
                         self.toast.setText("加载数据失败");
                         self.toast.show();
                     },

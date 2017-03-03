@@ -12,20 +12,9 @@
 			provinceClass:"",
 			cityClass:"",
 			areaClass:"",
-
-			isClickMaskHide:true,
-
-			onScrollStart:null,
-            onScroll:null
 			/*callbacks
 			onClickDone:function(Scrollpicker)
 			onClickCancel:function(Scrollpicker)
-			onTransitionEnd:function(Scrollpicker)
-            onShowed(Scrollpicker)//显示动画结束后回调
-            onHid(Scrollpicker)//隐藏动画结束后回调
-            onScrollStart:function(Scrollpicker)
-            onScroll:function(Scrollpicker)
-            onScrollEnd:function(Scrollpicker)
 			*/
 		}
 		params=params||{};
@@ -82,40 +71,28 @@
 	    Control
 	    ==================*/
 		//初始化滚动控件
-		var activeSlotIndex="unknow";//记录锁定滚动
 		s.scrollpicker=new Scrollpicker({
-			"parent":s.params.parent,
-			"isClickMaskHide":s.params.isClickMaskHide,
+			parent:s.params.parent,
+			isClickMaskHide:s.params.isClickMaskHide,
 			"isCascade":true,//是否开启级联更新
-			"onClickDone":function(e){
+			onClickDone:function(e){
 				e.activeText=s.getActiveText(e.activeOptions);
 		    	if(s.params.onClickDone)s.params.onClickDone(e);
 	    	},
-	    	"onClickCancel":function(e){
+	    	onClickCancel:function(e){
 	    		e.activeText=s.getActiveText(e.activeOptions);
 	            if(s.params.onClickCancel)s.params.onClickCancel(e);
 	            else e.hide();
 	    	},
-	    	onScrollStart:function(e){
-	    		if(activeSlotIndex=="unknow"){
-	    			activeSlotIndex=e.activeSlotIndex;//开始锁定滚动
-	    			for(var i=0,slot;slot=e.slots[i++];){
-		    			slot.isLock=true;
-		    		}
-		    		e.slots[activeSlotIndex].isLock=false;
-	    		}
-            },
-            onScroll:s.params.onScroll?s.params.onScroll:null,
 			onScrollEnd:function(e){
-				console.log(1);
-				renderAfter(activeSlotIndex);
-				activeSlotIndex="unknow";//解除锁定滚动
+				renderAfter(e.activeSlot.index);
 				function renderAfter(index){
 					//获得当前选中数据
 					var nextSlotIndex=index+1;
 					var slot=e.slots[index];
 					var activeIndex=slot.activeIndex;
 					var childrenData=slot.values[activeIndex].children;
+					//if(!childrenData)childrenData=[{key:'none',value:'----'}];
 					if(s.params.viewType=="city"){
 						if(nextSlotIndex>=2){
 							return;
@@ -131,10 +108,7 @@
 				}
 				//Callback
             	if(s.params.onScrollEnd)s.params.onScrollEnd(e);
-	    	},
-	    	onTransitionEnd:s.params.onTransitionEnd?s.params.onTransitionEnd:null,
-	    	onShowed:s.params.onShowed?s.params.onShowed:null,
-	    	onHid:s.params.onHid?s.params.onHid:null
+	    	}
 		});
 		function initSlots(){
 			s.scrollpicker.addSlot(province,s.params.provinceClass);

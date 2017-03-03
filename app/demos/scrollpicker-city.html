@@ -22,11 +22,15 @@
 	    </div>
 	</header>
 	<article>
-        <div class="inputbox" style="margin:8px">
-            <input type="text" class="input-text" placeholder="请选择城市" readonly="readonly" id="ID-City"/>
-        </div>
-        <div class="inputbox" style="margin:8px">
-            <input type="text" class="input-text" placeholder="请选择地区" readonly="readonly" id="ID-Area"/>
+        <div class="group" style="padding:0 8px;">
+            <div class="inputbox underline">
+                <input type="text" class="input-text" placeholder="请选择城市" readonly="" id="ID-City">
+                <i class="color-placeholder icon icon-position"></i>
+            </div>
+            <div class="inputbox">
+                <input type="text" class="input-text" placeholder="请选择地区" readonly="" id="ID-Area">
+                <i class="color-placeholder icon icon-position"></i>
+            </div>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -66,7 +70,6 @@
                 provinceClass:"text-center citycol",
                 cityClass:"text-center citycol",
                 areaClass:"text-center citycol",
-                isClickMaskHide:false,
             });
         },
         _initSpArea:function(){

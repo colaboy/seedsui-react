@@ -13,20 +13,22 @@
     	z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
 	&:before {
-		top: -1px;
+		top: 0px;
 		right: auto;
 	    bottom: auto;
 	    left: 0;
 	    height: 1px;
 	    width: 100%;
+	    -webkit-transform-origin:center top;
 	}
 	&:after {
 		top: auto;
 		right: auto;
-	    bottom: 0;
+	    bottom: 0px;
 	    left: 0;
 	    height: 1px;
 	    width: 100%;
+	    -webkit-transform-origin:center bottom;
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 		&:before,&:after {

@@ -18,21 +18,23 @@ hr{
 }
 //上横线
 .topline:before{
-    top: -1px;
+    top: 0px;
 	right: auto;
     bottom: auto;
     left: 0;
     height: 1px;
     width: 100%;
+    -webkit-transform-origin:center top;
 }
 //下横线
 .underline:after,.hline,hr:after{
 	top: auto;
 	right: auto;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     height: 1px;
     width: 100%;
+    -webkit-transform-origin:center bottom;
 }
 //左竖线
 .leftline:before{
@@ -42,6 +44,7 @@ hr{
     left: 0;
     width: 1px;
     height: 100%;
+    -webkit-transform-origin:left center;
 }
 //右竖线
 .rightline:after,.vline{
@@ -51,6 +54,7 @@ hr{
     right: 0;
     width: 1px;
     height: 100%;
+    -webkit-transform-origin:right center;
 }
 //篮子线
 .basketline{
@@ -61,9 +65,11 @@ hr{
 	}
 	&:before{
 		left:0;
+		-webkit-transform-origin:left center;
 	}
 	&:after{
 		right:0;
+		-webkit-transform-origin:right center;
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {

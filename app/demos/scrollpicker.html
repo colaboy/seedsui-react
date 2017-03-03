@@ -42,7 +42,7 @@
             /*Plugin*/
             this.scrollpicker={};
             this.scrollpicker.hasEvent=false;
-            this.nums1=[
+            this.spdata1=[
                 {'key':'a','value':'1'},
                 {'key':'b','value':'2'},
                 {'key':'c','value':'3'},
@@ -53,8 +53,24 @@
                 {'key':'h','value':'8'},
                 {'key':'i','value':'9'},
                 {'key':'j','value':'10'},
+                {'key':'k','value':'11'},
+                {'key':'l','value':'12'},
+                {'key':'m','value':'13'},
+                {'key':'n','value':'14'},
+                {'key':'o','value':'15'},
+                {'key':'p','value':'16'},
+                {'key':'q','value':'17'},
+                {'key':'r','value':'18'},
+                {'key':'s','value':'19'},
+                {'key':'t','value':'20'},
+                {'key':'u','value':'21'},
+                {'key':'v','value':'22'},
+                {'key':'w','value':'23'},
+                {'key':'x','value':'24'},
+                {'key':'y','value':'25'},
+                {'key':'z','value':'26'},
             ];
-            this.nums2=[
+            this.spdata2=[
                 {'key':'I','value':'1'},
                 {'key':'II','value':'2'},
                 {'key':'III','value':'3'},
@@ -84,11 +100,12 @@
         _initScrollPicker:function(){
             var self=this;
             this.scrollpicker=new Scrollpicker({
-                "parent":"article",
-                "onClickDone":function(e){
+                parent:"article",
+                onInit:function(e){
+                    console.log("初始化");
+                },
+                onClickDone:function(e){
                     //获得全部选中项
-                    //console.log(e.activeOptions);
-                    //打印值
                     var activeText="";
                     e.activeOptions.forEach(function(n,i,a){
                         if(i==e.activeOptions.length-1){
@@ -100,28 +117,27 @@
                     self.textSp.value=activeText;
                     e.hide();
                 },
-                "onClickCancel":function(e){
-                    e.updateSlots();
+                onClickCancel:function(e){
+                    //e.updateSlots();
                     e.hide();
                 },
-                "onScrollEnd":function(e){
+                onScrollEnd:function(e){
                     //获得当前选中项
-                    //console.log(e.activeOption);
+                    console.log("滚动槽："+e.activeSlot.index);
+                    console.log("选中项数："+e.activeSlot.activeIndex);
+                    console.log("全部选中项："+e.activeOptions);
                 },
-                "onShowed":function(e){
-                    console.log("已显示");
+                onShowed:function(e){
+                    //console.log("已显示");
                 },
-                "onHid":function(e){
-                    console.log("已隐藏");
-                },
-                "onLoad":function(e){
-                    console.log("已加载");
+                onHid:function(e){
+                    //console.log("已隐藏");
                 }
             });
         },
         _addScrollpickerData:function(){
-            this.scrollpicker.addSlot(this.nums1,'','','d');//数据,样式,默认value，默认key
-            this.scrollpicker.addSlot(this.nums2);
+            this.scrollpicker.addSlot(this.spdata1,'d');//数据,默认key,样式
+            this.scrollpicker.addSlot(this.spdata2);
         },
         _initPlugin:function(){
             this._initScrollPicker();

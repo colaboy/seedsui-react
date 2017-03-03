@@ -72,6 +72,7 @@
 			    right: 0;
 			    width: 1px;
 			    height: 100%;
+			    -webkit-transform-origin:right center;
 			}
 			//下横线
 			&:after{
@@ -81,6 +82,7 @@
 			    left: 0;
 			    height: 1px;
 			    width: 100%;
+			    -webkit-transform-origin:center bottom;
 			}
 		}
 		@media only screen and (-webkit-min-device-pixel-ratio: 2) {

@@ -69,12 +69,13 @@
 }
 //上横线
 .alert-handler:before{
-	top: -1px;
+	top: 0px;
 	right: auto;
     bottom: auto;
     left: 0;
     height: 1px;
     width: 100%;
+    -webkit-transform-origin:center top;
 }
 //左竖线
 .alert-handler a:nth-of-type(2):before{
@@ -84,6 +85,7 @@
     left: 0;
     width: 1px;
     height: 100%;
+    -webkit-transform-origin:left center;
 }
 
 .alert-handler a:only-child{

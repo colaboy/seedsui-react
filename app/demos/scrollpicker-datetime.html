@@ -82,12 +82,17 @@
                 }();
                 //时间控件小时数据
                 this.hoursData=function(){
-                    var data=[];
-                    for(var i=7;i<=22;i++){
+                    var startData=[];
+                    for(var i=7;i<=21;i++){
                         var temp=i<10?"0"+i:i;
-                        data.push({key:temp,value:temp+"时"});
+                        startData.push({key:temp,value:temp+"时"});
                     }
-                    return data;
+                    var endData=startData.slice(0);
+                    endData.push({key:"22",value:"22时"});
+                    return {
+                        startHours:startData,
+                        endHours:endData
+                    };
                 }();
                 //加载数据
                 this.loadData();
@@ -105,13 +110,25 @@
             /*=========================
               Method
               ===========================*/
+            updateMinutes:function(hourKey,minuteKey){
+                var self=this;
+                var minuteKey=minuteKey;
+                var minutes=this.minutesData.slice(0);
+                if(hourKey==="22"){
+                    minutes=[{key:"00",value:"00分"}];
+                    minuteKey="00";
+                }else if(hourKey==="07"){
+                    minutes.shift();
+                }
+                self.spDateTime.scrollpicker.replaceSlot(4,minutes,minuteKey,'text-center');//修改第五项
+            },
             //时间控件
             _newSpDateTime:function(defaults,input){
                 var self=this;
                 this.spDateTime=new SpDate({
                     //parent:self.$el[0],
                     viewType:"datetime",
-                    hoursData:self.hoursData,
+                    //hoursData:self.hoursData.startHours,
                     minutesData:self.minutesData,
                     isSimpleYear:true,
                     minYear:new Date().getFullYear()-5,
@@ -121,45 +138,74 @@
                     dayClass:"text-center",
                     hourClass:"text-center",
                     minuteClass:"text-center",
-                    isClickMaskHide:false,
-                    onClickDone:function(e){
-                        var activeText=e.activeText.replace(/-/g,"/");
-                        if(new Date(activeText)<=new Date()){
-                            app.toast.setText("时间不能早于当前时间");
-                            app.toast.show();
-                            return;
+                    onInit:function(e){
+                        //点击开始时间
+                        if(input.classList.contains("SID-DateTimeStart")){
+                            e.hours=self.hoursData.startHours;
+                        }else if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
+                            e.hours=self.hoursData.endHours;
                         }
-                        if(input.classList.contains("SID-DateTimeStart")){//点击开始时间
+                    },
+                    onScrollEnd:function(e){
+                        //点击结束时间
+                        if(!input.classList.contains("SID-DateTimeEnd"))return;
+                        //小时算分钟
+                        if(e.scrollpicker.activeSlot.index==3){
+                            hourKey=e.scrollpicker.activeOptions[3]["key"];
+                            minuteKey=e.scrollpicker.activeOptions[4]["key"];
+                            self.updateMinutes(hourKey,minuteKey);//更新总天数
+                        }
+                    },
+                    onClickDone:function(e){
+                        var activeDate=new Date(e.activeText.replace(/-/g,"/"));
+                        
+                        //点击开始时间
+                        if(input.classList.contains("SID-DateTimeStart")){
+                            //不合法的时间
+                            if(activeDate<=new Date()){
+                                app.toast.setText("时间不能早于当前时间");
+                                app.toast.show();
+                                return;
+                            }
+
                             var endInput=input.parentNode.nextElementSibling.querySelector(".SID-DateTimeEnd");
                             //如果结束时间为空或者开始时间大于结束时间
-                            if((endInput.value=="") || (new Date(activeText) >= new Date(endInput.value.replace(/-/g,"/")))){
+                            var endInputDate=new Date(endInput.value.replace(/-/g,"/"));
+                            if((endInput.value=="") || (activeDate >= endInputDate)){
                                 //设置结束时间
-                                var endTime=new Date(activeText).plusMinute(30);
+                                var endTime=new Date(activeDate).plusMinute(10);
                                 endInput.value=endTime.format("yyyy-MM-dd hh:mm");
                             }
-                        }else if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
-                            var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
-                            var startTime=new Date().setMinuteCeil(10);
-                            //结束时间小于过早
-                            if(new Date(activeText)<=startTime){
+                        //点击结束时间
+                        }else if(input.classList.contains("SID-DateTimeEnd")){
+                            //不合法的时间
+                            if(new Date(activeDate)<=new Date().setMinuteCeil(10)){
                                 app.toast.setText("结束时间过早");
                                 app.toast.show();
                                 return;
                             }
+
+                            var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
                             //如果开始时间为空或者结束时间小于开始时间
-                            if((prevInput.value=="") || (new Date(prevInput.value.replace(/-/g,"/")) >= new Date(activeText))){
+                            var prevInputDate=new Date(prevInput.value.replace(/-/g,"/"));
+                            if((prevInput.value=="") || (activeDate <= prevInputDate)){
                                 //设置开始时间
+                                var startTime=activeDate.minusMinute(10);
                                 prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
                             }
                         }
                         input.value=e.activeText;
-                        e.hide();
+                        e.scrollpicker.hide();
                     },
-                    "onShowed":function(e){
-                        e.setIsClickMaskHide(true);
+                    onShowed:function(e){
+                        if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
+                            var hourKey=e.scrollpicker.activeOptions[3]["key"];
+                            var minuteKey=e.scrollpicker.activeOptions[4]["key"];
+                            self.updateMinutes(hourKey,minuteKey);
+                        }
                     },
-                    "onHid":function(e){
-                        e.destroy();
+                    onHid:function(e){
+                        e.scrollpicker.destroy();
                     }
                 });
                 if(defaults && defaults.length>0){
@@ -204,7 +250,7 @@
                 }else{
                     var date=new Date().setMinuteCeil(10);
                     if(input.classList.contains("SID-DateTimeEnd")){
-                        date.plusMinute(20);
+                        date.plusMinute(10);
                     }
                     defaults[0]=date.getFullYear();
                     defaults[1]=date.getMonth()+1;
@@ -214,7 +260,7 @@
                 }
                 this._newSpDateTime(defaults,input);
                 setTimeout(function(){
-                    self.spDateTime.show();
+                    self.spDateTime.scrollpicker.show();
                 },10);
             },
         }

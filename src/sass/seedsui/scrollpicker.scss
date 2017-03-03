@@ -99,27 +99,25 @@ ul.scrollpicker-slot,.scrollpicker-slot ul{
     //兼容UC线条不显示的BUG
     z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
 }
-.scrollpicker-layer-frame:before {
-	top: -1px;
-	bottom: auto;
-}
 //上横线
 .scrollpicker-layer-frame:before{
-	top: -1px;
+	top: 0px;
 	right: auto;
     bottom: auto;
     left: 0;
     height: 1px;
     width: 100%;
+    -webkit-transform-origin:center top;
 }
 //下横线
 .scrollpicker-layer-frame:after,.scrollpicker-header:after{
     top: auto;
 	right: auto;
-    bottom: 0;
+    bottom: 0px;
     left: 0;
     height: 1px;
     width: 100%;
+    -webkit-transform-origin:center bottom;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	//横线

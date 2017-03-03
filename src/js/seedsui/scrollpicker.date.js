@@ -203,12 +203,12 @@
 	    	parent:s.params.parent,
 	    	isClickMaskHide:s.params.isClickMaskHide,
 	    	onClickDone:function(e){
-	    		e.activeText=s.getActiveText(e.activeOptions);
-	    		if(s.params.onClickDone)s.params.onClickDone(e);
+	    		s.activeText=s.getActiveText(e.activeOptions);
+	    		if(s.params.onClickDone)s.params.onClickDone(s);
 	    	},
 	        onClickCancel:function(e){
-	        	e.activeText=s.getActiveText(e.activeOptions);
-	            if(s.params.onClickCancel)s.params.onClickCancel(e);
+	        	s.activeText=s.getActiveText(e.activeOptions);
+	            if(s.params.onClickCancel)s.params.onClickCancel(s);
 	            else e.hide();
 	            //还原为初始状态
 	            //e.updateSlots()
@@ -217,30 +217,39 @@
 	            addSlot();*/
 	        },
 	    	onScrollEnd:function(e){
-	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && e.activeSlotIndex!=2){
+	    		//根据月份算日
+	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && (e.activeSlotIndex==0 || e.activeSlotIndex==1)){
 	    			var year=e.activeOptions[0]["key"];
 					var month=e.activeOptions[1]["key"];
 					
 					updateDays(year,month);//更新总天数
 	    		}
+	    		//回调
+	    		if(s.params.onScrollEnd)s.params.onScrollEnd(s);
 	    	},
-	    	onTransitionEnd:s.params.onTransitionEnd?s.params.onTransitionEnd:null,
-	    	onShowed:s.params.onShowed?s.params.onShowed:null,
-	    	onHid:s.params.onHid?s.params.onHid:null
+	    	onTransitionEnd:function(e){
+	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
+	    	},
+	    	onShowed:function(e){
+	    		if(s.params.onShowed)s.params.onShowed(s);
+	    	},
+	    	onHid:function(e){
+	    		if(s.params.onHid)s.params.onHid(s);
+	    	}
 	    });
 
 	    //添加数据
 	    function addMonthSlot(){
-	    	s.scrollpicker.addSlot(s.years,s.params.yearClass,'',s.params.defaultYear);
-	        s.scrollpicker.addSlot(s.months,s.params.monthClass,'',s.params.defaultMonth);
+	    	s.scrollpicker.addSlot(s.years,s.params.defaultYear,s.params.yearClass);
+	        s.scrollpicker.addSlot(s.months,s.params.defaultMonth,s.params.monthClass);
 	    }
 	    function addDateSlot(){
 	    	addMonthSlot();
-	        s.scrollpicker.addSlot(s.days,s.params.dayClass,'',s.params.defaultDay);
+	        s.scrollpicker.addSlot(s.days,s.params.defaultDay,s.params.dayClass);
 	    }
 	    function addTimeSlot(){
-	    	s.scrollpicker.addSlot(s.hours,s.params.hourClass,'',s.params.defaultHour);
-	        s.scrollpicker.addSlot(s.minutes,s.params.minuteClass,'',s.params.defaultMinute);
+	    	s.scrollpicker.addSlot(s.hours,s.params.defaultHour,s.params.hourClass);
+	        s.scrollpicker.addSlot(s.minutes,s.params.defaultMinute,s.params.minuteClass);
 	    }
 	    function addDateTime(){
 	    	addDateSlot();
@@ -259,6 +268,7 @@
 	    	initSlots();
 	    }
 	    s.init=function(){
+	    	if(s.params.onInit)s.params.onInit(s);
 	    	initSlots();
 	    }
 	    s.init();

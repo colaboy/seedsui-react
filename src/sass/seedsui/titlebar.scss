@@ -28,6 +28,7 @@
 	    height: 1px;
 	    width: 100%;
 		background-color: $border;
+		-webkit-transform-origin:center bottom;
 
 		//兼容UC线条不显示的BUG
     	z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
