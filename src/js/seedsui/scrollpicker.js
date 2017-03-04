@@ -6,29 +6,32 @@
           ===========================*/
         var defaults={
             parent:document.body,
-            //picker:null,
             pickerClass:"scrollpicker",
             pickerActiveClass:"active",
+
             headerClass:"scrollpicker-header",
             headerDoneClass:"scrollpicker-done",
             headerDoneText:"完成",
             headerCancelClass:"scrollpicker-cancel",
             headerCancelText:"取消",
+
             wrapperClass:"scrollpicker-wrapper",
             layerClass:"scrollpicker-layer",
             layerFrameClass:'scrollpicker-layer-frame',
             layerFrameHTML:'<div class="scrollpicker-layer-frame"></div>',
+
             slotsClass:"scrollpicker-slots",
             slotClass:"scrollpicker-slot",
+
             lockClass:"lock",
             slotActiveClass:"active",
             slotLiActiveClass:"active",
+
             cellHeight:44,
             friction:0.002,//摩擦力
             bounceRange:44,//弹性值
+
             isClickMaskHide:true,
-            isCascade:false,//是否清除后面的值
-            defaultValues:[{'key':null,'value':'----'}]
 
             /*callbacks
             onInit:function(Scrollpicker)
@@ -170,23 +173,8 @@
 
             //渲染
             s.renderSlot(index,slot);
-            //级联更新
-            //if(s.params.isCascade)clearAfterSlot(index);
-            //if(fn)fn(s);
-        }
-        //清空下列
-        function clearAfterSlot(col){
-            var nextCol=++col;
-            var nextSlot=s.slots[nextCol];
-            if(nextSlot){
-                nextSlot.innerHTML="<li>"+s.params.defaultValues[0].value+"</li>"
-                //s.updateSlot(nextSlot);
-                console.log(nextSlot);
-                s.renderSlot(nextCol,nextSlot);
-                clearAfterSlot(nextCol);
-                //设置选中项
-                s.activeOptions[nextCol]=s.params.defaultValues[0];
-            }
+            //回调
+            if(fn)fn(s);
         }
         //渲染一列
         s.renderSlot=function(index,slot){
@@ -243,14 +231,14 @@
             s.mask.style.visibility="hidden";
             s.picker.classList.remove(s.params.pickerActiveClass);
         }
-        //重置
-        s.reset=function(){
+        //清除
+        s.clearSlots=function(){
             //清空指向
             s.slots=[];
             //清空数据
             s.slotbox.innerHTML="";
         }
-        //清除
+        //销毁
         s.destroy=function(){
             s.detach();
             s.parent.removeChild(s.mask);

@@ -213,7 +213,7 @@
 	            //还原为初始状态
 	            //e.updateSlots()
 	            //清空数据再注入
-	            /*e.reset();
+	            /*e.clearSlots();
 	            addSlot();*/
 	        },
 	    	onScrollEnd:function(e){
@@ -264,7 +264,7 @@
 	        }
 	    }
 	    s.update=function(){
-	    	s.scrollpicker.reset();
+	    	s.scrollpicker.clearSlots();
 	    	initSlots();
 	    }
 	    s.init=function(){

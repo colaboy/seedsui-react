@@ -24,11 +24,13 @@
 	<article>
         <div class="group" style="padding:0 8px;">
             <div class="inputbox underline">
-                <input type="text" class="input-text" placeholder="请选择城市" readonly="" id="ID-City">
+                <input type="text" class="input-text" placeholder="请选择城市" readonly="" id="ID-City" value="江苏省-南京市-建邺区">
+                <input type="hidden" value="320000-320100-320105">
                 <i class="color-placeholder icon icon-position"></i>
             </div>
             <div class="inputbox">
                 <input type="text" class="input-text" placeholder="请选择地区" readonly="" id="ID-Area">
+                <input type="hidden" value="">
                 <i class="color-placeholder icon icon-position"></i>
             </div>
         </div>
@@ -63,27 +65,28 @@
         /*=========================
           Plugin
           ===========================*/
-        _initSpCity:function(){
+        _newSpCity:function(defaults,input){
             this.spCity=new SpCity({
-                viewType:"city",
+                //isShowArea:false,
                 data:citys,
+                defaultProvince:defaults.province,
+                defaultCity:defaults.city,
+                defaultArea:defaults.area,
                 provinceClass:"text-center citycol",
                 cityClass:"text-center citycol",
                 areaClass:"text-center citycol",
-            });
-        },
-        _initSpArea:function(){
-            this.spArea=new SpCity({
-                viewType:"area",
-                data:citys,
-                provinceClass:"text-center citycol",
-                cityClass:"text-center citycol",
-                areaClass:"text-center citycol"
+                onClickDone:function(e){
+                    input.value=e.activeValue;
+                    input.nextElementSibling.value=e.activeKey;
+                    e.hide();
+                },
+                onHid:function(e){
+                    e.scrollpicker.destroy();
+                }
             });
         },
         _initPlugin:function(){
-            this._initSpCity();
-            this._initSpArea();
+            //this._initSpArea();
         },
         /*=========================
           Events
@@ -101,20 +104,32 @@
           Event Handler
           ===========================*/
         _onClickTextCity:function(e){
+            var self=this;
             var input=e.target;
-            this.spCity.setOnClickDone(function(e){
-                input.value=e.activeText;
-                e.hide();
-            });
-            this.spCity.show();
+            var keys=input.nextElementSibling.value.split("-");
+            var defaults={
+                province:keys[0]||"",
+                city:keys[1]||"",
+                area:keys[2]||""
+            }
+            this._newSpCity(defaults,input);
+            setTimeout(function(){
+                self.spCity.scrollpicker.show();
+            },10);
         },
         _onClickTextArea:function(e){
+            var self=this;
             var input=e.target;
-            this.spArea.setOnClickDone(function(e){
-                input.value=e.activeText;
-                e.hide();
-            });
-            this.spArea.show();
+            var keys=input.nextElementSibling.value.split("-");
+            var defaults={
+                province:keys[0]||"",
+                city:keys[1]||"",
+                area:keys[2]||""
+            }
+            this._newSpCity(defaults,input);
+            setTimeout(function(){
+                self.spCity.scrollpicker.show();
+            },10);
         }
     }
 

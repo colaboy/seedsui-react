@@ -6,9 +6,19 @@
 	    ==================*/
 		var defaults={
 			parent:document.body,
-			viewType:"city",//"city","area"
 			data:null,
-			defaultValue:"----",
+
+			province:null,
+			city:null,
+			area:null,
+			defaultProvince:"",
+			defaultCity:"",
+			defaultArea:"",
+			isShowProvince:true,
+			isShowCity:true,
+			isShowArea:true,
+
+			defaultValues:[{key:'none',value:'----'}],
 			provinceClass:"",
 			cityClass:"",
 			areaClass:"",
@@ -33,39 +43,40 @@
 		s.data=s.params.data;
 		if(!s.data)return;
 
-		//初始化数据
-		var province=[],city=[];
-		s.data.forEach(function(n,i,a){
-			province.push(n);
-			if(i==0){
-				city=n.children;
-			}
-		})
+		//省、市、区数据
+		s.province=s.params.province||null,
+		s.city=s.params.city||null,
+		s.area=s.params.area||null,
+		s.defaultProvince=s.params.defaultProvince||"",
+		s.defaultCity=s.params.defaultCity||"",
+		s.defaultArea=s.params.defaultArea||"";
 		/*================
 	    Method
 	    ==================*/
-		s.show=function(){
-			s.scrollpicker.show();
-		}
-		s.getActiveText=function(activeData){
-	    	var activeText="";
-	    	var cityArr=activeData.filter(function(n,i,a){
-	    		return n["value"]!=s.params.defaultValue;
-			});
-			cityArr.forEach(function(n,i,a){
-				if(i==cityArr.length-1){
-	        		activeText+=n["value"];
-	        	}else{
-	        		activeText+=n["value"]+"-";
-	        	}
-			})
-	        return activeText;
-	    }
-		s.setOnClickDone=function(fn){
+	   	s.setOnClickDone=function(fn){
 	    	s.params.onClickDone=fn;
 	    }
 	    s.setOnClickCancel=function(fn){
 	    	s.params.onClickCancel=fn;
+	    }
+		s.getActive=function(activeData){
+	    	var activeValue="",activeKey="";
+	    	var cityArr=activeData.filter(function(n){
+	    		return n!=s.params.defaultValues[0];
+			});
+			cityArr.forEach(function(n,i,a){
+				if(i==cityArr.length-1){
+	        		activeValue+=n["value"];
+	        		activeKey+=n["key"];
+	        	}else{
+	        		activeValue+=n["value"]+"-";
+	        		activeKey+=n["key"]+"-";
+	        	}
+			})
+	        return {
+	        	activeValue:activeValue,
+	        	activeKey:activeKey
+	        };
 	    }
 		/*================
 	    Control
@@ -74,52 +85,97 @@
 		s.scrollpicker=new Scrollpicker({
 			parent:s.params.parent,
 			isClickMaskHide:s.params.isClickMaskHide,
-			"isCascade":true,//是否开启级联更新
 			onClickDone:function(e){
-				e.activeText=s.getActiveText(e.activeOptions);
+				var activeOption=s.getActive(e.activeOptions);
+				e.activeValue=activeOption.activeValue;
+				e.activeKey=activeOption.activeKey;
 		    	if(s.params.onClickDone)s.params.onClickDone(e);
 	    	},
 	    	onClickCancel:function(e){
-	    		e.activeText=s.getActiveText(e.activeOptions);
+	    		e.activeText=s.getActive(e.activeOptions);
 	            if(s.params.onClickCancel)s.params.onClickCancel(e);
 	            else e.hide();
 	    	},
 			onScrollEnd:function(e){
-				renderAfter(e.activeSlot.index);
-				function renderAfter(index){
-					//获得当前选中数据
-					var nextSlotIndex=index+1;
-					var slot=e.slots[index];
-					var activeIndex=slot.activeIndex;
-					var childrenData=slot.values[activeIndex].children;
-					//if(!childrenData)childrenData=[{key:'none',value:'----'}];
-					if(s.params.viewType=="city"){
-						if(nextSlotIndex>=2){
-							return;
-						}
-					}
-					//如果有子级
-		    		if(childrenData){
-		    			//修改下一列数据
-		    			e.replaceSlot(nextSlotIndex,childrenData,'text-center citycol');
-		    			//递归
-		    			renderAfter(nextSlotIndex);
-		    		}
+				var activeOption=e.activeSlot.values[e.activeSlot.activeIndex];
+				if(e.activeSlot.index===0){//滚动省
+					s.defaultProvince=activeOption.key;
+					s.defaultCity=s.getChildren(s.defaultProvince)[0].key;
+				}else if(e.activeSlot.index===1){//滚动市
+					s.defaultCity=activeOption.key;
 				}
-				//Callback
-            	if(s.params.onScrollEnd)s.params.onScrollEnd(e);
+				s.updateSlots(s.defaultProvince,s.defaultCity);
+	    	},
+	    	onTransitionEnd:function(e){
+	    		if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
+	    	},
+	    	onShowed:function(e){
+	    		if(s.params.onShowed)s.params.onShowed(s);
+	    	},
+	    	onHid:function(e){
+	    		if(s.params.onHid)s.params.onHid(s);
 	    	}
 		});
-		function initSlots(){
-			s.scrollpicker.addSlot(province,s.params.provinceClass);
-			s.scrollpicker.addSlot(city,s.params.cityClass);
-			if(s.params.viewType=="area"){
-				s.scrollpicker.addSlot([{'key':'-','value':s.params.defaultValue}],s.params.areaClass);
+		s.getSingleArray=function(mulArr){
+			var array=[];
+			for(var i=0,opt;opt=mulArr[i++];){
+				array.push({
+					key:opt.key,
+					value:opt.value
+				});
+			}
+			return array;
+		}
+		s.getChildren=function(key){
+			//如果没有传key，表示获得第一层
+			if(!key)return s.getSingleArray(s.data);
+			//如果传key，则找到对应key的子级
+			for(var i=0,province;province=s.data[i++];){
+				if(province.key==key)return s.getSingleArray(province.children);
+				for(var j=0,city;city=province.children[j++];){
+					if(!city.children)break;
+					if(city.key==key)return s.getSingleArray(city.children);
+				}
+			}
+			return null;
+		}
+		s.updateSlots=function(defaultProvince,defaultCity,defaultArea){
+			var defaultProvince=defaultProvince,
+			defaultCity=defaultCity,
+			defaultArea=defaultArea;
+
+			//清空槽
+			s.scrollpicker.clearSlots();
+
+			//初始化省
+			if(!s.province){
+				s.province=s.getChildren();
+			}
+			if(!defaultProvince || !s.province){
+				defaultProvince=s.province[0].key;
+			}
+			s.scrollpicker.addSlot(s.province,defaultProvince,s.params.provinceClass);
+
+			//初始化市
+			s.city=s.getChildren(defaultProvince);
+			if(!defaultCity){
+				defaultCity=s.city[0].key;
+			}
+			s.scrollpicker.addSlot(s.city,defaultCity,s.params.cityClass);
+
+			//初始化区
+			if(s.params.isShowArea){
+				s.area=s.getChildren(defaultCity);
+				if(s.area){
+					s.scrollpicker.addSlot(s.area,defaultArea,s.params.areaClass);
+				}else{
+					s.scrollpicker.addSlot(s.params.defaultValues,"",s.params.areaClass);
+				}
 			}
 		}
+		s.updateSlots(s.params.defaultProvince,s.params.defaultCity,s.params.defaultArea);
+
 		s.init=function(){
-	    	initSlots();
 	    }
-	    s.init();
 	}
 })(window,document,undefined);
