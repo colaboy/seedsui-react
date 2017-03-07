@@ -108,8 +108,7 @@
                 var self = this;
                 this.validator={};
                 //渲染页面
-                this.form=new Form("#ID-Form");
-                this.formContainer=this.form.container;
+                this.formContainer=document.getElementById("ID-Form");
 
                 this.toast=new Toast();
                 this.formControls=new FormControls();;
@@ -241,12 +240,14 @@
               ===========================*/
             _onSubmit:function(e){
                 e.preventDefault();
+                //获取表单
+                this.form=new Form(this.formContainer);
+
                 //重置错误样式
                 for(var i=0,el;el=this.form.fields[i++];){
                     el.parentNode.parentNode.classList.remove("inputbox-error");
                 }
-                //获取表单
-                this.form=new Form("#ID-Form");
+                
                 //表单验证
                 var error=view._validateForm();
                 if(error){
