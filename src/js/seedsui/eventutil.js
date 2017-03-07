@@ -107,7 +107,7 @@
 			attach();
 		}
 	}
-	var touchEvent=[];
+	
 	window.EventUtil = {
 		addHandler:function (element, type, handler) {
 			//自定义事件 tap | swipeleft | swiperight | swipedown | swipeup

@@ -37,7 +37,9 @@ body {
   font-size: 14px;
   font-family: Arial, "Microsoft Yahei";
   color: #333;
-  background-color: #eaeaea; }
+  background-color: #f0f0f0;
+  word-break: break-all;
+  word-wrap: break-word; }
 
 .placeholder {
   color: #ccc; }
@@ -169,7 +171,7 @@ section header + article, aside header + article {
   top: 44px; }
 
 section {
-  background-color: #eaeaea;
+  background-color: #f0f0f0;
   z-index: 1; }
 
 aside {
@@ -178,13 +180,13 @@ aside {
   top: 0;
   bottom: 0;
   visibility: hidden;
-  background-color: #eaeaea; }
+  background-color: #f0f0f0; }
 
 /*----------------layout.less(end)--------------*/
 /*----------------form.less(start)--------------*/
 .input-text {
   display: inline-block;
-  box-sizing: content-box;
+  box-sizing: border-box;
   min-height: 20px;
   line-height: 20px;
   padding: 12px 8px;
@@ -193,7 +195,9 @@ aside {
 .input-textarea {
   height: 60px;
   display: block;
-  padding: 12px 8px; }
+  box-sizing: border-box;
+  padding: 0 8px;
+  margin: 12px 0; }
 
 .input-pre {
   height: 22px;
@@ -219,6 +223,7 @@ aside {
   display: -webkit-box;
   -webkit-box-align: center;
   min-height: 44px;
+  padding: 6px 0;
   box-sizing: border-box;
   background-color: #f9f9f9; }
   .titlebar .inputbox {
@@ -265,10 +270,6 @@ aside {
   font-weight: normal;
   -webkit-box-flex: 1;
   color: #333; }
-  .titlebar-title:first-child {
-    padding-left: 10px; }
-  .titlebar-title:last-child {
-    padding-right: 10px; }
 
 /*按钮*/
 .titlebar-button {
@@ -277,8 +278,9 @@ aside {
   color: #20aeff;
   border-color: #20aeff; }
   .titlebar-button:active {
-    color: rgba(32, 174, 255, 0.5);
-    border-color: rgba(32, 174, 255, 0.5); }
+    /* color:$bar-button-active;
+    border-color:$bar-button-active; */
+    opacity: 0.5; }
 
 .titlebar.reverse {
   background-color: #20aeff;
@@ -565,12 +567,12 @@ aside {
       background-color: #a2ecad;
       border-color: #a2ecad; }
   .button.disabled, .button[disabled] {
-    color: #d1d1d1;
-    background-color: transparent;
-    border-color: #e5e5e5; }
+    color: #adadad;
+    background-color: #e1e1e1;
+    border-color: #e1e1e1; }
     .button.disabled:active, .button[disabled]:active {
-      color: #d1d1d1;
-      border-color: #e5e5e5; }
+      color: #adadad;
+      border-color: #e1e1e1; }
     .button.disabled .tip, .button.disabled .badge, .button[disabled] .tip, .button[disabled] .badge {
       background-color: #d1d1d1; }
   .button.white {
@@ -590,6 +592,7 @@ aside {
   /*线框-信息按钮*/
   /*线框-警告按钮*/
   /*线框-完成按钮*/
+  /*线框-禁用按钮*/
   /*线框-白色按钮*/
   /*小汽泡*/ }
   .button.outline.primary {
@@ -634,6 +637,10 @@ aside {
     .button.outline.success:active {
       color: #a2ecad;
       border-color: #a2ecad; }
+  .button.outline.disabled, .button.outline[disabled] {
+    background-color: transparent; }
+    .button.outline.disabled:active, .button.outline[disabled]:active {
+      background-color: transparent; }
   .button.outline.white {
     color: white;
     background-color: transparent;
@@ -685,7 +692,6 @@ aside {
 /*----------------grid.less(start)--------------*/
 .grid {
   position: relative;
-  /*圆角*/
   /*边框*/ }
   .grid:after {
     display: table;
@@ -722,8 +728,6 @@ aside {
     .grid li > a > img {
       max-width: 100%;
       max-height: 100%; }
-  .grid.grid-radius8 > li > a {
-    border-radius: 8px; }
   .grid.grid-bordered[data-rowspace="8"] li {
     padding-top: 8px;
     padding-bottom: 8px; }
@@ -2745,7 +2749,7 @@ section {
   .timepart-progress.active {
     background-color: #20aeff; }
   .timepart-progress.disabled {
-    background-color: #eaeaea; }
+    background-color: #f0f0f0; }
 
 .timepart-part {
   position: relative;
@@ -3038,12 +3042,11 @@ aside[data-position="right"][data-transition="overlay"] {
   height: 40px;
   color: #20aeff; }
 
-.sliver .sliver-title {
+.sliver-title {
   display: block;
   height: 20px;
   line-height: 20px;
-  -webkit-box-flex: 1;
-  color: #20aeff; }
+  -webkit-box-flex: 1; }
 
 .sliver .peg {
   display: block; }
@@ -3270,7 +3273,7 @@ progress::-webkit-progress-value {
 .loading-more {
   padding: 12px 0;
   text-align: center;
-  background: #eaeaea; }
+  background: #f0f0f0; }
   .loading-more .loading-progress {
     width: 30px;
     height: 30px;
@@ -3278,7 +3281,7 @@ progress::-webkit-progress-value {
     .loading-more .loading-progress:before, .loading-more .loading-progress:after {
       width: 17px;
       height: 32px;
-      background: #eaeaea; }
+      background: #f0f0f0; }
   .loading-more label {
     margin-left: 10px; }
 
@@ -4170,16 +4173,18 @@ progress::-webkit-progress-value {
 /*----------------toast.less(start)--------------*/
 .toast {
   position: fixed;
-  bottom: -50px;
+  bottom: -100px;
   width: 100%;
   text-align: center;
   pointer-events: none;
+  opacity: 0;
   -webkit-transition-property: -webkit-transform,opacity,visibility;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
   z-index: 999; }
   .toast.active {
-    -webkit-transform: translate3d(0, -100px, 0); }
+    opacity: 1;
+    -webkit-transform: translate3d(0, -150px, 0); }
 
 .toast-wrapper {
   display: inline-block;
@@ -4596,7 +4601,7 @@ progress::-webkit-progress-value {
     font-size: 0;
     padding: 8px 0;
     height: 170px;
-    background-color: #eaeaea; }
+    background-color: #f0f0f0; }
     .richedit .emoji.active {
       display: block; }
   .richedit .richinput img {
@@ -5924,7 +5929,7 @@ hr {
   background-color: white; }
 
 .bg-default {
-  background-color: #eaeaea; }
+  background-color: #f0f0f0; }
 
 .bg-disable {
   background-color: #d1d1d1; }

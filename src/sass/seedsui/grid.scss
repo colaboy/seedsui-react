@@ -43,10 +43,6 @@
 			max-height: 100%;
 		}
 	}
-	/*圆角*/
-	&.grid-radius8>li>a{
-		border-radius: 8px;
-	}
 	/*边框*/
 	&.grid-bordered{
 		&[data-rowspace="8"] li{

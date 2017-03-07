@@ -19,19 +19,21 @@
                 <button class="button radius4 grayscale" style="height:32px;line-height:32px;padding:0 8px;">取消</button>
             </a>
             <h1 class="titlebar-title text-center">文字计数</h1>
-            <a class="titlebar-button right">
+            <a class="titlebar-button titlebar-right">
                 <button class="button radius4 warn" style="height:32px;line-height:32px;padding:0 8px;">发布</button>
             </a>
         </div>
     </header>
     <article>
-        <div class="inputbox radius4" style="margin:8px;">
-            <input type="text" class="countvalue input-text" data-maxlength="10" placeholder="请输入标题"/>
-            <p class="absolute" style="bottom: 10px;right:10px;"></p>
-        </div>
-        <div class="inputbox radius4" style="margin:8px;">
-            <textarea class="countvalue input-textarea" data-maxlength="30" placeholder="请输入评论信息"></textarea>
-            <p class="absolute" style="bottom: 10px;right:10px;"></p>
+        <div class="group" style="padding:0 8px;">
+            <div class="inputbox underline">
+                <input type="text" class="countvalue input-text" data-maxlength="10" placeholder="请输入标题"/>
+                <p></p>
+            </div>
+            <div class="inputbox">
+                <textarea class="countvalue input-textarea" data-maxlength="30" placeholder="请输入评论信息"></textarea>
+                <p class="absolute" style="bottom: 10px;right:10px;"></p>
+            </div>
         </div>
     </article>
 
@@ -43,70 +45,64 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                /*DOM*/
-
-                /*Plugin*/
-                this.countValues={};//数字计数器
-
-                /*Data*/
-
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
-            },
             render:function(){
-                this._initPlugin();
-            },
-            /*=========================
-              Method
-              ===========================*/
-            _updateCountValues:function(e){
-                this.countValues.update();
-            },
-            _update:function(){
-                this._updateCountValues();
-            },
-            /*=========================
-              Plugin
-              ===========================*/
-            _initCountValues:function(){
+                var self = this;
+                //渲染页面
                 this.countValues=new CountValues({
-                    "onInput":function(e){
+                    onInput:function(e){
                         //console.log("输入中");
                     },
-                    "onInputOut":function(e){
+                    onInputOut:function(e){
                         //console.log("超过数字限制时");
                         var input=e.target;
                         input.nextElementSibling.innerHTML=Math.round(e.maxLength-input.value.length);
                         input.nextElementSibling.classList.add("color-tip");
                     },
-                    "onInputIn":function(e){
+                    onInputIn:function(e){
                         //console.log("没有超过数字限制时");
                         var input=e.target;
                         input.nextElementSibling.innerHTML="";
                         input.nextElementSibling.classList.remove("color-tip");
                     }
                 });
+                
+                //加载数据
+                this.loadData();
             },
-            _initPlugin:function(){
-                this._initCountValues();
+            refresh:function(){
+                console.log("刷新");
             },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+
+            /*=========================
+              Method
+              ===========================*/
+            _method:function(){
+            },
+            
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
             },
+
             /*=========================
               Event Handler
               ===========================*/
+            _onEvent:function(e){
+                
+            }
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回

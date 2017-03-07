@@ -10,11 +10,6 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>form-validate</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-    <style type="text/css">
-    .icon-eye-fill.active{
-        color: #18b2ed;
-    }
-    </style>
 </head>
 
 <body ontouchstart="">
@@ -96,7 +91,7 @@
                 </div>
             </div>
             <div style="margin:0 12px;">
-                <input type="submit" class="button submit block SID-BtnSubmit" style="width: 100%;" value="注册"/>
+                <input type="submit" class="button submit block" style="width: 100%;" value="注册"/>
             </div>
     	</form>
     </article>
@@ -109,19 +104,14 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
             render:function(){
                 var self = this;
                 this.validator={};
                 //渲染页面
                 this.form=new Form("#ID-Form");
                 this.formContainer=this.form.container;
-                this.formFields=this.form.fields;
-                this.btnSubmit=document.querySelector(".SID-BtnSubmit");
 
-                this.prompt=new Prompt();
+                this.toast=new Toast();
                 this.formControls=new FormControls();;
                 //加载数据
                 this.loadData();
@@ -232,7 +222,19 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
-                this.formContainer.addEventListener("submit",this._onSubmit,false);
+                this.formContainer.addEventListener("submit",function(e){
+                    self._onSubmit(e);
+                },false);
+            },
+            _showError:function(form,msg){
+                var self=this;
+                form.fields.forEach(function(n){
+                    n.blur();
+                });
+                setTimeout(function(){
+                    self.toast.setText(msg);
+                    self.toast.show();
+                }, 200);
             },
             /*=========================
               Event Handler
@@ -240,25 +242,25 @@
             _onSubmit:function(e){
                 e.preventDefault();
                 //重置错误样式
-                for(var i=0,el;el=view.formFields[i++];){
+                for(var i=0,el;el=this.form.fields[i++];){
                     el.parentNode.parentNode.classList.remove("inputbox-error");
                 }
+                //获取表单
+                this.form=new Form("#ID-Form");
                 //表单验证
                 var error=view._validateForm();
                 if(error){
-                    view.prompt.setText(error.msg);
-                    view.prompt.show();
+                    this._showError(this.form,error.msg);
                     error.field.parentNode.parentNode.classList.add("inputbox-error");
                     return;
                 }
-                var formArr=new Form("#ID-Form").serializeJson();
+                var formArr=form.serializeJson();
                 console.log(formArr);
-                
             }
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
         //定义exmobi返回
         function back(){history.go(-1);}

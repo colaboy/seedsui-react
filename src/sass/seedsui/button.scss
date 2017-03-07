@@ -89,12 +89,12 @@
 	}
 	/*禁用按钮*/
 	&.disabled,&[disabled]{
-		color:$disable-bg;
-		background-color:transparent;
-		border-color:$button-border;
+		color:$button-disable-color;
+		background-color:$button-disable-bg;
+		border-color:$button-disable-bg;
 		&:active{
-			color:$disable-bg;
-			border-color:$button-border;
+			color:$button-disable-color;
+			border-color:$button-disable-bg;
 		}
 		.tip,.badge{
 			background-color: $disable-bg;
@@ -177,6 +177,14 @@
 		&:active{
 			color:$success-bg-active;
 			border-color:$success-bg-active;
+		}
+	}
+
+	/*线框-禁用按钮*/
+	&.disabled,&[disabled]{
+		background-color:transparent;
+		&:active{
+			background-color:transparent;
 		}
 	}
 

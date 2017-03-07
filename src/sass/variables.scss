@@ -2,7 +2,7 @@ $font-size-L:16px;
 $font-size-M:14px;
 $font-size-S:12px;
 $font-family:Arial,"Microsoft Yahei";
-$body-bg:#eaeaea;
+$body-bg:#f0f0f0;
 $body-color:#333;
 
 $primary-bg:#20aeff;
@@ -46,6 +46,8 @@ $button-bg:white;
 $button-color:$body-color;
 $button-bg-active:#f4f4f4;
 $button-border:$dpborder;
+$button-disable-bg:#e1e1e1;
+$button-disable-color:#adadad;
 
 $button-tip-bg:rgba(0, 0, 0, .15);
 

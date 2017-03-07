@@ -40,6 +40,8 @@ body{
 
 	color:$body-color;
 	background-color:$body-bg;
+	word-break: break-all;
+	word-wrap: break-word;
 }
 .placeholder{
 	color:$placeholder;

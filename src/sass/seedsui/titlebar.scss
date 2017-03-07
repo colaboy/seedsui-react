@@ -6,6 +6,7 @@
 	display:-webkit-box;
     -webkit-box-align:center;
 	min-height:44px;
+	padding: 6px 0;
 	box-sizing:border-box;
 
 	background-color:$bar-bg;
@@ -67,12 +68,6 @@
 	-webkit-box-flex:1;
 
 	color:$bar-color;
-	&:first-child{
-		padding-left: 10px;
-	}
-	&:last-child{
-		padding-right: 10px;
-	}
 }
 
 /*按钮*/
@@ -82,8 +77,9 @@
 	color:$bar-button;
 	border-color:$bar-button;
 	&:active{
-		color:$bar-button-active;
-		border-color:$bar-button-active;
+		/* color:$bar-button-active;
+		border-color:$bar-button-active; */
+		opacity: 0.5;
 	}
 }
 .titlebar.reverse{
