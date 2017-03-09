@@ -1,15 +1,15 @@
-//Richinput 带表情输入框 (require slider.js)
+//Richinput 带表情输入框
 (function(window,document,undefined){
 	window.Richinput=function(container,params){
 		/*=========================
           Params
           ===========================*/
         var defaults={
-        	"maskClass":"mask",
-			"emojiBoxClass":"emoji",
-			"sliderParam":{
-				"pagination":".slider-pagination"
-			}
+        	maskClass:"mask",
+			emojiBoxClass:"emoji",
+			/*callbacks
+			onActive:function(Richinput)
+			*/
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -30,9 +30,6 @@
             return;
         }
 
-		//Slider
-		s.slider;
-
 		//Mask Div
 		s.mask=document.querySelector(container+"+."+s.params.maskClass);
 
@@ -42,19 +39,12 @@
 		//Textarea Form
 		s.textarea=s.container.querySelector("textarea");
 
-		//辅助计算textarea高度的pre和preSpan
-		/*var pre=s.container.querySelector("pre");
-		var preSpan=pre.querySelector("span");
-
-		s.textarea.style.height=pre.clientHeight+"px";*/
-
 		/*=========================
           Method
           ===========================*/
 		//插入表情
 		function insertFace(objFace){
 			var emojiName=objFace.getAttribute("alt");
-			//var emojiSrc=objFace.getAttribute("data-emoji-src");
 			var editText=s.textarea.value;
 			var editTextBefore=editText.substr(0,cursorOffset);
 			var editTextAfter=editText.substr(cursorOffset,editText.length);
@@ -77,26 +67,19 @@
 		var cursorOffset=0;
 		document.onselectionchange=function(e){
 			if(Object.prototype.toString.call(e.target.activeElement)=="[object HTMLTextAreaElement]"){
-				//计算textarea高度
-				/*preSpan.innerText=s.textarea.value;
-				s.textarea.style.height=pre.clientHeight+"px";*/
 				//获得光标位置
 				cursorOffset=s.textarea.selectionStart;
 			}
 		}
 		s.textarea.addEventListener("input",function(e){
-			//计算textarea高度
-			/*preSpan.innerText=s.textarea.value;
-			s.textarea.style.height=pre.clientHeight+"px";*/
 			//获得光标位置
 			cursorOffset=s.textarea.selectionStart;
 		},false);
 		//点击input框
 		s.textarea.addEventListener("click",function(e){
 			s.container.classList.add("active");
-			if(!s.slider){
-				s.slider=new Slider(container+" ."+s.params.emojiBoxClass,s.params.sliderParam);
-			}
+			//Callback onActive
+			s.params.onActive && s.params.onActive(s);
 		},false);
 
 		//点击表情

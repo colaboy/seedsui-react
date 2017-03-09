@@ -10,7 +10,11 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>chat</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-    
+    <style>
+    .input-pre {
+        margin: 5px 3px;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -21,7 +25,7 @@
             </div>
         </header>
         <article style="padding-bottom:47px;">
-            <ul class="chat" id="chat">
+            <ul class="chat" id="ID-Chats">
                 <li>
                     <div class="chat-photo">
                         <div class="photo size40 radiusround">
@@ -51,9 +55,9 @@
         </article>
         <footer>
             <!--底部富文本输入框-->
-            <figure id="richeditor" class="richedit">
+            <figure id="ID-RichInput" class="richedit">
                 <!--轮播-->
-                <div class="slider-container emoji">
+                <div class="slider-container emoji" id="ID-RichInput-slider">
                     <div class="slider-wrapper">
                     <div class="slider-slide">
                         <a data-emoji="[weixiao]" alt="[微笑]"></a>
@@ -173,20 +177,26 @@
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
     <script>
-        var r=new Richinput("#richeditor");
-        var richeditor=r.container;
-        var t=new Toast("输入内容不能为空");
+        var slider=null;
+        var richinput=new Richinput("#ID-RichInput",{
+            onActive:function(){
+                if(!slider)slider=new Slider("#ID-RichInput-slider",{
+                    pagination:".slider-pagination"
+                });
+            }
+        });
+        var richContainer=richinput.container;
+        var textarea=document.querySelector("#ID-RichInput textarea");
+        var toast=new Toast("输入内容不能为空");
         var formControls=new FormControls();
+        var chatContainer=document.getElementById("ID-Chats");
         //发送消息
         function sent(){
-            var chat=document.getElementById("chat");
-            var textarea=document.querySelector("#richeditor textarea");
-
             if(textarea.value==""){
-                t.show();
+                toast.show();
                 return;
             }
-            richeditor.classList.remove("active");
+            richContainer.classList.remove("active");
             var html='<li class="even">'+
                 '<div class="chat-photo">'+
                     '<div class="photo size40 radiusround"><i class="icon icon-user-fill"></i></div>'+
@@ -197,7 +207,7 @@
                     '</div>'+
                 '</div>'+
             '</li>';
-            chat.innerHTML+=html;
+            chatContainer.innerHTML+=html;
             textarea.value="";
             scrollToBottom();
         }
