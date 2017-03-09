@@ -13,7 +13,7 @@
 			}
 		},
 		negativeInteger:function(value,errorMsg){
-			if(!/^[1-9]{1,}[0-9]*$/.test(value)){
+			if(value && !/^[1-9]{1,}[0-9]*$/.test(value)){
 				return errorMsg;
 			}
 		},

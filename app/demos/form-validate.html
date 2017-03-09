@@ -77,6 +77,16 @@
                 </div>
 
                 <div class="inputbox underline">
+                    <label class="inputbox-left">性别</label>
+                    <div class="inputbox-right inputbox">
+                        <select class="input-text" name="NID-Sex">
+                            <option value="male">男</option>
+                            <option value="female">女 </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="inputbox underline">
                     <label class="inputbox-left">邮箱</label>
                     <div class="inputbox-right inputbox">
                         <input type="text" name="NID-Mail" class="input-text"/>
@@ -255,7 +265,7 @@
                     error.field.parentNode.parentNode.classList.add("inputbox-error");
                     return;
                 }
-                var formArr=form.serializeJson();
+                var formArr=this.form.serializeJson();
                 console.log(formArr);
             }
         }
