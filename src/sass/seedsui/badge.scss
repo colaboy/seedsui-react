@@ -1,12 +1,11 @@
 /*--------------------badge.less(start)----------------------*/
-.badge,.tip,.close,.dot{
+.badge,.tip,.close,.dot,.tagline{
 	position:relative;
 	display: inline-block;
 	vertical-align: middle;
 	text-align: center;
 	overflow: hidden;
     text-overflow: ellipsis;
-	border-radius:100%;
 	font-size:$font-size-S;
 }
 /*徽章*/
@@ -26,6 +25,7 @@
 	width:24px;
 	height:24px;
 	line-height:24px;
+	border-radius:100%;
 
 	color:$tip-color;
 	background-color:$tip-bg;
@@ -34,6 +34,7 @@
 .close{
 	width:24px;
 	height:24px;
+	border-radius:100%;
 
 	display:-webkit-inline-box;
     -webkit-box-align:center;
@@ -56,8 +57,9 @@
 }
 /*小点点*/
 .dot{
-    height:10px;
-    width:10px;
+    height:5px;
+    width:5px;
+    border-radius: 100%;
 
     background-color:$primary-bg;
 }
@@ -134,5 +136,40 @@
     &.bottom{
         border-bottom-width: 28px;
     }
+}
+.tagline{
+	position:absolute;
+	width: 100px;
+	height: 20px;
+	text-align: center;
+	display: -webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	-webkit-transform-origin:center;
+
+	color:$tip-color;
+	background-color:$tip-bg;
+	&.top{
+		top: 13px;
+		&.left{
+			left: -20px;
+			-webkit-transform:rotate(-42deg);
+		}
+		&.right{
+			right: -20px;
+			-webkit-transform:rotate(42deg);
+		}
+	}
+	&.bottom{
+		bottom:15px;
+		&.left{
+			left: -24px;
+			-webkit-transform:rotate(42deg);
+		}
+		&.right{
+			right: -24px;
+			-webkit-transform:rotate(-42deg);
+		}
+	}
 }
 /*--------------------badge.less(start)----------------------*/

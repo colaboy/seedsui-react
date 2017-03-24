@@ -809,14 +809,13 @@ aside {
 
 /*----------------photo.less(end)----------------*/
 /*--------------------badge.less(start)----------------------*/
-.badge, .tip, .close, .dot {
+.badge, .tip, .close, .dot, .tagline {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 100%;
   font-size: 12px; }
 
 /*徽章*/
@@ -835,6 +834,7 @@ aside {
   width: 24px;
   height: 24px;
   line-height: 24px;
+  border-radius: 100%;
   color: white;
   background-color: #ff5656; }
 
@@ -842,6 +842,7 @@ aside {
 .close {
   width: 24px;
   height: 24px;
+  border-radius: 100%;
   display: -webkit-inline-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
@@ -859,8 +860,9 @@ aside {
 
 /*小点点*/
 .dot {
-  height: 10px;
-  width: 10px;
+  height: 5px;
+  width: 5px;
+  border-radius: 100%;
   background-color: #20aeff; }
 
 /*小竖条*/
@@ -918,6 +920,34 @@ aside {
   border-left-width: 28px; }
 .sticker.sticker-icon.bottom {
   border-bottom-width: 28px; }
+
+.tagline {
+  position: absolute;
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-transform-origin: center;
+  color: white;
+  background-color: #ff5656; }
+  .tagline.top {
+    top: 13px; }
+    .tagline.top.left {
+      left: -20px;
+      -webkit-transform: rotate(-42deg); }
+    .tagline.top.right {
+      right: -20px;
+      -webkit-transform: rotate(42deg); }
+  .tagline.bottom {
+    bottom: 15px; }
+    .tagline.bottom.left {
+      left: -24px;
+      -webkit-transform: rotate(42deg); }
+    .tagline.bottom.right {
+      right: -24px;
+      -webkit-transform: rotate(-42deg); }
 
 /*--------------------badge.less(start)----------------------*/
 /*----------------inputbox.less(start)--------------*/
@@ -4038,14 +4068,15 @@ progress::-webkit-progress-value {
     font-weight: 500;
     font-size: 18px;
     text-align: center; }
-  .alert label {
-    display: block;
-    padding: 10px 12px 15px 12px;
-    line-height: 1.2em;
-    word-wrap: break-word; }
   .alert.active {
     visibility: visible;
     opacity: 1; }
+
+.alert-content {
+  display: block;
+  padding: 10px 12px 15px 12px;
+  line-height: 1.2em;
+  word-wrap: break-word; }
 
 .alert-handler {
   position: relative;
@@ -4053,17 +4084,14 @@ progress::-webkit-progress-value {
   text-align: center;
   white-space: nowrap;
   font-size: 0; }
-
-.alert-handler a, .actionsheet a {
-  display: inline-block;
-  padding: 12px;
-  font-size: 17px;
-  box-sizing: border-box; }
-
-.alert-handler a {
-  position: relative;
-  width: 50%;
-  border-width: 0; }
+  .alert-handler a {
+    position: relative;
+    width: 50%;
+    border-width: 0;
+    display: inline-block;
+    padding: 12px;
+    font-size: 17px;
+    box-sizing: border-box; }
 
 .alert-handler:before, .alert-handler a:nth-of-type(2):before {
   content: '';
@@ -4123,8 +4151,10 @@ progress::-webkit-progress-value {
   -webkit-transition-property: -webkit-transform,opacity,visibility;
   -webkit-transition-duration: 300ms; }
   .actionsheet a {
-    width: 100%;
-    text-align: center; }
+    padding: 12px;
+    display: block;
+    text-align: center;
+    box-sizing: border-box; }
     .actionsheet a:active {
       background-color: #d1d1d1; }
   .actionsheet.active {
@@ -4158,7 +4188,6 @@ progress::-webkit-progress-value {
   height: 0; }
 
 .actionsheet-cancel {
-  width: 100%;
   border-radius: 4px;
   margin: 6px 0;
   background-color: rgba(255, 255, 255, 0.9); }

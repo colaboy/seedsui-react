@@ -18,6 +18,71 @@
     	height:100px;
     	text-align:center;
     }
+    /*======右上角弹出框======*/
+    .app-popover{
+	    width:140px;
+	    padding: 1px 0;
+	    border-radius: 6px;
+	    background-color: white;
+	    z-index: 10;
+	}
+	.app-popover:after {
+	    content: '';
+	    position: absolute;
+	    top:-12px;
+	    right:8px;
+	    width: 0;
+	    height: 0;
+	    border-width: 6px;
+	    border-style: solid;
+	    border-color: transparent;
+
+	    border-bottom-color: white;
+	}
+	.app-popover li{
+	    position: relative;
+	    display: -webkit-box;
+	    -webkit-box-align: center;
+	    -webkit-box-pack: center;
+	    height: 46px;
+	}
+	.app-popover li:last-child:after{
+	    height: 0;
+	}
+	.app-popover li:not(.app-rmenu-disabled):active{
+	    background-color: #f8f8f8;
+	}
+	.app-popover li:last-child{
+	    border-width: 0;
+	}
+	.app-popover li i{
+	    pointer-events: none;
+	    font-size: 22px;
+	    width: 22px;
+	    height: 22px;
+	}
+	.app-popover li label{
+	    pointer-events: none;
+	    -webkit-box-flex:1;
+	    margin: 0 8px 0 8px;
+	    height: 22px;
+	    line-height: 24px;
+	}
+	.app-popover li:nth-of-type(1) .icon{
+	    color: #32a6f8;
+	}
+	.app-popover li:nth-of-type(2) .icon{
+	    color: #19cbc1;
+	}
+	.app-popover li:nth-of-type(3) .icon{
+	    color: #fe721e;
+	}
+	.app-popover li:nth-of-type(4) .icon{
+	    color: #a46ef6;
+	}
+	.app-popover li:nth-of-type(5) .icon{
+	    color: #ff5656;
+	}
     </style>
 </head>
 <body ontouchstart="">
@@ -25,6 +90,9 @@
         <div class="titlebar">
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1 class="titlebar-title">弹出框</h1>
+            <a class="titlebar-button titlebar-right" id="ID-Popup-Menu">
+	            <i class="icon icon-menudot"></i>
+	        </a>
         </div>
     </header>
     <article>
@@ -97,10 +165,45 @@
     <div id="ID-Dialog-RightBtm" class="dialog-right">右边弹出框</div>
     <div id="ID-Dialog-RightFull" class="dialog-right" style="height:100%">右边弹出框</div>
 
+    <!--右上角弹出框-->
+	<div class="app-popover" id="ID-Popup-Popover">
+		<ul>
+			<li class="underline" id="ID-MeetDetail-BtnQrcode">
+				<i class="icon icon-qrcodeline"></i>
+				<label>扫码签到</label>
+			</li>
+			<li class="underline" id="ID-MeetDetail-BtnGroupChat">
+				<i class="icon icon-chats"></i>
+				<label>会议群聊</label>
+			</li>
+			<li class="underline" id="ID-MeetDetail-BtnCancel"> 
+				<i class="icon icon-rdocancel"></i>
+				<label>取消会议</label>
+			</li>
+			<li class="underline" id="ID-MeetDetail-BtnFinish">
+				<i class="icon icon-rdook"></i>
+				<label>结束会议</label>
+			</li>
+			<li class="underline" id="ID-MeetDetail-BtnDel">
+				<i class="icon icon-rdoclose"></i>
+				<label>删除会议</label>
+			</li>
+		</ul>
+	</div>
+
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script type="text/javascript">
+		//右上角弹出框
+        var menupop=new Dialog("#ID-Popup-Popover",{
+            position:"top-right",
+            animation:"zoom",
+            css:{overflow:"visible",top:"54px",right:"6px"}
+        });
+        document.getElementById("ID-Popup-Menu").onclick=function(){
+        	menupop.show();
+        }
 		/*
 		 * 系统弹出框
 		 */

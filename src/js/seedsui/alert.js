@@ -10,10 +10,12 @@
 			parent:document.body,
 			maskClass:"mask",
 			alertClass:"alert",
+			contentClass:"alert-content",
 			handlerClass:"alert-handler",
 			title:"提示",
 			buttonOk:"确定",
 			buttonCancel:"取消",
+			content:msg,
 			isClickMaskHide:false
 			/*
             Callbacks:
@@ -52,8 +54,9 @@
 			var alert=document.createElement("div");
 			alert.setAttribute("class",s.params.alertClass);
 
-			alert.content=document.createElement("label");
-			alert.content.innerHTML=msg;
+			alert.content=document.createElement("div");
+			alert.content.setAttribute("class",s.params.contentClass);
+			alert.content.innerHTML=s.params.content;
 
 			alert.handler=document.createElement("div");
 			alert.handler.setAttribute("class",s.params.handlerClass);

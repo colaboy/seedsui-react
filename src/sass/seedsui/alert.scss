@@ -27,17 +27,18 @@
 		font-size: 18px;
 		text-align: center;
 	}
-	label{
-		display: block;
-		padding: 10px 12px 15px 12px;
-		line-height: 1.2em;
-		word-wrap: break-word;
-	}
 
 	&.active{
 		visibility:visible;
 		opacity:1;
 	}
+}
+//内容区域
+.alert-content{
+	display: block;
+	padding: 10px 12px 15px 12px;
+	line-height: 1.2em;
+	word-wrap: break-word;
 }
 //底部按钮区
 .alert-handler{
@@ -46,18 +47,17 @@
 	text-align:center;
 	white-space:nowrap;
 	font-size:0;
+	a{
+		position: relative;
+		width:50%;
+		border-width:0;
+		display:inline-block;
+		padding:12px;
+		font-size:17px;
+		box-sizing:border-box;
+	}
 }
-.alert-handler a,.actionsheet a{
-	display:inline-block;
-	padding:12px;
-	font-size:17px;
-	box-sizing:border-box;
-}
-.alert-handler a{
-	position: relative;
-	width:50%;
-	border-width:0;
-}
+
 .alert-handler:before,.alert-handler a:nth-of-type(2):before{
 	content: '';
     display: block;

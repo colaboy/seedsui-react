@@ -170,12 +170,14 @@
                             }
 
                             var endInput=input.parentNode.nextElementSibling.querySelector(".SID-DateTimeEnd");
-                            //如果结束时间为空或者开始时间大于结束时间
-                            var endInputDate=new Date(endInput.value.replace(/-/g,"/"));
-                            if((endInput.value=="") || (activeDate >= endInputDate)){
-                                //设置结束时间
-                                var endTime=new Date(activeDate).plusMinute(10);
-                                endInput.value=endTime.format("yyyy-MM-dd hh:mm");
+                            if(endInput){
+                                //如果结束时间为空或者开始时间大于结束时间
+                                var endInputDate=new Date(endInput.value.replace(/-/g,"/"));
+                                if((endInput.value=="") || (activeDate >= endInputDate)){
+                                    //设置结束时间
+                                    var endTime=new Date(activeDate).plusMinute(10);
+                                    endInput.value=endTime.format("yyyy-MM-dd hh:mm");
+                                }
                             }
                         //点击结束时间
                         }else if(input.classList.contains("SID-DateTimeEnd")){
@@ -187,12 +189,14 @@
                             }
 
                             var prevInput=input.parentNode.previousElementSibling.querySelector(".SID-DateTimeStart");
-                            //如果开始时间为空或者结束时间小于开始时间
-                            var prevInputDate=new Date(prevInput.value.replace(/-/g,"/"));
-                            if((prevInput.value=="") || (activeDate <= prevInputDate)){
-                                //设置开始时间
-                                var startTime=activeDate.minusMinute(10);
-                                prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
+                            if(prevInput){
+                                //如果开始时间为空或者结束时间小于开始时间
+                                var prevInputDate=new Date(prevInput.value.replace(/-/g,"/"));
+                                if((prevInput.value=="") || (activeDate <= prevInputDate)){
+                                    //设置开始时间
+                                    var startTime=activeDate.minusMinute(10);
+                                    prevInput.value=startTime.format("yyyy-MM-dd hh:mm");
+                                }
                             }
                         }
                         input.value=e.activeText;
@@ -238,7 +242,7 @@
             _onClickDivDateTime:function(e){
                 var self=this;
                 var defaults=[];
-                var input=e.target.querySelector(".input-text");
+                var input=e.currentTarget.querySelector(".input-text");
                 if(input.value!=""){
                     var split=input.value.split(" ");
                     var split1=split[0].split("-");

@@ -65,7 +65,7 @@
                 <div class="inputbox underline">
                     <label class="inputbox-left">手机</label>
                     <div class="inputbox-right inputbox">
-                        <input type="text" name="NID-Phone" class="input-text"/>
+                        <input type="tel" name="NID-Phone" class="input-text" oninput="if(isNaN(value))value=value.substring(0,value.length-1)"/>
                     </div>
                 </div>
 
@@ -142,9 +142,6 @@
                 var validator=new Validator();
                 validator.add(this.formContainer["NID-UserName"],[
                     {
-                        rule:'required',
-                        errorMsg:'用户名不能为空'
-                    },{
                         rule:'minLength:6',
                         errorMsg:'用户名不能低于6位'
                     },{
@@ -154,9 +151,6 @@
                 ]);
                 validator.add(this.formContainer["NID-Pwd"],[
                     {
-                        rule:'required',
-                        errorMsg:'密码不能为空'
-                    },{
                         rule:'minLength:6',
                         errorMsg:'密码不能低于6位'
                     },{
@@ -172,9 +166,6 @@
                 ]);
                 validator.add(this.formContainer["NID-RePwd"],[
                     {
-                        rule:'required',
-                        errorMsg:'密码不能为空'
-                    },{
                         rule:'minLength:6',
                         errorMsg:'密码不能低于6位'
                     },{
