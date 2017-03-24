@@ -65,7 +65,7 @@ Mplus.Image=function(params){
     var s=this;
     s.params=params;
 
-    s.uploadList=[],s.uploadIndex=0,s.downList=[],s.downIdList=[],s.downIndex=0;
+    s.target=null,s.uploadList=[],s.uploadIndex=0,s.downList=[],s.downIdList=[],s.downIndex=0;
     /*================
     Method
     ================*/
@@ -81,6 +81,7 @@ Mplus.Image=function(params){
             serverId: serverId, // 需要下载的图片的服务器端ID，由uploadImage接口获得
             success: function (res) {
                 var e=res;
+                e.target=s.target;
                 e.serverId=serverId;
                 //Callback onDownloadSuccess
                 s.params.onDownloadSuccess(e);
@@ -99,6 +100,7 @@ Mplus.Image=function(params){
             success: function (res) {
                 var e=res;
                 e.localId=localId;
+                e.target=s.target;
                 //Callback onUploadSuccess
                 s.params.onUploadSuccess && s.params.onUploadSuccess(e);
             },
@@ -123,6 +125,7 @@ Mplus.Image=function(params){
                 e.serverId=serverId;
                 s.downList.push(res.downloadUrl);
                 //Callback onDownloadSuccess
+                e.target=s.target;
                 s.params.onDownloadSuccess(e);
                 s.downIndex++;
                 //下载下一张
@@ -158,6 +161,7 @@ Mplus.Image=function(params){
                 s.downIdList.push(res.serverId);
                 var e=res;
                 e.localId=localId;
+                e.target=s.target;
                 //Callback onUploadSuccess
                 s.params.onUploadSuccess && s.params.onUploadSuccess(e);
                 s.uploadIndex++;
@@ -173,7 +177,8 @@ Mplus.Image=function(params){
             fail:function(res){s.params.onUploadError && s.params.onUploadError(res);}
         });
     };
-    s.choose=function(){
+    s.choose=function(target){
+        if(target)s.target=target;
         mplus.chooseImage({
             max:s.params.max,
             sourceType:s.params.sourceType,
