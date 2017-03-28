@@ -26,17 +26,17 @@
 }
 /*checkbox*/
 .input-checkbox:before{
-	content: "\e95a";
+	content: "\e927";
 }
 .input-checkbox:checked:before{
-	content: "\e95f";
+	content: "\e92a";
 }
 /*radio*/
 .input-radio:before{
-	content: "\e95a";
+	content: "\e9a9";
 }
 .input-radio:checked:before{
-	content: "\e95f";
+	content: "\e9ce";
 }
 /*label*/
 label .input-checkbox+span,label .input-radio+span{
