@@ -121,4 +121,132 @@ pre{
 	word-break: break-all;
 	word-wrap: break-word;
 }
+/*显示与隐藏*/
+.hide{
+	display:none;
+}
+.hidden{
+	visibility:hidden;
+}
+.overflow-hidden{
+	overflow:hidden;
+}
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: " ";
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix{
+	zoom:1;
+}
+.clear{
+	clear:both;
+}
+br{
+	clear:both;
+}
+
+/*文字样式*/
+.bold{
+	font-weight:bold;
+}
+.uppercase{
+	text-transform:uppercase;/*大写*/
+}
+.lowercase{
+	text-transform:lowercase;/*小写*/
+}
+.capitalize{
+	text-transform:capitalize;/*首字母大写*/
+}
+
+/*文字换行*/
+.break-all{
+	word-break:break-all;
+}
+.nowrap,.nowrap2{
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.nowrap{
+	white-space:nowrap;
+}
+.nowrap2{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+}
+.nowrap2{
+	-webkit-line-clamp:2;
+}
+
+/*文字排列*/
+.text-center{
+	text-align:center;
+}
+.text-right{
+	text-align:right;
+}
+.text-left{
+	text-align:left;
+}
+
+/*浮动*/
+.float-left{
+	float:left;
+}
+.float-right{
+	float:right;
+}
+
+/*层定位*/
+.fixed{
+	position: fixed;
+}
+.relative{
+	position: relative;
+}
+.absolute{
+	position:absolute;
+}
+
+/*层模型*/
+.block{
+	display: block;
+}
+.inline-block{
+	display: inline-block;
+}
+.table{
+	display: table;
+}
+.table-fixed{
+	table-layout: fixed;
+}
+.table-cell{
+	display: table-cell;
+}
+
+/*边框盒子*/
+.content-box{
+	box-sizing:content-box;
+}
+.border-box{
+	box-sizing:border-box;
+}
+
+/*层排列*/
+.horizontal{
+	overflow-x:auto;
+    white-space:nowrap;
+}
+.lr{
+	direction:ltr;
+}
+.rl{
+	direction:rtl;
+}
 /*----------------global.less(end)----------------*/

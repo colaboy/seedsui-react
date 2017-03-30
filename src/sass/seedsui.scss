@@ -1,6 +1,5 @@
 /*基础Less:控件类*/
 @import "variables.scss";
-@import "seedsui/global.scss";
 @import "seedsui/appearance.scss";
 @import "seedsui/layout.scss";
 @import "seedsui/input.scss";
@@ -61,6 +60,7 @@
 
 /*基础Less:工具类*/
 @import "seedsui/box.scss";
+@import "seedsui/global.scss";
 @import "seedsui/common.scss";
 @import "seedsui/size.scss";
 @import "seedsui/border.scss";

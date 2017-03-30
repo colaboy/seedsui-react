@@ -48,69 +48,71 @@
 .inline-flex{
 	display:-webkit-inline-flex;
 }
-/*flex内部对齐*/
-.flex-stretch{
-	justify-content:stretch;/*拉伸*/
-}
-.flex-between{
-	justify-content:space-between; /*水平两端分布*/
-}
-.flex-around{
-	justify-content:space-around; /*水平居中分布*/
-}
-.flex-left{
-	justify-content:flex-start; /*左对齐*/
-}
-.flex-center{
-	justify-content:center; /*水平居中*/
-}
-.flex-right{
-	justify-content:flex-end; /*右对齐*/
-}
-.flex-top{
-	-webkit-align-items:flex-start;
-}
-.flex-middle{
-	-webkit-align-items:center;
-}
-.flex-bottom{
-	-webkit-align-items:flex-end;
-}
-.flex-middlecenter{
-	-webkit-justify-content:center;
-	-webkit-align-items:center;
-}
-.flex-vertical{
-	-webkit-flex-direction:column;
-}
-.flex-horizontal{
-    -webkit-flex-direction:row;
-}
-.flex-shrink>div,.flex-shrink>button{
-	width:100%;
-	-webkit-transform-style: preserve-3d;
-    -webkit-flex-shrink: 0;
+.flex-wrap{
+	-webkit-flex-wrap: wrap;
 }
 .flex-1{
 	-webkit-flex:1;
 }
+/*flex内部对齐*/
+.flex-between{/*水平两端分布*/
+	-webkit-justify-content:space-between;
+}
+.flex-around{/*水平居中分布*/
+	-webkit-justify-content:space-around;
+}
+.flex-left{/*左对齐*/
+	-webkit-justify-content:flex-start;
+}
+.flex-center{/*水平居中*/
+	-webkit-justify-content:center;
+}
+.flex-right{/*右对齐*/
+	-webkit-justify-content:flex-end;
+}
 
-.flex-row{
-	-webkit-flex-direction:row;/*横向排列*/
+.flex-vertical-stretch{/*竖向拉伸*/
+	-webkit-align-items:stretch;
 }
-.flex-row-reverse{
-	-webkit-flex-direction:row-reverse;/*横向倒序排列*/
+.flex-top{/*顶部对齐*/
+	-webkit-align-items:flex-start;
 }
-.flex-col{
-	-webkit-flex-direction:column;/*纵向排列*/
+.flex-middle{/*垂直居中对齐*/
+	-webkit-align-items:center;
 }
-.flex-col-reverse{
-	-webkit-flex-direction:column-reverse;/*纵向倒序排列*/
+.flex-bottom{/*底部对齐*/
+	-webkit-align-items:flex-end;
 }
-.flex-wrap{
-	-webkit-flex-wrap: wrap;
+.flex-baseline{/*垂直居中对齐*/
+	-webkit-align-items:baseline;
 }
-/*flex自身对齐*/
+
+.flex-middlecenter{
+	-webkit-justify-content:center;
+	-webkit-align-items:center;
+}
+
+.flex-vertical{
+	-webkit-flex-direction:column;
+}
+.flex-vertical-reverse{
+	-webkit-flex-direction:column-reverse;
+}
+
+.flex-horizontal{
+    -webkit-flex-direction:row;
+}
+.flex-horizontal-reverse{
+    -webkit-flex-direction:row-reverse;
+}
+
+.flex-shrink>div{
+	width:100%;
+	-webkit-transform-style: preserve-3d;
+    -webkit-flex-shrink: 0;
+}
+
+/*flex自身对齐:设置后则覆盖父容器*/
 .flex-self-stretch{
 	-webkit-align-self:stretch;/*拉伸*/
 }
@@ -123,39 +125,4 @@
 .flex-self-bottom{
 	-webkit-align-self:flex-end; /*底部对齐*/
 }
-
-/*--------------flex--------------*/
-.align-stretch{
-	align-content:stretch;/*拉伸*/
-}
-.align-start{
-	align-content:flex-start; /*顶部对齐*/
-}
-.align-center{
-	align-content:center; /*垂直居中*/
-}
-.align-end{
-	align-content:flex-end;/*底部对齐*/
-}
-.align-between{
-	align-content:space-between; /*垂直两端分布*/
-}
-.align-around{
-	align-content:space-around; /*垂直居中分布*/
-}
-
-/*--------------align-items--------------*/
-.align-items-stretch{
-	align-items:stretch;/*拉伸*/
-}
-.align-items-center{
-	align-items:center; /*垂直居中*/
-}
-.align-items-start{
-	align-items:flex-start; /*顶部对齐*/
-}
-.align-items-end{
-	align-items:flex-end; /*底部对齐*/
-}
-
 /*----------------box.less(end)--------------*/
