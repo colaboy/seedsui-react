@@ -1,57 +1,63 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
-<title>code</title>
-<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-<style>
-.hack{
-	height:30px;
-	margin:14px;
-	background-color:green;
-	background-color:purple\9;/*ie6、ie7、ie8、ie9、ie10*/
-	background-color:yellow\0;/*ie8、ie9、ie10*/
-	background-color:blue\9\0;/*ie9、ie10*/
-	:root background-color:cyan\9;/*ie9*/
-	*background-color:gray;/*ie6、ie7*/
-	-background-color:red;/*ie6*/
-	+background-color:orange;/*ie7*/
-}
-.highlight{
-	padding: 9px 14px;
-	margin: 14px;
-	border-radius: 4px;
-	border-width:1px;
-	border-style:solid;
-	
-	border-color:#ddd;
-	background-color: #f7f7f7;
-}
-.highlight pre{
-	word-break: normal;
-}
-.doctype{
-	color: #099;
-}
-.comment{
-	color:#094;
-}
-.tag{
-	color:#2f6f9f;
-}
-.property{
-	color:#4f9fcf;
-}
-.val{
-	color:#d44950;
-}
-</style>
+	<title>code</title>
+	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+	<style>
+	.hack{
+		height:30px;
+		margin:14px;
+		background-color:green;
+		background-color:purple\9;/*ie6、ie7、ie8、ie9、ie10*/
+		background-color:yellow\0;/*ie8、ie9、ie10*/
+		background-color:blue\9\0;/*ie9、ie10*/
+		:root background-color:cyan\9;/*ie9*/
+		*background-color:gray;/*ie6、ie7*/
+		-background-color:red;/*ie6*/
+		+background-color:orange;/*ie7*/
+	}
+	.highlight{
+		padding: 9px 14px;
+		margin: 14px;
+		border-radius: 4px;
+		border-width:1px;
+		border-style:solid;
+		
+		border-color:#ddd;
+		background-color: #f7f7f7;
+	}
+	.highlight pre{
+		word-break: normal;
+	}
+	.doctype{
+		color: #099;
+	}
+	.comment{
+		color:#094;
+	}
+	.tag{
+		color:#2f6f9f;
+	}
+	.property{
+		color:#4f9fcf;
+	}
+	.val{
+		color:#d44950;
+	}
+	.description{
+        color: #9e9e9e;
+        text-align: center;
+        height: 32px;
+        line-height: 32px;
+    }
+	</style>
 </head>
 
 <body ontouchstart="">
@@ -64,7 +70,7 @@
         </div>
     </header>
 	<article>
-		<div class="sliver">Hack示例</div>
+		<div class="description">Hack示例</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">background-color:</span>
@@ -72,7 +78,7 @@
 				<span class="comment">/*绿色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie6</div>
+		<div class="description">ie6</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">-background-color:</span>
@@ -80,7 +86,7 @@
 				<span class="comment">/*红色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie7</div>
+		<div class="description">ie7</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">+background-color:</span>
@@ -88,7 +94,7 @@
 				<span class="comment">/*橙色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie6、ie7</div>
+		<div class="description">ie6、ie7</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">*background-color:</span>
@@ -96,7 +102,7 @@
 				<span class="comment">/*灰色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie9</div>
+		<div class="description">ie9</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">:root background-color:</span>
@@ -104,7 +110,7 @@
 				<span class="comment">/*蓝色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie9、ie10</div>
+		<div class="description">ie9、ie10</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">background-color:</span>
@@ -112,7 +118,7 @@
 				<span class="comment">/*青色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie8、ie9、ie10</div>
+		<div class="description">ie8、ie9、ie10</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">background-color:</span>
@@ -120,7 +126,7 @@
 				<span class="comment">/*黄色*/</span>
 			</code>
 		</div>
-		<div class="sliver">ie6、ie7、ie8、ie9、ie10</div>
+		<div class="description">ie6、ie7、ie8、ie9、ie10</div>
 		<div class="highlight">
 			<code data-lang="html">
 				<span class="property">background-color:</span>

@@ -10,6 +10,14 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>form-serialize</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .group{
+        padding: 0 12px;
+    }
+    .icon.active{
+        color: #20aeff;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -26,21 +34,21 @@
                 <div class="inputbox underline">
                     <label class="inputbox-left">用户名</label>
                     <div class="inputbox-right inputbox" data-input="clear">
-                        <input type="text" class="input-text" placeholder="用户名" name="username" data-rule-field="用户名" data-rule="username"/>
+                        <input type="text" class="input-text" placeholder="用户名" name="username"/>
                         <i class="icon icon-rdoclose-fill color-placeholder" style="font-size: 20px;line-height: 24px;text-align: center;display: none;"></i>
                     </div>
                 </div>
                 <div class="inputbox underline">
                     <label class="inputbox-left">密码</label>
                     <div class="inputbox-right inputbox" data-input="reveal">
-                        <input type="password" class="input-text" placeholder="密码" name="password" data-rule-field="密码" data-rule="password"/>
+                        <input type="password" class="input-text" placeholder="密码" name="password"/>
                         <i class="icon icon-eye-fill color-placeholder"></i>
                     </div>
                 </div>
                 <div class="inputbox underline">
                     <label class="inputbox-left">确认</label>
                     <div class="inputbox-right inputbox" data-input="reveal">
-                        <input type="password" class="input-text" placeholder="确认" name="reconfirm" data-rule="password compare:password"/>
+                        <input type="password" class="input-text" placeholder="确认" name="reconfirm"/>
                         <i class="icon icon-eye-fill color-placeholder"></i>
                     </div>
                 </div>
@@ -78,20 +86,20 @@
                 <div class="inputbox underline">
                     <label class="inputbox-left">职业</label>
                     <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                        <input type="text" class="input-text" name="job" class="job" readonly="" placeholder="选择职业，找到同行"/>
                         <i class="icon icon-arrowright color-placeholder"></i>
                     </div>
                 </div>
                 <div class="inputbox underline">
                     <label class="inputbox-left">公司</label>
                     <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="company" placeholder="公司"/>
+                        <input type="text" class="input-text" name="company" class="company" placeholder="公司"/>
                     </div>
                 </div>
                 <div class="inputbox underline">
                     <label class="inputbox-left">学校</label>
                     <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友"/>
+                        <input type="text" class="input-text" name="school" class="school" placeholder="填写学校，发现校友"/>
                     </div>
                 </div>
                 <div class="inputbox underline">
@@ -117,7 +125,7 @@
             </div>
             <div class="group">
                 <div class="inputbox box-top">
-                    <label class="inputbox-left">个人说明</label>
+                    <label class="inputbox-left" style="padding-top: 10px;">个人说明</label>
                     <div class="inputbox-right inputbox">
                         <textarea class="label-right input-textarea" name="personal" placeholder="请输入个人说明"></textarea>
                     </div>
@@ -143,32 +151,34 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                //DOM
-                this.btnSubmit,this.btnSubmitClass="SID-BtnSubmit";
-                //Data
-                //Plugin
-                this.form,this.formId="ID-Form";
-                this.alert;
+            render:function(){
+                var self = this;
+                //渲染页面
+                this.btnSubmit=document.querySelector(".SID-BtnSubmit");
+                this.formControls=new FormControls();
+                
+                this.alert=new Alert();
+
+                //加载数据
+                this.loadData();
             },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+
             /*=========================
               Method
               ===========================*/
-            _initAlert:function(){
-                this.alert=new Alert();
+            _method:function(){
             },
-            _initFormControls:function(){
-                this.formControls=new FormControls();
-            },
-            _initForm:function(){
-                var self=this;
-                this.form=new Form("#"+this.formId);
-            },
-            _initPlugin:function(){
-                this._initFormControls();
-                this._initAlert();
-                this._initForm();
-            },
+            
             /*=========================
               Events
               ===========================*/
@@ -178,37 +188,20 @@
                     self._onClickBtnSubmit(e);
                 },false);
             },
+
             /*=========================
               Event Handler
               ===========================*/
             _onClickBtnSubmit:function(e){
-                var isOk=this.form.validate();
-                if(isOk){
-                    var args=this.form.serialize();
-                    this.alert.setText("你所要提交的参数是："+args);
-                    this.alert.show();
-                }
+                this.form=new Form("#ID-Form");
+                var args=this.form.serializeJson();
+                this.alert.setText(JSON.stringify(args));
+                this.alert.show();
             },
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                //DOM
-                this.btnSubmit=document.querySelector("."+this.btnSubmitClass);
-                //Plugin
-                this._initPlugin();
-                //Events
-                this._attach();
-            }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
-            view.initialize();
+            view.render();
         }, false);
 
     	//定义exmobi返回

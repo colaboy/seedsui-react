@@ -30,19 +30,14 @@
 			</header>
 			<article>
 				<a class="button block bg-1" href="#ID-Page1">slideLeft</a>
-				<!-- <a class="button block bg-1" onclick="document.getElementById('ID-Page1').classList.add('active')">slideLeft</a> -->
 			    <a class="button block bg-2" href="#ID-Page2">slideRight</a>
 			    <a class="button block bg-3" href="#ID-Page3">slideUp</a>
 			    <a class="button block bg-4" href="#ID-Page4">slideDown</a>
 			    <a class="button block bg-5" href="#ID-Page5">fade</a>
 			    <a class="button block bg-6" href="#ID-Page6">zoom</a>
 			    <a class="button block bg-7" href="#ID-Page7">none</a>
-			    <!-- <a type="button"style="margin:8px" class="button block bg-8" onclick="openPage('#ID-Page2')">用JS打开打二页</a> -->
 			    <div class="card" style="padding:8px;">
-			    	因为用到了popstate，涉及到跨域的问题，所以此页面需要在服务器上运行
-			    </div>
-			    <div class="card" style="padding:8px;">
-			    	适用于简单的单页处理，如需要大量使用单页模式，还请使用专业的backbone router或者angularjs router框架处理单页。
+			    	适用于简单的单页处理，如需要大量使用单页模式，还请使用History手动配置，最好配合backbone等含router的框架使用。
 			    </div>
 			</article>
 		</section>

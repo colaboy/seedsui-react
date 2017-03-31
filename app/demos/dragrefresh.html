@@ -22,7 +22,7 @@
         </header>
         <article>
             <hr/>
-            <ul class="list" id="list"></ul>
+            <ul class="list" id="ID-List"></ul>
         </article>
     <!-- </section> -->
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -87,10 +87,10 @@
                 var self=this;
                 var liStr="";
                 for(var i=0;i<20;i++){
-                    liStr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'行列表</p></li>';
+                    liStr+='<li class="li underline"><p>第'+i+'行列表</p></li>';
                 }
                 setTimeout(function(){
-                    document.querySelector(".list").innerHTML=liStr;
+                    document.getElementById("ID-List").innerHTML=liStr;
                     self.pagination.current=1;
                     //drag标识头部状态
                     self.drag.topComplete();
@@ -105,11 +105,11 @@
                 }
                 var liStr="";
                 for(var i=0;i<10;i++){
-                    liStr+='<li class="underline" style="padding:12px 10px;"><p>第'+i+'行列表</p></li>';
+                    liStr+='<li class="li underline"><p>第'+i+'行列表</p></li>';
                 }
                 
                 setTimeout(function(){
-                    document.querySelector(".list").innerHTML+=liStr;
+                    document.getElementById("ID-List").innerHTML+=liStr;
                     self.pagination.current++;
                     //drag标识底部状态
                     self.drag.bottomComplete();

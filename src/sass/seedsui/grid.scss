@@ -1,4 +1,34 @@
 /*----------------grid.less(start)--------------*/
+/*图标区域*/
+.grid-icon{
+	display:-webkit-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	position:relative;
+	box-sizing:border-box;
+	margin:0px auto;
+	background-size:cover;
+	background-position:center;
+}
+/*文字区域*/
+.grid-label{
+	display:block;
+    margin-top:8px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    box-sizing:border-box;
+    
+    /* font-size:12px; */
+    min-height:16px;
+
+    color:$sub-color;
+}
+.grid-icon>img{
+	max-width:100%;
+	max-height: 100%;
+}
+
 .grid{
 	position: relative;
 	&:after{
@@ -13,95 +43,9 @@
 		text-align:center;
 		padding:2px;
 		box-sizing:border-box;
-		/*图标区域*/
-		&>a{
-			display:-webkit-box;
-			-webkit-box-align:center;
-			-webkit-box-pack:center;
-			position:relative;
-			box-sizing:border-box;
-			margin:0px auto;
-			background-size:cover;
-			background-position:center;
-		}
-		/*文字区域*/
-		&>label{
-			display:block;
-		    margin-top:8px;
-		    overflow:hidden;
-		    text-overflow:ellipsis;
-		    white-space:nowrap;
-		    box-sizing:border-box;
-		    
-		    /* font-size:12px; */
-		    min-height:16px;
-
-		    color:$sub-color;
-		}
-		&>a>img{
-			max-width:100%;
-			max-height: 100%;
-		}
+		
 	}
-	/*边框*/
-	&.grid-bordered{
-		&[data-rowspace="8"] li{
-			padding-top:8px;
-			padding-bottom:8px;
-		}
-		li{
-			position: relative;
-			&:before,&:after{
-				content: '';
-			    display: block;
-			    position: absolute;
-			    background-color: $border;
-
-			    //兼容UC线条不显示的BUG
-    			z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
-			}
-			//右竖线
-			&:before{
-				top: 0;
-				bottom: auto;
-				left: auto;
-			    right: 0;
-			    width: 1px;
-			    height: 100%;
-			    -webkit-transform-origin:right center;
-			}
-			//下横线
-			&:after{
-				top: auto;
-				right: auto;
-			    bottom: 0;
-			    left: 0;
-			    height: 1px;
-			    width: 100%;
-			    -webkit-transform-origin:center bottom;
-			}
-		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-			//下横线
-			li:after {
-				-webkit-transform: scaleY(0.5);
-			}
-			//右竖线
-			li:before {
-				-webkit-transform: scaleX(0.5);
-			}
-		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-			//下横线
-			li:after {
-				-webkit-transform: scaleY(0.33);
-			}
-			//右竖线
-			li:before {
-				-webkit-transform: scaleX(0.33);
-			}
-		}
-	}
+	
 	//间距控制
 	&[data-rowspace="8"] li{
 		padding-top:8px;
@@ -139,6 +83,65 @@
 			&:before{
 				height: 0;
 			}
+		}
+	}
+}
+/*边框*/
+.grid.grid-bordered{
+	&[data-rowspace="8"] li{
+		padding-top:8px;
+		padding-bottom:8px;
+	}
+	li{
+		position: relative;
+		&:before,&:after{
+			content: '';
+		    display: block;
+		    position: absolute;
+		    background-color: $border;
+
+		    //兼容UC线条不显示的BUG
+			z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
+		}
+		//右竖线
+		&:before{
+			top: 0;
+			bottom: auto;
+			left: auto;
+		    right: 0;
+		    width: 1px;
+		    height: 100%;
+		    -webkit-transform-origin:right center;
+		}
+		//下横线
+		&:after{
+			top: auto;
+			right: auto;
+		    bottom: 0;
+		    left: 0;
+		    height: 1px;
+		    width: 100%;
+		    -webkit-transform-origin:center bottom;
+		}
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		//下横线
+		li:after {
+			-webkit-transform: scaleY(0.5);
+		}
+		//右竖线
+		li:before {
+			-webkit-transform: scaleX(0.5);
+		}
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		//下横线
+		li:after {
+			-webkit-transform: scaleY(0.33);
+		}
+		//右竖线
+		li:before {
+			-webkit-transform: scaleX(0.33);
 		}
 	}
 }

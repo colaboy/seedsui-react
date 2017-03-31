@@ -10,6 +10,11 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>badge</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .peg-content{
+        text-align:center;padding: 10px 12px;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -20,18 +25,74 @@
         </div>
     </header>
     <article>
-        <div class="sliver underline">
-            <span class="peg"></span>
-            <p class="sliver-title">badge | tip | dot | close | sticker | tagline</p>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">badge</p>
+            </div>
+            <div class="peg-content">
+                <span class="badge">badge</span>
+            </div>
         </div>
-        <div class="card box box-middlecenter" style="padding: 8px;overflow:hidden;height: 200px;">
-            <span class="badge">badge</span>
-            <span class="tip">tip</span>
-            <span class="close"><i class="icon icon-close-fill"></i></span>
-            <span class="dot"></span>
-            <span class="peg"></span>
-            <span class="sticker sticker-icon top left"><span class="size12 icon-fav-fill"></span></span>
-            <span class="tagline top right"><span>tagline</span></span>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">tip</p>
+            </div>
+            <div class="peg-content">
+                <span class="tip">tip</span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">dot</p>
+            </div>
+            <div class="peg-content">
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">close</p>
+            </div>
+            <div class="peg-content">
+                <span class="close"><i class="icon icon-close-fill"></i></span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">peg</p>
+            </div>
+            <div class="peg-content">
+                <span class="peg"></span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">sticker</p>
+            </div>
+            <div style="position:relative;height:50px;line-height: 50px;">
+                <span class="sticker sticker-icon top right"><span class="size12 icon-fav-fill"></span></span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">tagline</p>
+            </div>
+            <div style="position:relative;padding: 8px;overflow:hidden;height: 100px;">
+                <span class="tagline top right"><span>tagline</span></span>
+            </div>
         </div>
     </article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>

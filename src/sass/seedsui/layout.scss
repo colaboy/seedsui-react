@@ -13,6 +13,8 @@ footer{
     bottom:0;
 }
 article{
+    position: relative;
+    z-index: 0;
     box-sizing:border-box;
 }
 header+article{

@@ -5,6 +5,7 @@
 .inline-box{
 	display:-webkit-inline-box;
 }
+
 .box-left{
 	-webkit-box-pack:start;
 }
@@ -33,11 +34,6 @@
 .box-horizontal{
 	-webkit-box-orient:horizontal;
 }
-.box-shrink>div,.box-shrink>button{
-	width:100%;
-	-webkit-transform-style: preserve-3d;
-    -webkit-flex-shrink: 0;
-}
 .box-flex-1{
 	-webkit-box-flex:1.0;
 }
@@ -55,12 +51,6 @@
 	-webkit-flex:1;
 }
 /*flex内部对齐*/
-.flex-between{/*水平两端分布*/
-	-webkit-justify-content:space-between;
-}
-.flex-around{/*水平居中分布*/
-	-webkit-justify-content:space-around;
-}
 .flex-left{/*左对齐*/
 	-webkit-justify-content:flex-start;
 }
@@ -69,10 +59,6 @@
 }
 .flex-right{/*右对齐*/
 	-webkit-justify-content:flex-end;
-}
-
-.flex-vertical-stretch{/*竖向拉伸*/
-	-webkit-align-items:stretch;
 }
 .flex-top{/*顶部对齐*/
 	-webkit-align-items:flex-start;
@@ -83,10 +69,6 @@
 .flex-bottom{/*底部对齐*/
 	-webkit-align-items:flex-end;
 }
-.flex-baseline{/*垂直居中对齐*/
-	-webkit-align-items:baseline;
-}
-
 .flex-middlecenter{
 	-webkit-justify-content:center;
 	-webkit-align-items:center;
@@ -95,15 +77,28 @@
 .flex-vertical{
 	-webkit-flex-direction:column;
 }
-.flex-vertical-reverse{
-	-webkit-flex-direction:column-reverse;
-}
-
 .flex-horizontal{
     -webkit-flex-direction:row;
 }
+
+.flex-vertical-reverse{
+	-webkit-flex-direction:column-reverse;
+}
 .flex-horizontal-reverse{
     -webkit-flex-direction:row-reverse;
+}
+
+.flex-between{/*水平两端分布*/
+	-webkit-justify-content:space-between;
+}
+.flex-around{/*水平居中分布*/
+	-webkit-justify-content:space-around;
+}
+.flex-vertical-stretch{/*竖向拉伸*/
+	-webkit-align-items:stretch;
+}
+.flex-baseline{/*垂直居中对齐*/
+	-webkit-align-items:baseline;
 }
 
 .flex-shrink>div{

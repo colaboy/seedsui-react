@@ -155,10 +155,13 @@
             if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
             else slot.isLock=false;
 
-            //渲染
-            s.renderSlot(s.slots.length,slot);
             //添加到集合里
             s.slots.push(slot);
+            s.slotbox.appendChild(slot);
+            
+            //渲染
+            slot.index=s.slots.length-1;
+            s.renderSlot(slot);
         }
         //替换一列
         s.replaceSlot=function(index,values,defaultKey,classes,fn){
@@ -171,13 +174,16 @@
             if(classes.indexOf(s.params.lockClass)>=0)slot.isLock=true;
             else slot.isLock=false;
 
+            if(classes.indexOf(s.params.lockClass)>=0)s.slots[index].isLock=true;
+            else s.slots[index].isLock=false;
             //渲染
-            s.renderSlot(index,slot);
+            s.renderSlot(slot);
             //回调
             if(fn)fn(s);
         }
         //渲染一列
-        s.renderSlot=function(index,slot){
+        s.renderSlot=function(slot){
+            var index=slot.index;
             slot.innerHTML="";
             //渲染
             slot.defaultIndex=0;
@@ -213,7 +219,7 @@
             slot.maxPosY=-(slot.values.length-1)*s.params.cellHeight;
             slot.minBouncePosY=s.params.bounceRange;
             slot.maxBouncePosY=slot.maxPosY-s.params.bounceRange;
-            s.slotbox.appendChild(slot);
+            
             slot.style.webkitTransform='translate3d(0px,'+slot.activePosY+'px,0px)';
         }
         s.isHid=true;

@@ -48,54 +48,64 @@
 <body ontouchstart="">
         <header>
             <div class="titlebar">
-                <a class="titlebar-button" href="javascript:back()">
+                <a class="titlebar-button titlebar-left" href="javascript:back()">
                     <i class="icon icon-arrowleft"></i>
                 </a>
-                <h1 class="titlebar-title">布局容器</h1>
+                <h1 class="titlebar-title">
+                    <ul class="tabbar tabbar-rect" data-col="2" id="ID-Tabbar" style="width: 50%;">
+                        <li class="tab active">
+                            <label class="tab-label">box布局</label>
+                        </li>
+                        <li class="tab">
+                            <label class="tab-label">flex布局</label>
+                        </li>
+                    </ul>
+                </h1>
             </div>
-            <ul class="tabbar tabbar-line animated" data-col="2" id="ID-Tabbar">
-                <li class="tab active">
-                    <label class="tab-label">box布局</label>
-                </li>
-                <li class="tab">
-                    <label class="tab-label">flex布局</label>
-                </li>
-            </ul>
         </header>
-        <article style="padding-top:84px">
+        <article style="padding-top:44px">
         <div class="slider-container" id="ID-Pages" style="height: 300px;">
         <div class="slider-wrapper">
         <div class="slider-slide">
             <!--第一页:start-->
-            <div class="card" style="padding:8px;">
-                box(兼容android4.0及以上)
+            <div class="statusbar">
+                box布局(兼容android4.0及以上)
             </div>
-            <p>水平居中对齐box-center</p>
+            <p>box-left</p>
+            <div class="box box-left" id="box">
+                <div class="case" style="background-color:coral;"></div>
+            </div>
+            <p>box-center</p>
             <div class="box box-center" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>右对齐box-right</p>
+            <p>box-right</p>
             <div class="box box-right" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>垂直居中对齐box-middle</p>
+            <p>box-top</p>
+            <div class="box box-top" id="box">
+                <div class="case" style="background-color:coral;"></div>
+            </div>
+
+            <p>box-middle</p>
             <div class="box box-middle" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>底部对齐box-bottom</p>
+            <p>box-bottom</p>
             <div class="box box-bottom" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>水平垂直居中对齐box-middlecenter</p>
+            <p>box-middlecenter</p>
             <div class="box box-middlecenter" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>垂直排列box-vertical</p>
+            <p>box-vertical</p>
             <div class="box box-vertical" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
@@ -105,7 +115,7 @@
                 <div class="case" style="background-color:lightgreen;"></div>
             </div>
 
-            <p>水平排列box-horizontal</p>
+            <p>box-horizontal</p>
             <div class="box box-horizontal" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
@@ -114,10 +124,17 @@
                 <div class="case" style="background-color:lightgrey;"></div>
                 <div class="case" style="background-color:lightgreen;"></div>
             </div>
-            <div class="sliver">justify-content(兼容性不好，慎用)</div>
-            <p>一页一屏（有些手机用了不能点击，慎用）</p>
+            <!--第一页:end-->
+        </div>
+        <div class="slider-slide">
+            <!--第二页:start-->
+            <div class="statusbar">
+                flex布局(功能过新，兼容性不好)
+            </div>
+
+            <p>flex-shrink</p>
             <div style="width:210px;overflow:hidden;margin:8px auto;">
-                <div class="box box-shrink anim-move">
+                <div class="flex flex-shrink anim-move">
                     <div style="background-color:coral;height:100px;"></div>
                     <div style="background-color:lightblue;"></div>
                     <div style="background-color:khaki;"></div>
@@ -126,84 +143,71 @@
                     <div style="background-color:lightgreen;"></div>
                 </div>
             </div>
-            <!--第一页:end-->
-        </div>
-        <div class="slider-slide">
-            <!--第二页:start-->
-            <div class="card" style="padding:8px;">
-                flex布局(兼容性不好，慎用)
+
+            <p>flex-left</p>
+            <div class="flex flex-left" id="box">
+                <div class="case" style="background-color:coral;"></div>
             </div>
-            <p>水平居中对齐flex-center</p>
+            <p>flex-center</p>
             <div class="flex flex-center" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>右对齐flex-right</p>
+            <p>flex-right</p>
             <div class="flex flex-right" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>垂直居中对齐flex-middle</p>
+            <p>flex-top</p>
+            <div class="flex flex-top" id="box">
+                <div class="case" style="background-color:coral;"></div>
+            </div>
+
+            <p>flex-middle</p>
             <div class="flex flex-middle" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>底部对齐flex-bottom</p>
+            <p>flex-bottom</p>
             <div class="flex flex-bottom" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>水平垂直居中对齐flex-middlecenter</p>
+            <p>flex-middlecenter</p>
             <div class="flex flex-middlecenter" id="box">
                 <div class="case" style="background-color:coral;"></div>
             </div>
             
-            <p>垂直排列flex-vertical</p>
+            <p>flex-vertical</p>
             <div class="flex flex-vertical" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
                 <div class="case" style="background-color:khaki;"></div>
+                <div class="case" style="background-color:pink;"></div>
+                <div class="case" style="background-color:lightgrey;"></div>
+                <div class="case" style="background-color:lightgreen;"></div>
+            </div>
+            <p>flex-vertical-reverse</p>
+            <div class="flex flex-vertical-reverse" id="box">
+                <div class="case" style="background-color:coral;"></div>
+                <div class="case" style="background-color:lightblue;"></div>
+                <div class="case" style="background-color:khaki;"></div>
+                <div class="case" style="background-color:pink;"></div>
+                <div class="case" style="background-color:lightgrey;"></div>
+                <div class="case" style="background-color:lightgreen;"></div>
             </div>
 
-            <p>水平排列flex-horizontal</p>
+            <p>flex-horizontal</p>
             <div class="flex flex-horizontal" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
                 <div class="case" style="background-color:khaki;"></div>
-            </div>
-
-            <p>一行显示flex-row</p>
-            <div class="flex flex-row" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
                 <div class="case" style="background-color:pink;"></div>
                 <div class="case" style="background-color:lightgrey;"></div>
                 <div class="case" style="background-color:lightgreen;"></div>
             </div>
-            
-            <p>一行显示（倒序）flex-row-reverse</p>
-            <div class="flex flex-row-reverse" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>一行显示（换行）flex-row flex-wrap</p>
-            <div class="flex flex-row flex-wrap" id="box" style="width:210px">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>一列显示flex-col</p>
-            <div class="flex flex-col" id="box">
+            <p>flex-horizontal-reverse</p>
+            <div class="flex flex-horizontal-reverse" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
                 <div class="case" style="background-color:khaki;"></div>
@@ -212,190 +216,20 @@
                 <div class="case" style="background-color:lightgreen;"></div>
             </div>
 
-            <p>一列显示（倒序）flex-col-reverse</p>
-            <div class="flex flex-col-reverse" id="box">
+            <p>flex-between</p>
+            <div class="flex flex-between" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
             </div>
-            
-            <p>一列显示（换行）flex-col flex-wrap</p>
-            <div class="flex flex-col flex-wrap" id="box">
+            <p>flex-around</p>
+            <div class="flex flex-around" id="box">
                 <div class="case" style="background-color:coral;"></div>
                 <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
             </div>
-
-            <!-- justify-content-->
-            
-            
-            <p>居中对齐justify-center</p>
-            <div class="flex justify-center" id="box">
-                <div class="case" style="background-color:coral;"></div>
-            </div>
-
-            <p>拉伸justify-stretch</p>
-            <div class="flex justify-stretch" id="box">
-                <div class="flex-1" style="background-color:coral;"></div>
-                <div class="flex-1" style="background-color:lightblue;"></div>
-                <div class="flex-1" style="background-color:khaki;"></div>
-            </div>
-
-            <p>左对齐justify-start</p>
-            <div class="flex justify-start" id="row">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-            </div>
-            
-            <p>居中对齐justify-center</p>
-            <div class="flex justify-center" id="row">
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>右对齐justify-end</p>
-            <div class="flex justify-end" id="row">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-            </div>
-            
-            <p>水平两端分布justify-between</p>
-            <div class="flex justify-between" id="row">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-            </div>
-            
-            <p>水平居中分布justify-around</p>
-            <div class="flex justify-around" id="row">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-            </div>
-
-            
-            
-            <!-- align-content-->
-            <div class="sliver">align-content(兼容性不好，慎用)</div>
-            <p>垂直居中flex-row flex-wrap align-center</p>
-            <div class="flex flex-row flex-wrap align-center" id="box">
-                <div class="case" style="background-color:coral;"></div>
-            </div>
-
-            <p>拉伸flex-row flex-wrap align-stretch</p>
-            <div class="flex flex-row flex-wrap align-stretch" id="box">
-                <div class="flex-1" style="background-color:coral;"></div>
-                <div class="flex-1" style="background-color:lightblue;"></div>
-                <div class="flex-1" style="background-color:khaki;"></div>
-            </div>
-            
-            <p>顶部对齐flex-row flex-wrap align-start</p>
-            <div class="flex flex-row flex-wrap align-start" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-            </div>
-            
-            <p>垂直居中对齐flex-row flex-wrap align-center</p>
-            <div class="flex flex-row flex-wrap align-center" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>底部对齐flex-row flex-wrap align-end</p>
-            <div class="flex flex-row flex-wrap align-end" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>垂直两端分布flex-row flex-wrap align-between</p>
-            <div class="flex flex-row flex-wrap align-between" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <p>垂直居中分布flex-row flex-wrap align-around</p>
-            <div class="flex flex-row flex-wrap align-around" id="box">
-                <div class="case" style="background-color:coral;"></div>
-                <div class="case" style="background-color:lightblue;"></div>
-                <div class="case" style="background-color:khaki;"></div>
-                <div class="case" style="background-color:pink;"></div>
-                <div class="case" style="background-color:lightgrey;"></div>
-                <div class="case" style="background-color:lightgreen;"></div>
-            </div>
-            
-            <!-- align-items-->
-            <div class="sliver">align-items(兼容性不好，慎用)</div>
-            <p>拉伸align-items-stretch</p>
-            <div class="flex align-items-stretch" id="box">
-                <div class="flex-1" style="background-color:coral;">1</div>
-                <div class="flex-1" style="background-color:lightblue;">2</div>
-                <div class="flex-1" style="background-color:khaki;">3</div>
-            </div>
-            
-            <p>顶部对齐align-items-start</p>
-            <div class="flex align-items-start" id="box">
-                <div class="flex-1" style="background-color:coral;">1</div>
-                <div class="flex-1" style="background-color:lightblue;">2</div>
-                <div class="flex-1" style="background-color:khaki;">3</div>
-            </div>
-            
-            <p>垂直居中对齐align-items-center</p>
-            <div class="flex align-items-center" id="box">
-                <div class="flex-1" style="background-color:coral;">1</div>
-                <div class="flex-1" style="background-color:lightblue;">2</div>
-                <div class="flex-1" style="background-color:khaki;">3</div>
-            </div>
-            
-            <p>底部对齐align-items-end</p>
-            <div class="flex align-items-end" id="box">
-                <div class="flex-1" style="background-color:coral;">1</div>
-                <div class="flex-1" style="background-color:lightblue;">2</div>
-                <div class="flex-1" style="background-color:khaki;">3</div>
-            </div>
-            
-            
-            <!-- align-self-->
-            <div class="sliver">align-self(兼容性不好，慎用)</div>
-            <p>拉伸flex-self-stretch</p>
-            <div class="flex" id="box">
-                <div class="flex flex-1 flex-self-stretch" style="background-color:coral;"></div>
-            </div>
-            
-            <p>顶部对齐flex-self-top</p>
-            <div class="flex" id="box">
-                <div class="case flex-self-top" style="background-color:coral;"></div>
-            </div>
-            
-            <p>垂直居中对齐flex-self-middle</p>
-            <div class="flex" id="box">
-                <div class="case flex-self-middle" style="background-color:coral;"></div>
-            </div>
-            
-            <p>底部对齐flex-self-bottom</p>
-            <div class="flex" id="box">
-                <div class="case flex-self-bottom" style="background-color:coral;"></div>
+            <p>flex-vertical-stretch</p>
+            <div class="flex flex-vertical-stretch" id="box">
+                <div class="case" style="background-color:coral;height: auto;"></div>
+                <div class="case" style="background-color:lightblue;height: auto;"></div>
             </div>
             <!--第二页:end-->
         </div>

@@ -123,14 +123,16 @@
 		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
 	    }
-	    function updateDays(year,month){
+	    function updateDays(year,month,defaultDay){
 	    	var maxDay=new Date(year,month,0).getDate();
 	    	s.days=[];
 	    	for(var d=1;d<=maxDay;d++){
 	    		var tempD=d<10?"0"+d:d;
 		    	s.days.push({"key":tempD,"value":tempD+s.params.ddUnit,"flag":"date"});
 		    }
-		    s.scrollpicker.mergeSlot(2,s.days);//修改第三项
+		    var defaultKey=defaultDay;
+		    if(s.days.length < defaultDay)defaultKey=s.days[s.days.length-1]["key"];
+		    s.scrollpicker.replaceSlot(2,s.days,defaultKey,s.params.dayClass);//修改第三项
 	    }
 
 	    //时
@@ -218,11 +220,11 @@
 	        },
 	    	onScrollEnd:function(e){
 	    		//根据月份算日
-	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && (e.activeSlotIndex==0 || e.activeSlotIndex==1)){
+	    		if((s.params.viewType=="date" || s.params.viewType=="datetime") && (e.activeSlot.index==0 || e.activeSlot.index==1)){
 	    			var year=e.activeOptions[0]["key"];
 					var month=e.activeOptions[1]["key"];
-					
-					updateDays(year,month);//更新总天数
+					var defaultDay=e.activeOptions[2]["key"];
+					updateDays(year,month,defaultDay);//更新总天数
 	    		}
 	    		//回调
 	    		if(s.params.onScrollEnd)s.params.onScrollEnd(s);
