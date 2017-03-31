@@ -1,233 +1,698 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
-	<title>SeedsUI Demos</title>
-	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
-	<style>
-	body{
-		background-color:white;
-	}
-	.app-sliver{
-		font-size:12px;
-		padding:8px 0;
-		border-bottom:1px solid #ddd;
-		margin:8px;
-		color:#aaa;
-	}
-	.app-thumbnail{
-		padding-left:4px;
-		padding-right:4px;
-	}
-	.app-thumbnail li{
-		padding-left:4px;
-		padding-right:4px;
-		padding-top:12px;
-	}
-	.app-thumbnail a{
-		border:1px solid #ddd;
-		overflow:hidden;
-		border-radius:8px;
-		/* box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2); */
-	}
-	/*单页模式*/
-	.app-page[data-animation="none"]{
-		display:none;
-	}
-	.app-page.active{
-		display:block;
-	}
-	</style>
+    <title>SeedsUI Demos</title>
+    <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .list .li{
+        padding: 12px 12px 12px 12px;
+    }
+    .list .li-inner{
+        padding: 12px 12px 12px 0;
+        margin-left: 12px;
+    }
+    </style>
 </head>
+
 <body ontouchstart="">
-		<header>
-			<div class="titlebar reverse" style="height:50px;">
-				<ul class="tabbar tabbar-rect reverse" data-col="3" id="ID-Tabbar" style="width:80%">
-		            <li class="tab active" data-id="ID-CssCompoents">
-		                <label class="tab-label">Css组件</label>
-		            </li>
-		            <li class="tab" data-id="ID-JsCompoents">
-		                <label class="tab-label">Js组件</label>
-		            </li>
-		            <li class="tab" data-id="ID-LocCompoents">
-		                <label class="tab-label">本地能力</label>
-		            </li>
-		        </ul>
-			</div>
-		</header>
-		<article style="padding-top:50px">
-			<!--Css组件-->
-			<div id="ID-CssCompoents" data-animation="none" class="app-page active">
-				<!-- 加载遮罩 -->
-		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-		            <div class="loading"></div>
-		        </div>
-			</div>
-			<!--Js组件-->
-			<div id="ID-JsCompoents" data-animation="none" class="app-page">
-				<!-- 加载遮罩 -->
-		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-		            <div class="loading"></div>
-		        </div>
-			</div>
-			<!--本地能力-->
-			<div id="ID-LocCompoents" data-animation="none" class="app-page">
-				<!-- 加载遮罩 -->
-		        <div class="mask" id="loadingMask" style="visibility:visible;opacity:1;"></div>
-		        <div class="loading-box" id="loadingBox" style="visibility:visible;opacity:1;">
-		            <div class="loading"></div>
-		        </div>
-			</div>
-		</article>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">SeedsUI</h1>
+        </div>
+        <div style="padding: 8px 0;">
+            <ul class="tabbar tabbar-rect" data-col="3" id="ID-Tabbar" style="width:80%">
+                <li class="tab active" data-id="ID-CssCompoents">
+                    <label class="tab-label">CSS组件</label>
+                </li>
+                <li class="tab" data-id="ID-JsCompoents">
+                    <label class="tab-label">JS组件</label>
+                </li>
+                <li class="tab" data-id="ID-LocCompoents">
+                    <label class="tab-label">本地能力</label>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <article style="padding-top:92px">
+        <div class="slider-container topline" id="ID-Pages" style="height: 300px;background-color:white;">
+        <div class="slider-wrapper">
+        <div class="slider-slide">
+            <!--CSS组件:start-->
+            <ul class="list">
+                <li class="statusbar">
+                    <p class="statusbar-title">文字图标</p>
+                </li>
+                <li>
+                    <a class="li" href="iconfont.html">
+                        <p class="list-container">文字图标</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">导航控件</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="titlebar.html">
+                        <p class="list-container">TitleBar</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="tabbar.html">
+                        <p class="list-container">TabBar</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">按钮</p>
+                </li>
+                <li>
+                    <a class="li" href="button.html">
+                        <p class="list-container">Button</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">徽章</p>
+                </li>
+                <li>
+                    <a class="li" href="badge.html">
+                        <p class="list-container">Badge</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">分组</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="group-block.html">
+                        <p class="list-container">块级分组</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="group-card.html">
+                        <p class="list-container">卡片分组</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="group-row.html">
+                        <p class="list-container">行分组</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">表格</p>
+                </li>
+                <li>
+                    <a class="li" href="table.html">
+                        <p class="list-container">Table</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">栅格</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="grid.html">
+                        <p class="list-container">九宫格</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="grid-metro.html">
+                        <p class="list-container">块级栅格</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">列表</p>
+                </li>
+                <li>
+                    <a class="li" href="list.html">
+                        <p class="list-container">列表</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">基础组件</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="animate.html">
+                        <p class="list-container">动画</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="bg.html">
+                        <p class="list-container">背景</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="layout.html">
+                        <p class="list-container">布局</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="shape.html">
+                        <p class="list-container">形状</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="code.html">
+                        <p class="list-container">代码展现</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">错误页面</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="404.html">
+                        <p class="list-container">404</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="500.html">
+                        <p class="list-container">500</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="nowifi.html">
+                        <p class="list-container">无网络</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+            </ul>
+            <!--CSS组件:end-->
+        </div>
+        <div class="slider-slide">
+            <!--JS组件:start-->
+            <ul class="list">
+                <li class="statusbar">
+                    <p class="statusbar-title">单页模式</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="section.html">
+                        <p class="list-container">单页模式</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">索引栏</p>
+                </li>
+                <li>
+                    <a class="li" href="indexbar.html">
+                        <p class="list-container">索引栏</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">弹出框</p>
+                </li>
+                <li>
+                    <a class="li" href="popup.html">
+                        <p class="list-container">弹出框</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">侧边栏</p>
+                </li>
+                <li>
+                    <a class="li" href="aside.html">
+                        <p class="list-container">侧边栏</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">表单</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="form.html">
+                        <p class="list-container">表单元素</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="form-validate.html">
+                        <p class="list-container">表单序列化</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="form-idvalidator.html">
+                        <p class="list-container">身份证验证</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">富文本</p>
+                </li>
+                <li>
+                    <a class="li" href="chat.html">
+                        <p class="list-container">聊天框</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">文字计数器</p>
+                </li>
+                <li>
+                    <a class="li" href="form-countvalue.html">
+                        <p class="list-container">文字计数</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">计数器</p>
+                </li>
+                <li>
+                    <a class="li" href="counter.html">
+                        <p class="list-container">计数器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">日历</p>
+                </li>
+                <li>
+                    <a class="li" href="calendar.html">
+                        <p class="list-container">日历</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">树结构</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="tree.html">
+                        <p class="list-container">树结构展现</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="tree-selected.html">
+                        <p class="list-container">树结构选择</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">加载</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="loading.html">
+                        <p class="list-container">加载框</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="imglazy.html">
+                        <p class="list-container">懒人加载</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">选择器</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="scrollpicker.html">
+                        <p class="list-container">滚动选择器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="scrollpicker-city.html">
+                        <p class="list-container">地区选择器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="scrollpicker-date.html">
+                        <p class="list-container">日期选择器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="scrollpicker-datetime.html">
+                        <p class="list-container">时间日期选择器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">滑动容器</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="slider.html">
+                        <p class="list-container">滑动容器</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="slider-page.html">
+                        <p class="list-container">滑动页面</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">下拉刷新</p>
+                </li>
+                <li>
+                    <a class="li" href="dragrefresh.html">
+                        <p class="list-container">下拉刷新</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">可视化数据</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="timepart.html">
+                        <p class="list-container">时间段控件</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="gauge.html">
+                        <p class="list-container">仪表盘</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="doughnut.html">
+                        <p class="list-container">环形</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="clock.html">
+                        <p class="list-container">时钟</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="progress.html">
+                        <p class="list-container">进度条</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="clock.html">
+                        <p class="list-container">时钟</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="weather.html">
+                        <p class="list-container">天气</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="charts-bar.html">
+                        <p class="list-container">柱状图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="charts-doughnut-simple.html">
+                        <p class="list-container">简单环形图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="charts-doughnut.html">
+                        <p class="list-container">环形图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="charts-line.html">
+                        <p class="list-container">折线图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="charts-pie.html">
+                        <p class="list-container">饼图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="charts-pie-simple.html">
+                        <p class="list-container">简单饼图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li class="statusbar">
+                    <p class="statusbar-title">工具库</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="db.html">
+                        <p class="list-container">本地数据库</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li" href="shake.html">
+                        <p class="list-container">摇一摇</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+            </ul>
+            <!--JS组件:end-->
+        </div>
+        <div class="slider-slide">
+            <!--本地能力:start-->
+            <div id="ID-ExmobiContainer" style="display: none;">
+                <ul class="list">
+                    <li class="statusbar">
+                        <p class="statusbar-title">exmobi本地能力</p>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-tel.html')">
+                            <p class="list-container">电话与通讯</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-camera.html')">
+                            <p class="list-container">照片选择</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-gps.html')">
+                            <p class="list-container">定位</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-qrcode.html')">
+                            <p class="list-container">扫码</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-third.html')">
+                            <p class="list-container">调用第三方</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-webview.html')">
+                            <p class="list-container">webview控件</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li li-inner underline" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-pattern.html')">
+                            <p class="list-container">手势密码</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="li" href="javascript:Exmobi.openWebview('res:page/www/components/exmobi-cache.html')">
+                            <p class="list-container">缓存</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="ID-WeixinContainer" style="display: none;">
+                <ul class="list">
+                    <li class="statusbar">
+                        <p class="statusbar-title">微信本地能力</p>
+                    </li>
+                    <li>
+                        <a class="li" href="weixin.html">
+                            <p class="list-container">微信本地能力</p>
+                            <i class="list-icon icon-arrowright"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="list">
+                <li class="statusbar">
+                    <p class="statusbar-title">h5本地能力</p>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="video.html">
+                        <p class="list-container">多媒体</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="local-photoselect.html">
+                        <p class="list-container">照片选择</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="local-share.html">
+                        <p class="list-container">分享链接</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li li-inner underline" href="local-map.html">
+                        <p class="list-container">签到地图</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="li underline" href="local-gps.html">
+                        <p class="list-container">定位</p>
+                        <i class="list-icon icon-arrowright"></i>
+                    </a>
+                </li>
+            </ul>
+            <!--本地能力:end-->
+        </div>
+        </div>
+        </div>
+    </article>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
-    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
-	<script>
-		//manifest
-		/*window.addEventListener("updateready",function(e){
-			console.log("离线缓存状态："+window.applicationCache.status);
-			if(window.applicationCache.status==window.applicationCache.UPDATEREADY){
-				window.applicationCache.swapCache();
-				if(confirm('发现此manifest文件有更新，是否更新？')){
-					window.location.reload();
-				}
-			}else{
-				console.log('manifest文件没有变化');
-			}
-		},false);*/
-		/*================
-		判断本地能力
-		================*/
-		//exmobi环境
-		function exmobiLocal(){
-			document.addEventListener("plusready",function(){
-				document.getElementById("exmobilocal").style.display="block";
-			},false);
-		}
-		//微信环境
-		function weixinLocal(){
-			if(Device.isWeixin){
-				document.getElementById("weixinlocal").style.display="block";
-			}
-		}
-		/*================
-		Ajax页面加载
-		================*/
-		//容器和按钮
-		var compoentBtns={};
-		compoentBtns["ID-CssCompoents"]=document.querySelector('[href="#ID-CssCompoents"]');
-		compoentBtns["ID-JsCompoents"]=document.querySelector('[href="#ID-JsCompoents"]');
-		compoentBtns["ID-LocCompoents"]=document.querySelector('[href="#ID-LocCompoents"]');
+    <script src="../scripts/lib/exmobi/exmobi.js"></script>
+    <script type="text/javascript">
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                var self = this;
+                //渲染页面
+                this.slides=document.querySelectorAll("#ID-Pages > .slider-wrapper > .slider-slide");
+                this.sliderContainer=document.getElementById("ID-Pages");
+                this.sliderContainer.style.height=(window.innerHeight-92)+"px";
 
+                this.tabbarContainer=document.getElementById("ID-Tabbar");
+                this.tabs=this.tabbarContainer.querySelectorAll(".tab");
 
-		var compoentContainers={};
-		compoentContainers["ID-CssCompoents"]=document.getElementById("ID-CssCompoents");
-		compoentContainers["ID-JsCompoents"]=document.getElementById("ID-JsCompoents");
-		compoentContainers["ID-LocCompoents"]=document.getElementById("ID-LocCompoents");
-		//菜单切换
-		function hideContainers(){
-			for(var name in compoentContainers){
-				compoentContainers[name].style.display="none";
-			}
-		}
-		/*var singlePage=new Page({
-			"isDisableSameClick":true,
-			"pageClass":"app-page",
-			"onLoad":function(e){
-				var targetBtn,targetPageId;
-				if(e.isRoot){
-					targetBtn=compoentBtns["ID-CssCompoents"];
-					targetPage=compoentContainers["ID-CssCompoents"];
-				}else{
-					targetBtn=compoentBtns[e.targetPageId.substring(1)];
-					targetPage=compoentContainers[e.targetPageId.substring(1)];
-				}
-				//还原状态
-				e.buttons.forEach(function(btn){
-					btn.classList.remove("active");
-				});
-				e.pages.forEach(function(page){
-					page.style.display="none";
-				});
-				//显示对应的层
-				if(targetBtn){
-					//console.log(targetBtn);
-					targetBtn.classList.add("active");
-				}
-				if(targetPage)targetPage.style.display="block";
-			}
-		});*/
-		var tabbar=document.getElementById('ID-Tabbar');
-		var tabs=[].slice.call(tabbar.querySelectorAll('.tab'));
-		function activeTabbar(activeTab){
-			tabs.forEach(function(tab) {
-                tab.classList.remove("active");
-            });
-			activeTab.classList.add("active");
-		}
-		function activeContainer(id){
-			for(var name in compoentContainers){
-				compoentContainers[name].style.display="none";
-			}
-			compoentContainers[id].style.display="block";
-		}
-		function addClickMenu(){
-            tabbar.onclick=function(e){
-                activeTabbar(e.target);
-                var id=e.target.getAttribute("data-id");
-                activeContainer(id);
+                //初始化滑动
+                this.slider=new Slider("#ID-Pages",{
+                    onSlideChangeEnd:function(e){
+                        self._tabActive(e.activeIndex);
+                    }
+                });
+
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _each:function(arr,fn){
+                for(var i=0;i<arr.length;i++){
+                    if(fn(arr[i],i)==false)break;
+                }
+            },
+            _tabActive:function(index){
+                for(var i=0,t;t=this.tabs[i++];){
+                    t.classList.remove("active");
+                }
+                this.tabs[index].classList.add("active");
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                for(var i=0,t;t=this.tabs[i++];){
+                    t.addEventListener("click",function(e){
+                        self._onClickTab(e);
+                    },false);
+                }
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickTab:function(e){
+                var index=0;
+                this._each(this.tabs,function(n,i){
+                    if(n==e.target){
+                        index=i;
+                        return false;
+                    }
+                });
+                this._tabActive(index);
+                this.slider.slideTo(index);
             }
-		}
-		//加载数据
-		function loadCssCompoents(){
-			new Ajax({
-                url:"index-css.html",
-                onSuccess:function(data){
-                    compoentContainers["ID-CssCompoents"].innerHTML=data;
-                }
-            });
-		}
-		function loadJsCompoents(){
-			new Ajax({
-                url:"index-js.html",
-                onSuccess:function(data){
-                    compoentContainers["ID-JsCompoents"].innerHTML=data;
-                }
-            });
-		}
-		function loadLocCompoents(){
-			new Ajax({
-                url:"index-local.html",
-                onSuccess:function(data){
-                	compoentContainers["ID-LocCompoents"].innerHTML=data;
-                	//本地能力
-                	exmobiLocal();
-                	weixinLocal();
-                }
-            });
-		}
-		function loadData(){
-			loadCssCompoents();
-			loadJsCompoents();
-			loadLocCompoents();
-		}
-		/*================
-		初始化
-		================*/
-		window.addEventListener("load",function(){
-			addClickMenu();
-			loadData();
-		},false);
-		//定义exmobi返回
-		function back(){Exmobi.dbclose();}
-	</script>
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+            //本地能力
+            exmobiLocal();
+            weixinLocal();
+        }, false);
+
+        /*================
+        判断本地能力
+        ================*/
+        //exmobi环境
+        function exmobiLocal(){
+            document.addEventListener("plusready",function(){
+                document.getElementById("ID-ExmobiContainer").style.display="block";
+            },false);
+        }
+        //微信环境
+        function weixinLocal(){
+            if(Device.isWeixin){
+                document.getElementById("ID-WeixinContainer").style.display="block";
+            }
+        }
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
 </body>
 </html>

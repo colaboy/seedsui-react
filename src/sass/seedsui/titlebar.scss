@@ -32,7 +32,7 @@
 		-webkit-transform-origin:center bottom;
 
 		//兼容UC线条不显示的BUG
-    	z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
+    	z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 		&:after {

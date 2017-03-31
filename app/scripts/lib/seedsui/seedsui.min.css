@@ -129,7 +129,7 @@ aside {
     width: 100%;
     background-color: #d1d1d1;
     -webkit-transform-origin: center bottom;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
     -webkit-backface-visibility: hidden; }
   @media only screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -277,7 +277,7 @@ aside {
   display: block;
   position: absolute;
   background-color: #d1d1d1;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden; }
 .tabbar-line .tab:before {
@@ -626,7 +626,7 @@ aside {
       display: block;
       position: absolute;
       background-color: #d1d1d1;
-      z-index: 0;
+      z-index: 1;
       overflow: hidden;
       -webkit-backface-visibility: hidden; }
     .grid.grid-bordered li:before {
@@ -2281,12 +2281,13 @@ label .input-checkbox + span, label .input-radio + span {
 /*---------------list.less(start)---------------*/
 .list {
   background-color: white; }
-  .list li, .list .li {
+  .list .li {
     position: relative;
     display: -webkit-box;
     padding: 10px 12px;
-    -webkit-box-align: center; }
-  .list li:active, .list .li:active {
+    -webkit-box-align: center;
+    color: #333; }
+  .list .li:active {
     background-color: #f9f9f9; }
 
 .list-thumbnail {
@@ -2802,7 +2803,7 @@ section {
     display: block;
     position: absolute;
     background-color: #d1d1d1;
-    z-index: 0;
+    z-index: 1;
     overflow: hidden;
     -webkit-backface-visibility: hidden; }
   .group:before {
@@ -2914,15 +2915,22 @@ aside[data-position="right"][data-transition="overlay"] {
 
 /*----------------aside.less(end)--------------*/
 /*----------sliver.less(start)----------*/
-.sliver {
+.sliver, .statusbar {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
-  padding: 0 12px;
+  padding: 0 12px; }
+
+.sliver {
   height: 40px;
   color: #20aeff; }
 
-.sliver-title {
+.statusbar {
+  height: 32px;
+  color: #aaa;
+  background-color: #f8f8f8; }
+
+.sliver-title, .statusbar-title {
   display: block;
   height: 20px;
   line-height: 20px;
@@ -3948,7 +3956,7 @@ progress::-webkit-progress-value {
   display: block;
   position: absolute;
   background-color: #d1d1d1;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden; }
 
@@ -4030,7 +4038,7 @@ progress::-webkit-progress-value {
   height: 1px;
   width: 100%;
   -webkit-transform-origin: center bottom;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden; }
 
@@ -4610,7 +4618,7 @@ ul.scrollpicker-slot, .scrollpicker-slot ul {
   display: block;
   position: absolute;
   background-color: #d1d1d1;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden; }
 
@@ -5678,7 +5686,7 @@ hr {
   display: block;
   position: absolute;
   background-color: #d1d1d1;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden; }
 

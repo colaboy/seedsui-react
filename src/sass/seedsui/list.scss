@@ -1,13 +1,14 @@
 /*---------------list.less(start)---------------*/
 .list{
 	background-color: white;
-	li,.li{
+	.li{
 		position:relative;
 		display:-webkit-box;
 		padding: 10px 12px;
 		-webkit-box-align: center;
+        color:$body-color;
 	}
-	li:active,.li:active{
+	.li:active{
 		background-color:$bar-bg;
 	}
 }

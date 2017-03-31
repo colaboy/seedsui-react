@@ -58,7 +58,7 @@
 			    background-color: $border;
 
 			    //兼容UC线条不显示的BUG
-    			z-index:0;overflow: hidden;-webkit-backface-visibility:hidden;
+    			z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 			}
 			//右竖线
 			&:before{
