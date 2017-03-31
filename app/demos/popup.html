@@ -83,6 +83,49 @@
 	.app-popover li:nth-of-type(5) .icon{
 	    color: #ff5656;
 	}
+	/*======分享到======*/
+	.app-sharebox{
+		padding:12px;
+		background-color:white;
+		box-sizing:border-box;
+	}
+	.app-shareboxTitle{
+		font-size: 17px;
+		text-align: center;
+		padding:10px 0;
+	}
+	.app-shareboxClose{
+		display: block;
+		margin: 16px 0 12px 0;
+		text-align: center;
+	}
+	.app-shareboxClose .icon{
+		font-size: 36px;
+		width: 36px;
+		height: 36px;
+		color: #363434;
+	}
+	.app-sharebox .grid{
+		padding: 0 20px;
+	}
+	.app-sharebox li{
+		padding-top: 12px;
+	}
+	.app-sharebox li a{
+		width: 50px;
+		height: 50px;
+		border-radius: 100%;
+		color: white;
+	}
+	.app-sharebox li label{
+		margin-top: 6px;
+	}
+	.app-sharebox li a i{
+		font-size: 30px;
+		width: 30px;
+		height: 30px;
+		pointer-events:none;
+	}
     </style>
 </head>
 <body ontouchstart="">
@@ -90,9 +133,16 @@
         <div class="titlebar">
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1 class="titlebar-title">弹出框</h1>
-            <a class="titlebar-button titlebar-right" id="ID-Popup-Menu">
-	            <i class="icon icon-menudot"></i>
-	        </a>
+            
+	        <div class="titlebar-right">
+	        	<a class="titlebar-button" id="ID-BtnShare">
+		            <i class="icon icon-share"></i>
+		        </a>
+	        	<a class="titlebar-button" id="ID-Popup-Menu">
+		            <i class="icon icon-menudot"></i>
+		        </a>
+	        </div>
+	        
         </div>
     </header>
     <article>
@@ -190,7 +240,53 @@
 			</li>
 		</ul>
 	</div>
-
+	<!-- 分享到-->
+	<div id="ID-Dialog-Share" class="hide app-sharebox" style="width:100%">
+		<div class="app-shareboxTitle">
+			分享至
+		</div>
+		<ul class="grid" data-col="3">
+			<li>
+				<a class="grid-icon" style="background-color:#4485fb;" data-share="qq">
+					<i class="icon icon-qq-fill"></i>
+				</a>
+				<label class="grid-label">QQ好友</label>
+			</li>
+			<li>
+				<a class="grid-icon" style="background-color:#eda200;" data-share="qzone">
+					<i class="icon icon-qqzone-fill"></i>
+				</a>
+				<label class="grid-label">QQ空间</label>
+			</li>
+			<li>
+				<a class="grid-icon" style="background-color:#38ba35;" data-share="weixin">
+					<i class="icon icon-weixin-fill"></i>
+				</a>
+				<label class="grid-label">微信</label>
+			</li>
+			<li>
+				<a class="grid-icon" style="background-color:#41ce29;" data-share="fweixin">
+					<i class="icon icon-fweixin-fill"></i>
+				</a>
+				<label class="grid-label">微信朋友圈</label>
+			</li>
+			<li>
+				<a class="grid-icon" style="background-color:#e55f5f;" data-share="tsina">
+					<i class="icon icon-tsina-fill"></i>
+				</a>
+				<label class="grid-label">新浪微博</label>
+			</li>
+			<li>
+				<a class="grid-icon" style="background-color:#eecf3d;" data-share="link">
+					<i class="icon icon-link-fill"></i>
+				</a>
+				<label class="grid-label">复制链接</label>
+			</li>
+		</ul>
+		<div class="app-shareboxClose">
+			<a class="icon icon-rdoclose" data-share="close"></a>
+		</div>
+	</div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
@@ -423,6 +519,40 @@
 			rightFullDialog.show();
 	    };
 
+	    var shareContainer=document.getElementById("ID-Dialog-Share");
+	    var shareDialog=new Dialog(shareContainer,{//弹出框
+            position:"bottom",
+            animation:"slideUp",
+            css:{width:"100%"}
+        });
+	    document.getElementById("ID-BtnShare").onclick=function(e){
+			shareDialog.show();
+	    };
+	    shareContainer.onclick=function(e){
+			var target=e.target;
+			if(target.getAttribute("data-share")){
+                var shareTo=target.getAttribute("data-share");
+                if(shareTo=="tsina"){
+                    console.log("分享到新浪");
+                }else if(shareTo=="weixin"){
+                    console.log("分享到微信");
+                }else if(shareTo=="fweixin"){
+                    console.log("分享到朋友圈");
+                }else if(shareTo=="qq"){
+                    console.log("分享到QQ");
+                }else if(shareTo=="tqq"){
+                    console.log("分享到QQ微博");
+                }else if(shareTo=="qzone"){
+                    console.log("分享到QQ空间");
+                }else if(shareTo=="phone"){
+                    console.log("分享到手机联系人");
+                }else if(shareTo=="link"){
+                    console.log("复制链接");
+                }else if(shareTo="close"){
+                	 shareDialog.hide();
+                }
+            }
+	    };
 	    //定义exmobi返回
 		function back(){history.go(-1);}
 	</script>
