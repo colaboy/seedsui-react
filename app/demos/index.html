@@ -10,6 +10,7 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>SeedsUI Demos</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="about/about.css">
     <style>
     .list .li{
         padding: 12px 12px 12px 12px;
@@ -26,6 +27,7 @@
         <div class="titlebar">
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1 class="titlebar-title">SeedsUI</h1>
+            <a class="titlebar-button" href="javascript:showAbout()"><i class="icon icon-rdoinfo"></i></a>
         </div>
         <div style="padding: 8px 0;">
             <ul class="tabbar tabbar-rect" data-col="3" id="ID-Tabbar" style="width:80%">
@@ -580,9 +582,59 @@
         </div>
         </div>
     </article>
+    <!--关于-->
+    <div class="about-box" id="ID-About-Container">
+        <div class="topic" id="ID-About-Topic1">
+            <div class="welcome-title">SeedsUI</div>
+            <div class="subtitle" id="ID-About-Subtitle1">基于HTML5 | CSS3 | ES5 轻量级WebApp</div>
+        </div>
+        <!-- 三圆 -->
+        <div style="position:fixed;top:35%;left:50%;-webkit-transform:translateX(-50%);width:280px;height:250px;">
+            <div class="rdohtml" id="ID-About-RdoHTML">
+                HTML5
+            </div>
+            <div class="rdocss" id="ID-About-RdoCss">
+                CSS3
+            </div>
+            <div class="rdojs" id="ID-About-RdoJs">
+                ES5
+            </div>
+        </div>
+        <!-- 丰富的组件 -->
+        <div class="topic2" id="ID-About-Topic2">
+            <div class="welcome-title">SeedsUI</div>
+            <div class="subtitle" id="ID-About-Subtitle2" style="opacity:1;">组件齐全可扩展</div>
+        </div>
+        <div class="boxplug" id="ID-About-PlugBox">
+            <img src="about/chat.png" class="plugchat" id="ID-About-IconChat"/>
+            <img src="about/file.png" class="plugfile" id="ID-About-IconFile"/>
+            <img src="about/readmark.png" class="plugreadmark" id="ID-About-IconMark"/>
+            <img src="about/tel.png" class="plugtel" id="ID-About-IconTel"/>
+            <img src="about/home.png" class="plughome" id="ID-About-IconHome"/>
+            <img src="about/friends.png" class="plugfriends" id="ID-About-IconFriends"/>
+            <img src="about/album.png" class="plugalbum" id="ID-About-IconAlbum"/>
+            <img src="about/position.png" class="plugposition" id="ID-About-IconPos"/>
+            <img src="about/comments.png" class="plugcomments" id="ID-About-IconComment"/>
+            <img src="about/earth.png" class="plugearth" id="ID-About-IconGearth"/>
+            <img src="about/message.png" class="plugmessage" id="ID-About-IconMes"/>
+            <img src="about/img.png" class="plugimg" id="ID-About-IconImg"/>
+            <img src="about/share.png" class="plugshare" id="ID-About-IconShare"/>
+            <img src="about/search.png" class="plugsearch" id="ID-About-IconSearch"/>
+        </div>
+        <div style="position:fixed;bottom:3%;left:50%;-webkit-transform:translate(-50%)" id="ID-About-IconDown"><img src="about/down.png" style="width:24px;"/></div>
+        <!-- 我们致力于用户体验 -->
+        <div class="topic3" id="ID-About-Topic3">我们致力于用户体验</div>
+        
+        <img class="pull" src="about/phone.png" id="ID-About-Phone"/>
+        <img class="pull" src="about/pull.png" id="ID-About-Pull"/>
+
+        <div style="position:fixed;bottom:0;">
+            <input type="hidden" id="ID-About-TxtUp" value="oneanimate"/>
+            <input type="hidden" id="ID-About-TxtDown"/>
+        </div>
+    </div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
-    <!--Exmobi能力-->
-    <script src="../scripts/lib/exmobi/exmobi.js"></script>
+    <script src="about/about.js"></script>
     <script type="text/javascript">
         var view={
             /*=========================

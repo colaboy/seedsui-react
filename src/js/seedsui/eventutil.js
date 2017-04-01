@@ -83,13 +83,11 @@
 		//绑定事件
 		var attach=function(){
 			if(Type.isEmptyObject(element.touchEvents)){
-				console.log("添加事件");
 				element.touchEvents={};
 				element["addEventListener"]("touchstart",onTouchStart,false);
 				element["addEventListener"]("touchend",onTouchEnd,false);
 			}
 			element.touchEvents[type]=handler;
-			console.log(element.touchEvents);
 		};
 		//移除事件
 		var detach=function(){
