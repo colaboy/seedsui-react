@@ -1,5 +1,5 @@
 .about-box{
-    -webkit-transform:translateY(-200%);overflow:hidden;padding:0;margin:0;position:fixed;left:0;top:0;right:0;bottom:0;background-color:#20aeff;height:100%;width:100%;z-index:100;
+    -webkit-transform:translateY(-200%);overflow:hidden;padding:0;margin:0;position:absolute;left:0;top:0;right:0;bottom:0;background-color:#20aeff;height:100%;width:100%;z-index:100;
 }
 [class^="topic"]{
     position:absolute;
