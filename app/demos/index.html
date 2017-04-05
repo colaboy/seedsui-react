@@ -633,6 +633,12 @@
             <input type="hidden" id="ID-About-TxtDown"/>
         </div>
     </div>
+    <!-- 加载遮罩 -->
+    <div class="loading" id="ID-Loading" style="display: block;background-color: white;">
+        <div class="loading-progress-box">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <script src="about/about.js"></script>
     <script type="text/javascript">
@@ -640,11 +646,15 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                this.render();//使用backbone时，此行无用
-            },
             render:function(){
                 var self = this;
+                //隐藏遮罩
+                this.loading=new Loading({
+                    container:"#ID-Loading"
+                });
+                setTimeout(function(){
+                    self.loading.hide();
+                },500);
                 //渲染页面
                 this.slides=document.querySelectorAll("#ID-Pages > .slider-wrapper > .slider-slide");
                 this.sliderContainer=document.getElementById("ID-Pages");
@@ -715,7 +725,7 @@
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
             //本地能力
             exmobiLocal();
             weixinLocal();
