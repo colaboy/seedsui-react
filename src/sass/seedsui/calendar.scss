@@ -2,7 +2,8 @@
 $calendar-weeks-color:$sub-color;
 $calendar-arrow-color:$placeholder;
 $calendar-current-color:$body-color;
-$calendar-notcurrent-color:$placeholder;
+$calendar-notcurrent-color:#aaa;
+$calendar-disable-color:#ccc;
 $calendar-today-border:$border;
 .calendar{
 	position: relative;
@@ -122,7 +123,7 @@ $calendar-today-border:$border;
     background-color:$calendar-active-bg;
 }
 .calendar-disable{
-	color:$calendar-notcurrent-color;
+	color:$calendar-disable-color;
 }
 .calendar-disable.calendar-active{
 	font-weight:normal;

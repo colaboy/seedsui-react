@@ -304,10 +304,12 @@
 					s.calendarUtil.activeNextWeek();
 				}
 			}
+			/*
+			//滑动到禁用
 			if((s.params.disableBeforeDate && s.calendarUtil.activeDate < s.params.disableBeforeDate)||(s.params.disableAfterDate && s.calendarUtil.activeDate > s.params.disableAfterDate)){
 				s.calendarUtil.activeDate = s.activeDate;
 				return;
-			}
+			}*/
 			s.draw();
         };
         //上下滑动
@@ -363,23 +365,23 @@
 			}
 		};
 		var chinaWeek={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',0:'日'};
-		s.drawHeader=function(){
-			var activeDate=s.calendarUtil.activeDate;
+		s.drawHeader=function(activeDate){
+			var activeDate=activeDate || s.calendarUtil.activeDate;
 			var activeDay="";
 			if(s.params.isShowDayNum){
-				activeDay="&nbsp;&nbsp;周"+chinaWeek[s.calendarUtil.activeDate.getDay()];
+				activeDay="&nbsp;&nbsp;周"+chinaWeek[activeDate.getDay()];
 			}
 			var activeWeeks="";
 			if(s.params.isShowWeeksNum){
-				activeWeeks="&nbsp;&nbsp;第"+s.calendarUtil.getWeeksNum(s.calendarUtil.activeDate)+"周";
+				activeWeeks="&nbsp;&nbsp;第"+s.calendarUtil.getWeeksNum(activeDate)+"周";
 			}
 			//注入头部数据
 			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.date()+activeDay+activeWeeks;
 		};
 		s.draw=function(){
+			//更新选中日期
 			s.updateData();
-			//注入头部
-			s.drawHeader();
+			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
 			//注入身体
 			var activeIndex=s.data.activeIndex;
 			var activeRowIndex=s.data.activeRowIndex;
@@ -405,7 +407,14 @@
 				}
 			}
 			s.updateContainerHeight();
-			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
+			//滑动到禁用
+			if((s.params.disableBeforeDate && s.calendarUtil.activeDate < s.params.disableBeforeDate)||(s.params.disableAfterDate && s.calendarUtil.activeDate > s.params.disableAfterDate)){
+				console.log("SeedsUI Warn：滑动到禁用日期");
+				return;
+			
+			}
+			//注入头部
+			s.drawHeader(s.activeDate);
 			//Callback onChange
 			if(s.params.onChange)s.params.onChange(s);
 		};
@@ -419,9 +428,6 @@
 			s.calendarUtil.setActiveDate(s.activeDate);
 			//重新绘制
 			s.draw();
-
-			//target.classList.add(s.params.activeClass);
-			//s.drawHeader();
 		};
 		s.showMonth=function(){
 			s.slideYTo(1);

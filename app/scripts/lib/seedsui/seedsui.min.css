@@ -5093,13 +5093,13 @@ ul.weather-otherday li {
   border-radius: 100%;
   border-width: 1px;
   border-style: solid;
-  border-color: #ccc; }
+  border-color: #aaa; }
 
 .calendar-current {
   color: #333; }
 
 .calendar-notcurrent {
-  color: #ccc; }
+  color: #aaa; }
 
 .calendar-active {
   font-weight: 600;
