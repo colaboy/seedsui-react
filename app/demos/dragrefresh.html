@@ -13,7 +13,7 @@
 </head>
 
 <body ontouchstart="">
-    <!-- <section> -->
+    <section>
         <header>
             <div class="titlebar">
             	<a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -24,7 +24,7 @@
             <hr/>
             <ul class="list" id="ID-List"></ul>
         </article>
-    <!-- </section> -->
+    </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
@@ -42,7 +42,7 @@
                 }
                 //插件
                 this.drag=DfPull({
-                    overflowContainer:document.body,
+                    overflowContainer:"article",
                     //overflowContainer:"article",
                     //topContainer:false,
                     //bottomContainer:false,

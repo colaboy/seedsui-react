@@ -15,16 +15,21 @@
 			bottomRefreshDelay:1000
 
 			/*callbacks
-			onTopRefresh:function(Dragrefresh)//头部刷新
+			onPull:function(Dragrefresh)//头部拖动中
+			onShowTop:function(Dragrefresh)//开发显示头部
+			onHideTop:function(Dragrefresh)//开始隐藏头部
+			onTopShowed(Dragrefresh)//头部显示动画结束
+            onTopHid(Dragrefresh)//头部隐藏动画结束
+
+            onTopRefresh:function(Dragrefresh)//头部刷新
 			onTopComplete:function(Dragrefresh)//头部完成加载
 			onTopNoData:function(Dragrefresh)//头部无数据
+
 			onBottomRefresh:function(Dragrefresh)//底部刷新
 			onBottomComplete:function(Dragrefresh)//底部完成加载
 			onBottomNoData:function(Dragrefresh)//底部无数据
 			
 			onTransitionEnd:function(Dragrefresh)//头部动画结束
-            onTopShowed(Dragrefresh)//头部显示动画结束
-            onTopHid(Dragrefresh)//头部隐藏动画结束
 			*/
 		}
 		params=params||{};
@@ -62,6 +67,8 @@
 			s.touches.currentPosY=s.params.baseline;
 			s.isTopRefreshing=false;//标识正在刷新状态清除
 			s.isHid=true;
+			//标识头部正在拖动
+			s.isOnPull=false;
 			//实体操作
 			if(s.params.onHideTop)s.params.onHideTop(s);
 		};
@@ -214,6 +221,8 @@
 			s.touches.startX=e.touches[0].clientX;
 			s.touches.startY=e.touches[0].clientY;
 		};
+		//标识头部正在拖动
+		s.isOnPull=false;
 		s.onTouchMove=function(e){
 			s.touches.currentX=e.touches[0].clientX;
 			s.touches.currentY=e.touches[0].clientY;
@@ -234,6 +243,8 @@
 				s.touches.currentPosY=s.touches.posY+s.touches.diffY;
 				//实体操作
 				if(s.params.onPull)s.params.onPull(s);
+				//标识头部正在拖动
+				s.isOnPull=true;
 			}else{
 				s.overflowContainer.removeEventListener("touchmove",s.preventDefault,false);
 			}
@@ -287,7 +298,7 @@
 		}
 		s.onBottomRefresh=function(){
 			//优先保证头部刷新
-			if(s.isBottomNoData || s.isBottomRefreshing || s.isTopRefreshing)return;
+			if(s.isBottomNoData || s.isBottomRefreshing || s.isOnPull || s.isTopRefreshing)return;
 
 			s.isBottomRefreshing=true;
 			//CallBack onBottomRefresh
