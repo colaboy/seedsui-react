@@ -174,7 +174,10 @@
 		s.onTouchEnd=function(e){
 			if(s.params.onPullEnd){
 				s.params.onPullEnd(s);
-				if(s.break===true)return;
+				if(s.break===true){
+					s.break=null;
+					return;
+				}
 			}
 			if(s.moveX>0){//左pull
 				if(Math.abs(s.moveX)>s.params.threshold){
@@ -189,7 +192,6 @@
 					s.hide(s.dragContainer,2);
 				}
 			}
-			s.break=null;
 			//清空滑动方向
 			s.touches.direction=0;
 			s.touches.vertical=0;

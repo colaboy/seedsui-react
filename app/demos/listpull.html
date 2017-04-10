@@ -199,7 +199,7 @@
             render:function(){
                 var self = this;
                 //渲染页面
-                this.listPullRead=0;
+                this.toggled=false;
                 this.listPull=new ListPull("#ID-ListPull",{
                     onClick:function(e){
                         if(e.target.classList.contains("SID-ListBtnDel")){
@@ -215,30 +215,29 @@
                     onPull:function(e){
                         var readTarget=e.target.parentNode.querySelector(".SID-ListBtnRead");
                         if(e.moveX>87){//左pull超过87时，切换已未读状态
-                            self.listPullRead=1;
-                        }else if(e.moveX>0 && e.moveX<87){
+                            if(self.toggled===true)self.toggled=false;
+                        }else if(e.moveX>0 && e.moveX<=87){
                             self.listPullRead=-1;
                         }else{
                             self.listPullRead=0;
                         }
-                        //console.log(self.listPullRead);
-                        if(self.listPullRead===1){
-                            console.log("切换状态");
-                            /*if(readTarget.classList.contains("read")){
+                        if(!self.toggled){
+                            if(readTarget.classList.contains("read")){
+                                self.toggled=true;
                                 readTarget.innerHTML="未读";
                                 readTarget.classList.remove("read");
                                 readTarget.classList.add("unread");
                             }else{
+                                self.toggled=true;
                                 readTarget.innerHTML="已读";
                                 readTarget.classList.remove("unread");
                                 readTarget.classList.add("read");
-                            }*/
+                            }
                         }
                     },
                     onPullEnd:function(e){
-                        //console.log(e.moveX);
-                        if(e.moveX>0){//左滑动
-                            console.log("左pull");
+                        console.log(e.moveX);
+                        if(e.moveX>0){//左pull
                             e.hide(e.target);
                             e.break=true;
                         }
