@@ -38,6 +38,7 @@
 // @koala-prepend "seedsui/indexbar.js"
 // @koala-prepend "seedsui/loading.js"
 // @koala-prepend "seedsui/timepart.js"
+// @koala-prepend "seedsui/listpull.js"
 
 // @koala-prepend "seedsui/weather.js"
 // @koala-prepend "seedsui/gauge.js"

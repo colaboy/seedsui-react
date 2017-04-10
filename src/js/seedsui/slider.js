@@ -207,17 +207,19 @@
           ===========================*/
         //Touch信息
         s.touches={
-        	startX:0,
-        	startY:0,
-        	currentX:0,
+			direction:0,
+			vertical:0,
+			horizontal:0,
+			startX:0,
+			startY:0,
+			currentX:0,
         	currentY:0,
-        	endX:0,
-        	endY:0,
-        	diffX:0,
-        	diffY:0,
-        	posX:0,
-        	direction:null
-        };
+			endX:0,
+			endY:0,
+			diffX:0,
+			diffY:0,
+			posX:0
+		};
         //索引
         s.activeIndex=0;
         function preventDefault(e){
@@ -240,28 +242,39 @@
 			s.touches.diffY=s.touches.startY-s.touches.currentY;
 			//runCallBack
 			if(s.params.onSlideChange)s.params.onSlideChange(s);
+
 			//设置滑动方向
-			if(s.touches.direction==null){
-				s.touches.direction=Math.abs(s.touches.diffY)-Math.abs(s.touches.diffX)>0?"vertical":"horizontal";
+			if(s.touches.direction === 0) {//设置滑动方向(-1上下 | 1左右)
+				s.touches.direction = Math.abs(s.touches.diffX) > Math.abs(s.touches.diffY) ? 1 : -1;
 			}
-			if(s.touches.direction=="vertical"){
+			if (s.touches.direction === -1) {//设置垂直方向(-1上 | 1下)
+				s.touches.vertical = s.touches.diffY < 0 ? 1 : -1;
+			}
+			if (s.touches.direction === 1) {//设置左右方向(-1左 | 1右)
+				s.touches.horizontal = s.touches.diffX < 0 ? 1 : -1;
+			}
+			
+			//如果是上下滑动则不工作
+			if(s.touches.vertical !=0 ){
 				s.container.removeEventListener("touchmove",preventDefault,false);
 				return;
 			}
+
+			//如果滑动了，则禁止事件向下传播
 			e.stopPropagation();
+
 			//x轴距离左边的像素，向左为负数，向右为正数
 			var moveX=s.touches.posX-s.touches.diffX;
 			//判断是否是边缘
 			if(moveX>0 || -moveX + s.container.width >= s.wrapper.width){
 				return;
 			}
-			//s.wrapper.style.left=moveX+"px";
 			s.wrapper.style.webkitTransform='translate3d(' + moveX + 'px,0px,0px)';
 		};
 		s.onTouchEnd=function(e){
 			//s.container.removeEventListener("touchmove",preventDefault,false);
 			//左右拉动
-			if(s.touches.direction=="horizontal"){
+			if(s.touches.direction===1){
 				//左右拉动
 				if(s.touches.diffX>s.params.threshold){
 					//下一页
@@ -273,7 +286,9 @@
 				s.slideTo();
 			}
 			//清空滑动方向
-			s.touches.direction=null;
+			s.touches.direction=0;
+			s.touches.vertical=0;
+			s.touches.horizontal=0;
 			//开启自动播放
 			s.startAutoplay();
 		};

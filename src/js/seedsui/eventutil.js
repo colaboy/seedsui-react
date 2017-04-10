@@ -72,6 +72,8 @@
 			}
 			//清空方向
 			touches.direction=0;
+			touches.vertical=0;
+			touches.horizontal=0;
 			//执行函数
 			for(var n in element.touchEvents){
 				if(eventName===n)element.touchEvents[n](e);

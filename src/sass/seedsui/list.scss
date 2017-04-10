@@ -1,16 +1,16 @@
 /*---------------list.less(start)---------------*/
 .list{
 	background-color: white;
-	.li{
-		position:relative;
-		display:-webkit-box;
-		padding: 10px 12px;
-		-webkit-box-align: center;
-        color:$body-color;
-	}
-	.li:active{
-		background-color:$bar-bg;
-	}
+}
+.list-li{
+    position:relative;
+    display:-webkit-box;
+    padding: 10px 12px;
+    -webkit-box-align: center;
+    color:$body-color;
+    &:active{
+        background-color:$bar-bg;
+    }
 }
 .list-thumbnail{
     display: -webkit-box;
