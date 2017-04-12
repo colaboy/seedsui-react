@@ -82,7 +82,7 @@
                 });
                 var data=JSON.stringify({startTime:"3:00",endTime:"5:00"});
                 //this.timepart.disableTimes(null,"17:50",["SID-DisabledInfo"],data);
-                this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);
+                this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);//开始时间,结束时间,class,data
                 //加载数据
                 this.loadData();
             },

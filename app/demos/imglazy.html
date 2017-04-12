@@ -15,37 +15,38 @@
         display: block;
         width: 100%;
         min-height: 210px;
-        background-color: #ccc;
+        background-color: #ececec;
         margin-bottom:4px;
     }
     </style>
 </head>
 
 <body ontouchstart="">
-        <header>
-            <div class="titlebar">
-                <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
-                <h1 class="titlebar-title">预加载</h1>
-                <a class="titlebar-button" id="ID-BtnRefresh">新增图片</a>
-            </div>
-        </header>
-        <article>
-            <img data-load-src="../images/1.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/2.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/3.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/4.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/5.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/5.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/4.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/3.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/2.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/1.jpg" src="" class="lazyimg" />
-            <div style="height: 210px;" data-load-src="../images/1.jpg" data-error-src="" class="lazyimg"></div>
-            <div style="height: 210px;" data-load-src="../images/2.jpg" data-error-src="" class="lazyimg"></div>
-            <div style="height: 210px;" data-load-src="../images/3.jpg" data-error-src="" class="lazyimg"></div>
-            <div style="height: 210px;" data-load-src="../images/4.jpg" data-error-src="" class="lazyimg"></div>
-            <div style="height: 210px;" data-load-src="../images/5.jpg" data-error-src="" class="lazyimg"></div>
-        </article>
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">预加载</h1>
+            <a class="titlebar-button" id="ID-BtnRefresh">新增图片</a>
+        </div>
+    </header>
+    <article>
+        <img data-load-src="abc.jpg" data-error-src="../images/noimg.jpg" src="../images/noimg.jpg" class="lazyimg" />
+        <img data-load-src="../images/1.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/2.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/3.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/4.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/5.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/5.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/4.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/3.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/2.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="../images/1.jpg" data-error-src="../images/noimg.jpg" src="" class="lazyimg" />
+        <div style="height: 210px;" data-load-src="../images/1.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="../images/2.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="../images/3.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="../images/4.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="../images/5.jpg" data-error-src="" class="lazyimg"></div>
+    </article>
     
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -58,8 +59,8 @@
             render:function(){
                 /*DOM*/
                 this.btnRefresh=document.getElementById("ID-BtnRefresh");
-                /*Plugin*/
-                this.imgLazy=new Imglazy();
+                //图片预加载
+                this.imgLazy=new ImgLazy(document.body);//container,params
 
                 //加载数据
                 this.loadData();
@@ -86,12 +87,15 @@
               Event Handler
               ===========================*/
             _onClickBtnRefresh:function(e){
-                var imgStr='<img data-load-src="../images/6.jpg" src="" class="lazyimg" />';
-                var img = document.createElement("img");
-                img.setAttribute("data-load-src","../images/6.jpg");
-                img.className="lazyimg";
+                //插入新图片
+                var imgStr='<img data-load-src="../images/6.jpg" src="" class="lazyimg" />'+
+                '<img data-load-src="../images/6.jpg" src="" class="lazyimg" />'+
+                '<img data-load-src="../images/6.jpg" src="" class="lazyimg" />';
+                
                 var article=document.querySelector("article");
-                article.insertBefore(img,article.querySelector("img"));
+                article.innerHTML=imgStr+article.innerHTML;
+
+                //图片预加载
                 this.imgLazy.update();
             }
         }

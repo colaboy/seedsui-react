@@ -161,6 +161,7 @@
 			var wrapperX=document.createElement("div");
 			wrapperX.setAttribute("class",s.params.wrapperXClass);
 			wrapperX.width=s.container.width*3;
+			wrapperX.style.width=s.container.width*3+"px";
 			/*wrapperX.width=s.container.width*3;
 			wrapperX.style.width=wrapperX.width+"px";*/
 			for(var i=0;i<3;i++){
@@ -264,7 +265,7 @@
         }
         s.updateContainerWidth=function(){//更新宽度
         	s.container.width=s.container.clientWidth;
-        	s.wrapperX.width=s.wrapperX.clientWidth;
+        	s.wrapperX.width=s.container.width*3+"px";;
         	/*s.wrapperX.width=s.container.width*3;
 			s.wrapperX.style.width=s.wrapperX.width.width+"px";*/
         	for(var i=0;i<3;i++){

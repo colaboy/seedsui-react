@@ -1,17 +1,15 @@
-//Imglazy 图片预加载
+//ImgLazy 图片预加载
 (function(window,document,undefined){
 	
-	window.Imglazy=function(params){
+	window.ImgLazy=function(container,params){
 		/*================
 		Model
 		================*/
 		var defaults={
-			container:document.body,
-			effect:"show",//show|opacity
-			event:"scroll",//滚动加载
-			threshold:300,
-			imgShowAttr:"data-load-src",
-			imgErrowAttr:"data-error-src"
+			isScrollLoad:true,//滚动加载
+			threshold:300,//滚动加载时，显示区域扩张上下像素
+			imgLoadAttr:"data-load-src",//图片地址
+			imgErrowAttr:"data-error-src"//错误图片地址
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -22,10 +20,10 @@
 		var s=this;
 		s.params=params;
 		//Container
-		s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
+		s.container=typeof container=="string"?document.querySelector(container):container;
 		if(!s.container){
-            console.log("SeedsUI Error：未找到Imglazy的容器DOM对象，请检查传入参数是否正确");
-            return;
+            console.log("SeedsUI Warn：未找到Imglazy的容器DOM对象，默认将其指向body");
+            s.container=document.body;
         }
 		//所有图片
 		s.imgs=[];
@@ -33,14 +31,15 @@
 		s.cacheImgs=[];
 		//获得所有懒人图片
 		s.updateImgs=function(){
-			s.imgs=s.container.querySelectorAll("["+s.params.imgShowAttr+"]");
+			s.imgs=s.container.querySelectorAll("["+s.params.imgLoadAttr+"]");
 			for(var i=0;i<s.imgs.length;i++){
 				s.cacheImgs[i]=new Image();
 				s.cacheImgs[i].index=i;
 				s.cacheImgs[i].errorSrc=s.imgs[i].getAttribute(s.params.imgErrowAttr);
 				//如果没有选择滚动加载，则一次性加载
-				if(s.params.event != "scroll"){
-					s.cacheImgs[i].src=s.imgs[i].getAttribute(s.params.imgShowAttr);
+				if(!s.params.isScrollLoad){
+					var src=s.imgs[i].getAttribute(s.params.imgLoadAttr);
+					s.cacheImgs[i].src=src;
 				}
 			}
 		}
@@ -66,7 +65,7 @@
 		    return offsetTop;
 		};
 		//元素是否在显示区域内
-		s.isOnScreenView=function(el){
+		s.isInScreen=function(el){
 			var offsetTop=s.getOffsetTop(el);
 			if(offsetTop>s.scrollTop-s.params.threshold && offsetTop < parseInt(s.scrollTop)+parseInt(s.windowHeight) ){
 				return true;
@@ -78,7 +77,7 @@
 		================*/
 		s.events=function(detach){
 			var action=detach?"removeEventListener":"addEventListener";
-			if(s.params.event==="scroll"){
+			if(s.params.isScrollLoad){
 				var scrollTarget=s.container===document.body?window:s.container;
 				scrollTarget[action]("scroll",s.onScroll,false);
 			}
@@ -143,10 +142,11 @@
 		s.onScrollEnd=function(e){
 			//console.log("停止滚动");
 			for(var i=0;i<s.imgs.length;i++){
-				var flag=s.isOnScreenView(s.imgs[i]);
+				var flag=s.isInScreen(s.imgs[i]);
 				if(flag && s.cacheImgs[i].src==""){
 					//console.log("加载第"+i+"张："+flag);
-					s.cacheImgs[i].src=s.imgs[i].getAttribute(s.params.imgShowAttr);
+					var src=s.imgs[i].getAttribute(s.params.imgLoadAttr);
+					s.cacheImgs[i].src=src;
 				}
 			}
 		}
