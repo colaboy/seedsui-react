@@ -199,7 +199,8 @@
             render:function(){
                 var self = this;
                 //渲染页面
-                this.toggled=false;
+                this.listPullThreshold=0;
+                this.listPullIsRead=null;
                 this.listPull=new ListPull("#ID-ListPull",{
                     onClick:function(e){
                         if(e.target.classList.contains("SID-ListBtnDel")){
@@ -214,21 +215,34 @@
                     },
                     onPull:function(e){
                         var readTarget=e.target.parentNode.querySelector(".SID-ListBtnRead");
-                        if(e.moveX>87){//左pull超过87时，切换已未读状态
-                            if(self.toggled===true)self.toggled=false;
-                        }else if(e.moveX>0 && e.moveX<=87){
-                            self.listPullRead=-1;
-                        }else{
-                            self.listPullRead=0;
+                        if(!readTarget)return;
+                        if(!self.listPullIsRead){
+                            self.listPullIsRead=readTarget.classList.contains("read")?1:-1;
                         }
-                        if(!self.toggled){
-                            if(readTarget.classList.contains("read")){
-                                self.toggled=true;
+                        if(e.moveX>87){//切换状态
+                            self.listPullThreshold=1;
+                        }else if(e.moveX>0 && e.moveX<=87){
+                            self.listPullThreshold=-1;
+                        }else{
+                            self.listPullThreshold=0;
+                        }
+                        //根据初始状态和临界值判断已未读切换
+                        if(self.listPullThreshold===1){
+                            if(self.listPullIsRead===1){
                                 readTarget.innerHTML="未读";
                                 readTarget.classList.remove("read");
                                 readTarget.classList.add("unread");
-                            }else{
-                                self.toggled=true;
+                            }else if(self.listPullIsRead===-1){
+                                readTarget.innerHTML="已读";
+                                readTarget.classList.remove("unread");
+                                readTarget.classList.add("read");
+                            }
+                        }else if(self.listPullThreshold===-1){
+                            if(self.listPullIsRead===-1){
+                                readTarget.innerHTML="未读";
+                                readTarget.classList.remove("read");
+                                readTarget.classList.add("unread");
+                            }else if(self.listPullIsRead===1){
                                 readTarget.innerHTML="已读";
                                 readTarget.classList.remove("unread");
                                 readTarget.classList.add("read");
@@ -236,11 +250,12 @@
                         }
                     },
                     onPullEnd:function(e){
-                        console.log(e.moveX);
                         if(e.moveX>0){//左pull
                             e.hide(e.target);
                             e.break=true;
                         }
+                        //清空已未读状态
+                        self.listPullIsRead=null;
                     }
                 });
                 //加载数据
