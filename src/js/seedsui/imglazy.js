@@ -100,13 +100,24 @@
 		//Events Handler
 		s.onLoad=function(e){
 			var target=e.target;
-			s.imgs[target.index].src=target.src;
+			var imgTarget=s.imgs[target.index];
+			if(imgTarget.tagName==="IMG"){
+				imgTarget.src=target.src;
+			}else{
+				imgTarget.style.backgroundImage="url("+target.src+")";
+			}
+			
 			//console.log("加载图片"+target.index);
 		}
 		s.onError=function(e){
 			var target=e.target;
-			if(target.errorSrc){
-				s.imgs[target.index].src=target.errorSrc;
+			if(!target.errorSrc)return;
+
+			var imgTarget=s.imgs[target.index];
+			if(imgTarget.tagName==="IMG"){
+				imgTarget.src=target.errorSrc;
+			}else{
+				imgTarget.style.backgroundImage="url("+target.errorSrc+")";
 			}
 			//console.log("错误图片"+target.index);
 		}

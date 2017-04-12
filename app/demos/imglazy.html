@@ -26,7 +26,7 @@
             <div class="titlebar">
                 <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
                 <h1 class="titlebar-title">预加载</h1>
-                <a class="titlebar-button" id="ID-BtnRefresh">刷新</a>
+                <a class="titlebar-button" id="ID-BtnRefresh">新增图片</a>
             </div>
         </header>
         <article>
@@ -35,12 +35,16 @@
             <img data-load-src="../images/3.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/4.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/5.jpg" src="" class="lazyimg" />
-            <img data-load-src="../images/6.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/5.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/4.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/3.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/2.jpg" src="" class="lazyimg" />
             <img data-load-src="../images/1.jpg" src="" class="lazyimg" />
+            <div style="height: 210px;" data-load-src="../images/1.jpg" data-error-src="" class="lazyimg"></div>
+            <div style="height: 210px;" data-load-src="../images/2.jpg" data-error-src="" class="lazyimg"></div>
+            <div style="height: 210px;" data-load-src="../images/3.jpg" data-error-src="" class="lazyimg"></div>
+            <div style="height: 210px;" data-load-src="../images/4.jpg" data-error-src="" class="lazyimg"></div>
+            <div style="height: 210px;" data-load-src="../images/5.jpg" data-error-src="" class="lazyimg"></div>
         </article>
     
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -51,35 +55,23 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
+            render:function(){
                 /*DOM*/
                 this.btnRefresh=document.getElementById("ID-BtnRefresh");
                 /*Plugin*/
-                this.iLazy;
-                /*Data*/
+                this.imgLazy=new Imglazy();
 
-                /*Render*/
-                this.render();
-                
-                /*Events*/
-                this._attach();
+                //加载数据
+                this.loadData();
             },
-            render:function(){
-                this._initPlugin();
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
               Method
               ===========================*/
             _update:function(){
-            },
-            /*=========================
-              Plugin
-              ===========================*/
-            _initImgLazy:function(){
-                this.iLazy=new Imglazy();
-            },
-            _initPlugin:function(){
-                this._initImgLazy();
             },
             /*=========================
               Events
@@ -100,12 +92,12 @@
                 img.className="lazyimg";
                 var article=document.querySelector("article");
                 article.insertBefore(img,article.querySelector("img"));
-                this.iLazy.update();
+                this.imgLazy.update();
             }
         }
 
         window.addEventListener("load",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回
