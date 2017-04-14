@@ -117,8 +117,8 @@
 			if(s.params.onTopComplete){
 				s.params.onTopComplete(s);
 			}
-			//如果没有滚动条，则刷新底部数据
-			if(!s.hasScroll()){
+			//如果没有滚动条，并且底部还有数据，则刷新底部数据
+			if(!s.hasScroll() && !s.isBottomNoData){
 				s.onBottomRefresh();
 			}
 		};
@@ -146,7 +146,7 @@
 				s.params.onBottomComplete(s);
 			}
 			//如果没有滚动条，则再次刷新
-			if(!s.hasScroll()){
+			if(!s.hasScroll() && !s.isBottomNoData){
 				s.onBottomRefresh();
 			}
 		};
@@ -297,7 +297,7 @@
             }
 		}
 		s.onBottomRefresh=function(){
-			//优先保证头部刷新
+			//底部无数据、底部正在刷新、下拉中、头部刷新的情况，不执行
 			if(s.isBottomNoData || s.isBottomRefreshing || s.isOnPull || s.isTopRefreshing)return;
 
 			s.isBottomRefreshing=true;

@@ -196,7 +196,19 @@
               ===========================*/
             render:function(){
             	var self=this;
+            	/*历史记录控制*/
                 this.history=new History({
+                	onInit:function(e){
+                		e.clearList();
+                		//如果有hash值，保存
+                		var currentHash=location.hash;
+        				if(currentHash){
+        					e.add(currentHash);
+        					currentHash=currentHash.indexOf("/")>=0?currentHash.substring(0,currentHash.indexOf("/")):currentHash;
+        					document.querySelector(currentHash+"-Section").classList.add("active");
+        				}
+                		console.log(e.list);
+                	},
                 	onBack:function(e){
 		                if(e.discardList){
 		                    for(var i=0,discardLi;discardLi=e.discardList[i++];){
@@ -210,22 +222,26 @@
 		                    var prevHash=e.prevHash.indexOf("/")>=0?e.prevHash.substring(0,e.prevHash.indexOf("/")):e.prevHash;
 		                    document.querySelector(prevHash+"-Section").classList.remove("active");
 		                }
+		                console.log(e.list);
 		            },
 		            onForward:function(e){
 		                //console.log("前进："+e.currentHash);
 		                //app.isBack=false;
 		                var currentHash=e.currentHash.indexOf("/")>=0?e.currentHash.substring(0,e.currentHash.indexOf("/")):e.currentHash;
 		                document.querySelector(currentHash+"-Section").classList.add("active");
+		                console.log(e.list);
 		            }
                 });
+
                 //初始化时，历史记录就有了，说明刷新过了
-                if(this.history.list.length>0){
+                /*if(this.history.list.length>0){
                 	for(var i=0,hashLi;hashLi=this.history.list[i++];){
                 		var hash=hashLi.indexOf("/")>=0?hashLi.substring(0,hashLi.indexOf("/")):hashLi;
                 		document.querySelector(hash+"-Section").classList.add("active");
                 	}
-                }
+                }*/
 
+                /*页面控制*/
                 /*this.sections=new Sections({
                 	onStart:function(e){
                 		//console.log("开始显示："+e.container.id);
@@ -237,8 +253,6 @@
                 		//console.log("隐藏完成："+e.container.id);
                 	}
                 });*/
-
-                
 
             	/*加载数据*/
                 this.loadData();

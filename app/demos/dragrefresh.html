@@ -37,8 +37,11 @@
             render:function(){
                 var self = this;
                 this.pagination={
-                    count:5,
-                    current:0
+                    hasData:null,
+                    current:1,//当前页数
+                    max:0,//总页数
+                    limit:10,//每页条数
+                    total:0//总条数
                 }
                 //插件
                 this.drag=DfPull({
@@ -49,6 +52,7 @@
                     parent:"article",
                     onTopRefresh:function(e){
                         console.log("头部刷新");
+                        self.pagination.current=1;
                         self._loadData();
                     },
                     onTopComplete:function(e){
@@ -56,7 +60,8 @@
                     },
                     onBottomRefresh:function(e){
                         console.log("底部刷新");
-                        self._loadNextPage();
+                        self.pagination.current++;
+                        self._loadData(true);//下一页
                     },
                     onBottomComplete:function(e){
                         console.log("底部完成");
@@ -83,37 +88,90 @@
             /*=========================
               Method
               ===========================*/
-            _loadData:function(){
+            _loadData:function(isNext){
                 var self=this;
-                var liStr="";
-                for(var i=0;i<20;i++){
-                    liStr+='<li class="list-li underline"><p>第'+i+'行列表</p></li>';
-                }
-                setTimeout(function(){
-                    document.getElementById("ID-List").innerHTML=liStr;
-                    self.pagination.current=1;
-                    //drag标识头部状态
-                    self.drag.topComplete();
-                }, 2000);
-            },
-            _loadNextPage:function(){
-                var self=this;
-                if(this.pagination.current==this.pagination.count){
+                //如果是最后一页
+                if(isNext && self.pagination.current>self.pagination.max){
+                    self.pagination.current--;
                     //drag标识底部状态
-                    this.drag.bottomNoData();
+                    self.drag.bottomNoData();
                     return;
                 }
-                var liStr="";
-                for(var i=0;i<10;i++){
-                    liStr+='<li class="list-li underline"><p>第'+i+'行列表</p></li>';
+                /*
+                //ajax请求
+                $.ajax({
+                    url: 'url?pageNum='+self.pagination.current,
+                    type: 'post',
+                    data: "",
+                    dataType: "jsonp",
+                    jsonp: 'callback',
+                    jsonpCallback:"success_jsonpCallback",
+                    success: function(json){
+                        //分页
+                        self.pagination.hasData=true;
+                        self.pagination.total = json.total;
+                        self.pagination.limit = json.limit;
+                        self.pagination.max=Math.ceil(self.pagination.total/self.pagination.limit);
+                        if(self.pagination[1].total < self.pagination[1].limit){
+                            //drag标识底部状态
+                            self.drag[1].bottomNoData();
+                            return;
+                        }
+
+                        //如果是最后一页
+                        if(self.pagination.current>self.pagination.max){
+                            //drag标识底部状态
+                            self.drag.bottomNoData();
+                            return;
+                        }
+
+                        //此处生成html字符串
+                        var html="";
+
+                        //头部刷新或者下一页
+                        if(!isNext){
+                            $("#ID-XXX").html(html);
+                            //drag标识头部状态
+                            self.drag.topComplete();
+                        }else{
+                            $("#ID-XXX").append(html);
+                            //drag标识底部状态
+                            self.drag.bottomComplete();
+                        }
+                    },
+                    error: function(){
+                        if(isNext)self.pagination.current--;
+                        self.drag.topComplete();
+                        self.drag.bottomNoData();
+                        self.toast.setText("请求数据失败，请重试");
+                        self.toast.show();
+                    },
+                    complete:function(){
+                        self.loading.hide();
+                    }
+                });
+                */
+                /*静态页面测试*/
+                this.pagination.max=3;
+                //此处生成html字符串
+                var html="";
+                for(var i=0;i<this.pagination.limit;i++){
+                    html+='<li class="list-li underline"><p>第'+i+'行列表</p></li>';
                 }
-                
-                setTimeout(function(){
-                    document.getElementById("ID-List").innerHTML+=liStr;
-                    self.pagination.current++;
-                    //drag标识底部状态
-                    self.drag.bottomComplete();
-                }, 500);
+                //头部刷新或者下一页
+                if(!isNext){
+                    setTimeout(function(){
+                        document.getElementById("ID-List").innerHTML=html;
+                        //drag标识头部状态
+                        self.drag.topComplete();
+                    }, 2000);
+                }else{
+                    setTimeout(function(){
+                        document.getElementById("ID-List").innerHTML+=html;
+                        //drag标识底部状态
+                        self.drag.bottomComplete();
+                    }, 500);
+                }
             },
             /*=========================
               Events

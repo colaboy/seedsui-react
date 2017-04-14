@@ -6,12 +6,11 @@
           ===========================*/
 		var defaults={
 			historyKey:"history",
-			isTakeHistory:true,//是否添加浏览器历史记录
 
 			/*callbacks
+			onInit:function(History)//初始化
 			onBack:function(History)//返回
 			onForward:function(History)//前进
-			onRefreshed:function(History)//刷新后
 			*/
 		}
 
@@ -38,6 +37,7 @@
         	storage.setItem(s.params.historyKey,s.list);
         }
         s.clearList=function(){
+        	s.list=[];
         	storage.removeItem(s.params.historyKey);
         }
 
@@ -71,30 +71,6 @@
 			s.saveList();
         }
 
-        s.back=function(){
-        	s.prevHash=s.list.pop();
-        	//如果返回二级及以上，如history.go(-2)
-        	if(s.currentHash !== s.list[s.list.length-1]){
-        		s.discardList=[];
-        		var discardLen=s.list.length-1-s.list.indexOf(s.currentHash)
-        		for(var i=0;i<discardLen;i++){
-        			s.discardList.push(s.list.pop());
-        		}
-        	}else{
-        		s.discardList=[];
-        	}
-        	//Callback onBack
-			if(s.params.onBack)s.params.onBack(s);
-        	//历史记录保存到本地数据库中
-			s.saveList();
-        }
-        s.forward=function(){
-        	s.prevHash=s.list[s.list.length-1]||"";
-        	s.list.push(s.currentHash);
-        	//历史记录保存到本地数据库中
-			s.saveList();
-        }
-
 		/*=========================
           Control
           ===========================*/
@@ -115,7 +91,7 @@
 			s.currentHash=location.hash;
 			//返回到根部
 			if(location.hash==""){
-				s.back();
+				s.onBack();
 				//console.log("根部——当前hash："+s.currentHash+";关闭页面："+s.prevHash);
 				return;
 			}
@@ -127,18 +103,47 @@
 
 			//前进与后退
 			if(s.list.indexOf(s.currentHash)==-1){//前进
-				s.forward();
+				s.onForward();
 				//Callback onForward
 				if(s.params.onForward)s.params.onForward(s);
 
 				//console.log("前进——当前hash："+s.currentHash+";上个页面："+s.prevHash);
 			}else{//后退
-				s.back();
+				s.onBack();
 				//console.log("后退——当前hash："+s.currentHash+";关闭页面："+s.prevHash);
 			}
 		};
-		s.init=function(){
+        s.onBack=function(){
+        	s.prevHash=s.list.pop();
+        	//如果返回二级及以上，如history.go(-2)
+        	if(s.currentHash !== s.list[s.list.length-1]){
+        		s.discardList=[];
+        		var discardLen=s.list.length-1-s.list.indexOf(s.currentHash)
+        		for(var i=0;i<discardLen;i++){
+        			s.discardList.push(s.list.pop());
+        		}
+        	}else{
+        		s.discardList=[];
+        	}
+        	//Callback onBack
+			if(s.params.onBack)s.params.onBack(s);
+        	//历史记录保存到本地数据库中
+			s.saveList();
+        }
+        s.onForward=function(){
+        	s.prevHash=s.list[s.list.length-1]||"";
+        	s.list.push(s.currentHash);
+        	//历史记录保存到本地数据库中
+			s.saveList();
+        }
+        s.onInit=function(){
+        	//Callback onInit
+			if(s.params.onInit)s.params.onInit(s);
+			//添加事件绑定
 			s.attach();
+        }
+		s.init=function(){
+			s.onInit();
 		}
 		s.init();
 	}

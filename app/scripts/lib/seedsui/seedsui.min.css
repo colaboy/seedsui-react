@@ -571,31 +571,59 @@ aside {
     margin: 2px 0 -2px 0; }
 
 /*多彩标签按钮*/
-.mark-info, .mark-success, .mark-cancel, .mark-warn, .mark-disable, .mark-primary, .mark-grayscale {
+.mark-info, .mark-success, .mark-cancel, .mark-warn, .mark-disable, .mark-primary {
   font-size: 0.95em;
   padding: 2px 5px;
-  border-radius: 3px; }
-
-.mark-info, .mark-success, .mark-cancel, .mark-warn, .mark-disable, .mark-primary {
+  border-radius: 3px;
   color: white; }
 
 .mark-disable {
   background-color: #d1d1d1; }
 
+.mark-disable.outline {
+  background-color: transparent;
+  color: #d1d1d1;
+  border: 1px solid #d1d1d1; }
+
 .mark-info {
   background-color: #5bc0de; }
+
+.mark-info.outline {
+  background-color: transparent;
+  color: #5bc0de;
+  border: 1px solid #5bc0de; }
 
 .mark-success {
   background-color: #4DDB63; }
 
+.mark-success.outline {
+  background-color: transparent;
+  color: #4DDB63;
+  border: 1px solid #4DDB63; }
+
 .mark-cancel {
   background-color: #F86868; }
+
+.mark-cancel.outline {
+  background-color: transparent;
+  color: #F86868;
+  border: 1px solid #F86868; }
 
 .mark-warn {
   background-color: #f4984e; }
 
+.mark-warn.outline {
+  background-color: transparent;
+  color: #f4984e;
+  border: 1px solid #f4984e; }
+
 .mark-primary {
   background-color: #20aeff; }
+
+.mark-primary.outline {
+  background-color: transparent;
+  color: #20aeff;
+  border: 1px solid #20aeff; }
 
 /*----------------button.less(end)----------------*/
 /*----------------grid.less(start)--------------*/

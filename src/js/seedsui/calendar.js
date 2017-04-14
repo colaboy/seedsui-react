@@ -83,6 +83,7 @@
             return;
         }
 		s.container.width=s.container.clientWidth;
+		if(!s.container.width)s.container.width=window.innerWidth || document.documentElement.clientWidth;
 		//Header
 		s.header,s.title,s.prev,s.next;
 		//Week
@@ -506,7 +507,7 @@
 
 			if(s.touches.direction === 1) {//左右滑动
 				var moveX=s.touches.posX-s.touches.diffX;
-				if(moveX<0 && Math.abs(moveX-s.container.width)<s.wrapperX.width){//判断是否是边缘
+				if(moveX<0 && Math.abs(moveX)<s.container.width*2){//判断是否是边缘
 					s.touches.horizontal = moveX < s.touches.posX ? 1 : -1;//设置方向(左右)
 					s.wrapperX.style.webkitTransform = 'translateX(' + moveX + 'px)';
 				}

@@ -103,7 +103,11 @@
                 this.tabbarContainer=document.getElementById("ID-Tabbar");
                 this.tabs=this.tabbarContainer.querySelectorAll(".tab");
 
-                this.slider=this._initSlider();
+                this.slider=new Slider("#ID-Pages",{
+                    onSlideChangeEnd:function(e){
+                        self._tabActive(e.activeIndex);
+                    }
+                });
 
                 //加载数据
                 this.loadData();
@@ -140,14 +144,6 @@
                     t.classList.remove("active");
                 }
                 this.tabs[index].classList.add("active");
-            },
-            _initSlider:function(){
-                var self=this;
-                return new Slider("#ID-Pages",{
-                    onSlideChangeEnd:function(e){
-                        self._tabActive(e.activeIndex);
-                    }
-                });
             },
             /*=========================
               Events
