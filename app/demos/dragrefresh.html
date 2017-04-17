@@ -112,18 +112,6 @@
                         self.pagination.total = json.total;
                         self.pagination.limit = json.limit;
                         self.pagination.max=Math.ceil(self.pagination.total/self.pagination.limit);
-                        if(self.pagination[1].total < self.pagination[1].limit){
-                            //drag标识底部状态
-                            self.drag[1].bottomNoData();
-                            return;
-                        }
-
-                        //如果是最后一页
-                        if(self.pagination.current>self.pagination.max){
-                            //drag标识底部状态
-                            self.drag.bottomNoData();
-                            return;
-                        }
 
                         //此处生成html字符串
                         var html="";
@@ -137,6 +125,13 @@
                             $("#ID-XXX").append(html);
                             //drag标识底部状态
                             self.drag.bottomComplete();
+                        }
+                        //如果没有超过一页
+                        if(self.pagination.total <= self.pagination.limit){
+                            //drag标识头部状态
+                            self.drag.topComplete();
+                            //drag标识底部状态
+                            self.drag.bottomNoData();
                         }
                     },
                     error: function(){
