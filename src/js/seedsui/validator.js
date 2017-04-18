@@ -12,13 +12,13 @@
 				return errorMsg;
 			}
 		},
-		negativeInteger:function(value,errorMsg){
-			if(value.length != 0 && !/^-[1-9]{1,}[0-9]*$/.test(value)){
+		positiveInteger:function(value,errorMsg){
+			if(value.length != 0 && !/^[1-9]{1,}[0-9]*$/.test(value)){
 				return errorMsg;
 			}
 		},
-		positiveInteger:function(value,errorMsg){
-			if(value.length != 0 && !/^[1-9]{1,}[0-9]*$/.test(value)){
+		negativeInteger:function(value,errorMsg){
+			if(value.length != 0 && !/^-[1-9]{1,}[0-9]*$/.test(value)){
 				return errorMsg;
 			}
 		},

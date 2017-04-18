@@ -65,7 +65,7 @@
                 <div class="inputbox underline">
                     <label class="inputbox-left">手机</label>
                     <div class="inputbox-right inputbox">
-                        <input type="tel" name="NID-Phone" class="input-text" oninput="if(isNaN(value))value=value.substring(0,value.length-1)"/>
+                        <input type="tel" name="NID-Phone" class="input-text" oninput="if(!/^[1-9]{1,}[0-9]*$/.test(value))value=value.substring(0,value.length-1)"/>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                 <div class="inputbox">
                     <label class="inputbox-left">年龄</label>
                     <div class="inputbox-right inputbox">
-                        <input type="number" name="NID-Age" class="input-text"/>
+                        <input type="tel" name="NID-Age" maxlength="3" class="input-text" oninput="if(!/^[1-9]{1,}[0-9]*$/.test(value))value=value.substring(0,value.length-1)"/>
                     </div>
                 </div>
             </div>
@@ -196,9 +196,9 @@
                         errorMsg:'邮箱格式不正确'
                     }
                 ]);
-                validator.add(this.formContainer["NID-Age"],[
+                /*validator.add(this.formContainer["NID-Age"],[
                     {
-                        rule:'negativeInteger',
+                        rule:'positiveInteger',
                         errorMsg:'年龄只能为正整数'
                     },{
                         rule:'minNumber:1',
@@ -206,6 +206,12 @@
                     },{
                         rule:'maxNumber:48',
                         errorMsg:'年龄最大48岁'
+                    }
+                ]);*/
+                validator.add(this.formContainer["NID-Age"],[
+                    {
+                        rule:'positiveInteger',
+                        errorMsg:'年龄只能为正整数'
                     }
                 ]);
                 var error=validator.start();
