@@ -112,5 +112,32 @@
 			}
 		};
 	}();
-
+	/********************先发布后订阅********************/
+	/*var fn1=function(e){
+		console.log(e);
+	}
+	var btn1=document.getElementById("button1");
+	var btn2=document.getElementById("button2");
+	var btn3=document.getElementById("button3");
+	Event.create(btn1).listen('click',fn1);
+	btn1.addEventListener("click",function(e){
+		Event.create(this).trigger('click',e);
+	},false);
+	Event.create(btn2).listen('click',fn1);
+	btn2.addEventListener("click",function(e){
+		Event.create(this).trigger('click',e);
+	},false);
+	btn3.addEventListener("click",function(e){
+		Event.create(this).trigger('click',e);
+	},false);*/
+	/********************使用命名空间********************/
+	/*Event.create('namespace1').listen('click',function(e){
+		console.log(e);
+	});
+	Event.create('namespace1').remove('click');
+	Event.create('namespace1').trigger('click',1);
+	Event.create('namespace2').listen('click',function(e){
+		console.log(e);
+	});
+	Event.create('namespace2').trigger('click',2);*/
 })(window,document,undefined);

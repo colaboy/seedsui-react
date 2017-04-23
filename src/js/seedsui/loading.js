@@ -49,11 +49,14 @@
 		s.create=function(){
 			if(s.params.container){
 				s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
-				s.progress=s.container.querySelector("."+s.params.progressClass);
-				s.progressBox=s.container.querySelector("."+s.params.progressBoxClass);
+				if(!s.container){
+					console.log("SeedsUI Error：未找到Aside的DOM对象，请检查传入参数是否正确");
+				}else{
+					s.progress=s.container.querySelector("."+s.params.progressClass);
+					s.progressBox=s.container.querySelector("."+s.params.progressBoxClass);
+					return;
+				}
 			}
-			if(s.container)return;
-
 			s.container=s.createContainer();
 			s.progressBox=s.createProgressBox();
 			s.progress=s.createProgress();

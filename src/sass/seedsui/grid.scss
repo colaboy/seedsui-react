@@ -38,6 +38,7 @@
 		zoom:1;
 	}
 	li{
+		position: relative;
 		width:33%;
 		float:left;
 		text-align:center;
@@ -93,7 +94,6 @@
 		padding-bottom:8px;
 	}
 	li{
-		position: relative;
 		&:before,&:after{
 			content: '';
 		    display: block;

@@ -662,6 +662,7 @@ aside {
     clear: both;
     zoom: 1; }
   .grid li {
+    position: relative;
     width: 33%;
     float: left;
     text-align: center;
@@ -692,32 +693,30 @@ aside {
 .grid.grid-bordered[data-rowspace="8"] li {
   padding-top: 8px;
   padding-bottom: 8px; }
-.grid.grid-bordered li {
-  position: relative; }
-  .grid.grid-bordered li:before, .grid.grid-bordered li:after {
-    content: '';
-    display: block;
-    position: absolute;
-    background-color: #d1d1d1;
-    z-index: 1;
-    overflow: hidden;
-    -webkit-backface-visibility: hidden; }
-  .grid.grid-bordered li:before {
-    top: 0;
-    bottom: auto;
-    left: auto;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    -webkit-transform-origin: right center; }
-  .grid.grid-bordered li:after {
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    width: 100%;
-    -webkit-transform-origin: center bottom; }
+.grid.grid-bordered li:before, .grid.grid-bordered li:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #d1d1d1;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden; }
+.grid.grid-bordered li:before {
+  top: 0;
+  bottom: auto;
+  left: auto;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  -webkit-transform-origin: right center; }
+.grid.grid-bordered li:after {
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  -webkit-transform-origin: center bottom; }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   .grid.grid-bordered li:after {
     -webkit-transform: scaleY(0.5); }
@@ -1221,8 +1220,8 @@ label .input-checkbox + span, label .input-radio + span {
 /*控件Less*/
 @font-face {
   font-family: 'iconfont';
-  src: url("fonts/iconfont.eot?p6uqyb");
-  src: url("fonts/iconfont.eot?p6uqyb#iefix") format("embedded-opentype"), url("fonts/iconfont.ttf?p6uqyb") format("truetype"), url("fonts/iconfont.woff?p6uqyb") format("woff"), url("fonts/iconfont.svg?p6uqyb#iconfont") format("svg");
+  src: url("fonts/iconfont.eot?uem7qm");
+  src: url("fonts/iconfont.eot?uem7qm#iefix") format("embedded-opentype"), url("fonts/iconfont.ttf?uem7qm") format("truetype"), url("fonts/iconfont.woff?uem7qm") format("woff"), url("fonts/iconfont.svg?uem7qm#iconfont") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -1237,6 +1236,12 @@ label .input-checkbox + span, label .input-radio + span {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-card:before {
+  content: "\e951"; }
+
+.icon-card-fill:before {
+  content: "\e952"; }
 
 .icon-appbag:before {
   content: "\e900"; }
@@ -1481,24 +1486,6 @@ label .input-checkbox + span, label .input-radio + span {
 .icon-femalesign-fill:before {
   content: "\e950"; }
 
-.icon-file:before {
-  content: "\e951"; }
-
-.icon-fileadd:before {
-  content: "\e952"; }
-
-.icon-fileadd-fill:before {
-  content: "\e953"; }
-
-.icon-file-fill:before {
-  content: "\e954"; }
-
-.icon-filesearch:before {
-  content: "\e955"; }
-
-.icon-filesearch-fill:before {
-  content: "\e956"; }
-
 .icon-filter:before {
   content: "\e957"; }
 
@@ -1722,15 +1709,9 @@ label .input-checkbox + span, label .input-radio + span {
   content: "\e9a4"; }
 
 .icon-qrcode:before {
-  content: "\e9a5"; }
-
-.icon-qrcode-fill:before {
-  content: "\e9a6"; }
-
-.icon-qrcodeline:before {
   content: "\e9a7"; }
 
-.icon-qrcodeline-fill:before {
+.icon-qrcode-fill:before {
   content: "\e9a8"; }
 
 .icon-rdo:before {
@@ -2341,6 +2322,7 @@ label .input-checkbox + span, label .input-radio + span {
   max-height: 62px; }
 
 .list-container {
+  display: block;
   -webkit-box-flex: 1.0;
   margin-right: 10px; }
 
@@ -4390,7 +4372,6 @@ progress::-webkit-progress-value {
 
 .slider-slide {
   position: relative;
-  width: 374px;
   float: left;
   overflow: auto;
   background-size: cover;
