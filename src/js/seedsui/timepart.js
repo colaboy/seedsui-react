@@ -218,7 +218,7 @@
         };
 
         //设置进度条
-        s.setProgress=function(startTime,endTime,classes,data){
+        s.setProgress=function(startTime,endTime,classes,data,isListenerConflict){
             var startTime=Object.prototype.toString.call(startTime)==='[object Date]'?startTime:s.parseDate(startTime||s.params.startTime);
             var endTime=Object.prototype.toString.call(endTime)==='[object Date]'?endTime:s.parseDate(endTime||s.params.endTime);
             startTime.setYear(0);
@@ -240,8 +240,8 @@
             }else if(endTime.getTime() > s.endTime.getTime()){
                 endTime=s.endTime;
             }
-
-            if(s.hasProgress(startTime,endTime,true))return;
+            //如果开启冲突监听，并且存在冲突，则停止
+            if(isListenerConflict && s.hasProgress(startTime,endTime,true))return;
 
             var range=s.getTimesRange(startTime,endTime);            
 
@@ -292,11 +292,14 @@
         s.activeTimes=function(startTime,endTime,classes,data){
             var classes=classes?[s.params.activeClass].concat(classes):[s.params.activeClass];
             var data=data||"";
-            s.setProgress(startTime,endTime,classes,data);
+            s.setProgress(startTime,endTime,classes,data,true);
         };
         s.disableTimes=function(startTime,endTime,classes,data){
-            var classes=Object.prototype.toString.call(classes)==='[object Array]'?[s.params.disableClass].concat(classes):[s.params.disableClass];
+            var classes=classes?[s.params.disableClass].concat(classes):[s.params.disableClass];
             var data=data||"";
+            s.setProgress(startTime,endTime,classes,data,true);
+        };
+        s.addTimes=function(startTime,endTime,classes,data){
             s.setProgress(startTime,endTime,classes,data);
         };
         //获取选中的时间段

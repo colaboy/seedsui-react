@@ -6,7 +6,7 @@
 		  ==================*/
         var parent=typeof params.parent=="string"?document.querySelector(params.parent):params.parent;
         if(!parent){
-            console.log("SeedsUI Error : parent不存在，请检查页面中是否有此元素");
+            console.log("SeedsUI Error : Dragrefresh.Circle parent不存在，请检查页面中是否有此元素");
             return;
         }
 

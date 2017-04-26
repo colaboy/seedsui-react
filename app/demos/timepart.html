@@ -10,6 +10,11 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>timepart</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+    .SID-DisabledCustom{
+        background-color: #4DDB63;
+    }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -81,8 +86,9 @@
                     },
                 });
                 var data=JSON.stringify({startTime:"3:00",endTime:"5:00"});
-                //this.timepart.disableTimes(null,"17:50",["SID-DisabledInfo"],data);
-                this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);//开始时间,结束时间,class,data
+                this.timepart.disableTimes(null,"17:50",["SID-DisabledInfo"],data);
+                this.timepart.addTimes("16:00","17:00",["SID-DisabledCustom"]);
+                //this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);//开始时间,结束时间,class,data
                 //加载数据
                 this.loadData();
             },

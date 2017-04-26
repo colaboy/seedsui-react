@@ -59,7 +59,7 @@
 		//Container
 	    s.container=typeof container=="string"?document.querySelector(container):container;
 	    if(!s.container){
-            console.log("SeedsUI Error：未找到Aside的DOM对象，请检查传入参数是否正确");
+            console.log("SeedsUI Error：未找到Weather的DOM对象，请检查传入参数是否正确");
             return;
         }
 	    //Expires保存时效

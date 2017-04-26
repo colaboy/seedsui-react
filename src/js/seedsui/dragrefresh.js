@@ -43,7 +43,7 @@
 		//Container
 		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
 		if(!s.overflowContainer){
-			console.log("SeedsUI Error : overflowContainer不存在，请检查页面中是否有此元素");
+			console.log("SeedsUI Error : Dragrefresh overflowContainer不存在，请检查页面中是否有此元素");
 			return;
 		}
 		//topContainer
