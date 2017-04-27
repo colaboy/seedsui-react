@@ -11,7 +11,7 @@
     <title>timepart</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
     <style>
-    .SID-DisabledCustom{
+    .SID-Custom{
         background-color: #4DDB63;
     }
     </style>
@@ -29,7 +29,11 @@
     </header>
 	<article>
         <div class="timepart group" id="ID-Timepart"></div>
+        <a class="radius4 button block" style="margin:8px" id="ID-BtnDisable">禁用当前时间</a>
+        <a class="radius4 button block" style="margin:8px" id="ID-BtnDisableCustom">禁用17:00到18:00</a>
+        <a class="radius4 button block" style="margin:8px" id="ID-BtnCustom">选择9:10到12:10</a>
         <a class="radius4 button block" style="margin:8px" id="ID-BtnSubmit">预约</a>
+        <a class="radius4 button block" style="margin:8px" id="ID-BtnReset">重置</a>
 	</article>
 </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
@@ -47,29 +51,28 @@
                 this.timepart=new Timepart("#ID-Timepart",{
                     startTime:"7:00",
                     endTime:"22:00",
-                    
+                    onClick:function(e){
+                        console.log(e.target);
+                    },
                     onConflictOver:function(e){
-                        if(e.target.status=="active"){
-                            self.toast.setText("不能跨选禁用时间段");
-                            self.toast.show();
-                            //移除所有选中效果
-                            e.removeAllActive();
-                        }
+                        console.log("不能跨选禁用时间段");
+                        console.log(e.target);
                     },
                     onConflictContain:function(e){
-                        if(e.target.status=="disabled"){
-                            self.toast.setText("时间段冲突");
-                            self.toast.show();
-                        }
+                        console.log("时间段冲突");
+                        console.log(e.target);
                     },
                     onClickActive:function(e){
-                        console.log(e.target);
+                        console.log("点击选中区域");
                         e.removeAllActive();
                     },
                     onClickDisabled:function(e){
+                        console.log("点击禁用区域");
+                    },
+                    onClickChoose:function(e){
+                        console.log();
                         var data=JSON.parse(e.target.getAttribute("data-progress"));
-                        self.toast.setText("开始时间:"+data.startTime+",结束时间:"+data.endTime);
-                        self.toast.show();
+                        console.log("点击选择区域，数据：{startTime:"+data.startTime+",endTime:"+data.endTime+"}");
                     },
                     onClickValid:function(s){//点击有效区域
                         if(s.clickCount==1){//如果点击了一次
@@ -85,10 +88,6 @@
                         }
                     },
                 });
-                var data=JSON.stringify({startTime:"3:00",endTime:"5:00"});
-                this.timepart.disableTimes(null,"17:50",["SID-DisabledInfo"],data);
-                this.timepart.chooseTimes("16:00","17:00",["SID-DisabledCustom"]);
-                //this.timepart.disableTimes(null,new Date().setMinuteCeil(10),["SID-DisabledBefore"],data);//开始时间,结束时间,class,data
                 //加载数据
                 this.loadData();
             },
@@ -107,11 +106,29 @@
               ===========================*/
             _attach:function(e){
                 var self=this;
+                
+                document.getElementById("ID-BtnDisable").addEventListener("click",function(e){
+                    self.timepart.disableTimes(null,new Date());
+                },false);
+
+                document.getElementById("ID-BtnDisableCustom").addEventListener("click",function(e){
+                    self.timepart.disableTimes("17:10","18:10");
+                },false);
+                
+                document.getElementById("ID-BtnCustom").addEventListener("click",function(e){
+                    var data=JSON.stringify({startTime:"3:00",endTime:"5:00"});
+                    self.timepart.chooseTimes("9:10","12:10",["SID-Custom"],data);
+                },false);
+
                 document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
                     var times=self.timepart.getActiveTimes();
                     var starttime=times.startTime;
                     var endtime=times.endTime;
                     console.log("选中时间："+starttime+" ~ "+endtime);
+                },false);
+                
+                document.getElementById("ID-BtnReset").addEventListener("click",function(e){
+                    self.timepart.reset();
                 },false);
             },
             /*=========================

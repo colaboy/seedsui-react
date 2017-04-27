@@ -7,6 +7,7 @@
 		var defaults={
             rowClass:"timepart-row",
             progressClass:"timepart-progress",
+            progressCaptionClass:"progress-caption",
             dataProgressAttr:"data-progress",
             partClass:"timepart-part",
             partStartClass:"timepart-startTime",
@@ -30,6 +31,7 @@
             onClick:function(Timepart)
             onClickDisabled:function(Timepart)
             onClickActive:function(Timepart)
+            onClickChoose:function(Timepart)
             onClickValid:function(Timepart)
 			*/
 		}
@@ -54,8 +56,6 @@
         //点击次数
 		s.clickCount=0;
         
-        //单元格
-		s.parts=[],s.partsCount=0;
         var partMilliSecond = s.params.partMinute * 60 * 1000;
         //行
         s.rows=[],s.rowsCount;
@@ -78,6 +78,7 @@
         s.endTime=s.parseDate(s.params.endTime);
 
         //总格数
+        s.partsCount=0;
         s.updateParsCount=function(){
             var startTime=s.parseDate(s.params.startTime);
             var endTime=s.parseDate(s.params.endTime);
@@ -95,9 +96,13 @@
             s.rowsCount=Math.ceil(s.partsCount/s.params.colCount);
             return s.rowsCount;
         };
-        
+        //创建时间段
         s.createParts=function(){
             s.updateRowsCount();
+            //总格数
+            s.parts=[];
+            //总行数
+            s.rows=[];
             //创建行
             for(var i=0;i<s.rowsCount;i++){
                 var rowStartTime=s.startTime.getTime() + (rowMilliSecond * i);
@@ -134,14 +139,19 @@
                 }
             }
         };
-        s.update=function(){
-            s.createParts();
-        };
-        s.update();
+        s.createParts();
 
 		/*================
 		Method
 		================*/
+        s.reset=function(){
+            //重置点击次数
+            s.clickCount=0;
+            //清空容器
+            s.container.innerHTML="";
+            //重新绘制时间段
+            s.createParts();
+        }
         //获得进度条的开始行数、结束行数、开始位置、结束位置、开始段数、结束段数
         s.getTimesRange=function(startTime,endTime){
             //开始结束位置总比例
@@ -221,6 +231,7 @@
         s.setProgress=function(startTime,endTime,classes,data,isListenerConflict){
             var startTime=Object.prototype.toString.call(startTime)==='[object Date]'?startTime:s.parseDate(startTime||s.params.startTime);
             var endTime=Object.prototype.toString.call(endTime)==='[object Date]'?endTime:s.parseDate(endTime||s.params.endTime);
+            var classes=classes && Object.prototype.toString.call(classes)==='[object Array]'?classes:[];
             startTime.setYear(0);
             startTime.setMonth(0,0);
             startTime.setSeconds(0,0);
@@ -240,17 +251,17 @@
             }else if(endTime.getTime() > s.endTime.getTime()){
                 endTime=s.endTime;
             }
-            //如果开启冲突监听，并且存在冲突，则停止
+            //如果开启冲突监听，并且存在冲突，则停止进度条绘制
             if(isListenerConflict && s.hasProgress(startTime,endTime,true))return;
 
             var range=s.getTimesRange(startTime,endTime);            
 
-            //设置parts的class与data
-            for(var i=range.startNum;i<=range.endNum;i++){
+            //设置parts的class
+            /*for(var i=range.startNum;i<=range.endNum;i++){
                 for(var k=0,className;className=classes[k++];){
                     s.parts[i].classList.add(className);
                 }
-            }
+            }*/
 
             //设置progress的left和right
             for(var j=range.startRow;j<=range.endRow;j++){
@@ -268,19 +279,14 @@
                 progress.style.right=0;
 
                 //设置data
-                progress.setAttribute(s.params.dataProgressAttr,data);
+                if(data)progress.setAttribute(s.params.dataProgressAttr,data);
                 
                 if(j==range.startRow){
                     progress.style.left=range.left+"%";
 
                     progress.startTime=startTime;
                     progress.endTime=endTime;
-                    if(progress.classList.contains(s.params.activeClass)){
-                        progress.status=s.params.activeClass;
-                    }else if(progress.classList.contains(s.params.disableClass)){
-                        progress.status=s.params.disableClass;
-                    }
-                    progress.classList.add("progress-caption");
+                    progress.classList.add(s.params.progressCaptionClass);
                 }
                 if(j==range.endRow){
                     progress.style.right=range.right+"%";
@@ -406,6 +412,12 @@
             if(s.target.classList.contains(s.params.activeClass)){
                 //Callback onClickActive
                 if(s.params.onClickActive)s.params.onClickActive(s);
+                return;
+            }
+            //点击进度条
+            if(s.target.classList.contains(s.params.progressClass)){
+                //Callback onClickChoose
+                if(s.params.onClickChoose)s.params.onClickChoose(s);
                 return;
             }
             
