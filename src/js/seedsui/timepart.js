@@ -299,7 +299,7 @@
             var data=data||"";
             s.setProgress(startTime,endTime,classes,data,true);
         };
-        s.addTimes=function(startTime,endTime,classes,data){
+        s.chooseTimes=function(startTime,endTime,classes,data){
             s.setProgress(startTime,endTime,classes,data);
         };
         //获取选中的时间段
