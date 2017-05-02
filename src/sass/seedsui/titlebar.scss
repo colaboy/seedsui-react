@@ -20,7 +20,6 @@
 		content: '';
 	    display: block;
 	    position: absolute;
-	    background-color: $border;
 
 	    top: auto;
 		right: auto;
@@ -84,9 +83,12 @@
 }
 .titlebar.reverse{
 	background-color:$bar-reverse-bg;
-	border-color:$bar-reverse-border;
 	.titlebar-title{
 		color:$bar-reverse-color;
+	}
+	//底线
+	&:after{
+		background-color: $bar-reverse-border;
 	}
 	.titlebar-button{
 		color:$bar-reverse-button;

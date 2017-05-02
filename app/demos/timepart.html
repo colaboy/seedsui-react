@@ -88,6 +88,7 @@
                         }
                     },
                 });
+                this.timepart.activeTimes("07:00","08:00");
                 //加载数据
                 this.loadData();
             },
@@ -122,8 +123,8 @@
 
                 document.getElementById("ID-BtnSubmit").addEventListener("click",function(e){
                     var times=self.timepart.getActiveTimes();
-                    var starttime=times.startTime;
-                    var endtime=times.endTime;
+                    var starttime=times.startTimeString;
+                    var endtime=times.endTimeString;
                     console.log("选中时间："+starttime+" ~ "+endtime);
                 },false);
                 

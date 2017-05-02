@@ -141,7 +141,6 @@ aside {
     content: '';
     display: block;
     position: absolute;
-    background-color: #d1d1d1;
     top: auto;
     right: auto;
     bottom: 0;
@@ -192,10 +191,11 @@ aside {
     opacity: 0.5; }
 
 .titlebar.reverse {
-  background-color: #20aeff;
-  border-color: #20aeff; }
+  background-color: #20aeff; }
   .titlebar.reverse .titlebar-title {
     color: white; }
+  .titlebar.reverse:after {
+    background-color: #20aeff; }
   .titlebar.reverse .titlebar-button {
     color: white;
     border-color: white; }
