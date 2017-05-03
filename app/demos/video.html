@@ -10,6 +10,11 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
 	<title>video</title>
 	<link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+	<style>
+	video::-webkit-media-controls-enclosure {
+		background-color: red !important;
+	}
+	</style>
 </head>
 
 <body ontouchstart="">
@@ -20,7 +25,7 @@
 		    </div>
 		</header>
 		<article>
-		    <video id="player1" width="100%" controls>
+		    <video id="player1" class="video-js vjs-default-skin" width="100%" controls>
 		        <source src="video.mp4" type="video/mp4">
 		        您的浏览器不支持 HTML5 video 标签。
 		    </video>
