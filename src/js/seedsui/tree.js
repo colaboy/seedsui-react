@@ -106,7 +106,9 @@ window.Tree=function(container,params){
             //tree-btnadd
             var addBtnHTML="";
             if(s.bar){
-                addBtnHTML='<span class="'+s.params.iconClass+' '+s.params.btnAddClass+' '+s.params.btnAddFinalClass+'"></span>';
+                if(!s.selected[option.id]){
+                    addBtnHTML='<span class="'+s.params.iconClass+' '+s.params.btnAddClass+' '+s.params.btnAddFinalClass+'"></span>';
+                }
             }else{
                 addBtnHTML='';
             }
