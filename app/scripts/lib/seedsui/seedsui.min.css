@@ -5308,6 +5308,9 @@ ul.weather-otherday li {
 ::-webkit-input-placeholder {
   color: #ccc; }
 
+body {
+  cursor: pointer; }
+
 /*标签默认样式*/
 * {
   margin: 0;

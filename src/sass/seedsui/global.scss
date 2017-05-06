@@ -18,7 +18,9 @@
 ::-webkit-input-placeholder{
 	color:$placeholder;	
 }
-
+body{
+	cursor: pointer;//解决ios点击非点击元素时不触发click的问题
+}
 /*标签默认样式*/
 *{
 	margin:0;
