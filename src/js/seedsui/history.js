@@ -5,6 +5,7 @@
           Model
           ===========================*/
 		var defaults={
+			enableStorage:true,
 			historyKey:"history",
 
 			/*callbacks
@@ -28,13 +29,18 @@
 		//保存到storage中
 		var storage=window.sessionStorage;
 		var storageHistory=storage.getItem(s.params.historyKey);
-		if(storageHistory)s.list=storageHistory.split(",");
+		if(s.params.enableStorage && storageHistory)s.list=storageHistory.split(",");
 
 		/*=========================
           Method
           ===========================*/
+        s.addList=function(){
+        	s.list.push(hash);
+        	//历史记录保存到本地数据库中
+        	s.saveList();
+        }
         s.saveList=function(){
-        	storage.setItem(s.params.historyKey,s.list);
+        	if(s.params.enableStorage)storage.setItem(s.params.historyKey,s.list);
         }
         s.clearList=function(){
         	s.list=[];
