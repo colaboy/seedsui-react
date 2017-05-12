@@ -34,11 +34,6 @@
 		/*=========================
           Method
           ===========================*/
-        s.addList=function(){
-        	s.list.push(hash);
-        	//历史记录保存到本地数据库中
-        	s.saveList();
-        }
         s.saveList=function(){
         	if(s.params.enableStorage)storage.setItem(s.params.historyKey,s.list);
         }
@@ -47,26 +42,32 @@
         	storage.removeItem(s.params.historyKey);
         }
 
-        s.add=function(hash){
+        s.add=function(hash,enableHistory){
         	s.list.push(hash);
         	//历史记录保存到本地数据库中
         	s.saveList();
-			try{
-		        window.history.pushState({href:hash},document.title, hash);
-		    }catch(err){
-		    	console.log("SeedsUI Error:添加history失败");
+        	//是否添加到历史记录
+        	if(enableHistory){
+				try{
+			        window.history.pushState({href:hash},document.title, hash);
+			    }catch(err){
+			    	console.log("SeedsUI Error:添加history失败");
+			    }
 		    }
         }
-        s.replace=function(hash){
+        s.replace=function(hash,enableHistory){
         	s.prevHash=s.list.pop();
         	s.list.push(hash);
         	//历史记录保存到本地数据库中
         	s.saveList();
-			try{
-		        window.history.replaceState({href:hash},document.title, hash);
-		    }catch(err){
-		    	console.log("SeedsUI Error:替换history失败");
-		    }
+        	//是否添加到历史记录
+        	if(enableHistory){
+				try{
+			        window.history.replaceState({href:hash},document.title, hash);
+			    }catch(err){
+			    	console.log("SeedsUI Error:替换history失败");
+			    }
+			}
         }
 
         s.remove=function(hash){
