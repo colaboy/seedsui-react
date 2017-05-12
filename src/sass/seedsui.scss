@@ -1,4 +1,4 @@
-/*基础Less:控件类*/
+/*Base*/
 @import "variables.scss";
 @import "seedsui/appearance.scss";
 @import "seedsui/layout.scss";
@@ -19,7 +19,7 @@
 @import "seedsui/mask.scss";
 @import "seedsui/icon.scss";
 
-/*控件Less*/
+/*Control*/
 @import "seedsui/iconfont.scss";
 @import "seedsui/list.scss";
 @import "seedsui/timeline.scss";
@@ -58,7 +58,7 @@
 @import "seedsui/calendar.scss";
 @import "seedsui/listpull.scss";
 
-/*基础Less:工具类*/
+/*Tool*/
 @import "seedsui/box.scss";
 @import "seedsui/global.scss";
 @import "seedsui/common.scss";

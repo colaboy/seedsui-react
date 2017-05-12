@@ -58,12 +58,12 @@
 			}
 		},
 		minNumber:function(value,min,errorMsg){
-			if(value.length != 0 && value < min){
+			if(value.length != 0 && value*1 < min*1){
 				return errorMsg;
 			}
 		},
 		maxNumber:function(value,max,errorMsg){
-			if(value.length != 0 && value > max){
+			if(value.length != 0 && value*1 > max*1){
 				return errorMsg;
 			}
 		},

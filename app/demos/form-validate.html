@@ -139,7 +139,7 @@
               ===========================*/
             _validateForm:function(){
                 var validator=new Validator();
-                validator.add(this.formContainer["NID-UserName"],[
+                /*validator.add(this.formContainer["NID-UserName"],[
                     {
                         rule:'minLength:6',
                         errorMsg:'用户名不能低于6位'
@@ -195,25 +195,25 @@
                         rule:'mail',
                         errorMsg:'邮箱格式不正确'
                     }
-                ]);
-                /*validator.add(this.formContainer["NID-Age"],[
-                    {
-                        rule:'positiveInteger',
-                        errorMsg:'年龄只能为正整数'
-                    },{
-                        rule:'minNumber:1',
-                        errorMsg:'年龄最小1岁'
-                    },{
-                        rule:'maxNumber:48',
-                        errorMsg:'年龄最大48岁'
-                    }
                 ]);*/
                 validator.add(this.formContainer["NID-Age"],[
                     {
                         rule:'positiveInteger',
                         errorMsg:'年龄只能为正整数'
+                    },{
+                        rule:'minNumber:5',
+                        errorMsg:'年龄最小5岁'
+                    },{
+                        rule:'maxNumber:48',
+                        errorMsg:'年龄最大48岁'
                     }
                 ]);
+                /*validator.add(this.formContainer["NID-Age"],[
+                    {
+                        rule:'positiveInteger',
+                        errorMsg:'年龄只能为正整数'
+                    }
+                ]);*/
                 var error=validator.start();
                 return error;
             },

@@ -21,7 +21,7 @@
         </div>
     </header>
     <article>
-        <div class="gauge-box" id="gauge">
+        <div class="gauge-box" id="ID-Gauge">
             <div class="gauge">
                 <div class="gauge-pointer"></div>
                 <div class="gauge-text">0</div>
@@ -36,19 +36,10 @@
             /*=========================
               Model
               ===========================*/
-            initialize:function(){
-                /*Data*/
-
-                /*DOM*/
-                
-                /*Plugin*/
-                this.gauge={},this.gaugeId="gauge";
-            },
-            /*=========================
-              Method
-              ===========================*/
-            _initGauge:function(){
-                this.gauge=new Gauge("#"+this.gaugeId,{
+            render:function(){
+                var self = this;
+                //渲染页面
+                this.gauge=new Gauge("#ID-Gauge",{
                     minValue:-100,
                     maxValue:400,
                     currentValue:200,
@@ -62,43 +53,42 @@
                         console.log("指针旋转完成");
                     }
                 });
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
             },
             /*=========================
-              Plugin
+              Method
               ===========================*/
-            _initPlugin:function(){
-                this._initGauge();
+            _method:function(){
             },
+            
             /*=========================
               Events
               ===========================*/
             _attach:function(e){
                 var self=this;
             },
+
             /*=========================
               Event Handler
               ===========================*/
-            /*=========================
-              OnLoad
-              ===========================*/
-            _onLoad:function(){
-                var self=this;
-                /*DOM*/
-
-                /*Plugin*/
-                this._initPlugin();
+            _onEvent:function(e){
                 
-                /*Events*/
-                this._attach();
             }
         }
 
         window.addEventListener("load",function(){
-            view._onLoad();
-        }, false);
-
-        document.addEventListener("DOMContentLoaded",function(){
-            view.initialize();
+            view.render();
         }, false);
 
         //定义exmobi返回
