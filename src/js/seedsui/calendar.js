@@ -49,6 +49,10 @@
             Callbacks:
             onClick:function(Calendar)
             onChange:function(Calendar)
+            onHeightChange:function(Calendar)//高度变化
+            onTransitionEnd:function(Calendar)//动画结束
+            onHorizontalTransitionEnd:function(Calendar)//横滑动画结束
+			onVerticalTransitionEnd:function(Calendar)//竖滑动画结束
 			*/
 		}
 		params=params||{};
@@ -327,11 +331,11 @@
         	if(index===1){//展开
         		s.params.viewType="month";
         		s.touches.posY=0;
-        		s.draw();
+        		s.draw(1);
         	}else if(index===-1){//收缩
         		s.params.viewType="week";
         		s.touches.posY=s.touches.maxPosY;
-        		s.draw();
+        		s.draw(-1);
         	}else{
         		s.dragY(s.touches.h);
         	}
@@ -380,7 +384,7 @@
 			//注入头部数据
 			s.title.innerHTML=activeDate.getFullYear()+"-"+activeDate.month()+"-"+activeDate.date()+activeDay+activeWeeks;
 		};
-		s.draw=function(){
+		s.draw=function(vertical){//vertical:上下拖动(-1上 | 1下 | 其它为非上下拖动)
 			//更新选中日期
 			s.updateData();
 			if(s.activeDate)s.activeDate=s.calendarUtil.activeDate;
@@ -413,12 +417,17 @@
 			if((s.params.disableBeforeDate && s.calendarUtil.activeDate < s.params.disableBeforeDate)||(s.params.disableAfterDate && s.calendarUtil.activeDate > s.params.disableAfterDate)){
 				console.log("SeedsUI Warn：滑动到禁用日期");
 				return;
-			
 			}
 			//注入头部
 			s.drawHeader(s.activeDate);
-			//Callback onChange
-			if(s.params.onChange)s.params.onChange(s);
+			if(vertical){
+				s.vertical=vertical;
+				//Callback onHeightChange
+				if(s.params.onHeightChange)s.params.onHeightChange(s);
+			}else{
+				//Callback onChange
+				if(s.params.onChange)s.params.onChange(s);
+			}
 		};
 		s.draw();
 		s.activeDay=function(target){
@@ -546,8 +555,21 @@
 			s.touches.vertical=0;
 		};
 		s.onTransitionEnd=function(e){
-			//还原位置
-			s.updateTranslateX();
+			s.target=e.target;
+			//横向滑动时需要还原位置
+			if(s.target.classList.contains(s.params.wrapperXClass)){
+				//还原位置
+				s.updateTranslateX();
+				//Callback onHorizontalTransitionEnd
+				if(s.params.onHorizontalTransitionEnd)s.params.onHorizontalTransitionEnd(s);
+			}
+			//竖向滑动
+			if(s.target.classList.contains(s.params.wrapperYClass)){
+				//Callback onVerticalTransitionEnd
+				if(s.params.onVerticalTransitionEnd)s.params.onVerticalTransitionEnd(s);
+			}
+			//Callback onTransitionEnd
+			if(s.params.onTransitionEnd)s.params.onTransitionEnd(s);
 		};
 		/*================
 		Init

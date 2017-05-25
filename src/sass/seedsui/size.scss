@@ -77,6 +77,13 @@ i.size36,.icon.size36{
 i.size40,.icon.size40{
 	font-size:40px;
 }
+.size45{
+	width:45px;
+    height:45px;
+}
+i.size45,.icon.size45{
+	font-size:45px;
+}
 .size50{
 	width:50px;
     height:50px;
@@ -104,18 +111,5 @@ i.size60,.icon.size60{
 }
 i.size80,.icon.size80{
 	font-size:80px;
-}
-/*圆角大小*/
-.radius4{
-	border-radius: 4px;
-}
-.radius8{
-	border-radius: 8px;
-}
-.radius40{
-	border-radius: 40px;
-}
-.radiusround{
-	border-radius: 100%;
 }
 /*---------------size.less(end)---------------*/

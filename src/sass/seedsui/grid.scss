@@ -19,8 +19,8 @@
     white-space:nowrap;
     box-sizing:border-box;
     
-    /* font-size:12px; */
-    min-height:16px;
+    height: 16px;
+    line-height: 16px;
 
     color:$sub-color;
 }
@@ -47,13 +47,7 @@
 		
 	}
 	
-	//间距控制
-	&[data-rowspace="8"] li{
-		padding-top:8px;
-	}
-	&[data-rowspace="8"] li:last-child{
-		padding-bottom:8px;
-	}
+	//列数
 	&[data-col="2"] li{
 		width:50%;
 		&:nth-of-type(2n){
@@ -89,10 +83,6 @@
 }
 /*边框*/
 .grid.grid-bordered{
-	&[data-rowspace="8"] li{
-		padding-top:8px;
-		padding-bottom:8px;
-	}
 	li{
 		&:before,&:after{
 			content: '';
@@ -144,5 +134,16 @@
 			-webkit-transform: scaleX(0.33);
 		}
 	}
+}
+/*单元格行间距*/
+.grid li {
+    padding-top: 8px;
+}
+.grid li:last-child{
+	padding-bottom:8px;
+}
+.grid.grid-bordered li{
+	padding-top:8px;
+	padding-bottom:8px;
 }
 /*----------------grid.less(end)----------------*/

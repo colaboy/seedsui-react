@@ -51,7 +51,11 @@
                     nextHTML:'<i class="icon-arrowright"></i>',
                     onChange:function(e){
                         console.log(e.activeDate);
-                    }
+                    },
+                    onVerticalTransitionEnd:function(e){
+                        console.log("拖动方向:"+e.vertical);
+                        console.log("高度:"+e.container.clientHeight);
+                    },
                 });
                 //加载数据
                 this.loadData();

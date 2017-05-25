@@ -6,12 +6,12 @@
 		  ==================*/
         var topParent=typeof params.topParent=="string"?document.querySelector(params.topParent):params.topParent;
         if(!topParent){
-            console.log("SeedsUI Error : Dragrefresh.Circle topParent不存在，请检查页面中是否有此元素");
+            console.log("SeedsUI Error : Dragrefresh.Pull topParent不存在，请检查页面中是否有此元素");
             return;
         }
         var bottomParent=typeof params.bottomParent=="string"?document.querySelector(params.bottomParent):params.bottomParent;
         if(!bottomParent){
-            console.log("SeedsUI Error : Dragrefresh.Circle bottomParent不存在，请检查页面中是否有此元素");
+            console.log("SeedsUI Error : Dragrefresh.Pull bottomParent不存在，请检查页面中是否有此元素");
             return;
         }
 

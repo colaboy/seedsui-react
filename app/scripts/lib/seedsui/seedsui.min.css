@@ -646,8 +646,8 @@ aside {
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
-  /* font-size:12px; */
-  min-height: 16px;
+  height: 16px;
+  line-height: 16px;
   color: #9e9e9e; }
 
 .grid-icon > img {
@@ -668,10 +668,6 @@ aside {
     text-align: center;
     padding: 2px;
     box-sizing: border-box; }
-  .grid[data-rowspace="8"] li {
-    padding-top: 8px; }
-  .grid[data-rowspace="8"] li:last-child {
-    padding-bottom: 8px; }
   .grid[data-col="2"] li {
     width: 50%; }
     .grid[data-col="2"] li:nth-of-type(2n):before {
@@ -690,9 +686,6 @@ aside {
       height: 0; }
 
 /*边框*/
-.grid.grid-bordered[data-rowspace="8"] li {
-  padding-top: 8px;
-  padding-bottom: 8px; }
 .grid.grid-bordered li:before, .grid.grid-bordered li:after {
   content: '';
   display: block;
@@ -727,6 +720,17 @@ aside {
     -webkit-transform: scaleY(0.33); }
   .grid.grid-bordered li:before {
     -webkit-transform: scaleX(0.33); } }
+
+/*单元格行间距*/
+.grid li {
+  padding-top: 8px; }
+
+.grid li:last-child {
+  padding-bottom: 8px; }
+
+.grid.grid-bordered li {
+  padding-top: 8px;
+  padding-bottom: 8px; }
 
 /*----------------grid.less(end)----------------*/
 /*--------------------badge.less(start)----------------------*/
@@ -5649,6 +5653,13 @@ i.size36, .icon.size36 {
 i.size40, .icon.size40 {
   font-size: 40px; }
 
+.size45 {
+  width: 45px;
+  height: 45px; }
+
+i.size45, .icon.size45 {
+  font-size: 45px; }
+
 .size50 {
   width: 50px;
   height: 50px; }
@@ -5676,19 +5687,6 @@ i.size60, .icon.size60 {
 
 i.size80, .icon.size80 {
   font-size: 80px; }
-
-/*圆角大小*/
-.radius4 {
-  border-radius: 4px; }
-
-.radius8 {
-  border-radius: 8px; }
-
-.radius40 {
-  border-radius: 40px; }
-
-.radiusround {
-  border-radius: 100%; }
 
 /*---------------size.less(end)---------------*/
 /*----------------border.less(start)--------------*/
