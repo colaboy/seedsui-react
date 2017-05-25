@@ -6,8 +6,8 @@
 		  ==================*/
 		var defaults={
 			overflowContainer:document.body,
-			baseline:0,
-			threshold:100,
+			baseline:0,//起始位置
+			threshold:100,//触发位置
 			duration:150,
 
 			topContainer:null,

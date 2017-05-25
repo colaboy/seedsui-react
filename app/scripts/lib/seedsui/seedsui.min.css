@@ -106,7 +106,7 @@ aside {
 
 /*----------------form.less(end)--------------*/
 /*----------------photo.less(start)----------------*/
-.photo, .default {
+.photo {
   position: relative;
   box-sizing: border-box;
   display: -webkit-inline-box;
@@ -1279,10 +1279,10 @@ label .input-checkbox + span, label .input-radio + span {
 .icon-arrowleft-fill:before {
   content: "\e90b"; }
 
-.icon-arrowrefresh2:before {
+.icon-arrowrefresh:before {
   content: "\e90c"; }
 
-.icon-arrowrefresh2-fill:before {
+.icon-arrowrefresh-fill:before {
   content: "\e90d"; }
 
 .icon-arrowreply:before {
@@ -3208,7 +3208,7 @@ progress::-webkit-progress-value {
     -webkit-animation: dfAnimate-spinner 1000ms infinite linear; }
 
 .df-circle {
-  position: fixed;
+  position: absolute;
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
@@ -5401,6 +5401,10 @@ pre {
   line-height: 1.42857143;
   word-break: break-all;
   word-wrap: break-word; }
+
+.keyword {
+  color: #20aeff;
+  vertical-align: baseline; }
 
 /*显示与隐藏*/
 .hide {

@@ -123,6 +123,10 @@ pre{
 	word-break: break-all;
 	word-wrap: break-word;
 }
+.keyword{
+	color: $primary-bg;
+	vertical-align: baseline;
+}
 /*显示与隐藏*/
 .hide{
 	display:none;

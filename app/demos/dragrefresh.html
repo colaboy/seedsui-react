@@ -10,6 +10,14 @@
     <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
     <title>dragrefresh</title>
     <link rel="stylesheet" href="../scripts/lib/seedsui/seedsui.min.css">
+    <style>
+        /*DfCircle*/
+        .scrollContainer{
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+    </style>
 </head>
 
 <body ontouchstart="">
@@ -20,10 +28,16 @@
                 <h1 class="titlebar-title">下拉刷新</h1>
             </div>
         </header>
-        <article>
-            <hr/>
-            <ul class="list" id="ID-List"></ul>
+        <!--DfCircle-->
+        <article style="overflow: hidden;">
+            <div class="scrollContainer">
+                <ul class="list" id="ID-List"></ul>
+            </div>
         </article>
+        <!--DfPull-->
+        <!-- <article>
+                <ul class="list" id="ID-List"></ul>
+        </article> -->
     </section>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
@@ -44,12 +58,15 @@
                     total:0//总条数
                 }
                 //插件
-                this.drag=DfPull({
-                    overflowContainer:"article",
-                    //overflowContainer:"article",
-                    //topContainer:false,
-                    //bottomContainer:false,
-                    parent:"article",
+                this.drag=DfCircle({
+                    //DfPull
+                    /*overflowContainer:"article",
+                    topParent:"article",
+                    bottomParent:"article",*/
+                    //DfCircle
+                    overflowContainer:"article .scrollContainer",
+                    topParent:"article",
+                    bottomParent:"article .scrollContainer",
                     onTopRefresh:function(e){
                         console.log("头部刷新");
                         self.pagination.current=1;
@@ -101,16 +118,26 @@
                 //ajax请求
                 $.ajax({
                     url: 'url?pageNum='+self.pagination.current,
-                    type: 'post',
                     data: "",
-                    dataType: "jsonp",
-                    jsonp: 'callback',
-                    jsonpCallback:"success_jsonpCallback",
-                    success: function(json){
+                    //type: 'post',
+                    //xhrFields:{withCredentials: true },
+                    //crossDomain:true,
+                    //dataType: "jsonp",
+                    //jsonp: 'callback',
+                    //jsonpCallback:"success_jsonpCallback",
+                    success: function(data){
+                        var data=Object.prototype.toString.call(data)==='[object String]'?JSON.parse(data):data;
+                        if(!data.total){
+                            drag1.topComplete();
+                            drag1.bottomNoData();
+                            toast.setText("请求数据失败，请重试");
+                            toast.show();
+                            return;
+                        }
                         //分页
                         self.pagination.hasData=true;
-                        self.pagination.total = json.total;
-                        self.pagination.limit = json.limit;
+                        self.pagination.total = data.total;
+                        //self.pagination.limit = data.limit;
                         self.pagination.max=Math.ceil(self.pagination.total/self.pagination.limit);
 
                         //此处生成html字符串
@@ -128,8 +155,6 @@
                         }
                         //如果没有超过一页
                         if(self.pagination.total <= self.pagination.limit){
-                            //drag标识头部状态
-                            self.drag.topComplete();
                             //drag标识底部状态
                             self.drag.bottomNoData();
                         }

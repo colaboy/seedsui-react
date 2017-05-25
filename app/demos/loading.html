@@ -18,13 +18,6 @@
 </head>
 
 <body ontouchstart="">
-	<!-- 加载遮罩 -->
-    <!-- <div class="loading" id="ID-Loading" style="display: block;">
-        <div class="loading-progress-box">
-            <div class="loading-progress"></div>
-        </div>
-    </div> -->
-
 	<header>
 		<div class="titlebar">
 	        <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
@@ -34,6 +27,12 @@
 	<article>
         <a class="button submit block" style="margin:12px 10px;" id="ID-BtnShowLoad">显示遮罩</a>
 	</article>
+    <!-- 加载遮罩 -->
+    <div class="loading" id="ID-Loading" style="display: block;top:44px;">
+        <div class="loading-progress-box">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
     <script src="../scripts/lib/seedsui/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
@@ -45,12 +44,12 @@
             render:function(){
                 var self = this;
                 //渲染页面
-                this.loading=new Loading();
-                this.loading.show();
+                /*this.loading=new Loading();
+                this.loading.show();*/
                 //第二种方法:默认创建好DOM更快
-                /*this.loading=new Loading({
+                this.loading=new Loading({
                     container:"#ID-Loading"
-                });*/
+                });
                 setTimeout(function(){
                     self.loading.hide();
                 },1000);
@@ -83,9 +82,9 @@
             _onClickBtnShowLoad:function(e){
                 var self=this;
                 this.loading.show();
-                setTimeout(function(){
+                /*setTimeout(function(){
                     self.loading.hide();
-                },5000);
+                },5000);*/
             }
         }
 

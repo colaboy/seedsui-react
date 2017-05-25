@@ -104,7 +104,13 @@ Mplus.Image=function(params){
                 //Callback onUploadSuccess
                 s.params.onUploadSuccess && s.params.onUploadSuccess(e);
             },
-            fail:function(res){s.params.onUploadError && s.params.onUploadError(res);}
+            fail:function(res){
+                var e=res;
+                e.localId=localId;
+                e.target=s.target;
+                //Callback onUploadError
+                s.params.onUploadError && s.params.onUploadError(e);
+            }
         });
     };
     s.downAll=function(downIdList){
@@ -174,7 +180,13 @@ Mplus.Image=function(params){
                     s.params.onUploadsSuccess && s.params.onUploadsSuccess(e);
                 }
             },
-            fail:function(res){s.params.onUploadError && s.params.onUploadError(res);}
+            fail:function(res){
+                var e=res;
+                e.localId=localId;
+                e.target=s.target;
+                //Callback onUploadError
+                s.params.onUploadError && s.params.onUploadError(res);
+            }
         });
     };
     s.choose=function(target){
@@ -183,6 +195,8 @@ Mplus.Image=function(params){
             max:s.params.max,
             sourceType:s.params.sourceType,
             success:function(res){
+                var res=res;
+                res.target=s.target;
                 //Callback onChooseSuccess
                 s.params.onChooseSuccess && s.params.onChooseSuccess(res);
                 //初始化上传队列
@@ -199,7 +213,12 @@ Mplus.Image=function(params){
                 //上传所有
                 s.uploadAll();
             },
-            fail:function(res){s.params.onChooseError && s.params.onChooseError(res);}
+            fail:function(res){
+                var e=res;
+                e.target=s.target;
+                //Callback onChooseError
+                s.params.onChooseError && s.params.onChooseError(e);
+            }
         });
     };
 };
