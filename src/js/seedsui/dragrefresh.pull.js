@@ -4,48 +4,47 @@
 		/*==================
 		  Model
 		  ==================*/
-        var topParent=typeof params.topParent=="string"?document.querySelector(params.topParent):params.topParent;
-        if(!topParent){
-            console.log("SeedsUI Error : Dragrefresh.Pull topParent不存在，请检查页面中是否有此元素");
-            return;
-        }
-        var bottomParent=typeof params.bottomParent=="string"?document.querySelector(params.bottomParent):params.bottomParent;
-        if(!bottomParent){
-            console.log("SeedsUI Error : Dragrefresh.Pull bottomParent不存在，请检查页面中是否有此元素");
-            return;
-        }
-
-		var topContainer=params.topContainer;
-        if(params.topContainer==undefined){
-            topContainer=topParent.querySelector(".SID-Dragrefresh-TopContainer");
-            if(!topContainer){
-                topContainer=document.createElement("div");
-        		topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-pull");
-        		topContainer.innerHTML='<div class="df-pull-box">'+
-                            '<div class="df-pull-icon"></div>'+
-                            '<div class="df-pull-caption">下拉可以刷新</div>'+
-                        '</div>';
-                topParent.insertBefore(topContainer,topParent.childNodes[0]);
+		var topParent,topContainer=params.topContainer,topIcon,topCaption;
+        if(params.topContainer!=false){
+            topParent=typeof params.topParent=="string"?document.querySelector(params.topParent):params.topParent;
+            if(!topParent){
+                console.log("SeedsUI Error : Dragrefresh.Pull topParent不存在，请检查页面中是否有此元素");
+            }else{
+                topContainer=topParent.querySelector(".SID-Dragrefresh-TopContainer");
+                if(!topContainer){
+                    topContainer=document.createElement("div");
+                    topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-pull");
+                    topContainer.innerHTML='<div class="df-pull-box">'+
+                                '<div class="df-pull-icon"></div>'+
+                                '<div class="df-pull-caption">下拉可以刷新</div>'+
+                            '</div>';
+                    topParent.insertBefore(topContainer,topParent.childNodes[0]);
+                }
+                topIcon=topContainer.querySelector(".df-pull-icon");
+                topCaption=topContainer.querySelector(".df-pull-caption");
             }
-            var topIcon=topContainer.querySelector(".df-pull-icon");
-            var topCaption=topContainer.querySelector(".df-pull-caption");
         }
 
-        var bottomContainer=params.bottomContainer;
+        var bottomParent,bottomContainer=params.bottomContainer,bottomIcon,bottomCaption;
         if(params.bottomContainer==undefined){
-            bottomContainer=bottomParent.querySelector(".SID-Dragrefresh-BottomContainer");
-            if(!bottomContainer){
-        		bottomContainer=document.createElement("div");
-        		bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-pull");
-        		bottomContainer.setAttribute("style","height: 50px;");
-        		bottomContainer.innerHTML='<div class="df-pull-box">'+
-                            '<div class="df-pull-icon df-pull-icon-loading"></div>'+
-                            '<div class="df-pull-caption">正在加载...</div>'+
-                        '</div>';
-        		bottomParent.appendChild(bottomContainer);
+            bottomParent=typeof params.bottomParent=="string"?document.querySelector(params.bottomParent):params.bottomParent;
+            if(!bottomParent){
+                console.log("SeedsUI Error : Dragrefresh.Pull bottomParent不存在，请检查页面中是否有此元素");
+            }else{
+                bottomContainer=bottomParent.querySelector(".SID-Dragrefresh-BottomContainer");
+                if(!bottomContainer){
+                    bottomContainer=document.createElement("div");
+                    bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-pull");
+                    bottomContainer.setAttribute("style","height: 50px;");
+                    bottomContainer.innerHTML='<div class="df-pull-box">'+
+                                '<div class="df-pull-icon df-pull-icon-loading"></div>'+
+                                '<div class="df-pull-caption">正在加载...</div>'+
+                            '</div>';
+                    bottomParent.appendChild(bottomContainer);
+                }
+                bottomIcon=bottomContainer.querySelector(".df-pull-icon");
+                bottomCaption=bottomContainer.querySelector(".df-pull-caption");
             }
-            var bottomIcon=bottomContainer.querySelector(".df-pull-icon");
-            var bottomCaption=bottomContainer.querySelector(".df-pull-caption");
         }
 		/*==================
 		  params

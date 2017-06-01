@@ -108,18 +108,21 @@
 		};
 		//头部刷新完成
 		s.topComplete=function(){
-			if(!s.topContainer)return;
-			//收起
-			s.hideTop();
-			//底部刷新又有数据了
-			s.isBottomNoData=false;
-			//Callback onTopComplete
-			if(s.params.onTopComplete){
-				s.params.onTopComplete(s);
+			if(s.topContainer){
+				//收起
+				s.hideTop();
+				//底部刷新又有数据了
+				s.isBottomNoData=false;
+				//Callback onTopComplete
+				if(s.params.onTopComplete){
+					s.params.onTopComplete(s);
+				}
 			}
-			//如果没有滚动条，并且底部还有数据，则刷新底部数据
-			if(!s.hasScroll() && !s.isBottomNoData){
-				s.onBottomRefresh();
+			if(s.bottomContainer){
+				//如果没有滚动条，并且底部还有数据，则刷新底部数据
+				if(!s.hasScroll() && !s.isBottomNoData){
+					s.onBottomRefresh();
+				}
 			}
 		};
 		//头部刷新无数据

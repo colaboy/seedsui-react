@@ -88,7 +88,9 @@
                         }
                     },
                 });
-                this.timepart.activeTimes("07:00","08:00");
+                this.timepart.disableTimes("07:00","21:00");
+                self.timepart.chooseTimes("9:10","12:10",["SID-Custom"]);
+                //this.timepart.activeTimes("07:00","08:00");
                 //加载数据
                 this.loadData();
             },

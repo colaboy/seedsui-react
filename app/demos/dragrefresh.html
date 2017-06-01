@@ -59,16 +59,19 @@
                 }
                 //插件
 
-                this.drag=DfCircle({
-                    //DfPull
-                /*this.drag=DfPull({
-                    overflowContainer:"article",
-                    topParent:"article",
-                    bottomParent:"article",*/
-                    //DfCircle
+                //DfPull
+                this.drag=DfPull({
+                    overflowContainer:"article .scrollContainer",
+                    topParent:"article .scrollContainer",
+                    bottomParent:"article .scrollContainer",
+                //DfCircle
+                /*this.drag=DfCircle({
                     overflowContainer:"article .scrollContainer",
                     topParent:"article",
-                    bottomParent:"article .scrollContainer",
+                    bottomParent:"article .scrollContainer",*/
+
+                    //topContainer:false,//禁用头部下拉
+                    //bottomContainer:false,//禁用底部加载
                     onTopRefresh:function(e){
                         console.log("头部刷新");
                         self.pagination.current=1;
@@ -174,7 +177,7 @@
                 });
                 */
                 /*静态页面测试*/
-                this.pagination.max=3;
+                this.pagination.max=10;
                 //此处生成html字符串
                 var html="";
                 for(var i=0;i<this.pagination.limit;i++){

@@ -491,10 +491,13 @@
 		};
 		s.onClick=function(e){
 			s.target=e.target;
-			//禁用状态
+			//点击禁用日期
 			if(e.target.classList.contains(s.params.disableClass))return;
-
-			if(e.target.classList.contains(s.params.dayNumClass))s.activeDay(e.target);
+			//点击日期
+			s.removeDuration();
+			if(e.target.classList.contains(s.params.dayNumClass)){
+				s.activeDay(e.target);
+			}
 			//Callback onClick
 			if(s.params.onClick)s.params.onClick(s);
 		};

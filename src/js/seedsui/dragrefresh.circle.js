@@ -4,37 +4,36 @@
 		/*==================
 		  Model
 		  ==================*/
-        var topParent=typeof params.topParent=="string"?document.querySelector(params.topParent):params.topParent;
-        if(!topParent){
-            console.log("SeedsUI Error : Dragrefresh.Circle topParent不存在，请检查页面中是否有此元素");
-            return;
-        }
-        var bottomParent=typeof params.bottomParent=="string"?document.querySelector(params.bottomParent):params.bottomParent;
-        if(!bottomParent){
-            console.log("SeedsUI Error : Dragrefresh.Circle bottomParent不存在，请检查页面中是否有此元素");
-            return;
-        }
-
-        var topContainer=params.topContainer;
-        if(params.topContainer==undefined){
-            topContainer=topParent.querySelector(".SID-Dragrefresh-TopContainer");
-            if(!topContainer){
-        		topContainer=document.createElement("div");
-        		topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-circle");
-        		topContainer.innerHTML='<div class="df-circle-icon"></div>';
-                topParent.appendChild(topContainer);
+        var topParent,topContainer=params.topContainer,topIcon;
+        if(params.topContainer!=false){
+            var topParent=typeof params.topParent=="string"?document.querySelector(params.topParent):params.topParent;
+            if(!topParent){
+                console.log("SeedsUI Error : Dragrefresh.Circle topParent不存在，请检查页面中是否有此元素");
+            }else{
+                topContainer=topParent.querySelector(".SID-Dragrefresh-TopContainer");
+                if(!topContainer){
+            		topContainer=document.createElement("div");
+            		topContainer.setAttribute("class","SID-Dragrefresh-TopContainer df-circle");
+            		topContainer.innerHTML='<div class="df-circle-icon"></div>';
+                    topParent.appendChild(topContainer);
+                }
+                var topIcon=topContainer.querySelector(".df-circle-icon");
             }
-            var topIcon=topContainer.querySelector(".df-circle-icon");
         }
 
-        var bottomContainer=params.bottomContainer;
+        var bottomParent,bottomContainer=params.bottomContainer;
         if(params.bottomContainer==undefined){
-            bottomContainer=bottomParent.querySelector(".SID-Dragrefresh-BottomContainer");
-            if(!bottomContainer){
-        		bottomContainer=document.createElement("div");
-        		bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-circle-icon df-circle-icon-loading");
-                bottomContainer.setAttribute("style","height:50px");
-        		bottomParent.appendChild(bottomContainer);
+            var bottomParent=typeof params.bottomParent=="string"?document.querySelector(params.bottomParent):params.bottomParent;
+            if(!bottomParent){
+                console.log("SeedsUI Error : Dragrefresh.Circle bottomParent不存在，请检查页面中是否有此元素");
+            }else{
+                bottomContainer=bottomParent.querySelector(".SID-Dragrefresh-BottomContainer");
+                if(!bottomContainer){
+            		bottomContainer=document.createElement("div");
+            		bottomContainer.setAttribute("class","SID-Dragrefresh-BottomContainer df-circle-icon df-circle-icon-loading");
+                    bottomContainer.setAttribute("style","height:50px");
+            		bottomParent.appendChild(bottomContainer);
+                }
             }
         }
 		/*==================
