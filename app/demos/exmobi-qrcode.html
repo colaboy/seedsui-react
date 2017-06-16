@@ -30,7 +30,7 @@
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
 	<script>
-		var popToast=new Toast("扫码失败");
+		var popToast=new Toast({html:"扫码失败"});
 		function qrCodeCallback(){
 			if(!this.isSuccess()){
 				popToast.show();

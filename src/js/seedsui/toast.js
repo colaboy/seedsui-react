@@ -1,19 +1,22 @@
 //Toast 提示框
 (function(window,document,undefined){
 	
-	window.Toast=function(msg,params){
+	window.Toast=function(params){
 		/*================
 		Model
 		================*/
 		var defaults={
 			parent:document.body,
+			
 			containerClass:"toast",
-			activeClass:"active",
-			containerCss:{},
-			css:{},
-			delay:1500,
-
 			wrapperClass:"toast-wrapper",
+			activeClass:"active",
+
+			containerCss:{},
+			wrapperCss:{},
+
+			delay:1500,
+			html:"",
 			
 			/*callbacks
             onShowed(Toast)//显示动画结束后回调
@@ -26,7 +29,6 @@
 				params[def]=defaults[def];
 			}
 		}
-		var msg=msg||"";
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
@@ -39,7 +41,7 @@
 		s.createToastContent=function(){
 			var wrapper=document.createElement("div");
 			wrapper.setAttribute("class",s.params.wrapperClass);
-			if(msg)wrapper.innerHTML=msg;
+			if(s.params.html)wrapper.innerHTML=s.params.html;
 			return wrapper;
 		}
 		s.create=function(){
@@ -53,8 +55,8 @@
             for(var c in s.params.containerCss){
                 s.container.style[c]=s.params.containerCss[c];
             }
-            for(var c in s.params.css){
-                s.wrapper.style[c]=s.params.css[c];
+            for(var c in s.params.wrapperCss){
+                s.wrapper.style[c]=s.params.wrapperCss[c];
             }
 		}
 		s.update();
@@ -62,8 +64,12 @@
 		/*================
 		Method
 		================*/
-		s.setText=function(msg){
-			s.wrapper.innerHTML=msg;
+		s.setContainerClassName=function(className){
+			s.params.containerClass=className;
+			s.container.setAttribute("class",s.params.containerClass);
+		};
+		s.setHTML=function(html){
+			s.wrapper.innerHTML=html;
 		};
 		s.isHid=true;
 		s.hide=function(fn){

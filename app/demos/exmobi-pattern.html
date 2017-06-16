@@ -39,7 +39,7 @@
 		}
 		function lockPatternCallback(){
 			var toast = new Toast();
-		 	toast.setText("解锁成功");
+		 	toast.setHTML("解锁成功");
 			toast.show();
 			mergePattern();
 		}
@@ -53,16 +53,16 @@
 		function mergePatternCallBack(result){
 			var toast = new Toast();
 			if(!result){
-				toast.setText("您已取消设置");
+				toast.setHTML("您已取消设置");
 			}
 			else{
-				toast.setText("设置成功");
+				toast.setHTML("设置成功");
 			}
 			toast.show();
 		 }
 		 function cancelPattern(){
 		 	var toast = new Toast();
-		 	toast.setText("您已取消手势密码");
+		 	toast.setHTML("您已取消手势密码");
 			PatternUtil.disablePattern();
 			toast.show();
 		 }

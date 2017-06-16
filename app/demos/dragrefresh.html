@@ -135,7 +135,7 @@
                         if(!data.total){
                             drag1.topComplete();
                             drag1.bottomNoData();
-                            toast.setText("请求数据失败，请重试");
+                            toast.setHTML("请求数据失败，请重试");
                             toast.show();
                             return;
                         }
@@ -168,7 +168,7 @@
                         if(isNext)self.pagination.current--;
                         self.drag.topComplete();
                         self.drag.bottomNoData();
-                        self.toast.setText("请求数据失败，请重试");
+                        self.toast.setHTML("请求数据失败，请重试");
                         self.toast.show();
                     },
                     complete:function(){

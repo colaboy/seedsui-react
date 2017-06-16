@@ -1,21 +1,24 @@
 //Alert 提示框
 (function(window,document,undefined){
 	
-	window.Alert=function(msg,params){
+	window.Alert=function(params){
 		/*================
 		Model
 		================*/
 		var defaults={
 			overflowContainer:document.body,
 			parent:document.body,
+
 			maskClass:"mask",
 			alertClass:"alert",
 			contentClass:"alert-content",
 			handlerClass:"alert-handler",
-			title:"提示",
-			buttonOk:"确定",
-			buttonCancel:"取消",
-			content:msg,
+
+			title:"",
+			html:"",
+			buttonOkHTML:"确定",
+			buttonCancelHTML:"取消",
+			
 			isClickMaskHide:false
 			/*
             Callbacks:
@@ -47,7 +50,7 @@
         //Alert
         s.createButtonCancel=function(){
         	var buttonCancel=document.createElement("a");
-			buttonCancel.innerHTML=s.params.buttonCancel;
+			buttonCancel.innerHTML=s.params.buttonCancelHTML;
 			return buttonCancel;
         }
 		s.createAlert=function(){
@@ -56,7 +59,7 @@
 
 			alert.content=document.createElement("div");
 			alert.content.setAttribute("class",s.params.contentClass);
-			alert.content.innerHTML=s.params.content;
+			alert.content.innerHTML=s.params.html;
 
 			alert.handler=document.createElement("div");
 			alert.handler.setAttribute("class",s.params.handlerClass);
@@ -67,11 +70,11 @@
 				alert.handler.appendChild(alert.buttonCancel);
 			}
 			alert.buttonOk=document.createElement("a");
-			alert.buttonOk.innerHTML=s.params.buttonOk;
+			alert.buttonOk.innerHTML=s.params.buttonOkHTML;
 
 			alert.handler.appendChild(alert.buttonOk);
 			
-			if(s.params.title){
+			if(s.params.title && s.params.title!=""){
 				alert.caption=document.createElement("h1");
 				alert.caption.innerHTML=s.params.title;
 				alert.appendChild(alert.caption);
@@ -140,8 +143,8 @@
 			s.destroyAlert();
 		};
 		//动态设置
-		s.setText=function(msg){
-			s.container.content.innerHTML=msg;
+		s.setHTML=function(html){
+			s.container.content.innerHTML=html;
 		};
 		s.setOnClick=function(fn){
         	s.params.onClick=fn;

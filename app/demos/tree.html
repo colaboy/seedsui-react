@@ -46,7 +46,7 @@
                 //渲染页面
                 
                 //提示框
-                this.toast=new Toast("");
+                this.toast=new Toast();
                 //列表
                 this.listContainer=document.getElementById("ID-Tree-Box");
                 //初始化树结构
@@ -106,7 +106,7 @@
                         var userData=JSON.parse(data).userList;
                         //没有数据
                         if(userData.length<=0){
-                            self.toast.setText("没有数据");
+                            self.toast.setHTML("没有数据");
                             self.toast.show();
                             return;
                         }
@@ -115,7 +115,7 @@
                         e.targetLine.hasData=true;
                     },
                     fail:function(msg){
-                        self.toast.setText("加载数据失败");
+                        self.toast.setHTML("加载数据失败");
                         self.toast.show();
                     },
                     complete:function(){

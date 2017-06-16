@@ -304,12 +304,16 @@
 		 * 系统弹出框
 		 */
 		//alert
-		var popAlert=new Alert("我是Alert框我是Alert框我是Alert框我是Alert框",{"title":false});
+		var popAlert=new Alert({
+			html:"我是Alert框我是Alert框我是Alert框我是Alert框"
+		});
 	    document.getElementById("alertBtn").onclick=function(){
 			popAlert.show();
 	    };
 		//confirm
-		var popConfirm=new Alert("我是Confirm框",{
+		var popConfirm=new Alert({
+			title:"提示",
+			html:"我是Confirm框",
 			onClickOk:function(e){
 				console.log(e.target);
 			},onClickCancel:function(e){
@@ -322,13 +326,13 @@
 	    };
 		
 		//toast
-		var popToast=new Toast("提示信息");
+		var popToast=new Toast({html:"提示信息"});
 		document.getElementById("toastBtn").onclick=function(){
 			popToast.show();
 	    };
 	    var c;
 	    //actionsheet
-	    var t=new Toast("您点击了菜单一");
+	    var t=new Toast({html:"您点击了菜单一"});
 	    var actionAlert=null;
 		var actionsheet=new Actionsheet({
 			data:[
@@ -336,14 +340,14 @@
 					text : '菜单一',
 			        handler : function(s){
 			        	console.log(s.target);
-			        	t.setText("您点击了菜单一");
+			        	t.setHTML("您点击了菜单一");
 			        	t.show();
 			        }
 				},{
 					text : '菜单二',
 			        handler : function(s){
 			        	console.log(s.target);
-			        	t.setText("您点击了菜单二");
+			        	t.setHTML("您点击了菜单二");
 			        	t.show();
 					}
 			    },{

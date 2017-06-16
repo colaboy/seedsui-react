@@ -174,7 +174,7 @@
                         if(input.classList.contains("SID-DateTimeStart")){
                             //不合法的时间
                             if(activeDate<=new Date()){
-                                app.toast.setText("时间不能早于当前时间");
+                                app.toast.setHTML("时间不能早于当前时间");
                                 app.toast.show();
                                 return;
                             }
@@ -195,7 +195,7 @@
                         }else if(input.classList.contains("SID-DateTimeEnd")){
                             //不合法的时间
                             if(new Date(activeDate)<=new Date().setMinuteCeil(10)){
-                                app.toast.setText("结束时间过早");
+                                app.toast.setHTML("结束时间过早");
                                 app.toast.show();
                                 return;
                             }

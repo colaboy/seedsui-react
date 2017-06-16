@@ -195,7 +195,7 @@
             _onClickBtnSubmit:function(e){
                 this.form=new Form("#ID-Form");
                 var args=this.form.serializeJson();
-                this.alert.setText(JSON.stringify(args));
+                this.alert.setHTML(JSON.stringify(args));
                 this.alert.show();
             },
         }

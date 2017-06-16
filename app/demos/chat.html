@@ -187,7 +187,7 @@
         });
         var richContainer=richinput.container;
         var textarea=document.querySelector("#ID-RichInput textarea");
-        var toast=new Toast("输入内容不能为空");
+        var toast=new Toast({html:"输入内容不能为空"});
         var formControls=new FormControls();
         var chatContainer=document.getElementById("ID-Chats");
         //发送消息
