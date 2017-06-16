@@ -71,6 +71,9 @@
 		s.setHTML=function(html){
 			s.wrapper.innerHTML=html;
 		};
+		s.setDelay=function(delay){
+			s.params.delay=delay;
+		};
 		s.isHid=true;
 		s.hide=function(fn){
 			s.isHid=true;
