@@ -4072,6 +4072,21 @@ progress::-webkit-progress-value {
   color: white;
   background-color: rgba(0, 0, 0, 0.6); }
 
+.toast-icon {
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.toast-font {
+  display: line-block;
+  height: 18px;
+  line-height: 16px;
+  vertical-align: middle;
+  margin-left: 4px; }
+
 /*----------------toast.less(end)--------------*/
 /*----------------prompt.less(start)--------------*/
 .prompt {
