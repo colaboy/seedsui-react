@@ -7,7 +7,7 @@
 }
 .tree ul{
 	display:none;
-	padding-left:10px;
+	padding-left:@px-size10;
 }
 /*一行*/
 .tree-line{
@@ -26,7 +26,7 @@
 	display: -webkit-box;
 	-webkit-box-pack:center;
 	-webkit-box-align:center;
-	padding: 0 12px;
+	padding: 0 @px-size12;
 	color:@placeholder;
 }
 .tree-icon+.tree-icon{
@@ -36,8 +36,8 @@
 	display: -webkit-box;
 	-webkit-box-pack:center;
 	-webkit-box-align:center;
-    width:42px;
-    height:42px;
+    width:@px-size42;
+    height:@px-size42;
     border-radius:100%;
     background-size: cover;
     background-position: center;
@@ -49,16 +49,16 @@
 	display: -webkit-box;
 	-webkit-box-align:center;
 	-webkit-box-flex:1;
-	height: 50px;
+	height: @px-size50;
 }
 .tree-title,.tree-title~.tree-icon{
 	border-style:solid;
-	border-width:0 0 1px 0;
+	border-width:0 0 @px-size1 0;
 	border-color:@border;
 }
 .tree-btnadd{
 	color: @success-bg;
-	font-size: 24px;
+	font-size: @px-size24;
 }
 /* .tree-line.active,.tree-line.active+ul .tree-line{
 	color: @primary-bg;
@@ -72,8 +72,8 @@
 /*左侧小箭头*/
 .tree-icon-arrow{
 	display: block;
-	width: 16px;
-	height: 16px;
+	width: @px-size16;
+	height: @px-size16;
 	background-image:url(images/arrow.png);
 	background-size:100% auto;
 	background-position:center 34%;
@@ -86,37 +86,37 @@
 .tree-bar{
 	display: none;
 	position: fixed;
-    top:44px;
+    top:@px-size44;
     left:0;
     width: 100%;
     z-index: 1;
 	overflow-x: auto;
     white-space: nowrap;
-    padding: 5px 0;
+    padding: @px-size5 0;
     background-color:@border;
 }
 .tree-bar.active{
 	display: block;
 }
 .tree-bar.active + .tree-box{
-    padding-top: 41px;
+    padding-top: @px-size41;
 }
 .tree-bar-button{
-    padding: 4px 8px;
-    margin:0 0 0 8px;
+    padding: @px-size4 @px-size8;
+    margin:0 0 0 @px-size8;
     display: inline-block;
-    font-size: 13px;
-    border-radius: 4px;
+    font-size: @px-size13;
+    border-radius: @px-size4;
     background-color:white;
 }
 .tree-bar-button:last-child{
-    margin:0 8px;
+    margin:0 @px-size8;
 }
 /*删除图标*/
 .tree-btndel{
-	font-size:20px;
+	font-size:@px-size20;
 	vertical-align:middle;
-	margin-left:4px;
+	margin-left:@px-size4;
 
 	color:@tip-bg;
 }

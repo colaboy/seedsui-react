@@ -5,7 +5,7 @@
 .list-li{
     position:relative;
     display:-webkit-box;
-    padding: 10px 12px;
+    padding: @px-size10 @px-size12;
     -webkit-box-align: center;
     color:@body-color;
     &:active{
@@ -17,21 +17,21 @@
     -webkit-box-align:center;
     -webkit-box-pack:center;
     position:relative;
-    height:62px;
+    height:@px-size62;
     overflow:hidden;
-    margin-right: 10px;
+    margin-right: @px-size10;
     background-size:cover;
     background-color: @photo-bg;
 }
 .list-thumbnail img{
     max-width: 97px;
-    max-height: 62px;
+    max-height: @px-size62;
 }
 
 .list-container{
     display: block;
     -webkit-box-flex: 1.0;
-    margin-right: 10px;
+    margin-right: @px-size10;
 }
 
 .list-row{
@@ -43,22 +43,22 @@
 }
 .list-icon{
     display: block;
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
+    font-size: @px-size16;
+    width: @px-size16;
+    height: @px-size16;
     color: @placeholder;
 }
 .list-font{
     display: block;
     -webkit-box-flex:1;
-    height: 20px;
-    line-height: 22px;
+    height: @px-size20;
+    line-height: @px-size22;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: @sub-color;
 }
 .list-icon+.list-font,.list-icon+.list-title{
-	margin-left: 8px;
+	margin-left: @px-size8;
 }
 /*---------------list.less(end)---------------*/

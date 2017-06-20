@@ -1,11 +1,11 @@
 /*----------------turn.less(start)--------------*/
 .turn{
 	position: relative;
-	border-radius:4px;
-	width: 74px;
+	border-radius:@px-size4;
+	width: @px-size74;
 	height: 30px;
 	background-color: @primary-bg;
-	border:1px solid @primary-bg;
+	border:@px-size1 solid @primary-bg;
 }
 .turn-on,.turn-off{
 	position: absolute;
@@ -20,15 +20,15 @@
 	right: 0;
 	background-color: white;
 	color: @primary-bg;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
+	border-top-right-radius: @px-size4;
+	border-bottom-right-radius: @px-size4;
 }
 .turn-off{
 	left: 0;
 	background-color: @primary-bg;
 	color: white;
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
+	border-top-left-radius: @px-size4;
+	border-bottom-left-radius: @px-size4;
 }
 .turn.active{
 	.turn-on{

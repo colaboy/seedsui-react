@@ -2,27 +2,27 @@
 .table-box{
 	width:100%;
 	overflow: auto;
-	padding:8px 0;
+	padding:@px-size8 0;
 	table{
 		width:100%;
 		border-collapse:collapse;
 		border-style: solid;
-		border-width:1px;
+		border-width:@px-size1;
 		background-color:white;
 		color:@body-color;
 		border-color:@border;
 	}
 	th,td{
 		border-style: solid; 
-	    border-width: 0 0 1px 0;
+	    border-width: 0 0 @px-size1 0;
 	    border-color:inherit;
 	    word-break:keep-all;
 	    text-align:left;
-		padding:15px 4px;
+		padding:@px-size15 @px-size4;
 	}
 	th{
 		font-weight:bold;
-		border-width: 0 0 2px 0;
+		border-width: 0 0 @px-size2 0;
 	}
 }
 /*---------------table.less(end)---------------*/

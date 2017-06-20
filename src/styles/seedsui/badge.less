@@ -10,21 +10,21 @@
 }
 /*徽章*/
 .badge{
-	padding:0 4px;
-	height:20px;
-	line-height:20px;
+	padding:0 @px-size4;
+	height:@px-size20;
+	line-height:@px-size20;
 	text-align:center;
-	border-radius:20px;
-	min-width:24px;
+	border-radius:@px-size20;
+	min-width:@px-size24;
 
 	color:@tip-color;
 	background-color:@tip-bg;
 }
 /*圆形徽章*/
 .tip{
-	width:24px;
-	height:24px;
-	line-height:24px;
+	width:@px-size24;
+	height:@px-size24;
+	line-height:@px-size24;
 	border-radius:100%;
 
 	color:@tip-color;
@@ -32,8 +32,8 @@
 }
 /*关闭*/
 .close{
-	width:24px;
-	height:24px;
+	width:@px-size24;
+	height:@px-size24;
 	border-radius:100%;
 
 	display:-webkit-inline-box;
@@ -45,7 +45,7 @@
 	border-radius: 100%;
 
 	/*文字图标*/
-	border-width: 2px;
+	border-width: @px-size2;
 	border-style: solid;
 	color:white;
 	border-color: white;
@@ -57,8 +57,8 @@
 }
 /*小点点*/
 .dot{
-    height:5px;
-    width:5px;
+    height:@px-size5;
+    width:@px-size5;
     border-radius: 100%;
 
     background-color:@primary-bg;
@@ -66,8 +66,8 @@
 /*小竖条*/
 .peg {
     display: inline-block;
-    width: 4px;
-    height: 16px;
+    width: @px-size4;
+    height: @px-size16;
     background-color: @primary-bg;
 }
 /*标签贴*/
@@ -83,13 +83,13 @@
 	span{
 		position:absolute;
 		font-size:@font-size-S;
-		padding:0 2px;
+		padding:0 @px-size2;
 	}
 	&.top,&.top span{
 		top:0;
 	}
 	&.top{
-		border-top-width:32px;
+		border-top-width:@px-size32;
 	}
 	&.top span{
 		min-width: 30px;
@@ -99,7 +99,7 @@
 		left:0;
 	}
 	&.left{
-		border-right-width:56px;
+		border-right-width:@px-size56;
 		border-right-color:transparent;
 	}
 	&.right,&.right span{
@@ -107,14 +107,14 @@
 		text-align: right;
 	}
 	&.right{
-		border-left-width:56px;
+		border-left-width:@px-size56;
 		border-left-color:transparent;
 	}
 	&.bottom,&.bottom span{
 		bottom:0;
 	}
 	&.bottom{
-		border-bottom-width:32px;
+		border-bottom-width:@px-size32;
 	}
 	&.bottom span{
 		margin-bottom:-30px;
@@ -122,25 +122,25 @@
 }
 .sticker.sticker-icon{
 	&.top{
-        border-top-width: 28px;
+        border-top-width: @px-size28;
     }
     &.top span {
-        margin-top: -26px;
+        margin-top: -@px-size26;
     }
     &.left{
-        border-right-width: 28px;
+        border-right-width: @px-size28;
     }
     &.right{
-        border-left-width: 28px;
+        border-left-width: @px-size28;
     }
     &.bottom{
-        border-bottom-width: 28px;
+        border-bottom-width: @px-size28;
     }
 }
 .tagline{
 	position:absolute;
-	width: 100px;
-	height: 20px;
+	width: @px-size100;
+	height: @px-size20;
 	text-align: center;
 	display: -webkit-box;
 	-webkit-box-align:center;
@@ -150,24 +150,24 @@
 	color:@tip-color;
 	background-color:@tip-bg;
 	&.top{
-		top: 13px;
+		top: @px-size13;
 		&.left{
-			left: -20px;
+			left: -@px-size20;
 			-webkit-transform:rotate(-42deg);
 		}
 		&.right{
-			right: -20px;
+			right: -@px-size20;
 			-webkit-transform:rotate(42deg);
 		}
 	}
 	&.bottom{
-		bottom:15px;
+		bottom:@px-size15;
 		&.left{
-			left: -24px;
+			left: -@px-size24;
 			-webkit-transform:rotate(42deg);
 		}
 		&.right{
-			right: -24px;
+			right: -@px-size24;
 			-webkit-transform:rotate(-42deg);
 		}
 	}

@@ -22,7 +22,7 @@ hr{
 	right: auto;
     bottom: auto;
     left: 0;
-    height: 1px;
+    height: @px-size1;
     width: 100%;
     -webkit-transform-origin:center top;
 }
@@ -32,7 +32,7 @@ hr{
 	right: auto;
     bottom: 0px;
     left: 0;
-    height: 1px;
+    height: @px-size1;
     width: 100%;
     -webkit-transform-origin:center bottom;
 }
@@ -42,7 +42,7 @@ hr{
     right: auto;
     bottom: auto;
     left: 0;
-    width: 1px;
+    width: @px-size1;
     height: 100%;
     -webkit-transform-origin:left center;
 }
@@ -52,15 +52,15 @@ hr{
 	bottom: auto;
 	left: auto;
     right: 0;
-    width: 1px;
+    width: @px-size1;
     height: 100%;
     -webkit-transform-origin:right center;
 }
 //篮子线
 .basketline{
 	&:before,&:after{
-		width:1px;
-		height:5px;
+		width:@px-size1;
+		height:@px-size5;
 		bottom:0;
 	}
 	&:before{
@@ -101,7 +101,7 @@ hr{
 
 .bordered{
 	border-style:solid;
-	border-width:1px;
+	border-width:@px-size1;
 	border-color: @dpborder;
 }
 .dotted{

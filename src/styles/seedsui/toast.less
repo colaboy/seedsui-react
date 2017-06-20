@@ -1,7 +1,7 @@
 /*----------------toast.less(start)--------------*/
 .toast{
 	position:fixed;
-	bottom:-100px;
+	bottom:-@px-size100;
 	width:100%;
 	text-align:center;
 	pointer-events:none;
@@ -15,17 +15,17 @@
 
     &.active{
     	opacity: 1;
-    	-webkit-transform:translate3d(0,-150px,0);
+    	-webkit-transform:translate3d(0,-@px-size150,0);
     }
 }
 .toast-wrapper{
 	display:inline-block;
-	padding:10px;
-	border-radius:6px;
-	font-size:12px;
+	padding:@px-size10;
+	border-radius:@px-size6;
+	font-size:@px-size12;
 	max-width:90%;
-	max-height:35px;
-	line-height:20px;
+	max-height:@px-size35;
+	line-height:@px-size20;
 	overflow:hidden;
 	text-align:left;
 
@@ -34,17 +34,17 @@
 }
 .toast-icon{
 	background-size:cover;
-	width:16px;
-	height:16px;
-	font-size: 16px;
+	width:@px-size16;
+	height:@px-size16;
+	font-size: @px-size16;
 	display:inline-block;
 	vertical-align:middle;
 }
 .toast-font{
 	display:line-block;
-	height: 18px;
-	line-height: 16px;
+	height: @px-size18;
+	line-height: @px-size16;
 	vertical-align:middle;
-	margin-left:4px;
+	margin-left:@px-size4;
 }
 /*----------------toast.less(end)--------------*/

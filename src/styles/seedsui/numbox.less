@@ -2,8 +2,8 @@
 .numbox{
     display:-webkit-inline-box;
     position:relative;
-    height:24px;
-    width:94px;
+    height:@px-size24;
+    width:@px-size94;
     overflow:hidden;
     text-align:center;
     vertical-align: middle;
@@ -11,17 +11,17 @@
     input[type=number],input[type=tel]{
         display: block;
         -webkit-box-flex:1;
-        padding:2px;
+        padding:@px-size2;
         text-align:center;
         text-overflow:ellipsis;
         border-width:0;
-        width:54px;
-        border-width:0 1px;
+        width:@px-size54;
+        border-width:0 @px-size1;
     }
     .button{
-        width:24px;
-        height:24px;
-        font-size:18px;
+        width:@px-size24;
+        height:@px-size24;
+        font-size:@px-size18;
         font-weight:400;
         text-align: center;
         border:0;

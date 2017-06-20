@@ -3,32 +3,32 @@
 .input-text{
 	display:inline-block;
 	box-sizing:border-box;
-	min-height:20px;
-	line-height:20px;
-	padding:12px 8px;
+	min-height:@px-size20;
+	line-height:@px-size20;
+	padding:@px-size12 @px-size8;
 	text-align: left;
 }
 //多行文本框
 .input-textarea{
-	height:60px;
+	height:@px-size60;
 	display:block;
 	box-sizing:border-box;
-	padding: 0 8px;
-	margin:12px 0;
+	padding: 0 @px-size8;
+	margin:@px-size12 0;
 }
 //自增高文本框
 .input-pre{
-	height: 22px;
-	margin: 12px 8px;
+	height: @px-size22;
+	margin: @px-size12 @px-size8;
 	&,+pre{
 		padding: 0px;
-	    line-height: 22px;
-	    min-height: 22px;
+	    line-height: @px-size22;
+	    min-height: @px-size22;
 	}
 	+pre{
 		position: absolute;
 	    left: 0;
-	    top: 100px;
+	    top: @px-size100;
 	    visibility: hidden;
 	    span{
 	    	display: inline;

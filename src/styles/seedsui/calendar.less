@@ -16,15 +16,15 @@
 .calendar-header{
 	display: -webkit-box;
 	-webkit-box-align: center;
-	padding: 6px 0;
+	padding: @px-size6 0;
 }
 .calendar-title{
 	-webkit-box-flex: 1.0;
 	text-align: center;
-	padding: 6px 0;
+	padding: @px-size6 0;
 }
 .calendar-prev,.calendar-next{
-	font-size:16px;
+	font-size:@px-size16;
 	width:15%;
 	height:30px;
     display:-webkit-box;
@@ -44,9 +44,9 @@
 	}
 }
 .calendar-week{
-	height:24px;
-	line-height:24px;
-	font-size: 12px;
+	height:@px-size24;
+	line-height:@px-size24;
+	font-size: @px-size12;
 	display: inline-block;
     text-align: center;
     float: left;
@@ -87,8 +87,8 @@
 }
 .calendar-day{
 	display: inline-block;
-    /* height:40px;
-    line-height: 40px;  */
+    /* height:@px-size40;
+    line-height: @px-size40;  */
     text-align: center;
     float: left;
     width: 14%;
@@ -98,13 +98,13 @@
 }
 .calendar-daynum{
 	display: inline-block;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
+    width: @px-size28;
+    height: @px-size28;
+    line-height: @px-size28;
 }
 .calendar-today{
     border-radius:100%;
-    border-width:1px;
+    border-width:@px-size1;
     border-style:solid;
     border-color:@calendar-notcurrent-color;
 }

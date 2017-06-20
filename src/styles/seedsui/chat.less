@@ -2,10 +2,10 @@
 @chat-odd-bg:#ddd;
 @chat-even-bg:#b8daff;
 .chat{
-	padding:8px;
+	padding:@px-size8;
 	box-sizing:border-box;
 	li{
-		margin-bottom: 24px;
+		margin-bottom: @px-size24;
 		&:after{
 			display: table;
 		    content: " ";
@@ -13,7 +13,7 @@
 		}
 	}
 	.chat-photo {
-		width: 40px;
+		width: @px-size40;
 		display: inline-block;
 		text-align: center;
 		float: left;
@@ -30,16 +30,16 @@
 	.chat-content-box {
 		display: inline-block;
 		float: left;
-		margin-left: 12px;
+		margin-left: @px-size12;
 		width: 70%;
 	}
 	.chat-content {
 		display: inline-block;
 		position: relative;
-		padding: 10px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;
-		border-radius: 3px;
+		padding: @px-size10;
+		-webkit-border-radius: @px-size3;
+		-moz-border-radius: @px-size3;
+		border-radius: @px-size3;
 
 		background-color: @chat-odd-bg;
 
@@ -53,8 +53,8 @@
 			height: 0;
 			width: 0;
 			content: " ";
-			border-width: 5px;
-			margin-top: -5px;
+			border-width: @px-size5;
+			margin-top: -@px-size5;
 			border-style:solid;
 		}
 		.chat-content-author {
@@ -64,13 +64,13 @@
 			font-size: @font-size-S;
 		}
 		p {
-			line-height: 24px;
+			line-height: @px-size24;
 			margin: 0;
-			padding-top: 3px;
+			padding-top: @px-size3;
 			text-align:left;
 			[data-emoji]{
-				width:26px;
-				height: 24px;
+				width:@px-size26;
+				height: @px-size24;
 			}
 		}
 	}
@@ -81,7 +81,7 @@
 		}
 		.chat-content-box {
 			width: 70%;
-			margin-right: 12px;
+			margin-right: @px-size12;
 			text-align: right;
 			float: right;
 		}

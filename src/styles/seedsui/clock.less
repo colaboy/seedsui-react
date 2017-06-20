@@ -5,7 +5,7 @@
     height:200px;
     border-radius: 100%;
     border-style:solid;
-    border-width:2px;
+    border-width:@px-size2;
     -webkit-transition-duration:500ms;
     -webkit-transition-delay:0;
 
@@ -13,21 +13,21 @@
 }
 .clock-origin{
     position: absolute;
-    width:4px;
-    height:4px;
+    width:@px-size4;
+    height:@px-size4;
     top:50%;
     left:50%;
-    margin-left:-2px;
-    margin-top:-2px;
+    margin-left:-@px-size2;
+    margin-top:-@px-size2;
     border-radius:100%;
 }
 .clock-hour,.clock-minute{
     position:absolute;
     bottom:50%;
     left:50%;
-    width:2px;
-    margin-left:-1px;
-    border-radius:1px;
+    width:@px-size2;
+    margin-left:-@px-size1;
+    border-radius:@px-size1;
     -webkit-transform-origin: center bottom;
     -webkit-transition-property:transform;
     -webkit-transition-timing-function:ease;

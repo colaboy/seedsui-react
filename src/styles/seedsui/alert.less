@@ -7,8 +7,8 @@
 
 	top:50%;
 	left:50%;
-    width: 270px;
-	border-radius:6px;
+    width: @px-size270;
+	border-radius:@px-size6;
 	margin: 0 auto;
 
 	visibility:hidden;
@@ -22,9 +22,9 @@
 	
 	h1{
 		text-align: center;
-		padding:15px 0 5px 0;
+		padding:@px-size15 0 @px-size5 0;
 		font-weight: 500;
-		font-size: 18px;
+		font-size: @px-size18;
 		text-align: center;
 	}
 
@@ -36,7 +36,7 @@
 //内容区域
 .alert-content{
 	display: block;
-	padding: 10px 12px 15px 12px;
+	padding: @px-size10 @px-size12 @px-size15 @px-size12;
 	line-height: 1.2em;
 	word-wrap: break-word;
 }
@@ -52,7 +52,7 @@
 		width:50%;
 		border-width:0;
 		display:inline-block;
-		padding:12px;
+		padding:@px-size12;
 		font-size:@font-size-L;
 		box-sizing:border-box;
 	}
@@ -73,7 +73,7 @@
 	right: auto;
     bottom: auto;
     left: 0;
-    height: 1px;
+    height: @px-size1;
     width: 100%;
     -webkit-transform-origin:center top;
 }
@@ -83,7 +83,7 @@
     right: auto;
     bottom: auto;
     left: 0;
-    width: 1px;
+    width: @px-size1;
     height: 100%;
     -webkit-transform-origin:left center;
 }

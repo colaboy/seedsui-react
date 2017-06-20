@@ -1,9 +1,9 @@
 /*----------------common.scss(start)----------------*/
 /*段落*/
 .paragraph{
-	line-height: 24px;
-	margin:8px 0;
-	padding:0 8px;
+	line-height: @px-size24;
+	margin:@px-size8 0;
+	padding:0 @px-size8;
 }
 
 /*层和文字排列*/
@@ -22,21 +22,21 @@
 
 /*阴影*/
 .shadow{
-	box-shadow:0 2px 3px 0 rgba(0, 0, 0, 0.2);
+	box-shadow:0 @px-size2 @px-size3 0 rgba(0, 0, 0, 0.2);
 	/*分别指投影的：x、y、模糊、扩展、颜色*/
 }
 .shadow-inner{
-	box-shadow:inset 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+	box-shadow:inset 0 @px-size2 @px-size3 0 rgba(0, 0, 0, 0.2);
 	/*分别指投影的：x、y、模糊、扩展、颜色*/
 }
 
 /*倒影*/
 .reflect-below{
-	-webkit-box-reflect: below 5px -webkit-linear-gradient(transparent,transparent 60%,rgba(0,0,0,.2));
+	-webkit-box-reflect: below @px-size5 -webkit-linear-gradient(transparent,transparent 60%,rgba(0,0,0,.2));
 }
 .bg-gradient {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#eeeeee));
-	border-top: 1px solid #fff;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.1) inset;
+	border-top: @px-size1 solid #fff;
+	box-shadow: 0px @px-size1 @px-size2 rgba(0,0,0,0.1) inset;
 }
 /*----------------common.scss(end)----------------*/

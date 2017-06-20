@@ -5069,16 +5069,16 @@ progress::-webkit-progress-value {
 		resize:none;
 	}
 	textarea,pre{
-		padding:0 4px;
-		line-height:32px;
-		min-height:32px;
-		max-height:32px;
+		padding:0 @px-size4;
+		line-height:@px-size32;
+		min-height:@px-size32;
+		max-height:@px-size32;
 		width:100%;
 	}
 	pre{
 		position:absolute;
 		left:0;
-		top:100px;
+		top:@px-size100;
 		visibility:hidden;
 	}
 	pre span{
@@ -5761,8 +5761,8 @@ ul.weather-otherday li {
 }
 .calendar-day {
   display: inline-block;
-  /* height:40px;
-    line-height: 40px;  */
+  /* height:@px-size40;
+    line-height: @px-size40;  */
   text-align: center;
   float: left;
   width: 14%;
@@ -6266,7 +6266,7 @@ br {
 }
 .bg-gradient {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#eeeeee));
-  border-top: 1px solid #fff;
+  border-top: 1px solid #ffffff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
 /*----------------common.scss(end)----------------*/

@@ -2,19 +2,19 @@
 .input-range{
 	position:relative;
 	width:100%;
-	height:1px;
+	height:@px-size1;
 	padding:0;
 	margin:17px 0;
 	cursor:pointer;
 	border-width:0;
-	border-radius:3px;
+	border-radius:@px-size3;
 	outline:0;
 	background-color:@dpborder;
 
 	&::-webkit-slider-thumb{
 		-webkit-appearance:none;
-		width:28px;
-		height:28px;
+		width:@px-size28;
+		height:@px-size28;
 		border-width:0;
 		background-clip:padding-box;
 		border-radius:50%;
@@ -26,16 +26,16 @@
 .range-tooltip{
 	display:none;
 	position:absolute;
-	top:-50px;
-	width:48px;
-	height:48px;
-	font-size:20px;
-	line-height:48px;
+	top:-@px-size50;
+	width:@px-size48;
+	height:@px-size48;
+	font-size:@px-size20;
+	line-height:@px-size48;
 	text-align:center;
-	border-radius:6px;
-	border-width:1px;
+	border-radius:@px-size6;
+	border-width:@px-size1;
 	border-style:solid;
-	text-shadow:0 1px 0 #f3f3f3;
+	text-shadow:0 @px-size1 0 #f3f3f3;
 	background-color:white;
     border-color:@dpborder;
     opacity:.8;

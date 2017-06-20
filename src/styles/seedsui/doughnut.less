@@ -1,8 +1,8 @@
 /*----------------doughtut.less(start)----------------*/
 /*基础样式*/
 .doughtut{
-    width: 50px;
-    height: 50px;
+    width: @px-size50;
+    height: @px-size50;
     position: relative;
 }
 .doughtut-label{
@@ -12,12 +12,12 @@
 	width: 100%;
 	text-align: center;
 	-webkit-transform:translate(-50%,-50%);
-	font-size: 12px;
+	font-size: @px-size12;
     color: @primary-bg;
 }
 .doughtut-wrapper {
-    width: 25px;
-    height: 50px;
+    width: @px-size25;
+    height: @px-size50;
     position: absolute;
     top: 0;
     overflow: hidden;
@@ -29,16 +29,16 @@
     right:0;
 }
 .doughtut-circle{
-    width: 44px;
-    height: 44px;
-    border: 3px solid @placeholder;
+    width: @px-size44;
+    height: @px-size44;
+    border: @px-size3 solid @placeholder;
     border-radius: 50%;
     position: absolute;
     top: 0;
 }
 .doughtut-circle.right{
-    border-top: 3px solid @primary-bg;
-    border-right: 3px solid @primary-bg;
+    border-top: @px-size3 solid @primary-bg;
+    border-right: @px-size3 solid @primary-bg;
     right: 0;
     -webkit-transform: rotate(-135deg);
 
@@ -46,8 +46,8 @@
     -webkit-animation-fill-mode:forwards;
 }
 .doughtut-circle.left{
-    border-bottom: 3px solid @primary-bg;
-    border-left: 3px solid @primary-bg; 
+    border-bottom: @px-size3 solid @primary-bg;
+    border-left: @px-size3 solid @primary-bg; 
     left: 0;
     -webkit-transform: rotate(-135deg);
 
@@ -150,93 +150,93 @@
 .doughtut{
     /*蓝色*/
     &.blue .doughtut-circle{
-        border: 3px solid #c6eefb;
+        border: @px-size3 solid #c6eefb;
     }
     &.blue .doughtut-label{
         color: #41c6f1;
     }
     &.blue .doughtut-circle.left{
-        border-bottom: 3px solid #41c6f1;
-        border-left: 3px solid #41c6f1; 
+        border-bottom: @px-size3 solid #41c6f1;
+        border-left: @px-size3 solid #41c6f1; 
     }
     &.blue .doughtut-circle.right{
-        border-top: 3px solid #41c6f1;
-        border-right: 3px solid #41c6f1;
+        border-top: @px-size3 solid #41c6f1;
+        border-right: @px-size3 solid #41c6f1;
     }
     /*绿色*/
     &.green .doughtut-circle{
-        border: 3px solid #c7ffe8;
+        border: @px-size3 solid #c7ffe8;
     }
     &.green .doughtut-label{
         color: #01cd78;
     }
     &.green .doughtut-circle.left{
-        border-bottom: 3px solid #01cd78;
-        border-left: 3px solid #01cd78; 
+        border-bottom: @px-size3 solid #01cd78;
+        border-left: @px-size3 solid #01cd78; 
     }
     &.green .doughtut-circle.right{
-        border-top: 3px solid #01cd78;
-        border-right: 3px solid #01cd78;
+        border-top: @px-size3 solid #01cd78;
+        border-right: @px-size3 solid #01cd78;
     }
     /*黄色*/
     &.yellow .doughtut-circle{
-        border: 3px solid #ffe8c7;
+        border: @px-size3 solid #ffe8c7;
     }
     &.yellow .doughtut-label{
         color: #ffa628;
     }
     &.yellow .doughtut-circle.left{
-        border-bottom: 3px solid #ffa628;
-        border-left: 3px solid #ffa628; 
+        border-bottom: @px-size3 solid #ffa628;
+        border-left: @px-size3 solid #ffa628; 
     }
     &.yellow .doughtut-circle.right{
-        border-top: 3px solid #ffa628;
-        border-right: 3px solid #ffa628;
+        border-top: @px-size3 solid #ffa628;
+        border-right: @px-size3 solid #ffa628;
     }
     /*橙色*/
     &.orange .doughtut-circle{
-        border: 3px solid #ffdbcd;
+        border: @px-size3 solid #ffdbcd;
     }
     &.orange .doughtut-label{
         color: #ff915b;
     }
     &.orange .doughtut-circle.left{
-        border-bottom: 3px solid #ff915b;
-        border-left: 3px solid #ff915b; 
+        border-bottom: @px-size3 solid #ff915b;
+        border-left: @px-size3 solid #ff915b; 
     }
     &.orange .doughtut-circle.right{
-        border-top: 3px solid #ff915b;
-        border-right: 3px solid #ff915b;
+        border-top: @px-size3 solid #ff915b;
+        border-right: @px-size3 solid #ff915b;
     }
     /*红色*/
     &.red .doughtut-circle{
-        border: 3px solid #ffbab1;
+        border: @px-size3 solid #ffbab1;
     }
     &.red .doughtut-label{
         color: #ff7664;
     }
     &.red .doughtut-circle.left{
-        border-bottom: 3px solid #ff7664;
-        border-left: 3px solid #ff7664; 
+        border-bottom: @px-size3 solid #ff7664;
+        border-left: @px-size3 solid #ff7664; 
     }
     &.red .doughtut-circle.right{
-        border-top: 3px solid #ff7664;
-        border-right: 3px solid #ff7664;
+        border-top: @px-size3 solid #ff7664;
+        border-right: @px-size3 solid #ff7664;
     }
     /*灰色*/
     &.gray .doughtut-circle{
-        border: 3px solid #e0e0e0;
+        border: @px-size3 solid #e0e0e0;
     }
     &.gray .doughtut-label{
         color: #acacac;
     }
     &.gray .doughtut-circle.left{
-        border-bottom: 3px solid #e0e0e0;
-        border-left: 3px solid #e0e0e0; 
+        border-bottom: @px-size3 solid #e0e0e0;
+        border-left: @px-size3 solid #e0e0e0; 
     }
     &.gray .doughtut-circle.right{
-        border-top: 3px solid #e0e0e0;
-        border-right: 3px solid #e0e0e0;
+        border-top: @px-size3 solid #e0e0e0;
+        border-right: @px-size3 solid #e0e0e0;
     }
 }
 /*----------------doughtut.less(end)----------------*/

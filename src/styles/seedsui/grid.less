@@ -13,14 +13,14 @@
 /*文字区域*/
 .grid-label{
 	display:block;
-    margin-top:8px;
+    margin-top:@px-size8;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
     box-sizing:border-box;
     
-    height: 16px;
-    line-height: 16px;
+    height: @px-size16;
+    line-height: @px-size16;
 
     color:@sub-color;
 }
@@ -42,7 +42,7 @@
 		width:33%;
 		float:left;
 		text-align:center;
-		padding:2px;
+		padding:@px-size2;
 		box-sizing:border-box;
 		
 	}
@@ -99,7 +99,7 @@
 			bottom: auto;
 			left: auto;
 		    right: 0;
-		    width: 1px;
+		    width: @px-size1;
 		    height: 100%;
 		    -webkit-transform-origin:right center;
 		}
@@ -109,7 +109,7 @@
 			right: auto;
 		    bottom: 0;
 		    left: 0;
-		    height: 1px;
+		    height: @px-size1;
 		    width: 100%;
 		    -webkit-transform-origin:center bottom;
 		}
@@ -137,13 +137,13 @@
 }
 /*单元格行间距*/
 .grid li {
-    padding-top: 8px;
+    padding-top: @px-size8;
 }
 .grid li:last-child{
-	padding-bottom:8px;
+	padding-bottom:@px-size8;
 }
 .grid.grid-bordered li{
-	padding-top:8px;
-	padding-bottom:8px;
+	padding-top:@px-size8;
+	padding-bottom:@px-size8;
 }
 /*----------------grid.less(end)----------------*/
