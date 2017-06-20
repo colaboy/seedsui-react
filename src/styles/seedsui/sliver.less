@@ -1,0 +1,29 @@
+/*----------sliver.less(start)----------*/
+.sliver,.statusbar{
+	position:relative;
+	display: -webkit-box;
+    -webkit-box-align: center;
+    padding: 0 12px;
+}
+.sliver{
+    height: 40px;
+    color: @primary-bg;
+}
+.statusbar{
+    height: 32px;
+    color: @bar-status-color;
+    background-color: @bar-status-bg;
+}
+.sliver-title,.statusbar-title{
+	display: block;
+    height: 20px;
+    line-height: 20px;
+    -webkit-box-flex: 1;
+}
+.sliver .peg{
+	display: block;
+}
+.sliver .peg+.sliver-title{
+    padding: 0 0 0 8px;
+}
+/*----------sliver.less(end)----------*/

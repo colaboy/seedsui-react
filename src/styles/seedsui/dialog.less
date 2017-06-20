@@ -1,0 +1,208 @@
+/*----------------dialog.less(start)--------------*/
+.dialog{
+	position:fixed;
+	z-index:10;
+	border-style:solid;
+	border-width:0;
+	box-sizing: border-box;
+	max-width: 100%;
+	max-height: 100%;
+    overflow: auto;
+
+	visibility:hidden;
+	-webkit-transition-duration:300ms;
+	-webkit-transition-property:-webkit-transform,opacity,visibility;
+
+	border-color:@border;
+	&.active{
+		visibility:visible;
+	}
+
+	/*======动画======*/
+	&[data-animation="slideLeft"]{
+		//left:0;
+		-webkit-transform:translate3d(100%,0,0);
+		&.active{
+			-webkit-transform:none;
+		}
+	}
+	&[data-animation="slideRight"]{
+		//left:0;
+		-webkit-transform:translate3d(-100%,0,0);
+		&.active{
+			-webkit-transform:none;
+		}
+	}
+	&[data-animation="slideUp"]{
+		//top:0;
+		-webkit-transform:translate3d(0,100%,0);
+		&.active{
+			-webkit-transform:none;
+		}
+	}
+	&[data-animation="slideDown"]{
+		//top:0;
+		-webkit-transform:translate3d(0,-100%,0);
+		&.active{
+			-webkit-transform:none;
+		}
+	}
+	&[data-animation="zoom"]{
+		-webkit-transform:scale(0,0);
+		&.active{
+			-webkit-transform:none;
+		}
+	}
+	&[data-animation="fade"]{
+		opacity:0;
+		&.active{
+			opacity:1;
+		}
+	}
+	&[data-animation="none"]{
+		display:none;
+		&.active{
+			display:block;
+		}
+	}
+
+	/*======middle======*/
+	&.middle{
+		top:50%;
+		left:50%;
+		-webkit-transform-origin:center center;
+		-webkit-transform:translate3d(-50%,-50%,0);
+
+		&[data-animation="zoom"]{
+			-webkit-transform:translate3d(-50%,-50%,0) scale(0,0);
+			&.active{
+				-webkit-transform:translate3d(-50%,-50%,0) scale(1,1);
+			}
+		}
+	}
+
+	/*======top======*/
+	&.top,&.top-center,&.top-right{
+		top:0;
+	}
+	&.top{
+		left:0;
+		-webkit-transform-origin:left top;
+	}
+	&.top-center{
+		left:50%;
+		-webkit-transform-origin:center top;
+		-webkit-transform:translate3d(-50%,0,0);
+
+		&[data-animation="slideDown"]{
+			-webkit-transform:translate3d(-50%,-100%,0);
+			&.active{
+				-webkit-transform:translate3d(-50%,0,0);
+			}
+		}
+		&[data-animation="zoom"]{
+			-webkit-transform:translate3d(-50%,0,0) scale(0,0);
+			&.active{
+				-webkit-transform:translate3d(-50%,0,0) scale(1,1);
+			}
+		}
+	}
+	&.top-right{
+		right:0;
+		-webkit-transform-origin:right top;
+	}
+
+	/*======bottom======*/
+	&.bottom,&.bottom-center,&.bottom-right{
+		bottom:0;
+	}
+	&.bottom{
+		left:0;
+		-webkit-transform-origin:left bottom;
+	}
+	&.bottom-center{
+		left:50%;
+		-webkit-transform-origin:center bottom;
+		-webkit-transform:translate3d(-50%,0,0);
+
+		&[data-animation="slideUp"]{
+			-webkit-transform:translate3d(-50%,100%,0);
+			&.active{
+				-webkit-transform:translate3d(-50%,0,0);
+			}
+		}
+		&[data-animation="zoom"]{
+			-webkit-transform:translate3d(-50%,100%,0) scale(0,0);
+			&.active{
+				-webkit-transform:translate3d(-50%,0,0) scale(1,1);
+			}
+		}
+	}
+	&.bottom-right{
+		right:0;
+		-webkit-transform-origin:right bottom;
+	}
+
+	/*======left======*/
+	&.left,&.left-middle,&.left-bottom{
+		left:0;
+	}
+	&.left{
+		top:0;
+		-webkit-transform-origin:left top;
+	}
+	&.left-middle{
+		top:50%;
+		-webkit-transform-origin:left center;
+		-webkit-transform:translate3d(0,-50%,0);
+
+		&[data-animation="slideRight"]{
+			-webkit-transform:translate3d(-100%,-50%,0);
+			&.active{
+				-webkit-transform:translate3d(0,-50%,0);
+			}
+		}
+		&[data-animation="zoom"]{
+			-webkit-transform:translate3d(0,-50%,0) scale(0,0);
+			&.active{
+				-webkit-transform:translate3d(0,-50%,0) scale(1,1);
+			}
+		}
+	}
+	&.left-bottom{
+		bottom:0;
+		-webkit-transform-origin:left bottom;
+	}
+	
+	/*======right======*/
+	&.right,&.right-middle,&.right-bottom{
+		right:0;
+	}
+	&.right{
+		top:0;
+		-webkit-transform-origin:right top;
+	}
+	&.right-middle{
+		top:50%;
+		-webkit-transform-origin:right center;
+		-webkit-transform:translate3d(0,-50%,0);
+
+		&[data-animation="slideLeft"]{
+			-webkit-transform:translate3d(100%,-50%,0);
+			&.active{
+				-webkit-transform:translate3d(0,-50%,0);
+			}
+		}
+		&[data-animation="zoom"]{
+			-webkit-transform:translate3d(0,-50%,0) scale(0,0);
+			&.active{
+				-webkit-transform:translate3d(0,-50%,0) scale(1,1);
+			}
+		}
+	}
+	&.right-bottom{
+		bottom:0;
+		-webkit-transform-origin:right bottom;
+	}
+}
+/*--------------------dialog.less(end)----------------------*/

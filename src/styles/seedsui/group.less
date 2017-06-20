@@ -1,0 +1,44 @@
+/*----------------group.less(end)--------------*/
+.group{
+	position: relative;
+	margin:8px 0;
+	background-color:white;
+	//上下线
+	&:before,&:after {
+		content: '';
+	    display: block;
+	    position: absolute;
+	    background-color: @border;
+	    //兼容UC线条不显示的BUG
+    	z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
+	}
+	&:before {
+		top: 0px;
+		right: auto;
+	    bottom: auto;
+	    left: 0;
+	    height: 1px;
+	    width: 100%;
+	    -webkit-transform-origin:center top;
+	}
+	&:after {
+		top: auto;
+		right: auto;
+	    bottom: 0px;
+	    left: 0;
+	    height: 1px;
+	    width: 100%;
+	    -webkit-transform-origin:center bottom;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+		&:before,&:after {
+			-webkit-transform: scaleY(0.5);
+		}
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+		&:before,&:after {
+			-webkit-transform: scaleY(0.33);
+		}
+	}
+}
+/*----------------group.less(end)--------------*/

@@ -1,0 +1,181 @@
+/*---------------gauge.less(start)---------------*/
+@gauge-bgs: #1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403;
+@-webkit-keyframes gauge-box-bg1{
+	0% {background-color:nth(@gauge-bgs, 1);}
+	100% {background-color:nth(@gauge-bgs, 2);}
+}
+@-webkit-keyframes gauge-box-bg2{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	50%{background-color:nth(@gauge-bgs, 2);}
+  	100%{background-color:nth(@gauge-bgs, 3);}
+}
+@-webkit-keyframes gauge-box-bg3{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	33%{background-color:nth(@gauge-bgs, 2);}
+	67%{background-color:nth(@gauge-bgs, 3);}
+  	100%{background-color:nth(@gauge-bgs, 4);}
+}
+@-webkit-keyframes gauge-box-bg4{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	25%{background-color:nth(@gauge-bgs, 2);}
+	50%{background-color:nth(@gauge-bgs, 3);}
+	75%{background-color:nth(@gauge-bgs, 4);}
+  	100%{background-color:nth(@gauge-bgs, 5);}
+}
+@-webkit-keyframes gauge-box-bg5{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	20%{background-color:nth(@gauge-bgs, 2);}
+	40%{background-color:nth(@gauge-bgs, 3);}
+	60%{background-color:nth(@gauge-bgs, 4);}
+  	80%{background-color:nth(@gauge-bgs, 5);}
+	100%{background-color:nth(@gauge-bgs, 6);}
+}
+@-webkit-keyframes gauge-box-bg6{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	16%{background-color:nth(@gauge-bgs, 2);}
+	33%{background-color:nth(@gauge-bgs, 3);}
+	50%{background-color:nth(@gauge-bgs, 4);}
+  	66%{background-color:nth(@gauge-bgs, 5);}
+	87%{background-color:nth(@gauge-bgs, 6);}
+	100%{background-color:nth(@gauge-bgs, 7);}
+}
+@-webkit-keyframes gauge-box-bg7{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	14%{background-color:nth(@gauge-bgs, 2);}
+	28%{background-color:nth(@gauge-bgs, 3);}
+	43%{background-color:nth(@gauge-bgs, 4);}
+  	57%{background-color:nth(@gauge-bgs, 5);}
+	71%{background-color:nth(@gauge-bgs, 6);}
+	86%{background-color:nth(@gauge-bgs, 7);}
+	100%{background-color:nth(@gauge-bgs, 8);}
+}
+@-webkit-keyframes gauge-box-bg8{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	12%{background-color:nth(@gauge-bgs, 2);}
+	25%{background-color:nth(@gauge-bgs, 3);}
+	37%{background-color:nth(@gauge-bgs, 4);}
+  	50%{background-color:nth(@gauge-bgs, 5);}
+	62%{background-color:nth(@gauge-bgs, 6);}
+	75%{background-color:nth(@gauge-bgs, 7);}
+	87%{background-color:nth(@gauge-bgs, 8);}
+	100%{background-color:nth(@gauge-bgs, 9);}
+}
+@-webkit-keyframes gauge-box-bg9{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	11%{background-color:nth(@gauge-bgs, 2);}
+	22%{background-color:nth(@gauge-bgs, 3);}
+	33%{background-color:nth(@gauge-bgs, 4);}
+  	44%{background-color:nth(@gauge-bgs, 5);}
+	55%{background-color:nth(@gauge-bgs, 6);}
+	67%{background-color:nth(@gauge-bgs, 7);}
+	78%{background-color:nth(@gauge-bgs, 8);}
+	89%{background-color:nth(@gauge-bgs, 9);}
+	100%{background-color:nth(@gauge-bgs, 9);}
+}
+@-webkit-keyframes gauge-box-bg10{
+	0%{background-color:nth(@gauge-bgs, 1);}
+	10%{background-color:nth(@gauge-bgs, 2);}
+	20%{background-color:nth(@gauge-bgs, 3);}
+	30%{background-color:nth(@gauge-bgs, 4);}
+  	40%{background-color:nth(@gauge-bgs, 5);}
+	50%{background-color:nth(@gauge-bgs, 6);}
+	60%{background-color:nth(@gauge-bgs, 7);}
+	70%{background-color:nth(@gauge-bgs, 8);}
+	80%{background-color:nth(@gauge-bgs, 9);}
+	90%{background-color:nth(@gauge-bgs, 9);}
+	100%{background-color:nth(@gauge-bgs, 10);}
+}
+
+.gauge-box{
+	position:relative;
+	overflow:hidden;
+	
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	background-color:nth(@gauge-bgs, 1);
+
+	-webkit-animation-duration:0.5s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-fill-mode:forwards;
+}
+.gauge-box.bg1{
+	-webkit-animation-name:gauge-box-bg1;
+}
+.gauge-box.bg2{
+	-webkit-animation-name:gauge-box-bg2;
+}
+.gauge-box.bg3{
+	-webkit-animation-name:gauge-box-bg3;
+}
+.gauge-box.bg4{
+	-webkit-animation-name:gauge-box-bg4;
+}
+.gauge-box.bg5{
+	-webkit-animation-name:gauge-box-bg5;
+}
+.gauge-box.bg6{
+	-webkit-animation-name:gauge-box-bg6;
+}
+.gauge-box.bg7{
+	-webkit-animation-name:gauge-box-bg7;
+}
+.gauge-box.bg8{
+	-webkit-animation-name:gauge-box-bg8;
+}
+.gauge-box.bg9{
+	-webkit-animation-name:gauge-box-bg9;
+}
+.gauge-box.bg10{
+	-webkit-animation-name:gauge-box-bg10;
+}
+.gauge{
+	position:relative;
+	width:200px;
+	height:200px;
+	margin:0 auto;
+	background-image:url(images/gauge/gauge.png);
+	background-size:100% 100%;
+}
+.gauge-pointer{
+	position:absolute;
+	bottom:45px;
+	left:52px;
+	height:60px;
+	width:60px;
+	background-image:url(images/gauge/gauge-pointer.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	-webkit-transform-origin:48px 13.5px;
+	-webkit-transition-property:transform;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-duration:500ms;
+}
+.gauge-text{
+	position:absolute;
+	bottom:25px;
+	width:100%;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	color: #59bdfc;
+}
+@-webkit-keyframes lrWave{
+	0%{background-position-x:0}
+  	100%{background-position-x:960px}
+}
+.gauge-wave{
+	position:absolute;
+	top:80%;
+	left:0;
+	width:100%;
+	height:1136px;
+	//background-image: url(images/gauge/wave.png);
+	background-repeat:repeat-x;
+	background-position-x:0;
+	background-position-y:top;
+	background-size:960px auto;
+	opacity:0.2;
+	
+	-webkit-animation:lrWave 10s linear infinite;
+}
+/*---------------gauge.less(end)---------------*/

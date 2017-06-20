@@ -1,0 +1,258 @@
+/*----------------global.less(start)----------------*/
+.events-none{
+	pointer-events:none;
+}
+.events-auto{
+	pointer-events:auto;
+}
+.noselect{
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-moz-user-select:none;
+}
+::selection{
+	background:@primary-bg;
+	color:@primary-color;
+}
+::-webkit-input-placeholder{
+	color:@placeholder;	
+}
+body{
+	cursor: pointer;//解决ios点击非点击元素时不触发click的问题
+}
+/*标签默认样式*/
+*{
+	margin:0;
+	padding:0;
+}
+html,body {
+	height: 100%;
+}
+body{
+	//ios点击时的半透明背景，设置它为透明色
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	//禁止文字自适应大小
+	-webkit-text-size-adjust: none;
+	//平滑滚动
+	-webkit-overflow-scrolling:touch;
+
+	font-size:@font-size-M;
+	font-family:@font-family;
+
+	color:@body-color;
+	background-color:@body-bg;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.placeholder{
+	color:@placeholder;
+}
+i,span,label,small{
+	display:inline-block;
+	vertical-align:middle;
+}
+button,input,select,option,textarea,pre{
+	font-size:inherit;
+	font-family:inherit;
+}
+button,input[type="button"],input[type="submit"],input[type="reset"]{
+	/*为了兼容部分手机input[button]-webkit-inline-box水平居中不工作的问题*/
+	display:inline-block;
+}
+textarea{
+	resize:none;
+}
+ul,li,dl,dt,dd {
+	list-style: none;
+}
+small{
+	font-size:80%;
+
+	color:@placeholder;
+}
+a{
+	text-decoration:none;
+	outline:none;
+	cursor:pointer;
+	display:inline-block; 
+
+	color:@link;
+	&:active{
+        //color:@link-active;
+    }
+}
+a,label, :focus{
+	outline:0 none;
+}
+img {
+  border: 0;
+  vertical-align:middle;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+dfn {
+  font-style: italic;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary{
+	display:block;
+}
+pre{
+	white-space:pre-wrap;
+	white-space:-moz-pre-wrap;
+	white-space:-pre-wrap;
+	white-space:-o-pre-wrap;
+	word-wrap:break-word;
+}
+.code{
+	display: block;
+	font-size: 13px;
+	line-height: 1.42857143;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.keyword{
+	color: @primary-bg;
+	vertical-align: baseline;
+}
+/*显示与隐藏*/
+.hide{
+	display:none;
+}
+.hidden{
+	visibility:hidden;
+}
+.overflow-hidden{
+	overflow:hidden;
+}
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: " ";
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix{
+	zoom:1;
+}
+.clear{
+	clear:both;
+}
+br{
+	clear:both;
+}
+
+/*文字样式*/
+.bold{
+	font-weight:bold;
+}
+.uppercase{
+	text-transform:uppercase;/*大写*/
+}
+.lowercase{
+	text-transform:lowercase;/*小写*/
+}
+.capitalize{
+	text-transform:capitalize;/*首字母大写*/
+}
+
+/*文字换行*/
+.break-all{
+	word-break:break-all;
+}
+.nowrap,.nowrap2{
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.nowrap{
+	white-space:nowrap;
+}
+.nowrap2{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+}
+.nowrap2{
+	-webkit-line-clamp:2;
+}
+
+/*文字排列*/
+.text-center{
+	text-align:center;
+}
+.text-right{
+	text-align:right;
+}
+.text-left{
+	text-align:left;
+}
+
+/*浮动*/
+.float-left{
+	float:left;
+}
+.float-right{
+	float:right;
+}
+
+/*层定位*/
+.fixed{
+	position: fixed;
+}
+.relative{
+	position: relative;
+}
+.absolute{
+	position:absolute;
+}
+
+/*层模型*/
+.block{
+	display: block;
+}
+.inline-block{
+	display: inline-block;
+}
+.table{
+	display: table;
+}
+.table-fixed{
+	table-layout: fixed;
+}
+.table-cell{
+	display: table-cell;
+}
+
+/*边框盒子*/
+.content-box{
+	box-sizing:content-box;
+}
+.border-box{
+	box-sizing:border-box;
+}
+
+/*层排列*/
+.horizontal{
+	overflow-x:auto;
+    white-space:nowrap;
+}
+.lr{
+	direction:ltr;
+}
+.rl{
+	direction:rtl;
+}
+/*----------------global.less(end)----------------*/

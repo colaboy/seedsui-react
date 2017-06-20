@@ -1,0 +1,36 @@
+/*----------------numbox.less(start)--------------*/
+.numbox{
+    display:-webkit-inline-box;
+    position:relative;
+    height:24px;
+    width:94px;
+    overflow:hidden;
+    text-align:center;
+    vertical-align: middle;
+    background-color:@input-bg;
+    input[type=number],input[type=tel]{
+        display: block;
+        -webkit-box-flex:1;
+        padding:2px;
+        text-align:center;
+        text-overflow:ellipsis;
+        border-width:0;
+        width:54px;
+        border-width:0 1px;
+    }
+    .button{
+        width:24px;
+        height:24px;
+        font-size:18px;
+        font-weight:400;
+        text-align: center;
+        border:0;
+        &:first-child{
+            left:0;
+        }
+        &:nth-last-of-type(1){
+            right:0;
+        }
+    }
+}
+/*----------------numbox.less(end)--------------*/
