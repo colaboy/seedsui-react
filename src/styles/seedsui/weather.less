@@ -54,7 +54,7 @@
 	text-indent:@px-size8;
 }
 .weather-today{
-	height:200px;
+	height:@px-size200;
 	position:relative;
 }
 .weather-today-left{
@@ -80,7 +80,7 @@ ul.weather-otherday{
 	width: 100%;
 	bottom:@px-size10;
 	font-size:@px-size10;
-	-webkit-transform:translateY(300px);
+	-webkit-transform:translateY(@px-size300);
 	opacity:0;
 	transition:all 0.5s linear;
 }
@@ -96,7 +96,7 @@ ul.weather-otherday li{
 .weather-collapse{
 	position:absolute;
 	top:@px-size10;
-	left:90px;
+	left:@px-size90;
 	opacity:1;
 	
 	transition:all 0.5s linear;
@@ -128,14 +128,14 @@ ul.weather-otherday li{
 }
 .weather-box.expand .weather-today-left{
 	top:0;
-	left:80px;
+	left:@px-size80;
 }
 .weather-box.expand .weather-today-right{
 	top:0;
-	right:80px;
+	right:@px-size80;
 }
 .weather-box.expand .weather-collapse{
-	top:300px;
+	top:@px-size300;
 	opacity:0;
 }
 

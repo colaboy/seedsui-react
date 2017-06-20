@@ -3921,7 +3921,7 @@ progress::-webkit-progress-value {
   background-image: url(images/gauge/gauge-pointer.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  -webkit-transform-origin: 48px 13.5px;
+  -webkit-transform-origin: 48px 13px;
   -webkit-transition-property: transform;
   -webkit-transition-timing-function: linear;
   -webkit-transition-duration: 500ms;
@@ -6012,6 +6012,9 @@ body {
 }
 .placeholder {
   color: #cccccc;
+}
+i {
+  font-style: normal;
 }
 i,
 span,
