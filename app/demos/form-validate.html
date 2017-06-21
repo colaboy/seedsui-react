@@ -139,7 +139,7 @@
               ===========================*/
             _validateForm:function(){
                 var validator=new Validator();
-                /*validator.add(this.formContainer["NID-UserName"],[
+                validator.add(this.formContainer["NID-UserName"],[
                     {
                         rule:'minLength:6',
                         errorMsg:'用户名不能低于6位'
@@ -195,7 +195,7 @@
                         rule:'mail',
                         errorMsg:'邮箱格式不正确'
                     }
-                ]);*/
+                ]);
                 validator.add(this.formContainer["NID-Age"],[
                     {
                         rule:'positiveInteger',
