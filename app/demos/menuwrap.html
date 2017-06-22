@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="../images/apple-touch-icon.png">
+    <title>menuwrap</title>
+    <link rel="stylesheet" href="../../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <section>
+        <header>
+            <div class="titlebar">
+                <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1 class="titlebar-title">侧导航</h1>
+            </div>
+        </header>
+        <article>
+            <div class="menuwrap">
+                <div class="menuwrap-side">
+                    <div class="menuwrap-tag active">
+                        <p class="menuwrap-tag-inner">APP下单优惠菜品</p>
+                    </div>
+                    <div class="menuwrap-tag">
+                        <p class="menuwrap-tag-inner">
+                            <img class="menuwrap-tag-icon" src="http://p1.meituan.net/xianfu/10ba72e043ef4eca806cafb1a90a22662048.png" alt="">
+                            热销
+                        </p>
+                    </div>
+                    <div class="menuwrap-tag">
+                        <p class="menuwrap-tag-inner">外卖套餐类</p>
+                    </div>
+                    <div class="menuwrap-tag">
+                        <p class="menuwrap-tag-inner">外卖套餐类</p>
+                    </div>
+                </div>
+                <div class="menuwrap-main">
+                    <div style="height: 800px;background-color: red;"></div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <script src="../../dist/seedsui.min.js"></script>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+    //定义exmobi返回
+    function back(){history.go(-1);}
+</script>
+</body>
+</html>

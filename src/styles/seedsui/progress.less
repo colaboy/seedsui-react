@@ -1,10 +1,10 @@
 /*----------------progress.less(start)--------------*/
 progress {
 	display:block;
-    height:@px-size10;
-    border-width:@px-size1;
+    height:@px10;
+    border-width:@px1;
 	border-style:solid;
-	border-radius:@px-size5;
+	border-radius:@px5;
 	overflow:hidden;
 
 	color:@border; /*IE10*/
@@ -24,7 +24,7 @@ progress::-webkit-progress-value  {
 //进度条容器
 .progress {
 	position: relative;
-	padding: @px-size2;
+	padding: @px2;
 
 	background-color:@progress-bg;
 }
@@ -35,10 +35,10 @@ progress::-webkit-progress-value  {
 	position: relative;
 	-webkit-animation: progressexpand 1s linear;
 
-	height: @px-size12;
+	height: @px12;
     margin: 0;
     box-sizing: border-box;
-    border-width: @px-size1;
+    border-width: @px1;
     border-style: solid;
 
 	background-color:@primary-bg;
@@ -70,7 +70,7 @@ progress::-webkit-progress-value  {
 	//3D样式
 	&.threed {
 		border-width: 0;
-		box-shadow: inset 0 @px-size2 @px-size9  rgba(255,255,255,0.3), inset 0 -@px-size2 @px-size6 rgba(0,0,0,0.4);
+		box-shadow: inset 0 @px2 @px9  rgba(255,255,255,0.3), inset 0 -@px2 @px6 rgba(0,0,0,0.4);
 	}
 	//斑马条
 	&.striped{
@@ -82,7 +82,7 @@ progress::-webkit-progress-value  {
 			bottom:0;
 			right:0;
 			background-image:linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-			background-size:@px-size50 @px-size50;
+			background-size:@px50 @px50;
 			overflow:hidden;
 		}
 		&.animated:after{
@@ -94,7 +94,7 @@ progress::-webkit-progress-value  {
 
 //进度条文字
 .progress-text {
-	font-size: @px-size12;
+	font-size: @px12;
 	color:white;
 	&.left,&.right,&.center{
 		position:absolute;
@@ -102,10 +102,10 @@ progress::-webkit-progress-value  {
 		-webkit-transform:translateY(-50%);
 	}
 	&.left{
-		left:@px-size12;
+		left:@px12;
 	}
 	&.right{
-		right:@px-size12;
+		right:@px12;
 	}
 	&.center{
 		left:50%;
@@ -118,7 +118,7 @@ progress::-webkit-progress-value  {
 		background-position: 0 0;
 	}
 	100% {
-		background-position: @px-size50 @px-size50;
+		background-position: @px50 @px50;
 	}
 }
 @-webkit-keyframes progressexpand {
@@ -131,24 +131,24 @@ progress::-webkit-progress-value  {
 .progressbox-content {
     display: -webkit-box;
     -webkit-box-align: center;
-    padding: @px-size8 @px-size12;
+    padding: @px8 @px12;
 }
 .progressbox-content .progress {
-    border-radius: @px-size40;
+    border-radius: @px40;
     -webkit-box-flex: 1.0;
 }
 .progressbox-content label {
     display: block;
-    height: @px-size16;
-    line-height: @px-size16;
-    width: @px-size50;
+    height: @px16;
+    line-height: @px16;
+    width: @px50;
     text-align: center;
     
-    border-radius: @px-size20;
-    font-size: @px-size12;
+    border-radius: @px20;
+    font-size: @px12;
     font-weight: bold;
-    margin-left: @px-size8;
-    min-width: @px-size56;
+    margin-left: @px8;
+    min-width: @px56;
     color: #494949;
     background-color: @progress-bg;
 }

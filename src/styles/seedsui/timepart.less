@@ -1,14 +1,14 @@
 /*----------------timepart.less(start)--------------*/
 .timepart{
-    padding: @px-size1 0;
+    padding: @px1 0;
     background-color:white;
 }
 //行
 .timepart-row{
     position: relative;
     display: -webkit-box;
-    height: @px-size18;
-    margin: @px-size20 @px-size20 @px-size40 @px-size20;
+    height: @px18;
+    margin: @px20 @px20 @px40 @px20;
 }
 //进度条
 .timepart-progress{
@@ -34,9 +34,9 @@
     //开始和结束时间
     .timepart-startTime,.timepart-endTime{
         float:left;
-        margin-top:@px-size22;
-        font-size:@px-size13;
-        margin-left:-@px-size16;
+        margin-top:@px22;
+        font-size:@px13;
+        margin-left:-@px16;
     }
     //只显示开始时间
     .timepart-startTime{
@@ -53,9 +53,9 @@
     }
     //第一个part
     &:nth-of-type(1){
-        border-width:@px-size1;
+        border-width:@px1;
         .timepart-startTime{
-            margin-left:-@px-size7;
+            margin-left:-@px7;
         }
     }
     //最后一个part
@@ -66,7 +66,7 @@
         .timepart-endTime{
             display:inline-block;
             float:right;
-            margin-right:-@px-size7;
+            margin-right:-@px7;
         }
     }
     &.active{
@@ -120,7 +120,7 @@
     right: auto;
     bottom: auto;
     left: 0;
-    width: @px-size1;
+    width: @px1;
     height: 100%;
     -webkit-transform-origin:left center;
 }
@@ -130,7 +130,7 @@
     right: auto;
     bottom: auto;
     left: 0;
-    height: @px-size1;
+    height: @px1;
     width: 100%;
     -webkit-transform-origin:center top;
 }
@@ -140,7 +140,7 @@
     bottom: auto;
     left: auto;
     right: 0;
-    width: @px-size1;
+    width: @px1;
     height: 100%;
     -webkit-transform-origin:right center;
 }
@@ -150,7 +150,7 @@
     right: auto;
     bottom: 0;
     left: 0;
-    height: @px-size1;
+    height: @px1;
     width: 100%;
     -webkit-transform-origin:center bottom;
 }

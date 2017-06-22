@@ -11,7 +11,7 @@
 .tab{
 	display:table-cell;
 	width:1%;
-	padding:0 @px-size12;
+	padding:0 @px12;
 	position:relative;
 	text-align:center;
 	box-sizing:border-box;
@@ -49,8 +49,8 @@
 /*tabbar*/
 .tabbar{
 	.tab{
-		height:@px-size40;
-		line-height:@px-size40;
+		height:@px40;
+		line-height:@px40;
 	}
 }
 .tabbar.reverse{
@@ -116,7 +116,7 @@
 			right: auto;
 		    bottom: 0;
 		    left: 0;
-		    height: @px-size1;
+		    height: @px1;
 		    width: 100%;
 		    -webkit-transform-origin:center bottom;
 		}
@@ -126,7 +126,7 @@
 			right: auto;
 		    bottom: 0;
 		    left: 0;
-		    height: @px-size2;
+		    height: @px2;
 		    width: 100%;
 
 		    background-color:@bar-border-active;
@@ -182,18 +182,18 @@
 .tabbar-rect{
 	max-width:96%;
 	.tab{
-		height:@px-size32;
-		line-height:@px-size30;
-		border-width:@px-size1 @px-size1 @px-size1 0;
+		height:@px32;
+		line-height:@px30;
+		border-width:@px1 @px1 @px1 0;
 	}
 	.tab:nth-of-type(1){
-		border-top-left-radius: @px-size16;
-		border-bottom-left-radius: @px-size16;
-		border-left-width:@px-size1;
+		border-top-left-radius: @px16;
+		border-bottom-left-radius: @px16;
+		border-left-width:@px1;
 	}
 	.tab:nth-last-of-type(1){
-		border-top-right-radius: @px-size16;
-		border-bottom-right-radius: @px-size16;
+		border-top-right-radius: @px16;
+		border-bottom-right-radius: @px16;
 	}
 	.tab.active,.tab:active{
 		color:white;
@@ -217,10 +217,10 @@
 .tabbar-lump{
 	.tab{
 		.tab-label{
-			padding:0 @px-size12;
-			border-radius:@px-size28;
-			height:@px-size28;
-			line-height:@px-size28;
+			padding:0 @px12;
+			border-radius:@px28;
+			height:@px28;
+			line-height:@px28;
 			-webkit-transition-property:background-color,color;
 			-webkit-transition-duration:300ms;
 		}
@@ -250,14 +250,14 @@
 	.tab{
 		height: auto;
     	line-height: 0;
-    	padding: @px-size6 0;
+    	padding: @px6 0;
 	}
 	.tab-label{
 		display:block;
-		font-size:@px-size13;
-		height:@px-size13;
-		line-height:@px-size13;
-		margin:@px-size4 0 0 0;
+		font-size:@px13;
+		height:@px13;
+		line-height:@px13;
+		margin:@px4 0 0 0;
 	}
 }
 .tabbar-footer.reverse{

@@ -4,7 +4,7 @@
     -webkit-box-align:center;
     -webkit-box-pack:center;
 
-	height:@px-size40;
+	height:@px40;
 	/* line-height:normal; */
 	line-height:0;
 	border-width:0;
@@ -13,7 +13,7 @@
 	box-sizing:border-box;
 
 	border-style:solid;
-	border-width: @px-size1;
+	border-width: @px1;
 	border-radius:0;
 
 	color:@button-color;
@@ -207,19 +207,19 @@
 }
 /*投影按钮*/
 .button.shadow{
-	box-shadow:0 @px-size2 @px-size3 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
+	box-shadow:0 @px2 @px3 0 rgba(0, 0, 0, 0.2);/*分别指投影的：右、下、模糊、扩展、颜色*/
 	&:active{
 		-webkit-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 		-moz-box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
 		box-shadow:0 0 0 0 rgba(0, 0, 0, 0.2);
-		margin:@px-size2 0 -@px-size2 0;
+		margin:@px2 0 -@px2 0;
 	}
 }
 /*多彩标签按钮*/
 .mark-info,.mark-success,.mark-cancel,.mark-warn,.mark-disable,.mark-primary{
 	font-size:@font-size-S;
-    padding:@px-size2 @px-size5;
-    border-radius:@px-size3;
+    padding:@px2 @px5;
+    border-radius:@px3;
 
     color: white;
 }
@@ -229,7 +229,7 @@
 .mark-disable.outline{
 	background-color: transparent;
 	color: @disable-bg;
-	border:@px-size1 solid @disable-bg;
+	border:@px1 solid @disable-bg;
 }
 .mark-info{
 	background-color: @info-bg;
@@ -237,7 +237,7 @@
 .mark-info.outline{
 	background-color: transparent;
 	color: @info-bg;
-	border:@px-size1 solid @info-bg;
+	border:@px1 solid @info-bg;
 }
 .mark-success{
 	background-color: @success-bg;
@@ -245,7 +245,7 @@
 .mark-success.outline{
 	background-color: transparent;
 	color: @success-bg;
-	border:@px-size1 solid @success-bg;
+	border:@px1 solid @success-bg;
 }
 .mark-cancel{
 	background-color: @cancel-bg;
@@ -253,7 +253,7 @@
 .mark-cancel.outline{
 	background-color: transparent;
 	color: @cancel-bg;
-	border:@px-size1 solid @cancel-bg;
+	border:@px1 solid @cancel-bg;
 }
 .mark-warn{
 	background-color: @warn-bg;
@@ -261,7 +261,7 @@
 .mark-warn.outline{
 	background-color: transparent;
 	color: @warn-bg;
-	border:@px-size1 solid @warn-bg;
+	border:@px1 solid @warn-bg;
 }
 .mark-primary{
 	background-color: @primary-bg;
@@ -269,6 +269,6 @@
 .mark-primary.outline{
 	background-color: transparent;
 	color: @primary-bg;
-	border:@px-size1 solid @primary-bg;
+	border:@px1 solid @primary-bg;
 }
 /*----------------button.less(end)----------------*/

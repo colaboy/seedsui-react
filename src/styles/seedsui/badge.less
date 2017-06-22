@@ -10,21 +10,21 @@
 }
 /*徽章*/
 .badge{
-	padding:0 @px-size4;
-	height:@px-size20;
-	line-height:@px-size20;
+	padding:0 @px4;
+	height:@px20;
+	line-height:@px20;
 	text-align:center;
-	border-radius:@px-size20;
-	min-width:@px-size24;
+	border-radius:@px20;
+	min-width:@px24;
 
 	color:@tip-color;
 	background-color:@tip-bg;
 }
 /*圆形徽章*/
 .tip{
-	width:@px-size24;
-	height:@px-size24;
-	line-height:@px-size24;
+	width:@px24;
+	height:@px24;
+	line-height:@px24;
 	border-radius:100%;
 
 	color:@tip-color;
@@ -32,8 +32,8 @@
 }
 /*关闭*/
 .close{
-	width:@px-size24;
-	height:@px-size24;
+	width:@px24;
+	height:@px24;
 	border-radius:100%;
 
 	display:-webkit-inline-box;
@@ -45,10 +45,7 @@
 	border-radius: 100%;
 
 	/*文字图标*/
-	border-width: @px-size2;
-	border-style: solid;
 	color:white;
-	border-color: white;
 	background-color: rgba(0,0,0,.7);
 
 	i,.icon{
@@ -57,8 +54,8 @@
 }
 /*小点点*/
 .dot{
-    height:@px-size5;
-    width:@px-size5;
+    height:@px5;
+    width:@px5;
     border-radius: 100%;
 
     background-color:@primary-bg;
@@ -66,8 +63,8 @@
 /*小竖条*/
 .peg {
     display: inline-block;
-    width: @px-size4;
-    height: @px-size16;
+    width: @px4;
+    height: @px16;
     background-color: @primary-bg;
 }
 /*标签贴*/
@@ -83,23 +80,23 @@
 	span{
 		position:absolute;
 		font-size:@font-size-S;
-		padding:0 @px-size2;
+		padding:0 @px2;
 	}
 	&.top,&.top span{
 		top:0;
 	}
 	&.top{
-		border-top-width:@px-size32;
+		border-top-width:@px32;
 	}
 	&.top span{
-		min-width: @px-size30;
-		margin-top:-@px-size30;
+		min-width: @px30;
+		margin-top:-@px30;
 	}
 	&.left,&.left span{
 		left:0;
 	}
 	&.left{
-		border-right-width:@px-size56;
+		border-right-width:@px56;
 		border-right-color:transparent;
 	}
 	&.right,&.right span{
@@ -107,40 +104,40 @@
 		text-align: right;
 	}
 	&.right{
-		border-left-width:@px-size56;
+		border-left-width:@px56;
 		border-left-color:transparent;
 	}
 	&.bottom,&.bottom span{
 		bottom:0;
 	}
 	&.bottom{
-		border-bottom-width:@px-size32;
+		border-bottom-width:@px32;
 	}
 	&.bottom span{
-		margin-bottom:-@px-size30;
+		margin-bottom:-@px30;
 	}
 }
 .sticker.sticker-icon{
 	&.top{
-        border-top-width: @px-size28;
+        border-top-width: @px28;
     }
     &.top span {
-        margin-top: -@px-size26;
+        margin-top: -@px26;
     }
     &.left{
-        border-right-width: @px-size28;
+        border-right-width: @px28;
     }
     &.right{
-        border-left-width: @px-size28;
+        border-left-width: @px28;
     }
     &.bottom{
-        border-bottom-width: @px-size28;
+        border-bottom-width: @px28;
     }
 }
 .tagline{
 	position:absolute;
-	width: @px-size100;
-	height: @px-size20;
+	width: @px100;
+	height: @px20;
 	text-align: center;
 	display: -webkit-box;
 	-webkit-box-align:center;
@@ -150,24 +147,24 @@
 	color:@tip-color;
 	background-color:@tip-bg;
 	&.top{
-		top: @px-size13;
+		top: @px13;
 		&.left{
-			left: -@px-size20;
+			left: -@px20;
 			-webkit-transform:rotate(-42deg);
 		}
 		&.right{
-			right: -@px-size20;
+			right: -@px20;
 			-webkit-transform:rotate(42deg);
 		}
 	}
 	&.bottom{
-		bottom:@px-size15;
+		bottom:@px15;
 		&.left{
-			left: -@px-size24;
+			left: -@px24;
 			-webkit-transform:rotate(42deg);
 		}
 		&.right{
-			right: -@px-size24;
+			right: -@px24;
 			-webkit-transform:rotate(-42deg);
 		}
 	}
