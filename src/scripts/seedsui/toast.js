@@ -8,9 +8,16 @@
 		var defaults={
 			parent:document.body,
 			
+			maskClass:"mask",
+			maskActiveClass:"active",
+			maskFeatureClass:"toast-mask",
+
 			containerClass:"toast",
+			toastActiveClass:"active",
 			wrapperClass:"toast-wrapper",
-			activeClass:"active",
+
+			isCover:true,
+			coverClass:"toast-cover",
 
 			containerCss:{},
 			wrapperCss:{},
@@ -33,6 +40,13 @@
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		s.container,s.wrapper;
+		//Mask
+		s.createMask=function(){
+            var mask=document.createElement("div");
+            mask.setAttribute("class",s.params.maskClass+" "+s.params.maskFeatureClass);
+            if(s.params.isCover===false)mask.classList.add(s.params.coverClass);
+            return mask;
+        }
 		s.createContainer=function(){
 			var container=document.createElement("div");
 			container.setAttribute("class",s.params.containerClass);
@@ -45,10 +59,12 @@
 			return wrapper;
 		}
 		s.create=function(){
+			s.mask=s.createMask();
 			s.container=s.createContainer();
 			s.wrapper=s.createToastContent();
 			s.container.appendChild(s.wrapper);
-			s.parent.appendChild(s.container);
+			s.mask.appendChild(s.container);
+			s.parent.appendChild(s.mask);
 		}
 		s.create();
 		s.update=function(){
@@ -74,14 +90,37 @@
 		s.setDelay=function(delay){
 			s.params.delay=delay;
 		};
-		s.isHid=true;
+		
+		s.showMask=function(){
+            s.mask.classList.add(s.params.maskActiveClass);
+        }
+        s.hideMask=function(){
+        	s.mask.classList.remove(s.params.maskActiveClass);
+        }
+        s.destroyMask=function(){
+        	s.parent.removeChild(s.mask);
+        }
+
+        s.showToast=function(){
+            s.container.classList.add(s.params.toastActiveClass);
+        }
+        s.hideToast=function(){
+        	s.container.classList.remove(s.params.toastActiveClass);
+        }
+        s.destroyToast=function(){
+        	s.parent.removeChild(s.container);
+        }
+
+        s.isHid=true;
 		s.hide=function(fn){
 			s.isHid=true;
-			s.container.classList.remove(s.params.activeClass);
+			s.hideMask();
+			s.hideToast();
 		};
 		s.show=function(fn){
 			s.isHid=false;
-			s.container.classList.add(s.params.activeClass);
+			s.showMask();
+			s.showToast();
 
 			//显示数秒后，自动消失
 			if(s.delayer)window.clearTimeout(s.delayer);
@@ -90,7 +129,7 @@
 			}, s.params.delay);
 		};
 		s.destroy=function(){
-			s.parent.removeChild(s.container);
+			s.destroyMask
 		};
 		/*================
 		Controller

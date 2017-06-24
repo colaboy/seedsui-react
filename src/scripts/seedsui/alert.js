@@ -10,7 +10,9 @@
 			parent:document.body,
 
 			maskClass:"mask",
+			maskActiveClass:"active",
 			alertClass:"alert",
+			alertActiveClass:"active",
 			contentClass:"alert-content",
 			handlerClass:"alert-handler",
 
@@ -96,19 +98,19 @@
 		Method
 		================*/
 		s.showMask=function(){
-            s.mask.classList.add("active");
+            s.mask.classList.add(s.params.maskActiveClass);
         }
         s.hideMask=function(){
-        	s.mask.classList.remove("active");
+        	s.mask.classList.remove(s.params.maskActiveClass);
         }
         s.destroyMask=function(){
         	s.parent.removeChild(s.mask);
         }
         s.showAlert=function(){
-        	s.container.classList.add("active");
+        	s.container.classList.add(s.params.alertActiveClass);
         }
         s.hideAlert=function(){
-        	s.container.classList.remove("active");
+        	s.container.classList.remove(s.params.alertActiveClass);
         }
         s.destroyAlert=function(){
         	s.parent.removeChild(s.container);
@@ -116,9 +118,9 @@
 		s.isHid=true;
 		s.hide=function(){
 			s.isHid=true;
-			//显示遮罩
+			//隐藏遮罩
 			s.hideMask();
-			//显示弹出框
+			//隐藏弹出框
 			s.hideAlert();
 			//显示滚动条
 			if(s.overflowContainer)

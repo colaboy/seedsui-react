@@ -1,4 +1,13 @@
 /*----------------toast.less(start)--------------*/
+//是否允许点击
+.toast-cover{
+	pointer-events:none;
+}
+//遮罩透明
+.toast-mask{
+	background-color: transparent;
+}
+
 .toast{
 	position:fixed;
 	bottom:-@px100;
@@ -22,7 +31,6 @@
 	display:inline-block;
 	padding:@px10;
 	border-radius:@px6;
-	font-size:@px12;
 	max-width:90%;
 	max-height:@px35;
 	line-height:@px20;

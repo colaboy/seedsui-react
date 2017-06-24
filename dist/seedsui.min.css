@@ -4642,10 +4642,17 @@ progress::-webkit-progress-value {
 }
 /*----------------actionsheet.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
+.toast-cover {
+  pointer-events: none;
+}
+.toast-mask {
+  background-color: transparent;
+}
 .toast {
   position: fixed;
   bottom: -100px;
   width: 100%;
+  font-size: 12px;
   text-align: center;
   pointer-events: none;
   opacity: 0;
@@ -4662,7 +4669,6 @@ progress::-webkit-progress-value {
   display: inline-block;
   padding: 10px;
   border-radius: 6px;
-  font-size: 12px;
   max-width: 90%;
   max-height: 35px;
   line-height: 20px;
