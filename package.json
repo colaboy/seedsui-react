@@ -1,19 +1,19 @@
 {
-  "name": "SeedsUI",
+  "name": "seedsui",
   "version": "1.0.0",
   "description": "手机端开发框架",
   "author": {
     "name": "Mingzhu Wang",
     "email": "49201650@qq.com"
   },
-  "homepage": "https://github.com/colaboy/SeedsUI",
+  "homepage": "https://github.com/colaboy/seedsui",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/colaboy/SeedsUI.git"
+    "url": "https://github.com/colaboy/seedsui.git"
   },
   "keywords": [
-    "SeedsUI",
+    "seedsui",
     "html5",
     "mobile"
   ]
