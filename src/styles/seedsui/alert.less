@@ -13,7 +13,7 @@
 
 	visibility:hidden;
 	opacity:0;
-	-webkit-transform:translate3d(-50%,-50%,0);
+	-webkit-transform:translate3d(-50%,-50%,0) scale3d(0, 0, 0);
 	-webkit-transition-property:-webkit-transform,opacity,visibility;
 	-webkit-transition-duration:300ms;
 
@@ -31,6 +31,7 @@
 	&.active{
 		visibility:visible;
 		opacity:1;
+		-webkit-transform:translate3d(-50%,-50%,0) scale3d(1, 1, 1);
 	}
 }
 //内容区域

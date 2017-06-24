@@ -1428,11 +1428,9 @@ label .input-radio + span {
 .icon {
   position: relative;
   font-style: normal;
-  background-size: 100% auto;
-  background-position: center top;
-}
-.icon.active {
-  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 /*控件默认图标尺寸*/
 .icon {
@@ -4486,7 +4484,7 @@ progress::-webkit-progress-value {
   margin: 0 auto;
   visibility: hidden;
   opacity: 0;
-  -webkit-transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 0);
   -webkit-transition-property: -webkit-transform, opacity, visibility;
   -webkit-transition-duration: 300ms;
   background-color: white;
@@ -4501,6 +4499,7 @@ progress::-webkit-progress-value {
 .alert.active {
   visibility: visible;
   opacity: 1;
+  -webkit-transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
 }
 .alert-content {
   display: block;
@@ -5066,16 +5065,16 @@ progress::-webkit-progress-value {
 		resize:none;
 	}
 	textarea,pre{
-		padding:0 @px-size4;
-		line-height:@px-size32;
-		min-height:@px-size32;
-		max-height:@px-size32;
+		padding:0 @px4;
+		line-height:@px32;
+		min-height:@px32;
+		max-height:@px32;
 		width:100%;
 	}
 	pre{
 		position:absolute;
 		left:0;
-		top:@px-size100;
+		top:@px100;
 		visibility:hidden;
 	}
 	pre span{
@@ -5758,8 +5757,8 @@ ul.weather-otherday li {
 }
 .calendar-day {
   display: inline-block;
-  /* height:@px-size40;
-    line-height: @px-size40;  */
+  /* height:@px40;
+    line-height: @px40;  */
   text-align: center;
   float: left;
   width: 14%;

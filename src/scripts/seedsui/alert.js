@@ -88,8 +88,8 @@
 		s.create=function(){
 			s.mask=s.createMask();
 			s.container=s.createAlert();
+			s.mask.appendChild(s.container);
 			s.parent.appendChild(s.mask);
-			s.parent.appendChild(s.container);
 		}
 		s.create();
 		/*================
