@@ -9,10 +9,16 @@
 			parent:document.body,
 			container:null,
 
-			containerClass:"loading",
-			progressBoxClass:"loading-progress-box",
-			progressClass:"loading-progress",
+			containerClass:["mask","loading-mask"],
 
+			html:'<div class="loading-spinning">'+
+		            '<div class="loading-spinning-wrapper"></div>'+
+		        '</div>',
+
+		    isClickAllow:false,
+			clickAllowClass:"loading-clickallow",
+
+			activeClass:"active"
 			/*
             Callbacks:
             onClick:function(Loading)
@@ -27,43 +33,22 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.container,s.progressBox,s.progress;
+		s.container;
 		//Container
 		s.createContainer=function(){
 			var container=document.createElement("div");
-            container.setAttribute("class",s.params.containerClass);
+            container.classList.add.apply(container.classList,s.params.containerClass);
+            container.innerHTML=s.params.html;
+            if(s.params.isClickAllow)container.classList.add(s.params.clickAllowClass);
             return container;
 		}
-        //ProgressBox
-		s.createProgressBox=function(){
-			var progressBox=document.createElement("div");
-			progressBox.setAttribute("class",s.params.progressBoxClass);
-			return progressBox;
-		}
-		//Progress
-		s.createProgress=function(){
-            var progress=document.createElement("div");
-            progress.setAttribute("class",s.params.progressClass);
-            return progress;
-        }
 		s.create=function(){
 			if(s.params.container){
 				s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
-				if(!s.container){
-					console.log("SeedsUI Error：未找到Loading的DOM对象，请检查传入参数是否正确");
-				}else{
-					s.progress=s.container.querySelector("."+s.params.progressClass);
-					s.progressBox=s.container.querySelector("."+s.params.progressBoxClass);
-					return;
-				}
+				if(s.container)return;
 			}
+			console.log("SeedsUI Error：未找到Loading的DOM对象，请检查传入参数是否正确");
 			s.container=s.createContainer();
-			s.progressBox=s.createProgressBox();
-			s.progress=s.createProgress();
-			s.progressBox.appendChild(s.progress);
-
-			s.container.appendChild(s.progressBox);
-
 			s.parent.appendChild(s.container);
 		}
 		s.create();
@@ -73,12 +58,11 @@
 		s.isHid=true;
 		s.hide=function(){
 			s.isHid=true;
-        	s.container.style.display="none";
-
+        	s.container.classList.remove(s.params.activeClass);
 		};
 		s.show=function(){
 			s.isHid=false;
-            s.container.style.display="block";
+            s.container.classList.add(s.params.activeClass);
 		};
 		s.destroy=function(){
 			//移动事件监听

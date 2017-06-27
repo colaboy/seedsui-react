@@ -1,32 +1,30 @@
 /*-----------------------------loading.less(start)-----------------------------*/
-.loading{
-	display: none;
-
-	position:fixed;
-	z-index:10;
-	left:0;
-	right:0;
-	top:0;
-	bottom:0;
-
-	background-color: @mask-bg;
+//是否允许点击
+.loading-clickallow{
+	pointer-events:none;
 }
 
-/* .loading-mask{
-	display: block;
+//遮罩透明
+.loading-mask {
+    background-color: transparent;
+    -webkit-transition-duration:0ms;
+}
 
-	position:fixed;
-	z-index:10;
-	left:0;
-	right:0;
-	top:0;
-	bottom:0;
-
-	background-color: @mask-bg;
-} */
-
-.loading-progress-box {
-	display: block;
+/*旋转loading-spinning*/
+@-webkit-keyframes loading-spinning {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+.loading-spinning {
+	display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
 
 	position: fixed;
 	top: 50%;
@@ -41,22 +39,11 @@
 
 	background-color: white;
 	
-	.loading-progress{
+	.loading-spinning{
 		margin:@px30;
 	}
 }
-/*加载动画*/
-@-webkit-keyframes loading-progress {
-	0% {
-		-webkit-transform: rotate(0deg);
-		transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		transform: rotate(360deg);
-	}
-}
-.loading-progress {
+.loading-spinning-wrapper {
 	display: inline-block;
 	vertical-align: middle;
 	width: @px40;
@@ -76,14 +63,107 @@
 		top: -@px1;
 		left: -@px1;
 		-webkit-transform-origin: 100% 50%;
-		-webkit-animation: loading-progress 1.2s ease 0.9s infinite;
+		-webkit-animation: loading-spinning 1.2s ease 0.9s infinite;
 	}
 	&:after {
 		top: -@px1;
 		left: 50%;
 		-webkit-transform-origin: 0 50%;
-		-webkit-animation: loading-progress 1.2s infinite ease;
+		-webkit-animation: loading-spinning 1.2s infinite ease;
 	}
+}
+
+/*渐变loading-spinning*/
+@-webkit-keyframes loading-fading {
+    0% {
+        opacity: 0.85;
+    }
+    50% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 0.25;
+    }
+}
+.loading-fading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform:translate(-50%,-50%);
+    box-sizing: border-box;
+    border-radius: @px10;
+    padding: @px20 0 @px10 0;
+    width: 30%;
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 999;
+}
+.loading-fading-wrapper {
+    position: relative;
+    margin: 0 auto 15px;
+    width: @px18;
+    height: @px18;
+    transform: scale(1.5, 1.5);
+}
+.loading-fading-blade {
+    position: absolute;
+    left: 44.5%;
+    top: 37%;
+    width: 8.57143%;
+    height: 25.71429%;
+    border-radius: 50%/16.67%;
+    -webkit-animation: loading-fading 1s linear infinite;
+
+    background-color: white;
+}
+.loading-fading-blade:nth-child(1) {
+    -webkit-animation-delay: -1.66667s;
+    -webkit-transform: rotate(30deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(2) {
+    -webkit-animation-delay: -1.58333s;
+    -webkit-transform: rotate(60deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(3) {
+    -webkit-animation-delay: -1.5s;
+    -webkit-transform: rotate(90deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(4) {
+    -webkit-animation-delay: -1.41667s;
+    -webkit-transform: rotate(120deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(5) {
+    -webkit-animation-delay: -1.33333s;
+    -webkit-transform: rotate(150deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(6) {
+    -webkit-animation-delay: -1.25s;
+    -webkit-transform: rotate(180deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(7) {
+    -webkit-animation-delay: -1.16667s;
+    -webkit-transform: rotate(210deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(8) {
+    -webkit-animation-delay: -1.08333s;
+    -webkit-transform: rotate(240deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(9) {
+    -webkit-animation-delay: -1s;
+    -webkit-transform: rotate(270deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(10) {
+    -webkit-animation-delay: -0.91667s;
+    -webkit-transform: rotate(300deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(11) {
+    -webkit-animation-delay: -0.83333s;
+    -webkit-transform: rotate(330deg) translate(0, -150%);
+}
+.loading-fading-blade:nth-child(12) {
+    -webkit-animation-delay: -0.75s;
+    -webkit-transform: rotate(360deg) translate(0, -150%);
 }
 
 /*加载更多*/
@@ -91,7 +171,7 @@
 	padding:@px12 0;
 	text-align: center;
 	background:@body-bg;
-	.loading-progress{
+	.loading-spinning-wrapper{
 		width: @px30;
 		height: @px30;
 		box-shadow:inset 0 0 0 @px3 @primary-bg;

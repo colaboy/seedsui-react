@@ -16,8 +16,8 @@
 			toastActiveClass:"active",
 			wrapperClass:"toast-wrapper",
 
-			isCover:true,
-			coverClass:"toast-cover",
+			isClickAllow:false,
+			clickAllowClass:"toast-clickallow",
 
 			containerCss:{},
 			wrapperCss:{},
@@ -44,7 +44,7 @@
 		s.createMask=function(){
             var mask=document.createElement("div");
             mask.setAttribute("class",s.params.maskClass+" "+s.params.maskFeatureClass);
-            if(s.params.isCover===false)mask.classList.add(s.params.coverClass);
+            if(s.params.isClickAllow)mask.classList.add(s.params.clickAllowClass);
             return mask;
         }
 		s.createContainer=function(){
