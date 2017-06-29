@@ -20,32 +20,36 @@
 	    </div>
 	</header>
 	<article>
-        <a class="button submit block" style="margin:12px 10px;" id="ID-BtnShowLoad">显示遮罩</a>
+        <a class="button submit block" style="margin:12px 10px;" id="ID-BtnShowLoad">显示spinning遮罩</a>
+        <a class="button submit block" style="margin:12px 10px;" id="ID-BtnShowLoadFad">显示fading遮罩</a>
 	</article>
+    <!-- 加载遮罩 -->
+    <div class="loading-mask mask" id="ID-LoadingFad">
+        <div class="loading-fading">
+            <div class="loading-fading-wrapper">
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+                <div class="loading-fading-blade"></div>
+            </div>
+            <div class="al-text">加载中...</div>
+        </div>
+    </div>
     <!-- 旋转loading-spinning -->
-    <div class="loading-mask mask active" id="ID-Loading">
+    <div class="loading-mask mask" id="ID-Loading" style="background-color: white;">
         <div class="loading-spinning">
             <div class="loading-spinning-wrapper"></div>
         </div>
     </div>
-    <!-- 加载遮罩 -->
-    <div class="loading-fading">
-        <div class="loading-fading-wrapper">
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-            <div class="loading-fading-blade"></div>
-        </div>
-        <div class="al-text">加载中...</div>
-    </div>
+    
     <script src="../../dist/seedsui.min.js"></script>
     <!--Exmobi能力-->
     <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
@@ -63,9 +67,10 @@
                 this.loading=new Loading({
                     container:"#ID-Loading"
                 });
-                setTimeout(function(){
-                    self.loading.hide();
-                },1000);
+
+                this.loadingFad=new Loading({
+                    container:"#ID-LoadingFad"
+                });
 
                 //加载数据
                 this.loadData();
@@ -88,6 +93,9 @@
                 document.getElementById("ID-BtnShowLoad").addEventListener("click",function(e){
                     self._onClickBtnShowLoad(e);
                 },false);
+                document.getElementById("ID-BtnShowLoadFad").addEventListener("click",function(e){
+                    self._onClickBtnShowLoadFad(e);
+                },false);
             },
             /*=========================
               Event Handler
@@ -95,9 +103,16 @@
             _onClickBtnShowLoad:function(e){
                 var self=this;
                 this.loading.show();
-                /*setTimeout(function(){
+                setTimeout(function(){
                     self.loading.hide();
-                },5000);*/
+                },5000);
+            },
+            _onClickBtnShowLoadFad:function(e){
+                var self=this;
+                this.loadingFad.show();
+                setTimeout(function(){
+                    self.loadingFad.hide();
+                },5000);
             }
         }
 
