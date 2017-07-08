@@ -11,9 +11,26 @@
 
 			containerClass:["mask","loading-mask"],
 
-			html:'<div class="loading-spinning">'+
+			/*html:'<div class="loading-spinning">'+
 		            '<div class="loading-spinning-wrapper"></div>'+
-		        '</div>',
+		        '</div>',*/
+		    html:'<div class="loading-fading">'+
+			            '<div class="loading-fading-wrapper">'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			                '<div class="loading-fading-blade"></div>'+
+			            '</div>'+
+			            '<div class="al-text">加载中...</div>'+
+			        '</div>',
 
 		    isClickAllow:false,
 			clickAllowClass:"loading-clickallow",
