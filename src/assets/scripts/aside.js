@@ -8,7 +8,7 @@
             wrapperClass:"aside-wrapper",
 
             asideContainerClass:"aside",
-            sectionClass:"aside-middle",
+            sectionClass:"page",
 
             sides:{"left":null,"right":null},
             
