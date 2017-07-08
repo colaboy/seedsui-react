@@ -1,0 +1,426 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>form</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <section class="page">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">表单样式</h1>
+        </div>
+    </header>
+    <article>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">表单组件</p>
+            </div>
+            <div style="padding: 0 12px;">
+                <form class="inputbox inputbox-search underline" data-input="clear">
+                    <input type="search" class="search input-text">
+                    <i class="color-placeholder icon icon-rdoclose-fill hide size20"></i>
+                    <div class="inputbox-search-placeholder">
+                        <i class="inputbox-search-icon icon-search"></i>
+                        <span class="inputbox-search-font">请输入搜索内容</span>
+                    </div>
+                </form>
+
+                <div class="inputbox basketline">
+                    <textarea class="input-pre" placeholder="篮子线"></textarea>
+                    <div class="hline"></div>
+                </div>
+
+                <div class="inputbox underline" data-input="reveal">
+                    <input type="password" placeholder="密码框" class="input-text" />
+                    <i class="color-placeholder icon icon-eye"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <select class="input-text">
+                        <option>选项1</option>
+                        <option>选项2</option>
+                        <option>选项3</option>
+                    </select>
+                    <i class="color-placeholder icon icon-arrowdown"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <textarea class="input-pre" placeholder="增高控件"></textarea>
+                    <i class="color-placeholder icon icon-rdomore"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input type="number" class="input-text" placeholder="手机框" />
+                    <i class="color-placeholder icon icon-phone"></i>
+                </div>
+
+
+                <div class="inputbox underline">
+                    <input type="number" class="input-text" placeholder="电话框" />
+                    <i class="color-placeholder icon icon-tel"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <input type="url" class="input-text" placeholder="链接框"/>
+                    <i class="color-placeholder icon icon-earth"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <input class="input-text block" type="date" class="input-text" value="2015-06-16"/>
+                    <i class="color-placeholder icon icon-calendar"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input class="input-text block" type="month" value="2015-06"/>
+                    <i class="color-placeholder icon icon-calendar"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input class="input-text block" type="datetime-local" value="2015-06-01T10:55:33"/>
+                    <i class="color-placeholder icon icon-calendar"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input class="input-text block" type="time" value="08:30"/>
+                    <i class="color-placeholder icon icon-time"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <input type="text" class="input-text" placeholder="扫码控件" readonly />
+                    <i class="color-placeholder icon icon-qrcodeline"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input type="text" class="input-text" placeholder="相机控件" readonly />
+                    <i class="color-placeholder icon icon-camera"></i>
+                </div>
+
+                <div class="inputbox underline">
+                    <input type="text" class="input-text" placeholder="语音控件" readonly />
+                    <i class="color-placeholder icon icon-record"></i>
+                </div>
+                
+                <div class="inputbox underline">
+                    <input type="text" class="input-text" placeholder="定位控件" readonly />
+                    <i class="color-placeholder icon icon-position"></i>
+                </div>
+                <div class="inputbox" style="padding: 20px 12px 12px 12px;">
+                    <progress max="100" value="80" style="width: 100%">80</progress>
+                </div>
+                <div class="inputbox" style="padding: 7px 12px;">
+                    <div class="range-tooltip">8080</div>
+                    <input type="range" class="input-range block" min="1" max="100" step="1" value="32" id="range"/>
+                </div>
+
+                <div class="numbox bordered" style="margin:8px">
+                    <input type="button" disabled class="button" value="-" />
+                    <input type="number" class="input-text" value="0"/>
+                    <input type="button" class="button" value="+" />
+                </div>
+                <div class="numbox bordered" style="margin:8px">
+                    <input type="button" class="button success" value="-" disabled />
+                    <input type="number" class="input-text" value="10" step="10" min="10" max="100"/>
+                    <input type="button" class="button success" value="+"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">下列控件因兼容性问题，还请谨慎使用</p>
+            </div>
+            <div style="padding: 0 12px;">
+                <div class="inputbox underline">
+                    <div class="inputbox-left" style="padding: 10px 0 10px 12px;">周选择框</div>
+                    <div class="inputbox-right inputbox">
+                        <input class="input-text block" type="week" value="2015-W15" />
+                        <i class="color-placeholder icon icon-calendar"></i>
+                    </div>
+                </div>
+                <div class="inputbox">
+                    <div class="inputbox-left" style="padding: 10px 0 10px 12px;">颜色控件</div>
+                    <div class="inputbox-right input-text">
+                        <input type="color"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group">
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="radio" class="input-radio"  checked="true" name="rdo">
+                <span>选中radio</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="radio" class="input-radio"  name="rdo">
+                <span>普通radio</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="radio" class="input-radio"  checked="true" disabled="true">
+                <span>禁用选中radio</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="radio" class="input-radio"  disabled="true">
+                <span>禁用普通radio</span>
+            </label>
+        </div>
+
+        <div class="group">
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="checkbox" class="input-checkbox"  checked="true" name="rdo">
+                <span>选中checkbox</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="checkbox" class="input-checkbox"  name="rdo">
+                <span>普通checkbox</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="checkbox" class="input-checkbox"  checked="true" disabled="true">
+                <span>禁用选中checkbox</span>
+            </label>
+            <label class="inputbox underline" style="padding: 10px 12px;">
+                <input type="checkbox" class="input-checkbox"  disabled="true">
+                <span>禁用普通checkbox</span>
+            </label>
+        </div>
+
+        <div class="group">
+            <div class="inputbox underline" style="padding: 10px 12px;">
+                <div class="box-flex-1">有文字switch</div>
+                <div class="switch" data-on="是" data-off="否" data-name="NID-Switch" data-on-value="1" data-off-value="0">
+                    <div class="switch-handle"></div>
+                </div>
+                <input type="hidden" name="NID-Switch">
+            </div>
+            <div class="inputbox underline" style="padding: 10px 12px;">
+                <div class="box-flex-1">有文字反转色switch</div>
+                <div class="switch reverse" data-on="是" data-off="否">
+                    <div class="switch-handle"></div>
+                </div>
+            </div>
+            <div class="inputbox underline" style="padding: 10px 12px;">
+                <div class="box-flex-1">无文字switch</div>
+                <div class="switch notext" data-name="NID-Switch">
+                    <div class="switch-handle"></div>
+                </div>
+            </div>
+            <div class="inputbox underline" style="padding: 10px 12px;">
+                <div class="box-flex-1">无文字反转色switch</div>
+                <div class="switch reverse notext" data-on="是" data-off="否">
+                    <div class="switch-handle"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="inputbox" style="margin:0 12px;background-color: transparent;">
+                <div>时间提醒</div>
+                <div class="text-right box-flex-1">
+                    <input type="number" name="NID-Alarm" class="input-text form-ignore" value="15" style="width: 25px;border:none;display:inline-block;"  oninput="if(value.length>2)value=value.slice(0,2)">
+                </div>
+                <div class="turn" data-name="NID-AlarmUnit" data-on-value="60" data-off-value="1">
+                    <div class="turn-on">时</div>
+                    <div class="turn-off">分钟</div>
+                </div>
+                <input type="hidden" class="input-text form-ignore" name="NID-AlarmUnit" value="1">
+            </div>
+        </div>
+        
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">左右布局</p>
+            </div>
+            <div style="padding: 0 12px;">
+                <div class="inputbox underline">
+                    <label class="inputbox-left">手机号码</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" class="input-text">
+                    </div>
+                </div>
+                <div class="inputbox underline">
+                    <label class="inputbox-left">验证码</label>
+                    <div class="inputbox-right inputbox">
+                        <input type="text" class="input-text">
+                    </div>
+                    <input type="button" class="button" value="发送验证码" style="padding: 0 10px;height: 32px;border-radius: 4px;" />
+                </div>
+            </div>
+            <div style="margin:0 12px;padding: 10px 0">
+                <button class="button" style="width: 100%;border-radius: 4px;">发送</button>
+            </div>
+        </div>
+
+        
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">分组布局</p>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">用户名</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="用户名" name="username"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">密码</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="密码" name="password"/>
+                    <i class="color-placeholder icon icon-eye"></i>
+                </div>
+            </div>
+            <div class="inputbox">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">确认</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="确认" name="reconfirm"/>
+                    <i class="color-placeholder icon icon-eye"></i>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">昵称</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写昵称" name="nickname"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">性别</label>
+                <div class="inputbox-right inputbox">
+                    <div class="input-text">
+                        <label>
+                            <input type="radio" class="input-radio"  value="male" name="sex" checked/>
+                            <span>男</span>
+                        </label>
+                        <label style="margin-left:8px;">
+                            <input type="radio" class="input-radio"  value="female" name="sex"/>
+                            <span>女</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="inputbox">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">出生日期</label>
+                <div class="inputbox-right inputbox">
+                    <input type="date" class="input-text" name="birthday" placeholder="出生日期"/>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">职业</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="job" readonly="" placeholder="选择职业，找到同行"/>
+                    <i class="icon list-icon icon-arrowright"></i>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">公司</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="company" placeholder="公司"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">学校</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" class="school" placeholder="填写学校，发现校友"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">所在地</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="live" readonly="" placeholder="选择所在地"/>
+                    <i class="icon list-icon icon-arrowright"></i>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">故乡</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="hometown" readonly="" placeholder="选择所在地"/>
+                    <i class="icon list-icon icon-arrowright"></i>
+                </div>
+            </div>
+            <div class="inputbox">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">邮箱</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" name="email" placeholder="填写邮箱"/>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="inputbox box-top">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">个人说明</label>
+                <div class="inputbox-right inputbox">
+                    <textarea class="label-right input-textarea" name="note" placeholder="个人说明"></textarea>
+                </div>
+            </div>
+        </div>
+    </article>
+    </section>
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script>
+    	var view={
+            /*=========================
+              Model
+              ===========================*/
+            initialize:function(){
+                this.render();//使用backbone时，此行无用
+            },
+            render:function(){
+                var self = this;
+                /*渲染页面*/
+                /*DOM*/
+                this.formControls=new FormControls();
+                /*加载数据*/
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Method
+              ===========================*/
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onEvent:function(e){
+                
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+        
+    	
+    	function back(){history.go(-1);}
+    </script>
+</body>
+</html>

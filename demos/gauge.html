@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>gauge</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+    
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">仪表盘</h1>
+        </div>
+    </header>
+    <article>
+        <div class="gauge-box" id="ID-Gauge">
+            <div class="gauge">
+                <div class="gauge-pointer"></div>
+                <div class="gauge-text">0</div>
+            </div>
+        </div>
+    </article>
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            render:function(){
+                var self = this;
+                //渲染页面
+                this.gauge=new Gauge("#ID-Gauge",{
+                    minValue:-100,
+                    maxValue:400,
+                    currentValue:200,
+                    onPointOut:function(e){
+                        console.log("已爆表"+eval(e.params.currentValue-e.params.maxValue));
+                    },
+                    onPointChangeStart:function(e){
+                        console.log("指针开始旋转，共需时间："+e.duration);
+                    },
+                    onPointChangeEnd:function(e){
+                        console.log("指针旋转完成");
+                    }
+                });
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _method:function(){
+            },
+            
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onEvent:function(e){
+                
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.render();
+        }, false);
+
+        
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

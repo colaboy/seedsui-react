@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+	<title>doughnut</title>
+	<link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+		<header>
+			<div class="titlebar">
+		        <a class="titlebar-button" href="javascript:back()">
+		            <i class="icon icon-arrowleft"></i>
+		        </a>
+		        <h1 class="titlebar-title">环形进度条</h1>
+		    </div>
+		</header>
+		<article>
+			<ul class="grid grid-bordered" data-col="4">
+				<li style="padding: 16px 0">
+	                <!--待审批-->
+			        <div class="doughtut yellow rotate15" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">待审批</div>
+			        </div>
+	            </li>
+				<li style="padding: 16px 0">
+	                <!--准备中-->
+			        <div class="doughtut orange rotate45" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">准备中</div>
+			        </div>
+	            </li>
+	            <li style="padding: 16px 0;">
+	                <!--进行中-->
+					<div class="doughtut green rotate315" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">进行中</div>
+			        </div>
+	            </li>
+	            <li style="padding: 16px 0">
+	                <!--已结束-->
+			        <div class="doughtut red rotate360" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">已结束</div>
+			        </div>
+	            </li>
+	            <li style="padding: 16px 0">
+	                <!--已取消-->
+			        <div class="doughtut gray rotate360" style="margin:0 auto;">
+			            <div class="doughtut-wrapper left">
+			                <div class="doughtut-circle left"></div>
+			            </div>
+			            <div class="doughtut-wrapper right">
+			                <div class="doughtut-circle right"></div>
+			            </div>
+			            <div class="doughtut-label">已结束</div>
+			        </div>
+	            </li>
+	        </ul>
+		</article>
+    <script src="../dist/seedsui.min.js"></script>
+    
+	<script>
+		
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

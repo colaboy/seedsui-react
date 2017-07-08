@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+	<title>scrollpicker-custom</title>
+	<link rel="stylesheet" href="../dist/seedsui.min.css">
+    <style type="text/css">
+    .scrollpicker{
+        visibility: hidden;
+        width: 70%;
+        top:50%;
+        left: 50%;
+        bottom:auto;
+        -webkit-transform:translate3d(-50%,-50%,0px);
+        -webkit-transition-property:opacity;
+        opacity: 0;
+    }
+    .scrollpicker.active{
+        visibility: visible;
+        -webkit-transform:translate3d(-50%,-50%,0px);
+        opacity: 1;
+    }
+    .scrollpicker-slots{
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+    }
+    .scrollpicker-wrapper{
+        -webkit-mask-box-image:none;
+    }
+    .scrollpicker-slot li{
+        font-size: 13px;
+    }
+    .scrollpicker-slot li.active{
+        border-width: 0;
+        font-size: 17px;
+        color: white;
+    }
+    .scrollpicker-layer-frame{
+        border-width: 0 0 1px 0;
+        border-color: #91b7df;
+        background-color: #91bdeb;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+	<header>
+		<div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1 class="titlebar-title">自定义滚动选择器</h1>
+	    </div>
+	</header>
+	<article>
+		<div class="inputbox" style="margin:8px">
+            <input type="text" class="input-text text-center" placeholder="自定义滚动选择器" readonly="readonly" id="ID-Sp"/>
+        </div>
+	</article>
+	<!--SeedsUI-->
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script type="text/javascript">
+    var view={
+        /*=========================
+          Model
+          ===========================*/
+        initialize:function(){
+            //DOM
+            this.textSp;
+            //Data
+            this.nums1=[
+                {'key':'a','value':'1'},
+                {'key':'b','value':'2'},
+                {'key':'c','value':'3'},
+                {'key':'d','value':'4'},
+                {'key':'e','value':'5'},
+                {'key':'f','value':'6'},
+                {'key':'g','value':'7'},
+                {'key':'h','value':'8'},
+                {'key':'i','value':'9'},
+                {'key':'j','value':'10'},
+            ];
+            //Plugin
+            this.scrollpicker={};
+            this.scrollpicker.hasEvent=false;
+        },
+        /*=========================
+          Method
+          ===========================*/
+        _initScrollPicker:function(){
+            var self=this;
+            this.scrollpicker=new Scrollpicker({
+                "parent":"article",
+                "onClickDone":function(e){
+                    //获得全部选中项
+                    //console.log(e.activeOptions);
+                    //打印值
+                    var activeText="";
+                    e.activeOptions.forEach(function(n,i,a){
+                        if(i==e.activeOptions.length-1){
+                            activeText+=n["value"];
+                        }else{
+                            activeText+=n["value"]+"-";
+                        }
+                    });
+                    self.textSp.value=activeText;
+                    e.hide();
+                },
+                "onClickCancel":function(e){
+                    e.updateSlots();
+                    e.hide();
+                },
+                "onScrollEnd":function(e){
+                    //获得当前选中项
+                    //console.log(e.activeOption);
+                },
+                "onShowed":function(e){
+                    console.log("已显示");
+                },
+                "onHid":function(e){
+                    console.log("已隐藏");
+                },
+                "onLoad":function(e){
+                    console.log("已加载");
+                }
+            });
+        },
+        _addScrollpickerData:function(){
+            this.scrollpicker.addSlot(this.nums1,'','','d');//数据,样式,默认value，默认key
+        },
+        /*=========================
+          Events
+          ===========================*/
+        _attach:function(e){
+            var self=this;
+            if(!self.textSp.hasEvent){
+                this.textSp.addEventListener("click",function(e){
+                    self._onClickTextSp(e);
+                },false);
+                self.textSp.hasEvent=true;
+            }
+        },
+        /*=========================
+          Event Handler
+          ===========================*/
+        _onClickTextSp:function(e){
+            this.scrollpicker.show();
+        },
+        /*=========================
+          OnLoad
+          ===========================*/
+        _onLoad:function(){
+            var self=this;
+            //DOM
+            this.textSp=document.getElementById("ID-Sp");
+
+            //Plugin
+            this._initScrollPicker();
+            this._addScrollpickerData();
+
+            //Events
+            this._attach();
+        }
+    }
+
+    window.addEventListener("load",function(){
+        view._onLoad();
+    }, false);
+
+    document.addEventListener("DOMContentLoaded",function(){
+        view.initialize();
+    }, false);
+	
+	function back(){history.go(-1);}
+	</script>
+</body>
+</html>

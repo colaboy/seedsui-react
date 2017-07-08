@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>countto</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+        <header>
+            <div class="titlebar">
+                <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1 class="titlebar-title">计数器</h1>
+            </div>
+        </header>
+        <article>
+            <div class="group">
+                <div class="sliver underline">
+                    <span class="peg"></span>
+                    <p class="sliver-title">计数器</p>
+                </div>
+                <div style="padding: 10px 12px;">
+                    <span class="counter" data-duration="5000" data-from="1" data-to="5">1</span>
+                    <span class="counter" data-duration="5000" data-from="1" data-to="1000000">1</span>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="sliver underline">
+                    <span class="peg"></span>
+                    <p class="sliver-title">帧率测试</p>
+                </div>
+                <div style="padding: 10px 12px;">
+                    <span>requestAnimationFrame 1s帧率测试</span>
+                    <span id="fps2"></span>
+                    <br/>
+                	<span>setInterval 1s帧率测试</span>
+                	<span id="fps1"></span>
+                </div>
+            </div>
+        </article>
+    
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script>
+    	Animate.testSiFps(function(fps){
+    		document.getElementById("fps1").innerHTML=fps;
+    	});
+    	Animate.testRafFps(function(fps){
+    		document.getElementById("fps2").innerHTML=fps;
+    	});
+        //计数器
+		var counter=new Counters();
+		
+		function back(){history.go(-1);}
+	</script>
+</body>
+</html>

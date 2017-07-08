@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+	<title>tree-selected</title>
+	<link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button titlebar-left" id="ID-Tree-BtnBack">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1 class="titlebar-title text-center">人员选择</h1>
+            <div class="titlebar-right">
+                <a class="titlebar-button" id="ID-Tree-BtnSearch">
+                    <i class="icon icon-search"></i>
+                </a>
+                <a class="titlebar-button" id="ID-Tree-BtnSubmit">
+                    <i class="icon icon-rdohook"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <article>
+        <!-- tree bar -->
+        <div class="tree-bar" id="ID-Tree-Bar"></div>
+        <!-- tree -->
+        <div class="tree-box" id="ID-Tree-Box">
+            <ul class="tree" id="ID-Tree-List"></ul>
+        </div>
+    </article>
+    <!--SeedsUI-->
+    <script src="../dist/seedsui.min.js"></script>
+	<script>
+        var app={
+            loading:{}
+        }
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            render:function(selected){
+                var self = this;
+                //渲染页面
+                
+                //提示框
+                this.toast=new Toast();
+                //列表
+                this.listContainer=document.getElementById("ID-Tree-Box");
+                //初始化树结构
+                this._initTree();
+                //添加树结构选中项
+                this._selectedTree(selected);
+                //加载群组
+                this.loadGroup();
+
+                //事件加载
+                this._attach();//使用backbone时，此行无用
+            },
+            refresh:function(selected){
+                console.log("树搜索页：刷新");
+                //添加树结构选中项
+                this._selectedTree(selected);
+                if(!this.groupData){
+                    //加载群组
+                    this.loadGroup();
+                }
+            },
+            destroy:function(){
+                console.log("树搜索页：移除");
+            },
+            loadGroup:function(){
+                var self=this;
+                var url="mock/group.json";
+                var reqData={};
+                app.loading.show();
+                fetchData(url, reqData, 'POST').then(data => {
+                    //格式化数据字段为:id、name、parentid
+                    var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
+                    self.groupData=JSON.parse(data).depList;
+                    //没有数据
+                    if(self.groupData.length<=0){
+                        self.listContainer[0].innerHTML=app.nodataHTML;
+                        return;
+                    }
+                    //渲染
+                    self.tree.setData(self.groupData);
+                    self.tree.update();
+                }).catch().then(() => {
+                    self.listContainer[0].innerHTML=app.errorHTML;
+                })
+                /*$.ajax({
+                    url: url,
+                    type: 'get',
+                    async: false,
+                    data: reqData,
+                    dataType: 'json',
+                    success:function(data){
+                        //格式化数据字段为:id、name、parentid
+                        var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
+                        self.groupData=JSON.parse(data).depList;
+                        //没有数据
+                        if(self.groupData.length<=0){
+                            self.listContainer[0].innerHTML=app.nodataHTML;
+                            return;
+                        }
+                        //渲染
+                        self.tree.setData(self.groupData);
+                        self.tree.update();
+                    },
+                    error:function(msg){
+                        self.listContainer[0].innerHTML=app.errorHTML;
+                    },
+                    complete:function(){
+                        setTimeout(function(){
+                            app.loading.hide();
+                        }, 300);
+                    }
+                });*/
+            },
+            loadPeople:function(e,url){
+                var id=e.targetLine.getAttribute("data-id");
+                var ul=e.targetLine.nextElementSibling;
+                app.loading.show();
+                var self=this;
+                fetchData(url, reqData, 'POST').then(data => {
+                    var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
+                    var userData=JSON.parse(data).userList;
+                    //没有数据
+                    if(userData.length<=0){
+                        self.toast.setHTML("没有数据");
+                        self.toast.show();
+                        return;
+                    }
+                    //渲染
+                    self.tree.addData(userData,id,ul);
+                    e.targetLine.hasData=true;
+                }).catch().then(() => {
+                    self.toast.setHTML("加载数据失败");
+                    self.toast.show();
+                })
+                /*$.ajax({
+                    url: url,
+                    success:function(data){
+                        var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
+                        var userData=JSON.parse(data).userList;
+                        //没有数据
+                        if(userData.length<=0){
+                            self.toast.setHTML("没有数据");
+                            self.toast.show();
+                            return;
+                        }
+                        //渲染
+                        self.tree.addData(userData,id,ul);
+                        e.targetLine.hasData=true;
+                    },
+                    error:function(msg){
+                        self.toast.setHTML("加载数据失败");
+                        self.toast.show();
+                    },
+                    complete:function(){
+                        setTimeout(function(){
+                            app.loading.hide();
+                        }, 300);
+                    }
+                });*/
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _initTree:function(){
+                var self=this;
+                this.tree=new Tree("#ID-Tree-List",{
+                    bar:"#ID-Tree-Bar",
+                    btnDelClass:"icon-rdoclose-fill",
+                    onData:function(option){
+                        if(option.loginId){
+                            var photo="";
+                            if(option.avatarUrl){
+                                photo='<span class="tree-photo" style="background-image:url('+option.avatarUrl+')"></span>';
+                            }else{
+                                photo='<span class="tree-photo" style="background-color:'+option.name.substr(0,1).toPinyin().substr(0,1).toColor()+'">'+option.name.substr(option.name.length-2,2)+'</span>';
+                            }
+                            option.html='<div class="tree-icon">'+photo+'</div>'+
+                            '<div class="tree-title">'+option.name+'</div>';
+                        }
+                    },
+                    onClick:function(e){
+                        /*console.log("点击行："+e.targetLine);
+                        console.log("点击元素："+e.target);
+                        console.log("点击的li："+e.targetLi);*/
+                        if(e.target.classList.contains("tree-btnadd"))return;
+                        if(e.targetLine.hasData){
+                            return;
+                        }
+                        var id=e.targetLine.getAttribute("data-id");
+                        if(id==="56a81fea-03f4-41e1-a521-ea14513a65c6"){//业务产品部
+                            var url="mock/userList1.json";
+                            self.loadPeople(e,url);
+                        }
+                        if(id==="96a2835b-a1b2-4556-bf68-cb0038042b57"){//移动平台产品线
+                            var url="mock/userList2.json";
+                            self.loadPeople(e,url);
+                        }
+                    },
+                    onClickLastChild:function(e){//没有子节点
+                        console.log("没有子节点");
+                    }
+                });
+            },
+            _selectedTree:function(selected){
+                if(!selected)return;
+                var selArr=selected.split(",");
+                for(var i=0,opt;opt=selArr[i++];){
+                    var optArr=opt.split(":");
+                    var opts={};
+                    opts.id=optArr[0];
+                    opts.name=optArr[1];
+                    opts.parentid=optArr[2]
+                    this.tree.addSelected(opts);
+                }
+            },
+            _reset:function(){
+                this.tree.reset();
+            },
+            /*=========================
+              Events
+              ===========================*/
+            /*events: {
+                'click #ID-Tree-BtnBack' : '_onClickBtnBack',
+                'click #ID-Tree-BtnSearch' : '_onClickSearch',
+                'click #ID-Tree-BtnSubmit' : '_onClickSubmit',
+            },*/
+            _attach:function(e){
+                var self=this;
+                //点击返回按钮
+                document.getElementById("ID-Tree-BtnBack").addEventListener("click",function(e){
+                    self._onClickBtnBack(e);
+                },false);
+                //点击搜索按钮
+                document.getElementById("ID-Tree-BtnSearch").addEventListener("click",function(e){
+                    self._onClickSearch(e);
+                },false);
+                //点击确定按钮
+                document.getElementById("ID-Tree-BtnSubmit").addEventListener("click",function(e){
+                    self._onClickSubmit(e);
+                },false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnBack:function(e){
+                this._reset();
+                //history.go(-1);
+            },
+            _onClickSearch:function(e){
+                //var hash="#"+app.pages.treeSearch;//树搜索页面
+                //app.router.navigate(hash, { trigger : true, replace : false });
+            },
+            _onClickSubmit:function(e){
+                //获得值
+                var selected=this.tree.selected,name="",opts="";
+                for(var n in selected){
+                    name+=selected[n].name+",";
+                    opts+=selected[n].id+":"+selected[n].name+":"+selected[n].parentid+",";
+                }
+                name=name.substr(0,name.length-1);
+                opts=opts.substr(0,opts.length-1);
+                
+                //赋值
+                console.log(name);
+                console.log(opts);
+                /*$("#ID-MeetAdd-People").html(name);
+                $("[name='NID-MeetAdd-People']").val(opts);*/
+                //返回上一页
+                /*this._reset();
+                history.go(-1);*/
+            }
+        }
+
+        window.addEventListener("load",function(){
+            app.loading=new Loading();
+
+            //树结构
+            var selected="liguanghui:李广辉:96a2835b-a1b2-4556-bf68-cb0038042b57,zhujingjing:朱晶晶:96a2835b-a1b2-4556-bf68-cb0038042b57";
+            view.render(selected);
+        }, false);
+	</script>
+</body>
+</html>

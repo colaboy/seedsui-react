@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>imglazy</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+    <style>
+    .lazyimg{
+        display: block;
+        width: 100%;
+        min-height: 210px;
+        background-color: #ececec;
+        margin-bottom:4px;
+    }
+    </style>
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">预加载</h1>
+            <a class="titlebar-button" id="ID-BtnRefresh">新增图片</a>
+        </div>
+    </header>
+    <article>
+        <img data-load-src="abc.jpg" data-error-src="images/noimg.jpg" src="images/noimg.jpg" class="lazyimg" />
+        <img data-load-src="images/1.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/2.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/3.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/4.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/5.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/5.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/4.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/3.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/2.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <img data-load-src="images/1.jpg" data-error-src="images/noimg.jpg" src="" class="lazyimg" />
+        <div style="height: 210px;" data-load-src="images/1.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="images/2.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="images/3.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="images/4.jpg" data-error-src="" class="lazyimg"></div>
+        <div style="height: 210px;" data-load-src="images/5.jpg" data-error-src="" class="lazyimg"></div>
+    </article>
+    
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script>
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            render:function(){
+                /*DOM*/
+                this.btnRefresh=document.getElementById("ID-BtnRefresh");
+                //图片预加载
+                this.imgLazy=new ImgLazy(document.body);//container,params
+
+                //加载数据
+                this.loadData();
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+            /*=========================
+              Method
+              ===========================*/
+            _update:function(){
+            },
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                this.btnRefresh.addEventListener("click",function(e){
+                    self._onClickBtnRefresh(e);
+                },false);
+            },
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickBtnRefresh:function(e){
+                //插入新图片
+                var imgStr='<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
+                '<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
+                '<img data-load-src="images/6.jpg" src="" class="lazyimg" />';
+                
+                var article=document.querySelector("article");
+                article.innerHTML=imgStr+article.innerHTML;
+
+                //图片预加载
+                this.imgLazy.update();
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.render();
+        }, false);
+
+        
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>

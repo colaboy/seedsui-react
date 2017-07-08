@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+	<title>scrollpicker-city</title>
+	<link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+	<header>
+		<div class="titlebar">
+	        <a class="titlebar-button" href="javascript:back()">
+	            <i class="icon icon-arrowleft"></i>
+	        </a>
+	        <h1 class="titlebar-title">地区选择器</h1>
+	    </div>
+	</header>
+	<article>
+        <div class="group" style="padding:0 8px;">
+            <div class="inputbox underline">
+                <input type="text" class="input-text" placeholder="请选择城市" readonly="" id="ID-City" value="江苏省-南京市">
+                <input type="hidden" value="320000-320100">
+                <i class="color-placeholder icon icon-position"></i>
+            </div>
+            <div class="inputbox">
+                <input type="text" class="input-text" placeholder="请选择地区" readonly="" id="ID-Area" value="江苏省-南京市-建邺区">
+                <input type="hidden" value="320000-320100-320105">
+                <i class="color-placeholder icon icon-position"></i>
+            </div>
+        </div>
+	</article>
+	<!--SeedsUI-->
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script type="text/javascript">
+        var view={
+            /*=========================
+              Model
+              ===========================*/
+            render:function(){
+                var self = this;
+                //渲染页面
+                this.textCity=document.getElementById("ID-City");
+                this.textArea=document.getElementById("ID-Area");
+                this.spCity={};
+                this.spArea={};
+                //加载数据
+                this.loadData();
+            },
+            refresh:function(){
+                console.log("刷新");
+            },
+            destroy:function(){
+                console.log("移除");
+            },
+            loadData:function(){
+
+                this._attach();//使用backbone时，此行无用
+            },
+
+            /*=========================
+              Method
+              ===========================*/
+            _newSpCity:function(defaults,input){
+                this.spCity=new SpCity({
+                    isShowArea:false,
+                    data:citys,
+                    defaultProvince:defaults.province,
+                    defaultCity:defaults.city,
+                    defaultArea:defaults.area,
+                    provinceClass:"text-center citycol",
+                    cityClass:"text-center citycol",
+                    areaClass:"text-center citycol",
+                    onClickDone:function(e){
+                        input.value=e.activeValue;
+                        input.nextElementSibling.value=e.activeKey;
+                        e.hide();
+                    },
+                    onHid:function(e){
+                        e.scrollpicker.destroy();
+                    }
+                });
+            },
+            _newSpArea:function(defaults,input){
+                this.spArea=new SpCity({
+                    //isShowArea:false,
+                    data:citys,
+                    defaultProvince:defaults.province,
+                    defaultCity:defaults.city,
+                    defaultArea:defaults.area,
+                    provinceClass:"text-center citycol",
+                    cityClass:"text-center citycol",
+                    areaClass:"text-center citycol",
+                    onClickDone:function(e){
+                        input.value=e.activeValue;
+                        input.nextElementSibling.value=e.activeKey;
+                        e.hide();
+                    },
+                    onHid:function(e){
+                        e.scrollpicker.destroy();
+                    }
+                });
+            },
+            
+            /*=========================
+              Events
+              ===========================*/
+            _attach:function(e){
+                var self=this;
+                this.textCity.addEventListener("click",function(e){
+                    self._onClickTextCity(e);
+                },false);
+                this.textArea.addEventListener("click",function(e){
+                    self._onClickTextArea(e);
+                },false);
+            },
+
+            /*=========================
+              Event Handler
+              ===========================*/
+            _onClickTextCity:function(e){
+                var self=this;
+                var input=e.target;
+                var keys=input.nextElementSibling.value.split("-");
+                var defaults={
+                    province:keys[0]||"",
+                    city:keys[1]||"",
+                    area:keys[2]||""
+                }
+                this._newSpCity(defaults,input);
+                setTimeout(function(){
+                    self.spCity.scrollpicker.show();
+                },10);
+            },
+            _onClickTextArea:function(e){
+                var self=this;
+                var input=e.target;
+                var keys=input.nextElementSibling.value.split("-");
+                var defaults={
+                    province:keys[0]||"",
+                    city:keys[1]||"",
+                    area:keys[2]||""
+                }
+                this._newSpArea(defaults,input);
+                setTimeout(function(){
+                    self.spArea.scrollpicker.show();
+                },10);
+            }
+        }
+
+        window.addEventListener("load",function(){
+            view.render();
+        }, false);
+
+	   
+	   function back(){history.go(-1);}
+	</script>
+</body>
+</html>

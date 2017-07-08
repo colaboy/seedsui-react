@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>clock</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+        <header>
+            <div class="titlebar">
+                <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+                <h1 class="titlebar-title">时钟</h1>
+            </div>
+        </header>
+        <article>
+            <div class="clock" data-clock="11:30" style="margin: 20px auto;">
+                <div class="clock-hour"></div>
+                <div class="clock-minute"></div>
+                <div class="clock-origin"></div>
+            </div>
+            <div class="clock border-color-2" data-clock="8:30" style="margin: 20px auto;">
+                <div class="clock-hour bg-2"></div>
+                <div class="clock-minute bg-2"></div>
+                <div class="clock-origin bg-2"></div>
+            </div>
+        </article>
+    
+    <script src="../dist/seedsui.min.js"></script>
+    <script>
+        window.addEventListener("load",function(){
+            var dc=new Clocks();
+        },false);
+        
+        function back(){history.go(-1);}
+    </script>
+</body>
+</html>
