@@ -71,6 +71,10 @@
                 app.loading.show();
                 $.ajax({
                     url: "../scripts/dummydata/group.json",
+                    type: 'get',
+                    async: false,
+                    //data: reqData,
+                    dataType: 'json',
                     success:function(data){
                         //格式化数据字段为:id、name、parentId
                         var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");

@@ -1,4 +1,3 @@
-// @koala-prepend "scripts/getsingle.js"
 // @koala-prepend "scripts/request.js"
 // @koala-prepend "scripts/ajax.js"
 // @koala-prepend "scripts/event.js"

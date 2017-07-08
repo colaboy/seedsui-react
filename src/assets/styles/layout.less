@@ -21,17 +21,7 @@ header+article{
     padding-top:@px44;
 }
 //单页模式
-.pages,section{
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-section,aside{
+.page,aside{
     header,footer{
         position:absolute;
     }
@@ -43,15 +33,10 @@ section,aside{
         right: 0;
         padding-top: 0;
         overflow: auto;
-
     }
     header+article{
         top:@px44;
     }
-}
-section{
-    background-color: @body-bg;
-    z-index: 1;
 }
 aside{
     position:absolute;
