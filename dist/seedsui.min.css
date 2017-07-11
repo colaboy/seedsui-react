@@ -539,6 +539,7 @@ aside {
 }
 .button.disabled,
 .button[disabled] {
+  pointer-events: none;
   color: #adadad;
   background-color: #e1e1e1;
   border-color: #e1e1e1;
