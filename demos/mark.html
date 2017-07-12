@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <title>mark</title>
+    <link rel="stylesheet" href="../dist/seedsui.min.css">
+</head>
+
+<body ontouchstart="">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+            <h1 class="titlebar-title">mark</h1>
+        </div>
+    </header>
+    <article>
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">标签</p>
+            </div>
+            <div style="padding: 10px 12px;">
+                <span class="mark-info">info</span>
+                <span class="mark-success">success</span>
+                <span class="mark-cancel">cancel</span>
+                <span class="mark-warn">warn</span>
+                <span class="mark-disable">disable</span>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="sliver underline">
+                <span class="peg"></span>
+                <p class="sliver-title">框形标签</p>
+            </div>
+            <div style="padding: 10px 12px;">
+                <span class="mark-info outline">info</span>
+                <span class="mark-success outline">success</span>
+                <span class="mark-cancel outline">cancel</span>
+                <span class="mark-warn outline">warn</span>
+                <span class="mark-disable outline">disable</span>
+            </div>
+        </div>
+    </article>
+    <script src="../dist/seedsui.min.js"></script>
+    
+    <script>
+    
+    function back(){history.go(-1);}
+</script>
+</body>
+</html>

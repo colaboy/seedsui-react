@@ -191,12 +191,15 @@ aside {
   -webkit-box-flex: 1;
   color: #333333;
 }
+.titlebar-left + .titlebar-title {
+  padding: 0 100px;
+}
 /*按钮*/
 .titlebar-button {
   max-height: 32px;
   margin: 0 8px;
-  color: #20aeff;
-  border-color: #20aeff;
+  color: #1a1a1a;
+  border-color: #1a1a1a;
 }
 .titlebar-button:active {
   /* color:@bar-button-active;
@@ -685,7 +688,9 @@ aside {
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   margin: 2px 0 -2px 0;
 }
-/*多彩标签按钮*/
+/*----------------button.less(end)----------------*/
+/*----------------mark.less(start)----------------*/
+/*多彩标签*/
 .mark-info,
 .mark-success,
 .mark-cancel,
@@ -745,7 +750,7 @@ aside {
   color: #20aeff;
   border: 1px solid #20aeff;
 }
-/*----------------button.less(end)----------------*/
+/*----------------mark.less(end)----------------*/
 /*----------------grid.less(start)--------------*/
 /*图标区域*/
 .grid-icon {
