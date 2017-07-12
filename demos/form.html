@@ -35,9 +35,11 @@
                         <span class="inputbox-search-font">请输入搜索内容</span>
                     </div>
                 </form>
-
-                <div class="inputbox basketline">
-                    <textarea class="input-pre" placeholder="篮子线"></textarea>
+                <!--兼容微信拍照不可用box布局-->
+                <div class="basketline">
+                    <div class="input-space">
+                        <textarea class="input-pre" placeholder="篮子线"></textarea>
+                    </div>
                     <div class="hline"></div>
                 </div>
 
@@ -56,7 +58,7 @@
                 </div>
 
                 <div class="inputbox underline">
-                    <textarea class="input-pre" placeholder="增高控件"></textarea>
+                    <textarea class="input-pre" style="margin:11px 8px" placeholder="增高控件"></textarea>
                     <i class="color-placeholder icon icon-rdomore"></i>
                 </div>
                 
@@ -360,12 +362,11 @@
                 </div>
             </div>
         </div>
+        <!--兼容微信拍照不可用box布局-->
         <div class="group">
-            <div class="inputbox box-top">
-                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">个人说明</label>
-                <div class="inputbox-right inputbox">
-                    <textarea class="label-right input-textarea" name="note" placeholder="个人说明"></textarea>
-                </div>
+            <p style="padding: 10px 12px;">个人说明</p>
+            <div style="margin: 0 12px 12px 12px">
+                <textarea class="input-textarea" name="note" placeholder="个人说明"></textarea>
             </div>
         </div>
     </article>

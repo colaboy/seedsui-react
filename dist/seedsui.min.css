@@ -74,23 +74,23 @@ aside {
 /*----------------layout.less(end)--------------*/
 /*----------------form.less(start)--------------*/
 .input-text {
-  display: inline-block;
   box-sizing: border-box;
   min-height: 20px;
   line-height: 20px;
   padding: 12px 8px;
   text-align: left;
 }
+.input-space {
+  margin: 0 8px;
+  padding: 10px 0 9px 0;
+}
 .input-textarea {
+  width: 100%;
   height: 60px;
-  display: block;
-  box-sizing: border-box;
-  padding: 0 8px;
-  margin: 12px 0;
 }
 .input-pre {
+  width: 100%;
   height: 22px;
-  margin: 12px 8px;
 }
 .input-pre,
 .input-pre + pre {
@@ -9413,6 +9413,9 @@ hr:after {
   width: 1px;
   height: 100%;
   -webkit-transform-origin: right center;
+}
+.basketline {
+  position: relative;
 }
 .basketline:before,
 .basketline:after {
