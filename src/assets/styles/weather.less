@@ -1,7 +1,7 @@
 /*-----------------------------weather.less(start)-----------------------------*/
 .weather-box{
 	position:relative;
-	height:@px60;
+	height:@60px;
 	box-sizing:border-box;
 	overflow:hidden;
 	
@@ -13,22 +13,22 @@
 	color:white;
 }
 .weather-topinfo{
-	height:@px40;
-	line-height:@px40;
-	padding:0 @px10;
+	height:@40px;
+	line-height:@40px;
+	padding:0 @10px;
 	box-sizing:border-box;
-	-webkit-transform:translateY(-@px100);
+	-webkit-transform:translateY(-@100px);
 	opacity:0;
 	
 	transition:all 0.5s linear;
 }
 .weather-topinfo [class*="icon-"]{
-	font-size: @px20;
+	font-size: @20px;
 }
 .weather-current-city{
 	display:inline-block;
-	height:@px20;
-	line-height:@px20;
+	height:@20px;
+	line-height:@20px;
 	background-repeat:no-repeat;
 	background-size:contain;
 	background-position:left center;
@@ -37,7 +37,7 @@
 	float:right;
 }
 .weather-current-temperature,.weather-today-right [class^="weather-icon-"]{
-	height:@px40;margin:@px10 0;text-align:center;
+	height:@40px;margin:@10px 0;text-align:center;
 }
 .sndinfo{
 	-webkit-transform:translateY(100%);
@@ -47,28 +47,28 @@
 }
 /*当前温度*/
 .weather-current-temperature{
-	font-size:@px32;
-	height:@px40;
-	margin:@px10 0;
+	font-size:@32px;
+	height:@40px;
+	margin:@10px 0;
 	text-align:left;
-	text-indent:@px8;
+	text-indent:@8px;
 }
 .weather-today{
-	height:@px200;
+	height:@200px;
 	position:relative;
 }
 .weather-today-left{
 	position:absolute;
-	top:-@px40;
-	left:@px5;
+	top:-@40px;
+	left:@5px;
 	text-align:center;
 	
 	transition:all 0.5s linear;
 }
 .weather-today-right{
 	position:absolute;
-	top:-@px40;
-	right:@px5;
+	top:-@40px;
+	right:@5px;
 	text-align:center;
 	
 	transition:all 0.5s linear;
@@ -78,9 +78,9 @@
 ul.weather-otherday{
 	position: absolute;
 	width: 100%;
-	bottom:@px10;
-	font-size:@px10;
-	-webkit-transform:translateY(@px300);
+	bottom:@10px;
+	font-size:@10px;
+	-webkit-transform:translateY(@300px);
 	opacity:0;
 	transition:all 0.5s linear;
 }
@@ -95,8 +95,8 @@ ul.weather-otherday li{
 }
 .weather-collapse{
 	position:absolute;
-	top:@px10;
-	left:@px90;
+	top:@10px;
+	left:@90px;
 	opacity:1;
 	
 	transition:all 0.5s linear;
@@ -105,11 +105,11 @@ ul.weather-otherday li{
 	background-image:none;padding-left:0;
 }
 .weather-collapse .weather-name{
-	margin-left:@px5;
+	margin-left:@5px;
 }
 /*展开状态*/
 .weather-box.expand{
-	height:@px250;
+	height:@250px;
 }
 .weather-box.expand .weather-topinfo{
 	-webkit-transform:translateY(0);
@@ -128,22 +128,22 @@ ul.weather-otherday li{
 }
 .weather-box.expand .weather-today-left{
 	top:0;
-	left:@px80;
+	left:@80px;
 }
 .weather-box.expand .weather-today-right{
 	top:0;
-	right:@px80;
+	right:@80px;
 }
 .weather-box.expand .weather-collapse{
-	top:@px300;
+	top:@300px;
 	opacity:0;
 }
 
 /*天气图标*/
 #weather-current-icon{
-	height: @px40;
-	font-size: @px40;
-	margin: @px10 0;
+	height: @40px;
+	font-size: @40px;
+	margin: @10px 0;
 }
 .weather-box [class*="icon-"]{
 	background-repeat:no-repeat;
@@ -151,10 +151,10 @@ ul.weather-otherday li{
 	background-position:center center;
 }
 .weather-otherday [class*="icon-"]{
-	width:@px24;
-	height:@px24;
-	font-size: @px24;
-	line-height: @px24;
+	width:@24px;
+	height:@24px;
+	font-size: @24px;
+	line-height: @24px;
 	text-align: center;
 	display:inline-block;
 }

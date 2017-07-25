@@ -5083,16 +5083,16 @@ progress::-webkit-progress-value {
 		resize:none;
 	}
 	textarea,pre{
-		padding:0 @px4;
-		line-height:@px32;
-		min-height:@px32;
-		max-height:@px32;
+		padding:0 @4px;
+		line-height:@32px;
+		min-height:@32px;
+		max-height:@32px;
 		width:100%;
 	}
 	pre{
 		position:absolute;
 		left:0;
-		top:@px100;
+		top:@100px;
 		visibility:hidden;
 	}
 	pre span{
@@ -5775,8 +5775,8 @@ ul.weather-otherday li {
 }
 .calendar-day {
   display: inline-block;
-  /* height:@px40;
-    line-height: @px40;  */
+  /* height:@40px;
+    line-height: @40px;  */
   text-align: center;
   float: left;
   width: 14%;

@@ -29,7 +29,7 @@
      *  模糊半径，取值范围0~Npx，0为无效果
      */
     opacity:0.9;
-	-webkit-filter:blur(@px2);
+	-webkit-filter:blur(@2px);
 }
 .filter-invert,.before-filter-invert:before{ /**  反转，filer: invert(效果范围)
      *  效果范围，取值范围0~1或0~100%，0为无效果，1或100%表示最大效果
@@ -62,5 +62,5 @@
      *     1. 阴影的外观受border-radius样式的影响；
      *     2. :after和:before等伪元素会继承阴影的效果。
      */
-    -webkit-filter: drop-shadow(@px1 @px1 0px #333);
+    -webkit-filter: drop-shadow(@1px @1px 0px #333);
 }
