@@ -505,7 +505,6 @@
             if(e.propertyName!="transform"){
                 return;
             }
-            console.log(e);
             var target=e.target;
             if(target.classList.contains(s.params.slotClass)){//slot槽结束
                 s.posCorrect(target);//位置矫正
