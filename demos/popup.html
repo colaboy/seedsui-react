@@ -354,7 +354,7 @@
 			        handler : function(s){
 			        	if(!actionAlert){
 				        	actionAlert=new Alert();
-				        	actionAlert.setText("您确定要退出吗？");
+				        	actionAlert.setHTML("您确定要退出吗？");
 				        	actionAlert.setOnClickOk(function(e){
 				        		s.hide();
 				        		e.hide();
@@ -369,7 +369,7 @@
 			    }
 			],
 			onClickCancel:function(s){
-				t.setText("您点击了取消按钮");
+				t.setHTML("您点击了取消按钮");
 			    t.show();
 			    s.hide();
 			}
@@ -381,7 +381,7 @@
 	    //Prompt框
 	    var prompt=new Prompt();
 	    document.getElementById("promptBtn").onclick=function(){
-	    	prompt.setText("更新成功");
+	    	prompt.setHTML("更新成功");
 	    	prompt.show();
 	    };
 

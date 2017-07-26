@@ -1,21 +1,34 @@
 //Prompt 提示框
 (function(window,document,undefined){
 	
-	window.Prompt=function(msg,params){
+	window.Prompt=function(params){
 		/*================
 		Model
 		================*/
 		var defaults={
 			parent:document.body,
-			promptClass:"prompt",
-			activeClass:"active",
-			css:{},
-			delay:1500
+			
+			maskClass:"mask",
+			maskActiveClass:"active",
+			maskFeatureClass:"prompt-mask",
 
+			containerClass:"prompt",
+			promptActiveClass:"active",
+			wrapperClass:"prompt-wrapper",
+
+			isClickAllow:false,
+			clickAllowClass:"prompt-clickallow",
+
+			containerCss:{},
+			wrapperCss:{},
+
+			delay:1500,
+			html:"",
+			
 			/*callbacks
-			onShowed:function(Prompt)//开窗完成时动画
-			onHid:function(Prompt)//关窗完成时动画
-			*/
+            onShowed(Prompt)//显示动画结束后回调
+            onHid(Prompt)//隐藏动画结束后回调
+            */
 		}
 		params=params||{};
 		for(var def in defaults){
@@ -23,41 +36,91 @@
 				params[def]=defaults[def];
 			}
 		}
-		var msg=msg||"";
 		var s=this;
 		s.params=params;
-		//Parent
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		//创建容器
-		s.container=null;
+		s.container,s.wrapper;
+		//Mask
+		s.createMask=function(){
+            var mask=document.createElement("div");
+            mask.setAttribute("class",s.params.maskClass+" "+s.params.maskFeatureClass);
+            if(s.params.isClickAllow)mask.classList.add(s.params.clickAllowClass);
+            return mask;
+        }
+		s.createContainer=function(){
+			var container=document.createElement("div");
+			container.setAttribute("class",s.params.containerClass);
+			return container;
+		}
+		s.createPromptContent=function(){
+			var wrapper=document.createElement("div");
+			wrapper.setAttribute("class",s.params.wrapperClass);
+			if(s.params.html)wrapper.innerHTML=s.params.html;
+			return wrapper;
+		}
 		s.create=function(){
-			if(s.container)return;
-			s.container=document.createElement("div");
-			s.container.setAttribute("class",s.params.promptClass);
-			s.container.innerHTML=msg;
-			s.parent.appendChild(s.container);
+			s.mask=s.createMask();
+			s.container=s.createContainer();
+			s.wrapper=s.createPromptContent();
+			s.container.appendChild(s.wrapper);
+			s.mask.appendChild(s.container);
+			s.parent.appendChild(s.mask);
 		}
 		s.create();
 		s.update=function(){
-            for(var c in s.params.css){
-                s.container.style[c]=s.params.css[c];
+            for(var c in s.params.containerCss){
+                s.container.style[c]=s.params.containerCss[c];
+            }
+            for(var c in s.params.wrapperCss){
+                s.wrapper.style[c]=s.params.wrapperCss[c];
             }
 		}
 		s.update();
+
 		/*================
 		Method
 		================*/
-		s.setText=function(msg){
-			s.container.innerHTML=msg;
+		s.setContainerClassName=function(className){
+			s.params.containerClass=className;
+			s.container.setAttribute("class",s.params.containerClass);
 		};
-		s.isHid=true;
+		s.setHTML=function(html){
+			s.wrapper.innerHTML=html;
+		};
+		s.setDelay=function(delay){
+			s.params.delay=delay;
+		};
+		
+		s.showMask=function(){
+            s.mask.classList.add(s.params.maskActiveClass);
+        }
+        s.hideMask=function(){
+        	s.mask.classList.remove(s.params.maskActiveClass);
+        }
+        s.destroyMask=function(){
+        	s.parent.removeChild(s.mask);
+        }
+
+        s.showPrompt=function(){
+            s.container.classList.add(s.params.promptActiveClass);
+        }
+        s.hidePrompt=function(){
+        	s.container.classList.remove(s.params.promptActiveClass);
+        }
+        s.destroyPrompt=function(){
+        	s.parent.removeChild(s.container);
+        }
+
+        s.isHid=true;
 		s.hide=function(fn){
 			s.isHid=true;
-			s.container.classList.remove(s.params.activeClass);
+			s.hideMask();
+			s.hidePrompt();
 		};
 		s.show=function(fn){
 			s.isHid=false;
-			s.container.classList.add(s.params.activeClass);
+			s.showMask();
+			s.showPrompt();
 
 			//显示数秒后，自动消失
 			if(s.delayer)window.clearTimeout(s.delayer);
@@ -66,7 +129,7 @@
 			}, s.params.delay);
 		};
 		s.destroy=function(){
-			s.parent.removeChild(s.container);
+			s.destroyMask();
 		};
 		/*================
 		Controller
@@ -75,6 +138,7 @@
 			var target=s.container;
 			var action=detach?"removeEventListener":"addEventListener";
 			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
+			//target[action]("webkitAnimationEnd",s.onAnimationEnd,false);
 		}
 		s.attach=function(){
 			s.events();
@@ -93,7 +157,6 @@
 				if(s.params.onShowed)s.params.onShowed(s);
 			}
 		}
-		
 		/*================
 		Init
 		================*/

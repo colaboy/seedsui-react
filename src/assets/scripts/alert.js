@@ -137,12 +137,8 @@
             s.overflowContainer.style.overflow="hidden";
 		};
 		s.destroy=function(){
-			//移动事件监听
-			s.detach();
-			//移除遮罩
 			s.destroyMask();
-			//移除弹出框
-			s.destroyAlert();
+			//s.destroyAlert();
 		};
 		//动态设置
 		s.setHTML=function(html){

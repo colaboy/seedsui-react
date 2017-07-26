@@ -1,4 +1,13 @@
 /*----------------prompt.less(start)--------------*/
+//是否允许点击
+.prompt-clickallow{
+	pointer-events:none;
+}
+//遮罩透明
+.prompt-mask{
+	background-color: transparent;
+}
+
 .prompt{
 	display: block;
 	visibility:hidden;
@@ -7,8 +16,7 @@
 	left:0;
 	top:@44px;
 	width:100%;
-	height:@32px;
-	line-height:@32px;
+	line-height:0;
 	text-align:center;
 	z-index:999;
 
@@ -22,5 +30,28 @@
 		visibility:visible;
 		opacity: 1;
 	}
+}
+.prompt-wrapper{
+	display:inline-block;
+	padding:@6px;
+	line-height: initial;
+	max-width:90%;
+	max-height:@35px;
+	overflow:hidden;
+}
+.prompt-icon{
+	background-size:cover;
+	width:@16px;
+	height:@16px;
+	font-size: @16px;
+	display:inline-block;
+	vertical-align:middle;
+}
+.prompt-font{
+	display:line-block;
+	height: @18px;
+	line-height: @16px;
+	vertical-align:middle;
+	margin-left:@4px;
 }
 /*----------------prompt.less(end)--------------*/

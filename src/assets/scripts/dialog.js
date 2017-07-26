@@ -68,7 +68,8 @@
             s.container.appendChild(s.wrapper);
             //插入遮罩
             s.mask=s.createMask();
-            s.parent.insertBefore(s.mask,s.container);
+            s.mask.appendChild(s.container);
+            s.parent.appendChild(s.mask);
         }
         s.create();
         s.update=function(){
@@ -131,7 +132,7 @@
         }
         s.destroy=function(){
             s.destroyMask();
-            s.destroyDialog();
+            // s.destroyDialog();
         }
         //设置
         s.setOnClick=function(fn){

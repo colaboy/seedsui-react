@@ -3183,37 +3183,37 @@ aside[data-position="right"][data-transition="overlay"] {
   -webkit-transform: translate3d(100%, 0, 0);
 }
 /*----------------aside.less(end)--------------*/
-/*----------sliver.less(start)----------*/
-.sliver,
-.statusbar {
+/*----------caption.less(start)----------*/
+.caption,
+.sliver {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
   padding: 0 12px;
 }
-.sliver {
+.caption {
   height: 40px;
   color: #20aeff;
 }
-.statusbar {
+.sliver {
   height: 32px;
   color: #aaaaaa;
   background-color: #f8f8f8;
 }
-.sliver-title,
-.statusbar-title {
+.caption-title,
+.sliver-title {
   display: block;
   height: 20px;
   line-height: 20px;
   -webkit-box-flex: 1;
 }
-.sliver .peg {
+.caption .peg {
   display: block;
 }
-.sliver .peg + .sliver-title {
+.caption .peg + .caption-title {
   padding: 0 0 0 8px;
 }
-/*----------sliver.less(end)----------*/
+/*----------caption.less(end)----------*/
 /*----------------inputcolor.less(start)--------------*/
 input[type="color"] {
   width: 44px;
@@ -4706,6 +4706,12 @@ progress::-webkit-progress-value {
 }
 /*----------------toast.less(end)--------------*/
 /*----------------prompt.less(start)--------------*/
+.prompt-clickallow {
+  pointer-events: none;
+}
+.prompt-mask {
+  background-color: transparent;
+}
 .prompt {
   display: block;
   visibility: hidden;
@@ -4714,8 +4720,7 @@ progress::-webkit-progress-value {
   left: 0;
   top: 44px;
   width: 100%;
-  height: 32px;
-  line-height: 32px;
+  line-height: 0;
   text-align: center;
   z-index: 999;
   -webkit-transition-property: -webkit-transform, opacity, visibility;
@@ -4727,6 +4732,29 @@ progress::-webkit-progress-value {
 .prompt.active {
   visibility: visible;
   opacity: 1;
+}
+.prompt-wrapper {
+  display: inline-block;
+  padding: 6px;
+  line-height: initial;
+  max-width: 90%;
+  max-height: 35px;
+  overflow: hidden;
+}
+.prompt-icon {
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.prompt-font {
+  display: line-block;
+  height: 18px;
+  line-height: 16px;
+  vertical-align: middle;
+  margin-left: 4px;
 }
 /*----------------prompt.less(end)--------------*/
 [data-emoji] {
@@ -5169,8 +5197,8 @@ progress::-webkit-progress-value {
   bottom: 0;
   width: 100%;
   z-index: 10;
-  -webkit-transition-property: -webkit-transform;
-  -webkit-transition-duration: 500ms;
+  -webkit-transition-property: -webkit-transform, opacity, visibility;
+  -webkit-transition-duration: 300ms;
   -webkit-transform: translate3d(0px, 100%, 0px);
   background-color: white;
 }

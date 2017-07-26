@@ -6,6 +6,9 @@
           ===========================*/
         var defaults={
             parent:document.body,
+
+            maskClass:"mask",
+            maskActiveClass:"active",
             pickerClass:"scrollpicker",
             pickerActiveClass:"active",
 
@@ -108,7 +111,7 @@
         //新建Mask
         s.createMask=function(){
             var mask=document.createElement("div");
-            mask.setAttribute("class","mask");
+            mask.setAttribute("class",s.params.maskClass);
             return mask;
         }
         //新建一行List
@@ -137,8 +140,10 @@
             s.picker.appendChild(s.header);
             s.picker.appendChild(s.wrapper);
 
+            /*s.parent.appendChild(s.mask);
+            s.parent.appendChild(s.picker);*/
+            s.mask.appendChild(s.picker);
             s.parent.appendChild(s.mask);
-            s.parent.appendChild(s.picker);
         }
         s.create();
         /*=========================
@@ -226,15 +231,17 @@
         //显示
         s.show=function(){
             s.isHid=false;
-            s.mask.style.visibility="visible";
-            s.mask.style.opacity="1";
+            //s.mask.style.visibility="visible";
+            //s.mask.style.opacity="1";
+            s.mask.classList.add(s.params.maskActiveClass);
             s.picker.classList.add(s.params.pickerActiveClass);
         }
         //隐藏
         s.hide=function(){
             s.isHid=true;
-            s.mask.style.opacity="0";
-            s.mask.style.visibility="hidden";
+            //s.mask.style.opacity="0";
+            //s.mask.style.visibility="hidden";
+            s.mask.classList.remove(s.params.maskActiveClass);
             s.picker.classList.remove(s.params.pickerActiveClass);
         }
         //清除
@@ -246,9 +253,8 @@
         }
         //销毁
         s.destroy=function(){
-            s.detach();
             s.parent.removeChild(s.mask);
-            s.parent.removeChild(s.picker);
+            //s.parent.removeChild(s.picker);
         }
         //寻找当前点击的槽
         s.updateActiveSlot=function(xPos){
@@ -496,6 +502,10 @@
         }
         //惯性滚动结束后
         s.onTransitionEnd=function(e){
+            if(e.propertyName!="transform"){
+                return;
+            }
+            console.log(e);
             var target=e.target;
             if(target.classList.contains(s.params.slotClass)){//slot槽结束
                 s.posCorrect(target);//位置矫正
