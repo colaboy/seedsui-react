@@ -6,6 +6,7 @@
           ===========================*/
         var defaults={
             overflowContainer:document.body,
+            overflowContainerActiveClass:"overflow-hidden",
             dialogClass:"dialog",
             position:"middle",
             animationAttr:"data-animation",
@@ -36,7 +37,7 @@
         //Mask
         s.mask;
         //Dialog(外层生成的包裹容器)
-        s.container;
+        s.dialog;
         //Wrapper(源容器)
         s.wrapper=typeof wrapper=="string"?document.querySelector(wrapper):wrapper;
         if(!s.wrapper){
@@ -54,8 +55,8 @@
             mask.setAttribute("class",s.params.maskClass);
             return mask;
         }
-        //ContainerBox
-        s.createContainerBox=function(){
+        //Dialog
+        s.createDialog=function(){
             var dialog=document.createElement("div");
             dialog.classList.add(s.params.dialogClass,s.params.position);
             dialog.setAttribute(s.params.animationAttr,s.params.animation);
@@ -63,19 +64,19 @@
         }
         s.create=function(){
             //插入Dialog
-            s.container=s.createContainerBox();
-            s.parent.insertBefore(s.container,s.wrapper);
-            s.container.appendChild(s.wrapper);
+            s.dialog=s.createDialog();
+            s.parent.insertBefore(s.dialog,s.wrapper);
+            s.dialog.appendChild(s.wrapper);
             //插入遮罩
             s.mask=s.createMask();
-            s.mask.appendChild(s.container);
+            s.mask.appendChild(s.dialog);
             s.parent.appendChild(s.mask);
         }
         s.create();
         s.update=function(){
             //Dialog Css
             for(var style in s.params.css){
-                s.container.style[style]=s.params.css[style];
+                s.dialog.style[style]=s.params.css[style];
             }
             //Mask Css
             for(var style in s.params.maskCss){
@@ -98,30 +99,28 @@
             s.parent.removeChild(s.mask);
         }
         s.showDialog=function(){
-            s.container.classList.add("active");
+            s.dialog.classList.add("active");
         }
         s.hideDialog=function(){
-            s.container.classList.remove("active");
+            s.dialog.classList.remove("active");
         }
         s.destroyDialog=function(){
-            s.parent.removeChild(s.container);
+            s.parent.removeChild(s.dialog);
         }
         s.isHid=true;
-        s.show=function(){
-            s.isHid=false;
-            s.showMask();
-            s.showDialog();
-            //禁用滚动条
-            if(s.overflowContainer)
-            s.overflowContainer.style.overflow="hidden";
-        }
         s.hide=function(){
             s.isHid=true;
             s.hideMask();
             s.hideDialog();
             //显示滚动条
-            if(s.overflowContainer)
-            s.overflowContainer.style.overflow="auto";
+            if(s.overflowContainer)s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass);
+        }
+        s.show=function(){
+            s.isHid=false;
+            s.showMask();
+            s.showDialog();
+            //禁用滚动条
+            if(s.overflowContainer)s.overflowContainer.classList.add(s.params.overflowContainerActiveClass);
         }
         s.toggle=function(){
             if(s.isHid){
@@ -145,7 +144,7 @@
         Control
         ================*/
         s.events=function(detach){
-            var touchTarget=s.container;
+            var touchTarget=s.dialog;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);

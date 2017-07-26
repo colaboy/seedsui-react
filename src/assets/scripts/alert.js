@@ -7,6 +7,7 @@
 		================*/
 		var defaults={
 			overflowContainer:document.body,
+			overflowContainerActiveClass:"overflow-hidden",
 			parent:document.body,
 
 			maskClass:"mask",
@@ -42,7 +43,7 @@
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
 		//Alert | Mask
-		s.container,s.mask;
+		s.alert,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -89,8 +90,8 @@
 		}
 		s.create=function(){
 			s.mask=s.createMask();
-			s.container=s.createAlert();
-			s.mask.appendChild(s.container);
+			s.alert=s.createAlert();
+			s.mask.appendChild(s.alert);
 			s.parent.appendChild(s.mask);
 		}
 		s.create();
@@ -107,13 +108,13 @@
         	s.parent.removeChild(s.mask);
         }
         s.showAlert=function(){
-        	s.container.classList.add(s.params.alertActiveClass);
+        	s.alert.classList.add(s.params.alertActiveClass);
         }
         s.hideAlert=function(){
-        	s.container.classList.remove(s.params.alertActiveClass);
+        	s.alert.classList.remove(s.params.alertActiveClass);
         }
         s.destroyAlert=function(){
-        	s.parent.removeChild(s.container);
+        	s.parent.removeChild(s.alert);
         }
 		s.isHid=true;
 		s.hide=function(){
@@ -123,8 +124,7 @@
 			//隐藏弹出框
 			s.hideAlert();
 			//显示滚动条
-			if(s.overflowContainer)
-            s.overflowContainer.style.overflow="auto";
+            if(s.overflowContainer)s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass);
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -133,8 +133,7 @@
 			//显示弹出框
 			s.showAlert();
 			//禁用滚动条
-			if(s.overflowContainer)
-            s.overflowContainer.style.overflow="hidden";
+            if(s.overflowContainer)s.overflowContainer.classList.add(s.params.overflowContainerActiveClass);
 		};
 		s.destroy=function(){
 			s.destroyMask();
@@ -142,7 +141,7 @@
 		};
 		//动态设置
 		s.setHTML=function(html){
-			s.container.content.innerHTML=html;
+			s.alert.content.innerHTML=html;
 		};
 		s.setOnClick=function(fn){
         	s.params.onClick=fn;
@@ -153,8 +152,8 @@
         s.setOnClickCancel=function(fn){
         	//如果没有取消按钮，创建一个
         	if(!s.params.onClickCancel){
-				s.container.buttonCancel=s.createButtonCancel();
-				s.container.handler.insertBefore(s.container.buttonCancel,s.container.buttonOk);
+				s.alert.buttonCancel=s.createButtonCancel();
+				s.alert.handler.insertBefore(s.alert.buttonCancel,s.alert.buttonOk);
 			}
         	s.params.onClickCancel=fn;
         }
@@ -162,7 +161,7 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.container;
+            var touchTarget=s.alert;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -181,10 +180,10 @@
 			
 			if(s.params.onClick)s.params.onClick(s);
 			
-			if(e.target==s.container.buttonOk){
+			if(e.target==s.alert.buttonOk){
 				if(s.params.onClickOk)s.params.onClickOk(s);
 				else s.hide();
-			}else if(s.container.buttonCancel && e.target==s.container.buttonCancel){
+			}else if(s.alert.buttonCancel && e.target==s.alert.buttonCancel){
 				if(s.params.onClickCancel)s.params.onClickCancel(s);
 				else s.hide();
 			}

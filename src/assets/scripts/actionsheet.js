@@ -7,7 +7,9 @@
 		================*/
 		var defaults={
 			overflowContainer:document.body,
+			overflowContainerActiveClass:"overflow-hidden",
 			parent:document.body,
+
 			maskClass:"mask",
 			actionsheetClass:"actionsheet",
 			groupClass:"actionsheet-group",
@@ -34,7 +36,7 @@
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
 		s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
 		//Actionsheet | Mask
-		s.container,s.mask;
+		s.actionsheet,s.mask;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -75,15 +77,15 @@
         }
         s.create=function(){
         	s.mask=s.createMask();
-        	s.container=s.createActionsheet();
-        	s.mask.appendChild(s.container);
+        	s.actionsheet=s.createActionsheet();
+        	s.mask.appendChild(s.actionsheet);
         	s.parent.appendChild(s.mask);
         }
         s.create();
         //设置数据
         s.setData=function(data){
         	s.params.data=data;
-        	if(s.container)s.updateData(s.container);
+        	if(s.actionsheet)s.updateData(s.actionsheet);
         	else s.createActionsheet();
         }
 
@@ -100,13 +102,13 @@
         	s.parent.removeChild(s.mask);
         }
         s.showActionsheet=function(){
-        	s.container.classList.add("active");
+        	s.actionsheet.classList.add("active");
         }
         s.hideActionsheet=function(){
-        	s.container.classList.remove("active");
+        	s.actionsheet.classList.remove("active");
         }
         s.destroyActionsheet=function(){
-        	s.parent.removeChild(s.container);
+        	s.parent.removeChild(s.actionsheet);
         }
 
 		s.isHid=true;
@@ -117,7 +119,7 @@
 			//显示弹出框
 			s.hideActionsheet();
 			//显示滚动条
-            s.overflowContainer.style.overflow="auto";
+            if(s.overflowContainer)s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass);
 		};
 		s.show=function(){
 			s.isHid=false;
@@ -126,7 +128,7 @@
 			//显示弹出框
 			s.showActionsheet();
 			//禁用滚动条
-            s.overflowContainer.style.overflow="hidden";
+            if(s.overflowContainer)s.overflowContainer.classList.add(s.params.overflowContainerActiveClass);
 		};
 		s.destroy=function(){
 			//移动事件监听
@@ -147,7 +149,7 @@
 		Control
 		================*/
         s.events=function(detach){
-            var touchTarget=s.container;
+            var touchTarget=s.actionsheet;
             var action=detach?"removeEventListener":"addEventListener";
             touchTarget[action]("click",s.onClick,false);
             touchTarget[action]("webkitTransitionEnd",s.onTransitionEnd,false);
@@ -166,7 +168,7 @@
         	//点击容器
         	if(s.params.onClick)s.params.onClick(s);
         	//点击项
-        	var options=s.container.options;
+        	var options=s.actionsheet.options;
         	for(var i=0,opt;opt=options[i++];){
         		if(opt==s.target){
         			//Callback
@@ -175,7 +177,7 @@
         		}
         	}
         	//点击取消按钮
-        	if(s.params.onClickCancel && s.container.buttonCancel==s.target){
+        	if(s.params.onClickCancel && s.actionsheet.buttonCancel==s.target){
         		s.params.onClickCancel(s);
         		return;
         	}

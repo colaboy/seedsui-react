@@ -12,14 +12,14 @@
 			maskActiveClass:"active",
 			maskFeatureClass:"prompt-mask",
 
-			containerClass:"prompt",
+			promptClass:"prompt",
 			promptActiveClass:"active",
 			wrapperClass:"prompt-wrapper",
 
 			isClickAllow:false,
 			clickAllowClass:"prompt-clickallow",
 
-			containerCss:{},
+			promptCss:{},
 			wrapperCss:{},
 
 			delay:1500,
@@ -39,7 +39,7 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.container,s.wrapper;
+		s.prompt,s.wrapper;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -47,10 +47,10 @@
             if(s.params.isClickAllow)mask.classList.add(s.params.clickAllowClass);
             return mask;
         }
-		s.createContainer=function(){
-			var container=document.createElement("div");
-			container.setAttribute("class",s.params.containerClass);
-			return container;
+		s.createPrompt=function(){
+			var prompt=document.createElement("div");
+			prompt.setAttribute("class",s.params.promptClass);
+			return prompt;
 		}
 		s.createPromptContent=function(){
 			var wrapper=document.createElement("div");
@@ -60,16 +60,16 @@
 		}
 		s.create=function(){
 			s.mask=s.createMask();
-			s.container=s.createContainer();
+			s.prompt=s.createPrompt();
 			s.wrapper=s.createPromptContent();
-			s.container.appendChild(s.wrapper);
-			s.mask.appendChild(s.container);
+			s.prompt.appendChild(s.wrapper);
+			s.mask.appendChild(s.prompt);
 			s.parent.appendChild(s.mask);
 		}
 		s.create();
 		s.update=function(){
-            for(var c in s.params.containerCss){
-                s.container.style[c]=s.params.containerCss[c];
+            for(var c in s.params.promptCss){
+                s.prompt.style[c]=s.params.promptCss[c];
             }
             for(var c in s.params.wrapperCss){
                 s.wrapper.style[c]=s.params.wrapperCss[c];
@@ -80,9 +80,9 @@
 		/*================
 		Method
 		================*/
-		s.setContainerClassName=function(className){
-			s.params.containerClass=className;
-			s.container.setAttribute("class",s.params.containerClass);
+		s.setPromptClassName=function(className){
+			s.params.promptClass=className;
+			s.prompt.setAttribute("class",s.params.promptClass);
 		};
 		s.setHTML=function(html){
 			s.wrapper.innerHTML=html;
@@ -102,13 +102,13 @@
         }
 
         s.showPrompt=function(){
-            s.container.classList.add(s.params.promptActiveClass);
+            s.prompt.classList.add(s.params.promptActiveClass);
         }
         s.hidePrompt=function(){
-        	s.container.classList.remove(s.params.promptActiveClass);
+        	s.prompt.classList.remove(s.params.promptActiveClass);
         }
         s.destroyPrompt=function(){
-        	s.parent.removeChild(s.container);
+        	s.parent.removeChild(s.prompt);
         }
 
         s.isHid=true;
@@ -135,7 +135,7 @@
 		Controller
 		================*/
 		s.events=function(detach){
-			var target=s.container;
+			var target=s.prompt;
 			var action=detach?"removeEventListener":"addEventListener";
 			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			//target[action]("webkitAnimationEnd",s.onAnimationEnd,false);

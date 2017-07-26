@@ -12,14 +12,14 @@
 			maskActiveClass:"active",
 			maskFeatureClass:"toast-mask",
 
-			containerClass:"toast",
+			toastClass:"toast",
 			toastActiveClass:"active",
 			wrapperClass:"toast-wrapper",
 
 			isClickAllow:false,
 			clickAllowClass:"toast-clickallow",
 
-			containerCss:{},
+			toastCss:{},
 			wrapperCss:{},
 
 			delay:1500,
@@ -39,7 +39,7 @@
 		var s=this;
 		s.params=params;
 		s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
-		s.container,s.wrapper;
+		s.toast,s.wrapper;
 		//Mask
 		s.createMask=function(){
             var mask=document.createElement("div");
@@ -47,10 +47,10 @@
             if(s.params.isClickAllow)mask.classList.add(s.params.clickAllowClass);
             return mask;
         }
-		s.createContainer=function(){
-			var container=document.createElement("div");
-			container.setAttribute("class",s.params.containerClass);
-			return container;
+		s.createToast=function(){
+			var toast=document.createElement("div");
+			toast.setAttribute("class",s.params.toastClass);
+			return toast;
 		}
 		s.createToastContent=function(){
 			var wrapper=document.createElement("div");
@@ -60,16 +60,16 @@
 		}
 		s.create=function(){
 			s.mask=s.createMask();
-			s.container=s.createContainer();
+			s.toast=s.createToast();
 			s.wrapper=s.createToastContent();
-			s.container.appendChild(s.wrapper);
-			s.mask.appendChild(s.container);
+			s.toast.appendChild(s.wrapper);
+			s.mask.appendChild(s.toast);
 			s.parent.appendChild(s.mask);
 		}
 		s.create();
 		s.update=function(){
-            for(var c in s.params.containerCss){
-                s.container.style[c]=s.params.containerCss[c];
+            for(var c in s.params.toastCss){
+                s.toast.style[c]=s.params.toastCss[c];
             }
             for(var c in s.params.wrapperCss){
                 s.wrapper.style[c]=s.params.wrapperCss[c];
@@ -80,9 +80,9 @@
 		/*================
 		Method
 		================*/
-		s.setContainerClassName=function(className){
-			s.params.containerClass=className;
-			s.container.setAttribute("class",s.params.containerClass);
+		s.setToastClassName=function(className){
+			s.params.toastClass=className;
+			s.toast.setAttribute("class",s.params.toastClass);
 		};
 		s.setHTML=function(html){
 			s.wrapper.innerHTML=html;
@@ -102,13 +102,13 @@
         }
 
         s.showToast=function(){
-            s.container.classList.add(s.params.toastActiveClass);
+            s.toast.classList.add(s.params.toastActiveClass);
         }
         s.hideToast=function(){
-        	s.container.classList.remove(s.params.toastActiveClass);
+        	s.toast.classList.remove(s.params.toastActiveClass);
         }
         s.destroyToast=function(){
-        	s.parent.removeChild(s.container);
+        	s.parent.removeChild(s.toast);
         }
 
         s.isHid=true;
@@ -135,7 +135,7 @@
 		Controller
 		================*/
 		s.events=function(detach){
-			var target=s.container;
+			var target=s.toast;
 			var action=detach?"removeEventListener":"addEventListener";
 			target[action]("webkitTransitionEnd",s.onTransitionEnd,false);
 			//target[action]("webkitAnimationEnd",s.onAnimationEnd,false);

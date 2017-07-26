@@ -5,7 +5,10 @@
           Model
           ===========================*/
         var defaults={
+            overflowContainer:document.body,
+            overflowContainerActiveClass:"overflow-hidden",
             parent:document.body,
+            container:null,
 
             maskClass:"mask",
             maskActiveClass:"active",
@@ -61,10 +64,12 @@
         s.params = params;
         //Dom元素
         s.parent=typeof s.params.parent=="string"?document.querySelector(s.params.parent):s.params.parent;
+        s.overflowContainer=typeof s.params.overflowContainer=="string"?document.querySelector(s.params.overflowContainer):s.params.overflowContainer;
         s.picker,s.mask,s.header,s.wrapper,s.slotbox,s.layer,s.headerDone,s.headerCancel;
+
         //槽元素与其值
         s.slots=[],s.activeOptions=[];
-        //新建Container
+        //新建Picker
         s.createPicker=function(){
             var picker=document.createElement("div")
             picker.setAttribute("class",s.params.pickerClass);
@@ -122,8 +127,19 @@
         }
         //创建DOM
         s.create=function(){
-            s.picker=s.createPicker();
+            if(container){
+                var container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
+                s.mask=container;
+                s.picker=container.querySelector('.'+s.params.pickerClass);
+                s.header=container.querySelector('.'+s.params.headerClass);
+                s.headerDone=container.querySelector('.'+s.params.headerDoneClass);
+                s.headerCancel=container.querySelector('.'+s.params.headerCancelClass);
+                s.wrapper=container.querySelector('.'+s.params.wrapperClass);
+                s.slotbox=container.querySelector('.'+s.params.slotboxClass);
+                s.layer=container.querySelector('.'+s.params.layerClass);
+            }
             s.mask=s.createMask();
+            s.picker=s.createPicker();
             s.header=s.createHeader();
             s.headerDone=s.createHeaderDone();
             s.headerCancel=s.createHeaderCancel();
@@ -228,21 +244,21 @@
             slot.style.webkitTransform='translate3d(0px,'+slot.activePosY+'px,0px)';
         }
         s.isHid=true;
-        //显示
-        s.show=function(){
-            s.isHid=false;
-            //s.mask.style.visibility="visible";
-            //s.mask.style.opacity="1";
-            s.mask.classList.add(s.params.maskActiveClass);
-            s.picker.classList.add(s.params.pickerActiveClass);
-        }
         //隐藏
         s.hide=function(){
             s.isHid=true;
-            //s.mask.style.opacity="0";
-            //s.mask.style.visibility="hidden";
             s.mask.classList.remove(s.params.maskActiveClass);
             s.picker.classList.remove(s.params.pickerActiveClass);
+            //显示滚动条
+            if(s.overflowContainer)s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass);
+        }
+        //显示
+        s.show=function(){
+            s.isHid=false;
+            s.mask.classList.add(s.params.maskActiveClass);
+            s.picker.classList.add(s.params.pickerActiveClass);
+            //禁用滚动条
+            if(s.overflowContainer)s.overflowContainer.classList.add(s.params.overflowContainerActiveClass);
         }
         //清除
         s.clearSlots=function(){
