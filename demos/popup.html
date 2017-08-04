@@ -291,7 +291,8 @@
     
 	<script type="text/javascript">
 		//右上角弹出框
-        var menupop=new Dialog("#ID-Popup-Popover",{
+        var menupop=new Dialog({
+        		wrapper:"#ID-Popup-Popover",
             position:"top-right",
             animation:"zoom",
             css:{overflow:"visible",top:"54px",right:"6px"}
@@ -334,7 +335,6 @@
 	    var t=new Toast({html:"您点击了菜单一"});
 	    var actionAlert=null;
 		var actionsheet=new Actionsheet({
-			isClickMaskHide:false,
 			data:[
 				{
 					text : '菜单一',
@@ -387,7 +387,8 @@
 	    };
 
 		//middle
-		var dialogMid=new Dialog("#ID-Dialog-Mid",{
+		var dialogMid=new Dialog({
+			wrapper:"#ID-Dialog-Mid",
 			overflowContainer:null,
 			position:"middle",
 			onClick:function(e){console.log(e.target)},
@@ -400,28 +401,32 @@
 			dialogMid.show();
 	    };
 		//top
-		var topLeftDialog=new Dialog("#ID-Dialog-TopLeft",{
+		var topLeftDialog=new Dialog({
+			wrapper:"#ID-Dialog-TopLeft",
 			position:"top",
 			animation:"zoom"
 		});
 		document.getElementById("topLeftBtn").onclick=function(){
 			topLeftDialog.show();
-	    };
-	    var topCenterDialog=new Dialog("#ID-Dialog-TopCenter",{
+	  };
+	  var topCenterDialog=new Dialog({
+	    wrapper:"#ID-Dialog-TopCenter",
 			position:"top-center",
 			animation:"zoom"
 		});
 		document.getElementById("topCenterBtn").onclick=function(){
 			topCenterDialog.show();
-	    };
-	    var topRightDialog=new Dialog("#ID-Dialog-TopRight",{
+    };
+    var topRightDialog=new Dialog({
+    	wrapper:"#ID-Dialog-TopRight",
 			position:"top-right",
 			animation:"zoom"
 		});
 		document.getElementById("topRightBtn").onclick=function(){
 			topRightDialog.show();
-	    };
-	    var topFullDialog=new Dialog("#ID-Dialog-TopFull",{
+    };
+    var topFullDialog=new Dialog({
+    	wrapper:"#ID-Dialog-TopFull",
 			position:"top-center",
 			animation:"slideDown",
 			css:{width:"100%"}
@@ -431,28 +436,32 @@
 	    };
 
 		//bottom
-		var btmLeftDialog=new Dialog("#ID-Dialog-BtmLeft",{
+		var btmLeftDialog=new Dialog({
+			wrapper:"#ID-Dialog-BtmLeft",
 			position:"bottom",
 			animation:"zoom"
 		});
 		document.getElementById("bottomLeftBtn").onclick=function(){
 			btmLeftDialog.show();
-	    };
-	    var btmCenterDialog=new Dialog("#ID-Dialog-BtmCenter",{
+    };
+    var btmCenterDialog=new Dialog({
+    	wrapper:"#ID-Dialog-BtmCenter",
 			position:"bottom-center",
 			animation:"zoom"
 		});
 		document.getElementById("bottomCenterBtn").onclick=function(){
 			btmCenterDialog.show();
-	    };
-	    var btmRightDialog=new Dialog("#ID-Dialog-BtmRight",{
+    };
+    var btmRightDialog=new Dialog({
+    	wrapper:"#ID-Dialog-BtmRight",
 			position:"bottom-right",
 			animation:"zoom"
 		});
 		document.getElementById("bottomRightBtn").onclick=function(){
 			btmRightDialog.show();
-	    };
-	    var bottomFullDialog=new Dialog("#ID-Dialog-BtmFull",{
+    };
+    var bottomFullDialog=new Dialog({
+    	wrapper:"#ID-Dialog-BtmFull",
 			position:"bottom-center",
 			animation:"slideUp",
 			css:{width:"100%"}
@@ -462,28 +471,32 @@
 	    };
 
 		//left
-		var leftDialog=new Dialog("#ID-Dialog-LeftTop",{
+		var leftDialog=new Dialog({
+			wrapper:"#ID-Dialog-LeftTop",
 			position:"left",
 			animation:"slideRight"
 		});
 		document.getElementById("leftTopBtn").onclick=function(){
 			leftDialog.show();
-	    };
-	    var leftMiddleDialog=new Dialog("#ID-Dialog-LeftMid",{
+    };
+    var leftMiddleDialog=new Dialog({
+    	wrapper:"#ID-Dialog-LeftMid",
 			position:"left-middle",
 			animation:"slideRight"
 		});
 		document.getElementById("leftMiddleBtn").onclick=function(){
 			leftMiddleDialog.show();
-	    };
-	    var leftBottomDialog=new Dialog("#ID-Dialog-LeftBtm",{
+    };
+    var leftBottomDialog=new Dialog({
+    	wrapper:"#ID-Dialog-LeftBtm",
 			position:"left-bottom",
 			animation:"slideRight"
 		});
 		document.getElementById("leftBottomBtn").onclick=function(){
 			leftBottomDialog.show();
-	    };
-	    var leftFullDialog=new Dialog("#ID-Dialog-LeftFull",{
+    };
+    var leftFullDialog=new Dialog({
+    	wrapper:"#ID-Dialog-LeftFull",
 			position:"left-middle",
 			animation:"slideRight",
 			css:{height:"100%"}
@@ -493,28 +506,32 @@
 	    };
 
 		//right
-		var rightTopDialog=new Dialog("#ID-Dialog-RightTop",{
+		var rightTopDialog=new Dialog({
+			wrapper:"#ID-Dialog-RightTop",
 			position:"right",
 			animation:"slideLeft"
 		});
 		document.getElementById("rightTopBtn").onclick=function(){
 			rightTopDialog.show();
-	    };
-	    var rightMiddleDialog=new Dialog("#ID-Dialog-RightMid",{
+    };
+    var rightMiddleDialog=new Dialog({
+    	wrapper:"#ID-Dialog-RightMid",
 			position:"right-middle",
 			animation:"slideLeft"
 		});
 		document.getElementById("rightMiddleBtn").onclick=function(){
 			rightMiddleDialog.show();
-	    };
-	    var rightBottomDialog=new Dialog("#ID-Dialog-RightBtm",{
+    };
+    var rightBottomDialog=new Dialog({
+    	wrapper:"#ID-Dialog-RightBtm",
 			position:"right-bottom",
 			animation:"slideLeft"
 		});
 		document.getElementById("rightBottomBtn").onclick=function(){
 			rightBottomDialog.show();
-	    };
-	    var rightFullDialog=new Dialog("#ID-Dialog-RightFull",{
+    };
+    var rightFullDialog=new Dialog({
+    	wrapper:"#ID-Dialog-RightFull",
 			position:"right-middle",
 			animation:"slideLeft",
 			css:{height:"100%"}
@@ -524,11 +541,12 @@
 	    };
 
 	    var shareContainer=document.getElementById("ID-Dialog-Share");
-	    var shareDialog=new Dialog(shareContainer,{//弹出框
-            position:"bottom",
-            animation:"slideUp",
-            css:{width:"100%"}
-        });
+	    var shareDialog=new Dialog({//弹出框
+	    	wrapper:shareContainer,
+        position:"bottom",
+        animation:"slideUp",
+        css:{width:"100%"}
+      });
 	    document.getElementById("ID-BtnShare").onclick=function(e){
 			shareDialog.show();
 	    };

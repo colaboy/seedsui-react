@@ -25,6 +25,7 @@
 		<div class="inputbox bordered" style="margin:8px;background-color: white;">
             <input type="text" class="input-text text-center" placeholder="滚动选择器" readonly="readonly" id="ID-Sp"/>
         </div>
+        <!-- <div style="height: 800px;background-color: #aaa;"></div> -->
 	</article>
 	<!--SeedsUI-->
     <script src="../dist/seedsui.min.js"></script>
@@ -99,6 +100,7 @@
         _initScrollPicker:function(){
             var self=this;
             this.scrollpicker=new Scrollpicker({
+                isClickMaskHide:false,
                 parent:"article",
                 onInit:function(e){
                     console.log("初始化");
@@ -122,10 +124,11 @@
                 },
                 onScrollEnd:function(e){
                     //获得当前选中项
-                    console.log("滚动槽："+e.activeSlot.index);
+                    console.log("滚动结束");
+                    /*console.log("滚动槽："+e.activeSlot.index);
                     console.log("滚动槽值："+e.activeSlot.values);
                     console.log("选中项数："+e.activeSlot.activeIndex);
-                    console.log("全部选中项："+e.activeOptions);
+                    console.log("全部选中项："+e.activeOptions);*/
                 },
                 onShowed:function(e){
                     //console.log("已显示");

@@ -4486,9 +4486,11 @@ progress::-webkit-progress-value {
 }
 /*--------------------dialog.less(end)----------------------*/
 /*----------------alert.less(start)--------------*/
+.alert-mask {
+  z-index: 10;
+}
 .alert {
   position: fixed;
-  z-index: 10;
   border-style: solid;
   border-width: 0;
   top: 50%;

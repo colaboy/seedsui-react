@@ -10,7 +10,10 @@
       overflowContainerActiveClass: "overflow-hidden",
       parent: document.body,
 
-      maskClass: "mask actionsheet-mask",
+      maskClass: "mask",
+      maskActiveClass: "active",
+      maskFeatureClass: "actionsheet-mask",
+
       actionsheetClass: "actionsheet",
       groupClass: "actionsheet-group",
       buttonCancelClass: "actionsheet-cancel",
@@ -39,11 +42,11 @@
     s.actionsheet, s.mask;
     //Mask
     s.createMask = function() {
-        var mask = document.createElement("div");
-        mask.setAttribute("class", s.params.maskClass);
-        return mask;
-      }
-      //Actionsheet
+      var mask = document.createElement("div");
+      mask.setAttribute("class", s.params.maskClass + " " + s.params.maskFeatureClass);
+      return mask;
+    }
+    //Actionsheet
     s.createActionsheet = function() {
       var actionsheet = document.createElement("div");
       actionsheet.setAttribute("class", s.params.actionsheetClass);
@@ -93,19 +96,19 @@
     Method
     ================*/
     s.showMask = function() {
-      s.mask.classList.add("active");
+      s.mask.classList.add(s.params.maskActiveClass);
     }
     s.hideMask = function() {
-      s.mask.classList.remove("active");
+      s.mask.classList.remove(s.params.maskActiveClass);
     }
     s.destroyMask = function() {
       s.parent.removeChild(s.mask);
     }
     s.showActionsheet = function() {
-      s.actionsheet.classList.add("active");
+      s.actionsheet.classList.add(s.params.maskActiveClass);
     }
     s.hideActionsheet = function() {
-      s.actionsheet.classList.remove("active");
+      s.actionsheet.classList.remove(s.params.maskActiveClass);
     }
     s.destroyActionsheet = function() {
       s.parent.removeChild(s.actionsheet);
@@ -143,9 +146,9 @@
       s.params.onClick = fn;
     }
     s.setOnClickMask = function(fn) {
-        s.params.onClickMask = fn;
-      }
-      /*================
+      s.params.onClickMask = fn;
+    }
+    /*================
     Control
     ================*/
     s.events = function(detach) {
@@ -185,15 +188,17 @@
     };
 
     s.onClickMask = function(e) {
-      s.target = e.target;
-      if (s.params.onClickMask) s.params.onClickMask(s);
-      if (s.params.isClickMaskHide) s.hide();
+      if (e.target === s.mask) {
+        s.target = e.target;
+        if (s.params.onClickMask) s.params.onClickMask(s);
+        if (s.params.isClickMaskHide) s.hide();
+      }
     }
 
     s.onTransitionEnd = function(e) {
-        if (e.propertyName == "visibility") return;
-      }
-      /*================
+      if (e.propertyName == "visibility") return;
+    }
+    /*================
     Init
     ================*/
     s.init = function() {
