@@ -4285,9 +4285,11 @@ progress::-webkit-progress-value {
 }
 /*----------------------------chat.less(end)----------------------------*/
 /*----------------dialog.less(start)--------------*/
+.dialog-mask {
+  z-index: 10;
+}
 .dialog {
   position: fixed;
-  z-index: 10;
   border-style: solid;
   border-width: 0;
   box-sizing: border-box;
@@ -4587,9 +4589,11 @@ progress::-webkit-progress-value {
 }
 /*----------------alert.less(end)--------------*/
 /*----------------actionsheet.less(start)--------------*/
+.actionsheet-mask {
+  z-index: 10;
+}
 .actionsheet {
   position: fixed;
-  z-index: 10;
   padding: 0 6px;
   box-sizing: border-box;
   width: 100%;
@@ -4659,6 +4663,7 @@ progress::-webkit-progress-value {
 }
 .toast-mask {
   background-color: transparent;
+  z-index: 999;
 }
 .toast {
   position: fixed;
@@ -4671,7 +4676,6 @@ progress::-webkit-progress-value {
   -webkit-transition-property: -webkit-transform, opacity, visibility;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
-  z-index: 999;
 }
 .toast.active {
   opacity: 1;
@@ -4711,6 +4715,7 @@ progress::-webkit-progress-value {
 }
 .prompt-mask {
   background-color: transparent;
+  z-index: 999;
 }
 .prompt {
   display: block;
@@ -4722,7 +4727,6 @@ progress::-webkit-progress-value {
   width: 100%;
   line-height: 0;
   text-align: center;
-  z-index: 999;
   -webkit-transition-property: -webkit-transform, opacity, visibility;
   -webkit-transition-duration: 300ms;
   -webkit-transition-timing-function: linear;

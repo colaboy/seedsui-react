@@ -6,6 +6,7 @@
 //遮罩透明
 .toast-mask{
 	background-color: transparent;
+	z-index:999;
 }
 
 .toast{
@@ -18,15 +19,13 @@
 	opacity: 0;
 
 	-webkit-transition-property:-webkit-transform,opacity,visibility;
-    -webkit-transition-duration:150ms;
-    -webkit-transition-timing-function:ease;
+  -webkit-transition-duration:150ms;
+  -webkit-transition-timing-function:ease;
 
-    z-index:999;
-
-    &.active{
-    	opacity: 1;
-    	-webkit-transform:translate3d(0,-@150px,0);
-    }
+  &.active{
+  	opacity: 1;
+  	-webkit-transform:translate3d(0,-@150px,0);
+  }
 }
 .toast-wrapper{
 	display:inline-block;

@@ -1,7 +1,10 @@
 /*----------------actionsheet.less(start)--------------*/
+//遮罩透明
+.actionsheet-mask{
+	z-index:10;
+}
 .actionsheet{
 	position:fixed;
-	z-index:10;
 
 	padding:0 @6px;
 	box-sizing:border-box;
@@ -37,20 +40,20 @@
 //下横线
 .actionsheet-group a:after{
 	content: '';
-    display: block;
-    position: absolute;
-    background-color: @border;
+  display: block;
+  position: absolute;
+  background-color: @border;
 
 	top: auto;
 	right: auto;
-    bottom: 0;
-    left: 0;
-    height: @1px;
-    width: 100%;
-    -webkit-transform-origin:center bottom;
+  bottom: 0;
+  left: 0;
+  height: @1px;
+  width: 100%;
+  -webkit-transform-origin:center bottom;
 
-    //兼容UC线条不显示的BUG
-    z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
+  //兼容UC线条不显示的BUG
+  z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 }
 .actionsheet-group a:last-child:after{
 	height: 0;

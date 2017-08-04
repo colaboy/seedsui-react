@@ -11,7 +11,7 @@
             position:"middle",
             animationAttr:"data-animation",
             animation:"fade",
-            maskClass:"mask",
+            maskClass:"mask dialog-mask",
             css:{},
             maskCss:{},
             isClickMaskHide:true

@@ -6,6 +6,7 @@
 //遮罩透明
 .prompt-mask{
 	background-color: transparent;
+	z-index:999;
 }
 
 .prompt{
@@ -18,13 +19,12 @@
 	width:100%;
 	line-height:0;
 	text-align:center;
-	z-index:999;
 
 	-webkit-transition-property:-webkit-transform,opacity,visibility;
-    -webkit-transition-duration:300ms;
-    -webkit-transition-timing-function:linear;
+  -webkit-transition-duration:300ms;
+  -webkit-transition-timing-function:linear;
 
-    color:white;
+  color:white;
 	background-color:@prompt-bg;
 	&.active{
 		visibility:visible;
