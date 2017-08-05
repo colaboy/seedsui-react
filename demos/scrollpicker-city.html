@@ -84,6 +84,9 @@
                     },
                     onHid:function(e){
                         e.scrollpicker.destroy();
+                    },
+                    onScrollEnd:function(e){
+                        console.log("滚动结束");
                     }
                 });
             },

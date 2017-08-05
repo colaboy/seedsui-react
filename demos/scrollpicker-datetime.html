@@ -85,8 +85,8 @@
                 this.minutesData=function(){
                     var data=[];
                     for(var i=0;i<60;i=i+10){
-                        var temp=i<10?"0"+i:i;
-                        data.push({key:temp,value:temp+"分"});
+                        var temp_mm=i < 10 ? '0' + i : '' + i
+                        data.push({key:temp_mm,value:temp_mm+"分"});
                     }
                     return data;
                 }();
@@ -131,24 +131,16 @@
                 }else if(hourKey==="07"){
                     minutes.shift();
                 }
-                app.spDateTime.scrollpicker.replaceSlot(4,minutes,minuteKey,'text-center');//修改第五项
+                app.spDateTime.replaceSlot(4,minutes,minuteKey,'text-center');//修改第五项
             },
             //时间控件
             _newSpDateTime:function(defaults,input){
                 var self=this;
                 app.spDateTime=new SpDate({
-                    //parent:self.$el[0],
                     viewType:"datetime",
                     //hoursData:self.hoursData.startHours,
                     minutesData:self.minutesData,
                     isSimpleYear:true,
-                    minYear:new Date().getFullYear()-5,
-                    maxYear:new Date().getFullYear()+5,
-                    yearClass:"text-center",
-                    monthClass:"text-center",
-                    dayClass:"text-center",
-                    hourClass:"text-center",
-                    minuteClass:"text-center",
                     onInit:function(e){
                         //点击开始时间
                         if(input.classList.contains("SID-DateTimeStart")){
@@ -161,9 +153,9 @@
                         //点击结束时间
                         if(!input.classList.contains("SID-DateTimeEnd"))return;
                         //小时算分钟
-                        if(e.scrollpicker.activeSlot.index==3){
-                            hourKey=e.scrollpicker.activeOptions[3]["key"];
-                            minuteKey=e.scrollpicker.activeOptions[4]["key"];
+                        if(e.activeSlot.index==3){
+                            hourKey=e.activeOptions[3]["key"];
+                            minuteKey=e.activeOptions[4]["key"];
                             self._newSpMinutes(hourKey,minuteKey);//更新总天数
                         }
                     },
@@ -213,19 +205,20 @@
                             }
                         }
                         input.value=e.activeText;
-                        e.scrollpicker.hide();
+                        e.hide();
                     },
                     onShowed:function(e){
                         if(input.classList.contains("SID-DateTimeEnd")){//点击结束时间
-                            var hourKey=e.scrollpicker.activeOptions[3]["key"];
-                            var minuteKey=e.scrollpicker.activeOptions[4]["key"];
+                            var hourKey=e.activeOptions[3]["key"];
+                            var minuteKey=e.activeOptions[4]["key"];
                             self._newSpMinutes(hourKey,minuteKey);
                         }
                     },
                     onHid:function(e){
-                        e.scrollpicker.destroy();
+                        e.destroy();
                     }
                 });
+                console.log(defaults[4])
                 if(defaults && defaults.length>0){
                     app.spDateTime.setDefaultYear(defaults[0]);
                     app.spDateTime.setDefaultMonth(defaults[1]);
@@ -256,23 +249,45 @@
                 var self=this;
                 var defaults=[];
                 var input=e.target.querySelector(".input-text");
+                var yyyy = ''
+                var MM = ''
+                var dd = ''
+                var hh = ''
+                var mm = ''
+                var temp_yyyy = ''
+                var temp_MM = ''
+                var temp_dd = ''
+                var temp_hh = ''
+                var temp_mm = ''
                 if(input.value!=""){
                     var split=input.value.split(" ");
                     var split1=split[0].split("-");
                     var split2=split[1].split(":");
-                    defaults[0]=split1[0];
-                    defaults[1]=split1[1];
-                    defaults[2]=split1[2];
-                    defaults[3]=split2[0];
-                    defaults[4]=split2[1];
+                    temp_yyyy = split1[0]
+                    temp_MM = split1[1]
+                    temp_dd = split1[2]
+                    temp_hh = split2[0]
+                    temp_mm = split2[1]
                 }else{
-                    var date=new Date().setMinuteCeil(10);
-                    defaults[0]=date.getFullYear();
-                    defaults[1]=date.getMonth()+1;
-                    defaults[2]=date.getDate();
-                    defaults[3]=date.getHours();
-                    defaults[4]=date.getMinutes();
+                    var nowDate = new Date()
+                    date=nowDate.setMinuteCeil(10);
+                    temp_yyyy = date.getFullYear()
+                    temp_MM = date.getMonth() + 1
+                    temp_dd = date.getDate()
+                    temp_hh = date.getHours()
+                    temp_mm = date.getMinutes()
                 }
+                yyyy = '' + temp_yyyy
+                MM = temp_MM.toString().length === 1 ? '0' + temp_MM : '' + temp_MM
+                dd = temp_dd.toString().length === 1 ? '0' + temp_dd : '' + temp_dd
+                hh = temp_hh.toString().length === 1 ? '0' + temp_hh : '' + temp_hh
+                mm = temp_mm.toString().length === 1 ? '0' + temp_mm : '' + temp_mm
+                defaults[0]=yyyy;
+                defaults[1]=MM;
+                defaults[2]=dd;
+                defaults[3]=hh;
+                defaults[4]=mm;
+
                 this._newSpDateTime(defaults,input);
                 setTimeout(function(){
                     app.spDateTime.show();

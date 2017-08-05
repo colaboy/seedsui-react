@@ -59,10 +59,10 @@
             //定义5分钟间隔的分钟数据
             this.minutesData=[];
             this.minuteInterval=5;
-            for(var minute=0;minute<60;minute=minute+this.minuteInterval){
+            for(var mm=0;mm<60;mm=mm+this.minuteInterval){
                 //if(minute<10)minute="0"+minute;
-                var tempMinute=minute<10?"0"+minute:minute;
-                this.minutesData.push({"key":tempMinute,"value":tempMinute+"分","flag":"time"});
+                var temp_mm=mm.toString().length === 1 ? "0" + mm : '' + mm;
+                this.minutesData.push({"key":temp_mm,"value":temp_mm+"分","flag":"time"});
             }
 
             /*Render*/
@@ -80,24 +80,21 @@
             var self=this;
             this.spDate=new SpDate({
                 viewType:"date",
-                yearClass:"text-center",
-                monthClass:"text-center",
-                dayClass:"text-center",
                 onClickDone:function(e){
                     self.textDate.value=e.activeText;
-                    e.scrollpicker.hide();
+                    e.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.scrollpicker.destroy();
+                    e.destroy();
                 }
             });
             if(defaultYMD && defaultYMD.length>0){
-                this.spDate.setDefaultYear(defaultYMD[0]);
-                this.spDate.setDefaultMonth(defaultYMD[1]);
-                this.spDate.setDefaultDay(defaultYMD[2]);
+                this.spDate.setDefaultYear(defaultYMD[0].replace(/(^\s*)|(\s*$)/g, ''));
+                this.spDate.setDefaultMonth(defaultYMD[1].replace(/(^\s*)|(\s*$)/g, ''));
+                this.spDate.setDefaultDay(defaultYMD[2].replace(/(^\s*)|(\s*$)/g, ''));
                 this.spDate.update();
             }
         },
@@ -105,17 +102,15 @@
             var self=this;
             this.spTime=new SpDate({
                 viewType:"time",
-                hourClass:"text-center",
-                minuteClass:"text-center",
                 onClickDone:function(e){
                     self.textTime.value=e.activeText;
-                    e.scrollpicker.hide();
+                    e.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.scrollpicker.destroy();
+                    e.destroy();
                 }
             });
             if(defaultHS && defaultHS.length>0){
@@ -129,23 +124,16 @@
             this.spDateTime=new SpDate({
                 viewType:"datetime",
                 isSimpleYear:true,
-                minYear:new Date().getFullYear()-5,
-                maxYear:new Date().getFullYear()+5,
-                yearClass:"text-center",
-                monthClass:"text-center",
-                dayClass:"text-center",
-                hourClass:"text-center",
-                minuteClass:"text-center",
                 minutesData:self.minutesData,
                 onClickDone:function(e){
                     self.textDateTime.value=e.activeText;
-                    e.scrollpicker.hide();
+                    e.hide();
                 },
                 onShowed:function(e){
                     //e.setIsClickMaskHide(true);
                 },
                 onHid:function(e){
-                    e.scrollpicker.destroy();
+                    e.destroy();
                 }
             });
             if(defaults && defaults.length>0){
@@ -183,7 +171,7 @@
             }
             this._newSpDate(defaultYMD);
             setTimeout(function(){
-                self.spDate.scrollpicker.show();
+                self.spDate.show();
             },10);
         },
         _onClickTextTime:function(e){
@@ -194,7 +182,7 @@
             }
             this._newSpTime(defaultHS);
             setTimeout(function(){
-                self.spTime.scrollpicker.show();;
+                self.spTime.show();;
             },10);
         },
         _onClickTextDateTime:function(e){

@@ -100,8 +100,7 @@
         _initScrollPicker:function(){
             var self=this;
             this.scrollpicker=new Scrollpicker({
-                isClickMaskHide:false,
-                parent:"article",
+                // parent:"article",
                 onInit:function(e){
                     console.log("初始化");
                 },
@@ -125,10 +124,10 @@
                 onScrollEnd:function(e){
                     //获得当前选中项
                     console.log("滚动结束");
-                    /*console.log("滚动槽："+e.activeSlot.index);
-                    console.log("滚动槽值："+e.activeSlot.values);
-                    console.log("选中项数："+e.activeSlot.activeIndex);
-                    console.log("全部选中项："+e.activeOptions);*/
+                    // console.log("滚动槽："+e.activeSlot.index);
+                    // console.log("滚动槽值："+e.activeSlot.values);
+                    // console.log("选中项数："+e.activeSlot.activeIndex);
+                    // console.log("全部选中项："+e.activeOptions);
                 },
                 onShowed:function(e){
                     //console.log("已显示");
@@ -151,12 +150,9 @@
           ===========================*/
         _attach:function(e){
             var self=this;
-            if(!self.textSp.hasEvent){
-                this.textSp.addEventListener("click",function(e){
-                    self._onClickTextSp(e);
-                },false);
-                self.textSp.hasEvent=true;
-            }
+            this.textSp.addEventListener("click",function(e){
+                self._onClickTextSp(e);
+            },false);
         },
         /*=========================
           Event Handler
