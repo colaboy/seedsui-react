@@ -1,6 +1,6 @@
-//SpCity 扩展scrollpicker地区控件 (require scrollpikcer.js)
+//扩展picker地区控件 (require pikcer.js)
 (function (window, document, undefined) {
-  window.SpCity = function (params) {
+  window.CityPicker = function (params) {
     // 参数改写
     var onDateClickDone = params.onClickDone
     var onDateClickCancel = params.onClickCancel

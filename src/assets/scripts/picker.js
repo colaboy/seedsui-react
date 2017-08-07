@@ -1,6 +1,6 @@
-//Scrollpicker 滚动选择器
+//Picker 滚动选择器
 (function(window, document, undefined) {
-  window.Scrollpicker = function(params) {
+  window.Picker = function(params) {
     /* ------------------------
     Model
     ------------------------ */

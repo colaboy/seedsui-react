@@ -1,6 +1,6 @@
-//SpDate 扩展scrollpicker日期控件 (require scrollpikcer.js)
+//扩展Picker日期控件 (require pikcer.js)
 (function (window, document, undefined) {
-  window.SpDate = function (params) {
+  window.DatePicker = function (params) {
     // 参数改写
     var onDateClickDone = params.onClickDone
     var onDateClickCancel = params.onClickCancel
@@ -76,9 +76,9 @@
         params[def] = defaults[def]
       }
     }
-    var s = new Scrollpicker(params)
+    var s = new Picker(params)
 
-    function trim(str) {
+    function trim (str) {
       return str.replace(/(^\s*)|(\s*$)/g, '')
     }
     // 设置默认值
@@ -173,7 +173,7 @@
       }
     }
 
-    function updateDays(year, month, defaultDay) {
+    function updateDays (year, month, defaultDay) {
       var maxDay = new Date(year, month, 0).getDate()
       s.days = []
       for (var dd = 1; dd <= maxDay; dd++) {
@@ -222,7 +222,7 @@
     /* ----------------
     Method
     ---------------- */
-    function getActiveText(activeData) {
+    function getActiveText (activeData) {
       var activeText = ''
       var dateArr = []
       var timeArr = []
@@ -256,27 +256,27 @@
     ---------------- */
 
     // 添加数据
-    function addMonthSlot() {
+    function addMonthSlot () {
       s.addSlot(s.years, s.params.defaultYear, s.params.yearClass)
       s.addSlot(s.months, s.params.defaultMonth, s.params.monthClass)
     }
 
-    function addDateSlot() {
+    function addDateSlot () {
       addMonthSlot()
       s.addSlot(s.days, s.params.defaultDay, s.params.dayClass)
     }
 
-    function addTimeSlot() {
+    function addTimeSlot () {
       s.addSlot(s.hours, s.params.defaultHour, s.params.hourClass)
       s.addSlot(s.minutes, s.params.defaultMinute, s.params.minuteClass)
     }
 
-    function addDateTime() {
+    function addDateTime () {
       addDateSlot()
       addTimeSlot()
     }
 
-    function initSlots() {
+    function initSlots () {
       switch (s.params.viewType) {
         case 'date':
           addDateSlot()
