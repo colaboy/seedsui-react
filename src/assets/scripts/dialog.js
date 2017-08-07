@@ -1,6 +1,5 @@
 // Dialog 自定义弹出框
-(function (window, document, undefined) {
-window.Dialog = function (params) {
+var Dialog = function (params) {
   /* -------------------------
   Model
   ------------------------- */
@@ -215,5 +214,4 @@ window.Dialog = function (params) {
     s.attach()
   }
   s.init()
-}
-})(window, document, undefined);
+};
