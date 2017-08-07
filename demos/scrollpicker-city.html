@@ -74,16 +74,13 @@
                     defaultProvince:defaults.province,
                     defaultCity:defaults.city,
                     defaultArea:defaults.area,
-                    provinceClass:"text-center citycol",
-                    cityClass:"text-center citycol",
-                    areaClass:"text-center citycol",
                     onClickDone:function(e){
                         input.value=e.activeValue;
                         input.nextElementSibling.value=e.activeKey;
                         e.hide();
                     },
                     onHid:function(e){
-                        e.scrollpicker.destroy();
+                        e.destroy();
                     },
                     onScrollEnd:function(e){
                         console.log("滚动结束");
@@ -97,16 +94,13 @@
                     defaultProvince:defaults.province,
                     defaultCity:defaults.city,
                     defaultArea:defaults.area,
-                    provinceClass:"text-center citycol",
-                    cityClass:"text-center citycol",
-                    areaClass:"text-center citycol",
                     onClickDone:function(e){
                         input.value=e.activeValue;
                         input.nextElementSibling.value=e.activeKey;
                         e.hide();
                     },
                     onHid:function(e){
-                        e.scrollpicker.destroy();
+                        e.destroy();
                     }
                 });
             },
@@ -138,7 +132,7 @@
                 }
                 this._newSpCity(defaults,input);
                 setTimeout(function(){
-                    self.spCity.scrollpicker.show();
+                    self.spCity.show();
                 },10);
             },
             _onClickTextArea:function(e){
@@ -152,7 +146,7 @@
                 }
                 this._newSpArea(defaults,input);
                 setTimeout(function(){
-                    self.spArea.scrollpicker.show();
+                    self.spArea.show();
                 },10);
             }
         }
