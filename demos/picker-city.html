@@ -67,8 +67,8 @@
             /*=========================
               Method
               ===========================*/
-            _newSpCity:function(defaults,input){
-                this.spCity=new SpCity({
+            _newCityPicker:function(defaults,input){
+                this.spCity=new CityPicker({
                     isShowArea:false,
                     data:citys,
                     defaultProvince:defaults.province,
@@ -88,7 +88,7 @@
                 });
             },
             _newSpArea:function(defaults,input){
-                this.spArea=new SpCity({
+                this.spArea=new CityPicker({
                     //isShowArea:false,
                     data:citys,
                     defaultProvince:defaults.province,
@@ -130,7 +130,7 @@
                     city:keys[1]||"",
                     area:keys[2]||""
                 }
-                this._newSpCity(defaults,input);
+                this._newCityPicker(defaults,input);
                 setTimeout(function(){
                     self.spCity.show();
                 },10);

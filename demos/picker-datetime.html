@@ -134,9 +134,9 @@
                 app.spDateTime.replaceSlot(4,minutes,minuteKey,'text-center');//修改第五项
             },
             //时间控件
-            _newSpDateTime:function(defaults,input){
+            _newDatePickerTime:function(defaults,input){
                 var self=this;
-                app.spDateTime=new SpDate({
+                app.spDateTime=new DatePicker({
                     viewType:"datetime",
                     //hoursData:self.hoursData.startHours,
                     minutesData:self.minutesData,
@@ -288,7 +288,7 @@
                 defaults[3]=hh;
                 defaults[4]=mm;
 
-                this._newSpDateTime(defaults,input);
+                this._newDatePickerTime(defaults,input);
                 setTimeout(function(){
                     app.spDateTime.show();
                 },10);

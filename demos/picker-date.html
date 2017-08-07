@@ -76,9 +76,9 @@
         /*=========================
           Plugin
           ===========================*/
-        _newSpDate:function(defaultYMD){
+        _newDatePicker:function(defaultYMD){
             var self=this;
-            this.spDate=new SpDate({
+            this.spDate=new DatePicker({
                 viewType:"date",
                 onClickDone:function(e){
                     self.textDate.value=e.activeText;
@@ -100,7 +100,7 @@
         },
         _newSpTime:function(defaultHS){
             var self=this;
-            this.spTime=new SpDate({
+            this.spTime=new DatePicker({
                 viewType:"time",
                 onClickDone:function(e){
                     self.textTime.value=e.activeText;
@@ -119,9 +119,9 @@
                 this.spTime.update();
             }
         },
-        _newSpDateTime:function(defaults){
+        _newDatePickerTime:function(defaults){
             var self=this;
-            this.spDateTime=new SpDate({
+            this.spDateTime=new DatePicker({
                 viewType:"datetime",
                 isSimpleYear:true,
                 minutesData:self.minutesData,
@@ -169,7 +169,7 @@
             if(this.textDate.value!=""){
                 defaultYMD=this.textDate.value.split("-");
             }
-            this._newSpDate(defaultYMD);
+            this._newDatePicker(defaultYMD);
             setTimeout(function(){
                 self.spDate.show();
             },10);
@@ -198,7 +198,7 @@
                 defaults[3]=split2[0];
                 defaults[4]=split2[1];
             }
-            this._newSpDateTime(defaults);
+            this._newDatePickerTime(defaults);
             //this.spDateTime.show();
             setTimeout(function(){
                 self.spDateTime.show();
