@@ -178,6 +178,7 @@ aside {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 1;
+  display: -webkit-box;
 }
 .titlebar-left {
   left: 0;
@@ -200,6 +201,8 @@ aside {
   margin: 0 8px;
   color: #1a1a1a;
   border-color: #1a1a1a;
+  display: block;
+  line-height: 0;
 }
 .titlebar-button:active {
   /* color:@bar-button-active;
