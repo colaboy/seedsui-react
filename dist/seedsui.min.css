@@ -1,4 +1,4 @@
-/*Base*/
+/* Base */
 /*基础*/
 /*常用颜色*/
 /*控件*/
@@ -1419,7 +1419,8 @@ label .input-radio + span {
 /*--------------------mask.less(end)----------------------*/
 /*---------------icon.less(start)---------------*/
 /*图标*/
-.icon {
+.icon,
+.star {
   position: relative;
   font-style: normal;
   background-size: contain;
@@ -1427,7 +1428,8 @@ label .input-radio + span {
   background-position: center;
 }
 /*控件默认图标尺寸*/
-.icon {
+.icon,
+.star {
   font-size: 24px;
   width: 24px;
   height: 24px;
@@ -1439,8 +1441,17 @@ label .input-radio + span {
   width: 12px;
   height: 12px;
 }
+/*文字图标*/
+.iconfont,
+.star {
+  font-family: 'iconfont';
+  src: url('fonts/iconfont.eot?uem7qm');
+  src: url('fonts/iconfont.eot?uem7qm#iefix') format('embedded-opentype'), url('fonts/iconfont.ttf?uem7qm') format('truetype'), url('fonts/iconfont.woff?uem7qm') format('woff'), url('fonts/iconfont.svg?uem7qm#iconfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /*---------------icon.less(end)---------------*/
-/*Control*/
+/* Control */
 @font-face {
   font-family: 'iconfont';
   src: url('fonts/iconfont.eot?uem7qm');
@@ -1699,10 +1710,12 @@ label .input-radio + span {
 .icon-face-fill:before {
   content: "\e94c";
 }
-.icon-fav:before {
+.icon-fav:before,
+.star:before {
   content: "\e94d";
 }
-.icon-fav-fill:before {
+.icon-fav-fill:before,
+.star.active:before {
   content: "\e94e";
 }
 .icon-femalesign:before {
@@ -2770,8 +2783,16 @@ label .input-radio + span {
 /*----------------page.less(end)--------------*/
 /*----------------star.less(start)----------------*/
 .star {
-  font-size: 12px;
+  display: -webkit-inline-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  width: 36px;
+  height: 36px;
+  font-size: 30px;
   color: #cccccc;
+}
+.star:before {
+  display: block;
 }
 .star.active {
   color: #f4984e;
@@ -8826,7 +8847,7 @@ Animate.css - http://daneden.me/animate
   animation-name: zoomOutUp;
 }
 /*----------------animate.less(end)--------------*/
-/*Tool*/
+/* Tool */
 /*----------------box.less(start)--------------*/
 .box {
   display: -webkit-box;

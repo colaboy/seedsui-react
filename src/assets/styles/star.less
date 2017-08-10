@@ -1,9 +1,23 @@
 /*----------------star.less(start)----------------*/
 .star{
-	font-size: @12px;
+	display:-webkit-inline-box;
+	-webkit-box-align:center;
+	-webkit-box-pack:center;
+	width: 36px;
+	height: 36px;
+	font-size: @30px;
 	color:@placeholder;
+	&:extend(.icon);
+	&:extend(.iconfont);
+	&:before{
+		display: block;
+		&:extend(.icon-fav:before);
+	}
 	&.active{
 		color:@warn-bg;
+	}
+	&.active:before{
+		&:extend(.icon-fav-fill:before);
 	}
 	&.active-half{
 		/* Chrome10-25,Safari5.1-6 */
