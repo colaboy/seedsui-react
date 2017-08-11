@@ -11,121 +11,34 @@
 	<title>popup</title>
     <link rel="stylesheet" href="../dist/seedsui.min.css">
     <style type="text/css">
+    .popover li:nth-of-type(1) .icon{
+        color: #32a6f8;
+    }
+    .popover li:nth-of-type(2) .icon{
+        color: #19cbc1;
+    }
+    .popover li:nth-of-type(3) .icon{
+        color: #fe721e;
+    }
+    .popover li:nth-of-type(4) .icon{
+        color: #a46ef6;
+    }
+    .popover li:nth-of-type(5) .icon{
+        color: #ff5656;
+    }
+
     .dialog-middle,.dialog-top,.dialog-bottom,.dialog-left,.dialog-right{
     	display:none;
-    	background-color:white;
-    	width:200px;
-    	height:100px;
-    	text-align:center;
+    	
     }
     /*======右上角弹出框======*/
-    .app-popover{
-	    width:140px;
-	    padding: 1px 0;
-	    border-radius: 6px;
-	    background-color: white;
-	    z-index: 10;
-	}
-	.app-popover:after {
-	    content: '';
-	    position: absolute;
-	    top:-12px;
-	    right:8px;
-	    width: 0;
-	    height: 0;
-	    border-width: 6px;
-	    border-style: solid;
-	    border-color: transparent;
-
-	    border-bottom-color: white;
-	}
-	.app-popover li{
-	    position: relative;
-	    display: -webkit-box;
-	    -webkit-box-align: center;
-	    -webkit-box-pack: center;
-	    height: 46px;
-	}
-	.app-popover li:last-child:after{
-	    height: 0;
-	}
-	.app-popover li:not(.app-rmenu-disabled):active{
-	    background-color: #f8f8f8;
-	}
-	.app-popover li:last-child{
-	    border-width: 0;
-	}
-	.app-popover li i{
-	    pointer-events: none;
-	    font-size: 22px;
-	    width: 22px;
-	    height: 22px;
-	}
-	.app-popover li label{
-	    pointer-events: none;
-	    -webkit-box-flex:1;
-	    margin: 0 8px 0 8px;
-	    height: 22px;
-	    line-height: 24px;
-	}
-	.app-popover li:nth-of-type(1) .icon{
-	    color: #32a6f8;
-	}
-	.app-popover li:nth-of-type(2) .icon{
-	    color: #19cbc1;
-	}
-	.app-popover li:nth-of-type(3) .icon{
-	    color: #fe721e;
-	}
-	.app-popover li:nth-of-type(4) .icon{
-	    color: #a46ef6;
-	}
-	.app-popover li:nth-of-type(5) .icon{
-	    color: #ff5656;
-	}
-	/*======分享到======*/
-	.app-sharebox{
-		padding:12px;
-		background-color:white;
-		box-sizing:border-box;
-	}
-	.app-shareboxTitle{
-		font-size: 17px;
-		text-align: center;
-		padding:10px 0;
-	}
-	.app-shareboxClose{
-		display: block;
-		margin: 16px 0 12px 0;
-		text-align: center;
-	}
-	.app-shareboxClose .icon{
-		font-size: 36px;
-		width: 36px;
-		height: 36px;
-		color: #363434;
-	}
-	.app-sharebox .grid{
-		padding: 0 20px;
-	}
-	.app-sharebox li{
-		padding-top: 12px;
-	}
-	.app-sharebox li a{
-		width: 50px;
-		height: 50px;
-		border-radius: 100%;
-		color: white;
-	}
-	.app-sharebox li label{
-		margin-top: 6px;
-	}
-	.app-sharebox li a i{
-		font-size: 30px;
-		width: 30px;
-		height: 30px;
-		pointer-events:none;
-	}
+    
+	 /*======分享到======*/
+	
+    .app-box{
+      display: none;
+      background-color:white;width:200px;height:100px;text-align:center;
+    }
     </style>
 </head>
 <body ontouchstart="">
@@ -193,33 +106,33 @@
     	</div>
 	</article>
 	<!--自定义弹出框-->
-	<div id="ID-Dialog-Mid" class="dialog-middle">中间弹出框</div>
+	<div id="ID-Dialog-Mid" class="app-box">中间弹出框</div>
 
-    <div id="ID-Dialog-TopLeft" class="dialog-top">头部弹出框</div>
-    <div id="ID-Dialog-TopCenter" class="dialog-top">头部弹出框</div>
-	<div id="ID-Dialog-TopRight" class="dialog-top">头部弹出框</div>
-	<div id="ID-Dialog-TopFull" class="dialog-top" style="width:100%">头部弹出框</div>
+  <div id="ID-Dialog-TopLeft" class="app-box">头部弹出框</div>
+  <div id="ID-Dialog-TopCenter" class="app-box">头部弹出框</div>
+	<div id="ID-Dialog-TopRight" class="app-box">头部弹出框</div>
+	<div id="ID-Dialog-TopFull" class="app-box" style="width:100%">头部弹出框</div>
 
-    <div id="ID-Dialog-BtmLeft" class="dialog-bottom">底部弹出框</div>
-    <div id="ID-Dialog-BtmCenter" class="dialog-bottom">底部弹出框</div>
-    <div id="ID-Dialog-BtmRight" class="dialog-bottom">底部弹出框</div>
-    <div id="ID-Dialog-BtmFull" class="dialog-bottom" style="width:100%">底部弹出框</div>
+  <div id="ID-Dialog-BtmLeft" class="app-box">底部弹出框</div>
+  <div id="ID-Dialog-BtmCenter" class="app-box">底部弹出框</div>
+  <div id="ID-Dialog-BtmRight" class="app-box">底部弹出框</div>
+  <div id="ID-Dialog-BtmFull" class="app-box" style="width:100%">底部弹出框</div>
 
-    <div id="ID-Dialog-LeftTop" class="dialog-left">左边弹出框</div>
-    <div id="ID-Dialog-LeftMid" class="dialog-left">左边弹出框</div>
-    <div id="ID-Dialog-LeftBtm" class="dialog-left">左边弹出框</div>
-    <div id="ID-Dialog-LeftFull" class="dialog-left" style="height:100%">左边弹出框</div>
+  <div id="ID-Dialog-LeftTop" class="app-box">左边弹出框</div>
+  <div id="ID-Dialog-LeftMid" class="app-box">左边弹出框</div>
+  <div id="ID-Dialog-LeftBtm" class="app-box">左边弹出框</div>
+  <div id="ID-Dialog-LeftFull" class="app-box" style="height:100%">左边弹出框</div>
 
-    <div id="ID-Dialog-RightTop" class="dialog-right">右边弹出框</div>
-    <div id="ID-Dialog-RightMid" class="dialog-right">右边弹出框</div>
-    <div id="ID-Dialog-RightBtm" class="dialog-right">右边弹出框</div>
-    <div id="ID-Dialog-RightFull" class="dialog-right" style="height:100%">右边弹出框</div>
+  <div id="ID-Dialog-RightTop" class="app-box">右边弹出框</div>
+  <div id="ID-Dialog-RightMid" class="app-box">右边弹出框</div>
+  <div id="ID-Dialog-RightBtm" class="app-box">右边弹出框</div>
+  <div id="ID-Dialog-RightFull" class="app-box" style="height:100%">右边弹出框</div>
 
-    <!--右上角弹出框-->
-	<div class="app-popover" id="ID-Popup-Popover">
+  <!--右上角弹出框-->
+	<div class="popover" id="ID-Popup-Popover">
 		<ul>
 			<li class="underline" id="ID-MeetDetail-BtnQrcode">
-				<i class="icon icon-qrcodeline"></i>
+				<i class="icon icon-qrcode"></i>
 				<label>扫码签到</label>
 			</li>
 			<li class="underline" id="ID-MeetDetail-BtnGroupChat">
@@ -241,8 +154,8 @@
 		</ul>
 	</div>
 	<!-- 分享到-->
-	<div id="ID-Dialog-Share" class="hide app-sharebox" style="width:100%">
-		<div class="app-shareboxTitle">
+	<div id="ID-Dialog-Share" class="sharebox" style="width:100%;display: none;">
+		<div class="sharebox-title">
 			分享至
 		</div>
 		<ul class="grid" data-col="3">
@@ -283,11 +196,11 @@
 				<label class="grid-label">复制链接</label>
 			</li>
 		</ul>
-		<div class="app-shareboxClose">
+		<div class="sharebox-close">
 			<a class="icon icon-rdoclose" data-share="close"></a>
 		</div>
 	</div>
-    <script src="../dist/seedsui.min.js"></script>
+  <script src="../dist/seedsui.min.js"></script>
     
 	<script type="text/javascript">
 		//右上角弹出框

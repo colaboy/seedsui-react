@@ -574,7 +574,9 @@ var Picker = function(params) {
       s.unLockTouch()
       // 动画时间回0
       var slot = e.target
-      slot.style.webkitTransitionDuration = '0ms'
+      if (slot.classList.contains(s.params.slotClass)) {
+        slot.style.webkitTransitionDuration = '0ms'
+      }
       // Callback
       if (s.params.onScrollEnd) s.params.onScrollEnd(s)
       return
