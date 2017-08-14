@@ -1,27 +1,25 @@
+//import Picker from './picker.js'
 // 扩展picker地区控件 (require pikcer.js)
 var CityPicker = function (params) {
   // 参数改写
-  var onDateClickDone = params.onClickDone
-  var onDateClickCancel = params.onClickCancel
-  var onDateScrollEnd = params.onScrollEnd
+  var onCityClickDone = params.onClickDone
+  var onCityScrollEnd = params.onScrollEnd
   params.onClickDone = undefined
-  params.onClickCancel = undefined
   params.onScrollEnd = undefined
   /* --------------------
     Model
     -------------------- */
   var defaults = {
+    viewType: 'area',
     data: null,
 
-    province: null,
-    city: null,
-    area: null,
     defaultProvince: '',
     defaultCity: '',
     defaultArea: '',
-    isShowProvince: true,
-    isShowCity: true,
-    isShowArea: true,
+
+    defaultProvinceKey: '',
+    defaultCityKey: '',
+    defaultAreaKey: '',
 
     provinceClass: 'text-center',
     cityClass: 'text-center',
@@ -32,27 +30,20 @@ var CityPicker = function (params) {
       value: '----'
     }],
     onClickDone: function (e) {
-      var activeOption = getActive(e.activeOptions)
-      e.activeValue = activeOption.activeValue
-      e.activeKey = activeOption.activeKey
-      if (onDateClickDone) onDateClickDone(e)
-    },
-    onClickCancel: function (e) {
-      e.activeText = getActive(e.activeOptions)
-      if (onDateClickCancel) onDateClickCancel(e)
-      else e.hide()
+      e.activeText = getActiveText(e.activeOptions)
+      setActiveKeys(e.activeOptions)
+      if (onCityClickDone) onCityClickDone(e)
     },
     onScrollEnd: function (e) {
       var activeOption = e.activeSlot.values[e.activeSlot.activeIndex]
       if (e.activeSlot.index === 0) { // 滚动省
-        s.defaultProvince = activeOption.key
-        s.defaultCity = getChildren(s.defaultProvince)[0].key
+        var city = replaceCity(activeOption.key) // 修改第二项
+        replaceArea(city[0].key) // 修改第三项
       } else if (e.activeSlot.index === 1) { // 滚动市
-        s.defaultCity = activeOption.key
+        replaceArea(activeOption.key) // 修改第三项
       }
       // 回调
-      if (onDateScrollEnd) onDateScrollEnd(e)
-      s.updateSlots(s.defaultProvince, s.defaultCity)
+      if (onCityScrollEnd) onCityScrollEnd(e)
     }
   }
   params = params || {}
@@ -68,36 +59,54 @@ var CityPicker = function (params) {
   if (!s.data) return
 
   // 省、市、区数据
-  s.province = s.params.province || null
-  s.city = s.params.city || null
-  s.area = s.params.area || null
-  s.defaultProvince = s.params.defaultProvince || ''
-  s.defaultCity = s.params.defaultCity || ''
-  s.defaultArea = s.params.defaultArea || ''
+  s.province = null
+  s.city = null
+  s.area = null
+
+  function trim (str) {
+    return str.replace(/(^\s*)|(\s*$)/g, '')
+  }
+  // 设置默认值
+  s.setDefaultProvince = function (province) {
+    s.params.defaultProvince = trim('' + province)
+  }
+  s.setDefaultCity = function (city) {
+    s.params.defaultCity = trim('' + city)
+  }
+  s.setDefaultArea = function (area) {
+    s.params.defaultArea = trim('' + area)
+  }
+  s.setDefaultProvinceKey = function (province) {
+    s.params.defaultProvinceKey = trim('' + province)
+  }
+  s.setDefaultCityKey = function (city) {
+    s.params.defaultCityKey = trim('' + city)
+  }
+  s.setDefaultAreaKey = function (area) {
+    s.params.defaultAreaKey = trim('' + area)
+  }
 
   /* --------------------
-    Method
-    -------------------- */
-  function getActive (activeData) {
-    console.log(activeData)
-    var activeValue = ''
-    var activeKey = ''
-    var cityArr = activeData.filter(function (n) {
-      return n !== s.params.defaultValues[0]
+  Method
+  -------------------- */
+  function getActiveText (activeData) {
+    var activeValues = activeData.map(function (n, i, a) {
+      return n['value']
     })
-    cityArr.forEach(function (n, i, a) {
-      if (i === cityArr.length - 1) {
-        activeValue += n['value']
-        activeKey += n['key']
-      } else {
-        activeValue += n['value'] + '-'
-        activeKey += n['key'] + '-'
-      }
+    var activeText = ''
+    if (activeValues[0]) activeText += activeValues[0]
+    if (activeValues[1]) activeText += '-' + activeValues[1]
+    if (activeValues[2] && activeValues[2] !== s.params.defaultValues[0].value) activeText += '-' + activeValues[2]
+    return activeText
+  }
+
+  function setActiveKeys (activeData) {
+    var activeKeys = activeData.map(function (n, i, a) {
+      return n['key']
     })
-    return {
-      activeValue: activeValue,
-      activeKey: activeKey
-    }
+    if (activeKeys[0]) s.setDefaultProvinceKey(activeKeys[0])
+    if (activeKeys[1]) s.setDefaultCityKey(activeKeys[1])
+    if (activeKeys[2]) s.setDefaultAreaKey(activeKeys[2])
   }
 
   // 获得第一层
@@ -130,40 +139,102 @@ var CityPicker = function (params) {
     /* eslint-enable */
     return null
   }
-  s.updateSlots = function (defaultProvince, defaultCity, defaultArea) {
-    var defaultP = defaultProvince
-    var defaultC = defaultCity
-    var defaultA = defaultArea
-
-    // 清空槽
-    s.clearSlots()
-
+  // 根据value获得key
+  function getKey (value, key) {
+    var data = null
+    if (!key) {
+      data = s.params.data
+    } else {
+      data = getChildren(key)
+    }
+    if (!data) {
+      return 0
+    }
+    /* eslint-disable */
+    for (var i = 0, row; row = data[i++];) {
+      if (row.value === value) return row.key
+    }
+    /* eslint-enable */
+  }
+  /* ----------------
+  Init
+  ---------------- */
+  function replaceProvince (defaultKey) {
+    var province = getChildren()
+    var defKey = province[0].key
+    if (defaultKey) defKey = defaultKey
+    s.replaceSlot(0, province, defKey, s.params.cityClass) // 修改第一项
+    return province
+  }
+  function replaceCity (key, defaultKey) {
+    var city = getChildren(key)
+    var defKey = city[0].key
+    if (defaultKey) defKey = defaultKey
+    s.replaceSlot(1, city, defKey, s.params.cityClass) // 修改第二项
+    return city
+  }
+  function replaceArea (key, defaultKey) {
+    if (s.params.viewType !== 'area') return
+    var area = getChildren(key)
+    if (area) {
+      var defKey = area[0].key
+      if (defaultKey) defKey = defaultKey
+      s.replaceSlot(2, area, defKey, s.params.areaClass) // 修改第三项
+    } else {
+      s.replaceSlot(2, s.params.defaultValues, s.params.defaultValues['key'], s.params.areaClass) // 修改第三项
+    }
+  }
+  s.update = function () {
+    replaceProvince(s.params.defaultProvinceKey)
+    replaceCity(s.params.defaultProvinceKey, s.params.defaultCityKey)
+    replaceArea(s.params.defaultCityKey, s.params.defaultAreaKey)
+  }
+  function addProvince () {
     // 初始化省
     if (!s.province) {
       s.province = getChildren()
     }
-    if (!defaultP || !s.province) {
-      defaultP = s.province[0].key
+    if (!s.params.defaultProvinceKey) {
+      s.setDefaultProvinceKey(s.province[0].key)
     }
-    s.addSlot(s.province, defaultP, s.params.provinceClass)
-
+    s.addSlot(s.province, s.params.defaultProvinceKey, s.params.provinceClass)
+  }
+  function addCity () {
     // 初始化市
-    s.city = getChildren(defaultP)
-    if (!defaultC) {
-      defaultC = s.city[0].key
+    s.city = getChildren(s.params.defaultProvinceKey)
+    if (!s.params.defaultCityKey) {
+      s.setDefaultCityKey(s.city[0].key)
     }
-    s.addSlot(s.city, defaultC, s.params.cityClass)
-
+    s.addSlot(s.city, s.params.defaultCityKey, s.params.cityClass)
+  }
+  function addArea () {
+    if (s.params.viewType !== 'area') return
     // 初始化区
-    if (s.params.isShowArea) {
-      s.area = getChildren(defaultC)
-      if (s.area) {
-        s.addSlot(s.area, defaultA, s.params.areaClass)
-      } else {
-        s.addSlot(s.params.defaultValues, '', s.params.areaClass)
-      }
+    s.area = getChildren(s.params.defaultCityKey)
+    if (!s.params.defaultAreaKey) {
+      s.setDefaultAreaKey(s.city[0].key)
+    }
+    if (s.area) {
+      s.addSlot(s.area, s.params.defaultAreaKey, s.params.areaClass)
+    } else {
+      s.addSlot(s.params.defaultValues, '', s.params.areaClass)
     }
   }
-  s.updateSlots(s.params.defaultProvince, s.params.defaultCity, s.params.defaultArea)
+  function initKeys () {
+    if (s.params.defaultProvince) s.setDefaultProvinceKey(getKey(s.params.defaultProvince))
+    if (s.params.defaultCity) s.setDefaultCityKey(getKey(s.params.defaultCity, s.params.defaultProvinceKey))
+    if (s.params.defaultArea) s.setDefaultAreaKey(getKey(s.params.defaultArea, s.params.defaultCityKey))
+  }
+  function initSlots () {
+    // 把传入的value转为key
+    initKeys()
+    // 渲染
+    addProvince()
+    addCity()
+    addArea()
+  }
+  initSlots()
   return s
 };
+
+//export default CityPicker

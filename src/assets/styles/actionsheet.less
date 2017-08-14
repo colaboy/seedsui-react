@@ -13,17 +13,6 @@
 	-webkit-transform:translate3d(0,100%,0);
 	-webkit-transition-property:-webkit-transform,opacity,visibility;
 	-webkit-transition-duration:300ms;
-
-	a{
-		padding:@12px;
-		display: block;
-		text-align:center;
-		box-sizing:border-box;
-		&:active{
-			background-color:@border;
-		}
-	}
-
 	&.active{
 		-webkit-transform:none;
 	}
@@ -34,11 +23,20 @@
 	
 	background-color: rgba(255, 255, 255, 0.9);
 }
-.actionsheet-group a{
+.actionsheet-option,.actionsheet-cancel{
+	padding:@12px;
+	display: block;
+	text-align:center;
+	box-sizing:border-box;
+	&:active{
+		background-color:@border;
+	}
+}
+.actionsheet-option{
 	position: relative;
 }
 //下横线
-.actionsheet-group a:after{
+.actionsheet-option:after{
 	content: '';
   display: block;
   position: absolute;
@@ -55,7 +53,7 @@
   //兼容UC线条不显示的BUG
   z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 }
-.actionsheet-group a:last-child:after{
+.actionsheet-option:last-child:after{
 	height: 0;
 }
 
@@ -68,13 +66,13 @@
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	//横线
-	.actionsheet-group a:after{
+	.actionsheet-option:after{
 		-webkit-transform: scaleY(0.5);
 	}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
 	//横线
-	.actionsheet-group a:after{
+	.actionsheet-option:after{
 		-webkit-transform: scaleY(0.33);
 	}
 }

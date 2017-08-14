@@ -35,6 +35,10 @@
                 <input type="text" class="input-text SID-Time" placeholder="请选择时间" readonly="readonly"/>
                 <i class="color-placeholder icon icon-time"></i>
             </div>
+            <div class="inputbox underline">
+                <input type="text" class="input-text SID-CustomDate" placeholder="自定义日期" readonly="readonly"/>
+                <i class="color-placeholder icon icon-calendar"></i>
+            </div>
         </div>
 	</article>
 	<!--SeedsUI-->
@@ -53,9 +57,12 @@
             this.textDate=document.querySelector(".SID-Date");
             this.textTime=document.querySelector(".SID-Time");
             this.textDateTime=document.querySelector(".SID-DateTime");
+            this.textCustomDate=document.querySelector(".SID-CustomDate")
+
+            
 
             /*Plugin*/
-            this.spDate,this.spTime,this.spDateTime;
+            this.spDate,this.spTime,this.spDateTime,this.spDateCustom;
             //定义5分钟间隔的分钟数据
             this.minutesData=[];
             this.minuteInterval=5;
@@ -159,6 +166,9 @@
             this.textDateTime.onclick=function(e){
                 self._onClickTextDateTime(e);
             }
+            this.textCustomDate.onclick=function(e){
+                self._onClickTextCustomDate(e);
+            }
         },
         /*=========================
           Event Handler
@@ -202,6 +212,35 @@
             //this.spDateTime.show();
             setTimeout(function(){
                 self.spDateTime.show();
+            },10);
+        },
+        _newCustomDate:function(){
+            var self = this;
+            var yearsData=[{"key":"2016","value":"2016年"},{"key":"2017","value":"2017年"},{"key":"2018","value":"2018年"}];
+            var monthsData=[{"key":"02","value":"02月"},{"key":"05","value":"05月"},{"key":"06","value":"06月"},{"key":"07","value":"07月"},{"key":"08","value":"08月"},{"key":"09","value":"09月"}];
+            var daysData=[{"key":"01","value":"01日"},{"key":"02","value":"02日"},{"key":"03","value":"03日"},{"key":"04","value":"04日"},{"key":"05","value":"05日"},{"key":"31","value":"31日"}];
+            this.spDateCustom=new DatePicker({
+                viewType:"date",
+                yearsData: yearsData,
+                monthsData: monthsData,
+                daysData: daysData,
+                onClickDone:function(e){
+                    self.textCustomDate.value=e.activeText;
+                    e.hide();
+                },
+                onShowed:function(e){
+                    //e.setIsClickMaskHide(true);
+                },
+                onHid:function(e){
+                    e.destroy();
+                }
+            });
+        },
+        _onClickTextCustomDate:function(e){
+            var self = this;
+            this._newCustomDate();
+            setTimeout(function(){
+                self.spDateCustom.show();
             },10);
         }
     }

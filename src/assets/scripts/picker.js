@@ -1,5 +1,5 @@
 // Picker 滚动选择器
-var Picker = function(params) {
+var Picker = function (params) {
   /* ------------------------
   Model
   ------------------------ */
@@ -45,15 +45,15 @@ var Picker = function(params) {
     isClickMaskHide: true
 
     /* callbacks
-    onInit:function (Picker)
-    onClickCancel:function (Picker)
-    onClickDone:function (Picker)
-    onScrollStart:function (Picker)
-    onScroll:function (Picker)
-    onScrollEnd:function (Picker)
-    onTransitionEnd:function (Picker)// 动画结束后回调
-    onShowed(Picker)// 显示动画结束后回调
-    onHid(Picker)// 隐藏动画结束后回调
+    onInit:function (Scrollpicker)
+    onClickCancel:function (Scrollpicker)
+    onClickDone:function (Scrollpicker)
+    onScrollStart:function (Scrollpicker)
+    onScroll:function (Scrollpicker)
+    onScrollEnd:function (Scrollpicker)
+    onTransitionEnd:function (Scrollpicker)// 动画结束后回调
+    onShowed(Scrollpicker)// 显示动画结束后回调
+    onHid(Scrollpicker)// 隐藏动画结束后回调
       */
   }
   params = params || {}
@@ -62,7 +62,7 @@ var Picker = function(params) {
       params[def] = defaults[def]
     }
   }
-  // Picker
+  // Scrollpicker
   var s = this
 
   // Params
@@ -442,8 +442,8 @@ var Picker = function(params) {
     // mask
     s.mask[action]('click', s.onClickMask, false)
     // 确定和取消按钮
-    if (s.params.onClickDone) s.headerDone[action]('click', s.onClickDone, false)
-    if (s.params.onClickCancel) s.headerCancel[action]('click', s.onClickCancel, false)
+    s.headerDone[action]('click', s.onClickDone, false)
+    s.headerCancel[action]('click', s.onClickCancel, false)
   }
   s.attachOther = function (event) {
     s.eventsOther()
@@ -458,6 +458,7 @@ var Picker = function(params) {
 
   // Mask
   s.onClickMask = function (e) {
+    s.unLockTouch()
     if (e.target === s.mask) {
       if (s.params.isClickMaskHide === true) s.hide()
     }
@@ -465,12 +466,15 @@ var Picker = function(params) {
 
   // Done|Cancel
   s.onClickDone = function (e) {
+    s.unLockTouch()
     s.target = e.target
     s.params.onClickDone(s)
   }
   s.onClickCancel = function (e) {
+    s.unLockTouch()
     s.target = e.target
-    s.params.onClickCancel(s)
+    if (s.params.onClickCancel) s.params.onClickCancel(s)
+    else s.hide()
   }
 
   s.touches = {
@@ -564,34 +568,32 @@ var Picker = function(params) {
     }
   }
 
-  // 惯性滚动结束后
   s.onTransitionEnd = function (e) {
+    var target = e.target
     if (e.propertyName !== 'transform') {
       return
     }
-    if (s.isPosCorrected) {
-      // 解除锁定touch
-      s.unLockTouch()
-      // 动画时间回0
-      var slot = e.target
-      if (slot.classList.contains(s.params.slotClass)) {
-        slot.style.webkitTransitionDuration = '0ms'
-      }
-      // Callback
-      if (s.params.onScrollEnd) s.params.onScrollEnd(s)
-      return
-    }
-    var target = e.target
-    if (target.classList.contains(s.params.slotClass)) { // slot槽滚动
-      s.posCorrect(target) // 位置矫正
-    } else if (target.classList.contains(s.params.pickerClass)) { // 容器显隐
+    // 容器显隐
+    if (target.classList.contains(s.params.pickerClass)) {
       if (s.params.onTransitionEnd) s.params.onTransitionEnd(s)
       if (s.isHid) {
         if (s.params.onHid) s.params.onHid(s)
       } else {
         if (s.params.onShowed) s.params.onShowed(s)
       }
+      return
     }
+    // slot槽滚动
+    if (s.isPosCorrected) {
+      // 解除锁定touch
+      s.unLockTouch()
+      // 动画时间回0
+      target.style.webkitTransitionDuration = '0ms'
+      // Callback
+      if (s.params.onScrollEnd) s.params.onScrollEnd(s)
+      return
+    }
+    s.posCorrect(target) // 位置矫正
   }
 
   s.init = function () {
@@ -602,3 +604,5 @@ var Picker = function(params) {
   s.init()
   return s
 };
+
+//export default Picker

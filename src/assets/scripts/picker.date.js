@@ -1,11 +1,10 @@
+//import Picker from './picker.js'
 // 扩展Picker日期控件 (require pikcer.js)
 var DatePicker = function (params) {
   // 参数改写
   var onDateClickDone = params.onClickDone
-  var onDateClickCancel = params.onClickCancel
   var onDateScrollEnd = params.onScrollEnd
   params.onClickDone = undefined
-  params.onClickCancel = undefined
   params.onScrollEnd = undefined
   var nowDate = new Date()
   /* ----------------
@@ -33,13 +32,6 @@ var DatePicker = function (params) {
     defaultHour: '',
     defaultMinute: '',
 
-    disableYears: null,
-    disableMonths: null,
-    disableDays: null,
-    disableHours: null,
-    disableMinutes: null,
-    disableDateTime: null,
-
     minYear: nowDate.getFullYear() - 10, // 1950
     maxYear: nowDate.getFullYear() + 10, // 2050
 
@@ -49,12 +41,9 @@ var DatePicker = function (params) {
     hhUnit: '时',
     mmUnit: '分',
 
-    onClickCancel: function (e) {
-      if (onDateClickCancel) onDateClickCancel(s)
-      else e.hide()
-    },
     onClickDone: function (e) {
       e.activeText = getActiveText(e.activeOptions)
+      setDefaults(e.activeOptions)
       if (onDateClickDone) onDateClickDone(e)
     },
     onScrollEnd: function (e) {
@@ -137,8 +126,7 @@ var DatePicker = function (params) {
     for (var yyyy = s.params.minYear; yyyy <= s.params.maxYear; yyyy++) {
       s.years.push({
         'key': '' + yyyy,
-        'value': s.params.isSimpleYear ? yyyy.toString().substring(2, 4) + s.params.yyUnit : yyyy + s.params.yyUnit,
-        'flag': 'date'
+        'value': s.params.isSimpleYear ? yyyy.toString().substring(2, 4) + s.params.yyUnit : yyyy + s.params.yyUnit
       })
     }
   }
@@ -151,8 +139,7 @@ var DatePicker = function (params) {
       var _MM = MM.toString().length === 1 ? '0' + MM : MM
       s.months.push({
         'key': '' + _MM,
-        'value': _MM + s.params.MMUnit,
-        'flag': 'date'
+        'value': _MM + s.params.MMUnit
       })
     }
   }
@@ -160,28 +147,55 @@ var DatePicker = function (params) {
   s.days = []
   var currentMaxday = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate()
   if (s.params.daysData) {
-    s.days = s.params.daysData
+    s.days = Object.clone(s.params.daysData)
   } else {
     for (var dd = 1; dd <= currentMaxday; dd++) {
       var _dd = dd.toString().length === 1 ? '0' + dd : dd
       s.days.push({
         'key': '' + _dd,
-        'value': _dd + s.params.ddUnit,
-        'flag': 'date'
+        'value': _dd + s.params.ddUnit
       })
     }
   }
 
-  function updateDays (year, month, defaultDay) {
-    var maxDay = new Date(year, month, 0).getDate()
-    s.days = []
-    for (var dd = 1; dd <= maxDay; dd++) {
-      var _dd = dd.toString().length === 1 ? '0' + dd : dd
-      s.days.push({
-        'key': '' + _dd,
-        'value': _dd + s.params.ddUnit,
-        'flag': 'date'
+  function updateDaysForDefault (year, month) {
+    var lastDay = '' + new Date(year, month, 0).getDate()
+    var currentLastDay = s.days[s.days.length - 1]['key']
+    if (lastDay === currentLastDay) return
+    if (lastDay > currentLastDay) {
+      for (var i = 1 + parseInt(currentLastDay); i <= lastDay; i++) {
+        s.days.push({
+          'key': '' + i,
+          'value': '' + i + s.params.ddUnit
+        })
+      }
+    } else if (lastDay < currentLastDay) {
+      var spliceCount = currentLastDay - lastDay
+      s.days.splice(s.days.length - spliceCount, spliceCount)
+    }
+  }
+  function updateDaysForCustom (year, month) {
+    var lastDay = '' + new Date(year, month, 0).getDate()
+    var currentLastDay = s.days[s.days.length - 1]['key']
+    var customData = s.params.daysData
+    if (lastDay === currentLastDay) return
+    if (lastDay > currentLastDay) {
+      customData.forEach(function (n) {
+        if (n['key'] <= lastDay && n['key'] > currentLastDay) s.days.push(n)
       })
+    } else if (lastDay < currentLastDay) {
+      for (var j = currentLastDay; j > lastDay; j--) {
+        s.days.forEach(function (n) {
+          if (n['key'] === '' + j) s.days.pop()
+        })
+      }
+    }
+  }
+  function updateDays (year, month, defaultDay) {
+    if (s.params.daysData) {
+      updateDaysForCustom(year, month)
+    } else {
+      updateDaysForDefault(year, month)
     }
     var defaultKey = defaultDay
     if (s.days.length < defaultDay) defaultKey = s.days[s.days.length - 1]['key']
@@ -197,8 +211,7 @@ var DatePicker = function (params) {
       var _hh = hh.toString().length === 1 ? '0' + hh : hh
       s.hours.push({
         'key': '' + _hh,
-        'value': _hh + s.params.hhUnit,
-        'flag': 'time'
+        'value': _hh + s.params.hhUnit
       })
     }
   }
@@ -212,8 +225,7 @@ var DatePicker = function (params) {
       var _mm = mm.toString().length === 1 ? '0' + mm : mm
       s.minutes.push({
         'key': '' + _mm,
-        'value': _mm + s.params.mmUnit,
-        'flag': 'time'
+        'value': _mm + s.params.mmUnit
       })
     }
   }
@@ -222,36 +234,32 @@ var DatePicker = function (params) {
   Method
   ---------------- */
   function getActiveText (activeData) {
-    var activeText = ''
-    var dateArr = []
-    var timeArr = []
-    activeData.forEach(function (n, i, a) {
-      if (n['flag'] === 'date') dateArr.push(n)
-      else if (n['flag'] === 'time') timeArr.push(n)
-      else timeArr.push(n)
+    var activeKeys = activeData.map(function (n, i, a) {
+      return n['key']
     })
-    dateArr.forEach(function (n, i, a) {
-      if (i === dateArr.length - 1) {
-        activeText += n['key']
-      } else {
-        activeText += n['key'] + '-'
-      }
-    })
-    if (activeText !== '') {
-      activeText += ' '
-    }
-    timeArr.forEach(function (n, i, a) {
-      if (i === timeArr.length - 1) {
-        activeText += n['key']
-      } else {
-        activeText += n['key'] + ':'
-      }
-    })
-    return activeText
+    if (s.params.viewType === 'date') return activeKeys[0] + '-' + activeKeys[1] + '-' + activeKeys[2]
+    else if (s.params.viewType === 'datetime') return activeKeys[0] + '-' + activeKeys[1] + '-' + activeKeys[2] + ' ' + activeKeys[3] + ':' + activeKeys[4]
+    else if (s.params.viewType === 'time') return activeKeys[0] + ':' + activeKeys[1]
+    else if (s.params.viewType === 'month') return activeKeys[0] + '-' + activeKeys[1]
   }
 
+  function setDefaults (activeData) {
+    var activeKeys = activeData.map(function (n, i, a) {
+      return n['key']
+    })
+    if (s.params.viewType === 'date' || s.params.viewType === 'datetime' || s.params.viewType === 'month') {
+      if (activeKeys[0]) s.setDefaultYear(activeKeys[0])
+      if (activeKeys[1]) s.setDefaultMonth(activeKeys[1])
+      if (activeKeys[2]) s.setDefaultDay(activeKeys[2])
+      if (activeKeys[3]) s.setDefaultHour(activeKeys[3])
+      if (activeKeys[4]) s.setDefaultMinute(activeKeys[4])
+    } else if (s.params.viewType === 'time') {
+      if (activeKeys[0]) s.setDefaultHour(activeKeys[0])
+      if (activeKeys[1]) s.setDefaultMinute(activeKeys[1])
+    }
+  }
   /* ----------------
-  Control
+  Init
   ---------------- */
 
   // 添加数据
@@ -298,3 +306,5 @@ var DatePicker = function (params) {
   initSlots()
   return s
 };
+
+//export default DatePicker
