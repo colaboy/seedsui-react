@@ -13,16 +13,16 @@
 /*文字区域*/
 .grid-label{
 	display:block;
-    margin-top:@8px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    box-sizing:border-box;
-    
-    height: @16px;
-    line-height: @16px;
+  margin-top:@8px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  box-sizing:border-box;
+  
+  height: @16px;
+  line-height: @16px;
 
-    color:@sub-color;
+  color:@sub-color;
 }
 .grid-icon>img{
 	max-width:100%;
@@ -86,11 +86,11 @@
 	li{
 		&:before,&:after{
 			content: '';
-		    display: block;
-		    position: absolute;
-		    background-color: @border;
+      display: block;
+      position: absolute;
+      background-color: @border;
 
-		    //兼容UC线条不显示的BUG
+      //兼容UC线条不显示的BUG
 			z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 		}
 		//右竖线
@@ -98,20 +98,20 @@
 			top: 0;
 			bottom: auto;
 			left: auto;
-		    right: 0;
-		    width: @1px;
-		    height: 100%;
-		    -webkit-transform-origin:right center;
+      right: 0;
+      width: @1px;
+      height: 100%;
+      -webkit-transform-origin:right center;
 		}
 		//下横线
 		&:after{
 			top: auto;
 			right: auto;
-		    bottom: 0;
-		    left: 0;
-		    height: @1px;
-		    width: 100%;
-		    -webkit-transform-origin:center bottom;
+	    bottom: 0;
+	    left: 0;
+	    height: @1px;
+	    width: 100%;
+	    -webkit-transform-origin:center bottom;
 		}
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
@@ -137,7 +137,7 @@
 }
 /*单元格行间距*/
 .grid li {
-    padding-top: @8px;
+  padding-top: @8px;
 }
 .grid li:last-child{
 	padding-bottom:@8px;
@@ -146,4 +146,57 @@
 	padding-top:@8px;
 	padding-bottom:@8px;
 }
+/*提示*/
+.grid .tip,.grid .badge{
+	position:absolute;top:-4px;right:-4px;
+}
+.grid .close{
+	position: absolute;
+	top:-6px;
+	left:-6px;
+	background-color: #FF6A54
+}
+/*----------------类型----------------*/
+/*方块类型*/
+.grid-square .grid-icon{
+	width: 50px;
+	height: 50px;
+}
+.grid-square .icon{
+	width: 26px;
+	height: 26px;
+	font-size: 26px;
+}
+/*裸图标类型*/
+.grid-pure .grid-icon{
+	width: 32px;
+	height: 32px;
+}
+.grid-pure .icon{
+	width: 32px;
+	height: 32px;
+	font-size: 32px;
+}
+/*相册类型*/
+.grid-album li{
+  padding: 6px;
+}
+.grid-album .grid-icon{
+  height: 90px;
+  width: 100%;
+  border:1px solid #e5e5e5;
+  background-color: white;
+  background-size: cover;
+  color: #e5e5e5;
+}
+.grid-album .grid-icon-add{
+	border:1px dashed @border;
+}
+.grid-album .icon{
+	width: 50px;
+	height: 50px;
+	font-size: 50px;
+  pointer-events:none;
+}
+
 /*----------------grid.less(end)----------------*/

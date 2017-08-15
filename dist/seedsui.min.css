@@ -879,6 +879,61 @@ aside {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+/*提示*/
+.grid .tip,
+.grid .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+.grid .close {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  background-color: #ff6a54;
+}
+/*----------------类型----------------*/
+/*方块类型*/
+.grid-square .grid-icon {
+  width: 50px;
+  height: 50px;
+}
+.grid-square .icon {
+  width: 26px;
+  height: 26px;
+  font-size: 26px;
+}
+/*裸图标类型*/
+.grid-pure .grid-icon {
+  width: 32px;
+  height: 32px;
+}
+.grid-pure .icon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+}
+/*相册类型*/
+.grid-album li {
+  padding: 6px;
+}
+.grid-album .grid-icon {
+  height: 90px;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  background-color: white;
+  background-size: cover;
+  color: #e5e5e5;
+}
+.grid-album .grid-icon-add {
+  border: 1px dashed #d1d1d1;
+}
+.grid-album .icon {
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  pointer-events: none;
+}
 /*----------------grid.less(end)----------------*/
 /*--------------------badge.less(start)----------------------*/
 .badge,
@@ -3880,214 +3935,214 @@ progress::-webkit-progress-value {
 /*---------------gauge.less(start)---------------*/
 @-webkit-keyframes gauge-box-bg1 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
 }
 @-webkit-keyframes gauge-box-bg2 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   50% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
 }
 @-webkit-keyframes gauge-box-bg3 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   33% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   67% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
 }
 @-webkit-keyframes gauge-box-bg4 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   25% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   50% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   75% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
 }
 @-webkit-keyframes gauge-box-bg5 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   20% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   40% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   60% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   80% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
 }
 @-webkit-keyframes gauge-box-bg6 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   16% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   33% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   50% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   66% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   87% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 7);
+    background-color: #7cce16;
   }
 }
 @-webkit-keyframes gauge-box-bg7 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   14% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   28% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   43% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   57% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   71% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
   86% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 7);
+    background-color: #7cce16;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 8);
+    background-color: #c0ac05;
   }
 }
 @-webkit-keyframes gauge-box-bg8 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   12% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   25% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   37% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   50% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   62% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
   75% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 7);
+    background-color: #7cce16;
   }
   87% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 8);
+    background-color: #c0ac05;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 9);
+    background-color: #c26900;
   }
 }
 @-webkit-keyframes gauge-box-bg9 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   11% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   22% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   33% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   44% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   55% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
   67% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 7);
+    background-color: #7cce16;
   }
   78% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 8);
+    background-color: #c0ac05;
   }
   89% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 9);
+    background-color: #c26900;
   }
   100% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 9);
+    background-color: #c26900;
   }
 }
 @-webkit-keyframes gauge-box-bg10 {
   0% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+    background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   }
   10% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 2);
+    background-color: #1693ce;
   }
   20% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 3);
+    background-color: #19a4e5;
   }
   30% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 4);
+    background-color: #14ba91;
   }
   40% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 5);
+    background-color: #16c447;
   }
   50% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 6);
+    background-color: #2fcf1f;
   }
   60% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 7);
+    background-color: #7cce16;
   }
   70% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 8);
+    background-color: #c0ac05;
   }
   80% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 9);
+    background-color: #c26900;
   }
   90% {
-    background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 9);
+    background-color: #c26900;
   }
   100% {
     background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 10);
@@ -4098,7 +4153,7 @@ progress::-webkit-progress-value {
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-color: nth(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 1);
+  background-color: extract(#1693ce, #19a4e5, #14ba91, #16c447, #2fcf1f, #7cce16, #c0ac05, #c26900, #c02e00, #bf1200, #760403, 0);
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: linear;
   -webkit-animation-fill-mode: forwards;
