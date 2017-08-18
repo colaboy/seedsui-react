@@ -25,9 +25,9 @@
         <!--主体-->
     	<article>
             <!--轮播-->
-            <div class="slider-container" id="carousel1">
-                <div class="slider-wrapper">
-                    <div class="slider-slide">
+            <div class="carrousel-container" id="carousel1">
+                <div class="carrousel-wrapper">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">
                             <i class="icon icon-pic slide-title-icon"></i>
@@ -36,41 +36,41 @@
                             </span>
                         </div>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题2</div>
                     </div>
-                    <div class="slider-slide" style="background-color: yellow;">
+                    <div class="carrousel-slide" style="background-color: yellow;">
                     </div>
                 </div>
-                <div class="slider-pagination"></div>
+                <div class="carrousel-pagination"></div>
             </div>
             <!--轮播2-->
             <p class="caption">一屏3条</p>
-            <div class="slider-container" id="carousel2">
-                <div class="slider-wrapper">
-                    <div class="slider-slide">
+            <div class="carrousel-container" id="carousel2">
+                <div class="carrousel-wrapper">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题1</div>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题2</div>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题3</div>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题4</div>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <img class="slide-banner" src="images/banner.jpg"/>
                         <div class="slide-title">新闻标题5</div>
                     </div>
                 </div>
-                <div class="slider-pagination"></div>
+                <div class="carrousel-pagination"></div>
             </div>
         </article>
 	
@@ -78,16 +78,17 @@
     
     <script type="text/javascript">
         window.onload=function(){
-            var s1=new Slider("#carousel1",{
-                "pagination":".slider-pagination",
+            var s1=new Carrousel("#carousel1",{
+                "pagination":".carrousel-pagination",
+                //autoplay:3000,
                 "loop":true
             });
-            var s2=new Slider("#carousel2",{
-                "pagination":".slider-pagination",
+            var s2=new Carrousel("#carousel2",{
+                "pagination":".carrousel-pagination",
                 "slidesPerView":"3",
+                //autoplay:3000,
                 "loop":true
             });
-            console.log(s1.height);
         }
         
         function back(){history.go(-1);}

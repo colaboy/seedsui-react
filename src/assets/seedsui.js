@@ -28,7 +28,7 @@
 // @koala-prepend "scripts/clock.js"
 // @koala-prepend "scripts/richeditor.js"
 // @koala-prepend "scripts/richinput.js"
-// @koala-prepend "scripts/slider.js"
+// @koala-prepend "scripts/carrousel.js"
 // @koala-prepend "scripts/calendar.js"
 // @koala-prepend "scripts/alert.js"
 // @koala-prepend "scripts/actionsheet.js"

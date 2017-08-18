@@ -64,9 +64,9 @@
             </div>
         </header>
         <article style="padding-top:44px">
-        <div class="slider-container" id="ID-Pages" style="height: 300px;">
-        <div class="slider-wrapper">
-        <div class="slider-slide">
+        <div class="carrousel-container" id="ID-Pages" style="height: 300px;">
+        <div class="carrousel-wrapper">
+        <div class="carrousel-slide">
             <!--第一页:start-->
             <div class="sliver">
                 box布局(兼容android4.0及以上)
@@ -126,7 +126,7 @@
             </div>
             <!--第一页:end-->
         </div>
-        <div class="slider-slide">
+        <div class="carrousel-slide">
             <!--第二页:start-->
             <div class="sliver">
                 flex布局(功能过新，兼容性不好)
@@ -248,7 +248,7 @@
             render:function(){
                 var self = this;
                 //渲染页面
-                this.slides=document.querySelectorAll("#ID-Pages > .slider-wrapper > .slider-slide");
+                this.slides=document.querySelectorAll("#ID-Pages > .carrousel-wrapper > .carrousel-slide");
                 this.sliderContainer=document.getElementById("ID-Pages");
                 this.sliderContainer.style.height=(window.innerHeight-84)+"px";
 
@@ -282,7 +282,7 @@
             },
             _initSlider:function(){
                 var self=this;
-                return new Slider("#ID-Pages",{
+                return new Carrousel("#ID-Pages",{
                     onSlideChangeEnd:function(e){
                         self._tabActive(e.activeIndex);
                     }

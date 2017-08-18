@@ -13,7 +13,6 @@
 	border-style:solid;
 	
 	border-color:@dpborder;
-
 	/*关闭状态文字off*/
 	&:after{
 		position: absolute;
@@ -63,7 +62,7 @@
 	&.reverse{
 		border:none;
 		background-color:white;
-		box-shadow: inset 0 0 0 @2px @dpborder;
+		box-shadow: inset 0 0 0 @1px @dpborder;
 		
 		.switch-handle{
 			width: @26px;
@@ -71,7 +70,7 @@
 			-webkit-transform: translate(@2px,-50%);
 
 			background-color:white;
-			-webkit-box-shadow: @1px @1px @2px @1px rgba(0, 0, 0, 0.2);
+			-webkit-box-shadow: @2px @2px @2px rgba(0,0,0,.21);
 		}
 		&.active{
 			background-color:@success-bg;
@@ -81,7 +80,7 @@
 			}
 			.switch-handle{
 				-webkit-transform: translate(@32px,-50%);
-
+				-webkit-box-shadow: @2px @2px @4px rgba(0,0,0,.21);
 				background-color:white;
 			}
 		}

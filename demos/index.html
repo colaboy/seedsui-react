@@ -43,9 +43,9 @@
         </div>
     </header>
     <article style="padding-top:92px">
-        <div class="slider-container topline" id="ID-Pages" style="height: 300px;background-color:white;">
-        <div class="slider-wrapper">
-        <div class="slider-slide">
+        <div class="carrousel-container carrousel-page topline" id="ID-Pages" style="height: 300px;background-color:white;">
+        <div class="carrousel-wrapper">
+        <div class="carrousel-slide">
             <!--CSS组件:start-->
             <ul class="list">
                 <li class="sliver underline">
@@ -204,7 +204,7 @@
             </ul>
             <!--CSS组件:end-->
         </div>
-        <div class="slider-slide">
+        <div class="carrousel-slide">
             <!--JS组件:start-->
             <ul class="list">
                 <li class="sliver underline">
@@ -373,13 +373,13 @@
                     <p class="sliver-title">滑动容器</p>
                 </li>
                 <li>
-                    <a class="list-li li-inner underline" href="slider.html">
+                    <a class="list-li li-inner underline" href="carrousel.html">
                         <p class="list-container">滑动容器</p>
                         <i class="list-icon icon-arrowright"></i>
                     </a>
                 </li>
                 <li>
-                    <a class="list-li underline" href="slider-page.html">
+                    <a class="list-li underline" href="carrousel-page.html">
                         <p class="list-container">滑动页面</p>
                         <i class="list-icon icon-arrowright"></i>
                     </a>
@@ -450,7 +450,7 @@
             </ul>
             <!--JS组件:end-->
         </div>
-        <div class="slider-slide">
+        <div class="carrousel-slide">
             <ul class="list">
                 <li class="sliver underline">
                     <p class="sliver-title">h5本地能力</p>
@@ -553,7 +553,7 @@
                     self.loading.hide();
                 },500);
                 //渲染页面
-                this.slides=document.querySelectorAll("#ID-Pages > .slider-wrapper > .slider-slide");
+                this.slides=document.querySelectorAll("#ID-Pages > .carrousel-wrapper > .carrousel-slide");
                 this.sliderContainer=document.getElementById("ID-Pages");
                 this.sliderContainer.style.height=(window.innerHeight-92)+"px";
 
@@ -561,7 +561,7 @@
                 this.tabs=this.tabbarContainer.querySelectorAll(".tab");
 
                 //初始化滑动
-                this.slider=new Slider("#ID-Pages",{
+                this.slider=new Carrousel("#ID-Pages",{
                     onSlideChangeEnd:function(e){
                         self._tabActive(e.activeIndex);
                     }

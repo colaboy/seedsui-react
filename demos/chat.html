@@ -57,9 +57,9 @@
             <!--底部富文本输入框-->
             <figure id="ID-RichInput" class="richedit">
                 <!--轮播-->
-                <div class="slider-container emoji" id="ID-RichInput-slider">
-                    <div class="slider-wrapper">
-                    <div class="slider-slide">
+                <div class="carrousel-container emoji" id="ID-RichInput-slider">
+                    <div class="carrousel-wrapper">
+                    <div class="carrousel-slide">
                         <a data-emoji="[weixiao]" alt="[微笑]"></a>
                         <a data-emoji="[nanguo]" alt="[难过]"></a>
                         <a data-emoji="[se]" alt="[色]"></a>
@@ -84,7 +84,7 @@
                         <a data-emoji="[kaixin]" alt="[开心]"></a>
                         <a data-emoji="[outu]" alt="[呕吐]"></a>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <a data-emoji="[fendou]" alt="[奋斗]"></a>
                         <a data-emoji="[huaixiao]" alt="[坏笑]"></a>
                         <a data-emoji="[ganga]" alt="[尴尬]"></a>
@@ -110,7 +110,7 @@
                         <a data-emoji="[cahan]" alt="[擦汗]"></a>
                     </div>
                     
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <a data-emoji="[zuohengheng]" alt="[左哼哼]"></a>
                         <a data-emoji="[youhengheng]" alt="[右哼哼]"></a>
                         <a data-emoji="[yun]" alt="[晕]"></a>
@@ -135,7 +135,7 @@
                         <a data-emoji="[xin]" alt="[心]"></a>
                         <a data-emoji="[xinsui]" alt="[心碎]"></a>
                     </div>
-                    <div class="slider-slide">
+                    <div class="carrousel-slide">
                         <a data-emoji="[baobao]" alt="[抱抱]"></a>
                         <a data-emoji="[hongchun]" alt="[红唇]"></a>
                         <a data-emoji="[caidao]" alt="[菜刀]"></a>
@@ -161,7 +161,7 @@
                         <a data-emoji="[shandian]" alt="[闪电]"></a>
                     </div>
                     </div>
-                    <div class="slider-pagination"></div>
+                    <div class="carrousel-pagination"></div>
                 </div>
                 <figcaption>
                     <div class="inputbox basketline">
@@ -179,8 +179,8 @@
         var slider=null;
         var richinput=new Richinput("#ID-RichInput",{
             onActive:function(){
-                if(!slider)slider=new Slider("#ID-RichInput-slider",{
-                    pagination:".slider-pagination"
+                if(!slider)slider=new Carrousel("#ID-RichInput-slider",{
+                    pagination:".carrousel-pagination"
                 });
             }
         });
