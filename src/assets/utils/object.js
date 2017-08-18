@@ -22,3 +22,15 @@ Object.clone = function (obj) {
   }
   return copy
 };
+// 将Json转为params字符串
+Object.params = function (obj) {
+  var result = ''
+  var item
+  for (item in obj) {
+    result += '&' + item + '=' + encodeURIComponent(obj[item])
+  }
+  if (result) {
+    result = result.slice(1)
+  }
+  return result
+};
