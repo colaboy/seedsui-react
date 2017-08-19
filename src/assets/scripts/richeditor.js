@@ -190,14 +190,14 @@ var Richeditor={
 		listenerInput=setInterval(function(e){
 			currentWinHeight=window.innerHeight;
 			//获得输入法高度
-			if(DB.get("queryInputHeight") && DB.get("queryInputHeight")>0){
-				console.log("读取数据库queryInputHeight:"+DB.get("inputHeight"));
-				this.inputHeight=DB.get("queryInputHeight");
+			if(DB.getStore("queryInputHeight") && DB.getStore("queryInputHeight")>0){
+				console.log("读取数据库queryInputHeight:"+DB.getStore("inputHeight"));
+				this.inputHeight=DB.getStore("queryInputHeight");
 				clearInterval(listenerInput);
 			}else{
 				this.inputHeight=winHeight-currentWinHeight;
 				console.log("注入数据库queryInputHeight:"+inputHeight);
-				DB.set("queryInputHeight",inputHeight);
+				DB.setStore("queryInputHeight",inputHeight);
 			}
 			//判断输入法是否收缩
 			if(winHeight==currentWinHeight){
