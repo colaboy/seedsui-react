@@ -18,6 +18,7 @@ var Carrousel = function (container, params) {
     threshold: '50',
     duration: '300',
     height: 0,
+    imglazy: '[data-load-src]', // 图片懒加载
 
     // loop
     loop: false,
@@ -190,18 +191,21 @@ var Carrousel = function (container, params) {
 
     // Slide height
     if (s.params.height) {
-      s.height = s.params.height.indexOf('px') > 0 ? s.params.height.substring(0, s.params.height.indexOf('px')) : s.params.height
+      s.height = s.params.height
+    } else if (s.container.style.height) {
+      s.height = s.container.style.height
     } else {
       s.height = s.container.clientHeight ? s.container.clientHeight : s.wrapper.clientHeight
     }
+    // 设置wrapper高度
+    s.wrapper.style.height = s.height
     // 设置单个slide高度
     s.slides.forEach(function (n, i, a) {
-      n.style.height = s.height + 'px'
+      n.style.height = s.height
     })
-
     // 设置dupSlide高度
     s.dupSlides.forEach(function (n, i, a) {
-      n.style.height = s.height + 'px'
+      n.style.height = s.height
     })
 
     // 更新active index
@@ -227,6 +231,29 @@ var Carrousel = function (container, params) {
     return
   }
 
+  // 图片懒加载，针对图片类型
+  var imgs = []
+  var cacheImgs = []
+  function imgLoad (e) {
+    var target = e.target
+    var imgTarget = imgs[target.index]
+    if (imgTarget.tagName === 'IMG') {
+      imgTarget.src = target.src
+    } else {
+      imgTarget.style.backgroundImage = 'url(' + target.src + ')'
+    }
+  }
+  s.imgsLazyLoad = function () {
+    imgs = this.container.querySelectorAll(s.params.imglazy)
+    for (var i = 0; i < imgs.length; i++) {
+      var src = imgs[i].getAttribute('data-load-src')
+      cacheImgs[i] = new Image()
+      cacheImgs[i].index = i
+      cacheImgs[i].src = src
+      cacheImgs[i].addEventListener('load', imgLoad, false)
+    }
+  }
+  if (s.params.imglazy) s.imgsLazyLoad()
   /* --------------------
   Touch Events
   -------------------- */
@@ -405,5 +432,10 @@ var Carrousel = function (container, params) {
   //  Return slider instance
   return s
 };
+
+/* Carrousel.prototype = (function () {
+  return {
+  }
+})() */
 
 //export default Carrousel
