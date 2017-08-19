@@ -6,6 +6,7 @@
 // @koala-prepend "utils/request.js"
 // @koala-prepend "utils/string.js"
 // @koala-prepend "utils/type.js"
+// @koala-prepend "utils/pinyin.js"
 
 // @koala-prepend "scripts/event.js"
 // @koala-prepend "scripts/eventutil.js"
@@ -48,5 +49,4 @@
 // @koala-prepend "scripts/gauge.js"
 // @koala-prepend "scripts/baidumap.js"
 // @koala-prepend "scripts/idvalidator.js"
-// @koala-prepend "scripts/pinyin.js"
 // @koala-prepend "scripts/imglazy.js"
