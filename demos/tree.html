@@ -70,9 +70,9 @@
                 var url="mock/group.json";
                 var reqData={};
                 app.loading.show();
-                fetchData(url, reqData, 'POST').then(data => {
+                ajax.fetchData(url, '', 'get').then(data => {
                     //格式化数据字段为:id、name、parentId
-                    var data=data.replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
+                    var data=JSON.stringify(data).replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
                     self.groupData=JSON.parse(data).depList;
                     //没有数据
                     if(self.groupData.length<=0){
@@ -82,8 +82,10 @@
                     //渲染
                     self.tree.setData(self.groupData);
                     self.tree.update();
-                }).catch().then(() => {
-                    self.listContainer[0].innerHTML=app.errorHTML;
+                    app.loading.hide();
+                }).catch(error => {
+                    self.toast.setHTML("加载数据失败");
+                    self.toast.show();
                 })
                 /*$.ajax({
                     url: url,
@@ -119,8 +121,8 @@
                 var ul=e.targetLine.nextElementSibling;
                 app.loading.show();
                 var self=this;
-                fetchData(url, reqData, 'POST').then(data => {
-                    var data=data.replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
+                ajax.fetchData(url, '', 'get').then(data => {
+                    var data=JSON.stringify(data).replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
                     var userData=JSON.parse(data).userList;
                     //没有数据
                     if(userData.length<=0){
@@ -131,7 +133,8 @@
                     //渲染
                     self.tree.addData(userData,id,ul);
                     e.targetLine.hasData=true;
-                }).catch().then(() => {
+                    app.loading.hide();
+                }).catch(error => {
                     self.toast.setHTML("加载数据失败");
                     self.toast.show();
                 })

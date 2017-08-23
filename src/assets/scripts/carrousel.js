@@ -7,6 +7,9 @@ var Carrousel = function (container, params) {
     }
     return arr
   }
+  function getElementByParent (parent, selector) {
+    return (typeof selector === 'string' && selector !== '') ? parent.querySelector(selector) : selector
+  }
 
   /* --------------------
   Model
@@ -51,7 +54,7 @@ var Carrousel = function (container, params) {
   s.params = params
 
   // Container
-  s.container = typeof container === 'string' ? document.querySelector(container) : container
+  s.container = getElementByParent(document, container)
   if (!s.container) {
     console.log('SeedsUI Error：未找到Slider的ID，请检查传入参数是否正确')
     return
@@ -62,10 +65,10 @@ var Carrousel = function (container, params) {
   s.wrapper = s.container.querySelector('.' + s.params.wrapperClass) // [es6]s.wrapper=s.container.querySelector(':scope > .'+s.params.wrapperClass)
 
   // Pagination
-  s.pagination = typeof s.params.pagination === 'string' ? s.container.querySelector(s.params.pagination) : s.params.pagination
+  s.pagination = getElementByParent(s.container, s.params.pagination)
   s.bullets = []
   s.updateBullets = function () {
-    if (!s.params.pagination) return
+    if (!s.pagination) return
 
     s.bullets = []
     s.pagination.innerHTML = ''
@@ -195,7 +198,7 @@ var Carrousel = function (container, params) {
     } else if (s.container.style.height) {
       s.height = s.container.style.height
     } else {
-      s.height = s.container.clientHeight ? s.container.clientHeight : s.wrapper.clientHeight
+      s.height = (s.container.clientHeight ? s.container.clientHeight : s.wrapper.clientHeight) + 'px'
     }
     // 设置wrapper高度
     s.wrapper.style.height = s.height

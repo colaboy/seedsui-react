@@ -2,6 +2,9 @@
 (function(window,document,undefined){
 	
 	window.Loading=function(params){
+		function getElementByParent (parent, selector) {
+	    return (typeof selector === 'string' && selector !== '') ? parent.querySelector(selector) : selector
+	  }
 		/*================
 		Model
 		================*/
@@ -61,10 +64,9 @@
 		}
 		s.create=function(){
 			if(s.params.container){
-				s.container=typeof s.params.container=="string"?document.querySelector(s.params.container):s.params.container;
+				s.container=getElementByParent(document, s.params.container);
 				if(s.container)return;
 			}
-			console.log("SeedsUI Error：未找到Loading的DOM对象，请检查传入参数是否正确");
 			s.container=s.createContainer();
 			s.parent.appendChild(s.container);
 		}

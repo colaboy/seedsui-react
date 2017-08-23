@@ -1,5 +1,8 @@
 // ImgLazy 图片预加载
 var ImgLazy = function (container, params) {
+  function getElementByParent (parent, selector) {
+    return (typeof selector === 'string' && selector !== '') ? parent.querySelector(selector) : selector
+  }
   /* --------------------
   Model
   -------------------- */
@@ -9,6 +12,10 @@ var ImgLazy = function (container, params) {
     threshold: 300, // 滚动加载时，显示区域扩张上下像素
     imgLoadAttr: 'data-load-src', // 图片地址
     imgErrowAttr: 'data-error-src'// 错误图片地址
+    /*
+    callbacks
+    onScroll:function(e)
+    */
   }
   params = params || {}
   for (var def in defaults) {
@@ -19,9 +26,9 @@ var ImgLazy = function (container, params) {
   var s = this
   s.params = params
   // OverflowContainer
-  s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
+  s.overflowContainer = getElementByParent(document, s.params.overflowContainer)
   // Container
-  s.container = typeof container === 'string' ? document.querySelector(container) : container
+  s.container = getElementByParent(document, container)
   if (!s.container) {
     console.log('SeedsUI Warn：未找到Imglazy的容器DOM对象，默认将其指向body')
     s.container = document.body
@@ -124,21 +131,23 @@ var ImgLazy = function (container, params) {
   var timer
   var millisec = 300
   s.onScroll = function (e) {
+    if (s.params.onScroll) s.params.onScroll(e)
     // 计算scrollEnd事件
     s.scrollTop = s.overflowContainer.scrollTop
-    var _self = this
-    var _args = arguments
+    // var _self = this
+    // var _args = arguments
     if (timer) {
       clearTimeout(timer)
     }
     timer = setTimeout(function () {
       if (s.scrollTop === s.overflowContainer.scrollTop) {
-        s.onScrollEnd.apply(_self, _args)
+        // s.onScrollEnd.apply(_self, _args)
+        s.onScrollEnd(e)
         clearTimeout(timer)
         return
       }
       timer = null
-      s.onScroll.apply(_self, _args)
+      // s.onScroll.apply(_self, _args)
     }, millisec)
   }
   s.onScrollEnd = function (e) {

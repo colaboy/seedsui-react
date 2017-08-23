@@ -1,6 +1,6 @@
 /*---------------list.less(start)---------------*/
 .list{
-	background-color: white;
+    background-color: white;
 }
 .list-li{
     position:relative;
@@ -8,7 +8,7 @@
     padding: @10px @12px;
     -webkit-box-align: center;
     color:@body-color;
-    &:active{
+    &:not(.noclick):active{
         background-color:@bar-bg;
     }
 }
@@ -31,7 +31,6 @@
 .list-container{
     display: block;
     -webkit-box-flex: 1.0;
-    margin-right: @10px;
 }
 
 .list-row{
@@ -40,6 +39,7 @@
 }
 .list-title{
     font-size: @font-size-L;
+    -webkit-box-flex: 1.0;
 }
 .list-icon{
     display: block;
@@ -56,9 +56,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: @sub-color;
 }
 .list-icon+.list-font,.list-icon+.list-title{
-	margin-left: @8px;
+    margin-left: @8px;
 }
 /*---------------list.less(end)---------------*/

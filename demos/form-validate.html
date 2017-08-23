@@ -245,6 +245,7 @@
               ===========================*/
             _onSubmit:function(e){
                 e.preventDefault();
+                e.target['NID-Phone'].blur()
                 //获取表单
                 this.form=new Form(this.formContainer);
 
