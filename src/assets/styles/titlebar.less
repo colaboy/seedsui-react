@@ -4,7 +4,7 @@
 }
 .titlebar{
 	display:-webkit-box;
-    -webkit-box-align:center;
+  -webkit-box-align:center;
 	min-height:@44px;
 	padding: @6px 0;
 	box-sizing:border-box;
@@ -18,20 +18,20 @@
 	//底线
 	&:after{
 		content: '';
-	    display: block;
-	    position: absolute;
+    display: block;
+    position: absolute;
 
-	    top: auto;
+    top: auto;
 		right: auto;
-	    bottom: 0;
-	    left: 0;
-	    height: @1px;
-	    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: @1px;
+    width: 100%;
 		background-color: @border;
 		-webkit-transform-origin:center bottom;
 
 		//兼容UC线条不显示的BUG
-    	z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
+    z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 		&:after {
@@ -63,22 +63,24 @@
 
 //标题
 .titlebar-title{
-	font-size: @font-size-L;
+	font-size: @font-size-lg;
 	font-weight: normal;
 	-webkit-box-flex:1;
 
-	color:@bar-color;
+	color:@bar-title;
 }
 .titlebar-left+.titlebar-title{
 	padding: 0 100px;
 }
 /*按钮*/
 .titlebar-button{
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
 	max-height:@32px;
 	margin:0 @8px;
 	color:@bar-button;
 	border-color:@bar-button;
-	display: block;
 	line-height: 0;
 	&:active{
 		/* color:@bar-button-active;

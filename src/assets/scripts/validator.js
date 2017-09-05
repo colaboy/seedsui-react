@@ -10,6 +10,16 @@ var Validator = function () {
         return errorMsg
       }
     },
+    number: function (value, errorMsg) {
+      if (value.length != 0 && /^-?([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
+        return errorMsg
+      }
+    },
+    positive: function (value, errorMsg) {
+      if (value.length != 0 && /^([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
+        return errorMsg
+      }
+    },
     integer: function (value, errorMsg) {
       if (!/^-?\d*$/.test(value)) {
         return errorMsg
@@ -17,6 +27,11 @@ var Validator = function () {
     },
     positiveInteger: function (value, errorMsg) {
       if (value.length != 0 && !/^[1-9]{1,}[0-9]*$/.test(value)) {
+        return errorMsg
+      }
+    },
+    negative: function (value, errorMsg) {
+      if (value.length != 0 && /^-([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
         return errorMsg
       }
     },
@@ -52,11 +67,6 @@ var Validator = function () {
     },
     specialchar: function (value, errorMsg) {
       if (!/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/.test(value)) {
-        return errorMsg
-      }
-    },
-    number: function (value, errorMsg) {
-      if (value.length != 0 && !Number(value)) {
         return errorMsg
       }
     },

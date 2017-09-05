@@ -49,51 +49,36 @@
               ===========================*/
             render:function(){
                 var self = this;
-                this.pagination={
-                    hasData:null,
-                    current:1,//当前页数
-                    max:0,//总页数
-                    limit:10,//每页条数
-                    total:0//总条数
-                }
-                //插件
-
-                //DfPull
-                this.drag=DfPull({
+                //Pull风格和圆圈风格
+                this.drag=new DragPull({ //new DragCircle({
                     overflowContainer:"article .scrollContainer",
-                    topParent:"article .scrollContainer",
-                    bottomParent:"article .scrollContainer",
-                //DfCircle
-                /*this.drag=DfCircle({
-                    overflowContainer:"article .scrollContainer",
-                    topParent:"article",
-                    bottomParent:"article .scrollContainer",*/
-
                     //topContainer:false,//禁用头部下拉
                     //bottomContainer:false,//禁用底部加载
                     onTopRefresh:function(e){
-                        console.log("头部刷新");
-                        self.pagination.current=1;
+                        self.index=1;
+                        console.log("头部刷新"+e.pagination.current);
                         self._loadData();
                     },
                     onTopComplete:function(e){
+                        document.getElementById("ID-List").innerHTML=e.data.html;
                         console.log("头部完成");
                     },
                     onBottomRefresh:function(e){
-                        console.log("底部刷新");
-                        self.pagination.current++;
-                        self._loadData(true);//下一页
+                        console.log("底部刷新"+e.pagination.current);
+                        self._loadData(true);
                     },
                     onBottomComplete:function(e){
-                        console.log("底部完成");
+                        document.getElementById("ID-List").innerHTML+=e.data.html;
+                        console.log("底部完成"+e.pagination.current);
+                        console.log("总数"+e.pagination.max);
                     },
-                    onBottomNoData:function(e){
+                    onNoData:function(e){
                         console.log("底部无数据了");
                     }
                 });
 
                 //渲染页面
-                
+                this.index = 1
                 //加载数据
                 this._loadData();
 
@@ -111,91 +96,27 @@
               ===========================*/
             _loadData:function(isNext){
                 var self=this;
-                //如果是最后一页
-                if(isNext && self.pagination.current>self.pagination.max){
-                    self.pagination.current--;
-                    //drag标识底部状态
-                    self.drag.bottomNoData();
-                    return;
-                }
-                /*
-                //ajax请求
-                $.ajax({
-                    url: 'url?pageNum='+self.pagination.current,
-                    data: "",
-                    //type: 'post',
-                    //xhrFields:{withCredentials: true },
-                    //crossDomain:true,
-                    //dataType: "jsonp",
-                    //jsonp: 'callback',
-                    //jsonpCallback:"success_jsonpCallback",
-                    success: function(data){
-                        var data=Object.prototype.toString.call(data)==='[object String]'?JSON.parse(data):data;
-                        if(!data.total){
-                            drag1.topComplete();
-                            drag1.bottomNoData();
-                            toast.setHTML("请求数据失败，请重试");
-                            toast.show();
-                            return;
-                        }
-                        //分页
-                        self.pagination.hasData=true;
-                        self.pagination.total = data.total;
-                        //self.pagination.limit = data.limit;
-                        self.pagination.max=Math.ceil(self.pagination.total/self.pagination.limit);
+                var data={html:''};
 
-                        //此处生成html字符串
-                        var html="";
+                //mock返回数据
+                for(var i=0;i<10;i++){
+                    data.html+='<li class="list-li underline"><p>第'+this.index+'行列表</p></li>';
+                    this.index++;
+                }
 
-                        //头部刷新或者下一页
-                        if(!isNext){
-                            $("#ID-XXX").html(html);
-                            //drag标识头部状态
-                            self.drag.topComplete();
-                        }else{
-                            $("#ID-XXX").append(html);
-                            //drag标识底部状态
-                            self.drag.bottomComplete();
-                        }
-                        //如果没有超过一页
-                        if(self.pagination.total <= self.pagination.limit){
-                            //drag标识底部状态
-                            self.drag.bottomNoData();
-                        }
-                    },
-                    error: function(){
-                        if(isNext)self.pagination.current--;
-                        self.drag.topComplete();
-                        self.drag.bottomNoData();
-                        self.toast.setHTML("请求数据失败，请重试");
-                        self.toast.show();
-                    },
-                    complete:function(){
-                        self.loading.hide();
-                    }
-                });
-                */
-                /*静态页面测试*/
-                this.pagination.max=10;
-                //此处生成html字符串
-                var html="";
-                for(var i=0;i<this.pagination.limit;i++){
-                    html+='<li class="list-li underline"><p>第'+i+'行列表</p></li>';
-                }
-                //头部刷新或者下一页
-                if(!isNext){
-                    setTimeout(function(){
-                        document.getElementById("ID-List").innerHTML=html;
-                        //drag标识头部状态
-                        self.drag.topComplete();
-                    }, 2000);
-                }else{
-                    setTimeout(function(){
-                        document.getElementById("ID-List").innerHTML+=html;
-                        //drag标识底部状态
-                        self.drag.bottomComplete();
-                    }, 500);
-                }
+                //根据total计算是否是最后一页
+                data.total=50
+
+                //根据isNoData计算是否是最后一页
+                var isNoData = false;
+                /*if(this.index>=50){
+                    isNoData = true;
+                }*/
+                
+                //mock请求时间
+                setTimeout(function(){
+                    self.drag.setPagination(isNext, data, isNoData)
+                }, 2000);
             },
             /*=========================
               Events

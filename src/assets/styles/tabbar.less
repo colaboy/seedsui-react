@@ -42,8 +42,7 @@
 }
 .tab-label{
 	display:inline-block;
-	font-size: @font-size-M;
-	max-width:100%;
+	font-size: @font-size-md;
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
@@ -76,6 +75,9 @@
 	display:block;
 	.tab{
 		display:inline-block;
+	}
+	.tab-label{
+		max-width:80%;
 	}
 }
 .tabbar[data-col="2"] .tab{
@@ -149,9 +151,19 @@
 			-webkit-transform:translate3d(-50%,0,0) scale(1,1);
 		}
 	}
-	&[data-width="50%"]{
+	&.tabbar-line-width50{
 		.tab:after{
 			width: 50%;
+		}
+	}
+	&.tabbar-line-width60{
+		.tab:after{
+			width: 60%;
+		}
+	}
+	&.tabbar-line-width70{
+		.tab:after{
+			width: 70%;
 		}
 	}
 }
