@@ -7,16 +7,16 @@
         var defaults={
             wrapperClass:"aside-wrapper",
 
-            asideContainerClass:"aside",
+            asideContainerClass:"aside-page",
             sectionClass:"page",
 
             sides:{"left":null,"right":null},
             
-            "threshold":{"left":60,"right":60},
+            threshold:{"left":60,"right":60},
 
-            "duration":300,
-            "isClickMaskHide":true,
-            "isDrag":false,
+            duration:300,
+            isClickMaskHide:true,
+            isDrag:false,
             /*callbacks
             onStart:function(Aside)
             onShowed:function(Aside)

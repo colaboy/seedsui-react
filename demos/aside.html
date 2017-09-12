@@ -23,18 +23,18 @@
 </head>
 
 <body ontouchstart="">
-    <div class="aside" id="aside">
+    <div class="aside-page" id="aside">
         <div class="aside-wrapper">
+            <!-- 主体部分 -->
             <section class="page">
-                <header>
+                <header class="header">
                     <div class="titlebar">
-                        <a class="titlebar-button" href="javascript:back()">
-                            <i class="icon icon-arrowleft"></i>
+                        <a class="titlebar-button" href="javascript:back()"> <i class="icon icon-arrowleft"></i>
                         </a>
                         <h1 class="titlebar-title">侧边栏</h1>
                     </div>
                 </header>
-                <article>
+                <article class="container">
                     <p class="app-title">左侧菜单栏</p>
                     <a id="overlayLeft" class="button block" style="margin:8px;">左侧栏-overlay</a>
                     <a id="pushLeft" style="margin:8px" class="button block submit">左侧栏-push</a>
@@ -42,25 +42,27 @@
                     <p class="app-title">右侧菜单栏</p>
                     <a id="overlayRight" class="button block" style="margin:8px;">右侧栏-overlay</a>
                     <a id="pushRight" style="margin:8px" class="button block submit">右侧栏-push</a>
-                    
+
                     <div class="card" style="padding:8px;">
                         <h1 class="titlebar-title text-center">这是侧滑菜单的示例</h1>
                         <br/>
                         <h4 class="paragraph">标签属性</h4>
-                        <p class="paragraph">data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)</p>
+                        <p class="paragraph">
+                            data-transition动画，值为：reveal(section动)，overlay(aside覆盖)|push(wrapper动)
+                        </p>
                         <h4 class="paragraph">Javascript</h4>
-                        <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"}) </p>
+                        <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"})</p>
                     </div>
                 </article>
             </section>
             <!--左侧边栏-->
-            <aside id="aside-left" data-transition="overlay">
-                <header>
+            <aside class="aside" id="aside-left" data-transition="overlay">
+                <header class="header">
                     <div class="titlebar">
                         <h1 class="titlebar-title text-center">左侧边栏</h1>
                     </div>
                 </header>
-                <article style="padding: 10px;">
+                <article class="container" style="padding: 10px;">
                     <p class="paragraph">这是侧滑菜单的示例，通常用</p>
                     【属性】
                     <p class="paragraph">data-transition动画，值如下：</p>
@@ -69,30 +71,30 @@
                     <p class="paragraph">3.push(wrapper动)</p>
                     【Javascript】
                     <p class="paragraph">new Aside("容器",sides":{"left":"左侧栏","right":"右侧栏"})</p>
-                    
+
                 </article>
-                <footer>
+                <footer class="footer">
                     <a class="button block cancel" style="margin:8px;" id="hideAside1">关闭侧滑</a>
                 </footer>
             </aside>
             <!--右侧边栏-->
-            <aside id="aside-right" data-transition="push">
-                <header>
+            <aside class="aside" id="aside-right" data-transition="push">
+                <header class="header">
                     <div class="titlebar">
                         <h1 class="titlebar-title text-center">右侧边栏</h1>
                     </div>
                 </header>
-                <article style="padding: 10px;">
+                <article class="container" style="padding: 10px;">
                     <p class="paragraph">右侧边栏</p>
                 </article>
-                <footer>
+                <footer class="footer">
                     <a class="button block cancel" style="margin:8px;" id="hideAside2">关闭侧滑</a>
                 </footer>
             </aside>
         </div>
     </div>
     <script src="../dist/seedsui.min.js"></script>
-    
+
     <script type="text/javascript">
         window.addEventListener("load",function(e){
             var article=document.querySelector("article");
@@ -117,17 +119,17 @@
                 aside.update();
                 aside.show("left");
             };
-    		document.getElementById("pushLeft").onclick=function(){
+            document.getElementById("pushLeft").onclick=function(){
                 aside.sides["left"].setAttribute("data-transition","push");
                 aside.update();
                 aside.show("left");
             };
-    		document.getElementById("overlayRight").onclick=function(){
+            document.getElementById("overlayRight").onclick=function(){
                 aside.sides["right"].setAttribute("data-transition","overlay");
                 aside.update();
                 aside.show("right");
             };
-    		document.getElementById("pushRight").onclick=function(){
+            document.getElementById("pushRight").onclick=function(){
                 aside.sides["right"].setAttribute("data-transition","push");
                 aside.update();
                 aside.show("right");
@@ -141,7 +143,7 @@
             };
         },false);
         
-    	function back(){history.go(-1);}
+        function back(){history.go(-1);}
     </script>
 </body>
 </html>

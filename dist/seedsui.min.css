@@ -23,35 +23,35 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 /*----------------appearance.less(end)--------------*/
 /*----------------layout.less(start)--------------*/
-header,
-footer {
+.header,
+.footer {
   position: fixed;
   left: 0;
   right: 0;
   z-index: 1;
 }
-header {
+.header {
   top: 0;
 }
-footer {
+.footer {
   bottom: 0;
 }
-article {
+.container {
   position: relative;
   z-index: 0;
   box-sizing: border-box;
 }
-header + article {
+.header + .container {
   padding-top: 44px;
 }
-.page header,
-aside header,
-.page footer,
-aside footer {
+.page .header,
+.aside .header,
+.page .footer,
+.aside .footer {
   position: absolute;
 }
-.page article,
-aside article {
+.page .container,
+.aside .container {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -60,17 +60,9 @@ aside article {
   padding-top: 0;
   overflow: auto;
 }
-.page header + article,
-aside header + article {
+.page .header + .container,
+.aside .header + .container {
   top: 44px;
-}
-aside {
-  position: absolute;
-  width: 264px;
-  top: 0;
-  bottom: 0;
-  visibility: hidden;
-  background-color: #f0f0f0;
 }
 .wingpadding-lg {
   padding-left: 20px;
@@ -3527,7 +3519,7 @@ label .input-radio + span {
 }
 /*----------------card.less(end)--------------*/
 /*----------------aside.less(start)--------------*/
-.aside,
+.aside-page,
 .aside-wrapper {
   position: relative;
   width: 100%;
@@ -3537,8 +3529,16 @@ label .input-radio + span {
 aside {
   -webkit-transition-property: transform;
 }
-.aside {
+.aside-page {
   overflow: hidden;
+}
+.aside {
+  position: absolute;
+  width: 264px;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  background-color: #f0f0f0;
 }
 aside[data-transition="overlay"],
 aside[data-transition="push"] {

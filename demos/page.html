@@ -20,7 +20,7 @@
 <body ontouchstart="">
 	<div class="pages">
 		<section class="page active" id="ID-Page0">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:history.go(-1)">
 		            <i class="icon icon-arrowleft"></i>
@@ -28,7 +28,7 @@
 			    <h1 class="titlebar-title">单页模式</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<a class="button block bg-1" href="#ID-Page1">slideLeft</a>
 			    <a class="button block bg-2" href="#ID-Page2">slideRight</a>
 			    <a class="button block bg-3" href="#ID-Page3">slideUp</a>
@@ -43,7 +43,7 @@
 		</section>
 		<!--page1-->
 		<section class="page" id="ID-Page1-Section" data-animation="slideLeft">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -51,13 +51,13 @@
 			    <h1 class="titlebar-title">二级页面</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<a class="button block" href="#ID-Page1Lvl3">进入三级页面</a>
 				<a class="button block SID-BtnSelf" data-self-href="#ID-Page1Lvl3" target="_self">_self打开</a>
 			</article>
 		</section>
 		<section class="page" id="ID-Page1Lvl3-Section" data-animation="slideLeft">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -65,12 +65,12 @@
 			    <h1 class="titlebar-title">三级页面</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<a class="button block" href="#ID-Page1Lvl4">进入四级页面</a>
 			</article>
 		</section>
 		<section class="page" id="ID-Page1Lvl4-Section" data-animation="slideLeft">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -78,12 +78,12 @@
 			    <h1 class="titlebar-title">四级页面</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<a class="button block" href="#ID-Page1Lvl5">进入五级页面</a>
 			</article>
 		</section>
 		<section class="page" id="ID-Page1Lvl5-Section" data-animation="slideLeft">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -91,7 +91,7 @@
 			    <h1 class="titlebar-title">五级页面</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<a class="button block" href="javascript:history.go(-1)">history.go(-1)</a>
 				<a class="button block" href="javascript:history.go(-2)">history.go(-2)</a>
 				<a class="button block" href="javascript:history.go(-3)">history.go(-3)</a>
@@ -99,7 +99,7 @@
 		</section>
 		<!--page2-->
 		<section class="page" id="ID-Page2-Section" data-animation="slideRight">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -107,14 +107,14 @@
 			    <h1 class="titlebar-title">slideRight</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">slideRight页面</div>
 				<div class="bg-2" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
 		</section>
 		<!--page3-->
 		<section class="page" id="ID-Page3-Section" data-animation="slideUp">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -122,14 +122,14 @@
 			    <h1 class="titlebar-title">slideUp</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">slideUp页面</div>
 				<div class="bg-3" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
 		</section>
 		<!--page4-->
 		<section class="page" id="ID-Page4-Section" data-animation="slideDown">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -137,14 +137,14 @@
 			    <h1 class="titlebar-title">slideDown</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">slideDown页面</div>
 				<div class="bg-4" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
 		</section>
 		<!--page5-->
 		<section class="page" id="ID-Page5-Section" data-animation="fade">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -152,14 +152,14 @@
 			    <h1 class="titlebar-title">fade</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">fade页面</div>
 				<div class="bg-5" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
 		</section>
 		<!--page6-->
 		<section class="page" id="ID-Page6-Section" data-animation="zoom">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -167,14 +167,14 @@
 			    <h1 class="titlebar-title">zoom</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">zoom页面</div>
 				<div class="bg-6" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
 		</section>
 		<!--page7-->
 		<section class="page" id="ID-Page7-Section" data-animation="none">
-			<header>
+			<header class="header">
 			  <div class="titlebar">
 			    <a class="titlebar-button" href="javascript:back()">
 		            <i class="icon icon-arrowleft"></i>
@@ -182,7 +182,7 @@
 			    <h1 class="titlebar-title">none</h1>
 			  </div>
 			</header>
-			<article>
+			<article class="container">
 				<div style="padding: 100px 0;text-align: center;">none页面</div>
 				<div class="bg-7" style="color: white;text-align: center;height: 800px;">——滚动条——</div>
 			</article>
