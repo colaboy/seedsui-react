@@ -28,110 +28,106 @@
                 <h1 class="titlebar-title">下拉刷新</h1>
             </div>
         </header>
-        <!--DfCircle-->
-        <article style="overflow: hidden;">
-            <div class="scrollContainer">
-                <ul class="list" id="ID-List"></ul>
-            </div>
-        </article>
         <!--DfPull-->
-        <!-- <article>
-                <ul class="list" id="ID-List"></ul>
-        </article> -->
+        <article>
+            <ul class="list" id="ID-List"></ul>
+        </article>
     </section>
     <script src="../dist/seedsui.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
     
     <script type="text/javascript">
-
-        var view={
-            /*=========================
-              Model
-              ===========================*/
-            render:function(){
-                var self = this;
-                //Pull风格和圆圈风格
-                this.drag=new DragPull({ //new DragCircle({
-                    overflowContainer:"article .scrollContainer",
-                    //topContainer:false,//禁用头部下拉
-                    //bottomContainer:false,//禁用底部加载
-                    onTopRefresh:function(e){
-                        self.index=1;
-                        console.log("头部刷新"+e.pagination.current);
-                        self._loadData();
-                    },
-                    onTopComplete:function(e){
-                        document.getElementById("ID-List").innerHTML=e.data.html;
-                        console.log("头部完成");
-                    },
-                    onBottomRefresh:function(e){
-                        console.log("底部刷新"+e.pagination.current);
-                        self._loadData(true);
-                    },
-                    onBottomComplete:function(e){
-                        document.getElementById("ID-List").innerHTML+=e.data.html;
-                        console.log("底部完成"+e.pagination.current);
-                        console.log("总数"+e.pagination.max);
-                    },
-                    onNoData:function(e){
-                        console.log("底部无数据了");
-                    }
-                });
-
-                //渲染页面
-                this.index = 1
-                //加载数据
-                this._loadData();
-
-                this._attach();//使用backbone时，此行无用
-            },
-            refresh:function(){
-                console.log("刷新");
-            },
-            destroy:function(){
-                console.log("移除");
-            },
-            
-            /*=========================
-              Method
-              ===========================*/
-            _loadData:function(isNext){
-                var self=this;
-                var data={html:''};
-
-                //mock返回数据
-                for(var i=0;i<10;i++){
-                    data.html+='<li class="list-li underline"><p>第'+this.index+'行列表</p></li>';
-                    this.index++;
-                }
-
-                //根据total计算是否是最后一页
-                data.total=50
-
-                //根据isNoData计算是否是最后一页
-                var isNoData = false;
-                /*if(this.index>=50){
-                    isNoData = true;
-                }*/
-                
-                //mock请求时间
-                setTimeout(function(){
-                    self.drag.setPagination(isNext, data, isNoData)
-                }, 2000);
-            },
-            /*=========================
-              Events
-              ===========================*/
-            _attach:function(e){
-            },
-            /*=========================
-              Event Handler
-              ===========================*/
+        //页数控制
+        var pagination = {
+            current:1,//当前页数
+            max:0,//总页数
+            limit:10,//每页条数
         }
+        //初始化插件
+        var drag = new DragPull({
+          overflowContainer: 'article',
+          onTopRefresh: function (e) {
+            // 头部刷新,加载第一页
+            console.log('头部刷新')
+            queryData()
+          },
+          onTopComplete: function (e) {
+            console.log('头部完成')
+          },
+          onBottomRefresh: function (e) {
+            // 底部刷新,加载下一页
+            console.log('底部刷新')
+            queryData(true)
+          },
+          onBottomComplete: function (e) {
+            console.log('底部完成')
+          },
+          onNoData: function (e) {
+            console.log('无更多数据了')
+          }
+        })
+        //数据查询,isNext是否是下一页
+        function queryData (isNext) {
+            // 第一页与下一页
+            if (isNext) {
+              pagination.current++
+            } else {
+              pagination.current = 1
+            }
 
-        window.addEventListener("load",function(){
-            view.render();
-        }, false);
-        
+            // 如果超过最后一页，则不发请求
+            if (pagination.max && pagination.current > pagination.max) {
+              console.log('最后一页')
+              drag.setPagination(isNext, true)
+              return
+            }
+            
+            // 初始化参数
+            var url="mock/group.json";
+            var params = {}
+            params.curPage = pagination.current // 当前页码默认从1开始
+            params.limit = pagination.limit // (number)每页多少条数据,默认10条
+            params = Object.params(params)
+            // 发起请求
+            $.ajax({
+                url: url,
+                type: 'get',
+                async: false,
+                data: params,
+                dataType: 'json',
+                success:function(data){
+                    // 计算总页数（非常重要）
+                    pagination.max = data.total/pagination.limit
+                    // 如果是最后一页，则清空dragpull控件状态
+                    var isNoData = false
+                    if (pagination.current >= pagination.max) {
+                      isNoData = true
+                    }
+                    if (isNext) {
+                        //叠加注入数据append
+                        for (var i=0;item=data.depList[i++];){
+                            $("#ID-List").append('<li style="padding:10px 12px;">'+item.depName+'</li>')
+                        }
+                    } else {
+                        //注入数据innerHTML
+                        $("#ID-List").html("");
+                        for (var i=0;item=data.depList[i++];){
+                            $("#ID-List").append('<li style="padding:10px 12px;">'+item.depName+'</li>')
+                        }
+                    }
+                    setTimeout(function(){
+                        drag.setPagination(isNext, isNoData)
+                    }, 200)
+                },
+                error:function(msg){
+                    console.log('数据查询错误')
+                    pagination.current--
+                },
+                complete:function(){}
+            });
+        }
+        //加载数据
+        this.queryData();
         
         function back(){history.go(-1);}
     </script>

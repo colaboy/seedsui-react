@@ -36,7 +36,7 @@
 			        '</div>',
 
 		    isClickAllow:false,
-			clickAllowClass:"loading-clickallow",
+			clickAllowClass:"loading-propagation",
 
 			activeClass:"active"
 			/*

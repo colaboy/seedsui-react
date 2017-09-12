@@ -10,10 +10,7 @@ var Dragrefresh = function (params) {
     duration: 150,
 
     topContainer: null,
-    bottomContainer: null,
-    bottomRefreshDelay: 1000,
-
-    limit: 10 // 每页条数
+    bottomContainer: null
 
     /* callbacks
     onPull:function(Dragrefresh)// 头部拖动中
@@ -58,7 +55,7 @@ var Dragrefresh = function (params) {
     console.log('SeedsUI Warn : bottomContainer不存在，请检查页面中是否有此元素')
   }
   // 正在刷新
-  s.isRefreshed = false
+  s.isRefreshed = true
   /* ----------------------
   Method
   ---------------------- */
@@ -100,8 +97,8 @@ var Dragrefresh = function (params) {
   s.hasScroll = function () {
     var clientHeight = s.overflowContainer.clientHeight || window.innerHeight
     var scrollHeight = s.overflowContainer.scrollHeight || document.body.scrollHeight
-    // var scrollTop = s.overflowContainer.scrollTop || document.body.scrollTop
-    // console.log(clientHeight+':'+scrollHeight+':'+scrollTop)
+    /* var scrollTop = s.overflowContainer.scrollTop || document.body.scrollTop
+    console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
 
     if (clientHeight === scrollHeight) {
       return false
@@ -111,8 +108,6 @@ var Dragrefresh = function (params) {
   // 头部刷新
   s.topRefresh = function () {
     if (!s.isRefreshed) return
-    // 页数还原为1
-    s.pagination.current = 1
     // 正在刷新
     s.isRefreshed = false
     // CallBack onTopRefresh
@@ -122,8 +117,6 @@ var Dragrefresh = function (params) {
   s.bottomRefresh = function () {
     // 底部无数据、底部正在刷新、下拉中、头部刷新的情况，不执行
     if (s.isNoData || !s.isRefreshed || s.isOnPull) return
-    // 页数+1
-    s.pagination.current++
     // 正在刷新
     s.isRefreshed = false
     // CallBack onBottomRefresh
@@ -167,48 +160,20 @@ var Dragrefresh = function (params) {
     }
   }
   s.noData = function () {
+    s.isNoData = true
     s.isRefreshed = true
     // 收起头部
     s.hideTop()
     // 底部显示无数据
     if (s.params.onNoData) s.params.onNoData(s)
   }
-  s.pagination = { // 分页
-    current: 1, // 当前页数
-    max: 0, // 总页数
-    limit: s.params.limit, // 每页条数
-    total: 0 // 总条数
-  }
-  // 分页操作,instance.setPagination(isNext, total, goodsList)
-  // 只在头部刷新topRefresh或者底部刷新bottomRefresh后，在ajax的success中调用
-  s.setPagination = function (isNext, data, isNoData) { // 下一页 | 总数 | 请求得到的数据
-    // 数据请求失败
-    if (!data) {
-      s.isNoData = true
-      s.noData()
-      console.log('请求数据失败，请重试')
-      return
-    }
-
-    s.data = data
+  s.setPagination = function (isNext, isNoData) { // 下一页 | 总数 | 请求得到的数据
+    s.isNoData = isNoData
     // 如果已经没有数据,并且是下一页则不加载
     if (s.isNoData && isNext) {
       s.noData()
       return
     }
-    var total = data.total
-    // total计算分页,判断是否是最后一页
-    if (total) {
-      s.pagination.total = total
-      s.pagination.max = Math.ceil(s.pagination.total / s.pagination.limit)
-      // 计算是否是最后一页
-      if (s.pagination.current < s.pagination.max) s.isNoData = false
-      else s.isNoData = true
-    // 直接用参数isNoData判断是否是最后一页
-    } else if (isNoData) {
-      s.isNoData = isNoData
-    }
-
     // 加载数据
     if (!isNext) { // 第一页
       s.topComplete()

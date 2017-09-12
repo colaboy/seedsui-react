@@ -1,5 +1,5 @@
 // Ajax
-var ajax = {
+var Ajax = {
   xhr: function (config) {
     var xhr = new window.XMLHttpRequest()
     var url = config.url
@@ -9,6 +9,7 @@ var ajax = {
     var params = Object.params(data)
     var type = config.type || 'GET'
     var contentType = config.contentType
+    var token = config.token
     var extra = config.extra
 
     xhr.onreadystatechange = function () {
@@ -21,7 +22,9 @@ var ajax = {
         }
       }
     }
-
+    // 鉴权
+    if (token) xhr.setRequestHeader('Authorization', token)
+    // post | get
     if (type === 'POST') {
       xhr.open(type, url, true)
       xhr.setRequestHeader('Content-type', contentType || 'application/json')
@@ -40,16 +43,17 @@ var ajax = {
       xhr.send(null)
     }
   },
-  fetchData: function (url, req, type, contentType) {
+  fetchData: function (url, config) {
+    // config = req, type, contentType, token
     // 显示loading
     // ob.$emit('ajaxLoading', true)
-    var reqData = req || {}
     return new Promise(function (resolve, reject) {
-      ajax.xhr({
+      Ajax.xhr({
         url: url,
-        data: reqData,
-        type: type,
-        contentType: contentType,
+        data: config.req || {},
+        type: config.type || null,
+        contentType: config.contentType || null,
+        token: config.token || null,
         success: function (data) {
           if (data.code === '1') {
             resolve(data)
@@ -69,4 +73,4 @@ var ajax = {
   }
 };
 
-//export default ajax
+//export default Ajax

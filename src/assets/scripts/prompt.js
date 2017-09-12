@@ -17,7 +17,7 @@
       wrapperClass: "prompt-wrapper",
 
       isClickAllow: false,
-      clickAllowClass: "prompt-clickallow",
+      clickAllowClass: "prompt-propagation",
 
       promptCss: {},
       wrapperCss: {},

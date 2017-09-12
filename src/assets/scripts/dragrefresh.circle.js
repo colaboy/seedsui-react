@@ -6,15 +6,19 @@ var DragCircle = function (params) {
   var onNoData = params.onNoData
   params.onTopComplete = undefined
   params.onNoData = undefined
+  var topContainer = params.topContainer
+  var bottomContainer = params.bottomContainer
+  params.topContainer = undefined
+  params.bottomContainer = undefined
   // 必须参数
   var overflowContainer = typeof params.overflowContainer === 'string' ? document.querySelector(params.overflowContainer) : params.overflowContainer
   if (!overflowContainer) {
     console.log('SeedsUI Error : Dragrefresh.Pull overflowContainer不存在，请检查页面中是否有此元素')
   }
+
   var topParent
-  var topContainer
   var topIcon
-  if (params.topContainer !== false) {
+  if (topContainer !== false) {
     topParent = overflowContainer.parentNode
     topContainer = topParent.querySelector('.SID-Dragrefresh-TopContainer')
     if (!topContainer) {
@@ -26,8 +30,7 @@ var DragCircle = function (params) {
     topIcon = topContainer.querySelector('.df-circle-icon')
   }
 
-  var bottomContainer
-  if (params.bottomContainer !== false) {
+  if (bottomContainer !== false) {
     bottomContainer = overflowContainer.querySelector('.SID-Dragrefresh-BottomContainer')
     if (!bottomContainer) {
       bottomContainer = document.createElement('div')

@@ -70,7 +70,7 @@
                 var url="mock/group.json";
                 var reqData={};
                 app.loading.show();
-                ajax.fetchData(url, '', 'get').then(data => {
+                Ajax.fetchData(url).then(data => {
                     //格式化数据字段为:id、name、parentId
                     var data=JSON.stringify(data).replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
                     self.groupData=JSON.parse(data).depList;
@@ -121,7 +121,7 @@
                 var ul=e.targetLine.nextElementSibling;
                 app.loading.show();
                 var self=this;
-                ajax.fetchData(url, '', 'get').then(data => {
+                Ajax.fetchData(url).then(data => {
                     var data=JSON.stringify(data).replace(/userUuid/mgi,"id").replace(/deptUuid/mgi,"parentid").replace(/userName/mgi,"name");
                     var userData=JSON.parse(data).userList;
                     //没有数据

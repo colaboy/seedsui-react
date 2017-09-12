@@ -23,16 +23,17 @@ Object.clone = function (obj) {
     copy = obj
   }
   return copy
-};
+}
 
 /* -------------------
   将Json转为params字符串
   ------------------- */
-Object.params = function (obj) {
+Object.params = function (obj, isNotEnCode) {
   var result = ''
   var item
   for (item in obj) {
-    result += '&' + item + '=' + encodeURIComponent(obj[item])
+    if (isNotEnCode) result += '&' + item + '=' + obj[item]
+    else result += '&' + item + '=' + encodeURIComponent(obj[item])
   }
   if (result) {
     result = result.slice(1)
@@ -157,7 +158,7 @@ Object.FloatOp = (function () {
     divide: divide,
     toFixed: toFixed
   }
-})();
+})()
 
 /* -------------------
   判断是否是纯对象
@@ -179,7 +180,7 @@ Object.isPlainObject = function (obj) {
   // 如果原型的对象是由全局Object函数构造的，则它们是纯对象
   Ctor = {}.hasOwnProperty.call(proto, 'constructor') && proto.constructor
   return typeof Ctor === 'function' && {}.hasOwnProperty.toString.call(Ctor) === {}.hasOwnProperty.toString.call(Object)
-};
+}
 
 /* -------------------
   获得类型
@@ -191,21 +192,21 @@ Object.type = function (obj) {
 
   // Support: Android <=2.3 only (functionish RegExp)
   return typeof obj === 'object' || typeof obj === 'function' ? {}[toString.call(obj)] || 'object' : typeof obj
-};
+}
 
 /* -------------------
   是否是方法
   ------------------- */
 Object.isFunction = function (obj) {
   return Object.type(obj) === 'function'
-};
+}
 
 /* -------------------
   是否是窗口
   ------------------- */
 Object.isWindow = function (obj) {
   return obj != null && obj === obj.window
-};
+}
 
 /* -------------------
   继承合并

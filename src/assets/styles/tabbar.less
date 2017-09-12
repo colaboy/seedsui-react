@@ -7,11 +7,15 @@
 	overflow-x:auto;
 	overflow-y:hidden;
   white-space:nowrap;
+  background-color:@bar-bg;
   &:before,&:after,.tab:before,.tab:after{
 		//兼容UC线条不显示的BUG
   	z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
 	}
-	background-color:@bar-bg;
+	&.disabled{
+		pointer-events: none;
+		opacity: 0.5;
+	}
 }
 .tab{
 	display:table-cell;

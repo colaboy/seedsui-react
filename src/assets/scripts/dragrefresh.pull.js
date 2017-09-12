@@ -6,15 +6,18 @@ var DragPull = function (params) {
   var onNoData = params.onNoData
   params.onTopComplete = undefined
   params.onNoData = undefined
+  var topContainer = params.topContainer
+  var bottomContainer = params.bottomContainer
+  params.topContainer = undefined
+  params.bottomContainer = undefined
   // 必须参数
   var overflowContainer = typeof params.overflowContainer === 'string' ? document.querySelector(params.overflowContainer) : params.overflowContainer
   if (!overflowContainer) {
     console.log('SeedsUI Error : Dragrefresh.Pull overflowContainer不存在，请检查页面中是否有此元素')
   }
-  var topContainer
   var topIcon
   var topCaption
-  if (params.topContainer !== false) {
+  if (topContainer !== false) {
     topContainer = overflowContainer.querySelector('.SID-Dragrefresh-TopContainer')
     if (!topContainer) {
       topContainer = document.createElement('div')
@@ -29,10 +32,9 @@ var DragPull = function (params) {
     topCaption = topContainer.querySelector('.df-pull-caption')
   }
 
-  var bottomContainer
   var bottomIcon
   var bottomCaption
-  if (params.bottomContainer !== false) {
+  if (bottomContainer !== false) {
     bottomContainer = overflowContainer.querySelector('.SID-Dragrefresh-BottomContainer')
     if (!bottomContainer) {
       bottomContainer = document.createElement('div')

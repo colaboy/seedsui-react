@@ -17,7 +17,7 @@
       wrapperClass: "toast-wrapper",
 
       isClickAllow: false,
-      clickAllowClass: "toast-clickallow",
+      clickAllowClass: "toast-propagation",
 
       toastCss: {},
       wrapperCss: {},

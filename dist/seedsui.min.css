@@ -276,6 +276,10 @@ aside {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
 }
+.tabbar.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .tab {
   display: table-cell;
   width: 1%;
@@ -1759,11 +1763,13 @@ label .input-radio + span {
   -webkit-transition-property: opacity;
   -webkit-transition-duration: 300ms;
   position: absolute;
+  overflow: hidden;
   z-index: 10;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  z-index: 502;
   background-color: rgba(0, 0, 0, 0.4);
 }
 .mask.active {
@@ -2920,10 +2926,6 @@ label .input-radio + span {
   display: block;
   -webkit-box-flex: 1.0;
 }
-.list-row {
-  display: -webkit-box;
-  -webkit-box-align: center;
-}
 .list-title {
   -webkit-box-flex: 1.0;
 }
@@ -3753,7 +3755,7 @@ progress::-webkit-progress-value {
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
-.loading-clickallow {
+.loading-propagation {
   pointer-events: none;
 }
 .loading-mask {
@@ -4818,7 +4820,7 @@ progress::-webkit-progress-value {
   z-index: 10;
 }
 .dialog {
-  position: fixed;
+  position: absolute;
   border-style: solid;
   border-width: 0;
   box-sizing: border-box;
@@ -5019,7 +5021,7 @@ progress::-webkit-progress-value {
   z-index: 10;
 }
 .alert {
-  position: fixed;
+  position: absolute;
   border-style: solid;
   border-width: 0;
   top: 50%;
@@ -5124,7 +5126,7 @@ progress::-webkit-progress-value {
   z-index: 10;
 }
 .actionsheet {
-  position: fixed;
+  position: absolute;
   padding: 0 6px;
   box-sizing: border-box;
   width: 100%;
@@ -5191,7 +5193,7 @@ progress::-webkit-progress-value {
 }
 /*----------------actionsheet.less(end)--------------*/
 /*----------------toast.less(start)--------------*/
-.toast-clickallow {
+.toast-propagation {
   pointer-events: none;
 }
 .toast-mask {
@@ -5199,7 +5201,7 @@ progress::-webkit-progress-value {
   z-index: 999;
 }
 .toast {
-  position: fixed;
+  position: absolute;
   bottom: -100px;
   width: 100%;
   font-size: 12px;
@@ -5243,7 +5245,7 @@ progress::-webkit-progress-value {
 }
 /*----------------toast.less(end)--------------*/
 /*----------------prompt.less(start)--------------*/
-.prompt-clickallow {
+.prompt-propagation {
   pointer-events: none;
 }
 .prompt-mask {
@@ -5254,7 +5256,7 @@ progress::-webkit-progress-value {
   display: block;
   visibility: hidden;
   opacity: 0;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 44px;
   width: 100%;
