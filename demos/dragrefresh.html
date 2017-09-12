@@ -34,7 +34,7 @@
         </article>
     </section>
     <script src="../dist/seedsui.min.js"></script>
-    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script> -->
     
     <script type="text/javascript">
         //页数控制
@@ -88,43 +88,37 @@
             params.curPage = pagination.current // 当前页码默认从1开始
             params.limit = pagination.limit // (number)每页多少条数据,默认10条
             params = Object.params(params)
-            // 发起请求
-            $.ajax({
-                url: url,
-                type: 'get',
-                async: false,
-                data: params,
-                dataType: 'json',
-                success:function(data){
-                    // 计算总页数（非常重要）
-                    pagination.max = data.total/pagination.limit
-                    // 如果是最后一页，则清空dragpull控件状态
-                    var isNoData = false
-                    if (pagination.current >= pagination.max) {
-                      isNoData = true
+            // DOM容器
+            var list=document.getElementById("ID-List");
+            // 发起请求，模拟成功
+            setTimeout((data = {total: '100',name: 'item'}) => {
+                // 计算总页数（非常重要）
+                pagination.max = data.total/pagination.limit
+                // isNoData判断是否无数据了
+                var isNoData = false
+                if (pagination.current >= pagination.max) {
+                  isNoData = true
+                }
+                // 下一页
+                if (isNext) {
+                    for (var i=0;i<pagination.limit;i++){
+                        list.innerHTML+='<li style="padding:10px 12px;">'+data.name+'</li>'
                     }
-                    if (isNext) {
-                        //叠加注入数据append
-                        for (var i=0;item=data.depList[i++];){
-                            $("#ID-List").append('<li style="padding:10px 12px;">'+item.depName+'</li>')
-                        }
-                    } else {
-                        //注入数据innerHTML
-                        $("#ID-List").html("");
-                        for (var i=0;item=data.depList[i++];){
-                            $("#ID-List").append('<li style="padding:10px 12px;">'+item.depName+'</li>')
-                        }
+                // 第一页
+                } else {
+                    //注入数据innerHTML
+                    list.innerHTML='';
+                    for (var i=0;i<pagination.limit;i++){
+                        list.innerHTML+='<li style="padding:10px 12px;">'+data.name+'</li>'
                     }
-                    setTimeout(function(){
-                        drag.setPagination(isNext, isNoData)
-                    }, 200)
-                },
-                error:function(msg){
-                    console.log('数据查询错误')
-                    pagination.current--
-                },
-                complete:function(){}
-            });
+                }
+                // 告诉dragrefresh控件是否无数据了
+                drag.setPagination(isNext, isNoData)
+            }, 500);
+            /*error:function(msg){
+                console.log('数据查询错误')
+                pagination.current--
+            }*/
         }
         //加载数据
         this.queryData();

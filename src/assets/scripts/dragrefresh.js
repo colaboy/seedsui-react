@@ -54,8 +54,8 @@ var Dragrefresh = function (params) {
   if (!s.bottomContainer) {
     console.log('SeedsUI Warn : bottomContainer不存在，请检查页面中是否有此元素')
   }
-  // 正在刷新
-  s.isRefreshed = true
+  // 正在刷新(默认为不允许下拉，当发生一次请求调用setPagination后才允许下拉)
+  s.isRefreshed = false
   /* ----------------------
   Method
   ---------------------- */
@@ -175,7 +175,7 @@ var Dragrefresh = function (params) {
       return
     }
     // 加载数据
-    if (!isNext) { // 第一页
+    if (!isNext && s.topContainer) { // 第一页
       s.topComplete()
     } else { // 下一页
       s.bottomComplete()
