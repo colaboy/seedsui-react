@@ -1,32 +1,27 @@
 /*---------------icon.less(start)---------------*/
 /*图标*/
 .icon{
-	position:relative;
-	font-style:normal;
-	background-size: contain;
-    background-repeat: no-repeat;
-	background-position:center;
+  position:relative;
+  font-style:normal;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:center;
 }
 /*控件默认图标尺寸*/
 .icon{
-	font-size:@24px;
-	width:@24px;
-	height:@24px;
+  font-size:@24px;
+  width:@24px;
+  height:@24px;
+}
+.icon:before{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
 }
 .badge .icon,.tip .icon,.close .icon{
-	font-size:@12px;
-	width:@12px;
-	height:@12px;
-}
-/*文字图标*/
-.iconfont{
-	font-family: 'iconfont';
-  src:  url('fonts/iconfont.eot?uem7qm');
-  src:  url('fonts/iconfont.eot?uem7qm#iefix') format('embedded-opentype'),
-    url('fonts/iconfont.ttf?uem7qm') format('truetype'),
-    url('fonts/iconfont.woff?uem7qm') format('woff'),
-    url('fonts/iconfont.svg?uem7qm#iconfont') format('svg');
-  font-weight: normal;
-  font-style: normal;
+  font-size:@12px;
+  width:@12px;
+  height:@12px;
 }
 /*---------------icon.less(end)---------------*/

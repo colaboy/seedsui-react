@@ -124,6 +124,46 @@ input[type="search"]::-webkit-search-results-decoration {
 .input-pre + pre span {
   display: inline;
 }
+.input-checkbox,
+.input-radio {
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  font-size: 22px;
+  vertical-align: middle;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  color: #cccccc;
+  font-family: "iconfont";
+}
+.input-checkbox:checked,
+.input-radio:checked,
+.input-checkbox.active,
+.input-radio.active {
+  color: #4ddb63;
+}
+.input-checkbox[disabled],
+.input-radio[disabled] {
+  color: #d1d1d1;
+}
+/*checkbox*/
+/*radio*/
+.input-radio:before {
+  content: "\e9a9";
+}
+.input-radio:checked:before {
+  content: "\e9ce";
+}
+/*label*/
+label .input-checkbox + span,
+label .input-radio + span {
+  margin: 0 4px;
+}
 /*----------------form.less(end)--------------*/
 /*----------------photo.less(start)----------------*/
 .photo {
@@ -1524,48 +1564,6 @@ input[type="search"]::-webkit-search-results-decoration {
   right: 0;
 }
 /*----------------numbox.less(end)--------------*/
-/*-----------------------------checkbox.less(start)-----------------------------*/
-.input-checkbox,
-.input-radio {
-  height: 22px;
-  width: 22px;
-  line-height: 22px;
-  vertical-align: middle;
-  outline: none;
-  border-radius: 0;
-  border: none;
-  background-color: transparent;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  font-family: "iconfont";
-  font-size: 22px;
-  color: #cccccc;
-}
-.input-checkbox:checked,
-.input-radio:checked,
-.input-checkbox.active,
-.input-radio.active {
-  color: #4ddb63;
-}
-.input-checkbox[disabled],
-.input-radio[disabled] {
-  color: #d1d1d1;
-}
-/*checkbox*/
-/*radio*/
-.input-radio:before {
-  content: "\e9a9";
-}
-.input-radio:checked:before {
-  content: "\e9ce";
-}
-/*label*/
-label .input-checkbox + span,
-label .input-radio + span {
-  margin: 0 4px;
-}
-/*-----------------------------checkbox.less(end)-----------------------------*/
 /*----------------range.less(start)--------------*/
 .input-range {
   position: relative;
@@ -1786,21 +1784,18 @@ label .input-radio + span {
   width: 24px;
   height: 24px;
 }
+.icon:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
 .badge .icon,
 .tip .icon,
 .close .icon {
   font-size: 12px;
   width: 12px;
   height: 12px;
-}
-/*文字图标*/
-.iconfont,
-.star {
-  font-family: 'iconfont';
-  src: url('fonts/iconfont.eot?uem7qm');
-  src: url('fonts/iconfont.eot?uem7qm#iefix') format('embedded-opentype'), url('fonts/iconfont.ttf?uem7qm') format('truetype'), url('fonts/iconfont.woff?uem7qm') format('woff'), url('fonts/iconfont.svg?uem7qm#iconfont') format('svg');
-  font-weight: normal;
-  font-style: normal;
 }
 /*---------------icon.less(end)---------------*/
 /* Control */
