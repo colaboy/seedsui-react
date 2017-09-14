@@ -2,71 +2,112 @@
 
 var Validator = function () {
   /* ------------------------
+  正则
+  ------------------------ */
+  var Patts = {
+    required: /.+/,
+    number: /^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 数字
+    decimal: /^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)$/, // 小数
+    digits: /\.[0-9]*/,
+    integer: /^(0|([+-]?[1-9][0-9]*))$/, // 整数
+    positive: /^(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 正数
+    negative: /^-(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 负数
+    positiveInteger: /^[1-9][0-9]*$/, // 正整数
+    negativeInteger: /^-[1-9][0-9]*$/, // 正整数
+    username: /^[\w]+$/, //用户名
+    password: /^[0-9_a-zA-Z-~!@#$]*$/, //密码
+    mail: /^(\w+@\w+\.[\.\w]+)$/, //邮箱
+    phone: /^([1][34578][0-9]{9})$/, //手机
+    chinese: /^[\u4E00-\u9FA5]*$/, //中文
+    specialchar: /^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/ //特殊字符
+  }
+  /* ------------------------
   验证策略类
   ------------------------ */
   var Rules = {
+    // 为空
     required: function (value, errorMsg) {
-      if (!/.+/.test(value)) {
+      if (!Patts.required.test(value)) {
         return errorMsg
       }
     },
+    // 数字
     number: function (value, errorMsg) {
-      if (value.length != 0 && /^-?([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
+      if (value.length != 0 && !Patts.number.test(value)) {
         return errorMsg
       }
     },
-    positive: function (value, errorMsg) {
-      if (value.length != 0 && /^([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
+    // 小数
+    decimal: function (value, errorMsg) {
+      if(value.length != 0 && !Patts.decimal.test(value)) {
         return errorMsg
       }
     },
+    // 小数位数
+    maxDigits: function (value, max, errorMsg) {
+      var match = value.match(Patts.digits)
+      if (match && match[0] && match[0].length - 1 > max) {
+        return errorMsg
+      }
+    },
+    // 整数
     integer: function (value, errorMsg) {
-      if (!/^-?\d*$/.test(value)) {
+      if (value.length != 0 && !Patts.integer.test(value)) {
         return errorMsg
       }
     },
-    positiveInteger: function (value, errorMsg) {
-      if (value.length != 0 && !/^[1-9]{1,}[0-9]*$/.test(value)) {
+    // 正数
+    positive: function (value, errorMsg) {
+      if (value.length != 0 && !Patts.positive.test(value)) {
         return errorMsg
       }
     },
+    // 负数
     negative: function (value, errorMsg) {
-      if (value.length != 0 && /^-([0-9]{1,})(\.[0-9]+)?$/.test(value)) {
+      if (value.length != 0 && !Patts.negative.test(value)) {
         return errorMsg
       }
     },
+    // 正整数
+    positiveInteger: function (value, errorMsg) {
+      if (value.length != 0 && !Patts.positiveInteger.test(value)) {
+        return errorMsg
+      }
+    },
+    // 负整数
     negativeInteger: function (value, errorMsg) {
-      if (value.length != 0 && !/^-[1-9]{1,}[0-9]*$/.test(value)) {
+      if (value.length != 0 && !Patts.negativeInteger.test(value)) {
         return errorMsg
       }
     },
     username: function (value, errorMsg) {
-      if (!/^[\w]*$/.test(value)) {
+      if (value.length != 0 && !Patts.username.test(value)) {
         return errorMsg
       }
     },
     password: function (value, errorMsg) {
-      if (!/^[0-9_a-zA-Z-~!@#$]*$/.test(value)) {
+      if (value.length != 0 && !Patts.password.test(value)) {
         return errorMsg
       }
     },
     mail: function (value, errorMsg) {
-      if (!/^(\w+@\w+\.[\.\w]+)?$/.test(value)) {
+      if (value.length != 0 && !Patts.mail.test(value)) {
         return errorMsg
       }
     },
     phone: function (value, errorMsg) {
-      if (!/^([1][34578][0-9]{9})?$/.test(value)) {
+      if (value.length != 0 && !Patts.phone.test(value)) {
         return errorMsg
       }
     },
     chinese: function (value, errorMsg) {
-      if (!/^[\u4E00-\u9FA5]*$/.test(value)) {
+      if (value.length != 0 && !Patts.chinese.test(value)) {
         return errorMsg
       }
     },
+    // 特殊字符
     specialchar: function (value, errorMsg) {
-      if (!/^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/.test(value)) {
+      if (value.length != 0 && !Patts.specialchar.test(value)) {
         return errorMsg
       }
     },
@@ -95,6 +136,7 @@ var Validator = function () {
         return errorMsg
       }
     },
+    // 密码安全等级
     safeLvl: function (value, lvl, errorMsg) {
       var valLvl = SafeLvl.check(value)
       if (value.length != 0 && valLvl < lvl) {
@@ -103,8 +145,8 @@ var Validator = function () {
     }
   }
   /* ------------------------
-    Validator类
-    ------------------------ */
+  Validator类
+  ------------------------ */
   var s = this
   s.caches = []
   s.add = function (field, strategies) {
