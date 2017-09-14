@@ -2,6 +2,7 @@
 // @koala-prepend "utils/dateutil.js"
 // @koala-prepend "utils/db.js"
 // @koala-prepend "utils/device.js"
+// @koala-prepend "utils/math.js"
 // @koala-prepend "utils/object.js"
 // @koala-prepend "utils/request.js"
 // @koala-prepend "utils/string.js"
