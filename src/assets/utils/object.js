@@ -28,7 +28,7 @@ Object.clone = function (obj) {
 /* -------------------
   将Json转为params字符串
   ------------------- */
-Object.params = function (obj, isNotEnCode) {
+/* Object.params = function (obj, isNotEnCode) {
   var result = ''
   var item
   for (item in obj) {
@@ -39,6 +39,29 @@ Object.params = function (obj, isNotEnCode) {
     result = result.slice(1)
   }
   return result
+} */
+Object.params = function (obj, isNotEnCode) {
+  var result = ''
+  function buildParams (obj, prevKey) {
+    for (let key in obj) {
+      if (obj[key] instanceof Object) {
+        let prefix = prevKey ? prevKey + '.' + key : key
+        buildParams(obj[key], prefix)
+      } else {
+        if (prevKey) {
+          result += '&' + prevKey + '.' + key + '=' + obj[key]
+        } else {
+          result += '&' + key + '=' + obj[key]
+        }
+      }
+    }
+    return result
+  }
+  buildParams(obj)
+  if (result) {
+    result = result.slice(1)
+  }
+  return isNotEnCode ? result : encodeURI(result)
 }
 
 /* -------------------
