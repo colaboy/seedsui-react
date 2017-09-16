@@ -41,6 +41,7 @@ Object.clone = function (obj) {
   return result
 } */
 Object.params = function (obj, isNotEnCode) {
+  if (!Object.isPlainObject(obj)) return obj
   var result = ''
   function buildParams (obj, prevKey) {
     for (let key in obj) {
@@ -49,9 +50,11 @@ Object.params = function (obj, isNotEnCode) {
         buildParams(obj[key], prefix)
       } else {
         if (prevKey) {
-          result += '&' + prevKey + '.' + key + '=' + obj[key]
+          // result += '&' + prevKey + '.' + key + '=' + obj[key]
+          result += '&' + prevKey + '.' + key + '=' + (isNotEnCode ? obj[key] : encodeURIComponent(obj[key]))
         } else {
-          result += '&' + key + '=' + obj[key]
+          // result += '&' + key + '=' + obj[key]
+          result += '&' + key + '=' + (isNotEnCode ? obj[key] : encodeURIComponent(obj[key]))
         }
       }
     }
@@ -61,7 +64,7 @@ Object.params = function (obj, isNotEnCode) {
   if (result) {
     result = result.slice(1)
   }
-  return isNotEnCode ? result : encodeURI(result)
+  return result
 }
 
 /* -------------------
