@@ -9,6 +9,7 @@
 // @koala-prepend "utils/history.js"
 // @koala-prepend "utils/type.js"
 // @koala-prepend "utils/pinyin.js"
+// @koala-prepend "utils/element.js"
 // @koala-prepend "utils/validator.js"
 
 // @koala-prepend "scripts/event.js"

@@ -95,9 +95,9 @@ var Dragrefresh = function (params) {
   }
   // 是否有滚动条
   s.hasScroll = function () {
-    var clientHeight = s.overflowContainer.clientHeight || window.innerHeight
-    var scrollHeight = s.overflowContainer.scrollHeight || document.body.scrollHeight
-    /* var scrollTop = s.overflowContainer.scrollTop || document.body.scrollTop
+    var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
+    var scrollHeight = s.overflowContainer.scrollHeight // || document.body.scrollHeight
+    /* var scrollTop = s.overflowContainer.scrollTop // || document.body.scrollTop
     console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
 
     if (clientHeight === scrollHeight) {
@@ -303,9 +303,9 @@ var Dragrefresh = function (params) {
   }
   s.isNoData = false
   s.onScroll = function (e) {
-    var clientHeight = this.clientHeight || window.innerHeight
-    var scrollHeight = this.scrollHeight || document.body.scrollHeight
-    var scrollTop = this.scrollTop || document.body.scrollTop
+    var clientHeight = this.clientHeight // || window.innerHeight
+    var scrollHeight = this.scrollHeight // || document.body.scrollHeight
+    var scrollTop = this.scrollTop // || document.body.scrollTop
 
     if (scrollTop + clientHeight >= scrollHeight - 2) {
       s.bottomRefresh()
