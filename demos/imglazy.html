@@ -26,7 +26,7 @@
         <div class="titlebar">
             <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
             <h1 class="titlebar-title">预加载</h1>
-            <a class="titlebar-button" id="ID-BtnRefresh">新增图片</a>
+            <a class="titlebar-button" onclick="onClickBtnRefresh()">新增图片</a>
         </div>
     </header>
     <article class="container">
@@ -51,59 +51,16 @@
     <script src="../dist/seedsui.min.js"></script>
     
     <script>
-        var view={
-            /*=========================
-              Model
-              ===========================*/
-            render:function(){
-                /*DOM*/
-                this.btnRefresh=document.getElementById("ID-BtnRefresh");
-                //图片预加载
-                this.imgLazy=new ImgLazy();//container,params
-
-                //加载数据
-                this.loadData();
-            },
-            loadData:function(){
-
-                this._attach();//使用backbone时，此行无用
-            },
-            /*=========================
-              Method
-              ===========================*/
-            _update:function(){
-            },
-            /*=========================
-              Events
-              ===========================*/
-            _attach:function(e){
-                var self=this;
-                this.btnRefresh.addEventListener("click",function(e){
-                    self._onClickBtnRefresh(e);
-                },false);
-            },
-            /*=========================
-              Event Handler
-              ===========================*/
-            _onClickBtnRefresh:function(e){
-                //插入新图片
-                var imgStr='<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
-                '<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
-                '<img data-load-src="images/6.jpg" src="" class="lazyimg" />';
-                
-                var article=document.querySelector("article");
-                article.innerHTML=imgStr+article.innerHTML;
-
-                //图片预加载
-                this.imgLazy.update();
-            }
+        this.imgLazy=new ImgLazy();
+        function onClickBtnRefresh(e){
+            //插入新图片
+            var imgStr='<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
+            '<img data-load-src="images/6.jpg" src="" class="lazyimg" />'+
+            '<img data-load-src="images/6.jpg" src="" class="lazyimg" />';
+            
+            var article=document.querySelector("article");
+            article.innerHTML=imgStr+article.innerHTML;
         }
-
-        window.addEventListener("load",function(){
-            view.render();
-        }, false);
-
-        
         function back(){history.go(-1);}
     </script>
 </body>
