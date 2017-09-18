@@ -96,9 +96,9 @@ var Dragrefresh = function (params) {
   // 是否有滚动条
   s.hasScroll = function () {
     var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
-    var scrollHeight = s.overflowContainer.scrollHeight // || document.body.scrollHeight
-    /* var scrollTop = s.overflowContainer.scrollTop // || document.body.scrollTop
-    console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
+    var scrollHeight = s.overflowContainer.scrollHeight
+    // var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
 
     if (clientHeight === scrollHeight) {
       return false
@@ -233,7 +233,7 @@ var Dragrefresh = function (params) {
   s.onTouchStart = function (e) {
     s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
     // 如果不在顶部，则不触发
-    if (s.overflowContainer.scrollTop > 0) s.touches.isTop = false
+    if (s.isTop() > 0) s.touches.isTop = false
     else s.touches.isTop = true
 
     s.topContainer.style.webkitTransitionDuration = '0ms'
@@ -302,11 +302,16 @@ var Dragrefresh = function (params) {
     }
   }
   s.isNoData = false
+  s.isTop = function (e) {
+    var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    if (scrollTop) return true
+    return false
+  }
   s.onScroll = function (e) {
-    var clientHeight = this.clientHeight // || window.innerHeight
-    var scrollHeight = this.scrollHeight // || document.body.scrollHeight
-    var scrollTop = this.scrollTop // || document.body.scrollTop
-
+    var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
+    var scrollHeight = s.overflowContainer.scrollHeight
+    var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
     if (scrollTop + clientHeight >= scrollHeight - 2) {
       s.bottomRefresh()
     }

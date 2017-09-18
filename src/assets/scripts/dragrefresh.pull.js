@@ -11,6 +11,7 @@ var DragPull = function (params) {
   var overflowContainer = typeof params.overflowContainer === 'string' ? document.querySelector(params.overflowContainer) : params.overflowContainer
   if (!overflowContainer) {
     console.log('SeedsUI Error : DragPull overflowContainer不存在，请检查页面中是否有此元素')
+    overflowContainer = document.body
   }
   var topContainer
   var topIcon
