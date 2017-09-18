@@ -1,4 +1,4 @@
-//Richinput 带表情输入框
+//Richinput 带表情输入框 (require edit.js)
 (function(window,document,undefined){
 	window.Richinput=function(container,params){
 		/*=========================
@@ -88,7 +88,7 @@
 				insertFace(e.target);
 			}
 			s.textarea.focus();
-			Richeditor.setCaretPosition(s.textarea,cursorOffset);
+			Edit.setCaretPosition(s.textarea,cursorOffset);
 		},false);
 	}
 })(window,document,undefined);
