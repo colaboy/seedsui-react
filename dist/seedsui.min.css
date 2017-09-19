@@ -315,7 +315,7 @@ label .input-radio + span {
 .tab {
   display: table-cell;
   width: 1%;
-  padding: 0 12px;
+  padding: 0 6px;
   position: relative;
   text-align: center;
   box-sizing: border-box;
@@ -515,6 +515,16 @@ label .input-radio + span {
   -webkit-transition-property: background-color, color;
   -webkit-transition-duration: 300ms;
 }
+.icon-triangle-up {
+  position: relative;
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top-width: 5px;
+  border-top-style: solid;
+  border-top-color: #666666;
+}
 .tabbar-dropdown:after,
 .tabbar-dropdown .tab:not(:first-child):after {
   content: '';
@@ -549,11 +559,17 @@ label .input-radio + span {
 .tabbar-dropdown .tab.active .icon {
   -webkit-transform: rotate(180deg);
 }
+.tabbar-dropdown .tab.active .icon-triangle-up {
+  border-top-color: #20aeff;
+}
 .tabbar-dropdown.reverse:after {
   background-color: #20aeff;
 }
 .tabbar-dropdown.reverse .tab:after {
   background-color: #ffffff;
+}
+.tabbar-dropdown.reverse .tab .icon-triangle-up {
+  border-top-color: #ffffff;
 }
 .tabbar-dropdown.animated .tab {
   -webkit-transition: color 0.2s;
@@ -571,7 +587,7 @@ label .input-radio + span {
   font-size: 13px;
   height: 13px;
   line-height: 13px;
-  margin: 4px 0 0 0;
+  margin: 5px auto 0 auto;
 }
 .tabbar-footer.reverse .tab {
   color: #ffffff;
