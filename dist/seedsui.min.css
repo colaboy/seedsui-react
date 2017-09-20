@@ -2922,6 +2922,8 @@ label .input-radio + span {
   overflow: hidden;
   margin-right: 10px;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: #dddddd;
 }
 .list-thumbnail img {

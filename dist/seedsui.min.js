@@ -52,6 +52,12 @@ window.Date.prototype.date = function () {
   }
   return dayNum
 }
+window.Date.prototype.days = function (year, month) { // 返回当月共多少天
+  if (month && year) {
+    return new Date(year, month, 0).getDate()
+  }
+  return new Date(this.year(), this.month(), 0).getDate()
+}
 window.Date.prototype.hour = function () {
   var hourNum = this.getHours()
   if (hourNum < 10) {
@@ -74,12 +80,6 @@ window.Date.prototype.week = function (date) { // 周
 }
 window.Date.prototype.quarter = function () { // 季
   return Math.floor((this.getMonth() + 3) / 3)
-}
-window.Date.prototype.days = function (year, month) { // 返回当月共多少天
-  if (month && year) {
-    return new Date(year, month, 0).getDate()
-  }
-  return new Date(this.year(), this.month(), 0).getDate()
 }
 window.Date.prototype.diff = function (date) { // Date对象，返回相差天数等
   var dateStart = this // 开始时间

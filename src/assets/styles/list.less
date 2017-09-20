@@ -1,57 +1,59 @@
 /*---------------list.less(start)---------------*/
 .list{
-    background-color: white;
+  background-color: white;
 }
 .list-li{
-    position:relative;
-    display:-webkit-box;
-    padding: @10px @12px;
-    -webkit-box-align: center;
-    color:@body-color;
-    &:not(.noclick):active{
-        background-color:@bar-bg;
-    }
+  position:relative;
+  display:-webkit-box;
+  padding: @10px @12px;
+  -webkit-box-align: center;
+  color:@body-color;
+  &:not(.noclick):active{
+    background-color:@bar-bg;
+  }
 }
 .list-thumbnail{
-    display: -webkit-box;
-    -webkit-box-align:center;
-    -webkit-box-pack:center;
-    position:relative;
-    height:@62px;
-    overflow:hidden;
-    margin-right: @10px;
-    background-size:cover;
-    background-color: @photo-bg;
+  display: -webkit-box;
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  position:relative;
+  height:@62px;
+  overflow:hidden;
+  margin-right: @10px;
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: @photo-bg;
 }
 .list-thumbnail img{
-    max-width: @97px;
-    max-height: @62px;
+  max-width: @97px;
+  max-height: @62px;
 }
 
 .list-container{
-    display: block;
-    -webkit-box-flex: 1.0;
+  display: block;
+  -webkit-box-flex: 1.0;
 }
 .list-title{
-    -webkit-box-flex: 1.0;
+  -webkit-box-flex: 1.0;
 }
 .list-icon{
-    display: block;
-    font-size: @16px;
-    width: @16px;
-    height: @16px;
-    color: @placeholder;
+  display: block;
+  font-size: @16px;
+  width: @16px;
+  height: @16px;
+  color: @placeholder;
 }
 .list-font{
-    display: block;
-    -webkit-box-flex:1;
-    height: @20px;
-    line-height: @22px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: block;
+  -webkit-box-flex:1;
+  height: @20px;
+  line-height: @22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .list-icon+.list-font,.list-icon+.list-title{
-    margin-left: @8px;
+  margin-left: @8px;
 }
 /*---------------list.less(end)---------------*/
