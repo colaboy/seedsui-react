@@ -179,7 +179,12 @@
 		}
 		/*安全检测框*/
 		s.onSafeLvl=function(e){
-			if(SafeLvl)SafeLvl.fields(this,this.safe);
+			if(SafeLvl){
+				var value = this.value
+				var lvlField = this.safe
+		    var lvl = SafeLvl.check(value)
+		    lvlField.className = lvlField.className.replace(/lvl[0-3]/, 'lvl' + lvl)
+			}
 		}
 		/*拖动条*/
 		s.showToolTip=function(tooltip,rangeInput){

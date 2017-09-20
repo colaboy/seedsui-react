@@ -17,20 +17,20 @@
 			/*html:'<div class="loading-spinning">'+
 		            '<div class="loading-spinning-wrapper"></div>'+
 		        '</div>',*/
-		    html:'<div class="loading-fading">'+
-			            '<div class="loading-fading-wrapper">'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
-			                '<div class="loading-fading-blade"></div>'+
+		    html:'<div class="loading-floating">'+
+			            '<div class="loading-floating-wrapper">'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
+			                '<div class="loading-floating-blade"></div>'+
 			            '</div>'+
 			            '<div class="al-text">加载中...</div>'+
 			        '</div>',

@@ -4,7 +4,6 @@
 // @koala-prepend "utils/request.js"
 // @koala-prepend "utils/object.js"
 // @koala-prepend "utils/string.js"
-
 // @koala-prepend "utils/ajax.js"
 // @koala-prepend "utils/edit.js"
 // @koala-prepend "utils/event.js"
@@ -16,8 +15,11 @@
 // @koala-prepend "utils/media.js"
 // @koala-prepend "utils/type.js"
 // @koala-prepend "utils/pinyin.js"
+// @koala-prepend "utils/validator.safelvl.js"
 // @koala-prepend "utils/validator.js"
+// @koala-prepend "utils/validator.id.js"
 // @koala-prepend "utils/shake.js"
+// @koala-prepend "utils/calendarutil.js"
 
 // @koala-prepend "scripts/section.js"
 // @koala-prepend "scripts/aside.js"
@@ -27,7 +29,6 @@
 // @koala-prepend "scripts/dragrefresh.pull.js"
 // @koala-prepend "scripts/dragrefresh.circle.js"
 // @koala-prepend "scripts/emoji.js"
-// @koala-prepend "scripts/safelvl.js"
 // @koala-prepend "scripts/formcontrols.js"
 // @koala-prepend "scripts/countvalue.js"
 // @koala-prepend "scripts/clock.js"
@@ -51,5 +52,4 @@
 // @koala-prepend "scripts/weather.js"
 // @koala-prepend "scripts/gauge.js"
 // @koala-prepend "scripts/baidumap.js"
-// @koala-prepend "scripts/idvalidator.js"
 // @koala-prepend "scripts/imglazy.js"

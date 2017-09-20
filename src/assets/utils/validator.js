@@ -1,5 +1,5 @@
 // Validator 表单验证 (require safelvl.js)
-
+// import SafeLvl from './validator.safelvl.js'
 var Validator = function () {
   /* ------------------------
   正则
@@ -33,13 +33,13 @@ var Validator = function () {
     },
     // 数字
     number: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.number.test(value)) {
+      if (value.length !== 0 && !Patts.number.test(value)) {
         return errorMsg
       }
     },
     // 小数
     decimal: function (value, errorMsg) {
-      if(value.length != 0 && !Patts.decimal.test(value)) {
+      if (value.length !== 0 && !Patts.decimal.test(value)) {
         return errorMsg
       }
     },
@@ -52,94 +52,94 @@ var Validator = function () {
     },
     // 整数
     integer: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.integer.test(value)) {
+      if (value.length !== 0 && !Patts.integer.test(value)) {
         return errorMsg
       }
     },
     // 正数
     positive: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.positive.test(value)) {
+      if (value.length !== 0 && !Patts.positive.test(value)) {
         return errorMsg
       }
     },
     // 负数
     negative: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.negative.test(value)) {
+      if (value.length !== 0 && !Patts.negative.test(value)) {
         return errorMsg
       }
     },
     // 正整数
     positiveInteger: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.positiveInteger.test(value)) {
+      if (value.length !== 0 && !Patts.positiveInteger.test(value)) {
         return errorMsg
       }
     },
     // 负整数
     negativeInteger: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.negativeInteger.test(value)) {
+      if (value.length !== 0 && !Patts.negativeInteger.test(value)) {
         return errorMsg
       }
     },
     username: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.username.test(value)) {
+      if (value.length !== 0 && !Patts.username.test(value)) {
         return errorMsg
       }
     },
     password: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.password.test(value)) {
+      if (value.length !== 0 && !Patts.password.test(value)) {
         return errorMsg
       }
     },
     mail: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.mail.test(value)) {
+      if (value.length !== 0 && !Patts.mail.test(value)) {
         return errorMsg
       }
     },
     phone: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.phone.test(value)) {
+      if (value.length !== 0 && !Patts.phone.test(value)) {
         return errorMsg
       }
     },
     chinese: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.chinese.test(value)) {
+      if (value.length !== 0 && !Patts.chinese.test(value)) {
         return errorMsg
       }
     },
     // 特殊字符
     specialchar: function (value, errorMsg) {
-      if (value.length != 0 && !Patts.specialchar.test(value)) {
+      if (value.length !== 0 && !Patts.specialchar.test(value)) {
         return errorMsg
       }
     },
     minNumber: function (value, min, errorMsg) {
-      if (value.length != 0 && value * 1 < min * 1) {
+      if (value.length !== 0 && value * 1 < min * 1) {
         return errorMsg
       }
     },
     maxNumber: function (value, max, errorMsg) {
-      if (value.length != 0 && value * 1 > max * 1) {
+      if (value.length !== 0 && value * 1 > max * 1) {
         return errorMsg
       }
     },
     minLength: function (value, length, errorMsg) {
-      if (value.length != 0 && value.length < length) {
+      if (value.length !== 0 && value.length < length) {
         return errorMsg
       }
     },
     maxLength: function (value, length, errorMsg) {
-      if (value.length != 0 && value.length > length) {
+      if (value.length !== 0 && value.length > length) {
         return errorMsg
       }
     },
     compare: function (value1, value2, errorMsg) {
-      if (value1 != value2) {
+      if (value1 !== value2) {
         return errorMsg
       }
     },
     // 密码安全等级
     safeLvl: function (value, lvl, errorMsg) {
       var valLvl = SafeLvl.check(value)
-      if (value.length != 0 && valLvl < lvl) {
+      if (value.length !== 0 && valLvl < lvl) {
         return errorMsg
       }
     }
@@ -150,7 +150,7 @@ var Validator = function () {
   var s = this
   s.caches = []
   s.add = function (field, strategies) {
-    var self = this
+    /* eslint-disable */
     for (var i = 0, strategy; strategy = strategies[i++];) {
       (function (strategy) {
         var ruleArray = strategy.rule.split(":")
@@ -165,11 +165,16 @@ var Validator = function () {
         })
       })(strategy)
     }
+    /* eslint-enable */
   }
   s.start = function () {
+    /* eslint-disable */
     for (var i = 0, valiFn; valiFn = s.caches[i++];) {
       var error = valiFn()
       if (error) return error
     }
+    /* eslint-enable */
   }
 };
+
+//export default Validator
