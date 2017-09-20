@@ -1,4 +1,4 @@
-//  CalendarUtil 日历工具箱
+//  CalendarUtil 日历工具箱 (require dateutil.js)
 var CalendarUtil = function (activeDate) {
   /* ---------------------
   Model

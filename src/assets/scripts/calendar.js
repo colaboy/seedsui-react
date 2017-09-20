@@ -1,4 +1,4 @@
-//Calendar 日历 | (require dateutil.js)
+//Calendar 日历 (require dateutil.js/calendarutil.js)
 (function(window,document,undefined){
 	
 	window.Calendar=function(container,params){
