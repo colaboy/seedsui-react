@@ -12,7 +12,7 @@
 		    clear: both;
 		}
 	}
-	.chat-photo {
+	.chat-author {
 		width: @40px;
 		display: inline-block;
 		text-align: center;
@@ -21,11 +21,31 @@
 			width: 100%;
 			border-radius: 100%;
 		}
-		.chat-photo-author {
-			font-size: @font-size-sm;
-			font-style: normal;
-			color:@placeholder;
-		}
+	}
+	.chat-avatar{
+		position: relative;
+		box-sizing:border-box;
+
+		display:-webkit-inline-box;
+		-webkit-box-pack:center;
+		-webkit-box-align:center;
+
+		background-size:cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+
+		margin:0 auto;
+		width: 40px;
+		height: 40px;
+		border-radius: 100%;
+
+		color:@avatar-color;
+		background-color:@avatar-bg;
+	}
+	.chat-avatar-author {
+		font-size: @font-size-sm;
+		font-style: normal;
+		color:@placeholder;
 	}
 	.chat-content-box {
 		display: inline-block;
@@ -76,7 +96,7 @@
 	}
 
 	.even{
-		.chat-photo {
+		.chat-author {
 			float: right;
 		}
 		.chat-content-box {

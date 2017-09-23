@@ -2,6 +2,8 @@
 /*基础*/
 /*常用颜色*/
 /*控件*/
+/*开关*/
+/*日历*/
 /*间距*/
 /*----------------appearance.less(start)--------------*/
 input[type="search"]::-webkit-search-decoration,
@@ -165,25 +167,6 @@ label .input-radio + span {
   margin: 0 4px;
 }
 /*----------------form.less(end)--------------*/
-/*----------------photo.less(start)----------------*/
-.photo {
-  position: relative;
-  box-sizing: border-box;
-  display: -webkit-inline-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  margin: 0 auto;
-  color: #cccccc;
-  background-color: #dddddd;
-}
-.photo {
-  width: 50px;
-  height: 50px;
-}
-/*----------------photo.less(end)----------------*/
 /*----------------titlebar.less(start)--------------*/
 .titlebar,
 .titlebar-button,
@@ -1726,8 +1709,6 @@ label .input-radio + span {
   border-radius: 4px;
   width: 74px;
   height: 30px;
-  background-color: #20aeff;
-  border: 1px solid #20aeff;
 }
 .turn-on,
 .turn-off {
@@ -1736,30 +1717,43 @@ label .input-radio + span {
   -webkit-box-align: center;
   -webkit-box-pack: center;
   width: 50%;
-  height: 100%;
   top: 0;
+  bottom: 0;
+  box-sizing: border-box;
 }
 .turn-on {
   right: 0;
-  background-color: white;
-  color: #20aeff;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+}
+.turn-on {
+  background-color: white;
+  color: #666666;
+  border-color: #d1d1d1;
 }
 .turn-off {
   left: 0;
-  background-color: #20aeff;
-  color: white;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+  border-width: 1px 0 1px 1px;
+  border-style: solid;
+}
+.turn-off {
+  background-color: #55acee;
+  border-color: #55acee;
+  color: #ffffff;
 }
 .turn.active .turn-on {
-  background-color: #20aeff;
-  color: white;
+  background-color: #55acee;
+  border-color: #55acee;
+  color: #ffffff;
 }
 .turn.active .turn-off {
   background-color: white;
-  color: #20aeff;
+  border-color: #d1d1d1;
+  color: #666666;
 }
 /*----------------turn.less(end)--------------*/
 /*--------------------mask.less(start)----------------------*/
@@ -2913,6 +2907,23 @@ label .input-radio + span {
 .list-li:not(.noclick):active {
   background-color: #f9f9f9;
 }
+.list-avatar {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  background-size: 100%;
+  border-radius: 100%;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAOVBMVEXDzNb5+/z3+vv2+Pr19/nT2uLK0tvX3eTM1N3Hz9ny9fjv8vXi5+ze4+nq7/Ln6/DP19/k6e7Z4OZ/ZsYlAAACPElEQVRYw+2X63aDIBCE5SJGEG/v/7CNLHQ3BKwu/enUSvYk+c4AybDpHj169OjRoxO9er9t027+BTbuTiQ534wzmzxIUsK/sEMbr9dv0PsvCB7OYwNvSqB4Bc18nkcSjHDb2PMFDNAQK8TKBDpgRRqypWMaRArcse5ZwBncyeMWRqx5q6gESooPadbXDRcPkLQ2rCUMHNxbWq+8PYmeoita9ywgKlJRPXcNJTFI61fHkAjCXaE1IyDMFN0gitSTuT1hjRuMeYi1vetxQUdgK6/vBu0sP6cq8trfjVYgICmv95vAATEwZPX9TNT4XqB91ooR/6KWh8xjwMl6HgrL+WTbeh5aw2oZJlXJQ88+lst5yD+Y13IeNnQjrpSHuqWNK+Vh3zVo+M5D39h+qSwP9+YGcaZ56NauXYrk4atr10Dz0HftcjQPbTvPf+Rhu8U+z8O+cQFVnodyaMCZqZSHk+HRxn6p5eEymNu0fRZn/aFw+3gnE0K01vtDIC/r5aTO+8FavZjrZwntB+u1umLS5flXqy+eflupH4wq9IvLtSgICiAliVJJJz78lfm//aAsSSE0brgyl9oFUWKpNARFh+eTjt+NbxRc8rhHrgLmeeu5J29AiKBcuLAqvF6P54cmcVaVRKgQ9U7M4sZSmj4u/b7CgMyk6g+1JdiLMwKUTqQoiiQmbXkBZfSHxgINRbBJkenLC5im+2vuGAo84jLpVfr9rtAfoiqiW364mL946/FEclfg2dLMdYLSk+YHgF8TNU/EqwEAAAAASUVORK5CYII=);
+}
+.list-avatar span {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  background-size: 100%;
+  border-radius: 100%;
+  overflow: hidden;
+}
 .list-thumbnail {
   display: -webkit-box;
   -webkit-box-align: center;
@@ -3579,37 +3590,50 @@ aside[data-position="right"][data-transition="overlay"] {
   -webkit-transform: translate3d(100%, 0, 0);
 }
 /*----------------aside.less(end)--------------*/
-/*----------caption.less(start)----------*/
-.caption,
+/*----------sliver.less(start)----------*/
 .sliver {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
   padding: 0 12px;
 }
-.caption {
-  height: 40px;
-  color: #20aeff;
-}
 .sliver {
   height: 32px;
   color: #aaaaaa;
   background-color: #f8f8f8;
 }
-.caption-title,
 .sliver-title {
   display: block;
   height: 20px;
   line-height: 20px;
   -webkit-box-flex: 1;
 }
-.caption .peg {
+.sliver .peg {
   display: block;
 }
-.caption .peg + .caption-title {
+.sliver .peg + .sliver-title {
   padding: 0 0 0 8px;
 }
-/*----------caption.less(end)----------*/
+/*----------sliver.less(end)----------*/
+/*----------title.less(start)----------*/
+.title-line {
+  width: 56%;
+  margin: 14px auto -9px auto;
+  color: #4a4a4a;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid #ccc;
+}
+.title-line span {
+  color: #808080;
+  display: inline-block;
+  background-color: #fff;
+  font-size: 15px;
+  padding: 0 9px;
+  position: relative;
+  top: -14px;
+}
+/*----------title.less(end)----------*/
 /*----------------inputcolor.less(start)--------------*/
 input[type="color"] {
   width: 44px;
@@ -4602,17 +4626,33 @@ progress::-webkit-progress-value {
   content: " ";
   clear: both;
 }
-.chat .chat-photo {
+.chat .chat-author {
   width: 40px;
   display: inline-block;
   text-align: center;
   float: left;
 }
-.chat .chat-photo img {
+.chat .chat-author img {
   width: 100%;
   border-radius: 100%;
 }
-.chat .chat-photo .chat-photo-author {
+.chat .chat-avatar {
+  position: relative;
+  box-sizing: border-box;
+  display: -webkit-inline-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  color: #cccccc;
+  background-color: #dddddd;
+}
+.chat .chat-avatar-author {
   font-size: 12px;
   font-style: normal;
   color: #cccccc;
@@ -4661,7 +4701,7 @@ progress::-webkit-progress-value {
   width: 26px;
   height: 24px;
 }
-.chat .even .chat-photo {
+.chat .even .chat-author {
   float: right;
 }
 .chat .even .chat-content-box {
@@ -5967,7 +6007,7 @@ details[open] summary .summary-icon {
 .tree-icon + .tree-icon {
   padding-left: 0;
 }
-.tree-photo {
+.tree-avatar {
   display: -webkit-box;
   -webkit-box-pack: center;
   -webkit-box-align: center;
@@ -6002,7 +6042,7 @@ details[open] summary .summary-icon {
 /* .tree-line.active,.tree-line.active+ul .tree-line{
 	color: @primary-bg;
 }
-.tree-line.active .tree-photo,.tree-line.active+ul .tree-photo{
+.tree-line.active .tree-avatar,.tree-line.active+ul .tree-avatar{
 	background-color: @primary-bg;
 } */
 .tree-line.active .tree-btnadd,

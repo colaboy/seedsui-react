@@ -100,7 +100,6 @@ var Actionsheet = function (params) {
       // }
       /* eslint-enable */
       s.buttonCancel = s.mask.querySelector('.' + s.params.buttonCancelClass)
-      console.log(s.buttonCancel)
       return
     }
     s.mask = s.createMask()

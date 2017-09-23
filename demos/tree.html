@@ -174,9 +174,9 @@
                         if(option.loginId){
                             var photo="";
                             if(option.avatarUrl){
-                                photo='<span class="tree-photo" style="background-image:url('+option.avatarUrl+')"></span>';
+                                photo='<span class="tree-avatar" style="background-image:url('+option.avatarUrl+')"></span>';
                             }else{
-                                photo='<span class="tree-photo" style="background-color:'+option.name.substr(0,1).toPinyin().substr(0,1).toColor()+'">'+option.name.substr(option.name.length-2,2)+'</span>';
+                                photo='<span class="tree-avatar" style="background-color:'+option.name.substr(0,1).toPinyin().substr(0,1).toColor()+'">'+option.name.substr(option.name.length-2,2)+'</span>';
                             }
                             option.html='<div class="tree-icon">'+photo+'</div>'+
                             '<div class="tree-title">'+option.name+'</div>';

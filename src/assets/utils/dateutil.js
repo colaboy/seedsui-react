@@ -226,3 +226,14 @@ window.Date.prototype.format = function (fmtModel) { // 参数：yyyy-MM-dd hh:m
   }
   return fmt
 }
+window.Date.prototype.monthStartEnd = function () { // 获取月头和月尾
+  var year = this.year()
+  var month = this.month()
+  var firstDay = '01'
+  var lastDay = this.days()
+  if (lastDay < 10) lastDay = '0' + lastDay
+  return {
+    start: year + '-' + month + '-' + firstDay,
+    end: year + '-' + month + '-' + lastDay
+  }
+}
