@@ -1,5 +1,5 @@
 // Validator 表单验证 (require safelvl.js)
-// import SafeLvl from './validator.safelvl.js'
+import SafeLvl from './validator.safelvl.js'
 var Validator = function () {
   /* ------------------------
   正则
@@ -8,18 +8,18 @@ var Validator = function () {
     required: /.+/,
     number: /^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 数字
     decimal: /^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)$/, // 小数
-    digits: /\.[0-9]*/,
+    digits: /\.[0-9]*/, // 精度
     integer: /^(0|([+-]?[1-9][0-9]*))$/, // 整数
     positive: /^(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 正数
     negative: /^-(0|([1-9][0-9]*))(\.[0-9]+)?$/, // 负数
     positiveInteger: /^[1-9][0-9]*$/, // 正整数
-    negativeInteger: /^-[1-9][0-9]*$/, // 正整数
-    username: /^[\w]+$/, //用户名
-    password: /^[0-9_a-zA-Z-~!@#$]*$/, //密码
-    mail: /^(\w+@\w+\.[\.\w]+)$/, //邮箱
-    phone: /^([1][34578][0-9]{9})$/, //手机
-    chinese: /^[\u4E00-\u9FA5]*$/, //中文
-    specialchar: /^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/ //特殊字符
+    negativeInteger: /^-[1-9][0-9]*$/, // 负整数
+    username: /^[\w]+$/, // 用户名
+    password: /^[0-9_a-zA-Z-~!@#$]*$/, // 密码
+    mail: /^(\w+@\w+\.[\.\w]+)$/, // 邮箱
+    phone: /^([1][34578][0-9]{9})$/, // 手机
+    chinese: /^[\u4E00-\u9FA5]*$/, // 中文
+    specialchar: /^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/ // 特殊字符
   }
   /* ------------------------
   验证策略类
