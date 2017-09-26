@@ -1,4 +1,4 @@
-//Formcontrols (require safelvl.js)
+//Formcontrols (require object.js)
 (function(window,document,undefined){
 	window.FormControls=function(params){
 		/*================
@@ -179,12 +179,10 @@
 		}
 		/*安全检测框*/
 		s.onSafeLvl=function(e){
-			if(SafeLvl){
-				var value = this.value
-				var lvlField = this.safe
-		    var lvl = SafeLvl.check(value)
-		    lvlField.className = lvlField.className.replace(/lvl[0-3]/, 'lvl' + lvl)
-			}
+			var value = this.value
+			var lvlField = this.safe
+	    var lvl = Object.passwordLvl(value)
+	    lvlField.className = lvlField.className.replace(/lvl[0-3]/, 'lvl' + lvl)
 		}
 		/*拖动条*/
 		s.showToolTip=function(tooltip,rangeInput){

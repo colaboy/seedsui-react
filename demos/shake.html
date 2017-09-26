@@ -22,22 +22,26 @@
 	  </div>
 	</header>
 	<article class="container">
-		<div class="card" style="padding:8px;" id="shakecard">用力摇一摇你手机</div>
+		<div class="card" style="padding:8px;" id="shakecard">摇一摇你手机</div>
 	</article>
-    <script src="../dist/seedsui.min.js"></script>
-    
-	<script>
-	
-	
-	window.onload=function(){
-		var sk=new Shake({
-			"onShook":function(e){
-				document.getElementById("shakecard").innerHTML="摇动了";
-			}
-		});
-	}
-	
-	function back(){history.go(-1);}
-	</script>
+  <script src="../dist/seedsui.min.js"></script>
+  <script src="../src/assets/utils/shake.js"></script>
+<script>
+
+
+window.addEventListener('shake', function (e) {
+  document.getElementById("shakecard").innerHTML='摇动了'
+}, false);
+/*window.onload=function(){
+	var sk=new Shake({
+		"onShook":function(e){
+      alert('动了');
+			document.getElementById("shakecard").innerHTML="摇动了";
+		}
+	});
+}*/
+
+function back(){history.go(-1);}
+</script>
 </body>
 </html>

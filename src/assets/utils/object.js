@@ -102,6 +102,58 @@ Object.type = function (obj) {
 }
 
 /* -------------------
+  query条件判断
+  ------------------- */
+Object.isQueryId = function (id) {
+  var idExpr = /^#([\w-]*)$/
+  var match = idExpr.exec(id)
+  if (match && match.length > 0) {
+    return match[1]
+  }
+  return false
+}
+Object.isQueryClass = function (classname) {
+  var classExpr = /^\.([\w-]*)$/
+  var match = classExpr.exec(classname)
+  if (match && match.length > 0) {
+    return match[1]
+  }
+  return false
+}
+Object.isTag = function (str) {
+  var tagExpr = /^<(\w+)\s*.*\/\w*>$/im
+  var match = tagExpr.exec(str)
+  if (match && match.length > 0) {
+    return true
+  }
+  return false
+}
+
+/* -------------------
+  字符类型
+  ------------------- */
+Object.charType = function (char) {
+  if (char >= 48 && char <= 57) return 'number' // 数字
+  if (char >= 65 && char <= 90) return 'capitalize' // 大写
+  if (char >= 97 && char <= 122) return 'lowercase' // 小写
+  else return 'other'
+}
+Object.passwordLvl = function (value) {
+  var mode = {}
+  for (var i = 0; i < value.length; i++) {
+    mode[Object.charType(value.charCodeAt(i))] = ''
+  }
+  var lvl = 0
+  /* eslint-disable */
+  for (m in mode) {
+    lvl++
+  }
+  /* eslint-enable */
+  if (value.length > 0 && value.length < 6) return 1
+  return lvl
+}
+
+/* -------------------
   是否是方法
   ------------------- */
 Object.isFunction = function (obj) {
@@ -186,4 +238,4 @@ Object.extend = function () {
 
   // 返回修改后的对象
   return target
-};
+}

@@ -66,16 +66,16 @@ var PinyinHelper = (function () {
       '9': '#ffaf01'
     }
   }
-})();
+})()
 
 window.String.prototype.toPinyin = function () {
   return PinyinHelper.toPinyin(this)
-};
+}
 window.String.prototype.toCapitalize = function () {
   return PinyinHelper.toCapitalize(this)
-};
+}
 window.String.prototype.toColor = function () {
   if (!/^[A-Za-z0-9]+$/.test(this)) return
   if (this.length > 1) return PinyinHelper.colors[this.substring(0, 1).toLowerCase()]
   return PinyinHelper.colors[this.toLowerCase()]
-};
+}

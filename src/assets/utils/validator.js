@@ -1,5 +1,4 @@
-// Validator 表单验证 (require safelvl.js)
-import SafeLvl from './validator.safelvl.js'
+// Validator 表单验证 (require object.js)
 var Validator = function () {
   /* ------------------------
   正则
@@ -19,7 +18,7 @@ var Validator = function () {
     mail: /^(\w+@\w+\.[\.\w]+)$/, // 邮箱
     phone: /^([1][34578][0-9]{9})$/, // 手机
     chinese: /^[\u4E00-\u9FA5]*$/, // 中文
-    specialchar: /^([\u4e00-\u9fa5]*|[a-zA-Z0-9]*)$/ // 特殊字符
+    specialchar: /^[。~!@#$%\^\+\*&\\\/\?\|:\.<>{}()';="]*$/ // 特殊字符
   }
   /* ------------------------
   验证策略类
@@ -138,7 +137,7 @@ var Validator = function () {
     },
     // 密码安全等级
     safeLvl: function (value, lvl, errorMsg) {
-      var valLvl = SafeLvl.check(value)
+      var valLvl = Object.passwordLvl(value)
       if (value.length !== 0 && valLvl < lvl) {
         return errorMsg
       }

@@ -140,11 +140,13 @@
 			s.render(cache);
 		};
 		s.loadData=function(){
-			s.ajax=new Ajax({
+			$.ajax({
+				type:"post",
 				dataType:"jsonp",
-                url:s.weatherURL,
-                onSuccess:s.onSuccess
-            });
+				url:s.weatherURL,
+				success:s.onSuccess,
+				error:s.onError
+			})
 		};
 		//适配数据
 	    s.adapterData=function(data){

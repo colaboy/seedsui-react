@@ -71,6 +71,6 @@ var Ajax = {
       })
     })
   }
-};
+}
 
 //export default Ajax
