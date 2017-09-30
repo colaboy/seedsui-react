@@ -1,6 +1,4 @@
 /*----------------numbox.less(start)--------------*/
-@numbox-button-color:#666;
-@numbox-button-disable-color:#ccc;
 .numbox{
   display:-webkit-inline-box;
   position:relative;
@@ -14,22 +12,20 @@
     height:@26px;
   }
   .numbox-input{
-    &:extend(.appearance);
     display: block;
     -webkit-box-flex:1;
     text-align:center;
     text-overflow:ellipsis;
     width:@54px;
     border-width:0 @1px;
+    border-radius: 0;
     border-style: solid;
     border-color: @button-border;
   }
   .numbox-button{
-    &:extend(.appearance);
     display: block;
     width:@26px;
     font-size:@20px;
-    // font-weight:400;
     border-width: 0;
 
     color:@numbox-button-color;
@@ -39,11 +35,9 @@
     }
     &:first-child{
         left:0;
-        // border-width: 0 1px 0 0;
     }
     &:nth-last-of-type(1){
         right:0;
-        // border-width: 0 0 0 1px;
     }
   }
 }

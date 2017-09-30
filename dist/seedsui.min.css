@@ -2,8 +2,11 @@
 /*基础*/
 /*常用颜色*/
 /*控件*/
+/*头像*/
 /*开关*/
 /*日历*/
+/*进度条*/
+/*数字框*/
 /*间距*/
 /*----------------appearance.less(start)--------------*/
 input[type="search"]::-webkit-search-decoration,
@@ -1544,6 +1547,7 @@ label .input-radio + span {
   text-overflow: ellipsis;
   width: 54px;
   border-width: 0 1px;
+  border-radius: 0;
   border-style: solid;
   border-color: #e5e5e5;
 }
