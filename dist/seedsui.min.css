@@ -1272,19 +1272,7 @@ label .input-radio + span {
 .col-12 {
   position: relative;
   min-height: 1px;
-}
-.col-1,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9,
-.col-10,
-.col-11,
-.col-12 {
+  box-sizing: border-box;
   float: left;
 }
 .col-12 {
@@ -1322,123 +1310,6 @@ label .input-radio + span {
 }
 .col-1 {
   width: 8.33333333%;
-}
-.col-pull-12 {
-  right: 100%;
-}
-.col-pull-11 {
-  right: 91.66666667%;
-}
-.col-pull-10 {
-  right: 83.33333333%;
-}
-.col-pull-9 {
-  right: 75%;
-}
-.col-pull-8 {
-  right: 66.66666667%;
-}
-.col-pull-7 {
-  right: 58.33333333%;
-}
-.col-pull-6 {
-  right: 50%;
-}
-.col-pull-5 {
-  right: 41.66666667%;
-}
-.col-pull-4 {
-  right: 33.33333333%;
-}
-.col-pull-3 {
-  right: 25%;
-}
-.col-pull-2 {
-  right: 16.66666667%;
-}
-.col-pull-1 {
-  right: 8.33333333%;
-}
-.col-pull-0 {
-  right: auto;
-}
-.col-push-12 {
-  left: 100%;
-}
-.col-push-11 {
-  left: 91.66666667%;
-}
-.col-push-10 {
-  left: 83.33333333%;
-}
-.col-push-9 {
-  left: 75%;
-}
-.col-push-8 {
-  left: 66.66666667%;
-}
-.col-push-7 {
-  left: 58.33333333%;
-}
-.col-push-6 {
-  left: 50%;
-}
-.col-push-5 {
-  left: 41.66666667%;
-}
-.col-push-4 {
-  left: 33.33333333%;
-}
-.col-push-3 {
-  left: 25%;
-}
-.col-push-2 {
-  left: 16.66666667%;
-}
-.col-push-1 {
-  left: 8.33333333%;
-}
-.col-push-0 {
-  left: auto;
-}
-.col-offset-12 {
-  margin-left: 100%;
-}
-.col-offset-11 {
-  margin-left: 91.66666667%;
-}
-.col-offset-10 {
-  margin-left: 83.33333333%;
-}
-.col-offset-9 {
-  margin-left: 75%;
-}
-.col-offset-8 {
-  margin-left: 66.66666667%;
-}
-.col-offset-7 {
-  margin-left: 58.33333333%;
-}
-.col-offset-6 {
-  margin-left: 50%;
-}
-.col-offset-5 {
-  margin-left: 41.66666667%;
-}
-.col-offset-4 {
-  margin-left: 33.33333333%;
-}
-.col-offset-3 {
-  margin-left: 25%;
-}
-.col-offset-2 {
-  margin-left: 16.66666667%;
-}
-.col-offset-1 {
-  margin-left: 8.33333333%;
-}
-.col-offset-0 {
-  margin-left: 0;
 }
 /*----------------row.less(end)----------------*/
 /*----------------inputbox.less(start)--------------*/
@@ -3105,7 +2976,7 @@ label .input-radio + span {
   overflow: hidden;
 }
 .page {
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
   z-index: 1;
 }
 .page {
@@ -3258,7 +3129,7 @@ label .input-radio + span {
   background-color: #20aeff;
 }
 .timepart-progress.disabled {
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
 }
 .timepart-part {
   position: relative;
@@ -3571,7 +3442,7 @@ aside {
   top: 0;
   bottom: 0;
   visibility: hidden;
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
 }
 aside[data-transition="overlay"],
 aside[data-transition="push"] {
@@ -4011,7 +3882,7 @@ progress::-webkit-progress-value {
 .loading-more {
   padding: 12px 0;
   text-align: center;
-  background: #f0f0f0;
+  background: #f5f5f9;
 }
 .loading-more .loading-filling-wrapper {
   width: 30px;
@@ -4022,7 +3893,7 @@ progress::-webkit-progress-value {
 .loading-more .loading-filling-wrapper:after {
   width: 17px;
   height: 32px;
-  background: #f0f0f0;
+  background: #f5f5f9;
 }
 .loading-more label {
   margin-left: 10px;
@@ -5792,7 +5663,7 @@ progress::-webkit-progress-value {
   font-size: 0;
   padding: 8px 0;
   height: 170px;
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
 }
 .richedit .emoji.active {
   display: block;
@@ -9538,7 +9409,7 @@ Animate.css - http://daneden.me/animate
 .flex-1 {
   -webkit-flex: 1;
 }
-/*flex内部对齐*/
+/*flex内部水平对齐*/
 .flex-left {
   /*左对齐*/
   -webkit-justify-content: flex-start;
@@ -9551,6 +9422,15 @@ Animate.css - http://daneden.me/animate
   /*右对齐*/
   -webkit-justify-content: flex-end;
 }
+.flex-between {
+  /*水平两端分布*/
+  -webkit-justify-content: space-between;
+}
+.flex-around {
+  /*水平居中分布*/
+  -webkit-justify-content: space-around;
+}
+/*flex内部垂直对齐*/
 .flex-top {
   /*顶部对齐*/
   -webkit-align-items: flex-start;
@@ -9567,6 +9447,15 @@ Animate.css - http://daneden.me/animate
   -webkit-justify-content: center;
   -webkit-align-items: center;
 }
+.flex-vertical-stretch {
+  /*竖向拉伸*/
+  -webkit-align-items: stretch;
+}
+.flex-baseline {
+  /*垂直居中对齐*/
+  -webkit-align-items: baseline;
+}
+/*flex内部方向控制*/
 .flex-vertical {
   -webkit-flex-direction: column;
 }
@@ -9578,22 +9467,6 @@ Animate.css - http://daneden.me/animate
 }
 .flex-horizontal-reverse {
   -webkit-flex-direction: row-reverse;
-}
-.flex-between {
-  /*水平两端分布*/
-  -webkit-justify-content: space-between;
-}
-.flex-around {
-  /*水平居中分布*/
-  -webkit-justify-content: space-around;
-}
-.flex-vertical-stretch {
-  /*竖向拉伸*/
-  -webkit-align-items: stretch;
-}
-.flex-baseline {
-  /*垂直居中对齐*/
-  -webkit-align-items: baseline;
 }
 .flex-shrink > div {
   width: 100%;
@@ -9657,7 +9530,7 @@ body {
   font-size: 14px;
   font-family: Arial, "Microsoft Yahei";
   color: #333333;
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
   word-break: break-all;
   word-wrap: break-word;
 }
@@ -10273,7 +10146,7 @@ hr:after {
   background-color: white;
 }
 .bg-default {
-  background-color: #f0f0f0;
+  background-color: #f5f5f9;
 }
 .bg-disable {
   background-color: #d1d1d1;

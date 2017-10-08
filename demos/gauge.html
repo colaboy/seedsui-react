@@ -42,16 +42,17 @@
                     minValue:-100,
                     maxValue:400,
                     currentValue:200,
-                    onPointOut:function(e){
+                    onOut:function(e){
                         console.log("已爆表"+eval(e.params.currentValue-e.params.maxValue));
                     },
-                    onPointChangeStart:function(e){
+                    onChangeStart:function(e){
                         console.log("指针开始旋转，共需时间："+e.duration);
                     },
-                    onPointChangeEnd:function(e){
+                    onChangeEnd:function(e){
                         console.log("指针旋转完成");
                     }
                 });
+                this.gauge.update();
                 //加载数据
                 this.loadData();
             },

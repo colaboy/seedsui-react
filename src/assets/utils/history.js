@@ -5,8 +5,8 @@ var History = function (params) {
   ------------------------ */
   var defaults = {
     enableStorage: true,
-    historyKey: 'history'
-
+    historyKey: 'history',
+    useHash: true
     /* callbacks
     onInit:function(History)// 初始化
     onBack:function(History)// 返回
@@ -101,7 +101,7 @@ var History = function (params) {
   }
   s.onPopstate = function (e) {
     // console.log('location: ' + document.location + ', state: ' + JSON.stringify(e.state))
-    s.currentHash = location.hash
+    s.currentHash = s.params.useHash ? location.hash : location.href
     // 返回到根部
     if (location.hash === '') {
       s.onBack()
