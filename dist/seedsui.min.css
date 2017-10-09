@@ -3058,7 +3058,7 @@ label .input-radio + span {
   -webkit-text-fill-color: transparent;
 }
 /*----------------star.less(end)----------------*/
-/*----------checkbox.less(start)----------*/
+/*----------clock.less(start)----------*/
 .clock {
   position: relative;
   width: 200px;
@@ -3066,8 +3066,6 @@ label .input-radio + span {
   border-radius: 100%;
   border-style: solid;
   border-width: 2px;
-  -webkit-transition-duration: 500ms;
-  -webkit-transition-delay: 0;
   border-color: #20aeff;
 }
 .clock-origin {
@@ -3091,8 +3089,8 @@ label .input-radio + span {
   -webkit-transform-origin: center bottom;
   -webkit-transition-property: transform;
   -webkit-transition-timing-function: ease;
-  -webkit-transition-duration: inherit;
-  -webkit-transition-delay: inherit;
+  -webkit-transition-duration: 500ms;
+  -webkit-transition-delay: 0ms;
 }
 .clock-hour {
   height: 35%;
@@ -3105,7 +3103,7 @@ label .input-radio + span {
 .clock-minute {
   background-color: #20aeff;
 }
-/*----------checkbox.less(end)----------*/
+/*----------clock.less(end)----------*/
 /*----------------timepart.less(start)--------------*/
 .timepart {
   padding: 1px 0;
@@ -4307,6 +4305,7 @@ progress::-webkit-progress-value {
   background-position-y: top;
   background-size: 960px auto;
   opacity: 0.2;
+  -webkit-transition-property: all;
   -webkit-animation: lrWave 10s linear infinite;
 }
 /*---------------gauge.less(end)---------------*/

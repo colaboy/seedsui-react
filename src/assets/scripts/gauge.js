@@ -16,6 +16,7 @@ var Gauge = function (container, params) {
     valueClass: '.gauge-text',
 
     // animate
+    delay: 0,
     durationall: 2000
 
     /* callbacks
@@ -50,6 +51,8 @@ var Gauge = function (container, params) {
   if (s.bgLvl < 1) s.bgLvl = 1
   if (s.bgLvl > 10) s.bgLvl = 10
 
+  s.waveTop // 波浪高度
+
   /* ----------------------
     Method
     ---------------------- */
@@ -67,8 +70,8 @@ var Gauge = function (container, params) {
 
     // CallBack onChangeStart
     if (s.params.onChangeStart) s.params.onChangeStart(s)
-    // 开始旋转
-    s.point.setAttribute('style', '-webkit-transform:rotate(' + s.pointRotate + 'deg);-webkit-transition:transform ' + s.duration + 'ms')
+    // 旋转时长
+    s.point.style.webkitTransitionDuration = s.duration + 'ms'
   }
   // 设置数字
   s.updateValue = function () {
@@ -76,29 +79,42 @@ var Gauge = function (container, params) {
   }
   // 更改背景色
   s.updateBg = function () {
-    var bgExpr = /bg[1-9]0?$/g
-    if (bgExpr.test(s.container.className)) {
-      s.container.className = s.container.className.replace(bgExpr, 'bg' + s.bgLvl)
-    } else {
-      s.container.className += ' bg' + s.bgLvl
-    }
     s.container.style.webkitAnimationDuration = s.duration + 'ms'
   }
   // 设置波浪
   s.updateWave = function () {
     if (!s.wave) return
-    var waveTop = 100 - Math.round(s.percent.toFixed(1) * 100)
-    if (waveTop < 0) {
-      waveTop = 0
+    s.waveTop = 100 - Math.round(s.percent.toFixed(1) * 100)
+    if (s.waveTop < 0) {
+      s.waveTop = 0
     }
-    s.wave.style.top = waveTop + '%'
-    s.wave.style.webkitTransition = 'all ' + s.duration + 'ms'
+    s.wave.style.webkitTransitionDuration = s.duration + 'ms'
+  }
+  s.updateDelay = function () {
+    s.container.style.webkitAnimationDelay = s.params.delay + 'ms'
+    s.point.style.webkitTransitionDelay = s.params.delay + 'ms'
+    if(s.wave) s.wave.style.webkitTransitionDelay = s.params.delay + 'ms'
   }
   s.update = function () {
     s.updateBg()
     s.updatePoint()
     s.updateValue()
     s.updateWave()
+    s.updateDelay()
+  }
+  s.update()
+  s.play = function () {
+    // 播放指针
+    s.point.style.webkitTransform = 'rotate(' + s.pointRotate + 'deg)'
+    // 播放背景
+    var bgExpr = /bg[1-9]0?$/g
+    if (bgExpr.test(s.container.className)) {
+      s.container.className = s.container.className.replace(bgExpr, 'bg' + s.bgLvl)
+    } else {
+      s.container.className += ' bg' + s.bgLvl
+    }
+    // 播放波浪
+    if(s.wave) s.wave.style.top = s.waveTop + '%'
   }
   /* ----------------------
     Events

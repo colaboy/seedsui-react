@@ -41,7 +41,8 @@
                 this.gauge=new Gauge("#ID-Gauge",{
                     minValue:-100,
                     maxValue:400,
-                    currentValue:200,
+                    delay: 1000,
+                    currentValue:100,
                     onOut:function(e){
                         console.log("已爆表"+eval(e.params.currentValue-e.params.maxValue));
                     },
@@ -52,7 +53,7 @@
                         console.log("指针旋转完成");
                     }
                 });
-                this.gauge.update();
+                this.gauge.play();
                 //加载数据
                 this.loadData();
             },
