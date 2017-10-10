@@ -2,7 +2,7 @@
 .titlebar,.titlebar-button,.titlebar-title{
 	position:relative;
 }
-.titlebar{
+.titlebar:extend(.border-b all){
 	display:-webkit-box;
   -webkit-box-align:center;
 	min-height:@44px;
@@ -13,35 +13,6 @@
 
 	.inputbox{
 		-webkit-box-flex:1;
-	}
-
-	//底线
-	&:after{
-		content: '';
-    display: block;
-    position: absolute;
-
-    top: auto;
-		right: auto;
-    bottom: 0;
-    left: 0;
-    height: @1px;
-    width: 100%;
-		background-color: @border;
-		-webkit-transform-origin:center bottom;
-
-		//兼容UC线条不显示的BUG
-    z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
-	}
-	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-		&:after {
-			-webkit-transform: scaleY(0.5);
-		}
-	}
-	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-		&:after {
-			-webkit-transform: scaleY(0.33);
-		}
 	}
 }
 

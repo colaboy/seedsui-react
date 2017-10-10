@@ -1,0 +1,10 @@
+.setConentLine(@b:@border){
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: @b;
+  //兼容UC线条不显示的BUG
+  z-index:1;
+  overflow: hidden;
+  -webkit-backface-visibility:hidden;
+}

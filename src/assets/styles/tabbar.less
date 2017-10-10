@@ -8,10 +8,6 @@
 	overflow-y:hidden;
   white-space:nowrap;
   background-color:@bar-bg;
-  &:before,&:after,.tab:before,.tab:after{
-		//兼容UC线条不显示的BUG
-  	z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
-	}
 	&.disabled{
 		pointer-events: none;
 		opacity: 0.5;
@@ -109,10 +105,7 @@
 //单线形tabbar-line
 .tabbar-line{
 	.tab:before,.tab:after {
-		content: '';
-    display: block;
-    position: absolute;
-    background-color: @border;
+		.setConentLine(@bar-border);
 	}
 	.tab{
 		//下横线
@@ -121,8 +114,9 @@
 			right: auto;
 	    bottom: 0;
 	    left: 0;
-	    height: @1px;
-	    width: 100%;
+	    height: 1px;
+      width: 100%;
+      -webkit-transform: scaleY(0.5);
 	    -webkit-transform-origin:center bottom;
 		}
 		//选中状态下横线
@@ -136,7 +130,7 @@
 
 	    background-color:@bar-border-active;
 	    -webkit-transform-origin:center center;
-	    -webkit-transform:translate3d(-50%,0,0) scale(0,1);
+	    -webkit-transform:translate(-50%,0) scale(0,1);
 		}
 		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
 			&:before {
@@ -152,7 +146,7 @@
 	.tab.active{
 		color:@bar-color-active;
 		&:after {
-			-webkit-transform:translate3d(-50%,0,0) scale(1,1);
+			-webkit-transform:translate(-50%,0) scale(1,1);
 		}
 	}
 	&.tabbar-line-width50{
@@ -205,12 +199,12 @@
 	.tab{
 		height:@32px;
 		line-height:@30px;
-		border-width:@1px @1px @1px 0;
+		border-width:1px 1px 1px 0;
 	}
 	.tab:nth-of-type(1){
 		border-top-left-radius: @16px;
 		border-bottom-left-radius: @16px;
-		border-left-width:@1px;
+		border-left-width:1px;
 	}
 	.tab:nth-last-of-type(1){
 		border-top-right-radius: @16px;
@@ -282,31 +276,35 @@
 }
 .tabbar-dropdown{
 	&:after,.tab:not(:first-child):after{
-		content: '';
-    display: block;
-		position: absolute;
-    background-color: @border;
+		.setConentLine(@bar-border);
 	}
 	&:after{
 		width: 100%;
     height: 1px;
-		bottom: 0;
+    bottom: 0;
+    -webkit-transform: scaleY(0.5);
 	}
 	.tab:not(:first-child):after{
     width: 1px;
     height: 60%;
 		top: 50%;
     left: 0;
-    -webkit-transform: translate3d(0,-50%,0);
+    -webkit-transform: translate(0,-50%) scaleX(0.5);
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-		&:after,.tab:after {
-			-webkit-transform: scaleY(0.5);
+    &:after{
+      -webkit-transform: scaleY(0.5);
+    }
+    .tab:after {
+			-webkit-transform: translate(0,-50%) scaleX(0.5);
 		}
 	}
 	@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-		&:after,.tab:after {
-			-webkit-transform: scaleY(0.33);
+		&:after{
+      -webkit-transform: scaleY(0.33);
+    }
+    .tab:after {
+			-webkit-transform: translate(0,-50%) scaleX(0.33);
 		}
 	}
 	.tab.active{
@@ -339,7 +337,6 @@
 		}
 	}
 }
-
 
 //底部tabbar-footer
 .tabbar-footer{
