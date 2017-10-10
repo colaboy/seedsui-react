@@ -62,33 +62,27 @@
 }
 
 .alert-handler:before,.alert-handler a:nth-of-type(2):before{
-	content: '';
-    display: block;
-    position: absolute;
-    background-color: @border;
-    
-    //兼容UC线条不显示的BUG
-    z-index:1;overflow: hidden;-webkit-backface-visibility:hidden;
+	.setConentLine();
 }
 //上横线
 .alert-handler:before{
 	top: 0px;
 	right: auto;
-    bottom: auto;
-    left: 0;
-    height: @1px;
-    width: 100%;
-    -webkit-transform-origin:center top;
+  bottom: auto;
+  left: 0;
+  height: @1px;
+  width: 100%;
+  -webkit-transform-origin:center top;
 }
 //左竖线
 .alert-handler a:nth-of-type(2):before{
 	top: 0;
-    right: auto;
-    bottom: auto;
-    left: 0;
-    width: @1px;
-    height: 100%;
-    -webkit-transform-origin:left center;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  width: @1px;
+  height: 100%;
+  -webkit-transform-origin:left center;
 }
 
 .alert-handler a:only-child{

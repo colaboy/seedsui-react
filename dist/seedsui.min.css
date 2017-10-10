@@ -1210,18 +1210,9 @@ label .input-radio + span {
 }
 /*--------------------badge.less(start)----------------------*/
 /*----------------row.less(start)----------------*/
-.row {
+.row,
+.row-flex {
   position: relative;
-  display: -webkit-box;
-}
-.row.row-middle {
-  -webkit-box-align: center;
-}
-.row.row-top {
-  -webkit-box-align: start;
-}
-.row.row-bottom {
-  -webkit-box-align: end;
 }
 .col-flex {
   display: block;
@@ -1229,12 +1220,27 @@ label .input-radio + span {
   -webkit-box-flex: 1;
 }
 .row:before,
-.row:after {
+.row:after,
+.row-flex:before,
+.row-flex:after {
   display: table;
   content: " ";
 }
-.row:after {
+.row:after,
+.row-flex:after {
   clear: both;
+}
+.row-flex {
+  display: -webkit-box;
+}
+.row-flex.row-middle {
+  -webkit-box-align: center;
+}
+.row-flex.row-top {
+  -webkit-box-align: start;
+}
+.row-flex.row-bottom {
+  -webkit-box-align: end;
 }
 .col-1,
 .col-2,
