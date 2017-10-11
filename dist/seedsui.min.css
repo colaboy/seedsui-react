@@ -7,6 +7,7 @@
 /*日历*/
 /*进度条*/
 /*数字框*/
+/*选择器*/
 /*间距*/
 /*----------------appearance.less(start)--------------*/
 input[type="search"]::-webkit-search-decoration,
@@ -5869,6 +5870,7 @@ progress::-webkit-progress-value {
   height: 32px;
   line-height: 32px;
   padding: 0 5px;
+  color: #20aeff;
 }
 .picker-cancel {
   left: 8px;
@@ -5886,12 +5888,12 @@ progress::-webkit-progress-value {
 }
 .picker-slotbox {
   width: 100%;
+  height: 100%;
   display: table;
   table-layout: fixed;
 }
 .picker-slot {
   display: table-cell;
-  height: 215px;
   overflow: hidden;
 }
 .picker-slot {
