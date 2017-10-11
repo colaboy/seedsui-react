@@ -35,7 +35,8 @@ var CityPicker = function (params) {
       if (onCityClickDone) onCityClickDone(e)
     },
     onScrollEnd: function (e) {
-      var activeOption = e.activeSlot.values[e.activeSlot.activeIndex]
+      // var activeOption = e.activeSlot.values[e.activeSlot.activeIndex]
+      var activeOption = e.activeOptions[e.activeSlot.index]
       if (e.activeSlot.index === 0) { // 滚动省
         var city = replaceCity(activeOption.key) // 修改第二项
         replaceArea(city[0].key) // 修改第三项

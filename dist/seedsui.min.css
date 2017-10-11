@@ -1,4 +1,4 @@
-/* Base */
+/* Core */
 /*基础*/
 /*常用颜色*/
 /*控件*/
@@ -29,6 +29,146 @@ input[type="search"]::-webkit-search-results-decoration {
   border: none;
 }
 /*----------------appearance.less(end)--------------*/
+/*----------------border.less(start)--------------*/
+.border-t {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+}
+.border-b,
+hr,
+.basketline,
+.titlebar,
+.picker-header {
+  background-position: left bottom;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-t,
+.border-b,
+.border-tb,
+hr,
+.basketline,
+.titlebar,
+.group,
+.picker-header,
+.picker-layer-frame {
+  background-repeat: repeat-x;
+  -webkit-background-size: 100% 1px;
+}
+.border-tb,
+.group,
+.picker-layer-frame {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  background-position: top, bottom;
+}
+.border-l {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-r {
+  background-position: right top;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-l,
+.border-r {
+  background-repeat: repeat-y;
+  -webkit-background-size: 1px 100%;
+}
+.border {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+}
+.border-rb {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 1px 100% ,100% 1px;
+  background-size: 1px 100% ,100% 1px;
+  background-repeat: no-repeat;
+  background-position: right, bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .border-t {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-b,
+  hr,
+  .basketline,
+  .titlebar,
+  .picker-header {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-tb,
+  .group,
+  .picker-layer-frame {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-l {
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-r {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-rb {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+}
+hr {
+  border: 0;
+  clear: both;
+}
+.basketline {
+  position: relative;
+}
+.basketline:before,
+.basketline:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #d1d1d1;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  bottom: 0;
+  width: 1px;
+  height: 10px;
+}
+.basketline:before {
+  left: 0;
+  -webkit-transform-origin: left center;
+}
+.basketline:after {
+  right: 0;
+  -webkit-transform-origin: right center;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.33);
+  }
+}
+.bordered {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5e5e5;
+}
+.dotted {
+  border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
+}
+/*----------------border.less(end)--------------*/
+/* Base */
 /*----------------layout.less(start)--------------*/
 .header,
 .footer {
@@ -94,6 +234,39 @@ input[type="search"]::-webkit-search-results-decoration {
 .spacepadding-sm {
   padding-top: 6px;
   padding-bottom: 6px;
+}
+.wingmargin-lg {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.wingmargin-md {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.wingmargin-sm {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.spacemargin-lg {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.spacemargin-md {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.spacemargin-sm {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.space-lg {
+  height: 20px;
+}
+.space-md {
+  height: 12px;
+}
+.space-sm {
+  height: 8px;
 }
 /*----------------layout.less(end)--------------*/
 /*----------------form.less(start)--------------*/
@@ -5029,6 +5202,12 @@ progress::-webkit-progress-value {
 .alert-handler a:active {
   background-color: #d1d1d1;
 }
+.alert-handler:before {
+  -webkit-transform: scaleY(0.5);
+}
+.alert-handler a:nth-of-type(2):before {
+  -webkit-transform: scaleX(0.5);
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   .alert-handler:before {
     -webkit-transform: scaleY(0.5);
@@ -5662,8 +5841,8 @@ progress::-webkit-progress-value {
   background-color: #a1a1a1;
 }
 /*----------------richedit.less(end)--------------*/
-/*----------------scrollpicker.less(start)--------------*/
-.scrollpicker {
+/*----------------picker.less(start)--------------*/
+.picker {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -5673,17 +5852,17 @@ progress::-webkit-progress-value {
   -webkit-transform: translate3d(0px, 100%, 0px);
   background-color: white;
 }
-.scrollpicker.active {
+.picker.active {
   -webkit-transform: translate3d(0px, 0px, 0px);
 }
-.scrollpicker-header {
+.picker-header {
   position: relative;
   width: 100%;
   height: 43px;
   background-color: #f9f9f9;
 }
-.scrollpicker-cancel,
-.scrollpicker-done {
+.picker-cancel,
+.picker-done {
   display: inline-block;
   position: absolute;
   top: 4px;
@@ -5691,37 +5870,36 @@ progress::-webkit-progress-value {
   line-height: 32px;
   padding: 0 5px;
 }
-.scrollpicker-cancel {
+.picker-cancel {
   left: 8px;
 }
-.scrollpicker-done {
+.picker-done {
   right: 8px;
 }
-.scrollpicker-wrapper {
+.picker-wrapper {
   display: block;
   position: relative;
   height: 215px;
   overflow: hidden;
-  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #ffffff 40%, #ffffff 60%, transparent 100%, transparent);
+  background-color: #f5f5f9;
+  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #f5f5f9 40%, #f5f5f9 60%, transparent 100%, transparent);
 }
-.scrollpicker-slots {
+.picker-slotbox {
   width: 100%;
   display: table;
   table-layout: fixed;
 }
-.scrollpicker-slot {
+.picker-slot {
   display: table-cell;
   height: 215px;
   overflow: hidden;
 }
-ul.scrollpicker-slot,
-.scrollpicker-slot ul {
+.picker-slot {
   padding-top: 86px;
   padding-bottom: 86px;
   -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
-ul.scrollpicker-slot li,
-.scrollpicker-slot ul li {
+.picker-slot li {
   height: 44px;
   line-height: 44px;
   white-space: nowrap;
@@ -5729,32 +5907,24 @@ ul.scrollpicker-slot li,
   overflow: hidden;
   padding: 0 8px;
   font-size: 17px;
-  color: #cccccc;
+  color: #333333;
+  pointer-events: none;
 }
-ul.scrollpicker-slot li.active,
-.scrollpicker-slot ul li.active {
+.picker-slot li.active {
   color: #333333;
 }
-.scrollpicker-slot.lock li.active {
+.picker-slot.lock li.active {
   color: #cccccc;
 }
-.scrollpicker-layer {
+.picker-layer {
   position: absolute;
   top: 0;
   height: 100%;
   width: 100%;
-}
-.scrollpicker-layer-frame {
-  position: absolute;
-  top: 50%;
-  height: 46px;
-  width: 100%;
   pointer-events: none;
-  -webkit-transform: translateY(-50%);
 }
-.scrollpicker-layer-frame:before,
-.scrollpicker-layer-frame:after,
-.scrollpicker-header:after {
+.picker-layer:before,
+.picker-layer:after {
   content: '';
   display: block;
   position: absolute;
@@ -5762,41 +5932,26 @@ ul.scrollpicker-slot li.active,
   z-index: 1;
   overflow: hidden;
   -webkit-backface-visibility: hidden;
-}
-.scrollpicker-layer-frame:before {
-  top: 0px;
-  right: auto;
-  bottom: auto;
-  left: 0;
-  height: 1px;
   width: 100%;
-  -webkit-transform-origin: center top;
+  height: 82px;
 }
-.scrollpicker-layer-frame:after,
-.scrollpicker-header:after {
-  top: auto;
-  right: auto;
-  bottom: 0px;
-  left: 0;
-  height: 1px;
+.picker-layer:before {
+  top: 0;
+  background: rgba(245, 245, 249, 0.7);
+}
+.picker-layer:after {
+  bottom: 0;
+  background: rgba(245, 245, 249, 0.7);
+}
+.picker-layer-frame {
+  position: absolute;
+  top: 50%;
+  height: 46px;
   width: 100%;
-  -webkit-transform-origin: center bottom;
+  pointer-events: none;
+  -webkit-transform: translateY(-50%);
 }
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .scrollpicker-layer-frame:before,
-  .scrollpicker-layer-frame:after,
-  .scrollpicker-header:after {
-    -webkit-transform: scaleY(0.5);
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .scrollpicker-layer-frame:before,
-  .scrollpicker-layer-frame:after,
-  .scrollpicker-header:after {
-    -webkit-transform: scaleY(0.33);
-  }
-}
-/*----------------scrollpicker.less(end)--------------*/
+/*----------------picker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/
 /*隐藏原始图标*/
 summary::-webkit-details-marker {
@@ -9854,148 +10009,6 @@ br {
   font-size: 80px;
 }
 /*---------------size.less(end)---------------*/
-/*----------------border.less(start)--------------*/
-.border,
-.border-rb {
-  position: relative;
-  border: 0;
-}
-.border-t,
-.border-b,
-.border-l,
-.border-r,
-.border-tb,
-.titlebar,
-.group,
-hr,
-.basketline {
-  border: 0;
-}
-.border-t {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-b,
-.titlebar,
-hr,
-.basketline {
-  background-position: left bottom;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-t,
-.border-b,
-.border-tb,
-.titlebar,
-.group,
-hr,
-.basketline {
-  background-repeat: repeat-x;
-  -webkit-background-size: 100% 1px;
-}
-.border-tb,
-.group {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  background-position: top, bottom;
-}
-.border-l {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-r {
-  background-position: right top;
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-l,
-.border-r {
-  background-repeat: repeat-y;
-  -webkit-background-size: 1px 100%;
-}
-.border:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-repeat: no-repeat;
-  background-position: top, right, bottom, left;
-  padding: 1px;
-  -webkit-box-sizing: border-box;
-  z-index: 1;
-  pointer-events: none;
-}
-.border-rb:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  -webkit-background-size: 1px 100% ,100% 1px;
-  background-size: 1px 100% ,100% 1px;
-  background-repeat: no-repeat;
-  background-position: right, bottom;
-  padding: 1px;
-  -webkit-box-sizing: border-box;
-  z-index: 1;
-  pointer-events: none;
-}
-hr {
-  border: 0;
-  clear: both;
-}
-.basketline {
-  position: relative;
-}
-.basketline:before,
-.basketline:after {
-  content: '';
-  display: block;
-  position: absolute;
-  background-color: #d1d1d1;
-  z-index: 1;
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  bottom: 0;
-  width: 1px;
-  height: 10px;
-}
-.basketline:before {
-  left: 0;
-  -webkit-transform-origin: left center;
-}
-.basketline:after {
-  right: 0;
-  -webkit-transform-origin: right center;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.5);
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.33);
-  }
-}
-.bordered {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e5e5e5;
-}
-.dotted {
-  border-style: dotted;
-}
-.dashed {
-  border-style: dashed;
-}
-/*----------------border.less(end)--------------*/
 /*----------------theme.less(start)--------------*/
 /*控件颜色*/
 .color-body {

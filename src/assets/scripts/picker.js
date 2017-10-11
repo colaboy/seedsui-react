@@ -6,54 +6,48 @@ var Picker = function (params) {
   var defaults = {
     overflowContainer: document.body,
     overflowContainerActiveClass: 'overflow-hidden',
-    parent: document.body,
 
     mask: null,
 
     maskClass: 'mask',
     maskActiveClass: 'active',
-    maskFeatureClass: 'scrollpicker-mask',
+    maskFeatureClass: 'picker-mask',
 
-    pickerClass: 'scrollpicker',
+    pickerClass: 'picker',
     pickerActiveClass: 'active',
 
-    headerClass: 'scrollpicker-header',
-    headerDoneClass: 'scrollpicker-done',
+    headerClass: 'picker-header',
+    headerDoneClass: 'picker-done',
     headerDoneText: '完成',
-    headerCancelClass: 'scrollpicker-cancel',
+    headerCancelClass: 'picker-cancel',
     headerCancelText: '取消',
 
-    wrapperClass: 'scrollpicker-wrapper',
+    wrapperClass: 'picker-wrapper',
 
-    slotboxClass: 'scrollpicker-slots',
+    slotboxClass: 'picker-slotbox',
+    slotClass: 'picker-slot',
 
-    layerClass: 'scrollpicker-layer',
-    layerFrameClass: 'scrollpicker-layer-frame',
-    layerFrameHTML: '<div class=scrollpicker-layer-frame></div>',
-
-    slotsClass: 'scrollpicker-slots',
-    slotClass: 'scrollpicker-slot',
+    layerClass: 'picker-layer',
+    layerFrameClass: 'picker-layer-frame',
+    layerFrameHTML: '<div class=picker-layer-frame></div>',
 
     lockClass: 'lock',
-    slotActiveClass: 'active',
-    slotLiActiveClass: 'active',
 
     cellHeight: 44,
-    friction: 0.002, // 摩擦力
     bounceRange: 44, // 弹性值
 
     isClickMaskHide: true
 
     /* callbacks
-    onInit:function (Scrollpicker)
-    onClickCancel:function (Scrollpicker)
-    onClickDone:function (Scrollpicker)
-    onScrollStart:function (Scrollpicker)
-    onScroll:function (Scrollpicker)
-    onScrollEnd:function (Scrollpicker)
-    onTransitionEnd:function (Scrollpicker)// 动画结束后回调
-    onShowed(Scrollpicker)// 显示动画结束后回调
-    onHid(Scrollpicker)// 隐藏动画结束后回调
+    onInit:function (Picker)
+    onClickCancel:function (Picker)
+    onClickDone:function (Picker)
+    onScrollStart:function (Picker)
+    onScroll:function (Picker)
+    onScrollEnd:function (Picker)
+    onTransitionEnd:function (Picker)// 动画结束后回调
+    onShowed(Picker)// 显示动画结束后回调
+    onHid(Picker)// 隐藏动画结束后回调
       */
   }
   params = params || {}
@@ -62,13 +56,12 @@ var Picker = function (params) {
       params[def] = defaults[def]
     }
   }
-  // Scrollpicker
+  // Picker
   var s = this
 
   // Params
   s.params = params
   // Dom元素
-  s.parent = typeof s.params.parent === 'string' ? document.querySelector(s.params.parent) : s.params.parent
   s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
   s.picker
   s.mask
@@ -79,8 +72,7 @@ var Picker = function (params) {
   s.headerDone
   s.headerCancel
 
-  // 槽元素与其值
-  s.slots = []
+  // 选中项
   s.activeOptions = []
   // 新建Picker
   s.createPicker = function () {
@@ -120,7 +112,7 @@ var Picker = function (params) {
   // 新建Slotbox
   s.createSlotbox = function () {
     var slotbox = document.createElement('div')
-    slotbox.setAttribute('class', s.params.slotsClass)
+    slotbox.setAttribute('class', s.params.slotboxClass)
     return slotbox
   }
 
@@ -137,13 +129,6 @@ var Picker = function (params) {
     var mask = document.createElement('div')
     mask.setAttribute('class', s.params.maskClass + ' ' + s.params.maskFeatureClass)
     return mask
-  }
-
-  // 新建一行List
-  s.createLi = function (value) {
-    var li = document.createElement('li')
-    li.innerHTML = value
-    return li
   }
 
   // 创建DOM
@@ -172,14 +157,14 @@ var Picker = function (params) {
     s.header.appendChild(s.headerCancel)
     s.header.appendChild(s.headerDone)
 
-    s.wrapper.appendChild(s.slotbox)
     s.wrapper.appendChild(s.layer)
+    s.wrapper.appendChild(s.slotbox)
 
     s.picker.appendChild(s.header)
     s.picker.appendChild(s.wrapper)
 
     s.mask.appendChild(s.picker)
-    s.parent.appendChild(s.mask)
+    s.overflowContainer.appendChild(s.mask)
   }
   s.create()
   /* ------------------------
@@ -197,26 +182,25 @@ var Picker = function (params) {
     else slot.isLock = false
 
     // 添加到集合里
-    s.slots.push(slot)
     s.slotbox.appendChild(slot)
 
     // 渲染
-    slot.index = s.slots.length - 1
+    slot.index = s.slotbox.children.length - 1
     s.renderSlot(slot)
   }
-
-  s.replaceSlot = function (index, values, defaultKey, classes, fn) { // 替换一列
+  // 替换一列
+  s.replaceSlot = function (index, values, defaultKey, classes, fn) {
     if (!classes) classes = ''
     // 设置属性
-    var slot = s.slots[index]
+    var slot = s.slotbox.children[index]
     slot.setAttribute('class', s.params.slotClass + ' ' + classes)
     slot.values = values
     slot.defaultKey = defaultKey
     if (classes.indexOf(s.params.lockClass) >= 0) slot.isLock = true
     else slot.isLock = false
 
-    if (classes.indexOf(s.params.lockClass) >= 0) s.slots[index].isLock = true
-    else s.slots[index].isLock = false
+    if (classes.indexOf(s.params.lockClass) >= 0) s.slotbox.children[index].isLock = true
+    else s.slotbox.children[index].isLock = false
     // 渲染
     s.renderSlot(slot)
     // 回调
@@ -225,42 +209,37 @@ var Picker = function (params) {
 
   s.renderSlot = function (slot) { // 渲染一列
     var index = slot.index
+    var values = slot.values
     slot.innerHTML = ''
     // 渲染
-    slot.defaultIndex = 0
-    slot.list = []
-    for (var i = 0; i < slot.values.length; i++) {
-      var value = slot.values[i]
+    var li = ''
+    var defaultIndex = 0
+    for (var i = 0; i < values.length; i++) {
       // 获得defaultIndex
-      if (!slot.defaultIndex && slot.defaultKey && slot.defaultKey === value['key']) {
-        slot.defaultIndex = i
+      if (slot.defaultKey && slot.defaultKey === values[i]['key']) {
+        defaultIndex = i
       }
 
       // 把li添加到槽中
-      var li = s.createLi(value['value'])
-      slot.list.push(li)
-      slot.appendChild(li)
+      li += '<li>' + values[i]['value'] + '</li>'
     }
-    slot.activeIndex = slot.defaultIndex
+    slot.innerHTML = li
     // 选中项
-    s.activeOptions[index] = slot.values[slot.activeIndex]
-    slot.list[slot.activeIndex].className = s.params.slotLiActiveClass
+    s.activeOptions[index] = slot.values[defaultIndex]
     // 设置一槽的属性
-    /* slot.values
+    /*
+    slot.values
     slot.defaultKey
-    slot.defaultIndex
-    slot.activeIndex
     slot.index
-    slot.list */
-    slot.index = index
-    slot.defaultPosY = -slot.defaultIndex * s.params.cellHeight
-    slot.activePosY = -slot.activeIndex * s.params.cellHeight
+    */
+    slot.defaultPosY = -defaultIndex * s.params.cellHeight
+    slot.posY = -defaultIndex * s.params.cellHeight
     slot.minPosY = 0
     slot.maxPosY = -(slot.values.length - 1) * s.params.cellHeight
     slot.minBouncePosY = s.params.bounceRange
     slot.maxBouncePosY = slot.maxPosY - s.params.bounceRange
 
-    slot.style.webkitTransform = 'translate3d(0px,' + slot.activePosY + 'px,0px)'
+    slot.style.webkitTransform = 'translate(0px,' + slot.posY + 'px)'
   }
   s.isHid = true
   // 隐藏
@@ -279,118 +258,89 @@ var Picker = function (params) {
     if (s.overflowContainer) s.overflowContainer.classList.add(s.params.overflowContainerActiveClass)
   }
   s.clearSlots = function () { // 清除
-    // 清空指向
-    s.slots = []
     // 清空数据
     s.slotbox.innerHTML = ''
   }
   s.destroy = function () { // 销毁
-    s.parent.removeChild(s.mask)
+    s.overflowContainer.removeChild(s.mask)
   }
-  s.updateActiveSlot = function (xPosition) { // 寻找当前点击的槽
-    var xPos = xPosition || 0
-    var slotPos = 0
-    for (var i = 0; i < s.slots.length; i++) {
-      slotPos += s.slots[i].clientWidth
-      if (xPos < slotPos) {
-        s.activeSlot = s.slots[i]
-        break
+  // 计算惯性时间与坐标，返回距离和时间
+  s.calcInertance = function (opts) {
+    // 摩擦力
+    var friction = 0.002
+    // 滑动距离
+    var opRange = opts.range
+    // 滑动时长
+    var opDuration = opts.duration
+
+    // 使用公式算出duration(新时长)
+    var duration = (2 * opRange / opDuration) / friction
+    // 使用公式算出offset(新距离)
+    var range = -(friction / 2) * (duration * duration)
+    if (opRange < 0) { // 如果拖动间距为负值，则为向下拖动
+      duration = -duration
+      range = -range
+    }
+    /* console.log('滑动距离:' + opRange)
+    console.log('滑动时长:' + opDuration)
+    console.log('新时长:' + duration)
+    console.log('新距离:' + range) */
+    // 使用距离计算新的位置
+    var value = opts.current + range
+
+    // 矫正位置与时长
+    if (value > opts.min) { // 最上面
+      // Math.abs(Math.round(value)) - Math.abs(Math.round(opts.min))
+      duration = 300
+      value = opts.min
+    } else if (value < opts.max) { // 最下面
+      duration = 300
+      value = opts.max
+    } else { // 在中间
+      var remainder = value % s.params.cellHeight
+      if (remainder !== 0) {
+        // 算出比例
+        var divided = Math.round(value / s.params.cellHeight)
+        // 对准位置
+        value = s.params.cellHeight * divided
       }
     }
-  }
-  s.getInertance = function (opts) { // 计算惯性时间与坐标，返回距离和时间
-    var range = opts.range // 滑动距离(正数)
-    var duration = opts.duration // 滑动时长
-    var friction = opts.friction // 惯性强度
-    var value = opts.value // 当前值(负数)
-    var min = opts.min // 最小值(正数)
-    var max = opts.max // 最大值(负数)
 
-    // 使用公式算出duration(新时长)与range(新距离)
-    var newDuration = (2 * range / duration) / friction
-    if (!newDuration && newDuration !== 0) {
-      newDuration = 100
-    }
-    // 使用公式算出range(新距离)
-    var newRange = -(friction / 2) * (newDuration * newDuration) // (负数)
-    if (range < 0) { // 如果拖动间距为负值，则为向下拖动
-      newDuration = -newDuration
-      newRange = -newRange
-    }
-    // 计算value(新值)
-    var newValue = value + newRange
-
-    // 如果超出边缘，重新计算duration(新时间)与value(新值)
-    if (newValue > min) { // 顶部
-      newRange = Math.abs(value - min)
-      newDuration = Math.abs(Math.round(range / duration * 100))
-      newValue = min
-      // console.log('value:'+value+'min:'+min+'newRange:'+newRange+'newDuration:'+newDuration)
-    } else if (newValue < max) { // 底部
-      newValue = max
-      newDuration = Math.abs(Math.round(range / duration * 100))
-      newRange = max - value
-      // console.log('value:'+value+'max:'+max+'newRange:'+newRange+'newDuration:'+newDuration)
-    }
+    // 更新选中项
+    s.updateActiveOptions(s.activeSlot, value)
 
     // 返回值
     return {
-      range: newRange,
-      duration: newDuration,
-      value: newValue
+      duration: Math.round(duration),
+      value: Math.round(value)
     }
   }
-  s.updateActiveList = function (slot, posY) { // 更新列表激活状态
+  // 更新列表激活状态
+  s.updateActiveOptions = function (slot, posY) {
     var index = -Math.round((posY - s.params.cellHeight * 2) / s.params.cellHeight) - 2
-    slot.list.forEach(function (n, i, a) {
-      n.classList.remove('active')
-      if (i === index) {
-        n.classList.add('active')
-        // s.activeNode=n
-      }
-    })
     // 添加到激活项
-    var activeOption = s.slots[slot.index].values[index]
+    var activeOption = slot.values[index]
     s.activeOptions[slot.index] = activeOption
-    // 设置选中项
-    s.slots[slot.index].activeIndex = index
-  }
-  s.isPosCorrected = false
-  s.posCorrect = function (slot) { // 位置矫正
-    slot.style.webkitTransitionDuration = '300ms'
-    if (slot.activePosY > slot.minPosY) { // 最上面
-      slot.activePosY = slot.minPosY
-    } else if (slot.activePosY < slot.maxPosY) { // 最下面
-      slot.activePosY = slot.maxPosY
-    } else { // 在中间
-      var remainder = slot.activePosY % s.params.cellHeight
-      if (remainder !== 0) {
-        // 算出比例
-        var divided = Math.round(slot.activePosY / s.params.cellHeight)
-        // 对准位置
-        slot.activePosY = s.params.cellHeight * divided
-      }
-    }
-    slot.style.webkitTransform = 'translate3d(0px,' + slot.activePosY + 'px,0px)'
-    // 更新选中槽
-    s.updateActiveList(slot, slot.activePosY)
-    s.isPosCorrected = true
-    console.log('矫正位置' + s.isPosCorrected)
   }
   /* ------------------------
   Control
-  ------------------------=== */
+  ------------------------ */
   s.events = function (detach) {
-    var touchTarget = s.layer
     var action = detach ? 'removeEventListener' : 'addEventListener'
-    touchTarget[action]('touchstart', s.onTouchStart, false)
-    touchTarget[action]('touchmove', s.onTouchMove, false)
-    touchTarget[action]('touchend', s.onTouchEnd, false)
-    touchTarget[action]('touchcancel', s.onTouchEnd, false)
-    // preventDefault
-    s.mask[action]('touchmove', s.preventDefault, false)
-    /* s.header[action]('touchmove', s.preventDefault, false)
-    touchTarget[action]('touchmove', s.preventDefault, false) */
+    // 滑动事件
+    s.slotbox[action]('touchstart', s.onTouchStart, false)
+    s.slotbox[action]('touchmove', s.onTouchMove, false)
+    s.slotbox[action]('touchend', s.onTouchEnd, false)
+    s.slotbox[action]('touchcancel', s.onTouchEnd, false)
+    // 选择器事件
+    s.picker[action]('webkitTransitionEnd', s.onTransitionEnd, false)
+    // 遮罩
+    // s.mask[action]('touchmove', s.preventDefault, false)
+    s.mask[action]('click', s.onClickMask, false)
+    // 按钮
+    // s.header[action]('touchmove', s.preventDefault, false)
+    s.headerDone[action]('click', s.onClickDone, false)
+    s.headerCancel[action]('click', s.onClickCancel, false)
   }
   s.detach = function (event) {
     s.events(true)
@@ -399,66 +349,12 @@ var Picker = function (params) {
     s.events()
   }
 
-  // touch锁定
-  s.isLockTouch = false
-  s.lockTouch = function (event) {
-    console.log('锁定touch')
-    s.isLockTouch = true
-    s.detach()
-  }
-  s.unLockTouch = function (event) {
-    if (s.isLockTouch === false) {
-      return
-    }
-    s.isLockTouch = false
-    console.log('解除锁定touch')
-    s.attach()
-  }
-
-  // 锁定滚动
-  s.isLockScroll = false
-  s.lockScroll = function () {
-    console.log('锁定')
-    s.isLockScroll = true
-    s.layer.removeEventListener('touchmove', s.onTouchMove, false)
-    s.layer.removeEventListener('touchend', s.onTouchEnd, false)
-    s.layer.removeEventListener('touchcancel', s.onTouchEnd, false)
-  }
-  s.unLockScroll = function () {
-    if (s.isLockScroll === false) {
-      return
-    }
-    console.log('解除锁定')
-    s.isLockScroll = false
-    s.layer.addEventListener('touchmove', s.onTouchMove, false)
-    s.layer.addEventListener('touchend', s.onTouchEnd, false)
-    s.layer.addEventListener('touchcancel', s.onTouchEnd, false)
-  }
-
-  s.eventsOther = function (detach) {
-    var action = detach ? 'removeEventListener' : 'addEventListener'
-    // transitionEnd
-    s.picker[action]('webkitTransitionEnd', s.onTransitionEnd, false)
-    // mask
-    s.mask[action]('click', s.onClickMask, false)
-    // 确定和取消按钮
-    s.headerDone[action]('click', s.onClickDone, false)
-    s.headerCancel[action]('click', s.onClickCancel, false)
-  }
-  s.attachOther = function (event) {
-    s.eventsOther()
-  }
-  s.detachOther = function (event) {
-    s.eventsOther(true)
-  }
-
   s.preventDefault = function (e) {
     e.preventDefault()
   }
 
   // Mask
   s.onClickMask = function (e) {
-    s.unLockTouch()
     if (e.target === s.mask) {
       if (s.params.isClickMaskHide === true) s.hide()
     }
@@ -466,12 +362,10 @@ var Picker = function (params) {
 
   // Done|Cancel
   s.onClickDone = function (e) {
-    s.unLockTouch()
     s.target = e.target
     s.params.onClickDone(s)
   }
   s.onClickCancel = function (e) {
-    s.unLockTouch()
     s.target = e.target
     if (s.params.onClickCancel) s.params.onClickCancel(s)
     else s.hide()
@@ -498,14 +392,16 @@ var Picker = function (params) {
     s.touches.startX = e.touches[0].clientX
     s.touches.startY = e.touches[0].clientY
     // 寻找当前点击的槽
-    s.updateActiveSlot(s.touches.startX)
+    s.activeSlot = e.target
 
     // 锁定的槽将不工作
-    if (s.activeSlot.isLock) {
-      s.lockScroll()
-      return
-    }
-    s.touches.posY = s.activeSlot.activePosY
+    if (s.activeSlot.isLock) return
+
+    // 获得位置
+    s.touches.posY = s.activeSlot.posY
+
+    // 清除动画
+    s.activeSlot.style.webkitTransitionDuration = 0
 
     // 记录点击时间
     s.touches.startTimeStamp = e.timeStamp
@@ -513,6 +409,10 @@ var Picker = function (params) {
     if (s.params.onScrollStart) s.params.onScrollStart(s)
   }
   s.onTouchMove = function (e) {
+    e.preventDefault()
+    // 锁定的槽将不工作
+    if (s.activeSlot.isLock) return
+
     s.touches.currentY = e.touches[0].clientY
     s.touches.diffY = s.touches.startY - s.touches.currentY
     s.touches.currentPosY = s.touches.posY - s.touches.diffY
@@ -521,56 +421,47 @@ var Picker = function (params) {
     } else if (s.touches.currentPosY < s.activeSlot.maxBouncePosY) {
       s.touches.currentPosY = s.activeSlot.maxBouncePosY
     }
-    s.activeSlot.style.webkitTransform = 'translate3d(0px,' + s.touches.currentPosY + 'px,0px)'
-    // 当前槽选中行
-    s.updateActiveList(s.activeSlot, s.touches.currentPosY)
+    s.activeSlot.style.webkitTransform = 'translate(0px,' + s.touches.currentPosY + 'px)'
 
     // Callback
     if (s.params.onScroll) s.params.onScroll(s)
   }
   s.onTouchEnd = function (e) {
-    // 判断是否是tap
+    // 锁定的槽将不工作
+    if (s.activeSlot.isLock) return
+
     s.touches.endX = e.changedTouches[0].clientX
     s.touches.endY = e.changedTouches[0].clientY
     s.touches.diffX = s.touches.startX - s.touches.endX
     s.touches.diffY = s.touches.startY - s.touches.endY
+    // 判断是否是tap
     if (Math.abs(s.touches.diffX) < 6 && Math.abs(s.touches.diffY) < 6) {
       return
     }
-    // 锁定touch
-    s.isPosCorrected = false
-    s.lockTouch()
 
     // 计算拖动时间
     s.touches.duration = e.timeStamp - s.touches.startTimeStamp
 
     // 惯性值计算
-    var inertance = s.getInertance({
+    var inertance = s.calcInertance({
       range: s.touches.diffY,
       duration: s.touches.duration,
-      friction: s.params.friction,
-      value: s.touches.currentPosY,
-      min: s.activeSlot.minBouncePosY,
-      max: s.activeSlot.maxBouncePosY
+      current: s.touches.currentPosY,
+      min: s.activeSlot.minPosY,
+      max: s.activeSlot.maxPosY
     })
-
     // 滚动到指定位置
     s.activeSlot.style.webkitTransitionDuration = inertance.duration + 'ms'
-    s.activeSlot.activePosY = inertance.value
-    s.activeSlot.style.webkitTransform = 'translate3d(0px,' + inertance.value + 'px,0px)'
+    s.activeSlot.posY = inertance.value
+    s.activeSlot.style.webkitTransform = 'translate(0px,' + inertance.value + 'px)'
 
-    // 不执行onTransitionEnd的情况，则需要手动执行onTransitionEnd
-    if (s.touches.currentPosY === s.activeSlot.minBouncePosY || s.touches.currentPosY === s.activeSlot.maxBouncePosY) {
-      var ev = {}
-      ev.propertyName = 'transform'
-      ev.target = s.activeSlot
-      s.onTransitionEnd(ev)
-    }
+    // Callback onScrollEnd
+    if (s.params.onScrollEnd) s.params.onScrollEnd(s)
   }
 
   s.onTransitionEnd = function (e) {
     var target = e.target
-    if (e.propertyName !== 'transform') {
+    if (e.propertyName !== 'transform' || target !== s.picker) {
       return
     }
     // 容器显隐
@@ -581,25 +472,12 @@ var Picker = function (params) {
       } else {
         if (s.params.onShowed) s.params.onShowed(s)
       }
-      return
     }
-    // slot槽滚动
-    if (s.isPosCorrected) {
-      // 解除锁定touch
-      s.unLockTouch()
-      // 动画时间回0
-      target.style.webkitTransitionDuration = '0ms'
-      // Callback
-      if (s.params.onScrollEnd) s.params.onScrollEnd(s)
-      return
-    }
-    s.posCorrect(target) // 位置矫正
   }
 
   s.init = function () {
     if (s.params.onInit) s.params.onInit(s)
     s.attach()
-    s.attachOther()
   }
   s.init()
   return s

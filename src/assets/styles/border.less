@@ -1,126 +1,95 @@
 /*----------------border.less(start)--------------*/
-@border-t:-webkit-gradient(linear, left bottom, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-b:-webkit-gradient(linear, left top, left bottom, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-l:-webkit-gradient(linear, right top, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-r:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-t-1:-webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @border));
+@border-b-1:-webkit-gradient(linear, left top, left bottom, color-stop(0, @border), color-stop(1, @border));
+@border-l-1:-webkit-gradient(linear, right top, left top, color-stop(0, @border), color-stop(1, @border));
+@border-r-1:-webkit-gradient(linear, left top, right top, color-stop(0, @border), color-stop(1, @border));
 
-.border-t(@b:@border){
-  border-top:1px solid @b;
+@border-t-2:-webkit-gradient(linear, left bottom, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-b-2:-webkit-gradient(linear, left top, left bottom, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-l-2:-webkit-gradient(linear, right top, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-r-2:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+
+.border-t {
+  background-position: left top;
+  background-image: @border-t-1;
 }
 
-.border-b(@b:@border) {
-  border-bottom:1px solid @b;
+.border-b {
+  background-position: left bottom;
+  background-image: @border-b-1;
 }
 
-.border-tb(@b:@border){
-  border-top:1px solid @b;
-  border-bottom:1px solid @b;
-  background-image: none;
+.border-t,.border-b,.border-tb {
+  background-repeat: repeat-x;
+  -webkit-background-size: 100% 1px;
 }
 
-.border-rb(@b:@border){
-  border-right:1px solid @b;
-  border-bottom:1px solid @b;
-  background-image: none;
+.border-tb {
+  background-image: @border-t-1,@border-b-1;
+  background-position: top, bottom;
 }
 
-.border-l(@b:@border){
-  border-left: 1px solid @b;
+.border-l {
+  background-position: left top;
+  background-image: @border-l-1;
 }
 
-.border-r(@b:@border){
-  border-right: 1px solid @b;
+.border-r {
+  background-position: right top;
+  background-image: @border-r-1;
 }
 
-.border(@b:@border){
-  border: 1px solid @b;
+.border-l,.border-r {
+  background-repeat: repeat-y;
+  -webkit-background-size: 1px 100%;
 }
 
-//@media screen and (-webkit-min-device-pixel-ratio : 2) {
-  .border,.border-rb {
-    position: relative;
-    border: 0;
-  }
+.border {
+  background-image: @border-t-1,@border-r-1,@border-b-1,@border-l-1;
+  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+}
+.border-rb {
+  background-image: @border-r-1,@border-b-1;
+  -webkit-background-size: 1px 100% ,100% 1px;
+  background-size: 1px 100% ,100% 1px;
+  background-size: 1px 100% ,100% 1px;
+  background-repeat: no-repeat;
+  background-position: right, bottom;
+}
 
-  .border-t,.border-b,.border-l,.border-r,.border-tb {
-    border: 0;
-  }
-
+@media screen and (-webkit-min-device-pixel-ratio : 2) {
   .border-t {
-    background-position: left top;
-    background-image: @border-t;
+    background-image: @border-t-2;
   }
 
   .border-b {
-    background-position: left bottom;
-    background-image: @border-b;
-  }
-
-  .border-t,
-  .border-b,
-  .border-tb{
-    background-repeat: repeat-x;
-    -webkit-background-size: 100% 1px;
+    background-image: @border-b-2;
   }
 
   .border-tb {
-    background-image: @border-t,@border-b;
-    background-position: top, bottom;
+    background-image: @border-t-2,@border-b-2;
   }
 
   .border-l {
-    background-position: left top;
-    background-image: @border-l;
+    background-image: @border-l-2;
   }
 
   .border-r {
-    background-position: right top;
-    background-image: @border-r;
+    background-image: @border-r-2;
   }
 
-  .border-l,
-  .border-r {
-    background-repeat: repeat-y;
-    -webkit-background-size: 1px 100%;
+  .border {
+    background-image: @border-t-2,@border-r-2,@border-b-2,@border-l-2;
   }
 
-  .border:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: @border-t,@border-r,@border-b,@border-l;
-    -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-    background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-    background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-    background-repeat: no-repeat;
-    background-position: top, right, bottom, left;
-    padding: 1px;
-    -webkit-box-sizing: border-box;
-    z-index: 1;
-    pointer-events: none;
+  .border-rb {
+    background-image: @border-r-2,@border-b-2;
   }
-  .border-rb:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-image: @border-r,@border-b;
-    -webkit-background-size: 1px 100% ,100% 1px;
-    background-size: 1px 100% ,100% 1px;
-    background-size: 1px 100% ,100% 1px;
-    background-repeat: no-repeat;
-    background-position: right, bottom;
-    padding: 1px;
-    -webkit-box-sizing: border-box;
-    z-index: 1;
-    pointer-events: none;
-  }
-//}
+}
 
 hr:extend(.border-b all){
   border: 0;
@@ -131,7 +100,7 @@ hr:extend(.border-b all){
 .basketline:extend(.border-b all){
   position: relative;
   &:before,&:after{
-    .setConentLine();
+    .setContentLine();
 
     bottom:0;
     width:@1px;
