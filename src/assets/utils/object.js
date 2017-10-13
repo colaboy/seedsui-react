@@ -1,4 +1,26 @@
 /* -------------------
+判断是否是纯对象
+------------------- */
+Object.isPlainObject = function (obj) {
+  var proto
+  var Ctor
+  if (!obj || toString.call(obj) !== '[object Object]') {
+    return false
+  }
+
+  proto = Object.getPrototypeOf(obj)
+
+  // 没有原型的对象（例如`Object.create（null）`），则直接返回true
+  if (!proto) {
+    return true
+  }
+
+  // 如果原型的对象是由全局Object函数构造的，则它们是纯对象
+  Ctor = {}.hasOwnProperty.call(proto, 'constructor') && proto.constructor
+  return typeof Ctor === 'function' && {}.hasOwnProperty.toString.call(Ctor) === {}.hasOwnProperty.toString.call(Object)
+}
+
+/* -------------------
   克隆对象字面量、Array
   ------------------- */
 Object.clone = function (obj) {
@@ -26,7 +48,7 @@ Object.clone = function (obj) {
 }
 
 /* -------------------
-  将Json转为params字符串
+  将Json转为params字符串，支持嵌套Json
   ------------------- */
 /* Object.params = function (obj, isNotEnCode) {
   var result = ''
@@ -44,9 +66,9 @@ Object.params = function (obj, isNotEnCode) {
   if (!Object.isPlainObject(obj)) return obj
   var result = ''
   function buildParams (obj, prevKey) {
-    for (let key in obj) {
+    for (var key in obj) {
       if (obj[key] instanceof Object) {
-        let prefix = prevKey ? prevKey + '.' + key : key
+        var prefix = prevKey ? prevKey + '.' + key : key
         buildParams(obj[key], prefix)
       } else {
         if (prevKey) {
@@ -65,28 +87,6 @@ Object.params = function (obj, isNotEnCode) {
     result = result.slice(1)
   }
   return result
-}
-
-/* -------------------
-  判断是否是纯对象
-  ------------------- */
-Object.isPlainObject = function (obj) {
-  var proto
-  var Ctor
-  if (!obj || toString.call(obj) !== '[object Object]') {
-    return false
-  }
-
-  proto = Object.getPrototypeOf(obj)
-
-  // 没有原型的对象（例如`Object.create（null）`），则直接返回true
-  if (!proto) {
-    return true
-  }
-
-  // 如果原型的对象是由全局Object函数构造的，则它们是纯对象
-  Ctor = {}.hasOwnProperty.call(proto, 'constructor') && proto.constructor
-  return typeof Ctor === 'function' && {}.hasOwnProperty.toString.call(Ctor) === {}.hasOwnProperty.toString.call(Object)
 }
 
 /* -------------------
