@@ -1,6 +1,6 @@
 //  EventUtil 事件函数
 var EventUtil = (function () {
-  var listenTouchEvent = function (element, type, handler, isDetach) {
+  var _listenTouchEvent = function (element, type, handler, isDetach) {
     var params = {
       threshold: 0
     }
@@ -90,7 +90,6 @@ var EventUtil = (function () {
     var detach = function () {
       if (element.touchEvents) delete element.touchEvents[type]
       if (Object.keys(element.touchEvents || {}).length === 0) {
-        console.log(element.touchEvents)
         element['removeEventListener']('touchstart', onTouchStart, false)
         element['removeEventListener']('touchend', onTouchEnd, false)
       }
@@ -102,12 +101,64 @@ var EventUtil = (function () {
       attach()
     }
   }
-
+  var _listenShakeEvent = function (element, type, handler, isDetach) {
+    var threshold = 3000 // 晃动速度
+    var lastUpdate = 0 // 设置最后更新时间，用于对比
+    var curShakeX = 0
+    var curShakeY = 0
+    var curShakeZ = 0
+    var lastShakeX = 0
+    var lastShakeY = 0
+    var lastShakeZ = 0
+    function deviceMotionHandler (e) {
+      var acceleration = e.accelerationIncludingGravity // 获得重力加速
+      var curTime = new Date().getTime()// 获得当前时间戳
+      if ((curTime - lastUpdate) > 100) {
+        var diffTime = curTime - lastUpdate // 时间差
+        lastUpdate = curTime
+        curShakeX = acceleration.x // x轴加速度
+        curShakeY = acceleration.y // y轴加速度
+        curShakeZ = acceleration.z // z轴加速度
+        var speed = Math.abs(curShakeX + curShakeY + curShakeZ - lastShakeX - lastShakeY - lastShakeZ) / diffTime * 10000
+        if (speed > threshold) {
+          var e = {
+            target: window,
+            speed: speed
+          }
+          handler(e)
+        }
+        lastShakeX = curShakeX
+        lastShakeY = curShakeY
+        lastShakeZ = curShakeZ
+      }
+    }
+    function attach () {
+      if (!window.DeviceMotionEvent) {
+        alert('您好，你目前所用的设备好像不支持重力感应哦！')
+        return
+      }
+      window.addEventListener('devicemotion', deviceMotionHandler, false)
+    }
+    function detach () {
+      window.removeEventListener('devicemotion', deviceMotionHandler, false);
+    }
+    // 添加或移除事件
+    if (isDetach) {
+      detach()
+    } else {
+      attach()
+    }
+  }
   return {
     addHandler: function (element, type, handler) {
       // 自定义事件 tap | swipeleft | swiperight | swipedown | swipeup
       if (type === 'tap' || type === 'swipeleft' || type === 'swiperight' || type === 'swipedown' || type === 'swipeup') {
-        listenTouchEvent(element, type, handler)
+        _listenTouchEvent(element, type, handler)
+        return
+      }
+      // 自定义事件 shake
+      if (type === 'shake') {
+        _listenShakeEvent(element, type, handler)
         return
       }
       // 系统事件
@@ -120,9 +171,14 @@ var EventUtil = (function () {
       }
     },
     removeHandler: function (element, type, handler) {
-      // tap、swipeleft、swiperight、swipedown、swipeup
+      // 自定义事件 tap | swipeleft | swiperight | swipedown | swipeup
       if (type === 'tap' || type === 'swipeleft' || type === 'swiperight' || type === 'swipedown' || type === 'swipeup') {
-        listenTouchEvent(element, type, handler, true)
+        _listenTouchEvent(element, type, handler, true)
+        return
+      }
+      // 自定义事件 shake
+      if (type === 'shake') {
+        _listenShakeEvent(element, type, handler, true)
         return
       }
       // 系统事件

@@ -1,6 +1,6 @@
 /* -------------------
-  解决加减乘除精度
-  ------------------- */
+解决加减乘除精度
+------------------- */
 Math.Calc = (function () {
   // 判断obj是否为一个整数
   function isInteger (obj) {
@@ -112,6 +112,15 @@ Math.Calc = (function () {
     if (num && num[0]) return Number(num[0])
     return null
   }
+  // 转换为千分位字符
+  function toThousandth (num) {
+    var sExpr = /^(\d+)((\.\d+)?)$/
+    var n1 = num.toString().replace(sExpr, function (s, s1, s2) {
+      var reExpr = /\d{1,3}(?=(\d{3})+$)/g
+      return s1.replace(reExpr, '$&,') + s2
+    })
+    return n1
+  }
   // exports
   return {
     add: add,
@@ -119,6 +128,7 @@ Math.Calc = (function () {
     multiply: multiply,
     divide: divide,
     toFixed: toFixed,
-    toDigits: toDigits
+    toDigits: toDigits,
+    toThousandth: toThousandth
   }
 })();

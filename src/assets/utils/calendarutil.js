@@ -1,4 +1,4 @@
-//  CalendarUtil 日历工具箱 (require dateutil.js)
+//  CalendarUtil 日历工具箱
 var CalendarUtil = function (activeDate) {
   /* ---------------------
   Model
@@ -90,7 +90,7 @@ var CalendarUtil = function (activeDate) {
       if (i === 0) month[0].setTime(startDayMs)
       else month[i].setTime(month[i - 1].getTime() + s.dayMilliSecond)
       // 设置选中项
-      if (s.currentMonth === 'midMonth' && month[i].compareDate(date) === 0) {
+      if (s.currentMonth === 'midMonth' && month[i].setHours(0, 0, 0, 0) === date.setHours(0, 0, 0, 0)) {
         s.activeIndex = i + 42
         s.activeRowIndex = Math.floor(i / 7)
       }

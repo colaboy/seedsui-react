@@ -81,4 +81,24 @@
 .titlebar-button+.titlebar-button{
 	margin-left:0px;
 }
+// 返回图标
+.shape-arrow-left{
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+.shape-arrow-left:after{
+  position:absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  top:50%;
+  left:50%;
+  margin-top:-6px;
+  margin-left:-6px;
+  border: 1px solid @bar-button;
+  border-width: 1px 0 0 1px;
+  -webkit-transform: rotate(315deg);
+  transform: rotate(315deg);
+}
 /*----------------titlebar.less(end)----------------*/
