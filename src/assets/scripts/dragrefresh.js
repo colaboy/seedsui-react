@@ -10,24 +10,27 @@ var Dragrefresh = function (params) {
     duration: 150,
 
     topContainer: null,
-    bottomContainer: null
+    bottomContainer: null,
+    errorContainer: null
 
     /* callbacks
-    onPull:function(Dragrefresh)// 头部拖动中
-    onShowTop:function(Dragrefresh)// 开始显示头部
-    onHideTop:function(Dragrefresh)// 开始隐藏头部
-    onTopShowed(Dragrefresh)// 头部显示动画结束
-    onTopHid(Dragrefresh)// 头部隐藏动画结束
-
-    onTopRefresh:function(Dragrefresh)// 头部刷新
-    onTopComplete:function(data)// 头部完成加载
-    onTopNoData:function(data)// 头部无数据 (废弃)
-
-    onBottomRefresh:function(Dragrefresh)// 底部刷新
-    onBottomComplete:function(data)// 底部完成加载
-    onNoData:function(data)// 底部无数据
-
+    onPull:function(s)// 头部拖动中
+    onShowTop:function(s)// 开始显示头部
+    onHideTop:function(s)// 开始隐藏头部
+    onTopShowed(s)// 头部显示动画结束
+    onTopHid(s)// 头部隐藏动画结束
     onTransitionEnd:function(Dragrefresh)// 头部动画结束
+
+    onTopRefresh:function(s)// 头部刷新
+    onTopComplete:function(s)// 头部完成加载
+    onTopNoData:function(s)// 头部无数据 (废弃)
+
+    onBottomRefresh:function(s)// 底部刷新
+    onBottomComplete:function(s)// 底部完成加载
+    onNoData:function(s)// 底部无数据
+
+    onError:function(s)// 网络错误
+    onClickError:function(s)//点击错误容器
      */
   }
   params = params || {}
@@ -53,6 +56,11 @@ var Dragrefresh = function (params) {
   s.bottomContainer = typeof s.params.bottomContainer === 'string' ? document.querySelector(s.params.bottomContainer) : s.params.bottomContainer
   if (!s.bottomContainer) {
     console.log('SeedsUI Warn : bottomContainer不存在，请检查页面中是否有此元素')
+  }
+  // errorContainer
+  s.errorContainer = typeof s.params.errorContainer === 'string' ? document.querySelector(s.params.errorContainer) : s.params.errorContainer
+  if (!s.errorContainer) {
+    console.log('SeedsUI Warn : errorContainer不存在，请检查页面中是否有此元素')
   }
   // 正在刷新(默认为不允许下拉，当发生一次请求调用setPagination后才允许下拉)
   s.isRefreshed = false
@@ -121,6 +129,11 @@ var Dragrefresh = function (params) {
     s.isRefreshed = false
     // CallBack onBottomRefresh
     if (s.params.onBottomRefresh) s.params.onBottomRefresh(s)
+    // 显示底部容器，隐藏错误容器
+    if (s.bottomContainer.classList.contains('hide')) {
+      s.errorContainer.classList.add('hide')
+      s.bottomContainer.classList.remove('hide')
+    }
   }
   // 头部刷新完成
   s.topComplete = function () {
@@ -159,6 +172,18 @@ var Dragrefresh = function (params) {
       s.bottomRefresh()
     }
   }
+  // 网络错误
+  s.error = function () {
+    s.isNoData = true
+    s.isRefreshed = true
+    // 收起头部
+    s.hideTop()
+    // 显示错误容器
+    s.errorContainer.classList.remove('hide')
+    s.bottomContainer.classList.add('hide')
+    // 网络错误回调
+    if (s.params.onError) s.params.onError(s)
+  }
   s.noData = function () {
     s.isNoData = true
     s.isRefreshed = true
@@ -167,8 +192,13 @@ var Dragrefresh = function (params) {
     // 底部显示无数据
     if (s.params.onNoData) s.params.onNoData(s)
   }
-  s.setPagination = function (isNext, isNoData) { // 下一页 | 总数 | 请求得到的数据
+  s.setPagination = function (isNext, isNoData, isError) { // 下一页 | 无数据 | 错误
     s.isNoData = isNoData
+    // 如果加载错误
+    if (isError) {
+      s.error()
+      return
+    }
     // 如果已经没有数据,并且是下一页则不加载
     if (s.isNoData && isNext) {
       s.noData()
@@ -202,6 +232,7 @@ var Dragrefresh = function (params) {
       }
       touchTarget[action]('scroll', s.onScroll, false)
     }
+    if (s.errorContainer) s.errorContainer[action]('click', s.onClickError, false)
   }
   // attach、detach事件
   s.attach = function () {
@@ -313,6 +344,15 @@ var Dragrefresh = function (params) {
     var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
     // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
     if (scrollTop + clientHeight >= scrollHeight - 2) {
+      s.bottomRefresh()
+    }
+  }
+  s.onClickError = function (e) {
+    if (s.params.onClickError) {
+      s.params.onClickError(s)
+    } else {
+      s.isNoData = false
+      // 底部刷新
       s.bottomRefresh()
     }
   }
