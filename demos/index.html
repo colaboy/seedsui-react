@@ -539,6 +539,14 @@
     <script src="../dist/seedsui.min.js"></script>
     <script src="about/about.js"></script>
     <script type="text/javascript">
+        var onLine = Device.isOnLine;
+        console.log('是否有网:'+onLine);
+        Device.onLine(function(bool){
+            console.log('是否有网:'+bool);
+        })
+        Device.onLine(function(bool){
+            console.log('是否有网:'+bool);
+        })
         var view={
             /*=========================
               Model

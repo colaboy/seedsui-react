@@ -1,8 +1,5 @@
 // Clock 时钟控件
 var Clock = function (clock, params) {
-  /* -------------------
-  Model
-  ------------------- */
   var defaults = {
     hourClass: 'clock-hour',
     minuteClass: 'clock-minute',
@@ -58,29 +55,23 @@ var Clock = function (clock, params) {
   }
 }
 var Clocks = function (params) {
-  /* -------------------
-  Model
-  ------------------- */
+  params = params || {}
   var clockAttr = 'data-clock'
   var s = this
   s.clocks = []
-  // 获得所有元素
+  var elements = document.querySelectorAll('[' + clockAttr + ']')
   s.update = function () {
-    var elements = document.querySelectorAll('[' + clockAttr + ']')
-    /* eslint-disable */
-    for (var i = 0, el; el = elements[i++];) {
-      params = params || {}
-      params.time = el.getAttribute(clockAttr)
-      s.clocks[i] = new Clock(el, params)
-      s.clocks[i].play()
+    for (var i = 0; i < elements.length; i++) {
+      params.time = elements[i].getAttribute(clockAttr)
+      s.clocks[i] = new Clock(elements[i], params)
     }
-    /* eslint-enable */
   }
   s.update()
-  /* -------------------
-  Method
-  ------------------- */
-  return s.clocks
+  s.play = function () {
+    for (var n of s.clocks) {
+      n.play()
+    }
+  }
 };
 
 //export {Clocks, Clock}

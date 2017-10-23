@@ -1,6 +1,7 @@
 // Device
 var Device = (function () {
   var ua = navigator.userAgent.toLowerCase()
+  // 内核
   var kernel = ''
   if (ua.indexOf('trident') > -1) {
     kernel = 'trident'
@@ -11,12 +12,14 @@ var Device = (function () {
   } else if (ua.indexOf('gecko') > -1 && ua.indexOf('khtml') === -1) {
     kernel = 'gecko'
   }
+  // 设备
   var device = ''
   if (ua.match(/applewebkit.*mobile.*/)) {
     device = 'mobile'
   } else {
     device = 'pc'
   }
+  // 系统
   var os = ''
   var osVersion = ''
   var andriodExp = ua.match(/android\s*(\d*\.*\d*)/)
@@ -28,6 +31,7 @@ var Device = (function () {
     os = 'ios'
     osVersion = iosExp[1]
   }
+  // 平台
   var platform = ''
   if (ua.indexOf('micromessenger') > -1) {
     platform = 'weixin'
@@ -35,6 +39,21 @@ var Device = (function () {
     platform = 'qq'
   } else if (ua.indexOf('ucbrowser') > -1) {
     platform = 'uc'
+  }
+  // 网络监听
+  var onLineCallback
+  function handleOnline (e) {
+    onLineCallback(true)
+  }
+  function handleOffline (e) {
+    onLineCallback(false)
+  }
+  function onLine (callback) {
+    onLineCallback = callback
+    window.removeEventListener('online', handleOnline, false)
+    window.removeEventListener('offline', handleOffline, false)
+    window.addEventListener('online', handleOnline, false)
+    window.addEventListener('offline', handleOffline, false)
   }
   return {
     kernel: kernel,
@@ -44,8 +63,9 @@ var Device = (function () {
     platform: platform,
     // 应用程序判断
     language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
-    // appVersion: window.navigator.appVersion,
-    onLine: window.navigator.onLine,
+    appVersion: window.navigator.appVersion,
+    onLine: onLine,
+    isOnLine: window.navigator.onLine,
     ua: ua
   }
 })();

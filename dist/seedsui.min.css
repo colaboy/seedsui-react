@@ -999,6 +999,7 @@ label .input-radio + span {
 .mark-disable,
 .mark-primary {
   font-size: 12px;
+  line-height: 18px;
   padding: 2px 5px;
   border-radius: 3px;
   color: white;
@@ -3873,7 +3874,7 @@ progress::-webkit-progress-value {
   -webkit-transform-origin: 0 50%;
   -webkit-animation: loading-filling 1.2s infinite ease;
 }
-/*流光loading-filling*/
+/*流光loading-floating*/
 .loading-floating {
   position: fixed;
   left: 50%;
@@ -3888,15 +3889,14 @@ progress::-webkit-progress-value {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.loading-floating.animated .loading-floating-blade {
+  -webkit-animation-play-state: running;
+}
 .loading-floating-wrapper {
   position: relative;
   margin: 0 auto 10px;
   width: 25px;
   height: 25px;
-}
-.loading-floating-wrapper.animated .loading-floating-blade {
-  -webkit-animation-play-state: running;
-  animation-play-state: running;
 }
 .loading-floating-wrapper .loading-floating-blade {
   background-color: white;
@@ -3908,87 +3908,61 @@ progress::-webkit-progress-value {
   width: 8.57143%;
   height: 25.71429%;
   border-radius: 2.99940012%;
-  -webkit-animation: loading-floating-blade--fade 1s linear infinite;
-  animation: loading-floating-blade--fade 1s linear infinite;
+  -webkit-animation: loading-floating-blade-fade 1s linear infinite;
   -webkit-animation-play-state: paused;
-  animation-play-state: paused;
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(1) {
   -webkit-animation-delay: -1.66667s;
-  animation-delay: -1.66667s;
   -webkit-transform: rotate(30deg) translate(0, -150%);
-  transform: rotate(30deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(2) {
   -webkit-animation-delay: -1.58333s;
-  animation-delay: -1.58333s;
   -webkit-transform: rotate(60deg) translate(0, -150%);
-  transform: rotate(60deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(3) {
   -webkit-animation-delay: -1.5s;
-  animation-delay: -1.5s;
   -webkit-transform: rotate(90deg) translate(0, -150%);
-  transform: rotate(90deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(4) {
   -webkit-animation-delay: -1.41667s;
-  animation-delay: -1.41667s;
   -webkit-transform: rotate(120deg) translate(0, -150%);
-  transform: rotate(120deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(5) {
   -webkit-animation-delay: -1.33333s;
-  animation-delay: -1.33333s;
   -webkit-transform: rotate(150deg) translate(0, -150%);
-  transform: rotate(150deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(6) {
   -webkit-animation-delay: -1.25s;
-  animation-delay: -1.25s;
   -webkit-transform: rotate(180deg) translate(0, -150%);
-  transform: rotate(180deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(7) {
   -webkit-animation-delay: -1.16667s;
-  animation-delay: -1.16667s;
   -webkit-transform: rotate(210deg) translate(0, -150%);
-  transform: rotate(210deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(8) {
   -webkit-animation-delay: -1.08333s;
-  animation-delay: -1.08333s;
   -webkit-transform: rotate(240deg) translate(0, -150%);
-  transform: rotate(240deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(9) {
   -webkit-animation-delay: -1s;
-  animation-delay: -1s;
   -webkit-transform: rotate(270deg) translate(0, -150%);
-  transform: rotate(270deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(10) {
   -webkit-animation-delay: -0.91667s;
-  animation-delay: -0.91667s;
   -webkit-transform: rotate(300deg) translate(0, -150%);
-  transform: rotate(300deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(11) {
   -webkit-animation-delay: -0.83333s;
-  animation-delay: -0.83333s;
   -webkit-transform: rotate(330deg) translate(0, -150%);
-  transform: rotate(330deg) translate(0, -150%);
 }
 .loading-floating-wrapper .loading-floating-blade:nth-child(12) {
   -webkit-animation-delay: -0.75s;
-  animation-delay: -0.75s;
   -webkit-transform: rotate(360deg) translate(0, -150%);
-  transform: rotate(360deg) translate(0, -150%);
 }
-.loading-floating-wrapper.loading-floating-wrapper--gray .loading-floating-blade {
+.loading-floating-wrapper.loading-floating-wrapper-gray .loading-floating-blade {
   background-color: #8C8C8C;
 }
-@-webkit-keyframes loading-floating-blade--fade {
+@-webkit-keyframes loading-floating-blade-fade {
   0% {
     opacity: 0.85;
   }
@@ -3999,7 +3973,7 @@ progress::-webkit-progress-value {
     opacity: 0.25;
   }
 }
-@keyframes loading-floating-blade--fade {
+@keyframes loading-floating-blade-fade {
   0% {
     opacity: 0.85;
   }
@@ -5990,32 +5964,64 @@ details[open] summary .summary-icon {
 }
 /*----------------------------summary.less(end)----------------------------*/
 /*---------------table.less(start)---------------*/
-.table-box {
-  width: 100%;
-  overflow: auto;
-  padding: 8px 0;
-}
-.table-box table {
+.table {
   width: 100%;
   border-collapse: collapse;
-  border-style: solid;
-  border-width: 1px;
-  background-color: white;
-  color: #333333;
-  border-color: #d1d1d1;
+  line-height: 40px;
 }
-.table-box th,
-.table-box td {
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  border-color: inherit;
-  word-break: keep-all;
-  text-align: left;
-  padding: 15px 4px;
+.table th {
+  font-weight: 500;
 }
-.table-box th {
-  font-weight: bold;
-  border-width: 0 0 2px 0;
+.table td,
+.table th {
+  border-bottom: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+  text-align: center;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .table td,
+  .table th {
+    position: relative;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .table td:after,
+  .table th:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #d1d1d1), to(#d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #d1d1d1), to(#d1d1d1));
+    -webkit-background-size: 1px 100%,100% 1px;
+    background-size: 1px 100%,100% 1px;
+    background-repeat: no-repeat;
+    background-position: right,bottom;
+    pointer-events: none;
+  }
+  .table tr td:last-child:after,
+  .table tr th:last-child:after {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #d1d1d1), to(#d1d1d1));
+    -webkit-background-size: 100% 1px;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+  .table tr:last-child td:not(:last-child):after {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #d1d1d1), to(#d1d1d1));
+    -webkit-background-size: 1px 100%;
+    background-size: 1px 100%;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+}
+.table tr td:last-child,
+.table tr th:last-child {
+  border-right: 0;
+}
+.table tr:last-child td {
+  border-bottom: 0;
 }
 /*---------------table.less(end)---------------*/
 /*----------------tree.less(start)--------------*/
@@ -9476,6 +9482,22 @@ Animate.css - http://daneden.me/animate
   animation-name: zoomOutUp;
 }
 /*----------------animate.less(end)--------------*/
+/*----------------stencil.less(start)--------------*/
+.stencil {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  background-repeat: repeat-y;
+  background-position: top;
+  background-size: contain;
+  z-index: 20;
+}
+.stencil-list {
+  background-image: url('images/stencil-list.png');
+}
+/*----------------stencil.less(end)--------------*/
 /* Tool */
 /*----------------box.less(start)--------------*/
 .box {
