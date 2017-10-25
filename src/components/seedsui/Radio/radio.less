@@ -1,0 +1,37 @@
+/*----------------radio.less(start)--------------*/
+.input-radio{
+  height: @22px;
+  width: @22px;
+  line-height: @22px;
+  font-size: @22px;
+  vertical-align: middle;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  background-position:0 0;
+  background-repeat:no-repeat;
+  background-size:auto 100%;
+
+  color:@placeholder;
+
+  &:checked,&.active{
+    color:@success-bg;
+  }
+  &[disabled]{
+    color:@disable-bg;
+  }
+  font-family: "iconfont";
+}
+/*icon*/
+.input-radio:before{
+  content: "\e9a9";
+}
+.input-radio:checked:before{
+  content: "\e9ce";
+}
+/*label*/
+label .input-radio+span{
+  margin:0 @4px;
+}
+/*----------------radio.less(end)--------------*/

@@ -1,0 +1,6 @@
+{
+  "name": "Peg",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Peg.vue"
+}

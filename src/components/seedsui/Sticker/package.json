@@ -1,0 +1,6 @@
+{
+  "name": "Sticker",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Sticker.vue"
+}

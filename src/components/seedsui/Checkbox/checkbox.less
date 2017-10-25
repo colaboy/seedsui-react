@@ -1,0 +1,37 @@
+/*----------------checkbox.less(start)--------------*/
+.input-checkbox{
+  height: @22px;
+  width: @22px;
+  line-height: @22px;
+  font-size: @22px;
+  vertical-align: middle;
+  outline: none;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  background-position:0 0;
+  background-repeat:no-repeat;
+  background-size:auto 100%;
+
+  color:@placeholder;
+
+  &:checked,&.active{
+    color:@success-bg;
+  }
+  &[disabled]{
+    color:@disable-bg;
+  }
+  font-family: "iconfont";
+}
+/*icon*/
+.input-checkbox:before{
+  &:extend(.icon-rdo:before);
+}
+.input-checkbox:checked:before{
+  &:extend(.icon-rdook-fill:before);
+}
+/*label*/
+label .input-checkbox+span{
+  margin:0 @4px;
+}
+/*----------------checkbox.less(end)--------------*/
