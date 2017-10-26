@@ -1,172 +1,18 @@
+@import "../seedsui-variables.less";
 /*--------------------badge.less(start)----------------------*/
-.badge,.tip,.close,.dot,.tagline{
-	position:relative;
-	display: inline-block;
-	vertical-align: middle;
-	text-align: center;
-	overflow: hidden;
-    text-overflow: ellipsis;
-	font-size:@font-size-sm;
+.badge{
+	.setHintMark();
 }
 /*徽章*/
 .badge{
-	padding:0 @4px;
-	height:@20px;
-	line-height:@20px;
-	text-align:center;
-	border-radius:@20px;
-	min-width:@24px;
+  padding:0 @4px;
+  height:@20px;
+  line-height:@20px;
+  text-align:center;
+  border-radius:@20px;
+  min-width:@24px;
 
-	color:@tip-color;
-	background-color:@tip-bg;
+  color:@tip-color;
+  background-color:@tip-bg;
 }
-/*圆形徽章*/
-.tip{
-	width:@24px;
-	height:@24px;
-	line-height:@24px;
-	border-radius:100%;
-
-	color:@tip-color;
-	background-color:@tip-bg;
-}
-/*关闭*/
-.close{
-	width:@24px;
-	height:@24px;
-	border-radius:100%;
-
-	display:-webkit-inline-box;
-    -webkit-box-align:center;
-    -webkit-box-pack:center;
-
-	/*图片*/
-	background-size:cover;
-	border-radius: 100%;
-
-	/*文字图标*/
-	color:white;
-	background-color: rgba(0,0,0,.7);
-
-	i,.icon{
-		display:block;
-	}
-}
-/*小点点*/
-.dot{
-    height:@5px;
-    width:@5px;
-    border-radius: 100%;
-
-    background-color:@primary-bg;
-}
-/*小竖条*/
-.peg {
-    display: inline-block;
-    width: @4px;
-    height: @16px;
-    background-color: @primary-bg;
-}
-/*标签贴*/
-.sticker{
-	position:absolute;
-	width:0px;
-	height:0px;
-	border-width:0;
-	border-style:solid;
-
-	color:@tip-color;
-	border-color:@tip-bg;
-	span{
-		position:absolute;
-		font-size:@font-size-sm;
-		padding:0 @2px;
-	}
-	&.top,&.top span{
-		top:0;
-	}
-	&.top{
-		border-top-width:@32px;
-	}
-	&.top span{
-		min-width: @30px;
-		margin-top:-@30px;
-	}
-	&.left,&.left span{
-		left:0;
-	}
-	&.left{
-		border-right-width:@56px;
-		border-right-color:transparent;
-	}
-	&.right,&.right span{
-		right:0;
-		text-align: right;
-	}
-	&.right{
-		border-left-width:@56px;
-		border-left-color:transparent;
-	}
-	&.bottom,&.bottom span{
-		bottom:0;
-	}
-	&.bottom{
-		border-bottom-width:@32px;
-	}
-	&.bottom span{
-		margin-bottom:-@30px;
-	}
-}
-.sticker.sticker-icon{
-	&.top{
-        border-top-width: @28px;
-    }
-    &.top span {
-        margin-top: -@26px;
-    }
-    &.left{
-        border-right-width: @28px;
-    }
-    &.right{
-        border-left-width: @28px;
-    }
-    &.bottom{
-        border-bottom-width: @28px;
-    }
-}
-.tagline{
-	position:absolute;
-	width: @100px;
-	height: @20px;
-	text-align: center;
-	display: -webkit-box;
-	-webkit-box-align:center;
-	-webkit-box-pack:center;
-	-webkit-transform-origin:center;
-
-	color:@tip-color;
-	background-color:@tip-bg;
-	&.top{
-		top: @13px;
-		&.left{
-			left: -@20px;
-			-webkit-transform:rotate(-42deg);
-		}
-		&.right{
-			right: -@20px;
-			-webkit-transform:rotate(42deg);
-		}
-	}
-	&.bottom{
-		bottom:@15px;
-		&.left{
-			left: -@24px;
-			-webkit-transform:rotate(42deg);
-		}
-		&.right{
-			right: -@24px;
-			-webkit-transform:rotate(-42deg);
-		}
-	}
-}
-/*--------------------badge.less(start)----------------------*/
+/*--------------------badge.less(end)----------------------*/

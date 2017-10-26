@@ -1,0 +1,41 @@
+@import "../seedsui-variables.less";
+/*--------------------tagline.less(start)----------------------*/
+.tagline{
+  .setHintMark();
+}
+.tagline{
+  position:absolute;
+  width: @100px;
+  height: @20px;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  -webkit-transform-origin:center;
+
+  color:@tip-color;
+  background-color:@tip-bg;
+  &.top{
+    top: @13px;
+    &.left{
+      left: -@20px;
+      -webkit-transform:rotate(-42deg);
+    }
+    &.right{
+      right: -@20px;
+      -webkit-transform:rotate(42deg);
+    }
+  }
+  &.bottom{
+    bottom:@15px;
+    &.left{
+      left: -@24px;
+      -webkit-transform:rotate(42deg);
+    }
+    &.right{
+      right: -@24px;
+      -webkit-transform:rotate(-42deg);
+    }
+  }
+}
+/*--------------------tagline.less(end)----------------------*/

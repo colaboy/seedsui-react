@@ -199,3 +199,24 @@
 @font-size-lg:@16px;
 @font-size-md:@14px;
 @font-size-sm:@12px;
+
+/*函数*/
+.setContentLine(@b:@border){
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: @b;
+  //兼容UC线条不显示的BUG
+  z-index:1;
+  overflow: hidden;
+  -webkit-backface-visibility:hidden;
+}
+.setHintMark(){
+  position:relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size:@font-size-sm;
+}

@@ -1,3 +1,4 @@
+/* Control */
 /*基础*/
 /*常用颜色*/
 /*控件*/
@@ -8,7 +9,7 @@
 /*数字框*/
 /*选择器*/
 /*间距*/
-/* Control */
+/*函数*/
 /*----------------inputtext.less(start)--------------*/
 .input-text {
   box-sizing: border-box;
@@ -1160,11 +1161,7 @@ aside {
 }
 /*----------------grid.less(end)----------------*/
 /*--------------------badge.less(start)----------------------*/
-.badge,
-.tip,
-.close,
-.dot,
-.tagline {
+.badge {
   position: relative;
   display: inline-block;
   vertical-align: middle;
@@ -1184,14 +1181,34 @@ aside {
   color: #ffffff;
   background-color: #ff5656;
 }
-/*圆形徽章*/
-.tip {
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
+/*--------------------badge.less(end)----------------------*/
+/*--------------------dot.less(start)----------------------*/
+.dot {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+/*小点点*/
+.dot {
+  height: 5px;
+  width: 5px;
   border-radius: 100%;
-  color: #ffffff;
-  background-color: #ff5656;
+  background-color: #20aeff;
+}
+/*--------------------dot.less(end)----------------------*/
+/*--------------------close.less(start)----------------------*/
+.close {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
 }
 /*关闭*/
 .close {
@@ -1211,13 +1228,28 @@ aside {
 .close .icon {
   display: block;
 }
-/*小点点*/
-.dot {
-  height: 5px;
-  width: 5px;
-  border-radius: 100%;
-  background-color: #20aeff;
+/*--------------------close.less(end)----------------------*/
+/*--------------------peg.less(start)----------------------*/
+.tip {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
 }
+/*圆形徽章*/
+.tip {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 100%;
+  color: #ffffff;
+  background-color: #ff5656;
+}
+/*--------------------peg.less(end)----------------------*/
+/*--------------------peg.less(start)----------------------*/
 /*小竖条*/
 .peg {
   display: inline-block;
@@ -1225,6 +1257,8 @@ aside {
   height: 16px;
   background-color: #20aeff;
 }
+/*--------------------peg.less(end)----------------------*/
+/*--------------------sticker.less(start)----------------------*/
 /*标签贴*/
 .sticker {
   position: absolute;
@@ -1293,6 +1327,17 @@ aside {
 .sticker.sticker-icon.bottom {
   border-bottom-width: 28px;
 }
+/*--------------------sticker.less(end)----------------------*/
+/*--------------------tagline.less(start)----------------------*/
+.tagline {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
 .tagline {
   position: absolute;
   width: 100px;
@@ -1327,7 +1372,7 @@ aside {
   right: -24px;
   -webkit-transform: rotate(-42deg);
 }
-/*--------------------badge.less(start)----------------------*/
+/*--------------------tagline.less(end)----------------------*/
 /*----------------numbox.less(start)--------------*/
 .numbox {
   display: -webkit-inline-box;
@@ -4691,6 +4736,7 @@ ul.weather-otherday li {
   border-color: transparent;
 }
 /*----------------------------calendar.less(end)----------------------------*/
+/*----------------listpull.less(start)--------------*/
 .listpull-li {
   position: relative;
   overflow: hidden;
@@ -4721,6 +4767,7 @@ ul.weather-otherday li {
   font-size: 14px;
   height: 100%;
 }
+/*----------------listpull.less(end)--------------*/
 /*----------------button.less(start)----------------*/
 .menuwrap {
   display: -webkit-box;

@@ -1,6 +1,0 @@
-{
-  "name": "Radio",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./Radio.vue"
-}
