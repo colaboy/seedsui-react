@@ -1,6 +1,15 @@
 @import "../seedsui-variables.less";
+@import "../extend/icon.less";
+
+@font-face {
+  font-family: "iconrdo";
+  src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAU0AAsAAAAAB9gAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kiLY21hcAAAAYAAAABnAAABnM/ybURnbHlmAAAB6AAAAUoAAAGkRLFa8WhlYWQAAAM0AAAALwAAADYPTqL2aGhlYQAAA2QAAAAcAAAAJAfeA4VobXR4AAADgAAAABAAAAAQD+kAAGxvY2EAAAOQAAAACgAAAAoBSACkbWF4cAAAA5wAAAAfAAAAIAETAF1uYW1lAAADvAAAAUcAAAJhz5CxBXBvc3QAAAUEAAAAMAAAAENVYB4EeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDybz9zwv4EhhrmBoQEozAiSAwAvzw0NeJzFkMENwCAIRT9iG9N0lB6bDtRTR3AZ43asYQG9OIHfPIEfIgYAGwBWLiUC9IFgetUl9xmH+xGP1klP0JilSG1tykzkHcmzYC/TjmWidaNnnX7fo7J954F+UUrH9iq1A/4BY7wUYwB4nJWPv0rDUBTG77k3N0n/Jfbmf9q0TWMbpRowxjqIzWIHxUFwErr4ALp2cegiODj4DFJwyeJeqj6K2L5FrAZLBUcPh4/vfAd+8CGK0Nc7mRATKWgD7aAjdIYQ8B1oStgB148C3AHNpZqhSsT3fFfwmgE5BKPJq3rYjdoGL/AySFCDXTfs+gH2YS/q4QMIdQfAqtjnrFVl5AHypl+7XZzgR9DqXlXubS+Ot2I1bCjisMiYxdi9yFMqYszJElwZeo7m8vxiTGVbm9Q3cR2Klm+fXpQaFXZ5F107LSMHMBqBUmlIT3HZLmd7Y+sKs4S1kmjaJW9dheGsYCpFp/2BssFZ11fyQmJUQEbWUgKhBkYP9gMgAfiZyU4JMJqmlKbTpSYzSmdJMue4OYl/02maPnPzZPVcst/+y+4PAAb9H/3D/hyv4kzRN7E7XP8AAHicY2BkYGAA4o749Zrx/DZfGbhZGEDgmvj6WgT9/wALA7M9kMvBwAQSBQAXWwmxAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2AKQA0gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNI7LWTyPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8A0P5+uO68weuuzO3CA/CDfJj8Itcl+4jR5Gwh3qL8I+njEV7uEWOSd4rSt2fbwJe7jGu3CD/CHcJH8Kt8hfwm3c40e4Q/1X2MfS6wr38OS9+lOrV05Han1U29DkscmdfwIbmYVO9unKSiePpbbl1uRqFAxFmetc28uM8pCMnYtVbE2mZhym09SowpqdDl2wca6YDAax6EFoMkaawkJjBccaQWGNI+sWIQw/RlxVR99FsXQZLOhOsEfKk7a2979b0mlRUj1pij8hwLDmmdOTV756jhIHvmdM1TGL4rL0Z6SZJNPMkJIVimpvRyWkHmBTnSowwYB3XPMHVYLsD4GGa9EAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYK5KCWfH4iTM1KTs1NTdNMyc3IYGABmqwfT') format('woff'),
+}
+.iconrdo-rdo:before { content: "\e69d"; }
+.iconrdo-rdochecked-fill:before { content: "\e69f"; }
+
 /*----------------radio.less(start)--------------*/
-.input-radio{
+.radio{
   height: @22px;
   width: @22px;
   line-height: @22px;
@@ -22,17 +31,18 @@
   &[disabled]{
     color:@disable-bg;
   }
-  font-family: "iconfont";
+  font-family: "iconrdo";
+  &:extend(.icon-font);
 }
 /*icon*/
-.input-radio:before{
-  content: "\e9a9";
+.radio:before{
+  &:extend(.iconrdo-rdo:before);
 }
-.input-radio:checked:before{
-  content: "\e9ce";
+.radio:checked:before{
+  &:extend(.iconrdo-rdochecked-fill:before);
 }
 /*label*/
-label .input-radio+span{
+label .radio+span{
   margin:0 @4px;
 }
 /*----------------radio.less(end)--------------*/
