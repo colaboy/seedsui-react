@@ -93,7 +93,7 @@ var Gauge = function (container, params) {
   s.updateDelay = function () {
     s.container.style.webkitAnimationDelay = s.params.delay + 'ms'
     s.point.style.webkitTransitionDelay = s.params.delay + 'ms'
-    if(s.wave) s.wave.style.webkitTransitionDelay = s.params.delay + 'ms'
+    if (s.wave) s.wave.style.webkitTransitionDelay = s.params.delay + 'ms'
   }
   s.update = function () {
     s.updateBg()
@@ -114,7 +114,7 @@ var Gauge = function (container, params) {
       s.container.className += ' bg' + s.bgLvl
     }
     // 播放波浪
-    if(s.wave) s.wave.style.top = s.waveTop + '%'
+    if (s.wave) s.wave.style.top = s.waveTop + '%'
   }
   /* ----------------------
     Events
@@ -139,6 +139,6 @@ var Gauge = function (container, params) {
     s.attach()
   }
   s.init()
-};
+}
 
-//export default Gauge
+;//export default Gauge

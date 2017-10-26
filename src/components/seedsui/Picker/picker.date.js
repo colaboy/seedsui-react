@@ -305,6 +305,6 @@ var DatePicker = function (params) {
   }
   initSlots()
   return s
-};
+}
 
-//export default DatePicker
+;//export default DatePicker

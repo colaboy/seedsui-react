@@ -86,10 +86,10 @@ var Counters = function (params) {
   }
   s.update()
   s.play = function () {
-    for (var i = 0; i< s.counters.length; i++) {
+    for (var i = 0; i < s.counters.length; i++) {
       s.counters[i].play()
     }
   }
 }
 
-//export {Counter, Counters}
+;//export {Counter, Counters}

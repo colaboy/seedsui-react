@@ -68,10 +68,10 @@ var Clocks = function (params) {
   }
   s.update()
   s.play = function () {
-    for (var i = 0; i< s.clocks.length; i++) {
+    for (var i = 0; i < s.clocks.length; i++) {
       s.clocks[i].play()
     }
   }
 }
 
-//export {Clocks, Clock}
+;//export {Clocks, Clock}

@@ -596,6 +596,6 @@ var Calendar = function (container, params) {
     s.attach()
   }
   s.init()
-};
+}
 
-//export default Calendar
+;//export default Calendar

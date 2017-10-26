@@ -101,6 +101,6 @@ var DragCircle = function (params) {
   }
   var s = new Dragrefresh(params)
   return s
-};
+}
 
-//export default DragCircle
+;//export default DragCircle

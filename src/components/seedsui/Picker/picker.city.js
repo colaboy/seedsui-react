@@ -236,6 +236,6 @@ var CityPicker = function (params) {
   }
   initSlots()
   return s
-};
+}
 
-//export default CityPicker
+;//export default CityPicker

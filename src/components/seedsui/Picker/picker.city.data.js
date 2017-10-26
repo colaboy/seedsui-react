@@ -10503,4 +10503,6 @@ var citys = [{
     key: '820000007',
     value: '路环'
   }]
-}];
+}]
+
+;//export default citys

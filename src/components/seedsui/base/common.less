@@ -1,4 +1,145 @@
 /*----------------common.scss(start)----------------*/
+.events-none{
+	pointer-events:none;
+}
+.events-auto{
+	pointer-events:auto;
+}
+.noselect{
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-moz-user-select:none;
+}
+
+/*显示与隐藏*/
+.hide{
+	display:none;
+}
+.hidden{
+	visibility:hidden;
+}
+.overflow-hidden{
+	overflow:hidden;
+}
+
+/*清除浮动*/
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: " ";
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix{
+	zoom:1;
+}
+.clear{
+	clear:both;
+}
+
+/*文字样式*/
+.bold{
+	font-weight:bold;
+}
+.uppercase{
+	text-transform:uppercase;/*大写*/
+}
+.lowercase{
+	text-transform:lowercase;/*小写*/
+}
+.capitalize{
+	text-transform:capitalize;/*首字母大写*/
+}
+
+/*文字换行*/
+.ellipsis {
+	text-overflow:ellipsis;
+}
+.break-all{
+	word-break:break-all;
+}
+.nowrap:extend(.ellipsis),.nowrap2:extend(.ellipsis){
+	overflow:hidden;
+}
+.nowrap{
+	white-space:nowrap;
+}
+.nowrap2{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+}
+.nowrap2{
+	-webkit-line-clamp:2;
+}
+
+/*文字排列*/
+.text-center{
+	text-align:center;
+}
+.text-right{
+	text-align:right;
+}
+.text-left{
+	text-align:left;
+}
+
+/*浮动*/
+.float-left{
+	float:left;
+}
+.float-right{
+	float:right;
+}
+
+/*层定位*/
+.fixed{
+	position: fixed;
+}
+.relative{
+	position: relative;
+}
+.absolute{
+	position:absolute;
+}
+
+/*层模型*/
+.block{
+	display: block;
+}
+.inline-block{
+	display: inline-block;
+}
+.table{
+	display: table;
+}
+.table-fixed{
+	table-layout: fixed;
+}
+.table-cell{
+	display: table-cell;
+}
+
+/*边框盒子*/
+.content-box{
+	box-sizing:content-box;
+}
+.border-box{
+	box-sizing:border-box;
+}
+
+/*层排列*/
+.horizontal{
+	overflow-x:auto;
+    white-space:nowrap;
+}
+.lr{
+	direction:ltr;
+}
+.rl{
+	direction:rtl;
+}
+
 /*段落*/
 .paragraph{
 	line-height: @24px;
@@ -34,9 +175,23 @@
 .reflect-below{
 	-webkit-box-reflect: below @5px -webkit-linear-gradient(transparent,transparent 60%,rgba(0,0,0,.2));
 }
+/*渐变*/
 .bg-gradient {
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#eeeeee));
 	border-top: @1px solid #fff;
 	box-shadow: 0px @1px @2px rgba(0,0,0,0.1) inset;
+}
+
+/* 代码 */
+.code{
+	display: block;
+	font-size: @13px;
+	line-height: 1.42857143;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.keyword{
+	color: @primary-bg;
+	vertical-align: baseline;
 }
 /*----------------common.scss(end)----------------*/

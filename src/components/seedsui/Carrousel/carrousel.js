@@ -434,11 +434,11 @@ var Carrousel = function (container, params) {
   s.init()
   //  Return slider instance
   return s
-};
+}
 
 /* Carrousel.prototype = (function () {
   return {
   }
 })() */
 
-//export default Carrousel
+;//export default Carrousel

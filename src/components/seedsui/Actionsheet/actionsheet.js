@@ -235,6 +235,6 @@ var Actionsheet = function (params) {
     s.attach()
   }
   s.init()
-};
+}
 
-//export default Actionsheet
+;//export default Actionsheet

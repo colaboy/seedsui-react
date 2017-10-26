@@ -121,6 +121,6 @@ var DragPull = function (params) {
   }
   var s = new Dragrefresh(params)
   return s
-};
+}
 
-//export default DragPull
+;//export default DragPull

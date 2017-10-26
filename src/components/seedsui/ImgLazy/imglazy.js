@@ -176,6 +176,6 @@ var ImgLazy = function (params) {
     s.imgsAttach()
   }
   s.init()
-};
+}
 
-//export default ImgLazy
+;//export default ImgLazy

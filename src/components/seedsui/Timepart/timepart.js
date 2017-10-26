@@ -459,6 +459,6 @@ var Timepart = function (container, params) {
     s.attach()
   }
   s.init()
-};
+}
 
-//export default Timepart
+;//export default Timepart

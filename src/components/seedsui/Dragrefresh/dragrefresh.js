@@ -362,6 +362,6 @@ var Dragrefresh = function (params) {
   }
 
   s.init()
-};
+}
 
-//export default Dragrefresh
+;//export default Dragrefresh

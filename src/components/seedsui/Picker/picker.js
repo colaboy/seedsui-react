@@ -481,6 +481,6 @@ var Picker = function (params) {
   }
   s.init()
   return s
-};
+}
 
-//export default Picker
+;//export default Picker
