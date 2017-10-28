@@ -188,7 +188,7 @@ var Dragrefresh = function (params) {
     s.isNoData = true
     s.isRefreshed = true
     // 收起头部
-    s.hideTop()
+    if (s.topContainer) s.hideTop()
     // 底部显示无数据
     if (s.params.onNoData) s.params.onNoData(s)
   }
