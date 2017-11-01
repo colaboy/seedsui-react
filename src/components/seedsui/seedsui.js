@@ -21,6 +21,7 @@
 // @koala-prepend "../../utils/baidumap.js"
 // @koala-prepend "../../utils/formcontrols.js"
 // @koala-prepend "../../utils/countvalue.js"
+// @koala-prepend "../../utils/array.js"
 
 // @koala-prepend "Counter/counter.js"
 // @koala-prepend "Clock/clock.js"
