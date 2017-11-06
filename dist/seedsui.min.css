@@ -252,6 +252,53 @@ br {
   opacity: 1;
 }
 /*--------------------mask.less(end)----------------------*/
+/*---------------icon.less(start)---------------*/
+/*图标*/
+.icon,
+.star {
+  position: relative;
+  font-style: normal;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-inline-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+/*控件默认图标尺寸*/
+.icon,
+.star {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.icon:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.badge .icon,
+.tip .icon,
+.close .icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+.icon-font,
+.checkbox,
+.radio,
+.star {
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*---------------icon.less(end)---------------*/
 /* Control */
 /*----------------inputbox.less(start)--------------*/
 .inputbox {
@@ -6489,53 +6536,6 @@ ul.weather-otherday li {
 .icon-write-fill:before {
   content: "\ea69";
 }
-/*---------------icon.less(start)---------------*/
-/*图标*/
-.icon,
-.star {
-  position: relative;
-  font-style: normal;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: -webkit-inline-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-}
-/*控件默认图标尺寸*/
-.icon,
-.star {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-}
-.icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.badge .icon,
-.tip .icon,
-.close .icon {
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
-}
-.icon-font,
-.checkbox,
-.radio,
-.star {
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-/*---------------icon.less(end)---------------*/
 /*----------------------------chat.less(start)----------------------------*/
 .chat {
   padding: 8px;
