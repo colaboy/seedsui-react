@@ -9,6 +9,8 @@ var Dragrefresh = function (params) {
     threshold: 100, // 触发位置
     duration: 150,
 
+    topStart: 0, // 如果scrollTop小于等于topStart时，则认为是到顶部了(不建议修改)
+
     topContainer: null,
     bottomContainer: null,
     errorContainer: null
@@ -105,8 +107,8 @@ var Dragrefresh = function (params) {
   s.hasScroll = function () {
     var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
     var scrollHeight = s.overflowContainer.scrollHeight
-    // var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
-    // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
+    /* var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
 
     if (clientHeight === scrollHeight) {
       return false
@@ -264,8 +266,8 @@ var Dragrefresh = function (params) {
   s.onTouchStart = function (e) {
     s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
     // 如果不在顶部，则不触发
-    if (s.isTop() > 0) s.touches.isTop = false
-    else s.touches.isTop = true
+    if (s.getScrollTop() <= s.params.topStart) s.touches.isTop = true
+    else s.touches.isTop = false
 
     s.topContainer.style.webkitTransitionDuration = '0ms'
 
@@ -333,10 +335,9 @@ var Dragrefresh = function (params) {
     }
   }
   s.isNoData = false
-  s.isTop = function (e) {
+  s.getScrollTop = function (e) {
     var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
-    if (scrollTop) return true
-    return false
+    return scrollTop
   }
   s.onScroll = function (e) {
     var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight

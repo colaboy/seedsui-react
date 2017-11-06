@@ -1,6 +1,9 @@
 /*基础*/
 /*常用颜色*/
 /*控件*/
+/* 按钮 */
+/* 按钮-点击与选中 */
+/* 按钮-禁用 */
 /*头像*/
 /*开关*/
 /*日历*/
@@ -151,214 +154,7 @@ br {
   clear: both;
 }
 /*----------------global.less(end)----------------*/
-/*--------------------mask.less(start)----------------------*/
-.mask {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -webkit-transition-duration: 300ms;
-  position: absolute;
-  overflow: hidden;
-  z-index: 10;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 502;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.mask.active {
-  visibility: visible;
-  opacity: 1;
-}
-/*--------------------mask.less(end)----------------------*/
-/*----------------border.less(start)--------------*/
-.border-t {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-b,
-hr,
-.basketline,
-.titlebar,
-.picker-header {
-  background-position: left bottom;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-t,
-.border-b,
-.border-tb,
-hr,
-.basketline,
-.titlebar,
-.group,
-.picker-header,
-.picker-layer-frame {
-  background-repeat: repeat-x;
-  -webkit-background-size: 100% 1px;
-}
-.border-tb,
-.group,
-.picker-layer-frame {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  background-position: top, bottom;
-}
-.border-l {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-r {
-  background-position: right top;
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-l,
-.border-r {
-  background-repeat: repeat-y;
-  -webkit-background-size: 1px 100%;
-}
-.border {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-repeat: no-repeat;
-  background-position: top, right, bottom, left;
-}
-.border-rb {
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  -webkit-background-size: 1px 100% ,100% 1px;
-  background-size: 1px 100% ,100% 1px;
-  background-repeat: no-repeat;
-  background-position: right, bottom;
-}
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-  .border-t {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-b,
-  hr,
-  .basketline,
-  .titlebar,
-  .picker-header {
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-tb,
-  .group,
-  .picker-layer-frame {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-l {
-    background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-r {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-rb {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-}
-hr {
-  border: 0;
-  clear: both;
-}
-.basketline {
-  position: relative;
-}
-.basketline:before,
-.basketline:after {
-  content: '';
-  display: block;
-  position: absolute;
-  background-color: #d1d1d1;
-  z-index: 1;
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  bottom: 0;
-  width: 1px;
-  height: 10px;
-}
-.basketline:before {
-  left: 0;
-  -webkit-transform-origin: left center;
-}
-.basketline:after {
-  right: 0;
-  -webkit-transform-origin: right center;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.5);
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.33);
-  }
-}
-.bordered {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e5e5e5;
-}
-.dotted {
-  border-style: dotted;
-}
-.dashed {
-  border-style: dashed;
-}
-/*----------------border.less(end)--------------*/
-/*---------------icon.less(start)---------------*/
-/*图标*/
-.icon,
-.star {
-  position: relative;
-  font-style: normal;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: -webkit-inline-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-}
-/*控件默认图标尺寸*/
-.icon,
-.star {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-}
-.icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.badge .icon,
-.tip .icon,
-.close .icon {
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
-}
-.icon-font,
-.checkbox,
-.radio,
-.star {
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-/*---------------icon.less(end)---------------*/
-/* Global */
+/* Global Control */
 /*---------------list.less(start)---------------*/
 .list {
   background-color: white;
@@ -435,6 +231,27 @@ hr {
   margin-left: 8px;
 }
 /*---------------list.less(end)---------------*/
+/*--------------------mask.less(start)----------------------*/
+.mask {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
+  position: absolute;
+  overflow: hidden;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 502;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.mask.active {
+  visibility: visible;
+  opacity: 1;
+}
+/*--------------------mask.less(end)----------------------*/
 /* Control */
 /*----------------inputbox.less(start)--------------*/
 .inputbox {
@@ -823,6 +640,145 @@ aside {
   -webkit-transform: translate3d(100%, 0, 0);
 }
 /*----------------page.less(end)--------------*/
+/*----------------border.less(start)--------------*/
+.border-t {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+}
+.border-b,
+hr,
+.basketline,
+.titlebar,
+.picker-header {
+  background-position: left bottom;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-t,
+.border-b,
+.border-tb,
+hr,
+.basketline,
+.titlebar,
+.group,
+.picker-header,
+.picker-layer-frame {
+  background-repeat: repeat-x;
+  -webkit-background-size: 100% 1px;
+}
+.border-tb,
+.group,
+.picker-layer-frame {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  background-position: top, bottom;
+}
+.border-l {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-r {
+  background-position: right top;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-l,
+.border-r {
+  background-repeat: repeat-y;
+  -webkit-background-size: 1px 100%;
+}
+.border {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+}
+.border-rb {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 1px 100% ,100% 1px;
+  background-size: 1px 100% ,100% 1px;
+  background-repeat: no-repeat;
+  background-position: right, bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .border-t {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-b,
+  hr,
+  .basketline,
+  .titlebar,
+  .picker-header {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-tb,
+  .group,
+  .picker-layer-frame {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-l {
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-r {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-rb {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+}
+hr {
+  border: 0;
+  clear: both;
+}
+.basketline {
+  position: relative;
+}
+.basketline:before,
+.basketline:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #d1d1d1;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  bottom: 0;
+  width: 1px;
+  height: 10px;
+}
+.basketline:before {
+  left: 0;
+  -webkit-transform-origin: left center;
+}
+.basketline:after {
+  right: 0;
+  -webkit-transform-origin: right center;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.33);
+  }
+}
+.bordered {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5e5e5;
+}
+.dotted {
+  border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
+}
+/*----------------border.less(end)--------------*/
 /*----------------titlebar.less(start)--------------*/
 .titlebar,
 .titlebar-button,
@@ -1257,8 +1213,11 @@ aside {
   /*白色按钮*/
   /*小汽泡*/
 }
-.button:active {
-  background-color: #f4f4f4;
+.button:active,
+.button.active {
+  color: #20aeff;
+  background-color: #ffffff;
+  border-color: #20aeff;
 }
 .button.block {
   display: -webkit-box;
@@ -1268,7 +1227,8 @@ aside {
   background-color: #20aeff;
   border-color: #20aeff;
 }
-.button.primary:active {
+.button.primary:active,
+.button.primary.active {
   background-color: #86d3ff;
   border-color: #86d3ff;
 }
@@ -1277,7 +1237,8 @@ aside {
   background-color: #f86868;
   border-color: #f86868;
 }
-.button.cancel:active {
+.button.cancel:active,
+.button.cancel.active {
   background-color: #fdc9c9;
   border-color: #fdc9c9;
 }
@@ -1286,7 +1247,8 @@ aside {
   background-color: #68c75f;
   border-color: #68c75f;
 }
-.button.submit:active {
+.button.submit:active,
+.button.submit.active {
   background-color: #afe1ab;
   border-color: #afe1ab;
 }
@@ -1295,7 +1257,8 @@ aside {
   background-color: #5bc0de;
   border-color: #5bc0de;
 }
-.button.info:active {
+.button.info:active,
+.button.info.active {
   background-color: #b0e1ef;
   border-color: #b0e1ef;
 }
@@ -1304,7 +1267,8 @@ aside {
   background-color: #f4984e;
   border-color: #f4984e;
 }
-.button.warn:active {
+.button.warn:active,
+.button.warn.active {
   background-color: #fad0ae;
   border-color: #fad0ae;
 }
@@ -1313,7 +1277,8 @@ aside {
   background-color: #4ddb63;
   border-color: #4ddb63;
 }
-.button.success:active {
+.button.success:active,
+.button.success.active {
   background-color: #a2ecad;
   border-color: #a2ecad;
 }
@@ -1322,12 +1287,15 @@ aside {
   pointer-events: none;
   color: #adadad;
   background-color: #e1e1e1;
-  border-color: #e1e1e1;
+  border-color: #e5e5e5;
 }
 .button.disabled:active,
-.button[disabled]:active {
+.button[disabled]:active,
+.button.disabled.active,
+.button[disabled].active {
   color: #adadad;
-  border-color: #e1e1e1;
+  background-color: #e1e1e1;
+  border-color: #e5e5e5;
 }
 .button.disabled .tip,
 .button[disabled] .tip,
@@ -1340,7 +1308,8 @@ aside {
   background-color: white;
   border-color: white;
 }
-.button.white:active {
+.button.white:active,
+.button.white.active {
   background-color: transparentize(#ffffff, 0.5);
   border-color: transparent;
 }
@@ -1374,7 +1343,8 @@ aside {
   background-color: transparent;
   border-color: #20aeff;
 }
-.button.outline.primary:active {
+.button.outline.primary:active,
+.button.outline.primary.active {
   color: #86d3ff;
   border-color: #86d3ff;
 }
@@ -1383,7 +1353,8 @@ aside {
   background-color: transparent;
   border-color: #f86868;
 }
-.button.outline.cancel:active {
+.button.outline.cancel:active,
+.button.outline.cancel.active {
   color: #fdc9c9;
   border-color: #fdc9c9;
 }
@@ -1392,7 +1363,8 @@ aside {
   background-color: transparent;
   border-color: #68c75f;
 }
-.button.outline.submit:active {
+.button.outline.submit:active,
+.button.outline.submit.active {
   color: #afe1ab;
   border-color: #afe1ab;
 }
@@ -1401,7 +1373,8 @@ aside {
   background-color: transparent;
   border-color: #5bc0de;
 }
-.button.outline.info:active {
+.button.outline.info:active,
+.button.outline.info.active {
   color: #b0e1ef;
   border-color: #b0e1ef;
 }
@@ -1410,7 +1383,8 @@ aside {
   background-color: transparent;
   border-color: #f4984e;
 }
-.button.outline.warn:active {
+.button.outline.warn:active,
+.button.outline.warn.active {
   color: #fad0ae;
   border-color: #fad0ae;
 }
@@ -1419,7 +1393,8 @@ aside {
   background-color: transparent;
   border-color: #4ddb63;
 }
-.button.outline.success:active {
+.button.outline.success:active,
+.button.outline.success.active {
   color: #a2ecad;
   border-color: #a2ecad;
 }
@@ -1428,7 +1403,9 @@ aside {
   background-color: transparent;
 }
 .button.outline.disabled:active,
-.button.outline[disabled]:active {
+.button.outline[disabled]:active,
+.button.outline.disabled.active,
+.button.outline[disabled].active {
   background-color: transparent;
 }
 .button.outline.white {
@@ -1436,7 +1413,8 @@ aside {
   background-color: transparent;
   border-color: white;
 }
-.button.outline.white:active {
+.button.outline.white:active,
+.button.outline.white.active {
   color: transparentize(#ffffff, 0.5);
   border-color: transparentize(#ffffff, 0.5);
 }
@@ -1459,7 +1437,8 @@ aside {
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
   /*分别指投影的：右、下、模糊、扩展、颜色*/
 }
-.button.shadow:active {
+.button.shadow:active,
+.button.shadow.active {
   -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
@@ -6510,6 +6489,53 @@ ul.weather-otherday li {
 .icon-write-fill:before {
   content: "\ea69";
 }
+/*---------------icon.less(start)---------------*/
+/*图标*/
+.icon,
+.star {
+  position: relative;
+  font-style: normal;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-inline-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+/*控件默认图标尺寸*/
+.icon,
+.star {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.icon:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.badge .icon,
+.tip .icon,
+.close .icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+.icon-font,
+.checkbox,
+.radio,
+.star {
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*---------------icon.less(end)---------------*/
 /*----------------------------chat.less(start)----------------------------*/
 .chat {
   padding: 8px;
