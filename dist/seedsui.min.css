@@ -1,3 +1,4 @@
+/* 变量 */
 /*基础*/
 /*常用颜色*/
 /*控件*/
@@ -12,7 +13,7 @@
 /*选择器*/
 /*间距*/
 /*函数*/
-/* Core */
+/* 核心库 */
 /*----------------appearance.less(start)--------------*/
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -154,7 +155,214 @@ br {
   clear: both;
 }
 /*----------------global.less(end)----------------*/
-/* Global Control */
+/*----------------border.less(start)--------------*/
+.border-t {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+}
+.border-b,
+hr,
+.basketline,
+.titlebar,
+.picker-header {
+  background-position: left bottom;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-t,
+.border-b,
+.border-tb,
+hr,
+.basketline,
+.titlebar,
+.group,
+.picker-header,
+.picker-layer-frame {
+  background-repeat: repeat-x;
+  -webkit-background-size: 100% 1px;
+}
+.border-tb,
+.group,
+.picker-layer-frame {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  background-position: top, bottom;
+}
+.border-l {
+  background-position: left top;
+  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-r {
+  background-position: right top;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+}
+.border-l,
+.border-r {
+  background-repeat: repeat-y;
+  -webkit-background-size: 1px 100%;
+}
+.border {
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+}
+.border-rb {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
+  -webkit-background-size: 1px 100% ,100% 1px;
+  background-size: 1px 100% ,100% 1px;
+  background-repeat: no-repeat;
+  background-position: right, bottom;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .border-t {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-b,
+  hr,
+  .basketline,
+  .titlebar,
+  .picker-header {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-tb,
+  .group,
+  .picker-layer-frame {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-l {
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-r {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border {
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+  .border-rb {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
+  }
+}
+hr {
+  border: 0;
+  clear: both;
+}
+.basketline {
+  position: relative;
+}
+.basketline:before,
+.basketline:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background-color: #d1d1d1;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  bottom: 0;
+  width: 1px;
+  height: 10px;
+}
+.basketline:before {
+  left: 0;
+  -webkit-transform-origin: left center;
+}
+.basketline:after {
+  right: 0;
+  -webkit-transform-origin: right center;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .basketline:before,
+  .basketline:after {
+    -webkit-transform: scaleX(0.33);
+  }
+}
+.bordered {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5e5e5;
+}
+.dotted {
+  border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
+}
+/*----------------border.less(end)--------------*/
+/* 组件库 */
+/*---------------icon.less(start)---------------*/
+/*图标*/
+.icon,
+.star {
+  position: relative;
+  font-style: normal;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-inline-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+/*控件默认图标尺寸*/
+.icon,
+.star {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.icon:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.badge .icon,
+.tip .icon,
+.close .icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+.icon-font,
+.checkbox,
+.radio,
+.star {
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*---------------icon.less(end)---------------*/
+/*--------------------mask.less(start)----------------------*/
+.mask {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 300ms;
+  position: absolute;
+  overflow: hidden;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 502;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.mask.active {
+  visibility: visible;
+  opacity: 1;
+}
+/*--------------------mask.less(end)----------------------*/
 /*---------------list.less(start)---------------*/
 .list {
   background-color: white;
@@ -231,75 +439,6 @@ br {
   margin-left: 8px;
 }
 /*---------------list.less(end)---------------*/
-/*--------------------mask.less(start)----------------------*/
-.mask {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  -webkit-transition-duration: 300ms;
-  position: absolute;
-  overflow: hidden;
-  z-index: 10;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 502;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.mask.active {
-  visibility: visible;
-  opacity: 1;
-}
-/*--------------------mask.less(end)----------------------*/
-/*---------------icon.less(start)---------------*/
-/*图标*/
-.icon,
-.star {
-  position: relative;
-  font-style: normal;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: -webkit-inline-box;
-  -webkit-box-pack: center;
-  -webkit-box-align: center;
-}
-/*控件默认图标尺寸*/
-.icon,
-.star {
-  font-size: 24px;
-  width: 24px;
-  height: 24px;
-}
-.icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.badge .icon,
-.tip .icon,
-.close .icon {
-  font-size: 12px;
-  width: 12px;
-  height: 12px;
-}
-.icon-font,
-.checkbox,
-.radio,
-.star {
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-/*---------------icon.less(end)---------------*/
-/* Control */
 /*----------------inputbox.less(start)--------------*/
 .inputbox {
   position: relative;
@@ -687,145 +826,6 @@ aside {
   -webkit-transform: translate3d(100%, 0, 0);
 }
 /*----------------page.less(end)--------------*/
-/*----------------border.less(start)--------------*/
-.border-t {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-}
-.border-b,
-hr,
-.basketline,
-.titlebar,
-.picker-header {
-  background-position: left bottom;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-t,
-.border-b,
-.border-tb,
-hr,
-.basketline,
-.titlebar,
-.group,
-.picker-header,
-.picker-layer-frame {
-  background-repeat: repeat-x;
-  -webkit-background-size: 100% 1px;
-}
-.border-tb,
-.group,
-.picker-layer-frame {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  background-position: top, bottom;
-}
-.border-l {
-  background-position: left top;
-  background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-r {
-  background-position: right top;
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-}
-.border-l,
-.border-r {
-  background-repeat: repeat-y;
-  -webkit-background-size: 1px 100%;
-}
-.border {
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  -webkit-background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-size: 100% 1px,1px 100% ,100% 1px, 1px 100%;
-  background-repeat: no-repeat;
-  background-position: top, right, bottom, left;
-}
-.border-rb {
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
-  -webkit-background-size: 1px 100% ,100% 1px;
-  background-size: 1px 100% ,100% 1px;
-  background-repeat: no-repeat;
-  background-position: right, bottom;
-}
-@media screen and (-webkit-min-device-pixel-ratio: 2) {
-  .border-t {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-b,
-  hr,
-  .basketline,
-  .titlebar,
-  .picker-header {
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-tb,
-  .group,
-  .picker-layer-frame {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-l {
-    background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-r {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-  .border-rb {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1)), -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
-  }
-}
-hr {
-  border: 0;
-  clear: both;
-}
-.basketline {
-  position: relative;
-}
-.basketline:before,
-.basketline:after {
-  content: '';
-  display: block;
-  position: absolute;
-  background-color: #d1d1d1;
-  z-index: 1;
-  overflow: hidden;
-  -webkit-backface-visibility: hidden;
-  bottom: 0;
-  width: 1px;
-  height: 10px;
-}
-.basketline:before {
-  left: 0;
-  -webkit-transform-origin: left center;
-}
-.basketline:after {
-  right: 0;
-  -webkit-transform-origin: right center;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.5);
-  }
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .basketline:before,
-  .basketline:after {
-    -webkit-transform: scaleX(0.33);
-  }
-}
-.bordered {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #e5e5e5;
-}
-.dotted {
-  border-style: dotted;
-}
-.dashed {
-  border-style: dashed;
-}
-/*----------------border.less(end)--------------*/
 /*----------------titlebar.less(start)--------------*/
 .titlebar,
 .titlebar-button,
@@ -6643,7 +6643,7 @@ ul.weather-otherday li {
   border-left-color: #b8daff;
 }
 /*----------------------------chat.less(end)----------------------------*/
-/* Tool */
+/* 工具库 */
 /*----------------layout.less(start)--------------*/
 .wingpadding-lg {
   padding-left: 20px;
