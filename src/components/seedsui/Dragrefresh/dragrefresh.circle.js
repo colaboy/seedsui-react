@@ -66,7 +66,7 @@ var DragCircle = function (params) {
       if (onTopComplete) onTopComplete(e)
     },
     onNoData: function (e) {
-      bottomContainer.classList.add('df-circle-icon-none')
+      if (bottomContainer) bottomContainer.classList.add('df-circle-icon-none')
       // 回调
       if (onNoData) onNoData(e)
     },

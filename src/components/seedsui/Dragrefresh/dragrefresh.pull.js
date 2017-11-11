@@ -78,8 +78,10 @@ var DragPull = function (params) {
       if (onTopComplete) onTopComplete(e)
     },
     onNoData: function (e) {
-      bottomIcon.classList.add('df-pull-icon-none')
-      bottomCaption.innerHTML = '没有更多数据了'
+      if (bottomContainer) {
+        bottomIcon.classList.add('df-pull-icon-none')
+        bottomCaption.innerHTML = '没有更多数据了'
+      }
       // 回调
       if (onNoData) onNoData(e)
     },

@@ -1,4 +1,14 @@
 /* -------------------
+判断是否是空对象
+------------------- */
+Object.isEmptyObject = function (obj) {
+  var name
+  for (name in obj) {
+    return false
+  }
+  return true
+}
+/* -------------------
 判断是否是纯对象
 ------------------- */
 Object.isPlainObject = function (obj) {

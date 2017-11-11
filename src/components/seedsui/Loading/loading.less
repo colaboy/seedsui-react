@@ -6,10 +6,25 @@
 
 //遮罩透明
 .loading-mask {
-    background-color: transparent;
-    -webkit-transition-duration:0ms;
+  background-color: transparent;
+  -webkit-transition-duration:0ms;
 }
 
+// 自定义gif动画
+.loading-wrapper {
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  -webkit-transform: translate(-50%, -50%);
+}
+.loading-icon {
+  width: @24px;
+}
+.loading-text {
+  margin-top: @5px;
+}
 /*填料环loading-filling*/
 @-webkit-keyframes loading-filling {
   0% {

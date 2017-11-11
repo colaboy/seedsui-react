@@ -1,17 +1,38 @@
 /*---------------timeline.less(start)---------------*/
 .timeline{
-	position: relative;
-	margin-left:@24px;
-    padding:0 @18px;
-    li{
-        position:relative;
-    }
+  position: relative;
+  margin-left:@24px;
+  padding:0 @18px;
+}
+.timeline-line{
+  .setContentLine();
+  top: 0;
+  bottom:0;
+  left:0;
+  width:@1px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .timeline-line{
+    -webkit-transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .timeline-line{
+    -webkit-transform: scaleX(0.33);
+  }
+}
+.timeline-case{
+  position: relative;
+  color: @timeline-case;
+}
+.timeline-case.active{
+  color: @timeline-case-active;
 }
 .timeline-badge{
-    position:absolute;
-    top:@12px;
-    left:-@18px;
-    -webkit-transform: translateX(-50%);
-    z-index: 1;
+  position:absolute;
+  top:@12px;
+  left:-@18px;
+  -webkit-transform: translateX(-50%);
+  z-index: 1;
 }
 /*---------------timeline.less(end)---------------*/

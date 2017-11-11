@@ -260,11 +260,11 @@ var Dragrefresh = function (params) {
     posY: 0,
     currentPosY: 0
   }
-  s.preventDefault = function (e) {
+  /* s.preventDefault = function (e) {
     e.preventDefault()
-  }
+  } */
   s.onTouchStart = function (e) {
-    s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
+    // s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
     // 如果不在顶部，则不触发
     if (s.getScrollTop() <= s.params.topStart) s.touches.isTop = true
     else s.touches.isTop = false
@@ -293,14 +293,14 @@ var Dragrefresh = function (params) {
     // 在顶部下拉
     if (s.touches.isTop && s.touches.vertical === -1) {
       if (!s.isRefreshed) return
-      s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
+      // s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
       s.touches.currentPosY = s.touches.posY + s.touches.diffY
       // 实体操作
       if (s.params.onPull) s.params.onPull(s)
       // 标识头部正在拖动
       s.isOnPull = true
     } else {
-      s.overflowContainer.removeEventListener('touchmove', s.preventDefault, false)
+      // s.overflowContainer.removeEventListener('touchmove', s.preventDefault, false)
     }
   }
   s.onTouchEnd = function (e) {
