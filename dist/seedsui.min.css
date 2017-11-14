@@ -2,10 +2,13 @@
 /*基础*/
 /*常用颜色*/
 /*控件*/
+/*标题长条*/
+/*列表*/
 /* 按钮 */
 /* 按钮-点击与选中 */
 /* 按钮-禁用 */
 /*头像*/
+/*缩略图*/
 /*开关*/
 /*日历*/
 /*进度条*/
@@ -13,6 +16,7 @@
 /*选择器*/
 /*小点点*/
 /*时间轴*/
+/*价格*/
 /*间距*/
 /*函数*/
 /* 核心库 */
@@ -245,6 +249,8 @@ hr,
   }
 }
 hr {
+  display: block;
+  height: 1px;
   border: 0;
   clear: both;
 }
@@ -373,45 +379,53 @@ hr {
   position: relative;
   display: -webkit-box;
   padding: 10px 12px;
-  -webkit-box-align: center;
   color: #333333;
+  background-color: #ffffff;
 }
 .list-li:not(.noclick):active {
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
+}
+.list-avatar,
+.list-avatar-img,
+.list-thumbnail,
+.list-thumbnail-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.list-avatar-img,
+.list-thumbnail-img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 .list-avatar {
   position: relative;
   width: 36px;
   height: 36px;
   margin-right: 10px;
-  background-size: 100%;
   border-radius: 100%;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAOVBMVEXDzNb5+/z3+vv2+Pr19/nT2uLK0tvX3eTM1N3Hz9ny9fjv8vXi5+ze4+nq7/Ln6/DP19/k6e7Z4OZ/ZsYlAAACPElEQVRYw+2X63aDIBCE5SJGEG/v/7CNLHQ3BKwu/enUSvYk+c4AybDpHj169OjRoxO9er9t027+BTbuTiQ534wzmzxIUsK/sEMbr9dv0PsvCB7OYwNvSqB4Bc18nkcSjHDb2PMFDNAQK8TKBDpgRRqypWMaRArcse5ZwBncyeMWRqx5q6gESooPadbXDRcPkLQ2rCUMHNxbWq+8PYmeoita9ywgKlJRPXcNJTFI61fHkAjCXaE1IyDMFN0gitSTuT1hjRuMeYi1vetxQUdgK6/vBu0sP6cq8trfjVYgICmv95vAATEwZPX9TNT4XqB91ooR/6KWh8xjwMl6HgrL+WTbeh5aw2oZJlXJQ88+lst5yD+Y13IeNnQjrpSHuqWNK+Vh3zVo+M5D39h+qSwP9+YGcaZ56NauXYrk4atr10Dz0HftcjQPbTvPf+Rhu8U+z8O+cQFVnodyaMCZqZSHk+HRxn6p5eEymNu0fRZn/aFw+3gnE0K01vtDIC/r5aTO+8FavZjrZwntB+u1umLS5flXqy+eflupH4wq9IvLtSgICiAliVJJJz78lfm//aAsSSE0brgyl9oFUWKpNARFh+eTjt+NbxRc8rhHrgLmeeu5J29AiKBcuLAqvF6P54cmcVaVRKgQ9U7M4sZSmj4u/b7CgMyk6g+1JdiLMwKUTqQoiiQmbXkBZfSHxgINRbBJkenLC5im+2vuGAo84jLpVfr9rtAfoiqiW364mL946/FEclfg2dLMdYLSk+YHgF8TNU/EqwEAAAAASUVORK5CYII=);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAOVBMVEXDzNb5+/z3+vv2+Pr19/nT2uLK0tvX3eTM1N3Hz9ny9fjv8vXi5+ze4+nq7/Ln6/DP19/k6e7Z4OZ/ZsYlAAACPElEQVRYw+2X63aDIBCE5SJGEG/v/7CNLHQ3BKwu/enUSvYk+c4AybDpHj169OjRoxO9er9t027+BTbuTiQ534wzmzxIUsK/sEMbr9dv0PsvCB7OYwNvSqB4Bc18nkcSjHDb2PMFDNAQK8TKBDpgRRqypWMaRArcse5ZwBncyeMWRqx5q6gESooPadbXDRcPkLQ2rCUMHNxbWq+8PYmeoita9ywgKlJRPXcNJTFI61fHkAjCXaE1IyDMFN0gitSTuT1hjRuMeYi1vetxQUdgK6/vBu0sP6cq8trfjVYgICmv95vAATEwZPX9TNT4XqB91ooR/6KWh8xjwMl6HgrL+WTbeh5aw2oZJlXJQ88+lst5yD+Y13IeNnQjrpSHuqWNK+Vh3zVo+M5D39h+qSwP9+YGcaZ56NauXYrk4atr10Dz0HftcjQPbTvPf+Rhu8U+z8O+cQFVnodyaMCZqZSHk+HRxn6p5eEymNu0fRZn/aFw+3gnE0K01vtDIC/r5aTO+8FavZjrZwntB+u1umLS5flXqy+eflupH4wq9IvLtSgICiAliVJJJz78lfm//aAsSSE0brgyl9oFUWKpNARFh+eTjt+NbxRc8rhHrgLmeeu5J29AiKBcuLAqvF6P54cmcVaVRKgQ9U7M4sZSmj4u/b7CgMyk6g+1JdiLMwKUTqQoiiQmbXkBZfSHxgINRbBJkenLC5im+2vuGAo84jLpVfr9rtAfoiqiW364mL946/FEclfg2dLMdYLSk+YHgF8TNU/EqwEAAAAASUVORK5CYII=');
+  background-color: #dddddd;
+  border: 0;
 }
-.list-avatar span {
-  width: 36px;
-  height: 36px;
-  position: relative;
-  background-size: 100%;
+.list-avatar-img {
   border-radius: 100%;
-  overflow: hidden;
 }
 .list-thumbnail {
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
   position: relative;
+  width: 62px;
   height: 62px;
   overflow: hidden;
   margin-right: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #dddddd;
-}
-.list-thumbnail img {
-  max-width: 97px;
-  max-height: 62px;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAATlBMVEXw8PDZ2dnr6+u2trb////d3d3n5+fh4eHq6url5eXW1tbR0dHGxsbv7+/CwsLj4+Pu7u7IyMi+vr7Ly8u7u7vY2NjOzs7f39+4uLj19fVfdL0JAAADP0lEQVR42u3ZYW+jMAyAYceuQ0IoJIEB+/9/9BZYOtox7XS3ckHnR2rVj2+R3UQqCCGEEEIIIYQQQgghhBBCPLCs/hJbOIRVP+CYVlY/gOEI6kfADkmVVEmVVEn9TR16M50hVV8Wr1PxqXDJusJT8fJhKjqVLxuvRaeayxaXnPp62bLnSdXnSS36qeJ5ZnU6zy+Agk1qVXbqZlpN4aeVUte8U8XfAZRiA69gz3CzOtV9VVL/99RO80lSLaLhU6RqTKbyU9ngqio9dTKY2bJTJ9ywJad2eEdzsakWHxguNFXjJ2YqMZUN7qnKS2X8Qlda6oRf0v8i1fI3q7/P8OGpGnH6dvX3W+EID2vTqR0Gv2HgCI8npt1b/W/BEdSqwkx/Li0qtds7gvJ3KCrVYrLX2mFZqXr3CEosFpXKZvcISjQWlbq/NnZdqKJSK9ynU2lZqfgVg3iWVJTUP+fxB3jYU2KrByGEEEIIIf530wQfEP6EZwNPp60dgn2D4C2Pw4Cpt7oDb7B+gJBwe4U3hhieLtI7VkRD6+wSQHdSjabYbkTSkLzQcaloh94kXg0G3nmd9FGvYEmt0nvQsKiOTk3C4LsZAUANcG+MkOXUhuoE/0mqpdg31Pe9rqlJeshC+5jqqB/HsZ23qZhYUoh4hae6Oud6Gp0z4+Bc+/aCrGnuU31DsUHgud4OwIaCp6sIAaEZAcZ27V/E/vpuTeXY+TA4crBN5Q8Gnor70EQaiCxxTg30oF8HwAO+zDQof79WR+F+dCOxNePgc2qlkpqcol4l3ZJa1c0ca+3mOXBOrQkO1UVMfQDgGripZw9Ub2Z1bF1VTwCoQsipbuYM4ek6t8Fw0/Zwn7os4RBf/GZWe7qx8HQ1NTdDgMwQP6Ymvo7btWoDrviYVA9Ze0v17ew/pYaeEa6bp+pJwao6+qnOt9SRFORU5d5TuR+odd1HKpM5NrV+yWLIBwM5uKWO7ccAdHVL8ZbaRDg2Fa9ZG9aeSD0ka3DsUyqbd/btE5Ne+tTBqRtLqqOBYdHMTQiROKXeS6k4NHBwatVlMayz6WGlXQhhnCClKruhltRg7lLPQv4MEEIIIYQQQgghhBBCCCGEECf1C/gmN8hELxs9AAAAAElFTkSuQmCC');
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
 }
 .list-container {
   display: block;
@@ -1965,11 +1979,11 @@ aside {
   background-color: #ffffff;
   border-radius: 4px;
 }
-.numbox .numbox-input,
-.numbox .numbox-button {
+.numbox-input,
+.numbox-button {
   height: 26px;
 }
-.numbox .numbox-input {
+.numbox-input {
   display: block;
   -webkit-box-flex: 1;
   text-align: center;
@@ -1980,7 +1994,7 @@ aside {
   border-style: solid;
   border-color: #e5e5e5;
 }
-.numbox .numbox-button {
+.numbox-button {
   display: block;
   width: 26px;
   font-size: 20px;
@@ -1988,14 +2002,21 @@ aside {
   color: #666666;
   background-color: white;
 }
-.numbox .numbox-button[disabled] {
+.numbox-button[disabled] {
   color: #cccccc;
 }
-.numbox .numbox-button:first-child {
+.numbox-button:first-child {
   left: 0;
 }
-.numbox .numbox-button:nth-last-of-type(1) {
+.numbox-button:nth-last-of-type(1) {
   right: 0;
+}
+.numbox.disabled {
+  pointer-events: none;
+}
+.numbox.disabled .numbox-button,
+.numbox.disabled .numbox-input {
+  color: #cccccc;
 }
 /*----------------numbox.less(end)--------------*/
 /*----------------range.less(start)--------------*/
@@ -6719,6 +6740,23 @@ ul.weather-otherday li {
   text-align: center;
 }
 /*----------------notice.less(end)----------------*/
+/*----------------price.less(start)----------------*/
+.price {
+  display: inline-block;
+  color: #eb464a;
+  font-size: 12px;
+  vertical-align: bottom;
+}
+.price-integer {
+  font-size: 16px;
+}
+.price-unit {
+  display: inline-block;
+  vertical-align: middle;
+  color: #aaaaaa;
+  margin-left: 5px;
+}
+/*----------------price.less(end)----------------*/
 /* 工具库 */
 /*----------------layout.less(start)--------------*/
 .wingpadding-lg {
@@ -7056,25 +7094,31 @@ ul.weather-otherday li {
 /*文字换行*/
 .ellipsis,
 .nowrap,
-.nowrap2 {
+.nowrap2,
+.nowrap3 {
   text-overflow: ellipsis;
 }
 .break-all {
   word-break: break-all;
 }
 .nowrap,
-.nowrap2 {
+.nowrap2,
+.nowrap3 {
   overflow: hidden;
 }
 .nowrap {
   white-space: nowrap;
 }
-.nowrap2 {
+.nowrap2,
+.nowrap3 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
 .nowrap2 {
   -webkit-line-clamp: 2;
+}
+.nowrap3 {
+  -webkit-line-clamp: 3;
 }
 /*文字排列*/
 .text-center {
