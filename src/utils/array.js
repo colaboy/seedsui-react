@@ -8,3 +8,9 @@ Array.prototype.powerset = function () {
   }
   return ps
 }
+
+// 二维数组转为一维数组
+Array.prototype.toOneColumn = function () {
+  var reg = /[\d\.]+\,([\d\.]+)/g
+  return this.join(',').replace(reg, '$1').split(',')
+}
