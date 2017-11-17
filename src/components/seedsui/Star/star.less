@@ -1,12 +1,5 @@
 //@import "../base/tool/icon.less";
 
-@font-face {
-	font-family: "iconstar";
-  src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAVEAAsAAAAAB7QAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kjrY21hcAAAAYAAAABlAAABnNA3bhNnbHlmAAAB6AAAAVsAAAF8xpQffGhlYWQAAANEAAAALwAAADYPTp23aGhlYQAAA3QAAAAcAAAAJAfeA4VobXR4AAADkAAAABAAAAAQD+kAAGxvY2EAAAOgAAAACgAAAAoBNACibWF4cAAAA6wAAAAfAAAAIAETAF1uYW1lAAADzAAAAUsAAAJtLVEhh3Bvc3QAAAUYAAAAKQAAADzSvTUyeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDz7z9zwv4EhhrmBoQEozAiSAwA27w1teJzFkMENwCAIRT9iG9N0lB6bDtRTR/DssKxBAb04gd88gR8iBgAbADYuIwP0geB6zaXwGUf4GY/VxU6yWKWJqk6Zi6KjRJb8ZdqxTLRu9Kwz7ntUvu86sC9K6/heRTvgHx4NFXcAAAB4nF3PvU7CUBjG8fOeY1s+W+kH/YBaCpSDQSHWAoMRFhaNg4mToxegbDLowGJi0MGV1Zh4E43IDDfgYNTI4sIFMBQbJuOTZ/4lf8QgtPwiPtGQhMpoB3XQMULAViDPYxNs6lVxBRSbUVSZJ7RAba6Qr5J9UPOsnHYbXkllOVYAHjZg13YbtIop1L0W3gM3bQLoGeNEdLIieYCYRjdugkP8CIpVyAqt7eBgqy27OSnSS4iiLor3EZZhIhivCTycq+koE42xwRMjGIpvbWILEjo1jk6TuYx4dutdmI4aBej3Qcrk+Od2ykiFvzbSkqhz68mIZiQLRRl6s7gmJczSNwqHw9YxGZE2ioa1CJw4MCpxGCJAkzpNCziVjILJYBBMPuqggOx9vldeALrdpV+GnxrQ4K02C/zhEDqXV4uxPZ8XR4sQWrmvK/ePGlrTu0EwDS0ZlPo/AKFfydxSvAB4nGNgZGBgAOKzfxXY4vltvjJwszCAwDXxNXcR9P+DLAzM9kAuBwMTSBQAMdEKnQB4nGNgZGBgbvjfwBDDwgACQJKRARWwAABHCgJtBAAAAAPpAAAEAAAABAAAAAAAAAAAdgCiAL4AAHicY2BkYGBgYQhkYGUAASYg5gJCBob/YD4DABESAXEAeJxljz1Ow0AUhMf54ceRUEQEHdIWiAKQ8yOqNBSRkj5FesdZJ45sr7XeRMoBOA9H4AQcAW7AHRic5ybY2rffzM5bPwO4xjc8HJ8briN7uKA6cgPnuBNu0r8XbpGfhdvo4EX4jP6rsI8nzIQ76MHyBq91SfWIN2EPXbwLN3CFD+Em/U/hFvlLuI1b/Aifoes1hX0svJ5wBw9e4k+sDp1eqeVBJZHJY5M7/w9KF9q5Xu/S0Nay3hfalonJ1TAY1NZM59rW95T79ci5WMXWZGrKC3WaGlVYs9WRCzbOFeN+PxY/iEzGsSb8bY0QjnUFhSUOrAkiGOSIq+qYq52SKmTPnPk1dkgrdXp6qhdMW6qkchWGCDD4l5oxlVfJ03lK7Pm1EV3HmRSXZWdGmsqEmpOkZIWiOtvSiegH2FRdBcbo841P8kE1Q/YLI2pu4AB4nGNgYoAALgbsgIWRiZGZkYWRlYGxgjktsYwDiHXTMnNyGBgAMHYE9QAAAA==') format('woff'),
-}
-.iconstar-fav:before { content: "\e682"; }
-.iconstar-fav-fill:before { content: "\e6ff"; }
-
 /*----------------star.less(start)----------------*/
 .star{
 	display:-webkit-inline-box;
@@ -15,19 +8,19 @@
 	width: 36px;
 	height: 36px;
 	font-size: @30px;
-	color:@placeholder;
-	font-family: 'iconstar';
+	color: @star-color;
+	font-family: @font-family-star;
 	&:extend(.icon);
 	&:extend(.icon-font);
 	&:before{
 		display: block;
-		&:extend(.iconstar-fav:before);
+		content: @content-star;
 	}
 	&.active{
-		color:@warn-bg;
+		color:@star-color-active;
 	}
 	&.active:before{
-		&:extend(.iconstar-fav-fill:before);
+		content: @content-star-checked;
 	}
 	&.active-half{
 		/* Chrome10-25,Safari5.1-6 */
