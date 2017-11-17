@@ -1,10 +1,4 @@
 /*----------------------------calendar.less(start)----------------------------*/
-@calendar-weeks-color:@sub-color;
-@calendar-arrow-color:@placeholder;
-@calendar-current-color:@body-color;
-@calendar-notcurrent-color:@sub-color;
-@calendar-disable-color:@placeholder;
-@calendar-today-border:@border;
 .calendar{
 	position: relative;
     width: 100%;
@@ -35,7 +29,7 @@
 }
 /*周*/
 .calendar-weeks{
-	color:@calendar-weeks-color;
+	color:@calendar-week-color;
 	&:after{
 		content: '';
 		display:table;
@@ -118,12 +112,12 @@
 	font-weight:600;
     border-radius:100%;
 
-    color:@calendar-active-color;
-    border-color:@calendar-active-border;
-    background-color:@calendar-active-bg;
+    color:@calendar-checked-color;
+    border-color:@calendar-checked-border;
+    background-color:@calendar-checked-bg;
 }
 .calendar-disable{
-	color:@calendar-disable-color;
+	color:@calendar-disabled-color;
 }
 .calendar-disable.calendar-active{
 	font-weight:normal;

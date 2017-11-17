@@ -8,7 +8,7 @@
     var defaults = {
       parent: document.body,
 
-      maskClass: "mask",
+      maskClass: "mask bottom",
       maskActiveClass: "active",
       maskFeatureClass: "toast-mask",
 

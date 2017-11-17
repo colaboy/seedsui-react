@@ -1,12 +1,5 @@
 //@import "../base/tool/icon.less";
 
-@font-face {
-  font-family: "iconcbo";
-  src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAWQAAsAAAAACAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7khPY21hcAAAAYAAAABlAAABnM95a9lnbHlmAAAB6AAAAakAAAHUOzx3vGhlYWQAAAOUAAAALwAAADYPTqSvaGhlYQAAA8QAAAAcAAAAJAfeA4VobXR4AAAD4AAAABAAAAAQD+kAAGxvY2EAAAPwAAAACgAAAAoBYACwbWF4cAAAA/wAAAAfAAAAIAETAF1uYW1lAAAEHAAAAUcAAAJhnH999HBvc3QAAAVkAAAAKwAAAD6+/qBkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDxLZm7438AQw9zA0AAUZgTJAQArWwzReJzFkMENwCAIRT9iG9N0lB6bzmPqpSM4MWtYQC9O4DdP4IeIAcAGgJVLiQB9IJhedcl9xuF+xKN10hM0VslSWpsyE3lH8izYy7RjmWjd6Fmn3/eobN91oF+U3LG9SumAfxEzEn8AAAB4nF3PP2/TYBAG8Pe5FzuOndj4f2IncRynMajgCmNiidTpQqsGGJIywQQLgqEICYkuDF2QGBiQGBCMBYlvwFQEA3yQCsSnaAwObJxOutPd8NPDBMZ+n/Bj3mImO8cusWtszhjEdQxU6iKMs4TWYYeC7Voqj6M4rEWDhBdwB6LlpONs5Io1UYOKHi6H6ThOKMaVbEoTpE4XaPveLWOtY/BXkFtx73l5nY5gB1FHm14sZxe2rLRvSgcNw2gbxktJFASJ6IymYt916kJdFssPgubZx8F5CtBox97N282+b9x7kT3qrrl14PAQpt9XP27pnl71M88xjXbtbFNqec1oaOHgp9IyG93RD1YVVVm/8698k2ksqFKGKmp6D244Ra4n4GGCWK/2sLrpKvjG8n2xB+wWtD+9Aezly9dRTpRH9HhYzat8k+bF8t1kB9iZ0P1ifvpp9Xw4zIF8uHwT5f/Mb/zLX7P/n2kmUCAONjDKxmkAc5w6VoUeFQvCrKAHxQwSLd6eNrrKU9nylbu/FN/iEyxW6DawvUIX5efyRJafKL4t34Eo250/FstRcgAAAHicY2BkYGAAYr0PV+3i+W2+MnCzMIDANfENkQj6/xEWBmYbIJeDgQkkCgAkjgneAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2ALAA6gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNINuv8yPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8I0A5+uO68wB2uzOXCM/CNfJj8INcle4iQ4Gwi3qL8IhnjEW7uAWGScEjSt2XbwJB7jGu3CN/CFcJ38KN8hfwk3c40e4Rf1XOMQ8aAt38BS8hmNnFt6s1PKottpmsc18eAK9tDOz3icLJ5085sYVW5upQdQXZWoy4y4zisN66H2sYmdTNeEwkyRW5c7ujPbRxvt81OvFokfapow0hoPBAp51BYUljqxbaFh+jLisnr6LoumwmNG9xh4JT7rK3v9uTqdDQfWkKf6ECP2KZ0pPVvqqOQoc+J4hVc8sisvRn5ImkswwQ0JWyMu9HRVNPcKmPJVjhB7vuOKPygTpH/kpa0kAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYI5OSmfC4jzs3XTMnNyGBgAPS8FvwA=') format('woff'),
-}
-.iconcbo-cbo:before { content: "\e660"; }
-.iconcbo-cbook-fill:before { content: "\e663"; }
-
 /*----------------checkbox.less(start)--------------*/
 .checkbox{
   height: @22px;
@@ -22,23 +15,22 @@
   background-repeat:no-repeat;
   background-size:auto 100%;
 
-  color:@placeholder;
+  color:@checkbox-color;
 
   &:checked,&.active{
-    color:@success-bg;
+    color:@checkbox-color-active;
   }
   &[disabled]{
-    color:@disable-bg;
+    color:@checkbox-color-disable;
   }
-  font-family: "iconcbo";
-  &:extend(.icon-font);
+  font-family: @font-family-checkbox;
 }
 /*icon*/
 .checkbox:before{
-  &:extend(.iconcbo-cbo:before);
+  content: @content-checkbox;
 }
 .checkbox:checked:before{
-  &:extend(.iconcbo-cbook-fill:before);
+  content: @content-checkbox-checked;
 }
 /*label*/
 label .checkbox+span{

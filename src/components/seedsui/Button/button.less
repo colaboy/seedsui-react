@@ -20,9 +20,9 @@
 	border-color: @button-border;
 
 	&:active,&.active{
-    color:@button-active-color;
-    background-color:@button-active-bg;
-    border-color: @button-active-border;
+    color:@button-checked-color;
+    background-color:@button-checked-bg;
+    border-color: @button-checked-border;
 	}
 
 	&.block{
@@ -91,13 +91,13 @@
 	/*禁用按钮*/
 	&.disabled,&[disabled]{
 		pointer-events: none;
-		color:@button-disable-color;
-		background-color:@button-disable-bg;
-		border-color:@button-disable-border;
+		color:@button-disabled-color;
+		background-color:@button-disabled-bg;
+		border-color:@button-disabled-border;
 		&:active,&.active{
-			color:@button-disable-color;
-      background-color:@button-disable-bg;
-      border-color:@button-disable-border;
+			color:@button-disabled-color;
+      background-color:@button-disabled-bg;
+      border-color:@button-disabled-border;
 		}
 		.tip,.badge{
 			background-color: @disable-bg;

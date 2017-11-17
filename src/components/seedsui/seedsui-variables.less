@@ -152,13 +152,13 @@
 @button-color:@body-color;
 @button-border:@dpborder;
 /* 按钮-点击与选中 */
-@button-active-bg:white;
-@button-active-color:@primary-bg;
-@button-active-border:@primary-bg;
+@button-checked-bg:white;
+@button-checked-color:@primary-bg;
+@button-checked-border:@primary-bg;
 /* 按钮-禁用 */
-@button-disable-bg:#e1e1e1;
-@button-disable-color:#adadad;
-@button-disable-border:@dpborder;
+@button-disabled-bg:#e1e1e1;
+@button-disabled-color:#adadad;
+@button-disabled-border:@dpborder;
 
 @button-tip-bg:rgba(0, 0, 0, .15);
 
@@ -183,16 +183,23 @@
 @turn-color-active:white;
 
 /*日历*/
-@calendar-active-color:@primary-color;
-@calendar-active-border:@primary-bg;
-@calendar-active-bg:@primary-bg;
+@calendar-week-color:@sub-color;
+@calendar-arrow-color:@placeholder;
+@calendar-current-color:@body-color;
+@calendar-notcurrent-color:@sub-color;
+@calendar-disabled-color:@placeholder;
+@calendar-today-border:@border;
+
+@calendar-checked-color:@primary-color;
+@calendar-checked-border:@primary-bg;
+@calendar-checked-bg:@primary-bg;
 
 /*进度条*/
 @progress-bg:#f2f2f2;
 
 /*数字框*/
 @numbox-button-color:#666;
-@numbox-button-disable-color:#ccc;
+@numbox-button-disabled-color:#ccc;
 
 /*选择器*/
 @picker-bg:#f5f5f9;
@@ -210,6 +217,30 @@
 /*价格*/
 @price: #EB464A;
 @priceunit: #aaa;
+
+/*checkbox*/
+@font-face {
+  font-family: "checkbox";
+  src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAWQAAsAAAAACAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7khPY21hcAAAAYAAAABlAAABnM95a9lnbHlmAAAB6AAAAakAAAHUOzx3vGhlYWQAAAOUAAAALwAAADYPTqSvaGhlYQAAA8QAAAAcAAAAJAfeA4VobXR4AAAD4AAAABAAAAAQD+kAAGxvY2EAAAPwAAAACgAAAAoBYACwbWF4cAAAA/wAAAAfAAAAIAETAF1uYW1lAAAEHAAAAUcAAAJhnH999HBvc3QAAAVkAAAAKwAAAD6+/qBkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDxLZm7438AQw9zA0AAUZgTJAQArWwzReJzFkMENwCAIRT9iG9N0lB6bzmPqpSM4MWtYQC9O4DdP4IeIAcAGgJVLiQB9IJhedcl9xuF+xKN10hM0VslSWpsyE3lH8izYy7RjmWjd6Fmn3/eobN91oF+U3LG9SumAfxEzEn8AAAB4nF3PP2/TYBAG8Pe5FzuOndj4f2IncRynMajgCmNiidTpQqsGGJIywQQLgqEICYkuDF2QGBiQGBCMBYlvwFQEA3yQCsSnaAwObJxOutPd8NPDBMZ+n/Bj3mImO8cusWtszhjEdQxU6iKMs4TWYYeC7Voqj6M4rEWDhBdwB6LlpONs5Io1UYOKHi6H6ThOKMaVbEoTpE4XaPveLWOtY/BXkFtx73l5nY5gB1FHm14sZxe2rLRvSgcNw2gbxktJFASJ6IymYt916kJdFssPgubZx8F5CtBox97N282+b9x7kT3qrrl14PAQpt9XP27pnl71M88xjXbtbFNqec1oaOHgp9IyG93RD1YVVVm/8698k2ksqFKGKmp6D244Ra4n4GGCWK/2sLrpKvjG8n2xB+wWtD+9Aezly9dRTpRH9HhYzat8k+bF8t1kB9iZ0P1ifvpp9Xw4zIF8uHwT5f/Mb/zLX7P/n2kmUCAONjDKxmkAc5w6VoUeFQvCrKAHxQwSLd6eNrrKU9nylbu/FN/iEyxW6DawvUIX5efyRJafKL4t34Eo250/FstRcgAAAHicY2BkYGAAYr0PV+3i+W2+MnCzMIDANfENkQj6/xEWBmYbIJeDgQkkCgAkjgneAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2ALAA6gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNINuv8yPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8I0A5+uO68wB2uzOXCM/CNfJj8INcle4iQ4Gwi3qL8IhnjEW7uAWGScEjSt2XbwJB7jGu3CN/CFcJ38KN8hfwk3c40e4Rf1XOMQ8aAt38BS8hmNnFt6s1PKottpmsc18eAK9tDOz3icLJ5085sYVW5upQdQXZWoy4y4zisN66H2sYmdTNeEwkyRW5c7ujPbRxvt81OvFokfapow0hoPBAp51BYUljqxbaFh+jLisnr6LoumwmNG9xh4JT7rK3v9uTqdDQfWkKf6ECP2KZ0pPVvqqOQoc+J4hVc8sisvRn5ImkswwQ0JWyMu9HRVNPcKmPJVjhB7vuOKPygTpH/kpa0kAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYI5OSmfC4jzs3XTMnNyGBgAPS8FvwA=') format('woff'),
+}
+@font-family-checkbox: "checkbox";
+@content-checkbox: "\e660";
+@content-checkbox-checked: "\e663";
+@checkbox-color: @placeholder;
+@checkbox-color-active: @primary-bg;
+@checkbox-color-disable: @disable-bg;
+
+/*radio*/
+@font-face {
+  font-family: "radio";
+  src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAU0AAsAAAAAB9gAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kiLY21hcAAAAYAAAABnAAABnM/ybURnbHlmAAAB6AAAAUoAAAGkRLFa8WhlYWQAAAM0AAAALwAAADYPTqL2aGhlYQAAA2QAAAAcAAAAJAfeA4VobXR4AAADgAAAABAAAAAQD+kAAGxvY2EAAAOQAAAACgAAAAoBSACkbWF4cAAAA5wAAAAfAAAAIAETAF1uYW1lAAADvAAAAUcAAAJhz5CxBXBvc3QAAAUEAAAAMAAAAENVYB4EeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDybz9zwv4EhhrmBoQEozAiSAwAvzw0NeJzFkMENwCAIRT9iG9N0lB6bDtRTR3AZ43asYQG9OIHfPIEfIgYAGwBWLiUC9IFgetUl9xmH+xGP1klP0JilSG1tykzkHcmzYC/TjmWidaNnnX7fo7J954F+UUrH9iq1A/4BY7wUYwB4nJWPv0rDUBTG77k3N0n/Jfbmf9q0TWMbpRowxjqIzWIHxUFwErr4ALp2cegiODj4DFJwyeJeqj6K2L5FrAZLBUcPh4/vfAd+8CGK0Nc7mRATKWgD7aAjdIYQ8B1oStgB148C3AHNpZqhSsT3fFfwmgE5BKPJq3rYjdoGL/AySFCDXTfs+gH2YS/q4QMIdQfAqtjnrFVl5AHypl+7XZzgR9DqXlXubS+Ot2I1bCjisMiYxdi9yFMqYszJElwZeo7m8vxiTGVbm9Q3cR2Klm+fXpQaFXZ5F107LSMHMBqBUmlIT3HZLmd7Y+sKs4S1kmjaJW9dheGsYCpFp/2BssFZ11fyQmJUQEbWUgKhBkYP9gMgAfiZyU4JMJqmlKbTpSYzSmdJMue4OYl/02maPnPzZPVcst/+y+4PAAb9H/3D/hyv4kzRN7E7XP8AAHicY2BkYGAA4o749Zrx/DZfGbhZGEDgmvj6WgT9/wALA7M9kMvBwAQSBQAXWwmxAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2AKQA0gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNI7LWTyPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8A0P5+uO68weuuzO3CA/CDfJj8Itcl+4jR5Gwh3qL8I+njEV7uEWOSd4rSt2fbwJe7jGu3CD/CHcJH8Kt8hfwm3c40e4Q/1X2MfS6wr38OS9+lOrV05Han1U29DkscmdfwIbmYVO9unKSiePpbbl1uRqFAxFmetc28uM8pCMnYtVbE2mZhym09SowpqdDl2wca6YDAax6EFoMkaawkJjBccaQWGNI+sWIQw/RlxVR99FsXQZLOhOsEfKk7a2979b0mlRUj1pij8hwLDmmdOTV756jhIHvmdM1TGL4rL0Z6SZJNPMkJIVimpvRyWkHmBTnSowwYB3XPMHVYLsD4GGa9EAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYK5KCWfH4iTM1KTs1NTdNMyc3IYGABmqwfT') format('woff'),
+}
+@font-family-radio: "radio";
+@content-radio: "\e69d";
+@content-radio-checked: "\e69f";
+@radio-color: @placeholder;
+@radio-color-active: @primary-bg;
+@radio-color-disable: @disable-bg;
 
 /*间距*/
 @wingblank-xl: @24px;

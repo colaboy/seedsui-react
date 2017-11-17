@@ -8,51 +8,147 @@
 	background-color: transparent;
 	z-index:999;
 }
+// 底部类型
+.toast-mask.bottom{
+  .toast{
+    position:absolute;
+    bottom:-@100px;
+    width:100%;
+    font-size:@font-size-sm;
+    text-align:center;
+    pointer-events:none;
+    opacity: 0;
 
-.toast{
-	position:absolute;
-	bottom:-@100px;
-	width:100%;
-	font-size:@font-size-sm;
-	text-align:center;
-	pointer-events:none;
-	opacity: 0;
+    -webkit-transition-property:-webkit-transform,opacity,visibility;
+    -webkit-transition-duration:150ms;
+    -webkit-transition-timing-function:ease;
 
-	-webkit-transition-property:-webkit-transform,opacity,visibility;
-  -webkit-transition-duration:150ms;
-  -webkit-transition-timing-function:ease;
+    &.active{
+      opacity: 1;
+      -webkit-transform:translate3d(0,-@150px,0);
+    }
+  }
+  .toast-wrapper{
+    display:inline-block;
+    padding:@10px;
+    border-radius:@6px;
+    max-width:90%;
+    max-height:@35px;
+    line-height:@20px;
+    overflow:hidden;
+    text-align:left;
 
-  &.active{
-  	opacity: 1;
-  	-webkit-transform:translate3d(0,-@150px,0);
+    color:white;
+    background-color:@toast-bg;
+  }
+  .toast-icon{
+    background-size:cover;
+    width:@16px;
+    height:@16px;
+    font-size: @16px;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .toast-font{
+    display:line-block;
+    height: @18px;
+    line-height: @16px;
+    vertical-align:middle;
+    margin-left:@4px;
   }
 }
-.toast-wrapper{
-	display:inline-block;
-	padding:@10px;
-	border-radius:@6px;
-	max-width:90%;
-	max-height:@35px;
-	line-height:@20px;
-	overflow:hidden;
-	text-align:left;
-
-	color:white;
-	background-color:@toast-bg;
+// 头部类型
+.toast-mask.top{
+  .toast{
+    display: block;
+    visibility:hidden;
+    opacity:0;
+    position:absolute;
+    left:0;
+    top:@44px;
+    width:100%;
+    line-height:0;
+    text-align:center;
+  
+    -webkit-transition-property:-webkit-transform,opacity,visibility;
+    -webkit-transition-duration:300ms;
+    -webkit-transition-timing-function:linear;
+  
+    color:white;
+    background-color:@toast-bg;
+    &.active{
+      visibility:visible;
+      opacity: 1;
+    }
+  }
+  .toast-wrapper{
+    display:inline-block;
+    padding:@6px;
+    line-height: initial;
+    max-width:90%;
+    max-height:@35px;
+    overflow:hidden;
+  }
+  .toast-icon{
+    background-size:cover;
+    width:@16px;
+    height:@16px;
+    font-size: @16px;
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .toast-font{
+    display:line-block;
+    height: @18px;
+    line-height: @16px;
+    vertical-align:middle;
+    margin-left:@4px;
+  }
 }
-.toast-icon{
-	background-size:cover;
-	width:@16px;
-	height:@16px;
-	font-size: @16px;
-	display:inline-block;
-	vertical-align:middle;
-}
-.toast-font{
-	display:line-block;
-	height: @18px;
-	line-height: @16px;
-	vertical-align:middle;
-	margin-left:@4px;
+// 中间类型
+.toast-mask.middle{
+  .toast{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    display: block;
+    padding: 8px;
+    visibility:hidden;
+    opacity:0;
+    width:@120px;
+    line-height:0;
+    text-align:center;
+  
+    -webkit-transition-property:-webkit-transform,opacity,visibility;
+    -webkit-transition-duration:300ms;
+    -webkit-transition-timing-function:linear;
+  
+    color:white;
+    background-color:@toast-bg;
+    &.active{
+      visibility:visible;
+      opacity: 1;
+    }
+  }
+  .toast-wrapper{
+    display:inline-block;
+    padding:@6px;
+    line-height: initial;
+    max-width:90%;
+    overflow:hidden;
+  }
+  .toast-icon{
+    background-size:cover;
+    width:@36px;
+    height:@36px;
+    font-size: @36px;
+    display:block;
+    margin: 0 auto;
+  }
+  .toast-font{
+    display:block;
+    margin-top: @8px;
+  }
 }
 /*----------------toast.less(end)--------------*/
