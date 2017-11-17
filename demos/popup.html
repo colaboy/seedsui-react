@@ -293,7 +293,7 @@
 			actionsheet.show();
 	    };
 	    //Prompt框
-	    var prompt=new Prompt();
+	    var prompt=new Toast({type: "top"});
 	    document.getElementById("promptBtn").onclick=function(){
 	    	prompt.setHTML("更新成功");
 	    	prompt.show();

@@ -36,7 +36,6 @@
 // @koala-prepend "Alert/alert.js"
 // @koala-prepend "Actionsheet/actionsheet.js"
 // @koala-prepend "Toast/toast.js"
-// @koala-prepend "Prompt/prompt.js"
 // @koala-prepend "Dialog/dialog.js"
 // @koala-prepend "Picker/picker.js"
 // @koala-prepend "Picker/picker.date.js"

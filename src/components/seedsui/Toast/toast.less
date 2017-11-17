@@ -1,12 +1,12 @@
 /*----------------toast.less(start)--------------*/
 //是否允许点击
 .toast-propagation{
-	pointer-events:none;
+  pointer-events:none;
 }
 //遮罩透明
 .toast-mask{
-	background-color: transparent;
-	z-index:999;
+  background-color: transparent;
+  z-index:999;
 }
 // 底部类型
 .toast-mask.bottom{
@@ -38,8 +38,8 @@
     overflow:hidden;
     text-align:left;
 
-    color:white;
-    background-color:@toast-bg;
+    color:@toast-bottom-color;
+    background-color:@toast-bottom-bg;
   }
   .toast-icon{
     background-size:cover;
@@ -74,8 +74,8 @@
     -webkit-transition-duration:300ms;
     -webkit-transition-timing-function:linear;
   
-    color:white;
-    background-color:@toast-bg;
+    color:@toast-top-color;
+    background-color:@toast-top-bg;
     &.active{
       visibility:visible;
       opacity: 1;
@@ -124,8 +124,8 @@
     -webkit-transition-duration:300ms;
     -webkit-transition-timing-function:linear;
   
-    color:white;
-    background-color:@toast-bg;
+    color:@toast-middle-color;
+    background-color:@toast-middle-bg;
     &.active{
       visibility:visible;
       opacity: 1;

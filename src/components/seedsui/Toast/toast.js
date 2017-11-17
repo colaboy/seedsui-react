@@ -8,7 +8,8 @@
     var defaults = {
       parent: document.body,
 
-      maskClass: "mask bottom",
+      maskClass: "mask",
+      type: "bottom",
       maskActiveClass: "active",
       maskFeatureClass: "toast-mask",
 
@@ -43,7 +44,7 @@
     //Mask
     s.createMask = function() {
       var mask = document.createElement("div");
-      mask.setAttribute("class", s.params.maskClass + " " + s.params.maskFeatureClass);
+      mask.setAttribute("class", s.params.maskClass + " " + s.params.type + " " + s.params.maskFeatureClass);
       if (s.params.isClickAllow) mask.classList.add(s.params.clickAllowClass);
       return mask;
     }
