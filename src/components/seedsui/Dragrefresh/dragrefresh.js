@@ -153,9 +153,11 @@ var Dragrefresh = function (params) {
     }
     // 如果还有数据，如果没有滚动条，则继续加载
     if (!s.bottomContainer) return
-    if (!s.isNoData && !s.hasScroll()) {
-      s.bottomRefresh()
-    }
+    setTimeout(function () {
+      if (!s.isNoData && !s.hasScroll()) {
+        s.bottomRefresh()
+      }
+    }, s.params.duration)
   }
   // 底部刷新完成
   s.bottomComplete = function () {

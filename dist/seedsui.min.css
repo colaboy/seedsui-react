@@ -650,7 +650,7 @@ input[type="color"] {
   content: "\e663";
 }
 /*label*/
-label .checkbox + span {
+.checkbox + label {
   margin: 0 4px;
 }
 /*----------------checkbox.less(end)--------------*/
@@ -686,7 +686,7 @@ label .checkbox + span {
   content: "\e69f";
 }
 /*label*/
-label .radio + span {
+.radio + label {
   margin: 0 4px;
 }
 /*----------------radio.less(end)--------------*/
