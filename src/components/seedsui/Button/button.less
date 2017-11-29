@@ -87,10 +87,12 @@
 			background-color:@success-bg-active;
 			border-color:@success-bg-active;
 		}
-	}
+  }
+  &[disabled]{
+    pointer-events: none;
+  }
 	/*禁用按钮*/
 	&.disabled,&[disabled]{
-		pointer-events: none;
 		color:@button-disabled-color;
 		background-color:@button-disabled-bg;
 		border-color:@button-disabled-border;

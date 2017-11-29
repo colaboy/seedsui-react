@@ -5,11 +5,12 @@ var Dragrefresh = function (params) {
   ---------------------- */
   var defaults = {
     overflowContainer: document.body,
-    baseline: 0, // 起始位置
     threshold: 100, // 触发位置
     duration: 150,
+    begin: 0, // 起始位置
+    end: 300, // 结束位置
 
-    topStart: 0, // 如果scrollTop小于等于topStart时，则认为是到顶部了(不建议修改)
+    isTopPosition: 0, // 如果scrollTop小于等于isTopPosition时，则认为是到顶部了(不建议修改)
 
     topContainer: null,
     bottomContainer: null,
@@ -73,8 +74,8 @@ var Dragrefresh = function (params) {
   // 隐藏
   s.hideTop = function () {
     s.topContainer.style.webkitTransitionDuration = s.params.duration + 'ms'
-    s.touches.posY = s.params.baseline
-    s.touches.currentPosY = s.params.baseline
+    s.touches.posY = s.params.begin
+    s.touches.currentPosY = s.params.begin
     s.isHid = true
     // 拖动完成
     s.isOnPull = false
@@ -85,7 +86,7 @@ var Dragrefresh = function (params) {
   s.showTop = function () {
     s.topContainer.style.webkitTransitionDuration = s.params.duration + 'ms'
     s.touches.posY = s.params.threshold
-    s.touches.currentPosY = s.params.baseline
+    s.touches.currentPosY = s.params.begin
     s.isHid = false
     // 实体操作
     if (s.params.onShowTop) s.params.onShowTop(s)
@@ -271,7 +272,7 @@ var Dragrefresh = function (params) {
     s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
     s.preventMove = true
     // 如果不在顶部，则不触发
-    if (s.getScrollTop() <= s.params.topStart) s.touches.isTop = true
+    if (s.getScrollTop() <= s.params.isTopPosition) s.touches.isTop = true
     else s.touches.isTop = false
 
     s.topContainer.style.webkitTransitionDuration = '0ms'
@@ -303,6 +304,9 @@ var Dragrefresh = function (params) {
         s.preventMove = true
       }
       s.touches.currentPosY = s.touches.posY + s.touches.diffY
+      if (s.touches.currentPosY > s.params.end) {
+        s.touches.currentPosY = s.params.end
+      }
       // 实体操作
       if (s.params.onPull) s.params.onPull(s)
       // 标识头部正在拖动
