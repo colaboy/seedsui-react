@@ -4,7 +4,13 @@ var HandSign = function (container, params) {
   ---------------------- */
   var defaults = {
     color: '#000',
-    lineWidth: '1'
+    lineWidth: '1',
+    markSrc: '',
+    markPostion: 'bottom right',
+    markWidth: null,
+    markHeight: null,
+    suffix: 'image/png',
+    quality: 0.92
   }
   params = params || {}
   for (var def in defaults) {
@@ -19,8 +25,8 @@ var HandSign = function (container, params) {
     console.log('SeedsUI Error : HandSign container不存在，请检查页面中是否有此元素')
     return
   }
-  s.width = s.container.width;
-  s.height = s.container.height;
+  s.width = s.container.width
+  s.height = s.container.height
   s.cxt = s.container.getContext('2d')
   s.stage_info = s.container.getBoundingClientRect()
   s.path = {
@@ -61,6 +67,7 @@ var HandSign = function (container, params) {
   /* ----------------------
   Method
   ---------------------- */
+  // 签名
   s.drawBegin = function (e) {
     var that = this
     window.getSelection()
@@ -98,14 +105,71 @@ var HandSign = function (container, params) {
     s.cxt.clearRect(0, 0, s.width, s.height)
   }
   s.save = function () {
-    return s.container.toDataURL('image/png')
+    return s.container.toDataURL(s.params.suffix, s.params.quality)
+  }
+  s.calcPostion = function (w, h) {
+    var posArr = s.params.markPostion.split(' ').map(function (item, index){
+      var x = 0
+      var y = 0
+      if (item === 'top') return {y: 0}
+      if (item === 'left') return {x: 0}
+      if (item === 'right') {
+        x = s.width < w ? 0 : s.width - w
+        return {x: x}
+      }
+      if (item === 'bottom') {
+        y = s.height < h ? 0 : s.height - h
+        return {y: y}
+      }
+      if (item === 'center' && index === 0) {
+        x = (s.width - w) / 2
+        return {x: x}
+      }
+      if (item === 'center' && index === 1) {
+        y = (s.height - h) / 2
+        return {y: y}
+      }
+    })
+    var posJson = {
+      x: 0,
+      y: 0
+    }
+    posArr.forEach(function (item) {
+      if (item.x) {
+        posJson.x = item.x
+      } else if (item.y) {
+        posJson.y = item.y
+      }
+    })
+    return {
+      x: posJson.x || 0,
+      y: posJson.y || 0
+    }
+  }
+  // 水印
+  s.mark = function () {
+    var img = new Image()
+    img.crossOrigin = 'Anonymous'
+    img.src = s.params.markSrc
+    img.onload = function () {
+      var sx = 0 // 剪切的 x 坐标
+      var sy = 0 // 剪切的 y 坐标
+      var width = s.params.markWidth ? s.params.markWidth : img.width // 使用的图像宽度
+      var height = s.params.markHeight ? s.params.markHeight : img.height // 使用的图像高度
+      var swidth = img.width // 剪切图像的宽度
+      var sheight = img.height // 剪切图像的高度
+      var pos = s.calcPostion(width, height) // 画布上放置xy坐标
+      // s.cxt.drawImage(img, 0, 0)
+      s.cxt.drawImage(img, sx, sy, swidth, sheight, pos.x, pos.y, width, height)
+    }
   }
   // 主函数
   s.init = function () {
     s.attach()
+    if (s.params.markSrc) s.mark()
   }
 
   s.init()
 }
 
-;//export default Draw
+;//export default HandSign

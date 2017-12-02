@@ -35,7 +35,11 @@
 
 	<script>
 	function back(){history.go(-1);}
-	var draw = new HandSign('.handsign-board');
+	var draw = new HandSign('.handsign-board',{
+		markSrc: 'images/apple-touch-icon.png',
+		markWidth: 100,
+    markHeight: 100
+	});
 	console.log(draw);
 	function clear(){
 		draw.clear();
