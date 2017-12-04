@@ -58,3 +58,23 @@ var Watermark = function (params) {
 }
 
 ;//export default Draw
+// 参考
+/*function convertImgToBase64(url, callback, outputFormat) {
+  var canvas = document.createElement('CANVAS');
+  var ctx = canvas.getContext('2d');
+  var img = new Image;
+  img.crossOrigin = 'Anonymous';
+  img.onload = function () {
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL(outputFormat || 'image/png');
+    callback.call(this, dataURL);
+    // Clean up 
+    canvas = null;
+  };
+  img.src = url;
+}
+convertImgToBase64('http://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png', function(base64Img){
+  console.log(base64Img);
+});*/

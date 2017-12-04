@@ -1,4 +1,4 @@
-//import Dragrefresh from './dragrefresh.js'
+// import Dragrefresh from './dragrefresh.js'
 // 扩展Dragrefresh下拉刷新控件 (require dragrefresh.js)
 var DragPull = function (params) {
   // 参数改写
@@ -30,8 +30,8 @@ var DragPull = function (params) {
     topCaption = topContainer.querySelector('.df-pull-caption')
   }
   var bottomContainer
-  var bottomIcon
-  var bottomCaption
+  var nodataContainer
+  var errorContainer
   if (params.onBottomRefresh) {
     bottomContainer = overflowContainer.querySelector('.SID-Dragrefresh-BottomContainer')
     if (!bottomContainer) {
@@ -44,11 +44,18 @@ var DragPull = function (params) {
       '</div>'
       overflowContainer.appendChild(bottomContainer)
     }
-    bottomIcon = bottomContainer.querySelector('.df-pull-icon')
-    bottomCaption = bottomContainer.querySelector('.df-pull-caption')
-  }
-  var errorContainer
-  if (params.onBottomRefresh) {
+
+    nodataContainer = overflowContainer.querySelector('.SID-Dragrefresh-NoDataContainer')
+    if (!errorContainer) {
+      nodataContainer = document.createElement('div')
+      nodataContainer.setAttribute('class', 'SID-Dragrefresh-NoDataContainer df-pull hide')
+      nodataContainer.setAttribute('style', 'height: 50px;')
+      nodataContainer.innerHTML = '<div class="df-pull-box">' +
+      '<div class="df-pull-caption">没有更多数据了</div>' +
+      '</div>'
+      overflowContainer.appendChild(nodataContainer)
+    }
+
     errorContainer = overflowContainer.querySelector('.SID-Dragrefresh-ErrorContainer')
     if (!errorContainer) {
       errorContainer = document.createElement('div')
@@ -60,6 +67,7 @@ var DragPull = function (params) {
       overflowContainer.appendChild(errorContainer)
     }
   }
+
   /* ----------------------
   params
   ---------------------- */
@@ -71,16 +79,19 @@ var DragPull = function (params) {
     threshold: 50,
     onTopComplete: function (e) {
       if (bottomContainer && !e.isNoData) {
-        bottomIcon.classList.remove('df-pull-icon-none')
-        bottomCaption.innerHTML = '正在加载...'
+        bottomContainer.classList.remove('hide')
+        nodataContainer.classList.add('hide')
+        errorContainer.classList.add('hide')
       }
       // 回调
       if (onTopComplete) onTopComplete(e)
     },
     onNoData: function (e) {
+      console.log('pull:没有更多数据')
       if (bottomContainer) {
-        bottomIcon.classList.add('df-pull-icon-none')
-        bottomCaption.innerHTML = '没有更多数据了'
+        bottomContainer.classList.add('hide')
+        nodataContainer.classList.remove('hide')
+        errorContainer.classList.add('hide')
       }
       // 回调
       if (onNoData) onNoData(e)

@@ -1,4 +1,4 @@
-//import Dragrefresh from './dragrefresh.js'
+// import Dragrefresh from './dragrefresh.js'
 // 扩展Dragrefresh下拉刷新控件 (require dragrefresh.js)
 var DragCircle = function (params) {
   // 参数改写
@@ -28,6 +28,8 @@ var DragCircle = function (params) {
     topIcon = topContainer.querySelector('.df-circle-icon')
   }
   var bottomContainer
+  var nodataContainer
+  var errorContainer
   if (params.onBottomRefresh) {
     bottomContainer = overflowContainer.querySelector('.SID-Dragrefresh-BottomContainer')
     if (!bottomContainer) {
@@ -36,9 +38,16 @@ var DragCircle = function (params) {
       bottomContainer.setAttribute('style', 'height:50px')
       overflowContainer.appendChild(bottomContainer)
     }
-  }
-  var errorContainer
-  if (params.onBottomRefresh) {
+    nodataContainer = overflowContainer.querySelector('.SID-Dragrefresh-NoDataContainer')
+    if (!errorContainer) {
+      nodataContainer = document.createElement('div')
+      nodataContainer.setAttribute('class', 'SID-Dragrefresh-NoDataContainer df-pull hide')
+      nodataContainer.setAttribute('style', 'height: 50px;')
+      nodataContainer.innerHTML = '<div class="df-pull-box">' +
+      '<div class="df-pull-caption">没有更多数据了</div>' +
+      '</div>'
+      overflowContainer.appendChild(nodataContainer)
+    }
     errorContainer = overflowContainer.querySelector('.SID-Dragrefresh-ErrorContainer')
     if (!errorContainer) {
       errorContainer = document.createElement('div')
@@ -49,6 +58,10 @@ var DragCircle = function (params) {
       '</div>'
       overflowContainer.appendChild(errorContainer)
     }
+  }
+  
+  if (params.onBottomRefresh) {
+    
   }
   /* ----------------------
   params
@@ -61,12 +74,20 @@ var DragCircle = function (params) {
     baseline: params.baseline || -50,
     threshold: params.threshold || 120,
     onTopComplete: function (e) {
-      if (bottomContainer) bottomContainer.classList.remove('df-circle-icon-none')
+      if (bottomContainer && !e.isNoData) {
+        bottomContainer.classList.remove('hide')
+        nodataContainer.classList.add('hide')
+        errorContainer.classList.add('hide')
+      }
       // 回调
       if (onTopComplete) onTopComplete(e)
     },
     onNoData: function (e) {
-      if (bottomContainer) bottomContainer.classList.add('df-circle-icon-none')
+      if (bottomContainer) {
+        bottomContainer.classList.add('hide')
+        nodataContainer.classList.remove('hide')
+        errorContainer.classList.add('hide')
+      }
       // 回调
       if (onNoData) onNoData(e)
     },
