@@ -36,11 +36,12 @@
 	<script>
 	function back(){history.go(-1);}
 	var draw = new HandSign('.handsign-board',{
-		markSrc: 'images/apple-touch-icon.png',
-		markWidth: 100,
-    markHeight: 100
+		imgSrc: 'images/apple-touch-icon.png',
+		imgWidth: 100,
+    imgHeight: 100,
+    fontText: '本人已对帐单确认无误',
+    fontColor: 'rgba(0, 0, 0, 1)'
 	});
-	console.log(draw);
 	function clear(){
 		draw.clear();
 	}

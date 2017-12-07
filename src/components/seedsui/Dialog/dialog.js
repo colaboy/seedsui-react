@@ -221,4 +221,4 @@ var Dialog = function (params) {
   s.init()
 }
 
-export default Dialog
+;//export default Dialog
