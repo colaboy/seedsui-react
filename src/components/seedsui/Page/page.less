@@ -9,6 +9,11 @@
     bottom: 0;
     overflow: hidden;
 }
+@supports (bottom: constant(safe-area-inset-bottom)) {
+  .pages {
+    bottom: @safe-bottom;
+  }
+}
 .page{
 	background-color: @body-bg;
     z-index: 1;

@@ -103,6 +103,7 @@ var HandSign = function (container, params) {
   }
   s.clear = function () {
     s.cxt.clearRect(0, 0, s.width, s.height)
+    if (s.params.markSrc) s.mark()
   }
   s.save = function () {
     return s.container.toDataURL(s.params.suffix, s.params.quality)

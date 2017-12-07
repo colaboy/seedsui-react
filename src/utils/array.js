@@ -14,3 +14,13 @@ window.Array.prototype.toOneColumn = function () {
   var reg = /[\d\.]+\,([\d\.]+)/g
   return this.join(',').replace(reg, '$1').split(',')
 }
+
+// 包含，支持传数组包含数组
+window.Array.prototype.contains = function (arg) {
+  if (toString.call(arg) !== '[object Array]') {
+    return this.indexOf(arg) > -1
+  }
+  return this.filter(function (elem) {
+    return arg.indexOf(elem) > -1
+  }).length == arg.length
+}

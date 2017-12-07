@@ -73,26 +73,31 @@ var Dialog = function (params) {
   s.create = function () {
     if (s.params.mask) s.mask = typeof s.params.mask === 'string' ? document.querySelector(s.params.mask) : s.params.mask
     if (s.mask) {
+      s.parent = s.mask.parentNode
       s.dialog = s.mask.querySelector('.' + s.params.dialogClass)
-      s.wrapper = s.dialog.children[0]
-      return
+      return true
+    } else {
+      // 获取wrapper
+      s.wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
+      if (!s.wrapper) {
+        console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
+        return false
+      }
+      // 确定父级
+      s.parent = s.wrapper.parentNode
+      // 插入Dialog
+      s.dialog = s.createDialog()
+      s.parent.insertBefore(s.dialog, s.wrapper)
+      s.dialog.appendChild(s.wrapper)
+      // 插入遮罩
+      s.mask = s.createMask()
+      s.mask.appendChild(s.dialog)
+      s.parent.appendChild(s.mask)
+      return true
     }
-    s.wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
-    if (!s.wrapper) {
-      console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
-      return
-    }
-    s.parent = s.wrapper.parentNode
-    // 插入Dialog
-    s.dialog = s.createDialog()
-    s.parent.insertBefore(s.dialog, s.wrapper)
-    s.dialog.appendChild(s.wrapper)
-    // 插入遮罩
-    s.mask = s.createMask()
-    s.mask.appendChild(s.dialog)
-    s.parent.appendChild(s.mask)
   }
-  s.create()
+  var isCreated = s.create()
+  if (!isCreated) return
   s.update = function () {
     var style
     // Dialog Css
@@ -104,7 +109,7 @@ var Dialog = function (params) {
       s.mask.style[style] = s.params.maskCss[style]
     }
     // 源容器显示
-    s.wrapper.style.display = 'block'
+    if (s.wrapper) s.wrapper.style.display = 'block'
   }
   s.update()
 
@@ -216,4 +221,4 @@ var Dialog = function (params) {
   s.init()
 }
 
-;//export default Dialog
+export default Dialog
