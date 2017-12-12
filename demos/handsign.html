@@ -35,18 +35,28 @@
 
 	<script>
 	function back(){history.go(-1);}
-	var draw = new HandSign('.handsign-board',{
-		imgSrc: 'images/apple-touch-icon.png',
-		imgWidth: 100,
-    imgHeight: 100,
-    fontText: '本人已对帐单确认无误',
-    fontColor: 'rgba(0, 0, 0, 1)'
-	});
+	var handsign = new HandSign('.handsign-board');
+	function drawInit(){
+		handsign.drawImg('images/apple-touch-icon.png', {
+			width: 100,
+			height: 100,
+			position: 'middle center',
+			onSuccess: function () {
+				handsign.drawFont('本人已对帐单确认无误', {
+					fontSize: '16px',
+					color: '#ff8800',
+					position: 'top center'
+				})
+			}
+		})
+	}
+	drawInit();
 	function clear(){
-		draw.clear();
+		handsign.clear();
+		drawInit();
 	}
 	function save(){
-		var data = draw.save();
+		var data = handsign.save();
 		console.log(data);
 	}
 	</script>

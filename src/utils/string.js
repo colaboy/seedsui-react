@@ -20,7 +20,7 @@ window.String.prototype.trim = function (trimPos) {
 }
 
 // 生成唯一标识符
-window.String.GUID = function (trimPos) {
+window.String.GUID = function () {
   var d = new Date().getTime()
   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = (d + Math.random() * 16) % 16 | 0

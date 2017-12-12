@@ -6,16 +6,16 @@ var HandSign = function (container, params) {
     color: '#000',
     lineWidth: '1',
 
-    imgSrc: '',
-    imgPostion: 'bottom right', // left center right top middle bottom
-    imgWidth: null,
-    imgHeight: null,
+    defaultImgSrc: '',
+    defaultImgPosition: 'bottom right', // left center right top middle bottom
+    defaultImgWidth: null,
+    defaultImgHeight: null,
 
-    fontSize: '15px',
-    fontFamily: 'microsoft yahei',
-    fontStyle: 'rgba(0, 0, 0, 1)',
-    fontText: '',
-    fontPostion: 'bottom center',
+    defaultFontSize: '15px',
+    defaultFontFamily: 'microsoft yahei',
+    defaultFontStyle: 'rgba(0, 0, 0, 1)',
+    defaultFontText: '',
+    defaultFontPosition: 'bottom center',
 
     suffix: 'image/png',
     quality: 0.92
@@ -109,12 +109,11 @@ var HandSign = function (container, params) {
   }
   s.clear = function () {
     s.ctx.clearRect(0, 0, s.width, s.height)
-    if (s.params.imgSrc) s.drawImg()
   }
   s.save = function () {
     return s.container.toDataURL(s.params.suffix, s.params.quality)
   }
-  s.calcPostion = function (w, h, pos) {
+  s.calcPosition = function (w, h, pos) {
     var posArr = pos.split(' ').map(function (item, index){
       var x = 0
       var y = 0
@@ -160,39 +159,55 @@ var HandSign = function (container, params) {
     }
   }
   // 图片
-  s.drawImg = function () {
+  s.drawImg = function (imgSrc, opts) {
+    if (!imgSrc) {
+      console.log('SeedsUI Error:手写签名drawImg缺少imgSrc')
+      return
+    }
+    var imgW = opts.width || s.params.defaultImgWidth
+    var imgH = opts.height || s.params.defaultImgHeight
+    var imgP = opts.position || s.params.defaultImgPosition
+
     var img = new Image()
     img.crossOrigin = 'Anonymous'
-    img.src = s.params.imgSrc
+    img.src = imgSrc
     img.onload = function () {
       var sx = 0 // 剪切的 x 坐标
       var sy = 0 // 剪切的 y 坐标
-      var width = s.params.imgWidth ? s.params.imgWidth : img.width // 使用的图像宽度
-      var height = s.params.imgHeight ? s.params.imgHeight : img.height // 使用的图像高度
+      var width = imgW || img.width // 使用的图像宽度
+      var height = imgH || img.height // 使用的图像高度
       var swidth = img.width // 剪切图像的宽度
       var sheight = img.height // 剪切图像的高度
-      var pos = s.calcPostion(width, height, s.params.imgPostion) // 画布上放置xy坐标
+      var pos = s.calcPosition(width, height, imgP) // 画布上放置xy坐标
       s.ctx.drawImage(img, sx, sy, swidth, sheight, pos.x, pos.y, width, height)
-      // 绘制文字
-      if (s.params.fontText) s.drawFont()
+      // 成功回调
+      if (opts.onSuccess) opts.onSuccess()
     }
   }
   // 文字
-  s.drawFont = function () {
-    var match = s.params.fontSize.match(/(0|([1-9][0-9]*))(\.[0-9]+)?/)
+  s.drawFont = function (text, opts) {
+    if (!text) {
+      console.log('SeedsUI Error:手写签名drawFont缺少文字')
+      return
+    }
+    var fontSize = opts.fontSize || s.params.defaultFontSize
+    var fontFamily = opts.fontFamily || s.params.defaultFontFamily
+    var fontPosition = opts.position || s.params.defaultFontPosition
+    var fontStyle = opts.color || s.params.defaultFontStyle
+
+    var match = fontSize.match(/(0|([1-9][0-9]*))(\.[0-9]+)?/)
     var height = match[0]
-    var width = s.params.fontText.length * height
-    var pos = s.calcPostion(width, height, s.params.fontPostion) // 画布上放置xy坐标
-    console.log(pos);
+    var width = text.length * height
+    var pos = s.calcPosition(width, height, fontPosition) // 画布上放置xy坐标
+    var calcY = pos.y === 0 ? Number(pos.y) + Number(height) : Number(pos.y) + Number(height) -5 // 文字垂直位置有整个高度的偏差
     // 写字
-    s.ctx.font = s.params.fontSize + ' ' + s.params.fontFamily
-    s.ctx.fillStyle = s.params.fontStyle
-    s.ctx.fillText(s.params.fontText, pos.x, pos.y + (height - 5))
+    s.ctx.font = fontSize + ' ' + fontFamily
+    s.ctx.fillStyle = fontStyle
+    s.ctx.fillText(text, pos.x, calcY)
   }
   // 主函数
   s.init = function () {
     s.attach()
-    if (s.params.imgSrc) s.drawImg()
   }
 
   s.init()

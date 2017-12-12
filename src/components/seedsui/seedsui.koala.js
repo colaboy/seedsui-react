@@ -24,7 +24,7 @@
 
 // @koala-prepend "Counter/counter.js"
 // @koala-prepend "Clock/clock.js"
-// @koala-prepend "Page/aside.js"
+// @koala-prepend "Aside/aside.js"
 // @koala-prepend "Dragrefresh/dragrefresh.js"
 // @koala-prepend "Dragrefresh/dragrefresh.pull.js"
 // @koala-prepend "Dragrefresh/dragrefresh.circle.js"
