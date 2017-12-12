@@ -2660,11 +2660,14 @@ input[type="color"] {
   color: #aaaaaa;
   background-color: #f8f8f8;
 }
-.sliver-title {
+.sliver-caption {
   display: block;
   height: 20px;
   line-height: 20px;
   -webkit-box-flex: 1;
+}
+.sliver-sndcaption {
+  color: #20aeff;
 }
 .sliver .peg {
   display: block;
