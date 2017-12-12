@@ -1,4 +1,4 @@
-// import Dragrefresh from './dragrefresh.js'
+//import Dragrefresh from './dragrefresh.js'
 // 扩展Dragrefresh下拉刷新控件 (require dragrefresh.js)
 var DragPull = function (params) {
   // 参数改写

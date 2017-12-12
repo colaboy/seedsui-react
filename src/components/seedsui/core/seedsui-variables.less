@@ -286,8 +286,18 @@
 @font-size-lg:@16px;
 @font-size-md:@14px;
 @font-size-sm:@12px;
+.font-size-lg{
+  font-size: @font-size-lg;
+}
+.font-size-md{
+  font-size: @font-size-md;
+}
+.font-size-sm{
+  font-size: @font-size-sm;
+}
 
 /*函数*/
+// 线条
 .setContentLine(@b:@border){
   content: '';
   display: block;
@@ -298,6 +308,7 @@
   overflow: hidden;
   -webkit-backface-visibility:hidden;
 }
+// 提示标记
 .setHintMark(){
   position:relative;
   display: inline-block;

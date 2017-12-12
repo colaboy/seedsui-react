@@ -1,5 +1,5 @@
 // Calendar 日历 (require calendarutil.js)
-//import CalendarUtil from '@/utils/calendarutil.js'
+//import CalendarUtil from './calendarutil.js'
 var Calendar = function (container, params) {
   /* --------------------
   Model
