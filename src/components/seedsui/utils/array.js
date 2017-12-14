@@ -11,7 +11,7 @@ window.Array.prototype.powerset = function () {
 
 // 二维数组转为一维数组
 window.Array.prototype.toOneColumn = function () {
-  var reg = /[\d\.]+\,([\d\.]+)/g
+  var reg = /[\d\.]+\,([\d\.]+)/g // eslint-disable-line
   return this.join(',').replace(reg, '$1').split(',')
 }
 
@@ -22,5 +22,5 @@ window.Array.prototype.contains = function (arg) {
   }
   return this.filter(function (elem) {
     return arg.indexOf(elem) > -1
-  }).length == arg.length
+  }).length === arg.length
 }

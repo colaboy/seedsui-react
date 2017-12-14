@@ -77,6 +77,8 @@ Math.Calc = (function () {
       case 'divide':
         result = (n1 / n2) * (t2 / t1)
         break
+      default:
+        result = 0
     }
     if (digits && !isNaN(digits)) {
       // 精度设置

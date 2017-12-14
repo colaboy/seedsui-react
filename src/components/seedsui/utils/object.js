@@ -214,7 +214,8 @@ Object.extend = function () {
 
   for (; i < length; i++) {
     // 只处理非空/未定义的值
-    if ((options = arguments[i]) != null) {
+    options = arguments[i]
+    if (options != null) {
       // 扩展基础对象
       for (name in options) {
         src = target[name]
@@ -226,8 +227,7 @@ Object.extend = function () {
         }
 
         // 如果我们合并了普通的对象或数组，就会重新出现
-        if (deep && copy && (Object.isPlainObject(copy) ||
-          (copyIsArray = Array.isArray(copy)))) {
+        if (deep && copy && (Object.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) { // eslint-disable-line
           if (copyIsArray) {
             copyIsArray = false
             clone = src && Array.isArray(src) ? src : []
