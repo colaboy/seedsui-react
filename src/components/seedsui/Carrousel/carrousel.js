@@ -173,7 +173,7 @@ var Carrousel = function (container, params) {
 
   // 更新容器尺寸
   s.updateContainerSize = function () {
-    s.max = parseInt(s.slides.length) + parseInt(s.dupSlides.length)
+    s.max = parseInt(s.slides.length, 10) + parseInt(s.dupSlides.length, 10)
     // Slide width
     s.container.width = s.container.clientWidth
     s.width = Math.floor(s.container.width / s.params.slidesPerView)
