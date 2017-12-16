@@ -143,16 +143,17 @@ var Carrousel = function (container, params) {
   /* --------------------
   Update
   -------------------- */
+  s.slideIndex = s.activeIndex // 去除duplicate，滑动页索引
   // 根据index更新选中class
   s.updateClasses = function () {
-    var slideIndex = s.activeIndex
+    s.slideIndex = s.activeIndex
     if (s.params.loop) {
-      slideIndex = s.activeIndex - s.params.slidesPerView
+      s.slideIndex = s.activeIndex - s.params.slidesPerView
       if (s.max - s.params.slidesPerView === s.activeIndex) { // 正向滑动
-        slideIndex = 0
+        s.slideIndex = 0
       }
-      if (slideIndex < 0) { // 反向滑动
-        slideIndex = s.slides.length + slideIndex
+      if (s.slideIndex < 0) { // 反向滑动
+        s.slideIndex = s.slides.length + s.slideIndex
       }
     }
     var i
@@ -160,14 +161,14 @@ var Carrousel = function (container, params) {
     for (i = 0; i < s.slides.length; i++) {
       s.slides[i].classList.remove(s.params.slideActiveClass)
     }
-    s.slides[slideIndex].classList.add(s.params.slideActiveClass)
+    s.slides[s.slideIndex].classList.add(s.params.slideActiveClass)
 
     //  Pagination
     if (!s.pagination) return
     for (i = 0; i < s.bullets.length; i++) {
       s.bullets[i].classList.remove(s.params.bulletActiveClass)
     }
-    s.bullets[slideIndex].classList.add(s.params.bulletActiveClass)
+    s.bullets[s.slideIndex].classList.add(s.params.bulletActiveClass)
   }
 
   // 更新容器尺寸
