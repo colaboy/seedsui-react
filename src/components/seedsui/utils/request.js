@@ -4,6 +4,6 @@ var Request = {
     var param = href.match(new RegExp('[\\?\\&]' + argName + '=([^\\&]*)(\\&?)', 'i'))
     return param ? decodeURI(param[1]) : param
   }
-};
+}
 
-//export default Request
+;//export default Request
