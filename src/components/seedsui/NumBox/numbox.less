@@ -2,22 +2,36 @@
 .numbox{
   display:-webkit-inline-box;
   position:relative;
-  width:@100px;
+  width:@numbox-width;
+  height:@numbox-height;
   overflow:hidden;
   text-align:center;
   vertical-align: middle;
   background-color:@input-bg;
   border-radius: 4px;
 }
+.numbox.lg{
+  width: @numbox-width-lg;
+  height: @numbox-height-lg;
+  .numbox-button{
+    width:@numbox-height-lg;
+  }
+}
+.numbox.xl{
+  width: @numbox-width-xl;
+  height: @numbox-height-xl;
+  .numbox-button{
+    width:@numbox-height-xl;
+  }
+}
 .numbox-input,.numbox-button{
-  height:@26px;
+  height:100%;
 }
 .numbox-input{
   display: block;
   -webkit-box-flex:1;
   text-align:center;
   text-overflow:ellipsis;
-  width:@54px;
   border-width:0 @1px;
   border-radius: 0;
   border-style: solid;
@@ -25,7 +39,7 @@
 }
 .numbox-button{
   display: block;
-  width:@26px;
+  width:@numbox-height;
   font-size:@20px;
   border-width: 0;
 
