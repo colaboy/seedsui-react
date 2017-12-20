@@ -1,0 +1,69 @@
+/*----------------shape.less(start)--------------*/
+/*
+箭头图标
+*/
+.shape-arrow-left, .shape-arrow-right{
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-color: @placeholder;
+}
+.shape-arrow-left:after, .shape-arrow-right:after{
+  position:absolute;
+  content: "";
+  width: 12px;
+  height: 12px;
+  top:50%;
+  border-style: solid;
+  border-color: inherit;
+  border-width: 1px 0 0 1px;
+  left:50%;
+  margin-top:-6px;
+  margin-left:-6px;
+}
+.shape-arrow-left:after{
+  -webkit-transform: rotate(315deg);
+}
+.shape-arrow-right:after{
+  -webkit-transform: rotate(134deg);
+}
+// titlebar上的button图标
+.titlebar-button{
+  .shape-arrow-left{
+    border-color: @bar-button;
+  }
+}
+/*
+三角形图标
+*/
+.shape-triangle-up {
+  position: relative;
+  width:0 !important; 
+  height:0 !important; 
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-top-width:5px;
+  border-top-style: solid;
+  border-top-color: @placeholder;
+}
+// tabbar-dropdown的三角形图标
+.tabbar-dropdown{
+  .tab{
+    .shape-triangle-up {
+      border-top-color:@bar-color;
+    }
+  }
+  .tab.active{
+    .shape-triangle-up {
+      border-top-color:@bar-color-active;
+    }
+  }
+}
+.tabbar-dropdown.reverse{
+  .tab{
+    .shape-triangle-up { // 三角形图标
+      border-top-color:@bar-reverse-border-active;
+    }
+  }
+}
+/*----------------shape.less(end)--------------*/
