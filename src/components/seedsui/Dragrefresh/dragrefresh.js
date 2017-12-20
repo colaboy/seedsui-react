@@ -183,9 +183,11 @@ var Dragrefresh = function (params) {
     s.isRefreshed = true
     // 收起头部
     s.hideTop()
-    // 显示错误容器
-    s.errorContainer.classList.remove('hide')
-    s.bottomContainer.classList.add('hide')
+    if (s.bottomContainer) {
+      // 显示错误容器
+      s.errorContainer.classList.remove('hide')
+      s.bottomContainer.classList.add('hide')
+    }
     // 网络错误回调
     if (s.params.onError) s.params.onError(s)
   }

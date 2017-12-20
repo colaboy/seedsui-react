@@ -2,105 +2,84 @@
 
 /*----------------titlebar.less(start)--------------*/
 .titlebar,.titlebar-button,.titlebar-title{
-	position:relative;
+  position:relative;
 }
 .titlebar:extend(.border-b all){
-	display:-webkit-box;
+  display:-webkit-box;
   -webkit-box-align:center;
-	min-height:@44px;
-	padding: @6px 0;
-	box-sizing:border-box;
+  min-height:@44px;
+  padding: @6px 0;
+  box-sizing:border-box;
 
-	background-color:@bar-bg;
+  background-color:@bar-bg;
 
-	.inputbox{
-		-webkit-box-flex:1;
-	}
+  .inputbox{
+    -webkit-box-flex:1;
+  }
 }
-
 /*左右对齐*/
 .titlebar-left,.titlebar-right{
-	position:absolute;
-	top:50%;
-	-webkit-transform:translateY(-50%);
-	transform:translateY(-50%);
-	z-index:1;
-	display: -webkit-box;
+  position:absolute;
+  top:50%;
+  -webkit-transform:translateY(-50%);
+  transform:translateY(-50%);
+  z-index:1;
+  display: -webkit-box;
 }
 .titlebar-left{
-	left:0;
+  left:0;
 }
 .titlebar-right{
-	right:0;
+  right:0;
 }
 
 //标题
 .titlebar-title{
-	font-size: @font-size-lg;
-	font-weight: normal;
-	-webkit-box-flex:1;
+  font-size: @font-size-lg;
+  font-weight: normal;
+  -webkit-box-flex:1;
 
-	color:@bar-title;
+  color:@bar-title;
 }
 .titlebar-left+.titlebar-title{
-	padding: 0 100px;
+  padding: 0 100px;
 }
 /*按钮*/
 .titlebar-button{
   display: -webkit-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
-	max-height:@32px;
-	margin:0 @8px;
-	color:@bar-button;
-	border-color:@bar-button;
-	line-height: 0;
-	&:active{
-		/* color:@bar-button-active;
-		border-color:@bar-button-active; */
-		opacity: 0.5;
-	}
+  max-height:@32px;
+  margin:0 @8px;
+  color:@bar-button;
+  border-color:@bar-button;
+  line-height: 0;
+  &:active{
+    /* color:@bar-button-active;
+    border-color:@bar-button-active; */
+    opacity: 0.5;
+  }
 }
 .titlebar.reverse{
-	background-color:@bar-reverse-bg;
-	.titlebar-title{
-		color:@bar-reverse-color;
-	}
-	//底线
-	&:after{
-		background-color: @bar-reverse-border;
-	}
-	.titlebar-button{
-		color:@bar-reverse-button;
-		border-color:@bar-reverse-button;
-		&:active{
-			color:@bar-reverse-button-active;
-			border-color:@bar-reverse-button-active;
-		}
-	}
+  background-color:@bar-reverse-bg;
+  .titlebar-title{
+    color:@bar-reverse-color;
+  }
+  //底线
+  &:after{
+    background-color: @bar-reverse-border;
+  }
+  .titlebar-button{
+    color:@bar-reverse-button;
+    border-color:@bar-reverse-button;
+    &:active{
+      color:@bar-reverse-button-active;
+      border-color:@bar-reverse-button-active;
+    }
+  }
 }
 
 .titlebar-button+.titlebar-button{
-	margin-left:0px;
-}
-// 返回图标
-.shape-arrow-left{
-  position: relative;
-  width: 32px;
-  height: 32px;
-}
-.shape-arrow-left:after{
-  position:absolute;
-  content: "";
-  width: 12px;
-  height: 12px;
-  top:50%;
-  left:50%;
-  margin-top:-6px;
-  margin-left:-6px;
-  border: 1px solid @bar-button;
-  border-width: 1px 0 0 1px;
-  -webkit-transform: rotate(315deg);
-  transform: rotate(315deg);
+  margin-left:0px;
 }
 /*----------------titlebar.less(end)----------------*/
