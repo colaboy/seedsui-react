@@ -163,7 +163,7 @@ var DatePicker = function (params) {
     var currentLastDay = s.days[s.days.length - 1]['key']
     if (lastDay === currentLastDay) return
     if (lastDay > currentLastDay) {
-      for (var i = 1 + parseInt(currentLastDay); i <= lastDay; i++) {
+      for (var i = 1 + parseInt(currentLastDay, 10); i <= lastDay; i++) {
         s.days.push({
           'key': '' + i,
           'value': '' + i + s.params.ddUnit
@@ -185,7 +185,7 @@ var DatePicker = function (params) {
       })
     } else if (lastDay < currentLastDay) {
       for (var j = currentLastDay; j > lastDay; j--) {
-        s.days.forEach(function (n) {
+        s.days.forEach(function (n) { // eslint-disable-line
           if (n['key'] === '' + j) s.days.pop()
         })
       }
@@ -297,6 +297,8 @@ var DatePicker = function (params) {
       case 'datetime':
         addDateTime()
         break
+      default:
+        console.log('SeedsUI Error: initSlots失败')
     }
   }
   s.update = function () {

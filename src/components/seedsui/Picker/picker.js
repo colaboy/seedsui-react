@@ -36,12 +36,11 @@ var Picker = function (params) {
     cellHeight: 44,
     bounceRange: 44, // 弹性值
 
-    isClickMaskHide: true
-
     /* callbacks
     onInit:function (Picker)
     onClickCancel:function (Picker)
     onClickDone:function (Picker)
+    onClickMask:functioin (Picker)
     onScrollStart:function (Picker)
     onScroll:function (Picker)
     onScrollEnd:function (Picker)
@@ -63,14 +62,14 @@ var Picker = function (params) {
   s.params = params
   // Dom元素
   s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
-  s.picker
-  s.mask
-  s.header
-  s.wrapper
-  s.slotbox
-  s.layer
-  s.headerDone
-  s.headerCancel
+  s.picker = null
+  s.mask = null
+  s.header = null
+  s.wrapper = null
+  s.slotbox = null
+  s.layer = null
+  s.headerDone = null
+  s.headerCancel = null
 
   // 选中项
   s.activeOptions = []
@@ -355,9 +354,9 @@ var Picker = function (params) {
 
   // Mask
   s.onClickMask = function (e) {
-    if (e.target === s.mask) {
-      if (s.params.isClickMaskHide === true) s.hide()
-    }
+    if (e.target !== s.mask) return
+    if (s.params.onClickMask) s.params.onClickMask(e)
+    else s.hide()
   }
 
   // Done|Cancel
