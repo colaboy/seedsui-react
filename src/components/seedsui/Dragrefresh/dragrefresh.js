@@ -143,7 +143,7 @@ var Dragrefresh = function (params) {
     if (!s.topContainer) return
     // 收起
     s.hideTop()
-    // 刷新完成
+    // 头部完成
     s.isRefreshed = true
     // Callback onTopComplete
     if (s.params.onTopComplete) s.params.onTopComplete(s)
@@ -158,12 +158,12 @@ var Dragrefresh = function (params) {
       if (!s.isNoData && !s.hasScroll()) {
         s.bottomRefresh()
       }
-    }, s.params.duration)
+    }, s.params.duration * 2)
   }
   // 底部刷新完成
   s.bottomComplete = function () {
     if (!s.bottomContainer) return
-    // 刷新完成
+    // 底部完成
     s.isRefreshed = true
     // Callback onBottomComplete
     if (s.params.onBottomComplete) s.params.onBottomComplete(s)

@@ -40,7 +40,7 @@ body{
 i{
 	font-style:normal;
 }
-i,span,label,small{
+a,i,span,label,small{
 	display:inline-block;
 	vertical-align:middle;
 }
@@ -70,8 +70,12 @@ a{
 
 	color:@link;
 	&:active{
-        //color:@link-active;
-    }
+    //color:@link-active;
+  }
+  &[disabled]{
+    pointer-events: none;
+    color:@disable-bg;
+  }
 }
 a,label, :focus{
 	outline:0 none;

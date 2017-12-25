@@ -150,7 +150,7 @@ window.Date.prototype.setMinuteCeil = function (space) {
   var hasRemainder = minute % space === 0 // 是否有余数
 
   var percentNum = Math.ceil(minute / space) // 档位
-  percentNum = hasRemainder ? parseInt(percentNum) + 1 : percentNum
+  percentNum = hasRemainder ? parseInt(percentNum, 10) + 1 : percentNum
 
   var result = percentNum * space // 根据档位计算结果
   this.setMinutes(result)
