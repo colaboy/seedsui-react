@@ -11,6 +11,12 @@
   &:not(.noclick):active{
     background-color:@list-bg-active;
   }
+  .licon{
+    margin-right: @4px;
+  }
+  .ricon{
+    margin-left: @4px;
+  }
 }
 
 .list-avatar,.list-avatar-img, .list-thumbnail,.list-thumbnail-img{
@@ -37,7 +43,7 @@
   height: @36px;
   border-radius: 100%;
 
-  background-image: url(@list-avatar);
+  background-image: url(@list-avatar-src);
   background-color: @avatar-bg;
   border: @avatar-border;
 }
@@ -53,11 +59,13 @@
   height:@62px;
   overflow:hidden;
   
-  background-image: url(@list-thumbnail);
+  background-image: url(@list-thumbnail-src);
   background-color: @thumbnail-bg;
   border: @thumbnail-border;
 }
-
+.list-thumbnail, .list-avatar{
+  margin-right: @10px;
+}
 .list-container{
   position: relative;
   display: block;
