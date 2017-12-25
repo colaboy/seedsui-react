@@ -43,6 +43,7 @@ var HandSign = function (container, params) {
     endX: 0,
     endY: 0
   }
+  s.isDrew = false
   /* ----------------------
   Events
   ---------------------- */
@@ -75,10 +76,7 @@ var HandSign = function (container, params) {
   ---------------------- */
   // 签名
   s.drawBegin = function (e) {
-    var that = this
-    window.getSelection()
-      ? window.getSelection().removeAllRanges()
-      : document.selection.empty()
+    window.getSelection() ? window.getSelection().removeAllRanges() : document.selection.empty()
     s.ctx.strokeStyle = s.params.color
     s.ctx.lineWidth = s.params.lineWidth
     s.ctx.beginPath()
@@ -89,10 +87,10 @@ var HandSign = function (container, params) {
     s.path.beginX = e.changedTouches[0].clientX - s.stage_info.left
     s.path.beginY = e.changedTouches[0].clientY - s.stage_info.top
     s.container.addEventListener('touchmove', function () {
-      that.drawing(event)
+      s.drawIng(event)
     })
   }
-  s.drawing = function (e) {
+  s.drawIng = function (e) {
     s.ctx.lineTo(
       e.changedTouches[0].clientX - s.stage_info.left,
       e.changedTouches[0].clientY - s.stage_info.top
@@ -102,12 +100,14 @@ var HandSign = function (container, params) {
     s.ctx.stroke()
   }
   s.drawEnd = function () {
+    s.isDrew = true
     document.removeEventListener('touchstart', s.preventDefault, false)
     document.removeEventListener('touchend', s.preventDefault, false)
     document.removeEventListener('touchmove', s.preventDefault, false)
     // canvas.ontouchmove = canvas.ontouchend = null
   }
   s.clear = function () {
+    s.isDrew = false
     s.ctx.clearRect(0, 0, s.width, s.height)
   }
   s.save = function () {
