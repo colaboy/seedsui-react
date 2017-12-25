@@ -952,9 +952,9 @@ input[type="color"] {
 .checkbox:checked:before {
   content: "\e663";
 }
-/*label*/
-.checkbox + label {
-  margin: 0 4px;
+/* caption */
+.checkbox + .checkbox-caption {
+  margin-left: 4px;
 }
 /*----------------checkbox.less(end)--------------*/
 /*----------------radio.less(start)--------------*/
@@ -984,16 +984,16 @@ input[type="color"] {
 .radio:before {
   content: "\e69d";
 }
-/*icon*/
+/* icon */
 .radio:checked {
   font-family: "radio";
 }
 .radio:checked:before {
   content: "\e69f";
 }
-/*label*/
-.radio + label {
-  margin: 0 4px;
+/* caption */
+.radio + .radio-caption {
+  margin-left: 4px;
 }
 /*----------------radio.less(end)--------------*/
 /*----------------titlebar.less(start)--------------*/
