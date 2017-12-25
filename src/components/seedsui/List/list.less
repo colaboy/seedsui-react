@@ -79,9 +79,23 @@
       display: block;
     }
   }
+  .list-sndcaption{
+    margin-top: 0;
+  }
 }
-.list-title{
+.list-caption{
   -webkit-box-flex: 1.0;
+}
+.list-rcaption{
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.list-sndcaption{
+  margin-top: @8px;
+  display: block;
+  color: @placeholder;
 }
 .list-icon{
   display: block;
@@ -99,7 +113,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.list-icon+.list-font,.list-icon+.list-title{
+.list-icon+.list-font,.list-icon+.list-caption{
   margin-left: @8px;
 }
 /*---------------list.less(end)---------------*/

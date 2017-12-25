@@ -17,6 +17,7 @@
 /* 文本框控件 */
 /*标题长条*/
 /*列表*/
+/* Tabbar | Titlebar */
 /* 按钮 */
 /* 按钮-点击与选中 */
 /* 按钮-禁用 */
@@ -643,6 +644,12 @@ aside {
 .list-li:not(.noclick):active {
   background-color: #f0f0f0;
 }
+.list-li .licon {
+  margin-right: 4px;
+}
+.list-li .ricon {
+  margin-left: 4px;
+}
 .list-avatar,
 .list-avatar-img,
 .list-thumbnail,
@@ -691,6 +698,10 @@ aside {
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
 }
+.list-thumbnail,
+.list-avatar {
+  margin-right: 10px;
+}
 .list-container {
   position: relative;
   display: block;
@@ -703,8 +714,22 @@ aside {
 .list-li.oneline .list-container > * {
   display: block;
 }
-.list-title {
+.list-li.oneline .list-sndcaption {
+  margin-top: 0;
+}
+.list-caption {
   -webkit-box-flex: 1.0;
+}
+.list-rcaption {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.list-sndcaption {
+  margin-top: 8px;
+  display: block;
+  color: #cccccc;
 }
 .list-icon {
   display: block;
@@ -723,7 +748,7 @@ aside {
   text-overflow: ellipsis;
 }
 .list-icon + .list-font,
-.list-icon + .list-title {
+.list-icon + .list-caption {
   margin-left: 8px;
 }
 /*---------------list.less(end)---------------*/
@@ -949,7 +974,7 @@ input[type="color"] {
 /*----------------titlebar.less(start)--------------*/
 .titlebar,
 .titlebar-button,
-.titlebar-title {
+.titlebar-caption {
   position: relative;
 }
 .titlebar {
@@ -979,13 +1004,13 @@ input[type="color"] {
 .titlebar-right {
   right: 0;
 }
-.titlebar-title {
+.titlebar-caption {
   font-size: 16px;
   font-weight: normal;
   -webkit-box-flex: 1;
   color: #000000;
 }
-.titlebar-left + .titlebar-title {
+.titlebar-left + .titlebar-caption {
   padding: 0 100px;
 }
 /*按钮*/
@@ -1007,7 +1032,7 @@ input[type="color"] {
 .titlebar.reverse {
   background-color: #20aeff;
 }
-.titlebar.reverse .titlebar-title {
+.titlebar.reverse .titlebar-caption {
   color: #ffffff;
 }
 .titlebar.reverse:after {
@@ -1587,12 +1612,7 @@ input[type="color"] {
 /*----------------button.less(end)----------------*/
 /*----------------mark.less(start)----------------*/
 /*多彩标签*/
-.mark-info,
-.mark-success,
-.mark-cancel,
-.mark-warn,
-.mark-disable,
-.mark-primary {
+.mark {
   font-size: 12px;
   line-height: 18px;
   padding: 2px 5px;
@@ -2930,7 +2950,7 @@ progress::-webkit-progress-value {
 .loading-icon {
   width: 24px;
 }
-.loading-text {
+.loading-caption {
   margin-top: 5px;
 }
 /*填料环loading-filling*/
@@ -3102,7 +3122,7 @@ progress::-webkit-progress-value {
     opacity: 0.25;
   }
 }
-.loading-floating-text {
+.loading-floating-caption {
   text-align: center;
 }
 /*加载更多*/

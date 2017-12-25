@@ -1,7 +1,7 @@
 //@import "../base/tool/border.less";
 
 /*----------------titlebar.less(start)--------------*/
-.titlebar,.titlebar-button,.titlebar-title{
+.titlebar,.titlebar-button,.titlebar-caption{
   position:relative;
 }
 .titlebar:extend(.border-b all){
@@ -34,14 +34,14 @@
 }
 
 //标题
-.titlebar-title{
+.titlebar-caption{
   font-size: @font-size-lg;
   font-weight: normal;
   -webkit-box-flex:1;
 
   color:@bar-title;
 }
-.titlebar-left+.titlebar-title{
+.titlebar-left+.titlebar-caption{
   padding: 0 100px;
 }
 /*按钮*/
@@ -62,7 +62,7 @@
 }
 .titlebar.reverse{
   background-color:@bar-reverse-bg;
-  .titlebar-title{
+  .titlebar-caption{
     color:@bar-reverse-color;
   }
   //底线

@@ -32,7 +32,7 @@
 			                '<div class="loading-floating-blade"></div>'+
 			                '<div class="loading-floating-blade"></div>'+
 			            '</div>'+
-			            '<div class="al-text">加载中...</div>'+
+			            '<div class="loading-floating-caption">加载中...</div>'+
 			        '</div>',
 
 		    isClickAllow:false,
