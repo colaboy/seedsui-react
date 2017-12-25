@@ -2,11 +2,11 @@
 .searchboard{
   background-color: #fff;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: @10px;
 }
 .searchboard-caption{
   display: -webkit-box;
-  padding: 12px 12px 5px 12px;
+  padding: @12px @12px @5px @12px;
   box-sizing: border-box; 
 }
 .searchboard-caption-title{
@@ -17,21 +17,22 @@
 
 }
 .searchboard-icon-trash{
-  width: 16px;
-  height: 16px;
-  margin-right: 3px;
+  width: @16px;
+  height: @16px;
+  font-size: @16px;
+  margin-right: @3px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAeJJREFUSA3tVj9PwlAQp00THWjZnPwaLAxuTm4OjC6QQhAH49BP4MBgHEQCNSyODG5uTia68DWc3GwZNBLwd6TXHK8PntQ4aZPm3v3u/733rrUKhqfZbO7M5/Mjy7KKqirwCfDbfr//qsokb0lGXbdarfJ0Or0DvqvKBP/iOM5hr9cbC2xpafm+X0I2NbyelMxmsyKwNrLdAn3C+yDltIbOPkgFsg/odW3bnkgdYBHeoQNBFcoXYKR8sSYMDq5BTweDwaeqgATPIb+E/BiyM/hRVQrwH6+shLRhNA7D8D5jqQAIdgBnZQUuIPiiEhX/FT7deNqbpHUjZP+WN5rOj83O0Nsa2hMSZSwP1fmRQRanC0pLp2zTQGzPlOwdkxNd+WQTBEEpjuOq67qjTqeztr1pJWuC1XVtRIA6Tk8YRZGxvcYgOAwuJSDLTxJahWfyNQbJWOQA/oNs1LQ/1C6apNQbptwn5pkyrqPGGw8nQ/om4EKOpAPP84a4kDHdeInr1sYgyUS+UY2TUZLBVT3i041Hpu8EIPMS0bwP27M/8pNWgrHxDAUK4jcaDRoja4eeLgkKQPYkI3+sk360CMDEvQJps/AHtIs2n7D9UhACUcUesqlgs7dZ6buUWkQV4KfjUdp8ATPB5oXAnL0bAAAAAElFTkSuQmCC');
+  .setSearchBoardTrash();
 }
 .searchboard-tag{
   display: inline-block;
   background: #F0F2F5;
-  border-radius: 4px;
-  font-size: 13px;
-  color: #666666;
-  padding: 2px 10px;
-  margin: 5px 12px;
+  border-radius: @4px;
+  font-size: @13px;
+  color: @bar-color;
+  padding: @2px @10px;
+  margin: @5px @12px;
 }
 /*----------------searchbar.less(end)----------------*/

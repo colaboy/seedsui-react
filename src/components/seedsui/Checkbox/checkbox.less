@@ -1,5 +1,3 @@
-//@import "../base/tool/icon.less";
-
 /*----------------checkbox.less(start)--------------*/
 .checkbox{
   height: @22px;
@@ -23,14 +21,11 @@
   &[disabled]{
     color:@checkbox-color-disable;
   }
-  font-family: @font-family-checkbox;
+  .setCheckboxIcon();
 }
 /*icon*/
-.checkbox:before{
-  content: @content-checkbox;
-}
-.checkbox:checked:before{
-  content: @content-checkbox-checked;
+.checkbox:checked{
+  .setCheckboxActiveIcon();
 }
 /*label*/
 .checkbox+label{

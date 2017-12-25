@@ -34,23 +34,28 @@
 /*小点点*/
 /*时间轴*/
 /*价格*/
-/*checkbox*/
+/* checkbox控件 */
 @font-face {
   font-family: "checkbox";
   src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAWQAAsAAAAACAQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7khPY21hcAAAAYAAAABlAAABnM95a9lnbHlmAAAB6AAAAakAAAHUOzx3vGhlYWQAAAOUAAAALwAAADYPTqSvaGhlYQAAA8QAAAAcAAAAJAfeA4VobXR4AAAD4AAAABAAAAAQD+kAAGxvY2EAAAPwAAAACgAAAAoBYACwbWF4cAAAA/wAAAAfAAAAIAETAF1uYW1lAAAEHAAAAUcAAAJhnH999HBvc3QAAAVkAAAAKwAAAD6+/qBkeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDxLZm7438AQw9zA0AAUZgTJAQArWwzReJzFkMENwCAIRT9iG9N0lB6bzmPqpSM4MWtYQC9O4DdP4IeIAcAGgJVLiQB9IJhedcl9xuF+xKN10hM0VslSWpsyE3lH8izYy7RjmWjd6Fmn3/eobN91oF+U3LG9SumAfxEzEn8AAAB4nF3PP2/TYBAG8Pe5FzuOndj4f2IncRynMajgCmNiidTpQqsGGJIywQQLgqEICYkuDF2QGBiQGBCMBYlvwFQEA3yQCsSnaAwObJxOutPd8NPDBMZ+n/Bj3mImO8cusWtszhjEdQxU6iKMs4TWYYeC7Voqj6M4rEWDhBdwB6LlpONs5Io1UYOKHi6H6ThOKMaVbEoTpE4XaPveLWOtY/BXkFtx73l5nY5gB1FHm14sZxe2rLRvSgcNw2gbxktJFASJ6IymYt916kJdFssPgubZx8F5CtBox97N282+b9x7kT3qrrl14PAQpt9XP27pnl71M88xjXbtbFNqec1oaOHgp9IyG93RD1YVVVm/8698k2ksqFKGKmp6D244Ra4n4GGCWK/2sLrpKvjG8n2xB+wWtD+9Aezly9dRTpRH9HhYzat8k+bF8t1kB9iZ0P1ifvpp9Xw4zIF8uHwT5f/Mb/zLX7P/n2kmUCAONjDKxmkAc5w6VoUeFQvCrKAHxQwSLd6eNrrKU9nylbu/FN/iEyxW6DawvUIX5efyRJafKL4t34Eo250/FstRcgAAAHicY2BkYGAAYr0PV+3i+W2+MnCzMIDANfENkQj6/xEWBmYbIJeDgQkkCgAkjgneAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2ALAA6gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNINuv8yPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8I0A5+uO68wB2uzOXCM/CNfJj8INcle4iQ4Gwi3qL8IhnjEW7uAWGScEjSt2XbwJB7jGu3CN/CFcJ38KN8hfwk3c40e4Rf1XOMQ8aAt38BS8hmNnFt6s1PKottpmsc18eAK9tDOz3icLJ5085sYVW5upQdQXZWoy4y4zisN66H2sYmdTNeEwkyRW5c7ujPbRxvt81OvFokfapow0hoPBAp51BYUljqxbaFh+jLisnr6LoumwmNG9xh4JT7rK3v9uTqdDQfWkKf6ECP2KZ0pPVvqqOQoc+J4hVc8sisvRn5ImkswwQ0JWyMu9HRVNPcKmPJVjhB7vuOKPygTpH/kpa0kAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYI5OSmfC4jzs3XTMnNyGBgAPS8FvwA=') format('woff');
 }
-/*radio*/
+/* radio控件 */
 @font-face {
   font-family: "radio";
   src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAU0AAsAAAAAB9gAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kiLY21hcAAAAYAAAABnAAABnM/ybURnbHlmAAAB6AAAAUoAAAGkRLFa8WhlYWQAAAM0AAAALwAAADYPTqL2aGhlYQAAA2QAAAAcAAAAJAfeA4VobXR4AAADgAAAABAAAAAQD+kAAGxvY2EAAAOQAAAACgAAAAoBSACkbWF4cAAAA5wAAAAfAAAAIAETAF1uYW1lAAADvAAAAUcAAAJhz5CxBXBvc3QAAAUEAAAAMAAAAENVYB4EeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDybz9zwv4EhhrmBoQEozAiSAwAvzw0NeJzFkMENwCAIRT9iG9N0lB6bDtRTR3AZ43asYQG9OIHfPIEfIgYAGwBWLiUC9IFgetUl9xmH+xGP1klP0JilSG1tykzkHcmzYC/TjmWidaNnnX7fo7J954F+UUrH9iq1A/4BY7wUYwB4nJWPv0rDUBTG77k3N0n/Jfbmf9q0TWMbpRowxjqIzWIHxUFwErr4ALp2cegiODj4DFJwyeJeqj6K2L5FrAZLBUcPh4/vfAd+8CGK0Nc7mRATKWgD7aAjdIYQ8B1oStgB148C3AHNpZqhSsT3fFfwmgE5BKPJq3rYjdoGL/AySFCDXTfs+gH2YS/q4QMIdQfAqtjnrFVl5AHypl+7XZzgR9DqXlXubS+Ot2I1bCjisMiYxdi9yFMqYszJElwZeo7m8vxiTGVbm9Q3cR2Klm+fXpQaFXZ5F107LSMHMBqBUmlIT3HZLmd7Y+sKs4S1kmjaJW9dheGsYCpFp/2BssFZ11fyQmJUQEbWUgKhBkYP9gMgAfiZyU4JMJqmlKbTpSYzSmdJMue4OYl/02maPnPzZPVcst/+y+4PAAb9H/3D/hyv4kzRN7E7XP8AAHicY2BkYGAA4o749Zrx/DZfGbhZGEDgmvj6WgT9/wALA7M9kMvBwAQSBQAXWwmxAHicY2BkYGBu+N/AEMPCAAJAkpEBFbAAAEcKAm0EAAAAA+kAAAQAAAAEAAAAAAAAAAB2AKQA0gAAeJxjYGRgYGBhCGRgZQABJiDmAkIGhv9gPgMAERIBcQB4nF2RPU7DQBSEx/kVjkQBgopiJSSKIDk/ZUQXKelTpKNI7LWTyPZa602klJyHE3ACTkBLwynomDgvBba1z9+bnX0e2QBu8A0P5+uO68weuuzO3CA/CDfJj8Itcl+4jR5Gwh3qL8I+njEV7uEWOSd4rSt2fbwJe7jGu3CD/CHcJH8Kt8hfwm3c40e4Q/1X2MfS6wr38OS9+lOrV05Han1U29DkscmdfwIbmYVO9unKSiePpbbl1uRqFAxFmetc28uM8pCMnYtVbE2mZhym09SowpqdDl2wca6YDAax6EFoMkaawkJjBccaQWGNI+sWIQw/RlxVR99FsXQZLOhOsEfKk7a2979b0mlRUj1pij8hwLDmmdOTV756jhIHvmdM1TGL4rL0Z6SZJNPMkJIVimpvRyWkHmBTnSowwYB3XPMHVYLsD4GGa9EAeJxjYGKAAC4G7ICFkYmRmZGFkZWBsYK5KCWfH4iTM1KTs1NTdNMyc3IYGABmqwfT') format('woff');
 }
-/*star*/
+/* 星星控件 */
 @font-face {
   font-family: "star";
   src: url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAVEAAsAAAAAB7QAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7kjrY21hcAAAAYAAAABlAAABnNA3bhNnbHlmAAAB6AAAAVsAAAF8xpQffGhlYWQAAANEAAAALwAAADYPTp23aGhlYQAAA3QAAAAcAAAAJAfeA4VobXR4AAADkAAAABAAAAAQD+kAAGxvY2EAAAOgAAAACgAAAAoBNACibWF4cAAAA6wAAAAfAAAAIAETAF1uYW1lAAADzAAAAUsAAAJtLVEhh3Bvc3QAAAUYAAAAKQAAADzSvTUyeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sU4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDz7z9zwv4EhhrmBoQEozAiSAwA27w1teJzFkMENwCAIRT9iG9N0lB6bDtRTR/DssKxBAb04gd88gR8iBgAbADYuIwP0geB6zaXwGUf4GY/VxU6yWKWJqk6Zi6KjRJb8ZdqxTLRu9Kwz7ntUvu86sC9K6/heRTvgHx4NFXcAAAB4nF3PvU7CUBjG8fOeY1s+W+kH/YBaCpSDQSHWAoMRFhaNg4mToxegbDLowGJi0MGV1Zh4E43IDDfgYNTI4sIFMBQbJuOTZ/4lf8QgtPwiPtGQhMpoB3XQMULAViDPYxNs6lVxBRSbUVSZJ7RAba6Qr5J9UPOsnHYbXkllOVYAHjZg13YbtIop1L0W3gM3bQLoGeNEdLIieYCYRjdugkP8CIpVyAqt7eBgqy27OSnSS4iiLor3EZZhIhivCTycq+koE42xwRMjGIpvbWILEjo1jk6TuYx4dutdmI4aBej3Qcrk+Od2ykiFvzbSkqhz68mIZiQLRRl6s7gmJczSNwqHw9YxGZE2ioa1CJw4MCpxGCJAkzpNCziVjILJYBBMPuqggOx9vldeALrdpV+GnxrQ4K02C/zhEDqXV4uxPZ8XR4sQWrmvK/ePGlrTu0EwDS0ZlPo/AKFfydxSvAB4nGNgZGBgAOKzfxXY4vltvjJwszCAwDXxNXcR9P+DLAzM9kAuBwMTSBQAMdEKnQB4nGNgZGBgbvjfwBDDwgACQJKRARWwAABHCgJtBAAAAAPpAAAEAAAABAAAAAAAAAAAdgCiAL4AAHicY2BkYGBgYQhkYGUAASYg5gJCBob/YD4DABESAXEAeJxljz1Ow0AUhMf54ceRUEQEHdIWiAKQ8yOqNBSRkj5FesdZJ45sr7XeRMoBOA9H4AQcAW7AHRic5ybY2rffzM5bPwO4xjc8HJ8briN7uKA6cgPnuBNu0r8XbpGfhdvo4EX4jP6rsI8nzIQ76MHyBq91SfWIN2EPXbwLN3CFD+Em/U/hFvlLuI1b/Aifoes1hX0svJ5wBw9e4k+sDp1eqeVBJZHJY5M7/w9KF9q5Xu/S0Nay3hfalonJ1TAY1NZM59rW95T79ci5WMXWZGrKC3WaGlVYs9WRCzbOFeN+PxY/iEzGsSb8bY0QjnUFhSUOrAkiGOSIq+qYq52SKmTPnPk1dkgrdXp6qhdMW6qkchWGCDD4l5oxlVfJ03lK7Pm1EV3HmRSXZWdGmsqEmpOkZIWiOtvSiegH2FRdBcbo841P8kE1Q/YLI2pu4AB4nGNgYoAALgbsgIWRiZGZkYWRlYGxgjktsYwDiHXTMnNyGBgAMHYE9QAAAA==') format('woff');
 }
+/* 属性控件 */
+/* 下拉刷新控件 */
+/* 搜索栏控件 */
+/* 搜索面板控件 */
+/* 徽章类控件 (badge | close | tagline | tip) */
 /*间距*/
-/*函数*/
+/* 一个像素的线 */
 /* 核心库 */
 /*----------------appearance.less(start)--------------*/
 input[type="search"]::-webkit-search-decoration,
@@ -844,6 +849,20 @@ aside {
   padding: 12px 8px;
   text-align: left;
 }
+/* 文本框中的close组件 */
+.input-text + .close {
+  background-color: transparent;
+}
+.input-text + .close .close-icon-default {
+  font-weight: bold;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 12px;
+  height: 12px;
+  line-height: 13px;
+  padding: 3px;
+  border-radius: 100%;
+}
 /*----------------inputtext.less(end)--------------*/
 /*----------------inputcolor.less(start)--------------*/
 input[type="color"] {
@@ -923,9 +942,12 @@ input[type="color"] {
 .checkbox[disabled] {
   color: #d1d1d1;
 }
-/*icon*/
 .checkbox:before {
   content: "\e660";
+}
+/*icon*/
+.checkbox:checked {
+  font-family: "checkbox";
 }
 .checkbox:checked:before {
   content: "\e663";
@@ -959,9 +981,12 @@ input[type="color"] {
 .radio[disabled] {
   color: #d1d1d1;
 }
-/*icon*/
 .radio:before {
   content: "\e69d";
+}
+/*icon*/
+.radio:checked {
+  font-family: "radio";
 }
 .radio:checked:before {
   content: "\e69f";
@@ -1807,26 +1832,6 @@ input[type="color"] {
   background-color: #ff6a54;
 }
 /*----------------类型----------------*/
-/*方块类型*/
-.grid-square .grid-icon {
-  width: 50px;
-  height: 50px;
-}
-.grid-square .icon {
-  width: 26px;
-  height: 26px;
-  font-size: 26px;
-}
-/*裸图标类型*/
-.grid-pure .grid-icon {
-  width: 32px;
-  height: 32px;
-}
-.grid-pure .icon {
-  width: 32px;
-  height: 32px;
-  font-size: 32px;
-}
 /*相册类型*/
 .grid-album li {
   padding: 6px;
@@ -1923,21 +1928,8 @@ input[type="color"] {
 .close .icon {
   display: block;
 }
-.close-of-input {
-  background-color: transparent;
-}
-.close-of-input .close-of-input-icon {
-  font-weight: bold;
-  font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 12px;
-  height: 12px;
-  line-height: 13px;
-  padding: 3px;
-  border-radius: 100%;
-}
 /*--------------------close.less(end)----------------------*/
-/*--------------------peg.less(start)----------------------*/
+/*--------------------tip.less(start)----------------------*/
 .tip {
   position: relative;
   display: -webkit-inline-box;
@@ -1962,7 +1954,7 @@ input[type="color"] {
   background-color: #ffffff;
   border: 1px solid #ff5656;
 }
-/*--------------------peg.less(end)----------------------*/
+/*--------------------tip.less(end)----------------------*/
 /*--------------------peg.less(start)----------------------*/
 /*小竖条*/
 .peg {
@@ -2368,6 +2360,7 @@ input[type="color"] {
 }
 .star.active {
   color: #f4984e;
+  font-family: "star";
 }
 .star.active:before {
   content: "\e6ff";
@@ -6935,7 +6928,7 @@ ul.weather-otherday li {
 .searchbar {
   display: -webkit-box;
   height: 44px;
-  box-shadow: 0 1px 0 0 #E5E5E5;
+  box-shadow: 0 1px 0 0 #e5e5e5;
   background-color: #fff;
   padding: 8px 12px;
   box-sizing: border-box;
@@ -6954,6 +6947,7 @@ ul.weather-otherday li {
   display: block;
   width: 16px;
   height: 16px;
+  font-size: 16px;
   margin: 6px 8px 0 8px;
   background-size: cover;
   background-position: center;
@@ -6965,6 +6959,7 @@ ul.weather-otherday li {
   position: absolute;
   width: 16px;
   height: 16px;
+  font-size: 16px;
   right: 7px;
   top: 6px;
   background-size: cover;
@@ -7010,6 +7005,7 @@ ul.weather-otherday li {
 .searchboard-icon-trash {
   width: 16px;
   height: 16px;
+  font-size: 16px;
   margin-right: 3px;
   background-size: cover;
   background-position: center;
@@ -7033,11 +7029,11 @@ ul.weather-otherday li {
 .attribute .col-3:nth-child(odd) {
   color: #aaa;
 }
-.attribute .icon-tel {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAXVBMVEUAAABv0Tp11UCK2U5v0Tpw0Ttv0Ttw0Dtw0Txv0Tpw0jtv0D1y0z1v0Dr////x+uzq+OOC1lK055mb33Z500j1/PHI7bS66aGU3G3Z8st81Ex00UHQ77/B6qqK2F+9wBsfAAAADXRSTlMA8xgG49nHv5aVgkct8zFIpgAAAPBJREFUOMuFk9kSwiAMRaGUUkqB7otV//8zBVk1OtynzOSQhSQoiQjOKMaUcUEQVNViGYXb6stNOudOSEc+njcSqMmC9LX8obqP750fEj4GCfFhFldHJ/+qeyfw9e96BgC2SVpnP5VSByBaU4EPsBlguEAIgoQ3tTKCSQTi3rJ+vQCAI5ZFmCQQQ1SmGnYIUBSGNBpgHWGjEZCTbeMGARrtExI2BYv2MlhiNMZ8ZUXyRI/a1rFPWg1HalPIjBhU0Bw/iuCMWM4A6PDVYVipF6eHH1Ycd0qzabXejzDu0sIUV660tMW1Lx9O+fTKx1s8/xcLZSlX4fSWEwAAAABJRU5ErkJggg==');
-}
 .attribute .button-small {
   border-radius: 3px;
+}
+.attribute-icon-tel {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAXVBMVEUAAABv0Tp11UCK2U5v0Tpw0Ttv0Ttw0Dtw0Txv0Tpw0jtv0D1y0z1v0Dr////x+uzq+OOC1lK055mb33Z500j1/PHI7bS66aGU3G3Z8st81Ex00UHQ77/B6qqK2F+9wBsfAAAADXRSTlMA8xgG49nHv5aVgkct8zFIpgAAAPBJREFUOMuFk9kSwiAMRaGUUkqB7otV//8zBVk1OtynzOSQhSQoiQjOKMaUcUEQVNViGYXb6stNOudOSEc+njcSqMmC9LX8obqP750fEj4GCfFhFldHJ/+qeyfw9e96BgC2SVpnP5VSByBaU4EPsBlguEAIgoQ3tTKCSQTi3rJ+vQCAI5ZFmCQQQ1SmGnYIUBSGNBpgHWGjEZCTbeMGARrtExI2BYv2MlhiNMZ8ZUXyRI/a1rFPWg1HalPIjBhU0Bw/iuCMWM4A6PDVYVipF6eHH1Ycd0qzabXejzDu0sIUV660tMW1Lx9O+fTKx1s8/xcLZSlX4fSWEwAAAABJRU5ErkJggg==');
 }
 /*----------------attribute.less(end)----------------*/
 /* 工具库 */

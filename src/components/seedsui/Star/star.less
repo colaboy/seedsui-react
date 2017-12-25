@@ -9,18 +9,13 @@
 	height: 36px;
 	font-size: @30px;
 	color: @star-color;
-	font-family: @font-family-star;
+	.setStarIcon();
 	&:extend(.icon);
 	&:extend(.icon-font);
-	&:before{
-		display: block;
-		content: @content-star;
-	}
+	
 	&.active{
 		color:@star-color-active;
-	}
-	&.active:before{
-		content: @content-star-checked;
+		.setStarActiveIcon();
 	}
 	&.active-half{
 		/* Chrome10-25,Safari5.1-6 */

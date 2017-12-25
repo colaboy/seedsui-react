@@ -1,5 +1,3 @@
-//@import "../base/tool/icon.less";
-
 /*----------------radio.less(start)--------------*/
 .radio{
   height: @22px;
@@ -23,14 +21,11 @@
   &[disabled]{
     color:@radio-color-disable;
   }
-  font-family: @font-family-radio;
+  .setRadioIcon();
 }
 /*icon*/
-.radio:before{
-  content: @content-radio;
-}
-.radio:checked:before{
-  content: @content-radio-checked;
+.radio:checked{
+  .setRadioActiveIcon();
 }
 /*label*/
 .radio+label{
