@@ -85,7 +85,7 @@
           ===========================*/
         _newDatePicker:function(defaultYMD){
             var self=this;
-            this.spDate=new DatePicker({
+            this.spDate=new PickerDate({
                 viewType:"date",
                 onClickDone:function(e){
                     self.textDate.value=e.activeText;
@@ -107,7 +107,7 @@
         },
         _newSpTime:function(defaultHS){
             var self=this;
-            this.spTime=new DatePicker({
+            this.spTime=new PickerDate({
                 viewType:"time",
                 onClickDone:function(e){
                     self.textTime.value=e.activeText;
@@ -128,7 +128,7 @@
         },
         _newDatePickerTime:function(defaults){
             var self=this;
-            this.spDateTime=new DatePicker({
+            this.spDateTime=new PickerDate({
                 viewType:"datetime",
                 isSimpleYear:true,
                 minutesData:self.minutesData,
@@ -219,7 +219,7 @@
             var yearsData=[{"key":"2016","value":"2016年"},{"key":"2017","value":"2017年"},{"key":"2018","value":"2018年"}];
             var monthsData=[{"key":"02","value":"02月"},{"key":"05","value":"05月"},{"key":"06","value":"06月"},{"key":"07","value":"07月"},{"key":"08","value":"08月"},{"key":"09","value":"09月"}];
             var daysData=[{"key":"01","value":"01日"},{"key":"02","value":"02日"},{"key":"03","value":"03日"},{"key":"04","value":"04日"},{"key":"05","value":"05日"},{"key":"31","value":"31日"}];
-            this.spDateCustom=new DatePicker({
+            this.spDateCustom=new PickerDate({
                 viewType:"date",
                 yearsData: yearsData,
                 monthsData: monthsData,

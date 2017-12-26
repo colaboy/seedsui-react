@@ -66,7 +66,7 @@
               Method
               ===========================*/
             _newCityPicker:function(defaults,input){
-                this.spCity=new CityPicker({
+                this.spCity=new PickerCity({
                     viewType:"city",
                     data:citys,
                     defaultProvince:defaults.province,
@@ -85,7 +85,7 @@
                 });
             },
             _newSpArea:function(defaults,input){
-                this.spArea=new CityPicker({
+                this.spArea=new PickerCity({
                     data:citys,
                     defaultProvince:defaults.province,
                     defaultCity:defaults.city,

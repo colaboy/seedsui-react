@@ -1,6 +1,6 @@
 //import Picker from './picker.js'
 // 扩展Picker日期控件 (require pikcer.js)
-var DatePicker = function (params) {
+var PickerDate = function (params) {
   // 参数改写
   var onDateClickDone = params.onClickDone
   var onDateScrollEnd = params.onScrollEnd
@@ -309,4 +309,4 @@ var DatePicker = function (params) {
   return s
 }
 
-;//export default DatePicker
+;//export default PickerDate

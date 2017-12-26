@@ -1,6 +1,6 @@
 //import Picker from './picker.js'
 // 扩展picker地区控件 (require pikcer.js)
-var CityPicker = function (params) {
+var PickerCity = function (params) {
   // 参数改写
   var onCityClickDone = params.onClickDone
   var onCityScrollEnd = params.onScrollEnd
@@ -238,4 +238,4 @@ var CityPicker = function (params) {
   return s
 }
 
-;//export default CityPicker
+;//export default PickerCity
