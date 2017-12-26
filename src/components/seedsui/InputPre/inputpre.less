@@ -1,24 +1,25 @@
 /*----------------inputpre.less(start)--------------*/
 .input-pre{
   width: 100%;
-  height: @22px;
+  height: @input-text-height;
   &,+pre{
     padding: 0px;
-      line-height: @22px;
-      min-height: @22px;
+    line-height: @input-text-height;
+    min-height: @input-text-height;
   }
   +pre{
     position: absolute;
-      left: 0;
-      top: @100px;
-      visibility: hidden;
-      span{
-        display: inline;
-      }
+    left: 0;
+    top: @100px;
+    visibility: hidden;
+    span{
+      display: inline;
+    }
   }
 }
 .input-pre-space{
-  margin: 0 8px;
-  padding: 10px 0 9px 0;
+  // margin: 0 @8px;
+  padding: @input-text-padding;
+  line-height: 0;
 }
 /*----------------inputpre.less(end)--------------*/

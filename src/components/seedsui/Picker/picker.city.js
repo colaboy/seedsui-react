@@ -26,7 +26,7 @@ var PickerCity = function (params) {
     areaClass: 'text-center',
 
     defaultValues: [{
-      key: 'none',
+      key: '',
       value: '----'
     }],
     onClickDone: function (e) {

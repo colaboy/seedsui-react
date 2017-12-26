@@ -762,13 +762,14 @@ aside {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
+  -webkit-box-flex: 1;
   /*box内的表单框*/
   /*box内顶天立地的控件*/
   /*box内文字*/
 }
 .inputbox .input-text,
 .inputbox .input-textarea,
-.inputbox .input-pre {
+.inputbox .input-pre-space {
   display: block;
   -webkit-box-flex: 1.0;
 }
@@ -820,6 +821,14 @@ aside {
 .inputbox-search input[type=search]:focus ~ .inputbox-search-placeholder {
   display: none;
 }
+.inputbox-required {
+  color: #ff5656;
+  font-size: 16px;
+  margin-right: 12px;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+}
 .inputbox-error {
   background-color: transparent;
   -webkit-animation-duration: 1000ms;
@@ -844,9 +853,9 @@ aside {
 /*----------------inputtext.less(start)--------------*/
 .input-text {
   box-sizing: border-box;
-  min-height: 20px;
-  line-height: 20px;
-  padding: 12px 8px;
+  min-height: 22px;
+  line-height: 22px;
+  padding: 10px 0;
   text-align: left;
 }
 /* 文本框中的close组件 */
@@ -908,8 +917,8 @@ input[type="color"] {
   display: inline;
 }
 .input-pre-space {
-  margin: 0 8px;
-  padding: 10px 0 9px 0;
+  padding: 10px 0;
+  line-height: 0;
 }
 /*----------------inputpre.less(end)--------------*/
 /*----------------textarea.less(start)--------------*/
@@ -2090,7 +2099,7 @@ input[type="color"] {
   overflow: hidden;
   text-align: center;
   vertical-align: middle;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 4px;
 }
 .numbox.lg {

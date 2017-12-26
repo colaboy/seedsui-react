@@ -2,14 +2,15 @@
 .inputbox{
 	position:relative;
 	display:-webkit-box;
-    -webkit-box-align:center;
-    /*box内的表单框*/
-    .input-text,.input-textarea,.input-pre{
-    	display:block;
+  -webkit-box-align:center;
+  -webkit-box-flex: 1;
+  /*box内的表单框*/
+  .input-text,.input-textarea,.input-pre-space{
+    display:block;
 		-webkit-box-flex:1.0;
-    }
+  }
     /*box内顶天立地的控件*/
-    .block+.icon{
+  .block+.icon{
 		position:absolute;
 		top:50%;
 		right:0;
@@ -18,7 +19,7 @@
 	}
 	/*box内文字*/
 	label{
-	    line-height: @24px;
+	  line-height: @24px;
 	}
 }
 .inputbox-left{
@@ -36,12 +37,12 @@
 		-webkit-box-align:center;
 		-webkit-box-pack:center;
 		position: absolute;
-	    top: 0;
-	    right: 0;
-	    bottom: 0;
-	    left: 0;
-	    text-align: center;
-	    color: @placeholder;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: @placeholder;
 		.inputbox-search-icon{
 			display: block;
 			font-size: @20px;
@@ -66,6 +67,14 @@
 			display: none;
 		}
 	}
+}
+.inputbox-required{
+  color: @tip-bg;
+  font-size: @font-size-lg;
+  margin-right: @wingblank-md;
+  width: @8px;
+  height: @8px;
+  text-align: center;
 }
 .inputbox-error{
 	background-color: transparent;
