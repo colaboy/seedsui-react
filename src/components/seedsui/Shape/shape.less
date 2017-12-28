@@ -5,6 +5,13 @@
 .shape-arrow-left, .shape-arrow-right{
   position: relative;
   border-color: @placeholder;
+  &.small{
+    &:after, &:after{
+      width: 8px;
+      height: 8px;
+      border-width: 2px 0 0 2px;
+    }
+  }
 }
 .shape-arrow-left:after, .shape-arrow-right:after{
   position:absolute;
@@ -17,17 +24,12 @@
   border-width: 1px 0 0 1px;
   left:50%;
   -webkit-transform-origin: center;
-  &.small{
-    width: 8px;
-    height: 8px;
-    border-width: 2px 0 0 2px;
-  }
 }
 .shape-arrow-left:after{
-  -webkit-transform: translate(-50%, -50%) rotate(315deg);
+  -webkit-transform: translate(-30%, -50%) rotate(315deg);
 }
 .shape-arrow-right:after{
-  -webkit-transform: translate(-50%, -50%) rotate(134deg);
+  -webkit-transform: translate(-80%, -50%) rotate(134deg);
 }
 // titlebar上的button图标
 .titlebar-button{
