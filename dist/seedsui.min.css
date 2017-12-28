@@ -2765,6 +2765,14 @@ input[type="color"] {
   min-height: 20px;
   padding: 6px 12px;
 }
+.sliver .licon {
+  display: block;
+  margin-right: 4px;
+}
+.sliver .ricon {
+  display: block;
+  margin-left: 4px;
+}
 .sliver {
   color: #aaaaaa;
   background-color: #f8f8f8;

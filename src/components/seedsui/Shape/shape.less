@@ -4,8 +4,6 @@
 */
 .shape-arrow-left, .shape-arrow-right{
   position: relative;
-  width: 32px;
-  height: 32px;
   border-color: @placeholder;
 }
 .shape-arrow-left:after, .shape-arrow-right:after{
@@ -18,14 +16,18 @@
   border-color: inherit;
   border-width: 1px 0 0 1px;
   left:50%;
-  margin-top:-6px;
-  margin-left:-6px;
+  -webkit-transform-origin: center;
+  &.small{
+    width: 8px;
+    height: 8px;
+    border-width: 2px 0 0 2px;
+  }
 }
 .shape-arrow-left:after{
-  -webkit-transform: rotate(315deg);
+  -webkit-transform: translate(-50%, -50%) rotate(315deg);
 }
 .shape-arrow-right:after{
-  -webkit-transform: rotate(134deg);
+  -webkit-transform: translate(-50%, -50%) rotate(134deg);
 }
 // titlebar上的button图标
 .titlebar-button{
