@@ -152,19 +152,6 @@ var CalendarUtil = function (activeDate) {
     s.activeDate = tempDate
   }
   /* 其它工具 */
-  // 根据日期，获得周数
-  s.getWeeksNum = function (currentDate) {
-    var startDate = new Date(currentDate.getFullYear(), 0, 1)
-    var startDay = startDate.getDay()
-    if (startDay === 0) startDay = 7
-
-    currentDate.setHours(0, 0, 0, 0)
-    var currentDay = currentDate.getDay()
-    if (currentDay === 0) currentDay = 7
-
-    var dateNum = Math.round((currentDate.getTime() - startDate.getTime() + (startDay - currentDay) * s.dayMilliSecond) / s.dayMilliSecond)
-    return Math.ceil(dateNum / 7) + 1
-  }
   // 激活天为准，推前天数
   s.getBeforeDays = function (beforenum) {
     var days = []

@@ -42,11 +42,11 @@
                 //日历
                 this.calendar=new Calendar("#ID-Calendar",{
                     viewType:"week",
-                    showTitleWeek:true,
-                    showTitleWeeks:true,
                     // disableBeforeDate:new Date(),
                     //isYTouch:false,//是否允许竖向滑动
+                    isAutoActive: false,
                     activeDate:new Date(),
+                    schedule: [new Date('2017-12-27'), new Date('2017-12-29')],
                     prevHTML:'<i class="icon-arrowleft"></i>',
                     nextHTML:'<i class="icon-arrowright"></i>',
                     onChange:function(e){

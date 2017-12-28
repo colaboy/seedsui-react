@@ -1,4 +1,5 @@
-// Calendar 日历 (require calendarutil.js)
+// Calendar 日历 (require calendarutil.js | dateutil.js)
+//import './../utils/dateutil.js'
 //import CalendarUtil from './calendarutil.js'
 var Calendar = function (container, params) {
   /* --------------------
@@ -6,16 +7,16 @@ var Calendar = function (container, params) {
   -------------------- */
   var defaults = {
     viewType: 'month', // 值为month|week
-    defaultActiveDate: new Date(),
-    disableBeforeDate: null,
-    disableAfterDate: null,
-    activeDate: null,
-    threshold: '50',
-    duration: '300',
-    dayHeight: '40',
+    titleFormat: 'yyyy年MM月dd日,第W周,周E', // 年月日
+    defaultActiveDate: new Date(), // 默认选中的日期
+    disableBeforeDate: null, // 禁用此前
+    disableAfterDate: null, // 禁用此后
+    activeDate: null, // 选中日期
+    threshold: '50', // 滑动间距触发
+    duration: '300', // 动画时长
+    dayHeight: '40', // 一日高度
     isYTouch: true, // 是否允许上下滑动
-    showTitleWeeks: false, // 是否显示周数
-    showTitleWeek: false, // 是否显示周几
+    schedule: [], // 日程
     // DOM
     calendarClass: 'calendar',
     disableClass: 'calendar-disable',
@@ -38,6 +39,7 @@ var Calendar = function (container, params) {
     dayClass: 'calendar-day',
     dayNumClass: 'calendar-daynum',
 
+    scheduleClass: 'calendar-schedule',
     // 状态
     currentClass: 'calendar-current',
     notcurrentClass: 'calendar-notcurrent',
@@ -382,24 +384,9 @@ var Calendar = function (container, params) {
       }
     }
   }
-  var chinaWeek = { 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六', 0: '日' }
-  s.drawHeader = function (actDate) {
-    var activeDate = actDate || s.calendarUtil.activeDate
-    var activeDay = ''
-    if (s.params.showTitleWeek) {
-      activeDay = '&nbsp&nbsp周' + chinaWeek[activeDate.getDay()]
-    }
-    var activeWeeks = ''
-    if (s.params.showTitleWeeks) {
-      activeWeeks = '&nbsp&nbsp第' + s.calendarUtil.getWeeksNum(activeDate) + '周'
-    }
-    // 注入头部数据
-    var year = activeDate.getFullYear()
-    var month = (activeDate.getMonth() + 1)
-    month = month < 10 ? '0' + month : month
-    var date = activeDate.getDate()
-    date = date < 10 ? '0' + date : date
-    s.title.innerHTML = year + '-' + month + '-' + date + activeDay + activeWeeks
+  s.drawHeader = function (argActiveDate) {
+    var activeDate = argActiveDate || s.calendarUtil.activeDate
+    s.title.innerHTML = activeDate.format(s.params.titleFormat)
   }
   s.draw = function (vertical) { // vertical:上下拖动(-1上 | 1下 | 其它为非上下拖动)
     // 更新选中日期
@@ -428,6 +415,12 @@ var Calendar = function (container, params) {
       if (s.params.disableAfterDate && s.data[i].setHours(0, 0, 0, 0) > s.params.disableAfterDate.setHours(0, 0, 0, 0)) {
         s.days[i].classList.add(s.params.disableClass)
       }
+      // 增加日程
+      s.params.schedule.forEach(function (schDate, schIndex) {
+        if (s.data[i].setHours(0, 0, 0, 0) === schDate.setHours(0, 0, 0, 0)) {
+          s.days[i].classList.add(s.params.scheduleClass)
+        }
+      })
     }
     s.updateContainerHeight()
     // 滑动到禁用
