@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+  <title>dragrefresh</title>
+  <link rel="stylesheet" href="../dist/seedsui.min.css">
+  <style>
+    #ID-List{
+      -webkit-transition-property:-webkit-transform,opacity,visibility;
+    }
+    #ID-List li{
+      height: 50px;
+    }
+  </style>
+</head>
+
+<body ontouchstart="">
+    <section class="page">
+      <header class="header">
+        <div class="titlebar">
+          <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a>
+          <h1 class="titlebar-caption">Marquee滚动框</h1>
+        </div>
+      </header>
+      <article class="container">
+        <div style="height: 50px;overflow:hidden;">
+          <ul class="list" id="ID-List">
+            <li>轮播1</li>
+            <li>轮播2</li>
+            <li>轮播3</li>
+            <li>轮播4</li>
+            <li>轮播5</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+    <script src="../dist/seedsui.min.js"></script>
+    <!-- <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script> -->
+    
+    <script type="text/javascript">
+      var instance = new Marquee("#ID-List", {
+        loop: true,
+        end: 4 * 50
+      });
+      instance.play();
+    </script>
+</body>
+</html>

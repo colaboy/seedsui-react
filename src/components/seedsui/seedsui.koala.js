@@ -51,3 +51,4 @@
 // @koala-prepend "Imglazy/imglazy.js"
 // @koala-prepend "HandSign/handsign.js"
 // @koala-prepend "Watermark/watermark.js"
+// @koala-prepend "marquee/marquee.js"
