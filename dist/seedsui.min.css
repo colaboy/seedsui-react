@@ -17,6 +17,7 @@
 /* 文本框控件 */
 /*标题长条*/
 /*列表*/
+/* Grid */
 /* Tabbar | Titlebar */
 /* 按钮 */
 /* 按钮-点击与选中 */
@@ -419,9 +420,15 @@ hr {
 .shape-arrow-left,
 .shape-arrow-right {
   position: relative;
-  width: 32px;
-  height: 32px;
   border-color: #cccccc;
+}
+.shape-arrow-left.small:after,
+.shape-arrow-right.small:after,
+.shape-arrow-left.small:after,
+.shape-arrow-right.small:after {
+  width: 8px;
+  height: 8px;
+  border-width: 2px 0 0 2px;
 }
 .shape-arrow-left:after,
 .shape-arrow-right:after {
@@ -434,14 +441,13 @@ hr {
   border-color: inherit;
   border-width: 1px 0 0 1px;
   left: 50%;
-  margin-top: -6px;
-  margin-left: -6px;
+  -webkit-transform-origin: center;
 }
 .shape-arrow-left:after {
-  -webkit-transform: rotate(315deg);
+  -webkit-transform: translate(-30%, -50%) rotate(315deg);
 }
 .shape-arrow-right:after {
-  -webkit-transform: rotate(134deg);
+  -webkit-transform: translate(-80%, -50%) rotate(134deg);
 }
 .titlebar-button .shape-arrow-left {
   border-color: #1a1a1a;
@@ -662,7 +668,6 @@ aside {
 .list-thumbnail-img {
   background-repeat: no-repeat;
   background-position: center;
-  background-color: white;
 }
 .list-avatar,
 .list-avatar-img {
@@ -673,7 +678,8 @@ aside {
   background-size: contain;
 }
 .list-avatar-img,
-.list-thumbnail-img {
+.list-thumbnail-img,
+.icon-img {
   position: relative;
   display: block;
   width: 100%;
@@ -1402,6 +1408,7 @@ input[type="color"] {
   color: #333333;
   background-color: #ffffff;
   border-color: #e5e5e5;
+  /*小按钮*/
   /*主色按钮*/
   /*取消按钮*/
   /*提交按钮*/
@@ -1411,6 +1418,11 @@ input[type="color"] {
   /*禁用按钮*/
   /*白色按钮*/
   /*小汽泡*/
+}
+.button .small {
+  padding: 0 6px;
+  height: 26px;
+  font-size: 12px;
 }
 .button:active,
 .button.active {
@@ -1834,6 +1846,10 @@ input[type="color"] {
 .grid.grid-bordered li {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+/*默认图*/
+.grid-icon .icon {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAATlBMVEXw8PDZ2dnr6+u2trb////d3d3n5+fh4eHq6url5eXW1tbR0dHGxsbv7+/CwsLj4+Pu7u7IyMi+vr7Ly8u7u7vY2NjOzs7f39+4uLj19fVfdL0JAAADP0lEQVR42u3ZYW+jMAyAYceuQ0IoJIEB+/9/9BZYOtox7XS3ckHnR2rVj2+R3UQqCCGEEEIIIYQQQgghhBBCPLCs/hJbOIRVP+CYVlY/gOEI6kfADkmVVEmVVEn9TR16M50hVV8Wr1PxqXDJusJT8fJhKjqVLxuvRaeayxaXnPp62bLnSdXnSS36qeJ5ZnU6zy+Agk1qVXbqZlpN4aeVUte8U8XfAZRiA69gz3CzOtV9VVL/99RO80lSLaLhU6RqTKbyU9ngqio9dTKY2bJTJ9ywJad2eEdzsakWHxguNFXjJ2YqMZUN7qnKS2X8Qlda6oRf0v8i1fI3q7/P8OGpGnH6dvX3W+EID2vTqR0Gv2HgCI8npt1b/W/BEdSqwkx/Li0qtds7gvJ3KCrVYrLX2mFZqXr3CEosFpXKZvcISjQWlbq/NnZdqKJSK9ynU2lZqfgVg3iWVJTUP+fxB3jYU2KrByGEEEIIIf530wQfEP6EZwNPp60dgn2D4C2Pw4Cpt7oDb7B+gJBwe4U3hhieLtI7VkRD6+wSQHdSjabYbkTSkLzQcaloh94kXg0G3nmd9FGvYEmt0nvQsKiOTk3C4LsZAUANcG+MkOXUhuoE/0mqpdg31Pe9rqlJeshC+5jqqB/HsZ23qZhYUoh4hae6Oud6Gp0z4+Bc+/aCrGnuU31DsUHgud4OwIaCp6sIAaEZAcZ27V/E/vpuTeXY+TA4crBN5Q8Gnor70EQaiCxxTg30oF8HwAO+zDQof79WR+F+dCOxNePgc2qlkpqcol4l3ZJa1c0ca+3mOXBOrQkO1UVMfQDgGripZw9Ub2Z1bF1VTwCoQsipbuYM4ek6t8Fw0/Zwn7os4RBf/GZWe7qx8HQ1NTdDgMwQP6Ymvo7btWoDrviYVA9Ze0v17ew/pYaeEa6bp+pJwao6+qnOt9SRFORU5d5TuR+odd1HKpM5NrV+yWLIBwM5uKWO7ccAdHVL8ZbaRDg2Fa9ZG9aeSD0ka3DsUyqbd/btE5Ne+tTBqRtLqqOBYdHMTQiROKXeS6k4NHBwatVlMayz6WGlXQhhnCClKruhltRg7lLPQv4MEEIIIYQQQgghhBBCCCGEECf1C/gmN8hELxs9AAAAAElFTkSuQmCC');
 }
 /*提示*/
 .grid .tip,
@@ -2779,8 +2795,6 @@ input[type="color"] {
 }
 .sliver-caption {
   display: block;
-  height: 20px;
-  line-height: 20px;
   -webkit-box-flex: 1;
 }
 .sliver-rcaption {
@@ -4502,11 +4516,11 @@ progress::-webkit-progress-value {
   background-size: cover;
   box-sizing: border-box;
 }
-.slide-banner {
+.carrousel-slide-img {
   width: 100%;
   max-width: 750px;
 }
-.slide-title {
+.carrousel-summary {
   position: absolute;
   display: -webkit-box;
   bottom: 0;
@@ -4518,17 +4532,17 @@ progress::-webkit-progress-value {
   color: white;
   text-align: left;
 }
-.slide-title-icon {
+.carrousel-summary-icon {
   display: block;
   font-size: 20px;
   width: 20px;
   height: 20px;
 }
-.slide-title-font {
+.carrousel-summary-font {
   display: block;
   -webkit-box-flex: 1;
 }
-.slide-title-icon + .slide-title-font {
+.carrousel-summary-icon + .carrousel-summary-font {
   margin-left: 4px;
 }
 .carrousel-pagination {
@@ -6952,6 +6966,7 @@ ul.weather-otherday li {
 /*----------------searchbar.less(start)----------------*/
 .searchbar {
   display: -webkit-box;
+  -webkit-box-align: center;
   height: 44px;
   box-shadow: 0 1px 0 0 #e5e5e5;
   background-color: #fff;
@@ -6961,6 +6976,7 @@ ul.weather-otherday li {
 .searchbar-form {
   position: relative;
   display: -webkit-box;
+  -webkit-box-align: center;
   -webkit-box-flex: 1;
   background: #EDEEF0;
   border-radius: 5px;
@@ -6970,10 +6986,10 @@ ul.weather-otherday li {
 }
 .searchbar-icon-search {
   display: block;
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
-  margin: 6px 8px 0 8px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  margin: 0 8px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -7051,11 +7067,8 @@ ul.weather-otherday li {
 .attribute {
   margin: 10px 12px;
 }
-.attribute .col-3:nth-child(odd) {
+.attribute .col-odd:nth-child(odd) {
   color: #aaa;
-}
-.attribute .button-small {
-  border-radius: 3px;
 }
 .attribute-icon-tel {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAXVBMVEUAAABv0Tp11UCK2U5v0Tpw0Ttv0Ttw0Dtw0Txv0Tpw0jtv0D1y0z1v0Dr////x+uzq+OOC1lK055mb33Z500j1/PHI7bS66aGU3G3Z8st81Ex00UHQ77/B6qqK2F+9wBsfAAAADXRSTlMA8xgG49nHv5aVgkct8zFIpgAAAPBJREFUOMuFk9kSwiAMRaGUUkqB7otV//8zBVk1OtynzOSQhSQoiQjOKMaUcUEQVNViGYXb6stNOudOSEc+njcSqMmC9LX8obqP750fEj4GCfFhFldHJ/+qeyfw9e96BgC2SVpnP5VSByBaU4EPsBlguEAIgoQ3tTKCSQTi3rJ+vQCAI5ZFmCQQQ1SmGnYIUBSGNBpgHWGjEZCTbeMGARrtExI2BYv2MlhiNMZ8ZUXyRI/a1rFPWg1HalPIjBhU0Bw/iuCMWM4A6PDVYVipF6eHH1Ycd0qzabXejzDu0sIUV660tMW1Lx9O+fTKx1s8/xcLZSlX4fSWEwAAAABJRU5ErkJggg==');
