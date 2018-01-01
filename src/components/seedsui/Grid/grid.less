@@ -11,18 +11,15 @@
 	background-position:center;
 }
 /*文字区域*/
-.grid-label{
+.grid-caption, .grid-sndcaption{
 	display:block;
   margin-top:@8px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  box-sizing:border-box;
-  
-  height: @16px;
-  line-height: @16px;
-
-  color:@sub-color;
+}
+.grid-caption{
+  color:@grid-caption-color;
+}
+.grid-sndcaption{
+  color:@grid-sndcaption-color;
 }
 .grid-icon>img{
 	max-width:100%;
