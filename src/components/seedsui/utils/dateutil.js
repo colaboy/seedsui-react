@@ -10,7 +10,7 @@ window.Date.prototype.compareDateTime = function (date) {
   var t2 = date2.getTime()
 
   if (t1 === t2) return 0
-  return t1 > t2 === true ? 1 : -1
+  return t1 > t2 ? 1 : -1
 }
 // 比较年月日,大于返回1,等于返回0,小于返回-1
 window.Date.prototype.compareDate = function (date) {
@@ -22,7 +22,7 @@ window.Date.prototype.compareDate = function (date) {
   var t2 = date2.getTime()
 
   if (t1 === t2) return 0
-  return t1 > t2 === true ? 1 : -1
+  return t1 > t2 ? 1 : -1
 }
 // 比较时分,大于返回1,等于返回0,小于返回-1
 window.Date.prototype.compareTime = function (date) {
@@ -37,7 +37,7 @@ window.Date.prototype.compareTime = function (date) {
   var t2 = date2.getTime()
 
   if (t1 === t2) return 0
-  return t1 > t2 === true ? 1 : -1
+  return t1 > t2 ? 1 : -1
 }
 // 年
 window.Date.prototype.year = function () {
@@ -199,7 +199,7 @@ window.Date.prototype.setMinuteFloor = function (space) {
   var hasRemainder = minute % space === 0 // 是否有余数
 
   var percentNum = Math.floor(minute / space) // 档位
-  percentNum = hasRemainder ? parseInt(percentNum) - 1 : percentNum
+  percentNum = hasRemainder ? parseInt(percentNum, 10) - 1 : percentNum
 
   var result = percentNum * space // 根据档位计算结果
   this.setMinutes(result)

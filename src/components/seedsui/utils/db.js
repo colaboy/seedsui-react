@@ -43,7 +43,36 @@ var DB = (function () {
   function clearCookie () {
     alert('抱歉，cookie不可以全部清空!')
   }
-
+  
+  function stringifyData (val) {
+    if (typeof val === 'number') {
+      return val.toString()
+    }
+    if (!val) {
+      return ''
+    }
+    if (typeof val === 'string') {
+      return val
+    }
+    if (val instanceof Function) {
+      return '_function:' + val.toString()
+    }
+    if (val instanceof Object) {
+      return '_json:' + JSON.stringify(val)
+    }
+  }
+  function parseData (val) {
+    if (!val) {
+      return null
+    }
+    if (val.indexOf('_function:') === 0) {
+      return val.replace(/^_function:/,'')
+    }
+    if (val.indexOf('_json:') === 0) {
+      return JSON.parse(val.replace(/^_json:/,''))
+    }
+    return val
+  }
   var store = window.localStorage
   var session = window.sessionStorage
   return {
@@ -51,26 +80,35 @@ var DB = (function () {
     checkManifest: checkManifest,
 
     setStore: function (key, val) {
-      store.setItem(key, val)
+      store.setItem(key.toString(), stringifyData(val))
     },
     getStore: function (key) {
-      return store.getItem(key)
+      if (typeof key === 'number') {
+        return parseData(store.key(key))
+      }
+      return parseData(store.getItem(key))
+    },
+    getAllStore: function () {
+      return store.valueOf()
     },
     delStore: function (key) {
       store.removeItem(key)
     },
     clearStore: function () {
-      return store.clear()
+      store.clear()
     },
 
     setSession: function (key, value) {
-      session.setItem(key, value)
+      session.setItem(key.toString(), stringifyData(value))
     },
     getSession: function (key) {
       if (typeof key === 'number') {
-        return session.key(key)
+        return parseData(session.key(key))
       }
-      return session.getItem(key)
+      return parseData(session.getItem(key))
+    },
+    getAllSession: function () {
+      return session.valueOf()
     },
     delSession: function (key) {
       session.removeItem(key)
@@ -84,6 +122,6 @@ var DB = (function () {
     delCookie: delCookie, // key
     clearCookie: clearCookie
   }
-})();
+})()
 
-//export default DB
+export default DB

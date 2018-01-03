@@ -53,3 +53,7 @@ window.String.generateGUID = function () {
 window.String.prototype.clearImgScheme = function () {
   return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
 }
+// 清除字符串的"https:"和"http:"
+window.String.prototype.clearScheme = function () {
+  return this.replace(/https:/gim, '').replace(/http:/gim, '')
+}
