@@ -48,3 +48,8 @@ window.String.GUID = function () {
   })
   return uuid
 }
+
+// 清除img字符串的"https:"和"http:", 例如‘<img src="http:’转换后‘<img src="’
+window.String.clearImgScheme = function () {
+  return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
+}

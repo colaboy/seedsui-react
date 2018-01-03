@@ -35,8 +35,7 @@
 			            '<div class="loading-floating-caption">加载中...</div>'+
 			        '</div>',
 
-		    isClickAllow:false,
-			clickAllowClass:"loading-propagation",
+			propagationClass:"loading-propagation",
 
 			activeClass:"active"
 			/*
@@ -59,7 +58,7 @@
 			var container=document.createElement("div");
             container.classList.add.apply(container.classList,s.params.containerClass);
             container.innerHTML=s.params.html;
-            if(s.params.isClickAllow)container.classList.add(s.params.clickAllowClass);
+            if(s.params.propagationClass)container.classList.add(s.params.propagationClass);
             return container;
 		}
 		s.create=function(){

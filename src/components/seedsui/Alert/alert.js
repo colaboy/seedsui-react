@@ -5,13 +5,14 @@ var Alert = function (params) {
   -------------------- */
   var defaults = {
     mask: null,
+    parent: document.body, // 创建于哪个元素下
     overflowContainer: document.body,
     overflowContainerActiveClass: 'overflow-hidden',
-    parent: document.body,
 
-    maskClass: 'mask',
+    maskClass: 'mask alert-mask',
     maskActiveClass: 'active',
-    maskFeatureClass: 'alert-mask',
+
+    duration: 300,
 
     alertClass: 'alert',
     alertActiveClass: 'active',
@@ -53,7 +54,7 @@ var Alert = function (params) {
   // Mask
   s.createMask = function () {
     var mask = document.createElement('div')
-    mask.setAttribute('class', s.params.maskClass + ' ' + s.params.maskFeatureClass)
+    mask.setAttribute('class', s.params.maskClass)
     return mask
   }
   // Alert
@@ -106,14 +107,11 @@ var Alert = function (params) {
       s.alert = s.mask.querySelector('.' + s.params.alertClass)
       s.buttonSubmit = s.alert.querySelector('.' + s.params.buttonSubmitClass)
       s.buttonCancel = s.alert.querySelector('.' + s.params.buttonCancelClass)
-      console.log('找到了')
-      console.log(s.mask)
-      console.log(s.alert)
-      console.log(s.buttonSubmit)
-      console.log(s.buttonCancel)
-      return
+    } else {
+      s.create()
     }
-    s.create()
+    s.mask.style.webkitTransitionDuration = s.params.duration + 'ms'
+    s.alert.style.webkitTransitionDuration = s.params.duration + 'ms'
   }
   s.update()
   /* --------------------
@@ -126,16 +124,13 @@ var Alert = function (params) {
     s.mask.classList.remove(s.params.maskActiveClass)
   }
   s.destroyMask = function () {
-    s.parent.removeChild(s.mask)
+    s.mask.parentNode.removeChild(s.mask)
   }
   s.showAlert = function () {
     s.alert.classList.add(s.params.alertActiveClass)
   }
   s.hideAlert = function () {
     s.alert.classList.remove(s.params.alertActiveClass)
-  }
-  s.destroyAlert = function () {
-    s.parent.removeChild(s.alert)
   }
   s.isHid = true
   s.hide = function () {
@@ -146,6 +141,8 @@ var Alert = function (params) {
     s.hideAlert()
     // 显示滚动条
     if (s.overflowContainer) s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass)
+    // 执行回调
+    if (s.params.duration === 0) s.onTransitionEnd()
   }
   s.show = function () {
     s.isHid = false
@@ -155,10 +152,11 @@ var Alert = function (params) {
     s.showAlert()
     // 禁用滚动条
     if (s.overflowContainer) s.overflowContainer.classList.add(s.params.overflowContainerActiveClass)
+    // 执行回调
+    if (s.params.duration === 0) s.onTransitionEnd()
   }
   s.destroy = function () {
     s.destroyMask()
-    // s.destroyAlert()
   }
   // 动态设置
   s.setHTML = function (html) {
@@ -224,6 +222,13 @@ var Alert = function (params) {
   }
   s.onTransitionEnd = function (e) {
     if (e.propertyName === 'visibility') return
+    if (s.isHid) {
+      // Callback onHid
+      if (s.params.onHid) s.params.onHid(s)
+    } else {
+      // Callback onShowed
+      if (s.params.onShowed) s.params.onShowed(s)
+    }
   }
   /* --------------------
   Init
