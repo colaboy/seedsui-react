@@ -26,7 +26,8 @@ var Alert = function (params) {
     buttonSubmitHTML: '确定',
     buttonCancelHTML: '取消',
 
-    isClickMaskHide: false
+    isClickMaskHide: false,
+    args: []
     /*
     Callbacks:
     onClick:function(Alert)
@@ -197,13 +198,13 @@ var Alert = function (params) {
   s.onClick = function (e) {
     s.target = e.target
 
-    if (s.params.onClick) s.params.onClick(s)
+    if (s.params.onClick) s.params.onClick(s, this.params.args)
 
     if (e.target.classList.contains(s.params.buttonSubmitClass)) {
-      if (s.params.onClickSubmit) s.params.onClickSubmit(s)
+      if (s.params.onClickSubmit) s.params.onClickSubmit(s, this.params.args)
       else s.hide()
     } else if (e.target.classList.contains(s.params.buttonCancelClass)) {
-      if (s.params.onClickCancel) s.params.onClickCancel(s)
+      if (s.params.onClickCancel) s.params.onClickCancel(s, this.params.args)
       else s.hide()
     }
   }
@@ -213,7 +214,7 @@ var Alert = function (params) {
   s.onClickMask = function (e) {
     if (e.target === s.mask) {
       s.target = e.target
-      if (s.params.onClickMask) s.params.onClickMask(s)
+      if (s.params.onClickMask) s.params.onClickMask(s, this.params.args)
       if (s.params.isClickMaskHide) s.hide()
     }
   }
@@ -224,10 +225,10 @@ var Alert = function (params) {
     if (e.propertyName === 'visibility') return
     if (s.isHid) {
       // Callback onHid
-      if (s.params.onHid) s.params.onHid(s)
+      if (s.params.onHid) s.params.onHid(s, this.params.args)
     } else {
       // Callback onShowed
-      if (s.params.onShowed) s.params.onShowed(s)
+      if (s.params.onShowed) s.params.onShowed(s, this.params.args)
     }
   }
   /* --------------------

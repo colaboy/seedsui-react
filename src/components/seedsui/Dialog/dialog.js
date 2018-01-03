@@ -10,7 +10,8 @@ var Dialog = function (params) {
     position: 'middle',
 
     animationAttr: 'data-animation',
-    animation: 'fade',
+    animation: 'fade', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
+    duration: 300,
 
     mask: null,
     wrapper: null,
@@ -24,14 +25,15 @@ var Dialog = function (params) {
 
     css: {},
     maskCss: {},
-    isClickMaskHide: true
+    isClickMaskHide: true,
+    args: []
     /* callbacks
     onClick:function(Dialog)
     onClickMask:function(Dialog)
     onTransitionEnd:function(Dialog)
     onShowed(Dialog)// 显示动画结束后回调
     onHid(Dialog)// 隐藏动画结束后回调
-      */
+    */
   }
   params = params || {}
   for (var def in defaults) {
@@ -46,13 +48,9 @@ var Dialog = function (params) {
   // Params
   s.params = params
   // Mask
-  s.mask
+  s.mask = null
   // Dialog(外层生成的包裹容器)
-  s.dialog
-  // Wrapper(源容器)
-  s.wrapper
-  // Parent(父容器，为了方便在源容器处插入包裹容器)
-  s.parent
+  s.dialog = null
   // OverflowContainer
   s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
 
@@ -71,34 +69,32 @@ var Dialog = function (params) {
     return dialog
   }
   s.create = function () {
+    // 获取wrapper
+    var wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
+    if (!s.wrapper) {
+      console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
+      return false
+    }
+    // 确定父级
+    var parent = wrapper.parentNode
+    // 插入Dialog
+    s.dialog = s.createDialog()
+    parent.insertBefore(s.dialog, wrapper)
+    s.dialog.appendChild(wrapper)
+    // 插入遮罩
+    s.mask = s.createMask()
+    s.mask.appendChild(s.dialog)
+    parent.appendChild(s.mask)
+    // 源容器显示
+    wrapper.style.display = 'block'
+  }
+  s.update = function () {
     if (s.params.mask) s.mask = typeof s.params.mask === 'string' ? document.querySelector(s.params.mask) : s.params.mask
     if (s.mask) {
-      s.parent = s.mask.parentNode
       s.dialog = s.mask.querySelector('.' + s.params.dialogClass)
-      return true
     } else {
-      // 获取wrapper
-      s.wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
-      if (!s.wrapper) {
-        console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
-        return false
-      }
-      // 确定父级
-      s.parent = s.wrapper.parentNode
-      // 插入Dialog
-      s.dialog = s.createDialog()
-      s.parent.insertBefore(s.dialog, s.wrapper)
-      s.dialog.appendChild(s.wrapper)
-      // 插入遮罩
-      s.mask = s.createMask()
-      s.mask.appendChild(s.dialog)
-      s.parent.appendChild(s.mask)
-      return true
+      s.create()
     }
-  }
-  var isCreated = s.create()
-  if (!isCreated) return
-  s.update = function () {
     var style
     // Dialog Css
     for (style in s.params.css) {
@@ -108,8 +104,9 @@ var Dialog = function (params) {
     for (style in s.params.maskCss) {
       s.mask.style[style] = s.params.maskCss[style]
     }
-    // 源容器显示
-    if (s.wrapper) s.wrapper.style.display = 'block'
+    // 动画时长
+    s.mask.style.webkitTransitionDuration = s.params.duration + 'ms'
+    s.dialog.style.webkitTransitionDuration = s.params.duration + 'ms'
   }
   s.update()
 
@@ -123,16 +120,13 @@ var Dialog = function (params) {
     s.mask.classList.remove(s.params.maskActiveClass)
   }
   s.destroyMask = function () {
-    s.parent.removeChild(s.mask)
+    s.mask.parentNode.removeChild(s.mask)
   }
   s.showDialog = function () {
     s.dialog.classList.add(s.params.dialogActiveClass)
   }
   s.hideDialog = function () {
     s.dialog.classList.remove(s.params.dialogActiveClass)
-  }
-  s.destroyDialog = function () {
-    s.parent.removeChild(s.dialog)
   }
   s.isHid = true
   s.hide = function () {
@@ -158,7 +152,6 @@ var Dialog = function (params) {
   }
   s.destroy = function () {
     s.destroyMask()
-    //  s.destroyDialog()
   }
 
   // 设置
@@ -191,13 +184,13 @@ var Dialog = function (params) {
   s.onClick = function (e) {
     s.target = e.target
     // CallBack onClick
-    if (s.params.onClick) s.params.onClick(s)
+    if (s.params.onClick) s.params.onClick(s, this.params.args)
   }
   s.onClickMask = function (e) {
     if (e.target === s.mask) {
       s.target = e.target
       // CallBack onClickMask
-      if (s.params.onClickMask) s.params.onClickMask(s)
+      if (s.params.onClickMask) s.params.onClickMask(s, this.params.args)
       if (s.params.isClickMaskHide) s.hide()
     }
   }
@@ -205,13 +198,13 @@ var Dialog = function (params) {
     if (e.propertyName === 'visibility') return
     s.target = e.target
     // Callback onTransitionEnd
-    if (s.params.onTransitionEnd) s.params.onTransitionEnd(s)
+    if (s.params.onTransitionEnd) s.params.onTransitionEnd(s, this.params.args)
     if (s.isHid) {
       // Callback onHid
-      if (s.params.onHid) s.params.onHid(s)
+      if (s.params.onHid) s.params.onHid(s, this.params.args)
     } else {
       // Callback onShowed
-      if (s.params.onShowed) s.params.onShowed(s)
+      if (s.params.onShowed) s.params.onShowed(s, this.params.args)
     }
   }
 

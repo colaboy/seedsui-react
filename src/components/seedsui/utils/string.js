@@ -39,7 +39,7 @@ window.String.prototype.hasClass = function (name) {
 }
 
 // 生成唯一标识符
-window.String.GUID = function () {
+window.String.generateGUID = function () {
   var d = new Date().getTime()
   var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = (d + Math.random() * 16) % 16 | 0
@@ -50,6 +50,6 @@ window.String.GUID = function () {
 }
 
 // 清除img字符串的"https:"和"http:", 例如‘<img src="http:’转换后‘<img src="’
-window.String.clearImgScheme = function () {
+window.String.prototype.clearImgScheme = function () {
   return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
 }
