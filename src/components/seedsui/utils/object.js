@@ -65,7 +65,7 @@ Object.clone = function (obj) {
   var item
   for (item in obj) {
     if (isNotEnCode) result += '&' + item + '=' + obj[item]
-    else result += '&' + item + '=' + encodeURIComponent(obj[item])
+    else result += '&' + item + '=' + encodeURIComponent(obj[item]) // 使用decodeURIComponent解码
   }
   if (result) {
     result = result.slice(1)

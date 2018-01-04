@@ -1,10 +1,57 @@
 /*----------------attribute.less(start)----------------*/
+.attribute-box{
+
+}
 .attribute{
-  margin: 10px 12px;
-  .col-odd:nth-child(odd){
-    color: #aaa;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  margin: 10px 12px 10px 0;
+  .ricon{
+    margin-left: 4px;
   }
 }
+.attribute-left {
+  color: #aaa;
+  margin-right: 4px;
+  margin-left: 12px;
+}
+.attribute-right {
+  display: block;
+  position: relative;
+  margin-left: 4px;
+}
+// 对齐布局
+.attribute-box.align {
+  .attribute-left {
+    width: 30%;
+  }
+  .attribute-right {
+    -webkit-box-flex: 1;
+  }
+}
+.attribute-box[data-col="4"].align {
+  .attribute-left {
+    width: 20%;
+  }
+  .attribute-right {
+    width: 30%;
+  }
+}
+
+// 左端对齐
+.attribute-box.start {
+  .attribute-right {
+    -webkit-box-flex: 1;
+  }
+}
+
+// 两端对齐
+.attribute-box.between {
+  .attribute-left {
+    -webkit-box-flex: 1;
+  }
+}
+
 .attribute-icon-tel{
   .setAttributeTelIcon();
 }

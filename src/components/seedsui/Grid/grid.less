@@ -76,6 +76,38 @@
 				height: 0;
 			}
 		}
+  }
+  &[data-col="6"] li{
+    width:16.66%;
+    &:nth-of-type(6n){
+			&:before{
+				height: 0;
+			}
+		}
+  }
+  &[data-col="7"] li{
+    width:14.28%;
+    &:nth-of-type(7n){
+			&:before{
+				height: 0;
+			}
+		}
+  }
+  &[data-col="8"] li{
+    width:12.5%;
+    &:nth-of-type(8n){
+			&:before{
+				height: 0;
+			}
+		}
+	}
+  &[data-col="9"] li{
+    width:11.11%;
+    &:nth-of-type(9n){
+			&:before{
+				height: 0;
+			}
+		}
 	}
 }
 /*边框*/
@@ -138,14 +170,14 @@
 	padding-bottom:@8px;
 }
 /*默认图*/
-.grid-icon .icon{
-  .setGridIcon();
+.grid-icon-main{
+  pointer-events: none;
 }
 /*提示*/
-.grid .tip,.grid .badge{
+.grid-tip,.grid-badge{
 	position:absolute;top:-4px;right:-4px;
 }
-.grid .close{
+.grid-close{
 	position: absolute;
 	top:-6px;
 	left:-6px;
