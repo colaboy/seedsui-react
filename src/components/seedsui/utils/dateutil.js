@@ -24,6 +24,20 @@ window.Date.prototype.compareDate = function (date) {
   if (t1 === t2) return 0
   return t1 > t2 ? 1 : -1
 }
+// 比较年月,大于返回1,等于返回0,小于返回-1
+window.Date.prototype.compareMonth = function (date) {
+  var date1 = new Date(this)
+  var date2 = new Date(date)
+  date1.setDate(0)
+  date1.setHours(0, 0, 0, 0)
+  date2.setDate(0)
+  date2.setHours(0, 0, 0, 0)
+  var t1 = date1.getTime()
+  var t2 = date2.getTime()
+
+  if (t1 === t2) return 0
+  return t1 > t2 ? 1 : -1
+}
 // 比较时分,大于返回1,等于返回0,小于返回-1
 window.Date.prototype.compareTime = function (date) {
   var date1 = new Date(this)
