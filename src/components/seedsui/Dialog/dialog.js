@@ -16,9 +16,8 @@ var Dialog = function (params) {
     mask: null,
     wrapper: null,
 
-    maskClass: 'mask',
+    maskClass: 'mask dialog-mask',
     maskActiveClass: 'active',
-    maskFeatureClass: 'dialog-mask',
 
     dialogClass: 'dialog',
     dialogActiveClass: 'active',
@@ -57,7 +56,7 @@ var Dialog = function (params) {
   // Mask
   s.createMask = function () {
     var mask = document.createElement('div')
-    mask.setAttribute('class', s.params.maskClass + ' ' + s.params.maskFeatureClass)
+    mask.setAttribute('class', s.params.maskClass)
     return mask
   }
 
@@ -184,13 +183,13 @@ var Dialog = function (params) {
   s.onClick = function (e) {
     s.target = e.target
     // CallBack onClick
-    if (s.params.onClick) s.params.onClick(s, this.params.args)
+    if (s.params.onClick) s.params.onClick(s, s.params.args)
   }
   s.onClickMask = function (e) {
     if (e.target === s.mask) {
       s.target = e.target
       // CallBack onClickMask
-      if (s.params.onClickMask) s.params.onClickMask(s, this.params.args)
+      if (s.params.onClickMask) s.params.onClickMask(s, s.params.args)
       if (s.params.isClickMaskHide) s.hide()
     }
   }
@@ -198,13 +197,13 @@ var Dialog = function (params) {
     if (e.propertyName === 'visibility') return
     s.target = e.target
     // Callback onTransitionEnd
-    if (s.params.onTransitionEnd) s.params.onTransitionEnd(s, this.params.args)
+    if (s.params.onTransitionEnd) s.params.onTransitionEnd(s, s.params.args)
     if (s.isHid) {
       // Callback onHid
-      if (s.params.onHid) s.params.onHid(s, this.params.args)
+      if (s.params.onHid) s.params.onHid(s, s.params.args)
     } else {
       // Callback onShowed
-      if (s.params.onShowed) s.params.onShowed(s, this.params.args)
+      if (s.params.onShowed) s.params.onShowed(s, s.params.args)
     }
   }
 

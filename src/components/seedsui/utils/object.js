@@ -72,6 +72,7 @@ Object.clone = function (obj) {
   }
   return result
 } */
+
 Object.params = function (obj, isNotEnCode) {
   if (!Object.isPlainObject(obj)) return obj
   var result = ''
@@ -110,35 +111,6 @@ Object.type = function (obj) {
   // Support: Android <=2.3 only (functionish RegExp)
   return typeof obj === 'object' || typeof obj === 'function' ? {}[toString.call(obj)] || 'object' : typeof obj
 }
-
-/* -------------------
-  query条件判断
-  ------------------- */
-Object.isQueryId = function (id) {
-  var idExpr = /^#([\w-]*)$/
-  var match = idExpr.exec(id)
-  if (match && match.length > 0) {
-    return match[1]
-  }
-  return false
-}
-Object.isQueryClass = function (classname) {
-  var classExpr = /^\.([\w-]*)$/
-  var match = classExpr.exec(classname)
-  if (match && match.length > 0) {
-    return match[1]
-  }
-  return false
-}
-Object.isTag = function (str) {
-  var tagExpr = /^<(\w+)\s*.*\/\w*>$/im
-  var match = tagExpr.exec(str)
-  if (match && match.length > 0) {
-    return true
-  }
-  return false
-}
-
 /* -------------------
   字符类型
   ------------------- */
@@ -248,4 +220,16 @@ Object.extend = function () {
 
   // 返回修改后的对象
   return target
+}
+/* -------------------
+  生成唯一标识
+  ------------------- */
+Object.generateGUID = function () {
+  var d = new Date().getTime()
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = (d + Math.random() * 16) % 16 | 0
+    d = Math.floor(d / 16)
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16) // eslint-disable-line
+  })
+  return uuid
 }

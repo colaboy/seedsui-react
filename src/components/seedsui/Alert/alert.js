@@ -198,13 +198,13 @@ var Alert = function (params) {
   s.onClick = function (e) {
     s.target = e.target
 
-    if (s.params.onClick) s.params.onClick(s, this.params.args)
+    if (s.params.onClick) s.params.onClick(s, s.params.args)
 
     if (e.target.classList.contains(s.params.buttonSubmitClass)) {
-      if (s.params.onClickSubmit) s.params.onClickSubmit(s, this.params.args)
+      if (s.params.onClickSubmit) s.params.onClickSubmit(s, s.params.args)
       else s.hide()
     } else if (e.target.classList.contains(s.params.buttonCancelClass)) {
-      if (s.params.onClickCancel) s.params.onClickCancel(s, this.params.args)
+      if (s.params.onClickCancel) s.params.onClickCancel(s, s.params.args)
       else s.hide()
     }
   }
@@ -214,7 +214,7 @@ var Alert = function (params) {
   s.onClickMask = function (e) {
     if (e.target === s.mask) {
       s.target = e.target
-      if (s.params.onClickMask) s.params.onClickMask(s, this.params.args)
+      if (s.params.onClickMask) s.params.onClickMask(s, s.params.args)
       if (s.params.isClickMaskHide) s.hide()
     }
   }
@@ -225,10 +225,10 @@ var Alert = function (params) {
     if (e.propertyName === 'visibility') return
     if (s.isHid) {
       // Callback onHid
-      if (s.params.onHid) s.params.onHid(s, this.params.args)
+      if (s.params.onHid) s.params.onHid(s, s.params.args)
     } else {
       // Callback onShowed
-      if (s.params.onShowed) s.params.onShowed(s, this.params.args)
+      if (s.params.onShowed) s.params.onShowed(s, s.params.args)
     }
   }
   /* --------------------

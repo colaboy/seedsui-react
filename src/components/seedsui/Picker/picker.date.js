@@ -2,9 +2,9 @@
 // 扩展Picker日期控件 (require pikcer.js)
 var PickerDate = function (params) {
   // 参数改写
-  var onDateClickDone = params.onClickDone
+  var onDateClickSubmit = params.onClickSubmit
   var onDateScrollEnd = params.onScrollEnd
-  params.onClickDone = undefined
+  params.onClickSubmit = undefined
   params.onScrollEnd = undefined
   var nowDate = new Date()
   /* ----------------
@@ -41,10 +41,10 @@ var PickerDate = function (params) {
     hhUnit: '时',
     mmUnit: '分',
 
-    onClickDone: function (e) {
+    onClickSubmit: function (e) {
       e.activeText = getActiveText(e.activeOptions)
       setDefaults(e.activeOptions)
-      if (onDateClickDone) onDateClickDone(e)
+      if (onDateClickSubmit) onDateClickSubmit(e)
     },
     onScrollEnd: function (e) {
       // 根据月份算日

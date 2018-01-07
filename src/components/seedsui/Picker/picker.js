@@ -17,8 +17,7 @@ var Picker = function (params) {
     pickerActiveClass: 'active',
 
     headerClass: 'picker-header',
-    headerDoneClass: 'picker-done',
-    headerDoneText: '完成',
+    headerSubmitText: '完成',
     headerCancelClass: 'picker-cancel',
     headerCancelText: '取消',
 
@@ -39,7 +38,7 @@ var Picker = function (params) {
     /* callbacks
     onInit:function (Picker)
     onClickCancel:function (Picker)
-    onClickDone:function (Picker)
+    onClickSubmit:function (Picker)
     onClickMask:functioin (Picker)
     onScrollStart:function (Picker)
     onScroll:function (Picker)
@@ -68,7 +67,7 @@ var Picker = function (params) {
   s.wrapper = null
   s.slotbox = null
   s.layer = null
-  s.headerDone = null
+  s.headerSubmit = null
   s.headerCancel = null
 
   // 选中项
@@ -88,11 +87,11 @@ var Picker = function (params) {
   }
 
   // 新建Header按钮
-  s.createHeaderDone = function () {
-    var headerDone = document.createElement('a')
-    headerDone.setAttribute('class', s.params.headerDoneClass)
-    headerDone.innerHTML = s.params.headerDoneText
-    return headerDone
+  s.createHeaderSubmit = function () {
+    var headerSubmit = document.createElement('a')
+    headerSubmit.setAttribute('class', s.params.headerSubmitClass)
+    headerSubmit.innerHTML = s.params.headerSubmitText
+    return headerSubmit
   }
   s.createHeaderCancel = function () {
     var headerCancel = document.createElement('a')
@@ -137,7 +136,7 @@ var Picker = function (params) {
     if (s.mask) {
       s.picker = s.mask.querySelector('.' + s.params.pickerClass)
       s.header = s.mask.querySelector('.' + s.params.headerClass)
-      s.headerDone = s.mask.querySelector('.' + s.params.headerDoneClass)
+      s.headerSubmit = s.mask.querySelector('.' + s.params.headerSubmitClass)
       s.headerCancel = s.mask.querySelector('.' + s.params.headerCancelClass)
       s.wrapper = s.mask.querySelector('.' + s.params.wrapperClass)
       s.slotbox = s.mask.querySelector('.' + s.params.slotboxClass)
@@ -147,14 +146,14 @@ var Picker = function (params) {
     s.mask = s.createMask()
     s.picker = s.createPicker()
     s.header = s.createHeader()
-    s.headerDone = s.createHeaderDone()
+    s.headerSubmit = s.createHeaderSubmit()
     s.headerCancel = s.createHeaderCancel()
     s.wrapper = s.createWrapper()
     s.slotbox = s.createSlotbox()
     s.layer = s.createLayer()
 
     s.header.appendChild(s.headerCancel)
-    s.header.appendChild(s.headerDone)
+    s.header.appendChild(s.headerSubmit)
 
     s.wrapper.appendChild(s.layer)
     s.wrapper.appendChild(s.slotbox)
@@ -338,7 +337,7 @@ var Picker = function (params) {
     s.mask[action]('click', s.onClickMask, false)
     // 按钮
     // s.header[action]('touchmove', s.preventDefault, false)
-    s.headerDone[action]('click', s.onClickDone, false)
+    s.headerSubmit[action]('click', s.onClickSubmit, false)
     s.headerCancel[action]('click', s.onClickCancel, false)
   }
   s.detach = function (event) {
@@ -359,10 +358,10 @@ var Picker = function (params) {
     else s.hide()
   }
 
-  // Done|Cancel
-  s.onClickDone = function (e) {
+  // Submit|Cancel
+  s.onClickSubmit = function (e) {
     s.target = e.target
-    s.params.onClickDone(s)
+    s.params.onClickSubmit(s)
   }
   s.onClickCancel = function (e) {
     s.target = e.target

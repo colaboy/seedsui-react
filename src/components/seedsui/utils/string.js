@@ -38,17 +38,6 @@ window.String.prototype.hasClass = function (name) {
   return false
 }
 
-// 生成唯一标识符
-window.String.generateGUID = function () {
-  var d = new Date().getTime()
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = (d + Math.random() * 16) % 16 | 0
-    d = Math.floor(d / 16)
-    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16) // eslint-disable-line
-  })
-  return uuid
-}
-
 // 清除img字符串的"https:"和"http:", 例如‘<img src="http:’转换后‘<img src="’
 window.String.prototype.clearImgScheme = function () {
   return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
@@ -56,4 +45,32 @@ window.String.prototype.clearImgScheme = function () {
 // 清除字符串的"https:"和"http:"
 window.String.prototype.clearScheme = function () {
   return this.replace(/https:/gim, '').replace(/http:/gim, '')
+}
+
+/* -------------------
+  query条件判断
+  ------------------- */
+window.String.prototype.isQueryId = function () {
+  var idExpr = /^#([\w-]*)$/
+  var match = idExpr.exec(this)
+  if (match && match.length > 0) {
+    return match[1]
+  }
+  return false
+}
+window.String.prototype.isQueryClass = function () {
+  var classExpr = /^\.([\w-]*)$/
+  var match = classExpr.exec(this)
+  if (match && match.length > 0) {
+    return match[1]
+  }
+  return false
+}
+window.String.prototype.isTag = function () {
+  var tagExpr = /^<(\w+)\s*.*\/\w*>$/im
+  var match = tagExpr.exec(this)
+  if (match && match.length > 0) {
+    return true
+  }
+  return false
 }

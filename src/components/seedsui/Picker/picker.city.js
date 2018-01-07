@@ -2,9 +2,9 @@
 // 扩展picker地区控件 (require pikcer.js)
 var PickerCity = function (params) {
   // 参数改写
-  var onCityClickDone = params.onClickDone
+  var onCityClickSubmit = params.onClickSubmit
   var onCityScrollEnd = params.onScrollEnd
-  params.onClickDone = undefined
+  params.onClickSubmit = undefined
   params.onScrollEnd = undefined
   /* --------------------
     Model
@@ -29,10 +29,10 @@ var PickerCity = function (params) {
       key: '',
       value: '----'
     }],
-    onClickDone: function (e) {
+    onClickSubmit: function (e) {
       e.activeText = getActiveText(e.activeOptions)
       setActiveKeys(e.activeOptions)
-      if (onCityClickDone) onCityClickDone(e)
+      if (onCityClickSubmit) onCityClickSubmit(e)
     },
     onScrollEnd: function (e) {
       // var activeOption = e.activeSlot.values[e.activeSlot.activeIndex]

@@ -40,7 +40,6 @@ var Toast = function (params) {
   s.createMask = function () {
     var mask = document.createElement('div')
     mask.setAttribute('class', s.params.maskClass)
-    if (s.params.propagationClass) mask.classList.add(s.params.propagationClass)
     return mask
   }
   s.createToast = function () {
@@ -70,6 +69,7 @@ var Toast = function (params) {
     } else {
       s.create()
     }
+    if (s.params.propagationClass) s.mask.classList.add(s.params.propagationClass)
     s.toast.style.webkitTransitionDuration = s.params.duration + 'ms'
   }
   s.update()

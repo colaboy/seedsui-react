@@ -272,7 +272,7 @@ window.Date.prototype.monthStartEnd = function () {
   var lastDay = this.days()
   if (lastDay < 10) lastDay = '0' + lastDay
   return {
-    start: year + '-' + month + '-' + firstDay,
-    end: year + '-' + month + '-' + lastDay
+    start: new Date(year + '-' + month + '-' + firstDay),
+    end: new Date(year + '-' + month + '-' + lastDay)
   }
 }
