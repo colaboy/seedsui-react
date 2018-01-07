@@ -17,6 +17,7 @@ var Picker = function (params) {
     pickerActiveClass: 'active',
 
     headerClass: 'picker-header',
+    headerSubmitClass: 'picker-submit',
     headerSubmitText: '完成',
     headerCancelClass: 'picker-cancel',
     headerCancelText: '取消',
