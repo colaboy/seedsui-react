@@ -377,6 +377,54 @@
   font-size:@font-size-sm;
 }
 
+/* 侧边菜单 */
+@menuwrap-bg: #fff;
+@menuwrap-tag-color: #666;
+@menuwrap-tag-bg: transparent;
+@menuwrap-tag-color-active: #666;
+@menuwrap-tag-bg-active: transparent;
+.setMenuwrap(){
+  &:extend(.border-r all);
+}
+.setMenuwrapTag(){
+  /* 画个底线 */
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left:6px;
+    right:6px;
+    height: @1px;
+    border-bottom: @1px dotted #bfbfbf;
+  }
+  /* 二级选中 */
+  +ul .menuwrap-tag.active{
+    color: @primary-bg;
+    &:before{
+      width:0;
+    }
+  }
+}
+.setMenuwrapTagActive(){
+  /* 左侧选中块 */
+  &:before{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: @primary-bg;
+  }
+}
+.setMenuwrapMore(){
+  &:extend(.shape-triangle-down);
+}
+.setMenuwrapMoreActive(){
+  -webkit-transform-origin:center;
+  -webkit-transform: rotate(180deg);
+}
+
 /*间距*/
 @wingblank-xl: @24px;
 @wingblank-lg: @20px;

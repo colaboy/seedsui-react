@@ -31,6 +31,7 @@
 	</article>
 	<!--SeedsUI-->
     <script src="../dist/seedsui.min.js"></script>
+    <script src="mock/group.js"></script>
 	<script>
 	    var app={
             loading:{},
@@ -66,27 +67,19 @@
                 console.log("树搜索页：移除");
             },
             loadGroup:function(){
+                console.log(groupData);
                 var self=this;
-                var url="mock/group.json";
-                var reqData={};
-                app.loading.show();
-                Ajax.fetchData(url).then(data => {
-                    //格式化数据字段为:id、name、parentId
-                    var data=JSON.stringify(data).replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
-                    self.groupData=JSON.parse(data).depList;
-                    //没有数据
-                    if(self.groupData.length<=0){
-                        self.listContainer[0].innerHTML=app.nodataHTML;
-                        return;
-                    }
-                    //渲染
-                    self.tree.setData(self.groupData);
-                    self.tree.update();
-                    app.loading.hide();
-                }).catch(error => {
-                    self.toast.setHTML("加载数据失败");
-                    self.toast.show();
-                })
+                //格式化数据字段为:id、name、parentId
+                var data=JSON.stringify(groupData).replace(/depUuid/mgi,"id").replace(/depName/mgi,"name").replace(/parentId/mgi,"parentid");
+                self.groupData=JSON.parse(data).depList;
+                //没有数据
+                if(self.groupData.length<=0){
+                    self.listContainer[0].innerHTML=app.nodataHTML;
+                    return;
+                }
+                //渲染
+                self.tree.setData(self.groupData);
+                self.tree.update();
                 /*$.ajax({
                     url: url,
                     type: 'get',

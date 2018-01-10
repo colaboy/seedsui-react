@@ -20,36 +20,50 @@
                 <h1 class="titlebar-caption">侧导航</h1>
             </div>
         </header>
-        <article class="container">
-            <div class="menuwrap">
-                <div class="menuwrap-side">
+        <article class="container box">
+            <ul class="menuwrap" id="menuwrapContainer" style="height: 100%;">
+                <li>
+                    <div class="menuwrap-tag">
+                        <p class="menuwrap-tag-font">APP下单优惠菜品我去我去</p>
+                    </div>
+                </li>
+                <li>
                     <div class="menuwrap-tag active">
-                        <p class="menuwrap-tag-inner">APP下单优惠菜品</p>
+                        <img class="menuwrap-tag-icon" src="http://p1.meituan.net/xianfu/10ba72e043ef4eca806cafb1a90a22662048.png" alt="">
+                        <p class="menuwrap-tag-font">热销</p>
+                        <i class="icon shape-triangle-up"></i>
                     </div>
-                    <div class="menuwrap-tag">
-                        <p class="menuwrap-tag-inner">
-                            <img class="menuwrap-tag-icon" src="http://p1.meituan.net/xianfu/10ba72e043ef4eca806cafb1a90a22662048.png" alt="">
-                            热销
-                        </p>
-                    </div>
-                    <div class="menuwrap-tag">
-                        <p class="menuwrap-tag-inner">外卖套餐类</p>
-                    </div>
-                    <div class="menuwrap-tag">
-                        <p class="menuwrap-tag-inner">外卖套餐类</p>
-                    </div>
-                </div>
-                <div class="menuwrap-main">
-                    <div style="height: 800px;background-color: white;"></div>
-                </div>
+                    <ul>
+                        <li>
+                            <div class="menuwrap-tag">
+                                <p class="menuwrap-tag-font">外卖套餐类</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="menuwrap-tag">
+                                <p class="menuwrap-tag-font">外卖套餐类</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+            <div class="box-flex-1" style="height: 100%;overflow: auto;">
+                <div style="height: 800px;background-color: white;"></div>
             </div>
         </article>
     </section>
     <script src="../dist/seedsui.min.js"></script>
-    
+    <script src="mock/menuData.js"></script>
     <script>
     
     function back(){history.go(-1);}
+    var mw = MenuWrap('#menuwrapContainer', {
+        data:menuData.list,
+        onClick: function(item) {
+            console.log(item);
+        }
+    });
 </script>
 </body>
 </html>

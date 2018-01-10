@@ -38,15 +38,22 @@ window.Date.prototype.compareMonth = function (date) {
   if (t1 === t2) return 0
   return t1 > t2 ? 1 : -1
 }
-// 比较时分,大于返回1,等于返回0,小于返回-1
+// 比较时分,格式:hh:mm,大于返回1,等于返回0,小于返回-1
 window.Date.prototype.compareTime = function (date) {
   var date1 = new Date(this)
-  var date2 = new Date(date)
   date1.setYear(0)
   date1.setMonth(0, 0)
+  var date2 = new Date()
+  if (date.isTime) {
+    date2.setHours(date.split(':')[0], date.split(':')[1], date.split(':')[2] || 0, 0)
+  } else if (date instanceof Date) {
+    date2 = date
+  } else {
+    console.log('请传入hh:mm的字符串,或者一个Date对象')
+    return false
+  }
   date2.setYear(0)
   date2.setMonth(0, 0)
-
   var t1 = date1.getTime()
   var t2 = date2.getTime()
 

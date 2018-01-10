@@ -1,70 +1,63 @@
 /*----------------button.less(start)----------------*/
 .menuwrap{
-    display: -webkit-box;
-    height: 100%;
-}
-.menuwrap-main{
-    -webkit-box-flex:1;
-    height: 100%;
-    overflow: auto;
-}
-.menuwrap-side{
-    width: @85px;
-    height: 100%;
-    background-color: #efefef;
-    overflow: hidden;
+  width: 96px;
+  background-color: @menuwrap-bg;
+  overflow: auto;
+  .setMenuwrap();
 }
 .menuwrap-tag{
-    width: 100%;
-    height: @61px;
-    font-size: @14px;
-    color: #656565;
-    text-align: left;
-    position: relative;
+  display: -webkit-box;
+  -webkit-box-align:center;
+  -webkit-box-pack:center;
+  width: 100%;
+  min-height: @60px;
+  font-size: @14px;
+  text-align: left;
+  position: relative;
+  box-sizing: border-box;
+  padding:0 6px;
+  color: @menuwrap-tag-color;
+  background-color: @menuwrap-tag-bg;
+  /* 画个底线 */
+  .setMenuwrapTag();
 }
-/*底线*/
-.menuwrap-tag:after{
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left:6px;
-    right:6px;
-    height: @1px;
-    border-bottom: @1px dotted #bfbfbf;
+.menuwrap-tag > * {
+  pointer-events: none;
+}
+/* 更多箭头 */
+.menuwrap-more{
+  .setMenuwrapMore();
 }
 .menuwrap-tag.active{
-    color: #f99b00;
-    background-color: #fff;
-    border-right: @1px solid #fff;
+  color: @menuwrap-tag-color-active;
+  background-color: @menuwrap-tag-bg-active;
+  /* 左侧选中块 */
+  .setMenuwrapTagActive();
+  /* 更多箭头 */
+  .menuwrap-more{
+    .setMenuwrapMoreActive();
+  }
 }
-.menuwrap-tag.active:before{
-    position: absolute;
-    content: '';
-    top: @18px;
-    left: 0;
-    width: 4px;
-    height: 23px;
-    background: #ffd300;
-}
-.menuwrap-tag-inner{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    padding:0 6px 0 @14px;
-    box-sizing: border-box;
-    -webkit-transform: translate(0,-50%);
-    overflow: hidden;
-    line-height: @17px;
-    max-height: @34px;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+.menuwrap-tag-font{
+  padding:0 2px;
+  -webkit-box-flex:1;
+  max-height: @34px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .menuwrap-tag-icon{
-    width: 15px;
-    margin-right: 4px;
-    vertical-align: -2px;
+  display: block;
+  width: 15px;
+  vertical-align: -2px;
+}
+/* 下级菜单 */
+.menuwrap-tag + ul{
+  display: none;
+}
+.menuwrap-tag.active + ul{
+  display: block;
 }
 /*----------------button.less(end)----------------*/

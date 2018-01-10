@@ -28,7 +28,30 @@ window.String.prototype.isQueryId = function () {
   }
   return true
 }
-
+// 判断是否是日期格式
+window.String.prototype.isDate = function () {
+  var patts = [
+    '^[0-9]{4}-[0-9]{2}$', // yyyy-MM
+    '^[0-9]{4}-[0-9]{2}-[0-9]{2}$', // yyyy-MM-dd
+    '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$', // yyyy-MM-dd HH:mm
+    '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$' // yyyy-MM-dd HH:mm:ss
+  ]
+  for (var patt of patts) {
+    if (new RegExp(patt).test(this)) return true
+  }
+  return false
+}
+// 判断是否是日期格式
+window.String.prototype.isTime = function () {
+  var patts = [
+    '^[0-9]{2}:[0-9]{2}$', // HH:mm
+    '^[0-9]{2}:[0-9]{2}:[0-9]{2}$' // HH:mm:ss
+  ]
+  for (var patt of patts) {
+    if (new RegExp(patt).test(this)) return true
+  }
+  return false
+}
 // 判断是否包含class名称
 window.String.prototype.hasClass = function (name) {
   var names = this.split(' ')
@@ -42,6 +65,7 @@ window.String.prototype.hasClass = function (name) {
 window.String.prototype.clearImgScheme = function () {
   return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
 }
+
 // 清除字符串的"https:"和"http:"
 window.String.prototype.clearScheme = function () {
   return this.replace(/https:/gim, '').replace(/http:/gim, '')

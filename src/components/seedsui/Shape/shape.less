@@ -40,12 +40,19 @@
 /*
 三角形图标
 */
-.shape-triangle-up {
+.shape-triangle-up, .shape-triangle-down {
   position: relative;
-  width:0 !important; 
-  height:0 !important; 
+  width:0 !important;
+  height:0 !important;
   border-left:4px solid transparent;
   border-right:4px solid transparent;
+}
+.shape-triangle-up {
+  border-bottom-width:5px;
+  border-bottom-style: solid;
+  border-bottom-color: @placeholder;
+}
+.shape-triangle-down {
   border-top-width:5px;
   border-top-style: solid;
   border-top-color: @placeholder;
