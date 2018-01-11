@@ -9,6 +9,7 @@ var MenuWrap = function (container, params) {
     tagClass: 'menuwrap-tag',
     activeClass: 'active',
 
+    defaultActiveId: '',
     /*
     callbacks
     onClick:function(item, index)
@@ -40,13 +41,13 @@ var MenuWrap = function (container, params) {
   s.initData = function (list, ulContainer) {
     for (var i = 0, option; option = list[i++];) { // eslint-disable-line
       var li = document.createElement('li');
-      var html = '<div data-index="' + i + '" data-item=\'' + JSON.stringify(option) + '\' class="' + s.params.tagClass + (option.active ? ' active' : '') + '" id="ID' + option.id +'">' +
+      var html = '<div data-index="' + i + '" data-item=\'' + JSON.stringify(option) + '\' class="' + s.params.tagClass + (option.id === s.params.defaultActiveId ? ' active' : '') + '" id="ID-Menuwrap' + option.id +'">' +
       '<p class="menuwrap-tag-font">' + option.caption + '</p>' +
       (option.children && option.children.length > 0 ? '<i class="menuwrap-more"></i>' : '') +
       '</div><ul></ul>'
       li.innerHTML = html
       ulContainer.appendChild(li)
-      var ul = s.container.querySelector('#ID' + option.id).nextElementSibling
+      var ul = s.container.querySelector('#ID-Menuwrap' + option.id).nextElementSibling
       if (option.children && option.children.length > 0) {
         s.initData(option.children, ul)
       }
