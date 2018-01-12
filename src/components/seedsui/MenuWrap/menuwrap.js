@@ -40,7 +40,7 @@ var MenuWrap = function (container, params) {
   }
   s.initData = function (list, ulContainer) {
     for (var i = 0, option; option = list[i++];) { // eslint-disable-line
-      var li = document.createElement('li');
+      var li = document.createElement('li')
       var html = '<div data-index="' + i + '" data-item=\'' + JSON.stringify(option) + '\' class="' + s.params.tagClass + (option.id === s.params.defaultActiveId ? ' active' : '') + '" id="ID-Menuwrap' + option.id +'">' +
       '<p class="menuwrap-tag-font">' + option.caption + '</p>' +
       (option.children && option.children.length > 0 ? '<i class="menuwrap-more"></i>' : '') +
@@ -58,9 +58,13 @@ var MenuWrap = function (container, params) {
   /* ------------------
   Method
   ------------------ */
+  s.setDefaultActiveId = function (id) {
+    s.params.defaultActiveId = id
+  }
   // 重新设置数据
   s.setData = function (data) {
     s.params.data = data
+    s.container.innerHTML = ''
     s.initData(data, s.container)
   }
   // 添加数据
@@ -77,10 +81,6 @@ var MenuWrap = function (container, params) {
     // 树结构
     s.container[action]('touchstart', s.onTouchStart, false)
     s.container[action]('touchend', s.onTouchEnd, false)
-    // 选中容器
-    if (s.bar) {
-      s.bar[action]('click', s.onClickBar, false)
-    }
   }
   // attach、dettach事件
   s.attach = function (event) {

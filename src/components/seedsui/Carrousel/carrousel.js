@@ -37,6 +37,7 @@ var Carrousel = function (container, params) {
     /*
     callbacks
     onInit:function(Carrousel)
+    onClick:function(Carrousel)
     onSlideChange:function(Carrousel)
     onSlideChangeEnd:function(Carrousel)
     */
@@ -143,17 +144,17 @@ var Carrousel = function (container, params) {
   /* --------------------
   Update
   -------------------- */
-  s.slideIndex = s.activeIndex // 去除duplicate，滑动页索引
+  s.truthActiveIndex = s.activeIndex // 去除duplicate，滑动页索引
   // 根据index更新选中class
   s.updateClasses = function () {
-    s.slideIndex = s.activeIndex
+    s.truthActiveIndex = s.activeIndex
     if (s.params.loop) {
-      s.slideIndex = s.activeIndex - s.params.slidesPerView
+      s.truthActiveIndex = s.activeIndex - s.params.slidesPerView
       if (s.max - s.params.slidesPerView === s.activeIndex) { // 正向滑动
-        s.slideIndex = 0
+        s.truthActiveIndex = 0
       }
-      if (s.slideIndex < 0) { // 反向滑动
-        s.slideIndex = s.slides.length + s.slideIndex
+      if (s.truthActiveIndex < 0) { // 反向滑动
+        s.truthActiveIndex = s.slides.length + s.truthActiveIndex
       }
     }
     var i
@@ -161,14 +162,14 @@ var Carrousel = function (container, params) {
     for (i = 0; i < s.slides.length; i++) {
       s.slides[i].classList.remove(s.params.slideActiveClass)
     }
-    s.slides[s.slideIndex].classList.add(s.params.slideActiveClass)
+    s.slides[s.truthActiveIndex].classList.add(s.params.slideActiveClass)
 
     //  Pagination
     if (!s.pagination) return
     for (i = 0; i < s.bullets.length; i++) {
       s.bullets[i].classList.remove(s.params.bulletActiveClass)
     }
-    s.bullets[s.slideIndex].classList.add(s.params.bulletActiveClass)
+    s.bullets[s.truthActiveIndex].classList.add(s.params.bulletActiveClass)
   }
 
   // 更新容器尺寸
@@ -343,6 +344,12 @@ var Carrousel = function (container, params) {
     s.touches.direction = 0
     s.touches.vertical = 0
     s.touches.horizontal = 0
+    // 单击事件
+    s.touches.endX = e.changedTouches[0].clientX
+    s.touches.endY = e.changedTouches[0].clientY
+    if (Math.abs(s.touches.startX - s.touches.endX) < 6 && Math.abs(s.touches.startY - s.touches.endY) < 6) {
+      if (s.params.onClick) s.params.onClick(s)
+    }
     // 开启自动播放
     s.startAutoplay()
   }
@@ -442,4 +449,4 @@ var Carrousel = function (container, params) {
   }
 })() */
 
-;//export default Carrousel
+export default Carrousel

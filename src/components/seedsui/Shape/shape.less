@@ -2,7 +2,7 @@
 /*
 箭头图标
 */
-.shape-arrow-left, .shape-arrow-right{
+.shape-arrow-left, .shape-arrow-right, .shape-arrow-up, .shape-arrow-down{
   position: relative;
   border-color: @placeholder;
   &.small{
@@ -13,7 +13,7 @@
     }
   }
 }
-.shape-arrow-left:after, .shape-arrow-right:after{
+.shape-arrow-left:after, .shape-arrow-right:after, .shape-arrow-up:after, .shape-arrow-down:after{
   position:absolute;
   content: "";
   width: 12px;
@@ -30,6 +30,12 @@
 }
 .shape-arrow-right:after{
   -webkit-transform: translate(-80%, -50%) rotate(134deg);
+}
+.shape-arrow-up:after{
+  -webkit-transform: translate(-50%, -34%) rotate(45deg);
+}
+.shape-arrow-down:after{
+  -webkit-transform: translate(-50%, -80%) rotate(227deg);
 }
 // titlebar上的button图标
 .titlebar-button{
