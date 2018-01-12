@@ -40,6 +40,34 @@ var Device = (function () {
   } else if (ua.indexOf('ucbrowser') > -1) {
     platform = 'uc'
   }
+  // 获得苹果机型
+  function appleModel () { // 获取设备型号
+    let ua = navigator.userAgent.toLocaleLowerCase()
+    if (ua && /(iphone|ipad|ipod|ios)/i.test(ua)) {
+      let m = ua.match(/mobile\/([\w.]*)/)
+      if (m && m[1]) {
+        return m[1]
+      }
+    }
+    return ''
+  }
+
+  function getAppleDevice () { // 获取弱设备
+    let model = appleModel()
+    switch (model) {
+      case '15b150':
+        return 'iPhone6s'
+      case '15b202':
+        return 'iPhone6'
+      case '13g36':
+        return 'iPhone5SE'
+      case '14e304':
+        return 'iPhone6P'
+      default:
+        return ''
+    }
+  }
+
   // 网络监听
   var onLineCallback
   function handleOnline (e) {
@@ -61,6 +89,7 @@ var Device = (function () {
     os: os,
     osVersion: osVersion,
     platform: platform,
+    appleDevice: getAppleDevice(),
     // 应用程序判断
     language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
     appVersion: window.navigator.appVersion,
@@ -68,6 +97,6 @@ var Device = (function () {
     isOnLine: window.navigator.onLine,
     ua: ua
   }
-})();
+})()
 
-//export default Device
+;//export default Device
