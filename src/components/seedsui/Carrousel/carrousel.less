@@ -55,12 +55,12 @@
 }
 .carrousel-pagination{
   position: absolute;
-  text-align: right;
   left:0;
   bottom:@10px;
   width: 100%;
   line-height: 0;
   font-size: 0;
+  .setCarrouselPagination();
 }
 .carrousel-pagination .bullet{
   display: inline-block;
@@ -72,9 +72,9 @@
   line-height: @8px;
   font-size: @12px;
   bottom: @10px;
-  background-color: rgba(255,255,255,0.5);
+  .setCarrouselPagination();
 }
 .carrousel-pagination .bullet.active{
-  background-color:white;
+  .setCarrouselBulletActive();
 }
 /*----------------------------carrousel.less(end)----------------------------*/

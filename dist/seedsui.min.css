@@ -521,6 +521,7 @@
   content: "\e9ae";
 }
 .icon-rdoclose-fill:before,
+.close-icon-clear:before,
 .searchbar-icon-clear:before {
   content: "\e9af";
 }
@@ -1086,20 +1087,16 @@
 }
 /* 尺寸 */
 /* 文字尺寸 */
-.font-size-lg {
-  font-size: 16px;
-}
-.font-size-md {
-  font-size: 14px;
-}
-.font-size-sm {
-  font-size: 12px;
-}
 /* ios11安全区域 */
 /* 基础 */
 /* 常用颜色 */
 /* 背景 */
-.bg-noimg {
+.bg-no-img,
+.list-thumbnail {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAATlBMVEXw8PDZ2dnr6+u2trb////d3d3n5+fh4eHq6url5eXW1tbR0dHGxsbv7+/CwsLj4+Pu7u7IyMi+vr7Ly8u7u7vY2NjOzs7f39+4uLj19fVfdL0JAAADP0lEQVR42u3ZYW+jMAyAYceuQ0IoJIEB+/9/9BZYOtox7XS3ckHnR2rVj2+R3UQqCCGEEEIIIYQQQgghhBBCPLCs/hJbOIRVP+CYVlY/gOEI6kfADkmVVEmVVEn9TR16M50hVV8Wr1PxqXDJusJT8fJhKjqVLxuvRaeayxaXnPp62bLnSdXnSS36qeJ5ZnU6zy+Agk1qVXbqZlpN4aeVUte8U8XfAZRiA69gz3CzOtV9VVL/99RO80lSLaLhU6RqTKbyU9ngqio9dTKY2bJTJ9ywJad2eEdzsakWHxguNFXjJ2YqMZUN7qnKS2X8Qlda6oRf0v8i1fI3q7/P8OGpGnH6dvX3W+EID2vTqR0Gv2HgCI8npt1b/W/BEdSqwkx/Li0qtds7gvJ3KCrVYrLX2mFZqXr3CEosFpXKZvcISjQWlbq/NnZdqKJSK9ynU2lZqfgVg3iWVJTUP+fxB3jYU2KrByGEEEIIIf530wQfEP6EZwNPp60dgn2D4C2Pw4Cpt7oDb7B+gJBwe4U3hhieLtI7VkRD6+wSQHdSjabYbkTSkLzQcaloh94kXg0G3nmd9FGvYEmt0nvQsKiOTk3C4LsZAUANcG+MkOXUhuoE/0mqpdg31Pe9rqlJeshC+5jqqB/HsZ23qZhYUoh4hae6Oud6Gp0z4+Bc+/aCrGnuU31DsUHgud4OwIaCp6sIAaEZAcZ27V/E/vpuTeXY+TA4crBN5Q8Gnor70EQaiCxxTg30oF8HwAO+zDQof79WR+F+dCOxNePgc2qlkpqcol4l3ZJa1c0ca+3mOXBOrQkO1UVMfQDgGripZw9Ub2Z1bF1VTwCoQsipbuYM4ek6t8Fw0/Zwn7os4RBf/GZWe7qx8HQ1NTdDgMwQP6Ymvo7btWoDrviYVA9Ze0v17ew/pYaeEa6bp+pJwao6+qnOt9SRFORU5d5TuR+odd1HKpM5NrV+yWLIBwM5uKWO7ccAdHVL8ZbaRDg2Fa9ZG9aeSD0ka3DsUyqbd/btE5Ne+tTBqRtLqqOBYdHMTQiROKXeS6k4NHBwatVlMayz6WGlXQhhnCClKruhltRg7lLPQv4MEEIIIYQQQgghhBBCCCGEECf1C/gmN8hELxs9AAAAAElFTkSuQmCC');
+}
+.bg-no-avatar,
+.list-avatar {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAATlBMVEXw8PDZ2dnr6+u2trb////d3d3n5+fh4eHq6url5eXW1tbR0dHGxsbv7+/CwsLj4+Pu7u7IyMi+vr7Ly8u7u7vY2NjOzs7f39+4uLj19fVfdL0JAAADP0lEQVR42u3ZYW+jMAyAYceuQ0IoJIEB+/9/9BZYOtox7XS3ckHnR2rVj2+R3UQqCCGEEEIIIYQQQgghhBBCPLCs/hJbOIRVP+CYVlY/gOEI6kfADkmVVEmVVEn9TR16M50hVV8Wr1PxqXDJusJT8fJhKjqVLxuvRaeayxaXnPp62bLnSdXnSS36qeJ5ZnU6zy+Agk1qVXbqZlpN4aeVUte8U8XfAZRiA69gz3CzOtV9VVL/99RO80lSLaLhU6RqTKbyU9ngqio9dTKY2bJTJ9ywJad2eEdzsakWHxguNFXjJ2YqMZUN7qnKS2X8Qlda6oRf0v8i1fI3q7/P8OGpGnH6dvX3W+EID2vTqR0Gv2HgCI8npt1b/W/BEdSqwkx/Li0qtds7gvJ3KCrVYrLX2mFZqXr3CEosFpXKZvcISjQWlbq/NnZdqKJSK9ynU2lZqfgVg3iWVJTUP+fxB3jYU2KrByGEEEIIIf530wQfEP6EZwNPp60dgn2D4C2Pw4Cpt7oDb7B+gJBwe4U3hhieLtI7VkRD6+wSQHdSjabYbkTSkLzQcaloh94kXg0G3nmd9FGvYEmt0nvQsKiOTk3C4LsZAUANcG+MkOXUhuoE/0mqpdg31Pe9rqlJeshC+5jqqB/HsZ23qZhYUoh4hae6Oud6Gp0z4+Bc+/aCrGnuU31DsUHgud4OwIaCp6sIAaEZAcZ27V/E/vpuTeXY+TA4crBN5Q8Gnor70EQaiCxxTg30oF8HwAO+zDQof79WR+F+dCOxNePgc2qlkpqcol4l3ZJa1c0ca+3mOXBOrQkO1UVMfQDgGripZw9Ub2Z1bF1VTwCoQsipbuYM4ek6t8Fw0/Zwn7os4RBf/GZWe7qx8HQ1NTdDgMwQP6Ymvo7btWoDrviYVA9Ze0v17ew/pYaeEa6bp+pJwao6+qnOt9SRFORU5d5TuR+odd1HKpM5NrV+yWLIBwM5uKWO7ccAdHVL8ZbaRDg2Fa9ZG9aeSD0ka3DsUyqbd/btE5Ne+tTBqRtLqqOBYdHMTQiROKXeS6k4NHBwatVlMayz6WGlXQhhnCClKruhltRg7lLPQv4MEEIIIYQQQgghhBBCCCGEECf1C/gmN8hELxs9AAAAAElFTkSuQmCC');
 }
 /* 侧边栏控件 */
@@ -1132,6 +1129,7 @@
 /* 下拉刷新控件 */
 /* 搜索栏控件 */
 /* 搜索面板控件 */
+/* close */
 /* 徽章类控件 (badge | close | tagline | tip) */
 /* 侧边菜单 */
 /*间距*/
@@ -1560,16 +1558,16 @@ hr {
   display: -webkit-inline-box;
   -webkit-box-align: center;
   -webkit-box-pack: center;
-  /*图片*/
+}
+.close-icon {
+  display: block;
   background-size: cover;
   border-radius: 100%;
-  /*文字图标*/
-  color: white;
-  background-color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.2);
 }
-.close i,
-.close .icon {
-  display: block;
+/* 清除图标样式 */
+.close-icon-clear {
+  font-family: 'iconfont';
 }
 /*--------------------close.less(end)----------------------*/
 /*--------------------tip.less(start)----------------------*/
@@ -1613,20 +1611,28 @@ hr {
 箭头图标
 */
 .shape-arrow-left,
-.shape-arrow-right {
+.shape-arrow-right,
+.shape-arrow-up,
+.shape-arrow-down {
   position: relative;
   border-color: #cccccc;
 }
 .shape-arrow-left.small:after,
 .shape-arrow-right.small:after,
+.shape-arrow-up.small:after,
+.shape-arrow-down.small:after,
 .shape-arrow-left.small:after,
-.shape-arrow-right.small:after {
+.shape-arrow-right.small:after,
+.shape-arrow-up.small:after,
+.shape-arrow-down.small:after {
   width: 8px;
   height: 8px;
   border-width: 2px 0 0 2px;
 }
 .shape-arrow-left:after,
-.shape-arrow-right:after {
+.shape-arrow-right:after,
+.shape-arrow-up:after,
+.shape-arrow-down:after {
   position: absolute;
   content: "";
   width: 12px;
@@ -1643,6 +1649,12 @@ hr {
 }
 .shape-arrow-right:after {
   -webkit-transform: translate(-80%, -50%) rotate(134deg);
+}
+.shape-arrow-up:after {
+  -webkit-transform: translate(-50%, -34%) rotate(45deg);
+}
+.shape-arrow-down:after {
+  -webkit-transform: translate(-50%, -80%) rotate(227deg);
 }
 .titlebar-button .shape-arrow-left {
   border-color: #1a1a1a;
@@ -1898,7 +1910,6 @@ aside {
   border-radius: 100%;
   background-color: #dddddd;
   border: 0;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAAOVBMVEXDzNb5+/z3+vv2+Pr19/nT2uLK0tvX3eTM1N3Hz9ny9fjv8vXi5+ze4+nq7/Ln6/DP19/k6e7Z4OZ/ZsYlAAACPElEQVRYw+2X63aDIBCE5SJGEG/v/7CNLHQ3BKwu/enUSvYk+c4AybDpHj169OjRoxO9er9t027+BTbuTiQ534wzmzxIUsK/sEMbr9dv0PsvCB7OYwNvSqB4Bc18nkcSjHDb2PMFDNAQK8TKBDpgRRqypWMaRArcse5ZwBncyeMWRqx5q6gESooPadbXDRcPkLQ2rCUMHNxbWq+8PYmeoita9ywgKlJRPXcNJTFI61fHkAjCXaE1IyDMFN0gitSTuT1hjRuMeYi1vetxQUdgK6/vBu0sP6cq8trfjVYgICmv95vAATEwZPX9TNT4XqB91ooR/6KWh8xjwMl6HgrL+WTbeh5aw2oZJlXJQ88+lst5yD+Y13IeNnQjrpSHuqWNK+Vh3zVo+M5D39h+qSwP9+YGcaZ56NauXYrk4atr10Dz0HftcjQPbTvPf+Rhu8U+z8O+cQFVnodyaMCZqZSHk+HRxn6p5eEymNu0fRZn/aFw+3gnE0K01vtDIC/r5aTO+8FavZjrZwntB+u1umLS5flXqy+eflupH4wq9IvLtSgICiAliVJJJz78lfm//aAsSSE0brgyl9oFUWKpNARFh+eTjt+NbxRc8rhHrgLmeeu5J29AiKBcuLAqvF6P54cmcVaVRKgQ9U7M4sZSmj4u/b7CgMyk6g+1JdiLMwKUTqQoiiQmbXkBZfSHxgINRbBJkenLC5im+2vuGAo84jLpVfr9rtAfoiqiW364mL946/FEclfg2dLMdYLSk+YHgF8TNU/EqwEAAAAASUVORK5CYII=');
 }
 .list-avatar-img {
   border-radius: 100%;
@@ -1913,7 +1924,6 @@ aside {
   overflow: hidden;
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqCAMAAAAKqCSwAAAATlBMVEXw8PDZ2dnr6+u2trb////d3d3n5+fh4eHq6url5eXW1tbR0dHGxsbv7+/CwsLj4+Pu7u7IyMi+vr7Ly8u7u7vY2NjOzs7f39+4uLj19fVfdL0JAAADP0lEQVR42u3ZYW+jMAyAYceuQ0IoJIEB+/9/9BZYOtox7XS3ckHnR2rVj2+R3UQqCCGEEEIIIYQQQgghhBBCPLCs/hJbOIRVP+CYVlY/gOEI6kfADkmVVEmVVEn9TR16M50hVV8Wr1PxqXDJusJT8fJhKjqVLxuvRaeayxaXnPp62bLnSdXnSS36qeJ5ZnU6zy+Agk1qVXbqZlpN4aeVUte8U8XfAZRiA69gz3CzOtV9VVL/99RO80lSLaLhU6RqTKbyU9ngqio9dTKY2bJTJ9ywJad2eEdzsakWHxguNFXjJ2YqMZUN7qnKS2X8Qlda6oRf0v8i1fI3q7/P8OGpGnH6dvX3W+EID2vTqR0Gv2HgCI8npt1b/W/BEdSqwkx/Li0qtds7gvJ3KCrVYrLX2mFZqXr3CEosFpXKZvcISjQWlbq/NnZdqKJSK9ynU2lZqfgVg3iWVJTUP+fxB3jYU2KrByGEEEIIIf530wQfEP6EZwNPp60dgn2D4C2Pw4Cpt7oDb7B+gJBwe4U3hhieLtI7VkRD6+wSQHdSjabYbkTSkLzQcaloh94kXg0G3nmd9FGvYEmt0nvQsKiOTk3C4LsZAUANcG+MkOXUhuoE/0mqpdg31Pe9rqlJeshC+5jqqB/HsZ23qZhYUoh4hae6Oud6Gp0z4+Bc+/aCrGnuU31DsUHgud4OwIaCp6sIAaEZAcZ27V/E/vpuTeXY+TA4crBN5Q8Gnor70EQaiCxxTg30oF8HwAO+zDQof79WR+F+dCOxNePgc2qlkpqcol4l3ZJa1c0ca+3mOXBOrQkO1UVMfQDgGripZw9Ub2Z1bF1VTwCoQsipbuYM4ek6t8Fw0/Zwn7os4RBf/GZWe7qx8HQ1NTdDgMwQP6Ymvo7btWoDrviYVA9Ze0v17ew/pYaeEa6bp+pJwao6+qnOt9SRFORU5d5TuR+odd1HKpM5NrV+yWLIBwM5uKWO7ccAdHVL8ZbaRDg2Fa9ZG9aeSD0ka3DsUyqbd/btE5Ne+tTBqRtLqqOBYdHMTQiROKXeS6k4NHBwatVlMayz6WGlXQhhnCClKruhltRg7lLPQv4MEEIIIYQQQgghhBBCCCGEECf1C/gmN8hELxs9AAAAAElFTkSuQmCC');
 }
 .list-thumbnail,
 .list-avatar {
@@ -2080,20 +2090,6 @@ aside {
   padding: 10px 0;
   text-align: left;
 }
-/* 文本框中的close组件 */
-.input-text + .close {
-  background-color: transparent;
-}
-.input-text + .close .close-icon-default {
-  font-weight: bold;
-  font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 12px;
-  height: 12px;
-  line-height: 13px;
-  padding: 3px;
-  border-radius: 100%;
-}
 /*----------------inputtext.less(end)--------------*/
 /*----------------inputcolor.less(start)--------------*/
 input[type="color"] {
@@ -2150,6 +2146,10 @@ input[type="color"] {
 }
 /*----------------textarea.less(end)--------------*/
 /*----------------checkbox.less(start)--------------*/
+.checkbox-box {
+  display: -webkit-inline-box;
+  -webkit-box-align: center;
+}
 .checkbox {
   height: 22px;
   width: 22px;
@@ -2183,6 +2183,10 @@ input[type="color"] {
 }
 /*----------------checkbox.less(end)--------------*/
 /*----------------radio.less(start)--------------*/
+.radio-box {
+  display: -webkit-inline-box;
+  -webkit-box-align: center;
+}
 .radio {
   height: 22px;
   width: 22px;
@@ -2305,13 +2309,16 @@ input[type="color"] {
   white-space: nowrap;
   background-color: #f9f9f9;
 }
+.tabbar .tab {
+  display: table-cell;
+  width: 1%;
+  font-size: 0;
+}
 .tabbar.disabled {
   pointer-events: none;
   opacity: 0.5;
 }
 .tab {
-  display: table-cell;
-  width: 1%;
   padding: 0 6px;
   position: relative;
   text-align: center;
@@ -2319,8 +2326,6 @@ input[type="color"] {
   border-style: solid;
   border-width: 0;
   vertical-align: top;
-  line-height: 0;
-  font-size: 0;
   border-color: #e5e5e5;
   color: #666666;
 }
@@ -3070,6 +3075,10 @@ input[type="color"] {
 .grid.grid-bordered li {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+/*图标*/
+.grid-icon .icon-img {
+  pointer-events: none;
 }
 /*提示*/
 .grid-tip,
@@ -5636,6 +5645,7 @@ progress::-webkit-progress-value {
 }
 .carrousel-slide-img {
   width: 100%;
+  min-height: 100%;
   max-width: 750px;
 }
 .carrousel-summary {
@@ -7069,6 +7079,7 @@ ul.weather-otherday li {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color: #b6b6b6;
   font-family: 'iconfont';
 }
 .searchbar-input {
@@ -7704,6 +7715,13 @@ ul.weather-otherday li {
 .icon.size16 {
   font-size: 16px;
 }
+.size18 {
+  width: 18px;
+  height: 18px;
+}
+.icon.size18 {
+  font-size: 18px;
+}
 .size20 {
   width: 20px;
   height: 20px;
@@ -7788,12 +7806,28 @@ ul.weather-otherday li {
 .icon.size80 {
   font-size: 80px;
 }
+.size87 {
+  width: 87px;
+  height: 87px;
+}
+.icon.size87 {
+  font-size: 87px;
+}
 .size100 {
   width: 100px;
   height: 100px;
 }
 .icon.size100 {
   font-size: 100px;
+}
+.font-size-lg {
+  font-size: 16px;
+}
+.font-size-md {
+  font-size: 14px;
+}
+.font-size-sm {
+  font-size: 12px;
 }
 /*---------------size.less(end)---------------*/
 /*----------------theme.less(start)--------------*/

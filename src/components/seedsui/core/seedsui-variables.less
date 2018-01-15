@@ -52,6 +52,7 @@
 @82px:82px * @px-scale;
 @85px:85px * @px-scale;
 @86px:86px * @px-scale;
+@87px:87px * @px-scale;
 @90px:90px * @px-scale;
 @94px:94px * @px-scale;
 @97px:97px * @px-scale;
@@ -74,15 +75,7 @@
 @font-size-lg:@16px;
 @font-size-md:@14px;
 @font-size-sm:@12px;
-.font-size-lg{
-  font-size: @font-size-lg;
-}
-.font-size-md{
-  font-size: @font-size-md;
-}
-.font-size-sm{
-  font-size: @font-size-sm;
-}
+
 /* ios11安全区域 */
 // @safe-bottom: calc(~"constant(safe-area-inset-bottom) - 49px");
 @safe-bottom: constant(safe-area-inset-bottom);
@@ -435,6 +428,17 @@
 .setMenuwrapMoreActive(){
   -webkit-transform-origin:center;
   -webkit-transform: rotate(180deg);
+}
+
+/* 轮播 */
+.setCarrouselPagination(){
+  text-align: center;
+}
+.setCarrouselBullet(){
+  background-color:rgba(0,0,0,0.3);
+}
+.setCarrouselBulletActive(){
+  background-color:@primary-bg;
 }
 
 /*间距*/

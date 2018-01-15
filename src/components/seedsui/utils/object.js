@@ -233,3 +233,56 @@ Object.generateGUID = function () {
   })
   return uuid
 }
+/* -------------------
+  比较两个对象是否相同
+  ------------------- */
+Object.equals = function (object2) {
+  // 第一个循环，只检查类型
+  for (var propName in this) {
+    // 检查继承的方法和属性 - 比如.equals本身
+    // 如果返回值不同，则返回false
+    if (this.hasOwnProperty(propName) !== object2.hasOwnProperty(propName)) {
+      return false
+    }
+    // 检查实例类型
+    else if (typeof this[propName] !== typeof object2[propName]) {
+      // 不同的类型=>不等于
+      return false
+    }
+  }
+  // 现在更深入地检查使用其他对象的属性名称
+  for (propName in object2) {
+    // 无论如何必须检查实例，可能有一个只存在于object2中的属性
+    if (this.hasOwnProperty(propName) !== object2.hasOwnProperty(propName)) {
+      return false
+    }
+    else if (typeof this[propName] !== typeof object2[propName]) {
+      return false
+    }
+    // 如果该属性是继承的，则不要再检查（如果两个对象都继承它，则必须相等）
+    if (!this.hasOwnProperty(propName))
+      continue
+
+    // 现在详细检查和递归
+
+    // 这将脚本返回到数组比较
+    /** 需要Array.equals **/
+    if (this[propName] instanceof Array && object2[propName] instanceof Array) {
+      // 递归到嵌套数组中
+      if (!this[propName].equals(object2[propName]))
+        return false
+    }
+    else if (this[propName] instanceof Object && object2[propName] instanceof Object) {
+      // 递归到另一个对象中
+      // console.log('递归比较 ', this[propName],'和',object2[propName], ' 都命名 \''+propName+'\'')
+      if (!this[propName].equals(object2[propName]))
+        return false
+    }
+    // 字符串和数字的正常值比较
+    else if (this[propName] !== object2[propName]) {
+      return false
+    }
+  }
+  // 如果一切顺利,返回true
+  return true
+}

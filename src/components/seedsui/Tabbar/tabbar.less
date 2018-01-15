@@ -8,14 +8,17 @@
 	overflow-y:hidden;
   white-space:nowrap;
   background-color:@bar-bg;
+  .tab{
+    display:table-cell;
+    width:1%;
+    font-size: 0;
+  }
 	&.disabled{
 		pointer-events: none;
 		opacity: 0.5;
 	}
 }
 .tab{
-	display:table-cell;
-	width:1%;
 	padding:0 @6px;
 	position:relative;
 	text-align:center;
@@ -24,8 +27,6 @@
 	border-width:0;
 
 	vertical-align:top;
-	line-height: 0;
-	font-size: 0;
 
 	border-color:@dpborder;
 	color:@bar-color;
@@ -324,8 +325,8 @@
 .tabbar-footer{
 	.tab{
 		height: auto;
-    	line-height: 0;
-    	padding: @6px 0;
+    line-height: 0;
+    padding: @6px 0;
 	}
 	.tab-label{
 		display:block;

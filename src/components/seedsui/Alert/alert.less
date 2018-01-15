@@ -14,9 +14,8 @@
   margin: 0 auto;
 
   visibility:hidden;
-  opacity:0;
   -webkit-transform:translate(-50%,-50%) scale(0, 0);
-  -webkit-transition-property:-webkit-transform,opacity,visibility;
+  -webkit-transition-property:-webkit-transform,visibility;
   -webkit-transition-duration:@animatioin-duration;
 
   background-color:white;
@@ -32,7 +31,6 @@
 
   &.active{
     visibility:visible;
-    opacity:1;
     -webkit-transform:translate(-50%,-50%) scale(1, 1);
   }
 }

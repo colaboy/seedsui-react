@@ -211,6 +211,12 @@ var Alert = function (params) {
   s.setOnClick = function (fn) {
     s.params.onClick = fn
   }
+  s.setOnClickSubmit = function (fn) {
+    s.params.onClickSubmit = fn
+  }
+  s.setOnClickCancel = function (fn) {
+    s.params.onClickCancel = fn
+  }
   s.onClickMask = function (e) {
     if (e.target === s.mask) {
       s.target = e.target
