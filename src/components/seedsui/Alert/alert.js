@@ -228,7 +228,7 @@ var Alert = function (params) {
     s.params.onClickMask = fn
   }
   s.onTransitionEnd = function (e) {
-    if (e.propertyName === 'visibility') return
+    if (e && e.propertyName === 'visibility') return
     if (s.isHid) {
       // Callback onHid
       if (s.params.onHid) s.params.onHid(s, s.params.args)
