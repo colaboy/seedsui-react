@@ -208,8 +208,7 @@
               var self=this;
               /*历史记录控制*/
               this.history = new History({
-                useHash: false,
-                onInit: function (e) {
+                /*onInit: function (e) {
                   e.clearList()
                   // 如果有hash值，保存
                   var currentHash = location.hash
@@ -219,7 +218,7 @@
                     document.querySelector(currentHash + '-Section').classList.add('active')
                   }
                   console.log(e.list)
-                },
+                },*/
                 onBack: function (e) {
                   var prevHash = e.prevHash.substring(e.prevHash.lastIndexOf('#'))
                   if (e.discardList) {

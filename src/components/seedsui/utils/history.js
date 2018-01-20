@@ -5,7 +5,7 @@ var History = function (params) {
   ------------------------ */
   var defaults = {
     enableStorage: true,
-    historyKey: 'history',
+    historyKey: 'my_history',
     useHash: true
     /* callbacks
     onInit:function(History)// 初始化
@@ -103,7 +103,7 @@ var History = function (params) {
     // console.log('location: ' + document.location + ', state: ' + JSON.stringify(e.state))
     s.currentHash = s.params.useHash ? location.hash : location.href
     // 返回到根部
-    if (location.hash === '') {
+    if (s.params.useHash && location.hash === '') {
       s.onBack()
       // console.log('根部——当前hash：'+s.currentHash+'关闭页面：'+s.prevHash)
       return

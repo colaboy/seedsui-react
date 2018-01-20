@@ -13,37 +13,6 @@ var DB = (function () {
       }
     }, false)
   }
-
-  function setCookie (key, value, days) {
-    var expiresDay = days
-    var cookieStr = key + '=' + escape(value)
-    if (expiresDay) {
-      var exp = new Date()
-      exp.setTime(exp.getTime() + Number(expiresDay) * 24 * 60 * 60 * 1000)
-      cookieStr += ';expires=' + exp.toGMTString()
-    }
-    document.cookie = cookieStr
-  }
-  function getCookie (key) {
-    var valExpr = new RegExp('(^| )' + key + '=([^]*)(|$)')
-    var match = valExpr.exec(document.cookie)
-    if (match && match[2]) {
-      return unescape(match[2])
-    }
-    return null
-  }
-  function delCookie (key) {
-    var exp = new Date()
-    exp.setTime(exp.getTime() - 1)
-    var val = getCookie(key)
-    if (val != null) {
-      document.cookie = key + '=' + val + 'expires=' + exp.toGMTString()
-    }
-  }
-  function clearCookie () {
-    alert('抱歉，cookie不可以全部清空!')
-  }
-  
   function stringifyData (val) {
     if (typeof val === 'number') {
       return val.toString()
@@ -91,7 +60,7 @@ var DB = (function () {
     getAllStore: function () {
       return store.valueOf()
     },
-    delStore: function (key) {
+    removeStore: function (key) {
       store.removeItem(key)
     },
     clearStore: function () {
@@ -110,17 +79,41 @@ var DB = (function () {
     getAllSession: function () {
       return session.valueOf()
     },
-    delSession: function (key) {
+    removeSession: function (key) {
       session.removeItem(key)
     },
     clearSession: function () {
       session.clear()
     },
-
-    setCookie: setCookie, // key,value
-    getCookie: getCookie, // key
-    delCookie: delCookie, // key
-    clearCookie: clearCookie
+    setCookie: function (key, value, days) {
+      var expiresDay = days
+      var cookieStr = key + '=' + escape(value)
+      if (expiresDay) {
+        var exp = new Date()
+        exp.setTime(exp.getTime() + Number(expiresDay) * 24 * 60 * 60 * 1000)
+        cookieStr += ';expires=' + exp.toGMTString()
+      }
+      document.cookie = cookieStr
+    }, // key,value
+    getCookie: function (key) {
+      var valExpr = new RegExp('(^| )' + key + '=([^]*)(|$)')
+      var match = valExpr.exec(document.cookie)
+      if (match && match[2]) {
+        return unescape(match[2])
+      }
+      return null
+    }, // key
+    removeCookie: function (key) {
+      var exp = new Date()
+      exp.setTime(exp.getTime() - 1)
+      var val = this.getCookie(key)
+      if (val != null) {
+        document.cookie = key + '=' + val + 'expires=' + exp.toGMTString()
+      }
+    }, // key
+    clearCookie: function clearCookie () {
+      alert('抱歉，cookie不可以全部清空!')
+    }
   }
 })()
 

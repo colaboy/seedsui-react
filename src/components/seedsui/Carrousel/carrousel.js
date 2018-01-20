@@ -449,4 +449,4 @@ var Carrousel = function (container, params) {
   }
 })() */
 
-export default Carrousel
+;//export default Carrousel

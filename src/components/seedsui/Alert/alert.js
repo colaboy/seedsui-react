@@ -11,6 +11,7 @@ var Alert = function (params) {
 
     maskClass: 'mask alert-mask',
     maskActiveClass: 'active',
+    animation: 'zoom',
 
     duration: 300,
 
@@ -67,6 +68,7 @@ var Alert = function (params) {
   s.createAlert = function () {
     var alert = document.createElement('div')
     alert.setAttribute('class', s.params.alertClass)
+    alert.setAttribute('data-animation', s.params.animation)
 
     alert.content = document.createElement('div')
     alert.content.setAttribute('class', s.params.contentClass)

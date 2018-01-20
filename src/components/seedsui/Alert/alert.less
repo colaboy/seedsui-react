@@ -1,21 +1,18 @@
 /*----------------alert.less(start)--------------*/
 .alert-mask{
   z-index:10;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
 }
 .alert{
-  position:absolute;
   border-style:solid;
   border-width:0;
 
-  top:50%;
-  left:50%;
   width: @270px;
   border-radius:@6px;
   margin: 0 auto;
 
-  visibility:hidden;
-  -webkit-transform:translate(-50%,-50%) scale(0, 0);
-  -webkit-transition-property:-webkit-transform,visibility;
   -webkit-transition-duration:@animatioin-duration;
 
   background-color:white;
@@ -28,10 +25,66 @@
     font-size: @alert-title-size;
     text-align: center;
   }
-
-  &.active{
-    visibility:visible;
-    -webkit-transform:translate(-50%,-50%) scale(1, 1);
+  // 动画
+  &[data-animation]{
+    visibility:hidden;
+    &.active{
+      visibility:visible;
+    }
+  }
+  &[data-animation="slideLeft"]{
+    -webkit-transform:translate3d(100%,0,0);
+    -webkit-transition-property:-webkit-transform,visibility;
+    &.active{
+      //-webkit-transform:translate3d(0,0,0);
+      -webkit-transform:none;
+    }
+  }
+  &[data-animation="slideRight"]{
+    -webkit-transform:translate3d(-100%,0,0);
+    -webkit-transition-property:-webkit-transform,visibility;
+    &.active{
+      //-webkit-transform:translate3d(0,0,0);
+      -webkit-transform:none;
+    }
+  }
+  &[data-animation="slideUp"]{
+    -webkit-transform:translate3d(0,100%,0);
+    -webkit-transition-property:-webkit-transform,visibility;
+    &.active{
+      //-webkit-transform:translate3d(0,0,0);
+      -webkit-transform:none;
+    }
+  }
+  &[data-animation="slideDown"]{
+    -webkit-transform:translate3d(0,-100%,0);
+    -webkit-transition-property:-webkit-transform,visibility;
+    &.active{
+      //-webkit-transform:translate3d(0,0,0);
+      -webkit-transform:none;
+    }
+  }
+  &[data-animation="zoom"]{
+    -webkit-transform:scale(0, 0);
+    -webkit-transition-property:-webkit-transform,visibility;
+    &.active{
+      // -webkit-transform:translate(-50%,-50%) scale(1, 1);
+      //-webkit-transform:scale(1,1);
+      -webkit-transform:none;
+    }
+  }
+  &[data-animation="fade"]{
+    opacity:0;
+    -webkit-transition-property:opacity,visibility;
+    &.active{
+      opacity:1;
+    }
+  }
+  &[data-animation="none"]{
+    display:none;
+    &.active{
+      display:block;
+    }
   }
 }
 //内容区域
