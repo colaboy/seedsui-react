@@ -21,7 +21,8 @@ var Carrousel = function (container, params) {
     threshold: '50',
     duration: '300',
     height: 0,
-    imglazy: '[data-load-src]', // 图片懒加载
+    imglazyQuery: '.carrousel-lazy', // 图片懒加载
+    imgLoadAttr: 'data-load-src',
 
     // loop
     loop: false,
@@ -223,20 +224,7 @@ var Carrousel = function (container, params) {
       s.params.duration = defaults.duration
     }
   }
-
-  // 更新
-  s.update = function () {
-    s.updateSlides()
-    s.updateBullets()
-    s.createLoop()
-    s.updateContainerSize()
-  }
-  s.update()
-  if (s.slides.length <= 0) {
-    return
-  }
-
-  // 图片懒加载，针对图片类型
+  // 图片懒加载
   var imgs = []
   var cacheImgs = []
   function imgLoad (e) {
@@ -248,17 +236,29 @@ var Carrousel = function (container, params) {
       imgTarget.style.backgroundImage = 'url(' + target.src + ')'
     }
   }
-  s.imgsLazyLoad = function () {
-    imgs = this.container.querySelectorAll(s.params.imglazy)
+  s.updateLazyImg = function () {
+    imgs = this.container.querySelectorAll(s.params.imglazyQuery)
     for (var i = 0; i < imgs.length; i++) {
-      var src = imgs[i].getAttribute('data-load-src')
+      var src = imgs[i].getAttribute(s.params.imgLoadAttr)
       cacheImgs[i] = new Image()
       cacheImgs[i].index = i
       cacheImgs[i].src = src
       cacheImgs[i].addEventListener('load', imgLoad, false)
     }
   }
-  if (s.params.imglazy) s.imgsLazyLoad()
+
+  // 更新
+  s.update = function () {
+    s.updateSlides()
+    s.updateBullets()
+    s.createLoop()
+    s.updateContainerSize()
+    if (s.params.imglazyQuery) s.updateLazyImg()
+  }
+  s.update()
+  if (s.slides.length <= 0) {
+    return
+  }
   /* --------------------
   Touch Events
   -------------------- */

@@ -1,4 +1,4 @@
-//import Picker from './picker.js'
+import Picker from './picker.js'
 // 扩展picker地区控件 (require pikcer.js)
 var PickerCity = function (params) {
   // 参数改写
@@ -13,13 +13,9 @@ var PickerCity = function (params) {
     viewType: 'area',
     data: null,
 
-    defaultProvince: '',
-    defaultCity: '',
+    defaultProvince: '北京市',
+    defaultCity: '东城区',
     defaultArea: '',
-
-    defaultProvinceKey: '',
-    defaultCityKey: '',
-    defaultAreaKey: '',
 
     provinceClass: 'text-center',
     cityClass: 'text-center',
@@ -63,33 +59,68 @@ var PickerCity = function (params) {
   s.province = null
   s.city = null
   s.area = null
+  // 省、市、区选中的key
+  s.activeProvinceKey = null
+  s.activeCityKey = null
+  s.activeAreaKey = null
 
-  function trim (str) {
-    return str.replace(/(^\s*)|(\s*$)/g, '')
-  }
   // 设置默认值
-  s.setDefaultProvince = function (province) {
-    s.params.defaultProvince = trim('' + province)
+  s.setActiveProvinceKey = function (key) {
+    s.activeProvinceKey = key.trim()
   }
-  s.setDefaultCity = function (city) {
-    s.params.defaultCity = trim('' + city)
+  s.setActiveCityKey = function (key) {
+    s.activeCityKey = key.trim()
   }
-  s.setDefaultArea = function (area) {
-    s.params.defaultArea = trim('' + area)
-  }
-  s.setDefaultProvinceKey = function (province) {
-    s.params.defaultProvinceKey = trim('' + province)
-  }
-  s.setDefaultCityKey = function (city) {
-    s.params.defaultCityKey = trim('' + city)
-  }
-  s.setDefaultAreaKey = function (area) {
-    s.params.defaultAreaKey = trim('' + area)
+  s.setActiveAreaKey = function (key) {
+    s.activeAreaKey = key.trim()
   }
 
   /* --------------------
   Method
   -------------------- */
+  // 设置选中的省市区,不传参数则读取默认省市区
+  s.setDefaults = function (argActiveValues) {
+    var activeValues = argActiveValues || []
+    if (!activeValues || activeValues.length === 0) {
+      if (s.params.defaultProvince) activeValues.push(s.params.defaultProvince)
+      if (s.params.defaultCity) activeValues.push(s.params.defaultCity)
+      if (s.params.defaultArea) activeValues.push(s.params.defaultArea)
+    }
+    // 设置选中的key
+    var keys = getKesByValues(activeValues)
+    if (keys && keys[0]) s.setActiveProvinceKey(keys[0])
+    if (keys && keys[1]) s.setActiveCityKey(keys[1])
+    if (keys && keys[2]) s.setActiveAreaKey(keys[2])
+  }
+  // 获得省市区的keys['320000','320100','320105'],参数:['江苏省','南京市','建邺区']
+  function getKesByValues (values) {
+    if (!values) return []
+    var keys = []
+    for (var i = 0, province; province = s.params.data[i++];) { // eslint-disable-line
+      // 获得省
+      if (province.value === values[0]) {
+        keys.push(province.key)
+        for (var j = 0, city; city = province.children[j++];) { // eslint-disable-line
+          // 获得市
+          if (city.value === values[1]) {
+            keys.push(city.key)
+            if (values[2]) {
+              for (var k = 0, area; area = city.children[k++];) { // eslint-disable-line
+                // 获得区
+                if (area.value === values[2]) {
+                  keys.push(area.key)
+                  return keys
+                }
+              }
+            } else {
+              return keys
+            }
+          }
+        }
+      }
+    }
+  }
+  // 获得选中的文字
   function getActiveText (activeData) {
     var activeValues = activeData.map(function (n, i, a) {
       return n['value']
@@ -100,14 +131,14 @@ var PickerCity = function (params) {
     if (activeValues[2] && activeValues[2] !== s.params.defaultValues[0].value) activeText += '-' + activeValues[2]
     return activeText
   }
-
+  // 设置选中的keys
   function setActiveKeys (activeData) {
     var activeKeys = activeData.map(function (n, i, a) {
       return n['key']
     })
-    if (activeKeys[0]) s.setDefaultProvinceKey(activeKeys[0])
-    if (activeKeys[1]) s.setDefaultCityKey(activeKeys[1])
-    if (activeKeys[2]) s.setDefaultAreaKey(activeKeys[2])
+    if (activeKeys[0]) s.setActiveProvinceKey(activeKeys[0])
+    if (activeKeys[1]) s.setActiveCityKey(activeKeys[1])
+    if (activeKeys[2]) s.setActiveAreaKey(activeKeys[2])
   }
 
   // 获得第一层
@@ -125,7 +156,7 @@ var PickerCity = function (params) {
   }
 
   // 根据key获得children
-  function getChildren (key) {
+  function getChildrenByKey (key) {
     // 如果没有传key，表示获得第一层
     if (!key) return getPureArray(s.params.data)
     // 如果传key，则找到对应key的子级
@@ -140,99 +171,74 @@ var PickerCity = function (params) {
     /* eslint-enable */
     return null
   }
-  // 根据value获得key
-  function getKey (value, key) {
-    var data = null
-    if (!key) {
-      data = s.params.data
-    } else {
-      data = getChildren(key)
-    }
-    if (!data) {
-      return 0
-    }
-    /* eslint-disable */
-    for (var i = 0, row; row = data[i++];) {
-      if (row.value === value) return row.key
-    }
-    /* eslint-enable */
-  }
   /* ----------------
   Init
   ---------------- */
-  function replaceProvince (defaultKey) {
-    var province = getChildren()
-    var defKey = province[0].key
-    if (defaultKey) defKey = defaultKey
-    s.replaceSlot(0, province, defKey, s.params.cityClass) // 修改第一项
-    return province
+  /* // 替换省
+  function replaceProvince (activeKey) {
+    var provinces = getChildrenByKey()
+    s.replaceSlot(0, provinces, activeKey || provinces[0].key, s.params.cityClass)
+    return provinces
+  } */
+  // 替换市
+  function replaceCity (key, activeKey) {
+    var citys = getChildrenByKey(key)
+    s.replaceSlot(1, citys, activeKey || citys[0].key, s.params.cityClass)
+    return citys
   }
-  function replaceCity (key, defaultKey) {
-    var city = getChildren(key)
-    var defKey = city[0].key
-    if (defaultKey) defKey = defaultKey
-    s.replaceSlot(1, city, defKey, s.params.cityClass) // 修改第二项
-    return city
-  }
-  function replaceArea (key, defaultKey) {
+  // 替换区
+  function replaceArea (key, activeKey) {
     if (s.params.viewType !== 'area') return
-    var area = getChildren(key)
-    if (area) {
-      var defKey = area[0].key
-      if (defaultKey) defKey = defaultKey
-      s.replaceSlot(2, area, defKey, s.params.areaClass) // 修改第三项
+    var areas = getChildrenByKey(key)
+    if (areas && areas.length && areas.length > 0) {
+      s.replaceSlot(2, areas, activeKey || areas[0].key, s.params.areaClass)
     } else {
-      s.replaceSlot(2, s.params.defaultValues, s.params.defaultValues['key'], s.params.areaClass) // 修改第三项
+      s.replaceSlot(2, s.params.defaultValues, s.params.defaultValues['key'], s.params.areaClass)
     }
   }
-  s.update = function () {
-    replaceProvince(s.params.defaultProvinceKey)
-    replaceCity(s.params.defaultProvinceKey, s.params.defaultCityKey)
-    replaceArea(s.params.defaultCityKey, s.params.defaultAreaKey)
-  }
+  // 添加省
   function addProvince () {
-    // 初始化省
     if (!s.province) {
-      s.province = getChildren()
+      s.province = getChildrenByKey()
     }
-    if (!s.params.defaultProvinceKey) {
-      s.setDefaultProvinceKey(s.province[0].key)
+    if (!s.activeProvinceKey) {
+      s.setActiveProvinceKey(s.province[0].key)
     }
-    s.addSlot(s.province, s.params.defaultProvinceKey, s.params.provinceClass)
+    s.addSlot(s.province, s.activeProvinceKey, s.params.provinceClass)
   }
+  // 添加市
   function addCity () {
-    // 初始化市
-    s.city = getChildren(s.params.defaultProvinceKey)
-    if (!s.params.defaultCityKey) {
-      s.setDefaultCityKey(s.city[0].key)
+    s.city = getChildrenByKey(s.activeProvinceKey)
+    if (!s.activeCityKey) {
+      s.setActiveCityKey(s.city[0].key)
     }
-    s.addSlot(s.city, s.params.defaultCityKey, s.params.cityClass)
+    s.addSlot(s.city, s.activeCityKey, s.params.cityClass)
   }
+  // 添加区
   function addArea () {
     if (s.params.viewType !== 'area') return
-    // 初始化区
-    s.area = getChildren(s.params.defaultCityKey)
-    if (!s.params.defaultAreaKey) {
-      s.setDefaultAreaKey(s.city[0].key)
+    s.area = getChildrenByKey(s.activeCityKey)
+    if (!s.activeAreaKey) {
+      s.setActiveAreaKey(s.city[0].key)
     }
     if (s.area) {
-      s.addSlot(s.area, s.params.defaultAreaKey, s.params.areaClass)
+      s.addSlot(s.area, s.activeAreaKey, s.params.areaClass)
     } else {
       s.addSlot(s.params.defaultValues, '', s.params.areaClass)
     }
   }
-  function initKeys () {
-    if (s.params.defaultProvince) s.setDefaultProvinceKey(getKey(s.params.defaultProvince))
-    if (s.params.defaultCity) s.setDefaultCityKey(getKey(s.params.defaultCity, s.params.defaultProvinceKey))
-    if (s.params.defaultArea) s.setDefaultAreaKey(getKey(s.params.defaultArea, s.params.defaultCityKey))
-  }
+  
   function initSlots () {
     // 把传入的value转为key
-    initKeys()
+    s.setDefaults()
     // 渲染
     addProvince()
     addCity()
     addArea()
+  }
+  s.update = function () {
+    s.clearSlots()
+    initSlots()
   }
   initSlots()
   return s

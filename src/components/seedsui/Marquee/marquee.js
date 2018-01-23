@@ -31,13 +31,28 @@ var Marquee = function (container, params) {
   // 定时器
   s.interval =  null
   // 循环
-  if (s.params.loop) {
-    var beforeDupContainer = s.container.cloneNode(true)
-    var afterDupContainer = s.container.cloneNode(true)
-    s.container.insertBefore(beforeDupContainer, s.container.firstElementChild)
-    s.container.appendChild(afterDupContainer)
+  s.updateLoop = function () {
+    var dups = [].slice.call(s.container.querySelectorAll('.' + s.params.duplicateClass))
+    dups.forEach(function (item) {
+      s.container.removeChild(item)
+    })
+    if (s.params.loop) {
+      var beforeDupContainer = s.container.cloneNode(true)
+      var afterDupContainer = s.container.cloneNode(true)
+      beforeDupContainer.classList.add(s.params.duplicateClass)
+      afterDupContainer.classList.add(s.params.duplicateClass)
+      s.container.insertBefore(beforeDupContainer, s.container.firstElementChild)
+      s.container.appendChild(afterDupContainer)
+    }
   }
-  
+  // 设置开始位置
+  s.setStart = function (start) {
+    s.params.start = start
+  }
+  // 设置结束位置
+  s.setEnd = function (end) {
+    s.params.end = end
+  }
   /* --------------------
   Method
   -------------------- */
@@ -64,6 +79,7 @@ var Marquee = function (container, params) {
     s.end = s.params.end
     var range = s.params.end - s.params.start
     if (s.params.loop) {
+      s.updateLoop()
       s.start = s.params.end + s.params.step
       s.end = s.start + range
     }
@@ -76,6 +92,8 @@ var Marquee = function (container, params) {
     }, 10)
     // 设置起始位置
     s.move = s.start
+    // 初始化播放
+    if (s.interval) window.clearInterval(s.interval)
   }
   s.update()
   // 播放

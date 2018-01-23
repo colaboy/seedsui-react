@@ -4,17 +4,16 @@ var Dragrefresh = function (params) {
   Model
   ---------------------- */
   var defaults = {
-    overflowContainer: document.body,
-    threshold: 100, // 触发位置
-    duration: 150,
-    begin: 0, // 起始位置
-    end: 300, // 结束位置
+    container: document.body,
+    duration: 150, // 头部下拉的隐藏动画时长
+    threshold: 100, // 头部下拉的触发位置
+    begin: 0, // 头部下拉的起始位置
+    end: 300, // 头部下拉的结束位置
 
     isTopPosition: 0, // 如果scrollTop小于等于isTopPosition时，则认为是到顶部了(不建议修改)
 
-    topContainer: null,
-    bottomContainer: null,
-    errorContainer: null
+    topContainer: null, // 头部容器
+    errorContainerClass: 'SID-Dragrefresh-ErrorContainer', // 错误容器的class
 
     /* callbacks
     onPull:function(s)// 头部拖动中
@@ -26,7 +25,6 @@ var Dragrefresh = function (params) {
 
     onTopRefresh:function(s)// 头部刷新
     onTopComplete:function(s)// 头部完成加载
-    onTopNoData:function(s)// 头部无数据 (废弃)
 
     onBottomRefresh:function(s)// 底部刷新
     onBottomComplete:function(s)// 底部完成加载
@@ -45,25 +43,15 @@ var Dragrefresh = function (params) {
   var s = this
   s.params = params
   // Container
-  s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
-  if (!s.overflowContainer) {
-    console.log('SeedsUI Error : Dragrefresh overflowContainer不存在，请检查页面中是否有此元素')
+  s.container = typeof s.params.container === 'string' ? document.querySelector(s.params.container) : s.params.container
+  if (!s.container) {
+    console.log('SeedsUI Error : Dragrefresh container不存在，请检查页面中是否有此元素')
     return
   }
   // topContainer
   s.topContainer = typeof s.params.topContainer === 'string' ? document.querySelector(s.params.topContainer) : s.params.topContainer
   if (!s.topContainer) {
     console.log('SeedsUI Warn : topContainer不存在，请检查页面中是否有此元素')
-  }
-  // bottomContainer
-  s.bottomContainer = typeof s.params.bottomContainer === 'string' ? document.querySelector(s.params.bottomContainer) : s.params.bottomContainer
-  if (!s.bottomContainer) {
-    console.log('SeedsUI Warn : bottomContainer不存在，请检查页面中是否有此元素')
-  }
-  // errorContainer
-  s.errorContainer = typeof s.params.errorContainer === 'string' ? document.querySelector(s.params.errorContainer) : s.params.errorContainer
-  if (!s.errorContainer) {
-    console.log('SeedsUI Warn : errorContainer不存在，请检查页面中是否有此元素')
   }
   // 正在刷新(默认为不允许下拉，当发生一次请求调用setPagination后才允许下拉)
   s.isRefreshed = false
@@ -93,22 +81,18 @@ var Dragrefresh = function (params) {
   }
   // 销毁对象
   s.destroyTop = function () {
-    s.overflowContainer.removeChild(s.topContainer)
-  }
-  s.destroyBottom = function () {
-    s.overflowContainer.removeChild(s.bottomContainer)
+    s.container.removeChild(s.topContainer)
   }
   s.destroy = function () {
     s.destroyTop()
-    s.destroyBottom()
     // 销毁事件
     s.detach()
   }
   // 是否有滚动条
   s.hasScroll = function () {
-    var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
-    var scrollHeight = s.overflowContainer.scrollHeight
-    /* var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    var clientHeight = s.container.clientHeight // || window.innerHeight
+    var scrollHeight = s.container.scrollHeight
+    /* var scrollTop = s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
 
     if (clientHeight === scrollHeight) {
@@ -132,11 +116,6 @@ var Dragrefresh = function (params) {
     s.isRefreshed = false
     // CallBack onBottomRefresh
     if (s.params.onBottomRefresh) s.params.onBottomRefresh(s)
-    // 显示底部容器，隐藏错误容器
-    if (s.bottomContainer.classList.contains('hide')) {
-      s.errorContainer.classList.add('hide')
-      s.bottomContainer.classList.remove('hide')
-    }
   }
   // 头部刷新完成
   s.topComplete = function () {
@@ -153,7 +132,7 @@ var Dragrefresh = function (params) {
       return
     }
     // 如果还有数据，如果没有滚动条，则继续加载
-    if (!s.bottomContainer) return
+    if (!s.params.onBottomRefresh) return
     setTimeout(function () {
       if (!s.isNoData && !s.hasScroll()) {
         s.bottomRefresh()
@@ -162,7 +141,7 @@ var Dragrefresh = function (params) {
   }
   // 底部刷新完成
   s.bottomComplete = function () {
-    if (!s.bottomContainer) return
+    if (!s.params.onBottomRefresh) return
     // 底部完成
     s.isRefreshed = true
     // Callback onBottomComplete
@@ -183,11 +162,6 @@ var Dragrefresh = function (params) {
     s.isRefreshed = true
     // 收起头部
     s.hideTop()
-    if (s.bottomContainer) {
-      // 显示错误容器
-      s.errorContainer.classList.remove('hide')
-      s.bottomContainer.classList.add('hide')
-    }
     // 网络错误回调
     if (s.params.onError) s.params.onError(s)
   }
@@ -223,23 +197,27 @@ var Dragrefresh = function (params) {
   ---------------------- */
   s.events = function (detach) {
     var action = detach ? 'removeEventListener' : 'addEventListener'
-    var touchTarget = s.overflowContainer
+    var touchTarget = s.container
+    // 头部下拉
     if (s.topContainer) {
-      s.overflowContainer[action]('touchstart', s.onTouchStart, false)
-      s.overflowContainer[action]('touchmove', s.onTouchMove, false)
-      s.overflowContainer[action]('touchend', s.onTouchEnd, false)
-      s.overflowContainer[action]('touchcancel', s.onTouchEnd, false)
+      s.container[action]('touchstart', s.onTouchStart, false)
+      s.container[action]('touchmove', s.onTouchMove, false)
+      s.container[action]('touchend', s.onTouchEnd, false)
+      s.container[action]('touchcancel', s.onTouchEnd, false)
       // 头部动画监听
       s.topContainer[action]('webkitTransitionEnd', s.onTransitionEnd, false)
     }
-    if (s.bottomContainer) {
+    // 底部刷新
+    if (s.params.onBottomRefresh) {
       // 绑定底部事件，区分一般容器和body
       if (touchTarget === document.body) {
         touchTarget = window
       }
       touchTarget[action]('scroll', s.onScroll, false)
     }
-    if (s.errorContainer) s.errorContainer[action]('click', s.onClickError, false)
+    // 点击错误面板
+    var errorContainer = s.container.querySelector('.' + s.params.errorContainerClass)
+    if (errorContainer) errorContainer[action]('click', s.onClickError, false)
   }
   // attach、detach事件
   s.attach = function () {
@@ -271,7 +249,7 @@ var Dragrefresh = function (params) {
   // touchmove的preventDefault事件监听，防止与滚动条冲突
   s.preventMove = false
   s.onTouchStart = function (e) {
-    s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
+    s.container.addEventListener('touchmove', s.preventDefault, false)
     s.preventMove = true
     // 如果不在顶部，则不触发
     if (s.getScrollTop() <= s.params.isTopPosition) s.touches.isTop = true
@@ -302,7 +280,7 @@ var Dragrefresh = function (params) {
     if (s.touches.isTop && s.touches.vertical === -1) {
       if (!s.isRefreshed) return
       if (s.preventMove === false) {
-        s.overflowContainer.addEventListener('touchmove', s.preventDefault, false)
+        s.container.addEventListener('touchmove', s.preventDefault, false)
         s.preventMove = true
       }
       s.touches.currentPosY = s.touches.posY + s.touches.diffY
@@ -315,7 +293,7 @@ var Dragrefresh = function (params) {
       s.isOnPull = true
     } else {
       if (s.preventMove === true) {
-        s.overflowContainer.removeEventListener('touchmove', s.preventDefault, false)
+        s.container.removeEventListener('touchmove', s.preventDefault, false)
         s.preventMove = false
       }
     }
@@ -353,13 +331,13 @@ var Dragrefresh = function (params) {
   }
   s.isNoData = false
   s.getScrollTop = function (e) {
-    var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    var scrollTop = s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     return scrollTop
   }
   s.onScroll = function (e) {
-    var clientHeight = s.overflowContainer.clientHeight // || window.innerHeight
-    var scrollHeight = s.overflowContainer.scrollHeight
-    var scrollTop = s.overflowContainer === document.body ? document.documentElement.scrollTop : s.overflowContainer.scrollTop
+    var clientHeight = s.container.clientHeight // || window.innerHeight
+    var scrollHeight = s.container.scrollHeight
+    var scrollTop = s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
     if (scrollTop + clientHeight >= scrollHeight - 2) {
       s.bottomRefresh()

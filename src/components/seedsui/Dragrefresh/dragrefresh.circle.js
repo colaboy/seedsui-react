@@ -1,23 +1,25 @@
 //import Dragrefresh from './dragrefresh.js'
-// 扩展Dragrefresh下拉刷新控件 (require dragrefresh.js)
 var DragCircle = function (params) {
   // 参数改写
   var onTopComplete = params.onTopComplete
+  var onBottomRefresh = params.onBottomRefresh
   var onNoData = params.onNoData
+  var onError = params.onError
   params.onTopComplete = undefined
+  params.onBottomRefresh = undefined
   params.onNoData = undefined
+  params.onError = undefined
 
   // 必须参数
-  var overflowContainer = typeof params.overflowContainer === 'string' ? document.querySelector(params.overflowContainer) : params.overflowContainer
-  if (!overflowContainer) {
-    console.log('SeedsUI Error : DragCircle overflowContainer不存在，请检查页面中是否有此元素')
+  var container = typeof params.container === 'string' ? document.querySelector(params.container) : params.container
+  if (!container) {
+    console.log('SeedsUI Error : DragCircle container不存在，请检查页面中是否有此元素')
   }
-
-  var topParent
   var topContainer
   var topIcon
+  var topCaption
   if (params.onTopRefresh) {
-    topParent = overflowContainer.parentNode
+    topParent = container.parentNode
     topContainer = topParent.querySelector('.SID-Dragrefresh-TopContainer')
     if (!topContainer) {
       topContainer = document.createElement('div')
@@ -30,15 +32,16 @@ var DragCircle = function (params) {
   var bottomContainer
   var nodataContainer
   var errorContainer
-  if (params.onBottomRefresh) {
-    bottomContainer = overflowContainer.querySelector('.SID-Dragrefresh-BottomContainer')
+  if (onBottomRefresh) {
+    bottomContainer = container.querySelector('.SID-Dragrefresh-BottomContainer')
     if (!bottomContainer) {
       bottomContainer = document.createElement('div')
       bottomContainer.setAttribute('class', 'SID-Dragrefresh-BottomContainer df-circle-icon df-circle-icon-loading')
       bottomContainer.setAttribute('style', 'height:50px')
-      overflowContainer.appendChild(bottomContainer)
+      container.appendChild(bottomContainer)
     }
-    nodataContainer = overflowContainer.querySelector('.SID-Dragrefresh-NoDataContainer')
+
+    nodataContainer = container.querySelector('.SID-Dragrefresh-NoDataContainer')
     if (!errorContainer) {
       nodataContainer = document.createElement('div')
       nodataContainer.setAttribute('class', 'SID-Dragrefresh-NoDataContainer df-pull hide')
@@ -46,9 +49,10 @@ var DragCircle = function (params) {
       nodataContainer.innerHTML = '<div class="df-pull-box">' +
       '<div class="df-pull-caption">没有更多数据了</div>' +
       '</div>'
-      overflowContainer.appendChild(nodataContainer)
+      container.appendChild(nodataContainer)
     }
-    errorContainer = overflowContainer.querySelector('.SID-Dragrefresh-ErrorContainer')
+
+    errorContainer = container.querySelector('.SID-Dragrefresh-ErrorContainer')
     if (!errorContainer) {
       errorContainer = document.createElement('div')
       errorContainer.setAttribute('class', 'SID-Dragrefresh-ErrorContainer df-pull hide')
@@ -56,23 +60,17 @@ var DragCircle = function (params) {
       errorContainer.innerHTML = '<div class="df-pull-box">' +
       '<div class="df-pull-caption">加载失败，请稍后重试</div>' +
       '</div>'
-      overflowContainer.appendChild(errorContainer)
+      container.appendChild(errorContainer)
     }
   }
-  
-  if (params.onBottomRefresh) {
-    
-  }
+
   /* ----------------------
   params
   ---------------------- */
   var defaults = {
-    overflowContainer: overflowContainer,
+    container: container,
     topContainer: topContainer,
-    bottomContainer: bottomContainer,
-    errorContainer: errorContainer,
-    baseline: params.baseline || -50,
-    threshold: params.threshold || 120,
+    threshold: 50,
     onTopComplete: function (e) {
       if (bottomContainer && !e.isNoData) {
         bottomContainer.classList.remove('hide')
@@ -82,7 +80,17 @@ var DragCircle = function (params) {
       // 回调
       if (onTopComplete) onTopComplete(e)
     },
+    onBottomRefresh: function (e) {
+      if (bottomContainer) {
+        bottomContainer.classList.remove('hide')
+        nodataContainer.classList.add('hide')
+        errorContainer.classList.add('hide')
+      }
+      // 回调
+      if (onBottomRefresh) onBottomRefresh(e)
+    },
     onNoData: function (e) {
+      // 显示无数据容器,隐藏底部和错误容器
       if (bottomContainer) {
         bottomContainer.classList.add('hide')
         nodataContainer.classList.remove('hide')
@@ -90,6 +98,16 @@ var DragCircle = function (params) {
       }
       // 回调
       if (onNoData) onNoData(e)
+    },
+    onError: function (e) {
+      // 显示错误容器,隐藏底部和无数据容器
+      if (bottomContainer) {
+        bottomContainer.classList.add('hide')
+        nodataContainer.classList.add('hide')
+        errorContainer.classList.remove('hide')
+      }
+      // 回调
+      if (onError) onError(e)
     },
     onClickError: function (e) {
       console.log('点击错误容器')
@@ -102,16 +120,17 @@ var DragCircle = function (params) {
       }
     },
     onShowTop: function (e) {
-      topContainer.style.webkitTransform = 'translate3d(0,120px,0) rotate(0deg)'
+      topContainer.style.height = e.params.threshold + 'px'
+      topIcon.classList.remove('df-pull-icon-down')
+      topIcon.classList.add('df-pull-icon-loading')
+      topCaption.innerHTML = '正在刷新...'
     },
     onHideTop: function (e) {
-      topContainer.style.webkitTransform = 'translate3d(0,0,0) rotate(0deg)'
-    },
-    onTopShowed: function (e) {
-      topIcon.classList.add('df-circle-icon-loading')
+      topContainer.style.height = '0'
     },
     onTopHid: function (e) {
-      topIcon.classList.remove('df-circle-icon-loading')
+      topIcon.classList.remove('df-pull-icon-down')
+      topIcon.classList.remove('df-pull-icon-loading')
     }
   }
   params = params || {}

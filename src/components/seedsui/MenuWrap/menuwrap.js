@@ -8,11 +8,13 @@ var MenuWrap = function (container, params) {
     data: null,
     tagClass: 'menuwrap-tag',
     activeClass: 'active',
+    extandClass: 'extand',
 
-    defaultActiveId: '',
+    defaultActiveId: '', // 默认选中项的id
+    parentHasData: true, // 父节点是否有数据,如果有,则选中父节点时,子节点的选中得去掉
     /*
     callbacks
-    onClick:function(item, index)
+    onClick:function(item, isActived, isExtand) // 点击项的数据,是否是选中状态,是否是展开状态
     */
   }
   /* 参数data: [{
@@ -118,20 +120,36 @@ var MenuWrap = function (container, params) {
   // 点击树
   s.onClick = function (e) {
     var target = e.target
-    // 点击选中
-    if (target.classList.contains(s.params.activeClass)) {
-      target.classList.remove(s.params.activeClass)
+    var isActived = target.classList.contains(s.params.activeClass)
+    var isExtand = target.classList.contains(s.params.extandClass)
+    // 如果已经展开,则收缩
+    if (isExtand) {
+      target.classList.remove(s.params.extandClass)
+      // 如果父节点有数据,则将子节点的选中效果去掉
+      if (s.params.parentHasData) {
+        var tags = target.nextElementSibling.querySelectorAll('.' + s.params.tagClass)
+        for (var i = 0, subtag; subtag = tags[i++];) { // eslint-disable-line
+          subtag.classList.remove(s.params.extandClass)
+          subtag.classList.remove(s.params.activeClass)
+        }
+      }
     } else {
+      // 移除同级所有的选中项与展开项
       var lis = target.parentNode.parentNode.children
       for (var i = 0, li; li = lis[i++];) { // eslint-disable-line
         var tag = li.querySelector('.' + s.params.tagClass)
-        if (tag) tag.classList.remove(s.params.activeClass)
+        if (tag) {
+          tag.classList.remove(s.params.extandClass)
+          tag.classList.remove(s.params.activeClass)
+        }
       }
+      // 添加当前节点为选中项和展开项
+      target.classList.add(s.params.extandClass)
       target.classList.add(s.params.activeClass)
     }
     // 返回item
     var json = target.getAttribute('data-item') ? JSON.parse(target.getAttribute('data-item')) : null
-    if (this.params.onClick) this.params.onClick(json)
+    if (this.params.onClick) this.params.onClick(json, isActived, !isExtand)
   }
   // 主函数
   s.init = function () {

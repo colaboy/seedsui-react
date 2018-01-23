@@ -1,4 +1,4 @@
-/*----------------button.less(start)----------------*/
+/*----------------menuwrap.less(start)----------------*/
 .menuwrap{
   width: 96px;
   background-color: @menuwrap-bg;
@@ -33,20 +33,24 @@
   background-color: @menuwrap-tag-bg-active;
   /* 左侧选中块 */
   .setMenuwrapTagActive();
+}
+.menuwrap-tag.extand{
   /* 更多箭头 */
   .menuwrap-more{
-    .setMenuwrapMoreActive();
+    .setMenuwrapMoreExtand();
   }
 }
 .menuwrap-tag-font{
+  -webkit-box-flex: 1;
   padding:0 2px;
-  -webkit-box-flex:1;
+  &:extend(.nowrap2);
+  /* -webkit-box-flex:1;
   max-height: @34px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; */
 }
 .menuwrap-tag-icon{
   display: block;
@@ -58,7 +62,7 @@
   display: none;
   .setSubMenuwrapTag();
 }
-.menuwrap-tag.active + ul{
+.menuwrap-tag.extand + ul{
   display: block;
 }
-/*----------------button.less(end)----------------*/
+/*----------------menuwrap.less(end)----------------*/

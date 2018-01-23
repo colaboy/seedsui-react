@@ -55,15 +55,10 @@
       right:0;
   }
 }
-.numbox.disabled{
+.numbox[disabled], .numbox[readOnly]{
   pointer-events: none;
   .numbox-button,.numbox-input{
     color: @numbox-button-disabled-color;
-  }
-}
-.numbox.readonly{
-  .numbox-button,.numbox-input{
-    pointer-events: none;
   }
 }
 /*----------------numbox.less(end)--------------*/
