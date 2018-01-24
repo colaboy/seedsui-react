@@ -15,7 +15,10 @@ var DB = (function () {
   }
   function stringifyData (val) {
     if (typeof val === 'number') {
-      return val.toString()
+      return '_number:' + val.toString()
+    }
+    if (typeof val === 'boolean') {
+      return '_boolean:' + val.toString()
     }
     if (!val) {
       return ''
@@ -33,6 +36,12 @@ var DB = (function () {
   function parseData (val) {
     if (!val) {
       return null
+    }
+    if (val.indexOf('_number:') === 0) {
+      return Number(val.replace(/^_number:/,''))
+    }
+    if (val.indexOf('_boolean:') === 0) {
+      return Boolean(val.replace(/^_boolean:/,''))
     }
     if (val.indexOf('_function:') === 0) {
       return val.replace(/^_function:/,'')

@@ -1,5 +1,5 @@
-import Picker from './picker.js'
-// 扩展picker地区控件 (require pikcer.js)
+//import Picker from './picker.js'
+// 需要string.js的trim方法
 var PickerCity = function (params) {
   // 参数改写
   var onCityClickSubmit = params.onClickSubmit
@@ -78,23 +78,9 @@ var PickerCity = function (params) {
   /* --------------------
   Method
   -------------------- */
-  // 设置选中的省市区,不传参数则读取默认省市区
-  s.setDefaults = function (argActiveValues) {
-    var activeValues = argActiveValues || []
-    if (!activeValues || activeValues.length === 0) {
-      if (s.params.defaultProvince) activeValues.push(s.params.defaultProvince)
-      if (s.params.defaultCity) activeValues.push(s.params.defaultCity)
-      if (s.params.defaultArea) activeValues.push(s.params.defaultArea)
-    }
-    // 设置选中的key
-    var keys = getKesByValues(activeValues)
-    if (keys && keys[0]) s.setActiveProvinceKey(keys[0])
-    if (keys && keys[1]) s.setActiveCityKey(keys[1])
-    if (keys && keys[2]) s.setActiveAreaKey(keys[2])
-  }
-  // 获得省市区的keys['320000','320100','320105'],参数:['江苏省','南京市','建邺区']
+  // 根据省市区名获得keys,返回:['320000','320100','320105'],参数:['江苏省','南京市','建邺区']
   function getKesByValues (values) {
-    if (!values) return []
+    if (!values) return null
     var keys = []
     for (var i = 0, province; province = s.params.data[i++];) { // eslint-disable-line
       // 获得省
@@ -119,10 +105,28 @@ var PickerCity = function (params) {
         }
       }
     }
+    // 如果省市区不对,则返回null
+    return null
   }
+  // 设置选中的省市区,不传参数则读取默认省市区
+  s.setDefaults = function (argActiveValues) {
+    var activeValues = argActiveValues || []
+    // 如果没有传值,则读取默认值
+    if (!activeValues || activeValues.length === 0) {
+      if (s.params.defaultProvince) activeValues.push(s.params.defaultProvince)
+      if (s.params.defaultCity) activeValues.push(s.params.defaultCity)
+      if (s.params.defaultArea) activeValues.push(s.params.defaultArea)
+    }
+    // 设置选中的key
+    var keys = getKesByValues(activeValues)
+    if (keys && keys[0]) s.setActiveProvinceKey(keys[0])
+    if (keys && keys[1]) s.setActiveCityKey(keys[1])
+    if (keys && keys[2]) s.setActiveAreaKey(keys[2])
+  }
+  
   // 获得选中的文字
-  function getActiveText (activeData) {
-    var activeValues = activeData.map(function (n, i, a) {
+  function getActiveText (activeOptions) {
+    var activeValues = activeOptions.map(function (n, i, a) {
       return n['value']
     })
     var activeText = ''
@@ -132,8 +136,8 @@ var PickerCity = function (params) {
     return activeText
   }
   // 设置选中的keys
-  function setActiveKeys (activeData) {
-    var activeKeys = activeData.map(function (n, i, a) {
+  function setActiveKeys (activeOptions) {
+    var activeKeys = activeOptions.map(function (n, i, a) {
       return n['key']
     })
     if (activeKeys[0]) s.setActiveProvinceKey(activeKeys[0])
@@ -229,8 +233,7 @@ var PickerCity = function (params) {
   }
   
   function initSlots () {
-    // 把传入的value转为key
-    s.setDefaults()
+    if (!s.activeProvinceKey) return
     // 渲染
     addProvince()
     addCity()
@@ -240,6 +243,9 @@ var PickerCity = function (params) {
     s.clearSlots()
     initSlots()
   }
+  // 设置默认选中项
+  s.setDefaults()
+  // 添加省市区
   initSlots()
   return s
 }
