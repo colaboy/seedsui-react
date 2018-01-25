@@ -47,9 +47,20 @@
 @61px:61px * @px-scale;
 @62px:62px * @px-scale;
 @70px:70px * @px-scale;
+@71px:71px * @px-scale;
+@72px:72px * @px-scale;
+@73px:73px * @px-scale;
 @74px:74px * @px-scale;
+@75px:75px * @px-scale;
+@76px:76px * @px-scale;
+@77px:77px * @px-scale;
+@78px:78px * @px-scale;
+@79px:79px * @px-scale;
 @80px:80px * @px-scale;
+@81px:81px * @px-scale;
 @82px:82px * @px-scale;
+@83px:83px * @px-scale;
+@84px:84px * @px-scale;
 @85px:85px * @px-scale;
 @86px:86px * @px-scale;
 @87px:87px * @px-scale;
@@ -272,10 +283,12 @@
 @numbox-button-disabled-color:#ccc;
 @numbox-width: @100px;
 @numbox-height: @26px;
-@numbox-width-lg: @120px;
-@numbox-height-lg: @32px;
 @numbox-width-xl: @170px;
 @numbox-height-xl: @40px;
+@numbox-width-lg: @120px;
+@numbox-height-lg: @32px;
+@numbox-width-sm: @80px;
+@numbox-height-sm: @22px;
 
 /*选择器*/
 @picker-bg:#f5f5f9;
@@ -391,16 +404,21 @@
 .setMenuwrap(){
   &:extend(.border-r all);
 }
+.setSubMenuwrapTag(){
+  background-color: #f5f5f9;
+  margin-right: 1px;
+}
 .setMenuwrapTag(){
   /* 画个底线 */
   &:after{
     content: '';
     position: absolute;
     bottom: 0;
-    left:6px;
-    right:6px;
     height: @1px;
-    border-bottom: @1px dotted #bfbfbf;
+    left:0;
+    right:0;
+    background-color: #e5e5e5;
+    // border-bottom: @1px dotted #bfbfbf;
   }
   /* 二级选中 */
   +ul .menuwrap-tag.active{
@@ -409,9 +427,6 @@
       width:0;
     }
   }
-}
-.setSubMenuwrapTag(){
-  background-color: #f5f5f9;
 }
 .setMenuwrapTagActive(){
   /* 左侧选中块 */
