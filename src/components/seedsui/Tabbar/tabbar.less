@@ -7,7 +7,7 @@
 	overflow-x:auto;
 	overflow-y:hidden;
   white-space:nowrap;
-  background-color:@bar-bg;
+  background-color:@tabbar-bg;
   .tab{
     display:table-cell;
     width:1%;
@@ -29,13 +29,13 @@
 	vertical-align:top;
 
 	border-color:@dpborder;
-	color:@bar-color;
+	color:@tabbar-color;
 
 	.icon{
 		pointer-events:none;
 	}
 	&.active{
-		color:@bar-color-active;
+		color:@tabbar-color-active;
 		.icon{
 			background-position:center bottom;
 		}
@@ -59,15 +59,15 @@
 	}
 }
 .tabbar.reverse{
-	background-color:@bar-reverse-bg;
+	background-color:@tabbar-reverse-bg;
 	.tab{
-		color:@bar-reverse-color;
-		border-color:@bar-reverse-border;
+		color:@tabbar-reverse-color;
+		border-color:@tabbar-reverse-border;
 	}
 	.tab.active{
-		color:@bar-reverse-color-active;
-		border-color:@bar-reverse-border-active;
-		background-color:@bar-reverse-bg-active;
+		color:@tabbar-reverse-color-active;
+		border-color:@tabbar-reverse-border-active;
+		background-color:@tabbar-reverse-bg-active;
 	}
 }
 .tabbar[data-col]{
@@ -106,7 +106,7 @@
 //单线形tabbar-line
 .tabbar-line{
 	.tab:before,.tab:after {
-		.setContentLine(@bar-border);
+		.setContentLine(@tabbar-border);
 	}
 	.tab{
 		//下横线
@@ -129,7 +129,7 @@
 	    height: @2px;
 	    width: 100%;
 
-	    background-color:@bar-border-active;
+	    background-color:@tabbar-border-active;
 	    -webkit-transform-origin:center center;
 	    -webkit-transform:translate(-50%,0) scale(0,1);
 		}
@@ -145,7 +145,7 @@
 		}
 	}
 	.tab.active{
-		color:@bar-color-active;
+		color:@tabbar-color-active;
 		&:after {
 			-webkit-transform:translate(-50%,0) scale(1,1);
 		}
@@ -169,12 +169,12 @@
 .tabbar-line.reverse{
 	.tab{
 		&:before{
-			background-color:@bar-reverse-border;
+			background-color:@tabbar-reverse-border;
 		}
 	}
 	.tab.active {
 		&:after {
-			background-color:@bar-reverse-border-active;
+			background-color:@tabbar-reverse-border-active;
 		}
 	}
 }
@@ -213,8 +213,8 @@
 	}
 	.tab.active{
 		color:white;
-		background-color:@bar-color-active;
-		border-color:@bar-border-active;
+		background-color:@tabbar-color-active;
+		border-color:@tabbar-border-active;
 	}
 }
 .tabbar-rect.reverse{
@@ -223,7 +223,7 @@
 		border-color:white;
 	}
 	.tab.active{
-		color:@bar-reverse-bg;
+		color:@tabbar-reverse-bg;
 		background-color:white;
 	}
 }
@@ -241,17 +241,17 @@
 	.tab.active{
 		.tab-label{
 			color:white;
-			background-color:@bar-border-active;
+			background-color:@tabbar-border-active;
 		}
 	}
 }
 .tabbar-lump.reverse{
 	.tab{
-		color:@bar-reverse-color;
+		color:@tabbar-reverse-color;
 	}
 	.tab.active{
 		.tab-label{
-			color:@bar-border-active;
+			color:@tabbar-border-active;
 			background-color:white;
 		}
 	}
@@ -267,7 +267,7 @@
 //下拉型tabbar-dropdown
 .tabbar-dropdown{
 	&:after,.tab:not(:first-child):after{
-		.setContentLine(@bar-border);
+		.setContentLine(@tabbar-border);
 	}
 	&:after{
 		width: 100%;
@@ -306,10 +306,10 @@
 }
 .tabbar-dropdown.reverse{
 	&:after{
-		background-color:@bar-reverse-border;
+		background-color:@tabbar-reverse-border;
 	}
 	.tab:after{
-		background-color:@bar-reverse-border-active;
+		background-color:@tabbar-reverse-border-active;
   }
 }
 .tabbar-dropdown.animated{
@@ -338,9 +338,9 @@
 }
 .tabbar-footer.reverse{
 	.tab{
-		color:@bar-reverse-color;
-		border-color:@bar-reverse-border;
-		background-color:@bar-reverse-bg;
+		color:@tabbar-reverse-color;
+		border-color:@tabbar-reverse-border;
+		background-color:@tabbar-reverse-bg;
 	}
 }
 /*----------------tabbar.less(end)--------------*/

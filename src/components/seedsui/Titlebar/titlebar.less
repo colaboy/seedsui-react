@@ -11,7 +11,7 @@
   padding: @6px 0;
   box-sizing:border-box;
 
-  background-color:@bar-bg;
+  background-color:@titlebar-bg;
 
   .inputbox{
     -webkit-box-flex:1;
@@ -39,7 +39,7 @@
   font-weight: normal;
   -webkit-box-flex:1;
 
-  color:@bar-title;
+  color:@titlebar-title;
 }
 .titlebar-left+.titlebar-caption{
   padding: 0 100px;
@@ -51,30 +51,30 @@
   -webkit-box-pack: center;
   max-height:@32px;
   margin:0 @8px;
-  color:@bar-button;
-  border-color:@bar-button;
+  color:@titlebar-button;
+  border-color:@titlebar-button;
   line-height: 0;
   &:active{
-    /* color:@bar-button-active;
-    border-color:@bar-button-active; */
+    /* color:@titlebar-button-active;
+    border-color:@titlebar-button-active; */
     opacity: 0.5;
   }
 }
 .titlebar.reverse{
-  background-color:@bar-reverse-bg;
+  background-color:@titlebar-reverse-bg;
   .titlebar-caption{
-    color:@bar-reverse-color;
+    color:@titlebar-reverse-color;
   }
   //底线
   &:after{
-    background-color: @bar-reverse-border;
+    background-color: @titlebar-reverse-border;
   }
   .titlebar-button{
-    color:@bar-reverse-button;
-    border-color:@bar-reverse-button;
+    color:@titlebar-reverse-button;
+    border-color:@titlebar-reverse-button;
     &:active{
-      color:@bar-reverse-button-active;
-      border-color:@bar-reverse-button-active;
+      color:@titlebar-reverse-button-active;
+      border-color:@titlebar-reverse-button-active;
     }
   }
 }

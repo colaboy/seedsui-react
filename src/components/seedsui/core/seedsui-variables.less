@@ -219,25 +219,45 @@
   &:extend(.icon-plus all);
 }
 
-/* Tabbar | Titlebar */
-@bar-bg:#f9f9f9;
-@bar-bg-active:#f9f9f9;
-@bar-border:@border;
-@bar-border-active:@primary-bg;
-@bar-button:#1A1A1A;
-@bar-button-active:transparentize(@bar-button,0.5);
-@bar-title:#000;
-@bar-color:#666;
-@bar-color-active:@primary-bg;
+/* Titlebar */
+@titlebar-bg:#fff;
+@titlebar-bg-active:#fff;
+@titlebar-border:@border;
+@titlebar-border-active:@primary-bg;
+@titlebar-button:#1A1A1A;
+@titlebar-button-active:transparentize(@titlebar-button,0.5);
+@titlebar-title:#000;
+@titlebar-color:#666;
+@titlebar-color-active:@primary-bg;
 
-@bar-reverse-bg:@primary-bg;
-@bar-reverse-bg-active:@primary-bg;
-@bar-reverse-border:@primary-bg;
-@bar-reverse-border-active:white;
-@bar-reverse-button:white;
-@bar-reverse-button-active:transparentize(@bar-reverse-button,0.5);
-@bar-reverse-color:white;
-@bar-reverse-color-active:white;
+@titlebar-reverse-bg:@primary-bg;
+@titlebar-reverse-bg-active:@primary-bg;
+@titlebar-reverse-border:@primary-bg;
+@titlebar-reverse-border-active:white;
+@titlebar-reverse-button:white;
+@titlebar-reverse-button-active:transparentize(@titlebar-reverse-button,0.5);
+@titlebar-reverse-color:white;
+@titlebar-reverse-color-active:white;
+
+/* Tabbar */
+@tabbar-bg:#fff;
+@tabbar-bg-active:#fff;
+@tabbar-border:@border;
+@tabbar-border-active:@primary-bg;
+@tabbar-button:#1A1A1A;
+@tabbar-button-active:transparentize(@tabbar-button,0.5);
+@tabbar-title:#000;
+@tabbar-color:#666;
+@tabbar-color-active:@primary-bg;
+
+@tabbar-reverse-bg:@primary-bg;
+@tabbar-reverse-bg-active:@primary-bg;
+@tabbar-reverse-border:@primary-bg;
+@tabbar-reverse-border-active:white;
+@tabbar-reverse-button:white;
+@tabbar-reverse-button-active:transparentize(@tabbar-reverse-button,0.5);
+@tabbar-reverse-color:white;
+@tabbar-reverse-color-active:white;
 
 /* 按钮 */
 @button-bg:white;
@@ -327,14 +347,14 @@
 @numbox-width-sm: @80px;
 @numbox-height-sm: @22px;
 
-/* 选择器 */
+/* Picker选择器 */
 @picker-bg:#f5f5f9;
-@picker-button-color: @link;
-@picker-header-bg:@bar-bg;
+@picker-button-color: @primary-bg;
+@picker-header-bg:#fff;
 
-/* 小点点 */
+/* Dot小点点 */
 @dot-bg:@placeholder;
-@dot-bg-active:@primary-bg;
+@dot-bg-active:#51BD89;
 
 /* 时间轴 */
 @timeline-case:#999;
