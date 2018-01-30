@@ -57,24 +57,23 @@ Object.clone = function (obj) {
   return copy
 }
 
-/* -------------------
-  将Json转为params字符串，支持嵌套Json
-  ------------------- */
-/* Object.params = function (obj, isNotEnCode) {
-  var result = ''
-  var item
-  for (item in obj) {
-    if (isNotEnCode) result += '&' + item + '=' + obj[item]
-    else result += '&' + item + '=' + encodeURIComponent(obj[item]) // 使用decodeURIComponent解码
-  }
-  if (result) {
-    result = result.slice(1)
-  }
-  return result
-} */
-
-Object.params = function (obj, isNotEnCode) {
+/*
+  * get请求：将Json参数转为params字符串
+  * obj:参数, isNotEnCode:是否不编码
+  * 返回：xx=xx&xx=xx
+  * */
+Object.params = function (obj, op, isNotEnCode) {
   if (!Object.isPlainObject(obj)) return obj
+  if (obj instanceof Object && obj.length > 0) return ''
+  // 把{jsonReq:[{0:'0', 1:'1'}]}转成jsonReq=[{0:'0', 1:'1'}]的方式
+  if (op === 'toJsonString') {
+    var arr = []
+    for (var n in obj) {
+      arr.push(n + '=' + JSON.stringify(obj[n]))
+    }
+    return arr.join('&')
+  }
+  // 把{jsonReq:[{0:'0', 1:'1'}]}转成jsonReq.0=0&jsonReq.1=1的方式(支持嵌套Json)
   var result = ''
   function buildParams(obj, prevKey) {
     for (var key in obj) {
@@ -94,11 +93,24 @@ Object.params = function (obj, isNotEnCode) {
     return result
   }
   buildParams(obj)
+  // 删除result第一个字符
   if (result) {
     result = result.slice(1)
   }
   return result
 }
+/* Object.params = function (obj, isNotEnCode) {
+  var result = ''
+  var item
+  for (item in obj) {
+    if (isNotEnCode) result += '&' + item + '=' + obj[item]
+    else result += '&' + item + '=' + encodeURIComponent(obj[item]) // 使用decodeURIComponent解码
+  }
+  if (result) {
+    result = result.slice(1)
+  }
+  return result
+} */
 
 /* -------------------
   获得类型
