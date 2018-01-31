@@ -94,16 +94,15 @@ var DB = (function () {
     clearSession: function () {
       session.clear()
     },
-    setCookie: function (key, value, days) {
-      var expiresDay = days
+    setCookie: function (key, value, second) {
       var cookieStr = key + '=' + escape(value)
-      if (expiresDay) {
-        var exp = new Date()
-        exp.setTime(exp.getTime() + Number(expiresDay) * 24 * 60 * 60 * 1000)
-        cookieStr += ';expires=' + exp.toGMTString()
+      if (second) {
+        var expires = new Date()
+        expires.setTime(expires.getTime() + (second * 1000))
+        cookieStr += ';expires=' + expires.toGMTString()
       }
       document.cookie = cookieStr
-    }, // key,value
+    },
     getCookie: function (key) {
       var valExpr = new RegExp('(^| )' + key + '=([^]*)(|$)')
       var match = valExpr.exec(document.cookie)
@@ -111,15 +110,15 @@ var DB = (function () {
         return unescape(match[2])
       }
       return null
-    }, // key
+    },
     removeCookie: function (key) {
-      var exp = new Date()
-      exp.setTime(exp.getTime() - 1)
+      var expires = new Date()
+      expires.setTime(expires.getTime() - 1)
       var val = this.getCookie(key)
       if (val != null) {
-        document.cookie = key + '=' + val + 'expires=' + exp.toGMTString()
+        document.cookie = key + '=' + val + 'expires=' + expires.toGMTString()
       }
-    }, // key
+    },
     clearCookie: function clearCookie () {
       alert('抱歉，cookie不可以全部清空!')
     }

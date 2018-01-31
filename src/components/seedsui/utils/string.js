@@ -72,12 +72,12 @@ window.String.prototype.hasClass = function (name) {
 }
 
 // 清除img字符串的"https:"和"http:", 例如‘<img src="http:’转换后‘<img src="’
-window.String.prototype.clearImgScheme = function () {
+window.String.prototype.clearImgProtocol = function () {
   return this.replace(/<img\s+src="https:/gim, '<img src="').replace(/<img\s+src="http:/gim, '<img src="')
 }
 
 // 清除字符串的"https:"和"http:"
-window.String.prototype.clearScheme = function () {
+window.String.prototype.clearProtocol = function () {
   return this.replace(/https:/gim, '').replace(/http:/gim, '')
 }
 

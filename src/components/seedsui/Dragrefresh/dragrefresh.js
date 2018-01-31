@@ -161,7 +161,7 @@ var Dragrefresh = function (params) {
     s.isNoData = true
     s.isRefreshed = true
     // 收起头部
-    s.hideTop()
+    if (s.topContainer) s.hideTop()
     // 网络错误回调
     if (s.params.onError) s.params.onError(s)
   }

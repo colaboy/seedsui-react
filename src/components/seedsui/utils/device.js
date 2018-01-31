@@ -84,6 +84,9 @@ var Device = (function () {
     window.addEventListener('offline', handleOffline, false)
   }
   return {
+    protocol: window.location.protocol,
+    host: window.location.host,
+    domain: window.location.protocol + '//' + window.location.host,
     kernel: kernel,
     device: device,
     os: os,
