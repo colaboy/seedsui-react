@@ -41,6 +41,7 @@
 // @koala-prepend "Picker/picker.date.js"
 // @koala-prepend "Picker/picker.city.data.js"
 // @koala-prepend "Picker/picker.city.js"
+// @koala-prepend "SelectPicker/selectpicker.js"
 // @koala-prepend "Tree/tree.js"
 // @koala-prepend "Indexbar/indexbar.js"
 // @koala-prepend "Loading/loading.js"

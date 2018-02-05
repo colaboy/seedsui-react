@@ -1,0 +1,38 @@
+//@import "../base/tool/border.less";
+
+/*----------------selectpicker.less(start)--------------*/
+.selectpicker{
+  &:extend(.picker);
+  background-color: @picker-selected-bg;
+}
+.selectpicker.active{
+  &:extend(.picker.active);
+}
+.selectpicker-wrapper{
+  display: block;
+  position: relative;
+  overflow: auto;
+  height:auto;
+  max-height: 215px;
+}
+// 列表选项
+.selectpicker-option{
+  &:extend(.sliver, .border-b);
+  padding: 10px 12px;
+}
+.selectpicker-option.active{
+  color:@selectpicker-color-active;
+  .selectpicker-option-icon{
+    visibility: visible;
+  }
+}
+.selectpicker-option-caption{
+  &:extend(.sliver-caption);
+  pointer-events: none;
+}
+.selectpicker-option-icon{
+  .setPickerOptionIcon();
+  visibility: hidden;
+  pointer-events: none;
+}
+/*----------------selectpicker.less(end)--------------*/

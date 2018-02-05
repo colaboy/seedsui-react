@@ -1,4 +1,4 @@
-/* 变量 */
+/* autoprefixer: off */
 @font-face {
   font-family: 'iconfont';
   src: url('fonts/iconfont.eot?uem7qm');
@@ -324,7 +324,8 @@
 .icon-home-fill:before {
   content: "\e968";
 }
-.icon-hook:before {
+.icon-hook:before,
+.selectpicker-option-icon:before {
   content: "\e969";
 }
 .icon-hook-fill:before {
@@ -1088,6 +1089,7 @@
 .icon-write-fill:before {
   content: "\ea69";
 }
+/* 变量 */
 /* 尺寸 */
 /* 文字尺寸 */
 /* ios11安全区域 */
@@ -1122,6 +1124,7 @@
 /* Progress进度条 */
 /* Numbox数字框 */
 /* Picker选择器 */
+/* SelectPicker选择器 */
 /* Dot小点点 */
 /* Timeline时间轴 */
 /* Price价格 */
@@ -1295,7 +1298,8 @@ br {
 .border-b,
 hr,
 .basketline,
-.picker-header {
+.picker-header,
+.selectpicker-option {
   background-position: left bottom;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d1d1d1), color-stop(1, #d1d1d1));
 }
@@ -1306,7 +1310,8 @@ hr,
 .basketline,
 .group,
 .picker-header,
-.picker-layer-frame {
+.picker-layer-frame,
+.selectpicker-option {
   background-repeat: repeat-x;
   -webkit-background-size: 100% 1px;
 }
@@ -1352,7 +1357,8 @@ hr,
   .border-b,
   hr,
   .basketline,
-  .picker-header {
+  .picker-header,
+  .selectpicker-option {
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, #d1d1d1));
   }
   .border-tb,
@@ -2931,6 +2937,7 @@ input[type="color"] {
 /*----------------mark.less(end)----------------*/
 /*----------------grid.less(start)--------------*/
 .grid-title {
+  position: relative;
   margin: 10px 12px 0 12px;
   color: #9e9e9e;
 }
@@ -3928,7 +3935,8 @@ input[type="color"] {
 }
 /*----------------card.less(end)--------------*/
 /*----------sliver.less(start)----------*/
-.sliver {
+.sliver,
+.selectpicker-option {
   position: relative;
   display: -webkit-box;
   -webkit-box-align: center;
@@ -3943,11 +3951,13 @@ input[type="color"] {
   display: block;
   margin-left: 4px;
 }
-.sliver {
+.sliver,
+.selectpicker-option {
   color: #aaaaaa;
   background-color: #f8f8f8;
 }
-.sliver-caption {
+.sliver-caption,
+.selectpicker-option-caption {
   position: relative;
   display: block;
   -webkit-box-flex: 1;
@@ -4304,6 +4314,7 @@ progress::-webkit-progress-value {
   }
 }
 .loading-floating-caption {
+  font-size: 12px;
   text-align: center;
 }
 /*加载更多*/
@@ -5338,7 +5349,7 @@ progress::-webkit-progress-value {
   border-color: #d1d1d1;
 }
 .alert h1 {
-  padding: 15px 0 5px 0;
+  padding: 15px 12px 5px 12px;
   font-weight: 500;
   font-size: 16px;
   text-align: center;
@@ -6135,7 +6146,8 @@ progress::-webkit-progress-value {
 }
 /*----------------richedit.less(end)--------------*/
 /*----------------picker.less(start)--------------*/
-.picker {
+.picker,
+.selectpicker {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -6143,9 +6155,10 @@ progress::-webkit-progress-value {
   -webkit-transition-property: -webkit-transform, opacity, visibility;
   -webkit-transition-duration: 300ms;
   -webkit-transform: translate3d(0px, 100%, 0px);
-  background-color: white;
+  background-color: #f5f5f9;
 }
-.picker.active {
+.picker.active,
+.selectpicker.active {
   -webkit-transform: translate3d(0px, 0px, 0px);
 }
 .picker-header {
@@ -6164,6 +6177,11 @@ progress::-webkit-progress-value {
   padding: 0 5px;
   color: #20aeff;
 }
+.picker-cancel.disabled,
+.picker-submit.disabled {
+  color: #d1d1d1;
+  pointer-events: none;
+}
 .picker-cancel {
   left: 8px;
 }
@@ -6175,7 +6193,6 @@ progress::-webkit-progress-value {
   position: relative;
   height: 215px;
   overflow: hidden;
-  background-color: #f5f5f9;
   -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, #f5f5f9 40%, #f5f5f9 60%, transparent 100%, transparent);
 }
 .picker-slotbox {
@@ -6246,6 +6263,38 @@ progress::-webkit-progress-value {
   -webkit-transform: translateY(-50%);
 }
 /*----------------picker.less(end)--------------*/
+/*----------------selectpicker.less(start)--------------*/
+.selectpicker {
+  background-color: #ffffff;
+}
+.selectpicker-wrapper {
+  display: block;
+  position: relative;
+  overflow: auto;
+  height: auto;
+  max-height: 215px;
+}
+.selectpicker-option {
+  padding: 10px 12px;
+}
+.selectpicker-option.active {
+  color: #20aeff;
+}
+.selectpicker-option.active .selectpicker-option-icon {
+  visibility: visible;
+}
+.selectpicker-option-caption {
+  pointer-events: none;
+}
+.selectpicker-option-icon {
+  font-family: 'iconfont';
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  visibility: hidden;
+  pointer-events: none;
+}
+/*----------------selectpicker.less(end)--------------*/
 /*----------------------------summary.less(start)----------------------------*/
 /*隐藏原始图标*/
 summary::-webkit-details-marker {

@@ -13,7 +13,7 @@
   -webkit-transition-duration:300ms;
   -webkit-transform:translate3d(0px,100%,0px);
 
-  background-color:white;
+  background-color: @picker-bg;
 }
 .picker.active{
   -webkit-transform:translate3d(0px,0px,0px);
@@ -32,6 +32,10 @@
   line-height:@32px;
   padding:0 @5px;
   color: @picker-button-color;
+  &.disabled{
+    color: @picker-button-disabled-color;
+    pointer-events: none;
+  }
 }
 .picker-cancel{
   left:@8px;
@@ -45,7 +49,6 @@
   position:relative;
   height:@215px;
   overflow:hidden;
-  background-color: @picker-bg;
   -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 0%, @picker-bg 40%, @picker-bg 60%, transparent 100%, transparent);
 }
 

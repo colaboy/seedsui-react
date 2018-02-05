@@ -38,16 +38,16 @@ var DB = (function () {
       return null
     }
     if (val.indexOf('_number:') === 0) {
-      return Number(val.replace(/^_number:/,''))
+      return Number(val.replace(/^_number:/, ''))
     }
     if (val.indexOf('_boolean:') === 0) {
-      return Boolean(val.replace(/^_boolean:/,''))
+      return Boolean(val.replace(/^_boolean:/, ''))
     }
     if (val.indexOf('_function:') === 0) {
-      return val.replace(/^_function:/,'')
+      return val.replace(/^_function:/, '')
     }
     if (val.indexOf('_json:') === 0) {
-      return JSON.parse(val.replace(/^_json:/,''))
+      return JSON.parse(val.replace(/^_json:/, ''))
     }
     return val
   }
