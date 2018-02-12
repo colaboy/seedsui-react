@@ -332,7 +332,88 @@
 @calendar-checked-bg:@primary-bg;
 
 /* Progress进度条 */
-@progress-bg:#f2f2f2;
+.setProgress(){
+  height:@16px;
+  border-radius:@6px;
+  background-color:#F3F3F9;
+}
+.setProgressBar(){
+  height:@16px;
+  border-radius:@6px;
+  background-color:#31AAF5;
+  border-color: transparent;
+  // 文字
+  color: white;
+  font-size: 12px;
+  text-align: right;
+
+  /* &.theme-1{
+    background-color:#32d2ea;
+    border-color: #36b0cf;
+  }
+  &.theme-2{
+    background-color:#6fb1ff;
+    border-color: #439fd9;
+  }
+  &.theme-3{
+    background-color:#ff9a5c;
+    border-color: #e57430;
+  }
+  &.theme-4{
+    background-color:#b79fff;
+    border-color: #8c6bf4;
+  }
+  &.theme-5{
+    background-color:#61e264;
+    border-color: #43c847;
+  }
+  //3D样式
+  &.threed {
+    border-width: 0;
+    box-shadow: inset 0 @2px @9px  rgba(255,255,255,0.3), inset 0 -@2px @6px rgba(0,0,0,0.4);
+  }
+  //斑马条
+  @-webkit-keyframes movestripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: @50px @50px;
+    }
+  }
+  &.striped{
+    &:after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      bottom:0;
+      right:0;
+      background-image:linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+      background-size:@50px @50px;
+      overflow:hidden;
+    }
+    &.animated:after{
+      animation: movestripes 2s linear infinite;
+      -webkit-animation: movestripes 2s linear infinite;
+    }
+  }
+  */
+}
+.setProgressLable(){
+  height: @16px;
+  line-height: @16px;
+  width: @50px;
+  text-align: center;
+  
+  border-radius: @20px;
+  font-size: @12px;
+  font-weight: bold;
+  margin-left: @8px;
+  min-width: @56px;
+  color: #494949;
+  background-color:#F3F3F9;
+}
 
 /* Numbox数字框 */
 @numbox-button-color:#666;

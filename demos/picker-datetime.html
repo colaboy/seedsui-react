@@ -186,7 +186,7 @@
                         //点击结束时间
                         }else if(input.classList.contains("SID-DateTimeEnd")){
                             //不合法的时间
-                            if(new Date(activeDate)<=new Date().setMinuteCeil(10)){
+                            if(new Date(activeDate)<=new Date().nextMinuteSpace(10)){
                                 app.toast.setHTML("结束时间过早");
                                 app.toast.show();
                                 return;
@@ -270,7 +270,7 @@
                     temp_mm = split2[1]
                 }else{
                     var nowDate = new Date()
-                    date=nowDate.setMinuteCeil(10);
+                    date=nowDate.nextMinuteSpace(10);
                     temp_yyyy = date.getFullYear()
                     temp_MM = date.getMonth() + 1
                     temp_dd = date.getDate()

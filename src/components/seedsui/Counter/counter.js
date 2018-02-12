@@ -7,6 +7,7 @@ var Counter = function (counter, params) {
     fromAttr: 'data-from',
     toAttr: 'data-to',
     durationAttr: 'data-duration',
+    suffixAttr: 'data-suffix', // 分母
     maxMilliSec: 50, // 最快50毫秒执行一次
     maxCountSec: 20 // 平均一秒执行20次
   }
@@ -29,6 +30,8 @@ var Counter = function (counter, params) {
   s.from = s.counter.getAttribute(s.params.fromAttr) ? s.counter.getAttribute(s.params.fromAttr) : 0
   // To(结束数字)
   s.to = s.counter.getAttribute(s.params.toAttr) ? s.counter.getAttribute(s.params.toAttr) : 0
+  // suffix(后缀)
+  s.suffix = s.counter.getAttribute(s.params.suffixAttr) ? s.counter.getAttribute(s.params.suffixAttr) : ''
   // Current(当前数字)
   s.current = s.from
   // Duration(执行秒数)
@@ -58,16 +61,16 @@ var Counter = function (counter, params) {
   // console.log('从'+s.from+'到'+s.to+'，共'+s.duration/1000+'秒走完，每秒需要增加'+secNum+'，每'+s.milliSec+'毫秒执行一次，一秒执行'+Math.round(1000/s.milliSec)+'次，一次递增：'+s.step+'')
 
   // Interval
-  s.interval
+  s.interval = null
   /* ----------------------
   Method
   ---------------------- */
   s.play = function () {
     s.interval = window.setInterval(function () {
-      s.current = parseInt(s.current) + parseInt(s.step)
-      s.counter.innerHTML = s.current
+      s.current = parseInt(s.current, 10) + parseInt(s.step, 10)
+      s.counter.innerHTML = s.current + s.suffix
       if (s.current >= s.to) {
-        s.counter.innerHTML = s.to
+        s.counter.innerHTML = s.to + s.suffix
         clearInterval(s.interval)
       }
     }, s.milliSec)

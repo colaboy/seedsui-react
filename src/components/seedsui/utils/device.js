@@ -39,6 +39,8 @@ var Device = (function () {
     platform = 'qq'
   } else if (ua.indexOf('ucbrowser') > -1) {
     platform = 'uc'
+  } else if (ua.indexOf('dinghuoappversion') > -1) {
+    platform = 'dinghuo'
   }
   // 获得苹果机型
   function appleModel () { // 获取设备型号
@@ -97,7 +99,7 @@ var Device = (function () {
     language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
     appVersion: window.navigator.appVersion,
     onLine: onLine,
-    isOnLine: window.navigator.onLine,
+    isOnLine: window.navigator.onLine || true,
     ua: ua
   }
 })()

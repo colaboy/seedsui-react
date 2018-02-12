@@ -108,3 +108,13 @@ window.String.prototype.isTag = function () {
   }
   return false
 }
+// 获取指定后缀的数值(允许是小数和整数),例如:'44px'.getUnitValue() / '44em'.getUnitValue('em')
+window.String.prototype.getUnitValue = function (argSuffix) {
+  // 默认后缀为px
+  var suffix = argSuffix || 'px'
+  var patt=new RegExp('^[+-]?(0|([1-9][0-9]*))(.[0-9]?)' + suffix + '$');
+  if (patt.test(this)) {
+    return this.substring(0, this.indexOf(suffix))
+  }
+  return 0
+}

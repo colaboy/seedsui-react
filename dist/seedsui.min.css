@@ -2326,9 +2326,12 @@ input[type="color"] {
   width: 1%;
   font-size: 0;
 }
-.tabbar.disabled {
-  pointer-events: none;
+.tabbar.disabled,
+.tabbar[disabled] {
   opacity: 0.5;
+}
+.tabbar[disabled] {
+  pointer-events: none;
 }
 .tab {
   padding: 0 6px;
@@ -2511,6 +2514,39 @@ input[type="color"] {
 .tabbar-rect.reverse .tab.active {
   color: #20aeff;
   background-color: white;
+}
+.tabbar-rect.tabbar-rect-radius0 {
+  border-radius: 0px;
+}
+.tabbar-rect.tabbar-rect-radius0 .tab:nth-of-type(1) {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.tabbar-rect.tabbar-rect-radius0 .tab:nth-last-of-type(1) {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.tabbar-rect.tabbar-rect-radius4 {
+  border-radius: 4px;
+}
+.tabbar-rect.tabbar-rect-radius4 .tab:nth-of-type(1) {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.tabbar-rect.tabbar-rect-radius4 .tab:nth-last-of-type(1) {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.tabbar-rect.tabbar-rect-radius8 {
+  border-radius: 8px;
+}
+.tabbar-rect.tabbar-rect-radius8 .tab:nth-of-type(1) {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.tabbar-rect.tabbar-rect-radius8 .tab:nth-last-of-type(1) {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 .tabbar-lump .tab .tab-label {
   padding: 0 12px;
@@ -3986,6 +4022,130 @@ input[type="color"] {
 }
 /*----------title.less(end)----------*/
 /*----------------progress.less(start)--------------*/
+.progress-box {
+  display: -webkit-box;
+  -webkit-box-align: center;
+}
+.progress-box .progress {
+  -webkit-box-flex: 1.0;
+}
+.progress {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 16px;
+  border-radius: 6px;
+  background-color: #F3F3F9;
+}
+.progress-bar {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  -webkit-animation: progressexpand 1s linear;
+  margin: 0;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  height: 16px;
+  border-radius: 6px;
+  background-color: #31AAF5;
+  border-color: transparent;
+  color: white;
+  font-size: 12px;
+  text-align: right;
+  /* &.theme-1{
+    background-color:#32d2ea;
+    border-color: #36b0cf;
+  }
+  &.theme-2{
+    background-color:#6fb1ff;
+    border-color: #439fd9;
+  }
+  &.theme-3{
+    background-color:#ff9a5c;
+    border-color: #e57430;
+  }
+  &.theme-4{
+    background-color:#b79fff;
+    border-color: #8c6bf4;
+  }
+  &.theme-5{
+    background-color:#61e264;
+    border-color: #43c847;
+  }
+  //3D样式
+  &.threed {
+    border-width: 0;
+    box-shadow: inset 0 @2px @9px  rgba(255,255,255,0.3), inset 0 -@2px @6px rgba(0,0,0,0.4);
+  }
+  //斑马条
+  @-webkit-keyframes movestripes {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: @50px @50px;
+    }
+  }
+  &.striped{
+    &:after{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      bottom:0;
+      right:0;
+      background-image:linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+      background-size:@50px @50px;
+      overflow:hidden;
+    }
+    &.animated:after{
+      animation: movestripes 2s linear infinite;
+      -webkit-animation: movestripes 2s linear infinite;
+    }
+  }
+  */
+}
+.progress-caption {
+  font-size: 12px;
+  color: white;
+}
+.progress-caption.left,
+.progress-caption.right,
+.progress-caption.center {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+}
+.progress-caption.left {
+  left: 12px;
+}
+.progress-caption.right {
+  right: 12px;
+}
+.progress-caption.center {
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+@-webkit-keyframes progressexpand {
+  0% {
+    width: 0;
+  }
+}
+.progress-label {
+  display: block;
+  height: 16px;
+  line-height: 16px;
+  width: 50px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+  min-width: 56px;
+  color: #494949;
+  background-color: #F3F3F9;
+}
 progress {
   display: block;
   height: 10px;
@@ -4006,120 +4166,6 @@ progress::-webkit-progress-bar {
 }
 progress::-webkit-progress-value {
   background-color: #20aeff;
-}
-.progress {
-  position: relative;
-  padding: 2px;
-  background-color: #f2f2f2;
-}
-.progress-bar {
-  display: block;
-  overflow: hidden;
-  position: relative;
-  -webkit-animation: progressexpand 1s linear;
-  height: 12px;
-  margin: 0;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  background-color: #20aeff;
-  border-color: transparent;
-}
-.progress-bar.theme-1 {
-  background-color: #32d2ea;
-  border-color: #36b0cf;
-}
-.progress-bar.theme-2 {
-  background-color: #6fb1ff;
-  border-color: #439fd9;
-}
-.progress-bar.theme-3 {
-  background-color: #ff9a5c;
-  border-color: #e57430;
-}
-.progress-bar.theme-4 {
-  background-color: #b79fff;
-  border-color: #8c6bf4;
-}
-.progress-bar.theme-5 {
-  background-color: #61e264;
-  border-color: #43c847;
-}
-.progress-bar.threed {
-  border-width: 0;
-  box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
-}
-.progress-bar.striped:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-  background-size: 50px 50px;
-  overflow: hidden;
-}
-.progress-bar.striped.animated:after {
-  animation: movestripes 2s linear infinite;
-  -webkit-animation: movestripes 2s linear infinite;
-}
-.progress-text {
-  font-size: 12px;
-  color: white;
-}
-.progress-text.left,
-.progress-text.right,
-.progress-text.center {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-}
-.progress-text.left {
-  left: 12px;
-}
-.progress-text.right {
-  right: 12px;
-}
-.progress-text.center {
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-}
-@-webkit-keyframes movestripes {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 50px 50px;
-  }
-}
-@-webkit-keyframes progressexpand {
-  0% {
-    width: 0;
-  }
-}
-.progress-box {
-  display: -webkit-box;
-  -webkit-box-align: center;
-  padding: 8px 12px;
-}
-.progress-box .progress {
-  border-radius: 40px;
-  -webkit-box-flex: 1.0;
-}
-.progress-box .progress-label {
-  display: block;
-  height: 16px;
-  line-height: 16px;
-  width: 50px;
-  text-align: center;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 8px;
-  min-width: 56px;
-  color: #494949;
-  background-color: #f2f2f2;
 }
 /*----------------progress.less(end)--------------*/
 /*-----------------------------loading.less(start)-----------------------------*/
@@ -7127,10 +7173,10 @@ ul.weather-otherday li {
 .notice-icon-nonetwork {
   font-family: 'iconfont';
 }
-.notice img {
-  width: 120px;
+.notice-caption {
+  margin-top: 10px;
 }
-.notice p {
+.notice-sndcaption {
   margin-top: 10px;
 }
 .notice .notice-content {
@@ -7582,6 +7628,8 @@ ul.weather-otherday li {
   position: relative;
   -webkit-box-flex: 1;
 }
+.col-flex:before,
+.col-flex:after,
 .row:before,
 .row:after,
 .row-flex:before,
@@ -7589,6 +7637,7 @@ ul.weather-otherday li {
   display: table;
   content: " ";
 }
+.col-flex:after,
 .row:after,
 .row-flex:after {
   clear: both;

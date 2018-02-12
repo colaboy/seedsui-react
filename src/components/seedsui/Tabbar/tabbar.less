@@ -13,9 +13,11 @@
     width:1%;
     font-size: 0;
   }
-	&.disabled{
-		pointer-events: none;
+	&.disabled,&[disabled]{
 		opacity: 0.5;
+  }
+  &[disabled]{
+		pointer-events: none;
 	}
 }
 .tab{
@@ -226,6 +228,41 @@
 		color:@tabbar-reverse-bg;
 		background-color:white;
 	}
+}
+.tabbar-rect{
+  &.tabbar-rect-radius0{
+    border-radius: 0px;
+    .tab:nth-of-type(1){
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    .tab:nth-last-of-type(1){
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+  }
+  &.tabbar-rect-radius4{
+    border-radius: @4px;
+    .tab:nth-of-type(1){
+      border-top-left-radius: @4px;
+      border-bottom-left-radius: @4px;
+    }
+    .tab:nth-last-of-type(1){
+      border-top-right-radius: @4px;
+      border-bottom-right-radius: @4px;
+    }
+  }
+  &.tabbar-rect-radius8{
+    border-radius: @8px;
+    .tab:nth-of-type(1){
+      border-top-left-radius: @8px;
+      border-bottom-left-radius: @8px;
+    }
+    .tab:nth-last-of-type(1){
+      border-top-right-radius: @8px;
+      border-bottom-right-radius: @8px;
+    }
+  }
 }
 
 //滑块形tabbar-lump
