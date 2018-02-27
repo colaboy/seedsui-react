@@ -120,6 +120,7 @@ var MenuWrap = function (container, params) {
   // 点击树
   s.onClick = function (e) {
     var target = e.target
+    if (!target.classList.contains(s.params.tagClass)) return
     var isActived = target.classList.contains(s.params.activeClass)
     var isExtand = target.classList.contains(s.params.extandClass)
     // 如果已经展开,则收缩

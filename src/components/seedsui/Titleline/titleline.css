@@ -1,0 +1,19 @@
+/*----------title.less(start)----------*/
+.title-line {
+  width: 56%;
+  margin: 14px auto -9px auto;
+  color: #4a4a4a;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid #ccc;
+}
+.title-line span {
+  color: #808080;
+  display: inline-block;
+  background-color: #fff;
+  font-size: 15px;
+  padding: 0 9px;
+  position: relative;
+  top: -14px;
+}
+/*----------title.less(end)----------*/

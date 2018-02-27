@@ -1,0 +1,133 @@
+/*----------------box.less(start)--------------*/
+.box {
+  display: -webkit-box;
+}
+.inline-box {
+  display: -webkit-inline-box;
+}
+.box-left {
+  -webkit-box-pack: start;
+}
+.box-center {
+  -webkit-box-pack: center;
+}
+.box-right {
+  -webkit-box-pack: end;
+}
+.box-top {
+  -webkit-box-align: start;
+}
+.box-middle {
+  -webkit-box-align: center;
+}
+.box-bottom {
+  -webkit-box-align: end;
+}
+.box-middlecenter {
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+}
+.box-vertical {
+  -webkit-box-orient: vertical;
+}
+.box-horizontal {
+  -webkit-box-orient: horizontal;
+}
+.box-flex-1 {
+  -webkit-box-flex: 1.0;
+}
+/*--------------flex--------------*/
+.flex {
+  display: -webkit-flex;
+}
+.inline-flex {
+  display: -webkit-inline-flex;
+}
+.flex-wrap {
+  -webkit-flex-wrap: wrap;
+}
+.flex-1 {
+  -webkit-flex: 1;
+}
+/*flex内部水平对齐*/
+.flex-left {
+  /*左对齐*/
+  -webkit-justify-content: flex-start;
+}
+.flex-center {
+  /*水平居中*/
+  -webkit-justify-content: center;
+}
+.flex-right {
+  /*右对齐*/
+  -webkit-justify-content: flex-end;
+}
+.flex-between {
+  /*水平两端分布*/
+  -webkit-justify-content: space-between;
+}
+.flex-around {
+  /*水平居中分布*/
+  -webkit-justify-content: space-around;
+}
+/*flex内部垂直对齐*/
+.flex-top {
+  /*顶部对齐*/
+  -webkit-align-items: flex-start;
+}
+.flex-middle {
+  /*垂直居中对齐*/
+  -webkit-align-items: center;
+}
+.flex-bottom {
+  /*底部对齐*/
+  -webkit-align-items: flex-end;
+}
+.flex-middlecenter {
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+}
+.flex-vertical-stretch {
+  /*竖向拉伸*/
+  -webkit-align-items: stretch;
+}
+.flex-baseline {
+  /*垂直居中对齐*/
+  -webkit-align-items: baseline;
+}
+/*flex内部方向控制*/
+.flex-vertical {
+  -webkit-flex-direction: column;
+}
+.flex-horizontal {
+  -webkit-flex-direction: row;
+}
+.flex-vertical-reverse {
+  -webkit-flex-direction: column-reverse;
+}
+.flex-horizontal-reverse {
+  -webkit-flex-direction: row-reverse;
+}
+.flex-shrink > div {
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-flex-shrink: 0;
+}
+/*flex自身对齐:设置后则覆盖父容器*/
+.flex-self-stretch {
+  -webkit-align-self: stretch;
+  /*拉伸*/
+}
+.flex-self-top {
+  -webkit-align-self: flex-start;
+  /*顶部对齐*/
+}
+.flex-self-middle {
+  -webkit-align-self: center;
+  /*垂直居中*/
+}
+.flex-self-bottom {
+  -webkit-align-self: flex-end;
+  /*底部对齐*/
+}
+/*----------------box.less(end)--------------*/

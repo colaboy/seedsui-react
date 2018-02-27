@@ -1,0 +1,16 @@
+/*----------------------------summary.less(start)----------------------------*/
+/*隐藏原始图标*/
+summary::-webkit-details-marker {
+  display: none;
+}
+/*图标样式*/
+summary .summary-icon {
+  background-image: url(images/arrow.png);
+  background-size: 100% auto;
+  background-position: center 66%;
+}
+/*图标选中样式*/
+details[open] summary .summary-icon {
+  background-position: center bottom;
+}
+/*----------------------------summary.less(end)----------------------------*/
