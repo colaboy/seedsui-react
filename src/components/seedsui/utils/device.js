@@ -55,6 +55,7 @@ var Device = (function () {
   }
 
   function getAppleDevice () { // 获取弱设备
+    if (/iphone/gi.test(navigator.userAgent) && (screen.height === 812 && screen.width === 375)) return 'iPhoneX'
     let model = appleModel()
     switch (model) {
       case '15b150':
@@ -100,8 +101,9 @@ var Device = (function () {
     appVersion: window.navigator.appVersion,
     onLine: onLine,
     isOnLine: window.navigator.onLine || true,
-    ua: ua
+    ua: ua,
+    orientation: window.orientation || '请在真机上测试' // 设备方向0:竖屏,90:左横屏,-90:右横屏
   }
 })()
 
-;//export default Device
+export default Device
