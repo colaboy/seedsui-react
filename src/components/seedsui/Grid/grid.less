@@ -89,9 +89,7 @@
 	width:33%;
 	float:left;
 	text-align:center;
-	padding:@2px;
 	box-sizing:border-box;
-	
 }
 /*图标区域*/
 .grid-content{
@@ -168,17 +166,7 @@
 		}
 	}
 }
-/*单元格行间距*/
-.grid li {
-  padding-top: @8px;
-}
-.grid li:last-child{
-	padding-bottom:@8px;
-}
-.grid.grid-bordered li{
-	padding-top:@8px;
-	padding-bottom:@8px;
-}
+
 /*图标*/
 .grid-icon {
   .icon-img{
@@ -201,13 +189,26 @@
     pointer-events: none;
   }
 }
+
+/*单元格行间距*/
+.grid-cell {
+	padding:@2px;
+  padding-top: @8px;
+}
+.grid-cell:last-child{
+	padding-bottom:@8px;
+}
+.grid.grid-bordered .grid-cell{
+	padding-top:@8px;
+	padding-bottom:@8px;
+}
 /*----------------类型----------------*/
 /*相册类型*/
 .grid-album{
-  padding: 6px;
-}
-.grid-album li{
-  padding: 6px;
+	padding: 6px;
+	.grid-cell{
+		padding: 6px;
+	}
 }
 .grid-album .grid-content{
   height: @grid-album-cell-height;
