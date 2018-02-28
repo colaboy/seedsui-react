@@ -2544,7 +2544,7 @@ input[type="color"] {
 }
 .tabbar-dropdown .tab.active {
   color: #20aeff;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 .tabbar-dropdown .tab.active .icon {
   -webkit-transform: rotate(180deg);
@@ -2555,7 +2555,7 @@ input[type="color"] {
 }
 .tabbar-dropdown.reverse .tab.active {
   color: #ffffff;
-  background-color: #20aeff;
+  background-color: transparent;
 }
 .tabbar-dropdown.reverse .tab:after {
   background-color: rgba(255, 255, 255, 0.7);
@@ -2576,7 +2576,7 @@ input[type="color"] {
 }
 .tabbar-footer .tab.active {
   color: #20aeff;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 .tabbar-footer .tab-label {
   display: block;
@@ -2591,7 +2591,7 @@ input[type="color"] {
 }
 .tabbar-footer.reverse .tab.active {
   color: #ffffff;
-  background-color: #20aeff;
+  background-color: transparent;
 }
 /*----------------tabbar.less(end)--------------*/
 /*----------------button.less(start)----------------*/
@@ -7477,7 +7477,8 @@ ul.weather-otherday li {
   -webkit-box-pack: center;
   -webkit-box-align: center;
 }
-.box-vertical {
+.box-vertical,
+.tabbar-footer .tab {
   -webkit-box-orient: vertical;
 }
 .box-horizontal {
