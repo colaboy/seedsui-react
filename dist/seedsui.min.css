@@ -1112,7 +1112,11 @@
 /* List列表 */
 /* Grid */
 /* Titlebar */
-/* Tabbar */
+/* Tabbar-line */
+/* Tabbar-rect */
+/* Tabbar-lump */
+/* Tabbar-dropdown */
+/* Tabbar-footer */
 /* Button按钮 */
 /* 按钮-点击与选中 */
 /* 按钮-禁用 */
@@ -2321,12 +2325,6 @@ input[type="color"] {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  background-color: #ffffff;
-}
-.tabbar .tab {
-  display: table-cell;
-  width: 1%;
-  font-size: 0;
 }
 .tabbar.disabled,
 .tabbar[disabled] {
@@ -2342,18 +2340,10 @@ input[type="color"] {
   box-sizing: border-box;
   border-style: solid;
   border-width: 0;
-  vertical-align: top;
-  border-color: #e5e5e5;
-  color: #666666;
-}
-.tab .icon {
-  pointer-events: none;
-}
-.tab.active {
-  color: #20aeff;
-}
-.tab.active .icon {
-  background-position: center bottom;
+  display: table-cell;
+  width: 1%;
+  height: 40px;
+  vertical-align: middle;
 }
 .tab-label {
   display: inline-block;
@@ -2363,56 +2353,17 @@ input[type="color"] {
   white-space: nowrap;
   pointer-events: none;
   vertical-align: middle;
+}
+.tabbar-icon {
   margin: 0 4px;
+  pointer-events: none;
 }
-/*tabbar*/
-.tabbar .tab {
-  height: 40px;
-  line-height: 40px;
+.tabbar-tiled .tab {
+  text-align: initial;
 }
-.tabbar.reverse {
-  background-color: #20aeff;
-}
-.tabbar.reverse .tab {
-  color: #ffffff;
-  border-color: #20aeff;
-}
-.tabbar.reverse .tab.active {
-  color: #ffffff;
-  border-color: #ffffff;
-  background-color: #20aeff;
-}
-.tabbar[data-col] {
-  font-size: 0;
-  line-height: 0;
-  display: block;
-}
-.tabbar[data-col] .tab {
-  display: inline-block;
-}
-.tabbar[data-col] .tab-label {
-  max-width: 80%;
-}
-.tabbar[data-col="2"] .tab {
-  width: 50%;
-}
-.tabbar[data-col="3"] .tab {
-  width: 33%;
-}
-.tabbar[data-col="3"] .tab:nth-of-type(even) {
-  width: 34%;
-}
-.tabbar[data-col="4"] .tab {
-  width: 25%;
-}
-.tabbar[data-col="5"] .tab {
-  width: 20%;
-}
-.tabbar[data-col="6"] .tab {
-  width: 17%;
-}
-.tabbar[data-col="6"] .tab:nth-of-type(even) {
-  width: 16%;
+.tabbar-line {
+  color: #666666;
+  background-color: #ffffff;
 }
 .tabbar-line .tab:before,
 .tabbar-line .tab:after {
@@ -2457,6 +2408,7 @@ input[type="color"] {
 }
 .tabbar-line .tab.active {
   color: #20aeff;
+  background-color: #ffffff;
 }
 .tabbar-line .tab.active:after {
   -webkit-transform: translate(-50%, 0) scale(1, 1);
@@ -2470,7 +2422,15 @@ input[type="color"] {
 .tabbar-line.tabbar-line-width70 .tab:after {
   width: 70%;
 }
+.tabbar-line.reverse {
+  color: #ffffff;
+  background-color: #20aeff;
+}
 .tabbar-line.reverse .tab:before {
+  background-color: #20aeff;
+}
+.tabbar-line.reverse .tab.active {
+  color: #ffffff;
   background-color: #20aeff;
 }
 .tabbar-line.reverse .tab.active:after {
@@ -2487,91 +2447,75 @@ input[type="color"] {
   -webkit-transition-duration: 0.3s;
 }
 .tabbar-rect {
-  border-radius: 16px;
+  color: #666666;
+  background-color: #ffffff;
   max-width: 96%;
+  border: 1px solid #d1d1d1;
 }
 .tabbar-rect .tab {
-  height: 32px;
-  line-height: 30px;
-  border-width: 1px 1px 1px 0;
-}
-.tabbar-rect .tab:nth-of-type(1) {
-  border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-left-width: 1px;
+  height: 24px;
+  border-right: 1px solid #d1d1d1;
 }
 .tabbar-rect .tab:nth-last-of-type(1) {
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-right: 0;
 }
 .tabbar-rect .tab.active {
-  color: white;
+  color: #ffffff;
   background-color: #20aeff;
-  border-color: #20aeff;
+}
+.tabbar-rect.reverse {
+  color: #ffffff;
+  background-color: #20aeff;
+  border: 1px solid #20aeff;
 }
 .tabbar-rect.reverse .tab {
-  color: white;
-  border-color: white;
+  border-color: #20aeff;
 }
 .tabbar-rect.reverse .tab.active {
   color: #20aeff;
-  background-color: white;
+  background-color: #ffffff;
 }
-.tabbar-rect.tabbar-rect-radius0 {
-  border-radius: 0px;
-}
-.tabbar-rect.tabbar-rect-radius0 .tab:nth-of-type(1) {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-.tabbar-rect.tabbar-rect-radius0 .tab:nth-last-of-type(1) {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-.tabbar-rect.tabbar-rect-radius4 {
-  border-radius: 4px;
-}
-.tabbar-rect.tabbar-rect-radius4 .tab:nth-of-type(1) {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.tabbar-rect.tabbar-rect-radius4 .tab:nth-last-of-type(1) {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.tabbar-rect.tabbar-rect-radius8 {
-  border-radius: 8px;
-}
-.tabbar-rect.tabbar-rect-radius8 .tab:nth-of-type(1) {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-.tabbar-rect.tabbar-rect-radius8 .tab:nth-last-of-type(1) {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+.tabbar-lump {
+  color: #333333;
+  background-color: #ffffff;
 }
 .tabbar-lump .tab .tab-label {
   padding: 0 12px;
   border-radius: 28px;
   height: 28px;
   line-height: 28px;
+  color: #333333;
+  border: 1px solid #ffffff;
 }
 .tabbar-lump .tab.active .tab-label {
-  color: white;
+  color: #ffffff;
+  background-color: #20aeff;
+  border: 1px solid #ffffff;
+}
+.tabbar-lump.reverse {
+  color: #ffffff;
   background-color: #20aeff;
 }
-.tabbar-lump.reverse .tab {
+.tabbar-lump.reverse .tab .tab-label {
   color: #ffffff;
+  border-color: #20aeff;
 }
 .tabbar-lump.reverse .tab.active .tab-label {
   color: #20aeff;
-  background-color: white;
+  background-color: #ffffff;
+  border-color: #20aeff;
 }
 .tabbar-lump.animated .tab .tab-label {
   -webkit-transition-property: background-color, color;
   -webkit-transition-duration: 300ms;
 }
-.tabbar-dropdown:after,
+.tabbar-dropdown {
+  color: #666666;
+  background-color: #ffffff;
+}
+.tabbar-dropdown .tab-label {
+  max-width: 80px;
+}
 .tabbar-dropdown .tab:not(:first-child):after {
   content: '';
   display: block;
@@ -2581,43 +2525,40 @@ input[type="color"] {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
 }
-.tabbar-dropdown:after {
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  -webkit-transform: scaleY(0.5);
-}
 .tabbar-dropdown .tab:not(:first-child):after {
   width: 1px;
-  height: 60%;
+  height: 20px;
   top: 50%;
   left: 0;
   -webkit-transform: translate(0, -50%) scaleX(0.5);
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .tabbar-dropdown:after {
-    -webkit-transform: scaleY(0.5);
-  }
   .tabbar-dropdown .tab:after {
     -webkit-transform: translate(0, -50%) scaleX(0.5);
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .tabbar-dropdown:after {
-    -webkit-transform: scaleY(0.33);
-  }
   .tabbar-dropdown .tab:after {
     -webkit-transform: translate(0, -50%) scaleX(0.33);
   }
 }
+.tabbar-dropdown .tab.active {
+  color: #20aeff;
+  background-color: #ffffff;
+}
 .tabbar-dropdown .tab.active .icon {
   -webkit-transform: rotate(180deg);
 }
-.tabbar-dropdown.reverse:after {
+.tabbar-dropdown.reverse {
+  color: #ffffff;
+  background-color: #20aeff;
+}
+.tabbar-dropdown.reverse .tab.active {
+  color: #ffffff;
   background-color: #20aeff;
 }
 .tabbar-dropdown.reverse .tab:after {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .tabbar-dropdown.animated .tab {
   -webkit-transition: color 0.2s;
@@ -2625,10 +2566,17 @@ input[type="color"] {
 .tabbar-dropdown.animated .tab .icon {
   -webkit-transition: -webkit-transform 0.2s;
 }
+.tabbar-footer {
+  color: #666666;
+  background-color: #ffffff;
+}
 .tabbar-footer .tab {
   height: auto;
-  line-height: 0;
   padding: 6px 0;
+}
+.tabbar-footer .tab.active {
+  color: #20aeff;
+  background-color: #ffffff;
 }
 .tabbar-footer .tab-label {
   display: block;
@@ -2637,9 +2585,12 @@ input[type="color"] {
   line-height: 13px;
   margin: 5px auto 0 auto;
 }
-.tabbar-footer.reverse .tab {
+.tabbar-footer.reverse {
   color: #ffffff;
-  border-color: #20aeff;
+  background-color: #20aeff;
+}
+.tabbar-footer.reverse .tab.active {
+  color: #ffffff;
   background-color: #20aeff;
 }
 /*----------------tabbar.less(end)--------------*/
@@ -3044,7 +2995,6 @@ input[type="color"] {
   width: 33%;
   float: left;
   text-align: center;
-  padding: 2px;
   box-sizing: border-box;
 }
 /*图标区域*/
@@ -3119,17 +3069,6 @@ input[type="color"] {
     -webkit-transform: scaleX(0.33);
   }
 }
-/*单元格行间距*/
-.grid li {
-  padding-top: 8px;
-}
-.grid li:last-child {
-  padding-bottom: 8px;
-}
-.grid.grid-bordered li {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
 /*图标*/
 .grid-icon .icon-img {
   pointer-events: none;
@@ -3151,12 +3090,24 @@ input[type="color"] {
 .grid-close .icon {
   pointer-events: none;
 }
+/*单元格行间距*/
+.grid-cell {
+  padding: 2px;
+  padding-top: 8px;
+}
+.grid-cell:last-child {
+  padding-bottom: 8px;
+}
+.grid.grid-bordered .grid-cell {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 /*----------------类型----------------*/
 /*相册类型*/
 .grid-album {
   padding: 6px;
 }
-.grid-album li {
+.grid-album .grid-cell {
   padding: 6px;
 }
 .grid-album .grid-content {
@@ -6202,7 +6153,7 @@ progress::-webkit-progress-value {
 /*----------------picker.less(start)--------------*/
 .picker,
 .selectpicker {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   z-index: 10;
@@ -7202,21 +7153,22 @@ ul.weather-otherday li {
 .price.normal {
   color: #eb464a;
 }
-.price.normal .price-symbol {
+.price.capitalize .price-symbol {
   font-size: 12px;
   margin-bottom: -2px;
 }
-.price.normal .price-integer {
+.price.capitalize .price-integer {
   font-size: 16px;
 }
-.price.normal .price-digits {
+.price.capitalize .price-digits {
   font-size: 12px;
   margin-bottom: -4px;
 }
-.price.normal .price-unit {
+.price.capitalize .price-unit {
   font-size: 12px;
   color: #aaaaaa;
   margin-left: 0;
+  margin-bottom: -4px;
 }
 /*----------------price.less(end)----------------*/
 /*----------------searchbar.less(start)----------------*/
@@ -7494,7 +7446,9 @@ ul.weather-otherday li {
 }
 /*----------------layout.less(end)--------------*/
 /*----------------box.less(start)--------------*/
-.box {
+.box,
+.tabbar-tiled,
+.tabbar-tiled .tab {
   display: -webkit-box;
 }
 .inline-box {
@@ -7518,7 +7472,8 @@ ul.weather-otherday li {
 .box-bottom {
   -webkit-box-align: end;
 }
-.box-middlecenter {
+.box-middlecenter,
+.tabbar-tiled .tab {
   -webkit-box-pack: center;
   -webkit-box-align: center;
 }
@@ -7528,7 +7483,8 @@ ul.weather-otherday li {
 .box-horizontal {
   -webkit-box-orient: horizontal;
 }
-.box-flex-1 {
+.box-flex-1,
+.tabbar-tiled .tab {
   -webkit-box-flex: 1.0;
 }
 /*--------------flex--------------*/
