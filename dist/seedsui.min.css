@@ -7272,18 +7272,22 @@ ul.weather-otherday li {
 }
 /*----------------searchbar.less(end)----------------*/
 /*----------------attribute.less(start)----------------*/
+.attribute-box {
+  position: relative;
+  padding: 1px 12px;
+}
 .attribute {
-  display: -webkit-box;
-  -webkit-box-align: center;
-  margin: 10px 12px 10px 0;
+  margin: 10px 0 10px 0;
 }
 .attribute .ricon {
   margin-left: 4px;
 }
+.attribute-half {
+  width: 50%;
+}
 .attribute-left {
   color: #aaa;
   margin-right: 4px;
-  margin-left: 12px;
 }
 .attribute-right {
   display: block;
@@ -7293,20 +7297,8 @@ ul.weather-otherday li {
 .attribute-box.align .attribute-left {
   width: 30%;
 }
-.attribute-box.align .attribute-right {
-  -webkit-box-flex: 1;
-}
-.attribute-box[data-col="4"].align .attribute-left {
-  width: 20%;
-}
-.attribute-box[data-col="4"].align .attribute-right {
-  width: 30%;
-}
-.attribute-box.start .attribute-right {
-  -webkit-box-flex: 1;
-}
-.attribute-box.between .attribute-left {
-  -webkit-box-flex: 1;
+.attribute-box.between .attribute-right {
+  text-align: right;
 }
 .attribute-icon-tel {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAXVBMVEUAAABv0Tp11UCK2U5v0Tpw0Ttv0Ttw0Dtw0Txv0Tpw0jtv0D1y0z1v0Dr////x+uzq+OOC1lK055mb33Z500j1/PHI7bS66aGU3G3Z8st81Ex00UHQ77/B6qqK2F+9wBsfAAAADXRSTlMA8xgG49nHv5aVgkct8zFIpgAAAPBJREFUOMuFk9kSwiAMRaGUUkqB7otV//8zBVk1OtynzOSQhSQoiQjOKMaUcUEQVNViGYXb6stNOudOSEc+njcSqMmC9LX8obqP750fEj4GCfFhFldHJ/+qeyfw9e96BgC2SVpnP5VSByBaU4EPsBlguEAIgoQ3tTKCSQTi3rJ+vQCAI5ZFmCQQQ1SmGnYIUBSGNBpgHWGjEZCTbeMGARrtExI2BYv2MlhiNMZ8ZUXyRI/a1rFPWg1HalPIjBhU0Bw/iuCMWM4A6PDVYVipF6eHH1Ycd0qzabXejzDu0sIUV660tMW1Lx9O+fTKx1s8/xcLZSlX4fSWEwAAAABJRU5ErkJggg==');
@@ -7448,7 +7440,8 @@ ul.weather-otherday li {
 /*----------------box.less(start)--------------*/
 .box,
 .tabbar-tiled,
-.tabbar-tiled .tab {
+.tabbar-tiled .tab,
+.attribute {
   display: -webkit-box;
 }
 .inline-box {
@@ -7466,7 +7459,8 @@ ul.weather-otherday li {
 .box-top {
   -webkit-box-align: start;
 }
-.box-middle {
+.box-middle,
+.attribute {
   -webkit-box-align: center;
 }
 .box-bottom {
@@ -7485,8 +7479,13 @@ ul.weather-otherday li {
   -webkit-box-orient: horizontal;
 }
 .box-flex-1,
-.tabbar-tiled .tab {
+.tabbar-tiled .tab,
+.attribute-right {
   -webkit-box-flex: 1.0;
+}
+.box-flex-none,
+.attribute-box.align .attribute-left {
+  -webkit-box-flex: 0.0;
 }
 /*--------------flex--------------*/
 .flex {

@@ -1,54 +1,41 @@
 /*----------------attribute.less(start)----------------*/
 .attribute-box{
-
+  position: relative;
+  padding: 1px 12px;
 }
 .attribute{
-  display: -webkit-box;
-  -webkit-box-align: center;
-  margin: 10px 12px 10px 0;
+  &:extend(.box);
+  &:extend(.box-middle);
+  margin: 10px 0 10px 0;
   .ricon{
     margin-left: 4px;
   }
 }
+.attribute-half{
+  width: 50%;
+}
 .attribute-left {
   color: #aaa;
   margin-right: 4px;
-  margin-left: 12px;
 }
 .attribute-right {
   display: block;
   position: relative;
   margin-left: 4px;
+  &:extend(.box-flex-1);
 }
 // 对齐布局
 .attribute-box.align {
   .attribute-left {
+    &:extend(.box-flex-none);
     width: 30%;
-  }
-  .attribute-right {
-    -webkit-box-flex: 1;
-  }
-}
-.attribute-box[data-col="4"].align {
-  .attribute-left {
-    width: 20%;
-  }
-  .attribute-right {
-    width: 30%;
-  }
-}
-
-// 左端对齐
-.attribute-box.start {
-  .attribute-right {
-    -webkit-box-flex: 1;
   }
 }
 
 // 两端对齐
 .attribute-box.between {
-  .attribute-left {
-    -webkit-box-flex: 1;
+  .attribute-right {
+    text-align: right;
   }
 }
 
