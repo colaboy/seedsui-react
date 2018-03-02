@@ -1,12 +1,8 @@
 /*----------------attribute.less(start)----------------*/
-.attribute-box{
-  position: relative;
-  padding: 1px 12px;
-}
 .attribute{
   &:extend(.box);
   &:extend(.box-middle);
-  margin: 10px 0 10px 0;
+  margin: 10px 12px;
   .ricon{
     margin-left: 4px;
   }
@@ -14,18 +10,20 @@
 .attribute-half{
   width: 50%;
 }
+.attribute-left, .attribute-right {
+  position: relative;
+}
 .attribute-left {
   color: #aaa;
   margin-right: 4px;
 }
 .attribute-right {
-  display: block;
-  position: relative;
-  margin-left: 4px;
+  &:extend(.box);
   &:extend(.box-flex-1);
+  margin-left: 4px;
 }
 // 对齐布局
-.attribute-box.align {
+.attributes.align, .attribute.align {
   .attribute-left {
     &:extend(.box-flex-none);
     width: 30%;
@@ -33,9 +31,9 @@
 }
 
 // 两端对齐
-.attribute-box.between {
+.attributes.between, .attribute.between {
   .attribute-right {
-    text-align: right;
+    &:extend(.box-right);
   }
 }
 

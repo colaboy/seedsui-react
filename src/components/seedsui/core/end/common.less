@@ -1,4 +1,4 @@
-/*----------------common.less(start)----------------*/
+/*----------------common.scss(start)----------------*/
 .events-none{
 	pointer-events:none;
 }
@@ -66,9 +66,9 @@
 	white-space:nowrap;
 }
 .nowrap2,.nowrap3{
-	display:-webkit-box;
-	/* autoprefixer: off */
-	-webkit-box-orient:vertical;
+  display:-webkit-box;
+  /* autoprefixer: off */
+  -webkit-box-orient:vertical;
 }
 .nowrap2{
 	-webkit-line-clamp:2;
@@ -144,6 +144,13 @@
 	direction:rtl;
 }
 
+/*段落*/
+.paragraph{
+	line-height: @24px;
+	margin:@8px 0;
+	padding:0 @8px;
+}
+
 /*层和文字排列*/
 .horizontal-tb{
 	-webkit-writing-mode:horizontal-tb;
@@ -191,4 +198,20 @@
 	color: @primary-bg;
 	vertical-align: baseline;
 }
-/*----------------common.less(end)----------------*/
+
+// 必填项
+.required{
+  color: @tip-bg;
+	font-size: @font-size-lg;
+	line-height: @font-size-lg;
+  width: @8px;
+	height: @8px;
+	text-align: center;
+}
+.required-left {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+}
+/*----------------common.scss(end)----------------*/
