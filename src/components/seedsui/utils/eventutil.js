@@ -1,5 +1,50 @@
+import DB from './db'
+
 //  EventUtil 事件函数
 var EventUtil = (function () {
+  // 多次点击事件, multipleClick
+  var _listenMultipleClickEvent = function (element, type, handler, isDetach) {
+    function attach () {
+      element.addEventListener('click', multipleClickHandler, false)
+    }
+    function detach () {
+      console.log('移除click')
+      element.removeEventListener('click', multipleClickHandler, false);
+    }
+    // 添加或移除事件
+    if (isDetach) {
+      detach()
+    } else {
+      attach()
+    }
+    var allcount = 10 // 点击多少次触发
+    var space = 5000 // 点击间隔秒数
+    function multipleClickHandler (e) {
+      // 次数
+      var counter = DB.getSession('onMultipleClick_counter') || 0
+      if (counter === 0) {
+        DB.setSession('onMultipleClick_time', new Date().getTime())
+      }
+      // 时间
+      var time = DB.getSession('onMultipleClick_time')
+
+      // 设置次数
+      counter += 1
+      DB.setSession('onMultipleClick_counter', counter)
+      // 到达设定次数
+      if (counter === allcount) {
+        // 点击小于间隔秒钟有效
+        if ((new Date().getTime() - time) < space) {
+          handler(e)
+          DB.setSession('onMultipleClick_counter', 0)
+        } else {
+          DB.setSession('onMultipleClick_counter', 0)
+          return
+        }
+      }
+    }
+  }
+  // 滑动事件,tap | swipeleft | swiperight | swipedown | swipeup
   var _listenTouchEvent = function (element, type, handler, isDetach) {
     var params = {
       threshold: 0
@@ -101,6 +146,7 @@ var EventUtil = (function () {
       attach()
     }
   }
+  // 摇动事件, shake
   var _listenShakeEvent = function (element, type, handler, isDetach) {
     var threshold = 3000 // 晃动速度
     var lastUpdate = 0 // 设置最后更新时间，用于对比
@@ -121,11 +167,9 @@ var EventUtil = (function () {
         curShakeZ = acceleration.z // z轴加速度
         var speed = Math.abs(curShakeX + curShakeY + curShakeZ - lastShakeX - lastShakeY - lastShakeZ) / diffTime * 10000
         if (speed > threshold) {
-          var e = {
-            target: window,
-            speed: speed
-          }
-          handler(e)
+          var ev = e
+          ev.speed = speed
+          handler(ev)
         }
         lastShakeX = curShakeX
         lastShakeY = curShakeY
@@ -151,12 +195,17 @@ var EventUtil = (function () {
   }
   return {
     addHandler: function (element, type, handler) {
+      // 多次点击事件
+      if (type === 'multipleClick') {
+        _listenMultipleClickEvent(element, type, handler)
+        return
+      }
       // 自定义事件 tap | swipeleft | swiperight | swipedown | swipeup
       if (type === 'tap' || type === 'swipeleft' || type === 'swiperight' || type === 'swipedown' || type === 'swipeup') {
         _listenTouchEvent(element, type, handler)
         return
       }
-      // 自定义事件 shake
+      // 摇动事件
       if (type === 'shake') {
         _listenShakeEvent(element, type, handler)
         return
@@ -171,9 +220,19 @@ var EventUtil = (function () {
       }
     },
     removeHandler: function (element, type, handler) {
+      // 多次点击事件
+      if (type === 'multipleClick') {
+        _listenMultipleClickEvent(element, type, handler, true)
+        return
+      }
       // 自定义事件 tap | swipeleft | swiperight | swipedown | swipeup
       if (type === 'tap' || type === 'swipeleft' || type === 'swiperight' || type === 'swipedown' || type === 'swipeup') {
         _listenTouchEvent(element, type, handler, true)
+        return
+      }
+      // 自定义事件 shake
+      if (type === 'shake') {
+        _listenShakeEvent(element, type, handler, true)
         return
       }
       // 自定义事件 shake
@@ -214,6 +273,6 @@ var EventUtil = (function () {
       return e.target || e.srcElement
     }
   }
-})();
+})()
 
-//export default EventUtil
+;//export default EventUtil
