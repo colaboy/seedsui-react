@@ -37,7 +37,7 @@
 	pointer-events:none;
   vertical-align:middle;
 }
-.tabbar-icon{
+.tab-icon{
 	margin:0 4px;
 	pointer-events:none;
 }
@@ -45,7 +45,6 @@
 .tabbar-tiled{
 	&:extend(.box);
 	.tab{
-		text-align: initial;
 		&:extend(.box);
 		&:extend(.box-flex-1);
 		&:extend(.box-middlecenter);
@@ -77,21 +76,10 @@
 .tabbar-line{
 	color: @tabbar-line-color;
 	background-color: @tabbar-line-bg;
-	.tab:before,.tab:after {
+	.tab:after {
 		.setContentLine(@tabbar-line-border);
 	}
 	.tab{
-		//下横线
-		&:before{
-			top: auto;
-			right: auto;
-	    bottom: 0;
-	    left: 0;
-	    height: 1px;
-      width: 100%;
-      -webkit-transform: scaleY(0.5);
-	    -webkit-transform-origin:center bottom;
-		}
 		//选中状态下横线
 		&:after{
 			top: auto;
@@ -104,16 +92,6 @@
 	    background-color:@tabbar-line-border-active;
 	    -webkit-transform-origin:center center;
 	    -webkit-transform:translate(-50%,0) scale(0,1);
-		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-			&:before {
-				-webkit-transform: scaleY(0.5);
-			}
-		}
-		@media only screen and (-webkit-min-device-pixel-ratio: 3) {
-			&:before {
-				-webkit-transform: scaleY(0.33);
-			}
 		}
 	}
 	.tab.active{
@@ -314,6 +292,8 @@
 		font-size:@13px;
 		height:@13px;
 		line-height:@13px;
+	}
+	.tab-icon + .tab-label {
 		margin:@5px auto 0 auto;
 	}
 }

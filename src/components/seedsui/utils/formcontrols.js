@@ -6,7 +6,7 @@
 		================*/
 		var defaults={
 			rangeTipClass:"range-tooltip",//滑动条弹出框
-			searchClass:"inputbox-search",
+			searchClass:"attribute-search",
 			numboxClass:"numbox",//数字框
 			switchClass:"switch",//开关控件
 			turnClass:"turn",//开关控件
