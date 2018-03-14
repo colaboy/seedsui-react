@@ -1,4 +1,4 @@
-import DB from './db'
+//import DB from './db'
 
 //  EventUtil 事件函数
 var EventUtil = (function () {

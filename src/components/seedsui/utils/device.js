@@ -44,9 +44,9 @@ var Device = (function () {
   }
   // 获得苹果机型
   function appleModel () { // 获取设备型号
-    let ua = navigator.userAgent.toLocaleLowerCase()
+    var ua = navigator.userAgent.toLocaleLowerCase()
     if (ua && /(iphone|ipad|ipod|ios)/i.test(ua)) {
-      let m = ua.match(/mobile\/([\w.]*)/)
+      var m = ua.match(/mobile\/([\w.]*)/)
       if (m && m[1]) {
         return m[1]
       }
@@ -56,7 +56,7 @@ var Device = (function () {
 
   function getAppleDevice () { // 获取弱设备
     if (/iphone/gi.test(navigator.userAgent) && (screen.height === 812 && screen.width === 375)) return 'iPhoneX'
-    let model = appleModel()
+    var model = appleModel()
     switch (model) {
       case '15b150':
         return 'iPhone6s'
@@ -106,4 +106,4 @@ var Device = (function () {
   }
 })()
 
-export default Device
+;//export default Device

@@ -56,6 +56,6 @@ var Animate = {
     }
     requestAnimationFrame(fpstest)
   } */
-};
+}
 
-//export default Animate
+;//export default Animate

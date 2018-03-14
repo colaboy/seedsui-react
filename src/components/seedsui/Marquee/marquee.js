@@ -109,7 +109,7 @@ var Marquee = function (container, params) {
           s.setPosition(-initPos)
           // 再移动一格
           s.move = initPos + s.params.step
-          setTimeout(() => {
+          setTimeout(function () {
             s.setDuration(s.params.duration)
             s.setPosition(-s.move)
           }, 10)

@@ -138,7 +138,7 @@ var SelectPicker = function (params) {
   }
   s.updateActive = function () {
     var options = [].slice.call(s.picker.querySelectorAll('.' + s.params.optionClass))
-    var activeKeys = s.activeOptions.map((item) => {
+    var activeKeys = s.activeOptions.map(function (item) {
       return item.key
     })
     options.forEach(function (n, i) {

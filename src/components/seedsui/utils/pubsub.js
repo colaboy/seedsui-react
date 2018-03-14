@@ -113,9 +113,9 @@ var PubSub = (function () {
       event.trigger.apply(this, arguments)
     }
   }
-})();
+})()
 
-//export default PubSub
+;//export default PubSub
 /* *******************订阅发布******************* */
 /*
 <a class="button block" id="ID-BtnLogin">登录</a>

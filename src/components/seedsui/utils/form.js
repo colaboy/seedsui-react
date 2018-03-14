@@ -111,6 +111,6 @@ var Form = function (container, params) {
       s.params.onSubmit(e, s.selected)
     }, false)
   }
-};
+}
 
-//export default Form
+;//export default Form

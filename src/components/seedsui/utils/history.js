@@ -159,6 +159,6 @@ var History = function (params) {
     s.onInit()
   }
   s.init()
-};
+}
 
-//export default History
+;//export default History

@@ -184,6 +184,6 @@ var CalendarUtil = function (activeDate) {
     }
     return weeks
   }
-};
+}
 
-//export default CalendarUtil
+;//export default CalendarUtil

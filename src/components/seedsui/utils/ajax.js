@@ -73,4 +73,4 @@ var Ajax = {
   }
 }
 
-//export default Ajax
+;//export default Ajax

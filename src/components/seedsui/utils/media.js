@@ -233,6 +233,6 @@ var Media = function (media) {
   s.onSeeking = function (callback, detach) {
     event('seeking', callback, detach)
   }
-};
+}
 
-//export default Media
+;//export default Media

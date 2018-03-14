@@ -174,6 +174,6 @@ var Validator = function () {
     }
     /* eslint-enable */
   }
-};
+}
 
-//export default Validator
+;//export default Validator

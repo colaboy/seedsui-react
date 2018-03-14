@@ -46,8 +46,8 @@ window.String.prototype.isDateTime = function () {
     '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$', // yyyy-MM-dd HH:mm
     '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$' // yyyy-MM-dd HH:mm:ss
   ]
-  for (var patt of patts) {
-    if (new RegExp(patt).test(this)) return true
+  for (var i in patts) {
+    if (new RegExp(patts[i]).test(this)) return true
   }
   return false
 }
@@ -57,8 +57,8 @@ window.String.prototype.isTime = function () {
     '^[0-9]{2}:[0-9]{2}$', // HH:mm
     '^[0-9]{2}:[0-9]{2}:[0-9]{2}$' // HH:mm:ss
   ]
-  for (var patt of patts) {
-    if (new RegExp(patt).test(this)) return true
+  for (var i in patts) {
+    if (new RegExp(patts[i]).test(this)) return true
   }
   return false
 }
