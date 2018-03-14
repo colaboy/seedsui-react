@@ -1,17 +1,17 @@
 // 左侧菜单
-var MenuWrap = function (container, params) {
+var MenuTree = function (container, params) {
   /* ------------------
   Model
   ------------------ */
   var defaults = {
     // DATA
     data: null,
-    tagClass: 'menuwrap-tag',
+    tagClass: 'menutree-tag',
     activeClass: 'active',
     extandClass: 'extand',
 
-    defaultActiveId: '', // 默认选中项的id
-    parentHasData: true, // 父节点是否有数据,如果有,则选中父节点时,子节点的选中得去掉
+    activeId: '', // 默认选中项的id
+    // parentHasData: true, // 父节点是否有数据,如果有,则选中父节点时,子节点的选中得去掉
     /*
     callbacks
     onClick:function(item, isActived, isExtand) // 点击项的数据,是否是选中状态,是否是展开状态
@@ -29,7 +29,7 @@ var MenuWrap = function (container, params) {
       params[def] = defaults[def]
     }
   }
-  // MenuWrap
+  // MenuTree
   var s = this
 
   // Params
@@ -37,19 +37,19 @@ var MenuWrap = function (container, params) {
   // Container
   s.container = typeof container === 'string' ? document.querySelector(container) : container
   if (!s.container) {
-    console.log('SeedsUI Error：未找到MenuWrap的DOM对象，请检查传入参数是否正确')
+    console.log('SeedsUI Error：未找到MenuTree的DOM对象，请检查传入参数是否正确')
     return
   }
   s.initData = function (list, ulContainer) {
     for (var i = 0, option; option = list[i++];) { // eslint-disable-line
       var li = document.createElement('li')
-      var html = '<div data-index="' + i + '" data-item=\'' + JSON.stringify(option) + '\' class="' + s.params.tagClass + (option.id === s.params.defaultActiveId ? ' active' : '') + '" id="ID-Menuwrap' + option.id +'">' +
-      '<p class="menuwrap-tag-font">' + option.caption + '</p>' +
-      (option.children && option.children.length > 0 ? '<i class="menuwrap-more"></i>' : '') +
+      var html = '<div data-index="' + i + '" data-item=\'' + JSON.stringify(option) + '\' class="' + s.params.tagClass + (option.id === s.params.activeId ? ' active' : '') + '" id="ID-MenuTree' + option.id +'">' +
+      '<p class="menutree-tag-font">' + option.caption + '</p>' +
+      (option.children && option.children.length > 0 ? '<i class="menutree-more"></i>' : '') +
       '</div><ul></ul>'
       li.innerHTML = html
       ulContainer.appendChild(li)
-      var ul = s.container.querySelector('#ID-Menuwrap' + option.id).nextElementSibling
+      var ul = s.container.querySelector('#ID-MenuTree' + option.id).nextElementSibling
       if (option.children && option.children.length > 0) {
         s.initData(option.children, ul)
       }
@@ -60,8 +60,9 @@ var MenuWrap = function (container, params) {
   /* ------------------
   Method
   ------------------ */
-  s.setDefaultActiveId = function (id) {
-    s.params.defaultActiveId = id
+  // 设置选中项
+  s.setActiveId = function (id) {
+    s.params.activeId = id
   }
   // 重新设置数据
   s.setData = function (data) {
@@ -127,13 +128,13 @@ var MenuWrap = function (container, params) {
     if (isExtand) {
       target.classList.remove(s.params.extandClass)
       // 如果父节点有数据,则将子节点的选中效果去掉
-      if (s.params.parentHasData) {
+      // if (s.params.parentHasData) {
         var tags = target.nextElementSibling.querySelectorAll('.' + s.params.tagClass)
         for (var i = 0, subtag; subtag = tags[i++];) { // eslint-disable-line
           subtag.classList.remove(s.params.extandClass)
           subtag.classList.remove(s.params.activeClass)
         }
-      }
+      // }
     } else {
       // 移除同级所有的选中项与展开项
       var lis = target.parentNode.parentNode.children
@@ -160,4 +161,4 @@ var MenuWrap = function (container, params) {
   s.init()
 }
 
-;//export default MenuWrap
+;//export default MenuTree
