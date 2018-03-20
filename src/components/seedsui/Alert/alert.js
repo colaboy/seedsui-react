@@ -49,67 +49,66 @@ var Alert = function (params) {
   s.parent = typeof s.params.parent === 'string' ? document.querySelector(s.params.parent) : s.params.parent
   s.overflowContainer = typeof s.params.overflowContainer === 'string' ? document.querySelector(s.params.overflowContainer) : s.params.overflowContainer
   // Alert | Mask
-  s.alert = null
   s.mask = null
+  s.alert = null
+  s.html = null
+  s.buttonBox = null
   s.buttonSubmit = null
   s.buttonCancel = null
   // Mask
   s.createMask = function () {
-    var mask = document.createElement('div')
-    mask.setAttribute('class', s.params.maskClass)
-    return mask
+    s.mask = document.createElement('div')
+    s.mask.setAttribute('class', s.params.maskClass)
   }
   // Alert
-  s.createButtonCancel = function () {
-    var buttonCancel = document.createElement('a')
-    buttonCancel.innerHTML = s.params.buttonCancelHTML
-    return buttonCancel
+  s.createButton = function (html, className) {
+    var button = document.createElement('a')
+    button.setAttribute('class', className)
+    button.innerHTML = html
+    return button
   }
   s.createAlert = function () {
-    var alert = document.createElement('div')
-    alert.setAttribute('class', s.params.alertClass)
-    alert.setAttribute('data-animation', s.params.animation)
+    s.alert = document.createElement('div')
+    s.alert.setAttribute('class', s.params.alertClass)
+    s.alert.setAttribute('data-animation', s.params.animation)
 
-    alert.content = document.createElement('div')
-    alert.content.setAttribute('class', s.params.contentClass)
-    alert.content.innerHTML = s.params.html
+    s.html = document.createElement('div')
+    s.html.setAttribute('class', s.params.contentClass)
+    s.html.innerHTML = s.params.html
 
-    alert.handler = document.createElement('div')
-    alert.handler.setAttribute('class', s.params.handlerClass)
+    s.buttonBox = document.createElement('div')
+    s.buttonBox.setAttribute('class', s.params.handlerClass)
 
     // 如果有取消按钮
     if (s.params.onClickCancel) {
-      alert.buttonCancel = s.createButtonCancel()
-      alert.handler.appendChild(alert.buttonCancel)
+      s.buttonCancel = s.createButton(s.params.buttonCancelHTML, s.params.buttonCancelClass)
+      s.buttonBox.appendChild(s.buttonCancel)
     }
-    alert.buttonOk = document.createElement('a')
-    alert.buttonOk.innerHTML = s.params.buttonSubmitHTML
+    s.buttonSubmit = s.createButton(s.params.buttonSubmitHTML, s.params.buttonSubmitClass)
 
-    alert.handler.appendChild(alert.buttonOk)
+    s.buttonBox.appendChild(s.buttonSubmit)
 
     if (s.params.title && s.params.title !== '') {
-      alert.caption = document.createElement('h1')
-      alert.caption.innerHTML = s.params.title
-      alert.appendChild(alert.caption)
+      s.alert.caption = document.createElement('h1')
+      s.alert.caption.innerHTML = s.params.title
+      s.alert.appendChild(s.alert.caption)
     }
 
-    alert.appendChild(alert.content)
-    alert.appendChild(alert.handler)
-
-    return alert
+    s.alert.appendChild(s.html)
+    s.alert.appendChild(s.buttonBox)
   }
   s.create = function () {
-    s.mask = s.createMask()
-    s.alert = s.createAlert()
+    s.createMask()
+    s.createAlert()
     s.mask.appendChild(s.alert)
     s.parent.appendChild(s.mask)
   }
   s.update = function () {
     if (s.params.mask) s.mask = typeof s.params.mask === 'string' ? document.querySelector(s.params.mask) : s.params.mask
     if (s.mask) {
-      s.alert = s.mask.querySelector('.' + s.params.alertClass)
-      s.buttonSubmit = s.alert.querySelector('.' + s.params.buttonSubmitClass)
-      s.buttonCancel = s.alert.querySelector('.' + s.params.buttonCancelClass)
+      if (!s.alert) s.alert = s.mask.querySelector('.' + s.params.alertClass)
+      if (!s.buttonSubmit) s.buttonSubmit = s.alert.querySelector('.' + s.params.buttonSubmitClass)
+      if (!s.buttonCancel) s.buttonCancel = s.alert.querySelector('.' + s.params.buttonCancelClass)
     } else {
       s.create()
     }
@@ -163,7 +162,7 @@ var Alert = function (params) {
   }
   // 动态设置
   s.setHTML = function (html) {
-    s.alert.content.innerHTML = html
+    s.html.innerHTML = html
   }
   s.setOnClick = function (fn) {
     s.params.onClick = fn
@@ -175,7 +174,7 @@ var Alert = function (params) {
     // 如果没有取消按钮，创建一个
     if (!s.params.onClickCancel) {
       s.buttonCancel = s.createButtonCancel()
-      s.alert.handler.insertBefore(s.buttonCancel, s.buttonSubmit)
+      s.buttonBox.insertBefore(s.buttonCancel, s.buttonSubmit)
     }
     s.params.onClickCancel = fn
   }

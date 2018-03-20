@@ -86,6 +86,34 @@ var Device = (function () {
     window.addEventListener('online', handleOnline, false)
     window.addEventListener('offline', handleOffline, false)
   }
+  // iPhoneX页面适配
+  var isX = getAppleDevice() === 'iPhoneX'
+  var root = document.getElementById('root')
+  function adjustIphoneX () {
+    if (isX) {
+      switch (window.orientation) {
+        case 0: // 竖屏
+          root.style.left = '0'
+          root.style.right = '0'
+          root.style.bottom = '34px'
+          break;
+        case 90: // 向左横屏
+          root.style.left = '40px'
+          root.style.right = '40px'
+          root.style.bottom = '34px'
+          break;
+        case -90: // 向右横屏
+          root.style.left = '40px'
+          root.style.right = '40px'
+          root.style.bottom = '34px'
+          break;
+      }
+    }
+  }
+  function initIphoneX () {
+    adjustIphoneX();
+    window.addEventListener('orientationchange', adjustIphoneX, false);
+  }
   return {
     protocol: window.location.protocol,
     host: window.location.host,
@@ -102,7 +130,8 @@ var Device = (function () {
     onLine: onLine,
     isOnLine: window.navigator.onLine || true,
     ua: ua,
-    orientation: window.orientation || '请在真机上测试' // 设备方向0:竖屏,90:左横屏,-90:右横屏
+    orientation: window.orientation || '请在真机上测试', // 设备方向0:竖屏,90:左横屏,-90:右横屏
+    initIphoneX: initIphoneX // 适配iPhoneX
   }
 })()
 

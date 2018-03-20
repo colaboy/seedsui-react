@@ -205,7 +205,7 @@
 	<script type="text/javascript">
 		//右上角弹出框
         var menupop=new Dialog({
-        		wrapper:"#ID-Popup-Popover",
+        	wrapper:"#ID-Popup-Popover",
             position:"top-right",
             animation:"zoom",
             css:{overflow:"visible",top:"54px",right:"6px"}
@@ -217,30 +217,46 @@
 		 * 系统弹出框
 		 */
 		//alert
-		var popAlert=new Alert({
-			html:"我是Alert框我是Alert框我是Alert框我是Alert框"
-		});
+		
 	    document.getElementById("alertBtn").onclick=function(){
+			var popAlert=new Alert({
+				html:"我是Alert框我是Alert框我是Alert框我是Alert框",
+				onClickSubmit: function (e) {
+					e.hide();
+				},
+				onHid: function (e) {
+					e.destroy();
+				}
+			});
 			popAlert.show();
 	    };
 		//confirm
-		var popConfirm=new Alert({
-			title:"提示",
-			html:"我是Confirm框",
-			onClickSubmit:function(e){
-				console.log(e.target);
-			},onClickCancel:function(e){
-				console.log(e.target);
-				e.hide();
-			}
-		});
 		document.getElementById("confirmBtn").onclick=function(){
+			var popConfirm=new Alert({
+				title:"提示",
+				html:"我是Confirm框",
+				onClickSubmit:function(e){
+					console.log(e.target);
+				},onClickCancel:function(e){
+					console.log(e.target);
+					e.hide();
+				},
+				onHid:function(e) {
+					e.destroy();
+				}
+			});
 			popConfirm.show();
 	    };
 		
 		//toast
-		var popToast=new Toast({html:"提示信息"});
 		document.getElementById("toastBtn").onclick=function(){
+			var popToast=new Toast({
+				maskClass: 'mask toast-mask middle',
+				html:"提示信息",
+				onHid: function (e) {
+					e.destroy();
+				}
+			});
 			popToast.show();
 	    };
 	    var c;
@@ -269,7 +285,7 @@
 			        	if(!actionAlert){
 				        	actionAlert=new Alert();
 				        	actionAlert.setHTML("您确定要退出吗？");
-				        	actionAlert.setOnClickOk(function(e){
+				        	actionAlert.setOnClickSubmit(function(e){
 				        		s.hide();
 				        		e.hide();
 				        	});
@@ -293,9 +309,14 @@
 			actionsheet.show();
 	    };
 	    //Prompt框
-	    var prompt=new Toast({type: "top"});
 	    document.getElementById("promptBtn").onclick=function(){
-	    	prompt.setHTML("更新成功");
+			var prompt=new Toast({
+				maskClass: 'mask toast-mask top',
+				html: "更新成功",
+				onHid: function (e) {
+					e.destroy();
+				}
+			});
 	    	prompt.show();
 	    };
 

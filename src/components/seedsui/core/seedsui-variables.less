@@ -129,21 +129,21 @@
 @body-bg:#f5f5f9;
 @body-color:#333;
 
-@primary-bg:#20aeff;
-@primary-bg-active:lighten(@primary-bg, 20%);
+@primary-bg:#EB464A;
+@primary-bg-active:#EB464A;
 @primary-color:white;
-@primary-color-active:lighten(@primary-color, 10%);
+@primary-color-active:#EB464A;
 
 @mask-bg:rgba(0,0,0,.4);
 
 @sub-color:#9e9e9e;
-@placeholder:#ccc;
-@link:@primary-bg;
-@link-active:@primary-bg-active;
-@border:#d1d1d1;
+@placeholder:#b6b6b6;
+@link:#20aeff;
+@link-active:#20aeff;
+@border:#E5E5E5;
 @dpborder:#e5e5e5;
 
-/* Color常用颜色 */
+/* 常用颜色 */
 @disable-bg:#d1d1d1;
 @submit-bg:#68c75f;
 @cancel-bg:#F86868;
@@ -207,9 +207,9 @@
 @input-text-height: @22px;
 
 /* Sliver标题长条 */
-@sliver-bg:#f8f8f8;
-@sliver-color:#aaa;
-@sliver-raption-color:@primary-bg;
+@sliver-bg:transparent;
+@sliver-color:#333;
+@sliver-raption-color:@sub-color;
 
 /* List列表 */
 @list-bg: transparent;
@@ -346,21 +346,21 @@
 @toast-bottom-color:white;
 @toast-bottom-bg:rgba(0,0,0,.6);
 
-/* Alert框 */
-@alert-title-size: @font-size-lg;
+/* alert框 */
+@alert-title-size: @font-size-md;
 @alert-handler-size: @font-size-md;
 @alert-button-color: #333;
 
 /* Notice提示页 */
 @notice-color: @sub-color;
-@notice-bg: white;
+@notice-bg: @body-bg;
 .setNoticeNoDataIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-typetext all);
+  &:extend(.icon-no-data all);
 }
 .setNoticeNoNetworkIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-wifi all);
+  &:extend(.icon-no-network all);
 }
 
 /* Avatar头像 */
@@ -495,7 +495,7 @@
 @picker-button-color: @primary-bg;
 @picker-button-disabled-color: #d1d1d1;
 @picker-header-bg:#fff;
-@picker-selected-bg:#fff;
+@picker-selected-bg:#F5F5F9;
 
 /* SelectPicker选择器 */
 @selectpicker-color-active: @primary-bg;
@@ -513,7 +513,7 @@
 
 /* Timeline时间轴 */
 @timeline-case:#999;
-@timeline-case-active:@primary-bg;
+@timeline-case-active:#51BD89;
 
 /* Price价格 */
 @price: #EB464A;
@@ -529,7 +529,7 @@
 }
 .setCheckboxActiveIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-rdochecked-fill all);
+  &:extend(.icon-rdo-checked all);
 }
 
 /* Radio控件 */
@@ -542,7 +542,7 @@
 }
 .setRadioActiveIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-rdochecked-fill all);
+  &:extend(.icon-rdo-checked all);
 }
 
 /* Switch控件 */
@@ -553,11 +553,11 @@
 @star-color-active: @warn-bg;
 .setStarIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-fav all);
+  &:extend(.icon-star all);
 };
 .setStarActiveIcon(){
   font-family: 'iconfont';
-  &:extend(.icon-fav-fill all);
+  &:extend(.icon-star-fill all);
 };
 
 /* Attribute属性控件 */
@@ -575,7 +575,7 @@
 }
 .setSearchbarIconClear(){
   font-family: 'iconfont';
-  &:extend(.icon-rdoclose-fill all);
+  &:extend(.icon-clear all);
 }
 
 /* SearchBoard搜索面板控件 */
@@ -587,7 +587,7 @@
 /* Close */
 .setCloseIconClear(){
   font-family: 'iconfont';
-  &:extend(.icon-rdoclose-fill all);
+  &:extend(.icon-clear all);
 }
 
 /* 徽章类控件 (badge | close | tagline | tip) */
@@ -607,20 +607,20 @@
 /* Tree */
 @tree-bar-bg: @titlebar-bg;
 
-/* Menuwrap侧边菜单 */
-@menuwrap-bg: #fff;
-@menuwrap-tag-color: #666;
-@menuwrap-tag-bg: transparent;
-@menuwrap-tag-color-active: #666;
-@menuwrap-tag-bg-active: transparent;
-.setMenuwrap(){
+/* MenuTree侧边菜单 */
+@menutree-bg: #fff;
+@menutree-tag-color: #666;
+@menutree-tag-bg: transparent;
+@menutree-tag-color-active: #666;
+@menutree-tag-bg-active: transparent;
+.setMenuTree(){
   &:extend(.border-r all);
 }
-.setSubMenuwrapTag(){
+.setSubMenuTreeTag(){
   background-color: #f5f5f9;
   margin-right: 1px;
 }
-.setMenuwrapTag(){
+.setMenuTreeTag(){
   /* 画个底线 */
   &:after{
     content: '';
@@ -633,14 +633,14 @@
     // border-bottom: @1px dotted #bfbfbf;
   }
   /* 二级选中 */
-  +ul .menuwrap-tag.active{
+  +ul .menutree-tag.active{
     color: @primary-bg;
     &:before{
       width:0;
     }
   }
 }
-.setMenuwrapTagActive(){
+.setMenuTreeTagActive(){
   /* 左侧选中块 */
   &:before{
     position: absolute;
@@ -652,14 +652,62 @@
     background: @primary-bg;
   }
 }
-.setMenuwrapMore(){
+.setMenuTreeMore(){
   &:extend(.shape-triangle-down);
 }
-.setMenuwrapMoreExtand(){
+.setMenuTreeMoreExtand(){
   -webkit-transform-origin:center;
   -webkit-transform: rotate(180deg);
 }
 
+/* menutiled弹出菜单 */
+@menutiled-bg: #fff;
+@menutiled-slot-max-height: 300px;
+@menutiled-slot-sub-bg: #f5f5f9;
+@menutiled-tag-height: @40px;
+@menutiled-tag-color: #666;
+@menutiled-tag-bg: transparent;
+@menutiled-tag-color-active: @primary-bg;
+@menutiled-tag-bg-active: transparent;
+.setMenuTiledTag(){
+  margin-left: 12px;
+  // 画个底线
+  &:after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: @1px;
+    left:0;
+    right:0;
+    background-color: #e5e5e5;
+    // border-bottom: @1px dotted #bfbfbf;
+  }
+}
+.setMenuTiledMore(){
+  width: 24px;
+  height: 24px;
+  &:extend(.shape-arrow-right all);
+  &:after{
+    width: 8px;
+    height: 8px;
+    border-width: 2px 0 0 2px;
+  }
+}
+.setMenuTiledMoreExtand(){
+  border-color: @primary-bg;
+}
+.setMenuTiledSelect(){
+  visibility: hidden;
+  font-family: 'iconfont';
+  &:extend(.icon-hook all);
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  margin-right: 4px;
+}
+.setMenuTiledSelectActive(){
+  visibility: visible;
+}
 /* Carrousel轮播 */
 .setCarrouselPagination(){
   text-align: center;
@@ -667,7 +715,7 @@
 .setCarrouselBullet(){
   width: @8px;
   height: @8px;
-  background-color:rgba(0,0,0,0.3);
+  background-color:#ccc;
 }
 .setCarrouselBulletActive(){
   background-color:@primary-bg;

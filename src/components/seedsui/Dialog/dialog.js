@@ -46,6 +46,8 @@ var Dialog = function (params) {
 
   // Params
   s.params = params
+  // Parent
+  s.parent = null
   // Mask
   s.mask = null
   // Dialog(外层生成的包裹容器)
@@ -55,37 +57,32 @@ var Dialog = function (params) {
 
   // Mask
   s.createMask = function () {
-    var mask = document.createElement('div')
-    mask.setAttribute('class', s.params.maskClass)
-    return mask
+    s.mask = document.createElement('div')
+    s.mask.setAttribute('class', s.params.maskClass)
   }
 
   // Dialog
   s.createDialog = function () {
-    var dialog = document.createElement('div')
-    dialog.classList.add(s.params.dialogClass, s.params.position)
-    dialog.setAttribute(s.params.animationAttr, s.params.animation)
-    return dialog
+    s.dialog = document.createElement('div')
+    s.dialog.classList.add(s.params.dialogClass, s.params.position)
+    s.dialog.setAttribute(s.params.animationAttr, s.params.animation)
   }
   s.create = function () {
     // 获取wrapper
-    var wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
-    if (!s.wrapper) {
-      console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
-      return false
-    }
+    s.wrapper = typeof s.params.wrapper === 'string' ? document.querySelector(s.params.wrapper) : s.params.wrapper
+    if (!s.wrapper) return
     // 确定父级
-    var parent = wrapper.parentNode
+    s.parent = s.wrapper.parentNode
     // 插入Dialog
-    s.dialog = s.createDialog()
-    parent.insertBefore(s.dialog, wrapper)
-    s.dialog.appendChild(wrapper)
+    s.createDialog()
+    s.parent.insertBefore(s.dialog, s.wrapper)
+    s.dialog.appendChild(s.wrapper)
     // 插入遮罩
-    s.mask = s.createMask()
+    s.createMask()
     s.mask.appendChild(s.dialog)
-    parent.appendChild(s.mask)
+    s.parent.appendChild(s.mask)
     // 源容器显示
-    wrapper.style.display = 'block'
+    s.wrapper.style.display = 'block'
   }
   s.update = function () {
     if (s.params.mask) s.mask = typeof s.params.mask === 'string' ? document.querySelector(s.params.mask) : s.params.mask
@@ -93,6 +90,10 @@ var Dialog = function (params) {
       s.dialog = s.mask.querySelector('.' + s.params.dialogClass)
     } else {
       s.create()
+    }
+    if (!s.wrapper) {
+      console.log('SeedsUI Error：未找到Dialog的DOM对象，请检查传入参数是否正确')
+      return
     }
     var style
     // Dialog Css
@@ -108,7 +109,6 @@ var Dialog = function (params) {
     s.dialog.style.webkitTransitionDuration = s.params.duration + 'ms'
   }
   s.update()
-
   /* -------------------------
   Method
   ------------------------- */
@@ -166,6 +166,7 @@ var Dialog = function (params) {
   ------------------------- */
   s.events = function (detach) {
     var touchTarget = s.dialog
+    if (!touchTarget) return
     var action = detach ? 'removeEventListener' : 'addEventListener'
     touchTarget[action]('click', s.onClick, false)
     touchTarget[action]('webkitTransitionEnd', s.onTransitionEnd, false)

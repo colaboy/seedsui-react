@@ -142,15 +142,20 @@ var Toast = function (params) {
   s.detach = function () {
     s.events(false)
   }
+  s.transitionFlag = true
   // Events Handler
   s.onTransitionEnd = function (e) {
     if (e.propertyName === 'visibility') return
-    if (s.isHid) {
-      // Callback onHid
-      if (s.params.onHid) s.params.onHid(s)
-    } else {
-      // Callback onShowed
-      if (s.params.onShowed) s.params.onShowed(s)
+    // 防止animationend和transitionend多次执行的问题
+    if (s.transitionFlag) {
+      s.transitionFlag = false;
+      if (s.isHid) {
+        // Callback onHid
+        if (s.params.onHid) s.params.onHid(s)
+      } else {
+        // Callback onShowed
+        if (s.params.onShowed) s.params.onShowed(s)
+      }
     }
   }
   /* --------------------
