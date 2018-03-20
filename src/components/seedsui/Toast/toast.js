@@ -17,7 +17,7 @@ var Toast = function (params) {
     propagationClass: 'toast-propagation', // 允许点击样式
     
     duration: 300,
-    delay: 1500,
+    delay: 0,
     html: ''
 
     /* callbacks
@@ -119,10 +119,12 @@ var Toast = function (params) {
     if (s.params.duration === 0) s.onTransitionEnd()
 
     // 显示数秒后，自动消失
-    if (s.delayer) window.clearTimeout(s.delayer)
-    s.delayer = setTimeout(function () {
-      s.hide()
-    }, s.params.delay)
+    if (s.params.delay) {
+      if (s.delayer) window.clearTimeout(s.delayer)
+      s.delayer = setTimeout(function () {
+        s.hide()
+      }, s.params.delay)
+    }
   }
   s.destroy = function () {
     s.destroyMask()

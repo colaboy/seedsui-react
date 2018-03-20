@@ -96,17 +96,19 @@ var Device = (function () {
           root.style.left = '0'
           root.style.right = '0'
           root.style.bottom = '34px'
-          break;
+          break
         case 90: // 向左横屏
           root.style.left = '40px'
           root.style.right = '40px'
           root.style.bottom = '34px'
-          break;
+          break
         case -90: // 向右横屏
           root.style.left = '40px'
           root.style.right = '40px'
           root.style.bottom = '34px'
-          break;
+          break
+        default:
+          break
       }
     }
   }
