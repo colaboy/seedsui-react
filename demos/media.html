@@ -25,10 +25,23 @@
 		    </div>
 		</header>
 		<article class="container">
-		    <video id="player1" class="video-js vjs-default-skin" width="100%" controls>
+		    <!-- <video id="player1" class="video-js vjs-default-skin" width="100%" controls>
 		        <source src="video.mp4" type="video/mp4">
 		        您的浏览器不支持 HTML5 video 标签。
-		    </video>
+			</video> -->
+			<video
+				id="player1"
+				webkit-playsinline="true"
+				playsinline="true"
+				preload="metadata"
+				raw-controls="true"
+			  	x-webkit-airplay="true"
+			  	x5-video-player-type="h5"
+			  	x5-video-orientation="portraint"
+			  	poster=""
+				src="video.mp4">
+				您的浏览器不支持 HTML5 video 标签。
+			</video>
 		    <p class="text-center">
 		    <span id="currentTime">0</span>/<span id="durationTime">0</span><span>秒</span>
 			    <span>当前音量</span><span id="currentVol">0</span>
