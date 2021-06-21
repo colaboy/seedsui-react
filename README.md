@@ -5034,6 +5034,7 @@ import Ticket from 'seedsui-react/lib/Ticket';
   style={容器style object, 默认无}
 
   lineAttribute={div左线条属性 object, 默认无, 基础{className: 'timeline-line'}}
+  lineCross={线条是否通到底部 bool, 默认true}
 
   badgeAttribute={div左小球的容器 object, 默认无, 基础{className: 'timeline-badge'}}
 
