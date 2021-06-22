@@ -1,4 +1,4 @@
-import Bridge from 'seedsui-react/lib/Bridge'
+import Bridge from './../Bridge'
 import locale from './../locale'
 
 export default {

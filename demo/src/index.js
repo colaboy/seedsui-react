@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { render } from 'react-dom'
 import {
   Page,
@@ -7,22 +7,49 @@ import {
   Bridge,
   Container,
   MapUtil,
-  Timeline
+  Timeline,
+  InputLocation,
+  DatePopover,
+  DateType
 } from '../../src'
 
 function Demo() {
-  const timeList = [
-    {content: <div style={{height: '100px'}}>内容</div>, active: true},
-    {content: <div style={{height: '100px'}}>内容2</div>}
-  ]
+  const [autoLocation, setAutoLocation] = useState(false)
+  const [value, setValue] = useState('')
+  useEffect(() => {
+    setTimeout(() => {
+      setAutoLocation(true)
+    }, 3000)
+  }, []) // eslint-disable-line
+  function handleChange (e, value) {
+    console.log(value)
+    setValue(value)
+  }
+  function handlePreview (e, err) {
+    if (typeof err === 'object' && err.errMsg.indexOf('preview:fail') !== -1) {
+      Bridge.showToast(err.errMsg.replace('preview:fail', ''), {mask: false})
+    }
+  }
+  function handleHide (type) {
+    console.log('关闭' + type)
+  }
+  Bridge.debug = true
   return (
     <Page>
       <Header>
         <Titlebar caption="标题" />
       </Header>
       <Container>
-        <div style={{height: '100px'}}></div>
-        <Timeline lineCross={false} list={timeList} style={{padding: '0 0 0 18px'}}/>
+        <InputLocation
+          clearReadOnly
+          autoLocation={autoLocation}
+          pre
+          value={value}
+          placeholder="请点击获取位置信息"
+          onChange={handleChange}
+          onPreviewHide={handleHide}
+          preview={handlePreview}
+        />
       </Container>
     </Page>
   )

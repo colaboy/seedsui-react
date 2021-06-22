@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
-import Tabbar from 'seedsui-react/lib/Tabbar'
+import Tabbar from './../Tabbar'
 import locale from './../locale'
 
 // 日期类型选择控件: 年月日季

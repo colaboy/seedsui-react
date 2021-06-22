@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react'
-import Popover from 'seedsui-react/lib/Popover'
-import Alert from 'seedsui-react/lib/Alert'
-import InputDate from 'seedsui-react/lib/InputDate'
+import Popover from './../Popover'
+import Alert from './../Alert'
+import InputDate from './../InputDate'
 import locale from './../locale'
 import helper from './helper'
 
@@ -18,7 +18,7 @@ const RowStyle = {
 
 let range = 90
 
-// 日期快捷选择
+// 日期快捷选择弹窗
 export default function DatePopover({
   // 显隐
   show = false,

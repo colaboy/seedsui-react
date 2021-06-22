@@ -43,25 +43,32 @@ const InputLocation = forwardRef(
     },
     ref
   ) => {
-    // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
-    const onChangeRef = useRef()
-    onChangeRef.current = onChange
-    const onPreviewRef = useRef()
-    onPreviewRef.current = preview
-
-    const inputTextRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return inputTextRef.current
-    })
-    // 地图预览
-    const [viewMapShow, setViewMapShow] = useState(false)
-
+    // 国际化
     const context = useContext(Context) || {}
     const locale =
       context.locale ||
       function (remark) {
         return remark || ''
       }
+    // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
+    const onChangeRef = useRef()
+    onChangeRef.current = onChange
+    const onPreviewRef = useRef()
+    onPreviewRef.current = preview
+
+    // 返回的dom
+    const inputTextRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return inputTextRef.current
+    })
+
+    // 地图预览
+    const [viewMapShow, setViewMapShow] = useState(false)
+    
+    // 自动定位
+    useEffect(() => {
+      handleAutoLocation()
+    }, [autoLocation])
     if (!loadingValue || typeof loadingValue !== 'string') {
       loadingValue = locale('定位中...', 'location')
     }
@@ -69,53 +76,52 @@ const InputLocation = forwardRef(
       failedValue = locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
     }
 
-    useEffect(() => {
-      async function fetchData() {
-        // 自动定位
-        if (autoLocation) {
-          if (value && value.latitude && value.longitude) {
-            // 默认地址
-            if (value.address) {
-              // 有地址, 则定位完成
-              if (onChangeRef && onChangeRef.current)
-                onChangeRef.current({ target: inputTextRef.current }, value)
-            } else {
-              // 无地址, 则需要地址逆解析
-              status = '-1'
-              setStatus('-1') // 定位中...
-              const result = await Bridge.getAddress({
-                // 只支持gcj02
-                latitude: value.latitude,
-                longitude: value.longitude
-              })
-              const address = result && result.address ? result.address : ''
-              result.value = address
-              if (address) {
-                status = '1'
-                setStatus('1')
-                // 回调onChange
-                if (onChangeRef && onChangeRef.current)
-                  onChangeRef.current({ target: inputTextRef.current }, result)
-                // 自动定位设置选择地图的数据
-                viewMapData = {
-                  point: [result.longitude, result.latitude],
-                  address: result.address
-                }
-              } else {
-                status = '0'
-                setStatus('0')
-              }
+    // 自动定位
+    async function handleAutoLocation() {
+      if (autoLocation !== true) return
+      // 自动定位
+      if (value && value.latitude && value.longitude) {
+        // 默认地址
+        if (value.address) {
+          // 有地址, 则定位完成
+          if (onChangeRef && onChangeRef.current)
+            onChangeRef.current({ target: inputTextRef.current }, value)
+        } else {
+          // 无地址, 则需要地址逆解析
+          status = '-1'
+          setStatus('-1') // 定位中...
+          const result = await Bridge.getAddress({
+            // 只支持gcj02
+            latitude: value.latitude,
+            longitude: value.longitude
+          })
+          const address = result && result.address ? result.address : ''
+          result.value = address
+          if (address) {
+            status = '1'
+            setStatus('1')
+            // 回调onChange
+            if (onChangeRef && onChangeRef.current)
+              onChangeRef.current({ target: inputTextRef.current }, result)
+            // 自动定位设置选择地图的数据
+            viewMapData = {
+              point: [result.longitude, result.latitude],
+              address: result.address
             }
           } else {
-            location({
-              target: inputTextRef.current,
-              currentTarget: inputTextRef.current
-            })
+            status = '0'
+            setStatus('0')
           }
         }
+      } else {
+        location({
+          target: inputTextRef.current,
+          currentTarget: inputTextRef.current
+        })
       }
-      fetchData()
-    }, [])
+    }
+
+    
 
     let [status, setStatus] = useState('1') // 定位状态, -1.定位中 0.定位失败时隐藏text框, 显示定位中或者定位失败的div, 1定位成功显示文本框
     function handleClick(event, val) {
@@ -188,7 +194,10 @@ const InputLocation = forwardRef(
           if (getLocationTimeout) window.clearTimeout(getLocationTimeout)
           getLocationTimeout = setTimeout(() => {
             if (status === '-1') {
-              if (onChangeRef && onChangeRef.current) onChangeRef.current(e, {errMsg: `getLocation:fail${locale('定位超时', 'hint_location_timeout')} Timeout`})
+              if (onChangeRef && onChangeRef.current)
+                onChangeRef.current(e, {
+                  errMsg: `getLocation:fail${locale('定位超时', 'hint_location_timeout')} Timeout`
+                })
               status = '0'
               setStatus('0')
             }
@@ -283,7 +292,8 @@ const InputLocation = forwardRef(
       const address = data && data.address ? data.address : ''
       data.value = address
       data.errMsg = 'getLocation:ok'
-      if (onChangeRef && onChangeRef.current) onChangeRef.current({ target: inputTextRef.current }, data)
+      if (onChangeRef && onChangeRef.current)
+        onChangeRef.current({ target: inputTextRef.current }, data)
     }
 
     // 计算class, 防止重要class被覆盖

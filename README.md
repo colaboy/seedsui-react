@@ -98,7 +98,7 @@ function useEn () {
 - [ContainerPull](#containerpull) 带下拉刷新功能的container主体
 - [Context](#context) 全局配置
 - [Counter](#counter) 计数器
-- [DatePopover](#datepopover) 日期快捷选择
+- [DatePopover](#datepopover) 日期快捷选择弹窗
 - [DateType](#datepopover) 日期类型选择
 - [Dialog](#dialog) 自定义弹出框
 - [Dot](#dot) 小点点
@@ -1380,7 +1380,7 @@ import Counter from 'seedsui-react/lib/Counter';
 
 
 ## DatePopover
-[日期快捷选择](https://unpkg.com/seedsui-react/src/lib/DatePopover/DatePopover.js)
+[日期快捷选择弹窗](https://unpkg.com/seedsui-react/src/lib/DatePopover/DatePopover.js)
 ### 属性
 ```javascript
 <DatePopover
@@ -1427,7 +1427,7 @@ import Counter from 'seedsui-react/lib/Counter';
 ```
 ### 示例
 ```javascript
-// 日期快捷选择
+// 日期快捷选择弹窗
 const [startDate, setStartDate] = useState('2020-01-01')
 const [endDate, setEndDate] = useState('2020-01-08')
 const [datePopoverShow, setDatePopoverShow] = useState(false)
@@ -1439,7 +1439,7 @@ function handleDateChange(date) {
 
 
 
-<div className="example-title">日期快捷选择</div>
+<div className="example-title">日期快捷选择弹窗</div>
 <Button
   className="lg"
   style={{ margin: '0 12px' }}
@@ -1473,7 +1473,7 @@ function handleDateChange(date) {
 [日期类型选择](https://unpkg.com/seedsui-react/src/lib/DateType/DateType.js)
 ### 属性
 ```javascript
-<DatePopover
+<DateType
   list={类型集合 array, 默认
     [
       {
