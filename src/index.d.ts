@@ -28,6 +28,8 @@ export { default as Container } from './Container';
 export { default as ContainerPull } from './ContainerPull';
 export { default as Context } from './Context'; // 不常用
 export { default as Counter } from './Counter'; // 不常用
+export { default as DatePopover } from './DatePopover';
+export { default as DateType } from './DateType';
 export { default as Dialog } from './Dialog';
 export { default as Dot } from './Dot';
 export { default as Dragrefresh } from './Dragrefresh';

@@ -98,6 +98,8 @@ function useEn () {
 - [ContainerPull](#containerpull) 带下拉刷新功能的container主体
 - [Context](#context) 全局配置
 - [Counter](#counter) 计数器
+- [DatePopover](#datepopover) 日期快捷选择
+- [DateType](#datepopover) 日期类型选择
 - [Dialog](#dialog) 自定义弹出框
 - [Dot](#dot) 小点点
 - [Dragrefresh](#dragrefresh) 下拉刷新(已使用ContainerPull代替)
@@ -1363,6 +1365,205 @@ import Counter from 'seedsui-react/lib/Counter';
 <Counter from={20} to={500}/>
 ```
 [返回目录](#component)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## DatePopover
+[日期快捷选择](https://unpkg.com/seedsui-react/src/lib/DatePopover/DatePopover.js)
+### 属性
+```javascript
+<DatePopover
+  // 显隐
+  show={是否显示弹窗 bool, 默认false}
+  // 位置
+  top={头边距 number, 默认88}
+  left={左边距 number, 默认10}
+
+  startDate={开始日期 string, 默认无, 格式: YYYY-MM-DD}
+  endDate={结束日期, 默认无, 格式: YYYY-MM-DD}
+
+  ranges={范围 object, 默认
+    {
+      [locale('今天')]: [new Date().format('YYYY-MM-DD'), new Date().format('YYYY-MM-DD')],
+      [locale('昨天')]: [
+        new Date().prevDate().format('YYYY-MM-DD'),
+        new Date().prevDate().format('YYYY-MM-DD')
+      ],
+      [locale('本月')]: [
+        new Date().firstMonthDate().format('YYYY-MM-DD'),
+        new Date().format('YYYY-MM-DD')
+      ],
+      [locale('上月')]: [
+        new Date().prevMonth().firstMonthDate().format('YYYY-MM-DD'),
+        new Date().prevMonth().lastMonthDate().format('YYYY-MM-DD')
+      ],
+      [locale('最近7天')]: [
+        new Date().prevDate(7).format('YYYY-MM-DD'),
+        new Date().format('YYYY-MM-DD')
+      ],
+      [locale('最近30天')]: [
+        new Date().prevDate(30).format('YYYY-MM-DD'),
+        new Date().format('YYYY-MM-DD')
+      ],
+      [locale('自定义日期')]: 90
+    }
+  }
+  rangeErrMsg={自定义日期, 范围内错误提示 string, 默认无}
+
+  onHide={隐藏事件 func, 默认无}
+  onChange={提交回调 func(e, value, data), 默认无}
+/>
+```
+### 示例
+```javascript
+// 日期快捷选择
+const [startDate, setStartDate] = useState('2020-01-01')
+const [endDate, setEndDate] = useState('2020-01-08')
+const [datePopoverShow, setDatePopoverShow] = useState(false)
+function handleDateChange(date) {
+  setStartDate(date.startDate)
+  setEndDate(date.endDate)
+  console.log(date)
+}
+
+
+
+<div className="example-title">日期快捷选择</div>
+<Button
+  className="lg"
+  style={{ margin: '0 12px' }}
+  onClick={() => setDatePopoverShow(true)}
+>
+  {helper.getDateName(startDate, endDate)}
+</Button>
+<DatePopover
+  startDate={startDate}
+  endDate={endDate}
+  onChange={handleDateChange}
+  show={datePopoverShow}
+  onHide={() => setDatePopoverShow(false)}
+  top={50}
+/>
+```
+[返回目录](#component)
+
+
+
+
+
+
+
+
+
+
+
+
+## DateType
+[日期类型选择](https://unpkg.com/seedsui-react/src/lib/DateType/DateType.js)
+### 属性
+```javascript
+<DatePopover
+  list={类型集合 array, 默认
+    [
+      {
+        type: 'date',
+        id: 'date',
+        name: locale('日')
+      },
+      {
+        type: 'month',
+        id: 'month',
+        name: locale('月')
+      },
+      {
+        type: 'season',
+        id: 'season',
+        name: locale('季')
+      },
+      {
+        type: 'year',
+        id: 'year',
+        name: locale('年')
+      }
+    ]
+  }
+  listVisible={列表是否显示}
+  activeIndex={选中项 number, 默认0}
+  value={值 string, 默认无}
+  onChange={点击选项或者修改值 func(e, value, selected, index), 默认无}
+/>
+```
+### 示例
+```javascript
+// 日期类型选择
+const [dateTypeValue, setDateTypeValue] = useState('')
+const [dateTypeIndex, setDateTypeIndex] = useState(0)
+function handleDateType(e, value, selected, index) {
+  setDateTypeValue(value)
+  setDateTypeIndex(index)
+}
+
+
+<DateType
+  listVisible={false}
+  list={[{ type: 'month', id: 'month', name: locale('月') }]}
+  value={dateTypeValue}
+  activeIndex={dateTypeIndex}
+  onChange={handleDateType}
+/>
+```
+[返回目录](#component)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
