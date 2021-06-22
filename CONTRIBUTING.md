@@ -23,3 +23,8 @@
 - `npm run build` will build the component for publishing to npm and also bundle the demo app.
 
 - `npm run clean` will delete built resources.
+
+
+# 常见问题
+- 出现 fatal: unable to access 'https://github.com/
+> https://blog.csdn.net/Dashi_Lu/article/details/89641778?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base
