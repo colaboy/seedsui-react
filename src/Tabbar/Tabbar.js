@@ -21,11 +21,11 @@ const Tabbar = forwardRef(
       //     name: string, // 与caption完全相同, 允许传入name或者caption
       //     caption: string,
       //     sndcaption: string,
-      //     active: bool,
 
       //     attribute: object // tab属性
       //   }
       // ]
+      rectJustify = true, // react 类型自适应, 矩形tabbar应当有的总宽度
 
       tiled, // 宽度等分, 默认宽度弹性伸缩
       disabled,
@@ -49,7 +49,7 @@ const Tabbar = forwardRef(
     function getTabbarStyle() {
       var tabbarStyle = {}
       // 矩形tabbar应当有的总宽度
-      if (className.hasClass('tabbar-rect')) {
+      if (rectJustify && className.hasClass('tabbar-rect')) {
         switch (list.length) {
           case 1:
             tabbarStyle = { width: '30%' }
@@ -101,11 +101,10 @@ const Tabbar = forwardRef(
           name,
           caption,
           sndcaption,
-          active,
           attribute = {},
           style = {}
         } = item
-        let isActive = active || activeIndex === index
+        let isActive = activeIndex === index
         let liconDOM = null
         if (icon) {
           liconDOM = getIconDOM(icon, iconActive, isActive)

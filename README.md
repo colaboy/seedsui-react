@@ -1427,14 +1427,19 @@ import Counter from 'seedsui-react/lib/Counter';
 ```
 ### 示例
 ```javascript
+import DatePopover from 'seedsui-react/lib/DatePopover'
+import helper from 'seedsui-react/lib/DatePopover/helper'
+
 // 日期快捷选择弹窗
+const [dateDisplay, setDateDisplay] = useState(helper.getDateName('2020-01-01', '2020-01-08'))
 const [startDate, setStartDate] = useState('2020-01-01')
 const [endDate, setEndDate] = useState('2020-01-08')
 const [datePopoverShow, setDatePopoverShow] = useState(false)
-function handleDateChange(date) {
+function handleDateChange(e, value, date) {
+  console.log(e, value, date)
   setStartDate(date.startDate)
   setEndDate(date.endDate)
-  console.log(date)
+  setDateDisplay(value)
 }
 
 
@@ -1445,7 +1450,7 @@ function handleDateChange(date) {
   style={{ margin: '0 12px' }}
   onClick={() => setDatePopoverShow(true)}
 >
-  {helper.getDateName(startDate, endDate)}
+  {dateDisplay}
 </Button>
 <DatePopover
   startDate={startDate}
@@ -1517,7 +1522,7 @@ function handleDateType(e, value, selected, index) {
 
 <DateType
   listVisible={false}
-  list={[{ type: 'month', id: 'month', name: locale('月') }]}
+  list={[{ type: 'month', id: 'month', name: '月' }]}
   value={dateTypeValue}
   activeIndex={dateTypeIndex}
   onChange={handleDateType}

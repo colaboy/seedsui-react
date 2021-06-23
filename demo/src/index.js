@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { render } from 'react-dom'
 import {
   Page,
@@ -8,47 +8,67 @@ import {
   Container,
   MapUtil,
   Timeline,
-  InputLocation,
+  Button,
   DatePopover,
   DateType
 } from '../../src'
 
+import helper from '../../src/DatePopover/helper'
+
 function Demo() {
-  const [autoLocation, setAutoLocation] = useState(false)
-  const [value, setValue] = useState('')
-  useEffect(() => {
-    setTimeout(() => {
-      setAutoLocation(true)
-    }, 3000)
-  }, []) // eslint-disable-line
-  function handleChange (e, value) {
-    console.log(value)
-    setValue(value)
+  const [dateTypeValue, setDateTypeValue] = useState('')
+  const [dateTypeIndex, setDateTypeIndex] = useState(0)
+  function handleDateType(e, value, selected, index) {
+    setDateTypeValue(value)
+    setDateTypeIndex(index)
   }
-  function handlePreview (e, err) {
-    if (typeof err === 'object' && err.errMsg.indexOf('preview:fail') !== -1) {
-      Bridge.showToast(err.errMsg.replace('preview:fail', ''), {mask: false})
-    }
+
+  // 日期快捷选择弹窗
+  const [dateDisplay, setDateDisplay] = useState(helper.getDateName('2020-01-01', '2020-01-08'))
+  const [startDate, setStartDate] = useState('2020-01-01')
+  const [endDate, setEndDate] = useState('2020-01-08')
+  const [datePopoverShow, setDatePopoverShow] = useState(false)
+  function handleDateChange(e, value, date) {
+    console.log(e, value, date)
+    setStartDate(date.startDate)
+    setEndDate(date.endDate)
+    setDateDisplay(value)
   }
-  function handleHide (type) {
-    console.log('关闭' + type)
-  }
-  Bridge.debug = true
   return (
     <Page>
       <Header>
         <Titlebar caption="标题" />
       </Header>
       <Container>
-        <InputLocation
-          clearReadOnly
-          autoLocation={autoLocation}
-          pre
-          value={value}
-          placeholder="请点击获取位置信息"
-          onChange={handleChange}
-          onPreviewHide={handleHide}
-          preview={handlePreview}
+        <DateType
+          // listVisible={false}
+          list={[
+            // { type: 'month', id: 'month', name: '月' },
+            // { type: 'month', id: 'month', name: '月' },
+            // { type: 'month', id: 'month', name: '月' },
+            { type: 'month', id: 'month', name: '月' },
+            { type: 'month', id: 'month', name: '月' }
+          ]}
+          value={dateTypeValue}
+          activeIndex={dateTypeIndex}
+          onChange={handleDateType}
+        />
+
+        <div className="example-title">日期快捷选择弹窗</div>
+        <Button
+          className="lg"
+          style={{ margin: '0 12px' }}
+          onClick={() => setDatePopoverShow(true)}
+        >
+          {dateDisplay}
+        </Button>
+        <DatePopover
+          startDate={startDate}
+          endDate={endDate}
+          onChange={handleDateChange}
+          show={datePopoverShow}
+          onHide={() => setDatePopoverShow(false)}
+          top={50}
         />
       </Container>
     </Page>
@@ -61,7 +81,7 @@ Bridge.ready(() => {
   MapUtil.load({
     ak: '3pTjiH1BXLjASHeBmWUuSF83',
     success: () => {
-      render(<Demo/>, document.querySelector('#demo'))
+      render(<Demo />, document.querySelector('#demo'))
     },
     fail: () => {
       console.log('加载失败')

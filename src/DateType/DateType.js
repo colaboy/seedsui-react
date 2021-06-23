@@ -32,7 +32,10 @@ const DateType = forwardRef(
       activeIndex = 0,
       value,
       // 点击选项或者修改值, onChange(e, value, selected, activeIndex)
-      onChange
+      onChange,
+
+      // 其它属性
+      ...others
     },
     ref
   ) => {
@@ -137,19 +140,21 @@ const DateType = forwardRef(
     }
 
     return (
-      <div className="flex flex-middle" style={{ height: '44px', padding: '0 12px' }}>
+      <div {...others} className={`datetype${others.className ? ' ' + others.className : ''}`}>
         {listVisible && Array.isArray(list) && (
           <Tabbar
+            rectJustify={false}
             onChange={handleTab}
             list={list}
             activeIndex={activeIndex}
-            className="tabbar-rect"
-            style={{ height: '24px', margin: '0', width: '120px', borderRadius: '4px' }}
+            className="tabbar-rect datetype-tabbar"
           />
         )}
-        <i className="icon shape-arrow-left sm" onClick={handlePrev} />
-        {value}
-        <i className="icon shape-arrow-right sm" onClick={handleNext} />
+        <div className="datetype-content">
+          <i className="icon shape-arrow-left sm" onClick={handlePrev} />
+          {value}
+          <i className="icon shape-arrow-right sm" onClick={handleNext} />
+        </div>
       </div>
     )
   }
