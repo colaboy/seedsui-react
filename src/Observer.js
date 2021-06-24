@@ -30,6 +30,12 @@ const Observer = {
         fns.splice(i, 1)
       }
     }
+  },
+  destroy: function (eventName) {
+    if (!eventName) {
+      this.events = null
+    }
+    delete this.events[eventName]
   }
 }
 
