@@ -33,7 +33,7 @@ const Observer = {
   },
   destroy: function (eventName) {
     if (!eventName) {
-      this.events = null
+      this.events = {}
     }
     delete this.events[eventName]
   }
