@@ -9,6 +9,7 @@ import {
   MapUtil,
   Timeline,
   Button,
+  Actionsheet,
   DatePopover,
   DateType
 } from '../../src'
@@ -33,6 +34,16 @@ function Demo() {
     setStartDate(date.startDate)
     setEndDate(date.endDate)
     setDateDisplay(value)
+  }
+  const [show, setShow] = useState(false)
+  function handleChange(e, value, selected, index) {
+    console.log(e, value, selected, index)
+  }
+  function onShow() {
+    setShow(true)
+  }
+  function onHide() {
+    setShow(false)
   }
   return (
     <Page>
@@ -69,6 +80,18 @@ function Demo() {
           show={datePopoverShow}
           onHide={() => setDatePopoverShow(false)}
           top={50}
+        />
+        <input type="button" value="显示" onClick={onShow} />
+        <Actionsheet
+          show={show}
+          list={[{ name: '菜单1' }, { name: '菜单2' }]}
+          onChange={handleChange}
+          // cancelAttribute={{
+          //   onClick: onHide
+          // }}
+          // maskAttribute={{
+          //   onClick: onHide
+          // }}
         />
       </Container>
     </Page>

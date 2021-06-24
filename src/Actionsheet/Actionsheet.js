@@ -66,7 +66,9 @@ const Actionsheet = forwardRef(
         cancelAttribute.onClick(e)
         return
       }
-      if (onChange) onChange(e, item.name, [item], index)
+      if (target.classList.contains('actionsheet-option')) {
+        if (onChange) onChange(e, item.name, [item], index)
+      }
     }
 
     // 构建动画
