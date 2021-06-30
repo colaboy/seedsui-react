@@ -1287,21 +1287,21 @@ locale('radius_of_m', [1000]); // => 半径1000米
 
 ### 示例
 ```javascript
-import InputDate from 'seedsui-react/lib/InputDate';
-import zhCN from 'seedsui-react/lib/locale/zh_CN';
-import enUS from 'seedsui-react/lib/locale/en_US';
-import Context from 'seedsui-react/lib/Context';
+import InputDate from 'seedsui-react/lib/InputDate'
+import zhCN from 'seedsui-react/lib/locale/zh_CN'
+import enUS from 'seedsui-react/lib/locale/en_US'
+import Context from 'seedsui-react/lib/Context'
 
-const [locale, setLocale] = useState(zhCN);
-const [language, setLanguage] = useState('zh_CN');
+const [locale, setLocale] = useState(zhCN)
+const [language, setLanguage] = useState('zh_CN')
 
 function useZh () {
   setLocale(zhCN);
-  setLanguage('zh_CN');
+  setLanguage('zh_CN')
 }
 function useEn () {
   setLocale(enUS);
-  setLanguage('en_US');
+  setLanguage('en_US')
 }
 
 <input type="button" value="英文" onClick={useEn}/>
@@ -1312,7 +1312,6 @@ function useEn () {
   // locale={locale}
 >
   <InputDate type="datetime"/>
-  <BottomError/>
 </Context>
 
 ```
@@ -3425,6 +3424,9 @@ import Legend from 'seedsui-react/lib/Legend';
 
 ## Jcrop
 [标题](https://unpkg.com/seedsui-react/src/lib/Jcrop/Jcrop.js)
+
+> package.json需要安装Jcrop库
+
 ### 属性
 ```javascript
 <Jcrop
@@ -3439,28 +3441,28 @@ import Legend from 'seedsui-react/lib/Legend';
 ```
 ### 示例
 ```javascript
-import CanvasUtil from 'seedsui-react/lib/CanvasUtil';
-import Jcrop from 'seedsui-react/lib/Jcrop';
+import CanvasUtil from 'seedsui-react/lib/CanvasUtil'
+import Jcrop from 'seedsui-react/lib/Jcrop'
 
-onChange = (e) => {
-  console.log(e)
-  this.setState({
-    pos: e.pos,
-    src: e.src
-  });
+const [src, setSrc] = useState('')
+const [pos, setPos] = useState('')
+
+const handleChange = (e) => {
+  setPos(e.pos)
+  setSrc(e.src)
 }
 
-onSubmit = () => {
+const handleSubmit = () => {
   CanvasUtil.cropImg({
-    src: this.state.src,
-    ...this.state.pos,
+    src: src,
+    ....pos,
     success: function (base64) {
       console.log(base64)
     }
-  });
+  })
 }
 
-<Jcrop src={srcData} onChange={this.onChange} style={{width: '300px'}}/>
+<Jcrop src={srcData} onChange={handleChange} style={{width: '300px'}}/>
 ```
 [返回目录](#component)
 

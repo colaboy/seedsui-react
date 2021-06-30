@@ -50,32 +50,15 @@ var Device = (function () {
         platformMatch = ua.match(/micromessenger\/([\w.]*)/)
         if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
       }
-    } else if (ua.indexOf('miniprogram') > -1 && ua.indexOf('micromessenger') > -1) {
-      if (ua.indexOf('wxwork') > -1) {
-        platform = 'weworkMiniprogram'
-        platformMatch = ua.match(/wxwork\/([\w.]*)/)
-      } else if (ua.indexOf('micromessenger') > -1) {
-        platform = 'wechatMiniprogram'
-        platformMatch = ua.match(/micromessenger\/([\w.]*)/)
-      }
-      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    } else if (ua.indexOf('wxwork') > -1) {
-      platform = 'wework'
-      platformMatch = ua.match(/wxwork\/([\w.]*)/)
-      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    } else if (ua.indexOf('micromessenger') > -1) {
-      platform = 'wechat'
-      platformMatch = ua.match(/micromessenger\/([\w.]*)/)
-      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    } else if (ua.indexOf('mqqbrowser') > -1) {
-      platform = 'qq'
-    } else if (ua.indexOf('ucbrowser') > -1) {
-      platform = 'uc'
-    } else if (ua.indexOf('dinghuoappversion') > -1) {
+    }
+    // 订货
+    else if (ua.indexOf('dinghuoappversion') > -1) {
       platform = 'dinghuo'
       platformMatch = ua.match(/dinghuoappversion\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    } else if (ua.indexOf('wqappversion') > -1) {
+    }
+    // 外勤
+    else if (ua.indexOf('wqappversion') > -1) {
       // 外勤cordova内核
       platform = 'waiqin'
       // JsBridge内核
@@ -89,7 +72,40 @@ var Device = (function () {
       // 外勤版本号
       platformMatch = ua.match(/wqappversion\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
-    } else {
+    }
+    // 微信小程序
+    else if (ua.indexOf('miniprogram') > -1 && ua.indexOf('micromessenger') > -1) {
+      if (ua.indexOf('wxwork') > -1) {
+        platform = 'weworkMiniprogram'
+        platformMatch = ua.match(/wxwork\/([\w.]*)/)
+      } else if (ua.indexOf('micromessenger') > -1) {
+        platform = 'wechatMiniprogram'
+        platformMatch = ua.match(/micromessenger\/([\w.]*)/)
+      }
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
+    // 企业微信
+    else if (ua.indexOf('wxwork') > -1) {
+      platform = 'wework'
+      platformMatch = ua.match(/wxwork\/([\w.]*)/)
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
+    // 微信
+    else if (ua.indexOf('micromessenger') > -1) {
+      platform = 'wechat'
+      platformMatch = ua.match(/micromessenger\/([\w.]*)/)
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
+    // QQ
+    else if (ua.indexOf('mqqbrowser') > -1) {
+      platform = 'qq'
+    }
+    // UC
+    else if (ua.indexOf('ucbrowser') > -1) {
+      platform = 'uc'
+    }
+    // 其它浏览器
+    else {
       platform = 'browser'
     }
   }

@@ -7,92 +7,41 @@ import {
   Bridge,
   Container,
   MapUtil,
-  Timeline,
-  Button,
-  Actionsheet,
-  DatePopover,
-  DateType
+  InputDate
 } from '../../src'
 
-import helper from '../../src/DatePopover/helper'
+import zhCN from '../../src/locale/zh_CN'
+import enUS from '../../src/locale/en_US'
+import Context from '../../src/Context'
 
 function Demo() {
-  const [dateTypeValue, setDateTypeValue] = useState('')
-  const [dateTypeIndex, setDateTypeIndex] = useState(0)
-  function handleDateType(e, value, selected, index) {
-    setDateTypeValue(value)
-    setDateTypeIndex(index)
+  const [locale, setLocale] = useState(zhCN)
+  const [language, setLanguage] = useState('zh_CN')
+
+  function handleZh () {
+    setLocale(zhCN)
+    setLanguage('zh_CN')
+  }
+  function handleEn () {
+    setLocale(enUS)
+    setLanguage('en_US')
   }
 
-  // 日期快捷选择弹窗
-  const [dateDisplay, setDateDisplay] = useState(helper.getDateName('2020-01-01', '2020-01-08'))
-  const [startDate, setStartDate] = useState('2020-01-01')
-  const [endDate, setEndDate] = useState('2020-01-08')
-  const [datePopoverShow, setDatePopoverShow] = useState(false)
-  function handleDateChange(e, value, date) {
-    console.log(e, value, date)
-    setStartDate(date.startDate)
-    setEndDate(date.endDate)
-    setDateDisplay(value)
-  }
-  const [show, setShow] = useState(false)
-  function handleChange(e, value, selected, index) {
-    console.log(e, value, selected, index)
-  }
-  function onShow() {
-    setShow(true)
-  }
-  function onHide() {
-    setShow(false)
-  }
   return (
     <Page>
       <Header>
         <Titlebar caption="标题" />
       </Header>
       <Container>
-        <DateType
-          // listVisible={false}
-          list={[
-            // { type: 'month', id: 'month', name: '月' },
-            // { type: 'month', id: 'month', name: '月' },
-            // { type: 'month', id: 'month', name: '月' },
-            { type: 'month', id: 'month', name: '月' },
-            { type: 'month', id: 'month', name: '月' }
-          ]}
-          value={dateTypeValue}
-          activeIndex={dateTypeIndex}
-          onChange={handleDateType}
-        />
-
-        <div className="example-title">日期快捷选择弹窗</div>
-        <Button
-          className="lg"
-          style={{ margin: '0 12px' }}
-          onClick={() => setDatePopoverShow(true)}
+        <input type="button" value="英文" onClick={handleEn}/>
+        <input type="button" value="中文" onClick={handleZh}/>
+        <Context
+          portal={document.getElementById('demo')}
+          language={language}
+          locale={locale}
         >
-          {dateDisplay}
-        </Button>
-        <DatePopover
-          startDate={startDate}
-          endDate={endDate}
-          onChange={handleDateChange}
-          show={datePopoverShow}
-          onHide={() => setDatePopoverShow(false)}
-          top={50}
-        />
-        <input type="button" value="显示" onClick={onShow} />
-        <Actionsheet
-          show={show}
-          list={[{ name: '菜单1' }, { name: '菜单2' }]}
-          onChange={handleChange}
-          // cancelAttribute={{
-          //   onClick: onHide
-          // }}
-          // maskAttribute={{
-          //   onClick: onHide
-          // }}
-        />
+          <InputDate type="datetime"/>
+        </Context>
       </Container>
     </Page>
   )
