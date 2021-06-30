@@ -936,7 +936,6 @@ if (!locale) locale = {}
 ### 属性
 ```javascript
 <ConfigProvider
-  language={国际化语言名称 string, 默认无} // 可选项为: zh_CN, en_US, 如想要自定义国际化文件, 使用locale属性
   locale={国际化配置文件 object, 默认无} // 此属性会覆盖language国际化文件中的字段
   portal={弹框传送dom object, 默认无}
   onChange={修改回调 func, 默认无}
@@ -1236,7 +1235,6 @@ useEffect(() => {
 ### 属性
 ```javascript
 <Context
-  language={国际化语言名称 string, 默认无} // 可选项为: zh_CN, en_US, 如想要自定义国际化文件, 使用locale属性
   locale={国际化配置文件 object, 默认无} // 此属性会覆盖language国际化文件中的字段
   portal={弹框传送dom object, 默认无}
   children={子元素 node, 默认无}
@@ -1293,23 +1291,22 @@ import enUS from 'seedsui-react/lib/locale/en_US'
 import Context from 'seedsui-react/lib/Context'
 
 const [locale, setLocale] = useState(zhCN)
-const [language, setLanguage] = useState('zh_CN')
 
-function useZh () {
-  setLocale(zhCN);
+function handleZh () {
+  setLocale(zhCN)
   setLanguage('zh_CN')
 }
-function useEn () {
-  setLocale(enUS);
+function handleEn () {
+  setLocale(enUS)
   setLanguage('en_US')
 }
 
-<input type="button" value="英文" onClick={useEn}/>
-<input type="button" value="中文" onClick={useZh}/>
+<input type="button" value="英文" onClick={handleEn}/>
+<input type="button" value="中文" onClick={handleZh}/>
 <Context
   portal={document.getElementById('demo')}
   language={language}
-  // locale={locale}
+  locale={locale}
 >
   <InputDate type="datetime"/>
 </Context>

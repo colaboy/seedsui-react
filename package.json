@@ -19,7 +19,9 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {},
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.14"
+  },
   "peerDependencies": {
     "react": "16.x"
   },
@@ -28,6 +30,7 @@
     "axios": "^0.21.1",
     "better-scroll": "^2.3.1",
     "cp-file": "^9.0.0",
+    "html-react-parser": "^1.2.7",
     "less": "^4.1.1",
     "less-loader": "^9.0.0",
     "nwb": "0.25.x",

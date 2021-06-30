@@ -5,7 +5,6 @@ const Context = React.createContext({
   locale: function (remark, key, variable) {
     return getLocaleValue(remark, key, variable)
   },
-  language: '',
   portal: null
 })
 
