@@ -349,6 +349,31 @@ window.Array.prototype.getDeepTreeNode = function (id, propertyConfig) {
   return {}
 }
 
+// 根据id, 在指定id节点下加入children数据, 即children: [{id: '', name: '', parentid: ''}]
+window.Array.prototype.setDeepTreeNodeChildren = function (id, propertyConfig) {
+  if (typeof id === 'number') id = String(id)
+  var list = this
+  // var parentIdName = propertyConfig && propertyConfig.parentIdName ? propertyConfig.parentIdName : 'parentid'
+  // var nodeIdName = propertyConfig && propertyConfig.nodeIdName ? propertyConfig.nodeIdName : 'id'
+  var children = propertyConfig?.children || null
+  if (!children || !Array.isArray(children) || !children.length) return list
+
+  // 塞入到指定对象中
+  function loopDeepTree(list) {
+    for (let item of list) {
+      // 找到相同的id, 塞入children, 并终止遍历
+      if (item.id === id) {
+        item.children = children
+        return
+      }
+      if (Array.isArray(item.children) && item.children.length) {
+        loopDeepTree(item.children)
+      }
+    }
+  }
+  loopDeepTree(list)
+  return list
+}
 
 // 根据name集合, 取出此name节点的数据, 即[{id: '', name: '', parentid: ''}]
 window.Array.prototype.getDeepTreeNodesByNames = function (names, propertyConfig) {

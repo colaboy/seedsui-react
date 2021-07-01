@@ -37,7 +37,46 @@ const Tree = forwardRef(
     useImperativeHandle(ref, () => {
       return refEl.current
     })
+
     const instance = useRef(null)
+
+    // 是否是深层数据结构
+    let isChildrenData = useRef(false)
+
+    // 初始化树结构
+    useEffect(() => {
+      if (instance.current) return
+      // 更新数据
+      let data = Object.clone(list)
+      isChildrenData.current = JSON.stringify(data).indexOf('"children"') !== -1
+      if (isChildrenData.current) {
+        data = data.flattenTree()
+      }
+      let elTree = refEl.current.querySelector('ul')
+      console.log('初始化, 是否多选:' + multiple)
+      instance.current = new Instance(elTree, {
+        data: data,
+        selectedAutoClear: selectedAutoClear,
+        multiple,
+        checkbox,
+        checkStrictly,
+        arrowAutoShow,
+        bar,
+        buttonAddClass: buttonAddAttribute.className,
+        onClickAdd: buttonAddAttribute.onClick,
+        buttonDelClass: buttonDelAttribute.className,
+        onClickDel: buttonDelAttribute.onClick,
+        onClick: handleClick,
+        onChange: handleChange,
+        onData: onData,
+        ...(params || {})
+      })
+      // 渲染数据
+      instance.current.update()
+      // 设置已选中
+      checkedSelected()
+      refEl.current.instance = instance
+    }, []) // eslint-disable-line
 
     // 比较变化
     function usePrevious(value) {
@@ -93,39 +132,6 @@ const Tree = forwardRef(
     }, [selected]) // eslint-disable-line
 
     useEffect(() => {
-      if (instance.current) return
-      // 更新数据
-      let data = Object.clone(list)
-      if (JSON.stringify(data).indexOf('"children"') !== -1) {
-        data = data.flattenTree()
-      }
-      let elTree = refEl.current.querySelector('ul')
-      console.log('初始化, 是否多选:' + multiple)
-      instance.current = new Instance(elTree, {
-        data: data,
-        selectedAutoClear: selectedAutoClear,
-        multiple,
-        checkbox,
-        checkStrictly,
-        arrowAutoShow,
-        bar,
-        buttonAddClass: buttonAddAttribute.className,
-        onClickAdd: buttonAddAttribute.onClick,
-        buttonDelClass: buttonDelAttribute.className,
-        onClickDel: buttonDelAttribute.onClick,
-        onClick: click,
-        onChange: change,
-        onData: onData,
-        ...(params || {})
-      })
-      // 渲染数据
-      instance.current.update()
-      // 设置已选中
-      checkedSelected()
-      refEl.current.instance = instance
-    }, []) // eslint-disable-line
-
-    useEffect(() => {
       if (extend === 1) {
         instance.current.extendAll()
       } else if (extend === -1) {
@@ -137,7 +143,8 @@ const Tree = forwardRef(
       if (!instance.current) return
       if (list && list.length) {
         let data = Object.clone(list)
-        if (JSON.stringify(data).indexOf('"children"') !== -1) {
+        isChildrenData.current = JSON.stringify(data).indexOf('"children"') !== -1
+        if (isChildrenData.current) {
           data = data.flattenTree()
         }
         // 选中选中项
@@ -160,8 +167,8 @@ const Tree = forwardRef(
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
     if (instance.current) {
-      instance.current.params.onClick = click
-      instance.current.params.onChange = change
+      instance.current.params.onClick = handleClick
+      instance.current.params.onChange = handleChange
       instance.current.params.onData = onData
     }
 
@@ -188,7 +195,7 @@ const Tree = forwardRef(
     }
 
     // 选中项
-    function change(s) {
+    function handleChange(s) {
       if (refEl.current) s.target = refEl.current
       if (onChange) {
         let value = []
@@ -209,7 +216,7 @@ const Tree = forwardRef(
     }
 
     // 点击
-    function click(s) {
+    function handleClick(s) {
       if (!s.targetLine) return
       if (refEl.current) s.target = refEl.current
       let data = Object.clone(list)
@@ -218,7 +225,15 @@ const Tree = forwardRef(
       }
       // item
       const id = s.targetLine.getAttribute('data-id')
-      let item = data.getFlattenTreeNode(id)
+      let item = s.targetLine.getAttribute('data-node')
+      if (item && typeof item === 'string') {
+        try {
+          item = JSON.parse(decodeURIComponent(decodeURIComponent(item)))
+        } catch (error) {
+          // 从list中拿此条数据有问题, 因为list是不变的, 而动态渲染的过程就是不断地向data中注入子数据
+          item = data.getFlattenTreeNode(id)
+        }
+      }
       // isActived
       let isActived = isSelected(id) ? true : false
       // childrenCount
@@ -233,7 +248,6 @@ const Tree = forwardRef(
       // 点击回调
       if (onClick) onClick(s, item.name, item, isActived, isExtend, childrenCount)
       if (s.isLeaf && onClickLeaf) onClickLeaf(s, item.name, item, isActived)
-
       if (getChildren) {
         addChildren(s, item, isActived, isExtend, childrenCount)
       }
@@ -244,6 +258,17 @@ const Tree = forwardRef(
       if (!isExtend || s.targetLine.childrenLoaded) return
       var ul = s.targetLine.nextElementSibling
       let leaf = await getChildren(item.id)
+      // 修改原数据
+      if (isChildrenData.current) {
+        // 修改children数据
+        list.setDeepTreeNodeChildren(item.id, {
+          children: leaf
+        })
+      } else {
+        // 修改扁平数据
+        list.push(...leaf)
+      }
+
       // 如果返回不是数组, 则认为返回错误
       if (leaf instanceof Array === false) {
         return
