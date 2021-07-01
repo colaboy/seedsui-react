@@ -1493,8 +1493,8 @@ function handleDateChange(e, value, date) {
         name: locale('月')
       },
       {
-        type: 'season',
-        id: 'season',
+        type: 'quarter',
+        id: 'quarter',
         name: locale('季')
       },
       {
