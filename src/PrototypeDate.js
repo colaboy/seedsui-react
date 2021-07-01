@@ -53,43 +53,43 @@ window.Date.prototype.quarter = function (argCount) {
   return count
 }
 // 上一季
-window.Date.prototype.prevSeason = function (count) {
+window.Date.prototype.prevQuarter = function (count) {
   // 获得当前季的第一个月
   this.setMonth(this.getMonth() - 3 * (count || 1), 1)
   return Math.ceil((this.getMonth() + 1) / 3)
 }
 // 下一季
-window.Date.prototype.nextSeason = function (count) {
+window.Date.prototype.nextQuarter = function (count) {
   // 获得当前季的第一个月
   this.setMonth(this.getMonth() + 3 * (count || 1), 1)
   return Math.ceil((this.getMonth() + 1) / 3)
 }
 // 第一季
-window.Date.prototype.firstSeason = function () {
+window.Date.prototype.firstQuarter = function () {
   this.quarter(1)
   return 1
 }
 // 第四季
-window.Date.prototype.lastSeason = function () {
+window.Date.prototype.lastQuarter = function () {
   this.quarter(4)
   return 4
 }
 // 当季第一天
-window.Date.prototype.firstSeasonDate = function () {
+window.Date.prototype.firstQuarterDate = function () {
   var count = Math.ceil((this.getMonth() + 1) / 3)
   this.setYear(this.getFullYear())
   this.setMonth(count * 3 - 3, 1)
   return this
 }
 // 当季最后一天
-window.Date.prototype.lastSeasonDate = function () {
+window.Date.prototype.lastQuarterDate = function () {
   var count = Math.ceil((this.getMonth() + 1) / 3)
   this.setYear(this.getFullYear())
   this.setMonth(count * 3, 0)
   return this
 }
 // 返回当季共多少天
-window.Date.prototype.getSeasonDays = function () {
+window.Date.prototype.getQuarterDays = function () {
   // 季度
   var count = Math.ceil((this.getMonth() + 1) / 3)
   // 平闰年2月的差别

@@ -106,7 +106,7 @@ const DateType = forwardRef(
           }
           date.year(currentValue.split('-')[0])
           date.quarter(currentValue.split('-')[1])
-          let quarter = go === -1 ? date.prevSeason() : date.nextSeason()
+          let quarter = go === -1 ? date.prevQuarter() : date.nextQuarter()
           newValue = date.getFullYear() + '-' + quarter
           break
         }
