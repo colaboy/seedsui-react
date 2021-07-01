@@ -67,32 +67,32 @@ export default {
     // 今天
     date = this.getDateRange('today')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('今天', 'ZKGJ011242')
+      return locale('今天', 'datepopover_today')
     }
     // 昨天
     date = this.getDateRange('yesterday')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('昨天', 'ZKGJ018291')
+      return locale('昨天', 'datepopover_yesterday')
     }
     // 本月
     date = this.getDateRange('month')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('本月', 'ZKGJ000059')
+      return locale('本月', 'datepopover_this_month')
     }
     // 上月
     date = this.getDateRange('prevmonth')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('上月', 'ZKGJ002121')
+      return locale('上月', 'datepopover_last_month')
     }
     // 最近7内
     date = this.getDateRange('7')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('最近7天')
+      return locale(locale('最近7天', 'datepopover_last_days', ['7']))
     }
     // 最近30天
     date = this.getDateRange('30')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('最近30天', 'ZKGJ017879')
+      return locale('最近30天', 'datepopover_last_days', ['30'])
     }
     // 自定义
     return `${startDate.substring(5)} ~ ${endDate.substring(5)}`
@@ -103,7 +103,7 @@ export default {
     if (startDate && endDate) {
       const diff = startDate.toDate().diff(endDate.toDate())
       if (diff.days > range) {
-        Bridge.showToast(rangeErrMsg || locale(`自定义时间区间不能超过${range}天`), { mask: false })
+        Bridge.showToast(rangeErrMsg || locale(`自定义时间区间不能超过${range}天`, 'hint_error_datepopover_custom_date_range_timeout', [range]), { mask: false })
         return false
       }
     }

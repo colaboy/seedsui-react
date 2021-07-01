@@ -117,5 +117,16 @@ export default {
   hint_map_init_timeout: '初始化地图超时, 请检查当前网络是否稳定',
   hint_map_no_boundary_data: '暂无{0}的边界数据',
   radius_of_m: '半径{0}米',
-  picker_district_title: '请选择所在地区'
+  picker_district_title: '请选择所在地区',
+  datetype_unit_year: '年',
+  datetype_unit_month: '月',
+  datetype_unit_date: '日',
+  datetype_unit_quarter: '季',
+  datepopover_today: '今天',
+  datepopover_yesterday: '昨天',
+  datepopover_this_month: '本月',
+  datepopover_last_month: '上月',
+  datepopover_last_days: '最近{0}天',
+  datepopover_custom_date: '自定义日期',
+  hint_error_datepopover_custom_date_range_timeout: '自定义时间区间不能超过{0}天',
 }

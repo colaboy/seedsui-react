@@ -122,5 +122,16 @@ export default {
   hint_map_init_timeout: 'Init map timeout',
   hint_map_no_boundary_data: "No {0}'s boundary data",
   radius_of_m: 'Radius of {0} m',
-  picker_district_title: 'Please district'
+  picker_district_title: 'Please district',
+  datetype_unit_year: 'Year',
+  datetype_unit_month: 'Month',
+  datetype_unit_date: 'Date',
+  datetype_unit_quarter: 'Quarter',
+  datepopover_today: 'Today',
+  datepopover_yesterday: 'Yesterday',
+  datepopover_this_month: 'This month',
+  datepopover_last_month: 'Last month',
+  datepopover_last_days: 'Last {0} days',
+  datepopover_custom_date: 'Custom date',
+  hint_error_datepopover_custom_date_range_timeout: 'No more than {0} days',
 }

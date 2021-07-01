@@ -46,24 +46,29 @@ ReactDOM.render(
 
 #### 简单示例
 ```javascript
-import InputDate from 'seedsui-react/lib/InputDate';
-import zhCN from 'seedsui-react/lib/locale/zh_CN';
-import enUS from 'seedsui-react/lib/locale/en_US';
-import Context from 'seedsui-react/lib/Context';
+import InputDate from 'seedsui-react/lib/InputDate'
+import DateType from 'seedsui-react/lib/DateType'
+import zhCN from 'seedsui-react/lib/locale/zh_CN'
+import enUS from 'seedsui-react/lib/locale/en_US'
+import Context from 'seedsui-react/lib/Context'
 
-const [locale, setLocale] = useState(zhCN);
+const [locale, setLocale] = useState(zhCN)
 
-function useZh {
-  setLocale(zhCN);
+function handleZh () {
+  setLocale(zhCN)
 }
-function useEn () {
-  setLocale(enUS);
+function handleEn () {
+  setLocale(enUS)
 }
 
-<input type="button" value="英文" onClick={useEn}/>
-<input type="button" value="中文" onClick={useZh}/>
-<Context portal={document.getElementById('demo')} locale={locale}>
+<input type="button" value="英文" onClick={handleEn}/>
+<input type="button" value="中文" onClick={handleZh}/>
+<Context
+  portal={document.getElementById('demo')}
+  locale={locale}
+>
   <InputDate type="datetime"/>
+  <DateType/>
 </Context>
 ```
 

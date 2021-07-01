@@ -24,30 +24,32 @@ const DatePopover = forwardRef(
 
       // 范围
       ranges = {
-        [locale('今天')]: [new Date().format('YYYY-MM-DD'), new Date().format('YYYY-MM-DD')],
-        [locale('昨天')]: [
+        [locale('今天', 'datepopover_today')]: [
+          new Date().format('YYYY-MM-DD'),
+          new Date().format('YYYY-MM-DD')
+        ],
+        [locale('昨天', 'datepopover_yesterday')]: [
           new Date().prevDate().format('YYYY-MM-DD'),
           new Date().prevDate().format('YYYY-MM-DD')
         ],
-        [locale('本月')]: [
+        [locale('本月', 'datepopover_this_month')]: [
           new Date().firstMonthDate().format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('上月')]: [
+        [locale('上月', 'datepopover_last_month')]: [
           new Date().prevMonth().firstMonthDate().format('YYYY-MM-DD'),
           new Date().prevMonth().lastMonthDate().format('YYYY-MM-DD')
         ],
-        [locale('最近7天')]: [
+        [locale('最近7天', 'datepopover_last_days', ['7'])]: [
           new Date().prevDate(7).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('最近30天')]: [
+        [locale('最近30天', 'datepopover_last_days', ['30'])]: [
           new Date().prevDate(30).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('自定义日期')]: 90
+        [locale('自定义时间', 'datepopover_custom_date')]: 90
       },
-
       // 自定义日期, 范围内错误提示
       rangeErrMsg,
 
@@ -146,7 +148,7 @@ const DatePopover = forwardRef(
                   key={key}
                   onClick={() => showCustomDialog(range)}
                 >
-                  {locale('自定义时间')}
+                  {locale('自定义时间', 'datepopover_custom_date')}
                 </div>
               )
             }
@@ -165,7 +167,7 @@ const DatePopover = forwardRef(
 
         {/* 自定义时间 */}
         <Alert
-          caption={locale('自定义时间')}
+          caption={locale('自定义时间', 'datepopover_custom_date')}
           show={customDialog}
           submitAttribute={{ onClick: handleCustomSubmit }}
           cancelAttribute={{ onClick: handleCustomCancel }}

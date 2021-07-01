@@ -22,8 +22,8 @@ export default class ConfigProvider extends Component {
     data = locale
     if (data) window.localeData = data
     return {
-      locale: function (remark, key, variable) {
-        return getLocaleValue(remark, key, variable)
+      locale: function (...params) {
+        return getLocaleValue(...params)
       },
       portal,
       onChange

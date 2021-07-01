@@ -46,7 +46,7 @@ window.Date.prototype.getYearDays = function () {
  * 季操作
  */
 // 季, 返回:0.季度,1.季度第一天,2.季度最后一天
-window.Date.prototype.season = function (argCount) {
+window.Date.prototype.quarter = function (argCount) {
   var count = argCount || Math.ceil((this.getMonth() + 1) / 3)
   // 修改月
   this.setMonth(count * 3 - 3, 1)
@@ -66,12 +66,12 @@ window.Date.prototype.nextSeason = function (count) {
 }
 // 第一季
 window.Date.prototype.firstSeason = function () {
-  this.season(1)
+  this.quarter(1)
   return 1
 }
 // 第四季
 window.Date.prototype.lastSeason = function () {
-  this.season(4)
+  this.quarter(4)
   return 4
 }
 // 当季第一天

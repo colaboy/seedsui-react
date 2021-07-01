@@ -10,22 +10,22 @@ const DateType = forwardRef(
         {
           type: 'date',
           id: 'date',
-          name: locale('日')
+          name: locale('日', 'datetype_unit_date')
         },
         {
           type: 'month',
           id: 'month',
-          name: locale('月')
+          name: locale('月', 'datetype_unit_month')
         },
         {
-          type: 'season',
-          id: 'season',
-          name: locale('季')
+          type: 'quarter',
+          id: 'quarter',
+          name: locale('季', 'datetype_unit_quarter')
         },
         {
           type: 'year',
           id: 'year',
-          name: locale('年')
+          name: locale('年', 'datetype_unit_year')
         }
       ],
       listVisible = true,
@@ -80,7 +80,7 @@ const DateType = forwardRef(
     /**
      * 切换日期
      * @param {String} currentValue 单位列表, 单位列表需要从大到小排序后才能计算
-     * @param {String} dateType 日期类型, [date|month|season|year]
+     * @param {String} dateType 日期类型, [date|month|quarter|year]
      * @param {Number} go 前行后退, 0: 当前; -1: 后退; 1: 前进;
      */
     function getValue(currentValue, dateType, go) {
@@ -99,15 +99,15 @@ const DateType = forwardRef(
           break
         }
         // 季
-        case 'season': {
+        case 'quarter': {
           if (go === 0) {
-            newValue = date.getFullYear() + '-' + date.season()
+            newValue = date.getFullYear() + '-' + date.quarter()
             break
           }
           date.year(currentValue.split('-')[0])
-          date.season(currentValue.split('-')[1])
-          let season = go === -1 ? date.prevSeason() : date.nextSeason()
-          newValue = date.getFullYear() + '-' + season
+          date.quarter(currentValue.split('-')[1])
+          let quarter = go === -1 ? date.prevSeason() : date.nextSeason()
+          newValue = date.getFullYear() + '-' + quarter
           break
         }
         // 月

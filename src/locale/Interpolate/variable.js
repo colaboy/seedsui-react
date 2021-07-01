@@ -22,32 +22,28 @@ export default function (value, variableMap, dangerouslyHTML) {
     return value
   }
 
-  // 构建分割后的数组['内容', <div>我是变量dom</div>, '内容', '我是变量2', '内容']
-  const REGEXP = /\{(\d+)\}/
+  // '内容{0}内容{1}内容'分割成['内容', '0', 内容, '1', 内容], 返回构建分割后的数组['内容', <div>我是变量dom</div>, '内容', '我是变量2', '内容']
+  const REGEXP = /\{(\d+)\}/ // 匹配数字{0}等
   let children = []
-  value.split(REGEXP).reduce(function (memo, match, index) {
+  value.split(REGEXP).reduce(function (memo, item, index) {
     let child
+    // 单数为内容, 不用替换
     if (index % 2 === 0) {
-      // 单数不用替换
-      if (match.length === 0) {
+      if (item.length === 0) {
         return memo
       }
-      child = match
-    } else {
-      // 双数为变量
-      child = variableMap[match]
-      if (
-        typeof child === 'number' ||
-        typeof child === 'string' ||
-        // 非html字符串, reactDOM判断
-        (!dangerouslyHTML && typeof child === 'object' && child.$$typeof)
-      ) {
-        // 如果需要转换html, 则把变量html字符串转换字符为reactDOM
-        if (dangerouslyHTML && typeof child === 'string') {
+      child = item
+    }
+    // 双数为变量, 需要替换
+    else {
+      child = variableMap[item]
+      // 如果需要转换html, 并且变量child为数字或者string类型, 则把变量html字符串转换字符为reactDOM
+      if (dangerouslyHTML && (typeof child === 'number' || typeof child === 'string')) {
+        try {
           child = htmlParser(child)
+        } catch (error) {
+          child = '{Parse error}'
         }
-      } else {
-        child = '{Parse error}'
       }
     }
     memo.push(child)
@@ -55,9 +51,19 @@ export default function (value, variableMap, dangerouslyHTML) {
     return memo
   }, children)
 
+  // 如果数组里都是字符串或者数组, 直接返回文本
+  let isText = children.every((child) => {
+    return typeof child === 'number' || typeof child === 'string'
+  })
+  if (isText) {
+    return children.join('')
+  }
+
+  // reactDOM判断: typeof child === 'object' && child.$$typeof
   // reactDOM渲染
   let childrenArrary = React.Children.map(children, (child) => {
     return child
   })
+  // 返回reactDOM
   return React.createElement(Fragment, null, childrenArrary)
 }

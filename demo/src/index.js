@@ -7,26 +7,38 @@ import {
   Bridge,
   Container,
   MapUtil,
-  InputDate
+  Button,
+  DatePopover
 } from '../../src'
 
 import zhCN from '../../src/locale/zh_CN'
 import enUS from '../../src/locale/en_US'
 import Context from '../../src/Context'
+import helper from '../../src/DatePopover/helper'
 
 function Demo() {
-  const [locale, setLocale] = useState(zhCN)
-  const [language, setLanguage] = useState('zh_CN')
+  
+const [locale, setLocale] = useState(enUS)
 
-  function handleZh () {
-    setLocale(zhCN)
-    setLanguage('zh_CN')
-  }
-  function handleEn () {
-    setLocale(enUS)
-    setLanguage('en_US')
-  }
+function handleZh () {
+  setLocale(zhCN)
+}
+function handleEn () {
+  setLocale(enUS)
+}
 
+
+
+  const [dateDisplay, setDateDisplay] = useState(helper.getDateName('2020-01-01', '2020-01-08'))
+  const [startDate, setStartDate] = useState('2020-01-01')
+  const [endDate, setEndDate] = useState('2020-01-08')
+  const [datePopoverShow, setDatePopoverShow] = useState(false)
+  function handleDateChange(e, value, date) {
+    console.log(e, value, date)
+    setStartDate(date.startDate)
+    setEndDate(date.endDate)
+    setDateDisplay(value)
+  }
   return (
     <Page>
       <Header>
@@ -37,10 +49,24 @@ function Demo() {
         <input type="button" value="中文" onClick={handleZh}/>
         <Context
           portal={document.getElementById('demo')}
-          language={language}
           locale={locale}
         >
-          <InputDate type="datetime"/>
+          <div className="example-title">日期快捷选择弹窗</div>
+          <Button
+            className="lg"
+            style={{ margin: '0 12px' }}
+            onClick={() => setDatePopoverShow(true)}
+          >
+            {dateDisplay}
+          </Button>
+          <DatePopover
+            startDate={startDate}
+            endDate={endDate}
+            onChange={handleDateChange}
+            show={datePopoverShow}
+            onHide={() => setDatePopoverShow(false)}
+            top={50}
+          />
         </Context>
       </Container>
     </Page>
