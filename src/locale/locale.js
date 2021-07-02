@@ -10,6 +10,10 @@ import Interpolate from './Interpolate'
  */
 export default function (remark, key, variable, dangerouslyHTML) {
   let locale = window.localeData
+  // 如果没有参数, 则返回国际化数据
+  if (Array.from(arguments).length === 0) {
+    return locale
+  }
   // 渲染国际化数据中对应的值
   if (key && locale) {
     let value = locale[key]
