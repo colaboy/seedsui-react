@@ -10,8 +10,7 @@ import Interpolate from './Interpolate'
  */
 export default function (remark, key, variable, dangerouslyHTML) {
   let locale = window.localeData
-
-  // 获取key的值
+  // 渲染国际化数据中对应的值
   if (key && locale) {
     let value = locale[key]
     // 构建变量映射: 将[variable0, variable1]转换成{'0': variable0, '1': variable1}
@@ -21,13 +20,13 @@ export default function (remark, key, variable, dangerouslyHTML) {
         variableMap[`${index}`] = variableItem
       }
     }
+    
     // key的值value必须为string类型
     if (typeof value === 'string') {
       return Interpolate.variable(value, variableMap, dangerouslyHTML)
     }
-    return Interpolate.remark(remark || '', dangerouslyHTML)
   }
-  // 获取remark的值
+  // 没有国际化的值, 则渲染remark
   if (remark) return Interpolate.remark(remark, dangerouslyHTML)
-  return locale
+  return ''
 }

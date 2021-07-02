@@ -10,7 +10,7 @@ import htmlParser from 'html-react-parser'
  */
 export default function (value, variableMap, dangerouslyHTML) {
   // 如果value不是string直接返回value
-  if (typeof value !== 'string') {
+  if (typeof value !== 'string' || !value) {
     return value
   }
 

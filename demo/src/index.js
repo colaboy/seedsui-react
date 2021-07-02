@@ -8,6 +8,7 @@ import {
   Container,
   MapUtil,
   Button,
+  InputDate,
   DatePopover
 } from '../../src'
 
@@ -51,6 +52,7 @@ function handleEn () {
           portal={document.getElementById('demo')}
           locale={locale}
         >
+          <InputDate/>
           <div className="example-title">日期快捷选择弹窗</div>
           <Button
             className="lg"
