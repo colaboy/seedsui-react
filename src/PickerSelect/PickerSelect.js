@@ -47,7 +47,10 @@ const Picker = forwardRef(
             }
           }
         } else if (value) {
-          let selectedValues = value.split(split || ',')
+          let selectedValues = [value]
+          if (multiple) {
+            selectedValues = value.split(split || ',')
+          }
           for (let name of selectedValues) {
             if (name === list[i].name) {
               n.classList.add('active')

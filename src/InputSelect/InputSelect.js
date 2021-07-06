@@ -80,6 +80,7 @@ const InputSelect = forwardRef(
           multiple={multiple}
           list={list}
           selected={selected}
+          value={others.value}
           pickerProps={pickerProps}
           {...others}
         />

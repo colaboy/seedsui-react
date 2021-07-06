@@ -14,6 +14,7 @@ const SelectGroup = forwardRef(
       multiple = false,
       list = [], // [{id: '', name: ''}]
       selected,
+      value,
       pickerProps = {},
       ...others
     },
@@ -39,12 +40,15 @@ const SelectGroup = forwardRef(
               selectedMap[item.id || item.name] = item
             }
           }
-        } else if (
-          others.value &&
-          others.value.split(pickerProps.split || ',').indexOf(item.name) !== -1
-        ) {
+        } else if (value) {
+          let selectedValues = [value]
+          if (multiple) {
+            selectedValues = value.split(pickerProps.split || ',')
+          }
           // value匹配选中项
-          selectedMap[item.id || item.name] = item
+          if (selectedValues.indexOf(item.name) !== -1) {
+            selectedMap[item.id || item.name] = item
+          }
         }
       }
     }
