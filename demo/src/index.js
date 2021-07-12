@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useMemo, memo, useCallback } from 'react'
 import { render } from 'react-dom'
 import {
   Page,
@@ -7,69 +7,55 @@ import {
   Bridge,
   Container,
   MapUtil,
-  Button,
-  InputDate,
-  DatePopover
+  InputLocation
 } from '../../src'
 
-import zhCN from '../../src/locale/zh_CN'
-import enUS from '../../src/locale/en_US'
-import Context from '../../src/Context'
-import helper from '../../src/DatePopover/helper'
+const Child = memo((props) => {
+  console.log('Child改变了', props);
+
+  return (
+    <div>
+      <input type="text" value={props?.value?.value || ''} onChange={props.onChange}/>
+    </div>
+  )
+})
+
+const Child2 = memo((props) => {
+  console.log('Child2改变了', props);
+
+  return (
+    <div>
+      <input type="text" value={props.value || ''} onChange={props.onChange}/>
+    </div>
+  )
+})
 
 function Demo() {
-  
-const [locale, setLocale] = useState(enUS)
+  const [value, setValue] = useState({})
+  const [value2, setValue2] = useState('')
+  const handleChange = useCallback((e) => {
+    setValue({
+      value: e.target.value
+    })
+  }, [])
+  const handleChange2 = useCallback((e) => {
+    setValue2(e.target.value)
+  }, [])
+  const params = useMemo(() => {
+    return {
+      id: '1',
+      funcId: '12341234'
+    }
+  }, [])
 
-function handleZh () {
-  setLocale(zhCN)
-}
-function handleEn () {
-  setLocale(enUS)
-}
-
-
-
-  const [dateDisplay, setDateDisplay] = useState(helper.getDateName('2020-01-01', '2020-01-08'))
-  const [startDate, setStartDate] = useState('2020-01-01')
-  const [endDate, setEndDate] = useState('2020-01-08')
-  const [datePopoverShow, setDatePopoverShow] = useState(false)
-  function handleDateChange(e, value, date) {
-    console.log(e, value, date)
-    setStartDate(date.startDate)
-    setEndDate(date.endDate)
-    setDateDisplay(value)
-  }
   return (
     <Page>
       <Header>
         <Titlebar caption="标题" />
       </Header>
       <Container>
-        <input type="button" value="英文" onClick={handleEn}/>
-        <input type="button" value="中文" onClick={handleZh}/>
-        <Context
-          portal={document.getElementById('demo')}
-          locale={locale}
-        >
-          <InputDate/>
-          <div className="example-title">日期快捷选择弹窗</div>
-          <Button
-            className="lg"
-            style={{ margin: '0 12px' }}
-            onClick={() => setDatePopoverShow(true)}
-          >
-            {dateDisplay}
-          </Button>
-          <DatePopover
-            startDate={startDate}
-            endDate={endDate}
-            onChange={handleDateChange}
-            show={datePopoverShow}
-            onHide={() => setDatePopoverShow(false)}
-            top={50}
-          />
-        </Context>
+        <Child value={value} onChange={handleChange}/>
+        <Child2 value={value2} params={params} onChange={handleChange2}/>
       </Container>
     </Page>
   )
