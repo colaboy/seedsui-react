@@ -12,19 +12,29 @@ const readCount = useSyncCallback(() => {
 })
 */
 
+// 全局参数
+let params = null
+
 const useSyncCallback = (callback) => {
   const [proxyState, setProxyState] = useState({ current: false })
-
-  const memoizedFunc = useCallback(() => {
-    setProxyState({ current: true })
-  }, [proxyState]) // eslint-disable-line
+  const memoizedFunc = useCallback(
+    (...args) => {
+      if (args) {
+        params = args
+      } else {
+        params = null
+      }
+      setProxyState({ current: true })
+    },
+    [proxyState] // eslint-disable-line
+  )
 
   useEffect(() => {
     if (proxyState.current === true) setProxyState({ current: false })
   }, [proxyState])
 
   useEffect(() => {
-    proxyState.current && callback()
+    proxyState.current && callback(...(params || {}))
   })
 
   return memoizedFunc
