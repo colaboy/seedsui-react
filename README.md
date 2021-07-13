@@ -505,6 +505,7 @@ import BiGauge from 'seedsui-react/lib/BiGauge';
 , 现支持四个平台的桥接适配, 浏览器、订货、外勤JSBridge、外勤Cordova、微信客户端
 ### 对象
 ```javascript
+
 ```
 ### 示例
 ```javascript
@@ -1105,7 +1106,7 @@ function add () {
 import ContainerPull from 'seedsui-react/lib/ContainerPull';
 import BottomNoData from 'seedsui-react/lib/ContainerPull/BottomNoData';
 import BottomRefreshing from 'seedsui-react/lib/ContainerPull/BottomRefreshing';
-import Notice from 'seedsui-react/lib/ContainerPull/Notice';
+import Notice from 'seedsui-react/lib/Notice';
 
 // 全局变量
 let page = 1;
