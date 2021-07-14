@@ -212,6 +212,11 @@ var Tree = function (container, params) {
   }
   // 添加数据
   s.addData = function (data, id, childNode) {
+    if (!Array.isArray(data)) return
+    // 修改原数据
+    if (Array.isArray(s.params.data) && s.params.data.length) {
+      s.params.data = s.params.data.concat(data)
+    }
     _data = data
     s.initData(id, childNode)
   }

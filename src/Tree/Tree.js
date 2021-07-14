@@ -5,7 +5,6 @@ import Instance from './instance.js'
 const Tree = forwardRef(
   (
     {
-      split = ',',
       multiple = false, // 是否需要多选
       checkbox = true, // 是否可选
       checkStrictly = true, // 严格模式, 父子节点选中状态不再关联
@@ -47,11 +46,7 @@ const Tree = forwardRef(
     useEffect(() => {
       if (instance.current) return
       // 更新数据
-      let data = Object.clone(list)
-      isChildrenData.current = JSON.stringify(data).indexOf('"children"') !== -1
-      if (isChildrenData.current) {
-        data = data.flattenTree()
-      }
+      let data = convertData(list)
       let elTree = refEl.current.querySelector('ul')
       console.log('初始化, 是否多选:' + multiple)
       instance.current = new Instance(elTree, {
@@ -131,6 +126,7 @@ const Tree = forwardRef(
       }
     }, [selected]) // eslint-disable-line
 
+    // 展开与收缩
     useEffect(() => {
       if (extend === 1) {
         instance.current.extendAll()
@@ -139,6 +135,7 @@ const Tree = forwardRef(
       }
     }, [extend])
 
+    // 数据更新
     useEffect(() => {
       if (!instance.current) return
       if (list && list.length) {
@@ -158,6 +155,7 @@ const Tree = forwardRef(
       }
     }, [list]) // eslint-disable-line
 
+    // 选中栏
     useEffect(() => {
       if (!bar || !instance.current) return
       instance.current.params.bar = bar
@@ -182,6 +180,7 @@ const Tree = forwardRef(
         instance.current.removeAllSelected()
       }
     }
+
     // 当bar更新时, 选中项放到bar上
     function barSelected() {
       instance.current.bar.innerHTML = ''
@@ -215,14 +214,21 @@ const Tree = forwardRef(
       return false
     }
 
+    // 转换传入的数据为tree实例所需数据
+    function convertData (list) {
+      let data = Object.clone(list)
+      isChildrenData.current = JSON.stringify(data).indexOf('"children"') !== -1
+      if (isChildrenData.current) {
+        data = data.flattenTree()
+      }
+      return data
+    }
+
     // 点击
     function handleClick(s) {
       if (!s.targetLine) return
       if (refEl.current) s.target = refEl.current
-      let data = Object.clone(list)
-      if (JSON.stringify(data).indexOf('"children"') !== -1) {
-        data = data.flattenTree()
-      }
+      let data = convertData(list)
       // item
       const id = s.targetLine.getAttribute('data-id')
       let item = s.targetLine.getAttribute('data-node')
@@ -273,6 +279,8 @@ const Tree = forwardRef(
       if (leaf instanceof Array === false) {
         return
       }
+      // 格式化数据
+      leaf = convertData(leaf)
       instance.current.addData(leaf, item.id, ul)
       if (s.targetLine) s.targetLine.childrenLoaded = true
     }
