@@ -6,6 +6,8 @@ export default defineConfig({
   logo: 'https://res.waiqin365.com/d/seedsui/logo.png',
   outputPath: 'docs-dist',
   mode: 'site',
+  // 设置路由前缀，通常用于部署到非根目录
+  base: '/seedsui-react/',
   // more config: https://d.umijs.org/config
   // 自定义配置
   locales: [
