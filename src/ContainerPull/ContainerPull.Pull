@@ -1,0 +1,58 @@
+// DragPull 下拉刷新, 箭头样式, 用于copy到Dragrefresh组件中
+var DragPull = {
+  // 实体交互
+  onPull: (e) => {
+    var topContainer = e.topContainer;
+    topContainer.style.height = e.touches.currentPosY + 'px'
+    var topIcon = topContainer.querySelector('.containerpull-pull-icon');
+    var topCaption = topContainer.querySelector('.containerpull-pull-caption');
+    if (!e.isLoading) {
+      if (e.touches.currentPosY >= e.params.threshold) {
+        if (topIcon) topIcon.classList.add('containerpull-pull-icon-down')
+        if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'release')
+      } else {
+        if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down')
+        if (topCaption) topCaption.innerHTML = locale('下拉可以刷新', 'pull_down')
+      }
+    }
+  },
+  onShowTop: (e) => {
+    var topContainer = e.topContainer;
+    var topIcon = topContainer.querySelector('.containerpull-pull-icon');
+    var topCaption = topContainer.querySelector('.containerpull-pull-caption');
+    topContainer.style.height = e.params.threshold + 'px'
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down')
+    if (topIcon) topIcon.classList.add('containerpull-pull-icon-loading')
+    if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'refreshing')
+  },
+  onHideTop: (e) => {
+    var topContainer = e.topContainer;
+    topContainer.style.height = '0'
+  },
+  onTopHid: (e) => {
+    var topContainer = e.topContainer;
+    var topIcon = topContainer.querySelector('.containerpull-pull-icon');
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down')
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-loading')
+  }
+}
+
+export default DragPull
+
+/*
+// 头部
+<div ref={(el) => {this.$elTopBox = el;}} className="SID-Dragrefresh-TopContainer containerpull-pull" style={{transitionDuration: '150ms', height: '0px'}}>
+  <div className="containerpull-pull-box">
+    <div className="containerpull-pull-icon"></div>
+    <div className="containerpull-pull-caption">{locale('下拉可以刷新', 'pull_down')}</div>
+  </div>
+</div>
+
+// 底部
+<div className="SID-Dragrefresh-BottomContainer containerpull-pull" style={{height: '50px'}}>
+  <div className="containerpull-pull-box">
+      <div className="containerpull-pull-icon containerpull-pull-icon-loading"></div>
+      <div className="containerpull-pull-caption">{bottomLoadingCaption}</div>
+  </div>
+</div>
+*/

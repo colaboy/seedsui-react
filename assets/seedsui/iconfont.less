@@ -1,0 +1,22 @@
+// 图标文件, 因为包含文件路径, 所以不能放置到需要外部引入的base.less中
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('iconfont.woff2?t=1646099070081') format('woff2'),
+    url('iconfont.woff?t=1646099070081') format('woff'),
+    url('iconfont.ttf?t=1646099070081') format('truetype');
+}

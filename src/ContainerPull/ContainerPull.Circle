@@ -1,0 +1,41 @@
+// DragCircle 下拉刷新, 圆圈转动样式, 用于copy到Dragrefresh组件中
+var DragCircle = {
+  // 实体交互
+  onPull: function (e) {
+    var topContainer = e.topContainer;
+    if (!e.isLoading) {
+      var rotateDeg = e.touches.currentPosY * 2
+      topContainer.style.webkitTransform = 'translate3d(0,' + e.touches.currentPosY + 'px,0) rotate(' + rotateDeg + 'deg)'
+    }
+  },
+  onShowTop: function (e) {
+    var topContainer = e.topContainer;
+    var topIcon = topContainer.querySelector('.containerpull-pull-icon');
+    topContainer.style.height = e.params.threshold + 'px';
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down');
+    if (topIcon) topIcon.classList.add('containerpull-pull-icon-loading');
+    topCaption.innerHTML = locale('正在刷新...', 'refreshing');
+  },
+  onHideTop: function (e) {
+    var topContainer = e.topContainer;
+    topContainer.style.height = '0';
+  },
+  onTopHid: function (e) {
+    var topContainer = e.topContainer;
+    var topIcon = topContainer.querySelector('.containerpull-pull-icon');
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down');
+    if (topIcon) topIcon.classList.remove('containerpull-pull-icon-loading');
+  }
+}
+
+export default DragCircle
+
+/*
+// 头部
+<div ref={(el) => {this.$elTopBox = el;}} className="SID-Dragrefresh-TopContainer containerpull-circle">
+  <div class="containerpull-circle-icon"></div>
+</div>
+
+// 底部
+<div className="SID-Dragrefresh-BottomContainer containerpull-circle-icon containerpull-circle-icon-loading" style={{height: '50px'}}></div>
+*/

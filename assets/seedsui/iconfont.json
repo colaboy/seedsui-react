@@ -1,0 +1,310 @@
+{
+  "id": "815148",
+  "name": "seedsui",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "27927156",
+      "name": "sort-r-fill",
+      "font_class": "sort-r-fill",
+      "unicode": "e7fe",
+      "unicode_decimal": 59390
+    },
+    {
+      "icon_id": "27927148",
+      "name": "sort-r",
+      "font_class": "sort-r",
+      "unicode": "e7fd",
+      "unicode_decimal": 59389
+    },
+    {
+      "icon_id": "16451122",
+      "name": "position2",
+      "font_class": "position2",
+      "unicode": "e7d8",
+      "unicode_decimal": 59352
+    },
+    {
+      "icon_id": "16451123",
+      "name": "position2-fill",
+      "font_class": "position2-fill",
+      "unicode": "e7d9",
+      "unicode_decimal": 59353
+    },
+    {
+      "icon_id": "5343043",
+      "name": "camera-fill",
+      "font_class": "camera-fill",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "15855301",
+      "name": "video2-fill",
+      "font_class": "video2-fill",
+      "unicode": "e7d7",
+      "unicode_decimal": 59351
+    },
+    {
+      "icon_id": "5343248",
+      "name": "refresh-fill",
+      "font_class": "refresh-fill",
+      "unicode": "e755",
+      "unicode_decimal": 59221
+    },
+    {
+      "icon_id": "5343249",
+      "name": "refresh",
+      "font_class": "refresh",
+      "unicode": "e756",
+      "unicode_decimal": 59222
+    },
+    {
+      "icon_id": "5343304",
+      "name": "upload",
+      "font_class": "upload",
+      "unicode": "e772",
+      "unicode_decimal": 59250
+    },
+    {
+      "icon_id": "5343307",
+      "name": "upload-fill",
+      "font_class": "upload-fill",
+      "unicode": "e773",
+      "unicode_decimal": 59251
+    },
+    {
+      "icon_id": "5343299",
+      "name": "type-video",
+      "font_class": "type-video",
+      "unicode": "e76e",
+      "unicode_decimal": 59246
+    },
+    {
+      "icon_id": "5343300",
+      "name": "type-text",
+      "font_class": "type-text",
+      "unicode": "e76f",
+      "unicode_decimal": 59247
+    },
+    {
+      "icon_id": "5343301",
+      "name": "type-video-fill",
+      "font_class": "type-video-fill",
+      "unicode": "e770",
+      "unicode_decimal": 59248
+    },
+    {
+      "icon_id": "5343302",
+      "name": "type-word-fill",
+      "font_class": "type-word-fill",
+      "unicode": "e771",
+      "unicode_decimal": 59249
+    },
+    {
+      "icon_id": "14943467",
+      "name": "type-unknow",
+      "font_class": "type-unknow",
+      "unicode": "e7d3",
+      "unicode_decimal": 59347
+    },
+    {
+      "icon_id": "14943468",
+      "name": "type-unknow-fill",
+      "font_class": "type-unknow-fill",
+      "unicode": "e7d4",
+      "unicode_decimal": 59348
+    },
+    {
+      "icon_id": "5343285",
+      "name": "type-audio",
+      "font_class": "type-audio",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    },
+    {
+      "icon_id": "5343286",
+      "name": "type-excel-fill",
+      "font_class": "type-excel-fill",
+      "unicode": "e762",
+      "unicode_decimal": 59234
+    },
+    {
+      "icon_id": "5343287",
+      "name": "type-excel",
+      "font_class": "type-excel",
+      "unicode": "e763",
+      "unicode_decimal": 59235
+    },
+    {
+      "icon_id": "5343289",
+      "name": "type-pack-fill",
+      "font_class": "type-pack-fill",
+      "unicode": "e764",
+      "unicode_decimal": 59236
+    },
+    {
+      "icon_id": "5343290",
+      "name": "type-pack",
+      "font_class": "type-pack",
+      "unicode": "e765",
+      "unicode_decimal": 59237
+    },
+    {
+      "icon_id": "5343291",
+      "name": "type-audio-fill",
+      "font_class": "type-audio-fill",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "5343292",
+      "name": "type-pic-fill",
+      "font_class": "type-pic-fill",
+      "unicode": "e767",
+      "unicode_decimal": 59239
+    },
+    {
+      "icon_id": "5343293",
+      "name": "type-pdf-fill",
+      "font_class": "type-pdf-fill",
+      "unicode": "e768",
+      "unicode_decimal": 59240
+    },
+    {
+      "icon_id": "5343294",
+      "name": "type-pic",
+      "font_class": "type-pic",
+      "unicode": "e769",
+      "unicode_decimal": 59241
+    },
+    {
+      "icon_id": "5343295",
+      "name": "type-pdf",
+      "font_class": "type-pdf",
+      "unicode": "e76a",
+      "unicode_decimal": 59242
+    },
+    {
+      "icon_id": "5343296",
+      "name": "type-ppt-fill",
+      "font_class": "type-ppt-fill",
+      "unicode": "e76b",
+      "unicode_decimal": 59243
+    },
+    {
+      "icon_id": "5343297",
+      "name": "type-ppt",
+      "font_class": "type-ppt",
+      "unicode": "e76c",
+      "unicode_decimal": 59244
+    },
+    {
+      "icon_id": "5343298",
+      "name": "type-text-fill",
+      "font_class": "type-text-fill",
+      "unicode": "e76d",
+      "unicode_decimal": 59245
+    },
+    {
+      "icon_id": "8141487",
+      "name": "notice-data",
+      "font_class": "notice-data",
+      "unicode": "e7b9",
+      "unicode_decimal": 59321
+    },
+    {
+      "icon_id": "8141490",
+      "name": "notice-network",
+      "font_class": "notice-network",
+      "unicode": "e7ba",
+      "unicode_decimal": 59322
+    },
+    {
+      "icon_id": "7608568",
+      "name": "rdo-emoji",
+      "font_class": "rdo-emoji",
+      "unicode": "e7b5",
+      "unicode_decimal": 59317
+    },
+    {
+      "icon_id": "7608571",
+      "name": "rdo-keyboard",
+      "font_class": "rdo-keyboard",
+      "unicode": "e7b6",
+      "unicode_decimal": 59318
+    },
+    {
+      "icon_id": "7218244",
+      "name": "pic-error",
+      "font_class": "pic-error",
+      "unicode": "e7af",
+      "unicode_decimal": 59311
+    },
+    {
+      "icon_id": "6241646",
+      "name": "ok-fill",
+      "font_class": "ok-fill",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "5343178",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "5343091",
+      "name": "fav-fill",
+      "font_class": "fav-fill",
+      "unicode": "e71b",
+      "unicode_decimal": 59163
+    },
+    {
+      "icon_id": "5343093",
+      "name": "fav",
+      "font_class": "fav",
+      "unicode": "e71c",
+      "unicode_decimal": 59164
+    },
+    {
+      "icon_id": "5343185",
+      "name": "rdo-close-fill",
+      "font_class": "rdo-close-fill",
+      "unicode": "e73e",
+      "unicode_decimal": 59198
+    },
+    {
+      "icon_id": "5343214",
+      "name": "rdo-ok-fill",
+      "font_class": "rdo-ok-fill",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "5343245",
+      "name": "rdo",
+      "font_class": "rdo",
+      "unicode": "e754",
+      "unicode_decimal": 59220
+    },
+    {
+      "icon_id": "5343251",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e757",
+      "unicode_decimal": 59223
+    },
+    {
+      "icon_id": "5769728",
+      "name": "trash",
+      "font_class": "trash",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    }
+  ]
+}

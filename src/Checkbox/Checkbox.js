@@ -1,0 +1,78 @@
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+
+const Checkbox = forwardRef(
+  (
+    {
+      type, // checkbox或者radio, 不对外开放
+      value,
+      checked,
+
+      disabled,
+
+      inputProps = {},
+
+      captionProps = {},
+      children,
+      onChange,
+      ...others
+    },
+    ref
+  ) => {
+    // 节点
+    const rootRef = useRef(null)
+    const inputRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        inputDOM: inputRef.current,
+        getRootDOM: () => {
+          return rootRef.current
+        },
+        getInputDOM: () => {
+          return inputRef.current
+        }
+      }
+    })
+
+    // 点击回调
+    function handleClick(e) {
+      if (disabled) return
+      if (onChange) onChange(e.currentTarget.getAttribute('data-checked') !== 'true')
+    }
+
+    // 类型样式前缀
+    let typeClassPrefix = type === 'radio' ? 'radio' : 'checkbox'
+    return (
+      <div
+        ref={rootRef}
+        {...others}
+        onClick={handleClick}
+        disabled={disabled}
+        data-checked={checked}
+        data-value={value}
+        className={`${typeClassPrefix}${others.className ? ' ' + others.className : ''}`}
+      >
+        <span
+          ref={inputRef}
+          {...inputProps}
+          className={`${typeClassPrefix}-input${
+            inputProps.className ? ' ' + inputProps.className : ''
+          }`}
+        />
+        {(children || captionProps?.caption) && (
+          <div
+            {...captionProps}
+            className={`${typeClassPrefix}-caption${
+              captionProps.className ? ' ' + captionProps.className : ''
+            }`}
+          >
+            {captionProps?.caption}
+            {children}
+          </div>
+        )}
+      </div>
+    )
+  }
+)
+
+export default Checkbox
