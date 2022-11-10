@@ -8,7 +8,15 @@ $ npm install --save seedsui-react
 
 ## 引入
 
-直接引入组件即可，seedsui-react 会自动为你加载 css 样式文件：
+需要手动 copy(seedsui-react/lib/assets)到自己的资源下加载
+为什么要手动 copy，而不是自动加载
+自动加载在开发过程中改样式就会变得痛苦：
+
+1. 不便修改样式，每次覆盖样式都需要加!important
+2. 有些脚手架会重复编译，造成 css 重复，产生资源浪费
+3. 不够灵活，找样式全凭 debugger 查
+
+基于上面的缺陷，决定把 less 加载的痛苦放到初始化项目时，而不是放到开发过程
 
 ```js
 import { Button } from 'seedsui-react'
