@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Body
+  title: Page
   path: /components
 ---
 
-# Body
+# Page
 
 Used to start an immediate operation.
 
@@ -16,7 +16,7 @@ Marks or encapsulates a group of operation commands, responds to user click beha
 
 <code src="./demos/demo1.tsx"></code>
 
-## Body
+## Page
 
 ### Props
 
@@ -28,7 +28,7 @@ Marks or encapsulates a group of operation commands, responds to user click beha
 
 | components.less | 说明     |
 | --------------- | -------- |
-| .setBody()      | 按钮样式 |
+| .setPage()      | 按钮样式 |
 
 ### Ref
 

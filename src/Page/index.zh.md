@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Body
+  title: Page
   path: /components
 ---
 
-# Body 主体
+# Page 主体
 
 用于开始一个即时操作。
 
@@ -16,7 +16,7 @@ nav:
 
 <code src="./demos/demo1.tsx"></code>
 
-## Body
+## Page
 
 ### 属性
 
@@ -28,7 +28,7 @@ nav:
 
 | variables.less | 说明     |
 | -------------- | -------- |
-| .setBody()     | 按钮样式 |
+| .setPage()     | 按钮样式 |
 
 ### Ref
 

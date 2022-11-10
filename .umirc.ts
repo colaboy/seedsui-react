@@ -68,11 +68,16 @@ export default defineConfig({
             path: '/components/button'
           }
         ]
+      },
+      {
+        title: 'Layout',
+        children: [
+          {
+            title: 'Page',
+            path: '/components/page'
+          }
+        ]
       }
-      // {
-      //   title: 'Common',
-      //   children: ['/components/button']
-      // },
       // {
       //   title: 'Layout',
       //   children: ['/components/body']
@@ -87,15 +92,16 @@ export default defineConfig({
             path: '/zh/components/button'
           }
         ]
+      },
+      {
+        title: '布局',
+        children: [
+          {
+            title: '页面',
+            path: '/zh/components/page'
+          }
+        ]
       }
-      // {
-      //   title: '通用',
-      //   children: ['/components/button']
-      // },
-      // {
-      //   title: '布局',
-      //   children: ['/components/body']
-      // }
     ]
   }
 })

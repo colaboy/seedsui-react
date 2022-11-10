@@ -1,5 +1,4 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import './button.less'
 
 const Button = forwardRef(({ children, ...others }, ref) => {
   const rootRef = useRef(null)

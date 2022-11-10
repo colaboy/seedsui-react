@@ -1,0 +1,275 @@
+/*
+后置公共样式, 因为需要覆盖样式(例如hide等), 所以放在最后加载-----------------------------------------------------------------------------------------
+*/
+
+// 点击穿透
+.events-none {
+  pointer-events: none;
+}
+
+// 禁止长按选择
+.noselect {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+// 去除动画
+.transition-duration-0 {
+  transition-duration: 0ms;
+}
+.animation-duration-0 {
+  animation-duration: 0ms;
+}
+
+// block
+.block {
+  display: block;
+}
+.inline-block {
+  display: block;
+}
+.width-full {
+  width: 100%;
+}
+.height-full {
+  height: 100%;
+}
+
+// flex 共用的弹性布局, 因为可能要覆盖原display, 所以要放到下面
+// .flex{
+//   display:-webkit-box;
+// }
+// .inline-flex{
+//   display:-webkit-inline-box;
+// }
+// .flex-initial{
+//   -webkit-box-flex: initial;
+// }
+// .flex-0{
+//   -webkit-box-flex:	0.0;
+// }
+// .flex-1{
+//   -webkit-box-flex:1.0;
+// }
+// .flex-vertical{ // box方向
+//   /* autoprefixer: off */
+//   -webkit-box-orient:vertical;
+// }
+// .flex-horizontal{
+//   /* autoprefixer: off */
+//   -webkit-box-orient:horizontal;
+// }
+// .flex-left{ // box内部水平对齐
+//   -webkit-box-pack:start;
+// }
+// .flex-center{
+//   -webkit-box-pack:center;
+// }
+// .flex-right{
+//   -webkit-box-pack:end;
+// }
+// .flex-top{ // box内部垂直对齐
+//   -webkit-box-align:start;
+// }
+// .flex-middle{
+//   -webkit-box-align:center;
+// }
+// .flex-bottom{
+//   -webkit-box-align:end;
+// }
+// .flex-middlecenter{ // box对齐方式
+//   -webkit-box-pack:center;
+//   -webkit-box-align:center;
+// }
+// 如果不考虑android4, 支持flex的话, 则使用flex代替box
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.flex-initial {
+  flex: initial;
+}
+.flex-0 {
+  flex: 0;
+}
+.flex-none {
+  flex: none;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-vertical {
+  // flex方向
+  flex-direction: column;
+}
+.flex-horizontal {
+  flex-direction: row;
+}
+.flex-vertical-reverse {
+  flex-direction: column-reverse;
+}
+.flex-horizontal-reverse {
+  flex-direction: row-reverse;
+}
+.flex-left {
+  // flex内部水平对齐
+  justify-content: flex-start;
+}
+.flex-center {
+  justify-content: center;
+}
+.flex-right {
+  justify-content: flex-end;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
+}
+.flex-top {
+  // flex内部垂直对齐
+  align-items: flex-start;
+}
+.flex-middle {
+  align-items: center;
+}
+.flex-bottom {
+  align-items: flex-end;
+}
+.flex-stretch {
+  align-items: stretch;
+}
+.flex-middlecenter {
+  align-items: center;
+  // flex对齐方式
+  justify-content: center;
+}
+.flex-baseline {
+  // 垂直居中对齐
+  align-items: baseline;
+}
+
+.flex-shrink > div {
+  flex-shrink: 0;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+.flex-self-stretch {
+  // flex自身对齐:设置后则覆盖父容器
+  align-self: stretch;
+}
+.flex-self-top {
+  align-self: flex-start;
+}
+.flex-self-middle {
+  align-self: center;
+}
+.flex-self-bottom {
+  align-self: flex-end;
+}
+
+// 显示与隐藏
+.hide {
+  display: none;
+}
+.hide-important {
+  display: none !important;
+}
+.hidden {
+  visibility: hidden;
+}
+.hidden-important {
+  visibility: hidden !important;
+}
+.overflow-hidden,
+.container.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto,
+.container.overflow-auto {
+  overflow: auto;
+}
+
+// 定位
+.position-absolute {
+  position: absolute;
+}
+.position-relative {
+  position: relative;
+}
+
+// 清除浮动
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: ' ';
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+.clear {
+  clear: both;
+}
+
+// 文字换行
+.white-space-nowrap {
+  white-space: nowrap;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+}
+.nowrap:extend(.ellipsis),
+.nowrap1:extend(.ellipsis),
+.nowrap2:extend(.ellipsis),
+.nowrap3:extend(.ellipsis) {
+  overflow: hidden;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.nowrap1,
+.nowrap2,
+.nowrap3 {
+  /* autoprefixer: off */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.nowrap1 {
+  -webkit-line-clamp: 1;
+}
+.nowrap2 {
+  -webkit-line-clamp: 2;
+}
+.nowrap3 {
+  -webkit-line-clamp: 3;
+}
+
+// 文字排列
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+
+// @import 'animate.less'; // 不常用
+@import 'border.less';
+@import 'color.less';
+// @import 'filter.less'; // 不常用
+// @import 'row.less'; // 不常用
+@import 'size.less';
+// @import 'space.less'; // 不常用
