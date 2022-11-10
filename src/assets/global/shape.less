@@ -1,0 +1,87 @@
+@shape-arrow-color: @placeholder;
+@shape-triangle-color: @placeholder;
+// 箭头图标
+.shape-arrow-left,
+.shape-arrow-right,
+.shape-arrow-up,
+.shape-arrow-down {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-color: @shape-arrow-color;
+  &.sm {
+    &:after,
+    &:after {
+      width: 8px;
+      height: 8px;
+      border-width: 2px 0 0 2px;
+    }
+  }
+}
+.shape-arrow-left:after,
+.shape-arrow-right:after,
+.shape-arrow-up:after,
+.shape-arrow-down:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 1px 0 0 1px;
+  transform-origin: center;
+  content: '';
+}
+.shape-arrow-left:after {
+  transform: translate(-30%, -50%) rotate(315deg);
+}
+.shape-arrow-right:after {
+  transform: translate(-80%, -50%) rotate(134deg);
+}
+.shape-arrow-up:after {
+  transform: translate(-50%, -14%) rotate(45deg);
+}
+.shape-arrow-down:after {
+  transform: translate(-50%, -66%) rotate(227deg);
+}
+
+// 三角形图标
+.shape-triangle-up,
+.shape-triangle-down,
+.shape-triangle-left,
+.shape-triangle-right {
+  position: relative;
+  width: 0 !important;
+  height: 0 !important;
+}
+.shape-triangle-up,
+.shape-triangle-down {
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+.shape-triangle-left,
+.shape-triangle-right {
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+.shape-triangle-up {
+  border-bottom-color: @shape-triangle-color;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+}
+.shape-triangle-down {
+  border-top-color: @shape-triangle-color;
+  border-top-width: 5px;
+  border-top-style: solid;
+}
+.shape-triangle-left {
+  border-right-color: @shape-triangle-color;
+  border-right-width: 5px;
+  border-right-style: solid;
+}
+.shape-triangle-right {
+  border-left-color: @shape-triangle-color;
+  border-left-width: 5px;
+  border-left-style: solid;
+}

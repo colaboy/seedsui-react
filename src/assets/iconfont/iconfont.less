@@ -1,0 +1,223 @@
+// icon 图标
+.icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  font-size: 24px;
+  font-style: normal;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  .inline-flex;
+  .flex-middle;
+  .flex-center;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+// 图标文件, 因为包含文件路径, 所以不能放置到需要外部引入的base.less中
+[class^='icon-'],
+[class*=' icon-'] {
+  font-weight: normal;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconfont' !important;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  speak: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('iconfont.woff2?t=1646099070081') format('woff2'),
+    url('iconfont.woff?t=1646099070081') format('woff'),
+    url('iconfont.ttf?t=1646099070081') format('truetype');
+}
+
+// 清除公共图标
+.close-icon-clear {
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
+}
+
+// 生成的文字图标
+.icon-sort-r-fill:before {
+  content: '\e7fe';
+}
+
+.icon-sort-r:before {
+  content: '\e7fd';
+}
+
+.icon-position2:before {
+  content: '\e7d8';
+}
+
+.icon-position2-fill:before {
+  content: '\e7d9';
+}
+
+.icon-camera-fill:before {
+  content: '\e709';
+}
+
+.icon-video2-fill:before {
+  content: '\e7d7';
+}
+
+.icon-refresh-fill:before {
+  content: '\e755';
+}
+
+.icon-refresh:before {
+  content: '\e756';
+}
+
+.icon-upload:before {
+  content: '\e772';
+}
+
+.icon-upload-fill:before {
+  content: '\e773';
+}
+
+.icon-type-video:before {
+  content: '\e76e';
+}
+
+.icon-type-text:before {
+  content: '\e76f';
+}
+
+.icon-type-video-fill:before {
+  content: '\e770';
+}
+
+.icon-type-word-fill:before {
+  content: '\e771';
+}
+
+.icon-type-unknow:before {
+  content: '\e7d3';
+}
+
+.icon-type-unknow-fill:before {
+  content: '\e7d4';
+}
+
+.icon-type-audio:before {
+  content: '\e761';
+}
+
+.icon-type-excel-fill:before {
+  content: '\e762';
+}
+
+.icon-type-excel:before {
+  content: '\e763';
+}
+
+.icon-type-pack-fill:before {
+  content: '\e764';
+}
+
+.icon-type-pack:before {
+  content: '\e765';
+}
+
+.icon-type-audio-fill:before {
+  content: '\e766';
+}
+
+.icon-type-pic-fill:before {
+  content: '\e767';
+}
+
+.icon-type-pdf-fill:before {
+  content: '\e768';
+}
+
+.icon-type-pic:before {
+  content: '\e769';
+}
+
+.icon-type-pdf:before {
+  content: '\e76a';
+}
+
+.icon-type-ppt-fill:before {
+  content: '\e76b';
+}
+
+.icon-type-ppt:before {
+  content: '\e76c';
+}
+
+.icon-type-text-fill:before {
+  content: '\e76d';
+}
+
+.icon-notice-data:before {
+  content: '\e7b9';
+}
+
+.icon-notice-network:before {
+  content: '\e7ba';
+}
+
+.icon-rdo-emoji:before {
+  content: '\e7b5';
+}
+
+.icon-rdo-keyboard:before {
+  content: '\e7b6';
+}
+
+.icon-pic-error:before {
+  content: '\e7af';
+}
+
+.icon-ok-fill:before {
+  content: '\e7ae';
+}
+
+.icon-plus:before {
+  content: '\e73c';
+}
+
+.icon-fav-fill:before {
+  content: '\e71b';
+}
+
+.icon-fav:before {
+  content: '\e71c';
+}
+
+.icon-rdo-close-fill:before {
+  content: '\e73e';
+}
+
+.icon-rdo-ok-fill:before {
+  content: '\e748';
+}
+
+.icon-rdo:before {
+  content: '\e754';
+}
+
+.icon-search:before {
+  content: '\e757';
+}
+
+.icon-trash:before {
+  content: '\e782';
+}

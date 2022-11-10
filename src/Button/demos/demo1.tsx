@@ -28,7 +28,7 @@ export default () => {
       </Button>
 
       <div style={titleStyle}>按钮尺寸</div>
-      <Button className="primary sm" style={buttonStyle}>
+      <Button className="primary xs" style={buttonStyle}>
         primary xs
       </Button>
       <Button className="primary sm" style={buttonStyle}>

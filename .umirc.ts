@@ -41,11 +41,19 @@ export default defineConfig({
     ],
     '/guide': [
       {
+        title: 'Quick Start',
+        path: '/guide/quick-start'
+      },
+      {
         title: 'Locale',
         path: '/guide/locale'
       }
     ],
     '/zh/guide': [
+      {
+        title: '快速开始',
+        path: '/zh/guide/quick-start'
+      },
       {
         title: '国际化',
         path: '/zh/guide/locale'

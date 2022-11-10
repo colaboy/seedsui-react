@@ -11,6 +11,10 @@
 @border-r-2:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
 */
 
+/*
+样式定义-----------------------------------------------------------------------------------------
+*/
+
 /* 一倍屏 */
 // 上
 .border-1 (@color: @border, @position: 'top') when (@position = 'top') {
@@ -312,12 +316,12 @@
 }
 .setBorderLT (@color: @border) {
   .border-1(@color, 'left-top');
+  background-repeat: no-repeat;
+  background-position: left, top;
 
   background-size: 1px 100%, 100% 1px;
   background-size: 1px 100%, 100% 1px;
   background-size: 1px 100%, 100% 1px;
-  background-repeat: no-repeat;
-  background-position: left, top;
 
   @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .border-2(@color, 'left-top');
@@ -325,11 +329,11 @@
 }
 .setBorderLB (@color: @border) {
   .border-1(@color, 'left-bottom');
-  background-size: 1px 100%, 100% 1px;
-  background-size: 1px 100%, 100% 1px;
-  background-size: 1px 100%, 100% 1px;
   background-repeat: no-repeat;
   background-position: left, bottom;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
 
   @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .border-2(@color, 'left-bottom');
@@ -348,12 +352,12 @@
 
 .setBorderRT (@color: @border) {
   .border-1(@color, 'right-bottom');
+  background-repeat: no-repeat;
+  background-position: right, top;
 
   background-size: 1px 100%, 100% 1px;
   background-size: 1px 100%, 100% 1px;
   background-size: 1px 100%, 100% 1px;
-  background-repeat: no-repeat;
-  background-position: right, top;
 
   @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .border-2(@color, 'right-top');
@@ -361,11 +365,11 @@
 }
 .setBorderRB (@color: @border) {
   .border-1(@color, 'right-bottom');
-  background-size: 1px 100%, 100% 1px;
-  background-size: 1px 100%, 100% 1px;
-  background-size: 1px 100%, 100% 1px;
   background-repeat: no-repeat;
   background-position: right, bottom;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
 
   @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .border-2(@color, 'right-bottom');
@@ -374,14 +378,126 @@
 
 .setBorder (@color: @border) {
   .border-1(@color, 'border');
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
 
   background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
   background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
   background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
-  background-repeat: no-repeat;
-  background-position: top, right, bottom, left;
 
   @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .border-2(@color, 'border');
   }
+}
+
+/*
+样式实例-----------------------------------------------------------------------------------------
+*/
+
+.border-0 {
+  background-image: none;
+  border: 0;
+}
+
+.border-t {
+  .setBorderT();
+}
+
+.border-b {
+  .setBorderB();
+}
+
+.border-tb {
+  .setBorderTB();
+}
+
+.border-l {
+  .setBorderL();
+}
+.border-lt {
+  .setBorderLT();
+}
+.border-lb {
+  .setBorderLB();
+}
+
+.border-r {
+  .setBorderR();
+}
+
+.border-rt {
+  .setBorderRT();
+}
+.border-rb {
+  .setBorderRB();
+}
+
+.border {
+  .setBorder();
+}
+
+hr:extend(.border-b) {
+  display: block;
+  clear: both;
+  height: 1px;
+  border: 0;
+}
+
+// 篮子线
+.basketline:extend(.border-b) {
+  position: relative;
+  // 左右边线
+  &:before,
+  &:after {
+    position: absolute;
+
+    bottom: 0;
+    // 兼容UC线条不显示的BUG
+    z-index: 1;
+    display: block;
+    width: 1px;
+    height: 10px;
+    overflow: hidden;
+    background-color: @border;
+    -webkit-backface-visibility: hidden;
+    content: '';
+  }
+  &:before {
+    left: 0;
+    transform-origin: left center;
+  }
+  &:after {
+    right: 0;
+    transform-origin: right center;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .basketline:before,
+  .basketline:after {
+    transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .basketline:before,
+  .basketline:after {
+    transform: scaleX(0.33);
+  }
+}
+
+.bordered {
+  border-color: @dpborder;
+  border-style: solid;
+  border-width: 1px;
+}
+.dotted {
+  border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
+}
+.splitter {
+  display: block;
+  width: 1px;
+  height: 24px;
+  .border-l;
 }
