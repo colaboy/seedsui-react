@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import styles from './home-page.less'
-// import './../../assets/seedsui/index.less'
+import './../../assets/seedsui/index.less'
 import { context } from 'dumi/theme'
 
 export default () => {
