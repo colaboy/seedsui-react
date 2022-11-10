@@ -4,43 +4,35 @@ nav:
   path: /components
 ---
 
+# Button 按钮
+
+用于开始一个即时操作。
+
+## 何时使用
+
+标记了一个或封装一组操作命令，响应用户点击行为，触发相应的业务逻辑。
+
+## 示例
+
+<code src="./demos/demo1.tsx"></code>
+
 ## Button
 
-Demo:
+### 属性
 
-```tsx
-import React from 'react'
-import { Button } from 'seedsui-react'
+| 属性     | 说明     | 类型      | 默认值  |
+| -------- | -------- | --------- | ------- |
+| disabled | 是否禁用 | `boolean` | `false` |
 
-export default () => (
-  <>
-    <div>填充模式</div>
-    <Button>(Default)</Button>
-    <Button className="primary">primary</Button>
-    <Button className="primary outline">primary outline</Button>
+### CSS 修改
 
-    <div>块级按钮</div>
-    <Button className="primary flex">primary flex</Button>
+| variables.less | 说明     |
+| -------------- | -------- |
+| .setButton()   | 按钮样式 |
 
-    <div>按钮尺寸</div>
-    <Button className="primary sm">primary xs</Button>
-    <Button className="primary sm">primary sm</Button>
-    <Button className="primary md">primary md</Button>
-    <Button className="primary lg">primary lg</Button>
-    <Button className="primary xl">primary xl</Button>
+### Ref
 
-    <div>按钮颜色</div>
-    <Button>(Default)</Button>
-    <Button className="primary">primary</Button>
-    <Button className="cancel">cancel</Button>
-    <Button className="submit">submit</Button>
-    <Button className="info">info</Button>
-    <Button className="link">link</Button>
-    <Button className="warn">warn</Button>
-    <Button className="success">success</Button>
-    <Button className="disabled">disabled</Button>
-  </>
-)
-```
-
-编写演示的更多技巧: https://d.umijs.org/guide/basic#write-component-demo
+| 属性       | 说明                 | 类型                   |
+| ---------- | -------------------- | ---------------------- |
+| rootDOM    | 原始 button 元素     | `HtmlDivElement`       |
+| getRootDOM | 获取原始 button 元素 | () => `HtmlDivElement` |

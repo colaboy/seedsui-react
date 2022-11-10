@@ -8,18 +8,12 @@
 npx @umijs/create-dumi-lib --site
 ```
 
-使用移动模板
-
-```bash
-npm install dumi-theme-mobile  -D -f
-```
-
 ## 开始
 
 安装依赖
 
 ```bash
-$ npm i
+$ npm install --force
 ```
 
 启用服务
