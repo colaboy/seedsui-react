@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "seedsui-react",
-  "version": "5.5.8",
+  "version": "5.5.9",
   "description": "seedsui-react React component",
   "scripts": {
     "start": "dumi dev",

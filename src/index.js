@@ -130,7 +130,6 @@ export { default as FastClick } from './FastClick'
 export { default as Form } from './Form' // 不常用
 export { default as FullScreen } from './FullScreen' // 不常用
 export { default as GeoUtil } from './GeoUtil' // 不常用
-export { default as History } from './History' // 不常用
 export { default as ImgLazy } from './ImgLazy'
 export { default as jsonp } from './jsonp' // 不常用
 export { default as MediaUtil } from './MediaUtil' // 不常用

@@ -13,12 +13,12 @@ var Bridge = {
   // 自定义操作
   invoke: function (api, params, callback) {
     // eslint-disable-next-line
-    if (!wq.invoke) {
+    if (!top.wq.invoke) {
       console.log('没有wq.invoke的方法')
       return
     }
     // eslint-disable-next-line
-    wq.invoke(api, params, function (response) {
+    top.wq.invoke(api, params, function (response) {
       if (!callback) return
       if (typeof callback === 'function') {
         callback(response)
@@ -47,12 +47,8 @@ var Bridge = {
   init: function (cb) {
     self = this
     /* eslint-disable */
-    wq.config({ auth: false })
-    wq.ready(function () {
-      // 地址栏中包含isFromApp=则使用isFromApp的返回规则
-      if (Device.getUrlParameter('isFromApp')) {
-        self.addBackPress()
-      }
+    top.wq.config({ auth: false })
+    top.wq.ready(function () {
       // 初始化完成回调
       if (typeof cb === 'function') cb()
     })
@@ -146,7 +142,7 @@ var Bridge = {
   },
   // 退出到登陆页面
   logOut: function logOut() {
-    wq.invoke('logout') // eslint-disable-line
+    top.wq.invoke('logout') // eslint-disable-line
   },
   /**
    * 打开新的窗口
@@ -164,7 +160,7 @@ var Bridge = {
           url = `${url.replace(/^h5:/, '')}`
         }
         // eslint-disable-next-line
-        wq.invoke(
+        top.wq.invoke(
           'nativeComponent',
           {
             android: {
@@ -187,16 +183,16 @@ var Bridge = {
             }, 500)
           }
         }
-        wq.openWindow(option) // eslint-disable-line
+        top.wq.openWindow(option) // eslint-disable-line
       }
     } else {
       // 新内核间跳转
-      wq.openWindow(params) // eslint-disable-line
+      top.wq.openWindow(params) // eslint-disable-line
     }
   },
   // 关闭窗口
   closeWindow: function (params) {
-    wq.closeWindow(params) // eslint-disable-line
+    top.wq.closeWindow(params) // eslint-disable-line
   },
   /**
    * 修改原生标题
@@ -206,11 +202,15 @@ var Bridge = {
     if (params && params.title) {
       if (typeof params.title === 'string') {
         document.title = params.title
-        wq.setTitle(params) // eslint-disable-line
+        top.wq.setTitle(params) // eslint-disable-line
       } else if (typeof params.title === 'function') {
         params.title()
       }
     }
+  },
+  // 返回监听
+  onHistoryBack: function (params) {
+    top.wq.onHistoryBack(params) // eslint-disable-line
   },
   // 防止返回事件叠加绑定
   monitorBack: null,
@@ -220,9 +220,9 @@ var Bridge = {
     if (callback) self.monitorBack = callback
     else self.monitorBack = null
     // eslint-disable-next-line
-    if (wq.onHistoryBack) {
+    if (top.wq.onHistoryBack) {
       // eslint-disable-next-line
-      wq.onHistoryBack(function () {
+      top.wq.onHistoryBack(function () {
         if (self.monitorBack) self.monitorBack()
         else self.back()
         self.addBackPress(self.monitorBack)
@@ -267,7 +267,7 @@ var Bridge = {
     self.locationTask = []
     console.log('调用外勤定位...')
     // eslint-disable-next-line
-    wq.getLocation({
+    top.wq.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: params.type || 'gcj02',
       success: (res) => {
@@ -307,7 +307,7 @@ var Bridge = {
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
     // eslint-disable-next-line
-    wq.scanQRCode({
+    top.wq.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || '二维码／条码',
@@ -327,7 +327,7 @@ var Bridge = {
     */
   chooseImage: function (params) {
     console.log('外勤WK内核chooseImage', params)
-    wq.chooseImage(params) // eslint-disable-line
+    top.wq.chooseImage(params) // eslint-disable-line
   },
   /**
     * 照片上传, ios测试环境无法上传
@@ -377,10 +377,10 @@ var Bridge = {
     }
     console.log('外勤WK内核上传')
     console.log(uploadParams)
-    wq.uploadImage(uploadParams) // eslint-disable-line
+    top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
   previewImage: function (params) {
-    wq.previewImage(params) // eslint-disable-line
+    top.wq.previewImage(params) // eslint-disable-line
   },
   /**
     * 视频文件上传
@@ -503,7 +503,7 @@ var Bridge = {
    * }
    */
   previewFile: function (params) {
-    wq.previewFile(params) // eslint-disable-line
+    top.wq.previewFile(params) // eslint-disable-line
   }
 }
 

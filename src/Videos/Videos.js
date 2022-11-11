@@ -38,6 +38,14 @@ const Videos = forwardRef(
     // 预览项
     let [previewItem, setPreivewItem] = useState(null)
 
+    // 返回
+    function handlePop() {
+      handleClosePreview()
+      // 返回后允许关闭webview
+      window.onHistoryBack = null
+      window.removeEventListener('popstate', handlePop, false)
+    }
+
     // 点击预览
     function handleClick(e, src, options, index) {
       let item = options[0]
@@ -53,9 +61,26 @@ const Videos = forwardRef(
       }
 
       // 增加历史记录
-      Bridge.addHistoryBack(() => {
-        handleClosePreview(e)
-      }, `${routePath}`)
+      if (routePath) {
+        // 阻止关闭webview
+        window.onHistoryBack = () => {}
+
+        // 路径增加routePath
+        let path = window.location.href
+        path += `${path.indexOf('?') === -1 ? '?' : '&'}${routePath}`
+
+        // 增加历史记录
+        window.history.pushState(
+          {
+            href: path
+          },
+          document.title,
+          path
+        )
+
+        window.removeEventListener('popstate', handlePop, false)
+        window.addEventListener('popstate', handlePop, false)
+      }
 
       // 预览回调
       if (typeof preview === 'function') {

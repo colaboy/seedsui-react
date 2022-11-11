@@ -48,6 +48,10 @@ var Bridge = {
   closeWindow: function () {
     top.wx.closeWindow() // eslint-disable-line
   },
+  // 返回监听
+  onHistoryBack: function (params) {
+    top.wx.onHistoryBack(params) // eslint-disable-line
+  },
   // 防止返回事件叠加绑定
   monitorBack: null,
   // 客户端返回绑定

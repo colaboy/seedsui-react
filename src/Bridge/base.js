@@ -1,7 +1,6 @@
 import jsonp from './../jsonp'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
-import History from './../History'
 import Toast from './../Toast/instance.js'
 import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
@@ -322,75 +321,6 @@ var Bridge = {
       _history.go(_backLvl)
     }
   },
-  // 增加一条历史记录, 传地址栏参数, 如: 'dialog=true'
-  addHistoryParameter: function (urlParameter) {
-    var self = this
-    if (self.history) self.history.addHistoryParameter(urlParameter)
-  },
-  // 返回按键监听
-  addHistoryBack: function (callback, urlParameter) {
-    var self = this
-    if (typeof callback !== 'function') {
-      console.log('SeedsUI addHistoryBack: callback参数格式不正确')
-      return
-    }
-    // 绑定当前路由的回调
-    if (urlParameter && typeof urlParameter === 'string') {
-      if (!window.onHistoryBacks) window.onHistoryBacks = {}
-      window.onHistoryBacks[window.location.href] = callback
-      // 添加路由
-      self.addHistoryParameter(urlParameter)
-    }
-    // 单监听返回的回调
-    else if (!urlParameter) {
-      window.onHistoryBack = callback
-    }
-  },
-  // 移除返回按键监听
-  removeHistoryBack: function (urlParameter) {
-    if (urlParameter && window.onHistoryBacks) {
-      for (let href in window.onHistoryBacks) {
-        if (href.indexOf(urlParameter) !== -1) {
-          delete window.onHistoryBacks[href]
-        }
-      }
-    } else {
-      window.onHistoryBack = null
-    }
-  },
-  // 移除所有返回按键监听
-  clearHistoryBack: function () {
-    window.onHistoryBacks = null
-    window.onHistoryBack = null
-  },
-  // 初始化历史记录监听
-  initHistory: function () {
-    var self = this
-    self.history = new History({
-      onBack: () => {
-        console.log('SeedsUI: 返回')
-        // 绑定当前路由的回调
-        if (
-          Object.prototype.toString.call(window.onHistoryBacks) !== '[object Object]' ||
-          Object.isEmptyObject(window.onHistoryBacks)
-        ) {
-          window.onHistoryBacks = null
-        }
-        if (window.onHistoryBacks) {
-          let callback = window.onHistoryBacks[window.location.href]
-          if (callback) {
-            callback()
-          }
-          delete window.onHistoryBacks[window.location.href]
-        }
-        // 单监听返回的回调
-        if (window.onHistoryBack) {
-          window.onHistoryBack()
-        }
-      }
-    })
-    // self.history.initList()
-  },
   /**
    * 动态加载桥接库
    * @param {Func} callback 加载完成回调
@@ -409,13 +339,11 @@ var Bridge = {
       platform !== 'wq'
     ) {
       if (options.isLoad) {
-        self.initHistory()
         if (callback) callback()
       } else {
         window.addEventListener(
           'load',
           () => {
-            self.initHistory()
             if (callback) callback()
           },
           false
@@ -446,7 +374,6 @@ var Bridge = {
 
       // 加载完成
       script.onload = function () {
-        self.initHistory()
         if (callback) callback()
       }
       if (options.fail) {
@@ -459,7 +386,6 @@ var Bridge = {
       script.src =
         options.wqCordovaSrc || '//res.waiqin365.com/d/common_mobile/component/cordova/cordova.js'
       script.onload = function () {
-        self.initHistory()
         self.init(() => {
           if (callback) callback()
         })
@@ -477,7 +403,6 @@ var Bridge = {
         options.wqSrc ||
         `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
       script.onload = function () {
-        self.initHistory()
         if (callback) callback()
         self.init()
       }
@@ -487,7 +412,6 @@ var Bridge = {
         }
       }
     } else if (platform === 'dinghuo') {
-      self.initHistory()
       if (callback) callback()
       self.init()
     }

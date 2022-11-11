@@ -14,10 +14,6 @@ var Bridge = {
     document.addEventListener(
       'deviceready',
       () => {
-        // 地址栏中包含isFromApp=则使用isFromApp的返回规则
-        if (Device.getUrlParameter('isFromApp')) {
-          self.addBackPress()
-        }
         // 初始化完成回调
         if (typeof cb === 'function') cb()
       },
@@ -167,7 +163,7 @@ var Bridge = {
     fileName: 'ss.txt',
     size: 200
   }，(result) => { // result => {isExists: '', filePath: '', fileName: ''}，isExists:'0'不存在，'1'存在
-  
+
   })
   */
   isExistsFile: function (params, callback) {
@@ -186,7 +182,7 @@ var Bridge = {
     downloadUrl: "http://...", // 必填
     size: 200 // 必填
   }，(result) => { // result => {{flag:'', filePath: '', msg: ''}, flag:'0'失败，'1'成功，msg失败原因
-  
+
   }) */
   downloadFile: function (params, callback) {
     // eslint-disable-next-line
@@ -201,7 +197,7 @@ var Bridge = {
   openFile({
     filePath: ''
   }，(result) => { // result => {flag:'', msg:''} flag:'0'失败, '1'成功, msg失败原因
-  
+
   }） */
   openFile: function (params, callback) {
     // eslint-disable-next-line
@@ -217,7 +213,7 @@ var Bridge = {
     path: ['', ''],
     destroy: '1' // '0'转完后删除, '1'转完后不删除
   }, (result) => { // result => [{path:'', name:'', src:'base64'}]
-  
+
   }） */
   wqUrlToBase64: function (params, callback) {
     // eslint-disable-next-line
