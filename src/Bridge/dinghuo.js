@@ -235,27 +235,27 @@ var Bridge = {
     self.invoke('onHistoryBack', params, callback)
   },
   // 客户端添加返回绑定
-  addBackPress: function (callback) {
-    var self = this
-    try {
-      self.setBackEnable(true)
-      window.addEventListener('onBackPress', callback || self.back)
-      // ios客户端返回按钮绑定(ios不支持onBackPress)
-      self.addIosBackPress(callback)
-    } catch (error) {
-      console.log(error)
-    }
-  },
+  // addBackPress: function (callback) {
+  //   var self = this
+  //   try {
+  //     self.setBackEnable(true)
+  //     window.addEventListener('onBackPress', callback || self.back)
+  //     // ios客户端返回按钮绑定(ios不支持onBackPress)
+  //     self.addIosBackPress(callback)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // },
   // 客户端移除返回绑定
-  removeBackPress: function (callback) {
-    var self = this
-    try {
-      self.setBackEnable(false)
-      window.removeEventListener('onBackPress', callback || self.back)
-    } catch (error) {
-      console.log(error)
-    }
-  },
+  // removeBackPress: function (callback) {
+  //   var self = this
+  //   try {
+  //     self.setBackEnable(false)
+  //     window.removeEventListener('onBackPress', callback || self.back)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // },
   /**
    * 支付宝支付
    * @param {Object} params {orderInfo: ''}

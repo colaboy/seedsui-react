@@ -213,28 +213,28 @@ var Bridge = {
     top.wq.onHistoryBack(params) // eslint-disable-line
   },
   // 防止返回事件叠加绑定
-  monitorBack: null,
+  // monitorBack: null,
   // 客户端返回绑定
-  addBackPress: function (callback) {
-    self = this
-    if (callback) self.monitorBack = callback
-    else self.monitorBack = null
-    // eslint-disable-next-line
-    if (top.wq.onHistoryBack) {
-      // eslint-disable-next-line
-      top.wq.onHistoryBack(function () {
-        if (self.monitorBack) self.monitorBack()
-        else self.back()
-        self.addBackPress(self.monitorBack)
-        return false
-      })
-    }
-  },
+  // addBackPress: function (callback) {
+  //   self = this
+  //   if (callback) self.monitorBack = callback
+  //   else self.monitorBack = null
+  //   // eslint-disable-next-line
+  //   if (top.wq.onHistoryBack) {
+  //     // eslint-disable-next-line
+  //     top.wq.onHistoryBack(function () {
+  //       if (self.monitorBack) self.monitorBack()
+  //       else self.back()
+  //       self.addBackPress(self.monitorBack)
+  //       return false
+  //     })
+  //   }
+  // },
   // 客户端移除返回绑定
-  removeBackPress: function () {
-    self = this
-    self.monitorBack = null
-  },
+  // removeBackPress: function () {
+  //   self = this
+  //   self.monitorBack = null
+  // },
   /**
    * 获取当前地理位置
    * @param {Object} params

@@ -60,17 +60,17 @@ var Bridge = {
     else self.back()
   },
   // 客户端返回绑定: cordova中必须在无原生头的情况下才工作
-  addBackPress: function (callback) {
-    self = this
-    if (callback) self.cordovaMonitorBack = callback
-    else self.cordovaMonitorBack = null
-    document.addEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
-  },
+  // addBackPress: function (callback) {
+  //   self = this
+  //   if (callback) self.cordovaMonitorBack = callback
+  //   else self.cordovaMonitorBack = null
+  //   document.addEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
+  // },
   // 客户端移除返回绑定
-  removeBackPress: function () {
-    self = this
-    document.removeEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
-  },
+  // removeBackPress: function () {
+  //   self = this
+  //   document.removeEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
+  // },
   /**
    * 支付宝支付
    * @param {Object} params

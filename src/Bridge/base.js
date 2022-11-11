@@ -247,38 +247,43 @@ var Bridge = {
   back: function (argHistory, argBackLvl) {
     // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
     var self = window._bridge_self
+
     // 返回操作对象与返回层级
     var _history = window.history
     if (argHistory && argHistory.go) _history = argHistory
     var _backLvl = argBackLvl || -1
 
-    // 返回类型
-    var isFromApp = Device.getUrlParameter('isFromApp') || ''
-    // 如果已经有h5返回监听, 优先执行h5返回监听
+    // 清空无效的h5返回
     if (
       Object.prototype.toString.call(window.onHistoryBacks) !== '[object Object]' ||
       Object.isEmptyObject(window.onHistoryBacks)
     ) {
       window.onHistoryBacks = null
     }
+
+    var isFromApp = Device.getUrlParameter('isFromApp') || ''
+    // 如果已经有h5返回监听, 优先执行h5返回监听
     if (window.onHistoryBacks || window.onHistoryBack) {
-      isFromApp = ''
     }
-    if (isFromApp === '1') {
+    // 关闭返回
+    else if (isFromApp === '1') {
       // 关闭当前页面
       try {
         self.closeWindow()
       } catch (error) {
         console.log(error)
       }
-    } else if (isFromApp === 'home') {
-      // 返回首页
+    }
+    // 返回首页
+    else if (isFromApp === 'home') {
       try {
         self.goHome()
       } catch (error) {
         console.log(error)
       }
-    } else if (isFromApp.indexOf('confirm-close') !== -1) {
+    }
+    // 提示后，关闭返回，或者历史返回
+    else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
       // 默认提示信息
       let confirmCaption = locale('您确定要离开此页面吗?', 'confirm_quit_page')
       // 地址栏动态提示信息
@@ -287,39 +292,39 @@ var Bridge = {
         if (newConfirmCaption) {
           confirmCaption = decodeURIComponent(decodeURIComponent(newConfirmCaption))
         }
-      }
-      // 提示后关闭当前页面
-      self.showConfirm(confirmCaption, {
-        success: (e) => {
-          e.hide()
-          self.closeWindow()
-        }
-      })
-    } else if (isFromApp.indexOf('confirm') !== -1) {
-      // 默认提示信息
-      let confirmCaption = locale('您确定要离开此页面吗?', 'confirm_quit_page')
-      // 地址栏动态提示信息
-      if (isFromApp.indexOf('confirm:') !== -1) {
+      } else if (isFromApp.indexOf('confirm:') !== -1) {
         let newConfirmCaption = isFromApp.replace('confirm:', '')
         if (newConfirmCaption) {
           confirmCaption = decodeURIComponent(decodeURIComponent(newConfirmCaption))
         }
       }
-      // 提示后返回上一页
+
       self.showConfirm(confirmCaption, {
         success: (e) => {
           e.hide()
-          _history.go(_backLvl)
+          // 提示后关闭当前页面
+          if (isFromApp.indexOf('confirm-close') !== -1) {
+            self.closeWindow()
+          }
+          // 提示后返回上一页
+          else {
+            _history.go(_backLvl)
+          }
         }
       })
-    } else if (isFromApp === 'onCustomBack') {
+    }
+    // 自定义返回
+    else if (isFromApp === 'onCustomBack') {
       if (typeof self.onCustomBack === 'function') {
         self.onCustomBack()
       }
-    } else {
-      // 返加上一页
+    }
+    // 返回上一页
+    else {
       _history.go(_backLvl)
     }
+
+    return false
   },
   /**
    * 动态加载桥接库

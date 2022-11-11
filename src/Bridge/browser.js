@@ -54,14 +54,6 @@ var Bridge = {
   closeWindow: function () {
     window.history.go(-1)
   },
-  // 客户端返回绑定
-  addBackPress: function () {
-    console.log('addBackPress方法在浏览器上无法运行')
-  },
-  // 客户端移除返回绑定
-  removeBackPress: function () {
-    console.log('removeBackPress方法在浏览器上无法运行')
-  },
   // 视频播放
   previewVideo: function (params = {}) {
     var target = document.getElementById('seedsui_preview_video')
