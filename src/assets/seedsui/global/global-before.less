@@ -161,4 +161,245 @@ br {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAXVBMVEUAAABv0Tp11UCK2U5v0Tpw0Ttv0Ttw0Dtw0Txv0Tpw0jtv0D1y0z1v0Dr////x+uzq+OOC1lK055mb33Z500j1/PHI7bS66aGU3G3Z8st81Ex00UHQ77/B6qqK2F+9wBsfAAAADXRSTlMA8xgG49nHv5aVgkct8zFIpgAAAPBJREFUOMuFk9kSwiAMRaGUUkqB7otV//8zBVk1OtynzOSQhSQoiQjOKMaUcUEQVNViGYXb6stNOudOSEc+njcSqMmC9LX8obqP750fEj4GCfFhFldHJ/+qeyfw9e96BgC2SVpnP5VSByBaU4EPsBlguEAIgoQ3tTKCSQTi3rJ+vQCAI5ZFmCQQQ1SmGnYIUBSGNBpgHWGjEZCTbeMGARrtExI2BYv2MlhiNMZ8ZUXyRI/a1rFPWg1HalPIjBhU0Bw/iuCMWM4A6PDVYVipF6eHH1Ycd0qzabXejzDu0sIUV660tMW1Lx9O+fTKx1s8/xcLZSlX4fSWEwAAAABJRU5ErkJggg==');
 }
 
+// 箭头
 @import 'shape.less';
+
+// 遮罩公共遮罩样式
+.mask {
+  // display: none; // 去掉动画
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+
+  background-color: @mask-bg;
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: @animation-duration;
+  transition-property: opacity;
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    // display: block; // 去掉动画
+  }
+}
+
+// 公共弹框动画(Alert@deprecated废弃、Dialog@deprecated废弃、ActionSheet、Popover, Tooltip, Modal)
+.popup-animation {
+  position: absolute;
+  &[data-animation] {
+    visibility: hidden;
+    transition-duration: @animation-duration;
+    transition-property: transform, opacity, visibility;
+    &.active {
+      visibility: visible;
+    }
+    &.transition-duration-0 {
+      transition-duration: 0ms;
+    }
+  }
+  // 从右往左滑动
+  &[data-animation='slideLeft'] {
+    //left:0;
+    transform: translate3d(100%, 0, 0);
+    &.active {
+      transform: none;
+    }
+  }
+  // 从左往右滑动
+  &[data-animation='slideRight'] {
+    //left:0;
+    transform: translate3d(-100%, 0, 0);
+    &.active {
+      transform: none;
+    }
+  }
+  // 从下向上滑动
+  &[data-animation='slideUp'] {
+    //top:0;
+    transform: translate3d(0, 100%, 0);
+    &.active {
+      transform: none;
+    }
+  }
+  // 从上向下滑动
+  &[data-animation='slideDown'] {
+    //top:0;
+    transform: translate3d(0, -100%, 0);
+    &.active {
+      transform: none;
+    }
+  }
+  // 放大缩小
+  &[data-animation='zoom'] {
+    transform: scale(0, 0);
+    &.active {
+      transform: scale(1, 1);
+    }
+  }
+  // 淡入淡出
+  &[data-animation='fade'] {
+    opacity: 0;
+    &.active {
+      opacity: 1;
+    }
+  }
+  // 无动画
+  &[data-animation='none'] {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  // 正中间弹出
+  &.middle {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center center;
+
+    &[data-animation='zoom'] {
+      transform: translate3d(-50%, -50%, 0) scale(0, 0);
+      &.active {
+        transform: translate3d(-50%, -50%, 0) scale(1, 1);
+      }
+    }
+  }
+
+  // 顶部弹出
+  &.top-left,
+  &.top-center,
+  &.top-right {
+    top: 0;
+  }
+  &.top-left {
+    left: 0;
+    transform-origin: left top;
+  }
+  &.top-center {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    transform-origin: center top;
+
+    &[data-animation='slideDown'] {
+      transform: translate3d(-50%, -100%, 0);
+      &.active {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+    &[data-animation='zoom'] {
+      transform: translate3d(-50%, 0, 0) scale(0, 0);
+      &.active {
+        transform: translate3d(-50%, 0, 0) scale(1, 1);
+      }
+    }
+  }
+  &.top-right {
+    right: 0;
+    transform-origin: right top;
+  }
+
+  // 底部弹出
+  &.bottom-left,
+  &.bottom-center,
+  &.bottom-right {
+    bottom: 0;
+  }
+  &.bottom-left {
+    left: 0;
+    transform-origin: left bottom;
+  }
+  &.bottom-center {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    transform-origin: center bottom;
+
+    &[data-animation='slideUp'] {
+      transform: translate3d(-50%, 100%, 0);
+      &.active {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+    &[data-animation='zoom'] {
+      transform: translate3d(-50%, 100%, 0) scale(0, 0);
+      &.active {
+        transform: translate3d(-50%, 0, 0) scale(1, 1);
+      }
+    }
+  }
+  &.bottom-right {
+    right: 0;
+    transform-origin: right bottom;
+  }
+
+  // 左侧弹出
+  &.left-top,
+  &.left-middle,
+  &.left-bottom {
+    left: 0;
+  }
+  &.left-top {
+    top: 0;
+    transform-origin: left top;
+  }
+  &.left-middle {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    transform-origin: left center;
+
+    &[data-animation='slideRight'] {
+      transform: translate3d(-100%, -50%, 0);
+      &.active {
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+    &[data-animation='zoom'] {
+      transform: translate3d(0, -50%, 0) scale(0, 0);
+      &.active {
+        transform: translate3d(0, -50%, 0) scale(1, 1);
+      }
+    }
+  }
+  &.left-bottom {
+    bottom: 0;
+    transform-origin: left bottom;
+  }
+
+  // 右侧弹出
+  &.right-top,
+  &.right-middle,
+  &.right-bottom {
+    right: 0;
+  }
+  &.right-top {
+    top: 0;
+    transform-origin: right top;
+  }
+  &.right-middle {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    transform-origin: right center;
+
+    &[data-animation='slideLeft'] {
+      transform: translate3d(100%, -50%, 0);
+      &.active {
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+    &[data-animation='zoom'] {
+      transform: translate3d(0, -50%, 0) scale(0, 0);
+      &.active {
+        transform: translate3d(0, -50%, 0) scale(1, 1);
+      }
+    }
+  }
+  &.right-bottom {
+    bottom: 0;
+    transform-origin: right bottom;
+  }
+}

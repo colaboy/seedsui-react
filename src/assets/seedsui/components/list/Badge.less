@@ -1,0 +1,52 @@
+// Badge徽章角标
+.badge {
+  .inline-flex;
+  .flex-center;
+  .flex-middle;
+  position: relative;
+  min-width: 14px;
+  height: 14px;
+  overflow: hidden;
+  color: @badge-color;
+  // max-width: 24px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  background: @badge-bg;
+  border: 1px solid @badge-bg;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 1);
+  transform: scale(0.9);
+  transform-origin: 0;
+  // 图标内的badge
+  &.top,
+  &.right,
+  &.bottom,
+  &.left {
+    position: absolute;
+  }
+  &.top {
+    top: -4px;
+  }
+  &.right {
+    right: -6px;
+  }
+  // 框形
+  &.outline {
+    color: @badge-bg;
+    background: white;
+    border: 1px solid @badge-bg;
+  }
+  // 圆形badge
+  &.round {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+  }
+}
+.badge-max-width {
+  width: 24px;
+}

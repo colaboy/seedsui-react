@@ -1,0 +1,152 @@
+// Calendar日历
+.calendar {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+  transition-property: height;
+}
+// 头部
+.calendar-header {
+  .flex;
+  .flex-middle;
+  padding: 6px 0;
+}
+// 标题
+.calendar-title {
+  .flex-1;
+  padding: 6px 0;
+  text-align: center;
+}
+// 左右箭头
+.calendar-prev,
+.calendar-next {
+  width: 15%;
+  height: 30px;
+
+  color: @placeholder;
+  font-size: 16px;
+  .flex;
+  .flex-middle;
+  .flex-center;
+}
+.calendar-prev {
+}
+.calendar-next {
+}
+// 周
+.calendar-day-box {
+  color: @sub;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+.calendar-day {
+  display: inline-block;
+  float: left;
+  width: 14%;
+  height: 24px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+
+// 主体
+.calendar-wrapper {
+  height: 300px;
+  overflow: hidden;
+}
+// 主体高度
+.calendar-wrapper-y {
+  height: 300px;
+  transition-property: transform;
+}
+// 主体宽度
+.calendar-wrapper-x {
+  width: 300%;
+  transition-property: transform;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+// 一月一屏, 共三屏
+.calendar-month {
+  float: left;
+  width: 33%;
+}
+// 一行
+.calendar-monthrow:after {
+  display: table;
+  clear: both;
+  content: '';
+  zoom: 1;
+}
+// 一格
+.calendar-date {
+  display: inline-block;
+  float: left;
+  width: 14%;
+  // 由js控制高度与line-height
+  // height:40px;
+  // line-height: 40px;
+  text-align: center;
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+// 一格里的数字
+.calendar-datenum {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
+// 选中效果-今天
+.calendar-today {
+  border-color: @sub;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 100%;
+}
+// 选中效果-当前月或者当前周
+.calendar-current {
+  color: @body-color;
+}
+.calendar-notcurrent {
+  color: @sub;
+}
+// 选中效果-点击后
+.calendar-selected {
+  // font-weight:600;
+  // border-radius:100%;
+
+  // color:@primary-color;
+  // border-color:@primary-bg;
+  // background-color:@primary-bg;
+}
+// 选中效果-滑动后
+.calendar-active {
+  color: @primary-color;
+  font-weight: 600;
+  background-color: @primary-bg;
+  border-color: @primary-bg;
+  border-radius: 100%;
+}
+// 禁用
+.calendar-disabled {
+  color: @placeholder;
+  font-weight: normal;
+  background-color: transparent;
+  border-color: transparent;
+}

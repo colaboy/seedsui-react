@@ -1,0 +1,55 @@
+// 定位控件
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+// .location-combo, .location-combo-error{
+// }
+.location-combo,
+.location-combo textarea {
+  color: @sub;
+}
+.location-combo-error,
+.location-combo-error textarea {
+  color: @cancel-bg;
+}
+.location-combo-success,
+.location-combo-success textarea {
+  color: @link-bg;
+}
+.location-combo-icon {
+  width: 24px;
+  height: 24px;
+}
+.location-combo-icon-location {
+  background-image: url(//res.waiqin365.com/d/seedsui/icon/location.png);
+}
+.location-combo-icon-choose {
+  background-image: url(//res.waiqin365.com/d/seedsui/icon/location-choose.png);
+}
+.location-combo-icon-location {
+  &.location-combo-icon-active {
+    animation-name: rotate360;
+    animation-duration: 500ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+// 弹框
+.location-modal {
+  .flex;
+  .flex-vertical;
+  position: absolute;
+  bottom: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  background-color: white;
+  border-radius: 4px 4px 0 0;
+}

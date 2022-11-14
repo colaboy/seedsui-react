@@ -1,0 +1,49 @@
+// Indexbar索引栏
+@indexbar-color: @placeholder;
+@indexbar-color-active: @body-color;
+@indexbar-font-size: @font-size-sm;
+.indexbar {
+  .flex;
+  .flex-vertical;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  font-weight: bold;
+  font-size: @indexbar-font-size;
+  .indexbar-button {
+    .flex;
+    .flex-1;
+    .flex-middle;
+    .flex-center;
+    padding: 0 6px;
+    color: @indexbar-color;
+    transform: scale(0.8);
+  }
+  &.active .indexbar-button {
+    color: @indexbar-color-active;
+  }
+}
+.indexbar-tooltip {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: none;
+  width: 80px;
+  height: 80px;
+  margin-top: -40px;
+  margin-left: -40px;
+  color: #fff;
+  font-size: 35px;
+  line-height: 80px;
+  text-align: center;
+
+  background-color: @mask-bg;
+  border-radius: 40px;
+  transition: 200ms;
+}
+.indexbar.active + .indexbar-tooltip {
+  display: block;
+}

@@ -1,0 +1,258 @@
+// Input输入框控件
+// 输入框容器
+.input-wrapper {
+  .flex;
+  .flex-middle;
+  .flex-1;
+  .licon {
+    margin-right: 4px;
+  }
+  .ricon {
+    margin-left: 4px;
+    color: rgba(0, 0, 0, 0.2);
+  }
+  .input-text,
+  .input-textarea,
+  .input-fit-box {
+    display: block;
+    width: 100%;
+    .flex-1;
+  }
+}
+
+// 共用变量: Input.AutoFit
+@input-height: 22px;
+@input-text-padding: 10px 0;
+
+// 单行文本框
+.input-text {
+  position: relative; // 为了解决ios输入时白屏的BUG
+  box-sizing: border-box;
+  min-height: @input-height;
+  padding: @input-text-padding;
+  line-height: @input-height;
+  text-align: left;
+  -webkit-transform: translate3d(0, 0, 0); // 据说可以解决输入不显示文字的问题
+  -webkit-backface-visibility: hidden;
+  &:extend(.appearance);
+  &[disabled] {
+    color: #666;
+    opacity: 1; // 解决iosdisabled颜色变淡的问题
+    -webkit-text-fill-color: #666; // 解决iosdisabled颜色变淡的问题
+  }
+}
+
+// 多行文本框
+@input-textarea-height: 60px;
+.input-textarea {
+  display: block;
+  height: @input-textarea-height;
+  &:extend(.appearance);
+  .flex;
+}
+
+// 自增高文本框
+.input-fit-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  line-height: 0;
+  .flex-1;
+
+  pre {
+    min-height: @input-height;
+    visibility: hidden;
+    span {
+      display: inline;
+    }
+  }
+
+  // 自适应标签与多行文本框文字间距一致
+  pre,
+  textarea {
+    line-height: @input-height;
+  }
+}
+
+// 多行文本框容器
+.input-fit {
+  // position: relative; // 为了解决ios输入时白屏的BUG
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  &,
+  + pre {
+    padding: 4px 0 0 0; // 文字距离上面的间隙
+  }
+
+  // 容器内多行文本框宽高100%
+  textarea {
+    width: 100%;
+    height: 100%;
+    &:extend(.appearance);
+  }
+}
+
+// 拾色器
+input[type='color'] {
+  width: 44px;
+  height: 24px;
+  padding: 0;
+  background-color: #eee;
+  border-width: 0;
+}
+::-webkit-color-swatch-wrapper {
+  background-color: white;
+  border-color: @border;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+}
+::-webkit-color-swatch {
+  position: relative;
+  top: -2px;
+  left: 0;
+  height: 18px;
+  border: none;
+}
+
+// 范围拖动条
+@input-range-height: 35px;
+@input-range-border: @dpborder;
+.input-range {
+  position: relative;
+  height: @input-range-height;
+  .flex;
+  .flex-middle;
+}
+.input-range-input {
+  position: relative;
+  display: block;
+  height: 1px;
+  background-color: @input-range-border;
+  border-width: 0;
+  border-radius: 3px;
+  outline: 0;
+  cursor: pointer;
+  &:extend(.appearance);
+  .flex-1;
+
+  &::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+
+    background-color: @primary-bg;
+    background-clip: padding-box;
+    border-width: 0;
+    border-radius: 50%;
+    &:extend(.appearance);
+  }
+}
+.input-range-tooltip {
+  position: absolute;
+
+  top: -60px;
+  left: 0;
+  display: block;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  line-height: 48px;
+  text-align: center;
+  text-shadow: 0 1px 0 #f3f3f3;
+  background-color: white;
+  border-color: @dpborder;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  visibility: hidden;
+  opacity: 0.8;
+  transition-duration: 300ms;
+  transition-property: visibility;
+}
+
+// 评星控件
+.input-star {
+  .flex;
+  .flex-middle;
+  .star {
+    margin-right: 18px;
+  }
+}
+
+// 密码强度
+@input-password-strong-color: white;
+@input-password-strong-height: 30px;
+@input-password-strong-wing: 1px;
+@input-password-strong-bg: @placeholder;
+@input-password-strong-bg1: @cancel-bg;
+@input-password-strong-bg2: @warn-bg;
+@input-password-strong-bg3: @submit-bg;
+.input-password-strong {
+  .flex;
+  height: @input-password-strong-height;
+  color: @input-password-strong-color;
+  li {
+    position: relative;
+    margin-left: @input-password-strong-wing;
+    background-color: @input-password-strong-bg;
+    .flex;
+    .flex-1;
+    .flex-middle;
+    .flex-center;
+    &:nth-of-type(1) {
+      margin-left: 0px;
+      .input-password-strong-progress {
+        background-color: @input-password-strong-bg1;
+      }
+    }
+    &:nth-of-type(2) {
+      .input-password-strong-progress {
+        background-color: @input-password-strong-bg2;
+      }
+    }
+    &:nth-of-type(3) {
+      .input-password-strong-progress {
+        background-color: @input-password-strong-bg3;
+      }
+    }
+  }
+  &.lvl1 {
+    li:nth-of-type(1) .input-password-strong-progress {
+      width: 100%;
+    }
+  }
+  &.lvl2 {
+    li:nth-of-type(1) .input-password-strong-progress {
+      width: 100%;
+    }
+    li:nth-of-type(2) .input-password-strong-progress {
+      width: 100%;
+    }
+  }
+  &.lvl3 {
+    li:nth-of-type(1) .input-password-strong-progress {
+      width: 100%;
+    }
+    li:nth-of-type(2) .input-password-strong-progress {
+      width: 100%;
+    }
+    li:nth-of-type(3) .input-password-strong-progress {
+      width: 100%;
+    }
+  }
+}
+.input-password-strong-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  transition-duration: @animation-duration;
+  transition-property: width;
+}
+.input-password-strong-caption {
+  position: relative;
+  display: block;
+}

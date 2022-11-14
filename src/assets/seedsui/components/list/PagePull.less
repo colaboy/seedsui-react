@@ -1,0 +1,28 @@
+// PagePull侧边栏控件, 依赖.page
+@page-bg: @body-bg;
+.page-pull {
+  overflow: visible;
+  &:extend(.page);
+}
+.page-side-left,
+.page-side-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: @page-bg;
+  visibility: visible;
+}
+.page-side-left {
+  left: 0;
+  width: 264px;
+}
+.page-side-right {
+  right: 0;
+  width: 264px;
+}
+.page-side-left[data-transition='push'] {
+  transform: translateX(-100%);
+}
+.page-side-right[data-transition='push'] {
+  transform: translateX(100%);
+}

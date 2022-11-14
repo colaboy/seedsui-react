@@ -1,0 +1,38 @@
+.map-marker-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 16px;
+  height: 27px;
+  margin: 0px;
+  padding: 0px;
+  background: url(//res.waiqin365.com/d/seedsui/mapview/location_red_shadow.png);
+  background-size: contain;
+  border: 0px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  user-select: none;
+}
+.map-footer {
+  padding: 10px 12px;
+  &:extend(.bg-white);
+  &:extend(.flex);
+  &:extend(.flex-middle);
+}
+.map-footer-content {
+  &:extend(.flex-1);
+}
+.map-footer-content-caption {
+}
+.map-footer-content-sndcaption {
+  padding-top: 2px;
+  &:extend(.color-sub);
+  &:extend(.font-size-sm);
+}
+.map-footer-submit {
+  padding: 2px 6px;
+  color: @primary-bg;
+  border: 1px solid @border;
+  border-radius: 4px;
+}

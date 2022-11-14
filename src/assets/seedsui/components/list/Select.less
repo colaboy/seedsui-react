@@ -1,0 +1,60 @@
+// Select
+// Select.Checkbox
+.select-checkbox-group {
+  padding: 1px 0;
+}
+.select-checkbox-item {
+  margin: 10px 0;
+  .checkbox,
+  .radio {
+    .flex;
+  }
+  .checkbox-caption,
+  .radio-caption {
+    .flex-1;
+  }
+}
+// Select.Combo
+@select-modal-color-active: @primary-bg;
+.select-modal {
+  background-color: @picker-selected-bg;
+  &:extend(.picker);
+}
+.select-modal.active {
+  &:extend(.picker.active);
+}
+.select-modal-wrapper {
+  position: relative;
+  display: block;
+  height: auto;
+  max-height: 215px;
+  overflow: auto;
+}
+// 列表选项
+.select-modal-option {
+  padding: 10px 12px;
+  &:extend(.flex,
+  .border-b);
+  .flex-middle;
+}
+.select-modal-option.active {
+  color: @select-modal-color-active;
+  .select-modal-option-icon {
+    visibility: visible;
+  }
+}
+.select-modal-option-caption {
+  position: relative;
+  display: block;
+  pointer-events: none;
+  &:extend(.flex-1);
+}
+.select-modal-option-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  font-family: 'iconfont';
+  visibility: hidden;
+  pointer-events: none;
+  &:extend(.icon-ok-fill all);
+}

@@ -1,0 +1,50 @@
+// Radio控件
+@radio-color: @placeholder;
+@radio-color-active: @primary-bg;
+@radio-color-disabled: @disabled-bg;
+.radio {
+  .inline-flex;
+  .flex-middle;
+  &[disabled] {
+    color: @radio-color-disabled;
+    &:extend(.events-none);
+    .radio-input {
+      opacity: 0.5;
+    }
+    .radio-caption {
+      opacity: 0.5;
+    }
+  }
+  &[data-checked='true'] {
+    .radio-input {
+      color: @radio-color-active;
+      font-family: 'iconfont';
+      &:extend(.icon-rdo-ok-fill all);
+    }
+  }
+}
+.radio-input {
+  width: 22px;
+  height: 22px;
+
+  color: @radio-color;
+  font-size: 22px;
+
+  font-family: 'iconfont';
+  line-height: 22px;
+  vertical-align: middle;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto 100%;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  &:extend(.events-none);
+  &:extend(.icon-rdo all);
+}
+// caption
+.radio-caption {
+  margin-left: 4px;
+  &:extend(.events-none);
+}

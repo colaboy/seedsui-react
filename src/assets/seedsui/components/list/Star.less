@@ -1,0 +1,38 @@
+// Star星星控件
+@star-color: @placeholder;
+@star-color-active: @warn-bg;
+.star {
+  .inline-flex;
+  .flex-middle;
+  .flex-center;
+  color: @star-color;
+  font-family: 'iconfont';
+  &:extend(.icon-fav all);
+  &:extend(.icon);
+
+  &.active {
+    color: @star-color-active;
+    font-family: 'iconfont';
+    &:extend(.icon-fav-fill all);
+  }
+  &.active-half {
+    // Chrome10-25,Safari5.1-6
+    background-image: -webkit-linear-gradient(
+      left,
+      rgba(244, 152, 78, 1) 0%,
+      rgba(244, 152, 78, 1) 50%,
+      rgba(170, 170, 170, 1) 51%,
+      rgba(170, 170, 170, 1) 100%
+    );
+    // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+    background-image: -webkit-linear-gradient(
+      to right,
+      rgba(244, 152, 78, 1) 0%,
+      rgba(244, 152, 78, 1) 50%,
+      rgba(170, 170, 170, 1) 51%,
+      rgba(170, 170, 170, 1) 100%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

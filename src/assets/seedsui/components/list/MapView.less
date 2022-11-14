@@ -1,0 +1,123 @@
+// Map容器公共样式
+.map-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  // 隐藏百度logo
+  .anchorBL {
+    display: none;
+  }
+
+  // 缩放容器
+  .BMap_stdMpCtrl.BMap_stdMpType3.BMap_noprint.anchorBR {
+    width: 30px !important;
+    height: 65px !important;
+    .BMap_stdMpZoom {
+      width: 30px !important;
+      height: 65px !important;
+    }
+  }
+  // 缩放加减号
+  .BMap_stdMpZoom .BMap_button {
+    width: 30px;
+    height: 30px;
+    color: #808080;
+    line-height: 30px;
+    text-align: center;
+    background: #ffffff;
+    background-image: initial;
+    border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2);
+    &.BMap_stdMpZoomIn {
+      // 加号
+      background-position: 0;
+
+      .BMap_smcbg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/zoomout_836a0e4.png) !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 23px 23px !important;
+      }
+    }
+    &.BMap_stdMpZoomOut {
+      // 减号
+      top: auto !important;
+      bottom: 0 !important;
+      background-position: 0;
+
+      // font-family: 'iconfont';
+      // &:extend(.icon-minus-fill all);
+      .BMap_smcbg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/zoomin_891d512.png) !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 23px 23px !important;
+      }
+    }
+  }
+  // 圆形拖拽
+  .BMap_vectex_node {
+    background: #ffffff;
+    background-image: none;
+    border: 1px solid #1a1a1a;
+    border-radius: 100%;
+  }
+}
+.map-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  background: white;
+  border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.map-close-label {
+  display: block;
+}
+.map-bar {
+  position: relative;
+  height: 45px;
+  padding: 0 10px;
+  line-height: 45px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e6e7e8;
+}
+.map-location {
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 10px;
+  left: 10px;
+  padding: 4px 6px;
+  color: #686d72;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+.map-location-icon {
+  width: 23px;
+  height: 23px;
+  background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/loc_ffcaf82.png);
+  background-size: 23px 23px;
+}
+.map-location-label {
+  margin-top: 4px;
+  text-align: center;
+  &:extend(.font-size-sm);
+}

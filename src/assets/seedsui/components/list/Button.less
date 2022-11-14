@@ -1,0 +1,333 @@
+// Button按钮
+// 按钮-默认
+@button-color: @body-color;
+@button-bg: transparent;
+@button-border: @dpborder;
+@button-property: none;
+@button-value: none;
+
+@button-color-active: @body-color;
+@button-bg-active: transparent;
+@button-border-active: @dpborder;
+@button-property-active: opacity;
+@button-value-active: 0.5;
+
+// 按钮-在bar上
+@button-bar-color: @body-color;
+@button-bar-bg: transparent;
+@button-bar-border: transparent;
+@button-bar-property: none;
+@button-bar-value: none;
+
+@button-bar-color-active: @body-color;
+@button-bar-bg-active: transparent;
+@button-bar-border-active: transparent;
+@button-bar-property-active: opacity;
+@button-bar-value-active: 0.5;
+
+// 按钮-禁用
+@button-disabled-color: none;
+@button-disabled-bg: none;
+@button-disabled-border: none;
+@button-disabled-property: opacity;
+@button-disabled-value: 0.5;
+
+@button-disabled-color-active: none;
+@button-disabled-bg-active: none;
+@button-disabled-border-active: none;
+@button-disabled-property-active: opacity;
+@button-disabled-value-active: 0.5;
+// 基础样式
+.button {
+  box-sizing: border-box;
+
+  // height: 32px;
+  // line-height:normal;
+  // line-height: 0;
+  vertical-align: middle;
+
+  border-style: solid;
+  border-width: 1px;
+  &:extend(.appearance);
+  .inline-flex;
+  .flex-middle;
+  .flex-center;
+
+  // 默认按钮
+  &,
+  &.normal {
+    color: @button-color;
+    background-color: @button-bg;
+    border-color: @button-border;
+    @{button-property}: @button-value;
+    &:active,
+    &.active {
+      color: @button-color-active;
+      background-color: @button-bg-active;
+      border-color: @button-border-active;
+      @{button-property-active}: @button-value-active;
+    }
+  }
+  // Bar按钮
+  &.bar {
+    color: @button-bar-color;
+    background-color: @button-bar-bg;
+    border-color: @button-bar-border;
+    @{button-bar-property}: @button-bar-value;
+    &:active,
+    &.active {
+      color: @button-bar-color-active;
+      background-color: @button-bar-bg-active;
+      border-color: @button-bar-border-active;
+      @{button-bar-property-active}: @button-bar-value-active;
+    }
+  }
+}
+// 彩色按钮
+.button {
+  // 主色按钮
+  &.primary {
+    color: @primary-color;
+    background-color: @primary-bg;
+    border-color: @primary-border;
+    @{primary-property}: @primary-value;
+    &:active,
+    &.active {
+      color: @primary-color-active;
+      background-color: @primary-bg-active;
+      border-color: @primary-border-active;
+      @{primary-property-active}: @primary-value-active;
+    }
+  }
+  // 取消按钮
+  &.cancel {
+    color: @cancel-color;
+    background-color: @cancel-bg;
+    border-color: @cancel-border;
+    @{cancel-property}: @cancel-value;
+    &:active,
+    &.active {
+      color: @cancel-color-active;
+      background-color: @cancel-bg-active;
+      border-color: @cancel-border-active;
+      @{cancel-property-active}: @cancel-value-active;
+    }
+  }
+  // 提交按钮
+  &.submit {
+    color: @submit-color;
+    background-color: @submit-bg;
+    border-color: @submit-border;
+    @{submit-property}: @submit-value;
+    &:active,
+    &.active {
+      color: @submit-color-active;
+      background-color: @submit-bg-active;
+      border-color: @submit-border-active;
+      @{submit-property-active}: @submit-value-active;
+    }
+  }
+  // 信息按钮
+  &.info {
+    color: @info-color;
+    background-color: @info-bg;
+    border-color: @info-border;
+    @{info-property}: @info-value;
+    &:active,
+    &.active {
+      color: @info-color-active;
+      background-color: @info-bg-active;
+      border-color: @info-border-active;
+      @{info-property-active}: @info-value-active;
+    }
+  }
+  // 链接按钮
+  &.link {
+    color: @link-color;
+    background-color: @link-bg;
+    border-color: @link-border;
+    @{link-property}: @link-value;
+    &:active,
+    &.active {
+      color: @link-color-active;
+      background-color: @link-bg-active;
+      border-color: @link-border-active;
+      @{link-property-active}: @link-value-active;
+    }
+  }
+  // 警告按钮
+  &.warn {
+    color: @warn-color;
+    background-color: @warn-bg;
+    border-color: @warn-border;
+    @{warn-property}: @warn-value;
+    &:active,
+    &.active {
+      color: @warn-color-active;
+      background-color: @warn-bg-active;
+      border-color: @warn-border-active;
+      @{warn-property-active}: @warn-value-active;
+    }
+  }
+  // 完成按钮
+  &.success {
+    color: @success-color;
+    background-color: @success-bg;
+    border-color: @success-border;
+    @{success-property}: @success-value;
+    &:active,
+    &.active {
+      color: @success-color-active;
+      background-color: @success-bg-active;
+      border-color: @success-border-active;
+      @{success-property-active}: @success-value-active;
+    }
+  }
+  &[disabled] {
+    pointer-events: none;
+  }
+  // 禁用按钮
+  &.disabled,
+  &[disabled] {
+    color: @button-disabled-color;
+    background-color: @button-disabled-bg;
+    border-color: @button-disabled-border;
+    @{button-disabled-property}: @button-disabled-value;
+    &:active,
+    &.active {
+      color: @button-disabled-color-active;
+      background-color: @button-disabled-bg-active;
+      border-color: @button-disabled-border-active;
+      @{button-disabled-property-active}: @button-disabled-value-active;
+    }
+  }
+}
+// 彩色线框
+.button.outline {
+  // 线框-主色按钮
+  &.primary {
+    color: @primary-bg;
+    background-color: transparent;
+    border-color: @primary-border;
+    &:active,
+    &.active {
+      color: @primary-bg-active;
+      border-color: @primary-border-active;
+    }
+  }
+  // 线框-取消按钮
+  &.cancel {
+    color: @cancel-bg;
+    background-color: transparent;
+    border-color: @cancel-border;
+    &:active,
+    &.active {
+      color: @cancel-bg-active;
+      border-color: @cancel-border-active;
+    }
+  }
+  // 线框-提交按钮
+  &.submit {
+    color: @submit-bg;
+    background-color: transparent;
+    border-color: @submit-border;
+    &:active,
+    &.active {
+      color: @submit-bg-active;
+      border-color: @submit-border-active;
+    }
+  }
+  // 线框-信息按钮
+  &.info {
+    color: @info-bg;
+    background-color: transparent;
+    border-color: @info-border;
+    &:active,
+    &.active {
+      color: @info-bg-active;
+      border-color: @info-border-active;
+    }
+  }
+  // 线框-链接按钮
+  &.link {
+    color: @link-bg;
+    background-color: transparent;
+    border-color: @link-border;
+    &:active,
+    &.active {
+      color: @link-bg-active;
+      border-color: @link-border-active;
+    }
+  }
+  // 线框-警告按钮
+  &.warn {
+    color: @warn-bg;
+    background-color: transparent;
+    border-color: @warn-border;
+    &:active,
+    &.active {
+      color: @warn-bg-active;
+      border-color: @warn-border-active;
+    }
+  }
+  // 线框-完成按钮
+  &.success {
+    color: @success-bg;
+    background-color: transparent;
+    border-color: @success-border;
+    &:active,
+    &.active {
+      color: @success-bg-active;
+      border-color: @success-border-active;
+    }
+  }
+  // 线框-禁用按钮
+  &.disabled,
+  &[disabled] {
+    background-color: transparent;
+    &:active,
+    &.active {
+      background-color: transparent;
+    }
+  }
+}
+
+// 按钮尺寸
+.button {
+  height: 32px;
+  padding: 0 12px;
+  font-size: @font-size-md;
+  &.xs {
+    height: 20px;
+    padding: 0 5px;
+    font-size: 12px;
+  }
+  &.sm {
+    height: 24px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  &.md {
+  }
+  &.lg {
+    height: 44px;
+    padding: 0 12px;
+    font-size: @font-size-lg;
+  }
+  &.xl {
+    height: 54px;
+    padding: 0 15px;
+    font-size: @font-size-xl;
+  }
+}
+
+// 投影按钮
+.button.shadow {
+  // 分别指投影的：右、下、模糊、扩展、颜色
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  &:active,
+  &.active {
+    margin: 2px 0 -2px 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+}

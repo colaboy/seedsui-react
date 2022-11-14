@@ -1,0 +1,193 @@
+// Carrousel轮播
+// page模式
+.carrousel-page {
+  // 绝对定布局
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  .carrousel-wrapper,
+  .carrousel-slide,
+  .carrousel-slide-duplicate {
+    height: 100%;
+  }
+
+  // flex布局, flex全屏, 在android4.4和苹果部分手机, Carrousel切换会白屏
+  // position: relative;
+  // .flex;
+  // .flex-1;
+  // overflow: hidden;
+  // .carrousel-wrapper{
+  //   .flex;
+  //   .flex-1;
+  // }
+}
+// container模式
+.carrousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  @media (min-width: 992px) {
+    &:hover {
+      .carrousel-prev {
+        display: block;
+      }
+      .carrousel-next {
+        display: block;
+      }
+    }
+  }
+}
+.carrousel-wrapper {
+  position: relative;
+  left: 0;
+  width: 1122px;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+.carrousel-slide,
+.carrousel-slide-duplicate {
+  position: relative;
+  float: left;
+  box-sizing: border-box;
+  overflow: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  // phone
+  @media (max-width: 576px) {
+    & {
+      background-size: cover;
+    }
+  }
+  // phone-lg
+  @media (min-width: 576px) {
+    & {
+      background-size: cover;
+    }
+  }
+  // pad
+  @media (min-width: 768px) {
+    & {
+      background-size: cover;
+    }
+  }
+  // pc
+  @media (min-width: 992px) {
+    & {
+      background-size: cover;
+    }
+  }
+  // pc-lg
+  @media (min-width: 1200px) {
+    & {
+      background-size: cover;
+    }
+  }
+}
+
+// 图片
+.carrousel-slide-img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  pointer-events: none;
+}
+// 标题
+.carrousel-summary {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 10px;
+  color: white;
+  text-align: left;
+  text-overflow: nowrap;
+  background-color: rgba(0, 0, 0, 0.5);
+  .flex;
+}
+.carrousel-summary-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  & + .carrousel-summary-caption {
+    margin-left: 4px;
+  }
+}
+.carrousel-summary-caption {
+  display: block;
+  &:extend(.flex-1);
+}
+// 分页
+.carrousel-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  font-size: 0;
+  line-height: 0;
+  text-align: center;
+}
+.carrousel-pagination .bullet {
+  bottom: 10px;
+  display: inline-block;
+  width: 5px;
+  width: 8px;
+  height: 5px;
+  height: 8px;
+  font-size: 12px;
+  line-height: 8px;
+  background-color: #ccc;
+  border-radius: 100%;
+  opacity: 1;
+  & + .bullet {
+    margin-left: 5px;
+  }
+}
+.carrousel-pagination .bullet.active {
+  background-color: @primary-bg;
+}
+// 左右箭头
+.carrousel-prev,
+.carrousel-next {
+  position: absolute;
+  top: 50%;
+  display: none;
+
+  width: 24px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    transform-origin: center;
+    content: '';
+  }
+}
+
+.carrousel-prev {
+  left: 0;
+  &:after {
+    transform: translate(-30%, -50%) rotate(315deg);
+  }
+}
+.carrousel-next {
+  right: 0;
+  &:after {
+    transform: translate(-80%, -50%) rotate(134deg);
+  }
+}

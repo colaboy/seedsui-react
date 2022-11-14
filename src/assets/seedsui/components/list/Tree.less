@@ -1,0 +1,153 @@
+// Tree
+.tree-box {
+  background-color: white;
+}
+.tree {
+  box-sizing: border-box;
+  color: #333;
+  ul {
+    display: none;
+    padding-left: 10px;
+  }
+  &.expand ul {
+    display: block;
+  }
+}
+// tree-icon
+.tree-icon {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  padding: 0 12px;
+  color: @placeholder;
+  & + .tree-icon {
+    padding-left: 0;
+  }
+}
+.tree-button-add {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  width: 32px;
+  color: @placeholder;
+
+  color: #d1d1d1;
+  font-size: 20px;
+  font-family: 'iconfont';
+  &:extend(.icon-rdo all);
+  &:extend(.border-b);
+}
+.tree-button-del {
+  display: none;
+  width: 32px;
+  color: @placeholder;
+
+  color: #ffae02;
+  font-size: 20px;
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-ok-fill all);
+  &:extend(.border-b);
+  .flex-middle;
+  .flex-center;
+}
+.tree-icon-arrow {
+  transition: transform 100ms;
+  &:extend(.shape-triangle-right);
+}
+.tree-line.expand .tree-icon-arrow {
+  transform: rotate(90deg);
+}
+
+// tree-line
+.tree-line {
+  .flex;
+  position: relative;
+  min-width: 200px;
+  &:active {
+    background-color: #fff;
+  }
+  &.expand + ul {
+    display: block;
+  }
+}
+.tree-line-disabled {
+  .tree-button-add,
+  .tree-button-del,
+  + ul .tree-button-add,
+  + ul .tree-button-del {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+// 选中隐藏子节点的选择框
+.tree-line.active {
+  &,
+  & + ul {
+    color: #333;
+  }
+  .tree-button-add,
+  .tree-strictly & + ul .tree-button-add {
+    display: none;
+  }
+  .tree-button-del {
+    .flex;
+  }
+}
+// 单选不隐藏子节点选择框
+.tree.tree-type-radio .tree-line.active {
+  & + ul .tree-button-add {
+    .flex;
+  }
+}
+// tree-avatar
+.tree-avatar {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background-color: @random2-bg;
+  background-position: center;
+  background-size: cover;
+  border-radius: 100%;
+  pointer-events: none;
+}
+// tree-title
+.tree-title {
+  .flex;
+  .flex-middle;
+  .flex-1;
+  height: 50px;
+  &:extend(.border-b);
+}
+// tree-bar
+.tree-bar {
+  position: relative;
+  display: block;
+  height: 24px;
+  padding: 8px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  &.active {
+    display: block;
+  }
+}
+// tree-bar-button
+.tree-bar-button {
+  .inline-flex;
+  .flex-middle;
+  height: 24px;
+  margin-right: 8px;
+  padding: 0 8px;
+  font-size: 13px;
+  background-color: white;
+  border-radius: 4px;
+}
+.tree-bar-button-del {
+  margin-left: 4px;
+  color: @badge-bg;
+  font-size: 20px;
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
+}

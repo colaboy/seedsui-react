@@ -1,0 +1,63 @@
+// Timeline时间轴
+.timeline {
+  position: relative;
+  // 删除时间轴通到下面的线
+  div.timeline-case:last-child > .timeline-line {
+    display: none;
+  }
+  // 显示时间轴通到下面的线
+  &.timeline-line-cross {
+    div.timeline-case:last-child > .timeline-line {
+      display: block;
+    }
+  }
+}
+
+// 块
+.timeline-case {
+  position: relative;
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 13px;
+  list-style: none;
+}
+
+// 块左侧线
+.timeline-line {
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  height: calc(100% - 10px);
+  border-left: 1px solid #f0f0f0;
+}
+
+// 块左侧标记小圆点
+.timeline-badge {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  padding: 3px 1px;
+  line-height: 1;
+  text-align: center;
+  border: 0;
+  border-radius: 0;
+  transform: translate(-50%, -50%);
+}
+.timeline-dot {
+  .dot;
+}
+.timeline-case.active {
+  .timeline-dot {
+    background-color: #51bd89;
+  }
+}
+
+// 内容
+.timeline-content {
+  position: relative;
+  margin: 0 0 0 26px;
+  word-break: break-word;
+}

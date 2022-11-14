@@ -1,0 +1,108 @@
+// Toast
+// 是否允许点击
+.toast-propagation {
+  pointer-events: none;
+}
+// toast遮罩, 透明
+.toast-mask {
+  &.active {
+    z-index: 999;
+    background-color: transparent;
+  }
+}
+// toast框
+.toast {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition-timing-function: ease;
+  transition-duration: 150ms;
+
+  transition-property: transform, opacity, visibility;
+  pointer-events: none;
+
+  // 底部类型
+  &.bottom {
+    bottom: -100px;
+    &.active {
+      transform: translate3d(0, -150px, 0);
+      opacity: 1;
+    }
+  }
+  // 头部类型
+  &.top {
+    top: 44px;
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  &.top,
+  &.bottom {
+    .toast-wrapper {
+      .flex-middle;
+    }
+    .toast-icon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+    .toast-content {
+      .flex-1;
+      // .nowrap;
+      // .ellipsis;
+      // height: 16px; // 上下类型的左图标为16px,所以文字也设置成16px与之匹配
+      // line-height: 16px;
+    }
+    .toast-icon + .toast-content {
+      margin-left: 2px;
+    }
+  }
+  // 中间类型
+  &.middle {
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .toast-wrapper {
+      .flex-vertical;
+      .flex-middle;
+    }
+    .toast-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 36px;
+    }
+    .toast-content {
+      text-align: center;
+    }
+    .toast-icon + .toast-content {
+      margin-top: 8px;
+    }
+  }
+}
+// toast框画布
+.toast-wrapper {
+  .inline-flex;
+  max-width: 50%;
+  padding: 12px;
+
+  color: white;
+  line-height: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+}
+// toast图标
+.toast-icon {
+  display: block;
+  background-size: cover;
+}
+.toast-content {
+  display: block;
+  font-size: @font-size-md;
+  line-height: 22px;
+}

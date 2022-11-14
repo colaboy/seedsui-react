@@ -1,0 +1,60 @@
+// 全屏播放器
+.videofull-page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #000;
+  .flex;
+  .flex-bottom;
+}
+.videofull-caption,
+.videofull-close {
+  z-index: 999;
+}
+.videofull-caption {
+  position: absolute;
+  top: 16px;
+  right: 58px;
+  height: 32px;
+  padding: 0 12px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  .flex;
+  .flex-middle;
+  .flex-center;
+}
+.videofull-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  .flex;
+  .flex-middle;
+  .flex-center;
+  &:before {
+    display: block;
+    width: 1px;
+    height: 15px;
+    background-color: white;
+    transform: rotate(-45deg) translateX(1px);
+    content: '';
+  }
+  &:after {
+    display: block;
+    width: 1px;
+    height: 15px;
+    background-color: white;
+    transform: rotate(45deg) translateX(-1px);
+    content: '';
+  }
+}

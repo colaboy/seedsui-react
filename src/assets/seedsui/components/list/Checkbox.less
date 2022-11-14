@@ -1,0 +1,50 @@
+// Checkbox控件
+@checkbox-color: @placeholder;
+@checkbox-color-active: @primary-bg;
+@checkbox-color-disabled: @disabled-bg;
+.checkbox {
+  .inline-flex;
+  .flex-middle;
+  &[disabled] {
+    color: @checkbox-color-disabled;
+    &:extend(.events-none);
+    .checkbox-input {
+      opacity: 0.5;
+    }
+    .checkbox-caption {
+      opacity: 0.5;
+    }
+  }
+  &[data-checked='true'] {
+    .checkbox-input {
+      color: @checkbox-color-active;
+      font-family: 'iconfont';
+      &:extend(.icon-rdo-ok-fill all);
+    }
+  }
+}
+.checkbox-input {
+  width: 22px;
+  height: 22px;
+
+  color: @checkbox-color;
+  font-size: 22px;
+
+  font-family: 'iconfont';
+  line-height: 22px;
+  vertical-align: middle;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto 100%;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  &:extend(.events-none);
+  &:extend(.icon-rdo all);
+}
+// caption
+.checkbox-caption {
+  margin-left: 4px;
+  &:extend(.events-none);
+}

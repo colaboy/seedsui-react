@@ -1,0 +1,139 @@
+// Chat
+@chat-odd-bg: #ddd;
+@chat-even-bg: #b8daff;
+// 聊天框总容器
+.chat {
+  margin-bottom: 24px;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+// 作者容器
+.chat-author {
+  display: inline-block;
+  float: left;
+  width: 40px;
+  text-align: center;
+  img {
+    width: 100%;
+    border-radius: 100%;
+  }
+}
+// 作者-头像
+.chat-author-avatar {
+  position: relative;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+
+  margin: 0 auto;
+
+  color: @avatar-color;
+  background-color: @avatar-bg;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  background-size: cover;
+  border-radius: 100%;
+
+  .inline-flex;
+  .flex-center;
+  .flex-middle;
+}
+// 作者-姓名
+.chat-author-name {
+  color: @placeholder;
+  font-size: @font-size-sm;
+  font-style: normal;
+}
+// 内容框
+.chat-content {
+  display: inline-block;
+  float: left;
+  width: 70%;
+  margin-left: 12px;
+}
+// 内容标题
+.chat-content-caption {
+  margin-bottom: 4px;
+  color: #666;
+  font-size: 12px;
+}
+.chat-content-caption + .chat-content-text {
+  &:after {
+    top: 10px;
+  }
+}
+// 内容
+.chat-content-text {
+  position: relative;
+  display: inline-block;
+  max-width: 96%;
+  padding: 10px;
+  word-break: normal;
+
+  background-color: @chat-odd-bg;
+  border-radius: 3px;
+  // 箭头
+  &:after {
+    position: absolute;
+    top: 18px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px;
+    border-right-color: @chat-odd-bg;
+    content: ' ';
+  }
+  p {
+    margin: 0;
+    padding-top: 3px;
+    line-height: 24px;
+    text-align: left;
+    [data-emoji] {
+      width: 26px;
+      height: 24px;
+    }
+  }
+}
+// 右对齐
+.chat.right {
+  .chat-author {
+    float: right;
+  }
+  .chat-content {
+    float: right;
+    width: 70%;
+    margin-right: 12px;
+  }
+  .chat-content-caption {
+    text-align: right;
+  }
+  .chat-content-text {
+    float: right;
+    background-color: @chat-even-bg;
+    &:after {
+      left: 100%;
+      border-color: transparent;
+      border-left-color: @chat-even-bg;
+    }
+  }
+}
+// 聊天时间
+.chat-time {
+  .flex;
+  .flex-center;
+}
+.chat-time-text {
+  display: block;
+  padding: 4px;
+  color: white;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}

@@ -1,0 +1,115 @@
+// Numbox数字框
+@numbox-button-color: #666;
+@numbox-button-border: @dpborder;
+@numbox-button-disabled-color: #ccc;
+@numbox-width-md: 100px;
+@numbox-height-md: 26px;
+@numbox-width-xl: 170px;
+@numbox-height-xl: 40px;
+@numbox-width-lg: 120px;
+@numbox-height-lg: 32px;
+@numbox-width-sm: 80px;
+@numbox-height-sm: 22px;
+.numbox {
+  .inline-flex;
+  position: relative;
+  width: @numbox-width-md;
+  height: @numbox-height-md;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  border-radius: 4px;
+  &:extend(.flex-middle);
+  &:extend(.bordered);
+  .ricon {
+    display: block;
+    margin-right: 4px;
+    margin-left: 4px;
+    color: rgba(0, 0, 0, 0.2);
+  }
+}
+.numbox.md {
+  width: @numbox-width-md;
+  height: @numbox-height-md;
+}
+.numbox.xl {
+  width: @numbox-width-xl;
+  height: @numbox-height-xl;
+  .numbox-button {
+    width: @numbox-height-xl;
+  }
+}
+.numbox.lg {
+  width: @numbox-width-lg;
+  height: @numbox-height-lg;
+  .numbox-button {
+    width: @numbox-height-lg;
+  }
+}
+.numbox.sm {
+  width: @numbox-width-sm;
+  height: @numbox-height-sm;
+  .numbox-button {
+    width: @numbox-height-sm;
+  }
+  .numbox-input {
+    font-size: 12px;
+  }
+}
+
+.numbox-input,
+.numbox-button {
+  height: 100%;
+}
+.numbox-button {
+  line-height: 100%;
+}
+
+.numbox-input-box {
+  &:extend(.flex-1);
+  .numbox-input {
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    &:extend(.appearance);
+    &:extend(.flex-1);
+  }
+}
+.numbox-button {
+  display: block;
+  width: @numbox-height-md;
+
+  color: @numbox-button-color;
+  font-size: 20px;
+  background-color: white;
+  border-width: 0;
+  &:extend(.appearance);
+  &[disabled] {
+    color: @numbox-button-disabled-color;
+  }
+  &:first-child {
+    left: 0;
+    border-color: @numbox-button-border;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    border-radius: 0;
+  }
+  &:nth-last-of-type(1) {
+    right: 0;
+    border-color: @numbox-button-border;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+  }
+}
+.numbox[disabled] {
+  pointer-events: none;
+  .numbox-button,
+  .numbox-input {
+    color: @numbox-button-disabled-color;
+  }
+}

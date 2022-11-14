@@ -1,0 +1,45 @@
+// .actionsheet-mask{} // 遮罩, 基于.mask
+.actionsheet {
+  position: absolute;
+  bottom: 0;
+
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  background-color: @body-bg;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  // 动画使用.popup-animation
+}
+
+.actionsheet-option,
+.actionsheet-cancel {
+  display: block;
+  box-sizing: border-box;
+  padding: 12px;
+  text-align: center;
+  &:active {
+    background-color: @border;
+  }
+}
+.actionsheet-option {
+  position: relative;
+  .border-b;
+  &.active {
+    color: @primary-bg;
+  }
+}
+
+.actionsheet-cancel {
+  margin-top: 10px;
+
+  background-color: rgba(255, 255, 255, 0.9);
+  .border-t;
+}
+
+.actionsheet-group {
+  max-height: 400px;
+  overflow: auto;
+
+  background-color: rgba(255, 255, 255, 0.9);
+}

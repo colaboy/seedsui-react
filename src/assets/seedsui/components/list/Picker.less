@@ -1,0 +1,145 @@
+// Picker选择器
+@picker-bg: #f5f5f9;
+@picker-button-color: @primary-bg;
+@picker-button-disabled-color: #d1d1d1;
+@picker-header-bg: #fff;
+@picker-selected-bg: #f5f5f9;
+// picker遮罩, 基于.mask
+.picker-mask {
+}
+.picker {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+
+  background-color: @picker-bg;
+  transform: translate3d(0, 100%, 0);
+  transition-duration: @animation-duration;
+  transition-property: transform, opacity, visibility;
+  &.active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.picker-header {
+  .flex;
+  .flex-middle;
+  position: relative;
+  width: 100%;
+  height: 43px;
+  background-color: @picker-header-bg;
+  &:extend(.border-b);
+}
+// 按钮
+.picker-submit {
+  display: block;
+  height: 32px;
+  margin-right: 8px;
+  padding: 0 5px;
+  color: @picker-button-color;
+  line-height: 32px;
+  &.disabled {
+    color: @picker-button-disabled-color;
+    pointer-events: none;
+  }
+}
+.picker-cancel {
+  display: block;
+  height: 32px;
+  margin-left: 8px;
+  padding: 0 5px;
+  color: @picker-button-color;
+  line-height: 32px;
+  &.disabled {
+    color: @picker-button-disabled-color;
+    pointer-events: none;
+  }
+}
+.picker-header-title {
+  .text-center;
+  .flex-1;
+}
+.picker-wrapper {
+  position: relative;
+  display: block;
+  height: 215px;
+  overflow: hidden;
+  // 已经使用.picker-layer:before和after去遮档了
+  -webkit-mask-box-image: -webkit-linear-gradient(
+    bottom,
+    transparent,
+    transparent 0%,
+    @picker-bg 40%,
+    @picker-bg 60%,
+    transparent 100%,
+    transparent
+  );
+}
+// 槽容器
+.picker-slotbox {
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+// 一槽
+.picker-slot {
+  display: table-cell;
+  padding-top: 86px;
+  padding-bottom: 86px;
+  overflow: hidden;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  li {
+    height: 44px;
+    padding: 0 8px;
+    overflow: hidden;
+
+    color: @body-color;
+    font-size: 17px;
+    line-height: 44px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    &.active {
+      color: @body-color;
+    }
+  }
+  &.lock li.active {
+    color: @placeholder;
+  }
+}
+// 遮皮
+.picker-layer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  &:before,
+  &:after {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 82px;
+    content: '';
+  }
+  &:before {
+    top: 0;
+    background: fade(@picker-bg, 70%);
+  }
+  &:after {
+    bottom: 0;
+    background: fade(@picker-bg, 70%);
+  }
+}
+// 遮皮选中
+.picker-layer-frame {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 46px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  &:extend(.border-tb all);
+}

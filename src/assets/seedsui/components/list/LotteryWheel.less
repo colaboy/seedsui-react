@@ -1,0 +1,27 @@
+// Lotterywheel
+.lotterywheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: visible;
+}
+.lotterywheel-border {
+  position: absolute;
+  width: 100%;
+}
+.lotterywheel-wrapper {
+  position: absolute;
+  top: 7.5%;
+  left: 7.5%;
+  &.animated {
+    transition: all 4000ms ease-out;
+  }
+}
+.lotterywheel-pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 20%;
+  transform: translate(-50%, -50%);
+}

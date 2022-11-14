@@ -1,0 +1,118 @@
+// BIClock时钟
+@bi-clock-line-width: 2px;
+@bi-clock-color: @primary-bg;
+@bi-clock-hour-height: 35%;
+@bi-clock-minute-height: 43%;
+.bi-clock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-style: solid;
+  border-width: @bi-clock-line-width;
+  border-radius: 100%;
+}
+.bi-clock-origin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+}
+.bi-clock-hour,
+.bi-clock-minute {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: @bi-clock-line-width;
+  margin-left: -1px;
+  border-radius: 1px;
+  transform-origin: center bottom;
+  transition-delay: 0ms;
+  transition-timing-function: ease;
+  transition-duration: 500ms;
+  transition-property: transform;
+}
+.bi-clock-hour {
+  height: @bi-clock-hour-height;
+}
+.bi-clock-minute {
+  height: @bi-clock-minute-height;
+}
+.bi-clock-origin,
+.bi-clock-hour,
+.bi-clock-minute {
+  background-color: @bi-clock-color;
+}
+// 颜色
+.bi-clock {
+  border-color: @bi-clock-color;
+  .bi-clock-origin,
+  .bi-clock-hour,
+  .bi-clock-minute {
+    background-color: @bi-clock-color;
+  }
+  &.info {
+    border-color: @info-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @info-bg;
+    }
+  }
+
+  &.success {
+    border-color: @success-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @success-bg;
+    }
+  }
+
+  &.warn {
+    border-color: @warn-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @warn-bg;
+    }
+  }
+
+  &.hint {
+    border-color: @hint-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @hint-bg;
+    }
+  }
+
+  &.cancel {
+    border-color: @cancel-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @cancel-bg;
+    }
+  }
+
+  &.submit {
+    border-color: @submit-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @submit-bg;
+    }
+  }
+
+  &.disabled {
+    border-color: @disabled-bg;
+    .bi-clock-origin,
+    .bi-clock-hour,
+    .bi-clock-minute {
+      background-color: @disabled-bg;
+    }
+  }
+}

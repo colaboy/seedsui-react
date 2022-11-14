@@ -1,0 +1,138 @@
+// vott图片标注系统
+.vott-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+.vott-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.vott-svg {
+  display: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  &.active {
+    display: block;
+  }
+}
+.vott-shape {
+  fill: transparent;
+  stroke: #089927;
+  stroke-width: 2;
+  &.active {
+    stroke-width: 3;
+    stroke-dasharray: 5, 5;
+  }
+}
+.vott-shape-bullet {
+  display: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  fill: rgba(255, 255, 255, 0.7);
+  stroke: #666;
+  stroke-width: 1;
+  stroke-dasharray: 1, 1;
+  &.active {
+    display: block;
+  }
+  // 左上
+  &.xMinYMin {
+    cursor: nw-resize;
+  }
+  // 左中
+  &.xMinYMid {
+    cursor: w-resize;
+  }
+  // 左下
+  &.xMinYMax {
+    cursor: sw-resize;
+  }
+  // 中上
+  &.xMidYMin {
+    cursor: n-resize;
+  }
+  // 中下
+  &.xMidYMax {
+    cursor: s-resize;
+  }
+  // 右上
+  &.xMaxYMin {
+    cursor: ne-resize;
+  }
+  // 右中
+  &.xMaxYMid {
+    cursor: e-resize;
+  }
+  // 右下
+  &.xMaxYMax {
+    cursor: se-resize;
+  }
+}
+// 加载中
+.vott-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  transform: translate(-50%, -50%);
+  &.active {
+    display: block;
+  }
+}
+.vott-loading-icon {
+  @-webkit-keyframes rotateIn {
+    0% {
+      -webkit-transform: rotate(0);
+      -webkit-transform-origin: center center;
+    }
+
+    100% {
+      -webkit-transform: rotate(360deg);
+      -webkit-transform-origin: center center;
+    }
+  }
+  width: 24px;
+  height: 24px;
+  background-image: url(//res.waiqin365.com/d/seedsui/icon/loading.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  animation: rotateIn 1s linear infinite;
+}
+// 加载错误
+.vott-error {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  .flex-vertical;
+  display: none;
+  height: 100%;
+  &.active {
+    .flex;
+  }
+}
+.vott-error-icon {
+  width: 60px;
+  height: 60px;
+  color: #d8d8d8;
+  font-size: 60px;
+  font-family: iconfont;
+  &:extend(.icon-pic-error all);
+}
+.vott-error-caption {
+  margin-top: 4px;
+  color: #d8d8d8;
+  &:extend(.font-size-sm);
+}
+.vott-watermark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: 30%;
+  pointer-events: none;
+}
