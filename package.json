@@ -1,6 +1,6 @@
 {
   "name": "seedsui-react",
-  "version": "5.5.9",
+  "version": "5.5.91",
   "description": "seedsui-react React component",
   "scripts": {
     "start": "dumi dev",
@@ -14,10 +14,10 @@
     "prepublishOnly": "npm run build"
   },
   "files": [
-    "dist"
+    "lib"
   ],
-  "module": "dist/esm/index.js",
-  "typings": "dist/esm/index.d.ts",
+  "module": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },

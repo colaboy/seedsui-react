@@ -1,6 +1,7 @@
 import jsonp from './../jsonp'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
+import Modal from './../Modal'
 import Toast from './../Toast/instance.js'
 import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
@@ -308,22 +309,27 @@ var Bridge = {
           }
         }
 
-        self.showConfirm(confirmCaption, {
-          success: (e) => {
-            e.hide()
-            // 提示后关闭当前页面
-            if (isFromApp.indexOf('confirm-close') !== -1) {
-              self.closeWindow()
+        Modal.confirm({
+          content: confirmCaption,
+          submitProps: {
+            onClick: () => {
+              // 提示后关闭当前页面
+              if (isFromApp.indexOf('confirm-close') !== -1) {
+                self.closeWindow()
+              }
+              // 提示后返回上一页
+              else {
+                _history.go(_backLvl)
+              }
+              resolve(true)
+              return true
             }
-            // 提示后返回上一页
-            else {
-              _history.go(_backLvl)
-            }
-            resolve(true)
           },
-          fail: (e) => {
-            e.hide()
-            resolve(false)
+          cancelProps: {
+            onClick: () => {
+              resolve(false)
+              return true
+            }
           }
         })
       }

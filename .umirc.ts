@@ -75,6 +75,10 @@ export default defineConfig({
           {
             title: 'Page',
             path: '/components/page'
+          },
+          {
+            title: 'Body',
+            path: '/components/body'
           }
         ]
       }
@@ -99,6 +103,10 @@ export default defineConfig({
           {
             title: '页面',
             path: '/zh/components/page'
+          },
+          {
+            title: '身体',
+            path: '/zh/components/body'
           }
         ]
       }
