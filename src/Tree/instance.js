@@ -388,7 +388,6 @@ var Tree = function (container, params) {
   //   var parentOptions = []
   //   var currentId = parentid
   //   while (s.rootParentIds.indexOf(currentId) !== -1) { // 提取所有父级节点
-  //     debugger
   //     for (var i = 0, opt; opt = s.params.data[i++];) { // eslint-disable-line
   //       if (opt.id === currentId) {
   //         parentOptions.push(opt)

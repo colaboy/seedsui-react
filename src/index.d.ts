@@ -4,7 +4,7 @@ import './PrototypeObject.js'
 import './PrototypeString.js'
 import './PrototypeNumber.js'
 import './PrototypeDate.js'
-// import './PrototypePinyin.js' // 不常用
+import './PrototypePinyin.js' // 不常用
 
 export { default as locale } from './locale'
 export { default as Actionsheet } from './Actionsheet'

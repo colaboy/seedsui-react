@@ -81,6 +81,15 @@ export default defineConfig({
             path: '/components/body'
           }
         ]
+      },
+      {
+        title: 'Data Display',
+        children: [
+          {
+            title: 'Tree',
+            path: '/components/Tree'
+          }
+        ]
       }
       // {
       //   title: 'Layout',
@@ -92,7 +101,7 @@ export default defineConfig({
         title: '通用',
         children: [
           {
-            title: '按钮',
+            title: '按钮 Button',
             path: '/zh/components/button'
           }
         ]
@@ -101,12 +110,21 @@ export default defineConfig({
         title: '布局',
         children: [
           {
-            title: '页面',
+            title: '页面 Page',
             path: '/zh/components/page'
           },
           {
-            title: '身体',
+            title: '身体 Body',
             path: '/zh/components/body'
+          }
+        ]
+      },
+      {
+        title: '数据展示',
+        children: [
+          {
+            title: 'Tree',
+            path: '/components/Tree'
           }
         ]
       }
