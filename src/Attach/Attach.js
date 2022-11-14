@@ -14,7 +14,7 @@ const Attach = forwardRef(
     ref
   ) => {
     function getIcon(src) {
-      let suffix = src.getSuffix()
+      let suffix = typeof src === 'string' ? src.getSuffix() : null
       if (!suffix) return 'unknown'
       if (suffix.indexOf('?') !== -1) {
         suffix = suffix.substring(0, suffix.indexOf('?'))
