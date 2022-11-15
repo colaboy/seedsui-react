@@ -212,7 +212,7 @@ var Bridge = {
   },
   // 关闭当前窗
   closeWindow: function (callback) {
-    // alert('关闭')
+    // alert('关闭1')
     var self = this
     self.invoke('closeWindow', null, callback)
   },

@@ -8,7 +8,8 @@ import Loading from './../Loading/instance.js'
 import locale from './../locale'
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
-window._bridge_self = null
+// eslint-disable-next-line
+top.window._bridge_self = null
 
 var Bridge = {
   /**
@@ -248,7 +249,8 @@ var Bridge = {
   back: function (argHistory, argBackLvl) {
     return new Promise(async (resolve) => {
       // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
-      var self = window._bridge_self
+      // eslint-disable-next-line
+      var self = top.window._bridge_self
 
       // 返回操作对象与返回层级
       var _history = window.history
