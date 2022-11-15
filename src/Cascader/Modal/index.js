@@ -163,7 +163,6 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            multiple={submitProps?.disabled === false ? true : false}
             caption={locale('请选择所在地区', 'picker_district_title')}
             cancelProps={cancelProps}
             submitProps={submitProps}

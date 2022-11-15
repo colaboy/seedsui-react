@@ -7,12 +7,14 @@ const Head = forwardRef(
     const {
       visible: cancelVisible,
       caption: cancelCaption,
+      disabled: cancelDisabled,
       ...otherCancelProps
     } = cancelProps || {}
 
     const {
       visible: submitVisible,
       caption: submitCaption,
+      disabled: submitDisabled,
       ...otherSubmitProps
     } = submitProps || {}
     // 点击确定
@@ -36,7 +38,7 @@ const Head = forwardRef(
             {...otherCancelProps}
             className={`picker-cancel${
               otherCancelProps.className ? ' ' + otherCancelProps.className : ''
-            }`}
+            }${cancelDisabled === true ? ' disabled' : ''}`}
             onClick={handleCancelClick}
           >
             {cancelCaption || locale('取消', 'cancel')}
@@ -55,7 +57,7 @@ const Head = forwardRef(
             {...otherSubmitProps}
             className={`picker-submit${
               otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''
-            }${multiple ? '' : ' disabled'}`}
+            }${multiple || submitDisabled === false ? '' : ' disabled'}`}
             onClick={handleSubmitClick}
           >
             {submitCaption || locale('完成', 'finish')}
