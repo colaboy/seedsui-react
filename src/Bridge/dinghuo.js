@@ -72,8 +72,8 @@ var Bridge = {
     } else if (/(Android)/i.test(navigator.userAgent)) {
       /* 判断Android */
       // 注册分类页面事件
-      if (window.WebViewJavascriptBridge) {
-        window.WebViewJavascriptBridge.callHandler(
+      if (top.window.WebViewJavascriptBridge) {
+        top.window.WebViewJavascriptBridge.callHandler(
           name,
           param && JSON.stringify(param),
           function (response) {
@@ -90,7 +90,7 @@ var Bridge = {
         document.addEventListener(
           'WebViewJavascriptBridgeReady',
           () => {
-            window.WebViewJavascriptBridge.callHandler(
+            top.window.WebViewJavascriptBridge.callHandler(
               name,
               param && JSON.stringify(param),
               function (response) {
@@ -111,13 +111,13 @@ var Bridge = {
   },
   setup: function (callback) {
     /* eslint-disable */
-    if (window.WebViewJavascriptBridge) {
+    if (top.window.WebViewJavascriptBridge) {
       return callback(WebViewJavascriptBridge)
     }
-    if (window.WVJBCallbacks) {
-      return window.WVJBCallbacks.push(callback)
+    if (top.window.WVJBCallbacks) {
+      return top.window.WVJBCallbacks.push(callback)
     }
-    window.WVJBCallbacks = [callback]
+    top.window.WVJBCallbacks = [callback]
     var WVJBIframe = document.createElement('iframe')
     WVJBIframe.style.display = 'none'
     WVJBIframe.src = 'https://__bridge_loaded__'
@@ -131,7 +131,8 @@ var Bridge = {
   // 注册事件
   registerHandler: function (events) {
     var self = this
-    if (typeof window !== 'undefined') {
+    // eslint-disable-next-line
+    if (typeof top.window !== 'undefined') {
       if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
         /* 判断iPhone|iPad|iPod|iOS */
         /* eslint-disable */
@@ -140,7 +141,7 @@ var Bridge = {
             bridge.registerHandler(eventName, () => {
               const event = new CustomEvent(eventName)
               // 分发事件
-              window.dispatchEvent(event)
+              top.window.dispatchEvent(event)
             })
           })
         })
@@ -148,12 +149,12 @@ var Bridge = {
       } else if (/(Android)/i.test(navigator.userAgent)) {
         /* 判断Android */
         // 注册分类页面事件
-        if (window.WebViewJavascriptBridge) {
+        if (top.window.WebViewJavascriptBridge) {
           events.forEach((eventName) => {
-            window.WebViewJavascriptBridge.registerHandler(eventName, () => {
+            top.window.WebViewJavascriptBridge.registerHandler(eventName, () => {
               const event = new CustomEvent(eventName)
               // 分发事件
-              window.dispatchEvent(event)
+              top.window.dispatchEvent(event)
             })
           })
         } else {
@@ -161,10 +162,10 @@ var Bridge = {
             'WebViewJavascriptBridgeReady',
             () => {
               events.forEach((eventName) => {
-                window.WebViewJavascriptBridge.registerHandler(eventName, () => {
+                top.window.WebViewJavascriptBridge.registerHandler(eventName, () => {
                   const event = new CustomEvent(eventName)
                   // 分发事件
-                  window.dispatchEvent(event)
+                  top.window.dispatchEvent(event)
                 })
               })
             },
@@ -211,6 +212,7 @@ var Bridge = {
   },
   // 关闭当前窗
   closeWindow: function (callback) {
+    // alert('关闭')
     var self = this
     self.invoke('closeWindow', null, callback)
   },
@@ -239,7 +241,7 @@ var Bridge = {
   //   var self = this
   //   try {
   //     self.setBackEnable(true)
-  //     window.addEventListener('onBackPress', callback || self.back)
+  //     top.window.addEventListener('onBackPress', callback || self.back)
   //     // ios客户端返回按钮绑定(ios不支持onBackPress)
   //     self.addIosBackPress(callback)
   //   } catch (error) {
@@ -251,7 +253,7 @@ var Bridge = {
   //   var self = this
   //   try {
   //     self.setBackEnable(false)
-  //     window.removeEventListener('onBackPress', callback || self.back)
+  //     top.window.removeEventListener('onBackPress', callback || self.back)
   //   } catch (error) {
   //     console.log(error)
   //   }

@@ -58,13 +58,13 @@ var Bridge = {
   // ios下加载桥接方法
   setup: function (callback) {
     /* eslint-disable */
-    if (window.WebViewJavascriptBridge) {
+    if (top.window.WebViewJavascriptBridge) {
       return callback(WebViewJavascriptBridge)
     }
-    if (window.WVJBCallbacks) {
-      return window.WVJBCallbacks.push(callback)
+    if (top.window.WVJBCallbacks) {
+      return top.window.WVJBCallbacks.push(callback)
     }
-    window.WVJBCallbacks = [callback]
+    top.window.WVJBCallbacks = [callback]
     var WVJBIframe = document.createElement('iframe')
     WVJBIframe.style.display = 'none'
     // WVJBIframe.src = 'https://__bridge_loaded__'
@@ -78,7 +78,7 @@ var Bridge = {
   // android下加载桥接方法
   connectJsBridge: function (callback) {
     /* eslint-disable */
-    if (window.WebViewJavascriptBridge) {
+    if (top.window.WebViewJavascriptBridge) {
       callback(WebViewJavascriptBridge)
     } else {
       document.addEventListener(
@@ -102,7 +102,7 @@ var Bridge = {
           bridge.registerHandler(eventName, function (data) {
             const event = new CustomEvent(eventName, { detail: data })
             // 分发事件
-            window.dispatchEvent(event)
+            top.window.dispatchEvent(event)
           })
         })
       })
@@ -117,7 +117,7 @@ var Bridge = {
               detail: data
             })
             // 分发事件
-            window.dispatchEvent(event)
+            top.window.dispatchEvent(event)
           })
         })
       })
@@ -126,7 +126,7 @@ var Bridge = {
   },
   // 判断是否是主页
   isHomePage: function (callback, rule) {
-    if (rule && window.location.href.indexOf(rule) >= 0) {
+    if (rule && top.window.location.href.indexOf(rule) >= 0) {
       callback(true)
       return
     }
