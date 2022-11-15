@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Button
+  title: Input
   path: /components
 ---
 
-# Button 按钮
+# Input 按钮
 
 用于开始一个即时操作。
 

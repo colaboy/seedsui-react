@@ -1,14 +1,15 @@
+import Countries from './Countries'
 // 所有省市, 用于匹配选中的是省还是市
+
 // eslint-disable-next-line
 export default {
+  countries: Countries,
   provinces: [
     {
-      is_province_city: '1',
       name: '北京市',
       id: '110000'
     },
     {
-      is_province_city: '1',
       name: '天津市',
       id: '120000'
     },
@@ -37,7 +38,6 @@ export default {
       id: '230000'
     },
     {
-      is_province_city: '1',
       name: '上海市',
       id: '310000'
     },
@@ -90,7 +90,6 @@ export default {
       id: '460000'
     },
     {
-      is_province_city: '1',
       name: '重庆市',
       id: '500000'
     },
@@ -135,12 +134,10 @@ export default {
       id: '710000'
     },
     {
-      is_province_city: '1',
       name: '香港特别行政区',
       id: '810000'
     },
     {
-      is_province_city: '1',
       name: '澳门特别行政区',
       id: '820000'
     }

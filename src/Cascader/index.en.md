@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Button
+  title: Cascader
   path: /components
 ---
 
-# Button
+# Cascader
 
 Used to start an immediate operation.
 

@@ -5,8 +5,9 @@ import CascaderCombo from './../Combo'
 export default forwardRef(
   (
     {
-      type = '', // province | city | district (province、city、district只有中国时才生效, 因为只有中国有省市区)
-      // 判断是否是省市区
+      type = '', // country | province | city | district (province、city、district只有中国时才生效, 因为只有中国有省市区)
+      // 判断是否是国省市区
+      isCountry,
       isProvince,
       isCity,
       isDistrict,
@@ -74,8 +75,26 @@ export default forwardRef(
       let AreaLevel = window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ || null
       if (!AreaLevel) return true
 
-      // 匹配省名, id相同或者名称相近即可匹配, 因为省是一级
-      if (type === 'province') {
+      // 匹配国家, id相同或者名称相近即可匹配, 因为国家是一级
+      if (type === 'country') {
+        if (typeof isCountry === 'function') {
+          return isCountry(lastTab)
+        }
+        if (lastTab.isCountry) {
+          return true
+        }
+        for (let province of AreaLevel.countries) {
+          if (
+            lastTab.id === province.id ||
+            province.name.indexOf(lastTab.name) !== -1 ||
+            lastTab.name.indexOf(province.name) !== -1
+          ) {
+            return false
+          }
+        }
+      }
+      // 匹配省名, id相同或者名称相近即可匹配, 因为省是一或者二级
+      else if (type === 'province') {
         if (typeof isProvince === 'function') {
           return isProvince(lastTab)
         }

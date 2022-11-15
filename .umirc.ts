@@ -83,25 +83,34 @@ export default defineConfig({
         ]
       },
       {
+        title: 'Data Input',
+        children: [
+          {
+            title: 'Input.Text',
+            path: '/components/input'
+          }
+        ]
+      },
+      {
         title: 'Data Display',
         children: [
           {
             title: 'Tree',
-            path: '/components/Tree'
+            path: '/components/tree'
+          },
+          {
+            title: 'Cascader',
+            path: 'components/cascader'
           }
         ]
       }
-      // {
-      //   title: 'Layout',
-      //   children: ['/components/body']
-      // }
     ],
     '/zh/components': [
       {
         title: '通用',
         children: [
           {
-            title: '按钮 Button',
+            title: 'Button 按钮',
             path: '/zh/components/button'
           }
         ]
@@ -110,12 +119,21 @@ export default defineConfig({
         title: '布局',
         children: [
           {
-            title: '页面 Page',
+            title: 'Page 页面',
             path: '/zh/components/page'
           },
           {
-            title: '身体 Body',
+            title: 'Body 身体',
             path: '/zh/components/body'
+          }
+        ]
+      },
+      {
+        title: '数据录入',
+        children: [
+          {
+            title: 'Input 录入框',
+            path: '/zh/components/input'
           }
         ]
       },
@@ -123,8 +141,12 @@ export default defineConfig({
         title: '数据展示',
         children: [
           {
-            title: 'Tree',
-            path: '/components/Tree'
+            title: 'Tree 树',
+            path: '/zh/components/Tree'
+          },
+          {
+            title: 'Cascader 级联选择',
+            path: '/zh/components/cascader'
           }
         ]
       }

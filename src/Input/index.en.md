@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Button
+  title: Input
   path: /components
 ---
 
-# Button
+# Input
 
 Used to start an immediate operation.
 

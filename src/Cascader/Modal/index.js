@@ -14,7 +14,6 @@ const Modal = forwardRef(
       getComboDOM,
       maskClosable,
       visible = false,
-      multiple = false,
       value,
       list,
       onBeforeChange,
@@ -164,7 +163,7 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            multiple={multiple}
+            multiple={submitProps?.disabled === false ? true : false}
             caption={locale('请选择所在地区', 'picker_district_title')}
             cancelProps={cancelProps}
             submitProps={submitProps}

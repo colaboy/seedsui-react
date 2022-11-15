@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Button
+  title: Cascader
   path: /components
 ---
 
-# Button 按钮
+# Cascader 级联选择
 
 用于开始一个即时操作。
 

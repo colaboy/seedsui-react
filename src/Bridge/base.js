@@ -266,15 +266,18 @@ var Bridge = {
       var isFromApp = Device.getUrlParameter('isFromApp') || ''
       // 如果已经有h5返回监听, 优先执行h5返回监听
       if (window.onHistoryBacks || window.onHistoryBack) {
+        console.log('back:window.onHistoryBack')
         resolve(false)
       }
       // 自定义返回
       else if (typeof window.onMonitorBack === 'function') {
+        console.log('back:window.onMonitorBack自定义返回')
         let monitor = await window.onMonitorBack()
         resolve(monitor || false)
       }
       // 关闭返回
       else if (isFromApp === '1') {
+        console.log('back:', self.closeWindow)
         // 关闭当前页面
         try {
           self.closeWindow()
@@ -285,6 +288,7 @@ var Bridge = {
       }
       // 返回首页
       else if (isFromApp === 'home') {
+        console.log('back:', self.goHome)
         try {
           self.goHome()
         } catch (error) {
@@ -294,6 +298,7 @@ var Bridge = {
       }
       // 提示后，关闭返回，或者历史返回
       else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
+        console.log('back:confirm-close')
         // 默认提示信息
         let confirmCaption = locale('您确定要离开此页面吗?', 'confirm_quit_page')
         // 地址栏动态提示信息
@@ -315,10 +320,12 @@ var Bridge = {
             onClick: () => {
               // 提示后关闭当前页面
               if (isFromApp.indexOf('confirm-close') !== -1) {
+                console.log('back:confirm-close', self.closeWindow)
                 self.closeWindow()
               }
               // 提示后返回上一页
               else {
+                console.log('back:confirm-close, history')
                 _history.go(_backLvl)
               }
               resolve(true)
