@@ -1,6 +1,6 @@
 {
   "name": "seedsui-react",
-  "version": "5.5.95",
+  "version": "5.5.97",
   "description": "seedsui-react React component",
   "scripts": {
     "start": "dumi dev",

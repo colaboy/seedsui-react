@@ -11,118 +11,28 @@ var Bridge = {
    */
   platform: 'wq',
   // 自定义操作
-  invoke: function (api, params, callback) {
-    // eslint-disable-next-line
-    if (!top.wq.invoke) {
-      console.log('没有wq.invoke的方法')
-      return
-    }
-    // eslint-disable-next-line
-    top.wq.invoke(api, params, function (response) {
-      if (!callback) return
-      if (typeof callback === 'function') {
-        callback(response)
-        return
-      }
-      if (typeof callback !== 'object') return
-      var msg = response && response.errMsg ? response.errMsg : ''
-      if (msg) {
-        var index = msg.indexOf(':')
-        var res = msg.substring(index + 1)
-        switch (res) {
-          case 'ok':
-            if (callback.success) callback.success(response)
-            break
-          case 'cancel':
-            if (callback.cancel) callback.cancel(response)
-            break
-          default:
-            if (callback.fail) callback.fail(response)
-        }
-      }
-      callback.complete && callback.complete(response)
-    })
-  },
+  // eslint-disable-next-line
+  trigger: top?.wq?.trigger,
+  // eslint-disable-next-line
+  invoke: top?.wq?.invoke,
   // 配置鉴权
   init: function (cb) {
     self = this
     /* eslint-disable */
     top.wq.config({ auth: false })
-    top.wq.ready(function () {
+    let isReady = false
+    top.wq.ready(function (response) {
+      isReady = true
       // 初始化完成回调
-      if (typeof cb === 'function') cb()
+      if (typeof cb === 'function') cb(response)
     })
+    setTimeout(() => {
+      if (!isReady) {
+        alert('桥接超时, 如果无法使用本地能力, 请退出重试')
+        if (typeof cb === 'function') cb({ errMsg: 'config:fail timeout' })
+      }
+    }, 2000)
     /* eslint-enable */
-  },
-
-  // ios下加载桥接方法
-  setup: function (callback) {
-    /* eslint-disable */
-    if (top.window.WebViewJavascriptBridge) {
-      return callback(WebViewJavascriptBridge)
-    }
-    if (top.window.WVJBCallbacks) {
-      return top.window.WVJBCallbacks.push(callback)
-    }
-    top.window.WVJBCallbacks = [callback]
-    var WVJBIframe = document.createElement('iframe')
-    WVJBIframe.style.display = 'none'
-    // WVJBIframe.src = 'https://__bridge_loaded__'
-    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__' // 针对ios wk内核
-    document.documentElement.appendChild(WVJBIframe)
-    setTimeout(function () {
-      document.documentElement.removeChild(WVJBIframe)
-    }, 0)
-    /* eslint-enable */
-  },
-  // android下加载桥接方法
-  connectJsBridge: function (callback) {
-    /* eslint-disable */
-    if (top.window.WebViewJavascriptBridge) {
-      callback(WebViewJavascriptBridge)
-    } else {
-      document.addEventListener(
-        'WebViewJavascriptBridgeReady',
-        function () {
-          callback(WebViewJavascriptBridge)
-        },
-        false
-      )
-    }
-    /* eslint-enable */
-  },
-  // 注册事件
-  registerHandler: function (events) {
-    self = this
-    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-      /* 判断iPhone|iPad|iPod|iOS */
-      /* eslint-disable */
-      self.setup(function (bridge) {
-        events.forEach((eventName) => {
-          bridge.registerHandler(eventName, function (data) {
-            const event = new CustomEvent(eventName, { detail: data })
-            // 分发事件
-            top.window.dispatchEvent(event)
-          })
-        })
-      })
-      /* eslint-enable */
-    } else if (/(Android)/i.test(navigator.userAgent)) {
-      /* 判断Android */
-      /* eslint-disable */
-      self.connectJsBridge(function (bridge) {
-        events.forEach((eventName) => {
-          bridge.registerHandler(eventName, function (data) {
-            const event = new CustomEvent(eventName, {
-              detail: data
-            })
-            // 分发事件
-            top.window.dispatchEvent(event)
-          })
-        })
-      })
-      /* eslint-enable */
-    }
   },
   // 判断是否是主页
   isHomePage: function (callback, rule) {
@@ -141,7 +51,7 @@ var Bridge = {
     window.history.go(-1)
   },
   // 退出到登陆页面
-  logOut: function logOut() {
+  logOut: function () {
     top.wq.invoke('logout') // eslint-disable-line
   },
   /**

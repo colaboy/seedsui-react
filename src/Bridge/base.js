@@ -440,8 +440,8 @@ var Bridge = {
         }
       }
     } else if (platform === 'dinghuo') {
-      if (callback) callback()
-      self.init()
+      alert('加载订货')
+      self.init(callback)
     }
     if (script.src) document.body.appendChild(script)
   },
