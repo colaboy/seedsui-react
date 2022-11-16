@@ -11,10 +11,11 @@ var Bridge = {
    */
   platform: 'wq',
   // 自定义操作
-  // eslint-disable-next-line
-  trigger: top?.wq?.trigger,
-  // eslint-disable-next-line
-  invoke: top?.wq?.invoke,
+  invoke: function (api, params, callback) {
+    /* eslint-disable */
+    top.wq.invoke(api, params, callback)
+    /* eslint-enable */
+  },
   // 配置鉴权
   init: function (cb) {
     self = this
@@ -332,7 +333,7 @@ var Bridge = {
         })
       return
     }
-    self.invoke(
+    top.wq.invoke(
       'uploadFile',
       {
         url: url || `${window.origin}/fileupload/v1/doUpload.do?uploadPath=file`,
@@ -377,7 +378,7 @@ var Bridge = {
     }
     console.log('外勤WK内核chooseVideo', params)
 
-    self.invoke(
+    top.wq.invoke(
       'chooseVideo',
       {
         sourceType: sourceType || ['album', 'camera'],

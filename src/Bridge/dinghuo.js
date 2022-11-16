@@ -1,11 +1,9 @@
 import DB from './../DB'
-import dh from './dinghuo-sdk'
 import Device from './../Device'
 import GeoUtil from './../GeoUtil'
 import locale from './../locale'
 
 var self = null
-top.dh = dh
 
 var Bridge = {
   /**
@@ -14,9 +12,11 @@ var Bridge = {
   platform: 'dinghuo',
   // 自定义操作
   // eslint-disable-next-line
-  trigger: top?.dh?.trigger,
-  // eslint-disable-next-line
-  invoke: top?.dh?.invoke,
+  invoke: function (api, params, callback) {
+    /* eslint-disable */
+    top.dh.invoke(api, params, callback)
+    /* eslint-enable */
+  },
   // 配置鉴权
   init: function (cb) {
     self = this

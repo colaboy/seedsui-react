@@ -15,9 +15,7 @@ var Bridge = {
       console.log('没有wx.invoke的方法')
       return
     }
-    top.wx.invoke(api, params, function (res) {
-      callback && callback(res)
-    })
+    top.wx.invoke(api, params, callback)
     /* eslint-enable */
   },
   // 获得版本信息

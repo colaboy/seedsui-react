@@ -431,8 +431,7 @@ var Bridge = {
         options.wqSrc ||
         `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
       script.onload = function () {
-        if (callback) callback()
-        self.init()
+        self.init(callback)
       }
       if (options.fail) {
         script.onerror = function () {
@@ -440,8 +439,20 @@ var Bridge = {
         }
       }
     } else if (platform === 'dinghuo') {
-      alert('加载订货')
-      self.init(callback)
+      // 订货jssdk
+      // 用开发d目录可以使用新功能
+      var d = new Date()
+      script.src =
+        options.dhSrc ||
+        `//res.waiqin365.com/d/dinghuo365/dinghuo.min.js?v=${d.getMonth() + '' + d.getDate()}`
+      script.onload = function () {
+        self.init(callback)
+      }
+      if (options.fail) {
+        script.onerror = function () {
+          options.fail({ errMsg: locale('外勤js加载失败', 'hint_wq_failed_to_load') })
+        }
+      }
     }
     if (script.src) document.body.appendChild(script)
   },
