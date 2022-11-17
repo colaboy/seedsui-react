@@ -25,6 +25,11 @@ var Bridge = {
     top.wq.ready(function (response) {
       isReady = true
       // 初始化完成回调
+      if (response.errMsg === 'config:ok') {
+        // alert('加载完成')
+      } else {
+        alert('桥接失败, 如果无法返回请左滑返回')
+      }
       if (typeof cb === 'function') cb(response)
     })
     setTimeout(() => {

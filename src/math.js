@@ -187,7 +187,7 @@ function antiThousands(num) {
 }
 
 // exports
-export {
+export default {
   // 倍数转整
   timesInteger,
   // 补精度

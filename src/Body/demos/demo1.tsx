@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react'
 import { Bridge, Page, Header, Titlebar, Body } from 'seedsui-react'
+// import dh from './dinghuo-sdk'
 
 export default () => {
   useEffect(() => {
     Bridge.ready(() => {
-      // eslint-disable-next-line
-      Bridge.invoke(
-        'chooseImage',
-        {
-          scene: '1|2',
-          count: 9,
-          sizeType: ['original', 'compressed'],
-          sourceType: ['album', 'camera'],
-          watermark: [],
-          width: 1024,
-          isSaveToAlbum: 1,
-          isAI: 0,
-          validate: 0,
-          sceneValidate: 0,
-          direction: String(0),
-          realTimeRecognition: 0
+      wq.startRecord({
+        duration: 5,
+        success: function (res) {
+          alert(res.errMsg)
         },
-        () => {
-          alert(1)
+        fail: function (res) {
+          alert(res.errMsg)
         }
-      )
+      })
+      // eslint-disable-next-line
+      wq.trigger('onVoiceRecordEnd', {
+        complete: function (res) {
+          alert('onVoiceRecordEnd:' + JSON.stringify(res))
+        }
+      })
+
+      wq.trigger('onShow', {
+        complete: function (res) {
+          alert('onShow:' + JSON.stringify(res))
+        }
+      })
     })
     import('vconsole').then((VConsole) => {
       if (VConsole && VConsole.default) {

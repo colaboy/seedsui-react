@@ -443,8 +443,8 @@ var Bridge = {
       // 用开发d目录可以使用新功能
       var d = new Date()
       script.src =
-        options.dhSrc ||
-        `//res.waiqin365.com/d/dinghuo365/dinghuo.min.js?v=${d.getMonth() + '' + d.getDate()}`
+        options.wqSrc ||
+        `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
       script.onload = function () {
         self.init(callback)
       }
