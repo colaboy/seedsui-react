@@ -3,8 +3,6 @@ import Device from './../Device'
 import Loading from './../Loading'
 import Toast from './../Toast'
 import Preview from './../Preview/instance.js'
-import MediaUtil from './../MediaUtil'
-import FullScreen from './../FullScreen'
 import locale from './../locale'
 
 var Bridge = {
@@ -12,15 +10,15 @@ var Bridge = {
    * 定制功能
    */
   platform: 'browser',
-  // 初始化配置
-  config: function (params = {}) {
-    var self = this
-    if (params.debug) self.debug = params.debug
-    if (!self.debug) {
-      console.log('config方法仅在微信上工作')
-      return
-    }
-    if (params.success) params.success()
+  // 自定义操作
+  invoke: function () {
+    Toast.show({
+      content: locale('invoke仅可在微信或APP中使用', 'hint_only_app_and_wx', ['invoke'])
+    })
+  },
+  // 配置鉴权
+  init: function (cb) {
+    if (typeof cb === 'function') cb({ errMsg: 'config:ok' })
   },
   // 判断是否是主页
   isHomePage: function (callback, rule) {
@@ -30,13 +28,17 @@ var Bridge = {
     }
     callback(false)
   },
-  // 退出到登陆页面
-  logOut: function logOut() {
-    console.log('logOut方法仅在app上工作')
+  // 获得版本信息
+  getAppVersion: function () {
+    return ''
   },
   // 回到主页
   goHome: function () {
     window.history.go(-1)
+  },
+  // 退出到登陆页面
+  logOut: function logOut() {
+    console.log('logOut方法仅在app上工作')
   },
   // 打开新的窗口
   openWindow: function (params = {}) {
@@ -56,135 +58,21 @@ var Bridge = {
   closeWindow: function () {
     window.history.go(-1)
   },
+  // setTitle: '已在base中实现'
   // 返回监听
   onHistoryBack: function () {
     Toast.show({
-      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'hint_only_app_and_wx')
+      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'hint_only_app_and_wx', [
+        'onHistoryBack'
+      ])
     })
-  },
-  // 视频播放
-  previewVideo: function (params = {}) {
-    var target = document.getElementById('seedsui_preview_video')
-    if (!target) {
-      target = MediaUtil.video(params.src)
-      target.id = 'seedsui_preview_video'
-      target.style = 'position:absolute;top:-1000px;left:-1000px;width:100;height:100px;'
-      document.body.appendChild(target)
-    }
-    if (target) {
-      FullScreen.enter(target)
-      setTimeout(() => {
-        target.play()
-      }, 500)
-    }
-  },
-  /* -----------------------------------------------------
-    图片插件
-  ----------------------------------------------------- */
-  // 拍照、本地选图
-  chooseImage: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      Toast.show({ content: locale('chooseImage仅可在微信或APP中使用', 'hint_only_app_and_wx') })
-      return
-    }
-    var res = {
-      sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
-      errMsg: 'chooseImage:ok',
-      localIds: [
-        'https://static.zcool.cn/git_z/z/common/images/svg/logo.svg',
-        'https://static.zcool.cn/v3.5.180706.5/zcool/client/image/logo.png'
-      ]
-    }
-    if (params.success) params.success(res)
-  },
-  // 上传图片
-  uploadImage: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      Toast.show({ content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx') })
-      return
-    }
-    Loading.show()
-    setTimeout(() => {
-      Loading.hide()
-      Toast.show({ content: locale('上传完成', 'uploaded_completed') })
-      var res = {
-        errMsg: 'uploadImage:ok',
-        mediaUrl: '',
-        serverId: new Date().getTime()
-      }
-      if (params.success) params.success(res)
-    }, 1000)
-  },
-  // 图片预览
-  // @params {urls:'需要预览的图片http链接列表',index:'图片索引',layerHTML:'图片上方的浮层'}
-  preview: null,
-  previewImage: function (params = {}) {
-    var self = this
-    if (!params.urls || !params.urls.length) {
-      if (params.fail)
-        params.fail({
-          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'hint_preview_image_must_urls')
-        })
-      return
-    }
-    var src = params.urls[params.index || 0]
-    if (!src) {
-      if (params.fail)
-        params.fail({ errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src') })
-      return
-    }
-    var layerHTML = params.layerHTML || ''
-    if (!self.preview) {
-      self.preview = new Preview({
-        src: src,
-        layerHTML: layerHTML,
-        onSuccess: function (s) {
-          s.show()
-          if (params.success) params.success(s)
-        },
-        onError: function () {
-          if (params.fail)
-            params.fail({
-              errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src')
-            })
-        }
-      })
-    } else {
-      self.preview.updateParams({
-        src: src,
-        layerHTML: layerHTML
-      })
-    }
-    return self.preview
-  },
-  /* -----------------------------------------------------
-    视频插件
-  ----------------------------------------------------- */
-  // debug:录像
-  chooseVideo: function (params = {}) {
-    console.log('chooseVideo方法在浏览器上无法运行')
-    var res = {
-      sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
-      errMsg: 'chooseVideo:ok',
-      tempFilePath: 'http://res.waiqin365.com/video/v2001.MP4',
-      duration: '',
-      size: '',
-      height: '',
-      width: ''
-    }
-    if (params.success) params.success(res)
   },
   /**
    * 获取当前地理位置
    * @param {Object} params
-   * params: {
-   * type {String}: 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * timeout {Number}: 超时,
-   * cacheTime {Number}: 缓存毫秒数防重复定位
-   * }
-   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
+   * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
+   * @prop {Number} cacheTime 默认60秒缓存防重复定位
+   * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
     var self = this
@@ -318,14 +206,17 @@ var Bridge = {
       self.getLocationTask(res)
     }, 2000)
   },
-  /*
+  /**
    * 扫描二维码并返回结果
-   * 返回：{resultStr:''}
-   * */
+   * @param {Object} params
+   * @return {Object} {resultStr: ''}
+   */
   scanQRCode: function (params = {}) {
     var self = this
     if (!self.debug) {
-      Toast.show({ content: locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx') })
+      Toast.show({
+        content: locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx', ['scanQRCode'])
+      })
       if (params.fail)
         params.fail({
           errMsg: `scanQRCode:${locale('扫码失败', 'hint_scan_failed')}, ${locale(
@@ -339,6 +230,108 @@ var Bridge = {
       if (params.success) params.success({ resultStr: '504823170310092750280333' })
     }, 500)
   },
+  // 拍照、本地选图
+  chooseImage: function (params = {}) {
+    var self = this
+    if (!self.debug) {
+      Toast.show({
+        content: locale('chooseImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['chooseImage'])
+      })
+      return
+    }
+    var res = {
+      sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
+      errMsg: 'chooseImage:ok',
+      localIds: [
+        'https://static.zcool.cn/git_z/z/common/images/svg/logo.svg',
+        'https://static.zcool.cn/v3.5.180706.5/zcool/client/image/logo.png'
+      ]
+    }
+    if (params.success) params.success(res)
+  },
+  // 上传图片
+  uploadImage: function (params = {}) {
+    var self = this
+    if (!self.debug) {
+      Toast.show({
+        content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['uploadImage'])
+      })
+      return
+    }
+    Loading.show()
+    setTimeout(() => {
+      Loading.hide()
+      Toast.show({ content: locale('上传完成', 'uploaded_completed') })
+      var res = {
+        errMsg: 'uploadImage:ok',
+        mediaUrl: '',
+        serverId: new Date().getTime()
+      }
+      if (params.success) params.success(res)
+    }, 1000)
+  },
+  // 图片预览
+  // @params {urls:'需要预览的图片http链接列表',index:'图片索引',layerHTML:'图片上方的浮层'}
+  preview: null,
+  previewImage: function (params = {}) {
+    var self = this
+    if (!params.urls || !params.urls.length) {
+      if (params.fail)
+        params.fail({
+          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'hint_preview_image_must_urls')
+        })
+      return
+    }
+    var src = params.urls[params.index || 0]
+    if (!src) {
+      if (params.fail)
+        params.fail({ errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src') })
+      return
+    }
+    var layerHTML = params.layerHTML || ''
+    if (!self.preview) {
+      self.preview = new Preview({
+        src: src,
+        layerHTML: layerHTML,
+        onSuccess: function (s) {
+          s.show()
+          if (params.success) params.success(s)
+        },
+        onError: function () {
+          if (params.fail)
+            params.fail({
+              errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src')
+            })
+        }
+      })
+    } else {
+      self.preview.updateParams({
+        src: src,
+        layerHTML: layerHTML
+      })
+    }
+    return self.preview
+  },
+  // 视频文件上传
+  uploadFile: function () {
+    Toast.show({
+      content: locale('uploadFile仅可在APP中使用', 'hint_only_app_and_wx', ['uploadFile'])
+    })
+  },
+  // debug:录像
+  chooseVideo: function (params = {}) {
+    console.log('chooseVideo方法在浏览器上无法运行')
+    var res = {
+      sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
+      errMsg: 'chooseVideo:ok',
+      tempFilePath: 'http://res.waiqin365.com/video/v2001.MP4',
+      duration: '',
+      size: '',
+      height: '',
+      width: ''
+    }
+    if (params.success) params.success(res)
+  },
   /**
    * 文件操作: 预览文件
    * @param {Object} params
@@ -351,7 +344,9 @@ var Bridge = {
   previewFile: function (params) {
     var self = this
     if (!self.debug) {
-      Toast.show({ content: locale('previewFile仅可在微信或APP中使用', 'hint_only_app_and_wx') })
+      Toast.show({
+        content: locale('previewFile仅可在微信或APP中使用', 'hint_only_app_and_wx', ['previewFile'])
+      })
       if (params.fail)
         params.fail({
           errMsg: `previewFile:fail${locale('预览文件失败', 'hint_previewFile_failed')}, ${locale(

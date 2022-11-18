@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Bridge, Toast, Page, Header, Titlebar, Body } from 'seedsui-react'
-// import dh from './dinghuo-sdk'
+import { Bridge, Page, Header, Titlebar, Body, math } from 'seedsui-react'
 
 export default () => {
   // 增加返回监听
@@ -17,13 +16,6 @@ export default () => {
   useEffect(() => {
     Bridge.ready(() => {
       addBackMonitor()
-    })
-    import('vconsole').then((VConsole) => {
-      if (VConsole && VConsole.default) {
-        new VConsole.default()
-      } else {
-        Toast.show({ content: '打开调试模式失败' })
-      }
     })
   }, [])
 

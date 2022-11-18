@@ -8,6 +8,8 @@ import ToastInstance from './../Toast/instance.js'
 import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
 import locale from './../locale'
+// import MediaUtil from './../MediaUtil'
+// import FullScreen from './../FullScreen'
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
 // eslint-disable-next-line
@@ -18,10 +20,6 @@ var Bridge = {
    * 基础功能:start
    */
   debug: false,
-  // 获得版本信息
-  getAppVersion: function () {
-    return window.navigator.appVersion
-  },
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {
@@ -31,6 +29,22 @@ var Bridge = {
     if (isNaN(number)) return
     window.location.href = 'tel:' + number
   },
+  // 视频播放(此方法用不上)
+  // previewVideo: function (params = {}) {
+  //   var target = document.getElementById('seedsui_preview_video')
+  //   if (!target) {
+  //     target = MediaUtil.video(params.src)
+  //     target.id = 'seedsui_preview_video'
+  //     target.style = 'position:absolute;top:-1000px;left:-1000px;width:100;height:100px;'
+  //     document.body.appendChild(target)
+  //   }
+  //   if (target) {
+  //     FullScreen.enter(target)
+  //     setTimeout(() => {
+  //       target.play()
+  //     }, 500)
+  //   }
+  // },
   // 弹出toast
   toast: null,
   /**

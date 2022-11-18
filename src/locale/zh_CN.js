@@ -34,7 +34,7 @@ export default {
   hint_open_native_page_must_android_url: '此功能需要升级至6.2.2及以上的客户端',
   hint_only_wqapp: '此功能仅可在外勤客户端中使用',
   hint_only_app: '此功能仅可在APP中使用',
-  hint_only_app_and_wx: '此功能仅可在微信或APP中使用',
+  hint_only_app_and_wx: '{0}此功能仅可在微信或APP中使用',
   hint_only_mobile: '此功能仅可在手机中使用',
   hint_scan_failed: '扫码失败',
   hint_previewFile_failed: '预览文件失败',

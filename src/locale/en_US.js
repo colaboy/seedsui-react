@@ -39,7 +39,7 @@ export default {
     'This feature needs to be upgraded to 6.2.2 and above clients',
   hint_only_wqapp: 'Only support waiqin app',
   hint_only_app: 'Only support app',
-  hint_only_app_and_wx: 'Only support wechat or app',
+  hint_only_app_and_wx: '{0} Only support wechat or app',
   hint_only_mobile: 'Only support mobile',
   hint_scan_failed: 'Scan failed',
   hint_previewFile_failed: 'Preview File failed',

@@ -101,6 +101,10 @@ export default defineConfig({
           {
             title: 'Cascader',
             path: 'components/cascader'
+          },
+          {
+            title: 'Videos',
+            path: '/components/videos'
           }
         ]
       }
@@ -147,6 +151,10 @@ export default defineConfig({
           {
             title: 'Cascader 级联选择',
             path: '/zh/components/cascader'
+          },
+          {
+            title: 'Videos 视频列表',
+            path: '/zh/components/videos'
           }
         ]
       }

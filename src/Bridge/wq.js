@@ -216,10 +216,11 @@ var Bridge = {
       }
     })
   },
-  /*
+  /**
    * 扫描二维码并返回结果
-   * 返回：{resultStr:''}
-   * */
+   * @param {Object} params
+   * @return {Object} {resultStr: ''}
+   */
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
     // eslint-disable-next-line
