@@ -1,4 +1,4 @@
-import Bridge from './../Bridge'
+import Toast from './../Toast'
 import EventUtil from './../EventUtil'
 
 var Debugger = {
@@ -15,7 +15,7 @@ var Debugger = {
           if (VConsole && VConsole.default) {
             this.vconsole = new VConsole.default()
           } else {
-            Bridge.showToast('打开调试模式失败', { mask: false })
+            Toast.show({ content: '打开调试模式失败' })
           }
         })
       }

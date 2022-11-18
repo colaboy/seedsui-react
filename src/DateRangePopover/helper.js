@@ -1,4 +1,4 @@
-import Bridge from './../Bridge'
+import Toast from './../Toast'
 import locale from './../locale'
 
 // eslint-disable-next-line
@@ -104,15 +104,15 @@ export default {
     if (startDate && endDate) {
       const diff = startDate.toDate().diff(endDate.toDate())
       if (diff.days > range) {
-        Bridge.showToast(
-          rangeErrMsg ||
+        Toast.show({
+          content:
+            rangeErrMsg ||
             locale(
               `自定义时间区间不能超过${range}天`,
               'hint_error_datepopover_custom_date_range_timeout',
               [range]
-            ),
-          { mask: false }
-        )
+            )
+        })
         return false
       }
     }

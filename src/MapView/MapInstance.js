@@ -1,6 +1,7 @@
 import MapUtil from './../MapUtil'
 import GeoUtil from './../GeoUtil'
-import Bridge from './../Bridge'
+import Loading from './../Loading'
+import Toast from './../Toast'
 import locale from './../locale' // 国际化
 
 // eslint-disable-next-line
@@ -24,7 +25,7 @@ export default function () {
   // 初始化地图
   s.initMap = function (container, center, callback) {
     var self = this
-    Bridge.showLoading()
+    Loading.show()
     const mapUtil = new MapUtil(container, {
       onError: (s, err) => {
         if (callback) callback(err.errMsg)
@@ -44,7 +45,7 @@ export default function () {
     mapUtil.map.addEventListener(
       'load',
       (e) => {
-        Bridge.hideLoading()
+        Loading.hide()
         window.clearTimeout(self.loadTimeout)
         // 加载完成开始绘制
         self.mapUtil = mapUtil
@@ -56,7 +57,7 @@ export default function () {
     // 超时处理
     if (self.loadTimeout) window.clearTimeout(self.loadTimeout)
     self.loadTimeout = setTimeout(() => {
-      Bridge.hideLoading()
+      Loading.hide()
       callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'hint_map_init_timeout'))
     }, 20000)
   }
@@ -234,10 +235,11 @@ export default function () {
         console.log('绘制区域完成')
       },
       fail: (err) => {
-        Bridge.showToast(
-          locale(`暂无${districtName}的边界数据`, 'hint_map_no_boundary_data', [districtName]),
-          { mask: false }
-        )
+        Toast.show({
+          content: locale(`暂无${districtName}的边界数据`, 'hint_map_no_boundary_data', [
+            districtName
+          ])
+        })
       }
     })
   }

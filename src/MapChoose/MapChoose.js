@@ -14,6 +14,7 @@ import Container from './../Container'
 import Footer from './../Footer'
 import Notice from './../Notice'
 import Bridge from './../Bridge'
+import Toast from './../Toast'
 import Wrapper from './Wrapper'
 import Close from './Close'
 import Location from './Location'
@@ -114,9 +115,7 @@ const MapChoose = forwardRef(
           setAddr(addr)
           setData(res)
         } else {
-          Bridge.showToast(locale('获取地址失败, 请稍后重试', 'hint_address_failed'), {
-            mask: false
-          })
+          Toast.show({ content: locale('获取地址失败, 请稍后重试', 'hint_address_failed') })
         }
       }
       // 初始化地图
@@ -152,7 +151,7 @@ const MapChoose = forwardRef(
           })
         },
         fail: (res) => {
-          Bridge.showToast(res.errMsg, { mask: false })
+          Toast.show({ content: res.errMsg })
         }
       })
     }

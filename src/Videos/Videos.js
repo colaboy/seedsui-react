@@ -1,5 +1,5 @@
 import React, { forwardRef, Fragment, useState } from 'react'
-import Bridge from './../Bridge'
+import Toast from './../Toast'
 import Photos from './../Photos'
 import VideoFull from './../VideoFull'
 // import Camera from './../Camera'
@@ -57,7 +57,7 @@ const Videos = forwardRef(
 
       if (!preview) return
       if (!item.src) {
-        Bridge.showToast(locale('没有参数src', 'no_param_src'), { mask: false })
+        Toast.show({ content: locale('没有参数src', 'no_param_src') })
       }
 
       // 增加历史记录

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import { createPortal } from 'react-dom'
-import Bridge from './../Bridge'
+import Toast from './../Toast'
 import Context from '../Context/instance.js'
 
 function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {}, onHide }) {
@@ -46,7 +46,7 @@ function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {},
           console.log('更新好友分享成功')
         },
         fail: (res = {}) => {
-          Bridge.showToast(res.errMsg || '更新好友分享失败, 请稍后再试', { mask: false })
+          Toast.show({ content: res.errMsg || '更新好友分享失败, 请稍后再试' })
         }
       })
       // eslint-disable-next-line
@@ -57,7 +57,7 @@ function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {},
           console.log('更新朋友圈分享成功')
         },
         fail: (res = {}) => {
-          Bridge.showToast(res.errMsg || '更新朋友圈分享失败, 请稍后再试', { mask: false })
+          Toast.show({ content: res.errMsg || '更新朋友圈分享失败, 请稍后再试' })
         }
       })
     }

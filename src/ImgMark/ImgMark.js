@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Instance from './instance.js'
+import Toast from './../Toast'
 import Bridge from './../Bridge'
 import BridgeBrowser from './../Bridge/browser'
 import locale from './../locale' // 国际化
@@ -83,13 +84,12 @@ export default class ImgMark extends Component {
     var layer = '' // 绘制的base64编码
     if (this.props.preview) {
       if (!this.validSrc) {
-        Bridge.showToast(
-          `${locale('图片加载失败', 'hint_image_failed_to_load')}, ${locale(
+        Toast.show({
+          content: `${locale('图片加载失败', 'hint_image_failed_to_load')}, ${locale(
             '无法预览',
             'cannot_preview'
-          )}`,
-          { mask: false }
-        )
+          )}`
+        })
         return
       }
       if (this.props.isDrawSrc) {

@@ -1,5 +1,6 @@
 import MapUtil from './../MapUtil'
 import GeoUtil from './../GeoUtil'
+import Loading from './../Loading'
 import Bridge from './../Bridge'
 import locale from './../locale' // 国际化
 
@@ -25,7 +26,7 @@ export default function () {
   // 初始化地图
   s.initMap = function (container, center, callback) {
     var self = this
-    Bridge.showLoading()
+    Loading.show()
     const mapUtil = new MapUtil(container, {
       // 缩放导航
       navigation: {
@@ -38,7 +39,7 @@ export default function () {
     mapUtil.map.addEventListener(
       'load',
       (e) => {
-        Bridge.hideLoading()
+        Loading.hide()
         window.clearTimeout(self.loadTimeout)
         // 加载完成开始绘制
         self.mapUtil = mapUtil
@@ -73,7 +74,7 @@ export default function () {
     // 超时处理
     if (self.loadTimeout) window.clearTimeout(self.loadTimeout)
     self.loadTimeout = setTimeout(() => {
-      Bridge.hideLoading()
+      Loading.hide()
       callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'hint_map_init_timeout'))
     }, 20000)
   }

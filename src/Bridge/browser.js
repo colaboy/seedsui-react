@@ -1,5 +1,6 @@
 import DB from './../DB'
 import Device from './../Device'
+import Loading from './../Loading'
 import Toast from './../Toast'
 import Preview from './../Preview/instance.js'
 import MediaUtil from './../MediaUtil'
@@ -104,9 +105,9 @@ var Bridge = {
       Toast.show({ content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx') })
       return
     }
-    self.showLoading()
+    Loading.show()
     setTimeout(() => {
-      self.hideLoading()
+      Loading.hide()
       Toast.show({ content: locale('上传完成', 'uploaded_completed') })
       var res = {
         errMsg: 'uploadImage:ok',

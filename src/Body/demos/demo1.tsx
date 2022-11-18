@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Bridge, Page, Header, Titlebar, Body } from 'seedsui-react'
+import { Bridge, Toast, Page, Header, Titlebar, Body } from 'seedsui-react'
 // import dh from './dinghuo-sdk'
 
 export default () => {
@@ -22,7 +22,7 @@ export default () => {
       if (VConsole && VConsole.default) {
         new VConsole.default()
       } else {
-        Bridge.showToast('打开调试模式失败', { mask: false })
+        Toast.show({ content: '打开调试模式失败' })
       }
     })
   }, [])

@@ -1,4 +1,4 @@
-import Bridge from './../../Bridge'
+import Toast from './../../Toast'
 import locale from './../../locale'
 
 // eslint-disable-next-line
@@ -26,7 +26,7 @@ export default {
             value: value
           })
         } else {
-          Bridge.showToast(errMsg, { mask: false })
+          Toast.show({ content: errMsg })
         }
         return false
       }

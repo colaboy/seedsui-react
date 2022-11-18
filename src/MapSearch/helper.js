@@ -1,5 +1,5 @@
-import MapUtil from './../../MapUtil'
-import Bridge from './../../Bridge'
+import MapUtil from './../MapUtil'
+import Loading from './../Loading'
 
 let self = null
 let zoomNum = 18
@@ -11,7 +11,7 @@ export default {
     self = this
     const { center = '', list = [] } = opt
     self.list = list
-    Bridge.showLoading()
+    Loading.show()
     var mapUtil = new MapUtil(container, {
       // 缩放导航
       // navigation: {
@@ -32,7 +32,7 @@ export default {
     mapUtil.map.addEventListener(
       'load',
       (e) => {
-        Bridge.hideLoading()
+        Loading.hide()
         BMap = window.BMap
         // 加载完成开始绘制
         self.mapUtil = mapUtil
