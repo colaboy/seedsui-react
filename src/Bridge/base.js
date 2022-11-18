@@ -2,7 +2,9 @@ import jsonp from './../jsonp'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Modal from './../Modal'
-import Toast from './../Toast/instance.js'
+import Toast from './../Toast'
+// 老Toast(@deprecated 已废弃)
+import ToastInstance from './../Toast/instance.js'
 import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
 import locale from './../locale'
@@ -22,9 +24,8 @@ var Bridge = {
   },
   // 拨打电话
   tel: function (number) {
-    var self = this
     if (Device.device === 'pc') {
-      self.showToast(locale('此功能仅可在手机中使用', 'hint_only_mobile'), { mask: false })
+      Toast.show({ content: locale('此功能仅可在手机中使用', 'hint_only_mobile') })
       return
     }
     if (isNaN(number)) return
@@ -41,7 +42,7 @@ var Bridge = {
     if (!msg) return
     if (!self.toast) {
       // 提示错误
-      self.toast = new Toast({
+      self.toast = new ToastInstance({
         parent: document.body,
         maskClass: 'mask toast-mask' + (params.mask === false ? ' toast-propagation' : ''),
         toastClass: 'toast ' + (params.position ? params.position : 'middle'),

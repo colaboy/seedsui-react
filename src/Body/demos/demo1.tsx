@@ -3,29 +3,20 @@ import { Bridge, Page, Header, Titlebar, Body } from 'seedsui-react'
 // import dh from './dinghuo-sdk'
 
 export default () => {
+  // 增加返回监听
+  const addBackMonitor = () => {
+    Bridge.onHistoryBack(handleBack)
+  }
+  const handleBack = async () => {
+    let isBack = await Bridge.back()
+    if (!isBack) {
+      addBackMonitor()
+    }
+    return false
+  }
   useEffect(() => {
     Bridge.ready(() => {
-      wq.startRecord({
-        duration: 5,
-        success: function (res) {
-          alert(res.errMsg)
-        },
-        fail: function (res) {
-          alert(res.errMsg)
-        }
-      })
-      // eslint-disable-next-line
-      wq.trigger('onVoiceRecordEnd', {
-        complete: function (res) {
-          alert('onVoiceRecordEnd:' + JSON.stringify(res))
-        }
-      })
-
-      wq.trigger('onShow', {
-        complete: function (res) {
-          alert('onShow:' + JSON.stringify(res))
-        }
-      })
+      addBackMonitor()
     })
     import('vconsole').then((VConsole) => {
       if (VConsole && VConsole.default) {

@@ -42,12 +42,14 @@ var Bridge = {
     /* eslint-enable */
   },
   // 判断是否是主页
-  isHomePage: function (callback, rule) {
-    if (rule && top.window.location.href.indexOf(rule) >= 0) {
-      callback(true)
-      return
-    }
-    callback(false)
+  isHomePage: function (callback) {
+    top.wq.invoke('isHomePage', null, function (data) {
+      if (data.result.toString() === '1') {
+        callback(true)
+      } else {
+        callback(false)
+      }
+    })
   },
   // 获得版本信息
   getAppVersion: function () {

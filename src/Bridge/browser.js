@@ -1,5 +1,6 @@
 import DB from './../DB'
 import Device from './../Device'
+import Toast from './../Toast'
 import Preview from './../Preview/instance.js'
 import MediaUtil from './../MediaUtil'
 import FullScreen from './../FullScreen'
@@ -54,6 +55,12 @@ var Bridge = {
   closeWindow: function () {
     window.history.go(-1)
   },
+  // 返回监听
+  onHistoryBack: function () {
+    Toast.show({
+      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'hint_only_app_and_wx')
+    })
+  },
   // 视频播放
   previewVideo: function (params = {}) {
     var target = document.getElementById('seedsui_preview_video')
@@ -77,7 +84,7 @@ var Bridge = {
   chooseImage: function (params = {}) {
     var self = this
     if (!self.debug) {
-      self.showToast(locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx'), { mask: false })
+      Toast.show({ content: locale('chooseImage仅可在微信或APP中使用', 'hint_only_app_and_wx') })
       return
     }
     var res = {
@@ -94,13 +101,13 @@ var Bridge = {
   uploadImage: function (params = {}) {
     var self = this
     if (!self.debug) {
-      self.showToast(locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx'), { mask: false })
+      Toast.show({ content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx') })
       return
     }
     self.showLoading()
     setTimeout(() => {
       self.hideLoading()
-      self.showToast(locale('上传完成', 'uploaded_completed'), { mask: false })
+      Toast.show({ content: locale('上传完成', 'uploaded_completed') })
       var res = {
         errMsg: 'uploadImage:ok',
         mediaUrl: '',
@@ -167,232 +174,6 @@ var Bridge = {
       width: ''
     }
     if (params.success) params.success(res)
-  },
-  /* -----------------------------------------------------
-    人员插件
-  ----------------------------------------------------- */
-  getContactMore: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success([
-        {
-          id: '4655721687632479006',
-          name: '员工1'
-        },
-        {
-          id: '4655721687632479007',
-          name: '员工2'
-        }
-      ])
-  },
-  getContact: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success({
-        id: '4655721687632479006',
-        name: '员工1'
-      })
-  },
-  /* -----------------------------------------------------
-    客户插件
-  ----------------------------------------------------- */
-  customerMore: [
-    {
-      check: true,
-      distance: 31,
-      labelType: 0,
-      addr: '南京市建邺区康文路康缘智汇港附近',
-      approval_status: '3',
-      code: '20180403004',
-      cooperate_status: '1',
-      district_id: '',
-      id: '5330457627710680963',
-      lat: '',
-      location: '31.983362,118.73069',
-      lon: '',
-      manager_name: '',
-      name: '客户门店经销商1',
-      name_py: '20180403004 20180403004',
-      trade_type: '3',
-      type_id: '',
-      type_image: ''
-    },
-    {
-      check: true,
-      distance: 5,
-      labelType: 0,
-      addr: '江苏省南京市建邺区康文路康缘智汇港附近',
-      approval_status: '3',
-      code: 'storethree',
-      cooperate_status: '1',
-      district_id: '',
-      id: '8834765014408029232',
-      lat: '',
-      location: '31.983679,118.730766',
-      lon: '',
-      manager_name: '',
-      name: '客户门店经销商2',
-      name_py: 'mendian3 md3',
-      trade_type: '3',
-      type_id: '',
-      type_image: ''
-    },
-    {
-      addr: '南京市建邺区康文路南京金贝网络科技有限公司附近',
-      approval_status: '3',
-      check: false,
-      code: 'CUS000084',
-      cooperate_status: '1',
-      distance: -1,
-      district_id: '-1',
-      id: '8045732772848971055',
-      labelType: 2,
-      lat: '31.983311',
-      location: '31.983311,118.730527',
-      lon: '118.730527',
-      manager_name: '大表哥',
-      name: '客户门店经销商3',
-      name_py: '201801171557 201801171557',
-      trade_type: '3',
-      type_id: '-1',
-      type_image: ''
-    },
-    {
-      addr: '南京市建邺区康文路南京金贝网络科技有限公司附近',
-      approval_status: '3',
-      check: true,
-      code: 'CUS000085',
-      cooperate_status: '1',
-      distance: 46,
-      district_id: '',
-      id: '8353170616312361122',
-      labelType: 0,
-      lat: '',
-      location: '31.983301,118.730517',
-      lon: '',
-      manager_name: '',
-      name: '客户门店经销商4',
-      name_py: '201801171624 201801171624',
-      trade_type: '3',
-      type_id: '',
-      type_image: ''
-    }
-  ],
-  customerMoreLen: 1,
-  getCustomerMore: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    const result = []
-    for (let i = 0; i < self.customerMoreLen; i++) {
-      result.push(self.customerMore[i])
-    }
-    self.customerMoreLen++
-    if (self.customerMoreLen > self.customerMore.length) {
-      self.customerMoreLen = 1
-    }
-    if (params.success) params.success(result)
-  },
-  getCustomer: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success({
-        id: '6468207804099075062',
-        name: '客户门店经销商1'
-      })
-  },
-  getCustomerType: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success({
-        id: '5365268129453435373',
-        name: '客户类型1'
-      })
-  },
-  getCustomerAreaMore: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success([
-        {
-          id: '5365268129453435373',
-          name: '客户区域1'
-        },
-        {
-          id: '5365268129453435374',
-          name: '客户区域2'
-        }
-      ])
-  },
-  getCustomerArea: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success({
-        id: '5365268129453435373',
-        name: '客户区域1'
-      })
-  },
-  // 部门插件
-  getDepartmentMore: function (params) {
-    var self = this
-    self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-  },
-  getDepartment: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    params.success({
-      id: '5343180131602024954',
-      name: '开发一部'
-    })
-  },
-  // 单选商品
-  getGoods: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在外勤客户端中使用', 'hint_only_wqapp'), { mask: false })
-      return
-    }
-    if (params.success)
-      params.success({
-        id: '5343180131602024954',
-        name: '商品1',
-        propvalues: '', // 商品属性不带排序号
-        nameSpec: '', // 规格名称
-        productRemarks: '', // 备注
-        props: '', // 商品属性介绍
-        propDetail: '', // 商品属性详情
-        reportUnitName: '', // 报表单位名称
-        reportUnitID: '', // 报表单位ID
-        reportUnitRatio: '' // 报表单位比率
-      })
   },
   /**
    * 获取当前地理位置
@@ -536,29 +317,6 @@ var Bridge = {
       self.getLocationTask(res)
     }, 2000)
   },
-  // 获取当前地理位置带地图
-  getLocationMap: function (params = {}) {
-    var self = this
-    if (!self.debug) {
-      self.showToast(locale('此功能仅可在微信或APP中使用', 'hint_only_wqapp'), { mask: false })
-      if (params.fail)
-        params.fail({
-          errMsg: `getLocationMap:${locale('此功能仅可在微信或APP中使用', 'hint_only_wqapp')}`
-        })
-      return
-    }
-    setTimeout(function () {
-      if (params.success)
-        params.success({
-          longitude: '116.397451',
-          latitude: '39.909187',
-          speed: '0.0',
-          accuracy: '3.0.0',
-          address: '北京市天安门'
-        })
-    }, 500)
-  },
-
   /*
    * 扫描二维码并返回结果
    * 返回：{resultStr:''}
@@ -566,7 +324,7 @@ var Bridge = {
   scanQRCode: function (params = {}) {
     var self = this
     if (!self.debug) {
-      self.showToast(locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx'), { mask: false })
+      Toast.show({ content: locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx') })
       if (params.fail)
         params.fail({
           errMsg: `scanQRCode:${locale('扫码失败', 'hint_scan_failed')}, ${locale(
@@ -592,7 +350,7 @@ var Bridge = {
   previewFile: function (params) {
     var self = this
     if (!self.debug) {
-      self.showToast(locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx'), { mask: false })
+      Toast.show({ content: locale('previewFile仅可在微信或APP中使用', 'hint_only_app_and_wx') })
       if (params.fail)
         params.fail({
           errMsg: `previewFile:fail${locale('预览文件失败', 'hint_previewFile_failed')}, ${locale(

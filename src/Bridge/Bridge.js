@@ -43,4 +43,27 @@ if (
 // eslint-disable-next-line
 top.window._bridge_self = Bridge
 
+/*
+Bridge.ready(() => {
+  // 增加返回监听
+  const addBackMonitor = () => {
+    Bridge.onHistoryBack(handleBack)
+  }
+  const handleBack = async () => {
+    let isBack = await Bridge.back()
+    if (!isBack) {
+      addBackMonitor()
+    }
+    return false
+  }
+
+  // trigger的用法
+  wq.trigger('onVoiceRecordEnd', {
+    complete: function (res) {
+      alert('onVoiceRecordEnd:' + JSON.stringify(res))
+    }
+  })
+})
+*/
+
 export default Bridge

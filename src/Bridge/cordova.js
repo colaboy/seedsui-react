@@ -1,4 +1,5 @@
 import DB from './../DB'
+import Toast from './../Toast'
 import Device from './../Device'
 import locale from './../locale'
 
@@ -264,7 +265,7 @@ var Bridge = {
   previewVideo: function (params = {}) {
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
-      self.showToast('视频播放功能需要升级至6.2.2及以上的客户端', { mask: false })
+      Toast.show({ content: '视频播放功能需要升级至6.2.2及以上的客户端' })
       return
     }
     // eslint-disable-next-line
@@ -291,10 +292,9 @@ var Bridge = {
   videoRecord: function (params = {}) {
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
-      self.showToast(
-        locale('视频录制功能需要升级至6.2.2及以上的客户端', 'hint_video_record_version'),
-        { mask: false }
-      )
+      Toast.show({
+        content: locale('视频录制功能需要升级至6.2.2及以上的客户端', 'hint_video_record_version')
+      })
       return
     }
     // eslint-disable-next-line
@@ -303,7 +303,7 @@ var Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoRecord:录制失败' })
-        else self.showToast(locale('录制失败', 'hint_video_record_version'), { mask: false })
+        else Toast.show({ content: locale('录制失败', 'hint_video_record_version') })
       }
     }, JSON.stringify(params))
   },
@@ -315,10 +315,9 @@ var Bridge = {
   videoUpload: function (params = {}) {
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
-      self.showToast(
-        locale('视频上传功能需要升级至6.2.2及以上的客户端', 'hint_video_upload_version'),
-        { mask: false }
-      )
+      Toast.show({
+        content: locale('视频上传功能需要升级至6.2.2及以上的客户端', 'hint_video_upload_version')
+      })
       return
     }
     // eslint-disable-next-line
@@ -327,7 +326,7 @@ var Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoUpload:上传失败' })
-        else self.showToast(locale('上传失败', 'hint_upload_failed'), { mask: false })
+        else Toast.show({ content: locale('上传失败', 'hint_upload_failed') })
       }
     }, JSON.stringify(params))
   },
@@ -339,8 +338,8 @@ var Bridge = {
   videoInfo: function (params = {}) {
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
-      self.showToast(locale('视频功能需要升级至6.2.2及以上的客户端', 'hint_video_info_version'), {
-        mask: false
+      Toast.show({
+        content: locale('视频功能需要升级至6.2.2及以上的客户端', 'hint_video_info_version')
       })
       return
     }
@@ -377,13 +376,12 @@ var Bridge = {
             )}`
           })
         else
-          self.showToast(
-            `scanQRCode:${locale('扫码失败', 'hint_scan_failed')}, ${locale(
+          Toast.show({
+            content: `scanQRCode:${locale('扫码失败', 'hint_scan_failed')}, ${locale(
               '请稍后重试',
               'hint_try_again_later'
-            )}`,
-            { mask: false }
-          )
+            )}`
+          })
       }
     })
   },
@@ -474,8 +472,8 @@ var Bridge = {
         }
         if (params.fail) params.fail(res)
         else
-          self.showToast(locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'), {
-            mask: false
+          Toast.show({
+            content: locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
           })
         self.getLocationTask(res)
       }
@@ -529,10 +527,9 @@ var Bridge = {
             )}`
           })
         else
-          self.showToast(
-            locale('定位失败, 请检查外勤365定位权限是否开启', 'hint_location_map_failed'),
-            { mask: false }
-          )
+          Toast.show({
+            content: locale('定位失败, 请检查外勤365定位权限是否开启', 'hint_location_map_failed')
+          })
       }
     }, JSON.stringify(Object.assign({ editable: '1' }, params))) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
   },
@@ -654,11 +651,11 @@ var Bridge = {
   uploadImage: function (params = {}) {
     self = this
     if (!params.uploadDir) {
-      self.showToast(locale('没有上传目录', 'hint_no_upload_dir'), { mask: false })
+      Toast.show({ content: locale('没有上传目录', 'hint_no_upload_dir') })
       return
     }
     if (!params.localId || Object.isEmptyObject(params.localId)) {
-      self.showToast(locale('没有上传地址', 'hint_no_upload_localeid'), { mask: false })
+      Toast.show({ content: locale('没有上传地址', 'hint_no_upload_localeid') })
       return
     }
     let filePathList = [
@@ -714,7 +711,7 @@ var Bridge = {
   previewImage: function (params) {
     self = this
     if (!params.urls || !params.urls.length) {
-      self.showToast(locale('没有预览图片地址', 'hint_preview_image_must_urls'), { mask: false })
+      Toast.show({ content: locale('没有预览图片地址', 'hint_preview_image_must_urls') })
       return
     }
     // 格式化index
@@ -754,18 +751,18 @@ var Bridge = {
   uploadFile: function (params = {}) {
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
-      self.showToast(locale('此功能需要升级至6.6.0及以上的客户端', 'hint_upload_file_version'), {
-        mask: false
+      Toast.show({
+        content: locale('此功能需要升级至6.6.0及以上的客户端', 'hint_upload_file_version')
       })
       return
     }
     if (!params.localId) {
-      self.showToast(locale('没有上传地址', 'hint_no_upload_localeid'), { mask: false })
+      Toast.show({ content: locale('没有上传地址', 'hint_no_upload_localeid') })
       return
     }
     let localIds = params.localId.split(':')
     if (localIds.length !== 2) {
-      self.showToast(locale('localeId错误', 'hint_error_localeid'), { mask: false })
+      Toast.show({ content: locale('localeId错误', 'hint_error_localeid') })
       return
     }
     window.wq.wqio.uploadFile(
@@ -798,8 +795,8 @@ var Bridge = {
   chooseVideo: function (argParams = {}) {
     const self = this
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
-      self.showToast(locale('此功能需要升级至6.6.0及以上的客户端', 'hint_choose_video_version'), {
-        mask: false
+      Toast.show({
+        content: locale('此功能需要升级至6.6.0及以上的客户端', 'hint_choose_video_version')
       })
       return
     }
@@ -869,10 +866,12 @@ var Bridge = {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
     self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
-      self.showToast(
-        locale('此功能需要升级至6.2.2及以上的客户端', 'hint_get_customer_area_more_version'),
-        { mask: false }
-      )
+      Toast.show({
+        content: locale(
+          '此功能需要升级至6.2.2及以上的客户端',
+          'hint_get_customer_area_more_version'
+        )
+      })
       return
     }
     // eslint-disable-next-line
@@ -931,14 +930,12 @@ var Bridge = {
   openNativePage: function (params = { ios: {}, android: {} }) {
     self = this
     if (!params.ios.url) {
-      self.showToast(locale('ios参数url不能为空', 'hint_open_native_page_must_ios_url'), {
-        mask: false
-      })
+      Toast.show({ content: locale('ios参数url不能为空', 'hint_open_native_page_must_ios_url') })
       return
     }
     if (!params.android.url) {
-      self.showToast(locale('android参数url不能为空', 'hint_open_native_page_must_android_url'), {
-        mask: false
+      Toast.show({
+        content: locale('android参数url不能为空', 'hint_open_native_page_must_android_url')
       })
       return
     }
