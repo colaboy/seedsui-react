@@ -103,6 +103,10 @@ export default defineConfig({
             path: 'components/cascader'
           },
           {
+            title: 'Calendar',
+            path: '/components/calendar'
+          },
+          {
             title: 'Videos',
             path: '/components/videos'
           }
@@ -151,6 +155,10 @@ export default defineConfig({
           {
             title: 'Cascader 级联选择',
             path: '/zh/components/cascader'
+          },
+          {
+            title: 'Calendar 日历',
+            path: '/zh/components/calendar'
           },
           {
             title: 'Videos 视频列表',

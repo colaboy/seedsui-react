@@ -38,7 +38,7 @@ const Calendar = forwardRef(
           if (jumpDate instanceof Date) {
             instance.current.setDate(jumpDate)
           } else if (jumpDate === 'today') {
-            instance.current.setToday()
+            instance.current.setDate(new Date())
           } else if (jumpDate === 'default') {
             instance.current.setDefaultDate()
           }
@@ -68,7 +68,7 @@ const Calendar = forwardRef(
         nextHTML: nextHTML,
         onClick: handleClick,
         onChange: handleChange,
-        onError: handleError // func(e, err)
+        onError: handleError // func(err)
       })
     }
 
@@ -83,9 +83,8 @@ const Calendar = forwardRef(
       }
       if (onChange) onChange(s.activeDate)
     }
-    function handleError(s, err) {
-      s.errMsg = err.errMsg
-      if (onError) onError(s)
+    function handleError(err) {
+      if (onError) onError(err)
     }
     return <div ref={rootRef} className="calendar"></div>
   }

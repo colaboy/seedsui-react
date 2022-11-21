@@ -53,7 +53,7 @@ var Calendar = function (container, params) {
     onTransitionEnd:function(Calendar)// 动画结束
     onHorizontalTransitionEnd:function(Calendar)// 横滑动画结束
     onVerticalTransitionEnd:function(Calendar)// 竖滑动画结束
-    onError:function(s, msg) // 错误回调
+    onError:function({errMsg}) // 错误回调
     */
   }
   params = params || {}
@@ -261,6 +261,18 @@ var Calendar = function (container, params) {
     }
     let min = s.params.disableBeforeDate
     let max = s.params.disableAfterDate
+    // 如果最小值大于等于最大值则无法生效
+    if (min instanceof Date && max instanceof Date && min.compareDate(max) >= 1) {
+      let errMsg =
+        '最小值min' +
+        min.format('YYYY年MM月DD日') +
+        '不能大于等于max' +
+        max.format('YYYY年MM月DD日')
+      console.log('SeedsUI Warn：' + errMsg)
+      if (s.params.onError)
+        s.params.onError({ errMsg: errMsg, min: min, max: max, value: jumpDate, instance: s })
+      return false
+    }
     // 小于最小值
     if (min instanceof Date && jumpDate.compareDate(min) === -1) {
       let errMsg = '禁止访问' + min.format('YYYY年MM月DD日') + '前的日期'
@@ -467,18 +479,23 @@ var Calendar = function (container, params) {
       }
     }
     s.updateContainerHeight()
-    // 滑动到禁用
-    if (s.validate(s.activeDate) === -1) {
-      // 小于最小值
-      s.activeDate.nextMonth()
-      s.draw()
-      return
-    }
-    if (s.validate(s.activeDate) === 1) {
-      // 大于最大值
-      s.activeDate.prevMonth()
-      s.draw()
-      return
+    // 非上下滑动时需要校验日期是否正确
+    let validate = true
+    if (!vertical) {
+      validate = s.validate(s.activeDate)
+      // 滑动到禁用
+      if (validate === -1) {
+        // 小于最小值
+        s.activeDate.nextMonth()
+        s.draw()
+        return
+      }
+      if (validate === 1) {
+        // 大于最大值
+        s.activeDate.prevMonth()
+        s.draw()
+        return
+      }
     }
     // 注入头部
     s.drawHeader()
@@ -488,7 +505,7 @@ var Calendar = function (container, params) {
       if (s.params.onHeightChange) s.params.onHeightChange(s)
     } else {
       // Callback onChange
-      if (s.params.onChange) s.params.onChange(s)
+      if (validate === true && s.params.onChange) s.params.onChange(s)
     }
   }
   s.draw()
@@ -508,10 +525,6 @@ var Calendar = function (container, params) {
   }
   s.showWeek = function () {
     s.slideYTo(-1)
-  }
-  s.setToday = function () {
-    s.activeDate.setTime(s.today.getTime())
-    s.draw()
   }
   s.setDate = function (date) {
     if (date instanceof Date === false) {
