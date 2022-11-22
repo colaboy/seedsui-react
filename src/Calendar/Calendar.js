@@ -13,6 +13,8 @@ const Calendar = forwardRef(
       verticalDrag, // 是否允许垂直拖动
       prevHTML = '&lt', // 左箭头
       nextHTML = '&gt', // 右箭头
+      renderCellDOM,
+      cellHeight,
       onChange,
       onClick,
       onError
@@ -59,6 +61,7 @@ const Calendar = forwardRef(
     function initInstance() {
       instance.current = new Instance(rootRef.current, {
         viewType: type,
+        cellHeight: cellHeight,
         titleFormat: titleFormat,
         disableBeforeDate: min,
         disableAfterDate: max,
@@ -66,6 +69,7 @@ const Calendar = forwardRef(
         defaultDate: value,
         prevHTML: prevHTML,
         nextHTML: nextHTML,
+        renderCellDOM: renderCellDOM,
         onClick: handleClick,
         onChange: handleChange,
         onError: handleError // func(err)

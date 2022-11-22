@@ -10,7 +10,7 @@ var Calendar = function (container, params) {
     defaultDate: null, // 默认选中的日期
     threshold: '50',
     duration: '300',
-    dateHeight: '40',
+    cellHeight: '40',
     verticalDrag: true, // 是否允许垂直拖动
 
     titleFormat: 'YYYY-MM-DD', // 格式化标题, YYYY-MM-DD 第Q季 第WW周 周EE
@@ -35,7 +35,7 @@ var Calendar = function (container, params) {
     wrapperYClass: 'calendar-wrapper-y',
     monthClass: 'calendar-month',
     monthRowClass: 'calendar-monthrow',
-    dateClass: 'calendar-date',
+    cellClass: 'calendar-date',
     dateNumClass: 'calendar-datenum',
 
     // 状态
@@ -47,6 +47,7 @@ var Calendar = function (container, params) {
 
     /*
     Callbacks:
+    renderCellDOM: function(Date)
     onClick:function(Calendar)
     onChange:function(Calendar)
     onHeightChange:function(Calendar)// 高度变化
@@ -64,7 +65,7 @@ var Calendar = function (container, params) {
   }
   var s = this
   s.params = params
-  s.params.wrapperHeight = s.params.dateHeight * 6
+  s.params.wrapperHeight = s.params.cellHeight * 6
   // 禁止修改默认值
   Object.defineProperty(s.params, 'defaultDate', {
     enumerable: true,
@@ -113,7 +114,7 @@ var Calendar = function (container, params) {
     diffY: 0,
     posX: 0,
     posY: 0,
-    maxPosY: s.params.wrapperHeight - s.params.dateHeight,
+    maxPosY: s.params.wrapperHeight - s.params.cellHeight,
     h: s.params.wrapperHeight,
     direction: 0,
     horizontal: 0,
@@ -198,15 +199,15 @@ var Calendar = function (container, params) {
 
         for (var k = 0; k < 7; k++) {
           // 注入到星期
-          var elDate = document.createElement('div')
-          elDate.setAttribute('class', s.params.dateClass)
-          elDate.style.height = s.params.dateHeight + 'px'
-          elDate.style.lineHeight = s.params.dateHeight + 'px'
+          var elCell = document.createElement('div')
+          elCell.setAttribute('class', s.params.cellClass)
+          elCell.style.height = s.params.cellHeight + 'px'
+          elCell.style.lineHeight = s.params.cellHeight + 'px'
           var elDateNum = document.createElement('div')
           elDateNum.setAttribute('class', s.params.dateNumClass)
 
-          elDate.appendChild(elDateNum)
-          monthRow.appendChild(elDate)
+          elCell.appendChild(elDateNum)
+          monthRow.appendChild(elCell)
 
           s.dates.push(elDateNum)
         }
@@ -314,7 +315,7 @@ var Calendar = function (container, params) {
       s.touches.h = s.params.wrapperHeight
     } else if (s.params.viewType === 'week') {
       // 收缩
-      s.touches.h = s.params.dateHeight
+      s.touches.h = s.params.cellHeight
     }
     s.wrapper.style.height = s.touches.h + 'px'
     s.wrapperY.style.webkitTransform = 'translateY(-' + s.touches.posY + 'px)'
@@ -414,7 +415,7 @@ var Calendar = function (container, params) {
     s.data = s.activeDate.getCalendarData()
     var activeRowIndex = s.data.activeRowIndex
     if (s.params.viewType === 'week') {
-      s.touches.maxPosY = activeRowIndex * s.params.dateHeight
+      s.touches.maxPosY = activeRowIndex * s.params.cellHeight
       s.touches.posY = s.touches.maxPosY
       var prevWeek = s.activeDate.getPrevWeekData()
       var nextWeek = s.activeDate.getNextWeekData()
@@ -449,6 +450,17 @@ var Calendar = function (container, params) {
     var activeIndex = s.data.activeIndex
     for (var i = 0; i < s.dates.length; i++) {
       s.dates[i].innerHTML = s.data[i].getDate()
+
+      // 自定义绘制单元格
+      if (s.params.renderCellDOM) {
+        let cellDOM = s.params.renderCellDOM(s.data[i])
+        if (typeof cellDOM === 'string') {
+          s.dates[i].innerHTML = cellDOM
+        } else {
+          s.dates[i].appendChild(cellDOM)
+        }
+      }
+
       // index
       s.dates[i].index = i
       // class
@@ -623,7 +635,7 @@ var Calendar = function (container, params) {
       if (s.params.verticalDrag === true) {
         // 允许Y滑动的情况下
         var heightY = s.touches.h - s.touches.diffY
-        if (heightY > s.params.dateHeight && heightY < s.params.wrapperHeight) {
+        if (heightY > s.params.cellHeight && heightY < s.params.wrapperHeight) {
           // 判断是否是边缘
           s.touches.vertical = heightY > s.touches.h ? 1 : -1 // 设置方向(上下)
           s.dragY(heightY)
