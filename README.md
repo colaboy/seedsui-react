@@ -36,9 +36,7 @@ npm install seedsui-react --save
 
 - 支持 Less(如果工程已经支持了忽悠此条)
 
-- 拷贝 assets/seedsui 文件夹
-
-- 修改入口文件: @import '../seedsui/index.less';
+- 拷贝 assets 文件夹
 
 ## 国际化
 

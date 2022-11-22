@@ -100,7 +100,7 @@ export default defineConfig({
           },
           {
             title: 'Cascader',
-            path: 'components/cascader'
+            path: '/components/cascader'
           },
           {
             title: 'Calendar',
