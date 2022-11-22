@@ -27,7 +27,7 @@ var Bridge = {
     self = this
     let isReady = false
     // eslint-disable-next-line
-    if (!top.wq) {
+    if (top.wq) {
       // eslint-disable-next-line
       top.wq.config({ auth: false })
       // eslint-disable-next-line
