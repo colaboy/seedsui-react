@@ -417,6 +417,9 @@ var Bridge = {
 
       // 加载完成
       script.onload = function () {
+        if (window.wx && !top.wx) {
+          top.wx = window.wx
+        }
         if (callback) callback()
       }
       if (options.fail) {
