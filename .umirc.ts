@@ -109,6 +109,10 @@ export default defineConfig({
           {
             title: 'Videos',
             path: '/components/videos'
+          },
+          {
+            title: 'Photos',
+            path: '/components/Photos'
           }
         ]
       }
@@ -163,6 +167,10 @@ export default defineConfig({
           {
             title: 'Videos 视频列表',
             path: '/zh/components/videos'
+          },
+          {
+            title: 'Photos 照片列表',
+            path: '/zh/components/photos'
           }
         ]
       }

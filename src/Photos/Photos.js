@@ -61,21 +61,47 @@ const Photos = forwardRef(
           }
         }
       } else if (target.classList.contains('photos-item')) {
+        const index = Number(target.getAttribute('data-index') || 0)
+        let res = {
+          event: e,
+          urls: list.map((item) => item.src),
+          current: list[index].src,
+          item: list[index],
+          index: Number(index)
+        }
         // 点击照片
-        const index = target.getAttribute('data-index')
-        if (index && onClickRef && onClickRef.current)
-          onClickRef.current(e, list[index].src, [list[index]], Number(index))
+        if (index && onClickRef && onClickRef.current) {
+          onClickRef.current(res.event, res.current, [res.item], index)
+        }
         // 预览
         if (preview) {
-          if (typeof preview === 'function')
-            preview(e, list[index].src, [list[index]], Number(index))
-          setPreviewCurrent(Number(index))
+          // 自定义预览
+          if (typeof preview === 'function') {
+            preview(res.event, res.current, [res.item], index)
+          }
+          // 本地能力预览
+          else if (
+            !isBrowser &&
+            (Bridge.platform === 'wq' ||
+              Bridge.platform === 'waiqin' ||
+              Bridge.platform === 'wechat' ||
+              Bridge.platform === 'wework' ||
+              Bridge.platform === 'wechatMiniprogram' ||
+              Bridge.platform === 'weworkMiniprogram')
+          ) {
+            Bridge.previewImage(res)
+          }
+          // 浏览器预览
+          else {
+            setPreviewCurrent(Number(index))
+          }
         }
       } else if (target.classList.contains('photos-delete')) {
         // 点击删除
         const index = target.parentNode.getAttribute('data-index')
-        if (index && onDeleteRef && onDeleteRef.current)
-          onDeleteRef.current(e, list[index].src, [list[index]], Number(index))
+        if (index && onDeleteRef && onDeleteRef.current) {
+          onDeleteRef.current(res.event, res.current, [res.item], index)
+        }
       }
     }
     // file框选择

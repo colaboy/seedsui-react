@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import Modal from './../Modal'
 import Swipe from './Swipe'
 import VideoFull from './../VideoFull'
 
@@ -17,10 +18,6 @@ const Preview = forwardRef(
     ref
   ) => {
     const [pauseList, setPauseList] = useState(new Array(list.length))
-    const refEl = useRef(null)
-    useImperativeHandle(ref, () => {
-      return refEl.current
-    })
 
     if (!list || !list.length || !list[0].src) return null
 
@@ -33,15 +30,16 @@ const Preview = forwardRef(
         if (source.src === current) activeIndex = index
       }
     }
+
     // 图片单击隐藏, 视频单击无反应
-    function hideHandler(s) {
-      if (list[s.activeIndex].type !== 'video') {
+    function handleVisibleChange(visible, res) {
+      if (list[res.index].type !== 'video') {
         if (onHide) onHide()
       }
     }
+
     // 滑动视频需要暂停其它视频
-    function changeHandler(s) {
-      s.target = refEl.current
+    function handleChange(s) {
       // 暂停所有视频
       if (list[s.activeIndex].type === 'video') {
         let newPauseList = list.map(() => true)
@@ -53,36 +51,38 @@ const Preview = forwardRef(
       if (onChange) onChange(s, list[s.activeIndex], s.activeIndex)
     }
     return (
-      <Swipe
-        ref={refEl}
-        containerChildren={children}
-        defaultIndex={activeIndex}
-        onHide={hideHandler}
-        onChange={changeHandler}
-        {...others}
-      >
-        {list.map((source, index) => {
-          return (
-            <div className="swiper-slide" key={index}>
-              <div className="swiper-zoom-container">
-                {source.type !== 'video' && (
-                  <img alt="" className="swiper-zoom-target" src={source.src} />
-                )}
-                {source.type === 'video' && (
-                  <VideoFull
-                    pause={pauseList[index]}
-                    poster={source.thumb}
-                    src={source.src}
-                    autoPlay={false}
-                    bar={<div className="videofull-close" onClick={onHide}></div>}
-                  />
-                )}
-                {source.children}
+      <Modal visible animation="slideUp" className="preview-modal">
+        <Swipe
+          ref={ref}
+          containerChildren={children}
+          defaultIndex={activeIndex}
+          onVisibleChange={handleVisibleChange}
+          onChange={handleChange}
+          {...others}
+        >
+          {list.map((source, index) => {
+            return (
+              <div className="swiper-slide" key={index}>
+                <div className="swiper-zoom-container">
+                  {source.type !== 'video' && (
+                    <img alt="" className="swiper-zoom-target" src={source.src} />
+                  )}
+                  {source.type === 'video' && (
+                    <VideoFull
+                      pause={pauseList[index]}
+                      poster={source.thumb}
+                      src={source.src}
+                      autoPlay={false}
+                      bar={<div className="videofull-close" onClick={onHide}></div>}
+                    />
+                  )}
+                  {source.children}
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </Swipe>
+            )
+          })}
+        </Swipe>
+      </Modal>
     )
   }
 )
