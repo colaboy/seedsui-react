@@ -29,6 +29,17 @@ const Photos = forwardRef(
     onClickRef.current = onClick
 
     const [previewCurrent, setPreviewCurrent] = useState(null)
+
+    // 拼装点击项的数据
+    function getCurrent(index) {
+      return {
+        urls: list.map((item) => item.src),
+        current: list[index].src,
+        item: list[index],
+        index: index
+      }
+    }
+
     // 点击整个photos容器
     async function handleClick(event) {
       const e = event.nativeEvent
@@ -62,22 +73,16 @@ const Photos = forwardRef(
         }
       } else if (target.classList.contains('photos-item')) {
         const index = Number(target.getAttribute('data-index') || 0)
-        let res = {
-          event: e,
-          urls: list.map((item) => item.src),
-          current: list[index].src,
-          item: list[index],
-          index: Number(index)
-        }
+        let res = getCurrent(index)
         // 点击照片
-        if (index && onClickRef && onClickRef.current) {
-          onClickRef.current(res.event, res.current, [res.item], index)
+        if (onClickRef && onClickRef.current) {
+          onClickRef.current(e, res.current, [res.item], res.index)
         }
         // 预览
         if (preview) {
           // 自定义预览
           if (typeof preview === 'function') {
-            preview(res.event, res.current, [res.item], index)
+            preview(e, res.current, [res.item], res.index)
           }
           // 本地能力预览
           else if (
@@ -98,9 +103,10 @@ const Photos = forwardRef(
         }
       } else if (target.classList.contains('photos-delete')) {
         // 点击删除
-        const index = target.parentNode.getAttribute('data-index')
-        if (index && onDeleteRef && onDeleteRef.current) {
-          onDeleteRef.current(res.event, res.current, [res.item], index)
+        const index = Number(target.parentNode.getAttribute('data-index') || 0)
+        let res = getCurrent(index)
+        if (onDeleteRef && onDeleteRef.current) {
+          onDeleteRef.current(e, res.current, [res.item], res.index)
         }
       }
     }

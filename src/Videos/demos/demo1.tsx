@@ -12,7 +12,7 @@ export default () => {
     {
       id: '2',
       thumb: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.jpg',
-      src: 'https://www.w3school.com.cn/i/movie.ogg'
+      src: 'https://res.waiqin365.com/video/202001201.mp4'
     }
   ]
   function handleClick(...params) {

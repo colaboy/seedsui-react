@@ -33,7 +33,7 @@ const Preview = forwardRef(
 
     // 图片单击隐藏, 视频单击无反应
     function handleVisibleChange(visible, res) {
-      if (list[res.index].type !== 'video') {
+      if (!visible) {
         if (onHide) onHide()
       }
     }
@@ -51,12 +51,16 @@ const Preview = forwardRef(
       if (onChange) onChange(s, list[s.activeIndex], s.activeIndex)
     }
     return (
-      <Modal visible animation="slideUp" className="preview-modal">
+      <Modal
+        visible
+        animation="slideUp"
+        className="preview-modal"
+        onVisibleChange={handleVisibleChange}
+      >
         <Swipe
           ref={ref}
           containerChildren={children}
           defaultIndex={activeIndex}
-          onVisibleChange={handleVisibleChange}
           onChange={handleChange}
           {...others}
         >
