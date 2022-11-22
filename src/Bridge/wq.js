@@ -18,27 +18,36 @@ var Bridge = {
   },
   // 配置鉴权
   init: function (cb) {
+    // eslint-disable-next-line
+    if (window.wq && !top.wq) {
+      // eslint-disable-next-line
+      top.wq = window.wq
+    }
+
     self = this
-    /* eslint-disable */
-    top.wq.config({ auth: false })
     let isReady = false
-    top.wq.ready(function (response) {
-      isReady = true
-      // 初始化完成回调
-      if (response.errMsg === 'config:ok') {
-        // alert('加载完成')
-      } else {
-        alert('桥接失败, 如果无法返回请左滑返回')
-      }
-      if (typeof cb === 'function') cb(response)
-    })
+    // eslint-disable-next-line
+    if (!top.wq) {
+      // eslint-disable-next-line
+      top.wq.config({ auth: false })
+      // eslint-disable-next-line
+      top.wq.ready(function (response) {
+        isReady = true
+        // 初始化完成回调
+        if (response.errMsg === 'config:ok') {
+          // alert('加载完成')
+        } else {
+          alert('桥接失败, 如果无法返回请左滑返回')
+        }
+        if (typeof cb === 'function') cb(response)
+      })
+    }
     setTimeout(() => {
       if (!isReady) {
         alert('桥接超时, 如果无法使用本地能力, 请退出重试')
         if (typeof cb === 'function') cb({ errMsg: 'config:fail timeout' })
       }
     }, 2000)
-    /* eslint-enable */
   },
   // 判断是否是主页
   isHomePage: function (callback, rule) {

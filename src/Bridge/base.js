@@ -417,7 +417,9 @@ var Bridge = {
 
       // 加载完成
       script.onload = function () {
+        // eslint-disable-next-line
         if (window.wx && !top.wx) {
+          // eslint-disable-next-line
           top.wx = window.wx
         }
         if (callback) callback()
