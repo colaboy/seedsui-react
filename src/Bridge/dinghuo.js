@@ -29,10 +29,13 @@ var Bridge = {
     let isReady = false
     // eslint-disable-next-line
     if (top.wq) {
+      console.log('桥接文件已加载!')
       // eslint-disable-next-line
       top.wq.config({ auth: false })
+      console.log('桥接已配置, 调用ready')
       // eslint-disable-next-line
       top.wq.ready(function (response) {
+        console.log('桥接ready完成!')
         isReady = true
         // 初始化完成回调
         if (response.errMsg === 'config:ok') {
@@ -42,6 +45,7 @@ var Bridge = {
         }
         if (typeof cb === 'function') cb(response)
       })
+      console.log('已调用ready')
     }
     setTimeout(() => {
       if (!isReady) {
