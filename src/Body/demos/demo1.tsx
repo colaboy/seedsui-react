@@ -7,10 +7,15 @@ export default () => {
     Bridge.onHistoryBack(handleBack)
   }
   const handleBack = async () => {
-    let isBack = await Bridge.back()
-    if (!isBack) {
-      addBackMonitor()
-    }
+    await Bridge.back(-1, {
+      success: () => {
+        alert('返回')
+      },
+      fail: () => {
+        alert('不返回')
+        addBackMonitor()
+      }
+    })
     return false
   }
   useEffect(() => {

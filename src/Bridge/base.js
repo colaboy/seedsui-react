@@ -261,7 +261,8 @@ var Bridge = {
     })
   },
   // 客户端默认返回控制
-  back: function (argHistory, argBackLvl) {
+  back: function (backLvl, config) {
+    const { history, success, fail } = config || {}
     return new Promise(async (resolve) => {
       // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
       // eslint-disable-next-line
@@ -269,8 +270,8 @@ var Bridge = {
 
       // 返回操作对象与返回层级
       var _history = window.history
-      if (argHistory && argHistory.go) _history = argHistory
-      var _backLvl = argBackLvl || -1
+      if (history && history.go) _history = history
+      var _backLvl = backLvl || -1
 
       // 清空无效的h5返回
       if (
@@ -284,13 +285,20 @@ var Bridge = {
       // 如果已经有h5返回监听, 优先执行h5返回监听
       if (window.onHistoryBacks || window.onHistoryBack) {
         console.log('back:window.onHistoryBack')
+        fail && fail()
         resolve(false)
       }
       // 自定义返回
       else if (typeof window.onMonitorBack === 'function') {
         console.log('back:window.onMonitorBack自定义返回')
         let monitor = await window.onMonitorBack()
-        resolve(monitor || false)
+        let isBack = monitor || false
+        if (isBack) {
+          success && success()
+        } else {
+          fail && fail()
+        }
+        resolve(isBack)
       }
       // 关闭返回
       else if (isFromApp === '1') {
@@ -301,6 +309,7 @@ var Bridge = {
         } catch (error) {
           console.log(error)
         }
+        success && success()
         resolve(true)
       }
       // 返回首页
@@ -311,6 +320,7 @@ var Bridge = {
         } catch (error) {
           console.log(error)
         }
+        success && success()
         resolve(true)
       }
       // 提示后，关闭返回，或者历史返回
@@ -345,12 +355,14 @@ var Bridge = {
                 console.log('back:confirm-close, history')
                 _history.go(_backLvl)
               }
+              success && success()
               resolve(true)
               return true
             }
           },
           cancelProps: {
             onClick: () => {
+              fail && fail()
               resolve(false)
               return true
             }
@@ -360,6 +372,7 @@ var Bridge = {
       // 返回上一页
       else {
         _history.go(_backLvl)
+        success && success()
         resolve(true)
       }
     })
