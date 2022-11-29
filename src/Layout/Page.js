@@ -1,9 +1,19 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Device from './../Device'
 import Header from './../Header'
 import Titlebar from './../Titlebar'
 
 const Page = forwardRef(({ animation, titlebarVisible = 'auto', children, ...props }, ref) => {
+  const rootRef = useRef(null)
+
+  // 节点
+  useImperativeHandle(ref, () => {
+    return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current
+    }
+  })
+
   // 支持根据标题自动渲染Titlebar
   let titleText = Device.getUrlParameter('showTitlebar')
 
@@ -26,7 +36,7 @@ const Page = forwardRef(({ animation, titlebarVisible = 'auto', children, ...pro
 
   return (
     <section
-      ref={ref}
+      ref={rootRef}
       {...props}
       className={'page' + (props.className ? ' ' + props.className : '')}
       data-animation={animation}
