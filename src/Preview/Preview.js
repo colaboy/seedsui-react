@@ -40,8 +40,9 @@ const Preview = forwardRef(
 
     // 滑动视频需要暂停其它视频
     function handleChange(s) {
+      let type = list[s.activeIndex].previewType || type
       // 暂停所有视频
-      if (list[s.activeIndex].type === 'video') {
+      if (type === 'video') {
         let newPauseList = list.map(() => true)
         setPauseList(newPauseList)
         setTimeout(() => {
@@ -65,13 +66,14 @@ const Preview = forwardRef(
           {...others}
         >
           {list.map((source, index) => {
+            let type = source.previewType || source.type
             return (
               <div className="swiper-slide" key={index}>
                 <div className="swiper-zoom-container">
-                  {source.type !== 'video' && (
+                  {type !== 'video' && (
                     <img alt="" className="swiper-zoom-target" src={source.src} />
                   )}
-                  {source.type === 'video' && (
+                  {type === 'video' && (
                     <VideoFull
                       pause={pauseList[index]}
                       poster={source.thumb}

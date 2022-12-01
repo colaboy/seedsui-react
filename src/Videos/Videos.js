@@ -31,7 +31,7 @@ const Videos = forwardRef(
     // 修改数据源
     if (Array.isArray(others.list) && others.list.length) {
       for (let item of others.list) {
-        item.type = 'video'
+        item.previewType = 'video'
       }
     }
     return (
