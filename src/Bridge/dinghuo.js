@@ -39,9 +39,9 @@ var Bridge = {
         isReady = true
         // 初始化完成回调
         if (response.errMsg === 'config:ok') {
-          // alert('加载完成')
+          console.log('桥接加载完成')
         } else {
-          alert('桥接失败, 如果无法返回请左滑返回')
+          console.error('桥接失败, 如果无法返回请左滑返回')
         }
         if (typeof cb === 'function') cb(response)
       })
@@ -49,7 +49,7 @@ var Bridge = {
     }
     setTimeout(() => {
       if (!isReady) {
-        alert('桥接超时, 如果无法使用本地能力, 请退出重试')
+        console.error('桥接超时, 如果无法使用本地能力, 请退出重试')
         if (typeof cb === 'function') cb({ errMsg: 'config:fail timeout' })
       }
     }, 2000)
