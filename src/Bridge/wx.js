@@ -48,7 +48,9 @@ var Bridge = {
   },
   // 返回监听
   onHistoryBack: function (params) {
-    top.wx.onHistoryBack(params) // eslint-disable-line
+    if (typeof top.wx.onHistoryBack === 'function') {
+      top.wx.onHistoryBack(params) // eslint-disable-line
+    }
   },
   // 防止返回事件叠加绑定
   // monitorBack: null,
