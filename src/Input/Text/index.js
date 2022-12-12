@@ -62,7 +62,7 @@ const InputText = forwardRef(
         getInputDOM: () => {
           return inputRef.current
         },
-        correctText: correctText,
+        correctValue: correctValue,
         focus: _focus
       }
     })
@@ -127,8 +127,9 @@ const InputText = forwardRef(
     }
 
     // 矫正最大长度和小数位截取
-    function correctText(val) {
-      if (val === '') return val
+    function correctValue(val) {
+      if (val === undefined || val === '') return val
+      if (typeof val !== 'string' && typeof val !== 'number') return ''
       if (typeof val === 'number') val = String(val)
       // 最大长度
       if (maxLength && val && val.length > maxLength) {
@@ -187,11 +188,22 @@ const InputText = forwardRef(
       }
 
       // 矫正maxLength和小数点位数
-      val = correctText(val)
+      val = correctValue(val)
 
       // 非受控组件需要操作DOM
       if (defaultValue || defaultValue === '') {
-        target.value = val
+        // 最大长度
+        if (maxLength && target.value && target.value.length > maxLength) {
+          target.value = val
+        }
+        // 小数位截取
+        if (
+          typeof precision === 'number' &&
+          target.value.indexOf('.') !== -1 &&
+          target.value.split('.')[1].length > precision
+        ) {
+          target.value = val
+        }
       }
       if (onChange) {
         onChange(val)
@@ -215,7 +227,7 @@ const InputText = forwardRef(
         }
 
         // 纠正数字
-        val = correctText(val)
+        val = correctValue(val)
 
         // 修改完回调
         if (val !== value) {
@@ -282,8 +294,8 @@ const InputText = forwardRef(
               <textarea
                 ref={inputRef}
                 autoFocus={autoFocus}
-                value={value}
-                defaultValue={defaultValue}
+                value={correctValue(value)}
+                defaultValue={correctValue(defaultValue)}
                 maxLength={maxLength}
                 readOnly={readOnly}
                 disabled={disabled}
@@ -308,8 +320,8 @@ const InputText = forwardRef(
             ref={inputRef}
             {...otherInputProps}
             autoFocus={autoFocus}
-            value={value}
-            defaultValue={defaultValue}
+            value={correctValue(value)}
+            defaultValue={correctValue(defaultValue)}
             maxLength={maxLength}
             readOnly={readOnly}
             disabled={disabled}
@@ -333,8 +345,8 @@ const InputText = forwardRef(
           className={`input-text${
             otherInputProps.className ? ' ' + otherInputProps.className : ''
           }`}
-          defaultValue={defaultValue}
-          value={value}
+          defaultValue={correctValue(defaultValue)}
+          value={correctValue(value)}
           min={typeof min === 'number' ? min : ''}
           max={typeof max === 'number' ? max : ''}
           maxLength={maxLength}
