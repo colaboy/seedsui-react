@@ -150,12 +150,6 @@ var Bridge = {
       success: (res) => {
         // 将位置信息存储到cookie中60秒
         if (res.longitude && res.latitude) {
-          // 兼容ios客户端622以前的版本只能返回wgs84的问题
-          if (Device.os === 'ios' && Device.compareVersion(Device.platformVersion, '6.6.2') < 0) {
-            let point = GeoUtil.coordtransform([res.longitude, res.latitude], 'wgs84', 'gcj02')
-            res.longitude = point[0]
-            res.latitude = point[1]
-          }
           if (params.cacheTime)
             DB.setCookie(
               'app_location',
