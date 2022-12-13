@@ -88,6 +88,10 @@ export default defineConfig({
           {
             title: 'Input.Text',
             path: '/components/input'
+          },
+          {
+            title: 'Location',
+            path: '/components/location'
           }
         ]
       },
@@ -146,6 +150,10 @@ export default defineConfig({
           {
             title: 'Input 录入框',
             path: '/zh/components/input'
+          },
+          {
+            title: 'Location 定位',
+            path: '/zh/components/location'
           }
         ]
       },

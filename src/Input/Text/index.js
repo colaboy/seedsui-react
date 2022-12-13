@@ -259,7 +259,7 @@ const InputText = forwardRef(
     function getInputDOM() {
       // 剔除掉onClick事件, 因为在容器onClick已经回调了
       let { visible: inputVisible, ...otherInputProps } = inputProps
-      if (inputVisible === false) return null
+      // if (inputVisible === false) return null
       // autoFit类型
       if (autoFit) {
         // pre的左右padding
@@ -288,7 +288,7 @@ const InputText = forwardRef(
             {...otherInputProps}
             className={`input-fit-wrapper${
               otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }`}
+            }${!inputVisible ? ' hide' : ''}`}
           >
             <div className={`input-fit`}>
               <textarea
@@ -332,7 +332,7 @@ const InputText = forwardRef(
             onFocus={handleFocus}
             className={`input-textarea${
               otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }`}
+            }${!inputVisible ? ' hide' : ''}`}
           ></textarea>
         )
       }
@@ -344,7 +344,7 @@ const InputText = forwardRef(
           {...otherInputProps}
           className={`input-text${
             otherInputProps.className ? ' ' + otherInputProps.className : ''
-          }`}
+          }${!inputVisible ? ' hide' : ''}`}
           defaultValue={correctValue(defaultValue)}
           value={correctValue(value)}
           min={typeof min === 'number' ? min : ''}
