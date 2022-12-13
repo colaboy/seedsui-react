@@ -37,11 +37,16 @@ function timesInteger(props) {
   } else if (type === 'ceil') {
     typeCalcNum = 0.9
   }
+
+  // 判断是否是负数
+  let isNegative = num < 0 ? -num : num
+
+  // 计算倍数与取整
   num = parseInt(Math.abs(num) * times + typeCalcNum)
   result.times = times
 
   // 负数则返回负数
-  result.num = num < 0 ? -num : num
+  result.num = isNegative ? -num : num
   return result
 }
 
