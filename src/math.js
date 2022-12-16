@@ -39,7 +39,7 @@ function timesInteger(props) {
   }
 
   // 判断是否是负数
-  let isNegative = num < 0 ? -num : num
+  let isNegative = num < 0
 
   // 计算倍数与取整
   num = parseInt(Math.abs(num) * times + typeCalcNum)
