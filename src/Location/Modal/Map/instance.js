@@ -174,6 +174,22 @@ export default function () {
     if (!s.mapUtil?.pointToBdPoint) return bdPoint
     return s.mapUtil.pointToBdPoint(bdPoint) // eslint-disable-line
   }
+  // 搜索
+  s.search = function (value) {
+    Loading.show()
+    s.mapUtil.search({
+      keyword: value,
+      success: (result) => {
+        Loading.hide()
+        console.log(result)
+        if (result.data && result.data.list) {
+        }
+      },
+      fail: () => {
+        Loading.hide()
+      }
+    })
+  }
 
   // 获取定位
   s.getLocation = Utils.getLocation
