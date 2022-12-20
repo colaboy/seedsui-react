@@ -50,39 +50,58 @@ export default function () {
     }, 20000)
   }
 
+  // 绘制中心点
+  s.drawCenterMarker = function (onChange) {
+    s.hideTempMarker()
+    if (!s.marker) return
+    // 获取中心点, 并绘制坐标点, 获取的point为国测局坐标
+    let point = s.getCenterPoint(s.marker)
+    // 显示坐标点
+    s.showMarker()
+    // 地址逆解析, point为国测局坐标
+    Bridge.getAddress({
+      // 只支持gcj02
+      latitude: point[1],
+      longitude: point[0],
+      success: (result) => {
+        const address = result && result.address ? result.address : ''
+        result.value = address
+        if (!result.latitude) result.latitude = point[1]
+        if (!result.longitude) result.longitude = point[0]
+        if (onChange) onChange(result)
+      },
+      fail: () => {
+        if (onChange) onChange(null)
+      }
+    })
+  }
   // 拖拽选点
   s.initDragPoint = function (onChange) {
     s.drawTempMarker(false)
     // 拖拽点
-    s.mapUtil.map.addEventListener('dragstart', () => {
-      if (!s.marker) return
-      s.showTempMarker()
-      s.hideMarker()
-    })
-    s.mapUtil.map.addEventListener('dragend', (e) => {
-      s.hideTempMarker()
-      if (!s.marker) return
-      // 获取中心点, 并绘制坐标点, 获取的point为国测局坐标
-      let point = s.getCenterPoint(s.marker)
-      // 显示坐标点
-      s.showMarker()
-      // 地址逆解析, point为国测局坐标
-      Bridge.getAddress({
-        // 只支持gcj02
-        latitude: point[1],
-        longitude: point[0],
-        success: (result) => {
-          const address = result && result.address ? result.address : ''
-          result.value = address
-          if (!result.latitude) result.latitude = point[1]
-          if (!result.longitude) result.longitude = point[0]
-          if (onChange) onChange(result)
-        },
-        fail: () => {
-          if (onChange) onChange(null)
-        }
-      })
-    })
+    s.mapUtil.map.addEventListener(
+      'dragstart',
+      () => {
+        if (!s.marker) return
+        s.showTempMarker()
+        s.hideMarker()
+      },
+      false
+    )
+    s.mapUtil.map.addEventListener(
+      'zoomend',
+      () => {
+        s.drawCenterMarker(onChange)
+      },
+      false
+    )
+    s.mapUtil.map.addEventListener(
+      'dragend',
+      () => {
+        s.drawCenterMarker(onChange)
+      },
+      false
+    )
   }
 
   /**
@@ -116,8 +135,8 @@ export default function () {
    * 绘制点
    */
   // 标记: 绘制标记, 更新原marker, 则传入marker
-  s.drawMarker = function (point, marker) {
-    let bdPoint = s.toBdPoint(point)
+  s.drawMarker = function (point, isBdPoint) {
+    let bdPoint = isBdPoint ? point : s.toBdPoint(point)
     if (!bdPoint) {
       console.error('绘制标记: 定位坐标错误')
       return null
@@ -168,26 +187,36 @@ export default function () {
     let point = [bdPoint.lng, bdPoint.lat]
     return GeoUtil.coordtransform(point, 'bd09', 'gcj02')
   }
+
   // 国测局转百度坐标
   s.toBdPoint = function (point) {
     let bdPoint = GeoUtil.coordtransform(point, 'gcj02', 'bd09')
     if (!s.mapUtil?.pointToBdPoint) return bdPoint
     return s.mapUtil.pointToBdPoint(bdPoint) // eslint-disable-line
   }
+  s.toGcjPoint = function (bdPoint) {
+    return GeoUtil.coordtransform([bdPoint.lng, bdPoint.lat], 'bd09', 'gcj02')
+  }
   // 搜索
   s.search = function (value) {
-    Loading.show()
-    s.mapUtil.search({
-      keyword: value,
-      success: (result) => {
-        Loading.hide()
-        console.log(result)
-        if (result.data && result.data.list) {
+    return new Promise((resolve) => {
+      Loading.show()
+      s.mapUtil.search({
+        keyword: value,
+        success: (result) => {
+          Loading.hide()
+          console.log(result)
+          if (result.data && result.data.list) {
+            resolve(result.data.list)
+            return
+          }
+          resolve(locale('暂无数据'))
+        },
+        fail: () => {
+          resolve(locale('暂无数据'))
+          Loading.hide()
         }
-      },
-      fail: () => {
-        Loading.hide()
-      }
+      })
     })
   }
 

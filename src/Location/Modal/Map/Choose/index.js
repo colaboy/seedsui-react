@@ -1,23 +1,24 @@
 import React, { useRef, useEffect, useState } from 'react'
-import MapUtil from './../../../MapUtil'
-import Page from './../../../Page'
-import Container from './../../../Container'
-import Header from './../../../Header'
-import Input from './../../../Input'
-import Footer from './../../../Footer'
-import Notice from './../../../Notice'
-import locale from './../../../locale'
-import Instance from './instance'
-import Control from './Control'
+import MapUtil from './../../../../MapUtil'
+import Page from './../../../../Page'
+import Container from './../../../../Container'
+import Footer from './../../../../Footer'
+import Notice from './../../../../Notice'
+import locale from './../../../../locale'
+import Instance from './../instance'
+import Control from './../Control'
+import Search from './Search'
 
 const center = '江苏省,南京市'
 
-function MapView({ ak, value: argValue = null, onChange, ...props }) {
+function MapChoose({ ak, value: argValue = null, onChange, ...props }) {
   const mapRef = useRef(null)
   const instance = useRef(null)
-  let [keyword, setKeyword] = useState(null)
+
+  // 经纬度
   let [value, setValue] = useState(argValue)
-  const [loading, setLoading] = useState(true)
+
+  // 错误
   const [errMsg, setErrMsg] = useState(false)
 
   useEffect(() => {
@@ -45,11 +46,6 @@ function MapView({ ak, value: argValue = null, onChange, ...props }) {
       }
     }
   }, []) // eslint-disable-line
-
-  // 绘制标记点
-  useEffect(() => {
-    handleMarker()
-  }, [loading]) // eslint-disable-line
 
   // 初始化地图
   function initData() {
@@ -79,7 +75,8 @@ function MapView({ ak, value: argValue = null, onChange, ...props }) {
         }
       })
       setErrMsg('')
-      setLoading(false)
+      // 初始化完成, 绘制Marker
+      handleMarker()
     })
   }
 
@@ -114,32 +111,9 @@ function MapView({ ak, value: argValue = null, onChange, ...props }) {
     if (onChange) onChange(value)
   }
 
-  // 搜索
-  function handleSearch() {
-    instance.current.search(keyword)
-  }
-
   return (
     <Page {...props}>
-      <Header className="flex flex-middle" style={{ padding: '10px 0px 10px 12px' }}>
-        <form
-          action="."
-          className="flex-1 bordered"
-          style={{ backgroundColor: 'white' }}
-          onSubmit={(e) => {
-            e.preventDefault()
-            handleSearch()
-          }}
-        >
-          <Input.Text
-            value={keyword}
-            onChange={setKeyword}
-            licon={<i className="icon icon-search color-sub size14" style={{ margin: '8px' }}></i>}
-            inputProps={{ style: { padding: '4px 0' } }}
-          />
-        </form>
-        <span className="map-header-search">{locale('搜索')}</span>
-      </Header>
+      <Search instance={instance} setErrMsg={setErrMsg} onChange={handleLocation} />
       <Container>
         <div ref={mapRef} className={`map-container`}></div>
         <Control.Location instance={instance} value={value} onChange={handleLocation} />
@@ -155,8 +129,8 @@ function MapView({ ak, value: argValue = null, onChange, ...props }) {
           </span>
         )}
       </Footer>
-      {errMsg && <Notice caption={errMsg} />}
+      {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Page>
   )
 }
-export default MapView
+export default MapChoose

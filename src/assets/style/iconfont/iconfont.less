@@ -37,6 +37,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+// 清除公共图标
+.close-icon-clear {
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
+}
+
+// 生成的文字图标
 // @font-face {
 //   font-family: 'iconfont';
 //   src: url('iconfont.woff2?t=1646099070081') format('woff2'),
@@ -46,18 +53,31 @@
 /* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
   font-family: 'iconfont'; /* Project id 815148 */
-  src: url('//at.alicdn.com/t/c/font_815148_vn2e9uwrl1.woff2?t=1668078109258') format('woff2'),
-    url('//at.alicdn.com/t/c/font_815148_vn2e9uwrl1.woff?t=1668078109258') format('woff'),
-    url('//at.alicdn.com/t/c/font_815148_vn2e9uwrl1.ttf?t=1668078109258') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_815148_nkekrynwp6h.woff2?t=1671517041769') format('woff2'),
+    url('//at.alicdn.com/t/c/font_815148_nkekrynwp6h.woff?t=1671517041769') format('woff'),
+    url('//at.alicdn.com/t/c/font_815148_nkekrynwp6h.ttf?t=1671517041769') format('truetype');
 }
 
-// 清除公共图标
-.close-icon-clear {
-  font-family: 'iconfont';
-  &:extend(.icon-rdo-close-fill all);
+.icon-position-fill:before {
+  content: '\e73b';
 }
 
-// 生成的文字图标
+.icon-position:before {
+  content: '\e73d';
+}
+
+.icon-minus-fill:before {
+  content: '\e803';
+}
+
+.icon-plus-fill:before {
+  content: '\e802';
+}
+
+.icon-type-word:before {
+  content: '\e801';
+}
+
 .icon-sort-r-fill:before {
   content: '\e7fe';
 }
