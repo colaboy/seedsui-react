@@ -111,7 +111,8 @@ export { default as Timepart } from './Timepart' // 不常用
 export { default as Titlebar } from './Titlebar'
 export { default as Toast } from './Toast'
 export { default as Tooltip } from './Tooltip'
-export { default as Tree } from './Tree' // 不常用
+export { default as Tree } from './Tree' // (废弃, 使用TreePicker代替)
+export { default as TreePicker } from './TreePicker'
 
 // utils
 export { default as Ajax } from './Ajax' // 不常用

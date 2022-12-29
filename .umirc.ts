@@ -66,6 +66,10 @@ export default defineConfig({
           {
             title: 'Button',
             path: '/components/button'
+          },
+          {
+            title: 'Badge',
+            path: '/components/badge'
           }
         ]
       },
@@ -92,6 +96,10 @@ export default defineConfig({
           {
             title: 'Location',
             path: '/components/location'
+          },
+          {
+            title: 'DatePicker',
+            path: '/components/date-picker'
           }
         ]
       },
@@ -101,6 +109,10 @@ export default defineConfig({
           {
             title: 'Tree',
             path: '/components/tree'
+          },
+          {
+            title: 'TreePicker',
+            path: '/components/tree-picker'
           },
           {
             title: 'Cascader',
@@ -128,6 +140,10 @@ export default defineConfig({
           {
             title: 'Button 按钮',
             path: '/zh/components/button'
+          },
+          {
+            title: 'Badge',
+            path: '/zh/components/badge'
           }
         ]
       },
@@ -154,6 +170,10 @@ export default defineConfig({
           {
             title: 'Location 定位',
             path: '/zh/components/location'
+          },
+          {
+            title: 'DatePicker',
+            path: '/zh/components/date-picker'
           }
         ]
       },
@@ -163,6 +183,10 @@ export default defineConfig({
           {
             title: 'Tree 树',
             path: '/zh/components/Tree'
+          },
+          {
+            title: 'TreePicker',
+            path: '/zh/components/tree-picker'
           },
           {
             title: 'Cascader 级联选择',

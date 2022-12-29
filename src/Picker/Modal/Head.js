@@ -17,6 +17,7 @@ const Head = forwardRef(
       disabled: submitDisabled,
       ...otherSubmitProps
     } = submitProps || {}
+
     // 点击确定
     function handleSubmitClick(e) {
       e.stopPropagation()
@@ -57,7 +58,7 @@ const Head = forwardRef(
             {...otherSubmitProps}
             className={`picker-submit${
               otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''
-            }${multiple || submitDisabled === false ? '' : ' disabled'}`}
+            }${submitDisabled === true ? ' disabled' : ''}`}
             onClick={handleSubmitClick}
           >
             {submitCaption || locale('完成', 'finish')}
