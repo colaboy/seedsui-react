@@ -12,6 +12,9 @@ export default () => {
         list={treeData}
         multiple={true}
         TreeProps={{
+          keywordProps: {
+            visible: true
+          },
           showIcon: false,
           checkStrictly: false,
           checkable: true,
@@ -19,16 +22,19 @@ export default () => {
         }}
         onChange={setValue}
       />
-      <TreePicker.Tree
+      {/* <TreePicker.Tree
+        keywordProps={{
+          visible: true
+        }}
         value={value}
         multiple={true}
-        treeData={treeData}
+        list={treeData}
         showIcon={false}
         checkStrictly={false}
         checkable
         selectable={false}
         onChange={setValue}
-      />
+      /> */}
     </>
   )
 }

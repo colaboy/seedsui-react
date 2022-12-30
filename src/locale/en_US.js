@@ -139,5 +139,6 @@ export default {
   datepopover_last_month: 'Last month',
   datepopover_last_days: 'Last {0} days',
   datepopover_custom_date: 'Custom date',
-  hint_error_datepopover_custom_date_range_timeout: 'No more than {0} days'
+  hint_error_datepopover_custom_date_range_timeout: 'No more than {0} days',
+  input_search_placeholder: 'Search'
 }

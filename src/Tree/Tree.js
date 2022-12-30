@@ -3,6 +3,10 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import usePrevious from './../usePrevious'
 import Instance from './instance.js'
 
+/**
+ * @deprecated since version 5.6.21
+ * 请使用TreePicker
+ */
 const Tree = forwardRef(
   (
     {
