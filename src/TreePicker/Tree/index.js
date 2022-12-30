@@ -11,8 +11,8 @@ function TreePicker(props) {
   const {
     multiple,
     list,
-    value,
     defaultValue,
+    value,
     keywordProps,
     // 节流时长
     throttle = 500,
@@ -21,11 +21,23 @@ function TreePicker(props) {
   } = props
 
   // 扁平化数据, 搜索时需要展开的子级
-  let flattenListRef = useRef([])
+  let flattenListRef = useRef(
+    Array.isArray(list) && list.length ? Object.clone(list).flattenTree() : []
+  )
   useEffect(() => {
-    if (Array.isArray(list) && list.length) {
-      flattenListRef.current = Object.clone(list).flattenTree()
+    // 第一次不走
+    if (!flattenListRef.isFirst) {
+      flattenListRef.isFirst = true
     }
+    // 第二次开始更新
+    else {
+      if (Array.isArray(list) && list.length) {
+        flattenListRef.current = Object.clone(list).flattenTree()
+      }
+    }
+
+    // 展开关键字
+    handleExpandedKeys()
   }, [list])
 
   // 展开的id
@@ -40,26 +52,16 @@ function TreePicker(props) {
 
   // 搜索项属性
   const { visible: keywordVisible, value: keywordValue, ...otherKeywordProps } = keywordProps || {}
-  const [keyword, setKeyword] = useState(keywordValue)
+  let [keyword, setKeyword] = useState(keywordValue)
   function handleKeyword(newKeyword) {
     // 节流搜索
     if (flattenListRef.timeout) {
       window.clearTimeout(flattenListRef.timeout)
     }
     flattenListRef.timeout = window.setTimeout(() => {
+      keyword = newKeyword
       setKeyword(newKeyword)
-
-      // 没有关键字则没有展开项
-      if (!newKeyword) {
-        setExpandedKeys([])
-        return
-      }
-
-      // 展开的keys
-      const newExpandedKeys = Utils.getExpandedKeys(newKeyword, flattenListRef.current)
-      setExpandedKeys(newExpandedKeys)
-
-      // setAutoExpandParent(true)
+      handleExpandedKeys()
     }, throttle)
   }
 
@@ -74,15 +76,27 @@ function TreePicker(props) {
       }
     : {}
 
+  // 展开关键字
+  function handleExpandedKeys() {
+    // 没有关键字则没有展开项
+    if (!keyword || Object.isEmptyObject(list)) {
+      setExpandedKeys([])
+    } else {
+      // 展开的keys
+      const newExpandedKeys = Utils.getExpandedKeys(keyword, flattenListRef.current)
+      setExpandedKeys(newExpandedKeys)
+
+      // setAutoExpandParent(true)
+    }
+  }
+
+  // 构建渲染数据, 支持关键字搜索
+  const treeData = Utils.getTreeData(list, keyword)
+
   // 构建选中项
   const checkedKeysProp = useMemo(() => {
     return Utils.getCheckedKeysProp(value, defaultValue)
   }, [value, defaultValue])
-
-  // 构建渲染数据, 支持关键字搜索
-  const treeData = useMemo(() => {
-    return Utils.getTreeData(list, keyword)
-  }, [keyword])
 
   return (
     <>
@@ -93,12 +107,13 @@ function TreePicker(props) {
           onChange={handleKeyword}
           className="treepicker-keyword-input"
           defaultValue={keyword}
+          allowClear={true}
           {...otherKeywordProps}
         />
       )}
       {/* 树 */}
       <Tree
-        fieldNames={{ title: 'name', key: 'id' }}
+        fieldNames={{ key: 'id' }}
         treeData={treeData}
         multiple={multiple}
         // 选中项属性

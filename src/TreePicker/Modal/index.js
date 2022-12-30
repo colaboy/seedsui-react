@@ -42,7 +42,7 @@ const Modal = forwardRef(
 
     useEffect(() => {
       setTempValue(value)
-    }, [JSON.stringify(value || '')])
+    }, [value])
 
     // 修改回调
     async function handleChange(newTempValue) {

@@ -4753,238 +4753,67 @@ function handleClick() {
 
 [返回目录](#简介)
 
-## TreePicker
+## TreePicker.Tree
 
 [树结构](https://unpkg.com/seedsui-react/src/lib/TreePicker/Tree/index.js)
+
+TreePicker 基于 rc-tree 开发, [完整 api](https://ant.design/components/tree-cn)
 
 ### 属性
 
 ```javascript
-<TreePicker
-  split={分隔符 string, 默认','}
-  multiple={是否需要多选 bool, 默认false} // 只有设置checkbox为true才生效
-  checkbox={是否支持选择 bool, 默认无}
-  checkStrictly={是否启用严格模式 bool, 默认true} // 严格模式, 父子节点选中状态不再关联
-  arrowAutoShow={箭头自动显示, 有下级时才显示箭头 bool, 默认false}
-  expand={展开收缩 bool|array, 默认false} // true.全部展开 false.全部收缩 [id,id].展开指定id
-  expandPredecessors={展开收缩 bool, 默认true} // expand指定id展开节点时, 是否展开其父辈元素
-  bar={选中项聚合展现栏 string | node, 默认无}
-
-  treeAttribute={树属性 object, 默认无} // 基础className为tree
-  buttonAddAttribute={添加按钮属性 object, 默认无} // {className: '', onClick: func()}
-  buttonDelAttribute={删除按钮属性 object, 默认无} // {className: '', onClick: func()}
-
-  // 关键字
-  keyword={关键字搜索 string, 默认''}
-  keywordAttribute={关键字属性 object, 默认{pinyin: true, className: '', css: 'color: #FF9007'}}
-
-  selected={选中项 array, 默认无} // 选中项: [{id: '', id: ''}]
+<TreePicker.Tree
+  multiple={是否需要多选 bool, 默认false}
   list={列表项 array, 默认无} // 数据: [{id: '', name: '', parentid: ''}]
-  selectedAutoClear={自动清理不存在的选中节点 bool, 默认false}
-
-  getChildren={动态渲染子元素 Promise, 默认无} // 信息过大的情况, 先只渲染部门再渲染人员, 所以必须通过请求获取, 返回一个Promise对象, resolve([id: "", name: "", parentid: ""])时会渲染, resolve('错误')则停留在选择页面不进行渲染操作
-  onChange={点击底层节点 func(s, value, selected), 默认无}
-  onClick={点击节点 func(s, value, item, isActived, isExpand, childrenCount), 默认无}
-  onClickLeaf={点击底层节点 func(s, value, item, isActived), 默认无}
-
-  onData={数据加载时,可修改dom func(option), 默认无} // 通过修改option.html塞入按钮前
+  // value则会赋值CheckedKeys, 使用defaultValue则会赋值defaultCheckedKeys
+  value={选中项 array, 默认无} // 选中项: [{id: '', name: '', parentid: ''}]
+  defaultValue={选中项 array, 默认无} // 选中项: [{id: '', name: '', parentid: ''}]
+  // 关键字
+  keywordProps={{
+    value: 默认搜索关键字
+    visible: 是否显示搜索功能
+    ...props // 其它文本框属性
+  }}
+  // 节流时长
+  throttle={节流时长 默认500毫秒}
+  onChange={选中项 func([{id: '', name: '', parentid: ''}]), 默认无}
 />
 ```
 
 ### 示例
 
 ```javascript
-import Tree from 'seedsui-react/lib/Tree';
+import TreePicker from 'seedsui-react/lib/TreePicker'
 
-const groupList = [
-    {
-        "name": "总裁办",
-        "pId": "-1",
-        "id": "10",
-        "keyword": "总裁办 zongcaiban"
-    },
-    {
-        "name": "测试部",
-        "pId": "10",
-        "id": "8957633643953961197",
-        "keyword": "测试部 ceshibu"
-    },
-    {
-        "name": "研发部",
-        "pId": "10",
-        "id": "5781872119387025161"
-    },
-    {
-        "name": "产品部",
-        "pId": "10",
-        "id": "7591985334241357161"
-    },
-    {
-        "name": "研发一组",
-        "pId": "5781872119387025161",
-        "id": "5624943302224129109"
-    }
-]
-
-var userList2 = [
-  {
-    isPeople: true,
-    id: 'liguanghui',
-    name: '李广辉',
-    parentid: '96a2835b-a1b2-4556-bf68-cb0038042b57'
-  },
-  {
-    isPeople: true,
-    id: 'xuguolong',
-    name: '徐国龙',
-    parentid: '96a2835b-a1b2-4556-bf68-cb0038042b57'
-  },
-  {
-    isPeople: true,
-    id: 'zhujingjing',
-    name: '朱晶晶',
-    parentid: '96a2835b-a1b2-4556-bf68-cb0038042b57'
-  }
-]
-
-// 异步加载的方法, 点击Title, 去请求数据, 将数据塞到指定节点下
-  function handleChildren(id) {
-    Bridge.showLoading()
-    return new Promise((resolve) => {
-      if (id === '56a81fea-03f4-41e1-a521-ea14513a65c6') {
-        // 加载业务产品部
-        console.log('加载业务产品部')
-        setTimeout(() => {
-          resolve(userList1)
-          Bridge.hideLoading()
-        }, 2000)
-      } else if (id === '96a2835b-a1b2-4556-bf68-cb0038042b57') {
-        // 加载移动平台产品线
-        console.log('加载移动平台产品线')
-        setTimeout(() => {
-          resolve(userList2)
-          Bridge.hideLoading()
-        }, 2000)
-      } else {
-        Bridge.hideLoading()
-        resolve([])
-      }
-    })
-  }
-
-  const [elBar, setElBar] = useState(null)
-
-  const [list, setList] = useState([])
-
-  const [selected, setSelected] = useState([
-    {
-      id: '13ed5bf3-1b91-4fca-9303-ee8071b32154',
-      name: '内勤组',
-      parentid: 'b93d94c6-7e30-4caf-89eb-188bef40b3ba'
-    },
-    {
-      id: '47f9b708-ab98-4fb3-a643-217db2074c73',
-      name: '人力资源部',
-      parentid: '-1'
-    }
-  ])
-  const [expand, setExpand] = useState(false)
-  const [keyword, setKeyword] = useState('')
-
-  useEffect(() => {
-    console.log(Math.Calc.toThousandth('+1000'))
-    setTimeout(() => {
-      setList(groupList)
-    }, 1000)
-  }, [])
-
-  // 获取选中
-  function handleSubmit() {
-    console.log(selected)
-  }
-  // 显示最新数据
-  function handleData () {
-    console.log(list)
-  }
-  // 展开全部
-  function handleExpand() {
-    setExpand(true)
-  }
-  // 展开指定id
-  function handleExpandIds() {
-    setExpand(['483d-94d8-4163-85d2-940ccbf5ede1'])
-  }
-  // 展开全部
-  function handleCollapse() {
-    setExpand(false)
-  }
-
-  // 添加数据时, 可手动修改它的渲染样式
-  function handleRender(option, s) {
-    if (!option.isPeople) return
-    // 关键字修改
-    let getKeywordTitle = (node) => node
-    if (s.getKeywordTitle) {
-      getKeywordTitle = s.getKeywordTitle
-    }
-    var photo = ''
-    if (option.avatarUrl) {
-      photo = `<span class="tree-avatar" style="background-image:url(${option.avatarUrl})"></span>`
-    } else {
-      // photo = '<span class="tree-avatar" style="background-color:' + option.name.substr(0, 1).toPinyin().substr(0, 1).toColor() + '">' + option.name.substr(option.name.length - 2, 2) + '</span>';
-      photo = `<span class="tree-avatar">${option.name.substr(option.name.length - 2, 2)}</span>`
-    }
-    option.html =
-      '<div class="tree-icon">' +
-      photo +
-      '</div>' +
-      '<div class="tree-title">' +
-      getKeywordTitle(option) +
-      '</div>'
-  }
-  // 查看选中信息
-  function handleChange(e, value, options) {
-    console.log(value, options)
-    setSelected(options)
-  }
-
-  // 修改关键字
-  function changeKeyword(e) {
-    let keyword = e.target.value
-    setKeyword(keyword)
-    if (keyword) {
-      setExpand(true)
-    } else {
-      setExpand(false)
-    }
-  }
-
-<input type="text" placeholder="请输入关键字" value={keyword} onChange={changeKeyword}/>
-<div ref={setElBar} className="tree-bar"></div>
-<Tree
-  keyword="哈哈"
-  keywordAttribute={{
-    pinyin: true,
-    style: {color: 'red'},
-    className: 'custom'
-  }}
-  list={list}
-  expand={expand}
-  multiple
-  checkbox
-  keyword={keyword}
-  getChildren={handleChildren}
-  onData={handleRender}
-  onChange={handleChange}
-  selected={selected}
-  checkStrictly={false}
-  bar={elBar}
-/>
-<input type="button" className="button lg" value="展开全部" onClick={handleExpand} />
-<input type="button" className="button lg" value="展开办公室1" onClick={handleExpandIds} />
-<input type="button" className="button lg" value="收缩全部" onClick={handleCollapse} />
-<input type="button" className="button lg" value="查看选中" onClick={handleSubmit} />
-<input type="button" className="button lg" value="查看最新数据" onClick={handleData} />
+<TreePicker.Combo
+        placeholder="Please select"
+        value={value}
+        list={treeData}
+        multiple={true}
+        TreeProps={{
+          keywordProps: {
+            visible: true
+          },
+          showIcon: false,
+          checkStrictly: false,
+          checkable: true,
+          selectable: false
+        }}
+        onChange={setValue}
+      />
+      <TreePicker.Tree
+        keywordProps={{
+          visible: true
+        }}
+        value={value}
+        multiple={true}
+        list={treeData}
+        showIcon={false}
+        checkStrictly={false}
+        checkable
+        selectable={false}
+        onChange={setValue}
+      />
 ```
 
 [返回目录](#简介)

@@ -21,18 +21,19 @@ export default {
         defaultCheckedKeys: checkedKeys
       }
     }
+    return valueProp
   },
   // 构建渲染数据, 支持关键字搜索
   getTreeData(originData, keyword) {
-    if (!keyword || !originData) return originData
+    if (!originData) return originData
     // 关键字搜索
     const loop = (data) =>
       data.map((item) => {
-        const nameStr = item.name
-        const index = nameStr.indexOf(keyword)
-        const beforeStr = nameStr.substring(0, index)
-        const afterStr = nameStr.slice(index + keyword.length)
-        const nameDOM =
+        const name = item.name
+        const index = name.indexOf(keyword)
+        const beforeStr = name.substring(0, index)
+        const afterStr = name.slice(index + keyword.length)
+        const titleDOM =
           index > -1 ? (
             <>
               <span className="treepicker-keyword-highlight-before">{beforeStr}</span>
@@ -40,17 +41,20 @@ export default {
               <span className="treepicker-keyword-highlight-before">{afterStr}</span>
             </>
           ) : (
-            <span>{nameStr}</span>
+            name
           )
+
         if (item.children) {
           return {
-            name: nameDOM,
+            title: titleDOM,
+            name: name,
             id: item.id,
             children: loop(item.children)
           }
         }
         return {
-          name: nameDOM,
+          title: titleDOM,
+          name: name,
           id: item.id
         }
       })
