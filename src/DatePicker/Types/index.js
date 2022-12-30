@@ -34,12 +34,14 @@ const Types = forwardRef(
         }
       ],
       value,
-      // {
-      //   type: 'date',
-      //   id: 'date',
-      //   name: '日',
-      //   value: new Date()
-      // }
+      /*
+      {
+        type: 'date',
+        id: 'date',
+        name: '日',
+        value: new Date()
+      }
+      */
 
       // 配置
       contentProps = {},
@@ -87,7 +89,7 @@ const Types = forwardRef(
     }, []) // eslint-disable-line
 
     // 统一的修改方法
-    function handleChange(newValue, index) {
+    function handleChange(newValue) {
       let date = DateModalUtils.validateDate(newValue.value, {
         type: newValue.type,
         min: min,
@@ -98,7 +100,7 @@ const Types = forwardRef(
         return
       }
       newValue.value = date
-      if (onChange) onChange(newValue, index)
+      if (onChange) onChange(newValue)
     }
 
     // 点击Tab
