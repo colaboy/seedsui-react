@@ -10,7 +10,7 @@ const Modal = forwardRef(
   (
     {
       // 通用属性
-      portal,
+      portal, // 支持{mask: MaskNode}
       getComboDOM,
       maskClosable = true,
       value,
@@ -42,6 +42,9 @@ const Modal = forwardRef(
     }
     // 节点
     const rootRef = useRef(null)
+    if (Object.prototype.toString.call(portal) === '[object Object]' && portal.mask) {
+      rootRef.current = portal.mask
+    }
     const instance = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -195,6 +198,19 @@ const Modal = forwardRef(
     const otherMaskProps = filterProps(maskProps)
     const otherSubmitProps = filterProps(submitProps)
     const otherCancelProps = filterProps(cancelProps)
+
+    // 主体内容
+    const ContentDOM = (
+      <div className="picker-wrapper">
+        <div className="picker-layer">
+          <div className="picker-layer-frame"></div>
+        </div>
+        <div className="picker-slotbox"></div>
+      </div>
+    )
+    if (Object.prototype.toString.call(portal) === '[object Object]' && portal.mask) {
+      return ContentDOM
+    }
     return createPortal(
       <div
         ref={rootRef}
@@ -212,12 +228,7 @@ const Modal = forwardRef(
             cancelProps={otherCancelProps}
             submitProps={otherSubmitProps}
           />
-          <div className="picker-wrapper">
-            <div className="picker-layer">
-              <div className="picker-layer-frame"></div>
-            </div>
-            <div className="picker-slotbox"></div>
-          </div>
+          {ContentDOM}
         </div>
       </div>,
       portal || document.getElementById('root') || document.body

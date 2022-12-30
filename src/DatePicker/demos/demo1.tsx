@@ -5,13 +5,19 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      <DatePicker.Combo
+      {/* <DatePicker.Combo
         placeholder="Please select"
         value={value}
         multiple={true}
         onChange={setValue}
+      /> */}
+      <DatePicker.MultipleCombo
+        placeholder="Please MultipleCombo"
+        value={value}
+        multiple={true}
+        onChange={setValue}
       />
-      <DatePicker.RangeCombo
+      {/* <DatePicker.RangeCombo
         className="border-b"
         maskClosable={false}
         placeholder="Please select"
@@ -35,7 +41,7 @@ export default () => {
         onChange={(...params) => console.log(...params)}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-right' }}
-      />
+      /> */}
     </>
   )
 }
