@@ -10,7 +10,7 @@ const Modal = forwardRef(
   (
     {
       // 通用属性
-      portal, // 支持{mask: MaskNode}
+      portal, // {wrapper: true(只显示wrapper的内容)}
       getComboDOM,
       maskClosable = true,
       value,
@@ -23,6 +23,7 @@ const Modal = forwardRef(
       onVisibleChange,
 
       maskProps = {},
+      wrapperProps = {},
       captionProps = {},
       submitProps = {},
       cancelProps = {},
@@ -77,7 +78,7 @@ const Modal = forwardRef(
     async function handleSubmitClick() {
       let s = instance.current
       // 获取选中项
-      let newValue = s.getActiveDate(e.activeOptions)
+      let newValue = s.getActiveDate(s.activeOptions)
       var activeKeys = s.activeOptions.map(function (n, i, a) {
         return n['id']
       })
@@ -127,6 +128,11 @@ const Modal = forwardRef(
       // 是否显示标题
       title = s.getActiveWeekText()
       setTitle(title)
+
+      // 如果只渲染wrapper则意味没有头部所以需要触发onChange
+      if (Object.prototype.toString.call(portal) === '[object Object]' && portal.wrapper) {
+        handleSubmitClick()
+      }
     }
 
     function handleUpdate() {
@@ -178,7 +184,11 @@ const Modal = forwardRef(
     }
     // 主体内容
     const ContentDOM = (
-      <div className="picker-wrapper" ref={wrapperRef}>
+      <div
+        {...wrapperProps}
+        className={`picker-wrapper${wrapperProps.className ? ' ' + wrapperProps.className : ''}`}
+        ref={wrapperRef}
+      >
         <div className="picker-layer">
           <div className="picker-layer-frame"></div>
         </div>
@@ -187,7 +197,7 @@ const Modal = forwardRef(
     )
 
     // 只渲染主体
-    if (Object.prototype.toString.call(portal) === '[object Object]' && portal.content) {
+    if (Object.prototype.toString.call(portal) === '[object Object]' && portal.wrapper) {
       return ContentDOM
     }
 
@@ -226,6 +236,12 @@ const Modal = forwardRef(
 )
 
 export default React.memo(Modal, (prevProps, nextProps) => {
-  if (nextProps.visible === prevProps.visible) return true
+  if (
+    nextProps.visible === prevProps.visible &&
+    // 当只显示wrapper时, 仅会使用wrapperProps来控制显隐
+    JSON.stringify(nextProps.wrapperProps) === JSON.stringify(prevProps.wrapperProps)
+  ) {
+    return true
+  }
   return false
 })

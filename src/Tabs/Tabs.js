@@ -3,7 +3,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 const Tabs = forwardRef(
   (
     {
-      className = 'tabs-line tabs-line-width70 border-b', // tabs-line | tabs-rect | tabs-lump | tabs-dropdown | tabs-footer
+      className = 'tabs-line tabs-line-width-percent70 border-b', // tabs-line | tabs-rect | tabs-lump | tabs-dropdown | tabs-footer
       // 内部tab宽度平均分配
       average = false,
       contentProps = {},

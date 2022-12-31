@@ -143,3 +143,21 @@
   pointer-events: none;
   &:extend(.border-tb all);
 }
+
+// 选择器中的tabs
+.picker-tabs {
+  .tabs-line;
+  .tabs-line-width100;
+  // 文字
+  .tab,
+  .tab.active {
+    .tab-caption {
+      .color-sub;
+      .font-size-sm;
+    }
+    .tab-sndcaption {
+      .color-body;
+      .font-size-md;
+    }
+  }
+}

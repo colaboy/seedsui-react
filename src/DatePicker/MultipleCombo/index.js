@@ -2,6 +2,8 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Combo from './../../Picker/Combo'
 import MultipleModal from './../MultipleModal'
 
+import locale from './../../locale'
+
 // 日期多选
 export default forwardRef(
   (
@@ -29,10 +31,27 @@ export default forwardRef(
       }
     })
 
+    // value必传
+    if (!value) {
+      value = [
+        {
+          type: 'date',
+          id: 'start',
+          name: locale('开始时间'),
+          value: new Date()
+        },
+        {
+          type: 'date',
+          id: 'end',
+          name: locale('结束时间'),
+          value: new Date()
+        }
+      ]
+    }
     return (
       <Combo
         ref={rootRef}
-        value={value}
+        // value={value}
         ModalComponent={MultipleModal}
         ModalProps={{
           value: value,

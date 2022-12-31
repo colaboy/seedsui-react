@@ -1,9 +1,13 @@
 // require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
-import locale from './../../locale'
+
 import Head from './../../Picker/Modal/Head'
 import DatePickerModal from './../Modal'
+import Tabs from './../../Tabs'
+
+import locale from './../../locale'
+import DateComboUtils from './../Combo/Utils'
 
 const MultipleModal = forwardRef(
   (
@@ -22,6 +26,7 @@ const MultipleModal = forwardRef(
       onVisibleChange,
 
       maskProps = {},
+      wrapperProps = {},
       submitProps = {},
       cancelProps = {},
 
@@ -44,9 +49,48 @@ const MultipleModal = forwardRef(
       }
     })
 
-    useEffect(() => {}, []) // eslint-disable-line
+    // 选中tab
+    const [tabs, setTabs] = useState(null)
+    const [activeTab, setActiveTab] = useState(null)
 
-    // console.log(visible)
+    useEffect(() => {
+      if (!Array.isArray(value) || !value[0] || !value[0].id) return
+      // 格式化value
+      let newTabs = value.map((tab) => {
+        return {
+          ...tab,
+          sndcaption: DateComboUtils.getDisplayValue({
+            type: type,
+            value: tab.value
+          })
+        }
+      })
+      console.log(newTabs)
+      setTabs(newTabs)
+      setActiveTab(newTabs[0])
+    }, [value])
+
+    // 点击遮罩
+    function handleMaskClick(e) {
+      if (!e.target.classList.contains('mask')) return
+      if (maskProps.onClick) maskProps.onClick()
+      if (maskClosable && onVisibleChange) onVisibleChange(false)
+    }
+
+    // 选择日期
+    function handleDateChange(newTab) {
+      let newTabList = tabs.map((tab) => {
+        if (tab === newTab.id) return newTab
+        return tab
+      })
+      setTabs(newTabList)
+    }
+
+    if (!value) {
+      console.error('MultipleModal: Wrong parameter with "value"!', value)
+      return null
+    }
+    if (!tabs) return null
     return createPortal(
       <div
         ref={rootRef}
@@ -54,6 +98,7 @@ const MultipleModal = forwardRef(
         className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
           visible ? ' active' : ''
         }`}
+        onClick={handleMaskClick}
       >
         <div
           {...props}
@@ -71,9 +116,26 @@ const MultipleModal = forwardRef(
             // onSubmitClick={handleSubmitClick}
             // onCancelClick={handleCancelClick}
           />
-          {rootRef.current && (
-            <DatePickerModal visible={visible} portal={{ content: true }} {...props} />
-          )}
+          <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
+          {tabs.map((tab, index) => {
+            let wrapperVisible = tab.id === activeTab.id
+            return (
+              <DatePickerModal
+                key={tab.id || index}
+                type={tab.type || 'date'}
+                value={tab.value}
+                visible={visible}
+                portal={{ wrapper: true }}
+                onChange={(date) => {
+                  tab.value = date
+                  handleDateChange(tab)
+                }}
+                wrapperProps={Object.assign({}, wrapperProps, {
+                  className: `${wrapperProps.className || ''}${wrapperVisible ? '' : ' hide'}`
+                })}
+              />
+            )
+          })}
         </div>
       </div>,
       portal || document.getElementById('root') || document.body

@@ -167,21 +167,29 @@
       transform: translate(-50%, 0) scale(1, 1);
     }
   }
-  &.tabs-line-width50 {
-    .tab:after {
-      width: 50%;
+
+  // 定义线条宽度: 百分比
+  .setTabsLineWidthPercentage(@n, @i:40) when(@i<@n) {
+    &.tabs-line-width-percent@{i} {
+      .tab:after {
+        width: percentage(@i / 100);
+      }
     }
+    .setTabsLineWidthPercentage(@n,(@i+10));
   }
-  &.tabs-line-width60 {
-    .tab:after {
-      width: 60%;
+  .setTabsLineWidthPercentage(90);
+
+  // 定义线条宽度: 像素
+  .setTabsLineWidth(@n, @i:80) when(@i<@n) {
+    &.tabs-line-width@{i} {
+      .tab:after {
+        width: unit(@i, px);
+      }
     }
+    .setTabsLineWidth(@n,(@i+10));
   }
-  &.tabs-line-width70 {
-    .tab:after {
-      width: 70%;
-    }
-  }
+
+  .setTabsLineWidth(200);
 }
 .tabs-line.reverse {
   color: @tabs-line-reverse-color;

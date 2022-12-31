@@ -19,6 +19,7 @@ const Modal = forwardRef(
 
       // 定制属性
       maskProps = {},
+      wrapperProps = {},
       captionProps = {},
       submitProps = {},
       cancelProps = {},
@@ -148,7 +149,13 @@ const Modal = forwardRef(
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
-          <div className="picker-wrapper" ref={wrapperRef}>
+          <div
+            {...wrapperProps}
+            className={`picker-wrapper${
+              wrapperProps.className ? ' ' + wrapperProps.className : ''
+            }`}
+            ref={wrapperRef}
+          >
             <div className="picker-layer">
               <div className="picker-layer-frame"></div>
             </div>
