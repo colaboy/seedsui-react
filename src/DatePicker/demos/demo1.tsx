@@ -5,18 +5,18 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      {/* <DatePicker.Combo
+      <DatePicker.Combo
         placeholder="Please select"
         value={value}
         multiple={true}
         onChange={setValue}
-      /> */}
-      <DatePicker.MultipleCombo
+      />
+      {/* <DatePicker.MultipleCombo
         placeholder="Please MultipleCombo"
         value={value}
         multiple={true}
         onChange={setValue}
-      />
+      /> */}
       {/* <DatePicker.RangeCombo
         className="border-b"
         maskClosable={false}

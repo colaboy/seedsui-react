@@ -4,27 +4,10 @@ var Picker = function (params) {
   Model
   ------------------------ */
   var defaults = {
-    idPropertyName: 'id',
-    namePropertyName: 'name',
-
-    overflowContainer: document.body,
-    overflowContainerActiveClass: 'overflow-hidden',
-
-    mask: null,
-
-    maskClass: 'mask',
-    maskActiveClass: 'active',
-    maskFeatureClass: 'picker-mask',
-
-    pickerClass: 'picker',
-    pickerActiveClass: 'active',
-
-    headerClass: 'picker-header',
-    headerTitleClass: 'picker-header-title',
-    headerSubmitClass: 'picker-submit',
-    headerSubmitText: '完成', // 实例化时需要国际化
-    headerCancelClass: 'picker-cancel',
-    headerCancelText: '取消', // 实例化时需要国际化
+    fieldNames: {
+      id: 'id',
+      name: 'name'
+    },
 
     wrapperClass: 'picker-wrapper',
 
@@ -42,16 +25,11 @@ var Picker = function (params) {
 
     /* callbacks
     onInit:function (Picker)
-    onClickCancel:function (Picker)
-    onClickSubmit:function (Picker)
-    onClickMask:functioin (Picker)
     onScrollStart:function (Picker)
     onScroll:function (Picker)
     onScrollEnd:function (Picker)
     onTransitionEnd:function (Picker)// 动画结束后回调
-    onShowed(Picker)// 显示动画结束后回调
-    onHid(Picker)// 隐藏动画结束后回调
-      */
+    */
   }
   params = params || {}
   for (var def in defaults) {
@@ -65,18 +43,14 @@ var Picker = function (params) {
   // Params
   s.params = params
   // Dom元素
-  s.overflowContainer =
-    typeof s.params.overflowContainer === 'string'
-      ? document.querySelector(s.params.overflowContainer)
-      : s.params.overflowContainer
-  if (!s.overflowContainer) {
-    console.log('SeedsUI Error：未找到Picker的overflowContainer元素，请检查传入参数是否正确')
+  s.wrapper =
+    typeof s.params.wrapper === 'string'
+      ? document.querySelector(s.params.wrapper)
+      : s.params.wrapper
+  if (!s.wrapper) {
+    console.log('SeedsUI Error：未找到Picker的wrapper元素，请检查传入参数是否正确')
     return
   }
-  s.picker = null
-  s.mask = null
-  s.header = null
-  s.wrapper = null
   s.slotbox = null
   s.layer = null
   s.headerSubmit = null
@@ -84,47 +58,6 @@ var Picker = function (params) {
 
   // 选中项
   s.activeOptions = []
-  // 新建Picker
-  s.createPicker = function () {
-    var picker = document.createElement('div')
-    picker.setAttribute('class', s.params.pickerClass)
-    return picker
-  }
-
-  // 新建Header
-  s.createHeader = function () {
-    var header = document.createElement('div')
-    header.setAttribute('class', s.params.headerClass)
-    return header
-  }
-
-  // 新建标题
-  s.createHeaderTitle = function () {
-    var headerTitle = document.createElement('div')
-    headerTitle.setAttribute('class', s.params.headerTitleClass)
-    return headerTitle
-  }
-
-  // 新建Header按钮
-  s.createHeaderSubmit = function () {
-    var headerSubmit = document.createElement('a')
-    headerSubmit.setAttribute('class', s.params.headerSubmitClass)
-    headerSubmit.innerHTML = s.params.headerSubmitText
-    return headerSubmit
-  }
-  s.createHeaderCancel = function () {
-    var headerCancel = document.createElement('a')
-    headerCancel.setAttribute('class', s.params.headerCancelClass)
-    headerCancel.innerHTML = s.params.headerCancelText
-    return headerCancel
-  }
-
-  // 新建Wrapper
-  s.createWrapper = function () {
-    var wrapper = document.createElement('div')
-    wrapper.setAttribute('class', s.params.wrapperClass)
-    return wrapper
-  }
 
   // 新建Slotbox
   s.createSlotbox = function () {
@@ -141,56 +74,30 @@ var Picker = function (params) {
     return layer
   }
 
-  // 新建Mask
-  s.createMask = function () {
-    var mask = document.createElement('div')
-    mask.setAttribute('class', s.params.maskClass + ' ' + s.params.maskFeatureClass)
-    return mask
-  }
-
   // 创建DOM
   s.update = function () {
-    if (s.params.mask)
-      s.mask =
-        typeof s.params.mask === 'string' ? document.querySelector(s.params.mask) : s.params.mask
+    if (s.params.wrapper) {
+      s.wrapper =
+        typeof s.params.wrapper === 'string'
+          ? document.querySelector(s.params.wrapper)
+          : s.params.wrapper
+    }
 
-    if (s.mask && s.mask.tagName) {
-      s.picker = s.mask.querySelector('.' + s.params.pickerClass)
-      s.header = s.mask.querySelector('.' + s.params.headerClass)
-      s.headerSubmit = s.mask.querySelector('.' + s.params.headerSubmitClass)
-      s.headerCancel = s.mask.querySelector('.' + s.params.headerCancelClass)
-      s.headerTitle = s.mask.querySelector('.' + s.params.headerTitleClass)
-      s.wrapper = s.mask.querySelector('.' + s.params.wrapperClass)
-      s.slotbox = s.mask.querySelector('.' + s.params.slotboxClass)
-      s.layer = s.mask.querySelector('.' + s.params.layerClass)
+    if (s.wrapper && s.wrapper.tagName) {
+      s.header = s.wrapper.querySelector('.' + s.params.headerClass)
+      s.slotbox = s.wrapper.querySelector('.' + s.params.slotboxClass)
+      s.layer = s.wrapper.querySelector('.' + s.params.layerClass)
     } else {
-      s.mask = s.createMask()
-      s.picker = s.createPicker()
-      s.header = s.createHeader()
-      s.headerSubmit = s.createHeaderSubmit()
-      s.headerCancel = s.createHeaderCancel()
-      s.headerTitle = s.createHeaderTitle()
-      s.wrapper = s.createWrapper()
       s.slotbox = s.createSlotbox()
       s.layer = s.createLayer()
 
-      s.header.appendChild(s.headerCancel)
-      s.header.appendChild(s.headerTitle)
-      s.header.appendChild(s.headerSubmit)
-
       s.wrapper.appendChild(s.layer)
       s.wrapper.appendChild(s.slotbox)
-
-      s.picker.appendChild(s.header)
-      s.picker.appendChild(s.wrapper)
-
-      s.mask.appendChild(s.picker)
-      s.overflowContainer.appendChild(s.mask)
     }
     // 兼容安卓部分机型touch事件不工作的问题
     var androidExp = navigator.userAgent.toLowerCase().match(/android\s*(\d*\.*\d*)/)
     if (androidExp && androidExp[1]) {
-      if (androidExp[1] < '5.0') s.mask.setAttribute('onTouchStart', '')
+      if (androidExp[1] < '5.0') s.wrapper.setAttribute('onTouchStart', '')
     }
   }
   s.update()
@@ -253,12 +160,12 @@ var Picker = function (params) {
     for (var i = 0; i < values.length; i++) {
       // 获得defaultIndex
       // eslint-disable-next-line
-      if (slot.defaultKey && slot.defaultKey == values[i][s.params.idPropertyName]) {
+      if (slot.defaultKey && slot.defaultKey == values[i][s.params.fieldNames.id || 'id']) {
         defaultIndex = i
       }
 
       // 把li添加到槽中
-      li += '<li>' + values[i][s.params.namePropertyName] + '</li>'
+      li += '<li>' + values[i][s.params.fieldNames.name || 'name'] + '</li>'
     }
     slot.innerHTML = li
     // 选中项
@@ -278,33 +185,10 @@ var Picker = function (params) {
 
     slot.style.webkitTransform = 'translate(0px,' + slot.posY + 'px)'
   }
-  s.isHid = true
-  // 隐藏
-  s.hide = function () {
-    s.isHid = true
-    s.mask.classList.remove(s.params.maskActiveClass)
-    s.picker.classList.remove(s.params.pickerActiveClass)
-    // 显示滚动条
-    if (s.overflowContainer)
-      s.overflowContainer.classList.remove(s.params.overflowContainerActiveClass)
-  }
-  s.show = function () {
-    // 显示
-    s.isHid = false
-    s.mask.classList.add(s.params.maskActiveClass)
-    s.picker.classList.add(s.params.pickerActiveClass)
-    // 禁用滚动条
-    if (s.overflowContainer)
-      s.overflowContainer.classList.add(s.params.overflowContainerActiveClass)
-  }
   s.clearSlots = function () {
     // 清除
     // 清空数据
     s.slotbox.innerHTML = ''
-  }
-  s.destroy = function () {
-    // 销毁
-    s.overflowContainer.removeChild(s.mask)
   }
   // 计算惯性时间与坐标，返回距离和时间
   s.calcInertance = function (opts) {
@@ -386,49 +270,13 @@ var Picker = function (params) {
       s.slotbox[action]('mouseup', s.onTouchEnd, false)
     }
     // 选择器事件
-    s.picker[action]('webkitTransitionEnd', s.onTransitionEnd, false)
-    // 遮罩
-    s.mask[action]('click', s.onClick, false)
+    s.wrapper[action]('webkitTransitionEnd', s.onTransitionEnd, false)
   }
   s.detach = function (event) {
     s.events(true)
   }
   s.attach = function (event) {
     s.events()
-  }
-
-  s.onClick = function (e) {
-    s.event = e
-    // 点击容器
-    if (s.params.onClick) {
-      s.params.onClick(s)
-    }
-    if (e.target.classList.contains(s.params.maskClass)) {
-      // 点击遮罩
-      s.onClickMask(s)
-    } else if (e.target.classList.contains(s.params.headerSubmitClass)) {
-      // 点击确定按钮
-      s.onClickSubmit(s)
-    } else if (e.target.classList.contains(s.params.headerCancelClass)) {
-      // 点击确定按钮
-      s.onClickCancel(s)
-    }
-  }
-
-  // Mask
-  s.onClickMask = function (s) {
-    if (s.params.onClickMask) s.params.onClickMask(s)
-    else s.hide()
-  }
-
-  // Submit|Cancel
-  s.onClickSubmit = function (s) {
-    if (s.params.onClickSubmit) s.params.onClickSubmit(s)
-    else s.hide()
-  }
-  s.onClickCancel = function (s) {
-    if (s.params.onClickCancel) s.params.onClickCancel(s)
-    else s.hide()
   }
 
   s.touches = {
@@ -524,17 +372,12 @@ var Picker = function (params) {
 
   s.onTransitionEnd = function (e) {
     var target = e.target
-    if (e.propertyName !== 'transform' || target !== s.picker) {
+    if (e.propertyName !== 'transform' || target !== s.wrapper) {
       return
     }
     // 容器显隐
-    if (target.classList.contains(s.params.pickerClass)) {
+    if (target.classList.contains(s.params.wrapperClass)) {
       if (s.params.onTransitionEnd) s.params.onTransitionEnd(s)
-      if (s.isHid) {
-        if (s.params.onHid) s.params.onHid(s)
-      } else {
-        if (s.params.onShowed) s.params.onShowed(s)
-      }
     }
   }
 

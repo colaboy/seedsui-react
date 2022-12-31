@@ -35,6 +35,7 @@ const Modal = forwardRef(
 
     // 节点
     const rootRef = useRef(null)
+    const wrapperRef = useRef(null)
     const instance = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -53,26 +54,17 @@ const Modal = forwardRef(
       if (instance.current) {
         if (visible && list.length) {
           setDefault()
-          instance.current.show()
-        } else {
-          instance.current.hide()
         }
       } else if (list && list.length > 0) {
         initInstance()
       }
     }, [visible]) // eslint-disable-line
 
-    // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
-    if (instance.current) {
-      instance.current.params.onClickSubmit = handleSubmitClick
-      instance.current.params.onClickCancel = handleCancelClick
-      instance.current.params.onClickMask = handleMaskClick
-    }
-
     // 事件
-    async function handleSubmitClick(e) {
-      const newValue = e.activeOptions
-      if (submitProps.onClick) submitProps.onClick(e)
+    async function handleSubmitClick() {
+      let s = instance.current
+      const newValue = s.activeOptions
+      if (submitProps.onClick) submitProps.onClick(s)
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue)
@@ -86,7 +78,9 @@ const Modal = forwardRef(
       if (onVisibleChange) onVisibleChange(false)
     }
     function handleMaskClick(e) {
-      if (maskProps.onClick) maskProps.onClick(e)
+      if (!e.target.classList.contains('mask')) return
+      let s = instance.current
+      if (maskProps.onClick) maskProps.onClick(s)
       if (maskClosable && onVisibleChange) onVisibleChange(false)
     }
 
@@ -116,11 +110,7 @@ const Modal = forwardRef(
       }
       // render数据
       instance.current = new Instance({
-        mask: rootRef.current,
-        onClickMask: handleMaskClick,
-        onClickCancel: handleCancelClick,
-        onClickSubmit: handleSubmitClick,
-        onHid: (e) => {}
+        wrapper: wrapperRef.current
       })
       // 默认项
       const defaultOpt = getDefaultOption()
@@ -133,35 +123,32 @@ const Modal = forwardRef(
       rootRef.current.instance = instance
     }
 
-    // 过滤已经回调的属性
-    function filterProps(props) {
-      if (!props) return {}
-      const { onClick, ...otherProps } = props
-      return { ...otherProps }
-    }
-
-    // 剔除掉onClick事件, 因为在instance时已经回调了
-    const otherMaskProps = filterProps(maskProps)
-    const otherSubmitProps = filterProps(submitProps)
-    const otherCancelProps = filterProps(cancelProps)
     return createPortal(
       <div
         ref={rootRef}
-        {...otherMaskProps}
-        className={`mask picker-mask${
-          otherMaskProps.className ? ' ' + otherMaskProps.className : ''
+        {...maskProps}
+        className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
+          visible ? ' active' : ''
         }`}
+        onClick={handleMaskClick}
       >
-        <div {...props} className={`picker${props.className ? ' ' + props.className : ''}`}>
+        <div
+          {...props}
+          className={`picker${props.className ? ' ' + props.className : ''}${
+            visible ? ' active' : ''
+          }`}
+        >
           {/* 头 */}
           <Head
             // 为了启用确定按钮
             multiple={true}
             captionProps={captionProps}
-            cancelProps={otherCancelProps}
-            submitProps={otherSubmitProps}
+            cancelProps={cancelProps}
+            submitProps={submitProps}
+            onSubmitClick={handleSubmitClick}
+            onCancelClick={handleCancelClick}
           />
-          <div className="picker-wrapper">
+          <div className="picker-wrapper" ref={wrapperRef}>
             <div className="picker-layer">
               <div className="picker-layer-frame"></div>
             </div>

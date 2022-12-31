@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import locale from './../../locale'
 
 const Head = forwardRef(
-  ({ multiple, captionProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
+  ({ captionProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
     // 确定和取消按钮
     const {
       visible: cancelVisible,
@@ -17,6 +17,9 @@ const Head = forwardRef(
       disabled: submitDisabled,
       ...otherSubmitProps
     } = submitProps || {}
+
+    // 标题
+    const { caption: headerCaption, ...otherCaptionProps } = captionProps || {}
 
     // 点击确定
     function handleSubmitClick(e) {
@@ -46,12 +49,12 @@ const Head = forwardRef(
           </div>
         )}
         <div
-          {...captionProps}
+          {...otherCaptionProps}
           className={`picker-header-title${
-            captionProps?.className ? ' ' + captionProps?.className : ''
+            otherCaptionProps?.className ? ' ' + otherCaptionProps?.className : ''
           }`}
         >
-          {captionProps?.caption}
+          {headerCaption}
         </div>
         {submitVisible !== false && (
           <div

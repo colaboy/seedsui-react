@@ -100,6 +100,10 @@ export default defineConfig({
           {
             title: 'DatePicker',
             path: '/components/date-picker'
+          },
+          {
+            title: 'Picker',
+            path: '/components/picker'
           }
         ]
       },
@@ -174,6 +178,10 @@ export default defineConfig({
           {
             title: 'DatePicker',
             path: '/zh/components/date-picker'
+          },
+          {
+            title: 'Picker',
+            path: '/zh/components/picker'
           }
         ]
       },

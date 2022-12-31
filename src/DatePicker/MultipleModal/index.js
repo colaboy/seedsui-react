@@ -46,38 +46,33 @@ const MultipleModal = forwardRef(
 
     useEffect(() => {}, []) // eslint-disable-line
 
-    // 过滤已经回调的属性
-    function filterProps(props) {
-      if (!props) return {}
-      const { onClick, ...otherProps } = props
-      return { ...otherProps }
-    }
-
-    // 剔除掉onClick事件, 因为在instance时已经回调了
-    const otherMaskProps = filterProps(maskProps)
-    const otherSubmitProps = filterProps(submitProps)
-    const otherCancelProps = filterProps(cancelProps)
-
     // console.log(visible)
     return createPortal(
       <div
         ref={rootRef}
-        {...otherMaskProps}
-        className={`mask picker-mask${
-          otherMaskProps.className ? ' ' + otherMaskProps.className : ''
-        }${visible ? ' active' : ''}`}
+        {...maskProps}
+        className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
+          visible ? ' active' : ''
+        }`}
       >
-        <div {...props} className={`picker${props.className ? ' ' + props.className : ''}`}>
+        <div
+          {...props}
+          className={`picker${props.className ? ' ' + props.className : ''}${
+            visible ? ' active' : ''
+          }`}
+        >
           {/* 头 */}
           <Head
             // 为了启用确定按钮
             multiple={true}
             // caption
-            cancelProps={otherCancelProps}
-            submitProps={otherSubmitProps}
+            cancelProps={cancelProps}
+            submitProps={submitProps}
+            // onSubmitClick={handleSubmitClick}
+            // onCancelClick={handleCancelClick}
           />
           {rootRef.current && (
-            <DatePickerModal visible={visible} portal={{ mask: rootRef.current }} {...props} />
+            <DatePickerModal visible={visible} portal={{ content: true }} {...props} />
           )}
         </div>
       </div>,
