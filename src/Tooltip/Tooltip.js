@@ -29,22 +29,46 @@ const Tooltip = forwardRef(
 
     // 受控显隐时, 需要更新容器位置
     useEffect(() => {
-      let childrenDOM = childrenRef.current
-      if (typeof getChildrenDOM === 'function') {
-        childrenDOM = getChildrenDOM()
-        if (typeof childrenDOM?.getRootDOM === 'function') {
-          childrenDOM = childrenDOM.getRootDOM()
-        }
-      }
-      if (visible && childrenDOM) {
-        Utils.updateContainerPosition({
-          source: rootRef.current,
-          target: childrenDOM,
-          style: style,
-          animation: animation
-        })
+      if (visible) {
+        updatePosition()
       }
     }, [visible]) // eslint-disable-line
+
+    // 更新位置
+    function updatePosition(source) {
+      // 源元素
+      let sourceDOM = source
+      if (!sourceDOM) {
+        let childrenDOM = childrenRef.current
+        if (typeof getChildrenDOM === 'function') {
+          childrenDOM = getChildrenDOM()
+          if (typeof childrenDOM?.getRootDOM === 'function') {
+            childrenDOM = childrenDOM.getRootDOM()
+          }
+        }
+        sourceDOM = childrenDOM
+      }
+
+      // 位移元素
+      let targetDOM =
+        rootRef?.current?.children && rootRef?.current?.children[0]
+          ? rootRef?.current?.children[0]
+          : null
+      if (sourceDOM && targetDOM) {
+        // 没有自定义位置时生效
+        if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
+          Utils.updateContainerPosition({
+            source: sourceDOM,
+            target: targetDOM,
+            animation: animation,
+            offset: {
+              top: 8,
+              bottom: 8
+            }
+          })
+        }
+      }
+    }
 
     // 非受控显隐, 为子元素增加点击事件显隐
     let newChildren = React.Children.toArray(children)
@@ -52,12 +76,10 @@ const Tooltip = forwardRef(
       newChildren = React.cloneElement(children, {
         ref: childrenRef,
         onClick: (e) => {
-          Utils.updateContainerPosition({
-            source: rootRef.current,
-            target: e.currentTarget,
-            style: style,
-            animation: animation
-          })
+          // 没有自定义位置时生效
+          if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
+            updatePosition(e.currentTarget)
+          }
           if (typeof visible !== 'boolean') {
             setAutoVisible(!autoVisible)
           }

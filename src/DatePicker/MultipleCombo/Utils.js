@@ -8,16 +8,16 @@ export default {
       return ''
     }
 
-    let displayValues = []
+    let displayValue = []
     for (let current of value) {
       if (current?.value instanceof Date === false) {
         return ''
       }
-      displayValues.push(
+      displayValue.push(
         DateComboUtils.getDisplayValue({ type: type, format: format, value: current.value })
       )
     }
 
-    return displayValues.join(separator || ' ~ ')
+    return displayValue.join(separator || ' ~ ')
   }
 }

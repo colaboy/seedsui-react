@@ -71,12 +71,12 @@ export default {
     }
     return 'fade'
   },
-  // 计算弹框位置
-  getCoordinate: function (target, animation) {
-    if (!target || Object.prototype.toString.call(target).indexOf('[object HTML') === -1)
+  // 根据源位置计算弹框位置
+  getCoordinate: function (source, animation) {
+    if (!source || Object.prototype.toString.call(source).indexOf('[object HTML') === -1)
       return null
     // 获取子元素的位置
-    let rect = target.getBoundingClientRect()
+    let rect = source.getBoundingClientRect()
     let top = null
     let bottom = null
     let left = null
@@ -85,11 +85,11 @@ export default {
     let position = this.getAnimationPosition(animation)
     // 从下往上弹
     if (position.indexOf('bottom') === 0) {
-      bottom = window.innerHeight - rect.top + 8
+      bottom = window.innerHeight - rect.top
     }
     // 从上往下弹
     else {
-      top = rect.top + rect.height + 8
+      top = rect.top + rect.height
     }
 
     // 左侧弹出
@@ -109,31 +109,25 @@ export default {
   },
   // 更新容器位置
   updateContainerPosition: function (params) {
-    const { source, target, style, animation } = params
-    // 自定义位置
-    if (style?.left || style?.top || style?.right || style?.bottom) return
-    // 目标div
-    let popup = source.children
-    if (!popup || !popup[0]) return
-    popup = popup[0]
+    const { source, target, animation, offset } = params
     // 自动计算位置
-    let position = this.getCoordinate(target, animation)
+    let position = this.getCoordinate(source, animation)
     // 从下往上弹
     if (typeof position.bottom === 'number') {
-      popup.style.bottom = position.bottom + 'px'
+      target.style.bottom = parseInt(position.bottom + (offset?.bottom || 0)) + 'px'
     }
     // 从上往下弹
     else if (typeof position.top === 'number') {
-      popup.style.top = position.top + 'px'
+      target.style.top = parseInt(position.top + (offset?.top || 0)) + 'px'
     }
 
     // 左侧弹出
     if (typeof position.left === 'number') {
-      popup.style.left = position.left + 'px'
+      target.style.left = parseInt(position.left + (offset?.left || 0)) + 'px'
     }
     // 右侧弹出
     else if (typeof position.right === 'number') {
-      popup.style.right = position.right + 'px'
+      target.style.right = parseInt(position.right + (offset?.right || 0)) + 'px'
     }
   }
 }

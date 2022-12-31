@@ -137,5 +137,7 @@ export default {
   hint_error_datepopover_custom_date_range_timeout: '自定义时间区间不能超过{0}天',
   input_search_placeholder: '搜索',
   start_time: '开始时间',
-  end_time: '结束时间'
+  end_time: '结束时间',
+  quick_select: '快捷选择',
+  custom_select: '自定义选择'
 }

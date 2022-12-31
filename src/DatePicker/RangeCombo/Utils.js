@@ -3,16 +3,17 @@ import DateComboUtils from './../Combo/Utils'
 // eslint-disable-next-line
 export default {
   // 显示名称
-  getDisplayValue: function ({ ranges, type, format, separator, value }) {
+  getDisplayValue: function ({ ranges, type, format, value, separator }) {
     if (!Array.isArray(value) || value.length !== 2) {
       return ''
     }
 
     let start = value[0]
     let end = value[1]
-    if (!format) {
-      format = DateComboUtils.getFormat(type)
+    if (start instanceof Date === false || end instanceof Date === false) {
+      return ''
     }
+
     let displayValue = []
 
     // 显示别名
@@ -24,19 +25,16 @@ export default {
         }
         let rangeStart = range[0]
         let rangeEnd = range[1]
-        if (
-          rangeStart instanceof Date === false ||
-          rangeEnd instanceof Date === false ||
-          start instanceof Date === false ||
-          end instanceof Date === false
-        ) {
+        if (rangeStart instanceof Date === false || rangeEnd instanceof Date === false) {
           continue
         }
 
-        // 时间相同则显示别名
+        // 区间相同则显示别名
         if (
-          start.format(format) === rangeStart.format(format) &&
-          end.format(format) === rangeEnd.format(format)
+          DateComboUtils.getDisplayValue({ type: type, format: format, value: start }) ===
+            DateComboUtils.getDisplayValue({ type: type, format: format, value: rangeStart }) &&
+          DateComboUtils.getDisplayValue({ type: type, format: format, value: end }) ===
+            DateComboUtils.getDisplayValue({ type: type, format: format, value: rangeEnd })
         ) {
           return alias
         }
@@ -44,16 +42,8 @@ export default {
     }
 
     // 显示日期
-    if (start instanceof Date) {
-      displayValue.push(start.format(format))
-    } else {
-      displayValue.push('')
-    }
-    if (end instanceof Date) {
-      displayValue.push(end.format(format))
-    } else {
-      displayValue.push('')
-    }
-    return displayValue.join(separator || '~')
+    displayValue.push(DateComboUtils.getDisplayValue({ type: type, format: format, value: start }))
+    displayValue.push(DateComboUtils.getDisplayValue({ type: type, format: format, value: end }))
+    return displayValue.join(separator || ' ~ ')
   }
 }

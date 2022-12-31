@@ -3,21 +3,22 @@ import { DatePicker } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
+  const [mulValue, setMulValue] = useState(null)
   return (
     <>
-      {/* <DatePicker.Combo
+      <DatePicker.Combo
         placeholder="Please select"
         value={value}
         multiple={true}
         onChange={setValue}
-      /> */}
+      />
       <DatePicker.MultipleCombo
         placeholder="Please MultipleCombo"
-        value={value}
+        value={mulValue}
         multiple={true}
-        onChange={setValue}
+        onChange={setMulValue}
       />
-      {/* <DatePicker.RangeCombo
+      <DatePicker.RangeCombo
         className="border-b"
         maskClosable={false}
         placeholder="Please select"
@@ -31,7 +32,7 @@ export default () => {
         onError={(err) => console.log(err)}
         value={value}
       />
-      <DatePicker.Types
+      {/* <DatePicker.Types
         value={{
           type: 'date',
           id: 'date',

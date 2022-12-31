@@ -133,6 +133,10 @@ export default defineConfig({
           {
             title: 'Photos',
             path: '/components/Photos'
+          },
+          {
+            title: 'Tooltip',
+            path: '/components/Tooltip'
           }
         ]
       }
@@ -211,6 +215,10 @@ export default defineConfig({
           {
             title: 'Photos 照片列表',
             path: '/zh/components/photos'
+          },
+          {
+            title: 'Tooltip',
+            path: '/zh/components/Tooltip'
           }
         ]
       }

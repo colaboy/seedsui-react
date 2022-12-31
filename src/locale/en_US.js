@@ -142,5 +142,7 @@ export default {
   hint_error_datepopover_custom_date_range_timeout: 'No more than {0} days',
   input_search_placeholder: 'Search',
   start_time: 'Start time',
-  end_time: 'End time'
+  end_time: 'End time',
+  quick_select: 'Quick Select',
+  custom_select: 'Custom Select'
 }
