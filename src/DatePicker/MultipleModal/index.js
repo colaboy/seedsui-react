@@ -6,8 +6,9 @@ import Head from './../../Picker/Modal/Head'
 import DatePickerModal from './../Modal'
 import Tabs from './../../Tabs'
 
-import locale from './../../locale'
+// import locale from './../../locale'
 import DateComboUtils from './../Combo/Utils'
+import DateModalUtils from './../Modal/Utils'
 
 const MultipleModal = forwardRef(
   (
@@ -65,10 +66,39 @@ const MultipleModal = forwardRef(
           })
         }
       })
-      console.log(newTabs)
       setTabs(newTabs)
       setActiveTab(newTabs[0])
     }, [value])
+
+    // 点击确认
+    async function handleSubmitClick() {
+      if (submitProps.onClick) submitProps.onClick()
+
+      // 校验选择是否合法
+      for (let tab of tabs) {
+        let newValue = DateModalUtils.validateDate(tab.value, {
+          type: type,
+          min: min,
+          max: max,
+          onError: onError
+        })
+        if (newValue === false) return
+        tab.value = newValue
+      }
+
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(tabs)
+        if (!goOn) return
+      }
+      // 触发onChange事件
+      if (onChange) onChange(tabs)
+      if (onVisibleChange) onVisibleChange(false)
+    }
+    function handleCancelClick() {
+      if (cancelProps.onClick) cancelProps.onClick()
+      if (onVisibleChange) onVisibleChange(false)
+    }
 
     // 点击遮罩
     function handleMaskClick(e) {
@@ -113,8 +143,8 @@ const MultipleModal = forwardRef(
             // caption
             cancelProps={cancelProps}
             submitProps={submitProps}
-            // onSubmitClick={handleSubmitClick}
-            // onCancelClick={handleCancelClick}
+            onSubmitClick={handleSubmitClick}
+            onCancelClick={handleCancelClick}
           />
           <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
           {tabs.map((tab, index) => {
@@ -128,6 +158,10 @@ const MultipleModal = forwardRef(
                 portal={{ wrapper: true }}
                 onChange={(date) => {
                   tab.value = date
+                  tab.sndcaption = DateComboUtils.getDisplayValue({
+                    type: type,
+                    value: tab.value
+                  })
                   handleDateChange(tab)
                 }}
                 wrapperProps={Object.assign({}, wrapperProps, {

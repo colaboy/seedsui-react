@@ -102,8 +102,7 @@ const Modal = forwardRef(
       if (onVisibleChange) onVisibleChange(false)
     }
     function handleCancelClick() {
-      let e = instance.current
-      if (cancelProps.onClick) cancelProps.onClick(e)
+      if (cancelProps.onClick) cancelProps.onClick()
       if (onVisibleChange) onVisibleChange(false)
     }
     function handleMaskClick(e) {

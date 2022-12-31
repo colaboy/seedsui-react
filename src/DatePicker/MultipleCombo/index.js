@@ -3,12 +3,14 @@ import Combo from './../../Picker/Combo'
 import MultipleModal from './../MultipleModal'
 
 import locale from './../../locale'
+import Utils from './Utils'
 
 // 日期多选
 export default forwardRef(
   (
     {
       // 定制属性
+      separator,
       min,
       max,
       type, // year | quarter | month | date | time | datetime
@@ -21,6 +23,24 @@ export default forwardRef(
     },
     ref
   ) => {
+    // value必传
+    if (!value) {
+      value = [
+        {
+          type: 'date',
+          id: 'start',
+          name: locale('开始时间', 'start_time'),
+          value: new Date()
+        },
+        {
+          type: 'date',
+          id: 'end',
+          name: locale('结束时间', 'end_time'),
+          value: new Date()
+        }
+      ]
+    }
+
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -31,27 +51,11 @@ export default forwardRef(
       }
     })
 
-    // value必传
-    if (!value) {
-      value = [
-        {
-          type: 'date',
-          id: 'start',
-          name: locale('开始时间'),
-          value: new Date()
-        },
-        {
-          type: 'date',
-          id: 'end',
-          name: locale('结束时间'),
-          value: new Date()
-        }
-      ]
-    }
+    let displayValue = Utils.getDisplayValue({ type, format, value, separator })
     return (
       <Combo
         ref={rootRef}
-        // value={value}
+        value={displayValue}
         ModalComponent={MultipleModal}
         ModalProps={{
           value: value,
