@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Page
+  title: Layout
   path: /components
 ---
 
-# Page 主体
+# Layout
 
 用于开始一个即时操作。
 

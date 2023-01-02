@@ -1,10 +1,10 @@
 ---
 nav:
-  title: Page
+  title: Layout
   path: /components
 ---
 
-# Page
+# Layout
 
 Used to start an immediate operation.
 

@@ -77,6 +77,10 @@ export default defineConfig({
         title: 'Layout',
         children: [
           {
+            title: 'Layout',
+            path: '/components/Layout'
+          },
+          {
             title: 'Page',
             path: '/components/page'
           },
@@ -158,6 +162,10 @@ export default defineConfig({
       {
         title: '布局',
         children: [
+          {
+            title: 'Layout',
+            path: '/zh/components/Layout'
+          },
           {
             title: 'Page 页面',
             path: '/zh/components/page'

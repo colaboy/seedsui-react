@@ -1,19 +1,18 @@
 import React from 'react'
-import { Page } from 'seedsui-react'
+import { Layout } from 'seedsui-react'
 
-const titleStyle = {
-  padding: '12px 12px 8px',
-  color: '#697b8c',
-  fontSize: '14px',
-  backgroundColor: 'rgba(250,251,252)'
-}
 export default () => {
+  const { Header, Footer, Aside, Main } = Layout
   return (
     <div id="root" style={{ height: '300px', position: 'relative' }}>
-      {/* 实际开发时，页面只需要写下面的代码即可，上面的div仅仅是为了方便文档预览 */}
-      <Page>
-        <div style={titleStyle}>页面</div>
-      </Page>
+      <Layout className="full">
+        <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
+        <Layout className="layout-has-aside">
+          <Aside style={{ width: '80px', backgroundColor: '#3ba0e9' }}>Aside</Aside>
+          <Main style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}>Main</Main>
+        </Layout>
+        <Footer style={{ height: '44px', backgroundColor: '#7dbcea' }}>Footer</Footer>
+      </Layout>
     </div>
   )
 }

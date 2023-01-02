@@ -1,7 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-// 标记
-const Mark = forwardRef(({ children, ...others }, ref) => {
+const Layout = forwardRef(({ animation, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -12,15 +11,16 @@ const Mark = forwardRef(({ children, ...others }, ref) => {
     }
   })
 
-  return children ? (
-    <span
+  return (
+    <section
       ref={rootRef}
-      {...others}
-      className={`mark${others.className ? ' ' + others.className : ''}`}
+      {...props}
+      className={'layout' + (props.className ? ' ' + props.className : '')}
+      data-animation={animation}
     >
       {children}
-    </span>
-  ) : null
+    </section>
+  )
 })
 
-export default Mark
+export default Layout

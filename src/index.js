@@ -60,6 +60,7 @@ export { default as InputPre } from './InputPre' // (废弃, 使用Input.AutoFit
 export { default as InputSelect } from './InputSelect' // (废弃, 使用Select.Combo代替)
 export { default as InputStar } from './InputStar'
 export { default as InputText } from './InputText' // (废弃, 使用Input.Text代替)
+export { default as Layout } from './Layout'
 export { default as Jcrop } from './Jcrop' // 不常用,裁切功能,使用了第三方插件的组件npm i jcrop
 export { default as Legend } from './Legend'
 export { default as ListPull } from './ListPull' // 不常用
