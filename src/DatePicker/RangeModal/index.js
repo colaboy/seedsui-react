@@ -3,6 +3,8 @@ import React, { forwardRef, useRef, useEffect } from 'react'
 
 import Modal from './../../Modal'
 import Quick from './Quick'
+import Custom from './Custom'
+
 // 用于计算弹窗位置
 import TooltipUtils from '../../Tooltip/Utils'
 
@@ -39,9 +41,9 @@ const RangeModal = forwardRef(
     ref
   ) => {
     const modalRef = useRef(null)
-    // ranges分成两部分: quickRanges(快捷选择)和customRange(自定义选择)
+    // ranges分成两部分: quickRanges(快捷选择)和customRanges(自定义选择)
     let quickRanges = {}
-    let customRange = {}
+    let customRanges = {}
     for (let rangeKey in ranges) {
       let rangeValue = ranges[rangeKey]
       if (
@@ -52,7 +54,10 @@ const RangeModal = forwardRef(
       ) {
         quickRanges[rangeKey] = rangeValue
       } else {
-        customRange[rangeKey] = rangeValue
+        // 自定义选择只能有一个
+        customRanges = {
+          [rangeKey]: rangeValue
+        }
       }
     }
 
@@ -66,7 +71,7 @@ const RangeModal = forwardRef(
           comboDOM = comboDOM.getRootDOM()
         }
       }
-      if (visible && comboDOM && modalDOM) {
+      if (visible && comboDOM && modalDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
         TooltipUtils.updateContainerPosition({
           source: comboDOM,
           target: modalDOM,
@@ -90,7 +95,19 @@ const RangeModal = forwardRef(
         onVisibleChange={onVisibleChange}
         {...props}
       >
+        {/* 快捷选择 */}
         <Quick ranges={quickRanges} onChange={onChange} />
+        {/* 自定义选择 */}
+        <Custom
+          value={value}
+          ranges={customRanges}
+          type={type}
+          min={min}
+          max={max}
+          onError={onError}
+          onChange={onChange}
+          onVisibleChange={onVisibleChange}
+        />
       </Modal>
     )
   }

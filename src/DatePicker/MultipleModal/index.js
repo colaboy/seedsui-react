@@ -60,15 +60,23 @@ const MultipleModal = forwardRef(
       let newTabs = value.map((tab) => {
         return {
           ...tab,
+          value: tab.value || new Date(),
           sndcaption: DateComboUtils.getDisplayValue({
-            type: type,
-            value: tab.value
+            type: tab.type || type,
+            value: tab.value || new Date()
           })
         }
       })
       setTabs(newTabs)
       setActiveTab(newTabs[0])
     }, [value])
+
+    // 显示时触发onVisibleChange
+    useEffect(() => {
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
+    }, [visible]) // eslint-disable-line
 
     // 点击确认
     async function handleSubmitClick() {
@@ -77,7 +85,7 @@ const MultipleModal = forwardRef(
       // 校验选择是否合法
       for (let tab of tabs) {
         let newValue = DateModalUtils.validateDate(tab.value, {
-          type: type,
+          type: tab.type || type,
           min: min,
           max: max,
           onError: onError
@@ -159,7 +167,7 @@ const MultipleModal = forwardRef(
                 onChange={(date) => {
                   tab.value = date
                   tab.sndcaption = DateComboUtils.getDisplayValue({
-                    type: type,
+                    type: tab.type || type,
                     value: tab.value
                   })
                   handleDateChange(tab)

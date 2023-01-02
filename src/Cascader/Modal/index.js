@@ -112,6 +112,11 @@ const Modal = forwardRef(
         chooseTab: chooseTab,
         onChooseTabChange: setChooseTab
       })
+
+      // 显示时触发onVisibleChange
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
     }, [visible]) // eslint-disable-line
 
     // 点击遮罩

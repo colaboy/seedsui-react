@@ -44,6 +44,13 @@ const Modal = forwardRef(
       setTempValue(value)
     }, [value])
 
+    // 显示时触发onVisibleChange
+    useEffect(() => {
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
+    }, [visible]) // eslint-disable-line
+
     // 修改回调
     async function handleChange(newTempValue) {
       setTempValue(newTempValue)

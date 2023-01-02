@@ -8,12 +8,13 @@ export default () => {
     <>
       <DatePicker.Combo
         placeholder="Please select"
+        type="datetime"
         value={value}
         multiple={true}
         onChange={setValue}
       />
       <DatePicker.MultipleCombo
-        placeholder="Please MultipleCombo"
+        placeholder="Please select MultipleCombo"
         value={mulValue}
         multiple={true}
         onChange={setMulValue}
@@ -21,9 +22,9 @@ export default () => {
       <DatePicker.RangeCombo
         className="border-b"
         maskClosable={false}
-        placeholder="Please select"
-        // type="date"
-        // min={new Date()}
+        placeholder="Please select RangeCombo"
+        type="datetime"
+        min={new Date()}
         // max={new Date()}
         onChange={(newValue, dateName) => {
           setValue(newValue)
@@ -32,7 +33,7 @@ export default () => {
         onError={(err) => console.log(err)}
         value={value}
       />
-      {/* <DatePicker.Types
+      <DatePicker.Types
         value={{
           type: 'date',
           id: 'date',
@@ -42,7 +43,7 @@ export default () => {
         onChange={(...params) => console.log(...params)}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-right' }}
-      /> */}
+      />
     </>
   )
 }

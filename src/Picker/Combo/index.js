@@ -70,6 +70,7 @@ const Combo = forwardRef(
         let goOn = await onBeforeOpen()
         if (!goOn) return
       }
+
       setVisible(true)
     }
 
@@ -132,8 +133,11 @@ const Combo = forwardRef(
           list={list}
           onBeforeChange={onBeforeChange}
           onChange={onChange}
-          onVisibleChange={setVisible}
           {...PickerModalProps}
+          onVisibleChange={(newVisible) => {
+            setVisible(newVisible)
+            if (ModalProps.onVisibleChange) ModalProps.onVisibleChange(newVisible)
+          }}
           visible={ModalProps.visible === undefined ? visible : ModalProps.visible}
         />
       </Fragment>

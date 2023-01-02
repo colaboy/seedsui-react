@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
 
@@ -44,6 +44,13 @@ const Modal = forwardRef(
         getRootDOM: () => rootRef.current
       }
     })
+
+    // 显示时触发onVisibleChange
+    useEffect(() => {
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
+    }, [visible]) // eslint-disable-line
 
     // 构建动画
     let animationClassName = ''

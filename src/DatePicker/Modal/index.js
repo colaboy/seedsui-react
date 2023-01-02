@@ -67,6 +67,10 @@ const Modal = forwardRef(
           handleUpdate()
         }
       }
+      // 显示时触发onVisibleChange
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
     }, [visible]) // eslint-disable-line
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects

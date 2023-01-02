@@ -59,6 +59,10 @@ const Modal = forwardRef(
       } else if (list && list.length > 0) {
         initInstance()
       }
+      // 显示时触发onVisibleChange
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
     }, [visible]) // eslint-disable-line
 
     // 事件

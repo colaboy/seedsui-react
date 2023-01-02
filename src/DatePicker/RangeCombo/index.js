@@ -32,9 +32,7 @@ export default forwardRef(
           new Date().prevDate(30),
           new Date()
         ],
-        [locale('自定义时间', 'datepicker-tooltip_custom_date')]: {
-          [locale('自定义时间', 'datepicker-tooltip_custom_date')]: null
-        }
+        [locale('自定义时间', 'datepicker-tooltip_custom_date')]: 90
       },
       separator,
       min,
