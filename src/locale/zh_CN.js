@@ -139,5 +139,6 @@ export default {
   start_time: '开始时间',
   end_time: '结束时间',
   quick_select: '快捷选择',
-  custom_select: '自定义选择'
+  custom_select: '自定义选择',
+  search_place: '搜索地点'
 }

@@ -59,6 +59,7 @@ function Search({ instance, setErrMsg, onChange }) {
           }}
         >
           <Input.Text
+            placeholder={locale('搜索地点', 'search_place')}
             value={keyword}
             onChange={setKeyword}
             licon={<i className="icon icon-search color-sub size14" style={{ margin: '8px' }}></i>}
@@ -67,7 +68,15 @@ function Search({ instance, setErrMsg, onChange }) {
             style={{ marginRight: '8px' }}
           />
         </form>
-        <span className="map-search-header-button-search">{locale('搜索')}</span>
+        <span
+          className="map-search-header-button-search"
+          onClick={(e) => {
+            e.preventDefault()
+            handleSearch()
+          }}
+        >
+          {locale('搜索')}
+        </span>
       </Header>
       {Array.isArray(searchList) && searchList.length ? (
         <div className="map-search-body">
