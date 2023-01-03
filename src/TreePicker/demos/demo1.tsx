@@ -12,7 +12,7 @@ export default () => {
   }, [])
   return (
     <>
-      {/* <TreePicker.Combo
+      <TreePicker.Combo
         placeholder="Please select"
         value={value}
         list={list}
@@ -28,7 +28,12 @@ export default () => {
           selectable: false
         }}
         onChange={setValue}
-      /> */}
+        ModalProps={{
+          onVisibleChange: (visible) => {
+            debugger
+          }
+        }}
+      />
       <TreePicker.Tree
         keywordProps={{
           value: '大东',

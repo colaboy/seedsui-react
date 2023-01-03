@@ -47,6 +47,7 @@ export default function ({ content, onVisibleChange, ...props }) {
       let mask = modal.parentNode
       mask.classList.add('active')
       modal.classList.add('active')
+      if (onVisibleChange) onVisibleChange(true)
     })
   }
   render()

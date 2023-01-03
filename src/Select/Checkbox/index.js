@@ -11,7 +11,7 @@ const CheckboxGroup = forwardRef(
       list,
       onBeforeChange,
       onChange,
-      onVisibleChange,
+      onVisibleChange, // checkbox没有此属性
       ...props
     },
     ref
@@ -85,7 +85,6 @@ const CheckboxGroup = forwardRef(
         if (!goOn) return
       }
       if (onChange) onChange(newValue)
-      if (onVisibleChange) onVisibleChange(false)
     }
 
     return (

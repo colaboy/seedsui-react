@@ -108,6 +108,10 @@ export default defineConfig({
           {
             title: 'Picker',
             path: '/components/picker'
+          },
+          {
+            title: 'Select',
+            path: '/components/Select'
           }
         ]
       },
@@ -141,6 +145,10 @@ export default defineConfig({
           {
             title: 'Tooltip',
             path: '/components/Tooltip'
+          },
+          {
+            title: 'Toast',
+            path: '/components/Toast'
           }
         ]
       }
@@ -194,6 +202,10 @@ export default defineConfig({
           {
             title: 'Picker',
             path: '/zh/components/picker'
+          },
+          {
+            title: 'Select',
+            path: '/zh/components/Select'
           }
         ]
       },
@@ -227,6 +239,10 @@ export default defineConfig({
           {
             title: 'Tooltip',
             path: '/zh/components/Tooltip'
+          },
+          {
+            title: 'Toast',
+            path: '/zh/components/Toast'
           }
         ]
       }

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Utils from './Utils'
 
@@ -27,6 +27,14 @@ const Popup = forwardRef(
     // 构建动画
     let position = Utils.getAnimationPosition(animation)
     let dataAnimation = Utils.getDataAnimation(animation)
+
+    // 显示时触发onVisibleChange
+    useEffect(() => {
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
+      // eslint-disable-next-line
+    }, [visible])
 
     // 点击遮罩
     function handleMaskClick(e) {
