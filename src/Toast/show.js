@@ -26,7 +26,16 @@ export default function ({ content, onVisibleChange, ...props }) {
   function render() {
     // 渲染组件, 先不显示
     ReactRender.render(
-      <Toast id="__SeedsUI_toast_el__" visible={false} onVisibleChange={destroy} {...props}>
+      <Toast
+        id="__SeedsUI_toast_el__"
+        visible={false}
+        onVisibleChange={(visible) => {
+          if (!visible) {
+            destroy()
+          }
+        }}
+        {...props}
+      >
         {content}
       </Toast>,
       window.SeedsUIReactToastContainer

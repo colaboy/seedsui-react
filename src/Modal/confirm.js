@@ -53,7 +53,11 @@ export default function ({
         {...props}
         visible={false}
         maskClosable={maskClosable ?? false}
-        onVisibleChange={destroy}
+        onVisibleChange={(visible) => {
+          if (!visible) {
+            destroy()
+          }
+        }}
         captionProps={captionProps}
         submitProps={submitProps}
         cancelProps={cancelProps}

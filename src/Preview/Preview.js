@@ -32,7 +32,7 @@ const Preview = forwardRef(
     }
 
     // 图片单击隐藏, 视频单击无反应
-    function handleVisibleChange(visible, res) {
+    function handleVisibleChange(visible) {
       if (!visible) {
         if (onHide) onHide()
       }
