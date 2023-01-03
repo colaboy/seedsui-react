@@ -56,6 +56,12 @@ const Types = forwardRef(
     },
     ref
   ) => {
+    // 显示文本
+    let displayValue = DateComboUtils.getDisplayValue({
+      type: value?.type,
+      value: value?.value
+    })
+
     const rootRef = useRef(null)
     const instance = useRef(null)
     useImperativeHandle(ref, () => {
@@ -63,21 +69,17 @@ const Types = forwardRef(
         rootDOM: rootRef?.current,
         instance: instance.current,
         getRootDOM: () => rootRef?.current,
-        getInstance: () => instance.current
+        getInstance: () => instance.current,
+        // 显示文本
+        displayValue: displayValue,
+        getDisplayValue: (newValue) => {
+          return DateComboUtils.getDisplayValue({
+            type: value?.type,
+            value: newValue || value?.value
+          })
+        }
       }
     })
-
-    // 实例化
-    instance.current = {
-      getDisplayValue: function (value) {
-        return DateComboUtils.getDisplayValue({
-          type: value?.type,
-          value: value?.value
-        })
-      }
-    }
-    // 显示值
-    let displayValue = instance.current.getDisplayValue(value)
 
     useEffect(() => {
       // 如果默认没有值, 则默认为当天

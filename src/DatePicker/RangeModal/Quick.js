@@ -2,9 +2,15 @@
 import React from 'react'
 import locale from '../../locale'
 
-const Quick = function ({ ranges, onChange }) {
-  function handleClick(rangeKey) {
+const Quick = function ({ ranges, onBeforeChange, onChange, onVisibleChange }) {
+  async function handleClick(rangeKey) {
+    // 修改提示
+    if (typeof onBeforeChange === 'function') {
+      let goOn = await onBeforeChange(newValue)
+      if (!goOn) return
+    }
     if (onChange) onChange(ranges[rangeKey])
+    if (onVisibleChange) onVisibleChange(false)
   }
 
   return (

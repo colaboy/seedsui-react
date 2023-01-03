@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { DatePicker } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
+  const [rangeValue, setRangeValue] = useState(null)
   const [mulValue, setMulValue] = useState(null)
+
+  const rangeRef = useRef(null)
+
   return (
     <>
       <DatePicker.Combo
@@ -21,19 +25,31 @@ export default () => {
       />
       <DatePicker.RangeCombo
         className="border-b"
-        maskClosable={false}
         placeholder="Please select RangeCombo"
         type="datetime"
         min={new Date()}
         // max={new Date()}
-        onChange={(newValue, dateName) => {
-          setValue(newValue)
-          console.log(newValue, dateName)
+        onChange={(...params) => {
+          console.log(...params)
         }}
         onError={(err) => console.log(err)}
-        value={value}
+        value={rangeValue}
       />
-      <DatePicker.Types
+      <DatePicker.RangeCombo
+        // 自定义渲染
+        render={(val, { displayValue }) => {
+          if (!displayValue) {
+            return '自定义区间'
+          }
+          return displayValue
+        }}
+        maskClosable={false}
+        value={rangeValue}
+        onChange={setRangeValue}
+      >
+        {/* {rangeRef?.current?.getDisplayValue() || ''} */}
+      </DatePicker.RangeCombo>
+      {/* <DatePicker.Types
         value={{
           type: 'date',
           id: 'date',
@@ -43,7 +59,7 @@ export default () => {
         onChange={(...params) => console.log(...params)}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-right' }}
-      />
+      /> */}
     </>
   )
 }

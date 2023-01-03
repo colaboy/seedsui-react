@@ -4,7 +4,18 @@ import locale from '../../locale'
 import MultipleCombo from './../MultipleCombo'
 import Utils from './Utils'
 
-const Custom = function ({ value, ranges, type, min, max, onError, onChange, onVisibleChange }) {
+const Custom = function ({
+  maskClosable,
+  value,
+  ranges,
+  type,
+  min,
+  max,
+  onError,
+  onBeforeChange,
+  onChange,
+  onVisibleChange
+}) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = Utils.getDates(value)
@@ -36,8 +47,13 @@ const Custom = function ({ value, ranges, type, min, max, onError, onChange, onV
     return timeValid && daysValid
   }
 
-  function handleChange(newMultipleDate) {
+  async function handleChange(newMultipleDate) {
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
+    // 修改提示
+    if (typeof onBeforeChange === 'function') {
+      let goOn = await onBeforeChange(newValue)
+      if (!goOn) return
+    }
     if (onChange) onChange(newValue)
   }
 
@@ -61,6 +77,7 @@ const Custom = function ({ value, ranges, type, min, max, onError, onChange, onV
           return (
             <MultipleCombo
               key={rangeKey}
+              maskClosable={maskClosable}
               className="datepicker-rangemodal-modal-card-button"
               value={multipleDate}
               type={type}

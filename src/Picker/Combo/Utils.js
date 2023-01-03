@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 export default {
-  getDisplayValue: function (value, split = ',') {
+  getDisplayValue: function ({ value, separator = ',' }) {
     if (!value) return ''
     if (typeof value === 'string') return value
     if (!Array.isArray(value) || !value.length) return ''
@@ -10,6 +10,6 @@ export default {
         names.push(item.name)
       }
     }
-    return names.join(split)
+    return names.join(separator)
   }
 }

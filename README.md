@@ -3848,6 +3848,7 @@ function handleDelete(...params) {
     readOnly={只读 bool}
     disabled={禁用 bool}
     onBeforeOpen={打开前 func()}
+    render={自定义渲染 func(value, {displayValue})}
     children={子节点 node}
     {...props}
 />

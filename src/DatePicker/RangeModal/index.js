@@ -89,6 +89,7 @@ const RangeModal = forwardRef(
     return (
       <Modal
         ref={modalRef}
+        maskClosable={maskClosable}
         visible={visible}
         animation="slideDown"
         className="datepicker-rangemodal-modal"
@@ -96,15 +97,22 @@ const RangeModal = forwardRef(
         {...props}
       >
         {/* 快捷选择 */}
-        <Quick ranges={quickRanges} onChange={onChange} />
+        <Quick
+          ranges={quickRanges}
+          onBeforeChange={onBeforeChange}
+          onChange={onChange}
+          onVisibleChange={onVisibleChange}
+        />
         {/* 自定义选择 */}
         <Custom
+          maskClosable={maskClosable}
           value={value}
           ranges={customRanges}
           type={type}
           min={min}
           max={max}
           onError={onError}
+          onBeforeChange={onBeforeChange}
           onChange={onChange}
           onVisibleChange={onVisibleChange}
         />

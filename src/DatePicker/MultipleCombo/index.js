@@ -41,17 +41,24 @@ export default forwardRef(
       ]
     }
 
+    // 显示文本
+    let displayValue = Utils.getDisplayValue({ type, format, value, separator })
+
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef?.current?.rootDOM,
         modalDOM: rootRef?.current?.modalDOM,
         getRootDOM: rootRef?.current?.getRootDOM,
-        getModalDOM: rootRef?.current?.getModalDOM
+        getModalDOM: rootRef?.current?.getModalDOM,
+        // 显示文本
+        displayValue: displayValue,
+        getDisplayValue: (newValue) => {
+          return Utils.getDisplayValue({ type, format, value: newValue || value, separator })
+        }
       }
     })
 
-    let displayValue = Utils.getDisplayValue({ type, format, value, separator })
     return (
       <Combo
         ref={rootRef}

@@ -34,6 +34,7 @@ const Combo = forwardRef(
       readOnly,
       disabled,
       onBeforeOpen,
+      render,
       children,
       ...props
     },
@@ -104,16 +105,21 @@ const Combo = forwardRef(
     return (
       <Fragment>
         {/* Combo */}
+        {typeof render === 'function' && (
+          <div ref={rootRef} {...props} onClick={handleInputClick}>
+            {render(value, { displayValue: Utils.getDisplayValue({ value }) })}
+          </div>
+        )}
         {children && (
           <div ref={rootRef} {...props} onClick={handleInputClick}>
             {children}
           </div>
         )}
-        {!children && (
+        {!children && typeof render !== 'function' && (
           <Input.Text
             ref={rootRef}
             allowClear={allowClear}
-            value={Utils.getDisplayValue(value)}
+            value={Utils.getDisplayValue({ value })}
             readOnly
             onClick={handleInputClick}
             onChange={onChange}
