@@ -59,7 +59,8 @@ const Modal = forwardRef(
 
     useEffect(() => {
       initInstance()
-    }, []) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
       if (instance.current) {
@@ -71,7 +72,8 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
     if (instance.current) {

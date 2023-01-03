@@ -49,7 +49,8 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 修改回调
     async function handleChange(newTempValue) {

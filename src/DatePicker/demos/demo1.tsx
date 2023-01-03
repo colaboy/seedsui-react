@@ -3,6 +3,7 @@ import { DatePicker } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
+  const [icon, setIcon] = useState('1')
   const [rangeValue, setRangeValue] = useState(null)
   const [mulValue, setMulValue] = useState(null)
 
@@ -33,12 +34,18 @@ export default () => {
         value={rangeValue}
       />
       <DatePicker.RangeCombo
+        ModalProps={{
+          onVisibleChange: (visible) => {
+            if (visible) {
+              setIcon('2')
+            } else {
+              setIcon('1')
+            }
+          }
+        }}
         // 自定义渲染
         render={(val, { displayValue }) => {
-          if (!displayValue) {
-            return '自定义区间'
-          }
-          return displayValue
+          return icon + (displayValue || '自定义区间')
         }}
         // maskClosable={false}
         value={rangeValue}

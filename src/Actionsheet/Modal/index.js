@@ -50,7 +50,8 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 构建动画
     let animationClassName = ''

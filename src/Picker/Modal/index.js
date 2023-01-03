@@ -49,7 +49,8 @@ const Modal = forwardRef(
 
     useEffect(() => {
       initInstance()
-    }, []) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
       if (instance.current) {
@@ -63,7 +64,8 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 事件
     async function handleSubmitClick() {

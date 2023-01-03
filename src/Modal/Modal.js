@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, forwardRef } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Utils from './../Tooltip/Utils'
 import locale from './../locale'
@@ -38,6 +38,14 @@ const Modal = forwardRef(
         }
       }
     })
+
+    useEffect(() => {
+      // 显示时触发onVisibleChange
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(visible)
+      }
+      // eslint-disable-next-line
+    }, [visible])
 
     // 构建动画
     let position = Utils.getAnimationPosition(animation)

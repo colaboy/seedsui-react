@@ -117,7 +117,8 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 点击遮罩
     function handleMaskClick(e) {

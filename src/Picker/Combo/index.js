@@ -26,9 +26,6 @@ const Combo = forwardRef(
       onBeforeChange,
       onChange,
 
-      // visible = false,
-      // onVisibleChange,
-
       // Combo属性
       allowClear,
       readOnly,
@@ -73,6 +70,10 @@ const Combo = forwardRef(
       }
 
       setVisible(!visible)
+      // 隐藏时触发onVisibleChange, 因为显示时Modal会触发onVisibleChange
+      if (!visible === false) {
+        if (ModalProps.onVisibleChange) ModalProps.onVisibleChange(!visible)
+      }
     }
 
     // 默认使用Picker弹窗
