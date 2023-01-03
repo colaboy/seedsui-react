@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import HighlightKeyword from './../../../../HighlightKeyword'
 import Header from './../../../../Header'
 import Input from './../../../../Input'
 import locale from './../../../../locale'
@@ -87,7 +88,9 @@ function Search({ instance, setErrMsg, onChange }) {
                   <i className="icon icon-position"></i>
                 </div>
                 <div className="map-search-item-content">
-                  <div className="map-search-item-title">{item.title}</div>
+                  <div className="map-search-item-title">
+                    <HighlightKeyword text={item.title} keyword={keyword} />
+                  </div>
                   <div className="map-search-item-description">{item.address}</div>
                 </div>
               </div>

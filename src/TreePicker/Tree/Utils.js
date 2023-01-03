@@ -1,3 +1,5 @@
+import HighlightKeyword from './../../HighlightKeyword'
+
 export default {
   // 获取选中项
   getCheckedKeysProp(value, defaultValue) {
@@ -30,19 +32,7 @@ export default {
     const loop = (data) =>
       data.map((item) => {
         const name = item.name
-        const index = name.indexOf(keyword)
-        const beforeStr = name.substring(0, index)
-        const afterStr = name.slice(index + keyword.length)
-        const titleDOM =
-          index > -1 ? (
-            <>
-              <span className="treepicker-keyword-highlight-before">{beforeStr}</span>
-              <span className="treepicker-keyword-highlight-text">{keyword}</span>
-              <span className="treepicker-keyword-highlight-before">{afterStr}</span>
-            </>
-          ) : (
-            name
-          )
+        const titleDOM = <HighlightKeyword text={name} keyword={keyword} />
 
         if (item.children) {
           return {
