@@ -147,8 +147,6 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            // 为了启用确定按钮
-            multiple={true}
             captionProps={captionProps}
             cancelProps={cancelProps}
             submitProps={submitProps}

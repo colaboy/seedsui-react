@@ -147,9 +147,6 @@ const MultipleModal = forwardRef(
         >
           {/* 头 */}
           <Head
-            // 为了启用确定按钮
-            multiple={true}
-            // caption
             cancelProps={cancelProps}
             submitProps={submitProps}
             onSubmitClick={handleSubmitClick}
