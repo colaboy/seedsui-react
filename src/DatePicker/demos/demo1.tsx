@@ -6,8 +6,6 @@ export default () => {
   const [rangeValue, setRangeValue] = useState(null)
   const [mulValue, setMulValue] = useState(null)
 
-  const rangeRef = useRef(null)
-
   return (
     <>
       <DatePicker.Combo
@@ -29,9 +27,8 @@ export default () => {
         type="datetime"
         min={new Date()}
         // max={new Date()}
-        onChange={(...params) => {
-          console.log(...params)
-        }}
+        maskClosable={false}
+        onChange={setRangeValue}
         onError={(err) => console.log(err)}
         value={rangeValue}
       />
@@ -43,13 +40,11 @@ export default () => {
           }
           return displayValue
         }}
-        maskClosable={false}
+        // maskClosable={false}
         value={rangeValue}
         onChange={setRangeValue}
-      >
-        {/* {rangeRef?.current?.getDisplayValue() || ''} */}
-      </DatePicker.RangeCombo>
-      {/* <DatePicker.Types
+      />
+      <DatePicker.Types
         value={{
           type: 'date',
           id: 'date',
@@ -59,7 +54,7 @@ export default () => {
         onChange={(...params) => console.log(...params)}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-right' }}
-      /> */}
+      />
     </>
   )
 }

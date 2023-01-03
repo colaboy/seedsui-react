@@ -72,7 +72,7 @@ const Combo = forwardRef(
         if (!goOn) return
       }
 
-      setVisible(true)
+      setVisible(!visible)
     }
 
     // 默认使用Picker弹窗
