@@ -149,6 +149,10 @@ export default defineConfig({
           {
             title: 'Toast',
             path: '/components/Toast'
+          },
+          {
+            title: 'Tabs',
+            path: '/components/Tabs'
           }
         ]
       }
@@ -243,6 +247,10 @@ export default defineConfig({
           {
             title: 'Toast',
             path: '/zh/components/Toast'
+          },
+          {
+            title: 'Tabs',
+            path: '/zh/components/Tabs'
           }
         ]
       }
