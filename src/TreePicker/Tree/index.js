@@ -13,7 +13,7 @@ function TreePicker(props) {
     list,
     defaultValue,
     value,
-    keywordProps,
+    searchProps,
     // 节流时长
     throttle = 500,
     onChange,
@@ -51,22 +51,23 @@ function TreePicker(props) {
   }
 
   // 搜索项属性
-  const { visible: keywordVisible, value: keywordValue, ...otherKeywordProps } = keywordProps || {}
-  let [keyword, setKeyword] = useState(keywordValue)
-  function handleKeyword(newKeyword) {
+  const { visible: searchVisible, value: searchValue, ...otherSearchProps } = searchProps || {}
+  let [keyword, setKeyword] = useState(searchValue)
+  function handleSearch(newKeyword) {
+    keyword = newKeyword
+    setKeyword(newKeyword)
+
     // 节流搜索
     if (flattenListRef.timeout) {
       window.clearTimeout(flattenListRef.timeout)
     }
     flattenListRef.timeout = window.setTimeout(() => {
-      keyword = newKeyword
-      setKeyword(newKeyword)
       handleExpandedKeys()
     }, throttle)
   }
 
   // 展开keys属性
-  const expandProp = keywordVisible
+  const expandProp = searchVisible
     ? {
         // 点击展开(expandedKeys如果带入了父级则不需要自动展开父级)
         onExpand: handleExpand,
@@ -101,14 +102,14 @@ function TreePicker(props) {
   return (
     <>
       {/* 搜索 */}
-      {keywordVisible && (
+      {searchVisible && (
         <Input.Text
           placeholder={locale('搜索', 'input_search_placeholder')}
-          onChange={handleKeyword}
-          className="treepicker-keyword-input"
+          onChange={handleSearch}
+          className="treepicker-search-input"
           defaultValue={keyword}
           allowClear={true}
-          {...otherKeywordProps}
+          {...otherSearchProps}
         />
       )}
       {/* 树 */}

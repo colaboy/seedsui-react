@@ -18,7 +18,7 @@ export default () => {
         list={list}
         multiple={true}
         TreeProps={{
-          keywordProps: {
+          searchProps: {
             value: '东城',
             visible: true
           },
@@ -30,12 +30,12 @@ export default () => {
         onChange={setValue}
         ModalProps={{
           onVisibleChange: (visible) => {
-            debugger
+            // debugger
           }
         }}
       />
       <TreePicker.Tree
-        keywordProps={{
+        searchProps={{
           value: '大东',
           visible: true
         }}

@@ -252,6 +252,9 @@ const InputText = forwardRef(
       // 非受控组件需要操作DOM
       if (defaultValue || defaultValue === '') {
         updateContainer()
+        if (inputRef?.current?.value) {
+          inputRef.current.value = ''
+        }
       }
     }
 

@@ -9,6 +9,7 @@ export default () => {
   }, [])
   return (
     <>
+      <Input.Text defaultValue={value} allowClear={true} />
       <Input.Number
         ref={inputNumberRef}
         // readOnly
