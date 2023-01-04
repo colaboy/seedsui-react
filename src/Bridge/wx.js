@@ -1,7 +1,5 @@
-/*
-import DB from 'seedsui-react/lib/DB'
-import Device from 'seedsui-react/lib/Device'
-*/
+// import DB from 'seedsui-react/lib/DB'
+// import Device from 'seedsui-react/lib/Device'
 
 import DB from './../DB'
 import Device from './../Device'

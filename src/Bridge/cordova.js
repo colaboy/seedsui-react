@@ -1,9 +1,7 @@
-/*
-import DB from 'seedsui-react/lib/DB'
-import Toast from 'seedsui-react/lib/Toast'
-import Device from 'seedsui-react/lib/Device'
-import locale from 'library/utils/locale'
-*/
+// import DB from 'seedsui-react/lib/DB'
+// import Toast from 'seedsui-react/lib/Toast'
+// import Device from 'seedsui-react/lib/Device'
+// import locale from 'library/utils/locale'
 
 import DB from './../DB'
 import Toast from './../Toast'

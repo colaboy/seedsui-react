@@ -1,25 +1,26 @@
-/*
-import jsonp from 'seedsui-react/lib/jsonp'
-import Device from 'seedsui-react/lib/Device'
-import MapUtil from 'seedsui-react/lib/MapUtil'
-import Modal from 'seedsui-react/lib/Modal'
-import Toast from 'seedsui-react/lib/Toast'
-// 老Toast(@deprecated 已废弃)
-import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
-import Alert from 'seedsui-react/lib/Alert/instance.js'
-import Loading from 'seedsui-react/lib/Loading'
-import locale from 'library/utils/locale'
-*/
+// import jsonp from 'seedsui-react/lib/jsonp'
+// import Device from 'seedsui-react/lib/Device'
+// import MapUtil from 'seedsui-react/lib/MapUtil'
+// import Modal from 'seedsui-react/lib/Modal'
+// import Toast from 'seedsui-react/lib/Toast'
+// import Alert from 'seedsui-react/lib/Alert/instance.js'
+// import Loading from 'seedsui-react/lib/Loading'
+// import locale from 'library/utils/locale'
+// import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
 
 import jsonp from './../jsonp'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Modal from './../Modal'
 import Toast from './../Toast'
-// 老Toast(@deprecated 已废弃)
-import ToastInstance from './../Toast/instance.js'
+// @deprecated Alert use Modal.alert instead
 import Alert from './../Alert/instance.js'
+// @deprecated Loading use Loading.show instead
 import Loading from './../Loading/instance.js'
+
+// @deprecated Toast use Toast.show instead
+import ToastInstance from './../Toast/instance.js'
+
 import locale from './../locale'
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
@@ -335,7 +336,6 @@ var Bridge = {
       }
       // 提示后，关闭返回，或者历史返回
       else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
-        console.log('back:confirm-close')
         // 默认提示信息
         let confirmCaption = locale('您确定要离开此页面吗?', 'confirm_quit_page')
         // 地址栏动态提示信息
