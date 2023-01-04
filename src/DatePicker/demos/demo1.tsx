@@ -23,12 +23,13 @@ export default () => {
         onChange={setMulValue}
       />
       <DatePicker.RangeCombo
+        ranges={80}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
         min={new Date()}
         // max={new Date()}
-        maskClosable={false}
+        // maskClosable={false}
         onChange={setRangeValue}
         onError={(err) => console.log(err)}
         value={rangeValue}

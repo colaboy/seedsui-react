@@ -3,6 +3,39 @@ import locale from './../../locale'
 
 // eslint-disable-next-line
 export default {
+  // ranges分成两部分: quickRanges(快捷选择)和customRanges(自定义选择)
+  getRanges: function (ranges) {
+    let quickRanges = {}
+    let customRanges = {}
+    if (toString.call(ranges) === '[object Object]' && !Object.isEmptyObject(ranges)) {
+      for (let rangeKey in ranges) {
+        let rangeValue = ranges[rangeKey]
+        if (
+          Array.isArray(rangeValue) &&
+          rangeValue.length === 2 &&
+          rangeValue[0] instanceof Date &&
+          rangeValue[1] instanceof Date
+        ) {
+          quickRanges[rangeKey] = rangeValue
+        } else {
+          // 自定义选择只能有一个
+          customRanges = {
+            [rangeKey]: rangeValue
+          }
+        }
+      }
+    } else {
+      if (typeof ranges === 'number') {
+        customRanges = {
+          [locale('自定义时间', 'datepicker-tooltip_custom_date')]: ranges
+        }
+      }
+    }
+    return {
+      quickRanges: quickRanges,
+      customRanges: customRanges
+    }
+  },
   // 开始结束时间
   getDates: function (value) {
     if (!Array.isArray(value) || value.length !== 2) {
