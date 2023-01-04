@@ -172,7 +172,7 @@
   .setTabsLineWidthPercentage(@n, @i:40) when(@i<@n) {
     &.tabs-line-width-percent@{i} {
       .tab:after {
-        width: percentage(@i / 100);
+        width: percentage(@i) / 100;
       }
     }
     .setTabsLineWidthPercentage(@n,(@i+10));
