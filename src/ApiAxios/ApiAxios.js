@@ -57,7 +57,7 @@ function formUpload(url, options) {
       console.warn('没有找到options.file, 无法上传')
       resolve({
         code: '0',
-        message: '没有找到options.file, 无法上传',
+        message: '没有找到options.file, 无法上传'
       })
       return
     }
@@ -66,10 +66,12 @@ function formUpload(url, options) {
     formData.append('file', options.file.files[0])
     // 发送请求
     const instance = axios.create({
-      withCredentials: true,
+      withCredentials: true
     })
     instance
-      .post(url, formData)
+      .post(url, formData, {
+        'Content-type': 'multipart/form-data'
+      })
       .then((response) => {
         resolve(getResult(response))
       })
@@ -111,10 +113,10 @@ const Api = {
       url: method === 'get' ? buildGetUrl(url, data) : url,
       method: method,
       headers: {
-        ...head,
+        ...head
       },
       data: method === 'get' ? null : data,
-      ...options,
+      ...options
     })
   },
   post: function (url, params = {}) {
@@ -132,7 +134,7 @@ const Api = {
   },
   jsonp: function (url, params = {}) {
     return this.request(url, Object.assign({}, params, { method: 'jsonp' }))
-  },
+  }
 }
 
 // 响应拦截器
