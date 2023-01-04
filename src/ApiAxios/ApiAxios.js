@@ -1,4 +1,3 @@
-// require (PrototypeObject.js), 使用了isEmptyObject、params
 import axios from 'axios'
 
 // axios 默认配置
@@ -20,15 +19,15 @@ function getResult(response) {
 }
 
 // 构建get请求参数, get请求需要把url和data拼接起来
-function buildGetUrl(url, params) {
-  if (!params || Object.isEmptyObject(params)) {
+function buildGetUrl(url, data) {
+  if (!data || Object.isEmptyObject(data)) {
     return url
   }
-  if (typeof params === 'string') {
-    return url + '?' + params
+  if (typeof data === 'string') {
+    return url + '?' + data
   }
-  if (Object.type(params) === 'json') {
-    return url + '?' + Object.params(params)
+  if (Object.type(data) === 'json') {
+    return url + '?' + Object.params(data)
   }
   return url
 }
@@ -66,12 +65,11 @@ function formUpload(url, options) {
     formData.append('file', options.file.files[0])
     // 发送请求
     const instance = axios.create({
-      withCredentials: true
+      withCredentials: true,
+      headers: { 'Content-type': 'multipart/form-data' }
     })
     instance
-      .post(url, formData, {
-        'Content-type': 'multipart/form-data'
-      })
+      .post(url, formData)
       .then((response) => {
         resolve(getResult(response))
       })
@@ -90,8 +88,8 @@ const Api = {
   setBaseURL: function (baseURL) {
     axios.defaults.baseURL = baseURL
   },
-  request: function (url, params = {}) {
-    let { method, head, data, ...options } = params
+  request: function (url, config = {}) {
+    let { method, head, data, ...options } = config
     // 设置method
     if (
       method !== 'get' &&
@@ -99,16 +97,18 @@ const Api = {
       method !== 'jsonp' &&
       method !== 'upload' &&
       method !== 'form-upload'
-    )
+    ) {
       method = 'get'
-    // 如果是jsonp, 则其它参数都没有意义了
+    }
+    // jsonp
     if (method === 'jsonp') {
       return jsonp(url)
     }
-    // 如果是上传文件
+    // 上传文件
     if (method === 'upload') {
       return formUpload(buildGetUrl(url, data), options)
     }
+    // 网络数据请求
     return axios({
       url: method === 'get' ? buildGetUrl(url, data) : url,
       method: method,
@@ -119,11 +119,11 @@ const Api = {
       ...options
     })
   },
-  post: function (url, params = {}) {
-    return this.request(url, Object.assign({}, params, { method: 'post' }))
+  post: function (url, config = {}) {
+    return this.request(url, Object.assign({}, config, { method: 'post' }))
   },
-  get: function (url, params = {}) {
-    return this.request(url, Object.assign({}, params, { method: 'get' }))
+  get: function (url, config = {}) {
+    return this.request(url, Object.assign({}, config, { method: 'get' }))
   },
   all: function (requests) {
     // requests: [{url: '', params: {}}]
@@ -132,8 +132,8 @@ const Api = {
     })
     return axios.all(methods)
   },
-  jsonp: function (url, params = {}) {
-    return this.request(url, Object.assign({}, params, { method: 'jsonp' }))
+  jsonp: function (url, config = {}) {
+    return this.request(url, Object.assign({}, config, { method: 'jsonp' }))
   }
 }
 
