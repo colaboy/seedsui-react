@@ -1,3 +1,9 @@
+/*
+import DB from 'seedsui-react/lib/DB'
+import Device from 'seedsui-react/lib/Device'
+import locale from 'library/utils/locale'
+*/
+
 import DB from './../DB'
 import Device from './../Device'
 import locale from './../locale'
@@ -10,30 +16,22 @@ var Bridge = {
    */
   platform: 'dinghuo',
   // 自定义操作
-  // eslint-disable-next-line
   invoke: function (api, params, callback) {
-    /* eslint-disable */
-    top.wq.invoke(api, params, callback)
-    /* eslint-enable */
+    window.top.wq.invoke(api, params, callback)
   },
   // 配置鉴权
   init: function (cb) {
-    // eslint-disable-next-line
-    if (window.wq && !top.wq) {
-      // eslint-disable-next-line
-      top.wq = window.wq
+    if (window.wq && !window.top.wq) {
+      window.top.wq = window.wq
     }
 
     self = this
     let isReady = false
-    // eslint-disable-next-line
-    if (top.wq) {
+    if (window.top.wq) {
       console.log('桥接文件已加载!')
-      // eslint-disable-next-line
-      top.wq.config({ auth: false })
+      window.top.wq.config({ auth: false })
       console.log('桥接已配置, 调用ready')
-      // eslint-disable-next-line
-      top.wq.ready(function (response) {
+      window.top.wq.ready(function (response) {
         console.log('桥接ready完成!')
         isReady = true
         // 初始化完成回调
@@ -55,7 +53,7 @@ var Bridge = {
   },
   // 判断是否是主页
   isHomePage: function (callback) {
-    top.wq.invoke('isHomePage', null, function (data) {
+    window.top.wq.invoke('isHomePage', null, function (data) {
       if (data.result.toString() === '1') {
         callback(true)
       } else {
@@ -69,11 +67,11 @@ var Bridge = {
   },
   // 返回首页
   goHome: function () {
-    top.wq.invoke('goHome')
+    window.top.wq.invoke('goHome')
   },
   // 退出到登陆页面
   logOut: function () {
-    top.wq.invoke('logout') // eslint-disable-line
+    window.top.wq.invoke('logout') // eslint-disable-line
   },
   /**
    * 打开新的窗口
@@ -87,11 +85,11 @@ var Bridge = {
       else if (params.url.indexOf('webview:') === 0)
         params.url = params.url.replace(/^webview:/, '')
     }
-    top.wq.openWindow(params) // eslint-disable-line
+    window.top.wq.openWindow(params) // eslint-disable-line
   },
   // 关闭窗口
   closeWindow: function (params) {
-    top.wq.closeWindow(params) // eslint-disable-line
+    window.top.wq.closeWindow(params) // eslint-disable-line
   },
   /**
    * 修改原生标题
@@ -101,7 +99,7 @@ var Bridge = {
     if (params && params.title) {
       if (typeof params.title === 'string') {
         document.title = params.title
-        top.wq.setTitle(params) // eslint-disable-line
+        window.top.wq.setTitle(params) // eslint-disable-line
       } else if (typeof params.title === 'function') {
         params.title()
       }
@@ -109,7 +107,7 @@ var Bridge = {
   },
   // 返回监听
   onHistoryBack: function (params) {
-    top.wq.onHistoryBack(params) // eslint-disable-line
+    window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
   /**
    * 获取当前地理位置
@@ -142,8 +140,7 @@ var Bridge = {
     }
     self.locationTask = []
     console.log('调用外勤定位...')
-    // eslint-disable-next-line
-    top.wq.getLocation({
+    window.top.wq.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: params.type || 'gcj02',
       success: (res) => {
@@ -176,8 +173,7 @@ var Bridge = {
    * */
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
-    // eslint-disable-next-line
-    top.wq.scanQRCode({
+    window.top.wq.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || '二维码／条码',
@@ -221,7 +217,7 @@ var Bridge = {
         if (params.watermark.cmLocation) chooseParams.cmLocation = params.watermark.cmLocation // 偏差
         chooseParams.isWaterMark = '1'
       }
-      top.wq.invoke('chooseImage', chooseParams, function (res) {
+      window.top.wq.invoke('chooseImage', chooseParams, function (res) {
         if (!res) res = {}
         if (!res.localIds) res.localIds = []
         res.localIds = res.localIds.map(function (id) {
@@ -238,7 +234,7 @@ var Bridge = {
       return
     }
     console.log('外勤WK内核chooseImage', params)
-    top.wq.chooseImage(params) // eslint-disable-line
+    window.top.wq.chooseImage(params) // eslint-disable-line
   },
   /**
   * 照片上传, ios测试环境无法上传
@@ -283,7 +279,7 @@ var Bridge = {
       }
       // 旧客户端上传完成后将会删除, 所以延迟上传, 以保证页面显示正确
       setTimeout(() => {
-        top.wq.invoke('uploadImage', {
+        window.top.wq.invoke('uploadImage', {
           uploadDir: params.uploadDir,
           tenantId: params.tenantId || '',
           localIds: [params.localId]
@@ -313,10 +309,10 @@ var Bridge = {
     }
     console.log('外勤WK内核上传')
     console.log(uploadParams)
-    top.wq.uploadImage(uploadParams) // eslint-disable-line
+    window.top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
   previewImage: function (params) {
-    top.wq.previewImage(params) // eslint-disable-line
+    window.top.wq.previewImage(params) // eslint-disable-line
   },
   /**
     * 视频文件上传
@@ -348,7 +344,7 @@ var Bridge = {
         })
       return
     }
-    top.wq.invoke(
+    window.top.wq.invoke(
       'uploadFile',
       {
         url: url || `https://cloud.waiqin365.com/fileupload/v1/doUpload.do?uploadPath=file`,
@@ -392,7 +388,7 @@ var Bridge = {
     }
     console.log('外勤WK内核chooseVideo', params)
 
-    top.wq.invoke(
+    window.top.wq.invoke(
       'chooseVideo',
       {
         sourceType: sourceType || ['album', 'camera'],
@@ -428,7 +424,7 @@ var Bridge = {
    * }
    */
   previewFile: function (params) {
-    top.wq.previewFile(params) // eslint-disable-line
+    window.top.wq.previewFile(params) // eslint-disable-line
   },
   /**
    * 订货特殊API
@@ -439,7 +435,7 @@ var Bridge = {
   setBackEnable: function (flag) {
     if (/(Android)/i.test(navigator.userAgent)) {
       /* 判断Android */
-      top.wq.invoke('setBackEnable', flag)
+      window.top.wq.invoke('setBackEnable', flag)
     }
   },
   // 获取图片前缀
@@ -448,7 +444,7 @@ var Bridge = {
   },
   // 获取登陆信息
   loginInfo: function (callback) {
-    top.wq.invoke('getLoginInfo', null, callback)
+    window.top.wq.invoke('getLoginInfo', null, callback)
   },
   // 根据key获取登陆信息
   getLoginInfo: function (key, callback) {
@@ -459,11 +455,11 @@ var Bridge = {
   },
   // 获取系统参数
   systemParameter: function (callback) {
-    top.wq.invoke('getSystemParameter', null, callback)
+    window.top.wq.invoke('getSystemParameter', null, callback)
   },
   // 修改原生角标
   changeBadgeNum: function (count) {
-    top.wq.invoke('setBadgeNum', { key: count })
+    window.top.wq.invoke('setBadgeNum', { key: count })
   },
   /**
    * 支付宝支付
@@ -472,7 +468,7 @@ var Bridge = {
    * @callback(result) {Object} {code: "0", message: "支付成功"}|{code: "-1", message: "支付失败"}|{code: "-1", message: "数据解析异常"}
    */
   alipay: function (params, callback) {
-    top.wq.invoke('alipay', params, callback)
+    window.top.wq.invoke('alipay', params, callback)
   },
   /**
    * 商联支付
@@ -480,7 +476,7 @@ var Bridge = {
    * @param {Function} callback 回调
    */
   slopenpay: function (params, callback) {
-    top.wq.invoke('slopenpay', params, callback)
+    window.top.wq.invoke('slopenpay', params, callback)
   },
   /**
    * 大华捷通支付
@@ -503,7 +499,7 @@ var Bridge = {
       callback({ resultCode: '5004', resultInfo: '{"resultMsg":"请安装2.3.6以上版本"}' })
       return
     }
-    top.wq.invoke('qmfpay', params, callback)
+    window.top.wq.invoke('qmfpay', params, callback)
   },
   /**
    * 分享文本
@@ -517,7 +513,7 @@ var Bridge = {
    * @param {Function} callback 回调
    */
   shareText: function (params, callback) {
-    top.wq.invoke('shareText', params, callback)
+    window.top.wq.invoke('shareText', params, callback)
   },
   /**
    * 获取订货包名
@@ -528,7 +524,7 @@ var Bridge = {
       callback({})
       return
     }
-    top.wq.invoke('getIdentification', null, callback)
+    window.top.wq.invoke('getIdentification', null, callback)
   },
   /* -----------------------------------------------------
     文件操作
@@ -542,7 +538,7 @@ var Bridge = {
   })
   */
   isExistsFile: function (params, callback) {
-    top.wq.invoke('isExistsFile', params, callback)
+    window.top.wq.invoke('isExistsFile', params, callback)
   },
   /* 附件下载
   downloadFile({
@@ -554,7 +550,7 @@ var Bridge = {
   // 返回格式 {{"code":"","filePath":"","message":""}，code:'0'失败，'1'成功，message失败原因
   }) */
   downloadFile: function (params, callback) {
-    top.wq.invoke('downloadFile', params, callback)
+    window.top.wq.invoke('downloadFile', params, callback)
   },
   /* 附件打开
   openFile（{
@@ -563,11 +559,11 @@ var Bridge = {
   // 返回格式 {{"code":"","message":""}，code:'0'失败，'1'成功，message失败原因
   }） */
   openFile: function (params, callback) {
-    top.wq.invoke('openFile', params, callback)
+    window.top.wq.invoke('openFile', params, callback)
   },
   // 获取当前网络状态 @return {networkType:'返回网络类型2g，3g，4g，wifi'}
   getNetworkType: function (callback) {
-    top.wq.invoke('getNetworkType', null, callback)
+    window.top.wq.invoke('getNetworkType', null, callback)
   }
 }
 

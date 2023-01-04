@@ -1,3 +1,16 @@
+/*
+import jsonp from 'seedsui-react/lib/jsonp'
+import Device from 'seedsui-react/lib/Device'
+import MapUtil from 'seedsui-react/lib/MapUtil'
+import Modal from 'seedsui-react/lib/Modal'
+import Toast from 'seedsui-react/lib/Toast'
+// 老Toast(@deprecated 已废弃)
+import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
+import Alert from 'seedsui-react/lib/Alert/instance.js'
+import Loading from 'seedsui-react/lib/Loading'
+import locale from 'library/utils/locale'
+*/
+
 import jsonp from './../jsonp'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
@@ -8,12 +21,9 @@ import ToastInstance from './../Toast/instance.js'
 import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
 import locale from './../locale'
-// import MediaUtil from './../MediaUtil'
-// import FullScreen from './../FullScreen'
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
-// eslint-disable-next-line
-top.window._bridge_self = null
+window.top.window._bridge_self = null
 
 var Bridge = {
   /**
@@ -266,7 +276,7 @@ var Bridge = {
     return new Promise(async (resolve) => {
       // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
       // eslint-disable-next-line
-      var self = top.window._bridge_self
+      var self = window.top.window._bridge_self
 
       // 返回操作对象与返回层级
       var _history = window.history
@@ -385,6 +395,7 @@ var Bridge = {
   ready: function (callback, options = {}) {
     var self = this
     var platform = self.platform
+    var d = new Date()
     if (
       platform !== 'wechat' &&
       platform !== 'wework' &&
@@ -431,9 +442,9 @@ var Bridge = {
       // 加载完成
       script.onload = function () {
         // eslint-disable-next-line
-        if (window.wx && !top.wx) {
+        if (window.wx && !window.top.wx) {
           // eslint-disable-next-line
-          top.wx = window.wx
+          window.top.wx = window.wx
         }
         if (callback) callback()
       }
@@ -459,7 +470,6 @@ var Bridge = {
     } else if (platform === 'wq') {
       // 外勤jssdk
       // 用开发d目录可以使用新功能
-      var d = new Date()
       script.src =
         options.wqSrc ||
         `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
@@ -474,7 +484,6 @@ var Bridge = {
     } else if (platform === 'dinghuo') {
       // 订货jssdk
       // 用开发d目录可以使用新功能
-      var d = new Date()
       script.src =
         options.wqSrc ||
         `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`

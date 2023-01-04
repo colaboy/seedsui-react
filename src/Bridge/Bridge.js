@@ -1,3 +1,5 @@
+// import Device from 'seedsui-react/lib/Device'
+
 import Device from './../Device'
 import BridgeBase from './base'
 import BridgeBrowser from './browser'
@@ -41,7 +43,7 @@ if (
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
 // eslint-disable-next-line
-top.window._bridge_self = Bridge
+window.top.window._bridge_self = Bridge
 
 /*
 Bridge.ready(() => {

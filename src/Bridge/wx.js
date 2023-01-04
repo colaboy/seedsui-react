@@ -1,3 +1,8 @@
+/*
+import DB from 'seedsui-react/lib/DB'
+import Device from 'seedsui-react/lib/Device'
+*/
+
 import DB from './../DB'
 import Device from './../Device'
 
@@ -10,13 +15,11 @@ var Bridge = {
   platform: Device.platform,
   // 自定义操作
   invoke: function (api, params, callback) {
-    /* eslint-disable */
-    if (!top.wx.invoke) {
+    if (!window.top.wx.invoke) {
       console.log('没有wx.invoke的方法')
       return
     }
-    top.wx.invoke(api, params, callback)
-    /* eslint-enable */
+    window.top.wx.invoke(api, params, callback)
   },
   // 获得版本信息
   getAppVersion: function () {
@@ -44,12 +47,12 @@ var Bridge = {
   },
   // 关闭窗口
   closeWindow: function () {
-    top.wx.closeWindow() // eslint-disable-line
+    window.top.wx.closeWindow() // eslint-disable-line
   },
   // 返回监听
   onHistoryBack: function (params) {
-    if (typeof top.wx.onHistoryBack === 'function') {
-      top.wx.onHistoryBack(params) // eslint-disable-line
+    if (typeof window.top.wx.onHistoryBack === 'function') {
+      window.top.wx.onHistoryBack(params) // eslint-disable-line
     }
   },
   // 防止返回事件叠加绑定
@@ -59,10 +62,8 @@ var Bridge = {
   //   self = this
   //   if (callback) self.monitorBack = callback
   //   else self.monitorBack = null
-  //   // eslint-disable-next-line
-  //   if (top.wx.onHistoryBack) {
-  //     // eslint-disable-next-line
-  //     top.wx.onHistoryBack(function () {
+  //   if (window.top.wx.onHistoryBack) {
+  //     window.top.wx.onHistoryBack(function () {
   //       if (self.monitorBack) self.monitorBack()
   //       else self.back()
   //       self.addBackPress(self.monitorBack)
@@ -108,8 +109,7 @@ var Bridge = {
     }
     self.locationTask = []
     console.log('调用微信定位...')
-    // eslint-disable-next-line
-    top.wx.getLocation({
+    window.top.wx.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: params.type || 'gcj02',
       success: (res) => {
@@ -142,8 +142,7 @@ var Bridge = {
    * */
   scanQRCode(params = {}) {
     const { needResult, scanType, desc, success, ...othersParams } = params || {}
-    // eslint-disable-next-line
-    top.wx.scanQRCode({
+    window.top.wx.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || '二维码／条码',
@@ -193,13 +192,13 @@ var Bridge = {
     })
   },
   chooseImage: function (params) {
-    top.wx.chooseImage(params) // eslint-disable-line
+    window.top.wx.chooseImage(params)
   },
   uploadImage: function (params) {
-    top.wx.uploadImage(params) // eslint-disable-line
+    window.top.wx.uploadImage(params)
   },
   previewImage: function (params) {
-    top.wx.previewImage(params) // eslint-disable-line
+    window.top.wx.previewImage(params)
   },
   /**
    * 文件操作: 预览文件
@@ -211,7 +210,7 @@ var Bridge = {
    * }
    */
   previewFile: function (params) {
-    top.wx.previewFile(params) // eslint-disable-line
+    window.top.wx.previewFile(params)
   }
 }
 

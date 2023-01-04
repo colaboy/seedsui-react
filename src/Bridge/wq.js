@@ -1,3 +1,9 @@
+/*
+import DB from 'seedsui-react/lib/DB'
+import Device from 'seedsui-react/lib/Device'
+import locale from 'library/utils/locale'
+*/
+
 import DB from './../DB'
 import Device from './../Device'
 import locale from './../locale'
@@ -11,26 +17,19 @@ var Bridge = {
   platform: 'wq',
   // 自定义操作
   invoke: function (api, params, callback) {
-    /* eslint-disable */
-    top.wq.invoke(api, params, callback)
-    /* eslint-enable */
+    window.top.wq.invoke(api, params, callback)
   },
   // 配置鉴权
   init: function (cb) {
-    // eslint-disable-next-line
-    if (window.wq && !top.wq) {
-      // eslint-disable-next-line
-      top.wq = window.wq
+    if (window.wq && !window.top.wq) {
+      window.top.wq = window.wq
     }
 
     self = this
     let isReady = false
-    // eslint-disable-next-line
-    if (top.wq) {
-      // eslint-disable-next-line
-      top.wq.config({ auth: false })
-      // eslint-disable-next-line
-      top.wq.ready(function (response) {
+    if (window.top.wq) {
+      window.top.wq.config({ auth: false })
+      window.top.wq.ready(function (response) {
         isReady = true
         // 初始化完成回调
         if (response.errMsg === 'config:ok') {
@@ -50,7 +49,7 @@ var Bridge = {
   },
   // 判断是否是主页
   isHomePage: function (callback, rule) {
-    if (rule && top.window.location.href.indexOf(rule) >= 0) {
+    if (rule && window.top.window.location.href.indexOf(rule) >= 0) {
       callback(true)
       return
     }
@@ -66,7 +65,7 @@ var Bridge = {
   },
   // 退出到登陆页面
   logOut: function () {
-    top.wq.invoke('logout') // eslint-disable-line
+    window.top.wq.invoke('logout') // eslint-disable-line
   },
   /**
    * 打开新的窗口
@@ -83,8 +82,7 @@ var Bridge = {
         } else {
           url = `${url.replace(/^h5:/, '')}`
         }
-        // eslint-disable-next-line
-        top.wq.invoke(
+        window.top.wq.invoke(
           'nativeComponent',
           {
             android: {
@@ -107,16 +105,16 @@ var Bridge = {
             }, 500)
           }
         }
-        top.wq.openWindow(option) // eslint-disable-line
+        window.top.wq.openWindow(option) // eslint-disable-line
       }
     } else {
       // 新内核间跳转
-      top.wq.openWindow(params) // eslint-disable-line
+      window.top.wq.openWindow(params) // eslint-disable-line
     }
   },
   // 关闭窗口
   closeWindow: function (params) {
-    top.wq.closeWindow(params) // eslint-disable-line
+    window.top.wq.closeWindow(params) // eslint-disable-line
   },
   /**
    * 修改原生标题
@@ -126,7 +124,7 @@ var Bridge = {
     if (params && params.title) {
       if (typeof params.title === 'string') {
         document.title = params.title
-        top.wq.setTitle(params) // eslint-disable-line
+        window.top.wq.setTitle(params) // eslint-disable-line
       } else if (typeof params.title === 'function') {
         params.title()
       }
@@ -134,7 +132,7 @@ var Bridge = {
   },
   // 返回监听
   onHistoryBack: function (params) {
-    top.wq.onHistoryBack(params) // eslint-disable-line
+    window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
   // 防止返回事件叠加绑定
   // monitorBack: null,
@@ -143,10 +141,8 @@ var Bridge = {
   //   self = this
   //   if (callback) self.monitorBack = callback
   //   else self.monitorBack = null
-  //   // eslint-disable-next-line
-  //   if (top.wq.onHistoryBack) {
-  //     // eslint-disable-next-line
-  //     top.wq.onHistoryBack(function () {
+  //   if (window.top.wq.onHistoryBack) {
+  //     window.top.wq.onHistoryBack(function () {
   //       if (self.monitorBack) self.monitorBack()
   //       else self.back()
   //       self.addBackPress(self.monitorBack)
@@ -190,8 +186,7 @@ var Bridge = {
     }
     self.locationTask = []
     console.log('调用外勤定位...')
-    // eslint-disable-next-line
-    top.wq.getLocation({
+    window.top.wq.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: params.type || 'gcj02',
       success: (res) => {
@@ -225,8 +220,7 @@ var Bridge = {
    */
   scanQRCode: function (params = {}) {
     const { needResult, scanType, desc, ...othersParams } = params || {}
-    // eslint-disable-next-line
-    top.wq.scanQRCode({
+    window.top.wq.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果
       scanType: scanType || ['qrCode', 'barCode'],
       desc: desc || '二维码／条码',
@@ -246,7 +240,7 @@ var Bridge = {
     */
   chooseImage: function (params) {
     console.log('外勤WK内核chooseImage', params)
-    top.wq.chooseImage(params) // eslint-disable-line
+    window.top.wq.chooseImage(params) // eslint-disable-line
   },
   /**
     * 照片上传, ios测试环境无法上传
@@ -296,10 +290,10 @@ var Bridge = {
     }
     console.log('外勤WK内核上传')
     console.log(uploadParams)
-    top.wq.uploadImage(uploadParams) // eslint-disable-line
+    window.top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
   previewImage: function (params) {
-    top.wq.previewImage(params) // eslint-disable-line
+    window.top.wq.previewImage(params) // eslint-disable-line
   },
   /**
     * 视频文件上传
@@ -341,7 +335,7 @@ var Bridge = {
         })
       return
     }
-    top.wq.invoke(
+    window.top.wq.invoke(
       'uploadFile',
       {
         url: url || `${window.origin}/fileupload/v1/doUpload.do?uploadPath=file`,
@@ -365,7 +359,6 @@ var Bridge = {
     * }
     */
   chooseVideo: function (params) {
-    const self = this
     params = params || {}
 
     const {
@@ -386,7 +379,7 @@ var Bridge = {
     }
     console.log('外勤WK内核chooseVideo', params)
 
-    top.wq.invoke(
+    window.top.wq.invoke(
       'chooseVideo',
       {
         sourceType: sourceType || ['album', 'camera'],
@@ -422,7 +415,7 @@ var Bridge = {
    * }
    */
   previewFile: function (params) {
-    top.wq.previewFile(params) // eslint-disable-line
+    window.top.wq.previewFile(params) // eslint-disable-line
   }
 }
 

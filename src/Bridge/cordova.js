@@ -1,3 +1,10 @@
+/*
+import DB from 'seedsui-react/lib/DB'
+import Toast from 'seedsui-react/lib/Toast'
+import Device from 'seedsui-react/lib/Device'
+import locale from 'library/utils/locale'
+*/
+
 import DB from './../DB'
 import Toast from './../Toast'
 import Device from './../Device'
@@ -793,7 +800,6 @@ var Bridge = {
     * }
     */
   chooseVideo: function (argParams = {}) {
-    const self = this
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
         content: locale('此功能需要升级至6.6.0及以上的客户端', 'hint_choose_video_version')
