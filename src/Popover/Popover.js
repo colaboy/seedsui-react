@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { createPortal } from 'react-dom'
 
+/**
+ * @deprecated since version 5.2.8
+ * use Tooltip instead
+ */
 export default class Popover extends Component {
   static propTypes = {
     portal: PropTypes.object,

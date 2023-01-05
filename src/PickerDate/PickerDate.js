@@ -4,6 +4,10 @@ import { createPortal } from 'react-dom'
 import Instance from './instance.js'
 import Context from '../Context/instance.js'
 
+/**
+ * @deprecated since version 5.2.8
+ * use DatePicker instead
+ */
 const PickerDate = forwardRef(
   (
     {

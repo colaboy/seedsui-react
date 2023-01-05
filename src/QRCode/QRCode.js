@@ -1,53 +1,58 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import Instance from './instance.js'
 
-export default class QRCode extends Component {
-  static propTypes = {
-    text: PropTypes.string,
-    style: PropTypes.object,
-    children: PropTypes.node
-  }
-  static defaultProps = {}
-  componentDidUpdate() {
-    const { text, style = {} } = this.props
-    if (!this.instance || !text) return
-    const width = Object.getUnitNum(style.width || 0)
-    const height = Object.getUnitNum(style.height || 0)
-    const color = style.color
-    const backgroundColor = style.backgroundColor
-    if (width) this.instance._htOption.width = width
-    if (height) this.instance._htOption.height = height
-    if (color) this.instance._htOption.colorDark = color
-    if (backgroundColor) this.instance._htOption.colorLight = backgroundColor
-    this.instance.makeCode(text)
-  }
-  componentDidMount() {
-    if (this.instance) return
-    const { text, style = {} } = this.props
-    this.instance = new Instance(this.$el, {
+// 生成二维码
+const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
+  // 节点
+  const rootRef = useRef(null)
+  const instance = useRef(null)
+  useImperativeHandle(ref, () => {
+    return {
+      rootDOM: rootRef.current,
+      instance: instance.current,
+      getRootDOM: () => rootRef.current,
+      getInstance: () => instance.current
+    }
+  })
+
+  useEffect(() => {
+    if (instance.current) return
+    instance.current = new Instance(rootRef.current, {
       text: text || '',
-      width: Object.getUnitNum(style.width || 230),
-      height: Object.getUnitNum(style.width || 230),
-      colorDark: style.color || '#000000',
-      colorLight: style.backgroundColor || '#ffffff',
+      width: Object.getUnitNum(style?.width || 230),
+      height: Object.getUnitNum(style?.width || 230),
+      colorDark: style?.color || '#000000',
+      colorLight: style?.backgroundColor || '#ffffff',
       correctLevel: Instance.CorrectLevel.M // L,M,Q,H
     })
-  }
-  render() {
-    const { text, style, children, ...others } = this.props
-    if (!text) return null
-    return (
-      <span
-        ref={(el) => {
-          this.$el = el
-        }}
-        style={style}
-        {...others}
-        className={`qrcode${others.className ? ' ' + others.className : ''}`}
-      >
-        {children}
-      </span>
-    )
-  }
-}
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (!instance.current || !text) return
+    const width = Object.getUnitNum(style?.width || 0)
+    const height = Object.getUnitNum(style?.height || 0)
+    const color = style?.color
+    const backgroundColor = style?.backgroundColor
+    if (width) instance.current._htOption.width = width
+    if (height) instance.current._htOption.height = height
+    if (color) instance.current._htOption.colorDark = color
+    if (backgroundColor) instance.current._htOption.colorLight = backgroundColor
+    instance.current.makeCode(text)
+    // eslint-disable-next-line
+  }, [text])
+
+  if (!text) return null
+  return (
+    <span
+      ref={rootRef}
+      style={style}
+      {...props}
+      className={`qrcode${props.className ? ' ' + props.className : ''}`}
+    >
+      {children}
+    </span>
+  )
+})
+
+export default QRCode

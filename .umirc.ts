@@ -153,6 +153,10 @@ export default defineConfig({
           {
             title: 'Tabs',
             path: '/components/Tabs'
+          },
+          {
+            title: 'QRCode',
+            path: '/components/QRCode'
           }
         ]
       }
@@ -251,6 +255,10 @@ export default defineConfig({
           {
             title: 'Tabs',
             path: '/zh/components/Tabs'
+          },
+          {
+            title: 'QRCode',
+            path: '/zh/components/QRCode'
           }
         ]
       }

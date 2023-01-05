@@ -29,6 +29,7 @@ npm install seedsui-react --save
 - MapView、MapChoose 换为 Location/Modal/Preview、Choose
 - Mark 换为 <Button className="xs"></Button>
 - Tabbar 换为 Tabs
+- Tree 换为 TreePicker
 
 # 导入组件
 
@@ -4152,7 +4153,7 @@ import Progress from 'seedsui-react/lib/Progress'
 
   children={子元素 node, 默认无}
 
-  {...others}
+  {...props}
 />
 ```
 

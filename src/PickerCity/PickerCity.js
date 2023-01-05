@@ -4,6 +4,10 @@ import treeData from './../PickerDistrict/china.js'
 import Instance from './instance.js'
 import Context from '../Context/instance.js'
 
+/**
+ * @deprecated since version 5.2.8
+ * use Cascader.DistrictCombo instead
+ */
 const PickerCity = forwardRef(
   (
     {
