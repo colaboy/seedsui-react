@@ -4,7 +4,7 @@ import treeData from 'seedsui-react/lib/PickerDistrict/china.js'
 
 export default () => {
   const [list, setList] = useState(null)
-  const [value, setValue] = useState([{ id: '110101' }])
+  const [value, setValue] = useState([{ name: '和平区', parentid: '120000', id: '120101' }])
   useEffect(() => {
     setTimeout(() => {
       setList(treeData)
@@ -34,7 +34,7 @@ export default () => {
           }
         }}
       />
-      <TreePicker.Tree
+      <TreePicker.Menu
         searchProps={{
           value: '大东',
           visible: true
@@ -42,11 +42,10 @@ export default () => {
         value={value}
         multiple={true}
         list={treeData}
-        showIcon={false}
-        checkStrictly={false}
-        checkable
-        selectable={false}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log(newValue)
+          setValue(newValue)
+        }}
       />
     </>
   )

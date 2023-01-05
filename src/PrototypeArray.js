@@ -216,6 +216,29 @@ window.Array.prototype.getFlattenTreeChildren = function (id, propertyConfig) {
   return children
 }
 
+// 根据id, 取出此id节点的先辈数据
+window.Array.prototype.getFlattenTreePredecessor = function (id, propertyConfig) {
+  if (typeof id === 'number') id = String(id)
+  var parentIdName =
+    propertyConfig && propertyConfig.parentIdName ? propertyConfig.parentIdName : 'parentid'
+  var nodeIdName = propertyConfig && propertyConfig.nodeIdName ? propertyConfig.nodeIdName : 'id'
+
+  let current = this.getFlattenTreeNode(id, propertyConfig)
+  var list = this
+  var predecessor = []
+  function buildPredecessor(list, parentId) {
+    for (var i = 0, item; (item = list[i++]); ) {
+      // eslint-disable-line
+      if (parentId && item[nodeIdName] === parentId.toString()) {
+        predecessor.push(item)
+        buildPredecessor(list, item[parentIdName])
+      }
+    }
+  }
+  buildPredecessor(list, current[parentIdName])
+  return predecessor
+}
+
 // 根据id, 取出此id的后代节点数据, 即[{id: '', name: '', parentid: ''}]
 window.Array.prototype.getFlattenTreeDescendants = function (id, propertyConfig) {
   if (typeof id === 'number') id = String(id)
@@ -225,16 +248,16 @@ window.Array.prototype.getFlattenTreeDescendants = function (id, propertyConfig)
 
   var list = this
   var descendants = []
-  function buildChildren(list, id) {
+  function buildDescendants(list, id) {
     for (var i = 0, item; (item = list[i++]); ) {
       // eslint-disable-line
       if (id && item[parentIdName || 'parentid'] === id.toString()) {
         descendants.push(item)
-        buildChildren(list, item[nodeIdName || 'id'])
+        buildDescendants(list, item[nodeIdName || 'id'])
       }
     }
   }
-  buildChildren(list, id)
+  buildDescendants(list, id)
   return descendants
 }
 
@@ -396,6 +419,28 @@ window.Array.prototype.getDeepTreeParent = function (id, propertyConfig) {
     current = null
   }
   return current
+}
+
+// 根据id, 取出此id节点的先辈数据
+window.Array.prototype.getDeepTreePredecessor = function (id, propertyConfig) {
+  if (typeof id === 'number') id = String(id)
+  var parentIdName =
+    propertyConfig && propertyConfig.parentIdName ? propertyConfig.parentIdName : 'parentid'
+
+  var list = this
+  var predecessor = []
+
+  function buildPredecessor(list, parentId) {
+    let parent = list.getDeepTreeNode(parentId, propertyConfig)
+    predecessor.push(parent)
+    if (parent[parentIdName]) {
+      buildPredecessor(list, parent[parentIdName])
+    }
+  }
+
+  let current = list.getDeepTreeNode(id, propertyConfig)
+  buildPredecessor(list, current[parentIdName])
+  return predecessor
 }
 
 // 根据id, 在指定id节点下加入属性数据, 例如{children: [{id: '', name: '', parentid: ''}]}

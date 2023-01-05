@@ -1,5 +1,6 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+// 数值标
 const Badge = forwardRef(
   (
     {
@@ -10,6 +11,15 @@ const Badge = forwardRef(
     },
     ref
   ) => {
+    // 节点
+    const rootRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
+
     // 标题
     let caption = children
     if (limit && children && (typeof children === 'string' || typeof children === 'number')) {
@@ -22,7 +32,7 @@ const Badge = forwardRef(
     }
     return (
       <span
-        ref={ref}
+        ref={rootRef}
         {...others}
         className={`badge${others.className ? ' ' + others.className : ''}`}
       >

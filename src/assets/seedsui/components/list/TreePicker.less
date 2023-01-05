@@ -290,3 +290,104 @@
   position: relative;
   z-index: 0;
 }
+
+/*
+* TreePicker.Menu
+*/
+// TreePicker.Menu侧边菜单
+@treepicker-menu-bg: #fff;
+@treepicker-menu-tag-color: #666;
+@treepicker-menu-tag-bg: transparent;
+@treepicker-menu-tag-color-active: #666;
+@treepicker-menu-tag-bg-active: transparent;
+// 菜单容器
+.treepicker-menu {
+  width: 96px;
+  overflow: auto;
+  background-color: @treepicker-menu-bg;
+  &:extend(.border-r all);
+}
+// 菜单容器-下级容器
+.treepicker-menu-tag + ul {
+  display: none;
+  margin-right: 1px;
+  background-color: #f5f5f9;
+}
+.treepicker-menu-tag.expand + ul {
+  display: block;
+}
+// 菜单
+.treepicker-menu-tag {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 60px;
+  padding: 0 6px;
+  color: @treepicker-menu-tag-color;
+  font-size: 14px;
+  text-align: left;
+  background-color: @treepicker-menu-tag-bg;
+  // 画个底线
+  &:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: #e5e5e5;
+    content: '';
+    // border-bottom: 1px dotted #bfbfbf;
+  }
+  // 二级选中
+  & + ul .treepicker-menu-tag.active {
+    color: @primary-bg;
+    &:before {
+      width: 0;
+    }
+  }
+  & > * {
+    pointer-events: none;
+  }
+}
+// 菜单-选中
+.treepicker-menu-tag.active {
+  color: @treepicker-menu-tag-color-active;
+  background-color: @treepicker-menu-tag-bg-active;
+  // 左侧选中块
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: @primary-bg;
+    content: '';
+  }
+}
+// 菜单-文字
+.treepicker-menu-tag-font {
+  padding: 0 2px;
+  &:extend(.flex-1);
+  &:extend(.nowrap2);
+}
+// 菜单-图标
+.treepicker-menu-tag-icon {
+  display: block;
+  width: 15px;
+  vertical-align: -2px;
+}
+// 菜单-更多箭头
+.treepicker-menu-more {
+  &:extend(.shape-triangle-down);
+}
+// 菜单-更多箭头-展开
+.treepicker-menu-tag.expand {
+  // 更多箭头
+  .treepicker-menu-more {
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+}
