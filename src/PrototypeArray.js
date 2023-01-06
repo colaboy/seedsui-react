@@ -440,7 +440,9 @@ window.Array.prototype.getDeepTreePredecessor = function (id, propertyConfig) {
   }
 
   let current = list.getDeepTreeNode(id, propertyConfig)
-  buildPredecessor(list, current[parentIdName])
+  if (current) {
+    buildPredecessor(list, current[parentIdName])
+  }
   return predecessor
 }
 

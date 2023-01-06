@@ -12,6 +12,11 @@ const List = ({ itemRender, keyword, rootRef, value, list, onChange }) => {
     // eslint-disable-next-line
   }, [value])
 
+  useEffect(() => {
+    Utils.expandKeyword({ rootRef, keyword, list })
+    // eslint-disable-next-line
+  }, [keyword])
+
   function handleChange(item) {
     if (onChange) onChange([item])
   }
