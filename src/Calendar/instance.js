@@ -47,7 +47,7 @@ var Calendar = function (container, params) {
 
     /*
     Callbacks:
-    renderCellDOM: function(Date)
+    cellDOMRender: function(Date)
     onClick:function(Calendar)
     onChange:function(Calendar)
     onHeightChange:function(Calendar)// 高度变化
@@ -452,8 +452,8 @@ var Calendar = function (container, params) {
       s.dates[i].innerHTML = s.data[i].getDate()
 
       // 自定义绘制单元格
-      if (s.params.renderCellDOM) {
-        let cellDOM = s.params.renderCellDOM(s.data[i])
+      if (s.params.cellDOMRender) {
+        let cellDOM = s.params.cellDOMRender(s.data[i])
         if (typeof cellDOM === 'string') {
           s.dates[i].innerHTML = cellDOM
         } else {

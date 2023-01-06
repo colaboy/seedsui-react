@@ -4,7 +4,7 @@ export default forwardRef(
   (
     {
       // 进度条内部显示
-      renderCounter,
+      barContentRender,
 
       // 百分比(优先使用)
       percent,
@@ -54,7 +54,7 @@ export default forwardRef(
           className={`progress-bar${barProps?.className ? ' ' + barProps.className : ''}`}
           style={Object.assign({}, barProps?.style || {}, { width: barPercent + '%' })}
         >
-          {typeof renderCounter === 'function' && renderCounter({ percent: barPercent })}
+          {typeof barContentRender === 'function' && barContentRender({ percent: barPercent })}
           {/* 渲染计数器progress-caption */}
           {/* <Counter
             className={`progress-caption`}

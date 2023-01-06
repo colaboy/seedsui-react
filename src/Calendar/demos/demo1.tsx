@@ -5,7 +5,7 @@ export default () => {
   const calendarRef = useRef(null)
   const [value, setValue] = useState(new Date())
 
-  function handleRenderCellDOM(date) {
+  function handleCellDOMRender(date) {
     return `<div><p>${date.getDate()}</p></div>`
   }
   function handleChange(newValue) {
@@ -62,7 +62,7 @@ export default () => {
         titleFormat="YYYY年MM月DD日 周EE 第W周"
         prevHTML="<" // 左箭头
         nextHTML=">" // 右箭头
-        renderCellDOM={handleRenderCellDOM}
+        cellDOMRender={handleCellDOMRender}
         onChange={handleChange}
         onError={handleError}
         min={new Date()} // 禁用今天以前的日期
