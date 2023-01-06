@@ -23,11 +23,12 @@ const Badge = forwardRef(
     // 标题
     let caption = children
     if (limit && children && (typeof children === 'string' || typeof children === 'number')) {
+      caption = caption.toString()
       // 数字大于99,则显示99+
-      if (!isNaN(children)) {
-        caption = children.length > limit ? '99999'.substring(0, limit) + ellipsis : children
+      if (!isNaN(caption)) {
+        caption = caption.length > limit ? '99999'.substring(0, limit) + ellipsis : caption
       } else {
-        caption = children.length > limit ? children.substring(0, limit) + ellipsis : children
+        caption = caption.length > limit ? caption.substring(0, limit) + ellipsis : caption
       }
     }
     return (

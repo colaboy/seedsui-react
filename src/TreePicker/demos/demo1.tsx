@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { TreePicker } from 'seedsui-react'
+import { TreePicker, Badge } from 'seedsui-react'
 import treeData from 'seedsui-react/lib/PickerDistrict/china.js'
 
 export default () => {
-  const [list, setList] = useState(null)
+  const [badge, setBadge] = useState(null)
   const [value, setValue] = useState([{ name: '和平区', parentid: '120000', id: '120101' }])
   useEffect(() => {
     setTimeout(() => {
-      setList(treeData)
-    }, 1000)
+      setBadge({
+        '110000': 800
+      })
+    }, 2000)
   }, [])
   return (
     <>
       <TreePicker.Combo
         placeholder="Please select"
         value={value}
-        list={list}
+        list={treeData}
         multiple={true}
         TreeProps={{
           searchProps: {
@@ -39,6 +41,17 @@ export default () => {
         //   value: '大东',
         //   visible: true
         // }}
+        itemRender={(item, { keyword }) => {
+          if (badge && badge[item.id]) {
+            return (
+              <div className="treepicker-menu-item-caption">
+                {item.name}
+                <Badge>{badge[item.id]}</Badge>
+              </div>
+            )
+          }
+          return false
+        }}
         value={value}
         multiple={true}
         list={treeData}

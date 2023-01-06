@@ -75,16 +75,17 @@ const Item = ({
   // 获取文文
   function getItemDOM() {
     if (typeof itemRender === 'function') {
-      return itemRender(item, { keyword: keyword })
+      let itemDOM = itemRender(item, { keyword: keyword })
+      if (itemDOM) return itemDOM
     }
     if (hasKeyword(item.name, keyword) !== -1) {
       return (
-        <div className="treepicker-menu-item-font">
+        <div className="treepicker-menu-item-caption">
           <HighlightKeyword text={item.name} keyword={keyword} />
         </div>
       )
     }
-    return <div className="treepicker-menu-item-font">{item.name}</div>
+    return <div className="treepicker-menu-item-caption">{item.name}</div>
   }
 
   // 渲染
