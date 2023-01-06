@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import Instance from './instance.js'
 
-const IndexBar = forwardRef(({ children, ...props }, ref) => {
+const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
   let [anchors, setAnchors] = useState(null)
   // 节点
   const rootRef = useRef(null)
@@ -40,6 +40,7 @@ const IndexBar = forwardRef(({ children, ...props }, ref) => {
   // 实例化
   function initInstance() {
     instance.current = new Instance({
+      overflowContainer: container,
       container: rootRef.current,
       tooltipContainer: tooltipRef.current
     })

@@ -4,6 +4,7 @@ var Indexbar = function (params) {
   Model
   ----------------------- */
   var defaults = {
+    overflowContainer: null,
     container: null,
     tooltipContainer: null,
 
@@ -41,7 +42,12 @@ var Indexbar = function (params) {
     return
   }
   // 滚动容器
-  if (s.container.previousElementSibling) {
+  s.overflowContainer =
+    typeof s.params.overflowContainer === 'string'
+      ? document.querySelector(s.params.overflowContainer)
+      : s.params.overflowContainer
+
+  if (!s.overflowContainer && s.container.previousElementSibling) {
     s.overflowContainer = s.container.previousElementSibling
   }
 
