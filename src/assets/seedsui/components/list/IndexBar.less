@@ -3,26 +3,39 @@
 @indexbar-color-active: @body-color;
 @indexbar-font-size: @font-size-sm;
 .indexbar {
-  .flex;
-  .flex-vertical;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: 2;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
   font-size: @indexbar-font-size;
-  .indexbar-button {
-    .flex;
-    .flex-1;
-    .flex-middle;
-    .flex-center;
-    padding: 0 6px;
+}
+.indexbar-button {
+  .flex;
+  .flex-1;
+  .flex-middle;
+  .flex-center;
+  .indexbar-button-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
     color: @indexbar-color;
-    transform: scale(0.8);
+    border-radius: 100%;
+    pointer-events: none;
   }
-  &.active .indexbar-button {
-    color: @indexbar-color-active;
+}
+
+.indexbar-button.active {
+  .indexbar-button-caption {
+    color: @primary-color;
+    background-color: @primary-bg;
   }
 }
 .indexbar-tooltip {
@@ -44,6 +57,6 @@
   border-radius: 40px;
   transition: 200ms;
 }
-.indexbar.active + .indexbar-tooltip {
+.indexbar-tooltip.active {
   display: block;
 }

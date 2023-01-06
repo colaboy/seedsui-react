@@ -157,6 +157,10 @@ export default defineConfig({
           {
             title: 'QRCode',
             path: '/components/QRCode'
+          },
+          {
+            title: 'IndexBar',
+            path: '/components/index-bar'
           }
         ]
       }
@@ -259,6 +263,10 @@ export default defineConfig({
           {
             title: 'QRCode',
             path: '/zh/components/QRCode'
+          },
+          {
+            title: 'IndexBar',
+            path: '/zh/components/index-bar'
           }
         ]
       }
