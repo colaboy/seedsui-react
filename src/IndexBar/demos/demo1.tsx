@@ -7,7 +7,7 @@ export default () => {
       <IndexBar>
         <div className="position-relative" style={{ height: '500px', overflow: 'auto' }}>
           <ul>
-            <IndexBar.Anchor index={'A'}>
+            <IndexBar.Anchor name={'A'}>
               <li>标题A</li>
             </IndexBar.Anchor>
             <li>阿华</li>
@@ -15,13 +15,13 @@ export default () => {
             <li>阿全</li>
             <li>阿达</li>
 
-            <IndexBar.Anchor index={'B'}>
+            <IndexBar.Anchor name={'B'}>
               <li>标题B</li>
             </IndexBar.Anchor>
             <li>白起</li>
             <li>白旭</li>
             <li>冰冰</li>
-            <IndexBar.Anchor index={'C'}>
+            <IndexBar.Anchor name={'C'}>
               <li>标题C</li>
             </IndexBar.Anchor>
             <li>曹操</li>
@@ -37,7 +37,7 @@ export default () => {
             <li>成勇</li>
             <li>成婷</li>
             <li>成龙</li>
-            <IndexBar.Anchor index={'D'}>
+            <IndexBar.Anchor name={'D'}>
               <li>D</li>
             </IndexBar.Anchor>
             <li>大成子</li>
@@ -53,7 +53,7 @@ export default () => {
             <li>狄弟</li>
             <li>董文华</li>
             <li>董事</li>
-            <IndexBar.Anchor index={'F'}>
+            <IndexBar.Anchor name={'F'}>
               <li>F</li>
             </IndexBar.Anchor>
             <li>樊哙</li>

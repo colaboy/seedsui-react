@@ -1,12 +1,12 @@
 import React from 'react'
 
 // 序列控件的锚点
-const Anchor = ({ index, children }) => {
+const Anchor = ({ name, children }) => {
   // 为子元素增加data-indexbar-anchor属性
   let newChildren = React.Children.toArray(children)
   if (newChildren.length === 1) {
     newChildren = React.cloneElement(children, {
-      ['data-indexbar-anchor']: index
+      ['data-indexbar-anchor']: name
     })
   } else {
     newChildren = children
