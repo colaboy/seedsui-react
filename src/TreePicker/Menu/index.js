@@ -12,6 +12,8 @@ const Menu = forwardRef(
       list = [], // 数据: [{id: '', name: '', parentid: ''}]
 
       onChange, // func(value)
+      onExpand, // func(value)
+      onCollapse, // func(value)
 
       // 搜索
       searchProps,
@@ -69,6 +71,8 @@ const Menu = forwardRef(
           value={value}
           list={list}
           onChange={onChange}
+          onExpand={onExpand}
+          onCollapse={onCollapse}
           {...props}
         />
       </>

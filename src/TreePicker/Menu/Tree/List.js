@@ -3,7 +3,17 @@ import Item from './Item'
 import Utils from './../Utils'
 
 // 树菜单项
-const List = ({ itemRender, keyword, rootRef, value, list, onChange }) => {
+const List = ({
+  itemRender,
+  keyword,
+  rootRef,
+  value,
+  list,
+  // 回调
+  onExpand,
+  onCollapse,
+  onChange
+}) => {
   if (!Array.isArray(list) || !list.length) return null
 
   // 值变化时, 修改展开和选中
@@ -30,6 +40,8 @@ const List = ({ itemRender, keyword, rootRef, value, list, onChange }) => {
             itemRender={itemRender}
             keyword={keyword}
             item={item}
+            onExpand={onExpand}
+            onCollapse={onCollapse}
             onChange={handleChange}
           />
         )

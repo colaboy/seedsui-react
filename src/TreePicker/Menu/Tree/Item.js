@@ -2,7 +2,15 @@ import React from 'react'
 import HighlightKeyword from './../../../HighlightKeyword'
 
 // 树菜单项
-const Item = ({ itemRender, keyword, item, onChange }) => {
+const Item = ({
+  itemRender,
+  keyword,
+  item,
+  // 回调
+  onExpand,
+  onCollapse,
+  onChange
+}) => {
   // 递归子级
   const children =
     Array.isArray(item.children) && item.children.length
@@ -13,6 +21,8 @@ const Item = ({ itemRender, keyword, item, onChange }) => {
               itemRender={itemRender}
               keyword={keyword}
               item={child}
+              onExpand={onExpand}
+              onCollapse={onCollapse}
               onChange={onChange}
             />
           )
@@ -22,6 +32,15 @@ const Item = ({ itemRender, keyword, item, onChange }) => {
   // 点击
   function handleClick(e) {
     let target = e.currentTarget
+    // 回调收缩和展开事件
+    if (item.children) {
+      if (target.classList.contains('expand')) {
+        if (onCollapse) onCollapse([item])
+      } else {
+        if (onExpand) onExpand([item])
+      }
+    }
+
     // 如果已经选中, 则收展
     if (target.classList.contains('active')) {
       target.classList.toggle('expand')
@@ -60,18 +79,18 @@ const Item = ({ itemRender, keyword, item, onChange }) => {
     }
     if (hasKeyword(item.name, keyword) !== -1) {
       return (
-        <div className="treepicker-menu-tag-font">
+        <div className="treepicker-menu-item-font">
           <HighlightKeyword text={item.name} keyword={keyword} />
         </div>
       )
     }
-    return <div className="treepicker-menu-tag-font">{item.name}</div>
+    return <div className="treepicker-menu-item-font">{item.name}</div>
   }
 
   // 渲染
   return (
     <li>
-      <div data-id={item.id} className={`treepicker-menu-tag`} onClick={handleClick}>
+      <div data-id={item.id} className={`treepicker-menu-item`} onClick={handleClick}>
         {getItemDOM()}
         {children && <i className="treepicker-menu-more"></i>}
       </div>

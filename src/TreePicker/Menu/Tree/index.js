@@ -11,6 +11,8 @@ const Tree = forwardRef(
       value = [], // 选中项: [{id: '', name: ''}]
       list = [], // 数据: [{id: '', name: '', parentid: ''}]
       onChange, // func(value)
+      onExpand, // func(value)
+      onCollapse, // func(value)
 
       ...props
     },
@@ -36,6 +38,8 @@ const Tree = forwardRef(
           keyword={keyword}
           value={value}
           list={list}
+          onExpand={onExpand}
+          onCollapse={onCollapse}
           onChange={onChange}
         />
       </ul>

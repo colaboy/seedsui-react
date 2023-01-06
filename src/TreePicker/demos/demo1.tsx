@@ -35,16 +35,22 @@ export default () => {
         }}
       />
       <TreePicker.Menu
-        searchProps={{
-          value: '大东',
-          visible: true
-        }}
+        // searchProps={{
+        //   value: '大东',
+        //   visible: true
+        // }}
         value={value}
         multiple={true}
         list={treeData}
         onChange={(newValue) => {
           console.log(newValue)
           setValue(newValue)
+        }}
+        onExpand={(newValue) => {
+          console.log('onExpand:', newValue)
+        }}
+        onCollapse={(newValue) => {
+          console.log('onCollapse:', newValue)
         }}
       />
     </>
