@@ -13,15 +13,15 @@ const BottomFinish = forwardRef(({ children, caption, type, ...props }, ref) => 
     if (caption) return caption
     if (type === 'loading') {
       return (
-        <div className="body-pull-push-box">
-          <div className="body-pull-push-icon body-pull-push-icon-loading"></div>
-          <div className="body-pull-push-caption">{locale('正在加载...', 'loading')}</div>
+        <div className="layout-pull-push-box">
+          <div className="layout-pull-push-icon layout-pull-push-icon-loading"></div>
+          <div className="layout-pull-push-caption">{locale('正在加载...', 'loading')}</div>
         </div>
       )
     } else {
       return (
-        <div className="body-pull-push-box">
-          <div className="body-pull-push-caption">
+        <div className="layout-pull-push-box">
+          <div className="layout-pull-push-caption">
             {type === 'noMore'
               ? locale('没有更多数据了', 'no_more_data')
               : locale('加载失败, 请稍后再试', 'refreshing_failed')}
@@ -33,7 +33,7 @@ const BottomFinish = forwardRef(({ children, caption, type, ...props }, ref) => 
   return (
     <div
       ref={rootRef}
-      className="SID-Dragrefresh-ErrorContainer body-pull-push"
+      className="SID-Dragrefresh-ErrorContainer layout-pull-push"
       style={{ height: '50px' }}
       {...props}
     >

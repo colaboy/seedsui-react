@@ -1,8 +1,10 @@
-// Layout
+/*
+* Layout
+*/
 .layout {
   // flex布局
   display: flex;
-  flex: auto;
+  flex: 1;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
@@ -12,22 +14,40 @@
   }
 }
 
-// Header
+// 撑满展示
+.layout.full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/*
+* Header
+*/
 .layout-header {
   position: relative;
 }
 
-// footer
+/* footer
+*
+*/
 .layout-footer {
   position: relative;
 }
 
-// aside
+/*
+* aside
+*/
 .layout-aside {
   position: relative;
 }
 
-// Main
+/*
+* Main
+*/
 .layout-main {
   // 绝对定布局
   // position:absolute;

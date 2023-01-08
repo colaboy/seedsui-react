@@ -12,6 +12,9 @@ npm install seedsui-react --save
 
 # 废弃组件
 
+- Header 换为 Layout.Header
+- ContainerPull、Dragrefresh、Container、Body 换为 Layout.Main
+- Footer 换为 Layout.Footer
 - Actionsheet 换为 Actionsheet.Combo 和 Actionsheet.Modal
 - Alert 换为 Modal
 - InputText、InputPassword、InputArea、InputTel、InputNumber、InputPre、InputPre、InputStar、InputRange 换为 Input.xx
@@ -25,7 +28,6 @@ npm install seedsui-react --save
 - Bridge.showLoading() 换为 Loading.show()
 - Bridge.showAlert('') 换为 Modal.alert
 - Bridge.showConfirm('') 换为 Modal.confirm
-- ContainerPull、Dragrefresh、Container 换为 Body
 - MapView、MapChoose 换为 Location/Modal/Preview、Choose
 - Mark 换为 <Button className="xs"></Button>
 - Tabbar 换为 Tabs
@@ -674,28 +676,27 @@ function handleChange(newChecked) {
 
 [返回目录](#简介)
 
-## Body 主体容器
+## Layout.Main
 
-[源码](https://unpkg.com/seedsui-react/src/lib/Body/Body.js)
+[源码](https://unpkg.com/seedsui-react/src/lib/Layout/Main/index.js)
 
 ### 属性
 
 ```javascript
-<Body
-  onTopRefresh={头部刷新 func(s)}
+<Layout.Main
+  onTopRefresh={头部刷新 func()}
+  onBottomRefresh={头部刷新 func()}
   {...others}
 >
 内容
-</Body>
+</Layout.Main>
 ```
 
 ### 示例-动态加载
 
 ```javascript
-import Page from 'seedsui-react/lib/Page'
-import Header from 'seedsui-react/lib/Header'
-import Body from 'seedsui-react/lib/Body'
-import BodyBottomContainer from 'seedsui-react/lib/BodyBottomContainer'
+import { Layout } from 'seedsui-react'
+import Bottom from 'seedsui-react/lib/Layout/Main/Bottom'
 
 // 全局变量
 let page = 0
@@ -828,7 +829,7 @@ function getList(isNext) {
   })
 }
 
-;<Body onBottomRefresh={handleBottomRefresh}>
+;<Layout.Main onBottomRefresh={handleBottomRefresh}>
   {list.map((item, index) => {
     return (
       <div className="flex flex-middle" style={{ height: '44px' }} key={index}>
@@ -836,8 +837,8 @@ function getList(isNext) {
       </div>
     )
   })}
-  <BottomContainer type={bottomType} />
-</Body>
+  <Bottom type={bottomType} />
+</Layout.Main>
 ```
 
 [返回目录](#简介)
@@ -1786,35 +1787,35 @@ const tableRef = useRef(null)
 
 [返回目录](#简介)
 
-## Footer
+## Layout
 
-[底部内容](https://unpkg.com/seedsui-react/src/lib/Footer/Footer.js)
-, 通常与 Page、Header、Container 一起使用
+[底部内容](https://unpkg.com/seedsui-react/src/lib/Layout/index.js)
+, 包含 Header,Aside,Main,Footer
 
 ### 属性
 
 ```javascript
-<Footer
-  style={容器style object, 默认无}
-  className={容器className string, 默认无, 基础'container'}
-  {...others}
->
-底部内容
-</Footer>
+<Layout animation={(动画, 默认无)} {...props}>
+  内容
+</Layout>
 ```
 
 ### 示例
 
 ```javascript
-import Page from 'seedsui-react/lib/Page'
-import Header from 'seedsui-react/lib/Header'
-import Footer from 'seedsui-react/lib/Footer'
-import Body from 'seedsui-react/lib/Body'
-;<Page>
-  <Header>头部</Header>
-  <Body>中部</Body>
-  <Footer>底部</Footer>
-</Page>
+import {Layout} from 'seedsui-react/lib'
+
+const { Header, Footer, Aside, Main } = Layout
+<div id="root" style={{ height: '300px', position: 'relative' }}>
+  <Layout className="full">
+    <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
+    <Layout>
+      <Aside style={{ width: '80px', backgroundColor: '#3ba0e9' }}>Aside</Aside>
+      <Main style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}>Main</Main>
+    </Layout>
+    <Footer style={{ height: '44px', backgroundColor: '#7dbcea' }}>Footer</Footer>
+  </Layout>
+</div>
 ```
 
 [返回目录](#简介)
@@ -1904,39 +1905,6 @@ drawBg = () => {
 <input type="button" value="变粗" onClick={this.strokeStrong}/>
 <input type="button" value="保存" onClick={this.save}/>
 <input type="button" value="清除" onClick={this.clear}/>
-```
-
-[返回目录](#简介)
-
-## Header
-
-[头部内容](https://unpkg.com/seedsui-react/src/lib/Header/Header.js)
-, 通常与 Page、Container 一起使用
-
-### 属性
-
-```javascript
-<Header
-  style={容器style object, 默认无}
-  className={容器className string, 默认无, 基础'container'}
-  {...others}
->
-头部内容
-</Header>
-```
-
-### 示例
-
-```javascript
-import Page from 'seedsui-react/lib/Page'
-import Header from 'seedsui-react/lib/Header'
-import Footer from 'seedsui-react/lib/Footer'
-import Body from 'seedsui-react/lib/Body'
-;<Page>
-  <Header>头部</Header>
-  <Body>中部</Body>
-  <Footer>底部</Footer>
-</Page>
 ```
 
 [返回目录](#简介)
@@ -2336,82 +2304,91 @@ this.state.lazy.load()
 ## IndexBar
 
 [索引栏](https://unpkg.com/seedsui-react/src/lib/IndexBar/IndexBar.js)
-, IndexBar 组件默认 fixed 定位, 并在父组件中寻找 data-indexbar-name 属性的元素, 与 indexs 对应, 滑动或点击切换时, 修改父组件的 scrollTop, 以达到滚动的效果
+, IndexBar 组件默认在 IndexBar 包裹的容器(会渲染成上相邻元素)内寻找 data-indexbar-anchor 属性的元素, 将值集合到 IndexBar 容器内, 滑动或点击切换时, 修改上相邻组件的 scrollTop, 以达到滚动的效果
 
 ### 属性
 
 ```javascript
 <IndexBar
-  overflowContainer={滚动区域 any, 默认document.body}
-  parent={DOM注入容器 any, 默认document.body}
-  className={索引栏className string, 默认无, 基础'indexbar'}
-  style={索引栏style object, 默认无}
-  // indexs与父组件中所有data-indexbar-name元素对应即可
-  indexs={索引集合 array, 默认['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'G', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']}
+  container={滚动容器 node, 默认无}
+  children={滚动容器 node, 默认无} // container存在时优先级高于children
 />
 ```
 
 ### 示例
 
 ```javascript
-import Body from 'seedsui-react/lib/Body'
-import IndexBar from 'seedsui-react/lib/IndexBar'
-;<Body>
-  <ul>
-    <li data-indexbar-name="A">A</li>
-    <li>阿华</li>
-    <li>阿敏</li>
-    <li>阿全</li>
-    <li>阿达</li>
-    <li data-indexbar-name="B">B</li>
-    <li>白起</li>
-    <li>白旭</li>
-    <li>冰冰</li>
-    <li data-indexbar-name="C">C</li>
-    <li>曹操</li>
-    <li>曹鸣</li>
-    <li>曹捷</li>
-    <li>陈真</li>
-    <li>陈进</li>
-    <li>陈明</li>
-    <li>陈伟</li>
-    <li>陈文</li>
-    <li>陈晓</li>
-    <li>陈娟</li>
-    <li>成勇</li>
-    <li>成婷</li>
-    <li>成龙</li>
-    <li data-indexbar-name="D">D</li>
-    <li>大成子</li>
-    <li>大舅子</li>
-    <li>戴笠</li>
-    <li>戴坤</li>
-    <li>戴成虎</li>
-    <li>邓小平</li>
-    <li>邓稼先</li>
-    <li>邓文迪</li>
-    <li>邓等</li>
-    <li>狄仁杰</li>
-    <li>狄弟</li>
-    <li>董文华</li>
-    <li>董事</li>
-    <li data-indexbar-name="F">F</li>
-    <li>樊哙</li>
-    <li>樊心</li>
-    <li>冯晨晨</li>
-    <li>冯敬尧</li>
-    <li>冯成虎</li>
-    <li>冯小平</li>
-    <li>冯稼先</li>
-    <li>冯文迪</li>
-    <li>冯晨</li>
-    <li>福尔杰</li>
-    <li>福尔康</li>
-    <li>福文华</li>
-    <li>方文山</li>
-  </ul>
-  <IndexBar style={{ top: '44px' }} />
-</Body>
+import { IndexBar } from 'seedsui-react/lib'
+;<div className="position-relative" style={{ height: '500px', overflow: 'hidden' }}>
+  <IndexBar>
+    <div className="position-relative" style={{ height: '500px', overflow: 'auto' }}>
+      <ul>
+        <IndexBar.Anchor name={'A'}>
+          <li>标题A</li>
+        </IndexBar.Anchor>
+        <li>阿华</li>
+        <li>阿敏</li>
+        <li>阿全</li>
+        <li>阿达</li>
+
+        <IndexBar.Anchor name={'B'}>
+          <li>标题B</li>
+        </IndexBar.Anchor>
+        <li>白起</li>
+        <li>白旭</li>
+        <li>冰冰</li>
+        <IndexBar.Anchor name={'C'}>
+          <li>标题C</li>
+        </IndexBar.Anchor>
+        <li>曹操</li>
+        <li>曹鸣</li>
+        <li>曹捷</li>
+        <li>陈真</li>
+        <li>陈进</li>
+        <li>陈明</li>
+        <li>陈伟</li>
+        <li>陈文</li>
+        <li>陈晓</li>
+        <li>陈娟</li>
+        <li>成勇</li>
+        <li>成婷</li>
+        <li>成龙</li>
+        <IndexBar.Anchor name={'D'}>
+          <li>D</li>
+        </IndexBar.Anchor>
+        <li>大成子</li>
+        <li>大舅子</li>
+        <li>戴笠</li>
+        <li>戴坤</li>
+        <li>戴成虎</li>
+        <li>邓小平</li>
+        <li>邓稼先</li>
+        <li>邓文迪</li>
+        <li>邓等</li>
+        <li>狄仁杰</li>
+        <li>狄弟</li>
+        <li>董文华</li>
+        <li>董事</li>
+        <IndexBar.Anchor name={'F'}>
+          <li>F</li>
+        </IndexBar.Anchor>
+        <li>樊哙</li>
+        <li>樊心</li>
+        <li>冯晨晨</li>
+        <li>冯敬尧</li>
+        <li>冯成虎</li>
+        <li>冯小平</li>
+        <li>冯稼先</li>
+        <li>冯文迪</li>
+        <li>冯晨</li>
+        <li>福尔杰</li>
+        <li>福尔康</li>
+        <li>福文华</li>
+        <li>方文山</li>
+      </ul>
+    </div>
+  </IndexBar>
+</div>
 ```
 
 [返回目录](#简介)

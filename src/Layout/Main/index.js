@@ -92,7 +92,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
     })
   }
   return (
-    <article
+    <main
       ref={rootRef}
       {...props}
       className={`layout-main${props.className ? ' ' + props.className : ''}`}
@@ -101,7 +101,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
       <TopContainer ref={topContainerRef} />
       {/* 内容 */}
       {children}
-    </article>
+    </main>
   )
 })
 
