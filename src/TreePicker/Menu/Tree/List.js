@@ -14,8 +14,6 @@ const List = ({
   onCollapse,
   onChange
 }) => {
-  if (!Array.isArray(list) || !list.length) return null
-
   // 值变化时, 修改展开和选中
   useEffect(() => {
     Utils.active({ rootRef, value, list })
@@ -31,6 +29,7 @@ const List = ({
     if (onChange) onChange([item])
   }
 
+  if (!Array.isArray(list) || !list.length) return null
   return (
     <>
       {list.map((item, index) => {

@@ -1,11 +1,9 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react'
 import Tree from 'rc-tree'
-
-import locale from './../../locale' // 国际化
-
-import Utils from './Utils'
 import Input from '../../Input'
 
+import Utils from './Utils'
+import locale from './../../locale' // 国际化
 // 树控件
 function TreePicker(props) {
   const {
@@ -17,7 +15,13 @@ function TreePicker(props) {
     // 节流时长
     throttle = 500,
     onChange,
-    ...others
+
+    // 树默认设置
+    showIcon = false,
+    checkStrictly = false,
+    checkable = true,
+    selectable = false,
+    ...props
   } = props
 
   // 扁平化数据, 搜索时需要展开的子级
@@ -26,8 +30,8 @@ function TreePicker(props) {
   )
   useEffect(() => {
     // 第一次不走
-    if (!flattenListRef.isFirst) {
-      flattenListRef.isFirst = true
+    if (!flattenListRef.current.isFirst) {
+      flattenListRef.current.isFirst = true
     }
     // 第二次开始更新
     else {
@@ -38,6 +42,7 @@ function TreePicker(props) {
 
     // 展开关键字
     handleExpandedKeys()
+    // eslint-disable-next-line
   }, [list])
 
   // 展开的id
@@ -58,10 +63,10 @@ function TreePicker(props) {
     setKeyword(newKeyword)
 
     // 节流搜索
-    if (flattenListRef.timeout) {
-      window.clearTimeout(flattenListRef.timeout)
+    if (window.timeout) {
+      window.clearTimeout(window.timeout)
     }
-    flattenListRef.timeout = window.setTimeout(() => {
+    window.timeout = window.setTimeout(() => {
       handleExpandedKeys()
     }, throttle)
   }
@@ -125,7 +130,13 @@ function TreePicker(props) {
         }}
         // 展开keys属性
         {...expandProp}
-        {...others}
+        // 树默认设置
+        showIcon={showIcon}
+        checkStrictly={checkStrictly}
+        // 单选不允许显示checkbox
+        checkable={multiple ? checkable : false}
+        selectable={selectable}
+        {...props}
       ></Tree>
     </>
   )
