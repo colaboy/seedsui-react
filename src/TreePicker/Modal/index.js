@@ -104,8 +104,6 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            multiple={multiple}
-            // caption
             cancelProps={cancelProps}
             submitProps={submitProps}
             onSubmitClick={handleSubmitClick}
@@ -113,6 +111,7 @@ const Modal = forwardRef(
           />
           <div className="treepicker-modal-wrapper">
             <Tree
+              multiple={multiple}
               list={list}
               value={tempValue}
               onChange={handleChange}

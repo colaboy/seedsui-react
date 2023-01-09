@@ -18,7 +18,8 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={treeData}
-        multiple={true}
+        // multiple={true}
+        checkStrictly={false}
         // checkable={false}
         TreeProps={{
           searchProps: {
@@ -27,7 +28,9 @@ export default () => {
           },
           showIcon: false
         }}
-        onChange={setValue}
+        onChange={(newValue) => {
+          setValue(newValue)
+        }}
         ModalProps={{
           onVisibleChange: (visible) => {
             // debugger
