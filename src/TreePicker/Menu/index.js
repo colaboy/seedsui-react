@@ -37,7 +37,12 @@ const Menu = forwardRef(
     })
 
     // 搜索项属性
-    const { visible: searchVisible, value: searchValue, ...otherSearchProps } = searchProps || {}
+    const {
+      visible: searchVisible,
+      value: searchValue,
+      onSearch,
+      ...otherSearchProps
+    } = searchProps || {}
     let [keyword, setKeyword] = useState(searchValue)
     function handleSearch(newKeyword) {
       // 节流搜索
@@ -47,6 +52,7 @@ const Menu = forwardRef(
       window.timeout = window.setTimeout(() => {
         keyword = newKeyword
         setKeyword(newKeyword)
+        if (onSearch) onSearch(keyword)
       }, throttle)
     }
 

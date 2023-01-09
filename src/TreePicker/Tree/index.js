@@ -4,6 +4,7 @@ import Input from '../../Input'
 
 import Utils from './Utils'
 import locale from './../../locale' // 国际化
+
 // 树控件
 function TreePicker(props) {
   const {
@@ -56,7 +57,12 @@ function TreePicker(props) {
   }
 
   // 搜索项属性
-  const { visible: searchVisible, value: searchValue, ...otherSearchProps } = searchProps || {}
+  const {
+    visible: searchVisible,
+    value: searchValue,
+    onSearch,
+    ...otherSearchProps
+  } = searchProps || {}
   let [keyword, setKeyword] = useState(searchValue)
   function handleSearch(newKeyword) {
     keyword = newKeyword
@@ -68,6 +74,7 @@ function TreePicker(props) {
     }
     window.timeout = window.setTimeout(() => {
       handleExpandedKeys()
+      if (onSearch) onSearch(keyword)
     }, throttle)
   }
 
@@ -126,15 +133,30 @@ function TreePicker(props) {
         {...checkedKeysProp}
         // 选中checkbox
         onCheck={(ids, checkedObject) => {
-          if (onChange) onChange(checkedObject?.checkedNodes || [])
+          let checkedNodes = checkedObject?.checkedNodes || []
+          // 单选只选中当前项
+          if (!multiple) {
+            checkedNodes = checkedObject?.node ? [checkedObject?.node] : []
+            // 如果已经选中, 则清空
+            if (
+              checkedNodes.length &&
+              checkedNodes.length === 1 &&
+              value.length &&
+              value.length === 1
+            ) {
+              if (checkedNodes[0].id === value[0].id) {
+                checkedNodes = []
+              }
+            }
+          }
+          if (onChange) onChange(checkedNodes)
         }}
         // 展开keys属性
         {...expandProp}
         // 树默认设置
         showIcon={showIcon}
         checkStrictly={checkStrictly}
-        // 单选不允许显示checkbox
-        checkable={multiple ? checkable : false}
+        checkable={checkable}
         selectable={selectable}
         {...props}
       ></Tree>
