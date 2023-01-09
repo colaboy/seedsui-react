@@ -80,11 +80,14 @@ const Combo = forwardRef(
       }
     }
 
-    // 默认使用Picker弹窗
+    // 自定义弹窗, 默认使用Picker弹窗
     let ModalRender = Modal
-    let PickerModalProps = ModalProps || {}
+    if (ModalComponent) {
+      ModalRender = ModalComponent
+    }
 
     // 伸缩属性
+    let PickerModalProps = ModalProps || {}
     if (maskProps !== undefined) {
       PickerModalProps.maskProps = maskProps
     }
@@ -105,11 +108,6 @@ const Combo = forwardRef(
     }
     if (selectable !== undefined) {
       PickerModalProps.selectable = selectable
-    }
-
-    // 自定义弹窗
-    if (ModalComponent) {
-      ModalRender = ModalComponent
     }
 
     // 允许清空
