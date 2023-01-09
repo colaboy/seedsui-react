@@ -6,25 +6,23 @@ import Utils from './Utils'
 import locale from './../../locale' // 国际化
 
 // 树控件
-function TreePicker(props) {
-  const {
-    multiple,
-    list,
-    defaultValue,
-    value,
-    searchProps,
-    // 节流时长
-    throttle = 500,
-    onChange,
+function TreePicker({
+  multiple,
+  list,
+  defaultValue,
+  value,
+  searchProps,
+  // 节流时长
+  throttle = 500,
+  onChange,
 
-    // 树默认设置
-    showIcon = false,
-    checkStrictly = false,
-    checkable = true,
-    selectable = false,
-    ...props
-  } = props
-
+  // 树默认设置
+  showIcon = false,
+  checkStrictly = false,
+  checkable = true,
+  selectable = false,
+  ...props
+}) {
   // 扁平化数据, 搜索时需要展开的子级
   let flattenListRef = useRef(
     Array.isArray(list) && list.length ? Object.clone(list).flattenTree() : []
