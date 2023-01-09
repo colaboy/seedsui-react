@@ -16,6 +16,10 @@ const Combo = forwardRef(
       cancelProps,
       slotProps,
 
+      checkStrictly,
+      checkable,
+      selectable,
+
       // Modal通用属性
       portal,
       maskClosable = true,
@@ -78,21 +82,34 @@ const Combo = forwardRef(
 
     // 默认使用Picker弹窗
     let ModalRender = Modal
-    let PickerModalProps = ModalProps
+    let PickerModalProps = ModalProps || {}
+
+    // 伸缩属性
+    if (maskProps !== undefined) {
+      PickerModalProps.maskProps = maskProps
+    }
+    if (submitProps !== undefined) {
+      PickerModalProps.submitProps = submitProps
+    }
+    if (cancelProps !== undefined) {
+      PickerModalProps.cancelProps = cancelProps
+    }
+    if (slotProps !== undefined) {
+      PickerModalProps.slotProps = slotProps
+    }
+    if (checkStrictly !== undefined) {
+      PickerModalProps.checkStrictly = checkStrictly
+    }
+    if (checkable !== undefined) {
+      PickerModalProps.checkable = checkable
+    }
+    if (selectable !== undefined) {
+      PickerModalProps.selectable = selectable
+    }
 
     // 自定义弹窗
     if (ModalComponent) {
       ModalRender = ModalComponent
-    }
-    // Picker弹窗: 需要传入定制属性
-    else {
-      PickerModalProps = {
-        maskProps: maskProps,
-        submitProps: submitProps,
-        cancelProps: cancelProps,
-        slotProps: slotProps,
-        ...ModalProps
-      }
     }
 
     // 允许清空

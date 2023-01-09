@@ -8,6 +8,11 @@ import locale from './../../locale' // 国际化
 // 树控件
 function TreePicker({
   multiple,
+  checkStrictly = false,
+  checkable = true,
+  // 根据checkable判断是否启用selectable, 没有checkbox时则启用
+  selectable,
+
   list,
   defaultValue,
   value,
@@ -18,9 +23,7 @@ function TreePicker({
 
   // 树默认设置
   showIcon = false,
-  checkStrictly = false,
-  checkable = true,
-  selectable = false,
+
   ...props
 }) {
   // 扁平化数据, 搜索时需要展开的子级
@@ -61,6 +64,8 @@ function TreePicker({
     onSearch,
     ...otherSearchProps
   } = searchProps || {}
+
+  // 搜索
   let [keyword, setKeyword] = useState(searchValue)
   function handleSearch(newKeyword) {
     keyword = newKeyword
@@ -101,6 +106,22 @@ function TreePicker({
     }
   }
 
+  // 修改
+  function handleChange(ids, checkedObject) {
+    let checkedNodes = checkedObject?.checkedNodes || []
+    // 单选只选中当前项
+    if (!multiple) {
+      checkedNodes = checkedObject?.node ? [checkedObject?.node] : []
+      // 如果已经选中, 则清空
+      if (checkedNodes.length && checkedNodes.length === 1 && value.length && value.length === 1) {
+        if (checkedNodes[0].id === value[0].id) {
+          checkedNodes = []
+        }
+      }
+    }
+    if (onChange) onChange(checkedNodes)
+  }
+
   // 构建渲染数据, 支持关键字搜索
   const treeData = Utils.getTreeData(list, keyword)
 
@@ -130,32 +151,16 @@ function TreePicker({
         // 选中项属性
         {...checkedKeysProp}
         // 选中checkbox
-        onCheck={(ids, checkedObject) => {
-          let checkedNodes = checkedObject?.checkedNodes || []
-          // 单选只选中当前项
-          if (!multiple) {
-            checkedNodes = checkedObject?.node ? [checkedObject?.node] : []
-            // 如果已经选中, 则清空
-            if (
-              checkedNodes.length &&
-              checkedNodes.length === 1 &&
-              value.length &&
-              value.length === 1
-            ) {
-              if (checkedNodes[0].id === value[0].id) {
-                checkedNodes = []
-              }
-            }
-          }
-          if (onChange) onChange(checkedNodes)
-        }}
+        onCheck={handleChange}
+        // 点击
+        onSelect={handleChange}
         // 展开keys属性
         {...expandProp}
         // 树默认设置
         showIcon={showIcon}
         checkStrictly={checkStrictly}
         checkable={checkable}
-        selectable={selectable}
+        selectable={checkable ? false : true}
         {...props}
       ></Tree>
     </>

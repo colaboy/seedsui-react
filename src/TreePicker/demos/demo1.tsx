@@ -19,15 +19,13 @@ export default () => {
         value={value}
         list={treeData}
         multiple={true}
+        // checkable={false}
         TreeProps={{
           searchProps: {
             value: '东城',
             visible: true
           },
-          showIcon: false,
-          checkStrictly: false,
-          checkable: true,
-          selectable: false
+          showIcon: false
         }}
         onChange={setValue}
         ModalProps={{

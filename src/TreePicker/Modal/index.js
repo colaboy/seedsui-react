@@ -23,6 +23,10 @@ const Modal = forwardRef(
       submitProps = {},
       cancelProps = {},
       optionProps = {},
+
+      checkStrictly,
+      checkable,
+      selectable,
       TreeProps = {},
       ...props
     },
@@ -108,7 +112,15 @@ const Modal = forwardRef(
             onCancelClick={handleCancelClick}
           />
           <div className="treepicker-modal-wrapper">
-            <Tree list={list} value={tempValue} onChange={handleChange} {...TreeProps} />
+            <Tree
+              list={list}
+              value={tempValue}
+              onChange={handleChange}
+              checkStrictly={checkStrictly}
+              checkable={checkable}
+              selectable={selectable}
+              {...TreeProps}
+            />
           </div>
         </div>
       </div>,
