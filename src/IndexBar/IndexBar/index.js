@@ -51,7 +51,6 @@ const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
   // 获取所有锚点
   function updateAnchors() {
     if (!instance.current || !instance.current.getAnchors) return
-    console.log('updateAnchors')
     anchors = instance.current.getAnchors()
     setAnchors(anchors)
   }
