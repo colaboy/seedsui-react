@@ -117,7 +117,13 @@ function TreePicker({
     if (!multiple) {
       checkedNodes = checkedObject?.node ? [checkedObject?.node] : []
       // 如果已经选中, 则清空
-      if (checkedNodes.length && checkedNodes.length === 1 && value.length && value.length === 1) {
+      if (
+        checkedNodes.length &&
+        checkedNodes.length === 1 &&
+        Array.isArray(value) &&
+        value.length &&
+        value.length === 1
+      ) {
         if (checkedNodes[0].id === value[0].id) {
           checkedNodes = []
         }
