@@ -114,7 +114,6 @@ function TreePicker({
     return Utils.getCheckedKeysProp(value, defaultValue)
   }, [value, defaultValue])
 
-  console.log('searchRender:', searchRender)
   return (
     <>
       {/* 搜索 */}
