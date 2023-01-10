@@ -1,8 +1,7 @@
 // require PrototypeArray.js
 import React, { forwardRef, useRef, useState, useImperativeHandle } from 'react'
-import Input from './../../Input'
+import Search from './../components/Search'
 import Tree from './Tree'
-import locale from './../../locale' // 国际化
 
 // 树菜单选择
 const Menu = forwardRef(
@@ -22,6 +21,7 @@ const Menu = forwardRef(
       throttle = 500,
 
       // 自定义渲染
+      searchRender,
       itemRender,
 
       ...props
@@ -37,38 +37,22 @@ const Menu = forwardRef(
     })
 
     // 搜索项属性
-    const {
-      visible: searchVisible,
-      value: searchValue,
-      onSearch,
-      ...otherSearchProps
-    } = searchProps || {}
-    let [keyword, setKeyword] = useState(searchValue)
-    function handleSearch(newKeyword) {
-      // 节流搜索
-      if (window.timeout) {
-        window.clearTimeout(window.timeout)
-      }
-      window.timeout = window.setTimeout(() => {
-        keyword = newKeyword
-        setKeyword(newKeyword)
-        if (onSearch) onSearch(keyword)
-      }, throttle)
-    }
+    let [keyword, setKeyword] = useState(searchProps?.value || '')
 
     return (
       <>
         {/* 搜索 */}
-        {searchVisible && (
-          <Input.Text
-            placeholder={locale('搜索', 'input_search_placeholder')}
-            onChange={handleSearch}
-            className="treepicker-search-input"
-            defaultValue={keyword}
-            allowClear={true}
-            {...otherSearchProps}
-          />
-        )}
+        <Search
+          value={keyword}
+          onChange={setKeyword}
+          // 搜索
+          searchProps={searchProps}
+          // 节流时长
+          throttle={throttle}
+          // 自定义渲染
+          searchRender={searchRender}
+        />
+
         {/* 树 */}
         <Tree
           ref={rootRef}

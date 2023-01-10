@@ -52,7 +52,7 @@ export default () => {
           }
         }}
       />
-      {/* <TreePicker.Menu
+      <TreePicker.Menu
         // searchProps={{
         //   value: '大东',
         //   visible: true
@@ -81,7 +81,7 @@ export default () => {
         onCollapse={(newValue) => {
           console.log('onCollapse:', newValue)
         }}
-      /> */}
+      />
     </>
   )
 }

@@ -73,10 +73,10 @@ const Item = ({
     return false
   }
   // 获取文文
-  function getItemDOM() {
+  function getItemNode() {
     if (typeof itemRender === 'function') {
-      let itemDOM = itemRender(item, { keyword: keyword })
-      if (itemDOM) return itemDOM
+      let itemNode = itemRender(item, { keyword: keyword })
+      if (itemNode) return itemNode
     }
     if (hasKeyword(item.name, keyword) !== -1) {
       return (
@@ -92,7 +92,7 @@ const Item = ({
   return (
     <li>
       <div data-id={item.id} className={`treepicker-menu-item`} onClick={handleClick}>
-        {getItemDOM()}
+        {getItemNode()}
         {children && <i className="treepicker-menu-more"></i>}
       </div>
       {children && <ul>{children}</ul>}

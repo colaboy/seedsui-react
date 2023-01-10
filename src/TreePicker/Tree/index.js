@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState, useRef } from 'react'
 import Tree from 'rc-tree'
-import Input from '../../Input'
+import Search from './../components/Search'
 
 import Utils from './Utils'
-import locale from './../../locale' // 国际化
 
 // 树控件
 function TreePicker({
@@ -27,6 +26,7 @@ function TreePicker({
 
   // 自定义渲染
   itemRender,
+  searchRender,
 
   ...props
 }) {
@@ -61,32 +61,11 @@ function TreePicker({
     // setAutoExpandParent(false)
   }
 
-  // 搜索项属性
-  const {
-    visible: searchVisible,
-    value: searchValue,
-    onSearch,
-    ...otherSearchProps
-  } = searchProps || {}
-
   // 搜索
-  let [keyword, setKeyword] = useState(searchValue)
-  function handleSearch(newKeyword) {
-    keyword = newKeyword
-    setKeyword(newKeyword)
-
-    // 节流搜索
-    if (window.timeout) {
-      window.clearTimeout(window.timeout)
-    }
-    window.timeout = window.setTimeout(() => {
-      handleExpandedKeys()
-      if (onSearch) onSearch(keyword)
-    }, throttle)
-  }
+  let [keyword, setKeyword] = useState(searchProps?.value || '')
 
   // 展开keys属性
-  const expandProp = searchVisible
+  const expandProp = searchProps.visible
     ? {
         // 点击展开(expandedKeys如果带入了父级则不需要自动展开父级)
         onExpand: handleExpand,
@@ -135,19 +114,25 @@ function TreePicker({
     return Utils.getCheckedKeysProp(value, defaultValue)
   }, [value, defaultValue])
 
+  console.log('searchRender:', searchRender)
   return (
     <>
       {/* 搜索 */}
-      {searchVisible && (
-        <Input.Text
-          placeholder={locale('搜索', 'input_search_placeholder')}
-          onChange={handleSearch}
-          className="treepicker-search-input"
-          defaultValue={keyword}
-          allowClear={true}
-          {...otherSearchProps}
-        />
-      )}
+      <Search
+        value={keyword}
+        onChange={(newKeyword) => {
+          keyword = newKeyword
+          setKeyword(newKeyword)
+          handleExpandedKeys()
+        }}
+        // 搜索
+        searchProps={searchProps}
+        // 节流时长
+        throttle={throttle}
+        // 自定义渲染
+        searchRender={searchRender}
+      />
+
       {/* 树 */}
       <Tree
         fieldNames={{ key: 'id' }}

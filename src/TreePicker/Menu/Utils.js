@@ -48,6 +48,7 @@ export default {
     let needActives = null
     if (Array.isArray(value) && value[0] && value[0].id) {
       current = this.getDOM({ rootRef, id: value[0].id })
+      if (!current) return
       currentExpand = current.classList.contains('expand')
       needActives = this.getPredecessorDOM({ rootRef, ids: [value[0].id], list })
     }
