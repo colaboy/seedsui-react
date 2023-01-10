@@ -65,7 +65,7 @@ function TreePicker({
   let [keyword, setKeyword] = useState(searchProps?.value || '')
 
   // 展开keys属性
-  const expandProp = searchProps.visible
+  const expandProp = searchProps?.visible
     ? {
         // 点击展开(expandedKeys如果带入了父级则不需要自动展开父级)
         onExpand: handleExpand,
