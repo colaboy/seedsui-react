@@ -10,6 +10,7 @@ function TreePicker({
   multiple,
   checkStrictly = false,
   checkable = true,
+
   // 根据checkable判断是否启用selectable, 没有checkbox时则启用
   selectable,
 
@@ -23,6 +24,9 @@ function TreePicker({
 
   // 树默认设置
   showIcon = false,
+
+  // 自定义渲染
+  itemRender,
 
   ...props
 }) {
@@ -123,7 +127,7 @@ function TreePicker({
   }
 
   // 构建渲染数据, 支持关键字搜索
-  const treeData = Utils.getTreeData(list, keyword)
+  const treeData = Utils.getTreeData({ list, keyword, itemRender })
 
   // 构建选中项
   const checkedKeysProp = useMemo(() => {

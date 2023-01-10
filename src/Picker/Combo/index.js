@@ -10,20 +10,18 @@ const Combo = forwardRef(
       ModalComponent,
       ModalProps = {},
 
-      // 定制属性
+      // Modal提升属性
+      portal,
       maskProps,
       submitProps,
       cancelProps,
       slotProps,
 
+      multiple,
+      maskClosable = true,
       checkStrictly,
       checkable,
       selectable,
-
-      // Modal通用属性
-      portal,
-      maskClosable = true,
-      multiple,
       value,
       list = [], // [{id: '', name: ''}]
 
@@ -86,8 +84,12 @@ const Combo = forwardRef(
       ModalRender = ModalComponent
     }
 
-    // 伸缩属性
+    // 伸缩属性(Modal提升属性)
     let PickerModalProps = ModalProps || {}
+    // 伸缩属性-展示属性
+    if (portal !== undefined) {
+      PickerModalProps.portal = portal
+    }
     if (maskProps !== undefined) {
       PickerModalProps.maskProps = maskProps
     }
@@ -100,6 +102,13 @@ const Combo = forwardRef(
     if (slotProps !== undefined) {
       PickerModalProps.slotProps = slotProps
     }
+    // 伸缩属性-选择属性
+    if (multiple !== undefined) {
+      PickerModalProps.multiple = multiple
+    }
+    if (maskClosable !== undefined) {
+      PickerModalProps.maskClosable = maskClosable
+    }
     if (checkStrictly !== undefined) {
       PickerModalProps.checkStrictly = checkStrictly
     }
@@ -108,6 +117,19 @@ const Combo = forwardRef(
     }
     if (selectable !== undefined) {
       PickerModalProps.selectable = selectable
+    }
+    // 伸缩属性-值属性
+    if (value !== undefined) {
+      PickerModalProps.value = value
+    }
+    if (list !== undefined) {
+      PickerModalProps.list = list
+    }
+    if (onBeforeChange !== undefined) {
+      PickerModalProps.onBeforeChange = onBeforeChange
+    }
+    if (onChange !== undefined) {
+      PickerModalProps.onChange = onChange
     }
 
     // 允许清空
@@ -145,16 +167,9 @@ const Combo = forwardRef(
         {/* Modal */}
         <ModalRender
           ref={modalRef}
-          portal={portal}
           getComboDOM={() => {
             return rootRef.current
           }}
-          maskClosable={maskClosable}
-          multiple={multiple}
-          value={value}
-          list={list}
-          onBeforeChange={onBeforeChange}
-          onChange={onChange}
           {...PickerModalProps}
           onVisibleChange={(newVisible) => {
             setVisible(newVisible)

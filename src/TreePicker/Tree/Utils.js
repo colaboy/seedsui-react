@@ -27,24 +27,34 @@ export default {
     return valueProp
   },
   // 构建渲染数据, 支持关键字搜索
-  getTreeData(originData, keyword) {
+  getTreeData({ list: originData, keyword, itemRender }) {
     if (!originData) return originData
     // 关键字搜索
     const loop = (data) =>
       data.map((item) => {
         const name = item.name
-        const titleDOM = <HighlightKeyword text={name} keyword={keyword} />
+        let titleNode = <HighlightKeyword text={name} keyword={keyword} />
+
+        // 自定义渲染
+        if (typeof itemRender === 'function') {
+          let customTitleNode = itemRender(item, {
+            keyword: keyword
+          })
+          if (customTitleNode) {
+            titleNode = customTitleNode
+          }
+        }
 
         if (item.children) {
           return {
-            title: titleDOM,
+            title: titleNode,
             name: name,
             id: item.id,
             children: loop(item.children)
           }
         }
         return {
-          title: titleDOM,
+          title: titleNode,
           name: name,
           id: item.id
         }

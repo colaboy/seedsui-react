@@ -5,8 +5,8 @@ const Badge = forwardRef(
   (
     {
       children = '0',
-      limit = 2,
-      ellipsis = '+', // 有limit属性时ellipsis才生效
+      maxLength = 2,
+      ellipsis = '+', // 有maxLength属性时ellipsis才生效
       ...others
     },
     ref
@@ -22,13 +22,13 @@ const Badge = forwardRef(
 
     // 标题
     let caption = children
-    if (limit && children && (typeof children === 'string' || typeof children === 'number')) {
+    if (maxLength && children && (typeof children === 'string' || typeof children === 'number')) {
       caption = caption.toString()
       // 数字大于99,则显示99+
       if (!isNaN(caption)) {
-        caption = caption.length > limit ? '99999'.substring(0, limit) + ellipsis : caption
+        caption = caption.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : caption
       } else {
-        caption = caption.length > limit ? caption.substring(0, limit) + ellipsis : caption
+        caption = caption.length > maxLength ? caption.substring(0, maxLength) + ellipsis : caption
       }
     }
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { TreePicker, Badge } from 'seedsui-react'
+import { TreePicker, HighlightKeyword, Badge } from 'seedsui-react'
 import treeData from 'seedsui-react/lib/PickerDistrict/china.js'
 
 export default () => {
@@ -8,7 +8,7 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setBadge({
-        '110000': 800
+        '110000': 'asbc'
       })
     }, 2000)
   }, [])
@@ -22,11 +22,25 @@ export default () => {
         checkStrictly={false}
         // checkable={false}
         TreeProps={{
+          itemRender: (item, { keyword }) => {
+            return (
+              <div className="flex flex-middle">
+                {item.isLeaf && (
+                  <img
+                    className="size36"
+                    src="https://image-test.waiqin365.com/imobii_portal/images/icon/default-face-small.png"
+                    alt=""
+                    style={{ borderRadius: '100%', marginRight: '4px' }}
+                  />
+                )}
+                <HighlightKeyword text={item.name} keyword={keyword} />
+              </div>
+            )
+          },
           searchProps: {
             value: '东城',
             visible: true
-          },
-          showIcon: false
+          }
         }}
         onChange={(newValue) => {
           setValue(newValue)
@@ -47,7 +61,7 @@ export default () => {
             return (
               <div className="treepicker-menu-item-caption">
                 {item.name}
-                <Badge>{badge[item.id]}</Badge>
+                <Badge maxLength={3}>{badge[item.id]}</Badge>
               </div>
             )
           }
