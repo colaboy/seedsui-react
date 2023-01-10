@@ -112,22 +112,17 @@ function TreePicker({
 
   // 修改
   function handleChange(ids, checkedObject) {
+    if (!Array.isArray(ids) || !ids.length) {
+      if (onChange) onChange([])
+      return
+    }
     let checkedNodes = checkedObject?.checkedNodes || []
     // 单选只选中当前项
     if (!multiple) {
-      checkedNodes = checkedObject?.node ? [checkedObject?.node] : []
-      // 如果已经选中, 则清空
-      if (
-        checkedNodes.length &&
-        checkedNodes.length === 1 &&
-        Array.isArray(value) &&
-        value.length &&
-        value.length === 1
-      ) {
-        if (checkedNodes[0].id === value[0].id) {
-          checkedNodes = []
-        }
+      if (!checkedObject?.node) {
+        checkedNodes = []
       }
+      checkedNodes = checkedNodes.filter((checkedNode) => checkedNode.id === checkedObject?.node.id)
     }
     if (onChange) onChange(checkedNodes)
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { TreePicker, HighlightKeyword, Badge } from 'seedsui-react'
-import treeData from 'seedsui-react/lib/PickerDistrict/china.js'
+import treeData from './data.js'
 
 export default () => {
   const [badge, setBadge] = useState(null)
@@ -18,7 +18,7 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={treeData}
-        // multiple={true}
+        multiple={true}
         checkStrictly={false}
         // checkable={false}
         TreeProps={{
@@ -43,6 +43,7 @@ export default () => {
           }
         }}
         onChange={(newValue) => {
+          console.log('checked:', newValue)
           setValue(newValue)
         }}
         ModalProps={{
@@ -51,7 +52,7 @@ export default () => {
           }
         }}
       />
-      <TreePicker.Menu
+      {/* <TreePicker.Menu
         // searchProps={{
         //   value: '大东',
         //   visible: true
@@ -80,7 +81,7 @@ export default () => {
         onCollapse={(newValue) => {
           console.log('onCollapse:', newValue)
         }}
-      />
+      /> */}
     </>
   )
 }

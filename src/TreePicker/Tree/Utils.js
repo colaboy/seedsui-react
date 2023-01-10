@@ -28,12 +28,21 @@ export default {
   },
   // 构建渲染数据, 支持关键字搜索
   getTreeData({ list: originData, keyword, itemRender }) {
-    if (!originData) return originData
+    if (
+      // 必须是数组
+      !Array.isArray(originData) ||
+      !originData.length ||
+      // 必须有id和name属性
+      !originData[0]?.id ||
+      !originData[0]?.name
+    ) {
+      console.error('SeedsUI TreePicker.Tree: list参数不正确')
+      return []
+    }
     // 关键字搜索
     const loop = (data) =>
       data.map((item) => {
-        const name = item.name
-        let titleNode = <HighlightKeyword text={name} keyword={keyword} />
+        let titleNode = <HighlightKeyword text={item.name} keyword={keyword} />
 
         // 自定义渲染
         if (typeof itemRender === 'function') {
@@ -47,16 +56,14 @@ export default {
 
         if (item.children) {
           return {
+            ...item,
             title: titleNode,
-            name: name,
-            id: item.id,
             children: loop(item.children)
           }
         }
         return {
-          title: titleNode,
-          name: name,
-          id: item.id
+          ...item,
+          title: titleNode
         }
       })
     return loop(originData)
