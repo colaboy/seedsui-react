@@ -157,13 +157,16 @@ const MultipleModal = forwardRef(
           />
           <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
           {tabs.map((tab, index) => {
-            let wrapperVisible = tab.id === activeTab.id
+            // 主体内容(wrapper)是否显示
+            let contentVisible = tab.id === activeTab.id
+            if (!contentVisible) return null
             return (
               <DatePickerModal
                 key={tab.id || index}
                 type={tab.type || 'date'}
                 value={tab.value}
                 visible={visible}
+                // 传入wrapper将只渲染内容(wrapper)
                 portal={{ wrapper: true }}
                 onChange={(date) => {
                   tab.value = date
@@ -173,9 +176,6 @@ const MultipleModal = forwardRef(
                   })
                   handleDateChange(tab)
                 }}
-                wrapperProps={Object.assign({}, wrapperProps, {
-                  className: `${wrapperProps.className || ''}${wrapperVisible ? '' : ' hide'}`
-                })}
               />
             )
           })}
