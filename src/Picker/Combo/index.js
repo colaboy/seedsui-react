@@ -33,7 +33,7 @@ const Combo = forwardRef(
       readOnly,
       disabled,
       onBeforeOpen,
-      render,
+      comboRender,
       children,
       ...props
     },
@@ -79,9 +79,9 @@ const Combo = forwardRef(
     }
 
     // 自定义弹窗, 默认使用Picker弹窗
-    let ModalRender = Modal
+    let ModalNode = Modal
     if (ModalComponent) {
-      ModalRender = ModalComponent
+      ModalNode = ModalComponent
     }
 
     // 伸缩属性(Modal提升属性)
@@ -119,7 +119,7 @@ const Combo = forwardRef(
       PickerModalProps.selectable = selectable
     }
     // 伸缩属性-值属性
-    if (value !== undefined) {
+    if (ModalProps?.value === undefined && value !== undefined) {
       PickerModalProps.value = value
     }
     if (list !== undefined) {
@@ -143,9 +143,9 @@ const Combo = forwardRef(
     return (
       <Fragment>
         {/* Combo */}
-        {typeof render === 'function' && (
+        {typeof comboRender === 'function' && (
           <div ref={rootRef} {...props} onClick={handleInputClick}>
-            {render(value, { displayValue: Utils.getDisplayValue({ value }) })}
+            {comboRender(value, { displayValue: Utils.getDisplayValue({ value }) })}
           </div>
         )}
         {children && (
@@ -153,7 +153,7 @@ const Combo = forwardRef(
             {children}
           </div>
         )}
-        {!children && typeof render !== 'function' && (
+        {!children && typeof comboRender !== 'function' && (
           <Input.Text
             ref={rootRef}
             allowClear={allowClear}
@@ -165,7 +165,7 @@ const Combo = forwardRef(
           />
         )}
         {/* Modal */}
-        <ModalRender
+        <ModalNode
           ref={modalRef}
           getComboDOM={() => {
             return rootRef.current

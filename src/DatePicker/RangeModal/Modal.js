@@ -42,7 +42,10 @@ const Custom = function ({
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
     let timeValid = Utils.validateTime(newValue, { type: type, onError: onError })
     let daysValid = true
-    let daysLimit = Object.values(ranges)[0]
+    let daysLimit =
+      toString.call(ranges) === '[object Object]' && !Object.isEmptyObject(ranges)
+        ? Object.values(ranges)[0]
+        : null
     if (typeof daysLimit === 'number') {
       daysValid = Utils.validateDays(newValue, { daysLimit: daysLimit, onError: onError })
     }
@@ -59,13 +62,8 @@ const Custom = function ({
     if (onChange) onChange(newValue)
   }
 
-  if (
-    toString.call(ranges) !== '[object Object]' ||
-    Object.isEmptyObject(ranges) ||
-    Object.keys(ranges).length !== 1 ||
-    // 未构建完成选中项也不渲染
-    !multipleDate
-  ) {
+  // 未构建完成Tabs不渲染
+  if (!multipleDate) {
     return null
   }
 

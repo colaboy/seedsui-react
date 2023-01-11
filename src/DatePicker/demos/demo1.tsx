@@ -4,8 +4,12 @@ import { DatePicker } from 'seedsui-react'
 export default () => {
   const [value, setValue] = useState(null)
   const [icon, setIcon] = useState('1')
-  const [rangeValue, setRangeValue] = useState(null)
-  const [mulValue, setMulValue] = useState(null)
+  const [rangeValue, setRangeValue] = useState([new Date('2009-09-09'), new Date('2019-09-09')])
+  const [mulValue, setMulValue] = useState([
+    { type: 'date', id: 'start', name: 'Start', value: new Date('2009-09-09') },
+    { type: 'date', id: 'middle', name: 'Middle', value: new Date('2019-09-09') },
+    { type: 'date', id: 'end', name: 'End', value: new Date('2023-09-09') }
+  ])
 
   return (
     <>
@@ -23,11 +27,11 @@ export default () => {
         onChange={setMulValue}
       />
       <DatePicker.RangeCombo
-        ranges={80}
+        ranges={null}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
-        min={new Date()}
+        // min={new Date()}
         // max={new Date()}
         // maskClosable={false}
         onChange={setRangeValue}
@@ -35,6 +39,11 @@ export default () => {
         value={rangeValue}
       />
       <DatePicker.RangeCombo
+        ranges={{
+          ['最近30天']: [new Date().prevDate(30), new Date()],
+          ['自定义时间']: null
+        }}
+        placeholder="请选择RangeCombo"
         ModalProps={{
           onVisibleChange: (visible) => {
             if (visible) {
@@ -45,12 +54,15 @@ export default () => {
           }
         }}
         // 自定义渲染
-        render={(val, { displayValue }) => {
+        comboRender={(val, { displayValue }) => {
           return icon + (displayValue || '自定义区间')
         }}
         // maskClosable={false}
         value={rangeValue}
-        onChange={setRangeValue}
+        onChange={(newRangeValue) => {
+          console.log(newRangeValue)
+          setRangeValue(newRangeValue)
+        }}
       />
       <DatePicker.Types
         value={{

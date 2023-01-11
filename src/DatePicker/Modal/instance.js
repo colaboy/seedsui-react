@@ -430,7 +430,7 @@ var PickerDate = function (params) {
         addDateTime()
         break
       default:
-        console.log('SeedsUI Error: initSlots失败')
+        console.error('DatePicker.Modal: failed to initSlots')
     }
   }
   s.update = function () {

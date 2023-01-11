@@ -117,7 +117,10 @@ const MultipleModal = forwardRef(
     }
 
     if (!value) {
-      console.error('MultipleModal: Wrong parameter with "value"!', value)
+      console.error(
+        'DatePicker.MultipleModal: Wrong parameter with "value"! You need correct to [new Date(), new Date()]',
+        value
+      )
       return null
     }
     if (!tabs) return null

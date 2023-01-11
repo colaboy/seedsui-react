@@ -39,7 +39,9 @@ const Modal = forwardRef(
     ref
   ) => {
     if (!['year', 'quarter', 'month', 'date', 'time', 'datetime'].includes(type)) {
-      console.error('SeedsUI-DatePicker:type类型不正确')
+      console.error(
+        "DatePicker.Modal: Wrong parameter with \"type\"! You need correct to ['year', 'quarter', 'month', 'date', 'time', 'datetime'] any one"
+      )
       type = 'date'
     }
     // 标题

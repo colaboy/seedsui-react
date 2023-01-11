@@ -56,7 +56,7 @@ const MultipleModal = forwardRef(
 
     useEffect(() => {
       if (!Array.isArray(value) || !value[0] || !value[0].id) return
-      // 格式化value
+      // 构建tabs, 将value的[{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]加入sndcaption
       let newTabs = value.map((tab) => {
         return {
           ...tab,
@@ -126,7 +126,10 @@ const MultipleModal = forwardRef(
     }
 
     if (!value) {
-      console.error('MultipleModal: Wrong parameter with "value"!', value)
+      console.warn(
+        "DatePicker.MultipleModal: Wrong parameter with \"value\"! You need to correct to [{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]",
+        value
+      )
       return null
     }
     if (!tabs) return null

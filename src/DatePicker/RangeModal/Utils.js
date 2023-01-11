@@ -38,7 +38,16 @@ export default {
   },
   // 开始结束时间
   getDates: function (value) {
-    if (!Array.isArray(value) || value.length !== 2) {
+    if (
+      !Array.isArray(value) ||
+      value.length !== 2 ||
+      value[0] instanceof Date === false ||
+      value[1] instanceof Date === false
+    ) {
+      console.warn(
+        'DatePicker.RangeModal: Wrong parameter with "value"! You need to correct for [new Date(), new Date()]',
+        value
+      )
       return {
         startDate: null,
         endDate: null
