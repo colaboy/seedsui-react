@@ -124,10 +124,12 @@ const Modal = forwardRef(
       let id = ''
       if (defaultOpt && defaultOpt.id) id = defaultOpt.id
       instance.current.addSlot(list, id, slotProps.className || 'text-center')
-      if (visible && instance.current) {
-        instance.current.show()
-      }
       rootRef.current.instance = instance
+    }
+
+    if (!Array.isArray(list) || !list.length) {
+      console.error('Picker.Modal: Wrong parameter with "list"! You need pass a Array')
+      return null
     }
 
     return createPortal(
