@@ -46,10 +46,16 @@ export default {
     let current = null // 当前项
     let currentExpand = true // 当前项是否展开
     let needActives = null
-    if (Array.isArray(value) && value[0] && value[0].id) {
+    if (
+      Array.isArray(value) &&
+      value[0] &&
+      (typeof value[0].id === 'string' || typeof value[0].id === 'number')
+    ) {
       current = this.getDOM({ rootRef, id: value[0].id })
-      if (!current) return
-      currentExpand = current.classList.contains('expand')
+      // 记录点击dom的展开状态
+      if (current) {
+        currentExpand = current.classList.contains('expand')
+      }
       needActives = this.getPredecessorDOM({ rootRef, ids: [value[0].id], list })
     }
 
@@ -61,11 +67,13 @@ export default {
       }
     }
 
-    // 点击dom
-    if (currentExpand) {
-      current.classList.remove('expand')
-    } else {
-      current.classList.add('expand')
+    // 点击dom收展
+    if (current) {
+      if (currentExpand) {
+        current.classList.remove('expand')
+      } else {
+        current.classList.add('expand')
+      }
     }
   },
   // 展开关键字

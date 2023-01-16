@@ -8,7 +8,7 @@ export default {
     let checkedKeys = []
     if (Array.isArray(val) && val.length) {
       for (let item of val) {
-        if (item.id) {
+        if (typeof item.id === 'string' || typeof item.id === 'number') {
           checkedKeys.push(item.id)
         }
       }
