@@ -46,7 +46,8 @@
     "yorkie": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "main": "lib/index.js",
   "author": "colaboy <49201650@qq.com>",
