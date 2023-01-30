@@ -5,7 +5,10 @@ import locale from './../../locale'
 const BottomFinish = forwardRef(({ children, caption, type, ...props }, ref) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
-    return rootRef.current
+    return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current
+    }
   })
 
   // 获取提示

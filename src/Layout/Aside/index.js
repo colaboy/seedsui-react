@@ -13,7 +13,7 @@ const Aside = forwardRef(({ children, ...props }, ref) => {
 
   return (
     <aside
-      ref={ref}
+      ref={rootRef}
       {...props}
       className={`layout-aside${props.className ? ' ' + props.className : ''}`}
     >

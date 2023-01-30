@@ -13,7 +13,7 @@ const Footer = forwardRef(({ children, ...props }, ref) => {
 
   return (
     <footer
-      ref={ref}
+      ref={rootRef}
       {...props}
       className={`layout-footer${props.className ? ' ' + props.className : ''}`}
     >
