@@ -173,7 +173,7 @@ const Modal = forwardRef(
       return visible ? ' active' : ''
     }
 
-    return createPortal(
+    let ModalNode = (
       <div
         ref={rootRef}
         className={`mask modal-mask${
@@ -192,9 +192,13 @@ const Modal = forwardRef(
         >
           {getChildren()}
         </div>
-      </div>,
-      portal || document.getElementById('root') || document.body
+      </div>
     )
+
+    if (portal === null || portal === false) {
+      return ModalNode
+    }
+    return createPortal(ModalNode, portal || document.getElementById('root') || document.body)
   }
 )
 
