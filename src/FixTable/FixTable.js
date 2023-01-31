@@ -82,10 +82,10 @@ const FixTable = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...others}
         className={'fixtable' + (others.className ? ' ' + others.className : '')}
         onScroll={handleScroll}
+        ref={rootRef}
       >
         {!tbody || forceUpdate === 1 ? null : (
           <>

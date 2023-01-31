@@ -175,12 +175,12 @@ const Modal = forwardRef(
 
     let ModalNode = (
       <div
-        ref={rootRef}
         className={`mask modal-mask${
           maskProps.className ? ' ' + maskProps.className : ''
         }${getActiveClass()}`}
         {...maskProps}
         onClick={handleMaskClick}
+        ref={rootRef}
       >
         <div
           {...props}

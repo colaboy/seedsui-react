@@ -101,12 +101,12 @@ const Tooltip = forwardRef(
     return (
       <>
         <Popup
-          ref={rootRef}
           animation={animation}
           style={style}
           visible={typeof visible === 'boolean' ? visible : autoVisible}
           onVisibleChange={handleVisibleChange}
           {...props}
+          ref={rootRef}
         />
         {newChildren}
       </>

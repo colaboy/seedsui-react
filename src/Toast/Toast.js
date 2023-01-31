@@ -70,11 +70,11 @@ const Toast = forwardRef(
 
     return createPortal(
       <div
-        ref={rootRef}
         {...maskProps}
         className={`mask toast-mask${maskProps.className ? ' ' + maskProps.className : ''}${
           maskClickable ? ' toast-propagation' : ''
         }${getActiveClass()}`}
+        ref={rootRef}
       >
         <div
           ref={containerRef}

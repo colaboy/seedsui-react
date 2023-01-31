@@ -45,10 +45,10 @@ const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
   if (!text) return null
   return (
     <span
-      ref={rootRef}
       style={style}
       {...props}
       className={`qrcode${props.className ? ' ' + props.className : ''}`}
+      ref={rootRef}
     >
       {children}
     </span>

@@ -59,9 +59,9 @@ const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
     <Fragment>
       {children}
       <div
-        ref={rootRef}
         {...props}
         className={`indexbar${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         {(anchors || []).map((anchor, i) => {
           return (

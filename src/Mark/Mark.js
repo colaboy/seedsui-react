@@ -14,9 +14,9 @@ const Mark = forwardRef(({ children, ...others }, ref) => {
 
   return children ? (
     <span
-      ref={rootRef}
       {...others}
       className={`mark${others.className ? ' ' + others.className : ''}`}
+      ref={rootRef}
     >
       {children}
     </span>

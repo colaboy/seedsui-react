@@ -28,9 +28,9 @@ const Tree = forwardRef(
 
     return (
       <ul
-        ref={rootRef}
         {...props}
         className={`treepicker-menu${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         <List
           rootRef={rootRef}

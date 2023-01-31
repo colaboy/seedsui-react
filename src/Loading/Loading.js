@@ -114,11 +114,11 @@ const Loading = forwardRef(
     // 组合Node
     let Node = (
       <div
-        ref={rootRef}
         {...maskProps}
         className={
           'loading-mask mask active' + (maskProps.className ? ' ' + maskProps.className : '')
         }
+        ref={rootRef}
       >
         {content}
         {children}

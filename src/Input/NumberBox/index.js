@@ -170,10 +170,10 @@ const NumberBox = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...others}
         disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
         className={`numbox${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <input
           value="-"

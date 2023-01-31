@@ -129,9 +129,9 @@ const Vott = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`vott-container${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <div className="vott-wrapper" onClick={click}>
           <svg className="vott-svg" preserveAspectRatio="none"></svg>

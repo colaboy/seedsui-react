@@ -208,12 +208,12 @@ const MenuTiled = forwardRef(
     }
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`menutiled${others.className ? ' ' + others.className : ''}${
           multiple ? ' multiple' : ''
         }`}
         onClick={handleClick}
+        ref={rootRef}
       >
         <div className={`menutiled-wrapper`}>
           {/* 单选样式 */}

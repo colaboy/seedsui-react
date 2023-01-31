@@ -184,9 +184,9 @@ const Types = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...props}
         className={`datepicker-types${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         {Array.isArray(list) && (
           <Tabs

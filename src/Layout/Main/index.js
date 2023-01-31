@@ -93,9 +93,9 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
   }
   return (
     <main
-      ref={rootRef}
       {...props}
       className={`layout-main${props.className ? ' ' + props.className : ''}`}
+      ref={rootRef}
     >
       {/* 头部刷新 */}
       <TopContainer ref={topContainerRef} />

@@ -367,10 +367,10 @@ const InputText = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...props}
         className={`input-wrapper${props.className ? ' ' + props.className : ''}`}
         onClick={onClick}
+        ref={rootRef}
       >
         {licon && licon}
         {liconProps && (

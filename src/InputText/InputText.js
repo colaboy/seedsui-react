@@ -432,10 +432,10 @@ const InputText = forwardRef(
     const otherClearAttribute = filterProps(clearAttribute)
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`input-text-box${others.className ? ' ' + others.className : ''}`}
         onClick={handleClick}
+        ref={rootRef}
       >
         {licon && licon}
         {liconAttribute && (

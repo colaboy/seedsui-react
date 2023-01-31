@@ -33,9 +33,9 @@ const Badge = forwardRef(
     }
     return (
       <span
-        ref={rootRef}
         {...others}
         className={`badge${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         {caption}
       </span>

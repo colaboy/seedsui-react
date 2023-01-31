@@ -211,12 +211,12 @@ const Modal = forwardRef(
     // 渲染完整体
     return createPortal(
       <div
-        ref={rootRef}
         {...maskProps}
         className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
           visible ? ' active' : ''
         }`}
         onClick={handleMaskClick}
+        ref={rootRef}
       >
         <div
           {...props}

@@ -15,9 +15,9 @@ function Timeline({
   if (!list) return null
   return (
     <div
-      ref={rootRef}
       {...others}
       className={`timeline${others.className ? ' ' + others.className : ''}`}
+      ref={rootRef}
     >
       {/* 每项 */}
       {list.map((item, index) => {

@@ -93,9 +93,9 @@ const Body = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...others },
   }
   return (
     <article
-      ref={rootRef}
       {...others}
       className={`body${others.className ? ' ' + others.className : ''}`}
+      ref={rootRef}
     >
       {/* 头部刷新 */}
       <TopContainer ref={topContainerRef} />

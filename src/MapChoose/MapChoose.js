@@ -226,9 +226,9 @@ const MapChoose = forwardRef(
 
     const DOM = (
       <Page
-        ref={rootRef}
         {...others}
         className={(show ? '' : 'hide') + (others?.className ? ' ' + others.className : '')}
+        ref={rootRef}
       >
         {header && <Header>{header}</Header>}
         <Container>

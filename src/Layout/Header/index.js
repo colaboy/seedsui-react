@@ -13,9 +13,9 @@ const Header = forwardRef(({ children, ...props }, ref) => {
 
   return (
     <header
-      ref={rootRef}
       {...props}
       className={`layout-header${props.className ? ' ' + props.className : ''}`}
+      ref={rootRef}
     >
       {children}
     </header>

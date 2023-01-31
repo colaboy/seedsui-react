@@ -279,7 +279,6 @@ const LocationCombo = forwardRef(
     return (
       <Fragment>
         <Input.Text
-          ref={rootRef}
           readOnly={readOnly}
           disabled={disabled}
           onClick={handleClick}
@@ -301,6 +300,7 @@ const LocationCombo = forwardRef(
             className:
               'location-combo-success' + (inputProps?.className ? '' + inputProps?.className : '')
           })}
+          ref={rootRef}
         />
         {/* 地图预览与选择 */}
         <Modal

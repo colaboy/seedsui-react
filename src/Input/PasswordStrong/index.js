@@ -24,9 +24,9 @@ const PasswordStrong = forwardRef(({ value = '', strong, ...props }, ref) => {
 
   return (
     <ul
-      ref={rootRef}
       {...props}
       className={`input-password-strong lvl${lvl}${props.className ? ' ' + props.className : ''}`}
+      ref={rootRef}
     >
       <li>
         <div className="input-password-strong-progress"></div>

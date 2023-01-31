@@ -32,10 +32,10 @@ const Layout = forwardRef(({ animation, children, ...props }, ref) => {
 
   return (
     <section
-      ref={rootRef}
       {...props}
       className={'layout' + (props.className ? ' ' + props.className : '')}
       data-animation={animation}
+      ref={rootRef}
     >
       {children}
     </section>

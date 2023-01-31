@@ -161,7 +161,7 @@ const ContainerPull = forwardRef(
     }, [refreshing]) // eslint-disable-line
 
     return (
-      <Container ref={rootRef} {...others}>
+      <Container {...others} ref={rootRef}>
         <div ref={topContainerRef} className="SID-Dragrefresh-TopContainer containerpull-pull">
           <div className="containerpull-pull-box">
             <div className="containerpull-pull-icon"></div>

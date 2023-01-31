@@ -144,9 +144,9 @@ const Timepart = forwardRef(
     }
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`timepart${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       ></div>
     )
   }

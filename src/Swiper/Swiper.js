@@ -58,9 +58,9 @@ export default forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`swiper-container${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <div
           {...wrapperAttribute}

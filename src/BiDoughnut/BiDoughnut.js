@@ -36,7 +36,7 @@ const BiDoughnut = forwardRef(
         durationRotate: durationRotate,
         delayLeft: durationRight,
         durationLeft: durationLeft,
-        durationRight: durationRight,
+        durationRight: durationRight
       }
     }
     function getRotate() {
@@ -48,7 +48,7 @@ const BiDoughnut = forwardRef(
       }
       return {
         rotateLeft,
-        rotateRight,
+        rotateRight
       }
     }
     // 只有延迟100毫秒动画才会生效
@@ -82,10 +82,10 @@ const BiDoughnut = forwardRef(
     aniRotate()
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`bi-doughtut${others.className ? ' ' + others.className : ''}`}
         style={Object.assign({ width: `${size}px`, height: `${size}px` }, style || {})}
+        ref={rootRef}
       >
         <div className="bi-doughtut-wrapper left">
           <div
@@ -94,7 +94,7 @@ const BiDoughnut = forwardRef(
             style={{
               borderWidth: `${borderWidth}px`,
               width: `${size - borderWidth * 2}px`,
-              height: `${size - borderWidth * 2}px`,
+              height: `${size - borderWidth * 2}px`
             }}
           ></div>
         </div>
@@ -105,7 +105,7 @@ const BiDoughnut = forwardRef(
             style={{
               borderWidth: `${borderWidth}px`,
               width: `${size - borderWidth * 2}px`,
-              height: `${size - borderWidth * 2}px`,
+              height: `${size - borderWidth * 2}px`
             }}
           ></div>
         </div>

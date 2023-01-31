@@ -127,11 +127,11 @@ const Picker = forwardRef(
     const otherCancelAttribute = filterProps(cancelAttribute)
     return createPortal(
       <div
-        ref={rootRef}
         {...otherMaskAttribute}
         className={`mask picker-mask${
           otherMaskAttribute.className ? ' ' + otherMaskAttribute.className : ''
         }`}
+        ref={rootRef}
       >
         <div {...others} className={`picker${others.className ? ' ' + others.className : ''}`}>
           <div className="picker-header">

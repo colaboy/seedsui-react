@@ -151,13 +151,13 @@ const Tabs = forwardRef(
 
     return (
       <ul
-        ref={rootRef}
         {...others}
         className={`tabs animated${average ? ' tabs-tab-average' : ''}${
           className ? ' ' + className : ''
         }`}
         disabled={disabled}
         onClick={handleClick}
+        ref={rootRef}
       >
         {tabsContent}
       </ul>

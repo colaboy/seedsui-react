@@ -92,7 +92,6 @@ const RangeCombo = forwardRef(
 
     return (
       <Combo
-        ref={rootRef}
         value={displayValue}
         ModalComponent={Modal}
         ModalProps={{
@@ -108,6 +107,7 @@ const RangeCombo = forwardRef(
           ...ModalProps
         }}
         {...props}
+        ref={rootRef}
       />
     )
   }

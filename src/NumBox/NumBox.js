@@ -176,11 +176,11 @@ const NumBox = forwardRef(
     let otherRiconAttribute = filterProps(riconAttribute)
     return (
       <div
-        ref={rootRef}
         {...others}
         disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
         className={`numbox${others.className ? ' ' + others.className : ''}`}
         onClick={handleClick}
+        ref={rootRef}
       >
         <input
           value="-"

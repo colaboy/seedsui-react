@@ -57,9 +57,9 @@ const Range = forwardRef(
     }
     return (
       <div
-        ref={rootRef}
         {...props}
         className={`input-range${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         <input
           ref={inputRef}

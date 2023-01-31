@@ -73,7 +73,6 @@ export default forwardRef(
 
     return (
       <Combo
-        ref={rootRef}
         value={displayValue}
         ModalComponent={RangeModal}
         ModalProps={{
@@ -86,6 +85,7 @@ export default forwardRef(
           ...ModalProps
         }}
         {...props}
+        ref={rootRef}
       />
     )
   }

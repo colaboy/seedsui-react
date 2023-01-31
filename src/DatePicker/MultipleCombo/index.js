@@ -45,7 +45,6 @@ export default forwardRef(
 
     return (
       <Combo
-        ref={rootRef}
         value={displayValue}
         ModalComponent={MultipleModal}
         ModalProps={{
@@ -57,6 +56,7 @@ export default forwardRef(
           ...ModalProps
         }}
         {...props}
+        ref={rootRef}
       />
     )
   }

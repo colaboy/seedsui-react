@@ -51,9 +51,9 @@ const BiGauge = forwardRef(
     aniRotate()
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`bi-gauge-box${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <div className="bi-gauge">
           <div ref={pointerRef} className="bi-gauge-pointer"></div>

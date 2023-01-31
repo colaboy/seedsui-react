@@ -39,13 +39,13 @@ const Container = forwardRef(
       typeof others?.onTopRefresh === 'function' ||
       typeof others?.onBottomRefresh === 'function'
     ) {
-      return <ContainerPull ref={rootRef} children={children} {...others} />
+      return <ContainerPull children={children} {...others} ref={rootRef} />
     }
     return (
       <article
-        ref={rootRef}
         {...others}
         className={`container${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         {children}
       </article>

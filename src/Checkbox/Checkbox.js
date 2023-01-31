@@ -44,13 +44,13 @@ const Checkbox = forwardRef(
     let typeClassPrefix = type === 'radio' ? 'radio' : 'checkbox'
     return (
       <div
-        ref={rootRef}
         {...others}
         onClick={handleClick}
         disabled={disabled}
         data-checked={checked}
         data-value={value}
         className={`${typeClassPrefix}${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <span
           ref={inputRef}

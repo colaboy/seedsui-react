@@ -77,9 +77,9 @@ const Marquee = forwardRef(
 
     return (
       <ul
-        ref={rootRef}
         {...others}
         className={`marquee${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         {list &&
           list.map((item, index) => {

@@ -13,9 +13,9 @@ const Button = forwardRef(({ children, ...others }, ref) => {
 
   return (
     <div
-      ref={rootRef}
       {...others}
       className={'button' + (others.className ? ' ' + others.className : '')}
+      ref={rootRef}
     >
       {children}
     </div>

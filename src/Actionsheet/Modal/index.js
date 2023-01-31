@@ -160,13 +160,13 @@ const Modal = forwardRef(
 
     return createPortal(
       <div
-        ref={rootRef}
         {...otherMaskProps}
         className={`mask actionsheet-mask${
           otherMaskProps.className ? ' ' + otherMaskProps.className : ''
         }${visible ? ' active' : ''}`}
         style={Object.assign({}, otherMaskProps.style || {})}
         onClick={handleClick}
+        ref={rootRef}
       >
         <div
           data-animation={animation}

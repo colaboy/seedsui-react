@@ -47,9 +47,9 @@ const InputStar = forwardRef(
     if (current < min) current = min
     return (
       <div
-        ref={rootRef}
         {...props}
         className={`input-star${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         {stars.map((index) => (
           <Star

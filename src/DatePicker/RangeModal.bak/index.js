@@ -214,7 +214,6 @@ const Modal = forwardRef(
 
         {/* 自定义时间 */}
         <RangeModal
-          ref={rootRef}
           separator={separator}
           caption={caption}
           min={min}
@@ -229,6 +228,7 @@ const Modal = forwardRef(
           onChange={handleModalChange}
           onError={onError}
           {...props}
+          ref={rootRef}
         />
       </Fragment>
     )

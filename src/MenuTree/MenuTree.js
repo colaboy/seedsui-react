@@ -103,9 +103,9 @@ const MenuTree = forwardRef(
 
     return (
       <ul
-        ref={rootRef}
         {...others}
         className={`menutree${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       ></ul>
     )
   }

@@ -74,10 +74,10 @@ const Jcrop = forwardRef(
     return (
       <img
         alt=""
-        ref={rootRef}
         {...others}
         style={Object.assign({ maxWidth: '100%' }, style)}
         src={src}
+        ref={rootRef}
       />
     )
   }

@@ -55,7 +55,6 @@ const Menu = forwardRef(
 
         {/* 树 */}
         <Tree
-          ref={rootRef}
           itemRender={itemRender}
           keyword={keyword}
           value={value}
@@ -64,6 +63,7 @@ const Menu = forwardRef(
           onExpand={onExpand}
           onCollapse={onCollapse}
           {...props}
+          ref={rootRef}
         />
       </>
     )

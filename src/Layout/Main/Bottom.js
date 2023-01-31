@@ -35,10 +35,10 @@ const BottomFinish = forwardRef(({ children, caption, type, ...props }, ref) => 
   }
   return (
     <div
-      ref={rootRef}
       className="SID-Dragrefresh-ErrorContainer layout-main-pull-push"
       style={{ height: '50px' }}
       {...props}
+      ref={rootRef}
     >
       {!children && getCaption()}
       {children}

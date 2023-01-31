@@ -45,9 +45,9 @@ export default forwardRef(
     }
     return (
       <div
-        ref={rootRef}
         {...others}
         className={`progress${others.className ? ' ' + others.className : ''}`}
+        ref={rootRef}
       >
         <span
           {...barProps}

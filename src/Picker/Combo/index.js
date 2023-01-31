@@ -144,24 +144,24 @@ const Combo = forwardRef(
       <Fragment>
         {/* Combo */}
         {typeof comboRender === 'function' && (
-          <div ref={rootRef} {...props} onClick={handleInputClick}>
+          <div {...props} onClick={handleInputClick} ref={rootRef}>
             {comboRender(value, { displayValue: Utils.getDisplayValue({ value }) })}
           </div>
         )}
         {children && (
-          <div ref={rootRef} {...props} onClick={handleInputClick}>
+          <div {...props} onClick={handleInputClick} ref={rootRef}>
             {children}
           </div>
         )}
         {!children && typeof comboRender !== 'function' && (
           <Input.Text
-            ref={rootRef}
             allowClear={allowClear}
             value={Utils.getDisplayValue({ value })}
             readOnly
             onClick={handleInputClick}
             onChange={onChange}
             {...props}
+            ref={rootRef}
           />
         )}
         {/* Modal */}

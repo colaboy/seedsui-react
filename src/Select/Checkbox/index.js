@@ -89,9 +89,9 @@ const CheckboxGroup = forwardRef(
 
     return (
       <div
-        ref={rootRef}
         {...props}
         className={`select-checkbox-group${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         {list.map((item, index) => {
           return (

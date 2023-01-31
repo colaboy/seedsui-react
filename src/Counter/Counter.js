@@ -44,13 +44,13 @@ const Counter = forwardRef(
     }
     return (
       <span
-        ref={rootRef}
         {...others}
         className={`counter${others.className ? ' ' + others.className : ''}`}
         data-duration={duration}
         data-from={from || 0}
         data-to={to || 0}
         data-suffix={suffix}
+        ref={rootRef}
       >
         {/* 千分位 */}
         {!isNaN(thousandth) && Math.Calc.toThousandth(thousandth || 0) + suffix}

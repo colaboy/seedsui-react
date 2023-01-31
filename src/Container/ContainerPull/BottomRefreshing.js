@@ -17,10 +17,10 @@ const BottomError = forwardRef(({ children, ...others }, ref) => {
 
   return (
     <div
-      ref={rootRef}
       className="SID-Dragrefresh-BottomContainer containerpull-pull"
       style={{ height: '50px' }}
       {...others}
+      ref={rootRef}
     >
       {!children && (
         <div className="containerpull-pull-box">
