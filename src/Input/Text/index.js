@@ -291,7 +291,7 @@ const InputText = forwardRef(
             {...otherInputProps}
             className={`input-fit-wrapper${
               otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }${!inputVisible ? ' hide' : ''}`}
+            }${inputVisible === false ? ' hide' : ''}`}
           >
             <div className={`input-fit`}>
               <textarea
@@ -335,7 +335,7 @@ const InputText = forwardRef(
             onFocus={handleFocus}
             className={`input-textarea${
               otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }${!inputVisible ? ' hide' : ''}`}
+            }${inputVisible === false ? ' hide' : ''}`}
           ></textarea>
         )
       }

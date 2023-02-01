@@ -9,7 +9,8 @@ export default () => {
   }, [])
   return (
     <>
-      <Input.Text defaultValue={value} allowClear={true} />
+      <Input.AutoFit placeholder="AutoFit" defaultValue={value} allowClear={true} />
+      <Input.Text placeholder="Text" defaultValue={value} allowClear={true} />
       <Input.Number
         ref={inputNumberRef}
         // readOnly
