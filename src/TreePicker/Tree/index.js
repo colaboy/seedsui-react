@@ -91,6 +91,9 @@ function TreePicker({
 
   // 修改
   function handleChange(ids, checkedObject) {
+    if (toString.call(ids) === '[object Object]' && Array.isArray(ids.checked)) {
+      ids = ids.checked
+    }
     if (!Array.isArray(ids) || !ids.length) {
       if (onChange) onChange([])
       return
