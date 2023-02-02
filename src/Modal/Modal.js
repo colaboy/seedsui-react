@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import Utils from './../Tooltip/Utils'
+import TooltipUtils from './../Tooltip/Utils'
 import locale from './../locale'
 
 const Modal = forwardRef(
@@ -8,6 +8,8 @@ const Modal = forwardRef(
     {
       portal,
       animation = 'zoom', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
+      // 自动调整位置
+      sourceDOM = null,
 
       visible,
       maskClosable = true,
@@ -44,11 +46,26 @@ const Modal = forwardRef(
       if (visible) {
         if (onVisibleChange) onVisibleChange(visible)
       }
+      // 更新模态框位置对齐目标元素
+      updateModalPosition()
       // eslint-disable-next-line
     }, [visible])
 
+    // 受控显隐时, 需要更新容器位置
+    function updateModalPosition() {
+      let maskDOM = rootRef?.current
+      if (!sourceDOM || !maskDOM) return
+      if (visible && sourceDOM && maskDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
+        TooltipUtils.updateContainerPosition({
+          source: sourceDOM,
+          target: maskDOM,
+          animation: animation
+        })
+      }
+    }
+
     // 构建动画
-    let position = Utils.getAnimationPosition(animation)
+    let position = TooltipUtils.getAnimationPosition(animation)
 
     // 判断是否是要生成Alert框
     function getIsAlert() {

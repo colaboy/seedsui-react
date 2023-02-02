@@ -161,6 +161,10 @@ export default defineConfig({
           {
             title: 'IndexBar',
             path: '/components/index-bar'
+          },
+          {
+            title: 'Modal',
+            path: '/components/Modal'
           }
         ]
       }
@@ -267,6 +271,10 @@ export default defineConfig({
           {
             title: 'IndexBar',
             path: '/zh/components/index-bar'
+          },
+          {
+            title: 'Modal',
+            path: '/zh/components/Modal'
           }
         ]
       }
