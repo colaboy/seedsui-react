@@ -1,8 +1,13 @@
 // require PrototypeDate.js和PrototypeString.js
 import React from 'react'
 import locale from '../../locale'
+import Utils from './Utils'
 
-const Quick = function ({ ranges, onBeforeChange, onChange, onVisibleChange }) {
+const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChange }) {
+  // 根据value获取选中项
+  let activeKey = Utils.getActiveKey(value, ranges)
+
+  // 点击
   async function handleClick(rangeKey) {
     // 修改提示
     if (typeof onBeforeChange === 'function') {
@@ -23,7 +28,9 @@ const Quick = function ({ ranges, onBeforeChange, onChange, onVisibleChange }) {
           return (
             <div
               key={rangeKey}
-              className="datepicker-rangemodal-modal-card-button"
+              className={`datepicker-rangemodal-modal-card-button${
+                activeKey === rangeKey ? ' active' : ''
+              }`}
               onClick={() => handleClick(rangeKey)}
             >
               {rangeKey}

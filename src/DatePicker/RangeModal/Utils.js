@@ -122,5 +122,24 @@ export default {
       return false
     }
     return true
+  },
+  // 根据value获取选中项
+  getActiveKey(value, ranges) {
+    if (
+      Array.isArray(value) &&
+      value.length === 2 &&
+      value[0] instanceof Date &&
+      value[1] instanceof Date
+    ) {
+      for (let key in ranges) {
+        if (
+          ranges[key][0].format('YYYY-MM-DD') === value[0].format('YYYY-MM-DD') &&
+          ranges[key][1].format('YYYY-MM-DD') === value[1].format('YYYY-MM-DD')
+        ) {
+          return key
+        }
+      }
+      return null
+    }
   }
 }

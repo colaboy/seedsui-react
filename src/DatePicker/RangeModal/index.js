@@ -89,6 +89,7 @@ const RangeModal = forwardRef(
       >
         {/* 快捷选择 */}
         <Quick
+          value={value}
           ranges={quickRanges}
           onBeforeChange={onBeforeChange}
           onChange={onChange}
