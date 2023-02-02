@@ -54,6 +54,7 @@ const Modal = forwardRef(
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
       let maskDOM = rootRef?.current
+      if (typeof sourceDOM === 'function') sourceDOM = sourceDOM()
       if (!sourceDOM || !maskDOM) return
       if (visible && sourceDOM && maskDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
         TooltipUtils.updateContainerPosition({

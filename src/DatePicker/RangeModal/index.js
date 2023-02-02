@@ -1,5 +1,5 @@
 // require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef, useRef, useEffect } from 'react'
+import React, { forwardRef, useRef } from 'react'
 
 import Modal from './../../Modal'
 // 快捷选择
@@ -8,8 +8,7 @@ import Custom from './Custom'
 // 非快捷选择
 import CustomModal from './Modal'
 
-// 用于计算弹窗位置
-import TooltipUtils from '../../Tooltip/Utils'
+// 区间库
 import Utils from './Utils'
 
 const RangeModal = forwardRef(
@@ -48,25 +47,6 @@ const RangeModal = forwardRef(
     // ranges分成两部分: quickRanges(快捷选择)和customRanges(自定义选择)
     const { quickRanges, customRanges } = Utils.getRanges(ranges)
 
-    // 受控显隐时, 需要更新容器位置
-    useEffect(() => {
-      let modalDOM = modalRef?.current?.rootDOM
-      let comboDOM = null
-      if (typeof getComboDOM === 'function') {
-        comboDOM = getComboDOM()
-        if (typeof comboDOM?.getRootDOM === 'function') {
-          comboDOM = comboDOM.getRootDOM()
-        }
-      }
-      if (visible && comboDOM && modalDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
-        TooltipUtils.updateContainerPosition({
-          source: comboDOM,
-          target: modalDOM,
-          animation: 'slideDown'
-        })
-      }
-    }, [visible]) // eslint-disable-line
-
     // 如果没有快捷选择, 直接渲染自定义选择
     if (Object.isEmptyObject(quickRanges)) {
       return (
@@ -90,6 +70,16 @@ const RangeModal = forwardRef(
     return (
       <Modal
         ref={modalRef}
+        sourceDOM={() => {
+          let comboDOM = null
+          if (typeof getComboDOM === 'function') {
+            comboDOM = getComboDOM()
+            if (typeof comboDOM?.getRootDOM === 'function') {
+              comboDOM = comboDOM.getRootDOM()
+            }
+          }
+          return comboDOM
+        }}
         maskClosable={maskClosable}
         visible={visible}
         animation="slideDown"
