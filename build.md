@@ -1,41 +1,40 @@
-# seedsui-react
+# 工程构建步骤
 
-## 工程构建
-
-初始化
+## 初始化
 
 ```bash
-npx @umijs/create-dumi-lib --site
+# 通过官方工具创建项目，选择你需要的模板
+$ npx create-dumi
 ```
 
-## 开始
+## 移动端组件研发
 
-安装依赖
+- 命令
 
 ```bash
-$ npm install --force
+npm i dumi-theme-mobile -D
 ```
 
-启用服务
+- 配置见.dumirc.ts
+
+## prettierrc 配置
+
+- 修改.prettierrc.js
+
+参考 .prettierrc.js
+
+## 自定义首页
+
+- .dumi 新增 pages/index/index.js
+- 过滤生成路由的文件夹,
 
 ```bash
-$ npm start
+conventionRoutes: {
+  // to avoid generate routes for .dumi/pages/index/components/xx
+  exclude: [new RegExp('index/components/')],
+},
 ```
 
-编译文档
+## 启用 seedsui
 
-```bash
-$ npm run docs:build
-```
-
-启动测试
-
-```bash
-$ npm test
-```
-
-编译 library via `father`,
-
-```bash
-$ npm run build
-```
+参考 src/index.ts
