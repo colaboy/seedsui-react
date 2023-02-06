@@ -1,4 +1,4 @@
-# Cascader 级联选择
+# Cascader
 
 用于开始一个即时操作。
 
@@ -8,7 +8,13 @@
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+### Cascader.Combo
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### Cascader.DistrictCombo
+
+<code src="./demos/Combo/index.jsx"></code>
 
 ## Button
 

@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Input } from 'seedsui-react'
 
 export default () => {
-  const [value, setValue] = useState(10.12341234)
+  const [value, setValue] = useState('Auto ReSize')
   return (
     <>
       <Input.AutoFit placeholder="AutoFit" value={value} onChange={setValue} allowClear={true} />

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Input } from 'seedsui-react'
 
 export default () => {
@@ -6,11 +6,12 @@ export default () => {
   const [value, setValue] = useState(10.12341234)
 
   useEffect(() => {
-    console.log(inputNumberRef.current.correctValue('134.1212'))
+    console.log(inputNumberRef.current)
   }, [])
   return (
     <>
       <Input.Number
+        ref={inputNumberRef}
         value={value}
         onChange={(val) => {
           console.log(val)
