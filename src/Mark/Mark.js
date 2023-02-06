@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 标记
-const Mark = forwardRef(({ children, ...others }, ref) => {
+const Mark = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -14,8 +14,8 @@ const Mark = forwardRef(({ children, ...others }, ref) => {
 
   return children ? (
     <span
-      {...others}
-      className={`mark${others.className ? ' ' + others.className : ''}`}
+      {...props}
+      className={`mark${props.className ? ' ' + props.className : ''}`}
       ref={rootRef}
     >
       {children}
