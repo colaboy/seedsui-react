@@ -1,15 +1,15 @@
-# Toast
+# Loading
 
 ## 示例
 
-### Toast
+### Loading
 
-<code src="./demos/Toast/index.jsx"></code>
+<code src="./demos/Loading/index.jsx"></code>
 
-### Toast.show
+### Loading.show
 
 <code src="./demos/show/index.jsx"></code>
 
-### Toast.hide
+### Loading.hide
 
 <code src="./demos/hide/index.jsx"></code>
