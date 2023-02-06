@@ -29,7 +29,6 @@ npm install seedsui-react --save
 - Bridge.showAlert('') 换为 Modal.alert
 - Bridge.showConfirm('') 换为 Modal.confirm
 - MapView、MapChoose 换为 Location/Modal/Preview、Choose
-- Mark 换为 <Button className="xs"></Button>
 - Tabbar 换为 Tabs
 - Tree 换为 TreePicker
 
