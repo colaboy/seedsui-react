@@ -19,6 +19,7 @@ export default () => {
           </div>
           <Modal
             sourceDOM={sourceRef.current}
+            // 这里可以更换动画方向
             animation="slideDown"
             ref={modalRef}
             visible={visible}
