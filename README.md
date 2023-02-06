@@ -4,6 +4,8 @@
 
 SeedsUI,专为移动设备设计的 UI 框架,组件全面可换肤,以后将会有 react 版和 vue 版、h5 版
 
+官网网址: https://colaboy.github.io/seedsui-react/
+
 # 安装
 
 ```js
