@@ -1,3 +1,5 @@
+import './assets/style/index.less'
+
 import './PrototypeArray.js'
 import './PrototypeMath.js'
 import './PrototypeObject.js'
