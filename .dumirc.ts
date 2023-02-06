@@ -8,6 +8,8 @@ export default defineConfig({
   outputPath: 'docs-dist',
   favicons: ['https://res.waiqin365.com/d/seedsui/favicon.png'],
   logo: 'https://res.waiqin365.com/d/seedsui/logo.png',
+  // 设置html引用资源路径
+  publicPath: '/seedsui-react/',
   // 设置路由前缀，通常用于部署到非根目录
   base: '/seedsui-react/',
   themeConfig: {
