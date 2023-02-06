@@ -8,7 +8,7 @@ Marks or encapsulates a group of operation commands, responds to user click beha
 
 ## Demos
 
-<code src="./demos/demo1.tsx"></code>
+<code src="./demos/demo1.jsx"></code>
 
 ## Videos
 

@@ -25,7 +25,7 @@ export default () => {
         ]}
         onChange={setValue}
         onVisibleChange={(visible) => {
-          debugger
+          console.log(visible)
         }}
       />
     </>

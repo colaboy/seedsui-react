@@ -8,7 +8,7 @@ IndexBar 需要包裹滚动容器
 
 ## 示例
 
-<code src="./demos/demo1.tsx"></code>
+<code src="./demos/demo1.jsx"></code>
 
 ## Button
 

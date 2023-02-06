@@ -1,5 +1,5 @@
 import './assets/style/index.less'
-
+import BScroll from 'better-scroll'
 import './PrototypeArray.js'
 import './PrototypeMath.js'
 import './PrototypeObject.js'

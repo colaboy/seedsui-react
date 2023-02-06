@@ -4,7 +4,7 @@ import CountriesData from './CountriesData'
 
 export default () => {
   const [cascader, setCascader] = useState(null)
-  function handleCascader(value: any) {
+  function handleCascader(value) {
     console.log(value)
     setCascader(value)
   }

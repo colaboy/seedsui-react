@@ -1,4 +1,4 @@
-# Location 定位
+# Location
 
 用于开始一个即时操作。
 
@@ -8,7 +8,9 @@
 
 ## 示例
 
-<code src="./demos/demo1.tsx"></code>
+### Location.Combo
+
+<code src="./demos/Combo/index.jsx"></code>
 
 ## Location
 
