@@ -12,10 +12,6 @@
 
 <code src="./demos/AutoFit/index.jsx"></code>
 
-### Input.Color
-
-<code src="./demos/Color/index.jsx"></code>
-
 ### Input.Number
 
 <code src="./demos/Number/index.jsx"></code>

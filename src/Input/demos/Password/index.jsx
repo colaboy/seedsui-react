@@ -6,6 +6,7 @@ export default () => {
   return (
     <>
       <Input.Password
+        placeholder="Select"
         value={value}
         onChange={(val) => {
           console.log(val)

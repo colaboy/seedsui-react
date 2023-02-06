@@ -12,6 +12,7 @@ export default () => {
     <>
       <Input.Number
         ref={inputNumberRef}
+        placeholder="Select"
         value={value}
         onChange={(val) => {
           console.log(val)
