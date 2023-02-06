@@ -78,8 +78,10 @@ export default () => {
               {trans('A Mobile First HTMl5 and CSS3 UI Framework', '专为移动设备设计的模版框架')}
             </p>
             <p className="buttons">
-              <a href={trans('/en-US/guide', '/guide')}>{trans('Get Started', '开始使用')}</a>
-              <a href={trans('/en-US/components', '/components')}>
+              <a href={trans('/seedsui-react/en-US/guide', '/seedsui-react/guide')}>
+                {trans('Get Started', '开始使用')}
+              </a>
+              <a href={trans('/seedsui-react/en-US/components', '/seedsui-react/components')}>
                 {trans('Components', '组件列表')}
               </a>
             </p>
