@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 // foo目录
-const fooCatalog = `./dist/esm`
+const fooCatalog = `./dist`
 // out目录
 const outCatalog = `./lib`
 
