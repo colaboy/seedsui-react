@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 const Chat = forwardRef(
   (
-    { icon, caption, captionProps = {}, bubbleProps = {}, contentProps = {}, children, ...props },
+    { icon, caption, captionProps = {}, contentProps = {}, bubbleProps = {}, children, ...props },
     ref
   ) => {
     // 节点
@@ -22,13 +22,13 @@ const Chat = forwardRef(
       >
         {icon}
         <div
-          {...bubbleProps}
-          className={`chat-bubble${bubbleProps.className ? ' ' + bubbleProps.className : ''}`}
+          {...contentProps}
+          className={`chat-content${contentProps.className ? ' ' + contentProps.className : ''}`}
         >
           {caption && (
             <div
               {...captionProps}
-              className={`chat-bubble-caption${
+              className={`chat-content-caption${
                 captionProps.className ? ' ' + captionProps.className : ''
               }`}
             >
@@ -36,9 +36,9 @@ const Chat = forwardRef(
             </div>
           )}
           <div
-            {...contentProps}
-            className={`chat-bubble-content${
-              contentProps.className ? ' ' + contentProps.className : ''
+            {...bubbleProps}
+            className={`chat-content-bubble${
+              bubbleProps.className ? ' ' + bubbleProps.className : ''
             }`}
           >
             {children}

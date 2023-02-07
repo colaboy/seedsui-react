@@ -49,25 +49,25 @@
   font-style: normal;
 }
 // 内容框
-.chat-bubble {
+.chat-content {
   display: inline-block;
   float: left;
   width: 70%;
   margin-left: 12px;
 }
 // 内容标题
-.chat-bubble-caption {
+.chat-content-caption {
   margin-bottom: 4px;
   color: #666;
   font-size: 12px;
 }
-.chat-bubble-caption + .chat-bubble-content {
+.chat-content-caption + .chat-content-bubble {
   &:after {
     top: 10px;
   }
 }
-// 内容
-.chat-bubble-content {
+// 汽泡
+.chat-content-bubble {
   position: relative;
   display: inline-block;
   max-width: 96%;
@@ -106,15 +106,15 @@
   .chat-author {
     float: right;
   }
-  .chat-bubble {
+  .chat-content {
     float: right;
     width: 70%;
     margin-right: 12px;
   }
-  .chat-bubble-caption {
+  .chat-content-caption {
     text-align: right;
   }
-  .chat-bubble-content {
+  .chat-content-bubble {
     float: right;
     background-color: @chat-even-bg;
     &:after {
