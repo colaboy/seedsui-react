@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { TreePicker, HighlightKeyword, Badge } from 'seedsui-react'
-import treeData from './data.js'
+import treeData from './../data.js'
 
 export default () => {
   const [badge, setBadge] = useState(null)
@@ -8,7 +8,7 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setBadge({
-        '110000': 'asbc'
+        110000: 'asbc'
       })
     }, 2000)
   }, [])
