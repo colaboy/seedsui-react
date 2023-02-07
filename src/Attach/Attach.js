@@ -1,5 +1,5 @@
 // require (PrototypeString.js), 使用了getSuffix
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 const Attach = forwardRef(
   (
@@ -9,10 +9,20 @@ const Attach = forwardRef(
       onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
       onDelete,
       onClick,
-      ...others
+      ...props
     },
     ref
   ) => {
+    // 节点
+    const rootRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
+
+    // 获取附件类型图标
     function getIcon(src) {
       let suffix = typeof src === 'string' ? src.getSuffix() : null
       if (!suffix) return 'unknown'
@@ -67,10 +77,10 @@ const Attach = forwardRef(
     }
     return (
       <div
-        ref={ref}
-        {...others}
-        className={`attach${others.className ? ' ' + others.className : ''}`}
+        {...props}
+        className={`attach${props.className ? ' ' + props.className : ''}`}
         onClick={click}
+        ref={rootRef}
       >
         {/* 图片上传: 上传按钮 */}
         {onChoose && (

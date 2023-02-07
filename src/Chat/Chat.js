@@ -1,45 +1,44 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 const Chat = forwardRef(
   (
-    {
-      icon,
-      caption,
-      captionAttribute = {},
-      contentAttribute = {},
-      textAttribute = {},
-      children,
-      ...others
-    },
+    { icon, caption, captionProps = {}, bubbleProps = {}, contentProps = {}, children, ...props },
     ref
   ) => {
+    // 节点
+    const rootRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current
+      }
+    })
+
     return (
       <div
-        ref={ref}
-        {...others}
-        className={`chat${others.className ? ' ' + others.className : ''}`}
+        {...props}
+        className={`chat${props.className ? ' ' + props.className : ''}`}
+        ref={rootRef}
       >
         {icon}
         <div
-          {...contentAttribute}
-          className={`chat-content${
-            contentAttribute.className ? ' ' + contentAttribute.className : ''
-          }`}
+          {...bubbleProps}
+          className={`chat-bubble${bubbleProps.className ? ' ' + bubbleProps.className : ''}`}
         >
           {caption && (
             <div
-              {...captionAttribute}
-              className={`chat-content-caption${
-                captionAttribute.className ? ' ' + captionAttribute.className : ''
+              {...captionProps}
+              className={`chat-bubble-caption${
+                captionProps.className ? ' ' + captionProps.className : ''
               }`}
             >
               {caption}
             </div>
           )}
           <div
-            {...textAttribute}
-            className={`chat-content-text${
-              textAttribute.className ? ' ' + textAttribute.className : ''
+            {...contentProps}
+            className={`chat-bubble-content${
+              contentProps.className ? ' ' + contentProps.className : ''
             }`}
           >
             {children}

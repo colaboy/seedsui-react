@@ -49,25 +49,25 @@
   font-style: normal;
 }
 // 内容框
-.chat-content {
+.chat-bubble {
   display: inline-block;
   float: left;
   width: 70%;
   margin-left: 12px;
 }
 // 内容标题
-.chat-content-caption {
+.chat-bubble-caption {
   margin-bottom: 4px;
   color: #666;
   font-size: 12px;
 }
-.chat-content-caption + .chat-content-text {
+.chat-bubble-caption + .chat-bubble-content {
   &:after {
     top: 10px;
   }
 }
 // 内容
-.chat-content-text {
+.chat-bubble-content {
   position: relative;
   display: inline-block;
   max-width: 96%;
@@ -106,15 +106,15 @@
   .chat-author {
     float: right;
   }
-  .chat-content {
+  .chat-bubble {
     float: right;
     width: 70%;
     margin-right: 12px;
   }
-  .chat-content-caption {
+  .chat-bubble-caption {
     text-align: right;
   }
-  .chat-content-text {
+  .chat-bubble-content {
     float: right;
     background-color: @chat-even-bg;
     &:after {

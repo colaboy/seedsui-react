@@ -1,11 +1,11 @@
-# Picker
+# Actionsheet
 
 ## 示例
 
-### Picker.Combo
+### Actionsheet.Combo
 
 <code src="./demos/Combo/index.jsx"></code>
 
-### Picker.Modal
+### Actionsheet.Modal
 
 <code src="./demos/Modal/index.jsx"></code>
