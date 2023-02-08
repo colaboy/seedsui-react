@@ -20,7 +20,7 @@ const Chat = forwardRef(
         className={`chat${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
-        {icon}
+        {avatar}
         <div
           {...contentProps}
           className={`chat-content${contentProps.className ? ' ' + contentProps.className : ''}`}

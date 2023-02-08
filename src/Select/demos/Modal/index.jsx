@@ -10,8 +10,7 @@ export default () => {
   ])
   return (
     <>
-      <Select.Combo
-        placeholder="Please select"
+      <Select.Modal
         value={value}
         list={[
           {
@@ -23,6 +22,7 @@ export default () => {
             name: '选项2'
           }
         ]}
+        visible={true}
         onChange={setValue}
         onVisibleChange={(visible) => {
           console.log(visible)

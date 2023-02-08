@@ -11,7 +11,7 @@ const Counter = forwardRef(
       thousandth,
       suffix = '', // 后缀
       autoPlay = true, // 是否自动播放
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -44,8 +44,8 @@ const Counter = forwardRef(
     }
     return (
       <span
-        {...others}
-        className={`counter${others.className ? ' ' + others.className : ''}`}
+        {...props}
+        className={`counter${props.className ? ' ' + props.className : ''}`}
         data-duration={duration}
         data-from={from || 0}
         data-to={to || 0}

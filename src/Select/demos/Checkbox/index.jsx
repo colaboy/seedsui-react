@@ -10,7 +10,7 @@ export default () => {
   ])
   return (
     <>
-      <Select.Combo
+      <Select.Checkbox
         placeholder="Please select"
         value={value}
         list={[
