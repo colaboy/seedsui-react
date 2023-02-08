@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Actionsheet } from 'seedsui-react'
 
 export default () => {
-  const list = useState([
+  const list = [
     { id: '1', name: '1' },
     { id: '2', name: '2' }
-  ])
+  ]
   const [value, setValue] = useState(null)
   return (
     <>

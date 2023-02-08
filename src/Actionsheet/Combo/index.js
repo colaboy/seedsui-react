@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Combo from './../../Actionsheet/Combo'
+import Combo from './../../Picker/Combo'
 import Modal from './../Modal'
 
 // 卡片选择
