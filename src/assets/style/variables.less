@@ -23,117 +23,150 @@
 @mask-bg: rgba(0,0,0,.4);
 
 // 常用颜色
+// 常用颜色: primary
 @primary-color: white;
 @primary-bg: #ff9008;
 @primary-border: #ff9008;
-@primary-property: none;
-@primary-value: none;
 @primary-color-active: white;
 @primary-bg-active: #ff9008;
 @primary-border-active: #ff9008;
-@primary-property-active: none;
-@primary-value-active: none;
 
+@primary-outline-color: #ff9008;
+@primary-outline-bg: #fff7e6;
+@primary-outline-border: #ff9008;
+@primary-outline-color-active: lighten(@primary-outline-color, 20%);
+@primary-outline-bg-active: lighten(@primary-outline-bg, 20%);
+@primary-outline-border-active: lighten(@primary-outline-border, 20%);
+
+// 常用颜色: submit
 @submit-color: white;
 @submit-bg: #68c75f;
 @submit-border: #68c75f;
-@submit-property: none;
-@submit-value: none;
 @submit-color-active: white;
-/* prettier-ignore */
 @submit-bg-active: lighten(@submit-bg, 20%);
-/* prettier-ignore */
 @submit-border-active: lighten(@submit-bg, 20%);
-@submit-property-active: none;
-@submit-value-active: none;
 
+@submit-outline-color: #68c75f;
+@submit-outline-bg: #f6ffed;
+@submit-outline-border: #68c75f;
+@submit-outline-color-active: lighten(@submit-outline-color, 20%);
+@submit-outline-bg-active: lighten(@submit-outline-color, 20%);
+@submit-outline-border-active: lighten(@submit-outline-color, 20%);
+
+// 常用颜色: cancel
 @cancel-color: white;
 @cancel-bg: #f86868;
 @cancel-border: #f86868;
-@cancel-property: none;
-@cancel-value: none;
 @cancel-color-active: white;
-/* prettier-ignore */
-@cancel-bg-active: lighten(@cancel-bg,20%);
-/* prettier-ignore */
-@cancel-border-active: lighten(@cancel-bg,20%);
-@cancel-property-active: none;
-@cancel-value-active: none;
+@cancel-bg-active: lighten(@cancel-bg, 20%);
+@cancel-border-active: lighten(@cancel-bg, 20%);
 
+@cancel-outline-color: #f86868;
+@cancel-outline-bg: #fff1f0;
+@cancel-outline-border: #f86868;
+@cancel-outline-color-active: lighten(@cancel-outline-color, 20%);
+@cancel-outline-bg-active: lighten(@cancel-outline-color, 20%);
+@cancel-outline-border-active: lighten(@cancel-outline-color, 20%);
+
+// 常用颜色: success
 @success-color: white;
 @success-bg: #4ddb63;
 @success-border: #4ddb63;
-@success-property: none;
-@success-value: none;
 @success-color-active: white;
-/* prettier-ignore */
-@success-bg-active: lighten(@success-bg,20%);
-/* prettier-ignore */
-@success-border-active: lighten(@success-bg,20%);
-@success-property-active: none;
-@success-value-active: none;
+@success-bg-active: lighten(@success-bg, 20%);
+@success-border-active: lighten(@success-bg, 20%);
 
+@success-outline-color: #4ddb63;
+@success-outline-bg: #f6ffed;
+@success-outline-border: #4ddb63;
+@success-outline-color-active: lighten(@success-outline-color, 20%);
+@success-outline-bg-active: lighten(@success-outline-color, 20%);
+@success-outline-border-active: lighten(@success-outline-color, 20%);
+
+// 常用颜色: info
 @info-color: white;
 @info-bg: #39abf2;
 @info-border: #39abf2;
-@info-property: none;
-@info-value: none;
 @info-color-active: white;
-/* prettier-ignore */
-@info-bg-active: lighten(@info-bg,20%);
-/* prettier-ignore */
-@info-border-active: lighten(@info-bg,20%);
-@info-property-active: none;
-@info-value-active: none;
+@info-bg-active: lighten(@info-bg, 20%);
+@info-border-active: lighten(@info-bg, 20%);
 
+@info-outline-color: #39abf2;
+@info-outline-bg: #e6f4ff;
+@info-outline-border: #39abf2;
+@info-outline-color-active: lighten(@info-outline-color, 20%);
+@info-outline-bg-active: lighten(@info-outline-color, 20%);
+@info-outline-border-active: lighten(@info-outline-color, 20%);
+
+// 常用颜色: link
 @link-color: white;
 @link-bg: #0076ff;
 @link-border: #0076ff;
-@link-property: none;
-@link-value: none;
 @link-color-active: white;
-/* prettier-ignore */
-@link-bg-active: lighten(@link-bg,20%);
-/* prettier-ignore */
-@link-border-active: lighten(@link-bg,20%);
-@link-property-active: none;
-@link-value-active: none;
+@link-bg-active: lighten(@link-bg, 20%);
+@link-border-active: lighten(@link-bg, 20%);
 
+@link-outline-color: #0076ff;
+@link-outline-bg: #e6f4ff;
+@link-outline-border: #0076ff;
+@link-outline-color-active: lighten(@link-outline-color, 20%);
+@link-outline-bg-active: lighten(@link-outline-color, 20%);
+@link-outline-border-active: lighten(@link-outline-color, 20%);
+
+// 常用颜色: warn
 @warn-color: white;
 @warn-bg: #f4984e;
 @warn-border: #f4984e;
-@warn-property: none;
-@warn-value: none;
 @warn-color-active: white;
-/* prettier-ignore */
-@warn-bg-active: lighten(@warn-bg,20%);
-/* prettier-ignore */
-@warn-border-active: lighten(@warn-bg,20%);
-@warn-property-active: none;
-@warn-value-active: none;
+@warn-bg-active: lighten(@warn-bg, 20%);
+@warn-border-active: lighten(@warn-bg, 20%);
 
+@warn-outline-color: #f4984e;
+@warn-outline-bg: #fffbe6;
+@warn-outline-border: #f4984e;
+@warn-outline-color-active: lighten(@warn-outline-color, 20%);
+@warn-outline-bg-active: lighten(@warn-outline-color, 20%);
+@warn-outline-border-active: lighten(@warn-outline-color, 20%);
+
+// 常用颜色: hint
 @hint-color: white;
 @hint-bg: #d29bce;
 @hint-border: #d29bce;
-@hint-value: none;
 @hint-color-active: white;
-/* prettier-ignore */
-@hint-bg-active: lighten(@hint-bg,20%);
-/* prettier-ignore */
-@hint-border-active: lighten(@hint-bg,20%);
-@hint-value-active: none;
+@hint-bg-active: lighten(@hint-bg, 20%);
+@hint-border-active: lighten(@hint-bg, 20%);
 
-@disabled-color: #adadad;
-@disabled-bg: #838792;
-@disabled-border: #838792;
-@disabled-property: none;
-@disabled-value: none;
-@disabled-color-active: #adadad;
-@disabled-bg-active: #838792;
-@disabled-border-active: #838792;
-@disabled-property-active: none;
-@disabled-value-active: none;
+@hint-outline-color: #d29bce;
+@hint-outline-bg: #fff2e8;
+@hint-outline-border: #d29bce;
+@hint-outline-color-active: lighten(@hint-outline-color, 20%);
+@hint-outline-bg-active: lighten(@hint-outline-color, 20%);
+@hint-outline-border-active: lighten(@hint-outline-color, 20%);
 
+// 常用颜色: disabled
+@disabled-color: white;
+@disabled-bg: #ced2d7;
+@disabled-border: #ced2d7;
+@disabled-color-active: #ced2d7;
+@disabled-bg-active: #f3f4f5;
+@disabled-border-active: #ced2d7;
+
+@disabled-outline-color: #adadad;
+@disabled-outline-bg: #f3f4f5;
+@disabled-outline-border: #e5e5e5;
+@disabled-outline-color-active: lighten(@disabled-outline-color, 20%);
+@disabled-outline-bg-active: lighten(@disabled-outline-color, 20%);
+@disabled-outline-border-active: lighten(@disabled-outline-color, 20%);
+
+// 常用颜色: 按钮默认样式
+@button-color: @body-color;
+@button-bg: transparent;
+@button-border: @dpborder;
+@button-color-active: @body-color;
+@button-bg-active: transparent;
+@button-border-active: @dpborder;
+
+// badge
 @badge-bg: #ff5656;
 @badge-color: white;
 

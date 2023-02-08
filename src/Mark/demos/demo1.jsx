@@ -17,16 +17,11 @@ export default () => {
       <Mark className="primary" style={buttonStyle}>
         primary
       </Mark>
-      <Mark className="primary outline" style={buttonStyle}>
-        primary outline
-      </Mark>
-
-      <div style={titleStyle}>标记颜色</div>
-      <Mark className="primary" style={buttonStyle}>
-        primary
-      </Mark>
       <Mark className="cancel" style={buttonStyle}>
         cancel
+      </Mark>
+      <Mark className="submit" style={buttonStyle}>
+        submit
       </Mark>
       <Mark className="info" style={buttonStyle}>
         info
@@ -41,6 +36,32 @@ export default () => {
         success
       </Mark>
       <Mark className="disabled" style={buttonStyle}>
+        disabled
+      </Mark>
+
+      <div style={titleStyle}>线框模式</div>
+      <Mark className="primary outline" style={buttonStyle}>
+        primary
+      </Mark>
+      <Mark className="cancel outline" style={buttonStyle}>
+        cancel
+      </Mark>
+      <Mark className="submit outline" style={buttonStyle}>
+        submit
+      </Mark>
+      <Mark className="info outline" style={buttonStyle}>
+        info
+      </Mark>
+      <Mark className="link outline" style={buttonStyle}>
+        link
+      </Mark>
+      <Mark className="warn outline" style={buttonStyle}>
+        warn
+      </Mark>
+      <Mark className="success outline" style={buttonStyle}>
+        success
+      </Mark>
+      <Mark className="disabled outline" style={buttonStyle}>
         disabled
       </Mark>
     </>
