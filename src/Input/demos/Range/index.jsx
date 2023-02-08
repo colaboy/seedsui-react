@@ -6,6 +6,7 @@ export default () => {
   return (
     <>
       <Input.Range
+        style={{ marginTop: '50px' }}
         value={value}
         onChange={(val) => {
           console.log(val)
