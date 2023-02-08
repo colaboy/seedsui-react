@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 const Chat = forwardRef(
   (
-    { icon, caption, captionProps = {}, contentProps = {}, bubbleProps = {}, children, ...props },
+    { avatar, caption, captionProps = {}, contentProps = {}, bubbleProps = {}, children, ...props },
     ref
   ) => {
     // 节点
