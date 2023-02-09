@@ -11,7 +11,11 @@ const NumberBox = forwardRef(
       // 加减号
       plusProps = {},
       minusProps = {},
+      stepFocus, // 点击加减按钮获取焦点
+
       // 文本框
+      readOnly,
+      // disabled,
       inputProps = {},
       defaultValue,
       value,
@@ -19,23 +23,27 @@ const NumberBox = forwardRef(
       max,
       min,
       placeholder,
-      maxLength = '16',
-      readOnly,
-      // 自动获取焦点
+      maxLength,
       autoFocus, // 渲染时自动获取焦点
       autoSelect, // 渲染时自动选中
-      stepFocus, // 点击加减按钮获取焦点
-      // 左右图标
       licon,
       liconProps,
       ricon,
       riconProps,
-      // events
+      allowClear, // 传'readOnly', 可以清空只读
+      clearProps,
+      rcaption,
+      // children,
       onClick,
+      onCompositionStart, // 输入开始时
+      onCompositionUpdate, // 输入进行中
+      onCompositionEnd, // 输入完成时
+      onInput,
       onChange,
       onBlur,
       onFocus,
-      ...others
+
+      ...props
     },
     ref
   ) => {
@@ -150,30 +158,42 @@ const NumberBox = forwardRef(
           ref={inputRef}
           className="numbox-input-wrapper"
           type="number"
-          precision={precision}
+          readOnly={readOnly}
+          disabled={disabled}
           inputProps={inputProps}
           defaultValue={defaultValue}
           value={value}
-          min={min}
+          precision={precision}
           max={max}
-          maxLength={maxLength}
-          disabled={disabled}
-          readOnly={readOnly}
+          min={min}
           placeholder={placeholder}
+          maxLength={maxLength}
+          autoFocus={autoFocus} // 渲染时自动获取焦点
+          autoSelect={autoSelect} // 渲染时自动选中
+          licon={licon}
+          liconProps={liconProps}
+          ricon={ricon}
+          riconProps={riconProps}
+          allowClear={allowClear} // 传'readOnly', 可以清空只读
+          clearProps={clearProps}
+          rcaption={rcaption}
+          onClick={onClick}
+          onCompositionStart={onCompositionStart} // 输入开始时
+          onCompositionUpdate={onCompositionUpdate} // 输入进行中
+          onCompositionEnd={onCompositionEnd} // 输入完成时
+          onInput={onInput}
           onChange={handleChange}
-          autoFocus={autoFocus}
-          autoSelect={autoSelect}
-          onFocus={onFocus}
           onBlur={onBlur}
+          onFocus={onFocus}
         />
       )
     }
 
     return (
       <div
-        {...others}
+        {...props}
         disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
-        className={`numbox${others.className ? ' ' + others.className : ''}`}
+        className={`numbox${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
         <input

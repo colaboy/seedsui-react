@@ -7,9 +7,12 @@ export default () => {
     <>
       <Input.NumberBox
         // disabled
+        defaultValue={value}
+        style={{ width: '200px' }}
         min={0}
         max={5}
-        value={value}
+        // value={value}
+        allowClear
         onChange={(val) => {
           console.log(val)
           setValue(val)
