@@ -12,6 +12,7 @@
 @font-size-xs: 9px;
 
 // 基础颜色
+@primary: #ff9008;
 @body-bg: #f5f5f9;
 @body-color: #333;
 
@@ -25,15 +26,15 @@
 // 常用颜色
 // 常用颜色: primary
 @primary-color: white;
-@primary-bg: #ff9008;
-@primary-border: #ff9008;
+@primary-bg: @primary;
+@primary-border: @primary;
 @primary-color-active: white;
-@primary-bg-active: #ff9008;
-@primary-border-active: #ff9008;
+@primary-bg-active: @primary;
+@primary-border-active: @primary;
 
-@primary-outline-color: #ff9008;
+@primary-outline-color: @primary;
 @primary-outline-bg: #fff7e6;
-@primary-outline-border: #ff9008;
+@primary-outline-border: @primary;
 @primary-outline-color-active: lighten(@primary-outline-color, 20%);
 @primary-outline-bg-active: lighten(@primary-outline-bg, 20%);
 @primary-outline-border-active: lighten(@primary-outline-border, 20%);

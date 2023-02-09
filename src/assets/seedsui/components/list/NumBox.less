@@ -1,57 +1,43 @@
-// Numbox数字框
-@numbox-button-color: #666;
-@numbox-button-border: @dpborder;
-@numbox-button-disabled-color: #ccc;
-@numbox-width-md: 100px;
-@numbox-height-md: 26px;
-@numbox-width-xl: 170px;
-@numbox-height-xl: 40px;
-@numbox-width-lg: 120px;
-@numbox-height-lg: 32px;
-@numbox-width-sm: 80px;
-@numbox-height-sm: 22px;
-.numbox {
-  .inline-flex;
-  position: relative;
-  width: @numbox-width-md;
-  height: @numbox-height-md;
-  overflow: hidden;
-  text-align: center;
-  vertical-align: middle;
-  background-color: white;
-  border-radius: 4px;
-  &:extend(.flex-middle);
-  &:extend(.bordered);
-  .ricon {
-    display: block;
-    margin-right: 4px;
-    margin-left: 4px;
-    color: rgba(0, 0, 0, 0.2);
-  }
-}
+// 颜色
+@numbox-border: @dpborder;
+
+// 尺寸
+@numbox-xl-width: 170px;
+@numbox-xl-height: 40px;
+
+@numbox-lg-width: 120px;
+@numbox-lg-height: 32px;
+
+@numbox-md-width: 100px;
+@numbox-md-height: 26px;
+
+@numbox-sm-width: 80px;
+@numbox-sm-height: 22px;
+
+.numbox,
 .numbox.md {
-  width: @numbox-width-md;
-  height: @numbox-height-md;
+  width: @numbox-md-width;
+  height: @numbox-md-height;
 }
 .numbox.xl {
-  width: @numbox-width-xl;
-  height: @numbox-height-xl;
+  width: @numbox-xl-width;
+  height: @numbox-xl-height;
   .numbox-button {
-    width: @numbox-height-xl;
+    width: @numbox-xl-height;
   }
 }
 .numbox.lg {
-  width: @numbox-width-lg;
-  height: @numbox-height-lg;
+  width: @numbox-lg-width;
+  height: @numbox-lg-height;
   .numbox-button {
-    width: @numbox-height-lg;
+    width: @numbox-lg-height;
   }
 }
 .numbox.sm {
-  width: @numbox-width-sm;
-  height: @numbox-height-sm;
+  width: @numbox-sm-width;
+  height: @numbox-sm-height;
   .numbox-button {
-    width: @numbox-height-sm;
+    width: @numbox-sm-height;
   }
   .numbox-input {
     font-size: 12px;
@@ -66,7 +52,26 @@
   line-height: 100%;
 }
 
-.numbox-input-box {
+.numbox {
+  .inline-flex;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  border-radius: 4px;
+  &:extend(.flex-middle);
+  &:extend(.bordered);
+  .ricon {
+    display: block;
+    margin-right: 4px;
+    margin-left: 4px;
+    color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+// 文本框
+.numbox-input-wrapper {
   &:extend(.flex-1);
   .numbox-input {
     display: block;
@@ -79,37 +84,61 @@
     &:extend(.flex-1);
   }
 }
+
+// 按钮
 .numbox-button {
   display: block;
-  width: @numbox-height-md;
+  width: @numbox-md-height;
 
-  color: @numbox-button-color;
   font-size: 20px;
   background-color: white;
   border-width: 0;
   &:extend(.appearance);
+}
+.numbox-button-minus {
+  left: 0;
+  color: @primary;
+  border-right: 1px solid @numbox-border;
   &[disabled] {
-    color: @numbox-button-disabled-color;
+    .setMinusDisabled();
   }
-  &:first-child {
-    left: 0;
-    border-color: @numbox-button-border;
-    border-style: solid;
-    border-width: 0 1px 0 0;
-    border-radius: 0;
+}
+.numbox-button-plus {
+  right: 0;
+  color: @primary-color;
+  background-color: @primary-bg;
+  border-left: 1px solid @primary-bg;
+  &[disabled] {
+    .setPlusDisabled();
   }
-  &:nth-last-of-type(1) {
-    right: 0;
-    border-color: @numbox-button-border;
-    border-style: solid;
-    border-width: 0 0 0 1px;
-    border-radius: 0;
-  }
+}
+
+// 禁用
+.setPlusDisabled() {
+  // color: #ccc;
+  // background-color: white;
+  // border-left: 1px solid @numbox-border;
+  opacity: 0.6;
+}
+.setMinusDisabled() {
+  color: #ccc;
+}
+.setInputDisabled() {
+  color: #ccc;
+  opacity: 1;
+  -webkit-text-fill-color: #ccc;
 }
 .numbox[disabled] {
   pointer-events: none;
-  .numbox-button,
-  .numbox-input {
-    color: @numbox-button-disabled-color;
+  .numbox-input,
+  input[type='number']:disabled {
+    .setInputDisabled();
+  }
+
+  .numbox-button-minus {
+    .setMinusDisabled();
+  }
+  .numbox-button-plus {
+    .setPlusDisabled();
   }
 }

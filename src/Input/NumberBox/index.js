@@ -108,7 +108,7 @@ const NumberBox = forwardRef(
 
       let inputDOM = _getInputDOM()
       if (!inputDOM) return
-      let val = inputRef.current.correctNumber(Math.Calc.subtract(inputDOM.value, 1))
+      let val = inputRef?.current?.correctValue(Math.Calc.subtract(inputDOM.value, 1))
       // Callback
       handleChange(val)
       if (minusProps.onClick) minusProps.onClick(e, val)
@@ -125,7 +125,7 @@ const NumberBox = forwardRef(
       let inputDOM = _getInputDOM()
       if (!inputDOM) return
       if (isNaN(inputDOM?.value)) return
-      let val = inputRef.current.correctNumber(Math.Calc.add(inputDOM.value, 1))
+      let val = inputRef?.current?.correctValue(Math.Calc.add(inputDOM.value, 1))
       // Callback
       handleChange(val)
       if (plusProps.onClick) plusProps.onClick(e, val)
@@ -136,6 +136,7 @@ const NumberBox = forwardRef(
 
     // 文本框属性
     if (!inputProps) {
+      // eslint-disable-next-line
       inputProps = {}
     }
     inputProps.className = inputProps.className
@@ -147,7 +148,7 @@ const NumberBox = forwardRef(
       return (
         <InputNumber
           ref={inputRef}
-          className="numbox-input-box"
+          className="numbox-input-wrapper"
           type="number"
           precision={precision}
           inputProps={inputProps}

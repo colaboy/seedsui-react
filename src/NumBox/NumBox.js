@@ -107,7 +107,7 @@ const NumBox = forwardRef(
     function handleClick(e) {
       e.stopPropagation()
       if (disabled) return
-      var target = e.target
+      const target = e.target
       if (liconAttribute && liconAttribute.onClick && target.classList.contains('licon')) {
         liconAttribute.onClick(e, inputRef?.input?.value)
         return
@@ -133,6 +133,7 @@ const NumBox = forwardRef(
 
     // 文本框属性
     if (!inputAttribute) {
+      // eslint-disable-next-line
       inputAttribute = {}
     }
     inputAttribute.className = inputAttribute.className
@@ -144,7 +145,7 @@ const NumBox = forwardRef(
       return (
         <InputNumber
           ref={setInputRef}
-          className="numbox-input-box"
+          className="numbox-input-wrapper"
           type="number"
           digits={digits}
           inputAttribute={inputAttribute}

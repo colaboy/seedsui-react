@@ -33,6 +33,7 @@ npm install seedsui-react --save
 - MapView、MapChoose 换为 Location/Modal/Preview、Choose
 - Tabbar 换为 Tabs
 - Tree 换为 TreePicker
+- OnOff 换为 Switch
 
 # 导入组件
 
