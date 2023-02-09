@@ -8,4 +8,4 @@
 
 ### Cascader.DistrictCombo
 
-<code src="./demos/Combo/index.jsx"></code>
+<code src="./demos/DistrictCombo/index.jsx"></code>
