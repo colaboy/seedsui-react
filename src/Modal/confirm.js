@@ -20,6 +20,7 @@ export default function ({
 
   // 确定按钮
   if (submitProps === undefined) {
+    // eslint-disable-next-line
     submitProps = {
       onClick: () => {}
     }
@@ -27,6 +28,7 @@ export default function ({
 
   // 取消按钮
   if (cancelProps === undefined) {
+    // eslint-disable-next-line
     cancelProps = {
       onClick: () => {}
     }
@@ -73,7 +75,7 @@ export default function ({
       let mask = modal.parentNode
       mask.classList.add('active')
       modal.classList.add('active')
-    })
+    }, 100)
   }
   render()
 }

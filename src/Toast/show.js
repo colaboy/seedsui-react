@@ -48,7 +48,7 @@ export default function ({ content, onVisibleChange, ...props }) {
       mask.classList.add('active')
       modal.classList.add('active')
       if (onVisibleChange) onVisibleChange(true)
-    })
+    }, 100)
   }
   render()
 }
