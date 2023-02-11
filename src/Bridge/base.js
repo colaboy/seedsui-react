@@ -26,7 +26,7 @@ import locale from './../locale'
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
 window.top.window._bridge_self = null
 
-var Bridge = {
+let Bridge = {
   /**
    * 基础功能:start
    */
@@ -42,7 +42,7 @@ var Bridge = {
   },
   // 视频播放(此方法用不上)
   // previewVideo: function (params = {}) {
-  //   var target = document.getElementById('seedsui_preview_video')
+  //   let target = document.getElementById('seedsui_preview_video')
   //   if (!target) {
   //     target = MediaUtil.video(params.src)
   //     target.id = 'seedsui_preview_video'
@@ -63,7 +63,7 @@ var Bridge = {
    * 请使用Toast.show({content: ''})
    */
   showToast: function (msg, params = {}) {
-    var self = this
+    let self = this
     if (!msg) return
     if (!self.toast) {
       // 提示错误
@@ -102,7 +102,7 @@ var Bridge = {
    * 请使用 Loading.show()
    */
   showLoading: function (params = {}) {
-    var self = this
+    let self = this
     if (!self.loading) {
       self.loading = new Loading({
         ...params,
@@ -123,7 +123,7 @@ var Bridge = {
    * 请使用 Loading.hide()
    */
   hideLoading: function () {
-    var self = this
+    let self = this
     if (self.loading) {
       self.loading.hide()
     }
@@ -133,7 +133,7 @@ var Bridge = {
    * 请使用 Loading.exists()
    */
   isLoading: function () {
-    var self = this
+    let self = this
     if (!self.loading) return false
     return self.loading.mask.classList.contains(self.loading.params.loadingActiveClass)
   },
@@ -144,7 +144,7 @@ var Bridge = {
    * 请使用Modal.alert({content: '', submitProps: {onClick: () => {}}})
    */
   showAlert: function (msg, params = {}) {
-    var self = this
+    let self = this
     if (!self.alert) {
       self.alert = new Alert({
         buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
@@ -179,7 +179,7 @@ var Bridge = {
    * 请使用Modal.confirm({content: '', submitProps: {onClick: () => {}}})
    */
   showConfirm: function (msg, params = {}) {
-    var self = this
+    let self = this
     if (!self.confirm) {
       self.confirm = new Alert({
         buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
@@ -249,7 +249,7 @@ var Bridge = {
    * @returns {Object} 天气信息results
    */
   getWeather: function (params = {}) {
-    var url =
+    let url =
       'http://api.map.baidu.com/telematics/v3/weather?location=' +
       (params.location || '南京市') +
       '&output=json&ak=IlfRglMOvFxapn5eGrmAj65H'
@@ -274,15 +274,16 @@ var Bridge = {
   // 客户端默认返回控制
   back: function (backLvl, config) {
     const { history, success, fail } = config || {}
+    // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
       // eslint-disable-next-line
-      var self = window.top.window._bridge_self
+      let self = window.top.window._bridge_self
 
       // 返回操作对象与返回层级
-      var _history = window.history
+      let _history = window.history
       if (history && history.go) _history = history
-      var _backLvl = backLvl || -1
+      let _backLvl = backLvl || -1
 
       // 清空无效的h5返回
       if (
@@ -292,7 +293,7 @@ var Bridge = {
         window.onHistoryBacks = null
       }
 
-      var isFromApp = Device.getUrlParameter('isFromApp') || ''
+      let isFromApp = Device.getUrlParameter('isFromApp') || ''
       // 如果已经有h5返回监听, 优先执行h5返回监听
       if (window.onHistoryBacks || window.onHistoryBack) {
         console.log('back:window.onHistoryBack')
@@ -393,9 +394,9 @@ var Bridge = {
    * @param {Object} options {isLoad: true(已加载, 则不再执行window.onload), wxSrc: '', wqCordovaSrc: '外勤cordovajs', wqSrc: '外勤jssdkjs', fail: func({errMsg: ''})}
    */
   ready: function (callback, options = {}) {
-    var self = this
-    var platform = self.platform
-    var d = new Date()
+    let self = this
+    let platform = self.platform
+    let d = new Date()
     if (
       platform !== 'wechat' &&
       platform !== 'wework' &&
@@ -418,7 +419,7 @@ var Bridge = {
       }
       return
     }
-    var script = document.createElement('script')
+    let script = document.createElement('script')
     script.type = 'text/javascript'
     script.defer = 'defer'
     if (
@@ -468,6 +469,10 @@ var Bridge = {
         }
       }
     } else if (platform === 'wq') {
+      if (window.top.wq) {
+        callback()
+        return
+      }
       // 外勤jssdk
       // 用开发d目录可以使用新功能
       script.src =
@@ -482,6 +487,10 @@ var Bridge = {
         }
       }
     } else if (platform === 'dinghuo') {
+      if (window.top.wq) {
+        callback()
+        return
+      }
       // 订货jssdk
       // 用开发d目录可以使用新功能
       script.src =
