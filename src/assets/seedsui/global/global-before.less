@@ -166,8 +166,6 @@ br {
 
 // 遮罩公共遮罩样式
 .mask {
-  // display: none; // 去掉动画
-
   position: absolute;
   top: 0;
   right: 0;
@@ -177,13 +175,16 @@ br {
   overflow: hidden;
 
   background-color: @mask-bg;
-  visibility: hidden;
+  visibility: visible;
+  // display: none; // 去掉动画
   opacity: 0;
   transition-duration: @animation-duration;
   transition-property: opacity;
+  pointer-events: none;
   &.active {
     visibility: visible;
     opacity: 1;
+    pointer-events: initial;
     // display: block; // 去掉动画
   }
 }
