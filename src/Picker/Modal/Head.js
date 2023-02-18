@@ -37,17 +37,17 @@ const Head = forwardRef(
 
     return (
       <div className="picker-header" ref={ref}>
-        {cancelVisible !== false && (
-          <div
-            {...otherCancelProps}
-            className={`picker-cancel${
-              otherCancelProps.className ? ' ' + otherCancelProps.className : ''
-            }${cancelDisabled === true ? ' disabled' : ''}`}
-            onClick={handleCancelClick}
-          >
-            {cancelCaption || locale('取消', 'cancel')}
-          </div>
-        )}
+        <div
+          {...otherCancelProps}
+          className={`picker-close${
+            otherCancelProps.className ? ' ' + otherCancelProps.className : ''
+          }${cancelDisabled === true ? ' disabled' : ''}${
+            cancelVisible !== false ? '' : ' hidden'
+          }`}
+          onClick={handleCancelClick}
+        >
+          {cancelCaption || <div className="picker-icon-close"></div>}
+        </div>
         <div
           {...otherCaptionProps}
           className={`picker-header-title${
@@ -56,17 +56,17 @@ const Head = forwardRef(
         >
           {headerCaption}
         </div>
-        {submitVisible !== false && (
-          <div
-            {...otherSubmitProps}
-            className={`picker-submit${
-              otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''
-            }${submitDisabled === true ? ' disabled' : ''}`}
-            onClick={handleSubmitClick}
-          >
-            {submitCaption || locale('完成', 'finish')}
-          </div>
-        )}
+        <div
+          {...otherSubmitProps}
+          className={`picker-submit${
+            otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''
+          }${submitDisabled === true ? ' disabled' : ''}${
+            submitVisible !== false ? '' : ' hidden'
+          }`}
+          onClick={handleSubmitClick}
+        >
+          {submitCaption || locale('完成', 'finish')}
+        </div>
       </div>
     )
   }

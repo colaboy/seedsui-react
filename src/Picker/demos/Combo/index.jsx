@@ -9,7 +9,23 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      <Picker.Combo placeholder="Please select" value={value} list={list} onChange={setValue} />
+      <Picker.Combo
+        ModalProps={{
+          captionProps: {
+            caption: '标题'
+          },
+          cancelProps: {
+            visible: false
+          },
+          submitProps: {
+            visible: false
+          }
+        }}
+        placeholder="Please select"
+        value={value}
+        list={list}
+        onChange={setValue}
+      />
     </>
   )
 }
