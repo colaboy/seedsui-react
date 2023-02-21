@@ -4,6 +4,9 @@ import { Layout, Loading } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Loading.show()
+    setTimeout(() => {
+      Loading.hide()
+    }, 3000)
   }
 
   return (
