@@ -14,7 +14,9 @@ try {
 const MARK = '__SeedsUI_root__'
 function modernRender(node, container) {
   const root = container[MARK] || createRoot(container)
-  root.render(node)
+  if (root && root?.render) {
+    root.render(node)
+  }
   // 记录root对象到dom上, 防止重复createRoot
   container[MARK] = root
 }
