@@ -44,11 +44,11 @@ const DateRangePopover = forwardRef(
           new Date().prevMonth().lastMonthDate().format('YYYY-MM-DD')
         ],
         [locale('最近7天', 'datepopover_last_days', ['7'])]: [
-          new Date().prevDate(7).format('YYYY-MM-DD'),
+          new Date().prevDate(6).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
         [locale('最近30天', 'datepopover_last_days', ['30'])]: [
-          new Date().prevDate(30).format('YYYY-MM-DD'),
+          new Date().prevDate(29).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
         [locale('自定义时间', 'datepopover_custom_date')]: 90

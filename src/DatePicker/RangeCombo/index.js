@@ -25,11 +25,11 @@ export default forwardRef(
           new Date().prevMonth().lastMonthDate()
         ],
         [locale('最近7天', 'datepicker-tooltip_last_days', ['7'])]: [
-          new Date().prevDate(7),
+          new Date().prevDate(6),
           new Date()
         ],
         [locale('最近30天', 'datepicker-tooltip_last_days', ['30'])]: [
-          new Date().prevDate(30),
+          new Date().prevDate(29),
           new Date()
         ],
         [locale('自定义时间', 'datepicker-tooltip_custom_date')]: 0

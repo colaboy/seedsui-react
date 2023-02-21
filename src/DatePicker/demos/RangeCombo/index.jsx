@@ -20,10 +20,10 @@ export default () => {
         value={rangeValue}
       />
       <DatePicker.RangeCombo
-        ranges={{
-          ['最近30天']: [new Date().prevDate(30), new Date()],
-          ['自定义时间']: null
-        }}
+        // ranges={{
+        //   ['最近30天']: [new Date().prevDate(29), new Date()],
+        //   ['自定义时间']: null
+        // }}
         placeholder="请选择RangeCombo"
         ModalProps={{
           onVisibleChange: (visible) => {

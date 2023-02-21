@@ -47,7 +47,7 @@ export default {
     // 最近7内
     if (type === '7') {
       date = new Date()
-      date.prevDate(7)
+      date.prevDate(6)
       return {
         startDate: date.format('YYYY-MM-DD'),
         endDate: new Date().format('YYYY-MM-DD')
@@ -56,7 +56,7 @@ export default {
     // 最近30天
     if (type === '30') {
       date = new Date()
-      date.prevDate(30)
+      date.prevDate(29)
       return {
         startDate: date.format('YYYY-MM-DD'),
         endDate: new Date().format('YYYY-MM-DD')
