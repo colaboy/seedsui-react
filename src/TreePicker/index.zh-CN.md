@@ -5,3 +5,11 @@
 ### TreePicker.Combo
 
 <code src="./demos/Combo/index.jsx"></code>
+
+### TreePicker.Tree
+
+<code src="./demos/Tree/index.jsx"></code>
+
+### TreePicker.Menu
+
+<code src="./demos/Menu/index.jsx"></code>

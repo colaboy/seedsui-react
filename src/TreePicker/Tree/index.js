@@ -6,7 +6,9 @@ import Utils from './Utils'
 
 // 树控件
 function TreePicker({
+  // multiple未传则为必选单选, multiple为false时为可取消单选
   multiple,
+  // 精确检查节点，父子节点不关联
   checkStrictly = false,
   checkable = true,
 
@@ -91,20 +93,16 @@ function TreePicker({
 
   // 修改
   function handleChange(ids, checkedObject) {
-    if (toString.call(ids) === '[object Object]' && Array.isArray(ids.checked)) {
-      ids = ids.checked
-    }
-    if (!Array.isArray(ids) || !ids.length) {
-      if (onChange) onChange([])
-      return
-    }
     let checkedNodes = checkedObject?.checkedNodes || []
-    // 单选只选中当前项
-    if (!multiple) {
-      if (!checkedObject?.node) {
-        checkedNodes = []
+    // multiple未传则为必选单选
+    if (multiple === undefined) {
+      if (checkedObject?.node) checkedNodes = [checkedObject.node]
+    }
+    // multiple为false时为可取消单选
+    if (multiple === false) {
+      if (checkedNodes.length > 1) {
+        if (checkedObject?.node) checkedNodes = [checkedObject.node]
       }
-      checkedNodes = checkedNodes.filter((checkedNode) => checkedNode.id === checkedObject?.node.id)
     }
     if (onChange) onChange(checkedNodes)
   }
@@ -139,12 +137,13 @@ function TreePicker({
       <Tree
         fieldNames={{ key: 'id' }}
         treeData={treeData}
-        multiple={multiple}
+        // 经测试multiple不生效
+        // multiple={multiple}
         // 选中项属性
         {...checkedKeysProp}
         // 选中checkbox
         onCheck={handleChange}
-        // 点击
+        // 点击(用于解决checkable为false时没有checkbox时onChange)
         onSelect={handleChange}
         // 展开keys属性
         {...expandProp}

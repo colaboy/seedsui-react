@@ -1,5 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import locale from './../../locale'
+
 import Head from './../../Picker/Modal/Head'
 import Tree from './../Tree'
 
@@ -42,7 +44,7 @@ const Modal = forwardRef(
     })
 
     // 选中项
-    const [tempValue, setTempValue] = useState(null)
+    let [tempValue, setTempValue] = useState(null)
 
     useEffect(() => {
       setTempValue(value)
@@ -56,11 +58,6 @@ const Modal = forwardRef(
       // eslint-disable-next-line
     }, [visible])
 
-    // 修改回调
-    async function handleChange(newTempValue) {
-      setTempValue(newTempValue)
-    }
-
     // 点击确定
     async function handleSubmitClick(e) {
       // 修改提示
@@ -70,7 +67,7 @@ const Modal = forwardRef(
       }
       if (onChange) onChange(tempValue)
       if (onVisibleChange) onVisibleChange(false)
-      e.stopPropagation()
+      e?.stopPropagation()
     }
 
     // 点击取消
@@ -105,7 +102,18 @@ const Modal = forwardRef(
           {/* 头 */}
           <Head
             cancelProps={cancelProps}
-            submitProps={submitProps}
+            submitProps={{
+              // 必选单选不显示确定按钮
+              visible: multiple !== undefined,
+              // 多选确定带选中数量
+              caption:
+                locale('确定', 'ok') +
+                // 多选带选中数量
+                (multiple && Array.isArray(tempValue) && tempValue.length
+                  ? `(${tempValue.length})`
+                  : ''),
+              ...submitProps
+            }}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
@@ -114,7 +122,14 @@ const Modal = forwardRef(
               multiple={multiple}
               list={list}
               value={tempValue}
-              onChange={handleChange}
+              onChange={(newTempValue) => {
+                tempValue = newTempValue
+                setTempValue(tempValue)
+                // multiple未传则为必选单选
+                if (multiple === undefined) {
+                  handleSubmitClick()
+                }
+              }}
               checkStrictly={checkStrictly}
               checkable={checkable}
               selectable={selectable}
