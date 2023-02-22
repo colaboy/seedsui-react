@@ -6,6 +6,10 @@ import Utils from './Utils'
 
 // 当不显示快捷选择时, 则直接显示弹窗
 const Custom = function ({
+  captionProps,
+  submitProps,
+  cancelProps,
+
   maskClosable,
   value,
   ranges,
@@ -69,6 +73,9 @@ const Custom = function ({
 
   return (
     <MultipleModal
+      captionProps={captionProps}
+      submitProps={submitProps}
+      cancelProps={cancelProps}
       maskClosable={maskClosable}
       className="datepicker-rangemodal-modal-card-button"
       value={multipleDate}

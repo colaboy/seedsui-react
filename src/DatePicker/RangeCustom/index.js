@@ -28,6 +28,7 @@ const MultipleModal = forwardRef(
 
       maskProps = {},
       wrapperProps = {},
+      captionProps = {},
       submitProps = {},
       cancelProps = {},
 
@@ -142,6 +143,7 @@ const MultipleModal = forwardRef(
           {/* 头 */}
           <Head
             cancelProps={cancelProps}
+            captionProps={captionProps}
             submitProps={submitProps}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}

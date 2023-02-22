@@ -22,6 +22,7 @@ const Modal = forwardRef(
 
       // 定制属性
       maskProps = {},
+      captionProps = {},
       submitProps = {},
       cancelProps = {},
       optionProps = {},
@@ -101,6 +102,7 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
+            captionProps={captionProps}
             cancelProps={cancelProps}
             submitProps={{
               // 必选单选不显示确定按钮

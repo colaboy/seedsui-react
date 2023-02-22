@@ -14,6 +14,7 @@ const Modal = forwardRef(
       getComboDOM,
       maskClosable,
       visible = false,
+      multiple,
       value,
       list,
       onBeforeChange,
@@ -24,6 +25,7 @@ const Modal = forwardRef(
       loadData,
       onBeforeSelectOption,
       maskProps = {},
+      captionProps = {},
       submitProps = {},
       cancelProps = {},
       optionProps = {},
@@ -36,6 +38,7 @@ const Modal = forwardRef(
     let [currentList, setCurrentList] = useState(list || [])
 
     // 补充parentid
+    // eslint-disable-next-line
     list = Utils.convertList(list)
 
     // 节点
@@ -169,9 +172,16 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            caption={locale('请选择所在地区', 'picker_district_title')}
+            captionProps={{
+              caption: locale('请选择所在地区', 'picker_district_title'),
+              ...captionProps
+            }}
             cancelProps={cancelProps}
-            submitProps={submitProps}
+            submitProps={{
+              // 必选单选不显示确定按钮
+              visible: multiple !== undefined,
+              ...submitProps
+            }}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />

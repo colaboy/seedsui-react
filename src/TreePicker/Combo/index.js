@@ -8,6 +8,7 @@ export default forwardRef(
     {
       // 定制属性
       maskProps,
+      captionProps,
       submitProps,
       cancelProps,
       optionProps,
@@ -24,6 +25,7 @@ export default forwardRef(
         ModalComponent={Modal}
         ModalProps={{
           maskProps: maskProps,
+          captionProps: captionProps,
           submitProps: submitProps,
           cancelProps: cancelProps,
           optionProps: optionProps,

@@ -11,6 +11,9 @@ export default () => {
         value={value}
         list={treeData}
         multiple={false}
+        captionProps={{
+          caption: 'aaa'
+        }}
         // checkStrictly={true}
         // checkable={false}
         TreeProps={{

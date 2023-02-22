@@ -18,6 +18,9 @@ export default () => {
         onChange={setRangeValue}
         onError={(err) => console.log(err)}
         value={rangeValue}
+        captionProps={{
+          caption: '选择日期'
+        }}
       />
       <DatePicker.RangeCombo
         // ranges={{
@@ -43,6 +46,9 @@ export default () => {
         onChange={(newRangeValue) => {
           console.log(newRangeValue)
           setRangeValue(newRangeValue)
+        }}
+        captionProps={{
+          caption: '选择日期'
         }}
       />
     </>

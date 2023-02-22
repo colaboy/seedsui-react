@@ -42,6 +42,7 @@ const Modal = forwardRef(
       console.error(
         "DatePicker.Modal: Wrong parameter with \"type\"! You need correct to ['year', 'quarter', 'month', 'date', 'time', 'datetime'] any one"
       )
+      // eslint-disable-next-line
       type = 'date'
     }
     // 标题
@@ -87,7 +88,7 @@ const Modal = forwardRef(
       let s = instance.current
       // 获取选中项
       let newValue = s.getActiveDate(s.activeOptions)
-      var activeKeys = s.activeOptions.map(function (n, i, a) {
+      let activeKeys = s.activeOptions.map(function (n, i, a) {
         return n['id']
       })
       s.setDefaultsByKeys(activeKeys)
@@ -127,9 +128,9 @@ const Modal = forwardRef(
         (s.params.viewType === 'date' || s.params.viewType === 'datetime') &&
         (s.activeSlot.index === 0 || s.activeSlot.index === 1)
       ) {
-        var year = s.activeOptions[0]['id']
-        var month = s.activeOptions[1]['id']
-        var defaultDay = s.activeOptions[2]['id']
+        let year = s.activeOptions[0]['id']
+        let month = s.activeOptions[1]['id']
+        let defaultDay = s.activeOptions[2]['id']
         s.updateDays(year, month, defaultDay) // 更新总天数
       }
       // 是否显示标题
@@ -162,8 +163,8 @@ const Modal = forwardRef(
 
     function initInstance() {
       if (!wrapperRef || !wrapperRef.current) return
-      var data = Utils.getData(list)
-      var def = Utils.getDefaults(value)
+      let data = Utils.getData(list)
+      let def = Utils.getDefaults(value)
       // render数据
       instance.current = new Instance({
         wrapper: wrapperRef.current,
@@ -227,7 +228,7 @@ const Modal = forwardRef(
           {/* 头 */}
           <Head
             // 标题
-            captionProps={Object({ caption: title }, captionProps)}
+            captionProps={{ caption: title, ...captionProps }}
             // 按钮
             cancelProps={cancelProps}
             submitProps={submitProps}

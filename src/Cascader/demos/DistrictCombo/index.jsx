@@ -51,6 +51,9 @@ export default () => {
           console.log(newValue)
           setValue(newValue)
         }}
+        captionProps={{
+          caption: '级联选择'
+        }}
       />
     </div>
   )

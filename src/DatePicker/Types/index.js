@@ -43,6 +43,10 @@ const Types = forwardRef(
       }
       */
 
+      captionProps,
+      submitProps,
+      cancelProps,
+
       // 配置
       contentProps = {},
       TabsProps = {},
@@ -142,6 +146,7 @@ const Types = forwardRef(
       if (!newValue?.value) {
         newValue.value = new Date()
       }
+      // eslint-disable-next-line
       newValue = Object.clone(newValue)
       switch (newValue.type) {
         // 年
@@ -180,6 +185,20 @@ const Types = forwardRef(
         }
       }
       return newValue
+    }
+
+    // 伸缩属性(Modal提升属性)
+    // eslint-disable-next-line
+    if (!DatePickerComboProps) DatePickerComboProps = {}
+    // 伸缩属性-展示属性
+    if (captionProps !== undefined) {
+      DatePickerComboProps.captionProps = captionProps
+    }
+    if (submitProps !== undefined) {
+      DatePickerComboProps.submitProps = submitProps
+    }
+    if (cancelProps !== undefined) {
+      DatePickerComboProps.cancelProps = cancelProps
     }
 
     return (

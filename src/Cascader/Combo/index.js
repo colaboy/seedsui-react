@@ -11,6 +11,7 @@ export default forwardRef(
       onBeforeSelectOption,
 
       maskProps,
+      captionProps,
       submitProps,
       cancelProps,
       optionProps,
@@ -29,6 +30,7 @@ export default forwardRef(
           loadData: loadData,
           onBeforeSelectOption: onBeforeSelectOption,
           maskProps: maskProps,
+          captionProps: captionProps,
           submitProps: submitProps,
           cancelProps: cancelProps,
           optionProps: optionProps,

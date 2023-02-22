@@ -29,8 +29,10 @@ const RangeModal = forwardRef(
 
       maskProps = {},
       wrapperProps = {},
-      submitProps = {},
-      cancelProps = {},
+
+      captionProps,
+      submitProps,
+      cancelProps,
 
       // 定制属性
       ranges,
@@ -51,6 +53,9 @@ const RangeModal = forwardRef(
     if (Object.isEmptyObject(quickRanges)) {
       return (
         <CustomModal
+          captionProps={captionProps}
+          submitProps={submitProps}
+          cancelProps={cancelProps}
           maskClosable={maskClosable}
           value={value}
           ranges={customRanges}
@@ -97,6 +102,9 @@ const RangeModal = forwardRef(
         />
         {/* 自定义选择 */}
         <Custom
+          captionProps={captionProps}
+          submitProps={submitProps}
+          cancelProps={cancelProps}
           maskClosable={maskClosable}
           value={value}
           ranges={customRanges}

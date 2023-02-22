@@ -39,12 +39,16 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.Combo
+        // multiple={false}
         list={CountriesData}
         loadData={loadData}
         value={value}
         placeholder={`Select`}
         ricon={<i className="shape-arrow-right sm"></i>}
         onChange={setValue}
+        captionProps={{
+          caption: '级联选择'
+        }}
       />
     </div>
   )

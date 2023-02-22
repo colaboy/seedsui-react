@@ -5,6 +5,10 @@ import MultipleCombo from './../MultipleCombo'
 import Utils from './Utils'
 
 const Custom = function ({
+  captionProps,
+  submitProps,
+  cancelProps,
+
   maskClosable,
   value,
   ranges,
@@ -77,6 +81,9 @@ const Custom = function ({
           return (
             <MultipleCombo
               key={rangeKey}
+              captionProps={captionProps}
+              submitProps={submitProps}
+              cancelProps={cancelProps}
               maskClosable={maskClosable}
               className="datepicker-rangemodal-modal-card-button"
               value={multipleDate}

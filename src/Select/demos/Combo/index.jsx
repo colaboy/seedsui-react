@@ -23,9 +23,15 @@ export default () => {
             name: '选项2'
           }
         ]}
+        // multiple={true}
         onChange={setValue}
-        onVisibleChange={(visible) => {
-          console.log(visible)
+        ModalProps={{
+          onVisibleChange: (visible) => {
+            console.log(visible)
+          }
+        }}
+        captionProps={{
+          caption: '选择'
         }}
       />
     </>

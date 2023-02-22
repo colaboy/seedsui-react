@@ -12,6 +12,9 @@ export default () => {
         value={value}
         multiple={true}
         onChange={setValue}
+        // captionProps={{
+        //   caption: '选择日期'
+        // }}
       />
     </>
   )

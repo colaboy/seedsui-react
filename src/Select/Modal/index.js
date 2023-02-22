@@ -19,6 +19,7 @@ const Modal = forwardRef(
 
       // 定制属性
       maskProps = {},
+      captionProps = {},
       submitProps = {},
       cancelProps = {},
       optionProps = {},
@@ -27,6 +28,7 @@ const Modal = forwardRef(
     ref
   ) => {
     // 过滤非法数据
+    // eslint-disable-next-line
     list = list.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
@@ -125,14 +127,38 @@ const Modal = forwardRef(
     // 点击项
     function handleOptionClick(e) {
       if (optionProps.onClick) optionProps.onClick(e)
-      if (!multiple) {
-        let options = getActiveOptionsDOM()
+      // 所有选中项
+      let options = getActiveOptionsDOM()
+      // multiple未传则为必选单选
+      if (multiple === undefined) {
+        // 清除所有选中状态
         options.forEach((option) => {
           return option.classList.remove('active')
         })
+        // 增加选中状态
+        e.target.classList.add('active')
       }
-      e.target.classList.toggle('active')
-      if (!multiple) {
+      // multiple为false时为可取消单选
+      else if (multiple === false) {
+        // 记录原先选中状态
+        let isActive = e.target.classList.contains('active')
+        // 清除所有选中状态
+        options.forEach((option) => {
+          return option.classList.remove('active')
+        })
+        // 反选
+        if (!isActive) {
+          e.target.classList.add('active')
+        } else {
+          e.target.classList.remove('active')
+        }
+      }
+      // 多选
+      else {
+        e.target.classList.toggle('active')
+      }
+      // multiple未传则为必选单选
+      if (multiple === undefined) {
         handleChange()
       }
       e.stopPropagation()
@@ -162,8 +188,7 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            multiple={multiple}
-            // caption
+            captionProps={captionProps}
             cancelProps={cancelProps}
             submitProps={submitProps}
             onSubmitClick={handleSubmitClick}

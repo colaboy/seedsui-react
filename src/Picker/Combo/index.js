@@ -13,6 +13,7 @@ const Combo = forwardRef(
       // Modal提升属性
       portal,
       maskProps,
+      captionProps,
       submitProps,
       cancelProps,
       slotProps,
@@ -93,6 +94,9 @@ const Combo = forwardRef(
     if (maskProps !== undefined) {
       PickerModalProps.maskProps = maskProps
     }
+    if (captionProps !== undefined) {
+      PickerModalProps.captionProps = captionProps
+    }
     if (submitProps !== undefined) {
       PickerModalProps.submitProps = submitProps
     }
@@ -135,8 +139,10 @@ const Combo = forwardRef(
     // 允许清空
     if (allowClear) {
       if (readOnly || disabled) {
+        // eslint-disable-next-line
         allowClear = false
       } else {
+        // eslint-disable-next-line
         allowClear = 'readOnly'
       }
     }
