@@ -13,7 +13,8 @@ try {
 // 装载(React 18)
 const MARK = '__SeedsUI_root__'
 function modernRender(node, container) {
-  const root = container[MARK] || createRoot(container)
+  const root =
+    container[MARK] && container[MARK]._internalRoot ? container[MARK] : createRoot(container)
   if (root && root?.render) {
     root.render(node)
   }
