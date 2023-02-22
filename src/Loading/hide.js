@@ -12,9 +12,16 @@ export default function () {
       ReactRender.unmount(window.SeedsUIReactLoadingContainer)
     }
     // 组件未找到, 则直接移除dom
+    else if (modal.parentNode.classList.contains('mask')) {
+      modal.parentNode.parentNode.removeChild(modal.parentNode)
+    }
+    // 出错
     else {
-      modal.parentNode.removeChild(modal)
+      console.error('SeedsUI Error: Loading.hide出错')
     }
   }
-  destroy()
+  // 延迟卸载以避同步操作无法移除
+  return Promise.resolve().then(() => {
+    destroy()
+  })
 }
