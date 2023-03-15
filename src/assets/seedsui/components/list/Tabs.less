@@ -18,8 +18,9 @@
 @tabs-rect-color: #666;
 @tabs-rect-bg: white;
 @tabs-rect-border: @border;
-@tabs-rect-color-active: white;
-@tabs-rect-bg-active: @primary-bg;
+@tabs-rect-color-active: @primary-bg;
+@tabs-rect-bg-active: white;
+@tabs-rect-border-active: @primary-bg;
 
 @tabs-rect-reverse-color: white;
 @tabs-rect-reverse-bg: @primary-bg;
@@ -228,18 +229,37 @@
 .tabs-rect {
   max-width: 96%;
   color: @tabs-rect-color;
-  background-color: @tabs-rect-bg;
-  border: 1px solid @tabs-rect-border;
   .tab {
     height: 24px;
-    border-right: 1px solid @tabs-rect-border;
+    border: 1px solid @tabs-rect-border;
+    // 消除左线
+    border-inline-start-width: 0;
   }
-  .tab:nth-last-of-type(1) {
-    border-right: 0;
+  .tab:first-child {
+    border-start-start-radius: 3px;
+    border-end-start-radius: 3px;
+    // 第一项增加左线
+    border-inline-start-width: 1px;
+  }
+  .tab:last-child {
+    border-start-end-radius: 3px;
+    border-end-end-radius: 3px;
   }
   .tab.active {
     color: @tabs-rect-color-active;
     background-color: @tabs-rect-bg-active;
+    border-color: @tabs-rect-border-active;
+    // 除了首项, 其它项选中状态需要补充一条选中线
+    &:not(:first-child)::before {
+      // &::before {
+      position: absolute;
+      content: '';
+      left: -1px;
+      top: -1px;
+      bottom: -1px;
+      width: 1px;
+      background-color: #ff9008;
+    }
   }
 }
 .tabs-rect.reverse {
