@@ -27,7 +27,7 @@ export default {
     return valueProp
   },
   // 构建渲染数据, 支持关键字搜索
-  getTreeData({ list: originData, keyword, itemRender }) {
+  getTreeData({ list: originData, onlyLeafCheck, keyword, itemRender }) {
     if (
       // 必须是数组
       !Array.isArray(originData) ||
@@ -56,6 +56,7 @@ export default {
 
         if (item.children) {
           return {
+            disabled: onlyLeafCheck,
             ...item,
             title: titleNode,
             children: loop(item.children)

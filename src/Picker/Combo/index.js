@@ -21,6 +21,7 @@ const Combo = forwardRef(
       multiple,
       maskClosable = true,
       checkStrictly,
+      onlyLeafCheck,
       checkable,
       selectable,
       value,
@@ -115,6 +116,9 @@ const Combo = forwardRef(
     }
     if (checkStrictly !== undefined) {
       PickerModalProps.checkStrictly = checkStrictly
+    }
+    if (onlyLeafCheck !== undefined) {
+      PickerModalProps.onlyLeafCheck = onlyLeafCheck
     }
     if (checkable !== undefined) {
       PickerModalProps.checkable = checkable

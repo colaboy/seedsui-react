@@ -10,13 +10,15 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={treeData}
-        multiple={false}
+        // multiple={false}
         captionProps={{
           caption: 'aaa'
         }}
+        onlyLeafCheck={true}
         // checkStrictly={true}
-        // checkable={false}
+        checkable={false}
         TreeProps={{
+          expandAction: 'click',
           itemRender: (item, { keyword }) => {
             return (
               <div className="flex flex-middle">

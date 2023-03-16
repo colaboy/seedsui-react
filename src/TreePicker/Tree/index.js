@@ -10,6 +10,7 @@ function TreePicker({
   multiple,
   // 精确检查节点，父子节点不关联
   checkStrictly = false,
+  onlyLeafCheck,
   checkable = true,
 
   // 根据checkable判断是否启用selectable, 没有checkbox时则启用
@@ -108,7 +109,7 @@ function TreePicker({
   }
 
   // 构建渲染数据, 支持关键字搜索
-  const treeData = Utils.getTreeData({ list, keyword, itemRender })
+  const treeData = Utils.getTreeData({ list, onlyLeafCheck, keyword, itemRender })
 
   // 构建选中项
   const checkedKeysProp = useMemo(() => {
@@ -149,6 +150,7 @@ function TreePicker({
         {...expandProp}
         // 树默认设置
         showIcon={showIcon}
+        onlyLeafCheck={onlyLeafCheck}
         checkStrictly={checkStrictly}
         checkable={checkable}
         selectable={checkable ? false : true}

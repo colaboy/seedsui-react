@@ -28,6 +28,7 @@ const Modal = forwardRef(
       optionProps = {},
 
       checkStrictly,
+      onlyLeafCheck,
       checkable,
       selectable,
       TreeProps = {},
@@ -133,6 +134,7 @@ const Modal = forwardRef(
                 }
               }}
               checkStrictly={checkStrictly}
+              onlyLeafCheck={onlyLeafCheck}
               checkable={checkable}
               selectable={selectable}
               {...TreeProps}
