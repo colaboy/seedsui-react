@@ -7,6 +7,7 @@ export default () => {
     <>
       <Input.Text
         value={value}
+        allowClear
         onChange={(val) => {
           console.log(val)
           setValue(val)

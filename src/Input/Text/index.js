@@ -100,6 +100,7 @@ const InputText = forwardRef(
     // 更新清除按钮
     function updateClear(val) {
       if (typeof val === 'number') {
+        // eslint-disable-next-line
         val = String(val)
       }
       // 只读是否允许清空
@@ -130,19 +131,23 @@ const InputText = forwardRef(
     function correctValue(val) {
       if (val === undefined || val === '') return val
       if (typeof val !== 'string' && typeof val !== 'number') return ''
+      // eslint-disable-next-line
       if (typeof val === 'number') val = String(val)
       // 最大长度
       if (maxLength && val && val.length > maxLength) {
+        // eslint-disable-next-line
         val = val.substring(0, maxLength)
       }
       // 小数位截取
       if (typeof precision === 'number') {
         if (val.indexOf('.') !== -1) {
+          // eslint-disable-next-line
           val = val.substring(0, val.indexOf('.') + Number(precision) + 1)
         }
       }
       // 数值框
       if (type === 'number' && val) {
+        // eslint-disable-next-line
         val = Number(val)
       }
       return val
@@ -170,7 +175,7 @@ const InputText = forwardRef(
     // 清空按钮控制
     function handleInput(e) {
       // 非受控组件需要操作DOM
-      if (defaultValue || defaultValue === '') {
+      if (value === undefined) {
         updateContainer()
       }
 
@@ -180,8 +185,8 @@ const InputText = forwardRef(
 
     // 修改值
     function handleChange(e) {
-      var target = e.target
-      var val = target.value
+      let target = e.target
+      let val = target.value
       // 输入值不合法
       if (target?.validity?.badInput) {
         val = ''
@@ -191,7 +196,7 @@ const InputText = forwardRef(
       val = correctValue(val)
 
       // 非受控组件需要操作DOM
-      if (defaultValue || defaultValue === '') {
+      if (value === undefined) {
         // 最大长度
         if (maxLength && target.value && target.value.length > maxLength) {
           target.value = val
@@ -215,8 +220,8 @@ const InputText = forwardRef(
       if (readOnly || disabled) {
         return
       }
-      var target = e.target
-      var val = target.value
+      let target = e.target
+      let val = target.value
       if (val && !isNaN(val)) {
         // 输入时只校验最大值、小数点、最大长度、返回错误
         if (typeof max === 'number') {
@@ -250,7 +255,7 @@ const InputText = forwardRef(
       }
 
       // 非受控组件需要操作DOM
-      if (defaultValue || defaultValue === '') {
+      if (value === undefined) {
         updateContainer()
         if (inputRef?.current?.value) {
           inputRef.current.value = ''

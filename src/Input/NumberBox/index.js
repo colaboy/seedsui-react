@@ -102,7 +102,7 @@ const NumberBox = forwardRef(
       if (!inputDOM) return
 
       // 非受控组件需要操作DOM
-      if (defaultValue || defaultValue === '') {
+      if (value === undefined) {
         inputDOM.value = val
       }
       updateState(val)
