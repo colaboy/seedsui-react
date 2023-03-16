@@ -54,7 +54,7 @@ export default {
           }
         }
 
-        if (item.children) {
+        if (Array.isArray(item.children) && item.children.length) {
           return {
             disabled: onlyLeafCheck,
             ...item,

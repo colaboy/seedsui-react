@@ -33,7 +33,7 @@ const Item = ({
   function handleClick(e) {
     let target = e.currentTarget
     // 回调收缩和展开事件
-    if (item.children) {
+    if (Array.isArray(item.children) && item.children.length) {
       if (target.classList.contains('expand')) {
         if (onCollapse) onCollapse([item])
       } else {
