@@ -31,8 +31,9 @@ const LocationCombo = forwardRef(
       failText = locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'),
       loadingText = locale('定位中...', 'location'),
 
-      readOnly = true,
+      readOnly = false,
       disabled = false,
+      editable = false,
       value, // {latitude: '纬度', longitude: '经度', address:'地址', value: ''}
 
       onChange,
@@ -125,8 +126,13 @@ const LocationCombo = forwardRef(
         return
       }
 
+      // 禁用
+      if (disabled) {
+        return
+      }
+
       // 点击输入
-      if (!readOnly) {
+      if (editable) {
         if (locationStatus === '0') {
           // 非只读状态下, 点击错误面板, 允许手动输入位置
           locationStatus = '1'
@@ -136,13 +142,13 @@ const LocationCombo = forwardRef(
       }
 
       // 点击整行定位
-      if (readOnly && locationVisible) {
+      if (!readOnly) {
         handleLocation(e)
         return
       }
 
       // 点击整行预览
-      if (readOnly && previewVisible) {
+      if (readOnly) {
         setModalVisible('preview')
         return
       }
@@ -279,7 +285,7 @@ const LocationCombo = forwardRef(
     return (
       <Fragment>
         <Input.Text
-          readOnly={readOnly}
+          readOnly={!editable}
           disabled={disabled}
           onClick={handleClick}
           onChange={(address) => {
@@ -290,6 +296,7 @@ const LocationCombo = forwardRef(
             newValue.value = address
             if (onChange) onChange(newValue)
           }}
+          // eslint-disable-next-line
           children={statusNode}
           value={value && typeof value === 'object' ? value?.value || '' : value || ''}
           {...props}

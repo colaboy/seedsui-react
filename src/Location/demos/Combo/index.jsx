@@ -153,9 +153,14 @@ export default () => {
   return (
     <>
       <Location.Combo
+        // disabled
+        readOnly
         autoFit
+        editable
+        // allowClear
         ref={comboRef}
         value={value}
+        previewVisible
         chooseVisible
         onChange={(val) => {
           console.log(val)
