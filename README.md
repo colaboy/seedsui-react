@@ -2784,7 +2784,7 @@ function handleChange(newValue) {
   riconProps={右图标属性 object, 默认无}
 
   // 清除按钮
-  allowClear={清除 bool|string, 默认无} // 传'readOnly', 可以清空只读
+  allowClear={清除 bool, 默认无}
   clearProps={清除图标属性 object, 默认无}
 
   // events

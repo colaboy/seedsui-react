@@ -26,7 +26,7 @@ const InputText = forwardRef(
       ricon,
       riconProps,
       // 清除按键
-      allowClear, // 传'readOnly', 可以清空只读
+      allowClear,
       clearProps,
       // 右侧内容
       rcaption,
@@ -45,13 +45,12 @@ const InputText = forwardRef(
     },
     ref
   ) => {
-    // 清空按钮显示
-    const [clearVisible, setClearVisible] = useState(false)
-
     // 节点
     const rootRef = useRef(null)
     const inputRef = useRef(null)
     const fitRef = useRef(null)
+    const clearRef = useRef(null)
+
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
@@ -103,19 +102,23 @@ const InputText = forwardRef(
         // eslint-disable-next-line
         val = String(val)
       }
-      // 只读是否允许清空
-      let allowClearReadOnly = false
-      if (allowClear === 'readOnly') {
-        allowClearReadOnly = true
-      }
-      // 只读不允许清空
-      if (!allowClearReadOnly && (readOnly || disabled)) {
+      // 不显示清空
+      if (!allowClear) {
+        if (clearRef?.current?.classList?.add) {
+          clearRef.current.classList.add('hide')
+        }
         return
       }
+
+      // 根据值判断是否显示清空
       if (val) {
-        setClearVisible(true)
+        if (clearRef?.current?.classList?.remove) {
+          clearRef.current.classList.remove('hide')
+        }
       } else {
-        setClearVisible(false)
+        if (clearRef?.current?.classList?.add) {
+          clearRef.current.classList.add('hide')
+        }
       }
     }
 
@@ -260,6 +263,9 @@ const InputText = forwardRef(
         if (inputRef?.current?.value) {
           inputRef.current.value = ''
         }
+      } else {
+        // 正常onChange会触发value监听, 但有可能value未变, 手动再触发一遍清空
+        updateClear('')
       }
     }
 
@@ -373,7 +379,9 @@ const InputText = forwardRef(
     return (
       <div
         {...props}
-        className={`input-wrapper${props.className ? ' ' + props.className : ''}`}
+        className={`input-wrapper${props.className ? ' ' + props.className : ''}${
+          disabled ? ' disabled' : ''
+        }${readOnly ? ' readonly' : ''}`}
         onClick={onClick}
         ref={rootRef}
       >
@@ -387,10 +395,9 @@ const InputText = forwardRef(
         {getInputDOM()}
         {children && children}
         <i
+          ref={clearRef}
           {...clearProps}
-          className={`input-clear${clearProps?.className ? ' ' + clearProps?.className : ''}${
-            clearVisible && allowClear ? '' : ' hide'
-          }`}
+          className={`input-clear${clearProps?.className ? ' ' + clearProps?.className : ''}`}
           onClick={handleClear}
         ></i>
         {riconProps && (

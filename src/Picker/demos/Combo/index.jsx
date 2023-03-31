@@ -10,17 +10,18 @@ export default () => {
   return (
     <>
       <Picker.Combo
-        ModalProps={{
-          captionProps: {
-            caption: '标题'
-          },
-          cancelProps: {
-            visible: false
-          },
-          submitProps: {
-            visible: false
-          }
-        }}
+        allowClear
+        // ModalProps={{
+        //   captionProps: {
+        //     caption: '标题'
+        //   },
+        //   cancelProps: {
+        //     visible: false
+        //   },
+        //   submitProps: {
+        //     visible: false
+        //   }
+        // }}
         placeholder="Please select"
         value={value}
         list={list}

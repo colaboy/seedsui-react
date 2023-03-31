@@ -30,7 +30,7 @@ const NumberBox = forwardRef(
       liconProps,
       ricon,
       riconProps,
-      allowClear, // 传'readOnly', 可以清空只读
+      allowClear,
       clearProps,
       rcaption,
       // children,
@@ -174,7 +174,7 @@ const NumberBox = forwardRef(
           liconProps={liconProps}
           ricon={ricon}
           riconProps={riconProps}
-          allowClear={allowClear} // 传'readOnly', 可以清空只读
+          allowClear={allowClear}
           clearProps={clearProps}
           rcaption={rcaption}
           onClick={onClick}

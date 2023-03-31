@@ -147,7 +147,7 @@ const Combo = forwardRef(
         allowClear = false
       } else {
         // eslint-disable-next-line
-        allowClear = 'readOnly'
+        allowClear = true
       }
     }
     return (
