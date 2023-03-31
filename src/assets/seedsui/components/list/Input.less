@@ -13,10 +13,20 @@
   }
   .input-text,
   .input-textarea {
-    display: block;
     width: 100%;
     .flex-1;
   }
+}
+
+// 清除按钮
+.input-clear {
+  margin-left: 4px;
+  color: rgba(0, 0, 0, 0.2);
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 // 共用变量: Input.AutoFit
@@ -25,6 +35,7 @@
 
 // 单行文本框
 .input-text {
+  display: block;
   position: relative; // 为了解决ios输入时白屏的BUG
   box-sizing: border-box;
   min-height: @input-height;

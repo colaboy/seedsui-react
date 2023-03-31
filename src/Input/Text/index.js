@@ -352,7 +352,7 @@ const InputText = forwardRef(
           {...otherInputProps}
           className={`input-text${
             otherInputProps.className ? ' ' + otherInputProps.className : ''
-          }${!inputVisible ? ' hide' : ''}`}
+          }${inputVisible === false ? ' hide' : ''}`}
           defaultValue={correctValue(defaultValue)}
           value={correctValue(value)}
           min={typeof min === 'number' ? min : ''}
@@ -386,16 +386,13 @@ const InputText = forwardRef(
         )}
         {getInputDOM()}
         {children && children}
-        {/* clearicon仅用于点击区分, 没有实际的样式用途 */}
-        {clearVisible && allowClear && (
-          <i
-            {...clearProps}
-            className={`icon clearicon${
-              clearProps?.className ? ' ' + clearProps?.className : ' ricon close-icon-clear size18'
-            }`}
-            onClick={handleClear}
-          ></i>
-        )}
+        <i
+          {...clearProps}
+          className={`input-clear${clearProps?.className ? ' ' + clearProps?.className : ''}${
+            clearVisible && allowClear ? '' : ' hide'
+          }`}
+          onClick={handleClear}
+        ></i>
         {riconProps && (
           <i
             {...riconProps}

@@ -6,6 +6,9 @@ export default () => {
   return (
     <>
       <Input.Text
+        // inputProps={{
+        //   visible: false
+        // }}
         value={value}
         allowClear
         onChange={(val) => {
