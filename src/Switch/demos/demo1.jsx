@@ -6,6 +6,7 @@ export default () => {
   return (
     <>
       <Switch
+        disabled
         checked={checked}
         checkedProps={{ text: '开' }}
         uncheckedProps={{ text: '关' }}
