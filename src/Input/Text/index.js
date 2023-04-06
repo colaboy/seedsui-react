@@ -1,4 +1,5 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import MathJs from './../../math'
 
 const InputText = forwardRef(
   (
@@ -12,6 +13,7 @@ const InputText = forwardRef(
       inputProps = {},
       defaultValue,
       value,
+      // 小数精度, 只有数值框才生效
       precision,
       max,
       min,
@@ -75,6 +77,10 @@ const InputText = forwardRef(
       if (autoFocus) {
         _focus()
       }
+      // 矫正为正确的值
+      if (inputRef.current) {
+        correctValue(val, true)
+      }
     }, []) // eslint-disable-line
 
     useEffect(() => {
@@ -130,28 +136,55 @@ const InputText = forwardRef(
       // inputRef.current.style.height = fitRef.current.clientHeight + 'px'
     }
 
-    // 矫正最大长度和小数位截取
-    function correctValue(val) {
-      if (val === undefined || val === '') return val
-      if (typeof val !== 'string' && typeof val !== 'number') return ''
+    // 矫正最大长度与小数位
+    function correctMaxLength(val) {
       // eslint-disable-next-line
       if (typeof val === 'number') val = String(val)
+
       // 最大长度
       if (maxLength && val && val.length > maxLength) {
         // eslint-disable-next-line
         val = val.substring(0, maxLength)
       }
-      // 小数位截取
-      if (typeof precision === 'number') {
-        if (val.indexOf('.') !== -1) {
+      return val
+    }
+
+    // 矫正小数位截取
+    function correctPrecision(val, fixedPrecision) {
+      // 符合截取条件时
+      if (
+        type === 'number' &&
+        typeof precision === 'number' &&
+        !isNaN(val) &&
+        val !== (null || '')
+      ) {
+        if (fixedPrecision) {
           // eslint-disable-next-line
-          val = val.substring(0, val.indexOf('.') + Number(precision) + 1)
+          val = Number(val || 0).toFixed(precision)
+        } else {
+          // eslint-disable-next-line
+          val = MathJs.fixed(val, precision)
         }
       }
-      // 数值框
-      if (type === 'number' && val) {
-        // eslint-disable-next-line
-        val = Number(val)
+      return val
+    }
+
+    // 矫正最大长度和小数位截取
+    function correctValue(val, fixedPrecision) {
+      if (val === undefined || val === '') return val
+      if (typeof val !== 'string' && typeof val !== 'number') return ''
+
+      // 最大长度载取
+      // eslint-disable-next-line
+      val = correctMaxLength(val)
+
+      // 小数位截取
+      // eslint-disable-next-line
+      val = correctPrecision(val, fixedPrecision)
+
+      // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
+      if (inputRef.current && val !== inputRef.current.value) {
+        inputRef.current.value = val
       }
       return val
     }
@@ -198,22 +231,11 @@ const InputText = forwardRef(
       // 矫正maxLength和小数点位数
       val = correctValue(val)
 
-      // 非受控组件需要操作DOM
-      if (value === undefined) {
-        // 最大长度
-        if (maxLength && target.value && target.value.length > maxLength) {
-          target.value = val
-        }
-        // 小数位截取
-        if (
-          typeof precision === 'number' &&
-          target.value.indexOf('.') !== -1 &&
-          target.value.split('.')[1].length > precision
-        ) {
-          target.value = val
-        }
-      }
       if (onChange) {
+        if (val && type === 'number') {
+          // eslint-disable-next-line
+          val = Number(val)
+        }
         onChange(val)
       }
     }
@@ -235,7 +257,7 @@ const InputText = forwardRef(
         }
 
         // 纠正数字
-        val = correctValue(val)
+        val = correctValue(val, true)
 
         // 修改完回调
         if (val !== value) {
@@ -308,8 +330,8 @@ const InputText = forwardRef(
               <textarea
                 ref={inputRef}
                 autoFocus={autoFocus}
-                value={correctValue(value)}
-                defaultValue={correctValue(defaultValue)}
+                value={value}
+                defaultValue={defaultValue}
                 maxLength={maxLength}
                 readOnly={readOnly}
                 disabled={disabled}
@@ -334,8 +356,8 @@ const InputText = forwardRef(
             ref={inputRef}
             {...otherInputProps}
             autoFocus={autoFocus}
-            value={correctValue(value)}
-            defaultValue={correctValue(defaultValue)}
+            value={value}
+            defaultValue={defaultValue}
             maxLength={maxLength}
             readOnly={readOnly}
             disabled={disabled}
@@ -359,8 +381,8 @@ const InputText = forwardRef(
           className={`input-text${
             otherInputProps.className ? ' ' + otherInputProps.className : ''
           }${inputVisible === false ? ' hide' : ''}`}
-          defaultValue={correctValue(defaultValue)}
-          value={correctValue(value)}
+          defaultValue={defaultValue}
+          value={value}
           min={typeof min === 'number' ? min : ''}
           max={typeof max === 'number' ? max : ''}
           maxLength={maxLength}
