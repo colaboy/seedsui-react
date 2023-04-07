@@ -17,6 +17,7 @@ const CheckboxGroup = forwardRef(
     ref
   ) => {
     // 过滤非法数据
+    // eslint-disable-next-line
     list = list.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
@@ -60,7 +61,7 @@ const CheckboxGroup = forwardRef(
 
     // 修改回调
     async function handleChange(checked, currentItem) {
-      let newValue = null
+      let newValue = []
       if (!multiple) {
         // 允许取消单选
         if (!checked && allowClear && Array.isArray(value) && value.length === 1) {
@@ -69,11 +70,12 @@ const CheckboxGroup = forwardRef(
           newValue = [currentItem]
         }
       } else {
-        newValue = Object.clone(value)
+        // eslint-disable-next-line
+        if (!Array.isArray(value)) value = []
         if (checked) {
-          newValue.push(currentItem)
+          newValue.push(...value, currentItem)
         } else {
-          newValue = newValue.filter((activeItem) => {
+          newValue = value.filter((activeItem) => {
             if (equals(currentItem, activeItem)) return false
             return true
           })

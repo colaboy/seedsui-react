@@ -2,15 +2,11 @@ import React, { useState } from 'react'
 import { Select } from 'seedsui-react'
 
 export default () => {
-  const [value, setValue] = useState([
-    {
-      id: '1',
-      name: '选项1'
-    }
-  ])
+  const [value, setValue] = useState(null)
   return (
     <>
       <Select.Checkbox
+        multiple
         placeholder="Please select"
         value={value}
         list={[
