@@ -6,7 +6,8 @@ export default () => {
   return (
     <>
       <Select.Checkbox
-        multiple
+        allowClear
+        // multiple
         placeholder="Please select"
         value={value}
         list={[
