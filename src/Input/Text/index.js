@@ -223,10 +223,7 @@ const InputText = forwardRef(
     function handleChange(e) {
       let target = e.target
       let val = target.value
-      // 输入值不合法
-      if (target?.validity?.badInput) {
-        val = ''
-      }
+      // 此处不宜用target?.validity?.badInput矫正数值, 因为ios上.也返回空
 
       // 矫正maxLength和小数点位数
       val = correctValue(val)
@@ -247,21 +244,28 @@ const InputText = forwardRef(
       }
       let target = e.target
       let val = target.value
-      if (val && !isNaN(val)) {
-        // 输入时只校验最大值、小数点、最大长度、返回错误
-        if (typeof max === 'number') {
-          if (Number(val) > Number(max)) val = max
-        }
-        if (typeof min === 'number') {
-          if (Number(val) < Number(min)) val = min
-        }
 
-        // 纠正数字
-        val = correctValue(val, true)
+      // 数值框失焦时需要矫正数值
+      if (type === 'number') {
+        // 正常输入：矫正最大最小值、小数点、最大长度
+        if (val && !isNaN(val)) {
+          if (typeof max === 'number') {
+            if (Number(val) > Number(max)) val = max
+          }
+          if (typeof min === 'number') {
+            if (Number(val) < Number(min)) val = min
+          }
 
-        // 修改完回调
-        if (val !== value) {
-          if (onChange) onChange(val)
+          // 纠正数字
+          val = correctValue(val, true)
+          // 修改完回调
+          if (val !== value) {
+            if (onChange) onChange(val)
+          }
+        }
+        // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
+        else {
+          target.value = ''
         }
       }
 

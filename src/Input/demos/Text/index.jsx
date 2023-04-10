@@ -3,7 +3,7 @@ import { Input } from 'seedsui-react'
 
 export default () => {
   const inputTextRef = useRef(null)
-  const [value, setValue] = useState('123123')
+  const [value, setValue] = useState('中华人民共和中华人民中华人民共和中华人民')
   useEffect(() => {
     let inputText = inputTextRef.current.rootDOM
     setTimeout(() => {
@@ -20,6 +20,7 @@ export default () => {
         // }}
         // readOnly
         value={value}
+        maxLength={10}
         // allowClear
         onChange={(val) => {
           console.log(val)

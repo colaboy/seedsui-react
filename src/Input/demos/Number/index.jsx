@@ -12,9 +12,10 @@ export default () => {
     <>
       <Input.Number
         ref={inputNumberRef}
-        placeholder="Select"
-        defaultValue={value}
-        // precision={2}
+        placeholder="Input"
+        // defaultValue={value}
+        value={value}
+        precision={2}
         maxLength={8}
         onChange={(val) => {
           console.log('得到的值:', val)
