@@ -15,8 +15,8 @@ export default () => {
         placeholder="Input"
         // defaultValue={value}
         value={value}
-        precision={2}
-        maxLength={8}
+        // precision={2}
+        // maxLength={8}
         onChange={(val) => {
           console.log('得到的值:', val)
           setValue(val)
