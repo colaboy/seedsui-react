@@ -6,12 +6,17 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       Loading.show({
-        content: 'abc',
+        captionProps: {
+          caption: ''
+        },
         onVisibleChange: (visible) => {
           console.log('visible:', visible)
+          setTimeout(() => {
+            Loading.hide()
+          }, 3000)
         }
       })
-    }, 5000)
+    }, 2000)
   }, [])
 
   return (
