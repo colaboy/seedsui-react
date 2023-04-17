@@ -33,6 +33,14 @@ const Modal = forwardRef(
     },
     ref
   ) => {
+    // value未传parentid, 补充parentid
+    if (Array.isArray(value) && value.length) {
+      for (let [index, item] of value.entries()) {
+        if (index !== 0 && !item.parentid) {
+          item.parentid = value?.[index - 1]?.id || ''
+        }
+      }
+    }
     let [tabs, setTabs] = useState(value || [])
     let [chooseTab, setChooseTab] = useState(null)
     let [currentList, setCurrentList] = useState(list || [])

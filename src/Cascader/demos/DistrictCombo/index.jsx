@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Cascader, Loading } from 'seedsui-react'
 
 export default () => {
+  // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
-    { name: '天津市', id: '120000', parentid: '-1' },
-    { name: '河东区', id: '120102', parentid: '120000' },
-    { name: '街道1', id: 'street1', parentid: '120102' }
+    { name: '天津市', id: '120000' },
+    { name: '河东区', id: '120102' },
+    { name: '街道1', id: 'street1' }
   ])
 
   // 加载街道
