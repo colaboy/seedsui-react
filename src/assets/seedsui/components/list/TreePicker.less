@@ -303,23 +303,21 @@
 * TreePicker.Menu
 */
 // TreePicker.Menu侧边菜单
-@treepicker-menu-bg: #fff;
+@treepicker-menu-bg: transparent;
 @treepicker-menu-item-color: #666;
 @treepicker-menu-item-bg: transparent;
 @treepicker-menu-item-color-active: #666;
-@treepicker-menu-item-bg-active: transparent;
+@treepicker-menu-item-bg-active: white;
 // 菜单容器
 .treepicker-menu {
-  width: 96px;
+  width: 80px;
   overflow: auto;
   background-color: @treepicker-menu-bg;
-  &:extend(.border-r all);
 }
 // 菜单容器-下级容器
 .treepicker-menu-item + ul {
   display: none;
   margin-right: 1px;
-  background-color: #f5f5f9;
 }
 .treepicker-menu-item.expand + ul {
   display: block;
@@ -338,17 +336,6 @@
   font-size: 14px;
   text-align: left;
   background-color: @treepicker-menu-item-bg;
-  // 画个底线
-  &:after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    background-color: #e5e5e5;
-    content: '';
-    // border-bottom: 1px dotted #bfbfbf;
-  }
   // 二级选中
   & + ul .treepicker-menu-item.active {
     color: @primary-bg;
