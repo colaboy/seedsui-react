@@ -30,6 +30,7 @@ const Modal = forwardRef(
     ref
   ) => {
     // 过滤非法数据
+    // eslint-disable-next-line
     list = list.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
@@ -44,14 +45,6 @@ const Modal = forwardRef(
         getRootDOM: () => rootRef.current
       }
     })
-
-    // 显示时触发onVisibleChange
-    useEffect(() => {
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
-      // eslint-disable-next-line
-    }, [visible])
 
     // 构建动画
     let animationClassName = ''
@@ -95,7 +88,7 @@ const Modal = forwardRef(
 
     // 点击容器
     async function handleClick(e) {
-      var target = e.target
+      let target = e.target
       // 点击选项
       if (target.classList.contains('actionsheet-option')) {
         let item = null

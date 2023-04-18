@@ -8,7 +8,7 @@ export default () => {
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
-    date2Ref.current.open()
+    // date2Ref.current.open()
   }, [])
 
   return (
@@ -30,6 +30,11 @@ export default () => {
           }
           return true
         }}
+        ModalProps={{
+          onVisibleChange: (visible) => {
+            console.log('visible:', visible)
+          }
+        }}
         onChange={setRangeValue}
         onError={(err) => console.log(err)}
         value={rangeValue}
@@ -46,6 +51,7 @@ export default () => {
         placeholder="请选择RangeCombo"
         ModalProps={{
           onVisibleChange: (visible) => {
+            console.log('visible2:', visible)
             if (visible) {
               setIcon('2')
             } else {

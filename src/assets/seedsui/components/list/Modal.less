@@ -91,3 +91,28 @@
 .modal-cancel + .modal-ok {
   .border-l;
 }
+
+// Dropdown
+.modal-dropdown-nav {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  &.active {
+    .modal-dropdown-title-arrow {
+      transform: rotate(-180deg) translateY(-1px);
+    }
+  }
+}
+.modal-dropdown-title-text {
+}
+.modal-dropdown-title-arrow {
+  .icon;
+  .shape-triangle-down;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  transform: rotate(0deg) translateY(1px);
+}
+.modal-dropdown-modal {
+  width: 100%;
+  background-color: white;
+}

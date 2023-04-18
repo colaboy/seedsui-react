@@ -49,6 +49,11 @@ export default () => {
         captionProps={{
           caption: '级联选择'
         }}
+        ModalProps={{
+          onVisibleChange: (visible) => {
+            console.log('visible:', visible)
+          }
+        }}
       />
     </div>
   )

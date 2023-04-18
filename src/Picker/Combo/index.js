@@ -1,4 +1,11 @@
-import React, { forwardRef, useRef, useImperativeHandle, Fragment, useState } from 'react'
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  Fragment,
+  useState,
+  useEffect
+} from 'react'
 import Input from './../../Input'
 import Modal from './../Modal'
 import Utils from './Utils'
@@ -36,6 +43,7 @@ const Combo = forwardRef(
       disabled,
       onClick,
       onBeforeOpen,
+      onBeforeClose,
       comboRender,
       children,
       ...props
@@ -70,13 +78,17 @@ const Combo = forwardRef(
     })
 
     // 控制Modal显隐
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(null)
 
     // 点击文本框
     async function handleInputClick(e) {
       if (readOnly || disabled) return
-      if (typeof onBeforeOpen === 'function') {
+      if (visible === false && typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
+        if (!goOn) return
+      }
+      if (visible === true && typeof onBeforeClose === 'function') {
+        let goOn = await onBeforeClose()
         if (!goOn) return
       }
       if (typeof onClick === 'function') {
@@ -84,11 +96,14 @@ const Combo = forwardRef(
       }
 
       setVisible(!visible)
-      // 隐藏时触发onVisibleChange, 因为显示时Modal会触发onVisibleChange
-      if (!visible === false) {
-        if (ModalProps.onVisibleChange) ModalProps.onVisibleChange(!visible)
-      }
     }
+
+    useEffect(() => {
+      if (visible === null) return
+      typeof ModalProps?.onVisibleChange === 'function' && ModalProps.onVisibleChange(visible)
+
+      // eslint-disable-next-line
+    }, [visible])
 
     // 自定义弹窗, 默认使用Picker弹窗
     let ModalNode = Modal
@@ -191,10 +206,7 @@ const Combo = forwardRef(
             return rootRef.current
           }}
           {...PickerModalProps}
-          onVisibleChange={(newVisible) => {
-            setVisible(newVisible)
-            if (ModalProps.onVisibleChange) ModalProps.onVisibleChange(newVisible)
-          }}
+          onVisibleChange={setVisible}
           visible={ModalProps.visible === undefined ? visible : ModalProps.visible}
         />
       </Fragment>

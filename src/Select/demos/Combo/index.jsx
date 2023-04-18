@@ -27,7 +27,7 @@ export default () => {
         onChange={setValue}
         ModalProps={{
           onVisibleChange: (visible) => {
-            console.log(visible)
+            console.log('visible:', visible)
           }
         }}
         captionProps={{

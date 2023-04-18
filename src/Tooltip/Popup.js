@@ -28,14 +28,6 @@ const Popup = forwardRef(
     let position = Utils.getAnimationPosition(animation)
     let dataAnimation = Utils.getDataAnimation(animation)
 
-    // 显示时触发onVisibleChange
-    useEffect(() => {
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
-      // eslint-disable-next-line
-    }, [visible])
-
     // 点击遮罩
     function handleMaskClick(e) {
       if (maskProps.onClick) maskProps.onClick(e)

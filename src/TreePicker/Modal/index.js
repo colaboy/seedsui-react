@@ -52,14 +52,6 @@ const Modal = forwardRef(
       setTempValue(value)
     }, [value])
 
-    // 显示时触发onVisibleChange
-    useEffect(() => {
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
-      // eslint-disable-next-line
-    }, [visible])
-
     // 点击确定
     async function handleSubmitClick(e) {
       // 修改提示

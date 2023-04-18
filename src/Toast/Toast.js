@@ -44,10 +44,8 @@ const Toast = forwardRef(
     })
 
     useEffect(() => {
-      handleDuration()
-      // 显示时触发onVisibleChange
       if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
+        handleDuration()
       }
       // eslint-disable-next-line
     }, [visible])

@@ -29,6 +29,7 @@ const Modal = forwardRef(
     ref
   ) => {
     // 过滤非法数据
+    // eslint-disable-next-line
     list = list.filter((item) => {
       if (!item || (!item.id && !item.name)) return false
       return true
@@ -59,10 +60,6 @@ const Modal = forwardRef(
         }
       } else if (list && list.length > 0) {
         initInstance()
-      }
-      // 显示时触发onVisibleChange
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
       }
       // eslint-disable-next-line
     }, [visible])

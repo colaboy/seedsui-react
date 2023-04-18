@@ -3,7 +3,7 @@ import ReactRender from './../ReactRender'
 import Toast from './Toast'
 
 // eslint-disable-next-line
-export default function ({ content, onVisibleChange, ...props }) {
+export default function ({ duration = 2000, content, onVisibleChange, ...props }) {
   // 保持单例
   if (!window.SeedsUIReactToastContainer) {
     window.SeedsUIReactToastContainer = document.createDocumentFragment()
@@ -22,20 +22,24 @@ export default function ({ content, onVisibleChange, ...props }) {
     }, 300)
   }
 
+  // 显示数秒后，自动消失
+  function handleDuration() {
+    if (typeof duration !== 'number' || !duration || !onVisibleChange) {
+      return
+    }
+    if (window.SeedsUIReactToastContainer.durationTimeout) {
+      window.clearTimeout(window.SeedsUIReactToastContainer.durationTimeout)
+    }
+    window.SeedsUIReactToastContainer.durationTimeout = setTimeout(function () {
+      destroy()
+    }, duration)
+  }
+
   // 渲染
   function render() {
     // 渲染组件, 先不显示
     ReactRender.render(
-      <Toast
-        id="__SeedsUI_toast_el__"
-        visible={false}
-        onVisibleChange={(visible) => {
-          if (!visible) {
-            destroy()
-          }
-        }}
-        {...props}
-      >
+      <Toast id="__SeedsUI_toast_el__" visible={false} {...props}>
         {content}
       </Toast>,
       window.SeedsUIReactToastContainer
@@ -48,6 +52,9 @@ export default function ({ content, onVisibleChange, ...props }) {
       mask.classList.add('active')
       modal.classList.add('active')
       if (onVisibleChange) onVisibleChange(true)
+
+      // 显示数秒后，自动消失
+      handleDuration()
     }, 100)
   }
   render()

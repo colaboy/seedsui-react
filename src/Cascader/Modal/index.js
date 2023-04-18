@@ -124,10 +124,6 @@ const Modal = forwardRef(
         onChooseTabChange: setChooseTab
       })
 
-      // 显示时触发onVisibleChange
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
       // eslint-disable-next-line
     }, [visible])
 

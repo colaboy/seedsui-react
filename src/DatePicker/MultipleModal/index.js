@@ -72,14 +72,6 @@ const MultipleModal = forwardRef(
       setActiveTab(newTabs[0])
     }, [value])
 
-    // 显示时触发onVisibleChange
-    useEffect(() => {
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
-      // eslint-disable-next-line
-    }, [visible])
-
     // 点击确认
     async function handleSubmitClick() {
       if (submitProps.onClick) submitProps.onClick()

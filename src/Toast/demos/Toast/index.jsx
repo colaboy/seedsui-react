@@ -22,6 +22,7 @@ export default () => {
           visible={visible}
           onVisibleChange={(visible) => {
             setVisible(visible)
+            console.log('visible Main:', visible)
           }}
         >
           弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容

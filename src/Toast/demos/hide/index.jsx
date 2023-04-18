@@ -4,7 +4,10 @@ import { Layout, Toast } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Toast.show({
-      content: 'show toast'
+      content: 'show toast',
+      onVisibleChange: (visible) => {
+        console.log('visible:', visible)
+      }
     })
     setTimeout(() => {
       Toast.hide()

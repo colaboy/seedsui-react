@@ -26,10 +26,12 @@ const Modal = forwardRef(
     ref
   ) => {
     // 增加保护
+    /* eslint-disable */
     if (!maskProps) maskProps = {}
     if (!captionProps) captionProps = {}
     if (!submitProps) submitProps = {}
     if (!cancelProps) cancelProps = {}
+    /* eslint-enable */
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -42,10 +44,6 @@ const Modal = forwardRef(
     })
 
     useEffect(() => {
-      // 显示时触发onVisibleChange
-      if (visible) {
-        if (onVisibleChange) onVisibleChange(visible)
-      }
       // 更新模态框位置对齐目标元素
       updateModalPosition()
       // eslint-disable-next-line
@@ -54,6 +52,7 @@ const Modal = forwardRef(
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
       let maskDOM = rootRef?.current
+      // eslint-disable-next-line
       if (typeof sourceDOM === 'function') sourceDOM = sourceDOM()
       if (!sourceDOM || !maskDOM) return
       if (visible && sourceDOM && maskDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {

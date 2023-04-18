@@ -5,11 +5,11 @@ import Utils from './Utils'
 const Tooltip = forwardRef(
   (
     {
+      // 动画
       animation = 'slideDownLeft',
       style,
       getChildrenDOM,
       children,
-      visible,
       onVisibleChange,
       ...props
     },
@@ -25,13 +25,15 @@ const Tooltip = forwardRef(
     })
 
     // 非受控显隐
-    let [autoVisible, setAutoVisible] = useState(false)
+    let [visible, setVisible] = useState(null)
 
     // 受控显隐时, 需要更新容器位置
     useEffect(() => {
       if (visible) {
         updatePosition()
       }
+      if (visible === null) return
+      typeof onVisibleChange === 'function' && onVisibleChange(visible)
     }, [visible]) // eslint-disable-line
 
     // 更新位置
@@ -80,31 +82,24 @@ const Tooltip = forwardRef(
           if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
             updatePosition(e.currentTarget)
           }
-          if (typeof visible !== 'boolean') {
-            setAutoVisible(!autoVisible)
-          }
+          setVisible(!visible)
         }
       })
     } else {
       newChildren = children
     }
 
-    // 点击遮罩隐藏
-    function handleVisibleChange(newVisible) {
-      if (typeof visible !== 'boolean') {
-        setAutoVisible(newVisible)
-      }
-      if (typeof onVisibleChange === 'function') {
-        onVisibleChange(newVisible)
-      }
-    }
     return (
       <>
         <Popup
           animation={animation}
           style={style}
-          visible={typeof visible === 'boolean' ? visible : autoVisible}
-          onVisibleChange={handleVisibleChange}
+          visible={typeof visible === 'boolean' ? visible : visible}
+          onVisibleChange={(newVisible) => {
+            if (!newVisible) {
+              setVisible(newVisible)
+            }
+          }}
           {...props}
           ref={rootRef}
         />
