@@ -5,6 +5,7 @@ export default () => {
   function handleToggle() {
     Toast.show({
       content: 'show toast',
+      duration: 500,
       onVisibleChange: (visible) => {
         console.log('visible:', visible)
       }

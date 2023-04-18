@@ -8,10 +8,8 @@ export default function (props) {
     let loadingId = '__SeedsUI_loading_el__'
     // 如果没生成成功, 则强制生成
     let loadingDOM = document.getElementById(loadingId)
-    if (loadingDOM) {
-      loadingDOM.classList.add('active')
-    } else {
-      const loadingDOM = document.createElement('div')
+    if (!loadingDOM) {
+      loadingDOM = document.createElement('div')
       loadingDOM.setAttribute('class', 'loading-mask mask active')
       loadingDOM.setAttribute('id', loadingId)
       let caption = props?.captionProps?.caption
@@ -36,6 +34,8 @@ export default function (props) {
       // 添加到dom上
       ;(document.getElementById('root') || document.body).appendChild(loadingDOM)
     }
+    // 显示
+    loadingDOM.classList.add('active')
 
     if (typeof props?.onVisibleChange === 'function') {
       props.onVisibleChange(true)

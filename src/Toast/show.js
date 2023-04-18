@@ -1,61 +1,46 @@
-import React from 'react'
-import ReactRender from './../ReactRender'
-import Toast from './Toast'
+import hide from './hide'
 
+// 显示Toast
 // eslint-disable-next-line
-export default function ({ duration = 2000, content, onVisibleChange, ...props }) {
-  // 保持单例
-  if (!window.SeedsUIReactToastContainer) {
-    window.SeedsUIReactToastContainer = document.createDocumentFragment()
-  }
-
-  // 移除
-  function destroy() {
-    let modal = document.getElementById('__SeedsUI_toast_el__')
-    if (!modal) return
-    let mask = modal.parentNode
-    mask.classList.remove('active')
-    modal.classList.remove('active')
-    if (onVisibleChange) onVisibleChange(false)
-    setTimeout(() => {
-      ReactRender.unmount(window.SeedsUIReactToastContainer)
-    }, 300)
-  }
-
-  // 显示数秒后，自动消失
-  function handleDuration() {
-    if (typeof duration !== 'number' || !duration || !onVisibleChange) {
-      return
-    }
-    if (window.SeedsUIReactToastContainer.durationTimeout) {
-      window.clearTimeout(window.SeedsUIReactToastContainer.durationTimeout)
-    }
-    window.SeedsUIReactToastContainer.durationTimeout = setTimeout(function () {
-      destroy()
-    }, duration)
-  }
-
+export default function (props) {
   // 渲染
   function render() {
-    // 渲染组件, 先不显示
-    ReactRender.render(
-      <Toast id="__SeedsUI_toast_el__" visible={false} {...props}>
-        {content}
-      </Toast>,
-      window.SeedsUIReactToastContainer
-    )
-    // 渲染完成后补充active, 解决渲染后动画不生效的问题
-    setTimeout(() => {
-      let modal = document.getElementById('__SeedsUI_toast_el__')
-      if (!modal) return
-      let mask = modal.parentNode
-      mask.classList.add('active')
-      modal.classList.add('active')
-      if (onVisibleChange) onVisibleChange(true)
+    let toastId = '__SeedsUI_toast_el__'
+    // 如果没生成成功, 则强制生成
+    let toastDOM = document.getElementById(toastId)
+    if (!toastDOM) {
+      // 创建dom
+      toastDOM = document.createElement('div')
+      toastDOM.setAttribute(
+        'class',
+        `mask toast-mask ${props?.maskClickable ? ' toast-propagation' : ''}`
+      )
+      toastDOM.setAttribute('id', toastId)
+      toastDOM.innerHTML = `<div class="toast ${props?.position || 'middle'}">
+        <div class="toast-wrapper">
+          <div class="toast-content">${props?.content || ''}</div>
+        </div>
+      </div>`
+      // 添加到dom上
+      ;(document.getElementById('root') || document.body).appendChild(toastDOM)
+    }
+    // 显示
+    toastDOM.classList.add('active')
+    toastDOM.childNodes[0].classList.add('active')
 
-      // 显示数秒后，自动消失
-      handleDuration()
-    }, 100)
+    if (typeof props?.onVisibleChange === 'function') {
+      props.onVisibleChange(true)
+    }
+
+    // 显示数秒后隐藏
+    if (toastDOM.showTimeout) window.clearTimeout(toastDOM.showTimeout)
+    if (props?.duration === false) return
+    toastDOM.showTimeout = setTimeout(() => {
+      hide()
+      if (typeof props?.onVisibleChange === 'function') {
+        props.onVisibleChange(false)
+      }
+    }, props?.duration || 2000)
   }
   render()
 }

@@ -1,16 +1,16 @@
-import ReactRender from './../ReactRender'
+// 移除Toast
+// eslint-disable-next-line
+export default function () {
+  function destroy() {
+    let toastId = '__SeedsUI_toast_el__'
+    let toastDOM = document.getElementById(toastId)
 
-// 移除弹框
-function hide() {
-  let modal = document.getElementById('__SeedsUI_toast_el__')
-  if (!modal) return
-  let mask = modal.parentNode
-  mask.classList.remove('active')
-  modal.classList.remove('active')
-  if (window.SeedsUIReactToastContainer) {
-    setTimeout(() => {
-      ReactRender.unmount(window.SeedsUIReactToastContainer)
-    }, 300)
+    if (toastDOM) {
+      if (toastDOM.timeout) window.clearTimeout(toastDOM.timeout)
+      toastDOM.timeout = setTimeout(() => {
+        toastDOM.parentNode.removeChild(toastDOM)
+      }, 300)
+    }
   }
+  destroy()
 }
-export default hide
