@@ -57,6 +57,8 @@ export default forwardRef(
         modalDOM: rootRef?.current?.modalDOM,
         getRootDOM: rootRef?.current?.getRootDOM,
         getModalDOM: rootRef?.current?.getModalDOM,
+        close: rootRef?.current?.close,
+        open: rootRef?.current?.open,
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {

@@ -23,6 +23,7 @@ export default forwardRef(
     ref
   ) => {
     // value必传
+    // eslint-disable-next-line
     value = Utils.getValue({ value })
 
     // 显示文本
@@ -35,6 +36,8 @@ export default forwardRef(
         modalDOM: rootRef?.current?.modalDOM,
         getRootDOM: rootRef?.current?.getRootDOM,
         getModalDOM: rootRef?.current?.getModalDOM,
+        close: rootRef?.current?.close,
+        open: rootRef?.current?.open,
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {

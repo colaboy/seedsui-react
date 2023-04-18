@@ -34,6 +34,7 @@ const Combo = forwardRef(
       allowClear,
       readOnly,
       disabled,
+      onClick,
       onBeforeOpen,
       comboRender,
       children,
@@ -58,7 +59,13 @@ const Combo = forwardRef(
           return rootDOM
         },
         getModalDOM: modalRef?.current?.getRootDOM,
-        getInstance: modalRef?.current?.getInstance
+        getInstance: modalRef?.current?.getInstance,
+        close: () => {
+          setVisible(false)
+        },
+        open: () => {
+          setVisible(true)
+        }
       }
     })
 
@@ -66,11 +73,14 @@ const Combo = forwardRef(
     const [visible, setVisible] = useState(false)
 
     // 点击文本框
-    async function handleInputClick() {
+    async function handleInputClick(e) {
       if (readOnly || disabled) return
       if (typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
         if (!goOn) return
+      }
+      if (typeof onClick === 'function') {
+        onClick(e)
       }
 
       setVisible(!visible)
@@ -168,9 +178,9 @@ const Combo = forwardRef(
             allowClear={allowClear}
             value={Utils.getDisplayValue({ value })}
             readOnly
-            onClick={handleInputClick}
             onChange={onChange}
             {...props}
+            onClick={handleInputClick}
             ref={rootRef}
           />
         )}
