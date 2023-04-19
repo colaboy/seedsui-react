@@ -1,25 +1,41 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import locale from './../../../../locale'
+
 import HighlightKeyword from './../../../../HighlightKeyword'
 import Header from './../../../../Header'
 import Input from './../../../../Input'
-import locale from './../../../../locale'
+import Notice from './../../../../Notice'
 
 // 搜索
-function Search({ instance, setErrMsg, onChange }) {
-  let [keyword, setKeyword] = useState(null)
-  let [searchList, setSearchList] = useState([])
+function Search({ instance, onChange }) {
+  const inputRef = useRef(null)
+  const [errMsg, setErrMsg] = useState(null)
+  let [searchList, setSearchList] = useState(null)
 
   // 返回
   function handleBack() {
-    setKeyword(null)
+    if (inputRef?.current?.inputDOM) {
+      // 清空搜索关键字
+      inputRef.current.inputDOM.value = ''
+
+      // 更新清空按钮状态
+      inputRef.current.updateClear()
+    }
+    // 清空列表
     setSearchList(null)
+
+    // 清空报错
+    setErrMsg('')
   }
 
   // 搜索
   async function handleSearch() {
-    let list = await instance.current.search(keyword)
+    let inputText = inputRef.current.inputDOM
+    let list = await instance.current.search(inputText.value)
+
     if (typeof list === 'string') {
       setErrMsg(list)
+      setSearchList([])
     } else {
       setErrMsg(null)
       setSearchList(list)
@@ -42,14 +58,15 @@ function Search({ instance, setErrMsg, onChange }) {
     if (onChange) onChange(newValue)
 
     // 回到地图页面
-    setKeyword(null)
-    setSearchList(null)
+    handleBack()
   }
 
   return (
     <>
       <Header className="map-search-header">
-        <i className="shape-arrow-left sm" onClick={handleBack}></i>
+        {Array.isArray(searchList) || errMsg ? (
+          <i className="shape-arrow-left sm" onClick={handleBack}></i>
+        ) : null}
         <form
           action="."
           className="map-search-header-input"
@@ -60,16 +77,15 @@ function Search({ instance, setErrMsg, onChange }) {
           }}
         >
           <Input.Text
+            ref={inputRef}
             placeholder={locale('搜索地点', 'search_place')}
-            value={keyword}
-            onChange={setKeyword}
             licon={<i className="icon icon-search color-sub size14" style={{ margin: '8px' }}></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
             style={{ marginRight: '8px' }}
           />
         </form>
-        <span
+        {/* <span
           className="map-search-header-button-search"
           onClick={(e) => {
             e.preventDefault()
@@ -77,9 +93,9 @@ function Search({ instance, setErrMsg, onChange }) {
           }}
         >
           {locale('搜索')}
-        </span>
+        </span> */}
       </Header>
-      {Array.isArray(searchList) && searchList.length ? (
+      {Array.isArray(searchList) ? (
         <div className="map-search-body">
           {searchList.map((item) => {
             return (
@@ -89,13 +105,17 @@ function Search({ instance, setErrMsg, onChange }) {
                 </div>
                 <div className="map-search-item-content">
                   <div className="map-search-item-title">
-                    <HighlightKeyword text={item.title} keyword={keyword} />
+                    <HighlightKeyword
+                      text={item.title}
+                      keyword={inputRef?.current?.inputDOM?.value || ''}
+                    />
                   </div>
                   <div className="map-search-item-description">{item.address}</div>
                 </div>
               </div>
             )
           })}
+          {errMsg && <Notice caption={errMsg} />}
         </div>
       ) : null}
     </>

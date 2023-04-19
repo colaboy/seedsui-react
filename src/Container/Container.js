@@ -4,7 +4,7 @@ import ContainerPull from './ContainerPull'
 
 /**
  * @deprecated since version 5.4.9
- * 请使用Body
+ * 请使用Layout.Main
  */
 const Container = forwardRef(
   (
@@ -39,6 +39,7 @@ const Container = forwardRef(
       typeof others?.onTopRefresh === 'function' ||
       typeof others?.onBottomRefresh === 'function'
     ) {
+      // eslint-disable-next-line
       return <ContainerPull children={children} {...others} ref={rootRef} />
     }
     return (

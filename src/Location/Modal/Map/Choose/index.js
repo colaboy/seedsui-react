@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import MapUtil from './../../../../MapUtil'
-import Page from './../../../../Page'
-import Container from './../../../../Container'
-import Footer from './../../../../Footer'
+import Layout from './../../../../Layout'
 import Notice from './../../../../Notice'
 import locale from './../../../../locale'
 import Instance from './../instance'
@@ -112,13 +110,13 @@ function MapChoose({ ak, value: argValue = null, onChange, ...props }) {
   }
 
   return (
-    <Page {...props}>
-      <Search instance={instance} setErrMsg={setErrMsg} onChange={handleLocation} />
-      <Container>
+    <Layout {...props}>
+      <Search instance={instance} onChange={handleLocation} />
+      <Layout.Main>
         <div ref={mapRef} className={`map-container`}></div>
         <Control.Location instance={instance} value={value} onChange={handleLocation} />
-      </Container>
-      <Footer className="map-footer">
+      </Layout.Main>
+      <Layout.Footer className="map-footer">
         <div className="map-footer-content" onClick={handleReset}>
           <p className="map-footer-content-caption">{locale('当前位置', 'current_location')}</p>
           <p className="map-footer-content-sndcaption">{value?.value || ''}</p>
@@ -128,9 +126,9 @@ function MapChoose({ ak, value: argValue = null, onChange, ...props }) {
             {locale('确定', 'ok')}
           </span>
         )}
-      </Footer>
+      </Layout.Footer>
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
-    </Page>
+    </Layout>
   )
 }
 export default MapChoose

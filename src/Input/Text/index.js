@@ -64,7 +64,8 @@ const InputText = forwardRef(
           return inputRef.current
         },
         correctValue: correctValue,
-        focus: _focus
+        focus: focus,
+        updateClear: updateClear
       }
     })
 
@@ -75,7 +76,7 @@ const InputText = forwardRef(
       updateAutoFit(val)
       // 自动获取焦点
       if (autoFocus) {
-        _focus()
+        focus()
       }
       // 矫正为正确的值
       if (inputRef.current) {
@@ -104,7 +105,10 @@ const InputText = forwardRef(
 
     // 更新清除按钮
     function updateClear(val) {
-      if (typeof val === 'number') {
+      if (val === undefined) {
+        // eslint-disable-next-line
+        val = inputRef?.current?.value || ''
+      } else if (typeof val === 'number') {
         // eslint-disable-next-line
         val = String(val)
       }
@@ -190,7 +194,7 @@ const InputText = forwardRef(
     }
 
     // 获取焦点
-    function _focus() {
+    function focus() {
       if (disabled || readOnly || !inputRef.current) return
       inputRef.current.focus()
       // 只有获取焦点以后才能选中
@@ -276,7 +280,7 @@ const InputText = forwardRef(
     function handleClear(e) {
       e.stopPropagation()
       // 获取焦点
-      _focus()
+      focus()
 
       // Callback
       if (onChange) {
