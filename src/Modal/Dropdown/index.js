@@ -56,11 +56,11 @@ const Dropdown = forwardRef(
 
     // 点击nav
     async function handleClick(e) {
-      if (visible === false && typeof onBeforeOpen === 'function') {
+      if (!visible && typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
         if (!goOn) return
       }
-      if (visible === true && typeof onBeforeClose === 'function') {
+      if (visible && typeof onBeforeClose === 'function') {
         let goOn = await onBeforeClose()
         if (!goOn) return
       }

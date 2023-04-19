@@ -12,7 +12,7 @@ export default () => {
         <Layout.Main className="bg-white">
           <Modal.Dropdown
             ref={dropdown1Ref}
-            maskClosable={false}
+            maskClosable
             onBeforeOpen={() => {
               if (document.querySelector('.mask.active')) {
                 dropdown1Ref.current.close()
@@ -30,6 +30,7 @@ export default () => {
           </Modal.Dropdown>
           <Modal.Dropdown
             ref={dropdown2Ref}
+            maskClosable
             onBeforeOpen={() => {
               if (document.querySelector('.mask.active')) {
                 dropdown1Ref.current.close()
