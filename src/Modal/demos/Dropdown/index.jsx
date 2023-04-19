@@ -25,6 +25,10 @@ export default () => {
               console.log('是否显示1:', visible)
             }}
             title="Dropdown visible toggle1"
+            titleProps={{
+              className: 'nowrap',
+              style: { maxWidth: '58px' }
+            }}
           >
             Test content
           </Modal.Dropdown>

@@ -10,6 +10,7 @@ const Dropdown = forwardRef(
 
       // nav属性
       arrow = true,
+      titleProps,
       title,
       onClick,
       onBeforeOpen,
@@ -93,7 +94,16 @@ const Dropdown = forwardRef(
           }`}
           onClick={handleClick}
         >
-          {title && <span className="modal-dropdown-title-text">{title}</span>}
+          {title && (
+            <span
+              {...titleProps}
+              className={`modal-dropdown-title-text${
+                titleProps?.className ? ' ' + titleProps.className : ''
+              }`}
+            >
+              {title}
+            </span>
+          )}
           {arrowDOM}
         </div>
         <ModalNode
