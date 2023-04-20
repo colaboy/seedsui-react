@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { addMarkers, centerMarker, centerToPoint, initMap } from './../utils'
-import MapUtil from './../../../../MapUtil'
 import Layout from './../../../../Layout'
 import Notice from './../../../../Notice'
 import locale from './../../../../locale'
@@ -30,19 +29,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
   }, [JSON.stringify(originValue)]) // eslint-disable-line
 
   useEffect(() => {
-    if (!window.BMap && !ak) {
-      setErrMsg(locale('请传入百度地图ak', 'hint_map_ak'))
-      return
-    }
-    MapUtil.load({
-      ak: ak,
-      success: () => {
-        initData()
-      },
-      fail: () => {
-        setErrMsg(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
-      }
-    })
+    initData()
   }, []) // eslint-disable-line
 
   // 初始化地图
@@ -132,17 +119,17 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
     <Layout {...props}>
       <Search map={map} onChange={handleLocation} />
       <Layout.Main>
-        <div ref={containerRef} className={`map-container`}></div>
+        <div ref={containerRef} className={`mappage-container`}></div>
         <Control.Location map={map} value={value} onChange={handleLocation} />
         <Control.CenterMarker ref={centerMarkerRef} />
       </Layout.Main>
-      <Layout.Footer className="map-footer">
-        <div className="map-footer-content">
-          <p className="map-footer-content-caption">{locale('当前位置', 'current_location')}</p>
-          <p className="map-footer-content-sndcaption">{value?.value || ''}</p>
+      <Layout.Footer className="mappage-footer">
+        <div className="mappage-list-content">
+          <p className="mappage-list-content-caption">{locale('当前位置', 'current_location')}</p>
+          <p className="mappage-list-content-sndcaption">{value?.value || ''}</p>
         </div>
         {value?.value && (
-          <span className="map-footer-submit" onClick={handleSubmit}>
+          <span className="mappage-list-submit" onClick={handleSubmit}>
             {locale('确定', 'ok')}
           </span>
         )}

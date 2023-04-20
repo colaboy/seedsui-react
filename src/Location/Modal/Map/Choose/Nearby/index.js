@@ -10,6 +10,7 @@ import Main from './Main'
 // 附近推荐
 function Nearby({ value, map, onChange }) {
   const markersRef = useRef(null)
+  const [list, setList] = useState(null)
   const [visible, setVisible] = useState(false)
   const [tab, setTab] = useState(null)
 
@@ -42,13 +43,16 @@ function Nearby({ value, map, onChange }) {
     if (points) {
       markersRef.current = addMarkers(points, { map: map, color: 'blue' })
     }
+
+    // 刷新列表
+    setList(result)
   }
 
   return (
-    <div className={`map-nearby${visible ? ' active' : ''}`}>
+    <div className={`mappage-nearby${visible ? ' active' : ''}`}>
       <Toggle visible={visible} onChange={setVisible} />
       <Tabs tab={tab} onChange={setTab} />
-      <Main />
+      <Main list={list} onChange={onChange} />
     </div>
   )
 }

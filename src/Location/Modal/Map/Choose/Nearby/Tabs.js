@@ -33,7 +33,7 @@ function TabsComponent({ tab, onChange }) {
           name: '住宿'
         }
       ]}
-      className="tabs-rect map-nearby-tabs"
+      className="tabs-rect mappage-nearby-tabs"
     />
   )
 }

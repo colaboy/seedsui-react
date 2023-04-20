@@ -64,13 +64,13 @@ function Search({ map, onChange }) {
 
   return (
     <>
-      <Header className="map-search-header">
+      <Header className="mappage-search-header">
         {Array.isArray(searchList) || errMsg ? (
           <i className="shape-arrow-left sm" onClick={handleBack}></i>
         ) : null}
         <form
           action="."
-          className="map-search-header-input"
+          className="mappage-search-header-input"
           style={{ backgroundColor: 'white' }}
           onSubmit={(e) => {
             e.preventDefault()
@@ -87,7 +87,7 @@ function Search({ map, onChange }) {
           />
         </form>
         {/* <span
-          className="map-search-header-button-search"
+          className="mappage-search-header-button-search"
           onClick={(e) => {
             e.preventDefault()
             handleSearch()
@@ -97,21 +97,21 @@ function Search({ map, onChange }) {
         </span> */}
       </Header>
       {Array.isArray(searchList) ? (
-        <div className="map-search-body">
+        <div className="mappage-search-body">
           {searchList.map((item) => {
             return (
-              <div className="map-search-item" key={item.id} onClick={() => handleMarker(item)}>
-                <div className="map-search-item-prefix">
+              <div className="mappage-search-item" key={item.id} onClick={() => handleMarker(item)}>
+                <div className="mappage-search-item-prefix">
                   <i className="icon icon-position"></i>
                 </div>
-                <div className="map-search-item-content">
-                  <div className="map-search-item-title">
+                <div className="mappage-search-item-content">
+                  <div className="mappage-search-item-title">
                     <HighlightKeyword
                       text={item.title}
                       keyword={inputRef?.current?.inputDOM?.value || ''}
                     />
                   </div>
-                  <div className="map-search-item-description">{item.address}</div>
+                  <div className="mappage-search-item-description">{item.address}</div>
                 </div>
               </div>
             )

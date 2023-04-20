@@ -26,14 +26,19 @@ function initMap(container, opt) {
     })
     map.centerAndZoom(new BMap.Point(116.404, 39.915), 12)
 
-    // 加载完成
+    // 缩放控件
+    let navigationControl = null
+
+    // 加载完成(它会多次触发, 里面不要加入绘制类的api)
     map.addEventListener(
       'tilesloaded',
       (e) => {
         Loading.hide()
 
         // 添加缩放控件
-        addZoomControl({ map: map })
+        if (!navigationControl) {
+          navigationControl = addZoomControl({ map: map })
+        }
 
         // 清除加载超时
         window.clearTimeout(map.loadTimeout)

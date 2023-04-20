@@ -6,6 +6,7 @@ function addZoomControl({ map }) {
     enableGeolocation: false
   })
   map.addControl(navigationControl)
+  return navigationControl
 }
 
 export default addZoomControl
