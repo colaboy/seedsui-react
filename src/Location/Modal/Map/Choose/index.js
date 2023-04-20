@@ -160,11 +160,20 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
       <Search map={map} onChange={handleLocation} />
       <div className="flex-1 position-relative">
         <div ref={containerRef} className={`mappage-container`}></div>
-        <Control.Location map={map} value={value} onChange={handleLocation} />
+        {!readOnly && <Control.Location map={map} value={value} onChange={handleLocation} />}
         <Control.CenterMarker ref={centerMarkerRef} />
       </div>
       <Layout.Footer>
-        <div className="mappage-list-item border-b">
+        <div
+          className="mappage-list-item border-b"
+          onClick={
+            readOnly
+              ? () => {
+                  centerToCurrent()
+                }
+              : undefined
+          }
+        >
           <div className="mappage-list-item-prefix">
             <i className="icon mappage-icon-current"></i>
           </div>
@@ -174,7 +183,7 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
             </p>
             <p className="mappage-list-item-description">{value?.value || ''}</p>
           </div>
-          {value?.value && (
+          {!readOnly && value?.value && (
             <span className="mappage-list-item-submit" onClick={handleSubmit}>
               {locale('确定', 'ok')}
             </span>
