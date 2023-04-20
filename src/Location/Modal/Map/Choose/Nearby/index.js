@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import { clearMarkers, addMarkers, searchNearby } from './../../utils'
 
 import Toast from './../../../../../Toast'
@@ -8,19 +8,26 @@ import Tabs from './Tabs'
 import Main from './Main'
 
 // 附近推荐
-function Nearby({ value, map, onChange }) {
+function Nearby({ value, map, onChange }, ref) {
   const markersRef = useRef(null)
   const [list, setList] = useState(null)
   const [visible, setVisible] = useState(false)
   const [tab, setTab] = useState({ name: '全部' })
 
+  // 节点
+  useImperativeHandle(ref, () => {
+    return {
+      reload: loadData
+    }
+  })
+
   // 当value发生变化后, 需要查询附近的点
   useEffect(() => {
-    if (!tab?.name) return
+    if (!map || !tab?.name) return
 
     loadData()
     // eslint-disable-next-line
-  }, [value, tab])
+  }, [tab])
 
   // 获取附近的点
   async function loadData() {
@@ -51,9 +58,14 @@ function Nearby({ value, map, onChange }) {
   return (
     <div className={`mappage-nearby${visible ? ' active' : ''}`}>
       <Toggle visible={visible} onChange={setVisible} />
-      <Tabs tab={tab} onChange={setTab} />
-      <Main list={list} onChange={onChange} />
+      <div className={`mappage-nearby-body`}>
+        <Tabs tab={tab} onChange={setTab} />
+        <Main
+          list={list}
+          onChange={(item) => onChange && onChange(item, { updateNearby: false })}
+        />
+      </div>
     </div>
   )
 }
-export default Nearby
+export default forwardRef(Nearby)

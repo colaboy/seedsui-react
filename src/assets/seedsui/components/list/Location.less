@@ -210,10 +210,18 @@
 // 附近推荐
 .mappage-nearby {
   background-color: white;
+  &.active {
+    .mappage-nearby-body {
+      display: block;
+    }
+  }
 }
 .mappage-nearby-toggle {
   text-align: center;
   padding: 10px 0;
+}
+.mappage-nearby-body {
+  display: none;
 }
 
 // 附近推荐-tabs

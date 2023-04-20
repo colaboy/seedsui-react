@@ -5,8 +5,10 @@ import {
   moveMarker,
   centerMarker,
   centerToPoint,
-  initMap
+  initMap,
+  clearMarkers
 } from './../utils'
+import Loading from './../../../../Loading'
 import Layout from './../../../../Layout'
 import Notice from './../../../../Notice'
 import locale from './../../../../locale'
@@ -18,10 +20,11 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentMarkerRef = useRef(null)
-  // 选中点
-  const checkMarkerRef = useRef(null)
   // 拖拽临时显示中心点
   const centerMarkerRef = useRef(null)
+  // 附近推荐
+  const nearByRef = useRef(null)
+
   // 容器
   const containerRef = useRef(null)
 
@@ -63,7 +66,6 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       'dragstart',
       () => {
         centerMarkerRef.current.classList.remove('hide')
-        map.clearOverlays()
       },
       false
     )
@@ -72,12 +74,13 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       async () => {
         centerMarkerRef.current.classList.add('hide')
         // 获取中心点
+        Loading.show()
         let newValue = await centerMarker({ map: map })
+        Loading.hide()
         if (typeof newValue === 'string') return
 
         // 绘制当前点
-        addCurrentMarker([newValue.longitude, newValue.latitude])
-        setValue(newValue)
+        handleLocation(newValue)
       },
       false
     )
@@ -86,12 +89,13 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       async () => {
         centerMarkerRef.current.classList.add('hide')
         // 绘制中心点
+        Loading.show()
         let newValue = await centerMarker({ map: map })
+        Loading.hide()
         if (typeof newValue === 'string') return
 
         // 绘制当前点
-        addCurrentMarker([newValue.longitude, newValue.latitude])
-        setValue(newValue)
+        handleLocation(newValue)
       },
       false
     )
@@ -100,16 +104,15 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
   // 绘制当前点
   function addCurrentMarker(point, type) {
     if (currentMarkerRef.current) {
-      moveMarker(currentMarkerRef.current, { point: point, type: type })
-    } else {
-      let marker = addMarkers([point], {
-        map: map,
-        type: type,
-        color: 'red',
-        zIndex: 20010086
-      })
-      currentMarkerRef.current = marker?.[0] || null
+      clearMarkers([currentMarkerRef.current], { map: map })
     }
+    let marker = addMarkers([point], {
+      map: map,
+      type: type,
+      color: 'red',
+      zIndex: 20010086
+    })
+    currentMarkerRef.current = marker?.[0] || null
     return currentMarkerRef.current
   }
 
@@ -121,7 +124,8 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
   }
 
   // 修改位置
-  function handleLocation(newValue, type) {
+  function handleLocation(newValue, opt) {
+    const { type, updateNearby } = opt || {}
     // 绘制标记点
     if (newValue && newValue.latitude && newValue.longitude) {
       let point = [newValue.longitude, newValue.latitude]
@@ -139,6 +143,11 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       value.latitude = point[1]
     }
     setValue(value)
+
+    // 更新附近
+    if (updateNearby !== false && nearByRef.current) {
+      nearByRef.current.reload()
+    }
   }
 
   // 点击确定
@@ -171,7 +180,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
             </span>
           )}
         </div>
-        {map && <Nearby value={value} map={map} onChange={handleLocation} />}
+        {map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
       </Layout.Footer>
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
