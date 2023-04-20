@@ -45,6 +45,11 @@ let Bridge = {
   },
   // 关闭窗口
   closeWindow: function () {
+    // 小程序内web-view关闭
+    if (['wechatMiniprogram', 'weworkMiniprogram'].includes(this.platform || '')) {
+      wx.miniProgram.navigateBack({}) // eslint-disable-line
+    }
+    // 微信关闭
     window.top.wx.closeWindow() // eslint-disable-line
   },
   // 返回监听
