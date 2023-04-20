@@ -1,5 +1,5 @@
 import React from 'react'
-import { centerToPoint, getLocation } from './../utils'
+import { getLocation } from './../utils'
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 
@@ -12,7 +12,7 @@ function Location({ map, value, onChange, ...props }) {
     Loading.hide()
     // 定位出错
     if (typeof result === 'string') {
-      Toast.show(err.errMsg, { maskClickable: true })
+      Toast.show({ content: result })
       return
     }
     // 视图更新

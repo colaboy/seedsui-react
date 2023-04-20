@@ -4,35 +4,34 @@ function searchNearby(
   {
     map,
     // 搜索半径
-    radius = 1000
+    radius = 300
   }
 ) {
   return new Promise((resolve) => {
     // 创建本地搜索对象
     let local = new BMap.LocalSearch(map, {
-      renderOptions: { map: map, panel: 'results' }
-    })
-
-    let location = map.getCenter() // 搜索中心点坐标
-
-    local.searchNearby(keyword, location, radius, {
+      pageCapacity: 20,
       onSearchComplete: function (results) {
         if (local.getStatus() === BMAP_STATUS_SUCCESS) {
-          resolve(results)
-          // for (let i = 0; i < results.length; i++) {
-          //   let poi = results[i].point
-          //   let marker = new BMap.Marker(poi)
-          //   marker.addEventListener('click', function () {
-          //     infoWindow.setContent(results[i].title)
-          //     this.openInfoWindow(infoWindow)
-          //   })
-          //   map.addOverlay(marker)
-          // }
+          let res = []
+          for (let i = 0; i < results.getCurrentNumPois(); i++) {
+            let item = results.getPoi(i)
+            // 补充value,latitude,longitude
+            item.value = item?.address || ''
+            item.longitude = item?.point?.lng || ''
+            item.latitude = item?.point?.lat || ''
+            res.push(item)
+          }
+          resolve(res)
         } else {
           resolve(null)
         }
       }
     })
+
+    let point = map.getCenter() // 搜索中心点坐标
+
+    local.searchNearby(keyword, point, radius)
   })
 }
 

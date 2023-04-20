@@ -57,6 +57,7 @@ const RangeModal = forwardRef(
           submitProps={submitProps}
           cancelProps={cancelProps}
           maskClosable={maskClosable}
+          maskProps={maskProps}
           value={value}
           ranges={customRanges}
           type={type}
@@ -86,6 +87,7 @@ const RangeModal = forwardRef(
           return comboDOM
         }}
         maskClosable={maskClosable}
+        maskProps={maskProps}
         visible={visible}
         animation="slideDown"
         className="datepicker-rangemodal-modal"

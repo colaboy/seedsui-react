@@ -60,7 +60,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
     // 绘制当前点
     if (value?.longitude && value?.latitude) {
       let point = [value.longitude, value.latitude]
-      let markers = addMarkers([point], { map: map, type: 'gcj02' })
+      let markers = addMarkers([point], { map: map, type: 'gcj02', color: 'red' })
       centerToPoint(markers[0].point, { map: map })
     }
 
@@ -114,7 +114,8 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       map.clearOverlays()
       addMarkers([point], {
         map: map,
-        type: 'gcj02'
+        type: 'gcj02',
+        color: 'red'
       })
       setTimeout(() => {
         centerToCurrent()
@@ -146,7 +147,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
           </span>
         )}
       </Layout.Footer>
-      <Nearby />
+      {map && <Nearby value={value} map={map} />}
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
   )
