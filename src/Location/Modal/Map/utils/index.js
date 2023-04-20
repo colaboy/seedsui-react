@@ -10,6 +10,7 @@ import searchNearby from './searchNearby'
 import centerMarker from './centerMarker'
 import addZoomControl from './addZoomControl'
 import addMarkers from './addMarkers'
+import moveMarker from './moveMarker'
 import clearMarkers from './clearMarkers'
 import getMarkerIcon from './getMarkerIcon'
 
@@ -26,6 +27,7 @@ export {
   centerMarker,
   addZoomControl,
   addMarkers,
+  moveMarker,
   clearMarkers,
   getMarkerIcon
 }

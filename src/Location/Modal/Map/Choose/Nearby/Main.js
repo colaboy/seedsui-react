@@ -1,8 +1,31 @@
 import React from 'react'
-import Layout from './../../../../../Layout'
 
 // 附近结果
 function Main({ list, onChange }) {
-  return <Layout.Main className="mappage-nearby-main"></Layout.Main>
+  return (
+    <div className="mappage-nearby-main">
+      {Array.isArray(list)
+        ? list.map((item, index) => {
+            return (
+              <div
+                className="mappage-list-item"
+                key={index}
+                onClick={() => {
+                  onChange && onChange(item)
+                }}
+              >
+                <div className="mappage-list-item-prefix">
+                  <i className="icon icon-position"></i>
+                </div>
+                <div className="mappage-list-item-content border-b">
+                  <p className="mappage-list-item-content-title">{item.title}</p>
+                  <p className="mappage-list-item-description">{item.address || ''}</p>
+                </div>
+              </div>
+            )
+          })
+        : null}
+    </div>
+  )
 }
 export default Main

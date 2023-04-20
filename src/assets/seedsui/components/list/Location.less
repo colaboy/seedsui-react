@@ -157,7 +157,15 @@
 }
 
 // 中心标记
+.mappage-icon-current {
+  background: url(//res.waiqin365.com/d/seedsui/mapview/marker_red.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .mappage-marker-center {
+  .mappage-icon-current;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -166,8 +174,6 @@
   height: 27px;
   margin: 0px;
   padding: 0px;
-  background: url(//res.waiqin365.com/d/seedsui/mapview/marker_red.png);
-  background-size: contain;
   border: 0px;
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -200,52 +206,6 @@
   overflow: auto;
   background-color: white;
 }
-.mappage-search-item {
-  display: flex;
-  align-items: center;
-}
-.mappage-search-item-prefix {
-  .icon {
-    .icon.size20;
-    margin-left: 4px;
-    color: @placeholder;
-  }
-}
-.mappage-search-item-content {
-  flex: 1;
-  margin-left: 4px;
-  padding: 10px 0;
-  .border-b;
-}
-.mappage-search-item-description {
-  color: @placeholder;
-}
-
-// 地图-底部
-.mappage-footer {
-  padding: 10px 12px;
-  &:extend(.bg-white);
-  &:extend(.flex);
-  &:extend(.flex-middle);
-}
-// 地图-地点列表
-.mappage-list-content {
-  &:extend(.flex-1);
-}
-.mappage-list-content-caption {
-}
-.mappage-list-content-sndcaption {
-  padding-top: 2px;
-  color: @placeholder;
-  &:extend(.color-sub);
-  &:extend(.font-size-sm);
-}
-.mappage-list-submit {
-  padding: 2px 6px;
-  color: @primary-bg;
-  border: 1px solid @border;
-  border-radius: 4px;
-}
 
 // 附近推荐
 .mappage-nearby {
@@ -254,7 +214,6 @@
 .mappage-nearby-toggle {
   text-align: center;
   padding: 10px 0;
-  .border-t;
 }
 
 // 附近推荐-tabs
@@ -262,5 +221,35 @@
 }
 // 附近推荐-结果
 .mappage-nearby-main {
-  height: 100px;
+  height: 190px;
+  overflow: auto;
+}
+
+// 地图-地点列表
+.mappage-list-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 12px;
+  background-color: white;
+}
+.mappage-list-item-submit {
+  padding: 2px 6px;
+  color: @primary-bg;
+  border: 1px solid @border;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+.mappage-list-item-prefix {
+  .icon {
+    .icon.size20;
+    color: @placeholder;
+  }
+}
+.mappage-list-item-content {
+  flex: 1;
+  padding: 10px 0;
+}
+.mappage-list-item-description {
+  color: @placeholder;
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import locale from './../../../../locale'
-import { search, bdToGcjCoord } from './../utils'
+import { search } from './../utils'
 
 import HighlightKeyword from './../../../../HighlightKeyword'
 import Header from './../../../../Header'
@@ -49,12 +49,11 @@ function Search({ map, onChange }) {
     if (!bdPoint) return
 
     // 赋新值
-    let point = bdToGcjCoord(bdPoint)
     let newValue = {
       address: item.address,
       value: item.address,
-      longitude: point[0],
-      latitude: point[1]
+      longitude: bdPoint.lng,
+      latitude: bdPoint.lat
     }
     if (onChange) onChange(newValue)
 
@@ -100,18 +99,18 @@ function Search({ map, onChange }) {
         <div className="mappage-search-body">
           {searchList.map((item) => {
             return (
-              <div className="mappage-search-item" key={item.id} onClick={() => handleMarker(item)}>
-                <div className="mappage-search-item-prefix">
+              <div className="mappage-list-item" key={item.id} onClick={() => handleMarker(item)}>
+                <div className="mappage-list-item-prefix">
                   <i className="icon icon-position"></i>
                 </div>
-                <div className="mappage-search-item-content">
-                  <div className="mappage-search-item-title">
+                <div className="mappage-list-item-content border-b">
+                  <div className="mappage-list-item-title">
                     <HighlightKeyword
                       text={item.title}
                       keyword={inputRef?.current?.inputDOM?.value || ''}
                     />
                   </div>
-                  <div className="mappage-search-item-description">{item.address}</div>
+                  <div className="mappage-list-item-description">{item.address}</div>
                 </div>
               </div>
             )

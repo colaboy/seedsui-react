@@ -12,7 +12,7 @@ function Nearby({ value, map, onChange }) {
   const markersRef = useRef(null)
   const [list, setList] = useState(null)
   const [visible, setVisible] = useState(false)
-  const [tab, setTab] = useState(null)
+  const [tab, setTab] = useState({ name: '全部' })
 
   // 当value发生变化后, 需要查询附近的点
   useEffect(() => {

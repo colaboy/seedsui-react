@@ -16,7 +16,7 @@ function Location({ map, value, onChange, ...props }) {
       return
     }
     // 视图更新
-    if (onChange) onChange(result)
+    if (onChange) onChange(result, 'gcj02')
   }
   return (
     <div
