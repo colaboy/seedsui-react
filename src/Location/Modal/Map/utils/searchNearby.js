@@ -1,8 +1,14 @@
+import { formatPoint } from './../utils'
+import gcjToBdPoint from './gcjToBdPoint'
+import pointToBdPoint from './pointToBdPoint'
+
 // 搜索附近, keyword:搜索关键词
 function searchNearby(
   keyword,
   {
     map,
+    type,
+    point,
     // 搜索半径
     radius = 300
   }
@@ -29,7 +35,24 @@ function searchNearby(
       }
     })
 
-    let point = map.getCenter() // 搜索中心点坐标
+    // 传入点
+    if (point) {
+      // eslint-disable-next-line
+      point = formatPoint(point)
+      if (type === 'gcj02') {
+        // eslint-disable-next-line
+        point = gcjToBdPoint(point)
+      } else {
+        // eslint-disable-next-line
+        point = pointToBdPoint(point)
+      }
+    }
+
+    // 如果没有传入点, 则默认取中心点
+    if (!point) {
+      // eslint-disable-next-line
+      point = map.getCenter() // 搜索中心点坐标
+    }
 
     local.searchNearby(keyword, point, radius)
   })

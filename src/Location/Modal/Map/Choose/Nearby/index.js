@@ -8,7 +8,7 @@ import Tabs from './Tabs'
 import Main from './Main'
 
 // 附近推荐
-function Nearby({ value, map, onChange }, ref) {
+function Nearby({ map, onChange }, ref) {
   const markersRef = useRef(null)
   const [list, setList] = useState(null)
   const [visible, setVisible] = useState(false)

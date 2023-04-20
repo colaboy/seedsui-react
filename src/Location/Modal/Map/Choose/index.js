@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react'
 import {
   bdToGcjCoord,
   addMarkers,
-  moveMarker,
   centerMarker,
   centerToPoint,
   initMap,

@@ -28,7 +28,14 @@ const Notice = forwardRef(
             wrapperAttribute.className ? ' ' + wrapperAttribute.className : ''
           }`}
         >
-          {icon ? icon : <i className="icon notice-icon notice-icon-nodata"></i>}
+          {icon ? (
+            icon
+          ) : (
+            <img
+              className="icon notice-icon"
+              src="//res.waiqin365.com/d/waiqin365_h5/components/no-data.png"
+            ></img>
+          )}
           {caption && (
             <div
               {...captionAttribute}
