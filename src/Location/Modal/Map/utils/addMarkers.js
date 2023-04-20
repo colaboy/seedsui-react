@@ -9,7 +9,8 @@ function addMarkers(
     map,
     type,
     // 标记颜色
-    color
+    color,
+    zIndex
   }
 ) {
   let markers = []
@@ -19,8 +20,11 @@ function addMarkers(
     } else {
       poi = pointToBdPoint(poi)
     }
-    let icon = color ? getMarkerIcon(color) : null
+    let icon = color ? getMarkerIcon(color) : undefined
     let marker = new BMap.Marker(poi, { icon: icon })
+    if (zIndex) {
+      marker.setZIndex(zIndex)
+    }
     map.addOverlay(marker)
     markers.push(marker)
   }

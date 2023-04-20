@@ -60,7 +60,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
     // 绘制当前点
     if (value?.longitude && value?.latitude) {
       let point = [value.longitude, value.latitude]
-      let markers = addMarkers([point], { map: map, type: 'gcj02', color: 'red' })
+      let markers = addMarkers([point], { map: map, type: 'gcj02', color: 'red', zIndex: 20010086 })
       centerToPoint(markers[0].point, { map: map })
     }
 
