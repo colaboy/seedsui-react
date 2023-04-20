@@ -6,9 +6,9 @@ import DB from './../DB'
 import Device from './../Device'
 import locale from './../locale'
 
-var self = null
+let self = null
 
-var Bridge = {
+let Bridge = {
   /**
    * 定制功能
    */
@@ -132,27 +132,10 @@ var Bridge = {
   onHistoryBack: function (params) {
     window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
-  // 防止返回事件叠加绑定
-  // monitorBack: null,
-  // 客户端返回绑定
-  // addBackPress: function (callback) {
-  //   self = this
-  //   if (callback) self.monitorBack = callback
-  //   else self.monitorBack = null
-  //   if (window.top.wq.onHistoryBack) {
-  //     window.top.wq.onHistoryBack(function () {
-  //       if (self.monitorBack) self.monitorBack()
-  //       else self.back()
-  //       self.addBackPress(self.monitorBack)
-  //       return false
-  //     })
-  //   }
-  // },
-  // 客户端移除返回绑定
-  // removeBackPress: function () {
-  //   self = this
-  //   self.monitorBack = null
-  // },
+  // 导航
+  openLocation: function (params) {
+    window.top.wq.openLocation(params) // eslint-disable-line
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -163,7 +146,7 @@ var Bridge = {
   getLocation: function (params = {}) {
     self = this
     // 先从cookie中读取位置信息
-    var appLocation = DB.getCookie('app_location')
+    let appLocation = DB.getCookie('app_location')
     if (appLocation === 'undefined') {
       DB.removeCookie('app_location')
       appLocation = ''
@@ -252,7 +235,7 @@ var Bridge = {
     */
   uploadImage: function (params = {}) {
     // self = this
-    var uploadParams = Object.clone(params)
+    let uploadParams = Object.clone(params)
     if (!params.uploadDir) {
       if (params.fail)
         params.fail({ errMsg: 'uploadImage:fail' + locale('没有上传目录', 'hint_no_upload_dir') })
@@ -304,6 +287,7 @@ var Bridge = {
     */
   uploadFile: function (params) {
     self = this
+    // eslint-disable-next-line
     params = params || {}
 
     const {
@@ -357,6 +341,7 @@ var Bridge = {
     * }
     */
   chooseVideo: function (params) {
+    // eslint-disable-next-line
     params = params || {}
 
     const {

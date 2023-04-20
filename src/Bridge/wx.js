@@ -4,9 +4,9 @@
 import DB from './../DB'
 import Device from './../Device'
 
-var self = null
+let self = null
 
-var Bridge = {
+let Bridge = {
   /**
    * 定制功能
    */
@@ -53,27 +53,10 @@ var Bridge = {
       window.top.wx.onHistoryBack(params) // eslint-disable-line
     }
   },
-  // 防止返回事件叠加绑定
-  // monitorBack: null,
-  // 客户端返回绑定
-  // addBackPress: function (callback) {
-  //   self = this
-  //   if (callback) self.monitorBack = callback
-  //   else self.monitorBack = null
-  //   if (window.top.wx.onHistoryBack) {
-  //     window.top.wx.onHistoryBack(function () {
-  //       if (self.monitorBack) self.monitorBack()
-  //       else self.back()
-  //       self.addBackPress(self.monitorBack)
-  //       return false
-  //     })
-  //   }
-  // },
-  // 客户端移除返回绑定
-  // removeBackPress: function () {
-  //   self = this
-  //   self.monitorBack = null
-  // },
+  // 导航
+  openLocation: function (params) {
+    window.top.wq.openLocation(params) // eslint-disable-line
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -86,7 +69,7 @@ var Bridge = {
   getLocation: function (params = {}) {
     self = this
     // 先从cookie中读取位置信息
-    var appLocation = DB.getCookie('app_location')
+    let appLocation = DB.getCookie('app_location')
     if (appLocation === 'undefined') {
       DB.removeCookie('app_location')
       appLocation = ''
@@ -146,7 +129,7 @@ var Bridge = {
       desc: desc || '二维码／条码',
       success: function (res) {
         if (!success) return
-        var wxRes = res
+        let wxRes = res
         // 如果没有设置prefix为false或者空,则清除前缀
         if (!params.prefix) {
           if (res.resultStr.indexOf('QR,') >= 0) {

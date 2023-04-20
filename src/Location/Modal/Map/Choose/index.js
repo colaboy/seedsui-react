@@ -12,6 +12,7 @@ import Layout from './../../../../Layout'
 import Notice from './../../../../Notice'
 import locale from './../../../../locale'
 import Control from './../Control'
+import Navigation from './Navigation'
 import Search from './Search'
 import Nearby from './Nearby'
 
@@ -157,7 +158,7 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
 
   return (
     <Layout {...props}>
-      <Search map={map} onChange={handleLocation} />
+      {!readOnly && <Search map={map} onChange={handleLocation} />}
       <div className="flex-1 position-relative">
         <div ref={containerRef} className={`mappage-container`}></div>
         {!readOnly && <Control.Location map={map} value={value} onChange={handleLocation} />}
@@ -179,7 +180,12 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
           </div>
           <div className="mappage-list-item-content">
             <p className="mappage-list-item-content-title">
-              {locale('当前位置', 'current_location')}
+              <span>{locale('当前位置', 'current_location')}</span>
+              <Navigation
+                longitude={value.longitude}
+                latitude={value.latitude}
+                address={value.value}
+              />
             </p>
             <p className="mappage-list-item-description">{value?.value || ''}</p>
           </div>

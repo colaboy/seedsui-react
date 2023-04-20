@@ -12,7 +12,7 @@ import Toast from './../Toast'
 import Preview from './../Preview/instance.js'
 import locale from './../locale'
 
-var Bridge = {
+let Bridge = {
   /**
    * 定制功能
    */
@@ -74,6 +74,14 @@ var Bridge = {
       ])
     })
   },
+  // 导航
+  openLocation: function () {
+    Toast.show({
+      content: locale('openLocation仅可在企业微信或APP中使用', 'hint_only_app_and_wx', [
+        'openLocation'
+      ])
+    })
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -82,7 +90,7 @@ var Bridge = {
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    var self = this
+    let self = this
     if (!self.debug) {
       if (navigator.geolocation) {
         // 调用定位
@@ -94,7 +102,7 @@ var Bridge = {
         console.log('调用浏览器定位...')
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            var res = {
+            let res = {
               errMsg: 'getLocation:ok',
               longitude: position.coords.longitude,
               latitude: position.coords.latitude,
@@ -173,7 +181,7 @@ var Bridge = {
       return
     }
     // 先从cookie中读取位置信息
-    var appLocation = DB.getCookie('app_location')
+    let appLocation = DB.getCookie('app_location')
     if (appLocation === 'undefined') {
       DB.removeCookie('app_location')
       appLocation = ''
@@ -195,7 +203,7 @@ var Bridge = {
     self.locationTask = []
     console.log('调用浏览器定位...')
     setTimeout(() => {
-      var res = {
+      let res = {
         errMsg: 'getLocation:ok',
         longitude: '116.397451',
         latitude: '39.909187',
@@ -219,7 +227,7 @@ var Bridge = {
    * @return {Object} {resultStr: ''}
    */
   scanQRCode: function (params = {}) {
-    var self = this
+    let self = this
     if (!self.debug) {
       Toast.show({
         content: locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx', ['scanQRCode'])
@@ -239,14 +247,14 @@ var Bridge = {
   },
   // 拍照、本地选图
   chooseImage: function (params = {}) {
-    var self = this
+    let self = this
     if (!self.debug) {
       Toast.show({
         content: locale('chooseImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['chooseImage'])
       })
       return
     }
-    var res = {
+    let res = {
       sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
       errMsg: 'chooseImage:ok',
       localIds: [
@@ -258,7 +266,7 @@ var Bridge = {
   },
   // 上传图片
   uploadImage: function (params = {}) {
-    var self = this
+    let self = this
     if (!self.debug) {
       Toast.show({
         content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['uploadImage'])
@@ -269,7 +277,7 @@ var Bridge = {
     setTimeout(() => {
       Loading.hide()
       Toast.show({ content: locale('上传完成', 'uploaded_completed') })
-      var res = {
+      let res = {
         errMsg: 'uploadImage:ok',
         mediaUrl: '',
         serverId: new Date().getTime()
@@ -281,7 +289,7 @@ var Bridge = {
   // @params {urls:'需要预览的图片http链接列表',index:'图片索引',layerHTML:'图片上方的浮层'}
   preview: null,
   previewImage: function (params = {}) {
-    var self = this
+    let self = this
     if (!params.urls || !params.urls.length) {
       if (params.fail)
         params.fail({
@@ -289,13 +297,13 @@ var Bridge = {
         })
       return
     }
-    var src = params.urls[params.index || 0]
+    let src = params.urls[params.index || 0]
     if (!src) {
       if (params.fail)
         params.fail({ errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src') })
       return
     }
-    var layerHTML = params.layerHTML || ''
+    let layerHTML = params.layerHTML || ''
     if (!self.preview) {
       self.preview = new Preview({
         src: src,
@@ -328,7 +336,7 @@ var Bridge = {
   // debug:录像
   chooseVideo: function (params = {}) {
     console.log('chooseVideo方法在浏览器上无法运行')
-    var res = {
+    let res = {
       sourceType: 'camera', // 微信返回的两种来源: 'camera', 'album'
       errMsg: 'chooseVideo:ok',
       tempFilePath: 'http://res.waiqin365.com/video/v2001.MP4',
@@ -349,7 +357,7 @@ var Bridge = {
    * }
    */
   previewFile: function (params) {
-    var self = this
+    let self = this
     if (!self.debug) {
       Toast.show({
         content: locale('previewFile仅可在微信或APP中使用', 'hint_only_app_and_wx', ['previewFile'])

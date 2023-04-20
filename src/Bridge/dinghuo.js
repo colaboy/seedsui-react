@@ -6,9 +6,9 @@ import DB from './../DB'
 import Device from './../Device'
 import locale from './../locale'
 
-var self = null
+let self = null
 
-var Bridge = {
+let Bridge = {
   /**
    * 定制功能
    */
@@ -107,6 +107,10 @@ var Bridge = {
   onHistoryBack: function (params) {
     window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
+  // 返回监听
+  onHistoryBack: function (params) {
+    window.top.wq.onHistoryBack(params) // eslint-disable-line
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -117,7 +121,7 @@ var Bridge = {
   getLocation: function (params = {}) {
     self = this
     // 先从cookie中读取位置信息
-    var appLocation = DB.getCookie('app_location')
+    let appLocation = DB.getCookie('app_location')
     if (appLocation === 'undefined') {
       DB.removeCookie('app_location')
       appLocation = ''
@@ -196,6 +200,7 @@ var Bridge = {
     * }
     */
   chooseImage: function (params) {
+    // eslint-disable-next-line
     params = params || {}
     if (params.async) {
       // 老客户端选择照片
@@ -216,6 +221,7 @@ var Bridge = {
         chooseParams.isWaterMark = '1'
       }
       window.top.wq.invoke('chooseImage', chooseParams, function (res) {
+        // eslint-disable-next-line
         if (!res) res = {}
         if (!res.localIds) res.localIds = []
         res.localIds = res.localIds.map(function (id) {
@@ -245,6 +251,7 @@ var Bridge = {
   * }
   */
   uploadImage: function (params) {
+    // eslint-disable-next-line
     params = params || {}
     if (!params.uploadDir) {
       if (params.fail)
@@ -286,7 +293,7 @@ var Bridge = {
       return
     }
 
-    var uploadParams = Object.clone(params)
+    let uploadParams = Object.clone(params)
     if (params.tenantId) uploadParams.tenantId = params.tenantId
     // ext参数: isAutoCheck: '0'/'1'是否自动识别|cmId: 客户Id|appId：应用Id|menuId: 菜单Id(必填)|funcId: 表单Id
     let menuId = Device.getUrlParameter('menuId') || ''
@@ -322,6 +329,7 @@ var Bridge = {
     * }
     */
   uploadFile: function (params) {
+    // eslint-disable-next-line
     params = params || {}
 
     const {
@@ -366,6 +374,7 @@ var Bridge = {
     * }
     */
   chooseVideo: function (params) {
+    // eslint-disable-next-line
     params = params || {}
 
     const {
@@ -446,7 +455,7 @@ var Bridge = {
   },
   // 根据key获取登陆信息
   getLoginInfo: function (key, callback) {
-    var self = this
+    let self = this
     self.loginInfo(function (result) {
       callback(result[key])
     })
