@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import locale from './../../../../locale'
+import { search, bdToGcjCoord } from './../utils'
 
 import HighlightKeyword from './../../../../HighlightKeyword'
 import Header from './../../../../Header'
@@ -7,7 +8,7 @@ import Input from './../../../../Input'
 import Notice from './../../../../Notice'
 
 // 搜索
-function Search({ instance, onChange }) {
+function Search({ map, onChange }) {
   const inputRef = useRef(null)
   const [errMsg, setErrMsg] = useState(null)
   let [searchList, setSearchList] = useState(null)
@@ -31,7 +32,7 @@ function Search({ instance, onChange }) {
   // 搜索
   async function handleSearch() {
     let inputText = inputRef.current.inputDOM
-    let list = await instance.current.search(inputText.value)
+    let list = await search(inputText.value, { map: map })
 
     if (typeof list === 'string') {
       setErrMsg(list)
@@ -48,7 +49,7 @@ function Search({ instance, onChange }) {
     if (!bdPoint) return
 
     // 赋新值
-    let point = instance.current.toGcjPoint(bdPoint)
+    let point = bdToGcjCoord(bdPoint)
     let newValue = {
       address: item.address,
       value: item.address,

@@ -1,4 +1,29 @@
+import initMap from './initMap'
+import formatPoint from './formatPoint'
+import gcjToBdPoint from './gcjToBdPoint'
+import gcjToBdCoord from './gcjToBdCoord'
+import bdToGcjCoord from './bdToGcjCoord'
+import centerToPoint from './centerToPoint'
+import getLocation from './getLocation'
+import search from './search'
 import searchNearby from './searchNearby'
+import centerMarker from './centerMarker'
+import addZoomControl from './addZoomControl'
 import addMarkers from './addMarkers'
+import getMarkerIcon from './getMarkerIcon'
 
-export { searchNearby, addMarkers }
+export {
+  initMap,
+  formatPoint,
+  gcjToBdPoint,
+  gcjToBdCoord,
+  bdToGcjCoord,
+  centerToPoint,
+  getLocation,
+  search,
+  searchNearby,
+  centerMarker,
+  addZoomControl,
+  addMarkers,
+  getMarkerIcon
+}

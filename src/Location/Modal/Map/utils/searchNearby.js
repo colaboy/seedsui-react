@@ -1,10 +1,12 @@
 // 搜索附近, keyword:搜索关键词
-function searchNearby({
+function searchNearby(
   keyword,
-  map,
-  // 搜索半径
-  radius = 1000
-}) {
+  {
+    map,
+    // 搜索半径
+    radius = 1000
+  }
+) {
   return new Promise((resolve) => {
     // 创建本地搜索对象
     let local = new BMap.LocalSearch(map, {
@@ -33,3 +35,5 @@ function searchNearby({
     })
   })
 }
+
+export default searchNearby

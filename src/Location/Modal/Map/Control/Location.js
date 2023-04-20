@@ -1,24 +1,22 @@
 import React from 'react'
+import { centerToPoint, getLocation } from './../utils'
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 
-function Location({ instance, value, onChange, ...props }) {
-  function handleLocation() {
-    if (!instance.current) return
+// 悬浮定位控件
+function Location({ map, value, onChange, ...props }) {
+  async function handleLocation() {
+    if (!map) return
     Loading.show()
-    instance.current.getLocation({
-      onChange: (value) => {
-        Loading.hide()
-        if (!value) return
-        // 视图更新
-        instance.current.centerToPoint([value.longitude, value.latitude])
-        if (onChange) onChange(value)
-      },
-      onError: (err) => {
-        Loading.hide()
-        Toast.show(err.errMsg, { maskClickable: true })
-      }
-    })
+    let result = await getLocation()
+    Loading.hide()
+    // 定位出错
+    if (typeof result === 'string') {
+      Toast.show(err.errMsg, { maskClickable: true })
+      return
+    }
+    // 视图更新
+    if (onChange) onChange(result)
   }
   return (
     <div
