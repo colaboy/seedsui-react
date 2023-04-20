@@ -15,7 +15,7 @@ import Control from './../Control'
 import Search from './Search'
 import Nearby from './Nearby'
 
-function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
+function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) {
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentMarkerRef = useRef(null)
@@ -60,6 +60,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
       centerToPoint(marker.point, { map: map })
     }
 
+    if (readOnly) return
     // 事件监听
     map.addEventListener(
       'dragstart',
@@ -179,7 +180,7 @@ function MapChoose({ ak, value: originValue = null, onChange, ...props }) {
             </span>
           )}
         </div>
-        {map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
+        {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
       </Layout.Footer>
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
