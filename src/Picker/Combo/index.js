@@ -34,6 +34,7 @@ const Combo = forwardRef(
       value,
       list = [], // [{id: '', name: ''}]
 
+      onVisibleChange,
       onBeforeChange,
       onChange,
 
@@ -101,6 +102,7 @@ const Combo = forwardRef(
     useEffect(() => {
       if (visible === null) return
       typeof ModalProps?.onVisibleChange === 'function' && ModalProps.onVisibleChange(visible)
+      typeof onVisibleChange === 'function' && onVisibleChange(visible)
 
       // eslint-disable-next-line
     }, [visible])

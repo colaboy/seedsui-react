@@ -14,10 +14,8 @@ export default () => {
         value={value}
         list={list}
         onChange={setValue}
-        ModalProps={{
-          onVisibleChange: (visible) => {
-            console.log('visible:', visible)
-          }
+        onVisibleChange={(visible) => {
+          console.log('visible:', visible)
         }}
       />
     </>

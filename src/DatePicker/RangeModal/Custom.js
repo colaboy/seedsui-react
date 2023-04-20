@@ -93,12 +93,10 @@ const Custom = function ({
               onError={onError}
               onBeforeChange={handleBeforeChange}
               onChange={handleChange}
-              ModalProps={{
-                onVisibleChange: (visible) => {
-                  // 显示弹窗, 需要隐藏父级弹窗
-                  if (visible) {
-                    onVisibleChange(false)
-                  }
+              onVisibleChange={(visible) => {
+                // 显示弹窗, 需要隐藏父级弹窗
+                if (visible) {
+                  onVisibleChange(false)
                 }
               }}
             >

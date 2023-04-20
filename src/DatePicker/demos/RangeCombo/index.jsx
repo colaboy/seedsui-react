@@ -30,9 +30,14 @@ export default () => {
           }
           return true
         }}
+        onVisibleChange={(visible) => {
+          console.log('visible:', visible)
+        }}
         ModalProps={{
-          onVisibleChange: (visible) => {
-            console.log('visible:', visible)
+          maskProps: {
+            style: {
+              zIndex: 999
+            }
           }
         }}
         onChange={setRangeValue}
@@ -49,13 +54,18 @@ export default () => {
         //   ['自定义时间']: null
         // }}
         placeholder="请选择RangeCombo"
+        onVisibleChange={(visible) => {
+          console.log('visible2:', visible)
+          if (visible) {
+            setIcon('2')
+          } else {
+            setIcon('1')
+          }
+        }}
         ModalProps={{
-          onVisibleChange: (visible) => {
-            console.log('visible2:', visible)
-            if (visible) {
-              setIcon('2')
-            } else {
-              setIcon('1')
+          maskProps: {
+            style: {
+              zIndex: 999
             }
           }
         }}

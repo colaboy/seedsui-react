@@ -43,10 +43,8 @@ export default () => {
           console.log('checked:', newValue)
           setValue(newValue)
         }}
-        ModalProps={{
-          onVisibleChange: (visible) => {
-            // debugger
-          }
+        onVisibleChange={(visible) => {
+          console.log('visible:', visible)
         }}
       />
     </>

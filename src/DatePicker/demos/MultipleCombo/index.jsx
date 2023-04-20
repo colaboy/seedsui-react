@@ -18,10 +18,8 @@ export default () => {
         captionProps={{
           caption: '选择日期'
         }}
-        ModalProps={{
-          onVisibleChange: (visible) => {
-            console.log('visible:', visible)
-          }
+        onVisibleChange={(visible) => {
+          console.log('visible:', visible)
         }}
       />
     </>
