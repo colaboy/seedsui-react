@@ -109,7 +109,7 @@ export default {
   },
   // 更新容器位置
   updateContainerPosition: function (params) {
-    const { source, target, animation, bottom, top, left, right, offset } = params
+    const { source, target, animation, bottom, top, left, right, offset } = params || {}
     // 自动计算位置
     let position = this.getCoordinate(source, animation)
 

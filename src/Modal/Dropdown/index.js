@@ -18,6 +18,7 @@ const Dropdown = forwardRef(
 
       // Modal变量提升
       portal,
+      offset,
       maskClosable,
       onVisibleChange,
       maskProps,
@@ -111,6 +112,7 @@ const Dropdown = forwardRef(
           sourceDOM={() => {
             return rootRef.current
           }}
+          offset={offset}
           visible={visible}
           animation="slideDown"
           className="modal-dropdown-modal"

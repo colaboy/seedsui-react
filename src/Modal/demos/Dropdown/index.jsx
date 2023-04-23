@@ -35,6 +35,9 @@ export default () => {
           <Modal.Dropdown
             ref={dropdown2Ref}
             maskClosable
+            offset={{
+              top: 10
+            }}
             onBeforeOpen={() => {
               if (document.querySelector('.mask.active')) {
                 dropdown1Ref.current.close()

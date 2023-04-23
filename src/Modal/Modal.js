@@ -10,6 +10,7 @@ const Modal = forwardRef(
       animation = 'zoom', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
       // 自动调整位置
       sourceDOM = null,
+      offset = null,
 
       visible,
       maskClosable = true,
@@ -59,7 +60,8 @@ const Modal = forwardRef(
         TooltipUtils.updateContainerPosition({
           source: sourceDOM,
           target: maskDOM,
-          animation: animation
+          animation: animation,
+          offset: offset
         })
       }
     }

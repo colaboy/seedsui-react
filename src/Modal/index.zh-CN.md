@@ -6,7 +6,7 @@
 
 <code src="./demos/Modal/index.jsx"></code>
 
-### Dropdown
+### Modal.Dropdown
 
 <code src="./demos/Dropdown/index.jsx"></code>
 
