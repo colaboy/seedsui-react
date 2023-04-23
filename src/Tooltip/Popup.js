@@ -69,12 +69,12 @@ const Popup = forwardRef(
 
     return createPortal(
       <div
-        ref={ref}
+        {...maskProps}
         className={`mask tooltip-mask${maskProps.className ? ' ' + maskProps.className : ''}${
           visible ? ' active' : ''
         }`}
-        {...maskProps}
         onClick={handleMaskClick}
+        ref={ref}
       >
         <div
           className={`popup-animation tooltip tooltip-bottom${position ? ' ' + position : ''}${
