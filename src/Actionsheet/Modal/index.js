@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
 
