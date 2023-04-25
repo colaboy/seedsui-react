@@ -52,6 +52,7 @@ function TreePicker(
 
   // 展开的id
   const [expandedKeys, setExpandedKeys] = useState([])
+  const expandedKeysRef = useRef([])
 
   // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
   let [loadedKeys, setLoadedKeys] = useState([])
@@ -70,7 +71,7 @@ function TreePicker(
     }
 
     // 更新渲染列表
-    setTreeData(getTreeData({ list, onlyLeafCheck, keyword: keywordRef.current || '', itemRender }))
+    setTreeData(updateTreeData())
     // eslint-disable-next-line
   }, [list])
 
@@ -79,15 +80,36 @@ function TreePicker(
     keywordRef.current = keyword
     // 没有关键字则没有展开项
     if (!keywordRef.current || Object.isEmptyObject(list)) {
-      setExpandedKeys([])
+      expandedKeysRef.current = []
+      setExpandedKeys(expandedKeysRef.current)
     } else {
       // 展开的keys
       const newExpandedKeys = getExpandedKeys(keywordRef.current, flattenListRef.current)
-      setExpandedKeys(newExpandedKeys)
+      expandedKeysRef.current = newExpandedKeys
+      setExpandedKeys(expandedKeysRef.current)
     }
 
     // 更新渲染列表
-    setTreeData(getTreeData({ list, onlyLeafCheck, keyword: keywordRef.current || '', itemRender }))
+    setTreeData(updateTreeData())
+  }
+
+  // 获取树数据
+  function updateTreeData() {
+    return getTreeData({
+      list,
+      onlyLeafCheck,
+      keyword: keywordRef.current || '',
+      itemRender,
+      onClick: (item) => {
+        if (expandedKeysRef.current.includes(item.id)) {
+          expandedKeysRef.current.splice(expandedKeysRef.current.indexOf(item.id), 1)
+          setExpandedKeys([...expandedKeysRef.current])
+        } else {
+          expandedKeysRef.current = [item.id, ...(expandedKeysRef.current || [])]
+          setExpandedKeys(expandedKeysRef.current)
+        }
+      }
+    })
   }
 
   // 修改
@@ -111,19 +133,6 @@ function TreePicker(
     // defaultCheckedKeys|checkedKeys: checkedKeys
     return getCheckedKeysProp(value, defaultValue)
   }, [value, defaultValue])
-
-  // 构建搜索的展开项
-  const expandProp =
-    Array.isArray(expandedKeys) && expandedKeys.length
-      ? {
-          // 设置了expandedKeys, 就必须有配套的onExpand, 否则将不能再收缩了
-          onExpand: (newExpandedKeys) => {
-            setExpandedKeys(newExpandedKeys)
-          },
-          // 搜索时展开的子级
-          expandedKeys: expandedKeys
-        }
-      : {}
 
   // 异步加载时需要判断哪些不需要再次加载(isLoaded)
   const loadProp =
@@ -155,7 +164,12 @@ function TreePicker(
         // 点击(用于解决checkable为false时没有checkbox时onChange)
         onSelect={handleChange}
         // 展开keys属性
-        {...expandProp}
+        // 设置了expandedKeys, 就必须有配套的onExpand, 否则将不能再收缩了
+        onExpand={(newExpandedKeys) => {
+          setExpandedKeys(newExpandedKeys)
+        }}
+        // 搜索时展开的子级
+        expandedKeys={expandedKeys}
         // 树默认设置
         showIcon={showIcon}
         onlyLeafCheck={onlyLeafCheck}
