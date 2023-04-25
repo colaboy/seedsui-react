@@ -54,7 +54,7 @@ function TreePicker(
   const [expandedKeys, setExpandedKeys] = useState([])
 
   // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
-  const [loadedKeys, setLoadedKeys] = useState([])
+  let [loadedKeys, setLoadedKeys] = useState([])
 
   // 更新列表
   useEffect(() => {
@@ -62,6 +62,12 @@ function TreePicker(
 
     // 更新平铺的列表, 搜索时使用
     flattenListRef.current = Object.clone(list).flattenTree()
+
+    // 异步加载时需要判断哪些不需要再次加载(isLoaded)
+    if (typeof props.loadData === 'function') {
+      loadedKeys.push(...getLoadedKeys(flattenListRef.current))
+      setLoadedKeys([...new Set(loadedKeys)])
+    }
 
     // 更新渲染列表
     setTreeData(getTreeData({ list, onlyLeafCheck, keyword: keywordRef.current || '', itemRender }))
@@ -124,9 +130,9 @@ function TreePicker(
     typeof props.loadData === 'function'
       ? {
           loadedKeys: loadedKeys,
-          onLoad: (loadedKeys) => {
-            loadedKeys.push(...getLoadedKeys(flattenListRef.current))
-            setLoadedKeys([...new Set(loadedKeys)])
+          onLoad: (newLoadedKeys) => {
+            loadedKeys.push(...newLoadedKeys)
+            // 异步加载会修改列表, 所以在列表监听处处理loadedKeys即可
           }
         }
       : {}
