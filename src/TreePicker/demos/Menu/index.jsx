@@ -32,10 +32,6 @@ export default () => {
       />
       <TreePicker.Menu
         ref={treeRef}
-        // searchProps={{
-        //   value: '大东',
-        //   visible: true
-        // }}
         style={{ backgroundColor: '#ccc' }}
         itemRender={(item, { keyword }) => {
           if (badge && badge[item.id]) {

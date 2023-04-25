@@ -12,14 +12,7 @@ const Menu = (
     onExpand, // func(value)
     onCollapse, // func(value)
 
-    // 搜索
-    searchProps,
-
-    // 节流时长
-    throttle = 500,
-
     // 自定义渲染
-    searchRender,
     itemRender,
 
     ...props

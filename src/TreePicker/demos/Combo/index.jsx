@@ -33,10 +33,6 @@ export default () => {
                 <HighlightKeyword text={item.name} keyword={keyword} />
               </div>
             )
-          },
-          searchProps: {
-            value: '东城',
-            visible: true
           }
         }}
         onChange={(newValue) => {
