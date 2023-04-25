@@ -3,6 +3,7 @@ export default [
   {
     children: [
       {
+        isLoaded: true,
         name: '东城区',
         id: '110101',
         isDistrict: true,

@@ -4,7 +4,7 @@ import treeData from './../data.js'
 
 export default () => {
   const [badge, setBadge] = useState(null)
-  const [value, setValue] = useState([{ name: '和平区', parentid: '120000', id: '120101' }])
+  const [value, setValue] = useState(null)
   useEffect(() => {
     setTimeout(() => {
       setBadge({
@@ -36,6 +36,7 @@ export default () => {
         //   value: '大东',
         //   visible: true
         // }}
+        style={{ backgroundColor: '#ccc' }}
         itemRender={(item, { keyword }) => {
           if (badge && badge[item.id]) {
             return (
