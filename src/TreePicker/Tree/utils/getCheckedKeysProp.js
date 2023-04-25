@@ -1,0 +1,26 @@
+// 获取选中项
+function getCheckedKeysProp(value, defaultValue) {
+  let val = value || defaultValue
+  let checkedKeys = []
+  if (Array.isArray(val) && val.length) {
+    for (let item of val) {
+      if (typeof item.id === 'string' || typeof item.id === 'number') {
+        checkedKeys.push(item.id)
+      }
+    }
+  }
+  // value or defaultValue
+  let valueProp = {}
+  if (value) {
+    valueProp = {
+      checkedKeys: checkedKeys
+    }
+  } else if (defaultValue) {
+    valueProp = {
+      defaultCheckedKeys: checkedKeys
+    }
+  }
+  return valueProp
+}
+
+export default getCheckedKeysProp

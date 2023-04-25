@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Item from './Item'
-import Utils from './../Utils'
+import { active, expandKeyword } from './../utils/index'
 
 // 树菜单项
 const List = ({
@@ -16,12 +16,12 @@ const List = ({
 }) => {
   // 值变化时, 修改展开和选中
   useEffect(() => {
-    Utils.active({ rootRef, value, list })
+    active({ rootRef, value, list })
     // eslint-disable-next-line
   }, [value])
 
   useEffect(() => {
-    Utils.expandKeyword({ rootRef, keyword, list })
+    expandKeyword({ rootRef, keyword, list })
     // eslint-disable-next-line
   }, [keyword])
 

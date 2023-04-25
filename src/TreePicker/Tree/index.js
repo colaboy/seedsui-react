@@ -1,95 +1,87 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react'
-import Tree from 'rc-tree'
-import Search from './../components/Search'
+import React, { forwardRef, useImperativeHandle, useEffect, useMemo, useState, useRef } from 'react'
+import { getTreeData, getExpandedKeys, getCheckedKeysProp, getLoadedKeys } from './utils/index'
 
-import Utils from './Utils'
+import Tree from 'rc-tree'
 
 // 树控件
-function TreePicker({
-  // multiple未传则为必选单选, multiple为false时为可取消单选
-  multiple,
-  // 精确检查节点，父子节点不关联
-  checkStrictly = false,
-  onlyLeafCheck,
-  checkable = true,
+function TreePicker(
+  {
+    // multiple未传则为必选单选, multiple为false时为可取消单选
+    multiple,
+    // 精确检查节点，父子节点不关联
+    checkStrictly = false,
+    onlyLeafCheck,
+    checkable = true,
 
-  // 根据checkable判断是否启用selectable, 没有checkbox时则启用
-  selectable,
+    // 根据checkable判断是否启用selectable, 没有checkbox时则启用
+    selectable,
 
-  list,
-  defaultValue,
-  value,
-  searchProps,
-  // 节流时长
-  throttle = 500,
-  onChange,
+    list,
+    defaultValue,
+    value,
+    // 节流时长
+    throttle = 500,
+    onChange,
 
-  // 树默认设置
-  showIcon = false,
+    // 树默认设置
+    showIcon = false,
 
-  // 自定义渲染
-  itemRender,
-  searchRender,
+    // 自定义渲染
+    itemRender,
 
-  ...props
-}) {
+    ...props
+  },
+  ref
+) {
+  const treeRef = useRef(null)
+  useImperativeHandle(ref, () => {
+    return {
+      instance: treeRef.current,
+      search: search
+    }
+  })
+
   // 扁平化数据, 搜索时需要展开的子级
-  let flattenListRef = useRef(
-    Array.isArray(list) && list.length ? Object.clone(list).flattenTree() : []
-  )
-  useEffect(() => {
-    // 第一次不走
-    if (!flattenListRef.current.isFirst) {
-      flattenListRef.current.isFirst = true
-    }
-    // 第二次开始更新
-    else {
-      if (Array.isArray(list) && list.length) {
-        flattenListRef.current = Object.clone(list).flattenTree()
-      }
-    }
+  let flattenListRef = useRef(null)
 
-    // 展开关键字
-    handleExpandedKeys()
-    // eslint-disable-next-line
-  }, [list])
+  // 搜索关键字
+  let keywordRef = useRef(null)
+
+  // 树渲染数据
+  const [treeData, setTreeData] = useState(null)
 
   // 展开的id
   const [expandedKeys, setExpandedKeys] = useState([])
 
-  // 选中子级时自动展开父级, 但为设为自动true时无法收缩, 所以收缩时需要再设为false(expandedKeys如果带入了父级则不需要自动展开父级)
-  // const [autoExpandParent, setAutoExpandParent] = useState(true) // autoExpandParent此属性会引发卡顿, 不建议使用
-  const handleExpand = (newExpandedKeys) => {
-    setExpandedKeys(newExpandedKeys)
-    // setAutoExpandParent(false)
-  }
+  // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
+  const [loadedKeys, setLoadedKeys] = useState([])
 
-  // 搜索
-  let [keyword, setKeyword] = useState(searchProps?.value || '')
+  // 更新列表
+  useEffect(() => {
+    if (!Array.isArray(list) || !list.length) return
 
-  // 展开keys属性
-  const expandProp = searchProps?.visible
-    ? {
-        // 点击展开(expandedKeys如果带入了父级则不需要自动展开父级)
-        onExpand: handleExpand,
-        // autoExpandParent: autoExpandParent,
-        // 搜索时展开的子级
-        expandedKeys: expandedKeys
-      }
-    : {}
+    // 更新平铺的列表, 搜索时使用
+    flattenListRef.current = Object.clone(list).flattenTree()
+
+    // 更新渲染列表
+    setTreeData(getTreeData({ list, onlyLeafCheck, keyword: keywordRef.current || '', itemRender }))
+    // eslint-disable-next-line
+  }, [list])
 
   // 展开关键字
-  function handleExpandedKeys() {
+  function search(keyword) {
+    keywordRef.current = keyword
     // 没有关键字则没有展开项
-    if (!keyword || Object.isEmptyObject(list)) {
+    if (!keywordRef.current || Object.isEmptyObject(list)) {
       setExpandedKeys([])
     } else {
       // 展开的keys
-      const newExpandedKeys = Utils.getExpandedKeys(keyword, flattenListRef.current)
+      const newExpandedKeys = getExpandedKeys(keywordRef.current, flattenListRef.current)
       setExpandedKeys(newExpandedKeys)
-
-      // setAutoExpandParent(true)
     }
+
+    // 更新渲染列表
+    setTreeData(getTreeData({ list, onlyLeafCheck, keyword: keywordRef.current || '', itemRender }))
   }
 
   // 修改
@@ -108,36 +100,46 @@ function TreePicker({
     if (onChange) onChange(checkedNodes)
   }
 
-  // 构建渲染数据, 支持关键字搜索
-  const treeData = Utils.getTreeData({ list, onlyLeafCheck, keyword, itemRender })
-
   // 构建选中项
   const checkedKeysProp = useMemo(() => {
-    return Utils.getCheckedKeysProp(value, defaultValue)
+    // defaultCheckedKeys|checkedKeys: checkedKeys
+    return getCheckedKeysProp(value, defaultValue)
   }, [value, defaultValue])
 
+  // 构建搜索的展开项
+  const expandProp =
+    Array.isArray(expandedKeys) && expandedKeys.length
+      ? {
+          // 设置了expandedKeys, 就必须有配套的onExpand, 否则将不能再收缩了
+          onExpand: (newExpandedKeys) => {
+            setExpandedKeys(newExpandedKeys)
+          },
+          // 搜索时展开的子级
+          expandedKeys: expandedKeys
+        }
+      : {}
+
+  // 异步加载时需要判断哪些不需要再次加载(isLoaded)
+  const loadProp =
+    typeof props.loadData === 'function'
+      ? {
+          loadedKeys: loadedKeys,
+          onLoad: (loadedKeys) => {
+            loadedKeys.push(...getLoadedKeys(flattenListRef.current))
+            setLoadedKeys([...new Set(loadedKeys)])
+          }
+        }
+      : {}
+
+  if (!treeData) return null
   return (
     <>
-      {/* 搜索 */}
-      <Search
-        value={keyword}
-        onChange={(newKeyword) => {
-          keyword = newKeyword
-          setKeyword(newKeyword)
-          handleExpandedKeys()
-        }}
-        // 搜索
-        searchProps={searchProps}
-        // 节流时长
-        throttle={throttle}
-        // 自定义渲染
-        searchRender={searchRender}
-      />
-
-      {/* 树 */}
       <Tree
+        ref={treeRef}
         fieldNames={{ key: 'id' }}
         treeData={treeData}
+        // 异步加载时需要判断哪些不需要再次加载
+        {...loadProp}
         // 经测试multiple不生效
         // multiple={multiple}
         // 选中项属性
@@ -160,4 +162,4 @@ function TreePicker({
   )
 }
 
-export default TreePicker
+export default forwardRef(TreePicker)

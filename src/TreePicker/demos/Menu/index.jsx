@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { TreePicker, Badge } from 'seedsui-react'
+import React, { useRef, useState, useEffect } from 'react'
+import { Input, TreePicker, Badge, locale } from 'seedsui-react'
 import treeData from './../data.js'
 
 export default () => {
@@ -12,9 +12,26 @@ export default () => {
       })
     }, 2000)
   }, [])
+
+  // 搜索
+  const treeRef = useRef(null)
+
   return (
     <>
+      <Input.Text
+        type="search"
+        placeholder={locale('搜索', 'input_search_placeholder')}
+        onChange={(keyword) => {
+          if (window.timeout) window.clearTimeout(window.timeout)
+          window.timeout = setTimeout(() => {
+            treeRef.current.search(keyword)
+          }, 500)
+        }}
+        className="treepicker-search-input"
+        allowClear={true}
+      />
       <TreePicker.Menu
+        ref={treeRef}
         // searchProps={{
         //   value: '大东',
         //   visible: true
