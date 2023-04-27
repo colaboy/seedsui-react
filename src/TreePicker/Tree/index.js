@@ -8,7 +8,7 @@ function TreePicker(
   {
     // multiple未传则为必选单选, multiple为false时为可取消单选
     multiple,
-    // 精确检查节点，父子节点不关联
+    // 级联 true: 不级联, false: 级联, children: 只级联子级
     checkStrictly = false,
     onlyLeafCheck,
     checkable = true,
@@ -16,7 +16,7 @@ function TreePicker(
     // 是否启用半选功能
     enableHalfChecked,
 
-    // 保留上次选中值(取差量的值)
+    // 保留不在树结构中的value
     preserveValue,
 
     // 根据checkable判断是否启用selectable, 没有checkbox时则启用
@@ -28,6 +28,7 @@ function TreePicker(
     // 节流时长
     throttle = 500,
     onChange,
+    onSelect,
 
     // 树默认设置
     showIcon = false,
@@ -99,7 +100,7 @@ function TreePicker(
     setTreeData(updateTreeData())
   }
 
-  // 获取树数据
+  // 获取更新后的树数据
   function updateTreeData() {
     return getTreeData({
       list,
@@ -107,6 +108,10 @@ function TreePicker(
       keyword: keywordRef.current || '',
       itemRender,
       onClick: (item) => {
+        // 触发onSelect
+        typeof onSelect === 'function' && onSelect(item)
+
+        // 设置展开和收缩项的keys
         if (expandedKeysRef.current.includes(item.id)) {
           expandedKeysRef.current.splice(expandedKeysRef.current.indexOf(item.id), 1)
           setExpandedKeys([...expandedKeysRef.current])
@@ -119,7 +124,7 @@ function TreePicker(
   }
 
   // 修改
-  function handleChange(ids, checkedObject, ...e) {
+  function handleChange(ids, checkedObject) {
     let checkedNodes = checkedObject?.checkedNodes || []
     // multiple未传则为必选单选
     if (multiple === undefined) {
@@ -150,12 +155,45 @@ function TreePicker(
         }
         checkedNodes.push(...halfCheckedNodes)
       }
-      // 保留上次选中值(取差量的值, 不存在列表中的值, 用于列表刷新后选中项没有了)
+      // 保留不在树结构中的value
       if (preserveValue && Array.isArray(value) && value.length) {
         const difference = value.filter(
           (selectItem) => !flattenListRef.current.some((item) => item.id === selectItem.id)
         )
         checkedNodes.push(...difference)
+      }
+    }
+
+    // 只级联子级
+    if (checkStrictly === 'children' && checkedObject?.node?.id) {
+      const descendants = flattenListRef.current.getFlattenTreeDescendants(
+        checkedObject?.node?.id ?? ''
+      )
+
+      const checked = {}
+      const unchecked = {}
+      for (let i = 0; i < descendants.length; i++) {
+        const descendant = descendants[i]
+        // 如果选中项里已经存在此项
+        if (checkedNodes.some((checkedNode) => descendant.id === checkedNode.id)) {
+          checked[descendant.id] = descendant
+        }
+        // 不存在的项
+        else {
+          unchecked[descendant.id] = descendant
+        }
+      }
+
+      // 选中, 将树中选中项, 在值中没有的项加到值中
+      if (checkedObject?.node?.checked === false) {
+        checkedNodes.push(...Object.values(unchecked))
+      }
+      // 取消选中, 将树中选中项, 将值中存在的选中项清除
+      else {
+        let checkedIds = Object.keys(checked)
+        checkedNodes = checkedNodes.filter(
+          (item) => !checkedIds.some((checkedId) => checkedId === item.id)
+        )
       }
     }
     if (onChange) onChange(checkedNodes)
@@ -194,8 +232,6 @@ function TreePicker(
         {...checkedKeysProp}
         // 选中checkbox
         onCheck={handleChange}
-        // 点击(用于解决checkable为false时没有checkbox时onChange)
-        onSelect={handleChange}
         // 展开keys属性
         // 设置了expandedKeys, 就必须有配套的onExpand, 否则将不能再收缩了
         onExpand={(newExpandedKeys) => {
@@ -206,7 +242,7 @@ function TreePicker(
         // 树默认设置
         showIcon={showIcon}
         onlyLeafCheck={onlyLeafCheck}
-        checkStrictly={checkStrictly}
+        checkStrictly={checkStrictly === false ? false : true}
         checkable={checkable}
         selectable={checkable ? false : true}
         {...props}

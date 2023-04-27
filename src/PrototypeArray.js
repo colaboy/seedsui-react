@@ -245,18 +245,17 @@ window.Array.prototype.getFlattenTreePredecessor = function (id, propertyConfig)
 window.Array.prototype.getFlattenTreeDescendants = function (id, propertyConfig) {
   // eslint-disable-next-line
   if (typeof id === 'number') id = String(id)
-  let parentIdName =
-    propertyConfig && propertyConfig.parentIdName ? propertyConfig.parentIdName : 'parentid'
-  let nodeIdName = propertyConfig && propertyConfig.nodeIdName ? propertyConfig.nodeIdName : 'id'
+  let parentIdName = propertyConfig?.parentIdName || 'parentid'
+  let nodeIdName = propertyConfig?.nodeIdName || 'id'
 
   let list = this
   let descendants = []
   function buildDescendants(list, id) {
-    for (let i = 0, item; (item = list[i++]); ) {
-      // eslint-disable-line
-      if (id && item[parentIdName || 'parentid'] === id.toString()) {
+    for (let i = 0; i < list.length; i++) {
+      const item = list[i]
+      if (id && item[parentIdName] === id.toString()) {
         descendants.push(item)
-        buildDescendants(list, item[nodeIdName || 'id'])
+        buildDescendants(list, item[nodeIdName])
       }
     }
   }

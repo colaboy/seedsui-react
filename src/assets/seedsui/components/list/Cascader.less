@@ -25,24 +25,27 @@
 }
 .cascader-modal-list {
   position: relative;
-  padding: 10px 12px;
+  padding: 10px 0px;
   overflow: auto;
   .flex-1;
 }
 .cascader-modal-option {
   .flex;
   .flex-middle;
+  padding: 0 12px;
   height: 40px;
   line-height: 40px;
   * {
     pointer-events: none;
   }
   &.active {
+    background-color: #f8f9f9;
     .cascader-modal-option-icon {
       display: block;
     }
     .cascader-modal-option-caption {
-      font-weight: 600;
+      color: @primary;
+      // font-weight: 600;
     }
   }
 }
