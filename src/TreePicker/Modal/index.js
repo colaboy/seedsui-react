@@ -18,6 +18,7 @@ const Modal = forwardRef(
       list,
       onBeforeChange,
       onChange,
+      onSelect,
       onVisibleChange,
 
       // 定制属性
@@ -28,6 +29,10 @@ const Modal = forwardRef(
       optionProps = {},
 
       checkStrictly,
+      // 是否启用半选功能
+      enableHalfChecked,
+      // 保留不在树结构中的value
+      preserveValue,
       onlyLeafCheck,
       checkable,
       selectable,
@@ -125,7 +130,12 @@ const Modal = forwardRef(
                   handleSubmitClick()
                 }
               }}
+              onSelect={onSelect}
               checkStrictly={checkStrictly}
+              // 是否启用半选功能
+              enableHalfChecked={enableHalfChecked}
+              // 保留不在树结构中的value
+              preserveValue={preserveValue}
               onlyLeafCheck={onlyLeafCheck}
               checkable={checkable}
               selectable={selectable}

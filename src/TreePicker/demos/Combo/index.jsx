@@ -15,7 +15,7 @@ export default () => {
           caption: 'aaa'
         }}
         // onlyLeafCheck={true}
-        // checkStrictly={true}
+        // checkStrictly={'children'}
         checkable={true}
         // TreeProps={{
         //   expandAction: 'click',
@@ -35,6 +35,9 @@ export default () => {
         //     )
         //   }
         // }}
+        onSelect={(item) => {
+          console.log('select:', item)
+        }}
         onChange={(newValue) => {
           console.log('checked:', newValue)
           setValue(newValue)

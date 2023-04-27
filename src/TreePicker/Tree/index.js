@@ -10,14 +10,13 @@ function TreePicker(
     multiple,
     // 级联 true: 不级联, false: 级联, children: 只级联子级
     checkStrictly = false,
-    onlyLeafCheck,
-    checkable = true,
-
     // 是否启用半选功能
     enableHalfChecked,
-
     // 保留不在树结构中的value
     preserveValue,
+    // 仅允许选中末级节点
+    onlyLeafCheck,
+    checkable = true,
 
     // 根据checkable判断是否启用selectable, 没有checkbox时则启用
     selectable,

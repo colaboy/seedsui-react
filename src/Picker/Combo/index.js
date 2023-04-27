@@ -28,6 +28,10 @@ const Combo = forwardRef(
       multiple,
       maskClosable = true,
       checkStrictly,
+      // 是否启用半选功能
+      enableHalfChecked,
+      // 保留不在树结构中的value
+      preserveValue,
       onlyLeafCheck,
       checkable,
       selectable,
@@ -37,6 +41,7 @@ const Combo = forwardRef(
       onVisibleChange,
       onBeforeChange,
       onChange,
+      onSelect,
 
       // Combo属性
       allowClear,
@@ -144,6 +149,15 @@ const Combo = forwardRef(
     if (checkStrictly !== undefined) {
       PickerModalProps.checkStrictly = checkStrictly
     }
+
+    // 是否启用半选功能
+    if (enableHalfChecked !== undefined) {
+      PickerModalProps.enableHalfChecked = enableHalfChecked
+    }
+    // 保留不在树结构中的value
+    if (preserveValue !== undefined) {
+      PickerModalProps.preserveValue = preserveValue
+    }
     if (onlyLeafCheck !== undefined) {
       PickerModalProps.onlyLeafCheck = onlyLeafCheck
     }
@@ -165,6 +179,9 @@ const Combo = forwardRef(
     }
     if (onChange !== undefined) {
       PickerModalProps.onChange = onChange
+    }
+    if (onSelect !== undefined) {
+      PickerModalProps.onSelect = onSelect
     }
 
     // 允许清空
