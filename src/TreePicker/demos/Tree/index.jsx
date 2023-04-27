@@ -4,7 +4,7 @@ import { Input, TreePicker, HighlightKeyword, locale } from 'seedsui-react'
 
 export default () => {
   const [data, setData] = useState(treeData)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState([{ id: '11111', name: 'test' }])
 
   // 搜索
   const treeRef = useRef(null)
@@ -28,8 +28,8 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={data}
-        multiple={false}
-        checkStrictly={true}
+        multiple={true}
+        // checkStrictly={true}
         // checkable={false}
         // itemRender={(item, { keyword }) => {
         //   return (
@@ -46,9 +46,11 @@ export default () => {
         //     </div>
         //   )
         // }}
+        preserveValue
+        enableHalfChecked
         onChange={(newValue) => {
           console.log('checked:', newValue)
-          setValue(newValue)
+          setValue(newValue.filter((item) => !item.halfChecked))
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

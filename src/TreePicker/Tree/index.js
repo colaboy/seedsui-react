@@ -13,6 +13,12 @@ function TreePicker(
     onlyLeafCheck,
     checkable = true,
 
+    // 是否启用半选功能
+    enableHalfChecked,
+
+    // 保留上次选中值(取差量的值)
+    preserveValue,
+
     // 根据checkable判断是否启用selectable, 没有checkbox时则启用
     selectable,
 
@@ -113,16 +119,43 @@ function TreePicker(
   }
 
   // 修改
-  function handleChange(ids, checkedObject) {
+  function handleChange(ids, checkedObject, ...e) {
     let checkedNodes = checkedObject?.checkedNodes || []
     // multiple未传则为必选单选
     if (multiple === undefined) {
       if (checkedObject?.node) checkedNodes = [checkedObject.node]
     }
     // multiple为false时为可取消单选
-    if (multiple === false) {
+    else if (multiple === false) {
       if (checkedNodes.length > 1) {
         if (checkedObject?.node) checkedNodes = [checkedObject.node]
+      }
+    }
+    // 多选
+    else {
+      // 启用半选
+      if (
+        enableHalfChecked &&
+        Array.isArray(checkedObject.halfCheckedKeys) &&
+        checkedObject.halfCheckedKeys.length
+      ) {
+        let halfCheckedNodes = []
+        for (let item of flattenListRef.current) {
+          if (checkedObject.halfCheckedKeys.includes(item.id)) {
+            halfCheckedNodes.push({
+              ...item,
+              halfChecked: true
+            })
+          }
+        }
+        checkedNodes.push(...halfCheckedNodes)
+      }
+      // 保留上次选中值(取差量的值, 不存在列表中的值, 用于列表刷新后选中项没有了)
+      if (preserveValue && Array.isArray(value) && value.length) {
+        const difference = value.filter(
+          (selectItem) => !flattenListRef.current.some((item) => item.id === selectItem.id)
+        )
+        checkedNodes.push(...difference)
       }
     }
     if (onChange) onChange(checkedNodes)

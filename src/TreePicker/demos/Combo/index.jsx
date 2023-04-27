@@ -10,31 +10,31 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={treeData}
-        // multiple={false}
+        multiple={true}
         captionProps={{
           caption: 'aaa'
         }}
-        onlyLeafCheck={true}
+        // onlyLeafCheck={true}
         // checkStrictly={true}
-        checkable={false}
-        TreeProps={{
-          expandAction: 'click',
-          itemRender: (item, { keyword }) => {
-            return (
-              <div className="flex flex-middle">
-                {item.isLeaf && (
-                  <img
-                    className="size36"
-                    src="https://image-test.waiqin365.com/imobii_portal/images/icon/default-face-small.png"
-                    alt=""
-                    style={{ borderRadius: '100%', marginRight: '4px' }}
-                  />
-                )}
-                <HighlightKeyword text={item.name} keyword={keyword} />
-              </div>
-            )
-          }
-        }}
+        checkable={true}
+        // TreeProps={{
+        //   expandAction: 'click',
+        //   itemRender: (item, { keyword }) => {
+        //     return (
+        //       <div className="flex flex-middle">
+        //         {item.isLeaf && (
+        //           <img
+        //             className="size36"
+        //             src="https://image-test.waiqin365.com/imobii_portal/images/icon/default-face-small.png"
+        //             alt=""
+        //             style={{ borderRadius: '100%', marginRight: '4px' }}
+        //           />
+        //         )}
+        //         <HighlightKeyword text={item.name} keyword={keyword} />
+        //       </div>
+        //     )
+        //   }
+        // }}
         onChange={(newValue) => {
           console.log('checked:', newValue)
           setValue(newValue)
