@@ -79,7 +79,6 @@ const Custom = function ({
       cancelProps={cancelProps}
       maskClosable={maskClosable}
       maskProps={maskProps}
-      className="datepicker-rangemodal-modal-card-button"
       value={multipleDate}
       type={type}
       min={min}
