@@ -303,9 +303,8 @@ const InputText = forwardRef(
       focus()
 
       // Callback
-      if (onChange) {
-        onChange('')
-      }
+      typeof onChange === 'function' && onChange('')
+      typeof clearProps?.onClick === 'function' && clearProps.onClick(e, '')
 
       // 非受控组件需要操作DOM
       if (value === undefined) {

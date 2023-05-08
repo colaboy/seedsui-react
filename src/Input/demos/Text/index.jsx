@@ -29,6 +29,11 @@ export default () => {
         onClearVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        clearProps={{
+          onClick: (e) => {
+            console.log(e)
+          }
+        }}
         // riconProps={{ className: 'icon shape-arrow-right sm' }}
         ricon={<i className="ricon icon shape-arrow-right sm" />}
       />
