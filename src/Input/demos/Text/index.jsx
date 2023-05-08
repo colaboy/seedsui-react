@@ -21,11 +21,15 @@ export default () => {
         // readOnly
         value={value}
         maxLength={10}
-        // allowClear
+        allowClear
         onChange={(val) => {
           console.log(val)
           setValue(val)
         }}
+        onClearVisibleChange={(visible) => {
+          console.log('visible:', visible)
+        }}
+        ricon={value ? null : <i className="icon shape-arrow-right sm" />}
       />
     </>
   )

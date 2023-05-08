@@ -30,6 +30,7 @@ const InputText = forwardRef(
       // 清除按键
       allowClear,
       clearProps,
+      onClearVisibleChange,
       // 右侧内容
       rcaption,
       // 子内容
@@ -124,10 +125,12 @@ const InputText = forwardRef(
       if (val) {
         if (clearRef?.current?.classList?.remove) {
           clearRef.current.classList.remove('hide')
+          typeof onClearVisibleChange === 'function' && onClearVisibleChange(true)
         }
       } else {
         if (clearRef?.current?.classList?.add) {
           clearRef.current.classList.add('hide')
+          typeof onClearVisibleChange === 'function' && onClearVisibleChange(false)
         }
       }
     }
