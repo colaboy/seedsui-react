@@ -122,15 +122,32 @@ const InputText = forwardRef(
       }
 
       // 根据值判断是否显示清空
-      if (val) {
-        if (clearRef?.current?.classList?.remove) {
+      if (clearRef?.current?.classList) {
+        // 右侧图标, 当allowClear为exclusion-ricon时，则与ricon互斥
+        let ricon = clearRef.current.nextElementSibling
+        if (!ricon || !ricon?.classList?.contains('ricon')) {
+          ricon = null
+        }
+
+        // 有值隐藏清除
+        if (val) {
           clearRef.current.classList.remove('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(true)
+
+          // 清除图标显示时, 隐藏右侧图标
+          if (allowClear === 'exclusion-ricon' && ricon) {
+            ricon.classList.add('hide')
+          }
         }
-      } else {
-        if (clearRef?.current?.classList?.add) {
+        // 无值显示清除
+        else {
           clearRef.current.classList.add('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(false)
+
+          // 清除图标隐藏时, 显示右侧图标
+          if (allowClear === 'exclusion-ricon' && ricon) {
+            ricon.classList.remove('hide')
+          }
         }
       }
     }

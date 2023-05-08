@@ -35,7 +35,7 @@ function searchNearby(
       }
     })
 
-    // 传入点
+    // 传入点: 经过实验，百度地图searchNearby只根据当前显示的区域搜索，传point没有任何变化（所以不要传，传了也白传）
     if (point) {
       // eslint-disable-next-line
       point = formatPoint(point)

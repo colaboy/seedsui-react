@@ -78,6 +78,7 @@ function Search({ map, onChange }) {
         >
           <Input.Text
             ref={inputRef}
+            type="search"
             placeholder={locale('搜索地点', 'search_place')}
             licon={<i className="icon icon-search color-sub size14" style={{ margin: '8px' }}></i>}
             inputProps={{ style: { padding: '2px 0' } }}

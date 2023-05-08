@@ -131,9 +131,6 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
     if (newValue && newValue.latitude && newValue.longitude) {
       let point = [newValue.longitude, newValue.latitude]
       addCurrentMarker(point, type)
-      setTimeout(() => {
-        centerToCurrent()
-      }, 200)
     }
 
     // 一律转成国测局坐标
@@ -145,9 +142,17 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
     }
     setValue(value)
 
+    // 地图定位到中间
+    centerToCurrent()
+
     // 更新附近
     if (updateNearby !== false && nearByRef.current) {
-      nearByRef.current.reload()
+      if (nearByRef.timeout) {
+        clearTimeout(nearByRef.timeout)
+      }
+      nearByRef.timeout = setTimeout(() => {
+        nearByRef.current.reload()
+      }, 1000)
     }
   }
 

@@ -206,21 +206,7 @@ const NumberBox = forwardRef(
           }`}
           onClick={handleMinus}
         />
-        {licon && licon}
-        {liconProps && !Object.isEmptyObject(liconProps) && (
-          <i
-            {...liconProps}
-            className={`licon icon${liconProps.className ? ' ' + liconProps.className : ''}`}
-          ></i>
-        )}
         {getInputDOM()}
-        {riconProps && !Object.isEmptyObject(riconProps) && (
-          <i
-            {...riconProps}
-            className={`ricon icon${riconProps.className ? ' ' + riconProps.className : ''}`}
-          ></i>
-        )}
-        {ricon && ricon}
         <input
           value="+"
           disabled={maxDisabled}

@@ -11,6 +11,10 @@ export default () => {
   return (
     <>
       <Select.Combo
+        allowClear="exclusion-ricon"
+        riconProps={{
+          className: 'icon shape-arrow-right sm'
+        }}
         placeholder="Please select"
         value={value}
         list={[

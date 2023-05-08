@@ -13,6 +13,9 @@ export default () => {
         max={5}
         // value={value}
         allowClear
+        liconProps={{ className: 'icon icon-rdo-emoji' }}
+        licon={<i className="icon icon-rdo-emoji"></i>}
+        ricon={<i className="icon icon-rdo-emoji"></i>}
         onChange={(val) => {
           console.log(val)
           setValue(val)

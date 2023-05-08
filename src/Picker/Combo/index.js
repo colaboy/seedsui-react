@@ -189,9 +189,6 @@ const Combo = forwardRef(
       if (readOnly || disabled) {
         // eslint-disable-next-line
         allowClear = false
-      } else {
-        // eslint-disable-next-line
-        allowClear = true
       }
     }
     return (

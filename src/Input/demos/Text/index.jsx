@@ -21,7 +21,7 @@ export default () => {
         // readOnly
         value={value}
         maxLength={10}
-        allowClear
+        allowClear="exclusion-ricon"
         onChange={(val) => {
           console.log(val)
           setValue(val)
@@ -29,7 +29,8 @@ export default () => {
         onClearVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
-        ricon={value ? null : <i className="icon shape-arrow-right sm" />}
+        // riconProps={{ className: 'icon shape-arrow-right sm' }}
+        ricon={<i className="ricon icon shape-arrow-right sm" />}
       />
     </>
   )
