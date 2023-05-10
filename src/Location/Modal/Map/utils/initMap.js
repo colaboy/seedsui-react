@@ -24,7 +24,7 @@ function initMap(container, opt) {
       // 禁用点击景点弹出详细信息的方法
       enableMapClick: false
     })
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 12)
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 16)
 
     // 缩放控件
     let navigationControl = null

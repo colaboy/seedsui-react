@@ -20,6 +20,8 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentMarkerRef = useRef(null)
+  // 定位控件
+  const locationRef = useRef(null)
   // 拖拽临时显示中心点
   const centerMarkerRef = useRef(null)
   // 附近推荐
@@ -44,6 +46,14 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
 
   // 初始化地图
   async function initData() {
+    // 没有值时先调用定位
+    if (!originValue || !originValue.longitude || !originValue.latitude) {
+      if (locationRef.current) {
+        let locationResult = await locationRef.current.getLocation()
+        value = locationResult
+        setValue(value)
+      }
+    }
     // 初始化地图
     // eslint-disable-next-line
     let bdMap = await initMap(containerRef.current)
@@ -57,7 +67,7 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
     // 绘制当前点
     if (value?.longitude && value?.latitude) {
       let point = [value.longitude, value.latitude]
-      let marker = addCurrentMarker(point)
+      let marker = addCurrentMarker(point, 'gcj02')
       centerToPoint(marker.point, { map: map })
     }
 
@@ -151,7 +161,7 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
         clearTimeout(nearByRef.timeout)
       }
       nearByRef.timeout = setTimeout(() => {
-        nearByRef.current.reload()
+        nearByRef?.current?.reload()
       }, 1000)
     }
   }
@@ -166,7 +176,9 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
       {!readOnly && <Search map={map} onChange={handleLocation} />}
       <div className="flex-1 position-relative">
         <div ref={containerRef} className={`mappage-container`}></div>
-        {!readOnly && <Control.Location map={map} value={value} onChange={handleLocation} />}
+        {!readOnly && (
+          <Control.Location ref={locationRef} map={map} value={value} onChange={handleLocation} />
+        )}
         <Control.CenterMarker ref={centerMarkerRef} />
       </div>
       <Layout.Footer>
@@ -187,9 +199,9 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
             <p className="mappage-list-item-content-title">
               <span>{locale('当前位置', 'current_location')}</span>
               <Navigation
-                longitude={value.longitude}
-                latitude={value.latitude}
-                address={value.value}
+                longitude={value?.longitude}
+                latitude={value?.latitude}
+                address={value?.value}
               />
             </p>
             <p className="mappage-list-item-description">{value?.value || ''}</p>
