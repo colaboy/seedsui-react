@@ -79,6 +79,10 @@ export default () => {
           console.log(newRangeValue)
           setRangeValue(newRangeValue)
         }}
+        onBeforeChange={(newValue) => {
+          console.log('onBeforeChange:', newValue)
+          return true
+        }}
         captionProps={{
           caption: '选择日期'
         }}

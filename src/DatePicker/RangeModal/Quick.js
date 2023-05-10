@@ -11,7 +11,7 @@ const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChan
   async function handleClick(rangeKey) {
     // 修改提示
     if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(newValue)
+      let goOn = await onBeforeChange(ranges[rangeKey])
       if (!goOn) return
     }
     if (onChange) onChange(ranges[rangeKey])
