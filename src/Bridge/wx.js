@@ -46,8 +46,8 @@ let Bridge = {
   // 关闭窗口
   closeWindow: function () {
     // 小程序内web-view关闭
-    if (['wechatMiniprogram', 'weworkMiniprogram'].includes(this.platform || '')) {
-      wx.miniProgram.navigateBack({}) // eslint-disable-line
+    if (['wechatMiniprogram', 'weworkMiniprogram'].includes(Device.platform || '')) {
+      window.top.wx.miniProgram.navigateBack({}) // eslint-disable-line
     }
     // 微信关闭
     window.top.wx.closeWindow() // eslint-disable-line
@@ -60,7 +60,7 @@ let Bridge = {
   },
   // 导航
   openLocation: function (params) {
-    window.top.wq.openLocation(params) // eslint-disable-line
+    window.top.wx.openLocation(params) // eslint-disable-line
   },
   /**
    * 获取当前地理位置
