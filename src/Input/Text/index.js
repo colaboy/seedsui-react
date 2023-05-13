@@ -13,6 +13,7 @@ const InputText = forwardRef(
       inputProps = {},
       defaultValue,
       value,
+      formatter,
       // 小数精度, 只有数值框才生效
       precision,
       max,
@@ -72,17 +73,28 @@ const InputText = forwardRef(
 
     useEffect(() => {
       let val = inputRef.current.value
-      // 更新清除按钮和自适应的高度
-      updateClear(val)
-      updateAutoFit(val)
+
       // 自动获取焦点
       if (autoFocus) {
         focus()
       }
+
       // 矫正为正确的值
       if (inputRef.current) {
-        correctValue(val, true)
+        // 矫正为正确的值
+        val = correctValue(val, true)
+        // 格式化输入
+        val = correctFormatter(val)
+
+        // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
+        if (inputRef.current && val !== inputRef.current.value) {
+          inputRef.current.value = val
+        }
       }
+
+      // 更新清除按钮和自适应的高度
+      updateClear(val)
+      updateAutoFit(val)
     }, []) // eslint-disable-line
 
     useEffect(() => {
@@ -173,6 +185,18 @@ const InputText = forwardRef(
       return val
     }
 
+    // 矫正formatter
+    function correctFormatter(val) {
+      if (typeof formatter === 'function') {
+        let formatterValue = formatter(val)
+        if (typeof formatterValue === 'string' || typeof formatterValue === 'number') {
+          // eslint-disable-next-line
+          val = formatterValue
+        }
+      }
+      return val
+    }
+
     // 矫正小数位截取
     function correctPrecision(val, fixedPrecision) {
       // 符合截取条件时
@@ -206,10 +230,6 @@ const InputText = forwardRef(
       // eslint-disable-next-line
       val = correctPrecision(val, fixedPrecision)
 
-      // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
-      if (inputRef.current && val !== inputRef.current.value) {
-        inputRef.current.value = val
-      }
       return val
     }
 
@@ -250,7 +270,9 @@ const InputText = forwardRef(
       // 此处不宜用target?.validity?.badInput矫正数值, 因为ios上.也返回空
 
       // 矫正maxLength和小数点位数
+      // eslint-disable-next-line
       val = correctValue(val)
+      target.value = val
 
       if (onChange) {
         if (val && type === 'number') {
@@ -281,15 +303,23 @@ const InputText = forwardRef(
           }
 
           // 纠正数字
+          // eslint-disable-next-line
           val = correctValue(val, true)
-          // 修改完回调
-          if (val !== value) {
-            if (onChange) onChange(val)
-          }
         }
         // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
         else {
-          target.value = ''
+          val = ''
+        }
+
+        // 格式化输入
+        val = correctFormatter(val)
+
+        // 赋值
+        target.value = val
+
+        // 修改完回调
+        if (val !== value) {
+          if (onChange) onChange(val)
         }
       }
 
