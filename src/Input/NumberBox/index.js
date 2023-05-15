@@ -6,34 +6,45 @@ import InputNumber from './../Number'
 const NumberBox = forwardRef(
   (
     {
-      // 容器
-      disabled,
       // 加减号
       plusProps = {},
       minusProps = {},
       stepFocus, // 点击加减按钮获取焦点
 
       // 文本框
+      // 容器
+      type = 'text', // 类型: text | number | tel | password
+      autoFit, // 自动高度文本框
       readOnly,
-      // disabled,
+      disabled,
+      // 文本框
       inputProps = {},
       defaultValue,
       value,
+      formatter,
+      // 小数精度, 只有数值框才生效
       precision,
       max,
       min,
       placeholder,
       maxLength,
+      // 自动获取焦点
       autoFocus, // 渲染时自动获取焦点
       autoSelect, // 渲染时自动选中
+      // 左右图标
       licon,
       liconProps,
       ricon,
       riconProps,
+      // 清除按键
       allowClear,
       clearProps,
+      onClearVisibleChange,
+      // 右侧内容
       rcaption,
-      // children,
+      // 子内容
+      children,
+      // 事件
       onClick,
       onCompositionStart, // 输入开始时
       onCompositionUpdate, // 输入进行中
@@ -163,6 +174,7 @@ const NumberBox = forwardRef(
           inputProps={inputProps}
           defaultValue={defaultValue}
           value={value}
+          formatter={formatter}
           precision={precision}
           max={max}
           min={min}
@@ -176,6 +188,7 @@ const NumberBox = forwardRef(
           riconProps={riconProps}
           allowClear={allowClear}
           clearProps={clearProps}
+          onClearVisibleChange={onClearVisibleChange}
           rcaption={rcaption}
           onClick={onClick}
           onCompositionStart={onCompositionStart} // 输入开始时
@@ -185,7 +198,9 @@ const NumberBox = forwardRef(
           onChange={handleChange}
           onBlur={onBlur}
           onFocus={onFocus}
-        />
+        >
+          {children}
+        </InputNumber>
       )
     }
 

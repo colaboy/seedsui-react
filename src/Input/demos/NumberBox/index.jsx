@@ -20,7 +20,9 @@ export default () => {
           console.log(val)
           setValue(val)
         }}
-      />
+      >
+        1234
+      </Input.NumberBox>
     </>
   )
 }
