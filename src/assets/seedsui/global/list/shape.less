@@ -1,4 +1,4 @@
-@shape-arrow-color: @placeholder;
+@shape-arrow-color: #ccc;
 @shape-triangle-color: @placeholder;
 // 箭头图标
 .shape-arrow-left,
@@ -9,12 +9,18 @@
   width: 18px;
   height: 18px;
   border-color: @shape-arrow-color;
+  &:after {
+    width: 8px;
+    height: 8px;
+    border-width: 1px 0 0 1px;
+  }
   &.sm {
-    &:after,
+    width: 12px;
+    height: 12px;
     &:after {
-      width: 8px;
-      height: 8px;
-      border-width: 2px 0 0 2px;
+      width: 6px;
+      height: 6px;
+      border-width: 1px 0 0 1px;
     }
   }
 }
