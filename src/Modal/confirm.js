@@ -13,11 +13,6 @@ export default function ({
   content,
   ...props
 }) {
-  // 保持单例
-  if (!window.SeedsUIReactModalContainer) {
-    window.SeedsUIReactModalContainer = document.createDocumentFragment()
-  }
-
   // 确定按钮
   if (submitProps === undefined) {
     // eslint-disable-next-line
@@ -41,13 +36,25 @@ export default function ({
     let mask = modal.parentNode
     mask.classList.remove('active')
     modal.classList.remove('active')
+
     setTimeout(() => {
-      ReactRender.unmount(window.SeedsUIReactModalContainer)
+      if (window.SeedsUIReactModalContainer) {
+        ReactRender.unmount(window.SeedsUIReactModalContainer)
+      }
     }, 300)
   }
 
   // 渲染
   function render() {
+    // 如果已经存在此节点了，则先移除此节点
+    if (window.SeedsUIReactModalContainer) {
+      ReactRender.unmount(window.SeedsUIReactModalContainer)
+      window.SeedsUIReactModalContainer = null
+    }
+
+    // 创建新节点
+    let SeedsUIReactModalContainer = document.createDocumentFragment()
+
     // 渲染组件, 先不显示
     ReactRender.render(
       <Modal
@@ -66,7 +73,7 @@ export default function ({
       >
         {content}
       </Modal>,
-      window.SeedsUIReactModalContainer
+      SeedsUIReactModalContainer
     )
     // 渲染完成后补充active, 解决渲染后动画不生效的问题
     setTimeout(() => {
@@ -75,7 +82,12 @@ export default function ({
       let mask = modal.parentNode
       mask.classList.add('active')
       modal.classList.add('active')
-    }, 100)
+
+      // 防止异步移除
+      setTimeout(() => {
+        window.SeedsUIReactModalContainer = SeedsUIReactModalContainer
+      }, 500)
+    }, 10)
   }
   render()
 }

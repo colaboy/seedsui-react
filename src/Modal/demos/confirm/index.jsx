@@ -4,7 +4,21 @@ import { Layout, Modal } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Modal.confirm({
-      content: 'confirm content'
+      content: 'confirm content1',
+      submitProps: {
+        onClick: () => {
+          Modal.confirm({
+            content: 'confirm content2',
+            submitProps: {
+              onClick: () => {
+                Modal.confirm({
+                  content: 'confirm content3'
+                })
+              }
+            }
+          })
+        }
+      }
     })
   }
 
