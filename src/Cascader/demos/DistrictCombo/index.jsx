@@ -46,7 +46,7 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
-        // min="city" // ['country', 'province', 'city', 'district', 'street']
+        min="district" // ['country', 'province', 'city', 'district', 'street']
         type="city"
         list={CountriesData}
         loadData={loadData}
@@ -57,6 +57,9 @@ export default () => {
           console.log(newValue)
           setValue(newValue)
         }}
+        // submitProps={{
+        //   visible: true
+        // }}
         captionProps={{
           caption: '级联选择'
         }}
