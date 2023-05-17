@@ -1,25 +1,33 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
+import { getMinTypes, matchType, testCity, testDistrict } from './utils'
 import CascaderCombo from './../Combo'
 
 // 级联选择
 export default forwardRef(
   (
     {
-      type = '', // country | province | city | district (province、city、district只有中国时才生效, 因为只有中国有省市区)
+      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      min = '',
       // 判断是否是国省市区
       isCountry,
       isProvince,
       isCity,
       isDistrict,
+      isStreet,
+      value,
       list,
       loadList,
       onBeforeSelectOption,
+      // 确定按钮需要根据min来判断显隐
+      submitProps,
       ...props
     },
     ref
   ) => {
     const listData = useRef(list)
     const [visible, setVisible] = useState(false)
+    // 是否显示右上角确认按钮
+    let [submitVisible, setSubmitVisible] = useState(null)
 
     useEffect(() => {
       initList()
@@ -53,96 +61,104 @@ export default forwardRef(
       setVisible(true)
     }
 
+    // 根据min判断是否显示确定按钮
+    function updateSubmitVisible() {
+      let tabs = null
+      // 默认读取点击后选中的最后一项
+      if (Array.isArray(listData.tabs) && listData.tabs.length) {
+        tabs = listData.tabs
+      }
+      // 如果没有选中项, 说明是初始化，则读取传入值的最后一项
+      if (!tabs) tabs = Array.isArray(value) && value.length ? value : null
+
+      // 如果即没点击, 又没有传入初始值，则默认不显示提交按钮
+      if (!tabs) {
+        submitVisible = false
+        return
+      }
+
+      submitVisible = null
+
+      // 选中的末级
+      let lastTab = tabs[tabs.length - 1]
+
+      // 获取末级类型
+      let lastTabType = matchType(lastTab, {
+        isCountry,
+        isProvince,
+        isCity,
+        isDistrict,
+        isStreet
+      })
+      // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
+      if (!lastTabType && tabs.length > 2) {
+        let prevTab = tabs[tabs.length - 2]
+        if (testDistrict(prevTab, isDistrict)) {
+          lastTabType = 'street'
+        } else if (testCity(prevTab, isCity)) {
+          lastTabType = 'street'
+        }
+      }
+
+      // 最小支持的类型集合
+      if (getMinTypes(min).includes(lastTabType)) {
+        submitVisible = true
+      } else {
+        submitVisible = false
+      }
+    }
+
     // 点击选项前判断是否指定类型: 省, 市, 区
     function handleBeforeSelectOption(tabs) {
-      if (!type) return true
+      if (!type && !min) return true
       if (!Array.isArray(tabs) || !tabs.length) return true
 
       // 自行解决省市区判断
       if (onBeforeSelectOption) return onBeforeSelectOption(tabs)
 
+      // 根据最小类型, 判定是否显示确定按钮
+      if (min) {
+        // 记录点击的最后一项
+        listData.tabs = tabs
+        updateSubmitVisible()
+        setSubmitVisible(submitVisible)
+      }
+
+      // 匹配类型，没传类型则允许下钻
+      if (!type) return true
+
       // 获取当前选中项
       let lastTab = tabs[tabs.length - 1]
-
-      // 获取所有省市, 用于匹配选中的省市
-      if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
-        window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ = require('./ChinaAreaLevel')
-        if (window.__SeedsUI_Cascader_DistrictCombo_areaLevel__.default) {
-          window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ =
-            window.__SeedsUI_Cascader_DistrictCombo_areaLevel__.default
-        }
-      }
-      let AreaLevel = window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ || null
-      if (!AreaLevel) return true
-
-      // 匹配国家, id相同或者名称相近即可匹配, 因为国家是一级
-      if (type === 'country') {
-        if (typeof isCountry === 'function') {
-          return isCountry(lastTab)
-        }
-        if (lastTab.isCountry) {
-          return true
-        }
-        for (let province of AreaLevel.countries) {
-          if (
-            lastTab.id === province.id ||
-            province.name.indexOf(lastTab.name) !== -1 ||
-            lastTab.name.indexOf(province.name) !== -1
-          ) {
-            return false
-          }
-        }
-      }
-      // 匹配省名, id相同或者名称相近即可匹配, 因为省是一或者二级
-      else if (type === 'province') {
-        if (typeof isProvince === 'function') {
-          return isProvince(lastTab)
-        }
-        if (lastTab.isProvince) {
-          return true
-        }
-        for (let province of AreaLevel.provinces) {
-          if (
-            lastTab.id === province.id ||
-            province.name.indexOf(lastTab.name) !== -1 ||
-            lastTab.name.indexOf(province.name) !== -1
-          ) {
-            return false
-          }
-        }
-      }
-      // 匹配市名, id相同或者包含市, 因为吉林省吉林市不能根据名称匹配, 否则可能会选到省
-      else if (type === 'city') {
-        if (typeof isCity === 'function') {
-          return isCity(lastTab)
-        }
-        if (lastTab.isCity) {
-          return true
-        }
-        for (let city of AreaLevel.cities) {
-          if (lastTab.id === city.id || lastTab.name.indexOf('市') !== -1) {
-            return false
-          }
-        }
-      }
-      // 区判断
-      else if (type === 'district') {
-        if (typeof isDistrict === 'function') {
-          return isDistrict(lastTab)
-        }
-        if (lastTab.isDistrict) {
-          return false
-        }
-      }
-      return true
+      let match = matchType(lastTab, { type, isCountry, isProvince, isCity, isDistrict, isStreet })
+      // 没有匹配到类型时null返回true不关闭，匹配到时返回false不允许下钻
+      return match === null ? true : !match
     }
 
     if (!visible) return null
+
+    // 根据最小类型, 判定是否显示确定按钮
+    if (min) {
+      updateSubmitVisible()
+    }
+
+    // 显示右上角的按钮
+    // eslint-disable-next-line
+    if (!submitProps) submitProps = {}
+    if (submitVisible !== null) {
+      // eslint-disable-next-line
+      submitProps = {
+        visible: submitVisible,
+        ...submitProps
+      }
+    }
+
     return (
       <CascaderCombo
         onBeforeSelectOption={handleBeforeSelectOption}
         ref={ref}
+        value={value}
         list={listData.current}
+        submitProps={submitProps}
         {...props}
       />
     )

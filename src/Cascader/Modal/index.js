@@ -230,6 +230,7 @@ const Modal = forwardRef(
 )
 
 export default React.memo(Modal, (prevProps, nextProps) => {
-  if (nextProps.visible === prevProps.visible) return true
-  return false
+  if (nextProps.visible !== prevProps.visible) return false
+  if (nextProps.submitProps?.visible !== prevProps.submitProps?.visible) return false
+  return true
 })
