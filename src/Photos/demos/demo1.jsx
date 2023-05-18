@@ -26,7 +26,7 @@ export default () => {
     console.log(...params)
   }
   function handleChoose(...params) {
-    console.log('选择')
+    alert('选择')
     console.log(...params)
   }
   function handleDelete(...params) {
@@ -37,6 +37,11 @@ export default () => {
     <>
       <Photos
         // isBrowser
+        onBeforeChoose={() => {
+          return new Promise((resolve) => {
+            resolve(true)
+          })
+        }}
         list={list}
         onChoose={handleChoose}
         onDelete={handleDelete}

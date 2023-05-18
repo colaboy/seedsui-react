@@ -10,7 +10,7 @@ const Photos = forwardRef(
       list, // [{id: '', name: '', thumb: '', src: ''}]
       upload, // 上传按钮覆盖的dom
       uploading, // 是否上传中
-      beforeChoose, // 选择前校验
+      onBeforeChoose, // 选择前校验
       onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
       onDelete,
       onClick,
@@ -50,7 +50,7 @@ const Photos = forwardRef(
       if (target.classList.contains('photos-upload')) {
         // 点击添加
         let choose = true
-        if (typeof beforeChoose === 'function') choose = await beforeChoose()
+        if (typeof onBeforeChoose === 'function') choose = await onBeforeChoose()
         console.log('是否允许选择:' + choose)
         // 允许选择
         if (choose) {
@@ -62,7 +62,7 @@ const Photos = forwardRef(
               fileRef.current.click()
             } else {
               // 其它浏览器
-              var targetEvent = document.createEvent('MouseEvents')
+              let targetEvent = document.createEvent('MouseEvents')
               targetEvent.initEvent('click', true, true)
               fileRef.current.dispatchEvent(targetEvent)
             }
@@ -120,13 +120,26 @@ const Photos = forwardRef(
     }
     // 图片加载完成
     function load(e) {
-      var target = e.target
+      let target = e.target
       target.parentNode.setAttribute('data-complete', '1')
     }
     // 图片加载失败
     function error(e) {
-      var target = e.target
+      let target = e.target
       target.parentNode.setAttribute('data-complete', '0')
+    }
+
+    // 获取Loading
+    function getUploadingDOM() {
+      if (!uploading) return null
+      if (typeof uploading === 'boolean') {
+        return (
+          <div className="photos-upload-loading">
+            <div className="photos-upload-loading-icon"></div>
+          </div>
+        )
+      }
+      return uploading
     }
 
     return (
@@ -205,11 +218,7 @@ const Photos = forwardRef(
                 />
               )}
             {upload && upload}
-            {uploading && (
-              <div className="photos-upload-loading">
-                <div className="photos-upload-loading-icon"></div>
-              </div>
-            )}
+            {getUploadingDOM(uploading)}
           </div>
         )}
         {/* 预览 */}
