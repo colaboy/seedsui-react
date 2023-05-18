@@ -16,6 +16,20 @@ function getTreeData({ list, onlyLeafCheck, keyword, itemRender, onClick }) {
   // 关键字搜索
   const loop = (data) =>
     data.map((item) => {
+      // 行内容
+      let titleContentNode = <HighlightKeyword text={item.name} keyword={keyword} />
+
+      // 自定义渲染行内容
+      if (typeof itemRender === 'function') {
+        let customTitleNode = itemRender(item, {
+          keyword: keyword
+        })
+        if (customTitleNode) {
+          titleContentNode = customTitleNode
+        }
+      }
+
+      // 自定义渲染行
       let titleNode = (
         <div
           className="rc-tree-title-wrapper"
@@ -24,20 +38,9 @@ function getTreeData({ list, onlyLeafCheck, keyword, itemRender, onClick }) {
             typeof onClick === 'function' && onClick(item)
           }}
         >
-          <HighlightKeyword text={item.name} keyword={keyword} />
+          {titleContentNode}
         </div>
       )
-
-      // 自定义渲染
-      if (typeof itemRender === 'function') {
-        let customTitleNode = itemRender(item, {
-          keyword: keyword
-        })
-        if (customTitleNode) {
-          titleNode = customTitleNode
-        }
-      }
-
       if (Array.isArray(item.children) && item.children.length) {
         return {
           disabled: onlyLeafCheck,

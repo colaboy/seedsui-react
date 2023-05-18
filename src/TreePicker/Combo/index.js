@@ -3,7 +3,7 @@ import Combo from './../../Picker/Combo'
 import Modal from './../Modal'
 
 // 树选择
-export default forwardRef(
+const TreePickerCombo = forwardRef(
   (
     {
       // 定制属性
@@ -15,7 +15,7 @@ export default forwardRef(
       ModalProps,
       TreeProps,
       // 标准属性
-      ...params
+      ...props
     },
     ref
   ) => {
@@ -32,8 +32,10 @@ export default forwardRef(
           TreeProps: TreeProps,
           ...ModalProps
         }}
-        {...params}
+        {...props}
       />
     )
   }
 )
+
+export default TreePickerCombo

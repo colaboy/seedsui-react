@@ -16,6 +16,10 @@ const Modal = forwardRef(
       multiple,
       value,
       list,
+
+      // 自定义渲染
+      itemRender,
+
       onBeforeChange,
       onChange,
       onSelect,
@@ -121,6 +125,7 @@ const Modal = forwardRef(
             <Tree
               multiple={multiple}
               list={list}
+              itemRender={itemRender}
               value={tempValue}
               onChange={(newTempValue) => {
                 tempValue = newTempValue

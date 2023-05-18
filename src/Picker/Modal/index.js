@@ -13,6 +13,10 @@ const Modal = forwardRef(
       visible = false,
       value,
       list,
+
+      // 自定义渲染
+      itemRender,
+
       onBeforeChange,
       onChange,
       onVisibleChange,

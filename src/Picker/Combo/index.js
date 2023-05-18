@@ -38,6 +38,9 @@ const Combo = forwardRef(
       value,
       list = [], // [{id: '', name: ''}]
 
+      // 自定义渲染
+      itemRender,
+
       onVisibleChange,
       onBeforeChange,
       onChange,
@@ -173,6 +176,9 @@ const Combo = forwardRef(
     }
     if (list !== undefined) {
       PickerModalProps.list = list
+    }
+    if (itemRender !== undefined) {
+      PickerModalProps.itemRender = itemRender
     }
     if (onBeforeChange !== undefined) {
       PickerModalProps.onBeforeChange = onBeforeChange

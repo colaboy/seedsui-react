@@ -35,6 +35,8 @@ function TreePicker(
     // 自定义渲染
     itemRender,
 
+    // 展开动作(过滤此属性，只保留一种交互：即点击展开)
+    expandAction,
     ...props
   },
   ref
@@ -106,6 +108,7 @@ function TreePicker(
       onlyLeafCheck,
       keyword: keywordRef.current || '',
       itemRender,
+      // 用于点击展开和收缩，点击阻止选中，计算展开和收缩项, rc-tree-title宽度即阻止选中的区域大小
       onClick: (item) => {
         // 触发onSelect
         typeof onSelect === 'function' && onSelect(item)
