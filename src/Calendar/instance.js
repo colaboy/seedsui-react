@@ -67,6 +67,11 @@ let Calendar = function (container, params) {
   let s = this
   s.params = params
   s.params.wrapperHeight = s.params.cellHeight * 6
+
+  // 默认日期为今天
+  if (s.params.defaultDate instanceof Date === false) {
+    s.params.defaultDate = new Date()
+  }
   // 禁止修改默认值
   // Object.defineProperty(s.params, 'defaultDate', {
   //   enumerable: true,

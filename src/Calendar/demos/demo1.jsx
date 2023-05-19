@@ -3,7 +3,7 @@ import { Calendar } from 'seedsui-react'
 
 export default () => {
   const calendarRef = useRef(null)
-  const [value, setValue] = useState(new Date('2023-05-20'))
+  const [value, setValue] = useState(new Date('2023-06-20'))
 
   function handleCellDOMRender(date) {
     // return `<div style="pointer-events: none;"><p>h:${date.getDate()}</p></div>`
@@ -65,7 +65,7 @@ export default () => {
         cellDOMRender={handleCellDOMRender}
         onChange={handleChange}
         onError={handleError}
-        // min={new Date()} // 禁用今天以前的日期
+        min={new Date()} // 禁用今天以前的日期
         // max={new Date('2022,06,27')} // 禁用今天以前的日期
       />
       <a style={{ margin: '8px' }} className="button lg bg-1" onClick={showMonth}>
