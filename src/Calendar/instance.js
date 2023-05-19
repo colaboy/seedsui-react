@@ -1,13 +1,13 @@
 // Calendar 日历 (require PrototypeDate.js)
-var Calendar = function (container, params) {
+let Calendar = function (container, params) {
   /* --------------------
   Model
   -------------------- */
-  var defaults = {
+  let defaults = {
     viewType: 'month', // 值为month|week
     disableBeforeDate: null, // 禁用之前的日期
     disableAfterDate: null, // 禁用之后的日期
-    defaultDate: null, // 默认选中的日期
+    defaultDate: new Date(), // 默认选中的日期
     threshold: '50',
     duration: '300',
     cellHeight: '40',
@@ -57,21 +57,22 @@ var Calendar = function (container, params) {
     onError:function({errMsg}) // 错误回调
     */
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
-  var s = this
+  let s = this
   s.params = params
   s.params.wrapperHeight = s.params.cellHeight * 6
   // 禁止修改默认值
-  Object.defineProperty(s.params, 'defaultDate', {
-    enumerable: true,
-    configurable: true,
-    writable: false
-  })
+  // Object.defineProperty(s.params, 'defaultDate', {
+  //   enumerable: true,
+  //   configurable: true,
+  //   writable: false
+  // })
 
   // 今天
   s.today = new Date()
@@ -122,36 +123,36 @@ var Calendar = function (container, params) {
   }
   // Header
   s.createHeader = function () {
-    var header = document.createElement('div')
+    let header = document.createElement('div')
     header.setAttribute('class', s.params.headerClass)
     return header
   }
   s.createPrev = function () {
-    var prev = document.createElement('div')
+    let prev = document.createElement('div')
     prev.setAttribute('class', s.params.prevClass)
     prev.innerHTML = s.params.prevHTML
     return prev
   }
   s.createNext = function () {
-    var next = document.createElement('div')
+    let next = document.createElement('div')
     next.setAttribute('class', s.params.nextClass)
     next.innerHTML = s.params.nextHTML
     return next
   }
   s.createTitle = function () {
-    var title = document.createElement('div')
+    let title = document.createElement('div')
     title.setAttribute('class', s.params.titleClass)
     return title
   }
   // WeekContainer
   s.createWeekContainer = function () {
-    var weekContainer = document.createElement('div')
+    let weekContainer = document.createElement('div')
     weekContainer.setAttribute('class', s.params.weekContainerClass)
 
-    var weekNames = ['日', '一', '二', '三', '四', '五', '六']
+    let weekNames = ['日', '一', '二', '三', '四', '五', '六']
     /* eslint-disable */
-    for (var i = 0, weekName; (weekName = weekNames[i++]); ) {
-      var week = document.createElement('div')
+    for (let i = 0, weekName; (weekName = weekNames[i++]); ) {
+      let week = document.createElement('div')
       week.setAttribute('class', s.params.weekClass)
       week.innerHTML = weekName
       weekContainer.appendChild(week)
@@ -163,17 +164,17 @@ var Calendar = function (container, params) {
   }
   // Wrapper
   s.createWrapper = function () {
-    var wrapper = document.createElement('div')
+    let wrapper = document.createElement('div')
     wrapper.setAttribute('class', s.params.wrapperClass)
     return wrapper
   }
   s.createWrapperY = function () {
-    var wrapperY = document.createElement('div')
+    let wrapperY = document.createElement('div')
     wrapperY.setAttribute('class', s.params.wrapperYClass)
     return wrapperY
   }
   s.createWrapperX = function () {
-    var wrapperX = document.createElement('div')
+    let wrapperX = document.createElement('div')
     wrapperX.setAttribute('class', s.params.wrapperXClass)
     wrapperX.width = s.container.width * 3
     wrapperX.style.width = s.container.width * 3 + 'px'
@@ -181,7 +182,7 @@ var Calendar = function (container, params) {
     wrapperX.width=s.container.width*3
     wrapperX.style.width=wrapperX.width+'px'
     */
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       s.months[i] = document.createElement('div')
       s.months[i].setAttribute('class', s.params.monthClass)
       s.months[i].style.width = s.container.width + 'px'
@@ -190,20 +191,20 @@ var Calendar = function (container, params) {
     return wrapperX
   }
   s.createDates = function () {
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       // 注入到月
-      for (var j = 0; j < 6; j++) {
+      for (let j = 0; j < 6; j++) {
         // 注入行
-        var monthRow = document.createElement('div')
+        let monthRow = document.createElement('div')
         monthRow.setAttribute('class', s.params.monthRowClass)
 
-        for (var k = 0; k < 7; k++) {
+        for (let k = 0; k < 7; k++) {
           // 注入到星期
-          var elCell = document.createElement('div')
+          let elCell = document.createElement('div')
           elCell.setAttribute('class', s.params.cellClass)
           elCell.style.height = s.params.cellHeight + 'px'
           elCell.style.lineHeight = s.params.cellHeight + 'px'
-          var elDateNum = document.createElement('div')
+          let elDateNum = document.createElement('div')
           elDateNum.setAttribute('class', s.params.dateNumClass)
 
           elCell.appendChild(elDateNum)
@@ -328,7 +329,7 @@ var Calendar = function (container, params) {
     s.wrapperX.width=s.container.width*3
     s.wrapperX.style.width=s.wrapperX.width.width+'px'
     */
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       s.months[i].style.width = s.container.width + 'px'
     }
   }
@@ -378,7 +379,7 @@ var Calendar = function (container, params) {
   // 上下滑动
   s.dragY = function (heightY) {
     s.wrapper.style.height = heightY + 'px'
-    var translateY = s.params.wrapperHeight - heightY
+    let translateY = s.params.wrapperHeight - heightY
     if (translateY <= s.touches.maxPosY) {
       s.wrapperY.style.webkitTransform = 'translateY(-' + translateY + 'px)'
     }
@@ -400,7 +401,7 @@ var Calendar = function (container, params) {
     }
   }
   // 绘制日历
-  var today = new Date()
+  let today = new Date()
   s.isToday = function (date) {
     if (
       date.getDate() === today.getDate() &&
@@ -413,29 +414,29 @@ var Calendar = function (container, params) {
   s.data = []
   s.updateData = function () {
     s.data = s.activeDate.getCalendarData()
-    var activeRowIndex = s.data.activeRowIndex
+    let activeRowIndex = s.data.activeRowIndex
     if (s.params.viewType === 'week') {
       s.touches.maxPosY = activeRowIndex * s.params.cellHeight
       s.touches.posY = s.touches.maxPosY
-      var prevWeek = s.activeDate.getPrevWeekData()
-      var nextWeek = s.activeDate.getNextWeekData()
-      var start1 = activeRowIndex * 7
-      var start2 = start1 + 84
+      let prevWeek = s.activeDate.getPrevWeekData()
+      let nextWeek = s.activeDate.getNextWeekData()
+      let start1 = activeRowIndex * 7
+      let start2 = start1 + 84
       // 修改同行上周
-      for (var i = 0, datIndex1 = start1; i < 7; i++) {
+      for (let i = 0, datIndex1 = start1; i < 7; i++) {
         s.data[datIndex1] = prevWeek[i]
         datIndex1++
       }
       // 修改同行下周
-      for (var j = 0, datIndex2 = start2; j < 7; j++) {
+      for (let j = 0, datIndex2 = start2; j < 7; j++) {
         s.data[datIndex2] = nextWeek[j]
         datIndex2++
       }
     }
   }
   s.drawHeader = function () {
-    var activeDate = s.activeDate
-    var titleFormatStr = s.params.titleFormat
+    let activeDate = s.activeDate
+    let titleFormatStr = s.params.titleFormat
     if (titleFormatStr) {
       s.title.innerHTML = activeDate.format(titleFormatStr)
     } else {
@@ -447,8 +448,8 @@ var Calendar = function (container, params) {
     // 更新选中日期
     s.updateData()
     // 注入身体
-    var activeIndex = s.data.activeIndex
-    for (var i = 0; i < s.dates.length; i++) {
+    let activeIndex = s.data.activeIndex
+    for (let i = 0; i < s.dates.length; i++) {
       s.dates[i].innerHTML = s.data[i].getDate()
 
       // 自定义绘制单元格
@@ -456,7 +457,7 @@ var Calendar = function (container, params) {
         let cellDOM = s.params.cellDOMRender(s.data[i])
         if (typeof cellDOM === 'string') {
           s.dates[i].innerHTML = cellDOM
-        } else {
+        } else if (toString.call(cellDOM).indexOf('HTML') !== -1) {
           s.dates[i].appendChild(cellDOM)
         }
       }
@@ -498,13 +499,12 @@ var Calendar = function (container, params) {
       // 滑动到禁用
       if (validate === -1) {
         // 小于最小值
-        s.activeDate.nextMonth()
+        s.activeDate = new Date(s.params.disableBeforeDate)
         s.draw()
         return
-      }
-      if (validate === 1) {
+      } else if (validate === 1) {
         // 大于最大值
-        s.activeDate.prevMonth()
+        s.activeDate = new Date(s.params.disableAfterDate)
         s.draw()
         return
       }
@@ -522,7 +522,7 @@ var Calendar = function (container, params) {
   }
   s.draw()
   s.setActiveDate = function (target) {
-    for (var i = 0; i < s.dates.length; i++) {
+    for (let i = 0; i < s.dates.length; i++) {
       s.dates[i].classList.remove(s.params.activeClass)
       s.dates[i].classList.remove(s.params.selectedClass)
     }
@@ -563,7 +563,7 @@ var Calendar = function (container, params) {
   Control
   -------------------- */
   s.events = function (detach) {
-    var action = detach ? 'removeEventListener' : 'addEventListener'
+    let action = detach ? 'removeEventListener' : 'addEventListener'
     s.wrapper[action]('touchstart', s.onTouchStart, false)
     s.wrapper[action]('touchmove', s.onTouchMove, false)
     s.wrapper[action]('touchend', s.onTouchEnd, false)
@@ -624,7 +624,7 @@ var Calendar = function (container, params) {
 
     if (s.touches.direction === 1) {
       // 左右滑动
-      var moveX = s.touches.posX - s.touches.diffX
+      let moveX = s.touches.posX - s.touches.diffX
       if (moveX < 0 && Math.abs(moveX) < s.container.width * 2) {
         // 判断是否是边缘
         s.touches.horizontal = moveX < s.touches.posX ? 1 : -1 // 设置方向(左右)
@@ -634,7 +634,7 @@ var Calendar = function (container, params) {
       // 上下滑动
       if (s.params.verticalDrag === true) {
         // 允许Y滑动的情况下
-        var heightY = s.touches.h - s.touches.diffY
+        let heightY = s.touches.h - s.touches.diffY
         if (heightY > s.params.cellHeight && heightY < s.params.wrapperHeight) {
           // 判断是否是边缘
           s.touches.vertical = heightY > s.touches.h ? 1 : -1 // 设置方向(上下)

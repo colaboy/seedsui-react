@@ -21,6 +21,19 @@ const Calendar = forwardRef(
     },
     ref
   ) => {
+    if (value && value instanceof Date === false) {
+      // eslint-disable-next-line
+      value = new Date(value)
+      if (isNaN(value)) {
+        // eslint-disable-next-line
+        value = null
+        console.log('SeedsUI Calender error: 请传入合法的value')
+      }
+    }
+
+    // 记录选中的值，用于对比修改后的值，判断是否需要触发onChange
+    const valueRef = useRef(value)
+
     const rootRef = useRef(null)
     const instance = useRef(null)
     useImperativeHandle(ref, () => {
@@ -66,7 +79,7 @@ const Calendar = forwardRef(
         disableBeforeDate: min,
         disableAfterDate: max,
         verticalDrag: verticalDrag,
-        defaultDate: value,
+        defaultDate: valueRef.current,
         prevHTML: prevHTML,
         nextHTML: nextHTML,
         cellDOMRender: cellDOMRender,
@@ -82,10 +95,15 @@ const Calendar = forwardRef(
 
     function handleChange(s) {
       // 如果选中日期和之前的相同则不需要触发onChange
-      if (value && s.activeDate && JSON.stringify(value) === JSON.stringify(s.activeDate)) {
+      if (
+        valueRef.current &&
+        s.activeDate &&
+        valueRef.current.toDateString() === s.activeDate.toDateString()
+      ) {
         return
       }
-      if (onChange) onChange(s.activeDate)
+      valueRef.current = new Date(s.activeDate)
+      if (onChange) onChange(valueRef.current)
     }
     function handleError(err) {
       if (onError) onError(err)
