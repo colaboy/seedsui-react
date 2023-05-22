@@ -16,12 +16,13 @@ export default () => {
         // defaultValue={value}
         value={value}
         // precision={2}
-        // maxLength={8}
+        precision={2}
+        maxLength={8}
+        allowClear
         formatter={(num) => {
           if (!num) return num
           return parseFloat(num)
         }}
-        precision={2}
         onChange={(val) => {
           console.log('得到的值:', val)
           setValue(val)

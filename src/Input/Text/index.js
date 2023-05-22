@@ -269,13 +269,12 @@ const InputText = forwardRef(
       let val = target.value
       // 此处不宜用target?.validity?.badInput矫正数值, 因为ios上.也返回空
 
-      // 矫正maxLength和小数点位数
-      // eslint-disable-next-line
-      val = correctValue(val)
-      target.value = val
-
       if (onChange) {
         if (val && type === 'number') {
+          // 矫正maxLength和小数点位数(不能矫正其它框，因为矫正将无法输入中文)
+          // eslint-disable-next-line
+          val = correctValue(val)
+          target.value = val
           // eslint-disable-next-line
           val = Number(val)
         }
