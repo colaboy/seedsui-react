@@ -64,9 +64,11 @@
 @input-textarea-height: 60px;
 .input-textarea {
   display: block;
+  min-height: @input-height;
+  line-height: @input-height;
+  padding: @input-text-padding;
   height: @input-textarea-height;
   &:extend(.appearance);
-  .flex;
 }
 
 // 自增高文本框
@@ -77,7 +79,6 @@
   .flex-1;
 
   pre {
-    min-height: @input-height;
     visibility: hidden;
     span {
       display: inline;
@@ -87,7 +88,11 @@
   // 自适应标签与多行文本框文字间距一致
   pre,
   textarea {
+    display: block;
+    min-height: @input-height;
     line-height: @input-height;
+    padding: @input-text-padding;
+    &:extend(.appearance);
   }
 }
 
@@ -99,17 +104,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  &,
-  + pre {
-    padding: 4px 0 0 0; // 文字距离上面的间隙
-  }
-
-  // 容器内多行文本框宽高100%
-  textarea {
-    width: 100%;
-    height: 100%;
-    &:extend(.appearance);
-  }
 }
 
 // 拾色器

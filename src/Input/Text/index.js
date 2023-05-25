@@ -356,51 +356,28 @@ const InputText = forwardRef(
       // if (inputVisible === false) return null
       // autoFit类型
       if (autoFit) {
-        // pre的左右padding
-        let fitLeft = 0
-        let fitRight = 0
-        if (otherInputProps.style) {
-          if (otherInputProps.style.padding) {
-            const paddingValues = otherInputProps.style.padding.split(' ')
-            if (paddingValues.length === 1) {
-              fitLeft = paddingValues[0]
-              fitRight = paddingValues[0]
-            } else if (paddingValues.length === 2) {
-              fitLeft = paddingValues[1]
-              fitRight = paddingValues[1]
-            } else if (paddingValues.length === 4) {
-              fitLeft = paddingValues[1]
-              fitRight = paddingValues[3]
-            }
-          } else if (otherInputProps.style.paddingLeft || otherInputProps.style.paddingRight) {
-            fitLeft = otherInputProps.style.paddingLeft || '0'
-            fitRight = otherInputProps.style.paddingRight || '0'
-          }
-        }
+        const { style, className, ...otherFitProps } = otherInputProps
         return (
-          <div
-            {...otherInputProps}
-            className={`input-fit-wrapper${
-              otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }${inputVisible === false ? ' hide' : ''}`}
-          >
-            <div className={`input-fit`}>
-              <textarea
-                ref={inputRef}
-                autoFocus={autoFocus}
-                value={value}
-                defaultValue={defaultValue}
-                maxLength={maxLength}
-                readOnly={readOnly}
-                disabled={disabled}
-                placeholder={placeholder}
-                onChange={handleChange}
-                onInput={handleInput}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-              ></textarea>
-            </div>
-            <pre ref={fitRef} style={{ left: fitLeft, right: fitRight }}>
+          <div className={`input-fit-wrapper${inputVisible === false ? ' hide' : ''}`}>
+            <textarea
+              ref={inputRef}
+              // className={className}
+              className={`input-fit`}
+              style={style}
+              {...otherFitProps}
+              autoFocus={autoFocus}
+              value={value}
+              defaultValue={defaultValue}
+              maxLength={maxLength}
+              readOnly={readOnly}
+              disabled={disabled}
+              placeholder={placeholder}
+              onChange={handleChange}
+              onInput={handleInput}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+            ></textarea>
+            <pre ref={fitRef} style={style} className={className}>
               <span></span>
             </pre>
           </div>

@@ -15,9 +15,13 @@ export default () => {
     <>
       <Input.Text
         ref={inputTextRef}
-        // inputProps={{
-        //   visible: false
-        // }}
+        inputProps={{
+          // visible: false,
+          style: {
+            padding: '12px'
+          }
+        }}
+        style={{ backgroundColor: '#f8f8f8' }}
         // readOnly
         value={value}
         maxLength={10}

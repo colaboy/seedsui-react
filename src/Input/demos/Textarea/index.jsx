@@ -7,6 +7,13 @@ export default () => {
     <>
       <Input.Textarea
         value={value}
+        allowClear
+        inputProps={{
+          style: {
+            padding: '12px'
+          }
+        }}
+        style={{ backgroundColor: '#f8f8f8' }}
         onChange={(val) => {
           console.log(val)
           setValue(val)
