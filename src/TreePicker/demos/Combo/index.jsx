@@ -14,6 +14,7 @@ export default () => {
         captionProps={{
           caption: 'aaa'
         }}
+        // defaultExpandAll={true}
         itemRender={(item, { keyword }) => {
           return (
             <div className="flex flex-middle">

@@ -32,14 +32,21 @@ const Modal = forwardRef(
       cancelProps = {},
       optionProps = {},
 
+      // 树控件: 是否启用半选功能
       checkStrictly,
-      // 是否启用半选功能
+      // 树控件: 是否启用半选功能
       enableHalfChecked,
-      // 保留不在树结构中的value
+      // 树控件: 保留不在树结构中的value
       preserveValue,
+      // 树控件: 仅允许点击末级节点
       onlyLeafCheck,
+      // 树控件: 是否显示checkbox
       checkable,
+      // 树控件: 过滤selectable, 根据checkable判断是否启用selectable, 没有checkbox时则启用
       selectable,
+      // 树控件: 默认展开
+      defaultExpandAll,
+
       TreeProps = {},
       ...props
     },
@@ -144,6 +151,7 @@ const Modal = forwardRef(
               onlyLeafCheck={onlyLeafCheck}
               checkable={checkable}
               selectable={selectable}
+              defaultExpandAll={defaultExpandAll}
               {...TreeProps}
             />
           </div>

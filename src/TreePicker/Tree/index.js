@@ -18,7 +18,7 @@ function TreePicker(
     onlyLeafCheck,
     checkable = true,
 
-    // 根据checkable判断是否启用selectable, 没有checkbox时则启用
+    // 过滤selectable, 根据checkable判断是否启用selectable, 没有checkbox时则启用
     selectable,
 
     list,
@@ -37,6 +37,8 @@ function TreePicker(
 
     // 展开动作(过滤此属性，只保留一种交互：即点击展开)
     expandAction,
+    // 默认展开
+    defaultExpandAll,
     ...props
   },
   ref
@@ -59,8 +61,8 @@ function TreePicker(
   const [treeData, setTreeData] = useState(null)
 
   // 展开的id
-  const [expandedKeys, setExpandedKeys] = useState([])
-  const expandedKeysRef = useRef([])
+  const [expandedKeys, setExpandedKeys] = useState(defaultExpandAll ? undefined : [])
+  const expandedKeysRef = useRef(expandedKeys)
 
   // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
   let [loadedKeys, setLoadedKeys] = useState([])
@@ -112,6 +114,13 @@ function TreePicker(
       onClick: (item) => {
         // 触发onSelect
         typeof onSelect === 'function' && onSelect(item)
+
+        // 如果选中项为undefined，说明默认全部展开，则直接收缩
+        if (expandedKeysRef.current === undefined) {
+          expandedKeysRef.current = []
+          setExpandedKeys(expandedKeysRef.current)
+          return
+        }
 
         // 设置展开和收缩项的keys
         if (expandedKeysRef.current.includes(item.id)) {
@@ -220,6 +229,14 @@ function TreePicker(
       : {}
 
   if (!treeData) return null
+
+  // 展开项，默认不传，搜索时需要展开
+  let expandedKeysProp = {}
+  if (expandedKeys !== undefined) {
+    expandedKeysProp = {
+      expandedKeys: expandedKeys
+    }
+  }
   return (
     <>
       <Tree
@@ -240,7 +257,9 @@ function TreePicker(
           setExpandedKeys(newExpandedKeys)
         }}
         // 搜索时展开的子级
-        expandedKeys={expandedKeys}
+        {...expandedKeysProp}
+        // 默认全部展开
+        defaultExpandAll={defaultExpandAll}
         // 树默认设置
         showIcon={showIcon}
         onlyLeafCheck={onlyLeafCheck}
