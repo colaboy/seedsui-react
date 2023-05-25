@@ -61,7 +61,7 @@ function TreePicker(
   const [treeData, setTreeData] = useState(null)
 
   // 展开的id
-  const [expandedKeys, setExpandedKeys] = useState(defaultExpandAll ? undefined : [])
+  const [expandedKeys, setExpandedKeys] = useState([])
   const expandedKeysRef = useRef(expandedKeys)
 
   // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
@@ -73,6 +73,12 @@ function TreePicker(
 
     // 更新平铺的列表, 搜索时使用
     flattenListRef.current = Object.clone(list).flattenTree()
+
+    // 默认全部展开
+    if (defaultExpandAll && flattenListRef.current?.length) {
+      expandedKeysRef.current = flattenListRef.current.map((item) => item.id)
+      setExpandedKeys(expandedKeysRef.current)
+    }
 
     // 异步加载时需要判断哪些不需要再次加载(isLoaded)
     if (typeof props.loadData === 'function') {
@@ -114,13 +120,6 @@ function TreePicker(
       onClick: (item) => {
         // 触发onSelect
         typeof onSelect === 'function' && onSelect(item)
-
-        // 如果选中项为undefined，说明默认全部展开，则直接收缩
-        if (expandedKeysRef.current === undefined) {
-          expandedKeysRef.current = []
-          setExpandedKeys(expandedKeysRef.current)
-          return
-        }
 
         // 设置展开和收缩项的keys
         if (expandedKeysRef.current.includes(item.id)) {
@@ -230,13 +229,6 @@ function TreePicker(
 
   if (!treeData) return null
 
-  // 展开项，默认不传，搜索时需要展开
-  let expandedKeysProp = {}
-  if (expandedKeys !== undefined) {
-    expandedKeysProp = {
-      expandedKeys: expandedKeys
-    }
-  }
   return (
     <>
       <Tree
@@ -257,9 +249,7 @@ function TreePicker(
           setExpandedKeys(newExpandedKeys)
         }}
         // 搜索时展开的子级
-        {...expandedKeysProp}
-        // 默认全部展开
-        defaultExpandAll={defaultExpandAll}
+        expandedKeys={expandedKeys}
         // 树默认设置
         showIcon={showIcon}
         onlyLeafCheck={onlyLeafCheck}
