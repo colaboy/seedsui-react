@@ -56,7 +56,14 @@ const MultipleModal = forwardRef(
     const [activeTab, setActiveTab] = useState(null)
 
     useEffect(() => {
-      if (!Array.isArray(value) || !value[0] || !value[0].id) return
+      if (!visible || !Array.isArray(value) || !value[0] || !value[0].id) {
+        // 动画执行完成后再重置
+        setTimeout(() => {
+          setTabs(null)
+          setActiveTab(null)
+        }, 300)
+        return
+      }
       // 构建tabs, 将value的[{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]加入sndcaption
       let newTabs = value.map((tab) => {
         return {
@@ -70,7 +77,7 @@ const MultipleModal = forwardRef(
       })
       setTabs(newTabs)
       setActiveTab(newTabs[0])
-    }, [value])
+    }, [visible])
 
     // 点击确认
     async function handleSubmitClick() {
@@ -125,7 +132,6 @@ const MultipleModal = forwardRef(
       )
       return null
     }
-    if (!tabs) return null
     return createPortal(
       <div
         {...maskProps}
@@ -141,38 +147,42 @@ const MultipleModal = forwardRef(
             visible ? ' active' : ''
           }`}
         >
-          {/* 头 */}
-          <Head
-            captionProps={captionProps}
-            cancelProps={cancelProps}
-            submitProps={submitProps}
-            onSubmitClick={handleSubmitClick}
-            onCancelClick={handleCancelClick}
-          />
-          <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
-          {tabs.map((tab, index) => {
-            // 主体内容(wrapper)是否显示
-            let contentVisible = tab.id === activeTab.id
-            if (!contentVisible) return null
-            return (
-              <DatePickerModal
-                key={tab.id || index}
-                type={tab.type || 'date'}
-                value={tab.value}
-                visible={visible}
-                // 传入wrapper将只渲染内容(wrapper)
-                portal={{ wrapper: true }}
-                onChange={(date) => {
-                  tab.value = date
-                  tab.sndcaption = DateComboUtils.getDisplayValue({
-                    type: tab.type || type,
-                    value: tab.value
-                  })
-                  handleDateChange(tab)
-                }}
+          {tabs && (
+            <>
+              {/* 头 */}
+              <Head
+                captionProps={captionProps}
+                cancelProps={cancelProps}
+                submitProps={submitProps}
+                onSubmitClick={handleSubmitClick}
+                onCancelClick={handleCancelClick}
               />
-            )
-          })}
+              <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
+              {tabs.map((tab, index) => {
+                // 主体内容(wrapper)是否显示
+                let contentVisible = tab.id === activeTab.id
+                if (!contentVisible) return null
+                return (
+                  <DatePickerModal
+                    key={tab.id || index}
+                    type={tab.type || 'date'}
+                    value={tab.value}
+                    visible={visible}
+                    // 传入wrapper将只渲染内容(wrapper)
+                    wrapper
+                    onChange={(date) => {
+                      tab.value = date
+                      tab.sndcaption = DateComboUtils.getDisplayValue({
+                        type: tab.type || type,
+                        value: tab.value
+                      })
+                      handleDateChange(tab)
+                    }}
+                  />
+                )
+              })}
+            </>
+          )}
         </div>
       </div>,
       portal || document.getElementById('root') || document.body

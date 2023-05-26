@@ -157,7 +157,8 @@ const MultipleModal = forwardRef(
                 type={tab.type || 'date'}
                 value={tab.value}
                 visible={visible}
-                portal={{ wrapper: true }}
+                // 传入wrapper将只渲染内容(wrapper)
+                wrapper
                 onChange={(date) => {
                   tab.value = date
                   tab.sndcaption = DateComboUtils.getDisplayValue({

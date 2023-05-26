@@ -10,7 +10,8 @@ const Modal = forwardRef(
   (
     {
       // 通用属性
-      portal, // {wrapper: true(只显示wrapper的内容)}
+      wrapper, // 传入wrapper将只渲染内容(wrapper)
+      portal,
       getComboDOM,
       maskClosable = true,
       value,
@@ -66,14 +67,12 @@ const Modal = forwardRef(
     }, [])
 
     useEffect(() => {
-      if (instance.current) {
-        if (visible) {
-          handleUpdate()
-        }
+      if (instance.current && visible) {
+        handleUpdate()
       }
 
       // eslint-disable-next-line
-    }, [visible])
+    }, [visible, value])
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
     if (instance.current) {
@@ -135,7 +134,7 @@ const Modal = forwardRef(
       setTitle(title)
 
       // 如果只渲染wrapper则意味没有头部所以需要触发onChange
-      if (Object.prototype.toString.call(portal) === '[object Object]' && portal.wrapper) {
+      if (wrapper) {
         handleSubmitClick()
       }
     }
@@ -202,12 +201,11 @@ const Modal = forwardRef(
     )
 
     // 只渲染主体
-    if (Object.prototype.toString.call(portal) === '[object Object]' && portal.wrapper) {
+    if (wrapper) {
       return ContentDOM
     }
 
-    // 渲染完整体
-    return createPortal(
+    let DOM = (
       <div
         {...maskProps}
         className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
@@ -234,19 +232,24 @@ const Modal = forwardRef(
           />
           {ContentDOM}
         </div>
-      </div>,
-      portal || document.getElementById('root') || document.body
+      </div>
     )
+
+    if (portal === false || portal === null) {
+      return DOM
+    }
+    // 渲染完整体
+    return createPortal(DOM, portal || document.getElementById('root') || document.body)
   }
 )
 
 export default React.memo(Modal, (prevProps, nextProps) => {
-  if (
-    nextProps.visible === prevProps.visible &&
-    // 当只显示wrapper时, 仅会使用wrapperProps来控制显隐
-    JSON.stringify(nextProps.wrapperProps) === JSON.stringify(prevProps.wrapperProps)
-  ) {
-    return true
+  if (nextProps.visible !== prevProps.visible) {
+    return false
   }
-  return false
+  // 当只显示wrapper时, 仅会使用wrapperProps来控制显隐
+  if (JSON.stringify(nextProps.wrapperProps) !== JSON.stringify(prevProps.wrapperProps)) {
+    return false
+  }
+  return true
 })
