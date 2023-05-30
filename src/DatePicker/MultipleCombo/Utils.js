@@ -1,11 +1,12 @@
 import locale from './../../locale'
-import DateComboUtils from './../Combo/Utils'
+import { getDateDisplayValue } from './../utils'
 
 // eslint-disable-next-line
 export default {
   // value不存在时默认为当天
   getValue: function ({ value }) {
     if (!value) {
+      // eslint-disable-next-line
       value = [
         {
           type: 'date',
@@ -34,9 +35,7 @@ export default {
       if (current?.value instanceof Date === false) {
         return ''
       }
-      displayValue.push(
-        DateComboUtils.getDisplayValue({ type: type, format: format, value: current.value })
-      )
+      displayValue.push(getDateDisplayValue({ type: type, format: format, value: current.value }))
     }
 
     return displayValue.join(separator || ' ~ ')

@@ -3,10 +3,10 @@ import Combo from './../../Picker/Combo'
 import RangeModal from './../RangeModal'
 
 import locale from './../../locale'
-import Utils from './Utils'
+import { getRangeDisplayValue } from './../utils'
 
 // 日期多选
-export default forwardRef(
+const RangeCombo = forwardRef(
   (
     {
       // 定制属性
@@ -48,7 +48,7 @@ export default forwardRef(
     ref
   ) => {
     // 显示文本
-    let displayValue = Utils.getDisplayValue({ ranges, type, format, value, separator })
+    let displayValue = getRangeDisplayValue({ ranges, type, format, value, separator })
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -62,7 +62,7 @@ export default forwardRef(
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
-          return Utils.getDisplayValue({
+          return getRangeDisplayValue({
             ranges,
             type,
             format,
@@ -92,3 +92,5 @@ export default forwardRef(
     )
   }
 )
+
+export default RangeCombo

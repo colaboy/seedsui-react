@@ -7,7 +7,7 @@ import DatePickerModal from './../Modal'
 import Tabs from './../../Tabs'
 
 // import locale from './../../locale'
-import DateComboUtils from './../Combo/Utils'
+import { getDateDisplayValue } from './../utils'
 import DateModalUtils from './../Modal/Utils'
 
 const MultipleModal = forwardRef(
@@ -61,7 +61,7 @@ const MultipleModal = forwardRef(
       let newTabs = value.map((tab) => {
         return {
           ...tab,
-          sndcaption: DateComboUtils.getDisplayValue({
+          sndcaption: getDateDisplayValue({
             type: type,
             value: tab.value
           })
@@ -161,7 +161,7 @@ const MultipleModal = forwardRef(
                 wrapper
                 onChange={(date) => {
                   tab.value = date
-                  tab.sndcaption = DateComboUtils.getDisplayValue({
+                  tab.sndcaption = getDateDisplayValue({
                     type: type,
                     value: tab.value
                   })

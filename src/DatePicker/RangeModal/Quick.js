@@ -1,14 +1,15 @@
 // require PrototypeDate.js和PrototypeString.js
 import React from 'react'
 import locale from '../../locale'
-import Utils from './Utils'
+import { getActiveKey } from './../utils'
 
 const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChange }) {
-  // 根据value获取选中项
-  let activeKey = Utils.getActiveKey(value, ranges)
+  // 根据value获取选中项(选中项有可能有多个相同的日期,例如本月和最近30天)
+  let activeKey = getActiveKey(value, ranges)
 
   // 点击
   async function handleClick(rangeKey) {
+    window.activeRangeKey = rangeKey
     // 修改提示
     if (typeof onBeforeChange === 'function') {
       let goOn = await onBeforeChange(ranges[rangeKey])

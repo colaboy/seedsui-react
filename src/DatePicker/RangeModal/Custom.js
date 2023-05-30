@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import locale from '../../locale'
 
 import MultipleCombo from './../MultipleCombo'
-import Utils from './Utils'
+import { getDates, validateDays, validateTime } from './../utils'
 
 const Custom = function ({
   captionProps,
@@ -22,7 +22,7 @@ const Custom = function ({
 }) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
-    const { startDate, endDate } = Utils.getDates(value)
+    const { startDate, endDate } = getDates(value)
     setMultipleDate([
       {
         type: type,
@@ -42,11 +42,11 @@ const Custom = function ({
   // 校验选择的区间是否合法
   function handleBeforeChange(newMultipleDate) {
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
-    let timeValid = Utils.validateTime(newValue, { type: type, onError: onError })
+    let timeValid = validateTime(newValue, { type: type, onError: onError })
     let daysValid = true
     let daysLimit = Object.values(ranges)[0]
     if (typeof daysLimit === 'number') {
-      daysValid = Utils.validateDays(newValue, { daysLimit: daysLimit, onError: onError })
+      daysValid = validateDays(newValue, { daysLimit: daysLimit, onError: onError })
     }
     return timeValid && daysValid
   }

@@ -9,7 +9,7 @@ import Custom from './Custom'
 import CustomModal from './Modal'
 
 // 区间库
-import Utils from './Utils'
+import { getRanges } from './../utils'
 
 const RangeModal = forwardRef(
   (
@@ -47,7 +47,7 @@ const RangeModal = forwardRef(
   ) => {
     const modalRef = useRef(null)
     // ranges分成两部分: quickRanges(快捷选择)和customRanges(自定义选择)
-    const { quickRanges, customRanges } = Utils.getRanges(ranges)
+    const { quickRanges, customRanges } = getRanges(ranges)
 
     // 如果没有快捷选择, 直接渲染自定义选择
     if (Object.isEmptyObject(quickRanges)) {

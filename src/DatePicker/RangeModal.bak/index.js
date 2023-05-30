@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, useRef, useState, forwardRef, Fragment } from 'react'
 import Tooltip from './../../Tooltip'
 import locale from './../../locale'
-import DateComboUtils from './../Combo/Utils'
+import { getFormat } from './../utils'
 import DateModalUtils from './../Modal/Utils'
 import RangeUtils from './Utils'
 import RangeModal from './RangeModal'
@@ -61,6 +61,7 @@ const Modal = forwardRef(
     // 修改
     function handleChange(newValue) {
       if (newValue.length !== 2) return false
+      // eslint-disable-next-line
       return new Promise(async (resolve) => {
         // 最大值和最小值校验
         for (let i = 0; i < newValue.length; i++) {
@@ -90,7 +91,7 @@ const Modal = forwardRef(
         }
 
         // 获取日期名称: 今日、昨日、本月等
-        let fmt = DateComboUtils.getFormat(type)
+        let fmt = getFormat(type)
         let startDate = newValue[0]
         let endDate = newValue[1]
         if (startDate instanceof Date) {

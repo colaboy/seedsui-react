@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Combo from './../../Picker/Combo'
 import Modal from './../Modal'
-import Utils from './Utils'
+import { getDateDisplayValue } from './../utils'
 
 // 日期选择
 export default forwardRef(
@@ -21,7 +21,7 @@ export default forwardRef(
     ref
   ) => {
     // 显示文本
-    let displayValue = Utils.getDisplayValue({
+    let displayValue = getDateDisplayValue({
       type: type,
       format: format,
       value: value
@@ -42,7 +42,7 @@ export default forwardRef(
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
-          return Utils.getDisplayValue({
+          return getDateDisplayValue({
             type: type,
             format: format,
             value: newValue || value

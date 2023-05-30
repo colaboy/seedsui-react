@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react
 import Tabs from './../../Tabs'
 import locale from './../../locale'
 import InputDate from './../Combo'
-import DateComboUtils from './../Combo/Utils'
+import { getDateDisplayValue } from './../utils'
 import DateModalUtils from './../Modal/Utils'
 
 // 日期类型选择控件: 年月日季
@@ -61,7 +61,7 @@ const Types = forwardRef(
     ref
   ) => {
     // 显示文本
-    let displayValue = DateComboUtils.getDisplayValue({
+    let displayValue = getDateDisplayValue({
       type: value?.type,
       value: value?.value
     })
@@ -77,7 +77,7 @@ const Types = forwardRef(
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
-          return DateComboUtils.getDisplayValue({
+          return getDateDisplayValue({
             type: value?.type,
             value: newValue || value?.value
           })
