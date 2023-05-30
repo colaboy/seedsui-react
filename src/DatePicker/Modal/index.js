@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import locale from './../../locale'
 import Head from './../../Picker/Modal/Head'
 import Instance from './instance.js'
+import { validateDate } from './../utils'
 import Utils from './Utils'
 
 const Modal = forwardRef(
@@ -90,7 +91,7 @@ const Modal = forwardRef(
       s.setDefaultsByKeys(activeKeys)
       if (submitProps.onClick) submitProps.onClick(s)
 
-      newValue = Utils.validateDate(newValue, {
+      newValue = validateDate(newValue, {
         type: type,
         min: min,
         max: max,

@@ -2,8 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react
 import Tabs from './../../Tabs'
 import locale from './../../locale'
 import InputDate from './../Combo'
-import { getDateDisplayValue } from './../utils'
-import DateModalUtils from './../Modal/Utils'
+import { getDateDisplayValue, validateDate } from './../utils'
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef(
@@ -96,7 +95,7 @@ const Types = forwardRef(
 
     // 统一的修改方法
     function handleChange(newValue) {
-      let date = DateModalUtils.validateDate(newValue.value, {
+      let date = validateDate(newValue.value, {
         type: newValue.type,
         min: min,
         max: max,

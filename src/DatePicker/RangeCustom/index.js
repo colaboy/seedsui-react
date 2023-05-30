@@ -7,8 +7,7 @@ import DatePickerModal from './../Modal'
 import Tabs from './../../Tabs'
 
 // import locale from './../../locale'
-import { getDateDisplayValue } from './../utils'
-import DateModalUtils from './../Modal/Utils'
+import { getDateDisplayValue, validateDate } from './../utils'
 
 const MultipleModal = forwardRef(
   (
@@ -77,7 +76,7 @@ const MultipleModal = forwardRef(
 
       // 校验选择是否合法
       for (let tab of tabs) {
-        let newValue = DateModalUtils.validateDate(tab.value, {
+        let newValue = validateDate(tab.value, {
           type: type,
           min: min,
           max: max,
