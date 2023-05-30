@@ -2,7 +2,8 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Combo from './../../Picker/Combo'
 import MultipleModal from './../MultipleModal'
 
-import Utils from './Utils'
+import { getMultipleDisplayValue } from './../utils'
+import formatValue from './formatValue'
 
 // 日期多选
 export default forwardRef(
@@ -24,10 +25,10 @@ export default forwardRef(
   ) => {
     // value必传
     // eslint-disable-next-line
-    value = Utils.getValue({ value })
+    value = formatValue({ value })
 
     // 显示文本
-    let displayValue = Utils.getDisplayValue({ type, format, value, separator })
+    let displayValue = getMultipleDisplayValue({ type, format, value, separator })
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -41,7 +42,7 @@ export default forwardRef(
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
-          return Utils.getDisplayValue({ type, format, value: newValue || value, separator })
+          return getMultipleDisplayValue({ type, format, value: newValue || value, separator })
         }
       }
     })

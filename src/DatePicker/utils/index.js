@@ -1,5 +1,6 @@
 import getActiveKey from './getActiveKey'
 import getDateDisplayValue from './getDateDisplayValue'
+import getMultipleDisplayValue from './getMultipleDisplayValue'
 import getRangeDisplayValue from './getRangeDisplayValue'
 import getDates from './getDates'
 import getFormat from './getFormat'
@@ -10,6 +11,7 @@ import validateTime from './validateTime'
 export {
   getActiveKey,
   getDateDisplayValue,
+  getMultipleDisplayValue,
   getRangeDisplayValue,
   getDates,
   getFormat,
