@@ -15,7 +15,7 @@ export default () => {
         value={value}
         onChange={setValue}
         // TabsProps={{ className: 'hide' }}
-        contentProps={{ className: 'flex flex-right' }}
+        contentProps={{ className: 'flex flex-left' }}
         captionProps={{
           caption: '选择日期'
         }}
