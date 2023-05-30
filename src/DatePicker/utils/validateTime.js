@@ -32,7 +32,7 @@ function validateTime(value, config) {
         value: value
       })
     } else {
-      Toast.show({ content: errMsg })
+      Toast.show({ content: errMsg, maskClickable: true })
     }
     return false
   }

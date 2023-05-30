@@ -23,7 +23,7 @@ function validateDays(value, { daysLimit, onError }) {
         value: value
       })
     } else {
-      Toast.show({ content: errMsg })
+      Toast.show({ content: errMsg, maskClickable: true })
     }
     return false
   }

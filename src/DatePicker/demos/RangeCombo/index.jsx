@@ -4,7 +4,7 @@ import { DatePicker } from 'seedsui-react'
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [rangeValue, setRangeValue] = useState([new Date('2009-09-09'), new Date('2019-09-09')])
+  const [rangeValue, setRangeValue] = useState()
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
