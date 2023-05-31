@@ -8,7 +8,7 @@ function getMultipleDisplayValue({ type, format, value, separator }) {
 
   let displayValue = []
   for (let current of value) {
-    if (current?.value instanceof Date === false) {
+    if (Object.isDate(current?.value) === false) {
       return ''
     }
     displayValue.push(getDateDisplayValue({ type: type, format: format, value: current.value }))

@@ -10,8 +10,8 @@ function getRanges(ranges) {
       if (
         Array.isArray(rangeValue) &&
         rangeValue.length === 2 &&
-        rangeValue[0] instanceof Date &&
-        rangeValue[1] instanceof Date
+        Object.isDate(rangeValue[0]) &&
+        Object.isDate(rangeValue[1])
       ) {
         quickRanges[rangeKey] = rangeValue
       } else {

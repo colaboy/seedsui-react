@@ -12,8 +12,8 @@ function getActiveKey(value, ranges, options) {
   if (
     Array.isArray(value) &&
     value.length === 2 &&
-    value[0] instanceof Date &&
-    value[1] instanceof Date
+    Object.isDate(value[0]) &&
+    Object.isDate(value[1])
   ) {
     let activeKeys = []
     for (let key in ranges) {

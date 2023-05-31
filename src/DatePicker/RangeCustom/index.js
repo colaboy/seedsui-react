@@ -9,6 +9,10 @@ import Tabs from './../../Tabs'
 // import locale from './../../locale'
 import { getDateDisplayValue, validateDate } from './../utils'
 
+/**
+ * @deprecated since version 5.2.8
+ * 请使用DatePicker.MultipleModal
+ */
 const RangeCustom = forwardRef(
   (
     {

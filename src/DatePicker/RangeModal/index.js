@@ -6,7 +6,7 @@ import Modal from './../../Modal'
 import Quick from './Quick'
 import Custom from './Custom'
 // 非快捷选择
-import CustomModal from './Modal'
+import DateRangeModal from './DateRangeModal'
 
 // 区间库
 import { getRanges } from './../utils'
@@ -19,6 +19,7 @@ const RangeModal = forwardRef(
       getComboDOM,
       maskClosable = true,
       value,
+      defaultPickerValue,
       list, // {year: [], quarter: [], month: [], day: [], hour: [], minute: []}
 
       onBeforeChange,
@@ -49,16 +50,17 @@ const RangeModal = forwardRef(
     // ranges分成两部分: quickRanges(快捷选择)和customRanges(自定义选择)
     const { quickRanges, customRanges } = getRanges(ranges)
 
-    // 如果没有快捷选择, 直接渲染自定义选择
+    // 如果没有快捷选择, 直接渲染日期区间选择
     if (Object.isEmptyObject(quickRanges)) {
       return (
-        <CustomModal
+        <DateRangeModal
           captionProps={captionProps}
           submitProps={submitProps}
           cancelProps={cancelProps}
           maskClosable={maskClosable}
           maskProps={maskProps}
           value={value}
+          defaultPickerValue={defaultPickerValue}
           ranges={customRanges}
           type={type}
           min={min}

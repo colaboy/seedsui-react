@@ -8,7 +8,7 @@ function getRangeDisplayValue({ ranges, type, format, value, separator }) {
 
   let start = value[0]
   let end = value[1]
-  if (start instanceof Date === false || end instanceof Date === false) {
+  if (Object.isDate(start) === false || Object.isDate(end) === false) {
     return ''
   }
 

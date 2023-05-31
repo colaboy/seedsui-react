@@ -4,8 +4,8 @@ import locale from '../../locale'
 import MultipleModal from './../MultipleModal'
 import { getDates, validateTime, validateDays } from './../utils'
 
-// 当不显示快捷选择时, 则直接显示弹窗
-const Custom = function ({
+// 日期区间弹窗
+const DateRangeModal = function ({
   captionProps,
   submitProps,
   cancelProps,
@@ -13,6 +13,7 @@ const Custom = function ({
   maskClosable,
   maskProps,
   value,
+  defaultPickerValue,
   ranges,
   type,
   min,
@@ -26,18 +27,21 @@ const Custom = function ({
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getDates(value)
+    const { startDate: defaultStartDate, endDate: defaultEndDate } = getDates(defaultPickerValue)
     setMultipleDate([
       {
         type: type,
         id: 'start',
         name: locale('开始时间', 'start_time'),
-        value: startDate
+        value: startDate,
+        defaultPickerValue: defaultStartDate
       },
       {
         type: type,
         id: 'end',
         name: locale('结束时间', 'end_time'),
-        value: endDate
+        value: endDate,
+        defaultPickerValue: defaultEndDate
       }
     ])
   }, [value]) // eslint-disable-line
@@ -72,6 +76,7 @@ const Custom = function ({
     return null
   }
 
+  console.log('multipleDate:', multipleDate)
   return (
     <MultipleModal
       captionProps={captionProps}
@@ -92,4 +97,4 @@ const Custom = function ({
   )
 }
 
-export default Custom
+export default DateRangeModal

@@ -6,7 +6,7 @@ import _ from 'lodash'
 Object.isEmptyObject = function (obj) {
   if (obj === undefined || obj === '') return true
   if (typeof obj !== 'object') return false
-  for (var n in obj) {
+  for (let n in obj) {
     if (obj.hasOwnProperty(n)) {
       return false
     }
@@ -17,8 +17,8 @@ Object.isEmptyObject = function (obj) {
 判断是否是纯对象
 ------------------- */
 Object.isPlainObject = function (obj) {
-  var proto
-  var Ctor
+  let proto
+  let Ctor
   if (!obj || toString.call(obj) !== '[object Object]') {
     return false
   }
@@ -72,7 +72,7 @@ Object.params = function (obj, splitter, isNotEnCode) {
   // 把{obj:[{key1:'value1', key2:'value2'}]}转成obj=[{key1:'value1', key2:'value2'}]的方式
   if (splitter === 'stringifyValue') {
     let arr = []
-    for (var n in obj) {
+    for (let n in obj) {
       arr.push(n + '=' + JSON.stringify(obj[n]))
     }
     return arr.join('&')
@@ -80,11 +80,11 @@ Object.params = function (obj, splitter, isNotEnCode) {
   // 把{key1: 'value1', key2: 'value2'}转成key1=value1&key2=value2
   // 把{obj:[{key1:'value1'}, {key1:'value1'}]}转成obj.0.key1=value1&obj.1.key1=value1
   // 把{obj: {key1: 'value1', key2: 'value2'}}转成obj.key1=value1&obj.key2=value2
-  var result = ''
+  let result = ''
   function buildParams(obj, prevKey) {
-    for (var key in obj) {
+    for (let key in obj) {
       if (obj[key] instanceof Object) {
-        var prefix = prevKey ? prevKey + '.' + key : key
+        let prefix = prevKey ? prevKey + '.' + key : key
         buildParams(obj[key], prefix)
       } else {
         if (prevKey) {
@@ -121,8 +121,8 @@ Object.params = function (obj, splitter, isNotEnCode) {
   return result
 }
 /* Object.params = function (obj, isNotEnCode) {
-  var result = ''
-  var item
+  let result = ''
+  let item
   for (item in obj) {
     if (isNotEnCode) result += '&' + item + '=' + obj[item]
     else result += '&' + item + '=' + encodeURIComponent(obj[item]) // 使用decodeURIComponent解码
@@ -140,14 +140,14 @@ Object.type = function (obj) {
   if (!obj) {
     return obj + ''
   }
-  var type = Object.prototype.toString
+  let type = Object.prototype.toString
     .call(obj)
     .replace('[', '')
     .replace(']', '')
     .split(' ')[1]
     .toLowerCase()
   if (type === 'object') {
-    var objStr = JSON.stringify(obj)
+    let objStr = JSON.stringify(obj)
     try {
       JSON.parse(objStr)
       return 'json'
@@ -167,11 +167,11 @@ Object.charType = function (char) {
   else return 'other'
 }
 Object.passwordLvl = function (value) {
-  var mode = {}
-  for (var i = 0; i < value.length; i++) {
+  let mode = {}
+  for (let i = 0; i < value.length; i++) {
     mode[Object.charType(value.charCodeAt(i))] = ''
   }
-  var lvl = 0
+  let lvl = 0
   /* eslint-disable */
   for (m in mode) {
     lvl++
@@ -180,6 +180,15 @@ Object.passwordLvl = function (value) {
   if (value.length > 0 && value.length < 6) return 1
   return lvl
 }
+
+/* -------------------
+  是否是日期
+  ------------------- */
+Object.isDate = function (date) {
+  if (date instanceof Date === false) return false
+  return String(date) !== 'Invalid Date'
+}
+
 /* -------------------
   是否是方法
   ------------------- */
@@ -191,23 +200,23 @@ Object.isFunction = function (obj) {
   是否是窗口
   ------------------- */
 Object.isWindow = function (obj) {
-  return obj != null && obj === obj.window
+  return obj !== null && obj === obj.window
 }
 
 /* -------------------
   继承合并
   ------------------- */
 Object.extend = function () {
-  var options
-  var name
-  var src
-  var copy
-  var copyIsArray
-  var clone
-  var target = arguments[0] || {}
-  var i = 1
-  var length = arguments.length
-  var deep = false
+  let options
+  let name
+  let src
+  let copy
+  let copyIsArray
+  let clone
+  let target = arguments[0] || {}
+  let i = 1
+  let length = arguments.length
+  let deep = false
 
   // Handle a deep copy situation
   if (typeof target === 'boolean') {
@@ -232,7 +241,7 @@ Object.extend = function () {
   for (; i < length; i++) {
     // 只处理非空/未定义的值
     options = arguments[i]
-    if (options != null) {
+    if (options !== null) {
       // 扩展基础对象
       for (name in options) {
         src = target[name]
@@ -271,9 +280,9 @@ Object.extend = function () {
   生成唯一标识
   ------------------- */
 Object.generateGUID = function () {
-  var d = new Date().getTime()
-  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = (d + Math.random() * 16) % 16 | 0
+  let d = new Date().getTime()
+  let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = (d + Math.random() * 16) % 16 | 0
     d = Math.floor(d / 16)
     return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16) // eslint-disable-line
   })
@@ -285,7 +294,7 @@ Object.generateGUID = function () {
 Object.equals = function (object1, object2) {
   // 用window.Object.prototype.equals在react或者vue中会默认为组件绑定此方法而报错,故不用
   // 第一个循环，只检查类型
-  for (var propName in object1) {
+  for (let propName in object1) {
     // 检查继承的方法和属性 - 比如.equals本身
     // 如果返回值不同，则返回false
     if (object1.hasOwnProperty(propName) !== object2.hasOwnProperty(propName)) {
@@ -343,7 +352,9 @@ Object.getUnitNum = function (unit) {
 // 动态加载script的方法
 Object.loadScript = function (src, opts, cb) {
   if (typeof opts === 'function') {
+    // eslint-disable-next-line
     cb = opts
+    // eslint-disable-next-line
     opts = {}
   }
   return new Promise((resolve) => {
@@ -367,7 +378,7 @@ SeedsUI组件: 获取参数
 @return 若无parameters,将返回e; 若有parameters,将parameters中的'$event'替换成e后返回
 ------------------- */
 Object.getArgs = function (e, parameters) {
-  var args = parameters ? Object.clone(parameters) : parameters
+  let args = parameters ? Object.clone(parameters) : parameters
   if (args !== undefined) {
     if (typeof args === 'string' && args === '$event') {
       args = e
@@ -382,10 +393,10 @@ Object.getArgs = function (e, parameters) {
 
 // json数据排序
 Object.sortJsonKey = function (json) {
-  var keys = Object.keys(json).sort()
-  var newObj = {}
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i]
+  let keys = Object.keys(json).sort()
+  let newObj = {}
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i]
     newObj[key] = json[key]
   }
   return newObj

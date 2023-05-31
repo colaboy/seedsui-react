@@ -8,7 +8,7 @@ function getDateDisplayValue({ type, format, value }) {
   }
   // 显示值
   let displayValue = ''
-  if (value instanceof Date) {
+  if (Object.isDate(value)) {
     displayValue = value.format(format)
   }
   return displayValue

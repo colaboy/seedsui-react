@@ -5,7 +5,7 @@ function validateDate(value, config = {}) {
   const max = config.max
   const onError = config.onError
 
-  if (value instanceof Date === false) {
+  if (Object.isDate(value) === false) {
     console.log('DatePicker.Modal-Utils.validateDate:非法的value')
     return null
   }

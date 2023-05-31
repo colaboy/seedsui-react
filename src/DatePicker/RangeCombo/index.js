@@ -39,6 +39,7 @@ const RangeCombo = forwardRef(
       max,
       type, // year | quarter | month | date | time | datetime
       value,
+      defaultPickerValue,
       format,
       onError,
       ModalProps,
@@ -80,6 +81,7 @@ const RangeCombo = forwardRef(
         ModalProps={{
           ranges: ranges,
           value: value,
+          defaultPickerValue: defaultPickerValue,
           min: min,
           max: max,
           type: type,
