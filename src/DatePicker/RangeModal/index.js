@@ -111,6 +111,7 @@ const RangeModal = forwardRef(
           cancelProps={cancelProps}
           maskClosable={maskClosable}
           value={value}
+          defaultPickerValue={defaultPickerValue}
           ranges={customRanges}
           type={type}
           min={min}

@@ -76,7 +76,7 @@ export default () => {
         }}
         // maskClosable={false}
         value={rangeValue}
-        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 59:00')]}
+        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         onChange={(newRangeValue) => {
           console.log(newRangeValue)
           setRangeValue(newRangeValue)
