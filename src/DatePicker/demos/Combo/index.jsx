@@ -8,6 +8,7 @@ export default () => {
     <>
       <DatePicker.Combo
         placeholder="Please select"
+        defaultPickerValue={new Date('2022-08-22 00:00')}
         type="datetime"
         value={value}
         multiple={true}

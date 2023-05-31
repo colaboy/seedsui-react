@@ -16,6 +16,7 @@ const Modal = forwardRef(
       getComboDOM,
       maskClosable = true,
       value,
+      defaultPickerValue,
       list, // {year: [], quarter: [], month: [], day: [], hour: [], minute: []}
 
       onBeforeChange,
@@ -40,6 +41,7 @@ const Modal = forwardRef(
     },
     ref
   ) => {
+    console.log('defaultPickerValue:', defaultPickerValue)
     if (!['year', 'quarter', 'month', 'date', 'time', 'datetime'].includes(type)) {
       console.error(
         "DatePicker.Modal: Wrong parameter with \"type\"! You need correct to ['year', 'quarter', 'month', 'date', 'time', 'datetime'] any one"
@@ -150,7 +152,7 @@ const Modal = forwardRef(
         hhUnit: locale('', 'picker_unit_hour'),
         mmUnit: locale('', 'picker_unit_minute')
       })
-      const def = Utils.getDefaults(value)
+      const def = Utils.getDefaults(value, defaultPickerValue)
       instance.current.setDefaults(def)
       instance.current.update()
       // 是否显示标题
@@ -161,7 +163,7 @@ const Modal = forwardRef(
     function initInstance() {
       if (!wrapperRef || !wrapperRef.current) return
       let data = Utils.getData(list)
-      let def = Utils.getDefaults(value)
+      let def = Utils.getDefaults(value, defaultPickerValue)
       // render数据
       instance.current = new Instance({
         wrapper: wrapperRef.current,

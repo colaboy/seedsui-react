@@ -12,6 +12,7 @@ export default forwardRef(
       max,
       type, // year | quarter | month | date | time | datetime
       value,
+      defaultPickerValue,
       format,
       onError,
       ModalProps,
@@ -57,6 +58,7 @@ export default forwardRef(
         ModalComponent={Modal}
         ModalProps={{
           value: value,
+          defaultPickerValue: defaultPickerValue,
           min: min,
           max: max,
           type: type,

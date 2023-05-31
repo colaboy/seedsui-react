@@ -3,10 +3,10 @@ import locale from './../../locale'
 // eslint-disable-next-line
 export default {
   // 获取默认值, 用于实例化日期
-  getDefaults: function (value) {
+  getDefaults: function (value, defaultPickerValue) {
     let defaultValue = value
     if (defaultValue instanceof Date === false) {
-      defaultValue = new Date()
+      defaultValue = defaultPickerValue instanceof Date ? defaultPickerValue : new Date()
     }
 
     let defaultDay = defaultValue.getDate()

@@ -44,6 +44,7 @@ const Combo = forwardRef(
       defaultExpandAll,
 
       value,
+      defaultPickerValue,
       list = [], // [{id: '', name: ''}]
 
       // 自定义渲染
@@ -186,6 +187,9 @@ const Combo = forwardRef(
     if (ModalProps?.value === undefined && value !== undefined) {
       PickerModalProps.value = value
     }
+    if (ModalProps?.defaultPickerValue === undefined && defaultPickerValue !== undefined) {
+      PickerModalProps.defaultPickerValue = defaultPickerValue
+    }
     if (list !== undefined) {
       PickerModalProps.list = list
     }
@@ -209,6 +213,7 @@ const Combo = forwardRef(
         allowClear = false
       }
     }
+
     return (
       <Fragment>
         {/* Combo */}
