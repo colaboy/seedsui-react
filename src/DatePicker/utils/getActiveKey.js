@@ -16,7 +16,6 @@ function getActiveKey(value, ranges, options) {
     value[1] instanceof Date
   ) {
     let activeKeys = []
-    console.log('ranges:', ranges)
     for (let key in ranges) {
       if (
         Array.isArray(ranges[key]) &&

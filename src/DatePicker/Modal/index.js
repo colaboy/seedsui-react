@@ -7,7 +7,7 @@ import Instance from './instance.js'
 import { validateDate } from './../utils'
 import Utils from './Utils'
 
-const Modal = forwardRef(
+const DatePickerModal = forwardRef(
   (
     {
       // 通用属性
@@ -41,7 +41,6 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    console.log('defaultPickerValue:', defaultPickerValue)
     if (!['year', 'quarter', 'month', 'date', 'time', 'datetime'].includes(type)) {
       console.error(
         "DatePicker.Modal: Wrong parameter with \"type\"! You need correct to ['year', 'quarter', 'month', 'date', 'time', 'datetime'] any one"
@@ -246,7 +245,7 @@ const Modal = forwardRef(
   }
 )
 
-export default React.memo(Modal, (prevProps, nextProps) => {
+export default React.memo(DatePickerModal, (prevProps, nextProps) => {
   if (nextProps.visible !== prevProps.visible) {
     return false
   }

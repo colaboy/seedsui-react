@@ -3,10 +3,9 @@ import Combo from './../../Picker/Combo'
 import MultipleModal from './../MultipleModal'
 
 import { getMultipleDisplayValue } from './../utils'
-import formatValue from './formatValue'
 
 // 日期多选
-export default forwardRef(
+const MultipleCombo = forwardRef(
   (
     {
       // 定制属性
@@ -14,7 +13,28 @@ export default forwardRef(
       min,
       max,
       type, // year | quarter | month | date | time | datetime
-      value,
+      // 值与配置
+      // [{
+      //   type: 'date',
+      //   id: 'start',
+      //   name: 'Start',
+      //   value: new Date('2009-09-09'),
+      //   defaultPickerValue: new Date('2022-08-22 00:00')
+      // }]
+      value = [
+        {
+          type: 'date',
+          id: 'start',
+          name: locale('开始时间', 'start_time'),
+          value: new Date()
+        },
+        {
+          type: 'date',
+          id: 'end',
+          name: locale('结束时间', 'end_time'),
+          value: new Date()
+        }
+      ],
       format,
       onError,
       ModalProps,
@@ -23,10 +43,6 @@ export default forwardRef(
     },
     ref
   ) => {
-    // value必传
-    // eslint-disable-next-line
-    value = formatValue({ value })
-
     // 显示文本
     let displayValue = getMultipleDisplayValue({ type, format, value, separator })
 
@@ -47,6 +63,13 @@ export default forwardRef(
       }
     })
 
+    if (!Array.isArray(value) || !value.length) {
+      console.warn(
+        "DatePicker.MultipleCombo: Wrong parameter with \"value\"! You need to correct to [{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]",
+        value
+      )
+      return null
+    }
     return (
       <Combo
         value={displayValue}
@@ -65,3 +88,5 @@ export default forwardRef(
     )
   }
 )
+
+export default MultipleCombo

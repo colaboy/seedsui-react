@@ -4,7 +4,7 @@ import Modal from './../Modal'
 import { getDateDisplayValue } from './../utils'
 
 // 日期选择
-export default forwardRef(
+const DatePickerCombo = forwardRef(
   (
     {
       // 定制属性
@@ -71,3 +71,5 @@ export default forwardRef(
     )
   }
 )
+
+export default DatePickerCombo

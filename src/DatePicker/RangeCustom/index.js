@@ -9,7 +9,7 @@ import Tabs from './../../Tabs'
 // import locale from './../../locale'
 import { getDateDisplayValue, validateDate } from './../utils'
 
-const MultipleModal = forwardRef(
+const RangeCustom = forwardRef(
   (
     {
       // 通用属性
@@ -118,7 +118,7 @@ const MultipleModal = forwardRef(
 
     if (!value) {
       console.error(
-        'DatePicker.MultipleModal: Wrong parameter with "value"! You need correct to [new Date(), new Date()]',
+        'DatePicker.RangeCustom: Wrong parameter with "value"! You need correct to [new Date(), new Date()]',
         value
       )
       return null
@@ -179,7 +179,7 @@ const MultipleModal = forwardRef(
   }
 )
 
-export default React.memo(MultipleModal, (prevProps, nextProps) => {
+export default React.memo(RangeCustom, (prevProps, nextProps) => {
   if (nextProps.visible === prevProps.visible) return true
   return false
 })

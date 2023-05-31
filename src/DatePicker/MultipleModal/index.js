@@ -9,6 +9,7 @@ import Tabs from './../../Tabs'
 // import locale from './../../locale'
 import { getDateDisplayValue, validateDate } from './../utils'
 
+// 日期多选弹框
 const MultipleModal = forwardRef(
   (
     {
@@ -67,10 +68,10 @@ const MultipleModal = forwardRef(
       let newTabs = value.map((tab) => {
         return {
           ...tab,
-          value: tab.value || new Date(),
+          value: tab.value || tab.defaultPickerValue || new Date(),
           sndcaption: getDateDisplayValue({
             type: tab.type || type,
-            value: tab.value || new Date()
+            value: tab.value || tab.defaultPickerValue || new Date()
           })
         }
       })
@@ -131,6 +132,7 @@ const MultipleModal = forwardRef(
       )
       return null
     }
+
     return createPortal(
       <div
         {...maskProps}
@@ -166,6 +168,7 @@ const MultipleModal = forwardRef(
                     key={tab.id || index}
                     type={tab.type || 'date'}
                     value={tab.value}
+                    defaultPickerValue={tab.defaultPickerValue}
                     visible={visible}
                     // 传入wrapper将只渲染内容(wrapper)
                     wrapper
