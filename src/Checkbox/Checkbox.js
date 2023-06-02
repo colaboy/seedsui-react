@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
+// 复选框
 const Checkbox = forwardRef(
   (
     {
@@ -14,7 +15,7 @@ const Checkbox = forwardRef(
       captionProps = {},
       children,
       onChange,
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -44,12 +45,12 @@ const Checkbox = forwardRef(
     let typeClassPrefix = type === 'radio' ? 'radio' : 'checkbox'
     return (
       <div
-        {...others}
+        {...props}
         onClick={handleClick}
         disabled={disabled}
         data-checked={checked}
         data-value={value}
-        className={`${typeClassPrefix}${others.className ? ' ' + others.className : ''}`}
+        className={`${typeClassPrefix}${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
         <span

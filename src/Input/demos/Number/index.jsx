@@ -16,7 +16,7 @@ export default () => {
         // defaultValue={value}
         // value={value}
         // precision={2}
-        precision={2}
+        precision={0}
         maxLength={8}
         allowClear
         formatter={(num) => {

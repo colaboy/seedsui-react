@@ -1,0 +1,57 @@
+// Selector
+// Select.Selector
+.selector {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  row-gap: 8px;
+  column-gap: 8px;
+
+  box-sizing: border-box;
+}
+.selector-item {
+  background-color: #f3f4f5;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 37px;
+  line-height: 37px;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+}
+// 选中标记
+.selector-item-checked-mark {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid @primary;
+  border-left: 10px solid transparent;
+  border-right: 10px solid @primary;
+}
+.selector-item-checked-mark-icon {
+  font-family: 'iconfont';
+  &:extend(.icon-ok-fill all);
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  transform: scale(0.7);
+  text-align: center;
+  color: white;
+
+  position: absolute;
+  left: -3px;
+  top: -2px;
+}
+
+// 选中
+.selector-item[data-checked='true'] {
+  background-color: #fdf4e8;
+  color: @primary;
+  .selector-item-checked-mark {
+    display: block;
+  }
+}
