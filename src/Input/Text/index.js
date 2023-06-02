@@ -273,7 +273,9 @@ const InputText = forwardRef(
       if (val && type === 'number') {
         // eslint-disable-next-line
         val = correctValue(val)
-        target.value = val
+        if (target.value !== val) {
+          target.value = val
+        }
       }
       if (onChange) {
         if (val && type === 'number') {
