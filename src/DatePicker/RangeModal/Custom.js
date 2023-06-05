@@ -81,7 +81,7 @@ const Custom = function ({
       <p className="datepicker-rangemodal-modal-card-caption">
         {locale('自定义选择', 'custom_select')}
       </p>
-      <div className="datepicker-rangemodal-modal-card-buttons">
+      <div className="datepicker-rangemodal-modal-card-selector">
         {Object.keys(ranges).map((rangeKey) => {
           return (
             <MultipleCombo
@@ -90,7 +90,7 @@ const Custom = function ({
               submitProps={submitProps}
               cancelProps={cancelProps}
               maskClosable={maskClosable}
-              className="datepicker-rangemodal-modal-card-button"
+              className="selector-item"
               value={multipleDate}
               type={type}
               min={min}

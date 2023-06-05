@@ -175,17 +175,13 @@ br {
   overflow: hidden;
 
   background-color: @mask-bg;
-  visibility: visible;
-  // display: none; // 去掉动画
+  visibility: hidden;
   opacity: 0;
   transition-duration: @animation-duration;
-  transition-property: opacity;
-  pointer-events: none;
+  transition-property: transform, opacity, visibility;
   &.active {
     visibility: visible;
     opacity: 1;
-    pointer-events: initial;
-    // display: block; // 去掉动画
   }
 }
 

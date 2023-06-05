@@ -76,7 +76,6 @@ const DateRangeModal = function ({
     return null
   }
 
-  console.log('multipleDate:', multipleDate)
   return (
     <MultipleModal
       captionProps={captionProps}

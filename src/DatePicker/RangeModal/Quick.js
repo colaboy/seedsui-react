@@ -3,6 +3,9 @@ import React from 'react'
 import locale from '../../locale'
 import { getActiveKey } from './../utils'
 
+import Selector from './../../Selector'
+
+// 快捷选择
 const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChange }) {
   // 根据value获取选中项(选中项有可能有多个相同的日期,例如本月和最近30天)
   let activeKey = getActiveKey(value, ranges)
@@ -19,25 +22,29 @@ const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChan
     if (onVisibleChange) onVisibleChange(false)
   }
 
+  // 将{key: value}转为[{id: key, name: value}]
+  function getSelectorOptions() {
+    return Object.entries(ranges).map(([name, value]) => ({ id: name, name: name, value: value }))
+  }
+
   return (
     <div className="datepicker-rangemodal-modal-card">
       <p className="datepicker-rangemodal-modal-card-caption">
         {locale('快捷选择', 'quick_select')}
       </p>
-      <div className="datepicker-rangemodal-modal-card-buttons">
-        {Object.keys(ranges).map((rangeKey) => {
-          return (
-            <div
-              key={rangeKey}
-              className={`datepicker-rangemodal-modal-card-button${
-                activeKey === rangeKey ? ' active' : ''
-              }`}
-              onClick={() => handleClick(rangeKey)}
-            >
-              {rangeKey}
-            </div>
-          )
-        })}
+      <div className="datepicker-rangemodal-modal-card-selector">
+        <Selector
+          columns={3}
+          value={[{ id: activeKey }]}
+          list={getSelectorOptions()}
+          onChange={(value) => {
+            if (value?.[0]?.id) {
+              handleClick(value?.[0]?.id)
+            } else {
+              handleClick('')
+            }
+          }}
+        />
       </div>
     </div>
   )

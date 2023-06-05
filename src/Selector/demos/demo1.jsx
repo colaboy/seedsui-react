@@ -13,7 +13,8 @@ export default () => {
     <>
       <Selector
         columns={3}
-        // allowClear
+        // multiple
+        allowClear
         placeholder="Please select"
         value={value}
         list={[
