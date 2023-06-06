@@ -9,8 +9,7 @@ export default () => {
         placeholder="AutoFit"
         inputProps={{
           style: {
-            maxHeight: '500px',
-            padding: '12px'
+            maxHeight: '500px'
           }
         }}
         style={{ backgroundColor: '#f8f8f8' }}

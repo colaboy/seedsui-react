@@ -129,6 +129,7 @@ export default {
   hint_map_no_boundary_data: "No {0}'s boundary data",
   radius_of_m: 'Radius of {0} m',
   picker_district_title: 'Please district',
+  picker_date_range_title: 'Please select date range',
   datetype_unit_year: 'Year',
   datetype_unit_month: 'Month',
   datetype_unit_date: 'Date',

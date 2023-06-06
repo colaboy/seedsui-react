@@ -1,6 +1,8 @@
 // require PrototypeDate.js和PrototypeString.js
 import React, { forwardRef, useRef } from 'react'
+import locale from './../../locale'
 
+import Head from './../../Picker/Modal/Head'
 import Modal from './../../Modal'
 // 快捷选择
 import Quick from './Quick'
@@ -36,6 +38,7 @@ const RangeModal = forwardRef(
       cancelProps,
 
       // 定制属性
+      rangesModal = 'dropdown',
       ranges,
       type = 'date', // year | quarter | month | date | time | datetime
       min,
@@ -78,24 +81,36 @@ const RangeModal = forwardRef(
     return (
       <Modal
         ref={modalRef}
-        sourceDOM={() => {
-          let comboDOM = null
-          if (typeof getComboDOM === 'function') {
-            comboDOM = getComboDOM()
-            if (typeof comboDOM?.getRootDOM === 'function') {
-              comboDOM = comboDOM.getRootDOM()
-            }
-          }
-          return comboDOM
-        }}
+        sourceDOM={
+          rangesModal === 'dropdown'
+            ? () => {
+                let comboDOM = null
+                if (typeof getComboDOM === 'function') {
+                  comboDOM = getComboDOM()
+                  if (typeof comboDOM?.getRootDOM === 'function') {
+                    comboDOM = comboDOM.getRootDOM()
+                  }
+                }
+                return comboDOM
+              }
+            : undefined
+        }
         maskClosable={maskClosable}
         maskProps={maskProps}
         visible={visible}
-        animation="slideDown"
+        animation={rangesModal === 'dropdown' ? 'slideDown' : 'slideUp'}
         className="datepicker-rangemodal-modal"
         onVisibleChange={onVisibleChange}
         {...props}
       >
+        {/* picker模态框时显示头 */}
+        {rangesModal === 'dropdown' ? null : (
+          <Head
+            // 标题
+            captionProps={{ caption: locale('选择时间段', 'picker_date_range_title') }}
+            onCancelClick={() => onVisibleChange(false)}
+          />
+        )}
         {/* 快捷选择 */}
         <Quick
           value={value}

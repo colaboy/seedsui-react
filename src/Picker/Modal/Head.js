@@ -4,19 +4,27 @@ import locale from './../../locale'
 const Head = forwardRef(
   ({ captionProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
     // 确定和取消按钮
-    const {
+    let {
       visible: cancelVisible,
       caption: cancelCaption,
       disabled: cancelDisabled,
       ...otherCancelProps
     } = cancelProps || {}
 
-    const {
+    if (!cancelProps?.onClick && !onCancelClick) {
+      cancelVisible = false
+    }
+
+    let {
       visible: submitVisible,
       caption: submitCaption,
       disabled: submitDisabled,
       ...otherSubmitProps
     } = submitProps || {}
+
+    if (!submitProps?.onClick && !onSubmitClick) {
+      submitVisible = false
+    }
 
     // 标题
     const { caption: headerCaption, ...otherCaptionProps } = captionProps || {}
@@ -24,7 +32,7 @@ const Head = forwardRef(
     // 点击确定
     function handleSubmitClick(e) {
       e.stopPropagation()
-      if (submitProps.onClick) submitProps.onClick(e)
+      if (submitProps?.onClick) submitProps?.onClick(e)
       if (onSubmitClick) onSubmitClick(e)
     }
 

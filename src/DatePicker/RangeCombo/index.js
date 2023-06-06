@@ -34,6 +34,8 @@ const RangeCombo = forwardRef(
         ],
         [locale('自定义时间', 'datepicker-tooltip_custom_date')]: 0
       },
+      // 快捷选择弹出方式
+      rangesModal,
       separator,
       min,
       max,
@@ -80,6 +82,7 @@ const RangeCombo = forwardRef(
         ModalComponent={RangeModal}
         ModalProps={{
           ranges: ranges,
+          rangesModal: rangesModal,
           value: value,
           defaultPickerValue: defaultPickerValue,
           min: min,

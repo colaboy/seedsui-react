@@ -124,6 +124,7 @@ export default {
   hint_map_no_boundary_data: '暂无{0}的边界数据',
   radius_of_m: '半径{0}米',
   picker_district_title: '请选择所在地区',
+  picker_date_range_title: '请选择时间段',
   datetype_unit_year: '年',
   datetype_unit_month: '月',
   datetype_unit_date: '日',

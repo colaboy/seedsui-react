@@ -54,6 +54,7 @@ export default () => {
         //   ['最近30天']: [new Date().prevDate(29), new Date()],
         //   ['自定义时间']: null
         // }}
+        rangesModal="picker"
         placeholder="请选择RangeCombo"
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
