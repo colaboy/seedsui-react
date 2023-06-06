@@ -1,4 +1,5 @@
 import locale from './../../locale'
+import formatDate from './formatDate'
 
 // 日期纠正
 function validateDate(value, config = {}) {
@@ -16,7 +17,7 @@ function validateDate(value, config = {}) {
     if (type === 'year' && value.compareYear(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -27,7 +28,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'quarter' && value.compareMonth(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -38,7 +39,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'month' && value.compareMonth(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -49,7 +50,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'date' && value.compareDate(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -60,7 +61,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'datetime' && value.compareDateTime(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -71,7 +72,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'time' && value.compareTime(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + this.formatDate(min, type),
+          errMsg: locale('不能小于', 'hint_cannot_be_less_than') + formatDate(min, type),
           min: min,
           value: value
         })
@@ -85,7 +86,7 @@ function validateDate(value, config = {}) {
     if (type === 'year' && value.compareYear(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
@@ -96,7 +97,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'quarter' && value.compareMonth(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
@@ -107,7 +108,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'month' && value.compareMonth(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
@@ -118,7 +119,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'date' && value.compareDate(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
@@ -129,7 +130,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'time' && value.compareTime(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
@@ -140,7 +141,7 @@ function validateDate(value, config = {}) {
     } else if (type === 'datetime' && value.compareDateTime(max) === 1) {
       if (onError) {
         onError({
-          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + this.formatDate(max, type),
+          errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + formatDate(max, type),
           max: max,
           value: value
         })
