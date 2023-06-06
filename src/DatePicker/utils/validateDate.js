@@ -1,3 +1,5 @@
+import locale from './../../locale'
+
 // 日期纠正
 function validateDate(value, config = {}) {
   const type = config.type
