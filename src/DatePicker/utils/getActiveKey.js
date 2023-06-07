@@ -4,9 +4,12 @@ function getActiveKey(value, ranges, options) {
   if (toString.call(ranges) !== '[object Object]') {
     return null
   }
-  let { format: fmt } = options || {}
+  let { format: fmt, currentActiveKey } = options || {}
   if (!fmt || typeof fmt !== 'string') {
     fmt = 'YYYY-MM-DD'
+  }
+  if (!currentActiveKey) {
+    currentActiveKey = window.activeRangeKey
   }
 
   if (
@@ -29,8 +32,8 @@ function getActiveKey(value, ranges, options) {
     if (!activeKeys.length) return null
 
     // 如果点击项和选中项相事则使用点击项
-    if (window.activeRangeKey && activeKeys.includes(window.activeRangeKey)) {
-      return window.activeRangeKey
+    if (currentActiveKey && activeKeys.includes(currentActiveKey)) {
+      return currentActiveKey
     }
     // 否则使用选中项的第一项
     return activeKeys[0]
