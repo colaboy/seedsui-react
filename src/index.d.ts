@@ -78,6 +78,7 @@ export { default as MenuTree } from './MenuTree'
 export { default as VideoFull } from './VideoFull' // 不常用
 export { default as Videos } from './Videos' // 不常用
 export { default as Vott } from './Vott' // 不常用
+export { default as NoData } from './NoData'
 export { default as Notice } from './Notice'
 export { default as NumBox } from './NumBox'
 export { default as OnOff } from './OnOff'

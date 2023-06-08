@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import NoData from './../../NoData'
 import Head from './../../Picker/Modal/Head'
 
 const Modal = forwardRef(
@@ -192,6 +193,7 @@ const Modal = forwardRef(
             onCancelClick={handleCancelClick}
           />
           <div className="select-modal-wrapper">
+            {Object.isEmptyObject(list) && <NoData />}
             {list.map((item, index) => {
               return (
                 <div
