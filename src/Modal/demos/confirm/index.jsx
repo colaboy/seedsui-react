@@ -4,19 +4,30 @@ import { Layout, Modal } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Modal.confirm({
+      captionProps: {
+        caption: 'test'
+      },
       content: 'confirm content1',
       submitProps: {
         onClick: () => {
+          console.log('第二层')
           Modal.confirm({
+            maskClosable: true,
             content: 'confirm content2',
             submitProps: {
               onClick: () => {
+                console.log('第三层')
                 Modal.confirm({
-                  content: 'confirm content3'
+                  content: 'confirm content3',
+                  onVisibleChange: (visible) => {
+                    console.log('onVisibleChange:', visible)
+                  }
                 })
+                return false
               }
             }
           })
+          return false
         }
       }
     })

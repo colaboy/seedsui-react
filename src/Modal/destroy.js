@@ -1,16 +1,16 @@
-import ReactRender from './../ReactRender'
+// 移除Modal
+export default function destroy() {
+  let modalId = '__SeedsUI_modal_el__'
+  let mask = document.getElementById(modalId)
+  if (mask) {
+    // 动画移除
+    mask.classList.remove('active')
+    mask.querySelector('.modal-alert').classList.remove('active')
 
-// 移除弹框
-function destroy() {
-  let modal = document.getElementById('__SeedsUI_modal_el__')
-  if (!modal) return
-  let mask = modal.parentNode
-  mask.classList.remove('active')
-  modal.classList.remove('active')
-  if (window.SeedsUIReactModalContainer) {
-    setTimeout(() => {
-      ReactRender.unmount(window.SeedsUIReactModalContainer)
+    // DOM移除
+    if (mask.timeout) window.clearTimeout(mask.timeout)
+    mask.timeout = setTimeout(() => {
+      mask.parentNode.removeChild(mask)
     }, 300)
   }
 }
-export default destroy
