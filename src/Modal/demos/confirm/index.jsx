@@ -7,6 +7,7 @@ export default () => {
       captionProps: {
         caption: 'test'
       },
+      portal: document.body,
       content: 'confirm content1',
       submitProps: {
         onClick: () => {

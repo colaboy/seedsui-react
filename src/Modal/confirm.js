@@ -3,6 +3,7 @@ import destroy from './destroy'
 
 // 弹出对话框
 export default function confirm({
+  portal,
   maskClosable,
 
   captionProps,
@@ -69,6 +70,13 @@ export default function confirm({
     mask.submitProps = submitProps
     mask.cancelProps = cancelProps
     mask.onVisibleChange = onVisibleChange
+
+    // dom透传
+    if (portal instanceof Node) {
+      portal.appendChild(mask)
+    } else {
+      ;(document.getElementById('root') || document.body).appendChild(mask)
+    }
   }
 
   // 点击遮罩
