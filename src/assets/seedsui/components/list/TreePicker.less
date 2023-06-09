@@ -241,6 +241,11 @@
 // 覆盖rc-tree的样式
 .rc-tree .rc-tree-treenode {
   padding: 0 12px;
+  border-bottom: 1px solid #eeeeee !important;
+}
+// 选中node
+.rc-tree-treenode-checkbox-checked {
+  background-color: #f8f9f9 !important;
 }
 .rc-tree .rc-tree-treenode .rc-tree-node-content-wrapper {
   height: initial;
@@ -265,9 +270,37 @@
   }
 }
 
+// rc-tree右侧选中图标样式
 .rc-tree-checkbox {
   position: absolute;
   right: 9px;
+  background-image: none !important;
+
+  // 改为checkbox的样式
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  border: 1px solid #eeeeee !important;
+  border-radius: 100% !important;
+}
+.rc-tree-checkbox-checked {
+  border: 0 !important;
+  background-color: @primary-bg !important;
+  color: white !important;
+  // 勾
+  font-family: 'iconfont';
+  &:extend(.icon-ok-fill all);
+  &:before {
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bold;
+  }
 }
 
 .rc-tree-title {
@@ -277,6 +310,7 @@
   height: 100%;
   width: 100%;
 }
+
 // treepicker的弹窗样式
 .treepicker-modal {
   background-color: @picker-bg;
