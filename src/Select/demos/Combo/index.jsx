@@ -17,16 +17,16 @@ export default () => {
         }}
         placeholder="Please select"
         value={value}
-        list={[
-          {
-            id: '1',
-            name: '选项1'
-          },
-          {
-            id: '2',
-            name: '选项2'
-          }
-        ]}
+        // list={[
+        //   {
+        //     id: '1',
+        //     name: '选项1'
+        //   },
+        //   {
+        //     id: '2',
+        //     name: '选项2'
+        //   }
+        // ]}
         // multiple={true}
         onChange={setValue}
         onVisibleChange={(visible) => {
