@@ -4,14 +4,17 @@ import destroy from './destroy'
 // 弹出对话框
 export default function confirm({
   portal,
-  maskClosable,
 
+  maskClosable,
+  onVisibleChange,
+
+  maskProps,
   captionProps,
   submitProps,
   cancelProps,
+
   // 内容
-  content,
-  onVisibleChange
+  content
 }) {
   let mask = null
 
@@ -33,6 +36,22 @@ export default function confirm({
 
   // 更新属性
   function updateAttribute(mask) {
+    // 更新遮罩
+    mask.setAttribute('style', '')
+    mask.setAttribute('class', 'mask modal-mask')
+    if (maskProps) {
+      const { style: maskStyle, className: maskClassName } = maskProps
+
+      if (maskStyle) {
+        for (let stylePropName in maskStyle) {
+          mask.style[stylePropName] = maskStyle[stylePropName]
+        }
+      }
+      if (maskClassName) {
+        mask.className = `mask modal-mask${maskClassName ? ' ' + maskClassName : ''}`
+      }
+    }
+
     // 更新标题
     if (captionProps?.caption) {
       mask.querySelector('.modal-caption').classList.remove('hide')
@@ -183,4 +202,5 @@ export default function confirm({
 
   // 渲染与绑定事件
   render()
+  return mask
 }

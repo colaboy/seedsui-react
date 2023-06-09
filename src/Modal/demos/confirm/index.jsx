@@ -5,7 +5,7 @@ export default () => {
   function handleToggle() {
     Modal.confirm({
       captionProps: {
-        caption: 'test'
+        caption: '第一层'
       },
       portal: document.body,
       content: 'confirm content1',
@@ -13,12 +13,22 @@ export default () => {
         onClick: () => {
           console.log('第二层')
           Modal.confirm({
+            maskProps: {
+              name: '我很特殊',
+              className: 'aa',
+              style: {
+                zIndex: 999
+              }
+            },
             maskClosable: true,
             content: 'confirm content2',
             submitProps: {
               onClick: () => {
                 console.log('第三层')
                 Modal.confirm({
+                  captionProps: {
+                    caption: '第三层'
+                  },
                   content: 'confirm content3',
                   onVisibleChange: (visible) => {
                     console.log('onVisibleChange:', visible)
