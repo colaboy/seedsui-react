@@ -40,8 +40,7 @@
 .picker-submit {
   display: block;
   height: 32px;
-  margin-right: 8px;
-  padding: 0 5px;
+  margin-right: 12px;
   color: @picker-button-color;
   line-height: 32px;
   &.disabled {
@@ -53,8 +52,7 @@
 .picker-close {
   display: block;
   height: 32px;
-  margin-left: 8px;
-  padding: 0 5px;
+  margin-left: 12px;
   color: @picker-button-color;
   line-height: 32px;
   &.disabled {
@@ -63,18 +61,18 @@
   }
 }
 .picker-close {
-  .flex;
-  .flex-middle;
-  .flex-center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 28px;
 }
 .picker-icon-close {
   font-family: 'iconfont';
   font-size: 12px;
   text-align: center;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
   &:extend(.icon-close-fill all);
   color: @placeholder;
 }

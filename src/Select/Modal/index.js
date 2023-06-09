@@ -2,6 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import { createPortal } from 'react-dom'
 import NoData from './../../NoData'
 import Head from './../../Picker/Modal/Head'
+import Checkbox from './../../Checkbox'
 
 const Modal = forwardRef(
   (
@@ -205,8 +206,9 @@ const Modal = forwardRef(
                   data-index={index}
                   onClick={handleOptionClick}
                 >
+                  <Checkbox />
                   <p className="select-modal-option-caption">{item.name}</p>
-                  <i className="select-modal-option-icon"></i>
+                  <i className="select-modal-option-tick"></i>
                 </div>
               )
             })}

@@ -27,6 +27,7 @@
   position: relative;
   display: block;
   height: auto;
+  min-height: 126px;
   max-height: 215px;
   overflow: auto;
   .nodata {
@@ -36,15 +37,40 @@
 // 列表选项
 .select-modal-option {
   padding: 10px 12px;
-  &:extend(.flex,
-  .border-b);
-  .flex-middle;
-}
-.select-modal-option.active {
-  color: @select-modal-color-active;
-  .select-modal-option-icon {
-    visibility: visible;
+  display: flex;
+  align-items: center;
+  .border-b;
+
+  // ue要求改为checkbox
+  .checkbox {
+    margin-right: 8px;
+    margin-left: 4px;
   }
+}
+
+.select-modal-option.active {
+  // ue要求改为checkbox
+  .checkbox {
+    .checkbox-input {
+      border: 0;
+      background-color: @primary-bg;
+      color: white;
+      // 勾
+      font-family: 'iconfont';
+      &:extend(.icon-ok-fill all);
+      &:before {
+        width: 12px;
+        height: 12px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  // color: @select-modal-color-active;
+  // .select-modal-option-tick {
+  //   visibility: visible;
+  // }
 }
 .select-modal-option-caption {
   position: relative;
@@ -52,12 +78,12 @@
   pointer-events: none;
   &:extend(.flex-1);
 }
-.select-modal-option-icon {
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
-  font-family: 'iconfont';
-  visibility: hidden;
-  pointer-events: none;
-  &:extend(.icon-ok-fill all);
-}
+// .select-modal-option-tick {
+//   width: 16px;
+//   height: 16px;
+//   font-size: 16px;
+//   font-family: 'iconfont';
+//   visibility: hidden;
+//   pointer-events: none;
+//   &:extend(.icon-ok-fill all);
+// }
