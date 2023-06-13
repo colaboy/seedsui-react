@@ -201,7 +201,7 @@ const Modal = forwardRef(
           <Head
             captionProps={captionProps}
             cancelProps={cancelProps}
-            submitProps={{ total: multiple ? (value || []).length : '', ...submitProps }}
+            submitProps={{ total: multiple ? (value || []).length || '' : '', ...submitProps }}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
