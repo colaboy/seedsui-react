@@ -9,7 +9,12 @@ import Main from './Main'
 
 // 附近推荐
 function Nearby({ map, onChange }, ref) {
+  // 容器
+  const nearbyRef = useRef(null)
+
+  // 附近的点
   const markersRef = useRef(null)
+
   const [list, setList] = useState(null)
   const [visible, setVisible] = useState(false)
   const [tab, setTab] = useState({ name: '全部' })
@@ -21,7 +26,7 @@ function Nearby({ map, onChange }, ref) {
     }
   })
 
-  // 当value发生变化后, 需要查询附近的点
+  // 初始化、切换tab更新附近的点
   useEffect(() => {
     if (!map || !tab?.name) return
 
@@ -53,10 +58,34 @@ function Nearby({ map, onChange }, ref) {
 
     // 刷新列表
     setList(result)
+
+    // 选中项
+    if (nearbyRef.current) {
+      // 滚动条置顶
+      nearbyRef.current.querySelector('.mappage-nearby-main').scrollTop = 0
+
+      // 选中附近推荐的选中项
+      setTimeout(() => {
+        // 清空选中项
+        nearbyRef.current.querySelector('.mappage-list-item.active')?.classList.remove('active')
+
+        // 外层容器中查询附近推荐的选中项
+        let container = nearbyRef.current.closest('.layout-footer')
+        let activeId = container.nearbyActive
+
+        if (activeId) {
+          for (let el of container.querySelectorAll('.mappage-list-item')) {
+            if (el.getAttribute('data-nearby-item-id') === activeId) {
+              el.classList.add('active')
+            }
+          }
+        }
+      }, 100)
+    }
   }
 
   return (
-    <div className={`mappage-nearby${visible ? ' active' : ''}`}>
+    <div className={`mappage-nearby${visible ? ' active' : ''}`} ref={nearbyRef}>
       <Toggle visible={visible} onChange={setVisible} />
       <div className={`mappage-nearby-body`}>
         <Tabs tab={tab} onChange={setTab} />

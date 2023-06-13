@@ -1,5 +1,7 @@
 import React from 'react'
 import locale from './../../../../../locale'
+import { activeItemTarget } from './../../utils'
+import Checkbox from './../../../../../Checkbox'
 import Notice from './../../../../../Notice'
 
 // 附近结果
@@ -10,9 +12,11 @@ function Main({ list, onChange }) {
         list.map((item, index) => {
           return (
             <div
-              className="mappage-list-item"
+              className={`mappage-list-item`}
               key={index}
-              onClick={() => {
+              data-nearby-item-id={`${item.longitude},${item.latitude}`}
+              onClick={(e) => {
+                activeItemTarget(e.currentTarget)
                 onChange && onChange(item)
               }}
             >
@@ -23,6 +27,7 @@ function Main({ list, onChange }) {
                 <p className="mappage-list-item-content-title">{item.title}</p>
                 <p className="mappage-list-item-description">{item.address || ''}</p>
               </div>
+              <Checkbox checked />
             </div>
           )
         })

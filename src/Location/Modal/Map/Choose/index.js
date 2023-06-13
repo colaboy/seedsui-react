@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
 import {
+  activeItemTarget,
   bdToGcjCoord,
   addMarkers,
   centerMarker,
@@ -10,16 +11,20 @@ import {
 import Loading from './../../../../Loading'
 import Layout from './../../../../Layout'
 import Notice from './../../../../Notice'
-import locale from './../../../../locale'
 import Control from './../Control'
-import Navigation from './Navigation'
 import Search from './Search'
+import Current from './Current'
 import Nearby from './Nearby'
 
+// 地图位置选择
 function MapChoose({ readOnly, value, setValue, ...props }) {
   let [map, setMap] = useState(null)
   // 当前位置点
-  const currentMarkerRef = useRef(null)
+  const currentRef = useRef(null)
+  let [current, setCurrent] = useState({ ...value })
+
+  // 选中位置点
+  const selectedMarkerRef = useRef(null)
   // 定位控件
   const locationRef = useRef(null)
   // 拖拽临时显示中心点
@@ -46,8 +51,15 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
         // eslint-disable-next-line
         value = locationResult
         setValue(value)
+        setCurrent(value)
       }
     }
+
+    // 默认选中当前项
+    if (currentRef.current) {
+      activeItemTarget(currentRef.current)
+    }
+
     // 初始化地图
     // eslint-disable-next-line
     let bdMap = await initMap(containerRef.current)
@@ -61,7 +73,7 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
     // 绘制当前点
     if (value?.longitude && value?.latitude) {
       let point = [value.longitude, value.latitude]
-      let marker = addCurrentMarker(point, 'gcj02')
+      let marker = addSelectedMarker(point, 'gcj02')
       centerToPoint(marker.point, { map: map })
     }
 
@@ -107,9 +119,9 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
   }
 
   // 绘制当前点
-  function addCurrentMarker(point, type) {
-    if (currentMarkerRef.current) {
-      clearMarkers([currentMarkerRef.current], { map: map })
+  function addSelectedMarker(point, type) {
+    if (selectedMarkerRef.current) {
+      clearMarkers([selectedMarkerRef.current], { map: map })
     }
     let marker = addMarkers([point], {
       map: map,
@@ -117,12 +129,12 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
       color: 'red',
       zIndex: 20010086
     })
-    currentMarkerRef.current = marker?.[0] || null
-    return currentMarkerRef.current
+    selectedMarkerRef.current = marker?.[0] || null
+    return selectedMarkerRef.current
   }
 
   // 定位到当前位置
-  function centerToCurrent() {
+  function centerToValue() {
     if (value && value.longitude && value.latitude) {
       centerToPoint([value.longitude, value.latitude], { map: map, type: 'gcj02' })
     }
@@ -134,7 +146,7 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
     // 绘制标记点
     if (newValue && newValue.latitude && newValue.longitude) {
       let point = [newValue.longitude, newValue.latitude]
-      addCurrentMarker(point, type)
+      addSelectedMarker(point, type)
     }
 
     // 一律转成国测局坐标
@@ -148,10 +160,16 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
     setValue(value)
 
     // 地图定位到中间
-    centerToCurrent()
+    centerToValue()
 
-    // 更新附近
+    // 非点击附近时, 需要更新附近
     if (updateNearby !== false && nearByRef.current) {
+      // 非点击附近时需要更新current
+      setCurrent(value)
+      if (currentRef.current) {
+        activeItemTarget(currentRef.current)
+      }
+
       if (nearByRef.timeout) {
         clearTimeout(nearByRef.timeout)
       }
@@ -172,31 +190,15 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
         <Control.CenterMarker ref={centerMarkerRef} />
       </div>
       <Layout.Footer>
-        <div
-          className="mappage-list-item border-b"
-          onClick={
-            readOnly
-              ? () => {
-                  centerToCurrent()
-                }
-              : undefined
-          }
-        >
-          <div className="mappage-list-item-prefix">
-            <i className="icon mappage-icon-current"></i>
-          </div>
-          <div className="mappage-list-item-content">
-            <p className="mappage-list-item-content-title">
-              <span>{locale('当前位置', 'current_location')}</span>
-              <Navigation
-                longitude={value?.longitude}
-                latitude={value?.latitude}
-                address={value?.value}
-              />
-            </p>
-            <p className="mappage-list-item-description">{value?.value || ''}</p>
-          </div>
-        </div>
+        {/* 当前位置 */}
+        <Current
+          ref={currentRef}
+          readOnly={readOnly}
+          map={map}
+          current={current}
+          onChange={handleLocation}
+        />
+        {/* 附近位置 */}
         {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
       </Layout.Footer>
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}

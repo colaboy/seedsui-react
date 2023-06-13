@@ -239,8 +239,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-left: 12px;
+  padding: 0 12px;
   background-color: white;
+  .checkbox {
+    visibility: hidden;
+  }
+  &.active {
+    .checkbox {
+      visibility: visible;
+      // display: inline-flex;
+    }
+  }
 }
 .mappage-list-item-submit {
   display: flex;

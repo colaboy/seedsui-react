@@ -48,7 +48,7 @@ const Tabs = forwardRef(
       const index = target.getAttribute('data-index')
       if (!index) return
       if (onChange) {
-        onChange(list[index])
+        onChange(list[index], { event: e })
         e.stopPropagation()
       }
     }

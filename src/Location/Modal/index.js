@@ -67,15 +67,10 @@ const LocationModal = forwardRef(
       setValue(originValue)
     }, [JSON.stringify(originValue)]) // eslint-disable-line
 
-    // 选择位置
-    function handleChange(newValue) {
-      if (onChange) onChange(newValue)
-      if (onVisibleChange) onVisibleChange(false)
-    }
-
     // 点击确定和取消
     function handleSubmitClick() {
       if (onChange) onChange(value)
+      if (onVisibleChange) onVisibleChange(false)
     }
     function handleCancelClick() {
       if (onVisibleChange) onVisibleChange(false)
