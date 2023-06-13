@@ -42,7 +42,8 @@ function Current({ readOnly, map, current, onChange }, ref) {
         </p>
         <p className="mappage-list-item-description">{current?.value || ''}</p>
       </div>
-      <Checkbox checked />
+      {/* active时显示checkbox */}
+      {!readOnly && <Checkbox checked />}
     </div>
   )
 }
