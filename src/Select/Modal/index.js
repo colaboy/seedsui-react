@@ -161,8 +161,12 @@ const Modal = forwardRef(
       let total = rootRef.current.querySelectorAll('.select-modal-wrapper .active')?.length || 0
       let submit = rootRef.current.querySelector('.picker-submit')
       if (submit) {
-        submit.innerHTML = submit.innerHTML.replace(/\d+/gim, total)
+        let replaceStr = total ? `(${total})` : ''
+        console.log('replaceStr', replaceStr)
+        submit.innerHTML = submit.innerHTML.replace(/\(\d+\)/gim, '')
+        submit.innerHTML += replaceStr
       }
+
       // multiple未传则为必选单选
       if (multiple === undefined) {
         handleChange()
