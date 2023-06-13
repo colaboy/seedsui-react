@@ -25,7 +25,8 @@ function Navigation({ longitude, latitude, name, address }) {
   }
   return (
     <span className="mappage-navigation" onClick={handleClick}>
-      &gt;&gt;{locale('导航')}
+      <i className="mappage-navigation-icon"></i>
+      <span className="mappage-navigation-text">{locale('导航')}</span>
     </span>
   )
 }
