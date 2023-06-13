@@ -91,7 +91,7 @@ export default function confirm({
     mask.onVisibleChange = onVisibleChange
 
     // dom透传
-    if (portal instanceof Node) {
+    if (toString.call(portal).indexOf('HTML') !== -1) {
       portal.appendChild(mask)
     } else {
       ;(document.getElementById('root') || document.body).appendChild(mask)
@@ -106,7 +106,7 @@ export default function confirm({
 
     if (maskClosable) {
       if (onVisibleChange) onVisibleChange(false)
-      destroy()
+      destroy(e.currentTarget)
     }
     e.stopPropagation()
   }
@@ -124,11 +124,11 @@ export default function confirm({
       let close = buttonProps.onClick() ?? true
       if (close) {
         if (onVisibleChange) onVisibleChange(false)
-        destroy()
+        destroy(e.currentTarget.closest('.modal-mask'))
       }
     } else {
       if (onVisibleChange) onVisibleChange(false)
-      destroy()
+      destroy(e.currentTarget.closest('.modal-mask'))
     }
     e.stopPropagation()
   }
@@ -137,7 +137,11 @@ export default function confirm({
   function render() {
     let modalId = '__SeedsUI_modal_el__'
     // 如果没生成成功, 则强制生成
-    mask = document.getElementById(modalId)
+    let container = document.body
+    if (toString.call(portal).indexOf('HTML') !== -1) {
+      container = portal
+    }
+    mask = container.querySelector('#' + modalId)
     if (!mask) {
       // 创建dom
       mask = document.createElement('div')
@@ -157,7 +161,7 @@ export default function confirm({
       `
 
       // 添加到dom上
-      ;(document.getElementById('root') || document.body).appendChild(mask)
+      ;(container || document.getElementById('root') || document.body).appendChild(mask)
 
       // 绑定事件
       attach(mask)
@@ -168,7 +172,7 @@ export default function confirm({
 
     // 渲染完成后补充active, 解决渲染后动画不生效的问题
     setTimeout(() => {
-      mask = document.getElementById(modalId)
+      mask = container.querySelector('#' + modalId)
       if (!mask) return
       // 如果正在移除，则停止移除
       if (mask.timeout) {

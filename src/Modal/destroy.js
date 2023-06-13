@@ -1,7 +1,10 @@
 // 移除Modal
-export default function destroy() {
+export default function destroy(mask) {
   let modalId = '__SeedsUI_modal_el__'
-  let mask = document.getElementById(modalId)
+  if (!mask) {
+    // eslint-disable-next-line
+    mask = document.getElementById(modalId)
+  }
   if (mask) {
     // 动画移除
     mask.classList.remove('active')

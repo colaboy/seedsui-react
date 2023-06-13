@@ -7,7 +7,7 @@ export default () => {
       captionProps: {
         caption: '第一层'
       },
-      portal: document.body,
+      portal: top.document.body,
       content: 'confirm content1',
       submitProps: {
         onClick: () => {
@@ -26,6 +26,7 @@ export default () => {
               onClick: () => {
                 console.log('第三层')
                 Modal.confirm({
+                  portal: document.body,
                   captionProps: {
                     caption: '第三层'
                   },
