@@ -19,6 +19,7 @@ const Head = forwardRef(
       visible: submitVisible,
       caption: submitCaption,
       disabled: submitDisabled,
+      total,
       ...otherSubmitProps
     } = submitProps || {}
 
@@ -74,6 +75,7 @@ const Head = forwardRef(
           onClick={handleSubmitClick}
         >
           {submitCaption || locale('完成', 'finish')}
+          {typeof total === 'number' && `(${total})`}
         </div>
       </div>
     )

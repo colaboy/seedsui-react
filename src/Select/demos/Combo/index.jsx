@@ -17,33 +17,33 @@ export default () => {
         }}
         placeholder="Please select"
         value={value}
-        // list={[
-        //   {
-        //     id: '1',
-        //     name: '选项1'
-        //   },
-        //   {
-        //     id: '2',
-        //     name: '选项2'
-        //   },
-        //   {
-        //     id: '3',
-        //     name: '选项5'
-        //   },
-        //   {
-        //     id: '4',
-        //     name: '选项5'
-        //   },
-        //   {
-        //     id: '5',
-        //     name: '选项5'
-        //   },
-        //   {
-        //     id: '6',
-        //     name: '选项6'
-        //   }
-        // ]}
-        // multiple={true}
+        list={[
+          {
+            id: '1',
+            name: '选项1'
+          },
+          {
+            id: '2',
+            name: '选项2'
+          },
+          {
+            id: '3',
+            name: '选项5'
+          },
+          {
+            id: '4',
+            name: '选项5'
+          },
+          {
+            id: '5',
+            name: '选项5'
+          },
+          {
+            id: '6',
+            name: '选项6'
+          }
+        ]}
+        multiple={true}
         onChange={setValue}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

@@ -156,6 +156,13 @@ const Modal = forwardRef(
       else {
         e.target.classList.toggle('active')
       }
+
+      // 总数替换
+      let total = rootRef.current.querySelectorAll('.select-modal-wrapper .active')?.length || 0
+      let submit = rootRef.current.querySelector('.picker-submit')
+      if (submit) {
+        submit.innerHTML = submit.innerHTML.replace(/\d+/gim, total)
+      }
       // multiple未传则为必选单选
       if (multiple === undefined) {
         handleChange()
@@ -169,6 +176,7 @@ const Modal = forwardRef(
       if (maskClosable && onVisibleChange) onVisibleChange(false)
       e.stopPropagation()
     }
+    console.log('value:', multiple ? (value || []).length : '')
 
     return createPortal(
       <div
@@ -189,7 +197,7 @@ const Modal = forwardRef(
           <Head
             captionProps={captionProps}
             cancelProps={cancelProps}
-            submitProps={submitProps}
+            submitProps={{ total: multiple ? (value || []).length : '', ...submitProps }}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
