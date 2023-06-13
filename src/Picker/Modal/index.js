@@ -72,7 +72,7 @@ const Modal = forwardRef(
     async function handleSubmitClick() {
       let s = instance.current
       const newValue = s.activeOptions
-      if (submitProps.onClick) submitProps.onClick(s)
+      if (submitProps?.onClick) submitProps.onClick(s)
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue)
@@ -82,7 +82,7 @@ const Modal = forwardRef(
       if (onVisibleChange) onVisibleChange(false)
     }
     function handleCancelClick(e) {
-      if (cancelProps.onClick) cancelProps.onClick(e)
+      if (cancelProps?.onClick) cancelProps.onClick(e)
       if (onVisibleChange) onVisibleChange(false)
     }
     function handleMaskClick(e) {

@@ -16,7 +16,7 @@ import Navigation from './Navigation'
 import Search from './Search'
 import Nearby from './Nearby'
 
-function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) {
+function MapChoose({ readOnly, value, setValue, ...props }) {
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentMarkerRef = useRef(null)
@@ -30,15 +30,8 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
   // 容器
   const containerRef = useRef(null)
 
-  // 经纬度
-  let [value, setValue] = useState(originValue)
-
   // 错误
   const [errMsg, setErrMsg] = useState(false)
-
-  useEffect(() => {
-    setValue(originValue)
-  }, [JSON.stringify(originValue)]) // eslint-disable-line
 
   useEffect(() => {
     initData()
@@ -47,9 +40,10 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
   // 初始化地图
   async function initData() {
     // 没有值时先调用定位
-    if (!originValue || !originValue.longitude || !originValue.latitude) {
+    if (!value || !value.longitude || !value.latitude) {
       if (locationRef.current) {
         let locationResult = await locationRef.current.getLocation()
+        // eslint-disable-next-line
         value = locationResult
         setValue(value)
       }
@@ -144,6 +138,7 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
     }
 
     // 一律转成国测局坐标
+    // eslint-disable-next-line
     value = { ...newValue }
     if (type !== 'gcj02') {
       let point = bdToGcjCoord([value.longitude, value.latitude])
@@ -166,13 +161,8 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
     }
   }
 
-  // 点击确定
-  function handleSubmit() {
-    if (onChange) onChange(value)
-  }
-
   return (
-    <Layout {...props}>
+    <Layout className="position-relative" {...props}>
       {!readOnly && <Search map={map} onChange={handleLocation} />}
       <div className="flex-1 position-relative">
         <div ref={containerRef} className={`mappage-container`}></div>
@@ -206,11 +196,6 @@ function MapChoose({ readOnly, value: originValue = null, onChange, ...props }) 
             </p>
             <p className="mappage-list-item-description">{value?.value || ''}</p>
           </div>
-          {!readOnly && value?.value && (
-            <span className="mappage-list-item-submit" onClick={handleSubmit}>
-              {locale('确定', 'ok')}
-            </span>
-          )}
         </div>
         {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
       </Layout.Footer>

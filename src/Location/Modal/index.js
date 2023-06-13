@@ -4,6 +4,7 @@ import Toast from './../../Toast'
 import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
 import Modal from './../../Modal'
+import Head from './../../Picker/Modal/Head'
 import Preview from './Map/Preview'
 import Choose from './Map/Choose'
 
@@ -13,7 +14,7 @@ const LocationModal = forwardRef(
     {
       ak,
       // 值: {latitude: '纬度', longitude: '经度', address:'地址', value: ''}
-      value,
+      value: originValue = null,
       onChange,
 
       visible, // preview、choose
@@ -22,6 +23,10 @@ const LocationModal = forwardRef(
     },
     ref
   ) => {
+    // 经纬度
+    let [value, setValue] = useState(originValue)
+
+    // 加载中
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -57,8 +62,22 @@ const LocationModal = forwardRef(
       }
       Toast.show({ content: loadErrMsg })
     }, [visible])
+
+    useEffect(() => {
+      setValue(originValue)
+    }, [JSON.stringify(originValue)]) // eslint-disable-line
+
+    // 选择位置
     function handleChange(newValue) {
       if (onChange) onChange(newValue)
+      if (onVisibleChange) onVisibleChange(false)
+    }
+
+    // 点击确定和取消
+    function handleSubmitClick() {
+      if (onChange) onChange(value)
+    }
+    function handleCancelClick() {
       if (onVisibleChange) onVisibleChange(false)
     }
 
@@ -69,12 +88,22 @@ const LocationModal = forwardRef(
         ref={ref}
         visible={visible}
         onVisibleChange={onVisibleChange}
+        style={{ height: '95%' }}
         {...props}
         animation="slideUp"
         className="location-modal"
       >
+        {/* 头 */}
+        <Head
+          captionProps={{
+            caption: locale('选择地址', 'picker_location_title')
+          }}
+          onSubmitClick={visible === 'choose' && value?.value ? handleSubmitClick : null}
+          onCancelClick={handleCancelClick}
+        />
+        {/* 内容 */}
         {visible === 'preview' && <Preview ak={ak} value={value} />}
-        {visible === 'choose' && <Choose ak={ak} value={value} onChange={handleChange} />}
+        {visible === 'choose' && <Choose ak={ak} value={value} setValue={setValue} />}
       </Modal>
     )
   }

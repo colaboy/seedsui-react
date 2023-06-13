@@ -90,7 +90,7 @@ const DatePickerModal = forwardRef(
         return n['id']
       })
       s.setDefaultsByKeys(activeKeys)
-      if (submitProps.onClick) submitProps.onClick(s)
+      if (submitProps?.onClick) submitProps.onClick(s)
 
       newValue = validateDate(newValue, {
         type: type,

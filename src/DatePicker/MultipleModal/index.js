@@ -81,7 +81,7 @@ const MultipleModal = forwardRef(
 
     // 点击确认
     async function handleSubmitClick() {
-      if (submitProps.onClick) submitProps.onClick()
+      if (submitProps?.onClick) submitProps.onClick()
 
       // 校验选择是否合法
       for (let tab of tabs) {

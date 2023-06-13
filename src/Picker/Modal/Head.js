@@ -40,7 +40,7 @@ const Head = forwardRef(
     // 点击取消
     function handleCancelClick(e) {
       e.stopPropagation()
-      if (cancelProps.onClick) cancelProps.onClick(e)
+      if (cancelProps?.onClick) cancelProps.onClick(e)
       if (onCancelClick) onCancelClick(e)
     }
 
@@ -74,7 +74,7 @@ const Head = forwardRef(
           }`}
           onClick={handleSubmitClick}
         >
-          {submitCaption || locale('完成', 'finish')}
+          {submitCaption || locale('确定', 'ok')}
           {typeof total === 'number' && `(${total})`}
         </div>
       </div>
