@@ -28,6 +28,7 @@
   height: 43px;
   background-color: @picker-header-bg;
   &:extend(.border-b);
+  justify-content: space-between;
 }
 
 // 头部圆角
@@ -78,7 +79,12 @@
 }
 .picker-header-title {
   .text-center;
-  .flex-1;
+  position: absolute;
+  left: 50px;
+  right: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .picker-wrapper {
   position: relative;
