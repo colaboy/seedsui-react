@@ -13,7 +13,7 @@ const LocationModal = forwardRef(
   (
     {
       ak,
-      // 值: {latitude: '纬度', longitude: '经度', address:'地址', value: ''}
+      // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value: originValue = null,
       onChange,
 

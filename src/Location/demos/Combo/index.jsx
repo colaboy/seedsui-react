@@ -4,7 +4,11 @@ import { Bridge, Location, MapUtil } from 'seedsui-react'
 export default () => {
   Bridge.debug = true
   const comboRef = useRef(null)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState({
+    latitude: '39.909187',
+    longitude: '116.397451',
+    value: '北京'
+  })
   // const [value, setValue] = useState({
   //   errMsg: 'getLocation:ok',
   //   longitude: '116.397451',

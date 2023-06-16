@@ -34,7 +34,7 @@ const LocationCombo = forwardRef(
       readOnly = false,
       disabled = false,
       editable = false,
-      value, // {latitude: '纬度', longitude: '经度', address:'地址', value: ''}
+      value, // {latitude: '纬度', longitude: '经度', value: '地址'}
 
       onChange,
       onError,
@@ -82,7 +82,7 @@ const LocationCombo = forwardRef(
       // 有经纬度, 补充address
       if (value && value.latitude && value.longitude) {
         // 默认地址
-        if (value.address) {
+        if (value.value) {
           // 有地址, 则定位完成
           if (onChangeRef?.current) {
             onChangeRef.current(value)
@@ -321,7 +321,7 @@ const LocationCombo = forwardRef(
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onChange={(newValue) => {
-            if (newValue.address && onChangeRef?.current) {
+            if (newValue.value && onChangeRef?.current) {
               onChangeRef.current(newValue)
             }
           }}
