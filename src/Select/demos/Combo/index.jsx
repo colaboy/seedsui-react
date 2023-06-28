@@ -44,7 +44,9 @@ export default () => {
           }
         ]}
         multiple={true}
-        onChange={setValue}
+        onChange={(newValue) => {
+          setValue(newValue)
+        }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}

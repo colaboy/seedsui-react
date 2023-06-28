@@ -1,5 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import updateTotal from './updateTotal'
+
 import NoData from './../../NoData'
 import Head from './../../Picker/Modal/Head'
 import Checkbox from './../../Checkbox'
@@ -56,6 +58,7 @@ const Modal = forwardRef(
 
     // 初始化选中项
     function updateActive() {
+      // 更新选中
       let optionsDOM = getOptionsDOM()
       optionsDOM.forEach((option, index) => {
         let isActive = getIsActive(list[index])
@@ -65,6 +68,11 @@ const Modal = forwardRef(
           option.classList.remove('active')
         }
       })
+
+      // 更新总数
+      if (multiple) {
+        updateTotal(rootRef)
+      }
     }
 
     // 根据value判断此项是否为选中状态
@@ -157,14 +165,9 @@ const Modal = forwardRef(
         e.target.classList.toggle('active')
       }
 
-      // 总数替换
-      let total = rootRef.current.querySelectorAll('.select-modal-wrapper .active')?.length || 0
-      let submit = rootRef.current.querySelector('.picker-submit')
-      if (submit) {
-        let replaceStr = total ? `(${total})` : ''
-        console.log('replaceStr', replaceStr)
-        submit.innerHTML = submit.innerHTML.replace(/\(\d+\)/gim, '')
-        submit.innerHTML += replaceStr
+      // 更新总数
+      if (multiple) {
+        updateTotal(rootRef)
       }
 
       // multiple未传则为必选单选
@@ -180,7 +183,6 @@ const Modal = forwardRef(
       if (maskClosable && onVisibleChange) onVisibleChange(false)
       e.stopPropagation()
     }
-    console.log('value:', multiple ? (value || []).length : '')
 
     return createPortal(
       <div
@@ -201,7 +203,7 @@ const Modal = forwardRef(
           <Head
             captionProps={captionProps}
             cancelProps={cancelProps}
-            submitProps={{ total: multiple ? (value || []).length || '' : '', ...submitProps }}
+            submitProps={{ ...submitProps, total: false }}
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
