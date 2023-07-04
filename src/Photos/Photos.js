@@ -146,7 +146,9 @@ const Photos = forwardRef(
       <div
         ref={ref}
         {...others}
-        className={`photos${others.className ? ' ' + others.className : ''}`}
+        className={`photos${uploading ? ' uploading' : ''}${
+          others.className ? ' ' + others.className : ''
+        }`}
         onClick={handleClick}
       >
         {list &&

@@ -1,44 +1,29 @@
 // Attach附件选择
+.attach {
+  .attach-item {
+    margin-top: 16px;
+  }
+}
+// 上传按钮
 .attach-upload {
   &.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
+  .flex-middle;
+  .flex-center;
+  padding: 0 8px;
+  height: 28px;
+  display: inline-flex;
   position: relative;
-  width: 100px;
-  height: 32px;
-  background-color: white;
-  border: 1px solid @border;
+  background-color: #f5f5f5;
+  color: #8c8c8c;
   border-radius: 4px;
-  .attach-upload-wrapper {
-    .flex;
-    .flex-middle;
-    .flex-center;
+
+  input[type='file'] {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-  .attach-upload-icon {
-    width: 16px;
-    height: 16px;
-    font-size: 16px;
-    font-family: 'iconfont';
-    &:extend(.icon-upload all);
-    &.uploading {
-      animation-name: rotate360;
-      animation-duration: 700ms;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      &:extend(.icon-refresh all);
-    }
-  }
-  .attach-upload-label {
-    margin-left: 6px;
-  }
-  input[type='file'] {
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -46,45 +31,73 @@
     filter: alpha(opacity=0);
   }
 }
+
+// 上传图标与文字
+.attach-upload-loading,
+.attach-upload-icon,
+.attach-upload-label {
+  pointer-events: none;
+}
+.attach-upload-icon {
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  font-family: 'iconfont';
+  &:extend(.icon-plus-fill all);
+}
+.attach-upload-label {
+  margin-left: 6px;
+}
+
+// 单项
 .attach-item {
   .flex;
   .flex-middle;
-  padding: 10px 12px 10px 0;
-  .border-b;
 }
 .attach-item-type {
+  .flex;
+  .flex-middle;
+  .flex-center;
   color: @sub;
   font-family: 'iconfont';
   pointer-events: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #f5bda0;
   &.video {
-    &:extend(.icon-type-video all);
+    &:extend(.icon-file-video all);
   }
   &.text {
-    &:extend(.icon-type-text all);
+    &:extend(.icon-file-text all);
   }
   &.word {
-    &:extend(.icon-type-word all);
+    color: #83a4eb;
+    &:extend(.icon-file-word all);
   }
   &.unknown {
-    &:extend(.icon-type-unknow all);
+    &:extend(.icon-file-unknow all);
   }
   &.audio {
-    &:extend(.icon-type-audio all);
+    &:extend(.icon-file-audio all);
   }
   &.excel {
-    &:extend(.icon-type-excel all);
+    color: #8ad4aa;
+    &:extend(.icon-file-excel all);
   }
   &.pack {
-    &:extend(.icon-type-pack all);
+    &:extend(.icon-file-pack all);
   }
   &.pic {
-    &:extend(.icon-type-pic all);
+    &:extend(.icon-file-pic all);
   }
   &.pdf {
-    &:extend(.icon-type-pdf all);
+    &:extend(.icon-file-pdf all);
   }
   &.ppt {
-    &:extend(.icon-type-ppt all);
+    color: #e7896d;
+    &:extend(.icon-file-ppt all);
   }
 }
 .attach-item-label {
@@ -95,10 +108,14 @@
   .ellipsis;
 }
 .attach-item-delete {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  color: #d9d9d9;
+  font-family: 'iconfont';
+  font-size: 16px;
   width: 16px;
   height: 16px;
-  color: @badge-bg;
-  font-size: 16px;
-  font-family: 'iconfont';
-  &:extend(.icon-trash all);
+  &:extend(.icon-plus-fill all);
+  transform: rotate(45deg);
 }

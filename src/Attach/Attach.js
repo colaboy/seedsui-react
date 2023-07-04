@@ -70,26 +70,41 @@ const Attach = forwardRef(
       }
     }
     // file框选择
-    function fileChange(e) {
+    function handleFileChange(e) {
       if (onChoose) onChoose(e)
       e.target.value = '' // 防止选择重复图片时不触发
       e.stopPropagation()
     }
+
+    // 获取Loading
+    function getUploadingDOM() {
+      if (!uploading) return null
+      if (typeof uploading === 'boolean') {
+        return (
+          <div className="attach-upload-loading">
+            <div className="attach-upload-loading-icon"></div>
+          </div>
+        )
+      }
+      return uploading
+    }
+
     return (
       <div
         {...props}
-        className={`attach${props.className ? ' ' + props.className : ''}`}
+        className={`attach${uploading ? ' uploading' : ''}${
+          props.className ? ' ' + props.className : ''
+        }`}
         onClick={click}
         ref={rootRef}
       >
         {/* 图片上传: 上传按钮 */}
         {onChoose && (
-          <div className={`attach-upload${uploading ? ' disabled' : ''}`}>
-            <input type="file" name="uploadAttach" onChange={fileChange} />
-            <div className="attach-upload-wrapper">
-              <i className={`attach-upload-icon${uploading ? ' uploading' : ''}`}></i>
-              <div className="attach-upload-label">选择附件</div>
-            </div>
+          <div className={`attach-upload`}>
+            <input type="file" name="uploadAttach" onChange={handleFileChange} />
+            <i className={`attach-upload-icon`}></i>
+            {getUploadingDOM(uploading)}
+            <div className="attach-upload-label">附件</div>
           </div>
         )}
         {list &&

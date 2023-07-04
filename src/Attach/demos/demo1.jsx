@@ -28,7 +28,14 @@ export default () => {
 
   return (
     <>
-      <Attach list={list} onChoose={handleChoose} onDelete={handleDelete} onClick={handleClick} />
+      <Attach
+        style={{ border: '1px solid #ddd' }}
+        list={list}
+        uploading
+        onChoose={handleChoose}
+        onDelete={handleDelete}
+        onClick={handleClick}
+      />
     </>
   )
 }
