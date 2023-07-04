@@ -232,3 +232,62 @@
     margin-left: 10px;
   }
 }
+
+// 常用Loading样式
+// 普通旋转
+.loading-circle-spin {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// 追逐式旋转
+.loading-circle-chase {
+  svg {
+    width: 26px;
+    height: 26px;
+    transform-origin: center;
+    animation: rotate 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}

@@ -135,7 +135,11 @@ const Photos = forwardRef(
       if (typeof uploading === 'boolean') {
         return (
           <div className="photos-upload-loading">
-            <div className="photos-upload-loading-icon"></div>
+            <div className="photos-upload-loading-icon">
+              <svg viewBox="25 25 50 50">
+                <circle cx="50" cy="50" r="20"></circle>
+              </svg>
+            </div>
           </div>
         )
       }

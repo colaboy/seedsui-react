@@ -82,7 +82,11 @@ const Attach = forwardRef(
       if (typeof uploading === 'boolean') {
         return (
           <div className="attach-upload-loading">
-            <div className="attach-upload-loading-icon"></div>
+            <div className="attach-upload-loading-icon">
+              <svg viewBox="25 25 50 50">
+                <circle cx="50" cy="50" r="20"></circle>
+              </svg>
+            </div>
           </div>
         )
       }

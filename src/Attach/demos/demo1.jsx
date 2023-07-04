@@ -31,7 +31,7 @@ export default () => {
       <Attach
         style={{ border: '1px solid #ddd' }}
         list={list}
-        // uploading
+        uploading
         onChoose={handleChoose}
         onDelete={handleDelete}
         onClick={handleClick}
