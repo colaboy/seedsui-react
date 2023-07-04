@@ -46,6 +46,7 @@ export default () => {
         onChoose={handleChoose}
         onDelete={handleDelete}
         onClick={handleClick}
+        uploading
       />
     </>
   )
