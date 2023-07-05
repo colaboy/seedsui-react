@@ -1,4 +1,4 @@
-import Bridge from './../../../../Bridge'
+import Bridge from './../../../Bridge'
 
 // 获取地址信息
 async function getAddress({ point, onChange }) {

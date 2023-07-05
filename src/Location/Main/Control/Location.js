@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
 import { getLocation } from './../utils'
-import Loading from './../../../../Loading'
-import Toast from './../../../../Toast'
+import Loading from './../../../Loading'
+import Toast from './../../../Toast'
 
 // 悬浮定位控件
 function Location({ map, value, onChange, ...props }, ref) {

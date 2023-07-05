@@ -1,5 +1,5 @@
 import React from 'react'
-import Tabs from './../../../../../Tabs'
+import Tabs from './../../../../Tabs'
 
 // 选项卡
 function TabsComponent({ tab, onChange }) {

@@ -8,16 +8,16 @@ import {
   initMap,
   clearMarkers
 } from './../utils'
-import Loading from './../../../../Loading'
-import Layout from './../../../../Layout'
-import Notice from './../../../../Notice'
+import Loading from './../../../Loading'
+import Layout from './../../../Layout'
+import Notice from './../../../Notice'
 import Control from './../Control'
 import Search from './Search'
 import Current from './Current'
 import Nearby from './Nearby'
 
 // 地图位置选择
-function MapChoose({ readOnly, value, setValue, ...props }) {
+function MapChoose({ readOnly, value, onChange, ...props }) {
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentRef = useRef(null)
@@ -50,7 +50,7 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
         let locationResult = await locationRef.current.getLocation()
         // eslint-disable-next-line
         value = locationResult
-        setValue(value)
+        onChange && onChange(value)
         setCurrent(value)
       }
     }
@@ -157,7 +157,7 @@ function MapChoose({ readOnly, value, setValue, ...props }) {
       value.longitude = point[0]
       value.latitude = point[1]
     }
-    setValue(value)
+    onChange && onChange(value)
 
     // 地图定位到中间
     centerToValue()

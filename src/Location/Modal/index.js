@@ -5,8 +5,7 @@ import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
 import Modal from './../../Modal'
 import Head from './../../Picker/Modal/Head'
-import Preview from './Map/Preview'
-import Choose from './Map/Choose'
+import Main from './../Main'
 
 // 地图标注
 const LocationModal = forwardRef(
@@ -97,8 +96,7 @@ const LocationModal = forwardRef(
           onCancelClick={handleCancelClick}
         />
         {/* 内容 */}
-        {visible === 'preview' && <Preview ak={ak} value={value} />}
-        {visible === 'choose' && <Choose ak={ak} value={value} setValue={setValue} />}
+        <Main ak={ak} type={visible} value={value} onChange={setValue} />
       </Modal>
     )
   }

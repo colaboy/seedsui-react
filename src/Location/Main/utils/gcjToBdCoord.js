@@ -1,4 +1,4 @@
-import GeoUtil from '../../../../GeoUtil'
+import GeoUtil from '../../../GeoUtil'
 import formatPoint from './formatPoint'
 
 // 国测局转百度坐标

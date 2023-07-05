@@ -1,8 +1,8 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import { clearMarkers, addMarkers, searchNearby } from './../../utils'
 
-import Toast from './../../../../../Toast'
-import Loading from './../../../../../Loading'
+import Toast from './../../../../Toast'
+import Loading from './../../../../Loading'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'

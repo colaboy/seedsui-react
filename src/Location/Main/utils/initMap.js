@@ -1,5 +1,5 @@
-import locale from './../../../../locale'
-import Loading from './../../../../Loading'
+import locale from './../../../locale'
+import Loading from './../../../Loading'
 import addZoomControl from './addZoomControl'
 
 // 初始化地图

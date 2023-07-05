@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { activeItemTarget, centerToPoint } from './../utils'
-import Checkbox from './../../../../Checkbox'
-import locale from './../../../../locale'
+import Checkbox from './../../../Checkbox'
+import locale from './../../../locale'
 import Navigation from './Navigation'
 
 // 当前位置

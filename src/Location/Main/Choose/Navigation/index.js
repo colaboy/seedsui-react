@@ -1,6 +1,6 @@
 import React from 'react'
-import Bridge from './../../../../../Bridge'
-import locale from './../../../../../locale'
+import Bridge from './../../../../Bridge'
+import locale from './../../../../locale'
 
 // 导航
 function Navigation({ longitude, latitude, name, address }) {

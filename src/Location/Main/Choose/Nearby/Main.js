@@ -1,8 +1,8 @@
 import React from 'react'
-import locale from './../../../../../locale'
+import locale from './../../../../locale'
 import { activeItemTarget } from './../../utils'
-import Checkbox from './../../../../../Checkbox'
-import Notice from './../../../../../Notice'
+import Checkbox from './../../../../Checkbox'
+import Notice from './../../../../Notice'
 
 // 附近结果
 function Main({ list, onChange }) {

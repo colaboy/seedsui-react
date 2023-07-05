@@ -1,5 +1,5 @@
 import React from 'react'
-import locale from './../../../../../locale'
+import locale from './../../../../locale'
 
 // 折叠控件
 function Toggle({ visible, onChange }) {

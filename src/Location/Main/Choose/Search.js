@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
-import locale from './../../../../locale'
+import locale from './../../../locale'
 import { search } from './../utils'
 
-import HighlightKeyword from './../../../../HighlightKeyword'
-import Header from './../../../../Header'
-import Input from './../../../../Input'
-import Notice from './../../../../Notice'
+import HighlightKeyword from './../../../HighlightKeyword'
+import Header from './../../../Header'
+import Input from './../../../Input'
+import Notice from './../../../Notice'
 
 // 搜索
 function Search({ map, onChange }) {
