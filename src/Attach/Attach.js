@@ -1,9 +1,11 @@
 // require (PrototypeString.js), 使用了getSuffix
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import locale from './../locale'
 
 const Attach = forwardRef(
   (
     {
+      label,
       list, // [{id: '', name: '', src: ''}]
       uploading, // 是否上传中
       onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
@@ -57,7 +59,7 @@ const Attach = forwardRef(
       }
       return 'unknown'
     }
-    function click(e) {
+    function handleClick(e) {
       const target = e.target
       if (target.classList.contains('attach-item')) {
         // 点击一行
@@ -99,7 +101,7 @@ const Attach = forwardRef(
         className={`attach${uploading ? ' uploading' : ''}${
           props.className ? ' ' + props.className : ''
         }`}
-        onClick={click}
+        onClick={handleClick}
         ref={rootRef}
       >
         {/* 图片上传: 上传按钮 */}
@@ -107,8 +109,8 @@ const Attach = forwardRef(
           <div className={`attach-upload`}>
             <input type="file" name="uploadAttach" onChange={handleFileChange} />
             <i className={`attach-upload-icon`}></i>
-            {getUploadingDOM(uploading)}
-            <div className="attach-upload-label">附件</div>
+            {getUploadingDOM()}
+            <div className="attach-upload-label">{label || locale('附件', 'attach')}</div>
           </div>
         )}
         {list &&

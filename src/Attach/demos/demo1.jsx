@@ -9,7 +9,7 @@ export default () => {
     },
     {
       name: '2',
-      src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.jpg'
+      src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.doc'
     }
   ]
 

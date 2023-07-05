@@ -5,6 +5,7 @@
   }
   // 上传中样式
   &.uploading {
+    pointer-events: none;
     .attach-upload-icon {
       display: none;
     }
@@ -93,6 +94,12 @@
   height: 20px;
   font-size: 20px;
   color: #f5bda0;
+  // 正方形的图标要略小一些
+  &.word,
+  &.excel,
+  &.ppt {
+    font-size: 18px;
+  }
   &.video {
     &:extend(.icon-file-video all);
   }

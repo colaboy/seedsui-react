@@ -6,6 +6,7 @@ export default {
   submit: 'Submit',
   expand: 'Expand',
   collapse: 'Collapse',
+  attach: 'Attach',
   uploaded_completed: 'Uploaded',
   cannot_preview: 'Preview faild',
   invalid_image_src: 'Invalid image src',

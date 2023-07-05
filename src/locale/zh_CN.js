@@ -6,6 +6,7 @@ export default {
   submit: '提交',
   expand: '展开',
   collapse: '收缩',
+  attach: '附件',
   uploaded_completed: '上传完成',
   cannot_preview: '无法预览',
   invalid_image_src: '图片地址无效',
