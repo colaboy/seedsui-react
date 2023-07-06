@@ -32,6 +32,7 @@ export default () => {
         style={{ border: '1px solid #ddd' }}
         list={list}
         uploading
+        uploadProps={{ className: 'flex' }}
         onChoose={handleChoose}
         onDelete={handleDelete}
         onClick={handleClick}

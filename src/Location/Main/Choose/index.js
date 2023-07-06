@@ -184,10 +184,13 @@ function MapChoose({ readOnly, value, onChange, ...props }) {
       {!readOnly && <Search map={map} onChange={handleLocation} />}
       <div className="flex-1 position-relative">
         <div ref={containerRef} className={`mappage-container`}></div>
+        {/* 定位 */}
         {!readOnly && (
           <Control.Location ref={locationRef} map={map} value={value} onChange={handleLocation} />
         )}
+        {/* 放大缩小控件 */}
         <Control.CenterMarker ref={centerMarkerRef} />
+        {/* 位置信息面板 */}
       </div>
       <Layout.Footer>
         {/* 当前位置 */}

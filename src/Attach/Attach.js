@@ -11,6 +11,9 @@ const Attach = forwardRef(
       onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
       onDelete,
       onClick,
+      // 上传按钮
+      uploadProps,
+      itemProps,
       ...props
     },
     ref
@@ -106,7 +109,10 @@ const Attach = forwardRef(
       >
         {/* 图片上传: 上传按钮 */}
         {onChoose && (
-          <div className={`attach-upload`}>
+          <div
+            {...uploadProps}
+            className={`attach-upload${uploadProps?.className ? ' ' + uploadProps.className : ''}`}
+          >
             <input type="file" name="uploadAttach" onChange={handleFileChange} />
             <i className={`attach-upload-icon`}></i>
             {getUploadingDOM()}
@@ -122,6 +128,7 @@ const Attach = forwardRef(
                 data-index={index}
                 className={`attach-item${item.className ? ' ' + item.className : ''}`}
                 style={item.style || {}}
+                {...itemProps}
               >
                 <i className={`icon attach-item-type ${getIcon(item.src)}`}></i>
                 <div className="attach-item-label">{item.name || item.src}</div>
