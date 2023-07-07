@@ -126,7 +126,7 @@ function MapChoose({ readOnly, value, onChange, ...props }) {
     let marker = addMarkers([point], {
       map: map,
       type: type,
-      color: 'red',
+      color: 'select',
       zIndex: 20010086
     })
     selectedMarkerRef.current = marker?.[0] || null

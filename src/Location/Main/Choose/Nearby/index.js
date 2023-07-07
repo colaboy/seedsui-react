@@ -53,7 +53,7 @@ function Nearby({ map, onChange }, ref) {
     // 绘制新的点
     let points = Array.isArray(result) ? result.map((item) => item.point) : null
     if (points) {
-      markersRef.current = addMarkers(points, { map: map, color: 'blue' })
+      markersRef.current = addMarkers(points, { map: map })
     }
 
     // 刷新列表

@@ -20,7 +20,7 @@ function addMarkers(
     } else {
       poi = pointToBdPoint(poi)
     }
-    let icon = color ? getMarkerIcon(color) : undefined
+    let icon = getMarkerIcon(color)
     let marker = new BMap.Marker(poi, { icon: icon })
     if (zIndex) {
       marker.setZIndex(zIndex)
