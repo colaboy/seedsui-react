@@ -38,10 +38,10 @@ function Location({ map, value, onChange, ...props }, ref) {
   return (
     <div
       {...props}
-      className={`mappage-location${props.className ? ' ' + props.className : ''}`}
+      className={`mappage-control-location${props.className ? ' ' + props.className : ''}`}
       onClick={handleLocation}
     >
-      <div className={`mappage-location-icon`}></div>
+      <div className={`mappage-control-location-icon`}></div>
     </div>
   )
 }

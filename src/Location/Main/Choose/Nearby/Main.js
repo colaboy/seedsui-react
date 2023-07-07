@@ -12,7 +12,7 @@ function Main({ list, onChange }) {
         list.map((item, index) => {
           return (
             <div
-              className={`mappage-list-item`}
+              className={`mappage-info-item`}
               key={index}
               data-nearby-item-id={`${item.longitude},${item.latitude}`}
               onClick={(e) => {
@@ -20,12 +20,12 @@ function Main({ list, onChange }) {
                 onChange && onChange(item)
               }}
             >
-              <div className="mappage-list-item-prefix">
+              <div className="mappage-info-item-prefix">
                 <i className="icon icon-position"></i>
               </div>
-              <div className="mappage-list-item-content border-b">
-                <p className="mappage-list-item-content-title">{item.title}</p>
-                <p className="mappage-list-item-description">{item.address || ''}</p>
+              <div className="mappage-info-item-content border-b">
+                <p className="mappage-info-item-content-title">{item.title}</p>
+                <p className="mappage-info-item-description">{item.address || ''}</p>
               </div>
               <Checkbox checked />
             </div>

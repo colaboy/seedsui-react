@@ -15,7 +15,7 @@ function Current({ readOnly, map, current, onChange }, ref) {
 
   return (
     <div
-      className={`mappage-list-item border-b`}
+      className={`mappage-info-item border-b`}
       onClick={
         readOnly
           ? () => {
@@ -28,11 +28,11 @@ function Current({ readOnly, map, current, onChange }, ref) {
       }
       ref={ref}
     >
-      <div className="mappage-list-item-prefix">
+      <div className="mappage-info-item-prefix">
         <i className="icon mappage-icon-current"></i>
       </div>
-      <div className="mappage-list-item-content">
-        <p className="mappage-list-item-content-title">
+      <div className="mappage-info-item-content">
+        <p className="mappage-info-item-content-title">
           <span>{locale('当前位置', 'current_location')}</span>
           <Navigation
             longitude={current?.longitude}
@@ -40,7 +40,7 @@ function Current({ readOnly, map, current, onChange }, ref) {
             address={current?.value}
           />
         </p>
-        <p className="mappage-list-item-description">{current?.value || ''}</p>
+        <p className="mappage-info-item-description">{current?.value || ''}</p>
       </div>
       {/* active时显示checkbox */}
       {!readOnly && <Checkbox checked />}

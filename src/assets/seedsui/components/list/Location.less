@@ -71,92 +71,81 @@
   .anchorBL {
     display: none;
   }
-
-  // 缩放容器
-  .BMap_stdMpCtrl.BMap_stdMpType3.BMap_noprint.anchorBR {
-    width: 30px !important;
-    height: 65px !important;
-    .BMap_stdMpZoom {
-      width: 30px !important;
-      height: 65px !important;
-    }
-  }
-  // 缩放加减号
-  .BMap_stdMpZoom .BMap_button {
-    width: 30px;
-    height: 30px;
-    color: #808080;
-    line-height: 30px;
-    text-align: center;
-    background: #ffffff;
-    background-image: initial;
-    border-radius: 4px;
-    border-radius: 4px;
-    box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.2);
-    &.BMap_stdMpZoomIn {
-      // 加号
-      background-position: 0;
-
-      .BMap_smcbg {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/zoomout_836a0e4.png) !important;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 23px 23px !important;
-      }
-    }
-    &.BMap_stdMpZoomOut {
-      // 减号
-      top: auto !important;
-      bottom: 0 !important;
-      background-position: 0;
-
-      // font-family: 'iconfont';
-      // &:extend(.icon-minus-fill all);
-      .BMap_smcbg {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/zoomin_891d512.png) !important;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 23px 23px !important;
-      }
-    }
-  }
-  // 圆形拖拽
-  .BMap_vectex_node {
-    background: #ffffff;
-    background-image: none;
-    border: 1px solid #1a1a1a;
-    border-radius: 100%;
-  }
 }
 // 定位插件
-.mappage-location {
+.mappage-control-location {
+  .flex;
+  .flex-center;
+  .flex-middle;
   position: absolute;
   top: auto;
   right: auto;
-  bottom: 10px;
-  left: 10px;
-  padding: 4px 6px;
-  color: #686d72;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 3px;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  bottom: 120px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 6px 0px rgba(118, 163, 210, 0.2);
+  border-radius: 8px;
 }
-.mappage-location-icon {
-  width: 23px;
-  height: 23px;
-  background-image: url(//webmap1.bdimg.com/mobile/simple/static/common/images/new/loc_ffcaf82.png);
-  background-size: 23px 23px;
+.mappage-control-location-icon {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  font-family: 'iconfont';
+  &:extend(.icon-map-location all);
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
-.mappage-location-label {
+.mappage-control-location-label {
   margin-top: 4px;
   text-align: center;
   &:extend(.font-size-sm);
+}
+// 缩放插件
+.mappage-control-zoom {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  .flex-vertical;
+  position: absolute;
+  top: auto;
+  right: auto;
+  bottom: 120px;
+  right: 12px;
+  width: 36px;
+  height: 72px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+  border-radius: 8px;
+}
+.mappage-control-zoom-out,
+.mappage-control-zoom-in {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  width: 32px;
+  height: 36px;
+  .mappage-control-zoom-icon {
+    font-family: 'iconfont';
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+.mappage-control-zoom-in {
+  box-shadow: inset 0px -0.5px 0px 0px rgba(230, 231, 232, 1);
+  .mappage-control-zoom-icon {
+    &:extend(.icon-map-zoom-in all);
+  }
+}
+.mappage-control-zoom-out {
+  .mappage-control-zoom-icon {
+    &:extend(.icon-map-zoom-out all);
+  }
 }
 
 // 中心标记
@@ -238,7 +227,16 @@
 }
 
 // 地图-地点列表
-.mappage-list-item {
+.mappage-info-card {
+  background: white;
+  box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
+  border-radius: 12px;
+  position: absolute;
+  bottom: 6px;
+  right: 12px;
+  left: 12px;
+}
+.mappage-info-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -254,7 +252,7 @@
     }
   }
 }
-.mappage-list-item-submit {
+.mappage-info-item-submit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,17 +263,17 @@
   border-radius: 4px;
   margin-right: 12px;
 }
-.mappage-list-item-prefix {
+.mappage-info-item-prefix {
   .icon {
     .icon.size20;
     color: @placeholder;
   }
 }
-.mappage-list-item-content {
+.mappage-info-item-content {
   flex: 1;
   padding: 10px 0;
 }
-.mappage-list-item-description {
+.mappage-info-item-description {
   color: @placeholder;
 }
 

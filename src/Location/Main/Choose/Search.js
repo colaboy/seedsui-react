@@ -100,18 +100,18 @@ function Search({ map, onChange }) {
         <div className="mappage-search-body">
           {searchList.map((item) => {
             return (
-              <div className="mappage-list-item" key={item.id} onClick={() => handleMarker(item)}>
-                <div className="mappage-list-item-prefix">
+              <div className="mappage-info-item" key={item.id} onClick={() => handleMarker(item)}>
+                <div className="mappage-info-item-prefix">
                   <i className="icon icon-position"></i>
                 </div>
-                <div className="mappage-list-item-content border-b">
-                  <div className="mappage-list-item-title">
+                <div className="mappage-info-item-content border-b">
+                  <div className="mappage-info-item-title">
                     <HighlightKeyword
                       text={item.title}
                       keyword={inputRef?.current?.inputDOM?.value || ''}
                     />
                   </div>
-                  <div className="mappage-list-item-description">{item.address}</div>
+                  <div className="mappage-info-item-description">{item.address}</div>
                 </div>
               </div>
             )

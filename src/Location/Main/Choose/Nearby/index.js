@@ -67,14 +67,14 @@ function Nearby({ map, onChange }, ref) {
       // 选中附近推荐的选中项
       setTimeout(() => {
         // 清空选中项
-        nearbyRef.current.querySelector('.mappage-list-item.active')?.classList.remove('active')
+        nearbyRef.current.querySelector('.mappage-info-item.active')?.classList.remove('active')
 
         // 外层容器中查询附近推荐的选中项
-        let container = nearbyRef.current.closest('.layout-footer')
+        let container = nearbyRef.current.closest('.mappage-info-card')
         let activeId = container.nearbyActive
 
         if (activeId) {
-          for (let el of container.querySelectorAll('.mappage-list-item')) {
+          for (let el of container.querySelectorAll('.mappage-info-item')) {
             if (el.getAttribute('data-nearby-item-id') === activeId) {
               el.classList.add('active')
             }

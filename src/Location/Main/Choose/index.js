@@ -188,22 +188,25 @@ function MapChoose({ readOnly, value, onChange, ...props }) {
         {!readOnly && (
           <Control.Location ref={locationRef} map={map} value={value} onChange={handleLocation} />
         )}
-        {/* 放大缩小控件 */}
+        {/* 中心点 */}
         <Control.CenterMarker ref={centerMarkerRef} />
+        {/* 放大缩小 */}
+        <Control.Zoom map={map} />
         {/* 位置信息面板 */}
+        <div className="mappage-info-card">
+          {/* 当前位置 */}
+          <Current
+            ref={currentRef}
+            readOnly={readOnly}
+            map={map}
+            current={current}
+            onChange={handleLocation}
+          />
+          {/* 附近位置 */}
+          {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
+        </div>
       </div>
-      <Layout.Footer>
-        {/* 当前位置 */}
-        <Current
-          ref={currentRef}
-          readOnly={readOnly}
-          map={map}
-          current={current}
-          onChange={handleLocation}
-        />
-        {/* 附近位置 */}
-        {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
-      </Layout.Footer>
+
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
   )
