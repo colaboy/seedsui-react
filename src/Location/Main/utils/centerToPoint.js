@@ -1,5 +1,6 @@
 import gcjToBdPoint from './gcjToBdPoint'
 import pointToBdPoint from './pointToBdPoint'
+import offsetBdPoint from './offsetBdPoint'
 
 // 跳转至中心点
 function centerToPoint(point, { map, type }) {
@@ -11,7 +12,15 @@ function centerToPoint(point, { map, type }) {
 
   // eslint-disable-next-line
   point = pointToBdPoint(point)
-  map.panTo(point)
+  map.panTo(
+    offsetBdPoint({
+      map: map,
+      point: point,
+      offset: {
+        top: 100
+      }
+    })
+  )
   // map.setCenter(point)
   // map.setViewport(point)
 }

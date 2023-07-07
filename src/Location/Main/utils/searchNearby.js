@@ -1,4 +1,5 @@
-import { formatPoint } from './../utils'
+import formatPoint from './formatPoint'
+import getCenter from './getCenter'
 import gcjToBdPoint from './gcjToBdPoint'
 import pointToBdPoint from './pointToBdPoint'
 
@@ -51,7 +52,7 @@ function searchNearby(
     // 如果没有传入点, 则默认取中心点
     if (!point) {
       // eslint-disable-next-line
-      point = map.getCenter() // 搜索中心点坐标
+      point = getCenter({ map }) // 搜索中心点坐标
     }
 
     local.searchNearby(keyword, point, radius)

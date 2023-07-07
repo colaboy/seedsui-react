@@ -1,8 +1,10 @@
+import getCenter from './getCenter'
+
 // 绘制中心点
 function centerMarker({ map }) {
   return new Promise((resolve) => {
     // 中心点
-    let centerPoint = map.getCenter()
+    let centerPoint = getCenter({ map })
 
     // 获取地址信息
     // 创建地理编码实例

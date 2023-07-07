@@ -37,8 +37,8 @@ function Current({ readOnly, map, current, onChange }, ref) {
             address={current?.value}
           />
         </div>
-        <div className="mappage-info-item-description flex">
-          <div className="flex-1">{current?.value || ''}</div>
+        <div className="mappage-info-item-description">
+          <div className="mappage-info-item-description-content">{current?.value || ''}</div>
           {/* active时显示checkbox */}
           {!readOnly && <Checkbox checked />}
         </div>
