@@ -130,10 +130,13 @@
   width: 32px;
   height: 36px;
   .mappage-control-zoom-icon {
+    .flex;
+    .flex-center;
+    .flex-middle;
     font-family: 'iconfont';
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+    font-size: 14px;
+    width: 16px;
+    height: 16px;
   }
 }
 .mappage-control-zoom-in {
@@ -149,15 +152,12 @@
 }
 
 // 中心标记
-.mappage-icon-current {
+.mappage-marker-center {
   background: url(//res.waiqin365.com/d/seedsui/location/marker-red.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-}
 
-.mappage-marker-center {
-  .mappage-icon-current;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -211,6 +211,16 @@
 .mappage-nearby-toggle {
   text-align: center;
   padding: 10px 0;
+  color: @primary;
+}
+.mappage-nearby-toggle-label {
+}
+.mappage-nearby-toggle-arrow {
+  .shape-triangle-down;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  transform: rotate(0deg) translateY(1px);
+  border-top-color: @primary;
 }
 .mappage-nearby-body {
   display: none;
@@ -218,7 +228,28 @@
 
 // 附近推荐-tabs
 .mappage-nearby-tabs {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 6px;
+  margin: 0 12px;
 }
+.mappage-nearby-tab {
+  display: inline-flex;
+  flex: 0 0 auto; /* 确保子项宽度不会自动伸缩 */
+  background: #f2f2f6;
+  border-radius: 4px;
+  padding: 0 8px;
+  height: 20px;
+  color: #191c1f;
+  font-size: @font-size-sm;
+  &.active {
+    color: @primary;
+  }
+}
+
 // 附近推荐-结果
 .mappage-nearby-main {
   position: relative;
@@ -240,8 +271,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 12px;
+  margin: 0 12px;
   background-color: white;
+  .border-b;
   .checkbox {
     visibility: hidden;
   }
@@ -252,26 +284,12 @@
     }
   }
 }
-.mappage-info-item-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 30px;
-  color: @primary-color;
-  background-color: @primary-bg;
-  border-radius: 4px;
-  margin-right: 12px;
-}
-.mappage-info-item-prefix {
-  .icon {
-    .icon.size20;
-    color: @placeholder;
-  }
-}
 .mappage-info-item-content {
   flex: 1;
   padding: 10px 0;
+}
+.mappage-info-item-content-title {
+  .flex;
 }
 .mappage-info-item-description {
   color: @placeholder;
@@ -279,12 +297,12 @@
 
 // 导航
 .mappage-navigation {
-  color: @primary;
+  color: #4e5054;
   line-height: 21px;
   margin-left: 8px;
   .mappage-navigation-icon {
     font-family: 'iconfont';
-    font-size: 16px;
+    font-size: 12px;
     &:extend(.icon-navigation all);
   }
 }

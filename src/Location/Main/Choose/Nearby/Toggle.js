@@ -5,8 +5,8 @@ import locale from './../../../../locale'
 function Toggle({ visible, onChange }) {
   return (
     <div className="mappage-nearby-toggle" onClick={() => onChange(!visible)}>
-      <span className="modal-dropdown-title-text">{locale('附近推荐')}</span>
-      <i className="modal-dropdown-title-arrow"></i>
+      <span className="mappage-nearby-toggle-label">{locale('附近推荐')}</span>
+      <i className="mappage-nearby-toggle-arrow"></i>
     </div>
   )
 }

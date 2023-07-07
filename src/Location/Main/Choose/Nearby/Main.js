@@ -20,10 +20,7 @@ function Main({ list, onChange }) {
                 onChange && onChange(item)
               }}
             >
-              <div className="mappage-info-item-prefix">
-                <i className="icon icon-position"></i>
-              </div>
-              <div className="mappage-info-item-content border-b">
+              <div className="mappage-info-item-content">
                 <p className="mappage-info-item-content-title">{item.title}</p>
                 <p className="mappage-info-item-description">{item.address || ''}</p>
               </div>

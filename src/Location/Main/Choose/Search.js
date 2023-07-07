@@ -101,10 +101,7 @@ function Search({ map, onChange }) {
           {searchList.map((item) => {
             return (
               <div className="mappage-info-item" key={item.id} onClick={() => handleMarker(item)}>
-                <div className="mappage-info-item-prefix">
-                  <i className="icon icon-position"></i>
-                </div>
-                <div className="mappage-info-item-content border-b">
+                <div className="mappage-info-item-content">
                   <div className="mappage-info-item-title">
                     <HighlightKeyword
                       text={item.title}

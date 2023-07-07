@@ -1,6 +1,5 @@
 import locale from './../../../locale'
 import Loading from './../../../Loading'
-import addZoomControl from './addZoomControl'
 
 // 初始化地图
 function initMap(container, opt) {
@@ -34,11 +33,6 @@ function initMap(container, opt) {
       'tilesloaded',
       (e) => {
         Loading.hide()
-
-        // 添加缩放控件
-        if (!navigationControl) {
-          navigationControl = addZoomControl({ map: map })
-        }
 
         // 清除加载超时
         window.clearTimeout(map.loadTimeout)

@@ -15,14 +15,14 @@ function Navigation({ longitude, latitude, name, address }) {
   }
   if (!longitude || !latitude) return null
   // 不支持的平台不显示
-  if (
-    Bridge.platform !== 'wechat' &&
-    Bridge.platform !== 'wework' &&
-    Bridge.platform !== 'dinghuo' &&
-    Bridge.platform !== 'wq'
-  ) {
-    return null
-  }
+  // if (
+  //   Bridge.platform !== 'wechat' &&
+  //   Bridge.platform !== 'wework' &&
+  //   Bridge.platform !== 'dinghuo' &&
+  //   Bridge.platform !== 'wq'
+  // ) {
+  //   return null
+  // }
   return (
     <span className="mappage-navigation" onClick={handleClick}>
       <i className="mappage-navigation-icon"></i>
