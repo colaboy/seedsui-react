@@ -25,6 +25,11 @@ const Combo = forwardRef(
       cancelProps,
       slotProps,
 
+      // 选中效果: checkbox | tick
+      checkedType = 'checkbox',
+      // 选中位置: left | right
+      checkedPosition = 'right',
+
       multiple,
       maskClosable = true,
 
@@ -152,6 +157,12 @@ const Combo = forwardRef(
       PickerModalProps.slotProps = slotProps
     }
     // 伸缩属性-选择属性
+    if (checkedType !== undefined) {
+      PickerModalProps.checkedType = checkedType
+    }
+    if (checkedPosition !== undefined) {
+      PickerModalProps.checkedPosition = checkedPosition
+    }
     if (multiple !== undefined) {
       PickerModalProps.multiple = multiple
     }

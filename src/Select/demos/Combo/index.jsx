@@ -41,6 +41,14 @@ export default () => {
           {
             id: '6',
             name: '选项6'
+          },
+          {
+            id: '7',
+            name: '选项7'
+          },
+          {
+            id: '8',
+            name: '选项8'
           }
         ]}
         multiple={true}
@@ -53,6 +61,8 @@ export default () => {
         captionProps={{
           caption: '选择'
         }}
+        checkedType="tick"
+        checkedPosition="right"
       />
     </>
   )

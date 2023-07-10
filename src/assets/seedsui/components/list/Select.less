@@ -28,7 +28,7 @@
   display: block;
   height: auto;
   min-height: 200px;
-  max-height: 215px;
+  max-height: 335px;
   overflow: auto;
   .nodata {
     margin: 10px 0;
@@ -39,9 +39,11 @@
 }
 // 列表选项
 .select-modal-option {
-  padding: 10px 12px;
+  padding: 14px 4px;
+  margin: 0 12px;
   display: flex;
   align-items: center;
+  gap: 8px;
   .border-b;
 
   // ue要求改为checkbox
@@ -51,11 +53,22 @@
     pointer-events: none;
   }
 }
+.select-modal-option-caption {
+  position: relative;
+  display: block;
+  pointer-events: none;
+  &:extend(.flex-1);
+}
 
+// 选中样式-checkbox
+.select-modal-option-checkbox {
+  .checked-input {
+    .checkbox-input;
+  }
+}
 .select-modal-option.active {
-  // ue要求改为checkbox
-  .checkbox {
-    .checkbox-input {
+  .select-modal-option-checkbox {
+    .checked-input {
       border: 0;
       background-color: @primary-bg;
       color: white;
@@ -70,24 +83,25 @@
       }
     }
   }
+}
 
-  // color: @select-modal-color-active;
-  // .select-modal-option-tick {
-  //   visibility: visible;
-  // }
+// 选中样式-tick
+.select-modal-option-tick {
+  .checked-input {
+    width: 16px;
+    height: 16px;
+  }
 }
-.select-modal-option-caption {
-  position: relative;
-  display: block;
-  pointer-events: none;
-  &:extend(.flex-1);
+.select-modal-option.active {
+  .select-modal-option-tick {
+    .checked-input {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      font-family: 'iconfont';
+      pointer-events: none;
+      &:extend(.icon-ok-fill all);
+      color: @primary;
+    }
+  }
 }
-// .select-modal-option-tick {
-//   width: 16px;
-//   height: 16px;
-//   font-size: 16px;
-//   font-family: 'iconfont';
-//   visibility: hidden;
-//   pointer-events: none;
-//   &:extend(.icon-ok-fill all);
-// }
