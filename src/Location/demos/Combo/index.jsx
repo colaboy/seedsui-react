@@ -33,14 +33,15 @@ export default () => {
       <Location.Combo
         modal="page"
         // disabled
-        readOnly
         autoFit
-        editable
+        // editable
         // allowClear
         ref={comboRef}
         value={value}
-        previewVisible
-        chooseVisible
+        // previewVisible
+        // chooseVisible
+        // 点击整行触发的动作: location | choose | preview
+        clickAction="choose"
         onChange={(val) => {
           console.log(val)
           setValue(val)

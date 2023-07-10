@@ -31,7 +31,8 @@ const LocationCombo = forwardRef(
       failText = locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'),
       loadingText = locale('定位中...', 'location'),
 
-      readOnly = false,
+      // 点击整行触发的动作: location | choose | preview
+      clickAction,
       disabled = false,
       editable = false,
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
@@ -145,14 +146,14 @@ const LocationCombo = forwardRef(
       }
 
       // 点击整行定位
-      if (!readOnly) {
+      if (clickAction === 'location') {
         handleLocation(e)
         return
       }
 
-      // 点击整行预览
-      if (readOnly) {
-        setModalVisible('preview')
+      // 点击整行预览或选点
+      if (clickAction) {
+        setModalVisible(clickAction)
         return
       }
     }
