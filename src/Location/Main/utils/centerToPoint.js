@@ -17,7 +17,7 @@ function centerToPoint(point, { map, type }) {
       map: map,
       point: point,
       offset: {
-        top: 80
+        top: 70
       }
     })
   )

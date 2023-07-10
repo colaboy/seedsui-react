@@ -4,7 +4,7 @@ import offsetBdPoint from './offsetBdPoint'
 function getCenter({
   map,
   offset = {
-    top: -80
+    top: -70
   }
 }) {
   // 获取地图中心点

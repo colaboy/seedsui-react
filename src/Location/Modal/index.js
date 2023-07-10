@@ -1,5 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react'
 import locale from './../../locale'
+import addHistory from './addHistory'
+
 import Toast from './../../Toast'
 import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
@@ -32,11 +34,10 @@ const LocationModal = forwardRef(
     let [value, setValue] = useState(originValue)
 
     // 加载中
-    const [isLoading, setIsLoading] = useState(false)
+    let [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
       if (!visible) return
-
       // 无法使用地图
       if (!window.BMap && !ak) {
         Toast.show({ content: locale('请传入百度地图ak', 'hint_map_ak') })
@@ -45,7 +46,9 @@ const LocationModal = forwardRef(
 
       // 正确
       if (window.BMap) {
-        setIsLoading(true)
+        loaded = true
+        setLoaded(true)
+        addHistory({ modal, loaded })
         return
       }
 
@@ -56,7 +59,9 @@ const LocationModal = forwardRef(
           ak: ak,
           success: () => {
             Loading.hide()
-            setIsLoading(true)
+            loaded = true
+            setLoaded(true)
+            addHistory({ modal, loaded })
           },
           fail: () => {
             Loading.hide()
@@ -66,22 +71,41 @@ const LocationModal = forwardRef(
         return
       }
       Toast.show({ content: loadErrMsg })
+
+      // eslint-disable-next-line
     }, [visible])
+
+    // 页面模式: 路由监听
+    useEffect(() => {
+      if (modal !== 'page') return
+      window.removeEventListener('popstate', handleBack, false)
+      window.addEventListener('popstate', handleBack, false)
+
+      return () => {
+        window.removeEventListener('popstate', handleBack, false)
+      }
+      // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
       setValue(originValue)
     }, [JSON.stringify(originValue)]) // eslint-disable-line
 
+    // 返回路由监听
+    function handleBack() {
+      if (window.location.href.indexOf('modalPage=1') !== -1) {
+        window.history.go(-1)
+      }
+      onVisibleChange && onVisibleChange(false)
+    }
+
     // 点击确定和取消
     function handleSubmitClick() {
       if (onChange) onChange(value)
-      if (onVisibleChange) onVisibleChange(false)
-    }
-    function handleCancelClick() {
-      if (onVisibleChange) onVisibleChange(false)
+      handleBack()
     }
 
-    if (!isLoading) return null
+    if (!loaded) return null
 
     // Page显示
     if (modal === 'page') {
@@ -117,7 +141,7 @@ const LocationModal = forwardRef(
             caption: locale('选择地址', 'picker_location_title')
           }}
           onSubmitClick={visible === 'choose' && value?.value ? handleSubmitClick : null}
-          onCancelClick={handleCancelClick}
+          onCancelClick={handleBack}
         />
         {/* 内容 */}
         <Main ak={ak} type={visible} value={value} onChange={setValue} />
