@@ -355,3 +355,26 @@
     &:extend(.icon-navigation all);
   }
 }
+
+// 底部
+.mappage-footer {
+  .flex;
+  gap: 12px;
+  padding: 6px 12px;
+  background-color: #f9f7f5;
+  box-shadow: inset 0px 0.5px 0px 0px rgba(230, 232, 235, 1);
+}
+.mappage-footer-ok,
+.mappage-footer-clear {
+  .flex-1;
+  height: 40px;
+  border-radius: 10px;
+}
+.mappage-footer-ok {
+  background-color: @primary-bg;
+  border-color: @primary-border;
+  color: @primary-color;
+}
+.mappage-footer-clear {
+  background: #e7e9eb;
+}

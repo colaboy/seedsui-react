@@ -143,5 +143,6 @@ export default {
   end_time: '结束时间',
   quick_select: '快捷选择',
   custom_select: '自定义选择',
-  search_place: '搜索地点'
+  search_place: '搜索地点',
+  clear_mark: '清空标注'
 }

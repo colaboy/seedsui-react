@@ -148,5 +148,6 @@ export default {
   end_time: 'End time',
   quick_select: 'Quick Select',
   custom_select: 'Custom Select',
-  search_place: 'Search place'
+  search_place: 'Search place',
+  clear_mark: 'Clear mark'
 }
