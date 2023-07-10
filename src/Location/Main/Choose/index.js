@@ -17,7 +17,14 @@ import Current from './Current'
 import Nearby from './Nearby'
 
 // 地图位置选择
-function MapChoose({ readOnly, value, onChange, ...props }) {
+function MapChoose({
+  readOnly,
+  value,
+  onChange,
+  // 渲染
+  footerRender,
+  ...props
+}) {
   let [map, setMap] = useState(null)
   // 当前位置点
   const currentRef = useRef(null)
@@ -206,6 +213,7 @@ function MapChoose({ readOnly, value, onChange, ...props }) {
           {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
         </div>
       </div>
+      {footerRender && footerRender()}
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
   )

@@ -325,7 +325,7 @@ const LocationCombo = forwardRef(
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onChange={(newValue) => {
-            if (newValue.value && onChangeRef?.current) {
+            if (onChangeRef?.current) {
               onChangeRef.current(newValue)
             }
           }}

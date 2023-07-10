@@ -11,15 +11,18 @@ const Main = forwardRef(
       value,
       onChange,
 
-      type // preview、choose
+      type, // preview、choose
+
+      // 渲染
+      footerRender
     },
     ref
   ) => {
     if (type === 'preview') {
-      return <Preview ak={ak} value={value} />
+      return <Preview ak={ak} value={value} footerRender={footerRender} />
     }
     if (type === 'choose') {
-      return <Choose ak={ak} value={value} onChange={onChange} />
+      return <Choose ak={ak} value={value} onChange={onChange} footerRender={footerRender} />
     }
   }
 )

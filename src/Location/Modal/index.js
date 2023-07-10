@@ -100,7 +100,7 @@ const LocationModal = forwardRef(
     }
 
     // 点击确定和取消
-    function handleSubmitClick() {
+    function handleOk() {
       if (onChange) onChange(value)
       handleBack()
     }
@@ -118,9 +118,25 @@ const LocationModal = forwardRef(
           {...props}
         >
           {/* 内容 */}
-          <Main ak={ak} type={visible} value={value} onChange={setValue} />
-          {/* 底 */}
-          {visible === 'choose' && <Footer onOk={handleSubmitClick} />}
+          <Main
+            ak={ak}
+            type={visible}
+            value={value}
+            onChange={setValue}
+            // 底
+            footerRender={() => {
+              return visible === 'choose' ? (
+                <Footer
+                  onOk={handleOk}
+                  onClear={() => {
+                    value = null
+                    setValue(null)
+                    handleOk()
+                  }}
+                />
+              ) : null
+            }}
+          />
         </Layout>
       )
     }
@@ -140,7 +156,7 @@ const LocationModal = forwardRef(
           captionProps={{
             caption: locale('选择地址', 'picker_location_title')
           }}
-          onSubmitClick={visible === 'choose' && value?.value ? handleSubmitClick : null}
+          onSubmitClick={visible === 'choose' && value?.value ? handleOk : null}
           onCancelClick={handleBack}
         />
         {/* 内容 */}
