@@ -1,11 +1,5 @@
 // 偏移获取的点
-function offsetBdPoint({
-  map,
-  point,
-  offset = {
-    top: -70
-  }
-}) {
+function offsetBdPoint({ map, point, offset }) {
   if (typeof offset?.top !== 'number') {
     return point
   }

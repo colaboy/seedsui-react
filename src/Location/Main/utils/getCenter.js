@@ -3,8 +3,9 @@ import offsetBdPoint from './offsetBdPoint'
 // 获取带偏移量的中心点
 function getCenter({
   map,
+  // 中心位置偏移
   offset = {
-    top: -70
+    // top: -50
   }
 }) {
   // 获取地图中心点

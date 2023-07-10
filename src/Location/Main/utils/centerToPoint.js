@@ -15,10 +15,11 @@ function centerToPoint(point, { map, type }) {
   map.panTo(
     offsetBdPoint({
       map: map,
-      point: point,
-      offset: {
-        top: 70
-      }
+      point: point
+      // 中心位置偏移
+      // offset: {
+      //   top: 50
+      // }
     })
   )
   // map.setCenter(point)
