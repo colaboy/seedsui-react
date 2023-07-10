@@ -7,12 +7,15 @@ import locale from './../../../../locale'
 // 导航
 function Navigation({ longitude, latitude, name, address }) {
   function handleClick() {
-    Loading.show()
+    Loading.show({
+      content: locale('定位中...', 'location')
+    })
     // 开始定位
     Bridge.getLocation({
       cacheTime: typeof cacheTime === 'number' ? cacheTime : 10000,
       type: 'gcj02',
       success: async (data) => {
+        Loading.hide()
         Bridge.openLocation({
           slatitude: data.latitude, // 起点纬度
           slongitude: data.longitude, // 起点经度
@@ -25,6 +28,7 @@ function Navigation({ longitude, latitude, name, address }) {
         })
       },
       fail: (res) => {
+        Loading.hide()
         // 赋值
         Toast.show({
           content: locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
@@ -37,14 +41,14 @@ function Navigation({ longitude, latitude, name, address }) {
   }
   if (!longitude || !latitude) return null
   // 不支持的平台不显示
-  // if (
-  //   Bridge.platform !== 'wechat' &&
-  //   Bridge.platform !== 'wework' &&
-  //   Bridge.platform !== 'dinghuo' &&
-  //   Bridge.platform !== 'wq'
-  // ) {
-  //   return null
-  // }
+  if (
+    Bridge.platform !== 'wechat' &&
+    Bridge.platform !== 'wework' &&
+    Bridge.platform !== 'dinghuo' &&
+    Bridge.platform !== 'wq'
+  ) {
+    return null
+  }
   return (
     <span className="mappage-navigation" onClick={handleClick}>
       <i className="mappage-navigation-icon"></i>

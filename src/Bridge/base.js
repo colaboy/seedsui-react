@@ -223,8 +223,10 @@ let Bridge = {
       for (let locationTaskItem of self.locationTask) {
         if (res.longitude && res.latitude) {
           if (locationTaskItem.success) locationTaskItem.success(res)
+          if (locationTaskItem.complete) locationTaskItem.complete(res)
         } else {
           if (locationTaskItem.fail) locationTaskItem.fail(res)
+          if (locationTaskItem.complete) locationTaskItem.complete(res)
         }
       }
     }

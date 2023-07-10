@@ -114,7 +114,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
                         keyword={inputRef?.current?.inputDOM?.value || ''}
                       />
                     </div>
-                    <div className="mappage-info-item-description">{item.address}</div>
+                    <div className="mappage-info-item-content-description">{item.address}</div>
                   </div>
                 </div>
               )

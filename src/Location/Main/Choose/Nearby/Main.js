@@ -22,7 +22,7 @@ function Main({ list, onChange }) {
             >
               <div className="mappage-info-item-content">
                 <p className="mappage-info-item-content-title">{item.title}</p>
-                <p className="mappage-info-item-description">{item.address || ''}</p>
+                <p className="mappage-info-item-content-description">{item.address || ''}</p>
               </div>
               <Checkbox checked />
             </div>
