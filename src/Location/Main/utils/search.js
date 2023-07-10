@@ -1,3 +1,5 @@
+import locale from './../../../locale'
+
 // 搜索附近, keyword:搜索关键词
 function search(keyword, { map }) {
   return new Promise((resolve) => {

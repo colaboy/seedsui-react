@@ -3,7 +3,7 @@ function offsetBdPoint({
   map,
   point,
   offset = {
-    top: -100
+    top: -80
   }
 }) {
   if (typeof offset?.top !== 'number') {

@@ -168,26 +168,67 @@
   padding: 0px;
   border: 0px;
   transform: translate(-50%, -50%);
-  margin-top: -100px;
+  margin-top: -80px;
   cursor: pointer;
   user-select: none;
 }
 
 // 搜索
+.mappage-search-navigation {
+  .flex;
+  .flex-middle;
+  background: #ffffff;
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+  border-radius: 8px;
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  left: 12px;
+  z-index: 1;
+}
+.mappage-search-navigation-icon {
+  font-family: 'iconfont';
+  font-size: 16px;
+  color: #a9b1b9;
+  &:extend(.icon-search all);
+  margin: 8px;
+}
+.mappage-search-navigation-label {
+  font-size: 13px;
+  color: #a9b1b9;
+  letter-spacing: 0;
+  line-height: 12px;
+  font-weight: 400;
+}
+.mappage-search-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
 .mappage-search-header {
   gap: 8px;
   .flex;
   .flex-middle;
-  padding: 8px 12px;
+  padding: 12px 12px;
+  background-color: #fff;
 }
-.mappage-search-header-button-search {
-  padding: 4px;
-  color: @primary-bg;
+
+.mappage-search-header-cancel {
+  font-size: 15px;
+  color: #4f565d;
+}
+.mappage-search-header-input-icon {
+  .mappage-search-navigation-icon;
 }
 .mappage-search-header-input {
   .flex-1;
-  .bordered;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(255, 144, 8, 1);
+  border-radius: 8px;
 }
 .mappage-search-body {
   position: absolute;
