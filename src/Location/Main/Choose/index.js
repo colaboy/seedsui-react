@@ -15,7 +15,6 @@ import Control from './../Control'
 import Search from './Search'
 import Current from './Current'
 import Nearby from './Nearby'
-import Footer from './Footer'
 
 // 地图位置选择
 function MapChoose({ readOnly, value, onChange, ...props }) {
@@ -207,7 +206,6 @@ function MapChoose({ readOnly, value, onChange, ...props }) {
           {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
         </div>
       </div>
-      <Footer />
       {errMsg && <Notice caption={errMsg} style={{ top: '48px' }} />}
     </Layout>
   )

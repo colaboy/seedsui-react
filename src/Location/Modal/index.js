@@ -3,9 +3,11 @@ import locale from './../../locale'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
+import Layout from './../../Layout'
 import Modal from './../../Modal'
 import Head from './../../Picker/Modal/Head'
 import Main from './../Main'
+import Footer from './Footer'
 
 // 地图标注
 const LocationModal = forwardRef(
@@ -16,7 +18,11 @@ const LocationModal = forwardRef(
       value: originValue = null,
       onChange,
 
-      visible, // preview、choose
+      // 弹窗类型: page页面; 其它弹窗(默认);
+      modal,
+
+      // 预览方式: preview、choose
+      visible,
       onVisibleChange,
       ...props
     },
@@ -76,6 +82,24 @@ const LocationModal = forwardRef(
     }
 
     if (!isLoading) return null
+
+    // Page显示
+    if (modal === 'page') {
+      return (
+        <Layout
+          ref={ref}
+          className={`location-page${props?.className ? ' ' + props.className : ''}${
+            visible ? '' : ' hide'
+          }`}
+          {...props}
+        >
+          {/* 内容 */}
+          <Main ak={ak} type={visible} value={value} onChange={setValue} />
+          {/* 底 */}
+          {visible === 'choose' && <Footer onOk={handleSubmitClick} />}
+        </Layout>
+      )
+    }
 
     return (
       <Modal

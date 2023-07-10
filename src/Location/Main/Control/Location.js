@@ -1,4 +1,6 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
+import locale from './../../../locale'
+
 import { getLocation } from './../utils'
 import Loading from './../../../Loading'
 import Toast from './../../../Toast'

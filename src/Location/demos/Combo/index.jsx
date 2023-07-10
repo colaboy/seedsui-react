@@ -31,6 +31,7 @@ export default () => {
   return (
     <>
       <Location.Combo
+        modal="page"
         // disabled
         readOnly
         autoFit

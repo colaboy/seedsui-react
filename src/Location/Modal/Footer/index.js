@@ -1,8 +1,8 @@
 import React from 'react'
-import locale from './../../../../locale'
+import locale from './../../../locale'
 
-import Layout from './../../../../Layout'
-import Button from './../../../../Button'
+import Layout from './../../../Layout'
+import Button from './../../../Button'
 
 // 底部
 function Foot({ onOk, onClear }) {
