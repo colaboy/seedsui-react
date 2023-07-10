@@ -61,7 +61,7 @@ export default () => {
         captionProps={{
           caption: '选择'
         }}
-        checkedType="tick"
+        // checkedType="tick"
         checkedPosition="right"
       />
     </>
