@@ -26,9 +26,9 @@ const Combo = forwardRef(
       slotProps,
 
       // 选中效果: checkbox | tick
-      checkedType = 'checkbox',
+      checkedType,
       // 选中位置: left | right
-      checkedPosition = 'right',
+      checkedPosition,
 
       multiple,
       maskClosable = true,
