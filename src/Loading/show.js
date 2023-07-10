@@ -12,7 +12,7 @@ export default function (props) {
       loadingDOM = document.createElement('div')
       loadingDOM.setAttribute('class', 'loading-mask mask active')
       loadingDOM.setAttribute('id', loadingId)
-      let caption = props?.captionProps?.caption
+      let caption = props?.captionProps?.caption || props?.content
       caption = typeof caption === 'string' ? caption : locale('加载中...', 'loading')
       loadingDOM.innerHTML = `<div class="loading-floating animated">
           <div class="loading-floating-icon">

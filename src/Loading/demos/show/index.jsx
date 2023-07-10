@@ -3,7 +3,9 @@ import { Layout, Loading } from 'seedsui-react'
 
 export default () => {
   function handleToggle() {
-    Loading.show()
+    Loading.show({
+      content: '自定义加载'
+    })
     setTimeout(() => {
       Loading.hide()
     }, 3000)

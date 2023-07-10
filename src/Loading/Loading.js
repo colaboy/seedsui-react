@@ -12,6 +12,7 @@ const Loading = forwardRef(
       icon,
       iconProps,
       captionProps = {},
+      content,
       children,
       ...props
     },
@@ -32,12 +33,15 @@ const Loading = forwardRef(
       }
     })
 
-    const { caption = locale('加载中...', 'loading'), ...otherCaptionProps } = captionProps
+    let { caption = locale('加载中...', 'loading'), ...otherCaptionProps } = captionProps
+    if (typeof content === 'string') {
+      caption = content
+    }
 
-    let content = null
+    let contentNode = null
     if (type === 'custom') {
       // 自定义样式
-      content = (
+      contentNode = (
         <div
           ref={containerRef}
           {...props}
@@ -66,7 +70,7 @@ const Loading = forwardRef(
       )
     } else if (type === 'filling') {
       // 填料环
-      content = (
+      contentNode = (
         <div
           ref={containerRef}
           {...props}
@@ -77,7 +81,7 @@ const Loading = forwardRef(
       )
     } else if (type === 'floating') {
       // 流光
-      content = (
+      contentNode = (
         <div
           ref={containerRef}
           {...props}
@@ -120,7 +124,7 @@ const Loading = forwardRef(
         }
         ref={rootRef}
       >
-        {content}
+        {contentNode}
         {children}
       </div>
     )

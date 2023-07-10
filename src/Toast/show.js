@@ -5,10 +5,10 @@ import hide from './hide'
 function show(props) {
   // 更新属性
   function updateAttribute(mask) {
-    if (props?.maskClickable) {
-      mask.classList.add('toast-propagation')
-    } else {
+    if (props?.maskClickable === false) {
       mask.classList.remove('toast-propagation')
+    } else {
+      mask.classList.add('toast-propagation')
     }
   }
 

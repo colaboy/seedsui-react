@@ -218,6 +218,7 @@ let Bridge = {
           !isNaN(params.cacheTime) ? Number(params.cacheTime) : 60000
         )
       if (params.success) params.success(res)
+      if (params.complete) params.complete(res)
       self.getLocationTask(res)
     }, 2000)
   },
