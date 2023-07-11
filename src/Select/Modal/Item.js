@@ -12,31 +12,28 @@ const Item = ({
   optionProps = {},
   ...props
 }) => {
+  // 获取checkType
+  function getCheckedType() {
+    return typeof checkedType === 'string' ? checkedType : 'checkbox'
+  }
+
   return (
     <div
       {...optionProps}
       {...props}
-      className={`select-modal-option${
-        checkedPosition === 'left' ? ' checked-position-left' : ' checked-position-right'
-      }${optionProps.className ? ' ' + optionProps.className : ''}`}
+      className={`select-modal-option${optionProps.className ? ' ' + optionProps.className : ''}`}
+      checked-position={checkedPosition === 'left' ? 'left' : 'right'}
+      checked-type={getCheckedType()}
       data-index={index}
     >
       {/* 左选中 */}
-      <div
-        className={`left select-modal-option-${
-          typeof checkedType === 'string' ? checkedType : 'checkbox'
-        }`}
-      >
+      <div className={`left select-modal-option-${getCheckedType()}`}>
         <div className="checked-input"></div>
       </div>
       {/* 内容 */}
       <p className="select-modal-option-caption">{item.name}</p>
       {/* 右选中 */}
-      <div
-        className={`right select-modal-option-${
-          typeof checkedType === 'string' ? checkedType : 'checkbox'
-        }`}
-      >
+      <div className={`right select-modal-option-${getCheckedType()}`}>
         <div className="checked-input"></div>
       </div>
     </div>

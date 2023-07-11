@@ -62,7 +62,7 @@ export default () => {
           caption: '选择'
         }}
         // 选中效果: checkbox | tick | corner
-        checkedType="corner"
+        checkedType="tick"
         checkedPosition="right"
       />
     </>

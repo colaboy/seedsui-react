@@ -54,19 +54,19 @@ Select.Combo
   .border-b;
 }
 // 选中框左右排版
-.select-modal-option.checked-position-right {
+.select-modal-option[checked-position='right'] {
   .left {
     display: none;
   }
 }
-.select-modal-option.checked-position-left {
+.select-modal-option[checked-position='left'] {
   .right {
     display: none;
   }
 }
 // 单项禁用
 .select-modal-option.disabled {
-  opacity: 0.8;
+  opacity: 0.5;
   pointer-events: none;
 }
 .select-modal-option-caption {
@@ -80,6 +80,11 @@ Select.Combo
 .select-modal-option-checkbox {
   .checked-input {
     .checkbox-input;
+  }
+}
+.select-modal-option[checked-type='tick'].active {
+  .select-modal-option-caption {
+    color: @primary;
   }
 }
 .select-modal-option.active {
