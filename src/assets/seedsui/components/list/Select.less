@@ -54,12 +54,12 @@ Select.Combo
   .border-b;
 }
 // 选中框左右排版
-.select-modal-option[checked-position='right'] {
+[checked-position='right'] {
   .left {
     display: none;
   }
 }
-.select-modal-option[checked-position='left'] {
+[checked-position='left'] {
   .right {
     display: none;
   }
@@ -77,17 +77,12 @@ Select.Combo
 }
 
 // 选中样式-checkbox
-.select-modal-option-checkbox {
+[checked-type='checkbox'] {
   .checked-input {
     .checkbox-input;
   }
 }
-.select-modal-option[checked-type='tick'].active {
-  .select-modal-option-caption {
-    color: @primary;
-  }
-}
-.select-modal-option.active {
+[checked-type='checkbox'].active {
   .select-modal-option-checkbox {
     .checked-input {
       border: 0;
@@ -107,13 +102,16 @@ Select.Combo
 }
 
 // 选中样式-tick
-.select-modal-option-tick {
+[checked-type='tick'] {
   .checked-input {
     width: 18px;
     height: 18px;
   }
 }
-.select-modal-option.active {
+[checked-type='tick'].active {
+  .select-modal-option-caption {
+    color: @primary;
+  }
   .select-modal-option-tick {
     .checked-input {
       width: 18px;
@@ -128,7 +126,7 @@ Select.Combo
 }
 
 // 选中样式-corner
-.select-modal-option {
+[checked-type='corner'] {
   .select-modal-option-corner {
     // 三角位置
     position: absolute;
@@ -138,7 +136,7 @@ Select.Combo
     z-index: 1;
   }
 }
-.select-modal-option.active {
+[checked-type='corner'].active {
   // 右
   .select-modal-option-corner {
     // 三角
