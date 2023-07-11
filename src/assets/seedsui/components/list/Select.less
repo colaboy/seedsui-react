@@ -104,8 +104,8 @@ Select.Combo
 // 选中样式-tick
 .select-modal-option-tick {
   .checked-input {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 }
 .select-modal-option.active {
@@ -123,16 +123,20 @@ Select.Combo
 }
 
 // 选中样式-corner
-.select-modal-option.active {
-  // 右
+.select-modal-option {
   .select-modal-option-corner {
-    // 三角
+    // 三角位置
     position: absolute;
     top: 0;
     width: 30px;
     height: 30px;
     z-index: 1;
-
+  }
+}
+.select-modal-option.active {
+  // 右
+  .select-modal-option-corner {
+    // 三角
     &::before {
       display: block;
       position: absolute;
