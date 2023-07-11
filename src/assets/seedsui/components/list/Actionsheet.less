@@ -3,12 +3,10 @@
   position: absolute;
   bottom: 0;
 
+  padding: 0 12px 8px;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
-  background-color: @body-bg;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   // 动画使用.popup-animation
 }
 
@@ -31,15 +29,16 @@
 }
 
 .actionsheet-cancel {
-  margin-top: 10px;
+  margin-top: 8px;
 
   background-color: rgba(255, 255, 255, 0.9);
-  .border-t;
+  border-radius: 16px;
 }
 
 .actionsheet-group {
   max-height: 400px;
   overflow: auto;
 
-  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.85);
 }
