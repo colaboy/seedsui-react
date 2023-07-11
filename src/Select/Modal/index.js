@@ -4,6 +4,7 @@ import updateTotal from './updateTotal'
 
 import NoData from './../../NoData'
 import Head from './../../Picker/Modal/Head'
+import Item from './Item'
 
 const Modal = forwardRef(
   (
@@ -20,7 +21,7 @@ const Modal = forwardRef(
       onChange,
       onVisibleChange,
 
-      // 选中效果: checkbox | tick
+      // 选中效果: checkbox | tick | corner
       checkedType = 'checkbox',
       // 选中位置: left | right
       checkedPosition = 'right',
@@ -215,38 +216,18 @@ const Modal = forwardRef(
             {Object.isEmptyObject(list) && <NoData />}
             {list.map((item, index) => {
               return (
-                <div
+                <Item
                   key={index}
-                  {...optionProps}
-                  className={`select-modal-option${
-                    optionProps.className ? ' ' + optionProps.className : ''
-                  }`}
-                  data-index={index}
+                  item={item}
+                  index={index}
+                  // 选中效果: checkbox | tick
+                  checkedType={checkedType}
+                  // 选中位置: left | right
+                  checkedPosition={checkedPosition}
+                  // 定制属性
+                  optionProps={optionProps}
                   onClick={handleOptionClick}
-                >
-                  {/* 左选中 */}
-                  <div
-                    className={`left ${
-                      checkedType === 'tick'
-                        ? 'select-modal-option-tick'
-                        : 'select-modal-option-checkbox'
-                    } ${checkedPosition === 'right' ? ' hide' : ''}`}
-                  >
-                    <div className="checked-input"></div>
-                  </div>
-                  {/* 内容 */}
-                  <p className="select-modal-option-caption">{item.name}</p>
-                  {/* 右选中 */}
-                  <div
-                    className={`right ${
-                      checkedType === 'tick'
-                        ? 'select-modal-option-tick'
-                        : 'select-modal-option-checkbox'
-                    } ${checkedPosition === 'left' ? ' hide' : ''}`}
-                  >
-                    <div className="checked-input"></div>
-                  </div>
-                </div>
+                />
               )
             })}
           </div>

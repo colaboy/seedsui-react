@@ -61,7 +61,8 @@ export default () => {
         captionProps={{
           caption: '选择'
         }}
-        // checkedType="tick"
+        // 选中效果: checkbox | tick | corner
+        checkedType="corner"
         checkedPosition="right"
       />
     </>
