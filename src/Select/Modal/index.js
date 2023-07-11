@@ -220,7 +220,7 @@ const Modal = forwardRef(
                   key={index}
                   item={item}
                   index={index}
-                  // 选中效果: checkbox | tick
+                  // 选中效果: checkbox | tick | corner
                   checkedType={checkedType}
                   // 选中位置: left | right
                   checkedPosition={checkedPosition}

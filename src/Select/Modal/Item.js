@@ -3,7 +3,7 @@ import React from 'react'
 const Item = ({
   item,
   index,
-  // 选中效果: checkbox | tick
+  // 选中效果: checkbox | tick | corner
   checkedType = 'checkbox',
   // 选中位置: left | right
   checkedPosition = 'right',

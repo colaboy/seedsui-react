@@ -25,7 +25,7 @@ const Combo = forwardRef(
       cancelProps,
       slotProps,
 
-      // 选中效果: checkbox | tick
+      // 选中效果: checkbox | tick | corner
       checkedType,
       // 选中位置: left | right
       checkedPosition,
