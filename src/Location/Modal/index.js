@@ -1,15 +1,20 @@
 import React, { forwardRef, useEffect, useState } from 'react'
-import locale from './../../locale'
 import addHistory from './addHistory'
 
+import Main from './../Main'
+import Footer from './Footer'
+
+// 测试使用
+// import Head from 'seedsui-react/lib/Picker/Modal/Head'
+// import { locale, Toast, Loading, MapUtil, Layout, Modal } from 'seedsui-react'
+// 内库使用
+import locale from './../../locale'
 import Toast from './../../Toast'
 import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
 import Layout from './../../Layout'
 import Modal from './../../Modal'
 import Head from './../../Picker/Modal/Head'
-import Main from './../Main'
-import Footer from './Footer'
 
 // 地图标注
 const LocationModal = forwardRef(
@@ -51,6 +56,7 @@ const LocationModal = forwardRef(
 
       // 正确
       if (window.BMap) {
+        // eslint-disable-next-line
         loaded = true
         setLoaded(true)
         addHistory({ modal, loaded })

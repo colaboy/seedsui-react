@@ -16,10 +16,10 @@ function searchNearby(
 ) {
   return new Promise((resolve) => {
     // 创建本地搜索对象
-    let local = new BMap.LocalSearch(map, {
+    let local = new window.BMap.LocalSearch(map, {
       pageCapacity: 20,
       onSearchComplete: function (results) {
-        if (local.getStatus() === BMAP_STATUS_SUCCESS) {
+        if (local.getStatus() === window.BMAP_STATUS_SUCCESS) {
           let res = []
           for (let i = 0; i < results.getCurrentNumPois(); i++) {
             let item = results.getPoi(i)

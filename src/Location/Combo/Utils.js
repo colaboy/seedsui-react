@@ -1,3 +1,7 @@
+// 测试使用
+// import { locale, Bridge } from 'seedsui-react'
+
+// 内库使用
 import Bridge from './../../Bridge'
 import locale from './../../locale'
 

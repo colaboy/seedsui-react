@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
-import locale from './../../../../locale'
 import { search } from './../../utils'
 
+// 测试使用
+// import { Input, Layout, Header, Notice, HighlightKeyword, locale } from 'seedsui-react'
+// 内库使用
+import locale from './../../../../locale'
 import HighlightKeyword from './../../../../HighlightKeyword'
 import Layout from './../../../../Layout'
 import Header from './../../../../Header'

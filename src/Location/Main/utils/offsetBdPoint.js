@@ -8,10 +8,10 @@ function offsetBdPoint({ map, point, offset }) {
   let pixel = map.pointToPixel(point)
 
   // 设置偏移量
-  let size = new BMap.Size(0, offset.top)
+  let size = new window.BMap.Size(0, offset.top)
 
   // 根据偏移量计算新的像素坐标
-  let newPixel = new BMap.Pixel(pixel.x + size.width, pixel.y + size.height)
+  let newPixel = new window.BMap.Pixel(pixel.x + size.width, pixel.y + size.height)
 
   // 将新的像素坐标转换为地理位置
   let newPosition = map.pixelToPoint(newPixel)

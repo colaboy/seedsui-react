@@ -1,9 +1,12 @@
 import React, { forwardRef, useEffect, useState } from 'react'
-import MapUtil from './../../MapUtil'
-
 import Preview from './Preview'
 import Choose from './Choose'
 import Error from './Error'
+
+// 测试使用
+// import { MapUtil } from 'seedsui-react'
+// 内库使用
+import MapUtil from './../../MapUtil'
 
 // 地图标注
 const Main = forwardRef(
@@ -44,7 +47,8 @@ const Main = forwardRef(
       } else {
         setIsLoaded('未加载地图库，请传入ak！')
       }
-    })
+      // eslint-disable-next-line
+    }, [])
 
     if (isLoaded === true && type === 'preview') {
       return <Preview ak={ak} value={value} footerRender={footerRender} {...props} />

@@ -6,11 +6,16 @@ import React, {
   useEffect,
   Fragment
 } from 'react'
+import Modal from './../Modal'
+import Utils from './Utils'
+
+// 测试使用
+// import { locale, Input, Bridge } from 'seedsui-react'
+
+// 内库使用
 import Input from './../../Input'
 import Bridge from './../../Bridge'
 import locale from './../../locale'
-import Modal from './../Modal'
-import Utils from './Utils'
 
 // 定位控件
 const LocationCombo = forwardRef(
@@ -82,7 +87,7 @@ const LocationCombo = forwardRef(
 
     // 显隐回调
     useEffect(() => {
-      onVisibleChange(modalVisible)
+      onVisibleChange && onVisibleChange(modalVisible)
       // eslint-disable-next-line
     }, [modalVisible])
 

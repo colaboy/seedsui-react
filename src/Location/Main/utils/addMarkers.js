@@ -21,7 +21,7 @@ function addMarkers(
       poi = pointToBdPoint(poi)
     }
     let icon = getMarkerIcon(color)
-    let marker = new BMap.Marker(poi, { icon: icon })
+    let marker = new window.BMap.Marker(poi, { icon: icon })
     if (zIndex) {
       marker.setZIndex(zIndex)
     }

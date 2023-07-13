@@ -1,6 +1,10 @@
 import React from 'react'
-import locale from './../../../../locale'
 import { activeItemTarget } from './../../utils'
+
+// 测试使用
+// import { Checkbox, Notice, locale } from 'seedsui-react'
+// 内库使用
+import locale from './../../../../locale'
 import Checkbox from './../../../../Checkbox'
 import Notice from './../../../../Notice'
 

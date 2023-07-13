@@ -1,7 +1,10 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
-import locale from './../../../../locale'
-
 import { getLocation } from './../../utils'
+
+// 测试使用
+// import { locale, Loading, Toast } from 'seedsui-react'
+// 内库使用
+import locale from './../../../../locale'
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 

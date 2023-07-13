@@ -6,7 +6,7 @@ function pointToBdPoint(point) {
   point = formatPoint(point)
 
   if (point) {
-    return new BMap.Point(point[0], point[1])
+    return new window.BMap.Point(point[0], point[1])
   }
   return null
 }

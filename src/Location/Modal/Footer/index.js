@@ -1,6 +1,9 @@
 import React from 'react'
-import locale from './../../../locale'
 
+// 测试使用
+// import { locale, Layout, Button } from 'seedsui-react'
+// 内库使用
+import locale from './../../../locale'
 import Layout from './../../../Layout'
 import Button from './../../../Button'
 

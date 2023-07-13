@@ -1,11 +1,15 @@
 import React from 'react'
+
+// 测试使用
+// import { Loading, Toast, Bridge, locale } from 'seedsui-react'
+// 内库使用
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 import Bridge from './../../../../Bridge'
 import locale from './../../../../locale'
 
 // 导航
-function Navigation({ longitude, latitude, name, address }) {
+function Navigation({ cacheTime, longitude, latitude, name, address }) {
   function handleClick() {
     Loading.show({
       content: locale('定位中...', 'location')

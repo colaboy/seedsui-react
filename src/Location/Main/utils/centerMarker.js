@@ -8,7 +8,7 @@ function centerMarker({ map }) {
 
     // 获取地址信息
     // 创建地理编码实例
-    let geocoder = new BMap.Geocoder()
+    let geocoder = new window.BMap.Geocoder()
 
     // 根据坐标获取地址信息
     geocoder.getLocation(centerPoint, function (result) {

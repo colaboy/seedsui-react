@@ -9,7 +9,7 @@ function gcjToBdPoint(point) {
   point = gcjToBdCoord(point)
 
   if (point) {
-    return new BMap.Point(point[0], point[1])
+    return new window.BMap.Point(point[0], point[1])
   }
   return null
 }

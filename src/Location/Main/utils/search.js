@@ -1,14 +1,17 @@
+// 测试使用
+// import { locale } from 'seedsui-react'
+// 内库使用
 import locale from './../../../locale'
 
 // 搜索附近, keyword:搜索关键词
 function search(keyword, { map }) {
   return new Promise((resolve) => {
     // 创建本地搜索对象
-    let local = new BMap.LocalSearch(map, {
+    let local = new window.BMap.LocalSearch(map, {
       pageCapacity: 20,
       onSearchComplete: function (results) {
         // 判断状态是否正确
-        if (local.getStatus() === BMAP_STATUS_SUCCESS) {
+        if (local.getStatus() === window.BMAP_STATUS_SUCCESS) {
           let res = []
           for (let i = 0; i < results.getCurrentNumPois(); i++) {
             const item = results.getPoi(i)

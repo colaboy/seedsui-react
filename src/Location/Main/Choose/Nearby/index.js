@@ -1,11 +1,14 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import { clearMarkers, addMarkers, searchNearby } from './../../utils'
-
-import Toast from './../../../../Toast'
-import Loading from './../../../../Loading'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
+
+// 测试使用
+// import { Loading, Toast } from 'seedsui-react'
+// 内库使用
+import Toast from './../../../../Toast'
+import Loading from './../../../../Loading'
 
 // 附近推荐
 function Nearby({ map, onChange }, ref) {
@@ -67,10 +70,10 @@ function Nearby({ map, onChange }, ref) {
       // 选中附近推荐的选中项
       setTimeout(() => {
         // 清空选中项
-        nearbyRef.current.querySelector('.mappage-info-item.active')?.classList.remove('active')
+        nearbyRef.current?.querySelector('.mappage-info-item.active')?.classList.remove('active')
 
         // 外层容器中查询附近推荐的选中项
-        let container = nearbyRef.current.closest('.mappage-info-card')
+        let container = nearbyRef.current?.closest('.mappage-info-card')
         let activeId = container.nearbyActive
 
         if (activeId) {

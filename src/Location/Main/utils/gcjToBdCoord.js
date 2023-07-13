@@ -1,5 +1,9 @@
-import GeoUtil from '../../../GeoUtil'
 import formatPoint from './formatPoint'
+
+// 测试使用
+// import { GeoUtil } from 'seedsui-react'
+// 内库使用
+import GeoUtil from '../../../GeoUtil'
 
 // 国测局转百度坐标
 function gcjToBdCoord(point) {

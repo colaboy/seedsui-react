@@ -1,3 +1,6 @@
+// 测试使用
+// import { locale, Loading } from 'seedsui-react'
+// 内库使用
 import locale from './../../../locale'
 import Loading from './../../../Loading'
 
@@ -19,7 +22,7 @@ function initMap(container, opt) {
     Loading.show()
 
     // 显示地图
-    let map = new BMap.Map(container, {
+    let map = new window.BMap.Map(container, {
       // 禁用点击景点弹出详细信息的方法
       enableMapClick: false
     })

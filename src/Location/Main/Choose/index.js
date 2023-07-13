@@ -8,13 +8,17 @@ import {
   initMap,
   clearMarkers
 } from './../utils'
-import Loading from './../../../Loading'
-import Layout from './../../../Layout'
-import Notice from './../../../Notice'
 import Control from './Control'
 import Search from './Search'
 import Current from './Current'
 import Nearby from './Nearby'
+
+// 测试使用
+// import { Loading, Layout, Notice } from 'seedsui-react'
+// 内库使用
+import Loading from './../../../Loading'
+import Layout from './../../../Layout'
+import Notice from './../../../Notice'
 
 // 地图位置选择
 const MapChoose = forwardRef(
@@ -62,6 +66,18 @@ const MapChoose = forwardRef(
     useEffect(() => {
       initData()
     }, []) // eslint-disable-line
+
+    // 如果value值和current值不一致则使用value作为当前点
+    useEffect(() => {
+      if (!value?.longitude || !value?.latitude) return
+      if (
+        Number(value?.longitude || 0) !== Number(current?.longitude || 0) ||
+        Number(value?.latitude || 0) !== Number(current?.latitude || 0)
+      ) {
+        handleLocation(value, { type: 'gcj02' })
+      }
+      // eslint-disable-next-line
+    }, [value])
 
     // 初始化地图
     async function initData() {

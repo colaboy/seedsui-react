@@ -1,6 +1,6 @@
 // 添加放大缩小控件(废弃)
 function addZoomControl({ map }) {
-  const navigationControl = new BMap.NavigationControl({
+  const navigationControl = new window.BMap.NavigationControl({
     type: window.BMAP_NAVIGATION_CONTROL_ZOOM,
     showZoomInfo: false,
     enableGeolocation: false
