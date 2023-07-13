@@ -4,11 +4,7 @@ import { Bridge, Location } from 'seedsui-react'
 export default () => {
   Bridge.debug = true
   const comboRef = useRef(null)
-  const [value, setValue] = useState({
-    latitude: '39.909187',
-    longitude: '116.397451',
-    value: '北京'
-  })
+  const [value, setValue] = useState(null)
   return (
     <>
       <div>1</div>
@@ -17,6 +13,7 @@ export default () => {
         ak={'3pTjiH1BXLjASHeBmWUuSF83'}
         style={{ height: '400px' }}
         type="choose"
+        autoLocation={true}
         value={value}
         onChange={(val) => {
           console.log('修改:', val)

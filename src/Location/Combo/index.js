@@ -46,6 +46,9 @@ const LocationCombo = forwardRef(
       onError,
       onClick,
       inputProps,
+
+      // 地图选择页面属性
+      MainProps = {},
       ...props
     },
     ref
@@ -329,6 +332,7 @@ const LocationCombo = forwardRef(
         />
         {/* 地图预览与选择 */}
         <Modal
+          ak={ak}
           value={value}
           modal={modal}
           visible={modalVisible}
@@ -339,6 +343,7 @@ const LocationCombo = forwardRef(
               onChangeRef.current(newValue)
             }
           }}
+          MainProps={MainProps}
         />
       </Fragment>
     )

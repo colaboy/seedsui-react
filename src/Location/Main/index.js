@@ -10,6 +10,7 @@ const Main = forwardRef(
   (
     {
       ak,
+      autoLocation = true,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value,
       onChange,
@@ -52,6 +53,7 @@ const Main = forwardRef(
       return (
         <Choose
           ref={ref}
+          autoLocation={autoLocation}
           value={value}
           onChange={onChange}
           footerRender={footerRender}

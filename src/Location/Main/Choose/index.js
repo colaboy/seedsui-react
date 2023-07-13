@@ -20,6 +20,7 @@ import Nearby from './Nearby'
 const MapChoose = forwardRef(
   (
     {
+      autoLocation,
       readOnly,
       value,
       onChange,
@@ -66,7 +67,7 @@ const MapChoose = forwardRef(
     async function initData() {
       // 没有值时先调用定位
       if (!value || !value.longitude || !value.latitude) {
-        if (locationRef.current) {
+        if (autoLocation && locationRef.current) {
           let locationResult = await locationRef.current.getLocation()
           // eslint-disable-next-line
           value = locationResult

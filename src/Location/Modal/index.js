@@ -16,6 +16,7 @@ const LocationModal = forwardRef(
   (
     {
       ak,
+      autoLocation,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value: originValue = null,
       onBeforeChange,
@@ -27,6 +28,9 @@ const LocationModal = forwardRef(
       // 预览方式: preview、choose
       visible,
       onVisibleChange,
+
+      // 地图选择页面属性
+      MainProps,
       ...props
     },
     ref
@@ -167,7 +171,15 @@ const LocationModal = forwardRef(
           onCancelClick={handleBack}
         />
         {/* 内容 */}
-        <Main ak={ak} type={visible} value={value} onChange={setValue} />
+        <Main
+          ak={ak}
+          autoLocation={autoLocation}
+          type={visible}
+          value={value}
+          onChange={setValue}
+          // 地图选择页面属性
+          {...MainProps}
+        />
       </Modal>
     )
   }
