@@ -31,7 +31,7 @@ export default () => {
   return (
     <>
       <Location.Combo
-        modal="page"
+        // modal="page"
         // disabled
         autoFit
         // editable
@@ -43,8 +43,16 @@ export default () => {
         // 点击整行触发的动作: location | choose | preview
         clickAction="choose"
         onChange={(val) => {
-          console.log(val)
+          console.log('修改:', val)
           setValue(val)
+        }}
+        onBeforeChange={(val) => {
+          console.log('beforechange:', val)
+          if (!val) return true
+          return false
+        }}
+        onVisibleChange={(visible) => {
+          console.log('显隐:', visible)
         }}
       />
     </>

@@ -18,6 +18,7 @@ const LocationModal = forwardRef(
       ak,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value: originValue = null,
+      onBeforeChange,
       onChange,
 
       // 弹窗类型: page页面; 其它弹窗(默认);
@@ -100,8 +101,14 @@ const LocationModal = forwardRef(
     }
 
     // 点击确定和取消
-    function handleOk() {
-      if (onChange) onChange(value)
+    async function handleOk() {
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(value)
+        if (!goOn) return
+      }
+
+      onChange && onChange(value)
       handleBack()
     }
 

@@ -40,6 +40,8 @@ const LocationCombo = forwardRef(
       // 弹窗类型: page页面; 其它弹窗(默认);
       modal,
 
+      onVisibleChange,
+      onBeforeChange,
       onChange,
       onError,
       onClick,
@@ -74,6 +76,12 @@ const LocationCombo = forwardRef(
         }
       }
     })
+
+    // 显隐回调
+    useEffect(() => {
+      onVisibleChange(modalVisible)
+      // eslint-disable-next-line
+    }, [modalVisible])
 
     // 自动定位
     useEffect(() => {
@@ -325,6 +333,7 @@ const LocationCombo = forwardRef(
           modal={modal}
           visible={modalVisible}
           onVisibleChange={setModalVisible}
+          onBeforeChange={onBeforeChange}
           onChange={(newValue) => {
             if (onChangeRef?.current) {
               onChangeRef.current(newValue)

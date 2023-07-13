@@ -6,9 +6,9 @@ function addHistory({ modal, loaded }) {
       modalPage: '1'
     },
     '',
-    `${
-      window.location.href.indexOf('?') === -1 &&
-      window.location.href.indexOf('?') !== window.location.href.length - 1
+    `${window.location.pathname + window.location.search}${
+      window.location.href.indexOf('?') === -1 ||
+      window.location.href.indexOf('?') === window.location.href.length - 1
         ? '?'
         : '&'
     }modalPage=1`
