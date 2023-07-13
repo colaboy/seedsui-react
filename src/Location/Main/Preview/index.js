@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import Choose from './../Choose'
 
 // 查看
-function Preview({ ...props }) {
-  return <Choose {...props} readOnly={true} />
-}
+const Preview = forwardRef(({ ...props }, ref) => {
+  return <Choose {...props} readOnly={true} ref={ref} />
+})
 export default Preview

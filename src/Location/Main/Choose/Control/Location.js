@@ -1,9 +1,9 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
-import locale from './../../../locale'
+import locale from './../../../../locale'
 
-import { getLocation } from './../utils'
-import Loading from './../../../Loading'
-import Toast from './../../../Toast'
+import { getLocation } from './../../utils'
+import Loading from './../../../../Loading'
+import Toast from './../../../../Toast'
 
 // 悬浮定位控件
 function Location({ map, value, onChange, ...props }, ref) {
