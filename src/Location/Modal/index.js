@@ -134,6 +134,8 @@ const LocationModal = forwardRef(
             type={visible}
             value={value}
             onChange={setValue}
+            // 地图选择页面属性
+            {...MainProps}
             // 底
             footerRender={() => {
               return visible === 'choose' ? (
