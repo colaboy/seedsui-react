@@ -145,29 +145,29 @@ const Modal = forwardRef(
       if (multiple === undefined) {
         // 清除所有选中状态
         options.forEach((option) => {
-          return option.classList.remove('active')
+          option.classList.remove('active')
         })
         // 增加选中状态
-        e.target.classList.add('active')
+        e.currentTarget.classList.add('active')
       }
       // multiple为false时为可取消单选
       else if (multiple === false) {
         // 记录原先选中状态
-        let isActive = e.target.classList.contains('active')
+        let isActive = e.currentTarget.classList.contains('active')
         // 清除所有选中状态
         options.forEach((option) => {
-          return option.classList.remove('active')
+          option.classList.remove('active')
         })
         // 反选
         if (!isActive) {
-          e.target.classList.add('active')
+          e.currentTarget.classList.add('active')
         } else {
-          e.target.classList.remove('active')
+          e.currentTarget.classList.remove('active')
         }
       }
       // 多选
       else {
-        e.target.classList.toggle('active')
+        e.currentTarget.classList.toggle('active')
       }
 
       // 更新总数
