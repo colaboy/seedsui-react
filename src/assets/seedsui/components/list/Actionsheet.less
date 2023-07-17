@@ -2,11 +2,13 @@
 .actionsheet {
   position: absolute;
   bottom: 0;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
 
-  padding: 0 12px 8px;
   box-sizing: border-box;
   width: 100%;
   overflow: hidden;
+  background-color: #f3f4f5;
   // 动画使用.popup-animation
 }
 
@@ -15,6 +17,7 @@
   display: block;
   box-sizing: border-box;
   padding: 12px;
+  font-size: 16px;
   text-align: center;
   &:active {
     background-color: @border;
@@ -22,6 +25,9 @@
 }
 .actionsheet-option {
   position: relative;
+  padding: 14px 4px;
+  margin: 0 12px;
+  text-align: center;
   .border-b;
   &.active {
     color: @primary-bg;
@@ -30,15 +36,12 @@
 
 .actionsheet-cancel {
   margin-top: 8px;
-
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
+  background-color: white;
 }
 
 .actionsheet-group {
-  max-height: 400px;
+  max-height: 540px;
   overflow: auto;
 
-  border-radius: 16px;
   background-color: rgba(255, 255, 255, 0.85);
 }

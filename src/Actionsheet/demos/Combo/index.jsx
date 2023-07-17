@@ -3,8 +3,22 @@ import { Actionsheet } from 'seedsui-react'
 
 export default () => {
   const list = [
-    { id: '1', name: '1' },
-    { id: '2', name: '2' }
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' },
+    { id: '1', name: '测试' },
+    { id: '2', name: '测试' }
   ]
   const [value, setValue] = useState(null)
   return (
