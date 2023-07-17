@@ -34,7 +34,7 @@ function Current({ readOnly, map, current, onChange }, ref) {
     >
       <div className="mappage-info-item-content">
         <div className="mappage-info-item-content-title">
-          <div className="flex-1">{locale('当前位置', 'current_location')}</div>
+          <div className="flex-1">{current?.title || locale('当前位置', 'current_location')}</div>
           <Navigation
             longitude={current?.longitude}
             latitude={current?.latitude}

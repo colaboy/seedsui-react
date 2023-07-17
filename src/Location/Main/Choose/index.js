@@ -67,17 +67,17 @@ const MapChoose = forwardRef(
       initData()
     }, []) // eslint-disable-line
 
-    // 如果value值和current值不一致则使用value作为当前点
-    useEffect(() => {
-      if (!value?.longitude || !value?.latitude) return
-      if (
-        Number(value?.longitude || 0) !== Number(current?.longitude || 0) ||
-        Number(value?.latitude || 0) !== Number(current?.latitude || 0)
-      ) {
-        handleLocation(value, { type: 'gcj02' })
-      }
-      // eslint-disable-next-line
-    }, [value])
+    // 废弃（会导致选中触发更新，则先不中item）如果value值和current值不一致则使用value作为当前点
+    // useEffect(() => {
+    //   if (!value?.longitude || !value?.latitude) return
+    //   if (
+    //     Number(value?.longitude || 0) !== Number(current?.longitude || 0) ||
+    //     Number(value?.latitude || 0) !== Number(current?.latitude || 0)
+    //   ) {
+    //     handleLocation(value, { type: 'gcj02' })
+    //   }
+    //   // eslint-disable-next-line
+    // }, [value])
 
     // 初始化地图
     async function initData() {

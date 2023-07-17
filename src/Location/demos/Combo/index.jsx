@@ -4,13 +4,14 @@ import { Bridge, Location, MapUtil } from 'seedsui-react'
 export default () => {
   Bridge.debug = true
   const comboRef = useRef(null)
-  const [value, setValue] = useState(null)
-  // const [value, setValue] = useState({
-  //   errMsg: 'getLocation:ok',
-  //   longitude: '116.397451',
-  //   latitude: '39.909187',
-  //   value: '北京市东城区中华路甲10号中国天安门广场'
-  // })
+  // const [value, setValue] = useState(null)
+  const [value, setValue] = useState({
+    errMsg: 'getLocation:ok',
+    longitude: '116.397451',
+    latitude: '39.909187',
+    title: '天安门',
+    value: '北京市东城区中华路甲10号中国天安门广场'
+  })
   useEffect(() => {
     Bridge.ready(() => {})
     console.log(comboRef.current)
@@ -29,9 +30,9 @@ export default () => {
       <Location.Combo
         ak="3pTjiH1BXLjASHeBmWUuSF83"
         modal="page"
-        MainProps={{
-          autoLocation: false
-        }}
+        // MainProps={{
+        //   autoLocation: false
+        // }}
         // disabled
         autoFit
         // autoLocation
