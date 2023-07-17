@@ -97,7 +97,7 @@
   position: absolute;
   top: auto;
   right: auto;
-  bottom: 120px;
+  bottom: 130px;
   left: 12px;
   width: 36px;
   height: 36px;
@@ -112,9 +112,9 @@
   .flex-middle;
   font-family: 'iconfont';
   &:extend(.icon-map-location all);
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
 }
 .mappage-control-location-label {
   margin-top: 4px;
@@ -130,7 +130,7 @@
   position: absolute;
   top: auto;
   right: auto;
-  bottom: 120px;
+  bottom: 130px;
   right: 12px;
   width: 36px;
   height: 72px;
@@ -151,9 +151,9 @@
     .flex-center;
     .flex-middle;
     font-family: 'iconfont';
-    font-size: 14px;
-    width: 16px;
-    height: 16px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
   }
 }
 .mappage-control-zoom-in {
@@ -198,6 +198,8 @@
   background: #ffffff;
   box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
   border-radius: 8px;
+  height: 30px;
+  padding: 0 12px;
 
   position: absolute;
   top: 12px;
@@ -210,14 +212,15 @@
   font-size: 16px;
   color: #a9b1b9;
   &:extend(.icon-search all);
-  margin: 8px;
+  vertical-align: middle;
 }
 .mappage-search-navigation-label {
-  font-size: 13px;
   color: #a9b1b9;
   letter-spacing: 0;
-  line-height: 12px;
-  font-weight: 400;
+  height: 100%;
+  .flex;
+  .flex-middle;
+  margin-left: 4px;
 }
 .mappage-search-page {
   position: absolute;
@@ -239,15 +242,23 @@
   font-size: 15px;
   color: #4f565d;
 }
-.mappage-search-header-input-icon {
-  .mappage-search-navigation-icon;
-}
 .mappage-search-header-input {
+  .flex;
+  .flex-middle;
   .flex-1;
   background: #ffffff;
   border: 1px solid rgba(255, 144, 8, 1);
   border-radius: 8px;
+  height: 30px;
+  padding: 0 12px;
+  .input-text {
+    margin-left: 4px;
+  }
 }
+.mappage-search-header-input-icon {
+  .mappage-search-navigation-icon;
+}
+
 .mappage-search-body {
   position: absolute;
   top: 48px;
@@ -262,11 +273,6 @@
 // 附近推荐
 .mappage-nearby {
   background-color: white;
-  &.active {
-    .mappage-nearby-body {
-      display: block;
-    }
-  }
 }
 .mappage-nearby-toggle {
   text-align: center;
@@ -290,7 +296,7 @@
 .mappage-nearby-tabs {
   display: flex;
   align-items: center;
-  height: 36px;
+  height: 30px;
   overflow-x: auto;
   white-space: nowrap;
   gap: 6px;
@@ -298,13 +304,14 @@
 }
 .mappage-nearby-tab {
   display: inline-flex;
+  align-items: center;
   flex: 0 0 auto; /* 确保子项宽度不会自动伸缩 */
   background: #f2f2f6;
   border-radius: 4px;
   padding: 0 8px;
-  height: 20px;
+  height: 24px;
   color: #191c1f;
-  font-size: @font-size-sm;
+  font-size: 14px;
   &.active {
     color: @primary;
   }
@@ -313,7 +320,7 @@
 // 附近推荐-结果
 .mappage-nearby-main {
   position: relative;
-  height: 180px;
+  height: 305px;
   overflow: auto;
 }
 
@@ -322,10 +329,25 @@
   background: white;
   box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
   border-radius: 12px;
+  overflow: hidden;
   position: absolute;
   bottom: 6px;
   right: 12px;
   left: 12px;
+
+  &.active {
+    // 底部为0
+    bottom: 0px;
+    border-radius: 12px 12px 0 0;
+    // 展开附近
+    .mappage-nearby-body {
+      display: block;
+    }
+    // 旋转附近箭头
+    .mappage-nearby-toggle-arrow {
+      transform: rotate(180deg) translateY(1px);
+    }
+  }
 }
 .mappage-info-item {
   display: flex;
@@ -346,15 +368,22 @@
 }
 .mappage-info-item-content {
   flex: 1;
-  padding: 10px 0;
+  padding: 12px 0;
 }
 .mappage-info-item-content-title {
   .flex;
+  .flex-middle;
+  font-size: 16px;
+  color: #1a1c1f;
+  letter-spacing: 0;
+  line-height: 20px;
+  font-weight: bold;
 }
 .mappage-info-item-content-description {
   .flex;
   .flex-middle;
   color: #77818c;
+  margin-top: 6px;
 }
 .mappage-info-item-checkbox {
   .flex;
@@ -365,11 +394,13 @@
 // 导航
 .mappage-navigation {
   color: #4e5054;
+  font-weight: normal;
+  font-size: 14px;
   line-height: 21px;
   margin-left: 8px;
   .mappage-navigation-icon {
     font-family: 'iconfont';
-    font-size: 12px;
+    font-size: 14px;
     &:extend(.icon-navigation all);
   }
 }
@@ -379,11 +410,13 @@
   .flex;
   gap: 12px;
   padding: 6px 12px;
-  background-color: #f9f7f5;
+  background-color: white;
   box-shadow: inset 0px 0.5px 0px 0px rgba(230, 232, 235, 1);
 }
 .mappage-footer-ok,
 .mappage-footer-clear {
+  font-weight: bold;
+  font-size: 16px;
   .flex-1;
   height: 40px;
   border-radius: 10px;

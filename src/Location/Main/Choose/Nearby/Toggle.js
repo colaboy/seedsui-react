@@ -6,9 +6,14 @@ import React from 'react'
 import locale from './../../../../locale'
 
 // 折叠控件
-function Toggle({ visible, onChange }) {
+function Toggle() {
   return (
-    <div className="mappage-nearby-toggle" onClick={() => onChange(!visible)}>
+    <div
+      className="mappage-nearby-toggle"
+      onClick={(e) => {
+        e.currentTarget?.closest('.mappage-info-card')?.classList?.toggle('active')
+      }}
+    >
       <span className="mappage-nearby-toggle-label">{locale('附近推荐')}</span>
       <i className="mappage-nearby-toggle-arrow"></i>
     </div>

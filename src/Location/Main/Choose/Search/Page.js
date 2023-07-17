@@ -95,7 +95,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
             ref={inputRef}
             type="search"
             // placeholder={locale('搜索地点', 'search_place')}
-            licon={<i className="mappage-search-header-input-icon" style={{ margin: '8px' }}></i>}
+            licon={<i className="mappage-search-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
             style={{ marginRight: '8px' }}

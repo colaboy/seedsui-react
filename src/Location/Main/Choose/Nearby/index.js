@@ -19,7 +19,6 @@ function Nearby({ map, onChange }, ref) {
   const markersRef = useRef(null)
 
   const [list, setList] = useState(null)
-  const [visible, setVisible] = useState(false)
   const [tab, setTab] = useState({ name: '全部' })
 
   // 节点
@@ -88,8 +87,8 @@ function Nearby({ map, onChange }, ref) {
   }
 
   return (
-    <div className={`mappage-nearby${visible ? ' active' : ''}`} ref={nearbyRef}>
-      <Toggle visible={visible} onChange={setVisible} />
+    <div className={`mappage-nearby`} ref={nearbyRef}>
+      <Toggle />
       <div className={`mappage-nearby-body`}>
         <Tabs tab={tab} onChange={setTab} />
         <Main
