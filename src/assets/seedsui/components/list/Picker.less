@@ -24,8 +24,7 @@
   .flex;
   .flex-middle;
   position: relative;
-  width: 100%;
-  height: 43px;
+  height: 50px;
   background-color: @picker-header-bg;
   &:extend(.border-b);
   justify-content: space-between;
@@ -34,16 +33,20 @@
 // 头部圆角
 .picker,
 .picker-header {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.picker-header {
+  margin: 0 12px;
 }
 // 按钮
 .picker-submit {
   display: block;
   height: 32px;
-  margin-right: 12px;
+  margin-right: 2px;
   color: @picker-button-color;
   line-height: 32px;
+  font-size: 15px;
   &.disabled {
     color: @picker-button-disabled-color;
     pointer-events: none;
@@ -53,7 +56,6 @@
 .picker-close {
   display: block;
   height: 32px;
-  margin-left: 12px;
   color: @picker-button-color;
   line-height: 32px;
   &.disabled {
@@ -69,17 +71,18 @@
 }
 .picker-icon-close {
   font-family: 'iconfont';
-  font-size: 12px;
   text-align: center;
-  width: 12px;
-  height: 12px;
-  line-height: 12px;
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
   &:extend(.icon-close-fill all);
   color: @placeholder;
 }
 .picker-header-title {
   .text-center;
   position: absolute;
+  font-size: 16px;
   left: 50px;
   right: 50px;
   overflow: hidden;
