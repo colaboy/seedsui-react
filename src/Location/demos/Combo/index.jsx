@@ -29,7 +29,7 @@ export default () => {
     <>
       <Location.Combo
         ak="3pTjiH1BXLjASHeBmWUuSF83"
-        // modal="page"
+        modal="page"
         // MainProps={{
         //   autoLocation: false
         // }}

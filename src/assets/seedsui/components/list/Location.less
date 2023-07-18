@@ -1,3 +1,7 @@
+/*
+ * 文本框
+ */
+
 // 定位控件
 @keyframes rotate360 {
   0% {
@@ -89,16 +93,27 @@
     display: none;
   }
 }
+
+// 所有控件
+.mappage-bottom-container {
+  position: absolute;
+  right: 12px;
+  left: 12px;
+  bottom: 0;
+  padding-bottom: 6px;
+}
+
 // 定位插件
-.mappage-control-location {
+.mappage-controls {
   .flex;
+  .flex-between;
+  .flex-bottom;
+  margin-bottom: 12px;
+}
+.mappage-control-location {
+  .inline-flex;
   .flex-center;
   .flex-middle;
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: 130px;
-  left: 12px;
   width: 36px;
   height: 36px;
   color: #333;
@@ -123,15 +138,10 @@
 }
 // 缩放插件
 .mappage-control-zoom {
-  .flex;
+  .inline-flex;
   .flex-center;
   .flex-middle;
   .flex-vertical;
-  position: absolute;
-  top: auto;
-  right: auto;
-  bottom: 130px;
-  right: 12px;
   width: 36px;
   height: 72px;
   color: #333;
@@ -330,14 +340,12 @@
   box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
   border-radius: 12px;
   overflow: hidden;
-  position: absolute;
-  bottom: 6px;
-  right: 12px;
-  left: 12px;
 
   &.active {
-    // 底部为0
+    position: absolute;
     bottom: 0px;
+    left: 0;
+    right: 0;
     border-radius: 12px 12px 0 0;
     // 展开附近
     .mappage-nearby-body {

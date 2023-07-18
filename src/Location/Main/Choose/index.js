@@ -220,27 +220,40 @@ const MapChoose = forwardRef(
       <Layout ref={rootRef} className="position-relative" {...props}>
         {!readOnly && <Search map={map} onChange={handleLocation} />}
         <div className="flex-1 position-relative">
+          {/* 地图 */}
           <div ref={containerRef} className={`mappage-container`}></div>
-          {/* 定位 */}
-          {!readOnly && (
-            <Control.Location ref={locationRef} map={map} value={value} onChange={handleLocation} />
-          )}
+
           {/* 中心点 */}
           <Control.CenterMarker ref={centerMarkerRef} />
-          {/* 放大缩小 */}
-          <Control.Zoom map={map} />
-          {/* 位置信息面板 */}
-          <div className="mappage-info-card">
-            {/* 当前位置 */}
-            <Current
-              ref={currentRef}
-              readOnly={readOnly}
-              map={map}
-              current={current}
-              onChange={handleLocation}
-            />
-            {/* 附近位置 */}
-            {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
+
+          {/* 底部 */}
+          <div className="mappage-bottom-container">
+            <div className="mappage-controls">
+              {/* 定位 */}
+              {!readOnly && (
+                <Control.Location
+                  ref={locationRef}
+                  map={map}
+                  value={value}
+                  onChange={handleLocation}
+                />
+              )}
+              {/* 放大缩小 */}
+              <Control.Zoom map={map} />
+            </div>
+            {/* 位置信息面板 */}
+            <div className="mappage-info-card">
+              {/* 当前位置 */}
+              <Current
+                ref={currentRef}
+                readOnly={readOnly}
+                map={map}
+                current={current}
+                onChange={handleLocation}
+              />
+              {/* 附近位置 */}
+              {!readOnly && map && <Nearby ref={nearByRef} map={map} onChange={handleLocation} />}
+            </div>
           </div>
         </div>
         {footerRender && footerRender()}
