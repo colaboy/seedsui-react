@@ -20,6 +20,8 @@ const Main = forwardRef(
 
       type, // preview、choose
 
+      // 标注配置
+      markerConfig,
       // 渲染
       footerRender,
 
@@ -51,12 +53,15 @@ const Main = forwardRef(
     }, [])
 
     if (isLoaded === true && type === 'preview') {
-      return <Preview value={value} footerRender={footerRender} {...props} />
+      return (
+        <Preview markerConfig={markerConfig} value={value} footerRender={footerRender} {...props} />
+      )
     }
     if (isLoaded === true && type === 'choose') {
       return (
         <Choose
           ref={ref}
+          markerConfig={markerConfig}
           autoLocation={autoLocation}
           value={value}
           onChange={onChange}

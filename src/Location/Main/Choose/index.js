@@ -28,6 +28,8 @@ const MapChoose = forwardRef(
       readOnly,
       value,
       onChange,
+      // 标注配置
+      markerConfig,
       // 渲染
       footerRender,
       ...props
@@ -105,6 +107,7 @@ const MapChoose = forwardRef(
         return
       }
       map = bdMap
+      map.markerConfig = markerConfig
       setMap(map)
 
       // 绘制当前点

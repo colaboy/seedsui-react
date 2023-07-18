@@ -43,7 +43,7 @@ export default () => {
         // previewVisible
         // chooseVisible
         // 点击整行触发的动作: location | choose | preview
-        clickAction="preview"
+        clickAction="choose"
         onChange={(val) => {
           console.log('修改:', val)
           setValue(val)
