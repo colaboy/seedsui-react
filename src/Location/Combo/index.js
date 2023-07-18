@@ -45,6 +45,7 @@ const LocationCombo = forwardRef(
       // 弹窗类型: page页面; 其它弹窗(默认);
       modal,
 
+      portal = document.getElementById('root') || document.body,
       onVisibleChange,
       onBeforeChange,
       onChange,
@@ -338,6 +339,7 @@ const LocationCombo = forwardRef(
         {/* 地图预览与选择 */}
         <Modal
           ak={ak}
+          portal={portal}
           value={value}
           modal={modal}
           visible={modalVisible}

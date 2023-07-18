@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import addHistory from './addHistory'
 
 import Main from './../Main'
@@ -31,6 +32,7 @@ const LocationModal = forwardRef(
       modal,
 
       // 预览方式: preview、choose
+      portal,
       visible,
       onVisibleChange,
 
@@ -126,7 +128,7 @@ const LocationModal = forwardRef(
 
     // Page显示
     if (modal === 'page') {
-      return (
+      const PageNode = (
         <Layout
           ref={ref}
           className={`location-page${props?.className ? ' ' + props.className : ''}${
@@ -158,11 +160,18 @@ const LocationModal = forwardRef(
           />
         </Layout>
       )
+
+      if (portal) {
+        return createPortal(PageNode, portal)
+      }
+
+      return PageNode
     }
 
     return (
       <Modal
         ref={ref}
+        portal={portal}
         visible={visible}
         onVisibleChange={onVisibleChange}
         style={{ height: '95%' }}
