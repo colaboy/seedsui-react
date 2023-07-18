@@ -217,9 +217,15 @@ const MapChoose = forwardRef(
     }
 
     return (
-      <Layout ref={rootRef} className="position-relative" {...props}>
-        {!readOnly && <Search map={map} onChange={handleLocation} />}
-        <div className="flex-1 position-relative">
+      <Layout
+        ref={rootRef}
+        {...props}
+        className={`location-page-mappage${readOnly ? ' preview' : ' choose'}${
+          props?.className ? ' ' + props.className : ''
+        }`}
+      >
+        <div className="mappage-main">
+          {!readOnly && <Search map={map} onChange={handleLocation} />}
           {/* 地图 */}
           <div ref={containerRef} className={`mappage-container`}></div>
 

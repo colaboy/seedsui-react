@@ -51,7 +51,7 @@ const Main = forwardRef(
     }, [])
 
     if (isLoaded === true && type === 'preview') {
-      return <Preview ak={ak} value={value} footerRender={footerRender} {...props} />
+      return <Preview value={value} footerRender={footerRender} {...props} />
     }
     if (isLoaded === true && type === 'choose') {
       return (
