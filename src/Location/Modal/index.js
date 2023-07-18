@@ -31,8 +31,8 @@ const LocationModal = forwardRef(
       // 弹窗类型: page页面; 其它弹窗(默认);
       modal,
 
-      // 预览方式: preview、choose
       portal,
+      // 预览方式: preview、choose
       visible,
       onVisibleChange,
 

@@ -238,6 +238,7 @@ const MapChoose = forwardRef(
                   onChange={handleLocation}
                 />
               )}
+              <div></div>
               {/* 放大缩小 */}
               <Control.Zoom map={map} />
             </div>
