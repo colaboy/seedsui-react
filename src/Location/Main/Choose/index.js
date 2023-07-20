@@ -122,6 +122,9 @@ const MapChoose = forwardRef(
       map.addEventListener(
         'dragstart',
         () => {
+          if (selectedMarkerRef.current) {
+            clearMarkers([selectedMarkerRef.current], { map: map })
+          }
           centerMarkerRef.current.classList.remove('hide')
         },
         false
