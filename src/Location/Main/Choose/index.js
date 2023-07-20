@@ -227,8 +227,11 @@ const MapChoose = forwardRef(
           props?.className ? ' ' + props.className : ''
         }`}
       >
+        {/* 全屏搜索 */}
+        {!readOnly && <Search map={map} onChange={handleLocation} />}
+
+        {/* 地图 */}
         <div className="mappage-main">
-          {!readOnly && <Search map={map} onChange={handleLocation} />}
           {/* 地图 */}
           <div ref={containerRef} className={`mappage-container`}></div>
 
