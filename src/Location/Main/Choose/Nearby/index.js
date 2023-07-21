@@ -9,6 +9,7 @@ import Main from './Main'
 // 内库使用
 import Toast from './../../../../Toast'
 import Loading from './../../../../Loading'
+import tabs from './keywords'
 
 // 附近推荐
 function Nearby({ map, onChange }, ref) {
@@ -19,7 +20,7 @@ function Nearby({ map, onChange }, ref) {
   const markersRef = useRef(null)
 
   const [list, setList] = useState(null)
-  const [tab, setTab] = useState({ name: '全部' })
+  const [tab, setTab] = useState(tabs[0])
 
   // 节点
   useImperativeHandle(ref, () => {
@@ -31,7 +32,6 @@ function Nearby({ map, onChange }, ref) {
   // 初始化、切换tab更新附近的点
   useEffect(() => {
     if (!map || !tab?.name) return
-
     loadData()
     // eslint-disable-next-line
   }, [tab])
@@ -39,7 +39,7 @@ function Nearby({ map, onChange }, ref) {
   // 获取附近的点
   async function loadData() {
     Loading.show()
-    let result = await searchNearby(tab.name, { map: map })
+    let result = await searchNearby(tab.id || tab.name, { map: map })
     Loading.hide()
     if (typeof result === 'string') {
       Toast.show({ content: result })

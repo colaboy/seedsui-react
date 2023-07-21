@@ -1,5 +1,4 @@
 import formatPoint from './formatPoint'
-import getCenter from './getCenter'
 import gcjToBdPoint from './gcjToBdPoint'
 import pointToBdPoint from './pointToBdPoint'
 
@@ -11,13 +10,13 @@ function searchNearby(
     type,
     point,
     // 搜索半径
-    radius = 300
+    radius = 1000
   }
 ) {
   return new Promise((resolve) => {
     // 创建本地搜索对象
     let local = new window.BMap.LocalSearch(map, {
-      pageCapacity: 20,
+      pageCapacity: 100,
       onSearchComplete: function (results) {
         if (local.getStatus() === window.BMAP_STATUS_SUCCESS) {
           let res = []
@@ -52,7 +51,7 @@ function searchNearby(
     // 如果没有传入点, 则默认取中心点
     if (!point) {
       // eslint-disable-next-line
-      point = getCenter({ map }) // 搜索中心点坐标
+      point = map.getCenter() // 搜索中心点坐标
     }
 
     local.searchNearby(keyword, point, radius)
