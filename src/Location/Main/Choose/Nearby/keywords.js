@@ -1,7 +1,10 @@
 const tabs = [
+  // {
+  //   name: '全部',
+  //   id: '公司'
+  // },
   {
-    name: '全部',
-    id: '公司'
+    name: '购物'
   },
   {
     name: '吃喝'
@@ -19,9 +22,7 @@ const tabs = [
     name: '出行',
     id: '公交地铁'
   },
-  {
-    name: '购物'
-  },
+
   {
     name: '住宿'
   }
