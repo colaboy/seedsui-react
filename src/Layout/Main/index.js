@@ -42,7 +42,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
   async function initInstance() {
     if (instance.current) return
     instance.current = new Instance({
-      // threshold: 100,
+      threshold: 60,
       // end: 200, // 头部下拉的结束位置
       // endRefresh: null, // 滑动到指位置后自动刷新
       // moveTimeout: 0, // 滑动超时, 解决ios手指滑动到原生tabbar上, 不触发onTouchEnd
@@ -56,36 +56,36 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
       // 实体交互
       duration: 150,
       onPull: (e) => {
-        var topContainer = e.topContainer
+        let topContainer = e.topContainer
         topContainer.style.height = e.touches.currentPosY + 'px'
-        var topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
-        var topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
+        let topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
+        let topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
         if (!e.isLoading) {
           if (e.touches.currentPosY >= e.params.threshold) {
             if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-down')
             if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'release')
           } else {
             if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
-            if (topCaption) topCaption.innerHTML = locale('下拉可以刷新', 'pull_down')
+            if (topCaption) topCaption.innerHTML = locale('下拉刷新', 'pull_down')
           }
         }
       },
       onShowTop: (e) => {
-        var topContainer = e.topContainer
-        var topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
-        var topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
+        let topContainer = e.topContainer
+        let topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
+        let topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
         topContainer.style.height = e.params.threshold + 'px'
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-loading')
-        if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'refreshing')
+        if (topCaption) topCaption.innerHTML = locale('加载中...', 'refreshing')
       },
       onHideTop: (e) => {
-        var topContainer = e.topContainer
+        let topContainer = e.topContainer
         topContainer.style.height = '0'
       },
       onTopHid: (e) => {
-        var topContainer = e.topContainer
-        var topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
+        let topContainer = e.topContainer
+        let topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-loading')
       }

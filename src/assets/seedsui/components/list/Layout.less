@@ -78,26 +78,30 @@
 }
 // 下拉刷新-pull类型(头部和底部刷新同一个样式)
 .layout-main-pull-push {
+  display: flex;
+  align-items: end;
   position: relative;
-  display: block;
   width: 100%;
   height: 0;
   overflow: hidden;
 }
-.layout-main-pull-push-box {
+.layout-main-pull-push-wrapper {
   .flex;
   .flex-middle;
   .flex-center;
-  height: 50px;
-  color: #777;
+  width: 100%;
+  height: 40px;
+  font-size: 13px;
+  color: #999999;
 }
 .layout-main-pull-push-caption {
   display: block;
   height: 20px;
   line-height: 20px;
 }
+// 按照ue要求改为不显示图标的样式
 .layout-main-pull-push-icon {
-  display: block;
+  display: none;
 
   width: 20px;
   height: 20px;

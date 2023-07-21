@@ -1,18 +1,38 @@
 import React from 'react'
 import { Layout } from 'seedsui-react'
 
+const list = []
+for (let i = 0; i < 100; i++) {
+  list.push({
+    id: i,
+    name: '测试数据' + i
+  })
+}
+
 export default () => {
-  const { Header, Footer, Aside, Main } = Layout
+  function handleTopRefresh() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true)
+      }, 5000)
+    })
+  }
+  function handleBottomRefresh() {
+    console.log('底部加载')
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true)
+      }, 1000)
+    })
+  }
   return (
     <div id="root" style={{ height: '300px', position: 'relative' }}>
       <Layout className="full">
-        <Main>
-          <div>橙色</div>
-          <div style={{ height: '50px', backgroundColor: 'yellow', position: 'sticky', top: 0 }}>
-            吸顶
-          </div>
-          <div style={{ height: '500px', backgroundColor: 'green' }}>正常</div>
-        </Main>
+        <Layout.Main onTopRefresh={handleTopRefresh} onBottomRefresh={handleBottomRefresh}>
+          {list.map((item, index) => {
+            return <div key={index}>{item.name}</div>
+          })}
+        </Layout.Main>
       </Layout>
     </div>
   )

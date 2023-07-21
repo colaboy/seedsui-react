@@ -88,11 +88,12 @@ export default {
   re_photo_upload: '请重新拍照上传',
   copied_to_the_clipboard: '复制到剪贴板成功',
   unable_to_access_clipboard: '当前设备不允许访问剪贴板',
-  refreshing: '正在刷新...', // 英文仍然翻译成loading...
+  refreshing: '加载中...', // 英文仍然翻译成loading...
   no_more_data: '没有更多数据了',
-  refreshing_failed: '加载失败, 请稍后再试', // 英文翻译成loading failed
+  pull_down: '下拉刷新',
   release: '释放立即刷新',
-  pull_down: '下拉可以刷新',
+  refreshing_failed: '加载失败, 请稍后再试', // 英文翻译成loading failed
+  refreshing_success: '刷新成功',
   say_something: '说点什么吧...',
   location: '定位中...',
   low: '弱',

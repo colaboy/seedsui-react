@@ -93,11 +93,12 @@ export default {
   re_photo_upload: 'Re photo upload',
   copied_to_the_clipboard: 'Copied to the clipboard',
   unable_to_access_clipboard: 'Unable to access clipboard',
-  refreshing: 'Refreshing...', // 英文仍然翻译成loading...
+  refreshing: 'Loading...', // 英文仍然翻译成loading...
   no_more_data: 'No more data',
-  refreshing_failed: 'Refreshing failed', // 英文翻译成loading failed
-  release: 'Release',
   pull_down: 'Pull down',
+  release: 'Release',
+  refreshing_failed: 'Refreshing failed', // 英文翻译成loading failed
+  refreshing_success: 'Refreshing success',
   say_something: 'Say something...',
   location: 'Location...',
   low: 'Low',
