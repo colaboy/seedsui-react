@@ -46,13 +46,14 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
+        disabled="exclusion-ricon"
         min="district" // ['country', 'province', 'city', 'district', 'street']
         type="city"
         list={CountriesData}
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
-        ricon={<i className="shape-arrow-right sm"></i>}
+        ricon={<i className="ricon shape-arrow-right sm"></i>}
         onChange={(newValue) => {
           console.log(newValue)
           setValue(newValue)

@@ -8,7 +8,7 @@ const InputText = forwardRef(
       type = 'text', // 类型: text | number | tel | password
       autoFit, // 自动高度文本框
       readOnly,
-      disabled,
+      disabled, // exclusion-ricon
       // 文本框
       inputProps = {},
       defaultValue,
@@ -29,7 +29,7 @@ const InputText = forwardRef(
       ricon,
       riconProps,
       // 清除按键
-      allowClear,
+      allowClear, // exclusion-ricon
       clearProps,
       onClearVisibleChange,
       // 右侧内容
@@ -100,6 +100,15 @@ const InputText = forwardRef(
     useEffect(() => {
       updateContainer()
     }, [value]) // eslint-disable-line
+
+    // 禁用时不显示ricon
+    useEffect(() => {
+      if (disabled === 'exclusion-ricon') {
+        let ricon = rootRef?.current?.querySelector('.ricon')
+        ricon && ricon.classList.add('hide')
+      }
+      // eslint-disable-next-line
+    }, [disabled])
 
     // 更新文本框高度和清空按钮
     function updateContainer() {

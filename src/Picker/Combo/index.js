@@ -61,6 +61,7 @@ const Combo = forwardRef(
       onSelect,
 
       // Combo属性
+      autoSize,
       allowClear,
       readOnly,
       disabled,
@@ -225,6 +226,12 @@ const Combo = forwardRef(
       }
     }
 
+    // 文本框
+    let InputNode = Input.Text
+    if (autoSize) {
+      InputNode = Input.AutoFit
+    }
+
     return (
       <Fragment>
         {/* Combo */}
@@ -239,7 +246,8 @@ const Combo = forwardRef(
           </div>
         )}
         {!children && typeof comboRender !== 'function' && (
-          <Input.Text
+          <InputNode
+            disabled={disabled}
             allowClear={allowClear}
             value={Utils.getDisplayValue({ value })}
             readOnly

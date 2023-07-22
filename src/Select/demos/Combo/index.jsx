@@ -11,6 +11,8 @@ export default () => {
   return (
     <>
       <Select.Combo
+        // autoSize
+        disabled="exclusion-ricon"
         allowClear="exclusion-ricon"
         riconProps={{
           className: 'icon shape-arrow-right sm'
