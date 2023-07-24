@@ -4,11 +4,7 @@ const Layout = forwardRef(({ animation, children, safeArea, ...props }, ref) => 
   const rootRef = useRef(null)
 
   // 安全区域，Layout全屏时增加安全区域
-  if (
-    (safeArea || safeArea === undefined) &&
-    typeof props.className === 'string' &&
-    props.className?.indexOf('full') !== -1
-  ) {
+  if (safeArea === true) {
     // eslint-disable-next-line
     safeArea = 'bottom'
   }

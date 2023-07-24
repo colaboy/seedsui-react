@@ -4,15 +4,19 @@ import { Select } from 'seedsui-react'
 export default () => {
   const [value, setValue] = useState([
     {
-      id: '1',
+      id: '选项1',
       name: '选项1'
+    },
+    {
+      id: '选项2',
+      name: '选项2'
     }
   ])
   return (
     <>
       <Select.Combo
         // autoSize
-        disabled="exclusion-ricon"
+        // disabled="exclusion-ricon"
         allowClear="exclusion-ricon"
         riconProps={{
           className: 'icon shape-arrow-right sm'
@@ -21,11 +25,11 @@ export default () => {
         value={value}
         list={[
           {
-            id: '1',
+            id: '选项1',
             name: '选项1'
           },
           {
-            id: '2',
+            id: '选项2',
             name: '选项2'
           },
           {
