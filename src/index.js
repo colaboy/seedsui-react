@@ -101,6 +101,7 @@ export { default as Progress } from './Progress'
 export { default as QRCode } from './QRCode' // 不常用
 export { default as Radio } from './Radio' // (废弃, 使用Select.Checkbox代替)
 export { default as Select } from './Select'
+export { default as SafeArea } from './SafeArea'
 export { default as Selector } from './Selector'
 export { default as Share } from './Share' // 不常用
 export { default as PickerSelect } from './PickerSelect' // (废弃, 使用Select.Modal代替)

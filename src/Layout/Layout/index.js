@@ -1,7 +1,17 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
-const Layout = forwardRef(({ animation, children, ...props }, ref) => {
+const Layout = forwardRef(({ animation, children, safeArea, ...props }, ref) => {
   const rootRef = useRef(null)
+
+  // 安全区域，Layout全屏时增加安全区域
+  if (
+    (safeArea || safeArea === undefined) &&
+    typeof props.className === 'string' &&
+    props.className?.indexOf('full') !== -1
+  ) {
+    // eslint-disable-next-line
+    safeArea = 'bottom'
+  }
 
   // 节点
   useImperativeHandle(ref, () => {
@@ -33,7 +43,9 @@ const Layout = forwardRef(({ animation, children, ...props }, ref) => {
   return (
     <section
       {...props}
-      className={'layout' + (props.className ? ' ' + props.className : '')}
+      className={`layout safe-area${safeArea ? ' ' + safeArea : ''}${
+        props.className ? ' ' + props.className : ''
+      }`}
       data-animation={animation}
       ref={rootRef}
     >
