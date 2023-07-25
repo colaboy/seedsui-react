@@ -107,9 +107,9 @@ let Bridge = {
   onHistoryBack: function (params) {
     window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
-  // 返回监听
-  onHistoryBack: function (params) {
-    window.top.wq.onHistoryBack(params) // eslint-disable-line
+  // 导航
+  openLocation: function (params) {
+    window.top.wq.openLocation(params) // eslint-disable-line
   },
   /**
    * 获取当前地理位置
