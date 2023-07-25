@@ -1,12 +1,19 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
+import Device from './../../Device'
 
 const Layout = forwardRef(({ animation, children, safeArea, ...props }, ref) => {
   const rootRef = useRef(null)
 
-  // 安全区域，Layout全屏时增加安全区域
+  // 安全区域，Layout全屏时增加安全区域（仅对苹果的安全区域生效）
   if (safeArea === true) {
-    // eslint-disable-next-line
-    safeArea = 'bottom'
+    if (
+      Device.os === 'ios' &&
+      Device.platform === 'wq' &&
+      Device.compareVersion(Device.platformVersion, '7.1.65') >= 0
+    ) {
+      // eslint-disable-next-line
+      safeArea = 'bottom'
+    }
   }
 
   // 节点
