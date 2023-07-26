@@ -92,8 +92,9 @@ export default {
   no_more_data: '没有更多数据了',
   pull_down: '下拉刷新',
   release: '释放立即刷新',
-  refreshing_failed: '加载失败, 请稍后再试', // 英文翻译成loading failed
+  loading_failed: '加载失败, 请稍后再试', // 英文翻译成loading failed
   refreshing_success: '刷新成功',
+  refreshing_failed: '刷新失败',
   say_something: '说点什么吧...',
   location: '定位中...',
   low: '弱',

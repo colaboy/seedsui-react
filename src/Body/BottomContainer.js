@@ -24,7 +24,7 @@ const BottomFinish = forwardRef(({ children, caption, type, ...others }, ref) =>
           <div className="body-pull-push-caption">
             {type === 'noMore'
               ? locale('没有更多数据了', 'no_more_data')
-              : locale('加载失败, 请稍后再试', 'refreshing_failed')}
+              : locale('加载失败, 请稍后再试', 'loading_failed')}
           </div>
         </div>
       )

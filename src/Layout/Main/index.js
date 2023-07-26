@@ -42,7 +42,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
   async function initInstance() {
     if (instance.current) return
     instance.current = new Instance({
-      threshold: 60,
+      threshold: 40,
       // end: 200, // 头部下拉的结束位置
       // endRefresh: null, // 滑动到指位置后自动刷新
       // moveTimeout: 0, // 滑动超时, 解决ios手指滑动到原生tabbar上, 不触发onTouchEnd
@@ -82,6 +82,20 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
       onHideTop: (e) => {
         let topContainer = e.topContainer
         topContainer.style.height = '0'
+      },
+      onTopFinish: (e) => {
+        return new Promise((resolve) => {
+          let topContainer = e.topContainer
+          let topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
+          if (e.success) {
+            if (topCaption) topCaption.innerHTML = locale('刷新成功', 'refreshing_success')
+          } else {
+            if (topCaption) topCaption.innerHTML = locale('刷新失败', 'refreshing_failed')
+          }
+          setTimeout(() => {
+            resolve(e.success)
+          }, 1000)
+        })
       },
       onTopHid: (e) => {
         let topContainer = e.topContainer

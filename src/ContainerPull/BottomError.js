@@ -25,7 +25,7 @@ const BottomError = forwardRef(({ children, ...others }, ref) => {
       {!children && (
         <div className="containerpull-pull-box">
           <div className="containerpull-pull-caption">
-            {locale('加载失败, 请稍后再试', 'refreshing_failed')}
+            {locale('加载失败, 请稍后再试', 'loading_failed')}
           </div>
         </div>
       )}

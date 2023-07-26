@@ -60,7 +60,7 @@ export default class Dragrefresh extends Component {
         return remark || ''
       }
     const { onScroll } = this.props
-    var instance = new Instance({
+    let instance = new Instance({
       threshold: this.props.threshold,
       end: this.props.end,
       endRefresh: this.props.endRefresh,
@@ -74,10 +74,10 @@ export default class Dragrefresh extends Component {
       // 实体交互
       duration: 150,
       onPull: (e) => {
-        var topContainer = e.topContainer
+        let topContainer = e.topContainer
         topContainer.style.height = e.touches.currentPosY + 'px'
-        var topIcon = topContainer.querySelector('.df-pull-icon')
-        var topCaption = topContainer.querySelector('.df-pull-caption')
+        let topIcon = topContainer.querySelector('.df-pull-icon')
+        let topCaption = topContainer.querySelector('.df-pull-caption')
         if (!e.isLoading) {
           if (e.touches.currentPosY >= e.params.threshold) {
             if (topIcon) topIcon.classList.add('df-pull-icon-down')
@@ -89,21 +89,21 @@ export default class Dragrefresh extends Component {
         }
       },
       onShowTop: (e) => {
-        var topContainer = e.topContainer
-        var topIcon = topContainer.querySelector('.df-pull-icon')
-        var topCaption = topContainer.querySelector('.df-pull-caption')
+        let topContainer = e.topContainer
+        let topIcon = topContainer.querySelector('.df-pull-icon')
+        let topCaption = topContainer.querySelector('.df-pull-caption')
         topContainer.style.height = e.params.threshold + 'px'
         if (topIcon) topIcon.classList.remove('df-pull-icon-down')
         if (topIcon) topIcon.classList.add('df-pull-icon-loading')
         if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'refreshing')
       },
       onHideTop: (e) => {
-        var topContainer = e.topContainer
+        let topContainer = e.topContainer
         topContainer.style.height = '0'
       },
       onTopHid: (e) => {
-        var topContainer = e.topContainer
-        var topIcon = topContainer.querySelector('.df-pull-icon')
+        let topContainer = e.topContainer
+        let topIcon = topContainer.querySelector('.df-pull-icon')
         if (topIcon) topIcon.classList.remove('df-pull-icon-down')
         if (topIcon) topIcon.classList.remove('df-pull-icon-loading')
       }
@@ -204,7 +204,7 @@ export default class Dragrefresh extends Component {
       // 底部加载完成
       bottomNoDataCaption = locale('没有更多数据了', 'no_more_data'),
       // 底部加载错误
-      bottomErrorCaption = locale('加载失败, 请稍后再试', 'refreshing_failed'),
+      bottomErrorCaption = locale('加载失败, 请稍后再试', 'loading_failed'),
       onClickBottomError,
       ...others
     } = this.props

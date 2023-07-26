@@ -1,9 +1,9 @@
 // Body 下拉刷新
-var Body = function (params) {
+let Body = function (params) {
   /* ----------------------
   Model
   ---------------------- */
-  var defaults = {
+  let defaults = {
     container: document.body,
     duration: 150, // 头部下拉的隐藏动画时长
     threshold: 100, // 头部下拉的触发位置
@@ -18,7 +18,7 @@ var Body = function (params) {
 
     /* callbacks
     onScroll: function(e) // 滚动
-    
+
     onPull:function(s)// 头部拖动中
     onShowTop:function(s)// 开始显示头部
     onHideTop:function(s)// 开始隐藏头部
@@ -31,13 +31,14 @@ var Body = function (params) {
     onBottomRefresh:function(s)// 底部刷新
      */
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
-  var s = this
+  let s = this
   s.params = params
   // Container
   s.container =
@@ -93,9 +94,9 @@ var Body = function (params) {
   }
   // 是否有滚动条
   s.hasScroll = function () {
-    var clientHeight = s.container.clientHeight // || window.innerHeight
-    var scrollHeight = s.container.scrollHeight
-    /* var scrollTop = s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
+    let clientHeight = s.container.clientHeight // || window.innerHeight
+    let scrollHeight = s.container.scrollHeight
+    /* let scrollTop = s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop) */
 
     if (clientHeight === scrollHeight) {
@@ -105,9 +106,9 @@ var Body = function (params) {
   }
   // 判断滚动条是否在底部
   s.isBottom = function () {
-    var clientHeight = s.container.clientHeight // || window.innerHeight
-    var scrollHeight = s.container.scrollHeight
-    var scrollTop =
+    let clientHeight = s.container.clientHeight // || window.innerHeight
+    let scrollHeight = s.container.scrollHeight
+    let scrollTop =
       s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     // console.log(clientHeight + ':' + scrollHeight + ':' + scrollTop)
     if (scrollTop + clientHeight >= scrollHeight - 2) {
@@ -121,7 +122,12 @@ var Body = function (params) {
     if (s.isLoading) return
     s.isLoading = true // 设置为不可刷新
     // CallBack onTopRefresh
-    await s.params.onTopRefresh(s)
+    let isOk = await s.params.onTopRefresh(s)
+    s.success = isOk
+    // Callback onTopFinish
+    if (s.params.onTopFinish) {
+      await s.params.onTopFinish(s)
+    }
     s.isLoading = false
     s.hideTop()
   }
@@ -139,8 +145,8 @@ var Body = function (params) {
   ---------------------- */
   s.isSupportTouch = 'ontouchstart' in window
   s.events = function (detach) {
-    var action = detach ? 'removeEventListener' : 'addEventListener'
-    var touchTarget = s.container
+    let action = detach ? 'removeEventListener' : 'addEventListener'
+    let touchTarget = s.container
     // 头部下拉
     if (s.topContainer) {
       // touch兼容pc事件
@@ -313,7 +319,7 @@ var Body = function (params) {
     }
   }
   s.getScrollTop = function (e) {
-    var scrollTop =
+    let scrollTop =
       s.container === document.body ? document.documentElement.scrollTop : s.container.scrollTop
     return scrollTop
   }

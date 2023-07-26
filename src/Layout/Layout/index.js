@@ -5,14 +5,26 @@ const Layout = forwardRef(({ animation, children, safeArea, ...props }, ref) => 
   const rootRef = useRef(null)
 
   // 安全区域，Layout全屏时增加安全区域（仅对苹果的安全区域生效）
-  if (safeArea === true) {
-    if (
-      Device.os === 'ios' &&
-      Device.platform === 'wq' &&
-      Device.compareVersion(Device.platformVersion, '7.1.65') >= 0
-    ) {
+
+  if (
+    Device.os === 'ios' &&
+    Device.platform === 'wq' &&
+    Device.compareVersion(Device.platformVersion, '7.1.65') >= 0
+  ) {
+    // 自动上下
+    if (safeArea === 'auto') {
+      // eslint-disable-next-line
+      safeArea = 'top bottom'
+    }
+    // 自动下
+    if (safeArea === 'auto-bottom') {
       // eslint-disable-next-line
       safeArea = 'bottom'
+    }
+    // 自动上
+    if (safeArea === 'auto-top') {
+      // eslint-disable-next-line
+      safeArea = 'top'
     }
   }
 

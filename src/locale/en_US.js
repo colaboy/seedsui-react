@@ -97,8 +97,9 @@ export default {
   no_more_data: 'No more data',
   pull_down: 'Pull down',
   release: 'Release',
-  refreshing_failed: 'Refreshing failed', // 英文翻译成loading failed
+  loading_failed: 'Loading failed', // 英文翻译成loading failed
   refreshing_success: 'Refreshing success',
+  refreshing_failed: 'Refreshing failed',
   say_something: 'Say something...',
   location: 'Location...',
   low: 'Low',
