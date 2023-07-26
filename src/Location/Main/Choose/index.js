@@ -146,19 +146,25 @@ const MapChoose = forwardRef(
       )
       map.addEventListener(
         'dragend',
-        async () => {
-          centerMarkerRef.current.classList.add('hide')
-          // 绘制中心点
-          Loading.show()
-          let newValue = await centerMarker({ map: map })
-          Loading.hide()
-          if (typeof newValue === 'string') return
-
-          // 绘制当前点
-          handleLocation(newValue)
+        // 旧版babel不支持直接在监听中使用async，所以再包一层
+        () => {
+          handleDragend()
         },
         false
       )
+    }
+
+    // 拖动点结束
+    async function handleDragend() {
+      centerMarkerRef.current.classList.add('hide')
+      // 绘制中心点
+      Loading.show()
+      let newValue = await centerMarker({ map: map })
+      Loading.hide()
+      if (typeof newValue === 'string') return
+
+      // 绘制当前点
+      handleLocation(newValue)
     }
 
     // 绘制当前点
@@ -213,10 +219,10 @@ const MapChoose = forwardRef(
           activeItemTarget(currentRef.current)
         }
 
-        if (nearByRef.timeout) {
-          clearTimeout(nearByRef.timeout)
+        if (nearByRef.current.timeout) {
+          clearTimeout(nearByRef.current.timeout)
         }
-        nearByRef.timeout = setTimeout(() => {
+        nearByRef.current.timeout = setTimeout(() => {
           nearByRef?.current?.reload()
         }, 1000)
       }

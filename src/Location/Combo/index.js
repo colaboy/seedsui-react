@@ -11,7 +11,6 @@ import Utils from './Utils'
 
 // 测试使用
 // import { locale, Input, Bridge } from 'seedsui-react'
-
 // 内库使用
 import Input from './../../Input'
 import Bridge from './../../Bridge'
