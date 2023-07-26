@@ -54,7 +54,13 @@ const Main = forwardRef(
 
     if (isLoaded === true && type === 'preview') {
       return (
-        <Preview markerConfig={markerConfig} value={value} footerRender={footerRender} {...props} />
+        <Preview
+          ref={ref}
+          markerConfig={markerConfig}
+          value={value}
+          footerRender={footerRender}
+          {...props}
+        />
       )
     }
     if (isLoaded === true && type === 'choose') {
@@ -73,6 +79,7 @@ const Main = forwardRef(
     if (typeof isLoaded === 'string') {
       return <Error ref={ref} errMsg={isLoaded} {...props} />
     }
+    return null
   }
 )
 

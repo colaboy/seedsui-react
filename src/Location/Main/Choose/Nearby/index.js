@@ -1,5 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import { clearMarkers, addMarkers, searchNearby } from './../../utils'
+import tabs from './keywords'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
@@ -9,7 +10,6 @@ import Main from './Main'
 // 内库使用
 import Toast from './../../../../Toast'
 import Loading from './../../../../Loading'
-import tabs from './keywords'
 
 // 附近推荐
 function Nearby({ map, onChange }, ref) {
