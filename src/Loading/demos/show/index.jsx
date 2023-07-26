@@ -4,6 +4,7 @@ import { Layout, Loading } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Loading.show({
+      className: 'abc',
       content: '自定义加载'
     })
     setTimeout(() => {
