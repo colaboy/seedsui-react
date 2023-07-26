@@ -89,9 +89,17 @@ export default () => {
             name: '选项8'
           }
         ]}
-        multiple={true}
+        // multiple={false}
         onChange={(newValue) => {
           setValue(newValue)
+        }}
+        onBeforeChange={(newValue) => {
+          console.log('修改前')
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(true)
+            }, 1000)
+          })
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

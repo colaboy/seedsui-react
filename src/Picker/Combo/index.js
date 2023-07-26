@@ -252,6 +252,7 @@ const Combo = forwardRef(
             value={Utils.getDisplayValue({ value })}
             readOnly
             onChange={onChange}
+            onBeforeChange={onBeforeChange}
             {...props}
             onClick={handleInputClick}
             ref={rootRef}

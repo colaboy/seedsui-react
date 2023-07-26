@@ -43,6 +43,7 @@ const InputText = forwardRef(
       onCompositionEnd, // 输入完成时
       onInput,
       onChange,
+      onBeforeChange,
       onBlur,
       onFocus,
       ...props
@@ -273,7 +274,7 @@ const InputText = forwardRef(
     }
 
     // 修改值
-    function handleChange(e) {
+    async function handleChange(e) {
       let target = e.target
       let val = target.value
       // 此处不宜用target?.validity?.badInput矫正数值, 因为ios上.也返回空
@@ -286,6 +287,14 @@ const InputText = forwardRef(
           target.value = val
         }
       }
+
+      // 修改前
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(val)
+        if (!goOn) return
+      }
+
+      // 修改
       if (onChange) {
         if (val && type === 'number') {
           // eslint-disable-next-line
@@ -339,8 +348,15 @@ const InputText = forwardRef(
     }
 
     // 点击清除
-    function handleClear(e) {
+    async function handleClear(e) {
       e.stopPropagation()
+
+      // 修改前
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange('')
+        if (!goOn) return
+      }
+
       // 获取焦点
       focus()
 

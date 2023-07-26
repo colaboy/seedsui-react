@@ -12,7 +12,7 @@ export default defineConfig({
   publicPath: '/seedsui-react/',
   // 设置路由前缀，通常用于部署到非根目录
   base: '/seedsui-react/',
-  styles: [`body { background-color: #ccc; }`],
+  styles: [`body { background-color: #eee; }`],
   metas: [{ name: 'viewport', content: 'width=device-width,viewport-fit=cover' }],
   themeConfig: {
     name: 'SeedsUI',
