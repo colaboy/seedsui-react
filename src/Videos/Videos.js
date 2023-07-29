@@ -5,55 +5,28 @@ import Photos from './../Photos'
 const Videos = forwardRef(
   (
     {
-      onClick,
-      showPlay = false,
-      // onChoose,
+      playVisible = false,
       preview = true, // 是否支持单击预览, readOnly为true时才生效
-      /*
-      显示或隐藏预览 boolean|func, 默认true,
-      func(e, value)
-      e:{
-        currentTarget: div.input-text-box
-        target: div.input-text-box
-        type: "choose|preview"
-        visible: false|true
-      }
-      value: 同传入的value
-      */
-      // 显隐路由
-      routePath = 'componentPage=1',
-      // 属性
-      videoFullProps = {},
-      ...others
+      ...props
     },
     ref
   ) => {
     // 修改数据源
-    if (Array.isArray(others.list) && others.list.length) {
-      for (let item of others.list) {
+    if (Array.isArray(props.list) && props.list.length) {
+      for (let item of props.list) {
         item.previewType = 'video'
+        if (playVisible) {
+          item.children = (
+            <div className="photos-item-video">
+              <div className="photos-item-video-icon"></div>
+            </div>
+          )
+        }
       }
     }
     return (
       <Fragment>
-        <Photos
-          ref={ref}
-          {...others}
-          isBrowser={true}
-          type="video"
-          children={
-            showPlay ? ( // 视频播放图标
-              <div className="photos-item-video">
-                <div className="photos-item-video-icon"></div>
-              </div>
-            ) : null
-          }
-        />
-        {/* 录相 */}
-        {/* {showRecord && <Camera
-            onHide={() => setShowRecord(false)}
-            onRecord={record}
-          />} */}
+        <Photos ref={ref} {...props} preview={preview} isBrowser={true} type="video" />
       </Fragment>
     )
   }

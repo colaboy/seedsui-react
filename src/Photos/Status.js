@@ -1,12 +1,22 @@
 import React, { forwardRef } from 'react'
 
 // 状态:choose|uploading|fail|success
-const Status = ({ visible, type, ...props }, ref) => {
+const Status = (
+  {
+    visible,
+    type,
+    // 重新上传
+    onReUpload,
+    ...props
+  },
+  ref
+) => {
   if (!type) return null
   if (visible === false) return null
   return (
     <div
       ref={ref}
+      onClick={type === 'fail' ? onReUpload : undefined}
       {...props}
       className={`photos-status ${type || ''}${props?.className ? ' ' + props.className : ''}`}
     >

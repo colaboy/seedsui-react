@@ -14,10 +14,11 @@ const Photos = forwardRef(
       onBeforeChoose, // 选择前校验
       onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
       onDelete,
+      onReUpload,
       onClick,
       preview = true, // 是否支持单击预览, readOnly为true时才生效
       inputProps = {},
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -77,13 +78,13 @@ const Photos = forwardRef(
         let res = getCurrent(index)
         // 点击照片
         if (onClickRef && onClickRef.current) {
-          onClickRef.current(e, res.current, [res.item], res.index)
+          onClickRef.current(e, res.current, [res.item], res.index, list)
         }
         // 预览
         if (preview) {
           // 自定义预览
           if (typeof preview === 'function') {
-            preview(e, res.current, [res.item], res.index)
+            preview(e, res.current, [res.item], res.index, list)
           }
           // 本地能力预览
           else if (
@@ -107,7 +108,7 @@ const Photos = forwardRef(
         const index = Number(target.parentNode.getAttribute('data-index') || 0)
         let res = getCurrent(index)
         if (onDeleteRef && onDeleteRef.current) {
-          onDeleteRef.current(e, res.current, [res.item], res.index)
+          onDeleteRef.current(e, res.current, [res.item], res.index, list)
         }
       }
     }
@@ -150,9 +151,9 @@ const Photos = forwardRef(
     return (
       <div
         ref={ref}
-        {...others}
+        {...props}
         className={`photos${uploading ? ' uploading' : ''}${
-          others.className ? ' ' + others.className : ''
+          props.className ? ' ' + props.className : ''
         }`}
         onClick={handleClick}
       >
@@ -181,13 +182,21 @@ const Photos = forwardRef(
                 )}
                 <div className="photos-item-error"></div>
                 <div className="photos-item-load"></div>
+                {/* 状态遮罩 */}
+                <Status
+                  type={item.status}
+                  visible={item.statusVisible}
+                  onReUpload={(e) => {
+                    onReUpload && onReUpload(e, item, index, list)
+                  }}
+                />
+                {item.children}
+                {/* 删除按钮 */}
                 {onDelete && (
                   <div className="photos-delete">
                     <div className="photos-delete-icon"></div>
                   </div>
                 )}
-                {item.children}
-                <Status type={item.status} visible={item.statusVisible} />
               </div>
             )
           })}
