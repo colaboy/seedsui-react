@@ -11,10 +11,9 @@ const Videos = forwardRef(
     },
     ref
   ) => {
-    // 修改数据源
+    // 修改数据源: 播放按钮
     if (Array.isArray(props.list) && props.list.length) {
       for (let item of props.list) {
-        item.previewType = 'video'
         if (playVisible) {
           item.children = (
             <div className="photos-item-video">
@@ -26,7 +25,7 @@ const Videos = forwardRef(
     }
     return (
       <Fragment>
-        <Photos ref={ref} {...props} preview={preview} isBrowser={true} type="video" />
+        <Photos ref={ref} {...props} preview={preview} type="video" />
       </Fragment>
     )
   }

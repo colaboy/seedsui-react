@@ -86,21 +86,28 @@ const Photos = forwardRef(
           if (typeof preview === 'function') {
             preview(e, res.current, [res.item], res.index, list)
           }
+          // 浏览器预览
+          else if (isBrowser) {
+            setPreviewCurrent(Number(index))
+          }
           // 本地能力预览
           else if (
-            !isBrowser &&
-            (Bridge.platform === 'wq' ||
-              Bridge.platform === 'waiqin' ||
-              Bridge.platform === 'wechat' ||
-              Bridge.platform === 'wework' ||
-              Bridge.platform === 'wechatMiniprogram' ||
-              Bridge.platform === 'weworkMiniprogram')
+            Bridge.platform === 'wq' ||
+            Bridge.platform === 'waiqin' ||
+            Bridge.platform === 'wechat' ||
+            Bridge.platform === 'wework' ||
+            Bridge.platform === 'wechatMiniprogram' ||
+            Bridge.platform === 'weworkMiniprogram'
           ) {
-            Bridge.previewImage(res)
+            if (type === 'video') {
+              Bridge.previewFile({ url: res.current })
+            } else {
+              Bridge.previewImage(res)
+            }
           }
           // 浏览器预览
           else {
-            setPreviewCurrent(Number(index))
+            console.error('SeedsUI Error: 不支持当前预览类型')
           }
         }
       } else if (target.classList.contains('photos-delete')) {
@@ -241,6 +248,7 @@ const Photos = forwardRef(
         {/* 预览 */}
         {typeof previewCurrent === 'number' && (
           <Preview
+            type={type}
             onHide={() => setPreviewCurrent(null)}
             list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
             current={previewCurrent}

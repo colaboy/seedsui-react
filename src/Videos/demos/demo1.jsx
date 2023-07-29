@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
-import { Videos } from 'seedsui-react'
+import React, { useState, useEffect } from 'react'
+import { Videos, Bridge } from 'seedsui-react'
 
 export default () => {
+  useEffect(() => {
+    Bridge.ready(() => {
+      console.log('加载桥接')
+    })
+  }, [])
   const [list, setList] = useState([
     {
       id: '1',
@@ -32,16 +37,19 @@ export default () => {
     console.log('选择')
     console.log(...params)
   }
-  function handleDelete(...params) {
-    console.log('删除')
-    console.log(...params)
+  function handleDelete(e, value, selected, index) {
+    let successList = list.filter((photo, photoIndex) => {
+      return photoIndex !== index
+    })
+    setList(successList)
   }
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Videos
         // playVisible
-        preview={false}
+        // preview={false}
+        // isBrowser={true}
         list={list}
         onChoose={handleChoose}
         onDelete={handleDelete}

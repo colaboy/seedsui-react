@@ -5,15 +5,15 @@ const list = [
   {
     id: '2',
     thumb: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-    src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-    status: 'fail'
+    src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png'
+    // status: 'fail'
   },
   {
     id: '1',
     thumb:
       'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320',
-    src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png',
-    status: 'uploading'
+    src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png'
+    // status: 'uploading'
   }
 ]
 

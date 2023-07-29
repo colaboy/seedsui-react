@@ -6,6 +6,7 @@ import VideoFull from './../VideoFull'
 const Preview = forwardRef(
   (
     {
+      type, // video | image
       list, // 需要预览的资源列表{src: '图片或视频的地址', thumb: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
 
@@ -40,7 +41,6 @@ const Preview = forwardRef(
 
     // 滑动视频需要暂停其它视频
     function handleChange(s) {
-      let type = list[s.activeIndex].previewType || type
       // 暂停所有视频
       if (type === 'video') {
         let newPauseList = list.map(() => true)
@@ -66,7 +66,6 @@ const Preview = forwardRef(
           {...others}
         >
           {list.map((source, index) => {
-            let type = source.previewType || source.type
             return (
               <div className="swiper-slide" key={index}>
                 <div className="swiper-zoom-container">
