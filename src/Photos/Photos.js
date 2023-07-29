@@ -1,13 +1,14 @@
 import React, { forwardRef, useState, useRef } from 'react'
 import Preview from './../Preview'
 import Bridge from './../Bridge'
+import Status from './Status'
 
 const Photos = forwardRef(
   (
     {
       type, // video.录相 | 其它.为拍照
       isBrowser, // 是否使用浏览器的file框拍照
-      list, // [{id: '', name: '', thumb: '', src: ''}]
+      list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       upload, // 上传按钮覆盖的dom
       uploading, // 是否上传中
       onBeforeChoose, // 选择前校验
@@ -186,6 +187,7 @@ const Photos = forwardRef(
                   </div>
                 )}
                 {item.children}
+                <Status type={item.status} visible={item.statusVisible} />
               </div>
             )
           })}

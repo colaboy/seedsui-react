@@ -5,7 +5,8 @@ const list = [
   {
     id: '2',
     thumb: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-    src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png'
+    src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
+    status: 'fail'
   },
   {
     id: '1',

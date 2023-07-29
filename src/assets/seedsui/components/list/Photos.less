@@ -202,3 +202,59 @@
     display: block;
   }
 }
+
+// 照片状态-默认不显示loading
+.photos-status-icon-loading {
+  display: none;
+}
+// 照片状态
+.photos-status {
+  // 选择和失败状态
+  &.uploading,
+  &.fail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  // 选择
+  &.choose {
+  }
+  // 上传中
+  &.uploading {
+    .photos-status-icon {
+      .flex;
+      .flex-center;
+      .flex-middle;
+      .loading-circle-chase;
+    }
+    .photos-status-icon-loading {
+      display: flex;
+    }
+  }
+  // 上传失败
+  &.fail {
+    .photos-status-icon {
+      width: 22px;
+      height: 22px;
+      background-color: white;
+      font-family: 'iconfont';
+      &:extend(.icon-redo all);
+      border-radius: 100%;
+      .flex;
+      .flex-middle;
+      .flex-center;
+    }
+  }
+  // 上传成功
+  &.success {
+  }
+}
