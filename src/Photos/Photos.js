@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 import Preview from './../Preview'
 import Bridge from './../Bridge'
 import Status from './Status'
@@ -31,6 +31,21 @@ const Photos = forwardRef(
     onClickRef.current = onClick
 
     const [previewCurrent, setPreviewCurrent] = useState(null)
+
+    // 根节点
+    const rootRef = useRef(null)
+
+    // 节点
+    const [updateStatus, setUpdateStatus] = useState(0)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current,
+        updateStatus: () => {
+          setUpdateStatus(updateStatus + 1)
+        }
+      }
+    })
 
     // 拼装点击项的数据
     function getCurrent(index) {
@@ -128,12 +143,12 @@ const Photos = forwardRef(
       e.stopPropagation()
     }
     // 图片加载完成
-    function load(e) {
+    function handleImgLoad(e) {
       let target = e.target
       target.parentNode.setAttribute('data-complete', '1')
     }
     // 图片加载失败
-    function error(e) {
+    function handleImgError(e) {
       let target = e.target
       target.parentNode.setAttribute('data-complete', '0')
     }
@@ -157,7 +172,7 @@ const Photos = forwardRef(
 
     return (
       <div
-        ref={ref}
+        ref={rootRef}
         {...props}
         className={`photos${uploading ? ' uploading' : ''}${
           props.className ? ' ' + props.className : ''
@@ -183,8 +198,8 @@ const Photos = forwardRef(
                     className="photos-item-img"
                     src={item.thumb}
                     alt=""
-                    onLoad={load}
-                    onError={error}
+                    onLoad={handleImgLoad}
+                    onError={handleImgError}
                   />
                 )}
                 <div className="photos-item-error"></div>

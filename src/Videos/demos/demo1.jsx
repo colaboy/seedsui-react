@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Videos, Bridge } from 'seedsui-react'
 
 export default () => {
@@ -7,6 +7,7 @@ export default () => {
       console.log('加载桥接')
     })
   }, [])
+  const videosRef = useRef(null)
   const [list, setList] = useState([
     {
       id: '1',
@@ -24,10 +25,18 @@ export default () => {
   ])
 
   function handleReUpload(e, item, index, list) {
-    item.status = ''
-    let newList = [...list]
-    newList[index] = item
-    setList(newList)
+    // 上传中
+    item.status = 'uploading'
+    // let newList = [...list]
+    list[index] = item
+    // setList(newList)
+    videosRef?.current?.updateStatus?.()
+
+    // 上传完成
+    setTimeout(() => {
+      item.status = ''
+      videosRef?.current?.updateStatus?.()
+    }, 1000)
   }
   function handleClick(...params) {
     console.log('点击')
@@ -47,6 +56,7 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Videos
+        ref={videosRef}
         // playVisible
         // preview={false}
         // isBrowser={true}
