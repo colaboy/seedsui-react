@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react'
 import {
   activeItemTarget,
+  gcjToBdPoint,
   bdToGcjCoord,
   addMarkers,
   centerMarker,
@@ -30,6 +31,13 @@ const MapChoose = forwardRef(
       onChange,
       // 标注配置
       markerConfig,
+      /*
+      point: {
+        size: [w,h],
+        imageUrl: ''
+      }
+      select: 同point
+      */
       // 渲染
       footerRender,
       ...props
@@ -101,7 +109,14 @@ const MapChoose = forwardRef(
 
       // 初始化地图
       // eslint-disable-next-line
-      let bdMap = await initMap(containerRef.current)
+      let bdMap = await initMap(
+        containerRef.current,
+        value?.longitude && value?.latitude
+          ? {
+              center: gcjToBdPoint([value?.longitude, value?.latitude])
+            }
+          : null
+      )
       if (typeof bdMap === 'string') {
         setErrMsg(bdMap)
         return

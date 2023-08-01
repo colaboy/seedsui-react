@@ -27,13 +27,15 @@ function initMap(container, opt) {
       enableMapClick: false
     })
 
-    // 默认显示当前城市
-    const currentCity = new window.BMap.LocalCity()
-    currentCity.get((result) => {
-      map.centerAndZoom(result.name, 16)
-    })
-
-    // map.centerAndZoom(new BMap.Point(116.404, 39.915), 16)
+    // 定位到中心点
+    if (center) {
+      map.centerAndZoom(center, 16)
+    } else {
+      const currentCity = new window.BMap.LocalCity()
+      currentCity.get((result) => {
+        map.centerAndZoom(result.name || '北京', 16)
+      })
+    }
 
     // 加载完成(它会多次触发, 里面不要加入绘制类的api)
     map.addEventListener(
@@ -43,9 +45,6 @@ function initMap(container, opt) {
 
         // 清除加载超时
         window.clearTimeout(map.loadTimeout)
-
-        // 定位到中心点
-        center && map.centerAndZoom(center || '')
 
         resolve(map)
       },

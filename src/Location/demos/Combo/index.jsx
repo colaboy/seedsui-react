@@ -15,15 +15,15 @@ export default () => {
   useEffect(() => {
     Bridge.ready(() => {})
     console.log(comboRef.current)
-    MapUtil.load({
-      ak: '3pTjiH1BXLjASHeBmWUuSF83',
-      success: () => {
-        console.log('地图加载完成')
-      },
-      fail: () => {
-        console.error('地图库加载失败，请稍后再试！')
-      }
-    })
+    // MapUtil.load({
+    //   ak: '3pTjiH1BXLjASHeBmWUuSF83',
+    //   success: () => {
+    //     console.log('地图加载完成')
+    //   },
+    //   fail: () => {
+    //     console.error('地图库加载失败，请稍后再试！')
+    //   }
+    // })
   }, [])
   return (
     <>
