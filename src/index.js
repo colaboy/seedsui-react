@@ -1,5 +1,5 @@
 import './assets/style/index.less'
-import BScroll from 'better-scroll'
+// import BScroll from 'better-scroll'
 import './PrototypeArray.js'
 import './PrototypeMath.js'
 import './PrototypeObject.js'
@@ -7,6 +7,12 @@ import './PrototypeString.js'
 import './PrototypeNumber.js'
 import './PrototypeDate.js'
 import './PrototypePinyin.js' // 不常用
+
+// 记录版本号
+const packageJson = require('./../package.json')
+if (packageJson?.version) {
+  window.seedsVersion = packageJson.version
+}
 
 export { default as locale } from './locale'
 export { default as Actionsheet } from './Actionsheet'
