@@ -4,7 +4,7 @@ import { Videos, Bridge } from 'seedsui-react'
 export default () => {
   useEffect(() => {
     Bridge.ready(() => {
-      console.log('加载桥接')
+      alert('加载桥接')
     })
   }, [])
   const videosRef = useRef(null)
@@ -59,7 +59,7 @@ export default () => {
         ref={videosRef}
         // playVisible
         // preview={false}
-        // isBrowser={true}
+        isBrowser={true}
         list={list}
         onChoose={handleChoose}
         onDelete={handleDelete}
