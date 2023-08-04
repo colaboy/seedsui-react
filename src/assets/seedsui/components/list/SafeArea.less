@@ -29,7 +29,8 @@
     height: calc(env(safe-area-inset-bottom) * var(--multiple));
   }
   // 边框
-  &[class^='border-'] {
+  &.border-top,
+  &.border-bottom {
     border-style: solid;
     border-width: 0;
     border-color: @body-bg;
