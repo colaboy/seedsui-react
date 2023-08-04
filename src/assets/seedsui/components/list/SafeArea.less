@@ -1,16 +1,45 @@
 // SafeArea安全区域
 .safe-area {
   --multiple: var(--safe-area-multiple, 1);
+  // 定位
   &.top {
-    padding-top: calc(env(safe-area-inset-top) * var(--multiple));
+    top: calc(env(safe-area-inset-top) * var(--multiple));
   }
   &.bottom {
-    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+    bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
   }
-  &.top-height {
+  // 间距
+  &.padding-top {
     padding-top: calc(env(safe-area-inset-top) * var(--multiple));
   }
-  &.bottom-height {
+  &.padding-bottom {
+    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+  }
+  &.margin-top {
+    padding-top: calc(env(safe-area-inset-top) * var(--multiple));
+  }
+  &.margin-bottom {
+    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+  }
+  // 高度
+  &.height-top {
+    height: calc(env(safe-area-inset-top) * var(--multiple));
+  }
+  &.height-bottom {
     height: calc(env(safe-area-inset-bottom) * var(--multiple));
+  }
+  // 边框
+  &[class^='border-'] {
+    border-style: solid;
+    border-width: 0;
+    border-color: @body-bg;
+  }
+  &.border-top {
+    border-top-width: calc(env(safe-area-inset-top) * var(--multiple));
+    border-top-width: 50px;
+  }
+  &.border-bottom {
+    border-bottom-width: calc(env(safe-area-inset-bottom) * var(--multiple));
+    border-bottom-width: 50px;
   }
 }
