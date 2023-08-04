@@ -99,10 +99,12 @@ const Photos = forwardRef(
         if (preview) {
           // 自定义预览
           if (typeof preview === 'function') {
-            preview(e, res.current, [res.item], res.index, list)
+            let goOn = await preview(e, res.current, [res.item], res.index, list)
+            if (goOn === false) return
           }
+
           // 浏览器预览
-          else if (isBrowser) {
+          if (isBrowser) {
             setPreviewCurrent(Number(index))
           }
           // 本地能力预览
