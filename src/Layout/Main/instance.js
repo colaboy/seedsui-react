@@ -123,10 +123,9 @@ let Body = function (params) {
     s.isLoading = true // 设置为不可刷新
     // CallBack onTopRefresh
     let isOk = await s.params.onTopRefresh(s)
-    s.success = isOk
     // Callback onTopFinish
     if (s.params.onTopFinish) {
-      await s.params.onTopFinish(s)
+      await s.params.onTopFinish(s, isOk)
     }
     s.isLoading = false
     s.hideTop()

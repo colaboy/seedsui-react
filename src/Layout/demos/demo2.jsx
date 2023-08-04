@@ -13,8 +13,8 @@ export default () => {
   function handleTopRefresh() {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(true)
-      }, 5000)
+        resolve('自定义提示')
+      }, 1000)
     })
   }
   function handleBottomRefresh() {

@@ -83,17 +83,29 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
         let topContainer = e.topContainer
         topContainer.style.height = '0'
       },
-      onTopFinish: (e) => {
+      onTopFinish: (e, isOk) => {
         return new Promise((resolve) => {
           let topContainer = e.topContainer
           let topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
-          if (e.success) {
-            if (topCaption) topCaption.innerHTML = locale('刷新成功', 'refreshing_success')
-          } else {
-            if (topCaption) topCaption.innerHTML = locale('刷新失败', 'refreshing_failed')
+
+          // 完成提示信息
+          let finishMsg = ''
+          // 失败
+          if (isOk === false) {
+            finishMsg = locale('刷新失败', 'refreshing_failed')
           }
+          // 自定义提示信息
+          else if (typeof isOk === 'string') {
+            finishMsg = isOk
+          }
+          // 成功
+          else {
+            finishMsg = locale('刷新成功', 'refreshing_success')
+          }
+          if (topCaption) topCaption.innerHTML = finishMsg
+
           setTimeout(() => {
-            resolve(e.success)
+            resolve(true)
           }, 1000)
         })
       },
