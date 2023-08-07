@@ -1,8 +1,11 @@
 // 照片视频列表
 .photos {
+  // ios不支持gap
   // display: flex;
   // flex-wrap: wrap;
   // gap: 8px;
+
+  // 换为grid布局, 兼容性更好
   --columns: 72px 72px auto;
   display: grid;
   grid-template-columns: var(--columns);
@@ -12,6 +15,7 @@
 // 单个照片
 .photos-item {
   position: relative;
+  // ios不支持gap
   // float: left;
   width: 72px;
   height: 72px;
