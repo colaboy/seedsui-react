@@ -1,13 +1,18 @@
 // 照片视频列表
 .photos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  // display: flex;
+  // flex-wrap: wrap;
+  // gap: 8px;
+  --columns: 72px 72px auto;
+  display: grid;
+  grid-template-columns: var(--columns);
+  grid-gap: 8px;
 }
+
 // 单个照片
 .photos-item {
   position: relative;
-  float: left;
+  // float: left;
   width: 72px;
   height: 72px;
   overflow: hidden;
