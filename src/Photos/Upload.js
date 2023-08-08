@@ -5,6 +5,7 @@ import Bridge from './../Bridge'
 const Upload = ({
   type,
   // 文件选择框
+  isBrowser,
   fileRef,
   inputProps,
   onFileChange,

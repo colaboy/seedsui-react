@@ -226,6 +226,7 @@ const Photos = forwardRef(
           <Upload
             type={type}
             // 文件选择框
+            isBrowser={isBrowser}
             fileRef={fileRef}
             inputProps={inputProps}
             onFileChange={handleFileChange}
