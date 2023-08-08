@@ -2,6 +2,7 @@ import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 import Preview from './../Preview'
 import Bridge from './../Bridge'
 import Status from './Status'
+import Upload from './Upload'
 
 const Photos = forwardRef(
   (
@@ -144,6 +145,7 @@ const Photos = forwardRef(
       if (onChooseRef && onChooseRef.current) onChooseRef.current(e)
       e.stopPropagation()
     }
+
     // 图片加载完成
     function handleImgLoad(e) {
       let target = e.target
@@ -155,32 +157,27 @@ const Photos = forwardRef(
       target.parentNode.setAttribute('data-complete', '0')
     }
 
-    // 获取Loading
-    function getUploadingDOM() {
-      if (!uploading) return null
-      if (typeof uploading === 'boolean') {
-        return (
-          <div className="photos-upload-loading">
-            <div className="photos-upload-loading-icon">
-              <svg viewBox="25 25 50 50">
-                <circle cx="50" cy="50" r="20"></circle>
-              </svg>
-            </div>
-          </div>
-        )
-      }
-      return uploading
+    // 判断是否只有一项
+    let onlyOneItem = false
+    // 允许选择时，列表为空
+    if (onChoose) {
+      if (!list?.length) onlyOneItem = true
+    }
+    // 不允许选择时，列表为1项
+    else if (list?.length === 1) {
+      onlyOneItem = true
     }
 
     return (
       <div
         ref={rootRef}
         {...props}
-        className={`photos${uploading ? ' uploading' : ''}${
+        className={`photos${onlyOneItem ? ' onlyOneItem' : ''}${
           props.className ? ' ' + props.className : ''
         }`}
         onClick={handleClick}
       >
+        {/* 图片列表 */}
         {list &&
           list.length > 0 &&
           list.map((item, index) => {
@@ -226,41 +223,16 @@ const Photos = forwardRef(
           })}
         {/* 图片上传: 上传按钮 */}
         {onChoose && (
-          <div className="photos-item photos-upload">
-            {/* 拍照或者视频图标 */}
-            <div className={`photos-upload-icon${type === 'video' ? ' video' : ''}`}></div>
-            {/* 录相 */}
-            {type === 'video' && Bridge.platform !== 'wq' && Bridge.platform !== 'waiqin' && (
-              <input
-                ref={fileRef}
-                type="file"
-                className="photos-upload-file-video"
-                name="uploadVideo"
-                onChange={handleFileChange}
-                accept="video/*"
-                capture="camcorder"
-                {...inputProps}
-              />
-            )}
-            {/* 拍照 */}
-            {/* PC端使用file框 */}
-            {type !== 'video' &&
-              (!navigator.userAgent.toLowerCase().match(/applewebkit.*mobile.*/) || isBrowser) && (
-                <input
-                  ref={fileRef}
-                  type="file"
-                  className="photos-upload-file-photo"
-                  name="uploadPhoto"
-                  onChange={handleFileChange}
-                  accept="image/*"
-                  {...inputProps}
-                  // 以下的属性值会导致: 部分安卓机会不显示拍照
-                  // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
-                />
-              )}
-            {upload && upload}
-            {getUploadingDOM(uploading)}
-          </div>
+          <Upload
+            type={type}
+            // 文件选择框
+            fileRef={fileRef}
+            inputProps={inputProps}
+            onFileChange={handleFileChange}
+            // 上传DOM和状态
+            upload={upload}
+            uploading={uploading}
+          />
         )}
         {/* 预览 */}
         {typeof previewCurrent === 'number' && (
