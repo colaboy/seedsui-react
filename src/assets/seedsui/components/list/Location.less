@@ -39,7 +39,11 @@
   font-family: 'iconfont';
   &:extend(.icon-map-zoom-update all);
   color: #aab1b8;
-  font-size: 20px;
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
 
   &.active {
     animation-name: rotate360;
@@ -47,6 +51,9 @@
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
+}
+.input-clear + .location-combo-icon-location {
+  margin-left: 18px;
 }
 .location-combo-icon-choose {
   background-image: url(//res.waiqin365.com/d/seedsui/icon/location-choose.png);

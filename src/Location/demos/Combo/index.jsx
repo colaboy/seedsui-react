@@ -34,6 +34,7 @@ export default () => {
         //   autoLocation: false
         // }}
         // disabled
+        allowClear
         autoFit
         // autoLocation
         // editable
