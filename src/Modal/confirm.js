@@ -79,7 +79,7 @@ export default function confirm({
 
     // 提交按钮
     let submitDOM = mask.querySelector('.modal-ok')
-    updateStyle({ target: submitDOM, props: submitProps, baseClassName: 'modal-ok button' })
+    updateStyle({ target: submitDOM, props: submitProps, baseClassName: 'modal-ok' })
     if (submitProps || submitProps?.caption) {
       submitDOM.classList.remove('hide')
       submitDOM.innerHTML = submitProps?.caption || locale('确定', 'ok')
@@ -89,7 +89,7 @@ export default function confirm({
 
     // 取消按钮
     let cancelDOM = mask.querySelector('.modal-cancel')
-    updateStyle({ target: cancelDOM, props: cancelProps, baseClassName: 'modal-cancel button' })
+    updateStyle({ target: cancelDOM, props: cancelProps, baseClassName: 'modal-cancel' })
     if (cancelProps || cancelProps?.caption) {
       cancelDOM.classList.remove('hide')
       cancelDOM.innerHTML = cancelProps?.caption || locale('取消', 'cancel')
@@ -136,8 +136,7 @@ export default function confirm({
 
   // 点击确定或者取消按钮
   function handleButtonClick(e) {
-    let currentTarget = e.currentTarget
-    let isOk = currentTarget.classList.contains('modal-ok')
+    let isOk = e.target.classList.contains('modal-ok')
 
     // 读取更新后的属性
     const buttonProps = isOk ? mask?.submitProps : mask?.cancelProps
@@ -177,8 +176,8 @@ export default function confirm({
             <div class="modal-content"></div>
           </div>
           <div class="modal-footer">
-            <div class="modal-cancel button"></div>
-            <div class="modal-ok button"></div>
+            <div class="modal-cancel"></div>
+            <div class="modal-ok"></div>
           </div>
         </div>
       `

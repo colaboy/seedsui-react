@@ -107,7 +107,7 @@ const Modal = forwardRef(
             key="footer-cancel"
             onClick={handleCancel}
             {...otherCancelProps}
-            className={`modal-cancel button${
+            className={`modal-cancel${
               otherCancelProps.className ? ' ' + otherCancelProps.className : ''
             }`}
           >
@@ -124,7 +124,7 @@ const Modal = forwardRef(
             key="footer-ok"
             onClick={handleSubmit}
             {...otherSubmitProps}
-            className={`modal-ok button${
+            className={`modal-ok${
               otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''
             }`}
           >
