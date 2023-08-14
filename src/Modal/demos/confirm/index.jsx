@@ -4,12 +4,33 @@ import { Layout, Modal } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Modal.confirm({
+      maskClosable: true,
       captionProps: {
+        className: 'text-left',
+        style: {
+          color: 'red'
+        },
         caption: '第一层'
       },
       portal: top.document.body,
       content: 'confirm content1',
+      contentProps: {
+        className: 'text-left',
+        style: {
+          color: 'red'
+        }
+      },
+      cancelProps: {
+        className: 'text-left',
+        style: {
+          color: 'red'
+        }
+      },
       submitProps: {
+        className: 'text-left',
+        style: {
+          color: 'red'
+        },
         onClick: () => {
           console.log('第二层')
           Modal.confirm({
@@ -48,7 +69,13 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Header className="text-center">Modal.confirm</Layout.Header>
-      <Layout.Main className="bg-white">
+      <Layout.Main
+        className="bg-white"
+        style={{
+          backgroundImage:
+            'url(https://cdn.pixabay.com/photo/2014/12/16/08/32/cherry-blossoms-570046_1280.jpg)'
+        }}
+      >
         <div className="demo-title" onClick={handleToggle}>
           Modal visible toggle
         </div>

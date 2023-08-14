@@ -8,13 +8,20 @@ export default function confirm({
   maskClosable,
   onVisibleChange,
 
+  // 遮罩
   maskProps,
+
+  // 标题
   captionProps,
-  submitProps,
-  cancelProps,
 
   // 内容
-  content
+  content,
+  contentProps,
+
+  // 确定
+  submitProps,
+  // 取消, 默认显示取消按钮
+  cancelProps = {}
 }) {
   let mask = null
 
@@ -26,62 +33,68 @@ export default function confirm({
     }
   }
 
-  // 取消按钮
-  if (cancelProps === undefined) {
-    // eslint-disable-next-line
-    cancelProps = {
-      onClick: () => {}
+  // 更新class和style
+  function updateStyle({ target, props, baseClassName }) {
+    if (!target) return
+
+    const { style, className } = props || {}
+    // 还原样式
+    target.setAttribute('style', '')
+    target.setAttribute('class', baseClassName)
+
+    // 增加样式
+    if (style) {
+      for (let stylePropName in style) {
+        target.style[stylePropName] = style[stylePropName]
+      }
+    }
+    if (className) {
+      target.className = `${baseClassName}${className ? ' ' + className : ''}`
     }
   }
 
   // 更新属性
   function updateAttribute(mask) {
     // 更新遮罩
-    mask.setAttribute('style', '')
-    mask.setAttribute('class', 'mask modal-mask')
-    if (maskProps) {
-      const { style: maskStyle, className: maskClassName } = maskProps
-
-      if (maskStyle) {
-        for (let stylePropName in maskStyle) {
-          mask.style[stylePropName] = maskStyle[stylePropName]
-        }
-      }
-      if (maskClassName) {
-        mask.className = `mask modal-mask${maskClassName ? ' ' + maskClassName : ''}`
-      }
-    }
+    updateStyle({ target: mask, props: maskProps, baseClassName: 'mask modal-mask' })
 
     // 更新标题
+    let captionDOM = mask.querySelector('.modal-caption')
+    updateStyle({ target: captionDOM, props: captionProps, baseClassName: 'modal-caption' })
     if (captionProps?.caption) {
-      mask.querySelector('.modal-caption').classList.remove('hide')
-      mask.querySelector('.modal-caption').innerHTML = captionProps.caption
+      captionDOM.classList.remove('hide')
+      captionDOM.innerHTML = captionProps.caption
     } else {
-      mask.querySelector('.modal-caption').classList.add('hide')
+      captionDOM.classList.add('hide')
     }
 
     // 更新内容
+    let contentDOM = mask.querySelector('.modal-content')
+    updateStyle({ target: contentDOM, props: contentProps, baseClassName: 'modal-content' })
     if (content) {
-      mask.querySelector('.modal-content').innerHTML = content
+      contentDOM.innerHTML = content
     } else {
-      mask.querySelector('.modal-content').innerHTML = ''
+      contentDOM.innerHTML = ''
     }
 
     // 提交按钮
-    if (submitProps?.onClick || submitProps?.caption) {
-      mask.querySelector('.modal-ok').classList.remove('hide')
-      mask.querySelector('.modal-ok').innerHTML = submitProps?.caption || locale('确定', 'ok')
+    let submitDOM = mask.querySelector('.modal-ok')
+    updateStyle({ target: submitDOM, props: submitProps, baseClassName: 'modal-ok button' })
+    if (submitProps || submitProps?.caption) {
+      submitDOM.classList.remove('hide')
+      submitDOM.innerHTML = submitProps?.caption || locale('确定', 'ok')
     } else {
-      mask.querySelector('.modal-ok').classList.add('hide')
+      submitDOM.classList.add('hide')
     }
 
     // 取消按钮
-    if (cancelProps?.onClick || cancelProps?.caption) {
-      mask.querySelector('.modal-cancel').classList.remove('hide')
-      mask.querySelector('.modal-cancel').innerHTML =
-        cancelProps?.caption || locale('取消', 'cancel')
+    let cancelDOM = mask.querySelector('.modal-cancel')
+    updateStyle({ target: cancelDOM, props: cancelProps, baseClassName: 'modal-cancel button' })
+    if (cancelProps || cancelProps?.caption) {
+      cancelDOM.classList.remove('hide')
+      cancelDOM.innerHTML = cancelProps?.caption || locale('取消', 'cancel')
     } else {
-      mask.querySelector('.modal-cancel').classList.add('hide')
+      cancelDOM.classList.add('hide')
     }
 
     // 更新事件中用到的属性（否则事件中将永远读取到的是闭包中的属性，即上次的属性）
@@ -100,15 +113,25 @@ export default function confirm({
 
   // 点击遮罩
   function handleMaskClick(e) {
-    // 读取更新后的属性
-    const maskClosable = mask?.maskClosable
-    const onVisibleChange = mask?.onVisibleChange
-
-    if (maskClosable) {
-      if (onVisibleChange) onVisibleChange(false)
-      destroy(e.currentTarget)
-    }
     e.stopPropagation()
+
+    // 点击确定或取消按钮
+    if (e.target.classList.contains('modal-cancel') || e.target.classList.contains('modal-ok')) {
+      handleButtonClick(e)
+      return
+    }
+
+    // 点击遮罩
+    if (e.target.classList.contains('mask')) {
+      // 读取更新后的属性
+      const maskClosable = mask?.maskClosable
+      const onVisibleChange = mask?.onVisibleChange
+
+      if (maskClosable) {
+        if (onVisibleChange) onVisibleChange(false)
+        destroy(e.currentTarget)
+      }
+    }
   }
 
   // 点击确定或者取消按钮
@@ -188,20 +211,9 @@ export default function confirm({
 
   // 绑定事件
   function attach(mask) {
-    let okBtn = mask.querySelector('.modal-ok')
-    let cancelBtn = mask.querySelector('.modal-cancel')
-
     // 绑定事件
     mask.removeEventListener('click', handleMaskClick, false)
     mask.addEventListener('click', handleMaskClick, false)
-    if (submitProps?.onClick || submitProps?.caption) {
-      okBtn.removeEventListener('click', handleButtonClick, false)
-      okBtn.addEventListener('click', handleButtonClick, false)
-    }
-    if (cancelProps?.onClick || cancelProps?.caption) {
-      cancelBtn.removeEventListener('click', handleButtonClick, false)
-      cancelBtn.addEventListener('click', handleButtonClick, false)
-    }
   }
 
   // 渲染与绑定事件
