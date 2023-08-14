@@ -4,33 +4,36 @@ import { Layout, Modal } from 'seedsui-react'
 export default () => {
   function handleToggle() {
     Modal.confirm({
-      maskClosable: true,
       captionProps: {
-        className: 'text-left',
-        style: {
-          color: 'red'
-        },
+        // className: 'text-left',
+        // style: {
+        //   color: 'red'
+        // },
         caption: '第一层'
       },
       portal: top.document.body,
-      content: 'confirm content1',
-      contentProps: {
-        className: 'text-left',
-        style: {
-          color: 'red'
-        }
+      content:
+        '最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度',
+      // contentProps: {
+      //   className: 'text-left',
+      //   style: {
+      //     color: 'red'
+      //   }
+      // },
+      footerProps: {
+        className: 'vertical'
       },
-      cancelProps: {
-        className: 'text-left',
-        style: {
-          color: 'red'
-        }
-      },
+      // cancelProps: {
+      //   className: 'text-left',
+      //   style: {
+      //     color: 'red'
+      //   }
+      // },
       submitProps: {
-        className: 'text-left',
-        style: {
-          color: 'red'
-        },
+        // className: 'text-left',
+        // style: {
+        //   color: 'red'
+        // },
         onClick: () => {
           console.log('第二层')
           Modal.confirm({
@@ -46,7 +49,7 @@ export default () => {
             submitProps: {
               onClick: () => {
                 console.log('第三层')
-                Modal.confirm({
+                Modal.alert({
                   portal: document.body,
                   captionProps: {
                     caption: '第三层'

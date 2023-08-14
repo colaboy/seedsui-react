@@ -18,6 +18,9 @@ export default function confirm({
   content,
   contentProps,
 
+  // 底部
+  footerProps,
+
   // 确定
   submitProps,
   // 取消, 默认显示取消按钮
@@ -76,6 +79,10 @@ export default function confirm({
     } else {
       contentDOM.innerHTML = ''
     }
+
+    // 更新底部
+    let footerDOM = mask.querySelector('.modal-footer')
+    updateStyle({ target: footerDOM, props: footerProps, baseClassName: 'modal-footer' })
 
     // 提交按钮
     let submitDOM = mask.querySelector('.modal-ok')

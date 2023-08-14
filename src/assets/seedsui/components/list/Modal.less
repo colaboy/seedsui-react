@@ -20,19 +20,17 @@
   max-height: 70%;
   margin: 0 auto;
   overflow: hidden;
-  font-size: @font-size-lg;
 
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(10px); /* 背景模糊效果，可以根据需求调整模糊半径 */
-  border-color: @border;
-  border-style: solid;
-  border-width: 0;
 
   border-radius: 16px;
   // 动画使用.popup-animation
 }
 // 身体
 .modal-body {
+  display: flex;
+  flex-direction: column;
   max-height: 300px;
   padding: 20px 12px;
   overflow: auto;
@@ -51,6 +49,8 @@
 // 身体-内容区域
 .modal-content {
   display: block;
+  flex: 1;
+  overflow: auto;
   font-size: 15px;
   color: #35393e;
   text-align: center;
@@ -62,9 +62,21 @@
 .modal-footer {
   font-weight: 500;
   display: flex;
-  border-top: 1px solid #c9ccd2;
+  border-top: 1px solid @border;
   box-sizing: border-box;
+
+  // 垂直排列按钮
+  &.vertical {
+    flex-direction: column;
+
+    .modal-cancel + .modal-ok {
+      border-left: 0;
+      border-top: 1px solid @border;
+    }
+  }
 }
+
+// 确定和取消按钮
 .modal-cancel,
 .modal-ok {
   display: flex;
@@ -72,12 +84,12 @@
   justify-content: center;
   flex: 1;
   width: 100%;
-  height: 46px;
   box-sizing: border-box;
 
   font-size: 18px;
   text-align: center;
   line-height: 22px;
+  padding: 12px 0;
   font-weight: 400;
 
   * {
@@ -99,7 +111,7 @@
   }
 }
 .modal-cancel + .modal-ok {
-  border-left: 1px solid #c9ccd2;
+  border-left: 1px solid @border;
 }
 
 // Dropdown
