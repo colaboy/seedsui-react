@@ -1,5 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react'
 import {
+  formatValue,
   activeItemTarget,
   gcjToBdPoint,
   bdToGcjCoord,
@@ -97,7 +98,7 @@ const MapChoose = forwardRef(
           let locationResult = await locationRef.current.getLocation()
           // eslint-disable-next-line
           value = locationResult
-          onChange && onChange(value)
+          onChange && onChange(formatValue(value))
           setCurrent(value)
         }
       }
@@ -221,7 +222,7 @@ const MapChoose = forwardRef(
         value.longitude = point[0]
         value.latitude = point[1]
       }
-      onChange && onChange(value)
+      onChange && onChange(formatValue(value))
 
       // 地图定位到中间
       centerToValue()
