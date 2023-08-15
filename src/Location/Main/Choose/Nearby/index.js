@@ -73,6 +73,8 @@ function Nearby({ map, onChange }, ref) {
 
         // 外层容器中查询附近推荐的选中项
         let container = nearbyRef.current?.closest('.mappage-info-card')
+        if (!container) return
+
         let activeId = container.nearbyActive
 
         if (activeId) {
