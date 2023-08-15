@@ -120,7 +120,14 @@ const LocationModal = forwardRef(
         if (!goOn) return
       }
 
-      onChange && onChange(value)
+      onChange &&
+        onChange({
+          errMsg: value?.errMsg || '',
+          latitude: value?.latitude || '',
+          longitude: value?.longitude || '',
+          title: value?.title || '',
+          value: value?.value || ''
+        })
       handleBack()
     }
 
