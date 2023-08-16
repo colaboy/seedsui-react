@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react'
-import treeData from './../data.js'
+import React, { useEffect, useRef, useState } from 'react'
+import treeData from './../simpleData.js'
+// import treeData from './../data.js'
 import { Input, TreePicker, HighlightKeyword, locale } from 'seedsui-react'
 
 export default () => {
@@ -29,6 +30,8 @@ export default () => {
         value={value}
         list={data}
         multiple={true}
+        // 仅允许选中末级
+        onlyLeafCheck
         // 不级联
         checkStrictly={'children'}
         // 保留不在树结构中的value
@@ -61,28 +64,28 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
-        // loadData={(node) => {
-        //   return new Promise((resolve) => {
-        //     if (!node.children) {
-        //       data.setDeepTreeNodeProp(node.id, (item) => {
-        //         item.isLoaded = true
-        //         item.children = [
-        //           {
-        //             isLoaded: true,
-        //             parentid: node.id,
-        //             id: '1',
-        //             name: '1111111'
-        //           }
-        //         ]
-        //       })
+        loadData={(node) => {
+          return new Promise((resolve) => {
+            if (!node.children) {
+              data.setDeepTreeNodeProp(node.id, (item) => {
+                item.isLoaded = true
+                item.children = [
+                  {
+                    isLoaded: true,
+                    parentid: node.id,
+                    id: '1',
+                    name: '1111111'
+                  }
+                ]
+              })
 
-        //       console.log('展开')
-        //       setData([...data])
-        //     }
+              console.log('展开')
+              setData([...data])
+            }
 
-        //     resolve(null)
-        //   })
-        // }}
+            resolve(null)
+          })
+        }}
       />
     </>
   )

@@ -64,7 +64,7 @@ function TreePicker(
   const [expandedKeys, setExpandedKeys] = useState([])
   const expandedKeysRef = useRef(expandedKeys)
 
-  // 异步已加载项(去掉小箭头项), 只有传入loadData时才生效
+  // 异步已加载项(去掉小箭头， 只有传入loadData时才生效), 不在loadedKeys集合中的为父节点
   let [loadedKeys, setLoadedKeys] = useState([])
 
   // 更新列表
@@ -112,6 +112,8 @@ function TreePicker(
   // 获取更新后的树数据
   function updateTreeData() {
     return getTreeData({
+      // 异步加载需要传入加载完成的节点，用于判断是否有子节点
+      loadedKeys: typeof props.loadData === 'function' ? loadedKeys : null,
       list,
       onlyLeafCheck,
       keyword: keywordRef.current || '',

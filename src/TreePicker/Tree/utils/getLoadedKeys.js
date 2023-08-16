@@ -1,4 +1,4 @@
-// 获取选中项
+// 异步加载: 获取加载完成项
 function getLoadedKeys(flattenList) {
   if (!Array.isArray(flattenList) || !flattenList.length) return []
   let keys = []
