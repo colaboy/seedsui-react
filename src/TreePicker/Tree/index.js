@@ -1,5 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useMemo, useState, useRef } from 'react'
-import { getTreeData, getExpandedKeys, getCheckedKeysProp, getLoadedKeys } from './utils/index'
+import {
+  getTreeData,
+  getAllExpandedKeys,
+  getExpandedKeys,
+  getCheckedKeysProp,
+  getLoadedKeys
+} from './utils/index'
 
 import Tree from 'rc-tree'
 
@@ -61,7 +67,7 @@ function TreePicker(
   const [treeData, setTreeData] = useState(null)
 
   // 展开的id
-  const [expandedKeys, setExpandedKeys] = useState([])
+  let [expandedKeys, setExpandedKeys] = useState([])
   const expandedKeysRef = useRef(expandedKeys)
 
   // 异步已加载项(去掉小箭头， 只有传入loadData时才生效), 不在loadedKeys集合中的为父节点
@@ -75,17 +81,25 @@ function TreePicker(
     flattenListRef.current = Object.clone(list).flattenTree()
 
     // 默认全部展开
-    if (defaultExpandAll && flattenListRef.current?.length) {
-      expandedKeysRef.current = flattenListRef.current.map((item) => item.id)
+    if (defaultExpandAll) {
+      expandedKeysRef.current = getAllExpandedKeys(list)
       setExpandedKeys(expandedKeysRef.current)
     }
 
     // 异步加载时需要判断哪些不需要再次加载(isLoaded)
     if (typeof props.loadData === 'function') {
-      // eslint-disable-next-line
-      loadedKeys = []
-      loadedKeys.push(...getLoadedKeys(flattenListRef.current))
-      setLoadedKeys([...new Set(loadedKeys)])
+      let newLoadedKeys = [...new Set(getLoadedKeys(list))]
+
+      // 展开项必须为isLoaded项
+      let newExpandedKeys = []
+      for (let key of expandedKeys) {
+        if (newLoadedKeys.includes(key)) {
+          newExpandedKeys.push(key)
+        }
+      }
+
+      setLoadedKeys(newLoadedKeys)
+      setExpandedKeys(newExpandedKeys)
     }
 
     // 更新渲染列表
