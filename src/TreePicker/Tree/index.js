@@ -82,6 +82,8 @@ function TreePicker(
 
     // 异步加载时需要判断哪些不需要再次加载(isLoaded)
     if (typeof props.loadData === 'function') {
+      // eslint-disable-next-line
+      loadedKeys = []
       loadedKeys.push(...getLoadedKeys(flattenListRef.current))
       setLoadedKeys([...new Set(loadedKeys)])
     }
