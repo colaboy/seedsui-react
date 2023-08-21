@@ -103,14 +103,14 @@
   }
   // 链接按钮
   &.link {
-    color: @link-color;
-    background-color: @link-bg;
-    border-color: @link-border;
+    color: white;
+    background-color: @link;
+    border-color: @link;
     &:active,
     &.active {
-      color: @link-color-active;
-      background-color: @link-bg-active;
-      border-color: @link-border-active;
+      color: white;
+      background-color: lighten(@link, 20%);
+      border-color: lighten(@link, 20%);
     }
   }
   // 警告按钮
@@ -203,13 +203,13 @@
   }
   // 线框-链接按钮
   &.link {
-    color: @link-outline-color;
+    color: @link;
     background-color: transparent;
-    border-color: @link-outline-border;
+    border-color: @link;
     &:active,
     &.active {
-      color: @link-outline-color-active;
-      border-color: @link-outline-border-active;
+      color: lighten(@link, 20%);
+      border-color: lighten(@link, 20%);
     }
   }
   // 线框-警告按钮
