@@ -1,0 +1,95 @@
+// 废弃的样式(后续的版本中将全部删除，用到的尽快替换掉)
+
+.button {
+  // 投影按钮
+  &.shadow {
+    // 分别指投影的：右、下、模糊、扩展、颜色
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+    &:active,
+    &.active {
+      margin: 2px 0 -2px 0;
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // 按钮-在bar上
+  &.bar {
+    color: @default;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  // 取消按钮
+  &.cancel {
+    color: @button-danger-color;
+    background-color: @button-danger-bg-color;
+    border-color: @button-danger-border-color;
+  }
+  // 提交按钮
+  &.submit {
+    color: @button-success-color;
+    background-color: @button-success-bg-color;
+    border-color: @button-success-border-color;
+  }
+  // 信息按钮
+  &.info {
+    color: white;
+    background-color: #39abf2;
+    border-color: #39abf2;
+  }
+  // 警告按钮
+  &.warn {
+    color: @button-warning-color;
+    background-color: @button-warning-bg-color;
+    border-color: @button-warning-border-color;
+  }
+
+  // 禁用按钮
+  &.disabled,
+  &[disabled] {
+    color: white;
+    background-color: @disabled;
+    border-color: @disabled;
+  }
+}
+
+// 线框模式
+.button.outline {
+  // 线框-主色按钮
+  &.primary {
+    color: @primary;
+    background-color: transparent;
+    border-color: @primary;
+  }
+  // 线框-取消按钮
+  &.cancel {
+    color: lighten(@danger, 20%);
+    background-color: transparent;
+    border-color: @danger;
+  }
+  // 线框-提交按钮
+  &.submit {
+    color: @success;
+    background-color: transparent;
+    border-color: @success;
+  }
+  // 线框-信息按钮
+  &.info {
+    color: #39abf2;
+    background-color: transparent;
+    border-color: #39abf2;
+  }
+  // 线框-警告按钮
+  &.warn {
+    color: @warning;
+    background-color: transparent;
+    border-color: @warning;
+  }
+
+  // 线框-禁用按钮
+  &.disabled,
+  &[disabled] {
+    color: #adadad;
+    background-color: #f3f4f5;
+    border-color: #e5e5e5;
+  }
+}
