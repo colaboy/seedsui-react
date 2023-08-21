@@ -91,14 +91,14 @@
   }
   // 信息按钮
   &.info {
-    color: @info-color;
-    background-color: @info-bg;
-    border-color: @info-border;
+    color: white;
+    background-color: @info;
+    border-color: @info;
     &:active,
     &.active {
-      color: @info-color-active;
-      background-color: @info-bg-active;
-      border-color: @info-border-active;
+      color: white;
+      background-color: lighten(@info, 20%);
+      border-color: lighten(@info, 20%);
     }
   }
   // 链接按钮
@@ -192,13 +192,13 @@
   }
   // 线框-信息按钮
   &.info {
-    color: @info-outline-color;
+    color: @info;
     background-color: transparent;
-    border-color: @info-outline-border;
+    border-color: @info;
     &:active,
     &.active {
-      color: @info-outline-color-active;
-      border-color: @info-outline-border-active;
+      color: lighten(@info, 20%);
+      border-color: lighten(@info, 20%);
     }
   }
   // 线框-链接按钮
