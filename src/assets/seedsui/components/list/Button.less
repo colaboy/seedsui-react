@@ -237,13 +237,13 @@
   // 线框-禁用按钮
   &.disabled,
   &[disabled] {
-    color: @disabled-outline-color;
-    background-color: @disabled-outline-bg;
-    border-color: @disabled-outline-border;
+    color: #adadad;
+    background-color: #f3f4f5;
+    border-color: #e5e5e5;
     &:active,
     &.active {
-      color: @disabled-outline-color-active;
-      border-color: @disabled-outline-border-active;
+      color: lighten(#adadad, 20%);
+      border-color: lighten(#adadad, 20%);
     }
   }
 }
