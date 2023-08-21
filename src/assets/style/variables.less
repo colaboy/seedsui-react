@@ -13,6 +13,11 @@
 
 // 基础颜色
 @primary: #ff9008;
+// Ant Design (secondary)
+// Ant Design (success)
+// Ant Design (warning)
+// Ant Design (danger)
+
 @submit: #68c75f;
 @cancel: #f86868;
 @success: #4ddb63;
@@ -32,21 +37,6 @@
 @mask-bg: rgba(0,0,0,.4);
 
 // 常用颜色
-// 常用颜色: primary
-@primary-color: white;
-@primary-bg: @primary;
-@primary-border: @primary;
-@primary-color-active: white;
-@primary-bg-active: @primary;
-@primary-border-active: @primary;
-
-@primary-outline-color: @primary;
-@primary-outline-bg: #fff7e6;
-@primary-outline-border: @primary;
-@primary-outline-color-active: lighten(@primary-outline-color, 20%);
-@primary-outline-bg-active: lighten(@primary-outline-bg, 20%);
-@primary-outline-border-active: lighten(@primary-outline-border, 20%);
-
 // 常用颜色: submit
 @submit-color: white;
 @submit-bg: #68c75f;
@@ -64,101 +54,101 @@
 
 // 常用颜色: cancel
 @cancel-color: white;
-@cancel-bg: #f86868;
-@cancel-border: #f86868;
+@cancel-bg: @cancel;
+@cancel-border: @cancel;
 @cancel-color-active: white;
 @cancel-bg-active: lighten(@cancel-bg, 20%);
 @cancel-border-active: lighten(@cancel-bg, 20%);
 
-@cancel-outline-color: #f86868;
+@cancel-outline-color: @cancel;
 @cancel-outline-bg: #fff1f0;
-@cancel-outline-border: #f86868;
+@cancel-outline-border: @cancel;
 @cancel-outline-color-active: lighten(@cancel-outline-color, 20%);
 @cancel-outline-bg-active: lighten(@cancel-outline-color, 20%);
 @cancel-outline-border-active: lighten(@cancel-outline-color, 20%);
 
 // 常用颜色: success
 @success-color: white;
-@success-bg: #4ddb63;
-@success-border: #4ddb63;
+@success-bg: @success;
+@success-border: @success;
 @success-color-active: white;
 @success-bg-active: lighten(@success-bg, 20%);
 @success-border-active: lighten(@success-bg, 20%);
 
-@success-outline-color: #4ddb63;
+@success-outline-color: @success;
 @success-outline-bg: #f6ffed;
-@success-outline-border: #4ddb63;
+@success-outline-border: @success;
 @success-outline-color-active: lighten(@success-outline-color, 20%);
 @success-outline-bg-active: lighten(@success-outline-color, 20%);
 @success-outline-border-active: lighten(@success-outline-color, 20%);
 
 // 常用颜色: info
 @info-color: white;
-@info-bg: #39abf2;
-@info-border: #39abf2;
+@info-bg: @info;
+@info-border: @info;
 @info-color-active: white;
 @info-bg-active: lighten(@info-bg, 20%);
 @info-border-active: lighten(@info-bg, 20%);
 
-@info-outline-color: #39abf2;
+@info-outline-color: @info;
 @info-outline-bg: #e6f4ff;
-@info-outline-border: #39abf2;
+@info-outline-border: @info;
 @info-outline-color-active: lighten(@info-outline-color, 20%);
 @info-outline-bg-active: lighten(@info-outline-color, 20%);
 @info-outline-border-active: lighten(@info-outline-color, 20%);
 
 // 常用颜色: link
 @link-color: white;
-@link-bg: #0076ff;
-@link-border: #0076ff;
+@link-bg: @link;
+@link-border: @link-bg;
 @link-color-active: white;
 @link-bg-active: lighten(@link-bg, 20%);
 @link-border-active: lighten(@link-bg, 20%);
 
-@link-outline-color: #0076ff;
+@link-outline-color: @link-bg;
 @link-outline-bg: #e6f4ff;
-@link-outline-border: #0076ff;
+@link-outline-border: @link-bg;
 @link-outline-color-active: lighten(@link-outline-color, 20%);
 @link-outline-bg-active: lighten(@link-outline-color, 20%);
 @link-outline-border-active: lighten(@link-outline-color, 20%);
 
 // 常用颜色: warn
 @warn-color: white;
-@warn-bg: #f4984e;
-@warn-border: #f4984e;
+@warn-bg: @warn;
+@warn-border: @warn;
 @warn-color-active: white;
 @warn-bg-active: lighten(@warn-bg, 20%);
 @warn-border-active: lighten(@warn-bg, 20%);
 
-@warn-outline-color: #f4984e;
+@warn-outline-color: @warn;
 @warn-outline-bg: #fffbe6;
-@warn-outline-border: #f4984e;
+@warn-outline-border: @warn;
 @warn-outline-color-active: lighten(@warn-outline-color, 20%);
 @warn-outline-bg-active: lighten(@warn-outline-color, 20%);
 @warn-outline-border-active: lighten(@warn-outline-color, 20%);
 
 // 常用颜色: hint
 @hint-color: white;
-@hint-bg: #d29bce;
-@hint-border: #d29bce;
+@hint-bg: @hint;
+@hint-border: @hint;
 @hint-color-active: white;
 @hint-bg-active: lighten(@hint-bg, 20%);
 @hint-border-active: lighten(@hint-bg, 20%);
 
-@hint-outline-color: #d29bce;
+@hint-outline-color: @hint;
 @hint-outline-bg: #fff2e8;
-@hint-outline-border: #d29bce;
+@hint-outline-border: @hint;
 @hint-outline-color-active: lighten(@hint-outline-color, 20%);
 @hint-outline-bg-active: lighten(@hint-outline-color, 20%);
 @hint-outline-border-active: lighten(@hint-outline-color, 20%);
 
 // 常用颜色: disabled
 @disabled-color: white;
-@disabled-bg: #ced2d7;
-@disabled-border: #ced2d7;
-@disabled-color-active: #ced2d7;
+@disabled-bg: @disabled;
+@disabled-border: @disabled;
+@disabled-color-active: @disabled;
 @disabled-bg-active: #f3f4f5;
-@disabled-border-active: #ced2d7;
+@disabled-border-active: @disabled;
 
 @disabled-outline-color: #adadad;
 @disabled-outline-bg: #f3f4f5;
@@ -202,5 +192,5 @@
 @thumbnail-border: 1px solid #e5e5e5;
 
 // 边框颜色
-@border: #e5e5e5;
+@border: #eeeeee;
 @dpborder: #eeeeee;

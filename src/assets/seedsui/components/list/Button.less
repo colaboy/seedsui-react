@@ -55,14 +55,14 @@
 .button {
   // 主色按钮
   &.primary {
-    color: @primary-color;
-    background-color: @primary-bg;
-    border-color: @primary-border;
+    color: white;
+    background-color: @primary;
+    border-color: @primary;
     &:active,
     &.active {
-      color: @primary-color-active;
-      background-color: @primary-bg-active;
-      border-color: @primary-border-active;
+      color: white;
+      background-color: @primary;
+      border-color: @primary;
     }
   }
   // 取消按钮
@@ -159,13 +159,13 @@
 .button.outline {
   // 线框-主色按钮
   &.primary {
-    color: @primary-outline-color;
+    color: @primary;
     background-color: transparent;
-    border-color: @primary-outline-border;
+    border-color: @primary;
     &:active,
     &.active {
-      color: @primary-outline-color-active;
-      border-color: @primary-outline-border-active;
+      color: lighten(@primary, 20%);
+      border-color: lighten(@primary, 20%);
     }
   }
   // 线框-取消按钮
