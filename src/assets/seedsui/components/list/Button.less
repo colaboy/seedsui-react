@@ -67,14 +67,14 @@
   }
   // 取消按钮
   &.cancel {
-    color: @cancel-color;
-    background-color: @cancel-bg;
-    border-color: @cancel-border;
+    color: white;
+    background-color: @danger;
+    border-color: @danger;
     &:active,
     &.active {
-      color: @cancel-color-active;
-      background-color: @cancel-bg-active;
-      border-color: @cancel-border-active;
+      color: white;
+      background-color: lighten(@danger, 20%);
+      border-color: lighten(@danger, 20%);
     }
   }
   // 提交按钮
@@ -170,13 +170,13 @@
   }
   // 线框-取消按钮
   &.cancel {
-    color: @cancel-outline-color;
+    color: lighten(@danger, 20%);
     background-color: transparent;
-    border-color: @cancel-outline-border;
+    border-color: @danger;
     &:active,
     &.active {
-      color: @cancel-outline-color-active;
-      border-color: @cancel-outline-border-active;
+      color: lighten(@danger, 20%)-active;
+      border-color: lighten(@danger, 20%);
     }
   }
   // 线框-提交按钮
