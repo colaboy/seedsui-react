@@ -115,14 +115,14 @@
   }
   // 警告按钮
   &.warn {
-    color: @warn-color;
-    background-color: @warn-bg;
-    border-color: @warn-border;
+    color: white;
+    background-color: @warning;
+    border-color: @warning;
     &:active,
     &.active {
-      color: @warn-color-active;
-      background-color: @warn-bg-active;
-      border-color: @warn-border-active;
+      color: white;
+      background-color: lighten(@warning, 20%);
+      border-color: lighten(@warning, 20%);
     }
   }
   // 完成按钮
@@ -214,13 +214,13 @@
   }
   // 线框-警告按钮
   &.warn {
-    color: @warn-outline-color;
+    color: @warning;
     background-color: transparent;
-    border-color: @warn-outline-border;
+    border-color: @warning;
     &:active,
     &.active {
-      color: @warn-outline-color-active;
-      border-color: @warn-outline-border-active;
+      color: lighten(@warning, 20%);
+      border-color: lighten(@warning, 20%);
     }
   }
   // 线框-完成按钮
