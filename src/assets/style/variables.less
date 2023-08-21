@@ -11,37 +11,39 @@
 @font-size-sm: 12px;
 @font-size-xs: 9px;
 
-// 基础颜色
-@primary: #ff9008;
-@link: #0076ff;
-@success: #68c75f;
-@danger: #f86868;
-@warning: #f4984e;
-@disabled: #ced2d7;
-
-// Ant Design (secondary)
-// Ant Design (success)
-// Ant Design (warning)
-// Ant Design (danger)
-
-@sub: #949ca4;
-@placeholder: #b6b6b6;
-
+// body颜色
 @body-bg: #f2f2f6;
-@body-color: #333;
+
+// 边框颜色
+@border: #eeeeee;
 
 // 遮罩颜色
 /* prettier-ignore */
 @mask-bg: rgba(0,0,0,.4);
 
+// 基础颜色(控件多基于如下几种颜色)
+@secondary: #949ca4;
+@disabled: #ced2d7;
+@default: #333;
+@primary: #ff9008;
+@link: #0076ff;
+@warning: #f4984e;
+@danger: #f86868;
+@success: #68c75f;
+
+// 按钮
+@import 'variables/Button.less';
+
+@placeholder: #b6b6b6;
+
 // 常用颜色
 // 常用颜色: 按钮默认样式
-@button-color: @body-color;
+@button-color: @default;
 @button-bg: transparent;
-@button-border: @dpborder;
-@button-color-active: @body-color;
+@button-border: @border;
+@button-color-active: @default;
 @button-bg-active: transparent;
-@button-border-active: @dpborder;
+@button-border-active: @border;
 
 // badge
 @badge-bg: #ff5656;
@@ -68,7 +70,3 @@
 @thumbnail-background-size: contain;
 @thumbnail-bg: white;
 @thumbnail-border: 1px solid #e5e5e5;
-
-// 边框颜色
-@border: #eeeeee;
-@dpborder: #eeeeee;
