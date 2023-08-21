@@ -79,14 +79,14 @@
   }
   // 提交按钮
   &.submit {
-    color: @success-color;
-    background-color: @success-bg;
-    border-color: @success-border;
+    color: white;
+    background-color: @success;
+    border-color: @success;
     &:active,
     &.active {
-      color: @success-color-active;
-      background-color: @success-bg-active;
-      border-color: @success-border-active;
+      color: white;
+      background-color: lighten(@success, 20%);
+      border-color: lighten(@success, 20%);
     }
   }
   // 信息按钮
@@ -127,14 +127,14 @@
   }
   // 完成按钮
   &.success {
-    color: @success-color;
-    background-color: @success-bg;
-    border-color: @success-border;
+    color: white;
+    background-color: @success;
+    border-color: @success;
     &:active,
     &.active {
-      color: @success-color-active;
-      background-color: @success-bg-active;
-      border-color: @success-border-active;
+      color: white;
+      background-color: lighten(@success, 20%);
+      border-color: lighten(@success, 20%);
     }
   }
   &[disabled] {
@@ -181,13 +181,13 @@
   }
   // 线框-提交按钮
   &.submit {
-    color: @success-outline-color;
+    color: @success;
     background-color: transparent;
-    border-color: @success-outline-border;
+    border-color: @success;
     &:active,
     &.active {
-      color: @success-outline-color-active;
-      border-color: @success-outline-border-active;
+      color: lighten(@success, 20%);
+      border-color: lighten(@success, 20%);
     }
   }
   // 线框-信息按钮
@@ -225,13 +225,13 @@
   }
   // 线框-完成按钮
   &.success {
-    color: @success-outline-color;
+    color: @success;
     background-color: transparent;
-    border-color: @success-outline-border;
+    border-color: @success;
     &:active,
     &.active {
-      color: @success-outline-color-active;
-      border-color: @success-outline-border-active;
+      color: lighten(@success, 20%);
+      border-color: lighten(@success, 20%);
     }
   }
   // 线框-禁用按钮
