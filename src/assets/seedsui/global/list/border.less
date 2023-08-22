@@ -1,14 +1,14 @@
 // border 共公边框
 /*
-@border-t-1:-webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @border));
-@border-b-1:-webkit-gradient(linear, left top, left bottom, color-stop(0, @border), color-stop(1, @border));
-@border-l-1:-webkit-gradient(linear, right top, left top, color-stop(0, @border), color-stop(1, @border));
-@border-r-1:-webkit-gradient(linear, left top, right top, color-stop(0, @border), color-stop(1, @border));
+@border-color-t-1:-webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @border-color));
+@border-color-b-1:-webkit-gradient(linear, left top, left bottom, color-stop(0, @border-color), color-stop(1, @border-color));
+@border-color-l-1:-webkit-gradient(linear, right top, left top, color-stop(0, @border-color), color-stop(1, @border-color));
+@border-color-r-1:-webkit-gradient(linear, left top, right top, color-stop(0, @border-color), color-stop(1, @border-color));
 
-@border-t-2:-webkit-gradient(linear, left bottom, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-b-2:-webkit-gradient(linear, left top, left bottom, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-l-2:-webkit-gradient(linear, right top, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
-@border-r-2:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-color-t-2:-webkit-gradient(linear, left bottom, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border-color));
+@border-color-b-2:-webkit-gradient(linear, left top, left bottom, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border-color));
+@border-color-l-2:-webkit-gradient(linear, right top, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border-color));
+@border-color-r-2:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border-color));
 */
 
 /*
@@ -17,7 +17,7 @@
 
 /* 一倍屏 */
 // 上
-.border-1 (@color: @border, @position: 'top') when (@position = 'top') {
+.border-1 (@color: @border-color, @position: 'top') when (@position = 'top') {
   background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -27,7 +27,7 @@
   );
 }
 // 下
-.border-1 (@color: @border, @position: 'top') when (@position = 'bottom') {
+.border-1 (@color: @border-color, @position: 'top') when (@position = 'bottom') {
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -37,7 +37,7 @@
   );
 }
 // 上下
-.border-1 (@color: @border, @position: 'top') when (@position = 'top-bottom') {
+.border-1 (@color: @border-color, @position: 'top') when (@position = 'top-bottom') {
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -49,7 +49,7 @@
 }
 
 // 左
-.border-1 (@color: @border, @position: 'left') when (@position = 'left') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'left') {
   background-image: -webkit-gradient(
     linear,
     right top,
@@ -59,7 +59,7 @@
   );
 }
 // 左上
-.border-1 (@color: @border, @position: 'left') when (@position = 'left-top') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'left-top') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -70,7 +70,7 @@
     -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
 }
 // 左下
-.border-1 (@color: @border, @position: 'left') when (@position = 'left-bottom') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'left-bottom') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -82,7 +82,7 @@
 }
 
 // 左右(未使用)
-.border-1 (@color: @border, @position: 'left') when (@position = 'left-right') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'left-right') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -90,11 +90,11 @@
       color-stop(0, @color),
       color-stop(1, @color)
     ),
-    -webkit-gradient(linear, left top, right top, color-stop(0, @border), color-stop(1, @border));
+    -webkit-gradient(linear, left top, right top, color-stop(0, @border-color), color-stop(1, @border-color));
 }
 
 // 右
-.border-1 (@color: @border, @position: 'left') when (@position = 'right') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'right') {
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -104,7 +104,7 @@
   );
 }
 // 右上
-.border-1 (@color: @border, @position: 'left') when (@position = 'right-top') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'right-top') {
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -115,7 +115,7 @@
     -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
 }
 // 右下
-.border-1 (@color: @border, @position: 'left') when (@position = 'right-bottom') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'right-bottom') {
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -123,10 +123,10 @@
       color-stop(0, @color),
       color-stop(1, @color)
     ),
-    -webkit-gradient(linear, left top, left bottom, color-stop(0, @border), color-stop(1, @border));
+    -webkit-gradient(linear, left top, left bottom, color-stop(0, @border-color), color-stop(1, @border-color));
 }
 // 四边
-.border-1 (@color: @border, @position: 'left') when (@position = 'border') {
+.border-1 (@color: @border-color, @position: 'left') when (@position = 'border') {
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -141,7 +141,7 @@
 
 /* 二倍屏 */
 // 上
-.border-2 (@color: @border, @position: 'top') when (@position = 'top') {
+.border-2 (@color: @border-color, @position: 'top') when (@position = 'top') {
   background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -151,7 +151,7 @@
   );
 }
 // 下
-.border-2 (@color: @border, @position: 'top') when (@position = 'bottom') {
+.border-2 (@color: @border-color, @position: 'top') when (@position = 'bottom') {
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -161,7 +161,7 @@
   );
 }
 // 上下
-.border-2 (@color: @border, @position: 'top') when (@position = 'top-bottom') {
+.border-2 (@color: @border-color, @position: 'top') when (@position = 'top-bottom') {
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -173,7 +173,7 @@
 }
 
 // 左
-.border-2 (@color: @border, @position: 'left') when (@position = 'left') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'left') {
   background-image: -webkit-gradient(
     linear,
     right top,
@@ -183,7 +183,7 @@
   );
 }
 // 左上
-.border-2 (@color: @border, @position: 'left') when (@position = 'left-top') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'left-top') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -194,7 +194,7 @@
     -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
 }
 // 左下
-.border-2 (@color: @border, @position: 'left') when (@position = 'left-bottom') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'left-bottom') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -206,7 +206,7 @@
 }
 
 // 左右(未使用)
-.border-2 (@color: @border, @position: 'left') when (@position = 'left-right') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'left-right') {
   background-image: -webkit-gradient(
       linear,
       right top,
@@ -218,7 +218,7 @@
 }
 
 // 右
-.border-2 (@color: @border, @position: 'left') when (@position = 'right') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'right') {
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -228,7 +228,7 @@
   );
 }
 // 右上
-.border-2 (@color: @border, @position: 'left') when (@position = 'right-top') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'right-top') {
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -239,7 +239,7 @@
     -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
 }
 // 右下
-.border-2 (@color: @border, @position: 'left') when (@position = 'right-bottom') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'right-bottom') {
   background-image: -webkit-gradient(
       linear,
       left top,
@@ -251,7 +251,7 @@
 }
 
 // 四边:上右下左
-.border-2 (@color: @border, @position: 'left') when (@position = 'border') {
+.border-2 (@color: @border-color, @position: 'left') when (@position = 'border') {
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -277,7 +277,7 @@
 }
 
 // 开放API
-.setBorderT (@color: @border) {
+.setBorderT (@color: @border-color) {
   .setBorderX();
   background-position: left top;
   .border-1(@color, 'top');
@@ -286,7 +286,7 @@
     .border-2(@color, 'top');
   }
 }
-.setBorderB (@color: @border) {
+.setBorderB (@color: @border-color) {
   .setBorderX();
   background-position: left bottom;
   .border-1(@color, 'bottom');
@@ -295,7 +295,7 @@
     .border-2(@color, 'bottom');
   }
 }
-.setBorderTB (@color: @border) {
+.setBorderTB (@color: @border-color) {
   .setBorderX();
   .border-1(@color, 'top-bottom');
   background-position: top, bottom;
@@ -305,7 +305,7 @@
   }
 }
 
-.setBorderL (@color: @border) {
+.setBorderL (@color: @border-color) {
   .setBorderY();
   background-position: left top;
   .border-1(@color, 'left');
@@ -314,7 +314,7 @@
     .border-2(@color, 'left');
   }
 }
-.setBorderLT (@color: @border) {
+.setBorderLT (@color: @border-color) {
   .border-1(@color, 'left-top');
   background-repeat: no-repeat;
   background-position: left, top;
@@ -327,7 +327,7 @@
     .border-2(@color, 'left-top');
   }
 }
-.setBorderLB (@color: @border) {
+.setBorderLB (@color: @border-color) {
   .border-1(@color, 'left-bottom');
   background-repeat: no-repeat;
   background-position: left, bottom;
@@ -340,7 +340,7 @@
   }
 }
 
-.setBorderR (@color: @border) {
+.setBorderR (@color: @border-color) {
   .setBorderY();
   background-position: right top;
   .border-1(@color, 'right');
@@ -350,7 +350,7 @@
   }
 }
 
-.setBorderRT (@color: @border) {
+.setBorderRT (@color: @border-color) {
   .border-1(@color, 'right-bottom');
   background-repeat: no-repeat;
   background-position: right, top;
@@ -363,7 +363,7 @@
     .border-2(@color, 'right-top');
   }
 }
-.setBorderRB (@color: @border) {
+.setBorderRB (@color: @border-color) {
   .border-1(@color, 'right-bottom');
   background-repeat: no-repeat;
   background-position: right, bottom;
@@ -376,7 +376,7 @@
   }
 }
 
-.setBorder (@color: @border) {
+.setBorder (@color: @border-color) {
   .border-1(@color, 'border');
   background-repeat: no-repeat;
   background-position: top, right, bottom, left;
@@ -458,7 +458,7 @@ hr:extend(.border-b) {
     width: 1px;
     height: 10px;
     overflow: hidden;
-    background-color: @border;
+    background-color: @border-color;
     -webkit-backface-visibility: hidden;
     content: '';
   }
@@ -485,7 +485,7 @@ hr:extend(.border-b) {
 }
 
 .bordered {
-  border-color: @border;
+  border-color: @border-color;
   border-style: solid;
   border-width: 1px;
 }

@@ -3,6 +3,10 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } f
 import InputNumber from './../InputNumber'
 
 // 数值框
+/**
+ * @deprecated since version 5.2.8
+ * 请使用Input.NumberBox
+ */
 const NumBox = forwardRef(
   (
     {
