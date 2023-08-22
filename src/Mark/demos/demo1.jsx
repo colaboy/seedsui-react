@@ -14,55 +14,63 @@ export default () => {
   return (
     <>
       <div style={titleStyle}>填充模式</div>
+      <Mark className="default" style={buttonStyle}>
+        default
+      </Mark>
       <Mark className="primary" style={buttonStyle}>
         primary
-      </Mark>
-      <Mark className="cancel" style={buttonStyle}>
-        cancel
-      </Mark>
-      <Mark className="submit" style={buttonStyle}>
-        submit
-      </Mark>
-      <Mark className="info" style={buttonStyle}>
-        info
       </Mark>
       <Mark className="link" style={buttonStyle}>
         link
       </Mark>
-      <Mark className="warn" style={buttonStyle}>
-        warn
+      <Mark className="warning" style={buttonStyle}>
+        warning
+      </Mark>
+      <Mark className="danger" style={buttonStyle}>
+        danger
       </Mark>
       <Mark className="success" style={buttonStyle}>
         success
       </Mark>
-      <Mark className="disabled" style={buttonStyle}>
-        disabled
-      </Mark>
 
-      <div style={titleStyle}>线框模式</div>
+      <div style={titleStyle}>outline模式</div>
+      <Mark className="default outline" style={buttonStyle}>
+        default outline
+      </Mark>
       <Mark className="primary outline" style={buttonStyle}>
-        primary
-      </Mark>
-      <Mark className="cancel outline" style={buttonStyle}>
-        cancel
-      </Mark>
-      <Mark className="submit outline" style={buttonStyle}>
-        submit
-      </Mark>
-      <Mark className="info outline" style={buttonStyle}>
-        info
+        primary outline
       </Mark>
       <Mark className="link outline" style={buttonStyle}>
-        link
+        link outline
       </Mark>
-      <Mark className="warn outline" style={buttonStyle}>
-        warn
+      <Mark className="warning outline" style={buttonStyle}>
+        warning outline
+      </Mark>
+      <Mark className="danger outline" style={buttonStyle}>
+        danger outline
       </Mark>
       <Mark className="success outline" style={buttonStyle}>
-        success
+        success outline
       </Mark>
-      <Mark className="disabled outline" style={buttonStyle}>
-        disabled
+
+      <div style={titleStyle}>light-outline模式</div>
+      <Mark className="default light-outline" style={buttonStyle}>
+        default light-outline
+      </Mark>
+      <Mark className="primary light-outline" style={buttonStyle}>
+        primary light-outline
+      </Mark>
+      <Mark className="link light-outline" style={buttonStyle}>
+        link light-outline
+      </Mark>
+      <Mark className="warning light-outline" style={buttonStyle}>
+        warning light-outline
+      </Mark>
+      <Mark className="danger light-outline" style={buttonStyle}>
+        danger light-outline
+      </Mark>
+      <Mark className="success light-outline" style={buttonStyle}>
+        success light-outline
       </Mark>
     </>
   )

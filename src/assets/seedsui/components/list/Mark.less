@@ -1,145 +1,112 @@
 // Mark标签
+// 基础样式
 .mark {
   padding: 2px 5px;
 
-  color: white;
   font-size: @font-size-s;
   border-radius: 3px;
   border-width: 1px;
   border-style: solid;
 }
-.mark.disabled {
-  color: white;
-  background-color: @disabled;
-  border-color: @disabled;
+
+// 填充模式
+.mark {
+  &.default {
+    color: @mark-default-color;
+    background-color: @mark-default-bg-color;
+    border-color: @mark-default-border-color;
+  }
+  &.primary {
+    color: @mark-primary-color;
+    background-color: @mark-primary-bg-color;
+    border-color: @mark-primary-border-color;
+  }
+  &.link {
+    color: @mark-link-color;
+    background-color: @mark-link-bg-color;
+    border-color: @mark-link-border-color;
+  }
+  &.warning {
+    color: @mark-warning-color;
+    background-color: @mark-warning-bg-color;
+    border-color: @mark-warning-border-color;
+  }
+  &.danger {
+    color: @mark-danger-color;
+    background-color: @mark-danger-bg-color;
+    border-color: @mark-danger-border-color;
+  }
+  &.success {
+    color: @mark-success-color;
+    background-color: @mark-success-bg-color;
+    border-color: @mark-success-border-color;
+  }
 }
-.mark.disabled.outline {
-  color: #adadad;
-  background-color: #f3f4f5;
-  border-color: #e5e5e5;
+
+// 线框模式
+.mark.outline {
+  &.default {
+    color: @mark-default-outline-color;
+    background-color: @mark-default-outline-bg-color;
+    border-color: @mark-default-outline-border-color;
+  }
+  &.primary {
+    color: @mark-primary-outline-color;
+    background-color: @mark-primary-outline-bg-color;
+    border-color: @mark-primary-outline-border-color;
+  }
+  &.link {
+    color: @mark-link-outline-color;
+    background-color: @mark-link-outline-bg-color;
+    border-color: @mark-link-outline-border-color;
+  }
+  &.warning {
+    color: @mark-warning-outline-color;
+    background-color: @mark-warning-outline-bg-color;
+    border-color: @mark-warning-outline-border-color;
+  }
+  &.danger {
+    color: @mark-danger-outline-color;
+    background-color: @mark-danger-outline-bg-color;
+    border-color: @mark-danger-outline-border-color;
+  }
+  &.success {
+    color: @mark-success-outline-color;
+    background-color: @mark-success-outline-bg-color;
+    border-color: @mark-success-outline-border-color;
+  }
 }
-.mark.disabled.color {
-  color: #adadad;
-  background-color: #f3f4f5;
-  border: 0;
-}
-.mark.info {
-  color: white;
-  background-color: #39abf2;
-  border-color: #39abf2;
-}
-.mark.info.outline {
-  color: #39abf2;
-  background-color: #e6f4ff;
-  border-color: #39abf2;
-}
-.mark.info.color {
-  color: #39abf2;
-  background-color: #e6f4ff;
-  border: 0;
-}
-.mark.link {
-  color: white;
-  background-color: @link;
-  border-color: @link;
-}
-.mark.link.outline {
-  color: @link;
-  background-color: #e6f4ff;
-  border-color: @link;
-}
-.mark.link.color {
-  color: @link;
-  background-color: #e6f4ff;
-  border: 0;
-}
-.mark.success {
-  color: white;
-  background-color: @success;
-  border-color: @success;
-}
-.mark.success.outline {
-  color: @success;
-  background-color: #f6ffed;
-  border-color: @success;
-}
-.mark.success.color {
-  color: @success;
-  background-color: #f6ffed;
-  border: 0;
-}
-.mark.cancel {
-  color: white;
-  background-color: @danger;
-  border-color: @danger;
-}
-.mark.cancel.outline {
-  color: lighten(@danger, 20%);
-  background-color: #fff1f0;
-  border-color: @danger;
-}
-.mark.cancel.color {
-  color: lighten(@danger, 20%);
-  background-color: #fff1f0;
-  border: 0;
-}
-.mark.submit {
-  color: white;
-  background-color: @success;
-  border-color: @success;
-}
-.mark.submit.outline {
-  color: @success;
-  background-color: #f6ffed;
-  border-color: @success;
-}
-.mark.submit.color {
-  color: @success;
-  background-color: #f6ffed;
-  border: 0;
-}
-.mark.warn {
-  color: white;
-  background-color: @warning;
-  border-color: @warning;
-}
-.mark.warn.outline {
-  color: @warning;
-  background-color: #fffbe6;
-  border-color: @warning;
-}
-.mark.warn.color {
-  color: @warning;
-  background-color: #fffbe6;
-  border: 0;
-}
-.mark.hint {
-  color: white;
-  background-color: #d29bce;
-  border-color: #d29bce-border;
-}
-.mark.hint.outline {
-  color: #d29bce;
-  background-color: #fff2e8;
-  border-color: #d29bce;
-}
-.mark.hint.color {
-  color: #d29bce;
-  background-color: #fff2e8;
-  border: 0;
-}
-.mark.primary {
-  color: white;
-  background-color: @primary;
-  border-color: @primary;
-}
-.mark.primary.outline {
-  color: @primary;
-  background-color: #fff7e6;
-  border-color: @primary;
-}
-.mark.primary.color {
-  color: @primary;
-  background-color: #fff7e6;
-  border: 0;
+
+// light-outline
+.mark.light-outline {
+  &.default {
+    color: @mark-default-outline-color;
+    background-color: @mark-default-light-bg-color;
+    border-color: @mark-default-outline-border-color;
+  }
+  &.primary {
+    color: @mark-primary-outline-color;
+    background-color: @mark-primary-light-bg-color;
+    border-color: @mark-primary-outline-border-color;
+  }
+  &.link {
+    color: @mark-link-outline-color;
+    background-color: @mark-link-light-bg-color;
+    border-color: @mark-link-outline-border-color;
+  }
+  &.warning {
+    color: @mark-warning-outline-color;
+    background-color: @mark-warning-light-bg-color;
+    border-color: @mark-warning-outline-border-color;
+  }
+  &.danger {
+    color: @mark-danger-outline-color;
+    background-color: @mark-danger-light-bg-color;
+    border-color: @mark-danger-outline-border-color;
+  }
+  &.success {
+    color: @mark-success-outline-color;
+    background-color: @mark-success-light-bg-color;
+    border-color: @mark-success-outline-border-color;
+  }
 }

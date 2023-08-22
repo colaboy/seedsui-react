@@ -264,7 +264,7 @@
   }
   // 线框-取消按钮
   &.cancel {
-    color: lighten(@danger, 20%);
+    color: @danger;
     background-color: transparent;
     border-color: @danger;
   }
@@ -294,4 +294,101 @@
     background-color: #f3f4f5;
     border-color: #e5e5e5;
   }
+}
+
+// Mark标记
+.mark.info {
+  color: white;
+  background-color: #39abf2;
+  border-color: #39abf2;
+}
+.mark.info.outline {
+  color: #39abf2;
+  background-color: #e6f4ff;
+  border-color: #39abf2;
+}
+.mark.info.color {
+  color: #39abf2;
+  background-color: #e6f4ff;
+  border: 0;
+}
+.mark.cancel {
+  color: white;
+  background-color: @danger;
+  border-color: @danger;
+}
+.mark.cancel.outline {
+  color: @danger;
+  background-color: #fff1f0;
+  border-color: @danger;
+}
+.mark.cancel.color {
+  color: @danger;
+  background-color: #fff1f0;
+  border: 0;
+}
+.mark.submit {
+  color: white;
+  background-color: @success;
+  border-color: @success;
+}
+.mark.submit.outline {
+  color: @success;
+  background-color: #f6ffed;
+  border-color: @success;
+}
+.mark.submit.color {
+  color: @success;
+  background-color: #f6ffed;
+  border: 0;
+}
+.mark.warn {
+  color: white;
+  background-color: @warning;
+  border-color: @warning;
+}
+.mark.warn.outline {
+  color: @warning;
+  background-color: #fffbe6;
+  border-color: @warning;
+}
+.mark.warn.color {
+  color: @warning;
+  background-color: #fffbe6;
+  border: 0;
+}
+.mark.hint {
+  color: white;
+  background-color: #d29bce;
+  border-color: #d29bce-border;
+}
+.mark.hint.outline {
+  color: #d29bce;
+  background-color: #fff2e8;
+  border-color: #d29bce;
+}
+.mark.hint.color {
+  color: #d29bce;
+  background-color: #fff2e8;
+  border: 0;
+}
+.mark.disabled.color {
+  color: #adadad;
+  background-color: #f3f4f5;
+  border: 0;
+}
+.mark.link.color {
+  color: @link;
+  background-color: #e6f4ff;
+  border: 0;
+}
+.mark.success.color {
+  color: @success;
+  background-color: #f6ffed;
+  border: 0;
+}
+.mark.primary.color {
+  color: @primary;
+  background-color: #fff7e6;
+  border: 0;
 }
