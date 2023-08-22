@@ -68,25 +68,25 @@ export default () => {
         min={new Date()} // 禁用今天以前的日期
         // max={new Date('2022,06,27')} // 禁用今天以前的日期
       />
-      <a style={{ margin: '8px' }} className="button lg bg-1" onClick={showMonth}>
+      <a style={{ margin: '8px' }} className="button l bg-1" onClick={showMonth}>
         月
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-2" onClick={showWeek}>
+      <a style={{ margin: '8px' }} className="button l bg-2" onClick={showWeek}>
         周
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-3" onClick={showToday}>
+      <a style={{ margin: '8px' }} className="button l bg-3" onClick={showToday}>
         今天
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-4" onClick={showReset}>
+      <a style={{ margin: '8px' }} className="button l bg-4" onClick={showReset}>
         默认日期
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-4" onClick={showCustom}>
+      <a style={{ margin: '8px' }} className="button l bg-4" onClick={showCustom}>
         1988-08-22
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-4" onClick={handlePrev}>
+      <a style={{ margin: '8px' }} className="button l bg-4" onClick={handlePrev}>
         上一页
       </a>
-      <a style={{ margin: '8px' }} className="button lg bg-4" onClick={handleNext}>
+      <a style={{ margin: '8px' }} className="button l bg-4" onClick={handleNext}>
         下一页
       </a>
     </>

@@ -1,15 +1,15 @@
 // PubSub 订阅发布
-var PubSub = (function () {
-  var _listen
-  var _trigger
-  var _remove
-  var _default = 'default'
-  var namespaceCache = {}
-  var _create
-  var each = function (arr, fn) {
-    var ret
-    for (var i = 0; i < arr.length; i++) {
-      var n = arr[i]
+let PubSub = (function () {
+  let _listen
+  let _trigger
+  let _remove
+  let _default = 'default'
+  let namespaceCache = {}
+  let _create
+  let each = function (arr, fn) {
+    let ret
+    for (let i = 0; i < arr.length; i++) {
+      let n = arr[i]
       ret = fn.call(n, i, n)
     }
     return ret
@@ -26,7 +26,7 @@ var PubSub = (function () {
       return
     }
     if (fn) {
-      for (var i = cache[key].length; i >= 0; i--) {
+      for (let i = cache[key].length; i >= 0; i--) {
         if (cache[key] === fn) {
           cache[key].splice(i, 1)
         } else {
@@ -38,10 +38,10 @@ var PubSub = (function () {
     }
   }
   _trigger = function () {
-    var cache = [].shift.call(arguments)
-    var key = [].shift.call(arguments)
-    var args = arguments
-    var stack = cache[key]
+    let cache = [].shift.call(arguments)
+    let key = [].shift.call(arguments)
+    let args = arguments
+    let stack = cache[key]
     if (!stack || !stack.length) {
       return
     }
@@ -50,10 +50,10 @@ var PubSub = (function () {
     })
   }
   _create = function (ns) {
-    var namespace = ns || _default
-    var cache = {}
-    var offlineStack = [] // 离线事件
-    var ret = {
+    let namespace = ns || _default
+    let cache = {}
+    let offlineStack = [] // 离线事件
+    let ret = {
       listen: function (key, fn, last) {
         _listen(key, fn, cache)
         if (offlineStack === null) {
@@ -76,10 +76,10 @@ var PubSub = (function () {
         _remove(key, cache, fn)
       },
       trigger: function () {
-        var _self = this
+        let _self = this
         ;[].unshift.call(arguments, cache)
-        var args = arguments
-        var fn = function () {
+        let args = arguments
+        let fn = function () {
           return _trigger.apply(_self, args)
         }
         if (offlineStack) {
@@ -94,7 +94,7 @@ var PubSub = (function () {
     ) {
       namespace = namespace.getAttribute('id')
     }
-    var result = namespace
+    let result = namespace
       ? namespaceCache[namespace]
         ? namespaceCache[namespace]
         : (namespaceCache[namespace] = ret)
@@ -104,19 +104,19 @@ var PubSub = (function () {
   return {
     create: _create,
     one: function (key, fn, last) {
-      var event = this.create()
+      let event = this.create()
       event.one(key, fn, last)
     },
     remove: function (key, fn) {
-      var event = this.create()
+      let event = this.create()
       event.remove(key, fn)
     },
     listen: function (key, fn, last) {
-      var event = this.create()
+      let event = this.create()
       event.listen(key, fn, last)
     },
     trigger: function () {
-      var event = this.create()
+      let event = this.create()
       event.trigger.apply(this, arguments)
     }
   }
@@ -125,9 +125,9 @@ var PubSub = (function () {
 export default PubSub
 /* *******************订阅发布******************* */
 /*
-<a class="button lg" id="ID-BtnLogin">登录</a>
+<a class="button l" id="ID-BtnLogin">登录</a>
 // 按钮
-var btnLogin=document.getElementById('ID-BtnLogin');
+let btnLogin=document.getElementById('ID-BtnLogin');
 // 订阅
 PubSub.create('nsLogin').listen('login',userHandler);
 PubSub.create('nsLogin').listen('login',shopHandler);

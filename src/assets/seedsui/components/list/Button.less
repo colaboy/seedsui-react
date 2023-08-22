@@ -7,27 +7,19 @@
   padding: 0 12px;
   font-size: @font-size-m;
   &.xs {
-    height: 20px;
-    padding: 0 5px;
-    font-size: 12px;
+    .button-xs();
   }
-  &.sm {
-    height: 24px;
-    padding: 0 12px;
-    font-size: 12px;
+  &.s {
+    .button-s();
   }
-  &.md {
+  &.m {
+    .button-m();
   }
-  &.lg {
-    height: 44px;
-    padding: 0 12px;
-    font-size: @font-size-l;
+  &.l {
+    .button-l();
   }
   &.xl {
-    height: 54px;
-    padding: 0 15px;
-    // 字号太大会不好看
-    font-size: @font-size-l;
+    .button-xl();
   }
   vertical-align: middle;
 

@@ -106,14 +106,14 @@ export default () => {
       <Button className="primary xs" style={buttonStyle}>
         primary xs
       </Button>
-      <Button className="primary sm" style={buttonStyle}>
-        primary sm
+      <Button className="primary s" style={buttonStyle}>
+        primary s
       </Button>
-      <Button className="primary md" style={buttonStyle}>
-        primary md
+      <Button className="primary m" style={buttonStyle}>
+        primary m
       </Button>
-      <Button className="primary lg" style={buttonStyle}>
-        primary lg
+      <Button className="primary l" style={buttonStyle}>
+        primary l
       </Button>
       <Button className="primary xl" style={buttonStyle}>
         primary xl

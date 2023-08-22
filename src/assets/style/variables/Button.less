@@ -1,9 +1,27 @@
 // 尺寸
-@button-xs-height: 20px;
-@button-sm-height: 24px;
-@button-md-height: 32px;
-@button-lg-height: 44px;
-@button-xl-height: 54px;
+.button-xs() {
+  height: 20px;
+  padding: 0 5px;
+  font-size: 12px;
+}
+.button-s() {
+  height: 24px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+.button-m() {
+}
+.button-l() {
+  height: 44px;
+  padding: 0 12px;
+  font-size: @font-size-l;
+}
+.button-xl() {
+  height: 54px;
+  padding: 0 15px;
+  // 字号太大会不好看
+  font-size: @font-size-l;
+}
 
 // 颜色
 // default
