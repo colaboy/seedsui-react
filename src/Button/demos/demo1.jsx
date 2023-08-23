@@ -1,4 +1,5 @@
 import React from 'react'
+import less from 'less'
 import { Button } from 'seedsui-react'
 
 const titleStyle = {
@@ -11,8 +12,18 @@ const buttonStyle = {
   margin: '8px'
 }
 export default () => {
+  function handleTheme() {
+    less.modifyVars(
+      //更换主题颜色要这么写
+      {
+        '@primary': '#ff8800',
+        '@link': '#ff8800'
+      }
+    )
+  }
   return (
     <>
+      <Button onClick={handleTheme}>换肤</Button>
       <div style={titleStyle}>填充模式</div>
       <Button style={buttonStyle}>default</Button>
       <Button className="disabled" style={buttonStyle}>
