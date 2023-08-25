@@ -1,24 +1,26 @@
 // 照片视频列表
 .photos {
-  // ios不支持gap
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 8px;
-
-  --cell-width: 72px;
-  --cell-height: 72px;
-  // 换为grid布局, 兼容性更好
-  --columns: var(--cell-width) var(--cell-width) auto;
-  display: grid;
-  grid-template-columns: var(--columns);
-  grid-gap: 8px;
-
+  // 为支持ios9注释如下代码, 等ios9无需要支持时换为如下样式
+  // display: grid;
+  // --columns: var(--cell-width) var(--cell-width) auto;
+  // grid-template-columns: var(--columns);
+  // grid-gap: 8px;
   // 只有一项
-  &.onlyOneItem {
-    --columns: auto;
+  // &.onlyOneItem {
+  //   --columns: auto;
+  // }
+
+  // 为支持ios9, 等ios9无需要支持时删除如下样式
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 8px;
+  .photos-item {
+    margin-right: 8px;
   }
 
   // 单个照片
+  --cell-width: 72px;
+  --cell-height: 72px;
   .photos-item {
     width: var(--cell-width);
     height: var(--cell-height);
