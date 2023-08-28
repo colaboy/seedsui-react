@@ -23,14 +23,24 @@
 @mask-bg-color: rgba(0,0,0,.4);
 
 // 基础颜色(控件多基于如下几种颜色)
-@default: #333;
-@secondary: #949ca4;
-@disabled: #ced2d7;
-@primary: #ff9008;
-@link: #0076ff;
-@warning: #f4984e;
-@danger: #f86868;
-@success: #68c75f;
+:root {
+  --default: #333;
+  --secondary: #949ca4;
+  --disabled: #ced2d7;
+  --primary: #ff9008;
+  --link: #0076ff;
+  --warning: #f4984e;
+  --danger: #f86868;
+  --success: #68c75f;
+}
+@default: var(--default);
+@secondary: var(--secondary);
+@disabled: var(--disabled);
+@primary: var(--primary);
+@link: var(--link);
+@warning: var(--warning);
+@danger: var(--danger);
+@success: var(--success);
 
 // 按钮
 @import 'variables/Button.less';
