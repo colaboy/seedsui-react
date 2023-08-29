@@ -9,7 +9,15 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      <Picker.Modal visible={true} value={value} list={list} onChange={setValue} />
+      <Picker.Modal
+        visible={true}
+        value={value}
+        list={list}
+        onChange={(newValue) => {
+          console.log('onChange:', newValue)
+          setValue(newValue)
+        }}
+      />
     </>
   )
 }

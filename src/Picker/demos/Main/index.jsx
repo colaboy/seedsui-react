@@ -9,7 +9,14 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      <Picker.Main value={value} list={list} onChange={setValue} />
+      <Picker.Main
+        value={value}
+        list={list}
+        onChange={(newValue) => {
+          console.log('onChange:', newValue)
+          setValue(newValue)
+        }}
+      />
     </>
   )
 }

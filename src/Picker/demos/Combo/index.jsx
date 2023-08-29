@@ -9,8 +9,9 @@ export default () => {
   ]
   const [value, setValue] = useState([{ id: '1', name: '1' }])
   useEffect(() => {
-    console.log('pickerRef:', pickerRef)
+    // pickerRef.current.open()
     setTimeout(() => {
+      console.log('pickerRef:', pickerRef)
       setValue([{ id: '2', name: '2' }])
     }, 5000)
   }, [])
@@ -33,7 +34,10 @@ export default () => {
         placeholder="Please select"
         value={value}
         list={list}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log('onChange:', newValue)
+          setValue(newValue)
+        }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
