@@ -23,7 +23,10 @@ export default () => {
           }
         ]}
         visible={true}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log('onChange:', newValue)
+          setValue(newValue)
+        }}
         onVisibleChange={(visible) => {
           console.log(visible)
         }}

@@ -2,7 +2,7 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import Head from './../../Picker/Modal/Head'
+import Head from './../../Select/Modal/Head'
 import DatePickerModal from './../Modal'
 import Tabs from './../../Tabs'
 

@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
-import Head from './../../Picker/Modal/Head'
+import Head from './../../Select/Modal/Head'
 import Tabs from './Tabs'
 import ListItem from './ListItem'
 import Utils from './Utils'

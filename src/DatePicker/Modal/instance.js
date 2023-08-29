@@ -1,12 +1,12 @@
-import Picker from './../../Picker/Modal/instance.js'
+import Picker from './../../Picker/Main/instance.js'
 import locale from './../../locale'
 
-var PickerDate = function (params) {
-  var nowDate = new Date()
+let PickerDate = function (params) {
+  let nowDate = new Date()
   /* ----------------
     Model
     ---------------- */
-  var defaults = {
+  let defaults = {
     viewType: 'date', // 'year','quarter','month','date','time','datetime'
     isSimpleYear: false,
 
@@ -40,20 +40,21 @@ var PickerDate = function (params) {
     hhUnit: '', // 时
     mmUnit: '' // 分
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
-  var s = new Picker(params)
+  let s = new Picker(params)
 
   function trim(str) {
     return str.replace(/(^\s*)|(\s*$)/g, '')
   }
   // 更新params
   s.updateParams = function (params = {}) {
-    for (var param in params) {
+    for (let param in params) {
       s.params[param] = params[param]
     }
   }
@@ -82,33 +83,33 @@ var PickerDate = function (params) {
     nowDate = new Date()
     // 默认值
     if (!s.params.defaultYear) {
-      var yyyy = nowDate.getFullYear()
-      var _yyyy = '' + yyyy
+      let yyyy = nowDate.getFullYear()
+      let _yyyy = '' + yyyy
       s.setDefaultYear(_yyyy)
     }
     if (!s.params.defaultQuarter) {
-      var QQ = nowDate.quarter()
-      var _QQ = QQ.toString().length === 1 ? QQ : QQ
+      let QQ = nowDate.quarter()
+      let _QQ = QQ.toString().length === 1 ? QQ : QQ
       s.setDefaultQuarter(_QQ)
     }
     if (!s.params.defaultMonth) {
-      var MM = nowDate.getMonth() + 1
-      var _MM = MM.toString().length === 1 ? '0' + MM : MM
+      let MM = nowDate.getMonth() + 1
+      let _MM = MM.toString().length === 1 ? '0' + MM : MM
       s.setDefaultMonth(_MM)
     }
     if (!s.params.defaultDay) {
-      var dd = nowDate.getDate()
-      var _dd = dd.toString().length === 1 ? '0' + dd : dd
+      let dd = nowDate.getDate()
+      let _dd = dd.toString().length === 1 ? '0' + dd : dd
       s.setDefaultDay(_dd)
     }
     if (!s.params.defaultHour) {
-      var hh = nowDate.getHours()
-      var _hh = hh.toString().length === 1 ? '0' + hh : hh
+      let hh = nowDate.getHours()
+      let _hh = hh.toString().length === 1 ? '0' + hh : hh
       s.setDefaultHour(_hh)
     }
     if (!s.params.defaultMinute) {
-      var mm = nowDate.getMinutes()
-      var _mm = mm.toString().length === 1 ? '0' + mm : mm
+      let mm = nowDate.getMinutes()
+      let _mm = mm.toString().length === 1 ? '0' + mm : mm
       s.setDefaultMinute(_mm)
     }
   }
@@ -116,34 +117,34 @@ var PickerDate = function (params) {
 
   // 从非自定义日数据的自然日中更新
   function updateDaysForDefault(year, month) {
-    var lastDay = '' + new Date(year, month, 0).getDate()
-    var currentLastDay = s.days[s.days.length - 1]['id']
+    let lastDay = '' + new Date(year, month, 0).getDate()
+    let currentLastDay = s.days[s.days.length - 1]['id']
     if (lastDay === currentLastDay) return
     if (lastDay > currentLastDay) {
-      for (var i = 1 + parseInt(currentLastDay, 10); i <= lastDay; i++) {
+      for (let i = 1 + parseInt(currentLastDay, 10); i <= lastDay; i++) {
         s.days.push({
           id: '' + i,
           name: '' + i + s.params.ddUnit
         })
       }
     } else if (lastDay < currentLastDay) {
-      var spliceCount = currentLastDay - lastDay
+      let spliceCount = currentLastDay - lastDay
       s.days.splice(s.days.length - spliceCount, spliceCount)
     }
   }
 
   // 从自定义的日数据daysData中更新
   function updateDaysForCustom(year, month) {
-    var lastDay = '' + new Date(year, month, 0).getDate()
-    var currentLastDay = s.days[s.days.length - 1]['id']
-    var customData = s.params.daysData
+    let lastDay = '' + new Date(year, month, 0).getDate()
+    let currentLastDay = s.days[s.days.length - 1]['id']
+    let customData = s.params.daysData
     if (lastDay === currentLastDay) return
     if (lastDay > currentLastDay) {
       customData.forEach(function (n) {
         if (n['id'] <= lastDay && n['id'] > currentLastDay) s.days.push(n)
       })
     } else if (lastDay < currentLastDay) {
-      for (var j = currentLastDay; j > lastDay; j--) {
+      for (let j = currentLastDay; j > lastDay; j--) {
         // eslint-disable-next-line
         s.days.forEach(function (n) {
           if (n['id'] === '' + j) s.days.pop()
@@ -159,7 +160,7 @@ var PickerDate = function (params) {
     } else {
       updateDaysForDefault(year, month)
     }
-    var defaultKey = defaultDay
+    let defaultKey = defaultDay
     if (s.days.length < defaultDay) defaultKey = s.days[s.days.length - 1]['id']
     s.replaceSlot(2, s.days, defaultKey, s.params.dayClass) // 修改第三项
   }
@@ -186,10 +187,10 @@ var PickerDate = function (params) {
   }
   // 获取选中项目的文本值
   s.getActiveDate = function (options) {
-    var activeKeys = options.map(function (n, i, a) {
+    let activeKeys = options.map(function (n, i, a) {
       return n['id']
     })
-    var date = new Date()
+    let date = new Date()
     if (s.params.viewType === 'year') {
       date.year(activeKeys[0])
       return date
@@ -248,7 +249,7 @@ var PickerDate = function (params) {
     // 只有年月日、年月日时分才显示周几
     if (s.params.viewType === 'date' || s.params.viewType === 'datetime') {
       let activeDate = s.getActiveDate(options)
-      for (var i = 0; i < options.length; i++) {
+      for (let i = 0; i < options.length; i++) {
         if (i === 2) {
           let day = s.getLocaleDayString(activeDate)
           value = s.formatDate(activeDate) + ' ' + day
@@ -299,7 +300,7 @@ var PickerDate = function (params) {
     if (s.params.yearsData) {
       s.years = s.params.yearsData
     } else {
-      for (var yyyy = s.params.minYear; yyyy <= s.params.maxYear; yyyy++) {
+      for (let yyyy = s.params.minYear; yyyy <= s.params.maxYear; yyyy++) {
         s.years.push({
           id: '' + yyyy,
           name: s.params.isSimpleYear
@@ -320,7 +321,7 @@ var PickerDate = function (params) {
     if (s.params.quartersData) {
       s.quarters = s.params.quartersData
     } else {
-      for (var q = 1; q <= 4; q++) {
+      for (let q = 1; q <= 4; q++) {
         s.quarters.push({
           id: q,
           name: q
@@ -339,8 +340,8 @@ var PickerDate = function (params) {
     if (s.params.monthsData) {
       s.months = s.params.monthsData
     } else {
-      for (var MM = 1; MM <= 12; MM++) {
-        var _MM = MM.toString().length === 1 ? '0' + MM : MM
+      for (let MM = 1; MM <= 12; MM++) {
+        let _MM = MM.toString().length === 1 ? '0' + MM : MM
         s.months.push({
           id: '' + _MM,
           name: _MM + s.params.MMUnit
@@ -354,7 +355,7 @@ var PickerDate = function (params) {
     addMonthSlot()
     // 日
     s.days = []
-    var currentMaxday = new Date(
+    let currentMaxday = new Date(
       s.params.defaultYear || nowDate.getFullYear(),
       s.params.defaultMonth || nowDate.getMonth() + 1,
       0
@@ -362,8 +363,8 @@ var PickerDate = function (params) {
     if (s.params.daysData) {
       s.days = Object.clone(s.params.daysData)
     } else {
-      for (var dd = 1; dd <= currentMaxday; dd++) {
-        var _dd = dd.toString().length === 1 ? '0' + dd : dd
+      for (let dd = 1; dd <= currentMaxday; dd++) {
+        let _dd = dd.toString().length === 1 ? '0' + dd : dd
         s.days.push({
           id: '' + _dd,
           name: _dd + s.params.ddUnit
@@ -379,8 +380,8 @@ var PickerDate = function (params) {
     if (s.params.hoursData) {
       s.hours = s.params.hoursData
     } else {
-      for (var hh = 0; hh <= 23; hh++) {
-        var _hh = hh.toString().length === 1 ? '0' + hh : hh
+      for (let hh = 0; hh <= 23; hh++) {
+        let _hh = hh.toString().length === 1 ? '0' + hh : hh
         s.hours.push({
           id: '' + _hh,
           name: _hh + s.params.hhUnit
@@ -393,8 +394,8 @@ var PickerDate = function (params) {
     if (s.params.minutesData) {
       s.minutes = s.params.minutesData
     } else {
-      for (var mm = 0; mm <= 59; mm++) {
-        var _mm = mm.toString().length === 1 ? '0' + mm : mm
+      for (let mm = 0; mm <= 59; mm++) {
+        let _mm = mm.toString().length === 1 ? '0' + mm : mm
         s.minutes.push({
           id: '' + _mm,
           name: _mm + s.params.mmUnit

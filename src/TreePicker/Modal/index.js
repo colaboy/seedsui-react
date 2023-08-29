@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } f
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
 
-import Head from './../../Picker/Modal/Head'
+import Head from './../../Select/Modal/Head'
 import Tree from './../Tree'
 
 const Modal = forwardRef(

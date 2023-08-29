@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import Combo from './../../Picker/Combo'
+import Combo from './../../Select/Combo'
 import RangeModal from './../RangeModal'
 
 import locale from './../../locale'

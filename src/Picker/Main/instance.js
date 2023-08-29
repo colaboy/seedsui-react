@@ -1,9 +1,9 @@
 // Picker 滚动选择器
-var Picker = function (params) {
+let Picker = function (params) {
   /* ------------------------
   Model
   ------------------------ */
-  var defaults = {
+  let defaults = {
     fieldNames: {
       id: 'id',
       name: 'name'
@@ -31,14 +31,15 @@ var Picker = function (params) {
     onTransitionEnd:function (Picker)// 动画结束后回调
     */
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
   // Picker
-  var s = this
+  let s = this
 
   // Params
   s.params = params
@@ -61,14 +62,14 @@ var Picker = function (params) {
 
   // 新建Slotbox
   s.createSlotbox = function () {
-    var slotbox = document.createElement('div')
+    let slotbox = document.createElement('div')
     slotbox.setAttribute('class', s.params.slotboxClass)
     return slotbox
   }
 
   // 新建Layer
   s.createLayer = function () {
-    var layer = document.createElement('div')
+    let layer = document.createElement('div')
     layer.setAttribute('class', s.params.layerClass)
     layer.innerHTML = s.params.layerFrameHTML
     return layer
@@ -95,7 +96,7 @@ var Picker = function (params) {
       s.wrapper.appendChild(s.slotbox)
     }
     // 兼容安卓部分机型touch事件不工作的问题
-    var androidExp = navigator.userAgent.toLowerCase().match(/android\s*(\d*\.*\d*)/)
+    let androidExp = navigator.userAgent.toLowerCase().match(/android\s*(\d*\.*\d*)/)
     if (androidExp && androidExp[1]) {
       if (androidExp[1] < '5.0') s.wrapper.setAttribute('onTouchStart', '')
     }
@@ -103,7 +104,7 @@ var Picker = function (params) {
   s.update()
   // 更新params
   s.updateParams = function (params = {}) {
-    for (var param in params) {
+    for (let param in params) {
       s.params[param] = params[param]
     }
     // 更新DOM
@@ -114,9 +115,10 @@ var Picker = function (params) {
   ------------------------ */
   // 添加一列
   s.addSlot = function (values, defaultKey, classes) {
+    // eslint-disable-next-line
     if (!classes) classes = ''
     // 设置属性
-    var slot = document.createElement('ul')
+    let slot = document.createElement('ul')
     slot.setAttribute('class', s.params.slotClass + ' ' + classes)
     slot.values = values
     slot.defaultKey = defaultKey
@@ -132,9 +134,10 @@ var Picker = function (params) {
   }
   // 替换一列
   s.replaceSlot = function (index, values, defaultKey, classes, fn) {
+    // eslint-disable-next-line
     if (!classes) classes = ''
     // 设置属性
-    var slot = s.slotbox.children[index]
+    let slot = s.slotbox.children[index]
     slot.setAttribute('class', s.params.slotClass + ' ' + classes)
     slot.values = values
     slot.defaultKey = defaultKey
@@ -151,13 +154,13 @@ var Picker = function (params) {
 
   s.renderSlot = function (slot) {
     // 渲染一列
-    var index = slot.index
-    var values = slot.values
+    let index = slot.index
+    let values = slot.values
     slot.innerHTML = ''
     // 渲染
-    var li = ''
-    var defaultIndex = 0
-    for (var i = 0; i < values.length; i++) {
+    let li = ''
+    let defaultIndex = 0
+    for (let i = 0; i < values.length; i++) {
       // 获得defaultIndex
       // eslint-disable-next-line
       if (slot.defaultKey && slot.defaultKey == values[i][s.params.fieldNames.id || 'id']) {
@@ -193,16 +196,16 @@ var Picker = function (params) {
   // 计算惯性时间与坐标，返回距离和时间
   s.calcInertance = function (opts) {
     // 摩擦力
-    var friction = 0.002
+    let friction = 0.002
     // 滑动距离
-    var opRange = opts.range
+    let opRange = opts.range
     // 滑动时长
-    var opDuration = opts.duration
+    let opDuration = opts.duration
 
     // 使用公式算出duration(新时长)
-    var duration = (2 * opRange) / opDuration / friction
+    let duration = (2 * opRange) / opDuration / friction
     // 使用公式算出offset(新距离)
-    var range = -(friction / 2) * (duration * duration)
+    let range = -(friction / 2) * (duration * duration)
     if (opRange < 0) {
       // 如果拖动间距为负值，则为向下拖动
       duration = -duration
@@ -213,7 +216,7 @@ var Picker = function (params) {
     console.log('新时长:' + duration)
     console.log('新距离:' + range) */
     // 使用距离计算新的位置
-    var value = opts.current + range
+    let value = opts.current + range
 
     // 矫正位置与时长
     if (value > opts.min) {
@@ -227,10 +230,10 @@ var Picker = function (params) {
       value = opts.max
     } else {
       // 在中间
-      var remainder = value % s.params.cellHeight
+      let remainder = value % s.params.cellHeight
       if (remainder !== 0) {
         // 算出比例
-        var divided = Math.round(value / s.params.cellHeight)
+        let divided = Math.round(value / s.params.cellHeight)
         // 对准位置
         value = s.params.cellHeight * divided
       }
@@ -247,9 +250,9 @@ var Picker = function (params) {
   }
   // 更新列表激活状态
   s.updateActiveOptions = function (slot, posY) {
-    var index = -Math.round((posY - s.params.cellHeight * 2) / s.params.cellHeight) - 2
+    let index = -Math.round((posY - s.params.cellHeight * 2) / s.params.cellHeight) - 2
     // 添加到激活项
-    var activeOption = slot.values[index]
+    let activeOption = slot.values[index]
     s.activeOptions[slot.index] = activeOption
   }
   /* ------------------------
@@ -257,7 +260,7 @@ var Picker = function (params) {
   ------------------------ */
   s.isSupportTouch = 'ontouchstart' in window
   s.events = function (detach) {
-    var action = detach ? 'removeEventListener' : 'addEventListener'
+    let action = detach ? 'removeEventListener' : 'addEventListener'
     // touch兼容pc事件
     if (s.isSupportTouch) {
       s.slotbox[action]('touchstart', s.onTouchStart, false)
@@ -354,7 +357,7 @@ var Picker = function (params) {
     s.touches.duration = e.timeStamp - s.touches.startTimeStamp
 
     // 惯性值计算
-    var inertance = s.calcInertance({
+    let inertance = s.calcInertance({
       range: s.touches.diffY,
       duration: s.touches.duration,
       current: s.touches.currentPosY,
@@ -371,7 +374,7 @@ var Picker = function (params) {
   }
 
   s.onTransitionEnd = function (e) {
-    var target = e.target
+    let target = e.target
     if (e.propertyName !== 'transform' || target !== s.wrapper) {
       return
     }

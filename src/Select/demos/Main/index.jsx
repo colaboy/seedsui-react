@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { Select } from 'seedsui-react'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState([
+    {
+      id: '1',
+      name: '选项1'
+    }
+  ])
   return (
     <>
-      <Select.Checkbox
-        allowClear
-        // multiple
-        placeholder="Please select"
+      <Select.Main
+        multiple={false}
         value={value}
         list={[
           {
@@ -23,9 +26,6 @@ export default () => {
         onChange={(newValue) => {
           console.log('onChange:', newValue)
           setValue(newValue)
-        }}
-        onVisibleChange={(visible) => {
-          console.log(visible)
         }}
       />
     </>

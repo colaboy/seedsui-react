@@ -9,3 +9,7 @@
 ### Picker.Modal
 
 <code src="./demos/Modal/index.jsx"></code>
+
+### Picker.Main
+
+<code src="./demos/Main/index.jsx"></code>

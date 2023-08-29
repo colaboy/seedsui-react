@@ -84,7 +84,7 @@ const CheckboxGroup = forwardRef(
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue)
-        if (!goOn) return
+        if (goOn === false) return
       }
       if (onChange) onChange(newValue)
     }

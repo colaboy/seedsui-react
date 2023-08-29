@@ -1,15 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Picker } from 'seedsui-react'
 
 export default () => {
+  const pickerRef = useRef(null)
   const list = [
     { id: '1', name: '1' },
     { id: '2', name: '2' }
   ]
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState([{ id: '1', name: '1' }])
+  useEffect(() => {
+    console.log('pickerRef:', pickerRef)
+    setTimeout(() => {
+      setValue([{ id: '2', name: '2' }])
+    }, 5000)
+  }, [])
   return (
     <>
       <Picker.Combo
+        ref={pickerRef}
         allowClear
         // ModalProps={{
         //   captionProps: {

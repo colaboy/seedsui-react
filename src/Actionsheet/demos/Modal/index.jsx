@@ -9,7 +9,15 @@ export default () => {
   const [value, setValue] = useState(null)
   return (
     <>
-      <Actionsheet.Modal visible={true} value={value} list={list} onChange={setValue} />
+      <Actionsheet.Modal
+        visible={true}
+        value={value}
+        list={list}
+        onChange={(newValue) => {
+          console.log('onChange:', newValue)
+          setValue(newValue)
+        }}
+      />
     </>
   )
 }

@@ -2,7 +2,7 @@
 import React, { forwardRef, useRef } from 'react'
 import locale from './../../locale'
 
-import Head from './../../Picker/Modal/Head'
+import Head from './../../Select/Modal/Head'
 import Modal from './../../Modal'
 // 快捷选择
 import Quick from './Quick'

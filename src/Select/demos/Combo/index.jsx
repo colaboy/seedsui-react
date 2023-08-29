@@ -18,6 +18,7 @@ export default () => {
         // autoSize
         // disabled="exclusion-ricon"
         allowClear="exclusion-ricon"
+        multiple={true}
         riconProps={{
           className: 'icon shape-arrow-right sm'
         }}
@@ -91,15 +92,16 @@ export default () => {
         ]}
         // multiple={false}
         onChange={(newValue) => {
+          console.log('onChange:', newValue)
           setValue(newValue)
         }}
         onBeforeChange={(newValue) => {
           console.log('修改前')
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(true)
-            }, 1000)
-          })
+          // return new Promise((resolve) => {
+          //   setTimeout(() => {
+          //     resolve(true)
+          //   }, 1000)
+          // })
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

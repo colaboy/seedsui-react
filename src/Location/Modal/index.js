@@ -6,7 +6,7 @@ import Main from './../Main'
 import Footer from './Footer'
 
 // 测试使用
-// import Head from 'seedsui-react/lib/Picker/Modal/Head'
+// import Head from 'seedsui-react/lib/Select/Modal/Head'
 // import { locale, Toast, Loading, MapUtil, Layout, Modal } from 'seedsui-react'
 // 内库使用
 import locale from './../../locale'
@@ -15,7 +15,7 @@ import Loading from './../../Loading'
 import MapUtil from './../../MapUtil'
 import Layout from './../../Layout'
 import Modal from './../../Modal'
-import Head from './../../Picker/Modal/Head'
+import Head from './../../Select/Modal/Head'
 
 // 地图标注
 const LocationModal = forwardRef(

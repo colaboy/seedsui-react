@@ -1,20 +1,259 @@
-import React, { forwardRef } from 'react'
-import Combo from './../../Picker/Combo'
+import React, {
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+  Fragment,
+  useState,
+  useEffect
+} from 'react'
+import { getDisplayValue, getDynamicProps } from './../utils'
+
+import Input from './../../Input'
 import Modal from './../Modal'
 
-// 下拉选择
-export default forwardRef(({ multiple, submitProps, ...props }, ref) => {
-  return (
-    <Combo
-      ref={ref}
-      ModalComponent={Modal}
-      multiple={multiple}
-      submitProps={{
-        // 必选单选不显示确定按钮
-        visible: multiple !== undefined,
-        ...submitProps
-      }}
-      {...props}
-    />
-  )
-})
+// Combo
+const Combo = forwardRef(
+  (
+    {
+      // Combo
+      autoSize,
+      allowClear,
+      readOnly,
+      disabled,
+      onClick,
+      onBeforeOpen,
+      onBeforeClose,
+      comboRender,
+      onVisibleChange,
+
+      // Modal
+      ModalComponent,
+      ModalProps,
+
+      // Modal: display properties
+      portal,
+      maskProps,
+      captionProps,
+      submitProps,
+      cancelProps,
+      maskClosable = true,
+
+      // Main
+      MainComponent,
+      MainProps,
+
+      // Main: common
+      value,
+      list, // [{id: '', name: ''}]
+      multiple,
+      onSelect,
+      onBeforeChange,
+      onChange,
+
+      // Main: render
+      checkedType,
+      checkedPosition,
+      checkable,
+      headerRender,
+      footerRender,
+      listRender,
+      listHeaderRender,
+      listFooterRender,
+      listExtraHeaderRender,
+      listExtraFooterRender,
+      itemRender,
+      itemContentRender,
+      itemProps,
+      checkboxProps,
+
+      // Main: Picker Control properties
+      defaultPickerValue,
+      slotProps,
+
+      // Main: Tree Component properties
+      checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+      enableHalfChecked, // 是否启用半选功能
+      preserveValue, // 保留不在树结构中的value
+      onlyLeafCheck, // 仅允许点击末级节点
+      selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
+      defaultExpandAll, // 默认展开
+
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const comboRef = useRef(null)
+    const modalRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
+        getRootDOM: () => {
+          // div
+          let rootDOM = comboRef?.current
+          // Input.Text
+          if (comboRef?.current?.getRootDOM) {
+            rootDOM = comboRef.current.getRootDOM()
+          }
+          return rootDOM
+        },
+
+        modalDOM: modalRef?.current?.rootDOM,
+        getModalDOM: modalRef?.current?.getRootDOM,
+
+        instance: modalRef?.current?.instance,
+        getInstance: modalRef?.current?.getInstance,
+
+        close: () => {
+          setVisible(false)
+        },
+        open: () => {
+          setVisible(true)
+        }
+      }
+    })
+
+    // 控制Modal显隐
+    const [visible, setVisible] = useState(null)
+
+    // 点击文本框
+    async function handleInputClick(e) {
+      if (readOnly || disabled) return
+      if (!visible && typeof onBeforeOpen === 'function') {
+        let goOn = await onBeforeOpen()
+        if (!goOn) return
+      }
+      if (visible && typeof onBeforeClose === 'function') {
+        let goOn = await onBeforeClose()
+        if (!goOn) return
+      }
+      if (typeof onClick === 'function') {
+        onClick(e)
+      }
+
+      setVisible(!visible)
+    }
+
+    useEffect(() => {
+      if (visible === null) return
+      typeof ModalProps?.onVisibleChange === 'function' && ModalProps.onVisibleChange(visible)
+      typeof onVisibleChange === 'function' && onVisibleChange(visible)
+
+      // eslint-disable-next-line
+    }, [visible])
+
+    // Modal Render
+    let ModalNode = Modal
+    if (ModalComponent) {
+      ModalNode = ModalComponent
+    }
+
+    // 允许清空
+    if (allowClear) {
+      if (readOnly || disabled) {
+        // eslint-disable-next-line
+        allowClear = false
+      }
+    }
+
+    // 文本框
+    let InputNode = Input.Text
+    if (autoSize) {
+      InputNode = Input.AutoFit
+    }
+
+    return (
+      <Fragment>
+        {/* Combo */}
+        {typeof comboRender === 'function' && (
+          <div {...props} onClick={handleInputClick} ref={comboRef}>
+            {comboRender(value, { displayValue: getDisplayValue({ value }) })}
+          </div>
+        )}
+        {children && (
+          <div {...props} onClick={handleInputClick} ref={comboRef}>
+            {children}
+          </div>
+        )}
+        {!children && typeof comboRender !== 'function' && (
+          <InputNode
+            disabled={disabled}
+            allowClear={allowClear}
+            value={getDisplayValue({ value })}
+            readOnly
+            onChange={onChange}
+            onBeforeChange={onBeforeChange}
+            {...props}
+            onClick={handleInputClick}
+            ref={comboRef}
+          />
+        )}
+        {/* Modal */}
+        <ModalNode
+          ref={modalRef}
+          getComboDOM={() => {
+            return comboRef.current
+          }}
+          {...getDynamicProps({
+            BaseProps: ModalProps,
+            // Modal
+            // ModalComponent,
+            // ModalProps,
+
+            // Modal: display properties
+            portal,
+            maskProps,
+            captionProps,
+            submitProps,
+            cancelProps,
+            maskClosable,
+
+            // Main
+            MainComponent,
+            MainProps,
+
+            // Main: common
+            value,
+            list, // [{id: '', name: ''}]
+            multiple,
+            onSelect,
+            onBeforeChange,
+            onChange,
+
+            // Main: render
+            checkedType,
+            checkedPosition,
+            checkable,
+            headerRender,
+            footerRender,
+            listRender,
+            listHeaderRender,
+            listFooterRender,
+            listExtraHeaderRender,
+            listExtraFooterRender,
+            itemRender,
+            itemContentRender,
+            itemProps,
+            checkboxProps,
+
+            // Main: Picker Control properties
+            defaultPickerValue,
+            slotProps,
+
+            // Main: Tree Component properties
+            checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+            enableHalfChecked, // 是否启用半选功能
+            preserveValue, // 保留不在树结构中的value
+            onlyLeafCheck, // 仅允许点击末级节点
+            selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
+            defaultExpandAll // 默认展开
+          })}
+          onVisibleChange={setVisible}
+          visible={ModalProps?.visible === undefined ? visible : ModalProps.visible}
+        />
+      </Fragment>
+    )
+  }
+)
+
+export default Combo
