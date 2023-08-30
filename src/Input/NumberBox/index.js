@@ -214,10 +214,10 @@ const NumberBox = forwardRef(
         <input
           value="-"
           disabled={minDisabled}
-          {...plusProps}
+          {...minusProps}
           type="button"
           className={`numbox-button numbox-button-minus${
-            plusProps.className ? ' ' + plusProps.className : ''
+            minusProps.className ? ' ' + minusProps.className : ''
           }`}
           onClick={handleMinus}
         />
@@ -225,10 +225,10 @@ const NumberBox = forwardRef(
         <input
           value="+"
           disabled={maxDisabled}
-          {...minusProps}
+          {...plusProps}
           type="button"
           className={`numbox-button numbox-button-plus${
-            minusProps.className ? ' ' + minusProps.className : ''
+            plusProps.className ? ' ' + plusProps.className : ''
           }`}
           onClick={handlePlus}
         />
