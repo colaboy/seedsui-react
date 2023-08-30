@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Layout, Modal } from 'seedsui-react'
 
 export default () => {
@@ -8,7 +8,7 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Layout className="full">
-        <Layout.Header className="text-center">Customer.Dropdown</Layout.Header>
+        <Layout.Header className="text-center">Modal.Dropdown</Layout.Header>
         <Layout.Main className="bg-white">
           <Modal.Dropdown
             ref={dropdown1Ref}
@@ -24,11 +24,17 @@ export default () => {
             onVisibleChange={(visible) => {
               console.log('是否显示1:', visible)
             }}
-            title="Dropdown visible toggle1"
-            titleProps={{
+            captionProps={{
+              caption: 'Dropdown visible toggle1',
               className: 'nowrap',
               style: { maxWidth: '58px' }
             }}
+            // deprecated: use captionProps instead
+            // title="Dropdown visible toggle1"
+            // titleProps={{
+            //   className: 'nowrap',
+            //   style: { maxWidth: '58px' }
+            // }}
           >
             Test content
           </Modal.Dropdown>
@@ -49,7 +55,11 @@ export default () => {
             onVisibleChange={(visible) => {
               console.log('是否显示2:', visible)
             }}
-            title="Dropdown visible toggle2"
+            captionProps={{
+              caption: 'Dropdown visible toggle2'
+            }}
+            // deprecated: use captionProps instead
+            // title="Dropdown visible toggle2"
           >
             Test content
           </Modal.Dropdown>

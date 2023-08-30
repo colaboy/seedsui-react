@@ -12,7 +12,7 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Layout className="full">
-        <Layout.Header className="text-center">Customer.Modal</Layout.Header>
+        <Layout.Header className="text-center">Modal</Layout.Header>
         <Layout.Main className="bg-white">
           <div ref={sourceRef} className="demo-title" onClick={handleToggle}>
             Modal visible toggle

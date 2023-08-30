@@ -1,20 +1,20 @@
 // 标题
 function getCaption({ captionProps }) {
-  let caption = null
-  const { caption: titleText, ...otherCaptionProps } = captionProps || {}
-  if (titleText) {
-    caption = (
+  let captionNode = null
+  const { caption, ...otherCaptionProps } = captionProps || {}
+  if (caption) {
+    captionNode = (
       <div
         {...otherCaptionProps}
         className={`modal-caption${
           otherCaptionProps.className ? ' ' + otherCaptionProps.className : ''
         }`}
       >
-        {titleText}
+        {caption}
       </div>
     )
   }
-  return caption
+  return captionNode
 }
 
 export default getCaption

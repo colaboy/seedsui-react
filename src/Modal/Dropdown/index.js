@@ -10,13 +10,17 @@ const Dropdown = forwardRef(
 
       // nav属性
       arrow = true,
+      // 标题
+      captionProps,
+      // deprecated: use captionProps instead
       titleProps,
+      // deprecated: use captionProps.caption instead
       title,
       onClick,
       onBeforeOpen,
       onBeforeClose,
 
-      // Modal变量提升
+      visible: originVisible,
       onVisibleChange,
       children,
       ...props
@@ -49,6 +53,14 @@ const Dropdown = forwardRef(
       // eslint-disable-next-line
     }, [visible])
 
+    // allow parameter control the visible
+    useEffect(() => {
+      if (originVisible !== visible) {
+        setVisible(originVisible)
+      }
+      // eslint-disable-next-line
+    }, [originVisible])
+
     // 点击nav
     async function handleClick(e) {
       if (!visible && typeof onBeforeOpen === 'function') {
@@ -78,24 +90,51 @@ const Dropdown = forwardRef(
     if (ModalComponent) {
       ModalNode = ModalComponent
     }
+
+    // 过滤属性，过滤无用的属性
+    function filterProps(props) {
+      let {
+        portal,
+        offset,
+        maskClosable,
+        maskProps,
+        captionProps,
+        submitProps,
+        cancelProps,
+        ...otherProps
+      } = props
+      return otherProps
+    }
+
+    // deprecated props
+    let { caption, ...otherCaptionProps } = captionProps || {}
+    // deprecated: use captionProps instead
+    if (titleProps) {
+      otherCaptionProps = titleProps
+    }
+    // deprecated: use captionProps.caption instead
+    if (title) {
+      caption = title
+    }
+
     return (
       <>
         <div
           ref={rootRef}
-          {...props}
+          {...filterProps(props)}
           className={`modal-dropdown-nav${visible ? ' active' : ''}${
             props.className ? ' ' + props.className : ''
           }`}
           onClick={handleClick}
         >
-          {title && (
+          {caption && (
             <span
-              {...titleProps}
+              {...otherCaptionProps}
               className={`modal-dropdown-title-text${
-                titleProps?.className ? ' ' + titleProps.className : ''
+                otherCaptionProps?.className ? ' ' + otherCaptionProps.className : ''
               }`}
             >
-              {title}
+              {caption || ''}
             </span>
           )}
           {arrowDOM}
