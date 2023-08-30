@@ -13,6 +13,12 @@ export default () => {
           <Modal.Dropdown
             ref={dropdown1Ref}
             maskClosable
+            maskProps={{
+              className: 'dropdown-mask',
+              style: {
+                zIndex: 99
+              }
+            }}
             onBeforeOpen={() => {
               if (document.querySelector('.mask.active')) {
                 dropdown1Ref.current.close()

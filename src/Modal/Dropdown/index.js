@@ -8,9 +8,16 @@ const Dropdown = forwardRef(
       ModalComponent,
       ModalProps = {},
 
-      // nav属性
+      // Modal properties passthrough
+      portal,
+      animation,
+      offset,
+      maskClosable,
+      maskProps,
+      children,
+
+      // nav properties
       arrow = true,
-      // 标题
       captionProps,
       // deprecated: use captionProps instead
       titleProps,
@@ -19,10 +26,9 @@ const Dropdown = forwardRef(
       onClick,
       onBeforeOpen,
       onBeforeClose,
-
       visible: originVisible,
       onVisibleChange,
-      children,
+
       ...props
     },
     ref
@@ -93,16 +99,7 @@ const Dropdown = forwardRef(
 
     // 过滤属性，过滤无用的属性
     function filterProps(props) {
-      let {
-        portal,
-        offset,
-        maskClosable,
-        maskProps,
-        captionProps,
-        submitProps,
-        cancelProps,
-        ...otherProps
-      } = props
+      let { captionProps, ...otherProps } = props
       return otherProps
     }
 
@@ -143,6 +140,15 @@ const Dropdown = forwardRef(
           ref={modalRef}
           sourceDOM={() => {
             return rootRef.current
+          }}
+          // Modal properties passthrough
+          {...{
+            portal,
+            animation,
+            offset,
+            maskClosable,
+            maskProps,
+            children
           }}
           visible={visible}
           animation="slideDown"
