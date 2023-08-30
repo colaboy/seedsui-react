@@ -126,6 +126,7 @@ export { default as Toast } from './Toast'
 export { default as Tooltip } from './Tooltip'
 export { default as Tree } from './Tree' // (废弃, 使用TreePicker代替)
 export { default as TreePicker } from './TreePicker'
+export { default as Transfer } from './Transfer'
 
 // utils
 export { default as Ajax } from './Ajax' // 不常用
