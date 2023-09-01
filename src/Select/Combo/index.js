@@ -100,7 +100,7 @@ const Combo = forwardRef(
 
         modalDOM: modalRef?.current?.rootDOM,
         getModalDOM: modalRef?.current?.getRootDOM,
-
+        search: modalRef?.current?.search,
         instance: modalRef?.current?.instance,
         getInstance: modalRef?.current?.getInstance,
 

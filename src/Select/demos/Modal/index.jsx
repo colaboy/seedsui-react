@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Select } from 'seedsui-react'
 
 export default () => {
+  const selectRef = useRef(null)
   const [value, setValue] = useState([
     {
       id: '1',
@@ -11,6 +12,7 @@ export default () => {
   return (
     <>
       <Select.Modal
+        ref={selectRef}
         value={value}
         list={[
           {
@@ -29,6 +31,23 @@ export default () => {
         }}
         onVisibleChange={(visible) => {
           console.log(visible)
+        }}
+        // 搜索
+        headerRender={() => {
+          return (
+            <input
+              type="text"
+              placeholder="搜索"
+              onChange={(e) => {
+                if (selectRef.current.rootDOM.timeout) {
+                  window.clearTimeout(selectRef.current.rootDOM.timeout)
+                }
+                selectRef.current.rootDOM.timeout = window.setTimeout(() => {
+                  selectRef?.current?.search && selectRef.current.search(e.target.value)
+                }, 1000)
+              }}
+            />
+          )
         }}
       />
     </>

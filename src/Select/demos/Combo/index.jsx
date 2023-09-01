@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Select } from 'seedsui-react'
 
 export default () => {
+  const selectRef = useRef(null)
   const [value, setValue] = useState([
     {
       id: '选项1',
@@ -15,6 +16,7 @@ export default () => {
   return (
     <>
       <Select.Combo
+        ref={selectRef}
         // autoSize
         // disabled="exclusion-ricon"
         allowClear="exclusion-ricon"
@@ -108,6 +110,23 @@ export default () => {
         }}
         captionProps={{
           caption: '选择'
+        }}
+        // 搜索
+        headerRender={() => {
+          return (
+            <input
+              type="text"
+              placeholder="搜索"
+              onChange={(e) => {
+                if (selectRef.current.rootDOM.timeout) {
+                  window.clearTimeout(selectRef.current.rootDOM.timeout)
+                }
+                selectRef.current.rootDOM.timeout = window.setTimeout(() => {
+                  selectRef?.current?.search && selectRef.current.search(e.target.value)
+                }, 1000)
+              }}
+            />
+          )
         }}
         // 选中效果: checkbox | tick | corner
         checkedType="checkbox"

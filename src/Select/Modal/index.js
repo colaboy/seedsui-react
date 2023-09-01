@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
-import { formatValue, formatList, getDynamicProps } from './../utils'
+import { formatValue, getDynamicProps } from './../utils'
 import Head from './Head'
 import Main from './../Main'
 
@@ -75,10 +75,6 @@ const Modal = forwardRef(
     // 当前选中项
     let [currentValue, setCurrentValue] = useState([])
 
-    // 过滤非法数据
-    // eslint-disable-next-line
-    list = formatList(list)
-
     // 节点
     const modalRef = useRef(null)
     const mainRef = useRef(null)
@@ -89,7 +85,7 @@ const Modal = forwardRef(
 
         mainDOM: mainRef?.current?.rootDOM,
         getMainDOM: () => mainRef?.current?.rootDOM,
-
+        search: mainRef?.current?.search,
         instance: mainRef?.current?.instance,
         getInstance: () => mainRef?.current?.getInstance
       }
