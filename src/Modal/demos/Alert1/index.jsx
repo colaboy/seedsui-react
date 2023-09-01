@@ -21,6 +21,14 @@ export default () => {
             captionProps={{
               caption: '标题'
             }}
+            // footerProps={{
+            //   style: {
+            //     backgroundColor: 'red'
+            //   }
+            // }}
+            // contentProps={{
+            //   className: 'text-left'
+            // }}
             visible={visible}
             onVisibleChange={(visible) => {
               console.log('是否显示1:', visible)

@@ -5,14 +5,27 @@ import { getChildren } from './../utils'
 
 // Alert
 const Alert = forwardRef(
-  ({ maskClosable = false, captionProps, cancelProps, submitProps, ...props }, ref) => {
+  (
+    {
+      maskClosable = false,
+      captionProps,
+      contentProps,
+      footerProps,
+      cancelProps,
+      submitProps,
+      ...props
+    },
+    ref
+  ) => {
     // 默认补充确定按钮
     let newProps = {
+      captionProps: captionProps,
+      contentProps: contentProps,
+      footerProps: footerProps,
       submitProps: submitProps || {
         caption: locale('确定')
       },
       cancelProps: cancelProps,
-      captionProps: captionProps,
       ...props
     }
     return (

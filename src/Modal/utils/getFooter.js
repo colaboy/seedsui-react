@@ -1,7 +1,7 @@
 import locale from './../../locale'
 
 // 底部
-function getFooter({ cancelProps, submitProps, onVisibleChange }) {
+function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
   let footer = []
 
   // 点击事件
@@ -51,7 +51,14 @@ function getFooter({ cancelProps, submitProps, onVisibleChange }) {
   }
 
   if (footer.length) {
-    footer = <div className="modal-footer">{footer}</div>
+    footer = (
+      <div
+        {...footerProps}
+        className={`modal-footer${footerProps?.className ? ' ' + footerProps.className : ''}`}
+      >
+        {footer}
+      </div>
+    )
   } else {
     footer = null
   }
