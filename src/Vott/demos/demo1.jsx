@@ -52,8 +52,8 @@ export default () => {
       }
     })
   }
-  function handleChange(e, item, list) {
-    console.log(e, item, list)
+  function handleChange(list, others) {
+    console.log(list, others)
   }
 
   return (

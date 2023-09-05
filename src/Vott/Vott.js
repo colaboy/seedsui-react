@@ -30,7 +30,7 @@ const Vott = forwardRef(
       preview = true, // 是否支持单击预览, readOnly为true时才生效
       watermark,
       onChange, // func(e, value, selected)
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -130,8 +130,8 @@ const Vott = forwardRef(
 
     return (
       <div
-        {...others}
-        className={`vott-container${others.className ? ' ' + others.className : ''}`}
+        {...props}
+        className={`vott-container${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
         <div className="vott-wrapper" onClick={handleClick}>
