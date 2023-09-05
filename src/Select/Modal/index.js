@@ -68,6 +68,8 @@ const Modal = forwardRef(
       selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
       defaultExpandAll, // 默认展开
 
+      // 纯渲染时不渲染Main
+      children,
       ...props
     },
     ref
@@ -178,66 +180,70 @@ const Modal = forwardRef(
             onSubmitClick={handleSubmitClick}
             onCancelClick={handleCancelClick}
           />
+          {/* 纯渲染 */}
+          {children}
           {/* 主体 */}
-          <MainNode
-            ref={mainRef}
-            {...getDynamicProps({
-              BaseProps: MainProps,
+          {!children && (
+            <MainNode
+              ref={mainRef}
+              {...getDynamicProps({
+                BaseProps: MainProps,
 
-              // Main
-              // MainComponent,
-              // MainProps,
+                // Main
+                // MainComponent,
+                // MainProps,
 
-              // Main: common
-              value,
-              list, // [{id: '', name: ''}]
-              multiple,
-              onSelect,
-              // onBeforeChange,
-              // onChange,
+                // Main: common
+                value,
+                list, // [{id: '', name: ''}]
+                multiple,
+                onSelect,
+                // onBeforeChange,
+                // onChange,
 
-              // Main: render
-              checkedType,
-              checkedPosition,
-              checkable,
-              headerRender,
-              footerRender,
-              listRender,
-              listHeaderRender,
-              listFooterRender,
-              listExtraHeaderRender,
-              listExtraFooterRender,
-              itemRender,
-              itemContentRender,
-              itemProps,
-              checkboxProps,
+                // Main: render
+                checkedType,
+                checkedPosition,
+                checkable,
+                headerRender,
+                footerRender,
+                listRender,
+                listHeaderRender,
+                listFooterRender,
+                listExtraHeaderRender,
+                listExtraFooterRender,
+                itemRender,
+                itemContentRender,
+                itemProps,
+                checkboxProps,
 
-              // Main: Picker Control properties
-              defaultPickerValue,
-              slotProps,
+                // Main: Picker Control properties
+                defaultPickerValue,
+                slotProps,
 
-              // Main: Tree Component properties
-              checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
-              enableHalfChecked, // 是否启用半选功能
-              preserveValue, // 保留不在树结构中的value
-              onlyLeafCheck, // 仅允许点击末级节点
-              selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
-              defaultExpandAll // 默认展开
-            })}
-            // cover properties
-            visible={visible}
-            value={currentValue}
-            list={list}
-            onChange={(newValue) => {
-              currentValue = formatValue(newValue)
-              setCurrentValue(currentValue)
+                // Main: Tree Component properties
+                checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+                enableHalfChecked, // 是否启用半选功能
+                preserveValue, // 保留不在树结构中的value
+                onlyLeafCheck, // 仅允许点击末级节点
+                selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
+                defaultExpandAll // 默认展开
+              })}
+              // cover properties
+              visible={visible}
+              value={currentValue}
+              list={list}
+              onChange={(newValue) => {
+                currentValue = formatValue(newValue)
+                setCurrentValue(currentValue)
 
-              // multiple未传则为必选单选
-              if (multiple === undefined) {
-                handleSubmitClick()
-              }
-            }}
-          />
+                // multiple未传则为必选单选
+                if (multiple === undefined) {
+                  handleSubmitClick()
+                }
+              }}
+            />
+          )}
         </div>
       </div>,
       portal || document.getElementById('root') || document.body
