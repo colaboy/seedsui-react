@@ -75,7 +75,8 @@ const Vott = forwardRef(
         readOnly: readOnly,
         data: data,
         src: src,
-        onSuccess: load,
+        // 图片加载成功
+        onSuccess: handleSuccess,
         onChange: handleChange,
         ...params
       })
@@ -88,32 +89,32 @@ const Vott = forwardRef(
 
     function handleChange(s, item, list) {
       if (rootRef.current) s.currentTarget = rootRef.current
-      if (onChange) onChange(s, item, list)
+      if (onChange) onChange(list, { current: item, instance: s })
     }
-    function load() {
+    function handleSuccess() {
       loaded = 1
     }
-    function click() {
+    function handleClick() {
       previewImage()
     }
     function previewImage() {
       if (!readOnly || !preview || !loaded) return
       // 克隆Wrapper
-      var wrapper = instance.current.wrapper
+      let wrapper = instance.current.wrapper
 
-      var previewHTML = `<div class="preview-layer"> <div class="vott-wrapper">${wrapper.innerHTML}</div></div>`
+      let previewHTML = `<div class="preview-layer"> <div class="vott-wrapper">${wrapper.innerHTML}</div></div>`
       BridgeBrowser.previewImage({
         urls: [src],
         layerHTML: previewHTML,
         success: (s) => {
-          var layer = s.container.querySelector('.preview-layer')
+          let layer = s.container.querySelector('.preview-layer')
           wrapper = s.container.querySelector('.vott-wrapper')
-          var svg = wrapper.querySelector('.vott-svg')
+          let svg = wrapper.querySelector('.vott-svg')
           svg.style.backgroundImage = 'initial'
           // 计算宽高
-          var width = svg.style.width.replace('px', '')
-          var height = svg.style.height.replace('px', '')
-          var scale = 1
+          let width = svg.style.width.replace('px', '')
+          let height = svg.style.height.replace('px', '')
+          let scale = 1
           if (width > height) {
             // 宽图计算
             scale = layer.clientWidth / width
@@ -133,7 +134,7 @@ const Vott = forwardRef(
         className={`vott-container${others.className ? ' ' + others.className : ''}`}
         ref={rootRef}
       >
-        <div className="vott-wrapper" onClick={click}>
+        <div className="vott-wrapper" onClick={handleClick}>
           <svg className="vott-svg" preserveAspectRatio="none"></svg>
           {watermark && (
             <div className="vott-watermark" style={{ backgroundImage: `url(${watermark})` }}></div>
