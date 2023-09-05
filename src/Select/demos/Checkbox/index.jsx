@@ -7,6 +7,8 @@ export default () => {
     <>
       <Select.Checkbox
         allowClear
+        // readOnly
+        // disabled
         // multiple
         placeholder="Please select"
         value={value}

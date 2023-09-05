@@ -4,14 +4,18 @@ import Checkbox from './../../Checkbox'
 const CheckboxGroup = forwardRef(
   (
     {
-      multiple,
-      // 单选是否允许取消选择
-      allowClear,
+      // common
       value,
       list,
+      multiple,
       onBeforeChange,
       onChange,
-      onVisibleChange, // checkbox没有此属性
+
+      // checkbox
+      allowClear,
+
+      // 过滤没有的的属性
+      onVisibleChange,
       ...props
     },
     ref
@@ -100,7 +104,8 @@ const CheckboxGroup = forwardRef(
             <div className={`select-checkbox-item`} key={index}>
               <Checkbox
                 type={`${!multiple ? 'radio' : 'checkbox'}`}
-                disabled={props.disabled}
+                disabled={props?.disabled}
+                readOnly={props?.readOnly}
                 captionProps={{ caption: item.name }}
                 checked={getIsActive(item)}
                 onChange={(checked) => handleChange(checked, item, index)}

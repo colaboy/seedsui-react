@@ -8,6 +8,7 @@ const Checkbox = forwardRef(
       value,
       checked,
 
+      readOnly,
       disabled,
 
       inputProps = {},
@@ -37,7 +38,7 @@ const Checkbox = forwardRef(
 
     // 点击回调
     function handleClick(e) {
-      if (disabled) return
+      if (disabled || readOnly) return
       if (onChange) onChange(e.currentTarget.getAttribute('data-checked') !== 'true')
     }
 
@@ -48,6 +49,7 @@ const Checkbox = forwardRef(
         {...props}
         onClick={handleClick}
         disabled={disabled}
+        readOnly={readOnly}
         data-checked={checked}
         data-value={value}
         className={`${typeClassPrefix}${props.className ? ' ' + props.className : ''}`}
