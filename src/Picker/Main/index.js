@@ -74,6 +74,14 @@ const Main = forwardRef(
       if (!defaultOpt) return
       instance.current.clearSlots()
       instance.current.addSlot(list, defaultOpt.id || '', slotProps?.className || 'text-center') // 添加列,参数:数据,默认id,样式(lock样式为锁定列)
+
+      // 如果默认值和当前值不等, 则触发onChange
+      if (value?.[0]?.id !== defaultOpt?.id) {
+        // Modal框的value监听后触发, 所以需要延迟触发, 防止value监听又重置了currentValue
+        setTimeout(() => {
+          handleChange(instance.current)
+        }, 0)
+      }
     }
 
     function getDefaultOption() {
@@ -95,7 +103,7 @@ const Main = forwardRef(
       // render数据
       instance.current = new Instance({
         wrapper: mainRef.current,
-        onScrollEnd: handleScrollEnd
+        onScrollEnd: handleChange
       })
       // 默认项
       const defaultOpt = getDefaultOption()
@@ -107,13 +115,13 @@ const Main = forwardRef(
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
     if (instance.current) {
-      instance.current.params.onScrollEnd = handleScrollEnd
+      instance.current.params.onScrollEnd = handleChange
     }
 
     // 滚动结束
-    function handleScrollEnd(s) {
+    function handleChange(s) {
       const newValue = s.activeOptions
-      if (onChange) onChange(newValue)
+      onChange && onChange(newValue)
     }
 
     if (!Array.isArray(list) || !list.length) {

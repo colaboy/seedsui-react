@@ -7,7 +7,7 @@ export default () => {
     { id: '1', name: '1' },
     { id: '2', name: '2' }
   ]
-  const [value, setValue] = useState([{ id: '1', name: '1' }])
+  const [value, setValue] = useState(null)
   useEffect(() => {
     // pickerRef.current.open()
     setTimeout(() => {

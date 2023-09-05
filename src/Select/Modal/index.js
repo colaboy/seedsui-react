@@ -95,9 +95,6 @@ const Modal = forwardRef(
 
     useEffect(() => {
       if (onVisibleChange) onVisibleChange(visible)
-      if (visible) {
-        setCurrentValue(formatValue(value))
-      }
       // eslint-disable-next-line
     }, [visible])
 
