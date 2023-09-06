@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { validateDate, valueFormatter } from './../utils'
+import { validateDate } from './../utils'
+import valueFormatter from './valueFormatter'
 import BaseModal from './../../Select/Modal'
 import Main from './../Main'
 

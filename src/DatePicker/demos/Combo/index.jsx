@@ -17,6 +17,7 @@ export default () => {
         // captionProps={{
         //   caption: '选择日期'
         // }}
+        allowClear
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
