@@ -9,6 +9,9 @@ import Main from './../Main'
 const Modal = forwardRef(
   (
     {
+      // 显示文本格式化和value格式化
+      valueFormatter,
+
       // Combo
       getComboDOM,
 
@@ -79,6 +82,11 @@ const Modal = forwardRef(
     },
     ref
   ) => {
+    // value格式化
+    if (typeof valueFormatter !== 'function') {
+      // eslint-disable-next-line
+      valueFormatter = formatValue
+    }
     // 当前选中项
     let [currentValue, setCurrentValue] = useState([])
 
@@ -100,13 +108,18 @@ const Modal = forwardRef(
 
     useEffect(() => {
       if (onVisibleChange) onVisibleChange(visible)
+
+      // 取消弹窗时, currentValue已变, 而value未变, 如果value和currentValue不一致, 则使用value
+      if (visible) {
+        setCurrentValue(valueFormatter(value))
+      }
       // eslint-disable-next-line
     }, [visible])
 
-    useEffect(() => {
-      setCurrentValue(formatValue(value))
-      // eslint-disable-next-line
-    }, [value])
+    // useEffect(() => {
+    //   setCurrentValue(valueFormatter(value))
+    //   // eslint-disable-next-line
+    // }, [value])
 
     // 获取确定按钮的数量
     function getCaption() {
@@ -126,16 +139,25 @@ const Modal = forwardRef(
     }
 
     // 事件
-    async function handleSubmitClick() {
-      if (submitProps?.onClick) submitProps.onClick()
+    async function handleSubmitClick(e) {
+      if (submitProps?.onClick) submitProps.onClick(e)
+      // 更新选中的值
+      if (mainRef?.current?.getValue) {
+        currentValue = mainRef.current.getValue()
+      }
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(currentValue)
         if (goOn === false) return
+        // 修改值
+        if (typeof goOn === 'object') {
+          currentValue = goOn
+        }
       }
       if (onChange) onChange(currentValue)
       if (onVisibleChange) onVisibleChange(false)
     }
+
     function handleCancelClick(e) {
       if (cancelProps?.onClick) cancelProps.onClick(e)
       if (onVisibleChange) onVisibleChange(false)
@@ -241,7 +263,7 @@ const Modal = forwardRef(
               value={currentValue}
               list={list}
               onChange={(newValue) => {
-                currentValue = formatValue(newValue)
+                currentValue = valueFormatter(newValue)
                 setCurrentValue(currentValue)
 
                 // multiple未传则为必选单选

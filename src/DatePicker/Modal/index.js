@@ -1,257 +1,45 @@
-// require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
-import { createPortal } from 'react-dom'
-import locale from './../../locale'
-import Head from './../../Select/Modal/Head'
-import Instance from './instance.js'
-import { validateDate } from './../utils'
-import Utils from './Utils'
+import React, { forwardRef } from 'react'
+import { validateDate, valueFormatter } from './../utils'
+import BaseModal from './../../Select/Modal'
+import Main from './../Main'
 
-const DatePickerModal = forwardRef(
-  (
-    {
-      // 通用属性
-      wrapper, // 传入wrapper将只渲染内容(wrapper)
-      portal,
-      getComboDOM,
-      maskClosable = true,
-      value,
-      defaultPickerValue,
-      list, // {year: [], quarter: [], month: [], day: [], hour: [], minute: []}
+const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
+  return (
+    <BaseModal
+      ref={ref}
+      {...props}
+      onBeforeChange={async (value) => {
+        // eslint-disable-next-line
+        return new Promise(async (resolve) => {
+          // 校验值是否合法
+          let newValue = validateDate(value, {
+            type: props?.type,
+            min: props?.min,
+            max: props?.max,
+            onError: props?.onError
+          })
+          if (newValue === false) {
+            resolve(false)
+            return
+          }
 
-      onBeforeChange,
-      onChange,
+          // 外部传入的校验
+          if (typeof onBeforeChange === 'function') {
+            let goOn = await onBeforeChange(newValue)
+            if (goOn === false) {
+              resolve(false)
+              return
+            }
+          }
 
-      visible = false,
-      onVisibleChange,
-
-      maskProps = {},
-      wrapperProps = {},
-      captionProps = {},
-      submitProps = {},
-      cancelProps = {},
-
-      // 定制属性
-      type = 'date', // year | quarter | month | date | time | datetime
-      min,
-      max,
-
-      onError,
-      ...props
-    },
-    ref
-  ) => {
-    if (!['year', 'quarter', 'month', 'date', 'time', 'datetime'].includes(type)) {
-      console.error(
-        "DatePicker.Modal: Wrong parameter with \"type\"! You need correct to ['year', 'quarter', 'month', 'date', 'time', 'datetime'] any one"
-      )
-      // eslint-disable-next-line
-      type = 'date'
-    }
-    // 标题
-    let [title, setTitle] = useState('')
-    // 节点
-    const rootRef = useRef(null)
-    const wrapperRef = useRef(null)
-    const instance = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        instance: instance.current,
-        getRootDOM: () => rootRef.current,
-        getInstance: () => instance.current
-      }
-    })
-
-    useEffect(() => {
-      initInstance()
-      // eslint-disable-next-line
-    }, [])
-
-    useEffect(() => {
-      if (instance.current && visible) {
-        handleUpdate()
-      }
-
-      // eslint-disable-next-line
-    }, [visible, value])
-
-    // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
-    if (instance.current) {
-      instance.current.params.onScrollEnd = handleScrollEnd
-    }
-
-    // 点击确认
-    async function handleSubmitClick() {
-      let s = instance.current
-      // 获取选中项
-      let newValue = s.getActiveDate(s.activeOptions)
-      let activeKeys = s.activeOptions.map(function (n, i, a) {
-        return n['id']
-      })
-      s.setDefaultsByKeys(activeKeys)
-      if (submitProps?.onClick) submitProps.onClick(s)
-
-      newValue = validateDate(newValue, {
-        type: type,
-        min: min,
-        max: max,
-        onError: onError
-      })
-      if (newValue === false) return
-      // 修改提示
-      if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(newValue)
-        if (!goOn) return
-      }
-      // 触发onChange事件
-      if (onChange) onChange(newValue)
-      if (onVisibleChange) onVisibleChange(false)
-    }
-    function handleCancelClick() {
-      if (cancelProps.onClick) cancelProps.onClick()
-      if (onVisibleChange) onVisibleChange(false)
-    }
-    function handleMaskClick(e) {
-      if (!e.target.classList.contains('mask')) return
-      let s = instance.current
-      if (maskProps.onClick) maskProps.onClick(s)
-
-      if (maskClosable && onVisibleChange) onVisibleChange(false)
-    }
-    function handleScrollEnd() {
-      let s = instance.current
-      // 根据月份算日
-      if (
-        (s.params.viewType === 'date' || s.params.viewType === 'datetime') &&
-        (s.activeSlot.index === 0 || s.activeSlot.index === 1)
-      ) {
-        let year = s.activeOptions[0]['id']
-        let month = s.activeOptions[1]['id']
-        let defaultDay = s.activeOptions[2]['id']
-        s.updateDays(year, month, defaultDay) // 更新总天数
-      }
-      // 是否显示标题
-      title = s.getActiveWeekText()
-      setTitle(title)
-
-      // 如果只渲染wrapper则意味没有头部所以需要触发onChange
-      if (wrapper) {
-        handleSubmitClick()
-      }
-    }
-
-    function handleUpdate() {
-      instance.current.updateParams({
-        viewType: type,
-        yyUnit: locale('', 'picker_unit_year'),
-        QQUnit: locale('', 'picker_unit_quarter'),
-        MMUnit: locale('', 'picker_unit_month'),
-        ddUnit: locale('', 'picker_unit_date'),
-        hhUnit: locale('', 'picker_unit_hour'),
-        mmUnit: locale('', 'picker_unit_minute')
-      })
-      const def = Utils.getDefaults(value, defaultPickerValue)
-      instance.current.setDefaults(def)
-      instance.current.update()
-      // 是否显示标题
-      title = instance.current.getActiveWeekText()
-      setTitle(title)
-    }
-
-    function initInstance() {
-      if (!wrapperRef || !wrapperRef.current) return
-      let data = Utils.getData(list)
-      let def = Utils.getDefaults(value, defaultPickerValue)
-      // render数据
-      instance.current = new Instance({
-        wrapper: wrapperRef.current,
-        viewType: type,
-        yearsData: data.yearsData,
-        quartersData: data.quartersData,
-        monthsData: data.monthsData,
-        daysData: data.daysData,
-        hoursData: data.hoursData,
-        minutesData: data.minutesData,
-        defaultYear: def.year,
-        defaultQuarter: def.quarter,
-        defaultMonth: def.month,
-        defaultDay: def.day,
-        defaultHour: def.hour,
-        defaultMinute: def.minute,
-        onScrollEnd: handleScrollEnd,
-        yyUnit: locale('', 'picker_unit_year'), // 年
-        QQUnit: locale('', 'picker_unit_quarter'), // 季
-        MMUnit: locale('', 'picker_unit_month'), // 月
-        ddUnit: locale('', 'picker_unit_date'), // 日
-        hhUnit: locale('', 'picker_unit_hour'), // 时
-        mmUnit: locale('', 'picker_unit_minute') // 分
-      })
-    }
-    // 主体内容
-    const ContentDOM = (
-      <div
-        {...wrapperProps}
-        className={`picker-wrapper${wrapperProps.className ? ' ' + wrapperProps.className : ''}`}
-        ref={wrapperRef}
-      >
-        <div className="picker-layer">
-          <div className="picker-layer-frame"></div>
-        </div>
-        <div className="picker-slotbox"></div>
-      </div>
-    )
-
-    // 只渲染主体
-    if (wrapper) {
-      return ContentDOM
-    }
-
-    let DOM = (
-      <div
-        {...maskProps}
-        className={`mask picker-mask${maskProps.className ? ' ' + maskProps.className : ''}${
-          visible ? ' active' : ''
-        }`}
-        onClick={handleMaskClick}
-        ref={rootRef}
-      >
-        <div
-          {...props}
-          className={`picker${props.className ? ' ' + props.className : ''}${
-            visible ? ' active' : ''
-          }`}
-        >
-          {/* 头 */}
-          <Head
-            // 标题
-            captionProps={{ caption: title, ...captionProps }}
-            // 按钮
-            cancelProps={cancelProps}
-            submitProps={submitProps}
-            onSubmitClick={handleSubmitClick}
-            onCancelClick={handleCancelClick}
-          />
-          {ContentDOM}
-        </div>
-      </div>
-    )
-
-    if (portal === false || portal === null) {
-      return DOM
-    }
-    // 渲染完整体
-    return createPortal(DOM, portal || document.getElementById('root') || document.body)
-  }
-)
-
-export default React.memo(DatePickerModal, (prevProps, nextProps) => {
-  if (nextProps.visible !== prevProps.visible) {
-    return false
-  }
-  // 当只显示wrapper时, 仅会使用wrapperProps来控制显隐
-  if (JSON.stringify(nextProps.wrapperProps) !== JSON.stringify(prevProps.wrapperProps)) {
-    return false
-  }
-  return true
+          // 通过校验，并赋予新值
+          resolve(newValue)
+        })
+      }}
+      valueFormatter={valueFormatter}
+      MainComponent={Main}
+    />
+  )
 })
+
+export default Modal

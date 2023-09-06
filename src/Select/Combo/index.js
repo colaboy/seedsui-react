@@ -15,6 +15,10 @@ import Modal from './../Modal'
 const Combo = forwardRef(
   (
     {
+      // 显示文本格式化和value格式化
+      displayValueFormatter,
+      valueFormatter,
+
       // Combo
       autoSize,
       allowClear,
@@ -71,6 +75,13 @@ const Combo = forwardRef(
       defaultPickerValue,
       slotProps,
 
+      // Main: DatePicker Control properties
+      min,
+      max,
+      type, // year | quarter | month | date | time | datetime
+      format,
+      onError,
+
       // Main: Actionsheet Control properties
       groupProps,
       optionProps,
@@ -88,10 +99,27 @@ const Combo = forwardRef(
     },
     ref
   ) => {
+    // 显示文本格式化
+    if (typeof displayValueFormatter !== 'function') {
+      // eslint-disable-next-line
+      displayValueFormatter = getDisplayValue
+    }
+    let displayValue = displayValueFormatter({ type: type, format: format, value })
+
     const comboRef = useRef(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
+        // 显示文本
+        displayValue: displayValue,
+        getDisplayValue: (newValue) => {
+          return displayValueFormatter({
+            type: type,
+            format: format,
+            value: newValue || value
+          })
+        },
+
         rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
         getRootDOM: () => {
           // div
@@ -172,7 +200,9 @@ const Combo = forwardRef(
         {/* Combo */}
         {typeof comboRender === 'function' && (
           <div {...props} onClick={handleInputClick} ref={comboRef}>
-            {comboRender(value, { displayValue: getDisplayValue({ value }) })}
+            {comboRender(value, {
+              displayValue
+            })}
           </div>
         )}
         {children && (
@@ -184,7 +214,7 @@ const Combo = forwardRef(
           <InputNode
             disabled={disabled}
             allowClear={allowClear}
-            value={getDisplayValue({ value })}
+            value={displayValue}
             readOnly
             onChange={onChange}
             onBeforeChange={onBeforeChange}
@@ -204,6 +234,9 @@ const Combo = forwardRef(
             // Modal
             // ModalComponent,
             // ModalProps,
+
+            // 显示文本格式化和value格式化
+            valueFormatter,
 
             // Modal: display properties
             portal,
@@ -245,6 +278,13 @@ const Combo = forwardRef(
             // Main: Picker Control properties
             defaultPickerValue,
             slotProps,
+
+            // Main: DatePicker Control properties
+            min,
+            max,
+            type, // year | quarter | month | date | time | datetime
+            format,
+            onError,
 
             // Main: Actionsheet Control properties
             groupProps,

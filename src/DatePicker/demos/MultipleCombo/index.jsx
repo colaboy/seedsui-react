@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DatePicker } from 'seedsui-react'
+import { DatePicker, Toast } from 'seedsui-react'
 
 export default () => {
   const [mulValue, setMulValue] = useState([
@@ -32,13 +32,24 @@ export default () => {
         placeholder="Please select MultipleCombo"
         value={mulValue}
         multiple={true}
-        onChange={setMulValue}
+        onChange={(newValue) => {
+          console.log(newValue)
+          setMulValue(newValue)
+        }}
         captionProps={{
           caption: '选择日期'
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        allowClear
+        min={new Date()}
+        onError={(err) =>
+          Toast.show({
+            content: err.errMsg || '',
+            maskClickable: true
+          })
+        }
       />
     </>
   )

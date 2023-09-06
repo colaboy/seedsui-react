@@ -28,6 +28,7 @@ let Picker = function (params) {
     onScrollStart:function (Picker)
     onScroll:function (Picker)
     onScrollEnd:function (Picker)
+    onScrollTransitionEnd: function (Picker)
     onTransitionEnd:function (Picker)// 动画结束后回调
     */
   }
@@ -370,6 +371,12 @@ let Picker = function (params) {
     s.activeSlot.style.webkitTransform = 'translate(0px,' + inertance.value + 'px)'
 
     // Callback onScrollEnd
+    if (inertance.duration) {
+      setTimeout(() => {
+        if (s.params.onScrollTransitionEnd) s.params.onScrollTransitionEnd(s)
+      }, Number(inertance.duration || 0) + 50)
+    }
+
     if (s.params.onScrollEnd) s.params.onScrollEnd(s)
   }
 
