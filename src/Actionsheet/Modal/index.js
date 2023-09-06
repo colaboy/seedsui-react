@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
+import getIsActive from './getIsActive'
 
 const Modal = forwardRef(
   (
@@ -46,143 +47,79 @@ const Modal = forwardRef(
       }
     })
 
-    // 构建动画
-    let animationClassName = ''
-    switch (animation) {
-      case 'slideLeft':
-        animationClassName = 'popup-animation right-middle'
-        break
-      case 'slideRight':
-        animationClassName = 'popup-animation left-middle'
-        break
-      case 'slideUp':
-        animationClassName = 'popup-animation bottom-center'
-        break
-      case 'slideDown':
-        animationClassName = 'popup-animation top-center'
-        break
-      case 'zoom':
-        animationClassName = 'popup-animation middle'
-        break
-      case 'fade':
-        animationClassName = 'popup-animation middle'
-        break
-      case 'none':
-        animationClassName = ''
-        break
-      default:
-        animationClassName = 'popup-animation middle'
-    }
+    const { visible: cancelVisible, caption: cancelCaption, ...otherCancelProps } = cancelProps
 
-    // 剔除掉onClick事件, 因为在容器onClick已经回调了
-    const otherMaskProps = filterProps(maskProps)
-    const otherGroupProps = filterProps(groupProps)
-    const otherOptionProps = filterProps(optionProps)
-
-    const {
-      onClick: cancelOnClick,
-      visible: cancelVisible,
-      caption: cancelCaption,
-      ...otherCancelProps
-    } = cancelProps
-
-    // 点击容器
-    async function handleClick(e) {
-      let target = e.target
-      // 点击选项
-      if (target.classList.contains('actionsheet-option')) {
-        let item = null
-        let index = null
-        index = target.getAttribute('data-index')
-        index = Number(index)
-        item = list[index] || null
-        // 触发点击事件
-        if (optionProps?.onClick) optionProps.onClick(e)
-        // 修改提示
-        if (typeof onBeforeChange === 'function') {
-          let goOn = await onBeforeChange([item])
-          if (!goOn) return
-        }
-        // 触发onChange事件
-        if (onChange) onChange([item])
-        if (onVisibleChange) onVisibleChange(false)
-      }
-      // 点击取消
-      else if (target.classList.contains('actionsheet-cancel')) {
-        // 触发点击事件
-        if (cancelProps?.onClick) cancelProps.onClick(e)
-        if (onVisibleChange) onVisibleChange(false)
-      }
-      // 点击遮罩
-      else if (target.classList.contains('actionsheet-mask')) {
-        if (maskProps.onClick) maskProps.onClick(e)
-        if (maskClosable && onVisibleChange) onVisibleChange(false)
-        return
-      }
-
-      // 区分点击事件
+    // 点击选项
+    async function handleClickOption(e, item) {
       e.stopPropagation()
+
+      // 触发点击事件
+      if (optionProps?.onClick) optionProps.onClick(e)
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange([item])
+        if (!goOn) return
+      }
+      // 触发onChange事件
+      if (onChange) onChange([item])
+      if (onVisibleChange) onVisibleChange(false)
     }
 
-    // 判断是否选中
-    function getIsActive(item) {
-      if (Array.isArray(value) && value.length) {
-        return value[0]?.id === item.id
+    // 点击取消
+    async function handleClickCancel(e) {
+      e.stopPropagation()
+      if (cancelProps?.onClick) {
+        let goOn = cancelProps.onClick(e)
+        if (goOn === false) {
+          return
+        }
       }
-      return false
+      if (onVisibleChange) onVisibleChange(false)
     }
 
-    // 获取项的className
-    function getOptionClassName(item) {
-      let className = ['actionsheet-option']
-      if (otherOptionProps.className) {
-        className.push(otherOptionProps.className)
-      }
-      if (getIsActive(item)) {
-        className.push('active')
-      }
-      return className.join(' ')
-    }
+    // 点击遮罩
+    async function handleClickMask(e) {
+      e.stopPropagation()
 
-    // 过滤已经回调的属性
-    function filterProps(props) {
-      if (!props) return {}
-      const { onClick, ...otherProps } = props
-      return { ...otherProps }
+      if (maskProps.onClick) {
+        let goOn = maskProps.onClick(e)
+        if (goOn === false) {
+          return
+        }
+      }
+      if (maskClosable && onVisibleChange) onVisibleChange(false)
     }
 
     return createPortal(
       <div
-        {...otherMaskProps}
-        className={`mask actionsheet-mask${
-          otherMaskProps.className ? ' ' + otherMaskProps.className : ''
-        }${visible ? ' active' : ''}`}
-        style={Object.assign({}, otherMaskProps.style || {})}
-        onClick={handleClick}
+        {...maskProps}
+        className={`mask actionsheet-mask${maskProps.className ? ' ' + maskProps.className : ''}${
+          visible ? ' active' : ''
+        }`}
+        style={Object.assign({}, maskProps.style || {})}
+        onClick={handleClickMask}
         ref={rootRef}
       >
         <div
           data-animation={animation}
           {...props}
-          className={`actionsheet${animationClassName ? ' ' + animationClassName : ''}${
-            props.className ? ' ' + props.className : ''
-          }${visible ? ' active' : ''}`}
-          style={Object.assign({}, props.style || {})}
+          className={`popup-animation actionsheet${props.className ? ' ' + props.className : ''}${
+            visible ? ' active' : ''
+          }`}
         >
           <div
-            {...otherGroupProps}
-            className={`actionsheet-group${
-              otherGroupProps.className ? ' ' + otherGroupProps.className : ''
-            }`}
+            {...groupProps}
+            className={`actionsheet-group${groupProps.className ? ' ' + groupProps.className : ''}`}
           >
             {list &&
               list.map((item, index) => {
                 return (
                   <div
-                    {...otherOptionProps}
-                    className={getOptionClassName(item)}
+                    {...optionProps}
+                    className={`actionsheet-option${getIsActive(item, value) ? ' active' : ''}`}
                     key={index}
                     data-index={index}
+                    onClick={(e) => handleClickOption(e, item, index)}
                   >
                     {item.name}
                   </div>
@@ -195,6 +132,7 @@ const Modal = forwardRef(
               className={`actionsheet-cancel${
                 otherCancelProps.className ? ' ' + otherCancelProps.className : ''
               }`}
+              onClick={handleClickCancel}
             >
               {cancelCaption || locale('取消', 'cancel')}
             </div>

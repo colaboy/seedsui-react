@@ -19,6 +19,7 @@ export default () => {
         ref={selectRef}
         // autoSize
         // disabled="exclusion-ricon"
+        // animation="zoom"
         allowClear="exclusion-ricon"
         multiple={true}
         riconProps={{

@@ -22,6 +22,7 @@ const Modal = forwardRef(
 
       // Modal: display properties
       portal,
+      animation = 'slideUp',
       maskProps,
       captionProps,
       submitProps,
@@ -59,6 +60,10 @@ const Modal = forwardRef(
       // Main: Picker Control properties
       defaultPickerValue,
       slotProps,
+
+      // Main: Actionsheet Control properties
+      groupProps,
+      optionProps,
 
       // Main: Tree Component properties
       checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
@@ -158,8 +163,9 @@ const Modal = forwardRef(
         ref={modalRef}
       >
         <div
+          data-animation={animation}
           {...props}
-          className={`picker${props.className ? ' ' + props.className : ''}${
+          className={`popup-animation picker${props.className ? ' ' + props.className : ''}${
             visible ? ' active' : ''
           }`}
         >
@@ -217,6 +223,10 @@ const Modal = forwardRef(
                 // Main: Picker Control properties
                 defaultPickerValue,
                 slotProps,
+
+                // Main: Actionsheet Control properties
+                groupProps,
+                optionProps,
 
                 // Main: Tree Component properties
                 checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级

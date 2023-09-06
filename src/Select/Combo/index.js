@@ -32,6 +32,7 @@ const Combo = forwardRef(
 
       // Modal: display properties
       portal,
+      animation,
       maskProps,
       captionProps,
       submitProps,
@@ -69,6 +70,10 @@ const Combo = forwardRef(
       // Main: Picker Control properties
       defaultPickerValue,
       slotProps,
+
+      // Main: Actionsheet Control properties
+      groupProps,
+      optionProps,
 
       // Main: Tree Component properties
       checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
@@ -202,6 +207,7 @@ const Combo = forwardRef(
 
             // Modal: display properties
             portal,
+            animation,
             maskProps,
             captionProps,
             submitProps,
@@ -239,6 +245,10 @@ const Combo = forwardRef(
             // Main: Picker Control properties
             defaultPickerValue,
             slotProps,
+
+            // Main: Actionsheet Control properties
+            groupProps,
+            optionProps,
 
             // Main: Tree Component properties
             checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
