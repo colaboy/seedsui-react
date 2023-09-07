@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 import Tabs from './../../Tabs'
 import locale from './../../locale'
-import InputDate from './../Combo'
+import Combo from './../Combo'
 import { validateDate } from './../utils'
 import getDateDisplayValue from './../Combo/getDateDisplayValue'
 
@@ -42,10 +42,6 @@ const Types = forwardRef(
         value: new Date()
       }
       */
-
-      captionProps,
-      submitProps,
-      cancelProps,
 
       // 配置
       contentProps = {},
@@ -133,7 +129,7 @@ const Types = forwardRef(
     // 选择日期
     function handleDate(date) {
       value.value = date
-      handleChange(value)
+      handleChange({ ...value })
     }
 
     /**
@@ -187,20 +183,6 @@ const Types = forwardRef(
       return newValue
     }
 
-    // 伸缩属性(Modal提升属性)
-    // eslint-disable-next-line
-    if (!DatePickerComboProps) DatePickerComboProps = {}
-    // 伸缩属性-展示属性
-    if (captionProps !== undefined) {
-      DatePickerComboProps.captionProps = captionProps
-    }
-    if (submitProps !== undefined) {
-      DatePickerComboProps.submitProps = submitProps
-    }
-    if (cancelProps !== undefined) {
-      DatePickerComboProps.cancelProps = cancelProps
-    }
-
     return (
       <div
         {...props}
@@ -223,17 +205,17 @@ const Types = forwardRef(
           }`}
         >
           <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
-          <InputDate
-            {...DatePickerComboProps}
+          <Combo
+            {...(DatePickerComboProps || {})}
             value={value?.value}
             type={value?.type}
             className={`datepicker-types-date${
-              DatePickerComboProps.className ? ' ' + DatePickerComboProps.className : ''
+              DatePickerComboProps?.className ? ' ' + DatePickerComboProps.className : ''
             }`}
             onChange={handleDate}
           >
             <p>{displayValue || ''}</p>
-          </InputDate>
+          </Combo>
           <i className="datepicker-types-next icon shape-arrow-right sm" onClick={handleNext} />
         </div>
       </div>

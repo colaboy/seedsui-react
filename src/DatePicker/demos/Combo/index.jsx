@@ -12,7 +12,6 @@ export default () => {
         min={new Date()}
         type="datetime"
         value={value}
-        multiple={true}
         onChange={setValue}
         // captionProps={{
         //   caption: '选择日期'

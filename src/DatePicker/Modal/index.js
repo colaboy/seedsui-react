@@ -38,6 +38,7 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
         })
       }}
       valueFormatter={valueFormatter}
+      multiple={false}
       MainComponent={Main}
     />
   )

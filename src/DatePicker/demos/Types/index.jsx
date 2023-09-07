@@ -13,12 +13,12 @@ export default () => {
     <>
       <DatePicker.Types
         value={value}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log('修改:', newValue)
+          setValue(newValue)
+        }}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-left' }}
-        captionProps={{
-          caption: '选择日期'
-        }}
       />
     </>
   )
