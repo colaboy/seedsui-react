@@ -1,11 +1,11 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import Combo from './../../Select/Combo'
-import RangeModal from './../RangeModal'
-
+import React, { forwardRef } from 'react'
 import locale from './../../locale'
-import { getRangeDisplayValue } from './../utils'
+import getRangeDisplayValue from './getRangeDisplayValue'
 
-// 日期多选
+import Combo from './../../Select/Combo'
+import Modal from './../MultipleModal'
+
+// 日期区间
 const RangeCombo = forwardRef(
   (
     {
@@ -34,65 +34,17 @@ const RangeCombo = forwardRef(
         ],
         [locale('自定义时间', 'datepicker-tooltip_custom_date')]: 0
       },
-      // 快捷选择弹出方式
-      rangesModal,
-      separator,
-      min,
-      max,
-      type, // year | quarter | month | date | time | datetime
-      value,
-      defaultPickerValue,
-      format,
-      onError,
-      ModalProps,
-      // 其它标准属性
       ...props
     },
     ref
   ) => {
-    // 显示文本
-    let displayValue = getRangeDisplayValue({ ranges, type, format, value, separator })
-
-    const rootRef = useRef(null)
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef?.current?.rootDOM,
-        modalDOM: rootRef?.current?.modalDOM,
-        getRootDOM: rootRef?.current?.getRootDOM,
-        getModalDOM: rootRef?.current?.getModalDOM,
-        close: rootRef?.current?.close,
-        open: rootRef?.current?.open,
-        // 显示文本
-        displayValue: displayValue,
-        getDisplayValue: (newValue) => {
-          return getRangeDisplayValue({
-            ranges,
-            type,
-            format,
-            value: newValue || value,
-            separator
-          })
-        }
-      }
-    })
-
     return (
       <Combo
-        value={displayValue}
-        ModalComponent={RangeModal}
-        ModalProps={{
-          ranges: ranges,
-          rangesModal: rangesModal,
-          value: value,
-          defaultPickerValue: defaultPickerValue,
-          min: min,
-          max: max,
-          type: type,
-          onError: onError,
-          ...ModalProps
-        }}
+        ref={ref}
+        ModalComponent={Modal}
+        ranges={ranges}
+        displayValueFormatter={getRangeDisplayValue}
         {...props}
-        ref={rootRef}
       />
     )
   }

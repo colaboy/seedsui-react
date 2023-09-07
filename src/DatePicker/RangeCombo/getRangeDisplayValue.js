@@ -1,4 +1,5 @@
-import { getActiveKey, getDateDisplayValue } from './../utils'
+import { getActiveKey } from './../utils'
+import getDateDisplayValue from './../Combo/getDateDisplayValue'
 
 // 显示名称
 function getRangeDisplayValue({ ranges, type, format, value, separator }) {

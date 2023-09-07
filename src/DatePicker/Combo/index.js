@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react'
 import Combo from './../../Select/Combo'
 import Modal from './../Modal'
-import { getDateDisplayValue } from './../utils'
+import getDateDisplayValue from './getDateDisplayValue'
 
 // DatePicker
-const DatePickerCombo = forwardRef(({ displayValueFormatter, ...props }, ref) => {
+const DatePickerCombo = forwardRef(({ ...props }, ref) => {
   return (
     <Combo
       ref={ref}

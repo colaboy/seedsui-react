@@ -75,12 +75,15 @@ const Combo = forwardRef(
       defaultPickerValue,
       slotProps,
 
-      // Main: DatePicker Control properties
+      // Combo|Main: DatePicker Control properties
       min,
       max,
       type, // year | quarter | month | date | time | datetime
       format,
       onError,
+      ranges,
+      rangesModal, // 弹出方式dropdown
+      separator,
 
       // Main: Actionsheet Control properties
       groupProps,
@@ -104,7 +107,7 @@ const Combo = forwardRef(
       // eslint-disable-next-line
       displayValueFormatter = getDisplayValue
     }
-    let displayValue = displayValueFormatter({ type: type, format: format, value })
+    let displayValue = displayValueFormatter({ type, format, value, ranges, separator })
 
     const comboRef = useRef(null)
     const modalRef = useRef(null)
@@ -116,7 +119,9 @@ const Combo = forwardRef(
           return displayValueFormatter({
             type: type,
             format: format,
-            value: newValue || value
+            value: newValue || value,
+            ranges,
+            separator
           })
         },
 
@@ -279,12 +284,15 @@ const Combo = forwardRef(
             defaultPickerValue,
             slotProps,
 
-            // Main: DatePicker Control properties
+            // Combo|Main: DatePicker Control properties
             min,
             max,
             type, // year | quarter | month | date | time | datetime
             format,
             onError,
+            ranges,
+            rangesModal, // 快捷选择弹出方式
+            separator,
 
             // Main: Actionsheet Control properties
             groupProps,

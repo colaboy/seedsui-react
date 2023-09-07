@@ -1,10 +1,8 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
+import getDateDisplayValue from './../Combo/getDateDisplayValue'
 
 import DatePickerMain from './../Main'
 import Tabs from './../../Tabs'
-
-// import locale from './../../locale'
-import { getDateDisplayValue, validateDate } from './../utils'
 
 // 日期多选弹框
 const MultipleMain = (
