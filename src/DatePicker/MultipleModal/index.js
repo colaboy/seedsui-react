@@ -3,11 +3,12 @@ import { validateDate } from './../utils'
 import BaseModal from './../../Select/Modal'
 import MultipleMain from './../MultipleMain'
 
-const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
+const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
   return (
     <BaseModal
       ref={ref}
       {...props}
+      type={type}
       multiple={false}
       onBeforeChange={async (tabs) => {
         // eslint-disable-next-line
@@ -15,7 +16,7 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
           // 校验值是否合法
           for (let tab of tabs) {
             let newValue = validateDate(tab.value, {
-              type: tab?.type || props?.type,
+              type: tab?.type || type,
               min: props?.min,
               max: props?.max,
               onError: props?.onError

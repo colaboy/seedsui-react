@@ -9,7 +9,7 @@ export default () => {
       <DatePicker.Combo
         placeholder="Please select"
         defaultPickerValue={new Date('2022-08-22 00:00')}
-        // min={new Date()}
+        min={new Date()}
         type="datetime"
         value={value}
         onChange={setValue}

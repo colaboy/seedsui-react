@@ -4,11 +4,12 @@ import valueFormatter from './valueFormatter'
 import BaseModal from './../../Select/Modal'
 import Main from './../Main'
 
-const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
+const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
   return (
     <BaseModal
       ref={ref}
       {...props}
+      type={type}
       valueFormatter={valueFormatter}
       multiple={false}
       onBeforeChange={async (value) => {
@@ -16,7 +17,7 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
         return new Promise(async (resolve) => {
           // 校验值是否合法
           let newValue = validateDate(value, {
-            type: props?.type,
+            type: type,
             min: props?.min,
             max: props?.max,
             onError: props?.onError

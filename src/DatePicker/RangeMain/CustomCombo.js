@@ -25,6 +25,7 @@ export default function CustomCombo({
     if (onChange) onChange([value?.[0] || null, endDate])
   }
 
+  console.log('value:', value)
   return (
     <div
       {...customProps}
@@ -46,12 +47,13 @@ export default function CustomCombo({
       <Combo
         portal={portal}
         value={endDate}
-        min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
+        // min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
         onChange={handleEndDateChange}
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
         {...dateProps}
+        min={new Date()}
       />
     </div>
   )
