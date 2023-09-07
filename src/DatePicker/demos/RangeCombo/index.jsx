@@ -72,7 +72,7 @@ export default () => {
           }
         }}
         // 自定义渲染
-        comboRender={(val, { displayValue }) => {
+        comboRender={({ displayValue }) => {
           return icon + (displayValue || '自定义区间')
         }}
         // maskClosable={false}

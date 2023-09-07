@@ -204,7 +204,8 @@ const Combo = forwardRef(
         {/* Combo */}
         {typeof comboRender === 'function' && (
           <div {...props} onClick={handleInputClick} ref={comboRef}>
-            {comboRender(value, {
+            {comboRender({
+              value,
               displayValue
             })}
           </div>
