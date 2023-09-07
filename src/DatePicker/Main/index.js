@@ -67,7 +67,7 @@ const Main = forwardRef(
               format = titleFormatter({ type, format, value: getValue(), ranges, separator })
             }
             if (!format || typeof format !== 'string') {
-              format = `${getFormat(type)} 周E`
+              format = `${getFormat(type)} 周EE`
             }
             return instance.current.formatTitle(format)
           }
