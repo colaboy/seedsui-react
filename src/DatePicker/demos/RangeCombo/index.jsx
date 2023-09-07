@@ -13,15 +13,15 @@ export default () => {
 
   return (
     <>
-      {/* <DatePicker.RangeCombo
+      <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={null}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
-        // min={new Date()}
-        // max={new Date()}
-        // maskClosable={false}
+        min={new Date()}
+        max={new Date()}
+        maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
             date1Ref.current.close()
@@ -47,7 +47,7 @@ export default () => {
         captionProps={{
           caption: '选择日期'
         }}
-      /> */}
+      />
       <DatePicker.RangeCombo
         ref={date2Ref}
         // ranges={{

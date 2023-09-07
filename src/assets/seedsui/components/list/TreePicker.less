@@ -340,12 +340,20 @@
 
 // treepicker的弹窗样式
 .treepicker-modal {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+
   background-color: @picker-bg;
-  &:extend(.picker);
+  transform: translate3d(0, 100%, 0);
+  transition-duration: @animation-duration;
+  transition-property: transform, opacity, visibility;
+  &.active {
+    transform: translate3d(0, 0, 0);
+  }
 }
-.treepicker-modal.active {
-  &:extend(.picker.active);
-}
+
 .treepicker-modal-wrapper {
   position: relative;
   display: block;

@@ -1,12 +1,20 @@
 // PickerSelect选择器 (@deprecated废弃, 使用Select代替)
 @pickerselect-color-active: @primary;
 .pickerselect {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+
   background-color: @picker-bg;
-  &:extend(.picker);
+  transform: translate3d(0, 100%, 0);
+  transition-duration: @animation-duration;
+  transition-property: transform, opacity, visibility;
+  &.active {
+    transform: translate3d(0, 0, 0);
+  }
 }
-.pickerselect.active {
-  &:extend(.picker.active);
-}
+
 .pickerselect-wrapper {
   position: relative;
   display: block;
