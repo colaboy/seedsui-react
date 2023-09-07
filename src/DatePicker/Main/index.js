@@ -67,7 +67,8 @@ const Main = forwardRef(
               format = titleFormatter({ type, format, value: getValue(), ranges, separator })
             }
             if (!format || typeof format !== 'string') {
-              format = `${getFormat(type)} 周EE`
+              // 只有年月日、年月日时分才显示周几
+              format = `${getFormat(type)}${['date', 'datetime'].includes(type) ? ' 周EE' : ''}`
             }
             return instance.current.formatTitle(format)
           }
