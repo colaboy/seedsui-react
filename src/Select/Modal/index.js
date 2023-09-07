@@ -71,7 +71,7 @@ const Modal = forwardRef(
       type, // year | quarter | month | date | time | datetime
       onError,
       ranges,
-      rangesModal, // 弹出方式dropdown
+      modal, // 弹出方式dropdown
       separator,
 
       // Main: Actionsheet Control properties
@@ -276,7 +276,7 @@ const Modal = forwardRef(
                 type, // year | quarter | month | date | time | datetime
                 onError,
                 ranges,
-                rangesModal, // 弹出方式dropdown
+                modal, // 弹出方式dropdown
                 separator,
 
                 // Main: Actionsheet Control properties

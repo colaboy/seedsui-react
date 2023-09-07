@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import locale from './../../locale'
 import getActiveKey from './getActiveKey'
 
-import Combo from './../Combo'
 import Selector from './../../Selector'
 import CustomCombo from './CustomCombo'
 
 // 日期快捷选择
-export default function DateRangeBar({
+export default function RangeMain({
   portal,
   // components props
   selectorProps,
@@ -77,10 +76,6 @@ export default function DateRangeBar({
     // eslint-disable-next-line
   }, [value])
 
-  // 开始和结束日期
-  let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : ''
-  let endDate = Array.isArray(value) && value[1] instanceof Date ? value[1] : ''
-
   // 点击快捷选择
   async function handleClick(rangeKey) {
     setActiveKey(rangeKey)
@@ -89,15 +84,6 @@ export default function DateRangeBar({
       return
     }
     if (onChange) onChange(ranges[rangeKey])
-  }
-
-  // 修改开始日期
-  function handleStartDateChange(startDate) {
-    if (onChange) onChange([startDate, value?.[1] || null])
-  }
-  // 修改结束日期
-  function handleEndDateChange(endDate) {
-    if (onChange) onChange([value?.[0] || null, endDate])
   }
 
   // 将{key: value}转为[{id: key, name: value}]

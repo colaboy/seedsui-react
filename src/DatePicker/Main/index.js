@@ -33,7 +33,7 @@ const Main = forwardRef(
       max,
       onError,
       ranges,
-      rangesModal, // 快捷选择弹出方式
+      modal, // 快捷选择弹出方式
       separator,
 
       ...props

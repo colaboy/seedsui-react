@@ -8,23 +8,14 @@ import validateTime from './validateTime'
 
 // 日期区间弹窗
 const DateRangeModal = function ({
-  captionProps,
-  submitProps,
-  cancelProps,
-
-  maskClosable,
-  maskProps,
   value,
   defaultPickerValue,
-  ranges,
+  daysLimit,
   type,
-  min,
-  max,
   onError,
   onBeforeChange,
   onChange,
-  visible,
-  onVisibleChange
+  ...props
 }) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
@@ -53,10 +44,6 @@ const DateRangeModal = function ({
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
     let timeValid = validateTime(newValue, { type: type, onError: onError })
     let daysValid = true
-    let daysLimit =
-      toString.call(ranges) === '[object Object]' && !Object.isEmptyObject(ranges)
-        ? Object.values(ranges)[0]
-        : null
     if (typeof daysLimit === 'number') {
       daysValid = validateDays(newValue, { daysLimit: daysLimit, onError: onError })
     }
@@ -80,20 +67,10 @@ const DateRangeModal = function ({
 
   return (
     <MultipleModal
-      captionProps={captionProps}
-      submitProps={submitProps}
-      cancelProps={cancelProps}
-      maskClosable={maskClosable}
-      maskProps={maskProps}
       value={multipleDate}
-      type={type}
-      min={min}
-      max={max}
-      onError={onError}
       onBeforeChange={handleBeforeChange}
       onChange={handleChange}
-      visible={visible}
-      onVisibleChange={onVisibleChange}
+      {...props}
     />
   )
 }

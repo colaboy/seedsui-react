@@ -1,67 +1,73 @@
 // DatePicker
 // DatePicker.RangeCombo日期快捷选择弹窗
-.datepicker-tooltip {
-}
-// 下拉选项
-.datepicker-tooltip-option {
-  padding: 10px 12px;
-}
+// .datepicker-tooltip {
+// }
+// // 下拉选项
+// .datepicker-tooltip-option {
+//   padding: 10px 12px;
+// }
 // 自定义时间弹出框中的日期选择控件
-.datepicker-modal-combo {
-  width: 100%;
-  text-align: center;
-  background: #f7f9fc;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  & + .datepicker-modal-combo {
-    margin-top: 8px;
-  }
-  .input-text {
-    margin: 0 12px;
-  }
-}
+// .datepicker-modal-combo {
+//   width: 100%;
+//   text-align: center;
+//   background: #f7f9fc;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 4px;
+//   & + .datepicker-modal-combo {
+//     margin-top: 8px;
+//   }
+//   .input-text {
+//     margin: 0 12px;
+//   }
+// }
 
 // DatePicker.RangeModal
 .datepicker-rangemodal-modal {
   width: 100%;
+  padding: 12px;
   .bg-white;
   // 向上弹出与picker样式一致
-  &[data-animation='slideUp'] {
-    height: 298px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  &[data-animation='slideDown'] {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
+  // // 向上弹出与picker样式一致
+  // &[data-animation='slideUp'] {
+  //   height: 298px;
+  //   border-top-left-radius: 8px;
+  //   border-top-right-radius: 8px;
+  // }
 }
-.datepicker-rangemodal-modal-card {
-}
-.datepicker-rangemodal-modal-card-caption {
-  margin: 12px 12px 0 12px;
-}
-.datepicker-rangemodal-modal-card-selector {
-  padding: 10px 12px;
-}
+// .datepicker-rangemodal-modal-card {
+// }
+// .datepicker-rangemodal-modal-card-caption {
+//   margin: 12px 12px 0 12px;
+// }
+// .datepicker-rangemodal-modal-card-selector {
+//   padding: 10px 12px;
+// }
 
-// @deprecated 5.7.19废弃
-.datepicker-rangemodal-modal-card-buttons {
-  display: flex;
-  flex-flow: row wrap;
-  min-width: 0;
-  padding: 6px 5px;
-}
-// @deprecated 5.7.19废弃
-.datepicker-rangemodal-modal-card-button {
-  margin: 6px 5px;
-  padding: 4px 20px;
-  background-color: rgba(242, 242, 242, 1);
-  border: 1px solid rgba(242, 242, 242, 1);
-  border-radius: 20px;
-  &.active,
-  &:active {
-    color: @primary;
-    background-color: transparent;
-    border: 1px solid @primary;
-  }
-}
+// // @deprecated 5.7.19废弃
+// .datepicker-rangemodal-modal-card-buttons {
+//   display: flex;
+//   flex-flow: row wrap;
+//   min-width: 0;
+//   padding: 6px 5px;
+// }
+// // @deprecated 5.7.19废弃
+// .datepicker-rangemodal-modal-card-button {
+//   margin: 6px 5px;
+//   padding: 4px 20px;
+//   background-color: rgba(242, 242, 242, 1);
+//   border: 1px solid rgba(242, 242, 242, 1);
+//   border-radius: 20px;
+//   &.active,
+//   &:active {
+//     color: @primary;
+//     background-color: transparent;
+//     border: 1px solid @primary;
+//   }
+// }
 
 // DatePicker.Tabs
 .datepicker-types {

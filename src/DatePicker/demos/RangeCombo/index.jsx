@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <>
-      <DatePicker.RangeCombo
+      {/* <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={null}
         className="border-b"
@@ -47,14 +47,14 @@ export default () => {
         captionProps={{
           caption: '选择日期'
         }}
-      />
+      /> */}
       <DatePicker.RangeCombo
         ref={date2Ref}
         // ranges={{
         //   ['最近30天']: [new Date().prevDate(29), new Date()],
         //   ['自定义时间']: null
         // }}
-        rangesModal="picker"
+        // modal="picker"
         placeholder="请选择RangeCombo"
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
