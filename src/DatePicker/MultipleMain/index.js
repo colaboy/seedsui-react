@@ -23,11 +23,15 @@ const MultipleMain = (
     onChange,
 
     // Main: DatePicker Control properties
+    titleFormatter,
     defaultPickerValue,
     type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,
     onError,
+    ranges,
+    rangesModal, // 快捷选择弹出方式
+    separator,
 
     ...props
   },

@@ -13,16 +13,13 @@ export default () => {
         type="datetime"
         value={value}
         onChange={setValue}
-        // captionProps={{
-        //   caption: '选择日期'
-        // }}
         allowClear
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
-        captionProps={{
-          caption: ''
-        }}
+        // captionProps={{
+        //   caption: ''
+        // }}
         // titleFormatter={({ type, value }) => {
         //   console.log('格式化标题:', type, value)
         //   if (value.getDate() === 1) {
@@ -30,12 +27,12 @@ export default () => {
         //   }
         //   return 'YYYY-MM-DD'
         // }}
-        onError={(err) =>
-          Toast.show({
-            content: err.errMsg || '',
-            maskClickable: true
-          })
-        }
+        // onError={(err) =>
+        //   Toast.show({
+        //     content: err.errMsg || '',
+        //     maskClickable: true
+        //   })
+        // }
       />
     </>
   )

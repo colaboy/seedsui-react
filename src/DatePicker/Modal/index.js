@@ -9,6 +9,8 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
     <BaseModal
       ref={ref}
       {...props}
+      valueFormatter={valueFormatter}
+      multiple={false}
       onBeforeChange={async (value) => {
         // eslint-disable-next-line
         return new Promise(async (resolve) => {
@@ -37,8 +39,6 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
           resolve(newValue)
         })
       }}
-      valueFormatter={valueFormatter}
-      multiple={false}
       MainComponent={Main}
     />
   )

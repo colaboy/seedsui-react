@@ -8,6 +8,7 @@ const Modal = forwardRef(({ onBeforeChange, ...props }, ref) => {
     <BaseModal
       ref={ref}
       {...props}
+      multiple={false}
       onBeforeChange={async (tabs) => {
         // eslint-disable-next-line
         return new Promise(async (resolve) => {
