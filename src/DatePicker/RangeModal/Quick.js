@@ -1,7 +1,7 @@
 // require PrototypeDate.js和PrototypeString.js
 import React from 'react'
 import locale from '../../locale'
-import { getActiveKey } from './../utils'
+import getActiveKey from './../RangeCombo/getActiveKey'
 
 import Selector from './../../Selector'
 
