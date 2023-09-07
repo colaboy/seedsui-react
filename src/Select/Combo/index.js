@@ -76,6 +76,7 @@ const Combo = forwardRef(
       slotProps,
 
       // Combo|Main: DatePicker Control properties
+      titleFormatter,
       min,
       max,
       type, // year | quarter | month | date | time | datetime
@@ -285,6 +286,7 @@ const Combo = forwardRef(
             slotProps,
 
             // Combo|Main: DatePicker Control properties
+            titleFormatter,
             min,
             max,
             type, // year | quarter | month | date | time | datetime

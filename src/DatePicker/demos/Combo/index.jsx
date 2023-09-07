@@ -20,6 +20,13 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        // titleFormatter={({ type, value }) => {
+        //   console.log('格式化标题:', type, value)
+        //   if (value.getDate() === 1) {
+        //     return 'YYYY-MM'
+        //   }
+        //   return 'YYYY-MM-DD'
+        // }}
         onError={(err) =>
           Toast.show({
             content: err.errMsg || '',

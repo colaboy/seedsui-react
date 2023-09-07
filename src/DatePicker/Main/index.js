@@ -1,6 +1,7 @@
 // require PrototypeDate.js和PrototypeString.js
 import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
 import locale from './../../locale'
+import getFormat from './../Combo/getFormat'
 import Instance from './instance.js'
 import Utils from './Utils'
 
@@ -23,11 +24,15 @@ const Main = forwardRef(
       onChange,
 
       // Main: DatePicker Control properties
+      titleFormatter,
       defaultPickerValue,
       type = 'date', // year | quarter | month | date | time | datetime
       min,
       max,
       onError,
+      ranges,
+      rangesModal, // 快捷选择弹出方式
+      separator,
 
       ...props
     },
@@ -42,9 +47,6 @@ const Main = forwardRef(
       type = 'date'
     }
 
-    // 标题
-    let [title, setTitle] = useState('')
-
     // 节点
     const mainRef = useRef(null)
     const instance = useRef(null)
@@ -55,7 +57,22 @@ const Main = forwardRef(
         instance: instance.current,
         getInstance: () => instance.current,
         getValue: getValue,
-        update: update
+        update: update,
+        // 获取标题
+        getTitle: () => {
+          if (instance?.current?.formatTitle) {
+            let format = ''
+            // 如果用户没有自定义标题格式, 则使用动态格式
+            if (typeof titleFormatter === 'function') {
+              format = titleFormatter({ type, format, value: getValue(), ranges, separator })
+            }
+            if (!format || typeof format !== 'string') {
+              format = `${getFormat(type)} 周E`
+            }
+            return instance.current.formatTitle(format)
+          }
+          return ''
+        }
       }
     })
 
@@ -89,9 +106,6 @@ const Main = forwardRef(
         const def = Utils.getDefaults(value, defaultPickerValue)
         instance.current.setDefaults(def)
         instance.current.update()
-        // 是否显示标题
-        title = instance.current.getActiveWeekText()
-        setTitle(title)
       } else {
         initInstance()
       }
@@ -110,9 +124,6 @@ const Main = forwardRef(
           let defaultDay = s.activeOptions[2]['id']
           s.updateDays(year, month, defaultDay) // 更新总天数
         }
-        // 是否显示标题
-        title = s.getActiveWeekText()
-        setTitle(title)
 
         // 触发onChange事件
         if (onChange) onChange(getValue())

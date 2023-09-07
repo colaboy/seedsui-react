@@ -65,6 +65,7 @@ const Modal = forwardRef(
       slotProps,
 
       // Combo|Main: DatePicker Control properties
+      titleFormatter,
       min,
       max,
       type, // year | quarter | month | date | time | datetime
@@ -97,6 +98,10 @@ const Modal = forwardRef(
       // eslint-disable-next-line
       valueFormatter = formatValue
     }
+
+    // 当前标题，如日期
+    let [currentTitle, setCurrentTitle] = useState('')
+
     // 当前选中项
     let [currentValue, setCurrentValue] = useState([])
 
@@ -121,15 +126,24 @@ const Modal = forwardRef(
 
       // 取消弹窗时, currentValue已变, 而value未变, 如果value和currentValue不一致, 则使用value
       if (visible) {
-        setCurrentValue(valueFormatter(value))
+        updateTitle()
+        setCurrentValue(valueFormatter({ type, format, value, ranges, separator }))
       }
       // eslint-disable-next-line
     }, [visible])
 
     // useEffect(() => {
-    //   setCurrentValue(valueFormatter(value))
+    //   setCurrentValue(valueFormatter({ type, format, value, ranges, separator }))
     //   // eslint-disable-next-line
     // }, [value])
+
+    // 没有传入标题时, 需要动态更新标题（如果日期）
+    function updateTitle() {
+      if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
+        currentTitle = mainRef.current.getTitle()
+        setCurrentTitle(currentTitle)
+      }
+    }
 
     // 获取确定按钮的数量
     function getCaption() {
@@ -203,7 +217,7 @@ const Modal = forwardRef(
         >
           {/* 头 */}
           <Head
-            captionProps={captionProps}
+            captionProps={{ caption: currentTitle, ...captionProps }}
             cancelProps={cancelProps}
             submitProps={{
               // 必选单选不显示确定按钮
@@ -257,6 +271,7 @@ const Modal = forwardRef(
                 slotProps,
 
                 // Combo|Main: DatePicker Control properties
+                titleFormatter,
                 min,
                 max,
                 type, // year | quarter | month | date | time | datetime
@@ -283,7 +298,11 @@ const Modal = forwardRef(
               value={currentValue}
               list={list}
               onChange={(newValue) => {
-                currentValue = valueFormatter(newValue)
+                // 无标题时更新标题
+                updateTitle()
+
+                // 修改值
+                currentValue = valueFormatter({ type, format, value: newValue, ranges, separator })
                 setCurrentValue(currentValue)
 
                 // multiple未传则为必选单选

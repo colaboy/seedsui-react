@@ -242,22 +242,11 @@ let PickerDate = function (params) {
     }
     return date.format('YYYY-MM-DD')
   }
-  // 增加周几显示
-  s.getActiveWeekText = function () {
+  // 标题格式化
+  s.formatTitle = function (format) {
     const options = s.activeOptions
-    let value = ''
-    // 只有年月日、年月日时分才显示周几
-    if (s.params.viewType === 'date' || s.params.viewType === 'datetime') {
-      let activeDate = s.getActiveDate(options)
-      for (let i = 0; i < options.length; i++) {
-        if (i === 2) {
-          let day = s.getLocaleDayString(activeDate)
-          value = s.formatDate(activeDate) + ' ' + day
-          break
-        }
-      }
-    }
-    return value
+    let activeDate = s.getActiveDate(options)
+    return activeDate.format(format)
   }
   s.setDefaultsByKeys = function (activeKeys) {
     if (
