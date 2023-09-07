@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import locale from '../../locale'
 
 import MultipleModal from './../MultipleModal'
-import { getDates, validateTime, validateDays } from './../utils'
+import getDates from './getDates'
+import validateDays from './validateDays'
+import validateTime from './validateTime'
 
 // 日期区间弹窗
 const DateRangeModal = function ({

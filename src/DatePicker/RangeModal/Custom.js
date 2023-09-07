@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import locale from '../../locale'
 
 import MultipleCombo from './../MultipleCombo'
-import { getDates, validateDays, validateTime } from './../utils'
+import getDates from './getDates'
+import validateDays from './validateDays'
+import validateTime from './validateTime'
 
 const Custom = function ({
   captionProps,

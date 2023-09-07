@@ -11,7 +11,7 @@ import Custom from './Custom'
 import DateRangeModal from './DateRangeModal'
 
 // 区间库
-import { getRanges } from './../utils'
+import getRanges from './getRanges'
 
 const RangeModal = forwardRef(
   (

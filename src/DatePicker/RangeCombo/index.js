@@ -3,7 +3,7 @@ import locale from './../../locale'
 import getRangeDisplayValue from './getRangeDisplayValue'
 
 import Combo from './../../Select/Combo'
-import Modal from './../MultipleModal'
+import Modal from './../RangeModal'
 
 // 日期区间
 const RangeCombo = forwardRef(
