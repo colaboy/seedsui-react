@@ -14,7 +14,7 @@ export default function RangeMain({
   customProps,
   allowClear = 'exclusion-ricon',
 
-  // 定制属性
+  // Main properties
   ranges = {
     [locale('今日')]: [new Date(), new Date()],
     [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
@@ -31,8 +31,11 @@ export default function RangeMain({
     [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()],
     [locale('自定义')]: 0
   },
+  type = 'date',
   value,
-  onChange
+  defaultPickerValue,
+  onChange,
+  onSelect
 }) {
   // 获取自定义项的key:
   let customKey = ''
@@ -79,6 +82,14 @@ export default function RangeMain({
   // 点击快捷选择
   async function handleClick(rangeKey) {
     setActiveKey(rangeKey)
+
+    // 点击选项
+    if (onSelect)
+      onSelect(ranges[rangeKey], {
+        ranges: ranges,
+        activeKey: rangeKey,
+        setActiveKey: setActiveKey
+      })
     // 自定义不修改日期
     if (rangeKey === customKey) {
       return
@@ -114,14 +125,16 @@ export default function RangeMain({
         }}
       />
 
-      {/* 自定义区间 */}
+      {/* 自定义区间: 文本框选择 */}
       {activeKey === customKey && (
         <CustomCombo
-          portal={portal}
           dateProps={dateProps}
           customProps={customProps}
           allowClear={allowClear}
+          portal={portal}
+          type={type}
           value={value}
+          defaultPickerValue={defaultPickerValue}
           onChange={onChange}
         />
       )}

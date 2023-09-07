@@ -79,8 +79,8 @@ const MultipleMain = (
   // 隐藏时, 清空选中项
   useEffect(() => {
     if (!visible) {
-      setTabs(null)
-      setActiveTab(null)
+      // setTabs(null)
+      setActiveTab(tabs?.[0] || null)
     }
   }, [visible])
 

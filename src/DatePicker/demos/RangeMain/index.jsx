@@ -10,6 +10,7 @@ export default () => {
       <Layout.Main className="bg-white">
         <DatePicker.RangeMain
           // daysLimit={3}
+          modal="modal"
           value={value}
           onChange={(newValue) => {
             console.log(newValue)

@@ -1,8 +1,8 @@
 // require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef, useRef } from 'react'
+import React, { forwardRef } from 'react'
 
 // 快捷选择
-import SelectorDropdown from './SelectorDropdown'
+import SelectorModal from './SelectorModal'
 
 // 非快捷选择
 import PickerModal from './PickerModal'
@@ -98,7 +98,7 @@ const RangeModal = forwardRef(
     if (hasSelector) {
       if (modal === 'dropdown') {
         return (
-          <SelectorDropdown
+          <SelectorModal
             // Modal properties
             getComboDOM={getComboDOM}
             maskClosable={maskClosable}
@@ -106,8 +106,10 @@ const RangeModal = forwardRef(
             onVisibleChange={onVisibleChange}
             // RangeMain properties
             portal={portal}
+            type={type}
             ranges={ranges}
             value={value}
+            defaultPickerValue={defaultPickerValue}
             onChange={onChange}
             {...props}
           />

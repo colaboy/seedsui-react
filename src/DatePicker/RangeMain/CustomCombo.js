@@ -25,7 +25,6 @@ export default function CustomCombo({
     if (onChange) onChange([value?.[0] || null, endDate])
   }
 
-  console.log('value:', value)
   return (
     <div
       {...customProps}
