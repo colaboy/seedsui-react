@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
-import getDateDisplayValue from './../Combo/getDateDisplayValue'
+import { getDateDisplayValue } from './../utils'
 
 import DatePickerMain from './../Main'
 import Tabs from './../../Tabs'

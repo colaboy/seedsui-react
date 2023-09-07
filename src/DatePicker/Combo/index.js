@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Combo from './../../Select/Combo'
 import Modal from './../Modal'
-import getDateDisplayValue from './getDateDisplayValue'
+import { getDateDisplayValue } from './../utils'
 
 // DatePicker
 const DatePickerCombo = forwardRef(({ ...props }, ref) => {

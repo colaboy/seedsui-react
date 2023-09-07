@@ -2,8 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react
 import Tabs from './../../Tabs'
 import locale from './../../locale'
 import Combo from './../Combo'
-import { validateDate } from './../utils'
-import getDateDisplayValue from './../Combo/getDateDisplayValue'
+import { validateDate, getDateDisplayValue } from './../utils'
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef(

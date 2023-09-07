@@ -1,4 +1,4 @@
-import getDateDisplayValue from './../Combo/getDateDisplayValue'
+import { getDateDisplayValue } from './../utils'
 
 // 显示多选名称
 function getMultipleDisplayValue({ type, value, separator }) {

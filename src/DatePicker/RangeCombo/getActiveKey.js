@@ -1,4 +1,4 @@
-import getFormat from '../Combo/getFormat'
+import { getFormat } from './../utils'
 
 // 根据value获取选中项
 function getActiveKey({ value, ranges, type, currentActiveKey }) {

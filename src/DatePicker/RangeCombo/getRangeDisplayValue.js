@@ -1,4 +1,4 @@
-import getDateDisplayValue from './../Combo/getDateDisplayValue'
+import { getDateDisplayValue } from './../utils'
 import getActiveKey from './getActiveKey'
 
 // 显示名称
