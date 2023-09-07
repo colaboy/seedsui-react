@@ -3,19 +3,19 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import locale from './../../locale'
 
-import { Layout, Card } from 'seedsui-react'
+import { Card } from 'seedsui-react'
 import Item from './Item'
 
 // 穿梭框
-const Transfer = ({ list, value, onChange, titles, footerRender }, ref) => {
+const Transfer = ({ visible, list, value, onChange, titles, footerRender, ...props }, ref) => {
   // 容器
   const mainRef = useRef(null)
 
   // 暴露方法
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: mainRef?.current?.rootDOM,
-      getRootDOM: mainRef?.current?.getRootDOM
+      rootDOM: mainRef.current,
+      getRootDOM: () => mainRef.current
     }
   })
 
@@ -49,7 +49,11 @@ const Transfer = ({ list, value, onChange, titles, footerRender }, ref) => {
 
   return (
     <>
-      <Layout.Main ref={mainRef} className="transfer">
+      <div
+        {...props}
+        className={`picker-main${props?.className ? ' ' + props.className : ''}`}
+        ref={mainRef}
+      >
         {/* 已添加列表 */}
         {value?.length ? (
           <>
@@ -106,7 +110,7 @@ const Transfer = ({ list, value, onChange, titles, footerRender }, ref) => {
             </Card>
           </>
         ) : null}
-      </Layout.Main>
+      </div>
       {typeof footerRender === 'function' &&
         footerRender({
           value,

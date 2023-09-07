@@ -90,12 +90,44 @@
   text-overflow: ellipsis;
   font-weight: bold;
 }
+
+// 主体
+.picker-main {
+  display: block;
+  position: relative;
+  overflow: auto;
+  .flex-1;
+
+  // 暂无数据
+  .nodata {
+    margin: 10px 0;
+  }
+  .nodata-image {
+    width: 150px;
+  }
+}
+.picker {
+  .picker-main {
+    height: auto;
+    min-height: 200px;
+    max-height: 557px;
+    .nodata {
+      margin: 10px 0;
+    }
+    .nodata-image {
+      width: 150px;
+    }
+  }
+}
+
+// 选择控件
 .picker-wrapper {
   position: relative;
   display: block;
   height: 215px;
   overflow: hidden;
 }
+
 // 槽容器
 .picker-slotbox {
   display: table;

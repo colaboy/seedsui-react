@@ -31,12 +31,8 @@ function TreePicker(
     defaultValue,
     value,
     // 节流时长
-    throttle = 500,
     onChange,
     onSelect,
-
-    // 树默认设置
-    showIcon = false,
 
     // 自定义渲染
     itemRender,
@@ -248,7 +244,7 @@ function TreePicker(
   if (!treeData) return null
 
   return (
-    <>
+    <div className="picker-main">
       <Tree
         ref={treeRef}
         fieldNames={{ key: 'id' }}
@@ -269,14 +265,14 @@ function TreePicker(
         // 搜索时展开的子级
         expandedKeys={expandedKeys}
         // 树默认设置
-        showIcon={showIcon}
+        showIcon={false}
         onlyLeafCheck={onlyLeafCheck}
         checkStrictly={checkStrictly === false ? false : true}
         checkable={checkable}
         selectable={checkable ? false : true}
         {...props}
       ></Tree>
-    </>
+    </div>
   )
 }
 

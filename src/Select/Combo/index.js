@@ -96,6 +96,7 @@ const Combo = forwardRef(
       onlyLeafCheck, // 仅允许点击末级节点
       selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
       defaultExpandAll, // 默认展开
+      TreeProps,
 
       children,
       ...props
@@ -304,7 +305,8 @@ const Combo = forwardRef(
             preserveValue, // 保留不在树结构中的value
             onlyLeafCheck, // 仅允许点击末级节点
             selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
-            defaultExpandAll // 默认展开
+            defaultExpandAll, // 默认展开
+            TreeProps
           })}
           onVisibleChange={setVisible}
           visible={ModalProps?.visible === undefined ? visible : ModalProps.visible}

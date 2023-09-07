@@ -95,7 +95,11 @@ const Main = forwardRef(
         {/* 头部 */}
         {HeaderNode}
         {/* 主体 */}
-        <div {...props} className="select-modal-wrapper" ref={mainRef}>
+        <div
+          {...props}
+          className={`picker-main${props?.className ? ' ' + props.className : ''}`}
+          ref={mainRef}
+        >
           {Object.isEmptyObject(list) && <NoData />}
           {list.map((item, index) => {
             return (
