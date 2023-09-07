@@ -14,6 +14,10 @@
 
 <code src="./demos/RangeCombo/index.jsx"></code>
 
+### DatePicker.RangeMain
+
+<code src="./demos/RangeMain/index.jsx"></code>
+
 ### DatePicker.Types
 
 <code src="./demos/Types/index.jsx"></code>

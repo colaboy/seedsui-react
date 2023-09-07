@@ -88,3 +88,23 @@
 }
 .datepicker-types-next {
 }
+
+// 日期区间控件-自定义
+.datepicker-rangemain-custom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .input-wrapper {
+    background-color: #f3f4f5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+  .input-text {
+    padding: 8px 0;
+  }
+}
+// 日期区间控件距离选项组间距
+.selector + .datepicker-rangemain-custom {
+  margin-top: 8px;
+}
