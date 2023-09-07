@@ -12,6 +12,7 @@ const SelectorModal = function ({
   onVisibleChange,
 
   // RangeMain properties
+  titles,
   portal,
   type,
   ranges,
@@ -46,18 +47,18 @@ const SelectorModal = function ({
       >
         <RangeMain
           portal={portal}
+          titles={titles}
           ranges={ranges}
           value={value}
           onChange={(newValue) => {
             onChange && onChange(newValue)
             onVisibleChange && onVisibleChange(false)
           }}
-          onSelect={(value, { activeKey, ranges, setActiveKey }) => {
+          onSelect={(value, { activeKey, ranges }) => {
             // 点击自定义
             if (ranges && Array.isArray(ranges[activeKey]) === false) {
               onVisibleChange && onVisibleChange(false)
               setPickerVisible(true)
-              setActiveKey('')
             }
           }}
         />

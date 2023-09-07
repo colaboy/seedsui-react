@@ -65,6 +65,7 @@ const RangeModal = forwardRef(
       defaultPickerValue,
 
       // Combo|Main: DatePicker Control properties
+      titles,
       titleFormatter,
       min,
       max,
@@ -105,6 +106,7 @@ const RangeModal = forwardRef(
             visible={visible}
             onVisibleChange={onVisibleChange}
             // RangeMain properties
+            titles={titles}
             portal={portal}
             type={type}
             ranges={ranges}

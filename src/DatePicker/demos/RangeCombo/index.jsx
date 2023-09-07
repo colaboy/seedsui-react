@@ -55,6 +55,10 @@ export default () => {
         //   ['自定义时间']: null
         // }}
         // modal="picker"
+        titles={{
+          custom: '自定义选择',
+          selector: '快捷选择'
+        }}
         placeholder="请选择RangeCombo"
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)

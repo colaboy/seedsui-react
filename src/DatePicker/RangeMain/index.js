@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import locale from './../../locale'
+import defaultRanges from './defaultRanges'
 import getActiveKey from './getActiveKey'
 
 import Selector from './../../Selector'
@@ -15,22 +15,8 @@ export default function RangeMain({
   allowClear = 'exclusion-ricon',
 
   // Main properties
-  ranges = {
-    [locale('今日')]: [new Date(), new Date()],
-    [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
-    [locale('近7日')]: [new Date().prevDate(6), new Date()],
-    [locale('近30日')]: [new Date().prevDate(29), new Date()],
-    [locale('近90日')]: [new Date().prevDate(89), new Date()],
-    [locale('本周')]: [new Date().monday(), new Date()],
-    [locale('本月')]: [new Date().firstMonthDate(), new Date()],
-    [locale('上月')]: [
-      new Date().prevMonth().firstMonthDate(),
-      new Date().prevMonth().lastMonthDate()
-    ],
-    [locale('本季度')]: [new Date().firstQuarterDate(), new Date()],
-    [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()],
-    [locale('自定义')]: 0
-  },
+  titles,
+  ranges = defaultRanges,
   type = 'date',
   value,
   defaultPickerValue,
@@ -99,11 +85,25 @@ export default function RangeMain({
 
   // 将{key: value}转为[{id: key, name: value}]
   function getSelectorOptions() {
-    return Object.entries(ranges).map(([name, value]) => ({ id: name, name: name, value: value }))
+    let options = Object.entries(ranges).map(([name, value]) => {
+      return { id: name, name: name, value: value }
+    })
+    // 独立显示自定义字段, 过滤到选项中
+    if (titles?.custom) {
+      options = options.filter((item) => {
+        return item.id !== customKey
+      })
+    }
+    return options
   }
 
   return (
     <>
+      {/* 快捷选择: 标题 */}
+      {typeof titles?.selector === 'string' ? (
+        <p className="datepicker-selector-caption">{titles.selector}</p>
+      ) : null}
+
       {/* 快捷选择 */}
       <Selector
         columns={3}
@@ -124,6 +124,25 @@ export default function RangeMain({
           }
         }}
       />
+
+      {/* 自定义选择独立一行显示 */}
+      {titles?.custom && (
+        <>
+          {/* 标题 */}
+          {typeof titles.custom === 'string' ? (
+            <p className="datepicker-selector-caption">{titles.custom}</p>
+          ) : null}
+          {/* 按钮 */}
+          <div
+            className="datepicker-selector-button"
+            onClick={() => {
+              handleClick(customKey)
+            }}
+          >
+            {customKey}
+          </div>
+        </>
+      )}
 
       {/* 自定义区间: 文本框选择 */}
       {activeKey === customKey && (

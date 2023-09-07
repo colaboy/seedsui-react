@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import locale from './../../locale'
+import defaultRanges from './../RangeMain/defaultRanges'
 import getRangeDisplayValue from './getRangeDisplayValue'
 
 import Combo from './../../Select/Combo'
@@ -10,34 +10,20 @@ const RangeCombo = forwardRef(
   (
     {
       // 定制属性
-      ranges = {
-        [locale('今天', 'datepicker-tooltip_today')]: [new Date(), new Date()],
-        [locale('昨天', 'datepicker-tooltip_yesterday')]: [
-          new Date().prevDate(),
-          new Date().prevDate()
-        ],
-        [locale('本月', 'datepicker-tooltip_this_month')]: [
-          new Date().firstMonthDate(),
-          new Date()
-        ],
-        [locale('上月', 'datepicker-tooltip_last_month')]: [
-          new Date().prevMonth().firstMonthDate(),
-          new Date().prevMonth().lastMonthDate()
-        ],
-        [locale('最近7天', 'datepicker-tooltip_last_days', ['7'])]: [
-          new Date().prevDate(6),
-          new Date()
-        ],
-        [locale('最近30天', 'datepicker-tooltip_last_days', ['30'])]: [
-          new Date().prevDate(29),
-          new Date()
-        ],
-        [locale('自定义时间', 'datepicker-tooltip_custom_date')]: 0
-      },
+      titles,
+      ranges = defaultRanges,
       ...props
     },
     ref
   ) => {
+    // 扩展非标准属性
+    if (titles) {
+      if (!props.ModalProps) {
+        props.ModalProps = {}
+      }
+      props.ModalProps.titles = titles
+    }
+
     return (
       <Combo
         ref={ref}
