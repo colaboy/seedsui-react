@@ -1,7 +1,7 @@
 import getDateDisplayValue from './../Combo/getDateDisplayValue'
 
 // 显示多选名称
-function getMultipleDisplayValue({ type, format, value, separator }) {
+function getMultipleDisplayValue({ type, value, separator }) {
   if (!Array.isArray(value) || value.length < 2) {
     return ''
   }
@@ -11,7 +11,7 @@ function getMultipleDisplayValue({ type, format, value, separator }) {
     if (Object.isDate(current?.value) === false) {
       return ''
     }
-    displayValue.push(getDateDisplayValue({ type: type, format: format, value: current.value }))
+    displayValue.push(getDateDisplayValue({ type: type, value: current.value }))
   }
 
   return displayValue.join(separator || ' ~ ')

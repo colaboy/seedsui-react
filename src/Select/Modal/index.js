@@ -69,7 +69,6 @@ const Modal = forwardRef(
       min,
       max,
       type, // year | quarter | month | date | time | datetime
-      format,
       onError,
       ranges,
       rangesModal, // 弹出方式dropdown
@@ -127,13 +126,13 @@ const Modal = forwardRef(
       // 取消弹窗时, currentValue已变, 而value未变, 如果value和currentValue不一致, 则使用value
       if (visible) {
         updateTitle()
-        setCurrentValue(valueFormatter({ type, format, value, ranges, separator }))
+        setCurrentValue(valueFormatter({ type, value, ranges, separator }))
       }
       // eslint-disable-next-line
     }, [visible])
 
     // useEffect(() => {
-    //   setCurrentValue(valueFormatter({ type, format, value, ranges, separator }))
+    //   setCurrentValue(valueFormatter({ type, value, ranges, separator }))
     //   // eslint-disable-next-line
     // }, [value])
 
@@ -275,7 +274,6 @@ const Modal = forwardRef(
                 min,
                 max,
                 type, // year | quarter | month | date | time | datetime
-                format,
                 onError,
                 ranges,
                 rangesModal, // 弹出方式dropdown
@@ -302,7 +300,7 @@ const Modal = forwardRef(
                 updateTitle()
 
                 // 修改值
-                currentValue = valueFormatter({ type, format, value: newValue, ranges, separator })
+                currentValue = valueFormatter({ type, value: newValue, ranges, separator })
                 setCurrentValue(currentValue)
 
                 // multiple未传则为必选单选

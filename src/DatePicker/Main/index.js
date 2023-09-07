@@ -23,9 +23,11 @@ const Main = forwardRef(
       onBeforeChange,
       onChange,
 
+      // Main: Picker Control properties
+      defaultPickerValue,
+
       // Main: DatePicker Control properties
       titleFormatter,
-      defaultPickerValue,
       type = 'date', // year | quarter | month | date | time | datetime
       min,
       max,
@@ -64,7 +66,7 @@ const Main = forwardRef(
             let format = ''
             // 如果用户没有自定义标题格式, 则使用动态格式
             if (typeof titleFormatter === 'function') {
-              format = titleFormatter({ type, format, value: getValue(), ranges, separator })
+              format = titleFormatter({ type, value: getValue(), ranges, separator })
             }
             if (!format || typeof format !== 'string') {
               // 只有年月日、年月日时分才显示周几

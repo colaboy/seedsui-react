@@ -16,35 +16,72 @@ import { getRanges } from './../utils'
 const RangeModal = forwardRef(
   (
     {
-      // 通用属性
-      portal, // 支持{mask: MaskNode}
+      // 显示文本格式化和value格式化
+      valueFormatter,
+
+      // Combo
       getComboDOM,
-      maskClosable = true,
-      value,
-      defaultPickerValue,
-      list, // {year: [], quarter: [], month: [], day: [], hour: [], minute: []}
 
-      onBeforeChange,
-      onChange,
-
-      visible = false,
+      // Modal fixed properties
+      visible,
       onVisibleChange,
 
-      maskProps = {},
-      wrapperProps = {},
+      // Modal
+      ModalComponent,
+      ModalProps,
 
+      // Modal: display properties
+      portal,
+      animation = 'slideUp',
+      maskProps,
       captionProps,
       submitProps,
       cancelProps,
+      maskClosable,
 
-      // 定制属性
-      rangesModal = 'dropdown',
-      ranges,
-      type = 'date', // year | quarter | month | date | time | datetime
+      // Main
+      MainComponent,
+      MainProps,
+
+      // Main: common
+      value,
+      list, // [{id: '', name: ''}]
+      multiple,
+      onSelect,
+      onBeforeChange,
+      onChange,
+
+      // Main: render
+      checkedType,
+      checkedPosition,
+      checkable,
+      headerRender,
+      footerRender,
+      listRender,
+      listHeaderRender,
+      listFooterRender,
+      listExtraHeaderRender,
+      listExtraFooterRender,
+      itemRender,
+      itemContentRender,
+      itemProps,
+      checkboxProps,
+
+      // Main: Picker Control properties
+      defaultPickerValue,
+
+      // Combo|Main: DatePicker Control properties
+      titleFormatter,
       min,
       max,
-
+      type = 'date', // year | quarter | month | date | time | datetime
       onError,
+      ranges,
+      rangesModal = 'dropdown', // 弹出方式dropdown
+      separator,
+
+      // 纯渲染时不渲染Main
+      children,
       ...props
     },
     ref

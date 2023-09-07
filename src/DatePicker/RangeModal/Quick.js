@@ -8,7 +8,7 @@ import Selector from './../../Selector'
 // 快捷选择
 const Quick = function ({ value, ranges, onBeforeChange, onChange, onVisibleChange }) {
   // 根据value获取选中项(选中项有可能有多个相同的日期,例如本月和最近30天)
-  let activeKey = getActiveKey(value, ranges)
+  let activeKey = getActiveKey({ value, ranges })
 
   // 点击
   async function handleClick(rangeKey) {

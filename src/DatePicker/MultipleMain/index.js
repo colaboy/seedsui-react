@@ -22,9 +22,11 @@ const MultipleMain = (
     onBeforeChange,
     onChange,
 
+    // Main: Picker Control properties
+    defaultPickerValue,
+
     // Main: DatePicker Control properties
     titleFormatter,
-    defaultPickerValue,
     type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,

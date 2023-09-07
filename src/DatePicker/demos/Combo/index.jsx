@@ -9,7 +9,7 @@ export default () => {
       <DatePicker.Combo
         placeholder="Please select"
         defaultPickerValue={new Date('2022-08-22 00:00')}
-        min={new Date()}
+        // min={new Date()}
         type="datetime"
         value={value}
         onChange={setValue}
@@ -17,6 +17,13 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        // displayValueFormatter={({ value, type }) => {
+        //   let displayValue = ''
+        //   if (Object.isDate(value)) {
+        //     displayValue = value.format('YYYY-MM')
+        //   }
+        //   return displayValue
+        // }}
         // captionProps={{
         //   caption: ''
         // }}

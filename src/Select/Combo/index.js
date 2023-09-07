@@ -80,7 +80,6 @@ const Combo = forwardRef(
       min,
       max,
       type, // year | quarter | month | date | time | datetime
-      format,
       onError,
       ranges,
       rangesModal, // 弹出方式dropdown
@@ -108,7 +107,7 @@ const Combo = forwardRef(
       // eslint-disable-next-line
       displayValueFormatter = getDisplayValue
     }
-    let displayValue = displayValueFormatter({ type, format, value, ranges, separator })
+    let displayValue = displayValueFormatter({ type, value, ranges, separator })
 
     const comboRef = useRef(null)
     const modalRef = useRef(null)
@@ -119,7 +118,6 @@ const Combo = forwardRef(
         getDisplayValue: (newValue) => {
           return displayValueFormatter({
             type: type,
-            format: format,
             value: newValue || value,
             ranges,
             separator
@@ -290,7 +288,6 @@ const Combo = forwardRef(
             min,
             max,
             type, // year | quarter | month | date | time | datetime
-            format,
             onError,
             ranges,
             rangesModal, // 快捷选择弹出方式

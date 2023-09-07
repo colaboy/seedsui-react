@@ -1,14 +1,18 @@
+import getFormat from '../Combo/getFormat'
+
 // 根据value获取选中项
-function getActiveKey(value, ranges, options) {
+function getActiveKey({ value, ranges, type, currentActiveKey }) {
   // ranges不合法
   if (toString.call(ranges) !== '[object Object]') {
     return null
   }
-  let { format: fmt, currentActiveKey } = options || {}
-  if (!fmt || typeof fmt !== 'string') {
-    fmt = 'YYYY-MM-DD'
+
+  let fmt = 'YYYY-MM-DD'
+  if (type) {
+    fmt = getFormat(type)
   }
   if (!currentActiveKey) {
+    // eslint-disable-next-line
     currentActiveKey = window.activeRangeKey
   }
 
