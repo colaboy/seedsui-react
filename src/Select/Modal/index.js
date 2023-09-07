@@ -64,6 +64,16 @@ const Modal = forwardRef(
       defaultPickerValue,
       slotProps,
 
+      // Combo|Main: DatePicker Control properties
+      min,
+      max,
+      type, // year | quarter | month | date | time | datetime
+      format,
+      onError,
+      ranges,
+      rangesModal, // 弹出方式dropdown
+      separator,
+
       // Main: Actionsheet Control properties
       groupProps,
       optionProps,
@@ -245,6 +255,16 @@ const Modal = forwardRef(
                 // Main: Picker Control properties
                 defaultPickerValue,
                 slotProps,
+
+                // Combo|Main: DatePicker Control properties
+                min,
+                max,
+                type, // year | quarter | month | date | time | datetime
+                format,
+                onError,
+                ranges,
+                rangesModal, // 弹出方式dropdown
+                separator,
 
                 // Main: Actionsheet Control properties
                 groupProps,
