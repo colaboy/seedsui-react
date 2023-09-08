@@ -66,6 +66,11 @@ export default function RangeMain({
 
   // 点击快捷选择
   async function handleClick(rangeKey) {
+    // 不允许清除
+    if (!allowClear && !rangeKey) {
+      return
+    }
+
     // 点击选项
     if (onSelect) {
       onSelect(ranges[rangeKey], {
@@ -151,9 +156,9 @@ export default function RangeMain({
       {activeKey === customKey && (
         <CustomCombo
           DateProps={DateProps}
-          allowClear={allowClear}
           portal={portal}
           type={type}
+          allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}
           onChange={(newValue) => {

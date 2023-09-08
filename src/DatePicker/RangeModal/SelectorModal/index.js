@@ -48,6 +48,7 @@ const SelectorModal = function ({
           titles={titles}
           ranges={ranges}
           value={value}
+          allowClear={false}
           onChange={(newValue) => {
             // eslint-disable-next-line
             return new Promise(async (resolve) => {
