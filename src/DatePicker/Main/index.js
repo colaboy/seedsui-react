@@ -87,7 +87,7 @@ const Main = forwardRef(
     useEffect(() => {
       update()
       // eslint-disable-next-line
-    }, [value])
+    }, [value, type])
 
     // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
     if (instance.current) {

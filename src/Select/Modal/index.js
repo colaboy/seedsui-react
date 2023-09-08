@@ -140,8 +140,11 @@ const Modal = forwardRef(
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
       if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
-        currentTitle = mainRef.current.getTitle()
-        setCurrentTitle(currentTitle)
+        // Main渲染完成后取标题, 否则将会取到上次的值
+        setTimeout(() => {
+          currentTitle = mainRef.current.getTitle()
+          setCurrentTitle(currentTitle)
+        }, 100)
       }
     }
 
