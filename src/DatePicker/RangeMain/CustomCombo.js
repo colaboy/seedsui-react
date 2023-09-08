@@ -6,8 +6,7 @@ import Combo from './../Combo'
 // 日期快捷选择
 export default function CustomCombo({
   portal,
-  dateProps,
-  customProps,
+  DateProps,
   allowClear = 'exclusion-ricon',
   value,
   onChange
@@ -26,12 +25,7 @@ export default function CustomCombo({
   }
 
   return (
-    <div
-      {...customProps}
-      className={`datepicker-rangemain-custom${
-        customProps?.className ? ' ' + customProps.className : ''
-      }`}
-    >
+    <div className={`datepicker-rangemain-custom`}>
       <Combo
         portal={portal}
         value={startDate}
@@ -40,7 +34,7 @@ export default function CustomCombo({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...dateProps}
+        {...DateProps}
       />
       —
       <Combo
@@ -51,7 +45,7 @@ export default function CustomCombo({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...dateProps}
+        {...DateProps}
         min={new Date()}
       />
     </div>

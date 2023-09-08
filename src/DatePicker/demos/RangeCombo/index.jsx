@@ -21,10 +21,10 @@ export default () => {
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
-        min={new Date()}
+        min={new Date('2023-01-01')}
         max={new Date('2023-12-12')}
         onError={(err) => Toast.show({ content: err.errMsg })}
-        maskClosable={false}
+        // maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
             date1Ref.current.close()
@@ -57,7 +57,7 @@ export default () => {
         //   ['自定义时间']: null
         // }}
         // modal="picker"
-        min={new Date()}
+        min={new Date('2023-01-01')}
         max={new Date('2023-12-12')}
         onError={(err) => Toast.show({ content: err.errMsg })}
         titles={{

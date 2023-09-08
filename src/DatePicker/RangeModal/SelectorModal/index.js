@@ -49,8 +49,15 @@ const SelectorModal = function ({
           ranges={ranges}
           value={value}
           onChange={(newValue) => {
-            onChange && onChange(newValue)
-            onVisibleChange && onVisibleChange(false)
+            // eslint-disable-next-line
+            return new Promise(async (resolve) => {
+              if (onChange) {
+                let goOn = await onChange(newValue)
+                resolve(goOn)
+                if (goOn === false) return
+              }
+              onVisibleChange && onVisibleChange(false)
+            })
           }}
           onSelect={(value, { activeKey, ranges }) => {
             // 点击自定义

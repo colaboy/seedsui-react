@@ -9,9 +9,8 @@ import CustomCombo from './CustomCombo'
 export default function RangeMain({
   portal,
   // components props
-  selectorProps,
-  dateProps,
-  customProps,
+  SelectorProps,
+  DateProps,
   allowClear = 'exclusion-ricon',
 
   // Main properties
@@ -67,20 +66,24 @@ export default function RangeMain({
 
   // 点击快捷选择
   async function handleClick(rangeKey) {
-    setActiveKey(rangeKey)
-
     // 点击选项
-    if (onSelect)
+    if (onSelect) {
       onSelect(ranges[rangeKey], {
         ranges: ranges,
         activeKey: rangeKey,
         setActiveKey: setActiveKey
       })
-    // 自定义不修改日期
-    if (rangeKey === customKey) {
-      return
     }
-    if (onChange) onChange(ranges[rangeKey])
+
+    // 自定义不修改日期
+    if (rangeKey !== customKey) {
+      if (onChange) {
+        let goOn = await onChange(ranges[rangeKey])
+        if (goOn === false) return
+      }
+    }
+
+    setActiveKey(rangeKey)
   }
 
   // 将{key: value}转为[{id: key, name: value}]
@@ -107,7 +110,7 @@ export default function RangeMain({
       {/* 快捷选择 */}
       <Selector
         columns={3}
-        {...selectorProps}
+        {...SelectorProps}
         value={[{ id: activeKey }]}
         list={getSelectorOptions()}
         onChange={(value) => {
@@ -133,28 +136,29 @@ export default function RangeMain({
             <p className="datepicker-selector-caption">{titles.custom}</p>
           ) : null}
           {/* 按钮 */}
-          <div
-            className="datepicker-selector-button"
-            onClick={() => {
+          <Selector
+            columns={1}
+            value={[{ id: activeKey }]}
+            list={[{ id: customKey, name: customKey }]}
+            onChange={() => {
               handleClick(customKey)
             }}
-          >
-            {customKey}
-          </div>
+          />
         </>
       )}
 
       {/* 自定义区间: 文本框选择 */}
       {activeKey === customKey && (
         <CustomCombo
-          dateProps={dateProps}
-          customProps={customProps}
+          DateProps={DateProps}
           allowClear={allowClear}
           portal={portal}
           type={type}
           value={value}
           defaultPickerValue={defaultPickerValue}
-          onChange={onChange}
+          onChange={(newValue) => {
+            onChange && onChange(newValue)
+          }}
         />
       )}
     </>
