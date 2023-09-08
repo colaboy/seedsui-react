@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import Modal from './../../../Modal'
 import RangeMain from './../../RangeMain'
-import Picker from './Picker'
+import PickerModal from './../PickerModal'
 
 // 快捷选择
 const SelectorModal = function ({
   // Modal properties
   getComboDOM,
-  maskClosable,
   visible,
   onVisibleChange,
 
@@ -38,7 +37,6 @@ const SelectorModal = function ({
           }
           return comboDOM
         }}
-        maskClosable={maskClosable}
         visible={visible}
         animation="slideDown"
         className="datepicker-rangemodal-modal"
@@ -65,7 +63,7 @@ const SelectorModal = function ({
       </Modal>
 
       {/* 选择区间 */}
-      <Picker
+      <PickerModal
         value={value}
         defaultPickerValue={defaultPickerValue}
         type={type}

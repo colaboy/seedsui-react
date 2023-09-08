@@ -22,7 +22,8 @@ export default () => {
         placeholder="Please select RangeCombo"
         type="datetime"
         min={new Date()}
-        // max={new Date()}
+        max={new Date('2023-12-12')}
+        onError={(err) => Toast.show({ content: err.errMsg })}
         maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
@@ -43,7 +44,6 @@ export default () => {
           }
         }}
         onChange={setRangeValue}
-        // onError={(err) => Toast.show({ content: err.errMsg })}
         value={rangeValue}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         captionProps={{
@@ -57,6 +57,9 @@ export default () => {
         //   ['自定义时间']: null
         // }}
         // modal="picker"
+        min={new Date()}
+        max={new Date('2023-12-12')}
+        onError={(err) => Toast.show({ content: err.errMsg })}
         titles={{
           custom: '自定义选择',
           selector: '快捷选择'

@@ -175,7 +175,7 @@ const RangeModal = forwardRef(
 
         // 外部传入的校验
         if (typeof onBeforeChange === 'function') {
-          let goOn = await onBeforeChange(tabs)
+          let goOn = await onBeforeChange(newValue)
           if (goOn === false) {
             resolve(false)
             return
@@ -214,14 +214,20 @@ const RangeModal = forwardRef(
     // 非快捷选择
     return (
       <PickerModal
-        value={value}
-        defaultPickerValue={defaultPickerValue}
-        daysLimit={daysLimit}
-        type={type}
-        onError={onError}
-        onChange={handleChange}
+        // Modal properties
+        // getComboDOM={getComboDOM}
+        maskClosable={maskClosable}
         visible={visible}
         onVisibleChange={onVisibleChange}
+        // RangeMain properties
+        titles={titles}
+        portal={portal}
+        type={type}
+        ranges={ranges}
+        value={value}
+        defaultPickerValue={defaultPickerValue}
+        onChange={handleChange}
+        {...props}
       />
     )
   }

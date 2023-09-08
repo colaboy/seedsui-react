@@ -5,16 +5,7 @@ import MultipleModal from './../MultipleModal'
 import getDates from './getDates'
 
 // 日期区间弹窗
-const DateRangeModal = function ({
-  value,
-  defaultPickerValue,
-  daysLimit,
-  type,
-  onError,
-  onBeforeChange,
-  onChange,
-  ...props
-}) {
+const DateRangeModal = function ({ value, defaultPickerValue, type, onChange, ...props }) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getDates(value)
