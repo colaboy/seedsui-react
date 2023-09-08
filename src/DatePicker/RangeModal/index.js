@@ -1,12 +1,16 @@
 // require PrototypeDate.js和PrototypeString.js
 import React, { forwardRef } from 'react'
+import validateDaysLimit from './validateDaysLimit'
+import validateStartEnd from './validateStartEnd'
 
 // 快捷选择
 import SelectorModal from './SelectorModal'
 
 // 非快捷选择
 import PickerModal from './PickerModal'
+import { validateMaxMin } from '../utils'
 
+// 区间弹窗
 const RangeModal = forwardRef(
   (
     {
@@ -95,6 +99,93 @@ const RangeModal = forwardRef(
       }
     }
 
+    // 修改
+    async function handleChange(newValue) {
+      // eslint-disable-next-line
+      return new Promise(async (resolve) => {
+        // 修改提示
+        let goOn = await handleBeforeChange(newValue)
+        if (goOn === false) {
+          resolve(false)
+          return
+        }
+        // 修改值
+        if (typeof goOn === 'object') {
+          // eslint-disable-next-line
+          newValue = goOn
+        }
+        if (onChange) onChange(newValue)
+        resolve(true)
+      })
+    }
+
+    // 校验选择的区间是否合法
+    function handleBeforeChange(newValue) {
+      // eslint-disable-next-line
+      return new Promise(async (resolve) => {
+        // 校验最大最小值
+        if (Array.isArray(newValue) && newValue.length) {
+          // 开始日期
+          let minMaxValid = validateMaxMin(newValue?.[0], {
+            type: type,
+            min: min,
+            max: max,
+            onError: onError
+          })
+          if (minMaxValid === false) {
+            resolve(false)
+            return
+          }
+          if (newValue?.[0]) newValue[0] = minMaxValid
+
+          // 结束日期
+          minMaxValid = validateMaxMin(newValue[1], {
+            type: type,
+            min: min,
+            max: max,
+            onError: onError
+          })
+          if (minMaxValid === false) {
+            resolve(false)
+            return
+          }
+          if (newValue?.[1]) newValue[1] = minMaxValid
+        }
+
+        // 校验是否开始日期大于结束日期
+        let startEndValid = validateStartEnd(newValue, { type: type, onError: onError })
+        if (startEndValid === false) {
+          resolve(false)
+          return
+        }
+        // eslint-disable-next-line
+        newValue = startEndValid
+
+        // 校验天数限制
+        if (typeof daysLimit === 'number') {
+          let daysLimitValid = validateDaysLimit(newValue, {
+            daysLimit: daysLimit,
+            onError: onError
+          })
+          if (daysLimitValid === false) {
+            resolve(false)
+            return
+          }
+        }
+
+        // 外部传入的校验
+        if (typeof onBeforeChange === 'function') {
+          let goOn = await onBeforeChange(tabs)
+          if (goOn === false) {
+            resolve(false)
+            return
+          }
+        }
+
+        resolve(newValue)
+      })
+    }
+
     // 快捷选择
     if (hasSelector) {
       if (modal === 'dropdown') {
@@ -112,7 +203,7 @@ const RangeModal = forwardRef(
             ranges={ranges}
             value={value}
             defaultPickerValue={defaultPickerValue}
-            onChange={onChange}
+            onChange={handleChange}
             {...props}
           />
         )
@@ -128,8 +219,7 @@ const RangeModal = forwardRef(
         daysLimit={daysLimit}
         type={type}
         onError={onError}
-        onBeforeChange={onBeforeChange}
-        onChange={onChange}
+        onChange={handleChange}
         visible={visible}
         onVisibleChange={onVisibleChange}
       />

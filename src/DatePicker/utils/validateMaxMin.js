@@ -2,14 +2,14 @@ import locale from './../../locale'
 import formatDate from './formatDate'
 
 // 日期纠正
-function validateDate(value, config = {}) {
+function validateMaxMin(value, config = {}) {
   const type = config.type
   const min = config.min
   const max = config.max
   const onError = config.onError
 
   if (Object.isDate(value) === false) {
-    console.log('DatePicker.Modal-Utils.validateDate:非法的value')
+    console.log('DatePicker.Modal-Utils.validateMaxMin:非法的value')
     return null
   }
 
@@ -154,4 +154,4 @@ function validateDate(value, config = {}) {
   return value
 }
 
-export default validateDate
+export default validateMaxMin

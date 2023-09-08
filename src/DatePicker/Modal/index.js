@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { validateDate } from './../utils'
+import { validateMaxMin } from './../utils'
 import valueFormatter from './valueFormatter'
 import BaseModal from './../../Select/Modal'
 import Main from './../Main'
@@ -16,7 +16,7 @@ const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
         // eslint-disable-next-line
         return new Promise(async (resolve) => {
           // 校验值是否合法
-          let newValue = validateDate(value, {
+          let newValue = validateMaxMin(value, {
             type: type,
             min: props?.min,
             max: props?.max,

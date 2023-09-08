@@ -30,7 +30,7 @@ const Modal = forwardRef(
       captionProps,
       submitProps,
       cancelProps,
-      maskClosable,
+      maskClosable = true,
 
       // Main
       MainComponent,
@@ -178,7 +178,10 @@ const Modal = forwardRef(
           currentValue = goOn
         }
       }
-      if (onChange) onChange(currentValue)
+      if (onChange) {
+        let goOn = await onChange(currentValue)
+        if (goOn === false) return
+      }
       if (onVisibleChange) onVisibleChange(false)
     }
 

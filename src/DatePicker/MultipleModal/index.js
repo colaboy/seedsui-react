@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { validateDate } from './../utils'
+import { validateMaxMin } from './../utils'
 import BaseModal from './../../Select/Modal'
 import MultipleMain from './../MultipleMain'
 
@@ -15,7 +15,7 @@ const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
         return new Promise(async (resolve) => {
           // 校验值是否合法
           for (let tab of tabs) {
-            let newValue = validateDate(tab.value, {
+            let newValue = validateMaxMin(tab.value, {
               type: tab?.type || type,
               min: props?.min,
               max: props?.max,

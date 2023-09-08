@@ -3,10 +3,10 @@ import locale from './../../locale'
 import getDates from './getDates'
 
 // 判断是否开始时间大于结束时间
-function validateTime(value, config) {
+function validateStartEnd(value, config) {
   let { startDate, endDate } = getDates(value)
   if (!startDate || !endDate) {
-    return true
+    return value
   }
   const { type, onError } = config
   let errMsg = ''
@@ -31,12 +31,11 @@ function validateTime(value, config) {
         errMsg: errMsg,
         value: value
       })
-    } else {
-      Toast.show({ content: errMsg, maskClickable: true })
+      return false
     }
-    return false
+    return [endDate, endDate]
   }
-  return true
+  return value
 }
 
-export default validateTime
+export default validateStartEnd

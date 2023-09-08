@@ -3,11 +3,11 @@ import locale from './../../locale'
 import getDates from './getDates'
 
 // 计算区间, 区间内
-function validateDays(value, { daysLimit, onError }) {
-  if (!daysLimit) return true
+function validateDaysLimit(value, { daysLimit, onError }) {
+  if (!daysLimit) return value
   let { startDate, endDate } = getDates(value)
   if (!startDate || !endDate) {
-    return true
+    return value
   }
   const diff = startDate.diff(endDate)
   if (diff.days > daysLimit) {
@@ -27,7 +27,7 @@ function validateDays(value, { daysLimit, onError }) {
     }
     return false
   }
-  return true
+  return value
 }
 
-export default validateDays
+export default validateDaysLimit

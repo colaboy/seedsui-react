@@ -1,6 +1,6 @@
 import formatDate from './formatDate'
-import validateDate from './validateDate'
+import validateMaxMin from './validateMaxMin'
 import getDateDisplayValue from './getDateDisplayValue'
 import getFormat from './getFormat'
 
-export { formatDate, validateDate, getDateDisplayValue, getFormat }
+export { formatDate, validateMaxMin, getDateDisplayValue, getFormat }

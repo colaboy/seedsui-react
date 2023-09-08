@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DatePicker } from 'seedsui-react'
+import { DatePicker, Toast } from 'seedsui-react'
 
 export default () => {
   const date1Ref = useRef(null)
@@ -15,12 +15,14 @@ export default () => {
     <>
       <DatePicker.RangeCombo
         ref={date1Ref}
-        ranges={null}
+        ranges={{
+          自定义: 30
+        }}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
         min={new Date()}
-        max={new Date()}
+        // max={new Date()}
         maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
@@ -41,7 +43,7 @@ export default () => {
           }
         }}
         onChange={setRangeValue}
-        onError={(err) => console.log(err)}
+        // onError={(err) => Toast.show({ content: err.errMsg })}
         value={rangeValue}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         captionProps={{

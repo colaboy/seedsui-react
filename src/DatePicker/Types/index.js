@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react
 import Tabs from './../../Tabs'
 import locale from './../../locale'
 import Combo from './../Combo'
-import { validateDate, getDateDisplayValue } from './../utils'
+import { validateMaxMin, getDateDisplayValue } from './../utils'
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef(
@@ -91,7 +91,7 @@ const Types = forwardRef(
 
     // 统一的修改方法
     function handleChange(newValue) {
-      let date = validateDate(newValue.value, {
+      let date = validateMaxMin(newValue.value, {
         type: newValue.type,
         min: min,
         max: max,

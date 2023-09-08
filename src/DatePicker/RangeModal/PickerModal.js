@@ -3,8 +3,6 @@ import locale from '../../locale'
 
 import MultipleModal from './../MultipleModal'
 import getDates from './getDates'
-import validateDays from './validateDays'
-import validateTime from './validateTime'
 
 // 日期区间弹窗
 const DateRangeModal = function ({
@@ -39,25 +37,11 @@ const DateRangeModal = function ({
     ])
   }, [value]) // eslint-disable-line
 
-  // 校验选择的区间是否合法
-  function handleBeforeChange(newMultipleDate) {
+  function handleChange(newMultipleDate) {
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
-    let timeValid = validateTime(newValue, { type: type, onError: onError })
-    let daysValid = true
-    if (typeof daysLimit === 'number') {
-      daysValid = validateDays(newValue, { daysLimit: daysLimit, onError: onError })
+    if (onChange) {
+      return onChange(newValue)
     }
-    return timeValid && daysValid
-  }
-
-  async function handleChange(newMultipleDate) {
-    let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
-    // 修改提示
-    if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(newValue)
-      if (!goOn) return
-    }
-    if (onChange) onChange(newValue)
   }
 
   // 未构建完成Tabs不渲染
@@ -65,14 +49,7 @@ const DateRangeModal = function ({
     return null
   }
 
-  return (
-    <MultipleModal
-      value={multipleDate}
-      onBeforeChange={handleBeforeChange}
-      onChange={handleChange}
-      {...props}
-    />
-  )
+  return <MultipleModal value={multipleDate} onChange={handleChange} {...props} />
 }
 
 export default DateRangeModal
