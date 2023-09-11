@@ -3,9 +3,10 @@
 .mark {
   padding: 2px 5px;
 
+  color: white;
   font-size: @font-size-s;
   border-radius: 3px;
-  border-width: 1px;
+  border-width: 0;
   border-style: solid;
 }
 
@@ -45,6 +46,7 @@
 
 // 线框模式
 .mark.outline {
+  border-width: 1px;
   &.default {
     color: @mark-default-outline-color;
     background-color: @mark-default-outline-bg-color;
@@ -79,6 +81,7 @@
 
 // light-outline
 .mark.light-outline {
+  border-width: 1px;
   &.default {
     color: @mark-default-outline-color;
     background-color: @mark-default-light-bg-color;
