@@ -81,7 +81,7 @@ export default function RangeMain({
   }, [value])
 
   // 校验选择的区间是否合法
-  function validateBeforeChange(newValue) {
+  function validateBeforeChange(newValue, newActiveKey) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       // 校验最大最小值
@@ -138,7 +138,7 @@ export default function RangeMain({
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue, {
           ranges: ranges,
-          activeKey: activeKey,
+          activeKey: newActiveKey || activeKey,
           setActiveKey: setActiveKey
         })
         if (goOn === false) {
@@ -155,6 +155,10 @@ export default function RangeMain({
   async function handleClick(newActiveKey) {
     // 不允许清除
     if (!allowClear && !newActiveKey) {
+      return
+    }
+    // 想要取消的选中项是自定义，则阻止此操作
+    if (activeKey === customKey && !newActiveKey) {
       return
     }
 
@@ -182,7 +186,7 @@ export default function RangeMain({
   async function handleChange(newValue, newActiveKey) {
     if (!onChange) return
     // 修改提示
-    let goOn = await validateBeforeChange(newValue)
+    let goOn = await validateBeforeChange(newValue, newActiveKey)
     if (goOn === false) {
       return
     }
