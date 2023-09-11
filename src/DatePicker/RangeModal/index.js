@@ -126,19 +126,25 @@ const RangeModal = forwardRef(
       if (modal === 'dropdown') {
         return (
           <SelectorModal
+            portal={portal}
             // Modal properties
             getComboDOM={getComboDOM}
             maskClosable={maskClosable}
             visible={visible}
             onVisibleChange={onVisibleChange}
-            // RangeMain properties
-            titles={titles}
-            portal={portal}
-            type={type}
-            ranges={ranges}
+            // Main: common
             value={value}
-            defaultPickerValue={defaultPickerValue}
+            onBeforeChange={onBeforeChange}
             onChange={handleChange}
+            // Main: Picker Control properties
+            defaultPickerValue={defaultPickerValue}
+            // Combo|Main: DatePicker Control properties
+            titles={titles}
+            min={min}
+            max={max}
+            type={type}
+            onError={onError}
+            ranges={ranges}
             {...props}
           />
         )

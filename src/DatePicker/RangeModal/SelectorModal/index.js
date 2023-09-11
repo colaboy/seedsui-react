@@ -7,20 +7,28 @@ import PickerModal from './../PickerModal'
 
 // 快捷选择
 const SelectorModal = function ({
+  portal,
   // Modal properties
   getComboDOM,
+  maskClosable,
   visible,
   onVisibleChange,
 
-  // RangeMain properties
-  titles,
-  portal,
-  type,
-  ranges,
+  // Main: common
   value,
-  defaultPickerValue,
+  onBeforeChange,
   onChange,
 
+  // Main: Picker Control properties
+  defaultPickerValue,
+
+  // Combo|Main: DatePicker Control properties
+  titles,
+  min,
+  max,
+  type,
+  onError,
+  ranges,
   ...props
 }) {
   // Picker选择控件
@@ -39,6 +47,7 @@ const SelectorModal = function ({
           }
           return comboDOM
         }}
+        maskClosable={maskClosable}
         visible={visible}
         animation="slideDown"
         className="datepicker-rangemodal-modal"
@@ -51,6 +60,11 @@ const SelectorModal = function ({
           ranges={ranges}
           value={value}
           allowClear={false}
+          type={type}
+          min={min}
+          max={max}
+          onError={onError}
+          onBeforeChange={onBeforeChange}
           onChange={(newValue) => {
             // eslint-disable-next-line
             return new Promise(async (resolve) => {
