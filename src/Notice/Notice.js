@@ -32,6 +32,7 @@ const Notice = forwardRef(
             icon
           ) : (
             <img
+              alt=""
               className="icon notice-icon"
               src="//res.waiqin365.com/d/waiqin365_h5/components/no-data.png"
             ></img>

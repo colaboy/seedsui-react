@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import Swiper from './../Swiper'
 const Swipe = forwardRef(({ onChange, defaultIndex, children, ...others }, ref) => {
   // 初始化轮播

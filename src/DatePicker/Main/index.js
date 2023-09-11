@@ -1,5 +1,5 @@
 // require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useEffect, useRef, useImperativeHandle } from 'react'
 import locale from './../../locale'
 import { getFormat } from './../utils'
 import Instance from './instance.js'

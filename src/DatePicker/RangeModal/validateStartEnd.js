@@ -1,4 +1,3 @@
-import Toast from './../../Toast'
 import locale from './../../locale'
 import getDates from './getDates'
 

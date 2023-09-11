@@ -61,15 +61,6 @@ const Modal = forwardRef(
     // 构建动画
     let position = TooltipUtils.getAnimationPosition(animation)
 
-    // 判断是否是要生成Alert框
-    function getIsAlert() {
-      const { caption: titleText } = captionProps
-      const { caption: cancelText, onClick: cancelClick } = cancelProps
-      const { caption: submitText, onClick: submitClick } = submitProps
-      if (titleText || cancelText || cancelClick || submitText || submitClick) return true
-      return false
-    }
-
     // 点击遮罩
     function handleMaskClick(e) {
       if (maskProps?.onClick) maskProps.onClick(e)

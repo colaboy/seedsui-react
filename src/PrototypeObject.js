@@ -307,7 +307,7 @@ Object.equals = function (object1, object2) {
     }
   }
   // 现在更深入地检查使用其他对象的属性名称
-  for (propName in object2) {
+  for (let propName in object2) {
     // 无论如何必须检查实例，可能有一个只存在于object2中的属性
     if (object1.hasOwnProperty(propName) !== object2.hasOwnProperty(propName)) {
       return false

@@ -59,6 +59,7 @@ const MultipleMain = (
       return
     }
     // 构建tabs, 将value的[{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]加入sndcaption
+    // eslint-disable-next-line
     tabs = value.map((tab) => {
       return {
         ...tab,
@@ -82,6 +83,7 @@ const MultipleMain = (
       // setTabs(null)
       setActiveTab(tabs?.[0] || null)
     }
+    // eslint-disable-next-line
   }, [visible])
 
   // 选择日期

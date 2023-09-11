@@ -1,3 +1,4 @@
+/* eslint-disable */
 var Jcrop = (function (e) {
   var t = {}
   function n(r) {
@@ -1840,4 +1841,5 @@ var Jcrop = (function (e) {
       (t.default = r)
   }
 ])
-//# sourceMappingURL=jcrop.js.map
+
+/* eslint-enable */

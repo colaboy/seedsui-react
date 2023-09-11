@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import locale from './../../locale'
 
-import { Card } from 'seedsui-react'
+import Card from './../../Card'
 import Item from './Item'
 
 // 穿梭框

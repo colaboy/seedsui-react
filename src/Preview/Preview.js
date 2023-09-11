@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useState } from 'react'
 import Modal from './../Modal'
 import Swipe from './Swipe'
 import VideoFull from './../VideoFull'

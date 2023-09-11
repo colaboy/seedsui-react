@@ -6,6 +6,7 @@ const Anchor = ({ name, children }) => {
   let newChildren = React.Children.toArray(children)
   if (newChildren.length === 1) {
     newChildren = React.cloneElement(children, {
+      // eslint-disable-next-line
       ['data-indexbar-anchor']: name
     })
   } else {
