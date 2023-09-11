@@ -9,6 +9,7 @@ function validateBeforeChange(
     type,
     min,
     max,
+    daysLimit,
     onError,
     onBeforeChange,
     // RangeMain props

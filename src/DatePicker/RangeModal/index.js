@@ -83,13 +83,16 @@ const RangeModal = forwardRef(
     },
     ref
   ) => {
+    // 自定义日期天数限制
+    let daysLimit = null
     // 判断有没有快捷选择
     let hasSelector = false
     if (ranges) {
       for (let key in ranges) {
         if (Array.isArray(ranges[key])) {
           hasSelector = true
-          break
+        } else {
+          daysLimit = ranges[key]
         }
       }
     }
@@ -103,6 +106,7 @@ const RangeModal = forwardRef(
           type,
           min,
           max,
+          daysLimit,
           onError,
           onBeforeChange
         })

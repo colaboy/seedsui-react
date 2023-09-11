@@ -117,6 +117,7 @@ export default function RangeMain({
       type,
       min,
       max,
+      daysLimit,
       onError,
       onBeforeChange,
       // RangeMain props
