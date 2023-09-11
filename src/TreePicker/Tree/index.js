@@ -244,7 +244,7 @@ function TreePicker(
   if (!treeData) return null
 
   return (
-    <div className="picker-main">
+    <div className="treepicker-tree picker-main">
       <Tree
         ref={treeRef}
         fieldNames={{ key: 'id' }}
