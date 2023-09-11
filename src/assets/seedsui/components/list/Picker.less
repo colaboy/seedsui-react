@@ -94,7 +94,9 @@
 
 // 主体
 .picker-main {
-  display: block;
+  display: flex;
+  flex-direction: column;
+
   position: relative;
   overflow: auto;
   .flex-1;
@@ -108,6 +110,13 @@
     width: 150px;
   }
 }
+// .picker {
+//   .picker-main {
+//     height: auto;
+//     min-height: 200px;
+//     max-height: 557px;
+//   }
+// }
 
 // 选择控件
 .picker-wrapper {
