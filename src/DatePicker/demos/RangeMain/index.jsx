@@ -9,8 +9,10 @@ export default () => {
       <Layout.Header className="text-center">日期快捷选择</Layout.Header>
       <Layout.Main className="bg-white">
         <DatePicker.RangeMain
-          // daysLimit={3}
-          modal="modal"
+          titles={{
+            custom: '自定义选择',
+            selector: '快捷选择'
+          }}
           value={value}
           onChange={(newValue) => {
             console.log(newValue)

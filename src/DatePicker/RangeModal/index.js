@@ -1,5 +1,6 @@
 // require PrototypeDate.js和PrototypeString.js
 import React, { forwardRef } from 'react'
+import validateBeforeChange from './../RangeMain/validateBeforeChange'
 
 // 快捷选择
 import SelectorModal from './SelectorModal'
@@ -97,6 +98,24 @@ const RangeModal = forwardRef(
     async function handleChange(newValue) {
       // eslint-disable-next-line
       return new Promise(async (resolve) => {
+        // 修改提示
+        let goOn = await validateBeforeChange(newValue, {
+          type,
+          min,
+          max,
+          onError,
+          onBeforeChange
+        })
+        if (goOn === false) {
+          resolve(false)
+          return
+        }
+        // 修改值
+        if (typeof goOn === 'object') {
+          // eslint-disable-next-line
+          newValue = goOn
+        }
+
         if (onChange) onChange(newValue)
         resolve(true)
       })
@@ -119,7 +138,7 @@ const RangeModal = forwardRef(
             ranges={ranges}
             value={value}
             defaultPickerValue={defaultPickerValue}
-            onChange={onChange}
+            onChange={handleChange}
             {...props}
           />
         )
@@ -142,7 +161,6 @@ const RangeModal = forwardRef(
         ranges={ranges}
         value={value}
         defaultPickerValue={defaultPickerValue}
-        onBeforeChange={onBeforeChange}
         onChange={handleChange}
         {...props}
       />
