@@ -25,6 +25,9 @@ export default () => {
         riconProps={{
           className: 'icon shape-arrow-right sm'
         }}
+        ModalProps={{
+          style: { height: '80%' }
+        }}
         placeholder="Please select"
         value={value}
         list={[
