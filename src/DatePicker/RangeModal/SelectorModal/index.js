@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Modal from './../../../Modal'
+// 测试使用
+// import Modal from 'seedsui-react/lib/Modal'
 import RangeMain from './../../RangeMain'
 import PickerModal from './../PickerModal'
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import locale from './../../locale'
+// 测试使用
+// import locale from 'seedsui-react/lib/locale'
 
 import Combo from './../Combo'
 
@@ -9,7 +11,8 @@ export default function CustomCombo({
   DateProps,
   allowClear = 'exclusion-ricon',
   value,
-  onChange
+  onChange,
+  onError
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : ''
@@ -30,6 +33,7 @@ export default function CustomCombo({
         portal={portal}
         value={startDate}
         max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
+        onError={onError}
         onChange={handleStartDateChange}
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
@@ -40,13 +44,13 @@ export default function CustomCombo({
       <Combo
         portal={portal}
         value={endDate}
-        // min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
+        min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
+        onError={onError}
         onChange={handleEndDateChange}
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
         {...DateProps}
-        min={new Date()}
       />
     </div>
   )

@@ -1,6 +1,10 @@
 import Toast from './../../Toast'
 import locale from './../../locale'
-import getDates from './getDates'
+// 测试使用
+// import Toast from 'seedsui-react/lib/Toast'
+// import locale from 'seedsui-react/lib/locale'
+
+import getDates from './../RangeModal/getDates'
 
 // 计算区间, 区间内
 function validateDaysLimit(value, { daysLimit, onError }) {

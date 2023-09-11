@@ -1,5 +1,8 @@
 import locale from './../../locale'
 
+// 测试使用
+// import locale from 'seedsui-react/lib/locale'
+
 // eslint-disable-next-line
 export default {
   // 获取默认值, 用于实例化日期

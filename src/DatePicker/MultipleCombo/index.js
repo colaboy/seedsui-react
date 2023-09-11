@@ -1,5 +1,8 @@
 import React, { forwardRef } from 'react'
 import Combo from './../../Select/Combo'
+// 测试使用
+// import Combo from 'seedsui-react/lib/Select/Combo'
+
 import Modal from './../MultipleModal'
 import getMultipleDisplayValue from './getMultipleDisplayValue'
 

@@ -3,6 +3,8 @@ import { getDateDisplayValue } from './../utils'
 
 import DatePickerMain from './../Main'
 import Tabs from './../../Tabs'
+// 测试使用
+// import Tabs from 'seedsui-react/lib/Tabs'
 
 // 日期多选弹框
 const MultipleMain = (

@@ -1,5 +1,8 @@
 import locale from './../../locale'
-import getDates from './getDates'
+// 测试使用
+// import locale from 'seedsui-react/lib/locale'
+
+import getDates from './../RangeModal/getDates'
 
 // 判断是否开始时间大于结束时间
 function validateStartEnd(value, config) {

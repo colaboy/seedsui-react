@@ -1,6 +1,9 @@
 import React, { forwardRef } from 'react'
 import { validateMaxMin } from './../utils'
 import BaseModal from './../../Select/Modal'
+// 测试使用
+// import BaseModal from 'seedsui-react/lib/Select/Modal'
+
 import MultipleMain from './../MultipleMain'
 
 const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {

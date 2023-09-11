@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import defaultRanges from './defaultRanges'
 import getActiveKey from './getActiveKey'
+import validateDaysLimit from './validateDaysLimit'
+import validateStartEnd from './validateStartEnd'
+import { validateMaxMin } from '../utils'
 
 import Selector from './../../Selector'
+// 测试使用
+// import Selector from 'seedsui-react/lib/Selector'
 import CustomCombo from './CustomCombo'
 
 // 日期快捷选择
@@ -13,26 +18,37 @@ export default function RangeMain({
   DateProps,
   allowClear = 'exclusion-ricon',
 
-  // Main properties
-  titles,
-  ranges = defaultRanges,
-  type = 'date',
+  // Main: common
   value,
-  defaultPickerValue,
+  onSelect,
+  onBeforeChange,
   onChange,
-  onSelect
+
+  // Main: Picker Control properties
+  defaultPickerValue,
+
+  // Combo|Main: DatePicker Control properties
+  titles,
+  min,
+  max,
+  type = 'date', // year | quarter | month | date | time | datetime
+  onError,
+  ranges = defaultRanges
 }) {
+  // 自定义日期天数限制
+  let daysLimit = null
   // 获取自定义项的key:
   let customKey = ''
   for (let key in ranges) {
     if (!Array.isArray(ranges[key])) {
       customKey = key
+      daysLimit = ranges[key]
       break
     }
   }
 
   // 根据value获取选中项
-  const [activeKey, setActiveKey] = useState('')
+  let [activeKey, setActiveKey] = useState('')
 
   useEffect(() => {
     // 选中项为空
@@ -64,31 +80,129 @@ export default function RangeMain({
     // eslint-disable-next-line
   }, [value])
 
+  // 校验选择的区间是否合法
+  function validateBeforeChange(newValue) {
+    // eslint-disable-next-line
+    return new Promise(async (resolve) => {
+      // 校验最大最小值
+      if (Array.isArray(newValue) && newValue.length) {
+        // 开始日期
+        let minMaxValid = validateMaxMin(newValue?.[0], {
+          type: type,
+          min: min,
+          max: max,
+          onError: onError
+        })
+        if (minMaxValid === false) {
+          resolve(false)
+          return
+        }
+        if (newValue?.[0]) newValue[0] = minMaxValid
+
+        // 结束日期
+        minMaxValid = validateMaxMin(newValue[1], {
+          type: type,
+          min: min,
+          max: max,
+          onError: onError
+        })
+        if (minMaxValid === false) {
+          resolve(false)
+          return
+        }
+        if (newValue?.[1]) newValue[1] = minMaxValid
+      }
+
+      // 校验是否开始日期大于结束日期
+      let startEndValid = validateStartEnd(newValue, { type: type, onError: onError })
+      if (startEndValid === false) {
+        resolve(false)
+        return
+      }
+      // eslint-disable-next-line
+      newValue = startEndValid
+
+      // 校验天数限制
+      if (typeof daysLimit === 'number') {
+        let daysLimitValid = validateDaysLimit(newValue, {
+          daysLimit: daysLimit,
+          onError: onError
+        })
+        if (daysLimitValid === false) {
+          resolve(false)
+          return
+        }
+      }
+
+      // 外部传入的校验
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(newValue, {
+          ranges: ranges,
+          activeKey: activeKey,
+          setActiveKey: setActiveKey
+        })
+        if (goOn === false) {
+          resolve(false)
+          return
+        }
+      }
+
+      resolve(newValue)
+    })
+  }
+
   // 点击快捷选择
-  async function handleClick(rangeKey) {
+  async function handleClick(newActiveKey) {
     // 不允许清除
-    if (!allowClear && !rangeKey) {
+    if (!allowClear && !newActiveKey) {
       return
     }
 
     // 点击选项
     if (onSelect) {
-      onSelect(ranges[rangeKey], {
+      onSelect(ranges[newActiveKey], {
         ranges: ranges,
-        activeKey: rangeKey,
+        activeKey: newActiveKey,
         setActiveKey: setActiveKey
       })
     }
 
-    // 自定义不修改日期
-    if (rangeKey !== customKey) {
-      if (onChange) {
-        let goOn = await onChange(ranges[rangeKey])
-        if (goOn === false) return
-      }
+    // 点击非自定义修改日期
+    if (newActiveKey !== customKey) {
+      handleChange(ranges[newActiveKey], newActiveKey)
+    }
+    // 点击自定义不修改日期
+    else {
+      activeKey = newActiveKey
+      setActiveKey(newActiveKey)
+    }
+  }
+
+  // 修改
+  async function handleChange(newValue, newActiveKey) {
+    if (!onChange) return
+    // 修改提示
+    let goOn = await validateBeforeChange(newValue)
+    if (goOn === false) {
+      return
+    }
+    // 修改值
+    if (typeof goOn === 'object') {
+      // eslint-disable-next-line
+      newValue = goOn
     }
 
-    setActiveKey(rangeKey)
+    // 修改选中项
+    if (newActiveKey !== undefined) {
+      activeKey = newActiveKey
+      setActiveKey(newActiveKey)
+    }
+
+    onChange(newValue, {
+      ranges: ranges,
+      activeKey: activeKey,
+      setActiveKey: setActiveKey
+    })
   }
 
   // 将{key: value}转为[{id: key, name: value}]
@@ -161,9 +275,8 @@ export default function RangeMain({
           allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}
-          onChange={(newValue) => {
-            onChange && onChange(newValue)
-          }}
+          onChange={handleChange}
+          onError={onError}
         />
       )}
     </>

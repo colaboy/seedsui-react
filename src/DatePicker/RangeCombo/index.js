@@ -3,6 +3,8 @@ import defaultRanges from './../RangeMain/defaultRanges'
 import getRangeDisplayValue from './getRangeDisplayValue'
 
 import Combo from './../../Select/Combo'
+// 测试使用
+// import Combo from 'seedsui-react/lib/Select/Combo'
 import Modal from './../RangeModal'
 
 // 日期区间

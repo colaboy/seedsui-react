@@ -1,6 +1,10 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 import Tabs from './../../Tabs'
 import locale from './../../locale'
+// 测试使用
+// import Tabs from 'seedsui-react/lib/Tabs'
+// import locale from 'seedsui-react/lib/locale'
+
 import Combo from './../Combo'
 import { validateMaxMin, getDateDisplayValue } from './../utils'
 

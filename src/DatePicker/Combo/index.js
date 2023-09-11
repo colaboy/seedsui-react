@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react'
-import Combo from './../../Select/Combo'
-import Modal from './../Modal'
 import { getDateDisplayValue } from './../utils'
+
+import Modal from './../Modal'
+import Combo from './../../Select/Combo'
+// 测试使用
+// import Combo from 'seedsui-react/lib/Select/Combo'
 
 // DatePicker
 const DatePickerCombo = forwardRef(({ ...props }, ref) => {

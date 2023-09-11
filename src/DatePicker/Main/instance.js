@@ -1,6 +1,10 @@
 import Picker from './../../Picker/Main/instance.js'
 import locale from './../../locale'
 
+// 测试使用
+// import Picker from 'seedsui-react/lib/Picker/Main/instance.js'
+// import locale from 'seedsui-react/lib/locale'
+
 let PickerDate = function (params) {
   let nowDate = new Date()
   /* ----------------
