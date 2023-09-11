@@ -8,8 +8,12 @@ import PickerModal from './../PickerModal'
 // 快捷选择
 const SelectorModal = function ({
   portal,
-  // Modal properties
+  // Combo
   getComboDOM,
+  // Modal: display properties
+  captionProps,
+  submitProps,
+  cancelProps,
   maskClosable,
   visible,
   onVisibleChange,
@@ -24,6 +28,7 @@ const SelectorModal = function ({
 
   // Combo|Main: DatePicker Control properties
   titles,
+  titleFormatter,
   min,
   max,
   type,
@@ -37,6 +42,7 @@ const SelectorModal = function ({
     <>
       {/* 快捷选择 */}
       <Modal
+        portal={portal}
         sourceDOM={() => {
           let comboDOM = null
           if (typeof getComboDOM === 'function') {
@@ -88,12 +94,17 @@ const SelectorModal = function ({
 
       {/* 选择区间 */}
       <PickerModal
+        captionProps={captionProps}
+        submitProps={submitProps}
+        cancelProps={cancelProps}
+        portal={portal}
         value={value}
         defaultPickerValue={defaultPickerValue}
         type={type}
         onChange={onChange}
         visible={pickerVisible}
         onVisibleChange={setPickerVisible}
+        {...props}
       />
     </>
   )

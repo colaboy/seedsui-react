@@ -131,8 +131,13 @@ const RangeModal = forwardRef(
         return (
           <SelectorModal
             portal={portal}
-            // Modal properties
+            // Combo
             getComboDOM={getComboDOM}
+            // Modal: display properties
+            maskProps={maskProps}
+            captionProps={captionProps}
+            submitProps={submitProps}
+            cancelProps={cancelProps}
             maskClosable={maskClosable}
             visible={visible}
             onVisibleChange={onVisibleChange}
@@ -144,6 +149,7 @@ const RangeModal = forwardRef(
             defaultPickerValue={defaultPickerValue}
             // Combo|Main: DatePicker Control properties
             titles={titles}
+            titleFormatter={titleFormatter}
             min={min}
             max={max}
             type={type}
@@ -159,19 +165,31 @@ const RangeModal = forwardRef(
     // 非快捷选择
     return (
       <PickerModal
-        // Modal properties
-        // getComboDOM={getComboDOM}
+        portal={portal}
+        // Combo
+        getComboDOM={getComboDOM}
+        // Modal: display properties
+        maskProps={maskProps}
+        captionProps={captionProps}
+        submitProps={submitProps}
+        cancelProps={cancelProps}
         maskClosable={maskClosable}
         visible={visible}
         onVisibleChange={onVisibleChange}
-        // RangeMain properties
-        titles={titles}
-        portal={portal}
-        type={type}
-        ranges={ranges}
+        // Main: common
         value={value}
-        defaultPickerValue={defaultPickerValue}
+        onBeforeChange={onBeforeChange}
         onChange={handleChange}
+        // Main: Picker Control properties
+        defaultPickerValue={defaultPickerValue}
+        // Combo|Main: DatePicker Control properties
+        titles={titles}
+        titleFormatter={titleFormatter}
+        min={min}
+        max={max}
+        type={type}
+        onError={onError}
+        // ranges={ranges}
         {...props}
       />
     )
