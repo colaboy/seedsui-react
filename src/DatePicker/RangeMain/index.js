@@ -21,6 +21,7 @@ export default function RangeMain({
   onSelect,
   onBeforeChange,
   onChange,
+  onActiveKey,
 
   // Main: Picker Control properties
   defaultPickerValue,
@@ -73,6 +74,16 @@ export default function RangeMain({
     }
     // eslint-disable-next-line
   }, [value])
+
+  // 修改选中项
+  useEffect(() => {
+    if (onActiveKey) {
+      onActiveKey(activeKey, {
+        ranges: ranges
+      })
+    }
+    // eslint-disable-next-line
+  }, [activeKey])
 
   // 点击快捷选择
   async function handleClick(newActiveKey) {

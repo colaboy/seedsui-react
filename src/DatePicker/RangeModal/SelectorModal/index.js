@@ -34,6 +34,7 @@ const SelectorModal = function ({
   type,
   onError,
   ranges,
+  onActiveKey,
   ...props
 }) {
   // Picker选择控件
@@ -89,6 +90,7 @@ const SelectorModal = function ({
               setPickerVisible(true)
             }
           }}
+          onActiveKey={onActiveKey}
         />
       </Modal>
 

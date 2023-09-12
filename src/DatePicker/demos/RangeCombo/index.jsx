@@ -4,7 +4,7 @@ import { DatePicker, Toast } from 'seedsui-react'
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [rangeValue, setRangeValue] = useState()
+  const [rangeValue, setRangeValue] = useState([new Date().prevDate(29), new Date()])
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {

@@ -11,10 +11,6 @@ function getActiveKey({ value, ranges, type, currentActiveKey }) {
   if (type) {
     fmt = getFormat(type)
   }
-  if (!currentActiveKey) {
-    // eslint-disable-next-line
-    currentActiveKey = window.activeRangeKey
-  }
 
   if (
     Array.isArray(value) &&

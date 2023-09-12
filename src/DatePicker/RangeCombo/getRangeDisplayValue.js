@@ -2,7 +2,7 @@ import { getDateDisplayValue } from './../utils'
 import getActiveKey from './getActiveKey'
 
 // 显示名称
-function getRangeDisplayValue({ format, ranges, type, value, separator }) {
+function getRangeDisplayValue({ format, ranges, type, value, separator, currentActiveKey }) {
   if (!Array.isArray(value) || value.length !== 2) {
     return ''
   }
@@ -16,7 +16,7 @@ function getRangeDisplayValue({ format, ranges, type, value, separator }) {
   let displayValue = []
 
   // 显示别名
-  let activeKey = getActiveKey({ value, ranges, type })
+  let activeKey = getActiveKey({ value, ranges, type, currentActiveKey })
   if (activeKey) {
     return activeKey
   }

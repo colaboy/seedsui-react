@@ -76,6 +76,7 @@ const RangeModal = forwardRef(
       ranges,
       modal = 'dropdown', // 弹出方式dropdown
       separator,
+      onActiveKey,
 
       // 纯渲染时不渲染Main
       children,
@@ -155,6 +156,7 @@ const RangeModal = forwardRef(
             type={type}
             onError={onError}
             ranges={ranges}
+            onActiveKey={onActiveKey}
             {...props}
           />
         )
