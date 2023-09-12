@@ -63,12 +63,8 @@ export default function RangeMain({
     // 如果选中项有多项，则优先使用当前选中项
     let newActiveKey = getActiveKey(value, ranges, { currentActiveKey: activeKey })
 
-    // 初始未点击任何按钮，选中列表中对应项或者自定义
-    if (!activeKey) {
-      setActiveKey(newActiveKey || customKey)
-    }
-    // 找到选中项时设置选中项
-    else if (newActiveKey && newActiveKey === activeKey) {
+    // 找到选中项
+    if (newActiveKey) {
       setActiveKey(newActiveKey)
     }
     // 找不到选中项，则选中自定义

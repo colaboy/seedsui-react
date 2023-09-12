@@ -7,12 +7,14 @@ import Combo from './../../Select/Combo'
 // import Combo from 'seedsui-react/lib/Select/Combo'
 
 // DatePicker
-const DatePickerCombo = forwardRef(({ ...props }, ref) => {
+const DatePickerCombo = forwardRef(({ format, ...props }, ref) => {
   return (
     <Combo
       ref={ref}
       ModalComponent={Modal}
-      displayValueFormatter={getDateDisplayValue}
+      displayValueFormatter={(...params) => {
+        return getDateDisplayValue({ format, ...params })
+      }}
       {...props}
     />
   )

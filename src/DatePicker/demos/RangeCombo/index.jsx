@@ -57,9 +57,10 @@ export default () => {
         //   ['自定义时间']: null
         // }}
         // modal="picker"
+        // format="MM-DD"
         min={new Date('2023-01-01')}
-        max={new Date('2023-12-12')}
-        onError={(err) => Toast.show({ content: err.errMsg })}
+        // max={new Date('2023-12-12')}
+        // onError={(err) => Toast.show({ content: err.errMsg })}
         titles={{
           custom: '自定义选择',
           selector: '快捷选择'
