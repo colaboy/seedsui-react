@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Input } from 'seedsui-react'
 
 export default () => {
-  const [value, setValue] = useState('1')
+  const [value, setValue] = useState('0')
   return (
     <>
       <Input.NumberBox
@@ -16,10 +16,10 @@ export default () => {
         liconProps={{ className: 'icon icon-rdo-emoji' }}
         licon={<i className="icon icon-rdo-emoji"></i>}
         ricon={<i className="icon icon-rdo-emoji"></i>}
-        onChange={(val) => {
-          console.log(val)
-          setValue(val)
-        }}
+        // onChange={(val) => {
+        //   console.log(val)
+        //   setValue(val)
+        // }}
       >
         1234
       </Input.NumberBox>

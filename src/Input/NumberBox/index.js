@@ -115,8 +115,8 @@ const NumberBox = forwardRef(
       // 非受控组件需要操作DOM
       if (value === undefined) {
         inputDOM.value = val
+        updateState(val)
       }
-      updateState(val)
       if (onChange) onChange(val)
     }
 
