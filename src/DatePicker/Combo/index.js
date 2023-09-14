@@ -12,7 +12,7 @@ const DatePickerCombo = forwardRef(({ format, ...props }, ref) => {
     <Combo
       ref={ref}
       ModalComponent={Modal}
-      displayValueFormatter={(...params) => {
+      displayValueFormatter={(params) => {
         return getDateDisplayValue({ format, ...params })
       }}
       {...props}
