@@ -272,6 +272,11 @@
     flex-direction: column;
   }
 
+  // 上传中不允许删除
+  &.uploading + .photos-delete {
+    display: none;
+  }
+
   // 选择
   &.choose {
   }
