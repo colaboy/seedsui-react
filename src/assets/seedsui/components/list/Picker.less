@@ -92,7 +92,7 @@
   font-weight: bold;
 }
 
-// 主体
+// 选择控件
 .picker-main {
   display: flex;
   flex-direction: column;
@@ -110,15 +110,14 @@
     width: 150px;
   }
 }
-// .picker {
-//   .picker-main {
-//     height: auto;
-//     min-height: 200px;
-//     max-height: 557px;
-//   }
-// }
 
 // 选择控件
+.picker-main-cascader {
+  &:extend(.picker-main all);
+  height: 412px;
+}
+
+// 日期等拖动选择控
 .picker-wrapper {
   position: relative;
   display: block;
