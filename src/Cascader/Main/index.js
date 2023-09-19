@@ -51,17 +51,8 @@ const Main = forwardRef(
       }
     })
 
+    // 监听value的变化, 更新tabs与列表
     useEffect(() => {
-      // 隐藏时置空所有
-      if (!visible) {
-        // 置空tabs
-        setTabs(null)
-        // 置空请选择
-        setChooseTab(null)
-        // 置空列表
-        setCurrentList(null)
-        return
-      }
       // 显示时更新tabs
       tabs = value // eslint-disable-line
 
@@ -118,7 +109,7 @@ const Main = forwardRef(
       })
 
       // eslint-disable-next-line
-    }, [visible])
+    }, [value])
 
     // 修改回调
     async function handleChange(newValue) {

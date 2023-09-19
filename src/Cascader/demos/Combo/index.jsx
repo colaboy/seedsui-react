@@ -39,6 +39,7 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.Combo
+        allowClear
         // multiple={false}
         list={CountriesData}
         loadData={loadData}
