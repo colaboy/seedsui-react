@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import { getMinTypes, matchType, testCity, testDistrict } from './utils'
+import React, { forwardRef, useEffect, useState } from 'react'
+import { getMinTypes, matchType, testCity, testDistrict } from './../DistrictMain/utils'
 
 // 测试使用
 // import BaseModal from 'seedsui-react/lib/Select/Modal'

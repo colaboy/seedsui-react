@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react'
-import { getMinTypes, matchType, testCity, testDistrict } from './utils'
+import React, { forwardRef, useEffect, useState } from 'react'
+import { matchType } from './utils'
 import Main from './../Main'
 
 // 级联选择
