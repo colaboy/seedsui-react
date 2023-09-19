@@ -19,7 +19,8 @@ const ListItem = forwardRef(
       // 修改
       onChange,
       // 阻止选择
-      onBeforeSelectOption
+      onBeforeSelectOption,
+      ...props
     },
     ref
   ) => {
@@ -86,7 +87,11 @@ const ListItem = forwardRef(
 
     if (!Array.isArray(currentList) || !currentList.length) return null
     return (
-      <div className="cascader-modal-list" ref={ref}>
+      <div
+        {...props}
+        className={`picker-main cascader${props?.className ? ' ' + props.className : ''}`}
+        ref={ref}
+      >
         {Array.isArray(currentList) &&
           currentList.map((item, index) => {
             return (

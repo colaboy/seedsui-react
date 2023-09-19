@@ -154,8 +154,8 @@ const DistrictModal = forwardRef(
 
     return (
       <Modal
-        onBeforeSelectOption={handleBeforeSelectOption}
         ref={ref}
+        onBeforeSelectOption={handleBeforeSelectOption}
         value={value}
         list={listData.current}
         submitProps={submitProps}

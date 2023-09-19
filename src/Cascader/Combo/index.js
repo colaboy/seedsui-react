@@ -1,4 +1,7 @@
 import React, { forwardRef } from 'react'
+// 测试使用
+// import Combo from 'seedsui-react/lib/Select/Combo'
+// 内库使用
 import Combo from './../../Select/Combo'
 import Modal from './../Modal'
 
@@ -6,31 +9,23 @@ import Modal from './../Modal'
 const CascaderCombo = forwardRef(
   (
     {
-      // 定制属性
       loadData,
       onBeforeSelectOption,
-
       optionProps,
-
-      ModalProps,
       // 标准属性
       ...props
     },
     ref
   ) => {
-    return (
-      <Combo
-        ref={ref}
-        ModalComponent={Modal}
-        ModalProps={{
-          loadData: loadData,
-          onBeforeSelectOption: onBeforeSelectOption,
-          optionProps: optionProps,
-          ...ModalProps
-        }}
-        {...props}
-      />
-    )
+    // 扩展非标准属性
+    if (!props.MainProps) {
+      props.MainProps = {}
+    }
+    props.MainProps.loadData = loadData
+    props.MainProps.onBeforeSelectOption = onBeforeSelectOption
+    props.MainProps.optionProps = optionProps
+
+    return <Combo ref={ref} ModalComponent={Modal} {...props} />
   }
 )
 

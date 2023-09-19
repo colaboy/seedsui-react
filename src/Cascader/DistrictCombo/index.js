@@ -1,11 +1,16 @@
 import React, { forwardRef } from 'react'
-import Combo from './../../Select/Combo'
+// 测试使用
+// import BaseCombo from 'seedsui-react/lib/Select/Combo'
+// 内库使用
+import BaseCombo from './../../Select/Combo'
+
 import DistrictModal from './../DistrictModal'
 
 // 级联选择
 const DistrictCombo = forwardRef(
   (
     {
+      // Main: Cascader.DistrictModal Control properties
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       min = '',
       // 判断是否是国省市区
@@ -20,8 +25,6 @@ const DistrictCombo = forwardRef(
       loadData,
       onBeforeSelectOption,
       optionProps,
-      // 确定按钮需要根据min来判断显隐
-      submitProps,
       ModalProps,
       // 标准属性
       ...props
@@ -29,7 +32,7 @@ const DistrictCombo = forwardRef(
     ref
   ) => {
     return (
-      <Combo
+      <BaseCombo
         ref={ref}
         value={value}
         ModalComponent={DistrictModal}
@@ -48,8 +51,6 @@ const DistrictCombo = forwardRef(
           loadData,
           onBeforeSelectOption,
           optionProps,
-          // 确定按钮需要根据min来判断显隐
-          submitProps,
           ...ModalProps
         }}
         {...props}
