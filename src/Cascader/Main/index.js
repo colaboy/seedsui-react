@@ -47,12 +47,16 @@ const Main = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         rootDOM: mainRef.current,
-        getRootDOM: () => mainRef.current
+        getRootDOM: () => mainRef.current,
+        getValue: () => {
+          return tabs
+        }
       }
     })
 
     // 监听value的变化, 更新tabs与列表
     useEffect(() => {
+      if (typeof visible === 'boolean' && visible === false) return
       // 显示时更新tabs
       tabs = value // eslint-disable-line
 
@@ -109,7 +113,7 @@ const Main = forwardRef(
       })
 
       // eslint-disable-next-line
-    }, [value])
+    }, [value, visible])
 
     // 修改回调
     async function handleChange(newValue) {

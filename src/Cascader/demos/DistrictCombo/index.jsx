@@ -4,6 +4,7 @@ import CountriesData from './../CountriesData'
 import { Cascader, Loading } from 'seedsui-react'
 
 export default () => {
+  const [value2, setValue2] = useState(null)
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
     { name: '中国', id: '86' },
@@ -45,8 +46,9 @@ export default () => {
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
+      <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
       <Cascader.DistrictCombo
-        // disabled="exclusion-ricon"
+        allowClear
         min="province" // ['country', 'province', 'city', 'district', 'street']
         type="city"
         list={CountriesData}
