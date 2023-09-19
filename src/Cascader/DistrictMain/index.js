@@ -34,6 +34,11 @@ const DistrictMain = forwardRef(
       if (typeof loadList === 'function') {
         listData = await loadList()
       }
+      if (Array.isArray(listData) && listData.length) {
+        setListData(listData)
+        return
+      }
+
       // 读取默认列表或者缓存
       if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_list__)) {
         window.__SeedsUI_Cascader_DistrictCombo_list__ = require('./China')

@@ -47,7 +47,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
         // disabled="exclusion-ricon"
-        min="district" // ['country', 'province', 'city', 'district', 'street']
+        min="province" // ['country', 'province', 'city', 'district', 'street']
         type="city"
         list={CountriesData}
         loadData={loadData}
