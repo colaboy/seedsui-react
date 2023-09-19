@@ -20,7 +20,7 @@ const Main = forwardRef(
 
       // Main: Cascader.Main Control properties
       loadData,
-      onBeforeSelectOption,
+      onBeforeSelect,
       optionProps = {},
       ...props
     },
@@ -98,7 +98,7 @@ const Main = forwardRef(
         currentList: currentList,
         onCurrentListChange: setCurrentList,
         // 选中前判断
-        onBeforeSelectOption: onBeforeSelectOption,
+        onBeforeSelect: onBeforeSelect,
         // 页签
         activeTab: activeTab,
         tabs: tabs,
@@ -116,7 +116,7 @@ const Main = forwardRef(
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue)
-        if (!goOn) return
+        if (goOn !== undefined && !goOn) return
       }
       if (onChange) onChange(newValue)
     }
@@ -155,7 +155,7 @@ const Main = forwardRef(
           // 修改
           onChange={handleChange}
           // 阻止选择
-          onBeforeSelectOption={onBeforeSelectOption}
+          onBeforeSelect={onBeforeSelect}
           {...props}
         />
       </>

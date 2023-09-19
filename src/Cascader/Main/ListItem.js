@@ -19,7 +19,7 @@ const ListItem = forwardRef(
       // 修改
       onChange,
       // 阻止选择
-      onBeforeSelectOption,
+      onBeforeSelect,
       ...props
     },
     ref
@@ -44,8 +44,8 @@ const ListItem = forwardRef(
 
       // 获取子数据前阻止方法
       let allowLoadChildren = true
-      if (onBeforeSelectOption) {
-        allowLoadChildren = await onBeforeSelectOption(tabs)
+      if (onBeforeSelect) {
+        allowLoadChildren = await onBeforeSelect(tabs)
       }
 
       // 获取子数据

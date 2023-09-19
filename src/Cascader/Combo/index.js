@@ -10,9 +10,8 @@ const CascaderCombo = forwardRef(
   (
     {
       loadData,
-      onBeforeSelectOption,
       optionProps,
-      // 标准属性
+      // Modal standard properties
       ...props
     },
     ref
@@ -22,7 +21,6 @@ const CascaderCombo = forwardRef(
       props.MainProps = {}
     }
     props.MainProps.loadData = loadData
-    props.MainProps.onBeforeSelectOption = onBeforeSelectOption
     props.MainProps.optionProps = optionProps
 
     return <Combo ref={ref} ModalComponent={Modal} {...props} />

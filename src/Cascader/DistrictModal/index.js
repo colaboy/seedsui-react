@@ -1,78 +1,55 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import { getMinTypes, matchType, testCity, testDistrict } from './utils'
-import Modal from './../Modal'
+
+// 测试使用
+// import BaseModal from 'seedsui-react/lib/Select/Modal'
+// 内库使用
+import BaseModal from './../../Select/Modal'
+
+import DistrictMain from './../DistrictMain'
 
 // 级联选择
 const DistrictModal = forwardRef(
   (
     {
-      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      // Modal fixed properties
+      visible,
+
+      // Modal: DistrictModal Control properties
       min = '',
-      // 判断是否是国省市区
+      submitProps,
+
+      // Main: common
+      value,
+
+      // Main: DistrictMain Control properties
+      loadList,
+      loadData,
       isCountry,
       isProvince,
       isCity,
       isDistrict,
       isStreet,
-      value,
-      list,
-      loadList,
-      onBeforeSelectOption,
-      // 确定按钮需要根据min来判断显隐
-      submitProps,
+      onBeforeSelect,
       ...props
     },
     ref
   ) => {
-    const listData = useRef(list)
-    const [visible, setVisible] = useState(false)
     // 是否显示右上角确认按钮
     let [submitVisible, setSubmitVisible] = useState(null)
 
+    // 显示时更新
     useEffect(() => {
-      initList()
-    }, []) // eslint-disable-line
-
-    async function initList() {
-      listData.current = list
-      // 列表存在则显示弹窗
-      if (Array.isArray(listData.current) && listData.current.length) {
-        setVisible(true)
-        return
+      if (visible) {
+        updateSubmitVisible(value)
       }
-      // 异步加载列表
-      if (typeof loadList === 'function') {
-        listData.current = await loadList()
-      }
-      if (Array.isArray(listData.current) && listData.current.length) {
-        setVisible(true)
-        return
-      }
-
-      // 读取默认列表或者缓存
-      if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_list__)) {
-        window.__SeedsUI_Cascader_DistrictCombo_list__ = require('./China')
-        if (window.__SeedsUI_Cascader_DistrictCombo_list__.default) {
-          window.__SeedsUI_Cascader_DistrictCombo_list__ =
-            window.__SeedsUI_Cascader_DistrictCombo_list__.default
-        }
-      }
-      listData.current = window.__SeedsUI_Cascader_DistrictCombo_list__ || null
-      setVisible(true)
-    }
+      // eslint-disable-next-line
+    }, [visible])
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible() {
-      let tabs = null
-      // 默认读取点击后选中的最后一项
-      if (Array.isArray(listData.tabs) && listData.tabs.length) {
-        tabs = listData.tabs
-      }
-      // 如果没有选中项, 说明是初始化，则读取传入值的最后一项
-      if (!tabs) tabs = Array.isArray(value) && value.length ? value : null
-
+    function updateSubmitVisible(tabs) {
       // 如果即没点击, 又没有传入初始值，则默认不显示提交按钮
-      if (!tabs) {
+      if (!Array.isArray(tabs) || !tabs.length) {
         submitVisible = false
         return
       }
@@ -106,39 +83,18 @@ const DistrictModal = forwardRef(
       } else {
         submitVisible = false
       }
+
+      setSubmitVisible(submitVisible)
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleBeforeSelectOption(tabs) {
-      if (!type && !min) return true
-      if (!Array.isArray(tabs) || !tabs.length) return true
-
-      // 自行解决省市区判断
-      if (onBeforeSelectOption) return onBeforeSelectOption(tabs)
-
-      // 根据最小类型, 判定是否显示确定按钮
+    function handleBeforeSelect(tabs) {
       if (min) {
-        // 记录点击的最后一项
-        listData.tabs = tabs
-        updateSubmitVisible()
-        setSubmitVisible(submitVisible)
+        updateSubmitVisible(tabs)
       }
 
-      // 匹配类型，没传类型则允许下钻
-      if (!type) return true
-
-      // 获取当前选中项
-      let lastTab = tabs[tabs.length - 1]
-      let match = matchType(lastTab, { type, isCountry, isProvince, isCity, isDistrict, isStreet })
-      // 没有匹配到类型时null返回true不关闭，匹配到时返回false不允许下钻
-      return match === null ? true : !match
-    }
-
-    if (!visible) return null
-
-    // 根据最小类型, 判定是否显示确定按钮
-    if (min) {
-      updateSubmitVisible()
+      // 点击选项
+      if (onBeforeSelect) return onBeforeSelect(tabs)
     }
 
     // 显示右上角的按钮
@@ -152,14 +108,23 @@ const DistrictModal = forwardRef(
       }
     }
 
+    // 扩展非标准属性
+    if (!props.MainProps) {
+      props.MainProps = {}
+    }
+    props.MainProps.onBeforeSelect = handleBeforeSelect
+    props.MainProps.loadList = loadList
+    props.MainProps.loadData = loadData
+
     return (
-      <Modal
+      <BaseModal
         ref={ref}
-        onBeforeSelectOption={handleBeforeSelectOption}
+        visible={visible}
         value={value}
-        list={listData.current}
         submitProps={submitProps}
         {...props}
+        className={`cascader${props.className ? ' ' + props.className : ''}`}
+        MainComponent={DistrictMain}
       />
     )
   }

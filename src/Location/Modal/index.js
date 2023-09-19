@@ -117,7 +117,7 @@ const LocationModal = forwardRef(
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(value)
-        if (!goOn) return
+        if (goOn !== undefined && !goOn) return
       }
 
       onChange && onChange(value)

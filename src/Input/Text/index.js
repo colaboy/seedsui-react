@@ -291,7 +291,7 @@ const InputText = forwardRef(
       // 修改前
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(val)
-        if (!goOn) return
+        if (goOn !== undefined && !goOn) return
       }
 
       // 修改
@@ -354,7 +354,7 @@ const InputText = forwardRef(
       // 修改前
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange('')
-        if (!goOn) return
+        if (goOn !== undefined && !goOn) return
       }
 
       // 获取焦点

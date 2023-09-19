@@ -25,7 +25,7 @@ export default {
       currentList,
       onCurrentListChange,
       // 选中前判断
-      onBeforeSelectOption,
+      onBeforeSelect,
       // 页签
       activeTab,
       tabs,
@@ -40,8 +40,11 @@ export default {
 
     // 判断是否允许加载子节点
     let allowLoadChildren = true
-    if (onBeforeSelectOption) {
-      allowLoadChildren = await onBeforeSelectOption(tabs)
+    if (onBeforeSelect) {
+      let goOn = await onBeforeSelect(tabs)
+      if (goOn !== undefined) {
+        allowLoadChildren = goOn
+      }
     }
     if (allowLoadChildren) {
       // 取子节点, 并增加请选择
