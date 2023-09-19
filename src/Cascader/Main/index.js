@@ -75,6 +75,8 @@ const Main = forwardRef(
 
       // 传入的选中项可能会数据不充分, 需要补充数据
       tabs = tabs.map((tab) => {
+        // 初始化默认选中最后一项
+        delete tab.active
         return Utils.getListNode(list, tab)
       })
 
