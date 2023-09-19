@@ -129,7 +129,7 @@ const Main = forwardRef(
     return (
       <div
         {...props}
-        className={`picker-wrapper${props.className ? ' ' + props.className : ''}`}
+        className={`picker-main${props.className ? ' ' + props.className : ''}`}
         ref={mainRef}
       >
         <div className="picker-layer">

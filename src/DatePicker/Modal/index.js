@@ -12,6 +12,7 @@ const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
     <BaseModal
       ref={ref}
       {...props}
+      className={`slots${props.className ? ' ' + props.className : ''}`}
       type={type}
       valueFormatter={valueFormatter}
       multiple={false}

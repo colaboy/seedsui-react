@@ -9,7 +9,7 @@ let Picker = function (params) {
       name: 'name'
     },
 
-    wrapperClass: 'picker-wrapper',
+    wrapperClass: 'picker-main',
 
     slotboxClass: 'picker-slotbox',
     slotClass: 'picker-slot',
