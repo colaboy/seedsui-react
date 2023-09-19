@@ -13,7 +13,7 @@ const Modal = forwardRef(({ ...props }, ref) => {
       ref={ref}
       {...props}
       className={`cascader${props.className ? ' ' + props.className : ''}`}
-      multiple={false}
+      multiple={undefined}
       MainComponent={Main}
     />
   )

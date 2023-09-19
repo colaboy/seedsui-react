@@ -128,7 +128,6 @@ const Main = forwardRef(
         if (!goOn) return
       }
       if (onChange) onChange(newValue)
-      // if (onVisibleChange) onVisibleChange(false)
     }
 
     return (
