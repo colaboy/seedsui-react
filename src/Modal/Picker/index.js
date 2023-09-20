@@ -52,7 +52,7 @@ const Picker = forwardRef(
       if (maskClosable && onVisibleChange) onVisibleChange(false)
     }
 
-    return createPortal(
+    let Node = (
       <div
         {...maskProps}
         className={`mask picker-mask${maskProps?.className ? ' ' + maskProps.className : ''}${
@@ -78,9 +78,13 @@ const Picker = forwardRef(
           {/* 主体 */}
           {children}
         </div>
-      </div>,
-      portal || document.getElementById('root') || document.body
+      </div>
     )
+
+    if (portal === null || portal === false) {
+      return Node
+    }
+    return createPortal(Node, portal || document.getElementById('root') || document.body)
   }
 )
 
