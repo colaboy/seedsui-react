@@ -25,3 +25,7 @@
 ### Modal.confirm
 
 <code src="./demos/confirm/index.jsx"></code>
+
+### Modal.Picker
+
+<code src="./demos/Picker/index.jsx"></code>
