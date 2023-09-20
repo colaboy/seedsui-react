@@ -68,6 +68,7 @@ function Tabs({
       }
       return item
     })
+
     if (onTabsChange) onTabsChange(tabs)
   }
 

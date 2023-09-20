@@ -50,7 +50,7 @@ const DistrictModal = forwardRef(
     function updateSubmitVisible(tabs) {
       // 如果即没点击, 又没有传入初始值，则默认不显示提交按钮
       if (!Array.isArray(tabs) || !tabs.length) {
-        submitVisible = false
+        setSubmitVisible(false)
         return
       }
 

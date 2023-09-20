@@ -46,8 +46,9 @@ export default {
         allowLoadChildren = goOn
       }
     }
+
+    // 允许下钻, 取子节点, 并增加请选择
     if (allowLoadChildren) {
-      // 取子节点, 并增加请选择
       let childrenList = await this.getChildrenList(list, tabs, activeTab, loadData)
       if (Array.isArray(childrenList) && childrenList.length) {
         // 清除原选中状态
@@ -61,11 +62,16 @@ export default {
         // 列表显示子数据
         newCurrentList = childrenList
       }
+      // 没有下钻, 则没有请选择
+      else {
+        if (onChooseTabChange) onChooseTabChange(null)
+      }
+    }
+    // 不允许下钻, 则没有请选择
+    else {
+      if (onChooseTabChange) onChooseTabChange(null)
     }
 
-    // if (Array.isArray(newCurrentList) && newCurrentList.length) {
-    //   if (onCurrentListChange) onCurrentListChange(newCurrentList)
-    // }
     if (onCurrentListChange) onCurrentListChange(newCurrentList)
     if (onTabsChange) onTabsChange(tabs)
   },
