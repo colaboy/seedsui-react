@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { Select } from 'seedsui-react'
+import CustomMain from './CustomMain'
 
 export default () => {
   const selectRef = useRef(null)
@@ -20,13 +21,34 @@ export default () => {
         // autoSize
         // disabled="exclusion-ricon"
         // animation="zoom"
+        // 自定义主体
+        MainComponent={CustomMain}
+        ModalProps={{ style: { height: '200px' } }}
+        captionProps={{
+          caption: '打回原因'
+        }}
+        allowClear="exclusion-ricon"
+        riconProps={{
+          className: 'icon shape-arrow-right sm'
+        }}
+        placeholder="自定义主体"
+      />
+
+      <Select.Combo
+        ref={selectRef}
+        // autoSize
+        // disabled="exclusion-ricon"
+        // animation="zoom"
+        // 自定义主体
+        MainComponent={CustomMain}
+        ModalProps={{ style: { height: '200px' } }}
+        listExtraHeaderRender={() => {
+          return <p>列表头部扩展</p>
+        }}
         allowClear="exclusion-ricon"
         multiple={true}
         riconProps={{
           className: 'icon shape-arrow-right sm'
-        }}
-        ModalProps={{
-          style: { height: '80%' }
         }}
         placeholder="Please select"
         value={value}

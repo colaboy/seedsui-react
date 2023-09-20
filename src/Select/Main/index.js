@@ -101,6 +101,17 @@ const Main = forwardRef(
           ref={mainRef}
         >
           {Object.isEmptyObject(list) && <NoData />}
+          {/* 列表上方扩展 */}
+          {typeof listExtraHeaderRender === 'function' &&
+            listExtraHeaderRender({
+              multiple,
+              checkable,
+              value,
+              list,
+              onChange
+            })}
+
+          {/* 列表 */}
           {list.map((item, index) => {
             return (
               <Item
