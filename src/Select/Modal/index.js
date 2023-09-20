@@ -2,7 +2,7 @@ import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } f
 import { createPortal } from 'react-dom'
 import locale from './../../locale'
 import { formatValue, getDynamicProps } from './../utils'
-import Head from './Head'
+import ModalPicker from './../../Modal/Picker'
 import Main from './../Main'
 
 // Modal
@@ -110,8 +110,8 @@ const Modal = forwardRef(
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: modalRef?.current,
-        getRootDOM: () => modalRef.current,
+        rootDOM: modalRef?.current?.rootDOM,
+        getRootDOM: () => modalRef?.current?.rootDOM,
 
         mainDOM: mainRef?.current?.rootDOM,
         getMainDOM: () => mainRef?.current?.rootDOM,
@@ -188,17 +188,6 @@ const Modal = forwardRef(
       if (onVisibleChange) onVisibleChange(false)
     }
 
-    function handleCancelClick(e) {
-      if (cancelProps?.onClick) cancelProps.onClick(e)
-      if (onVisibleChange) onVisibleChange(false)
-    }
-    function handleMaskClick(e) {
-      e.stopPropagation()
-      if (!e.target.classList.contains('mask')) return
-      if (maskProps?.onClick) maskProps.onClick()
-      if (maskClosable && onVisibleChange) onVisibleChange(false)
-    }
-
     // Main Render
     let MainNode = Main
     if (MainComponent) {
@@ -206,120 +195,111 @@ const Modal = forwardRef(
     }
 
     return createPortal(
-      <div
-        {...maskProps}
-        className={`mask picker-mask${maskProps?.className ? ' ' + maskProps.className : ''}${
-          visible ? ' active' : ''
-        }`}
-        onClick={handleMaskClick}
+      <ModalPicker
         ref={modalRef}
+        // Modal fixed properties
+        visible={visible}
+        onVisibleChange={onVisibleChange}
+        // Modal: display properties
+        portal={portal}
+        animation={animation}
+        captionProps={{ caption: currentTitle, ...captionProps }}
+        submitProps={{
+          // 必选单选不显示确定按钮
+          visible: multiple !== undefined,
+          // 多选确定带选中数量
+          ...submitProps,
+          caption: getCaption(),
+          onClick: handleSubmitClick
+        }}
+        cancelProps={cancelProps}
+        maskClosable={maskClosable}
+        {...props}
       >
-        <div
-          data-animation={animation}
-          {...props}
-          className={`popup-animation picker${props.className ? ' ' + props.className : ''}${
-            visible ? ' active' : ''
-          }`}
-        >
-          {/* 头 */}
-          <Head
-            captionProps={{ caption: currentTitle, ...captionProps }}
-            cancelProps={cancelProps}
-            submitProps={{
-              // 必选单选不显示确定按钮
-              visible: multiple !== undefined,
-              // 多选确定带选中数量
-              ...submitProps,
-              caption: getCaption()
+        {/* 纯渲染 */}
+        {children}
+        {/* 主体 */}
+        {!children && (
+          <MainNode
+            ref={mainRef}
+            {...getDynamicProps({
+              BaseProps: MainProps,
+
+              // Main
+              // MainComponent,
+              // MainProps,
+
+              // Main: common
+              value,
+              list, // [{id: '', name: ''}]
+              multiple,
+              onSelect,
+              // onBeforeChange,
+              // onChange,
+
+              // Main: render
+              checkedType,
+              checkedPosition,
+              checkable,
+              headerRender,
+              footerRender,
+              listRender,
+              listHeaderRender,
+              listFooterRender,
+              listExtraHeaderRender,
+              listExtraFooterRender,
+              itemRender,
+              itemContentRender,
+              itemProps,
+              checkboxProps,
+
+              // Main: Picker Control properties
+              defaultPickerValue,
+              slotProps,
+
+              // Combo|Main: DatePicker Control properties
+              titleFormatter,
+              min,
+              max,
+              type, // year | quarter | month | date | time | datetime
+              onError,
+              ranges,
+              modal, // 弹出方式dropdown
+              separator,
+
+              // Main: Actionsheet Control properties
+              groupProps,
+              optionProps,
+
+              // Main: Tree Component properties
+              checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+              enableHalfChecked, // 是否启用半选功能
+              preserveValue, // 保留不在树结构中的value
+              onlyLeafCheck, // 仅允许点击末级节点
+              selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
+              defaultExpandAll, // 默认展开
+              ...(TreeProps || {})
+            })}
+            // cover properties
+            visible={visible}
+            value={currentValue}
+            list={list}
+            onChange={(newValue) => {
+              // 无标题时更新标题
+              updateTitle()
+
+              // 修改值
+              currentValue = valueFormatter({ type, value: newValue, ranges, separator })
+              setCurrentValue(currentValue)
+
+              // multiple未传则为必选单选
+              if (multiple === undefined) {
+                handleSubmitClick()
+              }
             }}
-            onSubmitClick={handleSubmitClick}
-            onCancelClick={handleCancelClick}
           />
-          {/* 纯渲染 */}
-          {children}
-          {/* 主体 */}
-          {!children && (
-            <MainNode
-              ref={mainRef}
-              {...getDynamicProps({
-                BaseProps: MainProps,
-
-                // Main
-                // MainComponent,
-                // MainProps,
-
-                // Main: common
-                value,
-                list, // [{id: '', name: ''}]
-                multiple,
-                onSelect,
-                // onBeforeChange,
-                // onChange,
-
-                // Main: render
-                checkedType,
-                checkedPosition,
-                checkable,
-                headerRender,
-                footerRender,
-                listRender,
-                listHeaderRender,
-                listFooterRender,
-                listExtraHeaderRender,
-                listExtraFooterRender,
-                itemRender,
-                itemContentRender,
-                itemProps,
-                checkboxProps,
-
-                // Main: Picker Control properties
-                defaultPickerValue,
-                slotProps,
-
-                // Combo|Main: DatePicker Control properties
-                titleFormatter,
-                min,
-                max,
-                type, // year | quarter | month | date | time | datetime
-                onError,
-                ranges,
-                modal, // 弹出方式dropdown
-                separator,
-
-                // Main: Actionsheet Control properties
-                groupProps,
-                optionProps,
-
-                // Main: Tree Component properties
-                checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
-                enableHalfChecked, // 是否启用半选功能
-                preserveValue, // 保留不在树结构中的value
-                onlyLeafCheck, // 仅允许点击末级节点
-                selectable, // 点击选中, 根据checkable判断是否启用selectable, 没有checkbox时则启用
-                defaultExpandAll, // 默认展开
-                ...(TreeProps || {})
-              })}
-              // cover properties
-              visible={visible}
-              value={currentValue}
-              list={list}
-              onChange={(newValue) => {
-                // 无标题时更新标题
-                updateTitle()
-
-                // 修改值
-                currentValue = valueFormatter({ type, value: newValue, ranges, separator })
-                setCurrentValue(currentValue)
-
-                // multiple未传则为必选单选
-                if (multiple === undefined) {
-                  handleSubmitClick()
-                }
-              }}
-            />
-          )}
-        </div>
-      </div>,
+        )}
+      </ModalPicker>,
       portal || document.getElementById('root') || document.body
     )
   }

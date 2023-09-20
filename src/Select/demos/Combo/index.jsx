@@ -22,31 +22,12 @@ export default () => {
         // disabled="exclusion-ricon"
         // animation="zoom"
         // 自定义主体
-        MainComponent={CustomMain}
-        ModalProps={{ style: { height: '200px' } }}
-        captionProps={{
-          caption: '打回原因'
-        }}
-        allowClear="exclusion-ricon"
-        riconProps={{
-          className: 'icon shape-arrow-right sm'
-        }}
-        placeholder="自定义主体"
-      />
-
-      <Select.Combo
-        ref={selectRef}
-        // autoSize
-        // disabled="exclusion-ricon"
-        // animation="zoom"
-        // 自定义主体
-        MainComponent={CustomMain}
-        ModalProps={{ style: { height: '200px' } }}
+        // MainComponent={CustomMain}
         listExtraHeaderRender={() => {
           return <p>列表头部扩展</p>
         }}
         allowClear="exclusion-ricon"
-        multiple={true}
+        // multiple={true}
         riconProps={{
           className: 'icon shape-arrow-right sm'
         }}
