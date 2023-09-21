@@ -48,7 +48,7 @@ const Picker = forwardRef(
     function handleMaskClick(e) {
       e.stopPropagation()
       if (!e.target.classList.contains('mask')) return
-      if (maskProps?.onClick) maskProps.onClick()
+      if (maskProps?.onClick) maskProps.onClick(e)
       if (maskClosable && onVisibleChange) onVisibleChange(false)
     }
 

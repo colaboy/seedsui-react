@@ -203,6 +203,7 @@ const Modal = forwardRef(
         // Modal: display properties
         portal={portal}
         animation={animation}
+        maskProps={maskProps}
         captionProps={{ caption: currentTitle, ...captionProps }}
         submitProps={{
           // 必选单选不显示确定按钮
