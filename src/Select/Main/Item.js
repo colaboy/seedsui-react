@@ -22,7 +22,7 @@ const Item = ({
   return (
     <div
       {...props}
-      className={`select-modal-option${props.className ? ' ' + props.className : ''}${
+      className={`select-option${props.className ? ' ' + props.className : ''}${
         disabled ? ' disabled' : ''
       }${checked ? ' active' : ''}`}
       checked-position={checkedPosition === 'left' ? 'left' : 'right'}
@@ -32,15 +32,15 @@ const Item = ({
     >
       {/* 左选中 */}
       {checkable !== false && (
-        <div className={`left select-modal-option-${getCheckedType()}`}>
+        <div className={`left select-option-${getCheckedType()}`}>
           <div className="checked-input"></div>
         </div>
       )}
       {/* 内容 */}
-      <p className="select-modal-option-caption">{item.name}</p>
+      <p className="select-option-caption">{item.name}</p>
       {/* 右选中 */}
       {checkable !== false && (
-        <div className={`right select-modal-option-${getCheckedType()}`}>
+        <div className={`right select-option-${getCheckedType()}`}>
           <div className="checked-input"></div>
         </div>
       )}

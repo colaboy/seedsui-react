@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState, Fragment } from 'react'
 import { formatList } from './../utils'
 import isChecked from './isChecked'
 import addItem from './addItem'
@@ -90,6 +90,33 @@ const Main = forwardRef(
       })
     }
 
+    // 获取单项
+    function getItem(item, index) {
+      return (
+        <Item
+          key={item.id || index}
+          item={item}
+          index={index}
+          // 选中效果: checkbox | tick | corner
+          checkedType={checkedType}
+          // 选中位置: left | right
+          checkedPosition={checkedPosition}
+          {...itemProps}
+          disabled={item.disabled}
+          checked={isChecked(item, value)}
+          checkable={checkable}
+          onClick={async (e) => {
+            let newValue = addItem(item, value, multiple)
+            if (typeof onBeforeChange === 'function') {
+              let goOn = await onBeforeChange(newValue)
+              if (goOn === false) return
+            }
+            onChange && onChange(newValue)
+          }}
+        />
+      )
+    }
+
     return (
       <>
         {/* 头部 */}
@@ -113,29 +140,19 @@ const Main = forwardRef(
 
           {/* 列表 */}
           {list.map((item, index) => {
-            return (
-              <Item
-                key={index}
-                item={item}
-                index={index}
-                // 选中效果: checkbox | tick | corner
-                checkedType={checkedType}
-                // 选中位置: left | right
-                checkedPosition={checkedPosition}
-                {...itemProps}
-                disabled={item.disabled}
-                checked={isChecked(item, value)}
-                checkable={checkable}
-                onClick={async (e) => {
-                  let newValue = addItem(item, value, multiple)
-                  if (typeof onBeforeChange === 'function') {
-                    let goOn = await onBeforeChange(newValue)
-                    if (goOn === false) return
-                  }
-                  onChange && onChange(newValue)
-                }}
-              />
-            )
+            // 子子元素
+            if (Array.isArray(item.children) && item.children.length) {
+              return (
+                <Fragment key={item.id || index}>
+                  <div className="select-group-title">{item.name}</div>
+                  {item.children.map((option, optionIndex) => {
+                    return getItem(option, optionIndex)
+                  })}
+                </Fragment>
+              )
+            }
+            // 子元素
+            return getItem(item, index)
           })}
         </div>
         {/* 底部 */}

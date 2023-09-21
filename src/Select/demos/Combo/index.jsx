@@ -83,39 +83,39 @@ export default () => {
             name: '选项8'
           },
           {
-            id: '1',
-            name: '选项1'
+            id: '9',
+            name: '选项9'
           },
           {
-            id: '2',
-            name: '选项2'
+            id: '10',
+            name: '选项10'
           },
           {
-            id: '3',
-            name: '选项5'
+            id: '11',
+            name: '选项11'
           },
           {
-            id: '4',
-            name: '选项5'
+            id: '12',
+            name: '选项12'
           },
           {
-            id: '5',
-            name: '选项5'
+            id: '13',
+            name: '选项13'
           },
           {
-            id: '6',
-            name: '选项6'
+            id: '14',
+            name: '选项14'
           },
           {
-            id: '7',
-            name: '选项7'
+            id: '15',
+            name: '选项15'
           },
           {
-            id: '8',
-            name: '选项8'
+            id: '16',
+            name: '选项16'
           }
         ]}
-        // multiple={false}
+        multiple
         onChange={(newValue) => {
           console.log('onChange:', newValue)
           setValue(newValue)

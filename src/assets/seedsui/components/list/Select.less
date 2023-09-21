@@ -35,8 +35,15 @@ Select.Combo
 //   }
 // }
 
+// 列表分组
+.select-group-title {
+  color: #a9b1b9;
+  font-size: @font-size-m;
+  padding: 12px 4px;
+  margin: 0 12px;
+}
 // 列表选项
-.select-modal-option {
+.select-option {
   position: relative;
   display: flex;
   align-items: center;
@@ -58,11 +65,11 @@ Select.Combo
   }
 }
 // 单项禁用
-.select-modal-option.disabled {
+.select-option.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
-.select-modal-option-caption {
+.select-option-caption {
   .flex-1;
   position: relative;
   display: block;
@@ -76,7 +83,7 @@ Select.Combo
   }
 }
 [checked-type='checkbox'].active {
-  .select-modal-option-checkbox {
+  .select-option-checkbox {
     .checked-input {
       .checkbox-input-checked;
     }
@@ -91,10 +98,10 @@ Select.Combo
   }
 }
 [checked-type='tick'].active {
-  .select-modal-option-caption {
+  .select-option-caption {
     color: @primary;
   }
-  .select-modal-option-tick {
+  .select-option-tick {
     .checked-input {
       width: 18px;
       height: 18px;
@@ -109,7 +116,7 @@ Select.Combo
 
 // 选中样式-corner
 [checked-type='corner'] {
-  .select-modal-option-corner {
+  .select-option-corner {
     // 三角位置
     position: absolute;
     top: 0;
@@ -120,7 +127,7 @@ Select.Combo
 }
 [checked-type='corner'].active {
   // 右
-  .select-modal-option-corner {
+  .select-option-corner {
     // 三角
     &::before {
       display: block;
@@ -147,7 +154,7 @@ Select.Combo
   }
 
   // 右
-  .select-modal-option-corner.right {
+  .select-option-corner.right {
     // 三角
     right: 0;
     text-align: right;
@@ -159,7 +166,7 @@ Select.Combo
   }
 
   // 左
-  .select-modal-option-corner.left {
+  .select-option-corner.left {
     // 三角
     left: 0;
     text-align: left;
