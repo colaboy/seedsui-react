@@ -149,7 +149,7 @@ const Modal = forwardRef(
     }
 
     // 获取确定按钮的数量
-    function getCaption() {
+    function getSubmitCaption() {
       let value = currentValue
       // 获取数量
       if (typeof submitProps?.caption === 'function') {
@@ -209,7 +209,7 @@ const Modal = forwardRef(
           visible: multiple !== undefined,
           // 多选确定带选中数量
           ...submitProps,
-          caption: getCaption(),
+          caption: getSubmitCaption(),
           onClick: handleSubmitClick
         }}
         cancelProps={cancelProps}
