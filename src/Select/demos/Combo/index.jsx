@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import { Select } from 'seedsui-react'
-import CustomMain from './CustomMain'
 
 export default () => {
   const selectRef = useRef(null)
@@ -12,6 +11,10 @@ export default () => {
     {
       id: '选项2',
       name: '选项2'
+    },
+    {
+      id: '分组-选项1',
+      name: '分组-选项1'
     }
   ])
   return (
@@ -37,6 +40,19 @@ export default () => {
           {
             id: '选项1',
             name: '选项1'
+          },
+          {
+            name: '分组',
+            children: [
+              {
+                id: '分组-选项1',
+                name: '分组-选项1'
+              },
+              {
+                id: '分组-选项2',
+                name: '分组-选项2'
+              }
+            ]
           },
           {
             id: '选项2',
