@@ -56,7 +56,7 @@ export default () => {
         //   ['最近30天']: [new Date().prevDate(29), new Date()],
         //   ['自定义时间']: null
         // }}
-        // modal="picker"
+        modal="picker"
         // format="MM-DD"
         min={new Date('2023-01-01')}
         // max={new Date('2023-12-12')}

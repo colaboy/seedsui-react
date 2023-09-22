@@ -28,24 +28,27 @@
 
 // DatePicker.RangeModal
 .datepicker-rangemodal-modal {
+  background-color: white;
+  // 隐藏自定义选择框
+  .datepicker-rangemain-custom {
+    display: none;
+  }
+}
+// DatePicker.RangeModal: dropdown
+.datepicker-rangemodal-modal-dropdown {
   width: 100%;
-  padding: 12px;
-  .bg-white;
-  // 向上弹出与picker样式一致
   &[data-animation='slideDown'] {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
-  // // 向上弹出与picker样式一致
-  // &[data-animation='slideUp'] {
-  //   height: 298px;
-  //   border-top-left-radius: 8px;
-  //   border-top-right-radius: 8px;
-  // }
-
-  // 隐藏自定义选择框
-  .datepicker-rangemain-custom {
-    display: none;
+  .datepicker-rangemodal-main {
+    padding: 12px;
+  }
+}
+// DatePicker.RangeModal: picker
+.datepicker-rangemodal-modal-picker {
+  .datepicker-rangemodal-main {
+    padding: 0 18px 18px 18px;
   }
 }
 

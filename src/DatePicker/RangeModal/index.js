@@ -128,7 +128,7 @@ const RangeModal = forwardRef(
 
     // 快捷选择
     if (hasSelector) {
-      if (modal === 'dropdown') {
+      if (modal === 'dropdown' || modal === 'picker') {
         return (
           <SelectorModal
             portal={portal}
@@ -156,6 +156,7 @@ const RangeModal = forwardRef(
             type={type}
             onError={onError}
             ranges={ranges}
+            modal={modal}
             onActiveKey={onActiveKey}
             {...props}
           />
