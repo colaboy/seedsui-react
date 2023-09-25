@@ -5,7 +5,6 @@ const Layout = forwardRef(({ animation, children, safeArea, ...props }, ref) => 
   const rootRef = useRef(null)
 
   // 安全区域，Layout全屏时增加安全区域（仅对苹果的安全区域生效）
-
   if (
     Device.os === 'ios' &&
     Device.platform === 'wq' &&
