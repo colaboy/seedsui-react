@@ -36,13 +36,24 @@ Select.Combo
 // }
 
 // 列表分组
-.select-group-title {
-  color: #a9b1b9;
-  font-size: @font-size-m;
-  padding: 12px 4px;
+.select-group-headline {
+  padding: 12px 4px 0 4px;
   margin: 0 12px;
 }
-// 列表选项
+.select-group-caption {
+  color: @tertiary;
+  font-size: @font-size-m;
+}
+.select-group-description {
+  color: @tertiary;
+  font-size: @font-size-s;
+  margin-top: 4px;
+}
+
+.select-group-options {
+  // 分组选项容器
+}
+// 选项
 .select-option {
   position: relative;
   display: flex;
@@ -51,9 +62,26 @@ Select.Combo
   margin: 0 12px;
   gap: 8px;
   font-size: 16px;
-  .border-t;
+  .border-b;
 }
-// 选中框左右排版
+// 选项-内容
+.select-option-content {
+  .flex-1;
+}
+// 选项-内容-标题
+.select-option-caption {
+  position: relative;
+  display: block;
+  pointer-events: none;
+}
+// 选项-内容-副标题
+.select-option-description {
+  color: @tertiary;
+  font-size: @font-size-s;
+  margin-top: 4px;
+}
+
+// 选项-选中框左右排版
 [checked-position='right'] {
   .left {
     display: none;
@@ -64,19 +92,13 @@ Select.Combo
     display: none;
   }
 }
-// 单项禁用
+// 选项-禁用
 .select-option.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
-.select-option-caption {
-  .flex-1;
-  position: relative;
-  display: block;
-  pointer-events: none;
-}
 
-// 选中样式-checkbox
+// 选项-checkbox
 [checked-type='checkbox'] {
   .checked-input {
     .checkbox-input;
@@ -90,7 +112,7 @@ Select.Combo
   }
 }
 
-// 选中样式-tick
+// 选项-tick
 [checked-type='tick'] {
   .checked-input {
     width: 18px;
@@ -114,7 +136,7 @@ Select.Combo
   }
 }
 
-// 选中样式-corner
+// 选项-corner
 [checked-type='corner'] {
   .select-option-corner {
     // 三角位置

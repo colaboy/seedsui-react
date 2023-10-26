@@ -37,7 +37,10 @@ const Item = ({
         </div>
       )}
       {/* 内容 */}
-      <p className="select-option-caption">{item.name}</p>
+      <div className="select-option-content">
+        <p className="select-option-caption">{item.name}</p>
+        {item.description && <div className="select-option-description">{item.description}</div>}
+      </div>
       {/* 右选中 */}
       {checkable !== false && (
         <div className={`right select-option-${getCheckedType()}`}>

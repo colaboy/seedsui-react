@@ -39,14 +39,17 @@ export default () => {
         list={[
           {
             id: '选项1',
-            name: '选项1'
+            name: '选项1',
+            description: '普通描述'
           },
           {
             name: '分组',
+            // description: '分组描述',
             children: [
               {
                 id: '分组-选项1',
-                name: '分组-选项1'
+                name: '分组-选项1',
+                description: '分组内部描述'
               },
               {
                 id: '分组-选项2',

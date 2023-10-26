@@ -144,10 +144,17 @@ const Main = forwardRef(
             if (Array.isArray(item.children) && item.children.length) {
               return (
                 <Fragment key={item.id || index}>
-                  <div className="select-group-title">{item.name}</div>
-                  {item.children.map((option, optionIndex) => {
-                    return getItem(option, optionIndex)
-                  })}
+                  <div className="select-group-headline">
+                    <div className="select-group-caption">{item.name}</div>
+                    {item.description && (
+                      <div className="select-group-description">{item.description}</div>
+                    )}
+                  </div>
+                  <div className="select-group-options">
+                    {item.children.map((option, optionIndex) => {
+                      return getItem(option, optionIndex)
+                    })}
+                  </div>
                 </Fragment>
               )
             }
