@@ -161,6 +161,16 @@ const Main = forwardRef(
             // 子元素
             return getItem(item, index)
           })}
+
+          {/* 列表下方扩展 */}
+          {typeof listExtraFooterRender === 'function' &&
+            listExtraFooterRender({
+              multiple,
+              checkable,
+              value,
+              list,
+              onChange
+            })}
         </div>
         {/* 底部 */}
         {FooterNode}

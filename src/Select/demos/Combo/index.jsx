@@ -29,6 +29,9 @@ export default () => {
         listExtraHeaderRender={() => {
           return <p>列表头部扩展</p>
         }}
+        listExtraFooterRender={() => {
+          return <p>列表底部扩展</p>
+        }}
         allowClear="exclusion-ricon"
         // multiple={true}
         riconProps={{
