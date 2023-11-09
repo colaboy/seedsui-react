@@ -6,7 +6,7 @@ import './PrototypeObject.js'
 import './PrototypeString.js'
 import './PrototypeNumber.js'
 import './PrototypeDate.js'
-import './PrototypePinyin.js' // 不常用
+// import './PrototypePinyin.js' // 不常用
 
 // 记录版本号
 const packageJson = require('./../package.json')
