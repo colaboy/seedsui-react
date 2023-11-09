@@ -47,6 +47,7 @@
     "src/**/*.{js,jsx}": "eslint --max-warnings=0"
   },
   "dependencies": {
+    "axios": "^1.6.1",
     "better-scroll": "^2.5.0",
     "html-react-parser": "^3.0.4",
     "lodash": "^4.17.21",

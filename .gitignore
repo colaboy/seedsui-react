@@ -8,3 +8,4 @@ node_modules
 # 自定义修改
 docs-dist
 lib
+umd
