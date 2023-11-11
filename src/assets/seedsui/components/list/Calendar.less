@@ -150,3 +150,71 @@
   background-color: transparent;
   border-color: transparent;
 }
+
+// New Styles
+// Used to replace old class .calendar-wrapper
+.calendar-body {
+  overflow: hidden;
+}
+.calendar-body-y {
+  transition-property: transform;
+}
+.calendar-body-x {
+  display: flex;
+  width: 300%;
+  transition-property: transform;
+}
+// Used to replace old class .calendar-month
+.calendar-page {
+  flex: 1;
+}
+// Used to replace old class .calendar-monthrow
+.calendar-row:after {
+  display: table;
+  clear: both;
+  content: '';
+  zoom: 1;
+}
+// Used to replace old class .calendar-active
+.calendar-date-selected {
+  .calendar-date-num {
+    color: white;
+    font-weight: 600;
+    background-color: @primary;
+    border-color: @primary;
+    border-radius: 100%;
+  }
+}
+// Used to replace old class .calendar-current
+.calendar-date-in-view {
+  color: @default;
+}
+// Used to replace old class .calendar-notcurrent
+.calendar-date-out-view {
+  color: @secondary;
+}
+// Used to replace old class .calendar-today
+.calendar-date-today {
+  border-color: @secondary;
+
+  .calendar-date-num {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100%;
+  }
+}
+// Used to replace old class .calendar-datenum
+.calendar-date-num {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
+// Used to replace old class .calendar-disabled
+.calendar-date-disabled {
+  color: @disabled;
+  font-weight: normal;
+  background-color: transparent;
+  border-color: transparent;
+  pointer-events: none;
+}
