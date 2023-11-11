@@ -4,23 +4,15 @@
 // 动画时长(例如遮等)
 @animation-duration: 400ms;
 
-// 文字尺寸
-@font-size-xxl: 20px;
-@font-size-xl: 18px;
-@font-size-l: 16px;
-@font-size-m: 14px;
-@font-size-s: 12px;
-@font-size-xs: 9px;
-
-// body颜色
-@body-bg-color: #f2f2f6;
-
 // 遮罩颜色
 /* prettier-ignore */
 @mask-bg-color: rgba(0,0,0,.4);
 
 // 基础颜色(控件多基于如下几种颜色)
 :root {
+  // 全局背景色
+  --app-background-color: #f1f2f5;
+  // 颜色
   --default: #1a1c1f;
   --secondary: #77818c;
   --tertiary: #a9b1b9;
@@ -35,7 +27,35 @@
   --border: #e6e8eb;
   --navbar-icon: #50565d;
   --placeholder-icon: #c2c6cd;
+  // 文字大小
+  --font-size-xxxl: 24px;
+  --font-size-xxl: 20px;
+  --font-size-xl: 18px;
+  --font-size-l: 16px;
+  --font-size-m: 14px;
+  --font-size-s: 12px;
+  --font-size-xs: 9px;
+  // 圆角大小
+  --radius-xl: 24px;
+  --radius-l: 16px;
+  --radius-m: 12px;
+  --radius-s: 8px;
+  --radius-xs: 4px;
 }
+
+// 文字尺寸
+@font-size-xxxl: var(--font-size-xxxl);
+@font-size-xxl: var(--font-size-xxl);
+@font-size-xl: var(--font-size-xl);
+@font-size-l: var(--font-size-l);
+@font-size-m: var(--font-size-m);
+@font-size-s: var(--font-size-s);
+@font-size-xs: var(--font-size-xs);
+
+// body颜色
+@body-bg-color: var(--app-background-color);
+
+// 颜色
 @default: var(--default);
 @secondary: var(--secondary);
 @tertiary: var(--tertiary);
