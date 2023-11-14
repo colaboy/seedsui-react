@@ -24,6 +24,7 @@ const Main = forwardRef(
       onSelect,
       onBeforeChange,
       onChange,
+      onSearch,
 
       // Main: render
       checkedType = 'checkbox', // 选中效果: checkbox | tick | corner
@@ -50,7 +51,7 @@ const Main = forwardRef(
 
     // 过滤非法数据
     // eslint-disable-next-line
-    list = formatList(list, keyword)
+    list = formatList(list, keyword, onSearch)
 
     // 节点
     const mainRef = useRef(null)

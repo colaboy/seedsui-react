@@ -43,6 +43,7 @@ const Modal = forwardRef(
       onSelect,
       onBeforeChange,
       onChange,
+      onSearch,
 
       // Main: render
       checkedType,
@@ -237,6 +238,7 @@ const Modal = forwardRef(
               onSelect,
               // onBeforeChange,
               // onChange,
+              onSearch,
 
               // Main: render
               checkedType,

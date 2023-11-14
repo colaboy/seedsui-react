@@ -54,6 +54,7 @@ const Combo = forwardRef(
       onSelect,
       onBeforeChange,
       onChange,
+      onSearch,
 
       // Main: render
       checkedType,
@@ -264,6 +265,7 @@ const Combo = forwardRef(
             onSelect,
             onBeforeChange,
             onChange,
+            onSearch,
 
             // Main: render
             checkedType,

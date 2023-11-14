@@ -126,6 +126,10 @@ export default () => {
           console.log('onChange:', newValue)
           setValue(newValue)
         }}
+        // onSearch={({ keyword, list }) => {
+        //   console.log('keyword:', keyword)
+        //   return list
+        // }}
         onBeforeChange={(newValue) => {
           console.log('修改前')
           // return new Promise((resolve) => {
