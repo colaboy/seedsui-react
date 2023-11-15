@@ -142,7 +142,7 @@ const Main = forwardRef(
           {/* 列表 */}
           {list.map((item, index) => {
             // 子子元素
-            if (Array.isArray(item.children) && item.children.length) {
+            if (Array.isArray(item.children)) {
               return (
                 <Fragment key={item.id || index}>
                   <div className="select-group-headline">

@@ -1,6 +1,7 @@
 // 判断此项是否过滤
 function filterItem(item, keyword) {
-  if (!keyword) return true
+  // When have children display parent
+  if (!keyword || item?.children?.length) return true
 
   // Match title
   if (typeof item?.name === 'string' && item.name) {
@@ -36,7 +37,8 @@ function formatList(list, keyword, onSearch) {
   }
 
   // Default filter
-  return list.filter((item) => {
+  let newList = Object.clone(list)
+  return newList.filter((item) => {
     // filter children in list item
     if (Array.isArray(item.children) && item.children.length) {
       item.children = item.children.filter((child) => filterItem(child, keyword))
