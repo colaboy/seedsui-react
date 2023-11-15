@@ -30,7 +30,7 @@ function formatList(list, keyword, onSearch) {
   // Custom filter
   if (typeof onSearch === 'function') {
     let newList = onSearch({ keyword, list })
-    if (Array.isArray(newList) && newList.length) {
+    if (Array.isArray(newList)) {
       return newList
     }
   }
