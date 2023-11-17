@@ -29,7 +29,7 @@ let editConfigDefault = {
 // 文本框中提示信息配置
 let messageDefault = {
   // 定位时文案
-  loading: locale('定位中...', 'location'),
+  loading: locale('定位中...', 'positioning'),
   // 失败时文案
   failed: locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
 }
@@ -93,6 +93,8 @@ const InputLocation = forwardRef(
 
     /* 默认配置 */
     // 非只读配置
+
+    // eslint-disable-next-line
     editConfig = {
       ...editConfigDefault,
       ...(editConfig || {})
@@ -105,6 +107,7 @@ const InputLocation = forwardRef(
         }
       }
     } else {
+      // eslint-disable-next-line
       message = messageDefault
     }
 
@@ -182,7 +185,7 @@ const InputLocation = forwardRef(
 
     // 点击文本框
     function handleClick(event, val) {
-      var e = event.nativeEvent
+      let e = event.nativeEvent
 
       // 正在定位不允许操作
       if (status === '-1') {
@@ -193,6 +196,7 @@ const InputLocation = forwardRef(
       if (!readOnly && editConfig.editable) {
         if (status === '0') {
           // 非只读状态下, 点击错误面板, 允许手动输入位置
+          // eslint-disable-next-line
           status = '1'
           setStatus('1')
         }
@@ -488,6 +492,7 @@ const InputLocation = forwardRef(
           readOnly={inputReadOnly}
           onClick={handleClick}
           onChange={onChange}
+          // eslint-disable-next-line
           children={statusDOM}
           value={value && typeof value === 'object' ? value.value || '' : value || ''}
           clearReadOnly={inputClear}

@@ -33,7 +33,7 @@ const LocationCombo = forwardRef(
       previewVisible = false,
       // 提示信息配置
       failText = locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'),
-      loadingText = locale('定位中...', 'location'),
+      loadingText = locale('定位中...', 'positioning'),
 
       // 点击整行触发的动作: location | choose | preview
       clickAction,

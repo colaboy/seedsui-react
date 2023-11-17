@@ -12,7 +12,7 @@ import locale from './../../../../locale'
 function Navigation({ cacheTime, longitude, latitude, name, address }) {
   function handleClick() {
     Loading.show({
-      content: locale('定位中...', 'location')
+      content: locale('定位中...', 'positioning')
     })
     // 开始定位
     Bridge.getLocation({

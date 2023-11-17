@@ -96,7 +96,7 @@ export default {
   refreshing_success: '刷新成功',
   refreshing_failed: '刷新失败',
   say_something: '说点什么吧...',
-  location: '定位中...',
+  positioning: '定位中...',
   low: '弱',
   medium: '中',
   strong: '强',

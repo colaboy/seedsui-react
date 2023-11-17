@@ -101,7 +101,7 @@ export default {
   refreshing_success: 'Refreshing success',
   refreshing_failed: 'Refreshing failed',
   say_something: 'Say something...',
-  location: 'Location...',
+  positioning: 'Location...',
   low: 'Low',
   medium: 'Medium',
   strong: 'Strong',

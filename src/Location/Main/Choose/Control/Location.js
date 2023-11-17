@@ -21,7 +21,7 @@ function Location({ map, value, onChange, ...props }, ref) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       Loading.show({
-        content: locale('定位中...', 'location')
+        content: locale('定位中...', 'positioning')
       })
       let result = await getLocation()
       resolve(result)
