@@ -9,7 +9,8 @@ export default defineConfig({
     name: 'SeedsUI',
     externals: {
       react: 'React',
-      'react-dom': 'ReactDOM'
+      'react-dom': 'ReactDOM',
+      axios: 'axios'
     }
   }
 })
