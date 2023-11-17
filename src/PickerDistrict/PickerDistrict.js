@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import Context from '../Context/instance.js'
-import treeData from './china.js'
+import treeData from './../Cascader/DistrictMain/China.js'
 
 // 数据
 let initTabs = [] // 根据key或者name获取tabs, property用于区分是key还是value比较
@@ -181,6 +181,7 @@ const PickerDistrict = forwardRef(
     }
     // 第二步: 获取选中数据
     async function loadSelected() {
+      // eslint-disable-next-line
       return new Promise(async (resolve) => {
         // 有选中数据直接返回选中数据
         if (selected && selected.length) {
@@ -189,11 +190,13 @@ const PickerDistrict = forwardRef(
             if (!item.id || !item.name) {
               currentSelected = null
               resolve(currentSelected)
+              // eslint-disable-next-line
               return currentSelected
             }
           }
           currentSelected = selected
           resolve(currentSelected)
+          // eslint-disable-next-line
           return currentSelected
         }
 
@@ -205,6 +208,7 @@ const PickerDistrict = forwardRef(
         if (!values || !values.length) {
           currentSelected = null
           resolve(currentSelected)
+          // eslint-disable-next-line
           return currentSelected
         }
 
@@ -217,6 +221,7 @@ const PickerDistrict = forwardRef(
         // 没有城市数据返回直接返回
         if (!currentData || !currentData.length) {
           resolve(currentSelected)
+          // eslint-disable-next-line
           return currentSelected
         }
         // 根据values取出选中数据
@@ -236,6 +241,7 @@ const PickerDistrict = forwardRef(
           // 返回街道为空直接提交
           if (!Array.isArray(currentStreets) || !currentStreets || !currentStreets.length) {
             resolve(currentSelected)
+            // eslint-disable-next-line
             return currentSelected
           }
           // 如果有街道则添加到选中项
@@ -247,6 +253,7 @@ const PickerDistrict = forwardRef(
           }
         }
         resolve(currentSelected)
+        // eslint-disable-next-line
         return currentSelected
       })
     }
@@ -340,23 +347,27 @@ const PickerDistrict = forwardRef(
       return null
     }
     async function loadCountries() {
+      // eslint-disable-next-line
       return new Promise(async (resolve) => {
         // 如果传入国家数据, 则使用此数据
         if (Array.isArray(countries) && countries.length) {
           if (countries[0].id && countries[0].name) {
             currentCountries = formatCountries(countries)
             resolve(currentCountries)
+            // eslint-disable-next-line
             return currentCountries
           }
           currentCountries = null
           resolve(currentCountries)
           setErrMsg(`countries${locale('参数不正确', 'wrong_parameter')}`)
+          // eslint-disable-next-line
           return currentCountries
         }
         // 如果没有获取国家的方法, 则返回空
         if (!getCountries) {
           currentCountries = null
           resolve(currentCountries)
+          // eslint-disable-next-line
           return currentCountries
         }
         // 有获取国家的方法时, 加载国家数据
@@ -390,16 +401,19 @@ const PickerDistrict = forwardRef(
 
     // 工具方法: 获取省市区
     async function loadData(id) {
+      // eslint-disable-next-line
       return new Promise(async (resolve) => {
         // 如果有国家, 则加载此国家下的省市区
         if (Array.isArray(currentCountries) && currentCountries.length) {
           // 构建选中的国家id
           if (!id) {
             if (Array.isArray(selected) && selected.length) {
+              // eslint-disable-next-line
               id = selected[0].id
             } else if (value) {
               let countryName = value.split(split)[0]
               let country = getCountryByName(countryName)
+              // eslint-disable-next-line
               if (country && country.id) id = country.id
             }
           }
@@ -407,6 +421,7 @@ const PickerDistrict = forwardRef(
           if (!id) {
             currentData = null
             resolve(currentData)
+            // eslint-disable-next-line
             return currentData
           }
         }
@@ -468,6 +483,7 @@ const PickerDistrict = forwardRef(
 
     // 工具方法: 获取街道, 失败返回false, 成功返回true
     async function loadStreets(id) {
+      // eslint-disable-next-line
       return new Promise(async (resolve) => {
         setLoading(true)
         try {

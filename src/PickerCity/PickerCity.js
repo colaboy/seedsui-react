@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import treeData from './../PickerDistrict/china.js'
+import treeData from './../Cascader/DistrictMain/China.js'
 import Instance from './instance.js'
 import Context from '../Context/instance.js'
 
@@ -92,11 +92,11 @@ const PickerCity = forwardRef(
       if (maskAttribute.onClick) maskAttribute.onClick(e)
     }
     function scrollEnd(e) {
-      // var activeOption = e.activeSlot.values[e.activeSlot.activeIndex]
-      var activeOption = e.activeOptions[e.activeSlot.index]
+      // let activeOption = e.activeSlot.values[e.activeSlot.activeIndex]
+      let activeOption = e.activeOptions[e.activeSlot.index]
       if (e.activeSlot.index === 0) {
         // 滚动省
-        var city = e.replaceCity(activeOption[e.params.idPropertyName]) // 修改第二项
+        let city = e.replaceCity(activeOption[e.params.idPropertyName]) // 修改第二项
         e.replaceDistrict(city[0][e.params.idPropertyName]) // 修改第三项
       } else if (e.activeSlot.index === 1) {
         // 滚动市
@@ -121,8 +121,8 @@ const PickerCity = forwardRef(
     }
     function getDefaultValues() {
       // 默认值
-      var defaultValue = value
-      var defaultValues = []
+      let defaultValue = value
+      let defaultValues = []
       if (defaultValue) {
         defaultValues = defaultValue.split(split).map((item) => {
           return item.trim()
@@ -139,8 +139,8 @@ const PickerCity = forwardRef(
       return ['', '', '']
     }
     function initInstance() {
-      var defaultValues = getDefaultValues()
-      var defaultKeys = getDefaultKeys()
+      let defaultValues = getDefaultValues()
+      let defaultKeys = getDefaultKeys()
       // render数据
       instance.current = new Instance({
         data: data || treeData,
