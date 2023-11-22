@@ -1,8 +1,8 @@
 // 移除Loading
 // eslint-disable-next-line
-export default function () {
+export default function (props) {
   function destroy() {
-    let loadingId = '__SeedsUI_loading_el__'
+    let loadingId = props?.id || '__SeedsUI_loading_el__'
     let loadingDOM = document.getElementById(loadingId)
 
     if (loadingDOM) {

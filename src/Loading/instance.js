@@ -1,9 +1,9 @@
 // Loading 进度条
-var Loading = function (params) {
+let Loading = function (params) {
   /* --------------------
   Model
   -------------------- */
-  var defaults = {
+  let defaults = {
     mask: null,
     parent: document.body, // 创建于哪个元素下
 
@@ -20,13 +20,14 @@ var Loading = function (params) {
     icon: '', // 传入icon的class
     caption: '正在加载...' // 实例化时需要国际化
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
-  var s = this
+  let s = this
   s.params = params
   s.parent =
     typeof s.params.parent === 'string' ? document.querySelector(s.params.parent) : s.params.parent
@@ -49,7 +50,7 @@ var Loading = function (params) {
     }
     s.loading.setAttribute('class', s.params.loadingClass + ' loading-floating animated')
     // 流光loading-floating
-    var html =
+    let html =
       '<div class="loading-floating-icon">' +
       '<div class="loading-floating-blade"></div>' +
       '<div class="loading-floating-blade"></div>' +
@@ -149,7 +150,7 @@ var Loading = function (params) {
 
   // 更新params
   s.updateParams = function (params = {}) {
-    for (var param in params) {
+    for (let param in params) {
       s.params[param] = params[param]
     }
     s.updateDOM()

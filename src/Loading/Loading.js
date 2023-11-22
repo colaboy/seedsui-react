@@ -1,6 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
-import locale from './../locale' // 国际化数据
+// 测试使用
+import { locale } from 'seedsui-react'
+// 内库使用
+// import locale from './../locale' // 国际化数据
 
 const Loading = forwardRef(
   (
