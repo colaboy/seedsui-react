@@ -1,37 +1,72 @@
 // 签名
 .signature {
+  position: relative;
   display: flex;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-// 按钮
-.signature-colors {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.signature-color {
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
+  flex: 1;
+  margin: 20px;
 }
 
-// 按钮
+// 签名绘制区域
+.signature-canvas {
+  flex: 1;
+  position: relative;
+  background: #f7f9fd;
+  border-radius: @radius-s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::before {
+    font-size: 100px;
+    content: '签名';
+    white-space: nowrap;
+    color: rgba(92, 102, 113, 0.05);
+    letter-spacing: 24px;
+    text-align: center;
+    transform: rotate(90deg);
+  }
+  canvas {
+    position: absolute;
+  }
+}
+
+// 按钮区域
 .signature-buttons {
-  position: absolute;
-  right: 0;
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 14px;
+}
+.signature-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 96px;
+  width: 40px;
+  border-radius: @radius-s;
+  font-size: @font-size-l;
+  box-sizing: border-box;
+  p {
+    transform: rotate(90deg);
+  }
+}
+.signature-button + .signature-button {
+  margin-top: 20px;
 }
 .signature-button-clear {
-  padding: 8px;
-  border: 1px solid @primary;
-}
-.signature-button-cancel {
-  padding: 8px;
+  color: @danger;
   border: 1px solid @danger;
 }
+.signature-button-cancel {
+  border: 1px solid @border;
+}
 .signature-button-submit {
-  padding: 8px;
-  border: 1px solid @primary;
+  color: white;
+  background-color: @primary;
+}
+
+// 签名预览
+.signature-photo {
+  width: 100%;
+  height: 90px;
+  background-color: @body-bg-color;
 }

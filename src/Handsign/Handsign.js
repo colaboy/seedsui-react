@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Instance from './instance.js'
 
+/**
+ * @deprecated since version 5.2.8
+ * 请使用<Signature/>
+ */
 export default class Handsign extends Component {
   static propTypes = {
     strokeStyle: PropTypes.string,
