@@ -16,6 +16,8 @@ const InputText = forwardRef(
       formatter,
       // 小数精度, 只有数值框才生效
       precision,
+      // 小数位补0, true: 不补0; false: 补0;
+      trim,
       max,
       min,
       placeholder,
@@ -83,7 +85,7 @@ const InputText = forwardRef(
       // 矫正为正确的值
       if (inputRef.current) {
         // 矫正为正确的值
-        val = correctValue(val, true)
+        val = correctValue(val, 'load')
         // 格式化输入
         val = correctFormatter(val)
 
@@ -208,7 +210,7 @@ const InputText = forwardRef(
     }
 
     // 矫正小数位截取
-    function correctPrecision(val, fixedPrecision) {
+    function correctPrecision(val, action) {
       // 符合截取条件时
       if (
         type === 'number' &&
@@ -216,9 +218,11 @@ const InputText = forwardRef(
         !isNaN(val) &&
         val !== (null || '')
       ) {
-        if (fixedPrecision) {
+        if (action === 'load' || action === 'blur') {
           // eslint-disable-next-line
-          val = Number(val || 0).toFixed(precision)
+          if (!trim) val = Number(val || 0).toFixed(precision)
+          // eslint-disable-next-line
+          else val = Number(val)
         } else {
           // eslint-disable-next-line
           val = MathJs.fixed(val, precision)
@@ -228,7 +232,7 @@ const InputText = forwardRef(
     }
 
     // 矫正最大长度和小数位截取
-    function correctValue(val, fixedPrecision) {
+    function correctValue(val, action) {
       if (val === undefined || val === '') return val
       if (typeof val !== 'string' && typeof val !== 'number') return ''
 
@@ -238,7 +242,7 @@ const InputText = forwardRef(
 
       // 小数位截取
       // eslint-disable-next-line
-      val = correctPrecision(val, fixedPrecision)
+      val = correctPrecision(val, action)
 
       return val
     }
@@ -325,7 +329,7 @@ const InputText = forwardRef(
 
           // 纠正数字
           // eslint-disable-next-line
-          val = correctValue(val, true)
+          val = correctValue(val, 'blur')
         }
         // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
         else {
