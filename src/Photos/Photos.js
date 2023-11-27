@@ -60,6 +60,7 @@ const Photos = forwardRef(
 
     // 点击整个photos容器
     async function handleClick(event) {
+      event.stopPropagation()
       const e = event.nativeEvent
       const target = e.target
       if (target.type === 'file') {
