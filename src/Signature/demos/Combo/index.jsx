@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Layout } from 'seedsui-react'
-import { Signature } from 'qince-h5-library'
+import { Signature, Layout } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)

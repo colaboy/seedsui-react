@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { createPortal, useImperativeHandle, forwardRef, useRef } from 'react'
 import Main from './../Main'
 import { Layout } from 'seedsui-react'
 
@@ -32,7 +32,7 @@ const Modal = forwardRef(
       }
     })
 
-    return (
+    let Node = (
       <Layout
         ref={rootRef}
         // 显示在其它page前面渲染
@@ -56,6 +56,11 @@ const Modal = forwardRef(
         )}
       </Layout>
     )
+
+    if (portal) {
+      return createPortal(Node, portal)
+    }
+    return Node
   }
 )
 

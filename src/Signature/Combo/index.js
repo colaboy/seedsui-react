@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 import { Button } from 'seedsui-react'
-import locale from 'library/utils/locale'
+import locale from './../../locale'
 import Preview from './Preview'
 import Modal from './../Modal'
 

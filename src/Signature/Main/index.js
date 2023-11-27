@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import locale from 'library/utils/locale'
+import locale from './../../locale'
 import Signature from './Signature'
 
 // 手写签名
