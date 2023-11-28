@@ -6,7 +6,8 @@ export default () => {
   return (
     <>
       <Switch
-        disabled
+        className="notext"
+        // disabled
         checked={checked}
         checkedProps={{ text: '开' }}
         uncheckedProps={{ text: '关' }}
