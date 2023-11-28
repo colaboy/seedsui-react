@@ -1,4 +1,5 @@
-import React, { createPortal, useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import Main from './../Main'
 import { Layout } from 'seedsui-react'
 
