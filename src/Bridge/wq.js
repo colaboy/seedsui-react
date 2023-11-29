@@ -260,6 +260,7 @@ let Bridge = {
       if (params.success) {
         params.success({
           errMsg: 'uploadImage:ok',
+          ...res,
           path: `${params.uploadDir}/${params.localId}`, // 前后不带/, 并且不带企业参数的上传路径
           serverId: res && res.serverId ? res.serverId : '',
           tenantId: params.tenantId

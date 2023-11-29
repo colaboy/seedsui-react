@@ -1,5 +1,6 @@
 // require PrototypeMath.js, 用于解决加减法精度丢失的问题
 import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
+import MathJs from './../../math'
 import InputNumber from './../Number'
 
 // 数值框
@@ -24,6 +25,8 @@ const NumberBox = forwardRef(
       formatter,
       // 小数精度, 只有数值框才生效
       precision,
+      // 小数位补0, true: 不补0; false: 补0;
+      trim,
       max,
       min,
       placeholder,
@@ -94,15 +97,17 @@ const NumberBox = forwardRef(
 
     // 更新禁用状态
     function updateState(val) {
+      let minus = rootRef.current.querySelector('.numbox-button-minus')
+      let plus = rootRef.current.querySelector('.numbox-button-plus')
       if (!isNaN(min) && !isNaN(val) && Number(val) <= Number(min)) {
-        setMinDisabled(true)
+        minus.setAttribute('disabled', 'true')
       } else {
-        setMinDisabled(false)
+        minus.removeAttribute('disabled')
       }
       if (!isNaN(max) && !isNaN(val) && Number(val) >= Number(max)) {
-        setMaxDisabled(true)
+        plus.setAttribute('disabled', 'true')
       } else {
-        setMaxDisabled(false)
+        plus.removeAttribute('disabled')
       }
     }
 
@@ -127,7 +132,10 @@ const NumberBox = forwardRef(
 
       let inputDOM = _getInputDOM()
       if (!inputDOM) return
-      let val = inputRef?.current?.correctValue(Math.Calc.subtract(inputDOM.value, 1))
+      let val = inputRef?.current?.correctValue(
+        MathJs.strip(Number(inputDOM.value || 0) - 1),
+        'blur'
+      )
       // Callback
       handleChange(val)
       if (minusProps.onClick) minusProps.onClick(e, val)
@@ -144,7 +152,10 @@ const NumberBox = forwardRef(
       let inputDOM = _getInputDOM()
       if (!inputDOM) return
       if (isNaN(inputDOM?.value)) return
-      let val = inputRef?.current?.correctValue(Math.Calc.add(inputDOM.value, 1))
+      let val = inputRef?.current?.correctValue(
+        MathJs.strip(Number(inputDOM.value || 0) + 1),
+        'blur'
+      )
       // Callback
       handleChange(val)
       if (plusProps.onClick) plusProps.onClick(e, val)
@@ -176,6 +187,7 @@ const NumberBox = forwardRef(
           value={value}
           formatter={formatter}
           precision={precision}
+          trim={trim}
           max={max}
           min={min}
           placeholder={placeholder}
@@ -213,7 +225,7 @@ const NumberBox = forwardRef(
       >
         <input
           value="-"
-          disabled={minDisabled}
+          // disabled={minDisabled}
           {...minusProps}
           type="button"
           className={`numbox-button numbox-button-minus${
@@ -224,7 +236,7 @@ const NumberBox = forwardRef(
         {getInputDOM()}
         <input
           value="+"
-          disabled={maxDisabled}
+          // disabled={maxDisabled}
           {...plusProps}
           type="button"
           className={`numbox-button numbox-button-plus${

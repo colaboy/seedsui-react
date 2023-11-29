@@ -236,6 +236,18 @@ const InputText = forwardRef(
       if (val === undefined || val === '') return val
       if (typeof val !== 'string' && typeof val !== 'number') return ''
 
+      // 最大最小值矫正
+      if (val && !isNaN(val)) {
+        if (typeof max === 'number') {
+          // eslint-disable-next-line
+          if (Number(val) > Number(max)) val = max
+        }
+        if (typeof min === 'number') {
+          // eslint-disable-next-line
+          if (Number(val) < Number(min)) val = min
+        }
+      }
+
       // 最大长度载取
       // eslint-disable-next-line
       val = correctMaxLength(val)
@@ -320,13 +332,6 @@ const InputText = forwardRef(
       if (type === 'number') {
         // 正常输入：矫正最大最小值、小数点、最大长度
         if (val && !isNaN(val)) {
-          if (typeof max === 'number') {
-            if (Number(val) > Number(max)) val = max
-          }
-          if (typeof min === 'number') {
-            if (Number(val) < Number(min)) val = min
-          }
-
           // 纠正数字
           // eslint-disable-next-line
           val = correctValue(val, 'blur')
