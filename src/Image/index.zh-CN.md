@@ -1,4 +1,4 @@
-# Photos(废弃, Image 代替)
+# Image
 
 ## 示例
 

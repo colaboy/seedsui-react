@@ -1,0 +1,291 @@
+// 照片视频列表
+.image {
+  // 为支持ios9注释如下代码, 等ios9无需要支持时换为如下样式
+  // display: grid;
+  // --columns: var(--cell-width) var(--cell-width) auto;
+  // grid-template-columns: var(--columns);
+  // grid-gap: 8px;
+  // 只有一项
+  // &.onlyOneItem {
+  //   --columns: auto;
+  // }
+
+  // 为支持ios9, 等ios9无需要支持时删除如下样式
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 8px;
+  .image-item {
+    margin-right: 8px;
+  }
+
+  // 单个照片
+  --cell-width: 72px;
+  --cell-height: 72px;
+  .image-item {
+    width: var(--cell-width);
+    height: var(--cell-height);
+  }
+}
+
+// 单个照片
+.image-item {
+  position: relative;
+  // ios不支持gap
+  // float: left;
+
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 4px;
+  cursor: pointer;
+
+  // 照片状态: 选择和失败状态
+  &.uploading,
+  &.fail {
+    .image-status {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.4);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  // 照片状态: 上传中不允许删除
+  &.uploading {
+    .image-status + .image-delete {
+      display: none;
+    }
+  }
+
+  // 照片状态: 选择
+  &.choose {
+  }
+
+  // 照片状态: 上传中
+  &.uploading {
+    .image-status {
+      .image-status-icon {
+        .flex;
+        .flex-center;
+        .flex-middle;
+        .loading-circle-chase;
+      }
+
+      .image-status-icon-loading {
+        display: flex;
+      }
+    }
+  }
+
+  // 照片状态: 上传失败
+  &.fail {
+    .image-status {
+      .image-status-icon {
+        width: 22px;
+        height: 22px;
+        background-color: white;
+        font-family: 'iconfont';
+        &:extend(.icon-redo all);
+        border-radius: 100%;
+        .flex;
+        .flex-middle;
+        .flex-center;
+      }
+    }
+  }
+
+  // 照片状态: 上传成功
+  &.success {
+  }
+}
+
+// 图片
+.image-item-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  // 照片加载中
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqBAMAAADPWMmxAAAALVBMVEXw8PDZ2dmvr6/n5+fFxcW1tbXg4OC7u7vr6+vd3d3T09PKysrj4+POzs7AwMBrHo+jAAADq0lEQVRo3uzWMWrDMBTG8ScMJYUM/jAIG3IIewk5jrp06iGUsZu69zDx2FsVJ4SnRwYj6TlL9BtNMPHfkvWoqqqqqqqqer4//JK6GUBHyt6wcKRrAjb4s7gaSFWDG6+edXF52bveu46kCjek6wOLA+l6xyKQsh/eBLrvaxhJ3e5E1VZG2kBjaQMGnvRNcKQP6EndHhhIneGTS3nSCKQNW80v+mGN+tHFp0xQz7oe9piRdT2scZTmDKyHNV161vWwZ0tJdgCHZZ8kTMjJupBHrwwC5GWVYQ1ainzD5mWFuM8cTUn70xHo8rLKaQuA/IlLHLSYjO3iSDY1K7uIq320s7586vTGWq2ZrkHkIK+ORfMrk9/GUHBmx5xYbV3RUMxaudqKsjIrN7Erysq8yNIWZWVOZLFFWVkvs/iirDKswV3IPrMlL75iXVFW5nhdZW9aPOjluhhLsrJBPkBbmJXDyreXbsaj8N+u/bw2DcZxHP/UrD+WrqXdZpme3NNmWTMctfHmpXY9epiBeBNKwXsJQjxJKQwEQcL+gpCLoAhz4qmXoh68CLl5DfsD/BvMg89MioekeXKS5wXJ8c3Tbx8eHmi3mnG8Y2V2/jlv1r64J9vLMNZkt7jHGuHZW800nHzHyuzkPFYmyw0z2Zh7rPx7q5Sy2spyFUo2y3esjJPhhpnz3kpd3YMgCIIgCLxy/gGqBSB2r24im8JdxKlA5ViegiE5VCVdV3X91XGtk2d1TihfxdDNo7r55yb5erFQFgtHRbGdR7VMCOmwudKn5ALfRiFCX4+wppppENMMytq7D1FVATUh17qZqsa0fAdSBzKJuJic6LpOwud+F2uTNcxZdXMUYh/bweSCzbWaoVrb/1sN7S4BWKC4qtVuvGrNAAx7dZ+zunEQVX/axLZt/3I8n3JW6230A1b9bCimafpeY9vlrBYPoyomAejbv+pxVuensarVo6ucn6i0TddNwsfIUD0fRFX5CLRafKrxVj0XXwasWidUo6qc8u4sa4nJdbUwGlnPR+MCcQE8aLBq4RPWJSl0VawaohPYIjO5x3VmVTXg3I+q3sf3jTMyuxGsVusaIJlLwAuQwtkhHW15v3k7rO7aBj21ryy/769W+yogEx+w2khheAEYY3a+espL6+H3N2q9ve2sVjceA5LdA24OkKygzJpvVbDztULnWjJeSKYJnrmWD3BJniD+bVWPgGcaV7XSwL0WIC2Br6B+jOHE/knxC4IgCIIg/F9+A03c/sxckjALAAAAAElFTkSuQmCC');
+
+  // 原始图
+  img {
+    display: none;
+  }
+
+  // 图片加载错误
+  &.error {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAACqBAMAAADPWMmxAAAAMFBMVEXw8PDZ2dmurq7s7Ozm5ubFxcXj4+Pg4OC/v7+4uLjQ0NDd3d3U1NS0tLS6urrKysr1t87UAAAFGElEQVRo3uzYMWuDQBjG8QRFB5c8KHHwSygtXboYMmTol1AKnSstXfqllIz9ckVa7hHuoL7HuTTvf2sDvzveuwSTnaZpmqZpmqa5Syas6U2m9lhVJVMnrKsWqVhZ+5/V891fDVJ11UGoqqqqqt6Q2m6hxsUW6iPqDdQeeXg1AsrwagqgC66eABTB1Qn8K5iaYO4aWG0AuM8ruvirA+bc53Vfe6oRfuJ5+Uc146NqOJVP3eNuUfzy+fVx9lE5AOu8LsDcu6+aup5Vn8Bhe6kN1ZyfYaarnzqB8VawzkeNAfZqPhfY0UfdWwIX4lJStcey1kyaFUKVI+R58V/PD5y2UM2AZRWvWm42fRCrJ1hDbMzZJ5y2SOUAOILpd8R8Vaaa3bDRUFwTnVDlcRsg4XWIzVIydbC/uO854YRjEahmM4zbH3lBCpmaWSpvxYHvu1Km9o4fRHrwvnqp1r1CSfXIbVciNXWpg70AROp3O+YS80IUxfE/l0F9aeu9YMGlnymtjopXECWzsJHUY8SCZIJIENGwtGkGESvMSiWSSW2kC4YF26ZIvFYlxMKGjZVgZyF1bqbTOxGPa8aGzC+ZPqe/OXPOvWduZ+WvrKS6Hct6+1cZEAmKkwHqST+tFlEja4xqyc4iifQbW4tllQmQRCaxT6M5xiyIEp2xYYSjus1KaJXdJYqf0Co7YRQ7mVV2beLuMZnshNa5o3LNH02I2fGtslxTQlfo95NbbbDve5aR1CplsmfNRnLrvNHlqjZ8tv/GfW07yepN+0UKWPzbumzVjzEArFVYFcdgg2wsiVH9txEfdvj0vcM1pKSkpKT8r7CDiDIPYE8x4jCisFNQZGwZoqwAmJ45AwHZ+6GdOET7xrFOMs2iaa7SMwWId2VjZHU55zpyi+JYq1xwXcdOD0CuImO91ul0dExd8kfW6cGqavNgUB4M/BVYPy6OsURaWwB0VMcpETVla5ZCLIR5RRFaF0C7YFncIjxhfUbWk5zw8Fsyb/r8zZtmtvTsCVlpEbSCtiJtgMZDmsJ6hazti4PPFV/R2m9mF2JSAWNc0sX2imma3CRqodW1MbGpmtfq0DrdCuC0+cxpIppXso7xPLbWoUKmNLISD20AjgEgVxaP5ah1Gv+Ikx5UyC2PWt8K1c7aVA/svBiyxai1R+HPzEOFyUul9eYH/uHDB++zXR1mT9Oj1p3bFqLdgApTx7E1tH5xi61Wy+vle11MsYi9RUvQCKwrx8bh1KDCtMXSigMiRsod/XYCl3QDK+3DVkCJ6qWI9a1NUaK6W/QYk9hefmkSBlkLZIW7sQQl7tSlNVNBz6Pwr5bCL/cNX7VYRVh7NxZDiXYXB+pD69TgfHPl5whwDr42AuukZcK6qV+HEo4trRMsyzlnNSaEc32Kjl49sI4tEtYM96GCVqTqhFZCZEDjRqYGYvtSTK5AsGryYmMVqIR5qJArUfa8iPXTrfx6bojpDs39CDi7INh69rIYI3wpVNi0WMSXXTRjAVnnXOiLVue43lYPYG1xoHXFBgjnQd8Gc59wGwrspHDcxrC/9srv3+44uE5fNz7TBx7zLoh2gUSrdRx4gSMVfFa5yEwoGgse6cgu63REfxVxT+m/m/TmGrSvfHdQMldvTHGf064reR2TVbp2dik+81eIVitXMXC8ROXeEx7Z7WYKBrD/xDIRusLYYnlsmWdAs8EOQXC0wXwANnBfnhAgPlvDRIanG0hJSUlJSUn5h/kGDFOqpcMpQ8EAAAAASUVORK5CYII=');
+  }
+
+  // 图片加载成功
+  &.success {
+  }
+}
+
+// 视频
+.image-item-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  background: white;
+  border-radius: 100%;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+
+  .image-item-video-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-top: -8px;
+    margin-left: -4px;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left-color: black;
+    border-left-width: 10px;
+    border-left-style: solid;
+  }
+}
+
+// 照片上传按钮
+.image-upload {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  background-color: #f5f5f5;
+  color: #979797;
+
+  // File input clicked by js
+  .image-upload-file-photo {
+    pointer-events: none;
+  }
+}
+
+.image-upload-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  pointer-events: none;
+  font-family: 'iconfont';
+  &:extend(.icon-plus-fill all);
+
+  &.video {
+    font-size: 24px;
+    &:extend(.icon-video-fill all);
+  }
+}
+
+.image-upload input[type='file'] {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.image-upload-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image-upload-loading-icon {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  .loading-circle-chase;
+}
+
+.image-upload-loading-label {
+  color: white;
+  font-size: @font-size-s;
+  margin-top: 5px;
+}
+
+// 照片删除
+.image-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  opacity: 0.6;
+  border-radius: 0px 4px 0px 4px;
+}
+
+.image-delete .image-delete-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 12px;
+  // background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAYAgMAAACD0OXYAAAADFBMVEX///8AAAD///////8Il07uAAAABHRSTlP5ABozRwCkegAAAClJREFUCNdjCA1gAGIE9WoBmJoaAKRQQQCYgFMPgABITQACKlEIGzApADJTLxge1VwMAAAAAElFTkSuQmCC');
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: contain;
+  pointer-events: none;
+
+  color: white;
+  font-family: 'iconfont';
+  &:extend(.icon-plus-fill all);
+  transform: rotate(45deg);
+}
+
+// 照片拼接时, 只显示最后一个删除按钮
+.image-image-merge .image-delete {
+  display: none;
+}
+
+// .image-image-merge .image-delete:nth-last-child(1){
+//   display: block;
+// }
+// 有上传按钮时倒数第二个节点隐藏删除按钮
+.image-image-merge-last2 .image-item:nth-last-child(2) {
+  .image-delete {
+    display: block;
+  }
+}
+
+// 无上传按钮时倒数第一个节点隐藏删除按钮
+.image-image-merge-last1 .image-item:nth-last-child(1) {
+  .image-delete {
+    display: block;
+  }
+}
+
+// 照片状态-默认不显示loading
+.image-status-icon-loading {
+  display: none;
+}

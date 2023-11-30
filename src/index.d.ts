@@ -86,7 +86,8 @@ export { default as Page } from './Page'
 export { default as PagePull } from './PagePull' // 不常用
 export { default as PDFView } from './PDFView' // 不常用
 export { default as Peg } from './Peg' // 不常用
-export { default as Photos } from './Photos' // 不常用
+export { default as Photos } from './Photos' // 废弃，使用Image代替
+export { default as Image } from './Image'
 export { default as Picker } from './Picker'
 export { default as PickerCity } from './PickerCity'
 export { default as PickerDistrict } from './PickerDistrict'
