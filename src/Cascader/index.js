@@ -4,6 +4,11 @@ import Main from './Main'
 import DistrictCombo from './DistrictCombo'
 import DistrictModal from './DistrictModal'
 import DistrictMain from './DistrictMain'
+import countriesData from './DistrictMain/countriesData'
+import chinaData from './DistrictMain/chinaData'
+
+// eslint-disable-next-line
+export { countriesData, chinaData }
 
 // eslint-disable-next-line
 export default {
