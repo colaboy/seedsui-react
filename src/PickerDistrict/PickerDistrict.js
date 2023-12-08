@@ -2,7 +2,7 @@
 import React, { useContext, useState, useEffect, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import Context from '../Context/instance.js'
-import treeData from './../Cascader/DistrictMain/China.js'
+import treeData from './../Cascader/DistrictMain/chinaData.js'
 
 // 数据
 let initTabs = [] // 根据key或者name获取tabs, property用于区分是key还是value比较

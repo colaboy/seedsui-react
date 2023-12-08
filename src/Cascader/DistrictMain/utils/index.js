@@ -8,7 +8,7 @@ import testStreet from './testStreet'
 
 // 获取所有省市, 用于匹配选中的省市
 if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
-  window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ = require('./../ChinaAreaLevel')
+  window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ = require('./../chinaLvlData')
   if (window.__SeedsUI_Cascader_DistrictCombo_areaLevel__.default) {
     window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ =
       window.__SeedsUI_Cascader_DistrictCombo_areaLevel__.default

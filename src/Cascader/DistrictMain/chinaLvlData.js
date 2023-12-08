@@ -1,9 +1,9 @@
-import Countries from './Countries'
+import countriesData from './countriesData'
 // 所有省市, 用于匹配选中的是省还是市
 
 // eslint-disable-next-line
 export default {
-  countries: Countries,
+  countries: countriesData,
   provinces: [
     {
       name: '北京市',

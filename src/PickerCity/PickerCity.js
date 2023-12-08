@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import treeData from './../Cascader/DistrictMain/China.js'
+import treeData from './../Cascader/DistrictMain/chinaData.js'
 import Instance from './instance.js'
 import Context from '../Context/instance.js'
 

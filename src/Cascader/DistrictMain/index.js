@@ -41,7 +41,7 @@ const DistrictMain = forwardRef(
 
       // 读取默认列表或者缓存
       if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_list__)) {
-        window.__SeedsUI_Cascader_DistrictCombo_list__ = require('./China')
+        window.__SeedsUI_Cascader_DistrictCombo_list__ = require('./chinaData')
         if (window.__SeedsUI_Cascader_DistrictCombo_list__.default) {
           window.__SeedsUI_Cascader_DistrictCombo_list__ =
             window.__SeedsUI_Cascader_DistrictCombo_list__.default
