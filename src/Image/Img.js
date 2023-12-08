@@ -1,5 +1,4 @@
 import React from 'react'
-import Bridge from './../Bridge'
 
 // 图片显示
 const Img = ({ src }) => {

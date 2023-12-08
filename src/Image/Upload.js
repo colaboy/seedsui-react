@@ -1,30 +1,24 @@
 import React from 'react'
+import Status from './Status'
 
 // 上传按钮
 const Upload = ({
   type,
 
-  // 文件选择框
-  isBrowser,
-
   // 上传DOM和状态
   uploadNode,
-  uploading,
+
+  // Custom Status
+  statusRender,
 
   // Events
   onBeforeChoose,
-  onChoose
+  onChoose,
+  onFileChange
 }) => {
-  // 判断是否是浏览器上传照片
-  // eslint-disable-next-line
-  let isBrowserUpload =
-    type !== 'video' &&
-    (!navigator.userAgent.toLowerCase().match(/applewebkit.*mobile.*/) || isBrowser)
-
   // 选择文件
   function handleFileChange(e) {
-    // 触发选择
-    onChoose && onChoose(e)
+    onFileChange && onFileChange(e)
   }
 
   // 点击选择框
@@ -34,12 +28,12 @@ const Upload = ({
 
     // 前置校验
     if (typeof onBeforeChoose === 'function') {
-      let goOn = await onBeforeChoose()
+      let goOn = await onBeforeChoose(e)
       if (goOn === false) return
     }
 
     // 点击的是input框
-    if (isBrowserUpload) {
+    if (onFileChange) {
       // 防止选择重复图片时不触发
       let inputDOM = target.querySelector('input')
       inputDOM.value = ''
@@ -51,32 +45,12 @@ const Upload = ({
     onChoose && onChoose(e)
   }
 
-  // 获取Loading
-  function getUploadingDOM() {
-    if (!uploading) return null
-    if (typeof uploading === 'boolean') {
-      return (
-        <div className="image-upload-loading">
-          <div className="image-upload-loading-icon">
-            <svg viewBox="25 25 50 50">
-              <circle cx="50" cy="50" r="20"></circle>
-            </svg>
-          </div>
-        </div>
-      )
-    }
-    return uploading
-  }
-
   return (
-    <div
-      className={`image-item image-upload${uploading ? ' uploading' : ''}`}
-      onClick={handleUploadClick}
-    >
+    <div className={`image-item image-upload`} onClick={handleUploadClick}>
       {/* 拍照或者视频图标 */}
       <div className={`image-upload-icon${type === 'video' ? ' video' : ''}`}></div>
-      {/* PC端使用file框 */}
-      {isBrowserUpload && (
+      {/* 启用file框 */}
+      {onFileChange && (
         <input
           type="file"
           className="image-upload-file-photo"
@@ -91,7 +65,8 @@ const Upload = ({
         />
       )}
       {uploadNode && uploadNode}
-      {getUploadingDOM(uploading)}
+      {/* 状态遮罩 */}
+      <Status statusRender={statusRender} />
     </div>
   )
 }

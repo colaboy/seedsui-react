@@ -1,6 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
+// 测试使用
+// import { Bridge, Preview } from 'seedsui-react'
+
+// 内库使用
 import Preview from './../Preview'
 import Bridge from './../Bridge'
+
 import Img from './Img'
 import Status from './Status'
 import Upload from './Upload'
@@ -10,12 +15,13 @@ const Image = forwardRef(
   (
     {
       type, // video.录相 | 其它.为拍照
-      isBrowser, // 是否使用浏览器的file框拍照
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadNode, // 上传按钮覆盖的dom
-      uploading, // 是否上传中
+      statusRender, // 自定义状态渲染func({status, itemDOM})
+      // Events
       onBeforeChoose, // 选择前校验
-      onChoose, // 浏览器会显示file框onChoose(e), 并监听file框change事件
+      onChoose,
+      onFileChange, // 启用file选择框, 启用file框时onChoose将不生效
       onDelete,
       onReUpload,
       onPreview, // 是否支持单击预览, readOnly为true时才生效
@@ -26,12 +32,14 @@ const Image = forwardRef(
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onBeforeChooseRef = useRef()
     const onChooseRef = useRef()
+    const onFileChangeRef = useRef()
     const onDeleteRef = useRef()
     const onReUploadRef = useRef()
     const onPreviewRef = useRef()
 
     onBeforeChooseRef.current = onBeforeChoose
     onChooseRef.current = onChoose
+    onFileChangeRef.current = onFileChange
     onDeleteRef.current = onDelete
     onReUploadRef.current = onReUpload
     onPreviewRef.current = onPreview
@@ -61,12 +69,8 @@ const Image = forwardRef(
         if (goOn === false) return
       }
 
-      // 浏览器预览
-      if (isBrowser) {
-        setPreviewCurrent(Number(index))
-      }
       // 本地能力预览
-      else if (
+      if (
         Bridge.platform === 'wq' ||
         Bridge.platform === 'waiqin' ||
         Bridge.platform === 'wechat' ||
@@ -87,28 +91,15 @@ const Image = forwardRef(
       }
       // 浏览器预览
       else {
-        console.error('SeedsUI Error: 不支持当前预览类型')
+        setPreviewCurrent(Number(index))
       }
-    }
-
-    // 判断是否只有一项
-    let onlyOneItem = false
-    // 允许选择时，列表为空
-    if (onChoose) {
-      if (!list?.length) onlyOneItem = true
-    }
-    // 不允许选择时，列表为1项
-    else if (list?.length === 1) {
-      onlyOneItem = true
     }
 
     return (
       <div
         ref={rootRef}
         {...props}
-        className={`image${onlyOneItem ? ' onlyOneItem' : ''}${
-          props.className ? ' ' + props.className : ''
-        }`}
+        className={`image${props.className ? ' ' + props.className : ''}`}
       >
         {/* 图片列表 */}
         {list &&
@@ -126,6 +117,8 @@ const Image = forwardRef(
                   e.stopPropagation()
 
                   handlePreview(item, index, {
+                    event: e,
+                    rootDOM: rootRef.current,
                     itemDOM: e.currentTarget,
                     list: list
                   })
@@ -136,10 +129,13 @@ const Image = forwardRef(
 
                 {/* 状态遮罩 */}
                 <Status
+                  statusRender={statusRender}
                   onReUpload={(e) => {
                     onReUploadRef.current &&
                       onReUploadRef.current(item, index, {
+                        event: e,
                         list: list,
+                        rootDOM: rootRef.current,
                         itemDOM: e.currentTarget.parentNode
                       })
                   }}
@@ -154,6 +150,8 @@ const Image = forwardRef(
                       e.stopPropagation()
 
                       onDeleteRef.current(item, index, {
+                        event: e,
+                        rootDOM: rootRef.current,
                         itemDOM: e.currentTarget.parentNode,
                         list: list
                       })
@@ -166,17 +164,17 @@ const Image = forwardRef(
             )
           })}
         {/* 图片上传: 上传按钮 */}
-        {onChoose && (
+        {(onChoose || onFileChange) && (
           <Upload
             type={type}
-            // 文件选择框
-            isBrowser={isBrowser}
-            // 上传DOM和状态
+            // 上传DOM
             uploadNode={uploadNode}
-            uploading={uploading}
+            // Custom Status
+            statusRender={statusRender}
             // Choose events
             onChoose={onChooseRef.current}
             onBeforeChoose={onBeforeChooseRef.current}
+            onFileChange={onFileChangeRef.current}
           />
         )}
 

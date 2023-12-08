@@ -53,7 +53,6 @@ export default () => {
   return (
     <>
       <Image
-        isBrowser
         list={list}
         onBeforeChoose={() => {
           return new Promise((resolve) => {
@@ -64,7 +63,6 @@ export default () => {
         onChoose={handleChoose}
         onDelete={handleDelete}
         onPreview={handlePreview}
-        // uploading
       />
     </>
   )
