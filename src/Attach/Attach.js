@@ -81,23 +81,6 @@ const Attach = forwardRef(
       e.stopPropagation()
     }
 
-    // 获取Loading
-    function getUploadingDOM() {
-      if (!uploading) return null
-      if (typeof uploading === 'boolean') {
-        return (
-          <div className="attach-upload-loading">
-            <div className="attach-upload-loading-icon">
-              <svg viewBox="25 25 50 50">
-                <circle cx="50" cy="50" r="20"></circle>
-              </svg>
-            </div>
-          </div>
-        )
-      }
-      return uploading
-    }
-
     return (
       <div
         {...props}
@@ -115,7 +98,16 @@ const Attach = forwardRef(
           >
             <input type="file" name="uploadAttach" onChange={handleFileChange} />
             <i className={`attach-upload-icon`}></i>
-            {getUploadingDOM()}
+            {/* Loading icon */}
+            <div className="attach-upload-loading">
+              <div className="attach-upload-loading-icon">
+                <svg viewBox="25 25 50 50">
+                  <circle cx="50" cy="50" r="20"></circle>
+                </svg>
+              </div>
+            </div>
+
+            {/* Label */}
             <div className="attach-upload-label">{label || locale('附件', 'attach')}</div>
           </div>
         )}
