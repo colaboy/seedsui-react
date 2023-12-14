@@ -152,6 +152,18 @@
 }
 
 // New Styles
+
+// Used to replace old class .calendar-day-box
+.calendar-days {
+  color: @secondary;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+
 // Used to replace old class .calendar-wrapper
 .calendar-body {
   overflow: hidden;
@@ -192,6 +204,15 @@
 // Used to replace old class .calendar-notcurrent
 .calendar-date-out-view {
   color: @secondary;
+
+  &.calendar-date-selected {
+    .calendar-date-num {
+      color: @secondary;
+      background-color: transparent;
+      border: 0;
+      font-weight: normal;
+    }
+  }
 }
 // Used to replace old class .calendar-today
 .calendar-date-today {
