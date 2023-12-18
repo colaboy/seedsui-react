@@ -10,9 +10,9 @@ export default () => {
         <Signature.Combo
           color="#000000"
           backgroundColor="transparent"
-          modal="page"
           value={value}
           onChange={setValue}
+          // portal={document.body}
         />
       </Layout.Main>
     </Layout>

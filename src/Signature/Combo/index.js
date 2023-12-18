@@ -9,6 +9,8 @@ const Combo = (
   {
     value,
     onChange,
+    // 弹框配置
+    portal,
     // 绘画配置
     color,
     backgroundColor
@@ -59,6 +61,7 @@ const Combo = (
       </Button>
       <Modal
         ref={modalRef}
+        portal={portal}
         visible={visible}
         value={value}
         onChange={handleChange}
