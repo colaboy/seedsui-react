@@ -6,7 +6,11 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 
 // response中提取result
 function getResult(response) {
-  let result = response.data || response
+  let result = response
+  // axios多返回了一层, 则获取接口返回的data
+  if (response.config && response.data) {
+    result = response.data
+  }
   if (typeof result === 'string') {
     try {
       return JSON.parse(result)
@@ -38,7 +42,7 @@ function jsonp(url) {
     window.jsonCallBack = (result) => {
       resolve(result)
     }
-    var JSONP = document.createElement('script')
+    let JSONP = document.createElement('script')
     JSONP.type = 'text/javascript'
     JSONP.src = `${url}&callback=jsonCallBack`
     document.getElementsByTagName('head')[0].appendChild(JSONP)
