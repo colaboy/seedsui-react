@@ -69,8 +69,15 @@ const Image = forwardRef(
         if (goOn === false) return
       }
 
-      // 本地能力预览
+      // 小程序视频预览
       if (
+        type === 'video' &&
+        (Bridge.platform === 'wechatMiniprogram' || Bridge.platform === 'weworkMiniprogram')
+      ) {
+        setPreviewCurrent(Number(index))
+      }
+      // 本地能力预览
+      else if (
         Bridge.platform === 'wq' ||
         Bridge.platform === 'waiqin' ||
         Bridge.platform === 'wechat' ||

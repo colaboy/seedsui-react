@@ -6,10 +6,12 @@ function getDates(value) {
     Object.isDate(value[0]) === false ||
     Object.isDate(value[1]) === false
   ) {
-    console.warn(
-      'DatePicker.RangeModal: Wrong parameter with "value"! You need to correct for [new Date(), new Date()]',
-      value
-    )
+    if (value) {
+      console.warn(
+        'DatePicker.RangeModal: Wrong parameter with "value"! You need to correct for [new Date(), new Date()]',
+        value
+      )
+    }
     return {
       startDate: null,
       endDate: null
