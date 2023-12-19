@@ -393,7 +393,7 @@ let Bridge = {
   /**
    * 动态加载桥接库
    * @param {Func} callback 加载完成回调
-   * @param {Object} options {isLoad: true(已加载, 则不再执行window.onload), wxSrc: '', wqCordovaSrc: '外勤cordovajs', wqSrc: '外勤jssdkjs', fail: func({errMsg: ''})}
+   * @param {Object} options {wechatLibSrc: '', weworkLibSrc: '', wqCordovaSrc: '', wqSrc: '', fail: func({errMsg: ''})}
    */
   ready: function (callback, options = {}) {
     let self = this
@@ -408,17 +408,7 @@ let Bridge = {
       platform !== 'dinghuo' &&
       platform !== 'wq'
     ) {
-      if (options.isLoad) {
-        if (callback) callback()
-      } else {
-        window.addEventListener(
-          'load',
-          () => {
-            if (callback) callback()
-          },
-          false
-        )
-      }
+      if (callback) callback()
       return
     }
     let script = document.createElement('script')
