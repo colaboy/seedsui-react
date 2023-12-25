@@ -7,14 +7,13 @@ export default () => {
     <>
       <Input.NumberBox
         // disabled
-        defaultValue={value}
+        // defaultValue={value}
         value={value}
         precision={3}
-        trim={true}
+        // trim={true}
         style={{ width: '200px' }}
-        min={0}
-        max={5}
-        // value={value}
+        min={1}
+        max={100}
         allowClear
         // liconProps={{ className: 'icon icon-rdo-emoji' }}
         // licon={<i className="icon icon-rdo-emoji"></i>}

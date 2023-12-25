@@ -1,5 +1,4 @@
-// require PrototypeMath.js, 用于解决加减法精度丢失的问题
-import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import MathJs from './../../math'
 import InputNumber from './../Number'
 
@@ -77,9 +76,6 @@ const NumberBox = forwardRef(
         }
       }
     })
-
-    const [minDisabled, setMinDisabled] = useState(false)
-    const [maxDisabled, setMaxDisabled] = useState(false)
 
     useEffect(() => {
       let inputDOM = _getInputDOM()

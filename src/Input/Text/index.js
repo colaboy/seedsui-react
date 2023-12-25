@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import MathJs from './../../math'
+import { maxLengthFormatter, minMaxFormatter, precisionFormatter, externalFormatter } from './utils'
 
 const InputText = forwardRef(
   (
@@ -85,9 +85,9 @@ const InputText = forwardRef(
       // 矫正为正确的值
       if (inputRef.current) {
         // 矫正为正确的值
-        val = correctValue(val, 'load')
+        val = correctValue(val)
         // 格式化输入
-        val = correctFormatter(val)
+        val = externalFormatter(val, { formatter })
 
         // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
         if (inputRef.current && val !== inputRef.current.value) {
@@ -184,77 +184,22 @@ const InputText = forwardRef(
       // inputRef.current.style.height = fitRef.current.clientHeight + 'px'
     }
 
-    // 矫正最大长度与小数位
-    function correctMaxLength(val) {
-      // eslint-disable-next-line
-      if (typeof val === 'number') val = String(val)
-
-      // 最大长度
-      if (maxLength && val && val.length > maxLength) {
-        // eslint-disable-next-line
-        val = val.substring(0, maxLength)
-      }
-      return val
-    }
-
-    // 矫正formatter
-    function correctFormatter(val) {
-      if (typeof formatter === 'function') {
-        let formatterValue = formatter(val)
-        if (typeof formatterValue === 'string' || typeof formatterValue === 'number') {
-          // eslint-disable-next-line
-          val = formatterValue
-        }
-      }
-      return val
-    }
-
-    // 矫正小数位截取
-    function correctPrecision(val, action) {
-      // 符合截取条件时
-      if (
-        type === 'number' &&
-        typeof precision === 'number' &&
-        !isNaN(val) &&
-        val !== (null || '')
-      ) {
-        if (action === 'load' || action === 'blur') {
-          // eslint-disable-next-line
-          if (!trim) val = Number(val || 0).toFixed(precision)
-          // eslint-disable-next-line
-          else val = Number(val)
-        } else {
-          // eslint-disable-next-line
-          val = MathJs.fixed(val, precision)
-        }
-      }
-      return val
-    }
-
     // 矫正最大长度和小数位截取
-    function correctValue(val, action) {
+    function correctValue(val) {
       if (val === undefined || val === '') return val
       if (typeof val !== 'string' && typeof val !== 'number') return ''
 
       // 最大最小值矫正
-      if (val && !isNaN(val)) {
-        if (typeof max === 'number') {
-          // eslint-disable-next-line
-          if (Number(val) > Number(max)) val = max
-        }
-        if (typeof min === 'number') {
-          // eslint-disable-next-line
-          if (Number(val) < Number(min)) val = min
-        }
-      }
-
-      // 最大长度载取
       // eslint-disable-next-line
-      val = correctMaxLength(val)
+      val = minMaxFormatter(val, { min, max })
 
       // 小数位截取
       // eslint-disable-next-line
-      val = correctPrecision(val, action)
+      val = precisionFormatter(val, { precision, trim })
+
+      // 最大长度载取
+      // eslint-disable-next-line
+      val = maxLengthFormatter(val, { maxLength })
 
       return val
     }
@@ -297,8 +242,9 @@ const InputText = forwardRef(
 
       // 矫正maxLength和小数点位数(不能矫正其它框，因为矫正将无法输入中文)
       if (val && type === 'number') {
-        // eslint-disable-next-line
-        val = correctValue(val)
+        val = minMaxFormatter(val, { min, max })
+        val = precisionFormatter(val, { precision, trim: false })
+        val = maxLengthFormatter(val, { maxLength })
         if (target.value !== val) {
           target.value = val
         }
@@ -316,6 +262,7 @@ const InputText = forwardRef(
           // eslint-disable-next-line
           val = Number(val)
         }
+        // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
         onChange(val)
       }
     }
@@ -333,8 +280,7 @@ const InputText = forwardRef(
         // 正常输入：矫正最大最小值、小数点、最大长度
         if (val && !isNaN(val)) {
           // 纠正数字
-          // eslint-disable-next-line
-          val = correctValue(val, 'blur')
+          val = correctValue(val)
         }
         // 输入错误或真的为空：用于解决ios可以输入字母中文等问题
         else {
@@ -342,7 +288,7 @@ const InputText = forwardRef(
         }
 
         // 格式化输入
-        val = correctFormatter(val)
+        val = externalFormatter(val, { formatter })
 
         // 赋值
         target.value = val
@@ -490,7 +436,7 @@ const InputText = forwardRef(
         <i
           ref={clearRef}
           {...clearProps}
-          className={`input-clear${clearProps?.className ? ' ' + clearProps?.className : ''}`}
+          className={`input-clear hide${clearProps?.className ? ' ' + clearProps?.className : ''}`}
           onClick={handleClear}
         ></i>
         {riconProps && (
