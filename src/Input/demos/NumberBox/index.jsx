@@ -12,8 +12,8 @@ export default () => {
         precision={3}
         // trim={true}
         style={{ width: '200px' }}
-        min={1}
-        max={100}
+        min={0.1}
+        max={0.5}
         allowClear
         // liconProps={{ className: 'icon icon-rdo-emoji' }}
         // licon={<i className="icon icon-rdo-emoji"></i>}

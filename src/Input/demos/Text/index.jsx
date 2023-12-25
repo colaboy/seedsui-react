@@ -25,7 +25,7 @@ export default () => {
         // readOnly
         value={value}
         maxLength={10}
-        allowClear={true}
+        allowClear={'exclusion-ricon'}
         onChange={(val) => {
           console.log(val)
           setValue(val)

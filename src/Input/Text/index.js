@@ -242,7 +242,8 @@ const InputText = forwardRef(
 
       // 矫正maxLength和小数点位数(不能矫正其它框，因为矫正将无法输入中文)
       if (val && type === 'number') {
-        val = minMaxFormatter(val, { min, max })
+        // 不能校验最小值，因为min={0.1}时，无法删除
+        val = minMaxFormatter(val, { max })
         val = precisionFormatter(val, { precision, trim: false })
         val = maxLengthFormatter(val, { maxLength })
         if (target.value !== val) {
@@ -256,13 +257,8 @@ const InputText = forwardRef(
         if (goOn !== undefined && !goOn) return
       }
 
-      // 修改
+      // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
       if (onChange) {
-        if (val && type === 'number') {
-          // eslint-disable-next-line
-          val = Number(val)
-        }
-        // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
         onChange(val)
       }
     }
