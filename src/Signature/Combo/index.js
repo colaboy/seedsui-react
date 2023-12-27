@@ -8,6 +8,7 @@ import Modal from './../Modal'
 const Combo = (
   {
     value,
+    onBeforeChange,
     onChange,
     // 弹框配置
     portal,
@@ -64,6 +65,7 @@ const Combo = (
         portal={portal}
         visible={visible}
         value={value}
+        onBeforeChange={onBeforeChange}
         onChange={handleChange}
         onVisibleChange={(newVisible) => {
           setVisible(newVisible)

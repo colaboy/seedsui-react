@@ -11,7 +11,13 @@ export default () => {
           color="#000000"
           backgroundColor="transparent"
           value={value}
-          onChange={setValue}
+          onChange={(newVal) => {
+            console.log(newVal)
+            setValue(newVal)
+          }}
+          onBeforeChange={(newVal) => {
+            if (!newVal) return false
+          }}
           // portal={document.body}
         />
       </Layout.Main>

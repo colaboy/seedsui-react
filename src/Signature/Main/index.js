@@ -5,6 +5,7 @@ import Signature from './Signature'
 // 手写签名
 const Main = (
   {
+    onBeforeChange,
     onChange,
     onCancel,
     // 绘画配置
@@ -49,6 +50,12 @@ const Main = (
           className="signature-button signature-button-submit"
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
+            if (onBeforeChange) {
+              let goOn = await onBeforeChange(base64)
+              if (goOn === false) {
+                return
+              }
+            }
             onChange?.(base64)
           }}
         >
