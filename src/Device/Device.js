@@ -1,9 +1,9 @@
 // Device
-var Device = (function () {
-  var userAgent = navigator.userAgent
-  var ua = userAgent.toLowerCase()
+let Device = (function () {
+  let userAgent = navigator.userAgent
+  let ua = userAgent.toLowerCase()
   // 内核
-  var kernel = ''
+  let kernel = ''
   if (ua.indexOf('trident') > -1) {
     kernel = 'trident'
   } else if (ua.indexOf('presto') > -1) {
@@ -14,17 +14,17 @@ var Device = (function () {
     kernel = 'gecko'
   }
   // 设备
-  var device = ''
+  let device = ''
   if (ua.match(/applewebkit.*mobile.*/)) {
     device = 'mobile'
   } else {
     device = 'pc'
   }
   // 系统
-  var os = ''
-  var osVersion = ''
-  var androidExp = ua.match(/android\s*(\d*\.*\d*)/)
-  var iosExp = ua.match(/cpu iphone os (.*?) like mac os/)
+  let os = ''
+  let osVersion = ''
+  let androidExp = ua.match(/android\s*(\d*\.*\d*)/)
+  let iosExp = ua.match(/cpu iphone os (.*?) like mac os/)
   if (androidExp) {
     os = 'android'
     osVersion = androidExp[1]
@@ -34,9 +34,9 @@ var Device = (function () {
   }
 
   // 平台
-  var platform = ''
-  var platformVersion = ''
-  var platformMatch = null
+  let platform = ''
+  let platformVersion = ''
+  let platformMatch = null
   function updatePlatform() {
     // 订货
     if (ua.indexOf('dinghuoappversion') > -1) {
@@ -83,6 +83,12 @@ var Device = (function () {
       platformMatch = ua.match(/micromessenger\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }
+    // 支付宝
+    else if (ua.indexOf('alipay') > -1) {
+      platform = 'alipay'
+      platformMatch = ua.match(/alipayclient\/([\w.]*)/)
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
     // QQ
     else if (ua.indexOf('mqqbrowser') > -1) {
       platform = 'qq'
@@ -103,7 +109,7 @@ var Device = (function () {
   function appleModel() {
     // 获取设备型号
     if (ua && /(iphone|ipad|ipod|ios)/i.test(ua)) {
-      var m = ua.match(/mobile\/([\w.]*)/)
+      let m = ua.match(/mobile\/([\w.]*)/)
       if (m && m[1]) {
         return m[1]
       }
@@ -118,7 +124,7 @@ var Device = (function () {
     // iPhoneXSM | iPhoneXSR
     if (/iphone/gi.test(ua) && window.screen.height === 896 && window.screen.width === 414)
       return 'iPhoneXSM'
-    var model = appleModel()
+    let model = appleModel()
     switch (model) {
       case '15b150':
         return 'iPhone6s'
@@ -134,7 +140,7 @@ var Device = (function () {
   }
 
   // 网络监听
-  var onLineCallback
+  let onLineCallback
   function handleOnline(e) {
     onLineCallback(true)
   }
@@ -151,11 +157,11 @@ var Device = (function () {
 
   // 适配刘海屏和android5.0以下的手机
   function adapterIPhoneX(el) {
-    var root = document.getElementById('root')
+    let root = document.getElementById('root')
     if (el && Object.prototype.toString.call(el).indexOf('[object HTML') === 0) root = el
     if (!root) return
     // 适配iPhoneX
-    var isX = getAppleDevice().indexOf('iPhoneX') >= 0
+    let isX = getAppleDevice().indexOf('iPhoneX') >= 0
     function changeSafeArea() {
       if (isX && root) {
         switch (window.orientation) {
@@ -186,18 +192,18 @@ var Device = (function () {
   }
   // 获取地址栏参数
   function getUrlParameter(argName, argSearch) {
-    var url = window.location.href
+    let url = window.location.href
     if (argSearch) url = argSearch
-    var params = {}
+    let params = {}
     // 如果url中包含?说明有参数
     if (url.indexOf('?') !== -1) {
       if (!argName) return '?' + url.split('?')[1]
       // 获取所有参数options: 如?a=1&b=2转为['a=1','b=2']
-      var options = url.split('?')[1].split('&')
+      let options = url.split('?')[1].split('&')
       if (options.length) {
-        for (var i = 0; i < options.length; i++) {
+        for (let i = 0; i < options.length; i++) {
           // 获取单项option: 如'a=1'转为['a', '1']
-          var option = options[i].split('=')
+          let option = options[i].split('=')
           if (option.length === 2) {
             if (argName) {
               if (argName === option[0]) return option[1]
@@ -275,7 +281,7 @@ var Device = (function () {
         return s
           .split('')
           .reduce(function (a, c) {
-            var code = c.charCodeAt(0)
+            let code = c.charCodeAt(0)
             if (48 <= code && code < 58) {
               a.push(code - 48)
             }
@@ -285,14 +291,14 @@ var Device = (function () {
             return 10 * a + c
           }, 0)
       }
-      var a = s1.split('.').map(function (s) {
+      let a = s1.split('.').map(function (s) {
         return s2i(s)
       })
-      var b = s2.split('.').map(function (s) {
+      let b = s2.split('.').map(function (s) {
         return s2i(s)
       })
-      var n = a.length < b.length ? a.length : b.length
-      for (var i = 0; i < n; i++) {
+      let n = a.length < b.length ? a.length : b.length
+      for (let i = 0; i < n; i++) {
         if (a[i] < b[i]) {
           return -1
         } else if (a[i] > b[i]) {
@@ -301,8 +307,8 @@ var Device = (function () {
       }
       if (a.length < b.length) return -1
       if (a.length > b.length) return 1
-      var last1 = s1.charCodeAt(s1.length - 1) | 0x20
-      var last2 = s2.charCodeAt(s2.length - 1) | 0x20
+      let last1 = s1.charCodeAt(s1.length - 1) | 0x20
+      let last2 = s2.charCodeAt(s2.length - 1) | 0x20
       return last1 > last2 ? 1 : last1 < last2 ? -1 : 0
     }
   }

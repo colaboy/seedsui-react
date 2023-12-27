@@ -8,12 +8,13 @@ import BridgeDinghuo from './dinghuo'
 import BridgeWaiqin from './wq'
 import BridgeWaiqinCordova from './cordova'
 
-var Bridge = {}
+let Bridge = {}
 if (
   Device.platform === 'wechat' ||
   Device.platform === 'wework' ||
   Device.platform === 'wechatMiniprogram' ||
-  Device.platform === 'weworkMiniprogram'
+  Device.platform === 'weworkMiniprogram' ||
+  Device.platform === 'alipay'
 ) {
   Bridge = {
     ...BridgeBase,

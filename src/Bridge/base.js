@@ -404,6 +404,7 @@ let Bridge = {
       platform !== 'wework' &&
       platform !== 'wechatMiniprogram' &&
       platform !== 'weworkMiniprogram' &&
+      platform !== 'alipay' &&
       platform !== 'waiqin' &&
       platform !== 'dinghuo' &&
       platform !== 'wq'
@@ -418,7 +419,8 @@ let Bridge = {
       platform === 'wechat' ||
       platform === 'wechatMiniprogram' ||
       platform === 'wework' ||
-      platform === 'weworkMiniprogram'
+      platform === 'weworkMiniprogram' ||
+      platform === 'alipay'
     ) {
       // 微信平台
       // 加载微信库
@@ -430,10 +432,18 @@ let Bridge = {
         script.src = options.weworkLibSrc || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
       } else if (platform === 'weworkMiniprogram') {
         script.src = options.weworkMiniprogramLibSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      } else if (platform === 'alipay') {
+        script.src =
+          options.alipayLibSrc ||
+          '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
       }
 
       // 加载完成
       script.onload = function () {
+        // 支付宝平台库名称变更为wx
+        if (platform === 'alipay') {
+          window.wx = window.ap
+        }
         // eslint-disable-next-line
         if (window.wx && !window.top.wx) {
           // eslint-disable-next-line
