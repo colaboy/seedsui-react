@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Signature, Layout } from 'seedsui-react'
+import { Signature, Layout, Toast } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
@@ -16,7 +16,12 @@ export default () => {
             setValue(newVal)
           }}
           onBeforeChange={(newVal) => {
-            if (!newVal) return false
+            if (!newVal) {
+              Toast.show({
+                content: '签名不能为空'
+              })
+              return false
+            }
           }}
           // portal={document.body}
         />
