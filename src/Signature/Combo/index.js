@@ -51,7 +51,7 @@ const Combo = (
   }
   // 已签显示图片
   if (value && typeof value === 'string') {
-    return <Preview value={value} onDelete={handleChange} />
+    return <Preview value={value} onDelete={onChange ? handleChange : null} />
   }
 
   // 未签显示签名
