@@ -64,8 +64,8 @@ let Bridge = {
     return Device.platformVersion
   },
   // 返回首页
-  goHome: function () {
-    window.top.wq.invoke('goHome')
+  goHome: function (params) {
+    window.top.wq.invoke('goHome', ...(params || {}))
   },
   // 退出到登陆页面
   logOut: function () {
