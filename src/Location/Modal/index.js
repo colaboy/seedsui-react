@@ -27,6 +27,7 @@ const LocationModal = forwardRef(
       value: originValue = null,
       onBeforeChange,
       onChange,
+      geocoder,
 
       // 弹窗类型: page页面; 其它弹窗(默认);
       modal,
@@ -142,6 +143,7 @@ const LocationModal = forwardRef(
             type={visible}
             value={value}
             onChange={setValue}
+            geocoder={geocoder}
             // 地图选择页面属性
             {...MainProps}
             // 底
@@ -194,6 +196,7 @@ const LocationModal = forwardRef(
           type={visible}
           value={value}
           onChange={setValue}
+          geocoder={geocoder}
           // 地图选择页面属性
           {...MainProps}
         />

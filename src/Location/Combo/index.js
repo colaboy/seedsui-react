@@ -23,6 +23,8 @@ const LocationCombo = forwardRef(
       cacheTime = 10000, // 经纬度缓存时效, 默认10秒
       timeout, // 定位超时
       ak, // 地图预览和选择地点时需要传入, 如果地图已经加载, 则不需要传入ak
+      // 自定义地址逆解析
+      geocoder,
       // 显示定位按钮
       locationVisible = true,
       // 自动定位
@@ -111,11 +113,20 @@ const LocationCombo = forwardRef(
           // 无地址, 则需要地址逆解析
           locationStatus = '-1'
           setLocationStatus('-1') // 定位中...
-          const result = await Bridge.getAddress({
-            // 只支持gcj02
-            latitude: value.latitude,
-            longitude: value.longitude
-          })
+          let result = null
+          // latitude and longitude's type is gcj02
+          if (typeof geocoder === 'function') {
+            result = await geocoder({
+              latitude: value.latitude,
+              longitude: value.longitude
+            })
+          } else {
+            result = await Bridge.getAddress({
+              latitude: value.latitude,
+              longitude: value.longitude
+            })
+          }
+
           const address = result && result.address ? result.address : ''
           result.value = address
           if (address) {
@@ -207,6 +218,7 @@ const LocationCombo = forwardRef(
       // 开始定位
       Utils.getLocation({
         cacheTime: cacheTime,
+        geocoder: geocoder,
         onChange: (newValue) => {
           // 定位超时后不再执行回调
           if (locationStatus === '0') {
@@ -350,6 +362,7 @@ const LocationCombo = forwardRef(
             }
           }}
           MainProps={MainProps}
+          geocoder={geocoder}
         />
       </Fragment>
     )

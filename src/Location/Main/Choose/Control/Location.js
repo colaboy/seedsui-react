@@ -9,7 +9,7 @@ import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 
 // 悬浮定位控件
-function Location({ map, value, onChange, ...props }, ref) {
+function Location({ geocoder, map, value, onChange, ...props }, ref) {
   useImperativeHandle(ref, () => {
     return {
       getLocation: location
@@ -23,7 +23,7 @@ function Location({ map, value, onChange, ...props }, ref) {
       Loading.show({
         content: locale('定位中...', 'positioning')
       })
-      let result = await getLocation()
+      let result = await getLocation({ geocoder })
       resolve(result)
       Loading.hide()
     })

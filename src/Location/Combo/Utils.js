@@ -7,7 +7,7 @@ import locale from './../../locale'
 // eslint-disable-next-line
 export default {
   // 获取定位
-  getLocation: function ({ cacheTime, onChange, onError }) {
+  getLocation: function ({ cacheTime, geocoder, onChange, onError }) {
     // 开始定位
     Bridge.getLocation({
       cacheTime: typeof cacheTime === 'number' ? cacheTime : 10000,
@@ -22,11 +22,18 @@ export default {
           }
           return
         }
-        let result = await Bridge.getAddress({
-          // 只支持gcj02
-          latitude: data.latitude,
-          longitude: data.longitude
-        })
+        let result = null
+        if (typeof geocoder === 'function') {
+          result = await geocoder({
+            latitude: data.latitude,
+            longitude: data.longitude
+          })
+        } else {
+          result = await Bridge.getAddress({
+            latitude: data.latitude,
+            longitude: data.longitude
+          })
+        }
         result = { ...data, ...result }
         const address = result && result.address ? result.address : ''
         result.value = address

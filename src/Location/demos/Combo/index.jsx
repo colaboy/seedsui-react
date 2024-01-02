@@ -15,21 +15,38 @@ export default () => {
   useEffect(() => {
     Bridge.ready(() => {})
     console.log(comboRef.current)
-    // MapUtil.load({
-    //   ak: '3pTjiH1BXLjASHeBmWUuSF83',
-    //   success: () => {
-    //     console.log('地图加载完成')
-    //   },
-    //   fail: () => {
-    //     console.error('地图库加载失败，请稍后再试！')
-    //   }
-    // })
+    MapUtil.load({
+      ak: '3pTjiH1BXLjASHeBmWUuSF83',
+      success: () => {
+        console.log('地图加载完成')
+      },
+      fail: () => {
+        console.error('地图库加载失败，请稍后再试！')
+      }
+    })
   }, [])
   return (
     <>
       <Location.Combo
+        geocoder={({ latitude, longitude }) => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                province: '江苏',
+                provinceNumber: '',
+                city: '南京',
+                cityNumber: '',
+                district: '建邺',
+                districtNumber: '',
+                street: '街道',
+                streetNumber: '',
+                address: '江苏省南京市建邺区'
+              })
+            }, 1000)
+          })
+        }}
         ak="3pTjiH1BXLjASHeBmWUuSF83"
-        modal="page"
+        // modal="page"
         // MainProps={{
         //   autoLocation: false
         // }}

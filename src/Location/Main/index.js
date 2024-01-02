@@ -14,6 +14,8 @@ const Main = forwardRef(
     {
       ak,
       autoLocation = true,
+      // 自定义地址逆解析
+      geocoder,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value,
       onChange,
@@ -71,6 +73,7 @@ const Main = forwardRef(
           autoLocation={autoLocation}
           value={value}
           onChange={onChange}
+          geocoder={geocoder}
           footerRender={footerRender}
           {...props}
         />
