@@ -1,6 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react'
 import {
-  formatValue,
   activeItemTarget,
   gcjToBdPoint,
   bdToGcjCoord,
@@ -10,6 +9,8 @@ import {
   initMap,
   clearMarkers
 } from './../utils'
+import formatValue from './formatValue'
+
 import Control from './Control'
 import Search from './Search'
 import Current from './Current'
@@ -99,7 +100,7 @@ const MapChoose = forwardRef(
           let locationResult = await locationRef.current.getLocation()
           // eslint-disable-next-line
           value = locationResult
-          onChange && onChange(formatValue(value))
+          onChange && onChange(value)
           setCurrent(value)
         }
       }

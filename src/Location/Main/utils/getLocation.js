@@ -5,47 +5,48 @@ import locale from './../../../locale'
 import Bridge from './../../../Bridge'
 
 // 获取地址信息
-async function getAddress({ geocoder, point, onChange }) {
+async function getAddress({ geocoder, longitude, latitude, ...data }) {
   let result = null
   if (typeof geocoder === 'function') {
     result = await geocoder({
-      longitude: point[0],
-      latitude: point[1]
+      longitude,
+      latitude,
+      ...data
     })
   } else {
     result = await Bridge.getAddress({
-      longitude: point[0],
-      latitude: point[1]
+      longitude,
+      latitude,
+      ...data
     })
   }
-  const address = result && result.address ? result.address : ''
-  result.value = address
+  const addr = result && result.address ? result.address : ''
+  if (addr) {
+    result.longitude = longitude
+    result.latitude = latitude
+    result.value = addr
+  }
   // 没有地址则认为获取地址失败
-  if (!address) {
+  else {
     result = null
   }
-  if (onChange) {
-    onChange(result)
-  }
+  return result
 }
 
 // 定位
 function getLocation(opt) {
-  const { geocoder, point, cacheTime } = opt || {}
-  return new Promise((resolve) => {
+  const { geocoder, longitude, latitude, cacheTime, ...data } = opt || {}
+  // eslint-disable-next-line
+  return new Promise(async (resolve) => {
     // 已经有坐标点, 则不需要定位
-    if (Array.isArray(point) && point.length === 2) {
-      getAddress({
+    if (longitude && latitude) {
+      let result = await getAddress({
         geocoder: geocoder,
-        point: point,
-        onChange: (result) => {
-          resolve({
-            ...result,
-            longitude: point[0],
-            latitude: point[1]
-          })
-        }
+        longitude,
+        latitude,
+        ...data
       })
+      resolve(result)
       return
     }
     // 开始定位
@@ -53,22 +54,13 @@ function getLocation(opt) {
       cacheTime: typeof cacheTime === 'number' ? cacheTime : 10000,
       type: 'gcj02',
       success: async (data) => {
-        // 客户端中不需要再getAddress
-        if (data.address) {
-          // 赋值
-          data.value = data.address
-          resolve(data)
-          return
-        }
-        getAddress({
+        let result = await getAddress({
           geocoder: geocoder,
-          point: [data.longitude, data.latitude],
-          onChange: (result) => {
-            // eslint-disable-next-line
-            result = { ...data, ...result }
-            resolve(result)
-          }
+          longitude: data.longitude,
+          latitude: data.latitude,
+          ...data
         })
+        resolve(result)
       },
       fail: (res) => {
         // 赋值

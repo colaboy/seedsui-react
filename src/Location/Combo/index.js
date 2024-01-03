@@ -7,7 +7,7 @@ import React, {
   Fragment
 } from 'react'
 import Modal from './../Modal'
-import Utils from './Utils'
+import { getLocation } from './../Main/utils'
 
 // 测试使用
 // import { locale, Input, Bridge } from 'seedsui-react'
@@ -21,7 +21,6 @@ const LocationCombo = forwardRef(
   (
     {
       cacheTime = 10000, // 经纬度缓存时效, 默认10秒
-      timeout, // 定位超时
       ak, // 地图预览和选择地点时需要传入, 如果地图已经加载, 则不需要传入ak
       // 自定义地址逆解析
       geocoder,
@@ -113,33 +112,14 @@ const LocationCombo = forwardRef(
           // 无地址, 则需要地址逆解析
           locationStatus = '-1'
           setLocationStatus('-1') // 定位中...
-          let result = null
-          // latitude and longitude's type is gcj02
-          if (typeof geocoder === 'function') {
-            result = await geocoder({
-              latitude: value.latitude,
-              longitude: value.longitude
-            })
-          } else {
-            result = await Bridge.getAddress({
-              latitude: value.latitude,
-              longitude: value.longitude
-            })
-          }
 
-          const address = result && result.address ? result.address : ''
-          result.value = address
-          if (address) {
-            locationStatus = '1'
-            setLocationStatus('1')
-            // 回调onChange
-            if (onChangeRef?.current) {
-              onChangeRef.current(result)
-            }
-          } else {
-            locationStatus = '0'
-            setLocationStatus('0')
-          }
+          let newValue = await getLocation({
+            geocoder: geocoder,
+            latitude: value.latitude,
+            longitude: value.longitude
+          })
+
+          updateValue(newValue)
         }
       }
       // 定位并获取地址
@@ -185,68 +165,45 @@ const LocationCombo = forwardRef(
       }
     }
 
+    // Update new value
+    function updateValue(newValue) {
+      // 定位失败
+      if (!newValue || typeof newValue === 'string') {
+        if (onErrorRef?.current) {
+          onErrorRef.current({
+            errMsg: `getLocation:fail${failText}`
+          })
+        }
+        locationStatus = '0'
+        setLocationStatus('0')
+        // 回调onChange
+        onChangeRef?.current && onChangeRef.current(null)
+      }
+      // 定位成功
+      else {
+        locationStatus = '1'
+        setLocationStatus('1')
+        // 回调onChange
+        onChangeRef?.current && onChangeRef.current(newValue)
+      }
+    }
+
     // 定位, isAutoLocation表示初始化时自动定位
-    function handleLocation(e) {
+    async function handleLocation(e) {
       if (e) {
         e.stopPropagation()
       }
       // 定位中...
       locationStatus = '-1'
       setLocationStatus('-1')
-      // 定位超时处理
-      if (typeof timeout === 'number') {
-        if (Number(timeout) < 1000) {
-          console.warn('InputLocation: 超时参数timeout不能小于1000毫秒')
-        } else {
-          if (rootRef.current.locationTimeout) window.clearTimeout(rootRef.current.locationTimeout)
-          rootRef.current.locationTimeout = setTimeout(() => {
-            if (locationStatus === '-1') {
-              if (onChangeRef?.current) {
-                onChangeRef.current(null)
-              }
-              if (onErrorRef?.current) {
-                onErrorRef.current({
-                  errMsg: `getLocation:fail${locale('定位超时', 'hint_location_timeout')}`
-                })
-              }
-              locationStatus = '0'
-              setLocationStatus('0')
-            }
-          }, timeout)
-        }
-      }
-      // 开始定位
-      Utils.getLocation({
-        cacheTime: cacheTime,
-        geocoder: geocoder,
-        onChange: (newValue) => {
-          // 定位超时后不再执行回调
-          if (locationStatus === '0') {
-            console.log('定位超时, 不再执行成功回调')
-            return
-          }
-          // 定位失败
-          if (!newValue) {
-            if (onErrorRef?.current) {
-              onErrorRef.current({
-                errMsg: `getLocation:fail${failText}`
-              })
-            }
-            locationStatus = '0'
-            setLocationStatus('0')
-          }
-          // 定位成功
-          else {
-            locationStatus = '1'
-            setLocationStatus('1')
-          }
 
-          // 回调onChange
-          if (onChangeRef?.current) {
-            onChangeRef.current(newValue)
-          }
-        }
+      // 开始定位
+      let newValue = await getLocation({
+        cacheTime: cacheTime,
+        geocoder: geocoder
       })
+
+      updateValue(newValue)
     }
 
     // 定位和选择按钮

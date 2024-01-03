@@ -1,5 +1,4 @@
 import initMap from './initMap'
-import formatValue from './formatValue'
 import activeItemTarget from './activeItemTarget'
 import formatPoint from './formatPoint'
 import gcjToBdPoint from './gcjToBdPoint'
@@ -18,7 +17,6 @@ import getMarkerIcon from './getMarkerIcon'
 
 export {
   initMap,
-  formatValue,
   activeItemTarget,
   formatPoint,
   gcjToBdPoint,

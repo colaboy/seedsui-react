@@ -9,11 +9,11 @@ import GeoUtil from './../GeoUtil'
  * @param {String} id 用于s.map = new BMap.Map(id)
  * @param {Object} params 见defaults
  */
-var BaiduMap = function (id, params) {
+let BaiduMap = function (id, params) {
   /* --------------------
   Model
   -------------------- */
-  var defaults = {
+  let defaults = {
     styleOptions: {
       strokeColor: '#0C8EFF', //边线颜色
       strokeWeight: 1, //边线的宽度，以像素为单位
@@ -43,15 +43,16 @@ var BaiduMap = function (id, params) {
     mapOptions: {} // 参考: http://lbsyun.baidu.com/cms/jsapi/reference/jsapi_reference_3_0.html#a0b1
     */
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
 
   // BaiduMap
-  var s = this
+  let s = this
 
   // Params
   s.params = params
@@ -108,7 +109,7 @@ var BaiduMap = function (id, params) {
    */
   s.getLocation = function (options = {}) {
     console.log('调用百度地图定位...')
-    var geolocation = new BMap.Geolocation()
+    let geolocation = new BMap.Geolocation()
     geolocation.getCurrentPosition(
       function (res) {
         if (!res) {
@@ -182,7 +183,7 @@ var BaiduMap = function (id, params) {
     )
 
     // 添加定位控件
-    // var geolocationControl = new BMap.GeolocationControl()
+    // let geolocationControl = new BMap.GeolocationControl()
     // geolocationControl.addEventListener('locationSuccess', function (res) {
     //   // e.addressComponent.province
     //   if (options.success) options.success({errMsg: res.message})
@@ -201,13 +202,13 @@ var BaiduMap = function (id, params) {
    */
   s.centerToPoints = function (points, options) {
     if (!s.hasMap()) return
-    var bdPoints = []
+    let bdPoints = []
     if (points && points.length) {
       bdPoints = s.pointsToBdPoints(points)
     } else {
-      var overlays = s.map.getOverlays()
-      for (var i = 0; i < overlays.length; i++) {
-        var overlay = overlays[i]
+      let overlays = s.map.getOverlays()
+      for (let i = 0; i < overlays.length; i++) {
+        let overlay = overlays[i]
         if (overlay instanceof BMap.Polygon) {
           // 多边形
           bdPoints = bdPoints.concat(overlay.getPath())
@@ -252,8 +253,9 @@ var BaiduMap = function (id, params) {
    */
   s.pointConvertBdPoint = function (point, type = 'gcj02') {
     return new Promise((resolve) => {
+      // eslint-disable-next-line
       point = new BMap.Point(point[0], point[1])
-      var convertor = new BMap.Convertor()
+      let convertor = new BMap.Convertor()
       if (type === 'wgs84' || type === 'gcj02') {
         let types = [1, 5]
         if (type === 'gcj02') types = [3, 5]
@@ -277,10 +279,11 @@ var BaiduMap = function (id, params) {
   }
   function pointsConvertBdPoints(points, type = 'gcj02') {
     return new Promise((resolve) => {
+      // eslint-disable-next-line
       points = points.map((point) => {
         return new BMap.Point(point[0], point[1])
       })
-      var convertor = new BMap.Convertor()
+      let convertor = new BMap.Convertor()
       if (type === 'wgs84' || type === 'gcj02') {
         let types = [1, 5]
         if (type === 'gcj02') types = [3, 5]
@@ -333,10 +336,12 @@ var BaiduMap = function (id, params) {
    * @return {Promise} result: {code: '1' 成功, points 百度坐标Point对象集合}
    */
   s.pointsConvertBdPoints = function (points, type = 'gcj02') {
+    // eslint-disable-next-line
     return new Promise(async (resolve) => {
       if (!Array.isArray(points) || !points.length) {
         resolve({ code: '0', points: points, errMsg: '没有传入points' })
       }
+      // eslint-disable-next-line
       points = points.map((point) => {
         return new BMap.Point(point[0], point[1])
       })
@@ -347,6 +352,7 @@ var BaiduMap = function (id, params) {
         let sumLength = points.length
         async function pointsIterator() {
           let splicePoints = points.splice(0, 10)
+          // eslint-disable-next-line
           result = await pointsConvertBdPoints(splicePoints, (type = 'gcj02'))
           if (result.code === '1') {
             sumPoints = sumPoints.concat(result.points)
@@ -363,10 +369,11 @@ var BaiduMap = function (id, params) {
         }
         pointsIterator()
       } else {
+        // eslint-disable-next-line
         result = await pointsConvertBdPoints(points, (type = 'gcj02'))
         resolve(result)
       }
-      // var convertor = new BMap.Convertor()
+      // let convertor = new BMap.Convertor()
       // if (type === 'wgs84' || type === 'gcj02') {
       //   let types = [1, 5]
       //   if (type === 'gcj02') types = [3, 5]
@@ -489,6 +496,7 @@ var BaiduMap = function (id, params) {
    * @return {Promise} result: {status: 0 成功, point 坐标, address 地址}
    */
   s.getAddress = function (point, type, options = {}) {
+    // eslint-disable-next-line
     return new Promise(async (resolve) => {
       if (!s.hasMap(false)) {
         if (options?.fail)
@@ -507,37 +515,43 @@ var BaiduMap = function (id, params) {
       let bdPoint = GeoUtil.coordtransform(arrPoint, type, 'bd09')
       bdPoint = new BMap.Point(bdPoint[0], bdPoint[1])
       // 逆解析
-      var geocoder = new BMap.Geocoder()
+      let geocoder = new BMap.Geocoder()
       geocoder.getLocation(bdPoint, (res) => {
         // 对结果进行格式化
-        let result = res || {}
+        // let result = res || {}
+        let result = {}
+
+        if (res.address) {
+          result.address = res.address
+        }
+
         if (res.addressComponents) {
-          result.point = point
+          // result.point = point
           result.province = res.addressComponents.province
           result.city = res.addressComponents.city
           result.district = res.addressComponents.district
 
           // 构建选中省市区
-          let data = []
-          if (res.addressComponents.province) {
-            data.push({
-              id: '',
-              name: res.addressComponents.province
-            })
-          }
-          if (res.addressComponents.city) {
-            data.push({
-              id: '',
-              name: res.addressComponents.city
-            })
-          }
-          if (res.addressComponents.district) {
-            data.push({
-              id: '',
-              name: res.addressComponents.district
-            })
-          }
-          result.data = data
+          // let data = []
+          // if (res.addressComponents.province) {
+          //   data.push({
+          //     id: '',
+          //     name: res.addressComponents.province
+          //   })
+          // }
+          // if (res.addressComponents.city) {
+          //   data.push({
+          //     id: '',
+          //     name: res.addressComponents.city
+          //   })
+          // }
+          // if (res.addressComponents.district) {
+          //   data.push({
+          //     id: '',
+          //     name: res.addressComponents.district
+          //   })
+          // }
+          // result.data = data
           if (options?.success) options.success(result)
         } else {
           result.errMsg = locale('获取地址失败, 请稍后重试', 'hint_address_failed')
@@ -559,8 +573,8 @@ var BaiduMap = function (id, params) {
       onSearchComplete: function (results) {
         // 判断状态是否正确
         if (local.getStatus() === BMAP_STATUS_SUCCESS) {
-          var res = []
-          for (var i = 0; i < results.getCurrentNumPois(); i++) {
+          let res = []
+          for (let i = 0; i < results.getCurrentNumPois(); i++) {
             const item = results.getPoi(i)
             res.push({
               id: item.uid,
@@ -605,8 +619,8 @@ var BaiduMap = function (id, params) {
     if (JSON.stringify(points).indexOf('lng') !== -1) return points
     if (!Array.isArray(points[0]) || !points[0][0] || !points[0][1]) return []
     return points.map(function (point) {
-      var lng = point[0]
-      var lat = point[1]
+      let lng = point[0]
+      let lat = point[1]
       if (point[0] < point[1]) {
         lng = point[1]
         lat = point[0]
@@ -742,7 +756,7 @@ var BaiduMap = function (id, params) {
     * 将点字面量转为百度的点
     * @param {Object} point {
         lng: ,
-        lat: 
+        lat:
       }
     * @return {Point}
     */
@@ -888,6 +902,7 @@ var BaiduMap = function (id, params) {
   // polylinecomplete(overlay) {Polyline} 绘制线完成后，派发的事件接口
   // rectanglecomplete(overlay) {Polygon} 绘制矩形完成后，派发的事件接口
   s.createDrawingManager = function (options = {}) {
+    // eslint-disable-next-line
     if (typeof options !== 'object') options = {}
     let type = options.drawingType || BMAP_DRAWING_POLYGON
     let opts = {
@@ -965,7 +980,7 @@ var BaiduMap = function (id, params) {
    */
   s.drawBoundary = function (area, options, callback = {}, pureData) {
     if (!s.hasMap()) return
-    var boundary = new BMap.Boundary()
+    let boundary = new BMap.Boundary()
     if (!area) {
       console.warn(
         `${locale('请传入参数', 'hint_pass_in_parameters')}area, ${locale(
@@ -984,7 +999,7 @@ var BaiduMap = function (id, params) {
     }
     boundary.get(area, function (res) {
       // 获取行政区域
-      var count = res.boundaries.length // 行政区域的点有多少个
+      let count = res.boundaries.length // 行政区域的点有多少个
       if (count === 0) {
         console.warn(
           `${locale(
@@ -1001,9 +1016,9 @@ var BaiduMap = function (id, params) {
           })
         return
       }
-      var bdPolygons = []
-      var bdPolygonsPath = []
-      for (var i = 0; i < count; i++) {
+      let bdPolygons = []
+      let bdPolygonsPath = []
+      for (let i = 0; i < count; i++) {
         bdPolygons[i] = new BMap.Polygon(res.boundaries[i], {
           ...(s.params.styleOptions || {}),
           ...(options || {})
@@ -1213,7 +1228,7 @@ var BaiduMap = function (id, params) {
         })
       return
     }
-    var markerMenu = new BMap.ContextMenu()
+    let markerMenu = new BMap.ContextMenu()
     for (let [index, opt] of options.menus.entries()) {
       markerMenu.addItem(
         new BMap.MenuItem(opt.text || locale('菜单', 'menu'), function () {
@@ -1264,6 +1279,7 @@ var BaiduMap = function (id, params) {
  * }
  */
 async function _loadLibrary(options = {}) {
+  // eslint-disable-next-line
   return new Promise(async (resolve) => {
     if (!Array.isArray(options?.library) || !options.library.length) {
       if (options?.success) options.success()
@@ -1320,6 +1336,7 @@ BaiduMap.load = function (options = {}) {
   // window.BMAP_PROTOCOL = "https";
   // window.BMap_loadScriptTime = (new Date).getTime();
   // document.write(`<script type="text/javascript" src="https://api.map.baidu.com/getscript?v=3.0&ak=${options.ak}&services=&t=20200415105918"></script>`);
+  // eslint-disable-next-line
   return new Promise(async (resolve) => {
     if (window.BMap) {
       let result = await _loadLibrary(options)
@@ -1332,7 +1349,7 @@ BaiduMap.load = function (options = {}) {
       return
     }
     // 已经加载js库了, 防止重复加载
-    var script = document.getElementById(options.ak)
+    let script = document.getElementById(options.ak)
     if (script) {
       console.log('百度地图正在加载, 请勿重新加载, 1秒后自动重试')
       setTimeout(async () => {

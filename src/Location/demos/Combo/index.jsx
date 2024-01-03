@@ -3,14 +3,17 @@ import { Bridge, Location, MapUtil } from 'seedsui-react'
 
 export default () => {
   Bridge.debug = true
+  const [load, setLoad] = useState(false)
   const comboRef = useRef(null)
   // const [value, setValue] = useState(null)
   const [value, setValue] = useState({
     errMsg: 'getLocation:ok',
-    longitude: '116.397451',
-    latitude: '39.909187',
-    title: '天安门',
-    value: '北京市东城区中华路甲10号中国天安门广场'
+    longitude: 118.74,
+    latitude: 31.99
+    // longitude: '116.397451',
+    // latitude: '39.909187',
+    // title: '天安门',
+    // value: '北京市东城区中华路甲10号中国天安门广场'
   })
   useEffect(() => {
     Bridge.ready(() => {})
@@ -18,6 +21,7 @@ export default () => {
     MapUtil.load({
       ak: '3pTjiH1BXLjASHeBmWUuSF83',
       success: () => {
+        setLoad(true)
         console.log('地图加载完成')
       },
       fail: () => {
@@ -25,13 +29,21 @@ export default () => {
       }
     })
   }, [])
+
+  if (!load) return null
   return (
     <>
       <Location.Combo
-        geocoder={({ latitude, longitude }) => {
+        geocoder={(data) => {
+          // debugger
+          if (data?.address) {
+            return data
+          }
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve({
+                longitude: 118.74,
+                latitude: 31.99,
                 province: '江苏',
                 provinceNumber: '',
                 city: '南京',
@@ -40,7 +52,7 @@ export default () => {
                 districtNumber: '',
                 street: '街道',
                 streetNumber: '',
-                address: '江苏省南京市建邺区'
+                address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
               })
             }, 1000)
           })
@@ -53,7 +65,7 @@ export default () => {
         // disabled
         allowClear
         autoFit
-        // autoLocation
+        autoLocation
         // editable
         // allowClear
         ref={comboRef}

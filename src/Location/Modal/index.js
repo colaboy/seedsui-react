@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import addHistory from './addHistory'
+import { getLocation } from './../Main/utils'
 
 import Main from './../Main'
 import Footer from './Footer'
@@ -115,12 +116,18 @@ const LocationModal = forwardRef(
 
     // 点击确定和取消
     async function handleOk() {
+      // 格式化数据
+      Loading.show()
+      value = await getLocation({ geocoder, ...value })
+
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(value)
+        Loading.hide()
         if (goOn !== undefined && !goOn) return
       }
 
+      Loading.hide()
       onChange && onChange(value)
       handleBack()
     }
