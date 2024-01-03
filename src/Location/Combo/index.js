@@ -320,6 +320,7 @@ const LocationCombo = forwardRef(
           onBeforeChange={onBeforeChange}
           onChange={updateValue}
           MainProps={MainProps}
+          cacheTime={cacheTime}
           geocoder={geocoder}
         />
       </Fragment>

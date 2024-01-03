@@ -31,6 +31,7 @@ const MapChoose = forwardRef(
       readOnly,
       value,
       onChange,
+      cacheTime,
       geocoder,
       // 标注配置
       markerConfig,
@@ -275,6 +276,7 @@ const MapChoose = forwardRef(
                   map={map}
                   value={value}
                   onChange={handleLocation}
+                  cacheTime={cacheTime}
                   geocoder={geocoder}
                 />
               )}

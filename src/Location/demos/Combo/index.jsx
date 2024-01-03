@@ -34,6 +34,7 @@ export default () => {
   return (
     <>
       <Location.Combo
+        cacheTime={50000}
         geocoder={(data) => {
           // debugger
           return new Promise((resolve) => {
