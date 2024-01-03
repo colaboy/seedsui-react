@@ -25,11 +25,10 @@ async function getAddress({ geocoder, longitude, latitude, ...data }) {
     result.longitude = longitude
     result.latitude = latitude
     result.value = addr
-  }
-  // 没有地址则认为获取地址失败
-  else {
+  } else if (typeof result !== 'string') {
     result = null
   }
+
   return result
 }
 

@@ -59,10 +59,14 @@ const LocationCombo = forwardRef(
     },
     ref
   ) => {
-    // 显示预览preview、选择choose
-    const [modalVisible, setModalVisible] = useState('')
+    // 错误信息
+    const errMsgRef = useRef(failText)
+
     // 定位状态, -1.定位中; 0.定位失败时隐藏text框, 显示定位中或者定位失败的div; 1定位成功显示文本框
     let [locationStatus, setLocationStatus] = useState('1')
+
+    // 显示预览preview、选择choose
+    const [modalVisible, setModalVisible] = useState('')
 
     const onChangeRef = useRef()
     onChangeRef.current = onChange
@@ -169,9 +173,10 @@ const LocationCombo = forwardRef(
     function updateValue(newValue) {
       // 定位失败
       if (!newValue || typeof newValue === 'string') {
+        errMsgRef.current = typeof newValue === 'string' ? newValue : failText
         if (onErrorRef?.current) {
           onErrorRef.current({
-            errMsg: `getLocation:fail${failText}`
+            errMsg: `getLocation:fail${errMsgRef.current}`
           })
         }
         locationStatus = '0'
@@ -272,7 +277,7 @@ const LocationCombo = forwardRef(
           className={`input-text ${inputProps?.className || ''} location-combo-error`}
           style={inputProps?.style || {}}
         >
-          {failText}
+          {errMsgRef.current}
         </div>
       )
     }
@@ -313,11 +318,7 @@ const LocationCombo = forwardRef(
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onBeforeChange={onBeforeChange}
-          onChange={(newValue) => {
-            if (onChangeRef?.current) {
-              onChangeRef.current(newValue)
-            }
-          }}
+          onChange={updateValue}
           MainProps={MainProps}
           geocoder={geocoder}
         />

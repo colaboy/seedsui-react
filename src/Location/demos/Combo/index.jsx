@@ -7,9 +7,9 @@ export default () => {
   const comboRef = useRef(null)
   // const [value, setValue] = useState(null)
   const [value, setValue] = useState({
-    errMsg: 'getLocation:ok',
-    longitude: 118.74,
-    latitude: 31.99
+    // errMsg: 'getLocation:ok',
+    // longitude: 118.74,
+    // latitude: 31.99
     // longitude: '116.397451',
     // latitude: '39.909187',
     // title: '天安门',
@@ -36,9 +36,6 @@ export default () => {
       <Location.Combo
         geocoder={(data) => {
           // debugger
-          if (data?.address) {
-            return data
-          }
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve({
@@ -58,10 +55,10 @@ export default () => {
           })
         }}
         ak="3pTjiH1BXLjASHeBmWUuSF83"
-        // modal="page"
-        // MainProps={{
-        //   autoLocation: false
-        // }}
+        modal="page"
+        MainProps={{
+          autoLocation: false
+        }}
         // disabled
         allowClear
         autoFit
