@@ -37,4 +37,4 @@ export default () => (
 )
 ```
 
-[seedsui-react docs](https://colaboy.github.io/seedsui-react/)
+[Visit seedsui-react docs](https://colaboy.github.io/seedsui-react/)
