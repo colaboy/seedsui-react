@@ -26,6 +26,9 @@ export default () => {
         // animation="zoom"
         // 自定义主体
         // MainComponent={CustomMain}
+        riconProps={{
+          className: 'icon shape-arrow-right sm'
+        }}
         listExtraHeaderRender={() => {
           return <p>列表头部扩展</p>
         }}
@@ -34,9 +37,6 @@ export default () => {
         }}
         allowClear="exclusion-ricon"
         // multiple={true}
-        riconProps={{
-          className: 'icon shape-arrow-right sm'
-        }}
         placeholder="Please select"
         value={value}
         list={[
@@ -164,7 +164,11 @@ export default () => {
         // 选中效果: checkbox | tick | corner
         checkedType="checkbox"
         checkedPosition="right"
-      />
+      >
+        <div>
+          {Array.isArray(value) && value.length ? value.map((item) => item.name).join(',') : ''}
+        </div>
+      </Select.Combo>
     </>
   )
 }

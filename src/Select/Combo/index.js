@@ -11,6 +11,8 @@ import { getDisplayValue, getDynamicProps } from './../utils'
 import Input from './../../Input'
 import Modal from './../Modal'
 
+import ChildrenWrapper from './ChildrenWrapper'
+
 // Combo
 const Combo = forwardRef(
   (
@@ -205,17 +207,17 @@ const Combo = forwardRef(
       <Fragment>
         {/* Combo */}
         {typeof comboRender === 'function' && (
-          <div {...props} onClick={handleInputClick} ref={comboRef}>
+          <ChildrenWrapper {...props} onClick={handleInputClick} ref={comboRef}>
             {comboRender({
               value,
               displayValue
             })}
-          </div>
+          </ChildrenWrapper>
         )}
         {children && (
-          <div {...props} onClick={handleInputClick} ref={comboRef}>
+          <ChildrenWrapper {...props} onClick={handleInputClick} ref={comboRef}>
             {children}
-          </div>
+          </ChildrenWrapper>
         )}
         {!children && typeof comboRender !== 'function' && (
           <InputNode
