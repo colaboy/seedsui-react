@@ -10,6 +10,7 @@ const DistrictMain = forwardRef(
       value,
       list,
       loadList,
+      editableOptions,
       // 判断是否是国省市区
       isCountry,
       isProvince,
@@ -52,8 +53,24 @@ const DistrictMain = forwardRef(
       setListData(listData)
     }
 
+    // 校验只读
+    function validateEditableOptions(tabs) {
+      if (!Array.isArray(tabs) || !tabs.length) return true
+      let lastTab = tabs[tabs.length - 1]
+      let type = matchType(lastTab)
+      if (type && editableOptions?.[type]?.editable === false) {
+        return false
+      }
+      return true
+    }
+
     // 点击选项前判断是否指定类型: 省, 市, 区
     async function handleBeforeSelect(tabs) {
+      // 校验能否选择
+      if (editableOptions && validateEditableOptions(tabs) === false) {
+        return false
+      }
+
       // 自定义是否允许选中
       if (onBeforeSelect) {
         let goOn = await onBeforeSelect(tabs)

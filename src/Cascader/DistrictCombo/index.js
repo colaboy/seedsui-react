@@ -23,6 +23,7 @@ const DistrictCombo = forwardRef(
       loadList,
       loadData,
       optionProps,
+      editableOptions,
       ModalProps,
 
       // Standard properties
@@ -46,6 +47,7 @@ const DistrictCombo = forwardRef(
           loadList,
           loadData,
           optionProps,
+          editableOptions,
           ...ModalProps
         }}
         {...props}

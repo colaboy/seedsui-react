@@ -5,7 +5,8 @@ import testDistrict from './testDistrict'
 import testStreet from './testStreet'
 
 // 主方法: 匹配当前选中项的类型
-function matchType(current, { type, isCountry, isProvince, isCity, isDistrict, isStreet }) {
+function matchType(current, config) {
+  const { type, isCountry, isProvince, isCity, isDistrict, isStreet } = config || {}
   if (!window.AreaLevel) return null
 
   // 没有类型, 返回类型

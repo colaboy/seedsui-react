@@ -46,11 +46,12 @@ export default () => {
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
-      <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
+      {/* <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" /> */}
       <Cascader.DistrictCombo
+        // 编辑控制
         allowClear
-        min="province" // ['country', 'province', 'city', 'district', 'street']
-        type="city"
+        // min="province" // ['country', 'province', 'city', 'district', 'street']
+        // type="city"
         list={CountriesData}
         loadData={loadData}
         value={value}
@@ -69,6 +70,12 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        // editableOptions={{
+        //   province: { editable: false },
+        //   city: { editable: false },
+        //   district: { editable: true },
+        //   street: { editable: true }
+        // }}
       />
     </div>
   )

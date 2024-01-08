@@ -31,6 +31,7 @@ const DistrictModal = forwardRef(
       isDistrict,
       isStreet,
       onBeforeSelect,
+      editableOptions,
       ...props
     },
     ref
@@ -115,6 +116,7 @@ const DistrictModal = forwardRef(
     props.MainProps.onBeforeSelect = handleBeforeSelect
     props.MainProps.loadList = loadList
     props.MainProps.loadData = loadData
+    props.MainProps.editableOptions = editableOptions
 
     return (
       <BaseModal
