@@ -16,10 +16,12 @@ const Main = forwardRef(
       value,
       list: externalList,
       multiple,
+      onBeforeSelect,
       onBeforeChange,
       onChange,
 
       // Main: Cascader.Main Control properties
+      TabsComponent,
       loadData,
       optionProps = {},
       ...props
@@ -147,6 +149,11 @@ const Main = forwardRef(
 
     // 点击选项
     async function handleSelect(item) {
+      if (typeof onBeforeSelect === 'function') {
+        let goOn = await onBeforeSelect(item)
+        if (goOn !== undefined && !goOn) return
+      }
+
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {
@@ -171,10 +178,11 @@ const Main = forwardRef(
       handleChange(tabsRef.current)
     }
 
+    const TabsNode = TabsComponent ? TabsComponent : Tabs
     return (
       <>
         {/* 页签 */}
-        <Tabs
+        <TabsNode
           tabs={tabsRef.current}
           activeTab={activeTab}
           onActiveTab={(tab) => {

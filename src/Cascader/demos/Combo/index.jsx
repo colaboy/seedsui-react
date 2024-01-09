@@ -65,12 +65,19 @@ export default () => {
           console.log('newValue:', newValue)
           setValue(newValue)
         }}
-        allowClear
+        allowClear="exclusion-ricon"
         placeholder={`Select`}
-        ricon={<i className="shape-arrow-right sm"></i>}
+        ricon={<i className="ricon shape-arrow-right sm"></i>}
         captionProps={{
           caption: '级联选择'
         }}
+        // Main支持此属性
+        // onBeforeSelect={() => {
+        //   return false
+        // }}
+        // onBeforeChange={() => {
+        //   return false
+        // }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
