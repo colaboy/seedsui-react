@@ -34,7 +34,6 @@ const Main = forwardRef(
         }
       }
     }
-    console.log('value:', value)
 
     // 格式化data
     let data = dataFormatter(externalList)
@@ -72,6 +71,9 @@ const Main = forwardRef(
     // 修改选中tab时，滚动条要重置
     useEffect(() => {
       if (mainRef.current) mainRef.current.scrollTop = 0
+
+      // 更新列表
+      updateList()
       // eslint-disable-next-line
     }, [activeTab])
 
@@ -87,20 +89,31 @@ const Main = forwardRef(
           ? tabsRef.current[tabsRef.current.length - 1]
           : null
       setActiveTab(activeTab)
-
-      // 更新列表
-      updateList()
     }
 
+    // loadData函数入参格式化
+    function loadDataFormatter(id) {
+      // let tabs = null
+      // if (tabsRef.current[tabsRef.current.length - 1].id === id) {
+      //   tabs = tabsRef.current
+      // } else if (activeTab.id === id) {
+      //   tabs = [...tabsRef.current, activeTab]
+      // }
+      return loadData(tabsRef.current)
+    }
     // 更新列表
     async function updateList() {
-      // 选中已知项
+      // 选中已知项(点击头部tab)
       if (activeTab?.id) {
         list = getSibling({ data, id: activeTab.id })
       }
-      // 选中未知项(请选择)
+      // 选中未知项(点击列表: 有请选择时)
       else if (activeTab?.parentid) {
-        list = await getChildren({ data, id: activeTab.parentid, loadData })
+        list = await getChildren({
+          data,
+          id: activeTab.parentid,
+          loadData: typeof loadData === 'function' ? loadDataFormatter : null
+        })
       }
       setList(list)
     }
@@ -110,9 +123,9 @@ const Main = forwardRef(
       let children = await getChildren({
         data,
         id,
-        loadData
+        loadData: typeof loadData === 'function' ? loadDataFormatter : null
       })
-      if (children || !id) {
+      if ((Array.isArray(children) && children.length) || !id) {
         tabsRef.current.push({
           parentid: id,
           id: '',
@@ -151,9 +164,6 @@ const Main = forwardRef(
         // 更新选中项
         activeTab = tabsRef.current[tabsRef.current.length - 1]
         setActiveTab(activeTab)
-
-        // 更新列表
-        updateList()
         return
       }
 

@@ -10,8 +10,8 @@ async function getChildren({ data, id, loadData }) {
   let children = getSyncChildren({ data, id })
 
   // 加载异步数据子节点
-  if ((!Array.isArray(children) || !children.length) && typeof loadData === 'function') {
-    children = await getAsyncChildren({ loadData, id })
+  if (!Array.isArray(children) && typeof loadData === 'function') {
+    children = await getAsyncChildren({ data, id, loadData })
   }
 
   return children
