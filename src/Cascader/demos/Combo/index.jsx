@@ -3,15 +3,33 @@ import { Cascader, Loading } from 'seedsui-react'
 import CountriesData from './../CountriesData'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState([
+    {
+      id: '86',
+      name: '中国'
+    },
+    {
+      name: '北京市',
+      id: '110000',
+      parentid: '86'
+    },
+    {
+      name: '东城区',
+      id: '110101',
+      isDistrict: true,
+      parentid: '110000'
+    }
+  ])
 
   // 加载街道
   function loadData(tabs) {
+    // debugger
     return new Promise((resolve) => {
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
         return
       }
+      // debugger
       let lastTab = tabs[tabs.length - 1]
       if (lastTab.isDistrict !== true) {
         resolve(null)

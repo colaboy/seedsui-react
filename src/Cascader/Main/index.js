@@ -10,7 +10,7 @@ const Main = forwardRef(
   (
     {
       // Modal
-      visible,
+      visible = true,
 
       // Main: common
       value,
@@ -34,6 +34,7 @@ const Main = forwardRef(
         }
       }
     }
+    console.log('value:', value)
 
     // 格式化data
     let data = dataFormatter(externalList)
@@ -45,15 +46,7 @@ const Main = forwardRef(
     let [activeTab, setActiveTab] = useState(null)
 
     // 选中列表
-    let list = data
-    // 选中已知项
-    if (activeTab?.id) {
-      list = getSibling({ data, id: activeTab.id })
-    }
-    // 选中未知项(请选择)
-    else if (activeTab?.parentid) {
-      list = getChildren({ data, id: activeTab.parentid })
-    }
+    let [list, setList] = useState(data)
 
     // 节点
     const mainRef = useRef(null)
@@ -68,28 +61,58 @@ const Main = forwardRef(
       }
     })
 
-    // 初始化tabs和选中tab
+    // 初始化tabs、选中tab、列表
     useEffect(() => {
-      tabsRef.current = value || []
-      addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
-      setActiveTab(
-        Array.isArray(tabsRef.current) && tabsRef.current.length
-          ? tabsRef.current[tabsRef.current.length - 1]
-          : null
-      )
+      if (!visible) return
+
+      initData()
       // eslint-disable-next-line
-    }, [value])
+    }, [value, visible])
 
     // 修改选中tab时，滚动条要重置
     useEffect(() => {
       if (mainRef.current) mainRef.current.scrollTop = 0
-
       // eslint-disable-next-line
     }, [activeTab])
 
+    // 初始化数据
+    async function initData() {
+      // tabs
+      tabsRef.current = value || []
+      await addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
+
+      // 选中tab
+      activeTab =
+        Array.isArray(tabsRef.current) && tabsRef.current.length
+          ? tabsRef.current[tabsRef.current.length - 1]
+          : null
+      setActiveTab(activeTab)
+
+      // 更新列表
+      updateList()
+    }
+
+    // 更新列表
+    async function updateList() {
+      // 选中已知项
+      if (activeTab?.id) {
+        list = getSibling({ data, id: activeTab.id })
+      }
+      // 选中未知项(请选择)
+      else if (activeTab?.parentid) {
+        list = await getChildren({ data, id: activeTab.parentid, loadData })
+      }
+      setList(list)
+    }
+
     // 如果有子级则补充请选择
-    function addEmptyTab(id) {
-      if (getChildren({ data, id: id }) || !id) {
+    async function addEmptyTab(id) {
+      let children = await getChildren({
+        data,
+        id,
+        loadData
+      })
+      if (children || !id) {
         tabsRef.current.push({
           parentid: id,
           id: '',
@@ -110,7 +133,7 @@ const Main = forwardRef(
     }
 
     // 点击选项
-    function handleSelect(item) {
+    async function handleSelect(item) {
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {
@@ -123,9 +146,14 @@ const Main = forwardRef(
       }
 
       // 添加空tab成功，说明有子集
-      if (addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')) {
+      let addOk = await addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
+      if (addOk) {
         // 更新选中项
-        setActiveTab(tabsRef.current[tabsRef.current.length - 1])
+        activeTab = tabsRef.current[tabsRef.current.length - 1]
+        setActiveTab(activeTab)
+
+        // 更新列表
+        updateList()
         return
       }
 

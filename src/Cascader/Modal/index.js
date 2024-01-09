@@ -21,8 +21,8 @@ const Modal = forwardRef(
     if (!props.MainProps) {
       props.MainProps = {}
     }
-    props.MainProps.loadData = loadData
-    props.MainProps.optionProps = optionProps
+    if (loadData) props.MainProps.loadData = loadData
+    if (optionProps) props.MainProps.optionProps = optionProps
     return (
       <BaseModal
         ref={ref}
