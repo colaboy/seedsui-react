@@ -50,7 +50,7 @@ export default () => {
       <Cascader.DistrictCombo
         // 编辑控制
         allowClear
-        // min="province" // ['country', 'province', 'city', 'district', 'street']
+        min="province" // ['country', 'province', 'city', 'district', 'street']
         // type="city"
         list={CountriesData}
         loadData={loadData}

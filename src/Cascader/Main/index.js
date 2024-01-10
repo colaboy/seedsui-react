@@ -57,7 +57,7 @@ const Main = forwardRef(
         getRootDOM: () => mainRef.current,
         // 当选择到叶子节点时，不触发onChange，允许用户手动点击确定提前获取最新的value
         getValue: () => {
-          return tabsRef.current
+          return Array.isArray(tabsRef.current) ? tabsRef.current.filter((item) => item.id) : []
         }
       }
     })
@@ -82,7 +82,7 @@ const Main = forwardRef(
     // 初始化数据
     async function initData() {
       // tabs
-      tabsRef.current = value || []
+      tabsRef.current = Array.isArray(value) ? [...value] : []
       await addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
 
       // 选中tab
