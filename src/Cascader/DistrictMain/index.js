@@ -57,10 +57,10 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleDrillDown(tabs) {
+    async function handleDrillDown(tabs, parameters) {
       // 自定义是否允许下钻
       if (onDrillDown) {
-        let goOn = await onDrillDown(tabs)
+        let goOn = await onDrillDown(tabs, parameters)
         if (goOn !== undefined) return goOn
       }
 

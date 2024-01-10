@@ -40,19 +40,20 @@ const DistrictModal = forwardRef(
     let [submitVisible, setSubmitVisible] = useState(null)
 
     // 显示时更新
-    useEffect(() => {
-      if (visible) {
-        updateSubmitVisible(value)
-      }
-      // eslint-disable-next-line
-    }, [visible])
+    // useEffect(() => {
+    //   if (visible) {
+    //     updateSubmitVisible(value)
+    //   }
+    //   // eslint-disable-next-line
+    // }, [visible])
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible(tabs) {
+    function updateSubmitVisible(tabs, { data }) {
       let submitVisible = null
 
       // 获取末级类型
       let currentType = matchType(tabs, {
+        data,
         isCountry,
         isProvince,
         isCity,
@@ -71,13 +72,13 @@ const DistrictModal = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleDrillDown(tabs) {
+    function handleDrillDown(tabs, parameters) {
       if (min) {
-        updateSubmitVisible(tabs)
+        updateSubmitVisible(tabs, parameters)
       }
 
       // 点击选项
-      if (onDrillDown) return onDrillDown(tabs)
+      if (onDrillDown) return onDrillDown(tabs, parameters)
     }
 
     // 显示右上角的按钮

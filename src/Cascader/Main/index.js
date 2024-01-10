@@ -113,7 +113,7 @@ const Main = forwardRef(
     // 如果有子级则补充请选择
     async function addEmptyTab() {
       if (typeof onDrillDown === 'function') {
-        let goOn = await onDrillDown(tabsRef.current)
+        let goOn = await onDrillDown(tabsRef.current, { data })
         if (goOn !== undefined && !goOn) return goOn
       }
 
@@ -202,7 +202,7 @@ const Main = forwardRef(
           list={list}
           value={tabsRef.current}
           // 阻止选择
-          onDrillDown={handleDrillDown}
+          onSelect={handleDrillDown}
           {...props}
         />
       </>
