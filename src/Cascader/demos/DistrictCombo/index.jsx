@@ -50,8 +50,8 @@ export default () => {
       <Cascader.DistrictCombo
         // 编辑控制
         allowClear
-        // min="province" // ['country', 'province', 'city', 'district', 'street']
-        type="city"
+        min="province" // ['country', 'province', 'city', 'district', 'street']
+        // type="city"
         list={CountriesData}
         loadData={loadData}
         value={value}
@@ -71,6 +71,7 @@ export default () => {
           console.log('visible:', visible)
         }}
         editableOptions={{
+          country: { editable: false },
           province: { editable: false },
           city: { editable: false },
           district: { editable: true },

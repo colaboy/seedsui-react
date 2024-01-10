@@ -57,21 +57,18 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleDrillDown(item) {
+    async function handleDrillDown(tabs) {
       // 自定义是否允许下钻
       if (onDrillDown) {
-        let goOn = await onDrillDown(item)
+        let goOn = await onDrillDown(tabs)
         if (goOn !== undefined) return goOn
       }
-
-      // 如果没有选项则允许选择
-      if (!item?.id || !item?.name) return true
 
       // 匹配类型，没传类型则允许下钻
       if (!type) return true
 
       // 获取当前选中项
-      let currentType = matchType(item, {
+      let currentType = matchType(tabs, {
         data: listData,
         isCountry,
         isProvince,
@@ -98,6 +95,11 @@ const DistrictMain = forwardRef(
               // 禁用判断
               editableOptions={editableOptions}
               listData={listData}
+              isCountry={isCountry}
+              isProvince={isProvince}
+              isCity={isCity}
+              isDistrict={isDistrict}
+              isStreet={isStreet}
             />
           )
         }}

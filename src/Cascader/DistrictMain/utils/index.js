@@ -1,4 +1,5 @@
 import getMinTypes from './getMinTypes'
+import getSiblingType from './getSiblingType'
 import matchType from './matchType'
 import testCountry from './testCountry'
 import testProvince from './testProvince'
@@ -20,6 +21,7 @@ window.AreaLevel = window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ || null
 
 export {
   getMinTypes,
+  getSiblingType,
   matchType,
   testCountry,
   testProvince,

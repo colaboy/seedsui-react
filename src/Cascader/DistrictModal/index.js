@@ -42,41 +42,26 @@ const DistrictModal = forwardRef(
     // 显示时更新
     useEffect(() => {
       if (visible) {
-        updateSubmitVisible(Array.isArray(value) && value.length ? value[value.length - 1] : null)
+        updateSubmitVisible(value)
       }
       // eslint-disable-next-line
     }, [visible])
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible(item) {
-      // 如果即没点击, 又没有传入初始值，则默认不显示提交按钮
-      if (!item?.id || !item?.name) {
-        setSubmitVisible(false)
-        return
-      }
-
-      submitVisible = null
+    function updateSubmitVisible(tabs) {
+      let submitVisible = null
 
       // 获取末级类型
-      let tabType = matchType(item, {
+      let currentType = matchType(tabs, {
         isCountry,
         isProvince,
         isCity,
         isDistrict,
         isStreet
       })
-      // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
-      if (!tabType && tabs.length > 2) {
-        let prevTab = tabs[tabs.length - 2]
-        if (testDistrict(prevTab, isDistrict)) {
-          tabType = 'street'
-        } else if (testCity(prevTab, isCity)) {
-          tabType = 'street'
-        }
-      }
 
       // 最小支持的类型集合
-      if (getMinTypes(min).includes(tabType)) {
+      if (getMinTypes(min).includes(currentType)) {
         submitVisible = true
       } else {
         submitVisible = false
@@ -86,13 +71,13 @@ const DistrictModal = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleDrillDown(item) {
+    function handleDrillDown(tabs) {
       if (min) {
-        updateSubmitVisible(item)
+        updateSubmitVisible(tabs)
       }
 
       // 点击选项
-      if (onDrillDown) return onDrillDown(item)
+      if (onDrillDown) return onDrillDown(tabs)
     }
 
     // 显示右上角的按钮

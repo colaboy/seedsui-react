@@ -112,13 +112,12 @@ const Main = forwardRef(
 
     // 如果有子级则补充请选择
     async function addEmptyTab() {
-      let item = tabsRef.current?.[tabsRef.current?.length - 1]
       if (typeof onDrillDown === 'function') {
-        let goOn = await onDrillDown(item)
+        let goOn = await onDrillDown(tabsRef.current)
         if (goOn !== undefined && !goOn) return goOn
       }
 
-      let id = item?.id || ''
+      let id = tabsRef.current?.[tabsRef.current?.length - 1]?.id || ''
       let children = await getChildren({
         data,
         id,
