@@ -5,6 +5,7 @@ import testProvince from './testProvince'
 import testCity from './testCity'
 import testDistrict from './testDistrict'
 import testStreet from './testStreet'
+import testNodeData from './testNodeData'
 
 // 获取所有省市, 用于匹配选中的省市
 if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
@@ -17,4 +18,13 @@ if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
 
 window.AreaLevel = window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ || null
 
-export { getMinTypes, matchType, testCountry, testProvince, testCity, testDistrict, testStreet }
+export {
+  getMinTypes,
+  matchType,
+  testCountry,
+  testProvince,
+  testCity,
+  testDistrict,
+  testStreet,
+  testNodeData
+}

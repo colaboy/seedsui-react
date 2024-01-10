@@ -112,7 +112,13 @@ const Main = forwardRef(
 
     // 如果有子级则补充请选择
     async function addEmptyTab() {
-      let id = tabsRef.current?.[tabsRef.current?.length - 1]?.id || ''
+      let item = tabsRef.current?.[tabsRef.current?.length - 1]
+      if (typeof onSelect === 'function') {
+        let goOn = await onSelect(item)
+        if (goOn !== undefined && !goOn) return goOn
+      }
+
+      let id = item?.id || ''
       let children = await getChildren({
         data,
         id,
@@ -140,11 +146,6 @@ const Main = forwardRef(
 
     // 点击选项
     async function handleSelect(item) {
-      if (typeof onSelect === 'function') {
-        let goOn = await onSelect(item)
-        if (goOn !== undefined && !goOn) return
-      }
-
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {

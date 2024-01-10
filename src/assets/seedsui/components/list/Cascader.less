@@ -70,7 +70,15 @@
   // text-wrap: nowrap;
   white-space: nowrap;
   overflow-x: auto;
+  // tab禁用又选中的情况下，不允许点击列表
+  &:has(.active.disabled) {
+    + .cascader .cascader-modal-option {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
 }
+
 .cascader-tab {
   height: 32px;
   margin-right: 20px;
@@ -78,5 +86,9 @@
   &.active {
     font-weight: 600;
     border-bottom: 2px solid @primary;
+  }
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

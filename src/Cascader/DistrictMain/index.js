@@ -56,24 +56,8 @@ const DistrictMain = forwardRef(
       setListData(listData)
     }
 
-    // 校验只读
-    function validateEditableOptions(item) {
-      if (!item?.id || !item?.name) return true
-
-      let type = matchType(item)
-      if (type && editableOptions?.[type]?.editable === false) {
-        return false
-      }
-      return true
-    }
-
     // 点击选项前判断是否指定类型: 省, 市, 区
     async function handleSelect(item) {
-      // 校验能否选择
-      if (editableOptions && validateEditableOptions(item) === false) {
-        return false
-      }
-
       // 自定义是否允许选中
       if (onSelect) {
         let goOn = await onSelect(item)
@@ -87,10 +71,18 @@ const DistrictMain = forwardRef(
       if (!type) return true
 
       // 获取当前选中项
-      let match = matchType(item, { type, isCountry, isProvince, isCity, isDistrict, isStreet })
+      let currentType = matchType(item, {
+        data: listData,
+        isCountry,
+        isProvince,
+        isCity,
+        isDistrict,
+        isStreet
+      })
 
-      // 没有匹配到类型时null返回true不关闭，匹配到时返回false不允许下钻
-      return match === null ? true : !match
+      // 选中到目标类型，不再下钻，直接onChange
+      if (currentType === type) return false
+      return true
     }
 
     return (
@@ -98,7 +90,16 @@ const DistrictMain = forwardRef(
         ref={ref}
         onSelect={handleSelect}
         TabsComponent={({ tabs, activeTab, onActiveTab }) => {
-          return <Tabs tabs={tabs} activeTab={activeTab} onActiveTab={onActiveTab} />
+          return (
+            <Tabs
+              tabs={tabs}
+              activeTab={activeTab}
+              onActiveTab={onActiveTab}
+              // 禁用判断
+              editableOptions={editableOptions}
+              listData={listData}
+            />
+          )
         }}
         value={value}
         list={listData}
