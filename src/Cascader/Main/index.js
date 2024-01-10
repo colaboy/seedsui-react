@@ -16,7 +16,7 @@ const Main = forwardRef(
       value,
       list: externalList,
       multiple,
-      onSelect,
+      onDrillDown,
       onBeforeChange,
       onChange,
 
@@ -113,8 +113,8 @@ const Main = forwardRef(
     // 如果有子级则补充请选择
     async function addEmptyTab() {
       let item = tabsRef.current?.[tabsRef.current?.length - 1]
-      if (typeof onSelect === 'function') {
-        let goOn = await onSelect(item)
+      if (typeof onDrillDown === 'function') {
+        let goOn = await onDrillDown(item)
         if (goOn !== undefined && !goOn) return goOn
       }
 
@@ -145,7 +145,7 @@ const Main = forwardRef(
     }
 
     // 点击选项
-    async function handleSelect(item) {
+    async function handleDrillDown(item) {
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {
@@ -203,7 +203,7 @@ const Main = forwardRef(
           list={list}
           value={tabsRef.current}
           // 阻止选择
-          onSelect={handleSelect}
+          onDrillDown={handleDrillDown}
           {...props}
         />
       </>

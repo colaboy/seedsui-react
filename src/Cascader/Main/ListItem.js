@@ -8,7 +8,7 @@ const ListItem = forwardRef(
       list,
       value,
       // 修改
-      onSelect,
+      onDrillDown,
       ...props
     },
     ref
@@ -37,7 +37,7 @@ const ListItem = forwardRef(
                 data-index={index}
                 onClick={(e) => {
                   e.stopPropagation()
-                  onSelect(item)
+                  onDrillDown(item)
                 }}
               >
                 <p className="cascader-modal-option-caption">{item.name}</p>

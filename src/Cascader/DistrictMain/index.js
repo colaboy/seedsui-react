@@ -20,7 +20,7 @@ const DistrictMain = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      onSelect,
+      onDrillDown,
       ...props
     },
     ref
@@ -57,10 +57,10 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleSelect(item) {
-      // 自定义是否允许选中
-      if (onSelect) {
-        let goOn = await onSelect(item)
+    async function handleDrillDown(item) {
+      // 自定义是否允许下钻
+      if (onDrillDown) {
+        let goOn = await onDrillDown(item)
         if (goOn !== undefined) return goOn
       }
 
@@ -88,7 +88,7 @@ const DistrictMain = forwardRef(
     return (
       <Main
         ref={ref}
-        onSelect={handleSelect}
+        onDrillDown={handleDrillDown}
         TabsComponent={({ tabs, activeTab, onActiveTab }) => {
           return (
             <Tabs

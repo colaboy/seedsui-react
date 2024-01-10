@@ -30,7 +30,7 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      onSelect,
+      onDrillDown,
       editableOptions,
       ...props
     },
@@ -86,13 +86,13 @@ const DistrictModal = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleSelect(item) {
+    function handleDrillDown(item) {
       if (min) {
         updateSubmitVisible(item)
       }
 
       // 点击选项
-      if (onSelect) return onSelect(item)
+      if (onDrillDown) return onDrillDown(item)
     }
 
     // 显示右上角的按钮
@@ -110,7 +110,7 @@ const DistrictModal = forwardRef(
     if (!props.MainProps) {
       props.MainProps = {}
     }
-    props.MainProps.onSelect = handleSelect
+    props.MainProps.onDrillDown = handleDrillDown
     props.MainProps.loadList = loadList
     props.MainProps.loadData = loadData
     props.MainProps.editableOptions = editableOptions
