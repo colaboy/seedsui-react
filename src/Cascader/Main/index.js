@@ -178,17 +178,31 @@ const Main = forwardRef(
       handleChange(tabsRef.current)
     }
 
-    const TabsNode = TabsComponent ? TabsComponent : Tabs
-    return (
-      <>
-        {/* 页签 */}
-        <TabsNode
+    function getTabsNode() {
+      if (typeof TabsComponent === 'function') {
+        return TabsComponent({
+          tabs: tabsRef.current,
+          activeTab: activeTab,
+          onActiveTab: setActiveTab
+        })
+      }
+
+      return (
+        <Tabs
           tabs={tabsRef.current}
           activeTab={activeTab}
           onActiveTab={(tab) => {
             setActiveTab(tab)
           }}
         />
+      )
+    }
+
+    return (
+      <>
+        {/* 页签 */}
+        {getTabsNode()}
+
         {/* 列表 */}
         <ListItem
           ref={mainRef}
