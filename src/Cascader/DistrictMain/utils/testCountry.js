@@ -6,7 +6,7 @@ function testCountry(current, isCountry) {
   if (current.isCountry) {
     return true
   }
-  for (let country of window.AreaLevel.countries) {
+  for (let country of window?.AreaLevel?.countries || []) {
     if (
       current.id === country.id ||
       country.name.indexOf(current.name) !== -1 ||

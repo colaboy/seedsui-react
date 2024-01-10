@@ -3,6 +3,8 @@ import { matchType } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
+// window.__SeedsUI_Cascader_DistrictCombo_areaLevel__: {countries: [], provinces: [], cities: [], districts: [因数据量庞大, seedsui本地数据没有记录此数据]}
+// window.__SeedsUI_Cascader_DistrictCombo_list__: [{id: '', name: '', children: []}]
 // 级联选择
 const DistrictMain = forwardRef(
   (

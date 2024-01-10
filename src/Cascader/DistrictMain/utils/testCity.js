@@ -6,7 +6,7 @@ function testCity(current, isCity) {
   if (current.isCity) {
     return true
   }
-  for (let city of window.AreaLevel.cities) {
+  for (let city of window?.AreaLevel?.cities || []) {
     if (current.id === city.id || current.name.indexOf('市') !== -1) {
       return true
     }
