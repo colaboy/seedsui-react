@@ -72,7 +72,7 @@ export default () => {
           caption: '级联选择'
         }}
         // Main支持此属性
-        // onBeforeSelect={() => {
+        // onSelect={() => {
         //   return false
         // }}
         // onBeforeChange={() => {

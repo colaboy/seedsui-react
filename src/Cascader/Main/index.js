@@ -16,7 +16,7 @@ const Main = forwardRef(
       value,
       list: externalList,
       multiple,
-      onBeforeSelect,
+      onSelect,
       onBeforeChange,
       onChange,
 
@@ -140,8 +140,8 @@ const Main = forwardRef(
 
     // 点击选项
     async function handleSelect(item) {
-      if (typeof onBeforeSelect === 'function') {
-        let goOn = await onBeforeSelect(item)
+      if (typeof onSelect === 'function') {
+        let goOn = await onSelect(item)
         if (goOn !== undefined && !goOn) return
       }
 

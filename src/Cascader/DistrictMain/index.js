@@ -20,7 +20,7 @@ const DistrictMain = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      onBeforeSelect,
+      onSelect,
       ...props
     },
     ref
@@ -68,15 +68,15 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleBeforeSelect(item) {
+    async function handleSelect(item) {
       // 校验能否选择
       if (editableOptions && validateEditableOptions(item) === false) {
         return false
       }
 
       // 自定义是否允许选中
-      if (onBeforeSelect) {
-        let goOn = await onBeforeSelect(item)
+      if (onSelect) {
+        let goOn = await onSelect(item)
         if (goOn !== undefined) return goOn
       }
 
@@ -96,7 +96,7 @@ const DistrictMain = forwardRef(
     return (
       <Main
         ref={ref}
-        onBeforeSelect={handleBeforeSelect}
+        onSelect={handleSelect}
         TabsComponent={({ tabs, activeTab, onActiveTab }) => {
           return <Tabs tabs={tabs} activeTab={activeTab} onActiveTab={onActiveTab} />
         }}
