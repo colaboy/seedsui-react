@@ -70,7 +70,7 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [value, visible])
 
-    // 修改选中tab时，滚动条要重置
+    // 修改选中tab时，滚动条重置，并刷新列表
     useEffect(() => {
       if (mainRef.current) mainRef.current.scrollTop = 0
 
@@ -83,7 +83,7 @@ const Main = forwardRef(
     async function initData() {
       // tabs
       tabsRef.current = Array.isArray(value) ? [...value] : []
-      await addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
+      await addEmptyTab()
 
       // 选中tab
       activeTab =
@@ -93,17 +93,7 @@ const Main = forwardRef(
       setActiveTab(activeTab)
     }
 
-    // loadData函数入参格式化
-    function loadDataFormatter(id) {
-      // let tabs = null
-      // if (tabsRef.current[tabsRef.current.length - 1].id === id) {
-      //   tabs = tabsRef.current
-      // } else if (activeTab.id === id) {
-      //   tabs = [...tabsRef.current, activeTab]
-      // }
-      return loadData(tabsRef.current)
-    }
-    // 更新列表
+    // 修改选中tab时，更新列表
     async function updateList() {
       // 选中已知项(点击头部tab)
       if (activeTab?.id) {
@@ -114,18 +104,19 @@ const Main = forwardRef(
         list = await getChildren({
           data,
           id: activeTab.parentid,
-          loadData: typeof loadData === 'function' ? loadDataFormatter : null
+          loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
         })
       }
       setList(list)
     }
 
     // 如果有子级则补充请选择
-    async function addEmptyTab(id) {
+    async function addEmptyTab() {
+      let id = tabsRef.current?.[tabsRef.current?.length - 1]?.id || ''
       let children = await getChildren({
         data,
         id,
-        loadData: typeof loadData === 'function' ? loadDataFormatter : null
+        loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
       })
       if ((Array.isArray(children) && children.length) || !id) {
         tabsRef.current.push({
@@ -166,7 +157,7 @@ const Main = forwardRef(
       }
 
       // 添加空tab成功，说明有子集
-      let addOk = await addEmptyTab(tabsRef.current?.[tabsRef.current?.length - 1]?.id || '')
+      let addOk = await addEmptyTab()
       if (addOk) {
         // 更新选中项
         activeTab = tabsRef.current[tabsRef.current.length - 1]
