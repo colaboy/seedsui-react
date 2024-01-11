@@ -10,10 +10,9 @@ import Modal from './../Modal'
 import { getLocation } from './../Main/utils'
 
 // 测试使用
-// import { locale, Input, Bridge } from 'seedsui-react'
+// import { locale, Input } from 'seedsui-react'
 // 内库使用
 import Input from './../../Input'
-import Bridge from './../../Bridge'
 import locale from './../../locale'
 
 // 定位控件

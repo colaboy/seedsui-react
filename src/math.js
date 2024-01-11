@@ -59,4 +59,5 @@ function antiThousands(number) {
   return `${number || ''}`.replace(/,/g, '')
 }
 
+// eslint-disable-next-line
 export default { round, fixed, strip, thousands, antiThousands }

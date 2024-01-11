@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export default {
   cancel: '取消',
   ok: '确定',

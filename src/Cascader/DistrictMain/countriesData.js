@@ -1,4 +1,4 @@
-export default [
+const countriesData = [
   { id: '86', name: '中国' },
   { id: '938100', name: '阿尔巴尼亚' },
   { id: '912300', name: '阿尔及利亚' },
@@ -210,3 +210,5 @@ export default [
   { id: '943200', name: '智利' },
   { id: '917400', name: '中非' }
 ]
+
+export default countriesData

@@ -1,5 +1,8 @@
 import React from 'react'
-import { Bridge } from 'seedsui-react'
+// 测试使用
+// import { Bridge } from 'seedsui-react'
+// 内库使用
+import Bridge from './../../Bridge'
 
 // 预览
 function Preview({ value, onDelete }) {

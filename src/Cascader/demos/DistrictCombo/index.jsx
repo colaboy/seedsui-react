@@ -7,7 +7,10 @@ import { Cascader, Loading } from 'seedsui-react'
 countriesData[0].children = chinaData
 
 export default () => {
-  const [value2, setValue2] = useState(null)
+  const [value2, setValue2] = useState([
+    { id: '320000', name: '江苏省', parentid: '86' },
+    { id: '320100', name: '南京市', parentid: '320000' }
+  ])
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
     { name: '中国', id: '86' },
@@ -54,8 +57,8 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        min="province" // ['country', 'province', 'city', 'district', 'street']
-        type="province"
+        min="city" // ['country', 'province', 'city', 'district', 'street']
+        // type="province"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}

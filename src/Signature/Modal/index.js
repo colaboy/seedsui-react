@@ -1,7 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Main from './../Main'
-import { Layout } from 'seedsui-react'
+
+// 测试使用
+// import { Layout } from 'seedsui-react'
+// 内库使用
+import Layout from './../../Layout'
 
 // Modal
 const Modal = forwardRef(
