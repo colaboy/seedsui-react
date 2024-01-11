@@ -27,6 +27,7 @@ const DistrictModal = forwardRef(
       loadData,
       isCountry,
       isProvince,
+      isMunicipality,
       isCity,
       isDistrict,
       isStreet,
@@ -56,13 +57,20 @@ const DistrictModal = forwardRef(
         data,
         isCountry,
         isProvince,
+        isMunicipality,
         isCity,
         isDistrict,
         isStreet
       })
 
       // 最小支持的类型集合
-      if (getMinTypes(min).includes(currentType)) {
+      if (
+        Array.isArray(currentType) &&
+        currentType.length &&
+        getMinTypes(min).some((minType) => {
+          return currentType.includes(minType)
+        })
+      ) {
         submitVisible = true
       } else {
         submitVisible = false

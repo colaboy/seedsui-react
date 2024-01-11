@@ -17,6 +17,7 @@ const DistrictCombo = forwardRef(
       // Main: DistrictMain Control properties
       isCountry,
       isProvince,
+      isMunicipality,
       isCity,
       isDistrict,
       isStreet,
@@ -41,6 +42,7 @@ const DistrictCombo = forwardRef(
           // 判断是否是国省市区
           isCountry,
           isProvince,
+          isMunicipality,
           isCity,
           isDistrict,
           isStreet,

@@ -9,17 +9,19 @@ function Tabs({
   listData,
   isCountry,
   isProvince,
+  isMunicipality,
   isCity,
   isDistrict,
   isStreet
 }) {
   // 校验只读
   function validateEditableOptions(item, index) {
-    let type = ''
+    let type = null
     // 未知项(请选择)，判断当前项是否可选
     if (!item?.id && index) {
       let prevItem = tabs[index - 1]
       type = getSiblingType(prevItem.type, 1)
+      if (type) type = [type]
     }
     // 已知项
     else {
@@ -27,14 +29,21 @@ function Tabs({
         data: listData,
         isCountry,
         isProvince,
+        isMunicipality,
         isCity,
         isDistrict,
         isStreet
       })
       item.type = type
     }
-    if (type && editableOptions?.[type]?.editable === false) {
-      return false
+
+    // type是数组, example: 直辖市is both province and city
+    if (Array.isArray(type) && type.length) {
+      for (let item of type) {
+        if (editableOptions?.[item]?.editable === false) {
+          return false
+        }
+      }
     }
     return true
   }

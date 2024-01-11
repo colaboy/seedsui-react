@@ -4,6 +4,8 @@ import chinaData from './../../DistrictMain/chinaData'
 
 import { Cascader, Loading } from 'seedsui-react'
 
+countriesData[0].children = chinaData
+
 export default () => {
   const [value2, setValue2] = useState(null)
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
@@ -50,14 +52,13 @@ export default () => {
       <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
       <Cascader.DistrictCombo
         // 编辑控制
-        allowClear
+        allowClear="exclusion-ricon"
+        ricon={<i className="ricon shape-arrow-right sm"></i>}
         min="province" // ['country', 'province', 'city', 'district', 'street']
-        // type="city"
-        // list={countriesData}
+        type="province"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
-        ricon={<i className="ricon shape-arrow-right sm"></i>}
         onChange={(newValue) => {
           console.log(newValue)
           setValue(newValue)
@@ -65,28 +66,29 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        loadList={() => {
-          return new Promise((resolve) => {
-            Loading.show()
-            setTimeout(() => {
-              Loading.hide()
-              resolve(chinaData)
-            }, 5000)
-          })
-        }}
+        // list={countriesData}
+        // loadList={() => {
+        //   return new Promise((resolve) => {
+        //     Loading.show()
+        //     setTimeout(() => {
+        //       Loading.hide()
+        //       resolve(chinaData)
+        //     }, 2000)
+        //   })
+        // }}
         captionProps={{
           caption: '级联选择'
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
-        editableOptions={{
-          country: { editable: false },
-          province: { editable: false },
-          city: { editable: true },
-          district: { editable: true },
-          street: { editable: true }
-        }}
+        // editableOptions={{
+        //   country: { editable: false },
+        //   province: { editable: false },
+        //   city: { editable: false },
+        //   district: { editable: false },
+        //   street: { editable: true }
+        // }}
       />
     </div>
   )

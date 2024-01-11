@@ -23,6 +23,7 @@ const DistrictMain = forwardRef(
       // 判断是否是国省市区
       isCountry,
       isProvince,
+      isMunicipality,
       isCity,
       isDistrict,
       isStreet,
@@ -80,13 +81,14 @@ const DistrictMain = forwardRef(
         data: listData,
         isCountry,
         isProvince,
+        isMunicipality,
         isCity,
         isDistrict,
         isStreet
       })
 
       // 选中到目标类型，不再下钻，直接onChange
-      if (currentType === type) return false
+      if (currentType.includes(type)) return false
       return true
     }
 
@@ -105,12 +107,14 @@ const DistrictMain = forwardRef(
               listData={listData}
               isCountry={isCountry}
               isProvince={isProvince}
+              isMunicipality={isMunicipality}
               isCity={isCity}
               isDistrict={isDistrict}
               isStreet={isStreet}
             />
           )
         }}
+        visible={visible}
         value={value}
         list={listData}
         {...props}

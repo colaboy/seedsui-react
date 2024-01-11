@@ -1,3 +1,4 @@
+import testMunicipality from './testMunicipality'
 import testCountry from './testCountry'
 import testProvince from './testProvince'
 import testCity from './testCity'
@@ -7,7 +8,7 @@ import testNodeData from './testNodeData'
 
 // 主方法: 匹配当前选中项的类型, tabs支持array和object两种方式, array匹配将会更准确
 function matchType(tabs, config) {
-  const { data, isCountry, isProvince, isCity, isDistrict, isStreet } = config || {}
+  const { data, isCountry, isProvince, isMunicipality, isCity, isDistrict, isStreet } = config || {}
   if (!window.AreaLevel) return null
 
   // Array type parameter is invalid
@@ -27,34 +28,37 @@ function matchType(tabs, config) {
     current = data[0]
   }
 
+  if (testMunicipality(current, isMunicipality)) {
+    return ['province', 'city']
+  }
   if (testCountry(current, isCountry)) {
-    return 'country'
+    return ['country']
   }
   if (testProvince(current, isProvince)) {
-    return 'province'
+    return ['province']
   }
   if (testCity(current, isCity)) {
-    return 'city'
+    return ['city']
   }
   if (testDistrict(current, isDistrict)) {
-    return 'district'
+    return ['district']
   }
   if (testStreet(current, isStreet)) {
-    return 'street'
+    return ['street']
   }
   // 不是省市，但在data中，则认为是区，不在data中，则认为是街道(街道在data中, 会有isStreet，所以在isStreet时就返回了)
   if (testNodeData(current, data)) {
-    return 'district'
+    return ['district']
   }
 
   // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
   if (Array.isArray(tabs) && tabs.length > 2) {
     let prevTab = tabs[tabs.length - 2]
     if (testDistrict(prevTab, isDistrict)) {
-      return 'street'
+      return ['street']
     }
     if (testCity(prevTab, isCity)) {
-      return 'street'
+      return ['street']
     }
   }
 
