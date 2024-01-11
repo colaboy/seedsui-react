@@ -9,9 +9,15 @@ import Tabs from './Tabs'
 const DistrictMain = forwardRef(
   (
     {
+      // Modal
+      visible = true,
+
+      // Main: common
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       value,
       list,
+
+      // Main: Cascader.DistrictMain Control properties
       loadList,
       editableOptions,
       // 判断是否是国省市区
@@ -29,8 +35,10 @@ const DistrictMain = forwardRef(
 
     // 初始化数据
     useEffect(() => {
+      if (!visible) return
+
       initList()
-    }, []) // eslint-disable-line
+    }, [visible]) // eslint-disable-line
 
     async function initList() {
       listData = list

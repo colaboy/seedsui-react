@@ -65,13 +65,15 @@ const Main = forwardRef(
     // 初始化tabs、选中tab、列表
     useEffect(() => {
       if (!visible) return
+      if (!Array.isArray(externalList) || !externalList.length) return
 
       initData()
       // eslint-disable-next-line
-    }, [value, visible])
+    }, [externalList, value, visible])
 
     // 修改选中tab时，滚动条重置，并刷新列表
     useEffect(() => {
+      if (!activeTab) return
       if (mainRef.current) mainRef.current.scrollTop = 0
 
       // 更新列表
@@ -107,6 +109,10 @@ const Main = forwardRef(
           loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
         })
       }
+      // 根节点
+      else {
+        list = data
+      }
       setList(list)
     }
 
@@ -123,6 +129,8 @@ const Main = forwardRef(
         id,
         loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
       })
+
+      // 有子节点，或者根节点(没有id)
       if ((Array.isArray(children) && children.length) || !id) {
         tabsRef.current.push({
           parentid: id,

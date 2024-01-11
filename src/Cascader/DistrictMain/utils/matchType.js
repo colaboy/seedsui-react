@@ -10,26 +10,31 @@ function matchType(tabs, config) {
   const { data, isCountry, isProvince, isCity, isDistrict, isStreet } = config || {}
   if (!window.AreaLevel) return null
 
-  // array入参为空
+  // Array type parameter is invalid
   if (Array.isArray(tabs) && !tabs.length) {
     return null
   }
 
   let current = Array.isArray(tabs) ? tabs[tabs.length - 1] : tabs
 
-  // object入参为空
+  // Current is invalid
   if (!current?.id && !current?.name) {
     return null
+  }
+
+  // Current No id and No parentid, It's root
+  if (!current?.id && !current?.parentid && Array.isArray(data) && data.length) {
+    current = data[0]
   }
 
   if (testCountry(current, isCountry)) {
     return 'country'
   }
-  if (testCity(current, isCity)) {
-    return 'city'
-  }
   if (testProvince(current, isProvince)) {
     return 'province'
+  }
+  if (testCity(current, isCity)) {
+    return 'city'
   }
   if (testDistrict(current, isDistrict)) {
     return 'district'

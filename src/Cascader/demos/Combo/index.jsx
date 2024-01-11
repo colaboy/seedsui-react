@@ -23,13 +23,12 @@ export default () => {
 
   // 加载街道
   function loadData(tabs) {
-    // debugger
     return new Promise((resolve) => {
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
         return
       }
-      // debugger
+
       let lastTab = tabs[tabs.length - 1]
       if (lastTab.isDistrict !== true) {
         resolve(null)

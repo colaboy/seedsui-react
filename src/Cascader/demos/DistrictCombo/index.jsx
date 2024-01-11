@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import CountriesData from './../CountriesData'
+import countriesData from './../../DistrictMain/countriesData'
+import chinaData from './../../DistrictMain/chinaData'
 
 import { Cascader, Loading } from 'seedsui-react'
 
@@ -8,8 +9,8 @@ export default () => {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
     { name: '中国', id: '86' },
-    { id: '320000', name: '江苏省', parentid: '86' }
-    // { id: '320100', name: '南京市', parentid: '320000' },
+    { id: '320000', name: '江苏省', parentid: '86' },
+    { id: '320100', name: '南京市', parentid: '320000' }
     // { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
   ])
 
@@ -46,13 +47,13 @@ export default () => {
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
-      {/* <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" /> */}
+      <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
       <Cascader.DistrictCombo
         // 编辑控制
         allowClear
         min="province" // ['country', 'province', 'city', 'district', 'street']
         // type="city"
-        list={CountriesData}
+        // list={countriesData}
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -64,6 +65,15 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
+        loadList={() => {
+          return new Promise((resolve) => {
+            Loading.show()
+            setTimeout(() => {
+              Loading.hide()
+              resolve(chinaData)
+            }, 5000)
+          })
+        }}
         captionProps={{
           caption: '级联选择'
         }}
@@ -73,7 +83,7 @@ export default () => {
         editableOptions={{
           country: { editable: false },
           province: { editable: false },
-          city: { editable: false },
+          city: { editable: true },
           district: { editable: true },
           street: { editable: true }
         }}
