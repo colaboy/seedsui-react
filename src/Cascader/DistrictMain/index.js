@@ -88,7 +88,7 @@ const DistrictMain = forwardRef(
       })
 
       // 选中到目标类型，不再下钻，直接onChange
-      if (currentType.includes(type)) return false
+      if (currentType?.includes(type)) return false
       return true
     }
 

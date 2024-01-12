@@ -68,7 +68,7 @@ const DistrictModal = forwardRef(
         Array.isArray(currentType) &&
         currentType.length &&
         getMinTypes(min).some((minType) => {
-          return currentType.includes(minType)
+          return currentType?.includes(minType)
         })
       ) {
         submitVisible = true
