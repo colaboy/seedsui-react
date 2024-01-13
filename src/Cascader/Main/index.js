@@ -1,4 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
+// 测试使用
+// import { locale } from 'seedsui-react'
+// 内库使用
 import locale from './../../locale'
 
 import Tabs from './Tabs'
