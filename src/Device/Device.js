@@ -86,6 +86,9 @@ let Device = (function () {
     // 支付宝
     else if (ua.indexOf('alipay') > -1) {
       platform = 'alipay'
+      if (ua.indexOf('miniprogram') > -1) {
+        platform = 'alipayMiniprogram'
+      }
       platformMatch = ua.match(/alipayclient\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }

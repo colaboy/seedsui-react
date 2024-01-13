@@ -405,6 +405,7 @@ let Bridge = {
       platform !== 'wechatMiniprogram' &&
       platform !== 'weworkMiniprogram' &&
       platform !== 'alipay' &&
+      platform !== 'alipayMiniprogram' &&
       platform !== 'waiqin' &&
       platform !== 'dinghuo' &&
       platform !== 'wq'
@@ -420,7 +421,8 @@ let Bridge = {
       platform === 'wechatMiniprogram' ||
       platform === 'wework' ||
       platform === 'weworkMiniprogram' ||
-      platform === 'alipay'
+      platform === 'alipay' ||
+      platform === 'alipayMiniprogram'
     ) {
       // 微信平台
       // 加载微信库
@@ -432,18 +434,32 @@ let Bridge = {
         script.src = options.weworkLibSrc || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
       } else if (platform === 'weworkMiniprogram') {
         script.src = options.weworkMiniprogramLibSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-      } else if (platform === 'alipay') {
+      } else if (platform === 'alipay' || platform === 'alipayMiniprogram') {
         script.src =
           options.alipayLibSrc ||
           '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
       }
 
       // 加载完成
-      script.onload = function () {
+      script.onload = async function () {
         // 支付宝平台库名称变更为wx
-        if (platform === 'alipay') {
+        if (platform === 'alipay' || platform === 'alipayMiniprogram') {
           window.wx = window.ap
         }
+        // 支付小程序还需要加载一个js
+        if (platform === 'alipayMiniprogram') {
+          await Object.loadScript(options.alipayMiniprogramLibSrc || 'https://appx/web-view.min.js')
+          if (window.my) {
+            window.wx.miniProgram = window.my
+          }
+          // js加载失败
+          else {
+            console.error('支付小程序js加载失败')
+            options?.fail?.({ errMsg: locale('支付小程序js加载失败') })
+            return
+          }
+        }
+
         // eslint-disable-next-line
         if (window.wx && !window.top.wx) {
           // eslint-disable-next-line
