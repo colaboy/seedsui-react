@@ -65,7 +65,7 @@ let Bridge = {
   },
   // 返回首页
   goHome: function (params) {
-    window.top.wq.invoke('goHome', ...(params || {}))
+    window.top.wq.invoke('goHome', params)
   },
   // 退出到登陆页面
   logOut: function () {
