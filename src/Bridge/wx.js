@@ -1,6 +1,6 @@
-// import DB from 'seedsui-react/lib/DB'
-// import Device from 'seedsui-react/lib/Device'
-
+// 测试使用
+// import { DB, Device } from 'seedsui-react'
+// 内库使用
 import DB from './../DB'
 import Device from './../Device'
 

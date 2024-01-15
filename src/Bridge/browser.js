@@ -1,16 +1,13 @@
-// import DB from 'seedsui-react/lib/DB'
-// import Device from 'seedsui-react/lib/Device'
-// import Loading from 'seedsui-react/lib/Loading'
-// import Toast from 'seedsui-react/lib/Toast'
+// 测试使用
+// import { DB, Device, Loading, Toast, locale } from 'seedsui-react/lib/DB'
 // import Preview from 'seedsui-react/lib/Preview/instance.js'
-// import locale from 'library/utils/locale'
-
+// 内库使用
 import DB from './../DB'
 import Device from './../Device'
 import Loading from './../Loading'
 import Toast from './../Toast'
-import Preview from './../Preview/instance.js'
 import locale from './../locale'
+import Preview from './../Preview/instance.js'
 
 let Bridge = {
   /**

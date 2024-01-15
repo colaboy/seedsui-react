@@ -1,14 +1,8 @@
-// import jsonp from 'seedsui-react/lib/jsonp'
-// import Device from 'seedsui-react/lib/Device'
-// import MapUtil from 'seedsui-react/lib/MapUtil'
-// import Modal from 'seedsui-react/lib/Modal'
-// import Toast from 'seedsui-react/lib/Toast'
+// 测试使用
+// import { Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react/lib/Device'
 // import Alert from 'seedsui-react/lib/Alert/instance.js'
-// import Loading from 'seedsui-react/lib/Loading'
-// import locale from 'library/utils/locale'
 // import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
-
-import jsonp from './../jsonp'
+// 内库使用
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Modal from './../Modal'
@@ -244,34 +238,6 @@ let Bridge = {
     }
     const mapUtil = new MapUtil()
     return mapUtil.getAddress([params.longitude, params.latitude], type, params)
-  },
-  /**
-   * 百度地图:获得天气
-   * @param {Object} params: {location: 'lng,lat|lng,lat|lng,lat' | '北京市|上海市', success: fn, fail: fn}
-   * @returns {Object} 天气信息results
-   */
-  getWeather: function (params = {}) {
-    let url =
-      'http://api.map.baidu.com/telematics/v3/weather?location=' +
-      (params.location || '南京市') +
-      '&output=json&ak=IlfRglMOvFxapn5eGrmAj65H'
-    jsonp(url, null, (err, data) => {
-      if (err) {
-        if (params.fail)
-          params.fail({
-            errMsg: `getWeather:${locale('获取天气失败, 请稍后重试', 'hint_weather_failed')}` + err
-          })
-      } else {
-        if (data.results && data.results.length) {
-          if (params.success) params.success(data.results)
-        } else {
-          if (params.fail)
-            params.fail({
-              errMsg: `getWeather:${locale('获取天气失败, 请稍后重试', 'hint_weather_failed')}`
-            })
-        }
-      }
-    })
   },
   // 客户端默认返回控制
   back: function (backLvl, config) {

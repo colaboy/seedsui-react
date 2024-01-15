@@ -1,16 +1,14 @@
-// import DB from 'seedsui-react/lib/DB'
-// import Toast from 'seedsui-react/lib/Toast'
-// import Device from 'seedsui-react/lib/Device'
-// import locale from 'library/utils/locale'
-
+// 测试使用
+// import { DB, Toast, Device, locale } from 'seedsui-react/lib/DB'
+// 内库使用
 import DB from './../DB'
 import Toast from './../Toast'
 import Device from './../Device'
 import locale from './../locale'
 
-var self = null
+let self = null
 
-var Bridge = {
+let Bridge = {
   /**
    * 定制功能
    */
@@ -369,7 +367,7 @@ var Bridge = {
     // eslint-disable-next-line
     wq.wqhardware.getQrCode((res) => {
       if (res && res.qrCode) {
-        var wqRes = res
+        let wqRes = res
         wqRes.resultStr = res.qrCode
         if (params && params.success) params.success(wqRes)
       } else {
@@ -419,7 +417,7 @@ var Bridge = {
   getLocation: function (params = {}) {
     self = this
     // 先从cookie中读取位置信息
-    var appLocation = DB.getCookie('app_location')
+    let appLocation = DB.getCookie('app_location')
     if (appLocation === 'undefined') {
       DB.removeCookie('app_location')
       appLocation = ''
@@ -558,10 +556,10 @@ var Bridge = {
     * }
     */
   chooseImage: function (params) {
-    var chooseParams = Object.clone(params)
+    let chooseParams = Object.clone(params)
     if (params.isAI !== '1') delete chooseParams.isAI
     // 格式化sourceType
-    var operation = '2'
+    let operation = '2'
     if (params && params.sourceType) {
       if (params.sourceType.indexOf('album') >= 0 && params.sourceType.indexOf('camera') >= 0) {
         operation = '2'
@@ -574,7 +572,7 @@ var Bridge = {
       delete chooseParams.sourceType
     }
     // 格式化sizeType
-    var pwidth = null
+    let pwidth = null
     if (params && params.sizeType) {
       if (!isNaN(params.sizeType)) {
         pwidth = params.sizeType
@@ -590,7 +588,7 @@ var Bridge = {
       delete chooseParams.sizeType
     }
     // 格式化count
-    var max = 5
+    let max = 5
     if (params && params.count) {
       max = params.count
       chooseParams.max = '' + max
@@ -628,7 +626,7 @@ var Bridge = {
       (result) => {
         if (params && params.success) {
           // 格式化返回结果
-          var res = {
+          let res = {
             sourceType: operation === '0' ? 'camera' : 'album',
             errMsg: 'chooseImage:ok',
             localIds: result.map((item) => {
@@ -680,7 +678,7 @@ var Bridge = {
     // ext参数: isAutoCheck: '0'/'1'是否自动识别|cmId: 客户Id|appId：应用Id|menuId: 菜单Id(必填)|funcId: 表单Id
     let menuId = Device.getUrlParameter('menuId') || ''
     // 格式化params
-    var uploadParams = {
+    let uploadParams = {
       filePathList: filePathList,
       url: params.uploadDir,
       ext: {
@@ -692,7 +690,7 @@ var Bridge = {
     console.log('外勤Cordova内核上传', uploadParams)
     wq.wqphoto.startUpload(JSON.stringify(uploadParams)) // eslint-disable-line
     // 截取路径
-    var serverId = params.localId.substring(
+    let serverId = params.localId.substring(
       params.localId.lastIndexOf('/') + 1,
       params.localId.length
     )
@@ -720,7 +718,7 @@ var Bridge = {
       return
     }
     // 格式化index
-    var position = 0
+    let position = 0
     if (params && params.index) position = params.index
     if (typeof params.current === 'number') {
       position = params.current
@@ -730,7 +728,7 @@ var Bridge = {
       }
     }
     // 格式化urls
-    var photos = []
+    let photos = []
     if (params && params.urls && params.urls.length) {
       photos = params.urls.map((item) => {
         return {
@@ -738,7 +736,7 @@ var Bridge = {
         }
       })
     }
-    var previewParams = {
+    let previewParams = {
       position: position,
       photos: photos
     }

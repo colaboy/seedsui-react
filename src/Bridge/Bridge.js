@@ -1,9 +1,12 @@
-// import Device from 'seedsui-react/lib/Device'
-
+// 测试使用
+// import { Device } from 'seedsui-react'
+// 内库使用
 import Device from './../Device'
+
 import BridgeBase from './base'
 import BridgeBrowser from './browser'
 import BridgeWeixin from './wx'
+import BridgeAlipay from './ap'
 import BridgeDinghuo from './dinghuo'
 import BridgeWaiqin from './wq'
 import BridgeWaiqinCordova from './cordova'
@@ -13,13 +16,17 @@ if (
   Device.platform === 'wechat' ||
   Device.platform === 'wework' ||
   Device.platform === 'wechatMiniprogram' ||
-  Device.platform === 'weworkMiniprogram' ||
-  Device.platform === 'alipay' ||
-  Device.platform === 'alipayMiniprogram'
+  Device.platform === 'weworkMiniprogram'
 ) {
   Bridge = {
     ...BridgeBase,
     ...BridgeWeixin
+  }
+} else if (Device.platform === 'alipay' || Device.platform === 'alipayMiniprogram') {
+  Bridge = {
+    ...BridgeBase,
+    ...BridgeWeixin,
+    ...BridgeAlipay
   }
 } else if (Device.platform === 'dinghuo') {
   Bridge = {
