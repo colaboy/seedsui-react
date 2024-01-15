@@ -64,6 +64,21 @@ let Bridge = {
         if (params.complete) params.complete(res)
       }
     })
+  },
+  /**
+   * 扫码
+   * @param {Object} params
+   * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
+   */
+  scanQRCode(params = {}) {
+    const { needResult, scanType, desc, success, ...othersParams } = params || {}
+
+    window.top.wx.scan({
+      success: function (res) {
+        success && success({ resultStr: res.code })
+      },
+      ...othersParams
+    })
   }
 }
 
