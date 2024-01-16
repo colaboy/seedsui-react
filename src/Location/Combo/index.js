@@ -52,8 +52,13 @@ const LocationCombo = forwardRef(
       onClick,
       inputProps,
 
-      // 地图选择页面属性
-      MainProps = {},
+      // Modal
+      ModalComponent,
+      ModalProps,
+
+      // Main
+      MainComponent,
+      MainProps,
       ...props
     },
     ref
@@ -281,6 +286,12 @@ const LocationCombo = forwardRef(
       )
     }
 
+    // Modal Render
+    let ModalNode = Modal
+    if (ModalComponent) {
+      ModalNode = ModalComponent
+    }
+
     return (
       <Fragment>
         <Input.Text
@@ -309,7 +320,7 @@ const LocationCombo = forwardRef(
           ref={rootRef}
         />
         {/* 地图预览与选择 */}
-        <Modal
+        <ModalNode
           ak={ak}
           portal={portal}
           value={value}
@@ -319,8 +330,10 @@ const LocationCombo = forwardRef(
           onBeforeChange={onBeforeChange}
           onChange={updateValue}
           MainProps={MainProps}
+          MainComponent={MainComponent}
           cacheTime={cacheTime}
           geocoder={geocoder}
+          {...(ModalProps || {})}
         />
       </Fragment>
     )

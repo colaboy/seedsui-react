@@ -39,7 +39,8 @@ const LocationModal = forwardRef(
       visible,
       onVisibleChange,
 
-      // 地图选择页面属性
+      // Main
+      MainComponent,
       MainProps,
       ...props
     },
@@ -154,7 +155,7 @@ const LocationModal = forwardRef(
             cacheTime={cacheTime}
             geocoder={geocoder}
             // 地图选择页面属性
-            {...MainProps}
+            {...(MainProps || {})}
             // 底
             footerRender={() => {
               return visible === 'choose' ? (
@@ -179,6 +180,12 @@ const LocationModal = forwardRef(
       return PageNode
     }
 
+    // Main Render
+    let MainNode = Main
+    if (MainComponent) {
+      MainNode = MainComponent
+    }
+
     return (
       <Modal
         ref={ref}
@@ -199,7 +206,7 @@ const LocationModal = forwardRef(
           onCancelClick={handleBack}
         />
         {/* 内容 */}
-        <Main
+        <MainNode
           ak={ak}
           autoLocation={autoLocation}
           type={visible}
@@ -207,7 +214,7 @@ const LocationModal = forwardRef(
           onChange={setValue}
           geocoder={geocoder}
           // 地图选择页面属性
-          {...MainProps}
+          {...(MainProps || {})}
         />
       </Modal>
     )
