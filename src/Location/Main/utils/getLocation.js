@@ -34,9 +34,20 @@ async function getAddress({ geocoder, longitude, latitude, ...data }) {
 
 // 定位
 function getLocation(opt) {
-  const { geocoder, longitude, latitude, cacheTime, ...data } = opt || {}
+  const { geocoder, longitude, latitude, title, value, cacheTime, ...data } = opt || {}
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
+    // 已经有坐标点和位置信息, 则不需要定位和逆解析
+    if (longitude && latitude && value) {
+      resolve({
+        longitude,
+        latitude,
+        value,
+        address: value,
+        title: title || ''
+      })
+      return
+    }
     // 已经有坐标点, 则不需要定位
     if (longitude && latitude) {
       let result = await getAddress({

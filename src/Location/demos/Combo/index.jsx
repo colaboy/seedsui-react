@@ -14,6 +14,9 @@ export default () => {
     // latitude: '39.909187',
     // title: '天安门',
     // value: '北京市东城区中华路甲10号中国天安门广场'
+    longitude: 118.73,
+    latitude: 31.98,
+    value: '南京市国家广告产业园'
   })
   useEffect(() => {
     Bridge.ready(() => {})
@@ -35,26 +38,27 @@ export default () => {
     <>
       <Location.Combo
         cacheTime={50000}
-        geocoder={(data) => {
-          // debugger
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve({
-                longitude: 118.74,
-                latitude: 31.99,
-                province: '江苏',
-                provinceNumber: '',
-                city: '南京',
-                cityNumber: '',
-                district: '建邺',
-                districtNumber: '',
-                street: '街道',
-                streetNumber: '',
-                address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
-              })
-            }, 1000)
-          })
-        }}
+        // 地址逆解析
+        // geocoder={(data) => {
+        //   // debugger
+        //   return new Promise((resolve) => {
+        //     setTimeout(() => {
+        //       resolve({
+        //         longitude: 118.74,
+        //         latitude: 31.99,
+        //         province: '江苏',
+        //         provinceNumber: '',
+        //         city: '南京',
+        //         cityNumber: '',
+        //         district: '建邺',
+        //         districtNumber: '',
+        //         street: '街道',
+        //         streetNumber: '',
+        //         address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
+        //       })
+        //     }, 1000)
+        //   })
+        // }}
         ak="3pTjiH1BXLjASHeBmWUuSF83"
         modal="page"
         MainProps={{
