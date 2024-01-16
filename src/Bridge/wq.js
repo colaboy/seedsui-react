@@ -1,7 +1,6 @@
 // 测试使用
-// import { DB, Device, locale } from 'seedsui-react'
+// import { Device, locale } from 'seedsui-react'
 // 内库使用
-import DB from './../DB'
 import Device from './../Device'
 import locale from './../locale'
 
@@ -139,26 +138,11 @@ let Bridge = {
    * 获取当前地理位置
    * @param {Object} params
    * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * @prop {Number} cacheTime 默认60秒缓存防重复定位
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
+    const { type, success, fail, complete, ...otherParams } = params || {}
     self = this
-    // 先从cookie中读取位置信息
-    let appLocation = DB.getCookie('app_location')
-    if (appLocation === 'undefined') {
-      DB.removeCookie('app_location')
-      appLocation = ''
-    }
-    try {
-      if (appLocation) appLocation = JSON.parse(appLocation)
-    } catch (error) {
-      appLocation = ''
-    }
-    if (appLocation) {
-      if (params.success) params.success(appLocation)
-      return
-    }
     // 调用定位
     if (self.locationTask) {
       self.locationTask.push(params)
@@ -168,28 +152,23 @@ let Bridge = {
     console.log('调用外勤定位...')
     window.top.wq.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      type: params.type || 'gcj02',
+      type: type || 'gcj02',
+      ...otherParams,
       success: (res) => {
         // 将位置信息存储到cookie中60秒
         if (res.longitude && res.latitude) {
-          if (params.cacheTime)
-            DB.setCookie(
-              'app_location',
-              JSON.stringify(res),
-              !isNaN(params.cacheTime) ? Number(params.cacheTime) : 60000
-            )
-          if (params.success) params.success(res)
+          if (success) success(res)
         } else {
-          if (params.fail) params.fail(res)
+          if (fail) fail(res)
         }
         self.getLocationTask(res)
       },
       fail: (res) => {
-        if (params.fail) params.fail(res)
+        if (fail) fail(res)
         self.getLocationTask(res)
       },
       complete: (res) => {
-        if (params.complete) params.complete(res)
+        if (complete) complete(res)
       }
     })
   },
