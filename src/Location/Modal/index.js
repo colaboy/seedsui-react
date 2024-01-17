@@ -119,7 +119,11 @@ const LocationModal = forwardRef(
     async function handleOk() {
       // 格式化数据
       Loading.show()
-      value = await getLocation({ geocoder, ...value })
+
+      // 修改
+      if (value) {
+        value = await getLocation({ geocoder, ...value })
+      }
 
       // 修改提示
       if (typeof onBeforeChange === 'function') {

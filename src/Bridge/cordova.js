@@ -1,7 +1,6 @@
 // 测试使用
-// import { DB, Toast, Device, locale } from 'seedsui-react/lib/DB'
+// import { Toast, Device, locale } from 'seedsui-react/lib/DB'
 // 内库使用
-import DB from './../DB'
 import Toast from './../Toast'
 import Device from './../Device'
 import locale from './../locale'

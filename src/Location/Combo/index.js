@@ -326,7 +326,16 @@ const LocationCombo = forwardRef(
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onBeforeChange={onBeforeChange}
-          onChange={updateValue}
+          onChange={(newValue) => {
+            // 选择地址后，更新显示状态
+            if (newValue) {
+              updateValue(newValue)
+            }
+            // 清空值
+            else {
+              onChange && onChange(newValue)
+            }
+          }}
           MainProps={MainProps}
           MainComponent={MainComponent}
           geocoder={geocoder}
