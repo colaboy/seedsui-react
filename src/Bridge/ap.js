@@ -18,7 +18,7 @@ let Bridge = {
       return
     }
     self.locationTask = []
-    console.log('调用支付宝定位...')
+    console.log('调用支付宝定位...', params)
     window.top.wx.getLocation({
       ...otherParams,
       type: '2',

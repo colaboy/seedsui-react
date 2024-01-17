@@ -76,7 +76,7 @@ let Bridge = {
       return
     }
     self.locationTask = []
-    console.log('调用微信定位...')
+    console.log('调用微信定位...', params)
     window.top.wx.getLocation({
       ...otherParams,
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'

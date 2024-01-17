@@ -149,7 +149,7 @@ let Bridge = {
       return
     }
     self.locationTask = []
-    console.log('调用外勤定位...')
+    console.log('调用外勤定位...', params)
     window.top.wq.getLocation({
       ...otherParams,
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
