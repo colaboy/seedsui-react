@@ -44,7 +44,7 @@ async function getAddress({ geocoder, longitude, latitude, ...data }) {
 
 // 定位
 function getLocation(opt) {
-  const { geocoder, longitude, latitude, cacheTime, ...data } = opt || {}
+  const { geocoder, longitude, latitude, ...data } = opt || {}
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     // 已经有坐标点, 则不需要定位
@@ -60,7 +60,6 @@ function getLocation(opt) {
     }
     // 开始定位
     Bridge.getLocation({
-      cacheTime: typeof cacheTime === 'number' ? cacheTime : 10000,
       type: 'gcj02',
       success: async (data) => {
         let result = await getAddress({

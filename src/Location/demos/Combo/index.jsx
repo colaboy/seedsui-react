@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Bridge, Location, MapUtil } from 'seedsui-react'
-
+import VConsole from 'vconsole'
 export default () => {
   Bridge.debug = true
   const [load, setLoad] = useState(false)
@@ -19,7 +19,33 @@ export default () => {
     value: '南京市国家广告产业园'
   })
   useEffect(() => {
-    Bridge.ready(() => {})
+    new VConsole()
+    Bridge.ready(() => {
+      Bridge.getLocation({
+        cacheTime: 5000,
+        success: (res) => {
+          setTimeout(() => {
+            Bridge.getLocation({
+              success: (res) => {
+                console.log('1-1:' + JSON.stringify(res))
+              }
+            })
+          }, 100)
+          console.log('1:' + JSON.stringify(res))
+        }
+      })
+
+      Bridge.getLocation({
+        success: (res) => {
+          console.log('2:' + JSON.stringify(res))
+        }
+      })
+      Bridge.getLocation({
+        success: (res) => {
+          console.log('3:' + JSON.stringify(res))
+        }
+      })
+    })
     console.log(comboRef.current)
     MapUtil.load({
       ak: '3pTjiH1BXLjASHeBmWUuSF83',
@@ -37,13 +63,12 @@ export default () => {
   return (
     <>
       <Location.Combo
-        cacheTime={50000}
         // 地址逆解析
         geocoder={(data) => {
-          if (data?.value) {
-            console.log(data)
-            return data
-          }
+          // if (data?.value) {
+          //   console.log(data)
+          //   return data
+          // }
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve({

@@ -83,7 +83,6 @@ let Bridge = {
    * 获取当前地理位置
    * @param {Object} params
    * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
-   * @prop {Number} cacheTime 默认60秒缓存防重复定位
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
@@ -177,21 +176,6 @@ let Bridge = {
       }
       return
     }
-    // 先从cookie中读取位置信息
-    let appLocation = DB.getCookie('app_location')
-    if (appLocation === 'undefined') {
-      DB.removeCookie('app_location')
-      appLocation = ''
-    }
-    try {
-      if (appLocation) appLocation = JSON.parse(appLocation)
-    } catch (error) {
-      appLocation = ''
-    }
-    if (appLocation) {
-      if (params.success) params.success(appLocation)
-      return
-    }
     // 调用定位
     if (self.locationTask) {
       self.locationTask.push(params)
@@ -207,13 +191,6 @@ let Bridge = {
         speed: '0.0',
         accuracy: '3.0.0'
       }
-      // 将位置信息存储到cookie中60秒
-      if (params.cacheTime)
-        DB.setCookie(
-          'app_location',
-          JSON.stringify(res),
-          !isNaN(params.cacheTime) ? Number(params.cacheTime) : 60000
-        )
       if (params.success) params.success(res)
       if (params.complete) params.complete(res)
       self.getLocationTask(res)

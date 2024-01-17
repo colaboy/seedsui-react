@@ -9,14 +9,13 @@ import Bridge from './../../../../Bridge'
 import locale from './../../../../locale'
 
 // 导航
-function Navigation({ cacheTime, longitude, latitude, name, address }) {
+function Navigation({ longitude, latitude, name, address }) {
   function handleClick() {
     Loading.show({
       content: locale('定位中...', 'positioning')
     })
     // 开始定位
     Bridge.getLocation({
-      cacheTime: typeof cacheTime === 'number' ? cacheTime : 10000,
       type: 'gcj02',
       success: async (data) => {
         Loading.hide()

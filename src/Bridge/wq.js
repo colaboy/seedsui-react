@@ -151,9 +151,9 @@ let Bridge = {
     self.locationTask = []
     console.log('调用外勤定位...')
     window.top.wq.getLocation({
+      ...otherParams,
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: type || 'gcj02',
-      ...otherParams,
       success: (res) => {
         // 将位置信息存储到cookie中60秒
         if (res.longitude && res.latitude) {

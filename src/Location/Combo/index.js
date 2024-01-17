@@ -19,7 +19,6 @@ import locale from './../../locale'
 const LocationCombo = forwardRef(
   (
     {
-      cacheTime = 10000, // 经纬度缓存时效, 默认10秒
       ak, // 地图预览和选择地点时需要传入, 如果地图已经加载, 则不需要传入ak
       // 自定义地址逆解析
       geocoder,
@@ -208,7 +207,6 @@ const LocationCombo = forwardRef(
 
       // 开始定位
       let newValue = await getLocation({
-        cacheTime: cacheTime,
         geocoder: geocoder
       })
 
@@ -331,7 +329,6 @@ const LocationCombo = forwardRef(
           onChange={updateValue}
           MainProps={MainProps}
           MainComponent={MainComponent}
-          cacheTime={cacheTime}
           geocoder={geocoder}
           {...(ModalProps || {})}
         />
