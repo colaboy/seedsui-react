@@ -42,7 +42,6 @@ let messageDefault = {
 const InputLocation = forwardRef(
   (
     {
-      cacheTime = 10000, // 经纬度缓存时效, 默认10秒
       timeout, // 定位超时
       ak, // 地图预览和选择地点时需要传入, 如果地图已经加载, 则不需要传入ak
       // 非只读配置
@@ -259,7 +258,6 @@ const InputLocation = forwardRef(
       }
       // 开始定位
       Bridge.getLocation({
-        cacheTime: cacheTime,
         type: 'gcj02',
         success: async (data) => {
           // 定位超时后不再执行回调
