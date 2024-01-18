@@ -91,7 +91,6 @@ const Image = forwardRef(
           Bridge.previewImage({
             urls: list.map((item) => item.src),
             current: list[index].src,
-            item: list[index],
             index: index
           })
         }
