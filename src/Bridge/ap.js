@@ -53,6 +53,21 @@ let Bridge = {
       },
       ...othersParams
     })
+  },
+  /**
+   * 拍照
+   * @param {Object} params
+     {
+       index: 0, // 当前显示图片索引，默认 0
+       current: '', // 当前显示图片的http链接
+       urls: [] // 需要预览的图片http链接列表
+     }
+   */
+  previewImage: function (params) {
+    window.top.wx.previewImage({
+      urls: params.urls,
+      current: params?.index || 0
+    })
   }
 }
 
