@@ -368,9 +368,9 @@ let Bridge = {
     if (
       platform !== 'wechat' &&
       platform !== 'wework' &&
+      platform !== 'alipay' &&
       platform !== 'wechatMiniprogram' &&
       platform !== 'weworkMiniprogram' &&
-      platform !== 'alipay' &&
       platform !== 'alipayMiniprogram' &&
       platform !== 'waiqin' &&
       platform !== 'dinghuo' &&

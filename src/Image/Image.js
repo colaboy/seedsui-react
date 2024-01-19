@@ -72,7 +72,9 @@ const Image = forwardRef(
       // 小程序视频预览
       if (
         type === 'video' &&
-        (Bridge.platform === 'wechatMiniprogram' || Bridge.platform === 'weworkMiniprogram')
+        (Bridge.platform === 'wechatMiniprogram' ||
+          Bridge.platform === 'weworkMiniprogram' ||
+          Bridge.platform === 'alipayMiniprogram')
       ) {
         setPreviewCurrent(Number(index))
       }
@@ -82,8 +84,10 @@ const Image = forwardRef(
         Bridge.platform === 'waiqin' ||
         Bridge.platform === 'wechat' ||
         Bridge.platform === 'wework' ||
+        Bridge.platform === 'alipay' ||
         Bridge.platform === 'wechatMiniprogram' ||
-        Bridge.platform === 'weworkMiniprogram'
+        Bridge.platform === 'weworkMiniprogram' ||
+        Bridge.platform === 'alipayMiniprogram'
       ) {
         if (type === 'video') {
           Bridge.previewFile({ url: item.src })
