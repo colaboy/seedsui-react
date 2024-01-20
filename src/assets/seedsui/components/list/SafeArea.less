@@ -41,10 +41,22 @@
   &.border-bottom {
     border-bottom-width: calc(env(safe-area-inset-bottom) * var(--multiple));
   }
+}
 
+// 独立安全区, 业务容器自由控制安全区，此处的安全区样式只对遮罩相关的容器生效
+.safe-area-mask {
   // 弹窗
   body > .mask > [data-animation='slideUp'],
   #root > .mask > [data-animation='slideUp'] {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+}
+
+// 根元素安全区，业务无需控制安全区
+.safe-area-root {
+  #root {
+    &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
   }
 }
