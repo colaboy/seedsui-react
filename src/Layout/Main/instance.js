@@ -131,12 +131,13 @@ let Body = function (params) {
     s.hideTop()
   }
   // 底部刷新, 刷新中时将不允许刷新
-  s.bottomRefresh = async function () {
+  s.bottomRefresh = async function (options) {
     if (typeof s.params.onBottomRefresh !== 'function') return
     if (s.isLoading) return
     s.isLoading = true // 设置为不可刷新
     // CallBack onBottomRefresh
-    await s.params.onBottomRefresh(s)
+    await s.params.onBottomRefresh(Object.assign({}, s, options || {}))
+    console.log(s)
     s.isLoading = false
   }
   /* ----------------------
@@ -326,7 +327,7 @@ let Body = function (params) {
     if (s.params.onScroll) s.params.onScroll(e)
     if (!s.params.onBottomRefresh) return
     if (s.isBottom()) {
-      s.bottomRefresh()
+      s.bottomRefresh({ action: 'scroll' })
     }
   }
   // 主函数
@@ -335,7 +336,7 @@ let Body = function (params) {
 
     // 判断是否在底部
     if (s.isBottom()) {
-      s.bottomRefresh()
+      s.bottomRefresh({ action: 'initial' })
     }
   }
 
