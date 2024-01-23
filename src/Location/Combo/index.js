@@ -296,7 +296,11 @@ const LocationCombo = forwardRef(
           readOnly={!editable}
           disabled={disabled}
           onClick={handleClick}
-          onChange={(address) => {
+          onChange={(address, event) => {
+            if (event?.action === 'clickClear') {
+              if (onChange) onChange(null)
+              return
+            }
             let newValue = Object.clone(value)
             if (!newValue) {
               newValue = {}

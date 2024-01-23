@@ -259,7 +259,7 @@ const InputText = forwardRef(
 
       // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
       if (onChange) {
-        onChange(val)
+        onChange(val, { action: 'change' })
       }
     }
 
@@ -291,7 +291,7 @@ const InputText = forwardRef(
 
         // 修改完回调
         if (val !== value) {
-          if (onChange) onChange(val)
+          if (onChange) onChange(val, { action: 'blur' })
         }
       }
 
@@ -312,7 +312,7 @@ const InputText = forwardRef(
       focus()
 
       // Callback
-      typeof onChange === 'function' && onChange('')
+      typeof onChange === 'function' && onChange('', { action: 'clickClear' })
       typeof clearProps?.onClick === 'function' && clearProps.onClick(e, '')
 
       // 非受控组件需要操作DOM
@@ -339,8 +339,7 @@ const InputText = forwardRef(
           <div className={`input-fit-wrapper${inputVisible === false ? ' hide' : ''}`}>
             <textarea
               ref={inputRef}
-              // className={className}
-              className={`input-fit`}
+              className={`input-fit${className ? ' ' + className : ''}`}
               style={style}
               {...otherFitProps}
               autoFocus={autoFocus}

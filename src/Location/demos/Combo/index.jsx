@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Bridge, Location, MapUtil } from 'seedsui-react'
+import { Bridge, Location, MapUtil, Input } from 'seedsui-react'
 import VConsole from 'vconsole'
 export default () => {
   Bridge.debug = true
@@ -7,13 +7,13 @@ export default () => {
   const comboRef = useRef(null)
   // const [value, setValue] = useState(null)
   const [value, setValue] = useState({
-    // errMsg: 'getLocation:ok',
-    // longitude: 118.74,
-    // latitude: 31.99
-    // longitude: '116.397451',
-    // latitude: '39.909187',
-    // title: '天安门',
-    // value: '北京市东城区中华路甲10号中国天安门广场'
+    errMsg: 'getLocation:ok',
+    longitude: 118.74,
+    latitude: 31.99,
+    longitude: '116.397451',
+    latitude: '39.909187',
+    title: '天安门',
+    value: '北京市东城区中华路甲10号中国天安门广场南边100米左右'
     // longitude: 118.73,
     // latitude: 31.98,
     // value: '南京市国家广告产业园'
@@ -63,6 +63,7 @@ export default () => {
   return (
     <>
       <Location.Combo
+        // editable
         // 地址逆解析
         // geocoder={(data) => {
         //   if (data?.value) {
@@ -88,7 +89,7 @@ export default () => {
         //   })
         // }}
         ak="3pTjiH1BXLjASHeBmWUuSF83"
-        modal="page"
+        // modal="page"
         MainProps={{
           autoLocation: false
         }}
@@ -96,7 +97,7 @@ export default () => {
         allowClear
         autoFit
         autoLocation
-        // editable
+        editable
         // allowClear
         ref={comboRef}
         value={value}
@@ -117,6 +118,7 @@ export default () => {
           console.log('显隐:', visible)
         }}
       />
+      <Input.Text value="aaaa" />
     </>
   )
 }
