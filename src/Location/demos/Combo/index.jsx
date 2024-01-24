@@ -20,32 +20,32 @@ export default () => {
   })
   useEffect(() => {
     new VConsole()
-    Bridge.ready(() => {
-      Bridge.getLocation({
-        cacheTime: 5000,
-        success: (res) => {
-          setTimeout(() => {
-            Bridge.getLocation({
-              success: (res) => {
-                console.log('1-1:' + JSON.stringify(res))
-              }
-            })
-          }, 100)
-          console.log('1:' + JSON.stringify(res))
-        }
-      })
+    // Bridge.ready(() => {
+    //   Bridge.getLocation({
+    //     cacheTime: 5000,
+    //     success: (res) => {
+    //       setTimeout(() => {
+    //         Bridge.getLocation({
+    //           success: (res) => {
+    //             console.log('1-1:' + JSON.stringify(res))
+    //           }
+    //         })
+    //       }, 100)
+    //       console.log('1:' + JSON.stringify(res))
+    //     }
+    //   })
 
-      Bridge.getLocation({
-        success: (res) => {
-          console.log('2:' + JSON.stringify(res))
-        }
-      })
-      Bridge.getLocation({
-        success: (res) => {
-          console.log('3:' + JSON.stringify(res))
-        }
-      })
-    })
+    //   Bridge.getLocation({
+    //     success: (res) => {
+    //       console.log('2:' + JSON.stringify(res))
+    //     }
+    //   })
+    //   Bridge.getLocation({
+    //     success: (res) => {
+    //       console.log('3:' + JSON.stringify(res))
+    //     }
+    //   })
+    // })
     console.log(comboRef.current)
     MapUtil.load({
       ak: '3pTjiH1BXLjASHeBmWUuSF83',
@@ -97,25 +97,23 @@ export default () => {
         allowClear
         autoFit
         autoLocation
-        editable
+        clickAction="location"
+        // editable
+        // previewVisible
+        // chooseVisible
         // allowClear
         ref={comboRef}
         value={value}
-        // previewVisible
-        // chooseVisible
         // 点击整行触发的动作: location | choose | preview
-        clickAction="choose"
         onChange={(val) => {
           console.log('修改:', val)
           setValue(val)
         }}
-        onBeforeChange={(val) => {
-          console.log('beforechange:', val)
-          if (!val) return true
-          return true
-        }}
         onVisibleChange={(visible) => {
           console.log('显隐:', visible)
+        }}
+        onLocationStatusChange={(status) => {
+          console.log('定位状态:', status)
         }}
       />
       <Input.Text value="aaaa" />

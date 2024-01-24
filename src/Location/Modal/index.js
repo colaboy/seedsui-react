@@ -26,7 +26,6 @@ const LocationModal = forwardRef(
       autoLocation,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value: originValue = null,
-      onBeforeChange,
       onChange,
       geocoder,
 
@@ -123,13 +122,6 @@ const LocationModal = forwardRef(
       // 修改
       if (value) {
         value = await getLocation({ geocoder, ...value })
-      }
-
-      // 修改提示
-      if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(value)
-        Loading.hide()
-        if (goOn !== undefined && !goOn) return
       }
 
       Loading.hide()

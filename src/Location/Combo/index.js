@@ -45,10 +45,9 @@ const LocationCombo = forwardRef(
 
       portal = document.getElementById('root') || document.body,
       onVisibleChange,
-      onBeforeChange,
+      onLocationStatusChange,
       onChange,
       onError,
-      onClick,
       inputProps,
 
       // Modal
@@ -103,20 +102,29 @@ const LocationCombo = forwardRef(
     useEffect(() => {
       if (autoLocation !== true) return
       handleAutoLocation()
-    }, [autoLocation]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [autoLocation])
+
+    // 定位状态
+    useEffect(() => {
+      if (onLocationStatusChange) {
+        onLocationStatusChange(locationStatus)
+      }
+      // eslint-disable-next-line
+    }, [locationStatus])
 
     // 自动定位
     async function handleAutoLocation() {
       // 有经纬度, 补充address
       if (value && value.latitude && value.longitude) {
-        // 默认地址
+        // 有地址, 则定位完成
         if (value.value) {
-          // 有地址, 则定位完成
           if (onChangeRef?.current) {
             onChangeRef.current(value)
           }
-        } else {
-          // 无地址, 则需要地址逆解析
+        }
+        // 无地址, 则需要地址逆解析
+        else {
           locationStatus = '-1'
           setLocationStatus('-1') // 定位中...
 
@@ -138,7 +146,6 @@ const LocationCombo = forwardRef(
     // 点击文本框
     function handleClick(e) {
       e.stopPropagation()
-      if (onClick) onClick(e)
       // 正在定位不允许操作
       if (locationStatus === '-1') {
         return
@@ -329,7 +336,6 @@ const LocationCombo = forwardRef(
           modal={modal}
           visible={modalVisible}
           onVisibleChange={setModalVisible}
-          onBeforeChange={onBeforeChange}
           onChange={(newValue) => {
             // 选择地址后，更新显示状态
             if (newValue) {
