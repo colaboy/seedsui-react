@@ -6,14 +6,7 @@ import locale from './../../locale'
 import Combo from './../Combo'
 
 // 日期快捷选择
-export default function CustomCombo({
-  portal,
-  DateProps,
-  allowClear = 'exclusion-ricon',
-  value,
-  onChange,
-  onError
-}) {
+export default function CustomCombo({ portal, DateProps, allowClear, value, onChange, onError }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : ''
   let endDate = Array.isArray(value) && value[1] instanceof Date ? value[1] : ''

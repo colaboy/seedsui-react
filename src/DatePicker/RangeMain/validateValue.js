@@ -3,21 +3,7 @@ import validateStartEnd from './validateStartEnd'
 import { validateMaxMin } from '../utils'
 
 // 校验选择的区间是否合法
-function validateBeforeChange(
-  newValue,
-  {
-    type,
-    min,
-    max,
-    daysLimit,
-    onError,
-    onBeforeChange,
-    // RangeMain props
-    ranges,
-    activeKey,
-    setActiveKey
-  }
-) {
+function validateValue(newValue, { type, min, max, daysLimit, onError }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     // 校验最大最小值
@@ -70,21 +56,8 @@ function validateBeforeChange(
       }
     }
 
-    // 外部传入的校验
-    if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(newValue, {
-        ranges: ranges,
-        activeKey: activeKey,
-        setActiveKey: setActiveKey
-      })
-      if (goOn === false) {
-        resolve(false)
-        return
-      }
-    }
-
     resolve(newValue)
   })
 }
 
-export default validateBeforeChange
+export default validateValue

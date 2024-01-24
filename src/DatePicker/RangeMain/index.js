@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import defaultRanges from './defaultRanges'
 import getActiveKey from './getActiveKey'
-import validateBeforeChange from './validateBeforeChange'
+import validateValue from './validateValue'
 
 import Selector from './../../Selector'
 // 测试使用
@@ -18,7 +18,6 @@ export default function RangeMain({
 
   // Main: common
   value,
-  onSelect,
   onBeforeChange,
   onChange,
   onActiveKey,
@@ -34,14 +33,11 @@ export default function RangeMain({
   onError,
   ranges = defaultRanges
 }) {
-  // 自定义日期天数限制
-  let daysLimit = null
-  // 获取自定义项的key:
+  // 获取自定义项的key，不是数组则为自定义项:
   let customKey = ''
   for (let key in ranges) {
     if (!Array.isArray(ranges[key])) {
       customKey = key
-      daysLimit = ranges[key]
       break
     }
   }
@@ -85,52 +81,33 @@ export default function RangeMain({
     // eslint-disable-next-line
   }, [activeKey])
 
-  // 点击快捷选择
-  async function handleClick(newActiveKey) {
-    // 不允许清除
-    if (!allowClear && !newActiveKey) {
-      return
-    }
-    // 想要取消的选中项是自定义，则阻止此操作
-    if (activeKey === customKey && !newActiveKey) {
-      return
-    }
-
-    // 点击选项
-    if (onSelect) {
-      onSelect(ranges[newActiveKey], {
-        ranges: ranges,
-        activeKey: newActiveKey,
-        setActiveKey: setActiveKey
-      })
-    }
-
-    // 点击非自定义修改日期
-    if (newActiveKey !== customKey) {
-      handleChange(ranges[newActiveKey], newActiveKey)
-    }
-    // 点击自定义不修改日期
-    else {
-      activeKey = newActiveKey
-      setActiveKey(newActiveKey)
-    }
-  }
-
   // 修改
   async function handleChange(newValue, newActiveKey) {
     if (!onChange) return
-    // 修改提示
-    let goOn = await validateBeforeChange(newValue, {
+
+    // eslint-disable-next-line
+    if (newValue === undefined) newValue = null
+
+    // 外部传入的校验
+    if (typeof onBeforeChange === 'function') {
+      let goOn = await onBeforeChange(newValue, {
+        ranges: ranges,
+        activeKey: activeKey,
+        setActiveKey: setActiveKey
+      })
+      if (goOn === false) {
+        return
+      }
+    }
+
+    // 值合法性校验
+    let goOn = await validateValue(newValue, {
       type,
       min,
       max,
-      daysLimit,
-      onError,
-      onBeforeChange,
-      // RangeMain props
-      ranges: ranges,
-      activeKey: newActiveKey || activeKey,
-      setActiveKey: setActiveKey
+      // 只有自定义时间段才有天数校验
+      daysLimit: typeof ranges[newActiveKey] === 'number' ? ranges[newActiveKey] : null,
+      onError
     })
     if (goOn === false) {
       return
@@ -147,11 +124,12 @@ export default function RangeMain({
       setActiveKey(newActiveKey)
     }
 
-    onChange(newValue, {
-      ranges: ranges,
-      activeKey: activeKey,
-      setActiveKey: setActiveKey
-    })
+    onChange &&
+      onChange(newValue, {
+        ranges: ranges,
+        activeKey: activeKey,
+        setActiveKey: setActiveKey
+      })
   }
 
   // 将{key: value}转为[{id: key, name: value}]
@@ -178,21 +156,13 @@ export default function RangeMain({
       {/* 快捷选择 */}
       <Selector
         columns={3}
+        allowClear={allowClear}
         {...SelectorProps}
         value={[{ id: activeKey }]}
         list={getSelectorOptions()}
-        onChange={(value) => {
-          // 点击选中项清空
-          if (activeKey === value?.[0]?.id) {
-            handleClick('')
-            return
-          }
-          // 点击非选中项
-          if (value?.[0]?.id) {
-            handleClick(value?.[0]?.id)
-          } else {
-            handleClick('')
-          }
+        onChange={(newValue) => {
+          let newActiveKey = newValue?.[0]?.id || ''
+          handleChange(ranges[newActiveKey], newActiveKey)
         }}
       />
 
@@ -206,10 +176,19 @@ export default function RangeMain({
           {/* 按钮 */}
           <Selector
             columns={1}
+            allowClear={allowClear}
+            {...SelectorProps}
             value={[{ id: activeKey }]}
             list={[{ id: customKey, name: customKey }]}
-            onChange={() => {
-              handleClick(customKey)
+            onChange={(newValue) => {
+              // 点击自定义不调用onChange，只修改activeKey
+              let newActiveKey = newValue?.[0]?.id || ''
+              setActiveKey(newActiveKey)
+
+              // 取消选择清空值
+              if (!newActiveKey) {
+                handleChange(ranges[newActiveKey], newActiveKey)
+              }
             }}
           />
         </>
@@ -224,7 +203,7 @@ export default function RangeMain({
           allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}
-          onChange={handleChange}
+          onChange={(newValue) => handleChange(newValue, customKey)}
           onError={onError}
         />
       )}
