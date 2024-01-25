@@ -1,5 +1,5 @@
 import { getDateDisplayValue } from './../utils'
-import getActiveKey from './getActiveKey'
+import getActiveOption from './../RangeMain/getActiveOption'
 
 // 显示名称
 function getRangeDisplayValue({ format, ranges, type, value, separator, currentActiveKey }) {
@@ -16,9 +16,9 @@ function getRangeDisplayValue({ format, ranges, type, value, separator, currentA
   let displayValue = []
 
   // 显示别名
-  let activeKey = getActiveKey({ value, ranges, type, currentActiveKey })
-  if (activeKey) {
-    return activeKey
+  let activeKey = getActiveOption({ value, ranges, type, currentActiveKey })
+  if (Array.isArray(activeKey?.value)) {
+    return activeKey.name
   }
 
   // 显示日期

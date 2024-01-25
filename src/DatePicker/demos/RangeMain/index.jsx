@@ -30,7 +30,7 @@ export default () => {
           }}
           min={new Date('2023-08-08')}
           max={new Date()}
-          // allowClear={false}
+          // allowClear="exclusion-ricon"
           value={value}
           onError={(error) => {
             console.log(error)

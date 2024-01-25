@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import _ from 'lodash'
 import Selector from './../../../Selector'
 
-// 测试使用
 import getCustomKey from './../../RangeMain/getCustomKey'
+import getActiveOption from './../../RangeMain/getActiveOption'
 import PickerModal from './../PickerModal'
 
 // 快捷选择
@@ -47,11 +48,23 @@ const CustomButton = function ({
       <Selector
         columns={1}
         allowClear={allowClear}
-        value={null}
+        value={
+          getActiveOption(value, ranges)?.name === customKey
+            ? [{ id: customKey, name: customKey }]
+            : null
+        }
         list={[{ id: customKey, name: customKey }]}
-        onChange={() => {
-          onVisibleChange && onVisibleChange(false)
-          setPickerVisible(true)
+        onChange={(newValue) => {
+          // 清空
+          if (_.isEmpty(newValue)) {
+            onChange && onChange(null)
+            onVisibleChange && onVisibleChange(false)
+          }
+          // 弹出选择
+          else {
+            onVisibleChange && onVisibleChange(false)
+            setPickerVisible(true)
+          }
         }}
       />
 

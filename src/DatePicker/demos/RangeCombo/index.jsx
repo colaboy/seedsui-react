@@ -52,6 +52,7 @@ export default () => {
       /> */}
       <DatePicker.RangeCombo
         ref={date2Ref}
+        allowClear="exclusion-ricon"
         ranges={{
           // [locale('今日')]: [new Date(), new Date()],
           [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],

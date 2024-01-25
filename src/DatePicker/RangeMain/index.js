@@ -1,7 +1,7 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import defaultRanges from './defaultRanges'
 import getCustomKey from './getCustomKey'
-import getActiveKey from './getActiveKey'
+import getActiveOption from './getActiveOption'
 import validateValue from './validateValue'
 
 import Selector from './../../Selector'
@@ -16,7 +16,7 @@ function RangeMain(
     // components props
     SelectorProps,
     DateProps,
-    allowClear = 'exclusion-ricon',
+    allowClear,
 
     // Main: common
     value,
@@ -67,15 +67,11 @@ function RangeMain(
     }
 
     // 如果选中项有多项，则优先使用当前选中项
-    let newActiveKey = getActiveKey(value, ranges, { currentActiveKey: activeKey })
+    let newActive = getActiveOption(value, ranges, { currentActiveKey: activeKey })
 
     // 找到选中项
-    if (newActiveKey) {
-      setActiveKey(newActiveKey)
-    }
-    // 找不到选中项，则选中自定义
-    else {
-      setActiveKey(customKey)
+    if (newActive?.name) {
+      setActiveKey(newActive.name)
     }
     // eslint-disable-next-line
   }, [value])
