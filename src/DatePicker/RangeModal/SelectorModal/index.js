@@ -1,6 +1,6 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import Modal from './../../../Modal'
-import Selector from './../../../Selector'
+import CustomButton from './CustomButton'
 
 // 测试使用
 // import Modal from 'seedsui-react/lib/Modal'
@@ -140,48 +140,34 @@ const SelectorModal = function (
           />
 
           {/* 自定义选择独立一行显示 */}
-          {customKey && (
-            <>
-              {/* 标题 */}
-              {typeof titles.custom === 'string' ? (
-                <p className="datepicker-selector-caption">{titles.custom}</p>
-              ) : null}
-              {/* 按钮 */}
-              <Selector
-                columns={1}
-                allowClear={allowClear}
-                value={null}
-                list={[{ id: customKey, name: customKey }]}
-                onChange={() => {
-                  onVisibleChange && onVisibleChange(false)
-                  setPickerVisible(true)
-                }}
-              />
-            </>
-          )}
+          <CustomButton
+            portal={portal}
+            // Combo
+            // Modal: display properties
+            captionProps={captionProps}
+            submitProps={submitProps}
+            cancelProps={cancelProps}
+            onVisibleChange={onVisibleChange}
+            // Main: common
+            value={value}
+            allowClear={allowClear}
+            onChange={(...params) => {
+              // 选中自定义字段
+              activeKeyRef.current = customKey
+              // 重置快捷选择框内的选中项，使其显示时重新计算选中项
+              rangeMainRef?.current?.setActiveKey?.(null)
+              onChange && onChange(...params)
+            }}
+            // Main: Picker Control properties
+            defaultPickerValue={defaultPickerValue}
+            // Combo|Main: DatePicker Control properties
+            titles={titles}
+            type={type}
+            ranges={ranges}
+            {...props}
+          />
         </div>
       </ModaNode>
-
-      {/* 选择区间 */}
-      <PickerModal
-        captionProps={captionProps}
-        submitProps={submitProps}
-        cancelProps={cancelProps}
-        portal={portal}
-        value={value}
-        defaultPickerValue={defaultPickerValue}
-        type={type}
-        onChange={(...params) => {
-          // 选中自定义字段
-          activeKeyRef.current = customKey
-          // 重置快捷选择框内的选中项，使其显示时重新计算选中项
-          rangeMainRef?.current?.setActiveKey?.(null)
-          onChange && onChange(...params)
-        }}
-        visible={pickerVisible}
-        onVisibleChange={setPickerVisible}
-        {...props}
-      />
     </>
   )
 }
