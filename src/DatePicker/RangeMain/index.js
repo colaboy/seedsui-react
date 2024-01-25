@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import defaultRanges from './defaultRanges'
+import getCustomKey from './getCustomKey'
 import getActiveKey from './getActiveKey'
 import validateValue from './validateValue'
 
@@ -9,41 +10,48 @@ import Selector from './../../Selector'
 import CustomCombo from './CustomCombo'
 
 // 日期快捷选择
-export default function RangeMain({
-  portal,
-  // components props
-  SelectorProps,
-  DateProps,
-  allowClear = 'exclusion-ricon',
+function RangeMain(
+  {
+    portal,
+    // components props
+    SelectorProps,
+    DateProps,
+    allowClear = 'exclusion-ricon',
 
-  // Main: common
-  value,
-  onBeforeChange,
-  onChange,
-  onActiveKey,
+    // Main: common
+    value,
+    onBeforeChange,
+    onChange,
 
-  // Main: Picker Control properties
-  defaultPickerValue,
+    // Main: Picker Control properties
+    defaultPickerValue,
 
-  // Combo|Main: DatePicker Control properties
-  titles,
-  min,
-  max,
-  type = 'date', // year | quarter | month | date | time | datetime
-  onError,
-  ranges = defaultRanges
-}) {
+    // Combo|Main: DatePicker Control properties
+    titles,
+    min,
+    max,
+    type = 'date', // year | quarter | month | date | time | datetime
+    onError,
+    ranges = defaultRanges
+  },
+  ref
+) {
   // 获取自定义项的key，不是数组则为自定义项:
-  let customKey = ''
-  for (let key in ranges) {
-    if (!Array.isArray(ranges[key])) {
-      customKey = key
-      break
-    }
-  }
+  let customKey = getCustomKey(ranges)
 
   // 根据value获取选中项
   let [activeKey, setActiveKey] = useState('')
+
+  useImperativeHandle(ref, () => {
+    return {
+      // rootDOM: mainRef.current,
+      // getRootDOM: () => mainRef.current,
+      // 获取选中项
+      getActiveKey: () => {
+        return activeKey
+      }
+    }
+  })
 
   useEffect(() => {
     // 选中项为空
@@ -70,16 +78,6 @@ export default function RangeMain({
     }
     // eslint-disable-next-line
   }, [value])
-
-  // 修改选中项
-  useEffect(() => {
-    if (onActiveKey) {
-      onActiveKey(activeKey, {
-        ranges: ranges
-      })
-    }
-    // eslint-disable-next-line
-  }, [activeKey])
 
   // 修改
   async function handleChange(newValue, newActiveKey) {
@@ -167,7 +165,7 @@ export default function RangeMain({
       />
 
       {/* 自定义选择独立一行显示 */}
-      {titles?.custom && (
+      {customKey && (
         <>
           {/* 标题 */}
           {typeof titles.custom === 'string' ? (
@@ -191,22 +189,24 @@ export default function RangeMain({
               }
             }}
           />
-        </>
-      )}
 
-      {/* 自定义区间: 文本框选择 */}
-      {activeKey === customKey && (
-        <CustomCombo
-          DateProps={DateProps}
-          portal={portal}
-          type={type}
-          allowClear={allowClear}
-          value={value}
-          defaultPickerValue={defaultPickerValue}
-          onChange={(newValue) => handleChange(newValue, customKey)}
-          onError={onError}
-        />
+          {/* 自定义区间: 文本框选择 */}
+          {activeKey === customKey && (
+            <CustomCombo
+              DateProps={DateProps}
+              portal={portal}
+              type={type}
+              allowClear={allowClear}
+              value={value}
+              defaultPickerValue={defaultPickerValue}
+              onChange={(newValue) => handleChange(newValue, customKey)}
+              onError={onError}
+            />
+          )}
+        </>
       )}
     </>
   )
 }
+
+export default forwardRef(RangeMain)

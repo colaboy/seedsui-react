@@ -123,6 +123,7 @@ export default () => {
         ]}
         multiple
         onChange={(newValue) => {
+          console.log(selectRef)
           console.log('onChange:', newValue)
           setValue(newValue)
         }}

@@ -40,6 +40,7 @@ const Modal = forwardRef(
       value,
       list, // [{id: '', name: ''}]
       multiple,
+      allowClear,
       onSelect,
       onBeforeChange,
       onChange,
@@ -110,15 +111,14 @@ const Modal = forwardRef(
     const modalRef = useRef(null)
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
+      const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
       return {
         rootDOM: modalRef?.current?.rootDOM,
         getRootDOM: () => modalRef?.current?.rootDOM,
 
-        mainDOM: mainRef?.current?.rootDOM,
-        getMainDOM: () => mainRef?.current?.rootDOM,
-        search: mainRef?.current?.search,
-        instance: mainRef?.current?.instance,
-        getInstance: () => mainRef?.current?.getInstance
+        mainDOM: mainDOM,
+        getMainDOM: getMainDOM,
+        ...otherMainRef
       }
     })
 
@@ -235,6 +235,7 @@ const Modal = forwardRef(
               value,
               list, // [{id: '', name: ''}]
               multiple,
+              allowClear,
               onSelect,
               // onBeforeChange,
               // onChange,

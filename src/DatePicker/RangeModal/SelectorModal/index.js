@@ -1,44 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import Modal from './../../../Modal'
+import Selector from './../../../Selector'
+
 // 测试使用
 // import Modal from 'seedsui-react/lib/Modal'
-
+import getCustomKey from './../../RangeMain/getCustomKey'
 import RangeMain from './../../RangeMain'
 import PickerModal from './../PickerModal'
 
 // 快捷选择
-const SelectorModal = function ({
-  portal,
-  // Combo
-  getComboDOM,
-  // Modal: display properties
-  captionProps,
-  submitProps,
-  cancelProps,
-  maskClosable,
-  visible,
-  onVisibleChange,
+const SelectorModal = function (
+  {
+    portal,
+    // Combo
+    getComboDOM,
+    // Modal: display properties
+    captionProps,
+    submitProps,
+    cancelProps,
+    maskClosable,
+    visible,
+    onVisibleChange,
 
-  // Main: common
-  value,
-  onBeforeChange,
-  onChange,
+    // Main: common
+    value,
+    allowClear,
+    onBeforeChange,
+    onChange,
 
-  // Main: Picker Control properties
-  defaultPickerValue,
+    // Main: Picker Control properties
+    defaultPickerValue,
 
-  // Combo|Main: DatePicker Control properties
-  titles,
-  titleFormatter,
-  min,
-  max,
-  type,
-  onError,
-  ranges,
-  modal,
-  onActiveKey,
-  ...props
-}) {
+    // Combo|Main: DatePicker Control properties
+    titles,
+    titleFormatter,
+    min,
+    max,
+    type,
+    onError,
+    ranges,
+    modal,
+    ...props
+  },
+  ref
+) {
+  // 获取自定义项的key，不是数组则为自定义项:
+  let customKey = getCustomKey(ranges)
+
+  // 区间弹窗选择
+  const rangeMainRef = useRef(null)
+
+  // 选中的key
+  const activeKeyRef = useRef(null)
+
   // Picker选择控件
   let [pickerVisible, setPickerVisible] = useState(false)
 
@@ -64,6 +78,28 @@ const SelectorModal = function ({
       className: 'datepicker-rangemodal-modal datepicker-rangemodal-modal-picker'
     }
   }
+
+  useImperativeHandle(ref, () => {
+    return {
+      // 获取选中项
+      getActiveKey: () => {
+        return activeKeyRef.current
+      }
+    }
+  })
+
+  // Filter custom range of ranges
+  function filterCustomRange(ranges) {
+    let newRanges = {}
+    for (let n in ranges) {
+      let range = ranges[n]
+      if (Array.isArray(range)) {
+        newRanges[n] = ranges[n]
+      }
+    }
+    return newRanges
+  }
+
   return (
     <>
       {/* 快捷选择 */}
@@ -77,17 +113,20 @@ const SelectorModal = function ({
       >
         <div className="datepicker-rangemodal-main">
           <RangeMain
+            ref={rangeMainRef}
             portal={portal}
             titles={titles}
-            ranges={ranges}
+            ranges={filterCustomRange(ranges)}
             value={value}
-            allowClear={false}
+            allowClear={allowClear}
             type={type}
             min={min}
             max={max}
             onError={onError}
             onBeforeChange={onBeforeChange}
-            onChange={(newValue) => {
+            onChange={(newValue, { activeKey }) => {
+              activeKeyRef.current = activeKey
+
               // eslint-disable-next-line
               return new Promise(async (resolve) => {
                 if (onChange) {
@@ -98,15 +137,30 @@ const SelectorModal = function ({
                 onVisibleChange && onVisibleChange(false)
               })
             }}
-            onSelect={(value, { activeKey, ranges }) => {
-              // 点击自定义
-              if (ranges && Array.isArray(ranges[activeKey]) === false) {
-                onVisibleChange && onVisibleChange(false)
-                setPickerVisible(true)
-              }
-            }}
-            onActiveKey={onActiveKey}
           />
+
+          {/* 自定义选择独立一行显示 */}
+          {customKey && (
+            <>
+              {/* 标题 */}
+              {typeof titles.custom === 'string' ? (
+                <p className="datepicker-selector-caption">{titles.custom}</p>
+              ) : null}
+              {/* 按钮 */}
+              <Selector
+                columns={1}
+                allowClear={allowClear}
+                value={null}
+                list={[{ id: customKey, name: customKey }]}
+                onChange={() => {
+                  activeKeyRef.current = customKey
+
+                  onVisibleChange && onVisibleChange(false)
+                  setPickerVisible(true)
+                }}
+              />
+            </>
+          )}
         </div>
       </ModaNode>
 
@@ -128,4 +182,4 @@ const SelectorModal = function ({
   )
 }
 
-export default SelectorModal
+export default forwardRef(SelectorModal)

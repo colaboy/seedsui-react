@@ -7,7 +7,7 @@ import BaseModal from './../../Select/Modal'
 // import BaseModal from 'seedsui-react/lib/Select/Modal'
 import Main from './../Main'
 
-const Modal = forwardRef(({ type = 'date', onBeforeChange, ...props }, ref) => {
+const Modal = forwardRef(({ type = 'date', allowClear, onBeforeChange, ...props }, ref) => {
   return (
     <BaseModal
       ref={ref}

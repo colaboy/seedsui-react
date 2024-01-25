@@ -116,6 +116,11 @@ const Combo = forwardRef(
     const comboRef = useRef(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
+      const {
+        rootDOM: modalDOM,
+        getRootDOM: getModalDOM,
+        ...otherModalRef
+      } = modalRef?.current || {}
       return {
         // 显示文本
         displayValue: displayValue,
@@ -139,11 +144,9 @@ const Combo = forwardRef(
           return rootDOM
         },
 
-        modalDOM: modalRef?.current?.rootDOM,
-        getModalDOM: modalRef?.current?.getRootDOM,
-        search: modalRef?.current?.search,
-        instance: modalRef?.current?.instance,
-        getInstance: modalRef?.current?.getInstance,
+        modalDOM: modalDOM,
+        getModalDOM: getModalDOM,
+        ...otherModalRef,
 
         close: () => {
           setVisible(false)
@@ -264,6 +267,7 @@ const Combo = forwardRef(
             value,
             list, // [{id: '', name: ''}]
             multiple,
+            allowClear,
             onSelect,
             onBeforeChange,
             onChange,

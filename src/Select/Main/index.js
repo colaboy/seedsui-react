@@ -21,6 +21,7 @@ const Main = forwardRef(
       value,
       list,
       multiple,
+      allowClear,
       onSelect,
       onBeforeChange,
       onChange,

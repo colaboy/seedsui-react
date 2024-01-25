@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { DatePicker, Toast } from 'seedsui-react'
+import { DatePicker, locale } from 'seedsui-react'
 
 export default () => {
   const date1Ref = useRef(null)
@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <>
-      <DatePicker.RangeCombo
+      {/* <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={{
           自定义: 30
@@ -49,13 +49,15 @@ export default () => {
         captionProps={{
           caption: '选择日期'
         }}
-      />
+      /> */}
       <DatePicker.RangeCombo
         ref={date2Ref}
-        // ranges={{
-        //   ['最近30天']: [new Date().prevDate(29), new Date()],
-        //   ['自定义时间']: null
-        // }}
+        ranges={{
+          // [locale('今日')]: [new Date(), new Date()],
+          [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
+          [locale('近7日')]: [new Date().prevDate(), new Date().prevDate()],
+          [locale('自定义')]: 10
+        }}
         modal="picker"
         // format="MM-DD"
         min={new Date('2023-01-01')}
