@@ -1,12 +1,12 @@
-import locale from './../../locale'
+import locale from './../../../../locale'
 // 测试使用
 // import locale from 'seedsui-react/lib/locale'
 
-import getDates from './../RangeModal/getDates'
+import getRangeDates from './../../getRangeDates'
 
 // 判断是否开始时间大于结束时间
 function validateStartEnd(value, config) {
-  let { startDate, endDate } = getDates(value)
+  let { startDate, endDate } = getRangeDates(value)
   if (!startDate || !endDate) {
     return value
   }

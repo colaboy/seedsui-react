@@ -1,6 +1,8 @@
-import formatDate from './formatDate'
 import validateMaxMin from './validateMaxMin'
+import validateRange from './validateRange'
+import getRangeDates from './getRangeDates'
 import getDateDisplayValue from './getDateDisplayValue'
+import formatDate from './formatDate'
 import getFormat from './getFormat'
 
-export { formatDate, validateMaxMin, getDateDisplayValue, getFormat }
+export { validateMaxMin, validateRange, getRangeDates, getDateDisplayValue, formatDate, getFormat }

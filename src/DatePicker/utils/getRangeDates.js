@@ -1,5 +1,5 @@
 // 开始结束时间
-function getDates(value) {
+function getRangeDates(value) {
   if (
     !Array.isArray(value) ||
     value.length !== 2 ||
@@ -26,4 +26,4 @@ function getDates(value) {
   }
 }
 
-export default getDates
+export default getRangeDates

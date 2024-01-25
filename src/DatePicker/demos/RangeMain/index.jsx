@@ -25,8 +25,8 @@ export default () => {
               new Date().prevMonth().lastMonthDate()
             ],
             [locale('本季度')]: [new Date().firstQuarterDate(), new Date()],
-            [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()],
-            [locale('自定义')]: 10
+            [locale('自定义')]: 0,
+            [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
           }}
           min={new Date('2023-08-08')}
           max={new Date()}

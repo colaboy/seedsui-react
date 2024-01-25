@@ -1,15 +1,15 @@
-import Toast from './../../Toast'
-import locale from './../../locale'
+import Toast from './../../../../Toast'
+import locale from './../../../../locale'
 // 测试使用
 // import Toast from 'seedsui-react/lib/Toast'
 // import locale from 'seedsui-react/lib/locale'
 
-import getDates from './../RangeModal/getDates'
+import getRangeDates from './../../getRangeDates'
 
 // 计算区间, 区间内
 function validateDaysLimit(value, { daysLimit, onError }) {
   if (!daysLimit) return value
-  let { startDate, endDate } = getDates(value)
+  let { startDate, endDate } = getRangeDates(value)
   if (!startDate || !endDate) {
     return value
   }

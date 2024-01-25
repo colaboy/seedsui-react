@@ -1,6 +1,6 @@
 // require PrototypeDate.js和PrototypeString.js
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import validateValue from './../RangeMain/validateValue'
+import { validateRange } from './../utils'
 
 // 快捷选择
 import SelectorModal from './SelectorModal'
@@ -84,16 +84,12 @@ const RangeModal = (
   ref
 ) => {
   const selectorModalRef = useRef(null)
-  // 自定义日期天数限制
-  let daysLimit = null
   // 判断有没有快捷选择
   let hasSelector = false
   if (ranges) {
     for (let key in ranges) {
       if (Array.isArray(ranges[key])) {
         hasSelector = true
-      } else {
-        daysLimit = ranges[key]
       }
     }
   }
@@ -105,31 +101,31 @@ const RangeModal = (
   })
 
   // 修改
-  async function handleChange(newValue) {
+  async function handleChange(newValue, options) {
     // eslint-disable-next-line
-    return new Promise(async (resolve) => {
-      // 修改提示
-      let goOn = await validateValue(newValue, {
-        type,
-        min,
-        max,
-        daysLimit,
-        onError,
-        onBeforeChange
-      })
-      if (goOn === false) {
-        resolve(false)
-        return
-      }
-      // 修改值
-      if (typeof goOn === 'object') {
-        // eslint-disable-next-line
-        newValue = goOn
-      }
+    if (newValue === undefined) newValue = null
 
-      if (onChange) onChange(newValue)
-      resolve(true)
+    let goOn = await validateRange(newValue, {
+      type,
+      min,
+      max,
+      daysLimit:
+        options?.activeKey && typeof ranges?.[options.activeKey] === 'number'
+          ? ranges[options.activeKey]
+          : null,
+      onError,
+      onBeforeChange,
+      activeKey: options?.activeKey,
+      ranges
     })
+    if (goOn === false) return
+
+    // 修改值
+    if (Array.isArray(goOn) && goOn.length === 2) {
+      // eslint-disable-next-line
+      newValue = goOn
+    }
+    onChange && onChange(newValue, options)
   }
 
   // 快捷选择
@@ -188,7 +184,19 @@ const RangeModal = (
       onVisibleChange={onVisibleChange}
       // Main: common
       value={value}
-      onBeforeChange={onBeforeChange}
+      onBeforeChange={async (newValue) => {
+        let goOn = await validateRange(newValue, {
+          type,
+          min,
+          max,
+          daysLimit: null,
+          onError,
+          onBeforeChange,
+          activeKey: null,
+          ranges: null
+        })
+        return goOn
+      }}
       onChange={handleChange}
       // Main: Picker Control properties
       defaultPickerValue={defaultPickerValue}

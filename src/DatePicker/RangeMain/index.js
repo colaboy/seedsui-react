@@ -2,7 +2,7 @@ import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'rea
 import defaultRanges from './defaultRanges'
 import getCustomKey from './getCustomKey'
 import getActiveOption from './getActiveOption'
-import validateValue from './validateValue'
+import { validateRange } from './../utils'
 
 import Selector from './../../Selector'
 // 测试使用
@@ -83,32 +83,20 @@ function RangeMain(
     // eslint-disable-next-line
     if (newValue === undefined) newValue = null
 
-    // 外部传入的校验
-    if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(newValue, {
-        ranges: ranges,
-        activeKey: activeKey,
-        setActiveKey: setActiveKey
-      })
-      if (goOn === false) {
-        return
-      }
-    }
-
-    // 值合法性校验
-    let goOn = await validateValue(newValue, {
+    let goOn = await validateRange(newValue, {
       type,
       min,
       max,
-      // 只有自定义时间段才有天数校验
       daysLimit: typeof ranges[newActiveKey] === 'number' ? ranges[newActiveKey] : null,
-      onError
+      onError,
+      onBeforeChange,
+      ranges,
+      activeKey: newActiveKey
     })
-    if (goOn === false) {
-      return
-    }
+    if (goOn === false) return
+
     // 修改值
-    if (typeof goOn === 'object') {
+    if (Array.isArray(goOn) && goOn.length === 2) {
       // eslint-disable-next-line
       newValue = goOn
     }
@@ -196,6 +184,19 @@ function RangeMain(
               allowClear={allowClear}
               value={value}
               defaultPickerValue={defaultPickerValue}
+              onBeforeChange={async (newValue) => {
+                let goOn = await validateRange(newValue, {
+                  type,
+                  min,
+                  max,
+                  daysLimit: ranges[customKey],
+                  onError,
+                  onBeforeChange,
+                  activeKey: customKey,
+                  ranges
+                })
+                return goOn
+              }}
               onChange={(newValue) => handleChange(newValue, customKey)}
               onError={onError}
             />

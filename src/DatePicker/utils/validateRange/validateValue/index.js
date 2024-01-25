@@ -1,6 +1,6 @@
 import validateDaysLimit from './validateDaysLimit'
 import validateStartEnd from './validateStartEnd'
-import { validateMaxMin } from '../utils'
+import validateMaxMin from './../../validateMaxMin'
 
 // 校验选择的区间是否合法
 function validateValue(newValue, { type, min, max, daysLimit, onError }) {
@@ -56,7 +56,7 @@ function validateValue(newValue, { type, min, max, daysLimit, onError }) {
       }
     }
 
-    resolve(newValue)
+    resolve(true)
   })
 }
 

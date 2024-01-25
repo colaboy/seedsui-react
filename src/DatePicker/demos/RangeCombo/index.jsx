@@ -52,7 +52,7 @@ export default () => {
       /> */}
       <DatePicker.RangeCombo
         ref={date2Ref}
-        allowClear="exclusion-ricon"
+        // allowClear="exclusion-ricon"
         ranges={{
           // [locale('今日')]: [new Date(), new Date()],
           [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
@@ -63,7 +63,7 @@ export default () => {
         // format="MM-DD"
         min={new Date('2023-01-01')}
         // max={new Date('2023-12-12')}
-        // onError={(err) => Toast.show({ content: err.errMsg })}
+        onError={(err) => Toast.show({ content: err.errMsg })}
         titles={{
           custom: '自定义选择',
           selector: '快捷选择'

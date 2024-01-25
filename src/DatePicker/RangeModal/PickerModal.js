@@ -4,14 +4,15 @@ import locale from '../../locale'
 // import locale from 'seedsui-react/lib/locale'
 
 import MultipleModal from './../MultipleModal'
-import getDates from './getDates'
+import { getRangeDates } from './../utils'
 
 // 日期区间弹窗
 const DateRangeModal = function ({ value, defaultPickerValue, type, onChange, ...props }) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
-    const { startDate, endDate } = getDates(value)
-    const { startDate: defaultStartDate, endDate: defaultEndDate } = getDates(defaultPickerValue)
+    const { startDate, endDate } = getRangeDates(value)
+    const { startDate: defaultStartDate, endDate: defaultEndDate } =
+      getRangeDates(defaultPickerValue)
     setMultipleDate([
       {
         type: type,
