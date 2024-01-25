@@ -153,8 +153,6 @@ const SelectorModal = function (
                 value={null}
                 list={[{ id: customKey, name: customKey }]}
                 onChange={() => {
-                  activeKeyRef.current = customKey
-
                   onVisibleChange && onVisibleChange(false)
                   setPickerVisible(true)
                 }}
@@ -173,7 +171,13 @@ const SelectorModal = function (
         value={value}
         defaultPickerValue={defaultPickerValue}
         type={type}
-        onChange={onChange}
+        onChange={(...params) => {
+          // 选中自定义字段
+          activeKeyRef.current = customKey
+          // 重置快捷选择框内的选中项，使其显示时重新计算选中项
+          rangeMainRef?.current?.setActiveKey?.(null)
+          onChange && onChange(...params)
+        }}
         visible={pickerVisible}
         onVisibleChange={setPickerVisible}
         {...props}

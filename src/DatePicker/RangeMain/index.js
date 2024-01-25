@@ -44,11 +44,12 @@ function RangeMain(
 
   useImperativeHandle(ref, () => {
     return {
-      // rootDOM: mainRef.current,
-      // getRootDOM: () => mainRef.current,
       // 获取选中项
       getActiveKey: () => {
         return activeKey
+      },
+      setActiveKey: (newActiveKey) => {
+        setActiveKey(newActiveKey)
       }
     }
   })

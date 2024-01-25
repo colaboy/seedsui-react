@@ -85,7 +85,7 @@ export default () => {
         }}
         // 自定义渲染
         comboRender={({ displayValue }) => {
-          return icon + (displayValue || '自定义区间')
+          return icon + displayValue
         }}
         // maskClosable={false}
         value={rangeValue}
