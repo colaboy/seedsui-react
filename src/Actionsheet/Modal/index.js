@@ -58,7 +58,7 @@ const Modal = forwardRef(
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange([item])
-        if (goOn !== undefined && !goOn) return
+        if (goOn === false) return
       }
       // 触发onChange事件
       if (onChange) onChange([item])

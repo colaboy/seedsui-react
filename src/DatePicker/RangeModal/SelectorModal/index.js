@@ -1,4 +1,6 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import { validateRange } from './../../utils'
+
 import Modal from './../../../Modal'
 import CustomButton from './CustomButton'
 
@@ -6,7 +8,6 @@ import CustomButton from './CustomButton'
 // import Modal from 'seedsui-react/lib/Modal'
 import getCustomKey from './../../RangeMain/getCustomKey'
 import RangeMain from './../../RangeMain'
-import PickerModal from './../PickerModal'
 
 // 快捷选择
 const SelectorModal = function (
@@ -151,12 +152,25 @@ const SelectorModal = function (
             // Main: common
             value={value}
             allowClear={allowClear}
-            onChange={(...params) => {
+            onBeforeChange={async (newValue) => {
+              let goOn = await validateRange(newValue, {
+                type,
+                min,
+                max,
+                daysLimit: ranges[customKey],
+                onError,
+                onBeforeChange,
+                activeKey: customKey,
+                ranges: ranges
+              })
+              return goOn
+            }}
+            onChange={(newValue) => {
               // 选中自定义字段
               activeKeyRef.current = customKey
               // 重置快捷选择框内的选中项，使其显示时重新计算选中项
               rangeMainRef?.current?.setActiveKey?.(null)
-              onChange && onChange(...params)
+              onChange && onChange(newValue)
             }}
             // Main: Picker Control properties
             defaultPickerValue={defaultPickerValue}

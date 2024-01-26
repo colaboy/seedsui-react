@@ -63,7 +63,7 @@ export default () => {
         // format="MM-DD"
         min={new Date('2023-01-01')}
         // max={new Date('2023-12-12')}
-        onError={(err) => Toast.show({ content: err.errMsg })}
+        onError={(err) => console.error(err)}
         titles={{
           custom: '自定义选择',
           selector: '快捷选择'
@@ -92,13 +92,13 @@ export default () => {
         value={rangeValue}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         onChange={(newRangeValue) => {
-          console.log(newRangeValue)
+          console.log('onChange:', newRangeValue)
           setRangeValue(newRangeValue)
         }}
-        onBeforeChange={(newValue) => {
-          console.log('onBeforeChange:', newValue)
-          return true
-        }}
+        // onBeforeChange={(newValue) => {
+        //   console.log('onBeforeChange:', newValue)
+        //   return true
+        // }}
         captionProps={{
           caption: '选择日期'
         }}

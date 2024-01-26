@@ -7,7 +7,14 @@ import MultipleModal from './../MultipleModal'
 import { getRangeDates } from './../utils'
 
 // 日期区间弹窗
-const DateRangeModal = function ({ value, defaultPickerValue, type, onChange, ...props }) {
+const DateRangeModal = function ({
+  value,
+  defaultPickerValue,
+  type,
+  onBeforeChange,
+  onChange,
+  ...props
+}) {
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getRangeDates(value)
@@ -31,8 +38,17 @@ const DateRangeModal = function ({ value, defaultPickerValue, type, onChange, ..
     ])
   }, [value]) // eslint-disable-line
 
+  async function handleBeforeChange(newMultipleDate) {
+    let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
+    if (typeof onBeforeChange === 'function') {
+      return onBeforeChange(newValue)
+    }
+    return true
+  }
+
   function handleChange(newMultipleDate) {
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
+
     if (onChange) {
       return onChange(newValue)
     }
@@ -43,7 +59,14 @@ const DateRangeModal = function ({ value, defaultPickerValue, type, onChange, ..
     return null
   }
 
-  return <MultipleModal value={multipleDate} onChange={handleChange} {...props} />
+  return (
+    <MultipleModal
+      value={multipleDate}
+      onBeforeChange={handleBeforeChange}
+      onChange={handleChange}
+      {...props}
+    />
+  )
 }
 
 export default DateRangeModal

@@ -19,6 +19,7 @@ const CustomButton = function ({
   // Main: common
   value,
   allowClear,
+  onBeforeChange,
   onChange,
 
   // Main: Picker Control properties
@@ -77,6 +78,7 @@ const CustomButton = function ({
         value={value}
         defaultPickerValue={defaultPickerValue}
         type={type}
+        onBeforeChange={onBeforeChange}
         onChange={onChange}
         visible={pickerVisible}
         onVisibleChange={setPickerVisible}

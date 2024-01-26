@@ -110,8 +110,7 @@ function RangeMain(
     onChange &&
       onChange(newValue, {
         ranges: ranges,
-        activeKey: activeKey,
-        setActiveKey: setActiveKey
+        activeKey: activeKey
       })
   }
 
@@ -197,7 +196,13 @@ function RangeMain(
                 })
                 return goOn
               }}
-              onChange={(newValue) => handleChange(newValue, customKey)}
+              onChange={(newValue) => {
+                onChange &&
+                  onChange(newValue, {
+                    ranges: ranges,
+                    activeKey: customKey
+                  })
+              }}
               onError={onError}
             />
           )}

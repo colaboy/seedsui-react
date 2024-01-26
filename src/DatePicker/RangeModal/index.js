@@ -149,7 +149,7 @@ const RangeModal = (
           value={value}
           allowClear={allowClear}
           onBeforeChange={onBeforeChange}
-          onChange={handleChange}
+          onChange={onChange}
           // Main: Picker Control properties
           defaultPickerValue={defaultPickerValue}
           // Combo|Main: DatePicker Control properties
@@ -197,7 +197,7 @@ const RangeModal = (
         })
         return goOn
       }}
-      onChange={handleChange}
+      onChange={onChange}
       // Main: Picker Control properties
       defaultPickerValue={defaultPickerValue}
       // Combo|Main: DatePicker Control properties
