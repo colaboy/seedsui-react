@@ -24,8 +24,7 @@ function getActiveOption(value, ranges, options) {
   if (
     Array.isArray(value) &&
     value.length === 2 &&
-    Object.isDate(value[0]) &&
-    Object.isDate(value[1])
+    (Object.isDate(value[0]) || Object.isDate(value[1]))
   ) {
     let activeKeys = []
     let customKey = ''
@@ -39,8 +38,8 @@ function getActiveOption(value, ranges, options) {
       if (
         Array.isArray(ranges[key]) &&
         ranges[key].length === 2 &&
-        ranges[key][0].format(fmt) === value[0].format(fmt) &&
-        ranges[key][1].format(fmt) === value[1].format(fmt)
+        ranges[key][0].format(fmt) === value[0]?.format?.(fmt) &&
+        ranges[key][1].format(fmt) === value[1]?.format?.(fmt)
       ) {
         activeKeys.push(key)
       }

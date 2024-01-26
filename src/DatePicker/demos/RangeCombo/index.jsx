@@ -4,16 +4,16 @@ import { DatePicker, locale } from 'seedsui-react'
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [value, setValue] = useState([new Date(), new Date()])
+  const [value, setValue] = useState([new Date(), null])
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
-    // date2Ref.current.open()
+    date2Ref.current.open()
   }, [])
 
   return (
     <>
-      {/* <DatePicker.RangeCombo
+      <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={{
           自定义: 30
@@ -23,7 +23,9 @@ export default () => {
         type="datetime"
         min={new Date('2023-01-01')}
         max={new Date('2023-12-12')}
-        onError={(err) => Toast.show({ content: err.errMsg })}
+        onError={(error) => {
+          console.log(error)
+        }}
         // maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
@@ -43,13 +45,13 @@ export default () => {
             }
           }
         }}
-        onChange={setRangeValue}
-        value={rangeValue}
+        onChange={setValue}
+        value={value}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         captionProps={{
           caption: '选择日期'
         }}
-      /> */}
+      />
       <DatePicker.RangeCombo
         ref={date2Ref}
         modal="picker"
@@ -76,10 +78,10 @@ export default () => {
           caption: '选择日期'
         }}
         // Main props
-        titles={{
-          custom: '自定义选择',
-          selector: '快捷选择'
-        }}
+        // titles={{
+        //   custom: '自定义选择',
+        //   selector: '快捷选择'
+        // }}
         ranges={{
           [locale('今日')]: [new Date(), new Date()],
           [locale('今天')]: [new Date(), new Date()],

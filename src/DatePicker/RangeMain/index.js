@@ -58,7 +58,9 @@ function RangeMain(
   useEffect(() => {
     // 选中项为空
     if (_.isEmpty(value)) {
-      setActiveKey('')
+      if (activeKey !== customKey) {
+        setActiveKey('')
+      }
       return
     }
 
@@ -140,12 +142,23 @@ function RangeMain(
         list={getSelectorOptions()}
         onChange={(newValue) => {
           let newActiveKey = newValue?.[0]?.id || ''
+          // 清空
+          if (!newActiveKey) {
+            handleChange(null, null)
+            return
+          }
+          // 自定义
+          if (newActiveKey === customKey) {
+            setActiveKey(customKey)
+            return
+          }
+          // 其它快捷选择
           handleChange(ranges[newActiveKey], newActiveKey)
         }}
       />
 
       {/* 自定义选择独立一行显示 */}
-      {customKey && (
+      {customKey && titles?.custom && (
         <>
           {/* 标题 */}
           {typeof titles?.custom === 'string' ? (
@@ -169,40 +182,40 @@ function RangeMain(
               }
             }}
           />
-
-          {/* 自定义区间: 文本框选择 */}
-          {activeKey === customKey && (
-            <CustomCombo
-              DateProps={DateProps}
-              portal={portal}
-              type={type}
-              allowClear={allowClear}
-              value={value}
-              defaultPickerValue={defaultPickerValue}
-              onBeforeChange={async (newValue) => {
-                let goOn = await validateRange(newValue, {
-                  type,
-                  min,
-                  max,
-                  daysLimit: ranges[customKey],
-                  onError,
-                  onBeforeChange,
-                  activeKey: customKey,
-                  ranges
-                })
-                return goOn
-              }}
-              onChange={(newValue) => {
-                onChange &&
-                  onChange(newValue, {
-                    ranges: ranges,
-                    activeKey: customKey
-                  })
-              }}
-              onError={onError}
-            />
-          )}
         </>
+      )}
+
+      {/* 自定义区间: 文本框选择 */}
+      {customKey && activeKey === customKey && (
+        <CustomCombo
+          DateProps={DateProps}
+          portal={portal}
+          type={type}
+          allowClear={allowClear}
+          value={value}
+          defaultPickerValue={defaultPickerValue}
+          onBeforeChange={async (newValue) => {
+            let goOn = await validateRange(newValue, {
+              type,
+              min,
+              max,
+              daysLimit: ranges[customKey],
+              onError,
+              onBeforeChange,
+              activeKey: customKey,
+              ranges
+            })
+            return goOn
+          }}
+          onChange={(newValue) => {
+            onChange &&
+              onChange(newValue, {
+                ranges: ranges,
+                activeKey: customKey
+              })
+          }}
+          onError={onError}
+        />
       )}
     </>
   )
