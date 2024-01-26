@@ -148,7 +148,7 @@ function RangeMain(
       {customKey && (
         <>
           {/* 标题 */}
-          {typeof titles.custom === 'string' ? (
+          {typeof titles?.custom === 'string' ? (
             <p className="datepicker-selector-caption">{titles.custom}</p>
           ) : null}
           {/* 按钮 */}

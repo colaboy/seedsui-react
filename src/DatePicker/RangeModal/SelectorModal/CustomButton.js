@@ -42,7 +42,7 @@ const CustomButton = function ({
     <>
       {/* 自定义选择独立一行显示 */}
       {/* 标题 */}
-      {typeof titles.custom === 'string' ? (
+      {typeof titles?.custom === 'string' ? (
         <p className="datepicker-selector-caption">{titles.custom}</p>
       ) : null}
       {/* 按钮 */}
