@@ -8,7 +8,7 @@ import { validateRange } from './../utils'
 import Selector from './../../Selector'
 // 测试使用
 // import Selector from 'seedsui-react/lib/Selector'
-import CustomDates from './CustomDates'
+import CustomModal from './CustomModal'
 
 // 日期快捷选择
 function RangeMain(
@@ -33,7 +33,10 @@ function RangeMain(
     max,
     type = 'date', // year | quarter | month | date | time | datetime
     onError,
-    ranges = defaultRanges
+    ranges = defaultRanges,
+
+    // Custom option config
+    customModal = 'dates' // dates | picker
   },
   ref
 ) {
@@ -187,7 +190,8 @@ function RangeMain(
 
       {/* 自定义区间: 文本框选择 */}
       {customKey && activeKey === customKey && (
-        <CustomDates
+        <CustomModal
+          customModal={customModal}
           DateProps={DateProps}
           portal={portal}
           type={type}

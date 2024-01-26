@@ -1,11 +1,11 @@
 import React from 'react'
-import locale from './../../locale'
+import locale from './../../../locale'
 // 测试使用
 // import locale from 'seedsui-react/lib/locale'
 
-import Combo from './../Combo'
+import Combo from './../../Combo'
 
-// 日期快捷选择
+// 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
   portal,
   DateProps,
