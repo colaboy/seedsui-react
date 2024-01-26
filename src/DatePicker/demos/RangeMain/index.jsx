@@ -13,7 +13,7 @@ export default () => {
             selector: '快捷选择'
           }}
           ranges={{
-            // [locale('今日')]: [new Date(), new Date()],
+            [locale('今日')]: [new Date(), new Date()],
             [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
             [locale('近7日')]: [new Date().prevDate(6), new Date()],
             [locale('近30日')]: [new Date().prevDate(29), new Date()],

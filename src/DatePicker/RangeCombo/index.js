@@ -28,7 +28,9 @@ const RangeCombo = forwardRef(({ format, titles, ranges = defaultRanges, ...prop
         let activeKey = ref?.current?.getActiveKey?.()
 
         // 根据日期区间计算显示标签，如果有重复选项，将优先取记录的选中项
-        return getRangeDisplayValue({ format, currentActiveKey: activeKey, ...params })
+        let displayValue = getRangeDisplayValue({ format, currentActiveKey: activeKey, ...params })
+
+        return displayValue
       }}
       {...props}
     />

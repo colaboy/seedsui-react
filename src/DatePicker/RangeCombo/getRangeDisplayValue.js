@@ -15,10 +15,10 @@ function getRangeDisplayValue({ format, ranges, type, value, separator, currentA
 
   let displayValue = []
 
-  // 显示别名
-  let activeKey = getActiveOption({ value, ranges, type, currentActiveKey })
-  if (Array.isArray(activeKey?.value)) {
-    return activeKey.name
+  // 显示别名, 自定义没有别名
+  let activeOption = getActiveOption(value, ranges, { format, currentActiveKey })
+  if (Array.isArray(activeOption?.value)) {
+    return activeOption.name
   }
 
   // 显示日期

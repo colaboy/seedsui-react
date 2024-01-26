@@ -127,16 +127,8 @@ const SelectorModal = function (
             onBeforeChange={onBeforeChange}
             onChange={(newValue, { activeKey }) => {
               activeKeyRef.current = activeKey
-
-              // eslint-disable-next-line
-              return new Promise(async (resolve) => {
-                if (onChange) {
-                  let goOn = await onChange(newValue)
-                  resolve(goOn)
-                  if (goOn === false) return
-                }
-                onVisibleChange && onVisibleChange(false)
-              })
+              onChange && onChange(newValue)
+              onVisibleChange && onVisibleChange(false)
             }}
           />
 

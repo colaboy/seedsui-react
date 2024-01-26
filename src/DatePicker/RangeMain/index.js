@@ -1,4 +1,5 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
+import _ from 'lodash'
 import defaultRanges from './defaultRanges'
 import getCustomKey from './getCustomKey'
 import getActiveOption from './getActiveOption'
@@ -56,13 +57,8 @@ function RangeMain(
 
   useEffect(() => {
     // 选中项为空
-    if (Object.isEmptyObject(value)) {
+    if (_.isEmpty(value)) {
       setActiveKey('')
-      return
-    }
-
-    // 如果选中是自定义，则优先使用自定义字段
-    if (activeKey === customKey) {
       return
     }
 
