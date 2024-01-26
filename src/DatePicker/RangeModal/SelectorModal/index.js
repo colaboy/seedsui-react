@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import { validateRange } from './../../utils'
 
 import Modal from './../../../Modal'
@@ -53,9 +53,6 @@ const SelectorModal = function (
 
   // 选中的key
   const activeKeyRef = useRef(null)
-
-  // Picker选择控件
-  let [pickerVisible, setPickerVisible] = useState(false)
 
   // 弹窗显示
   let ModaNode = Modal

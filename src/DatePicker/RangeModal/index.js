@@ -100,34 +100,6 @@ const RangeModal = (
     }
   })
 
-  // 修改
-  async function handleChange(newValue, options) {
-    // eslint-disable-next-line
-    if (newValue === undefined) newValue = null
-
-    let goOn = await validateRange(newValue, {
-      type,
-      min,
-      max,
-      daysLimit:
-        options?.activeKey && typeof ranges?.[options.activeKey] === 'number'
-          ? ranges[options.activeKey]
-          : null,
-      onError,
-      onBeforeChange,
-      activeKey: options?.activeKey,
-      ranges
-    })
-    if (goOn === false) return
-
-    // 修改值
-    if (Array.isArray(goOn) && goOn.length === 2) {
-      // eslint-disable-next-line
-      newValue = goOn
-    }
-    onChange && onChange(newValue, options)
-  }
-
   // 快捷选择
   if (hasSelector) {
     if (modal === 'dropdown' || modal === 'picker') {
