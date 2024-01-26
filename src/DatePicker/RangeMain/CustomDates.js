@@ -6,7 +6,7 @@ import locale from './../../locale'
 import Combo from './../Combo'
 
 // 日期快捷选择
-export default function CustomCombo({
+export default function CustomDates({
   portal,
   DateProps,
   allowClear,

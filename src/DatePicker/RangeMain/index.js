@@ -8,7 +8,7 @@ import { validateRange } from './../utils'
 import Selector from './../../Selector'
 // 测试使用
 // import Selector from 'seedsui-react/lib/Selector'
-import CustomCombo from './CustomCombo'
+import CustomDates from './CustomDates'
 
 // 日期快捷选择
 function RangeMain(
@@ -187,7 +187,7 @@ function RangeMain(
 
       {/* 自定义区间: 文本框选择 */}
       {customKey && activeKey === customKey && (
-        <CustomCombo
+        <CustomDates
           DateProps={DateProps}
           portal={portal}
           type={type}
