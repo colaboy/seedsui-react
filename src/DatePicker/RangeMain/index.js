@@ -46,6 +46,9 @@ function RangeMain(
   // 根据value获取选中项
   let [activeKey, setActiveKey] = useState('')
 
+  // 自定义选项弹窗
+  let [customModalVisible, setCustomModalVisible] = useState(false)
+
   useImperativeHandle(ref, () => {
     return {
       // 获取选中项
@@ -153,6 +156,9 @@ function RangeMain(
           // 自定义
           if (newActiveKey === customKey) {
             setActiveKey(customKey)
+
+            // 显示自定义弹窗
+            customModal === 'picker' && setCustomModalVisible(true)
             return
           }
           // 其它快捷选择
@@ -182,6 +188,9 @@ function RangeMain(
               // 取消选择清空值
               if (!newActiveKey) {
                 handleChange(ranges[newActiveKey], newActiveKey)
+              } else {
+                // 显示自定义弹窗
+                customModal === 'picker' && setCustomModalVisible(true)
               }
             }}
           />
@@ -191,6 +200,9 @@ function RangeMain(
       {/* 自定义区间: 文本框选择 */}
       {customKey && activeKey === customKey && (
         <CustomModal
+          // customModal为picker时，需要控制显隐
+          visible={customModalVisible}
+          onVisibleChange={setCustomModalVisible}
           customModal={customModal}
           DateProps={DateProps}
           portal={portal}

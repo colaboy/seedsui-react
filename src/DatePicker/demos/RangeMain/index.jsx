@@ -12,6 +12,7 @@ export default () => {
             custom: '自定义选择',
             selector: '快捷选择'
           }}
+          customModal="dates" // dates | picker
           ranges={{
             [locale('今日')]: [new Date(), new Date()],
             [locale('昨日')]: [new Date().prevDate(), new Date().prevDate()],
@@ -30,7 +31,7 @@ export default () => {
           }}
           min={new Date('2023-08-08')}
           max={new Date()}
-          allowClear="exclusion-ricon"
+          // allowClear="exclusion-ricon"
           value={value}
           onError={(error) => {
             console.log(error)
