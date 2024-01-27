@@ -1,6 +1,6 @@
 import React from 'react'
 
-import RangeModal from './../../RangeModal'
+import PickerModal from './../../RangeModal/PickerModal'
 
 // 自定义日期选择弹窗: 两框选择
 export default function CustomPicker({
@@ -11,20 +11,21 @@ export default function CustomPicker({
   onBeforeChange,
   onChange,
   onError,
-  DateProps
+  customDatePickerProps
 }) {
   return (
     <div className={`datepicker-rangemain-custom`}>
-      <RangeModal
-        visible={visible}
-        onVisibleChange={onVisibleChange}
-        ranges={null}
+      <PickerModal
         portal={portal}
         value={value}
         onError={onError}
         onBeforeChange={onBeforeChange}
         onChange={onChange}
-        {...DateProps}
+        {...customDatePickerProps}
+        visible={visible}
+        onVisibleChange={(newVisible) => {
+          onVisibleChange && onVisibleChange(newVisible, { modal: 'picker' })
+        }}
       />
     </div>
   )

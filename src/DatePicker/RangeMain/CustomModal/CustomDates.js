@@ -13,7 +13,7 @@ export default function CustomDates({
   onBeforeChange,
   onChange,
   onError,
-  DateProps
+  customDatePickerProps
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
@@ -39,7 +39,7 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...DateProps}
+        {...customDatePickerProps}
       />
       —
       <Combo
@@ -60,7 +60,7 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...DateProps}
+        {...customDatePickerProps}
       />
     </div>
   )

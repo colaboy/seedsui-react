@@ -77,7 +77,6 @@ const SelectorModal = function (
     }
   })
 
-  console.log('props:', props)
   return (
     <>
       {/* 快捷选择 */}
@@ -107,7 +106,13 @@ const SelectorModal = function (
               onChange && onChange(newValue)
               onVisibleChange && onVisibleChange(false)
             }}
-            DateProps={{
+            customDatePickerProps={{
+              onVisibleChange: (pickerVisible, options) => {
+                // 主页面自定义弹窗显示
+                if (options?.modal === 'picker' && pickerVisible) {
+                  onVisibleChange && onVisibleChange(false)
+                }
+              },
               ...props
             }}
           />
