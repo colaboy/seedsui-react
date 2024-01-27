@@ -8,12 +8,12 @@ import Combo from './../../Combo'
 // 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
   portal,
-  DateProps,
   allowClear,
   value,
   onBeforeChange,
   onChange,
-  onError
+  onError,
+  DateProps
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null

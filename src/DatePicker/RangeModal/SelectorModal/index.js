@@ -1,12 +1,9 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import { validateRange } from './../../utils'
 
 import Modal from './../../../Modal'
-import CustomButton from './CustomButton'
 
 // 测试使用
 // import Modal from 'seedsui-react/lib/Modal'
-import getCustomKey from './../../RangeMain/getCustomKey'
 import RangeMain from './../../RangeMain'
 
 // 快捷选择
@@ -45,12 +42,6 @@ const SelectorModal = function (
   },
   ref
 ) {
-  // 获取自定义项的key，不是数组则为自定义项:
-  let customKey = getCustomKey(ranges)
-
-  // 区间弹窗选择
-  const rangeMainRef = useRef(null)
-
   // 选中的key
   const activeKeyRef = useRef(null)
 
@@ -86,18 +77,7 @@ const SelectorModal = function (
     }
   })
 
-  // Filter custom range of ranges
-  function filterCustomRange(ranges) {
-    let newRanges = {}
-    for (let n in ranges) {
-      let range = ranges[n]
-      if (Array.isArray(range)) {
-        newRanges[n] = ranges[n]
-      }
-    }
-    return newRanges
-  }
-
+  console.log('props:', props)
   return (
     <>
       {/* 快捷选择 */}
@@ -111,10 +91,10 @@ const SelectorModal = function (
       >
         <div className="datepicker-rangemodal-main">
           <RangeMain
-            ref={rangeMainRef}
+            customModal="picker"
             portal={portal}
             titles={titles}
-            ranges={filterCustomRange(ranges)}
+            ranges={ranges}
             value={value}
             allowClear={allowClear}
             type={type}
@@ -127,47 +107,9 @@ const SelectorModal = function (
               onChange && onChange(newValue)
               onVisibleChange && onVisibleChange(false)
             }}
-          />
-
-          {/* 自定义选择独立一行显示 */}
-          <CustomButton
-            portal={portal}
-            // Combo
-            // Modal: display properties
-            captionProps={captionProps}
-            submitProps={submitProps}
-            cancelProps={cancelProps}
-            onVisibleChange={onVisibleChange}
-            // Main: common
-            value={value}
-            allowClear={allowClear}
-            onBeforeChange={async (newValue) => {
-              let goOn = await validateRange(newValue, {
-                type,
-                min,
-                max,
-                daysLimit: ranges[customKey],
-                onError,
-                onBeforeChange,
-                activeKey: customKey,
-                ranges: ranges
-              })
-              return goOn
+            DateProps={{
+              ...props
             }}
-            onChange={(newValue) => {
-              // 选中自定义字段
-              activeKeyRef.current = customKey
-              // 重置快捷选择框内的选中项，使其显示时重新计算选中项
-              rangeMainRef?.current?.setActiveKey?.(null)
-              onChange && onChange(newValue)
-            }}
-            // Main: Picker Control properties
-            defaultPickerValue={defaultPickerValue}
-            // Combo|Main: DatePicker Control properties
-            titles={titles}
-            type={type}
-            ranges={ranges}
-            {...props}
           />
         </div>
       </ModaNode>

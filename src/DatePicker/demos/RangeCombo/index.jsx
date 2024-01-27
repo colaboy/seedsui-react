@@ -78,10 +78,10 @@ export default () => {
           caption: '选择日期'
         }}
         // Main props
-        // titles={{
-        //   custom: '自定义选择',
-        //   selector: '快捷选择'
-        // }}
+        titles={{
+          custom: '自定义选择',
+          selector: '快捷选择'
+        }}
         ranges={{
           [locale('今日')]: [new Date(), new Date()],
           [locale('今天')]: [new Date(), new Date()],

@@ -3,14 +3,15 @@ import React from 'react'
 import RangeModal from './../../RangeModal'
 
 // 自定义日期选择弹窗: 两框选择
-export default function RangePicker({
+export default function CustomPicker({
   portal,
   visible,
   onVisibleChange,
   value,
   onBeforeChange,
   onChange,
-  onError
+  onError,
+  DateProps
 }) {
   return (
     <div className={`datepicker-rangemain-custom`}>
@@ -23,6 +24,7 @@ export default function RangePicker({
         onError={onError}
         onBeforeChange={onBeforeChange}
         onChange={onChange}
+        {...DateProps}
       />
     </div>
   )
