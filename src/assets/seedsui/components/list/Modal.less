@@ -119,6 +119,10 @@
   display: inline-flex;
   align-items: center;
   height: 32px;
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
   &.active {
     .modal-dropdown-title-arrow {
       transform: rotate(-180deg) translateY(-1px);
