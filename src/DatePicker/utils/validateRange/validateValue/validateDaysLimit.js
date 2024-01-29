@@ -15,11 +15,9 @@ function validateDaysLimit(value, { daysLimit, onError }) {
   }
   const diff = startDate.diff(endDate)
   if (diff.days > daysLimit) {
-    let errMsg = locale(
-      `自定义时间区间不能超过${daysLimit}天`,
-      'hint_error_datepopover_custom_date_range_timeout',
-      [daysLimit]
-    )
+    let errMsg = locale(`时间区间不能超过${daysLimit}天`, 'hint_error_dateragne_limit_date', [
+      daysLimit
+    ])
     if (onError) {
       onError({
         errMsg: errMsg,

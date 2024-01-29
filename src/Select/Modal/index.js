@@ -123,6 +123,8 @@ const Modal = forwardRef(
     })
 
     useEffect(() => {
+      if (visible === null) return
+
       if (onVisibleChange) onVisibleChange(visible)
 
       // 取消弹窗时, currentValue已变, 而value未变, 如果value和currentValue不一致, 则使用value

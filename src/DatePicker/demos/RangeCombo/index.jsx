@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <>
-      <DatePicker.RangeCombo
+      {/* <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={{
           自定义: 30
@@ -51,7 +51,7 @@ export default () => {
         captionProps={{
           caption: '选择日期'
         }}
-      />
+      /> */}
       <DatePicker.RangeCombo
         ref={date2Ref}
         modal="picker"
@@ -98,6 +98,9 @@ export default () => {
           [locale('本季度')]: [new Date().firstQuarterDate(), new Date()],
           [locale('自定义')]: 10,
           [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
+        }}
+        rangeLimit={{
+          date: 15
         }}
         min={new Date('2023-08-08')}
         max={new Date()}

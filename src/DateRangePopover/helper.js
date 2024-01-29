@@ -107,11 +107,7 @@ export default {
         Toast.show({
           content:
             rangeErrMsg ||
-            locale(
-              `自定义时间区间不能超过${range}天`,
-              'hint_error_datepopover_custom_date_range_timeout',
-              [range]
-            )
+            locale(`时间区间不能超过${range}天`, 'hint_error_dateragne_limit_date', [range])
         })
         return false
       }
