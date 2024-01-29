@@ -7,21 +7,21 @@ import locale from './../../../../locale'
 import getRangeDates from './../../getRangeDates'
 
 // 计算区间, 区间内
-function validateDaysLimit(value, { daysLimit, onError }) {
-  if (!daysLimit) return value
+function validateRangeLimit(value, { dateRangeLimit, onError }) {
+  if (!dateRangeLimit) return value
   let { startDate, endDate } = getRangeDates(value)
   if (!startDate || !endDate) {
     return value
   }
   const diff = startDate.diff(endDate)
-  if (diff.days > daysLimit) {
-    let errMsg = locale(`时间区间不能超过${daysLimit}天`, 'hint_error_dateragne_limit_date', [
-      daysLimit
+  if (diff.days > dateRangeLimit) {
+    let errMsg = locale(`日期区间不能超过${dateRangeLimit}天`, 'hint_error_dateragne_limit_date', [
+      dateRangeLimit
     ])
     if (onError) {
       onError({
         errMsg: errMsg,
-        daysLimit: daysLimit,
+        dateRangeLimit: dateRangeLimit,
         value: value
       })
     } else {
@@ -32,4 +32,4 @@ function validateDaysLimit(value, { daysLimit, onError }) {
   return value
 }
 
-export default validateDaysLimit
+export default validateRangeLimit

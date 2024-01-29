@@ -3,7 +3,7 @@ import validateValue from './validateValue'
 // 校验值是否正确
 async function validateRange(
   newValue,
-  { type, min, max, daysLimit, onError, onBeforeChange, activeKey, ranges }
+  { type, min, max, dateRangeLimit, onError, onBeforeChange, activeKey, ranges }
 ) {
   let beforeChangeGoOn = null
   // 外部传入的校验
@@ -23,7 +23,7 @@ async function validateRange(
     min,
     max,
     // 只有自定义时间段才有天数校验
-    daysLimit,
+    dateRangeLimit,
     onError
   })
   if (goOn === false) {

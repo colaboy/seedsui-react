@@ -92,7 +92,8 @@ function RangeMain(
       type,
       min,
       max,
-      daysLimit: typeof ranges[newActiveKey] === 'number' ? ranges[newActiveKey] : rangeLimit?.date,
+      dateRangeLimit:
+        typeof ranges[newActiveKey] === 'number' ? ranges[newActiveKey] : rangeLimit?.date,
       onError,
       onBeforeChange,
       ranges,
@@ -219,7 +220,7 @@ function RangeMain(
               type,
               min,
               max,
-              daysLimit: ranges[customKey] || rangeLimit?.date,
+              dateRangeLimit: ranges[customKey] || rangeLimit?.date,
               onError,
               onBeforeChange,
               activeKey: customKey,

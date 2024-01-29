@@ -1,9 +1,9 @@
-import validateDaysLimit from './validateDaysLimit'
+import validateRangeLimit from './validateRangeLimit'
 import validateStartEnd from './validateStartEnd'
 import validateMaxMin from './../../validateMaxMin'
 
 // 校验选择的区间是否合法
-function validateValue(newValue, { type, min, max, daysLimit, onError }) {
+function validateValue(newValue, { type, min, max, dateRangeLimit, onError }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     // 校验最大最小值
@@ -45,9 +45,9 @@ function validateValue(newValue, { type, min, max, daysLimit, onError }) {
     newValue = startEndValid
 
     // 校验天数限制
-    if (typeof daysLimit === 'number') {
-      let daysLimitValid = validateDaysLimit(newValue, {
-        daysLimit: daysLimit,
+    if (typeof dateRangeLimit === 'number') {
+      let daysLimitValid = validateRangeLimit(newValue, {
+        dateRangeLimit: dateRangeLimit,
         onError: onError
       })
       if (daysLimitValid === false) {

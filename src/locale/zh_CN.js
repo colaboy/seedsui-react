@@ -140,7 +140,7 @@ export default {
   datepopover_last_month: '上月',
   datepopover_last_days: '最近{0}天',
   datepopover_custom_date: '自定义日期',
-  hint_error_dateragne_limit_date: '时间区间不能超过{0}天',
+  hint_error_dateragne_limit_date: '日期区间不能超过{0}天',
   input_search_placeholder: '搜索',
   start_time: '开始时间',
   end_time: '结束时间',

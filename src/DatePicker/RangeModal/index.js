@@ -163,7 +163,7 @@ const RangeModal = (
           type,
           min,
           max,
-          daysLimit: rangeLimit?.date || null,
+          dateRangeLimit: rangeLimit?.date || null,
           onError,
           onBeforeChange,
           activeKey: null,
