@@ -8,6 +8,7 @@ import Combo from './../../Combo'
 // 自定义日期选择弹窗: 两框选择
 export default function CustomDates({
   portal,
+  type,
   allowClear,
   value,
   onBeforeChange,
@@ -23,6 +24,7 @@ export default function CustomDates({
     <div className={`datepicker-rangemain-custom`}>
       <Combo
         portal={portal}
+        type={type}
         value={startDate}
         max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
         onError={onError}
@@ -44,6 +46,7 @@ export default function CustomDates({
       —
       <Combo
         portal={portal}
+        type={type}
         value={endDate}
         min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
         onError={onError}

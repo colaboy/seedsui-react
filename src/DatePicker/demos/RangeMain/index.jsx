@@ -12,6 +12,7 @@ export default () => {
             custom: '自定义选择',
             selector: '快捷选择'
           }}
+          type="datetime"
           customModal="dates" // dates | picker
           ranges={{
             [locale('今日')]: [new Date(), new Date()],

@@ -7,6 +7,7 @@ export default function CustomPicker({
   portal,
   visible,
   onVisibleChange,
+  type,
   value,
   onBeforeChange,
   onChange,
@@ -17,6 +18,7 @@ export default function CustomPicker({
     <div className={`datepicker-rangemain-custom`}>
       <PickerModal
         portal={portal}
+        type={type}
         value={value}
         onError={onError}
         onBeforeChange={onBeforeChange}
