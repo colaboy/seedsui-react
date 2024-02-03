@@ -2,9 +2,9 @@ import React, { forwardRef, useState } from 'react'
 import { getMinTypes, matchType } from './../DistrictMain/utils'
 
 // 测试使用
-// import BaseModal from 'seedsui-react/lib/Select/Modal'
+import BaseModal from 'seedsui-react/lib/Select/Modal'
 // 内库使用
-import BaseModal from './../../Select/Modal'
+// import BaseModal from './../../Select/Modal'
 
 import DistrictMain from './../DistrictMain'
 
@@ -21,6 +21,7 @@ const DistrictModal = forwardRef(
 
       // Main: common
       value,
+      allowClear,
 
       // Main: DistrictMain Control properties
       loadList,

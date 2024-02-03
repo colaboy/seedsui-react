@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import getSyncChildren from './getSyncChildren'
 import getAsyncChildren from './getAsyncChildren'
 
@@ -10,7 +11,7 @@ async function getChildren({ data, id, loadData }) {
   let children = getSyncChildren({ data, id })
 
   // 加载异步数据子节点
-  if (!Array.isArray(children) && typeof loadData === 'function') {
+  if (_.isEmpty(children) && typeof loadData === 'function') {
     children = await getAsyncChildren({ data, id, loadData })
   }
 

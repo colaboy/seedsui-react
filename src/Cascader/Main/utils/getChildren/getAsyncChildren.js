@@ -1,6 +1,6 @@
 // 获取异步列表
 async function getAsyncChildren({ data, loadData, id }) {
-  let children = await loadData(id)
+  let children = await loadData(id, { data: data })
 
   // 当前项下增加children, 并修改children的parentid
   if (Array.isArray(children) && children.length) {

@@ -6,7 +6,7 @@ import locale from './../../locale'
 
 import Tabs from './Tabs'
 import ListItem from './ListItem'
-import { dataFormatter, getSibling, getChildren } from './utils/index.js'
+import { dataFormatter, getChildren } from './utils/index.js'
 
 // 主体
 const Main = forwardRef(
@@ -79,58 +79,83 @@ const Main = forwardRef(
       if (!activeTab) return
       if (mainRef.current) mainRef.current.scrollTop = 0
 
-      // 更新列表
-      updateList()
       // eslint-disable-next-line
     }, [activeTab])
 
     // 初始化数据
     async function initData() {
-      // tabs
+      // 选中末级选中项
       tabsRef.current = Array.isArray(value) ? [...value] : []
-      await addEmptyTab()
-
-      // 选中tab
-      activeTab =
+      let lastTab =
         Array.isArray(tabsRef.current) && tabsRef.current.length
           ? tabsRef.current[tabsRef.current.length - 1]
           : null
-      setActiveTab(activeTab)
+
+      setActiveTab(lastTab)
+
+      // 渲染子级
+      let children = await getChildrenList(lastTab?.parentid || '')
+      setList(children)
+
+      // 判断是否允许下钻
+      // if (typeof onDrillDown === 'function') {
+      //   let goOn = await onDrillDown(tabsRef.current, { data })
+      //   // 禁止下钻
+      //   if (goOn !== undefined && !goOn) {
+      //     // handleChange(tabsRef.current)
+      //     return
+      //   }
+      // }
+
+      // 添加空tab成功，说明有子级
+      // await addEmptyTab()
+
+      // 选中tab
+      // activeTab =
+      //   Array.isArray(tabsRef.current) && tabsRef.current.length
+      //     ? tabsRef.current[tabsRef.current.length - 1]
+      //     : null
+      // setActiveTab(activeTab)
     }
 
-    // 修改选中tab时，更新列表
-    async function updateList() {
-      // 选中已知项(点击头部tab)
-      if (activeTab?.id) {
-        list = getSibling({ data, id: activeTab.id })
-      }
-      // 选中未知项(点击列表: 有请选择时)
-      else if (activeTab?.parentid) {
-        list = await getChildren({
-          data,
-          id: activeTab.parentid,
-          loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
-        })
-      }
+    // 获取指定级别的列表数据
+    async function getChildrenList(id) {
       // 根节点
-      else {
-        list = data
+      if (!id) {
+        return data
       }
-      setList(list)
+
+      let currentTabIndex = tabsRef.current.findIndex((tab) => tab.id === id)
+
+      // tabs中没有此项，则也返回根节点
+      if (currentTabIndex === -1) {
+        return data
+      }
+
+      let currentTabs = tabsRef.current.slice(0, currentTabIndex + 1)
+
+      let list = null
+      list = await getChildren({
+        data,
+        id: id,
+        loadData:
+          typeof loadData === 'function'
+            ? () => loadData(currentTabs, { data: externalList })
+            : null
+      })
+      return list
     }
 
     // 如果有子级则补充请选择
     async function addEmptyTab() {
-      if (typeof onDrillDown === 'function') {
-        let goOn = await onDrillDown(tabsRef.current, { data })
-        if (goOn !== undefined && !goOn) return goOn
-      }
-
       let id = tabsRef.current?.[tabsRef.current?.length - 1]?.id || ''
       let children = await getChildren({
         data,
         id,
-        loadData: typeof loadData === 'function' ? () => loadData(tabsRef.current) : null
+        loadData:
+          typeof loadData === 'function'
+            ? () => loadData(tabsRef.current, { data: externalList })
+            : null
       })
 
       // 有子节点，或者根节点(没有id)
@@ -140,7 +165,14 @@ const Main = forwardRef(
           id: '',
           name: locale('请选择')
         })
-        return true
+        // 子节点
+        if (Array.isArray(children) && children.length) {
+          return children
+        }
+        // 根节点
+        else {
+          return externalList
+        }
       }
       return false
     }
@@ -155,7 +187,7 @@ const Main = forwardRef(
     }
 
     // 点击选项
-    async function handleDrillDown(item) {
+    async function handleSelect(item) {
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {
@@ -167,16 +199,29 @@ const Main = forwardRef(
         tabsRef.current[tabsRef.current.length - 1] = item
       }
 
-      // 添加空tab成功，说明有子集
-      let addOk = await addEmptyTab()
-      if (addOk) {
+      // 判断是否允许下钻
+      if (typeof onDrillDown === 'function') {
+        let goOn = await onDrillDown(tabsRef.current, { data })
+        // 禁止下钻
+        if (goOn !== undefined && !goOn) {
+          handleChange(tabsRef.current)
+          setActiveTab(tabsRef.current[tabsRef.current.length - 1])
+          return
+        }
+      }
+
+      // 添加空tab成功，说明有子级
+      let children = await addEmptyTab()
+
+      if (Array.isArray(children) && children.length) {
         // 更新选中项
         activeTab = tabsRef.current[tabsRef.current.length - 1]
         setActiveTab(activeTab)
+        setList(children)
         return
       }
 
-      // 无子集调用onChange
+      // 无子级调用onChange
       handleChange(tabsRef.current)
     }
 
@@ -185,7 +230,11 @@ const Main = forwardRef(
         return TabsComponent({
           tabs: tabsRef.current,
           activeTab: activeTab,
-          onActiveTab: setActiveTab
+          onActiveTab: async (tab) => {
+            setActiveTab(tab)
+            let newList = await getChildrenList(tab?.parentid)
+            setList(newList)
+          }
         })
       }
 
@@ -193,8 +242,10 @@ const Main = forwardRef(
         <Tabs
           tabs={tabsRef.current}
           activeTab={activeTab}
-          onActiveTab={(tab) => {
+          onActiveTab={async (tab) => {
             setActiveTab(tab)
+            let newList = await getChildrenList(tab?.parentid)
+            setList(newList)
           }}
         />
       )
@@ -213,7 +264,7 @@ const Main = forwardRef(
           list={list}
           value={tabsRef.current}
           // 阻止选择
-          onSelect={handleDrillDown}
+          onSelect={handleSelect}
           {...props}
         />
       </>

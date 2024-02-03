@@ -18,8 +18,13 @@ function matchType(tabs, config) {
 
   let current = Array.isArray(tabs) ? tabs[tabs.length - 1] : tabs
 
+  // 最后一级为请选择, 向上选一级
+  if (!current?.id && current.parentid) {
+    current = tabs[tabs.length - 2]
+  }
+
   // Current is invalid
-  if (!current?.id && !current?.name) {
+  if (!current?.id) {
     return null
   }
 
@@ -40,11 +45,11 @@ function matchType(tabs, config) {
   if (testCity(current, isCity)) {
     return ['city']
   }
-  if (testDistrict(current, isDistrict)) {
-    return ['district']
-  }
   if (testStreet(current, isStreet)) {
     return ['street']
+  }
+  if (testDistrict(current, isDistrict)) {
+    return ['district']
   }
   // 不是省市，但在data中，则认为是区，不在data中，则认为是街道(街道在data中, 会有isStreet，所以在isStreet时就返回了)
   if (testNodeData(current, data)) {
@@ -53,13 +58,7 @@ function matchType(tabs, config) {
 
   // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
   if (Array.isArray(tabs) && tabs.length > 2) {
-    let prevTab = tabs[tabs.length - 2]
-    if (testDistrict(prevTab, isDistrict)) {
-      return ['street']
-    }
-    if (testCity(prevTab, isCity)) {
-      return ['street']
-    }
+    return ['street']
   }
 
   return null
