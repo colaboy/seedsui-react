@@ -1,4 +1,8 @@
 import React, { forwardRef } from 'react'
+// 测试使用
+// import { Notice } from 'seedsui-react'
+// 内库使用
+import Notice from './../../Notice'
 
 const ListItem = forwardRef(
   (
@@ -19,6 +23,7 @@ const ListItem = forwardRef(
         className={`picker-main cascader${props?.className ? ' ' + props.className : ''}`}
         ref={ref}
       >
+        {typeof list === 'string' && <Notice caption={list} />}
         {Array.isArray(list) &&
           list.map((item, index) => {
             return (

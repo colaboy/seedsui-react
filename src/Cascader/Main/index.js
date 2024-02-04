@@ -67,12 +67,11 @@ const Main = forwardRef(
 
     // 初始化tabs、选中tab、列表
     useEffect(() => {
-      if (!visible) return
       if (!Array.isArray(externalList) || !externalList.length) return
 
       initData()
       // eslint-disable-next-line
-    }, [externalList, value, visible])
+    }, [externalList, value])
 
     // 修改选中tab时，滚动条重置，并刷新列表
     useEffect(() => {
@@ -96,26 +95,6 @@ const Main = forwardRef(
       // 渲染子级
       let children = await getChildrenList(lastTab?.parentid || '')
       setList(children)
-
-      // 判断是否允许下钻
-      // if (typeof onDrillDown === 'function') {
-      //   let goOn = await onDrillDown(tabsRef.current, { data })
-      //   // 禁止下钻
-      //   if (goOn !== undefined && !goOn) {
-      //     // handleChange(tabsRef.current)
-      //     return
-      //   }
-      // }
-
-      // 添加空tab成功，说明有子级
-      // await addEmptyTab()
-
-      // 选中tab
-      // activeTab =
-      //   Array.isArray(tabsRef.current) && tabsRef.current.length
-      //     ? tabsRef.current[tabsRef.current.length - 1]
-      //     : null
-      // setActiveTab(activeTab)
     }
 
     // 获取指定级别的列表数据
@@ -195,8 +174,16 @@ const Main = forwardRef(
       }
 
       // 替换选中项
-      if (Array.isArray(tabsRef.current) && tabsRef.current.length) {
+      if (!Array.isArray(tabsRef.current)) {
+        tabsRef.current = []
+      }
+      // 非第一项
+      if (tabsRef.current.length) {
         tabsRef.current[tabsRef.current.length - 1] = item
+      }
+      // 第一项
+      else {
+        tabsRef.current[0] = item
       }
 
       // 判断是否允许下钻

@@ -9,11 +9,12 @@ async function getAsyncChildren({ data, loadData, id }) {
       item.parentid = id
       return item
     })
-  }
 
-  data.setDeepTreeNodeProp(id, (node) => {
-    node.children = children || []
-  })
+    // 设置子级数据
+    data.setDeepTreeNodeProp(id, (node) => {
+      node.children = children || []
+    })
+  }
 
   return children
 }
