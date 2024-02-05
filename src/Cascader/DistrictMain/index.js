@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from 'react'
-import { matchType } from './utils'
+import { matchType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
@@ -71,6 +71,11 @@ const DistrictMain = forwardRef(
       if (onDrillDown) {
         let goOn = await onDrillDown(tabs, parameters)
         if (goOn !== undefined) return goOn
+      }
+
+      // 街道无需再发请求
+      if (Array.isArray(tabs) && tabs.length && testStreet(tabs[tabs.length - 1], isStreet)) {
+        return false
       }
 
       // 匹配类型，没传类型则允许下钻

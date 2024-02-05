@@ -104,7 +104,7 @@ const Main = forwardRef(
         return data
       }
 
-      let currentTabIndex = tabsRef.current.findIndex((tab) => tab.id === id)
+      let currentTabIndex = tabsRef.current.findIndex((tab) => String(tab.id) === String(id))
 
       // tabs中没有此项，则也返回根节点
       if (currentTabIndex === -1) {
