@@ -66,6 +66,11 @@ export default () => {
         }}
         loadData={(node) => {
           return new Promise((resolve) => {
+            // 假设西城区有子节点
+            if (node?.id !== '110102') {
+              resolve(null)
+              return
+            }
             if (!node.children) {
               data.setDeepTreeNodeProp(node.id, (item) => {
                 item.isLoaded = true

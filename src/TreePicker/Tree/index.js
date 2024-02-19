@@ -16,6 +16,8 @@ function TreePicker(
     multiple,
     // 级联 true: 不级联, false: 级联, children: 子级不级联父级
     checkStrictly = false,
+    // 定义选中项回填的方式: TreePicker.SHOW_LEAF仅显示所有末级节点;
+    showCheckedStrategy,
     // 是否启用半选功能
     enableHalfChecked,
     // 保留不在树结构中的value
@@ -94,6 +96,8 @@ function TreePicker(
         }
       }
 
+      loadedKeys = newLoadedKeys
+      expandedKeys = newExpandedKeys
       setLoadedKeys(newLoadedKeys)
       setExpandedKeys(newExpandedKeys)
     }
@@ -266,7 +270,6 @@ function TreePicker(
         expandedKeys={expandedKeys}
         // 树默认设置
         showIcon={false}
-        onlyLeafCheck={onlyLeafCheck}
         checkStrictly={checkStrictly === false ? false : true}
         checkable={checkable}
         selectable={checkable ? false : true}
