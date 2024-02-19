@@ -14,7 +14,7 @@ function TreePicker(
   {
     // multiple未传则为必选单选, multiple为false时为可取消单选
     multiple,
-    // 级联 true: 不级联, false: 级联, children: 只级联子级
+    // 级联 true: 不级联, false: 级联, children: 子级不级联父级
     checkStrictly = false,
     // 是否启用半选功能
     enableHalfChecked,

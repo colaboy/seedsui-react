@@ -93,7 +93,7 @@ const Combo = forwardRef(
       optionProps,
 
       // Main: Tree Component properties
-      checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+      checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 子级不级联父级
       enableHalfChecked, // 是否启用半选功能
       preserveValue, // 保留不在树结构中的value
       onlyLeafCheck, // 仅允许点击末级节点
@@ -308,7 +308,7 @@ const Combo = forwardRef(
             optionProps,
 
             // Main: Tree Component properties
-            checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 只级联子级
+            checkStrictly, // 严格模式: 级联 true: 不级联, false: 级联, children: 子级不级联父级
             enableHalfChecked, // 是否启用半选功能
             preserveValue, // 保留不在树结构中的value
             onlyLeafCheck, // 仅允许点击末级节点

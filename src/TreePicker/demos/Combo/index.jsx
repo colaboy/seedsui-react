@@ -37,7 +37,7 @@ export default () => {
         // preserveValue
         // 仅允许选中末级节点
         // onlyLeafCheck={true}
-        // 级联 true: 不级联, false: 级联, children: 只级联子级
+        // 级联 true: 不级联, false: 级联, children: 子级不级联父级
         // checkStrictly={'children'}
         // 启用半选功能
         enableHalfChecked
