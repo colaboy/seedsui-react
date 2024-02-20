@@ -5,6 +5,7 @@ import getKeywordIds from './getKeywordIds'
 import getKeywordIdsByPinyin from './getKeywordIdsByPinyin'
 import getLoadedKeys from './getLoadedKeys'
 import getTreeData from './getTreeData'
+import filterValue from './filterValue'
 
 export {
   getCheckedKeysProp,
@@ -13,5 +14,6 @@ export {
   getKeywordIds,
   getKeywordIdsByPinyin,
   getLoadedKeys,
-  getTreeData
+  getTreeData,
+  filterValue
 }

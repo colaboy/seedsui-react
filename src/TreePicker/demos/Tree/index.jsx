@@ -5,7 +5,13 @@ import { Input, TreePicker, HighlightKeyword, locale } from 'seedsui-react'
 
 export default () => {
   const [data, setData] = useState(treeData)
-  const [value, setValue] = useState([{ id: '11111', name: 'test' }])
+  const [value, setValue] = useState([
+    {
+      name: '北京市',
+      id: '110000',
+      parentid: '-1'
+    }
+  ])
 
   // 搜索
   const treeRef = useRef(null)
@@ -32,8 +38,10 @@ export default () => {
         multiple={true}
         // 仅允许选中末级
         onlyLeafCheck
-        // 不级联
+        // 级联 true: 不级联, false: 级联, children: 子级不级联父级
         checkStrictly={'children'}
+        // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点
+        showCheckedStrategy="parent"
         // 保留不在树结构中的value
         preserveValue
         // 启用半选, 将会返回半选节点

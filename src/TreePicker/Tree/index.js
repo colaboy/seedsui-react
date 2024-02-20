@@ -4,7 +4,8 @@ import {
   getAllExpandedKeys,
   getExpandedKeys,
   getCheckedKeysProp,
-  getLoadedKeys
+  getLoadedKeys,
+  filterValue
 } from './utils/index'
 
 import Tree from 'rc-tree'
@@ -16,7 +17,7 @@ function TreePicker(
     multiple,
     // 级联 true: 不级联, false: 级联, children: 子级不级联父级
     checkStrictly = false,
-    // 定义选中项回填的方式: TreePicker.SHOW_LEAF仅显示所有末级节点;
+    // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点
     showCheckedStrategy,
     // 是否启用半选功能
     enableHalfChecked,
@@ -223,6 +224,11 @@ function TreePicker(
           (item) => !checkedIds.some((checkedId) => checkedId === item.id)
         )
       }
+    }
+
+    // 定义选中项回填的方式
+    if (showCheckedStrategy) {
+      checkedNodes = filterValue(checkedNodes, showCheckedStrategy)
     }
     if (onChange) onChange(checkedNodes)
   }

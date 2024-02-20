@@ -6,7 +6,15 @@ export default [
         name: '东城区',
         id: '110101',
         parentid: '110000',
-        isLoaded: true
+        isLoaded: true,
+        children: [
+          {
+            name: '东城街道',
+            id: '1101012',
+            parentid: '110101',
+            isLoaded: true
+          }
+        ]
       },
       {
         name: '西城区',
