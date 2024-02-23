@@ -1,5 +1,5 @@
 // 测试使用
-// import { Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react/lib/Device'
+// import { Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react'
 // import Alert from 'seedsui-react/lib/Alert/instance.js'
 // import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
 // 内库使用

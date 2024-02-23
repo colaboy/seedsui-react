@@ -1,5 +1,5 @@
 // 测试使用
-// import { Toast, Device, locale } from 'seedsui-react/lib/DB'
+// import { Toast, Device, locale } from 'seedsui-react'
 // 内库使用
 import Toast from './../Toast'
 import Device from './../Device'
