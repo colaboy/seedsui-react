@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { useRef, forwardRef } from 'react'
 import { testEditableOptions } from './../DistrictMain/utils'
 // 测试使用
 // import BaseCombo from 'seedsui-react/lib/Select/Combo'
@@ -16,6 +16,7 @@ const DistrictCombo = forwardRef(
       min = '',
 
       // Main: DistrictMain Control properties
+      async,
       isCountry,
       isProvince,
       isMunicipality,
@@ -35,6 +36,9 @@ const DistrictCombo = forwardRef(
     },
     ref
   ) => {
+    // 获取DistrictMain加载的list
+    const listDataRef = useRef(null)
+
     return (
       <BaseCombo
         ref={ref}
@@ -66,7 +70,7 @@ const DistrictCombo = forwardRef(
                     let isEditable = testEditableOptions(item, index, {
                       tabs: value,
                       editableOptions,
-                      // listData: listRef.current,
+                      listData: listDataRef.current,
                       isCountry,
                       isProvince,
                       isMunicipality,
@@ -86,6 +90,13 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
+        MainProps={{
+          async: async,
+          onListLoad: (listData) => {
+            listDataRef.current = listData
+          },
+          ...(props.MainProps || {})
+        }}
       />
     )
   }

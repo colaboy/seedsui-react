@@ -85,6 +85,8 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
+        // 未弹出选择框便加载
+        async={false}
         editableOptions={{
           country: { editable: false },
           province: { editable: false }

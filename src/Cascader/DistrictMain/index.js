@@ -18,7 +18,9 @@ const DistrictMain = forwardRef(
       list,
 
       // Main: Cascader.DistrictMain Control properties
+      async,
       loadList,
+      onListLoad,
       editableOptions,
       // 判断是否是国省市区
       isCountry,
@@ -41,6 +43,12 @@ const DistrictMain = forwardRef(
       initList()
     }, [visible]) // eslint-disable-line
 
+    useEffect(() => {
+      if (async === false) {
+        initList()
+      }
+    }, [async])
+
     async function initList() {
       listData = list
       // 异步加载列表
@@ -62,6 +70,7 @@ const DistrictMain = forwardRef(
       }
       listData = window.__SeedsUI_Cascader_DistrictCombo_list__ || null
 
+      if (typeof onListLoad === 'function') onListLoad(listData)
       setListData(listData)
     }
 
