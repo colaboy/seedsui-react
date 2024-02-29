@@ -45,11 +45,7 @@ let Bridge = {
   // 关闭窗口
   closeWindow: function () {
     // 小程序内web-view关闭
-    if (
-      ['wechatMiniprogram', 'weworkMiniprogram', 'alipayMiniprogram'].includes(
-        Device.platform || ''
-      )
-    ) {
+    if (['wechatMiniprogram', 'weworkMiniprogram'].includes(Device.platform || '')) {
       window.top.wx.miniProgram.navigateBack({}) // eslint-disable-line
     }
     // 微信关闭
