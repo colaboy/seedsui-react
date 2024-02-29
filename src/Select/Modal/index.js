@@ -128,7 +128,7 @@ const Modal = forwardRef(
 
       if (onVisibleChange) onVisibleChange(visible)
 
-      // 取消弹窗时, currentValue已变, 而value未变, 如果value和currentValue不一致, 则使用value
+      // 显示弹窗，更新标题和显示值
       if (visible) {
         updateTitle()
         setCurrentValue(valueFormatter({ type, value, ranges, separator }))
