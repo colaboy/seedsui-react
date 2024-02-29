@@ -119,10 +119,10 @@ const DistrictCombo = forwardRef(
         }
         {...props}
         clearProps={{
+          ...(props?.clearProps || {}),
           className:
             (clearValue(value).length === value.length ? 'hide-important ' : '') +
-            (props?.clearProps?.className || ''),
-          ...(props?.clearProps || {})
+            (props?.clearProps?.className || '')
         }}
         MainProps={{
           async: async,
