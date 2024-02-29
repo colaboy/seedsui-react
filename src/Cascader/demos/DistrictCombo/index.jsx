@@ -69,7 +69,7 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        // list={countriesData}
+        list={countriesData}
         // loadList={() => {
         //   return new Promise((resolve) => {
         //     Loading.show()

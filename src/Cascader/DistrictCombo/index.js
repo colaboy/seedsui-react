@@ -39,6 +39,38 @@ const DistrictCombo = forwardRef(
     // 获取DistrictMain加载的list
     const listDataRef = useRef(null)
 
+    // 清空操作，公能清空非只读项
+    function clearValue(argValue) {
+      let val = argValue
+      if (val === undefined) {
+        val = value
+      }
+
+      if (!Array.isArray(val)) {
+        return argValue
+      }
+
+      // 清空只能清空非只读项
+      let newValue = []
+      for (let [index, item] of val.entries()) {
+        let isEditable = testEditableOptions(item, index, {
+          tabs: val,
+          editableOptions,
+          listData: listDataRef.current,
+          isCountry,
+          isProvince,
+          isMunicipality,
+          isCity,
+          isDistrict,
+          isStreet
+        })
+        if (isEditable === false) {
+          newValue.push(item)
+        }
+      }
+      return newValue
+    }
+
     return (
       <BaseCombo
         ref={ref}
@@ -63,27 +95,14 @@ const DistrictCombo = forwardRef(
         onChange={
           onChange
             ? (newValue, ...other) => {
-                // 清空只能清空非只读项
+                // 清空操作，公能清空非只读项
                 if (editableOptions && !newValue && Array.isArray(value) && value.length) {
-                  let newVal = []
-                  for (let [index, item] of value.entries()) {
-                    let isEditable = testEditableOptions(item, index, {
-                      tabs: value,
-                      editableOptions,
-                      listData: listDataRef.current,
-                      isCountry,
-                      isProvince,
-                      isMunicipality,
-                      isCity,
-                      isDistrict,
-                      isStreet
-                    })
-                    if (isEditable === false) {
-                      newVal.push(item)
-                    }
+                  let emptyValue = clearValue(value)
+                  // 清空完成
+                  if (emptyValue.length) {
+                    // eslint-disable-next-line
+                    newValue = emptyValue
                   }
-                  // eslint-disable-next-line
-                  if (newVal.length) newValue = newVal
                 }
                 onChange(newValue, ...other)
               }
