@@ -85,13 +85,13 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
-        // editableOptions={{
-        //   country: { editable: false },
-        //   province: { editable: false },
-        //   city: { editable: false },
-        //   district: { editable: false },
-        //   street: { editable: true }
-        // }}
+        editableOptions={{
+          country: { editable: false },
+          province: { editable: false }
+          // city: { editable: false },
+          // district: { editable: false },
+          // street: { editable: true }
+        }}
       />
     </div>
   )

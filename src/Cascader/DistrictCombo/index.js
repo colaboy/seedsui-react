@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import { testEditableOptions } from './../DistrictMain/utils'
 // 测试使用
 // import BaseCombo from 'seedsui-react/lib/Select/Combo'
 // 内库使用
@@ -27,6 +28,8 @@ const DistrictCombo = forwardRef(
       editableOptions,
       ModalProps,
 
+      value,
+      onChange,
       // Standard properties
       ...props
     },
@@ -52,6 +55,36 @@ const DistrictCombo = forwardRef(
           editableOptions,
           ...ModalProps
         }}
+        value={value}
+        onChange={
+          onChange
+            ? (newValue, ...other) => {
+                // 清空只能清空非只读项
+                if (editableOptions && !newValue && Array.isArray(value) && value.length) {
+                  let newVal = []
+                  for (let [index, item] of value.entries()) {
+                    let isEditable = testEditableOptions(item, index, {
+                      tabs: value,
+                      editableOptions,
+                      // listData: listRef.current,
+                      isCountry,
+                      isProvince,
+                      isMunicipality,
+                      isCity,
+                      isDistrict,
+                      isStreet
+                    })
+                    if (isEditable === false) {
+                      newVal.push(item)
+                    }
+                  }
+                  // eslint-disable-next-line
+                  if (newVal.length) newValue = newVal
+                }
+                onChange(newValue, ...other)
+              }
+            : null
+        }
         {...props}
       />
     )

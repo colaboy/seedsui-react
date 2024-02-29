@@ -7,6 +7,7 @@ import testCity from './testCity'
 import testDistrict from './testDistrict'
 import testStreet from './testStreet'
 import testNodeData from './testNodeData'
+import testEditableOptions from './testEditableOptions'
 
 // 获取所有省市, 用于匹配选中的省市
 if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
@@ -28,5 +29,6 @@ export {
   testCity,
   testDistrict,
   testStreet,
-  testNodeData
+  testNodeData,
+  testEditableOptions
 }
