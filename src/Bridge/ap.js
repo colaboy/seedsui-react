@@ -71,25 +71,9 @@ let Bridge = {
   },
   /**
    * 关闭窗口
-   * @param {Object} params
    */
   closeWindow: function () {
-    // 小程序内web-view关闭
-    if (['alipayMiniprogram'].includes(Device.platform || '')) {
-      window.top.wx.miniProgram.navigateBack({
-        // 本来就在第一层，则退出小程序
-        fail: () => {
-          window.top.wx.miniProgram.exitMiniProgram()
-        }
-      })
-    }
-    // 支付宝生活号关闭
-    window.top.wx.popWindow({
-      // 本来就在第一层，则退出生活号
-      fail: () => {
-        window.top.wx.exitApp()
-      }
-    })
+    window.top.wx?.popWindow()
   }
 }
 
