@@ -165,10 +165,11 @@ export default () => {
         // 选中效果: checkbox | tick | corner
         checkedType="checkbox"
         checkedPosition="right"
+        // disabled
       >
-        <div>
+        <span>
           {Array.isArray(value) && value.length ? value.map((item) => item.name).join(',') : ''}
-        </div>
+        </span>
       </Select.Combo>
     </>
   )
