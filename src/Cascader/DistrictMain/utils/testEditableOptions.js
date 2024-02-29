@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import matchType from './matchType'
 import getSiblingType from './getSiblingType'
 
@@ -17,6 +18,11 @@ function validateEditableOptions(
     isStreet
   }
 ) {
+  // 未配置是否可编辑，默认为可编辑
+  if (!editableOptions || _.isEmpty(editableOptions)) {
+    return true
+  }
+
   let type = null
   // 未知项(请选择)，判断当前项是否可选
   if (!item?.id && index) {

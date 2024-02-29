@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import { testEditableOptions } from './../DistrictMain/utils'
 // 测试使用
 // import BaseCombo from 'seedsui-react/lib/Select/Combo'
@@ -39,6 +39,15 @@ const DistrictCombo = forwardRef(
     // 获取DistrictMain加载的list
     const listDataRef = useRef(null)
 
+    // 暴露方法
+    const comboRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        clearValue: clearValue,
+        ...comboRef.current
+      }
+    })
+
     // 清空操作，公能清空非只读项
     function clearValue(argValue) {
       let val = argValue
@@ -73,7 +82,7 @@ const DistrictCombo = forwardRef(
 
     return (
       <BaseCombo
-        ref={ref}
+        ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
@@ -109,6 +118,12 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
+        clearProps={{
+          className:
+            (clearValue(value).length === value.length ? 'hide-important ' : '') +
+            (props?.clearProps?.className || ''),
+          ...(props?.clearProps || {})
+        }}
         MainProps={{
           async: async,
           onListLoad: (listData) => {

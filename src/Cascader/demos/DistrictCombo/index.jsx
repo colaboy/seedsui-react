@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import countriesData from './../../DistrictMain/countriesData'
 import chinaData from './../../DistrictMain/chinaData'
 
@@ -7,6 +7,7 @@ import { Cascader, Loading } from 'seedsui-react'
 countriesData[0].children = chinaData
 
 export default () => {
+  const districtComboRef = useRef(null)
   const [value2, setValue2] = useState([
     { id: '320000', name: '江苏省', parentid: '86' },
     { id: '320100', name: '南京市', parentid: '320000' }
@@ -18,6 +19,7 @@ export default () => {
     { id: '320100', name: '南京市', parentid: '320000' }
     // { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
   ])
+  console.log('districtComboRef:', districtComboRef)
 
   // 加载街道
   function loadData(tabs) {
@@ -54,6 +56,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
       <Cascader.DistrictCombo
+        ref={districtComboRef}
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
