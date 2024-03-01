@@ -12,6 +12,11 @@
 
 // 填充模式
 .mark {
+  // 默认取color颜色
+  color: white;
+  background-color: var(--color);
+  border-color: var(--color);
+
   &.default {
     color: @mark-default-color;
     background-color: @mark-default-bg-color;
@@ -47,6 +52,12 @@
 // 线框模式
 .mark.outline {
   border-width: 1px;
+
+  // 默认取color颜色
+  color: var(--color);
+  background-color: transparent;
+  border-color: var(--color);
+
   &.default {
     color: @mark-default-outline-color;
     background-color: @mark-default-outline-bg-color;
@@ -82,6 +93,12 @@
 // light-outline
 .mark.light-outline {
   border-width: 1px;
+
+  // 默认取color颜色
+  color: var(--color);
+  background-color: transparent;
+  border-color: var(--color);
+
   &.default {
     color: @mark-default-outline-color;
     background-color: @mark-default-light-bg-color;
