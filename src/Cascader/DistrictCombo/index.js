@@ -43,13 +43,13 @@ const DistrictCombo = forwardRef(
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        clearValue: clearValue,
+        getReadOnlyValue: getReadOnlyValue,
         ...comboRef.current
       }
     })
 
-    // 清空操作，公能清空非只读项
-    function clearValue(argValue) {
+    // 清空操作，保留只读项，清空非只读项
+    function getReadOnlyValue(argValue) {
       let val = argValue
       if (val === undefined) {
         val = value
@@ -106,11 +106,11 @@ const DistrictCombo = forwardRef(
             ? (newValue, ...other) => {
                 // 清空操作，公能清空非只读项
                 if (editableOptions && !newValue && Array.isArray(value) && value.length) {
-                  let emptyValue = clearValue(value)
+                  let readOnlyValue = getReadOnlyValue(value)
                   // 清空完成
-                  if (emptyValue.length) {
+                  if (Array.isArray(readOnlyValue) && readOnlyValue.length) {
                     // eslint-disable-next-line
-                    newValue = emptyValue
+                    newValue = readOnlyValue
                   }
                 }
                 onChange(newValue, ...other)
@@ -121,8 +121,9 @@ const DistrictCombo = forwardRef(
         clearProps={{
           ...(props?.clearProps || {}),
           className:
-            (clearValue(value).length === value.length ? 'hide-important ' : '') +
-            (props?.clearProps?.className || '')
+            (Array.isArray(value) && getReadOnlyValue(value).length === value.length
+              ? 'hide-important '
+              : '') + (props?.clearProps?.className || '')
         }}
         MainProps={{
           async: async,
