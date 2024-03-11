@@ -137,6 +137,7 @@ export default {
   picker_date_range_title: 'Please select date range',
   datetype_unit_year: 'Year',
   datetype_unit_month: 'Month',
+  datetype_unit_week: 'Week',
   datetype_unit_date: 'Date',
   datetype_unit_quarter: 'Quarter',
   datepopover_today: 'Today',

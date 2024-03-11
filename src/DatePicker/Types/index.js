@@ -17,22 +17,18 @@ const Types = forwardRef(
       list = [
         {
           type: 'date',
-          id: 'date',
           name: locale('日', 'datetype_unit_date')
         },
         {
           type: 'month',
-          id: 'month',
           name: locale('月', 'datetype_unit_month')
         },
         {
           type: 'quarter',
-          id: 'quarter',
           name: locale('季', 'datetype_unit_quarter')
         },
         {
           type: 'year',
-          id: 'year',
           name: locale('年', 'datetype_unit_year')
         }
       ],
@@ -40,11 +36,13 @@ const Types = forwardRef(
       /*
       {
         type: 'date',
-        id: 'date',
         name: '日',
         value: new Date()
       }
       */
+
+      // 渲染
+      pickerRender,
 
       // 配置
       contentProps = {},
@@ -186,6 +184,34 @@ const Types = forwardRef(
       return newValue
     }
 
+    // 获取选择控件的node
+    function getPickerNode() {
+      let pickerNode = undefined
+      if (typeof pickerRender === 'function') {
+        pickerNode = pickerRender(value, { onChange: handleDate })
+      }
+      if (pickerNode === undefined) {
+        pickerNode = (
+          <>
+            <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
+            <Combo
+              {...(DatePickerComboProps || {})}
+              value={value?.value}
+              type={value?.type}
+              className={`datepicker-types-date${
+                DatePickerComboProps?.className ? ' ' + DatePickerComboProps.className : ''
+              }`}
+              onChange={handleDate}
+            >
+              <p>{displayValue || ''}</p>
+            </Combo>
+            <i className="datepicker-types-next icon shape-arrow-right sm" onClick={handleNext} />
+          </>
+        )
+      }
+
+      return pickerNode
+    }
     return (
       <div
         {...props}
@@ -207,19 +233,7 @@ const Types = forwardRef(
             contentProps.className ? ' ' + contentProps.className : ''
           }`}
         >
-          <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
-          <Combo
-            {...(DatePickerComboProps || {})}
-            value={value?.value}
-            type={value?.type}
-            className={`datepicker-types-date${
-              DatePickerComboProps?.className ? ' ' + DatePickerComboProps.className : ''
-            }`}
-            onChange={handleDate}
-          >
-            <p>{displayValue || ''}</p>
-          </Combo>
-          <i className="datepicker-types-next icon shape-arrow-right sm" onClick={handleNext} />
+          {getPickerNode()}
         </div>
       </div>
     )

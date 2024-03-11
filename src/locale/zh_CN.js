@@ -132,6 +132,7 @@ export default {
   picker_date_range_title: '请选择时间段',
   datetype_unit_year: '年',
   datetype_unit_month: '月',
+  datetype_unit_week: '周',
   datetype_unit_date: '日',
   datetype_unit_quarter: '季',
   datepopover_today: '今天',
