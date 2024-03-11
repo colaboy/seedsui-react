@@ -41,7 +41,7 @@ const Types = forwardRef(
       }
       */
 
-      // 渲染
+      // 渲染tab右边的选择器
       pickerRender,
 
       // 配置
