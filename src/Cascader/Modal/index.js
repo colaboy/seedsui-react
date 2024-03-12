@@ -12,6 +12,9 @@ const Modal = forwardRef(
     {
       loadData,
       optionProps,
+
+      // Main: common
+      allowClear,
       // Modal standard properties
       ...props
     },
