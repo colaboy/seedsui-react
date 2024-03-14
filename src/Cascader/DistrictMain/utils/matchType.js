@@ -23,12 +23,12 @@ function matchType(tabs, config) {
     current = tabs[tabs.length - 2]
   }
 
-  // Current is invalid
+  // No id is invalid
   if (!current?.id) {
     return null
   }
 
-  // Current No id and No parentid, It's root
+  // Neither id and nor parentid, It's root
   if (!current?.id && !current?.parentid && Array.isArray(data) && data.length) {
     current = data[0]
   }

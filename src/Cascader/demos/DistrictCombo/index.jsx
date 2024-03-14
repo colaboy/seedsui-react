@@ -40,7 +40,8 @@ export default () => {
         {
           parentid: lastTab.id,
           name: '街道1',
-          id: 'street1'
+          id: 'street1',
+          isStreet: true
         }
       ]
       setTimeout(() => {
@@ -66,8 +67,8 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        min="city" // ['country', 'province', 'city', 'district', 'street']
-        type="street"
+        // min="province" // ['country', 'province', 'city', 'district', 'street']
+        type="district"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -101,9 +102,9 @@ export default () => {
         async={false}
         editableOptions={{
           country: { editable: false },
-          province: { editable: false }
-          // city: { editable: false },
-          // district: { editable: false },
+          province: { editable: false },
+          city: { editable: false }
+          // district: { editable: false }
           // street: { editable: true }
         }}
       />
