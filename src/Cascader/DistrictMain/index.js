@@ -36,12 +36,17 @@ const DistrictMain = forwardRef(
   ) => {
     let [listData, setListData] = useState(list)
 
-    // 列表初始化完成后，判断是否需要下钻一层, 不监听listData，因为它只会执行一次
-    let [initCount, setInitCount] = useState(0)
-
     // 初始化数据
     useEffect(() => {
-      if (!visible) return
+      // 隐藏时初始化列表
+      if (!visible) {
+        // 第一次不加载
+        if (ref.notFirstLoad && ref.current?.update) {
+          ref.current.update()
+        }
+        ref.notFirstLoad = true
+        return
+      }
 
       initList()
     }, [visible]) // eslint-disable-line
@@ -53,39 +58,6 @@ const DistrictMain = forwardRef(
       }
     }, [async])
 
-    // 列表初始化完成后，判断是否需要下钻一层
-    useEffect(() => {
-      initChildren()
-    }, [initCount])
-
-    // 初始化下钻列表
-    function initChildren() {
-      // 如果没有数据则不能下钻
-      if (!listData?.length) {
-        return
-      }
-
-      // 如果没有选中项， 则不能下钻
-      if (!Array.isArray(value) || !value.length) {
-        return
-      }
-
-      // 如果已经有请选择了, 则不需要下钻
-      let tabs = ref.current?.getTabs?.()
-      if (Array.isArray(tabs) && tabs.length && tabs.some((tab) => !tab.id)) {
-        return
-      }
-
-      // 如果选中的不是最后一项, 则不需要下钻
-      let activeTab = ref.current?.getActiveTab?.()
-      if (!activeTab?.id) return
-      if (tabs.length && tabs[tabs.length - 1].id !== activeTab.id) {
-        return
-      }
-
-      ref.current.triggerSelect(value[value.length - 1])
-    }
-
     // 初始化列表
     async function initList() {
       listData = list
@@ -95,7 +67,6 @@ const DistrictMain = forwardRef(
       }
       if (Array.isArray(listData) && listData.length) {
         setListData(listData)
-        setInitCount(initCount + 1)
         return
       }
 
@@ -111,7 +82,6 @@ const DistrictMain = forwardRef(
 
       if (typeof onListLoad === 'function') onListLoad(listData)
       setListData(listData)
-      setInitCount(initCount + 1)
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
@@ -176,6 +146,21 @@ const DistrictMain = forwardRef(
         visible={visible}
         value={value}
         list={listData}
+        loadData={
+          typeof loadData === 'function'
+            ? (tabs, { list = null }) => {
+                return loadData(tabs, {
+                  list,
+                  isCountry,
+                  isProvince,
+                  isMunicipality,
+                  isCity,
+                  isDistrict,
+                  isStreet
+                })
+              }
+            : null
+        }
         {...props}
       />
     )

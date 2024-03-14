@@ -51,8 +51,12 @@ function matchType(tabs, config) {
   if (testDistrict(current, isDistrict)) {
     return ['district']
   }
-  // 不是省市，但在data中，则认为是区，不在data中，则认为是街道(街道在data中, 会有isStreet，所以在isStreet时就返回了)
-  if (testNodeData(current, data)) {
+  // 不是省市，但在data中，则认为是区；不在data中，则认为是街道(街道在data中, 会有isStreet，所以在isStreet时就返回了)
+  let hasData = testNodeData(current, data)
+  if (hasData) {
+    if (hasData === 'street') {
+      return ['street']
+    }
     return ['district']
   }
 

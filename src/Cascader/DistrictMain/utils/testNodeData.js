@@ -2,7 +2,10 @@
 function testNodeData(current, data) {
   if (!current?.id || !Array.isArray(data) || !data?.length) return false
 
-  return data.getDeepTreeNode(current.id) ? true : false
+  let node = data.getDeepTreeNode(current.id)
+  if (node?.isStreet) return 'street'
+  if (node) return true
+  return false
 }
 
 export default testNodeData

@@ -62,16 +62,8 @@ const Main = forwardRef(
         getValue: () => {
           return Array.isArray(tabsRef.current) ? tabsRef.current.filter((item) => item.id) : []
         },
-        // 获取tabs
-        getTabs: () => {
-          return tabsRef.current
-        },
-        // 获取选中
-        getActiveTab: () => {
-          return activeTab
-        },
-        // 添加一级
-        triggerSelect: handleSelect
+        // 更新数据
+        update: initData
       }
     })
 
@@ -88,8 +80,52 @@ const Main = forwardRef(
       if (!activeTab) return
       if (mainRef.current) mainRef.current.scrollTop = 0
 
+      // 默认下钻
+      initSelect()
       // eslint-disable-next-line
     }, [activeTab])
+
+    // 默认下钻
+    function initSelect() {
+      // 如果没有数据则不能下钻
+      if (!externalList?.length) {
+        return
+      }
+
+      // 如果没有选中项， 则不能下钻
+      if (!Array.isArray(value) || !value.length) {
+        return
+      }
+
+      // 如果已经有请选择了, 则不需要下钻
+      let tabs = tabsRef.current
+      if (Array.isArray(tabs) && tabs.length && tabs.some((tab) => !tab.id)) {
+        return
+      }
+
+      // 如果选中的不是最后一项, 则不需要下钻
+      if (!activeTab?.id) return
+      if (tabs.length && tabs[tabs.length - 1].id !== activeTab.id) {
+        return
+      }
+
+      // 如果值当中已经有街道了，则不需要下钻
+      if (
+        value.some((item) => {
+          if (item.isStreet) {
+            return true
+          }
+          if (Array.isArray(item.type) && item.type.length) {
+            return item.type.includes('street')
+          }
+          return false
+        })
+      ) {
+        return
+      }
+
+      handleSelect(value[value.length - 1])
+    }
 
     // 初始化数据
     async function initData() {
@@ -100,12 +136,13 @@ const Main = forwardRef(
           ? tabsRef.current[tabsRef.current.length - 1]
           : null
 
-      activeTab = lastTab
-      setActiveTab(activeTab)
-
       // 渲染子级
       let children = await getChildrenList(lastTab?.parentid || '')
       setList(children)
+
+      // 选中末级，放在children后面是为了useEffect[activeTab]可以保持在最后执行
+      activeTab = lastTab
+      setActiveTab(activeTab ? { ...activeTab } : activeTab)
     }
 
     // 获取指定级别的列表数据
@@ -130,7 +167,7 @@ const Main = forwardRef(
         id: id,
         loadData:
           typeof loadData === 'function'
-            ? () => loadData(currentTabs, { data: externalList })
+            ? () => loadData(currentTabs, { list: externalList })
             : null
       })
       return list
@@ -144,7 +181,7 @@ const Main = forwardRef(
         id,
         loadData:
           typeof loadData === 'function'
-            ? () => loadData(tabsRef.current, { data: externalList })
+            ? () => loadData(tabsRef.current, { list: externalList })
             : null
       })
 

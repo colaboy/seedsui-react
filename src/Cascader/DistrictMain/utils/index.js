@@ -34,3 +34,17 @@ export {
   testNodeData,
   testEditableOptions
 }
+
+export default {
+  getChildTypes,
+  getParentTypes,
+  getSiblingType,
+  matchType,
+  testCountry,
+  testProvince,
+  testCity,
+  testDistrict,
+  testStreet,
+  testNodeData,
+  testEditableOptions
+}

@@ -68,7 +68,7 @@ export default () => {
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
         // min="province" // ['country', 'province', 'city', 'district', 'street']
-        type="district"
+        // type="district"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -102,8 +102,8 @@ export default () => {
         async={false}
         editableOptions={{
           country: { editable: false },
-          province: { editable: false },
-          city: { editable: false }
+          province: { editable: false }
+          // city: { editable: false },
           // district: { editable: false }
           // street: { editable: true }
         }}
