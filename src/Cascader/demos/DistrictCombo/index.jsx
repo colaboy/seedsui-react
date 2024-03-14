@@ -12,12 +12,13 @@ export default () => {
     { id: '320000', name: '江苏省', parentid: '86' },
     { id: '320100', name: '南京市', parentid: '320000' }
   ])
+
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
-    // { name: '中国', id: '86' },
-    // { id: '320000', name: '江苏省', parentid: '86' },
-    // { id: '320100', name: '南京市', parentid: '320000' },
-    // { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
+    { name: '中国', id: '86' },
+    { id: '320000', name: '江苏省', parentid: '86' },
+    { id: '320100', name: '南京市', parentid: '320000' },
+    { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
   ])
   console.log('districtComboRef:', districtComboRef)
 
@@ -54,14 +55,19 @@ export default () => {
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
-      <Cascader.DistrictCombo value={value2} onChange={setValue2} placeholder="Please Select" />
+      <Cascader.DistrictCombo
+        // type="city"
+        value={value2}
+        onChange={setValue2}
+        placeholder="Please Select"
+      />
       <Cascader.DistrictCombo
         ref={districtComboRef}
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
         min="city" // ['country', 'province', 'city', 'district', 'street']
-        // type="province"
+        type="street"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -95,10 +101,10 @@ export default () => {
         async={false}
         editableOptions={{
           country: { editable: false },
-          province: { editable: false },
-          city: { editable: false },
-          district: { editable: false },
-          street: { editable: true }
+          province: { editable: false }
+          // city: { editable: false },
+          // district: { editable: false },
+          // street: { editable: true }
         }}
       />
     </div>

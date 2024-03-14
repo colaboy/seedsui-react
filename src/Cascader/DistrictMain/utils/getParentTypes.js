@@ -1,9 +1,9 @@
-// 获取最小类型
-function getMinTypes(type) {
+// 获取上级类型
+function getParentTypes(type) {
   const types = ['country', 'province', 'city', 'district', 'street']
   let index = types.indexOf(type)
   if (index === -1) return []
-  return types.splice(index)
+  return types.splice(0, index + 1)
 }
 
-export default getMinTypes
+export default getParentTypes

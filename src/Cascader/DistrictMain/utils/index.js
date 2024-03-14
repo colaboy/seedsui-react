@@ -1,4 +1,5 @@
-import getMinTypes from './getMinTypes'
+import getChildTypes from './getChildTypes'
+import getParentTypes from './getParentTypes'
 import getSiblingType from './getSiblingType'
 import matchType from './matchType'
 import testCountry from './testCountry'
@@ -21,7 +22,8 @@ if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_areaLevel__)) {
 window.AreaLevel = window.__SeedsUI_Cascader_DistrictCombo_areaLevel__ || null
 
 export {
-  getMinTypes,
+  getChildTypes,
+  getParentTypes,
   getSiblingType,
   matchType,
   testCountry,

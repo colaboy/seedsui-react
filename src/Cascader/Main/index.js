@@ -61,7 +61,17 @@ const Main = forwardRef(
         // 当选择到叶子节点时，不触发onChange，允许用户手动点击确定提前获取最新的value
         getValue: () => {
           return Array.isArray(tabsRef.current) ? tabsRef.current.filter((item) => item.id) : []
-        }
+        },
+        // 获取tabs
+        getTabs: () => {
+          return tabsRef.current
+        },
+        // 获取选中
+        getActiveTab: () => {
+          return activeTab
+        },
+        // 添加一级
+        triggerSelect: handleSelect
       }
     })
 
@@ -90,7 +100,8 @@ const Main = forwardRef(
           ? tabsRef.current[tabsRef.current.length - 1]
           : null
 
-      setActiveTab(lastTab)
+      activeTab = lastTab
+      setActiveTab(activeTab)
 
       // 渲染子级
       let children = await getChildrenList(lastTab?.parentid || '')
@@ -166,7 +177,9 @@ const Main = forwardRef(
     }
 
     // 点击选项
-    async function handleSelect(item) {
+    async function handleSelect(item, options) {
+      const { onChange } = options || {}
+
       // 选中中间的tabs
       let tabIndex = tabsRef.current.findIndex((tab) => tab.id === activeTab?.id)
       if (tabIndex !== -1) {
@@ -191,8 +204,9 @@ const Main = forwardRef(
         let goOn = await onDrillDown(tabsRef.current, { data })
         // 禁止下钻
         if (goOn !== undefined && !goOn) {
-          handleChange(tabsRef.current)
-          setActiveTab(tabsRef.current[tabsRef.current.length - 1])
+          onChange && onChange(tabsRef.current)
+          activeTab = tabsRef.current[tabsRef.current.length - 1]
+          setActiveTab(activeTab)
           return
         }
       }
@@ -209,7 +223,7 @@ const Main = forwardRef(
       }
 
       // 无子级调用onChange
-      handleChange(tabsRef.current)
+      onChange && onChange(tabsRef.current)
     }
 
     function getTabsNode() {
@@ -218,7 +232,8 @@ const Main = forwardRef(
           tabs: tabsRef.current,
           activeTab: activeTab,
           onActiveTab: async (tab) => {
-            setActiveTab(tab)
+            activeTab = tab
+            setActiveTab(activeTab)
             let newList = await getChildrenList(tab?.parentid)
             setList(newList)
           }
@@ -230,7 +245,8 @@ const Main = forwardRef(
           tabs={tabsRef.current}
           activeTab={activeTab}
           onActiveTab={async (tab) => {
-            setActiveTab(tab)
+            activeTab = tab
+            setActiveTab(activeTab)
             let newList = await getChildrenList(tab?.parentid)
             setList(newList)
           }}
@@ -251,7 +267,7 @@ const Main = forwardRef(
           list={list}
           value={tabsRef.current}
           // 阻止选择
-          onSelect={handleSelect}
+          onSelect={(item) => handleSelect(item, { onChange: handleChange })}
           {...props}
         />
       </>

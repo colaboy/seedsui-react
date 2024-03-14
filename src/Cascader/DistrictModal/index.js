@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react'
-import { getMinTypes, matchType } from './../DistrictMain/utils'
+import { getChildTypes, matchType } from './../DistrictMain/utils'
 
 // 测试使用
 // import BaseModal from 'seedsui-react/lib/Select/Modal'
@@ -68,7 +68,7 @@ const DistrictModal = forwardRef(
       if (
         Array.isArray(currentType) &&
         currentType.length &&
-        getMinTypes(min).some((minType) => {
+        getChildTypes(min).some((minType) => {
           return currentType?.includes(minType)
         })
       ) {
