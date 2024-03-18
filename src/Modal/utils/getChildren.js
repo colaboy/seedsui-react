@@ -1,3 +1,4 @@
+import React from 'react'
 import getCaption from './getCaption'
 import getFooter from './getFooter'
 

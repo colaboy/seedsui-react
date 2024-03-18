@@ -1,3 +1,4 @@
+import React from 'react'
 // 标题
 function getCaption({ captionProps }) {
   let captionNode = null
