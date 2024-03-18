@@ -1,6 +1,6 @@
 {
   "name": "seedsui-react",
-  "version": "5.8.12",
+  "version": "5.8.13",
   "description": "seedsui-react React component",
   "keywords": [
     "react-component",
@@ -47,7 +47,12 @@
     "src/**/*.{js,jsx}": "eslint --max-warnings=0"
   },
   "dependencies": {
-    "rc-tree": "^5.7.2"
+    "axios": "^1.6.1",
+    "better-scroll": "^2.5.0",
+    "html-react-parser": "^3.0.4",
+    "lodash": "^4.17.21",
+    "rc-tree": "^5.7.2",
+    "vconsole": "^3.15.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
@@ -67,13 +72,6 @@
     "react-dom": "^18.2.0",
     "react-sortablejs": "^6.1.4",
     "stylelint": "^14.9.1"
-  },
-  "peerDependencies": {
-    "axios": "^1.6.1",
-    "better-scroll": "^2.5.0",
-    "html-react-parser": "^3.0.4",
-    "lodash": "^4.17.21",
-    "vconsole": "^3.15.0"
   },
   "publishConfig": {
     "access": "public"
