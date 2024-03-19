@@ -97,7 +97,9 @@ function TreePicker(
         }
       }
 
+      // eslint-disable-next-line
       loadedKeys = newLoadedKeys
+      // eslint-disable-next-line
       expandedKeys = newExpandedKeys
       setLoadedKeys(newLoadedKeys)
       setExpandedKeys(newExpandedKeys)
