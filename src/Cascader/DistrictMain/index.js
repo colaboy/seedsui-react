@@ -50,13 +50,15 @@ const DistrictMain = forwardRef(
       }
 
       initList()
-    }, [visible]) // eslint-disable-line
+      // eslint-disable-next-line
+    }, [visible])
 
     // 如果设置为同步加载，则不显示也需要加载
     useEffect(() => {
       if (async === false) {
         initList()
       }
+      // eslint-disable-next-line
     }, [async])
 
     // 初始化列表
