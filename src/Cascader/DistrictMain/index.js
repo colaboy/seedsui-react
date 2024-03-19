@@ -22,6 +22,7 @@ const DistrictMain = forwardRef(
       loadList,
       onListLoad,
       editableOptions,
+      loadData,
       // 判断是否是国省市区
       isCountry,
       isProvince,
