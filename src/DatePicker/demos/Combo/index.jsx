@@ -6,13 +6,16 @@ export default () => {
 
   return (
     <>
-      <DatePicker.Combo
-        placeholder="Please select"
+      <DatePicker.Main
+        style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
-        type="datetime"
+        type="month"
         value={value}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log(newValue)
+          setValue(newValue)
+        }}
         allowClear
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

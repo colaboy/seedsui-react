@@ -16,20 +16,18 @@ const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
   })
 
   useEffect(() => {
-    if (instance.current) return
-    instance.current = new Instance(rootRef.current, {
-      text: text || '',
-      width: Object.getUnitNum(style?.width || 230),
-      height: Object.getUnitNum(style?.width || 230),
-      colorDark: style?.color || '#000000',
-      colorLight: style?.backgroundColor || '#ffffff',
-      correctLevel: Instance.CorrectLevel.M // L,M,Q,H
-    })
-    // eslint-disable-next-line
-  }, [])
+    if (!text || typeof text !== 'string') return
+    if (!instance.current) {
+      instance.current = new Instance(rootRef.current, {
+        text: text || '',
+        width: Object.getUnitNum(style?.width || 230),
+        height: Object.getUnitNum(style?.width || 230),
+        colorDark: style?.color || '#000000',
+        colorLight: style?.backgroundColor || '#ffffff',
+        correctLevel: Instance.CorrectLevel.M // L,M,Q,H
+      })
+    }
 
-  useEffect(() => {
-    if (!instance.current || !text) return
     const width = Object.getUnitNum(style?.width || 0)
     const height = Object.getUnitNum(style?.height || 0)
     const color = style?.color

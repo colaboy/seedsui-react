@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { QRCode } from 'seedsui-react'
 
 const Logo = {
@@ -11,9 +11,15 @@ const Logo = {
   marginTop: '-25px'
 }
 export default () => {
+  const [url, setUrl] = useState('')
+  useEffect(() => {
+    setTimeout(() => {
+      setUrl('abc')
+    }, 1000)
+  }, [])
   return (
     <>
-      <QRCode text="https://image.baidu.com">
+      <QRCode text={url}>
         <img style={Logo} alt="" src="//res.waiqin365.com/d/dinghuo365/logo.png" />
       </QRCode>
     </>
