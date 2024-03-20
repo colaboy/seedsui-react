@@ -1,3 +1,4 @@
+import React from 'react'
 import HighlightKeyword from './../../../HighlightKeyword'
 
 // 构建渲染数据, 支持关键字搜索

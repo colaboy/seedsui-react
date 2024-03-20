@@ -26,6 +26,7 @@
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "doctor": "father doctor",
+    "jslint": "node scripts/jslint.js",
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",

@@ -1,6 +1,10 @@
+import React from 'react'
 import Page from './../Page'
 import Header from './../Header'
+import BMap from './BMap'
 import Container from './../Container'
+import InputText from './../InputText'
+import Card from './../Card'
 
 function MapSearch() {
   return (
