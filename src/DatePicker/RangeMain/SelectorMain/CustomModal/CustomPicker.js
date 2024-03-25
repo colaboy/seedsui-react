@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PickerModal from './../../RangeModal/PickerModal'
+import PickerModal from './../../../RangeModal/PickerModal'
 
 // 自定义日期选择弹窗: 两框选择
 export default function CustomPicker({

@@ -88,6 +88,12 @@ const MultipleMain = (
     // eslint-disable-next-line
   }, [visible])
 
+  // 更新Picker样式
+  useEffect(() => {
+    updatePickerStyle()
+    // eslint-disable-next-line
+  }, [activeTab])
+
   // 选择日期
   function handleDateChange(newTab) {
     // 更新tab
@@ -100,6 +106,23 @@ const MultipleMain = (
     if (onChange) onChange(tabs)
     // 更新tabs
     setTabs(tabs)
+  }
+
+  // 动态计算picker高度
+  function updatePickerStyle() {
+    if (
+      (!props?.style?.height && !props?.className) ||
+      !mainRef.current ||
+      !mainRef.current.querySelector('.picker-tabs') ||
+      !mainRef.current.querySelector('.picker-main')
+    ) {
+      return undefined
+    }
+    let mainHeight =
+      mainRef.current.clientHeight - mainRef.current.querySelector('.picker-tabs').clientHeight
+    if (mainHeight) {
+      mainRef.current.querySelector('.picker-main').style.height = mainHeight + 'px'
+    }
   }
 
   return (

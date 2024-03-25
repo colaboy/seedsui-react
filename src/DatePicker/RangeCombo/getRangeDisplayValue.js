@@ -1,5 +1,5 @@
 import { getDateDisplayValue } from './../utils'
-import getActiveOption from './../RangeMain/getActiveOption'
+import getActiveOption from './../RangeMain/SelectorMain/getActiveOption'
 
 // 显示名称
 function getRangeDisplayValue({ format, ranges, type, value, separator, currentActiveKey }) {

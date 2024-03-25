@@ -5,18 +5,6 @@ async function validateRange(
   newValue,
   { type, min, max, dateRangeLimit, onError, onBeforeChange, activeKey, ranges }
 ) {
-  let beforeChangeGoOn = null
-  // 外部传入的校验
-  if (typeof onBeforeChange === 'function') {
-    beforeChangeGoOn = await onBeforeChange(newValue, {
-      ranges: ranges,
-      activeKey: activeKey
-    })
-    if (beforeChangeGoOn === false) {
-      return false
-    }
-  }
-
   // 值合法性校验
   let goOn = await validateValue(newValue, {
     type,
@@ -30,7 +18,19 @@ async function validateRange(
     return false
   }
 
-  return beforeChangeGoOn || goOn
+  // 外部传入的校验
+  let beforeChangeGoOn = null
+  if (typeof onBeforeChange === 'function') {
+    beforeChangeGoOn = await onBeforeChange(newValue, {
+      ranges: ranges,
+      activeKey: activeKey
+    })
+    if (beforeChangeGoOn === false) {
+      return false
+    }
+  }
+
+  return true
 }
 
 export default validateRange

@@ -6,19 +6,25 @@ export default () => {
 
   return (
     <>
-      <DatePicker.Main
-        style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
+      <DatePicker.Combo
+        // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         type="month"
         value={value}
+        onBeforeChange={(newValue) => {
+          console.log('修改前:', newValue)
+        }}
         onChange={(newValue) => {
-          console.log(newValue)
+          console.log('修改:', newValue)
           setValue(newValue)
         }}
         allowClear
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
+        }}
+        onError={(error) => {
+          console.log(error)
         }}
         // displayValueFormatter={({ value, type }) => {
         //   let displayValue = ''

@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import defaultRanges from './../RangeMain/defaultRanges'
+import defaultRanges from './../RangeMain/SelectorMain/defaultRanges'
 import getRangeDisplayValue from './getRangeDisplayValue'
 
 import Combo from './../../Select/Combo'
