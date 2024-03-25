@@ -340,7 +340,7 @@ const PickerDistrict = forwardRef(
     }
     function getCountryByName(countryName) {
       for (let item of currentCountries) {
-        if (item.name.indexOf(countryName) !== -1 || countryName.indexOf(item.name) !== -1) {
+        if (item.name?.indexOf(countryName) !== -1 || countryName?.indexOf(item.name) !== -1) {
           return item
         }
       }

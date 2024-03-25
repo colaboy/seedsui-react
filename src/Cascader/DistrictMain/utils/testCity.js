@@ -9,8 +9,8 @@ function testCity(current, isCity) {
   for (let city of window?.AreaLevel?.cities || []) {
     if (
       current.id === city.id ||
-      city.name.indexOf(current.name) !== -1 ||
-      current.name.indexOf(city.name) !== -1
+      city.name?.indexOf(current.name) !== -1 ||
+      current.name?.indexOf(city.name) !== -1
     ) {
       return true
     }

@@ -318,7 +318,9 @@ const Combo = forwardRef(
             defaultExpandAll, // 默认展开
             TreeProps
           })}
-          onVisibleChange={setVisible}
+          onVisibleChange={(newVisible) => {
+            setVisible(newVisible)
+          }}
           visible={ModalProps?.visible === undefined ? visible : ModalProps.visible}
         />
       </Fragment>
