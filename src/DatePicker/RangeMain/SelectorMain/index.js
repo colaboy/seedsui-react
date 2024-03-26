@@ -15,7 +15,6 @@ function RangeMain(
     portal,
     // components props
     SelectorProps,
-    customDatePickerProps,
     allowClear,
 
     // Main: common
@@ -35,6 +34,7 @@ function RangeMain(
     ranges,
 
     // Custom option config
+    ModalProps,
     customModal = 'dates' // dates | picker
   },
   ref
@@ -202,11 +202,11 @@ function RangeMain(
           // customModal为picker时，需要控制显隐
           visible={customModalVisible}
           onVisibleChange={(datePickerVisible, options) => {
-            customDatePickerProps?.onVisibleChange?.(datePickerVisible, options)
+            ModalProps?.onVisibleChange?.(datePickerVisible, options)
             setCustomModalVisible(datePickerVisible)
           }}
           customModal={customModal}
-          customDatePickerProps={customDatePickerProps}
+          ModalProps={ModalProps}
           portal={portal}
           type={type}
           allowClear={allowClear}

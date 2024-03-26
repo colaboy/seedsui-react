@@ -9,7 +9,6 @@ function RangeMain(
     portal,
     // components props
     SelectorProps,
-    customDatePickerProps,
     allowClear,
 
     // Main: common
@@ -29,6 +28,7 @@ function RangeMain(
     ranges = defaultRanges,
 
     // Custom option config
+    ModalProps,
     customModal = 'dates', // dates | picker
     ...props
   },
@@ -64,7 +64,7 @@ function RangeMain(
           onChange={onChange}
           onError={onError}
           SelectorProps={SelectorProps}
-          customDatePickerProps={customDatePickerProps}
+          ModalProps={ModalProps}
           titles={titles}
           ranges={ranges}
           customModal={customModal}

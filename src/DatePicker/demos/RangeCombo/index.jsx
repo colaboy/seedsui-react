@@ -15,9 +15,9 @@ export default () => {
     <>
       <DatePicker.RangeCombo
         ref={date1Ref}
-        // ranges={{
-        //   自定义: 30
-        // }}
+        ranges={{
+          自定义: 0
+        }}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"

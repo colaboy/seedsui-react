@@ -14,7 +14,7 @@ export default function CustomDates({
   onBeforeChange,
   onChange,
   onError,
-  customDatePickerProps
+  ModalProps
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
@@ -27,7 +27,7 @@ export default function CustomDates({
         type={type}
         value={startDate}
         max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
-        onError={onError}
+        // onError={onError}
         onBeforeChange={(argStartDate) => {
           let newStartDate = argStartDate || null
           if (onBeforeChange) {
@@ -41,7 +41,7 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...customDatePickerProps}
+        ModalProps={ModalProps}
       />
       —
       <Combo
@@ -49,7 +49,7 @@ export default function CustomDates({
         type={type}
         value={endDate}
         min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
-        onError={onError}
+        // onError={onError}
         onBeforeChange={(argEndDate) => {
           let newEndDate = argEndDate || null
           if (onBeforeChange) {
@@ -63,7 +63,7 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        {...customDatePickerProps}
+        ModalProps={ModalProps}
       />
     </div>
   )

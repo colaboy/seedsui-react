@@ -12,7 +12,7 @@ export default function CustomPicker({
   onBeforeChange,
   onChange,
   onError,
-  customDatePickerProps
+  ModalProps
 }) {
   return (
     <div className={`datepicker-rangemain-custom`}>
@@ -23,7 +23,7 @@ export default function CustomPicker({
         onError={onError}
         onBeforeChange={onBeforeChange}
         onChange={onChange}
-        {...customDatePickerProps}
+        {...ModalProps}
         visible={visible}
         onVisibleChange={(newVisible) => {
           onVisibleChange && onVisibleChange(newVisible, { modal: 'picker' })

@@ -60,14 +60,18 @@ const RangeModal = (
     max: max,
     type: type,
     onError: onError,
-    ranges: ranges
+    ranges: ranges,
     // Custom option config
     // customModal: customModal
+    ModalProps: {
+      maskProps: props.maskProps || null
+    }
   }
 
   for (let propName in MainPropsExternal) {
-    if (props.MainProps[propName] === undefined)
+    if (props.MainProps[propName] === undefined) {
       props.MainProps[propName] = MainPropsExternal[propName]
+    }
   }
 
   return (
