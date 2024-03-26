@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
 import getCustomKey from './getCustomKey'
 import getActiveOption from './getActiveOption'
@@ -35,7 +35,8 @@ function RangeMain(
 
     // Custom option config
     ModalProps,
-    customModal = 'dates' // dates | picker
+    customModal = 'dates', // dates | picker
+    ...props
   },
   ref
 ) {
@@ -48,8 +49,11 @@ function RangeMain(
   // 自定义选项弹窗
   let [customModalVisible, setCustomModalVisible] = useState(false)
 
+  const mainRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
+      rootDOM: mainRef.current,
+      getRootDOM: () => mainRef.current,
       // 获取选中项
       getActiveKey: () => {
         return activeKey
@@ -132,7 +136,11 @@ function RangeMain(
   }
 
   return (
-    <>
+    <div
+      {...props}
+      className={`datepicker-selector${props.className ? ' ' + props.className : ''}`}
+      ref={mainRef}
+    >
       {/* 快捷选择: 标题 */}
       {typeof titles?.selector === 'string' ? (
         <p className="datepicker-selector-caption">{titles.selector}</p>
@@ -235,7 +243,7 @@ function RangeMain(
           onError={onError}
         />
       )}
-    </>
+    </div>
   )
 }
 

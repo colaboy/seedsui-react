@@ -6,7 +6,11 @@ import PickerMain from './PickerMain'
 // 日期快捷选择
 function RangeMain(
   {
+    // useless props
+    visible,
+
     portal,
+
     // components props
     SelectorProps,
     allowClear,
@@ -68,6 +72,7 @@ function RangeMain(
           titles={titles}
           ranges={ranges}
           customModal={customModal}
+          {...props}
         />
       )}
       {!hasSelector && (

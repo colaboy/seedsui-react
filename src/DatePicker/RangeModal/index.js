@@ -94,7 +94,6 @@ const RangeModal = (
       // Main: Picker Control properties
       defaultPickerValue={defaultPickerValue}
       // Combo|Main: DatePicker Control properties
-      titles={titles}
       min={min}
       max={max}
       type={type}
