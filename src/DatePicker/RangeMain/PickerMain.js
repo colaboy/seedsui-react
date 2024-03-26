@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import locale from '../../locale'
 import { validateRange } from './../utils'
 // 测试使用
@@ -14,7 +14,6 @@ const PickerMain = function (
     type,
     min,
     max,
-    rangeLimit,
     dateRangeLimit,
     allowClear,
     value,
@@ -26,11 +25,28 @@ const PickerMain = function (
   },
   ref
 ) {
+  const mainRef = useRef(null)
+  useImperativeHandle(ref, () => {
+    return {
+      rootDOM: mainRef.current,
+      getRootDOM: () => mainRef.current,
+      getValue: () => {
+        let multipleValue = mainRef?.current?.getValue?.()
+        if (!multipleValue) {
+          return null
+        }
+        let newValue = [multipleValue?.[0].value, multipleValue?.[1].value]
+        return newValue
+      }
+    }
+  })
+
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getRangeDates(value)
     const { startDate: defaultStartDate, endDate: defaultEndDate } =
       getRangeDates(defaultPickerValue)
+
     setMultipleDate([
       {
         type: type,
@@ -57,7 +73,7 @@ const PickerMain = function (
       type,
       min,
       max,
-      dateRangeLimit: typeof dateRangeLimit === 'number' ? dateRangeLimit : rangeLimit?.date,
+      dateRangeLimit: typeof dateRangeLimit === 'number' ? dateRangeLimit : null,
       onError,
       onBeforeChange,
       activeKey: null,
@@ -80,7 +96,7 @@ const PickerMain = function (
 
   return (
     <MultipleMain
-      ref={ref}
+      ref={mainRef}
       portal={portal}
       type={type}
       value={multipleDate}

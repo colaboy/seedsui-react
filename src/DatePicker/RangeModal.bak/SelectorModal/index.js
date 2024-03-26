@@ -34,7 +34,6 @@ const SelectorModal = function (
     titleFormatter,
     min,
     max,
-    rangeLimit,
     type,
     onError,
     ranges,
@@ -100,7 +99,6 @@ const SelectorModal = function (
             type={type}
             min={min}
             max={max}
-            rangeLimit={rangeLimit}
             onError={onError}
             onBeforeChange={onBeforeChange}
             onChange={(newValue, { activeKey }) => {

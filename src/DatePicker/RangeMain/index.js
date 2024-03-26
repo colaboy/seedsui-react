@@ -24,7 +24,6 @@ function RangeMain(
     titles,
     min,
     max,
-    rangeLimit,
     type = 'date', // year | quarter | month | date | time | datetime
     onError,
     ranges = defaultRanges,
@@ -58,7 +57,6 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
-          rangeLimit={rangeLimit}
           allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}
@@ -79,7 +77,6 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
-          rangeLimit={rangeLimit}
           dateRangeLimit={dateRangeLimit}
           allowClear={allowClear}
           value={value}

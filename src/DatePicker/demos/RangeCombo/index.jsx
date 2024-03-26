@@ -15,17 +15,14 @@ export default () => {
     <>
       <DatePicker.RangeCombo
         ref={date1Ref}
-        ranges={{
-          自定义: 30
-        }}
-        rangeLimit={{
-          date: 15
-        }}
+        // ranges={{
+        //   自定义: 30
+        // }}
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
         // min={new Date('2023-01-01')}
-        // max={new Date('2023-12-12')}
+        max={new Date()}
         onError={(error) => {
           console.log(error)
         }}
@@ -48,7 +45,9 @@ export default () => {
             }
           }
         }}
-        onChange={setValue}
+        onChange={(newValue) => {
+          setValue(newValue)
+        }}
         value={value}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         captionProps={{
@@ -102,9 +101,6 @@ export default () => {
           [locale('本季度')]: [new Date().firstQuarterDate(), new Date()],
           [locale('自定义')]: 0,
           [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
-        }}
-        rangeLimit={{
-          date: 15
         }}
         min={new Date('2023-08-08')}
         max={new Date()}

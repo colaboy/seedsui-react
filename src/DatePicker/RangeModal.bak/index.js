@@ -71,7 +71,6 @@ const RangeModal = (
     titleFormatter,
     min,
     max,
-    rangeLimit,
     type = 'date', // year | quarter | month | date | time | datetime
     onError,
     ranges,
@@ -130,7 +129,6 @@ const RangeModal = (
           titleFormatter={titleFormatter}
           min={min}
           max={max}
-          rangeLimit={rangeLimit}
           type={type}
           onError={onError}
           ranges={ranges}
@@ -163,7 +161,7 @@ const RangeModal = (
           type,
           min,
           max,
-          dateRangeLimit: rangeLimit?.date || null,
+          dateRangeLimit: null,
           onError,
           onBeforeChange,
           activeKey: null,

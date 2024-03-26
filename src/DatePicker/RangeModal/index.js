@@ -11,71 +11,29 @@ const RangeModal = (
     // 显示文本格式化和value格式化
     valueFormatter,
 
-    // Combo
-    getComboDOM,
-
     // Modal fixed properties
     visible,
 
-    // Modal
-    ModalComponent,
-    ModalProps,
-
     // Modal: display properties
     portal,
-    animation = 'slideUp',
-    maskProps,
-    captionProps,
-    submitProps,
-    cancelProps,
-    maskClosable,
-
-    // Main
-    MainComponent,
-    MainProps,
 
     // Main: common
     value,
-    list, // [{id: '', name: ''}]
-    multiple,
     allowClear,
-    onSelect,
     onBeforeChange,
     onChange,
-
-    // Main: render
-    checkedType,
-    checkedPosition,
-    checkable,
-    headerRender,
-    footerRender,
-    listRender,
-    listHeaderRender,
-    listFooterRender,
-    listExtraHeaderRender,
-    listExtraFooterRender,
-    itemRender,
-    itemContentRender,
-    itemProps,
-    checkboxProps,
 
     // Main: Picker Control properties
     defaultPickerValue,
 
     // Combo|Main: DatePicker Control properties
     titles,
-    titleFormatter,
     min,
     max,
-    rangeLimit,
     type = 'date', // year | quarter | month | date | time | datetime
     onError,
     ranges,
-    modal = 'dropdown', // 弹出方式dropdown
     separator,
-
-    // 纯渲染时不渲染Main
-    children,
     ...props
   },
   ref
@@ -92,15 +50,14 @@ const RangeModal = (
     allowClear: allowClear,
     // Main: common
     value: value,
-    onBeforeChange: onBeforeChange,
-    onChange: onChange,
+    // onBeforeChange: onBeforeChange,
+    // onChange: onChange,
     // Main: Picker Control properties
     defaultPickerValue: defaultPickerValue,
     // Combo|Main: DatePicker Control properties
     titles: titles,
     min: min,
     max: max,
-    rangeLimit: rangeLimit,
     type: type,
     onError: onError,
     ranges: ranges
@@ -118,11 +75,28 @@ const RangeModal = (
       ref={ref}
       {...props}
       className={`slots${props.className ? ' ' + props.className : ''}`}
-      type={type}
+      // type={type}
       valueFormatter={valueFormatter}
       multiple={false}
       visible={visible}
       MainComponent={RangeMain}
+      // Modal: display properties
+      portal={portal}
+      // Main: common
+      value={value}
+      allowClear={allowClear}
+      onBeforeChange={onBeforeChange}
+      onChange={onChange}
+      // Main: Picker Control properties
+      defaultPickerValue={defaultPickerValue}
+      // Combo|Main: DatePicker Control properties
+      titles={titles}
+      min={min}
+      max={max}
+      type={type}
+      separator={separator}
+      onError={onError}
+      ranges={ranges}
     />
   )
 }
