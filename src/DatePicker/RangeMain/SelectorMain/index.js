@@ -117,7 +117,9 @@ function RangeMain(
     onChange &&
       onChange(newValue, {
         ranges: ranges,
-        activeKey: activeKey
+        activeKey: activeKey,
+        // 点击快捷选择直接关闭弹窗
+        close: Array.isArray(ranges[newActiveKey]) ? true : null
       })
   }
 

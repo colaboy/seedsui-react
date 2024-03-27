@@ -292,7 +292,7 @@ const Modal = forwardRef(
             visible={visible}
             value={currentValue}
             list={list}
-            onChange={(newValue) => {
+            onChange={(newValue, options) => {
               // 无标题时更新标题
               updateTitle()
 
@@ -301,7 +301,7 @@ const Modal = forwardRef(
               setCurrentValue(currentValue)
 
               // multiple未传则为必选单选
-              if (multiple === undefined) {
+              if (multiple === undefined || options?.close === true) {
                 handleSubmitClick()
               }
             }}
