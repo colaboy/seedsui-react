@@ -8,7 +8,8 @@ export default () => {
       <Layout.Header className="text-center">日期快捷选择</Layout.Header>
       <Layout.Main className="bg-white">
         <DatePicker.RangeMain
-          style={{ height: 255, overflow: 'hidden', backgroundColor: 'white' }}
+          // style={{ padding: 0 }}
+          allowClear
           titles={{
             custom: '自定义选择',
             selector: '快捷选择'

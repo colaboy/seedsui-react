@@ -7,10 +7,12 @@ function testDistrict(current, isDistrict) {
     return true
   }
   for (let district of window?.AreaLevel?.districts || []) {
+    if (current.id === district.id) {
+      return true
+    }
     if (
-      current.id === district.id ||
-      district.name?.indexOf(current.name) !== -1 ||
-      current.name?.indexOf(district.name) !== -1
+      current.name &&
+      (district.name?.indexOf(current.name) !== -1 || current.name?.indexOf(district.name) !== -1)
     ) {
       return true
     }

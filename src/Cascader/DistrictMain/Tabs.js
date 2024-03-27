@@ -42,7 +42,7 @@ function Tabs({
                 }`}
                 key={index}
               >
-                {tab.name}
+                {tab.name || 'No name'}
               </div>
             )
           })

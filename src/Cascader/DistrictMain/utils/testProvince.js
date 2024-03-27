@@ -7,10 +7,12 @@ function testProvince(current, isProvince) {
     return true
   }
   for (let province of window?.AreaLevel?.provinces || []) {
+    if (current.id === province.id) {
+      return true
+    }
     if (
-      current.id === province.id ||
-      province.name?.indexOf(current.name) !== -1 ||
-      current.name?.indexOf(province.name) !== -1
+      current.name &&
+      (province.name?.indexOf(current.name) !== -1 || current.name?.indexOf(province.name) !== -1)
     ) {
       return true
     }
