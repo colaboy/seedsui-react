@@ -28,6 +28,7 @@ const RangeModal = (
 
     // Combo|Main: DatePicker Control properties
     titles,
+    customModal,
     min,
     max,
     type = 'date', // year | quarter | month | date | time | datetime
@@ -56,6 +57,7 @@ const RangeModal = (
     defaultPickerValue: defaultPickerValue,
     // Combo|Main: DatePicker Control properties
     titles: titles,
+    customModal: customModal,
     min: min,
     max: max,
     type: type,

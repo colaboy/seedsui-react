@@ -220,6 +220,8 @@ function RangeMain(
           allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}
+          // min={min}
+          // max={max}
           onBeforeChange={async (newValue) => {
             let goOn = await validateRange(newValue, {
               type,

@@ -4,7 +4,7 @@ import { DatePicker, locale } from 'seedsui-react'
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [value, setValue] = useState([new Date(), null])
+  const [value, setValue] = useState([new Date('2022-08-22'), null])
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default () => {
       <DatePicker.RangeCombo
         ref={date1Ref}
         ranges={{
-          自定义: 0
+          自定义: 100
         }}
         className="border-b"
         placeholder="Please select RangeCombo"
@@ -104,6 +104,7 @@ export default () => {
         }}
         min={new Date('2023-08-08')}
         max={new Date()}
+        customModal="picker" // dates | picker
         // allowClear="exclusion-ricon"
         value={value}
         onError={(error) => {
