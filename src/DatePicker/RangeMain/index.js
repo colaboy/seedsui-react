@@ -32,7 +32,7 @@ function RangeMain(
     ranges = defaultRanges,
 
     // Custom option config
-    ModalProps,
+    DatePickerModalProps,
     customModal = 'dates', // dates | picker
     ...props
   },
@@ -68,7 +68,7 @@ function RangeMain(
           onChange={onChange}
           onError={onError}
           SelectorProps={SelectorProps}
-          ModalProps={ModalProps}
+          DatePickerModalProps={DatePickerModalProps}
           titles={titles}
           ranges={ranges}
           customModal={customModal}

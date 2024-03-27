@@ -65,7 +65,7 @@ const RangeModal = (
     ranges: ranges,
     // Custom option config
     // customModal: customModal
-    ModalProps: {
+    DatePickerModalProps: {
       maskProps: props.maskProps || null
     }
   }

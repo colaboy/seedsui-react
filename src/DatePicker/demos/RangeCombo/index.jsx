@@ -104,7 +104,7 @@ export default () => {
         }}
         min={new Date('2023-08-08')}
         max={new Date()}
-        customModal="picker" // dates | picker
+        customModal="dates" // dates | picker
         // allowClear="exclusion-ricon"
         value={value}
         onError={(error) => {

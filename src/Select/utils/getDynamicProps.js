@@ -1,6 +1,6 @@
 // 动态属性
 function getDynamicProps({ BaseProps, value, defaultPickerValue, ...otherProps }) {
-  let dynamicProps = BaseProps || {}
+  let dynamicProps = { ...(BaseProps || {}) }
   if (BaseProps?.value === undefined && value !== undefined) {
     dynamicProps.value = value
   }

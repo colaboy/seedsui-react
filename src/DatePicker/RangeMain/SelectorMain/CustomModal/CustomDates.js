@@ -14,7 +14,7 @@ export default function CustomDates({
   onBeforeChange,
   onChange,
   onError,
-  ModalProps
+  DatePickerModalProps
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
@@ -24,6 +24,7 @@ export default function CustomDates({
     <div className={`datepicker-rangemain-custom`}>
       <Combo
         portal={portal}
+        ModalProps={DatePickerModalProps}
         type={type}
         value={startDate}
         max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
@@ -41,11 +42,11 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        ModalProps={ModalProps}
       />
       —
       <Combo
         portal={portal}
+        ModalProps={DatePickerModalProps}
         type={type}
         value={endDate}
         min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
@@ -63,7 +64,6 @@ export default function CustomDates({
         placeholder={locale('请选择', 'ZKGJ001848')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
-        ModalProps={ModalProps}
       />
     </div>
   )
