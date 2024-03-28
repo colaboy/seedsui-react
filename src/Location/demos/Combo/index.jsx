@@ -97,7 +97,7 @@ export default () => {
         allowClear
         autoFit
         autoLocation
-        clickAction="location"
+        clickAction="choose"
         // editable
         // previewVisible
         // chooseVisible

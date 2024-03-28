@@ -27,7 +27,7 @@ export default function CustomDates({
         ModalProps={DatePickerModalProps}
         type={type}
         value={startDate}
-        max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
+        // max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
         // onError={onError}
         onBeforeChange={(argStartDate) => {
           let newStartDate = argStartDate || null
@@ -49,7 +49,7 @@ export default function CustomDates({
         ModalProps={DatePickerModalProps}
         type={type}
         value={endDate}
-        min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
+        // min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
         // onError={onError}
         onBeforeChange={(argEndDate) => {
           let newEndDate = argEndDate || null
