@@ -137,7 +137,6 @@ let Body = function (params) {
     s.isLoading = true // 设置为不可刷新
     // CallBack onBottomRefresh
     await s.params.onBottomRefresh(Object.assign({}, s, options || {}))
-    console.log(s)
     s.isLoading = false
   }
   /* ----------------------
