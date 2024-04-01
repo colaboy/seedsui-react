@@ -190,7 +190,7 @@
 // Used to replace old class .calendar-active
 .calendar-date-selected {
   .calendar-date-num {
-    color: white;
+    color: white !important;
     font-weight: 600;
     background-color: @primary;
     border-color: @primary;
@@ -221,6 +221,7 @@
     border-width: 1px;
     border-radius: 100%;
     border-color: @primary;
+    color: @primary;
   }
 }
 // Used to replace old class .calendar-datenum
@@ -241,10 +242,27 @@
 // Calendar slide
 .calendar-footer {
 }
-.calendar-handlebar {
+svg.calendar-toggle {
+  // pointer-events: none;
   margin: 0 auto;
-  height: 4px;
-  width: 50px;
-  border-radius: 2px;
-  background-color: #ddd;
+  width: 30px;
+  height: 12px;
+  display: block;
+  polyline,
+  line,
+  path {
+    fill: none;
+    stroke-width: 24;
+    stroke: #ddd;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 0.5s;
+  }
+}
+
+.calendar.expand svg.calendar-toggle {
+  path {
+    // d: path('M31.5,39L150,39l118.5,0');
+    d: path('M31.5,61L150,17l118.5,44');
+  }
 }
