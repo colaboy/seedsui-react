@@ -54,11 +54,11 @@ const Dropdown = forwardRef(
         if (!maskTop) {
           setTimeout(() => {
             let rect = tabbarRef?.current?.getBoundingClientRect?.()
-            if (rect?.top) {
+            if (rect && rect?.top !== undefined) {
               maskTop = rect.top + (tabbarRef.current.clientHeight || 40)
               resolve(maskTop)
             } else {
-              resolve(0)
+              resolve(40)
             }
           }, 100)
         } else {
