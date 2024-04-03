@@ -146,7 +146,7 @@ const Modal = forwardRef(
       if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
         // Main渲染完成后取标题, 否则将会取到上次的值
         setTimeout(() => {
-          currentTitle = mainRef.current.getTitle()
+          currentTitle = mainRef?.current?.getTitle?.()
           setCurrentTitle(currentTitle)
         }, 100)
       }

@@ -9,10 +9,10 @@ function formatPoint(point) {
       point = [point.longitude, point.latitude]
     }
   }
-  if (!Array.isArray(point) || point.length !== 2) {
-    return null
+  if (Array.isArray(point) && point.length === 2) {
+    return point
   }
-  return point
+  return null
 }
 
 export default formatPoint
