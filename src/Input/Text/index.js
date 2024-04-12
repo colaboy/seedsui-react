@@ -155,17 +155,17 @@ const InputText = forwardRef(
 
         // 有值隐藏清除
         if (val) {
-          clearRef.current.classList.remove('hide')
+          clearRef.current?.classList?.remove?.('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(true)
 
           // 清除图标显示时, 隐藏右侧图标
           if (allowClear === 'exclusion-ricon' && ricon) {
-            ricon.classList.add('hide')
+            ricon.classList?.add?.('hide')
           }
         }
         // 无值显示清除
         else {
-          clearRef.current.classList.add('hide')
+          clearRef.current?.classList?.add?.('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(false)
 
           // 清除图标隐藏时, 显示右侧图标

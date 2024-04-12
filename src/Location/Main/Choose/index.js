@@ -143,14 +143,14 @@ const MapChoose = forwardRef(
           if (selectedMarkerRef.current) {
             clearMarkers([selectedMarkerRef.current], { map: map })
           }
-          centerMarkerRef.current.classList.remove('hide')
+          centerMarkerRef.current?.classList?.remove?.('hide')
         },
         false
       )
       map.addEventListener(
         'zoomend',
         async () => {
-          centerMarkerRef.current.classList.add('hide')
+          centerMarkerRef.current?.classList?.add?.('hide')
           // 获取中心点
           Loading.show()
           let newValue = await centerMarker({ map: map })
@@ -174,7 +174,7 @@ const MapChoose = forwardRef(
 
     // 拖动点结束
     async function handleDragend() {
-      centerMarkerRef.current.classList.add('hide')
+      centerMarkerRef.current?.classList?.add?.('hide')
       // 绘制中心点
       Loading.show()
       let newValue = await centerMarker({ map: map })
