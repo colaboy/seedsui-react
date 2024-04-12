@@ -104,7 +104,7 @@ const PDFView = forwardRef(
         })
         // 上拉到底部刷新
         refEl.current.bscroll.on('pullingUp', () => {
-          refEl.current.instance.addPages()
+          refEl.current.instance?.addPages?.()
         })
       } else {
         // 不允许放大, 则使用原生滚动条
@@ -170,10 +170,10 @@ const PDFView = forwardRef(
     }
     // 当不允许放大缩小使用原生滚动时, 滚动到底部加载下一页
     function onScroll(e) {
-      var target = e.target
-      var clientHeight = target.clientHeight
-      var scrollHeight = target.scrollHeight
-      var scrollTop =
+      let target = e.target
+      let clientHeight = target.clientHeight
+      let scrollHeight = target.scrollHeight
+      let scrollTop =
         target === document.body ? document.documentElement.scrollTop : target.scrollTop
       if (scrollTop + clientHeight >= scrollHeight - 2) {
         // 刷新
@@ -181,7 +181,7 @@ const PDFView = forwardRef(
           window.clearTimeout(timeout)
         }
         timeout = setTimeout(() => {
-          refEl.current.instance.addPages()
+          refEl.current.instance?.addPages?.()
         }, 500)
       }
     }
