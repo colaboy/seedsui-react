@@ -21,8 +21,8 @@ export default () => {
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"
-        // min={new Date('2023-01-01')}
-        max={new Date()}
+        min={new Date()}
+        // max={new Date()}
         onError={(error) => {
           console.log(error)
         }}
