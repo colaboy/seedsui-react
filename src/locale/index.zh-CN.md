@@ -15,5 +15,6 @@ locale 的数据来源于 window.localeData，格式为{'key': 'value'}, 所以�
 import React from 'react'
 import { locale } from 'seedsui-react'
 
+// 其中key的值为: 半径{0}米
 locale('半径1000米', 'key', [1000]) // => 半径1000米
 ```
