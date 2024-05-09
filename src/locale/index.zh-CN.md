@@ -4,8 +4,9 @@ locale 的数据来源于 window.localeData，格式为{'key': 'value'}, 所以�
 
 ## SeedsUI 内部国际化数据
 
-- seedsui-react/lib/locale/en_US.js
-- seedsui-react/lib/locale/zh_CN
+- seedsui-react/lib/locale/locales/en_US.js
+- seedsui-react/lib/locale/locales/zh_CN.js
+- seedsui-react/lib/locale/locales/zh_HK.js
 
 ## 函数国际化
 

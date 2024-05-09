@@ -21,7 +21,7 @@ export default function (remark, key, variable, dangerouslyHTML) {
 
     // 没有对应值，或者值不是字符串类型，则返回remark
     if (!value || typeof value !== 'string') {
-      return remark
+      return Interpolate.remark(remark, dangerouslyHTML)
     }
 
     // 构建变量映射: 将[variable0, variable1]转换成{'0': variable0, '1': variable1}
