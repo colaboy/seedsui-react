@@ -1,8 +1,8 @@
-import remark from './remark'
+import toNode from './toNode'
 import variable from './variable'
 
 const Interpolate = {
-  remark: remark,
+  toNode: toNode,
   variable: variable
 }
 

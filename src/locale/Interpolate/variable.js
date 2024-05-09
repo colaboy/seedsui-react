@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import htmlParser from 'html-react-parser'
+import toNode from './toNode'
 
 /**
  * 变量替换, 主要为了支持reactDOM变量
@@ -38,14 +38,6 @@ export default function (value, variableMap, dangerouslyHTML) {
     // 双数为变量, 需要替换
     else {
       child = variableMap[item]
-      // 如果需要转换html, 并且变量child为数字或者string类型, 则把变量html字符串转换字符为reactDOM
-      if (dangerouslyHTML && (typeof child === 'number' || typeof child === 'string')) {
-        try {
-          child = htmlParser(child)
-        } catch (error) {
-          child = '{Parse error}'
-        }
-      }
     }
     memo.push(child)
 
@@ -57,7 +49,8 @@ export default function (value, variableMap, dangerouslyHTML) {
     return typeof child === 'number' || typeof child === 'string'
   })
   if (isText) {
-    return children.join('')
+    // 如果需要转换html, 并且变量child为数字或者string类型, 则把变量html字符串转换字符为reactDOM
+    return toNode(children.join(''), dangerouslyHTML)
   }
 
   // reactDOM判断: typeof child === 'object' && child.$$typeof
