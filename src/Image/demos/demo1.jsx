@@ -63,6 +63,12 @@ export default () => {
         onChoose={handleChoose}
         onDelete={handleDelete}
         onPreview={handlePreview}
+        onFileChange={(e) => {
+          console.log('e', e)
+        }}
+        fileProps={{
+          capture: 'camera'
+        }}
       />
     </>
   )

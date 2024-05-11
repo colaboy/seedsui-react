@@ -15,6 +15,7 @@ const Image = forwardRef(
   (
     {
       type, // video.录相 | 其它.为拍照
+      fileProps, // file框属性
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadNode, // 上传按钮覆盖的dom
       statusRender, // 自定义状态渲染func({status, itemDOM})
@@ -177,6 +178,8 @@ const Image = forwardRef(
         {(onChoose || onFileChange) && (
           <Upload
             type={type}
+            // file框属性
+            fileProps={fileProps}
             // 上传DOM
             uploadNode={uploadNode}
             // Custom Status

@@ -5,6 +5,9 @@ import Status from './Status'
 const Upload = ({
   type,
 
+  // file框属性
+  fileProps,
+
   // 上传DOM和状态
   uploadNode,
 
@@ -54,7 +57,6 @@ const Upload = ({
         <input
           type="file"
           className="image-upload-file-photo"
-          name="uploadPhoto"
           onChange={handleFileChange}
           accept="image/*"
           // 以下的属性值会导致: 部分安卓机会不显示拍照
@@ -62,6 +64,8 @@ const Upload = ({
           onClick={(e) => {
             e.stopPropagation()
           }}
+          // file框属性
+          {...(fileProps || {})}
         />
       )}
       {uploadNode && uploadNode}
