@@ -55,18 +55,26 @@ function jsonp(url) {
 // 表单上传
 function formUpload(url, options) {
   return new Promise((resolve, reject) => {
-    if (!options.file) {
+    if (!options?.file && !options?.fileData) {
       // file文件框
-      console.warn('没有找到options.file, 无法上传')
+      console.warn('没有找到options.file或者options.fileData, 无法上传')
       resolve({
         code: '0',
-        message: '没有找到options.file, 无法上传'
+        message: '没有找到options.file或者options.fileData, 无法上传'
       })
       return
     }
+
+    // 获取数据
+    let data = options?.fileData || options?.file?.files?.[0] || null
+    if (!data) {
+      console.warn('文件没有数据, 无法上传')
+      return
+    }
+
     // 上传数据
     let formData = new FormData()
-    formData.append('file', options.file.files[0])
+    formData.append('file', data)
     // 发送请求
     const instance = axios.create({
       withCredentials: true,
