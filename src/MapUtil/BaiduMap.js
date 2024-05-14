@@ -952,7 +952,10 @@ let BaiduMap = function (id, params) {
       return s.drawingManager
     } catch (error) {
       if (s.params.onError)
-        s.params.onError(s, { errMsg: locale('地图库加载失败, 请稍后再试'), error: error })
+        s.params.onError(s, {
+          errMsg: locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'),
+          error: error
+        })
       return null
     }
   }

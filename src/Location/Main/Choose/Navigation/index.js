@@ -55,7 +55,7 @@ function Navigation({ longitude, latitude, name, address }) {
   return (
     <span className="mappage-navigation" onClick={handleClick}>
       <i className="mappage-navigation-icon"></i>
-      <span className="mappage-navigation-text">{locale('导航')}</span>
+      <span className="mappage-navigation-text">{locale('导航', 'SeedsUI_navigation')}</span>
     </span>
   )
 }

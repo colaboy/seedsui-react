@@ -16,7 +16,7 @@ const BMap = ({ errMsg, changeState, list = [], defaultChecked, onMapClose, call
       fail: () => {
         changeState &&
           changeState({
-            errMsg: locale('地图库加载失败，请稍后再试！', 'ZKGJ031269')
+            errMsg: locale('地图库加载失败，请稍后再试！', 'hint_map_failed_load')
           })
       }
     })
@@ -30,13 +30,13 @@ const BMap = ({ errMsg, changeState, list = [], defaultChecked, onMapClose, call
     if (!window.BMap) {
       // 如果有高德地图, 则加上 || !window.AMap
       changeState({
-        errMsg: locale('地图库加载失败，请稍后再试！', 'ZKGJ031269')
+        errMsg: locale('地图库加载失败，请稍后再试！', 'hint_map_failed_load')
       })
       return
     }
     if (!refWrapperEl.current) {
       changeState({
-        errMsg: locale('地图容器不存在', 'ZKGJ029837')
+        errMsg: locale('地图容器不存在', 'hint_map_no_container')
       })
       return
     }

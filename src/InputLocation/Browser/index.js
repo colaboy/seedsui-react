@@ -76,7 +76,7 @@ export default ({ disabled, readOnly, value, onChange, ...others }) => {
         <InputText
           readOnly
           className="bg-white"
-          placeholder={disabled || readOnly ? '' : locale('请选择')}
+          placeholder={disabled || readOnly ? '' : locale('请选择', 'SeedsUI_placeholder_select')}
           inputAttribute={{ style: { padding: 0 } }}
           style={{ padding: 0, borderRadius: 4 }}
           ricon={

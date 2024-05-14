@@ -39,7 +39,7 @@ export default function CustomDates({
           let newStartDate = argStartDate || null
           if (onChange) onChange(newStartDate || endDate ? [newStartDate, endDate] : null)
         }}
-        placeholder={locale('请选择', 'ZKGJ001848')}
+        placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
       />
@@ -61,7 +61,7 @@ export default function CustomDates({
           let newEndDate = argEndDate || null
           if (onChange) onChange(startDate || newEndDate ? [startDate, newEndDate] : null)
         }}
-        placeholder={locale('请选择', 'ZKGJ001848')}
+        placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
       />

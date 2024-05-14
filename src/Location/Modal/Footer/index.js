@@ -15,7 +15,7 @@ function Foot({ onOk, onClear }) {
         {locale('确定', 'ok')}
       </Button>
       <Button className="mappage-footer-clear" onClick={onClear}>
-        {locale('清空标注', 'clear_mark')}
+        {locale('清空标注', 'SeedsUI_empty_marker')}
       </Button>
     </Layout.Footer>
   )

@@ -153,5 +153,11 @@ export default {
   quick_select: 'Quick Select',
   custom_select: 'Custom Select',
   search_place: 'Search place',
-  clear_mark: 'Clear mark'
+  SeedsUI_placeholder_select: 'Please select',
+  SeedsUI_signature: 'Signature',
+  SeedsUI_nearby_recommendation: 'Nearby recommendation',
+  SeedsUI_empty_marker: 'Empty marker',
+  SeedsUI_clear: 'Clear',
+  SeedsUI_confirm: 'Confirm',
+  SeedsUI_navigation: 'Navigation'
 }

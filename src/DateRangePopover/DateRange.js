@@ -74,7 +74,7 @@ function DateRange({
         max={customEnd}
         value={customStart || start || ''}
         onChange={handleCustomStartDate}
-        placeholder={locale('请选择')}
+        placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         className="datepopover-dialog-inputbox"
         pickerProps={{ maskAttribute: { style: { zIndex: '11' } } }}
         {...(startInputDateProps || {})}
@@ -84,7 +84,7 @@ function DateRange({
         min={customStart}
         value={customEnd || end || ''}
         onChange={handleCustomEndDate}
-        placeholder={locale('请选择')}
+        placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         className="datepopover-dialog-inputbox"
         pickerProps={{ maskAttribute: { style: { zIndex: '11' } } }}
         {...(endInputDateProps || {})}

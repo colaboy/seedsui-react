@@ -61,7 +61,7 @@ const Combo = (
   return (
     <>
       <Button ref={comboRef} onClick={handleSign}>
-        {locale('签名')}
+        {locale('签名', 'SeedsUI_signature')}
       </Button>
       <Modal
         ref={modalRef}

@@ -33,7 +33,7 @@ function Main({ list, onChange }) {
           )
         })
       ) : (
-        <Notice caption={locale('暂无数据')} />
+        <Notice caption={locale('暂无数据', 'no_data')} />
       )}
     </div>
   )

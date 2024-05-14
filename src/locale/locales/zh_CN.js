@@ -118,6 +118,7 @@ export default {
   sharetip_sent_to_friend_or: '发送给朋友或',
   sharetip_share_to_moments: '分享给朋友圈',
   hint_video_src: '请传入视频源',
+
   hint_video_sdk_load_failed: '加载播放器库出错, 请稍后再试',
   hint_upload_file_version: '此功能需要升级至6.6.0及以上的客户端',
   hint_choose_video_version: '此功能需要升级至6.6.0及以上的客户端',
@@ -148,5 +149,11 @@ export default {
   quick_select: '快捷选择',
   custom_select: '自定义选择',
   search_place: '搜索地点',
-  clear_mark: '清空标注'
+  SeedsUI_placeholder_select: '请选择',
+  SeedsUI_signature: '签名',
+  SeedsUI_nearby_recommendation: '附近推荐',
+  SeedsUI_empty_marker: '清空标注',
+  SeedsUI_clear: '清除',
+  SeedsUI_confirm: '确认',
+  SeedsUI_navigation: '导航'
 }

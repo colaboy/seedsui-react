@@ -14,7 +14,9 @@ function Toggle() {
         e.currentTarget?.closest('.mappage-info-card')?.classList?.toggle('active')
       }}
     >
-      <span className="mappage-nearby-toggle-label">{locale('附近推荐')}</span>
+      <span className="mappage-nearby-toggle-label">
+        {locale('附近推荐', 'SeedsUI_nearby_recommendation')}
+      </span>
       <i className="mappage-nearby-toggle-arrow"></i>
     </div>
   )

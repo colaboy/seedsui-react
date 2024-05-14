@@ -148,5 +148,11 @@ export default {
   quick_select: '快捷選擇',
   custom_select: '自定義選擇',
   search_place: '搜索地點',
-  clear_mark: '清空標註'
+  SeedsUI_placeholder_select: '請選擇',
+  SeedsUI_signature: '簽名',
+  SeedsUI_nearby_recommendation: '附近推薦',
+  SeedsUI_empty_marker: '清空標註',
+  SeedsUI_clear: '清除',
+  SeedsUI_confirm: '確認',
+  SeedsUI_navigation: '導航'
 }

@@ -190,7 +190,7 @@ const Main = forwardRef(
         tabsRef.current.push({
           parentid: id,
           id: '',
-          name: locale('请选择')
+          name: locale('请选择', 'SeedsUI_placeholder_select')
         })
         // 子节点
         if (Array.isArray(children) && children.length) {
