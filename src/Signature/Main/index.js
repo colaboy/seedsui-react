@@ -35,7 +35,7 @@ const Main = (
       {/* 按钮区域 */}
       <div className="signature-buttons">
         <div className="signature-button signature-button-cancel" onClick={onCancel}>
-          <p>{locale('取消', 'cancel')}</p>
+          <p>{locale('取消', 'SeedsUI_cancel')}</p>
         </div>
         <div className="flex-1"></div>
         <div

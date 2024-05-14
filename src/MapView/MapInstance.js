@@ -58,7 +58,7 @@ export default function () {
     if (self.loadTimeout) window.clearTimeout(self.loadTimeout)
     self.loadTimeout = setTimeout(() => {
       Loading.hide()
-      callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'hint_map_init_timeout'))
+      callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'SeedsUI_mapinit_overtime_error'))
     }, 20000)
   }
 
@@ -138,7 +138,7 @@ export default function () {
     if (!self.label) {
       self.label = self.mapUtil.drawLabel(
         bdPoint,
-        locale(`半径${radius}米`, 'radius_of_m', [radius]),
+        locale(`半径${radius}米`, 'SeedsUI_radius_meters', [radius]),
         {
           offset: {
             width: 0,
@@ -152,7 +152,7 @@ export default function () {
     } else {
       self.label.setPosition(bdPoint)
       self.label.setContent(
-        locale(`半径${Math.trunc(radius, 2)}米`, 'radius_of_m', [Math.trunc(radius, 2)])
+        locale(`半径${Math.trunc(radius, 2)}米`, 'SeedsUI_radius_meters', [Math.trunc(radius, 2)])
       )
     }
   }
@@ -236,7 +236,7 @@ export default function () {
       },
       fail: (err) => {
         Toast.show({
-          content: locale(`暂无${districtName}的边界数据`, 'hint_map_no_boundary_data', [
+          content: locale(`暂无${districtName}的边界数据`, 'SeedsUI_no_map_boundary_data', [
             districtName
           ])
         })

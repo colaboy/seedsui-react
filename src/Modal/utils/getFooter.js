@@ -29,7 +29,7 @@ function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
           otherCancelProps.className ? ' ' + otherCancelProps.className : ''
         }`}
       >
-        {cancelText || locale('取消', 'cancel')}
+        {cancelText || locale('取消', 'SeedsUI_cancel')}
       </div>
     )
   }
@@ -46,7 +46,7 @@ function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
         {...otherSubmitProps}
         className={`modal-ok${otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''}`}
       >
-        {submitText || locale('确定', 'ok')}
+        {submitText || locale('确定', 'SeedsUI_ok')}
       </div>
     )
   }

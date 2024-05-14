@@ -54,7 +54,7 @@ const LocationModal = forwardRef(
       if (!visible) return
       // 无法使用地图
       if (!window.BMap && !ak) {
-        Toast.show({ content: locale('请传入百度地图ak', 'hint_map_ak') })
+        Toast.show({ content: locale('请传入百度地图ak', 'SeedsUI_no_bdmap_ak') })
         return
       }
 
@@ -67,7 +67,7 @@ const LocationModal = forwardRef(
         return
       }
 
-      let loadErrMsg = locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load')
+      let loadErrMsg = locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed')
       if (ak) {
         Loading.show()
         MapUtil.load({
@@ -194,7 +194,7 @@ const LocationModal = forwardRef(
         {/* 头 */}
         <Head
           captionProps={{
-            caption: locale('选择地址', 'picker_location_title')
+            caption: locale('选择地址', 'SeedsUI_choose_address')
           }}
           onSubmitClick={visible === 'choose' && value?.value ? handleOk : null}
           onCancelClick={handleBack}

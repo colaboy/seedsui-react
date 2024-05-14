@@ -10,12 +10,12 @@ function initMap(container, opt) {
   return new Promise((resolve) => {
     if (!window.BMap) {
       // 如果有高德地图, 则加上 || !window.AMap
-      resolve(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
+      resolve(locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'))
       return
     }
 
     if (!container) {
-      resolve(locale('地图容器不存在', 'hint_map_no_container'))
+      resolve(locale('地图容器不存在', 'SeedsUI_no_mapcontainer_error'))
       return
     }
 
@@ -54,7 +54,7 @@ function initMap(container, opt) {
     // 超时处理
     map.loadTimeout = setTimeout(() => {
       Loading.hide()
-      resolve(locale('初始化地图超时, 请检查当前网络是否稳定', 'hint_map_init_timeout'))
+      resolve(locale('初始化地图超时, 请检查当前网络是否稳定', 'SeedsUI_mapinit_overtime_error'))
     }, 20000)
   })
 }

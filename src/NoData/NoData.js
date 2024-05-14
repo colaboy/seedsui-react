@@ -12,7 +12,7 @@ function NoData({ caption, imageProps, children, ...props }) {
         {...imageProps}
       />
       {caption === undefined || caption ? (
-        <div className="nodata-caption">{caption || locale('暂无数据', 'no_data')}</div>
+        <div className="nodata-caption">{caption || locale('暂无数据', 'SeedsUI_no_data')}</div>
       ) : null}
       {children}
     </div>

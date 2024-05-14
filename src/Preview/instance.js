@@ -190,7 +190,7 @@ var Preview = function (params) {
         s.event = e
         // Callback
         if (s.params.onError)
-          s.params.onError(e, { errMsg: `${locale('图片加载失败', 'hint_image_failed_to_load')}` })
+          s.params.onError(e, { errMsg: `${locale('图片加载失败', 'SeedsUI_image_load_failed')}` })
       },
       false
     )
@@ -243,7 +243,7 @@ var Preview = function (params) {
       s.showMask()
     } else {
       if (s.params.onShowError)
-        s.params.onShowError(s, locale('图片加载失败', 'hint_image_failed_to_load'))
+        s.params.onShowError(s, locale('图片加载失败', 'SeedsUI_image_load_failed'))
     }
   }
   /* --------------------

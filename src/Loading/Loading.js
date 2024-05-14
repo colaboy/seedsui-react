@@ -36,7 +36,7 @@ const Loading = forwardRef(
       }
     })
 
-    let { caption = locale('加载中...', 'loading'), ...otherCaptionProps } = captionProps
+    let { caption = locale('加载中...', 'SeedsUI_loading'), ...otherCaptionProps } = captionProps
     if (typeof content === 'string') {
       caption = content
     }

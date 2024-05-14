@@ -104,9 +104,9 @@ function ShareChoose({
             <div className="share-item" key={index}>
               <i className={`share-icon ${share}`}></i>
               <p className="share-caption">
-                {share === 'wechat' && locale('微信好友', 'wechat_friend')}
-                {share === 'wework' && locale('企业微信好友', 'wework_friend')}
-                {share === 'moments' && locale('微信朋友圈', 'wechat_moments')}
+                {share === 'wechat' && locale('微信好友', 'SeedsUI_wechat_friend')}
+                {share === 'wework' && locale('企业微信好友', 'SeedsUI_wework_friend')}
+                {share === 'moments' && locale('微信朋友圈', 'SeedsUI_wechat_moments')}
               </p>
             </div>
           )

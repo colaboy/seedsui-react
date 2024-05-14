@@ -47,7 +47,7 @@ function MapView({
 
   useEffect(() => {
     if (!window.BMap && !ak) {
-      setErrMsg(locale('请传入百度地图ak', 'hint_map_ak'))
+      setErrMsg(locale('请传入百度地图ak', 'SeedsUI_no_bdmap_ak'))
       return
     }
     MapUtil.load({
@@ -56,7 +56,7 @@ function MapView({
         initData()
       },
       fail: () => {
-        setErrMsg(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
+        setErrMsg(locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'))
       }
     })
     // 移除组件时注销
@@ -79,12 +79,12 @@ function MapView({
   function initData() {
     if (!window.BMap) {
       // 如果有高德地图, 则加上 || !window.AMap
-      setErrMsg(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
+      setErrMsg(locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'))
       return
     }
     console.log('初始化地图' + center)
     if (!refWrapperEl.current) {
-      setErrMsg(locale('地图容器不存在', 'hint_map_no_container'))
+      setErrMsg(locale('地图容器不存在', 'SeedsUI_no_mapcontainer_error'))
       return
     }
     mapInstance = new MapInstance()

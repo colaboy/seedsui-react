@@ -66,7 +66,7 @@ const MapChoose = forwardRef(
 
     useEffect(() => {
       if (!window.BMap && !ak) {
-        setErrMsg(locale('请传入百度地图ak', 'hint_map_ak'))
+        setErrMsg(locale('请传入百度地图ak', 'SeedsUI_no_bdmap_ak'))
         return
       }
       MapUtil.load({
@@ -75,7 +75,7 @@ const MapChoose = forwardRef(
           initData()
         },
         fail: () => {
-          setErrMsg(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
+          setErrMsg(locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'))
         }
       })
       // 移除组件时注销
@@ -98,12 +98,12 @@ const MapChoose = forwardRef(
     function initData() {
       if (!window.BMap) {
         // 如果有高德地图, 则加上 || !window.AMap
-        setErrMsg(locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'))
+        setErrMsg(locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'))
         return
       }
       console.log('初始化地图' + center)
       if (!wrapperRef.current) {
-        setErrMsg(locale('地图容器不存在', 'hint_map_no_container'))
+        setErrMsg(locale('地图容器不存在', 'SeedsUI_no_mapcontainer_error'))
         return
       }
       mapInstance = new MapInstance()
@@ -115,7 +115,7 @@ const MapChoose = forwardRef(
           setAddr(addr)
           setData(res)
         } else {
-          Toast.show({ content: locale('获取地址失败, 请稍后重试', 'hint_address_failed') })
+          Toast.show({ content: locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed') })
         }
       }
       // 初始化地图
@@ -239,12 +239,14 @@ const MapChoose = forwardRef(
         </Container>
         <Footer className="map-footer">
           <div className="map-footer-content">
-            <p className="map-footer-content-caption">{locale('当前位置', 'current_location')}</p>
+            <p className="map-footer-content-caption">
+              {locale('当前位置', 'SeedsUI_current_location')}
+            </p>
             <p className="map-footer-content-sndcaption">{addr}</p>
           </div>
           {addr && (
             <span className="map-footer-submit" onClick={handleSubmit}>
-              {locale('确定', 'ok')}
+              {locale('确定', 'SeedsUI_ok')}
             </span>
           )}
         </Footer>

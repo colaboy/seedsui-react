@@ -25,7 +25,9 @@ const BottomError = forwardRef(({ children, ...others }, ref) => {
       {!children && (
         <div className="containerpull-pull-box">
           <div className="containerpull-pull-icon containerpull-pull-icon-loading"></div>
-          <div className="containerpull-pull-caption">{locale('正在加载...', 'loading')}</div>
+          <div className="containerpull-pull-caption">
+            {locale('正在加载...', 'SeedsUI_loading')}
+          </div>
         </div>
       )}
       {children}

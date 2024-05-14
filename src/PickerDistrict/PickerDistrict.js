@@ -140,7 +140,7 @@ const PickerDistrict = forwardRef(
         }
         return children
       }
-      setErrMsg(locale('暂无数据', 'no_data'))
+      setErrMsg(locale('暂无数据', 'SeedsUI_no_data'))
       return []
     }
 
@@ -165,7 +165,7 @@ const PickerDistrict = forwardRef(
         (!Array.isArray(currentCountries) || !currentCountries.length) &&
         (!Array.isArray(currentData) || !currentData.length)
       ) {
-        setErrMsg(locale('暂无数据', 'no_data'))
+        setErrMsg(locale('暂无数据', 'SeedsUI_no_data'))
       }
       // 初始化选中项
       await loadSelected()
@@ -359,7 +359,7 @@ const PickerDistrict = forwardRef(
           }
           currentCountries = null
           resolve(currentCountries)
-          setErrMsg(`countries${locale('参数不正确', 'wrong_parameter')}`)
+          setErrMsg(`countries${locale('参数不正确', 'SeedsUI_wrong_parameter_error')}`)
           // eslint-disable-next-line
           return currentCountries
         }
@@ -375,7 +375,7 @@ const PickerDistrict = forwardRef(
         try {
           currentCountries = await getCountries()
         } catch (error) {
-          setErrMsg(locale('获取数据失败', 'hint_getdata_failed'))
+          setErrMsg(locale('获取数据失败', 'SeedsUI_get_data_failed'))
           setLoading(false)
           currentCountries = null
           resolve(currentCountries)
@@ -434,7 +434,7 @@ const PickerDistrict = forwardRef(
             setErrMsg(newData)
           }
           if (!newData) {
-            setErrMsg(locale('获取数据失败', 'hint_getdata_failed'))
+            setErrMsg(locale('获取数据失败', 'SeedsUI_get_data_failed'))
           }
           setLoading(false)
         } else if (Array.isArray(data)) {
@@ -489,7 +489,7 @@ const PickerDistrict = forwardRef(
         try {
           currentStreets = await getStreets(id)
         } catch (error) {
-          let errMsg = locale('获取数据失败', 'hint_getdata_failed')
+          let errMsg = locale('获取数据失败', 'SeedsUI_get_data_failed')
           setErrMsg(errMsg)
           setLoading(false)
           currentStreets = null
@@ -739,11 +739,11 @@ const PickerDistrict = forwardRef(
                   cancelAttribute.className ? ' ' + cancelAttribute.className : ''
                 }`}
               >
-                {cancelAttribute.caption || locale('取消', 'cancel')}
+                {cancelAttribute.caption || locale('取消', 'SeedsUI_cancel')}
               </a>
             )}
             <div className="picker-district-header-title">
-              {locale('请选择所在地区', 'picker_district_title')}
+              {locale('请选择所在地区', 'SeedsUI_choose_district')}
             </div>
             {submitAttribute && submitAttribute.show && (
               <a
@@ -752,7 +752,7 @@ const PickerDistrict = forwardRef(
                   submitAttribute.className ? ' ' + submitAttribute.className : ''
                 }`}
               >
-                {submitAttribute.caption || locale('完成', 'finish')}
+                {submitAttribute.caption || locale('完成', 'SeedsUI_finish')}
               </a>
             )}
           </div>
@@ -795,7 +795,9 @@ const PickerDistrict = forwardRef(
           {loading && (
             <div className="picker-district-load">
               <div className="picker-district-load-icon"></div>
-              <div className="picker-district-load-label">{locale('加载中...', 'in_loading')}</div>
+              <div className="picker-district-load-label">
+                {locale('加载中...', 'SeedsUI_loading')}
+              </div>
             </div>
           )}
         </div>

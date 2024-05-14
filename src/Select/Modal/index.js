@@ -164,9 +164,9 @@ const Modal = forwardRef(
       }
       // 多选带选中数量
       if (multiple) {
-        return locale('确定', 'ok') + (value?.length ? `(${value.length})` : '')
+        return locale('确定', 'SeedsUI_ok') + (value?.length ? `(${value.length})` : '')
       }
-      return locale('确定', 'ok')
+      return locale('确定', 'SeedsUI_ok')
     }
 
     // 事件

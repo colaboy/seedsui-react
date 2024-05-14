@@ -102,12 +102,12 @@ const Main = forwardRef(
       if (instance.current) {
         instance.current.updateParams({
           viewType: type,
-          yyUnit: locale('', 'picker_unit_year'),
-          QQUnit: locale('', 'picker_unit_quarter'),
-          MMUnit: locale('', 'picker_unit_month'),
-          ddUnit: locale('', 'picker_unit_date'),
-          hhUnit: locale('', 'picker_unit_hour'),
-          mmUnit: locale('', 'picker_unit_minute')
+          yyUnit: locale('', 'SeedsUI_picker_unit_year'),
+          QQUnit: locale('', 'SeedsUI_picker_unit_quarter'),
+          MMUnit: locale('', 'SeedsUI_picker_unit_month'),
+          ddUnit: locale('', 'SeedsUI_picker_unit_day'),
+          hhUnit: locale('', 'SeedsUI_picker_unit_hour'),
+          mmUnit: locale('', 'SeedsUI_picker_unit_minute')
         })
         const def = Utils.getDefaults(value, defaultPickerValue)
         instance.current.setDefaults(def)
@@ -170,12 +170,12 @@ const Main = forwardRef(
         defaultHour: def.hour,
         defaultMinute: def.minute,
         onScrollTransitionEnd: handleChange,
-        yyUnit: locale('', 'picker_unit_year'), // 年
-        QQUnit: locale('', 'picker_unit_quarter'), // 季
-        MMUnit: locale('', 'picker_unit_month'), // 月
-        ddUnit: locale('', 'picker_unit_date'), // 日
-        hhUnit: locale('', 'picker_unit_hour'), // 时
-        mmUnit: locale('', 'picker_unit_minute') // 分
+        yyUnit: locale('', 'SeedsUI_picker_unit_year'), // 年
+        QQUnit: locale('', 'SeedsUI_picker_unit_quarter'), // 季
+        MMUnit: locale('', 'SeedsUI_picker_unit_month'), // 月
+        ddUnit: locale('', 'SeedsUI_picker_unit_day'), // 日
+        hhUnit: locale('', 'SeedsUI_picker_unit_hour'), // 时
+        mmUnit: locale('', 'SeedsUI_picker_unit_minute') // 分
       })
     }
 

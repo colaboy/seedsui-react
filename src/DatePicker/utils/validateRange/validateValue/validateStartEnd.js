@@ -13,17 +13,17 @@ function validateStartEnd(value, config) {
   const { type, onError } = config
   let errMsg = ''
   if (type === 'year' && endDate.compareYear(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   } else if (type === 'quarter' && endDate.compareMonth(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   } else if (type === 'month' && endDate.compareMonth(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   } else if (type === 'date' && endDate.compareDate(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   } else if (type === 'datetime' && endDate.compareDateTime(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   } else if (type === 'time' && endDate.compareTime(startDate) === -1) {
-    errMsg = locale('开始时间不能大于结束时间', 'hint_start_greater_end_time')
+    errMsg = locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime')
   }
 
   // 有错误

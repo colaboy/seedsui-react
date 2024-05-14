@@ -25,7 +25,7 @@ export default {
       if (type === 'year' && selectDate.compareYear(min.toDate(split, timeSplit)) === -1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -39,7 +39,7 @@ export default {
       ) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -50,7 +50,7 @@ export default {
       } else if (type === 'month' && selectDate.compareMonth(min.toDate(split, timeSplit)) === -1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -61,7 +61,7 @@ export default {
       } else if (type === 'date' && selectDate.compareDate(min.toDate(split, timeSplit)) === -1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -75,7 +75,7 @@ export default {
       ) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -86,7 +86,7 @@ export default {
       } else if (type === 'time' && selectDate.compareTime(min.toDate(split, timeSplit)) === -1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min,
+            errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min,
             select: value,
             min: min,
             value: value
@@ -108,7 +108,7 @@ export default {
       if (type === 'year' && selectDate.compareYear(max.toDate(split, timeSplit)) === 1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value
@@ -122,7 +122,7 @@ export default {
       ) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value
@@ -133,7 +133,7 @@ export default {
       } else if (type === 'month' && selectDate.compareMonth(max.toDate(split, timeSplit)) === 1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value
@@ -144,7 +144,7 @@ export default {
       } else if (type === 'date' && selectDate.compareDate(max.toDate(split, timeSplit)) === 1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value
@@ -155,7 +155,7 @@ export default {
       } else if (type === 'time' && selectDate.compareTime(max.toDate(split, timeSplit)) === 1) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value
@@ -169,7 +169,7 @@ export default {
       ) {
         if (onError) {
           onError(e, {
-            errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max,
+            errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max,
             select: value,
             max: max,
             value: value

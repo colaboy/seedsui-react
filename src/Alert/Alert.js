@@ -128,7 +128,7 @@ const Alert = forwardRef(
                   cancelAttribute.className ? ' ' + cancelAttribute.className : ''
                 }`}
               >
-                {cancelCaption || locale('取消', 'cancel')}
+                {cancelCaption || locale('取消', 'SeedsUI_cancel')}
               </div>
             )}
             {submitAttribute.onClick && (
@@ -138,7 +138,7 @@ const Alert = forwardRef(
                   submitAttribute.className ? ' ' + submitAttribute.className : ''
                 }`}
               >
-                {submitCaption || locale('确定', 'ok')}
+                {submitCaption || locale('确定', 'SeedsUI_ok')}
               </div>
             )}
           </div>

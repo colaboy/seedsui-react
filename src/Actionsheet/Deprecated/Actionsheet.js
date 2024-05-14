@@ -169,7 +169,7 @@ const Actionsheet = forwardRef(
                 otherCancelAttribute.className ? ' ' + otherCancelAttribute.className : ''
               }`}
             >
-              {cancelCaption || locale('取消', 'cancel')}
+              {cancelCaption || locale('取消', 'SeedsUI_cancel')}
             </div>
           )}
         </div>

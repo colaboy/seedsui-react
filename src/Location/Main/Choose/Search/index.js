@@ -19,9 +19,7 @@ function Search({ map, onChange }) {
         }}
       >
         <div className="mappage-search-navigation-icon"></div>
-        <div className="mappage-search-navigation-label">
-          {locale('搜索', 'input_search_placeholder')}
-        </div>
+        <div className="mappage-search-navigation-label">{locale('搜索', 'SeedsUI_search')}</div>
       </div>
       <Page visible={visible} onVisibleChange={setVisible} map={map} onChange={onChange} />
     </>

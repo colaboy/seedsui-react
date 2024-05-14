@@ -75,7 +75,7 @@ export default function () {
     if (self.loadTimeout) window.clearTimeout(self.loadTimeout)
     self.loadTimeout = setTimeout(() => {
       Loading.hide()
-      callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'hint_map_init_timeout'))
+      callback(locale('初始化地图超时, 请检查当前网络是否稳定', 'SeedsUI_mapinit_overtime_error'))
     }, 20000)
   }
   // 获取中心点

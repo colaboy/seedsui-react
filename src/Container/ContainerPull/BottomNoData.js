@@ -25,7 +25,7 @@ const BottomNoData = forwardRef(({ children, ...others }, ref) => {
       {!children && (
         <div className="containerpull-pull-box">
           <div className="containerpull-pull-caption">
-            {locale('没有更多数据了', 'no_more_data')}
+            {locale('没有更多数据了', 'SeedsUI_no_more_data')}
           </div>
         </div>
       )}

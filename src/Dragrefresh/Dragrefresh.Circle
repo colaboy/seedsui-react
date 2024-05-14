@@ -14,7 +14,7 @@ var DragCircle = {
     topContainer.style.height = e.params.threshold + 'px';
     if (topIcon) topIcon.classList.remove('df-pull-icon-down');
     if (topIcon) topIcon.classList.add('df-pull-icon-loading');
-    topCaption.innerHTML = locale('正在刷新...', 'refreshing');
+    topCaption.innerHTML = locale('正在刷新...', 'SeedsUI_refreshing');
   },
   onHideTop: function (e) {
     var topContainer = e.topContainer;

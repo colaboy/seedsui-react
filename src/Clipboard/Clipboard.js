@@ -61,12 +61,14 @@ var Clipboard = {
 
     if (success) {
       if (params && params.success)
-        params.success(params.successMsg || locale('复制到剪贴板成功', 'copied_to_the_clipboard'))
+        params.success(
+          params.successMsg || locale('复制到剪贴板成功', 'SeedsUI_copy_clipboard_success')
+        )
     } else {
       if (params && params.fail)
         params.fail({
           errMsg:
-            params.errorMsg || locale('当前设备不允许访问剪贴板', 'unable_to_access_clipboard')
+            params.errorMsg || locale('当前设备不允许访问剪贴板', 'SeedsUI_copy_clipboard_refuse')
         })
     }
   }

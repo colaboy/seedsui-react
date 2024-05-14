@@ -25,7 +25,7 @@ function MapSearch() {
               }}
             />
           }
-          placeholder={locale('搜索地点', 'search_place')}
+          placeholder={locale('搜索地点', 'SeedsUI_search_place')}
           value={selected.title}
           clear
           className="bordered bg-white"

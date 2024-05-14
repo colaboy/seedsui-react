@@ -72,7 +72,7 @@ function getLocation(opt) {
       },
       fail: (res) => {
         // 赋值
-        resolve(locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'))
+        resolve(locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'))
       }
     })
   })

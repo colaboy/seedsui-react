@@ -94,7 +94,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
           <Input.Text
             ref={inputRef}
             type="search"
-            // placeholder={locale('搜索地点', 'search_place')}
+            // placeholder={locale('搜索地点', 'SeedsUI_search_place')}
             licon={<i className="mappage-search-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear

@@ -12,7 +12,7 @@ function Location({ ...props }) {
   return (
     <div {...props} className={`map-location${props.className ? ' ' + props.className : ''}`}>
       <div className={`map-location-icon`}></div>
-      <div className={`map-location-label`}>{locale('重新定位', 'reposition')}</div>
+      <div className={`map-location-label`}>{locale('重新定位', 'SeedsUI_relocation')}</div>
     </div>
   )
 }

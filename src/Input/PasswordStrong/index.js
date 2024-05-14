@@ -30,15 +30,21 @@ const PasswordStrong = forwardRef(({ value = '', strong, ...props }, ref) => {
     >
       <li>
         <div className="input-password-strong-progress"></div>
-        <span className="input-password-strong-caption">{locale('弱', 'low')}</span>
+        <span className="input-password-strong-caption">
+          {locale('弱', 'SeedsUI_password_weak')}
+        </span>
       </li>
       <li>
         <div className="input-password-strong-progress"></div>
-        <span className="input-password-strong-caption">{locale('中', 'medium')}</span>
+        <span className="input-password-strong-caption">
+          {locale('中', 'SeedsUI_password_medium')}
+        </span>
       </li>
       <li>
         <div className="input-password-strong-progress"></div>
-        <span className="input-password-strong-caption">{locale('强', 'strong')}</span>
+        <span className="input-password-strong-caption">
+          {locale('强', 'SeedsUI_password_strong')}
+        </span>
       </li>
     </ul>
   )

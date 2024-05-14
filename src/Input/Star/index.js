@@ -28,7 +28,7 @@ const InputStar = forwardRef(
       if (newValue < min) {
         if (onError) {
           onError({
-            errMsg: locale(`不能小于${min}颗星`, 'hint_cannot_be_less_than_star', [min]),
+            errMsg: locale(`不能小于${min}颗星`, 'SeedsUI_min_star_error', [min]),
             min: min,
             value: newValue
           })

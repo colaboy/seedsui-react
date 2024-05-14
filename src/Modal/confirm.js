@@ -89,7 +89,7 @@ export default function confirm({
     updateStyle({ target: submitDOM, props: submitProps, baseClassName: 'modal-ok' })
     if (submitProps || submitProps?.caption) {
       submitDOM.classList.remove('hide')
-      submitDOM.innerHTML = submitProps?.caption || locale('确定', 'ok')
+      submitDOM.innerHTML = submitProps?.caption || locale('确定', 'SeedsUI_ok')
     } else {
       submitDOM.classList.add('hide')
     }
@@ -99,7 +99,7 @@ export default function confirm({
     updateStyle({ target: cancelDOM, props: cancelProps, baseClassName: 'modal-cancel' })
     if (cancelProps || cancelProps?.caption) {
       cancelDOM.classList.remove('hide')
-      cancelDOM.innerHTML = cancelProps?.caption || locale('取消', 'cancel')
+      cancelDOM.innerHTML = cancelProps?.caption || locale('取消', 'SeedsUI_cancel')
     } else {
       cancelDOM.classList.add('hide')
     }

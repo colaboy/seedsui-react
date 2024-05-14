@@ -90,13 +90,13 @@ function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {},
     >
       <div className="share-tip-arrow"></div>
       <div className={`share-tip`}>
-        <p>1.{locale('点击右上角', 'sharetip_click_on_the_top_right')}</p>
+        <p>1.{locale('点击右上角', 'SeedsUI_click_top_right')}</p>
         <p>
-          2.{locale('点击', 'sharetip_click')}
+          2.{locale('点击', 'SeedsUI_click')}
           <img alt="" src="//res.waiqin365.com/d/seedsui/share/tip_friend.png" />
-          {locale('发送给朋友或', 'sharetip_sent_to_friend_or')}
+          {locale('发送给朋友或', 'SeedsUI_sent_to_friend_or')}
           <img alt="" src="//res.waiqin365.com/d/seedsui/share/tip_moments.png" />
-          {locale('分享给朋友圈', 'sharetip_share_to_moments')}
+          {locale('分享给朋友圈', 'SeedsUI_share_to_moments')}
         </p>
       </div>
     </div>,

@@ -201,7 +201,7 @@ const Emoji = forwardRef(
             <InputPre
               className="emoji-edit-input"
               value={tempValue}
-              placeholder={placeholder || locale('说点什么吧...', 'say_something')}
+              placeholder={placeholder || locale('说点什么吧...', 'SeedsUI_say_something')}
               {...inputProps}
               onChange={change}
             />
@@ -213,7 +213,7 @@ const Emoji = forwardRef(
               }`}
               disabled={!tempValue}
             >
-              {otherSubmitAttribute.caption || locale('提交', 'submit')}
+              {otherSubmitAttribute.caption || locale('提交', 'SeedsUI_submit')}
             </Button>
           </div>
           <Carrousel

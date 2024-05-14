@@ -21,7 +21,7 @@ function Location({ geocoder, map, value, onChange, ...props }, ref) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       Loading.show({
-        content: locale('定位中...', 'positioning')
+        content: locale('定位中...', 'SeedsUI_positioning')
       })
       let result = await getLocation({ geocoder })
       resolve(result)

@@ -28,7 +28,7 @@ let Bridge = {
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {
-      Toast.show({ content: locale('此功能仅可在手机中使用', 'hint_only_mobile') })
+      Toast.show({ content: locale('此功能仅可在手机中使用', 'SeedsUI_only_mobile') })
       return
     }
     if (isNaN(number)) return
@@ -100,13 +100,13 @@ let Bridge = {
     if (!self.loading) {
       self.loading = new Loading({
         ...params,
-        caption: params.caption || locale('正在加载...', 'loading'),
+        caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     } else {
       self.loading.updateParams({
         ...params,
-        caption: params.caption || locale('正在加载...', 'loading'),
+        caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     }
@@ -141,8 +141,8 @@ let Bridge = {
     let self = this
     if (!self.alert) {
       self.alert = new Alert({
-        buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
-        buttonCancelHTML: locale('取消', 'cancel'), // 实例化时需要国际化
+        buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+        buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
           if (params.success) params.success(e)
           else e.hide()
@@ -153,8 +153,8 @@ let Bridge = {
     } else {
       if (params) {
         self.alert.updateParams({
-          buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
-          buttonCancelHTML: locale('取消', 'cancel'), // 实例化时需要国际化
+          buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+          buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
             if (params.success) params.success(e)
             else e.hide()
@@ -176,8 +176,8 @@ let Bridge = {
     let self = this
     if (!self.confirm) {
       self.confirm = new Alert({
-        buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
-        buttonCancelHTML: locale('取消', 'cancel'), // 实例化时需要国际化
+        buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+        buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
           if (params.success) params.success(e)
           else e.hide()
@@ -193,8 +193,8 @@ let Bridge = {
     } else {
       if (params) {
         self.confirm.updateParams({
-          buttonSubmitHTML: locale('确定', 'ok'), // 实例化时需要国际化
-          buttonCancelHTML: locale('取消', 'cancel'), // 实例化时需要国际化
+          buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+          buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
             if (params.success) params.success(e)
           },
@@ -306,7 +306,7 @@ let Bridge = {
       // 提示后，关闭返回，或者历史返回
       else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
         // 默认提示信息
-        let confirmCaption = locale('您确定要离开此页面吗?', 'confirm_quit_page')
+        let confirmCaption = locale('您确定要离开此页面吗?', 'SeedsUI_quit_page_confirm')
         // 地址栏动态提示信息
         if (isFromApp.indexOf('confirm-close:') !== -1) {
           let newConfirmCaption = isFromApp.replace('confirm-close:', '')
@@ -435,7 +435,7 @@ let Bridge = {
       }
       if (options.fail) {
         script.onerror = function () {
-          options.fail({ errMsg: locale('微信js加载失败', 'hint_wx_failed_to_load') })
+          options.fail({ errMsg: locale('微信js加载失败', 'SeedsUI_wechat_js_load_failed') })
         }
       }
     } else if (platform === 'waiqin') {
@@ -449,7 +449,7 @@ let Bridge = {
       }
       if (options.fail) {
         script.onerror = function () {
-          options.fail({ errMsg: locale('外勤cordova加载失败', 'hint_cordova_failed_to_load') })
+          options.fail({ errMsg: locale('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed') })
         }
       }
     } else if (platform === 'wq') {
@@ -467,7 +467,7 @@ let Bridge = {
       }
       if (options.fail) {
         script.onerror = function () {
-          options.fail({ errMsg: locale('外勤js加载失败', 'hint_wq_failed_to_load') })
+          options.fail({ errMsg: locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
         }
       }
     } else if (platform === 'dinghuo') {
@@ -485,7 +485,7 @@ let Bridge = {
       }
       if (options.fail) {
         script.onerror = function () {
-          options.fail({ errMsg: locale('外勤js加载失败', 'hint_wq_failed_to_load') })
+          options.fail({ errMsg: locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
         }
       }
     }

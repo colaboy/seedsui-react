@@ -17,19 +17,19 @@ const Types = forwardRef(
       list = [
         {
           type: 'date',
-          name: locale('日', 'datetype_unit_date')
+          name: locale('日', 'SeedsUI_unit_date')
         },
         {
           type: 'month',
-          name: locale('月', 'datetype_unit_month')
+          name: locale('月', 'SeedsUI_unit_month')
         },
         {
           type: 'quarter',
-          name: locale('季', 'datetype_unit_quarter')
+          name: locale('季', 'SeedsUI_unit_quarter')
         },
         {
           type: 'year',
-          name: locale('年', 'datetype_unit_year')
+          name: locale('年', 'SeedsUI_unit_year')
         }
       ],
       value,

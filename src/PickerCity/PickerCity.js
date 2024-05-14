@@ -195,7 +195,7 @@ const PickerCity = forwardRef(
                 cancelAttribute.className ? ' ' + cancelAttribute.className : ''
               }`}
             >
-              {cancelAttribute.caption || locale('取消', 'cancel')}
+              {cancelAttribute.caption || locale('取消', 'SeedsUI_cancel')}
             </a>
             <div className="picker-header-title"></div>
             <a
@@ -204,7 +204,7 @@ const PickerCity = forwardRef(
                 submitAttribute.className ? ' ' + submitAttribute.className : ''
               }`}
             >
-              {submitAttribute.caption || locale('完成', 'finish')}
+              {submitAttribute.caption || locale('完成', 'SeedsUI_finish')}
             </a>
           </div>
           <div className="picker-wrapper">

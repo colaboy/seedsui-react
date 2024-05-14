@@ -81,10 +81,11 @@ export default class Dragrefresh extends Component {
         if (!e.isLoading) {
           if (e.touches.currentPosY >= e.params.threshold) {
             if (topIcon) topIcon.classList.add('df-pull-icon-down')
-            if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'release')
+            if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'SeedsUI_release_refresh')
           } else {
             if (topIcon) topIcon.classList.remove('df-pull-icon-down')
-            if (topCaption) topCaption.innerHTML = locale('下拉可以刷新', 'pull_down')
+            if (topCaption)
+              topCaption.innerHTML = locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')
           }
         }
       },
@@ -95,7 +96,7 @@ export default class Dragrefresh extends Component {
         topContainer.style.height = e.params.threshold + 'px'
         if (topIcon) topIcon.classList.remove('df-pull-icon-down')
         if (topIcon) topIcon.classList.add('df-pull-icon-loading')
-        if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'refreshing')
+        if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'SeedsUI_refreshing')
       },
       onHideTop: (e) => {
         let topContainer = e.topContainer
@@ -200,11 +201,11 @@ export default class Dragrefresh extends Component {
       onScroll,
 
       // 底部加载中
-      bottomLoadingCaption = locale('正在加载...', 'loading'),
+      bottomLoadingCaption = locale('正在加载...', 'SeedsUI_loading'),
       // 底部加载完成
-      bottomNoDataCaption = locale('没有更多数据了', 'no_more_data'),
+      bottomNoDataCaption = locale('没有更多数据了', 'SeedsUI_no_more_data'),
       // 底部加载错误
-      bottomErrorCaption = locale('加载失败, 请稍后再试', 'loading_failed'),
+      bottomErrorCaption = locale('加载失败, 请稍后再试', 'SeedsUI_load_failed'),
       onClickBottomError,
       ...others
     } = this.props
@@ -226,7 +227,9 @@ export default class Dragrefresh extends Component {
           >
             <div className="df-pull-box">
               <div className="df-pull-icon"></div>
-              <div className="df-pull-caption">{locale('下拉可以刷新', 'pull_down')}</div>
+              <div className="df-pull-caption">
+                {locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
+              </div>
             </div>
           </div>
         )}

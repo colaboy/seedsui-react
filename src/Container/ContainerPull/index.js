@@ -62,10 +62,12 @@ const ContainerPull = forwardRef(
           if (!e.isLoading) {
             if (e.touches.currentPosY >= e.params.threshold) {
               if (topIcon) topIcon.classList.add('containerpull-pull-icon-down')
-              if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'release')
+              if (topCaption)
+                topCaption.innerHTML = locale('释放立即刷新', 'SeedsUI_release_refresh')
             } else {
               if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down')
-              if (topCaption) topCaption.innerHTML = locale('下拉可以刷新', 'pull_down')
+              if (topCaption)
+                topCaption.innerHTML = locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')
             }
           }
         },
@@ -76,7 +78,7 @@ const ContainerPull = forwardRef(
           topContainer.style.height = e.params.threshold + 'px'
           if (topIcon) topIcon.classList.remove('containerpull-pull-icon-down')
           if (topIcon) topIcon.classList.add('containerpull-pull-icon-loading')
-          if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'refreshing')
+          if (topCaption) topCaption.innerHTML = locale('正在刷新...', 'SeedsUI_refreshing')
         },
         onHideTop: (e) => {
           var topContainer = e.topContainer
@@ -159,7 +161,9 @@ const ContainerPull = forwardRef(
         <div ref={topContainerRef} className="SID-Dragrefresh-TopContainer containerpull-pull">
           <div className="containerpull-pull-box">
             <div className="containerpull-pull-icon"></div>
-            <div className="containerpull-pull-caption">{locale('下拉可以刷新', 'pull_down')}</div>
+            <div className="containerpull-pull-caption">
+              {locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
+            </div>
           </div>
         </div>
         {children}

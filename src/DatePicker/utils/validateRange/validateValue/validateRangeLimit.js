@@ -15,7 +15,7 @@ function validateRangeLimit(value, { dateRangeLimit, onError }) {
   }
   const diff = startDate.diff(endDate)
   if (diff.days > dateRangeLimit) {
-    let errMsg = locale(`日期区间不能超过${dateRangeLimit}天`, 'hint_error_dateragne_limit_date', [
+    let errMsg = locale(`日期区间不能超过${dateRangeLimit}天`, 'SeedsUI_dateragne_limit_error', [
       dateRangeLimit
     ])
     if (onError) {

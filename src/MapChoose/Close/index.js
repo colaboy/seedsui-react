@@ -11,7 +11,7 @@ function Close({ ...props }) {
     }
   return (
     <div {...props} className={`map-close${props.className ? ' ' + props.className : ''}`}>
-      <div className={`map-close-label`}>{locale('关闭', 'close')}</div>
+      <div className={`map-close-label`}>{locale('关闭', 'SeedsUI_close')}</div>
     </div>
   )
 }

@@ -31,7 +31,7 @@ const InputStar = forwardRef(
       if (num < min) {
         if (onError) {
           onError(e, {
-            errMsg: locale(`不能小于${min}颗星`, 'hint_cannot_be_less_than_star', [min]),
+            errMsg: locale(`不能小于${min}颗星`, 'SeedsUI_min_star_error', [min]),
             select: num,
             min: min,
             value: min,

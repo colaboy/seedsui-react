@@ -89,7 +89,7 @@ let BaiduMap = function (id, params) {
       s.map = new BMap.Map(id, s.params.mapOptions)
     } catch (error) {
       s.params.onError(s, {
-        errMsg: locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'),
+        errMsg: locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'),
         error: error
       })
     }
@@ -115,14 +115,14 @@ let BaiduMap = function (id, params) {
           // 如果返回结果为null的话, 则返回
           console.log('没有开启定位权限')
           if (options.fail)
-            options.fail(`${locale('定位失败,请检查定位权限是否开启', 'hint_location_failed')}`)
+            options.fail(`${locale('定位失败,请检查定位权限是否开启', 'SeedsUI_location_failed')}`)
           return
         }
         const status = this.getStatus()
         if (status === BMAP_STATUS_SUCCESS) {
           // 定位成功
           const result = {
-            errMsg: `${locale('定位成功', 'hint_location_success')}`,
+            errMsg: `${locale('定位成功', 'SeedsUI_location_success')}`,
             latitude: res.point.lat,
             longitude: res.point.lng,
             speed: null,
@@ -165,12 +165,12 @@ let BaiduMap = function (id, params) {
         } else if (status === BMAP_STATUS_TIMEOUT) {
           // 定位超时
           console.log('定位超时')
-          options.fail({ errMsg: `${locale('定位超时', 'hint_location_timeout')}` })
+          options.fail({ errMsg: `${locale('定位超时', 'SeedsUI_location_overtime_error')}` })
         } else {
           console.log('定位失败')
           // BMAP_STATUS_UNKNOWN_LOCATION, BMAP_STATUS_PERMISSION_DENIED
           if (options.fail)
-            options.fail(`${locale('定位失败,请检查定位权限是否开启', 'hint_location_failed')}`)
+            options.fail(`${locale('定位失败,请检查定位权限是否开启', 'SeedsUI_location_failed')}`)
         }
       },
       {
@@ -500,7 +500,7 @@ let BaiduMap = function (id, params) {
       if (!s.hasMap(false)) {
         if (options?.fail)
           options.fail({
-            errMsg: `${locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load')}`
+            errMsg: `${locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed')}`
           })
         resolve(null)
         return
@@ -553,7 +553,7 @@ let BaiduMap = function (id, params) {
           // result.data = data
           if (options?.success) options.success(result)
         } else {
-          result.errMsg = locale('获取地址失败, 请稍后重试', 'hint_address_failed')
+          result.errMsg = locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
           if (options?.fail) options.fail(result)
         }
         resolve(result)
@@ -953,7 +953,7 @@ let BaiduMap = function (id, params) {
     } catch (error) {
       if (s.params.onError)
         s.params.onError(s, {
-          errMsg: locale('地图库加载失败, 请稍后再试', 'hint_map_failed_load'),
+          errMsg: locale('地图库加载失败, 请稍后再试', 'SeedsUI_map_js_load_failed'),
           error: error
         })
       return null
@@ -985,16 +985,16 @@ let BaiduMap = function (id, params) {
     let boundary = new BMap.Boundary()
     if (!area) {
       console.warn(
-        `${locale('请传入参数', 'hint_pass_in_parameters')}area, ${locale(
+        `${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}area, ${locale(
           '例如“江苏省南京市建邺区”',
-          'hint_for_example_address'
+          'SeedsUI_example_address'
         )}`
       )
       callback.fail &&
         callback.fail({
-          errMsg: `${locale('请传入参数', 'hint_pass_in_parameters')}area, ${locale(
+          errMsg: `${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}area, ${locale(
             '例如“江苏省南京市建邺区”',
-            'hint_for_example_address'
+            'SeedsUI_example_address'
           )}`
         })
       return
@@ -1004,16 +1004,13 @@ let BaiduMap = function (id, params) {
       let count = res.boundaries.length // 行政区域的点有多少个
       if (count === 0) {
         console.warn(
-          `${locale(
-            '请传入正确的参数',
-            'hint_pass_in_correct_parameters'
-          )}area: ${area}不是一个合法的值`
+          `${locale('参数不正确', 'SeedsUI_wrong_parameter_error')}area: ${area}不是一个合法的值`
         )
         callback.fail &&
           callback.fail({
             errMsg: `${locale(
-              '请传入正确的参数',
-              'hint_pass_in_correct_parameters'
+              '参数不正确',
+              'SeedsUI_wrong_parameter_error'
             )}area: ${area}不是一个合法的值`
           })
         return
@@ -1056,10 +1053,10 @@ let BaiduMap = function (id, params) {
     let bdPolygon = s.pointsToBdPolygon(polygon, options)
     if (!bdPolygon) {
       console.warn(
-        `drawPolygon: ${locale('请传入参数', 'hint_pass_in_parameters')}{polygon: {}}${locale(
-          '或者',
-          'or'
-        )}{points: []}`
+        `drawPolygon: ${locale(
+          '请传入参数',
+          'SeedsUI_need_pass_parameter_hint'
+        )}{polygon: {}}${locale('或者', 'or')}{points: []}`
       )
       return null
     }
@@ -1202,10 +1199,15 @@ let BaiduMap = function (id, params) {
   s.addContextMenu = function (overlay, options = {}) {
     // options: {menus: [{text: '', handler: func()}]}
     if (!overlay) {
-      console.warn(`addContextMenu: ${locale('请传入参数', 'hint_pass_in_parameters')}overlay`)
+      console.warn(
+        `addContextMenu: ${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}overlay`
+      )
       options.fail &&
         options.fail({
-          errMsg: `addContextMenu: ${locale('请传入参数', 'hint_pass_in_parameters')}overlay`
+          errMsg: `addContextMenu: ${locale(
+            '请传入参数',
+            'SeedsUI_need_pass_parameter_hint'
+          )}overlay`
         })
       return
     }
@@ -1218,14 +1220,14 @@ let BaiduMap = function (id, params) {
       console.warn(
         `addContextMenu: ${locale(
           '请传入参数',
-          'hint_pass_in_parameters'
+          'SeedsUI_need_pass_parameter_hint'
         )}{menus: [{text: "", handler: func()}]}`
       )
       options.fail &&
         options.fail({
           errMsg: `addContextMenu: ${locale(
             '请传入参数',
-            'hint_pass_in_parameters'
+            'SeedsUI_need_pass_parameter_hint'
           )}{menus: [{text: "", handler: func()}]}`
         })
       return
@@ -1233,7 +1235,7 @@ let BaiduMap = function (id, params) {
     let markerMenu = new BMap.ContextMenu()
     for (let [index, opt] of options.menus.entries()) {
       markerMenu.addItem(
-        new BMap.MenuItem(opt.text || locale('菜单', 'menu'), function () {
+        new BMap.MenuItem(opt.text || locale('菜单', 'SeedsUI_menu'), function () {
           opt.handler(opt, index)
         })
       )

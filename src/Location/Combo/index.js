@@ -31,8 +31,8 @@ const LocationCombo = forwardRef(
       // 显示预览按钮
       previewVisible = false,
       // 提示信息配置
-      failText = locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed'),
-      loadingText = locale('定位中...', 'positioning'),
+      failText = locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'),
+      loadingText = locale('定位中...', 'SeedsUI_positioning'),
 
       // 点击整行触发的动作: location | choose | preview
       clickAction,

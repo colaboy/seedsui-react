@@ -16,7 +16,7 @@ let Bridge = {
   // 自定义操作
   invoke: function () {
     Toast.show({
-      content: locale('invoke仅可在微信或APP中使用', 'hint_only_app_and_wx', ['invoke'])
+      content: locale('invoke仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['invoke'])
     })
   },
   // 配置鉴权
@@ -65,7 +65,7 @@ let Bridge = {
   // 返回监听
   onHistoryBack: function () {
     Toast.show({
-      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'hint_only_app_and_wx', [
+      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
         'onHistoryBack'
       ])
     })
@@ -73,7 +73,7 @@ let Bridge = {
   // 导航
   openLocation: function () {
     Toast.show({
-      content: locale('openLocation仅可在企业微信或APP中使用', 'hint_only_app_and_wx', [
+      content: locale('openLocation仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
         'openLocation'
       ])
     })
@@ -114,42 +114,39 @@ let Bridge = {
               case error.PERMISSION_DENIED:
                 errMsg = `getLocation:fail ${locale(
                   '定位失败,用户拒绝请求地理定位',
-                  'hint_location_failed_PERMISSION_DENIED'
+                  'SeedsUI_location_permission_denied_error'
                 )}`
                 break
               case error.POSITION_UNAVAILABLE:
                 console.log(
-                  `${locale(
-                    '定位失败,位置信息是不可用',
-                    'hint_location_failed_POSITION_UNAVAILABLE'
-                  )}`
+                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unavailable_error')}`
                 )
                 errMsg = `getLocation:fail ${locale(
                   '定位失败,位置信息是不可用',
-                  'hint_location_failed_POSITION_UNAVAILABLE'
+                  'SeedsUI_location_unavailable_error'
                 )}`
                 break
               case error.TIMEOUT:
                 console.log(
-                  `${locale('定位失败,位置信息是不可用', 'hint_location_failed_TIMEOUT')}`
+                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
                 )
                 errMsg = `getLocation:fail ${locale(
                   '定位失败,请求获取用户位置超时',
-                  'hint_location_failed_TIMEOUT'
+                  'SeedsUI_location_overtime_error'
                 )}`
                 break
               case error.UNKNOWN_ERROR:
                 console.log(
-                  `${locale('定位失败,位置信息是不可用', 'hint_location_failed_UNKNOWN_ERROR')}`
+                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
                 )
                 errMsg = `getLocation:fail ${locale(
                   '定位失败,定位系统失效',
-                  'hint_location_failed_UNKNOWN_ERROR'
+                  'SeedsUI_location_unknown_error'
                 )}`
                 break
               default:
-                console.log(`${locale('定位失败', 'hint_location_failed')}`)
-                errMsg = `getLocation:fail ${locale('定位失败', 'hint_location_failed')}`
+                console.log(`${locale('定位失败', 'SeedsUI_location_failed')}`)
+                errMsg = `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
             }
             let res = { errMsg: errMsg }
             console.log('调用浏览器定位失败', res)
@@ -163,11 +160,11 @@ let Bridge = {
           }
         )
       } else {
-        console.log(`${locale('当前浏览器不支持定位', 'hint_location_failed_not_supported')}`)
+        console.log(`${locale('当前浏览器不支持定位', 'SeedsUI_location_not_supported')}`)
         let res = {
           errMsg: `getLocation:fail ${locale(
             '当前浏览器不支持定位',
-            'hint_location_failed_not_supported'
+            'SeedsUI_location_not_supported'
           )}`
         }
         if (params.fail) params.fail(res)
@@ -204,13 +201,13 @@ let Bridge = {
     let self = this
     if (!self.debug) {
       Toast.show({
-        content: locale('此功能仅可在微信或APP中使用', 'hint_only_app_and_wx', ['scanQRCode'])
+        content: locale('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['scanQRCode'])
       })
       if (params.fail)
         params.fail({
-          errMsg: `scanQRCode:${locale('扫码失败', 'hint_scan_failed')}, ${locale(
+          errMsg: `scanQRCode:${locale('扫码失败', 'SeedsUI_scancode_failed')}, ${locale(
             '请稍后重试',
-            'hint_try_again_later'
+            'SeedsUI_try_again_later'
           )}`
         })
       return
@@ -224,7 +221,9 @@ let Bridge = {
     let self = this
     if (!self.debug) {
       Toast.show({
-        content: locale('chooseImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['chooseImage'])
+        content: locale('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+          'chooseImage'
+        ])
       })
       return
     }
@@ -243,14 +242,16 @@ let Bridge = {
     let self = this
     if (!self.debug) {
       Toast.show({
-        content: locale('uploadImage仅可在微信或APP中使用', 'hint_only_app_and_wx', ['uploadImage'])
+        content: locale('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+          'uploadImage'
+        ])
       })
       return
     }
     Loading.show()
     setTimeout(() => {
       Loading.hide()
-      Toast.show({ content: locale('上传完成', 'uploaded_completed') })
+      Toast.show({ content: locale('上传完成', 'SeedsUI_upload_finished') })
       let res = {
         errMsg: 'uploadImage:ok',
         mediaUrl: '',
@@ -267,14 +268,16 @@ let Bridge = {
     if (!params.urls || !params.urls.length) {
       if (params.fail)
         params.fail({
-          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'hint_preview_image_must_urls')
+          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'SeedsUI_previewimage_no_url')
         })
       return
     }
     let src = params.urls[params.index || 0]
     if (!src) {
       if (params.fail)
-        params.fail({ errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src') })
+        params.fail({
+          errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
+        })
       return
     }
     let layerHTML = params.layerHTML || ''
@@ -289,7 +292,7 @@ let Bridge = {
         onError: function () {
           if (params.fail)
             params.fail({
-              errMsg: 'previewImage:fail' + locale('图片地址无效', 'invalid_image_src')
+              errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
             })
         }
       })
@@ -304,7 +307,7 @@ let Bridge = {
   // 视频文件上传
   uploadFile: function () {
     Toast.show({
-      content: locale('uploadFile仅可在APP中使用', 'hint_only_app_and_wx', ['uploadFile'])
+      content: locale('uploadFile仅可在APP中使用', 'SeedsUI_only_app_wechat', ['uploadFile'])
     })
   },
   // debug:录像
@@ -334,20 +337,22 @@ let Bridge = {
     let self = this
     if (!self.debug) {
       Toast.show({
-        content: locale('previewFile仅可在微信或APP中使用', 'hint_only_app_and_wx', ['previewFile'])
+        content: locale('previewFile仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+          'previewFile'
+        ])
       })
       if (params.fail)
         params.fail({
-          errMsg: `previewFile:fail${locale('预览文件失败', 'hint_previewFile_failed')}, ${locale(
-            '请稍后重试',
-            'hint_try_again_later'
-          )}`
+          errMsg: `previewFile:fail${locale(
+            '预览文件失败',
+            'SeedsUI_previewfile_failed'
+          )}, ${locale('请稍后重试', 'SeedsUI_try_again_later')}`
         })
       return
     }
     if (params.success)
       params.success({
-        errMsg: `previewFile:ok${locale('预览文件成功', 'hint_previewFile_success')}`
+        errMsg: `previewFile:ok${locale('预览文件成功', 'SeedsUI_previewfile_success')}`
       })
     if (params.url) window.location.href = params.url
   }

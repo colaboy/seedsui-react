@@ -25,7 +25,7 @@ const Submit = ({ submitProps, onSubmitClick }) => {
       }${submitDisabled === true ? ' disabled' : ''}`}
       onClick={handleSubmitClick}
     >
-      {submitCaption || locale('确定', 'ok')}
+      {submitCaption || locale('确定', 'SeedsUI_ok')}
       {typeof total === 'number' && `(${total})`}
     </div>
   )

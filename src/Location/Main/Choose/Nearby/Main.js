@@ -33,7 +33,7 @@ function Main({ list, onChange }) {
           )
         })
       ) : (
-        <Notice caption={locale('暂无数据', 'no_data')} />
+        <Notice caption={locale('暂无数据', 'SeedsUI_no_data')} />
       )}
     </div>
   )

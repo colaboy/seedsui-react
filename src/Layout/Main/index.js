@@ -63,10 +63,10 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
         if (!e.isLoading) {
           if (e.touches.currentPosY >= e.params.threshold) {
             if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-down')
-            if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'release')
+            if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'SeedsUI_release_refresh')
           } else {
             if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
-            if (topCaption) topCaption.innerHTML = locale('下拉刷新', 'pull_down')
+            if (topCaption) topCaption.innerHTML = locale('下拉刷新', 'SeedsUI_pull_down_refresh')
           }
         }
       },
@@ -77,7 +77,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
         topContainer.style.height = e.params.threshold + 'px'
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-loading')
-        if (topCaption) topCaption.innerHTML = locale('加载中...', 'refreshing')
+        if (topCaption) topCaption.innerHTML = locale('加载中...', 'SeedsUI_refreshing')
       },
       onHideTop: (e) => {
         let topContainer = e.topContainer
@@ -92,7 +92,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
           let finishMsg = ''
           // 失败
           if (isOk === false) {
-            finishMsg = locale('刷新失败', 'refreshing_failed')
+            finishMsg = locale('刷新失败', 'SeedsUI_refresh_failed')
           }
           // 自定义提示信息
           else if (typeof isOk === 'string') {
@@ -100,7 +100,7 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
           }
           // 成功
           else {
-            finishMsg = locale('刷新成功', 'refreshing_success')
+            finishMsg = locale('刷新成功', 'SeedsUI_refresh_success')
           }
           if (topCaption) topCaption.innerHTML = finishMsg
 

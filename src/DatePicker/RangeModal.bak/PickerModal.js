@@ -24,14 +24,14 @@ const DateRangeModal = function ({
       {
         type: type,
         id: 'start',
-        name: locale('开始时间', 'start_time'),
+        name: locale('开始时间', 'SeedsUI_start_time'),
         value: startDate,
         defaultPickerValue: defaultStartDate
       },
       {
         type: type,
         id: 'end',
-        name: locale('结束时间', 'end_time'),
+        name: locale('结束时间', 'SeedsUI_end_time'),
         value: endDate,
         defaultPickerValue: defaultEndDate
       }

@@ -29,9 +29,9 @@ let editConfigDefault = {
 // 文本框中提示信息配置
 let messageDefault = {
   // 定位时文案
-  loading: locale('定位中...', 'positioning'),
+  loading: locale('定位中...', 'SeedsUI_positioning'),
   // 失败时文案
-  failed: locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
+  failed: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
 }
 
 // 定位控件
@@ -248,7 +248,10 @@ const InputLocation = forwardRef(
             if (status === '-1') {
               if (onChangeRef && onChangeRef.current)
                 onChangeRef.current(e, {
-                  errMsg: `getLocation:fail${locale('定位超时', 'hint_location_timeout')} Timeout`
+                  errMsg: `getLocation:fail${locale(
+                    '定位超时',
+                    'SeedsUI_location_overtime_error'
+                  )} Timeout`
                 })
               status = '0'
               setStatus('0')
@@ -409,7 +412,10 @@ const InputLocation = forwardRef(
         // 预览出错
         if (onPreview) {
           onPreview(e, {
-            errMsg: `preview:fail${locale('坐标不正确, 预览失败', 'hint_location_preview_fail')}`
+            errMsg: `preview:fail${locale(
+              '坐标不正确, 预览失败',
+              'SeedsUI_location_preview_failed'
+            )}`
           })
         }
       }

@@ -12,7 +12,7 @@ import locale from './../../../../locale'
 function Navigation({ longitude, latitude, name, address }) {
   function handleClick() {
     Loading.show({
-      content: locale('定位中...', 'positioning')
+      content: locale('定位中...', 'SeedsUI_positioning')
     })
     // 开始定位
     Bridge.getLocation({
@@ -22,7 +22,7 @@ function Navigation({ longitude, latitude, name, address }) {
         Bridge.openLocation({
           slatitude: data.latitude, // 起点纬度
           slongitude: data.longitude, // 起点经度
-          sname: data.address || locale('当前位置', 'current_location'), // 起点名
+          sname: data.address || locale('当前位置', 'SeedsUI_current_location'), // 起点名
           latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
           longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
           name: name || address, // 位置名
@@ -34,7 +34,7 @@ function Navigation({ longitude, latitude, name, address }) {
         Loading.hide()
         // 赋值
         Toast.show({
-          content: locale('定位失败, 请检查定位权限是否开启', 'hint_location_failed')
+          content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
         })
       },
       complete: () => {

@@ -108,12 +108,12 @@ const PickerDate = forwardRef(
     function handleUpdate() {
       instance.current.updateParams({
         viewType: type,
-        yyUnit: locale('', 'picker_unit_year'),
-        QQUnit: locale('', 'picker_unit_quarter'),
-        MMUnit: locale('', 'picker_unit_month'),
-        ddUnit: locale('', 'picker_unit_date'),
-        hhUnit: locale('', 'picker_unit_hour'),
-        mmUnit: locale('', 'picker_unit_minute')
+        yyUnit: locale('', 'SeedsUI_picker_unit_year'),
+        QQUnit: locale('', 'SeedsUI_picker_unit_quarter'),
+        MMUnit: locale('', 'SeedsUI_picker_unit_month'),
+        ddUnit: locale('', 'SeedsUI_picker_unit_day'),
+        hhUnit: locale('', 'SeedsUI_picker_unit_hour'),
+        mmUnit: locale('', 'SeedsUI_picker_unit_minute')
       })
       const def = getDefault()
       instance.current.setDefaults(def)
@@ -149,7 +149,9 @@ const PickerDate = forwardRef(
         // 如果不是合法的日期格式
         if (!defaultValue || !defaultValue.isYear()) {
           if (onError)
-            onError({ errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}, YYYY-MM-DD` })
+            onError({
+              errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}, YYYY-MM-DD`
+            })
         } else {
           defaultYear = defaultValue
         }
@@ -157,7 +159,9 @@ const PickerDate = forwardRef(
         // 如果不是合法的日期格式
         if (!defaultValue || !defaultValue.isQuarter(split)) {
           if (onError)
-            onError({ errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}, YYYY-MM-DD` })
+            onError({
+              errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}, YYYY-MM-DD`
+            })
         } else {
           let quarterValues = defaultValue.split(split)
           defaultYear = quarterValues[0]
@@ -167,7 +171,9 @@ const PickerDate = forwardRef(
         // 如果不是合法的日期格式
         if (!defaultValue || !defaultValue.isMonth(split)) {
           if (onError)
-            onError({ errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}, YYYY-MM-DD` })
+            onError({
+              errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}, YYYY-MM-DD`
+            })
         } else {
           let monthValues = defaultValue.split(split)
           defaultYear = monthValues[0]
@@ -176,7 +182,8 @@ const PickerDate = forwardRef(
       } else if (type === 'date') {
         // 如果不是合法的日期格式
         if (!defaultValue || !defaultValue.isDate(split)) {
-          if (onError) onError({ errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}` })
+          if (onError)
+            onError({ errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}` })
         } else {
           let dateValues = defaultValue.split(split)
           defaultYear = dateValues[0]
@@ -188,7 +195,7 @@ const PickerDate = forwardRef(
         if (!defaultValue || !defaultValue.isDateTime(split, timeSplit)) {
           if (onError)
             onError({
-              errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}, YYYY-MM-DD hh:mm`
+              errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}, YYYY-MM-DD hh:mm`
             })
         } else {
           let values = defaultValue.split(' ')
@@ -205,7 +212,9 @@ const PickerDate = forwardRef(
         if (!defaultValue || !defaultValue.isTime(timeSplit)) {
           if (onError)
             onError({
-              errMsg: `${locale('无效的日期格式', 'hint_invalid_date')}, hh${timeSplit || ':'}mm`
+              errMsg: `${locale('无效的日期格式', 'SeedsUI_dateformat_error')}, hh${
+                timeSplit || ':'
+              }mm`
             })
         } else {
           let timeValues = defaultValue.split(timeSplit || ':')
@@ -235,7 +244,7 @@ const PickerDate = forwardRef(
           yearsData = data.year.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_year') // 年
+              name: '' + n + locale('', 'SeedsUI_picker_unit_year') // 年
             }
           })
         }
@@ -243,7 +252,7 @@ const PickerDate = forwardRef(
           quartersData = data.quarter.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_quarter') // 季
+              name: '' + n + locale('', 'SeedsUI_picker_unit_quarter') // 季
             }
           })
         }
@@ -251,7 +260,7 @@ const PickerDate = forwardRef(
           monthsData = data.month.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_month') // 月
+              name: '' + n + locale('', 'SeedsUI_picker_unit_month') // 月
             }
           })
         }
@@ -259,7 +268,7 @@ const PickerDate = forwardRef(
           daysData = data.day.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_date') // 日
+              name: '' + n + locale('', 'SeedsUI_picker_unit_day') // 日
             }
           })
         }
@@ -267,7 +276,7 @@ const PickerDate = forwardRef(
           hoursData = data.hour.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_hour') // 时
+              name: '' + n + locale('', 'SeedsUI_picker_unit_hour') // 时
             }
           })
         }
@@ -275,7 +284,7 @@ const PickerDate = forwardRef(
           minutesData = data.minute.map((n) => {
             return {
               id: '' + n,
-              name: '' + n + locale('', 'picker_unit_minute') // 分
+              name: '' + n + locale('', 'SeedsUI_picker_unit_minute') // 分
             }
           })
         }
@@ -317,12 +326,12 @@ const PickerDate = forwardRef(
         onClickSubmit: clickSubmit,
         onScrollEnd: scrollEnd,
         onHid: (e) => {},
-        yyUnit: locale('', 'picker_unit_year'), // 年
-        QQUnit: locale('', 'picker_unit_quarter'), // 季
-        MMUnit: locale('', 'picker_unit_month'), // 月
-        ddUnit: locale('', 'picker_unit_date'), // 日
-        hhUnit: locale('', 'picker_unit_hour'), // 时
-        mmUnit: locale('', 'picker_unit_minute') // 分
+        yyUnit: locale('', 'SeedsUI_picker_unit_year'), // 年
+        QQUnit: locale('', 'SeedsUI_picker_unit_quarter'), // 季
+        MMUnit: locale('', 'SeedsUI_picker_unit_month'), // 月
+        ddUnit: locale('', 'SeedsUI_picker_unit_day'), // 日
+        hhUnit: locale('', 'SeedsUI_picker_unit_hour'), // 时
+        mmUnit: locale('', 'SeedsUI_picker_unit_minute') // 分
       })
       if (show && instance) {
         setTimeout(function () {
@@ -357,7 +366,7 @@ const PickerDate = forwardRef(
                 cancelAttribute.className ? ' ' + cancelAttribute.className : ''
               }`}
             >
-              {cancelAttribute.caption || locale('取消', 'cancel')}
+              {cancelAttribute.caption || locale('取消', 'SeedsUI_cancel')}
             </a>
             <div className="picker-header-title"></div>
             <a
@@ -366,7 +375,7 @@ const PickerDate = forwardRef(
                 submitAttribute.className ? ' ' + submitAttribute.className : ''
               }`}
             >
-              {submitAttribute.caption || locale('完成', 'finish')}
+              {submitAttribute.caption || locale('完成', 'SeedsUI_finish')}
             </a>
           </div>
           <div className="picker-wrapper">

@@ -108,7 +108,7 @@ const Attach = forwardRef(
             </div>
 
             {/* Label */}
-            <div className="attach-upload-label">{label || locale('附件', 'attach')}</div>
+            <div className="attach-upload-label">{label || locale('附件', 'SeedsUI_attach')}</div>
           </div>
         )}
         {list &&

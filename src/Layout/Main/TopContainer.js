@@ -10,7 +10,9 @@ const TopContainer = forwardRef(({ children, caption, type, ...props }, ref) => 
     <div ref={rootRef} className="SID-Dragrefresh-TopContainer layout-main-pull-push">
       <div className="layout-main-pull-push-wrapper">
         <div className="layout-main-pull-push-icon"></div>
-        <div className="layout-main-pull-push-caption">{locale('下拉可以刷新', 'pull_down')}</div>
+        <div className="layout-main-pull-push-caption">
+          {locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
+        </div>
       </div>
     </div>
   )

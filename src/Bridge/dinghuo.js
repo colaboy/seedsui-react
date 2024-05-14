@@ -234,13 +234,15 @@ let Bridge = {
     params = params || {}
     if (!params.uploadDir) {
       if (params.fail)
-        params.fail({ errMsg: 'uploadImage:fail' + locale('没有上传目录', 'hint_no_upload_dir') })
+        params.fail({
+          errMsg: 'uploadImage:fail' + locale('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir')
+        })
       return
     }
     if (typeof params.localId !== 'string' || !params.localId) {
       if (params.fail)
         params.fail({
-          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'hint_no_upload_localeid')
+          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
         })
       return
     }
@@ -325,7 +327,7 @@ let Bridge = {
     if (!localId) {
       if (fail)
         fail({
-          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'hint_no_upload_localeid')
+          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
         })
       return
     }
@@ -369,7 +371,7 @@ let Bridge = {
     } = params
 
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
-      if (fail) fail(locale('此功能需要升级至6.6.0及以上的客户端', 'hint_choose_video_version'))
+      if (fail) fail(locale('chooseVideo need more than 6.6.0'))
       return
     }
     console.log('外勤WK内核chooseVideo', params)

@@ -54,7 +54,7 @@ export default function (props) {
     }
 
     let caption = captionProps?.caption || content
-    caption = typeof caption === 'string' ? caption : locale('加载中...', 'loading')
+    caption = typeof caption === 'string' ? caption : locale('加载中...', 'SeedsUI_loading')
     loadingDOM.querySelector('.loading-content').innerHTML = caption
 
     // 显示

@@ -125,13 +125,13 @@ Math.Calc = (function () {
     // 最大值
     if (!isNaN(max) && value - max > 0) {
       // callback fail
-      if (fail) fail({ errMsg: locale('不能大于', 'hint_cannot_be_greater_than') + max })
+      if (fail) fail({ errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + max })
       return '' + max
     }
     // 最小值
     if (!isNaN(min) && value - min < 0) {
       // callback fail
-      if (fail) fail({ errMsg: locale('不能小于', 'hint_cannot_be_less_than') + min })
+      if (fail) fail({ errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + min })
       return '' + min
     }
     // 截取小数位数
@@ -166,7 +166,7 @@ Math.Calc = (function () {
       if (result) value = result[0]
       else value = ''
       // callback fail
-      if (fail) fail({ errMsg: locale('必须要输入数字哦', 'hint_must_number') })
+      if (fail) fail({ errMsg: locale('必须要输入数字哦', 'SeedsUI_must_number') })
     }
     return value
   }

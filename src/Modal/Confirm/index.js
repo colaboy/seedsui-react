@@ -7,10 +7,10 @@ const Confirm = forwardRef(({ cancelProps, submitProps, ...props }, ref) => {
   // 默认补充确定按钮
   let newProps = {
     submitProps: submitProps || {
-      caption: locale('确定', 'ok')
+      caption: locale('确定', 'SeedsUI_ok')
     },
     cancelProps: cancelProps || {
-      caption: locale('取消', 'cancel')
+      caption: locale('取消', 'SeedsUI_cancel')
     },
     ...props
   }

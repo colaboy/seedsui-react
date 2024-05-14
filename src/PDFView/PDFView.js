@@ -155,9 +155,9 @@ const PDFView = forwardRef(
       }
       // 实例化
       refEl.current.instance = new Instance(refEl.current, {
-        loadHTML: locale('加载中', 'in_loading'),
-        errorHTML: locale('文件加载失败', 'hint_file_failed_to_load'),
-        nodataHTML: locale('暂无数据', 'no_data'),
+        loadHTML: locale('加载中', 'SeedsUI_loading'),
+        errorHTML: locale('文件加载失败', 'SeedsUI_file_load_failed'),
+        nodataHTML: locale('暂无数据', 'SeedsUI_no_data'),
         ...params,
         pictures,
         src,
@@ -222,12 +222,14 @@ const PDFView = forwardRef(
             </div>
             <img alt="" className="pdf-page-img hide" />
             <div className="pdf-page-load">
-              {params.loadHTML !== undefined ? params.loadHTML : locale('加载中', 'in_loading')}
+              {params.loadHTML !== undefined
+                ? params.loadHTML
+                : locale('加载中', 'SeedsUI_loading')}
             </div>
             <div className="pdf-page-error hide">
               {params.errorHTML !== undefined
                 ? params.errorHTML
-                : locale('文件加载失败', 'hint_file_failed_to_load')}
+                : locale('文件加载失败', 'SeedsUI_file_load_failed')}
             </div>
             <div className="pdf-page-nodata hide">
               {params.nodataHTML !== undefined ? params.nodataHTML : locale('暂无数据', 'no_date')}

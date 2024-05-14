@@ -85,9 +85,9 @@ export default class ImgMark extends Component {
     if (this.props.preview) {
       if (!this.validSrc) {
         Toast.show({
-          content: `${locale('图片加载失败', 'hint_image_failed_to_load')}, ${locale(
+          content: `${locale('图片加载失败', 'SeedsUI_image_load_failed')}, ${locale(
             '无法预览',
-            'cannot_preview'
+            'SeedsUI_cannot_preview'
           )}`
         })
         return
@@ -163,7 +163,7 @@ export default class ImgMark extends Component {
         <div className={`imgmark-error`}>
           <div className={`imgmark-error-icon`}></div>
           <div className={`imgmark-error-caption`}>
-            {locale('图片加载失败', 'hint_image_failed_to_load')}
+            {locale('图片加载失败', 'SeedsUI_image_load_failed')}
           </div>
         </div>
         {/* 内容 */}

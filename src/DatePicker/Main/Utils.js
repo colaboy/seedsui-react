@@ -44,7 +44,7 @@ export default {
         yearsData = data.year.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_year') // 年
+            name: '' + n + locale('', 'SeedsUI_picker_unit_year') // 年
           }
         })
       }
@@ -52,7 +52,7 @@ export default {
         quartersData = data.quarter.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_quarter') // 季
+            name: '' + n + locale('', 'SeedsUI_picker_unit_quarter') // 季
           }
         })
       }
@@ -60,7 +60,7 @@ export default {
         monthsData = data.month.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_month') // 月
+            name: '' + n + locale('', 'SeedsUI_picker_unit_month') // 月
           }
         })
       }
@@ -68,7 +68,7 @@ export default {
         daysData = data.day.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_date') // 日
+            name: '' + n + locale('', 'SeedsUI_picker_unit_day') // 日
           }
         })
       }
@@ -76,7 +76,7 @@ export default {
         hoursData = data.hour.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_hour') // 时
+            name: '' + n + locale('', 'SeedsUI_picker_unit_hour') // 时
           }
         })
       }
@@ -84,7 +84,7 @@ export default {
         minutesData = data.minute.map((n) => {
           return {
             id: '' + n,
-            name: '' + n + locale('', 'picker_unit_minute') // 分
+            name: '' + n + locale('', 'SeedsUI_picker_unit_minute') // 分
           }
         })
       }
