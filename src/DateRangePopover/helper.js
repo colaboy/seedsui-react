@@ -68,32 +68,32 @@ export default {
     // 今天
     date = this.getDateRange('today')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('今天', 'datepopover_today')
+      return locale('今天', 'SeedsUI_today')
     }
     // 昨天
     date = this.getDateRange('yesterday')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('昨天', 'datepopover_yesterday')
+      return locale('昨天', 'SeedsUI_yesterday')
     }
     // 本月
     date = this.getDateRange('month')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('本月', 'datepopover_this_month')
+      return locale('本月', 'SeedsUI_this_month')
     }
     // 上月
     date = this.getDateRange('prevmonth')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('上月', 'datepopover_last_month')
+      return locale('上月', 'SeedsUI_last_month')
     }
     // 最近7内
     date = this.getDateRange('7')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale(locale('最近7天', 'datepopover_last_days', ['7']))
+      return locale(locale('最近7天', 'SeedsUI_last_days', ['7']))
     }
     // 最近30天
     date = this.getDateRange('30')
     if (endDate === date.endDate && startDate === date.startDate) {
-      return locale('最近30天', 'datepopover_last_days', ['30'])
+      return locale('最近30天', 'SeedsUI_last_days', ['30'])
     }
     // 自定义
     return `${startDate} ~ ${endDate}`

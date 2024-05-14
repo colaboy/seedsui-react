@@ -27,31 +27,31 @@ const DateRangePopover = forwardRef(
 
       // 范围
       ranges = {
-        [locale('今天', 'datepopover_today')]: [
+        [locale('今天', 'SeedsUI_today')]: [
           new Date().format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('昨天', 'datepopover_yesterday')]: [
+        [locale('昨天', 'SeedsUI_yesterday')]: [
           new Date().prevDate().format('YYYY-MM-DD'),
           new Date().prevDate().format('YYYY-MM-DD')
         ],
-        [locale('本月', 'datepopover_this_month')]: [
+        [locale('本月', 'SeedsUI_this_month')]: [
           new Date().firstMonthDate().format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('上月', 'datepopover_last_month')]: [
+        [locale('上月', 'SeedsUI_last_month')]: [
           new Date().prevMonth().firstMonthDate().format('YYYY-MM-DD'),
           new Date().prevMonth().lastMonthDate().format('YYYY-MM-DD')
         ],
-        [locale('最近7天', 'datepopover_last_days', ['7'])]: [
+        [locale('最近7天', 'SeedsUI_last_days', ['7'])]: [
           new Date().prevDate(6).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('最近30天', 'datepopover_last_days', ['30'])]: [
+        [locale('最近30天', 'SeedsUI_last_days', ['30'])]: [
           new Date().prevDate(29).format('YYYY-MM-DD'),
           new Date().format('YYYY-MM-DD')
         ],
-        [locale('自定义时间', 'datepopover_custom_date')]: 90
+        [locale('自定义时间', 'SeedsUI_custom_date')]: 90
       },
       // 自定义日期, 范围内错误提示
       rangeErrMsg,
@@ -63,7 +63,7 @@ const DateRangePopover = forwardRef(
       maskAttribute,
 
       // 自定义弹框属性
-      caption = locale('自定义时间', 'datepopover_custom_date'),
+      caption = locale('自定义时间', 'SeedsUI_custom_date'),
       startInputDateProps = {},
       endInputDateProps = {},
       ...others
@@ -135,7 +135,7 @@ const DateRangePopover = forwardRef(
                   key={key}
                   onClick={() => showCustomDialog(range)}
                 >
-                  {locale('自定义时间', 'datepopover_custom_date')}
+                  {locale('自定义时间', 'SeedsUI_custom_date')}
                 </div>
               )
             }
