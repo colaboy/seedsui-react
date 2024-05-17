@@ -180,6 +180,18 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+
+  // 渐变
+  --picker-view-mask-top-background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.7) 65%
+  );
+  --picker-view-mask-bottom-background: linear-gradient(
+    to top,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.7) 65%
+  );
   &:before,
   &:after {
     position: absolute;
@@ -191,11 +203,25 @@
   }
   &:before {
     top: 0;
-    background: fade(@picker-bg, 70%);
+    // background: fade(@picker-bg, 70%);
+    width: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    background: -webkit-linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0.7) 65%);
+    background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0.7) 65%);
+    background: var(--picker-view-mask-top-background);
   }
   &:after {
     bottom: 0;
-    background: fade(@picker-bg, 70%);
+    // background: fade(@picker-bg, 70%);
+    width: 100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    background: -webkit-linear-gradient(bottom, #ffffff 0%, rgba(255, 255, 255, 0.7) 65%);
+    background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0.7) 65%);
+    background: var(--picker-view-mask-bottom-background);
   }
 }
 // 遮皮选中
@@ -211,8 +237,18 @@
 
 // 选择器中的tabs
 .picker-tabs {
+  // 线条
   .tabs-line;
-  .tabs-line-width100;
+  .tab {
+    padding-bottom: 8px;
+  }
+  .tab:after {
+    width: 80%;
+  }
+  // 主副标题间距
+  .tab-caption + .tab-sndcaption {
+    margin-top: 8px;
+  }
   // 文字
   .tab,
   .tab.active {
@@ -225,4 +261,7 @@
       .font-size-m;
     }
   }
+}
+.picker-tabs + .picker-main {
+  margin: 10px 0;
 }
