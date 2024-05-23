@@ -4,6 +4,8 @@
 import Device from './../Device'
 import Toast from './../Toast'
 
+import BridgeBrowser from './base'
+
 let self = null
 
 let Bridge = {
@@ -69,6 +71,12 @@ let Bridge = {
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
+    // 微信PC端不支持定位
+    if (Device.device === 'pc') {
+      BridgeBrowser.getLocation(params)
+      return
+    }
+
     const { type, success, fail, complete, ...otherParams } = params || {}
     self = this
     // 调用定位
@@ -104,12 +112,14 @@ let Bridge = {
    * 返回：{resultStr:''}
    * */
   scanQRCode(params = {}) {
+    // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
         content: locale('请在手机端微信中使用', 'SeedsUI_wechat_use_error')
       })
       return
     }
+
     const { needResult, scanType, desc, success, ...othersParams } = params || {}
     window.top.wx.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果

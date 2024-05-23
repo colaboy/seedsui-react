@@ -86,111 +86,114 @@ let Bridge = {
    */
   getLocation: function (params = {}) {
     let self = this
-    if (!self.debug) {
-      if (navigator.geolocation) {
-        // 调用定位
-        if (self.locationTask) {
-          self.locationTask.push(params)
-          return
-        }
-        self.locationTask = []
-        console.log('调用浏览器定位...')
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            let res = {
-              errMsg: 'getLocation:ok',
-              longitude: position.coords.longitude,
-              latitude: position.coords.latitude,
-              speed: '0.0',
-              accuracy: '3.0.0'
-            }
-            console.log('调用浏览器定位成功', res)
-            if (params.success) params.success(res)
-            self.getLocationTask(res)
-          },
-          (error) => {
-            let errMsg = ''
-            switch (error.code) {
-              case error.PERMISSION_DENIED:
-                errMsg = `getLocation:fail ${locale(
-                  '定位失败,用户拒绝请求地理定位',
-                  'SeedsUI_location_permission_denied_error'
-                )}`
-                break
-              case error.POSITION_UNAVAILABLE:
-                console.log(
-                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unavailable_error')}`
-                )
-                errMsg = `getLocation:fail ${locale(
-                  '定位失败,位置信息是不可用',
-                  'SeedsUI_location_unavailable_error'
-                )}`
-                break
-              case error.TIMEOUT:
-                console.log(
-                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
-                )
-                errMsg = `getLocation:fail ${locale(
-                  '定位失败,请求获取用户位置超时',
-                  'SeedsUI_location_overtime_error'
-                )}`
-                break
-              case error.UNKNOWN_ERROR:
-                console.log(
-                  `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
-                )
-                errMsg = `getLocation:fail ${locale(
-                  '定位失败,定位系统失效',
-                  'SeedsUI_location_unknown_error'
-                )}`
-                break
-              default:
-                console.log(`${locale('定位失败', 'SeedsUI_location_failed')}`)
-                errMsg = `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
-            }
-            let res = { errMsg: errMsg }
-            console.log('调用浏览器定位失败', res)
-            if (params.fail) params.fail(res)
-            self.getLocationTask(res)
-          },
-          {
-            enableHighAcuracy: true, // 指示浏览器获取高精度的位置，默认为false
-            timeout: 5000, // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
-            maximumAge: 2000 // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
-          }
-        )
-      } else {
-        console.log(`${locale('当前浏览器不支持定位', 'SeedsUI_location_not_supported')}`)
+    // debug模拟定位
+    if (self.debug) {
+      if (self.locationTask) {
+        self.locationTask.push(params)
+        return
+      }
+      self.locationTask = []
+      console.log('调用浏览器定位...')
+      setTimeout(() => {
         let res = {
-          errMsg: `getLocation:fail ${locale(
-            '当前浏览器不支持定位',
-            'SeedsUI_location_not_supported'
-          )}`
+          errMsg: 'getLocation:ok',
+          longitude: '116.397451',
+          latitude: '39.909187',
+          speed: '0.0',
+          accuracy: '3.0.0'
         }
-        if (params.fail) params.fail(res)
+        if (params.success) params.success(res)
+        if (params.complete) params.complete(res)
         self.getLocationTask(res)
+      }, 2000)
+      return
+    }
+
+    // 调用浏览器定位
+    if (navigator.geolocation) {
+      // 调用定位
+      if (self.locationTask) {
+        self.locationTask.push(params)
+        return
       }
-      return
-    }
-    // 调用定位
-    if (self.locationTask) {
-      self.locationTask.push(params)
-      return
-    }
-    self.locationTask = []
-    console.log('调用浏览器定位...')
-    setTimeout(() => {
+      self.locationTask = []
+      console.log('调用浏览器定位...')
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          let res = {
+            errMsg: 'getLocation:ok',
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude,
+            speed: '0.0',
+            accuracy: '3.0.0'
+          }
+          console.log('调用浏览器定位成功', res)
+          if (params.success) params.success(res)
+          self.getLocationTask(res)
+        },
+        (error) => {
+          let errMsg = ''
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errMsg = `getLocation:fail ${locale(
+                '定位失败,用户拒绝请求地理定位',
+                'SeedsUI_location_permission_denied_error'
+              )}`
+              break
+            case error.POSITION_UNAVAILABLE:
+              console.log(
+                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unavailable_error')}`
+              )
+              errMsg = `getLocation:fail ${locale(
+                '定位失败,位置信息是不可用',
+                'SeedsUI_location_unavailable_error'
+              )}`
+              break
+            case error.TIMEOUT:
+              console.log(
+                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
+              )
+              errMsg = `getLocation:fail ${locale(
+                '定位失败,请求获取用户位置超时',
+                'SeedsUI_location_overtime_error'
+              )}`
+              break
+            case error.UNKNOWN_ERROR:
+              console.log(
+                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
+              )
+              errMsg = `getLocation:fail ${locale(
+                '定位失败,定位系统失效',
+                'SeedsUI_location_unknown_error'
+              )}`
+              break
+            default:
+              console.log(`${locale('定位失败', 'SeedsUI_location_failed')}`)
+              errMsg = `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
+          }
+          let res = { errMsg: errMsg }
+          console.log('调用浏览器定位失败', res)
+          if (params.fail) params.fail(res)
+          self.getLocationTask(res)
+        },
+        {
+          enableHighAcuracy: true, // 指示浏览器获取高精度的位置，默认为false
+          timeout: 5000, // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+          maximumAge: 2000 // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+        }
+      )
+    } else {
+      console.log(`${locale('当前浏览器不支持定位', 'SeedsUI_location_not_supported')}`)
       let res = {
-        errMsg: 'getLocation:ok',
-        longitude: '116.397451',
-        latitude: '39.909187',
-        speed: '0.0',
-        accuracy: '3.0.0'
+        errMsg: `getLocation:fail ${locale(
+          '当前浏览器不支持定位',
+          'SeedsUI_location_not_supported'
+        )}`
       }
-      if (params.success) params.success(res)
-      if (params.complete) params.complete(res)
+      if (params.fail) params.fail(res)
       self.getLocationTask(res)
-    }, 2000)
+    }
+    return
   },
   /**
    * 扫描二维码并返回结果
