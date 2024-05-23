@@ -2,6 +2,7 @@
 // import { Device } from 'seedsui-react'
 // 内库使用
 import Device from './../Device'
+import Toast from './../Toast'
 
 let self = null
 
@@ -103,6 +104,12 @@ let Bridge = {
    * 返回：{resultStr:''}
    * */
   scanQRCode(params = {}) {
+    if (Device.device === 'pc') {
+      Toast.show({
+        content: locale('请在手机端微信中使用', 'SeedsUI_wechat_use_error')
+      })
+      return
+    }
     const { needResult, scanType, desc, success, ...othersParams } = params || {}
     window.top.wx.scanQRCode({
       needResult: needResult || 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果

@@ -985,14 +985,14 @@ let BaiduMap = function (id, params) {
     let boundary = new BMap.Boundary()
     if (!area) {
       console.warn(
-        `${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}area, ${locale(
+        `${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}area, ${locale(
           '例如“江苏省南京市建邺区”',
           'SeedsUI_example_address'
         )}`
       )
       callback.fail &&
         callback.fail({
-          errMsg: `${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}area, ${locale(
+          errMsg: `${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}area, ${locale(
             '例如“江苏省南京市建邺区”',
             'SeedsUI_example_address'
           )}`
@@ -1055,7 +1055,7 @@ let BaiduMap = function (id, params) {
       console.warn(
         `drawPolygon: ${locale(
           '请传入参数',
-          'SeedsUI_need_pass_parameter_hint'
+          'SeedsUI_need_pass_parameter_error'
         )}{polygon: {}}${locale('或者', 'or')}{points: []}`
       )
       return null
@@ -1200,13 +1200,13 @@ let BaiduMap = function (id, params) {
     // options: {menus: [{text: '', handler: func()}]}
     if (!overlay) {
       console.warn(
-        `addContextMenu: ${locale('请传入参数', 'SeedsUI_need_pass_parameter_hint')}overlay`
+        `addContextMenu: ${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}overlay`
       )
       options.fail &&
         options.fail({
           errMsg: `addContextMenu: ${locale(
             '请传入参数',
-            'SeedsUI_need_pass_parameter_hint'
+            'SeedsUI_need_pass_parameter_error'
           )}overlay`
         })
       return
@@ -1220,14 +1220,14 @@ let BaiduMap = function (id, params) {
       console.warn(
         `addContextMenu: ${locale(
           '请传入参数',
-          'SeedsUI_need_pass_parameter_hint'
+          'SeedsUI_need_pass_parameter_error'
         )}{menus: [{text: "", handler: func()}]}`
       )
       options.fail &&
         options.fail({
           errMsg: `addContextMenu: ${locale(
             '请传入参数',
-            'SeedsUI_need_pass_parameter_hint'
+            'SeedsUI_need_pass_parameter_error'
           )}{menus: [{text: "", handler: func()}]}`
         })
       return
