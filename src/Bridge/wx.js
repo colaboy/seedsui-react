@@ -1,6 +1,7 @@
 // 测试使用
-// import { Device } from 'seedsui-react'
+// import { locale, Device, Toast } from 'seedsui-react'
 // 内库使用
+import locale from './../locale'
 import Device from './../Device'
 import Toast from './../Toast'
 
@@ -115,7 +116,11 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
-        content: locale('请在手机端微信中使用', 'SeedsUI_wechat_use_error')
+        content: locale(
+          '请在手机端微信中使用扫码',
+          'SeedsUI_wechat_use_error',
+          locale('', 'SeedsUI_scancode')
+        )
       })
       return
     }
