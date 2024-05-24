@@ -5,7 +5,7 @@ import locale from './../locale'
 import Device from './../Device'
 import Toast from './../Toast'
 
-import BridgeBrowser from './base'
+import BridgeBrowser from './browser'
 
 let self = null
 
@@ -74,6 +74,7 @@ let Bridge = {
   getLocation: function (params = {}) {
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
+      BridgeBrowser.getLocationTask = this.getLocationTask
       BridgeBrowser.getLocation(params)
       return
     }

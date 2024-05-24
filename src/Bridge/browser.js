@@ -104,7 +104,7 @@ let Bridge = {
         }
         if (params.success) params.success(res)
         if (params.complete) params.complete(res)
-        self.getLocationTask(res)
+        self?.getLocationTask?.(res)
       }, 2000)
       return
     }
@@ -174,7 +174,7 @@ let Bridge = {
           let res = { errMsg: errMsg }
           console.log('调用浏览器定位失败', res)
           if (params.fail) params.fail(res)
-          self.getLocationTask(res)
+          self?.getLocationTask?.(res)
         },
         {
           enableHighAcuracy: true, // 指示浏览器获取高精度的位置，默认为false
