@@ -66,6 +66,7 @@ export default () => {
         onFileChange={(e) => {
           console.log('e', e)
         }}
+        uploadPosition="end"
         fileProps={{
           capture: 'camera'
         }}

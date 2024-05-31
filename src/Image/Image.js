@@ -17,6 +17,7 @@ const Image = forwardRef(
       type, // video.录相 | 其它.为拍照
       fileProps, // file框属性
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
+      uploadPosition = 'end', // start | end
       uploadNode, // 上传按钮覆盖的dom
       statusRender, // 自定义状态渲染func({status, itemDOM})
       // Events
@@ -106,12 +107,34 @@ const Image = forwardRef(
       }
     }
 
+    // 上传node
+    function getUploadNode() {
+      return (
+        <Upload
+          type={type}
+          // file框属性
+          fileProps={fileProps}
+          // 上传DOM
+          uploadNode={uploadNode}
+          // Custom Status
+          statusRender={statusRender}
+          // Choose events
+          onChoose={onChooseRef.current}
+          onBeforeChoose={onBeforeChooseRef.current}
+          onFileChange={onFileChangeRef.current}
+        />
+      )
+    }
+
     return (
       <div
         ref={rootRef}
         {...props}
         className={`image${props.className ? ' ' + props.className : ''}`}
       >
+        {/* 图片上传: 上传按钮 */}
+        {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
+
         {/* 图片列表 */}
         {list &&
           list.length > 0 &&
@@ -175,21 +198,7 @@ const Image = forwardRef(
             )
           })}
         {/* 图片上传: 上传按钮 */}
-        {(onChoose || onFileChange) && (
-          <Upload
-            type={type}
-            // file框属性
-            fileProps={fileProps}
-            // 上传DOM
-            uploadNode={uploadNode}
-            // Custom Status
-            statusRender={statusRender}
-            // Choose events
-            onChoose={onChooseRef.current}
-            onBeforeChoose={onBeforeChooseRef.current}
-            onFileChange={onFileChangeRef.current}
-          />
-        )}
+        {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
 
         {/* 预览 */}
         {typeof previewCurrent === 'number' && (
