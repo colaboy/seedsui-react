@@ -144,6 +144,7 @@ export { default as GeoUtil } from './GeoUtil' // 不常用
 export { default as ImgLazy } from './ImgLazy'
 
 export { default as MapUtil } from './MapUtil' // 不常用
+export { default as Map } from './Map'
 export { default as Clipboard } from './Clipboard'
 export { default as Observer } from './Observer'
 export { default as EditUtil } from './EditUtil' // 不常用
