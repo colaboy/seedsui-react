@@ -1,6 +1,6 @@
 // 加载地图资源
-function loadMapResource() {
-  return new Promise((resolve, reject) => {
+function loadLeaflet() {
+  return new Promise((resolve) => {
     if (window.L) {
       resolve(window.L)
       return
@@ -30,9 +30,9 @@ function loadMapResource() {
       'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
       {
         attrs: {
-          id: 'leaflet-js',
-          integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
-          crossorigin: ''
+          id: 'leaflet-js'
+          // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
+          // crossorigin: ''
         }
       },
       (result) => {
@@ -46,4 +46,4 @@ function loadMapResource() {
   })
 }
 
-export default loadMapResource
+export default loadLeaflet
