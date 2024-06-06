@@ -1,6 +1,13 @@
 import React from 'react'
-import { Map } from 'seedsui-react'
+import { Map as SMap } from 'seedsui-react'
+const { APILoader, Map, TileLayer } = SMap
 
 export default () => {
-  return <Map />
+  return (
+    <APILoader>
+      <Map>
+        <TileLayer />
+      </Map>
+    </APILoader>
+  )
 }

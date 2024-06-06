@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import { createMap } from './core'
+import createMap from './createMap'
 
-const Map = forwardRef(({ children, ...others }, ref) => {
+const Map = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
-  const [errMsg, setErrMsg] = useState(null)
+  const [map, setMap] = useState(null)
 
   // 节点
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
+      getRootDOM: () => rootRef.current,
+      zoomIn: () => {},
+      zoomOut: () => {}
     }
   })
 
@@ -21,9 +23,9 @@ const Map = forwardRef(({ children, ...others }, ref) => {
   // 加载
   async function loadData() {
     // Load map resource
-    const map = createMap()
+    const map = createMap(rootRef.current)
     if (typeof map === 'string') {
-      setErrMsg(map)
+      setMap(map)
       return
     }
     /*
@@ -63,14 +65,15 @@ const Map = forwardRef(({ children, ...others }, ref) => {
     */
   }
 
+  if (!map || typeof map === 'string') {
+  }
   return (
     <div
-      id="map"
-      {...others}
-      className={'map' + (others.className ? ' ' + others.className : '')}
+      {...props}
+      className={'map' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
-      {errMsg || ''}
+      {map ? '' : children}
     </div>
   )
 })

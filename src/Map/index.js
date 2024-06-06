@@ -1,3 +1,5 @@
-import Map from './Map.js'
+import APILoader from './components/APILoader'
+import Map from './components/Map'
+import TileLayer from './components/TileLayer'
 
-export default Map
+export default { APILoader, Map, TileLayer }
