@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import { loadGoogle, loadGoogleMutant, loadLeaflet } from './utils'
+import { createMap } from './core'
 
 const Map = forwardRef(({ children, ...others }, ref) => {
   const rootRef = useRef(null)
@@ -21,38 +21,11 @@ const Map = forwardRef(({ children, ...others }, ref) => {
   // 加载
   async function loadData() {
     // Load map resource
-    let isOk = await loadLeaflet()
-    if (typeof isOk === 'string') {
-      setErrMsg(isOk)
+    const map = createMap()
+    if (typeof map === 'string') {
+      setErrMsg(map)
       return
     }
-    isOk = await loadGoogle()
-    if (typeof isOk === 'string') {
-      setErrMsg(isOk)
-      return
-    }
-    isOk = await loadGoogleMutant()
-    if (typeof isOk === 'string') {
-      setErrMsg(isOk)
-      return
-    }
-
-    const map = window.L.map('map', { attributionControl: false }).setView([51.505, -0.09], 13)
-
-    // 渲染瓦片图层, 如果访问不了https://tile.openstreetmap.org, 可以换成天地图http://t0.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=xxx
-    // const tiles = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //   maxZoom: 19,
-    //   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    // }).addTo(map)
-
-    // 渲染谷歌地图
-    var road = window.L.gridLayer.googleMutant({ type: 'roadmap' }).addTo(map)
-    const tiles = window.L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-      maxZoom: 20,
-      subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-      attribution: ''
-    })
-
     /*
     
     const marker = window.L.marker([51.5, -0.09])
