@@ -1,7 +1,7 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './loadSource'
 
-import MapError from './../MapError'
+import Result from './../Result'
 
 // Load map js and css source
 const APILoader = forwardRef(
@@ -45,7 +45,7 @@ const APILoader = forwardRef(
 
     // 加载失败
     if (typeof errMsg === 'string') {
-      return <MapError>{errMsg}</MapError>
+      return <Result title={errMsg} />
     }
 
     // 加载成功

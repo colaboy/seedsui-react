@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import createMap from './createMap'
 
+import Result from './../Result'
+
 const Map = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
   const [map, setMap] = useState(null)
@@ -10,6 +12,7 @@ const Map = forwardRef(({ children, ...props }, ref) => {
     return {
       rootDOM: rootRef.current,
       getRootDOM: () => rootRef.current,
+      map: map,
       zoomIn: () => {},
       zoomOut: () => {}
     }
@@ -24,10 +27,15 @@ const Map = forwardRef(({ children, ...props }, ref) => {
   async function loadData() {
     // Load map resource
     const map = createMap(rootRef.current)
+    setMap(map)
+
+    // Load map failed
     if (typeof map === 'string') {
-      setMap(map)
       return
     }
+
+    // record map object
+    rootRef.current.map = map
     /*
     
     const marker = window.L.marker([51.5, -0.09])
@@ -65,15 +73,29 @@ const Map = forwardRef(({ children, ...props }, ref) => {
     */
   }
 
-  if (!map || typeof map === 'string') {
+  let newChildren = null
+  // 未加载完成显示空
+  if (!map) {
+    newChildren = null
   }
+  // 加载失败
+  else if (typeof map === 'string') {
+    newChildren = <Result title={errMsg} />
+  }
+  // 加载成功
+  else {
+    newChildren = React.cloneElement(children, {
+      map: map
+    })
+  }
+
   return (
     <div
       {...props}
       className={'map' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
-      {map ? '' : children}
+      {newChildren}
     </div>
   )
 })

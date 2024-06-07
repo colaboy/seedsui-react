@@ -17,8 +17,8 @@ const Result = forwardRef(({ title, subTitle, extra, children, ...props }, ref) 
       className={'map map-result' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
-      {title}
-      {subTitle}
+      <div className="map-result-title">{title}</div>
+      <div className="map-result-subtitle">{subTitle}</div>
       {children}
       {extra}
     </div>

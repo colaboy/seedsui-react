@@ -1,7 +1,7 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
 import createTileLayer from './createTileLayer'
 
-const TileLayer = forwardRef(({ map, ...props }, ref) => {
+const TileLayer = forwardRef(({ map }, ref) => {
   useImperativeHandle(ref, () => {
     return {}
   })
@@ -19,4 +19,4 @@ const TileLayer = forwardRef(({ map, ...props }, ref) => {
   return <></>
 })
 
-export default Map
+export default TileLayer
