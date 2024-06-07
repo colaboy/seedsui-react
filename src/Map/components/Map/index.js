@@ -27,7 +27,7 @@ const Map = forwardRef(({ children, ...props }, ref) => {
   // 加载
   async function loadData() {
     // Load map resource
-    const map = createMap(rootRef.current)
+    const map = createMap(rootRef.current.querySelector('.map-container'))
     setMap(map)
 
     // Load map failed
@@ -96,6 +96,9 @@ const Map = forwardRef(({ children, ...props }, ref) => {
       className={'map' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
+      {/* 地图容器 */}
+      <div className="map-container"></div>
+      {/* 其它控件 */}
       {newChildren}
     </div>
   )
