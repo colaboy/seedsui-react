@@ -5,7 +5,10 @@ function createMap(container) {
   }
 
   // Init leaflet map
-  const map = window.L.map(container, { attributionControl: false }).setView([51.505, -0.09], 13)
+  const map = window.L.map(container, {
+    attributionControl: false,
+    zoomControl: false // 隐藏放大缩小控件
+  }).setView([51.505, -0.09], 13)
 
   return map
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map as SMap } from 'seedsui-react'
-const { APILoader, Map, TileLayer } = SMap
+const { APILoader, Map, TileLayer, ZoomControl } = SMap
 
 export default () => {
   return (
@@ -13,6 +13,7 @@ export default () => {
       <div>自定义内容</div>
       <Map>
         <TileLayer />
+        <ZoomControl />
         <div>自定义内容</div>
       </Map>
     </APILoader>

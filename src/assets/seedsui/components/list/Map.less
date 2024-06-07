@@ -2,4 +2,60 @@
   width: 600px;
   height: 400px;
   position: relative;
+  .leaflet-pane {
+    z-index: 1;
+  }
+}
+
+.map-header {
+}
+.map-main {
+}
+.map-footer {
+}
+
+// 缩放插件
+.map-zoomcontrol {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+  .inline-flex;
+  .flex-center;
+  .flex-middle;
+  .flex-vertical;
+  width: 36px;
+  height: 72px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+  border-radius: 8px;
+}
+.map-zoomcontrol-out,
+.map-zoomcontrol-in {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  width: 32px;
+  height: 36px;
+  .map-zoomcontrol-icon {
+    .flex;
+    .flex-center;
+    .flex-middle;
+    font-family: 'iconfont';
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+.map-zoomcontrol-in {
+  box-shadow: inset 0px -0.5px 0px 0px rgba(230, 231, 232, 1);
+  .map-zoomcontrol-icon {
+    &:extend(.icon-map-zoom-in all);
+  }
+}
+.map-zoomcontrol-out {
+  .map-zoomcontrol-icon {
+    &:extend(.icon-map-zoom-out all);
+  }
 }
