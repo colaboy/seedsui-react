@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import createMap from './createMap'
+import injectChildrenProps from './injectChildrenProps'
 
 import Result from './../Result'
 
@@ -84,7 +85,7 @@ const Map = forwardRef(({ children, ...props }, ref) => {
   }
   // 加载成功
   else {
-    newChildren = React.cloneElement(children, {
+    newChildren = injectChildrenProps(children, {
       map: map
     })
   }
