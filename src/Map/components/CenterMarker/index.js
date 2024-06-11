@@ -20,7 +20,11 @@ const CenterMarker = forwardRef(({ map, onChange, ...props }, ref) => {
     map.on('dragend', function () {
       rootRef?.current?.classList?.add?.('active')
       let center = map.getCenter()
-      onChange && onChange(center)
+      onChange &&
+        onChange({
+          latitude: center.lat,
+          longitude: center.lng
+        })
     })
   }, [])
 

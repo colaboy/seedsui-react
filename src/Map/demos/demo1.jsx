@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map as SMap } from 'seedsui-react'
-const { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker } = SMap
+const { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker, Marker } = SMap
 
 export default () => {
   return (
@@ -15,7 +15,14 @@ export default () => {
         <TileLayer />
         <ZoomControl />
         <Search />
-        <CenterMarker />
+        <CenterMarker
+          onChange={(position) => {
+            console.log(position)
+          }}
+        />
+
+        <Marker latitude={51.505750806437874} longitude={-0.09149551391601562} />
+        <Marker latitude={51.506071350015475} longitude={-0.08291244506835939} />
         <div>自定义内容</div>
       </Map>
     </APILoader>
