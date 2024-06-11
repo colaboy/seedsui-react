@@ -24,12 +24,12 @@ function ZoomControl({ map, ...props }, ref) {
   }
 
   return (
-    <div {...props} className={`map-zoomcontrol${props.className ? ' ' + props.className : ''}`}>
-      <div className={`map-zoomcontrol-in`} onClick={zoomIn}>
-        <div className="map-zoomcontrol-icon"></div>
+    <div {...props} className={`map-zoomControl${props.className ? ' ' + props.className : ''}`}>
+      <div className={`map-zoomControl-in`} onClick={zoomIn}>
+        <div className="map-zoomControl-icon"></div>
       </div>
-      <div className={`map-zoomcontrol-out`} onClick={zoomOut}>
-        <div className="map-zoomcontrol-icon"></div>
+      <div className={`map-zoomControl-out`} onClick={zoomOut}>
+        <div className="map-zoomControl-icon"></div>
       </div>
     </div>
   )

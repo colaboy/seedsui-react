@@ -6,5 +6,16 @@ import Search from './components/Search'
 import CenterMarker from './components/CenterMarker'
 import Marker from './components/Marker'
 import IconOptions from './components/IconOptions'
+import LocationControl from './components/LocationControl'
 
-export default { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker, Marker, IconOptions }
+export default {
+  APILoader,
+  Map,
+  TileLayer,
+  ZoomControl,
+  Search,
+  CenterMarker,
+  Marker,
+  IconOptions,
+  LocationControl
+}

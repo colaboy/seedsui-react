@@ -1,6 +1,16 @@
 import React from 'react'
 import { Map as SMap } from 'seedsui-react'
-const { APILoader, Map, IconOptions, TileLayer, ZoomControl, Search, CenterMarker, Marker } = SMap
+const {
+  APILoader,
+  Map,
+  IconOptions,
+  TileLayer,
+  ZoomControl,
+  Search,
+  CenterMarker,
+  LocationControl,
+  Marker
+} = SMap
 
 export default () => {
   return (
@@ -18,6 +28,7 @@ export default () => {
         />
         <TileLayer />
         <ZoomControl />
+        <LocationControl />
         <Search />
         <CenterMarker
           onChange={(position) => {

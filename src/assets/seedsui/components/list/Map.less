@@ -17,7 +17,7 @@
 }
 
 // 缩放插件
-.map-zoomcontrol {
+.map-zoomControl {
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -33,14 +33,14 @@
   box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
   border-radius: 8px;
 }
-.map-zoomcontrol-out,
-.map-zoomcontrol-in {
+.map-zoomControl-out,
+.map-zoomControl-in {
   .flex;
   .flex-center;
   .flex-middle;
   width: 32px;
   height: 36px;
-  .map-zoomcontrol-icon {
+  .map-zoomControl-icon {
     .flex;
     .flex-center;
     .flex-middle;
@@ -50,14 +50,14 @@
     height: 18px;
   }
 }
-.map-zoomcontrol-in {
+.map-zoomControl-in {
   box-shadow: inset 0px -0.5px 0px 0px rgba(230, 231, 232, 1);
-  .map-zoomcontrol-icon {
+  .map-zoomControl-icon {
     &:extend(.icon-map-zoom-in all);
   }
 }
-.map-zoomcontrol-out {
-  .map-zoomcontrol-icon {
+.map-zoomControl-out {
+  .map-zoomControl-icon {
     &:extend(.icon-map-zoom-out all);
   }
 }
@@ -87,4 +87,36 @@
   &.active {
     background-image: url(//res.waiqin365.com/d/seedsui/map/map-shop-point.png);
   }
+}
+
+// 定位
+.map-locationControl {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 100;
+  .inline-flex;
+  .flex-center;
+  .flex-middle;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 6px 0px rgba(118, 163, 210, 0.2);
+  border-radius: 8px;
+}
+.map-locationControl-icon {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  font-family: 'iconfont';
+  &:extend(.icon-map-location all);
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+.map-locationControl-label {
+  margin-top: 4px;
+  text-align: center;
+  &:extend(.font-size-s);
 }
