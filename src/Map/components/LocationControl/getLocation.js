@@ -3,6 +3,7 @@
 // 内库使用
 import locale from './../../../locale'
 import Bridge from './../../../Bridge'
+import geocode from './../../utils/getAddress'
 
 // 获取地址信息
 async function getAddress({ geocoder, longitude, latitude, ...data }) {
@@ -10,35 +11,39 @@ async function getAddress({ geocoder, longitude, latitude, ...data }) {
   if (typeof geocoder === 'function') {
     result = await geocoder({
       longitude,
-      latitude,
-      ...data
+      latitude
     })
   } else if (data?.value || data?.address) {
     let address = data?.value || data?.address
     result = {
-      ...data,
       longitude,
       latitude,
       value: address,
       address: address
     }
   } else {
-    result = await Bridge.getAddress({
-      longitude,
-      latitude,
-      ...data
-    })
+    result = await geocode(
+      {
+        longitude,
+        latitude
+      },
+      window.google ? 'wgs84' : 'gcj02'
+    )
   }
+
+  // getAddress failed
+  if (typeof result === 'string') {
+    return result
+  }
+
+  // getAddress success
   const addr = result?.value || result?.address || ''
   if (addr) {
     result.longitude = longitude
     result.latitude = latitude
     result.value = addr
     result.address = addr
-  } else if (typeof result !== 'string') {
-    result = null
   }
-
   return result
 }
 
@@ -58,9 +63,10 @@ function getLocation(opt) {
       resolve(result)
       return
     }
+    Bridge.debug = true
     // 开始定位
     Bridge.getLocation({
-      type: 'gcj02',
+      type: window.google ? 'wgs84' : 'gcj02',
       success: async (data) => {
         let result = await getAddress({
           geocoder: geocoder,

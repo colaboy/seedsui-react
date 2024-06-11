@@ -1,3 +1,4 @@
+import getAddress from './utils/getAddress'
 import APILoader from './components/APILoader'
 import Map from './components/Map'
 import TileLayer from './components/TileLayer'
@@ -9,6 +10,7 @@ import IconOptions from './components/IconOptions'
 import LocationControl from './components/LocationControl'
 
 export default {
+  getAddress,
   APILoader,
   Map,
   TileLayer,
