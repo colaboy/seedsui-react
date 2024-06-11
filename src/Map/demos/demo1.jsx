@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map as SMap } from 'seedsui-react'
-const { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker, Marker } = SMap
+const { APILoader, Map, IconOptions, TileLayer, ZoomControl, Search, CenterMarker, Marker } = SMap
 
 export default () => {
   return (
@@ -12,6 +12,10 @@ export default () => {
     >
       <div>自定义内容</div>
       <Map>
+        <IconOptions
+          // 基准路径
+          imagePath={'https://res.waiqin365.com/d/seedsui/leaflet/images/'}
+        />
         <TileLayer />
         <ZoomControl />
         <Search />

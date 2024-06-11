@@ -5,5 +5,6 @@ import ZoomControl from './components/ZoomControl'
 import Search from './components/Search'
 import CenterMarker from './components/CenterMarker'
 import Marker from './components/Marker'
+import IconOptions from './components/IconOptions'
 
-export default { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker, Marker }
+export default { APILoader, Map, TileLayer, ZoomControl, Search, CenterMarker, Marker, IconOptions }
