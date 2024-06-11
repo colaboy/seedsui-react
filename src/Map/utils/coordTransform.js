@@ -1,4 +1,4 @@
-import GeoUtil from './../../../GeoUtil'
+import GeoUtil from './../../GeoUtil'
 
 // 坐标转换
 function coordTransform({ longitude, latitude }, type) {

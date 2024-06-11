@@ -1,4 +1,5 @@
 import getAddress from './utils/getAddress'
+import queryNearby from './utils/queryNearby'
 import APILoader from './components/APILoader'
 import Map from './components/Map'
 import TileLayer from './components/TileLayer'
@@ -11,6 +12,7 @@ import LocationControl from './components/LocationControl'
 
 export default {
   getAddress,
+  queryNearby,
   APILoader,
   Map,
   TileLayer,

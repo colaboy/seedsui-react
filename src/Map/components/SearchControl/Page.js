@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import nearbySearch from './nearbySearch'
+import queryNearby from './../../utils/queryNearby'
 
 // 测试使用
 // import { Input, Layout, Header, Notice, HighlightKeyword, locale } from 'seedsui-react'
@@ -46,7 +46,13 @@ function Page({ visible, onVisibleChange, map, onChange }) {
   // 搜索
   async function handleSearch() {
     let inputText = inputRef.current.inputDOM
-    let list = await nearbySearch({ keyword: inputText.value, center: map.getCenter() })
+    let center = map.getCenter()
+    debugger
+    let list = await queryNearby({
+      keyword: inputText.value,
+      latitude: center.lat,
+      longitude: center.lng
+    })
 
     if (typeof list === 'string') {
       setErrMsg(list)
