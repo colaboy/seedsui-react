@@ -7,7 +7,7 @@ import Page from './Page'
 import locale from './../../../locale'
 
 // 搜索
-function Search({ map, onChange }) {
+function SearchControl({ map, onChange }) {
   const [visible, setVisible] = useState(false)
 
   return (
@@ -25,4 +25,4 @@ function Search({ map, onChange }) {
     </>
   )
 }
-export default Search
+export default SearchControl

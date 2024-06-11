@@ -2,7 +2,7 @@ import APILoader from './components/APILoader'
 import Map from './components/Map'
 import TileLayer from './components/TileLayer'
 import ZoomControl from './components/ZoomControl'
-import Search from './components/Search'
+import SearchControl from './components/SearchControl'
 import CenterMarker from './components/CenterMarker'
 import Marker from './components/Marker'
 import IconOptions from './components/IconOptions'
@@ -13,7 +13,7 @@ export default {
   Map,
   TileLayer,
   ZoomControl,
-  Search,
+  SearchControl,
   CenterMarker,
   Marker,
   IconOptions,

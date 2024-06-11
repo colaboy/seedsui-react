@@ -12,7 +12,7 @@ import Input from './../../../Input'
 import Notice from './../../../Notice'
 
 // 搜索
-function Search({ visible, onVisibleChange, map, onChange }) {
+function Page({ visible, onVisibleChange, map, onChange }) {
   const inputRef = useRef(null)
   const [errMsg, setErrMsg] = useState(null)
   let [searchList, setSearchList] = useState(null)
@@ -128,4 +128,4 @@ function Search({ visible, onVisibleChange, map, onChange }) {
     </Layout>
   )
 }
-export default Search
+export default Page
