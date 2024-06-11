@@ -13,13 +13,13 @@ function SearchControl({ map, onChange }) {
   return (
     <>
       <div
-        className="mappage-search-navigation"
+        className="map-searchControl-navigation"
         onClick={() => {
           setVisible(!visible)
         }}
       >
-        <div className="mappage-search-navigation-icon"></div>
-        <div className="mappage-search-navigation-label">{locale('搜索', 'SeedsUI_search')}</div>
+        <div className="map-searchControl-navigation-icon"></div>
+        <div className="map-searchControl-navigation-label">{locale('搜索', 'SeedsUI_search')}</div>
       </div>
       <Page visible={visible} onVisibleChange={setVisible} map={map} onChange={onChange} />
     </>

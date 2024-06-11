@@ -13,24 +13,28 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius = 500 }
     fetch(overpassUrl)
       .then((response) => response.json())
       .then((data) => {
-        debugger
         // 显示查询结果
-        if (data.elements.length > 0) {
-          resolve(
-            data.elements.map((item) => {
-              return {
-                name: item.tags.name,
-                lat: item.lat,
-                lon: item.lon
-              }
-            })
-          )
+        if (data?.elements?.length > 0) {
+          let result = data.elements.map((item) => {
+            return {
+              id: item.id || null,
+              name: item.tags.name,
+              latitude: item.lat,
+              longitude: item.lon,
+              address:
+                (item?.tags?.['addr:city'] || '') +
+                (item?.tags?.['addr:housename'] || '') +
+                (item?.tags?.['addr:postcode'] || '') +
+                (item?.tags?.['addr:street'] || '')
+            }
+          })
+          resolve(result)
         } else {
           resolve(locale('暂无数据', 'SeedsUI_no_data'))
         }
       })
       .catch((error) => {
-        resolve(locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
+        resolve(locale('查询失败'))
       })
   })
 }

@@ -47,7 +47,6 @@ function Page({ visible, onVisibleChange, map, onChange }) {
   async function handleSearch() {
     let inputText = inputRef.current.inputDOM
     let center = map.getCenter()
-    debugger
     let list = await queryNearby({
       keyword: inputText.value,
       latitude: center.lat,
@@ -86,11 +85,11 @@ function Page({ visible, onVisibleChange, map, onChange }) {
   }
 
   return (
-    <Layout className="mappage-search-page">
-      <Header className="mappage-search-header">
+    <Layout className="map-searchControl-page">
+      <Header className="map-searchControl-header">
         <form
           action="."
-          className="mappage-search-header-input"
+          className="map-searchControl-header-input"
           style={{ backgroundColor: 'white' }}
           onSubmit={(e) => {
             e.preventDefault()
@@ -101,17 +100,17 @@ function Page({ visible, onVisibleChange, map, onChange }) {
             ref={inputRef}
             type="search"
             // placeholder={locale('搜索地点', 'SeedsUI_search_place')}
-            licon={<i className="mappage-search-header-input-icon"></i>}
+            licon={<i className="map-searchControl-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
             style={{ marginRight: '8px' }}
           />
         </form>
-        <span className="mappage-search-header-cancel" onClick={handleBack}>
+        <span className="map-searchControl-header-cancel" onClick={handleBack}>
           {locale('取消')}
         </span>
       </Header>
-      <div className="mappage-search-body">
+      <div className="map-searchControl-body">
         {Array.isArray(searchList)
           ? searchList.map((item) => {
               return (
@@ -119,7 +118,7 @@ function Page({ visible, onVisibleChange, map, onChange }) {
                   <div className="mappage-info-item-content">
                     <div className="mappage-info-item-title">
                       <HighlightKeyword
-                        text={item.title}
+                        text={item.name}
                         keyword={inputRef?.current?.inputDOM?.value || ''}
                       />
                     </div>

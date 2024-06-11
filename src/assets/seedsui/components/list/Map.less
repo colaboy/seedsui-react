@@ -2,6 +2,7 @@
   width: 600px;
   height: 400px;
   position: relative;
+  // 降低地图瓦片图层级别
   .leaflet-pane {
     z-index: 1;
   }
@@ -21,7 +22,7 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 100;
+  z-index: 2;
   .inline-flex;
   .flex-center;
   .flex-middle;
@@ -72,7 +73,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 10;
+  z-index: 2;
   width: 44px;
   height: 50px;
   margin: 0px;
@@ -94,7 +95,7 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
-  z-index: 100;
+  z-index: 2;
   .inline-flex;
   .flex-center;
   .flex-middle;
@@ -119,4 +120,78 @@
   margin-top: 4px;
   text-align: center;
   &:extend(.font-size-s);
+}
+
+// 搜索控件
+.map-searchControl-navigation {
+  .flex;
+  .flex-middle;
+  background: #ffffff;
+  box-shadow: 0px 2px 7px 0px rgba(35, 63, 92, 0.2);
+  border-radius: 8px;
+  height: 36px;
+  padding: 0 12px;
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  left: 12px;
+  z-index: 1;
+}
+.map-searchControl-navigation-icon {
+  font-family: 'iconfont';
+  font-size: 16px;
+  color: #a9b1b9;
+  &:extend(.icon-search all);
+  vertical-align: middle;
+}
+.map-searchControl-navigation-label {
+  color: #a9b1b9;
+  letter-spacing: 0;
+  height: 100%;
+  .flex;
+  .flex-middle;
+  margin-left: 4px;
+}
+.map-searchControl-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+.map-searchControl-header {
+  gap: 8px;
+  .flex;
+  .flex-middle;
+  padding: 12px 12px;
+  background-color: #fff;
+}
+
+.map-searchControl-header-cancel {
+  font-size: 15px;
+  color: #4f565d;
+}
+.map-searchControl-header-input {
+  .flex;
+  .flex-middle;
+  .flex-1;
+  background: #ffffff;
+  border: 1px solid @primary;
+  border-radius: 8px;
+  height: 36px;
+  padding: 0 12px;
+  .input-text {
+    margin-left: 4px;
+  }
+}
+.map-searchControl-header-input-icon {
+  .map-searchControl-navigation-icon;
+}
+
+.map-searchControl-body {
+  flex: 1;
+  overflow: auto;
+  background-color: white;
 }
