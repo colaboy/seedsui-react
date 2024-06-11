@@ -61,3 +61,30 @@
     &:extend(.icon-map-zoom-out all);
   }
 }
+
+// 中心标记
+.map-center-marker {
+  background-image: url(//res.waiqin365.com/d/seedsui/map/map-mark-point.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 44px;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  transform: translate(-50%, -50%);
+  // 中心位置偏移
+  // margin-top: -50px;
+  cursor: pointer;
+  user-select: none;
+
+  &.active {
+    background-image: url(//res.waiqin365.com/d/seedsui/map/map-shop-point.png);
+  }
+}
