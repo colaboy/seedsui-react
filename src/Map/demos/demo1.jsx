@@ -15,10 +15,10 @@ const {
 export default () => {
   return (
     <APILoader
-      // 使用哪个地图
-      type="google"
-      // 使用哪个地图的瓦片图层
-      // tileType="google"
+    // 使用哪个地图
+    // type="google" // google, bmap, amap, 默认osm
+    // 使用哪个地图的瓦片图层
+    // tileType="google"
     >
       <div>自定义内容</div>
       <Map>

@@ -8,7 +8,7 @@ const APILoader = forwardRef(
   (
     {
       // 使用哪个地图
-      type = 'google',
+      type, // 'osm' | 'google' | 'amap' || 'bmap'
       // 使用哪个地图的瓦片图层
       tileType,
       onLoad,

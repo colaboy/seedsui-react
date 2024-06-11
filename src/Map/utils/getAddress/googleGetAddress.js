@@ -2,7 +2,7 @@ import locale from './../../../locale'
 import GeoUtil from './../../../GeoUtil'
 
 // 地址逆解析
-function googleGetAddress({ longitude, latitude, type }) {
+function googleGetAddress({ longitude, latitude }, type) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
     // 转为GPS坐标

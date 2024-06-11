@@ -1,5 +1,6 @@
 import baiduGetAddress from './baiduGetAddress'
 import googleGetAddress from './googleGetAddress'
+import osmGetAddress from './osmGetAddress'
 
 // 地址逆解析
 async function getAddress({ longitude, latitude }, type) {
@@ -8,6 +9,8 @@ async function getAddress({ longitude, latitude }, type) {
     result = await googleGetAddress({ longitude, latitude }, type)
   } else if (window.BMap) {
     result = await googleGetAddress({ longitude, latitude }, type)
+  } else {
+    result = await osmGetAddress({ longitude, latitude }, type)
   }
   return result
 }
