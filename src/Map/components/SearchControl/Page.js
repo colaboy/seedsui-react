@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import Loading from './../../../Loading'
 import queryNearby from './../../utils/queryNearby'
 
 // 测试使用
@@ -47,11 +48,16 @@ function Page({ visible, onVisibleChange, map, onChange }) {
   async function handleSearch() {
     let inputText = inputRef.current.inputDOM
     let center = map.getCenter()
+    Loading.show({
+      content: locale('搜索中')
+    })
     let list = await queryNearby({
+      map: map,
       keyword: inputText.value,
       latitude: center.lat,
       longitude: center.lng
     })
+    Loading.hide()
 
     if (typeof list === 'string') {
       setErrMsg(list)
