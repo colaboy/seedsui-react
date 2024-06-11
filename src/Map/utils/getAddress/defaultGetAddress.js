@@ -1,11 +1,7 @@
 import locale from './../../../locale'
-import GeoUtil from './../../../GeoUtil'
 
 // 地址逆解析函数
 function osmGetAddress({ longitude, latitude }, type) {
-  // 转为GPS坐标
-  let wgs84Point = GeoUtil.coordtransform([longitude, latitude], type, 'wgs84')
-
   var url =
     'https://nominatim.openstreetmap.org/reverse?format=json&lat=' +
     wgs84Point[1] +

@@ -1,13 +1,10 @@
 import locale from './../../../locale'
-import GeoUtil from './../../../GeoUtil'
 
 // 百度地址逆解析
-function baiduGetAddress({ longitude, latitude }, type) {
+function bmapGetAddress({ longitude, latitude }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    // 转为百度坐标
-    let bdPoint = GeoUtil.coordtransform([longitude, latitude], type, 'bd09')
-    bdPoint = new BMap.Point(bdPoint[0], bdPoint[1])
+    bdPoint = new BMap.Point(longitude, latitude)
     // 逆解析
     let geocoder = new BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {
@@ -30,4 +27,4 @@ function baiduGetAddress({ longitude, latitude }, type) {
   })
 }
 
-export default baiduGetAddress
+export default bmapGetAddress

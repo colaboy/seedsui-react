@@ -3,21 +3,21 @@
 // 内库使用
 import locale from './../../../locale'
 
-// 搜索附近, keyword:搜索关键词
-function nearbySearch({ keyword, center }) {
+// 搜索附近
+function nearbySearch({ map, keyword, longitude, latitude, radius = 500 }) {
   return new Promise(async (resolve) => {
     const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places')
-    let center = new google.maps.LatLng(52.369358, 4.889258)
+    let center = new google.maps.LatLng(latitude, longitude)
 
     const request = {
       // required parameters
       fields: ['displayName', 'location', 'businessStatus'],
       locationRestriction: {
         center: center,
-        radius: 500
+        radius: radius
       },
       // optional parameters
-      includedPrimaryTypes: ['restaurant'],
+      includedPrimaryTypes: [keyword],
       maxResultCount: 5,
       rankPreference: SearchNearbyRankPreference.POPULARITY,
       language: 'en-US',
