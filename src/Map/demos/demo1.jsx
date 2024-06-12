@@ -36,7 +36,7 @@ export default () => {
       }}
     >
       <div>自定义内容</div>
-      <Map ref={mapRef} center={center} zoom={15}>
+      <Map ref={mapRef} center={center} zoom={16}>
         {/* 瓦片图层 */}
         <TileLayer />
         {/* 全局图标设置 */}
