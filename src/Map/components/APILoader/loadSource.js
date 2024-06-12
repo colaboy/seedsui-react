@@ -5,7 +5,7 @@ async function loadSource(
   options = {
     key: '',
     type: '', // google
-    tileType: '' // google
+    typeTileLayer: false
   }
 ) {
   // Load leaflet js and css
@@ -23,7 +23,7 @@ async function loadSource(
   }
 
   // Load google tileLayer plugin js
-  if (options?.type === 'google' && options?.tileType === 'google') {
+  if (options?.type === 'google' && options?.typeTileLayer) {
     isOk = await loadGoogleMutant()
     if (typeof isOk === 'string') {
       return isOk

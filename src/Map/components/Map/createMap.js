@@ -1,14 +1,14 @@
 // Create leaflet map
-function createMap(container) {
+function createMap(container, { center, zoom }) {
   if (!window.L) {
     return '请在Map组件需要使用APILoader包裹'
   }
 
   // Init leaflet map
   const map = window.L.map(container, {
-    attributionControl: false,
+    attributionControl: false, // 隐藏版权控件
     zoomControl: false // 隐藏放大缩小控件
-  }).setView([51.505, -0.09], 13)
+  }).setView([center?.latitude, center?.longitude], zoom)
 
   return map
 }

@@ -12,7 +12,7 @@ const APILoader = forwardRef(
         // 使用哪个地图
         type: '', // 'osm' | 'google' | 'amap' || 'bmap'
         // 使用哪个地图的瓦片图层
-        tileType: ''
+        typeTileLayer: false
       },
       onError,
       onSuccess,

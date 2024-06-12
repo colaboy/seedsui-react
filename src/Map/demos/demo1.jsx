@@ -16,12 +16,12 @@ export default () => {
   return (
     <APILoader
       config={{
-        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g', // google
+        key: '3pTjiH1BXLjASHeBmWUuSF83', // bmap
         // 使用哪个地图
-        type: 'bmap' // google, bmap, amap, 默认osm
-        // 使用哪个地图的瓦片图层
-        // tileType="google"
+        type: 'bmap', // google, bmap, amap, 默认osm
+        // 使用当前地图做瓦片图层
+        typeTileLayer: true
       }}
       onSuccess={() => {
         console.log('地图加载成功')
@@ -31,7 +31,13 @@ export default () => {
       }}
     >
       <div>自定义内容</div>
-      <Map center={[50.5, 30.5]} zoom={13}>
+      <Map
+        center={{
+          latitude: 50.5,
+          longitude: 30.5
+        }}
+        zoom={13}
+      >
         {/* 瓦片图层 */}
         <TileLayer />
         {/* 全局图标设置 */}

@@ -4,40 +4,55 @@ import injectChildrenProps from './injectChildrenProps'
 
 import Result from './../Result'
 
-const Map = forwardRef(({ children, ...props }, ref) => {
-  const rootRef = useRef(null)
-  const [map, setMap] = useState(null)
+const Map = forwardRef(
+  (
+    {
+      center = {
+        latitude: 51.505,
+        longitude: 0.09
+      },
+      zoom = 13,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const rootRef = useRef(null)
+    const [map, setMap] = useState(null)
 
-  // 节点
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
-      map: map,
-      zoomIn: () => {},
-      zoomOut: () => {}
-    }
-  })
+    // 节点
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: rootRef.current,
+        getRootDOM: () => rootRef.current,
+        map: map,
+        zoomIn: () => {},
+        zoomOut: () => {}
+      }
+    })
 
-  useEffect(() => {
-    loadData()
-    // eslint-disable-next-line
-  }, [])
+    useEffect(() => {
+      loadData()
+      // eslint-disable-next-line
+    }, [])
 
-  // 加载
-  async function loadData() {
-    // Load map resource
-    const map = createMap(rootRef.current.querySelector('.map-container'))
-    setMap(map)
+    // 加载
+    async function loadData() {
+      // Load map resource
+      const map = createMap(rootRef.current.querySelector('.map-container'), {
+        center,
+        zoom
+      })
+      setMap(map)
 
-    // Load map failed
-    if (typeof map === 'string') {
-      return
-    }
+      // Load map failed
+      if (typeof map === 'string') {
+        return
+      }
 
-    // record map object
-    rootRef.current.map = map
-    /*
+      // record map object
+      rootRef.current.map = map
+      /*
     
     const marker = window.L.marker([51.5, -0.09])
       .addTo(map)
@@ -72,36 +87,37 @@ const Map = forwardRef(({ children, ...props }, ref) => {
     }
     map.on('click', onMapClick)
     */
-  }
+    }
 
-  let newChildren = null
-  // 未加载完成显示空
-  if (!map) {
-    newChildren = null
-  }
-  // 加载失败
-  else if (typeof map === 'string') {
-    newChildren = <Result title={errMsg} />
-  }
-  // 加载成功
-  else {
-    newChildren = injectChildrenProps(children, {
-      map: map
-    })
-  }
+    let newChildren = null
+    // 未加载完成显示空
+    if (!map) {
+      newChildren = null
+    }
+    // 加载失败
+    else if (typeof map === 'string') {
+      newChildren = <Result title={errMsg} />
+    }
+    // 加载成功
+    else {
+      newChildren = injectChildrenProps(children, {
+        map: map
+      })
+    }
 
-  return (
-    <div
-      {...props}
-      className={'map' + (props.className ? ' ' + props.className : '')}
-      ref={rootRef}
-    >
-      {/* 地图容器 */}
-      <div className="map-container"></div>
-      {/* 其它控件 */}
-      {newChildren}
-    </div>
-  )
-})
+    return (
+      <div
+        {...props}
+        className={'map' + (props.className ? ' ' + props.className : '')}
+        ref={rootRef}
+      >
+        {/* 地图容器 */}
+        <div className="map-container"></div>
+        {/* 其它控件 */}
+        {newChildren}
+      </div>
+    )
+  }
+)
 
 export default Map
