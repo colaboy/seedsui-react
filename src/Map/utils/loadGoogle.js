@@ -1,5 +1,5 @@
 // 加载google地图资源
-function loadGoogle() {
+function loadGoogle(key) {
   return new Promise((resolve) => {
     if (window.google) {
       resolve(window.google)
@@ -14,7 +14,7 @@ function loadGoogle() {
 
     // Load js
     Object.loadScript(
-      'https://maps.googleapis.com/maps/api/js?key=AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
+      `https://maps.googleapis.com/maps/api/js?key=${key}`,
       {
         attrs: {
           id: 'google-map-js'

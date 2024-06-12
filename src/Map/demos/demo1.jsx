@@ -15,13 +15,23 @@ const {
 export default () => {
   return (
     <APILoader
-    // 使用哪个地图
-    // type="google" // google, bmap, amap, 默认osm
-    // 使用哪个地图的瓦片图层
-    // tileType="google"
+      config={{
+        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        // 使用哪个地图
+        type: 'bmap' // google, bmap, amap, 默认osm
+        // 使用哪个地图的瓦片图层
+        // tileType="google"
+      }}
+      onSuccess={() => {
+        console.log('地图加载成功')
+      }}
+      onError={() => {
+        console.log('地图加载失败')
+      }}
     >
       <div>自定义内容</div>
-      <Map>
+      <Map center={[50.5, 30.5]} zoom={13}>
         {/* 瓦片图层 */}
         <TileLayer />
         {/* 全局图标设置 */}

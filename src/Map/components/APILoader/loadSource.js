@@ -1,8 +1,9 @@
-import { loadGoogle, loadGoogleMutant, loadLeaflet } from './../../utils'
+import { loadLeaflet, loadGoogle, loadGoogleMutant, loadBMap } from './../../utils'
 
 // Load leaflet map source
 async function loadSource(
   options = {
+    key: '',
     type: '', // google
     tileType: '' // google
   }
@@ -15,7 +16,7 @@ async function loadSource(
 
   // Load google js
   if (options.type === 'google') {
-    isOk = await loadGoogle()
+    isOk = await loadGoogle(options?.key)
     if (typeof isOk === 'string') {
       return isOk
     }
@@ -24,6 +25,14 @@ async function loadSource(
   // Load google tileLayer plugin js
   if (options?.type === 'google' && options?.tileType === 'google') {
     isOk = await loadGoogleMutant()
+    if (typeof isOk === 'string') {
+      return isOk
+    }
+  }
+
+  // Load bmap js
+  if (options.type === 'bmap') {
+    isOk = await loadBMap(options?.key)
     if (typeof isOk === 'string') {
       return isOk
     }

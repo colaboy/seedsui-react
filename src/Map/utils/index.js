@@ -1,5 +1,6 @@
+import loadLeaflet from './loadLeaflet'
 import loadGoogle from './loadGoogle'
 import loadGoogleMutant from './loadGoogleMutant'
-import loadLeaflet from './loadLeaflet'
+import loadBMap from './loadBMap'
 
-export { loadGoogle, loadGoogleMutant, loadLeaflet }
+export { loadLeaflet, loadGoogle, loadGoogleMutant, loadBMap }

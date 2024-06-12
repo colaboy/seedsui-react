@@ -7,11 +7,15 @@ import Result from './../Result'
 const APILoader = forwardRef(
   (
     {
-      // 使用哪个地图
-      type, // 'osm' | 'google' | 'amap' || 'bmap'
-      // 使用哪个地图的瓦片图层
-      tileType,
-      onLoad,
+      config = {
+        key: '',
+        // 使用哪个地图
+        type: '', // 'osm' | 'google' | 'amap' || 'bmap'
+        // 使用哪个地图的瓦片图层
+        tileType: ''
+      },
+      onError,
+      onSuccess,
       children
     },
     ref
@@ -33,9 +37,13 @@ const APILoader = forwardRef(
     // 加载
     async function loadData() {
       // Load map resource
-      const isOk = await loadSource({ type: type, tileType: tileType })
+      const isOk = await loadSource(config)
       setErrMsg(isOk)
-      onLoad && onLoad(isOk)
+      if (typeof isOk === 'string') {
+        onError && onError(isOk)
+      } else {
+        onSuccess && onSuccess(isOk)
+      }
     }
 
     // 未加载完成显示空
