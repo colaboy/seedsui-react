@@ -21,7 +21,7 @@ export default () => {
         // 使用哪个地图
         type: 'bmap', // google, bmap, amap, 默认osm
         // 使用当前地图做瓦片图层
-        typeTileLayer: true
+        tileLayerPlugin: true
       }}
       onSuccess={() => {
         console.log('地图加载成功')

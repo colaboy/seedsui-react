@@ -1,5 +1,5 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
-import loadSource from './loadSource'
+import loadSource from './../../utils/loadSource'
 
 import Result from './../Result'
 
@@ -12,7 +12,7 @@ const APILoader = forwardRef(
         // 使用哪个地图
         type: '', // 'osm' | 'google' | 'amap' || 'bmap'
         // 使用哪个地图的瓦片图层
-        typeTileLayer: false
+        tileLayerPlugin: false
       },
       onError,
       onSuccess,

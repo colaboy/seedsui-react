@@ -5,6 +5,10 @@ async function createTileLayer(map) {
   if (window.L.gridLayer.googleMutant) {
     tileLayer = window.L.gridLayer.googleMutant({ type: 'roadmap' }).addTo(map)
   }
+  // Use bmap tileLayer
+  if (window.L.tileLayer.BMapLayer) {
+    tileLayer = window.L.tileLayer.BMapLayer({ type: 'roadmap' }).addTo(map)
+  }
   // Use openStreetMap tileLayer
   else {
     tileLayer = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
