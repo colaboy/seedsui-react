@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Map as SMap } from 'seedsui-react'
 const {
   APILoader,
@@ -13,6 +13,10 @@ const {
 } = SMap
 
 export default () => {
+  const [center, setCenter] = useState({
+    latitude: 50.5,
+    longitude: 30.5
+  })
   return (
     <APILoader
       config={{
@@ -31,13 +35,7 @@ export default () => {
       }}
     >
       <div>自定义内容</div>
-      <Map
-        center={{
-          latitude: 50.5,
-          longitude: 30.5
-        }}
-        zoom={15}
-      >
+      <Map center={center} zoom={15}>
         {/* 瓦片图层 */}
         <TileLayer />
         {/* 全局图标设置 */}
@@ -51,6 +49,7 @@ export default () => {
         <LocationControl
           onChange={(result) => {
             console.log(result)
+            setCenter({ latitude: result.latitude, longitude: result.longitude })
           }}
         />
         {/* 搜索控件 */}
