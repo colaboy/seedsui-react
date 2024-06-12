@@ -69,10 +69,21 @@ function getLocation(options) {
           })
         }
 
-        //  longitude and latitude must be wgs84
-        let wgs84Point = GeoUtil.coordtransform([result.longitude, result.latitude], type, 'wgs84')
+        let point = [result.longitude, result.latitude]
+        // bmap tile layer use bd09
+        if (window.L.tileLayer.BMapLayer) {
+          point = GeoUtil.coordtransform([result.longitude, result.latitude], type, 'bd09')
+        }
+        // amap tile layer use gcj02
+        else if (window.AMap) {
+          point = GeoUtil.coordtransform([result.longitude, result.latitude], type, 'gcj02')
+        }
+        // google tile layer use wgs84
+        else {
+          point = GeoUtil.coordtransform([result.longitude, result.latitude], type, 'wgs84')
+        }
 
-        resolve({ ...result, longitude: wgs84Point[0], latitude: wgs84Point[1] })
+        resolve({ ...result, longitude: point[0], latitude: point[1] })
       },
       fail: (res) => {
         // 赋值

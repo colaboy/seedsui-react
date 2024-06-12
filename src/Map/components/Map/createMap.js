@@ -20,7 +20,6 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     config.crs = window.L.CRS.Baidu
   }
 
-  debugger
   map = window.L.map(container, config)
   return map
 }
