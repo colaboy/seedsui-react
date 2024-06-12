@@ -6,8 +6,10 @@ async function createTileLayer(map) {
     tileLayer = window.L.gridLayer.googleMutant({ type: 'roadmap' }).addTo(map)
   }
   // Use bmap tileLayer
-  if (window.L.tileLayer.BMapLayer) {
-    tileLayer = window.L.tileLayer.BMapLayer({ layer: 'vec' }).addTo(map)
+  if (window.L.tileLayer.baiDuTileLayer) {
+    tileLayer = window.L.tileLayer
+      .baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
+      .addTo(map)
     // tileLayer = L.control
     //   .layers(
     //     {

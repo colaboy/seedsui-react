@@ -1,146 +1,110 @@
+import GeoUtil from './../../../GeoUtil'
+
 // 百度地图瓦片图层插件
 function loadBMapLayer() {
   return new Promise((resolve) => {
-    if (window.proj4) {
-      resolve(window.proj4)
-      return
-    }
-
-    // Delete old script
-    const scriptTag = document.getElementById('proj4-map-js')
-    if (scriptTag) {
-      scriptTag.parentNode.removeChild(scriptTag)
-    }
-
-    // Load js
-    Object.loadScript(`https://cdn.bootcss.com/proj4js/2.4.3/proj4.js`, (result) => {
-      if (!result) {
-        resolve(`proj4js瓦片图层插件加载失败`)
-      } else {
-        Object.loadScript(
-          `https://cdn.bootcss.com/proj4leaflet/1.0.1/proj4leaflet.min.js`,
-          {
-            attrs: {
-              id: 'proj4-map-js'
-            }
-          },
-          (result) => {
-            if (!result) {
-              resolve(`proj4leaflet瓦片图层插件加载失败`)
-            } else {
-              initPlugin()
-              resolve(window.proj4)
-            }
-          }
-        )
-      }
-    })
+    initPlugin()
+    resolve(window.L.tileLayer.baiDuTileLayer)
   })
+}
+
+// 坐标转换
+function coordTransform(point, from, to) {
+  // return window.gcoord.transform(point, from.toUpperCase(), to.toUpperCase())
+  return GeoUtil.coordtransform(point, from, to)
 }
 
 // 初始化插件
 function initPlugin() {
-  // 请引入 proj4.js 和 proj4leaflet.js
-  window.L.CRS.Baidu = new L.Proj.CRS(
-    'EPSG:900913',
-    '+proj=merc +a=6378206 +b=6356584.314245179 +lat_ts=0.0 +lon_0=0.0 +x_0=0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs',
-    {
-      resolutions: (function () {
-        let level = 19
-        var res = []
-        res[0] = Math.pow(2, 18)
-        for (var i = 1; i < level; i++) {
-          res[i] = Math.pow(2, 18 - i)
-        }
-        return res
-      })(),
-      origin: [0, 0],
-      bounds: L.bounds([20037508.342789244, 0], [0, 20037508.342789244])
+  window.L.Projection.BaiduMercator = L.Util.extend({}, L.Projection.Mercator, {
+    R: 6378206, //百度椭球赤道半径 a=6378206，相当于在 WGS84 椭球赤道半径上加了 69 米
+    R_MINOR: 6356584.314245179, //百度椭球极半径 b=6356584.314245179，相当于在 WGS84 椭球极半径上减了 168 米
+    bounds: new L.Bounds(
+      [-20037725.11268234, -19994619.55417086],
+      [20037725.11268234, 19994619.55417086]
+    ) //数据覆盖范围在经度[-180°,180°]，纬度[-85.051129°, 85.051129°]之间
+  })
+
+  window.L.CRS.Baidu = L.Util.extend({}, L.CRS.Earth, {
+    code: 'EPSG:Baidu',
+    projection: L.Projection.BaiduMercator,
+    transformation: new L.transformation(1, 0.5, -1, 0.5),
+    scale: function (zoom) {
+      return 1 / Math.pow(2, 18 - zoom)
+    },
+    zoom: function (scale) {
+      return 18 - Math.log(1 / scale) / Math.LN2
+    },
+    wrapLng: undefined
+  })
+
+  window.L.TileLayer.BaiDuTileLayer = L.TileLayer.extend({
+    initialize: function (param, options) {
+      var templateImgUrl =
+        '//maponline{s}.bdimg.com/starpic/u=x={x};y={y};z={z};v=009;type=sate&qt=satepc&fm=46&app=webearth2&v=009'
+      var templateUrl = '//maponline{s}.bdimg.com/tile/?x={x}&y={y}&z={z}&{p}'
+      var myUrl = param === 'img' ? templateImgUrl : templateUrl
+      options = L.extend(
+        {
+          getUrlArgs: (o) => {
+            return { x: o.x, y: -1 - o.y, z: o.z }
+          },
+          p: param,
+          subdomains: '0123',
+          minZoom: 0,
+          maxZoom: 23,
+          minNativeZoom: 1,
+          maxNativeZoom: 18
+        },
+        options
+      )
+      L.TileLayer.prototype.initialize.call(this, myUrl, options)
+    },
+    getTileUrl: function (coords) {
+      if (this.options.getUrlArgs) {
+        return L.Util.template(
+          this._url,
+          L.extend(
+            { s: this._getSubdomain(coords), r: L.Browser.retina ? '@2x' : '' },
+            this.options.getUrlArgs(coords),
+            this.options
+          )
+        )
+      } else {
+        return L.TileLayer.prototype.getTileUrl.call(this, coords)
+      }
+    },
+    _setZoomTransform: function (level, center, zoom) {
+      center = L.latLng(coordTransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()) // 采用 gcoord 库进行纠偏
+      L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
+    },
+    _getTiledPixelBounds: function (center) {
+      center = L.latLng(coordTransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()) // 采用 gcoord 库进行纠偏
+      return L.TileLayer.prototype._getTiledPixelBounds.call(this, center)
     }
-  )
+  })
 
-  window.L.tileLayer.BMapLayer = function (option) {
-    option = option || {}
-
-    var layer
-    var subdomains = '0123456789'
-    switch (option.layer) {
-      //单图层
-      case 'vec':
-      default:
-        //'http://online{s}.map.bdimg.com/tile/?qt=tile&x={x}&y={y}&z={z}&styles=pl&b=0&limit=60&scaler=1&udt=20170525'
-        layer = L.tileLayer(
-          'http://online{s}.map.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=' +
-            (option.bigfont ? 'ph' : 'pl') +
-            '&scaler=1&p=1',
-          {
-            name: option.name,
-            subdomains: subdomains,
-            tms: true
-          }
-        )
-        break
-      case 'img_d':
-        layer = L.tileLayer(
-          'http://shangetu{s}.map.bdimg.com/it/u=x={x};y={y};z={z};v=009;type=sate&fm=46',
-          {
-            name: option.name,
-            subdomains: subdomains,
-            tms: true
-          }
-        )
-        break
-      case 'img_z':
-        layer = L.tileLayer(
-          'http://online{s}.map.bdimg.com/tile/?qt=tile&x={x}&y={y}&z={z}&styles=' +
-            (option.bigfont ? 'sh' : 'sl') +
-            '&v=020',
-          {
-            name: option.name,
-            subdomains: subdomains,
-            tms: true
-          }
-        )
-        break
-
-      case 'custom': //Custom 各种自定义样式
-        //可选值：dark,midnight,grayscale,hardedge,light,redalert,proj4lite,grassgreen,pink,darkgreen,bluish
-        option.customid = option.customid || 'midnight'
-        layer = L.tileLayer(
-          'http://api{s}.map.bdimg.com/customimage/tile?&x={x}&y={y}&z={z}&scale=1&customid=' +
-            option.customid,
-          {
-            name: option.name,
-            subdomains: '012',
-            tms: true
-          }
-        )
-        break
-
-      case 'time': //实时路况
-        var time = new Date().getTime()
-        layer = L.tileLayer(
-          'http://its.map.baidu.com:8002/traffic/TrafficTileService?x={x}&y={y}&level={z}&time=' +
-            time +
-            '&label=web2D&v=017',
-          {
-            name: option.name,
-            subdomains: subdomains,
-            tms: true
-          }
-        )
-        break
-
-      // 合并
-      case 'img':
-        layer = L.layerGroup([
-          window.L.tileLayer.BMapLayer({ name: '底图', layer: 'img_d', bigfont: option.bigfont }),
-          window.L.tileLayer.BMapLayer({ name: '注记', layer: 'img_z', bigfont: option.bigfont })
-        ])
-        break
-    }
-    return layer
+  // 出口样式
+  window.L.tileLayer.baiDuTileLayer = function (param, options) {
+    return new L.TileLayer.BaiDuTileLayer(param, options)
   }
-}
 
+  // 渲染类型: 新
+  // var img_Layer = L.tileLayer.baiDuTileLayer('img'), // 影像底图
+  //   vsl01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=0&scaler=1&v=083') // 影像标注，路网
+  // vsl11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=1&scaler=1&v=083') // 影像标注，路网 + 注记
+  // vsl12_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=1&scaler=2&v=083') // 影像标注，路网 + 高清注记
+  // vpl01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=0&scaler=1&v=083') // 电子地图，图形
+  // vpl11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=1&v=083') // 电子地图，图形 + 注记
+  // vpl12_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083') // 电子地图，图形 + 高清注记
+  // vph01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=ph&showtext=0&scaler=1&v=083') // 大字体电子地图，图形
+  // vph11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=ph&showtext=1&scaler=1&v=083') // 大字体电子地图，图形 + 注记
+
+  // 渲染类型: 旧
+  // _sl11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=sl&showtext=1&scaler=1&v=083') // 旧影像标注，路网 + 注记
+  // _sl12_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=sl&showtext=1&scaler=2&v=083') // 旧影像标注，路网 + 高清注记
+  // _pl11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=pl&showtext=1&scaler=1&v=083') // 旧电子地图，图形 + 注记
+  // _pl12_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=pl&showtext=1&scaler=2&v=083') // 旧电子地图，图形 + 高清注记
+  // _ph11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=ph&showtext=1&scaler=1&v=083') // 旧大字体电子地图，图形 + 注记
+}
 export default loadBMapLayer

@@ -284,6 +284,7 @@ var GeoUtil = {}
     var PI = 3.1415926535897932384626
     var a = 6378245.0
     var ee = 0.00669342162296594323
+
     // 百度经纬度坐标转国测局坐标
     function bd09togcj02(bd_lon, bd_lat) {
       var x_pi = (3.14159265358979324 * 3000.0) / 180.0
@@ -341,6 +342,18 @@ var GeoUtil = {}
       }
     }
 
+    // WGS84转换为百度坐标
+    function wgs84tobd09(lng, lat) {
+      let [longitude, latitude] = wgs84togcj02(lng, lat)
+      return gcj02tobd09(longitude, latitude)
+    }
+
+    // 百度坐标转换为WGS84
+    function bd09towgs84(lng, lat) {
+      let [longitude, latitude] = bd09togcj02(lng, lat)
+      return gcj02towgs84(longitude, latitude)
+    }
+
     function transformlat(lng, lat) {
       var ret =
         -100.0 +
@@ -384,6 +397,12 @@ var GeoUtil = {}
     }
     if (from === 'gcj02' && to === 'wgs84') {
       return gcj02towgs84(longitude, latitude)
+    }
+    if (from === 'wgs84' && to === 'bd09') {
+      return wgs84tobd09(longitude, latitude)
+    }
+    if (from === 'bd09' && to === 'wgs84') {
+      return bd09towgs84(longitude, latitude)
     }
     console.log('GeoUtil coordtransform: form或者to参数不正确, 返回原坐标')
     return point
