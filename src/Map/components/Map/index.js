@@ -11,7 +11,9 @@ const Map = forwardRef(
         latitude: 51.505,
         longitude: 0.09
       },
-      zoom = 13,
+      zoom,
+      minZoom,
+      maxZoom,
       children,
       ...props
     },
@@ -41,7 +43,9 @@ const Map = forwardRef(
       // Load map resource
       const map = createMap(rootRef.current.querySelector('.map-container'), {
         center,
-        zoom
+        zoom,
+        minZoom,
+        maxZoom
       })
       setMap(map)
 

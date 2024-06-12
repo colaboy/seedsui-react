@@ -41,7 +41,7 @@ function loadBMapLayer() {
 // 初始化插件
 function initPlugin() {
   // 请引入 proj4.js 和 proj4leaflet.js
-  L.CRS.Baidu = new L.Proj.CRS(
+  window.L.CRS.Baidu = new L.Proj.CRS(
     'EPSG:900913',
     '+proj=merc +a=6378206 +b=6356584.314245179 +lat_ts=0.0 +lon_0=0.0 +x_0=0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs',
     {
@@ -59,7 +59,7 @@ function initPlugin() {
     }
   )
 
-  L.tileLayer.BMapLayer = function (option) {
+  window.L.tileLayer.BMapLayer = function (option) {
     option = option || {}
 
     var layer
@@ -134,8 +134,8 @@ function initPlugin() {
       // 合并
       case 'img':
         layer = L.layerGroup([
-          L.tileLayer.BMapLayer({ name: '底图', layer: 'img_d', bigfont: option.bigfont }),
-          L.tileLayer.BMapLayer({ name: '注记', layer: 'img_z', bigfont: option.bigfont })
+          window.L.tileLayer.BMapLayer({ name: '底图', layer: 'img_d', bigfont: option.bigfont }),
+          window.L.tileLayer.BMapLayer({ name: '注记', layer: 'img_z', bigfont: option.bigfont })
         ])
         break
     }

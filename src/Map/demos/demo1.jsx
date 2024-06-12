@@ -36,7 +36,7 @@ export default () => {
           latitude: 50.5,
           longitude: 30.5
         }}
-        zoom={13}
+        zoom={15}
       >
         {/* 瓦片图层 */}
         <TileLayer />
