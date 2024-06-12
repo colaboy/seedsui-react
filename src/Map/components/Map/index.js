@@ -28,6 +28,11 @@ const Map = forwardRef(
         rootDOM: rootRef.current,
         getRootDOM: () => rootRef.current,
         map: map,
+        setView: map?.setView,
+        panTo: (latlng) => {
+          if (!map || !latlng.latitude || !latlng.longitude) return
+          map.panTo([latlng.latitude, latlng.longitude])
+        },
         zoomIn: map?.zoomIn,
         zoomOut: map?.zoomOut
       }
@@ -37,12 +42,6 @@ const Map = forwardRef(
       loadData()
       // eslint-disable-next-line
     }, [])
-
-    useEffect(() => {
-      if (!map || !center.latitude || !center.longitude) return
-      map.panTo([center.latitude, center.longitude])
-      // eslint-disable-next-line
-    }, [JSON.stringify(center)])
 
     // 加载
     async function loadData() {
