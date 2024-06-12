@@ -14,10 +14,7 @@ const {
 
 export default () => {
   const mapRef = useRef(null)
-  const [center, setCenter] = useState({
-    latitude: 50.5,
-    longitude: 30.5
-  })
+
   return (
     <APILoader
       config={{
@@ -36,7 +33,18 @@ export default () => {
       }}
     >
       <div>自定义内容</div>
-      <Map ref={mapRef} center={center} zoom={16}>
+      <Map
+        // api
+        ref={mapRef}
+        center={{
+          latitude: 50.5,
+          longitude: 30.5
+        }}
+        zoom={16}
+        onZoom={(currentZoom) => {
+          console.log(currentZoom)
+        }}
+      >
         {/* 瓦片图层 */}
         <TileLayer />
         {/* 全局图标设置 */}
@@ -45,7 +53,7 @@ export default () => {
           imagePath={'https://res.waiqin365.com/d/seedsui/leaflet/images/'}
         />
         {/* 缩放控件 */}
-        <ZoomControl />
+        <ZoomControl onZoomIn={() => console.log('缩小')} onZoomOut={() => console.log('放大')} />
         {/* 定位控件 */}
         <LocationControl
           onChange={(result) => {

@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef } from 'react'
 
 // 缩放控件
-function ZoomControl({ map, ...props }, ref) {
+function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
   useImperativeHandle(ref, () => {
     return {
       zoomIn: () => {
@@ -16,19 +16,21 @@ function ZoomControl({ map, ...props }, ref) {
   // 缩小地图
   function zoomOut() {
     map.zoomOut()
+    onZoomOut && onZoomOut()
   }
 
   // 放大地图
   function zoomIn() {
     map.zoomIn()
+    onZoomIn && onZoomIn()
   }
 
   return (
     <div {...props} className={`map-zoomControl${props.className ? ' ' + props.className : ''}`}>
-      <div className={`map-zoomControl-in`} onClick={zoomIn}>
+      <div className={`map-zoomControl-out`} onClick={zoomOut}>
         <div className="map-zoomControl-icon"></div>
       </div>
-      <div className={`map-zoomControl-out`} onClick={zoomOut}>
+      <div className={`map-zoomControl-in`} onClick={zoomIn}>
         <div className="map-zoomControl-icon"></div>
       </div>
     </div>

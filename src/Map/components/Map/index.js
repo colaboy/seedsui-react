@@ -14,6 +14,7 @@ const Map = forwardRef(
       zoom,
       minZoom,
       maxZoom,
+      onZoom,
       children,
       ...props
     },
@@ -61,6 +62,13 @@ const Map = forwardRef(
 
       // record map object
       rootRef.current.map = map
+
+      // listen zoom event
+      if (typeof onZoom === 'function') {
+        map.on('zoomend', function () {
+          onZoom(map.getZoom())
+        })
+      }
     }
 
     let newChildren = null
