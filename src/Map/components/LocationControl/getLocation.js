@@ -3,32 +3,22 @@
 // 内库使用
 import locale from './../../../locale'
 import Bridge from './../../../Bridge'
-import geocode from './../../utils/getAddress'
+import getAddress from './../../utils/getAddress'
 
 // 获取地址信息
-async function getAddress({ geocoder, longitude, latitude, ...data }) {
+async function _getAddress({ geocoder, type, longitude, latitude }) {
   let result = null
   if (typeof geocoder === 'function') {
     result = await geocoder({
       longitude,
       latitude
     })
-  } else if (data?.value || data?.address) {
-    let address = data?.value || data?.address
-    result = {
+  } else {
+    result = await getAddress({
       longitude,
       latitude,
-      value: address,
-      address: address
-    }
-  } else {
-    result = await geocode(
-      {
-        longitude,
-        latitude
-      },
-      window.google ? 'wgs84' : 'gcj02'
-    )
+      type
+    })
   }
 
   // getAddress failed
@@ -48,31 +38,31 @@ async function getAddress({ geocoder, longitude, latitude, ...data }) {
 }
 
 // 定位
-function getLocation(opt) {
-  const { geocoder, longitude, latitude, ...data } = opt || {}
+function getLocation(options) {
+  const { type = window.google ? 'wgs84' : 'gcj02', geocoder } = options || {}
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    // 已经有坐标点, 则不需要定位
-    if (longitude && latitude) {
-      let result = await getAddress({
-        geocoder: geocoder,
-        longitude,
-        latitude,
-        ...data
-      })
-      resolve(result)
-      return
-    }
     Bridge.debug = true
     // 开始定位
     Bridge.getLocation({
-      type: window.google ? 'wgs84' : 'gcj02',
+      type: type,
       success: async (data) => {
-        let result = await getAddress({
+        // 已经有位置则不需要再定位
+        if (data?.address) {
+          resolve({
+            longitude,
+            latitude,
+            address: data.address
+          })
+          return
+        }
+
+        // 没有位置则获取地址
+        let result = await _getAddress({
           geocoder: geocoder,
+          type: type,
           longitude: data.longitude,
-          latitude: data.latitude,
-          ...data
+          latitude: data.latitude
         })
         resolve(result)
       },

@@ -4,11 +4,11 @@ import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
 
 // 地址逆解析
-async function getAddress({ longitude: lng, latitude: lat }, type) {
+async function getAddress({ longitude: lng, latitude: lat, type }) {
   let result = null
 
   // 坐标转换
-  let { longitude, latitude } = coordTransform({ longitude: lng, latitude: lat }, type)
+  let { longitude, latitude } = coordTransform({ longitude: lng, latitude: lat, from: type })
 
   if (window.google) {
     result = await googleGetAddress({ longitude, latitude })

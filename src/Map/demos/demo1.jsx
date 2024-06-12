@@ -48,7 +48,11 @@ export default () => {
         {/* 缩放控件 */}
         <ZoomControl />
         {/* 定位控件 */}
-        <LocationControl />
+        <LocationControl
+          onChange={(result) => {
+            console.log(result)
+          }}
+        />
         {/* 搜索控件 */}
         <SearchControl />
         {/* 中心标注点 */}

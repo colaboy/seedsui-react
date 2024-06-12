@@ -4,7 +4,7 @@ import locale from './../../../locale'
 function bmapGetAddress({ longitude, latitude }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    bdPoint = new BMap.Point(longitude, latitude)
+    let bdPoint = new BMap.Point(longitude, latitude)
     // 逆解析
     let geocoder = new BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {

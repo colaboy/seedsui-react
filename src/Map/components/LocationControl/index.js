@@ -9,7 +9,7 @@ import Loading from './../../../Loading'
 import Toast from './../../../Toast'
 
 // 定位控件
-function Location({ geocoder, map, value, onChange, ...props }, ref) {
+function Location({ type, geocoder, map, onChange, ...props }, ref) {
   useImperativeHandle(ref, () => {
     return {
       getLocation: location
@@ -23,7 +23,7 @@ function Location({ geocoder, map, value, onChange, ...props }, ref) {
       Loading.show({
         content: locale('定位中...', 'SeedsUI_positioning')
       })
-      let result = await getLocation({ geocoder })
+      let result = await getLocation({ type, geocoder })
       resolve(result)
       Loading.hide()
     })
@@ -39,7 +39,7 @@ function Location({ geocoder, map, value, onChange, ...props }, ref) {
       return
     }
     // 视图更新
-    if (onChange) onChange(result, { type: 'gcj02' })
+    if (onChange) onChange(result)
   }
 
   return (
