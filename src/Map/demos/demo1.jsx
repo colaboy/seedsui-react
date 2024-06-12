@@ -18,10 +18,13 @@ export default () => {
   return (
     <APILoader
       config={{
-        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g', // google
-        key: '3pTjiH1BXLjASHeBmWUuSF83', // bmap
-        // 使用哪个地图
-        type: 'bmap', // google, bmap, amap, 默认osm
+        // type类型 google, bmap, amap, 默认osm
+        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
+        // type: 'google',
+        // 百度地图
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        type: 'bmap',
+
         // 使用当前地图做瓦片图层
         tileLayerPlugin: true
       }}
