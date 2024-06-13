@@ -58,7 +58,6 @@ export default () => {
         {/* 缩放控件 */}
         <ZoomControl
           onZoomIn={(map) => {
-            debugger
             console.log('放大', map.getZoom())
           }}
           onZoomOut={(map) => {

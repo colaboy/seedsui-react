@@ -35,13 +35,16 @@ const Map = forwardRef(
     let [leafletMap, setLeafletMap] = useState(null)
 
     // Define export Api
-    const API = {
+    const APIRef = useRef({
       rootDOM: rootRef.current,
       getRootDOM: () => rootRef.current,
+      // Dynamic props
       currentMap: null,
-      leafletMap: leafletMap,
+      leafletMap: null,
       // Functions
-      setView: leafletMap?.setView,
+      setView: (...params) => {
+        leafletMap?.setView(...params)
+      },
       panTo: (latlng) => {
         if (!leafletMap || !latlng.latitude || !latlng.longitude) return
         leafletMap.panTo([latlng.latitude, latlng.longitude])
@@ -62,17 +65,24 @@ const Map = forwardRef(
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
       }
-    }
+    })
 
     // Export API
     useImperativeHandle(ref, () => {
-      return API
+      return APIRef.current
     })
 
     useEffect(() => {
       loadData()
       // eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+      if (!leafletMap) return
+      APIRef.current.leafletMap = leafletMap
+
+      // eslint-disable-next-line
+    }, [leafletMap])
 
     // Load data
     async function loadData() {
@@ -85,7 +95,7 @@ const Map = forwardRef(
       })
       // Create bmap,amap,etc current map to use invoke api
       const currentMap = createCurrentMap(rootRef.current.querySelector('.map-api-container'))
-      API.currentMap = currentMap
+      APIRef.current.currentMap = currentMap
       setLeafletMap(leafletMap)
 
       // Load leafletMap failed
@@ -100,44 +110,44 @@ const Map = forwardRef(
     function events() {
       // Listen zoom event
       leafletMap.on('zoomstart', function () {
-        onZoomStart && onZoomStart(API)
-        API.onZoomStart && API.onZoomStart(API)
+        onZoomStart && onZoomStart(APIRef.current)
+        APIRef.current.onZoomStart && APIRef.current.onZoomStart(APIRef.current)
       })
       leafletMap.on('zoom', function () {
-        onZoom && onZoom(API)
-        API.onZoom && API.onZoom(API)
+        onZoom && onZoom(APIRef.current)
+        APIRef.current.onZoom && APIRef.current.onZoom(APIRef.current)
       })
       leafletMap.on('zoomend', function () {
-        onZoomEnd && onZoomEnd(API)
-        API.onZoomEnd && API.onZoomEnd(API)
+        onZoomEnd && onZoomEnd(APIRef.current)
+        APIRef.current.onZoomEnd && APIRef.current.onZoomEnd(APIRef.current)
       })
 
       // Listen move event
       leafletMap.on('movestart', function () {
-        onMoveStart && onMoveStart(API)
-        API.onMoveStart && API.onMoveStart(API)
+        onMoveStart && onMoveStart(APIRef.current)
+        APIRef.current.onMoveStart && APIRef.current.onMoveStart(APIRef.current)
       })
       leafletMap.on('move', function () {
-        onMove && onMove(API)
-        API.onMove && API.onMove(API)
+        onMove && onMove(APIRef.current)
+        APIRef.current.onMove && APIRef.current.onMove(APIRef.current)
       })
       leafletMap.on('moveend', function (e) {
-        onMoveEnd && onMoveEnd(API)
-        API.onMoveEnd && API.onMoveEnd(API)
+        onMoveEnd && onMoveEnd(APIRef.current)
+        APIRef.current.onMoveEnd && API.onMoveEnd(APIRef.current)
       })
 
       // Listen drag event
       leafletMap.on('dragstart', function () {
-        onDragStart && onDragStart(API)
-        API.onDragStart && API.onDragStart(API)
+        onDragStart && onDragStart(APIRef.current)
+        APIRef.current.onDragStart && APIRef.current.onDragStart(APIRef.current)
       })
       leafletMap.on('drag', function () {
-        onDrag && onDrag(API)
-        API.onDrag && API.onDrag(API)
+        onDrag && onDrag(APIRef.current)
+        APIRef.current.onDrag && APIRef.current.onDrag(APIRef.current)
       })
       leafletMap.on('dragend', function (e) {
-        onDragEnd && onDragEnd(API)
-        API.onDragEnd && API.onDragEnd(API)
+        onDragEnd && onDragEnd(APIRef.current)
+        APIRef.current.onDragEnd && APIRef.current.onDragEnd(APIRef.current)
       })
     }
 
@@ -154,7 +164,7 @@ const Map = forwardRef(
     // 加载成功
     else {
       newChildren = injectChildrenProps(children, {
-        map: API
+        map: APIRef.current
       })
     }
 
