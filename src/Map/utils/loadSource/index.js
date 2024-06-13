@@ -8,8 +8,7 @@ import loadBMapLayer from './loadBMapLayer'
 async function loadSource(
   options = {
     key: '',
-    type: '', // google
-    tileLayerPlugin: false
+    type: '' // google
   }
 ) {
   // Load leaflet js and css
@@ -26,11 +25,9 @@ async function loadSource(
     }
 
     // Load google tileLayer plugin js
-    if (options?.tileLayerPlugin) {
-      isOk = await loadGoogleMutant()
-      if (typeof isOk === 'string') {
-        return isOk
-      }
+    isOk = await loadGoogleMutant()
+    if (typeof isOk === 'string') {
+      return isOk
     }
   }
 
@@ -42,11 +39,9 @@ async function loadSource(
     }
 
     // Load bmap tileLayer plugin js
-    if (options?.tileLayerPlugin) {
-      isOk = await loadBMapLayer()
-      if (typeof isOk === 'string') {
-        return isOk
-      }
+    isOk = await loadBMapLayer()
+    if (typeof isOk === 'string') {
+      return isOk
     }
   }
 

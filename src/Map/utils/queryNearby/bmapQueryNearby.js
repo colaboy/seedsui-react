@@ -4,12 +4,12 @@
 import locale from './../../../locale'
 
 // 搜索附近, keyword:搜索关键词
-function bmapQueryNearby({ map, keyword, longitude, latitude, radius = 500 }) {
-  let bdPoint = new BMap.Point(longitude, latitude)
+function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
+  let bdPoint = longitude && latitude ? new BMap.Point(longitude, latitude) : null
 
   return new Promise((resolve) => {
     // 创建本地搜索对象
-    let local = new window.BMap.LocalSearch(map, {
+    let local = new window.BMap.LocalSearch(map.apiMap, {
       pageCapacity: 20,
       onSearchComplete: function (results) {
         // 判断状态是否正确
@@ -38,7 +38,14 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius = 500 }) {
       }
     })
 
-    local.searchNearby(keyword, bdPoint, radius)
+    // 搜索附近
+    if (bdPoint && radius) {
+      local.searchNearby(keyword, bdPoint, radius)
+    }
+    // 搜索全部
+    else {
+      local.search(keyword)
+    }
   })
 }
 

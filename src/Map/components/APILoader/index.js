@@ -10,9 +10,7 @@ const APILoader = forwardRef(
       config = {
         key: '',
         // 使用哪个地图
-        type: '', // 'osm' | 'google' | 'amap' || 'bmap'
-        // 使用哪个地图的瓦片图层
-        tileLayerPlugin: false
+        type: '' // 'osm' | 'google' | 'amap' || 'bmap'
       },
       onError,
       onSuccess,

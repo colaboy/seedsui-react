@@ -1,4 +1,4 @@
-import coordTransform from './../coordTransform'
+import coordTransform from './coordTransform'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
