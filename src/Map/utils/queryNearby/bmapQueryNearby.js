@@ -21,14 +21,8 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
               id: item.uid,
               name: item.title,
               address: item.address,
-              point: item.point,
-              tel: item.phoneNumber,
-              mobile: item.phoneNumber,
-              city: item.city,
-              province: item.province,
-              postcode: item.postcode,
-              isAccurate: item.isAccurate,
-              tags: item.tags
+              longitude: item.point.lng,
+              latitude: item.point.lat
             })
           }
           resolve(res)
