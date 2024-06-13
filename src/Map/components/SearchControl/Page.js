@@ -13,7 +13,7 @@ import Input from './../../../Input'
 import Notice from './../../../Notice'
 
 // 搜索
-function Page({ visible, onVisibleChange, map, onChange }) {
+function Page({ map, visible, onVisibleChange, onChange }) {
   const inputRef = useRef(null)
   const [errMsg, setErrMsg] = useState(null)
   let [searchList, setSearchList] = useState(null)
@@ -51,10 +51,10 @@ function Page({ visible, onVisibleChange, map, onChange }) {
       content: locale('搜索中')
     })
     let list = await queryNearby({
-      map: map,
+      map: map.currentMap,
       keyword: inputText.value,
-      latitude: center.lat,
-      longitude: center.lng
+      latitude: center.latitude,
+      longitude: center.longitude
     })
     Loading.hide()
 

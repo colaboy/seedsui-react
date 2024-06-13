@@ -44,8 +44,8 @@ export default () => {
           longitude: 30.5
         }}
         zoom={16}
-        onZoom={(currentZoom) => {
-          console.log(currentZoom)
+        onMoveEnd={(map) => {
+          console.log('获取中心点:', map.getCenter())
         }}
       >
         {/* 瓦片图层 */}
@@ -56,27 +56,31 @@ export default () => {
           imagePath={'https://res.waiqin365.com/d/seedsui/leaflet/images/'}
         />
         {/* 缩放控件 */}
-        <ZoomControl onZoomIn={() => console.log('缩小')} onZoomOut={() => console.log('放大')} />
+        <ZoomControl
+          onZoomIn={(map) => {
+            debugger
+            console.log('放大', map.getZoom())
+          }}
+          onZoomOut={(map) => {
+            console.log('缩小'), map.getZoom()
+          }}
+        />
         {/* 定位控件 */}
         <LocationControl
           onChange={(result) => {
-            console.log(result)
+            console.log('定位完成:', result)
             mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
           }}
         />
         {/* 搜索控件 */}
         <SearchControl
           onChange={(item) => {
-            console.log(item)
+            console.log('选择搜索项:', item)
             mapRef.current.panTo({ latitude: item.latitude, longitude: item.longitude })
           }}
         />
-        {/* 中心标注点 */}
-        <CenterMarker
-          onChange={(position) => {
-            console.log(position)
-          }}
-        />
+        {/* 中心标注点: 仅用于显示 */}
+        <CenterMarker />
         {/* 标注点 */}
         <Marker latitude={51.505750806437874} longitude={-0.09149551391601562} />
         <Marker latitude={51.506071350015475} longitude={-0.08291244506835939} />

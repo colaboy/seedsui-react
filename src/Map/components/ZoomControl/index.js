@@ -1,32 +1,25 @@
-import React, { useImperativeHandle, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
 // 缩放控件
 function ZoomControl({ map, onZoomIn, onZoomOut, ...props }, ref) {
-  useImperativeHandle(ref, () => {
-    return {
-      zoomIn: () => {
-        map.zoomIn()
-      },
-      zoomOut: () => {
-        map.zoomOut()
-      }
-    }
-  })
-
   // 缩小地图
   function zoomOut() {
     map.zoomOut()
-    onZoomOut && onZoomOut()
+    onZoomOut && onZoomOut(map)
   }
 
   // 放大地图
   function zoomIn() {
     map.zoomIn()
-    onZoomIn && onZoomIn()
+    onZoomIn && onZoomIn(map)
   }
 
   return (
-    <div {...props} className={`map-zoomControl${props.className ? ' ' + props.className : ''}`}>
+    <div
+      ref={ref}
+      {...props}
+      className={`map-zoomControl${props.className ? ' ' + props.className : ''}`}
+    >
       <div className={`map-zoomControl-in`} onClick={zoomIn}>
         <div className="map-zoomControl-icon"></div>
       </div>

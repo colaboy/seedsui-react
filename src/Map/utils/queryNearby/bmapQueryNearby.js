@@ -11,7 +11,7 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
 
   return new Promise((resolve) => {
     // 创建本地搜索对象
-    let local = new window.BMap.LocalSearch(map.apiMap, {
+    let local = new window.BMap.LocalSearch(map, {
       pageCapacity: 20,
       onSearchComplete: function (results) {
         // 判断状态是否正确

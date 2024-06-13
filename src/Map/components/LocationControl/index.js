@@ -9,7 +9,7 @@ import Loading from './../../../Loading'
 import Toast from './../../../Toast'
 
 // 定位控件
-function Location({ type, geocoder, map, onChange, ...props }, ref) {
+function Location({ map, type, geocoder, onChange, ...props }, ref) {
   useImperativeHandle(ref, () => {
     return {
       getLocation: location
@@ -31,7 +31,6 @@ function Location({ type, geocoder, map, onChange, ...props }, ref) {
 
   // 点击定位
   async function handleLocation() {
-    if (!map) return
     let result = await location()
     // 定位出错
     if (typeof result === 'string') {
