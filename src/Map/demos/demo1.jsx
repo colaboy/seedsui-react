@@ -14,6 +14,12 @@ const {
 
 export default () => {
   const mapRef = useRef(null)
+  const points = [
+    {
+      latitude: 50.50000114396945,
+      longitude: 30.49772100193238
+    }
+  ]
 
   return (
     <APILoader
@@ -80,9 +86,12 @@ export default () => {
         />
         {/* 中心标注点: 仅用于显示 */}
         <CenterMarker />
+
         {/* 标注点 */}
-        <Marker latitude={51.505750806437874} longitude={-0.09149551391601562} />
-        <Marker latitude={51.506071350015475} longitude={-0.08291244506835939} />
+        {points.map((point, index) => {
+          return <Marker key={index} latitude={point.latitude} longitude={point.longitude} />
+        })}
+
         <div>自定义内容</div>
       </Map>
     </APILoader>

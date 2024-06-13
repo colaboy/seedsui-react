@@ -64,6 +64,9 @@ const Map = forwardRef(
       },
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
+      },
+      addMarker: (latlng) => {
+        L.marker([latlng.latitude, latlng.longitude]).addTo(leafletMap)
       }
     })
 

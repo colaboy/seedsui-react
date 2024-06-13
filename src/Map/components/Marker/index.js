@@ -17,7 +17,7 @@ const Marker = forwardRef(({ map, latitude, longitude }, ref) => {
     if (!latitude || !longitude) {
       return
     }
-    L.marker([latitude, longitude]).addTo(map.leafletMap)
+    map.addMarker({ latitude, longitude })
   }, [latitude, longitude])
 
   return <></>
