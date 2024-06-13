@@ -29,6 +29,7 @@ function search(keyword, { map }) {
               tags: item.tags
             })
           }
+
           resolve(res)
         } else {
           resolve(locale('查询失败'))

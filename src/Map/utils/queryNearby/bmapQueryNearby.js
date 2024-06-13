@@ -1,3 +1,5 @@
+import GeoUtil from './../../../GeoUtil'
+
 // 测试使用
 // import { locale } from 'seedsui-react'
 // 内库使用
@@ -17,12 +19,14 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
           let res = []
           for (let i = 0; i < results.getCurrentNumPois(); i++) {
             const item = results.getPoi(i)
+            // Leaflet only support wgs84
+            let point = GeoUtil.coordtransform([item.point.lng, item.point.lat], 'bd09', 'wgs84')
             res.push({
               id: item.uid,
               name: item.title,
               address: item.address,
-              longitude: item.point.lng,
-              latitude: item.point.lat
+              longitude: point[0],
+              latitude: point[1]
             })
           }
           resolve(res)
