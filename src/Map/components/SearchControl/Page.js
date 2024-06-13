@@ -27,20 +27,19 @@ function Page({ visible, onVisibleChange, map, onChange }) {
 
   // 返回
   function handleBack() {
+    // Clear keyword and update clear button
     if (inputRef?.current?.inputDOM) {
-      // 清空搜索关键字
       inputRef.current.inputDOM.value = ''
-
-      // 更新清空按钮状态
       inputRef.current.updateClear()
     }
-    // 清空列表
+
+    // Reset list
     setSearchList(null)
 
-    // 清空报错
+    // Reset errMsg
     setErrMsg('')
 
-    // 返回
+    // Go back
     onVisibleChange && onVisibleChange(false)
   }
 
@@ -69,18 +68,8 @@ function Page({ visible, onVisibleChange, map, onChange }) {
   }
 
   // 选中一项
-  function handleMarker(item) {
-    let bdPoint = item?.point
-    if (!bdPoint) return
-
-    // 赋新值
-    let newValue = {
-      address: item.address,
-      value: item.address,
-      longitude: bdPoint.lng,
-      latitude: bdPoint.lat
-    }
-    if (onChange) onChange(newValue)
+  function handleClick(item) {
+    if (onChange) onChange(item)
 
     // 回到地图页面
     handleBack()
@@ -120,7 +109,7 @@ function Page({ visible, onVisibleChange, map, onChange }) {
         {Array.isArray(searchList)
           ? searchList.map((item) => {
               return (
-                <div className="mappage-info-item" key={item.id} onClick={() => handleMarker(item)}>
+                <div className="mappage-info-item" key={item.id} onClick={() => handleClick(item)}>
                   <div className="mappage-info-item-content">
                     <div className="mappage-info-item-title">
                       <HighlightKeyword

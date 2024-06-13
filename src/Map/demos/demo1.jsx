@@ -65,7 +65,12 @@ export default () => {
           }}
         />
         {/* 搜索控件 */}
-        <SearchControl />
+        <SearchControl
+          onChange={(item) => {
+            console.log(item)
+            mapRef.current.panTo({ latitude: item.latitude, longitude: item.longitude })
+          }}
+        />
         {/* 中心标注点 */}
         <CenterMarker
           onChange={(position) => {
