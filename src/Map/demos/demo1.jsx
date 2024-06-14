@@ -26,10 +26,11 @@ export default () => {
       config={{
         // type类型 google, bmap, amap, 默认osm
         // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
-        // type: 'google',
+        key: 'AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc',
+        type: 'google',
         // 百度地图
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
-        type: 'bmap',
+        // key: '3pTjiH1BXLjASHeBmWUuSF83',
+        // type: 'bmap',
 
         // 使用当前地图做瓦片图层
         tileLayerPlugin: true

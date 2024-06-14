@@ -97,7 +97,7 @@ const Map = forwardRef(
         maxZoom
       })
       // Create bmap,amap,etc current map to use invoke api
-      const currentMap = createCurrentMap(rootRef.current.querySelector('.map-api-container'))
+      const currentMap = await createCurrentMap(rootRef.current.querySelector('.map-api-container'))
       APIRef.current.currentMap = currentMap
       setLeafletMap(leafletMap)
 
