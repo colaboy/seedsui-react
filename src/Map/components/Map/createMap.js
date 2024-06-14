@@ -20,7 +20,7 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     config.crs = window.L.CRS.Baidu
   }
 
-  map = window.L.map(container, config).setView([0, 0], 1)
+  map = window.L.map(container, config)
   return map
 }
 
