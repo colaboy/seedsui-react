@@ -57,12 +57,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-        // type: 'google',
+        type: 'google',
         // key: 'AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc',
         // 百度地图
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
-        type: 'bmap',
+        // key: '3pTjiH1BXLjASHeBmWUuSF83',
+        // type: 'bmap',
 
         // 使用当前地图做瓦片图层
         tileLayerPlugin: true
