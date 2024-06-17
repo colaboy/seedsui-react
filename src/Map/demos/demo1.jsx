@@ -3,7 +3,6 @@ import { Map } from 'seedsui-react'
 const {
   APILoader,
   MapContainer,
-  TileLayer,
   ZoomControl,
   SearchControl,
   CenterMarker,
@@ -85,8 +84,6 @@ export default () => {
           imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
         }}
       >
-        {/* 瓦片图层 */}
-        <TileLayer />
         {/* 缩放控件 */}
         <ZoomControl
           onZoomIn={(map) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
+import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
 
 import Result from './../Result'
@@ -75,10 +76,6 @@ const MapContainer = forwardRef(
       },
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
-      },
-      // Must only one tile layer
-      addTileLayer: (titleLayer) => {
-        return titleLayer.addTo(leafletMap)
       },
       addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
@@ -162,12 +159,15 @@ const MapContainer = forwardRef(
       // Create bmap,amap,etc current map to use invoke api
       const currentMap = await createCurrentMap(rootRef.current.querySelector('.map-api-container'))
       APIRef.current.currentMap = currentMap
-      setLeafletMap(leafletMap)
 
       // Load leafletMap failed
       if (typeof leafletMap === 'string') {
+        setLeafletMap(leafletMap)
         return
       }
+
+      // Display tile layer
+      await createTileLayer(leafletMap)
 
       // Init leafletMap events
       events()
@@ -188,6 +188,9 @@ const MapContainer = forwardRef(
         iconSize: [20, 33],
         iconAnchor: [10, 16]
       })
+
+      // Render children
+      setLeafletMap(leafletMap)
     }
 
     // Bind events
