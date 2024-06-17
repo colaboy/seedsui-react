@@ -196,3 +196,44 @@
   overflow: auto;
   background-color: white;
 }
+.map-searchControl-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px;
+  background-color: white;
+  .border-b;
+  .checkbox {
+    visibility: hidden;
+  }
+  &.active {
+    .checkbox {
+      visibility: visible;
+      // display: inline-flex;
+    }
+  }
+}
+.map-searchControl-item-content {
+  flex: 1;
+  padding: 12px 0;
+}
+.map-searchControl-item-content-title {
+  .flex;
+  .flex-middle;
+  font-size: 16px;
+  color: #1a1c1f;
+  letter-spacing: 0;
+  line-height: 20px;
+  font-weight: bold;
+}
+.map-searchControl-item-content-description {
+  .flex;
+  .flex-middle;
+  color: #77818c;
+  margin-top: 6px;
+}
+.map-searchControl-item-checkbox {
+  .flex;
+  .flex-vertical;
+  .flex-bottom;
+}

@@ -109,15 +109,19 @@ function Page({ map, visible, onVisibleChange, onChange }) {
         {Array.isArray(searchList)
           ? searchList.map((item, index) => {
               return (
-                <div className="mappage-info-item" key={index} onClick={() => handleClick(item)}>
-                  <div className="mappage-info-item-content">
-                    <div className="mappage-info-item-title">
+                <div
+                  className="map-searchControl-item"
+                  key={index}
+                  onClick={() => handleClick(item)}
+                >
+                  <div className="map-searchControl-item-content">
+                    <div className="map-searchControl-item-title">
                       <HighlightKeyword
                         text={item.name}
                         keyword={inputRef?.current?.inputDOM?.value || ''}
                       />
                     </div>
-                    <div className="mappage-info-item-content-description">{item.address}</div>
+                    <div className="map-searchControl-item-content-description">{item.address}</div>
                   </div>
                 </div>
               )
