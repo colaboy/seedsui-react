@@ -31,7 +31,7 @@ export default () => {
     points = getPoints({
       center: center,
       // 半径5000000米
-      radius: 500,
+      radius: 1000,
       // 生成10万个点
       count: 3
     })
@@ -40,17 +40,15 @@ export default () => {
   useEffect(() => {
     drawMarkers()
 
-    setTimeout(() => {
-      mapRef.current?.clearMarkers()
-      alert('重新渲染点')
-      drawMarkers()
+    // setTimeout(() => {
+    //   alert('重新渲染点')
+    //   drawMarkers()
 
-      setTimeout(() => {
-        mapRef.current?.clearMarkers()
-        alert('再次渲染点')
-        drawMarkers()
-      }, 3000)
-    }, 3000)
+    //   setTimeout(() => {
+    //     alert('再次渲染点')
+    //     drawMarkers()
+    //   }, 3000)
+    // }, 3000)
   }, [])
 
   return (

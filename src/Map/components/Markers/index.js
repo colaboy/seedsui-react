@@ -17,6 +17,7 @@ const Markers = forwardRef(({ map, points }, ref) => {
     if (!points?.[0]?.latitude || !points?.[0]?.longitude) {
       return
     }
+    map.clearMarkers()
     map.addMarkers(points)
   }, [points])
 
