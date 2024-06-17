@@ -107,9 +107,9 @@ function Page({ map, visible, onVisibleChange, onChange }) {
       </Header>
       <div className="map-searchControl-body">
         {Array.isArray(searchList)
-          ? searchList.map((item) => {
+          ? searchList.map((item, index) => {
               return (
-                <div className="mappage-info-item" key={item.id} onClick={() => handleClick(item)}>
+                <div className="mappage-info-item" key={index} onClick={() => handleClick(item)}>
                   <div className="mappage-info-item-content">
                     <div className="mappage-info-item-title">
                       <HighlightKeyword

@@ -22,7 +22,6 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
             // Leaflet only support wgs84
             let point = GeoUtil.coordtransform([item.point.lng, item.point.lat], 'bd09', 'wgs84')
             res.push({
-              id: item.uid,
               name: item.title,
               address: item.address,
               longitude: point[0],

@@ -14,7 +14,7 @@ function loadGoogle(key) {
 
     // Load js
     Object.loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${key}`,
+      `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`,
       {
         attrs: {
           id: 'google-map-js'

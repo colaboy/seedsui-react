@@ -4,38 +4,49 @@
 import locale from './../../../locale'
 
 // 搜索附近
-function nearbySearch({ map, keyword, longitude, latitude, radius = 500 }) {
+function nearbySearch({ map, keyword, longitude, latitude, radius }) {
   return new Promise(async (resolve) => {
-    const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places')
-    let center = new google.maps.LatLng(latitude, longitude)
+    const service = new google.maps.places.PlacesService(map)
+    let center = latitude && longitude ? new google.maps.LatLng(latitude, longitude) : null
 
-    const request = {
-      // required parameters
-      fields: ['displayName', 'location', 'businessStatus'],
-      locationRestriction: {
-        center: center,
-        radius: radius
-      },
-      // optional parameters
-      includedPrimaryTypes: [keyword],
-      maxResultCount: 5,
-      rankPreference: SearchNearbyRankPreference.POPULARITY,
-      language: 'en-US',
-      region: 'us'
+    // 构建请求
+    const params = {
+      location: center
     }
-    debugger
-    try {
-      const { places } = await Place.searchNearby(request)
-      if (places.length) {
-        console.log(places)
-        resolve(places)
+    let method = 'textSearch'
+
+    // 搜索附近
+    if (center && radius) {
+      params.radius = radius // 搜索半径，单位为米
+      params.keyword = keyword
+      method = 'nearbySearch'
+    }
+    // 搜索全部
+    else {
+      params.query = keyword
+    }
+
+    service[method](params, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        let list = []
+        for (let i = 0; i < results.length; i++) {
+          const place = results[i]
+          let longitude = place.geometry?.location?.lng?.()
+          let latitude = place.geometry?.location?.lat?.()
+          if (longitude && latitude) {
+            list.push({
+              longitude: longitude,
+              latitude: latitude,
+              name: place.name,
+              address: place.vicinity
+            })
+          }
+        }
+        resolve(list)
       } else {
-        resolve(locale('暂无数据', 'SeedsUI_no_data'))
+        resolve(locale('查询失败'))
       }
-    } catch (error) {
-      resolve(locale('查询失败'))
-    }
-    debugger
+    })
   })
 }
 

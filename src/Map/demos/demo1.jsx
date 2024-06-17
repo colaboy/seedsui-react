@@ -25,8 +25,8 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: 'AIzaSyDta4y3H7RIv79j5e0cRq4Eqpl4xn-E57g',
-        key: 'AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc',
+        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        // key: 'AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc',
         type: 'google',
         // 百度地图
         // key: '3pTjiH1BXLjASHeBmWUuSF83',

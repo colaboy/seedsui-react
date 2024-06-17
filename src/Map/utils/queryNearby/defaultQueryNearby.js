@@ -17,7 +17,6 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius = 500 }
         if (data?.elements?.length > 0) {
           let result = data.elements.map((item) => {
             return {
-              id: item.id || null,
               name: item.tags.name,
               latitude: item.lat,
               longitude: item.lon,
