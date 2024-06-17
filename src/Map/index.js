@@ -6,7 +6,7 @@ import TileLayer from './components/TileLayer'
 import ZoomControl from './components/ZoomControl'
 import SearchControl from './components/SearchControl'
 import CenterMarker from './components/CenterMarker'
-import Marker from './components/Marker'
+import Markers from './components/Markers'
 import LocationControl from './components/LocationControl'
 
 export default {
@@ -20,6 +20,6 @@ export default {
   ZoomControl,
   SearchControl,
   CenterMarker,
-  Marker,
+  Markers,
   LocationControl
 }

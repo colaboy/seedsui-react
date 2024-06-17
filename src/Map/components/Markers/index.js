@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
-// 标注
-const Marker = forwardRef(({ map, latitude, longitude }, ref) => {
+// 批量标注
+const Markers = forwardRef(({ map, points }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -14,13 +14,13 @@ const Marker = forwardRef(({ map, latitude, longitude }, ref) => {
 
   // Get center position after drag end
   useEffect(() => {
-    if (!latitude || !longitude) {
+    if (!points?.[0]?.latitude || !points?.[0]?.longitude) {
       return
     }
-    map.addMarker({ latitude, longitude })
-  }, [latitude, longitude])
+    map.addMarkers(points)
+  }, [points])
 
   return <></>
 })
 
-export default Marker
+export default Markers

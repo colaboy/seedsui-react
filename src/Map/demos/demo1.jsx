@@ -8,7 +8,7 @@ const {
   SearchControl,
   CenterMarker,
   LocationControl,
-  Marker
+  Markers
 } = Map
 import getPoints from './getPoints'
 
@@ -41,12 +41,12 @@ export default () => {
     drawMarkers()
 
     setTimeout(() => {
-      mapRef.current?.clearMarker()
+      mapRef.current?.clearMarkers()
       alert('重新渲染点')
       drawMarkers()
 
       setTimeout(() => {
-        mapRef.current?.clearMarker()
+        mapRef.current?.clearMarkers()
         alert('再次渲染点')
         drawMarkers()
       }, 3000)
@@ -57,8 +57,8 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
+        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
         type: 'google',
-        // key: 'AIzaSyDJW4jsPlNKgv6jFm3B5Edp5ywgdqLWdmc',
         // 百度地图
         // key: '3pTjiH1BXLjASHeBmWUuSF83',
         // type: 'bmap',
@@ -116,9 +116,7 @@ export default () => {
         <CenterMarker />
 
         {/* 标注点 */}
-        {points.map((point, index) => {
-          return <Marker key={index} latitude={point.latitude} longitude={point.longitude} />
-        })}
+        <Markers points={points} />
 
         <div>自定义内容</div>
       </MapContainer>

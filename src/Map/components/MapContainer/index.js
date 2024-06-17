@@ -80,22 +80,33 @@ const MapContainer = forwardRef(
       addTileLayer: (titleLayer) => {
         return titleLayer.addTo(leafletMap)
       },
-      addMarker: (latlng) => {
+      addMarker: (latlng, { canvas = false }) => {
         // Leaflet plugin
-        let marker = L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current })
-        canvasMarkerRef.current.addMarker(marker)
-
+        if (canvas) {
+          let marker = L.marker([latlng.latitude, latlng.longitude], {
+            icon: markerIconRef.current
+          })
+          canvasMarkerRef.current.addMarker(marker)
+        }
         // Leaflet
-        // L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current }).addTo(
-        //   markersLayerRef.current
-        // )
+        else {
+          L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current }).addTo(
+            markersLayerRef.current
+          )
+        }
       },
-      clearMarker: () => {
+      addMarkers: function (points) {
+        let enableCanvas = points.length > 100
+        for (let point of points) {
+          this.addMarker(point, { canvas: enableCanvas })
+        }
+      },
+      clearMarkers: () => {
         // Leaflet plugin
         canvasMarkerRef.current.clearLayers()
 
         // Leaflet
-        // markersLayerRef.current.clearLayers()
+        markersLayerRef.current.clearLayers()
       }
     })
 
