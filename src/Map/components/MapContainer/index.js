@@ -5,7 +5,7 @@ import injectChildrenProps from './injectChildrenProps'
 
 import Result from './../Result'
 
-const Map = forwardRef(
+const MapContainer = forwardRef(
   (
     {
       center = {
@@ -224,4 +224,4 @@ const Map = forwardRef(
   }
 )
 
-export default Map
+export default MapContainer

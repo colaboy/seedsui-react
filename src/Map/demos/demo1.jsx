@@ -1,15 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Map as SMap } from 'seedsui-react'
+import { Map } from 'seedsui-react'
 const {
   APILoader,
-  Map,
+  MapContainer,
   TileLayer,
   ZoomControl,
   SearchControl,
   CenterMarker,
   LocationControl,
   Marker
-} = SMap
+} = Map
 import getPoints from './getPoints'
 
 // let points = []
@@ -60,7 +60,7 @@ export default () => {
       }}
     >
       <div>自定义内容</div>
-      <Map
+      <MapContainer
         // api
         ref={mapRef}
         center={{
@@ -110,7 +110,7 @@ export default () => {
         })}
 
         <div>自定义内容</div>
-      </Map>
+      </MapContainer>
     </APILoader>
   )
 }
