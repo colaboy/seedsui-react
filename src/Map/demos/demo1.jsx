@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Map as SMap } from 'seedsui-react'
 const {
   APILoader,
   Map,
-  IconOptions,
   TileLayer,
   ZoomControl,
   SearchControl,
@@ -11,15 +10,33 @@ const {
   LocationControl,
   Marker
 } = SMap
+import getPoints from './getPoints'
+
+// let points = []
 
 export default () => {
   const mapRef = useRef(null)
-  const points = [
+  const center = {
+    latitude: 39.907783490367706,
+    longitude: 116.39120737493609
+  }
+  let [points, setPoints] = useState([
     {
       latitude: 50.50000114396945,
-      longitude: 30.49772100193238
+      longitude: 30.495636933019107
     }
-  ]
+  ])
+
+  useEffect(() => {
+    // points = getPoints({
+    //   center: center,
+    //   // 半径5000000米
+    //   radius: 2000,
+    //   // 生成10万个点
+    //   count: 10
+    // })
+    // setPoints(points)
+  }, [])
 
   return (
     <APILoader
@@ -54,14 +71,13 @@ export default () => {
         onMoveEnd={(map) => {
           console.log('获取中心点:', map.getCenter())
         }}
+        // 基准路径
+        iconOptions={{
+          imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
+        }}
       >
         {/* 瓦片图层 */}
         <TileLayer />
-        {/* 全局图标设置 */}
-        <IconOptions
-          // 基准路径
-          imagePath={'https://res.waiqin365.com/d/seedsui/leaflet/images/'}
-        />
         {/* 缩放控件 */}
         <ZoomControl
           onZoomIn={(map) => {

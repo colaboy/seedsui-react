@@ -15,6 +15,10 @@ const Map = forwardRef(
       zoom,
       minZoom,
       maxZoom,
+      // Icon setting
+      iconOptions = {
+        // imagePath: 'marker basic path'
+      },
       // events
       onZoomStart,
       onZoom,
@@ -32,6 +36,9 @@ const Map = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
+    const canvasMarkerRef = useRef(null)
+    const iconRef = useRef(null)
+
     let [leafletMap, setLeafletMap] = useState(null)
 
     // Define export Api
@@ -70,7 +77,9 @@ const Map = forwardRef(
         return titleLayer.addTo(leafletMap)
       },
       addMarker: (latlng) => {
-        L.marker([latlng.latitude, latlng.longitude]).addTo(leafletMap)
+        let marker = L.marker([latlng.latitude, latlng.longitude], { icon: iconRef.current })
+        canvasMarkerRef.current.addMarker(marker)
+        // L.marker([latlng.latitude, latlng.longitude], { icon: iconRef.current }).addTo(leafletMap)
       }
     })
 
@@ -79,17 +88,25 @@ const Map = forwardRef(
       return APIRef.current
     })
 
+    // Init leafletMap and currentMap
     useEffect(() => {
       loadData()
       // eslint-disable-next-line
     }, [])
 
+    // Load leafletMap success render children
     useEffect(() => {
       if (!leafletMap) return
       APIRef.current.leafletMap = leafletMap
 
       // eslint-disable-next-line
     }, [leafletMap])
+
+    // Global icon options
+    useEffect(() => {
+      if (Object.isEmptyObject(iconOptions) || !leafletMap) return
+      L.Icon.Default.mergeOptions(iconOptions)
+    }, [JSON.stringify(iconOptions || {})])
 
     // Load data
     async function loadData() {
@@ -110,7 +127,22 @@ const Map = forwardRef(
         return
       }
 
+      // Init leafletMap events
       events()
+
+      // Load canvasMarkerRef
+      canvasMarkerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
+
+      // Default icon
+      iconRef.current = window.L.icon({
+        iconUrl: `${iconOptions.imagePath}marker-icon.png`,
+        iconRetinaUrl: `${iconOptions.imagePath}marker-icon-2x.png`,
+        shadowUrl: `${iconOptions.imagePath}marker-shadow.png`,
+        shadowRetinaUrl: `${iconOptions.imagePath}marker-shadow.png`,
+        shadowSize: [33, 33],
+        iconSize: [20, 33],
+        iconAnchor: [10, 16]
+      })
     }
 
     // Bind events
@@ -181,12 +213,12 @@ const Map = forwardRef(
         className={'map' + (props.className ? ' ' + props.className : '')}
         ref={rootRef}
       >
-        {/* leftlet地图容器 */}
+        {/* leaflet地图容器 */}
         <div className="map-container"></div>
         {/* 百度、高德地图容器用于调用api使用，并不展现 */}
         <div className="map-api-container"></div>
         {/* 其它控件 */}
-        {newChildren}
+        {leafletMap ? newChildren : null}
       </div>
     )
   }
