@@ -36,8 +36,12 @@ const MapContainer = forwardRef(
     ref
   ) => {
     const rootRef = useRef(null)
+    // canvas marker plugin
     const canvasMarkerRef = useRef(null)
-    const iconRef = useRef(null)
+    // Marker layer
+    const markersLayerRef = useRef(null)
+    // Default marker icon
+    const markerIconRef = useRef(null)
 
     let [leafletMap, setLeafletMap] = useState(null)
 
@@ -77,9 +81,21 @@ const MapContainer = forwardRef(
         return titleLayer.addTo(leafletMap)
       },
       addMarker: (latlng) => {
-        let marker = L.marker([latlng.latitude, latlng.longitude], { icon: iconRef.current })
-        canvasMarkerRef.current.addMarker(marker)
-        // L.marker([latlng.latitude, latlng.longitude], { icon: iconRef.current }).addTo(leafletMap)
+        // Leaflet plugin
+        // let marker = L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current })
+        // canvasMarkerRef.current.addMarker(marker)
+
+        // Leaflet
+        L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current }).addTo(
+          markersLayerRef.current
+        )
+      },
+      clearMarker: () => {
+        // Leaflet plugin
+        // canvasMarkerRef.current.redraw()
+
+        // Leaflet
+        markersLayerRef.current.clearLayers()
       }
     })
 
@@ -133,8 +149,11 @@ const MapContainer = forwardRef(
       // Load canvasMarkerRef
       canvasMarkerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
 
-      // Default icon
-      iconRef.current = window.L.icon({
+      // add marker layerGroup
+      markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
+
+      // Default marker icon
+      markerIconRef.current = window.L.icon({
         iconUrl: `${iconOptions.imagePath}marker-icon.png`,
         iconRetinaUrl: `${iconOptions.imagePath}marker-icon-2x.png`,
         shadowUrl: `${iconOptions.imagePath}marker-shadow.png`,

@@ -28,14 +28,27 @@ export default () => {
   ])
 
   useEffect(() => {
-    // points = getPoints({
-    //   center: center,
-    //   // 半径5000000米
-    //   radius: 2000,
-    //   // 生成10万个点
-    //   count: 10
-    // })
-    // setPoints(points)
+    points = getPoints({
+      center: center,
+      // 半径5000000米
+      radius: 500,
+      // 生成10万个点
+      count: 3
+    })
+    setPoints(points)
+
+    setTimeout(() => {
+      mapRef.current?.clearMarker()
+      alert('重新渲染')
+      points = getPoints({
+        center: center,
+        // 半径5000000米
+        radius: 500,
+        // 生成10万个点
+        count: 3
+      })
+      setPoints(points)
+    }, 5000)
   }, [])
 
   return (
@@ -63,10 +76,7 @@ export default () => {
       <MapContainer
         // api
         ref={mapRef}
-        center={{
-          latitude: 50.5,
-          longitude: 30.5
-        }}
+        center={center}
         zoom={16}
         onMoveEnd={(map) => {
           console.log('获取中心点:', map.getCenter())
