@@ -3,20 +3,19 @@ async function createTileLayer(map) {
   let tileLayer = null
   // Use google tileLayer
   if (window.L.gridLayer.googleMutant) {
-    tileLayer = window.L.gridLayer.googleMutant({ type: 'roadmap' }).addTo(map.leafletMap)
+    tileLayer = window.L.gridLayer.googleMutant({ type: 'roadmap' })
   }
   // Use bmap tileLayer
   else if (window.L.tileLayer.baiDuTileLayer) {
-    tileLayer = window.L.tileLayer
-      .baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
-      .addTo(map.leafletMap)
+    tileLayer = window.L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
   }
   // Use openStreetMap tileLayer
   else {
     tileLayer = window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map.leafletMap)
+    })
   }
+  map.addTileLayer(tileLayer)
 
   return tileLayer
 }

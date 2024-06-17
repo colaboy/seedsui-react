@@ -65,6 +65,10 @@ const Map = forwardRef(
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
       },
+      // Must only one tile layer
+      addTileLayer: (titleLayer) => {
+        return titleLayer.addTo(leafletMap)
+      },
       addMarker: (latlng) => {
         L.marker([latlng.latitude, latlng.longitude]).addTo(leafletMap)
       }
