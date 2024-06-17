@@ -32,7 +32,7 @@ export default () => {
       // 半径5000000米
       radius: 1000,
       // 生成10万个点
-      count: 100
+      count: 101
     })
     setPoints(points)
   }
@@ -115,6 +115,17 @@ export default () => {
           points={points}
           onClick={(e) => {
             console.log('点击marker:', e)
+            // e.remove()
+            let newMarkerIcon = window.L.icon({
+              iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowSize: [33, 33],
+              iconSize: [20, 33],
+              iconAnchor: [10, 16]
+            })
+            e.setIcon(newMarkerIcon)
           }}
         />
 

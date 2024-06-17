@@ -85,8 +85,22 @@ const MapContainer = forwardRef(
 
         // Leaflet canvas marker plugin
         if (enableCanvas) {
-          canvasMarkerRef.current.addOnClickListener((e) => {
-            onClick({ latitude: e.latlng.lat, longitude: e.latlng.lng })
+          canvasMarkerRef.current.addOnClickListener((e, data) => {
+            let target = data[0]
+
+            onClick &&
+              onClick({
+                setIcon: (icon) => {
+                  canvasMarkerRef.current.removeMarker(target, true)
+                  addMarker(
+                    { longitude: target.data._latlng.lng, latitude: target.data._latlng.lat },
+                    { canvas: enableCanvas, icon: icon }
+                  )
+                },
+                remove: () => canvasMarkerRef.current.removeMarker(data[0], true),
+                latitude: e.latlng.lat,
+                longitude: e.latlng.lng
+              })
           })
         }
       },
@@ -126,24 +140,26 @@ const MapContainer = forwardRef(
     }, [JSON.stringify(iconOptions || {})])
 
     // Add one marker
-    function addMarker(latlng, { canvas = false, onClick }) {
+    function addMarker(latlng, { icon, canvas = false, onClick }) {
+      let marker = L.marker([latlng.latitude, latlng.longitude], {
+        icon: icon || markerIconRef.current
+      })
+
       // Leaflet canvas marker plugin
       if (canvas) {
-        let marker = L.marker([latlng.latitude, latlng.longitude], {
-          icon: markerIconRef.current
-        })
         canvasMarkerRef.current.addMarker(marker)
       }
       // Leaflet
       else {
-        let marker = L.marker([latlng.latitude, latlng.longitude], {
-          icon: markerIconRef.current
-        }).addTo(markersLayerRef.current)
-
-        // onClick event
+        marker.addTo(markersLayerRef.current)
         onClick &&
           marker.on('click', function (e) {
-            onClick({ latitude: e.latlng.lat, longitude: e.latlng.lng })
+            onClick({
+              setIcon: (icon) => e.target.setIcon(icon),
+              remove: () => e.target.remove(),
+              latitude: e.latlng.lat,
+              longitude: e.latlng.lng
+            })
           })
       }
     }
@@ -266,7 +282,7 @@ const MapContainer = forwardRef(
         {/* 百度、高德地图容器用于调用api使用，并不展现 */}
         <div className="map-api-container"></div>
         {/* 其它控件 */}
-        {leafletMap ? newChildren : null}
+        {leafletMap && typeof leafletMap !== 'string' ? newChildren : null}
       </div>
     )
   }
