@@ -80,28 +80,21 @@ const MapContainer = forwardRef(
       addTileLayer: (titleLayer) => {
         return titleLayer.addTo(leafletMap)
       },
-      addMarker: (latlng, { canvas = false }) => {
-        // Leaflet plugin
-        if (canvas) {
-          let marker = L.marker([latlng.latitude, latlng.longitude], {
-            icon: markerIconRef.current
-          })
-          canvasMarkerRef.current.addMarker(marker)
-        }
-        // Leaflet
-        else {
-          L.marker([latlng.latitude, latlng.longitude], { icon: markerIconRef.current }).addTo(
-            markersLayerRef.current
-          )
-        }
-      },
-      addMarkers: function (points) {
+      addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
         for (let point of points) {
-          this.addMarker(point, { canvas: enableCanvas })
+          addMarker(point, { canvas: enableCanvas, onClick })
+        }
+
+        // Leaflet canvas marker plugin
+        if (enableCanvas) {
+          canvasMarkerRef.current.addOnClickListener((e) => {
+            onClick({ latitude: e.latlng.lat, longitude: e.latlng.lng })
+          })
         }
       },
       clearMarkers: () => {
+        if (!canvasMarkerRef.current || !markersLayerRef.current) return
         // Leaflet plugin
         canvasMarkerRef.current.clearLayers()
 
@@ -135,6 +128,28 @@ const MapContainer = forwardRef(
       L.Icon.Default.mergeOptions(iconOptions)
     }, [JSON.stringify(iconOptions || {})])
 
+    // Add one marker
+    function addMarker(latlng, { canvas = false, onClick }) {
+      // Leaflet canvas marker plugin
+      if (canvas) {
+        let marker = L.marker([latlng.latitude, latlng.longitude], {
+          icon: markerIconRef.current
+        })
+        canvasMarkerRef.current.addMarker(marker)
+      }
+      // Leaflet
+      else {
+        let marker = L.marker([latlng.latitude, latlng.longitude], {
+          icon: markerIconRef.current
+        }).addTo(markersLayerRef.current)
+
+        // onClick event
+        onClick &&
+          marker.on('click', function (e) {
+            onClick({ latitude: e.latlng.lat, longitude: e.latlng.lng })
+          })
+      }
+    }
     // Load data
     async function loadData() {
       // Create leaflet leafletMap

@@ -33,7 +33,7 @@ export default () => {
       // 半径5000000米
       radius: 1000,
       // 生成10万个点
-      count: 3
+      count: 100
     })
     setPoints(points)
   }
@@ -114,7 +114,12 @@ export default () => {
         <CenterMarker />
 
         {/* 标注点 */}
-        <Markers points={points} />
+        <Markers
+          points={points}
+          onClick={(e) => {
+            console.log('点击marker:', e)
+          }}
+        />
 
         <div>自定义内容</div>
       </MapContainer>
