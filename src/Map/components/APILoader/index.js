@@ -1,6 +1,6 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './../../utils/loadSource'
-// import canvasMarkers from './leaflet.canvas-markers'
+import canvasMarkers from './leaflet.canvas-markers'
 
 import Result from './../Result'
 
@@ -56,8 +56,8 @@ const APILoader = forwardRef(
     }
 
     // Add leaflet plugin: canvas markers(window.L.canvasIconLayer)
-    // canvasMarkers(window.L)
-    require('leaflet-canvas-marker')
+    canvasMarkers(window.L)
+    // require('leaflet-canvas-marker')
 
     // 加载成功
     return children
