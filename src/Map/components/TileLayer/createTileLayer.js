@@ -5,9 +5,9 @@ async function createTileLayer(map) {
   if (window.L.gridLayer.googleMutant) {
     tileLayer = window.L.gridLayer.googleMutant({ type: 'roadmap' })
   }
-  // Use bmap tileLayer
-  else if (window.L.tileLayer.baiDuTileLayer) {
-    tileLayer = window.L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
+  // Use baidu tileLayer
+  else if (window.L.tileLayer.baiduTileLayer) {
+    tileLayer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
   }
   // Use openStreetMap tileLayer
   else {

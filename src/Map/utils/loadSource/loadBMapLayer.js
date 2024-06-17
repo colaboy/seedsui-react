@@ -4,13 +4,12 @@ import GeoUtil from './../../../GeoUtil'
 function loadBMapLayer() {
   return new Promise((resolve) => {
     initPlugin()
-    resolve(window.L.tileLayer.baiDuTileLayer)
+    resolve(window.L.tileLayer.baiduTileLayer)
   })
 }
 
 // 坐标转换
 function coordTransform(point, from, to) {
-  // return window.gcoord.transform(point, from.toUpperCase(), to.toUpperCase())
   return GeoUtil.coordtransform(point, from, to)
 }
 
@@ -38,7 +37,7 @@ function initPlugin() {
     wrapLng: undefined
   })
 
-  window.L.TileLayer.BaiDuTileLayer = L.TileLayer.extend({
+  window.L.TileLayer.BaiduTileLayer = L.TileLayer.extend({
     initialize: function (param, options) {
       var templateImgUrl =
         '//maponline{s}.bdimg.com/starpic/u=x={x};y={y};z={z};v=009;type=sate&qt=satepc&fm=46&app=webearth2&v=009'
@@ -85,26 +84,26 @@ function initPlugin() {
   })
 
   // 出口样式
-  window.L.tileLayer.baiDuTileLayer = function (param, options) {
-    return new L.TileLayer.BaiDuTileLayer(param, options)
+  window.L.tileLayer.baiduTileLayer = function (param, options) {
+    return new L.TileLayer.BaiduTileLayer(param, options)
   }
 
   // 渲染类型: 新
-  // var img_Layer = L.tileLayer.baiDuTileLayer('img'), // 影像底图
-  //   vsl01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=0&scaler=1&v=083') // 影像标注，路网
-  // vsl11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=1&scaler=1&v=083') // 影像标注，路网 + 注记
-  // vsl12_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=sl&showtext=1&scaler=2&v=083') // 影像标注，路网 + 高清注记
-  // vpl01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=0&scaler=1&v=083') // 电子地图，图形
-  // vpl11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=1&v=083') // 电子地图，图形 + 注记
-  // vpl12_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083') // 电子地图，图形 + 高清注记
-  // vph01_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=ph&showtext=0&scaler=1&v=083') // 大字体电子地图，图形
-  // vph11_Layer = L.tileLayer.baiDuTileLayer('qt=vtile&styles=ph&showtext=1&scaler=1&v=083') // 大字体电子地图，图形 + 注记
+  // var img_Layer = L.tileLayer.baiduTileLayer('img'), // 影像底图
+  //   vsl01_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=0&scaler=1&v=083') // 影像标注，路网
+  // vsl11_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=1&scaler=1&v=083') // 影像标注，路网 + 注记
+  // vsl12_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=1&scaler=2&v=083') // 影像标注，路网 + 高清注记
+  // vpl01_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=0&scaler=1&v=083') // 电子地图，图形
+  // vpl11_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=1&v=083') // 电子地图，图形 + 注记
+  // vpl12_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083') // 电子地图，图形 + 高清注记
+  // vph01_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=ph&showtext=0&scaler=1&v=083') // 大字体电子地图，图形
+  // vph11_Layer = L.tileLayer.baiduTileLayer('qt=vtile&styles=ph&showtext=1&scaler=1&v=083') // 大字体电子地图，图形 + 注记
 
   // 渲染类型: 旧
-  // _sl11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=sl&showtext=1&scaler=1&v=083') // 旧影像标注，路网 + 注记
-  // _sl12_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=sl&showtext=1&scaler=2&v=083') // 旧影像标注，路网 + 高清注记
-  // _pl11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=pl&showtext=1&scaler=1&v=083') // 旧电子地图，图形 + 注记
-  // _pl12_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=pl&showtext=1&scaler=2&v=083') // 旧电子地图，图形 + 高清注记
-  // _ph11_Layer = L.tileLayer.baiDuTileLayer('qt=tile&styles=ph&showtext=1&scaler=1&v=083') // 旧大字体电子地图，图形 + 注记
+  // _sl11_Layer = L.tileLayer.baiduTileLayer('qt=tile&styles=sl&showtext=1&scaler=1&v=083') // 旧影像标注，路网 + 注记
+  // _sl12_Layer = L.tileLayer.baiduTileLayer('qt=tile&styles=sl&showtext=1&scaler=2&v=083') // 旧影像标注，路网 + 高清注记
+  // _pl11_Layer = L.tileLayer.baiduTileLayer('qt=tile&styles=pl&showtext=1&scaler=1&v=083') // 旧电子地图，图形 + 注记
+  // _pl12_Layer = L.tileLayer.baiduTileLayer('qt=tile&styles=pl&showtext=1&scaler=2&v=083') // 旧电子地图，图形 + 高清注记
+  // _ph11_Layer = L.tileLayer.baiduTileLayer('qt=tile&styles=ph&showtext=1&scaler=1&v=083') // 旧大字体电子地图，图形 + 注记
 }
 export default loadBMapLayer
