@@ -117,6 +117,7 @@ export default () => {
             console.log('点击marker:', e)
             // e.remove()
             let newMarkerIcon = window.L.icon({
+              active: true,
               iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
               iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
               shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,

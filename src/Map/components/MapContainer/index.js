@@ -86,10 +86,7 @@ const MapContainer = forwardRef(
             onClick &&
               marker.on('click', function (e) {
                 onClick({
-                  reset: () => {
-                    console.log(markers)
-                    debugger
-                  },
+                  icon: e?.target?.options?.icon?.options || null,
                   setIcon: (icon, { multiple }) => {
                     // Single choice
                     if (!multiple) {
@@ -121,6 +118,7 @@ const MapContainer = forwardRef(
 
             onClick &&
               onClick({
+                icon: target?.data?.options?.icon?.options || null,
                 setIcon: (icon, { multiple = true }) => {
                   // Single choice
                   if (!multiple) {
