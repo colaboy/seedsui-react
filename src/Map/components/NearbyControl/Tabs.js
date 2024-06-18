@@ -4,12 +4,12 @@ import tabs from './keywords'
 // 选项卡
 function TabsComponent({ tab, onChange }) {
   return (
-    <div className="mappage-nearby-tabs">
+    <div className="map-nearbyControl-tabs">
       {tabs.map((item) => {
         return (
           <div
             key={item.name}
-            className={`mappage-nearby-tab${tab.name === item.name ? ' active' : ''}`}
+            className={`map-nearbyControl-tab${tab.name === item.name ? ' active' : ''}`}
             onClick={() => {
               onChange && onChange(item)
             }}

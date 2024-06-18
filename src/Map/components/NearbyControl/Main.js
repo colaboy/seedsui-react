@@ -11,7 +11,7 @@ import Notice from './../../../Notice'
 // 附近结果
 function Main({ list, onChange }) {
   return (
-    <div className="mappage-nearby-main">
+    <div className="map-nearbyControl-main">
       {Array.isArray(list) ? (
         list.map((item, index) => {
           return (

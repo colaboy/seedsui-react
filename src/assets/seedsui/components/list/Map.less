@@ -244,3 +244,63 @@
   .flex-vertical;
   .flex-bottom;
 }
+
+// 附近推荐
+.map-nearbyControl {
+  position: absolute;
+  position: absolute;
+  right: 12px;
+  left: 12px;
+  bottom: 6px;
+  z-index: 2;
+  background-color: white;
+}
+.map-nearbyControl-toggle {
+  text-align: center;
+  padding: 10px 0;
+  color: @primary;
+}
+.map-nearbyControl-toggle-label {
+}
+.map-nearbyControl-toggle-arrow {
+  .shape-triangle-down;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  transform: rotate(0deg) translateY(1px);
+  border-top-color: @primary;
+}
+.map-nearbyControl-body {
+  display: none;
+}
+
+// 附近推荐-tabs
+.map-nearbyControl-tabs {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  overflow-x: auto;
+  white-space: nowrap;
+  gap: 6px;
+  margin: 0 12px;
+}
+.map-nearbyControl-tab {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto; /* 确保子项宽度不会自动伸缩 */
+  background: #f2f2f6;
+  border-radius: 4px;
+  padding: 0 8px;
+  height: 24px;
+  color: #191c1f;
+  font-size: 14px;
+  &.active {
+    color: @primary;
+  }
+}
+
+// 附近推荐-结果
+.map-nearbyControl-main {
+  position: relative;
+  height: 305px;
+  overflow: auto;
+}

@@ -9,15 +9,15 @@ import locale from './../../../locale'
 function Toggle() {
   return (
     <div
-      className="mappage-nearby-toggle"
+      className="map-nearbyControl-toggle"
       onClick={(e) => {
         e.currentTarget?.closest('.mappage-info-card')?.classList?.toggle('active')
       }}
     >
-      <span className="mappage-nearby-toggle-label">
+      <span className="map-nearbyControl-toggle-label">
         {locale('附近推荐', 'SeedsUI_nearby_recommendation')}
       </span>
-      <i className="mappage-nearby-toggle-arrow"></i>
+      <i className="map-nearbyControl-toggle-arrow"></i>
     </div>
   )
 }

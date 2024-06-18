@@ -12,7 +12,7 @@ import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 
 // 附近推荐
-function Nearby({ map, onChange }, ref) {
+function Nearby({ map, longitude, latitude, radius, onChange }, ref) {
   // 容器
   const nearbyRef = useRef(null)
 
@@ -28,21 +28,21 @@ function Nearby({ map, onChange }, ref) {
 
   // 初始化、切换tab更新附近的点
   useEffect(() => {
-    if (!map || !tab?.name) return
+    if (!tab?.name) return
+
     loadData()
     // eslint-disable-next-line
-  }, [tab])
+  }, [tab, longitude, latitude, radius])
 
   // 获取附近的点
   async function loadData() {
     Loading.show()
-    let center = map.getCenter()
     let result = await queryNearby({
-      map: map,
+      map: map.currentMap,
       keyword: tab.id || tab.name,
-      longitude: center?.longitude,
-      latitude: center?.latitude,
-      radius: 1000
+      longitude: longitude,
+      latitude: latitude,
+      radius: radius
     })
     Loading.hide()
     if (typeof result === 'string') {
@@ -56,7 +56,7 @@ function Nearby({ map, onChange }, ref) {
     // 选中项
     if (nearbyRef.current) {
       // 滚动条置顶
-      nearbyRef.current.querySelector('.mappage-nearby-main').scrollTop = 0
+      nearbyRef.current.querySelector('.map-nearbyControl-main').scrollTop = 0
 
       // 选中附近推荐的选中项
       setTimeout(() => {
@@ -81,9 +81,9 @@ function Nearby({ map, onChange }, ref) {
   }
 
   return (
-    <div className={`mappage-nearby`} ref={nearbyRef}>
+    <div className={`map-nearbyControl`} ref={nearbyRef}>
       <Toggle />
-      <div className={`mappage-nearby-body`}>
+      <div className={`map-nearbyControl-body`}>
         <Tabs tab={tab} onChange={setTab} />
         <Main
           list={list}

@@ -102,7 +102,14 @@ export default () => {
           }}
         />
         {/* 附近控件 */}
-        <NearbyControl />
+        <NearbyControl
+          longitude={center.longitude}
+          latitude={center.latitude}
+          radius={1000}
+          onChange={(...props) => {
+            console.log(...props)
+          }}
+        />
         {/* 搜索控件 */}
         <SearchControl
           onChange={(item) => {
