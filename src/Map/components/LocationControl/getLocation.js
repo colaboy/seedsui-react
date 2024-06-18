@@ -29,12 +29,12 @@ async function _getAddress({ geocoder, type, longitude, latitude }) {
   }
 
   // getAddress success
-  const addr = result?.value || result?.address || ''
+  const addr = result?.address || ''
   if (addr) {
     result.longitude = longitude
     result.latitude = latitude
-    result.value = addr
     result.address = addr
+    result.name = result?.name || undefined
   }
   return result
 }

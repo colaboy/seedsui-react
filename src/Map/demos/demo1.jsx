@@ -125,6 +125,7 @@ export default () => {
           onChange={(result) => {
             console.log('定位完成:', result)
             mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
+            setValue(result)
           }}
         />
 
