@@ -60,7 +60,7 @@ export default () => {
         // api
         ref={mapRef}
         center={center}
-        zoom={16}
+        zoom={14}
         onMoveEnd={(map) => {
           console.log('获取中心点:', map.getCenter())
         }}
@@ -69,39 +69,6 @@ export default () => {
           imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
         }}
       >
-        {/* 缩放控件 */}
-        <ZoomControl
-          onZoomIn={(map) => {
-            console.log('放大', map.getZoom())
-          }}
-          onZoomOut={(map) => {
-            console.log('缩小'), map.getZoom()
-          }}
-        />
-        {/* 定位控件 */}
-        <LocationControl
-          onChange={(result) => {
-            console.log('定位完成:', result)
-            mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
-          }}
-        />
-        {/* 附近控件 */}
-        <NearbyControl
-          value={{
-            name: 'test',
-            address: 'test',
-            longitude: center?.longitude,
-            latitude: center?.latitude
-          }}
-          radius={1000}
-          onChange={(newValue) => {
-            console.log(newValue)
-          }}
-          onLoad={(list) => {
-            debugger
-            setPoints(list)
-          }}
-        />
         {/* 搜索控件 */}
         <SearchControl
           onChange={(item) => {
@@ -109,6 +76,7 @@ export default () => {
             mapRef.current.panTo({ latitude: item.latitude, longitude: item.longitude })
           }}
         />
+
         {/* 中心标注点: 仅用于显示 */}
         <CenterMarker />
 
@@ -132,6 +100,42 @@ export default () => {
           // }}
         />
 
+        {/* 缩放控件 */}
+        <ZoomControl
+          style={{ bottom: '135px' }}
+          onZoomIn={(map) => {
+            console.log('放大', map.getZoom())
+          }}
+          onZoomOut={(map) => {
+            console.log('缩小'), map.getZoom()
+          }}
+        />
+
+        {/* 定位控件 */}
+        <LocationControl
+          style={{ bottom: '135px' }}
+          onChange={(result) => {
+            console.log('定位完成:', result)
+            mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
+          }}
+        />
+
+        {/* 附近控件 */}
+        <NearbyControl
+          value={{
+            name: 'test',
+            address: 'test',
+            longitude: center?.longitude,
+            latitude: center?.latitude
+          }}
+          radius={1000}
+          onChange={(newValue) => {
+            console.log(newValue)
+          }}
+          onLoad={(list) => {
+            setPoints(list)
+          }}
+        />
         <div>自定义内容</div>
       </MapContainer>
     </APILoader>

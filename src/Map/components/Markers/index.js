@@ -12,7 +12,6 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
   })
 
   useEffect(() => {
-    debugger
     draw()
   }, [points])
 
