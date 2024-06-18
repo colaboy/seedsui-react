@@ -10,9 +10,8 @@ const {
   NearbyControl,
   Markers
 } = Map
-import getPoints from './getPoints'
-
-// let points = []
+// 生成随机点
+// import getPoints from './getPoints'
 
 export default () => {
   const mapRef = useRef(null)
@@ -20,35 +19,20 @@ export default () => {
     latitude: 39.907783490367706,
     longitude: 116.39120737493609
   }
-  let [points, setPoints] = useState([
-    {
-      latitude: 50.50000114396945,
-      longitude: 30.495636933019107
-    }
-  ])
+  let [points, setPoints] = useState([])
 
-  function drawMarkers() {
-    points = getPoints({
-      center: center,
-      // 半径5000000米
-      radius: 1000,
-      // 生成10万个点
-      count: 100
-    })
-    setPoints(points)
-  }
+  // function drawMarkers() {
+  //   points = getPoints({
+  //     center: center,
+  //     // 半径5000000米
+  //     radius: 1000,
+  //     // 生成10万个点
+  //     count: 100
+  //   })
+  //   setPoints(points)
+  // }
   useEffect(() => {
-    drawMarkers()
-
-    // setTimeout(() => {
-    //   alert('重新渲染点')
-    //   drawMarkers()
-
-    //   setTimeout(() => {
-    //     alert('再次渲染点')
-    //     drawMarkers()
-    //   }, 3000)
-    // }, 3000)
+    // drawMarkers()
   }, [])
 
   return (
@@ -113,6 +97,10 @@ export default () => {
           onChange={(newValue) => {
             console.log(newValue)
           }}
+          onLoad={(list) => {
+            debugger
+            setPoints(list)
+          }}
         />
         {/* 搜索控件 */}
         <SearchControl
@@ -127,21 +115,21 @@ export default () => {
         {/* 标注点 */}
         <Markers
           points={points}
-          onClick={(e) => {
-            console.log('点击marker:', e)
-            // e.remove()
-            let newMarkerIcon = window.L.icon({
-              active: true,
-              iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-              iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-              shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-              shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-              shadowSize: [33, 33],
-              iconSize: [20, 33],
-              iconAnchor: [10, 16]
-            })
-            e.setIcon(newMarkerIcon, { multiple: true })
-          }}
+          // onClick={(e) => {
+          //   console.log('点击marker:', e)
+          //   // e.remove()
+          //   let newMarkerIcon = window.L.icon({
+          //     active: true,
+          //     iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+          //     iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+          //     shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+          //     shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+          //     shadowSize: [33, 33],
+          //     iconSize: [20, 33],
+          //     iconAnchor: [10, 16]
+          //   })
+          //   e.setIcon(newMarkerIcon, { multiple: true })
+          // }}
         />
 
         <div>自定义内容</div>

@@ -24,7 +24,8 @@ function Nearby(
       longitude: '',
       latitude: ''
     },
-    onChange
+    onChange,
+    onLoad
   },
   ref
 ) {
@@ -67,34 +68,13 @@ function Nearby(
 
     // 刷新列表
     setList(result)
-
     // 选中项
     if (nearbyRef.current) {
       // 滚动条置顶
       nearbyRef.current.querySelector('.map-nearbyControl-main').scrollTop = 0
-
-      // 选中附近推荐的选中项
-      setTimeout(() => {
-        // 清空选中项
-        nearbyRef.current
-          ?.querySelector('.map-nearbyControl-item.active')
-          ?.classList.remove('active')
-
-        // 外层容器中查询附近推荐的选中项
-        let container = nearbyRef.current?.closest('.map-nearbyControl')
-        if (!container) return
-
-        let activeId = container.nearbyActive
-
-        if (activeId) {
-          for (let el of container.querySelectorAll('.map-nearbyControl-item')) {
-            if (el.getAttribute('data-nearby-item-id') === activeId) {
-              el.classList.add('active')
-            }
-          }
-        }
-      }, 100)
     }
+
+    onLoad && onLoad(result)
   }
 
   return (
