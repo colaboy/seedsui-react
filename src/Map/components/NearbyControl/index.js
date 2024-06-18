@@ -80,21 +80,18 @@ function Nearby(
   return (
     <div className={`map-nearbyControl`} ref={nearbyRef}>
       {/* 当前位置 */}
-      <Current
-        map={map}
-        readOnly={readOnly}
-        name={value?.name}
-        address={value?.address}
-        longitude={value?.longitude}
-        latitude={value?.latitude}
-        onChange={onChange}
-      />
+      <Current map={map} readOnly={readOnly} value={value} onChange={onChange} />
+      {/* 展开收缩附近 */}
       <Toggle />
+      {/* 附近的点 */}
       <div className={`map-nearbyControl-body`}>
         <Tabs tab={tab} onChange={setTab} />
         <Main
           list={list}
-          onChange={(item) => onChange && onChange(item, { updateNearby: false })}
+          onChange={(item) => {
+            map.panTo({ longitude: item.longitude, latitude: item.latitude })
+            onChange && onChange(item)
+          }}
         />
       </div>
     </div>
