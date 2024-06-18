@@ -16,7 +16,7 @@ function Main({ list, onChange }) {
         list.map((item, index) => {
           return (
             <div
-              className={`mappage-info-item`}
+              className={`map-nearbyControl-item`}
               key={index}
               data-nearby-item-id={`${item.longitude},${item.latitude}`}
               onClick={(e) => {
@@ -24,9 +24,9 @@ function Main({ list, onChange }) {
                 onChange && onChange(item)
               }}
             >
-              <div className="mappage-info-item-content">
-                <p className="mappage-info-item-content-title">{item.title}</p>
-                <p className="mappage-info-item-content-description">{item.address || ''}</p>
+              <div className="map-nearbyControl-item-content">
+                <p className="map-nearbyControl-item-content-title">{item.name}</p>
+                <p className="map-nearbyControl-item-content-description">{item.address || ''}</p>
               </div>
               <Checkbox checked />
             </div>

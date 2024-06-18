@@ -11,7 +11,7 @@ function Toggle() {
     <div
       className="map-nearbyControl-toggle"
       onClick={(e) => {
-        e.currentTarget?.closest('.mappage-info-card')?.classList?.toggle('active')
+        e.currentTarget?.closest('.map-nearbyControl')?.classList?.toggle('active')
       }}
     >
       <span className="map-nearbyControl-toggle-label">

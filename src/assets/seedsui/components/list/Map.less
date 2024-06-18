@@ -248,12 +248,16 @@
 // 附近推荐
 .map-nearbyControl {
   position: absolute;
-  position: absolute;
   right: 12px;
   left: 12px;
   bottom: 6px;
   z-index: 2;
   background-color: white;
+  &.active {
+    .map-nearbyControl-body {
+      display: block;
+    }
+  }
 }
 .map-nearbyControl-toggle {
   text-align: center;
@@ -303,4 +307,45 @@
   position: relative;
   height: 305px;
   overflow: auto;
+}
+.map-nearbyControl-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px;
+  background-color: white;
+  .border-b;
+  .checkbox {
+    visibility: hidden;
+  }
+  &.active {
+    .checkbox {
+      visibility: visible;
+      // display: inline-flex;
+    }
+  }
+}
+.map-nearbyControl-item-content {
+  flex: 1;
+  padding: 12px 0;
+}
+.map-nearbyControl-item-content-title {
+  .flex;
+  .flex-middle;
+  font-size: 16px;
+  color: #1a1c1f;
+  letter-spacing: 0;
+  line-height: 20px;
+  font-weight: bold;
+}
+.map-nearbyControl-item-content-description {
+  .flex;
+  .flex-middle;
+  color: #77818c;
+  margin-top: 6px;
+}
+.map-nearbyControl-item-checkbox {
+  .flex;
+  .flex-vertical;
+  .flex-bottom;
 }
