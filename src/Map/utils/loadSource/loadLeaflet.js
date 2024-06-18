@@ -15,7 +15,8 @@ function loadLeaflet() {
     // Load css
     const link = document.createElement('link')
     link.rel = 'stylesheet'
-    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+    // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+    link.href = '//res.waiqin365.com/d/seedsui/leaflet/css/leaflet.css'
     link.id = 'leaflet-css'
     document.head.appendChild(link)
 
@@ -26,8 +27,9 @@ function loadLeaflet() {
     }
 
     // Load js
+    // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
     Object.loadScript(
-      'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+      '//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js',
       {
         attrs: {
           id: 'leaflet-js'

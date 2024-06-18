@@ -28,7 +28,9 @@ function Main({ active, list, onChange }) {
               </div>
               <Checkbox
                 checked={
-                  active?.latitude === item?.latitude && active?.longitude === item?.longitude
+                  active?.latitude &&
+                  active?.latitude === item?.latitude &&
+                  active?.longitude === item?.longitude
                 }
               />
             </div>

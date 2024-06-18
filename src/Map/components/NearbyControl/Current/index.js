@@ -37,7 +37,9 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
             {!readOnly && (
               <Checkbox
                 checked={
-                  active?.latitude === value?.latitude && active?.longitude === value?.longitude
+                  active?.latitude &&
+                  active?.latitude === value?.latitude &&
+                  active?.longitude === value?.longitude
                 }
               />
             )}

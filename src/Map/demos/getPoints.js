@@ -1,4 +1,13 @@
 // 生成随机点
+/*
+points = getPoints({
+  center: value,
+  // 半径5000000米
+  radius: 1000,
+  // 生成10万个点
+  count: 100
+})
+*/
 function getPoints({ center, radius, count }) {
   const { latitude, longitude } = center
   const points = []

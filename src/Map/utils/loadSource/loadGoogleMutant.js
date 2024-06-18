@@ -13,8 +13,9 @@ function loadGoogleMutant() {
     }
 
     // Load js
+    // 'https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js'
     Object.loadScript(
-      'https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js',
+      '//res.waiqin365.com/d/seedsui/leaflet/js/Leaflet.GoogleMutant.js',
       {
         attrs: {
           id: 'google-map-mutant-js'
