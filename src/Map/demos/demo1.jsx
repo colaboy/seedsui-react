@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Map } from 'seedsui-react'
+import { Map, Bridge, Toast, Loading, locale } from 'seedsui-react'
 const {
   APILoader,
   MapContainer,
@@ -15,10 +15,7 @@ const {
 
 export default () => {
   const mapRef = useRef(null)
-  let [value, setValue] = useState({
-    latitude: 39.907783490367706,
-    longitude: 116.39120737493609
-  })
+  let [value, setValue] = useState(null)
   let [points, setPoints] = useState([])
 
   // function drawMarkers() {
@@ -32,6 +29,22 @@ export default () => {
   //   setPoints(points)
   // }
   useEffect(() => {
+    Loading.show()
+    // 默认选中当前位置
+    Bridge.debug = true
+    Bridge.getBrowserLocation({
+      success: (data) => {
+        Loading.hide()
+        setValue(data)
+      },
+      fail: (res) => {
+        Loading.hide()
+        // 赋值
+        Toast.show({
+          content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+        })
+      }
+    })
     // drawMarkers()
   }, [])
 
@@ -79,8 +92,6 @@ export default () => {
         <SearchControl
           onChange={(item) => {
             console.log('选择搜索项:', item)
-            mapRef.current.panTo({ latitude: item.latitude, longitude: item.longitude })
-
             setValue(item)
           }}
         />
@@ -130,7 +141,6 @@ export default () => {
           style={{ bottom: '135px' }}
           onChange={(result) => {
             console.log('定位完成:', result)
-            mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
             setValue(result)
           }}
         />

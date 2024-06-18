@@ -13,7 +13,7 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     maxZoom: maxZoom,
     minZoom: minZoom,
     zoom: zoom,
-    center: [center?.latitude, center?.longitude]
+    center: [center?.latitude || 53.895658919017706, center?.longitude || -132.7236492753227]
   }
   // 百度tile layer插件
   if (window?.L?.CRS?.Baidu) {

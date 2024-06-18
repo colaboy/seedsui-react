@@ -10,10 +10,7 @@ import Result from './../Result'
 const MapContainer = forwardRef(
   (
     {
-      center = {
-        latitude: 51.505,
-        longitude: 0.09
-      },
+      center,
       zoom,
       minZoom,
       maxZoom,
@@ -61,14 +58,14 @@ const MapContainer = forwardRef(
         leafletMap?.setView(...params)
       },
       panTo: (latlng) => {
-        if (!leafletMap || !latlng.latitude || !latlng.longitude) return
+        if (!leafletMap || !latlng?.latitude || !latlng?.longitude) return
         leafletMap.panTo([latlng.latitude, latlng.longitude])
       },
       getCenter: () => {
-        let center = leafletMap?.getCenter()
+        let latlng = leafletMap?.getCenter()
         return {
-          latitude: center.lat,
-          longitude: center.lng
+          latitude: latlng.lat,
+          longitude: latlng.lng
         }
       },
       getAddress: async ({ longitude, latitude, type }) => {
@@ -208,6 +205,11 @@ const MapContainer = forwardRef(
       if (Object.isEmptyObject(iconOptions) || !leafletMap) return
       L.Icon.Default.mergeOptions(iconOptions)
     }, [JSON.stringify(iconOptions || {})])
+
+    // Pan to center
+    useEffect(() => {
+      APIRef?.current?.panTo?.(center)
+    }, [JSON.stringify(center || '')])
 
     // Clear all marker
     function clearMarkers() {
