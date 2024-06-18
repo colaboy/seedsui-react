@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 // 中心点标注
-const CenterMarker = forwardRef(({ map, ...props }, ref) => {
+const CenterMarker = forwardRef(({ map, onDragStart, onDragEnd, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -14,11 +14,13 @@ const CenterMarker = forwardRef(({ map, ...props }, ref) => {
 
   // Get center position after drag end
   useEffect(() => {
-    map.onDragStart = () => {
+    map.onDragStart = (map) => {
       rootRef?.current?.classList?.remove?.('active')
+      onDragStart && onDragStart(map)
     }
-    map.onDragEnd = () => {
+    map.onDragEnd = (map) => {
       rootRef?.current?.classList?.add?.('active')
+      onDragEnd && onDragEnd(map)
     }
   }, [])
 

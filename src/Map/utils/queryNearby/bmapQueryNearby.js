@@ -7,9 +7,12 @@ import locale from './../../../locale'
 
 // 搜索附近, keyword:搜索关键词
 function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
-  let bdPoint = longitude && latitude ? new BMap.Point(longitude, latitude) : null
-
+  if (!longitude || !latitude) {
+    return null
+  }
   return new Promise((resolve) => {
+    let bdPoint = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'bd09')
+    bdPoint = new BMap.Point(bdPoint[0], bdPoint[1])
     // 创建本地搜索对象
     let local = new window.BMap.LocalSearch(map, {
       pageCapacity: 20,

@@ -44,11 +44,11 @@ function Nearby(
 
   // 初始化、切换tab更新附近的点
   useEffect(() => {
-    if (!tab?.name) return
+    if (!tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
 
     loadData()
     // eslint-disable-next-line
-  }, [tab])
+  }, [tab, value])
 
   // 获取附近的点
   async function loadData() {

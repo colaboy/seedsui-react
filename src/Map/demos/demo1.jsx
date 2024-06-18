@@ -15,15 +15,15 @@ const {
 
 export default () => {
   const mapRef = useRef(null)
-  const center = {
+  let [value, setValue] = useState({
     latitude: 39.907783490367706,
     longitude: 116.39120737493609
-  }
+  })
   let [points, setPoints] = useState([])
 
   // function drawMarkers() {
   //   points = getPoints({
-  //     center: center,
+  //     center: value,
   //     // 半径5000000米
   //     radius: 1000,
   //     // 生成10万个点
@@ -39,11 +39,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-        type: 'google',
+        // key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        // type: 'google',
         // 百度地图
-        // key: '3pTjiH1BXLjASHeBmWUuSF83',
-        // type: 'bmap',
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        type: 'bmap',
 
         // 使用当前地图做瓦片图层
         tileLayerPlugin: true
@@ -59,7 +59,7 @@ export default () => {
       <MapContainer
         // api
         ref={mapRef}
-        center={center}
+        center={value}
         zoom={14}
         onMoveEnd={(map) => {
           console.log('获取中心点:', map.getCenter())
@@ -74,11 +74,18 @@ export default () => {
           onChange={(item) => {
             console.log('选择搜索项:', item)
             mapRef.current.panTo({ latitude: item.latitude, longitude: item.longitude })
+
+            setValue(item)
           }}
         />
 
         {/* 中心标注点: 仅用于显示 */}
-        <CenterMarker />
+        <CenterMarker
+          onDragEnd={(map) => {
+            let center = map.getCenter()
+            setValue(center)
+          }}
+        />
 
         {/* 标注点 */}
         <Markers
@@ -122,15 +129,10 @@ export default () => {
 
         {/* 附近控件 */}
         <NearbyControl
-          value={{
-            name: 'test',
-            address: 'test',
-            longitude: center?.longitude,
-            latitude: center?.latitude
-          }}
+          value={value}
           radius={1000}
           onChange={(newValue) => {
-            console.log(newValue)
+            console.log('选中点:', newValue)
           }}
           onLoad={(list) => {
             setPoints(list)
