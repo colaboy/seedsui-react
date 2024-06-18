@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import queryNearby from './../../utils/queryNearby'
-import tabs from './keywords'
+import getTabs from './utils/getTabs'
 import Current from './Current'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
@@ -33,7 +33,7 @@ function Nearby(
   const nearbyRef = useRef(null)
 
   const [list, setList] = useState(null)
-  const [tab, setTab] = useState(tabs[0])
+  const [tab, setTab] = useState(getTabs()[0])
 
   // 节点
   useImperativeHandle(ref, () => {

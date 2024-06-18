@@ -1,8 +1,9 @@
 import React from 'react'
-import tabs from './keywords'
+import getTabs from './utils/getTabs'
 
 // 选项卡
 function TabsComponent({ tab, onChange }) {
+  let tabs = getTabs()
   return (
     <div className="map-nearbyControl-tabs">
       {tabs.map((item) => {
