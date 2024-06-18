@@ -7,6 +7,7 @@ const {
   SearchControl,
   CenterMarker,
   LocationControl,
+  NearbyControl,
   Markers
 } = Map
 import getPoints from './getPoints'
@@ -100,6 +101,8 @@ export default () => {
             mapRef.current.panTo({ latitude: result.latitude, longitude: result.longitude })
           }}
         />
+        {/* 附近控件 */}
+        <NearbyControl />
         {/* 搜索控件 */}
         <SearchControl
           onChange={(item) => {
@@ -126,7 +129,7 @@ export default () => {
               iconSize: [20, 33],
               iconAnchor: [10, 16]
             })
-            e.setIcon(newMarkerIcon, { multiple: false })
+            e.setIcon(newMarkerIcon, { multiple: true })
           }}
         />
 

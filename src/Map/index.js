@@ -7,6 +7,7 @@ import SearchControl from './components/SearchControl'
 import CenterMarker from './components/CenterMarker'
 import Markers from './components/Markers'
 import LocationControl from './components/LocationControl'
+import NearbyControl from './components/NearbyControl'
 
 export default {
   // utils
@@ -19,5 +20,6 @@ export default {
   SearchControl,
   CenterMarker,
   Markers,
-  LocationControl
+  LocationControl,
+  NearbyControl
 }
