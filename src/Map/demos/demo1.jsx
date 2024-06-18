@@ -103,11 +103,15 @@ export default () => {
         />
         {/* 附近控件 */}
         <NearbyControl
-          longitude={center.longitude}
-          latitude={center.latitude}
+          value={{
+            name: 'test',
+            address: 'test',
+            longitude: center?.longitude,
+            latitude: center?.latitude
+          }}
           radius={1000}
-          onChange={(...props) => {
-            console.log(...props)
+          onChange={(newValue) => {
+            console.log(newValue)
           }}
         />
         {/* 搜索控件 */}

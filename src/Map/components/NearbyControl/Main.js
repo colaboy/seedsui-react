@@ -1,5 +1,5 @@
 import React from 'react'
-import activeItemTarget from './activeItemTarget'
+import activeItemTarget from './utils/activeItemTarget'
 
 // 测试使用
 // import { Checkbox, Notice, locale } from 'seedsui-react'

@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 import queryNearby from './../../utils/queryNearby'
 import tabs from './keywords'
+import Current from './Current'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
@@ -12,7 +13,21 @@ import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 
 // 附近推荐
-function Nearby({ map, longitude, latitude, radius, onChange }, ref) {
+function Nearby(
+  {
+    map,
+    radius,
+    readOnly,
+    value = {
+      name: '',
+      address: '',
+      longitude: '',
+      latitude: ''
+    },
+    onChange
+  },
+  ref
+) {
   // 容器
   const nearbyRef = useRef(null)
 
@@ -32,7 +47,7 @@ function Nearby({ map, longitude, latitude, radius, onChange }, ref) {
 
     loadData()
     // eslint-disable-next-line
-  }, [tab, longitude, latitude, radius])
+  }, [tab])
 
   // 获取附近的点
   async function loadData() {
@@ -40,8 +55,8 @@ function Nearby({ map, longitude, latitude, radius, onChange }, ref) {
     let result = await queryNearby({
       map: map.currentMap,
       keyword: tab.id || tab.name,
-      longitude: longitude,
-      latitude: latitude,
+      longitude: value?.longitude,
+      latitude: value?.latitude,
       radius: radius
     })
     Loading.hide()
@@ -84,6 +99,16 @@ function Nearby({ map, longitude, latitude, radius, onChange }, ref) {
 
   return (
     <div className={`map-nearbyControl`} ref={nearbyRef}>
+      {/* 当前位置 */}
+      <Current
+        map={map}
+        readOnly={readOnly}
+        name={value?.name}
+        address={value?.address}
+        longitude={value?.longitude}
+        latitude={value?.latitude}
+        onChange={onChange}
+      />
       <Toggle />
       <div className={`map-nearbyControl-body`}>
         <Tabs tab={tab} onChange={setTab} />
