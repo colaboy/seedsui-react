@@ -4,7 +4,7 @@ import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
 
 // 地址逆解析
-async function getAddress({ longitude: lng, latitude: lat, type }) {
+async function getAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
   let result = null
 
   // 坐标转换

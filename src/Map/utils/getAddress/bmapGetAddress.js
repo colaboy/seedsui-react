@@ -9,19 +9,12 @@ function bmapGetAddress({ longitude, latitude }) {
     let geocoder = new BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {
       let result = {}
-
-      if (res.address) {
-        result.address = res.address
-      }
-
-      if (res.addressComponents) {
-        result.province = res.addressComponents.province
-        result.city = res.addressComponents.city
-        result.district = res.addressComponents.district
-      } else {
+      if (!res.address) {
         resolve(locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
         return
       }
+
+      result.address = res.address
       resolve(result)
     })
   })

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import getAddress from './../../utils/getAddress'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
@@ -68,6 +69,7 @@ const MapContainer = forwardRef(
           longitude: center.lng
         }
       },
+      getAddress: getAddress,
       zoomIn: () => {
         leafletMap?.zoomIn()
       },
@@ -122,7 +124,7 @@ const MapContainer = forwardRef(
                 setIcon: (icon, { multiple = true }) => {
                   // Single choice
                   if (!multiple) {
-                    this.clearMarkers()
+                    clearMarkers()
                     for (let point of points) {
                       addMarker(point, {
                         enableCanvas: true,
@@ -147,14 +149,7 @@ const MapContainer = forwardRef(
           })
         }
       },
-      clearMarkers: () => {
-        if (!canvasMarkerRef.current || !markersLayerRef.current) return
-        // Leaflet plugin
-        canvasMarkerRef.current.clearLayers()
-
-        // Leaflet
-        markersLayerRef.current.clearLayers()
-      }
+      clearMarkers: clearMarkers
     })
 
     // Export API
@@ -181,6 +176,16 @@ const MapContainer = forwardRef(
       if (Object.isEmptyObject(iconOptions) || !leafletMap) return
       L.Icon.Default.mergeOptions(iconOptions)
     }, [JSON.stringify(iconOptions || {})])
+
+    // Clear all marker
+    function clearMarkers() {
+      if (!canvasMarkerRef.current || !markersLayerRef.current) return
+      // Leaflet plugin
+      canvasMarkerRef.current.clearLayers()
+
+      // Leaflet
+      markersLayerRef.current.clearLayers()
+    }
 
     // Add one marker
     function addMarker(latlng, { icon, enableCanvas = false }) {

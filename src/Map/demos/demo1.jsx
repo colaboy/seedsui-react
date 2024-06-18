@@ -81,9 +81,10 @@ export default () => {
 
         {/* 中心标注点: 仅用于显示 */}
         <CenterMarker
-          onDragEnd={(map) => {
+          onDragEnd={async (map) => {
             let center = map.getCenter()
-            setValue(center)
+            let address = await map.getAddress(center)
+            setValue({ ...center, ...address })
           }}
         />
 
