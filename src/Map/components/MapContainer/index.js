@@ -69,7 +69,37 @@ const MapContainer = forwardRef(
           longitude: center.lng
         }
       },
-      getAddress: getAddress,
+      getAddress: async ({ geocoder, longitude, latitude, type }) => {
+        let result = null
+        if (typeof geocoder === 'function') {
+          result = await geocoder({
+            longitude,
+            latitude,
+            type
+          })
+        } else {
+          result = await getAddress({
+            longitude,
+            latitude,
+            type
+          })
+        }
+
+        // getAddress failed
+        if (typeof result === 'string') {
+          return result
+        }
+
+        // getAddress success
+        const addr = result?.address || ''
+        if (addr) {
+          result.longitude = longitude
+          result.latitude = latitude
+          result.address = addr
+          if (result?.name) result.name = result?.name
+        }
+        return result
+      },
       zoomIn: () => {
         leafletMap?.zoomIn()
       },

@@ -97,10 +97,15 @@ let Bridge = {
       setTimeout(() => {
         let res = {
           errMsg: 'getLocation:ok',
-          longitude: '116.397451',
-          latitude: '39.909187',
           speed: '0.0',
           accuracy: '3.0.0'
+        }
+        if (params?.type === 'gcj02') {
+          res.latitude = 39.909187
+          res.longitude = 116.397451
+        } else {
+          res.latitude = 39.907783490367706
+          res.longitude = 116.39120737493609
         }
         if (params.success) params.success(res)
         if (params.complete) params.complete(res)
