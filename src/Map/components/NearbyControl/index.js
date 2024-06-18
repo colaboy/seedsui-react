@@ -45,7 +45,7 @@ function Nearby(
 
   // 初始化、切换tab更新附近的点
   useEffect(() => {
-    if (!tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
+    if (readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
 
     loadData()
     // eslint-disable-next-line
@@ -75,10 +75,11 @@ function Nearby(
 
     // 刷新列表
     setList(result)
-    // 选中项
-    if (nearbyRef.current) {
-      // 滚动条置顶
-      nearbyRef.current.querySelector('.map-nearbyControl-main').scrollTop = 0
+
+    // 重置滚动条
+    let contentDOM = nearbyRef.current.querySelector('.map-nearbyControl-main')
+    if (contentDOM) {
+      contentDOM.scrollTop = 0
     }
 
     onLoad && onLoad(result)
@@ -97,21 +98,25 @@ function Nearby(
           onChange && onChange(item)
         }}
       />
-      {/* 展开收缩附近 */}
-      <Toggle />
-      {/* 附近的点 */}
-      <div className={`map-nearbyControl-body`}>
-        <Tabs tab={tab} onChange={setTab} />
-        <Main
-          list={list}
-          active={active}
-          onChange={(item) => {
-            map.panTo({ longitude: item.longitude, latitude: item.latitude })
-            setActive(item)
-            onChange && onChange(item)
-          }}
-        />
-      </div>
+      {readOnly ? null : (
+        <>
+          {/* 展开收缩附近 */}
+          <Toggle />
+          {/* 附近的点 */}
+          <div className={`map-nearbyControl-body`}>
+            <Tabs tab={tab} onChange={setTab} />
+            <Main
+              list={list}
+              active={active}
+              onChange={(item) => {
+                map.panTo({ longitude: item.longitude, latitude: item.latitude })
+                setActive(item)
+                onChange && onChange(item)
+              }}
+            />
+          </div>
+        </>
+      )}
     </div>
   )
 }

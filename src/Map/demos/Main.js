@@ -34,7 +34,7 @@ function Main(
 
     Loading.show()
     // 默认选中当前位置
-    Bridge.debug = true
+    // Bridge.debug = true
     Bridge.getLocation({
       success: async (data) => {
         let address = await getAddress(data)
@@ -112,7 +112,7 @@ function Main(
 
       {/* 缩放控件 */}
       <ZoomControl
-        style={{ bottom: '135px' }}
+        style={{ bottom: readOnly ? '90px' : '135px' }}
         onZoomIn={(map) => {
           console.log('放大', map.getZoom())
         }}
@@ -122,18 +122,21 @@ function Main(
       />
 
       {/* 定位控件 */}
-      <LocationControl
-        style={{ bottom: '135px' }}
-        onChange={(result) => {
-          // console.log('定位完成:', result)
-          setValue(result)
+      {readOnly ? null : (
+        <LocationControl
+          style={{ bottom: '135px' }}
+          onChange={(result) => {
+            // console.log('定位完成:', result)
+            setValue(result)
 
-          onChange && onChange(result)
-        }}
-      />
+            onChange && onChange(result)
+          }}
+        />
+      )}
 
       {/* 附近控件 */}
       <NearbyControl
+        readOnly={readOnly}
         value={value}
         radius={1000}
         onChange={(item) => {

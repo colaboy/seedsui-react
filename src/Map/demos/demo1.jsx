@@ -7,7 +7,11 @@ import Main from './Main'
 // import getPoints from './getPoints'
 
 export default () => {
-  let [value, setValue] = useState(null)
+  let [value, setValue] = useState({
+    latitude: 39.907783490367706,
+    longitude: 116.39120737493609,
+    address: 'aa'
+  })
 
   return (
     <APILoader
@@ -29,13 +33,16 @@ export default () => {
         console.log('地图加载失败')
       }}
     >
-      <Main
-        value={value}
-        onChange={(newValue) => {
-          console.log('newValue:', newValue)
-          setValue(newValue)
-        }}
-      />
+      <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+        <Main
+          readOnly
+          value={value}
+          onChange={(newValue) => {
+            console.log('newValue:', newValue)
+            setValue(newValue)
+          }}
+        />
+      </div>
     </APILoader>
   )
 }
