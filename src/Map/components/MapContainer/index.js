@@ -21,6 +21,8 @@ const MapContainer = forwardRef(
       iconOptions = {
         // imagePath: 'marker basic path'
       },
+      // getAddress
+      getAddress: customGetAddress,
       // events
       onZoomStart,
       onZoom,
@@ -69,10 +71,10 @@ const MapContainer = forwardRef(
           longitude: center.lng
         }
       },
-      getAddress: async ({ geocoder, longitude, latitude, type }) => {
+      getAddress: async ({ longitude, latitude, type }) => {
         let result = null
-        if (typeof geocoder === 'function') {
-          result = await geocoder({
+        if (typeof customGetAddress === 'function') {
+          result = await customGetAddress({
             longitude,
             latitude,
             type

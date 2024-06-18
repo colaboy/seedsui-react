@@ -61,6 +61,12 @@ export default () => {
         ref={mapRef}
         center={value}
         zoom={14}
+        getAddress={({ longitude, latitude, type }) => {
+          console.log('自定义获取地址:', { longitude, latitude, type })
+          return {
+            address: '呵呵呵'
+          }
+        }}
         onMoveEnd={(map) => {
           console.log('获取中心点:', map.getCenter())
         }}
