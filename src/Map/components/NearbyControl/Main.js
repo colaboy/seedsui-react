@@ -1,5 +1,4 @@
 import React from 'react'
-import activeItemTarget from './utils/activeItemTarget'
 
 // 测试使用
 // import { Checkbox, Notice, locale } from 'seedsui-react'
@@ -9,7 +8,7 @@ import Checkbox from './../../../Checkbox'
 import Notice from './../../../Notice'
 
 // 附近结果
-function Main({ list, onChange }) {
+function Main({ active, list, onChange }) {
   return (
     <div className="map-nearbyControl-main">
       {Array.isArray(list) ? (
@@ -20,7 +19,6 @@ function Main({ list, onChange }) {
               key={index}
               data-nearby-item-id={`${item.longitude},${item.latitude}`}
               onClick={(e) => {
-                activeItemTarget(e.currentTarget)
                 onChange && onChange(item)
               }}
             >
@@ -28,7 +26,11 @@ function Main({ list, onChange }) {
                 <p className="map-nearbyControl-item-content-title">{item.name}</p>
                 <p className="map-nearbyControl-item-content-description">{item.address || ''}</p>
               </div>
-              <Checkbox checked />
+              <Checkbox
+                checked={
+                  active?.latitude === item?.latitude && active?.longitude === item?.longitude
+                }
+              />
             </div>
           )
         })

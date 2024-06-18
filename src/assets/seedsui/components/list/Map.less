@@ -210,15 +210,6 @@
   margin: 0 12px;
   background-color: white;
   .border-b;
-  .checkbox {
-    visibility: hidden;
-  }
-  &.active {
-    .checkbox {
-      visibility: visible;
-      // display: inline-flex;
-    }
-  }
 }
 .map-searchControl-item-content {
   flex: 1;
@@ -239,11 +230,6 @@
   color: #77818c;
   margin-top: 6px;
 }
-.map-searchControl-item-checkbox {
-  .flex;
-  .flex-vertical;
-  .flex-bottom;
-}
 
 // 附近推荐
 .map-nearbyControl {
@@ -258,6 +244,9 @@
   box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
   border-radius: 12px;
   overflow: hidden;
+  .checkbox-input {
+    border: 0;
+  }
   &.active {
     .map-nearbyControl-body {
       display: block;
@@ -320,15 +309,6 @@
   margin: 0 12px;
   background-color: white;
   .border-b;
-  .checkbox {
-    visibility: hidden;
-  }
-  &.active {
-    .checkbox {
-      visibility: visible;
-      // display: inline-flex;
-    }
-  }
 }
 .map-nearbyControl-item-content {
   flex: 1;

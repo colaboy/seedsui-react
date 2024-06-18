@@ -233,9 +233,6 @@ let Bridge = {
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getBrowserLocation: function (params) {
-    this.getLocation(params)
-  },
-  getLocation: function (params = {}) {
     let self = this
     // debug模拟定位
     if (self.debug) {
@@ -350,6 +347,9 @@ let Bridge = {
       self.getLocationTask(res)
     }
     return
+  },
+  getLocation: function (params = {}) {
+    this.getBrowserLocation(params)
   },
   /**
    * 百度地图:获取当前位置名称

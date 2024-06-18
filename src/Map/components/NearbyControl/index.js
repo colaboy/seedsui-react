@@ -34,6 +34,7 @@ function Nearby(
 
   const [list, setList] = useState(null)
   const [tab, setTab] = useState(getTabs()[0])
+  const [active, setActive] = useState(value)
 
   // 节点
   useImperativeHandle(ref, () => {
@@ -49,6 +50,12 @@ function Nearby(
     loadData()
     // eslint-disable-next-line
   }, [tab, value])
+
+  // Update value linkage update active
+  useEffect(() => {
+    setActive(value)
+    // eslint-disable-next-line
+  }, [value])
 
   // 获取附近的点
   async function loadData() {
@@ -80,7 +87,16 @@ function Nearby(
   return (
     <div className={`map-nearbyControl`} ref={nearbyRef}>
       {/* 当前位置 */}
-      <Current map={map} readOnly={readOnly} value={value} onChange={onChange} />
+      <Current
+        map={map}
+        readOnly={readOnly}
+        value={value}
+        active={active}
+        onChange={(item) => {
+          setActive(item)
+          onChange && onChange(item)
+        }}
+      />
       {/* 展开收缩附近 */}
       <Toggle />
       {/* 附近的点 */}
@@ -88,8 +104,10 @@ function Nearby(
         <Tabs tab={tab} onChange={setTab} />
         <Main
           list={list}
+          active={active}
           onChange={(item) => {
             map.panTo({ longitude: item.longitude, latitude: item.latitude })
+            setActive(item)
             onChange && onChange(item)
           }}
         />

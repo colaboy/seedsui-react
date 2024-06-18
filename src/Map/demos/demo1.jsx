@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Map, Bridge, Toast, Loading, locale } from 'seedsui-react'
 const {
+  getAddress,
   APILoader,
   MapContainer,
   ZoomControl,
@@ -33,9 +34,10 @@ export default () => {
     // 默认选中当前位置
     Bridge.debug = true
     Bridge.getBrowserLocation({
-      success: (data) => {
+      success: async (data) => {
+        let address = await getAddress(data)
+        setValue({ ...data, ...address })
         Loading.hide()
-        setValue(data)
       },
       fail: (res) => {
         Loading.hide()
