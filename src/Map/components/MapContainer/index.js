@@ -224,7 +224,7 @@ const MapContainer = forwardRef(
     // Add one marker
     function addMarker(latlng, { icon, enableCanvas = false }) {
       let marker = L.marker([latlng.latitude, latlng.longitude], {
-        icon: icon || markerIconRef.current
+        icon: latlng?.icon || icon || markerIconRef.current
       })
 
       // Leaflet canvas marker plugin

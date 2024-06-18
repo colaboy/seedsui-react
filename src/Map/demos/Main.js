@@ -26,7 +26,25 @@ function Main(
 ) {
   const mapRef = useRef(null)
   let [value, setValue] = useState(defaultValue)
-  let [points, setPoints] = useState([])
+  let [points, setPoints] = useState(
+    readOnly && defaultValue
+      ? [
+          {
+            ...defaultValue,
+            icon: window.L.icon({
+              active: true,
+              iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+              iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+              shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowSize: [33, 33],
+              iconSize: [20, 33],
+              iconAnchor: [10, 16]
+            })
+          }
+        ]
+      : null
+  )
 
   // value没值时，开启自动定位，则先定位
   useEffect(() => {
@@ -78,17 +96,19 @@ function Main(
       />
 
       {/* 中心标注点: 仅用于显示 */}
-      <CenterMarker
-        onDragEnd={async (map) => {
-          let center = map.getCenter()
-          // Loading.show()
-          let address = await map.getAddress(center)
-          let result = { ...center, ...address }
-          setValue(result)
+      {readOnly ? null : (
+        <CenterMarker
+          onDragEnd={async (map) => {
+            let center = map.getCenter()
+            // Loading.show()
+            let address = await map.getAddress(center)
+            let result = { ...center, ...address }
+            setValue(result)
 
-          onChange && onChange(result)
-        }}
-      />
+            onChange && onChange(result)
+          }}
+        />
+      )}
 
       {/* 标注点 */}
       <Markers
