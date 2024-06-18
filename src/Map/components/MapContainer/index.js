@@ -80,22 +80,67 @@ const MapContainer = forwardRef(
       addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
         for (let point of points) {
-          addMarker(point, { canvas: enableCanvas, onClick })
+          let marker = addMarker(point, { enableCanvas: enableCanvas, onClick })
+          // Leaflet marker click
+          if (!enableCanvas) {
+            onClick &&
+              marker.on('click', function (e) {
+                onClick({
+                  reset: () => {
+                    console.log(markers)
+                    debugger
+                  },
+                  setIcon: (icon, { multiple }) => {
+                    // Single choice
+                    if (!multiple) {
+                      let markers = markersLayerRef.current.getLayers()
+                      for (let marker of markers) {
+                        marker.setIcon(markerIconRef.current)
+                      }
+                      e.target.setIcon(icon)
+                    }
+                    // Multiple choice
+                    else {
+                      e.target.setIcon(icon)
+                    }
+                  },
+                  remove: () => e.target.remove(),
+                  latitude: e.latlng.lat,
+                  longitude: e.latlng.lng
+                })
+              })
+          }
         }
 
-        // Leaflet canvas marker plugin
+        // Leaflet canvas marker plugin click
         if (enableCanvas) {
           canvasMarkerRef.current.addOnClickListener((e, data) => {
             let target = data[0]
+            const longitude = target.data._latlng.lng
+            const latitude = target.data._latlng.lat
 
             onClick &&
               onClick({
-                setIcon: (icon) => {
-                  canvasMarkerRef.current.removeMarker(target, true)
-                  addMarker(
-                    { longitude: target.data._latlng.lng, latitude: target.data._latlng.lat },
-                    { canvas: enableCanvas, icon: icon }
-                  )
+                setIcon: (icon, { multiple = true }) => {
+                  // Single choice
+                  if (!multiple) {
+                    this.clearMarkers()
+                    for (let point of points) {
+                      addMarker(point, {
+                        enableCanvas: true,
+                        icon:
+                          point.longitude === longitude && point.latitude === latitude ? icon : null
+                      })
+                    }
+                  }
+                  // Multiple choice
+                  else {
+                    canvasMarkerRef.current.removeMarker(target, true)
+                    addMarker(
+                      { longitude: longitude, latitude: latitude },
+                      { enableCanvas: enableCanvas, icon: icon }
+                    )
+                  }
                 },
                 remove: () => canvasMarkerRef.current.removeMarker(data[0], true),
                 latitude: e.latlng.lat,
@@ -140,28 +185,20 @@ const MapContainer = forwardRef(
     }, [JSON.stringify(iconOptions || {})])
 
     // Add one marker
-    function addMarker(latlng, { icon, canvas = false, onClick }) {
+    function addMarker(latlng, { icon, enableCanvas = false }) {
       let marker = L.marker([latlng.latitude, latlng.longitude], {
         icon: icon || markerIconRef.current
       })
 
       // Leaflet canvas marker plugin
-      if (canvas) {
+      if (enableCanvas) {
         canvasMarkerRef.current.addMarker(marker)
       }
       // Leaflet
       else {
         marker.addTo(markersLayerRef.current)
-        onClick &&
-          marker.on('click', function (e) {
-            onClick({
-              setIcon: (icon) => e.target.setIcon(icon),
-              remove: () => e.target.remove(),
-              latitude: e.latlng.lat,
-              longitude: e.latlng.lng
-            })
-          })
       }
+      return marker
     }
     // Load data
     async function loadData() {

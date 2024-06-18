@@ -32,7 +32,7 @@ export default () => {
       // 半径5000000米
       radius: 1000,
       // 生成10万个点
-      count: 101
+      count: 100
     })
     setPoints(points)
   }
@@ -54,11 +54,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-        type: 'google',
+        // key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        // type: 'google',
         // 百度地图
-        // key: '3pTjiH1BXLjASHeBmWUuSF83',
-        // type: 'bmap',
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        type: 'bmap',
 
         // 使用当前地图做瓦片图层
         tileLayerPlugin: true
@@ -125,7 +125,7 @@ export default () => {
               iconSize: [20, 33],
               iconAnchor: [10, 16]
             })
-            e.setIcon(newMarkerIcon)
+            e.setIcon(newMarkerIcon, { multiple: false })
           }}
         />
 

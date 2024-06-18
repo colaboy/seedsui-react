@@ -1,25 +1,27 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
 
 // 批量标注
 const Markers = forwardRef(({ map, points, onClick }, ref) => {
-  const rootRef = useRef(null)
-
   // 节点
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
+      redraw: () => {
+        draw()
+      }
     }
   })
 
-  // Get center position after drag end
   useEffect(() => {
+    draw()
+  }, [points])
+
+  function draw() {
     if (!points?.[0]?.latitude || !points?.[0]?.longitude) {
       return
     }
     map.clearMarkers()
     map.addMarkers(points, { onClick })
-  }, [points])
+  }
 
   return <></>
 })
