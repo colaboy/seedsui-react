@@ -21,9 +21,9 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
         if (local.getStatus() === window.BMAP_STATUS_SUCCESS) {
           let list = []
           for (let i = 0; i < results.getCurrentNumPois(); i++) {
-            if (!item.address) continue
-
             const item = results.getPoi(i)
+
+            if (!item.title && !item.address) continue
             // Leaflet only support wgs84
             let point = GeoUtil.coordtransform([item.point.lng, item.point.lat], 'bd09', 'wgs84')
             list.push({
@@ -46,7 +46,8 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
     }
     // 搜索全部
     else {
-      local.search(keyword)
+      // local.search(keyword) // 此方法只能搜索行政区名称
+      local.searchNearby(keyword, bdPoint)
     }
   })
 }

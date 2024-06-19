@@ -21,15 +21,16 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         if (data?.elements?.length > 0) {
           let list = []
           for (let item of data.elements) {
+            let name = item.tags.name
             let address =
               (item?.tags?.['addr:city'] || '') +
               (item?.tags?.['addr:housename'] || '') +
               (item?.tags?.['addr:postcode'] || '') +
               (item?.tags?.['addr:street'] || '')
 
-            if (!address) continue
+            if (!name && !address) continue
             list.push({
-              name: item.tags.name,
+              name: name,
               latitude: item.lat,
               longitude: item.lon,
               address: address
