@@ -36,9 +36,6 @@ function Page({ map, visible, onVisibleChange, onChange }) {
     // Reset list
     setSearchList(null)
 
-    // Reset errMsg
-    setErrMsg('')
-
     // Go back
     onVisibleChange && onVisibleChange(false)
   }
@@ -58,13 +55,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
     })
     Loading.hide()
 
-    if (typeof list === 'string') {
-      setErrMsg(list)
-      setSearchList([])
-    } else {
-      setErrMsg(null)
-      setSearchList(list)
-    }
+    setSearchList(list)
   }
 
   // 选中一项
@@ -106,7 +97,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
         </span>
       </Header>
       <div className="map-searchControl-body">
-        {Array.isArray(searchList)
+        {Array.isArray(searchList) && searchList.length
           ? searchList.map((item, index) => {
               return (
                 <div
@@ -127,7 +118,13 @@ function Page({ map, visible, onVisibleChange, onChange }) {
               )
             })
           : null}
-        {errMsg && <Notice caption={errMsg} />}
+
+        {/* Query error */}
+        {typeof searchList === 'string' && <Notice caption={searchList} />}
+        {/* List is empty */}
+        {Array.isArray(searchList) && searchList.length === 0 ? (
+          <Notice caption={locale('暂无数据', 'SeedsUI_no_data')} />
+        ) : null}
       </div>
     </Layout>
   )
