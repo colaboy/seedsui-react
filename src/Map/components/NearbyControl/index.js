@@ -7,9 +7,8 @@ import Tabs from './Tabs'
 import Main from './Main'
 
 // 测试使用
-// import { Loading, Toast } from 'seedsui-react'
+// import { Loading } from 'seedsui-react'
 // 内库使用
-import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 
 // 附近推荐

@@ -15,7 +15,6 @@ import Notice from './../../../Notice'
 // 搜索
 function Page({ map, visible, onVisibleChange, onChange }) {
   const inputRef = useRef(null)
-  const [errMsg, setErrMsg] = useState(null)
   let [searchList, setSearchList] = useState(null)
 
   useEffect(() => {
