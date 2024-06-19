@@ -1,4 +1,3 @@
-'use strict'
 import rbush from './rbush.js'
 // 需要引入rbush
 function layerFactory(L) {
@@ -26,7 +25,7 @@ function layerFactory(L) {
       var tmpLatLng = []
 
       markers.forEach(function (marker) {
-        if (!(marker.options.pane == 'markerPane' && marker.options.icon)) {
+        if (!(marker.options.pane === 'markerPane' && marker.options.icon)) {
           console.error("Layer isn't a marker")
           return
         }
@@ -59,7 +58,7 @@ function layerFactory(L) {
     },
 
     addLayer: function (layer) {
-      if (layer.options.pane == 'markerPane' && layer.options.icon) this.addMarker(layer)
+      if (layer.options.pane === 'markerPane' && layer.options.icon) this.addMarker(layer)
       else console.error("Layer isn't a marker")
     },
 

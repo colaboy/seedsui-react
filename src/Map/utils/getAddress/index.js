@@ -21,7 +21,11 @@ async function defaultGetAddress({ longitude: lng, latitude: lat, type = 'wgs84'
 
 // 地址逆解析
 async function getAddress({ longitude, latitude, type, getAddress: customGetAddress }) {
-  let result = null
+  let result = {
+    longitude,
+    latitude
+  }
+
   if (typeof customGetAddress === 'function') {
     result = await customGetAddress({
       longitude,
@@ -42,15 +46,6 @@ async function getAddress({ longitude, latitude, type, getAddress: customGetAddr
     return null
   }
 
-  // getAddress success
-  const addr = result?.address || ''
-  if (addr) {
-    result.longitude = longitude
-    result.latitude = latitude
-    result.address = addr
-    if (result?.name) result.name = result?.name
-    if (result?.geoData) result.geoData = result?.geoData
-  }
   return result
 }
 

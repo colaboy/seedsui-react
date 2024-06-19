@@ -178,15 +178,17 @@ const MapContainer = forwardRef(
       // eslint-disable-next-line
     }, [leafletMap])
 
-    // Global icon options
+    // Global icon setting
     useEffect(() => {
       if (Object.isEmptyObject(iconOptions) || !leafletMap) return
-      L.Icon.Default.mergeOptions(iconOptions)
+      window.L.Icon.Default.mergeOptions(iconOptions)
+      // eslint-disable-next-line
     }, [JSON.stringify(iconOptions || {})])
 
     // Pan to center
     useEffect(() => {
       APIRef?.current?.panTo?.(center)
+      // eslint-disable-next-line
     }, [JSON.stringify(center || '')])
 
     // Clear all marker
@@ -201,7 +203,7 @@ const MapContainer = forwardRef(
 
     // Add one marker
     function addMarker(latlng, { icon, enableCanvas = false }) {
-      let marker = L.marker([latlng.latitude, latlng.longitude], {
+      let marker = window.L.marker([latlng.latitude, latlng.longitude], {
         icon: latlng?.icon || icon || markerIconRef.current
       })
 
@@ -288,7 +290,7 @@ const MapContainer = forwardRef(
       })
       leafletMap.on('moveend', function (e) {
         onMoveEnd && onMoveEnd(APIRef.current)
-        APIRef.current.onMoveEnd && API.onMoveEnd(APIRef.current)
+        APIRef.current.onMoveEnd && APIRef.current.onMoveEnd(APIRef.current)
       })
 
       // Listen drag event
@@ -314,7 +316,7 @@ const MapContainer = forwardRef(
     }
     // 加载失败
     else if (typeof leafletMap === 'string') {
-      newChildren = <Result title={errMsg} />
+      newChildren = <Result title={leafletMap} />
     }
     // 加载成功
     else {

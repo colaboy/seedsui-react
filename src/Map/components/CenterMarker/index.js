@@ -12,7 +12,7 @@ const CenterMarker = forwardRef(({ map, onDragStart, onDragEnd, ...props }, ref)
     }
   })
 
-  // Get center position after drag end
+  // Drag icon style interaction
   useEffect(() => {
     map.onDragStart = (map) => {
       rootRef?.current?.classList?.remove?.('active')
@@ -22,6 +22,7 @@ const CenterMarker = forwardRef(({ map, onDragStart, onDragEnd, ...props }, ref)
       rootRef?.current?.classList?.add?.('active')
       onDragEnd && onDragEnd(map)
     }
+    // eslint-disable-next-line
   }, [])
 
   return (

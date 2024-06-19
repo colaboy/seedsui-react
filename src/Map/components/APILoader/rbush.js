@@ -1,3 +1,4 @@
+/* eslint-disable */
 ;(function (f) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = f()
@@ -694,3 +695,4 @@
     [1]
   )(1)
 })
+/* eslint-enable */

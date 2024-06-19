@@ -4,10 +4,10 @@ import locale from './../../../locale'
 function googleGetAddress({ longitude, latitude }) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let latLng = new google.maps.LatLng(latitude, longitude)
+    let latLng = new window.google.maps.LatLng(latitude, longitude)
 
     // 逆解析
-    let geocoder = new google.maps.Geocoder()
+    let geocoder = new window.google.maps.Geocoder()
     geocoder.geocode({ location: latLng }, function (results, status) {
       if (status === 'OK') {
         if (results[0]) {

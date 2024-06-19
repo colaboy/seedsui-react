@@ -6,8 +6,8 @@ import locale from './../../../locale'
 // 搜索附近
 function nearbySearch({ map, keyword, longitude, latitude, radius }) {
   return new Promise(async (resolve) => {
-    const service = new google.maps.places.PlacesService(map)
-    let center = latitude && longitude ? new google.maps.LatLng(latitude, longitude) : null
+    const service = new window.google.maps.places.PlacesService(map)
+    let center = latitude && longitude ? new window.google.maps.LatLng(latitude, longitude) : null
 
     // 构建请求
     const params = {
@@ -27,7 +27,7 @@ function nearbySearch({ map, keyword, longitude, latitude, radius }) {
     }
 
     service[method](params, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
         let list = []
         for (let i = 0; i < results.length; i++) {
           const place = results[i]

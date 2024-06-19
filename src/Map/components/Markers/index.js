@@ -13,6 +13,7 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
 
   useEffect(() => {
     draw()
+    // eslint-disable-next-line
   }, [points])
 
   function draw() {

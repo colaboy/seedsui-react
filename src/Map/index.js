@@ -9,7 +9,7 @@ import Markers from './components/Markers'
 import LocationControl from './components/LocationControl'
 import NearbyControl from './components/NearbyControl'
 
-export default {
+const Map = {
   // utils
   getAddress,
   queryNearby,
@@ -23,3 +23,5 @@ export default {
   LocationControl,
   NearbyControl
 }
+
+export default Map

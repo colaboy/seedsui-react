@@ -12,7 +12,7 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
   }
   return new Promise((resolve) => {
     let bdPoint = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'bd09')
-    bdPoint = new BMap.Point(bdPoint[0], bdPoint[1])
+    bdPoint = new window.BMap.Point(bdPoint[0], bdPoint[1])
     // 创建本地搜索对象
     let local = new window.BMap.LocalSearch(map, {
       pageCapacity: 20,

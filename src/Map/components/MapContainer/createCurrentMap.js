@@ -5,10 +5,10 @@ async function createCurrentMap(container) {
   if (window.BMap) {
     currentMap = new window.BMap.Map(container)
   } else if (window.google) {
-    currentMap = new google.maps.Map(container, {
-      center: new google.maps.LatLng(51.508742, -0.12085),
+    currentMap = new window.google.maps.Map(container, {
+      center: new window.google.maps.LatLng(51.508742, -0.12085),
       zoom: 5,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP
     })
   }
 
