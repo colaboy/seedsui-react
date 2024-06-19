@@ -45,7 +45,11 @@ export default () => {
           getAddress={() => {
             return new Promise((resolve) => {
               setTimeout(() => {
-                resolve({ address: 'hhhhh' })
+                // resolve({
+                //   geoData: { province: '江苏省', provinceNumber: 100010 },
+                //   address: '江苏省'
+                // })
+                resolve('获取地址失败')
               }, 1000)
             })
           }}

@@ -55,8 +55,21 @@ function Main(
     // Bridge.debug = true
     Bridge.getLocation({
       success: async (data) => {
-        let address = await getAddress({ ...(data || {}), getAddress: customGetAddress })
-        setValue({ ...data, ...address })
+        let result = {
+          longitude: data.longitude,
+          latitude: data.latitude,
+          address: data?.address,
+          geoData: data?.geoData
+        }
+        if (!data?.address) {
+          let address = await getAddress({ ...(data || {}), getAddress: customGetAddress })
+          result = {
+            ...result,
+            ...address
+          }
+        }
+
+        setValue(result)
         Loading.hide()
       },
       fail: (res) => {

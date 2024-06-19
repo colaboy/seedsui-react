@@ -1,3 +1,4 @@
+import Toast from './../../../Toast'
 import coordTransform from './coordTransform'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
@@ -37,7 +38,8 @@ async function getAddress({ longitude, latitude, type, getAddress: customGetAddr
 
   // getAddress failed
   if (typeof result === 'string') {
-    return result
+    Toast.show({ content: result })
+    return null
   }
 
   // getAddress success
@@ -47,6 +49,7 @@ async function getAddress({ longitude, latitude, type, getAddress: customGetAddr
     result.latitude = latitude
     result.address = addr
     if (result?.name) result.name = result?.name
+    if (result?.geoData) result.geoData = result?.geoData
   }
   return result
 }

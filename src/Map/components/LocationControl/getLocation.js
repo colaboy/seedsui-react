@@ -1,7 +1,6 @@
 // 测试使用
 // import { locale, Bridge } from 'seedsui-react'
 // 内库使用
-import GeoUtil from './../../../GeoUtil'
 import locale from './../../../locale'
 import Bridge from './../../../Bridge'
 
@@ -16,25 +15,26 @@ function getLocation(options) {
     Bridge.getLocation({
       type: 'wgs84',
       success: async (data) => {
-        let result = null
-        // 已经有位置则不需要再定位
-        if (data?.address) {
-          result = {
-            longitude: data.longitude,
-            latitude: data.latitude,
-            address: data.address
-          }
-          return
+        let result = {
+          longitude: data.longitude,
+          latitude: data.latitude,
+          address: data?.address,
+          geoData: data?.geoData
         }
+
         // 没有位置则获取地址
-        else {
-          result = await getAddress({
+        if (!data?.address) {
+          let address = await getAddress({
             longitude: data.longitude,
             latitude: data.latitude
           })
+          result = {
+            ...result,
+            ...address
+          }
         }
 
-        resolve({ ...result, longitude: result.longitude, latitude: result.latitude })
+        resolve(result)
       },
       fail: (res) => {
         // 赋值
