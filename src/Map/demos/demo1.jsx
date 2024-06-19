@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Map } from 'seedsui-react'
+import { Map, Bridge } from 'seedsui-react'
 const { APILoader } = Map
 
 import Main from './Main'
@@ -7,25 +7,26 @@ import Main from './Main'
 // import getPoints from './getPoints'
 
 export default () => {
-  let [value, setValue] = useState({
-    latitude: 39.907783490367706,
-    longitude: 116.39120737493609,
-    address: 'aa'
-  })
+  Bridge.debug = true
+  let [value, setValue] = useState()
+  // {
+  //   latitude: 39.907783490367706,
+  //   longitude: 116.39120737493609,
+  //   address: 'aa'
+  // }
 
   return (
     <APILoader
-      config={{
-        // type类型 google, bmap, amap, 默认osm
-        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-        type: 'google',
-        // 百度地图
-        // key: '3pTjiH1BXLjASHeBmWUuSF83',
-        // type: 'bmap',
-
-        // 使用当前地图做瓦片图层
-        tileLayerPlugin: true
-      }}
+      config={
+        {
+          // type类型 google, bmap, amap, 默认osm
+          // key: 'xxxx',
+          // type: 'google'
+          // 百度地图
+          // key: 'xxxx',
+          // type: 'bmap'
+        }
+      }
       onSuccess={() => {
         console.log('地图加载成功')
       }}
@@ -35,11 +36,18 @@ export default () => {
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <Main
-          readOnly
+          // readOnly
           value={value}
           onChange={(newValue) => {
             console.log('newValue:', newValue)
             setValue(newValue)
+          }}
+          getAddress={() => {
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                resolve({ address: 'hhhhh' })
+              }, 1000)
+            })
           }}
         />
       </div>

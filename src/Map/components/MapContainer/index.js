@@ -69,34 +69,12 @@ const MapContainer = forwardRef(
         }
       },
       getAddress: async ({ longitude, latitude, type }) => {
-        let result = null
-        if (typeof customGetAddress === 'function') {
-          result = await customGetAddress({
-            longitude,
-            latitude,
-            type
-          })
-        } else {
-          result = await getAddress({
-            longitude,
-            latitude,
-            type
-          })
-        }
-
-        // getAddress failed
-        if (typeof result === 'string') {
-          return result
-        }
-
-        // getAddress success
-        const addr = result?.address || ''
-        if (addr) {
-          result.longitude = longitude
-          result.latitude = latitude
-          result.address = addr
-          if (result?.name) result.name = result?.name
-        }
+        let result = await getAddress({
+          longitude,
+          latitude,
+          type,
+          getAddress: customGetAddress
+        })
         return result
       },
       zoomIn: () => {

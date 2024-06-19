@@ -55,7 +55,7 @@ function Main(
     // Bridge.debug = true
     Bridge.getLocation({
       success: async (data) => {
-        let address = await getAddress(data)
+        let address = await getAddress({ ...(data || {}), getAddress: customGetAddress })
         setValue({ ...data, ...address })
         Loading.hide()
       },
@@ -100,8 +100,10 @@ function Main(
         <CenterMarker
           onDragEnd={async (map) => {
             let center = map.getCenter()
-            // Loading.show()
+            Loading.show()
             let address = await map.getAddress(center)
+            Loading.hide()
+
             let result = { ...center, ...address }
             setValue(result)
 
