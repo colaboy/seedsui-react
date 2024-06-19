@@ -42,17 +42,16 @@ export default () => {
             console.log('newValue:', newValue)
             setValue(newValue)
           }}
-          getAddress={() => {
-            return new Promise((resolve) => {
-              setTimeout(() => {
-                // resolve({
-                //   geoData: { province: '江苏省', provinceNumber: 100010 },
-                //   address: '江苏省'
-                // })
-                resolve('获取地址失败')
-              }, 1000)
-            })
-          }}
+          // getAddress={() => {
+          //   return new Promise((resolve) => {
+          //     setTimeout(() => {
+          //       resolve({
+          //         geoData: { province: '江苏省', provinceNumber: 100010 },
+          //         address: '江苏省'
+          //       })
+          //     }, 1000)
+          //   })
+          // }}
         />
       </div>
     </APILoader>

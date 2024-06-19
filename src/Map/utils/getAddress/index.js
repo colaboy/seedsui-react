@@ -2,8 +2,9 @@ import Toast from './../../../Toast'
 import coordTransform from './coordTransform'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
+import defaultGetAddress from './defaultGetAddress'
 
-async function defaultGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
+async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
   let result = null
 
   // 坐标转换
@@ -33,7 +34,7 @@ async function getAddress({ longitude, latitude, type, getAddress: customGetAddr
       type
     })
   } else {
-    result = await defaultGetAddress({
+    result = await mapApiGetAddress({
       longitude,
       latitude,
       type

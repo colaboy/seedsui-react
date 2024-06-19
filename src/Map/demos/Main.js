@@ -70,6 +70,8 @@ function Main(
         }
 
         setValue(result)
+
+        onChange && onChange(result)
         Loading.hide()
       },
       fail: (res) => {
