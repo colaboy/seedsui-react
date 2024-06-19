@@ -11,7 +11,7 @@ import Notice from './../../../Notice'
 function Main({ active, list, onChange }) {
   return (
     <div className="map-nearbyControl-main">
-      {Array.isArray(list) ? (
+      {Array.isArray(list) && list.length ? (
         list.map((item, index) => {
           return (
             <div

@@ -31,6 +31,8 @@ function nearbySearch({ map, keyword, longitude, latitude, radius }) {
         let list = []
         for (let i = 0; i < results.length; i++) {
           const place = results[i]
+          if (!place.vicinity) continue
+
           let longitude = place.geometry?.location?.lng?.()
           let latitude = place.geometry?.location?.lat?.()
           if (longitude && latitude) {

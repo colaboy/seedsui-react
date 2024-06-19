@@ -19,19 +19,21 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
       onSearchComplete: function (results) {
         // 判断状态是否正确
         if (local.getStatus() === window.BMAP_STATUS_SUCCESS) {
-          let res = []
+          let list = []
           for (let i = 0; i < results.getCurrentNumPois(); i++) {
+            if (!item.address) continue
+
             const item = results.getPoi(i)
             // Leaflet only support wgs84
             let point = GeoUtil.coordtransform([item.point.lng, item.point.lat], 'bd09', 'wgs84')
-            res.push({
+            list.push({
               name: item.title,
               address: item.address,
               longitude: point[0],
               latitude: point[1]
             })
           }
-          resolve(res)
+          resolve(list)
         } else {
           resolve(locale('查询失败'))
         }

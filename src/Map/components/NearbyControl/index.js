@@ -68,10 +68,6 @@ function Nearby(
       radius: radius
     })
     Loading.hide()
-    if (typeof result === 'string') {
-      Toast.show({ content: result })
-      return
-    }
 
     // 刷新列表
     setList(result)
