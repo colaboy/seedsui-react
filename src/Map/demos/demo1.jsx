@@ -35,7 +35,7 @@ export default () => {
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <Main
-          // readOnly
+          readOnly
           value={value}
           onChange={(newValue) => {
             console.log('newValue:', newValue)

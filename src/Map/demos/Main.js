@@ -37,9 +37,9 @@ function Main(
               iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
               shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
               shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-              shadowSize: [33, 33],
-              iconSize: [20, 33],
-              iconAnchor: [10, 16]
+              shadowSize: [39, 39],
+              iconSize: [30, 49],
+              iconAnchor: [15, 25]
             })
           }
         ]
@@ -133,12 +133,12 @@ function Main(
       {/* 缩放控件 */}
       <ZoomControl
         style={{ bottom: readOnly ? '90px' : '135px' }}
-        onZoomIn={(map) => {
-          console.log('放大', map.getZoom())
-        }}
-        onZoomOut={(map) => {
-          console.log('缩小'), map.getZoom()
-        }}
+        // onZoomIn={(map) => {
+        //   console.log('放大', map.getZoom())
+        // }}
+        // onZoomOut={(map) => {
+        //   console.log('缩小'), map.getZoom()
+        // }}
       />
 
       {/* 定位控件 */}

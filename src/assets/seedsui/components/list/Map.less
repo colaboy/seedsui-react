@@ -74,17 +74,12 @@
 
 // 中心标记
 .map-center-marker {
-  background-image: url(//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-position.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 1;
-  width: 44px;
-  height: 50px;
+  width: 30px;
+  height: 49px;
   margin: 0px;
   padding: 0px;
   border: 0px;
@@ -94,8 +89,37 @@
   cursor: pointer;
   user-select: none;
 
+  // Icon
+  &::after {
+    position: relative;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-position.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   &.active {
-    background-image: url(//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png);
+    // Icon
+    &::after {
+      background-image: url(//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png);
+    }
+
+    // Shadow
+    &::before {
+      position: absolute;
+      bottom: 4px;
+      left: 2px;
+      display: block;
+      content: '';
+      width: 35px;
+      height: 35px;
+      background-size: contain;
+      background-image: url(//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png);
+    }
   }
 }
 
