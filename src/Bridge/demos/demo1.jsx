@@ -6,8 +6,8 @@ export default () => {
   const { Main } = Layout
 
   useEffect(() => {
-    Bridge.getBrowserLocation({
-      type: 'gcj02',
+    Bridge.getLocation({
+      // type: 'gcj02',
       success: (result) => {
         console.log(result)
       }

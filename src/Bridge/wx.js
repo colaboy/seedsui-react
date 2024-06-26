@@ -5,8 +5,6 @@ import locale from './../locale'
 import Device from './../Device'
 import Toast from './../Toast'
 
-import BridgeBrowser from './browser'
-
 let self = null
 
 let Bridge = {
@@ -74,8 +72,7 @@ let Bridge = {
   getLocation: function (params = {}) {
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
-      BridgeBrowser.getLocationTask = this.getLocationTask
-      BridgeBrowser.getLocation(params)
+      this.getBrowserLocation(params)
       return
     }
 
@@ -177,12 +174,49 @@ let Bridge = {
     })
   },
   chooseImage: function (params) {
+    // 微信PC端不支持扫码
+    if (Device.device === 'pc') {
+      let errMsg = locale(
+        '请在手机端微信中使用选择图片',
+        'SeedsUI_wechat_use_error',
+        locale('', 'SeedsUI_chooseimage')
+      )
+      Toast.show({
+        content: errMsg
+      })
+      params?.fail?.({ errCode: 'PC_NOT_IMPLENMENTED', errMsg: errMsg })
+      return
+    }
     window.top.wx.chooseImage(params)
   },
   uploadImage: function (params) {
+    // 微信PC端不支持扫码
+    if (Device.device === 'pc') {
+      let errMsg = locale(
+        '请在手机端微信中使用上传图片',
+        'SeedsUI_wechat_use_error',
+        locale('', 'SeedsUI_uploadimage')
+      )
+      Toast.show({
+        content: errMsg
+      })
+      params?.fail?.({ errCode: 'PC_NOT_IMPLENMENTED', errMsg: errMsg })
+      return
+    }
     window.top.wx.uploadImage(params)
   },
   previewImage: function (params) {
+    // 微信PC端不支持扫码
+    if (Device.device === 'pc') {
+      Toast.show({
+        content: locale(
+          '请在手机端微信中使用照片预览',
+          'SeedsUI_wechat_use_error',
+          locale('', 'SeedsUI_previewimage')
+        )
+      })
+      return
+    }
     window.top.wx.previewImage(params)
   },
   /**

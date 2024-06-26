@@ -1,9 +1,10 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 // 测试使用
-// import { Bridge, Preview } from 'seedsui-react'
+// import { Bridge, Device, Preview } from 'seedsui-react'
 
 // 内库使用
 import Preview from './../Preview'
+import Device from './../Device'
 import Bridge from './../Bridge'
 
 import Img from './Img'
@@ -71,25 +72,17 @@ const Image = forwardRef(
         if (goOn === false) return
       }
 
-      // 小程序视频预览
+      // 本地能力预览
       if (
-        type === 'video' &&
-        (Bridge.platform === 'wechatMiniprogram' ||
+        Device.device === 'mobile' &&
+        (Bridge.platform === 'wq' ||
+          Bridge.platform === 'waiqin' ||
+          Bridge.platform === 'wechat' ||
+          Bridge.platform === 'wework' ||
+          Bridge.platform === 'alipay' ||
+          Bridge.platform === 'wechatMiniprogram' ||
           Bridge.platform === 'weworkMiniprogram' ||
           Bridge.platform === 'alipayMiniprogram')
-      ) {
-        setPreviewCurrent(Number(index))
-      }
-      // 本地能力预览
-      else if (
-        Bridge.platform === 'wq' ||
-        Bridge.platform === 'waiqin' ||
-        Bridge.platform === 'wechat' ||
-        Bridge.platform === 'wework' ||
-        Bridge.platform === 'alipay' ||
-        Bridge.platform === 'wechatMiniprogram' ||
-        Bridge.platform === 'weworkMiniprogram' ||
-        Bridge.platform === 'alipayMiniprogram'
       ) {
         if (type === 'video') {
           Bridge.previewFile({ url: item.src })
@@ -101,7 +94,7 @@ const Image = forwardRef(
           })
         }
       }
-      // 浏览器预览
+      // 小视频以及Pc端使用浏览器预览
       else {
         setPreviewCurrent(Number(index))
       }
