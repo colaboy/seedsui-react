@@ -15,6 +15,7 @@ import Loading from './../Loading/instance.js'
 // @deprecated Toast use Toast.show instead
 import ToastInstance from './../Toast/instance.js'
 
+import GeoUtil from './../GeoUtil'
 import locale from './../locale'
 
 // 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
@@ -273,14 +274,21 @@ let Bridge = {
       console.log('调用浏览器定位...')
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          console.log('调用浏览器定位成功', position)
+          let longitude = position.coords.longitude
+          let latitude = position.coords.latitude
+          if (params.type === 'gcj02') {
+            const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
+            longitude = points[0]
+            latitude = points[1]
+          }
           let res = {
             errMsg: 'getLocation:ok',
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-            speed: '0.0',
-            accuracy: '3.0.0'
+            speed: position.coords.speed,
+            accuracy: position.coords.accuracy,
+            longitude: longitude,
+            latitude: latitude
           }
-          console.log('调用浏览器定位成功', res)
           if (params.success) params.success(res)
           self.getLocationTask(res)
         },

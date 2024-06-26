@@ -6,7 +6,12 @@ export default () => {
   const { Main } = Layout
 
   useEffect(() => {
-    Bridge.getLocation()
+    Bridge.getBrowserLocation({
+      type: 'gcj02',
+      success: (result) => {
+        console.log(result)
+      }
+    })
     Bridge.ready(() => {
       console.log(window.top.wx)
     })
