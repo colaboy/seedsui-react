@@ -94,7 +94,7 @@ const Image = forwardRef(
           })
         }
       }
-      // 小视频以及Pc端使用浏览器预览
+      // PC端和其它平台使用浏览器预览
       else {
         setPreviewCurrent(Number(index))
       }
