@@ -59,8 +59,20 @@ let Bridge = {
       window.top.wx.onHistoryBack(params) // eslint-disable-line
     }
   },
-  // 导航
+  // 地图查看
   openLocation: function (params) {
+    // 微信PC端不支持地图查看
+    if (Device.device === 'pc') {
+      Toast.show({
+        content: locale(
+          '请在手机端微信中使用打开地图',
+          'SeedsUI_wechat_use_error',
+          locale('', 'SeedsUI_openmap')
+        )
+      })
+      return
+    }
+
     window.top.wx.openLocation(params) // eslint-disable-line
   },
   /**
@@ -72,7 +84,8 @@ let Bridge = {
   getLocation: function (params = {}) {
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
-      this.getBrowserLocation(params)
+      console.log('PC端微信定位...', params)
+      this.getBrowserLocation?.(params)
       return
     }
 
@@ -187,6 +200,7 @@ let Bridge = {
       params?.fail?.({ errCode: 'PC_NOT_IMPLENMENTED', errMsg: errMsg })
       return
     }
+
     window.top.wx.chooseImage(params)
   },
   uploadImage: function (params) {
@@ -229,6 +243,18 @@ let Bridge = {
    * }
    */
   previewFile: function (params) {
+    // 微信PC端不支持预览文件
+    if (Device.device === 'pc') {
+      Toast.show({
+        content: locale(
+          '请在手机端微信中使用文件预览',
+          'SeedsUI_wechat_use_error',
+          locale('', 'SeedsUI_previewfile')
+        )
+      })
+      return
+    }
+
     window.top.wx.previewFile(params)
   }
 }
