@@ -274,9 +274,17 @@ let Bridge = {
       console.log('调用浏览器定位...')
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log('调用浏览器定位成功', position)
           let longitude = position.coords.longitude
           let latitude = position.coords.latitude
+          if (!longitude || !latitude) {
+            if (params.fail)
+              params.fail({
+                errCode: 'LATLNG_ERROR',
+                errMsg: `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
+              })
+          }
+
+          console.log('调用浏览器定位成功', longitude, latitude)
           if (params.type === 'gcj02') {
             const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
             longitude = points[0]
@@ -293,15 +301,18 @@ let Bridge = {
           self.getLocationTask(res)
         },
         (error) => {
+          let errCode = ''
           let errMsg = ''
           switch (error.code) {
             case error.PERMISSION_DENIED:
+              errCode = 'PERMISSION_DENIED'
               errMsg = `getLocation:fail ${locale(
                 '定位失败,用户拒绝请求地理定位',
                 'SeedsUI_location_permission_denied_error'
               )}`
               break
             case error.POSITION_UNAVAILABLE:
+              errCode = 'POSITION_UNAVAILABLE'
               console.log(
                 `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unavailable_error')}`
               )
@@ -311,6 +322,7 @@ let Bridge = {
               )}`
               break
             case error.TIMEOUT:
+              errCode = 'TIMEOUT'
               console.log(
                 `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
               )
@@ -320,6 +332,7 @@ let Bridge = {
               )}`
               break
             case error.UNKNOWN_ERROR:
+              errCode = 'UNKNOWN_ERROR'
               console.log(
                 `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
               )
@@ -329,18 +342,19 @@ let Bridge = {
               )}`
               break
             default:
+              errCode = 'LOCATION_ERROR'
               console.log(`${locale('定位失败', 'SeedsUI_location_failed')}`)
               errMsg = `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
           }
-          let res = { errMsg: errMsg }
+          let res = { errCode: errCode, errMsg: errMsg }
           console.log('调用浏览器定位失败', res)
           if (params.fail) params.fail(res)
           self?.getLocationTask?.(res)
         },
         {
-          enableHighAcuracy: true, // 指示浏览器获取高精度的位置，默认为false
-          timeout: 5000, // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
-          maximumAge: 2000 // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+          enableHighAccuracy: true, // 指示浏览器获取高精度的位置，默认为false
+          timeout: 8000, // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+          maximumAge: 0 // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
         }
       )
     } else {
