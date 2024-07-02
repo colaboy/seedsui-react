@@ -1,5 +1,4 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import getLocation from './../../utils/getLocation'
 
 // 测试使用
 // import { locale, Loading, Toast } from 'seedsui-react'
@@ -28,7 +27,12 @@ function LocationControl({ map, onChange, ...props }, ref) {
       Loading.show({
         content: locale('定位中...', 'SeedsUI_positioning')
       })
-      let result = await getLocation()
+      // 定位
+      let result = await map.getLocation()
+      // 获取地址
+      if (typeof result === 'object') {
+        result = await map.getAddress(result)
+      }
       resolve(result)
       Loading.hide()
     })

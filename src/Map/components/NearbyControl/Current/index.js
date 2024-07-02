@@ -26,6 +26,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
             {value?.name || locale('当前位置', 'SeedsUI_current_location')}
           </div>
           <Navigation
+            map={map}
             longitude={value?.longitude}
             latitude={value?.latitude}
             address={value?.address}

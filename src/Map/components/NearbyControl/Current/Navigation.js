@@ -9,40 +9,48 @@ import Bridge from './../../../../Bridge'
 import locale from './../../../../locale'
 
 // 导航
-function Navigation({ longitude, latitude, name, address }) {
-  function handleClick() {
+function Navigation({
+  map,
+  // 终点位置
+  longitude,
+  latitude,
+  name,
+  address
+}) {
+  async function handleClick() {
     Loading.show({
       content: locale('定位中...', 'SeedsUI_positioning')
     })
-    // 开始定位
-    Bridge.getLocation({
-      type: 'gcj02',
-      success: async (data) => {
-        Loading.hide()
-        Bridge.openLocation({
-          slatitude: data.latitude, // 起点纬度
-          slongitude: data.longitude, // 起点经度
-          sname: data.address || locale('当前位置', 'SeedsUI_current_location'), // 起点名
-          latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
-          longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
-          name: name || address, // 位置名
-          address: address, // 地址详情说明
-          scale: 1 // 地图缩放级别,整形值,范围从1~28。默认为16
-        })
-      },
-      fail: (res) => {
-        Loading.hide()
-        // 赋值
-        Toast.show({
-          content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
-        })
-      },
-      complete: () => {
-        Loading.hide()
-      }
+    // 当前位置
+    let result = await map.getLocation()
+    if (typeof result === 'object') {
+      result = await map.getAddress(result)
+    }
+    Loading.hide()
+
+    // 定位失败
+    if (typeof result === 'string') {
+      // 赋值
+      Toast.show({
+        content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+      })
+      return
+    }
+
+    Bridge.openLocation({
+      slatitude: result.latitude, // 起点纬度
+      slongitude: result.longitude, // 起点经度
+      sname: result.address || locale('当前位置', 'SeedsUI_current_location'), // 起点名
+      latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
+      longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
+      name: name || address, // 终点位置名
+      address: address, // 地址详情说明
+      scale: 1 // 地图缩放级别,整形值,范围从1~28。默认为16
     })
   }
+
   if (!longitude || !latitude) return null
+
   // 不支持的平台不显示
   if (
     Bridge.platform !== 'wechat' &&
@@ -52,6 +60,7 @@ function Navigation({ longitude, latitude, name, address }) {
   ) {
     return null
   }
+
   return (
     <span className="mappage-navigation" onClick={handleClick}>
       <i className="mappage-navigation-icon"></i>

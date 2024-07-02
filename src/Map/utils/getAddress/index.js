@@ -22,12 +22,7 @@ async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' 
 
 // 地址逆解析
 async function getAddress({ longitude, latitude, type = 'wgs84' }) {
-  let result = {
-    longitude,
-    latitude
-  }
-
-  result = await mapApiGetAddress({
+  let result = await mapApiGetAddress({
     longitude,
     latitude,
     type
@@ -36,10 +31,15 @@ async function getAddress({ longitude, latitude, type = 'wgs84' }) {
   // getAddress failed
   if (typeof result === 'string') {
     Toast.show({ content: result })
-    return null
+    return result
   }
 
-  return result
+  return {
+    longitude,
+    latitude,
+    type,
+    ...result
+  }
 }
 
 export default getAddress

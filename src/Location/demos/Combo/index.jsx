@@ -65,29 +65,30 @@ export default () => {
       <Location.Combo
         // editable
         // 地址逆解析
-        // geocoder={(data) => {
-        //   if (data?.value) {
-        //     console.log(data)
-        //     return data
-        //   }
-        //   return new Promise((resolve) => {
-        //     setTimeout(() => {
-        //       resolve({
-        //         longitude: 118.74,
-        //         latitude: 31.99,
-        //         province: '江苏',
-        //         provinceNumber: '',
-        //         city: '南京',
-        //         cityNumber: '',
-        //         district: '建邺',
-        //         districtNumber: '',
-        //         street: '街道',
-        //         streetNumber: '',
-        //         address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
-        //       })
-        //     }, 1000)
-        //   })
-        // }}
+        getLocation={({ getAddress, type }) => {}}
+        getAddress={(data) => {
+          if (data?.value) {
+            console.log(data)
+            return data
+          }
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve({
+                longitude: 118.74,
+                latitude: 31.99,
+                province: '江苏',
+                provinceNumber: '',
+                city: '南京',
+                cityNumber: '',
+                district: '建邺',
+                districtNumber: '',
+                street: '街道',
+                streetNumber: '',
+                address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
+              })
+            }, 1000)
+          })
+        }}
         ak="3pTjiH1BXLjASHeBmWUuSF83"
         // modal="page"
         MainProps={{

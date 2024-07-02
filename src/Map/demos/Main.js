@@ -1,8 +1,6 @@
 import React, { forwardRef, useRef, useEffect, useState } from 'react'
 import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
-  getAddress: defaultGetAddress,
-  getLocation: defaultGetLocation,
   MapContainer,
   ZoomControl,
   SearchControl,
@@ -16,6 +14,7 @@ function Main(
   {
     readOnly,
     autoLocation = true,
+    // 获取定位和地址工具类
     getAddress,
     getLocation,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
@@ -25,10 +24,6 @@ function Main(
   },
   ref
 ) {
-  // 获取定位和地址工具类
-  if (typeof getAddress !== 'function') getAddress = defaultGetAddress
-  if (typeof getLocation !== 'function') getLocation = defaultGetLocation
-
   // 地图容器
   const mapRef = useRef(null)
 
@@ -47,20 +42,16 @@ function Main(
   // Marker
   let [points, setPoints] = useState(null)
 
-  // value没值时，开启自动定位，则先定位
-  useEffect(() => {
-    if (readOnly || !autoLocation || value?.address) return
-
-    // 当前位置
-    handleAutoLocation()
-  }, [])
-
   // 获取当前位置
   async function handleAutoLocation() {
     // 默认选中当前位置
     Loading.show()
-    let result = await getLocation({ getAddress })
+    let result = await mapRef.current?.getLocation?.()
+    if (typeof result === 'object') {
+      result = await mapRef.current?.getAddress?.(result)
+    }
     Loading.hide()
+
     if (typeof result === 'string') {
       Toast.show({
         content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
@@ -81,11 +72,21 @@ function Main(
       // onMoveEnd={(map) => {
       //   console.log('获取中心点:', map.getCenter())
       // }}
+      // 自定义获取地址和定位
+      getAddress={getAddress}
+      getLocation={getLocation}
       // 基准路径
       iconOptions={{
         imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
       }}
       {...props}
+      onLoad={() => {
+        // value没值时，开启自动定位，则先定位
+        if (readOnly || !autoLocation || value?.address) return
+
+        // 当前位置
+        handleAutoLocation()
+      }}
     >
       {/* 搜索控件 */}
       <SearchControl
@@ -102,11 +103,17 @@ function Main(
         <CenterMarker
           onDragEnd={async (map) => {
             let center = map.getCenter()
+            let result = {
+              ...center
+            }
+
             Loading.show()
-            let address = await getAddress(center)
+            let address = await map.getAddress(center)
             Loading.hide()
 
-            let result = { ...center, ...address }
+            if (typeof address === 'object') {
+              result = { ...result, ...address }
+            }
             setValue(result)
 
             onChange && onChange(result)

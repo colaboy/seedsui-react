@@ -3,6 +3,8 @@ import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
+import defaultGetAddress from './../../utils/getAddress'
+import defaultGetLocation from './../../utils/getLocation'
 
 import Result from './../Result'
 
@@ -17,7 +19,11 @@ const MapContainer = forwardRef(
       iconOptions = {
         // imagePath: 'marker basic path'
       },
+      // 自定义获取地址和定位
+      getAddress,
+      getLocation,
       // events
+      onLoad,
       onZoomStart,
       onZoom,
       onZoomEnd,
@@ -33,6 +39,10 @@ const MapContainer = forwardRef(
     },
     ref
   ) => {
+    // 指定获取定位和地址的方法
+    if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+
     const rootRef = useRef(null)
     // canvas marker plugin
     const canvasMarkerRef = useRef(null)
@@ -50,6 +60,9 @@ const MapContainer = forwardRef(
       // Dynamic props
       currentMap: null,
       leafletMap: null,
+      // 指定获取定位和地址的方法
+      getAddress: getAddress,
+      getLocation: getLocation,
       // Functions
       setView: (...params) => {
         leafletMap?.setView(...params)
@@ -62,7 +75,8 @@ const MapContainer = forwardRef(
         let latlng = leafletMap?.getCenter()
         return {
           latitude: latlng.lat,
-          longitude: latlng.lng
+          longitude: latlng.lng,
+          type: 'wgs84'
         }
       },
       zoomIn: () => {
@@ -221,6 +235,7 @@ const MapContainer = forwardRef(
       // Load leafletMap failed
       if (typeof leafletMap === 'string') {
         setLeafletMap(leafletMap)
+        onLoad && onLoad(leafletMap)
         return
       }
 
@@ -249,6 +264,9 @@ const MapContainer = forwardRef(
 
       // Render children
       setLeafletMap(leafletMap)
+
+      // onLoad event
+      onLoad && onLoad(APIRef.current)
     }
 
     // Bind events

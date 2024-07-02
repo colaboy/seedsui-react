@@ -7,21 +7,34 @@ import React, {
   Fragment
 } from 'react'
 import Modal from './../Modal'
-import { getLocation } from './../Main/utils'
 
 // 测试使用
-// import { locale, Input } from 'seedsui-react'
+// import { locale, Input, Map } from 'seedsui-react'
 // 内库使用
+import Map from './../../Map'
 import Input from './../../Input'
 import locale from './../../locale'
+
+const { getAddress: defaultGetAddress, getLocation: defaultGetLocation } = Map
 
 // 定位控件
 const LocationCombo = forwardRef(
   (
     {
-      ak, // 地图预览和选择地点时需要传入, 如果地图已经加载, 则不需要传入ak
-      // 自定义地址逆解析
-      geocoder,
+      // 坐标类型
+      type = 'gcj02',
+      // 地图加载修改
+      config = {
+        // type类型 google, bmap, amap, 默认osm
+        // key: '',
+        // type: 'google'
+        // 百度地图
+        key: '',
+        type: 'bmap'
+      },
+      // 获取定位和地址工具类
+      getAddress,
+      getLocation,
       // 显示定位按钮
       locationVisible = true,
       // 自动定位
@@ -61,6 +74,10 @@ const LocationCombo = forwardRef(
     },
     ref
   ) => {
+    // 获取定位和地址工具类
+    if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+
     // 错误信息
     const errMsgRef = useRef(failText)
 
@@ -118,7 +135,7 @@ const LocationCombo = forwardRef(
       // 有经纬度, 补充address
       if (value && value.latitude && value.longitude) {
         // 有地址, 则定位完成
-        if (value.value) {
+        if (value.value || value.address) {
           if (onChangeRef?.current) {
             onChangeRef.current(value)
           }
@@ -128,10 +145,10 @@ const LocationCombo = forwardRef(
           locationStatus = '-1'
           setLocationStatus('-1') // 定位中...
 
-          let newValue = await getLocation({
-            geocoder: geocoder,
+          let newValue = await getAddress({
             latitude: value.latitude,
-            longitude: value.longitude
+            longitude: value.longitude,
+            type: type
           })
 
           updateValue(newValue)
@@ -198,6 +215,10 @@ const LocationCombo = forwardRef(
       else {
         locationStatus = '1'
         setLocationStatus('1')
+
+        if (newValue.address && !newValue.value) {
+          newValue.value = newValue.address
+        }
         // 回调onChange
         onChangeRef?.current && onChangeRef.current(newValue)
       }
@@ -214,8 +235,13 @@ const LocationCombo = forwardRef(
 
       // 开始定位
       let newValue = await getLocation({
-        geocoder: geocoder
+        type: type
       })
+
+      // 获取地址信息
+      if (newValue?.latitude && newValue?.longitude) {
+        newValue = await getAddress(newValue)
+      }
 
       updateValue(newValue)
     }
@@ -313,11 +339,12 @@ const LocationCombo = forwardRef(
               newValue = {}
             }
             newValue.value = address
+            newValue.address = address
             if (onChange) onChange(newValue)
           }}
           // eslint-disable-next-line
           children={statusNode}
-          value={value && typeof value === 'object' ? value?.value || '' : value || ''}
+          value={value?.value || value?.address || ''}
           {...props}
           ricon={<>{getRiconNode()}</>}
           inputProps={Object.assign({}, inputProps, {
@@ -330,7 +357,7 @@ const LocationCombo = forwardRef(
         />
         {/* 地图预览与选择 */}
         <ModalNode
-          ak={ak}
+          ak={config?.key}
           portal={portal}
           value={value}
           modal={modal}
@@ -343,12 +370,12 @@ const LocationCombo = forwardRef(
             }
             // 清空值
             else {
-              onChange && onChange(newValue)
+              onChange && onChange(null)
             }
           }}
           MainProps={MainProps}
           MainComponent={MainComponent}
-          geocoder={geocoder}
+          geocoder={getAddress}
           {...(ModalProps || {})}
         />
       </Fragment>
