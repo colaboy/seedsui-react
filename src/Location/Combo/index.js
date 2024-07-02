@@ -239,8 +239,11 @@ const LocationCombo = forwardRef(
       })
 
       // 获取地址信息
-      if (newValue?.latitude && newValue?.longitude) {
-        newValue = await getAddress(newValue)
+      if (typeof newValue === 'object') {
+        newValue = await getAddress({
+          ...newValue,
+          type: type
+        })
       }
 
       updateValue(newValue)

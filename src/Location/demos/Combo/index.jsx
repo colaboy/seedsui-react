@@ -64,8 +64,15 @@ export default () => {
     <>
       <Location.Combo
         // editable
-        // 地址逆解析
-        getLocation={({ getAddress, type }) => {}}
+        // 获取定位和地址工具类
+        // type="wgs84"
+        config={{
+          key: '',
+          type: 'bmap'
+        }}
+        getLocation={({ type }) => {
+          return { longitude: 116.397451, latitude: 39.909187, type: type }
+        }}
         getAddress={(data) => {
           if (data?.value) {
             console.log(data)
@@ -89,7 +96,6 @@ export default () => {
             }, 1000)
           })
         }}
-        ak="3pTjiH1BXLjASHeBmWUuSF83"
         // modal="page"
         MainProps={{
           autoLocation: false

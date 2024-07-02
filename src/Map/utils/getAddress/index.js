@@ -21,7 +21,14 @@ async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' 
 }
 
 // 地址逆解析
-async function getAddress({ longitude, latitude, type = 'wgs84' }) {
+async function getAddress(options) {
+  const { longitude, latitude, type = 'wgs84' } = options || {}
+
+  // 已存在地址则不需要解析
+  if (options?.address) {
+    return options
+  }
+
   let result = await mapApiGetAddress({
     longitude,
     latitude,
