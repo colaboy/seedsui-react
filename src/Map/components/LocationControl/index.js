@@ -27,9 +27,8 @@ function LocationControl({ map, onChange, ...props }, ref) {
       Loading.show({
         content: locale('定位中...', 'SeedsUI_positioning')
       })
-      // 定位
-      let result = await map.getLocation()
-      // 获取地址
+      // 当前位置
+      let result = await map.getLocation({ type: 'wgs84' })
       if (typeof result === 'object') {
         result = await map.getAddress(result)
       }

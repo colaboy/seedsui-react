@@ -43,12 +43,18 @@ export default () => {
             console.log('newValue:', newValue)
             setValue(newValue)
           }}
-          // getAddress={() => {
+          getLocation={(data) => {
+            console.log(data)
+            return { latitude: 35.689487, longitude: 139.691706 }
+          }}
+          // getAddress={(data) => {
           //   return new Promise((resolve) => {
           //     setTimeout(() => {
           //       resolve({
-          //         data: { province: '江苏省', provinceNumber: 100010 },
-          //         address: '江苏省'
+          //         ...data,
+          //         province: '江苏省',
+          //         provinceNumber: 100010,
+          //         address: '江苏省11'
           //       })
           //     }, 1000)
           //   })

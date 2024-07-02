@@ -22,7 +22,7 @@ function Navigation({
       content: locale('定位中...', 'SeedsUI_positioning')
     })
     // 当前位置
-    let result = await map.getLocation()
+    let result = await map.getLocation({ type: 'wgs84' })
     if (typeof result === 'object') {
       result = await map.getAddress(result)
     }
