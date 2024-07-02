@@ -1,8 +1,8 @@
 import React, { forwardRef, useRef, useEffect, useState } from 'react'
-import { Map, Bridge, Toast, Loading, locale } from 'seedsui-react'
+import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
-  getAddress,
-  APILoader,
+  getAddress: defaultGetAddress,
+  getLocation: defaultGetLocation,
   MapContainer,
   ZoomControl,
   SearchControl,
@@ -16,7 +16,8 @@ function Main(
   {
     readOnly,
     autoLocation = true,
-    getAddress: customGetAddress,
+    getAddress,
+    getLocation,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
     value: defaultValue,
     onChange,
@@ -24,8 +25,16 @@ function Main(
   },
   ref
 ) {
+  // 获取定位和地址工具类
+  if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+  if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+
   const mapRef = useRef(null)
+
+  // Map center and NearbyControl
   let [value, setValue] = useState(defaultValue)
+
+  // Marker
   let [points, setPoints] = useState(
     readOnly && defaultValue
       ? [
@@ -50,39 +59,26 @@ function Main(
   useEffect(() => {
     if (!autoLocation || value?.address) return
 
-    Loading.show()
-    // 默认选中当前位置
-    // Bridge.debug = true
-    Bridge.getLocation({
-      success: async (data) => {
-        let result = {
-          longitude: data.longitude,
-          latitude: data.latitude,
-          address: data?.address,
-          geoData: data?.geoData
-        }
-        if (!data?.address) {
-          let address = await getAddress({ ...(data || {}), getAddress: customGetAddress })
-          result = {
-            ...result,
-            ...address
-          }
-        }
-
-        setValue(result)
-
-        onChange && onChange(result)
-        Loading.hide()
-      },
-      fail: (res) => {
-        Loading.hide()
-        // 赋值
-        Toast.show({
-          content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
-        })
-      }
-    })
+    // 当前位置
+    currentLocation()
   }, [])
+
+  // 获取当前位置
+  async function currentLocation() {
+    // 默认选中当前位置
+    Loading.show()
+    let result = await getLocation({ getAddress })
+    Loading.hide()
+    if (typeof result === 'string') {
+      Toast.show({
+        content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+      })
+    } else {
+      setValue(result)
+
+      onChange && onChange(result)
+    }
+  }
 
   return (
     <MapContainer
@@ -90,7 +86,6 @@ function Main(
       ref={mapRef}
       center={value}
       zoom={14}
-      getAddress={customGetAddress}
       // onMoveEnd={(map) => {
       //   console.log('获取中心点:', map.getCenter())
       // }}
@@ -116,7 +111,7 @@ function Main(
           onDragEnd={async (map) => {
             let center = map.getCenter()
             Loading.show()
-            let address = await map.getAddress(center)
+            let address = await getAddress(center)
             Loading.hide()
 
             let result = { ...center, ...address }
@@ -149,7 +144,7 @@ function Main(
 
       {/* 缩放控件 */}
       <ZoomControl
-        style={{ bottom: readOnly ? '90px' : '135px' }}
+        style={{ bottom: readOnly ? '90px' : '145px' }}
         // onZoomIn={(map) => {
         //   console.log('放大', map.getZoom())
         // }}
@@ -161,7 +156,7 @@ function Main(
       {/* 定位控件 */}
       {readOnly ? null : (
         <LocationControl
-          style={{ bottom: '135px' }}
+          style={{ bottom: '145px' }}
           onChange={(result) => {
             // console.log('定位完成:', result)
             setValue(result)

@@ -17,16 +17,14 @@ export default () => {
 
   return (
     <APILoader
-      config={
-        {
-          // type类型 google, bmap, amap, 默认osm
-          // key: 'xxxx',
-          // type: 'google'
-          // 百度地图
-          // key: 'xxxx',
-          // type: 'bmap'
-        }
-      }
+      config={{
+        // type类型 google, bmap, amap, 默认osm
+        // key: 'AIzaSyCpl3yp1f43HzwS1WBUCjBVdjb7IxXCXns',
+        // type: 'google'
+        // 百度地图
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        type: 'bmap'
+      }}
       onSuccess={() => {
         console.log('地图加载成功')
       }}
@@ -46,7 +44,7 @@ export default () => {
           //   return new Promise((resolve) => {
           //     setTimeout(() => {
           //       resolve({
-          //         geoData: { province: '江苏省', provinceNumber: 100010 },
+          //         data: { province: '江苏省', provinceNumber: 100010 },
           //         address: '江苏省'
           //       })
           //     }, 1000)

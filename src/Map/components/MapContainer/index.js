@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import getAddress from './../../utils/getAddress'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
@@ -18,8 +17,6 @@ const MapContainer = forwardRef(
       iconOptions = {
         // imagePath: 'marker basic path'
       },
-      // getAddress
-      getAddress: customGetAddress,
       // events
       onZoomStart,
       onZoom,
@@ -67,15 +64,6 @@ const MapContainer = forwardRef(
           latitude: latlng.lat,
           longitude: latlng.lng
         }
-      },
-      getAddress: async ({ longitude, latitude, type }) => {
-        let result = await getAddress({
-          longitude,
-          latitude,
-          type,
-          getAddress: customGetAddress
-        })
-        return result
       },
       zoomIn: () => {
         leafletMap?.zoomIn()

@@ -3,14 +3,16 @@
 // 内库使用
 import locale from './../../../locale'
 import Bridge from './../../../Bridge'
+import defaultGetAddress from './../getAddress'
 
 // 定位
-function getLocation(options) {
-  const { getAddress } = options || {}
+function getLocation({ getAddress } = options || {}) {
+  if (typeof getAddress !== 'function') {
+    getAddress = defaultGetAddress
+  }
 
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    Bridge.debug = true
     // 开始定位
     Bridge.getLocation({
       type: 'wgs84',
@@ -19,11 +21,11 @@ function getLocation(options) {
           longitude: data.longitude,
           latitude: data.latitude,
           address: data?.address,
-          geoData: data?.geoData
+          data: data?.data
         }
 
         // 没有位置则获取地址
-        if (!data?.address) {
+        if (!data?.address && getAddress) {
           let address = await getAddress({
             longitude: data.longitude,
             latitude: data.latitude

@@ -21,25 +21,17 @@ async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' 
 }
 
 // 地址逆解析
-async function getAddress({ longitude, latitude, type, getAddress: customGetAddress }) {
+async function getAddress({ longitude, latitude, type = 'wgs84' }) {
   let result = {
     longitude,
     latitude
   }
 
-  if (typeof customGetAddress === 'function') {
-    result = await customGetAddress({
-      longitude,
-      latitude,
-      type
-    })
-  } else {
-    result = await mapApiGetAddress({
-      longitude,
-      latitude,
-      type
-    })
-  }
+  result = await mapApiGetAddress({
+    longitude,
+    latitude,
+    type
+  })
 
   // getAddress failed
   if (typeof result === 'string') {
