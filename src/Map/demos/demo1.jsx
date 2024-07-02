@@ -22,10 +22,10 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: 'AIzaSyCpl3yp1f43HzwS1WBUCjBVdjb7IxXCXns',
+        // key: '',
         // type: 'google'
         // 百度地图
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
+        key: '',
         type: 'bmap'
       }}
       onSuccess={() => {
