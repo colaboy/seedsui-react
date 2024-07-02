@@ -17,19 +17,20 @@ function Nearby(
     map,
     radius,
     readOnly,
-    value = {
-      name: '',
-      address: '',
-      longitude: '',
-      latitude: ''
-    },
+    value,
+    // {
+    //   name: '',
+    //   address: '',
+    //   longitude: '',
+    //   latitude: ''
+    // }
     onChange,
     onLoad
   },
   ref
 ) {
   // 容器
-  const nearbyRef = useRef(null)
+  const rootRef = useRef(null)
 
   const [list, setList] = useState(null)
   const [tab, setTab] = useState(getTabs()[0])
@@ -38,12 +39,15 @@ function Nearby(
   // 节点
   useImperativeHandle(ref, () => {
     return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current,
       reload: loadData
     }
   })
 
   // 初始化、切换tab更新附近的点
   useEffect(() => {
+    // 只读、参数不全、加载中则不加载数据
     if (readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
 
     loadData()
@@ -72,7 +76,7 @@ function Nearby(
     setList(result)
 
     // 重置滚动条
-    let contentDOM = nearbyRef.current.querySelector('.map-nearbyControl-main')
+    let contentDOM = rootRef.current.querySelector('.map-nearbyControl-main')
     if (contentDOM) {
       contentDOM.scrollTop = 0
     }
@@ -81,7 +85,7 @@ function Nearby(
   }
 
   return (
-    <div className={`map-nearbyControl`} ref={nearbyRef}>
+    <div className={`map-nearbyControl`} ref={rootRef}>
       {/* 当前位置 */}
       <Current
         map={map}

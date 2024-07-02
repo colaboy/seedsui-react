@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import Page from './Page'
 
 // 测试使用
@@ -7,12 +7,25 @@ import Page from './Page'
 import locale from './../../../locale'
 
 // 搜索
-function SearchControl({ map, onChange }) {
+function SearchControl({ map, onChange }, ref) {
+  // 容器
+  const rootRef = useRef(null)
+
+  // 搜索结果页面显隐
   const [visible, setVisible] = useState(false)
+
+  // 节点
+  useImperativeHandle(ref, () => {
+    return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current
+    }
+  })
 
   return (
     <>
       <div
+        ref={rootRef}
         className="map-searchControl-navigation"
         onClick={() => {
           setVisible(!visible)
@@ -25,4 +38,4 @@ function SearchControl({ map, onChange }) {
     </>
   )
 }
-export default SearchControl
+export default forwardRef(SearchControl)

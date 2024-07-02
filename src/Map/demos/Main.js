@@ -29,35 +29,27 @@ function Main(
   if (typeof getAddress !== 'function') getAddress = defaultGetAddress
   if (typeof getLocation !== 'function') getLocation = defaultGetLocation
 
+  // 地图容器
   const mapRef = useRef(null)
+
+  // 附近的点
+  const nearbyRef = useRef(null)
+
+  // 定位
+  const locationRef = useRef(null)
+
+  // 放大缩小
+  const zoomRef = useRef(null)
 
   // Map center and NearbyControl
   let [value, setValue] = useState(defaultValue)
 
   // Marker
-  let [points, setPoints] = useState(
-    readOnly && defaultValue
-      ? [
-          {
-            ...defaultValue,
-            icon: window.L.icon({
-              active: true,
-              iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-              iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-              shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-              shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-              shadowSize: [39, 39],
-              iconSize: [30, 49],
-              iconAnchor: [15, 25]
-            })
-          }
-        ]
-      : null
-  )
+  let [points, setPoints] = useState(null)
 
   // value没值时，开启自动定位，则先定位
   useEffect(() => {
-    if (!autoLocation || value?.address) return
+    if (readOnly || !autoLocation || value?.address) return
 
     // 当前位置
     currentLocation()
@@ -123,28 +115,49 @@ function Main(
       )}
 
       {/* 标注点 */}
-      <Markers
-        points={points}
-        // onClick={(e) => {
-        //   console.log('点击marker:', e)
-        //   // e.remove()
-        //   let newMarkerIcon = window.L.icon({
-        //     active: true,
-        //     iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-        //     iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-        //     shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-        //     shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-        //     shadowSize: [33, 33],
-        //     iconSize: [20, 33],
-        //     iconAnchor: [10, 16]
-        //   })
-        //   e.setIcon(newMarkerIcon, { multiple: true })
-        // }}
-      />
+      {readOnly ? (
+        <Markers
+          points={[
+            {
+              ...defaultValue,
+              icon: window.L.icon({
+                active: true,
+                iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+                iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+                shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+                shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+                shadowSize: [39, 39],
+                iconSize: [30, 49],
+                iconAnchor: [15, 25]
+              })
+            }
+          ]}
+        />
+      ) : (
+        <Markers
+          points={points}
+          // onClick={(e) => {
+          //   console.log('点击marker:', e)
+          //   // e.remove()
+          //   let newMarkerIcon = window.L.icon({
+          //     active: true,
+          //     iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+          //     iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+          //     shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+          //     shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+          //     shadowSize: [33, 33],
+          //     iconSize: [20, 33],
+          //     iconAnchor: [10, 16]
+          //   })
+          //   e.setIcon(newMarkerIcon, { multiple: true })
+          // }}
+        />
+      )}
 
       {/* 缩放控件 */}
       <ZoomControl
-        style={{ bottom: readOnly ? '90px' : '145px' }}
+        ref={zoomRef}
+        style={{ bottom: readOnly ? '105px' : '135px' }}
         // onZoomIn={(map) => {
         //   console.log('放大', map.getZoom())
         // }}
@@ -156,7 +169,8 @@ function Main(
       {/* 定位控件 */}
       {readOnly ? null : (
         <LocationControl
-          style={{ bottom: '145px' }}
+          ref={locationRef}
+          style={{ bottom: '135px' }}
           onChange={(result) => {
             // console.log('定位完成:', result)
             setValue(result)
@@ -168,15 +182,22 @@ function Main(
 
       {/* 附近控件 */}
       <NearbyControl
+        ref={nearbyRef}
         readOnly={readOnly}
         value={value}
         radius={1000}
         onChange={(item) => {
           // console.log('选中点:', item)
-
           onChange && onChange(item)
         }}
         onLoad={(list) => {
+          // 间距调整
+          let bottom = nearbyRef.current.rootDOM.clientHeight
+          if (bottom) {
+            bottom = bottom + 20 + 'px'
+            if (locationRef.current?.rootDOM) locationRef.current.rootDOM.style.bottom = bottom
+            if (zoomRef.current?.rootDOM) zoomRef.current.rootDOM.style.bottom = bottom
+          }
           setPoints(list)
         }}
       />

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import getLocation from './../../utils/getLocation'
 
 // 测试使用
@@ -10,8 +10,13 @@ import Toast from './../../../Toast'
 
 // 定位控件
 function LocationControl({ map, onChange, ...props }, ref) {
+  // 容器
+  const rootRef = useRef(null)
+
   useImperativeHandle(ref, () => {
     return {
+      rootDOM: rootRef.current,
+      getRootDOM: () => rootRef.current,
       update: location
     }
   })
@@ -44,6 +49,7 @@ function LocationControl({ map, onChange, ...props }, ref) {
   return (
     <div
       {...props}
+      ref={rootRef}
       className={`map-locationControl${props.className ? ' ' + props.className : ''}`}
       onClick={handleLocation}
     >
