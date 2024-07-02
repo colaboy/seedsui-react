@@ -52,11 +52,11 @@ function Main(
     if (readOnly || !autoLocation || value?.address) return
 
     // 当前位置
-    currentLocation()
+    handleAutoLocation()
   }, [])
 
   // 获取当前位置
-  async function currentLocation() {
+  async function handleAutoLocation() {
     // 默认选中当前位置
     Loading.show()
     let result = await getLocation({ getAddress })
