@@ -147,6 +147,7 @@ const Image = forwardRef(
                     event: e,
                     rootDOM: rootRef.current,
                     itemDOM: e.currentTarget,
+                    setPreviewCurrent: setPreviewCurrent,
                     list: list
                   })
                 }}
