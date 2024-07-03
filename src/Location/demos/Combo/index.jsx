@@ -48,7 +48,7 @@ export default () => {
     // })
     console.log(comboRef.current)
     MapUtil.load({
-      ak: '3pTjiH1BXLjASHeBmWUuSF83',
+      ak: '',
       success: () => {
         setLoad(true)
         console.log('地图加载完成')

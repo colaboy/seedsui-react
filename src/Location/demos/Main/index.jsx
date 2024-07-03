@@ -22,7 +22,7 @@ export default () => {
       <div>1</div>
       <Location.Main
         ref={comboRef}
-        ak={'3pTjiH1BXLjASHeBmWUuSF83'}
+        ak={''}
         style={{ height: '400px' }}
         type="choose"
         autoLocation={false}
