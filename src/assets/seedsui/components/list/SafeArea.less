@@ -41,15 +41,62 @@
   &.border-bottom {
     border-bottom-width: calc(env(safe-area-inset-bottom) * var(--multiple));
   }
+  // before&after
+  &.before::before,
+  &.after::after {
+    content: '';
+    display: block;
+  }
+  &.before::before {
+    height: calc(env(safe-area-inset-top) * var(--multiple));
+  }
+  &.after::after {
+    height: calc(env(safe-area-inset-bottom) * var(--multiple));
+  }
 }
 
-// 只对遮罩生效的安全区
-.safe-area-mask {
-  // 弹窗
-  body > .mask > [data-animation='slideUp'],
-  #root > .mask > [data-animation='slideUp'] {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
+// 清除安全区
+.clear-safe-area {
+  // 定位
+  &.top {
+    top: 0;
+  }
+  &.bottom {
+    bottom: 0;
+  }
+  // 间距
+  &.padding-top {
+    padding-top: 0;
+  }
+  &.padding-bottom {
+    padding-bottom: 0;
+  }
+  &.margin-top {
+    padding-top: 0;
+  }
+  &.margin-bottom {
+    padding-bottom: 0;
+  }
+  // 高度
+  &.height-top {
+    height: 0;
+  }
+  &.height-bottom {
+    height: 0;
+  }
+  // 边框
+  &.border-top {
+    border-top-width: 0;
+  }
+  &.border-bottom {
+    border-bottom-width: 0;
+  }
+  // before&after
+  &.before::before {
+    height: 0;
+  }
+  &.after::after {
+    height: 0;
   }
 }
 
