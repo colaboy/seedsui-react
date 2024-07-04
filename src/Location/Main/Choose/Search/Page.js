@@ -102,7 +102,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
           />
         </form>
         <span className="mappage-search-header-cancel" onClick={handleBack}>
-          {locale('取消')}
+          {locale('取消', 'SeedsUI_cancel')}
         </span>
       </Header>
       <div className="mappage-search-body">
