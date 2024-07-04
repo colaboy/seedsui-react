@@ -1383,7 +1383,7 @@ BaiduMap.load = function (options = {}) {
     }
     script.onerror = function (err) {
       loadError()
-      resolve('加载地图失败')
+      resolve(locale('加载地图失败', 'SeedsUI_map_js_load_failed'))
     }
   })
 }

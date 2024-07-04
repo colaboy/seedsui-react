@@ -44,7 +44,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
     let inputText = inputRef.current.inputDOM
     let center = map.getCenter()
     Loading.show({
-      content: locale('搜索中')
+      content: locale('搜索中', 'SeedsUI_searching')
     })
     let list = await queryNearby({
       map: map.currentMap,
@@ -92,7 +92,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           />
         </form>
         <span className="map-searchControl-header-cancel" onClick={handleBack}>
-          {locale('取消')}
+          {locale('取消', 'SeedsUI_cancel')}
         </span>
       </Header>
       <div className="map-searchControl-body">

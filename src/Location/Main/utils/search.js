@@ -32,7 +32,7 @@ function search(keyword, { map }) {
 
           resolve(res)
         } else {
-          resolve(locale('查询失败', 'SeedsUI_query_error'))
+          resolve(locale('查询失败', 'SeedsUI_query_failed'))
         }
       }
     })
