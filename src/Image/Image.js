@@ -72,8 +72,9 @@ const Image = forwardRef(
         if (goOn === false) return
       }
 
-      // 本地能力预览
+      // 本地能力预览照片
       if (
+        type !== 'video' &&
         Device.device === 'mobile' &&
         (Bridge.platform === 'wq' ||
           Bridge.platform === 'waiqin' ||
@@ -84,19 +85,20 @@ const Image = forwardRef(
           Bridge.platform === 'weworkMiniprogram' ||
           Bridge.platform === 'alipayMiniprogram')
       ) {
-        if (type === 'video') {
+        Bridge.previewImage({
+          urls: list.map((item) => item.src),
+          current: list[index].src,
+          index: index
+        })
+      }
+      // 预览视频或照片
+      else {
+        // 勤策视频使用previewFile预览
+        if (Bridge.platform === 'wq' && type === 'video') {
           Bridge.previewFile({ url: item.src })
         } else {
-          Bridge.previewImage({
-            urls: list.map((item) => item.src),
-            current: list[index].src,
-            index: index
-          })
+          setPreviewCurrent(Number(index))
         }
-      }
-      // PC端和其它平台使用浏览器预览
-      else {
-        setPreviewCurrent(Number(index))
       }
     }
 
