@@ -1,4 +1,6 @@
 import React from 'react'
+import locale from './../locale'
+
 import Status from './Status'
 
 // 上传按钮
@@ -49,7 +51,7 @@ const Upload = ({
   }
 
   return (
-    <div className={`attach-upload`} onClick={handleUploadClick}>
+    <div className={`upload-upload`} onClick={handleUploadClick}>
       {/* 启用file框 */}
       {onFileChange && (
         <input
@@ -67,6 +69,10 @@ const Upload = ({
         />
       )}
       {uploadNode && uploadNode}
+      {/* 图标 */}
+      <i className={`upload-button-icon-add`}></i>
+      {/* 文字 */}
+      <div className="upload-button-label">{locale('附件', 'SeedsUI_attach')}</div>
       {/* 状态遮罩 */}
       <Status statusRender={statusRender} />
     </div>

@@ -23,8 +23,8 @@ const Status = ({ item, onReUpload, statusRender }) => {
 
     // Default Status
     return (
-      <div className="attach-upload-loading">
-        <div className="attach-upload-loading-icon">
+      <div className="upload-button-loading">
+        <div className="upload-button-loading-icon">
           <svg viewBox="25 25 50 50">
             <circle cx="50" cy="50" r="20"></circle>
           </svg>

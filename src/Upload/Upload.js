@@ -202,7 +202,9 @@ const Upload = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={`attach${props.className ? ' ' + props.className : ''}`}
+        className={`upload${props.className ? ' ' + props.className : ''}${
+          uploadPosition === 'start' ? ' upload-position-start' : ' upload-position-end'
+        }`}
       >
         {/* 头部上传按钮 */}
         {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
@@ -216,7 +218,7 @@ const Upload = forwardRef(
                 key={index}
                 data-index={index}
                 // 状态status: choose|uploading|fail|success
-                className={`attach-item${item.className ? ' ' + item.className : ''}${
+                className={`upload-item${item.className ? ' ' + item.className : ''}${
                   item.status ? ' ' + item.status : ''
                 }`}
                 onClick={(e) => {
@@ -231,9 +233,9 @@ const Upload = forwardRef(
                 }}
               >
                 {/* 文件图标 */}
-                <i className={`icon attach-item-type ${getIcon(item.src)}`}></i>
+                <i className={`icon upload-item-type ${getIcon(item.src)}`}></i>
                 {/* 文件名称 */}
-                <div className="attach-item-label">{item.name || item.src}</div>
+                <div className="upload-item-label">{item.name || item.src}</div>
                 {/* 自定义dom */}
                 {item.children}
                 {/* 状态遮罩 */}
@@ -253,7 +255,7 @@ const Upload = forwardRef(
                 {/* 删除按钮 */}
                 {onDelete && (
                   <div
-                    className="attach-item-delete"
+                    className="upload-item-delete"
                     onClick={(e) => {
                       e.stopPropagation()
 
