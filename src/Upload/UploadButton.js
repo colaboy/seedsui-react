@@ -49,9 +49,7 @@ const Upload = ({
   }
 
   return (
-    <div className={`image-item image-upload`} onClick={handleUploadClick}>
-      {/* 拍照或者视频图标 */}
-      <div className={`image-upload-icon${type === 'video' ? ' video' : ''}`}></div>
+    <div className={`attach-upload`} onClick={handleUploadClick}>
       {/* 启用file框 */}
       {onFileChange && (
         <input

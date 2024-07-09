@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Bridge, Image } from 'seedsui-react'
+import { Bridge, Upload } from 'seedsui-react'
 
 export default () => {
   const [list, setList] = useState([
     {
-      id: '1',
-      thumb: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png',
-      src: 'https://mobile.qince.com/p/mpage/5009d19ecd17c19962ed6608fa49a488.png'
-      // status: 'fail'
+      name: '1',
+      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320'
     },
     {
-      id: '2',
-      thumb:
-        'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png?x-oss-process=style/zk320',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/8194157084989375804.png'
-      // status: 'uploading'
-    },
-    {
-      id: '3',
-      thumb:
-        'https://image-test.waiqin365.com/6069734652819592543/blog/201912/819415708498937580.png?x-oss-process=style/zk320',
-      src: 'https://image-test.waiqin365.com/6069734652819592543/blog/201912/819415708498937580.png'
+      name: '2',
+      src: 'https://img.zcool.cn/community/01a9a65dfad975a8012165189a6476.doc'
     }
   ])
 
@@ -52,7 +41,7 @@ export default () => {
   }
   return (
     <>
-      <Image
+      <Upload
         list={list}
         onBeforeChoose={() => {
           return new Promise((resolve) => {

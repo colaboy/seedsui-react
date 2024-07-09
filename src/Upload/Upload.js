@@ -4,18 +4,15 @@ import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
 
 // 内库使用
 import locale from './../locale'
-import Clipboard from '/../Clipboard'
-import Toast from '/../Toast'
-import Preview from './../Preview'
-import Device from './../Device'
+import Clipboard from './../Clipboard'
+import Toast from './../Toast'
 import Bridge from './../Bridge'
 
-import Img from './Img'
 import Status from './Status'
-import Upload from './Upload'
+import UploadButton from './UploadButton'
 
 // 照片视频预览
-const Attachment = forwardRef(
+const Upload = forwardRef(
   (
     {
       type, // video.录相 | 其它.为拍照
@@ -151,14 +148,12 @@ const Attachment = forwardRef(
     // 上传node
     function getUploadNode() {
       return (
-        <Upload
+        <UploadButton
           type={type}
           // file框属性
           fileProps={fileProps}
           // 上传DOM
           uploadNode={uploadNode}
-          // Custom Status
-          statusRender={statusRender}
           // Choose events
           onChoose={onChooseRef.current}
           onBeforeChoose={onBeforeChooseRef.current}
@@ -167,13 +162,49 @@ const Attachment = forwardRef(
       )
     }
 
+    // 获取附件类型图标
+    function getIcon(src) {
+      let suffix = typeof src === 'string' ? src.getSuffix() : null
+      if (!suffix) return 'unknown'
+      if (suffix.indexOf('?') !== -1) {
+        suffix = suffix.substring(0, suffix.indexOf('?'))
+      }
+      if ('RM,RMVB,MP4,3GP,AVI,MKV,WMV,MPG,VOB,FLV'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'video'
+      }
+      if (
+        'WAVE,MPEG,MP3,MPEG-4,MIDI,WMA,VQF,AMR,APE,FLAC,AAC'.indexOf(suffix.toUpperCase()) !== -1
+      ) {
+        return 'audio'
+      }
+      if ('JPG,JPEG,WEBP,GIF,PNG,TIF,BMP'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'pic'
+      }
+      if ('RAR,ZIP'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'pack'
+      }
+      if ('DOC,DOCX'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'word'
+      }
+      if ('XSL,EXCEL'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'excel'
+      }
+      if ('PPT'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'ppt'
+      }
+      if ('PDF'.indexOf(suffix.toUpperCase()) !== -1) {
+        return 'pdf'
+      }
+      return 'unknown'
+    }
+
     return (
       <div
         ref={rootRef}
         {...props}
-        className={`image${props.className ? ' ' + props.className : ''}`}
+        className={`attach${props.className ? ' ' + props.className : ''}`}
       >
-        {/* 图片上传: 上传按钮 */}
+        {/* 头部上传按钮 */}
         {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
 
         {/* 图片列表 */}
@@ -185,7 +216,7 @@ const Attachment = forwardRef(
                 key={index}
                 data-index={index}
                 // 状态status: choose|uploading|fail|success
-                className={`image-item${item.className ? ' ' + item.className : ''}${
+                className={`attach-item${item.className ? ' ' + item.className : ''}${
                   item.status ? ' ' + item.status : ''
                 }`}
                 onClick={(e) => {
@@ -195,15 +226,18 @@ const Attachment = forwardRef(
                     event: e,
                     rootDOM: rootRef.current,
                     itemDOM: e.currentTarget,
-                    setPreviewCurrent: setPreviewCurrent,
                     list: list
                   })
                 }}
               >
-                {/* 缩略图 */}
-                {item.thumb && <Img src={item.thumb} />}
-
+                {/* 文件图标 */}
+                <i className={`icon attach-item-type ${getIcon(item.src)}`}></i>
+                {/* 文件名称 */}
+                <div className="attach-item-label">{item.name || item.src}</div>
+                {/* 自定义dom */}
+                {item.children}
                 {/* 状态遮罩 */}
+                {typeof statusRender === 'function' && statusRender(item)}
                 <Status
                   statusRender={statusRender}
                   onReUpload={(e) => {
@@ -216,12 +250,10 @@ const Attachment = forwardRef(
                       })
                   }}
                 />
-                {/* 自定义dom */}
-                {item.children}
                 {/* 删除按钮 */}
                 {onDelete && (
                   <div
-                    className="image-delete"
+                    className="attach-item-delete"
                     onClick={(e) => {
                       e.stopPropagation()
 
@@ -232,18 +264,16 @@ const Attachment = forwardRef(
                         list: list
                       })
                     }}
-                  >
-                    <div className="image-delete-icon"></div>
-                  </div>
+                  ></div>
                 )}
               </div>
             )
           })}
-        {/* 图片上传: 上传按钮 */}
+        {/* 底部上传按钮 */}
         {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
       </div>
     )
   }
 )
 
-export default Attachment
+export default Upload
