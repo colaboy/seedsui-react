@@ -3,7 +3,6 @@ import { Bridge, Location, MapUtil, Input } from 'seedsui-react'
 import VConsole from 'vconsole'
 export default () => {
   Bridge.debug = true
-  const [load, setLoad] = useState(false)
   const comboRef = useRef(null)
   // const [value, setValue] = useState(null)
   const [value, setValue] = useState({
@@ -20,46 +19,8 @@ export default () => {
   })
   useEffect(() => {
     new VConsole()
-    // Bridge.ready(() => {
-    //   Bridge.getLocation({
-    //     cacheTime: 5000,
-    //     success: (res) => {
-    //       setTimeout(() => {
-    //         Bridge.getLocation({
-    //           success: (res) => {
-    //             console.log('1-1:' + JSON.stringify(res))
-    //           }
-    //         })
-    //       }, 100)
-    //       console.log('1:' + JSON.stringify(res))
-    //     }
-    //   })
-
-    //   Bridge.getLocation({
-    //     success: (res) => {
-    //       console.log('2:' + JSON.stringify(res))
-    //     }
-    //   })
-    //   Bridge.getLocation({
-    //     success: (res) => {
-    //       console.log('3:' + JSON.stringify(res))
-    //     }
-    //   })
-    // })
-    console.log(comboRef.current)
-    MapUtil.load({
-      ak: '',
-      success: () => {
-        setLoad(true)
-        console.log('地图加载完成')
-      },
-      fail: () => {
-        console.error('地图库加载失败，请稍后再试！')
-      }
-    })
   }, [])
 
-  if (!load) return null
   return (
     <>
       <Location.Combo
