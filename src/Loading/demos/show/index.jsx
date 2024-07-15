@@ -3,10 +3,21 @@ import { Layout, Loading } from 'seedsui-react'
 
 export default () => {
   function handleToggle() {
-    Loading.show({
+    // Loading.defaultProps = {
+    //   style: { backgroundColor: 'blue' },
+    //   maskProps: { style: { backgroundColor: 'red' } }
+    // }
+
+    let loading = Loading.show({
+      style: { backgroundColor: 'blue' },
+      maskProps: { style: { backgroundColor: 'red' } },
       className: 'abc',
       content: '自定义加载'
     })
+    console.log(loading)
+    setTimeout(() => {
+      Loading.show()
+    }, 1000)
     setTimeout(() => {
       Loading.hide()
     }, 3000)

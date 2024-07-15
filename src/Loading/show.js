@@ -11,10 +11,10 @@ export default function (props) {
   function render() {
     let loadingId = id || '__SeedsUI_loading_el__'
     // 如果没生成成功, 则强制生成
-    let loadingDOM = document.getElementById(loadingId)
-    if (!loadingDOM) {
-      loadingDOM = document.createElement('div')
-      loadingDOM.innerHTML = `<div class="loading-container">
+    let mask = document.getElementById(loadingId)
+    if (!mask) {
+      mask = document.createElement('div')
+      mask.innerHTML = `<div class="loading-container">
           <div class="loading-floating-icon">
             <div class="loading-floating-blade"></div>
             <div class="loading-floating-blade"></div>
@@ -32,22 +32,22 @@ export default function (props) {
           <div class="loading-floating-caption loading-content"></div>
         </div>`
       // 添加到dom上
-      ;(document.getElementById('root') || document.body).appendChild(loadingDOM)
+      ;(document.getElementById('root') || document.body).appendChild(mask)
     }
 
     // 更新mask
-    loadingDOM.setAttribute(
+    mask.setAttribute(
       'class',
       `loading-mask mask active${maskProps?.className ? ' ' + maskProps?.className : ''}`
     )
-    loadingDOM.setAttribute('id', loadingId)
-    loadingDOM.setAttribute('style', '')
+    mask.setAttribute('id', loadingId)
+    mask.setAttribute('style', '')
     for (let key in maskProps?.style || {}) {
-      loadingDOM.style[key] = maskProps?.style[key]
+      mask.style[key] = maskProps?.style[key]
     }
 
     // 更新container
-    let container = loadingDOM.querySelector('.loading-container')
+    let container = mask.querySelector('.loading-container')
     if (container) {
       container?.setAttribute(
         'class',
@@ -61,14 +61,16 @@ export default function (props) {
 
     let caption = captionProps?.caption || content
     caption = typeof caption === 'string' ? caption : locale('加载中...', 'SeedsUI_loading')
-    loadingDOM.querySelector('.loading-content').innerHTML = caption
+    mask.querySelector('.loading-content').innerHTML = caption
 
     // 显示
-    loadingDOM.classList.add('active')
+    mask.classList.add('active')
 
     if (typeof onVisibleChange === 'function') {
       onVisibleChange(true)
     }
+
+    return mask
   }
-  render()
+  return render()
 }

@@ -3,14 +3,26 @@ import { Layout, Toast } from 'seedsui-react'
 
 export default () => {
   function handleToggle() {
-    Toast.show({
+    // Toast.defaultProps = {
+    //   style: { backgroundColor: 'blue' },
+    //   maskProps: { style: { backgroundColor: 'red' } }
+    // }
+    let toast = Toast.show({
+      style: { backgroundColor: 'blue', color: 'green' },
+      maskProps: { style: { backgroundColor: 'red' } },
+      position: 'middle',
       content: 'show toast',
-      duration: 5000,
+      duration: 2000,
       maskClickable: false,
       onVisibleChange: (visible) => {
         console.log('visible:', visible)
       }
     })
+    console.log(toast)
+
+    setTimeout(() => {
+      Toast.show({ content: 'hh' })
+    }, 1000)
   }
 
   return (
