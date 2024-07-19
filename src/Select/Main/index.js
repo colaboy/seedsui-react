@@ -96,7 +96,7 @@ const Main = forwardRef(
     function getItem(item, index) {
       return (
         <Item
-          key={item.id || index}
+          key={item.id ?? index}
           item={item}
           index={index}
           // 选中效果: checkbox | tick | corner
@@ -145,7 +145,7 @@ const Main = forwardRef(
             // 子子元素
             if (Array.isArray(item.children)) {
               return (
-                <Fragment key={item.id || index}>
+                <Fragment key={item.id ?? index}>
                   <div className="select-group-headline">
                     <div className="select-group-caption">{item.name}</div>
                     {item.description && (

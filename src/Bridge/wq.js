@@ -119,7 +119,7 @@ let Bridge = {
   setTitle: function (params) {
     if (params && params.title) {
       if (typeof params.title === 'string') {
-        document.title = params.title
+        window.top.document.title = params.title
         window.top.wq.setTitle(params) // eslint-disable-line
       } else if (typeof params.title === 'function') {
         params.title()
