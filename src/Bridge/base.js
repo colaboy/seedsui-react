@@ -375,16 +375,15 @@ let Bridge = {
   },
   /**
    * 百度地图:获取当前位置名称
-   * @param {Object} params: {longitude: '', latitude: '', success: fn, fail: fn}
-   * @param {String} type 'wgs84 | gcj02', 默认gcj02
+   * @param {Object} params: {longitude: '', latitude: '', type 'wgs84 | gcj02', success: fn, fail: fn}
    * @return {Promise} result: {status: 0 成功, points 百度坐标}
    */
-  getAddress: function (params = {}, type = 'gcj02') {
+  getAddress: function (params = {}) {
     if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
-      return window.getAddressDefault(params, type)
+      return window.getAddressDefault(params)
     }
     const mapUtil = new MapUtil()
-    return mapUtil.getAddress([params.longitude, params.latitude], type, params)
+    return mapUtil.getAddress([params.longitude, params.latitude], params?.type || 'gcj02', params)
   },
   // 客户端默认返回控制
   back: function (backLvl, config) {

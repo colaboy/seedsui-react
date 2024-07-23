@@ -7,6 +7,12 @@ import defaultGetAddress from './defaultGetAddress'
 async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
   let result = null
 
+  // 默认优先使用系统级定位
+  if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
+    result = await window.getAddressDefault({ longitude: lng, latitude: lat, type: type })
+    return result
+  }
+
   // 坐标转换
   let { longitude, latitude } = coordTransform({ longitude: lng, latitude: lat, from: type })
 
