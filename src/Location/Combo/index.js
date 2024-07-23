@@ -75,7 +75,9 @@ const LocationCombo = forwardRef(
     ref
   ) => {
     // 获取定位和地址工具类
+    // eslint-disable-next-line
     if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    // eslint-disable-next-line
     if (typeof getLocation !== 'function') getLocation = defaultGetLocation
 
     // 错误信息
