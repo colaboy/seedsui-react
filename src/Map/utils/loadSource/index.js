@@ -14,20 +14,29 @@ async function loadSource(
   // Load leaflet js and css
   let isOk = await loadLeaflet()
   if (typeof isOk === 'string') {
-    return isOk
+    return {
+      errCode: 'LEAFLET_LOAD_ERROR',
+      errMsg: isOk
+    }
   }
 
   // Load google js
   if (options.type === 'google') {
     isOk = await loadGoogle(options?.key)
     if (typeof isOk === 'string') {
-      return isOk
+      return {
+        errCode: 'GOOGLE_LOAD_ERROR',
+        errMsg: isOk
+      }
     }
 
     // Load google tileLayer plugin js
     isOk = await loadGoogleMutant()
     if (typeof isOk === 'string') {
-      return isOk
+      return {
+        errCode: 'GOOGLE_MUTANT_LOAD_ERROR',
+        errMsg: isOk
+      }
     }
   }
 
@@ -35,13 +44,19 @@ async function loadSource(
   if (options.type === 'bmap') {
     isOk = await loadBMap(options?.key)
     if (typeof isOk === 'string') {
-      return isOk
+      return {
+        errCode: 'BMAP_LOAD_ERROR',
+        errMsg: isOk
+      }
     }
 
     // Load bmap tileLayer plugin js
     isOk = await loadBMapLayer()
     if (typeof isOk === 'string') {
-      return isOk
+      return {
+        errCode: 'BMAP_LAYER_LOAD_ERROR',
+        errMsg: isOk
+      }
     }
   }
 

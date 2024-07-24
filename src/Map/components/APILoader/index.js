@@ -37,7 +37,7 @@ const APILoader = forwardRef(
     async function loadData() {
       // Load map resource
       const isOk = await loadSource(config)
-      if (typeof isOk === 'string') {
+      if (typeof isOk === 'object') {
         // 自定义处理错误
         if (onError) {
           let newIsOk = await onError(isOk)
@@ -46,9 +46,9 @@ const APILoader = forwardRef(
           }
         }
       } else {
-        onSuccess && onSuccess(isOk)
+        onSuccess && onSuccess()
       }
-      setErrMsg(isOk)
+      setErrMsg(isOk?.errMsg)
     }
 
     // 未加载完成显示空
