@@ -280,6 +280,16 @@ const MapContainer = forwardRef(
       // Render children
       setLeafletMap(leafletMap)
 
+      // Set BMap max bounds
+      if (window.BMap) {
+        // 设置最大边界（例如设置在伦敦附近的一个区域）
+        let southWest = L.latLng(-80, -180)
+        let northEast = L.latLng(84, 180)
+        let maxBounds = L.latLngBounds(southWest, northEast)
+
+        leafletMap.setMaxBounds(maxBounds)
+      }
+
       // onLoad event
       onLoad && onLoad(APIRef.current)
     }
