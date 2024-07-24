@@ -37,12 +37,18 @@ const APILoader = forwardRef(
     async function loadData() {
       // Load map resource
       const isOk = await loadSource(config)
-      setErrMsg(isOk)
       if (typeof isOk === 'string') {
-        onError && onError(isOk)
+        // 自定义处理错误
+        if (onError) {
+          let newIsOk = await onError(isOk)
+          if (newIsOk !== undefined) {
+            isOk = newIsOk
+          }
+        }
       } else {
         onSuccess && onSuccess(isOk)
       }
+      setErrMsg(isOk)
     }
 
     // 未加载完成显示空
@@ -56,7 +62,9 @@ const APILoader = forwardRef(
     }
 
     // Add leaflet plugin: canvas markers(window.L.canvasIconLayer)
-    canvasMarkers(window.L)
+    if (window.L) {
+      canvasMarkers(window.L)
+    }
     // require('leaflet-canvas-marker')
 
     // 加载成功

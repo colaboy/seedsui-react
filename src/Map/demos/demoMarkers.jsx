@@ -20,8 +20,9 @@ export default () => {
       onSuccess={() => {
         console.log('地图加载成功')
       }}
-      onError={() => {
-        console.log('地图加载失败')
+      onError={(errMsg) => {
+        console.log('地图加载失败:', errMsg)
+        return '错误地址'
       }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
@@ -40,7 +41,7 @@ export default () => {
               latitude: 22.199614,
               icon: {
                 className: 'my-div-icon',
-                html: '<div style="width: 100px; background: white;">start</div>'
+                html: '<div style="width: 100px; background: white;">end</div>'
               }
             },
             {
