@@ -28,12 +28,20 @@ export default () => {
         <Markers
           points={[
             {
-              longitude: 118.745283,
-              latitude: 32.213741
+              longitude: 113.044821,
+              latitude: 23.890941,
+              icon: {
+                className: 'my-div-icon',
+                html: '<div style="width: 100px; background: white;">start</div>'
+              }
             },
             {
-              longitude: 118.71872,
-              latitude: 31.988045
+              longitude: 113.356363,
+              latitude: 22.199614,
+              icon: {
+                className: 'my-div-icon',
+                html: '<div style="width: 100px; background: white;">start</div>'
+              }
             },
             {
               a: ''

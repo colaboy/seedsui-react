@@ -1,6 +1,7 @@
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
+import Icon from './utils/Icon'
 import APILoader from './components/APILoader'
 import MapContainer from './components/MapContainer'
 import ZoomControl from './components/ZoomControl'
@@ -15,6 +16,7 @@ const Map = {
   getAddress,
   getLocation,
   queryNearby,
+  Icon,
   // components
   APILoader,
   MapContainer,

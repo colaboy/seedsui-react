@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useState } from 'react'
 import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
+  Icon,
   MapContainer,
   ZoomControl,
   SearchControl,
@@ -10,7 +11,7 @@ const {
   Markers
 } = Map
 
-function Main(
+function MarkPoint(
   {
     readOnly,
     autoLocation = true,
@@ -127,7 +128,7 @@ function Main(
           points={[
             {
               ...defaultValue,
-              icon: window.L.icon({
+              icon: Icon.getIcon({
                 active: true,
                 iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
                 iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
@@ -212,4 +213,4 @@ function Main(
   )
 }
 
-export default forwardRef(Main)
+export default forwardRef(MarkPoint)

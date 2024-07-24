@@ -3,6 +3,7 @@ import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
+import Icon from './../../utils/Icon'
 import defaultGetAddress from './../../utils/getAddress'
 import defaultGetLocation from './../../utils/getLocation'
 
@@ -274,15 +275,7 @@ const MapContainer = forwardRef(
       markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
 
       // Default marker icon
-      markerIconRef.current = window.L.icon({
-        iconUrl: `${iconOptions.imagePath}marker-icon.png`,
-        iconRetinaUrl: `${iconOptions.imagePath}marker-icon-2x.png`,
-        shadowUrl: `${iconOptions.imagePath}marker-shadow.png`,
-        shadowRetinaUrl: `${iconOptions.imagePath}marker-shadow.png`,
-        shadowSize: [33, 33],
-        iconSize: [20, 33],
-        iconAnchor: [10, 16]
-      })
+      markerIconRef.current = window.L.icon(Icon.defaultIconOptions)
 
       // Render children
       setLeafletMap(leafletMap)

@@ -1,23 +1,8 @@
 import React, { forwardRef, useRef } from 'react'
 import { Map } from 'seedsui-react'
-const { MapContainer, ZoomControl, Markers } = Map
+const { Icon, MapContainer, ZoomControl, Markers } = Map
 
-function Main(
-  {
-    points,
-    icon = window.L.icon({
-      active: true,
-      iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-      iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-      shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-      shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-      shadowSize: [39, 39],
-      iconSize: [30, 49],
-      iconAnchor: [15, 25]
-    })
-  },
-  ref
-) {
+function Marker({ points, icon }, ref) {
   // 地图容器
   const mapRef = useRef(null)
 
@@ -41,8 +26,8 @@ function Main(
       <Markers
         points={points.map((point) => {
           return {
-            icon: icon,
-            ...point
+            ...point,
+            icon: Icon.getIcon(point.icon || icon)
           }
         })}
       />
@@ -53,4 +38,4 @@ function Main(
   )
 }
 
-export default forwardRef(Main)
+export default forwardRef(Marker)
