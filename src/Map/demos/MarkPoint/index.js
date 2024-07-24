@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useState } from 'react'
+import React, { forwardRef, useRef, useState } from 'react'
 import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
   MapContainer,

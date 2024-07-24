@@ -23,3 +23,4 @@
 - MapView、MapChoose 换为 Location/Modal/Preview、Choose
 - Tabbar 换为 Tabs
 - Tree 换为 TreePicker
+- PDFView 请使用 react-pdf 代替

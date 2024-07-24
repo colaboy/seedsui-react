@@ -1,14 +1,16 @@
 # Map
 
-用于开始一个即时操作。
-
-## 何时使用
-
-标记了一个或封装一组操作命令，响应用户点击行为，触发相应的业务逻辑。
+支持国际化的地图。
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+### 标注一个点
+
+<code src="./demos/demoMarkPoint.jsx"></code>
+
+### 多点显示
+
+<code src="./demos/demoMarkers.jsx"></code>
 
 ## Map
 

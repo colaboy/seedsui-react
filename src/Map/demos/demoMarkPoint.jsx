@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
 const { APILoader } = Map
 
-import Main from './Main'
+import MarkPoint from './MarkPoint'
 // 生成随机点
 // import getPoints from './getPoints'
 
@@ -25,7 +25,7 @@ export default () => {
         // key: '',
         // type: 'google'
         // 百度地图
-        key: '',
+        key: '3pTjiH1BXLjASHeBmWUuSF83',
         type: 'bmap'
       }}
       onSuccess={() => {
@@ -36,7 +36,7 @@ export default () => {
       }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-        <Main
+        <MarkPoint
           // readOnly
           value={value}
           onChange={(newValue) => {

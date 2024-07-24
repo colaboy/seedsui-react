@@ -40,7 +40,9 @@ const MapContainer = forwardRef(
     ref
   ) => {
     // 指定获取定位和地址的方法
+    // eslint-disable-next-line
     if (typeof getAddress !== 'function') getAddress = defaultGetAddress
+    // eslint-disable-next-line
     if (typeof getLocation !== 'function') getLocation = defaultGetLocation
 
     const rootRef = useRef(null)
@@ -67,9 +69,26 @@ const MapContainer = forwardRef(
       setView: (...params) => {
         leafletMap?.setView(...params)
       },
-      panTo: (latlng) => {
-        if (!leafletMap || !latlng?.latitude || !latlng?.longitude) return
-        leafletMap.panTo([latlng.latitude, latlng.longitude])
+      panTo: (points) => {
+        if (!leafletMap) return
+        if (Array.isArray(points)) {
+          // eslint-disable-next-line
+          points = points.map((point) => {
+            if (!point?.latitude || !point?.longitude) {
+              console.error('MapContainer center invalid parameter:', point)
+              return null
+            }
+            return [point.latitude, point.longitude]
+          })
+          // eslint-disable-next-line
+          points = points.filter((point) => point)
+          leafletMap.fitBounds(points, { padding: [1, 1] })
+        } else if (points === 'object') {
+          if (!points?.latitude || !points?.longitude) {
+            return
+          }
+          leafletMap.panTo([points.latitude, points.longitude])
+        }
       },
       getCenter: () => {
         let latlng = leafletMap?.getCenter()
@@ -189,6 +208,7 @@ const MapContainer = forwardRef(
 
     // Pan to center
     useEffect(() => {
+      if (!center) return
       APIRef?.current?.panTo?.(center)
       // eslint-disable-next-line
     }, [JSON.stringify(center || '')])
@@ -205,6 +225,8 @@ const MapContainer = forwardRef(
 
     // Add one marker
     function addMarker(latlng, { icon, enableCanvas = false }) {
+      if (!latlng?.latitude || !latlng?.longitude) return
+
       let marker = window.L.marker([latlng.latitude, latlng.longitude], {
         icon: latlng?.icon || icon || markerIconRef.current
       })
