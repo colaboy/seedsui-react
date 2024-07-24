@@ -282,7 +282,7 @@ const MapContainer = forwardRef(
 
       // Set BMap max bounds
       if (window.BMap) {
-        // 设置最大边界（例如设置在伦敦附近的一个区域）
+        // 设置最大边界
         let southWest = L.latLng(-80, -180)
         let northEast = L.latLng(84, 180)
         let maxBounds = L.latLngBounds(southWest, northEast)

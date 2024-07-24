@@ -4,6 +4,12 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     return '请在Map组件需要使用APILoader包裹'
   }
 
+  // 百度地图最小3
+  if (window.BMap && minZoom < 3) {
+    // eslint-disable-next-line
+    minZoom = 3
+  }
+
   let map = null
 
   // Init leaflet map

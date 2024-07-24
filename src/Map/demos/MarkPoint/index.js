@@ -166,12 +166,16 @@ function MarkPoint(
       <ZoomControl
         ref={zoomRef}
         style={{ bottom: readOnly ? '105px' : '135px' }}
-        // onZoomIn={(map) => {
-        //   console.log('放大', map.getZoom())
-        // }}
-        // onZoomOut={(map) => {
-        //   console.log('缩小'), map.getZoom()
-        // }}
+        onZoomIn={(map) => {
+          setTimeout(() => {
+            console.log('放大', map.getZoom())
+          }, 300)
+        }}
+        onZoomOut={(map) => {
+          setTimeout(() => {
+            console.log('缩小', map.getZoom())
+          }, 300)
+        }}
       />
 
       {/* 定位控件 */}
