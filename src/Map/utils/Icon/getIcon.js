@@ -9,11 +9,10 @@ function getIcon(icon) {
     return icon
   }
 
-  const { html, className, ...props } = icon || {}
+  const { html, ...props } = icon || {}
 
   if (html) {
     return window.L.divIcon({
-      className: className,
       html: html,
       ...props
     })

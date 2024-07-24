@@ -1,6 +1,7 @@
 // 默认图标配置
 const shopIconOptions = {
   active: true,
+  className: 'map-center-marker-icon',
   iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
   iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
   shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
