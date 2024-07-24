@@ -100,42 +100,35 @@ function MarkPoint(
       />
 
       {/* 中心标注点: 仅用于显示 */}
-      {readOnly ? null : (
-        <CenterMarker
-          icon={Icon.getIcon(Icon.shopIconOptions)}
-          longitude={value?.longitude}
-          latitude={value?.latitude}
-          onDragEnd={async (map) => {
-            let center = map.getCenter()
-            let result = {
-              ...center
-            }
+      <CenterMarker
+        icon={Icon.getIcon(Icon.shopIconOptions)}
+        longitude={value?.longitude}
+        latitude={value?.latitude}
+        onDragEnd={
+          readOnly
+            ? null
+            : async (map) => {
+                let center = map.getCenter()
+                let result = {
+                  ...center
+                }
 
-            Loading.show()
-            let address = await map.getAddress(center)
-            Loading.hide()
+                Loading.show()
+                let address = await map.getAddress(center)
+                Loading.hide()
 
-            if (typeof address === 'object') {
-              result = { ...result, ...address }
-            }
-            setValue(result)
+                if (typeof address === 'object') {
+                  result = { ...result, ...address }
+                }
+                setValue(result)
 
-            onChange && onChange(result)
-          }}
-        />
-      )}
+                onChange && onChange(result)
+              }
+        }
+      />
 
       {/* 标注点 */}
-      {readOnly ? (
-        <Markers
-          points={[
-            {
-              ...defaultValue,
-              icon: Icon.getIcon(Icon.shopIconOptions)
-            }
-          ]}
-        />
-      ) : (
+      {!readOnly ? (
         <Markers
           points={points}
           // onClick={(e) => {
@@ -154,7 +147,7 @@ function MarkPoint(
           //   e.setIcon(newMarkerIcon, { multiple: true })
           // }}
         />
-      )}
+      ) : null}
 
       {/* 缩放控件 */}
       <ZoomControl

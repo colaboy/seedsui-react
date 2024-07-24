@@ -8,7 +8,11 @@ import MarkPoint from './MarkPoint'
 
 export default () => {
   Bridge.debug = true
-  let [value, setValue] = useState()
+  let [value, setValue] = useState({
+    latitude: 39.907783490367706,
+    longitude: 116.39120737493609,
+    address: '天安门'
+  })
   /*
   useState()
   useState({
