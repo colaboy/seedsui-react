@@ -84,7 +84,7 @@ const MapContainer = forwardRef(
           // eslint-disable-next-line
           points = points.filter((point) => point)
           leafletMap.fitBounds(points, { padding: [1, 1] })
-        } else if (points === 'object') {
+        } else if (typeof points === 'object') {
           if (!points?.latitude || !points?.longitude) {
             return
           }
@@ -108,35 +108,19 @@ const MapContainer = forwardRef(
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
       },
+      // 单个点只支持Leaflet绘制不支持canvas绘制
+      addMarker: function (point, { onClick, layerGroup }) {
+        let marker = addMarker(point, { layerGroup })
+        onClick && addLeafletMarkerClick(marker, { onClick })
+        return marker
+      },
       addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
         for (let point of points) {
-          let marker = addMarker(point, { enableCanvas: enableCanvas, onClick })
+          let marker = addMarker(point, { enableCanvas: enableCanvas })
           // Leaflet marker click
           if (!enableCanvas) {
-            onClick &&
-              marker.on('click', function (e) {
-                onClick({
-                  icon: e?.target?.options?.icon?.options || null,
-                  setIcon: (icon, { multiple }) => {
-                    // Single choice
-                    if (!multiple) {
-                      let markers = markersLayerRef.current.getLayers()
-                      for (let marker of markers) {
-                        marker.setIcon(markerIconRef.current)
-                      }
-                      e.target.setIcon(icon)
-                    }
-                    // Multiple choice
-                    else {
-                      e.target.setIcon(icon)
-                    }
-                  },
-                  remove: () => e.target.remove(),
-                  latitude: e.latlng.lat,
-                  longitude: e.latlng.lng
-                })
-              })
+            onClick && addLeafletMarkerClick(marker, { onClick })
           }
         }
 
@@ -214,6 +198,32 @@ const MapContainer = forwardRef(
       // eslint-disable-next-line
     }, [JSON.stringify(center || '')])
 
+    // 公共点击leaflet点
+    function addLeafletMarkerClick(marker, { onClick }) {
+      marker.on('click', function (e) {
+        onClick({
+          icon: e?.target?.options?.icon?.options || null,
+          setIcon: (icon, { multiple }) => {
+            // Single choice
+            if (!multiple) {
+              let markers = markersLayerRef.current.getLayers()
+              for (let marker of markers) {
+                marker.setIcon(markerIconRef.current)
+              }
+              e.target.setIcon(icon)
+            }
+            // Multiple choice
+            else {
+              e.target.setIcon(icon)
+            }
+          },
+          remove: () => e.target.remove(),
+          latitude: e.latlng.lat,
+          longitude: e.latlng.lng
+        })
+      })
+    }
+
     // Clear all marker
     function clearMarkers() {
       if (!canvasMarkerRef.current || !markersLayerRef.current) return
@@ -225,7 +235,17 @@ const MapContainer = forwardRef(
     }
 
     // Add one marker
-    function addMarker(latlng, { icon, enableCanvas = false }) {
+    function addMarker(
+      latlng,
+      {
+        // 自定义图标
+        icon,
+        // 是否使用canvas绘制
+        enableCanvas = false,
+        // 自定义leaflet图层
+        layerGroup
+      } = {}
+    ) {
       if (!latlng?.latitude || !latlng?.longitude) return
 
       let marker = window.L.marker([latlng.latitude, latlng.longitude], {
@@ -238,7 +258,11 @@ const MapContainer = forwardRef(
       }
       // Leaflet
       else {
-        marker.addTo(markersLayerRef.current)
+        if (layerGroup) {
+          marker.addTo(layerGroup)
+        } else {
+          marker.addTo(markersLayerRef.current)
+        }
       }
       return marker
     }
@@ -282,9 +306,16 @@ const MapContainer = forwardRef(
 
       // Set BMap max bounds
       if (window.BMap) {
-        // 设置最大边界
         let southWest = L.latLng(-80, -180)
         let northEast = L.latLng(84, 180)
+        let maxBounds = L.latLngBounds(southWest, northEast)
+
+        leafletMap.setMaxBounds(maxBounds)
+      }
+      // Set google max bounds
+      else if (window.google) {
+        let southWest = L.latLng(-85.05112878, -Infinity)
+        let northEast = L.latLng(85.05112878, Infinity)
         let maxBounds = L.latLngBounds(southWest, northEast)
 
         leafletMap.setMaxBounds(maxBounds)

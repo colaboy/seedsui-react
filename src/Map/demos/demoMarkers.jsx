@@ -11,11 +11,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: '',
-        // type: 'google'
+        key: '',
+        type: 'google'
         // 百度地图
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
-        type: 'bmap'
+        // key: '',
+        // type: 'bmap'
       }}
       onSuccess={() => {
         console.log('地图加载成功')

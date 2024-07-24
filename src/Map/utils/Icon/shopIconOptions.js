@@ -1,0 +1,13 @@
+// 默认图标配置
+const shopIconOptions = {
+  active: true,
+  iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+  iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
+  shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+  shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+  shadowSize: [39, 39],
+  iconSize: [30, 49],
+  iconAnchor: [15, 25]
+}
+
+export default shopIconOptions

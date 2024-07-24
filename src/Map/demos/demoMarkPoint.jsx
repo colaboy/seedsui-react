@@ -43,10 +43,10 @@ export default () => {
             console.log('newValue:', newValue)
             setValue(newValue)
           }}
-          getLocation={(data) => {
-            console.log(data)
-            return { latitude: 35.689487, longitude: 139.691706 }
-          }}
+          // getLocation={(data) => {
+          //   console.log(data)
+          //   return { latitude: 35.689487, longitude: 139.691706 }
+          // }}
           // getAddress={(data) => {
           //   return new Promise((resolve) => {
           //     setTimeout(() => {

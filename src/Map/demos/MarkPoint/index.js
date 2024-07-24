@@ -102,6 +102,9 @@ function MarkPoint(
       {/* 中心标注点: 仅用于显示 */}
       {readOnly ? null : (
         <CenterMarker
+          icon={Icon.getIcon(Icon.shopIconOptions)}
+          longitude={value?.longitude}
+          latitude={value?.latitude}
           onDragEnd={async (map) => {
             let center = map.getCenter()
             let result = {
@@ -128,16 +131,7 @@ function MarkPoint(
           points={[
             {
               ...defaultValue,
-              icon: Icon.getIcon({
-                active: true,
-                iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-                iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-                shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-                shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-                shadowSize: [39, 39],
-                iconSize: [30, 49],
-                iconAnchor: [15, 25]
-              })
+              icon: Icon.getIcon(Icon.shopIconOptions)
             }
           ]}
         />
