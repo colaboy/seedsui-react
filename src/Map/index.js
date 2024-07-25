@@ -1,3 +1,4 @@
+import coordTransform from './utils/coordTransform'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
@@ -13,6 +14,7 @@ import NearbyControl from './components/NearbyControl'
 
 const Map = {
   // utils
+  coordTransform,
   getAddress,
   getLocation,
   queryNearby,

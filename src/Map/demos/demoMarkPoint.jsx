@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
-const { APILoader } = Map
+const { APILoader, coordTransform } = Map
 
 import MarkPoint from './MarkPoint'
 // 生成随机点
@@ -9,8 +9,11 @@ import MarkPoint from './MarkPoint'
 export default () => {
   Bridge.debug = true
   let [value, setValue] = useState({
-    latitude: 39.907783490367706,
-    longitude: 116.39120737493609,
+    // latitude: 39.907783490367706,
+    // longitude: 116.39120737493609,
+    latitude: 39.909187,
+    longitude: 116.397451,
+    type: 'gcj02',
     address: '天安门'
   })
   /*
@@ -42,7 +45,7 @@ export default () => {
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MarkPoint
           // readOnly
-          value={value}
+          value={coordTransform(value)}
           onChange={(newValue) => {
             console.log('newValue:', newValue)
             setValue(newValue)
