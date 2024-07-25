@@ -2,22 +2,12 @@
 .upload {
   &.upload-position-end {
     .upload-item {
-      margin-top: 16px;
+      margin-bottom: 16px;
     }
   }
   &.upload-position-start {
     .upload-item {
-      margin-bottom: 16px;
-    }
-  }
-  // 上传中上传按钮需要转圈
-  &.uploading {
-    pointer-events: none;
-    .upload-button-icon-add {
-      display: none;
-    }
-    .upload-button-loading {
-      display: block;
+      margin-top: 16px;
     }
   }
 }
@@ -46,6 +36,17 @@
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+  }
+
+  // 上传中上传按钮需要转圈
+  &.uploading {
+    pointer-events: none;
+    .upload-button-icon-add {
+      display: none;
+    }
+    .upload-button-loading {
+      display: block;
+    }
   }
 }
 
@@ -85,10 +86,16 @@
   margin-right: 8px;
 }
 
-// 单项
+// 项内容
 .upload-item {
   .flex;
   .flex-middle;
+  &.fail {
+    color: @danger;
+    .upload-item-redo {
+      display: flex;
+    }
+  }
 }
 .upload-item-type {
   .flex;
@@ -157,6 +164,18 @@
   font-size: 16px;
   width: 16px;
   height: 16px;
-  &:extend(.icon-plus-fill all);
-  transform: rotate(45deg);
+  &:extend(.icon-close all);
+  overflow: hidden;
+}
+.upload-item-redo {
+  display: none;
+  .flex-middle;
+  .flex-center;
+  color: #d9d9d9;
+  font-family: 'iconfont';
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  &:extend(.icon-redo all);
+  overflow: hidden;
 }

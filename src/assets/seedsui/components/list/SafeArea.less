@@ -107,3 +107,21 @@
     &:extend(.safe-area.border-bottom all);
   }
 }
+
+// 弹窗安全区域
+.safe-area-picker {
+  // 下拉选择
+  #root > .picker-mask .picker:not(.slots) .picker-main {
+    &::after {
+      content: '';
+      display: block;
+      height: 100px;
+      height: env(safe-area-inset-bottom);
+    }
+  }
+  // Picker选择
+  #root > .picker-mask .picker.slots {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+}
