@@ -21,7 +21,7 @@ function MarkPoint(
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
     value: defaultValue,
     onChange,
-    onMarkClick,
+    onMarkerClick,
     ...props
   },
   ref
@@ -129,7 +129,7 @@ function MarkPoint(
       />
 
       {/* 标注点 */}
-      {!readOnly ? <Markers points={points} onClick={onMarkClick} /> : null}
+      {!readOnly ? <Markers points={points} onClick={onMarkerClick} /> : null}
 
       {/* 缩放控件 */}
       <ZoomControl

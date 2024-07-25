@@ -50,7 +50,7 @@ export default () => {
             console.log('newValue:', newValue)
             setValue(newValue)
           }}
-          onMarkClick={(e) => {
+          onMarkerClick={(e) => {
             console.log('点击marker:', e)
             // e.remove()
             let newMarkerIcon = window.L.icon({
