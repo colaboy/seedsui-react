@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useState } from 'react'
+import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
   Icon,
@@ -43,6 +43,11 @@ function MarkPoint(
 
   // Marker
   let [points, setPoints] = useState(null)
+
+  // 节点
+  useImperativeHandle(ref, () => {
+    return mapRef?.current
+  })
 
   // 获取当前位置
   async function handleAutoLocation() {

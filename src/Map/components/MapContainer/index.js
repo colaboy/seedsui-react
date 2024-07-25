@@ -128,7 +128,8 @@ const MapContainer = forwardRef(
 
         // Leaflet canvas marker plugin click
         if (enableCanvas) {
-          markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick })
+          onClick &&
+            markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick })
         }
       },
       clearMarkers: clearMarkers
@@ -141,6 +142,7 @@ const MapContainer = forwardRef(
 
     // Init leafletMap and currentMap
     useEffect(() => {
+      APIRef.current.rootDOM = rootRef.current
       loadData()
       // eslint-disable-next-line
     }, [])

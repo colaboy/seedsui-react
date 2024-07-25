@@ -1,11 +1,8 @@
-import React, { forwardRef, useRef } from 'react'
+import React, { useRef, forwardRef } from 'react'
 import { Map } from 'seedsui-react'
 const { Icon, MapContainer, ZoomControl, Markers } = Map
 
 function Marker({ points, icon, onMarkerClick }, ref) {
-  // 地图容器
-  const mapRef = useRef(null)
-
   // 放大缩小
   const zoomRef = useRef(null)
 
@@ -14,7 +11,7 @@ function Marker({ points, icon, onMarkerClick }, ref) {
   return (
     <MapContainer
       // api
-      ref={mapRef}
+      ref={ref}
       center={points}
       zoom={14}
       // 基准路径
@@ -27,7 +24,7 @@ function Marker({ points, icon, onMarkerClick }, ref) {
         points={points.map((point) => {
           return {
             ...point,
-            icon: Icon.getIcon(point.icon || icon)
+            icon: Icon.getIcon(point?.icon || icon)
           }
         })}
         onClick={onMarkerClick}

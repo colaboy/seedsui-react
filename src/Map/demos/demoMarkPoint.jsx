@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
 const { APILoader, coordTransform } = Map
 
@@ -7,6 +7,7 @@ import MarkPoint from './MarkPoint'
 // import getPoints from './getPoints'
 
 export default () => {
+  const mapRef = useRef(null)
   Bridge.debug = true
   let [value, setValue] = useState({
     // latitude: 39.907783490367706,
@@ -29,11 +30,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: '',
-        // type: 'google'
+        key: '',
+        type: 'google'
         // 百度地图
-        key: '3pTjiH1BXLjASHeBmWUuSF83',
-        type: 'bmap'
+        // key: '',
+        // type: 'bmap'
       }}
       onSuccess={() => {
         console.log('地图加载成功')
@@ -44,6 +45,7 @@ export default () => {
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MarkPoint
+          ref={mapRef}
           // readOnly
           value={coordTransform(value)}
           onChange={(newValue) => {
@@ -52,6 +54,7 @@ export default () => {
           }}
           onMarkerClick={(e) => {
             console.log('点击marker:', e)
+            console.log(mapRef.current)
             // e.remove()
             let newMarkerIcon = window.L.icon({
               active: true,
