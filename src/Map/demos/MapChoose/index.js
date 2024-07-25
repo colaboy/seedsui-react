@@ -53,7 +53,7 @@ function MapChoose(
   // 获取当前位置
   async function handleAutoLocation() {
     // 默认选中当前位置
-    Loading.show()
+    Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
     let result = await mapRef.current?.getLocation?.()
     if (typeof result === 'object') {
       result = await mapRef.current?.getAddress?.(result)
@@ -120,7 +120,7 @@ function MapChoose(
                   ...center
                 }
 
-                Loading.show()
+                Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
                 let address = await map.getAddress(center)
                 Loading.hide()
 

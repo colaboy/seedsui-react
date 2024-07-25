@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
+import locale from './../../../locale'
 import queryNearby from './../../utils/queryNearby'
 import getTabs from './utils/getTabs'
 import Current from './Current'
@@ -62,7 +63,9 @@ function Nearby(
 
   // 获取附近的点
   async function loadData() {
-    Loading.show()
+    Loading.show({
+      content: locale('搜索中', 'SeedsUI_searching')
+    })
     let result = await queryNearby({
       map: map.currentMap,
       keyword: tab.id || tab.name,

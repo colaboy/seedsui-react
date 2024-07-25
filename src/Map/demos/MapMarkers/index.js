@@ -32,7 +32,7 @@ function MapMarkers({ points, icon, onMarkerClick }, ref) {
       />
 
       {/* 缩放控件 */}
-      <ZoomControl ref={zoomRef} style={{ bottom: '105px' }} />
+      <ZoomControl ref={zoomRef} style={{ bottom: '20px' }} />
     </MapContainer>
   )
 }
