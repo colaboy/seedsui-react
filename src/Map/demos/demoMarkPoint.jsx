@@ -50,6 +50,21 @@ export default () => {
             console.log('newValue:', newValue)
             setValue(newValue)
           }}
+          onMarkClick={(e) => {
+            console.log('点击marker:', e)
+            // e.remove()
+            let newMarkerIcon = window.L.icon({
+              active: true,
+              iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowSize: [33, 33],
+              iconSize: [20, 33],
+              iconAnchor: [10, 16]
+            })
+            e.setIcon(newMarkerIcon, { multiple: false })
+          }}
           // getLocation={(data) => {
           //   console.log(data)
           //   return { latitude: 35.689487, longitude: 139.691706 }

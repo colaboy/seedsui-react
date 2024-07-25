@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import Icon from './../../utils/Icon'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
-import Icon from './../../utils/Icon'
 import defaultGetAddress from './../../utils/getAddress'
 import defaultGetLocation from './../../utils/getLocation'
+import markerClickLeaflet from './markerClickLeaflet'
 
 import Result from './../Result'
 
@@ -52,7 +53,7 @@ const MapContainer = forwardRef(
     // Marker layer
     const markersLayerRef = useRef(null)
     // Default marker icon
-    const markerIconRef = useRef(null)
+    const defaultIconRef = useRef(null)
 
     let [leafletMap, setLeafletMap] = useState(null)
 
@@ -111,7 +112,7 @@ const MapContainer = forwardRef(
       // 单个点只支持Leaflet绘制不支持canvas绘制
       addMarker: function (point, { onClick, layerGroup }) {
         let marker = addMarker(point, { layerGroup })
-        onClick && addLeafletMarkerClick(marker, { onClick })
+        onClick && markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick })
         return marker
       },
       addMarkers: function (points, { onClick = null }) {
@@ -120,46 +121,13 @@ const MapContainer = forwardRef(
           let marker = addMarker(point, { enableCanvas: enableCanvas })
           // Leaflet marker click
           if (!enableCanvas) {
-            onClick && addLeafletMarkerClick(marker, { onClick })
+            onClick && markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick })
           }
         }
 
         // Leaflet canvas marker plugin click
         if (enableCanvas) {
-          canvasMarkerRef.current.addOnClickListener((e, data) => {
-            let target = data[0]
-            const longitude = target.data._latlng.lng
-            const latitude = target.data._latlng.lat
-
-            onClick &&
-              onClick({
-                icon: target?.data?.options?.icon?.options || null,
-                setIcon: (icon, { multiple = true }) => {
-                  // Single choice
-                  if (!multiple) {
-                    clearMarkers()
-                    for (let point of points) {
-                      addMarker(point, {
-                        enableCanvas: true,
-                        icon:
-                          point.longitude === longitude && point.latitude === latitude ? icon : null
-                      })
-                    }
-                  }
-                  // Multiple choice
-                  else {
-                    canvasMarkerRef.current.removeMarker(target, true)
-                    addMarker(
-                      { longitude: longitude, latitude: latitude },
-                      { enableCanvas: enableCanvas, icon: icon }
-                    )
-                  }
-                },
-                remove: () => canvasMarkerRef.current.removeMarker(data[0], true),
-                latitude: e.latlng.lat,
-                longitude: e.latlng.lng
-              })
-          })
+          markerClickCanvas({ canvasMarkerRef, clearMarkers, addMarker })
         }
       },
       clearMarkers: clearMarkers
@@ -198,32 +166,6 @@ const MapContainer = forwardRef(
       // eslint-disable-next-line
     }, [JSON.stringify(center || '')])
 
-    // 公共点击leaflet点
-    function addLeafletMarkerClick(marker, { onClick }) {
-      marker.on('click', function (e) {
-        onClick({
-          icon: e?.target?.options?.icon?.options || null,
-          setIcon: (icon, { multiple }) => {
-            // Single choice
-            if (!multiple) {
-              let markers = markersLayerRef.current.getLayers()
-              for (let marker of markers) {
-                marker.setIcon(markerIconRef.current)
-              }
-              e.target.setIcon(icon)
-            }
-            // Multiple choice
-            else {
-              e.target.setIcon(icon)
-            }
-          },
-          remove: () => e.target.remove(),
-          latitude: e.latlng.lat,
-          longitude: e.latlng.lng
-        })
-      })
-    }
-
     // Clear all marker
     function clearMarkers() {
       if (!canvasMarkerRef.current || !markersLayerRef.current) return
@@ -249,7 +191,7 @@ const MapContainer = forwardRef(
       if (!latlng?.latitude || !latlng?.longitude) return
 
       let marker = window.L.marker([latlng.latitude, latlng.longitude], {
-        icon: latlng?.icon || icon || markerIconRef.current
+        icon: latlng?.icon || icon || defaultIconRef.current
       })
 
       // Leaflet canvas marker plugin
@@ -299,7 +241,7 @@ const MapContainer = forwardRef(
       markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
 
       // Default marker icon
-      markerIconRef.current = window.L.icon(Icon.defaultIconOptions)
+      defaultIconRef.current = window.L.icon(Icon.defaultIconOptions)
 
       // Render children
       setLeafletMap(leafletMap)

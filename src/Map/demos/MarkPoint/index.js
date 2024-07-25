@@ -21,6 +21,7 @@ function MarkPoint(
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
     value: defaultValue,
     onChange,
+    onMarkClick,
     ...props
   },
   ref
@@ -128,26 +129,7 @@ function MarkPoint(
       />
 
       {/* 标注点 */}
-      {!readOnly ? (
-        <Markers
-          points={points}
-          // onClick={(e) => {
-          //   console.log('点击marker:', e)
-          //   // e.remove()
-          //   let newMarkerIcon = window.L.icon({
-          //     active: true,
-          //     iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-          //     iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
-          //     shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-          //     shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-          //     shadowSize: [33, 33],
-          //     iconSize: [20, 33],
-          //     iconAnchor: [10, 16]
-          //   })
-          //   e.setIcon(newMarkerIcon, { multiple: true })
-          // }}
-        />
-      ) : null}
+      {!readOnly ? <Markers points={points} onClick={onMarkClick} /> : null}
 
       {/* 缩放控件 */}
       <ZoomControl
