@@ -2,7 +2,7 @@ import React, { forwardRef, useRef } from 'react'
 import { Map } from 'seedsui-react'
 const { Icon, MapContainer, ZoomControl, Markers } = Map
 
-function Marker({ points, icon }, ref) {
+function Marker({ points, icon, onMarkClick }, ref) {
   // 地图容器
   const mapRef = useRef(null)
 
@@ -30,6 +30,7 @@ function Marker({ points, icon }, ref) {
             icon: Icon.getIcon(point.icon || icon)
           }
         })}
+        onClick={onMarkClick}
       />
 
       {/* 缩放控件 */}

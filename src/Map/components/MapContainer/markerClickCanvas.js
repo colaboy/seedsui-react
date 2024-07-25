@@ -1,5 +1,5 @@
 // 点击canvas绘制的marker
-function markerClickCanvas({ canvasMarkerRef, clearMarkers, addMarker }) {
+function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick }) {
   canvasMarkerRef.current.addOnClickListener((e, data) => {
     let target = data[0]
     const longitude = target.data._latlng.lng
@@ -13,18 +13,28 @@ function markerClickCanvas({ canvasMarkerRef, clearMarkers, addMarker }) {
           if (!multiple) {
             clearMarkers()
             for (let point of points) {
-              addMarker(point, {
-                enableCanvas: true,
-                icon: point.longitude === longitude && point.latitude === latitude ? icon : null
-              })
+              addMarker(
+                {
+                  longitude: point.longitude,
+                  latitude: point.latitude,
+                  icon: point.longitude === longitude && point.latitude === latitude ? icon : null
+                },
+                {
+                  enableCanvas: true
+                }
+              )
             }
           }
           // Multiple choice
           else {
             canvasMarkerRef.current.removeMarker(target, true)
             addMarker(
-              { longitude: longitude, latitude: latitude },
-              { enableCanvas: enableCanvas, icon: icon }
+              {
+                longitude: longitude,
+                latitude: latitude,
+                icon: icon
+              },
+              { enableCanvas: true }
             )
           }
         },

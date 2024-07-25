@@ -2,6 +2,8 @@ import defaultIconOptions from './defaultIconOptions'
 
 // 图标控件
 function getIcon(icon) {
+  if (!icon) return null
+
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   // 已经是图标了则直接返回

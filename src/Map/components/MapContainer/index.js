@@ -7,6 +7,7 @@ import injectChildrenProps from './injectChildrenProps'
 import defaultGetAddress from './../../utils/getAddress'
 import defaultGetLocation from './../../utils/getLocation'
 import markerClickLeaflet from './markerClickLeaflet'
+import markerClickCanvas from './markerClickCanvas'
 
 import Result from './../Result'
 
@@ -127,7 +128,7 @@ const MapContainer = forwardRef(
 
         // Leaflet canvas marker plugin click
         if (enableCanvas) {
-          markerClickCanvas({ canvasMarkerRef, clearMarkers, addMarker })
+          markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick })
         }
       },
       clearMarkers: clearMarkers
@@ -180,8 +181,6 @@ const MapContainer = forwardRef(
     function addMarker(
       latlng,
       {
-        // 自定义图标
-        icon,
         // 是否使用canvas绘制
         enableCanvas = false,
         // 自定义leaflet图层
@@ -191,7 +190,7 @@ const MapContainer = forwardRef(
       if (!latlng?.latitude || !latlng?.longitude) return
 
       let marker = window.L.marker([latlng.latitude, latlng.longitude], {
-        icon: latlng?.icon || icon || defaultIconRef.current
+        icon: latlng?.icon || defaultIconRef.current
       })
 
       // Leaflet canvas marker plugin
