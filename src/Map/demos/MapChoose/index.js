@@ -11,7 +11,8 @@ const {
   Markers
 } = Map
 
-function MarkPoint(
+// 地图选点
+function MapChoose(
   {
     readOnly,
     autoLocation = true,
@@ -191,4 +192,4 @@ function MarkPoint(
   )
 }
 
-export default forwardRef(MarkPoint)
+export default forwardRef(MapChoose)

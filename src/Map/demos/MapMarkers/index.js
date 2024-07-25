@@ -2,7 +2,8 @@ import React, { useRef, forwardRef } from 'react'
 import { Map } from 'seedsui-react'
 const { Icon, MapContainer, ZoomControl, Markers } = Map
 
-function Marker({ points, icon, onMarkerClick }, ref) {
+// 地图标注
+function MapMarkers({ points, icon, onMarkerClick }, ref) {
   // 放大缩小
   const zoomRef = useRef(null)
 
@@ -36,4 +37,4 @@ function Marker({ points, icon, onMarkerClick }, ref) {
   )
 }
 
-export default forwardRef(Marker)
+export default forwardRef(MapMarkers)

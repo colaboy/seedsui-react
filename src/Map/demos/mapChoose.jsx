@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
 const { APILoader, coordTransform } = Map
 
-import MarkPoint from './MarkPoint'
+import MapChoose from './MapChoose/index.js'
 // 生成随机点
 // import getPoints from './getPoints'
 
@@ -44,7 +44,7 @@ export default () => {
       }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-        <MarkPoint
+        <MapChoose
           ref={mapRef}
           // readOnly
           value={coordTransform(value)}

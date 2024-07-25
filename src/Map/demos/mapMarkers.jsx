@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Map } from 'seedsui-react'
 
-import Markers from './Markers'
+import MapMarkers from './MapMarkers/index.js'
 // 生成随机点
 // import getPoints from './getPoints'
 const { APILoader, coordTransform } = Map
@@ -39,7 +39,7 @@ export default () => {
       }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-        <Markers
+        <MapMarkers
           ref={mapRef}
           // 转换为wgs84坐标
           // points={points}

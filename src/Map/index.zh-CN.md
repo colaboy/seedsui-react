@@ -6,11 +6,11 @@
 
 ### 标注一个点
 
-<code src="./demos/demoMarkPoint.jsx"></code>
+<code src="./demos/mapChoose.jsx"></code>
 
 ### 多点显示
 
-<code src="./demos/demoMarkers.jsx"></code>
+<code src="./demos/mapMarkers.jsx"></code>
 
 ## Map
 
