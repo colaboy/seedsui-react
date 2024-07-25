@@ -101,7 +101,7 @@ function MarkPoint(
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
-        icon={Icon.getIcon(Icon.shopIconOptions)}
+        icon={Icon.getIcon(Icon.centerIconOptions)}
         longitude={value?.longitude}
         latitude={value?.latitude}
         onDragEnd={

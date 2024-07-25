@@ -1,5 +1,5 @@
 // 默认图标配置
-const shopIconOptions = {
+const centerIconOptions = {
   active: true,
   className: 'map-center-marker-icon',
   iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
@@ -11,4 +11,4 @@ const shopIconOptions = {
   iconAnchor: [15, 25]
 }
 
-export default shopIconOptions
+export default centerIconOptions

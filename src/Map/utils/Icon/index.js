@@ -1,9 +1,9 @@
 import defaultIconOptions from './defaultIconOptions'
-import shopIconOptions from './shopIconOptions'
+import centerIconOptions from './centerIconOptions'
 import getIcon from './getIcon'
 
 export default {
   defaultIconOptions: defaultIconOptions,
-  shopIconOptions: shopIconOptions,
+  centerIconOptions: centerIconOptions,
   getIcon: getIcon
 }
