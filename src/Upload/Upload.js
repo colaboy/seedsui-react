@@ -1,14 +1,15 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
+
 // 测试使用
-// import { locale, Clipboard, Bridge, Device, Preview } from 'seedsui-react'
+// import { locale, Clipboard, Toast, Bridge, Modal } from 'seedsui-react'
 
 // 内库使用
 import locale from './../locale'
 import Clipboard from './../Clipboard'
 import Toast from './../Toast'
 import Bridge from './../Bridge'
+import Modal from './../Modal'
 
-import Status from './Status'
 import UploadButton from './UploadButton'
 
 // 照片视频预览
@@ -20,7 +21,6 @@ const Upload = forwardRef(
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadPosition = 'end', // start | end
       uploadNode, // 上传按钮覆盖的dom
-      statusRender, // 自定义状态渲染func({status, itemDOM})
       // Events
       onBeforeChoose, // 选择前校验
       onChoose,
@@ -238,20 +238,22 @@ const Upload = forwardRef(
                 <div className="upload-item-label">{item.name || item.src}</div>
                 {/* 自定义dom */}
                 {item.children}
-                {/* 状态遮罩 */}
-                {typeof statusRender === 'function' && statusRender(item)}
-                <Status
-                  statusRender={statusRender}
-                  onReUpload={(e) => {
-                    onReUploadRef.current &&
+                {/* 重新上传 */}
+                {onReUpload && (
+                  <div
+                    className="upload-item-redo"
+                    onClick={(e) => {
+                      e.stopPropagation()
+
                       onReUploadRef.current(item, index, {
                         event: e,
-                        list: list,
                         rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode
+                        itemDOM: e.currentTarget.parentNode,
+                        list: list
                       })
-                  }}
-                />
+                    }}
+                  ></div>
+                )}
                 {/* 删除按钮 */}
                 {onDelete && (
                   <div
