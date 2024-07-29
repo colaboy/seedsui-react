@@ -56,11 +56,8 @@ const Upload = ({
       {onFileChange && (
         <input
           type="file"
-          className="image-upload-file-photo"
+          className="upload-upload-file"
           onChange={handleFileChange}
-          accept="image/*"
-          // 以下的属性值会导致: 部分安卓机会不显示拍照
-          // accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp"
           onClick={(e) => {
             e.stopPropagation()
           }}

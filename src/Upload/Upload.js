@@ -12,7 +12,7 @@ import Modal from './../Modal'
 
 import UploadButton from './UploadButton'
 
-// 照片视频预览
+// 文件
 const Upload = forwardRef(
   (
     {
@@ -209,7 +209,7 @@ const Upload = forwardRef(
         {/* 头部上传按钮 */}
         {uploadPosition === 'start' && (onChoose || onFileChange) && getUploadNode()}
 
-        {/* 图片列表 */}
+        {/* 列表 */}
         {list &&
           list.length > 0 &&
           list.map((item, index) => {
