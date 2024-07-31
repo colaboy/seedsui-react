@@ -4,6 +4,10 @@ import locale from './../locale'
 import TopContainer from './TopContainer'
 
 // 下拉刷新容器
+/**
+ * @deprecated since version 5.4.9
+ * 请使用Layout.Main
+ */
 const Body = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...others }, ref) => {
   const rootRef = useRef(null)
   const instance = useRef(null)
