@@ -1,94 +1,75 @@
 import React, { useRef, useState } from 'react'
-import { Calendar } from 'seedsui-react'
+import { Calendar } from 'qince-h5-library'
+// import Calendar from 'library/components/Calendar'
 
 export default () => {
   const calendarRef = useRef(null)
-  const [value, setValue] = useState(new Date('2023-06-20'))
+  const [data, setData] = useState([])
+  const [value, setValue] = useState(new Date())
 
-  function handleCellDOMRender(date) {
-    // return `<div style="pointer-events: none;"><p>h:${date.getDate()}</p></div>`
-  }
   function handleChange(newValue) {
     console.log('修改', newValue)
     setValue(newValue)
   }
-  function handleError(err) {
-    console.log(err.errMsg)
-  }
-  function showMonth() {
-    calendarRef.current.showMonth()
-    // let instance = calendarRef?.current?.getInstance()
-    // instance.showMonth()
-  }
-  function showWeek() {
-    calendarRef.current.showWeek()
-    // let instance = calendarRef?.current?.getInstance()
-    // instance.showWeek()
-  }
-  function showToday() {
-    calendarRef.current.jumpTo('today')
-    // let instance = calendarRef?.current?.getInstance()
-    // instance.setDate(new Date())
-  }
-  function showReset() {
-    calendarRef.current.jumpTo('default')
-    // let instance = calendarRef?.current?.getInstance()
-    // instance.setDefaultDate()
-  }
-  function showCustom() {
-    calendarRef.current.jumpTo(new Date('1988,08,22'))
-    // let instance = calendarRef?.current?.getInstance()
-    // instance.setDate(new Date('1988,08,22'))
-  }
-  function handleNext() {
-    let instance = calendarRef?.current?.getInstance()
-    if (instance) {
-      instance.slideXToNext()
-    }
-  }
-  function handlePrev() {
-    let instance = calendarRef?.current?.getInstance()
-    if (instance) {
-      instance.slideXToPrev()
-    }
-  }
+
   return (
     <>
       <Calendar
-        cellHeight={40}
         type="week"
+        // min={new Date()}
         ref={calendarRef}
         value={value}
-        titleFormat="YYYY年MM月DD日 周EE 第W周"
-        prevHTML="<" // 左箭头
-        nextHTML=">" // 右箭头
-        cellDOMRender={handleCellDOMRender}
+        titleFormatter={(date, info) => {
+          if (info.type === 'month') {
+            return date.format('YYYY年MM月')
+          }
+          return date.format('YYYY年MM月DD日 周EE 第W周')
+        }}
+        dateRender={(date) => {
+          return (
+            <div className="calendar-date-num">
+              {date.getDate()}
+              {data[date.format('YYYY-MM-DD')] ? 'M' : ''}
+            </div>
+          )
+        }}
         onChange={handleChange}
-        onError={handleError}
-        min={new Date()} // 禁用今天以前的日期
-        // max={new Date('2022,06,27')} // 禁用今天以前的日期
+        onSlideChange={(...params) => {
+          console.log('视图变化', ...params)
+          setData({ '2024-04-10': '1' })
+        }}
+        onLoad={(...params) => {
+          console.log('加载', ...params)
+        }}
       />
-      <a style={{ margin: '8px' }} className="button l bg-1" onClick={showMonth}>
-        月
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-2" onClick={showWeek}>
-        周
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-3" onClick={showToday}>
-        今天
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-4" onClick={showReset}>
-        默认日期
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-4" onClick={showCustom}>
-        1988-08-22
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-4" onClick={handlePrev}>
+      <div
+        onClick={() => {
+          calendarRef.current.slidePrevious()
+        }}
+      >
         上一页
-      </a>
-      <a style={{ margin: '8px' }} className="button l bg-4" onClick={handleNext}>
+      </div>
+      <div
+        onClick={() => {
+          calendarRef.current.slideNext()
+        }}
+      >
         下一页
-      </a>
+      </div>
+      <div
+        onClick={() => {
+          calendarRef.current.slideExpand()
+        }}
+      >
+        展开
+      </div>
+      <div
+        onClick={() => {
+          calendarRef.current.slideCollapse()
+        }}
+      >
+        收缩
+      </div>
     </>
   )
 }
