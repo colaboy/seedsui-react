@@ -110,7 +110,7 @@
 
 // 弹窗安全区域
 .safe-area-picker {
-  // 下拉选择
+  // Select 控件: 无slots
   #root > .picker-mask .picker:not(.slots) .picker-main {
     &::after {
       content: '';
@@ -119,9 +119,19 @@
       height: env(safe-area-inset-bottom);
     }
   }
-  // Picker选择
+  // Picker 控件: 有slots
   #root > .picker-mask .picker.slots {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
+  }
+  // Actionsheet 控件
+  #root > .actionsheet-mask .actionsheet {
+    &::after {
+      content: '';
+      display: block;
+      height: 100px;
+      height: env(safe-area-inset-bottom);
+      background-color: white;
+    }
   }
 }

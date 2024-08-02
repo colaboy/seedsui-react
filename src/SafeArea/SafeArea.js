@@ -15,7 +15,7 @@ const SafeArea = forwardRef((props, ref) => {
   return (
     <div
       {...props}
-      className={`safe-area${props.className ? ' ' + props.className : ' bottom-height'}`}
+      className={`safe-area${props.className ? ' ' + props.className : ' height-bottom'}`}
       ref={rootRef}
     ></div>
   )

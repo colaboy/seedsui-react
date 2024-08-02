@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Bridge } from 'seedsui-react'
-import Upload from 'library/components/Upload'
+import { Bridge, Upload } from 'seedsui-react'
 
 export default () => {
   const [list, setList] = useState([
