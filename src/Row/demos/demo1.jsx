@@ -10,6 +10,10 @@ export default () => {
           Customer Name:
         </Col>
         <Col span={16}>Ethan</Col>
+        <Col span={8} className="color-sub">
+          Age:
+        </Col>
+        <Col span={16}>Twenty-eight</Col>
       </Row>
     </>
   )

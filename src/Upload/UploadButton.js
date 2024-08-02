@@ -8,8 +8,6 @@ import locale from './../locale'
 
 // 上传按钮
 const Upload = ({
-  type,
-
   // file框属性
   fileProps,
 

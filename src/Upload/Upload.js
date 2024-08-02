@@ -16,7 +16,6 @@ import UploadButton from './UploadButton'
 const Upload = forwardRef(
   (
     {
-      type, // video.录相 | 其它.为拍照
       fileProps, // file框属性
       list, // [{id: '', name: '', thumb: '', src: '', status: 'choose|uploading|fail|success'}]
       uploadPosition = 'end', // start | end
@@ -149,7 +148,6 @@ const Upload = forwardRef(
     function getUploadNode() {
       return (
         <UploadButton
-          type={type}
           // file框属性
           fileProps={fileProps}
           // 上传DOM

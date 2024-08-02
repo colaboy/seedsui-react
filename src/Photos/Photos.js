@@ -4,6 +4,10 @@ import Bridge from './../Bridge'
 import Status from './Status'
 import Upload from './Upload'
 
+/**
+ * @deprecated since version 5.4.9
+ * 请使用Image
+ */
 const Photos = forwardRef(
   (
     {

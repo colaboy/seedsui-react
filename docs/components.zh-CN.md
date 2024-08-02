@@ -24,3 +24,5 @@
 - Tabbar 换为 Tabs
 - Tree 换为 TreePicker
 - PDFView 请使用 react-pdf 代替
+- Photos 请使用 Image 代替
+- Attach 请使用 Upload 代替
