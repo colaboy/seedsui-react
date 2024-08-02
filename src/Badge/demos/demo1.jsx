@@ -4,7 +4,9 @@ import { Badge } from 'seedsui-react'
 export default () => {
   return (
     <>
-      <Badge>1000</Badge>
+      <Badge maxLength={2} ellipsis={'+'}>
+        1000
+      </Badge>
     </>
   )
 }
