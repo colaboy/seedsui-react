@@ -32,6 +32,16 @@ const Main = forwardRef(({ onTopRefresh, onBottomRefresh, children, ...props }, 
     }
   }
 
+  // 若父级元素有safe-area, 启用安全区
+  useEffect(() => {
+    let mainDOM = rootRef.current
+    let layoutDOM = mainDOM?.parentNode
+
+    if (layoutDOM && layoutDOM.classList.contains('safe-area')) {
+      mainDOM.classList.add('safe-area', 'after')
+    }
+  }, [])
+
   // 初始化
   useEffect(() => {
     if (typeof onTopRefresh === 'function' || typeof onBottomRefresh === 'function') {

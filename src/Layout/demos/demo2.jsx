@@ -26,14 +26,14 @@ export default () => {
     })
   }
   return (
-    <div id="root" style={{ height: '300px', position: 'relative' }}>
-      <Layout className="full">
-        <Layout.Main onTopRefresh={handleTopRefresh} onBottomRefresh={handleBottomRefresh}>
-          {list.map((item, index) => {
-            return <div key={index}>{item.name}</div>
-          })}
-        </Layout.Main>
-      </Layout>
-    </div>
+    // <div id="root" style={{ height: '300px', position: 'relative' }}>
+    <Layout safeArea className="full">
+      <Layout.Main onTopRefresh={handleTopRefresh} onBottomRefresh={handleBottomRefresh}>
+        {list.map((item, index) => {
+          return <div key={index}>{item.name}</div>
+        })}
+      </Layout.Main>
+    </Layout>
+    // </div>
   )
 }

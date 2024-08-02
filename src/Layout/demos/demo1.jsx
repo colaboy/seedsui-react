@@ -10,7 +10,7 @@ export default () => {
 
   return createPortal(
     // <div id="root" style={{ height: '300px', position: 'relative' }}>
-    <Layout className="full">
+    <Layout safeArea className="full">
       <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
       {/* <Main style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}>Main</Main> */}
       <Layout>
