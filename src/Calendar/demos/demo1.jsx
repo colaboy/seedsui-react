@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Calendar } from 'qince-h5-library'
+import { Calendar } from 'seedsui-react'
 // import Calendar from 'library/components/Calendar'
 
 export default () => {

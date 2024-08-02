@@ -13,6 +13,7 @@ export default defineConfig({
       axios: 'axios',
       dayjs: 'dayjs',
       vconsole: 'vconsole'
+      // ahooks: 'ahooks'
     }
   }
 })
