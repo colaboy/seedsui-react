@@ -32,7 +32,7 @@ export default () => {
       />
       <TreePicker.Menu
         ref={treeRef}
-        style={{ backgroundColor: '#ccc' }}
+        // style={{ backgroundColor: '#ccc' }}
         itemRender={(item, { keyword }) => {
           if (badge && badge[item.id]) {
             return (

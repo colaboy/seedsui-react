@@ -388,11 +388,11 @@
 @treepicker-menu-bg: transparent;
 @treepicker-menu-item-color: #666;
 @treepicker-menu-item-bg: transparent;
-@treepicker-menu-item-color-active: #666;
-@treepicker-menu-item-bg-active: white;
+@treepicker-menu-item-color-active: @primary;
+@treepicker-menu-item-bg-active: transparent;
 // 菜单容器
 .treepicker-menu {
-  width: 80px;
+  width: 90px;
   overflow: auto;
   background-color: @treepicker-menu-bg;
 }
@@ -414,8 +414,8 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  min-height: 60px;
-  padding: 0 6px;
+  min-height: 40px;
+  padding: 0 12px;
   color: @treepicker-menu-item-color;
   font-size: 14px;
   text-align: left;
@@ -438,12 +438,14 @@
   // 左侧选中块
   &:before {
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
-    width: 2px;
-    height: 100%;
+    width: 4px;
+    height: 20px;
     background: @primary;
     content: '';
+    border-radius: 2px;
   }
 }
 // 菜单-文字
@@ -459,13 +461,19 @@
 }
 // 菜单-更多箭头
 .treepicker-menu-more {
-  &:extend(.shape-triangle-down);
+  font-family: 'iconfont';
+  &:extend(.icon-arrow-right all);
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 // 菜单-更多箭头-展开
 .treepicker-menu-item.expand {
   // 更多箭头
   .treepicker-menu-more {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
     transform-origin: center;
   }
 }
