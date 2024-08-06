@@ -75,8 +75,15 @@ const MultipleMain = (
     })
     setTabs(tabs)
 
+    // 默认选中一个非禁止项
     if (!activeTab) {
-      setActiveTab(tabs[0])
+      for (let tab of tabs) {
+        if (tab.disabled) {
+          continue
+        }
+        setActiveTab(tab)
+        return
+      }
     }
   }, [value])
 
