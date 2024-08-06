@@ -3,6 +3,8 @@ import { getDateDisplayValue } from './../utils'
 
 import DatePickerMain from './../Main'
 import Tabs from './../../Tabs'
+import getActiveTab from './getActiveTab'
+
 // 测试使用
 // import Tabs from 'seedsui-react/lib/Tabs'
 
@@ -77,13 +79,7 @@ const MultipleMain = (
 
     // 默认选中一个非禁止项
     if (!activeTab) {
-      for (let tab of tabs) {
-        if (tab.disabled) {
-          continue
-        }
-        setActiveTab(tab)
-        return
-      }
+      setActiveTab(getActiveTab(tabs))
     }
   }, [value])
 
@@ -91,7 +87,7 @@ const MultipleMain = (
   useEffect(() => {
     if (!visible) {
       // setTabs(null)
-      setActiveTab(tabs?.[0] || null)
+      setActiveTab(getActiveTab(tabs))
     }
     // eslint-disable-next-line
   }, [visible])
