@@ -8,6 +8,7 @@ export default () => {
       id: 'start',
       name: 'Start',
       value: null,
+      disabled: true,
       defaultPickerValue: new Date('2022-08-22 00:00')
     },
     {

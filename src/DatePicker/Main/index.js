@@ -22,6 +22,7 @@ const Main = forwardRef(
       list,
       multiple,
       allowClear,
+      disabled,
       onSelect,
       onBeforeChange,
       onChange,
@@ -182,7 +183,9 @@ const Main = forwardRef(
     return (
       <div
         {...props}
-        className={`picker-main${props.className ? ' ' + props.className : ''}`}
+        className={`picker-main${disabled ? ' disabled' : ''}${
+          props.className ? ' ' + props.className : ''
+        }`}
         ref={mainRef}
       >
         <div className="picker-layer">

@@ -18,6 +18,7 @@ const MultipleMain = (
 
     // Main: common
     value,
+    allowClear,
     list,
     multiple,
     onSelect,
@@ -139,6 +140,7 @@ const MultipleMain = (
                 key={tab.id || index}
                 type={tab.type || 'date'}
                 value={tab.value}
+                disabled={tab.disabled}
                 defaultPickerValue={tab.defaultPickerValue}
                 onChange={(date) => {
                   tab.value = date

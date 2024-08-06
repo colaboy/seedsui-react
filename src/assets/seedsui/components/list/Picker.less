@@ -123,6 +123,16 @@
   .flex-1;
 
   min-height: 200px;
+  // 禁用
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+    .picker-layer {
+      --picker-view-mask-top-background: none;
+      --picker-view-mask-bottom-background: none;
+    }
+  }
+
   // 暂无数据
   .nodata {
     margin: 10px 0;

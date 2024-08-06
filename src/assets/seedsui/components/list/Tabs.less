@@ -78,11 +78,11 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+
+  // 禁用
   &.disabled,
   &[disabled] {
     opacity: 0.5;
-  }
-  &[disabled] {
     pointer-events: none;
   }
 }
@@ -98,6 +98,12 @@
   vertical-align: middle;
   border-style: solid;
   border-width: 0;
+  // 禁用
+  &.disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 .tab-icon {
   margin: 0 4px;

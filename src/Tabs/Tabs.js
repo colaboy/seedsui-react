@@ -29,7 +29,7 @@ const Tabs = forwardRef(
 
       disabled,
       onChange,
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -43,12 +43,9 @@ const Tabs = forwardRef(
       }
     })
 
-    function handleClick(e) {
-      const target = e.target
-      const index = target.getAttribute('data-index')
-      if (!index) return
+    function handleClick(e, item) {
       if (onChange) {
-        onChange(list[index], { event: e })
+        onChange(item, { event: e })
         e.stopPropagation()
       }
     }
@@ -85,9 +82,9 @@ const Tabs = forwardRef(
       }
       // tabStyle高度
       let tabStyle = {}
-      if (others?.style && others?.style?.height) {
+      if (props?.style && props?.style?.height) {
         tabStyle = {
-          height: others.style.height
+          height: props.style.height
         }
       }
       // 遍历
@@ -100,7 +97,7 @@ const Tabs = forwardRef(
           name,
           caption,
           sndcaption,
-          attribute = {}
+          props: attribute = {}
         } = item
         let isActive = getIsActive(item)
         let liconDOM = null
@@ -111,13 +108,15 @@ const Tabs = forwardRef(
         if (ricon) {
           riconDOM = getIcon(ricon, riconActive, isActive)
         }
+
         return (
           <li
-            className={`tab${isActive ? ' active' : ''}`}
+            className={`tab${item?.disabled ? ' disabled' : ''}${isActive ? ' active' : ''}`}
             data-index={index}
             key={index}
             {...attribute}
-            style={Object.assign(tabStyle, attribute?.style || {})}
+            style={Object.assign({}, tabStyle, attribute?.style || {})}
+            onClick={(e) => handleClick(e, item)}
           >
             {liconDOM && liconDOM}
             <div className="tab-content" {...contentProps}>
@@ -151,12 +150,11 @@ const Tabs = forwardRef(
 
     return (
       <ul
-        {...others}
+        {...props}
         className={`tabs animated${average ? ' tabs-tab-average' : ''}${
           className ? ' ' + className : ''
         }`}
         disabled={disabled}
-        onClick={handleClick}
         ref={rootRef}
       >
         {tabsContent}
