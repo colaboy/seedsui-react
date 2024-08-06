@@ -14,6 +14,8 @@ const PickerMain = function (
     type,
     min,
     max,
+    disabledStart,
+    disabledEnd,
     dateRangeLimit,
     allowClear,
     value,
@@ -99,7 +101,14 @@ const PickerMain = function (
       ref={mainRef}
       portal={portal}
       type={type}
-      value={multipleDate}
+      value={multipleDate.map((item) => {
+        if (item.id === 'start' && disabledStart) {
+          item.disabled = true
+        } else if (item.id === 'end' && disabledEnd) {
+          item.disabled = true
+        }
+        return item
+      })}
       onChange={handleChange}
       {...props}
     />

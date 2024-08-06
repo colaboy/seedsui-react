@@ -33,6 +33,8 @@ const RangeModal = (
     customModal,
     min,
     max,
+    disabledStart,
+    disabledEnd,
     type = 'date', // year | quarter | month | date | time | datetime
     onError,
     ranges,
@@ -62,6 +64,8 @@ const RangeModal = (
     customModal: customModal,
     min: min,
     max: max,
+    disabledStart: disabledStart,
+    disabledEnd: disabledEnd,
     type: type,
     onError: onError,
     ranges: ranges,

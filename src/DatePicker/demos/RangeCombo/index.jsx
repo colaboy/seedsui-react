@@ -18,6 +18,8 @@ export default () => {
         ranges={{
           自定义: 100
         }}
+        disabledStart
+        // disabledEnd
         className="border-b"
         placeholder="Please select RangeCombo"
         type="datetime"

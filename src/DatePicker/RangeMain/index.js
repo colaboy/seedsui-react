@@ -25,6 +25,8 @@ function RangeMain(
 
     // Combo|Main: DatePicker Control properties
     titles,
+    disabledStart,
+    disabledEnd,
     min,
     max,
     type = 'date', // year | quarter | month | date | time | datetime
@@ -82,6 +84,8 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
+          disabledStart={disabledStart}
+          disabledEnd={disabledEnd}
           dateRangeLimit={dateRangeLimit}
           allowClear={allowClear}
           value={value}

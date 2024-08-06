@@ -9,18 +9,26 @@ import Modal from './../RangeModal'
 
 // 日期区间
 const RangeCombo = forwardRef(
-  ({ format, customModal, titles, ranges = defaultRanges, ...props }, ref) => {
+  (
+    { format, customModal, titles, disabledStart, disabledEnd, ranges = defaultRanges, ...props },
+    ref
+  ) => {
     // 扩展非标准属性
     if (!props.ModalProps) {
       props.ModalProps = {}
     }
 
-    // 标题透传
     if (titles) {
       props.ModalProps.titles = titles
     }
     if (customModal) {
       props.ModalProps.customModal = customModal
+    }
+    if (disabledStart) {
+      props.ModalProps.disabledStart = disabledStart
+    }
+    if (disabledEnd) {
+      props.ModalProps.disabledEnd = disabledEnd
     }
 
     return (
