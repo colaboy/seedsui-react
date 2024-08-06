@@ -9,6 +9,8 @@ import Combo from './../../../Combo'
 export default function CustomDates({
   portal,
   type,
+  disabledStart,
+  disabledEnd,
   allowClear,
   value,
   onBeforeChange,
@@ -27,6 +29,7 @@ export default function CustomDates({
         ModalProps={DatePickerModalProps}
         type={type}
         value={startDate}
+        disabled={disabledStart}
         // max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
         // onError={onError}
         onBeforeChange={(argStartDate) => {
@@ -49,6 +52,7 @@ export default function CustomDates({
         ModalProps={DatePickerModalProps}
         type={type}
         value={endDate}
+        disabled={disabledEnd}
         // min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
         // onError={onError}
         onBeforeChange={(argEndDate) => {

@@ -60,6 +60,8 @@ export default () => {
         ref={date2Ref}
         modal="picker"
         type="datetime"
+        // disabledStart
+        disabledEnd
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
           if (visible) {

@@ -29,6 +29,8 @@ function RangeMain(
     titles,
     min,
     max,
+    disabledStart,
+    disabledEnd,
     type,
     onError,
     ranges,
@@ -223,6 +225,8 @@ function RangeMain(
           defaultPickerValue={defaultPickerValue}
           // min={min}
           // max={max}
+          disabledStart={disabledStart}
+          disabledEnd={disabledEnd}
           onBeforeChange={async (newValue) => {
             let goOn = await validateRange(newValue, {
               type,

@@ -63,6 +63,8 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
+          disabledStart={disabledStart}
+          disabledEnd={disabledEnd}
           allowClear={allowClear}
           value={value}
           defaultPickerValue={defaultPickerValue}

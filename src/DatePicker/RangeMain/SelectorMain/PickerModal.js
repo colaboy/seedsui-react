@@ -11,6 +11,8 @@ const DateRangeModal = function ({
   value,
   defaultPickerValue,
   type,
+  disabledStart,
+  disabledEnd,
   onBeforeChange,
   onChange,
   ...props
@@ -26,14 +28,16 @@ const DateRangeModal = function ({
         id: 'start',
         name: locale('开始时间', 'SeedsUI_start_time'),
         value: startDate,
-        defaultPickerValue: defaultStartDate
+        defaultPickerValue: defaultStartDate,
+        disabled: disabledStart
       },
       {
         type: type,
         id: 'end',
         name: locale('结束时间', 'SeedsUI_end_time'),
         value: endDate,
-        defaultPickerValue: defaultEndDate
+        defaultPickerValue: defaultEndDate,
+        disabled: disabledEnd
       }
     ])
   }, [value]) // eslint-disable-line
