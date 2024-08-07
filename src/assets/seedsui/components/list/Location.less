@@ -116,6 +116,12 @@
   bottom: 0;
   padding-bottom: 6px;
 }
+// 弹窗安全区域
+.safe-area-picker {
+  .mappage-bottom-container {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 6px);
+  }
+}
 
 // 定位插件
 .mappage-controls {
