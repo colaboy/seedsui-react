@@ -80,7 +80,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
   }
 
   return (
-    <Layout className="mappage-search-page">
+    <Layout safeArea className="mappage-search-page">
       <Header className="mappage-search-header">
         <form
           action="."

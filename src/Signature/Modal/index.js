@@ -41,6 +41,7 @@ const Modal = forwardRef(
     let Node = (
       <Layout
         ref={rootRef}
+        safeArea
         // 显示在其它page前面渲染
         style={{ zIndex: document.querySelectorAll('layout').length + 5 }}
         {...pageProps}

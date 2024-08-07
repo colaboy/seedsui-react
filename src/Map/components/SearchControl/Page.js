@@ -70,7 +70,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
   }
 
   return (
-    <Layout className="map-searchControl-page">
+    <Layout safeArea className="map-searchControl-page">
       <Header className="map-searchControl-header">
         <form
           action="."

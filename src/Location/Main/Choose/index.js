@@ -249,6 +249,7 @@ const MapChoose = forwardRef(
     return (
       <Layout
         ref={rootRef}
+        safeArea
         {...props}
         className={`location-page-mappage${readOnly ? ' preview' : ' choose'}${
           props?.className ? ' ' + props.className : ''

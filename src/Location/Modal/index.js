@@ -136,6 +136,7 @@ const LocationModal = forwardRef(
       const PageNode = (
         <Layout
           ref={ref}
+          safeArea
           className={`location-page${props?.className ? ' ' + props.className : ''}${
             visible ? '' : ' hide'
           }`}
