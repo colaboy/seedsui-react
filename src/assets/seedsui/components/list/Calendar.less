@@ -35,15 +35,6 @@
 .calendar-next {
 }
 // 周
-.calendar-day-box {
-  color: @secondary;
-  &:after {
-    display: table;
-    clear: both;
-    content: '';
-    zoom: 1;
-  }
-}
 .calendar-day {
   display: inline-block;
   float: left;
@@ -58,39 +49,6 @@
   }
 }
 
-// 主体
-.calendar-wrapper {
-  height: 300px;
-  overflow: hidden;
-}
-// 主体高度
-.calendar-wrapper-y {
-  height: 300px;
-  transition-property: transform;
-}
-// 主体宽度
-.calendar-wrapper-x {
-  width: 300%;
-  transition-property: transform;
-  &:after {
-    display: table;
-    clear: both;
-    content: '';
-    zoom: 1;
-  }
-}
-// 一月一屏, 共三屏
-.calendar-month {
-  float: left;
-  width: 33%;
-}
-// 一行
-.calendar-monthrow:after {
-  display: table;
-  clear: both;
-  content: '';
-  zoom: 1;
-}
 // 一格
 .calendar-date {
   display: inline-block;
@@ -104,51 +62,6 @@
   &:nth-last-of-type(1) {
     width: 15%;
   }
-}
-// 一格里的数字
-.calendar-datenum {
-  display: inline-block;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
-}
-// 选中效果-今天
-.calendar-today {
-  border-color: @secondary;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 100%;
-}
-// 选中效果-当前月或者当前周
-.calendar-current {
-  color: @default;
-}
-.calendar-notcurrent {
-  color: @secondary;
-}
-// 选中效果-点击后
-.calendar-selected {
-  // font-weight:600;
-  // border-radius:100%;
-
-  // color:white;
-  // border-color:@primary;
-  // background-color:@primary;
-}
-// 选中效果-滑动后
-.calendar-active {
-  color: white;
-  font-weight: 600;
-  background-color: @primary;
-  border-color: @primary;
-  border-radius: 100%;
-}
-// 禁用
-.calendar-disabled {
-  color: #b6b6b6;
-  font-weight: normal;
-  background-color: transparent;
-  border-color: transparent;
 }
 
 // New Styles
@@ -187,16 +100,7 @@
   content: '';
   zoom: 1;
 }
-// Used to replace old class .calendar-active
-.calendar-date-selected {
-  .calendar-date-num {
-    color: white !important;
-    font-weight: 600;
-    background-color: @primary;
-    border-color: @primary;
-    border-radius: 100%;
-  }
-}
+
 // Used to replace old class .calendar-current
 .calendar-date-in-view {
   color: @default;
@@ -204,15 +108,6 @@
 // Used to replace old class .calendar-notcurrent
 .calendar-date-out-view {
   color: @secondary;
-
-  &.calendar-date-selected {
-    .calendar-date-num {
-      color: @secondary;
-      background-color: transparent;
-      border: 0;
-      font-weight: normal;
-    }
-  }
 }
 // Used to replace old class .calendar-today
 .calendar-date-today {
@@ -222,6 +117,16 @@
     border-radius: 100%;
     border-color: @primary;
     color: @primary;
+  }
+}
+// Used to replace old class .calendar-active
+.calendar-date-selected {
+  .calendar-date-num {
+    color: white;
+    font-weight: 600;
+    background-color: @primary;
+    border-color: @primary;
+    border-radius: 100%;
   }
 }
 // Used to replace old class .calendar-datenum
