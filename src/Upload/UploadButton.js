@@ -63,6 +63,7 @@ const Upload = ({
           {...(fileProps || {})}
         />
       )}
+
       {/* 添加图标 */}
       <i className={`upload-button-icon-add`}></i>
       {/* Loading图标 */}

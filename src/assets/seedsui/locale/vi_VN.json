@@ -136,6 +136,7 @@
   "SeedsUI_search_place": "Tìm kiếm địa điểm",
   "SeedsUI_searching": "đang tìm kiếm",
   "SeedsUI_placeholder_select": "Hãy chọn",
+  "SeedsUI_upload_fail_preview_src_error": "Chỉ có thể xem trước sau khi tải lên thành công",
   "SeedsUI_preview_src_error": "Địa chỉ xem trước không hợp lệ",
   "SeedsUI_clipboard_success": "Liên kết đến tệp đã được sao chép vào khay nhớ tạm, vui lòng dán nó vào trình duyệt hệ thống của bạn để tải xuống",
   "SeedsUI_clipboard_fail_confirm": "Liên kết tệp đến khay nhớ tạm không thành công, vui lòng nhấn và giữ để sao chép<br/>{0}",

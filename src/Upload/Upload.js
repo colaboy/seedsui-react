@@ -69,8 +69,17 @@ const Upload = forwardRef(
         if (goOn === false) return
       }
 
+      // 失败的照片用localId预览
+      if (item.status === 'fail') {
+        Toast.show({
+          content: locale('图片未上传成功, 无法预览', 'SeedsUI_upload_fail_preview_src_error')
+        })
+        return
+      }
+
+      // 预览地址
       let previewUrl = decodeURIComponent(decodeURIComponent(item.src))
-      if (typeof previewUrl !== 'string') {
+      if (!previewUrl || typeof previewUrl !== 'string') {
         Toast.show({
           content: locale('预览地址不合法', 'SeedsUI_preview_src_error')
         })
@@ -79,9 +88,7 @@ const Upload = forwardRef(
 
       // 只有客户端和企微支持预览文件
       if (
-        (Bridge.platform === 'wework' ||
-          Bridge.platform === 'wq' ||
-          Bridge.platform === 'dinghuo') &&
+        (Bridge.platform === 'wq' || Bridge.platform === 'dinghuo') &&
         [
           'pdf',
           'jpg',
@@ -117,7 +124,8 @@ const Upload = forwardRef(
           'asf'
         ].some((suffix) => previewUrl.includes('.' + suffix))
       ) {
-        Bridge.previewFile({ url: item.src })
+        // alert(JSON.stringify({ url: previewUrl, name: item?.localId, size: item.size }))
+        Bridge.previewFile({ url: previewUrl, name: item?.localId, size: item.size })
       }
       // 平台预览需要复制到剪贴板
       else {
@@ -252,6 +260,7 @@ const Upload = forwardRef(
                     }}
                   ></div>
                 )}
+
                 {/* 删除按钮 */}
                 {onDelete && (
                   <div
