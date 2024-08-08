@@ -79,3 +79,10 @@
   overflow: hidden;
   background-color: @body-bg-color;
 }
+// Page安全区
+.safe-area-picker {
+  #root > .page {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+}
