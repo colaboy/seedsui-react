@@ -24,8 +24,12 @@ export default () => {
         style={{ backgroundColor: '#f8f8f8' }}
         // readOnly
         value={value}
-        maxLength={10}
+        // maxLength={10}
         allowClear={'exclusion-ricon'}
+        onBeforeChange={(val) => {
+          console.log(val)
+          return true
+        }}
         onChange={(val) => {
           console.log(val)
           setValue(val)

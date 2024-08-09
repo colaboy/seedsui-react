@@ -45,6 +45,10 @@ const InputText = forwardRef(
       onCompositionEnd, // 输入完成时
       onInput,
       onChange,
+      /**
+       * @deprecated since version 5.8.42
+       * This property will be deprecated and will be removed in future version
+       */
       onBeforeChange,
       onBlur,
       onFocus,
