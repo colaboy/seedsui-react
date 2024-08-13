@@ -1,17 +1,9 @@
 // Upload上传
-.upload {
-  &.upload-position-end {
-    .upload-item {
-      margin-bottom: 16px;
-    }
-  }
-  &.upload-position-start {
-    .upload-item {
-      margin-top: 16px;
-    }
-  }
-}
 // 上传按钮
+.upload-item + .upload-upload {
+  margin-top: 12px;
+}
+
 .upload-upload {
   &.disabled {
     opacity: 0.5;
@@ -30,7 +22,10 @@
   input[type='file'] {
     position: absolute;
     top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
+
     width: 100%;
     height: 100%;
     cursor: pointer;
@@ -84,6 +79,17 @@
   font-family: 'iconfont';
   &:extend(.icon-plus-fill all);
   margin-right: 8px;
+}
+
+// 内容区域
+.upload-item-content {
+  width: 1px; // 用于解决内容过长时超出屏幕的问题
+  flex: 1;
+  display: flex;
+  align-items: center;
+  .border-b;
+  padding: 10px 0;
+  margin-left: 10px;
 }
 
 // 项内容
@@ -149,11 +155,13 @@
   }
 }
 .upload-item-label {
-  margin-left: 6px;
   pointer-events: none;
   .flex-1;
   .nowrap;
   .ellipsis;
+}
+.upload-item-operate {
+  margin-left: 12px;
 }
 .upload-item-delete {
   .flex;

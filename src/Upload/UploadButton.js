@@ -59,8 +59,10 @@ const Upload = ({
           onClick={(e) => {
             e.stopPropagation()
           }}
-          // file框属性
-          {...(fileProps || {})}
+          // file框属性, 过滤undefined属性
+          {...Object.fromEntries(
+            Object.entries(fileProps || {}).filter(([key, value]) => value !== undefined)
+          )}
         />
       )}
 

@@ -124,7 +124,6 @@ const Upload = forwardRef(
           'asf'
         ].some((suffix) => previewUrl.includes('.' + suffix))
       ) {
-        // alert(JSON.stringify({ url: previewUrl, name: item?.localId, size: item.size }))
         Bridge.previewFile({ url: previewUrl, name: item?.localId, size: item.size })
       }
       // 平台预览需要复制到剪贴板
@@ -241,42 +240,44 @@ const Upload = forwardRef(
                 {/* 文件图标 */}
                 <i className={`icon upload-item-type ${getIcon(item.src)}`}></i>
                 {/* 文件名称 */}
-                <div className="upload-item-label">{item.name || item.src}</div>
-                {/* 自定义dom */}
-                {item.children}
-                {/* 重新上传 */}
-                {onReUpload && (
-                  <div
-                    className="upload-item-redo"
-                    onClick={(e) => {
-                      e.stopPropagation()
+                <div className="upload-item-content">
+                  <div className="upload-item-label">{item.name || item.src}</div>
+                  {/* 自定义dom */}
+                  {item.children}
+                  {/* 重新上传 */}
+                  {onReUpload && (
+                    <div
+                      className="upload-item-operate upload-item-redo"
+                      onClick={(e) => {
+                        e.stopPropagation()
 
-                      onReUploadRef.current(item, index, {
-                        event: e,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode,
-                        list: list
-                      })
-                    }}
-                  ></div>
-                )}
+                        onReUploadRef.current(item, index, {
+                          event: e,
+                          rootDOM: rootRef.current,
+                          itemDOM: e.currentTarget.parentNode,
+                          list: list
+                        })
+                      }}
+                    ></div>
+                  )}
 
-                {/* 删除按钮 */}
-                {onDelete && (
-                  <div
-                    className="upload-item-delete"
-                    onClick={(e) => {
-                      e.stopPropagation()
+                  {/* 删除按钮 */}
+                  {onDelete && (
+                    <div
+                      className="upload-item-operate upload-item-delete"
+                      onClick={(e) => {
+                        e.stopPropagation()
 
-                      onDeleteRef.current(item, index, {
-                        event: e,
-                        rootDOM: rootRef.current,
-                        itemDOM: e.currentTarget.parentNode,
-                        list: list
-                      })
-                    }}
-                  ></div>
-                )}
+                        onDeleteRef.current(item, index, {
+                          event: e,
+                          rootDOM: rootRef.current,
+                          itemDOM: e.currentTarget.parentNode,
+                          list: list
+                        })
+                      }}
+                    ></div>
+                  )}
+                </div>
               </div>
             )
           })}
