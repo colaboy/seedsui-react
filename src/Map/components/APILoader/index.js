@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'
 
@@ -21,11 +21,13 @@ const APILoader = forwardRef(
   ) => {
     const [errMsg, setErrMsg] = useState(null)
 
+    const APIRef = useRef({
+      reload: loadData
+    })
+
     // 节点
     useImperativeHandle(ref, () => {
-      return {
-        reload: loadData
-      }
+      return APIRef.current
     })
 
     useEffect(() => {
@@ -36,19 +38,20 @@ const APILoader = forwardRef(
     // 加载
     async function loadData() {
       // Load map resource
-      const isOk = await loadSource(config)
-      if (typeof isOk === 'object') {
+      let result = await loadSource(config)
+      let isOk = typeof result === 'object' ? result?.errMsg : null
+      if (typeof isOk === 'string') {
         // 自定义处理错误
         if (onError) {
-          let newIsOk = await onError(isOk)
+          let newIsOk = await onError({ ...{}, ...result, ...APIRef.current })
           if (newIsOk !== undefined) {
             isOk = newIsOk
           }
         }
       } else {
-        onSuccess && onSuccess()
+        onSuccess && onSuccess(APIRef.current)
       }
-      setErrMsg(isOk?.errMsg)
+      setErrMsg(isOk)
     }
 
     // 未加载完成显示空
@@ -58,7 +61,12 @@ const APILoader = forwardRef(
 
     // 加载失败
     if (typeof errMsg === 'string') {
-      return <Result title={errMsg} />
+      return <Result title={errMsg} retry={loadData} />
+    }
+
+    // 渲染自定义DOM
+    if (React.isValidElement(errMsg)) {
+      return errMsg
     }
 
     // Add leaflet plugin: canvas markers(window.L.canvasIconLayer)

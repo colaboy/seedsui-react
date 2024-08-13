@@ -1,6 +1,8 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import Button from './../../../Button'
+import locale from './../../../locale'
 
-const Result = forwardRef(({ title, subTitle, extra, children, ...props }, ref) => {
+const Result = forwardRef(({ retry, title, subTitle, extra, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -14,13 +16,17 @@ const Result = forwardRef(({ title, subTitle, extra, children, ...props }, ref) 
   return (
     <div
       {...props}
-      className={'map map-result' + (props.className ? ' ' + props.className : '')}
+      className={'map-result' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
       <div className="map-result-title">{title}</div>
       <div className="map-result-subtitle">{subTitle}</div>
-      {children}
       {extra}
+      {typeof retry === 'function' && (
+        <Button className="map-result-button-retry primary" onClick={retry}>
+          {locale('重试')}
+        </Button>
+      )}
     </div>
   )
 })

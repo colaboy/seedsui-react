@@ -39,8 +39,13 @@ export default () => {
       onSuccess={() => {
         console.log('地图加载成功')
       }}
-      onError={() => {
-        console.log('地图加载失败')
+      onError={(error) => {
+        console.log('地图加载失败', error)
+        return (
+          <div className="map-result">
+            <div className="map-result-title">{error.errMsg}</div>
+          </div>
+        )
       }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
