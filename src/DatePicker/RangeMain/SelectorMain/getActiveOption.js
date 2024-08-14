@@ -1,3 +1,5 @@
+import { formatDate } from './../../utils'
+
 /**
  * 根据value和ranges获取选中项
  * @param {Array} value
@@ -38,8 +40,8 @@ function getActiveOption(value, ranges, options) {
       if (
         Array.isArray(ranges[key]) &&
         ranges[key].length === 2 &&
-        ranges[key][0].format(fmt) === value[0]?.format?.(fmt) &&
-        ranges[key][1].format(fmt) === value[1]?.format?.(fmt)
+        formatDate(ranges[key][0], fmt) === formatDate(value[0], fmt) &&
+        formatDate(ranges[key][1], fmt) === formatDate(value[1], fmt)
       ) {
         activeKeys.push(key)
       }

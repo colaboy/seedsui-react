@@ -38,7 +38,7 @@ export default () => {
           //   [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
           // }}
           // min={new Date('2023-08-08')}
-          max={new Date()}
+          // max={new Date()}
           // allowClear="exclusion-ricon"
           value={value}
           onError={(error) => {
