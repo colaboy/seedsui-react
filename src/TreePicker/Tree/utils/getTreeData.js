@@ -45,9 +45,12 @@ function getTreeData({ list, loadedKeys, onlyLeafCheck, keyword, itemRender, onC
 
       // 子节点递归
       if (Array.isArray(item.children) && item.children.length) {
+        let parentDisabled =
+          typeof onlyLeafCheck === 'function' ? onlyLeafCheck(item) === false : onlyLeafCheck
+
         return {
           // 仅允许选中末级节点，父节点则不允许选中
-          disabled: onlyLeafCheck,
+          disabled: parentDisabled,
           ...item,
           title: titleNode,
           children: loop(item.children)
@@ -55,10 +58,17 @@ function getTreeData({ list, loadedKeys, onlyLeafCheck, keyword, itemRender, onC
       }
 
       // 叶子节点，异步加载的父级节点(不在loadedKeys集合中的为父节点)
+      let leafDisabled = false
+      // 自定义设置叶子节点是否禁用
+      if (typeof onlyLeafCheck === 'function') {
+        leafDisabled = onlyLeafCheck(item) === false
+      }
+      // 仅允许选择末级节点的情况下, 异步加载, 如果有子节点则禁用
+      else if (onlyLeafCheck && loadedKeys && loadedKeys.includes(item.id) === false) {
+        leafDisabled = true
+      }
       return {
-        // 仅允许选择末级节点的情况下, 异步加载, 如果有子节点则禁用
-        disabled:
-          onlyLeafCheck && loadedKeys && loadedKeys.includes(item.id) === false ? true : false,
+        disabled: leafDisabled,
         ...item,
         title: titleNode
       }

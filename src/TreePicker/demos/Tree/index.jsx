@@ -40,7 +40,11 @@ export default () => {
           list={data}
           multiple={true}
           // 仅允许选中末级
-          // onlyLeafCheck
+          // onlyLeafCheck={(item) => {
+          //   if (item.id === '110106') return true
+          //   return false
+          // }}
+          onlyLeafCheck={true}
           // 级联 true: 不级联, false: 级联, children: 子级不级联父级
           // checkStrictly={'children'}
           // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点

@@ -23,7 +23,7 @@ function TreePicker(
     enableHalfChecked,
     // 保留不在树结构中的value
     preserveValue,
-    // 仅允许选中末级节点
+    // 仅允许选中末级节点: true|false|(item) => true|false
     onlyLeafCheck,
     checkable = true,
 
@@ -69,7 +69,8 @@ function TreePicker(
   let [expandedKeys, setExpandedKeys] = useState([])
   const expandedKeysRef = useRef(expandedKeys)
 
-  // 异步已加载项(去掉小箭头， 只有传入loadData时才生效), 不在loadedKeys集合中的为父节点
+  // treeData的所有数据为isLoaded=true认为是已加载项，抽取到loadedKeys
+  // 已加载项用于: 1.阻止rc-tree触发已加载的节点触发loadData 2.rc-tree将会判断叶子节点，并且已加载则不显示箭头
   let [loadedKeys, setLoadedKeys] = useState([])
 
   // 更新列表
@@ -255,6 +256,7 @@ function TreePicker(
 
   if (!treeData) return null
 
+  console.log('loadedKeys:', treeData)
   return (
     <div className="treepicker-tree picker-main">
       <Tree
