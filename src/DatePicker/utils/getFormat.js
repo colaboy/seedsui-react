@@ -15,10 +15,10 @@ function getFormat(type) {
       format = 'YYYY-MM-DD'
       break
     case 'time':
-      format = 'hh:mm'
+      format = 'HH:mm'
       break
     case 'datetime':
-      format = 'YYYY-MM-DD hh:mm'
+      format = 'YYYY-MM-DD HH:mm'
       break
     default:
       format = 'YYYY-MM-DD'

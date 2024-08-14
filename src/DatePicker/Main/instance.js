@@ -1,5 +1,5 @@
+import { formatDate } from './../utils'
 import Picker from './../../Picker/Main/instance.js'
-import locale from './../../locale'
 
 // 测试使用
 // import Picker from 'seedsui-react/lib/Picker/Main/instance.js'
@@ -41,7 +41,7 @@ let PickerDate = function (params) {
     yyUnit: '', // 年
     MMUnit: '', // 月
     ddUnit: '', // 日
-    hhUnit: '', // 时
+    HHUnit: '', // 时
     mmUnit: '' // 分
   }
   // eslint-disable-next-line
@@ -107,9 +107,9 @@ let PickerDate = function (params) {
       s.setDefaultDay(_dd)
     }
     if (!s.params.defaultHour) {
-      let hh = nowDate.getHours()
-      let _hh = hh.toString().length === 1 ? '0' + hh : hh
-      s.setDefaultHour(_hh)
+      let HH = nowDate.getHours()
+      let _HH = HH.toString().length === 1 ? '0' + HH : HH
+      s.setDefaultHour(_HH)
     }
     if (!s.params.defaultMinute) {
       let mm = nowDate.getMinutes()
@@ -172,23 +172,6 @@ let PickerDate = function (params) {
   /* ----------------
   Method
   ---------------- */
-  // 获取国际化的日期
-  s.getLocaleDayString = function (date) {
-    if (date instanceof Date === false) return ''
-    let day = date.getDay()
-    let days = [
-      locale('周一', 'SeedsUI_picker_monday'),
-      locale('周二', 'SeedsUI_picker_tuesday'),
-      locale('周三', 'SeedsUI_picker_wednesday'),
-      locale('周四', 'SeedsUI_picker_thursday'),
-      locale('周五', 'SeedsUI_picker_friday'),
-      locale('周六', 'SeedsUI_picker_saturday'),
-      locale('周日', 'SeedsUI_picker_sunday')
-    ]
-    // 星期天返回0
-    if (day === 0) day = 7
-    return days[day - 1]
-  }
   // 获取选中项目的文本值
   s.getActiveDate = function (options) {
     let activeKeys = options.map(function (n, i, a) {
@@ -226,31 +209,11 @@ let PickerDate = function (params) {
     return date
   }
 
-  // 格式化
-  s.formatDate = function (date) {
-    if (date instanceof Date === false) {
-      return ''
-    }
-    if (s.params.viewType === 'year') {
-      return date.format('YYYY')
-    } else if (s.params.viewType === 'quarter') {
-      return date.format('YYYY-Q')
-    } else if (s.params.viewType === 'month') {
-      return date.format('YYYY-MM')
-    } else if (s.params.viewType === 'date') {
-      return date.format('YYYY-MM-DD')
-    } else if (s.params.viewType === 'datetime') {
-      return date.format('YYYY-MM-DD hh:mm')
-    } else if (s.params.viewType === 'time') {
-      return date.format('hh:mm')
-    }
-    return date.format('YYYY-MM-DD')
-  }
   // 标题格式化
   s.formatTitle = function (format) {
     const options = s.activeOptions
     let activeDate = s.getActiveDate(options)
-    return activeDate.format(format)
+    return formatDate(activeDate, format)
   }
   s.setDefaultsByKeys = function (activeKeys) {
     if (
@@ -373,11 +336,11 @@ let PickerDate = function (params) {
     if (s.params.hoursData) {
       s.hours = s.params.hoursData
     } else {
-      for (let hh = 0; hh <= 23; hh++) {
-        let _hh = hh.toString().length === 1 ? '0' + hh : hh
+      for (let HH = 0; HH <= 23; HH++) {
+        let _HH = HH.toString().length === 1 ? '0' + HH : HH
         s.hours.push({
-          id: '' + _hh,
-          name: _hh + s.params.hhUnit
+          id: '' + _HH,
+          name: _HH + s.params.HHUnit
         })
       }
     }

@@ -74,7 +74,7 @@ const Main = forwardRef(
             }
             if (!format || typeof format !== 'string') {
               // 只有年月日、年月日时分才显示周几
-              format = `${getFormat(type)}${['date', 'datetime'].includes(type) ? ' 周EE' : ''}`
+              format = `${getFormat(type)}${['date', 'datetime'].includes(type) ? ' d' : ''}`
             }
             return instance.current.formatTitle(format)
           }
@@ -107,7 +107,7 @@ const Main = forwardRef(
           QQUnit: locale('', 'SeedsUI_picker_unit_quarter'),
           MMUnit: locale('', 'SeedsUI_picker_unit_month'),
           ddUnit: locale('', 'SeedsUI_picker_unit_day'),
-          hhUnit: locale('', 'SeedsUI_picker_unit_hour'),
+          HHUnit: locale('', 'SeedsUI_picker_unit_hour'),
           mmUnit: locale('', 'SeedsUI_picker_unit_minute')
         })
         const def = Utils.getDefaults(value, defaultPickerValue)
@@ -175,7 +175,7 @@ const Main = forwardRef(
         QQUnit: locale('', 'SeedsUI_picker_unit_quarter'), // 季
         MMUnit: locale('', 'SeedsUI_picker_unit_month'), // 月
         ddUnit: locale('', 'SeedsUI_picker_unit_day'), // 日
-        hhUnit: locale('', 'SeedsUI_picker_unit_hour'), // 时
+        HHUnit: locale('', 'SeedsUI_picker_unit_hour'), // 时
         mmUnit: locale('', 'SeedsUI_picker_unit_minute') // 分
       })
     }
