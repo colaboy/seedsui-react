@@ -1,4 +1,5 @@
 import getFormat from './getFormat'
+import formatDate from './formatDate'
 
 // 根据日期显示名称
 function getDateDisplayValue({ format, type, value }) {
@@ -7,10 +8,7 @@ function getDateDisplayValue({ format, type, value }) {
     format = getFormat(type)
   }
   // 显示值
-  let displayValue = ''
-  if (Object.isDate(value)) {
-    displayValue = value.format(format)
-  }
+  let displayValue = formatDate(value, format)
   return displayValue
 }
 

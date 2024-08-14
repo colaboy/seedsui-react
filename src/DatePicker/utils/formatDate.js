@@ -40,8 +40,13 @@ function formatDate(date, type) {
     return dayjs(date).format('HH:mm')
   }
   // [Custom format]
+  // Quarter
+  if (type.includes('Q')) {
+    // eslint-disable-next-line
+    type = type.replace(/Q/g, date.quarter())
+  }
   // Week: need locale
-  else if (type.includes('d')) {
+  if (type.includes('d')) {
     let signType = type.replace(/d/g, '_@d')
     let signStr = dayjs(date).format(signType)
     // Replace sign to locale

@@ -10,7 +10,8 @@ export default () => {
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
-        type="month"
+        // type="month"
+        format="YYYY-MM 第Q季 d"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
