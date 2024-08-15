@@ -12,8 +12,8 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       axios: 'axios',
       dayjs: 'dayjs',
-      vconsole: 'vconsole'
-      // ahooks: 'ahooks'
+      vconsole: 'vconsole',
+      ahooks: 'ahooks'
     }
   }
 })

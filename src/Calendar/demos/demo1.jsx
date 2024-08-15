@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import { Calendar } from 'seedsui-react'
-// import Calendar from 'library/components/Calendar'
 
 export default () => {
   const calendarRef = useRef(null)
