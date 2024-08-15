@@ -1,4 +1,3 @@
-import locale from './../locale'
 import hide from './hide'
 
 // 显示Toast
@@ -72,7 +71,7 @@ function show(props) {
     // Update content
     let contentDOM = mask.querySelector('.toast-content')
     if (contentDOM) {
-      contentDOM.innerHTML = content || locale('加载中...', 'SeedsUI_loading')
+      contentDOM.innerHTML = content || ''
     }
 
     // Open toast
