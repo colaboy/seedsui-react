@@ -1,4 +1,4 @@
-import { formatDate } from './../../utils'
+import DateUtil from './../../../DateUtil'
 
 /**
  * 根据value和ranges获取选中项
@@ -40,8 +40,8 @@ function getActiveOption(value, ranges, options) {
       if (
         Array.isArray(ranges[key]) &&
         ranges[key].length === 2 &&
-        formatDate(ranges[key][0], fmt) === formatDate(value[0], fmt) &&
-        formatDate(ranges[key][1], fmt) === formatDate(value[1], fmt)
+        DateUtil.formatDate(ranges[key][0], fmt) === DateUtil.formatDate(value[0], fmt) &&
+        DateUtil.formatDate(ranges[key][1], fmt) === DateUtil.formatDate(value[1], fmt)
       ) {
         activeKeys.push(key)
       }

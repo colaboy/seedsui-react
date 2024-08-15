@@ -1,5 +1,3 @@
-import formatDate from './utils/formatDate'
-
 import Combo from './Combo'
 import Modal from './Modal'
 import Main from './Main'
@@ -13,7 +11,6 @@ import Types from './Types'
 
 // eslint-disable-next-line
 export default {
-  formatDate: formatDate,
   Combo: Combo,
   Modal: Modal,
   Main: Main,

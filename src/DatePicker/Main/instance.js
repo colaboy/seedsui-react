@@ -1,4 +1,4 @@
-import { formatDate } from './../utils'
+import DateUtil from './../../DateUtil'
 import Picker from './../../Picker/Main/instance.js'
 
 // 测试使用
@@ -213,7 +213,7 @@ let PickerDate = function (params) {
   s.formatTitle = function (format) {
     const options = s.activeOptions
     let activeDate = s.getActiveDate(options)
-    return formatDate(activeDate, format)
+    return DateUtil.formatDate(activeDate, format)
   }
   s.setDefaultsByKeys = function (activeKeys) {
     if (

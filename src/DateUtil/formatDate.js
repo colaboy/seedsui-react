@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
-import locale from './../../locale'
+import locale from './../locale'
 
+// 周国际化
 function weekLocale(weekNumber) {
   if (typeof weekNumber !== 'number' || weekNumber < 1 || weekNumber > 7) return ''
 
@@ -17,7 +18,7 @@ function weekLocale(weekNumber) {
   return days[weekNumber - 1]
 }
 
-// 格式化日期
+// 入口: 格式化日期
 function formatDate(date, type) {
   if (date instanceof Date === false) {
     return ''
@@ -29,7 +30,8 @@ function formatDate(date, type) {
   if (type === 'year') {
     return dayjs(date).format('YYYY')
   } else if (type === 'quarter') {
-    return dayjs(date).format('YYYY-Q')
+    // eslint-disable-next-line
+    type = 'YYYY-Q'
   } else if (type === 'month') {
     return dayjs(date).format('YYYY-MM')
   } else if (type === 'date') {

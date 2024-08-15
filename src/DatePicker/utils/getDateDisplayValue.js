@@ -1,5 +1,5 @@
 import getFormat from './getFormat'
-import formatDate from './formatDate'
+import DateUtil from './../../DateUtil'
 
 // 根据日期显示名称
 function getDateDisplayValue({ format, type, value }) {
@@ -8,7 +8,7 @@ function getDateDisplayValue({ format, type, value }) {
     format = getFormat(type)
   }
   // 显示值
-  let displayValue = formatDate(value, format)
+  let displayValue = DateUtil.formatDate(value, format)
   return displayValue
 }
 
