@@ -256,7 +256,6 @@ function TreePicker(
 
   if (!treeData) return null
 
-  console.log('loadedKeys:', treeData)
   return (
     <div className="treepicker-tree picker-main">
       <Tree
