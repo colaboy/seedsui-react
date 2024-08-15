@@ -1,3 +1,4 @@
+import locale from './../locale'
 import hide from './hide'
 
 // 显示Toast

@@ -1,7 +1,7 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 import { Map, Toast, Loading, locale } from 'seedsui-react'
 const {
-  Icon,
+  IconUtil,
   MapContainer,
   ZoomControl,
   SearchControl,
@@ -108,7 +108,7 @@ function MapChoose(
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
-        icon={Icon.getIcon(Icon.centerIconOptions)}
+        icon={IconUtil.getIcon(IconUtil.centerIconOptions)}
         longitude={value?.longitude}
         latitude={value?.latitude}
         onDragEnd={

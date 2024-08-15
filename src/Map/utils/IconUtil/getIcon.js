@@ -24,8 +24,6 @@ function getIcon(icon) {
     ...defaultIconOptions,
     ...props
   })
-
-  return null
 }
 
 export default getIcon

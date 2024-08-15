@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-import Icon from './../../utils/Icon'
+import IconUtil from './../../utils/IconUtil'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
@@ -242,24 +242,24 @@ const MapContainer = forwardRef(
       markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
 
       // Default marker icon
-      defaultIconRef.current = window.L.icon(Icon.defaultIconOptions)
+      defaultIconRef.current = window.L.icon(IconUtil.defaultIconOptions)
 
       // Render children
       setLeafletMap(leafletMap)
 
       // Set BMap max bounds
       if (window.BMap) {
-        let southWest = L.latLng(-80, -180)
-        let northEast = L.latLng(84, 180)
-        let maxBounds = L.latLngBounds(southWest, northEast)
+        let southWest = window.L.latLng(-80, -180)
+        let northEast = window.L.latLng(84, 180)
+        let maxBounds = window.L.latLngBounds(southWest, northEast)
 
         leafletMap.setMaxBounds(maxBounds)
       }
       // Set google max bounds
       else if (window.google) {
-        let southWest = L.latLng(-85.05112878, -Infinity)
-        let northEast = L.latLng(85.05112878, Infinity)
-        let maxBounds = L.latLngBounds(southWest, northEast)
+        let southWest = window.L.latLng(-85.05112878, -Infinity)
+        let northEast = window.L.latLng(85.05112878, Infinity)
+        let maxBounds = window.L.latLngBounds(southWest, northEast)
 
         leafletMap.setMaxBounds(maxBounds)
       }

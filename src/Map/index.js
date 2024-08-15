@@ -2,7 +2,7 @@ import coordTransform from './utils/coordTransform'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
-import Icon from './utils/Icon'
+import IconUtil from './utils/IconUtil'
 import APILoader from './components/APILoader'
 import MapContainer from './components/MapContainer'
 import ZoomControl from './components/ZoomControl'
@@ -18,7 +18,7 @@ const Map = {
   getAddress,
   getLocation,
   queryNearby,
-  Icon,
+  IconUtil,
   // components
   APILoader,
   MapContainer,

@@ -36,6 +36,7 @@ function setRootSafeArea() {
   }
 }
 
+// eslint-disable-next-line
 export default {
   hasSafeArea,
   setRootSafeArea,

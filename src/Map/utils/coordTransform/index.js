@@ -24,7 +24,6 @@ function getPoint(point, type) {
 
 // 转成wgs84坐标
 function coordTransform(points, type) {
-  let newPoints = null
   if (Array.isArray(points) && points.length) {
     return points.map((point) => {
       return getPoint(point, type)
