@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import locale from './../locale'
+import getQuarter from './getQuarter'
 
 // 周国际化
 function weekLocale(weekNumber) {
@@ -45,7 +46,7 @@ function formatDate(date, type) {
   // Quarter
   if (type.includes('Q')) {
     // eslint-disable-next-line
-    type = type.replace(/Q/g, date.quarter())
+    type = type.replace(/Q/g, getQuarter(date))
   }
   // Week: need locale
   if (type.includes('d')) {
