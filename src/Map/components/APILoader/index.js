@@ -39,8 +39,9 @@ const APILoader = forwardRef(
     async function loadData() {
       // Load map resource
       let result = await loadSource(config)
-      let isOk = typeof result === 'object' ? result?.errMsg : null
-      if (typeof isOk === 'string') {
+      let isOk = true
+      if (typeof result === 'object' && result?.errCode) {
+        isOk = result?.errMsg
         // 自定义处理错误
         if (onError) {
           let newIsOk = await onError({ ...{}, ...result, ...APIRef.current })
@@ -65,7 +66,7 @@ const APILoader = forwardRef(
     }
 
     // 渲染自定义DOM
-    if (React.isValidElement(errMsg)) {
+    if (errMsg && React.isValidElement(errMsg)) {
       return errMsg
     }
 
