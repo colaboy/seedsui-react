@@ -14,6 +14,17 @@ export default () => {
   return (
     <>
       <Calendar
+        titleFormatter={(date, info) => {
+          if (info.type === 'month') {
+            return date.format('YYYY年MM月')
+          }
+          return date.format('YYYY年MM月DD日 周EE 第W周')
+        }}
+        onLoad={(...params) => {
+          console.log('加载', ...params)
+        }}
+      />
+      <Calendar
         type="week"
         // min={new Date()}
         ref={calendarRef}

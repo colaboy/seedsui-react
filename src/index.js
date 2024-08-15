@@ -158,7 +158,8 @@ export { default as MediaUtil } from './MediaUtil' // 不常用
 export { default as PubSub } from './PubSub' // 不常用
 // export { default as ValidateID } from './ValidateID' // 不常用
 // export { default as Validator } from './Validator' // 不常用
-export { default as math } from './math' // 不常用
+export { default as MathUtil } from './MathUtil'
+export { default as DateUtil } from './DateUtil'
 export { default as useSyncCallback } from './useSyncCallback'
 export { default as ReduxRequestMiddleware } from './ReduxRequestMiddleware'
 export { default as Bridge } from './Bridge'

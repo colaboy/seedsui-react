@@ -1,4 +1,4 @@
-import MathJs from './../../../math'
+import MathJs from './../../../MathUtil'
 
 // 矫正小数位截取
 function precisionFormatter(value, { precision, trim }) {

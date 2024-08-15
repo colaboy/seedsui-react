@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import MathJs from './../../math'
+import MathJs from './../../MathUtil'
 import InputNumber from './../Number'
 
 // 数值框

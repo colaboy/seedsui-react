@@ -60,4 +60,6 @@ function antiThousands(number) {
 }
 
 // eslint-disable-next-line
-export default { round, fixed, strip, thousands, antiThousands }
+const MathUtil = { round, fixed, strip, thousands, antiThousands }
+
+export default MathUtil

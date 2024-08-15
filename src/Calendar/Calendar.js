@@ -2,6 +2,7 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
+import DateUtil from './../DateUtil'
 import { getTitle, isSelectedDate, isDisabledDate } from './utils'
 import Instance from './instance'
 import Toggle from './Toggle'
@@ -170,7 +171,9 @@ const Calendar = forwardRef(
                                     ? 'calendar-date-in-view'
                                     : 'calendar-date-out-view'
                                 }${
-                                  new Date().compareDate(date) === 0 ? ' calendar-date-today' : ''
+                                  DateUtil.compareDate(new Date(), date) === 0
+                                    ? ' calendar-date-today'
+                                    : ''
                                 }${isSelectedDate(date, value) ? ' calendar-date-selected' : ''}${
                                   isDisabledDate(date, { min, max })
                                     ? ' calendar-date-disabled'
