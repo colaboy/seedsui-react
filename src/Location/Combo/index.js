@@ -132,6 +132,26 @@ const LocationCombo = forwardRef(
       // eslint-disable-next-line
     }, [locationStatus])
 
+    // 获取位置
+    async function addAddress(value) {
+      let newValue = value
+      if (typeof newValue === 'object' && newValue?.longitude && newValue?.latitude) {
+        let addrRes = await getAddress({
+          ...newValue,
+          type: type
+        })
+        if (addrRes?.address) {
+          newValue = {
+            ...newValue,
+            ...addrRes
+          }
+        } else {
+          newValue = locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+        }
+      }
+      return newValue
+    }
+
     // 自动定位
     async function handleAutoLocation() {
       // 有经纬度, 补充address
@@ -147,11 +167,7 @@ const LocationCombo = forwardRef(
           locationStatus = '-1'
           setLocationStatus('-1') // 定位中...
 
-          let newValue = await getAddress({
-            latitude: value.latitude,
-            longitude: value.longitude,
-            type: type
-          })
+          let newValue = await addAddress(value)
 
           updateValue(newValue)
         }
@@ -241,12 +257,7 @@ const LocationCombo = forwardRef(
       })
 
       // 获取地址信息
-      if (typeof newValue === 'object') {
-        newValue = await getAddress({
-          ...newValue,
-          type: type
-        })
-      }
+      newValue = await addAddress(newValue)
 
       updateValue(newValue)
     }
