@@ -1,3 +1,6 @@
+// 测试使用
+// import { GeoUtil } from 'seedsui-react'
+// 内库使用
 import GeoUtil from './../../../GeoUtil'
 
 // 百度地图瓦片图层插件
@@ -39,10 +42,11 @@ function initPlugin() {
 
   window.L.TileLayer.BaiduTileLayer = window.L.TileLayer.extend({
     initialize: function (param, options) {
-      var templateImgUrl =
+      let templateImgUrl =
         '//maponline{s}.bdimg.com/starpic/u=x={x};y={y};z={z};v=009;type=sate&qt=satepc&fm=46&app=webearth2&v=009'
-      var templateUrl = '//maponline{s}.bdimg.com/tile/?x={x}&y={y}&z={z}&{p}'
-      var myUrl = param === 'img' ? templateImgUrl : templateUrl
+      let templateUrl = '//maponline{s}.bdimg.com/tile/?x={x}&y={y}&z={z}&{p}'
+      let myUrl = param === 'img' ? templateImgUrl : templateUrl
+      // eslint-disable-next-line
       options = window.L.extend(
         {
           getUrlArgs: (o) => {
@@ -74,10 +78,12 @@ function initPlugin() {
       }
     },
     _setZoomTransform: function (level, center, zoom) {
+      // eslint-disable-next-line
       center = window.L.latLng(coordTransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()) // 采用 gcoord 库进行纠偏
       window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
     },
     _getTiledPixelBounds: function (center) {
+      // eslint-disable-next-line
       center = window.L.latLng(coordTransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()) // 采用 gcoord 库进行纠偏
       return window.L.TileLayer.prototype._getTiledPixelBounds.call(this, center)
     }
