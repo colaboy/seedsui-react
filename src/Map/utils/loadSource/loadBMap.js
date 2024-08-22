@@ -12,13 +12,9 @@ function loadBMap(key) {
       scriptTag.parentNode.removeChild(scriptTag)
     }
 
-    // 百度地图默认走http，改为强制走https
-    window.BMAP_PROTOCOL = 'https'
-    window.BMap_loadScriptTime = new Date().getTime()
-
     // Load js
     Object.loadScript(
-      `https://api.map.baidu.com/getscript?v=3.0&ak=${key}&services=&t=20200415105918`,
+      `https://api.map.baidu.com/api?v=3.0&ak=${key}&services=&t=20200415105918`,
       {
         attrs: {
           id: 'bmap-map-js'
