@@ -9,7 +9,7 @@ const BMap = ({ errMsg, changeState, list = [], defaultChecked, onMapClose, call
 
   useEffect(() => {
     MapUtil.load({
-      ak: '3pTjiH1BXLjASHeBmWUuSF83',
+      ak: '7b6e260fc45a67b31a265e22575f1c5e',
       success: () => {
         initData()
       },
