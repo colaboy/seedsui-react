@@ -1,3 +1,8 @@
+// 测试使用
+// import { locale } from 'seedsui-react'
+// 内库使用
+import locale from './../../../locale'
+
 // 加载BMap地图资源
 function loadBMap(key) {
   return new Promise((resolve) => {
@@ -14,17 +19,19 @@ function loadBMap(key) {
 
     // Load js
     Object.loadScript(
-      `https://api.map.baidu.com/api?v=3.0&ak=${key}&services=&t=20200415105918`,
+      `https://api.map.baidu.com/api?v=3.0&ak=${key}&callback=&callback=onBMapLoad`,
       {
         attrs: {
           id: 'bmap-map-js'
         }
       },
       (result) => {
-        if (!result) {
-          resolve(`百度地图加载失败`)
-        } else {
-          resolve(window.BMap)
+        window.onBMapLoad = function () {
+          if (window.BMap) {
+            resolve(window.BMap)
+          } else {
+            resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+          }
         }
       }
     )

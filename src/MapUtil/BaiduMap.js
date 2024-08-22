@@ -1365,14 +1365,16 @@ BaiduMap.load = function (options = {}) {
     }
 
     console.log('加载百度地图')
-    // window.BMAP_PROTOCOL = 'https'
-    // window.BMap_loadScriptTime = new Date().getTime()
-
     script = document.createElement('script')
     script.id = options.ak
     script.type = 'text/javascript'
     script.charset = 'utf-8'
-    script.src = `https://api.map.baidu.com/api?v=3.0&ak=${options.ak}&services=&t=20200415105918`
+
+    // Load js
+    // 从https://api.map.baidu.com/api中copy的js代码, 因为https://api.map.baidu.com/api无法动态引入只能放到html中script标签引入, 或者用callback回调都不适合
+    window.BMAP_PROTOCOL = 'https'
+    window.BMap_loadScriptTime = new Date().getTime()
+    script.src = `https://api.map.baidu.com/getscript?v=3.0&ak=${options.ak}&services=&t=20200415105918`
     document.body.appendChild(script)
     script.onload = async function () {
       // 加载绘制库
