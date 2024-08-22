@@ -13,7 +13,8 @@ function loadBMap(key) {
     }
 
     // 百度地图默认走http，改为强制走https
-    window.HOST_TYPE = '1'
+    window.BMAP_PROTOCOL = 'https'
+    window.BMap_loadScriptTime = new Date().getTime()
 
     // Load js
     Object.loadScript(
