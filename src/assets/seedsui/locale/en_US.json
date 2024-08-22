@@ -41,6 +41,7 @@
   "SeedsUI_max_star_error": "Cannot be greater than {0} Star",
   "SeedsUI_loading": "Loading...",
   "SeedsUI_file_load_failed": "File failed to load",
+  "SeedsUI_getting_address": "Getting address...",
   "SeedsUI_get_address_failed": "Address failed",
   "SeedsUI_location_preview_failed": "Incorrect coordinates. Preview failed",
   "SeedsUI_location_success": "Location success",

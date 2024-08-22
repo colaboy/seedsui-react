@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
-const { APILoader, coordTransform } = Map
+const { APILoader, MapChoose, coordTransform } = Map
 
-import MapChoose from './MapChoose/index.js'
 // 生成随机点
 // import getPoints from './getPoints'
 
@@ -33,7 +32,7 @@ export default () => {
         // key: '',
         // type: 'google'
         // 百度地图
-        key: '',
+        key: '7b6e260fc45a67b31a265e22575f1c5e',
         type: 'bmap'
       }}
       onSuccess={() => {

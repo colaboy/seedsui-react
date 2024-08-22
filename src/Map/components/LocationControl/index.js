@@ -29,9 +29,7 @@ function LocationControl({ map, onChange, ...props }, ref) {
       })
       // 当前位置
       let result = await map.getLocation({ type: 'wgs84' })
-      if (typeof result === 'object') {
-        result = await map.getAddress(result)
-      }
+      result = await map.getAddress(result)
       resolve(result)
       Loading.hide()
     })

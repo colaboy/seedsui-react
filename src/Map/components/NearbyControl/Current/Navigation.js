@@ -23,9 +23,7 @@ function Navigation({
     })
     // 当前位置
     let result = await map.getLocation({ type: 'wgs84' })
-    if (typeof result === 'object') {
-      result = await map.getAddress(result)
-    }
+    result = await map.getAddress(result)
     Loading.hide()
 
     // 定位失败

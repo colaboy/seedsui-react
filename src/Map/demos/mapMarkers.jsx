@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import { Map } from 'seedsui-react'
 
-import MapMarkers from './MapMarkers/index.js'
 // 生成随机点
 // import getPoints from './getPoints'
-const { APILoader, coordTransform } = Map
+const { APILoader, MapMarkers, coordTransform } = Map
 
 // 随机生成点, 用于测试性能
 // const points = getPoints({
@@ -27,7 +26,7 @@ export default () => {
         // key: '',
         // type: 'google'
         // 百度地图
-        key: '',
+        key: '7b6e260fc45a67b31a265e22575f1c5e',
         type: 'bmap'
       }}
       onSuccess={() => {

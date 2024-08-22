@@ -41,6 +41,7 @@
   "SeedsUI_max_star_error": "不能大於{0}顆星",
   "SeedsUI_loading": "正在加載...",
   "SeedsUI_file_load_failed": "文件加載失敗",
+  "SeedsUI_getting_address": "獲取地址中...",
   "SeedsUI_get_address_failed": "獲取地址失敗, 請稍後重試",
   "SeedsUI_location_preview_failed": "坐標不正確, 預覽失敗",
   "SeedsUI_location_success": "定位成功",

@@ -66,7 +66,24 @@ const MapContainer = forwardRef(
       currentMap: null,
       leafletMap: null,
       // 指定获取定位和地址的方法
-      getAddress: getAddress,
+      getAddress: async (latlng) => {
+        let result = latlng
+        if (typeof result === 'object' && result?.longitude && result?.latitude) {
+          if (!result.type) result.type = 'wgs84'
+          let addrRes = await getAddress(result)
+          if (addrRes?.address) {
+            result = {
+              ...result,
+              ...addrRes
+            }
+          } else {
+            result = locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+          }
+        } else {
+          result = locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+        }
+        return result
+      },
       getLocation: getLocation,
       // Functions
       setView: (...params) => {

@@ -1,15 +1,16 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
-import { Map, Toast, Loading, locale } from 'seedsui-react'
-const {
-  IconUtil,
-  MapContainer,
-  ZoomControl,
-  SearchControl,
-  CenterMarker,
-  LocationControl,
-  NearbyControl,
-  Markers
-} = Map
+import Toast from './../../../Toast'
+import Loading from './../../../Loading'
+import locale from './../../../locale'
+
+import IconUtil from './../../utils/IconUtil'
+import MapContainer from './../../components/MapContainer'
+import ZoomControl from './../../components/ZoomControl'
+import SearchControl from './../../components/SearchControl'
+import CenterMarker from './../../components/CenterMarker'
+import LocationControl from './../../components/LocationControl'
+import NearbyControl from './../../components/NearbyControl'
+import Markers from './../../components/Markers'
 
 // 地图选点
 function MapChoose(
@@ -55,14 +56,12 @@ function MapChoose(
     // 默认选中当前位置
     Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
     let result = await mapRef.current?.getLocation?.()
-    if (typeof result === 'object') {
-      result = await mapRef.current?.getAddress?.(result)
-    }
+    result = await mapRef.current?.getAddress?.(result)
     Loading.hide()
 
     if (typeof result === 'string') {
       Toast.show({
-        content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+        content: result
       })
     } else {
       setValue(result)
@@ -120,13 +119,10 @@ function MapChoose(
                   ...center
                 }
 
-                Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
-                let address = await map.getAddress(center)
+                Loading.show({ content: locale('获取地址中...', 'SeedsUI_getting_address') })
+                result = await map.getAddress(result)
                 Loading.hide()
 
-                if (typeof address === 'object') {
-                  result = { ...result, ...address }
-                }
                 setValue(result)
 
                 onChange && onChange(result)

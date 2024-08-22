@@ -41,6 +41,7 @@
   "SeedsUI_max_star_error": "Không thể lớn hơn {0} sao",
   "SeedsUI_loading": "Đang tải...",
   "SeedsUI_file_load_failed": "Tải tệp không thành công",
+  "SeedsUI_getting_address": "Đang lấy địa chỉ...",
   "SeedsUI_get_address_failed": "Không lấy được địa chỉ, vui lòng thử lại sau",
   "SeedsUI_location_preview_failed": "Tọa độ không chính xác, xem trước không thành công",
   "SeedsUI_location_success": "Định vị thành công",

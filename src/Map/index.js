@@ -1,8 +1,10 @@
+// Utils
 import coordTransform from './utils/coordTransform'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
 import IconUtil from './utils/IconUtil'
+// Components
 import APILoader from './components/APILoader'
 import MapContainer from './components/MapContainer'
 import ZoomControl from './components/ZoomControl'
@@ -11,6 +13,9 @@ import CenterMarker from './components/CenterMarker'
 import Markers from './components/Markers'
 import LocationControl from './components/LocationControl'
 import NearbyControl from './components/NearbyControl'
+// Pages
+import MapChoose from './pages/MapChoose'
+import MapMarkers from './pages/MapMarkers'
 
 const Map = {
   // utils
@@ -27,7 +32,10 @@ const Map = {
   CenterMarker,
   Markers,
   LocationControl,
-  NearbyControl
+  NearbyControl,
+  // Pages
+  MapChoose,
+  MapMarkers
 }
 
 export default Map

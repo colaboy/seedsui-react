@@ -1,6 +1,9 @@
 import React, { useRef, forwardRef } from 'react'
-import { Map } from 'seedsui-react'
-const { IconUtil, MapContainer, ZoomControl, Markers } = Map
+
+import IconUtil from './../../utils/IconUtil'
+import MapContainer from './../../components/MapContainer'
+import ZoomControl from './../../components/ZoomControl'
+import Markers from './../../components/Markers'
 
 // 地图标注
 function MapMarkers({ points, icon, onMarkerClick }, ref) {
