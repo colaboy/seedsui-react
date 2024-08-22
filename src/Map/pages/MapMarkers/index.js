@@ -1,16 +1,19 @@
 import React, { useRef, forwardRef } from 'react'
-
+import locale from './../../../locale'
 import IconUtil from './../../utils/IconUtil'
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import Markers from './../../components/Markers'
+
+import Result from './../../components/Result'
 
 // 地图标注
 function MapMarkers({ points, icon, onMarkerClick }, ref) {
   // 放大缩小
   const zoomRef = useRef(null)
 
-  if (!Array.isArray(points) || !points.length) return <div>11111</div>
+  if (!Array.isArray(points) || !points.length)
+    return <Result title={`${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`} />
 
   return (
     <MapContainer

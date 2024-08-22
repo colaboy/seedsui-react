@@ -3,7 +3,7 @@ import { Map } from 'seedsui-react'
 
 // 生成随机点
 // import getPoints from './getPoints'
-const { APILoader, MapMarkers, coordTransform } = Map
+const { APILoader, MapMarkers, coordsToWgs84 } = Map
 
 // 随机生成点, 用于测试性能
 // const points = getPoints({
@@ -42,7 +42,7 @@ export default () => {
           ref={mapRef}
           // 转换为wgs84坐标
           // points={points}
-          points={coordTransform([
+          points={coordsToWgs84([
             {
               longitude: 113.044821,
               latitude: 23.890941,
