@@ -12,6 +12,8 @@ An enterprise-class UI design language and React UI library.
 
 ## 📦 Install
 
+### NPM
+
 ```bash
 npm install seedsui-react
 ```
@@ -24,7 +26,7 @@ yarn add seedsui-react
 pnpm add seedsui-react
 ```
 
-## UMD
+### UMD
 
 Add scripts to `index.html`
 
