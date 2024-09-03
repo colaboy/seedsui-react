@@ -30,7 +30,7 @@ const Item = ({
       data-index={index}
       onClick={onClick}
     >
-      {/* 左选中 */}
+      {/* Left checkbox */}
       {checkable !== false && (
         <div className={`left select-option-${getCheckedType()}`}>
           <div className="checked-input"></div>
@@ -57,9 +57,11 @@ const Item = ({
           )}
         </div>
       </div>
-      {/* 内容 */}
-      <div className="select-option-content"></div>
-      {/* 右选中 */}
+      {/* Content */}
+      {item.content && <div className="select-option-content">{item.content}</div>}
+      {/* Action */}
+      {item.action && <div className="select-option-action">{item.action}</div>}
+      {/* Right checkbox */}
       {checkable !== false && (
         <div className={`right select-option-${getCheckedType()}`}>
           <div className="checked-input"></div>

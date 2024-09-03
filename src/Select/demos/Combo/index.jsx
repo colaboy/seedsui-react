@@ -62,7 +62,8 @@ export default () => {
           },
           {
             id: '选项2',
-            name: '选项2'
+            name: '选项2',
+            content: '+86'
           },
           {
             id: '3',
@@ -163,8 +164,8 @@ export default () => {
           )
         }}
         // 选中效果: checkbox | tick | corner
-        checkedType="checkbox"
-        checkedPosition="right"
+        checkedType="tick"
+        checkedPosition="left"
         // disabled
       >
         <span>
