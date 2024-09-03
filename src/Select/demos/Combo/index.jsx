@@ -46,7 +46,7 @@ export default () => {
             description: '普通描述'
           },
           {
-            name: '分组',
+            name: '这是分组的标题',
             // description: '分组描述',
             children: [
               {

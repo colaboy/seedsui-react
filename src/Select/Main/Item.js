@@ -36,11 +36,29 @@ const Item = ({
           <div className="checked-input"></div>
         </div>
       )}
-      {/* 内容 */}
-      <div className="select-option-content">
-        <p className="select-option-caption">{item.name}</p>
-        {item.description && <div className="select-option-description">{item.description}</div>}
+      {/* Main */}
+      <div className="select-option-main">
+        {item?.avatar && (
+          <div className={`select-option-main-avatar`}>
+            <img
+              alt=""
+              src={item.avatar}
+              onError={(e) => {
+                e.currentTarget.src = defaultAvatar
+              }}
+              className="avatar"
+            />
+          </div>
+        )}
+        <div className="select-option-main-content">
+          <p className="select-option-main-title">{item?.title || item.name}</p>
+          {item.description && (
+            <div className="select-option-main-description">{item.description}</div>
+          )}
+        </div>
       </div>
+      {/* 内容 */}
+      <div className="select-option-content"></div>
       {/* 右选中 */}
       {checkable !== false && (
         <div className={`right select-option-${getCheckedType()}`}>

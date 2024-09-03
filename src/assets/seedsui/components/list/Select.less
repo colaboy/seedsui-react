@@ -64,18 +64,22 @@ Select.Combo
   font-size: 16px;
   .border-b;
 }
-// 选项-内容
-.select-option-content {
+// 主体
+.select-option-main {
   .flex-1;
 }
-// 选项-内容-标题
-.select-option-caption {
+// 主体-Avatar
+.select-option-main-avatar {
+}
+// 主体-内容
+.select-option-main-content {
+}
+.select-option-main-title {
   position: relative;
   display: block;
   pointer-events: none;
 }
-// 选项-内容-副标题
-.select-option-description {
+.select-option-main-description {
   color: @tertiary;
   font-size: @font-size-s;
   margin-top: 4px;
@@ -120,7 +124,7 @@ Select.Combo
   }
 }
 [checked-type='tick'].active {
-  .select-option-caption {
+  .select-option-main-title {
     color: @primary;
   }
   .select-option-tick {
