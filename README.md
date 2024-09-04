@@ -37,21 +37,16 @@ Add scripts to `index.html`
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/dayjs.1.11.8.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/ahooks.3.8.1.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/lodash.4.17.21.min.js"></script>
+<!-- The UMD router used to resolve errors in the UMD version of @ahooksjs/use-url-state -->
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.6.26.1.min.js"></script>
 <!-- SeedsUI must defer -->
 <script
   defer
   src="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.8.52.min.js"
 ></script>
 
-<!-- lodash umd -->
-<script>
-  window.lodash = window._
-</script>
-
-<!--Base library or use unpkg-->
-
-<script src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
-<script src="https://unpkg.com/ahooks@3.8.1/dist/ahooks.js"></script>
+<!--unpkg can get the latest base library, example:  -->
+<!-- <script src="https://unpkg.com/react-routers"></script> -->
 ```
 
 Config webpack.config.js
@@ -63,6 +58,7 @@ return {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter',
     axios: 'axios',
     dayjs: 'dayjs',
     lodash: '_',
