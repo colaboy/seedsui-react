@@ -38,7 +38,11 @@ Add scripts to `index.html`
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/ahooks.3.8.1.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/lodash.4.17.21.min.js"></script>
 <!-- The UMD router used to resolve errors in the UMD version of @ahooksjs/use-url-state -->
+<!--
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.6.26.1.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.5.1.2.min.js"></script>
+-->
+
 <!-- SeedsUI must defer -->
 <script
   defer
