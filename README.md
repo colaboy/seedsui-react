@@ -49,7 +49,7 @@ Add scripts to `index.html`
   src="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.8.52.min.js"
 ></script>
 
-<!--unpkg can get the latest base library, example:  -->
+<!-- The UMD tool unpkg can get the latest base library, example:  -->
 <!-- <script src="https://unpkg.com/react-routers"></script> -->
 ```
 
