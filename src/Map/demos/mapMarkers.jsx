@@ -42,6 +42,9 @@ export default () => {
           ref={mapRef}
           // 转换为wgs84坐标
           // points={points}
+          ZoomControlProps={{
+            style: { bottom: '20px' }
+          }}
           points={coordsToWgs84([
             {
               longitude: 113.044821,

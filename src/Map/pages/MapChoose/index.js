@@ -24,6 +24,15 @@ function MapChoose(
     value: defaultValue,
     onChange,
     onMarkerClick,
+
+    // Control Props
+    SearchControlProps,
+    CenterMarkerProps,
+    MarkersProps,
+    ZoomControlProps,
+    LocationControlProps,
+    NearbyControlProps,
+
     children,
     ...props
   },
@@ -104,6 +113,7 @@ function MapChoose(
 
           onChange && onChange(item)
         }}
+        {...SearchControlProps}
       />
 
       {/* 中心标注点: 仅用于显示 */}
@@ -129,10 +139,11 @@ function MapChoose(
                 onChange && onChange(result)
               }
         }
+        {...CenterMarkerProps}
       />
 
       {/* 标注点 */}
-      {!readOnly ? <Markers points={points} onClick={onMarkerClick} /> : null}
+      {!readOnly ? <Markers points={points} onClick={onMarkerClick} {...MarkersProps} /> : null}
 
       {/* 缩放控件 */}
       <ZoomControl
@@ -148,6 +159,7 @@ function MapChoose(
             console.log('缩小', map.getZoom())
           }, 300)
         }}
+        {...ZoomControlProps}
       />
 
       {/* 定位控件 */}
@@ -161,6 +173,7 @@ function MapChoose(
 
             onChange && onChange(result)
           }}
+          {...LocationControlProps}
         />
       )}
 
@@ -184,6 +197,7 @@ function MapChoose(
           }
           setPoints(list)
         }}
+        {...NearbyControlProps}
       />
 
       {children}

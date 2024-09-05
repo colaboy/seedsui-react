@@ -8,7 +8,17 @@ import Markers from './../../components/Markers'
 import Result from './../../components/Result'
 
 // 地图标注
-function MapMarkers({ points, icon, onMarkerClick, children }, ref) {
+function MapMarkers(
+  {
+    points,
+    icon,
+    onMarkerClick,
+    // Control Props
+    ZoomControlProps,
+    children
+  },
+  ref
+) {
   // 放大缩小
   const zoomRef = useRef(null)
 
@@ -38,7 +48,7 @@ function MapMarkers({ points, icon, onMarkerClick, children }, ref) {
       />
 
       {/* 缩放控件 */}
-      <ZoomControl ref={zoomRef} style={{ bottom: '20px' }} />
+      <ZoomControl ref={zoomRef} style={{ bottom: '20px' }} {...ZoomControlProps} />
 
       {children}
     </MapContainer>
