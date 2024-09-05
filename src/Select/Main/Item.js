@@ -38,18 +38,22 @@ const Item = ({
       )}
       {/* Main */}
       <div className="select-option-main">
-        {item?.avatar && (
+        {typeof item?.avatar === 'string' && (
           <div className={`select-option-main-avatar`}>
             <img
               alt=""
               src={item.avatar}
               onError={(e) => {
-                e.currentTarget.src = defaultAvatar
+                e.target.classList.add('fail')
+              }}
+              onLoad={(e) => {
+                e.target.classList.add('success')
               }}
               className="avatar"
             />
           </div>
         )}
+        {React.isValidElement(item?.avatar) ? item?.avatar : null}
         <div className="select-option-main-content">
           <p className="select-option-main-title">{item?.title || item.name}</p>
           {item.description && (

@@ -41,9 +41,11 @@ export default () => {
         value={value}
         list={[
           {
+            avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
             id: '选项1',
             name: '选项1',
-            description: '普通描述'
+            description: '普通描述',
+            content: '自定义内容'
           },
           {
             name: '这是分组的标题',

@@ -66,12 +66,30 @@ Select.Combo
 }
 // 主体
 .select-option-main {
+  .flex;
   .flex-1;
 }
 // 主体-Avatar
 .select-option-main-avatar {
+  .bg-no-img;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 36px;
+  height: 36px;
+  .avatar {
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    &.success {
+      visibility: visible;
+    }
+  }
 }
 // 主体-内容
+.select-option-main-avatar + .select-option-main-content {
+  margin-left: 10px;
+}
 .select-option-main-content {
 }
 .select-option-main-title {
