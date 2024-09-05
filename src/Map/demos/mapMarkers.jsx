@@ -3,7 +3,7 @@ import { Map } from 'seedsui-react'
 
 // 生成随机点
 // import getPoints from './getPoints'
-const { APILoader, MapMarkers, coordsToWgs84 } = Map
+const { APILoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
 
 // 随机生成点, 用于测试性能
 // const points = getPoints({
@@ -84,7 +84,14 @@ export default () => {
           //     .setContent('I am a standalone popup.')
           //     .openOn(mapRef.current.leafletMap)
           // }}
-        />
+        >
+          <LocationControl
+            style={{ bottom: '20px' }}
+            onChange={(result) => {
+              mapRef.current.panTo(result)
+            }}
+          />
+        </MapMarkers>
       </div>
     </APILoader>
   )

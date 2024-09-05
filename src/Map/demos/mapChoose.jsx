@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react'
 import { Map, Bridge } from 'seedsui-react'
 const { APILoader, MapChoose, coordsToWgs84 } = Map
-
+import CustomChild from './CustomChild'
 // 生成随机点
 // import getPoints from './getPoints'
 
 export default () => {
   const mapRef = useRef(null)
-  Bridge.debug = true
+  // Bridge.debug = true
   let [value, setValue] = useState({
     // latitude: 39.907783490367706,
     // longitude: 116.39120737493609,
@@ -88,7 +88,9 @@ export default () => {
           //     }, 1000)
           //   })
           // }}
-        />
+        >
+          <CustomChild />
+        </MapChoose>
       </div>
     </APILoader>
   )

@@ -24,6 +24,7 @@ function MapChoose(
     value: defaultValue,
     onChange,
     onMarkerClick,
+    children,
     ...props
   },
   ref
@@ -184,6 +185,8 @@ function MapChoose(
           setPoints(list)
         }}
       />
+
+      {children}
     </MapContainer>
   )
 }

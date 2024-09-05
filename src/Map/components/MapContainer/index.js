@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+import locale from './../../../locale'
 import IconUtil from './../../utils/IconUtil'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
