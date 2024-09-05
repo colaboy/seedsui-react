@@ -5,7 +5,7 @@ import locale from './../../../locale'
 
 // 搜索附近
 function nearbySearch({ map, keyword, longitude, latitude, radius }) {
-  return new Promise(async (resolve) => {
+  return new Promise((resolve) => {
     const service = new window.google.maps.places.PlacesService(map)
     let center = latitude && longitude ? new window.google.maps.LatLng(latitude, longitude) : null
 
