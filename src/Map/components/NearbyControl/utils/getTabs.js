@@ -1,4 +1,8 @@
-import locale from './../../../../locale'
+// 内库使用
+import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 const tabs = function getTabs() {
   if (window.BMap) {

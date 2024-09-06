@@ -1,12 +1,18 @@
-// 测试使用
-// import { locale } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
 
+// 测试使用
+// import { locale } from 'seedsui-react'
+
 // 搜索附近
 function nearbySearch({ map, keyword, longitude, latitude, radius }) {
-  return new Promise((resolve) => {
-    const service = new window.google.maps.places.PlacesService(map)
+  if (!map?.currentMap || !longitude || !latitude) {
+    return null
+  }
+
+  // eslint-disable-next-line
+  return new Promise(async (resolve) => {
+    const service = new window.google.maps.places.PlacesService(map.currentMap)
     let center = latitude && longitude ? new window.google.maps.LatLng(latitude, longitude) : null
 
     // 构建请求

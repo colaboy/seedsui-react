@@ -1,4 +1,8 @@
+// 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 地址逆解析
 function googleGetAddress({ longitude, latitude }) {

@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react'
 import Navigation from './Navigation'
 
-// 测试使用
-// import { locale, Checkbox } from 'seedsui-react'
 // 内库使用
 import Checkbox from './../../../../Checkbox'
 import locale from './../../../../locale'
+
+// 测试使用
+// import { locale, Checkbox } from 'seedsui-react'
 
 // 当前位置
 function Current({ map, active, value, readOnly, onChange }, ref) {

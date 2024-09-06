@@ -1,16 +1,17 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
+
+// 内库使用
 import locale from './../../../locale'
-import queryNearby from './../../utils/queryNearby'
+import Loading from './../../../Loading'
+
+// 测试使用
+// import { locale, Loading } from 'seedsui-react'
+
 import getTabs from './utils/getTabs'
 import Current from './Current'
 import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
-
-// 测试使用
-// import { Loading } from 'seedsui-react'
-// 内库使用
-import Loading from './../../../Loading'
 
 // 附近推荐
 function Nearby(
@@ -66,8 +67,8 @@ function Nearby(
     Loading.show({
       content: locale('搜索中', 'SeedsUI_searching')
     })
-    let result = await queryNearby({
-      map: map.currentMap,
+    let result = await map.queryNearby({
+      map: map,
       keyword: tab.id || tab.name,
       longitude: value?.longitude,
       latitude: value?.latitude,

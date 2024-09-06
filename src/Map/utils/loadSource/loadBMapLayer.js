@@ -1,7 +1,8 @@
-// 测试使用
-// import { GeoUtil } from 'seedsui-react'
 // 内库使用
 import GeoUtil from './../../../GeoUtil'
+
+// 测试使用
+// import { GeoUtil } from 'seedsui-react'
 
 // 百度地图瓦片图层插件
 function loadBMapLayer() {

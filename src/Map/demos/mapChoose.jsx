@@ -1,5 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { Map, Bridge } from 'seedsui-react'
+import { Bridge } from 'seedsui-react'
+
+// 内库使用
+import { Map } from 'seedsui-react'
+
+// 测试使用
+// import Map from 'library/components/Map'
+
 const { APILoader, MapChoose, coordsToWgs84 } = Map
 import CustomChild from './CustomChild'
 // 生成随机点
@@ -88,9 +95,24 @@ export default () => {
           //     }, 1000)
           //   })
           // }}
-        >
-          <CustomChild />
-        </MapChoose>
+          // queryNearby={({ map, keyword, longitude, latitude, radius }) => {
+          //   console.log('搜索附近:', map, keyword, longitude, latitude, radius)
+          //   return [
+          //     {
+          //       address: '上海市南京东路831号',
+          //       latitude: 31.237415229632834,
+          //       longitude: 121.47015544295395,
+          //       name: '市百一店'
+          //     },
+          //     {
+          //       address: '上海市南京东路832号',
+          //       latitude: 31.237415229632834,
+          //       longitude: 121.47015544295395,
+          //       name: '市百二店'
+          //     }
+          //   ]
+          // }}
+        />
       </div>
     </APILoader>
   )

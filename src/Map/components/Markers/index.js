@@ -1,7 +1,7 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
 
 // 批量标注
-const Markers = forwardRef(({ map, points, onClick }, ref) => {
+const Markers = forwardRef(({ map, points, onClick, onMarkerEnd }, ref) => {
   // 节点
   useImperativeHandle(ref, () => {
     return {
@@ -22,6 +22,8 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
     }
     map.clearMarkers()
     map.addMarkers(points, { onClick })
+
+    onMarkerEnd && onMarkerEnd()
   }
 
   return <></>

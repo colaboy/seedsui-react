@@ -1,10 +1,11 @@
 import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import Page from './Page'
 
-// 测试使用
-// import { locale } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 搜索
 function SearchControl({ map, onChange }, ref) {

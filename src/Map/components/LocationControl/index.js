@@ -1,11 +1,12 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-// 测试使用
-// import { locale, Loading, Toast } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
 import Loading from './../../../Loading'
 import Toast from './../../../Toast'
+
+// 测试使用
+// import { locale, Loading, Toast } from 'seedsui-react'
 
 // 定位控件
 function LocationControl({ map, onChange, ...props }, ref) {

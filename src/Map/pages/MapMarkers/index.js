@@ -1,5 +1,11 @@
 import React, { useRef, forwardRef } from 'react'
+
+// 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
+
 import IconUtil from './../../utils/IconUtil'
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
@@ -12,16 +18,20 @@ function MapMarkers(
   {
     points,
     icon,
+    // 获取定位和地址工具类
+    getAddress,
+    getLocation,
+    queryNearby,
+
     onMarkerClick,
+    onLoad,
+    onMarkerEnd,
     // Control Props
     ZoomControlProps,
     children
   },
   ref
 ) {
-  // 放大缩小
-  const zoomRef = useRef(null)
-
   if (!Array.isArray(points) || !points.length)
     return <Result title={`${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`} />
 
@@ -35,6 +45,16 @@ function MapMarkers(
       iconOptions={{
         imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
       }}
+      onLoad={(map) => {
+        // value没值时，开启自动定位，则先定位
+        if (typeof map === 'string') return
+
+        onLoad && onLoad(map)
+      }}
+      // 自定义获取地址和定位
+      getAddress={getAddress}
+      getLocation={getLocation}
+      queryNearby={queryNearby}
     >
       {/* 标注点 */}
       <Markers
@@ -45,10 +65,11 @@ function MapMarkers(
           }
         })}
         onClick={onMarkerClick}
+        onMarkerEnd={onMarkerEnd}
       />
 
       {/* 缩放控件 */}
-      <ZoomControl ref={zoomRef} style={{ bottom: '20px' }} {...ZoomControlProps} />
+      <ZoomControl style={{ bottom: '20px' }} {...ZoomControlProps} />
 
       {children}
     </MapContainer>

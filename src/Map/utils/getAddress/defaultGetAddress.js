@@ -1,8 +1,12 @@
+// 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 地址逆解析函数
 function osmGetAddress({ longitude, latitude }) {
-  var url =
+  const url =
     'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude
 
   return new Promise((resolve) => {

@@ -1,12 +1,13 @@
 import React from 'react'
 
-// 测试使用
-// import { Loading, Toast, Bridge, locale } from 'seedsui-react'
 // 内库使用
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 import Bridge from './../../../../Bridge'
 import locale from './../../../../locale'
+
+// 测试使用
+// import { Loading, Toast, Bridge, locale } from 'seedsui-react'
 
 // 导航
 function Navigation({

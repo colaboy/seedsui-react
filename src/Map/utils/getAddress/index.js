@@ -1,4 +1,9 @@
+// 内库使用
 import Toast from './../../../Toast'
+
+// 测试使用
+// import { Toast } from 'seedsui-react'
+
 import coordTransform from './coordTransform'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'

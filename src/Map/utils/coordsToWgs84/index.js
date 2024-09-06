@@ -1,4 +1,8 @@
+// 内库使用
 import GeoUtil from './../../../GeoUtil'
+
+// 测试使用
+// import { GeoUtil } from 'seedsui-react'
 
 // 单个点转换
 function getPoint(point, type) {

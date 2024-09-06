@@ -1,5 +1,10 @@
 import React, { useRef } from 'react'
+
+// 内库使用
 import { Map } from 'seedsui-react'
+
+// 测试使用
+// import Map from 'library/components/Map'
 
 // 生成随机点
 // import getPoints from './getPoints'
@@ -87,6 +92,10 @@ export default () => {
           //     .setContent('I am a standalone popup.')
           //     .openOn(mapRef.current.leafletMap)
           // }}
+          onLoad={(map) => {
+            let currentZoom = map.getZoom()
+            map.setZoom(currentZoom - 1)
+          }}
         >
           <LocationControl
             style={{ bottom: '20px' }}

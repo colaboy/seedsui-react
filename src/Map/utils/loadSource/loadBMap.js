@@ -1,7 +1,8 @@
-// 测试使用
-// import { locale } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 加载BMap地图资源
 function loadBMap(key) {

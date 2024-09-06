@@ -1,12 +1,20 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
+
+// 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
+
 import IconUtil from './../../utils/IconUtil'
+import getMapType from './../../utils/getMapType'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
 import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
 import defaultGetAddress from './../../utils/getAddress'
 import defaultGetLocation from './../../utils/getLocation'
+import defaultQueryNearby from './../../utils/queryNearby'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
 
@@ -26,6 +34,7 @@ const MapContainer = forwardRef(
       // 自定义获取地址和定位
       getAddress,
       getLocation,
+      queryNearby,
       // events
       onLoad,
       onZoomStart,
@@ -48,6 +57,8 @@ const MapContainer = forwardRef(
     if (typeof getAddress !== 'function') getAddress = defaultGetAddress
     // eslint-disable-next-line
     if (typeof getLocation !== 'function') getLocation = defaultGetLocation
+    // eslint-disable-next-line
+    if (typeof queryNearby !== 'function') queryNearby = defaultQueryNearby
 
     const rootRef = useRef(null)
     // canvas marker plugin
@@ -63,6 +74,7 @@ const MapContainer = forwardRef(
     const APIRef = useRef({
       rootDOM: rootRef.current,
       getRootDOM: () => rootRef.current,
+      type: getMapType(),
       // Dynamic props
       currentMap: null,
       leafletMap: null,
@@ -86,6 +98,25 @@ const MapContainer = forwardRef(
         return result
       },
       getLocation: getLocation,
+      // 搜索附近与搜索
+      /*
+      入参:
+      {
+        map: map,
+        keyword: '',
+        longitude: '',
+        latitude: '',
+        radius: 1000 // 不传半径则为模糊搜索
+      }
+      出参:
+      {
+        address: '上海市南京东路830号',
+        latitude: 31.237415229632834,
+        longitude: 121.47015544295395,
+        name: 'eve lom市百一店'
+      }
+      */
+      queryNearby: queryNearby,
       // Functions
       setView: (...params) => {
         leafletMap?.setView(...params)
@@ -127,6 +158,10 @@ const MapContainer = forwardRef(
       },
       getZoom: () => {
         return leafletMap?.getZoom?.() || null
+      },
+      setZoom: (zoom) => {
+        if (!leafletMap?.setZoom) return
+        return leafletMap.setZoom(zoom)
       },
       // 单个点只支持Leaflet绘制不支持canvas绘制
       addMarker: function (point, { onClick, layerGroup }) {
@@ -236,8 +271,11 @@ const MapContainer = forwardRef(
         minZoom,
         maxZoom
       })
+      let currentMapContainer = rootRef.current.querySelector('.map-api-container')
       // Create bmap,amap,etc current map to use invoke api
-      const currentMap = await createCurrentMap(rootRef.current.querySelector('.map-api-container'))
+      const currentMap = await createCurrentMap(currentMapContainer, {
+        center: center
+      })
       APIRef.current.currentMap = currentMap
 
       // Load leafletMap failed

@@ -1,7 +1,12 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
+
+// 内库使用
 import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 import locale from './../../../locale'
+
+// 测试使用
+// import { Loading, Toast, locale } from 'seedsui-react'
 
 import IconUtil from './../../utils/IconUtil'
 import MapContainer from './../../components/MapContainer'
@@ -20,8 +25,10 @@ function MapChoose(
     // 获取定位和地址工具类
     getAddress,
     getLocation,
+    queryNearby,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
     value: defaultValue,
+    onLoad,
     onChange,
     onMarkerClick,
 
@@ -92,16 +99,19 @@ function MapChoose(
       // 自定义获取地址和定位
       getAddress={getAddress}
       getLocation={getLocation}
+      queryNearby={queryNearby}
       // 基准路径
       iconOptions={{
         imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
       }}
       {...props}
-      onLoad={() => {
+      onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
-        if (readOnly || !autoLocation || value?.address) return
+        if (typeof map === 'string') return
+        onLoad && onLoad(map)
 
         // 当前位置
+        if (readOnly || !autoLocation || value?.address) return
         handleAutoLocation()
       }}
     >

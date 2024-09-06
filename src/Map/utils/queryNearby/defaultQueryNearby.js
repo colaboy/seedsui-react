@@ -1,7 +1,8 @@
-// 测试使用
-// import { locale } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 搜索附近
 function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {

@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react'
-import Loading from './../../../Loading'
-import queryNearby from './../../utils/queryNearby'
 
-// 测试使用
-// import { Input, Layout, Header, Notice, HighlightKeyword, locale } from 'seedsui-react'
 // 内库使用
 import locale from './../../../locale'
-import HighlightKeyword from './../../../HighlightKeyword'
+import Loading from './../../../Loading'
+import Input from './../../../Input'
 import Layout from './../../../Layout'
 import Header from './../../../Header'
-import Input from './../../../Input'
 import Notice from './../../../Notice'
+import HighlightKeyword from './../../../HighlightKeyword'
+
+// 测试使用
+// import { locale, Loading, Input, Layout, Header, Notice, HighlightKeyword } from 'seedsui-react'
 
 // 搜索
 function Page({ map, visible, onVisibleChange, onChange }) {
@@ -46,8 +46,8 @@ function Page({ map, visible, onVisibleChange, onChange }) {
     Loading.show({
       content: locale('搜索中', 'SeedsUI_searching')
     })
-    let list = await queryNearby({
-      map: map.currentMap,
+    let list = await map.queryNearby({
+      map: map,
       keyword: inputText.value,
       latitude: center.latitude,
       longitude: center.longitude
