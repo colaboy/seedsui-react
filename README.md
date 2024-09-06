@@ -51,6 +51,11 @@ Add scripts to `index.html`
 
 <!-- The UMD tool unpkg can get the latest base library, example:  -->
 <!-- <script src="https://unpkg.com/react-routers"></script> -->
+
+<script>
+  // The UMD version of lodash must have reference to window.lodash
+  window.lodash = window._
+</script>
 ```
 
 Config webpack.config.js
