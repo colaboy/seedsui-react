@@ -15,13 +15,18 @@ export default () => {
       duration: 2000,
       maskClickable: false,
       onVisibleChange: (visible) => {
-        console.log('visible:', visible)
+        console.log('custom visible:', visible)
       }
     })
     console.log(toast)
 
     setTimeout(() => {
-      Toast.show({ content: 'hh' })
+      Toast.show({
+        content: 'hh',
+        onVisibleChange: (visible) => {
+          console.log('hh visible:', visible)
+        }
+      })
     }, 1000)
   }
 

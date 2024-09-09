@@ -86,10 +86,7 @@ function show(props) {
     if (mask.showTimeout) window.clearTimeout(mask.showTimeout)
     mask.showTimeout = setTimeout(
       () => {
-        hide()
-        if (typeof onVisibleChange === 'function') {
-          onVisibleChange(false)
-        }
+        hide({ onVisibleChange: onVisibleChange })
       },
       typeof duration === 'number' ? duration : 2000
     )
