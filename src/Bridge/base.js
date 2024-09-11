@@ -1,5 +1,5 @@
 // 测试使用
-// import { Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react'
+// import { GeoUtil, Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react'
 // import Alert from 'seedsui-react/lib/Alert/instance.js'
 // import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
 // 内库使用
@@ -17,9 +17,6 @@ import ToastInstance from './../Toast/instance.js'
 
 import GeoUtil from './../GeoUtil'
 import locale from './../locale'
-
-// 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
-window.top.window._bridge_self = null
 
 let Bridge = {
   /**
@@ -390,10 +387,7 @@ let Bridge = {
     const { history, success, fail } = config || {}
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
-      // 因为有可能是监听绑定, this指向有可能是window, 所以需要指定self
-      // eslint-disable-next-line
-      let self = window.top.window._bridge_self
-
+      let self = this
       // 返回操作对象与返回层级
       let _history = window.history
       if (history && history.go) _history = history
@@ -428,7 +422,6 @@ let Bridge = {
       }
       // 关闭返回
       else if (isFromApp === '1') {
-        console.log('back:', self.closeWindow)
         // 关闭当前页面
         try {
           self.closeWindow()
@@ -536,6 +529,11 @@ let Bridge = {
       platform === 'alipay' ||
       platform === 'alipayMiniprogram'
     ) {
+      // 已经有对象了, 则不需要加载库了, 防止重复加载
+      if (window.top.wx) {
+        if (callback) callback()
+        return
+      }
       // 微信平台
       // 加载微信库
       if (platform === 'wechat') {

@@ -50,10 +50,6 @@ if (
   }
 }
 
-// 防止绑定事件时this指向window, 所以全局加一个变量用于存储this
-// eslint-disable-next-line
-window.top.window._bridge_self = Bridge
-
 /*
 Bridge.ready(() => {
   // 增加返回监听
