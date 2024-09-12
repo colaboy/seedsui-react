@@ -1,4 +1,4 @@
-// 默认图标配置
+// 默认图标配置, https://leafletjs.com/reference.html#icon
 const defaultIconOptions = {
   iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.png`,
   iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-icon-2x.png`,

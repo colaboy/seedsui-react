@@ -49,7 +49,7 @@ async function createCurrentMap(container, { center } = {}) {
   // Init google map
   else if (window.google) {
     wgs84Center = wgs84Center || { longitude: 51.508742, latitude: -0.12085 }
-    let googleCenter = new window.google.maps.LatLng(googleCenter.longitude, googleCenter.latitude)
+    let googleCenter = new window.google.maps.LatLng(wgs84Center.longitude, wgs84Center.latitude)
 
     currentMap = new window.google.maps.Map(container, {
       center: googleCenter,

@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
 // 内库使用
 import locale from './../../../locale'
