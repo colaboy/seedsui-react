@@ -1,13 +1,26 @@
-// 测试使用
-// import { locale, Device, Toast } from 'seedsui-react'
+// 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
+
 // 内库使用
 import locale from './../locale'
 import Device from './../Device'
 import Toast from './../Toast'
 
-let self = null
+// 测试使用
+// import { locale, Device, Toast } from 'seedsui-react'
+
+import BridgeBase from './base'
+import LocationTask from './utils/LocationTask'
+import back from './utils/back'
+import ready from './utils/ready'
 
 let Bridge = {
+  ...BridgeBase,
+  ready: function (callback, options) {
+    ready(callback, options, Bridge)
+  },
+  back: function (backLvl, options) {
+    back(backLvl, options, Bridge)
+  },
   /**
    * 定制功能
    */
@@ -23,14 +36,6 @@ let Bridge = {
   // 获得版本信息
   getAppVersion: function () {
     return Device.platformVersion
-  },
-  // 判断是否是主页
-  isHomePage: function (callback, rule) {
-    if (rule && window.location.href.indexOf(rule) >= 0) {
-      callback(true)
-      return
-    }
-    callback(false)
   },
   // 返回首页
   goHome: function () {
@@ -85,18 +90,17 @@ let Bridge = {
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
       console.log('PC端微信定位...', params)
-      this.getBrowserLocation?.(params)
+      Bridge.getBrowserLocation?.(params)
       return
     }
 
     const { type, success, fail, complete, ...otherParams } = params || {}
-    self = this
     // 调用定位
-    if (self.locationTask) {
-      self.locationTask.push(params)
+    if (LocationTask.locationTask) {
+      LocationTask.locationTask.push(params)
       return
     }
-    self.locationTask = []
+    LocationTask.locationTask = []
     console.log('调用微信定位...', params)
     window.top.wx.getLocation({
       ...otherParams,
@@ -108,11 +112,11 @@ let Bridge = {
         } else {
           if (fail) fail(res)
         }
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
         if (fail) fail(res)
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       complete: (res) => {
         if (complete) complete(res)

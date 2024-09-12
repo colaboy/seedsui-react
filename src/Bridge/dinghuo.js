@@ -1,12 +1,23 @@
-// 测试使用
-// import { Device, locale } from 'seedsui-react'
 // 内库使用
 import Device from './../Device'
 import locale from './../locale'
 
-let self = null
+// 测试使用
+// import { Device, locale } from 'seedsui-react'
+
+import BridgeBase from './base'
+import LocationTask from './utils/LocationTask'
+import back from './utils/back'
+import ready from './utils/ready'
 
 let Bridge = {
+  ...BridgeBase,
+  ready: function (callback, options) {
+    ready(callback, options, Bridge)
+  },
+  back: function (backLvl, options) {
+    back(backLvl, options, Bridge)
+  },
   /**
    * 定制功能
    */
@@ -21,7 +32,6 @@ let Bridge = {
       window.top.wq = window.wq
     }
 
-    self = this
     let isReady = false
     if (window.top.wq) {
       console.log('桥接文件已加载!')
@@ -74,8 +84,6 @@ let Bridge = {
    * @param {Object} params {title: '自定义标题', url: '打开地址(h5:为打开老内容)', target: '_self'}}
    */
   openWindow: function (params = {}) {
-    self = this
-
     if (params.url) {
       if (params.url.indexOf('h5:') === 0) params.url = params.url.replace(/^h5:/, '')
       else if (params.url.indexOf('webview:') === 0)
@@ -118,13 +126,12 @@ let Bridge = {
   getLocation: function (params = {}) {
     const { type, success, fail, complete, ...otherParams } = params || {}
 
-    self = this
     // 调用定位
-    if (self.locationTask) {
-      self.locationTask.push(params)
+    if (LocationTask.locationTask) {
+      LocationTask.locationTask.push(params)
       return
     }
-    self.locationTask = []
+    LocationTask.locationTask = []
     console.log('调用外勤定位...', params)
     window.top.wq.getLocation({
       ...otherParams,
@@ -137,11 +144,11 @@ let Bridge = {
         } else {
           if (fail) fail(res)
         }
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
         if (fail) fail(res)
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       complete: (res) => {
         if (complete) complete(res)
@@ -436,8 +443,7 @@ let Bridge = {
   },
   // 根据key获取登陆信息
   getLoginInfo: function (key, callback) {
-    let self = this
-    self.loginInfo(function (result) {
+    Bridge.loginInfo(function (result) {
       callback(result[key])
     })
   },

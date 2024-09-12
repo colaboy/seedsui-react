@@ -3,9 +3,8 @@
 // 内库使用
 import Device from './../Device'
 
-import BridgeBase from './base'
 import BridgeBrowser from './browser'
-import BridgeWeixin from './wx'
+import BridgeWx from './wx'
 import BridgeAlipay from './ap'
 import BridgeDinghuo from './dinghuo'
 import BridgeWaiqin from './wq'
@@ -18,59 +17,17 @@ if (
   Device.platform === 'wechatMiniprogram' ||
   Device.platform === 'weworkMiniprogram'
 ) {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeWeixin
-  }
+  Bridge = BridgeWx
 } else if (Device.platform === 'alipay' || Device.platform === 'alipayMiniprogram') {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeWeixin,
-    ...BridgeAlipay
-  }
+  Bridge = BridgeAlipay
 } else if (Device.platform === 'dinghuo') {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeDinghuo
-  }
+  Bridge = BridgeDinghuo
 } else if (Device.platform === 'waiqin') {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeWaiqinCordova
-  }
+  Bridge = BridgeWaiqinCordova
 } else if (Device.platform === 'wq') {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeWaiqin
-  }
+  Bridge = BridgeWaiqin
 } else {
-  Bridge = {
-    ...BridgeBase,
-    ...BridgeBrowser
-  }
+  Bridge = BridgeBrowser
 }
-
-/*
-Bridge.ready(() => {
-  // 增加返回监听
-  const addBackMonitor = () => {
-    Bridge.onHistoryBack(handleBack)
-  }
-  const handleBack = async () => {
-    let isBack = await Bridge.back()
-    if (!isBack) {
-      addBackMonitor()
-    }
-    return false
-  }
-
-  // trigger的用法
-  wq.trigger('onVoiceRecordEnd', {
-    complete: function (res) {
-      alert('onVoiceRecordEnd:' + JSON.stringify(res))
-    }
-  })
-})
-*/
 
 export default Bridge

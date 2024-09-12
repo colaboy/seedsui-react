@@ -1,28 +1,29 @@
 // 测试使用
-// import { GeoUtil, Device, MapUtil, Modal, Toast, Loading, locale } from 'seedsui-react'
+// import { GeoUtil, Device, MapUtil, Toast, Loading, locale } from 'seedsui-react'
 // import Alert from 'seedsui-react/lib/Alert/instance.js'
 // import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
+
 // 内库使用
 import Device from './../Device'
 import MapUtil from './../MapUtil'
-import Modal from './../Modal'
 import Toast from './../Toast'
-// @deprecated Alert use Modal.alert instead
 import Alert from './../Alert/instance.js'
-// @deprecated Loading use Loading.show instead
 import Loading from './../Loading/instance.js'
-
-// @deprecated Toast use Toast.show instead
 import ToastInstance from './../Toast/instance.js'
-
 import GeoUtil from './../GeoUtil'
 import locale from './../locale'
 
+import LocationTask from './utils/LocationTask'
+
 let Bridge = {
-  /**
-   * 基础功能:start
-   */
-  debug: false,
+  // 判断是否是主页
+  isHomePage: function (callback, rule) {
+    if (rule && window.top.window.location.href.indexOf(rule) >= 0) {
+      callback(true)
+      return
+    }
+    callback(false)
+  },
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {
@@ -32,22 +33,6 @@ let Bridge = {
     if (isNaN(number)) return
     window.location.href = 'tel:' + number
   },
-  // 视频播放(此方法用不上)
-  // previewVideo: function (params = {}) {
-  //   let target = document.getElementById('seedsui_preview_video')
-  //   if (!target) {
-  //     target = MediaUtil.video(params.src)
-  //     target.id = 'seedsui_preview_video'
-  //     target.style = 'position:absolute;top:-1000px;left:-1000px;width:100;height:100px;'
-  //     document.body.appendChild(target)
-  //   }
-  //   if (target) {
-  //     FullScreen.enter(target)
-  //     setTimeout(() => {
-  //       target.play()
-  //     }, 500)
-  //   }
-  // },
   // 弹出toast
   toast: null,
   /**
@@ -55,11 +40,10 @@ let Bridge = {
    * 请使用Toast.show({content: ''})
    */
   showToast: function (msg, params = {}) {
-    let self = this
     if (!msg) return
-    if (!self.toast) {
+    if (!Bridge.toast) {
       // 提示错误
-      self.toast = new ToastInstance({
+      Bridge.toast = new ToastInstance({
         parent: document.body,
         maskClass: 'mask toast-mask' + (params.mask === false ? ' toast-propagation' : ''),
         toastClass: 'toast ' + (params.position ? params.position : 'middle'),
@@ -68,7 +52,7 @@ let Bridge = {
         html: msg
       })
     } else {
-      self.toast.updateParams({
+      Bridge.toast.updateParams({
         ...params,
         maskClass: 'mask toast-mask' + (params.mask === false ? ' toast-propagation' : ''),
         toastClass: 'toast ' + (params.position ? params.position : 'middle'),
@@ -77,7 +61,7 @@ let Bridge = {
         html: msg
       })
     }
-    self.toast.show()
+    Bridge.toast.show()
     if (params.success) {
       setTimeout(
         () => {
@@ -94,30 +78,28 @@ let Bridge = {
    * 请使用 Loading.show()
    */
   showLoading: function (params = {}) {
-    let self = this
-    if (!self.loading) {
-      self.loading = new Loading({
+    if (!Bridge.loading) {
+      Bridge.loading = new Loading({
         ...params,
         caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     } else {
-      self.loading.updateParams({
+      Bridge.loading.updateParams({
         ...params,
         caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     }
-    self.loading.show()
+    Bridge.loading.show()
   },
   /**
    * @deprecated since version 5.2.8
    * 请使用 Loading.hide()
    */
   hideLoading: function () {
-    let self = this
-    if (self.loading) {
-      self.loading.hide()
+    if (Bridge.loading) {
+      Bridge.loading.hide()
     }
   },
   /**
@@ -125,9 +107,8 @@ let Bridge = {
    * 请使用 Loading.exists()
    */
   isLoading: function () {
-    let self = this
-    if (!self.loading) return false
-    return self.loading.mask.classList.contains(self.loading.params.loadingActiveClass)
+    if (!Bridge.loading) return false
+    return Bridge.loading.mask.classList.contains(Bridge.loading.params.loadingActiveClass)
   },
   // 弹出Alert
   alert: null,
@@ -136,9 +117,8 @@ let Bridge = {
    * 请使用Modal.alert({content: '', submitProps: {onClick: () => {}}})
    */
   showAlert: function (msg, params = {}) {
-    let self = this
-    if (!self.alert) {
-      self.alert = new Alert({
+    if (!Bridge.alert) {
+      Bridge.alert = new Alert({
         buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
         buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
@@ -150,7 +130,7 @@ let Bridge = {
       })
     } else {
       if (params) {
-        self.alert.updateParams({
+        Bridge.alert.updateParams({
           buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
           buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
@@ -162,7 +142,7 @@ let Bridge = {
         })
       }
     }
-    self.alert.show()
+    Bridge.alert.show()
   },
   // 弹出Confirm
   confirm: null,
@@ -171,9 +151,8 @@ let Bridge = {
    * 请使用Modal.confirm({content: '', submitProps: {onClick: () => {}}})
    */
   showConfirm: function (msg, params = {}) {
-    let self = this
-    if (!self.confirm) {
-      self.confirm = new Alert({
+    if (!Bridge.confirm) {
+      Bridge.confirm = new Alert({
         buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
         buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
@@ -190,7 +169,7 @@ let Bridge = {
       })
     } else {
       if (params) {
-        self.confirm.updateParams({
+        Bridge.confirm.updateParams({
           buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
           buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
@@ -206,40 +185,23 @@ let Bridge = {
         })
       }
     }
-    self.confirm.show()
-  },
-  getLocationTask: function (res) {
-    // 记录定位任务, 防止重复定位
-    let self = this
-    if (self.locationTask && self.locationTask.length) {
-      for (let locationTaskItem of self.locationTask) {
-        if (res.longitude && res.latitude) {
-          if (locationTaskItem.success) locationTaskItem.success(res)
-          if (locationTaskItem.complete) locationTaskItem.complete(res)
-        } else {
-          if (locationTaskItem.fail) locationTaskItem.fail(res)
-          if (locationTaskItem.complete) locationTaskItem.complete(res)
-        }
-      }
-    }
-    self.locationTask = null
+    Bridge.confirm.show()
   },
   /**
-   * 获取当前地理位置
+   * 获取当前地理位置, 所有平台都可以调用
    * @param {Object} params
    * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getBrowserLocation: function (params) {
-    let self = this
     // debug模拟定位
-    if (self.debug) {
-      if (self.locationTask) {
-        self.locationTask.push(params)
+    if (this.debug) {
+      if (LocationTask.locationTask) {
+        LocationTask.locationTask.push(params)
         return
       }
-      self.locationTask = []
-      console.log('调用浏览器定位...')
+      LocationTask.locationTask = []
+      console.log('模拟浏览器定位...')
       setTimeout(() => {
         let res = {
           errMsg: 'getLocation:ok',
@@ -255,7 +217,7 @@ let Bridge = {
         }
         if (params.success) params.success(res)
         if (params.complete) params.complete(res)
-        self?.getLocationTask?.(res)
+        LocationTask?.getLocationTask?.(res)
       }, 2000)
       return
     }
@@ -263,11 +225,11 @@ let Bridge = {
     // 调用浏览器定位
     if (navigator.geolocation) {
       // 调用定位
-      if (self.locationTask) {
-        self.locationTask.push(params)
+      if (LocationTask.locationTask) {
+        LocationTask.locationTask.push(params)
         return
       }
-      self.locationTask = []
+      LocationTask.locationTask = []
       console.log('调用浏览器定位...')
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -295,7 +257,7 @@ let Bridge = {
             latitude: latitude
           }
           if (params.success) params.success(res)
-          self.getLocationTask(res)
+          LocationTask.getLocationTask(res)
         },
         (error) => {
           let errCode = ''
@@ -346,7 +308,7 @@ let Bridge = {
           let res = { errCode: errCode, errMsg: errMsg }
           console.log('调用浏览器定位失败', res)
           if (params.fail) params.fail(res)
-          self?.getLocationTask?.(res)
+          LocationTask?.getLocationTask?.(res)
         },
         {
           enableHighAccuracy: true, // 指示浏览器获取高精度的位置，默认为false
@@ -363,15 +325,12 @@ let Bridge = {
         )}`
       }
       if (params.fail) params.fail(res)
-      self.getLocationTask(res)
+      LocationTask.getLocationTask(res)
     }
     return
   },
-  getLocation: function (params = {}) {
-    this.getBrowserLocation(params)
-  },
   /**
-   * 百度地图:获取当前位置名称
+   * 百度地图:获取当前位置名称, 已废弃, 请使用Map中的获取位置方法代替
    * @param {Object} params: {longitude: '', latitude: '', type 'wgs84 | gcj02', success: fn, fail: fn}
    * @return {Promise} result: {status: 0 成功, points 百度坐标}
    */
@@ -381,259 +340,6 @@ let Bridge = {
     }
     const mapUtil = new MapUtil()
     return mapUtil.getAddress([params.longitude, params.latitude], params?.type || 'gcj02', params)
-  },
-  // 客户端默认返回控制
-  back: function (backLvl, config) {
-    const { history, success, fail } = config || {}
-    // eslint-disable-next-line
-    return new Promise(async (resolve) => {
-      let self = this
-      // 返回操作对象与返回层级
-      let _history = window.history
-      if (history && history.go) _history = history
-      let _backLvl = backLvl || -1
-
-      // 清空无效的h5返回
-      if (
-        Object.prototype.toString.call(window.onHistoryBacks) !== '[object Object]' ||
-        Object.isEmptyObject(window.onHistoryBacks)
-      ) {
-        window.onHistoryBacks = null
-      }
-
-      let isFromApp = Device.getUrlParameter('isFromApp') || ''
-      // 如果已经有h5返回监听, 优先执行h5返回监听
-      if (window.onHistoryBacks || window.onHistoryBack) {
-        console.log('back:window.onHistoryBack')
-        fail && fail()
-        resolve(false)
-      }
-      // 自定义返回
-      else if (typeof window.onMonitorBack === 'function') {
-        console.log('back:window.onMonitorBack自定义返回')
-        let monitor = await window.onMonitorBack()
-        let isBack = monitor || false
-        if (isBack) {
-          success && success()
-        } else {
-          fail && fail()
-        }
-        resolve(isBack)
-      }
-      // 关闭返回
-      else if (isFromApp === '1') {
-        // 关闭当前页面
-        try {
-          self.closeWindow()
-        } catch (error) {
-          console.log(error)
-        }
-        success && success()
-        resolve(true)
-      }
-      // 返回首页
-      else if (isFromApp === 'home') {
-        console.log('back:', self.goHome)
-        try {
-          self.goHome()
-        } catch (error) {
-          console.log(error)
-        }
-        success && success()
-        resolve(true)
-      }
-      // 提示后，关闭返回，或者历史返回
-      else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
-        // 默认提示信息
-        let confirmCaption = locale('您确定要离开此页面吗?', 'SeedsUI_quit_page_confirm')
-        // 地址栏动态提示信息
-        if (isFromApp.indexOf('confirm-close:') !== -1) {
-          let newConfirmCaption = isFromApp.replace('confirm-close:', '')
-          if (newConfirmCaption) {
-            confirmCaption = decodeURIComponent(decodeURIComponent(newConfirmCaption))
-          }
-        } else if (isFromApp.indexOf('confirm:') !== -1) {
-          let newConfirmCaption = isFromApp.replace('confirm:', '')
-          if (newConfirmCaption) {
-            confirmCaption = decodeURIComponent(decodeURIComponent(newConfirmCaption))
-          }
-        }
-
-        Modal.confirm({
-          content: confirmCaption,
-          submitProps: {
-            onClick: () => {
-              // 提示后关闭当前页面
-              if (isFromApp.indexOf('confirm-close') !== -1) {
-                console.log('back:confirm-close', self.closeWindow)
-                self.closeWindow()
-              }
-              // 提示后返回上一页
-              else {
-                console.log('back:confirm-close, history')
-                _history.go(_backLvl)
-              }
-              success && success()
-              resolve(true)
-              return true
-            }
-          },
-          cancelProps: {
-            onClick: () => {
-              fail && fail()
-              resolve(false)
-              return true
-            }
-          }
-        })
-      }
-      // 返回上一页
-      else {
-        _history.go(_backLvl)
-        success && success()
-        resolve(true)
-      }
-    })
-  },
-  /**
-   * 动态加载桥接库
-   * @param {Func} callback 加载完成回调
-   * @param {Object} options {wechatLibSrc: '', weworkLibSrc: '', wqCordovaSrc: '', wqSrc: '', fail: func({errMsg: ''})}
-   */
-  ready: function (callback, options = {}) {
-    let self = this
-    let platform = self.platform
-    let d = new Date()
-    if (
-      platform !== 'wechat' &&
-      platform !== 'wework' &&
-      platform !== 'alipay' &&
-      platform !== 'wechatMiniprogram' &&
-      platform !== 'weworkMiniprogram' &&
-      platform !== 'alipayMiniprogram' &&
-      platform !== 'waiqin' &&
-      platform !== 'dinghuo' &&
-      platform !== 'wq'
-    ) {
-      if (callback) callback()
-      return
-    }
-    let script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.defer = 'defer'
-    if (
-      platform === 'wechat' ||
-      platform === 'wechatMiniprogram' ||
-      platform === 'wework' ||
-      platform === 'weworkMiniprogram' ||
-      platform === 'alipay' ||
-      platform === 'alipayMiniprogram'
-    ) {
-      // 已经有对象了, 则不需要加载库了, 防止重复加载
-      if (window.top.wx) {
-        if (callback) callback()
-        return
-      }
-      // 微信平台
-      // 加载微信库
-      if (platform === 'wechat') {
-        script.src = options.wechatLibSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-      } else if (platform === 'wechatMiniprogram') {
-        script.src = options.wechatMiniprogramLibSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-      } else if (platform === 'wework') {
-        script.src = options.weworkLibSrc || '//res.wx.qq.com/wwopen/js/jsapi/jweixin-1.0.0.js'
-      } else if (platform === 'weworkMiniprogram') {
-        script.src = options.weworkMiniprogramLibSrc || '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
-      } else if (platform === 'alipay' || platform === 'alipayMiniprogram') {
-        script.src =
-          options.alipayLibSrc ||
-          '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
-      }
-
-      // 加载完成
-      script.onload = async function () {
-        // 支付宝平台库名称变更为wx
-        if (platform === 'alipay' || platform === 'alipayMiniprogram') {
-          window.wx = window.ap
-        }
-        // 支付小程序还需要加载一个js
-        if (platform === 'alipayMiniprogram') {
-          await Object.loadScript(options.alipayMiniprogramLibSrc || 'https://appx/web-view.min.js')
-          if (window.my) {
-            window.wx.miniProgram = window.my
-          }
-          // js加载失败
-          else {
-            console.error('支付小程序js加载失败')
-            options?.fail?.({ errMsg: locale('支付小程序js加载失败') })
-            return
-          }
-        }
-
-        // eslint-disable-next-line
-        if (window.wx && !window.top.wx) {
-          // eslint-disable-next-line
-          window.top.wx = window.wx
-        }
-        if (callback) callback()
-      }
-      if (options.fail) {
-        script.onerror = function () {
-          options.fail({ errMsg: locale('微信js加载失败', 'SeedsUI_wechat_js_load_failed') })
-        }
-      }
-    } else if (platform === 'waiqin') {
-      // 外勤cordova
-      script.src =
-        options.wqCordovaSrc || '//res.waiqin365.com/d/common_mobile/component/cordova/cordova.js'
-      script.onload = function () {
-        self.init(() => {
-          if (callback) callback()
-        })
-      }
-      if (options.fail) {
-        script.onerror = function () {
-          options.fail({ errMsg: locale('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed') })
-        }
-      }
-    } else if (platform === 'wq') {
-      if (window.top.wq) {
-        callback()
-        return
-      }
-      // 外勤jssdk
-      // 用开发d目录可以使用新功能
-      script.src =
-        options.wqSrc ||
-        `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
-      script.onload = function () {
-        self.init(callback)
-      }
-      if (options.fail) {
-        script.onerror = function () {
-          options.fail({ errMsg: locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
-        }
-      }
-    } else if (platform === 'dinghuo') {
-      if (window.top.wq) {
-        callback()
-        return
-      }
-      // 订货jssdk
-      // 用开发d目录可以使用新功能
-      script.src =
-        options.wqSrc ||
-        `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${d.getMonth() + '' + d.getDate()}`
-      script.onload = function () {
-        self.init(callback)
-      }
-      if (options.fail) {
-        script.onerror = function () {
-          options.fail({ errMsg: locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
-        }
-      }
-    }
-    if (script.src) document.body.appendChild(script)
   },
   /**
    * 修改原生标题
@@ -648,8 +354,5 @@ let Bridge = {
       }
     }
   }
-  /**
-   * 基础功能:end
-   */
 }
 export default Bridge

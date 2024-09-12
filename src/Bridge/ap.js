@@ -1,6 +1,29 @@
-let self = null
+// 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
+// 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
+
+// 内库使用
+import Device from './../Device'
+
+// 测试使用
+// import { Device } from 'seedsui-react'
+
+import BridgeBase from './base'
+import LocationTask from './utils/LocationTask'
+import back from './utils/back'
+import ready from './utils/ready'
 
 let Bridge = {
+  ...BridgeBase,
+  ready: function (callback, options) {
+    ready(callback, options, Bridge)
+  },
+  back: function (backLvl, options) {
+    back(backLvl, options, Bridge)
+  },
+  /**
+   * 定制功能
+   */
+  platform: Device.platform,
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -11,13 +34,12 @@ let Bridge = {
    */
   getLocation: function (params = {}) {
     const { type, success, fail, complete, ...otherParams } = params || {}
-    self = this
     // 调用定位
-    if (self.locationTask) {
-      self.locationTask.push(params)
+    if (LocationTask.locationTask) {
+      LocationTask.locationTask.push(params)
       return
     }
-    self.locationTask = []
+    LocationTask.locationTask = []
     console.log('调用支付宝定位...', params)
     window.top.wx.getLocation({
       ...otherParams,
@@ -28,11 +50,11 @@ let Bridge = {
         } else {
           if (fail) fail(res)
         }
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
         if (fail) fail(res)
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       },
       complete: (res) => {
         if (complete) complete(res)
@@ -55,7 +77,7 @@ let Bridge = {
     })
   },
   /**
-   * 拍照
+   * 照片预览
    * @param {Object} params
      {
        index: 0, // 当前显示图片索引，默认 0
@@ -64,9 +86,14 @@ let Bridge = {
      }
    */
   previewImage: function (params) {
+    let index = params?.index || 0
+    if (typeof params?.index !== 'number' && typeof params?.current === 'string') {
+      index = params.urls.indexOf(params.current)
+      if (index < 0) index = 0
+    }
     window.top.wx.previewImage({
       urls: params.urls,
-      current: params?.index || 0
+      current: index
     })
   },
   /**

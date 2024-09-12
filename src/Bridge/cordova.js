@@ -1,19 +1,29 @@
-// 测试使用
-// import { Toast, Device, locale } from 'seedsui-react'
 // 内库使用
 import Toast from './../Toast'
 import Device from './../Device'
 import locale from './../locale'
 
-let self = null
+// 测试使用
+// import { Toast, Device, locale } from 'seedsui-react'
+
+import BridgeBase from './base'
+import LocationTask from './utils/LocationTask'
+import back from './utils/back'
+import ready from './utils/ready'
 
 let Bridge = {
+  ...BridgeBase,
+  ready: function (callback, options) {
+    ready(callback, options, Bridge)
+  },
+  back: function (backLvl, options) {
+    back(backLvl, options, Bridge)
+  },
   /**
    * 定制功能
    */
   platform: 'waiqin',
   init: function (cb) {
-    self = this
     document.addEventListener(
       'deviceready',
       () => {
@@ -22,14 +32,6 @@ let Bridge = {
       },
       false
     )
-  },
-  // 判断是否是主页
-  isHomePage: function (callback, rule) {
-    if (rule && window.location.href.indexOf(rule) >= 0) {
-      callback(true)
-      return
-    }
-    callback(false)
   },
   // 获得版本信息
   getAppVersion: function () {
@@ -56,24 +58,6 @@ let Bridge = {
     // eslint-disable-next-line
     wq.wqload.wqClosePage()
   },
-  // 防止返回事件叠加绑定
-  cordovaMonitorBack: null,
-  handleCordovaMonitorBack: function () {
-    if (self.cordovaMonitorBack) self.cordovaMonitorBack()
-    else self.back()
-  },
-  // 客户端返回绑定: cordova中必须在无原生头的情况下才工作
-  // addBackPress: function (callback) {
-  //   self = this
-  //   if (callback) self.cordovaMonitorBack = callback
-  //   else self.cordovaMonitorBack = null
-  //   document.addEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
-  // },
-  // 客户端移除返回绑定
-  // removeBackPress: function () {
-  //   self = this
-  //   document.removeEventListener('backbutton', self.handleCordovaMonitorBack, false) // eslint-disable-line
-  // },
   /**
    * 支付宝支付
    * @param {Object} params
@@ -265,7 +249,6 @@ let Bridge = {
     @params {src: '视频地址', title: '标题'}
   ----------------------------------------------------- */
   previewVideo: function (params = {}) {
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({ content: '视频播放功能需要升级至6.2.2及以上的客户端' })
       return
@@ -292,7 +275,6 @@ let Bridge = {
     @return {result: '1', ID: '宴会id', secs: '毫秒'}
   ----------------------------------------------------- */
   videoRecord: function (params = {}) {
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
         content: locale('more than 6.2.2')
@@ -315,7 +297,6 @@ let Bridge = {
     @return {result: '1', ID: '宴会id', secs: '毫秒', vid: ''}
   ----------------------------------------------------- */
   videoUpload: function (params = {}) {
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
         content: locale('more than 6.2.2')
@@ -338,7 +319,6 @@ let Bridge = {
     @return {result: '1', ID: '宴会id', secs: '毫秒', vid: '仅在hasUpload=1的情况下返回', hasVideo: '0|1', hasUpload: '0|1}
   ----------------------------------------------------- */
   videoInfo: function (params = {}) {
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
         content: locale('more than 6.2.2')
@@ -362,7 +342,6 @@ let Bridge = {
     @return {resultStr:''}
   ----------------------------------------------------- */
   scanQRCode: function (params = {}) {
-    self = this
     // eslint-disable-next-line
     wq.wqhardware.getQrCode((res) => {
       if (res && res.qrCode) {
@@ -413,14 +392,12 @@ let Bridge = {
     }
   ----------------------------------------------------- */
   getLocation: function (params = {}) {
-    self = this
-
     // 调用定位
-    if (self.locationTask) {
-      self.locationTask.push(params)
+    if (LocationTask.locationTask) {
+      LocationTask.locationTask.push(params)
       return
     }
-    self.locationTask = []
+    LocationTask.locationTask = []
     console.log('调用cordova定位...', params)
     // 调用定位
     // eslint-disable-next-line
@@ -441,7 +418,7 @@ let Bridge = {
         // result.street = res.street
         result.fake = res.mokelocation === 'true' || res.mokelocation === true
         if (params.success) params.success(result)
-        self.getLocationTask(result)
+        LocationTask.getLocationTask(result)
       } else {
         let res = {
           errMsg: `getLocation:fail${locale(
@@ -454,7 +431,7 @@ let Bridge = {
           Toast.show({
             content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
           })
-        self.getLocationTask(res)
+        LocationTask.getLocationTask(res)
       }
     }, JSON.stringify({ locationType: '1' })) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
   },
@@ -478,7 +455,6 @@ let Bridge = {
     }
   ----------------------------------------------------- */
   getLocationMap: function (params = {}) {
-    self = this
     // eslint-disable-next-line
     wq.wqlocation.getLocationMap((res) => {
       if (res && res.wqLatitude) {
@@ -628,7 +604,6 @@ let Bridge = {
     * }
     */
   uploadImage: function (params = {}) {
-    self = this
     if (!params.uploadDir) {
       Toast.show({ content: locale('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir') })
       return
@@ -688,7 +663,6 @@ let Bridge = {
    * }
    */
   previewImage: function (params) {
-    self = this
     if (!params.urls || !params.urls.length) {
       Toast.show({ content: locale('没有预览图片地址', 'SeedsUI_previewimage_no_url') })
       return
@@ -728,7 +702,6 @@ let Bridge = {
     * }
     */
   uploadFile: function (params = {}) {
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
         content: locale('uploadFile need more than 6.6.0')
@@ -842,7 +815,6 @@ let Bridge = {
   },
   getCustomerAreaMore: function (params = {}) {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
-    self = this
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
         content: locale('getCustomerAreaMore more than 6.2.2')
@@ -903,7 +875,6 @@ let Bridge = {
     @params {ios: {url: '', params: {}}, android: {url: '', params: {}}}默认为打开一个webview页面
   ----------------------------------------------------- */
   openNativePage: function (params = { ios: {}, android: {} }) {
-    self = this
     if (!params.ios.url) {
       Toast.show({ content: locale('openNativePage ios need url') })
       return

@@ -1,14 +1,24 @@
-// 测试使用
-// import { Device, Loading, Toast, locale } from 'seedsui-react'
-// import Preview from 'seedsui-react/lib/Preview/instance.js'
 // 内库使用
 import Device from './../Device'
 import Loading from './../Loading'
 import Toast from './../Toast'
 import locale from './../locale'
-import Preview from './../Preview/instance.js'
+
+// 测试使用
+// import { Device, Loading, Toast, locale } from 'seedsui-react'
+
+import BridgeBase from './base'
+import back from './utils/back'
+import ready from './utils/ready'
 
 let Bridge = {
+  ...BridgeBase,
+  ready: function (callback, options) {
+    ready(callback, options, Bridge)
+  },
+  back: function (backLvl, options) {
+    back(backLvl, options, Bridge)
+  },
   /**
    * 定制功能
    */
@@ -23,13 +33,8 @@ let Bridge = {
   init: function (cb) {
     if (typeof cb === 'function') cb({ errMsg: 'config:ok' })
   },
-  // 判断是否是主页
-  isHomePage: function (callback, rule) {
-    if (rule && window.location.href.indexOf(rule) >= 0) {
-      callback(true)
-      return
-    }
-    callback(false)
+  getLocation: function (params = {}) {
+    Bridge.getBrowserLocation(params)
   },
   // 获得版本信息
   getAppVersion: function () {
@@ -85,8 +90,7 @@ let Bridge = {
    * @return {Object} {resultStr: ''}
    */
   scanQRCode: function (params = {}) {
-    let self = this
-    if (!self.debug) {
+    if (!this.debug) {
       Toast.show({
         content: locale('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['scanQRCode'])
       })
@@ -105,8 +109,7 @@ let Bridge = {
   },
   // 拍照、本地选图
   chooseImage: function (params = {}) {
-    let self = this
-    if (!self.debug) {
+    if (!this.debug) {
       Toast.show({
         content: locale('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
           'chooseImage'
@@ -126,8 +129,7 @@ let Bridge = {
   },
   // 上传图片
   uploadImage: function (params = {}) {
-    let self = this
-    if (!self.debug) {
+    if (!this.debug) {
       Toast.show({
         content: locale('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
           'uploadImage'
@@ -148,48 +150,10 @@ let Bridge = {
     }, 1000)
   },
   // 图片预览
-  // @params {urls:'需要预览的图片http链接列表',index:'图片索引',layerHTML:'图片上方的浮层'}
-  preview: null,
   previewImage: function (params = {}) {
-    let self = this
-    if (!params.urls || !params.urls.length) {
-      if (params.fail)
-        params.fail({
-          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'SeedsUI_previewimage_no_url')
-        })
-      return
-    }
-    let src = params.urls[params.index || 0]
-    if (!src) {
-      if (params.fail)
-        params.fail({
-          errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
-        })
-      return
-    }
-    let layerHTML = params.layerHTML || ''
-    if (!self.preview) {
-      self.preview = new Preview({
-        src: src,
-        layerHTML: layerHTML,
-        onSuccess: function (s) {
-          s.show()
-          if (params.success) params.success(s)
-        },
-        onError: function () {
-          if (params.fail)
-            params.fail({
-              errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
-            })
-        }
-      })
-    } else {
-      self.preview.updateParams({
-        src: src,
-        layerHTML: layerHTML
-      })
-    }
-    return self.preview
+    Toast.show({
+      content: locale('previewImage仅可在APP中使用', 'SeedsUI_only_app_wechat', ['previewImage'])
+    })
   },
   // 视频文件上传
   uploadFile: function () {
@@ -221,27 +185,28 @@ let Bridge = {
    * }
    */
   previewFile: function (params) {
-    let self = this
-    if (!self.debug) {
+    if (!this.debug) {
       Toast.show({
         content: locale('previewFile仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
           'previewFile'
         ])
       })
-      if (params.fail)
+      if (params?.fail) {
         params.fail({
           errMsg: `previewFile:fail${locale(
             '预览文件失败',
             'SeedsUI_previewfile_failed'
           )}, ${locale('请稍后重试', 'SeedsUI_try_again_later')}`
         })
+      }
       return
     }
-    if (params.success)
+    if (params?.success) {
       params.success({
         errMsg: `previewFile:ok${locale('预览文件成功', 'SeedsUI_previewfile_success')}`
       })
-    if (params.url) window.location.href = params.url
+    }
+    if (params?.url) window.location.href = params.url
   }
 }
 export default Bridge
