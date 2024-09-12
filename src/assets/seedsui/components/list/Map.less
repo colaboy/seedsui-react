@@ -26,6 +26,21 @@
   bottom: 0;
 }
 
+// 当前地图
+.map-api-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  visibility: hidden;
+  * {
+    pointer-events: none;
+  }
+}
+
 // 缩放插件
 .map-zoomControl {
   position: absolute;
@@ -283,6 +298,7 @@
   &.active {
     height: 80%;
     .map-nearbyControl-body {
+      overflow: auto;
       .flex;
       .flex-vertical;
       .flex-1;
