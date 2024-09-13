@@ -1,46 +1,52 @@
 // Upload上传
 // 上传按钮
-.upload-item + .upload-upload {
+.upload-item + .upload-choose {
   margin-top: 12px;
 }
 
-.upload-upload {
-  &.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .flex-middle;
-  .flex-center;
-  padding: 0 8px;
-  height: 28px;
-  display: inline-flex;
+.upload-choose {
   position: relative;
-  background-color: #f5f5f5;
-  color: #8c8c8c;
-  border-radius: 4px;
+  display: inline-block;
 
-  input[type='file'] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  .upload-choose-file {
+    display: none;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    // left: 0;
+    // z-index: 0;
 
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+    // width: 100%;
+    // height: 100%;
+    // cursor: pointer;
+    // opacity: 0;
+    // filter: alpha(opacity=0);
   }
-
-  // 上传中上传按钮需要转圈
-  &.uploading {
-    pointer-events: none;
-    .upload-button-icon-add {
-      display: none;
+  .upload-choose-button {
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
-    .upload-button-loading {
-      display: block;
+    .flex-middle;
+    .flex-center;
+    padding: 0 8px;
+    height: 28px;
+    display: inline-flex;
+    position: relative;
+    background-color: #f5f5f5;
+    color: #8c8c8c;
+    border-radius: 4px;
+
+    // 上传中上传按钮需要转圈
+    &.uploading {
+      pointer-events: none;
+      .upload-button-icon-add {
+        display: none;
+      }
+      .upload-button-loading {
+        display: block;
+      }
     }
   }
 }

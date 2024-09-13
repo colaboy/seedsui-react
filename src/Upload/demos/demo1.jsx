@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Bridge } from 'seedsui-react'
+import { Button, Bridge } from 'seedsui-react'
 import { Upload } from 'seedsui-react'
 // import Upload from 'library/components/Upload'
 
@@ -43,6 +43,19 @@ export default () => {
   return (
     <>
       <Upload
+        uploadNode={
+          <>
+            <Button
+              onClick={(e) => {
+                alert(1)
+                e.stopPropagation()
+              }}
+            >
+              哈哈
+            </Button>
+            <Upload.Button />
+          </>
+        }
         list={list}
         onBeforeChoose={() => {
           return new Promise((resolve) => {
