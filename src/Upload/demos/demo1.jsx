@@ -22,8 +22,8 @@ export default () => {
   }, [])
 
   function handlePreview(...params) {
-    console.log('预览')
-    console.log(...params)
+    console.log('预览', ...params)
+    return false
   }
   function handleReUpload(item, index, otherOptions) {
     console.log('重新上传')
@@ -31,11 +31,10 @@ export default () => {
     otherOptions.itemDOM.classList.add('uploading')
   }
   function handleChoose(...params) {
-    alert('选择')
     console.log(...params)
   }
-  function handleDelete(item, index) {
-    console.log('删除', item)
+  function handleDelete(item, index, otherOptions) {
+    console.log('删除', item, index, otherOptions)
     let successList = list.filter((photo, photoIndex) => {
       return photoIndex !== index
     })
@@ -54,8 +53,8 @@ export default () => {
         onChoose={handleChoose}
         onDelete={handleDelete}
         onPreview={handlePreview}
-        onFileChange={(e) => {
-          console.log('e', e)
+        onFileChange={(...params) => {
+          console.log('onFileChange', ...params)
         }}
         uploadPosition="end"
         fileProps={{
