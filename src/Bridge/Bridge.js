@@ -7,8 +7,8 @@ import BridgeBrowser from './browser'
 import BridgeWx from './wx'
 import BridgeAlipay from './ap'
 import BridgeDinghuo from './dinghuo'
-import BridgeWaiqin from './wq'
-import BridgeWaiqinCordova from './cordova'
+import BridgeWq from './wq'
+import BridgeWqCordova from './cordova'
 
 let Bridge = {}
 if (
@@ -23,9 +23,9 @@ if (
 } else if (Device.platform === 'dinghuo') {
   Bridge = BridgeDinghuo
 } else if (Device.platform === 'waiqin') {
-  Bridge = BridgeWaiqinCordova
+  Bridge = BridgeWqCordova
 } else if (Device.platform === 'wq') {
-  Bridge = BridgeWaiqin
+  Bridge = BridgeWq
 } else {
   Bridge = BridgeBrowser
 }
