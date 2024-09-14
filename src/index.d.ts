@@ -52,6 +52,7 @@ export { default as Footer } from './Footer'
 export { default as Group } from './Group'
 export { default as Handsign } from './Handsign' // (废弃, 使用Signature代替)
 export { default as Signature } from './Signature'
+export { default as Skeleton } from './Skeleton'
 export { default as Header } from './Header'
 export { default as HighlightKeyword } from './HighlightKeyword'
 export { default as ImgMark } from './ImgMark'
