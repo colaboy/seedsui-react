@@ -13,6 +13,7 @@ const Calendar = forwardRef(
     {
       type, // week | month
       value,
+      selectionMode, // range
       titleFormatter = 'YYYY年MM月', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       min, // 禁用之前日期
       max, // 禁用之后日期
@@ -112,6 +113,28 @@ const Calendar = forwardRef(
       // eslint-disable-next-line
     }, [value instanceof Date ? dayjs(value).format('YYYYMMDD') : ''])
 
+    // 点击日期
+    function handleRangeClick(newDate) {
+      // No value, click date, start date and end date is same
+      if (!Array.isArray(value) || value.length !== 2) {
+        onChange && onChange([newDate, newDate])
+        return
+      }
+
+      // Just has start date, select end date
+      if (dayjs(value[0]).isSame(dayjs(value[1]), 'date')) {
+        let newValue = [value[0], newDate]
+        if (dayjs(value[0]).isBefore(dayjs(newDate), 'date') === false) {
+          newValue = [newDate, value[0]]
+        }
+        onChange && onChange(newValue)
+        return
+      }
+
+      // reselect start date
+      onChange && onChange([newDate, newDate])
+    }
+
     return (
       <div ref={rootRef} className="calendar">
         {header === true && (
@@ -181,7 +204,11 @@ const Calendar = forwardRef(
                                 }`}
                                 style={{ height: '40px' }}
                                 onClick={(e) => {
-                                  onChange && onChange(date)
+                                  if (selectionMode === 'range') {
+                                    handleRangeClick(date)
+                                  } else {
+                                    onChange && onChange(date)
+                                  }
                                   e.stopPropagation()
                                 }}
                               >

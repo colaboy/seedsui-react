@@ -1,5 +1,11 @@
 import React, { useRef, useState } from 'react'
+import dayjs from 'dayjs'
+import DateUtil from '../../DateUtil'
 import { Calendar } from 'seedsui-react'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+
+// 加载插件
+dayjs.extend(weekOfYear)
 
 export default () => {
   const calendarRef = useRef(null)
@@ -13,7 +19,7 @@ export default () => {
 
   return (
     <>
-      <Calendar
+      {/* <Calendar
         titleFormatter={(date, info) => {
           if (info.type === 'month') {
             return date.format('YYYY年MM月')
@@ -23,23 +29,27 @@ export default () => {
         onLoad={(...params) => {
           console.log('加载', ...params)
         }}
-      />
+      /> */}
       <Calendar
         type="week"
         // min={new Date()}
         ref={calendarRef}
+        selectionMode="range"
         value={value}
         titleFormatter={(date, info) => {
           if (info.type === 'month') {
-            return date.format('YYYY年MM月')
+            return DateUtil.formatDate(date, 'YYYY年MM月')
           }
-          return date.format('YYYY年MM月DD日 周EE 第W周')
+          // debugger
+          // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
+          let week = dayjs().week()
+          return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
         }}
         dateRender={(date) => {
           return (
             <div className="calendar-date-num">
               {date.getDate()}
-              {data[date.format('YYYY-MM-DD')] ? 'M' : ''}
+              {data[DateUtil.formatDate(date, 'YYYY-MM-DD')] ? 'M' : ''}
             </div>
           )
         }}
