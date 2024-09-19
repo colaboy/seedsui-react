@@ -32,7 +32,7 @@ function getTreeData({ list, loadedKeys, onlyLeafCheck, keyword, itemRender, onC
 
       // 自定义渲染行
       let titleNode = (
-        <div
+        <span
           className="rc-tree-title-wrapper"
           onClick={(e) => {
             e.stopPropagation()
@@ -40,7 +40,7 @@ function getTreeData({ list, loadedKeys, onlyLeafCheck, keyword, itemRender, onC
           }}
         >
           {titleContentNode}
-        </div>
+        </span>
       )
 
       // 子节点递归
