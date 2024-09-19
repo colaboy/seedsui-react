@@ -1,5 +1,10 @@
 import React from 'react'
+
+// 内库使用
 import HighlightKeyword from './../../../HighlightKeyword'
+
+// 测试使用
+// import { HighlightKeyword } from 'seedsui-react'
 
 // 树菜单项
 const Item = ({

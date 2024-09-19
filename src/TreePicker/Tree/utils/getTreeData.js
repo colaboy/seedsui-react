@@ -1,5 +1,10 @@
 import React from 'react'
+
+// 内库使用
 import HighlightKeyword from './../../../HighlightKeyword'
+
+// 测试使用
+// import { HighlightKeyword } from 'seedsui-react'
 
 // 构建渲染数据, 支持关键字搜索
 function getTreeData({ list, loadedKeys, onlyLeafCheck, keyword, itemRender, onClick }) {
