@@ -16,6 +16,7 @@ let Calendar = function (container, params) {
     activeDate: new Date(),
     min: null,
     max: null,
+    weekStart: null,
 
     // Render
     type: 'month',
@@ -90,8 +91,12 @@ let Calendar = function (container, params) {
 
   // 更新日期数据
   s.updateDates = function () {
-    s.dates = getDates(s.activeDate)
-    s.pages = getSplitDates(s.dates, { activeDate: s.activeDate, type: s.type })
+    s.dates = getDates(s.activeDate, { weekStart: s.params.weekStart })
+    s.pages = getSplitDates(s.dates, {
+      weekStart: s.params.weekStart,
+      activeDate: s.activeDate,
+      type: s.type
+    })
   }
 
   // 获取当页显示的日期

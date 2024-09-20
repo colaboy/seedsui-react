@@ -14,6 +14,7 @@ const Calendar = forwardRef(
       type, // week | month
       value,
       selectionMode, // single | range
+      weekStart = 'Sunday', // Monday | Sunday
       titleFormatter = 'YYYY年MM月', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       min, // 禁用之前日期
       max, // 禁用之后日期
@@ -70,6 +71,7 @@ const Calendar = forwardRef(
         activeDate: value instanceof Date ? value : new Date(),
         min,
         max,
+        weekStart,
 
         // Render
         type: type || 'month',
@@ -168,7 +170,7 @@ const Calendar = forwardRef(
         {typeof header === 'function' &&
           header({ activeDate, titleFormatter, instance: instanceRef.current })}
         <div className="calendar-days">
-          {getWeekNames().map((dayName) => {
+          {getWeekNames(weekStart).map((dayName) => {
             return (
               <div key={dayName} className="calendar-day">
                 {dayName}

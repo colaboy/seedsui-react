@@ -34,6 +34,7 @@ export default () => {
         type="week"
         // min={new Date()}
         ref={calendarRef}
+        weekStart="Monday"
         selectionMode="range"
         value={value}
         titleFormatter={(date, info) => {
