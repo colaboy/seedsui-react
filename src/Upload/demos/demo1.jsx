@@ -43,19 +43,20 @@ export default () => {
   return (
     <>
       <Upload
-        uploadNode={
-          <>
-            <Button
-              onClick={(e) => {
-                alert(1)
-                e.stopPropagation()
-              }}
-            >
-              哈哈
-            </Button>
-            <Upload.Button />
-          </>
-        }
+        disabled={true}
+        // uploadNode={
+        //   <>
+        //     <Button
+        //       onClick={(e) => {
+        //         alert(1)
+        //         e.stopPropagation()
+        //       }}
+        //     >
+        //       哈哈
+        //     </Button>
+        //     <Upload.Button />
+        //   </>
+        // }
         list={list}
         onBeforeChoose={() => {
           return new Promise((resolve) => {
@@ -63,7 +64,7 @@ export default () => {
           })
         }}
         onReUpload={handleReUpload}
-        onChoose={handleChoose}
+        // onChoose={handleChoose}
         onDelete={handleDelete}
         onPreview={handlePreview}
         onFileChange={(...params) => {

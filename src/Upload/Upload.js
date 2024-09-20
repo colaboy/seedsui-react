@@ -18,6 +18,8 @@ const Upload = forwardRef(
       onDelete,
       onReUpload,
       onPreview, // 是否支持单击预览, readOnly为true时才生效
+
+      disabled,
       ...props
     },
     ref
@@ -56,6 +58,7 @@ const Upload = forwardRef(
     function getUploadNode() {
       return (
         <UploadButton
+          disabled={disabled}
           // file框属性
           fileProps={fileProps}
           // 上传DOM

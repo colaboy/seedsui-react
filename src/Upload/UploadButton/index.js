@@ -13,7 +13,9 @@ const Upload = ({
   // Events
   onBeforeChoose,
   onChoose,
-  onFileChange
+  onFileChange,
+  disabled,
+  ...props
 }) => {
   // 选择文件
   function handleFileChange(e) {
@@ -24,6 +26,10 @@ const Upload = ({
   async function handleUploadClick(e) {
     let target = e.currentTarget
     e.stopPropagation()
+
+    if (target.classList.contains('disabled')) {
+      return
+    }
 
     // 前置校验
     if (typeof onBeforeChoose === 'function') {
@@ -45,7 +51,7 @@ const Upload = ({
   }
 
   return (
-    <div className={`upload-choose`} onClick={handleUploadClick}>
+    <div className={`upload-choose${disabled ? ' disabled' : ''}`} onClick={handleUploadClick}>
       {/* 启用file框 */}
       {onFileChange && (
         <input
@@ -63,7 +69,7 @@ const Upload = ({
       )}
 
       {/* 添加图标 */}
-      {!uploadNode && <Button />}
+      {!uploadNode && <Button disabled={disabled} {...props} />}
 
       {uploadNode && uploadNode}
     </div>

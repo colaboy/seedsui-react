@@ -12,11 +12,12 @@ export default () => {
         <Signature.Combo
           color="#000000"
           backgroundColor="white"
+          // disabled={true}
           value={value}
-          // onChange={(newVal) => {
-          //   console.log(newVal)
-          //   setValue(newVal)
-          // }}
+          onChange={(newVal) => {
+            console.log(newVal)
+            setValue(newVal)
+          }}
           onBeforeChange={(newVal) => {
             if (!newVal) {
               Toast.show({

@@ -1,5 +1,17 @@
-// 签名
-.signature {
+// 签名按钮
+.signature-button {
+}
+// 签名预览
+.signature-photo {
+  width: 100%;
+  height: 90px;
+  background-color: white;
+
+  background-size: contain;
+}
+
+// 签名主体区域
+.signature-main {
   position: relative;
   display: flex;
   flex: 1;
@@ -7,7 +19,7 @@
 }
 
 // 签名绘制区域
-.signature-canvas {
+.signature-main-canvas {
   flex: 1;
   position: relative;
   background: #f7f9fd;
@@ -30,13 +42,13 @@
 }
 
 // 按钮区域
-.signature-buttons {
+.signature-main-buttons {
   display: flex;
   flex-direction: column;
   height: 100%;
   margin-left: 14px;
 }
-.signature-button {
+.signature-main-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -49,26 +61,17 @@
     transform: rotate(90deg);
   }
 }
-.signature-button + .signature-button {
+.signature-main-button + .signature-main-button {
   margin-top: 20px;
 }
-.signature-button-clear {
+.signature-main-button-clear {
   color: @danger;
   border: 1px solid @danger;
 }
-.signature-button-cancel {
+.signature-main-button-cancel {
   border: 1px solid @border;
 }
-.signature-button-submit {
+.signature-main-button-submit {
   color: white;
   background-color: @primary;
-}
-
-// 签名预览
-.signature-photo {
-  width: 100%;
-  height: 90px;
-  background-color: white;
-
-  background-size: contain;
 }

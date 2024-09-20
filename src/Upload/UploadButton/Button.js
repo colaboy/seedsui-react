@@ -2,14 +2,19 @@ import React, { forwardRef } from 'react'
 
 // 内库使用
 import locale from './../../locale'
+import Button from './../../Button'
 
 // 测试使用
-// import { locale } from 'seedsui-react'
+// import { locale, Button } from 'seedsui-react'
 
 // 上传按钮
-const Button = ({ ...props }, ref) => {
+const UploadButton = ({ ...props }, ref) => {
   return (
-    <div ref={ref} className="upload-choose-button" {...props}>
+    <Button
+      ref={ref}
+      {...props}
+      className={`upload-choose-button${props?.className ? ' ' + props.className : ''}`}
+    >
       <i className={`upload-button-icon-add`}></i>
       {/* Loading图标 */}
       <div className="upload-button-loading">
@@ -21,8 +26,8 @@ const Button = ({ ...props }, ref) => {
       </div>
       {/* 文字 */}
       <div className="upload-button-label">{locale('附件', 'SeedsUI_attach')}</div>
-    </div>
+    </Button>
   )
 }
 
-export default forwardRef(Button)
+export default forwardRef(UploadButton)

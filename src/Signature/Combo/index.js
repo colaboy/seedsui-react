@@ -17,7 +17,8 @@ const Combo = (
     portal,
     // 绘画配置
     color,
-    backgroundColor
+    backgroundColor,
+    ...props
   },
   ref
 ) => {
@@ -60,7 +61,12 @@ const Combo = (
   // 未签显示签名
   return (
     <>
-      <Button ref={comboRef} onClick={handleSign}>
+      <Button
+        ref={comboRef}
+        {...props}
+        className={`signature-button${props?.className ? ' ' + props.className : ''}`}
+        onClick={handleSign}
+      >
         {locale('签名', 'SeedsUI_signature')}
       </Button>
       <Modal

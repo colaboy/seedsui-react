@@ -29,17 +29,17 @@ const Main = (
   })
 
   return (
-    <div ref={rootRef} className="signature">
+    <div ref={rootRef} className="signature-main">
       {/* 绘制区域 */}
       <Signature ref={signatureRef} color={color} backgroundColor={backgroundColor} />
       {/* 按钮区域 */}
-      <div className="signature-buttons">
-        <div className="signature-button signature-button-cancel" onClick={onCancel}>
+      <div className="signature-main-buttons">
+        <div className="signature-main-button signature-main-button-cancel" onClick={onCancel}>
           <p>{locale('取消', 'SeedsUI_cancel')}</p>
         </div>
         <div className="flex-1"></div>
         <div
-          className="signature-button signature-button-clear"
+          className="signature-main-button signature-main-button-clear"
           onClick={() => {
             signatureRef?.current?.clear?.()
           }}
@@ -47,7 +47,7 @@ const Main = (
           <p>{locale('清除', 'SeedsUI_clear')}</p>
         </div>
         <div
-          className="signature-button signature-button-submit"
+          className="signature-main-button signature-main-button-submit"
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
             if (onBeforeChange) {

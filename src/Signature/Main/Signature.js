@@ -85,7 +85,7 @@ const Signature = (
   }
 
   return (
-    <div className="signature-canvas" ref={rootRef} {...props}>
+    <div className="signature-main-canvas" ref={rootRef} {...props}>
       <canvas>Canvas画板</canvas>
     </div>
   )
