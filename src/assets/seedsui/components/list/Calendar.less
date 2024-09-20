@@ -6,6 +6,13 @@
   background-color: white;
   transition-property: height;
 }
+.calendar-mode-range,
+.calendar-mode-week {
+  .calendar-date .calendar-date-num {
+    width: 100%;
+    border-radius: 0;
+  }
+}
 // 头部
 .calendar-header {
   .flex;
@@ -117,6 +124,7 @@
     border-radius: 100%;
     border-color: @primary;
     color: @primary;
+    box-sizing: border-box;
   }
 }
 // Used to replace old class .calendar-active
@@ -127,6 +135,20 @@
     background-color: @primary;
     border-color: @primary;
     border-radius: 100%;
+  }
+
+  // Range start and end date radius
+  &.calendar-date-selected-start {
+    .calendar-date-num {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+  &.calendar-date-selected-end {
+    .calendar-date-num {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
   }
 }
 // Used to replace old class .calendar-datenum

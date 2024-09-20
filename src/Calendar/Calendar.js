@@ -136,7 +136,10 @@ const Calendar = forwardRef(
     }
 
     return (
-      <div ref={rootRef} className="calendar">
+      <div
+        ref={rootRef}
+        className={`calendar ${selectionMode ? ` calendar-mode-${selectionMode}` : ''}`}
+      >
         {header === true && (
           <div className="calendar-header">
             <div
@@ -186,6 +189,19 @@ const Calendar = forwardRef(
                         <div className="calendar-row" key={rowIndex}>
                           {/* 7列 */}
                           {row.map((date, dateIndex) => {
+                            let isSelected = isSelectedDate(date, value)
+                            let selectedClassNames = []
+                            if (isSelected?.includes('selected')) {
+                              selectedClassNames.push('calendar-date-selected')
+                            }
+                            if (isSelected?.includes('selected-start')) {
+                              selectedClassNames.push('calendar-date-selected-start')
+                            }
+                            if (isSelected?.includes('selected-end')) {
+                              selectedClassNames.push('calendar-date-selected-end')
+                            }
+                            selectedClassNames = selectedClassNames.join(' ')
+
                             return (
                               <div
                                 key={dateIndex}
@@ -197,7 +213,7 @@ const Calendar = forwardRef(
                                   DateUtil.compareDate(new Date(), date) === 0
                                     ? ' calendar-date-today'
                                     : ''
-                                }${isSelectedDate(date, value) ? ' calendar-date-selected' : ''}${
+                                }${selectedClassNames ? ' ' + selectedClassNames : ''}${
                                   isDisabledDate(date, { min, max })
                                     ? ' calendar-date-disabled'
                                     : ''

@@ -10,7 +10,7 @@ dayjs.extend(weekOfYear)
 export default () => {
   const calendarRef = useRef(null)
   const [data, setData] = useState([])
-  const [value, setValue] = useState(new Date())
+  const [value, setValue] = useState([new Date(), new Date()])
 
   function handleChange(newValue) {
     console.log('修改', newValue)
