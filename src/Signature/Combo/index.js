@@ -67,7 +67,9 @@ const Combo = (
         className={`signature-button${props?.className ? ' ' + props.className : ''}`}
         onClick={handleSign}
       >
-        {locale('签名', 'SeedsUI_signature')}
+        <i className={`signature-button-icon-add`}></i>
+        {/* 文字 */}
+        <div className="signature-button-label">{locale('签名', 'SeedsUI_signature')}</div>
       </Button>
       <Modal
         ref={modalRef}

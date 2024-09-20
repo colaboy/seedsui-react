@@ -1,6 +1,30 @@
 // 签名按钮
 .signature-button {
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  background-color: #f5f5f5;
+  color: #8c8c8c;
+  border-radius: 4px;
+  border: 0;
 }
+// 上传图标与文字
+.signature-button-icon-add,
+.signature-button-label {
+  pointer-events: none;
+}
+.signature-button-icon-add {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  line-height: 14px;
+  font-family: 'iconfont';
+  &:extend(.icon-signature all);
+  margin-right: 4px;
+}
+
 // 签名预览
 .signature-photo {
   width: 100%;
