@@ -53,7 +53,7 @@ let Calendar = function (container, params) {
   s.type = s.params.type
 
   // Get three pages dates
-  s.activeDate = new Date()
+  s.activeDate = s.params.activeDate || new Date()
   s.dates = null
   s.pages = null
 

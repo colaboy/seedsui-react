@@ -10,7 +10,7 @@ dayjs.extend(weekOfYear)
 export default () => {
   const calendarRef = useRef(null)
   const [data, setData] = useState([])
-  const [value, setValue] = useState([new Date(), new Date()])
+  const [value, setValue] = useState(new Date('2022-08-09'))
 
   function handleChange(newValue) {
     console.log('修改', newValue)
@@ -31,11 +31,11 @@ export default () => {
         }}
       /> */}
       <Calendar
-        type="week"
+        // type="week"
         // min={new Date()}
         ref={calendarRef}
-        weekStart="Monday"
-        selectionMode="range"
+        // weekStart="Monday"
+        // selectionMode="range"
         value={value}
         titleFormatter={(date, info) => {
           if (info.type === 'month') {

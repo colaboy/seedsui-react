@@ -29,20 +29,30 @@ function nextMonth(currentDate, count) {
 }
 
 // 月数据
-function getMonthData(currentDate) {
+function getMonthData(currentDate, weekStart) {
   let date = new Date(currentDate)
   // 获得本月日历, 返回42天
-  // 月头的位置
+  // 月头的位置, 周日为0
   date.setDate(1)
   let firstDayIndex = date.getDay()
+
+  // 起始点如果是周一, 则需要增加
+  if (weekStart === 'Monday') {
+    if (firstDayIndex === 0) {
+      firstDayIndex = 6
+    } else {
+      firstDayIndex = firstDayIndex - 1
+    }
+  }
+
   // 根据起始毫秒数，逐天增加天数
-  let startDayMs = date.getTime() - dayMillisecond * firstDayIndex
+  let startMillisecond = date.getTime() - dayMillisecond * firstDayIndex
 
   let data = []
   // 生成月
   for (let i = 0; i < 42; i++) {
     data.push(new Date())
-    if (i === 0) data[0].setTime(startDayMs)
+    if (i === 0) data[0].setTime(startMillisecond)
     else data[i].setTime(data[i - 1].getTime() + dayMillisecond)
 
     // 设置当月标识isCurrent
@@ -53,24 +63,25 @@ function getMonthData(currentDate) {
 }
 
 // 获得上月日历
-function getPrevMonthData(currentDate) {
+function getPrevMonthData(currentDate, weekStart) {
   let date = prevMonth(new Date(currentDate))
-  return getMonthData(date)
+  return getMonthData(date, weekStart)
 }
 // 获得下月日历
-function getNextMonthData(currentDate) {
+function getNextMonthData(currentDate, weekStart) {
   let date = nextMonth(new Date(currentDate))
-  return getMonthData(date)
+  return getMonthData(date, weekStart)
 }
 
 // 获取三个月的日历数据, 每个月渲染42格, 共126格
 function getDates(currentDate, { weekStart }) {
   if (!currentDate) return []
+  getMonthData(currentDate, weekStart)
 
   // 获取三个月的日历数据
-  let data = getPrevMonthData(currentDate)
-    .concat(getMonthData(currentDate))
-    .concat(getNextMonthData(currentDate))
+  let data = getPrevMonthData(currentDate, weekStart)
+    .concat(getMonthData(currentDate, weekStart))
+    .concat(getNextMonthData(currentDate, weekStart))
 
   // 设置选中项与选中行
   // 今天选中位置: 当前日期(例如3.9 => 9) + 当月第一天的周几(例如3.1,周5 => 5) = 选中位置(例如14)
