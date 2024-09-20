@@ -1,3 +1,4 @@
+import getWeekNames from './getWeekNames'
 import getWeekDates from './getWeekDates'
 import getDates from './getDates'
 import getSplitDates from './getSplitDates'
@@ -11,6 +12,7 @@ import slideY from './slideY'
 import slideX from './slideX'
 
 export {
+  getWeekNames,
   getWeekDates,
   getDates,
   getSplitDates,

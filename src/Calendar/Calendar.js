@@ -3,7 +3,7 @@ import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } f
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
 import DateUtil from './../DateUtil'
-import { getTitle, isSelectedDate, isDisabledDate } from './utils'
+import { getTitle, isSelectedDate, isDisabledDate, getWeekNames } from './utils'
 import Instance from './instance'
 import Toggle from './Toggle'
 
@@ -13,7 +13,7 @@ const Calendar = forwardRef(
     {
       type, // week | month
       value,
-      selectionMode, // range
+      selectionMode, // single | range
       titleFormatter = 'YYYY年MM月', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       min, // 禁用之前日期
       max, // 禁用之后日期
@@ -168,7 +168,7 @@ const Calendar = forwardRef(
         {typeof header === 'function' &&
           header({ activeDate, titleFormatter, instance: instanceRef.current })}
         <div className="calendar-days">
-          {['日', '一', '二', '三', '四', '五', '六'].map((dayName) => {
+          {getWeekNames().map((dayName) => {
             return (
               <div key={dayName} className="calendar-day">
                 {dayName}
