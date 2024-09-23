@@ -1,3 +1,9 @@
+// 内库使用
+import DateUtil from './../../DateUtil'
+
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // 获取标题字符串
 function getTitle(activeDate, titleFormatter, info) {
   if (!activeDate) {
@@ -8,7 +14,8 @@ function getTitle(activeDate, titleFormatter, info) {
     title = titleFormatter(activeDate, info)
   } else {
     let format = typeof titleFormatter === 'string' ? titleFormatter : 'YYYY-MM'
-    title = activeDate.format(format)
+    debugger
+    title = DateUtil.formatDate(activeDate, format)
   }
 
   return title

@@ -1,11 +1,26 @@
 import React, { useRef, useState } from 'react'
-import dayjs from 'dayjs'
-import DateUtil from '../../DateUtil'
 import { Calendar } from 'seedsui-react'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
+// 内库使用
+import DateUtil from '../../DateUtil'
 
-// 加载插件
-dayjs.extend(weekOfYear)
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
+import dayjs from 'dayjs'
+// 国际化
+import 'dayjs/locale/zh-cn'
+// 常用插件: https://day.js.org/docs/en/plugin/plugin
+import isoWeek from 'dayjs/plugin/isoWeek'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+dayjs.extend(isoWeek)
+dayjs.extend(advancedFormat)
+
+// dayjs国际化
+dayjs.locale('zh-cn')
+console.log(dayjs(new Date()).format('YYYY-MM-DD ddd Q'))
+
+const selectionMode = '' // range
+const weekStart = 'Monday' // Monday
 
 export default () => {
   const calendarRef = useRef(null)
@@ -16,7 +31,11 @@ export default () => {
     console.log('修改', newValue)
     // 设置一周的数据
     if (Array.isArray(newValue) && newValue.length === 2) {
-      let weekDates = Calendar.getWeekDates(newValue[0])
+      let weekDates = Calendar.getWeekDates(newValue[0], weekStart)
+      if (Calendar.isDisabledDate(weekDates[0], { min: new Date() })) {
+        console.log('禁止访问' + DateUtil.formatDate(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
+        return
+      }
       // eslint-disable-next-line
       newValue = [weekDates[0], weekDates[6]]
     }
@@ -25,36 +44,25 @@ export default () => {
 
   return (
     <>
-      {/* <Calendar
-        titleFormatter={(date, info) => {
-          if (info.type === 'month') {
-            return date.format('YYYY年MM月')
-          }
-          return date.format('YYYY年MM月DD日 周EE 第W周')
-        }}
-        onLoad={(...params) => {
-          console.log('加载', ...params)
-        }}
-      /> */}
       <Calendar
         // type="week"
         min={new Date()}
         ref={calendarRef}
-        // weekStart="Monday"
-        // selectionMode="range"
+        weekStart={weekStart}
+        selectionMode={selectionMode}
         value={value}
-        // titleFormatter="YYYY-W周"
-        titleFormatter={(date, info) => {
-          if (Array.isArray(value) && value.length === 2) {
-            return DateUtil.formatDate(value[0], 'YYYY-W周')
-          }
-          if (info.type === 'month') {
-            return DateUtil.formatDate(date, 'YYYY年MM月')
-          }
-          // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
-          let week = dayjs().week()
-          return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
-        }}
+        titleFormatter="YYYY-W周"
+        // titleFormatter={(date, info) => {
+        //   if (Array.isArray(value) && value.length === 2) {
+        //     return DateUtil.formatDate(value[0], 'YYYY-W周')
+        //   }
+        //   if (info.type === 'month') {
+        //     return DateUtil.formatDate(date, 'YYYY年MM月')
+        //   }
+        //   // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
+        //   let week = dayjs().week()
+        //   return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
+        // }}
         dateRender={(date) => {
           return (
             <div className="calendar-date-num">

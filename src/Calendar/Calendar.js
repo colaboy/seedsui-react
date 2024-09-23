@@ -1,12 +1,16 @@
-// require (PrototypeDate.js), 使用了format
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import { useUpdateEffect } from 'ahooks'
-import DateUtil from './../DateUtil'
 import { getTitle, isSelectedDate, isDisabledDate, Weeks } from './utils'
 import Instance from './instance'
 import Toggle from './Toggle'
+
+// 内库使用
+import DateUtil from './../DateUtil'
+
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
 
 // 日历
 const Calendar = forwardRef(
