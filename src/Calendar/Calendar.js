@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import _ from 'lodash'
 import { useUpdateEffect } from 'ahooks'
 import DateUtil from './../DateUtil'
-import { getTitle, isSelectedDate, isDisabledDate, getWeekNames } from './utils'
+import { getTitle, isSelectedDate, isDisabledDate, Weeks } from './utils'
 import Instance from './instance'
 import Toggle from './Toggle'
 
@@ -172,7 +172,7 @@ const Calendar = forwardRef(
         {typeof header === 'function' &&
           header({ activeDate, titleFormatter, instance: instanceRef.current })}
         <div className="calendar-days">
-          {getWeekNames(weekStart).map((dayName) => {
+          {Weeks.getWeekNames(weekStart).map((dayName) => {
             return (
               <div key={dayName} className="calendar-day">
                 {dayName}

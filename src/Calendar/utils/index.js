@@ -1,5 +1,4 @@
-import getWeekNames from './getWeekNames'
-import getWeekDates from './getWeekDates'
+import Weeks from './Weeks'
 import getDates from './getDates'
 import getSplitDates from './getSplitDates'
 import getDateRowIndex from './getDateRowIndex'
@@ -12,8 +11,7 @@ import slideY from './slideY'
 import slideX from './slideX'
 
 export {
-  getWeekNames,
-  getWeekDates,
+  Weeks,
   getDates,
   getSplitDates,
   getDateRowIndex,

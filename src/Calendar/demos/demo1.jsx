@@ -37,7 +37,7 @@ export default () => {
         // weekStart="Monday"
         selectionMode="range"
         value={value}
-        titleFormatter="YYYY-MM-DD"
+        titleFormatter="YYYY-W周"
         // titleFormatter={(date, info) => {
         //   if (Array.isArray(date) && date.length === 2) {
         //     return '区间'

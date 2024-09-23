@@ -1,4 +1,4 @@
-import getWeekDates from './getWeekDates'
+import Weeks from './Weeks'
 import getDateRowIndex from './getDateRowIndex'
 
 // 方便渲染, 三维化dates数组：3页6行7列
@@ -13,7 +13,7 @@ function getSplitDates(dates, { weekStart, activeDate, type }) {
     let activeRowIndex = getDateRowIndex(activeDate, weekStart)
 
     // 上周和下周数据
-    let weekDates = getWeekDates(activeDate, { weekStart })
+    let weekDates = Weeks.getWeeks(activeDate, { weekStart })
 
     // 平替周行的上月和下月，保证滑动时显示正常
     for (let [index, page] of pages.entries()) {
