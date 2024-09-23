@@ -1,6 +1,7 @@
 // require (PrototypeDate.js), 使用了format
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
+import _ from 'lodash'
 import { useUpdateEffect } from 'ahooks'
 import DateUtil from './../DateUtil'
 import { getTitle, isSelectedDate, isDisabledDate, getWeekNames } from './utils'
@@ -104,7 +105,7 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      if (!value || !instanceRef?.current?.pages) return
+      if (_.isEmpty(value) || !instanceRef?.current?.pages) return
 
       instanceRef.current.updateActiveDate(value)
 
@@ -114,7 +115,7 @@ const Calendar = forwardRef(
         setActiveDate(value)
       }
       // eslint-disable-next-line
-    }, [value instanceof Date ? dayjs(value).format('YYYYMMDD') : ''])
+    }, [value])
 
     // 点击日期
     function handleRangeClick(newDate) {

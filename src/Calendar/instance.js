@@ -58,7 +58,11 @@ let Calendar = function (container, params) {
   /* --------------------
   Methods
   -------------------- */
-  s.updateActiveDate = function (date) {
+  s.updateActiveDate = function (currentDate) {
+    let date = currentDate
+    if (Array.isArray(currentDate) && currentDate.length === 2) {
+      date = currentDate[0]
+    }
     if (date instanceof Date === false) {
       return
     }
