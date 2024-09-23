@@ -1,5 +1,3 @@
-const weekMillisecond = 7 * 24 * 60 * 60 * 1000
-
 // 上周
 function prevWeek(currentDate) {
   const prevWeekDate = new Date(currentDate)
@@ -10,38 +8,33 @@ function prevWeek(currentDate) {
 // 下周
 function nextWeek(currentDate) {
   const nextWeekDate = new Date(currentDate)
-  nextWeekDate.setDate(currentDate.getDate() - 7)
+  nextWeekDate.setDate(currentDate.getDate() + 7)
   return nextWeekDate
 }
 
-// 周数据: 上周和下周共14天
+// 获取当周7天
 function getWeekData(currentDate, weekStart) {
-  let date = new Date(currentDate)
-  let firstDayIndex = date.getDay()
+  const weekData = []
+  const startOfWeek = new Date(currentDate)
+  const dayOfWeek = startOfWeek.getDay() // 获取当前日期是星期几
 
-  // 起始点如果是周一, 则周一为0
+  // 计算本周的周一
   if (weekStart === 'Monday') {
-    // 周日索引为6
-    if (firstDayIndex === 0) {
-      firstDayIndex = 6
-    }
-    // 其它减1, 保证周一是0
-    else {
-      firstDayIndex = firstDayIndex - 1
-    }
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek
+    startOfWeek.setDate(currentDate.getDate() + mondayOffset)
+  }
+  // 设定为本周的第一天（周日）
+  else {
+    startOfWeek.setDate(currentDate.getDate() - dayOfWeek)
   }
 
-  // 根据起始毫秒数，逐天增加天数
-  let startMillisecond = date.getTime() - weekMillisecond * firstDayIndex
-
-  let data = []
-  // 生成周
   for (let i = 0; i < 7; i++) {
-    data.push(new Date())
-    if (i === 0) data[0].setTime(startMillisecond)
-    else data[i].setTime(data[i - 1].getTime() + weekMillisecond)
+    const weekDay = new Date(startOfWeek)
+    weekDay.setDate(startOfWeek.getDate() + i)
+    weekData.push(weekDay)
   }
-  return data
+
+  return weekData
 }
 
 // 获得上周日历
@@ -55,7 +48,7 @@ function getNextWeekData(currentDate, weekStart) {
   return getWeekData(date, weekStart)
 }
 
-// 获取三个月的日历数据, 每个月渲染42格, 共126格
+// 周数据: 上周和下周共14天
 function getWeekDates(currentDate, { weekStart }) {
   if (!currentDate) {
     return null

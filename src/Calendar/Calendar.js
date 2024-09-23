@@ -96,10 +96,7 @@ const Calendar = forwardRef(
       if (onLoad) {
         onLoad(instanceRef.current.activeDate, {
           action: 'load',
-          type:
-            typeof instanceRef.current.type === 'number' || instanceRef.current.type === 'week'
-              ? 'week'
-              : 'month'
+          type: instanceRef.current.type === 'week' ? 'week' : 'month'
         })
       }
       // eslint-disable-next-line
@@ -132,7 +129,7 @@ const Calendar = forwardRef(
         return
       }
 
-      // reselect start date
+      // Reselect start date
       onChange && onChange([newDate, newDate])
     }
 

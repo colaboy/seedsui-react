@@ -3,7 +3,10 @@ import isDisabledDate from './isDisabledDate'
 import getDateRowIndex from './getDateRowIndex'
 
 // 左右滑动
-function slideX(op, { type, min, max, duration, activeDate, container, bodyX, bodyY, cellHeight }) {
+function slideX(
+  op,
+  { type, min, max, duration, weekStart, activeDate, container, bodyX, bodyY, cellHeight }
+) {
   // 添加动画
   bodyX.style.transitionDuration = duration + 'ms'
 
@@ -69,7 +72,7 @@ function slideX(op, { type, min, max, duration, activeDate, container, bodyX, bo
         }
         // 周视图时, 需要移动竖向位置
         else {
-          let weekRowIndex = getDateRowIndex(newActiveDate)
+          let weekRowIndex = getDateRowIndex(newActiveDate, weekStart)
           translateY = -weekRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'

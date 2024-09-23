@@ -75,8 +75,8 @@ let Calendar = function (container, params) {
     if (isCross && s.params.onChange) {
       s.params.onChange(s.activeDate, {
         action: 'change',
-        type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null
+        type: typeof s.type === 'week' ? 'week' : 'month',
+        weekRowIndex: s.weekRowIndex
       })
     }
   }
@@ -103,6 +103,7 @@ let Calendar = function (container, params) {
       min: s.params.min,
       max: s.params.max,
       duration: s.params.duration,
+      weekStart: s.params.weekStart,
       activeDate: s.activeDate,
       container: s.container,
       bodyX: s.bodyX,
@@ -112,7 +113,7 @@ let Calendar = function (container, params) {
 
     // 更新周的数
     if (s.type !== 'month') {
-      s.type = getDateRowIndex(s.activeDate)
+      s.weekRowIndex = getDateRowIndex(s.activeDate, s.params.weekStart)
     }
 
     // No action No onChange
@@ -127,8 +128,8 @@ let Calendar = function (container, params) {
     if (s.params.onChange) {
       s.params.onChange(s.activeDate, {
         action: action,
-        type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null
+        type: typeof s.type === 'week' ? 'week' : 'month',
+        weekRowIndex: s.weekRowIndex
       })
     }
 
@@ -137,15 +138,24 @@ let Calendar = function (container, params) {
 
   // 上下滑动
   s.slideY = async function (action, triggerChange = true) {
-    s.type = slideY(action, {
+    let weekRowIndex = slideY(action, {
       type: s.type,
       duration: s.params.duration,
+      weekStart: s.params.weekStart,
       cellHeight: s.params.cellHeight,
       bodyHeight: s.bodyHeight,
       activeDate: s.activeDate,
       body: s.body,
       bodyY: s.bodyY
     })
+
+    if (typeof weekRowIndex === 'number') {
+      s.type = 'week'
+      s.weekRowIndex = weekRowIndex
+    } else {
+      s.type = 'month'
+      s.weekRowIndex = null
+    }
 
     // 样式标记展开和收缩
     if (action) {
@@ -166,8 +176,8 @@ let Calendar = function (container, params) {
     if (triggerChange && s.params.onChange) {
       s.params.onChange(s.activeDate, {
         action: action,
-        type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null
+        type: s.type,
+        weekRowIndex: s.weekRowIndex
       })
     }
 

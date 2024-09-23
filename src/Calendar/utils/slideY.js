@@ -1,7 +1,10 @@
 import getDateRowIndex from './getDateRowIndex'
 
 // 上下拉动
-function slideY(op, { type, duration, cellHeight, bodyHeight, activeDate, body, bodyY }) {
+function slideY(
+  op,
+  { type, duration, weekStart, activeDate, cellHeight, bodyHeight, body, bodyY }
+) {
   // 添加动画
   body.style.transitionDuration = duration + 'ms'
 
@@ -19,7 +22,7 @@ function slideY(op, { type, duration, cellHeight, bodyHeight, activeDate, body, 
   // 收缩
   else if (op === 'collapse') {
     height = cellHeight
-    let weekRowIndex = getDateRowIndex(activeDate)
+    let weekRowIndex = getDateRowIndex(activeDate, weekStart)
     translateY = -weekRowIndex * cellHeight
     bodyY.setAttribute('data-translateY', translateY)
     newType = weekRowIndex
