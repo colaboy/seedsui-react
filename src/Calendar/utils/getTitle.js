@@ -14,7 +14,6 @@ function getTitle(activeDate, titleFormatter, info) {
     title = titleFormatter(activeDate, info)
   } else {
     let format = typeof titleFormatter === 'string' ? titleFormatter : 'YYYY-MM'
-    debugger
     title = DateUtil.formatDate(activeDate, format)
   }
 

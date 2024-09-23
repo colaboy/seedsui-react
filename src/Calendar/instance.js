@@ -11,6 +11,7 @@ let Calendar = function (container, params) {
     weekStart: null,
 
     // Render
+    draggable: ['horizontal', 'vertical'],
     type: 'month',
     threshold: 50,
     duration: 300,
@@ -185,6 +186,17 @@ let Calendar = function (container, params) {
     if (s.touches.direction === 0) {
       s.touches.direction = Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical'
     }
+    // 禁止上下拖动
+    if (
+      s.params.draggable?.includes('horizontal') === false &&
+      s.touches.direction === 'horizontal'
+    ) {
+      s.touches.direction = null
+    }
+    // 禁止左右拖动
+    if (s.params.draggable?.includes('vertical') === false && s.touches.direction === 'vertical') {
+      s.touches.direction = null
+    }
 
     // 左右拉动
     if (s.touches.direction === 'horizontal') {
@@ -285,6 +297,13 @@ let Calendar = function (container, params) {
     s.container[action]('touchcancel', s.handleTouchEnd, false)
   }
   s.attach = function () {
+    // 禁止拖拽
+    if (
+      s.params.draggable?.includes('horizontal') === false &&
+      s.params.draggable?.includes('vertical') === false
+    ) {
+      return
+    }
     s.events()
   }
   s.detach = function () {

@@ -46,12 +46,12 @@ export default () => {
     <>
       <Calendar
         // type="week"
-        min={new Date()}
+        // min={new Date()}
         ref={calendarRef}
         weekStart={weekStart}
         selectionMode={selectionMode}
         value={value}
-        titleFormatter="YYYY-W周"
+        titleFormatter="YYYY-MM-DD W周"
         // titleFormatter={(date, info) => {
         //   if (Array.isArray(value) && value.length === 2) {
         //     return DateUtil.formatDate(value[0], 'YYYY-W周')

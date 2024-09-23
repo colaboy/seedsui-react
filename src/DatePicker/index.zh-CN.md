@@ -21,3 +21,7 @@
 ### DatePicker.Types
 
 <code src="./demos/Types/index.jsx"></code>
+
+### DatePicker.WeekCombo
+
+<code src="./demos/WeekCombo/index.jsx"></code>

@@ -23,7 +23,7 @@ const Calendar = forwardRef(
       titleFormatter = 'YYYY年MM月', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       min, // 禁用之前日期
       max, // 禁用之后日期
-      // draggable, // 是否允许垂直拖动
+      draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
       // 头部渲染
       header = true,
       // 单个日期渲染
@@ -79,6 +79,7 @@ const Calendar = forwardRef(
         weekStart,
 
         // Render
+        draggable: draggable,
         type: type || 'month',
         threshold: 50,
         duration: 300,
@@ -253,9 +254,11 @@ const Calendar = forwardRef(
             </div>
           </div>
         </div>
-        <div className="calendar-footer">
-          <Toggle />
-        </div>
+        {draggable.includes('vertical') && (
+          <div className="calendar-footer">
+            <Toggle />
+          </div>
+        )}
       </div>
     )
   }
