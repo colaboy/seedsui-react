@@ -14,6 +14,12 @@ export default () => {
 
   function handleChange(newValue) {
     console.log('修改', newValue)
+    // 设置一周的数据
+    if (Array.isArray(newValue) && newValue.length === 2) {
+      let weekDates = Calendar.getWeekDates(newValue[0])
+      // eslint-disable-next-line
+      newValue = [weekDates[0], weekDates[6]]
+    }
     setValue(newValue)
   }
 
@@ -32,23 +38,23 @@ export default () => {
       /> */}
       <Calendar
         // type="week"
-        // min={new Date()}
+        min={new Date()}
         ref={calendarRef}
         // weekStart="Monday"
-        selectionMode="range"
+        // selectionMode="range"
         value={value}
-        titleFormatter="YYYY-W周"
-        // titleFormatter={(date, info) => {
-        //   if (Array.isArray(date) && date.length === 2) {
-        //     return '区间'
-        //   }
-        //   if (info.type === 'month') {
-        //     return DateUtil.formatDate(date, 'YYYY年MM月')
-        //   }
-        //   // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
-        //   let week = dayjs().week()
-        //   return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
-        // }}
+        // titleFormatter="YYYY-W周"
+        titleFormatter={(date, info) => {
+          if (Array.isArray(value) && value.length === 2) {
+            return DateUtil.formatDate(value[0], 'YYYY-W周')
+          }
+          if (info.type === 'month') {
+            return DateUtil.formatDate(date, 'YYYY年MM月')
+          }
+          // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
+          let week = dayjs().week()
+          return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
+        }}
         dateRender={(date) => {
           return (
             <div className="calendar-date-num">
