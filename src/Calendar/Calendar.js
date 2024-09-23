@@ -96,7 +96,7 @@ const Calendar = forwardRef(
       if (onLoad) {
         onLoad(instanceRef.current.activeDate, {
           action: 'load',
-          type: instanceRef.current.type === 'week' ? 'week' : 'month'
+          type: instanceRef.current.type
         })
       }
       // eslint-disable-next-line

@@ -31,7 +31,7 @@ export default () => {
         }}
       /> */}
       <Calendar
-        // type="week"
+        type="week"
         // min={new Date()}
         ref={calendarRef}
         weekStart="Monday"
