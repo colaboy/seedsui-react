@@ -99,8 +99,7 @@ const Calendar = forwardRef(
           type:
             typeof instanceRef.current.type === 'number' || instanceRef.current.type === 'week'
               ? 'week'
-              : 'month',
-          pageDates: instanceRef.current.getPageDates()
+              : 'month'
         })
       }
       // eslint-disable-next-line

@@ -4,28 +4,28 @@ const dayMillisecond = 24 * 60 * 60 * 1000
 // const weekMillisecond = 7 * 24 * 60 * 60 * 1000
 
 // 上一月
-function prevMonth(currentDate, count) {
-  let date = new Date(currentDate)
-  let targetMonth = date.getMonth() - (count || 1)
-  let targetMaxDate = new Date(date.getFullYear(), targetMonth + 1, 0).getDate()
-  if (date.getDate() > targetMaxDate) {
-    date.setMonth(targetMonth, targetMaxDate)
-  } else {
-    date.setMonth(targetMonth)
+function prevMonth(currentDate) {
+  const previousMonthDate = new Date(currentDate)
+  previousMonthDate.setMonth(currentDate.getMonth() - 1)
+
+  // 如果结果日期不是有效的日期，设置为上月最后一天
+  if (previousMonthDate.getDate() !== currentDate.getDate()) {
+    previousMonthDate.setDate(0)
   }
-  return date
+
+  return previousMonthDate
 }
 // 下一月
-function nextMonth(currentDate, count) {
-  let date = new Date(currentDate)
-  let targetMonth = date.getMonth() + (count || 1)
-  let targetMaxDate = new Date(date.getFullYear(), targetMonth + 1, 0).getDate()
-  if (date.getDate() > targetMaxDate) {
-    date.setMonth(targetMonth, targetMaxDate)
-  } else {
-    date.setMonth(targetMonth)
+function nextMonth(currentDate) {
+  const nextMonthDate = new Date(currentDate)
+  nextMonthDate.setMonth(currentDate.getMonth() + 1)
+
+  // 如果结果日期不是有效的日期，设置为下月最后一天
+  if (nextMonthDate.getDate() !== currentDate.getDate()) {
+    nextMonthDate.setDate(0)
   }
-  return date
+
+  return nextMonthDate
 }
 
 // 月数据
@@ -36,11 +36,14 @@ function getMonthData(currentDate, weekStart) {
   date.setDate(1)
   let firstDayIndex = date.getDay()
 
-  // 起始点如果是周一, 则需要增加
+  // 起始点如果是周一, 则周一为0
   if (weekStart === 'Monday') {
+    // 周日索引为6
     if (firstDayIndex === 0) {
       firstDayIndex = 6
-    } else {
+    }
+    // 其它减1, 保证周一是0
+    else {
       firstDayIndex = firstDayIndex - 1
     }
   }
@@ -48,18 +51,27 @@ function getMonthData(currentDate, weekStart) {
   // 根据起始毫秒数，逐天增加天数
   let startMillisecond = date.getTime() - dayMillisecond * firstDayIndex
 
-  let data = []
   // 生成月
+  let rows = []
+  let data = []
   for (let i = 0; i < 42; i++) {
+    // 设置日期
     data.push(new Date())
     if (i === 0) data[0].setTime(startMillisecond)
     else data[i].setTime(data[i - 1].getTime() + dayMillisecond)
-
     // 设置当月标识isCurrent
     data[i].isCurrent = false
     if (data[i].getMonth() === currentDate.getMonth()) data[i].isCurrent = true
+
+    // 每7创建一个新组
+    if (i % 7 === 0) {
+      rows.push([])
+    }
+    // 将当前元素加入最新的组
+    rows[rows.length - 1].push(data[i])
   }
-  return data
+
+  return rows
 }
 
 // 获得上月日历
@@ -75,13 +87,16 @@ function getNextMonthData(currentDate, weekStart) {
 
 // 获取三个月的日历数据, 每个月渲染42格, 共126格
 function getDates(currentDate, { weekStart }) {
-  if (!currentDate) return []
-  getMonthData(currentDate, weekStart)
+  if (!currentDate) {
+    return null
+  }
 
   // 获取三个月的日历数据
-  let data = getPrevMonthData(currentDate, weekStart)
-    .concat(getMonthData(currentDate, weekStart))
-    .concat(getNextMonthData(currentDate, weekStart))
+  let data = {
+    previous: getPrevMonthData(currentDate, weekStart),
+    current: getMonthData(currentDate, weekStart),
+    next: getNextMonthData(currentDate, weekStart)
+  }
 
   // 设置选中项与选中行
   // 今天选中位置: 当前日期(例如3.9 => 9) + 当月第一天的周几(例如3.1,周5 => 5) = 选中位置(例如14)
@@ -92,6 +107,7 @@ function getDates(currentDate, { weekStart }) {
   data.activeRowIndex = Math.ceil(activeIndex / 7) - 1
   // 三个月中的位置: 当月选中位置(例如14) + 上个月日历42天(例如41, 由于索引是从0开始的, 所以加上41而不是42) + = 三个月中的位置(例如55)
   data.activeIndex = activeIndex + 41
+
   return data
 }
 

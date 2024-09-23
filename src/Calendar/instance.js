@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import {
   getDateRowIndex,
   getDates,
@@ -54,7 +53,6 @@ let Calendar = function (container, params) {
 
   // Get three pages dates
   s.activeDate = s.params.activeDate || new Date()
-  s.dates = null
   s.pages = null
 
   /* --------------------
@@ -78,8 +76,7 @@ let Calendar = function (container, params) {
       s.params.onChange(s.activeDate, {
         action: 'change',
         type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null,
-        pageDates: s.getPageDates()
+        weekRowIndex: s.type === 'number' ? s.type : null
       })
     }
   }
@@ -91,21 +88,12 @@ let Calendar = function (container, params) {
 
   // 更新日期数据
   s.updateDates = function () {
-    s.dates = getDates(s.activeDate, { weekStart: s.params.weekStart })
-    s.pages = getSplitDates(s.dates, {
+    let dates = getDates(s.activeDate, { weekStart: s.params.weekStart })
+    s.pages = getSplitDates(dates, {
       weekStart: s.params.weekStart,
       activeDate: s.activeDate,
       type: s.type
     })
-  }
-
-  // 获取当页显示的日期
-  s.getPageDates = function () {
-    let pageDates = _.flatten(s.pages[1])
-    if (typeof s.type === 'number') {
-      pageDates = s.pages[1][s.type]
-    }
-    return pageDates
   }
 
   // 左右滑动
@@ -140,8 +128,7 @@ let Calendar = function (container, params) {
       s.params.onChange(s.activeDate, {
         action: action,
         type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null,
-        pageDates: s.getPageDates()
+        weekRowIndex: s.type === 'number' ? s.type : null
       })
     }
 
@@ -180,8 +167,7 @@ let Calendar = function (container, params) {
       s.params.onChange(s.activeDate, {
         action: action,
         type: typeof s.type === 'number' || s.type === 'week' ? 'week' : 'month',
-        weekRowIndex: s.type === 'number' ? s.type : null,
-        pageDates: s.getPageDates()
+        weekRowIndex: s.type === 'number' ? s.type : null
       })
     }
 
