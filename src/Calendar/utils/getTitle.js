@@ -4,13 +4,11 @@ function getTitle(activeDate, titleFormatter, info) {
     return ''
   }
   let title = ''
-
-  if (typeof titleFormatter === 'string') {
-    title = activeDate.format(titleFormatter)
-  } else if (typeof titleFormatter === 'function') {
+  if (typeof titleFormatter === 'function') {
     title = titleFormatter(activeDate, info)
   } else {
-    title = activeDate.format('YYYY-MM')
+    let format = typeof titleFormatter === 'string' ? titleFormatter : 'YYYY-MM'
+    title = activeDate.format(format)
   }
 
   return title

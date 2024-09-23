@@ -31,21 +31,24 @@ export default () => {
         }}
       /> */}
       <Calendar
-        type="week"
+        // type="week"
         // min={new Date()}
         ref={calendarRef}
-        weekStart="Monday"
-        // selectionMode="range"
+        // weekStart="Monday"
+        selectionMode="range"
         value={value}
-        titleFormatter={(date, info) => {
-          if (info.type === 'month') {
-            return DateUtil.formatDate(date, 'YYYY年MM月')
-          }
-          // debugger
-          // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
-          let week = dayjs().week()
-          return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
-        }}
+        titleFormatter="YYYY-MM-DD"
+        // titleFormatter={(date, info) => {
+        //   if (Array.isArray(date) && date.length === 2) {
+        //     return '区间'
+        //   }
+        //   if (info.type === 'month') {
+        //     return DateUtil.formatDate(date, 'YYYY年MM月')
+        //   }
+        //   // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
+        //   let week = dayjs().week()
+        //   return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
+        // }}
         dateRender={(date) => {
           return (
             <div className="calendar-date-num">

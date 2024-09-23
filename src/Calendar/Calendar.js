@@ -107,7 +107,12 @@ const Calendar = forwardRef(
       if (!value || !instanceRef?.current?.pages) return
 
       instanceRef.current.updateActiveDate(value)
-      setActiveDate(value)
+
+      if (Array.isArray(value) && value.length === 2) {
+        setActiveDate(value[0])
+      } else {
+        setActiveDate(value)
+      }
       // eslint-disable-next-line
     }, [value instanceof Date ? dayjs(value).format('YYYYMMDD') : ''])
 
