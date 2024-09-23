@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import isDisabledDate from './isDisabledDate'
-import getDateRowIndex from './getDateRowIndex'
+import Months from './Months'
 
 // 左右滑动
 function slideX(
@@ -72,7 +72,7 @@ function slideX(
         }
         // 周视图时, 需要移动竖向位置
         else {
-          let activeDateRowIndex = getDateRowIndex(newActiveDate, weekStart)
+          let activeDateRowIndex = Months.getDateRowIndex(newActiveDate, weekStart)
           translateY = -activeDateRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'

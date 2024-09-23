@@ -1,11 +1,4 @@
-import {
-  getDateRowIndex,
-  getDates,
-  getSplitDates,
-  getTranslateValue,
-  slideX,
-  slideY
-} from './utils'
+import { Months, getSplitDates, getTranslateValue, slideX, slideY } from './utils'
 
 // 日历
 let Calendar = function (container, params) {
@@ -91,8 +84,8 @@ let Calendar = function (container, params) {
 
   // 更新日期数据
   s.updateDates = function () {
-    let dates = getDates(s.activeDate, { weekStart: s.params.weekStart })
-    s.pages = getSplitDates(dates, {
+    let months = Months.getMonths(s.activeDate, { weekStart: s.params.weekStart })
+    s.pages = getSplitDates(months, {
       weekStart: s.params.weekStart,
       activeDate: s.activeDate,
       type: s.type

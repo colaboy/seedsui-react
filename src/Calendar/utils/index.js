@@ -1,7 +1,6 @@
 import Weeks from './Weeks'
-import getDates from './getDates'
+import Months from './Months'
 import getSplitDates from './getSplitDates'
-import getDateRowIndex from './getDateRowIndex'
 import isSelectedDate from './isSelectedDate'
 import isDisabledDate from './isDisabledDate'
 import getTranslateValue from './getTranslateValue'
@@ -12,9 +11,8 @@ import slideX from './slideX'
 
 export {
   Weeks,
-  getDates,
+  Months,
   getSplitDates,
-  getDateRowIndex,
   isSelectedDate,
   isDisabledDate,
   getTranslateValue,

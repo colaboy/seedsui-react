@@ -1,5 +1,5 @@
 import Weeks from './Weeks'
-import getDateRowIndex from './getDateRowIndex'
+import Months from './Months'
 
 // 方便渲染, 三维化dates数组：3页6行7列
 function getSplitDates(dates, { weekStart, activeDate, type }) {
@@ -10,7 +10,7 @@ function getSplitDates(dates, { weekStart, activeDate, type }) {
 
   // 周需要替换同行上周和下周的数据
   if (type === 'week') {
-    let activeRowIndex = getDateRowIndex(activeDate, weekStart)
+    let activeRowIndex = Months.getDateRowIndex(activeDate, weekStart)
 
     // 上周和下周数据
     let weekDates = Weeks.getWeeks(activeDate, { weekStart })

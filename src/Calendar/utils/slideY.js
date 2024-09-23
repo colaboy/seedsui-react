@@ -1,4 +1,4 @@
-import getDateRowIndex from './getDateRowIndex'
+import Months from './Months'
 
 // 上下拉动
 function slideY(
@@ -11,7 +11,7 @@ function slideY(
   let newType = type
   let height = 0
   let translateY = 0
-  let activeDateRowIndex = getDateRowIndex(activeDate, weekStart)
+  let activeDateRowIndex = Months.getDateRowIndex(activeDate, weekStart)
 
   // 展开
   if (op === 'expand') {

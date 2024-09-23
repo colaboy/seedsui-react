@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-
 // 获取日期所在行
 function getDateRowIndex(currentDate, weekStart) {
   let date = new Date(currentDate)
