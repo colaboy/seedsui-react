@@ -6,13 +6,19 @@
   background-color: white;
   transition-property: height;
 }
-.calendar-mode-range,
-.calendar-mode-week {
+// 区间选择模式
+.calendar-mode-range {
   .calendar-date .calendar-date-num {
     width: 100%;
     border-radius: 0;
   }
+  .calendar-date-today {
+    .calendar-date-num {
+      border-radius: 8px;
+    }
+  }
 }
+
 // 头部
 .calendar-header {
   .flex;

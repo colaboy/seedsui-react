@@ -19,7 +19,7 @@ dayjs.extend(advancedFormat)
 dayjs.locale('zh-cn')
 console.log(dayjs(new Date()).format('YYYY-MM-DD ddd Q'))
 
-const selectionMode = '' // range
+const selectionMode = 'range' // range
 const weekStart = 'Monday' // Monday
 
 export default () => {
