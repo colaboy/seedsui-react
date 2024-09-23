@@ -25,7 +25,6 @@ function formatDate(date, type) {
     return dayjs(date).format('HH:mm')
   }
 
-  console.log(dayjs(date).format(type))
   return dayjs(date).format(type)
 }
 

@@ -63,14 +63,14 @@ export default () => {
         //   let week = dayjs().week()
         //   return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
         // }}
-        dateRender={(date) => {
-          return (
-            <div className="calendar-date-num">
-              {date.getDate()}
-              {data[DateUtil.formatDate(date, 'YYYY-MM-DD')] ? 'M' : ''}
-            </div>
-          )
-        }}
+        // dateRender={(date) => {
+        //   return (
+        //     <div className="calendar-date-num">
+        //       {date.getDate()}
+        //       {data[DateUtil.formatDate(date, 'YYYY-MM-DD')] ? 'M' : ''}
+        //     </div>
+        //   )
+        // }}
         onChange={handleChange}
         onSlideChange={(...params) => {
           console.log('视图变化', ...params)

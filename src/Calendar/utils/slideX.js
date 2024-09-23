@@ -45,8 +45,7 @@ function slideX(
 
   // 禁止日期
   if (disabledDate) {
-    let errMsg = '禁止访问' + disabledDate.format('YYYY年MM月DD日') + '前的日期'
-    console.log(errMsg)
+    console.log('禁止访问' + new Date().toLocaleDateString() + '前的日期')
     newActiveDate = activeDate
     translateX = -container.clientWidth
   }
