@@ -1,4 +1,4 @@
-import { Months, getSplitDates, getTranslateValue, slideX, slideY } from './utils'
+import { Months, getTranslateValue, slideX, slideY } from './utils'
 
 // 日历
 let Calendar = function (container, params) {
@@ -85,7 +85,7 @@ let Calendar = function (container, params) {
   // 更新日期数据
   s.updateDates = function () {
     let months = Months.getMonths(s.activeDate, { weekStart: s.params.weekStart })
-    s.pages = getSplitDates(months, {
+    s.pages = Months.paginateMonths(months, {
       weekStart: s.params.weekStart,
       activeDate: s.activeDate,
       type: s.type

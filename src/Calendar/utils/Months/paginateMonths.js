@@ -1,16 +1,16 @@
-import Weeks from './Weeks'
-import Months from './Months'
+import Weeks from './../Weeks'
+import getDateRowIndex from './getDateRowIndex'
 
-// 方便渲染, 三维化dates数组：3页6行7列
-function getSplitDates(dates, { weekStart, activeDate, type }) {
-  if (!activeDate || !dates) return []
+// 方便渲染, 三维化months数组：3页6行7列
+function paginateMonths(months, { weekStart, activeDate, type }) {
+  if (!activeDate || !months) return []
 
   // 共3页，每页6行, 第行7个日期
-  let pages = [dates.previous, dates.current, dates.next]
+  let pages = [months.previous, months.current, months.next]
 
   // 周需要替换同行上周和下周的数据
   if (type === 'week') {
-    let activeRowIndex = Months.getDateRowIndex(activeDate, weekStart)
+    let activeRowIndex = getDateRowIndex(activeDate, weekStart)
 
     // 上周和下周数据
     let weekDates = Weeks.getWeeks(activeDate, { weekStart })
@@ -37,4 +37,4 @@ function getSplitDates(dates, { weekStart, activeDate, type }) {
   return pages
 }
 
-export default getSplitDates
+export default paginateMonths

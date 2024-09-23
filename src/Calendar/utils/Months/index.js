@@ -2,6 +2,7 @@ import getDateRowIndex from './getDateRowIndex'
 import previousMonth from './previousMonth'
 import nextMonth from './nextMonth'
 import getMonthDates from './getMonthDates'
+import paginateMonths from './paginateMonths'
 
 // 获得上月日历
 function getPrevMonthData(currentDate, weekStart) {
@@ -36,5 +37,7 @@ export default {
   // 当前日期一月的日期
   getMonthDates,
   // 获取上月,本月与下月数据集合
-  getMonths
+  getMonths,
+  // 对months进行分页[[row, row, ...], [row, row, ...], [row, row, ...]]
+  paginateMonths
 }
