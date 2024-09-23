@@ -72,8 +72,8 @@ function slideX(
         }
         // 周视图时, 需要移动竖向位置
         else {
-          let weekRowIndex = getDateRowIndex(newActiveDate, weekStart)
-          translateY = -weekRowIndex * cellHeight
+          let activeDateRowIndex = getDateRowIndex(newActiveDate, weekStart)
+          translateY = -activeDateRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'
         bodyY.setAttribute('data-translateY', translateY)

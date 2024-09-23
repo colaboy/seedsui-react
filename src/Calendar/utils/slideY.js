@@ -22,10 +22,10 @@ function slideY(
   // 收缩
   else if (op === 'collapse') {
     height = cellHeight
-    let weekRowIndex = getDateRowIndex(activeDate, weekStart)
-    translateY = -weekRowIndex * cellHeight
+    let activeDateRowIndex = getDateRowIndex(activeDate, weekStart)
+    translateY = -activeDateRowIndex * cellHeight
     bodyY.setAttribute('data-translateY', translateY)
-    newType = weekRowIndex
+    newType = activeDateRowIndex
   }
   // 维持现状
   else {
