@@ -146,6 +146,29 @@ const Calendar = forwardRef(
       onChange && onChange([newDate, newDate])
     }
 
+    // Last month
+    function handlePreviousMonth(e) {
+      e.stopPropagation()
+      instanceRef?.current?.slideX('previous')
+    }
+    // Next month
+    function handleNextMonth(e) {
+      e.stopPropagation()
+      instanceRef?.current?.slideX('next')
+    }
+    // Last year
+    function handlePreviousYear(e) {
+      e.stopPropagation()
+      let lastYear = dayjs(activeDate).subtract(1, 'year')
+      setActiveDate(lastYear.toDate())
+    }
+    // Next year
+    function handleNextYear(e) {
+      e.stopPropagation()
+      let nextYear = dayjs(activeDate).add(1, 'year')
+      setActiveDate(nextYear.toDate())
+    }
+
     return (
       <div
         ref={rootRef}
@@ -156,14 +179,10 @@ const Calendar = forwardRef(
       >
         {header === true && (
           <Header
-            onPreviousMonth={(e) => {
-              e.stopPropagation()
-              instanceRef?.current?.slideX('previous')
-            }}
-            onNextMonth={(e) => {
-              e.stopPropagation()
-              instanceRef?.current?.slideX('next')
-            }}
+            onPreviousMonth={handlePreviousMonth}
+            onNextMonth={handleNextMonth}
+            onPreviousYear={handlePreviousYear}
+            onNextYear={handleNextYear}
           >
             {getTitle(activeDate, titleFormatter, instanceRef.current)}
           </Header>
@@ -171,14 +190,10 @@ const Calendar = forwardRef(
         {typeof header === 'function' &&
           header({
             title: getTitle(activeDate, titleFormatter, instanceRef.current),
-            onPreviousMonth: (e) => {
-              e.stopPropagation()
-              instanceRef?.current?.slideX('previous')
-            },
-            onNextMonth: (e) => {
-              e.stopPropagation()
-              instanceRef?.current?.slideX('next')
-            },
+            onPreviousMonth: handlePreviousMonth,
+            onNextMonth: handleNextMonth,
+            onPreviousYear: handlePreviousYear,
+            onNextYear: handleNextYear,
             activeDate,
             titleFormatter,
             instance: instanceRef.current
