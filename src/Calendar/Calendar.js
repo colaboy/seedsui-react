@@ -156,11 +156,11 @@ const Calendar = forwardRef(
       >
         {header === true && (
           <Header
-            onPrevious={(e) => {
+            onPreviousMonth={(e) => {
               e.stopPropagation()
               instanceRef?.current?.slideX('previous')
             }}
-            onNext={(e) => {
+            onNextMonth={(e) => {
               e.stopPropagation()
               instanceRef?.current?.slideX('next')
             }}
@@ -171,11 +171,11 @@ const Calendar = forwardRef(
         {typeof header === 'function' &&
           header({
             title: getTitle(activeDate, titleFormatter, instanceRef.current),
-            onPrevious: (e) => {
+            onPreviousMonth: (e) => {
               e.stopPropagation()
               instanceRef?.current?.slideX('previous')
             },
-            onNext: (e) => {
+            onNextMonth: (e) => {
               e.stopPropagation()
               instanceRef?.current?.slideX('next')
             },

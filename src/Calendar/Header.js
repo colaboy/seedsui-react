@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 日历头部
-const Header = forwardRef(({ onPrevious, onNext, children, ...props }, ref) => {
+const Header = forwardRef(({ onPreviousMonth, onNextMonth, children, ...props }, ref) => {
   // 容器
   const rootRef = useRef(null)
 
@@ -19,11 +19,11 @@ const Header = forwardRef(({ onPrevious, onNext, children, ...props }, ref) => {
       {...props}
       className={`calendar-header${props?.className ? ' ' + props.className : ''}`}
     >
-      <div className="calendar-prev" onClick={onPrevious}>
+      <div className="calendar-prev" onClick={onPreviousMonth}>
         &lt;
       </div>
       <div className="calendar-title">{children}</div>
-      <div className="calendar-next" onClick={onNext}>
+      <div className="calendar-next" onClick={onNextMonth}>
         &gt;
       </div>
     </div>
