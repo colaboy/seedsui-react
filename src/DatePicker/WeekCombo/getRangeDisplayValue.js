@@ -1,4 +1,5 @@
 import DateUtil from './../../DateUtil'
+import locale from './../../locale'
 
 // 显示名称
 function getRangeDisplayValue({ value }) {

@@ -25,6 +25,7 @@ export default () => {
         className="border-b"
         placeholder="Please select WeekCombo"
         type="datetime"
+        allowClear
         // min={new Date()}
         // max={new Date()}
         onError={(error) => {
