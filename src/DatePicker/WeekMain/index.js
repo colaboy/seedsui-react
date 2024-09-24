@@ -43,21 +43,7 @@ function WeekMain(
         if (Array.isArray(value) && value.length === 2) {
           title = DateUtil.formatDate(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
         }
-        return (
-          <Calendar.Header
-            className="datepicker-calendar-caption"
-            onPrevious={(e) => {
-              e.stopPropagation()
-              weekMainRef?.current?.slidePrevious()
-            }}
-            onNext={(e) => {
-              e.stopPropagation()
-              weekMainRef?.current?.slideNext()
-            }}
-          >
-            {title}
-          </Calendar.Header>
-        )
+        return title
       }
     }
   })
@@ -99,13 +85,14 @@ function WeekMain(
   return (
     <Calendar
       ref={weekMainRef}
+      className="datepicker-weekmain-calendar"
       min={min}
       max={max}
       draggable={['horizontal']}
       weekStart={'Monday'}
       selectionMode={'range'}
       value={value || defaultPickerValue}
-      header={false}
+      // header={false}
       onChange={handleChange}
     />
   )

@@ -34,7 +34,8 @@ const Calendar = forwardRef(
       // Event: click date
       onChange,
       // Event: view change
-      onSlideChange
+      onSlideChange,
+      ...props
     },
     ref
   ) => {
@@ -148,7 +149,10 @@ const Calendar = forwardRef(
     return (
       <div
         ref={rootRef}
-        className={`calendar ${selectionMode ? ` calendar-mode-${selectionMode}` : ''}`}
+        {...props}
+        className={`calendar ${props?.className ? ' ' + props.className : ''}${
+          selectionMode ? ` calendar-mode-${selectionMode}` : ''
+        }`}
       >
         {header === true && (
           <Header
@@ -165,7 +169,20 @@ const Calendar = forwardRef(
           </Header>
         )}
         {typeof header === 'function' &&
-          header({ activeDate, titleFormatter, instance: instanceRef.current })}
+          header({
+            title: getTitle(activeDate, titleFormatter, instanceRef.current),
+            onPrevious: (e) => {
+              e.stopPropagation()
+              instanceRef?.current?.slideX('previous')
+            },
+            onNext: (e) => {
+              e.stopPropagation()
+              instanceRef?.current?.slideX('next')
+            },
+            activeDate,
+            titleFormatter,
+            instance: instanceRef.current
+          })}
         <div className="calendar-days">
           {Weeks.getWeekNames(weekStart).map((dayName) => {
             return (
