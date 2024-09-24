@@ -54,9 +54,6 @@ export default () => {
         }}
         value={value}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
-        captionProps={{
-          caption: '选择日期'
-        }}
       />
     </>
   )

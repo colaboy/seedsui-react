@@ -1,12 +1,16 @@
 import React, { forwardRef } from 'react'
 
+import DateUtil from './../../DateUtil'
 import WeekMain from './../WeekMain'
+
+// 内库使用
 import BaseModal from './../../Select/Modal'
+
 // 测试使用
 // import BaseModal from 'seedsui-react/lib/Select/Modal'
 
-// 区间弹窗
-const RangeModal = (
+// 周弹窗
+const WeekModal = (
   {
     // 显示文本格式化和value格式化
     valueFormatter,
@@ -24,6 +28,7 @@ const RangeModal = (
     onChange,
 
     // Main: Picker Control properties
+    titleFormatter,
     defaultPickerValue,
 
     // Combo|Main: DatePicker Control properties
@@ -47,6 +52,7 @@ const RangeModal = (
     // Main: Picker Control properties
     defaultPickerValue: defaultPickerValue,
     // Combo|Main: DatePicker Control properties
+    titleFormatter,
     min: min,
     max: max,
     onError: onError,
@@ -62,6 +68,9 @@ const RangeModal = (
     }
   }
 
+  if (props?.captionProps) {
+    delete props.captionProps
+  }
   return (
     <BaseModal
       ref={ref}
@@ -100,4 +109,4 @@ const RangeModal = (
   )
 }
 
-export default forwardRef(RangeModal)
+export default forwardRef(WeekModal)

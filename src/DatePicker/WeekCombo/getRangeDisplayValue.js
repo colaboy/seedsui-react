@@ -1,7 +1,7 @@
 import DateUtil from './../../DateUtil'
 
 // 显示名称
-function getRangeDisplayValue({ format, value }) {
+function getRangeDisplayValue({ value }) {
   if (!Array.isArray(value) || value.length !== 2) {
     return ''
   }
@@ -12,7 +12,7 @@ function getRangeDisplayValue({ format, value }) {
     return ''
   }
 
-  return DateUtil.formatDate(start, typeof format === 'string' ? format : 'YYYY-ddd')
+  return DateUtil.formatDate(start, `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
 }
 
 export default getRangeDisplayValue

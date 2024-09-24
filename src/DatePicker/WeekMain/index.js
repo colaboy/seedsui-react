@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import locale from './../../locale'
+import DateUtil from './../../DateUtil'
 import Calendar from './../../Calendar'
 
 // 日期快捷选择
@@ -13,6 +15,7 @@ function WeekMain(
     allowClear,
 
     // Main: common
+    titleFormatter,
     value,
     onBeforeChange,
     onChange,
@@ -29,6 +32,22 @@ function WeekMain(
   },
   ref
 ) {
+  // Expose tools
+  const weekMainRef = useRef(null)
+  useImperativeHandle(ref, () => {
+    return {
+      ...weekMainRef.current,
+      // 获取标题
+      getTitle: () => {
+        debugger
+        if (Array.isArray(value) && value.length === 2) {
+          return DateUtil.formatDate(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+        }
+        return locale('选择日期', 'SeedsUI_placeholder_select')
+      }
+    }
+  })
+
   async function handleChange(newValue) {
     // 修改提示
     if (typeof onBeforeChange === 'function') {
@@ -54,7 +73,7 @@ function WeekMain(
 
   return (
     <Calendar
-      ref={ref}
+      ref={weekMainRef}
       min={min}
       max={max}
       draggable={['horizontal']}
