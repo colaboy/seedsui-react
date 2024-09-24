@@ -39,11 +39,25 @@ function WeekMain(
       ...weekMainRef.current,
       // 获取标题
       getTitle: () => {
-        debugger
+        let title = locale('选择日期', 'SeedsUI_placeholder_select')
         if (Array.isArray(value) && value.length === 2) {
-          return DateUtil.formatDate(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+          title = DateUtil.formatDate(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
         }
-        return locale('选择日期', 'SeedsUI_placeholder_select')
+        return (
+          <Calendar.Header
+            className="datepicker-calendar-caption"
+            onPrevious={(e) => {
+              e.stopPropagation()
+              weekMainRef?.current?.slidePrevious()
+            }}
+            onNext={(e) => {
+              e.stopPropagation()
+              weekMainRef?.current?.slideNext()
+            }}
+          >
+            {title}
+          </Calendar.Header>
+        )
       }
     }
   })

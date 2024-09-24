@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { useUpdateEffect } from 'ahooks'
 import { getTitle, isSelectedDate, isDisabledDate, Weeks } from './utils'
 import Instance from './instance'
+import Header from './Header'
 import Toggle from './Toggle'
 
 // 内库使用
@@ -150,29 +151,18 @@ const Calendar = forwardRef(
         className={`calendar ${selectionMode ? ` calendar-mode-${selectionMode}` : ''}`}
       >
         {header === true && (
-          <div className="calendar-header">
-            <div
-              className="calendar-prev"
-              onClick={(e) => {
-                e.stopPropagation()
-                instanceRef?.current?.slideX('previous')
-              }}
-            >
-              &lt;
-            </div>
-            <div className="calendar-title">
-              {getTitle(activeDate, titleFormatter, instanceRef.current)}
-            </div>
-            <div
-              className="calendar-next"
-              onClick={(e) => {
-                e.stopPropagation()
-                instanceRef?.current?.slideX('next')
-              }}
-            >
-              &gt;
-            </div>
-          </div>
+          <Header
+            onPrevious={(e) => {
+              e.stopPropagation()
+              instanceRef?.current?.slideX('previous')
+            }}
+            onNext={(e) => {
+              e.stopPropagation()
+              instanceRef?.current?.slideX('next')
+            }}
+          >
+            {getTitle(activeDate, titleFormatter, instanceRef.current)}
+          </Header>
         )}
         {typeof header === 'function' &&
           header({ activeDate, titleFormatter, instance: instanceRef.current })}
