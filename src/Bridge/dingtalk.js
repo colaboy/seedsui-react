@@ -124,6 +124,12 @@ let Bridge = {
    */
   closeWindow: function () {
     window.top.dd.biz.navigation.close()
+  },
+  /**
+   * 返回监听
+   */
+  onHistoryBack: function (params) {
+    console.log('钉钉不支持监听物理返回')
   }
 }
 

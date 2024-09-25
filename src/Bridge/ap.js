@@ -101,6 +101,12 @@ let Bridge = {
    */
   closeWindow: function () {
     window.top.ap?.popWindow()
+  },
+  /**
+   * 返回监听
+   */
+  onHistoryBack: function (params) {
+    console.log('支付宝不支持监听物理返回')
   }
 }
 
