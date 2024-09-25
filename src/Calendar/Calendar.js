@@ -68,15 +68,15 @@ const Calendar = forwardRef(
           let result = await instanceRef.current.slideX('next')
           return result
         },
-        updateActiveDate: () => {
-          updateActiveDate()
+        updateActiveDate: (newActive) => {
+          updateActiveDate(newActive)
         }
       }
     })
 
     // 初始化信息
     useEffect(() => {
-      activeDate = getActiveDate()
+      activeDate = getActiveDate(value)
       setActiveDate(activeDate)
 
       instanceRef.current = new Instance(rootRef.current, {
@@ -121,8 +121,8 @@ const Calendar = forwardRef(
     }, [value])
 
     // 获取当前日期
-    function getActiveDate() {
-      let date = Array.isArray(value) && value.length === 2 ? value[0] : value
+    function getActiveDate(newActive) {
+      let date = Array.isArray(newActive) && newActive.length === 2 ? newActive[0] : newActive
       if (date instanceof Date) {
         return date
       } else {
@@ -131,10 +131,10 @@ const Calendar = forwardRef(
     }
 
     // 更新当前日期
-    function updateActiveDate() {
+    function updateActiveDate(newActive) {
       if (!instanceRef?.current?.pages) return
 
-      activeDate = getActiveDate()
+      activeDate = getActiveDate(newActive || value)
       setActiveDate(activeDate)
       instanceRef.current.updateActiveDate(activeDate)
     }
@@ -175,13 +175,13 @@ const Calendar = forwardRef(
     function handlePreviousYear(e) {
       e.stopPropagation()
       let lastYear = dayjs(activeDate).subtract(1, 'year')
-      setActiveDate(lastYear.toDate())
+      updateActiveDate(lastYear.toDate())
     }
     // Next year
     function handleNextYear(e) {
       e.stopPropagation()
       let nextYear = dayjs(activeDate).add(1, 'year')
-      setActiveDate(nextYear.toDate())
+      updateActiveDate(nextYear.toDate())
     }
 
     return (
@@ -256,7 +256,7 @@ const Calendar = forwardRef(
                                     ? 'calendar-date-in-view'
                                     : 'calendar-date-out-view'
                                 }${
-                                  DateUtil.compareDate(new Date(), date) === 0
+                                  DateUtil.compare(new Date(), date) === 0
                                     ? ' calendar-date-today'
                                     : ''
                                 }${selectedClassNames ? ' ' + selectedClassNames : ''}${
