@@ -52,24 +52,30 @@ export default () => {
           }}
           points={coordsToWgs84([
             {
-              longitude: 113.044821,
-              latitude: 23.890941,
-              icon: {
-                className: 'my-div-icon',
-                html: '<div style="width: 100px; background: white;">start</div>'
-              }
-            },
-            {
-              longitude: 113.356363,
-              latitude: 22.199614,
-              icon: {
-                className: 'my-div-icon',
-                html: '<div style="width: 100px; background: white;">end</div>'
-              }
-            },
-            {
-              a: ''
+              address: '江苏省南京市建邺区金洲路62号',
+              latitude: 31.983171307798603,
+              longitude: 118.72896443172527,
+              type: 'wgs84'
             }
+            // {
+            //   longitude: 113.044821,
+            //   latitude: 23.890941,
+            //   icon: {
+            //     className: 'my-div-icon',
+            //     html: '<div style="width: 100px; background: white;">start</div>'
+            //   }
+            // },
+            // {
+            //   longitude: 113.356363,
+            //   latitude: 22.199614,
+            //   icon: {
+            //     className: 'my-div-icon',
+            //     html: '<div style="width: 100px; background: white;">end</div>'
+            //   }
+            // },
+            // {
+            //   a: ''
+            // }
           ])}
           // onMarkerClick={(e) => {
           //   console.log('点击marker:', e)

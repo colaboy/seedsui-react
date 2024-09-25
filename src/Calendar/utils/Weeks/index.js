@@ -26,6 +26,8 @@ function getWeeks(currentDate, { weekStart }) {
 }
 
 export default {
+  previousWeek: previousWeek,
+  nextWeek: nextWeek,
   // 周名
   getWeekNames,
   // 当前日期一周的日期

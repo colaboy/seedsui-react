@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { DatePicker } from 'seedsui-react'
 import dayjs from 'dayjs'
-// 国际化
-import 'dayjs/locale/zh-cn'
-// 常用插件: https://day.js.org/docs/en/plugin/plugin
 import isoWeek from 'dayjs/plugin/isoWeek'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 dayjs.extend(isoWeek)

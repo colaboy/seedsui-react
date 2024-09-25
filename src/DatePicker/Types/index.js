@@ -5,8 +5,9 @@ import locale from './../../locale'
 // import Tabs from 'seedsui-react/lib/Tabs'
 // import locale from 'seedsui-react/lib/locale'
 
-import Combo from './../Combo'
-import { validateMaxMin, getDateDisplayValue } from './../utils'
+import { validateMaxMin } from './../utils'
+import WeekCombo from './WeekCombo'
+import DateCombo from './DateCombo'
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef(
@@ -18,6 +19,11 @@ const Types = forwardRef(
         {
           type: 'date',
           name: locale('日', 'SeedsUI_unit_date')
+        },
+        {
+          type: 'week',
+          id: 'week',
+          name: locale('周', 'datetype_unit_week')
         },
         {
           type: 'month',
@@ -57,28 +63,11 @@ const Types = forwardRef(
     },
     ref
   ) => {
-    // 显示文本
-    let displayValue = getDateDisplayValue({
-      type: value?.type,
-      value: value?.value
-    })
-
     const rootRef = useRef(null)
-    const instance = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef?.current,
-        instance: instance.current,
-        getRootDOM: () => rootRef?.current,
-        getInstance: () => instance.current,
-        // 显示文本
-        displayValue: displayValue,
-        getDisplayValue: (newValue) => {
-          return getDateDisplayValue({
-            type: value?.type,
-            value: newValue || value?.value
-          })
-        }
+        getRootDOM: () => rootRef?.current
       }
     })
 
@@ -86,7 +75,9 @@ const Types = forwardRef(
       // 如果默认没有值, 则默认为当天
       if (!value) {
         let newValue = list[0]
-        updateValue(newValue)
+        if (!newValue.value) {
+          newValue.value = new Date()
+        }
         handleChange(newValue)
       }
     }, []) // eslint-disable-line
@@ -109,21 +100,7 @@ const Types = forwardRef(
     // 点击Tab
     function handleTabs(newValue) {
       if (!newValue.type) return
-      newValue.value = value?.value
-      handleChange(newValue)
-    }
-
-    // 向前
-    function handlePrev(e) {
-      if (!value) return
-      let newValue = updateValue(value, -1)
-      handleChange(newValue)
-    }
-
-    // 向后
-    function handleNext(e) {
-      if (!value) return
-      let newValue = updateValue(value, 1)
+      if (!newValue.value) newValue.value = value?.value || new Date()
       handleChange(newValue)
     }
 
@@ -133,57 +110,6 @@ const Types = forwardRef(
       handleChange({ ...value })
     }
 
-    /**
-     * 切换日期
-     * @param {Date} newValue 日期
-     * @param {Number} go 前行后退, 0: 当前; -1: 后退; 1: 前进;
-     */
-    function updateValue(newValue, go = 0) {
-      if (!newValue?.type) return
-      if (!newValue?.value) {
-        newValue.value = new Date()
-      }
-      // eslint-disable-next-line
-      newValue = Object.clone(newValue)
-      switch (newValue.type) {
-        // 年
-        case 'year': {
-          if (go === 0) {
-            break
-          }
-          go === -1 ? newValue.value.prevYear() : newValue.value.nextYear()
-          break
-        }
-        // 季
-        case 'quarter': {
-          if (go === 0) {
-            break
-          }
-          go === -1 ? newValue.value.prevQuarter() : newValue.value.nextQuarter()
-          break
-        }
-        // 月
-        case 'month': {
-          if (go === 0) {
-            break
-          }
-          go === -1 ? newValue.value.prevMonth() : newValue.value.nextMonth()
-          break
-        }
-        // 日
-        case 'date': {
-          if (go === 0) {
-            break
-          }
-          go === -1 ? newValue.value.prevDate() : newValue.value.nextDate()
-          break
-        }
-        default: {
-        }
-      }
-      return newValue
-    }
-
     // 获取选择控件的node
     function getPickerNode() {
       let pickerNode = undefined
@@ -191,23 +117,21 @@ const Types = forwardRef(
         pickerNode = pickerRender(value, { onChange: handleDate })
       }
       if (pickerNode === undefined) {
-        pickerNode = (
-          <>
-            <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
-            <Combo
+        pickerNode =
+          value.type === 'week' ? (
+            <WeekCombo
               {...(DatePickerComboProps || {})}
               value={value?.value}
-              type={value?.type}
-              className={`datepicker-types-date${
-                DatePickerComboProps?.className ? ' ' + DatePickerComboProps.className : ''
-              }`}
               onChange={handleDate}
-            >
-              <p>{displayValue || ''}</p>
-            </Combo>
-            <i className="datepicker-types-next icon shape-arrow-right sm" onClick={handleNext} />
-          </>
-        )
+            />
+          ) : (
+            <DateCombo
+              {...(DatePickerComboProps || {})}
+              type={value?.type}
+              value={value?.value}
+              onChange={handleDate}
+            />
+          )
       }
 
       return pickerNode
@@ -233,7 +157,7 @@ const Types = forwardRef(
             contentProps.className ? ' ' + contentProps.className : ''
           }`}
         >
-          {getPickerNode()}
+          {value?.value instanceof Date ? getPickerNode() : null}
         </div>
       </div>
     )

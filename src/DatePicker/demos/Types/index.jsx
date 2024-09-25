@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { DatePicker, locale } from 'seedsui-react'
+import dayjs from 'dayjs'
+import isoWeek from 'dayjs/plugin/isoWeek'
+import quarterOfYear from 'dayjs/plugin/quarterOfYear'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+dayjs.extend(isoWeek)
+dayjs.extend(quarterOfYear)
+dayjs.extend(advancedFormat)
 
 export default () => {
-  const [value, setValue] = useState({
-    type: 'date',
-    id: 'date',
-    name: '日',
-    value: new Date()
-  })
+  const [value, setValue] = useState()
 
   return (
     <>
@@ -46,11 +48,11 @@ export default () => {
         }}
         // TabsProps={{ className: 'hide' }}
         contentProps={{ className: 'flex flex-left' }}
-        pickerRender={(tab, { onChange }) => {
-          if (tab.type === 'week') {
-            return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>
-          }
-        }}
+        // pickerRender={(tab, { onChange }) => {
+        //   if (tab.type === 'week') {
+        //     return <div onClick={() => onChange && onChange(new Date('2022-12-12'))}>点我</div>
+        //   }
+        // }}
       />
     </>
   )

@@ -32,6 +32,8 @@ function getMonths(currentDate, { weekStart }) {
 }
 
 export default {
+  previousMonth: previousMonth,
+  nextMonth: nextMonth,
   // 当前日期在日历中的行数, 用于周视图替换同行上下周数据
   getDateRowIndex,
   // 当前日期一月的日期
