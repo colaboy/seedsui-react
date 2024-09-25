@@ -213,7 +213,7 @@ let PickerDate = function (params) {
   s.formatTitle = function (format) {
     const options = s.activeOptions
     let activeDate = s.getActiveDate(options)
-    return DateUtil.formatDate(activeDate, format)
+    return DateUtil.format(activeDate, format)
   }
   s.setDefaultsByKeys = function (activeKeys) {
     if (

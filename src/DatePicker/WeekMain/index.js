@@ -41,7 +41,7 @@ function WeekMain(
       getTitle: () => {
         let title = locale('选择日期', 'SeedsUI_placeholder_select')
         if (Array.isArray(value) && value.length === 2) {
-          title = DateUtil.formatDate(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+          title = DateUtil.format(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
         }
         return title
       }
@@ -58,7 +58,7 @@ function WeekMain(
   async function handleChange(newValue) {
     // 允许清空
     if (allowClear && Array.isArray(value) && value.length === 2) {
-      if (DateUtil.formatDate(value[0], 'YYYY-W') === DateUtil.formatDate(newValue[0], 'YYYY-W')) {
+      if (DateUtil.format(value[0], 'YYYY-W') === DateUtil.format(newValue[0], 'YYYY-W')) {
         // eslint-disable-next-line
         newValue = null
       }
@@ -74,11 +74,11 @@ function WeekMain(
     if (Array.isArray(newValue) && newValue.length === 2) {
       let weekDates = Calendar.getWeekDates(newValue[0], 'Monday')
       if (min instanceof Date && Calendar.isDisabledDate(weekDates[0], { min: min })) {
-        console.log('禁止访问' + DateUtil.formatDate(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
+        console.log('禁止访问' + DateUtil.format(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
         return
       }
       if (max instanceof Date && Calendar.isDisabledDate(weekDates[6], { max: max })) {
-        console.log('禁止访问' + DateUtil.formatDate(weekDates[6], 'YYYY年MM月DD日') + '后的日期')
+        console.log('禁止访问' + DateUtil.format(weekDates[6], 'YYYY年MM月DD日') + '后的日期')
         return
       }
 

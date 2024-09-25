@@ -3,7 +3,7 @@
 import dayjs from 'dayjs'
 
 // 入口: 格式化日期
-function formatDate(date, type) {
+function format(date, type) {
   if (date instanceof Date === false) {
     return ''
   }
@@ -28,4 +28,4 @@ function formatDate(date, type) {
   return dayjs(date).format(type)
 }
 
-export default formatDate
+export default format

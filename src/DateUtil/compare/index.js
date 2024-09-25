@@ -10,6 +10,9 @@ import partCompareHourMinute from './partCompareHourMinute'
 
 // 比较年月日,大于返回1,等于返回0,小于返回-1, compareUnit: 'year|quarter|month|week|date|day|hour|minute|second|partHourMinute'
 function compare(d1, d2, compareUnit) {
+  if (d1 instanceof Date === false || d2 instanceof Date === false) {
+    return undefined
+  }
   if (compareUnit === 'year') {
     return compareYear(d1, d2)
   }

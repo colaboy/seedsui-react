@@ -33,7 +33,7 @@ export default () => {
     if (Array.isArray(newValue) && newValue.length === 2) {
       let weekDates = Calendar.getWeekDates(newValue[0], weekStart)
       if (Calendar.isDisabledDate(weekDates[0], { min: new Date() })) {
-        console.log('禁止访问' + DateUtil.formatDate(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
+        console.log('禁止访问' + DateUtil.format(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
         return
       }
       // eslint-disable-next-line
@@ -54,20 +54,20 @@ export default () => {
         titleFormatter="YYYY-MM-DD W周"
         // titleFormatter={(date, info) => {
         //   if (Array.isArray(value) && value.length === 2) {
-        //     return DateUtil.formatDate(value[0], 'YYYY-W周')
+        //     return DateUtil.format(value[0], 'YYYY-W周')
         //   }
         //   if (info.type === 'month') {
-        //     return DateUtil.formatDate(date, 'YYYY年MM月')
+        //     return DateUtil.format(date, 'YYYY年MM月')
         //   }
-        //   // DateUtil.formatDate(date, 'YYYY年MM月DD日 周d 第W周')
+        //   // DateUtil.format(date, 'YYYY年MM月DD日 周d 第W周')
         //   let week = dayjs().week()
-        //   return DateUtil.formatDate(date, `YYYY年MM月DD日 d 第${week}周`)
+        //   return DateUtil.format(date, `YYYY年MM月DD日 d 第${week}周`)
         // }}
         // dateRender={(date) => {
         //   return (
         //     <div className="calendar-date-num">
         //       {date.getDate()}
-        //       {data[DateUtil.formatDate(date, 'YYYY-MM-DD')] ? 'M' : ''}
+        //       {data[DateUtil.format(date, 'YYYY-MM-DD')] ? 'M' : ''}
         //     </div>
         //   )
         // }}

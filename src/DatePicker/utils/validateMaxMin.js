@@ -19,7 +19,7 @@ function validateMaxMin(value, config = {}) {
     if (type === 'year' && value.compareYear(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -30,7 +30,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'quarter' && value.compareMonth(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -41,7 +41,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'month' && value.compareMonth(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -52,7 +52,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'date' && value.compareDate(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -63,7 +63,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'datetime' && value.compareDateTime(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -74,7 +74,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'time' && value.compareTime(min) === -1) {
       if (onError) {
         onError({
-          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.formatDate(min, type),
+          errMsg: locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -88,8 +88,7 @@ function validateMaxMin(value, config = {}) {
     if (type === 'year' && value.compareYear(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })
@@ -100,8 +99,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'quarter' && value.compareMonth(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })
@@ -112,8 +110,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'month' && value.compareMonth(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })
@@ -124,8 +121,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'date' && value.compareDate(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })
@@ -136,8 +132,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'time' && value.compareTime(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })
@@ -148,8 +143,7 @@ function validateMaxMin(value, config = {}) {
     } else if (type === 'datetime' && value.compareDateTime(max) === 1) {
       if (onError) {
         onError({
-          errMsg:
-            locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.formatDate(max, type),
+          errMsg: locale('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
           max: max,
           value: value
         })

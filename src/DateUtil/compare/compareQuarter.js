@@ -1,4 +1,4 @@
-import getQuarter from '../getQuarter'
+import quarter from '../quarter'
 // 比较年季度,大于返回1,等于返回0,小于返回-1
 function compareQuarter(d1, d2) {
   let date1 = new Date(d1)
@@ -14,8 +14,8 @@ function compareQuarter(d1, d2) {
     return year1 > year2 ? 1 : -1
   }
 
-  let q1 = getQuarter(date1)
-  let q2 = getQuarter(date2)
+  let q1 = quarter(date1)
+  let q2 = quarter(date2)
 
   if (q1 === q2) return 0
   return q1 > q2 ? 1 : -1

@@ -13,7 +13,7 @@ function getRangeDisplayValue({ value }) {
     return ''
   }
 
-  return DateUtil.formatDate(start, `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+  return DateUtil.format(start, `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
 }
 
 export default getRangeDisplayValue

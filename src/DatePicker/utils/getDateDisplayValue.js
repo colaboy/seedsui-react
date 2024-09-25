@@ -8,7 +8,7 @@ function getDateDisplayValue({ format, type, value }) {
     format = getFormat(type)
   }
   // 显示值
-  let displayValue = DateUtil.formatDate(value, format)
+  let displayValue = DateUtil.format(value, format)
   return displayValue
 }
 

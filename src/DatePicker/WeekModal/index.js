@@ -88,11 +88,11 @@ const WeekModal = (
       onBeforeChange={async (newValue) => {
         // 只能校验min和max, 因为不知道用户此刻选中的的项是哪项
         if (min instanceof Date && Calendar.isDisabledDate(newValue[0], { min: min })) {
-          console.log('禁止访问' + DateUtil.formatDate(newValue[0], 'YYYY年MM月DD日') + '前的日期')
+          console.log('禁止访问' + DateUtil.format(newValue[0], 'YYYY年MM月DD日') + '前的日期')
           return
         }
         if (max instanceof Date && Calendar.isDisabledDate(newValue[1], { max: max })) {
-          console.log('禁止访问' + DateUtil.formatDate(newValue[1], 'YYYY年MM月DD日') + '后的日期')
+          console.log('禁止访问' + DateUtil.format(newValue[1], 'YYYY年MM月DD日') + '后的日期')
           return false
         }
 
