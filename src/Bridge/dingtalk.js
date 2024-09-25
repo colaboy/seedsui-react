@@ -1,5 +1,5 @@
-// 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
-// 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
+// 官方文档: https://open.dingtalk.com/document/isvapp/read-before-development
+// https://open.dingtalk.com/document/orgapp/jsapi-overview
 
 // 内库使用
 import Device from './../Device'
@@ -33,31 +33,38 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    const { type, success, fail, complete, ...otherParams } = params || {}
+    const { success, fail, complete } = params || {}
     // 调用定位
     if (LocationTask.locationTask) {
       LocationTask.locationTask.push(params)
       return
     }
     LocationTask.locationTask = []
-    console.log('调用支付宝定位...', params)
-    window.top.ap.getLocation({
-      ...otherParams,
-      type: '2',
-      success: (res) => {
+    console.log('调用钉钉定位...', params)
+    window.top.dd.device.geolocation.get({
+      targetAccuracy: 200, // 精度200米
+      coordinate: 1, // 高德坐标, 会加地址
+      withReGeocode: false, // 不需要逆向解析
+      useCache: false,
+      onSuccess: (res) => {
         if (res.longitude && res.latitude) {
           if (success) success(res)
         } else {
           if (fail) fail(res)
         }
-        LocationTask.getLocationTask(res)
-      },
-      fail: (res) => {
-        if (fail) fail(res)
-        LocationTask.getLocationTask(res)
-      },
-      complete: (res) => {
         if (complete) complete(res)
+        LocationTask.getLocationTask(res)
+      },
+      onFail: (res) => {
+        if (fail) {
+          fail({
+            errCode: res.errorCode,
+            errMsg: res.errorMessage
+          })
+        }
+
+        if (complete) complete(res)
+        LocationTask.getLocationTask(res)
       }
     })
   },
@@ -69,11 +76,27 @@ let Bridge = {
   scanQRCode(params = {}) {
     const { needResult, scanType, desc, success, ...othersParams } = params || {}
 
-    window.top.ap.scan({
-      success: function (res) {
-        success && success({ resultStr: res.code })
+    let type = 'all'
+    if (scanType.length === 1) {
+      if (scanType.includes('qrCode')) {
+        type = 'qrCode'
+      } else if (scanType.includes('barCode')) {
+        type = 'barCode'
+      }
+    }
+    window.top.dd.biz.util.scan({
+      type: type,
+      onSuccess: function (res) {
+        success && success({ resultStr: res.text })
       },
-      ...othersParams
+      onFail: function (res) {
+        if (fail) {
+          fail({
+            errCode: res.errorCode,
+            errMsg: res.errorMessage
+          })
+        }
+      }
     })
   },
   /**
@@ -91,16 +114,16 @@ let Bridge = {
       index = params.urls.indexOf(params.current)
       if (index < 0) index = 0
     }
-    window.top.ap.previewImage({
+    window.top.dd.biz.util.previewImage({
       urls: params.urls,
-      current: index
+      current: params.urls[index]
     })
   },
   /**
    * 关闭窗口
    */
   closeWindow: function () {
-    window.top.ap?.popWindow()
+    window.top.dd.biz.navigation.close()
   }
 }
 

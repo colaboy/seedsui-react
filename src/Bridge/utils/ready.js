@@ -28,7 +28,7 @@ function ready(callback, options = {}, Bridge) {
     platform === 'alipayMiniprogram'
   ) {
     // 初始化完成不需要重复加载
-    if (window.top.wx || window.top.wq) {
+    if (window.top.wx || window.top.ap || window.top.dd) {
       if (callback) callback()
       return
     }
@@ -45,19 +45,18 @@ function ready(callback, options = {}, Bridge) {
       script.src =
         options.alipayLibSrc ||
         '//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js'
+    } else if (platform === 'dingtalk') {
+      script.src =
+        options.dingtalkLibSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
     }
 
     // 加载完成
     script.onload = async function () {
-      // 支付宝平台库名称变更为wx
-      if (platform === 'alipay' || platform === 'alipayMiniprogram') {
-        window.wx = window.ap
-      }
       // 支付小程序还需要加载一个js
       if (platform === 'alipayMiniprogram') {
         await Object.loadScript(options.alipayMiniprogramLibSrc || 'https://appx/web-view.min.js')
         if (window.my) {
-          window.wx.miniProgram = window.my
+          window.top.my = window.my
         }
         // js加载失败
         else {
@@ -67,11 +66,24 @@ function ready(callback, options = {}, Bridge) {
         }
       }
 
-      // eslint-disable-next-line
-      if (window.wx && !window.top.wx) {
+      // 微信
+      if (window.wx) {
         // eslint-disable-next-line
         window.top.wx = window.wx
       }
+
+      // 支付宝
+      if (window.ap) {
+        // eslint-disable-next-line
+        window.top.ap = window.ap
+      }
+
+      // 钉钉
+      if (window.dd) {
+        // eslint-disable-next-line
+        window.top.dd = window.dd
+      }
+
       if (callback) callback()
     }
     if (options.fail) {

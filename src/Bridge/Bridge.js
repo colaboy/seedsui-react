@@ -6,6 +6,7 @@ import Device from './../Device'
 import BridgeBrowser from './browser'
 import BridgeWx from './wx'
 import BridgeAlipay from './ap'
+import BridgeDingtalk from './dingtalk'
 import BridgeDinghuo from './dinghuo'
 import BridgeWq from './wq'
 import BridgeWqCordova from './cordova'
@@ -20,6 +21,8 @@ if (
   Bridge = BridgeWx
 } else if (Device.platform === 'alipay' || Device.platform === 'alipayMiniprogram') {
   Bridge = BridgeAlipay
+} else if (Device.platform === 'dingtalk') {
+  Bridge = BridgeDingtalk
 } else if (Device.platform === 'dinghuo') {
   Bridge = BridgeDinghuo
 } else if (Device.platform === 'waiqin') {

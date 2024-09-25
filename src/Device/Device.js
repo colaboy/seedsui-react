@@ -96,6 +96,12 @@ let Device = (function () {
       platformMatch = ua.match(/alipayclient\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }
+    // 钉钉
+    else if (ua.indexOf('dingtalk') > -1) {
+      platform = 'dingtalk'
+      platformMatch = ua.match(/dingtalk\/([\w.]*)/)
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
     // QQ
     else if (ua.indexOf('mqqbrowser') > -1) {
       platform = 'qq'
