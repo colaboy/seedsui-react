@@ -1,9 +1,9 @@
 // 获取当前季度
-function getQuarter(date) {
+function quarter(date) {
   if (date instanceof Date === false) {
     return undefined
   }
   return Math.ceil((date.getMonth() + 1) / 3)
 }
 
-export default getQuarter
+export default quarter
