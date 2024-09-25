@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import locale from './../../locale'
 import DateUtil from './../../DateUtil'
 import Calendar from './../../Calendar'
@@ -47,6 +47,13 @@ function WeekMain(
       }
     }
   })
+
+  useEffect(() => {
+    if (visible) {
+      weekMainRef?.current?.updateActiveDate?.()
+    }
+    // eslint-disable-next-line
+  }, [visible])
 
   async function handleChange(newValue) {
     // 允许清空

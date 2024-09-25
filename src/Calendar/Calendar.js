@@ -67,15 +67,21 @@ const Calendar = forwardRef(
         slideNext: async () => {
           let result = await instanceRef.current.slideX('next')
           return result
+        },
+        updateActiveDate: () => {
+          updateActiveDate()
         }
       }
     })
 
     // 初始化信息
     useEffect(() => {
+      activeDate = getActiveDate()
+      setActiveDate(activeDate)
+
       instanceRef.current = new Instance(rootRef.current, {
         // Value
-        activeDate: value instanceof Date ? value : new Date(),
+        activeDate: activeDate,
         min,
         max,
         weekStart,
@@ -89,7 +95,7 @@ const Calendar = forwardRef(
 
         // Events
         onChange: (activeDate, others) => {
-          setActiveDate(new Date(activeDate))
+          setActiveDate(activeDate)
 
           // Trigger onSlideChange
           if (onSlideChange) {
@@ -97,8 +103,6 @@ const Calendar = forwardRef(
           }
         }
       })
-
-      setActiveDate(instanceRef.current.activeDate)
 
       // 加载事件
       if (onLoad) {
@@ -112,17 +116,28 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      if (_.isEmpty(value) || !instanceRef?.current?.pages) return
-
-      instanceRef.current.updateActiveDate(value)
-
-      if (Array.isArray(value) && value.length === 2) {
-        setActiveDate(value[0])
-      } else {
-        setActiveDate(value)
-      }
+      updateActiveDate()
       // eslint-disable-next-line
     }, [value])
+
+    // 获取当前日期
+    function getActiveDate() {
+      let date = Array.isArray(value) && value.length === 2 ? value[0] : value
+      if (date instanceof Date) {
+        return date
+      } else {
+        return new Date()
+      }
+    }
+
+    // 更新当前日期
+    function updateActiveDate() {
+      if (!instanceRef?.current?.pages) return
+
+      activeDate = getActiveDate()
+      setActiveDate(activeDate)
+      instanceRef.current.updateActiveDate(activeDate)
+    }
 
     // 点击日期
     function handleRangeClick(newDate) {
