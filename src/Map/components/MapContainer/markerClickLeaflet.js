@@ -1,8 +1,30 @@
 // 公共点击leaflet点
-function markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick }) {
+function markerClickLeaflet({
+  currentPoint,
+  points,
+  marker,
+  markersLayerRef,
+  defaultIconRef,
+  onClick
+}) {
   marker.on('click', function (e) {
-    console.log(e)
+    const latitude = e.latlng.lat
+    const longitude = e.latlng.lng
+
+    // Get click point
+    if (!currentPoint && points) {
+      for (let point of points) {
+        if (point.longitude === longitude && point.latitude === latitude) {
+          // eslint-disable-next-line
+          currentPoint = point
+        }
+      }
+    }
+
     onClick({
+      longitude,
+      latitude,
+      ...(currentPoint || {}),
       icon: e?.target?.options?.icon?.options || null,
       setIcon: (icon, { multiple }) => {
         // Single choice
@@ -18,9 +40,7 @@ function markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick }
           e.target.setIcon(icon)
         }
       },
-      remove: () => e.target.remove(),
-      latitude: e.latlng.lat,
-      longitude: e.latlng.lng
+      remove: () => e.target.remove()
     })
   })
 }

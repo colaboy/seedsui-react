@@ -15,6 +15,8 @@ function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, o
 
     onClick &&
       onClick({
+        longitude,
+        latitude,
         ...(currentPoint || {}),
         icon: target?.data?.options?.icon?.options || null,
         setIcon: (icon, { multiple = true }) => {

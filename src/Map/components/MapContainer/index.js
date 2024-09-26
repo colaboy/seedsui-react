@@ -166,7 +166,14 @@ const MapContainer = forwardRef(
       // 单个点只支持Leaflet绘制不支持canvas绘制
       addMarker: function (point, { onClick, layerGroup }) {
         let marker = addMarker(point, { layerGroup })
-        onClick && markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick })
+        onClick &&
+          markerClickLeaflet({
+            currentPoint: point,
+            marker,
+            markersLayerRef,
+            defaultIconRef,
+            onClick
+          })
         return marker
       },
       addMarkers: function (points, { onClick = null }) {
@@ -175,7 +182,8 @@ const MapContainer = forwardRef(
           let marker = addMarker(point, { enableCanvas: enableCanvas })
           // Leaflet marker click
           if (!enableCanvas) {
-            onClick && markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick })
+            onClick &&
+              markerClickLeaflet({ points, marker, markersLayerRef, defaultIconRef, onClick })
           }
         }
 
