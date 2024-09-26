@@ -8,7 +8,7 @@ async function createTileLayer(map) {
     }
     // Use baidu tileLayer
     else if (window.L.tileLayer.baiduTileLayer) {
-      tileLayer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083')
+      tileLayer = window.L.tileLayer.baiduTileLayer()
     }
     // Use openStreetMap tileLayer
     else {

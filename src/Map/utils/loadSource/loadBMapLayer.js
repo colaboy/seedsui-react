@@ -11,13 +11,12 @@ function loadBMapLayer() {
     resolve(window.L.tileLayer.baiduTileLayer)
   })
 }
-
 const mapUrl =
-  'https://maponline{s}.bdimg.com/onlinelabel/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=1&udt='
+  'https://maponline{s}.bdimg.com/onlinelabel/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=2&udt='
 
 // 初始化插件
 function initPlugin() {
-  const projection = L.Util.extend({}, L.Projection.Mercator, {
+  const projection = L.Util.extend({}, window.L.Projection.Mercator, {
     R: 6378206, //百度椭球赤道半径 a=6378206，相当于在 WGS84 椭球赤道半径上加了 69 米
     R_MINOR: 6356584.314245179, //百度椭球极半径 b=6356584.314245179，相当于在 WGS84 椭球极半径上减了 168 米
     bounds: new L.Bounds(
@@ -70,30 +69,27 @@ function initPlugin() {
       } else {
         return L.TileLayer.prototype.getTileUrl.call(this, coords)
       }
+    },
+    // wgs84转bd09
+    _setZoomTransform: function (level, center, zoom) {
+      // eslint-disable-next-line
+      center = window.L.latLng(
+        GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
+      ) // 采用 gcoord 库进行纠偏
+      window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
+    },
+    _getTiledPixelBounds: function (center) {
+      // eslint-disable-next-line
+      center = window.L.latLng(
+        GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
+      ) // 采用 gcoord 库进行纠偏
+      return window.L.TileLayer.prototype._getTiledPixelBounds.call(this, center)
     }
   })
 
   // 出口样式
-  window.L.tileLayer.baiduTileLayer = function (param, options) {
-    return new window.L.TileLayer.BaiduTileLayer(param, options)
+  window.L.tileLayer.baiduTileLayer = function () {
+    return new window.L.TileLayer.BaiduTileLayer()
   }
-
-  // 渲染类型: 新
-  // var img_Layer = window.L.tileLayer.baiduTileLayer('img'), // 影像底图
-  //   vsl01_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=0&scaler=1&v=083') // 影像标注，路网
-  // vsl11_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=1&scaler=1&v=083') // 影像标注，路网 + 注记
-  // vsl12_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=sl&showtext=1&scaler=2&v=083') // 影像标注，路网 + 高清注记
-  // vpl01_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=0&scaler=1&v=083') // 电子地图，图形
-  // vpl11_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=1&v=083') // 电子地图，图形 + 注记
-  // vpl12_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=pl&showtext=1&scaler=2&v=083') // 电子地图，图形 + 高清注记
-  // vph01_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=ph&showtext=0&scaler=1&v=083') // 大字体电子地图，图形
-  // vph11_Layer = window.L.tileLayer.baiduTileLayer('qt=vtile&styles=ph&showtext=1&scaler=1&v=083') // 大字体电子地图，图形 + 注记
-
-  // 渲染类型: 旧
-  // _sl11_Layer = window.L.tileLayer.baiduTileLayer('qt=tile&styles=sl&showtext=1&scaler=1&v=083') // 旧影像标注，路网 + 注记
-  // _sl12_Layer = window.L.tileLayer.baiduTileLayer('qt=tile&styles=sl&showtext=1&scaler=2&v=083') // 旧影像标注，路网 + 高清注记
-  // _pl11_Layer = window.L.tileLayer.baiduTileLayer('qt=tile&styles=pl&showtext=1&scaler=1&v=083') // 旧电子地图，图形 + 注记
-  // _pl12_Layer = window.L.tileLayer.baiduTileLayer('qt=tile&styles=pl&showtext=1&scaler=2&v=083') // 旧电子地图，图形 + 高清注记
-  // _ph11_Layer = window.L.tileLayer.baiduTileLayer('qt=tile&styles=ph&showtext=1&scaler=1&v=083') // 旧大字体电子地图，图形 + 注记
 }
 export default loadBMapLayer
