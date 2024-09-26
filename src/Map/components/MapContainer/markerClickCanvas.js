@@ -39,7 +39,7 @@ function markerClickCanvas({ points, layerGroup, clearMarkers, defaultIcon, onCl
           // Multiple choice
           else {
             layerGroup.removeMarker(target, true)
-            let marker = window.L.marker([point.latitude, point.longitude], {
+            let marker = window.L.marker([latitude, longitude], {
               icon: icon
             })
             layerGroup.addMarker(marker)
