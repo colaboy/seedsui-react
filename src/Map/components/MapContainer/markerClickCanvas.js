@@ -5,8 +5,17 @@ function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, o
     const longitude = target.data._latlng.lng
     const latitude = target.data._latlng.lat
 
+    // Get click point
+    let currentPoint = null
+    for (let point of points) {
+      if (point.longitude === longitude && point.latitude === latitude) {
+        currentPoint = point
+      }
+    }
+
     onClick &&
       onClick({
+        ...(currentPoint || {}),
         icon: target?.data?.options?.icon?.options || null,
         setIcon: (icon, { multiple = true }) => {
           // Single choice
@@ -38,9 +47,7 @@ function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, o
             )
           }
         },
-        remove: () => canvasMarkerRef.current.removeMarker(data[0], true),
-        latitude: e.latlng.lat,
-        longitude: e.latlng.lng
+        remove: () => canvasMarkerRef.current.removeMarker(data[0], true)
       })
   })
 }

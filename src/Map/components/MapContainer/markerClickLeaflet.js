@@ -1,6 +1,7 @@
 // 公共点击leaflet点
 function markerClickLeaflet({ marker, markersLayerRef, defaultIconRef, onClick }) {
   marker.on('click', function (e) {
+    console.log(e)
     onClick({
       icon: e?.target?.options?.icon?.options || null,
       setIcon: (icon, { multiple }) => {

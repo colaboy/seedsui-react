@@ -9,6 +9,7 @@ import { Map } from 'seedsui-react'
 // 生成随机点
 // import getPoints from './getPoints'
 const { APILoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
+// import points from './points'
 
 // 随机生成点, 用于测试性能
 // const points = getPoints({
@@ -21,6 +22,16 @@ const { APILoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
 //   // 生成点数
 //   count: 101
 // })
+
+// This coordsToWgs84 just example, no practical use
+const points = coordsToWgs84([
+  {
+    address: '江苏省南京市建邺区金洲路62号',
+    latitude: 31.983171307798603,
+    longitude: 118.72896443172527,
+    type: 'wgs84'
+  }
+])
 
 export default () => {
   const mapRef = useRef(mapRef)
@@ -46,37 +57,26 @@ export default () => {
         <MapMarkers
           ref={mapRef}
           // 转换为wgs84坐标
-          // points={points}
           ZoomControlProps={{
             style: { bottom: '20px' }
           }}
-          points={coordsToWgs84([
-            {
-              address: '江苏省南京市建邺区金洲路62号',
-              latitude: 31.983171307798603,
-              longitude: 118.72896443172527,
-              type: 'wgs84'
-            }
-            // {
-            //   longitude: 113.044821,
-            //   latitude: 23.890941,
-            //   icon: {
-            //     className: 'my-div-icon',
-            //     html: '<div style="width: 100px; background: white;">start</div>'
-            //   }
-            // },
-            // {
-            //   longitude: 113.356363,
-            //   latitude: 22.199614,
-            //   icon: {
-            //     className: 'my-div-icon',
-            //     html: '<div style="width: 100px; background: white;">end</div>'
-            //   }
-            // },
-            // {
-            //   a: ''
-            // }
-          ])}
+          points={points}
+          onMarkerClick={(e) => {
+            console.log('点击marker:', e)
+            console.log(mapRef.current)
+            // e.remove()
+            let newMarkerIcon = window.L.icon({
+              active: true,
+              iconUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              iconRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.bak.png`,
+              shadowUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowRetinaUrl: `https://res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+              shadowSize: [33, 33],
+              iconSize: [20, 33],
+              iconAnchor: [10, 16]
+            })
+            e.setIcon(newMarkerIcon, { multiple: false })
+          }}
           // onMarkerClick={(e) => {
           //   console.log('点击marker:', e)
           //   // e.remove()
