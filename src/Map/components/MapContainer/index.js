@@ -61,12 +61,16 @@ const MapContainer = forwardRef(
     if (typeof queryNearby !== 'function') queryNearby = defaultQueryNearby
 
     const rootRef = useRef(null)
-    // canvas marker plugin
-    const canvasMarkerRef = useRef(null)
+    // Marker layer canvas plugin: high-performance mode
+    const markersCanvasLayerRef = useRef(null)
     // Marker layer
     const markersLayerRef = useRef(null)
+    // Center Marker layer
+    const centerMarkerLayerRef = useRef(null)
     // Default marker icon
     const defaultIconRef = useRef(null)
+    // Center marker icon
+    const centerIconRef = useRef(null)
 
     let [leafletMap, setLeafletMap] = useState(null)
 
@@ -164,33 +168,59 @@ const MapContainer = forwardRef(
         return leafletMap.setZoom(zoom)
       },
       // 单个点只支持Leaflet绘制不支持canvas绘制
-      addMarker: function (point, { onClick, layerGroup }) {
-        let marker = addMarker(point, { layerGroup })
-        onClick &&
-          markerClickLeaflet({
-            currentPoint: point,
-            marker,
-            markersLayerRef,
-            defaultIconRef,
-            onClick
+      addCenterMarker: function (point, { onClick } = {}) {
+        if (!centerMarkerLayerRef.current) return null
+
+        // Draw center marker
+        centerMarkerLayerRef.current.clearLayers()
+        let marker = window.L.marker([point.latitude, point.longitude], {
+          icon: point?.icon || centerIconRef.current
+        })
+        marker.addTo(centerMarkerLayerRef.current)
+
+        if (!onClick) return marker
+        marker.on('click', function (e) {
+          onClick({
+            ...(point || {}),
+            icon: e?.target?.options?.icon?.options || null,
+            setIcon: e.target.setIcon
           })
+        })
         return marker
       },
       addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
+
+        // Draw markers
         for (let point of points) {
-          let marker = addMarker(point, { enableCanvas: enableCanvas })
-          // Leaflet marker click
-          if (!enableCanvas) {
-            onClick &&
-              markerClickLeaflet({ points, marker, markersLayerRef, defaultIconRef, onClick })
+          let marker = window.L.marker([point.latitude, point.longitude], {
+            icon: point?.icon || defaultIconRef.current
+          })
+          if (enableCanvas) {
+            markersCanvasLayerRef.current.addMarker(marker)
+          } else {
+            marker.addTo(markersLayerRef.current)
           }
         }
 
+        if (!onClick) return
         // Leaflet canvas marker plugin click
         if (enableCanvas) {
-          onClick &&
-            markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick })
+          markerClickCanvas({
+            points,
+            layerGroup: markersCanvasLayerRef.current,
+            clearMarkers,
+            defaultIcon: defaultIconRef.current,
+            onClick
+          })
+        } else {
+          markerClickLeaflet({
+            points,
+            clearMarkers,
+            layerGroup: markersLayerRef.current,
+            defaultIcon: defaultIconRef.current,
+            onClick
+          })
         }
       },
       clearMarkers: clearMarkers
@@ -232,44 +262,14 @@ const MapContainer = forwardRef(
 
     // Clear all marker
     function clearMarkers() {
-      if (!canvasMarkerRef.current || !markersLayerRef.current) return
+      if (!markersCanvasLayerRef.current || !markersLayerRef.current) return
       // Leaflet plugin
-      canvasMarkerRef.current.clearLayers()
+      markersCanvasLayerRef.current.clearLayers()
 
       // Leaflet
       markersLayerRef.current.clearLayers()
     }
 
-    // Add one marker
-    function addMarker(
-      latlng,
-      {
-        // 是否使用canvas绘制
-        enableCanvas = false,
-        // 自定义leaflet图层
-        layerGroup
-      } = {}
-    ) {
-      if (!latlng?.latitude || !latlng?.longitude) return
-
-      let marker = window.L.marker([latlng.latitude, latlng.longitude], {
-        icon: latlng?.icon || defaultIconRef.current
-      })
-
-      // Leaflet canvas marker plugin
-      if (enableCanvas) {
-        canvasMarkerRef.current.addMarker(marker)
-      }
-      // Leaflet
-      else {
-        if (layerGroup) {
-          marker.addTo(layerGroup)
-        } else {
-          marker.addTo(markersLayerRef.current)
-        }
-      }
-      return marker
-    }
     // Load data
     async function loadData() {
       // Create leaflet leafletMap
@@ -299,14 +299,17 @@ const MapContainer = forwardRef(
       // Init leafletMap events
       events()
 
-      // Load canvasMarkerRef
-      canvasMarkerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
-
-      // add marker layerGroup
+      // Add markers layerGroup with canvas mode
+      markersCanvasLayerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
+      // Add markers layerGroup
       markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
+      // Add center marker layerGroup
+      centerMarkerLayerRef.current = window.L.layerGroup().addTo(leafletMap)
 
       // Default marker icon
       defaultIconRef.current = window.L.icon(IconUtil.defaultIconOptions)
+      // Center marker icon
+      centerIconRef.current = window.L.icon(IconUtil.centerIconOptions)
 
       // Render children
       setLeafletMap(leafletMap)

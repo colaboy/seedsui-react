@@ -41,10 +41,7 @@ const CenterMarker = forwardRef(
       if (!longitude || !latitude) {
         return
       }
-      if (layerGroupRef.current) {
-        layerGroupRef.current.clearLayers()
-      }
-      map.addMarker({ longitude, latitude, icon }, { layerGroup: layerGroupRef.current })
+      map.addCenterMarker({ longitude, latitude, icon })
       // eslint-disable-next-line
     }, [longitude, latitude])
 

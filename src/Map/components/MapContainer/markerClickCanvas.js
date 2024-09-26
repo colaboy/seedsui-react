@@ -1,6 +1,6 @@
 // 点击canvas绘制的marker
-function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, onClick }) {
-  canvasMarkerRef.current.addOnClickListener((e, data) => {
+function markerClickCanvas({ points, layerGroup, clearMarkers, defaultIcon, onClick }) {
+  layerGroup.addOnClickListener((e, data) => {
     let target = data[0]
     const longitude = target.data._latlng.lng
     const latitude = target.data._latlng.lat
@@ -9,6 +9,7 @@ function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, o
     let currentPoint = null
     for (let point of points) {
       if (point.longitude === longitude && point.latitude === latitude) {
+        // eslint-disable-next-line
         currentPoint = point
       }
     }
@@ -24,32 +25,27 @@ function markerClickCanvas({ points, canvasMarkerRef, clearMarkers, addMarker, o
           if (!multiple) {
             clearMarkers()
             for (let point of points) {
-              addMarker(
-                {
-                  longitude: point.longitude,
-                  latitude: point.latitude,
-                  icon: point.longitude === longitude && point.latitude === latitude ? icon : null
-                },
-                {
-                  enableCanvas: true
-                }
-              )
+              let newIcon = point?.icon || defaultIcon
+              if (point.latitude === latitude && point.longitude === longitude) {
+                newIcon = icon
+              }
+              let marker = window.L.marker([point.latitude, point.longitude], {
+                icon: newIcon
+              })
+
+              layerGroup.addMarker(marker)
             }
           }
           // Multiple choice
           else {
-            canvasMarkerRef.current.removeMarker(target, true)
-            addMarker(
-              {
-                longitude: longitude,
-                latitude: latitude,
-                icon: icon
-              },
-              { enableCanvas: true }
-            )
+            layerGroup.removeMarker(target, true)
+            let marker = window.L.marker([point.latitude, point.longitude], {
+              icon: icon
+            })
+            layerGroup.addMarker(marker)
           }
         },
-        remove: () => canvasMarkerRef.current.removeMarker(data[0], true)
+        remove: () => layerGroup.removeMarker(data[0], true)
       })
   })
 }
