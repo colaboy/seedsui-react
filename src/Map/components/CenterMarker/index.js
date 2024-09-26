@@ -23,12 +23,16 @@ const CenterMarker = forwardRef(
 
       // 增加drag事件监听
       map.onDragStart = (map) => {
-        rootRef?.current?.classList?.remove?.('active')
+        if (onDragEnd) {
+          rootRef?.current?.classList?.remove?.('active')
+        }
         onDragStart && onDragStart(map)
       }
       map.onDragEnd = (map) => {
-        rootRef?.current?.classList?.add?.('active')
-        onDragEnd && onDragEnd(map)
+        if (onDragEnd) {
+          rootRef?.current?.classList?.add?.('active')
+          onDragEnd(map)
+        }
       }
       // eslint-disable-next-line
     }, [])
