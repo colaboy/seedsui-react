@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 
+import Calendar from './../../Calendar'
 import DateUtil from './../../DateUtil'
 import WeekMain from './../WeekMain'
 
@@ -7,7 +8,8 @@ import WeekMain from './../WeekMain'
 import BaseModal from './../../Select/Modal'
 
 // 测试使用
-// import BaseModal from 'seedsui-react/lib/Select/Modal'
+// import {Select} from 'seedsui-react'
+// const BaseModal = Select.Modal
 
 // 周弹窗
 const WeekModal = (

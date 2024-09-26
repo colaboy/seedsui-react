@@ -16,10 +16,10 @@ const mapUrl =
 
 // 初始化插件
 function initPlugin() {
-  const projection = L.Util.extend({}, window.L.Projection.Mercator, {
+  const projection = window.L.Util.extend({}, window.L.Projection.Mercator, {
     R: 6378206, //百度椭球赤道半径 a=6378206，相当于在 WGS84 椭球赤道半径上加了 69 米
     R_MINOR: 6356584.314245179, //百度椭球极半径 b=6356584.314245179，相当于在 WGS84 椭球极半径上减了 168 米
-    bounds: new L.Bounds(
+    bounds: new window.L.Bounds(
       [-20037725.11268234, -19994619.55417086],
       [20037725.11268234, 19994619.55417086]
     ) //数据覆盖范围在经度[-180°,180°]，纬度[-85.051129°, 85.051129°]之间
@@ -28,7 +28,7 @@ function initPlugin() {
   window.L.CRS.Baidu = window.L.Util.extend({}, window.L.CRS.Earth, {
     code: 'EPSG:Baidu',
     projection: projection,
-    transformation: new L.transformation(1, 0.5, -1, 0.5),
+    transformation: new window.L.transformation(1, 0.5, -1, 0.5),
     scale: function (zoom) {
       return 1 / Math.pow(2, 18 - zoom)
     },
@@ -41,7 +41,7 @@ function initPlugin() {
   window.L.TileLayer.BaiduTileLayer = window.L.TileLayer.extend({
     initialize: function (options) {
       // eslint-disable-next-line
-      options = L.extend(
+      options = window.L.extend(
         {
           getUrlArgs: (o) => {
             return { x: o.x, y: -1 - o.y, z: o.z }
@@ -54,20 +54,20 @@ function initPlugin() {
         },
         options
       )
-      L.TileLayer.prototype.initialize.call(this, mapUrl, options)
+      window.L.TileLayer.prototype.initialize.call(this, mapUrl, options)
     },
     getTileUrl: function (coords) {
       if (this.options.getUrlArgs) {
-        return L.Util.template(
+        return window.L.Util.template(
           this._url,
-          L.extend(
-            { s: this._getSubdomain(coords), r: L.Browser.retina ? '@2x' : '' },
+          window.L.extend(
+            { s: this._getSubdomain(coords), r: window.L.Browser.retina ? '@2x' : '' },
             this.options.getUrlArgs(coords),
             this.options
           )
         )
       } else {
-        return L.TileLayer.prototype.getTileUrl.call(this, coords)
+        return window.L.TileLayer.prototype.getTileUrl.call(this, coords)
       }
     },
     // wgs84转bd09

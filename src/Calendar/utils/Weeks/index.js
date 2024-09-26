@@ -25,7 +25,7 @@ function getWeeks(currentDate, { weekStart }) {
   }
 }
 
-export default {
+const Weeks = {
   previousWeek: previousWeek,
   nextWeek: nextWeek,
   // 周名
@@ -35,3 +35,5 @@ export default {
   // 获取上周与下周数据集合
   getWeeks
 }
+
+export default Weeks

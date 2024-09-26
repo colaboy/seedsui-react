@@ -67,13 +67,30 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   scanQRCode(params = {}) {
-    const { needResult, scanType, desc, success, ...othersParams } = params || {}
+    const { scanType, success, fail } = params || {}
+
+    let type = ''
+    if (scanType.length === 1) {
+      if (scanType.includes('qrCode')) {
+        type = 'qr'
+      } else if (scanType.includes('barCode')) {
+        type = 'bar'
+      }
+    }
 
     window.top.ap.scan({
+      type: type,
       success: function (res) {
         success && success({ resultStr: res.code })
       },
-      ...othersParams
+      fail: function (res) {
+        if (fail) {
+          fail({
+            errCode: res.errorCode,
+            errMsg: res.errorMessage
+          })
+        }
+      }
     })
   },
   /**

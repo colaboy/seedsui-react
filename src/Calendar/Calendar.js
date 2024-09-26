@@ -1,6 +1,5 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
-import _ from 'lodash'
 import { useUpdateEffect } from 'ahooks'
 import { getTitle, isSelectedDate, isDisabledDate, Weeks } from './utils'
 import Instance from './instance'
@@ -76,6 +75,7 @@ const Calendar = forwardRef(
 
     // 初始化信息
     useEffect(() => {
+      // eslint-disable-next-line
       activeDate = getActiveDate(value)
       setActiveDate(activeDate)
 

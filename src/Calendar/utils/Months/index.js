@@ -31,7 +31,7 @@ function getMonths(currentDate, { weekStart }) {
   return data
 }
 
-export default {
+const Months = {
   previousMonth: previousMonth,
   nextMonth: nextMonth,
   // 当前日期在日历中的行数, 用于周视图替换同行上下周数据
@@ -43,3 +43,5 @@ export default {
   // 对months进行分页[[row, row, ...], [row, row, ...], [row, row, ...]]
   paginateMonths
 }
+
+export default Months

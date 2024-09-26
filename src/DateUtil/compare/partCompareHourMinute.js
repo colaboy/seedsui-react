@@ -4,15 +4,8 @@ function compareTime(d1, d2) {
   date1.setYear(0)
   date1.setMonth(0, 0)
   date1.setSeconds(0, 0)
+
   let date2 = new Date(d2)
-  if (date instanceof Date) {
-    date2 = date
-  } else if (/^[0-9]{2}:[0-9]{2}$/.test(date)) {
-    date2.setHours(date.split(':')[0], date.split(':')[1], 0, 0)
-  } else {
-    console.log('请传入hh:mm的字符串,或者一个Date对象')
-    return false
-  }
   date2.setYear(0)
   date2.setMonth(0, 0)
   date2.setSeconds(0, 0)

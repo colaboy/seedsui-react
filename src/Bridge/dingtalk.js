@@ -74,7 +74,7 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   scanQRCode(params = {}) {
-    const { needResult, scanType, desc, success, ...othersParams } = params || {}
+    const { scanType, success, fail } = params || {}
 
     let type = 'all'
     if (scanType.length === 1) {
