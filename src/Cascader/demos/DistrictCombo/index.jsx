@@ -76,6 +76,60 @@ export default () => {
           console.log(newValue)
           setValue(newValue)
         }}
+        footerRender={({ value, onChange, currentValue, onChangeCurrentValue }) => {
+          return (
+            <div
+              onClick={() => {
+                onChange(currentValue)
+              }}
+            >
+              提交
+            </div>
+          )
+        }}
+        headerRender={({ value, onChange, currentValue, onChangeCurrentValue }) => {
+          return (
+            <div
+              onClick={() => {
+                onChangeCurrentValue([
+                  {
+                    name: '中国',
+                    id: '86',
+                    type: ['country']
+                  },
+                  {
+                    id: '320000',
+                    name: '江苏省',
+                    parentid: '86',
+                    type: ['province']
+                  },
+                  {
+                    id: '320100',
+                    name: '南京市',
+                    parentid: '320000',
+                    type: ['city']
+                  },
+                  {
+                    id: '320105',
+                    name: '建邺区',
+                    parentid: '320100',
+                    isDistrict: true,
+                    type: ['district']
+                  },
+                  {
+                    parentid: '320105',
+                    name: '街道1',
+                    id: 'street1',
+                    isStreet: true,
+                    type: ['street']
+                  }
+                ])
+              }}
+            >
+              点击还原
+            </div>
+          )
+        }}
         // clearProps={{
         //   className: 'hide-important'
         // }}

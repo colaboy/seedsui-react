@@ -24,6 +24,9 @@ const Main = forwardRef(
       onChange,
 
       // Main: Cascader.Main Control properties
+      headerRender,
+      footerRender,
+
       TabsComponent,
       loadData,
       optionProps = {},
@@ -128,9 +131,10 @@ const Main = forwardRef(
     }
 
     // 初始化数据
-    async function initData() {
+    async function initData(newValue) {
+      let val = newValue || value
       // 选中末级选中项
-      tabsRef.current = Array.isArray(value) ? [...value] : []
+      tabsRef.current = Array.isArray(val) ? [...val] : []
       let lastTab =
         Array.isArray(tabsRef.current) && tabsRef.current.length
           ? tabsRef.current[tabsRef.current.length - 1]
@@ -291,12 +295,38 @@ const Main = forwardRef(
       )
     }
 
+    // 渲染头部
+    let HeaderNode = null
+    if (typeof headerRender === 'function') {
+      HeaderNode = headerRender({
+        value,
+        onChange: handleChange,
+        currentValue: tabsRef.current,
+        onChangeCurrentValue: (newValue) => {
+          initData(newValue)
+        }
+      })
+    }
+    // 渲染底部
+    let FooterNode = null
+    if (typeof footerRender === 'function') {
+      FooterNode = footerRender({
+        value,
+        onChange: handleChange,
+        currentValue: tabsRef.current,
+        onChangeCurrentValue: (newValue) => {
+          initData(newValue)
+        }
+      })
+    }
+
     return (
       <>
-        {/* 页签 */}
-        {getTabsNode()}
+        {/* 头部 */}
+        {HeaderNode}
 
-        {/* 列表 */}
+        {/* 主体 */}
+        {getTabsNode()}
         <ListItem
           ref={mainRef}
           optionProps={optionProps}
@@ -307,6 +337,9 @@ const Main = forwardRef(
           onSelect={(item) => handleSelect(item, { onChange: handleChange })}
           {...props}
         />
+
+        {/* 底部 */}
+        {FooterNode}
       </>
     )
   }
