@@ -1,2 +1,5 @@
-export { default } from './Image'
-export * from './Image'
+import Image from './Image.js'
+import Preview from './Preview'
+
+Image.Preview = Preview
+export default Image
