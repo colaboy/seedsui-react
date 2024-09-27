@@ -1,15 +1,16 @@
 import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
-// 测试使用
-// import { Bridge, Device, Preview } from 'seedsui-react'
-
-// 内库使用
-import Preview from './../Preview'
-import Device from './../Device'
-import Bridge from './../Bridge'
 
 import Img from './Img'
 import Status from './Status'
 import Upload from './Upload'
+import Preview from './Preview'
+
+// 内库使用
+import Device from './../Device'
+import Bridge from './../Bridge'
+
+// 测试使用
+// import { Bridge, Device } from 'seedsui-react'
 
 // 照片视频预览
 const Image = forwardRef(
@@ -81,6 +82,7 @@ const Image = forwardRef(
           Bridge.platform === 'wechat' ||
           Bridge.platform === 'wework' ||
           Bridge.platform === 'alipay' ||
+          Bridge.platform === 'dingtalk' ||
           Bridge.platform === 'wechatMiniprogram' ||
           Bridge.platform === 'weworkMiniprogram' ||
           Bridge.platform === 'alipayMiniprogram')
@@ -200,7 +202,7 @@ const Image = forwardRef(
         {typeof previewCurrent === 'number' && (
           <Preview
             type={type}
-            onHide={() => setPreviewCurrent(null)}
+            onClose={() => setPreviewCurrent(null)}
             list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
             current={previewCurrent}
           />
