@@ -1,14 +1,22 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import vconsole from 'vconsole'
+
 import { Loading, Layout, Button } from 'seedsui-react'
+
 // 内库使用
-import { Bridge } from 'seedsui-react'
+import { Bridge, Location, Image as ImageUploader } from 'seedsui-react'
+
 // 测试使用
-// import Bridge from 'library/utils/Bridge'
+// import Bridge from './Bridge'
+// import Location from 'library/components/Location'
+// import ImageUploader from 'library/components/ImageUploader'
 
 new vconsole()
 export default () => {
+  const [photos, setPhotos] = useState([])
+  const [location, setLocation] = useState([])
+
   const imageLocalIds = useRef(null)
   useEffect(() => {
     Bridge.ready(
@@ -50,6 +58,46 @@ export default () => {
   return createPortal(
     <Layout className="full">
       <Layout.Main>
+        <h2>组件</h2>
+        <p className="demo-title">定位</p>
+        <Location.Combo
+          placeholder={'点击定位'}
+          value={location}
+          onChange={(result) => {
+            console.log(result)
+            setLocation(result)
+          }}
+        />
+        <p className="demo-title">拍照</p>
+        <ImageUploader
+          uploadPosition="start"
+          captureException={(props) => {
+            console.log('captureException:', ...props)
+          }}
+          // 缩略图显示
+          visibleCount={1}
+          ModalProps={{
+            captionProps: {
+              caption: '商品照片'
+            },
+            listExtraHeaderRender: () => {
+              return <div>修改前</div>
+            }
+          }}
+          type="browser"
+          timeout={2000}
+          uploadDir={`businessName`}
+          sizeType={['compressed']}
+          // width={100}
+          sourceType={['camera']}
+          list={photos}
+          count={4}
+          watermarkConfig={{ showTime: '1', type: '1' }}
+          // 离北京天安门差不多2.4公里
+          watermark={['$address $distance:116.37,39.91', 'aaa', '$address', '$datetime']}
+          onChange={setPhotos}
+          onDelete={setPhotos}
+        />
         <h2>界面接口</h2>
         <p className="demo-title">打开新窗口接口</p>
         <Button
@@ -61,26 +109,16 @@ export default () => {
         >
           openWindow
         </Button>
-        <p className="demo-title">关闭当前网页窗口接口</p>
-        <a href="http://172.31.0.34:8000/~demos/src-library-utils-bridge-demo-demo1?title=test&isFromApp=confirm-close:11">
-          返回提示11, 并关闭webview
-        </a>
+        <p className="demo-title">关闭当前网页窗口接口(仅客户端与企微)</p>
+        <a href="/#/test?title=test&isFromApp=confirm-close:11">返回提示11, 并关闭webview</a>
         <br />
-        <a href="http://172.31.0.34:8000/~demos/src-library-utils-bridge-demo-demo1?title=test&isFromApp=confirm-close">
-          返回提示, 并关闭webview
-        </a>
+        <a href="/#/test?title=test&isFromApp=confirm-close">返回提示, 并关闭webview</a>
         <br />
-        <a href="http://172.31.0.34:8000/~demos/src-library-utils-bridge-demo-demo1?title=test&isFromApp=confirm:11">
-          返回提示11
-        </a>
+        <a href="/#/test?title=test&isFromApp=confirm:11">返回提示11</a>
         <br />
-        <a href="http://172.31.0.34:8000/~demos/src-library-utils-bridge-demo-demo1?title=test&isFromApp=confirm">
-          返回提示
-        </a>
+        <a href="/#/test?title=test&isFromApp=confirm">返回提示</a>
         <br />
-        <a href="http://172.31.0.34:8000/~demos/src-library-utils-bridge-demo-demo1?title=test&isFromApp=1">
-          返回时将会关闭webview
-        </a>
+        <a href="/#/test?title=test&isFromApp=1">返回时将会关闭webview</a>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -88,7 +126,7 @@ export default () => {
             Bridge.closeWindow()
           }}
         >
-          closeWindow
+          closeWindow(全平台支持)
         </Button>
         <Button
           className="primary flex"
@@ -97,9 +135,9 @@ export default () => {
             Bridge.back()
           }}
         >
-          back
+          back(全平台支持)
         </Button>
-        <p className="demo-title">监听页面返回事件</p>
+        <p className="demo-title">监听页面返回事件(仅客户端与企微)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -125,7 +163,7 @@ export default () => {
           setTitle
         </Button>
 
-        <p className="demo-title">退出至登录页面</p>
+        <p className="demo-title">退出至登录页面(仅客户端)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -165,7 +203,7 @@ export default () => {
         </Button>
 
         <h2>图像接口</h2>
-        <p className="demo-title">拍照或从手机相册中选图接口</p>
+        <p className="demo-title">拍照或从手机相册中选图接口(仅支持客户端,微信,企微,小程序)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -189,7 +227,7 @@ export default () => {
           chooseImage
         </Button>
 
-        <p className="demo-title">上传图片接口</p>
+        <p className="demo-title">上传图片接口(仅支持客户端,微信,企微,小程序)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
@@ -256,7 +294,7 @@ export default () => {
         </Button>
 
         <h2>地理位置接口</h2>
-        <p className="demo-title">查看地理位置接口</p>
+        <p className="demo-title">查看地理位置接口(仅客户端与企微)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}

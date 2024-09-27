@@ -1,19 +1,19 @@
-// 测试使用
-// import { GeoUtil, Device, MapUtil, Toast, Loading, locale } from 'seedsui-react'
-// import Alert from 'seedsui-react/lib/Alert/instance.js'
-// import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
+import LocationTask from './utils/LocationTask'
 
 // 内库使用
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
-import Alert from './../Alert/instance.js'
 import Loading from './../Loading/instance.js'
-import ToastInstance from './../Toast/instance.js'
 import GeoUtil from './../GeoUtil'
+import Alert from './../Alert/instance.js'
+import ToastInstance from './../Toast/instance.js'
 import locale from './../locale'
 
-import LocationTask from './utils/LocationTask'
+// 测试使用
+// import { GeoUtil, Device, MapUtil, Toast, Loading, locale } from 'seedsui-react'
+// import Alert from 'seedsui-react/lib/Alert/instance.js'
+// import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
 
 let Bridge = {
   // 判断是否是主页
@@ -23,15 +23,6 @@ let Bridge = {
       return
     }
     callback(false)
-  },
-  // 拨打电话
-  tel: function (number) {
-    if (Device.device === 'pc') {
-      Toast.show({ content: locale('此功能仅可在手机中使用', 'SeedsUI_only_mobile') })
-      return
-    }
-    if (isNaN(number)) return
-    window.location.href = 'tel:' + number
   },
   // 弹出toast
   toast: null,
@@ -188,6 +179,33 @@ let Bridge = {
     Bridge.confirm.show()
   },
   /**
+   * 百度地图:获取当前位置名称, 已废弃, 请使用Map中的获取位置方法代替
+   * @param {Object} params: {longitude: '', latitude: '', type 'wgs84 | gcj02', success: fn, fail: fn}
+   * @return {Promise} result: {status: 0 成功, points 百度坐标}
+   */
+  getAddress: function (params = {}) {
+    if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
+      return window.getAddressDefault(params)
+    }
+    const mapUtil = new MapUtil()
+    return mapUtil.getAddress([params.longitude, params.latitude], params?.type || 'gcj02', params)
+  },
+  // 以上API均废弃，请使用其它方法代替, 勿使用
+  platform: Device.platform,
+  // 获得版本信息
+  getAppVersion: function () {
+    return Device.platformVersion
+  },
+  // 拨打电话
+  tel: function (number) {
+    if (Device.device === 'pc') {
+      Toast.show({ content: locale('此功能仅可在手机中使用', 'SeedsUI_only_mobile') })
+      return
+    }
+    if (isNaN(number)) return
+    window.location.href = 'tel:' + number
+  },
+  /**
    * 获取当前地理位置, 所有平台都可以调用
    * @param {Object} params
    * @prop {String} type 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
@@ -330,18 +348,6 @@ let Bridge = {
     return
   },
   /**
-   * 百度地图:获取当前位置名称, 已废弃, 请使用Map中的获取位置方法代替
-   * @param {Object} params: {longitude: '', latitude: '', type 'wgs84 | gcj02', success: fn, fail: fn}
-   * @return {Promise} result: {status: 0 成功, points 百度坐标}
-   */
-  getAddress: function (params = {}) {
-    if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
-      return window.getAddressDefault(params)
-    }
-    const mapUtil = new MapUtil()
-    return mapUtil.getAddress([params.longitude, params.latitude], params?.type || 'gcj02', params)
-  },
-  /**
    * 修改原生标题
    * @param {Object} params {title: '自定义标题'}
    */
@@ -353,6 +359,19 @@ let Bridge = {
         params.title()
       }
     }
+  },
+  // 返回首页
+  goHome: function () {
+    window.history.go(-1)
+  },
+  // 退出到登陆页面
+  logOut: function logOut() {
+    console.log('logOut方法仅在app上工作')
+  },
+  // 打开新的窗口
+  openWindow: function (params = {}) {
+    alert(JSON.stringify(params))
+    if (params.url) window.location.href = params.url
   }
 }
 export default Bridge

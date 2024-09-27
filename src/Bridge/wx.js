@@ -1,5 +1,10 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
+import BridgeBase from './base'
+import LocationTask from './utils/LocationTask'
+import back from './utils/back'
+import ready from './utils/ready'
+
 // 内库使用
 import locale from './../locale'
 import Device from './../Device'
@@ -7,11 +12,6 @@ import Toast from './../Toast'
 
 // 测试使用
 // import { locale, Device, Toast } from 'seedsui-react'
-
-import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
-import back from './utils/back'
-import ready from './utils/ready'
 
 let Bridge = {
   ...BridgeBase,
@@ -24,7 +24,7 @@ let Bridge = {
   /**
    * 定制功能
    */
-  platform: Device.platform,
+
   // 自定义操作
   invoke: function (api, params, callback) {
     if (!window.top.wx.invoke) {
@@ -32,22 +32,6 @@ let Bridge = {
       return
     }
     window.top.wx.invoke(api, params, callback)
-  },
-  // 获得版本信息
-  getAppVersion: function () {
-    return Device.platformVersion
-  },
-  // 返回首页
-  goHome: function () {
-    window.history.go(-1)
-  },
-  // 退出到登陆页面
-  logOut: function logOut() {
-    console.log('logOut方法仅在app上工作')
-  },
-  // 打开新的窗口
-  openWindow: function (params = {}) {
-    if (params.url) window.location.href = params.url
   },
   // 关闭窗口
   closeWindow: function () {

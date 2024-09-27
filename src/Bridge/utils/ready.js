@@ -25,7 +25,8 @@ function ready(callback, options = {}, Bridge) {
     platform === 'wework' ||
     platform === 'weworkMiniprogram' ||
     platform === 'alipay' ||
-    platform === 'alipayMiniprogram'
+    platform === 'alipayMiniprogram' ||
+    platform === 'dingtalk'
   ) {
     // 初始化完成不需要重复加载
     if (window.top.wx || window.top.ap || window.top.dd) {

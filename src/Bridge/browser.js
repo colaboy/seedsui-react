@@ -1,3 +1,7 @@
+import BridgeBase from './base'
+import back from './utils/back'
+import ready from './utils/ready'
+
 // 内库使用
 import Device from './../Device'
 import Loading from './../Loading'
@@ -6,10 +10,6 @@ import locale from './../locale'
 
 // 测试使用
 // import { Device, Loading, Toast, locale } from 'seedsui-react'
-
-import BridgeBase from './base'
-import back from './utils/back'
-import ready from './utils/ready'
 
 let Bridge = {
   ...BridgeBase,

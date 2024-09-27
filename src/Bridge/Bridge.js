@@ -1,8 +1,3 @@
-// 测试使用
-// import { Device } from 'seedsui-react'
-// 内库使用
-import Device from './../Device'
-
 import BridgeBrowser from './browser'
 import BridgeWx from './wx'
 import BridgeAlipay from './ap'
@@ -10,6 +5,12 @@ import BridgeDingtalk from './dingtalk'
 import BridgeDinghuo from './dinghuo'
 import BridgeWq from './wq'
 import BridgeWqCordova from './cordova'
+
+// 内库使用
+import Device from './../Device'
+
+// 测试使用
+// import { Device } from 'seedsui-react'
 
 let Bridge = {}
 if (

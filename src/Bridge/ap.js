@@ -1,12 +1,6 @@
 // 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
 // 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
 
-// 内库使用
-import Device from './../Device'
-
-// 测试使用
-// import { Device } from 'seedsui-react'
-
 import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
@@ -23,7 +17,6 @@ let Bridge = {
   /**
    * 定制功能
    */
-  platform: Device.platform,
   /**
    * 获取当前地理位置
    * @param {Object} params

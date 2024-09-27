@@ -1,12 +1,6 @@
 // 官方文档: https://open.dingtalk.com/document/isvapp/read-before-development
 // https://open.dingtalk.com/document/orgapp/jsapi-overview
 
-// 内库使用
-import Device from './../Device'
-
-// 测试使用
-// import { Device } from 'seedsui-react'
-
 import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
@@ -23,7 +17,6 @@ let Bridge = {
   /**
    * 定制功能
    */
-  platform: Device.platform,
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -46,12 +39,15 @@ let Bridge = {
       coordinate: 1, // 高德坐标, 会加地址
       withReGeocode: false, // 不需要逆向解析
       useCache: false,
-      onSuccess: (res) => {
-        if (res.longitude && res.latitude) {
-          if (success) success(res)
-        } else {
-          if (fail) fail(res)
+      onSuccess: (result) => {
+        let res = {
+          latitude: result.latitude,
+          longitude: result.longitude,
+          address: result.address,
+          accuracy: result.accuracy
         }
+        if (success) success(res)
+
         if (complete) complete(res)
         LocationTask.getLocationTask(res)
       },
