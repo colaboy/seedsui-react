@@ -8,8 +8,8 @@ import Main from './Main'
 // }
 
 // 即将废弃, 用于过渡
-import Deprecated from './Deprecated/Picker'
-
+// import Deprecated from './Deprecated/Picker'
+const Deprecated = {}
 Deprecated.Combo = Combo
 Deprecated.Modal = Modal
 Deprecated.Main = Main

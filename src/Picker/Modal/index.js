@@ -1,7 +1,13 @@
 import React, { forwardRef } from 'react'
 
-import BaseModal from './../../Select/Modal'
 import Main from './../Main'
+
+// 内库使用
+import BaseModal from './../../Select/Modal'
+
+// 测试使用
+// import { Select } from 'seedsui-react'
+// const BaseModal = Select.Modal
 
 const Modal = forwardRef(({ ...props }, ref) => {
   return (

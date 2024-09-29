@@ -1,8 +1,14 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import { formatList } from './../../Select/utils'
-import Instance from './instance.js'
+import DragList from './utils/DragList'
+import getIndex from './utils/getIndex'
 
-const Main = forwardRef(
+// 内库使用
+import { formatList } from './../../Select/utils'
+
+// 测试使用
+// import { formatList } from 'seedsui-react/lib/Select/utils'
+
+let Main = forwardRef(
   (
     {
       // Modal
@@ -15,6 +21,7 @@ const Main = forwardRef(
       // Main: common
       value,
       list,
+      allowClear,
       multiple,
       onSelect,
       onBeforeChange,
@@ -33,97 +40,42 @@ const Main = forwardRef(
     list = formatList(list)
 
     // 节点
-    const mainRef = useRef(null)
-    const instance = useRef(null)
+    let mainRef = useRef(null)
+    let slotRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: mainRef.current,
         getRootDOM: () => mainRef.current,
-        instance: instance.current,
-        getInstance: () => instance.current,
-        getValue: getValue,
         update: update
       }
     })
 
-    // useEffect(() => {
-    //   initInstance()
-    //   // eslint-disable-next-line
-    // }, [])
+    useEffect(() => {
+      let dragList = DragList({
+        container: mainRef.current,
+        cellSize: 44,
+        slotHeight: (list.length - 1) * 44,
+        slot: slotRef.current,
+        onDragEnd: ({ index }) => {
+          onChange && onChange([list[index]])
+        }
+      })
+      dragList.events('removeEventListener')
+      dragList.events('addEventListener')
+      // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
-      update()
+      if (visible && Array.isArray(value) && value.length) {
+        update()
+      }
       // eslint-disable-next-line
     }, [value])
 
-    // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
-    if (instance.current) {
-      instance.current.params.onScrollTransitionEnd = handleChange
-    }
-
     // 更新视图
     function update() {
-      if (instance.current) {
-        if (list.length) {
-          setDefault()
-        }
-      } else if (list && list.length > 0) {
-        initInstance()
-      }
-    }
-
-    // 设置默认选中项
-    function setDefault() {
-      const defaultOpt = getDefaultOption()
-      if (!defaultOpt) return
-      instance.current.clearSlots()
-      instance.current.addSlot(list, defaultOpt.id || '', slotProps?.className || 'text-center') // 添加列,参数:数据,默认id,样式(lock样式为锁定列)
-    }
-
-    function getDefaultOption() {
-      if (Array.isArray(value) && value.length) {
-        return value[0]
-      }
-      if (list && list.length) {
-        return list[0]
-      }
-      return null
-    }
-
-    // 实例化
-    function initInstance() {
-      if (!list || !list.length || instance.current) {
-        console.log('SeedsUI Picker: 参数list为空')
-        return
-      }
-      // render数据
-      instance.current = new Instance({
-        wrapper: mainRef.current,
-        onScrollTransitionEnd: handleChange
-      })
-      // 默认项
-      const defaultOpt = getDefaultOption()
-      let id = ''
-      if (defaultOpt && defaultOpt.id) id = defaultOpt.id
-      instance.current.addSlot(list, id, slotProps?.className || 'text-center')
-      mainRef.current.instance = instance
-    }
-
-    // 滚动结束
-    function handleChange() {
-      const newValue = getValue()
-      onChange && onChange(newValue)
-    }
-
-    // 获取选中的值
-    function getValue() {
-      if (!instance.current) return
-      const newValue = instance.current.activeOptions
-      return newValue
-    }
-
-    if (!Array.isArray(list) || !list.length) {
-      return null
+      let y = -getIndex(value, list) * 44
+      slotRef.current.style.transform = `translateY(${y}px)`
     }
 
     return (
@@ -135,7 +87,13 @@ const Main = forwardRef(
         <div className="picker-layer">
           <div className="picker-layer-frame"></div>
         </div>
-        <div className="picker-slotbox"></div>
+        <div className="picker-slotbox">
+          <ul ref={slotRef} className="picker-slot text-center">
+            {(list || []).map((item, index) => {
+              return <li key={item.id || index}>{item.name}</li>
+            })}
+          </ul>
+        </div>
       </div>
     )
   }

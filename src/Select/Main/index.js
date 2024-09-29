@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useState, Fragment } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import { formatList } from './../utils'
 
 import NoData from './../../NoData'
@@ -125,29 +125,6 @@ const Main = forwardRef(
             checkable={checkable}
             itemProps={itemProps}
           />
-
-          {/* {list.map((item, index) => {
-            // 子子元素
-            if (Array.isArray(item.children)) {
-              return (
-                <Fragment key={item.id ?? index}>
-                  <div className="select-group-headline">
-                    <div className="select-group-caption">{item.name}</div>
-                    {item.description && (
-                      <div className="select-group-description">{item.description}</div>
-                    )}
-                  </div>
-                  <div className="select-group-options">
-                    {item.children.map((option, optionIndex) => {
-                      return getItem(option, optionIndex)
-                    })}
-                  </div>
-                </Fragment>
-              )
-            }
-            // 子元素
-            return getItem(item, index)
-          })} */}
 
           {/* 列表下方扩展 */}
           {typeof listExtraFooterRender === 'function' &&

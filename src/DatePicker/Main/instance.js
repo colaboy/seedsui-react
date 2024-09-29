@@ -1,9 +1,10 @@
+import Picker from './PickerInstance'
+
+// 内库使用
 import DateUtil from './../../DateUtil'
-import Picker from './../../Picker/Main/instance.js'
 
 // 测试使用
-// import Picker from 'seedsui-react/lib/Picker/Main/instance.js'
-// import locale from 'seedsui-react/lib/locale'
+// import { DateUtil } from 'seedsui-react'
 
 let PickerDate = function (params) {
   let nowDate = new Date()
