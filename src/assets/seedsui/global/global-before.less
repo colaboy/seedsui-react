@@ -23,6 +23,12 @@ input[type='search']::-webkit-search-results-decoration {
   appearance: none;
 }
 
+// 解决在 ios 下点击 input 页面空白问题
+input {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 // 设置body样式
 * {
   margin: 0;
@@ -40,8 +46,6 @@ body {
   font-size: @font-size-m;
   word-wrap: break-word;
   word-break: break-all;
-  // -webkit-transform: translate3d(0, 0, 0); // 据说可以解决ios弹性短暂白屏的问题
-  -webkit-backface-visibility: hidden;
 
   -webkit-touch-action: manipulation; // 移动端快速点击,代替FastClick
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // ios点击时的半透明背景，设置它为透明色
