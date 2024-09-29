@@ -62,7 +62,7 @@ function antiThousands(number) {
 /**
  * 计算惯性
  * @param {Number} cellSize 单项高度
- * @param {Number} distance 滚动的总距离
+ * @param {Number} distance 滚动的总距离, 负数为反向滑动
  * @param {Number} duration 滚动的总时长
  * @param {Number} currentPosition 当前位置
  * @param {Number} minPosition 最小位置
@@ -74,29 +74,26 @@ function inertia({ cellSize, distance, duration, currentPosition, minPosition, m
   let friction = 0.002
 
   // 惯性动画时长: 滑动时长 和 滑动距离
-  let inertiaDuration = (2 * distance) / duration / friction
+  let inertiaDuration = Math.abs((2 * distance) / duration / friction)
 
   // 惯性距离: 使用公式算出offset(新距离)
-  let inertiaRange = -(friction / 2) * (inertiaDuration * inertiaDuration)
+  let inertiaRange = (friction / 2) * (inertiaDuration * inertiaDuration)
   if (distance < 0) {
-    // 如果拖动间距为负值，则为向下拖动
-    inertiaDuration = -inertiaDuration
     inertiaRange = -inertiaRange
   }
 
   // 惯性位置: 当前位置 + 惯性距离
-  let inertiaPosition = currentPosition + inertiaRange
+  let inertiaPosition = Number(Math.abs(currentPosition)) + Number(inertiaRange || 0)
 
   // 矫正位置与时长
-
   // 最上面
-  if (inertiaPosition > minPosition) {
+  if (typeof minPosition === 'number' && inertiaPosition < minPosition) {
     // Math.abs(Math.round(inertiaPosition)) - Math.abs(Math.round(minPosition))
     inertiaDuration = 300
     inertiaPosition = minPosition
   }
   // 最下面
-  else if (inertiaPosition < maxPosition) {
+  else if (typeof maxPosition === 'number' && inertiaPosition > maxPosition) {
     inertiaDuration = 300
     inertiaPosition = maxPosition
   }

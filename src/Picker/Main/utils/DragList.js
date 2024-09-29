@@ -61,24 +61,27 @@ function DragList({
     touches.duration = e.timeStamp - touches.startTimeStamp
 
     // 惯性值计算
-    let inertance = MathUtil.inertia({
+    let inertia = MathUtil.inertia({
       cellSize: cellSize,
       distance: touches.diffY,
       duration: touches.duration,
       currentPosition: touches.currentPosY,
       minPosition: 0,
-      maxPosition: -slotHeight
+      maxPosition: slotHeight
     })
 
+    // 如果touches.diffY为负数, 则向上拉动, translateY向上为负数
+    let position = -inertia.position
+
     // 滚动到指定位置
-    slot.style.webkitTransitionDuration = inertance.duration + 'ms'
-    slot.posY = inertance.position
-    slot.style.webkitTransform = `translateY(${inertance.value}px)`
+    slot.style.webkitTransitionDuration = inertia.duration + 'ms'
+    slot.posY = position
+    slot.style.webkitTransform = `translateY(${position}px)`
 
     // 更新值
     onDragEnd &&
       onDragEnd({
-        index: inertance.index
+        index: inertia.index
       })
   }
 
