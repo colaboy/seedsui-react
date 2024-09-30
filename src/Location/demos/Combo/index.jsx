@@ -52,7 +52,7 @@ export default () => {
         // 获取定位和地址工具类
         // type="wgs84"
         config={{
-          key: '',
+          key: '7b6e260fc45a67b31a265e22575f1c5e',
           type: 'bmap'
         }}
         getLocation={({ type }) => {
@@ -91,8 +91,8 @@ export default () => {
         autoLocation
         clickAction="choose"
         // editable
-        // previewVisible
-        // chooseVisible
+        previewVisible
+        chooseVisible
         // allowClear
         ref={comboRef}
         value={value}

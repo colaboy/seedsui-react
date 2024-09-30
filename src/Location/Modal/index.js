@@ -195,7 +195,10 @@ const LocationModal = forwardRef(
         {/* 头 */}
         <Head
           captionProps={{
-            caption: locale('选择地址', 'SeedsUI_choose_address')
+            caption:
+              visible === 'choose'
+                ? locale('选择地址', 'SeedsUI_choose_address')
+                : locale('查看地址', 'SeedsUI_view_address')
           }}
           onSubmitClick={visible === 'choose' && value?.value ? handleOk : null}
           onCancelClick={handleBack}

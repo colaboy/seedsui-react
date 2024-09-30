@@ -41,6 +41,9 @@ const points = coordsToWgs84([
     address: '江苏省南京市建邺区金洲路62号',
     latitude: 31.983171307798603,
     longitude: 118.72896443172527,
+    icon: {
+      html: '<div>江苏省南京市建邺区金洲路62号</div>'
+    },
     type: 'wgs84'
   }
 ])
