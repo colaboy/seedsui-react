@@ -5,6 +5,7 @@ import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
+import GeoUtil from './../GeoUtil'
 
 let Bridge = {
   ...BridgeBase,
@@ -40,9 +41,16 @@ let Bridge = {
       withReGeocode: false, // 不需要逆向解析
       useCache: false,
       onSuccess: (result) => {
+        let latitude = result.latitude
+        let longitude = result.longitude
+        if (type === 'wgs84') {
+          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+          longitude = points[0]
+          latitude = points[1]
+        }
         let res = {
-          latitude: result.latitude,
-          longitude: result.longitude,
+          latitude: latitude,
+          longitude: longitude,
           address: result.address,
           accuracy: result.accuracy
         }

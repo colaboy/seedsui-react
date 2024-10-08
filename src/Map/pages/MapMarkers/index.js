@@ -28,7 +28,8 @@ function MapMarkers(
     onMarkerEnd,
     // Control Props
     ZoomControlProps,
-    children
+    children,
+    ...props
   },
   ref
 ) {
@@ -45,6 +46,7 @@ function MapMarkers(
       iconOptions={{
         imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
       }}
+      {...props}
       onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
         if (typeof map === 'string') return

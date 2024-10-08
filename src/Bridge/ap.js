@@ -5,6 +5,7 @@ import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
+import GeoUtil from './../GeoUtil'
 
 let Bridge = {
   ...BridgeBase,
@@ -27,6 +28,7 @@ let Bridge = {
    */
   getLocation: function (params = {}) {
     const { type, success, fail, complete, ...otherParams } = params || {}
+
     // 调用定位
     if (LocationTask.locationTask) {
       LocationTask.locationTask.push(params)
@@ -38,10 +40,20 @@ let Bridge = {
       ...otherParams,
       type: '2',
       success: (res) => {
-        if (res.longitude && res.latitude) {
-          if (success) success(res)
-        } else {
-          if (fail) fail(res)
+        let latitude = res.latitude
+        let longitude = res.longitude
+        if (type === 'wgs84') {
+          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+          longitude = points[0]
+          latitude = points[1]
+        }
+
+        if (success) {
+          success({
+            ...res,
+            longitude: longitude,
+            latitude: latitude
+          })
         }
         LocationTask.getLocationTask(res)
       },
