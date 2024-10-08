@@ -54,13 +54,13 @@ function Nearby(
 
     loadData()
     // eslint-disable-next-line
-  }, [tab, value])
+  }, [JSON.stringify(tab), JSON.stringify(value)])
 
   // Update value linkage update active
   useEffect(() => {
     setActive(value)
     // eslint-disable-next-line
-  }, [value])
+  }, [JSON.stringify(value)])
 
   // 获取附近的点
   async function loadData() {
