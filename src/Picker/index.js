@@ -4,12 +4,12 @@ import Main from './Main'
 
 // export default {
 //   Combo: Combo,
-//   Dialog: Dialog
+//   Modal: Modal,
+//   Main: Main
 // }
 
 // 即将废弃, 用于过渡
-// import Deprecated from './Deprecated/Picker'
-const Deprecated = {}
+import Deprecated from './Deprecated/Picker'
 Deprecated.Combo = Combo
 Deprecated.Modal = Modal
 Deprecated.Main = Main
