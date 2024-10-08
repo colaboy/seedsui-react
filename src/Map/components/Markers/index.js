@@ -14,7 +14,7 @@ const Markers = forwardRef(({ map, points, onClick, onMarkerEnd }, ref) => {
   useEffect(() => {
     draw()
     // eslint-disable-next-line
-  }, [points])
+  }, [JSON.stringify(points)])
 
   function draw() {
     if (!points?.[0]?.latitude || !points?.[0]?.longitude) {
