@@ -88,6 +88,7 @@ function Search({ visible, onVisibleChange, map, onChange }) {
           style={{ backgroundColor: 'white' }}
           onSubmit={(e) => {
             e.preventDefault()
+            e.stopPropagation()
             handleSearch()
           }}
         >
