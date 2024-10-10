@@ -253,24 +253,28 @@
   transform: rotate(45deg);
 }
 
-// 照片拼接时, 只显示最后一个删除按钮
-.photos-image-merge .image-delete {
-  display: none;
+// 照片标记
+.image-item-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
-
-// .photos-image-merge .image-delete:nth-last-child(1){
-//   display: block;
-// }
-// 有上传按钮时倒数第二个节点隐藏删除按钮
-.photos-image-merge-last2 .image-item:nth-last-child(2) {
-  .image-delete {
-    display: block;
-  }
-}
-
-// 无上传按钮时倒数第一个节点隐藏删除按钮
-.photos-image-merge-last1 .image-item:nth-last-child(1) {
-  .image-delete {
-    display: block;
+.image-item-mark-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin: 0 6px;
+  &:nth-child(even) {
+    border-top: 1px dashed rgba(255, 255, 255, 0.7);
   }
 }
