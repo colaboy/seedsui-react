@@ -1,5 +1,5 @@
 // 默认图标配置, https://leafletjs.com/reference.html#icon
-const defaultIconOptions = {
+const defaultMarkerIconOptions = {
   iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-icon.png`,
   iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-icon-2x.png`,
   shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
@@ -9,4 +9,4 @@ const defaultIconOptions = {
   iconAnchor: [10, 16]
 }
 
-export default defaultIconOptions
+export default defaultMarkerIconOptions

@@ -3,7 +3,6 @@ import coordsToWgs84 from './utils/coordsToWgs84'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
-import IconUtil from './utils/IconUtil'
 // Components
 import APILoader from './components/APILoader'
 import MapContainer from './components/MapContainer'
@@ -11,6 +10,7 @@ import ZoomControl from './components/ZoomControl'
 import SearchControl from './components/SearchControl'
 import CenterMarker from './components/CenterMarker'
 import Markers from './components/Markers'
+import Circles from './components/Circles'
 import LocationControl from './components/LocationControl'
 import NearbyControl from './components/NearbyControl'
 // Pages
@@ -23,7 +23,6 @@ const Map = {
   getAddress,
   getLocation,
   queryNearby,
-  IconUtil,
   // components
   APILoader,
   MapContainer,
@@ -31,6 +30,7 @@ const Map = {
   SearchControl,
   CenterMarker,
   Markers,
+  Circles,
   LocationControl,
   NearbyControl,
   // Pages

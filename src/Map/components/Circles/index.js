@@ -1,8 +1,7 @@
 import React, { useEffect, forwardRef, useImperativeHandle } from 'react'
-import createIcon from './createIcon'
 
-// 批量标注
-const Markers = forwardRef(({ map, points, onClick }, ref) => {
+// 批量圈
+const Circles = forwardRef(({ map, points }, ref) => {
   // 节点
   useImperativeHandle(ref, () => {
     return {
@@ -14,7 +13,7 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
 
   useEffect(() => {
     return () => {
-      map.clearMarkers()
+      map.clearCircles()
     }
     // eslint-disable-next-line
   }, [])
@@ -28,12 +27,11 @@ const Markers = forwardRef(({ map, points, onClick }, ref) => {
     if (!points?.[0]?.latitude || !points?.[0]?.longitude) {
       return
     }
-    map.clearMarkers()
-    map.addMarkers(points, { onClick })
+    map.clearCircles()
+    map.addCircles(points)
   }
 
   return <></>
 })
 
-export { createIcon }
-export default Markers
+export default Circles

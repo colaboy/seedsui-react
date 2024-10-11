@@ -1,13 +1,13 @@
+import coordTransform from './coordTransform'
+import bmapGetAddress from './bmapGetAddress'
+import googleGetAddress from './googleGetAddress'
+import defaultGetAddress from './defaultGetAddress'
+
 // 内库使用
 import Toast from './../../../Toast'
 
 // 测试使用
 // import { Toast } from 'seedsui-react'
-
-import coordTransform from './coordTransform'
-import bmapGetAddress from './bmapGetAddress'
-import googleGetAddress from './googleGetAddress'
-import defaultGetAddress from './defaultGetAddress'
 
 async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
   let result = null

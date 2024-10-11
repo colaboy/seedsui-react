@@ -1,5 +1,13 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 
+import MapContainer from './../../components/MapContainer'
+import ZoomControl from './../../components/ZoomControl'
+import SearchControl from './../../components/SearchControl'
+import CenterMarker, { createIcon as createCenterMarkerIcon } from './../../components/CenterMarker'
+import LocationControl from './../../components/LocationControl'
+import NearbyControl from './../../components/NearbyControl'
+import Markers from './../../components/Markers'
+
 // 内库使用
 import Toast from './../../../Toast'
 import Loading from './../../../Loading'
@@ -7,15 +15,6 @@ import locale from './../../../locale'
 
 // 测试使用
 // import { Loading, Toast, locale } from 'seedsui-react'
-
-import IconUtil from './../../utils/IconUtil'
-import MapContainer from './../../components/MapContainer'
-import ZoomControl from './../../components/ZoomControl'
-import SearchControl from './../../components/SearchControl'
-import CenterMarker from './../../components/CenterMarker'
-import LocationControl from './../../components/LocationControl'
-import NearbyControl from './../../components/NearbyControl'
-import Markers from './../../components/Markers'
 
 // 地图选点
 function MapChoose(
@@ -100,10 +99,6 @@ function MapChoose(
       getAddress={getAddress}
       getLocation={getLocation}
       queryNearby={queryNearby}
-      // 基准路径
-      iconOptions={{
-        imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
-      }}
       {...props}
       onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
@@ -128,7 +123,7 @@ function MapChoose(
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
-        icon={IconUtil.getIcon(IconUtil.centerIconOptions)}
+        icon={createCenterMarkerIcon(value?.icon)}
         longitude={value?.longitude}
         latitude={value?.latitude}
         onDragEnd={

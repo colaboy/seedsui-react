@@ -8,8 +8,8 @@ import { Map } from 'seedsui-react'
 
 // 生成随机点
 // import getPoints from './getPoints'
-const { APILoader, MapMarkers, LocationControl, coordsToWgs84 } = Map
-import points from './points'
+const { APILoader, MapMarkers, LocationControl, Circles, coordsToWgs84 } = Map
+// import points from './points'
 
 // 随机生成点, 用于测试性能
 // const points = getPoints({
@@ -24,29 +24,29 @@ import points from './points'
 // })
 
 // This coordsToWgs84 just example, no practical use
-// const points = coordsToWgs84([
-//   {
-//     area: '建邺区',
-//     uid: 'bac0886bab065861c03644a0',
-//     address: '文广路2号西城夜未央运动街区303号（陶陶花艺旁）',
-//     province: '江苏省',
-//     city: '南京市',
-//     name: '顽啤NAUGHTY BEER(西城·夜未央店)',
-//     telephone: '19951965855',
-//     latitude: 31.985751066605477,
-//     longitude: 118.73334234635371,
-//     type: 'wgs84'
-//   },
-//   {
-//     address: '江苏省南京市建邺区金洲路62号',
-//     latitude: 31.983171307798603,
-//     longitude: 118.72896443172527,
-//     icon: {
-//       html: '<div>江苏省南京市建邺区金洲路62号</div>'
-//     },
-//     type: 'wgs84'
-//   }
-// ])
+const points = coordsToWgs84([
+  {
+    area: '建邺区',
+    uid: 'bac0886bab065861c03644a0',
+    address: '文广路2号西城夜未央运动街区303号（陶陶花艺旁）',
+    province: '江苏省',
+    city: '南京市',
+    name: '顽啤NAUGHTY BEER(西城·夜未央店)',
+    telephone: '19951965855',
+    latitude: 31.985751066605477,
+    longitude: 118.73334234635371,
+    type: 'wgs84'
+  },
+  {
+    address: '江苏省南京市建邺区金洲路62号',
+    latitude: 31.983171307798603,
+    longitude: 118.72896443172527,
+    icon: {
+      html: '<div>江苏省南京市建邺区金洲路62号</div>'
+    },
+    type: 'wgs84'
+  }
+])
 
 export default () => {
   const mapRef = useRef(mapRef)
@@ -123,6 +123,19 @@ export default () => {
             onChange={(result) => {
               mapRef.current.panTo(result)
             }}
+          />
+
+          <Circles
+            points={[
+              {
+                latitude: 31.985751066605477,
+                longitude: 118.73334234635371,
+                radius: 500,
+                style: {
+                  color: '#ff8800'
+                }
+              }
+            ]}
           />
         </MapMarkers>
       </div>

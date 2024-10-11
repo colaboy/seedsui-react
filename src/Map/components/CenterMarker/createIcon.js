@@ -1,9 +1,7 @@
-import defaultIconOptions from './defaultIconOptions'
+import defaultMarkerIconOptions from './defaultMarkerIconOptions'
 
-// 图标控件
-function getIcon(icon) {
-  if (!icon) return null
-
+// 创建图标
+function createIcon(icon) {
   if (!window.L?.Icon || !window.L?.divIcon) return null
 
   // 已经是图标了则直接返回
@@ -21,9 +19,9 @@ function getIcon(icon) {
   }
 
   return window.L.icon({
-    ...defaultIconOptions,
+    ...defaultMarkerIconOptions,
     ...props
   })
 }
 
-export default getIcon
+export default createIcon

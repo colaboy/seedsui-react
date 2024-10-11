@@ -1,17 +1,16 @@
 import React, { forwardRef } from 'react'
 
-// 内库使用
-import locale from './../../../locale'
-
-// 测试使用
-// import { locale } from 'seedsui-react'
-
-import IconUtil from './../../utils/IconUtil'
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
-import Markers from './../../components/Markers'
+import Markers, { createIcon as createMarkerIcon } from './../../components/Markers'
 
 import Result from './../../components/Result'
+
+// 内库使用
+// import locale from './../../../locale'
+
+// 测试使用
+import { locale } from 'seedsui-react'
 
 // 地图标注
 function MapMarkers(
@@ -25,7 +24,6 @@ function MapMarkers(
 
     onMarkerClick,
     onLoad,
-    onMarkerEnd,
     // Control Props
     ZoomControlProps,
     children,
@@ -42,10 +40,6 @@ function MapMarkers(
       ref={ref}
       center={points}
       zoom={14}
-      // 基准路径
-      iconOptions={{
-        imagePath: 'https://res.waiqin365.com/d/seedsui/leaflet/images/'
-      }}
       {...props}
       onLoad={(map) => {
         // value没值时，开启自动定位，则先定位
@@ -63,11 +57,10 @@ function MapMarkers(
         points={points.map((point) => {
           return {
             ...point,
-            icon: IconUtil.getIcon(point?.icon || icon)
+            icon: createMarkerIcon(point?.icon || icon)
           }
         })}
         onClick={onMarkerClick}
-        onMarkerEnd={onMarkerEnd}
       />
 
       {/* 缩放控件 */}

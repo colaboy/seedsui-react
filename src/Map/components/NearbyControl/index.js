@@ -1,17 +1,17 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react'
 
+import getTabs from './utils/getTabs'
+import Current from './Current'
+import Toggle from './Toggle'
+import Tabs from './Tabs'
+import Main from './Main'
+
 // 内库使用
 import locale from './../../../locale'
 import Loading from './../../../Loading'
 
 // 测试使用
 // import { locale, Loading } from 'seedsui-react'
-
-import getTabs from './utils/getTabs'
-import Current from './Current'
-import Toggle from './Toggle'
-import Tabs from './Tabs'
-import Main from './Main'
 
 // 附近推荐
 function Nearby(

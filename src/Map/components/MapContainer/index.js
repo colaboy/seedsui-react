@@ -1,12 +1,6 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
-
-// 内库使用
-import locale from './../../../locale'
-
-// 测试使用
-// import { locale } from 'seedsui-react'
-
-import IconUtil from './../../utils/IconUtil'
+import { createIcon as createCenterMarkerIcon } from './../CenterMarker'
+import { createIcon as createMarkerIcon } from './../Markers'
 import getMapType from './../../utils/getMapType'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
@@ -20,6 +14,12 @@ import markerClickCanvas from './markerClickCanvas'
 
 import Result from './../Result'
 
+// 内库使用
+import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
+
 const MapContainer = forwardRef(
   (
     {
@@ -27,10 +27,6 @@ const MapContainer = forwardRef(
       zoom,
       minZoom,
       maxZoom,
-      // Icon setting
-      iconOptions = {
-        // imagePath: 'marker basic path'
-      },
       // 自定义获取地址和定位
       getAddress,
       getLocation,
@@ -61,16 +57,21 @@ const MapContainer = forwardRef(
     if (typeof queryNearby !== 'function') queryNearby = defaultQueryNearby
 
     const rootRef = useRef(null)
+
     // Marker layer canvas plugin: high-performance mode
     const markersCanvasLayerRef = useRef(null)
     // Marker layer
     const markersLayerRef = useRef(null)
+    // Marker default  icon
+    const defaultMarkerIconRef = useRef(null)
+
     // Center Marker layer
     const centerMarkerLayerRef = useRef(null)
-    // Default marker icon
-    const defaultIconRef = useRef(null)
     // Center marker icon
-    const centerIconRef = useRef(null)
+    const centerMarkerIconRef = useRef(null)
+
+    // Circle layer
+    const circlesLayerRef = useRef(null)
 
     let [leafletMap, setLeafletMap] = useState(null)
 
@@ -106,7 +107,7 @@ const MapContainer = forwardRef(
       /*
       入参:
       {
-        map: map,
+        map: APIRef.current, // 内部使用map.currentMap
         keyword: '',
         longitude: '',
         latitude: '',
@@ -167,14 +168,14 @@ const MapContainer = forwardRef(
         if (!leafletMap?.setZoom) return
         return leafletMap.setZoom(zoom)
       },
-      // 单个点只支持Leaflet绘制不支持canvas绘制
+      // CenterMarker
       addCenterMarker: function (point, { onClick } = {}) {
         if (!centerMarkerLayerRef.current) return null
 
         // Draw center marker
         centerMarkerLayerRef.current.clearLayers()
         let marker = window.L.marker([point.latitude, point.longitude], {
-          icon: point?.icon || centerIconRef.current
+          icon: point?.icon || centerMarkerIconRef.current
         })
         marker.addTo(centerMarkerLayerRef.current)
 
@@ -188,13 +189,18 @@ const MapContainer = forwardRef(
         })
         return marker
       },
+      clearCenterMarker: function () {
+        if (!centerMarkerLayerRef.current) return
+        centerMarkerLayerRef.current.clearLayers()
+      },
+      // Marker
       addMarkers: function (points, { onClick = null }) {
         let enableCanvas = points.length > 100
 
         // Draw markers
         for (let point of points) {
           let marker = window.L.marker([point.latitude, point.longitude], {
-            icon: point?.icon || defaultIconRef.current
+            icon: point?.icon || defaultMarkerIconRef.current
           })
           if (enableCanvas) {
             markersCanvasLayerRef.current.addMarker(marker)
@@ -210,7 +216,7 @@ const MapContainer = forwardRef(
             points,
             layerGroup: markersCanvasLayerRef.current,
             clearMarkers,
-            defaultIcon: defaultIconRef.current,
+            defaultIcon: defaultMarkerIconRef.current,
             onClick
           })
         } else {
@@ -218,12 +224,26 @@ const MapContainer = forwardRef(
             points,
             clearMarkers,
             layerGroup: markersLayerRef.current,
-            defaultIcon: defaultIconRef.current,
+            defaultIcon: defaultMarkerIconRef.current,
             onClick
           })
         }
       },
-      clearMarkers: clearMarkers
+      clearMarkers: clearMarkers,
+      // Circle
+      addCircles: function (points) {
+        for (let point of points) {
+          let circle = window.L.circle([point.latitude, point.longitude], {
+            radius: point?.radius || 200,
+            ...(point.style || {})
+          })
+          circle.addTo(circlesLayerRef.current)
+        }
+      },
+      clearCircles: function () {
+        if (!circlesLayerRef.current) return
+        circlesLayerRef.current.clearLayers()
+      }
     })
 
     // Export API
@@ -245,13 +265,6 @@ const MapContainer = forwardRef(
 
       // eslint-disable-next-line
     }, [leafletMap])
-
-    // Global icon setting
-    useEffect(() => {
-      if (Object.isEmptyObject(iconOptions) || !leafletMap) return
-      window.L.Icon.Default.mergeOptions(iconOptions)
-      // eslint-disable-next-line
-    }, [JSON.stringify(iconOptions || {})])
 
     // Pan to center
     useEffect(() => {
@@ -299,17 +312,19 @@ const MapContainer = forwardRef(
       // Init leafletMap events
       events()
 
-      // Add markers layerGroup with canvas mode
-      markersCanvasLayerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
-      // Add markers layerGroup
-      markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
-      // Add center marker layerGroup
-      centerMarkerLayerRef.current = window.L.layerGroup().addTo(leafletMap)
+      // Circle layer init
+      circlesLayerRef.current = window.L.layerGroup().addTo(leafletMap)
 
-      // Default marker icon
-      defaultIconRef.current = window.L.icon(IconUtil.defaultIconOptions)
+      // Marker common layer and canvas layer init
+      markersCanvasLayerRef.current = window.L.canvasIconLayer({}).addTo(leafletMap)
+      markersLayerRef.current = window.L.layerGroup().addTo(leafletMap)
+      // Marker default  icon
+      defaultMarkerIconRef.current = createMarkerIcon()
+
+      // Center marker layer init
+      centerMarkerLayerRef.current = window.L.layerGroup().addTo(leafletMap)
       // Center marker icon
-      centerIconRef.current = window.L.icon(IconUtil.centerIconOptions)
+      centerMarkerIconRef.current = createCenterMarkerIcon()
 
       // Render children
       setLeafletMap(leafletMap)

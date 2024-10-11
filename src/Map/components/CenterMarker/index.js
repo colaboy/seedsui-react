@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import createIcon from './createIcon'
 
 // 中心点标注
 const CenterMarker = forwardRef(
   ({ map, icon, longitude, latitude, onDragStart, onDragEnd, ...props }, ref) => {
     const rootRef = useRef(null)
-
-    // 创建中心点独立的图层, 防止被清理
-    const layerGroupRef = useRef(null)
 
     // 节点
     useImperativeHandle(ref, () => {
@@ -18,9 +16,6 @@ const CenterMarker = forwardRef(
 
     // Drag icon style interaction
     useEffect(() => {
-      // 创建图层组
-      layerGroupRef.current = window.L.layerGroup().addTo(map.leafletMap)
-
       // 增加drag事件监听
       map.onDragStart = (map) => {
         if (onDragEnd) {
@@ -33,6 +28,13 @@ const CenterMarker = forwardRef(
           rootRef?.current?.classList?.add?.('active')
           onDragEnd(map)
         }
+      }
+
+      // Destroy clear center marker
+      return () => {
+        map.clearCenterMarker()
+        map.onDragStart = null
+        map.onDragEnd = null
       }
       // eslint-disable-next-line
     }, [])
@@ -55,4 +57,5 @@ const CenterMarker = forwardRef(
   }
 )
 
+export { createIcon }
 export default CenterMarker
