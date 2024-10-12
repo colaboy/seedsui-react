@@ -370,7 +370,6 @@ let Bridge = {
   },
   // 打开新的窗口
   openWindow: function (params = {}) {
-    alert(JSON.stringify(params))
     if (params.url) window.location.href = params.url
   }
 }
