@@ -94,12 +94,12 @@ const Calendar = forwardRef(
         cellHeight: 40,
 
         // Events
-        onDraw: (drawDate, others) => {
+        onDraw: (drawDate, { action, type }) => {
           setDrawDate(drawDate)
 
           // Trigger onDraw
           if (onDraw) {
-            onDraw(drawDate, others)
+            onDraw(drawDate, { action, type })
           }
         }
       })
