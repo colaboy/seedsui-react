@@ -33,7 +33,7 @@ const Calendar = forwardRef(
       // Event: click date
       onChange,
       // Event: view change
-      onSlideChange,
+      onDraw,
       ...props
     },
     ref
@@ -44,7 +44,7 @@ const Calendar = forwardRef(
     const instanceRef = useRef(null)
 
     // 当前日期，用于绘制日历
-    let [activeDate, setActiveDate] = useState(null)
+    let [drawDate, setDrawDate] = useState(null)
 
     // 暴露方法
     useImperativeHandle(ref, () => {
@@ -67,8 +67,8 @@ const Calendar = forwardRef(
           let result = await instanceRef.current.slideX('next')
           return result
         },
-        updateActiveDate: (newActive) => {
-          updateActiveDate(newActive)
+        updateDrawDate: (newActive) => {
+          updateDrawDate(newActive)
         }
       }
     })
@@ -76,12 +76,12 @@ const Calendar = forwardRef(
     // 初始化信息
     useEffect(() => {
       // eslint-disable-next-line
-      activeDate = getActiveDate(value)
-      setActiveDate(activeDate)
+      drawDate = getDrawDate(value)
+      setDrawDate(drawDate)
 
       instanceRef.current = new Instance(rootRef.current, {
         // Value
-        activeDate: activeDate,
+        drawDate: drawDate,
         min,
         max,
         weekStart,
@@ -94,21 +94,22 @@ const Calendar = forwardRef(
         cellHeight: 40,
 
         // Events
-        onChange: (activeDate, others) => {
-          setActiveDate(activeDate)
+        onDraw: (drawDate, others) => {
+          setDrawDate(drawDate)
 
-          // Trigger onSlideChange
-          if (onSlideChange) {
-            onSlideChange(activeDate, others)
+          // Trigger onDraw
+          if (onDraw) {
+            onDraw(drawDate, others)
           }
         }
       })
 
       // 加载事件
       if (onLoad) {
-        onLoad(instanceRef.current.activeDate, {
+        onLoad(instanceRef.current.drawDate, {
           action: 'load',
-          type: instanceRef.current.type
+          type: instanceRef.current.type,
+          pageDates: null
         })
       }
       // eslint-disable-next-line
@@ -116,12 +117,12 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      updateActiveDate()
+      updateDrawDate()
       // eslint-disable-next-line
     }, [value])
 
     // 获取当前日期
-    function getActiveDate(newActive) {
+    function getDrawDate(newActive) {
       let date = Array.isArray(newActive) && newActive.length === 2 ? newActive[0] : newActive
       if (date instanceof Date) {
         return date
@@ -131,12 +132,12 @@ const Calendar = forwardRef(
     }
 
     // 更新当前日期
-    function updateActiveDate(newActive) {
+    function updateDrawDate(newActive) {
       if (!instanceRef?.current?.pages) return
 
-      activeDate = getActiveDate(newActive || value)
-      setActiveDate(activeDate)
-      instanceRef.current.updateActiveDate(activeDate)
+      drawDate = getDrawDate(newActive || value)
+      setDrawDate(drawDate)
+      instanceRef.current.updateDrawDate(drawDate)
     }
 
     // 点击日期
@@ -174,14 +175,14 @@ const Calendar = forwardRef(
     // Last year
     function handlePreviousYear(e) {
       e.stopPropagation()
-      let lastYear = dayjs(activeDate).subtract(1, 'year')
-      updateActiveDate(lastYear.toDate())
+      let lastYear = dayjs(drawDate).subtract(1, 'year')
+      updateDrawDate(lastYear.toDate())
     }
     // Next year
     function handleNextYear(e) {
       e.stopPropagation()
-      let nextYear = dayjs(activeDate).add(1, 'year')
-      updateActiveDate(nextYear.toDate())
+      let nextYear = dayjs(drawDate).add(1, 'year')
+      updateDrawDate(nextYear.toDate())
     }
 
     return (
@@ -199,17 +200,17 @@ const Calendar = forwardRef(
             onPreviousYear={handlePreviousYear}
             onNextYear={handleNextYear}
           >
-            {getTitle(activeDate, titleFormatter, instanceRef.current)}
+            {getTitle(drawDate, titleFormatter, instanceRef.current)}
           </Header>
         )}
         {typeof header === 'function' &&
           header({
-            title: getTitle(activeDate, titleFormatter, instanceRef.current),
+            title: getTitle(drawDate, titleFormatter, instanceRef.current),
             onPreviousMonth: handlePreviousMonth,
             onNextMonth: handleNextMonth,
             onPreviousYear: handlePreviousYear,
             onNextYear: handleNextYear,
-            activeDate,
+            drawDate,
             titleFormatter,
             instance: instanceRef.current
           })}

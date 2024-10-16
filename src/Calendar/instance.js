@@ -5,7 +5,7 @@ let Calendar = function (container, params) {
   // Initial params
   let defaults = {
     // Value
-    activeDate: new Date(),
+    drawDate: new Date(),
     min: null,
     max: null,
     weekStart: null,
@@ -18,7 +18,7 @@ let Calendar = function (container, params) {
     cellHeight: 40,
 
     // Events
-    onChange: null
+    onDraw: null
   }
   // eslint-disable-next-line
   params = params || {}
@@ -46,29 +46,29 @@ let Calendar = function (container, params) {
   s.type = s.params.type
 
   // Get three pages dates
-  s.activeDate = s.params.activeDate || new Date()
+  s.drawDate = s.params.drawDate || new Date()
   s.pages = null
 
   /* --------------------
   Methods
   -------------------- */
-  s.updateActiveDate = function (currentDate) {
+  s.updateDrawDate = function (currentDate) {
     let date = currentDate
     if (date instanceof Date === false) {
       return
     }
     // 是否跨月，跨月视图会切换，需要触发视图刷新函数
-    let isCross = date.getMonth() !== s.activeDate.getMonth()
+    let isAnotherMonth = date.getMonth() !== s.drawDate.getMonth()
 
     // 当前日期
-    s.activeDate = date
+    s.drawDate = date
 
     // 更新日期数据
     s.init()
 
-    // 如果跨月，表示视图刷新，则需要触发onChange
-    if (isCross && s.params.onChange) {
-      s.params.onChange(s.activeDate, {
+    // 如果跨月，表示视图刷新，则需要触发onDraw
+    if (isAnotherMonth && s.params.onDraw) {
+      s.params.onDraw(s.drawDate, {
         action: 'change',
         type: s.type
       })
@@ -82,46 +82,46 @@ let Calendar = function (container, params) {
 
   // 更新日期数据
   s.updateDates = function () {
-    let months = Months.getMonths(s.activeDate, { weekStart: s.params.weekStart })
+    let months = Months.getMonths(s.drawDate, { weekStart: s.params.weekStart })
     s.pages = Months.paginateMonths(months, {
       weekStart: s.params.weekStart,
-      activeDate: s.activeDate,
+      drawDate: s.drawDate,
       type: s.type
     })
   }
 
   // 左右滑动
   s.slideX = async function (action) {
-    s.activeDate = await slideX(action, {
+    s.drawDate = await slideX(action, {
       type: s.type,
       min: s.params.min,
       max: s.params.max,
       duration: s.params.duration,
       weekStart: s.params.weekStart,
-      activeDate: s.activeDate,
+      drawDate: s.drawDate,
       container: s.container,
       bodyX: s.bodyX,
       bodyY: s.bodyY,
       cellHeight: s.params.cellHeight
     })
 
-    // No action No onChange
+    // No action No onDraw
     if (!action) {
-      return s.activeDate
+      return s.drawDate
     }
 
     // 更新日期数据
     s.updateDates()
 
     // 左右滑动才需要更新视图
-    if (s.params.onChange) {
-      s.params.onChange(s.activeDate, {
+    if (s.params.onDraw) {
+      s.params.onDraw(s.drawDate, {
         action: action,
         type: s.type
       })
     }
 
-    return s.activeDate
+    return s.drawDate
   }
 
   // 上下滑动
@@ -132,7 +132,7 @@ let Calendar = function (container, params) {
       weekStart: s.params.weekStart,
       cellHeight: s.params.cellHeight,
       bodyHeight: s.bodyHeight,
-      activeDate: s.activeDate,
+      drawDate: s.drawDate,
       body: s.body,
       bodyY: s.bodyY
     })
@@ -147,14 +147,14 @@ let Calendar = function (container, params) {
     // 更新日期数据
     s.updateDates()
 
-    // No action No onChange
+    // No action No onDraw
     if (!action) {
       return s.type
     }
 
     // Trigger event
-    if (triggerChange && s.params.onChange) {
-      s.params.onChange(s.activeDate, {
+    if (triggerChange && s.params.onDraw) {
+      s.params.onDraw(s.drawDate, {
         action: action,
         type: s.type
       })

@@ -5,7 +5,7 @@ import Months from './Months'
 // 左右滑动
 function slideX(
   op,
-  { type, min, max, duration, weekStart, activeDate, container, bodyX, bodyY, cellHeight }
+  { type, min, max, duration, weekStart, drawDate, container, bodyX, bodyY, cellHeight }
 ) {
   // 添加动画
   bodyX.style.transitionDuration = duration + 'ms'
@@ -13,7 +13,7 @@ function slideX(
   // 滑动位置
   let translateX = -container.clientWidth
   // 切换后日期
-  let newActiveDate = activeDate
+  let newDrawDate = drawDate
 
   // 左滑动
   if (op === 'previous') {
@@ -22,9 +22,9 @@ function slideX(
 
     // 日期
     if (type === 'month') {
-      newActiveDate = dayjs(activeDate).subtract(1, 'month').toDate()
+      newDrawDate = dayjs(drawDate).subtract(1, 'month').toDate()
     } else {
-      newActiveDate = dayjs(activeDate).subtract(7, 'day').toDate()
+      newDrawDate = dayjs(drawDate).subtract(7, 'day').toDate()
     }
   }
   // 右滑动
@@ -34,19 +34,19 @@ function slideX(
 
     // 日期
     if (type === 'month') {
-      newActiveDate = dayjs(activeDate).add(1, 'month').toDate()
+      newDrawDate = dayjs(drawDate).add(1, 'month').toDate()
     } else {
-      newActiveDate = dayjs(activeDate).add(7, 'day').toDate()
+      newDrawDate = dayjs(drawDate).add(7, 'day').toDate()
     }
   }
 
   // 使用禁用当天作为选中项
-  let disabledDate = isDisabledDate(newActiveDate, { min, max })
+  let disabledDate = isDisabledDate(newDrawDate, { min, max })
 
   // 禁止日期
   if (disabledDate) {
     console.log('禁止访问' + new Date().toLocaleDateString() + '前的日期')
-    newActiveDate = activeDate
+    newDrawDate = drawDate
     translateX = -container.clientWidth
   }
 
@@ -58,7 +58,7 @@ function slideX(
     setTimeout(() => {
       bodyX.style.transitionDuration = '0ms'
 
-      resolve(newActiveDate)
+      resolve(newDrawDate)
 
       // 复原位置
       setTimeout(() => {
@@ -71,8 +71,8 @@ function slideX(
         }
         // 周视图时, 需要移动竖向位置
         else {
-          let activeDateRowIndex = Months.getDateRowIndex(newActiveDate, weekStart)
-          translateY = -activeDateRowIndex * cellHeight
+          let drawDateRowIndex = Months.getDateRowIndex(newDrawDate, weekStart)
+          translateY = -drawDateRowIndex * cellHeight
         }
         bodyY.style.transform = 'translateY(' + translateY + 'px)'
         bodyY.setAttribute('data-translateY', translateY)

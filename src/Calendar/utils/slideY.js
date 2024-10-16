@@ -1,17 +1,14 @@
 import Months from './Months'
 
 // 上下拉动
-function slideY(
-  op,
-  { type, duration, weekStart, activeDate, cellHeight, bodyHeight, body, bodyY }
-) {
+function slideY(op, { type, duration, weekStart, drawDate, cellHeight, bodyHeight, body, bodyY }) {
   // 添加动画
   body.style.transitionDuration = duration + 'ms'
 
   let newType = type
   let height = 0
   let translateY = 0
-  let activeDateRowIndex = Months.getDateRowIndex(activeDate, weekStart)
+  let drawDateRowIndex = Months.getDateRowIndex(drawDate, weekStart)
 
   // 展开
   if (op === 'expand') {
@@ -24,7 +21,7 @@ function slideY(
   else if (op === 'collapse') {
     height = cellHeight
 
-    translateY = -activeDateRowIndex * cellHeight
+    translateY = -drawDateRowIndex * cellHeight
     bodyY.setAttribute('data-translateY', translateY)
     newType = 'week'
   }
