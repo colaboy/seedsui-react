@@ -94,12 +94,12 @@ const Calendar = forwardRef(
         cellHeight: 40,
 
         // Events
-        onDraw: (drawDate, { action, type }) => {
+        onDraw: (drawDate, { action, type, month }) => {
           setDrawDate(drawDate)
 
           // Trigger onDraw
           if (onDraw) {
-            onDraw(drawDate, { action, type })
+            onDraw(drawDate, { action, type, month })
           }
         }
       })
@@ -109,7 +109,7 @@ const Calendar = forwardRef(
         onLoad(instanceRef.current.drawDate, {
           action: 'load',
           type: instanceRef.current.type,
-          pageDates: null
+          month: instanceRef.current.pages[1]
         })
       }
       // eslint-disable-next-line

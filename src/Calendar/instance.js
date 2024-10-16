@@ -58,7 +58,8 @@ let Calendar = function (container, params) {
       return
     }
     // 是否跨月，跨月视图会切换，需要触发视图刷新函数
-    let isAnotherMonth = date.getMonth() !== s.drawDate.getMonth()
+    let isAnotherMonth =
+      date.getFullYear() + date.getMonth() !== s.drawDate.getFullYear() + s.drawDate.getMonth()
 
     // 当前日期
     s.drawDate = date
@@ -70,7 +71,8 @@ let Calendar = function (container, params) {
     if (isAnotherMonth && s.params.onDraw) {
       s.params.onDraw(s.drawDate, {
         action: 'change',
-        type: s.type
+        type: s.type,
+        month: s.pages[1]
       })
     }
   }
@@ -117,7 +119,8 @@ let Calendar = function (container, params) {
     if (s.params.onDraw) {
       s.params.onDraw(s.drawDate, {
         action: action,
-        type: s.type
+        type: s.type,
+        month: s.pages[1]
       })
     }
 
@@ -156,7 +159,8 @@ let Calendar = function (container, params) {
     if (triggerChange && s.params.onDraw) {
       s.params.onDraw(s.drawDate, {
         action: action,
-        type: s.type
+        type: s.type,
+        month: s.pages[1]
       })
     }
 
