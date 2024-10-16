@@ -1,12 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import dimensionalArray from './utils/dimensionalArray'
 import DragList from './utils/DragList'
 import getIndex from './utils/getIndex'
-
-// 内库使用
-import { formatList } from './../../Select/utils'
-
-// 测试使用
-// import { formatList } from 'seedsui-react/lib/Select/utils'
+import Slots from './Slots'
 
 let Main = forwardRef(
   (
@@ -35,13 +31,16 @@ let Main = forwardRef(
     },
     ref
   ) => {
-    // 过滤非法数据
-    // eslint-disable-next-line
-    list = formatList(list)
+    // 一维数组强制改成二维数组
+    let lists = list
+    let listCount = dimensionalArray(list)
+    if (listCount === 1) {
+      lists = [list]
+    }
 
     // 节点
     let mainRef = useRef(null)
-    let slotRef = useRef(null)
+    let slotsRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: mainRef.current,
@@ -53,11 +52,10 @@ let Main = forwardRef(
     useEffect(() => {
       let dragList = DragList({
         container: mainRef.current,
+        lists: lists,
         cellSize: 44,
-        slotHeight: (list.length - 1) * 44,
-        slot: slotRef.current,
-        onDragEnd: ({ index }) => {
-          onChange && onChange([list[index]])
+        onDragEnd: ({ index, slotIndex }) => {
+          onChange && onChange([lists[slotIndex][index]])
         }
       })
       dragList.events('removeEventListener')
@@ -74,8 +72,12 @@ let Main = forwardRef(
 
     // 更新视图
     function update() {
-      let y = -getIndex(value, list) * 44
-      slotRef.current.style.transform = `translateY(${y}px)`
+      let slots = slotsRef.current.querySelectorAll('.picker-slot')
+      for (let i = 0; i < slots.length; i++) {
+        let slot = slots[i]
+        let y = -getIndex(value[i], lists[i]) * 44
+        slot.style.transform = `translateY(${y}px)`
+      }
     }
 
     return (
@@ -87,13 +89,7 @@ let Main = forwardRef(
         <div className="picker-layer">
           <div className="picker-layer-frame"></div>
         </div>
-        <div className="picker-slotbox">
-          <ul ref={slotRef} className="picker-slot text-center">
-            {(list || []).map((item, index) => {
-              return <li key={item.id || index}>{item.name}</li>
-            })}
-          </ul>
-        </div>
+        <Slots ref={slotsRef} lists={lists} />
       </div>
     )
   }

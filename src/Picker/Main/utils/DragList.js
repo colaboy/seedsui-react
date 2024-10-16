@@ -4,9 +4,8 @@ import MathUtil from './../../../MathUtil'
 // 添加拖动事件
 function DragList({
   container,
+  lists,
   cellSize = 44,
-  slot,
-  slotHeight,
   // 拖动结束返回项数
   onDragEnd
 }) {
@@ -26,8 +25,16 @@ function DragList({
     direction: null
   }
 
+  let slot = null
+  let slotIndex = null
+  let slotHeight = null
+
   // 触摸事件
   function onTouchStart(e) {
+    slot = e.target
+    slotIndex = slot.getAttribute('slotindex')
+    slotHeight = (lists[slotIndex].length - 1) * cellSize
+
     touches.startX = e.clientX || e.touches[0].clientX
     touches.startY = e.clientY || e.touches[0].clientY
     touches.posY = Number(getTranslateValue(slot.style.transform) || 0)
@@ -81,6 +88,7 @@ function DragList({
     // 更新值
     onDragEnd &&
       onDragEnd({
+        slotIndex: slotIndex,
         index: inertia.index
       })
   }
