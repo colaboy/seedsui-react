@@ -72,7 +72,7 @@ export default () => {
         //   )
         // }}
         onChange={handleChange}
-        onDraw={(...params) => {
+        onSlideChange={(...params) => {
           console.log('视图变化', ...params)
           setData({ '2024-04-10': '1' })
         }}

@@ -1,34 +1,20 @@
-import { Months, getTranslateValue, slideX, slideY } from './utils'
+import { getTranslateValue } from './utils'
 
 // 日历
-let Calendar = function (container, params) {
-  // Initial params
-  let defaults = {
-    // Value
-    drawDate: new Date(),
-    min: null,
-    max: null,
-    weekStart: null,
-
+let Calendar = function (
+  container,
+  {
     // Render
-    draggable: ['horizontal', 'vertical'],
-    type: 'month',
-    threshold: 50,
-    duration: 300,
-    cellHeight: 40,
+    draggable = ['horizontal', 'vertical'],
+    threshold = 50,
+    cellHeight = 40,
 
     // Events
-    onDraw: null
+    onSlideX = null,
+    onSlideY = null
   }
-  // eslint-disable-next-line
-  params = params || {}
-  for (let def in defaults) {
-    if (params[def] === undefined) {
-      params[def] = defaults[def]
-    }
-  }
+) {
   let s = this
-  s.params = params
   s.touches = {
     startX: 0,
     startY: 0,
@@ -40,132 +26,18 @@ let Calendar = function (container, params) {
   s.body = s.container.querySelector('.calendar-body')
   s.bodyX = s.container.querySelector('.calendar-body-x')
   s.bodyY = s.container.querySelector('.calendar-body-y')
-  s.bodyHeight = s.params.cellHeight * 6
-
-  // Week row index or 'month'
-  s.type = s.params.type
+  // s.bodyHeight = s.params.cellHeight * 6
 
   // Get three pages dates
-  s.drawDate = s.params.drawDate || new Date()
   s.pages = null
 
   /* --------------------
   Methods
   -------------------- */
-  s.updateDrawDate = function (currentDate) {
-    let date = currentDate
-    if (date instanceof Date === false) {
-      return
-    }
-    // 是否跨月，跨月视图会切换，需要触发视图刷新函数
-    let isAnotherMonth =
-      date.getFullYear() + date.getMonth() !== s.drawDate.getFullYear() + s.drawDate.getMonth()
-
-    // 当前日期
-    s.drawDate = date
-
-    // 更新日期数据
-    s.init()
-
-    // 如果跨月，表示视图刷新，则需要触发onDraw
-    if (isAnotherMonth && s.params.onDraw) {
-      s.params.onDraw(s.drawDate, {
-        action: 'change',
-        type: s.type,
-        month: s.pages[1]
-      })
-    }
-  }
-
-  s.updateContainer = function () {
-    s.bodyHeight = s.params.cellHeight * 6
-    s.body.style.height = s.bodyHeight + 'px'
-  }
-
-  // 更新日期数据
-  s.updateDates = function () {
-    let months = Months.getMonths(s.drawDate, { weekStart: s.params.weekStart })
-    s.pages = Months.paginateMonths(months, {
-      weekStart: s.params.weekStart,
-      drawDate: s.drawDate,
-      type: s.type
-    })
-  }
-
-  // 左右滑动
-  s.slideX = async function (action) {
-    s.drawDate = await slideX(action, {
-      type: s.type,
-      min: s.params.min,
-      max: s.params.max,
-      duration: s.params.duration,
-      weekStart: s.params.weekStart,
-      drawDate: s.drawDate,
-      container: s.container,
-      bodyX: s.bodyX,
-      bodyY: s.bodyY,
-      cellHeight: s.params.cellHeight
-    })
-
-    // No action No onDraw
-    if (!action) {
-      return s.drawDate
-    }
-
-    // 更新日期数据
-    s.updateDates()
-
-    // 左右滑动才需要更新视图
-    if (s.params.onDraw) {
-      s.params.onDraw(s.drawDate, {
-        action: action,
-        type: s.type,
-        month: s.pages[1]
-      })
-    }
-
-    return s.drawDate
-  }
-
-  // 上下滑动
-  s.slideY = async function (action, triggerChange = true) {
-    s.type = slideY(action, {
-      type: s.type,
-      duration: s.params.duration,
-      weekStart: s.params.weekStart,
-      cellHeight: s.params.cellHeight,
-      bodyHeight: s.bodyHeight,
-      drawDate: s.drawDate,
-      body: s.body,
-      bodyY: s.bodyY
-    })
-
-    // 样式标记展开和收缩
-    if (action) {
-      s.container.classList.remove('expand')
-      s.container.classList.remove('collapse')
-      s.container.classList.add(action)
-    }
-
-    // 更新日期数据
-    s.updateDates()
-
-    // No action No onDraw
-    if (!action) {
-      return s.type
-    }
-
-    // Trigger event
-    if (triggerChange && s.params.onDraw) {
-      s.params.onDraw(s.drawDate, {
-        action: action,
-        type: s.type,
-        month: s.pages[1]
-      })
-    }
-
-    return s.type
-  }
+  // s.updateContainer = function () {
+  //   s.bodyHeight = s.params.cellHeight * 6
+  //   s.body.style.height = s.bodyHeight + 'px'
+  // }
 
   /* --------------------
   Events handle
@@ -188,14 +60,11 @@ let Calendar = function (container, params) {
       s.touches.direction = Math.abs(diffX) > Math.abs(diffY) ? 'horizontal' : 'vertical'
     }
     // 禁止上下拖动
-    if (
-      s.params.draggable?.includes('horizontal') === false &&
-      s.touches.direction === 'horizontal'
-    ) {
+    if (draggable?.includes('horizontal') === false && s.touches.direction === 'horizontal') {
       s.touches.direction = null
     }
     // 禁止左右拖动
-    if (s.params.draggable?.includes('vertical') === false && s.touches.direction === 'vertical') {
+    if (draggable?.includes('vertical') === false && s.touches.direction === 'vertical') {
       s.touches.direction = null
     }
 
@@ -234,7 +103,7 @@ let Calendar = function (container, params) {
         initTranslateY = getTranslateValue(s.bodyY.style.transform)
         s.bodyY.setAttribute('data-translateY', initTranslateY)
       }
-      let translateY = Number(initTranslateY) + moveY - s.params.cellHeight
+      let translateY = Number(initTranslateY) + moveY - cellHeight
       if (translateY < 0) {
         s.bodyY.style.transform = `translateY(${translateY}px)`
       }
@@ -255,34 +124,34 @@ let Calendar = function (container, params) {
     // 左右滑动
     if (direction === 'horizontal') {
       // 滑动动作过小，则还原
-      if (Math.abs(diffX) < s.params.threshold) {
-        s.slideX('')
+      if (Math.abs(diffX) < threshold) {
+        onSlideX && onSlideX('')
         return
       }
 
       // 下一页
       if (diffX > 0) {
-        s.slideX('next')
+        onSlideX && onSlideX('next')
       }
       // 上一页
       else {
-        s.slideX('previous')
+        onSlideX && onSlideX('previous')
       }
     }
     // 上下滑动
     else if (direction === 'vertical') {
       // 滑动动作过小，则还原
-      if (Math.abs(diffY) < s.params.threshold) {
-        s.slideY('')
+      if (Math.abs(diffY) < threshold) {
+        onSlideY && onSlideY('')
         return
       }
       // 展开
       if (diffY < 0) {
-        s.slideY('expand')
+        onSlideY && onSlideY('expand')
       }
       // 收缩
       else {
-        s.slideY('collapse')
+        onSlideY && onSlideY('collapse')
       }
     }
   }
@@ -299,10 +168,7 @@ let Calendar = function (container, params) {
   }
   s.attach = function () {
     // 禁止拖拽
-    if (
-      s.params.draggable?.includes('horizontal') === false &&
-      s.params.draggable?.includes('vertical') === false
-    ) {
+    if (draggable?.includes('horizontal') === false && draggable?.includes('vertical') === false) {
       return
     }
     s.events()
@@ -313,31 +179,6 @@ let Calendar = function (container, params) {
 
   // Bind touch events
   s.attach()
-
-  /* --------------------
-  Init
-  -------------------- */
-  s.init = function () {
-    // Init container size
-    s.updateContainer()
-
-    // 更新日期数据
-    s.updateDates()
-
-    // 周
-    if (s.type === 'month') {
-      s.slideY('expand', false)
-    }
-    // 月
-    else {
-      s.slideY('collapse', false)
-    }
-
-    // 初始化显示中间页
-    s.slideX('')
-  }
-
-  s.init()
 
   return s
 }
