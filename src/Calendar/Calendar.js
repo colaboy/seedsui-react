@@ -1,8 +1,16 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
-import { getTitle, slideX, slideY, isSelectedDate, isDisabledDate, Months, Weeks } from './utils'
-import Instance from './instance'
+import {
+  getTitle,
+  slideX,
+  slideY,
+  isSelectedDate,
+  isDisabledDate,
+  Drag,
+  Months,
+  Weeks
+} from './utils'
 import Header from './Header'
 import Toggle from './Toggle'
 
@@ -43,8 +51,6 @@ const Calendar = forwardRef(
   ) => {
     // 容器
     const rootRef = useRef(null)
-    // 实例
-    const instanceRef = useRef(null)
 
     // 当前日期，用于绘制日历
     let pagesRef = useRef(null)
@@ -56,8 +62,8 @@ const Calendar = forwardRef(
     handleSlideXRef.current = handleSlideX
     let handleSlideYRef = useRef(null)
     handleSlideYRef.current = handleSlideY
-    let handleDrawDateRef = useRef(null)
-    handleDrawDateRef.current = handleDrawDate
+    let updateDrawDateRef = useRef(null)
+    updateDrawDateRef.current = updateDrawDate
 
     // 暴露方法
     useImperativeHandle(ref, () => {
@@ -65,23 +71,30 @@ const Calendar = forwardRef(
         rootDOM: rootRef.current,
         getRootDOM: () => rootRef.current,
         slideCollapse: async () => {
-          let result = await instanceRef.current.slideY('collapse')
-          return result
+          let newDrawType = await handleSlideYRef.current('collapse')
+          drawTypeRef.current = newDrawType
+          updateDrawDateRef.current(drawDate)
+
+          return newDrawType
         },
         slideExpand: async () => {
-          let result = await instanceRef.current.slideY('expand')
-          return result
+          let newDrawType = await handleSlideYRef.current('expand')
+          drawTypeRef.current = newDrawType
+          updateDrawDateRef.current(drawDate)
+
+          return newDrawType
         },
         slidePrevious: async () => {
-          let result = await instanceRef.current.slideX('previous')
-          return result
+          let newDrawDate = await handleSlideXRef.current('previous')
+          updateDrawDateRef.current(newDrawDate)
+
+          return newDrawDate
         },
         slideNext: async () => {
-          let result = await instanceRef.current.slideX('next')
-          return result
-        },
-        updateDrawDate: (newDrawDate) => {
-          handleDrawDate(newDrawDate || value)
+          let newDrawDate = await handleSlideXRef.current('next')
+          updateDrawDateRef.current(newDrawDate)
+
+          return newDrawDate
         }
       }
     })
@@ -92,7 +105,7 @@ const Calendar = forwardRef(
       // eslint-disable-next-line
       drawDate = getDrawDate(value)
       drawTypeRef.current = type
-      handleDrawDate(drawDate)
+      updateDrawDate(drawDate)
 
       // 更新容器位置
       if (drawTypeRef.current === 'month') {
@@ -102,7 +115,8 @@ const Calendar = forwardRef(
       }
       handleSlideX('')
 
-      instanceRef.current = new Instance(rootRef.current, {
+      // 绑定事件
+      let drag = Drag(rootRef.current, {
         // Render
         draggable: draggable,
         threshold: 50,
@@ -110,14 +124,16 @@ const Calendar = forwardRef(
         // Events
         onSlideX: async (action) => {
           let newDrawDate = await handleSlideXRef.current(action)
-          handleDrawDateRef.current(newDrawDate)
+          updateDrawDateRef.current(newDrawDate)
         },
         onSlideY: async (action) => {
           let newDrawType = await handleSlideYRef.current(action)
           drawTypeRef.current = newDrawType
-          handleDrawDateRef.current(drawDate)
+          updateDrawDateRef.current(drawDate)
         }
       })
+      drag.events('removeEventListener')
+      drag.events('addEventListener')
 
       // 加载事件
       if (onLoad) {
@@ -132,7 +148,7 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      handleDrawDate(value)
+      updateDrawDate(value)
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
@@ -201,10 +217,10 @@ const Calendar = forwardRef(
     // 触发SlideChange
     function handleSlideChange(action) {
       if (onSlideChange) {
-        onSlideChange(instanceRef?.current?.drawDate, {
-          action: 'nextMonth',
-          type: instanceRef?.current?.type,
-          month: instanceRef?.current?.pages[1]
+        onSlideChange(drawDate, {
+          action: action,
+          type: drawTypeRef.current,
+          month: pagesRef.current?.[1] || null
         })
       }
     }
@@ -232,44 +248,44 @@ const Calendar = forwardRef(
     }
 
     // Last month
-    function handlePreviousMonth(e) {
-      e.stopPropagation()
-      let newDrawDate = instanceRef?.current?.slideX('previous')
-      handleDrawDate(newDrawDate)
+    async function handlePreviousMonth(e) {
+      e && e.stopPropagation()
+      let newDrawDate = await handleSlideX('previous')
+      updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
       handleSlideChange('previousMonth')
     }
     // Next month
-    function handleNextMonth(e) {
-      e.stopPropagation()
-      let newDrawDate = instanceRef?.current?.slideX('next')
-      handleDrawDate(newDrawDate)
+    async function handleNextMonth(e) {
+      e && e.stopPropagation()
+      let newDrawDate = await handleSlideX('next')
+      updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
       handleSlideChange('nextMonth')
     }
     // Last year
     function handlePreviousYear(e) {
-      e.stopPropagation()
+      e && e.stopPropagation()
       let lastYear = dayjs(drawDate).subtract(1, 'year')
-      handleDrawDate(lastYear.toDate())
+      updateDrawDate(lastYear.toDate())
 
       // Trigger onSlideChange
       handleSlideChange('previousYear')
     }
     // Next year
     function handleNextYear(e) {
-      e.stopPropagation()
+      e && e.stopPropagation()
       let nextYear = dayjs(drawDate).add(1, 'year')
-      handleDrawDate(nextYear.toDate())
+      updateDrawDate(nextYear.toDate())
 
       // Trigger onSlideChange
       handleSlideChange('nextYear')
     }
 
     // 更新日期
-    function handleDrawDate(newDrawDate) {
+    function updateDrawDate(newDrawDate) {
       pagesRef.current = updateDates(newDrawDate)
       setDrawDate(newDrawDate)
     }
@@ -289,19 +305,18 @@ const Calendar = forwardRef(
             onPreviousYear={handlePreviousYear}
             onNextYear={handleNextYear}
           >
-            {getTitle(drawDate, titleFormatter, instanceRef.current)}
+            {getTitle(drawDate, titleFormatter)}
           </Header>
         )}
         {typeof header === 'function' &&
           header({
-            title: getTitle(drawDate, titleFormatter, instanceRef.current),
+            title: getTitle(drawDate, titleFormatter),
             onPreviousMonth: handlePreviousMonth,
             onNextMonth: handleNextMonth,
             onPreviousYear: handlePreviousYear,
             onNextYear: handleNextYear,
             drawDate,
-            titleFormatter,
-            instance: instanceRef.current
+            titleFormatter
           })}
         <div className="calendar-days">
           {Weeks.getWeekNames(weekStart).map((dayName) => {

@@ -5,13 +5,13 @@ import DateUtil from './../../DateUtil'
 // import { DateUtil } from 'seedsui-react'
 
 // 获取标题字符串
-function getTitle(drawDate, titleFormatter, info) {
+function getTitle(drawDate, titleFormatter) {
   if (!drawDate) {
     return ''
   }
   let title = ''
   if (typeof titleFormatter === 'function') {
-    title = titleFormatter(drawDate, info)
+    title = titleFormatter(drawDate)
   } else {
     let format = typeof titleFormatter === 'string' ? titleFormatter : 'YYYY-MM'
     title = DateUtil.format(drawDate, format)

@@ -1,3 +1,4 @@
+import Drag from './Drag'
 import Weeks from './Weeks'
 import Months from './Months'
 import isSelectedDate from './isSelectedDate'
@@ -8,6 +9,7 @@ import slideY from './slideY'
 import slideX from './slideX'
 
 export {
+  Drag,
   Weeks,
   Months,
   isSelectedDate,
