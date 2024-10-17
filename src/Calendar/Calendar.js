@@ -305,16 +305,23 @@ const Calendar = forwardRef(
             } else if (action === 'next') {
               handleNextMonth()
             } else {
-              updateDrawDate(drawDate)
+              handleSlideX('')
             }
           }}
           onSlideY={async (action) => {
+            if (!action) {
+              if (drawTypeRef.current === 'week') {
+                // eslint-disable-next-line
+                action = 'collapse'
+              } else {
+                // eslint-disable-next-line
+                action = 'expand'
+              }
+            }
             if (action === 'expand') {
               handleExpand()
             } else if (action === 'collapse') {
               handleCollapse()
-            } else {
-              updateDrawDate(drawDate)
             }
           }}
         />
