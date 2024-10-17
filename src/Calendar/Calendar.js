@@ -65,36 +65,22 @@ const Calendar = forwardRef(
     let updateDrawDateRef = useRef(null)
     updateDrawDateRef.current = updateDrawDate
 
-    // 暴露方法
+    // Expose Methods
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
         getRootDOM: () => rootRef.current,
         slideCollapse: async () => {
-          let newDrawType = await handleSlideYRef.current('collapse')
-          drawTypeRef.current = newDrawType
-          updateDrawDateRef.current(drawDate)
-
-          return newDrawType
+          handleCollapse()
         },
         slideExpand: async () => {
-          let newDrawType = await handleSlideYRef.current('expand')
-          drawTypeRef.current = newDrawType
-          updateDrawDateRef.current(drawDate)
-
-          return newDrawType
+          handleExpand()
         },
         slidePrevious: async () => {
-          let newDrawDate = await handleSlideXRef.current('previous')
-          updateDrawDateRef.current(newDrawDate)
-
-          return newDrawDate
+          handlePreviousMonth()
         },
         slideNext: async () => {
-          let newDrawDate = await handleSlideXRef.current('next')
-          updateDrawDateRef.current(newDrawDate)
-
-          return newDrawDate
+          handleNextMonth()
         }
       }
     })
@@ -148,7 +134,13 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      updateDrawDate(value)
+      let newDrawDate = null
+      if (Array.isArray(value) && value.length === 2) {
+        newDrawDate = value[0]
+      }
+      if (newDrawDate instanceof Date) {
+        updateDrawDate(newDrawDate)
+      }
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
@@ -191,17 +183,6 @@ const Calendar = forwardRef(
       })
 
       return newDrawDate
-    }
-
-    // 更新日期数据
-    function updateDates(drawDate) {
-      let months = Months.getMonths(drawDate, { weekStart: weekStart })
-      let pages = Months.paginateMonths(months, {
-        weekStart: weekStart,
-        drawDate: drawDate,
-        type: drawTypeRef.current
-      })
-      return pages
     }
 
     // 获取当前绘制日期
@@ -247,7 +228,7 @@ const Calendar = forwardRef(
       onChange && onChange([newDate, newDate])
     }
 
-    // Last month
+    // Last month or week
     async function handlePreviousMonth(e) {
       e && e.stopPropagation()
       let newDrawDate = await handleSlideX('previous')
@@ -256,7 +237,7 @@ const Calendar = forwardRef(
       // Trigger onSlideChange
       handleSlideChange('previousMonth')
     }
-    // Next month
+    // Next month or week
     async function handleNextMonth(e) {
       e && e.stopPropagation()
       let newDrawDate = await handleSlideX('next')
@@ -283,10 +264,33 @@ const Calendar = forwardRef(
       // Trigger onSlideChange
       handleSlideChange('nextYear')
     }
+    // Collapse and expand
+    async function handleCollapse() {
+      let newDrawType = await handleSlideY('collapse')
+      drawTypeRef.current = newDrawType
+      updateDrawDate(drawDate)
+    }
+    async function handleExpand() {
+      let newDrawType = await handleSlideY('expand')
+      drawTypeRef.current = newDrawType
+      updateDrawDate(drawDate)
+    }
 
     // 更新日期
     function updateDrawDate(newDrawDate) {
-      pagesRef.current = updateDates(newDrawDate)
+      if (!newDrawDate) {
+        // eslint-disable-next-line
+        newDrawDate = value || new Date()
+      }
+
+      let months = Months.getMonths(newDrawDate, { weekStart: weekStart })
+      let pages = Months.paginateMonths(months, {
+        weekStart: weekStart,
+        drawDate: newDrawDate,
+        type: drawTypeRef.current
+      })
+      pagesRef.current = pages
+
       setDrawDate(newDrawDate)
     }
 
