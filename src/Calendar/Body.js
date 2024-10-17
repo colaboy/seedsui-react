@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { isSelectedDate, isDisabledDate, getTranslateValue } from './utils'
+import Toggle from './Toggle'
 
 // 内库使用
 import DateUtil from './../DateUtil'
@@ -179,74 +180,90 @@ const Body = forwardRef(
     }
 
     return (
-      <div
-        ref={rootRef}
-        className="calendar-body"
-        style={{ height: cellHeight * 6 }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="calendar-body-y">
-          <div className="calendar-body-x">
-            {/* 3页 */}
-            {(pages || []).map((page, pageIndex) => {
-              return (
-                <div className="calendar-page" key={pageIndex}>
-                  {/* 6行 */}
-                  {page.map((row, rowIndex) => {
-                    return (
-                      <div className="calendar-row" key={rowIndex}>
-                        {/* 7列 */}
-                        {row.map((date, dateIndex) => {
-                          let isSelected = isSelectedDate(date, value)
-                          let selectedClassNames = []
-                          if (isSelected?.includes('selected')) {
-                            selectedClassNames.push('calendar-date-selected')
-                          }
-                          if (isSelected?.includes('selected-start')) {
-                            selectedClassNames.push('calendar-date-selected-start')
-                          }
-                          if (isSelected?.includes('selected-end')) {
-                            selectedClassNames.push('calendar-date-selected-end')
-                          }
-                          selectedClassNames = selectedClassNames.join(' ')
+      <>
+        <div
+          ref={rootRef}
+          className="calendar-body"
+          style={{ height: cellHeight * 6 }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="calendar-body-y">
+            <div className="calendar-body-x">
+              {/* 3页 */}
+              {(pages || []).map((page, pageIndex) => {
+                return (
+                  <div className="calendar-page" key={pageIndex}>
+                    {/* 6行 */}
+                    {page.map((row, rowIndex) => {
+                      return (
+                        <div className="calendar-row" key={rowIndex}>
+                          {/* 7列 */}
+                          {row.map((date, dateIndex) => {
+                            let isSelected = isSelectedDate(date, value)
+                            let selectedClassNames = []
+                            if (isSelected?.includes('selected')) {
+                              selectedClassNames.push('calendar-date-selected')
+                            }
+                            if (isSelected?.includes('selected-start')) {
+                              selectedClassNames.push('calendar-date-selected-start')
+                            }
+                            if (isSelected?.includes('selected-end')) {
+                              selectedClassNames.push('calendar-date-selected-end')
+                            }
+                            selectedClassNames = selectedClassNames.join(' ')
 
-                          return (
-                            <div
-                              key={dateIndex}
-                              className={`calendar-date ${
-                                date.isCurrent ? 'calendar-date-in-view' : 'calendar-date-out-view'
-                              }${
-                                DateUtil.compare(new Date(), date) === 0
-                                  ? ' calendar-date-today'
-                                  : ''
-                              }${selectedClassNames ? ' ' + selectedClassNames : ''}${
-                                isDisabledDate(date, { min, max }) ? ' calendar-date-disabled' : ''
-                              }`}
-                              style={{ height: cellHeight + 'px' }}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                onChange && onChange(date)
-                              }}
-                            >
-                              {typeof dateRender === 'function' ? (
-                                dateRender(date)
-                              ) : (
-                                <div className="calendar-date-num">{date.getDate()}</div>
-                              )}
-                            </div>
-                          )
-                        })}
-                      </div>
-                    )
-                  })}
-                </div>
-              )
-            })}
+                            return (
+                              <div
+                                key={dateIndex}
+                                className={`calendar-date ${
+                                  date.isCurrent
+                                    ? 'calendar-date-in-view'
+                                    : 'calendar-date-out-view'
+                                }${
+                                  DateUtil.compare(new Date(), date) === 0
+                                    ? ' calendar-date-today'
+                                    : ''
+                                }${selectedClassNames ? ' ' + selectedClassNames : ''}${
+                                  isDisabledDate(date, { min, max })
+                                    ? ' calendar-date-disabled'
+                                    : ''
+                                }`}
+                                style={{ height: cellHeight + 'px' }}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  onChange && onChange(date)
+                                }}
+                              >
+                                {typeof dateRender === 'function' ? (
+                                  dateRender(date)
+                                ) : (
+                                  <div className="calendar-date-num">{date.getDate()}</div>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
-      </div>
+        {draggable.includes('vertical') && (
+          <div
+            className="calendar-footer"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <Toggle />
+          </div>
+        )}
+      </>
     )
   }
 )

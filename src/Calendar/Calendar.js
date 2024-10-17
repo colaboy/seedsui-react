@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
 import { getTitle, formatDrawDate, slideX, slideY, Months, Weeks } from './utils'
 import Header from './Header'
-import Toggle from './Toggle'
 import Body from './Body'
 
 const cellHeight = 40
@@ -325,11 +324,6 @@ const Calendar = forwardRef(
             }
           }}
         />
-        {draggable.includes('vertical') && (
-          <div className="calendar-footer">
-            <Toggle />
-          </div>
-        )}
       </div>
     )
   }
