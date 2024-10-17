@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dimensionalArray from './utils/dimensionalArray'
+import formatValue from './utils/formatValue'
 import DragList from './utils/DragList'
 import getIndex from './utils/getIndex'
 import Slots from './Slots'
@@ -41,6 +42,9 @@ let Main = forwardRef(
     // 节点
     let mainRef = useRef(null)
     let slotsRef = useRef(null)
+    let valueRef = useRef(null)
+    valueRef.current = formatValue(value, { lists, listCount })
+
     useImperativeHandle(ref, () => {
       return {
         rootDOM: mainRef.current,
@@ -54,8 +58,10 @@ let Main = forwardRef(
         container: mainRef.current,
         lists: lists,
         cellSize: 44,
-        onDragEnd: ({ index, slotIndex }) => {
-          onChange && onChange([lists[slotIndex][index]])
+        onDragEnd: ({ rowIndex, slotIndex }) => {
+          valueRef.current[slotIndex] = lists[slotIndex][rowIndex]
+
+          onChange && onChange(valueRef.current)
         }
       })
       dragList.events('removeEventListener')

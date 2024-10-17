@@ -89,7 +89,7 @@ function DragList({
     onDragEnd &&
       onDragEnd({
         slotIndex: slotIndex,
-        index: inertia.index
+        rowIndex: inertia.index
       })
   }
 
