@@ -1,9 +1,15 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
-import { getTitle, formatDrawDate, slideX, slideY, Months, Weeks } from './utils'
+import { getTitle, formatDrawDate, isDisabledDate, slideX, slideY, Months, Weeks } from './utils'
 import Header from './Header'
 import Body from './Body'
+
+// 内库使用
+import DateUtil from './../DateUtil'
+
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
 
 const cellHeight = 40
 const duration = 300
@@ -66,7 +72,7 @@ const Calendar = forwardRef(
     useEffect(() => {
       // 更新pages
       // eslint-disable-next-line
-      drawDate = formatDrawDate(value)
+      drawDate = formatDrawDate(value, { min, max })
       drawTypeRef.current = type
       updateDrawDate(drawDate)
 
@@ -91,7 +97,7 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      let newDrawDate = formatDrawDate(value)
+      let newDrawDate = formatDrawDate(value, { min, max })
       updateDrawDate(newDrawDate)
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
@@ -174,6 +180,13 @@ const Calendar = forwardRef(
     async function handlePreviousMonth(e) {
       e && e.stopPropagation()
       let newDrawDate = await handleSlideX('previous')
+
+      // 访问禁止日期
+      if (DateUtil.compare(newDrawDate, drawDate) === 0) {
+        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        return
+      }
+
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
@@ -183,6 +196,13 @@ const Calendar = forwardRef(
     async function handleNextMonth(e) {
       e && e.stopPropagation()
       let newDrawDate = await handleSlideX('next')
+
+      // 访问禁止日期
+      if (DateUtil.compare(newDrawDate, drawDate) === 0) {
+        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        return
+      }
+
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
@@ -192,7 +212,15 @@ const Calendar = forwardRef(
     function handlePreviousYear(e) {
       e && e.stopPropagation()
       let lastYear = dayjs(drawDate).subtract(1, 'year')
-      updateDrawDate(lastYear.toDate())
+      let newDrawDate = lastYear.toDate()
+
+      // 访问禁止日期
+      if (isDisabledDate(newDrawDate, { min, max })) {
+        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        return
+      }
+
+      updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
       handleSlideChange('previousYear')
@@ -201,7 +229,15 @@ const Calendar = forwardRef(
     function handleNextYear(e) {
       e && e.stopPropagation()
       let nextYear = dayjs(drawDate).add(1, 'year')
-      updateDrawDate(nextYear.toDate())
+      let newDrawDate = nextYear.toDate()
+
+      // 访问禁止日期
+      if (isDisabledDate(newDrawDate, { min, max })) {
+        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        return
+      }
+
+      updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
       handleSlideChange('nextYear')
