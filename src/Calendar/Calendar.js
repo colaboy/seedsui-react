@@ -1,24 +1,10 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
-import {
-  getTitle,
-  slideX,
-  slideY,
-  isSelectedDate,
-  isDisabledDate,
-  Drag,
-  Months,
-  Weeks
-} from './utils'
+import { getTitle, formatDrawDate, slideX, slideY, Months, Weeks } from './utils'
 import Header from './Header'
 import Toggle from './Toggle'
-
-// 内库使用
-import DateUtil from './../DateUtil'
-
-// 测试使用
-// import { DateUtil } from 'seedsui-react'
+import Body from './Body'
 
 const cellHeight = 40
 const duration = 300
@@ -57,14 +43,6 @@ const Calendar = forwardRef(
     let drawTypeRef = useRef(type)
     let [drawDate, setDrawDate] = useState(null)
 
-    // 解决内存驻留的问题
-    let handleSlideXRef = useRef(null)
-    handleSlideXRef.current = handleSlideX
-    let handleSlideYRef = useRef(null)
-    handleSlideYRef.current = handleSlideY
-    let updateDrawDateRef = useRef(null)
-    updateDrawDateRef.current = updateDrawDate
-
     // Expose Methods
     useImperativeHandle(ref, () => {
       return {
@@ -89,7 +67,7 @@ const Calendar = forwardRef(
     useEffect(() => {
       // 更新pages
       // eslint-disable-next-line
-      drawDate = getDrawDate(value)
+      drawDate = formatDrawDate(value)
       drawTypeRef.current = type
       updateDrawDate(drawDate)
 
@@ -100,26 +78,6 @@ const Calendar = forwardRef(
         handleSlideY('collapse')
       }
       handleSlideX('')
-
-      // 绑定事件
-      let drag = Drag(rootRef.current, {
-        // Render
-        draggable: draggable,
-        threshold: 50,
-        cellHeight: cellHeight,
-        // Events
-        onSlideX: async (action) => {
-          let newDrawDate = await handleSlideXRef.current(action)
-          updateDrawDateRef.current(newDrawDate)
-        },
-        onSlideY: async (action) => {
-          let newDrawType = await handleSlideYRef.current(action)
-          drawTypeRef.current = newDrawType
-          updateDrawDateRef.current(drawDate)
-        }
-      })
-      drag.events('removeEventListener')
-      drag.events('addEventListener')
 
       // 加载事件
       if (onLoad) {
@@ -134,13 +92,8 @@ const Calendar = forwardRef(
 
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
-      let newDrawDate = null
-      if (Array.isArray(value) && value.length === 2) {
-        newDrawDate = value[0]
-      }
-      if (newDrawDate instanceof Date) {
-        updateDrawDate(newDrawDate)
-      }
+      let newDrawDate = formatDrawDate(value)
+      updateDrawDate(newDrawDate)
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
@@ -185,20 +138,10 @@ const Calendar = forwardRef(
       return newDrawDate
     }
 
-    // 获取当前绘制日期
-    function getDrawDate(newActive) {
-      let date = Array.isArray(newActive) && newActive.length === 2 ? newActive[0] : newActive
-      if (date instanceof Date) {
-        return date
-      } else {
-        return new Date()
-      }
-    }
-
     // 触发SlideChange
-    function handleSlideChange(action) {
+    function handleSlideChange(action, newDrawDate) {
       if (onSlideChange) {
-        onSlideChange(drawDate, {
+        onSlideChange(newDrawDate || drawDate, {
           action: action,
           type: drawTypeRef.current,
           month: pagesRef.current?.[1] || null
@@ -235,7 +178,7 @@ const Calendar = forwardRef(
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('previousMonth')
+      handleSlideChange('previousMonth', newDrawDate)
     }
     // Next month or week
     async function handleNextMonth(e) {
@@ -244,7 +187,7 @@ const Calendar = forwardRef(
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('nextMonth')
+      handleSlideChange('nextMonth', newDrawDate)
     }
     // Last year
     function handlePreviousYear(e) {
@@ -269,11 +212,17 @@ const Calendar = forwardRef(
       let newDrawType = await handleSlideY('collapse')
       drawTypeRef.current = newDrawType
       updateDrawDate(drawDate)
+
+      // Trigger onSlideChange
+      handleSlideChange('collapse')
     }
     async function handleExpand() {
       let newDrawType = await handleSlideY('expand')
       drawTypeRef.current = newDrawType
       updateDrawDate(drawDate)
+
+      // Trigger onSlideChange
+      handleSlideChange('expand')
     }
 
     // 更新日期
@@ -309,12 +258,12 @@ const Calendar = forwardRef(
             onPreviousYear={handlePreviousYear}
             onNextYear={handleNextYear}
           >
-            {getTitle(drawDate, titleFormatter)}
+            {getTitle(drawDate, titleFormatter, { type: drawTypeRef.current })}
           </Header>
         )}
         {typeof header === 'function' &&
           header({
-            title: getTitle(drawDate, titleFormatter),
+            title: getTitle(drawDate, titleFormatter, { type: drawTypeRef.current }),
             onPreviousMonth: handlePreviousMonth,
             onNextMonth: handleNextMonth,
             onPreviousYear: handlePreviousYear,
@@ -331,75 +280,44 @@ const Calendar = forwardRef(
             )
           })}
         </div>
-        <div className="calendar-body" style={{ height: cellHeight * 6 }}>
-          <div className="calendar-body-y">
-            <div className="calendar-body-x">
-              {/* 3页 */}
-              {(pagesRef.current || []).map((page, pageIndex) => {
-                return (
-                  <div className="calendar-page" key={pageIndex}>
-                    {/* 6行 */}
-                    {page.map((row, rowIndex) => {
-                      return (
-                        <div className="calendar-row" key={rowIndex}>
-                          {/* 7列 */}
-                          {row.map((date, dateIndex) => {
-                            let isSelected = isSelectedDate(date, value)
-                            let selectedClassNames = []
-                            if (isSelected?.includes('selected')) {
-                              selectedClassNames.push('calendar-date-selected')
-                            }
-                            if (isSelected?.includes('selected-start')) {
-                              selectedClassNames.push('calendar-date-selected-start')
-                            }
-                            if (isSelected?.includes('selected-end')) {
-                              selectedClassNames.push('calendar-date-selected-end')
-                            }
-                            selectedClassNames = selectedClassNames.join(' ')
-
-                            return (
-                              <div
-                                key={dateIndex}
-                                className={`calendar-date ${
-                                  date.isCurrent
-                                    ? 'calendar-date-in-view'
-                                    : 'calendar-date-out-view'
-                                }${
-                                  DateUtil.compare(new Date(), date) === 0
-                                    ? ' calendar-date-today'
-                                    : ''
-                                }${selectedClassNames ? ' ' + selectedClassNames : ''}${
-                                  isDisabledDate(date, { min, max })
-                                    ? ' calendar-date-disabled'
-                                    : ''
-                                }`}
-                                style={{ height: cellHeight + 'px' }}
-                                onClick={(e) => {
-                                  if (selectionMode === 'range') {
-                                    handleRangeClick(date)
-                                  } else {
-                                    onChange && onChange(date)
-                                  }
-                                  e.stopPropagation()
-                                }}
-                              >
-                                {typeof dateRender === 'function' ? (
-                                  dateRender(date)
-                                ) : (
-                                  <div className="calendar-date-num">{date.getDate()}</div>
-                                )}
-                              </div>
-                            )
-                          })}
-                        </div>
-                      )
-                    })}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
+        <Body
+          cellHeight={cellHeight}
+          pages={pagesRef.current}
+          value={value}
+          selectionMode={selectionMode}
+          min={min}
+          max={max}
+          draggable={draggable}
+          // 单个日期渲染
+          dateRender={dateRender}
+          // Event: click date
+          onChange={(date) => {
+            if (selectionMode === 'range') {
+              handleRangeClick && handleRangeClick(date)
+            } else {
+              onChange && onChange(date)
+            }
+          }}
+          // Event: view change
+          onSlideX={async (action) => {
+            if (action === 'previous') {
+              handlePreviousMonth()
+            } else if (action === 'next') {
+              handleNextMonth()
+            } else {
+              updateDrawDate(drawDate)
+            }
+          }}
+          onSlideY={async (action) => {
+            if (action === 'expand') {
+              handleExpand()
+            } else if (action === 'collapse') {
+              handleCollapse()
+            } else {
+              updateDrawDate(drawDate)
+            }
+          }}
+        />
         {draggable.includes('vertical') && (
           <div className="calendar-footer">
             <Toggle />

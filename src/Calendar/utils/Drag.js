@@ -14,6 +14,10 @@ let Drag = function (
     onSlideY = null
   }
 ) {
+  let s = this
+  s.onSlideX = onSlideX
+  s.onSlideY = onSlideY
+
   let touches = {
     startX: 0,
     startY: 0,
@@ -111,33 +115,33 @@ let Drag = function (
     if (direction === 'horizontal') {
       // 滑动动作过小，则还原
       if (Math.abs(diffX) < threshold) {
-        onSlideX && onSlideX('')
+        s.onSlideX && s.onSlideX('')
         return
       }
 
       // 下一页
       if (diffX > 0) {
-        onSlideX && onSlideX('next')
+        s.onSlideX && s.onSlideX('next')
       }
       // 上一页
       else {
-        onSlideX && onSlideX('previous')
+        s.onSlideX && s.onSlideX('previous')
       }
     }
     // 上下滑动
     else if (direction === 'vertical') {
       // 滑动动作过小，则还原
       if (Math.abs(diffY) < threshold) {
-        onSlideY && onSlideY('')
+        s.onSlideY && s.onSlideY('')
         return
       }
       // 展开
       if (diffY < 0) {
-        onSlideY && onSlideY('expand')
+        s.onSlideY && s.onSlideY('expand')
       }
       // 收缩
       else {
-        onSlideY && onSlideY('collapse')
+        s.onSlideY && s.onSlideY('collapse')
       }
     }
   }
@@ -145,16 +149,14 @@ let Drag = function (
   /* --------------------
   Events control
   -------------------- */
-  function events(action) {
+  s.events = function (action) {
     container[action]('touchstart', handleTouchStart, false)
     container[action]('touchmove', handleTouchMove, false)
     container[action]('touchend', handleTouchEnd, false)
     container[action]('touchcancel', handleTouchEnd, false)
   }
 
-  return {
-    events: events
-  }
+  return s
 }
 
 export default Drag

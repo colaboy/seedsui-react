@@ -1,6 +1,7 @@
 import Drag from './Drag'
 import Weeks from './Weeks'
 import Months from './Months'
+import formatDrawDate from './formatDrawDate'
 import isSelectedDate from './isSelectedDate'
 import isDisabledDate from './isDisabledDate'
 import getTranslateValue from './getTranslateValue'
@@ -12,6 +13,7 @@ export {
   Drag,
   Weeks,
   Months,
+  formatDrawDate,
   isSelectedDate,
   isDisabledDate,
   getTranslateValue,
