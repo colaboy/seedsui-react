@@ -223,7 +223,7 @@ const Calendar = forwardRef(
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('previousYear')
+      handleSlideChange('previousYear', newDrawDate)
     }
     // Next year
     function handleNextYear(e) {
@@ -240,7 +240,7 @@ const Calendar = forwardRef(
       updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('nextYear')
+      handleSlideChange('nextYear', newDrawDate)
     }
     // Collapse and expand
     async function handleCollapse() {
