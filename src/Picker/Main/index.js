@@ -52,6 +52,14 @@ let Main = forwardRef(
       }
     })
 
+    // 列表从无到有,并且没有值,需要初始值
+    useEffect(() => {
+      if (!visible || !Array.isArray(list) || !list.length) return
+      if (!Array.isArray(value) || !value.length) {
+        onChange && onChange(valueRef.current)
+      }
+    }, [JSON.stringify(list)])
+
     useEffect(() => {
       if (visible && Array.isArray(value) && value.length) {
         update()
@@ -64,7 +72,7 @@ let Main = forwardRef(
       let slots = slotsRef.current.querySelectorAll('.picker-slot')
       for (let i = 0; i < slots.length; i++) {
         let slot = slots[i]
-        let y = -getIndex(value[i], lists[i]) * 44
+        let y = -getIndex(valueRef.current[i], lists[i]) * 44
         slot.style.transform = `translateY(${y}px)`
       }
     }
