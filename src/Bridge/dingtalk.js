@@ -27,7 +27,7 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    const { success, fail, complete } = params || {}
+    const { type, success, fail, complete } = params || {}
     // 调用定位
     if (LocationTask.locationTask) {
       LocationTask.locationTask.push(params)

@@ -58,6 +58,7 @@ let Main = forwardRef(
       if (!Array.isArray(value) || !value.length) {
         onChange && onChange(valueRef.current)
       }
+      // eslint-disable-next-line
     }, [JSON.stringify(list)])
 
     useEffect(() => {

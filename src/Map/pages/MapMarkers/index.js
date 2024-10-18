@@ -7,10 +7,10 @@ import Markers, { createIcon as createMarkerIcon } from './../../components/Mark
 import Result from './../../components/Result'
 
 // 内库使用
-// import locale from './../../../locale'
+import locale from './../../../locale'
 
 // 测试使用
-import { locale } from 'seedsui-react'
+// import { locale } from 'seedsui-react'
 
 // 地图标注
 function MapMarkers(
