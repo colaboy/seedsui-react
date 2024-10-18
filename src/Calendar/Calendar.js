@@ -332,6 +332,11 @@ const Calendar = forwardRef(
             } else {
               onChange && onChange(date)
             }
+
+            // 跨月视图发生变化, 需要触发onSlideChange
+            if (DateUtil.compare(date, drawDate, 'month') !== 0) {
+              handleSlideChange('change', date)
+            }
           }}
           // Event: view change
           onSlideX={async (action) => {
