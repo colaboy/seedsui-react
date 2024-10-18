@@ -76,7 +76,7 @@ const Main = forwardRef(
             }
             if (!format || typeof format !== 'string') {
               // 只有年月日、年月日时分才显示周几
-              format = `${getFormat(type)}${['date', 'datetime'].includes(type) ? ' d' : ''}`
+              format = `${getFormat(type)}${['date', 'datetime'].includes(type) ? ' ddd' : ''}`
             }
             return instance.current.formatTitle(format)
           }

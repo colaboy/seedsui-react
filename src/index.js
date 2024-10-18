@@ -8,6 +8,16 @@ import './PrototypeNumber.js'
 import './PrototypeDate.js'
 // import './PrototypePinyin.js' // 不常用
 
+// dayjs国际化
+import 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs'
+import isoWeek from 'dayjs/plugin/isoWeek'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+
+// 引入插件
+dayjs.extend(isoWeek) // 用于解决format时报错:isoWeek
+dayjs.extend(advancedFormat) // 支持高级format
+
 // 记录版本号
 const packageJson = require('./../package.json')
 if (packageJson?.version) {
