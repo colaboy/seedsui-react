@@ -81,7 +81,7 @@ let Lists = forwardRef(
 
       // 惯性值计算
       let inertia = MathUtil.inertia({
-        cellHeight: cellHeight,
+        cellSize: cellHeight,
         distance: touchesRef.current.diffY,
         duration: touchesRef.current.duration,
         currentPosition: touchesRef.current.currentPosY,
