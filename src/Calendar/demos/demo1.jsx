@@ -50,7 +50,7 @@ export default () => {
         // max={new Date('2024-12-17')}
         ref={calendarRef}
         weekStart={weekStart}
-        selectionMode={selectionMode}
+        // selectionMode={selectionMode}
         value={value}
         // titleFormatter="YYYY-MM-DD W周"
         titleFormatter={(date, info) => {

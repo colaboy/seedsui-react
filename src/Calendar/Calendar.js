@@ -152,8 +152,9 @@ const Calendar = forwardRef(
       return newDrawDate
     }
 
-    // 触发SlideChange
+    // 更新视图后, 触发SlideChange
     function handleSlideChange(action, newDrawDate) {
+      updateDrawDate(newDrawDate)
       if (onSlideChange) {
         onSlideChange(newDrawDate || drawDate, {
           action: action,
@@ -174,8 +175,6 @@ const Calendar = forwardRef(
         return
       }
 
-      updateDrawDate(newDrawDate)
-
       // Trigger onSlideChange
       handleSlideChange('previousMonth', newDrawDate)
     }
@@ -189,8 +188,6 @@ const Calendar = forwardRef(
         console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
         return
       }
-
-      updateDrawDate(newDrawDate)
 
       // Trigger onSlideChange
       handleSlideChange('nextMonth', newDrawDate)
@@ -207,8 +204,6 @@ const Calendar = forwardRef(
         return
       }
 
-      updateDrawDate(newDrawDate)
-
       // Trigger onSlideChange
       handleSlideChange('previousYear', newDrawDate)
     }
@@ -224,8 +219,6 @@ const Calendar = forwardRef(
         return
       }
 
-      updateDrawDate(newDrawDate)
-
       // Trigger onSlideChange
       handleSlideChange('nextYear', newDrawDate)
     }
@@ -233,18 +226,16 @@ const Calendar = forwardRef(
     async function handleCollapse() {
       let newDrawType = await handleSlideY('collapse')
       drawTypeRef.current = newDrawType
-      updateDrawDate(drawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('collapse')
+      handleSlideChange('collapse', drawDate)
     }
     async function handleExpand() {
       let newDrawType = await handleSlideY('expand')
       drawTypeRef.current = newDrawType
-      updateDrawDate(drawDate)
 
       // Trigger onSlideChange
-      handleSlideChange('expand')
+      handleSlideChange('expand', drawDate)
     }
 
     // 更新日期
