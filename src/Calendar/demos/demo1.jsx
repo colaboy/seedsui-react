@@ -30,15 +30,15 @@ export default () => {
   function handleChange(newValue) {
     console.log('修改', newValue)
     // 设置一周的数据
-    if (Array.isArray(newValue) && newValue.length === 2) {
-      let weekDates = Calendar.getWeekDates(newValue[0], weekStart)
-      if (Calendar.isDisabledDate(weekDates[0], { min: new Date() })) {
-        console.log('禁止访问' + DateUtil.format(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
-        return
-      }
-      // eslint-disable-next-line
-      newValue = [weekDates[0], weekDates[6]]
-    }
+    // if (Array.isArray(newValue) && newValue.length === 2) {
+    //   let weekDates = Calendar.getWeekDates(newValue[0], weekStart)
+    //   if (Calendar.isDisabledDate(weekDates[0], { min: new Date() })) {
+    //     console.log('禁止访问' + DateUtil.format(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
+    //     return
+    //   }
+    //   // eslint-disable-next-line
+    //   newValue = [weekDates[0], weekDates[6]]
+    // }
     setValue(newValue)
   }
 
@@ -50,7 +50,7 @@ export default () => {
         // max={new Date('2024-12-17')}
         ref={calendarRef}
         weekStart={weekStart}
-        // selectionMode={selectionMode}
+        selectionMode={selectionMode}
         value={value}
         // titleFormatter="YYYY-MM-DD W周"
         titleFormatter={(date, info) => {

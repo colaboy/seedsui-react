@@ -1,4 +1,3 @@
-import Drag from './Drag'
 import Weeks from './Weeks'
 import Months from './Months'
 import formatDrawDate from './formatDrawDate'
@@ -8,9 +7,9 @@ import getTranslateValue from './getTranslateValue'
 import getTitle from './getTitle'
 import slideY from './slideY'
 import slideX from './slideX'
+import sortRangeValue from './sortRangeValue'
 
 export {
-  Drag,
   Weeks,
   Months,
   formatDrawDate,
@@ -19,5 +18,6 @@ export {
   getTranslateValue,
   getTitle,
   slideY,
-  slideX
+  slideX,
+  sortRangeValue
 }

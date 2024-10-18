@@ -1,7 +1,16 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { useUpdateEffect } from 'ahooks'
-import { getTitle, formatDrawDate, isDisabledDate, slideX, slideY, Months, Weeks } from './utils'
+import {
+  getTitle,
+  formatDrawDate,
+  isDisabledDate,
+  slideX,
+  slideY,
+  sortRangeValue,
+  Months,
+  Weeks
+} from './utils'
 import Header from './Header'
 import Body from './Body'
 
@@ -152,28 +161,6 @@ const Calendar = forwardRef(
           monthDates: pagesRef.current?.[1]?.flat?.() || null
         })
       }
-    }
-
-    // 点击日期
-    function handleRangeClick(newDate) {
-      // No value, click date, start date and end date is same
-      if (!Array.isArray(value) || value.length !== 2) {
-        onChange && onChange([newDate, newDate])
-        return
-      }
-
-      // Just has start date, select end date
-      if (dayjs(value[0]).isSame(dayjs(value[1]), 'date')) {
-        let newValue = [value[0], newDate]
-        if (dayjs(value[0]).isBefore(dayjs(newDate), 'date') === false) {
-          newValue = [newDate, value[0]]
-        }
-        onChange && onChange(newValue)
-        return
-      }
-
-      // Reselect start date
-      onChange && onChange([newDate, newDate])
     }
 
     // Last month or week
@@ -327,14 +314,18 @@ const Calendar = forwardRef(
           dateRender={dateRender}
           // Event: click date
           onChange={(date) => {
+            let newValue = date
+            let newDrawDate = date
             if (selectionMode === 'range') {
-              handleRangeClick && handleRangeClick(date)
-            } else {
-              onChange && onChange(date)
+              newValue = sortRangeValue(date, value)
+              newDrawDate = newValue[0]
             }
 
+            // Change
+            onChange && onChange(newValue)
+
             // 跨月视图发生变化, 需要触发onSlideChange
-            if (DateUtil.compare(date, drawDate, 'month') !== 0) {
+            if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
               handleSlideChange('change', date)
             }
           }}
