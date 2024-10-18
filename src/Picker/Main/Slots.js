@@ -1,5 +1,10 @@
 import React, { useRef, forwardRef } from 'react'
 import getTranslateValue from './utils/getTranslateValue'
+
+// 测试使用
+// import { MathUtil } from 'seedsui-react'
+
+// 内库使用
 import MathUtil from './../../MathUtil'
 
 let Lists = forwardRef(
