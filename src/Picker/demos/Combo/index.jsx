@@ -3,25 +3,38 @@ import { Picker } from 'seedsui-react'
 
 export default () => {
   const pickerRef = useRef(null)
-  const list = [
-    { id: '1', name: '1' },
-    { id: '2', name: '2' },
-    { id: '3', name: '3' },
-    { id: '4', name: '4' },
-    { id: '5', name: '5' },
-    { id: '6', name: '6' },
-    { id: '7', name: '7' },
-    { id: '8', name: '8' },
-    { id: '9', name: '9' },
-    { id: '10', name: '10' }
-  ]
+  const [list, setList] = useState([])
+  // const list = [
+  //   { id: '1', name: '1' },
+  //   { id: '2', name: '2' },
+  //   { id: '3', name: '3' },
+  //   { id: '4', name: '4' },
+  //   { id: '5', name: '5' },
+  //   { id: '6', name: '6' },
+  //   { id: '7', name: '7' },
+  //   { id: '8', name: '8' },
+  //   { id: '9', name: '9' },
+  //   { id: '10', name: '10' }
+  // ]
   const [value, setValue] = useState(null)
   useEffect(() => {
     // pickerRef.current.open()
     setTimeout(() => {
       console.log('pickerRef:', pickerRef)
-      setValue([{ id: '2', name: '2' }])
-    }, 5000)
+      setList([
+        { id: '1', name: '1' },
+        { id: '2', name: '2' },
+        { id: '3', name: '3' },
+        { id: '4', name: '4' },
+        { id: '5', name: '5' },
+        { id: '6', name: '6' },
+        { id: '7', name: '7' },
+        { id: '8', name: '8' },
+        { id: '9', name: '9' },
+        { id: '10', name: '10' }
+      ])
+      setValue('2')
+    }, 2000)
   }, [])
   return (
     <>

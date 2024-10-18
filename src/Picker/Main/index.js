@@ -18,14 +18,11 @@ let Main = forwardRef(
       value,
       list,
       allowClear,
-      multiple,
-      onSelect,
       onBeforeChange,
       onChange,
 
       // Main: Picker Control properties
       defaultPickerValue,
-      slotProps,
 
       ...props
     },
@@ -54,12 +51,17 @@ let Main = forwardRef(
 
     // 列表从无到有,并且没有值,需要初始值
     useEffect(() => {
+      let timeout = null
       if (!visible || !Array.isArray(list) || !list.length) return
       if (!Array.isArray(value) || !value.length) {
-        onChange && onChange(valueRef.current)
+        // 延迟解决Modal的useEffect visible 后执行的问题
+        if (timeout) window.clearTimeout(timeout)
+        timeout = setTimeout(() => {
+          onChange && onChange(valueRef.current)
+        }, 10)
       }
       // eslint-disable-next-line
-    }, [JSON.stringify(list)])
+    }, [visible, JSON.stringify(list)])
 
     useEffect(() => {
       if (visible && Array.isArray(value) && value.length) {
