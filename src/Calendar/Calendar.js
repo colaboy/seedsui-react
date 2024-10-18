@@ -89,7 +89,7 @@ const Calendar = forwardRef(
         onLoad(drawDate, {
           action: 'load',
           type: drawTypeRef.current,
-          month: pagesRef.current?.[1] || null
+          monthDates: pagesRef.current?.[1]?.flat?.() || null
         })
       }
       // eslint-disable-next-line
@@ -149,7 +149,7 @@ const Calendar = forwardRef(
         onSlideChange(newDrawDate || drawDate, {
           action: action,
           type: drawTypeRef.current,
-          month: pagesRef.current?.[1] || null
+          monthDates: pagesRef.current?.[1]?.flat?.() || null
         })
       }
     }
