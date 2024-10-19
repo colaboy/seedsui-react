@@ -8,7 +8,7 @@ let Main = forwardRef(
   (
     {
       // Modal
-      visible,
+      visible = true,
 
       // Main
       // MainComponent,
@@ -45,30 +45,20 @@ let Main = forwardRef(
       return {
         rootDOM: mainRef.current,
         getRootDOM: () => mainRef.current,
+        // 延迟解决Modal的useEffect visible 后执行的问题
+        getValue: () => {
+          return valueRef.current
+        },
         update: update
       }
     })
 
-    // 列表从无到有,并且没有值,需要初始值
     useEffect(() => {
-      let timeout = null
-      if (!visible || !Array.isArray(list) || !list.length) return
-      if (!Array.isArray(value) || !value.length) {
-        // 延迟解决Modal的useEffect visible 后执行的问题
-        if (timeout) window.clearTimeout(timeout)
-        timeout = setTimeout(() => {
-          onChange && onChange(valueRef.current)
-        }, 10)
-      }
-      // eslint-disable-next-line
-    }, [visible, JSON.stringify(list)])
-
-    useEffect(() => {
-      if (visible && Array.isArray(value) && value.length) {
+      if (visible) {
         update()
       }
       // eslint-disable-next-line
-    }, [value])
+    }, [visible, JSON.stringify(value)])
 
     // 更新视图
     function update() {
