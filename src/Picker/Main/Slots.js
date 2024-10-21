@@ -1,11 +1,12 @@
 import React, { useRef, forwardRef } from 'react'
 import getTranslateValue from './utils/getTranslateValue'
-
-// 测试使用
-// import { MathUtil } from 'seedsui-react'
+import preventDefault from './utils/preventDefault'
 
 // 内库使用
 import MathUtil from './../../MathUtil'
+
+// 测试使用
+// import { MathUtil } from 'seedsui-react'
 
 let Lists = forwardRef(
   (
@@ -42,7 +43,8 @@ let Lists = forwardRef(
     // 触摸事件
     function handleTouchStart(e) {
       e.stopPropagation()
-      e.currentTarget.addEventListener('touchmove', (e) => e.preventDefault(), false)
+      // 解决拖动时影响document弹性
+      e.currentTarget.addEventListener('touchmove', preventDefault, false)
 
       slotRef.current.slotDOM = e.target
       slotRef.current.slotIndex = slotRef.current.slotDOM.getAttribute('slotindex')
@@ -71,6 +73,8 @@ let Lists = forwardRef(
     }
     function handleTouchEnd(e) {
       e.stopPropagation()
+      // 解除对move时的弹性对当前div的锁定
+      e.currentTarget.removeEventListener('touchmove', preventDefault, false)
 
       touchesRef.current.endX = e.clientX || e.changedTouches[0].clientX
       touchesRef.current.endY = e.clientY || e.changedTouches[0].clientY
