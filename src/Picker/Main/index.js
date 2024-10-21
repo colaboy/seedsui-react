@@ -39,7 +39,7 @@ let Main = forwardRef(
     let mainRef = useRef(null)
     let slotsRef = useRef(null)
     let valueRef = useRef(null)
-    valueRef.current = formatValue(value, { lists, listCount })
+    valueRef.current = formatValue(value || defaultPickerValue, { lists, listCount })
 
     useImperativeHandle(ref, () => {
       return {
