@@ -1,5 +1,10 @@
 import isDisabledDate from './isDisabledDate'
+
+// 内库使用
 import DateUtil from './../../DateUtil'
+
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
 
 // 获取当前绘制日期
 function formatDrawDate(newValue, { min, max }) {
