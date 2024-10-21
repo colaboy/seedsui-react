@@ -14,15 +14,12 @@ const Main = forwardRef(
   ({ threshold = 50, onTopRefresh, onBottomRefresh, onScroll, children, ...props }, ref) => {
     const rootRef = useRef(null)
     const isLoadingRef = useRef(null)
-    const instance = useRef(null)
     const topContainerRef = useRef(null)
-    const bottomContainerRef = useRef(null)
 
     // 节点
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
-        instance: instance.current,
         getRootDOM: () => rootRef.current
       }
     })

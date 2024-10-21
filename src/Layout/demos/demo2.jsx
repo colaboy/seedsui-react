@@ -28,11 +28,13 @@ export default () => {
   return (
     // <div id="root" style={{ height: '300px', position: 'relative' }}>
     <Layout safeArea className="full">
+      <Layout.Header style={{ height: 50, backgroundColor: 'white' }}>Header</Layout.Header>
       <Layout.Main onTopRefresh={handleTopRefresh} onBottomRefresh={handleBottomRefresh}>
         {list.map((item, index) => {
           return <div key={index}>{item.name}</div>
         })}
       </Layout.Main>
+      <Layout.Footer style={{ height: 50, backgroundColor: 'white' }}>Footer</Layout.Footer>
     </Layout>
     // </div>
   )
