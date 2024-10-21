@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { isSelectedDate, isDisabledDate, getTranslateValue } from './utils'
+import preventDefault from './utils/preventDefault'
 import Toggle from './Toggle'
 
 // 内库使用
@@ -62,7 +63,8 @@ const Body = forwardRef(
     -------------------- */
     function handleTouchStart(e) {
       e.stopPropagation()
-      e.currentTarget.addEventListener('touchmove', (e) => e.preventDefault(), false)
+      // 解决拖动时影响document弹性
+      e.currentTarget.addEventListener('touchmove', preventDefault, false)
       touchesRef.current.startX = e.touches[0].clientX
       touchesRef.current.startY = e.touches[0].clientY
     }
@@ -135,6 +137,8 @@ const Body = forwardRef(
     }
     async function handleTouchEnd(e) {
       e.stopPropagation()
+      // 解除对move时的弹性对当前div的锁定
+      e.currentTarget.removeEventListener('touchmove', preventDefault, false)
 
       let endX = e.clientX || e.changedTouches[0].clientX
       let endY = e.clientY || e.changedTouches[0].clientY
