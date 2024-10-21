@@ -130,6 +130,17 @@ let Bridge = {
     window.top.dd.biz.navigation.close()
   },
   /**
+   * 修改原生标题
+   * @param {Object} params {title: '自定义标题'}
+   */
+  setTitle: function (params) {
+    if (typeof params?.title === 'string') {
+      window.top.dd.setNavigationTitle({
+        title: params?.title
+      })
+    }
+  },
+  /**
    * 返回监听
    */
   onHistoryBack: function (params) {
