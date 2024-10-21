@@ -8,7 +8,7 @@ import './PrototypeNumber.js'
 import './PrototypeDate.js'
 // import './PrototypePinyin.js' // 不常用
 
-// dayjs国际化
+// dayjs国际化, 常用插件: https://day.js.org/docs/en/plugin/plugin
 import 'dayjs/locale/zh-cn'
 import dayjs from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
