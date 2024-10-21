@@ -2,7 +2,7 @@
 import locale from './../../../locale'
 
 // 测试使用
-// import {locale} from 'seedsui-react'
+// import { locale } from 'seedsui-react'
 
 function getWeekNames(start) {
   if (start === 'Monday') {

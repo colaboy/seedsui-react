@@ -1,4 +1,8 @@
+// 内库使用
 import DateUtil from '../../DateUtil'
+
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
 
 // 当前日期是否选中, 空:未选中 数组:[selected:选中 selected-start:开始 selected-end:结束]
 function isSelectedDate(date, selected) {
