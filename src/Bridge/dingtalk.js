@@ -1,11 +1,12 @@
 // 官方文档: https://open.dingtalk.com/document/isvapp/read-before-development
 // https://open.dingtalk.com/document/orgapp/jsapi-overview
+// 鉴权: https://open.dingtalk.com/document/orgapp/jsapi-authentication
 
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
+// import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
-import GeoUtil from './../GeoUtil'
+// import GeoUtil from './../GeoUtil'
 
 let Bridge = {
   ...BridgeBase,
@@ -27,50 +28,53 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    const { type, success, fail, complete } = params || {}
-    // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
-    console.log('调用钉钉定位...', params)
-    window.top.dd.device.geolocation.get({
-      targetAccuracy: 200, // 精度200米
-      coordinate: 1, // 高德坐标, 会加地址
-      withReGeocode: false, // 不需要逆向解析
-      useCache: false,
-      onSuccess: (result) => {
-        let latitude = result.latitude
-        let longitude = result.longitude
-        if (type === 'wgs84') {
-          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
-          longitude = points[0]
-          latitude = points[1]
-        }
-        let res = {
-          latitude: latitude,
-          longitude: longitude,
-          address: result.address,
-          accuracy: result.accuracy
-        }
-        if (success) success(res)
+    // 钉钉定位需要鉴权, 使用浏览器定位代替
+    BridgeBase.getBrowserLocation(params)
+    // 钉钉定位需要鉴权
+    // const { type, success, fail, complete } = params || {}
+    // // 调用定位
+    // if (LocationTask.locationTask) {
+    //   LocationTask.locationTask.push(params)
+    //   return
+    // }
+    // LocationTask.locationTask = []
+    // console.log('调用钉钉定位...', params)
+    // window.top.dd.device.geolocation.get({
+    //   targetAccuracy: 200, // 精度200米
+    //   coordinate: 1, // 高德坐标, 会加地址
+    //   withReGeocode: false, // 不需要逆向解析
+    //   useCache: false,
+    //   onSuccess: (result) => {
+    //     let latitude = result.latitude
+    //     let longitude = result.longitude
+    //     if (type === 'wgs84') {
+    //       const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+    //       longitude = points[0]
+    //       latitude = points[1]
+    //     }
+    //     let res = {
+    //       latitude: latitude,
+    //       longitude: longitude,
+    //       address: result.address,
+    //       accuracy: result.accuracy
+    //     }
+    //     if (success) success(res)
 
-        if (complete) complete(res)
-        LocationTask.getLocationTask(res)
-      },
-      onFail: (res) => {
-        if (fail) {
-          fail({
-            errCode: res.errorCode,
-            errMsg: res.errorMessage
-          })
-        }
+    //     if (complete) complete(res)
+    //     LocationTask.getLocationTask(res)
+    //   },
+    //   onFail: (res) => {
+    //     if (fail) {
+    //       fail({
+    //         errCode: res.errorCode,
+    //         errMsg: res.errorMessage
+    //       })
+    //     }
 
-        if (complete) complete(res)
-        LocationTask.getLocationTask(res)
-      }
-    })
+    //     if (complete) complete(res)
+    //     LocationTask.getLocationTask(res)
+    //   }
+    // })
   },
   /**
    * 扫码
