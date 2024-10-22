@@ -33,6 +33,7 @@ export default () => {
         {list.map((item, index) => {
           return <div key={index}>{item.name}</div>
         })}
+        <Layout.MainBottomLoading type="failure" />
       </Layout.Main>
       <Layout.Footer style={{ height: 50, backgroundColor: 'white' }}>Footer</Layout.Footer>
     </Layout>

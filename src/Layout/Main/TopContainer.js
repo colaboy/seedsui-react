@@ -7,7 +7,7 @@ const TopContainer = forwardRef(({ children, caption, type, ...props }, ref) => 
     return rootRef.current
   })
   return (
-    <div ref={rootRef} className="SID-Dragrefresh-TopContainer layout-main-pull-push">
+    <div ref={rootRef} className="layout-main-pull-push">
       <div className="layout-main-pull-push-wrapper">
         <div className="layout-main-pull-push-icon"></div>
         <div className="layout-main-pull-push-caption">
