@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import vconsole from 'vconsole'
 
 import { Loading, Layout, Button } from 'seedsui-react'
@@ -55,7 +54,8 @@ export default () => {
       }
     )
   }, [])
-  return createPortal(
+
+  return (
     <Layout className="full">
       <Layout.Main>
         <h2>组件</h2>
@@ -333,7 +333,6 @@ export default () => {
           getLocation
         </Button>
       </Layout.Main>
-    </Layout>,
-    document.body
+    </Layout>
   )
 }
