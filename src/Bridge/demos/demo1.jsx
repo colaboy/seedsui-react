@@ -8,7 +8,7 @@ import { Loading, Layout, Button } from 'seedsui-react'
 import { Bridge, Location, Image as ImageUploader } from 'seedsui-react'
 
 // 测试使用
-// import Bridge from './Bridge'
+// import Bridge from './../index'
 // import Location from 'library/components/Location'
 // import ImageUploader from 'library/components/ImageUploader'
 
