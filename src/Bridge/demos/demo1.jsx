@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import vconsole from 'vconsole'
 
-import { Loading, Layout, Button } from 'seedsui-react'
+import { Loading, Button } from 'seedsui-react'
 
 // 内库使用
-import { Bridge, Location, Image as ImageUploader } from 'seedsui-react'
+import { Layout, Bridge, Location, Image as ImageUploader } from 'seedsui-react'
 
 // 测试使用
-// import Bridge from './../index'
+// import Bridge from 'library/utils/Bridge'
+// import Layout from 'library/components/Layout'
 // import Location from 'library/components/Location'
 // import ImageUploader from 'library/components/ImageUploader'
 
