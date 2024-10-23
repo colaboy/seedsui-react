@@ -1,11 +1,12 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import Combo from './../WeekCombo'
+import Combo from './../../WeekCombo'
+import getDisplayValue from './getDisplayValue'
 
 // 内库使用
-import DateUtil from '../../DateUtil'
+import DateUtil from './../../../DateUtil'
 
 // 测试使用
-// import { DateUtil } from 'seedsui-react
+// import { DateUtil } from 'seedsui-react'
 
 // 周选择
 const Week = forwardRef(
@@ -24,14 +25,8 @@ const Week = forwardRef(
     },
     ref
   ) => {
-    let weekDates =
-      value instanceof Date ? DateUtil.getWeekDates(value || new Date(), 'Monday') : null
-    let weekValue = weekDates ? [weekDates[0], weekDates[6]] : null
-
     // 显示文本
-    let displayValue = getWeekDisplayValue({
-      value: weekValue
-    })
+    let displayValue = getDisplayValue(value)
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -41,8 +36,8 @@ const Week = forwardRef(
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
-          return getWeekDisplayValue({
-            value: newValue || value?.value
+          return getDisplayValue({
+            value: value
           })
         }
       }
@@ -51,13 +46,13 @@ const Week = forwardRef(
     // 向前
     function handlePrev(e) {
       if (value instanceof Date === false) return
-      onChange && onChange(Calendar.previousWeek(value))
+      onChange && onChange(DateUtil.previousWeek(value))
     }
 
     // 向后
     function handleNext(e) {
       if (value instanceof Date === false) return
-      onChange && onChange(Calendar.nextWeek(value))
+      onChange && onChange(DateUtil.nextWeek(value))
     }
 
     return (
@@ -65,10 +60,10 @@ const Week = forwardRef(
         <i className="datepicker-types-prev icon shape-arrow-left sm" onClick={handlePrev} />
         <Combo
           {...props}
-          value={weekValue}
+          value={value}
           className={`datepicker-types-date${className ? ' ' + className : ''}`}
           onChange={(newValue) => {
-            onChange && onChange(newValue[0])
+            onChange && onChange(newValue)
           }}
         >
           <p>{displayValue || ''}</p>

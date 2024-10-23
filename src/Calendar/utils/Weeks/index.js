@@ -1,6 +1,4 @@
 import getWeekNames from './getWeekNames'
-import previousWeek from './previousWeek'
-import nextWeek from './nextWeek'
 
 // 内库使用
 import DateUtil from './../../../DateUtil'
@@ -10,12 +8,12 @@ import DateUtil from './../../../DateUtil'
 
 // 获得上周日历
 function getPreviousWeekDates(currentDate, weekStart) {
-  let date = previousWeek(new Date(currentDate))
+  let date = DateUtil.previousWeek(new Date(currentDate))
   return DateUtil.getWeekDates(date, weekStart)
 }
 // 获得下周日历
 function getNextWeekDates(currentDate, weekStart) {
-  let date = nextWeek(new Date(currentDate))
+  let date = DateUtil.nextWeek(new Date(currentDate))
   return DateUtil.getWeekDates(date, weekStart)
 }
 
@@ -31,8 +29,6 @@ function getWeeks(currentDate, { weekStart }) {
 }
 
 const Weeks = {
-  previousWeek: previousWeek,
-  nextWeek: nextWeek,
   // 周名
   getWeekNames,
   // 获取上周与下周数据集合
