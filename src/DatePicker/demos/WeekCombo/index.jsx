@@ -9,7 +9,7 @@ dayjs.extend(advancedFormat)
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [value, setValue] = useState([new Date('2022-08-22'), null])
+  const [value, setValue] = useState(null)
 
   useEffect(() => {
     date1Ref.current.open()
@@ -25,9 +25,6 @@ export default () => {
         allowClear
         // min={new Date()}
         // max={new Date()}
-        onError={(error) => {
-          console.log(error)
-        }}
         // maskClosable={false}
         onBeforeOpen={() => {
           if (document.querySelector('.mask.active')) {
@@ -51,7 +48,7 @@ export default () => {
           setValue(newValue)
         }}
         value={value}
-        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
+        defaultPickerValue={new Date('2022-08-22 00:00')}
       />
     </>
   )

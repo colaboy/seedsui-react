@@ -1,12 +1,11 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import Combo from './../WeekCombo'
+
 // 内库使用
-import Calendar from '../../Calendar'
+import DateUtil from '../../DateUtil'
 
 // 测试使用
-// import { Calendar } from 'seedsui-react
-
-import Combo from './../WeekCombo'
-import getWeekDisplayValue from './../WeekCombo/getWeekDisplayValue'
+// import { DateUtil } from 'seedsui-react
 
 // 周选择
 const Week = forwardRef(
@@ -26,7 +25,7 @@ const Week = forwardRef(
     ref
   ) => {
     let weekDates =
-      value instanceof Date ? Calendar.getWeekDates(value || new Date(), 'Monday') : null
+      value instanceof Date ? DateUtil.getWeekDates(value || new Date(), 'Monday') : null
     let weekValue = weekDates ? [weekDates[0], weekDates[6]] : null
 
     // 显示文本

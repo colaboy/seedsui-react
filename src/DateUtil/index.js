@@ -1,9 +1,12 @@
+import getWeekDates from './getWeekDates'
 import compare from './compare'
 import format from './format'
 import quarter from './quarter'
 
 // 日期工具类
 const dateUtil = {
+  // 获取一周的数据
+  getWeekDates: getWeekDates,
   // 比较年月日,大于返回1,等于返回0,小于返回-1,错误返回undefined
   compare: compare,
   // 格式化日期

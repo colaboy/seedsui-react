@@ -6,16 +6,12 @@ import Calendar from './../../Calendar'
 // 日期快捷选择
 function WeekMain(
   {
-    // useless props
-    visible,
-
-    portal,
+    visible = true,
 
     // components props
     allowClear,
 
     // Main: common
-    titleFormatter,
     value,
     onBeforeChange,
     onChange,
@@ -26,12 +22,15 @@ function WeekMain(
     // Combo|Main: DatePicker Control properties
     min,
     max,
-    onError
 
-    // ...props
+    // Monday | Sunday
+    weekStart = 'Monday'
   },
   ref
 ) {
+  // Range value
+  const rangeValueRef = useRef(null)
+
   // Expose tools
   const weekMainRef = useRef(null)
   useImperativeHandle(ref, () => {
@@ -40,54 +39,35 @@ function WeekMain(
       // 获取标题
       getTitle: () => {
         let title = locale('选择日期', 'SeedsUI_placeholder_select')
-        if (Array.isArray(value) && value.length === 2) {
-          title = DateUtil.format(value[0], `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+        if (value instanceof Date) {
+          title = DateUtil.format(value, `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
         }
         return title
       }
     }
   })
 
-  useEffect(() => {
-    if (visible) {
-      weekMainRef?.current?.updateActiveDate?.()
-    }
-    // eslint-disable-next-line
-  }, [visible])
-
-  async function handleChange(newValue) {
-    // 允许清空
-    if (allowClear && Array.isArray(value) && value.length === 2) {
-      if (DateUtil.format(value[0], 'YYYY-W') === DateUtil.format(newValue[0], 'YYYY-W')) {
+  async function handleChange(rangeValue, { selectDate }) {
+    // 允许清空时, 相同周则清空
+    if (allowClear && value instanceof Date) {
+      if (DateUtil.format(value, 'YYYY-W') === DateUtil.format(selectDate, 'YYYY-W')) {
         // eslint-disable-next-line
-        newValue = null
+        selectDate = null
       }
     }
 
     // 修改提示
     if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(newValue)
+      let goOn = await onBeforeChange(selectDate)
       if (goOn === false) return
     }
 
-    // 不为空, 设置一周的数据
-    if (Array.isArray(newValue) && newValue.length === 2) {
-      let weekDates = Calendar.getWeekDates(newValue[0], 'Monday')
-      if (min instanceof Date && Calendar.isDisabledDate(weekDates[0], { min: min })) {
-        console.log('禁止访问' + DateUtil.format(weekDates[0], 'YYYY年MM月DD日') + '前的日期')
-        return
-      }
-      if (max instanceof Date && Calendar.isDisabledDate(weekDates[6], { max: max })) {
-        console.log('禁止访问' + DateUtil.format(weekDates[6], 'YYYY年MM月DD日') + '后的日期')
-        return
-      }
-
-      // eslint-disable-next-line
-      newValue = [weekDates[0], weekDates[6]]
-    }
-
-    onChange && onChange(newValue)
+    onChange && onChange(selectDate)
   }
+
+  let weekDates = DateUtil.getWeekDates(value || defaultPickerValue, weekStart)
+  rangeValueRef.current =
+    Array.isArray(weekDates) && weekDates.length ? [weekDates[0], weekDates[6]] : null
 
   return (
     <Calendar
@@ -98,7 +78,7 @@ function WeekMain(
       draggable={['horizontal']}
       weekStart={'Monday'}
       selectionMode={'range'}
-      value={value || defaultPickerValue}
+      value={rangeValueRef.current}
       // header={false}
       onChange={handleChange}
     />

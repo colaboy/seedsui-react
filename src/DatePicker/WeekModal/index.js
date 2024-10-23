@@ -1,114 +1,167 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import { createPortal } from 'react-dom'
+import ModalPicker from './../../Modal/Picker'
+import Main from './../WeekMain'
 
-import Calendar from './../../Calendar'
-import DateUtil from './../../DateUtil'
-import WeekMain from './../WeekMain'
+// Modal
+const Modal = forwardRef(
+  (
+    {
+      // 无用的属性
+      getComboDOM,
 
-// 内库使用
-import BaseModal from './../../Select/Modal'
+      // Modal fixed properties
+      visible,
+      onVisibleChange,
 
-// 测试使用
-// import {Select} from 'seedsui-react'
-// const BaseModal = Select.Modal
-
-// 周弹窗
-const WeekModal = (
-  {
-    // 显示文本格式化和value格式化
-    valueFormatter,
-
-    // Modal fixed properties
-    visible,
-
-    // Modal: display properties
-    portal,
-
-    // Main: common
-    value,
-    allowClear,
-    onBeforeChange,
-    onChange,
-
-    // Main: Picker Control properties
-    titleFormatter,
-    defaultPickerValue,
-
-    // Combo|Main: DatePicker Control properties
-    min,
-    max,
-    onError,
-    ...props
-  },
-  ref
-) => {
-  // 扩展非标准属性
-  if (!props.MainProps) {
-    props.MainProps = {}
-  }
-  let MainPropsExternal = {
-    portal: portal,
-    // components props
-    allowClear: allowClear,
-    // Main: common
-    value: value,
-    // Main: Picker Control properties
-    defaultPickerValue: defaultPickerValue,
-    // Combo|Main: DatePicker Control properties
-    titleFormatter,
-    min: min,
-    max: max,
-    onError: onError,
-    // Custom option config
-    DatePickerModalProps: {
-      maskProps: props.maskProps || null
-    }
-  }
-
-  for (let propName in MainPropsExternal) {
-    if (props.MainProps[propName] === undefined) {
-      props.MainProps[propName] = MainPropsExternal[propName]
-    }
-  }
-
-  if (props?.captionProps) {
-    delete props.captionProps
-  }
-  return (
-    <BaseModal
-      ref={ref}
-      {...props}
-      className={`slots${props.className ? ' ' + props.className : ''}`}
-      valueFormatter={valueFormatter}
-      multiple={false}
-      visible={visible}
-      MainComponent={WeekMain}
       // Modal: display properties
-      portal={portal}
+      portal,
+      animation = 'slideUp',
+      maskProps,
+      captionProps,
+      submitProps,
+      cancelProps,
+      maskClosable = true,
+
+      // Main
+      MainComponent,
+      MainProps,
+
       // Main: common
-      value={value}
-      allowClear={allowClear}
-      onBeforeChange={async (newValue) => {
-        // 只能校验min和max, 因为不知道用户此刻选中的的项是哪项
-        if (min instanceof Date && Calendar.isDisabledDate(newValue[0], { min: min })) {
-          console.log('禁止访问' + DateUtil.format(newValue[0], 'YYYY年MM月DD日') + '前的日期')
-          return
-        }
-        if (max instanceof Date && Calendar.isDisabledDate(newValue[1], { max: max })) {
-          console.log('禁止访问' + DateUtil.format(newValue[1], 'YYYY年MM月DD日') + '后的日期')
-          return false
-        }
+      value,
+      list, // [{id: '', name: ''}]
+      allowClear,
+      onBeforeChange,
+      onChange,
 
-        return newValue
-      }}
-      onChange={onChange}
       // Main: Picker Control properties
-      defaultPickerValue={defaultPickerValue}
-      // Combo|Main: DatePicker Control properties
-      min={min}
-      max={max}
-      onError={onError}
-    />
-  )
-}
+      defaultPickerValue,
 
-export default forwardRef(WeekModal)
+      // 纯渲染时不渲染Main
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    // 当前标题，如日期
+    let [currentTitle, setCurrentTitle] = useState('')
+
+    // 当前选中项
+    let [currentValue, setCurrentValue] = useState([])
+
+    // 节点
+    const modalRef = useRef(null)
+    const mainRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
+      return {
+        rootDOM: modalRef?.current?.rootDOM,
+        getRootDOM: () => modalRef?.current?.rootDOM,
+
+        mainDOM: mainDOM,
+        getMainDOM: getMainDOM,
+        ...otherMainRef
+      }
+    })
+
+    useEffect(() => {
+      if (visible === null) return
+      if (onVisibleChange) onVisibleChange(visible)
+
+      // 显示弹窗，更新标题和显示值
+      if (visible) {
+        updateTitle()
+        setCurrentValue(value)
+      }
+      // eslint-disable-next-line
+    }, [visible])
+
+    // 没有传入标题时, 需要动态更新标题（如果日期）
+    function updateTitle() {
+      if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
+        // Main渲染完成后取标题, 否则将会取到上次的值
+        setTimeout(() => {
+          currentTitle = mainRef?.current?.getTitle?.()
+          setCurrentTitle(currentTitle)
+        }, 100)
+      }
+    }
+
+    // 事件
+    async function handleSubmitClick(e) {
+      if (submitProps?.onClick) submitProps.onClick(e)
+      // 更新选中的值
+      if (mainRef?.current?.getValue) {
+        currentValue = mainRef.current.getValue()
+      }
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(currentValue)
+        if (goOn === false) return
+        // 修改值
+        if (typeof goOn === 'object') {
+          currentValue = goOn
+        }
+      }
+      if (onChange) {
+        let goOn = await onChange(currentValue)
+        if (goOn === false) return
+      }
+      if (onVisibleChange) onVisibleChange(false)
+    }
+
+    // Main Render
+    let MainNode = Main
+    if (MainComponent) {
+      MainNode = MainComponent
+    }
+
+    return createPortal(
+      <ModalPicker
+        ref={modalRef}
+        // Modal fixed properties
+        visible={visible}
+        onVisibleChange={onVisibleChange}
+        // Modal: display properties
+        portal={portal}
+        animation={animation}
+        maskProps={maskProps}
+        captionProps={{ caption: currentTitle, ...captionProps }}
+        submitProps={{
+          ...submitProps,
+          onClick: handleSubmitClick
+        }}
+        cancelProps={cancelProps}
+        maskClosable={maskClosable}
+        {...props}
+        className={`slots${props.className ? ' ' + props.className : ''}`}
+      >
+        {/* 纯渲染 */}
+        {children}
+        {/* 主体 */}
+        {!children && (
+          <MainNode
+            ref={mainRef}
+            {...(MainProps || {})}
+            visible={visible}
+            value={currentValue}
+            defaultPickerValue={defaultPickerValue}
+            list={list}
+            allowClear={allowClear}
+            onBeforeChange={onBeforeChange}
+            onChange={(newValue) => {
+              // 无标题时更新标题
+              updateTitle()
+
+              // 修改值
+              setCurrentValue(newValue)
+            }}
+          />
+        )}
+      </ModalPicker>,
+      portal || document.getElementById('root') || document.body
+    )
+  }
+)
+
+export default Modal

@@ -307,13 +307,17 @@ const Calendar = forwardRef(
           onChange={(date) => {
             let newValue = date
             let newDrawDate = date
+
+            // Range select
             if (selectionMode === 'range') {
               newValue = sortRangeValue(date, value)
               newDrawDate = newValue[0]
+              onChange && onChange(newValue, { selectDate: date })
             }
-
-            // Change
-            onChange && onChange(newValue)
+            // Date select
+            else {
+              onChange && onChange(newValue)
+            }
 
             // 跨月视图发生变化, 需要触发onSlideChange
             if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {

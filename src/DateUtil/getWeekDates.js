@@ -1,5 +1,7 @@
 // 获取当周7天
 function getWeekDates(currentDate, weekStart) {
+  if (currentDate instanceof Date === false) return null
+
   const weekData = []
   const startOfWeek = new Date(currentDate)
   const dayOfWeek = startOfWeek.getDay() // 获取当前日期是星期几
