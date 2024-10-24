@@ -15,14 +15,11 @@ function Main(
     allowClear,
 
     // Main: common
-    type = 'date', // year | quarter | month | date | time | datetime
     value,
-    onBeforeChange,
-    onChange,
-
-    // Combo|Main: DatePicker Control properties
+    type = 'date', // year | quarter | month | date | time | datetime
     min,
-    max
+    max,
+    onChange
   },
   ref
 ) {
@@ -45,32 +42,11 @@ function Main(
     }
   })
 
-  async function handleChange(selectDate) {
-    // 修改提示
-    if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(selectDate)
-      if (goOn === false) return
-    }
-
-    onChange && onChange(selectDate)
-  }
-
   if (type === 'week') {
-    return (
-      <WeekMain ref={pickerMainRef} value={value} min={min} max={max} onChange={handleChange} />
-    )
+    return <WeekMain ref={pickerMainRef} value={value} min={min} max={max} onChange={onChange} />
   }
 
-  return (
-    <DateMain
-      ref={pickerMainRef}
-      value={value}
-      type={type}
-      min={min}
-      max={max}
-      onChange={handleChange}
-    />
-  )
+  return <DateMain ref={pickerMainRef} value={value} type={type} onChange={onChange} />
 }
 
 export default forwardRef(Main)

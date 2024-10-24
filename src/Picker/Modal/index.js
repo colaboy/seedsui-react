@@ -1,8 +1,10 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import formatValue from './formatValue'
-import ModalPicker from './../../Modal/Picker'
 import Main from './../Main'
+
+// 内库使用
+import ModalPicker from './../../Modal/Picker'
 
 // Modal
 const Modal = forwardRef(
@@ -148,7 +150,6 @@ const Modal = forwardRef(
             value={currentValue}
             list={list}
             allowClear={allowClear}
-            onBeforeChange={onBeforeChange}
             onChange={(newValue) => {
               // 无标题时更新标题
               updateTitle()

@@ -9,7 +9,7 @@ export default () => {
       <DatePicker.Combo
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         defaultPickerValue={new Date('2022-08-22 00:00')}
-        min={new Date()}
+        // min={new Date()}
         // year | quarter | month | date | time | datetime
         type="week"
         // format="YYYY-MM-DD HH:mm 第Q季 ddd"

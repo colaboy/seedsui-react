@@ -18,7 +18,6 @@ let Main = forwardRef(
       value,
       list,
       allowClear,
-      onBeforeChange,
       onChange,
 
       ...props

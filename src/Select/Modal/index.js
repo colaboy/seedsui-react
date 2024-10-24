@@ -1,9 +1,11 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import locale from './../../locale'
 import { formatValue, getDynamicProps } from './../utils'
-import ModalPicker from './../../Modal/Picker'
 import Main from './../Main'
+
+// 内库使用
+import locale from './../../locale'
+import ModalPicker from './../../Modal/Picker'
 
 // Modal
 const Modal = forwardRef(

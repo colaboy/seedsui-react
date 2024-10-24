@@ -1,7 +1,9 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import ModalPicker from './../../Modal/Picker'
 import Main from './../WeekMain'
+
+// 内库使用
+import ModalPicker from './../../Modal/Picker'
 
 // Modal
 const Modal = forwardRef(
@@ -22,6 +24,7 @@ const Modal = forwardRef(
       submitProps,
       cancelProps,
       maskClosable = true,
+      onError,
 
       // Main
       MainComponent,
@@ -29,7 +32,8 @@ const Modal = forwardRef(
 
       // Main: common
       value,
-      list, // [{id: '', name: ''}]
+      min,
+      max,
       allowClear,
       onBeforeChange,
       onChange,
@@ -94,6 +98,20 @@ const Modal = forwardRef(
       if (mainRef?.current?.getValue) {
         currentValue = mainRef.current.getValue()
       }
+
+      // 校验
+      if (min || max) {
+        let newValue = validateMaxMin(currentValue, {
+          type: type,
+          min: min,
+          max: max,
+          onError: onError
+        })
+
+        if (!newValue) return
+        currentValue = newValue
+      }
+
       // 修改提示
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(currentValue)
@@ -145,9 +163,9 @@ const Modal = forwardRef(
             {...(MainProps || {})}
             visible={visible}
             value={currentValue}
-            list={list}
+            min={min}
+            max={max}
             allowClear={allowClear}
-            onBeforeChange={onBeforeChange}
             onChange={(newValue) => {
               // 无标题时更新标题
               updateTitle()

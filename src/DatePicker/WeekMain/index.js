@@ -13,12 +13,9 @@ function WeekMain(
 
     // Main: common
     value,
-    onBeforeChange,
-    onChange,
-
-    // Combo|Main: DatePicker Control properties
     min,
     max,
+    onChange,
 
     // Monday | Sunday
     weekStart = 'Monday'
@@ -54,12 +51,6 @@ function WeekMain(
         // eslint-disable-next-line
         selectDate = null
       }
-    }
-
-    // 修改提示
-    if (typeof onBeforeChange === 'function') {
-      let goOn = await onBeforeChange(selectDate)
-      if (goOn === false) return
     }
 
     onChange && onChange(selectDate)
