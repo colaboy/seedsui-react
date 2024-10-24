@@ -21,9 +21,6 @@ let Main = forwardRef(
       onBeforeChange,
       onChange,
 
-      // Main: Picker Control properties
-      defaultPickerValue,
-
       ...props
     },
     ref
@@ -43,7 +40,7 @@ let Main = forwardRef(
     let mainRef = useRef(null)
     let slotsRef = useRef(null)
     let valueRef = useRef(null)
-    valueRef.current = formatValue(value || defaultPickerValue, { lists, listCount })
+    valueRef.current = formatValue(value, { lists, listCount })
 
     useImperativeHandle(ref, () => {
       return {

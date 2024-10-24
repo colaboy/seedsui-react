@@ -20,9 +20,6 @@ function Main(
     onBeforeChange,
     onChange,
 
-    // Main: Picker Control properties
-    defaultPickerValue,
-
     // Combo|Main: DatePicker Control properties
     min,
     max
@@ -60,15 +57,17 @@ function Main(
 
   if (type === 'week') {
     return (
-      <WeekMain ref={pickerMainRef} value={value || defaultPickerValue} onChange={handleChange} />
+      <WeekMain ref={pickerMainRef} value={value} min={min} max={max} onChange={handleChange} />
     )
   }
 
   return (
     <DateMain
       ref={pickerMainRef}
-      value={value || defaultPickerValue}
+      value={value}
       type={type}
+      min={min}
+      max={max}
       onChange={handleChange}
     />
   )

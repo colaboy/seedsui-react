@@ -16,9 +16,6 @@ function WeekMain(
     onBeforeChange,
     onChange,
 
-    // Main: Picker Control properties
-    defaultPickerValue,
-
     // Combo|Main: DatePicker Control properties
     min,
     max,
@@ -43,6 +40,9 @@ function WeekMain(
           title = DateUtil.format(value, 'week')
         }
         return title
+      },
+      getValue: () => {
+        return value instanceof Date ? value : new Date()
       }
     }
   })
@@ -65,7 +65,7 @@ function WeekMain(
     onChange && onChange(selectDate)
   }
 
-  let weekDates = DateUtil.getWeekDates(value || defaultPickerValue, weekStart)
+  let weekDates = DateUtil.getWeekDates(value, weekStart)
   rangeValueRef.current =
     Array.isArray(weekDates) && weekDates.length ? [weekDates[0], weekDates[6]] : null
 

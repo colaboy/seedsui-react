@@ -71,7 +71,7 @@ const Modal = forwardRef(
       // 显示弹窗，更新标题和显示值
       if (visible) {
         updateTitle()
-        setCurrentValue(value)
+        setCurrentValue(value || defaultPickerValue)
       }
       // eslint-disable-next-line
     }, [visible])
@@ -145,7 +145,6 @@ const Modal = forwardRef(
             {...(MainProps || {})}
             visible={visible}
             value={currentValue}
-            defaultPickerValue={defaultPickerValue}
             list={list}
             allowClear={allowClear}
             onBeforeChange={onBeforeChange}
