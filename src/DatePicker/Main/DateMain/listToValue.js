@@ -33,6 +33,7 @@ function listToValue(list, type) {
     let minute = list[1].id
     let date = new Date()
     date.setHours(hour, minute, 0)
+    return date
   }
 
   return null

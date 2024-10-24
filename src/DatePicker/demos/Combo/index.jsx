@@ -11,8 +11,8 @@ export default () => {
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         // year | quarter | month | date | time | datetime
-        type="quarter"
-        format="YYYY-MM 第Q季 ddd"
+        type="year"
+        format="YYYY-MM-DD HH:ss 第Q季 ddd"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)

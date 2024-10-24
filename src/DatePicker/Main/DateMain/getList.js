@@ -32,7 +32,7 @@ function getList(value, type) {
 
   // Hour
   let hours = []
-  for (let item = 1; item <= 12; item++) {
+  for (let item = 0; item <= 23; item++) {
     hours.push({
       id: item,
       name: item
@@ -41,7 +41,7 @@ function getList(value, type) {
 
   // Minute
   let minutes = []
-  for (let item = 1; item <= 60; item++) {
+  for (let item = 0; item <= 59; item++) {
     minutes.push({
       id: item,
       name: item
