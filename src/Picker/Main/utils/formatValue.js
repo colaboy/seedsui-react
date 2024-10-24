@@ -2,13 +2,14 @@ import _ from 'lodash'
 
 // 格式化值
 function formatValue(value, { lists, listCount }) {
-  let newValue = _.cloneDeep(value)
-
+  let newValue = null
   if (!Array.isArray(value)) {
     newValue = [...Array(listCount)].map((item, slotIndex) => {
       return lists[slotIndex][0]
     })
     return newValue
+  } else {
+    newValue = _.cloneDeep(value)
   }
 
   // 如果项数少，填充数组

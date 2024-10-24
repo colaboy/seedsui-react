@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Combo from './../../WeekCombo'
-import getDisplayValue from './getDisplayValue'
 
 // 内库使用
 import DateUtil from './../../../DateUtil'
@@ -26,7 +25,7 @@ const Week = forwardRef(
     ref
   ) => {
     // 显示文本
-    let displayValue = getDisplayValue(value)
+    let displayValue = DateUtil.format(value, 'week')
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -35,10 +34,8 @@ const Week = forwardRef(
         getRootDOM: () => rootRef?.current,
         // 显示文本
         displayValue: displayValue,
-        getDisplayValue: (newValue) => {
-          return getDisplayValue({
-            value: value
-          })
+        getDisplayValue: () => {
+          return DateUtil.format(value, 'week')
         }
       }
     })

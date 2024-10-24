@@ -18,10 +18,7 @@ const WeekCombo = forwardRef(({ ...props }, ref) => {
       ModalComponent={Modal}
       displayValueFormatter={(params) => {
         // 根据日期区间计算显示标签，如果有重复选项，将优先取记录的选中项
-        let displayValue = DateUtil.format(
-          props?.value,
-          `YYYY-W${locale('周', 'SeedsUI_unit_week')}`
-        )
+        let displayValue = DateUtil.format(props?.value, 'week')
 
         return displayValue
       }}

@@ -40,7 +40,7 @@ function WeekMain(
       getTitle: () => {
         let title = locale('选择日期', 'SeedsUI_placeholder_select')
         if (value instanceof Date) {
-          title = DateUtil.format(value, `YYYY-W${locale('周', 'SeedsUI_unit_week')}`)
+          title = DateUtil.format(value, 'week')
         }
         return title
       }

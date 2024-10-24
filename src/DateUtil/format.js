@@ -23,6 +23,8 @@ function format(date, type) {
     return dayjs(date).format('YYYY-MM-DD HH:mm')
   } else if (type === 'time') {
     return dayjs(date).format('HH:mm')
+  } else if (type === 'week') {
+    return dayjs(date).format('YYYY-ddd')
   }
 
   return dayjs(date).format(type)

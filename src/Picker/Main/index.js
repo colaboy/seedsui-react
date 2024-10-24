@@ -30,7 +30,7 @@ let Main = forwardRef(
   ) => {
     // 一维数组强制改成二维数组
     let lists = list
-    let listCount = dimensionalArray(list)
+    let listCount = dimensionalArray(list) === 2 ? list.length : 1
     if (listCount === 1) {
       lists = [list]
     }

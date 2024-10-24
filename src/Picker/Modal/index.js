@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { formatValue } from './../utils'
+import formatValue from './formatValue'
 import ModalPicker from './../../Modal/Picker'
 import Main from './../Main'
 
