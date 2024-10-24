@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import getList from './getList'
-import formatValue from './formatValue'
+import valueToList from './valueToList'
+import listToValue from './listToValue'
 
 // 内库使用
 import Picker from './../../../Picker'
@@ -9,19 +10,20 @@ import Picker from './../../../Picker'
 function Main(
   {
     type = 'date', // year | quarter | month | date | time | datetime
-    value
+    value,
+    onChange
   },
   ref
 ) {
-  function handleChange(newValue) {
-    debugger
+  function handleChange(list) {
+    let newValue = listToValue(list, type)
+    onChange && onChange(newValue)
   }
 
-  console.log(getList(value, type))
   return (
     <Picker.Main
       ref={ref}
-      value={formatValue(value, type)}
+      value={valueToList(value, type)}
       list={getList(value, type)}
       onChange={handleChange}
     />

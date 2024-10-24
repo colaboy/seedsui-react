@@ -1,8 +1,8 @@
 // 内库使用
 import DateUtil from './../../../DateUtil'
 
-// 格式化日期
-function formatValue(value, type) {
+// 日期转列表
+function valueToList(value, type) {
   let currentDate = value
   if (value instanceof Date === false) {
     currentDate = new Date()
@@ -53,4 +53,4 @@ function formatValue(value, type) {
   return null
 }
 
-export default formatValue
+export default valueToList

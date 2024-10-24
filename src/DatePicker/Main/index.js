@@ -41,6 +41,9 @@ function Main(
           title = DateUtil.format(value, type)
         }
         return title
+      },
+      getValue: () => {
+        return value instanceof Date ? value : new Date()
       }
     }
   })
@@ -56,10 +59,19 @@ function Main(
   }
 
   if (type === 'week') {
-    return <WeekMain ref={pickerMainRef} value={value} onChange={handleChange} />
+    return (
+      <WeekMain ref={pickerMainRef} value={value || defaultPickerValue} onChange={handleChange} />
+    )
   }
 
-  return <DateMain ref={pickerMainRef} value={value} type={type} onChange={handleChange} />
+  return (
+    <DateMain
+      ref={pickerMainRef}
+      value={value || defaultPickerValue}
+      type={type}
+      onChange={handleChange}
+    />
+  )
 }
 
 export default forwardRef(Main)
