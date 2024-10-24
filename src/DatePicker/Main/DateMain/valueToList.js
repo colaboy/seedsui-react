@@ -19,7 +19,10 @@ function valueToList(value, type) {
     return [{ id: year, name: year }]
   }
   if (type === 'quarter') {
-    return [{ id: quarter, name: 'Q' + quarter }]
+    return [
+      { id: year, name: year },
+      { id: quarter, name: 'Q' + quarter }
+    ]
   }
   if (type === 'month') {
     return [

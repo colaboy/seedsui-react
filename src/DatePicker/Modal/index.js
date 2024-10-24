@@ -28,6 +28,7 @@ const Modal = forwardRef(
       MainProps,
 
       // Main: common
+      type,
       value,
       list, // [{id: '', name: ''}]
       allowClear,
@@ -144,6 +145,7 @@ const Modal = forwardRef(
             ref={mainRef}
             {...(MainProps || {})}
             visible={visible}
+            type={type}
             value={currentValue}
             defaultPickerValue={defaultPickerValue}
             list={list}
