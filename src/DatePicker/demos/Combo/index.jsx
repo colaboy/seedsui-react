@@ -8,10 +8,10 @@ export default () => {
     <>
       <DatePicker.Combo
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
-        defaultPickerValue={new Date('2022-08-22 00:00')}
-        // min={new Date()}
+        // defaultPickerValue={new Date('2022-08-22 00:00')}
+        min={new Date()}
         // year | quarter | month | date | time | datetime
-        type="week"
+        type="year"
         // format="YYYY-MM-DD HH:mm 第Q季 ddd"
         value={value}
         onBeforeChange={(newValue) => {
@@ -38,13 +38,13 @@ export default () => {
         // captionProps={{
         //   caption: ''
         // }}
-        // titleFormatter={({ type, value }) => {
-        //   console.log('格式化标题:', type, value)
-        //   if (value.getDate() === 1) {
-        //     return 'YYYY-MM'
-        //   }
-        //   return 'YYYY-MM-DD'
-        // }}
+        titleFormatter={(value) => {
+          console.log('格式化标题:', type, value)
+          if (value.getDate() === 1) {
+            return 'YYYY-MM'
+          }
+          return 'YYYY-MM-DD'
+        }}
         // onError={(err) =>
         //   Toast.show({
         //     content: err.errMsg || '',

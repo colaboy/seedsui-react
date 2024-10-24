@@ -25,6 +25,7 @@ const Modal = forwardRef(
       submitProps,
       cancelProps,
       maskClosable = true,
+      titleFormatter,
       onError,
 
       // Main
@@ -87,6 +88,10 @@ const Modal = forwardRef(
       if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
         // Main渲染完成后取标题, 否则将会取到上次的值
         setTimeout(() => {
+          // if (typeof titleFormatter === 'function') {
+          //   currentTitle = titleFormatter(currentValue)
+          // }
+
           currentTitle = mainRef?.current?.getTitle?.()
           setCurrentTitle(currentTitle)
         }, 100)

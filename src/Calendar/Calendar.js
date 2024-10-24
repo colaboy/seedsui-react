@@ -31,7 +31,7 @@ const Calendar = forwardRef(
       value,
       selectionMode, // single | range
       weekStart = 'Sunday', // Monday | Sunday
-      titleFormatter = 'YYYY年MM月', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
+      titleFormatter = 'YYYY-MM', // 标题日期格式化 YYYY年MM月DD日 周E 第W周
       min, // 禁用之前日期
       max, // 禁用之后日期
       draggable = ['horizontal', 'vertical'], // 是否允许垂直拖动
