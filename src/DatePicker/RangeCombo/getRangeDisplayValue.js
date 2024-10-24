@@ -1,5 +1,7 @@
-import { getDateDisplayValue } from './../utils'
 import getActiveOption from './../RangeMain/SelectorMain/getActiveOption'
+
+// 内库使用
+import DateUtil from './../../DateUtil'
 
 // 显示名称
 function getRangeDisplayValue({ format, ranges, type, value, separator, currentActiveKey }) {
@@ -22,8 +24,8 @@ function getRangeDisplayValue({ format, ranges, type, value, separator, currentA
   }
 
   // 显示日期
-  displayValue.push(getDateDisplayValue({ format: format, type: type, value: start }))
-  displayValue.push(getDateDisplayValue({ format: format, type: type, value: end }))
+  displayValue.push(DateUtil.format(start, format || type))
+  displayValue.push(DateUtil.format(end, format || type))
   return displayValue.join(separator || ' ~ ')
 }
 

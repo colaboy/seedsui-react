@@ -1,9 +1,11 @@
 import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
-import { getDateDisplayValue } from './../utils'
 
 import DatePickerMain from './../Main'
-import Tabs from './../../Tabs'
 import getActiveTab from './getActiveTab'
+
+// 内库使用
+import DateUtil from './../../DateUtil'
+import Tabs from './../../Tabs'
 
 // 测试使用
 // import Tabs from 'seedsui-react/lib/Tabs'
@@ -69,10 +71,10 @@ const MultipleMain = (
       return {
         ...tab,
         value: tab.value || tab.defaultPickerValue || new Date(),
-        sndcaption: getDateDisplayValue({
-          type: tab.type || type,
-          value: tab.value || tab.defaultPickerValue || new Date()
-        })
+        sndcaption: DateUtil.format(
+          tab.value || tab.defaultPickerValue || new Date(),
+          tab.type || type
+        )
       }
     })
     setTabs(tabs)
@@ -147,10 +149,7 @@ const MultipleMain = (
                 defaultPickerValue={tab.defaultPickerValue}
                 onChange={(date) => {
                   tab.value = date
-                  tab.sndcaption = getDateDisplayValue({
-                    type: tab.type || type,
-                    value: tab.value
-                  })
+                  tab.sndcaption = DateUtil.format(tab.value, tab.type || type)
                   handleDateChange(tab)
                 }}
               />

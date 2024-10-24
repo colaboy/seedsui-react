@@ -1,4 +1,5 @@
-import { getDateDisplayValue } from './../utils'
+// 内库使用
+import DateUtil from './../../DateUtil'
 
 // 显示多选名称
 function getMultipleDisplayValue({ type, value, separator }) {
@@ -11,7 +12,7 @@ function getMultipleDisplayValue({ type, value, separator }) {
     if (Object.isDate(current?.value) === false) {
       return ''
     }
-    displayValue.push(getDateDisplayValue({ type: type, value: current.value }))
+    displayValue.push(DateUtil.format(current.value, type))
   }
 
   return displayValue.join(separator || ' ~ ')

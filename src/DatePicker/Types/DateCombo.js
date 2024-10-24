@@ -1,8 +1,10 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import dayjs from 'dayjs'
 
-import { getDateDisplayValue } from './../utils'
 import Combo from './../Combo'
+
+// 内库使用
+import DateUtil from './../../DateUtil'
 
 // 日期类型选择控件: 年月日季
 const DateCombo = forwardRef(
@@ -21,10 +23,7 @@ const DateCombo = forwardRef(
     ref
   ) => {
     // 显示文本
-    let displayValue = getDateDisplayValue({
-      type: type,
-      value: value
-    })
+    let displayValue = DateUtil.format(value, type)
 
     const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -33,11 +32,8 @@ const DateCombo = forwardRef(
         getRootDOM: () => rootRef?.current,
         // 显示文本
         displayValue: displayValue,
-        getDisplayValue: (newValue) => {
-          return getDateDisplayValue({
-            type: value?.type,
-            value: newValue || value?.value
-          })
+        getDisplayValue: () => {
+          return displayValue
         }
       }
     })
