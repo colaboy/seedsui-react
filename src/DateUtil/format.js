@@ -14,7 +14,7 @@ function format(date, type) {
   if (type === 'year') {
     return dayjs(date).format('YYYY')
   } else if (type === 'quarter') {
-    return dayjs(date).format('YYYY-Q')
+    return dayjs(date).format('YYYY-[Q]Q')
   } else if (type === 'month') {
     return dayjs(date).format('YYYY-MM')
   } else if (type === 'date') {
