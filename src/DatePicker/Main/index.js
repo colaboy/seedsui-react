@@ -32,7 +32,11 @@ function Main(
       getTitle: () => {
         let title = locale('选择日期', 'SeedsUI_placeholder_select')
         if (value instanceof Date) {
-          title = DateUtil.format(value, 'YYYY-MM-DD ddd')
+          if (type === 'date') {
+            title = DateUtil.format(value, 'YYYY-MM-DD ddd')
+          } else {
+            title = DateUtil.format(value, type)
+          }
         }
         return title
       },
