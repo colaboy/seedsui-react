@@ -120,9 +120,7 @@ function ready(callback, options = {}, Bridge) {
 
     // 外勤jssdk
     // 用开发d目录可以使用新功能
-    script.src =
-      options.wqSrc ||
-      `//res.waiqin365.com/d/open/js/waiqin365.min.js?v=${date.getMonth() + '' + date.getDate()}`
+    script.src = options.wqSrc || `//res.waiqin365.com/p/open/js/waiqin365.min-2.0.4.js`
     script.onload = function () {
       Bridge.init(callback)
     }

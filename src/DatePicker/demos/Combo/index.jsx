@@ -11,7 +11,7 @@ export default () => {
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         // year | quarter | month | date | time | datetime
-        type="year"
+        type="date"
         // format="YYYY-MM-DD HH:mm 第Q季 ddd"
         value={value}
         onBeforeChange={(newValue) => {
