@@ -8,14 +8,23 @@ import './PrototypeNumber.js'
 import './PrototypeDate.js'
 // import './PrototypePinyin.js' // 不常用
 
-// dayjs国际化
+// dayjs国际化, 常用插件: https://day.js.org/docs/en/plugin/plugin
 import 'dayjs/locale/zh-cn'
 import dayjs from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
+
+// Test locale: start
+// import 'dayjs/locale/zh-cn'
+// dayjs.locale('zh-cn')
+// Test locale: end
 
 // 引入插件
 dayjs.extend(isoWeek) // 用于解决format时报错:isoWeek
+dayjs.extend(weekOfYear) // 用于解决format时报错:week
+dayjs.extend(quarterOfYear)
 dayjs.extend(advancedFormat) // 支持高级format
 
 // 记录版本号

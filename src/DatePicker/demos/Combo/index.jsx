@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { DatePicker, Toast } from 'seedsui-react'
+import { DatePicker, DateUtil } from 'seedsui-react'
 
 export default () => {
   const [value, setValue] = useState(null)
 
+  console.log(DateUtil.diff(new Date('2021-10-26'), new Date(), 'year'))
   return (
     <>
       <DatePicker.Combo

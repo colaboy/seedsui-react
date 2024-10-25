@@ -2,7 +2,6 @@ import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } f
 import _ from 'lodash'
 import getCustomKey from './getCustomKey'
 import getActiveOption from './getActiveOption'
-import { validateRange } from './../../utils'
 
 import Selector from './../../../Selector'
 import CustomModal from './CustomModal'
@@ -88,24 +87,6 @@ function RangeMain(
 
     // eslint-disable-next-line
     if (newValue === undefined) newValue = null
-
-    let goOn = await validateRange(newValue, {
-      type,
-      min,
-      max,
-      dateRangeLimit: typeof ranges[newActiveKey] === 'number' ? ranges[newActiveKey] : null,
-      onError,
-      onBeforeChange,
-      ranges,
-      activeKey: newActiveKey
-    })
-    if (goOn === false) return
-
-    // 修改值
-    if (Array.isArray(goOn) && goOn.length === 2) {
-      // eslint-disable-next-line
-      newValue = goOn
-    }
 
     // 修改选中项
     if (newActiveKey !== undefined) {
@@ -223,19 +204,6 @@ function RangeMain(
           // max={max}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
-          onBeforeChange={async (newValue) => {
-            let goOn = await validateRange(newValue, {
-              type,
-              min,
-              max,
-              dateRangeLimit: ranges[customKey] || null,
-              onError,
-              onBeforeChange,
-              activeKey: customKey,
-              ranges
-            })
-            return goOn
-          }}
           onChange={(newValue) => {
             onChange &&
               onChange(newValue, {

@@ -1,11 +1,12 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
-import locale from '../../locale'
-import { validateRange } from './../utils'
-// 测试使用
-// import locale from 'seedsui-react/lib/locale'
-
 import MultipleMain from './../MultipleMain'
 import { getRangeDates } from './../utils'
+
+// 内库使用
+import locale from '../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 // 日期区间弹窗
 const PickerMain = function (
@@ -44,7 +45,7 @@ const PickerMain = function (
 
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
-    const { startDate, endDate } = getRangeDates(value)
+    const [startDate, endDate] = value || [null, null]
 
     setMultipleDate([
       {
@@ -60,28 +61,9 @@ const PickerMain = function (
     ])
   }, [value]) // eslint-disable-line
 
-  async function handleChange(newMultipleDate) {
+  function handleChange(newMultipleDate) {
     let newValue = [newMultipleDate[0].value, newMultipleDate[1].value]
-
-    // 校验
-    let goOn = await validateRange(newValue, {
-      type,
-      min,
-      max,
-      dateRangeLimit: typeof dateRangeLimit === 'number' ? dateRangeLimit : null,
-      onError,
-      onBeforeChange,
-      activeKey: null,
-      ranges: null
-    })
-    if (goOn === false) {
-      setMultipleDate(Object.clone(multipleDate))
-      return
-    }
-
-    if (onChange) {
-      return onChange(newValue)
-    }
+    onChange && onChange(newValue)
   }
 
   // 未构建完成Tabs不渲染

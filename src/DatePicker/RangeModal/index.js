@@ -1,137 +1,196 @@
-// require PrototypeDate.js和PrototypeString.js
-import React, { forwardRef } from 'react'
-import { validateRange } from './../utils'
-
+import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import validateRange from './validateRange'
 import RangeMain from './../RangeMain'
-import BaseModal from './../../Select/Modal'
-// 测试使用
-// import BaseModal from 'seedsui-react/lib/Select/Modal'
 
-// 区间弹窗
-const RangeModal = (
-  {
-    // 显示文本格式化和value格式化
-    valueFormatter,
+// 内库使用
+import ModalPicker from './../../Modal/Picker'
 
-    // Modal fixed properties
-    visible,
+// Modal
+const Modal = forwardRef(
+  (
+    {
+      // 无用的属性
+      getComboDOM,
 
-    // Modal: display properties
-    portal,
+      // Modal fixed properties
+      portal,
+      animation = 'slideUp',
+      maskProps,
+      captionProps,
+      submitProps,
+      cancelProps,
+      maskClosable = true,
+      visible,
+      onVisibleChange,
 
-    // Main: common
-    value,
-    allowClear,
-    onBeforeChange,
-    onChange,
+      // Modal current properties
+      titleFormatter,
+      defaultPickerValue,
+      onError,
 
-    // Main: Picker Control properties
-    defaultPickerValue,
+      // Main
+      MainComponent,
+      MainProps,
 
-    // Combo|Main: DatePicker Control properties
-    titles,
-    customModal,
-    min,
-    max,
-    disabledStart,
-    disabledEnd,
-    type = 'date', // year | quarter | month | date | time | datetime
-    onError,
-    ranges,
-    separator,
-    ...props
-  },
-  ref
-) => {
-  // 扩展非标准属性
-  if (!props.MainProps) {
-    props.MainProps = {}
-  }
-  let MainPropsExternal = {
-    portal: portal,
-    // components props
-    // SelectorProps: SelectorProps,
-    // customDatePickerProps: customDatePickerProps,
-    allowClear: allowClear,
-    // Main: common
-    value: value,
-    // onBeforeChange: onBeforeChange,
-    // onChange: onChange,
-    // Main: Picker Control properties
-    defaultPickerValue: defaultPickerValue,
-    // Combo|Main: DatePicker Control properties
-    titles: titles,
-    customModal: customModal,
-    min: min,
-    max: max,
-    disabledStart: disabledStart,
-    disabledEnd: disabledEnd,
-    type: type,
-    onError: onError,
-    ranges: ranges,
-    // Custom option config
-    // customModal: customModal
-    DatePickerModalProps: {
-      maskProps: props.maskProps || null
-    }
-  }
-
-  for (let propName in MainPropsExternal) {
-    if (props.MainProps[propName] === undefined) {
-      props.MainProps[propName] = MainPropsExternal[propName]
-    }
-  }
-
-  return (
-    <BaseModal
-      ref={ref}
-      {...props}
-      className={`slots${props.className ? ' ' + props.className : ''}`}
-      // type={type}
-      valueFormatter={valueFormatter}
-      multiple={false}
-      visible={visible}
-      MainComponent={RangeMain}
-      // Modal: display properties
-      portal={portal}
       // Main: common
-      value={value}
-      allowClear={allowClear}
-      onBeforeChange={async (newValue) => {
-        // 只能校验min和max, 因为不知道用户此刻选中的的项是哪项
-        let goOn = await validateRange(newValue, {
-          type,
-          min,
-          max,
-          // dateRangeLimit:
-          //   activeKey && typeof ranges[activeKey] === 'number' ? ranges[activeKey] : null,
-          onError,
-          onBeforeChange
-          // ranges,
-          // activeKey: activeKey
-        })
-        if (goOn === false) return false
+      value,
+      type,
+      min,
+      max,
+      allowClear,
+      onBeforeChange,
+      onChange,
 
+      // Main: special
+      diff,
+      // titles,
+      // customModal,
+      disabledStart,
+      disabledEnd,
+      ranges,
+      separator,
+
+      // 纯渲染时不渲染Main
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    // 当前标题，如日期
+    let [currentTitle, setCurrentTitle] = useState('')
+
+    // 当前选中项
+    let [currentValue, setCurrentValue] = useState([])
+
+    // 节点
+    const modalRef = useRef(null)
+    const mainRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
+      return {
+        rootDOM: modalRef?.current?.rootDOM,
+        getRootDOM: () => modalRef?.current?.rootDOM,
+
+        mainDOM: mainDOM,
+        getMainDOM: getMainDOM,
+        ...otherMainRef
+      }
+    })
+
+    useEffect(() => {
+      if (visible === null) return
+      if (onVisibleChange) onVisibleChange(visible)
+
+      // 显示弹窗，更新标题和显示值
+      if (visible) {
+        updateTitle()
+        setCurrentValue(value || defaultPickerValue)
+      }
+      // eslint-disable-next-line
+    }, [visible])
+
+    // 没有传入标题时, 需要动态更新标题（如果日期）
+    function updateTitle() {
+      if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
+        // Main渲染完成后取标题, 否则将会取到上次的值
+        setTimeout(() => {
+          // if (typeof titleFormatter === 'function') {
+          //   currentTitle = titleFormatter(currentValue)
+          // }
+
+          currentTitle = mainRef?.current?.getTitle?.()
+          setCurrentTitle(currentTitle)
+        }, 100)
+      }
+    }
+
+    // 事件
+    async function handleSubmitClick(e) {
+      if (submitProps?.onClick) submitProps.onClick(e)
+      // 更新选中的值
+      if (mainRef?.current?.getValue) {
+        currentValue = mainRef.current.getValue()
+      }
+
+      // 校验
+      let newValue = validateRange(currentValue, {
+        type: type,
+        min: min,
+        max: max,
+        diff: diff,
+        onError: onError
+      })
+
+      if (!newValue) return
+      currentValue = newValue
+
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(currentValue)
+        if (goOn === false) return
         // 修改值
-        if (Array.isArray(goOn) && goOn.length === 2) {
-          // eslint-disable-next-line
-          newValue = goOn
+        if (typeof goOn === 'object') {
+          currentValue = goOn
         }
+      }
+      if (onChange) {
+        let goOn = await onChange(currentValue)
+        if (goOn === false) return
+      }
+      if (onVisibleChange) onVisibleChange(false)
+    }
 
-        return newValue
-      }}
-      onChange={onChange}
-      // Main: Picker Control properties
-      defaultPickerValue={defaultPickerValue}
-      // Combo|Main: DatePicker Control properties
-      min={min}
-      max={max}
-      type={type}
-      separator={separator}
-      onError={onError}
-      ranges={ranges}
-    />
-  )
-}
+    // Main Render
+    let MainNode = RangeMain
+    if (MainComponent) {
+      MainNode = MainComponent
+    }
 
-export default forwardRef(RangeModal)
+    return (
+      <ModalPicker
+        ref={modalRef}
+        // Modal fixed properties
+        visible={visible}
+        onVisibleChange={onVisibleChange}
+        // Modal: display properties
+        animation={animation}
+        maskProps={maskProps}
+        captionProps={{ caption: currentTitle, ...captionProps }}
+        submitProps={{
+          ...submitProps,
+          onClick: handleSubmitClick
+        }}
+        cancelProps={cancelProps}
+        maskClosable={maskClosable}
+        {...props}
+        className={`slots${props.className ? ' ' + props.className : ''}`}
+        portal={portal || document.getElementById('root') || document.body}
+      >
+        {/* 纯渲染 */}
+        {children}
+        {/* 主体 */}
+        {!children && (
+          <MainNode
+            ref={mainRef}
+            {...(MainProps || {})}
+            visible={visible}
+            value={currentValue}
+            type={type}
+            min={min}
+            max={max}
+            allowClear={allowClear}
+            onChange={(newValue) => {
+              // 无标题时更新标题
+              updateTitle()
+
+              // 修改值
+              setCurrentValue(newValue)
+            }}
+          />
+        )}
+      </ModalPicker>
+    )
+  }
+)
+
+export default Modal

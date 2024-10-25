@@ -3,6 +3,8 @@ import previousWeek from './previousWeek'
 import nextWeek from './nextWeek'
 import getDaysInMonth from './getDaysInMonth'
 import compare from './compare'
+import diff from './diff'
+import add from './add'
 import format from './format'
 import quarter from './quarter'
 
@@ -16,6 +18,8 @@ const dateUtil = {
   getDaysInMonth: getDaysInMonth,
   // 比较年月日,大于返回1,等于返回0,小于返回-1,错误返回undefined
   compare: compare,
+  diff: diff,
+  add: add,
   // 格式化日期
   format: format,
   // 获取当前季度

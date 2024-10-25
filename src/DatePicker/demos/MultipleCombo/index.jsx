@@ -26,6 +26,7 @@ export default () => {
       <DatePicker.MultipleCombo
         placeholder="Please select MultipleCombo"
         value={mulValue}
+        type="week"
         onChange={(newValue) => {
           console.log(newValue)
           setMulValue(newValue)
