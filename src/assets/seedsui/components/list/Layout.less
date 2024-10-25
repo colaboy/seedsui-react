@@ -14,6 +14,17 @@
   }
 }
 
+// 子级安全区
+.layout.safe-area:not(:has(> .layout-footer)) > .layout-main {
+  .safe-area;
+  .safe-area.border-bottom;
+}
+
+.layout.safe-area > .layout-footer {
+  .safe-area;
+  .safe-area.border-bottom;
+}
+
 // 撑满展示
 .layout.full {
   position: absolute;
