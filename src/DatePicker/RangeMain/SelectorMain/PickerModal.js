@@ -9,7 +9,6 @@ import { getRangeDates } from './../../utils'
 // 日期区间弹窗
 const DateRangeModal = function ({
   value,
-  defaultPickerValue,
   type,
   disabledStart,
   disabledEnd,
@@ -20,15 +19,13 @@ const DateRangeModal = function ({
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getRangeDates(value)
-    const { startDate: defaultStartDate, endDate: defaultEndDate } =
-      getRangeDates(defaultPickerValue)
+
     setMultipleDate([
       {
         type: type,
         id: 'start',
         name: locale('开始时间', 'SeedsUI_start_time'),
         value: startDate,
-        defaultPickerValue: defaultStartDate,
         disabled: disabledStart
       },
       {
@@ -36,7 +33,6 @@ const DateRangeModal = function ({
         id: 'end',
         name: locale('结束时间', 'SeedsUI_end_time'),
         value: endDate,
-        defaultPickerValue: defaultEndDate,
         disabled: disabledEnd
       }
     ])

@@ -1,5 +1,4 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import validateMaxMin from '../utils/validateMaxMin'
 import Main from './../Main'
 
@@ -141,14 +140,13 @@ const Modal = forwardRef(
       MainNode = MainComponent
     }
 
-    return createPortal(
+    return (
       <ModalPicker
         ref={modalRef}
         // Modal fixed properties
         visible={visible}
         onVisibleChange={onVisibleChange}
         // Modal: display properties
-        portal={portal}
         animation={animation}
         maskProps={maskProps}
         captionProps={{ caption: currentTitle, ...captionProps }}
@@ -160,6 +158,7 @@ const Modal = forwardRef(
         maskClosable={maskClosable}
         {...props}
         className={`slots${props.className ? ' ' + props.className : ''}`}
+        portal={portal || document.getElementById('root') || document.body}
       >
         {/* 纯渲染 */}
         {children}
@@ -183,8 +182,7 @@ const Modal = forwardRef(
             }}
           />
         )}
-      </ModalPicker>,
-      portal || document.getElementById('root') || document.body
+      </ModalPicker>
     )
   }
 )

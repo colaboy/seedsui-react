@@ -22,9 +22,6 @@ function RangeMain(
     onBeforeChange,
     onChange,
 
-    // Main: Picker Control properties
-    defaultPickerValue,
-
     // Combo|Main: DatePicker Control properties
     titles,
     min,
@@ -222,7 +219,6 @@ function RangeMain(
           type={type}
           allowClear={allowClear}
           value={value}
-          defaultPickerValue={defaultPickerValue}
           // min={min}
           // max={max}
           disabledStart={disabledStart}

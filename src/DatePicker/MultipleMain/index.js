@@ -1,156 +1,82 @@
-import React, { forwardRef, useEffect, useRef, useImperativeHandle, useState } from 'react'
-
-import DatePickerMain from './../Main'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect, useState } from 'react'
+import Main from './../Main'
+import formatValue from './formatValue'
 import getActiveTab from './getActiveTab'
 
 // 内库使用
+import locale from './../../locale'
 import DateUtil from './../../DateUtil'
 import Tabs from './../../Tabs'
 
-// 测试使用
-// import Tabs from 'seedsui-react/lib/Tabs'
-
-// 日期多选弹框
-const MultipleMain = (
+// 日期多选
+function MultipleMain(
   {
-    // Modal
-    visible,
+    visible = true,
 
-    // Main
-    // MainComponent,
-    // MainProps,
+    // components props
+    allowClear,
 
     // Main: common
     value,
-    allowClear,
-    list,
-    multiple,
-    onSelect,
-    onBeforeChange,
-    onChange,
-
-    // Main: Picker Control properties
-    defaultPickerValue,
-
-    // Main: DatePicker Control properties
-    titleFormatter,
-    type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,
-    onError,
-    ranges,
-    modal, // 快捷选择弹出方式
-    separator,
-
-    ...props
+    onChange
   },
   ref
-) => {
-  // 节点
+) {
+  // 格式化数据
+  let tabsRef = useRef(null)
+  tabsRef.current = formatValue(value)
+  let [activeTab, setActiveTab] = useState(null)
+
+  // Expose tools
   const mainRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
       rootDOM: mainRef.current,
       getRootDOM: () => mainRef.current,
+      // 获取标题
+      getTitle: () => {
+        let title = locale('选择日期', 'SeedsUI_placeholder_select')
+        return title
+      },
       getValue: () => {
-        return tabs
+        return tabsRef.current
       }
     }
   })
 
-  // 选中tab
-  let [tabs, setTabs] = useState(null)
-  let [activeTab, setActiveTab] = useState(null)
   useEffect(() => {
-    if (!Array.isArray(value) || !value.length) {
-      return
-    }
-    // 构建tabs, 将value的[{type: 'date', id: 'start', name: '开始时间', value: new Date()}]]加入sndcaption
+    if (activeTab) return
+    setActiveTab(getActiveTab(tabsRef.current))
     // eslint-disable-next-line
-    tabs = value.map((tab) => {
-      return {
-        ...tab,
-        value: tab.value || tab.defaultPickerValue || new Date(),
-        sndcaption: DateUtil.format(
-          tab.value || tab.defaultPickerValue || new Date(),
-          tab.type || type
-        )
-      }
-    })
-    setTabs(tabs)
-
-    // 默认选中一个非禁止项
-    if (!activeTab) {
-      setActiveTab(getActiveTab(tabs))
-    }
   }, [value])
 
-  // 隐藏时, 清空选中项
-  useEffect(() => {
-    if (!visible) {
-      // setTabs(null)
-      setActiveTab(getActiveTab(tabs))
-    }
-    // eslint-disable-next-line
-  }, [visible])
-
-  // 更新Picker样式
-  useEffect(() => {
-    updatePickerStyle()
-    // eslint-disable-next-line
-  }, [activeTab])
-
-  // 选择日期
-  function handleDateChange(newTab) {
-    // 更新tab
-    tabs = tabs.map((tab) => {
-      if (tab === newTab.id) return newTab
-      return tab
-    })
-
-    // 触发onChange事件
-    if (onChange) onChange(tabs)
-    // 更新tabs
-    setTabs(tabs)
-  }
-
-  // 动态计算picker高度
-  function updatePickerStyle() {
-    if (
-      (!props?.style?.height && !props?.className) ||
-      !mainRef.current ||
-      !mainRef.current.querySelector('.picker-tabs') ||
-      !mainRef.current.querySelector('.picker-main')
-    ) {
-      return undefined
-    }
-    let mainHeight =
-      mainRef.current.clientHeight - mainRef.current.querySelector('.picker-tabs').clientHeight
-    if (mainHeight) {
-      mainRef.current.querySelector('.picker-main').style.height = mainHeight + 'px'
-    }
-  }
-
   return (
-    <div ref={mainRef} {...props}>
-      {Array.isArray(tabs) && tabs.length ? (
+    <div ref={mainRef} className="picker-multiple-main">
+      {Array.isArray(tabsRef.current) && tabsRef.current.length ? (
         <>
-          <Tabs className="picker-tabs" list={tabs} value={activeTab} onChange={setActiveTab} />
-          {tabs.map((tab, index) => {
+          <Tabs
+            className="picker-tabs"
+            list={tabsRef.current}
+            value={activeTab}
+            onChange={setActiveTab}
+          />
+          {tabsRef.current.map((tab, index) => {
             // 主体内容(wrapper)是否显示
             let contentVisible = tab?.id === activeTab?.id
             if (!contentVisible) return null
             return (
-              <DatePickerMain
+              <Main
                 key={tab.id || index}
-                type={tab.type || 'date'}
                 value={tab.value}
-                disabled={tab.disabled}
-                defaultPickerValue={tab.defaultPickerValue}
+                type={tab.type}
+                min={min}
+                max={max}
                 onChange={(date) => {
                   tab.value = date
-                  tab.sndcaption = DateUtil.format(tab.value, tab.type || type)
-                  handleDateChange(tab)
+                  tab.sndcaption = DateUtil.format(tab.value, tab.type)
+                  onChange && onChange(tabsRef.current)
                 }}
               />
             )

@@ -19,7 +19,6 @@ const PickerMain = function (
     dateRangeLimit,
     allowClear,
     value,
-    defaultPickerValue,
     onBeforeChange,
     onChange,
     onError,
@@ -46,23 +45,19 @@ const PickerMain = function (
   const [multipleDate, setMultipleDate] = useState(null)
   useEffect(() => {
     const { startDate, endDate } = getRangeDates(value)
-    const { startDate: defaultStartDate, endDate: defaultEndDate } =
-      getRangeDates(defaultPickerValue)
 
     setMultipleDate([
       {
         type: type,
         id: 'start',
         name: locale('开始时间', 'SeedsUI_start_time'),
-        value: startDate,
-        defaultPickerValue: defaultStartDate
+        value: startDate
       },
       {
         type: type,
         id: 'end',
         name: locale('结束时间', 'SeedsUI_end_time'),
-        value: endDate,
-        defaultPickerValue: defaultEndDate
+        value: endDate
       }
     ])
   }, [value]) // eslint-disable-line

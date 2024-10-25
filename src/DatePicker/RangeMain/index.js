@@ -20,9 +20,6 @@ function RangeMain(
     onBeforeChange,
     onChange,
 
-    // Main: Picker Control properties
-    defaultPickerValue,
-
     // Combo|Main: DatePicker Control properties
     titles,
     disabledStart,
@@ -67,7 +64,6 @@ function RangeMain(
           disabledEnd={disabledEnd}
           allowClear={allowClear}
           value={value}
-          defaultPickerValue={defaultPickerValue}
           onBeforeChange={onBeforeChange}
           onChange={onChange}
           onError={onError}
@@ -91,7 +87,6 @@ function RangeMain(
           dateRangeLimit={dateRangeLimit}
           allowClear={allowClear}
           value={value}
-          defaultPickerValue={defaultPickerValue}
           onBeforeChange={onBeforeChange}
           onChange={onChange}
           onError={onError}
