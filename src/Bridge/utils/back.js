@@ -104,7 +104,7 @@ async function back(backLvl, options, Bridge) {
       cancelProps: {
         onClick: () => {
           fail && fail()
-          return false
+          return true
         }
       }
     })

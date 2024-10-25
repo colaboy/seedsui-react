@@ -12,8 +12,6 @@ import locale from './../../locale'
 function ready(callback, options = {}, Bridge) {
   let platform = Bridge.platform
 
-  let date = new Date()
-
   let script = document.createElement('script')
   script.type = 'text/javascript'
   script.defer = 'defer'
