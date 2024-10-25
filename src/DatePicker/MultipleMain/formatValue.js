@@ -2,7 +2,7 @@
 import DateUtil from './../../DateUtil'
 
 // Format value
-function formatValue(value) {
+function formatValue(value, type) {
   if (!Array.isArray(value) || !value.length) {
     return null
   }
@@ -11,7 +11,7 @@ function formatValue(value) {
     return {
       ...tab,
       value: date,
-      sndcaption: DateUtil.format(date, tab.type || 'date')
+      sndcaption: DateUtil.format(date, type)
     }
   })
 }

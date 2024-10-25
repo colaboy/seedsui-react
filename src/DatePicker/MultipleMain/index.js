@@ -18,6 +18,7 @@ function MultipleMain(
 
     // Main: common
     value,
+    type = 'date', // year | quarter | month | date | time | datetime | week
     min,
     max,
     onChange
@@ -26,7 +27,7 @@ function MultipleMain(
 ) {
   // 格式化数据
   let tabsRef = useRef(null)
-  tabsRef.current = formatValue(value)
+  tabsRef.current = formatValue(value, type)
   let [activeTab, setActiveTab] = useState(null)
 
   // Expose tools
@@ -70,12 +71,12 @@ function MultipleMain(
               <Main
                 key={tab.id || index}
                 value={tab.value}
-                type={tab.type}
+                type={type}
                 min={min}
                 max={max}
                 onChange={(date) => {
                   tab.value = date
-                  tab.sndcaption = DateUtil.format(tab.value, tab.type)
+                  tab.sndcaption = DateUtil.format(tab.value, type)
                   onChange && onChange(tabsRef.current)
                 }}
               />

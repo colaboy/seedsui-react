@@ -16,7 +16,7 @@ function Main(
 
     // Main: common
     value,
-    type = 'date', // year | quarter | month | date | time | datetime
+    type = 'date', // year | quarter | month | date | time | datetime | week
     min,
     max,
     onChange

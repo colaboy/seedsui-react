@@ -4,26 +4,20 @@ import { DatePicker, Toast } from 'seedsui-react'
 export default () => {
   const [mulValue, setMulValue] = useState([
     {
-      type: 'date',
       id: 'start',
       name: 'Start',
       value: null,
-      disabled: true,
-      defaultPickerValue: new Date('2022-08-22 00:00')
+      disabled: true
     },
     {
-      type: 'date',
       id: 'middle',
       name: 'Middle',
-      value: null,
-      defaultPickerValue: new Date('2023-08-22 00:00')
+      value: null
     },
     {
-      type: 'date',
       id: 'end',
       name: 'End',
-      value: null,
-      defaultPickerValue: new Date('2024-08-22 00:00')
+      value: null
     }
   ])
 
