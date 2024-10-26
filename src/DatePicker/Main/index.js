@@ -11,12 +11,9 @@ function Main(
   {
     visible = true,
 
-    // components props
-    allowClear,
-
-    // Main: common
     value,
     type = 'date', // year | quarter | month | date | time | datetime | week
+    allowClear,
     min,
     max,
     onChange

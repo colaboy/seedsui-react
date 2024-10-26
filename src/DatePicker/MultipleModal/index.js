@@ -13,10 +13,6 @@ const Modal = forwardRef(
       getComboDOM,
 
       // Modal fixed properties
-      visible,
-      onVisibleChange,
-
-      // Modal: display properties
       portal,
       animation = 'slideUp',
       maskProps,
@@ -24,24 +20,26 @@ const Modal = forwardRef(
       submitProps,
       cancelProps,
       maskClosable = true,
+      visible,
+      onVisibleChange,
+
+      // Modal current properties
       titleFormatter,
+      defaultPickerValue,
       onError,
+      onBeforeChange,
 
       // Main
       MainComponent,
       MainProps,
 
-      // Main: common
+      // Main properties
       value,
       type,
       min,
       max,
       allowClear,
-      onBeforeChange,
       onChange,
-
-      // Main: Picker Control properties
-      defaultPickerValue,
 
       // 纯渲染时不渲染Main
       children,

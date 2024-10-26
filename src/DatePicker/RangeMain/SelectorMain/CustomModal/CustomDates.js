@@ -9,13 +9,14 @@ import Combo from './../../../Combo'
 export default function CustomDates({
   portal,
   type,
+  value,
+  min,
+  max,
   disabledStart,
   disabledEnd,
   allowClear,
-  value,
-  onBeforeChange,
   onChange,
-  onError,
+
   DatePickerModalProps
 }) {
   // 开始和结束日期
@@ -30,14 +31,8 @@ export default function CustomDates({
         type={type}
         value={startDate}
         disabled={disabledStart}
-        // max={Array.isArray(value) && value.length === 2 ? value[1] : undefined}
-        // onError={onError}
-        onBeforeChange={(argStartDate) => {
-          let newStartDate = argStartDate || null
-          if (onBeforeChange) {
-            return onBeforeChange(newStartDate || endDate ? [newStartDate, endDate] : null)
-          }
-        }}
+        min={min}
+        max={max}
         onChange={(argStartDate) => {
           let newStartDate = argStartDate || null
           if (onChange) onChange(newStartDate || endDate ? [newStartDate, endDate] : null)
@@ -52,15 +47,9 @@ export default function CustomDates({
         ModalProps={DatePickerModalProps}
         type={type}
         value={endDate}
+        min={min}
+        max={max}
         disabled={disabledEnd}
-        // min={Array.isArray(value) && value.length === 2 ? value[0] : undefined}
-        // onError={onError}
-        onBeforeChange={(argEndDate) => {
-          let newEndDate = argEndDate || null
-          if (onBeforeChange) {
-            return onBeforeChange(startDate || newEndDate ? [startDate, newEndDate] : null)
-          }
-        }}
         onChange={(argEndDate) => {
           let newEndDate = argEndDate || null
           if (onChange) onChange(startDate || newEndDate ? [startDate, newEndDate] : null)

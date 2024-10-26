@@ -10,21 +10,7 @@ import locale from '../../locale'
 
 // 日期区间弹窗
 const PickerMain = function (
-  {
-    portal,
-    type,
-    min,
-    max,
-    disabledStart,
-    disabledEnd,
-    dateRangeLimit,
-    allowClear,
-    value,
-    onBeforeChange,
-    onChange,
-    onError,
-    ...props
-  },
+  { portal, type, min, max, disabledStart, disabledEnd, allowClear, value, onChange, ...props },
   ref
 ) {
   const mainRef = useRef(null)

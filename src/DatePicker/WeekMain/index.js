@@ -10,17 +10,12 @@ function WeekMain(
   {
     visible = true,
 
-    // components props
-    allowClear,
-
-    // Main: common
     value,
     min,
     max,
-    onChange,
-
-    // Monday | Sunday
-    weekStart = 'Monday'
+    weekStart = 'Monday', // Monday | Sunday
+    allowClear,
+    onChange
   },
   ref
 ) {

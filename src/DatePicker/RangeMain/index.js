@@ -6,32 +6,22 @@ import PickerMain from './PickerMain'
 // 日期快捷选择
 function RangeMain(
   {
-    // useless props
     visible,
 
-    portal,
-
-    // components props
-    SelectorProps,
-    allowClear,
-
-    // Main: common
     value,
-    onBeforeChange,
+    type = 'date', // year | quarter | month | date | time | datetime
+    min,
+    max,
+    disabledStart,
+    disabledEnd,
+    ranges = defaultRanges,
+    allowClear,
     onChange,
 
     // Combo|Main: DatePicker Control properties
-    titles,
-    disabledStart,
-    disabledEnd,
-    min,
-    max,
-    type = 'date', // year | quarter | month | date | time | datetime
-    onError,
-    ranges = defaultRanges,
-
-    // Custom option config
+    SelectorProps,
     DatePickerModalProps,
+    titles,
     customModal = 'dates', // dates | picker
     ...props
   },
@@ -39,14 +29,10 @@ function RangeMain(
 ) {
   // 判断有没有快捷选择
   let hasSelector = false
-  // 限制天数
-  let dateRangeLimit = null
   if (ranges) {
     for (let key in ranges) {
       if (Array.isArray(ranges[key])) {
         hasSelector = true
-      } else if (typeof ranges[key] === 'number') {
-        dateRangeLimit = ranges[key]
       }
     }
   }
@@ -64,9 +50,7 @@ function RangeMain(
           disabledEnd={disabledEnd}
           allowClear={allowClear}
           value={value}
-          onBeforeChange={onBeforeChange}
           onChange={onChange}
-          onError={onError}
           SelectorProps={SelectorProps}
           DatePickerModalProps={DatePickerModalProps}
           titles={titles}
@@ -84,12 +68,9 @@ function RangeMain(
           max={max}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
-          dateRangeLimit={dateRangeLimit}
           allowClear={allowClear}
           value={value}
-          onBeforeChange={onBeforeChange}
           onChange={onChange}
-          onError={onError}
           {...props}
         />
       )}

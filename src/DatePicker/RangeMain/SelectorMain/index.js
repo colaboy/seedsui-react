@@ -18,22 +18,20 @@ function RangeMain(
 
     // Main: common
     value,
-    onBeforeChange,
     onChange,
 
     // Combo|Main: DatePicker Control properties
-    titles,
+    // titles,
     min,
     max,
     disabledStart,
     disabledEnd,
     type,
-    onError,
     ranges,
 
     // Custom option config
     DatePickerModalProps,
-    customModal = 'dates', // dates | picker
+    // customModal = 'dates', // dates | picker
     ...props
   },
   ref
@@ -211,7 +209,6 @@ function RangeMain(
                 activeKey: customKey
               })
           }}
-          onError={onError}
         />
       )}
     </div>

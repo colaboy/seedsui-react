@@ -24,6 +24,7 @@ const Modal = forwardRef(
       onVisibleChange,
 
       // Modal current properties
+      diff,
       titleFormatter,
       defaultPickerValue,
       onError,
@@ -32,23 +33,19 @@ const Modal = forwardRef(
       MainComponent,
       MainProps,
 
-      // Main: common
+      // Main properties
       value,
       type,
       min,
       max,
-      allowClear,
-      onBeforeChange,
-      onChange,
-
-      // Main: special
-      diff,
       // titles,
       // customModal,
       disabledStart,
       disabledEnd,
       ranges,
-      separator,
+      allowClear,
+      onBeforeChange,
+      onChange,
 
       // 纯渲染时不渲染Main
       children,

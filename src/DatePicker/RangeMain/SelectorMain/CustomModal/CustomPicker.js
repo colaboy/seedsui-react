@@ -11,9 +11,7 @@ export default function CustomPicker({
   value,
   disabledStart,
   disabledEnd,
-  onBeforeChange,
   onChange,
-  onError,
   DatePickerModalProps
 }) {
   console.log('value:', value)
@@ -25,8 +23,6 @@ export default function CustomPicker({
         value={value}
         disabledStart={disabledStart}
         disabledEnd={disabledEnd}
-        onError={onError}
-        onBeforeChange={onBeforeChange}
         onChange={onChange}
         {...DatePickerModalProps}
         visible={visible}

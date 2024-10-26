@@ -27,18 +27,18 @@ const Modal = forwardRef(
       defaultPickerValue,
       titleFormatter,
       onError,
+      onBeforeChange,
 
       // Main
       MainComponent,
       MainProps,
 
-      // Main: common
+      // Main properties
       value,
       type,
       min,
       max,
       allowClear,
-      onBeforeChange,
       onChange,
 
       // 纯渲染时不渲染Main
