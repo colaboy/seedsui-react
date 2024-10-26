@@ -3,7 +3,7 @@ import validateMaxMin from './../../utils/validateMaxMin'
 import validateStartEnd from './validateStartEnd'
 
 // 校验值是否正确
-async function validateRange(value, { type, min, max, diff, onError }) {
+function validateRange(value, { type, min, max, diff, onError }) {
   let newValue = formatValue(value, { min, max })
 
   // 校验最大最小值

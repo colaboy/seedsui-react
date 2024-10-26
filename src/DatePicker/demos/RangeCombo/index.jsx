@@ -18,7 +18,7 @@ export default () => {
         ranges={{
           自定义: 100
         }}
-        disabledStart
+        // disabledStart
         // disabledEnd
         className="border-b"
         placeholder="Please select RangeCombo"
@@ -59,9 +59,9 @@ export default () => {
       <DatePicker.RangeCombo
         ref={date2Ref}
         modal="picker"
-        type="datetime"
+        type="week"
         // disabledStart
-        disabledEnd
+        // disabledEnd
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
           if (visible) {

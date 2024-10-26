@@ -7,8 +7,10 @@ export default function CustomPicker({
   portal,
   visible,
   onVisibleChange,
-  type,
   value,
+  type,
+  min,
+  max,
   disabledStart,
   disabledEnd,
   onChange,
@@ -21,6 +23,8 @@ export default function CustomPicker({
         portal={portal}
         type={type}
         value={value}
+        min={min}
+        max={max}
         disabledStart={disabledStart}
         disabledEnd={disabledEnd}
         onChange={onChange}

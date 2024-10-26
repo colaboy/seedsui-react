@@ -196,8 +196,8 @@ function RangeMain(
           type={type}
           allowClear={allowClear}
           value={value}
-          // min={min}
-          // max={max}
+          min={min}
+          max={max}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
           onChange={(newValue) => {
