@@ -36,7 +36,7 @@ const Combo = forwardRef(
       ModalComponent,
       ModalProps,
 
-      // Modal: display properties
+      // Modal fixed properties
       portal,
       animation,
       maskProps,
@@ -44,17 +44,17 @@ const Combo = forwardRef(
       submitProps,
       cancelProps,
       maskClosable = true,
+      onBeforeChange,
 
       // Main
       MainComponent,
       MainProps,
 
-      // Main: common
+      // Main properties
       value,
       list, // [{id: '', name: ''}]
       multiple,
       onSelect,
-      onBeforeChange,
       onChange,
       onSearch,
 
