@@ -8,21 +8,23 @@ function RangeMain(
   {
     visible,
 
+    // Main properties
     value,
     type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,
     disabledStart,
     disabledEnd,
-    ranges = defaultRanges,
     allowClear,
     onChange,
 
-    // Combo|Main: DatePicker Control properties
-    SelectorProps,
-    DatePickerModalProps,
+    ranges = defaultRanges,
     titles,
     customModal = 'dates', // dates | picker
+    portal,
+    SelectorProps,
+    DatePickerModalProps,
+
     ...props
   },
   ref

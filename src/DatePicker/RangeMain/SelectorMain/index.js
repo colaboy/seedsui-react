@@ -21,17 +21,15 @@ function RangeMain(
     onChange,
 
     // Combo|Main: DatePicker Control properties
-    // titles,
     min,
     max,
     disabledStart,
     disabledEnd,
     type,
     ranges,
-
-    // Custom option config
+    titles,
+    customModal = 'dates', // dates | picker
     DatePickerModalProps,
-    // customModal = 'dates', // dates | picker
     ...props
   },
   ref

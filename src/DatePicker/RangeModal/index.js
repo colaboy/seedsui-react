@@ -28,6 +28,7 @@ const Modal = forwardRef(
       titleFormatter,
       defaultPickerValue,
       onError,
+      onBeforeChange,
 
       // Main
       MainComponent,
@@ -38,14 +39,16 @@ const Modal = forwardRef(
       type,
       min,
       max,
-      // titles,
-      // customModal,
       disabledStart,
       disabledEnd,
-      ranges,
       allowClear,
-      onBeforeChange,
       onChange,
+
+      ranges,
+      titles,
+      customModal,
+      SelectorProps,
+      DatePickerModalProps,
 
       // 纯渲染时不渲染Main
       children,
@@ -175,6 +178,8 @@ const Modal = forwardRef(
             type={type}
             min={min}
             max={max}
+            disabledStart={disabledStart}
+            disabledEnd={disabledEnd}
             allowClear={allowClear}
             onChange={(newValue) => {
               // 无标题时更新标题
@@ -183,6 +188,12 @@ const Modal = forwardRef(
               // 修改值
               setCurrentValue(newValue)
             }}
+            ranges={ranges}
+            titles={titles}
+            customModal={customModal}
+            portal={portal}
+            SelectorProps={SelectorProps}
+            DatePickerModalProps={DatePickerModalProps}
           />
         )}
       </ModalPicker>
