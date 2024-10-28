@@ -1,16 +1,31 @@
 import React, { forwardRef } from 'react'
 import defaultRanges from './../RangeMain/SelectorMain/defaultRanges'
-import getRangeDisplayValue from './getRangeDisplayValue'
-
-import Combo from './../../Select/Combo'
-// 测试使用
-// import Combo from 'seedsui-react/lib/Select/Combo'
 import Modal from './../RangeModal'
+import getDisplayValue from './getDisplayValue'
+
+// 内库使用
+import Combo from './../../Select/Combo'
+
+// 测试使用
+// import { Select } from 'seedsui-react'
+// const Combo = Select.Combo
 
 // 日期区间
 const RangeCombo = forwardRef(
   (
-    { format, customModal, titles, disabledStart, disabledEnd, ranges = defaultRanges, ...props },
+    {
+      value,
+      type,
+      format,
+      separator,
+      customModal,
+      titles,
+      disabledStart,
+      disabledEnd,
+      rangeId,
+      ranges = defaultRanges,
+      ...props
+    },
     ref
   ) => {
     // 扩展非标准属性
@@ -35,18 +50,11 @@ const RangeCombo = forwardRef(
       <Combo
         ref={ref}
         ModalComponent={Modal}
+        value={value}
+        type={type}
         ranges={ranges}
-        displayValueFormatter={(params) => {
-          let activeKey = ref?.current?.getActiveKey?.()
-
-          // 根据日期区间计算显示标签，如果有重复选项，将优先取记录的选中项
-          let displayValue = getRangeDisplayValue({
-            format,
-            currentActiveKey: activeKey,
-            ...params
-          })
-
-          return displayValue
+        displayValueFormatter={() => {
+          return getDisplayValue({ value, type: format || type, rangeId, ranges, separator })
         }}
         {...props}
       />

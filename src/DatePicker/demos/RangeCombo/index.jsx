@@ -59,7 +59,7 @@ export default () => {
       <DatePicker.RangeCombo
         ref={date2Ref}
         modal="picker"
-        type="week"
+        // type="week"
         // disabledStart
         // disabledEnd
         onVisibleChange={(visible) => {

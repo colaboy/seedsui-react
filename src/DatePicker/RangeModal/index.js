@@ -44,6 +44,7 @@ const Modal = forwardRef(
       allowClear,
       onChange,
 
+      rangeId,
       ranges,
       titles,
       customModal,
@@ -60,6 +61,7 @@ const Modal = forwardRef(
     let [currentTitle, setCurrentTitle] = useState('')
 
     // 当前选中项
+    let [currentRangeId, setCurrentRangeId] = useState(rangeId)
     let [currentValue, setCurrentValue] = useState([])
 
     // 节点
@@ -85,6 +87,7 @@ const Modal = forwardRef(
       if (visible) {
         updateTitle()
         setCurrentValue(value || defaultPickerValue)
+        rangeId && setCurrentRangeId(rangeId)
       }
       // eslint-disable-next-line
     }, [visible])
@@ -181,13 +184,16 @@ const Modal = forwardRef(
             disabledStart={disabledStart}
             disabledEnd={disabledEnd}
             allowClear={allowClear}
-            onChange={(newValue) => {
+            onChange={(newValue, { rangeId: newRangeId }) => {
+              debugger
+
               // 无标题时更新标题
               updateTitle()
-
               // 修改值
+              setCurrentRangeId(newRangeId)
               setCurrentValue(newValue)
             }}
+            rangeId={currentRangeId}
             ranges={ranges}
             titles={titles}
             customModal={customModal}
