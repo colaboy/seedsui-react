@@ -184,6 +184,22 @@ const Body = forwardRef(
       }
     }
 
+    // 若视窗大小变化, 需要更新x轴的位置
+    function handleResize() {
+      let width = rootRef.current?.parentNode?.clientWidth
+      if (!width) return
+
+      let bodyX = rootRef.current.querySelector('.calendar-body-x')
+      let translatex = bodyX.getAttribute('data-translatex')
+      if (Number(translatex)) return
+
+      bodyX.style.transform = `translateX(-${width}px)`
+      bodyX.setAttribute('data-translatex', `-${width}`)
+
+      console.log(`Calendar: 更新x轴位移-${width}`)
+    }
+    requestAnimationFrame(handleResize)
+
     return (
       <>
         <div

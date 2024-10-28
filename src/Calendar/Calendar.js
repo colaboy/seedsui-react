@@ -85,13 +85,12 @@ const Calendar = forwardRef(
       drawTypeRef.current = type
       updateDrawDate(drawDate)
 
-      // 更新容器位置
+      // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
       if (drawTypeRef.current === 'month') {
         handleSlideY('expand')
       } else {
         handleSlideY('collapse')
       }
-      handleSlideX('')
 
       // 加载事件
       if (onLoad) {
