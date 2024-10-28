@@ -47,7 +47,6 @@ const Modal = forwardRef(
       rangeId,
       ranges,
       titles,
-      customModal,
       SelectorProps,
       DatePickerModalProps,
 
@@ -196,7 +195,6 @@ const Modal = forwardRef(
             rangeId={currentRangeId}
             ranges={ranges}
             titles={titles}
-            customModal={customModal}
             portal={modalRef?.current?.rootDOM}
             SelectorProps={SelectorProps}
             DatePickerModalProps={DatePickerModalProps}

@@ -21,7 +21,6 @@ function RangeMain(
     rangeId,
     ranges = defaultRanges,
     titles,
-    customModal = 'dates', // dates | picker
     portal,
     SelectorProps,
     DatePickerModalProps,
@@ -59,7 +58,6 @@ function RangeMain(
           titles={titles}
           rangeId={rangeId}
           ranges={ranges}
-          customModal={customModal}
           {...props}
         />
       )}

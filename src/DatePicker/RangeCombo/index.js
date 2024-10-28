@@ -18,7 +18,6 @@ const RangeCombo = forwardRef(
       type,
       format,
       separator,
-      customModal,
       titles,
       disabledStart,
       disabledEnd,
@@ -35,9 +34,6 @@ const RangeCombo = forwardRef(
 
     if (titles) {
       props.ModalProps.titles = titles
-    }
-    if (customModal) {
-      props.ModalProps.customModal = customModal
     }
     if (disabledStart) {
       props.ModalProps.disabledStart = disabledStart

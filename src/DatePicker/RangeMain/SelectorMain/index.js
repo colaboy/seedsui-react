@@ -3,8 +3,8 @@ import _ from 'lodash'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRangeId from './getDefaultRangeId'
 
-import CustomModal from './CustomModal'
 import Buttons from './Buttons'
+import Dates from './Dates'
 
 // 日期快捷选择
 function RangeMain(
@@ -22,7 +22,6 @@ function RangeMain(
     rangeId,
     ranges,
     titles,
-    customModal = 'dates', // dates | picker
     portal,
     SelectorProps,
     DatePickerModalProps,
@@ -69,13 +68,7 @@ function RangeMain(
 
       {/* 自定义区间: 文本框选择 */}
       {customRangeId && currentRangeId === customRangeId && (
-        <CustomModal
-          // customModal为picker时，需要控制显隐
-          visible={customModalVisible}
-          onVisibleChange={(datePickerVisible, options) => {
-            setCustomModalVisible(datePickerVisible)
-          }}
-          customModal={customModal}
+        <Dates
           DatePickerModalProps={DatePickerModalProps}
           portal={portal}
           type={type}
