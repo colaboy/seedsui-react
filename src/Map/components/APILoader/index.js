@@ -13,6 +13,8 @@ const APILoader = forwardRef(
         // 使用哪个地图
         type: '' // 'osm' | 'google' | 'amap' || 'bmap'
       },
+      // 自定义Loading
+      loading,
       onError,
       onSuccess,
       children
@@ -57,6 +59,12 @@ const APILoader = forwardRef(
 
     // 未加载完成显示空
     if (errMsg === null) {
+      if (React.isValidElement(loading)) {
+        return <loading />
+      }
+      if (typeof loading === 'function') {
+        return loading()
+      }
       return null
     }
 
