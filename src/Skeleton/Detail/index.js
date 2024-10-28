@@ -4,7 +4,7 @@ import Layout from './../../Layout'
 import Paragraph from './../components/Paragraph'
 import Tabs from './../components/Tabs'
 
-const Detail = ({ ...props }) => {
+const Detail = ({ animated, ...props }) => {
   return (
     <Layout className="full" {...props}>
       <Layout.Main className="overflow-hidden">
@@ -26,7 +26,12 @@ const Detail = ({ ...props }) => {
         />
         <Tabs />
         {Array.from({ length: 2 }).map((_, index) => (
-          <Paragraph key={index} length={10} oddProps={{ style: { width: '73px' } }} />
+          <Paragraph
+            key={index}
+            length={10}
+            animated={animated}
+            oddProps={{ style: { width: '73px' } }}
+          />
         ))}
       </Layout.Main>
     </Layout>

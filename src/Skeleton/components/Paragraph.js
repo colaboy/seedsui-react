@@ -15,6 +15,7 @@ const Paragraph = ({
     <div className="skeleton-card" {...props}>
       {avatarProps && (
         <Block
+          animated={animated}
           {...avatarProps}
           className={`skeleton-avatar${avatarProps.className ? ' ' + avatarProps.className : ''}`}
         />
@@ -24,6 +25,7 @@ const Paragraph = ({
         {/* Title */}
         {titleProps && (
           <Block
+            animated={animated}
             {...titleProps}
             className={`skeleton-title${titleProps.className ? ' ' + titleProps.className : ''}`}
           />
@@ -35,6 +37,7 @@ const Paragraph = ({
 
           return (
             <Block
+              animated={animated}
               key={index}
               {...currentItemProps}
               className={`skeleton-item${props.className ? ' ' + props.className : ''}`}
