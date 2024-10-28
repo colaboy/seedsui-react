@@ -4,16 +4,17 @@ import LocationTask from './utils/LocationTask'
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
-import Loading from './../Loading/instance.js'
+import LoadingInstance from './../Loading/instance.js'
 import GeoUtil from './../GeoUtil'
 import Alert from './../Alert/instance.js'
 import ToastInstance from './../Toast/instance.js'
 import locale from './../locale'
 
 // 测试使用
-// import { GeoUtil, Device, MapUtil, Toast, Loading, locale } from 'seedsui-react'
+// import { GeoUtil, Device, MapUtil, Toast, locale } from 'seedsui-react'
 // import Alert from 'seedsui-react/lib/Alert/instance.js'
 // import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
+// import LoadingInstance from 'seedsui-react/lib/Loading/instance.js'
 
 let Bridge = {
   // 判断是否是主页
@@ -32,9 +33,9 @@ let Bridge = {
    */
   showToast: function (msg, params = {}) {
     if (!msg) return
-    if (!Bridge.toast) {
+    if (!this.toast) {
       // 提示错误
-      Bridge.toast = new ToastInstance({
+      this.toast = new ToastInstance({
         parent: document.body,
         maskClass: 'mask toast-mask' + (params.mask === false ? ' toast-propagation' : ''),
         toastClass: 'toast ' + (params.position ? params.position : 'middle'),
@@ -43,7 +44,7 @@ let Bridge = {
         html: msg
       })
     } else {
-      Bridge.toast.updateParams({
+      this.toast.updateParams({
         ...params,
         maskClass: 'mask toast-mask' + (params.mask === false ? ' toast-propagation' : ''),
         toastClass: 'toast ' + (params.position ? params.position : 'middle'),
@@ -52,7 +53,7 @@ let Bridge = {
         html: msg
       })
     }
-    Bridge.toast.show()
+    this.toast.show()
     if (params.success) {
       setTimeout(
         () => {
@@ -69,28 +70,28 @@ let Bridge = {
    * 请使用 Loading.show()
    */
   showLoading: function (params = {}) {
-    if (!Bridge.loading) {
-      Bridge.loading = new Loading({
+    if (!this.loading) {
+      this.loading = new LoadingInstance({
         ...params,
         caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     } else {
-      Bridge.loading.updateParams({
+      this.loading.updateParams({
         ...params,
         caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     }
-    Bridge.loading.show()
+    this.loading.show()
   },
   /**
    * @deprecated since version 5.2.8
    * 请使用 Loading.hide()
    */
   hideLoading: function () {
-    if (Bridge.loading) {
-      Bridge.loading.hide()
+    if (this.loading) {
+      this.loading.hide()
     }
   },
   /**
@@ -98,8 +99,8 @@ let Bridge = {
    * 请使用 Loading.exists()
    */
   isLoading: function () {
-    if (!Bridge.loading) return false
-    return Bridge.loading.mask.classList.contains(Bridge.loading.params.loadingActiveClass)
+    if (!this.loading) return false
+    return this.loading.mask.classList.contains(this.loading.params.loadingActiveClass)
   },
   // 弹出Alert
   alert: null,
@@ -108,8 +109,8 @@ let Bridge = {
    * 请使用Modal.alert({content: '', submitProps: {onClick: () => {}}})
    */
   showAlert: function (msg, params = {}) {
-    if (!Bridge.alert) {
-      Bridge.alert = new Alert({
+    if (!this.alert) {
+      this.alert = new Alert({
         buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
         buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
@@ -121,7 +122,7 @@ let Bridge = {
       })
     } else {
       if (params) {
-        Bridge.alert.updateParams({
+        this.alert.updateParams({
           buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
           buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
@@ -133,7 +134,7 @@ let Bridge = {
         })
       }
     }
-    Bridge.alert.show()
+    this.alert.show()
   },
   // 弹出Confirm
   confirm: null,
@@ -142,8 +143,8 @@ let Bridge = {
    * 请使用Modal.confirm({content: '', submitProps: {onClick: () => {}}})
    */
   showConfirm: function (msg, params = {}) {
-    if (!Bridge.confirm) {
-      Bridge.confirm = new Alert({
+    if (!this.confirm) {
+      this.confirm = new Alert({
         buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
         buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
@@ -160,7 +161,7 @@ let Bridge = {
       })
     } else {
       if (params) {
-        Bridge.confirm.updateParams({
+        this.confirm.updateParams({
           buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
           buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
@@ -176,7 +177,7 @@ let Bridge = {
         })
       }
     }
-    Bridge.confirm.show()
+    this.confirm.show()
   },
   /**
    * 百度地图:获取当前位置名称, 已废弃, 请使用Map中的获取位置方法代替
