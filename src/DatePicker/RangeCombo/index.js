@@ -52,7 +52,7 @@ const RangeCombo = forwardRef(
     return (
       <Combo
         ref={ref}
-        value={value}
+        // Combo
         displayValueFormatter={() => {
           return getDisplayValue({
             value,
@@ -62,6 +62,9 @@ const RangeCombo = forwardRef(
             separator
           })
         }}
+        {...props}
+        // Modal
+        value={value}
         onChange={(newValue, { rangeId: newRangeId, ranges }) => {
           // 记录选中项
           if (!rangeId) {
@@ -69,7 +72,6 @@ const RangeCombo = forwardRef(
           }
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
-        {...props}
         ModalComponent={Modal}
         ModalProps={{
           ...ModalProps,
