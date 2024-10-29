@@ -29,22 +29,17 @@ export default () => {
         onError={(error) => {
           console.log(error)
         }}
-        // displayValueFormatter={({ value, type }) => {
-        //   let displayValue = ''
-        //   if (Object.isDate(value)) {
-        //     displayValue = value.format('YYYY-MM')
-        //   }
-        //   return displayValue
-        // }}
-        // captionProps={{
-        //   caption: ''
-        // }}
-        titleFormatter={(value) => {
-          console.log('格式化标题:', type, value)
-          if (value.getDate() === 1) {
-            return 'YYYY-MM'
+        displayValueFormatter={(value) => {
+          let displayValue = ''
+          if (value instanceof Date) {
+            displayValue = DateUtil.format(value, 'YYYY-MM')
           }
-          return 'YYYY-MM-DD'
+          return displayValue
+        }}
+        ModalProps={{
+          captionProps: {
+            caption: ''
+          }
         }}
         // onError={(err) =>
         //   Toast.show({

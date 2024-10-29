@@ -31,11 +31,13 @@ export default () => {
           console.log(newValue)
           setMulValue(newValue)
         }}
-        captionProps={{
-          caption: '选择日期'
-        }}
-        onVisibleChange={(visible) => {
-          console.log('visible:', visible)
+        ModalProps={{
+          captionProps: {
+            caption: '选择日期'
+          },
+          onVisibleChange: (visible) => {
+            console.log('visible:', visible)
+          }
         }}
         allowClear
         min={new Date()}

@@ -41,6 +41,9 @@ export default () => {
           console.log('visible:', visible)
         }}
         ModalProps={{
+          captionProps: {
+            caption: '选择日期'
+          },
           maskProps: {
             style: {
               zIndex: 999
@@ -52,9 +55,6 @@ export default () => {
         }}
         value={value}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
-        captionProps={{
-          caption: '选择日期'
-        }}
       />
       <DatePicker.RangeCombo
         ref={date2Ref}
@@ -74,15 +74,15 @@ export default () => {
           maskProps: {
             style: {
               zIndex: 999
+            },
+            captionProps: {
+              caption: '选择日期'
             }
           }
         }}
         // 自定义渲染
         comboRender={({ displayValue }) => {
           return icon + displayValue
-        }}
-        captionProps={{
-          caption: '选择日期'
         }}
         // Main props
         titles={{

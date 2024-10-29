@@ -25,7 +25,6 @@ const Modal = forwardRef(
 
       // Modal current properties
       defaultPickerValue,
-      titleFormatter,
       onError,
       onBeforeChange,
 

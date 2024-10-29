@@ -24,7 +24,6 @@ const Modal = forwardRef(
       onVisibleChange,
 
       // Modal current properties
-      titleFormatter,
       defaultPickerValue,
       onError,
       onBeforeChange,

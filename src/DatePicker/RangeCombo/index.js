@@ -23,7 +23,6 @@ const RangeCombo = forwardRef(
 
       // Modal properties
       diff,
-      titleFormatter,
       defaultPickerValue,
       onError,
       onBeforeChange,
@@ -48,6 +47,7 @@ const RangeCombo = forwardRef(
   ) => {
     const rangeIdRef = useRef(rangeId)
 
+    console.log('a:', ...props)
     return (
       <Combo
         ref={ref}
@@ -78,7 +78,6 @@ const RangeCombo = forwardRef(
           defaultPickerValue: defaultPickerValue,
           type: type,
           diff: diff,
-          titleFormatter: titleFormatter,
           onError: onError,
           onBeforeChange: onBeforeChange,
           min: min,
