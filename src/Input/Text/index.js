@@ -6,6 +6,8 @@ const InputText = forwardRef(
     {
       // 容器
       type = 'text', // 类型: text | number | tel | password
+      style,
+      className,
       autoFit, // 自动高度文本框
       readOnly,
       disabled, // exclusion-ricon
@@ -45,13 +47,13 @@ const InputText = forwardRef(
       onCompositionEnd, // 输入完成时
       onInput,
       onChange,
+      onBlur,
+      onFocus,
       /**
        * @deprecated since version 5.8.42
        * This property will be deprecated and will be removed in future version
        */
       onBeforeChange,
-      onBlur,
-      onFocus,
       ...props
     },
     ref
@@ -338,13 +340,13 @@ const InputText = forwardRef(
       // if (inputVisible === false) return null
       // autoFit类型
       if (autoFit) {
-        const { style, className, ...otherFitProps } = otherInputProps
+        const { style: inputStyle, className: inputClassName, ...otherFitProps } = otherInputProps
         return (
           <div className={`input-fit-wrapper${inputVisible === false ? ' hide' : ''}`}>
             <textarea
               ref={inputRef}
-              className={`input-fit${className ? ' ' + className : ''}`}
-              style={style}
+              className={`input-fit${inputClassName ? ' ' + inputClassName : ''}`}
+              style={inputStyle}
               {...otherFitProps}
               autoFocus={autoFocus}
               value={value}
@@ -358,7 +360,7 @@ const InputText = forwardRef(
               onBlur={handleBlur}
               onFocus={handleFocus}
             ></textarea>
-            <pre ref={fitRef} style={style} className={className}>
+            <pre ref={fitRef} style={inputStyle} className={inputClassName}>
               <span></span>
             </pre>
           </div>
@@ -417,9 +419,10 @@ const InputText = forwardRef(
     return (
       <div
         {...props}
-        className={`input-wrapper${props.className ? ' ' + props.className : ''}${
-          disabled ? ' disabled' : ''
-        }${readOnly ? ' readonly' : ''}`}
+        style={style}
+        className={`input-wrapper${className ? ' ' + className : ''}${disabled ? ' disabled' : ''}${
+          readOnly ? ' readonly' : ''
+        }`}
         onClick={onClick}
         ref={rootRef}
       >

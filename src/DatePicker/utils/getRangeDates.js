@@ -3,8 +3,8 @@ function getRangeDates(value) {
   if (
     !Array.isArray(value) ||
     value.length !== 2 ||
-    Object.isDate(value[0]) === false ||
-    Object.isDate(value[1]) === false
+    value[0] instanceof Date === false ||
+    value[1] instanceof Date === false
   ) {
     if (value) {
       console.warn(
@@ -17,8 +17,8 @@ function getRangeDates(value) {
       endDate: null
     }
   }
-  let startDate = Object.isDate(value[0]) ? value[0] : null
-  let endDate = Object.isDate(value[1]) ? value[1] : null
+  let startDate = value[0] instanceof Date ? value[0] : null
+  let endDate = value[1] instanceof Date ? value[1] : null
 
   return {
     startDate: startDate,

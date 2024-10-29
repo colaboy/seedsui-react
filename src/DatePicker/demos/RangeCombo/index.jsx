@@ -106,8 +106,9 @@ export default () => {
           [locale('自定义')]: 0,
           [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
         }}
-        min={new Date('2023-08-08')}
+        min={new Date('2024-08-08')}
         max={new Date()}
+        diff={30}
         customModal="dates" // dates | picker
         // allowClear="exclusion-ricon"
         value={value}

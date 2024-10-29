@@ -1,10 +1,13 @@
-import formatValue from './../../RangeMain/formatValue'
 import validateMaxMin from './../../utils/validateMaxMin'
 import validateStartEnd from './validateStartEnd'
 
 // 校验值是否正确
 function validateRange(value, { type, min, max, diff, onError }) {
-  let newValue = formatValue(value, { min, max })
+  if (!Array.isArray(value) || value.length !== 2) {
+    return value
+  }
+
+  let newValue = value
 
   // 校验最大最小值
   if (min || max) {

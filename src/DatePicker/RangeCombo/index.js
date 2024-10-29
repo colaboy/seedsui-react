@@ -4,56 +4,55 @@ import Modal from './../RangeModal'
 import getDisplayValue from './getDisplayValue'
 
 // 内库使用
-import Combo from './../../Select/Combo'
+import Combo from './../../Modal/Combo'
 
 // 测试使用
-// import { Select } from 'seedsui-react'
-// const Combo = Select.Combo
+// import { Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
 
 // 日期区间
 const RangeCombo = forwardRef(
   (
     {
-      value,
-      type,
+      // Combo properties
       format,
       separator,
-      titles,
+
+      // Modal
+      ModalProps,
+
+      // Modal properties
+      diff,
+      titleFormatter,
+      defaultPickerValue,
+      onError,
+      onBeforeChange,
+
+      // Main properties
+      value,
+      type,
+      min,
+      max,
       disabledStart,
       disabledEnd,
+      allowClear,
       onChange,
 
       rangeId,
       ranges = defaultRanges,
+      titles,
+      SelectorProps,
+      DatePickerModalProps,
       ...props
     },
     ref
   ) => {
     const rangeIdRef = useRef(rangeId)
 
-    // 扩展非标准属性
-    if (!props.ModalProps) {
-      props.ModalProps = {}
-    }
-
-    if (titles) {
-      props.ModalProps.titles = titles
-    }
-    if (disabledStart) {
-      props.ModalProps.disabledStart = disabledStart
-    }
-    if (disabledEnd) {
-      props.ModalProps.disabledEnd = disabledEnd
-    }
-    props.ModalProps.rangeId = rangeId || rangeIdRef.current
-
     return (
       <Combo
         ref={ref}
-        ModalComponent={Modal}
         value={value}
-        type={type}
-        ranges={ranges}
         displayValueFormatter={() => {
           return getDisplayValue({
             value,
@@ -71,6 +70,26 @@ const RangeCombo = forwardRef(
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
         {...props}
+        ModalComponent={Modal}
+        ModalProps={{
+          ...ModalProps,
+          defaultPickerValue: defaultPickerValue,
+          type: type,
+          diff: diff,
+          titleFormatter: titleFormatter,
+          onError: onError,
+          onBeforeChange: onBeforeChange,
+          min: min,
+          max: max,
+          disabledStart: disabledStart,
+          disabledEnd: disabledEnd,
+          allowClear: allowClear,
+          rangeId: rangeId || rangeIdRef.current,
+          ranges: ranges,
+          titles: titles,
+          SelectorProps: SelectorProps,
+          DatePickerModalProps: DatePickerModalProps
+        }}
       />
     )
   }
