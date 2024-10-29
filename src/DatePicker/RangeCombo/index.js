@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import defaultRanges from './../RangeMain/SelectorMain/defaultRanges'
 import Modal from './../RangeModal'
 import getDisplayValue from './getDisplayValue'
@@ -21,12 +21,16 @@ const RangeCombo = forwardRef(
       titles,
       disabledStart,
       disabledEnd,
+      onChange,
+
       rangeId,
       ranges = defaultRanges,
       ...props
     },
     ref
   ) => {
+    const rangeIdRef = useRef(rangeId)
+
     // 扩展非标准属性
     if (!props.ModalProps) {
       props.ModalProps = {}
@@ -41,6 +45,7 @@ const RangeCombo = forwardRef(
     if (disabledEnd) {
       props.ModalProps.disabledEnd = disabledEnd
     }
+    props.ModalProps.rangeId = rangeId || rangeIdRef.current
 
     return (
       <Combo
@@ -50,7 +55,20 @@ const RangeCombo = forwardRef(
         type={type}
         ranges={ranges}
         displayValueFormatter={() => {
-          return getDisplayValue({ value, type: format || type, rangeId, ranges, separator })
+          return getDisplayValue({
+            value,
+            type: format || type,
+            rangeId: rangeId || rangeIdRef.current,
+            ranges,
+            separator
+          })
+        }}
+        onChange={(newValue, { rangeId: newRangeId, ranges }) => {
+          // 记录选中项
+          if (!rangeId) {
+            rangeIdRef.current = newRangeId
+          }
+          onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
         {...props}
       />

@@ -9,7 +9,7 @@ import DateUtil from './../../../DateUtil'
  */
 function getDefaultRangeId(value, ranges, type) {
   // 没有值
-  if (!Array.isArray(value) || value.length === 0) {
+  if (!Array.isArray(value) || value.length !== 2) {
     return null
   }
 
@@ -18,34 +18,32 @@ function getDefaultRangeId(value, ranges, type) {
     return null
   }
 
-  if (Array.isArray(value) && value.length === 2) {
-    let activeIds = []
-    let customId = ''
-    for (let id in ranges) {
-      // 自定义选项
-      if (!Array.isArray(ranges[id])) {
-        customId = id
-      }
-
-      // 其它快捷选项
-      if (
-        Array.isArray(ranges[id]) &&
-        ranges[id].length === 2 &&
-        DateUtil.format(ranges[id][0], type) === DateUtil.format(value[0], type) &&
-        DateUtil.format(ranges[id][1], type) === DateUtil.format(value[1], type)
-      ) {
-        activeIds.push(id)
-      }
+  let activeIds = []
+  let customId = ''
+  for (let id in ranges) {
+    // 自定义选项
+    if (!Array.isArray(ranges[id])) {
+      customId = id
     }
 
-    // 快捷选项没有匹配，则选中自定义
-    if (!activeIds.length) {
-      return customId
+    // 其它快捷选项
+    if (
+      Array.isArray(ranges[id]) &&
+      ranges[id].length === 2 &&
+      DateUtil.format(ranges[id][0], type) === DateUtil.format(value[0], type) &&
+      DateUtil.format(ranges[id][1], type) === DateUtil.format(value[1], type)
+    ) {
+      activeIds.push(id)
     }
-
-    // 否则使用选中项的第一项
-    return activeIds[0]
   }
+
+  // 快捷选项没有匹配，则选中自定义
+  if (!activeIds.length) {
+    return customId
+  }
+
+  // 否则使用选中项的第一项
+  return activeIds[0]
 }
 
 export default getDefaultRangeId

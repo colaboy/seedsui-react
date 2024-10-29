@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRangeId from './getDefaultRangeId'
@@ -36,9 +36,6 @@ function RangeMain(
   let defaultRangeId = getDefaultRangeId(value, ranges, type)
   let currentRangeId = rangeId || defaultRangeId
 
-  // 自定义选项弹窗
-  let [customModalVisible, setCustomModalVisible] = useState(false)
-
   const mainRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
@@ -47,7 +44,6 @@ function RangeMain(
     }
   })
 
-  console.log('当前选择项:', currentRangeId)
   return (
     <div
       {...props}

@@ -136,7 +136,10 @@ const Modal = forwardRef(
         }
       }
       if (onChange) {
-        let goOn = await onChange(currentValue)
+        let goOn = await onChange(currentValue, {
+          rangeId: currentRangeId,
+          ranges
+        })
         if (goOn === false) return
       }
       if (onVisibleChange) onVisibleChange(false)
@@ -184,8 +187,6 @@ const Modal = forwardRef(
             disabledEnd={disabledEnd}
             allowClear={allowClear}
             onChange={(newValue, { rangeId: newRangeId }) => {
-              debugger
-
               // 无标题时更新标题
               updateTitle()
               // 修改值

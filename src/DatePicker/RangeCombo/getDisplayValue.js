@@ -6,8 +6,10 @@ import DateUtil from './../../DateUtil'
 
 // 显示名称
 function getDisplayValue({ value, type, rangeId, ranges, separator }) {
+  // 自定义名称
   let customRangeId = getCustomRangeId(ranges)
-  // 有别名, 直接显示
+
+  // 非自定义显示别名
   if (rangeId && rangeId !== customRangeId) {
     return rangeId
   }
@@ -16,9 +18,17 @@ function getDisplayValue({ value, type, rangeId, ranges, separator }) {
     return ''
   }
 
-  // 没有别名获取默认别名
+  // 自定义显示日期
+  if (rangeId && rangeId === customRangeId) {
+    return `${DateUtil.format(value[0], type)}${separator || ' ~ '}${DateUtil.format(
+      value[1],
+      type
+    )}`
+  }
+
+  // 显示默认别名
   let defaultRangeId = getDefaultRangeId(value, ranges, type)
-  if (rangeId !== defaultRangeId && ranges[defaultRangeId]) {
+  if (defaultRangeId && defaultRangeId !== customRangeId) {
     return defaultRangeId
   }
 
