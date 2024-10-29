@@ -1,15 +1,15 @@
-// 内库使用
-import Toast from './../Toast'
-import Device from './../Device'
-import locale from './../locale'
-
-// 测试使用
-// import { Toast, Device, locale } from 'seedsui-react'
-
 import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
+
+// 内库使用
+// import Toast from './../Toast'
+// import Device from './../Device'
+// import locale from './../locale'
+
+// 测试使用
+import { Toast, Device, locale } from 'seedsui-react'
 
 let Bridge = {
   ...BridgeBase,
