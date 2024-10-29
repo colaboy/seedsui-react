@@ -28,7 +28,6 @@ const RangeCombo = forwardRef(
       onError,
       onBeforeChange,
 
-      // Main properties
       value,
       type,
       min,
@@ -65,6 +64,7 @@ const RangeCombo = forwardRef(
         {...props}
         // Modal
         value={value}
+        allowClear={allowClear}
         onChange={(newValue, { rangeId: newRangeId, ranges }) => {
           // 记录选中项
           if (!rangeId) {

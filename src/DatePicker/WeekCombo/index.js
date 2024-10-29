@@ -4,27 +4,57 @@ import Modal from './../WeekModal'
 
 // 内库使用
 import DateUtil from './../../DateUtil'
-import Combo from './../../Select/Combo'
-import locale from './../../locale'
+import Combo from './../../Modal/Combo'
 
 // 测试使用
-// import { DateUtil, Combo, locale } from 'seedsui-react'
+// import { DateUtil, Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
 
 // 获取周
-const WeekCombo = forwardRef(({ ...props }, ref) => {
-  return (
-    <Combo
-      ref={ref}
-      ModalComponent={Modal}
-      displayValueFormatter={(params) => {
-        // 根据日期区间计算显示标签，如果有重复选项，将优先取记录的选中项
-        let displayValue = DateUtil.format(props?.value, 'week')
+const WeekCombo = forwardRef(
+  (
+    {
+      // Modal
+      ModalProps,
 
-        return displayValue
-      }}
-      {...props}
-    />
-  )
-})
+      defaultPickerValue,
+      onError,
+      onBeforeChange,
+
+      value,
+      type,
+      min,
+      max,
+      allowClear,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Combo
+        ref={ref}
+        displayValueFormatter={() => {
+          return DateUtil.format(value, 'week')
+        }}
+        {...props}
+        // Modal
+        value={value}
+        allowClear={allowClear}
+        ModalComponent={Modal}
+        ModalProps={{
+          ...ModalProps,
+          defaultPickerValue: defaultPickerValue,
+          onError: onError,
+          onBeforeChange: onBeforeChange,
+
+          type: type,
+          min: min,
+          max: max,
+          allowClear: allowClear
+        }}
+      />
+    )
+  }
+)
 
 export default WeekCombo
