@@ -47,7 +47,6 @@ const RangeCombo = forwardRef(
   ) => {
     const rangeIdRef = useRef(rangeId)
 
-    console.log('a:', ...props)
     return (
       <Combo
         ref={ref}

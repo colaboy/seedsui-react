@@ -58,7 +58,6 @@ export default () => {
       />
       <DatePicker.RangeCombo
         ref={date2Ref}
-        modal="picker"
         // type="week"
         // disabledStart
         // disabledEnd
@@ -71,12 +70,12 @@ export default () => {
           }
         }}
         ModalProps={{
+          captionProps: {
+            caption: '选择日期'
+          },
           maskProps: {
             style: {
               zIndex: 999
-            },
-            captionProps: {
-              caption: '选择日期'
             }
           }
         }}

@@ -159,7 +159,7 @@ const Modal = forwardRef(
         // Modal: display properties
         animation={animation}
         maskProps={maskProps}
-        captionProps={{ caption: currentTitle, ...captionProps }}
+        // captionProps={{ caption: currentTitle, ...captionProps }}
         submitProps={{
           ...submitProps,
           onClick: handleSubmitClick
