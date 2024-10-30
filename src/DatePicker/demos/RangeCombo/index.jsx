@@ -111,9 +111,9 @@ export default () => {
         max={new Date()}
         diff={30}
         value={value}
-        onError={(error) => {
-          console.log(error)
-        }}
+        // onError={(error) => {
+        //   console.log(error)
+        // }}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
           return true

@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import MultipleMain from './../MultipleMain'
-import { getRangeDates } from './../utils'
 
 // 内库使用
 import locale from '../../locale'
