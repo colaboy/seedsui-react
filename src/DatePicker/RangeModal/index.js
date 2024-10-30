@@ -85,7 +85,7 @@ const Modal = forwardRef(
       if (visible) {
         updateTitle()
         setCurrentValue(value || defaultPickerValue)
-        rangeId && setCurrentRangeId(rangeId)
+        setCurrentRangeId(rangeId)
       }
       // eslint-disable-next-line
     }, [visible])
@@ -185,7 +185,7 @@ const Modal = forwardRef(
             disabledStart={disabledStart}
             disabledEnd={disabledEnd}
             allowClear={allowClear}
-            onChange={(newValue, { rangeId: newRangeId }) => {
+            onChange={(newValue, { rangeId: newRangeId } = {}) => {
               // 无标题时更新标题
               updateTitle()
               // 修改值

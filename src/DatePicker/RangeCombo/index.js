@@ -64,7 +64,7 @@ const RangeCombo = forwardRef(
         // Modal
         value={value}
         allowClear={allowClear}
-        onChange={(newValue, { rangeId: newRangeId, ranges }) => {
+        onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
           // 记录选中项
           if (!rangeId) {
             rangeIdRef.current = newRangeId

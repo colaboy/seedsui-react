@@ -15,6 +15,7 @@ export default () => {
     <>
       <DatePicker.RangeCombo
         ref={date1Ref}
+        allowClear
         ranges={{
           自定义: 100
         }}
@@ -81,9 +82,9 @@ export default () => {
           }
         }}
         // 自定义渲染
-        comboRender={({ displayValue }) => {
-          return icon + displayValue
-        }}
+        // comboRender={({ displayValue }) => {
+        //   return icon + displayValue
+        // }}
         // Main props
         titles={{
           custom: '自定义选择',
@@ -109,12 +110,10 @@ export default () => {
         min={new Date('2024-08-08')}
         max={new Date()}
         diff={30}
-        customModal="dates" // dates | picker
-        // allowClear="exclusion-ricon"
         value={value}
-        // onError={(error) => {
-        //   console.log(error)
-        // }}
+        onError={(error) => {
+          console.log(error)
+        }}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
           return true
