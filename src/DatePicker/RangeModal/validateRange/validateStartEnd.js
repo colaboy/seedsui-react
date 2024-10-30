@@ -7,7 +7,11 @@ import DateUtil from './../../../DateUtil'
 
 // 判断是否开始时间大于结束时间
 function validateStartEnd(value, { type, onError }) {
-  let [startDate, endDate] = value || [null, null]
+  if (value?.[0] instanceof Date === false || value?.[1] instanceof Date === false) {
+    return value
+  }
+
+  let [startDate, endDate] = value
   let greater = DateUtil.compare(startDate, endDate, type)
   if (greater > 0) {
     if (onError) {

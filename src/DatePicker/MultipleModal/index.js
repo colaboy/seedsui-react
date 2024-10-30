@@ -113,7 +113,7 @@ const Modal = forwardRef(
             onError: onError
           })
 
-          if (!newValue) return
+          if (!newValue === false) return
           tab.value = newValue
         }
       }

@@ -61,6 +61,7 @@ export default () => {
         // type="week"
         // disabledStart
         // disabledEnd
+        allowClear
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
           if (visible) {
@@ -111,9 +112,9 @@ export default () => {
         customModal="dates" // dates | picker
         // allowClear="exclusion-ricon"
         value={value}
-        onError={(error) => {
-          console.log(error)
-        }}
+        // onError={(error) => {
+        //   console.log(error)
+        // }}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
           return true

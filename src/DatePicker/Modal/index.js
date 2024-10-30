@@ -103,7 +103,7 @@ const Modal = forwardRef(
       }
 
       // 校验
-      if (min || max) {
+      if ((min || max) && currentValue) {
         let newValue = validateMaxMin(currentValue, {
           type: type,
           min: min,

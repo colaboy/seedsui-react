@@ -12,9 +12,9 @@ function validateMaxMin(value, config = {}) {
   const max = config.max
   const onError = config.onError
 
-  if (value instanceof Date === false) {
-    console.log('DatePicker.Modal-Utils.validateMaxMin:非法的value')
-    return onError ? false : min || max
+  // 非法值清空
+  if (!value || value instanceof Date === false) {
+    return null
   }
 
   if (min) {
@@ -27,8 +27,7 @@ function validateMaxMin(value, config = {}) {
         })
         return false
       }
-      // eslint-disable-next-line
-      value = min
+      return min
     }
   }
   if (max) {
@@ -41,8 +40,7 @@ function validateMaxMin(value, config = {}) {
         })
         return false
       }
-      // eslint-disable-next-line
-      value = max
+      return max
     }
   }
   return value

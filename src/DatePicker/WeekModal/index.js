@@ -1,4 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import validateMaxMin from './../utils/validateMaxMin'
 import Main from './../WeekMain'
 
 // 内库使用
@@ -105,7 +106,7 @@ const Modal = forwardRef(
           onError: onError
         })
 
-        if (!newValue) return
+        if (newValue === false) return
         currentValue = newValue
       }
 

@@ -122,7 +122,7 @@ const Modal = forwardRef(
         onError: onError
       })
 
-      if (!newValue) return
+      if (newValue === false) return
       currentValue = newValue
 
       // 修改提示

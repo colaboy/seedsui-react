@@ -9,7 +9,11 @@ import DateUtil from './../../../DateUtil'
 
 // 校验diff
 function validateDiff(value, { type, diff, onError }) {
-  let [startDate, endDate] = value || [null, null]
+  if (value?.[0] instanceof Date === false || value?.[1] instanceof Date === false) {
+    return value
+  }
+
+  let [startDate, endDate] = value
   let currentDiff = DateUtil.diff(startDate, endDate, type)
   if (currentDiff > diff) {
     if (onError) {

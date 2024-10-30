@@ -154,6 +154,12 @@ const Combo = forwardRef(
             readOnly
             {...props}
             onClick={handleInputClick}
+            onChange={(text) => {
+              // 清空操作
+              if (!text) {
+                onChange && onChange(null)
+              }
+            }}
             ref={comboRef}
           />
         )}

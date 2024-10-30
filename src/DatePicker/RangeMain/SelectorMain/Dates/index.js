@@ -28,8 +28,7 @@ export default function CustomDates({
   return (
     <div className={`datepicker-rangemain-custom`}>
       <Combo
-        portal={portal}
-        ModalProps={DatePickerModalProps}
+        ModalProps={{ ...(DatePickerModalProps || {}), portal: portal }}
         type={type}
         value={startDate}
         disabled={disabledStart}
@@ -45,8 +44,7 @@ export default function CustomDates({
       />
       —
       <Combo
-        portal={portal}
-        ModalProps={DatePickerModalProps}
+        ModalProps={{ ...(DatePickerModalProps || {}), portal: portal }}
         type={type}
         value={endDate}
         min={min}
