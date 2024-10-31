@@ -22,10 +22,13 @@ function compare(d1, d2, compareUnit) {
   if (compareUnit === 'month') {
     return compareMonth(d1, d2)
   }
+  if (compareUnit === 'date') {
+    return compareDate(d1, d2)
+  }
   if (compareUnit === 'hour') {
     return compareHour(d1, d2)
   }
-  if (compareUnit === 'minute') {
+  if (compareUnit === 'datetime' || compareUnit === 'minute') {
     return compareMinute(d1, d2)
   }
   if (compareUnit === 'second') {

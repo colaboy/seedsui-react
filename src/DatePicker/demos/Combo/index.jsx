@@ -12,8 +12,7 @@ export default () => {
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         // year | quarter | month | date | time | datetime | week
-        type="time"
-        // format="YYYY-MM-DD HH:mm 第Q季 ddd"
+        type="date"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
@@ -32,7 +31,7 @@ export default () => {
         // displayValueFormatter={(value) => {
         //   let displayValue = ''
         //   if (value instanceof Date) {
-        //     displayValue = DateUtil.format(value, 'YYYY-MM')
+        //     displayValue = DateUtil.format(value, 'YYYY-MM-DD HH:mm 第Q季 ddd')
         //   }
         //   return displayValue
         // }}
