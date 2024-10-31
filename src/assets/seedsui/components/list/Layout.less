@@ -16,13 +16,13 @@
 
 // 子级安全区
 .layout.safe-area:not(:has(> .layout-footer)) > .layout-main {
-  .safe-area;
-  .safe-area.border-bottom;
+  &:extend(.safe-area all);
+  &:extend(.safe-area.after all);
 }
 
 .layout.safe-area > .layout-footer {
-  .safe-area;
-  .safe-area.border-bottom;
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
 }
 
 // 撑满展示
