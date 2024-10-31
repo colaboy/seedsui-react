@@ -6,12 +6,7 @@ import DateUtil from './../../DateUtil'
 // import { locale, DateUtil } from 'seedsui-react'
 
 // 日期纠正
-function validateMaxMin(value, config = {}) {
-  const type = config.type
-  const min = config.min
-  const max = config.max
-  const onError = config.onError
-
+function validateMaxMin(value, { type, min, max, onError } = {}) {
   // 非法值清空
   if (!value || value instanceof Date === false) {
     return null

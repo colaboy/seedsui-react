@@ -32,7 +32,7 @@ function compare(d1, d2, compareUnit) {
     return compareSecond(d1, d2)
   }
   // Partial compare hour minute
-  if (compareUnit === 'partHourMinute') {
+  if (compareUnit === 'time' || compareUnit === 'partHourMinute') {
     return partCompareHourMinute(d1, d2)
   }
 

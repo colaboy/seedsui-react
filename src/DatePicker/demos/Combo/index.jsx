@@ -11,8 +11,8 @@ export default () => {
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
-        // year | quarter | month | date | time | datetime
-        type="date"
+        // year | quarter | month | date | time | datetime | week
+        type="time"
         // format="YYYY-MM-DD HH:mm 第Q季 ddd"
         value={value}
         onBeforeChange={(newValue) => {
@@ -29,24 +29,18 @@ export default () => {
         onError={(error) => {
           console.log(error)
         }}
-        displayValueFormatter={(value) => {
-          let displayValue = ''
-          if (value instanceof Date) {
-            displayValue = DateUtil.format(value, 'YYYY-MM')
-          }
-          return displayValue
-        }}
+        // displayValueFormatter={(value) => {
+        //   let displayValue = ''
+        //   if (value instanceof Date) {
+        //     displayValue = DateUtil.format(value, 'YYYY-MM')
+        //   }
+        //   return displayValue
+        // }}
         ModalProps={{
           captionProps: {
             caption: ''
           }
         }}
-        // onError={(err) =>
-        //   Toast.show({
-        //     content: err.errMsg || '',
-        //     maskClickable: true
-        //   })
-        // }
       />
     </>
   )
