@@ -6,18 +6,18 @@ export default () => {
     {
       id: 'start',
       name: 'Start',
-      value: null,
-      disabled: true
+      value: new Date()
+      // disabled: true
     },
     {
       id: 'middle',
       name: 'Middle',
-      value: null
+      value: new Date()
     },
     {
       id: 'end',
       name: 'End',
-      value: null
+      value: new Date()
     }
   ])
 
@@ -25,8 +25,10 @@ export default () => {
     <>
       <DatePicker.MultipleCombo
         placeholder="Please select MultipleCombo"
+        // defaultPickerValue={mulValue}
         value={mulValue}
-        type="week"
+        // year | quarter | month | date | time | datetime | week
+        type="month"
         onChange={(newValue) => {
           console.log(newValue)
           setMulValue(newValue)

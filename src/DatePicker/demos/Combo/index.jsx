@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { DatePicker, DateUtil } from 'seedsui-react'
 
 export default () => {
+  const dateRef = useRef(null)
   const [value, setValue] = useState(null)
 
-  console.log(DateUtil.diff(new Date('2021-10-26'), new Date(), 'year'))
+  useEffect(() => {
+    dateRef.current.open()
+  }, [])
+
   return (
     <>
       <DatePicker.Combo
+        ref={dateRef}
+        placeholder="Please select Combo"
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         // year | quarter | month | date | time | datetime | week
-        type="date"
+        type="datetime"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
