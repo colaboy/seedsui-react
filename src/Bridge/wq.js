@@ -236,6 +236,7 @@ let Bridge = {
     }
     // 构建成功回调的参数
     uploadParams.success = function (res) {
+      console.log('外勤WK内核上传成功', res)
       if (params.success) {
         params.success({
           errMsg: 'uploadImage:ok',
@@ -249,8 +250,7 @@ let Bridge = {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0 && uploadParams.ext) {
       delete uploadParams.ext
     }
-    console.log('外勤WK内核上传')
-    console.log(uploadParams)
+    console.log('外勤WK内核上传', uploadParams)
     window.top.wq.uploadImage(uploadParams) // eslint-disable-line
   },
   previewImage: function (params) {

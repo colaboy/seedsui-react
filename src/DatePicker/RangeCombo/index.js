@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef } from 'react'
-import defaultRanges from './../RangeMain/SelectorMain/defaultRanges'
+import defaultRanges from './../RangeMain/defaultRanges'
 import Modal from './../RangeModal'
 import getDisplayValue from './getDisplayValue'
 

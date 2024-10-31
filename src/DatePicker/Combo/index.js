@@ -34,7 +34,7 @@ const DatePickerCombo = forwardRef(
       <Combo
         ref={ref}
         displayValueFormatter={() => {
-          return DateUtil.format(value, 'week')
+          return DateUtil.format(value, type)
         }}
         {...props}
         // Modal

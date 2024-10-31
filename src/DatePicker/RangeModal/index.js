@@ -1,5 +1,7 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import defaultRanges from './../RangeMain/defaultRanges'
 import validateRange from './validateRange'
+import matchRangeId from './matchRangeId'
 import RangeMain from './../RangeMain'
 
 // 内库使用
@@ -44,7 +46,7 @@ const Modal = forwardRef(
       onChange,
 
       rangeId,
-      ranges,
+      ranges = defaultRanges,
       titles,
       SelectorProps,
       DatePickerModalProps,
@@ -124,6 +126,9 @@ const Modal = forwardRef(
 
       if (newValue === false) return
       currentValue = newValue
+
+      // 若rangeId和日期不匹配则清空rangeId
+      currentRangeId = matchRangeId(currentValue, { type, rangeId, ranges })
 
       // 修改提示
       if (typeof onBeforeChange === 'function') {

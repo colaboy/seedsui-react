@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import SelectorMain from './SelectorMain'
-import defaultRanges from './SelectorMain/defaultRanges'
+import defaultRanges from './defaultRanges'
 import PickerMain from './PickerMain'
 
 // 日期快捷选择

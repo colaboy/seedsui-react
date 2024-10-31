@@ -4,7 +4,7 @@ import { DatePicker, locale } from 'seedsui-react'
 export default () => {
   const date1Ref = useRef(null)
   const date2Ref = useRef(null)
-  const [value, setValue] = useState([new Date('2022-08-22'), null])
+  const [value, setValue] = useState([new Date(), new Date()])
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
@@ -111,9 +111,9 @@ export default () => {
         max={new Date()}
         diff={30}
         value={value}
-        // onError={(error) => {
-        //   console.log(error)
-        // }}
+        onError={(error) => {
+          console.log(error)
+        }}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
           return true
