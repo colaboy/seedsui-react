@@ -13,7 +13,7 @@ function listToValue(list, type) {
     let year = list[0].id
 
     let newDate = new Date()
-    newDate.setFullYear(year)
+    newDate.setFullYear(year, 0, 1)
     return newDate
   }
   if (type === 'quarter') {
