@@ -2,64 +2,20 @@ import React, { useEffect, useRef, useState } from 'react'
 import { DatePicker, locale } from 'seedsui-react'
 
 export default () => {
-  const date1Ref = useRef(null)
-  const date2Ref = useRef(null)
-  const [value, setValue] = useState([new Date(), new Date()])
+  const dateRef = useRef(null)
+  const [value, setValue] = useState([new Date('2024-10-31'), new Date('2024-10-31')])
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
-    date1Ref.current.open()
+    dateRef.current.open()
   }, [])
 
   return (
     <>
+      {icon}
       <DatePicker.RangeCombo
-        ref={date1Ref}
-        allowClear
-        ranges={{
-          自定义: 100
-        }}
-        // disabledStart
-        // disabledEnd
-        className="border-b"
-        placeholder="Please select RangeCombo"
-        type="datetime"
-        min={new Date()}
-        // max={new Date()}
-        onError={(error) => {
-          console.log(error)
-        }}
-        // maskClosable={false}
-        onBeforeOpen={() => {
-          if (document.querySelector('.mask.active')) {
-            date1Ref.current.close()
-            date2Ref.current.close()
-            return false
-          }
-          return true
-        }}
-        onVisibleChange={(visible) => {
-          console.log('visible:', visible)
-        }}
-        ModalProps={{
-          captionProps: {
-            caption: '选择日期'
-          },
-          maskProps: {
-            style: {
-              zIndex: 999
-            }
-          }
-        }}
-        onChange={(newValue) => {
-          setValue(newValue)
-        }}
-        value={value}
-        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
-      />
-      <DatePicker.RangeCombo
-        ref={date2Ref}
-        // type="week"
+        ref={dateRef}
+        type="week"
         // disabledStart
         // disabledEnd
         allowClear
@@ -107,10 +63,11 @@ export default () => {
           [locale('自定义')]: 0,
           [locale('今年')]: [new Date().firstYearDate(), new Date().lastYearDate()]
         }}
-        min={new Date('2024-08-08')}
-        max={new Date()}
+        min={new Date()}
+        max={new Date('2024-12-12')}
         diff={30}
         value={value}
+        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         onError={(error) => {
           console.log(error)
         }}

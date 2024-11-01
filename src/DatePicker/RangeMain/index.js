@@ -46,8 +46,6 @@ function RangeMain(
           ref={ref}
           portal={portal}
           type={type}
-          min={min}
-          max={max}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
           allowClear={allowClear}

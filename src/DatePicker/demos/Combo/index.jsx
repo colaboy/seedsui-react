@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react'
 import { DatePicker, DateUtil } from 'seedsui-react'
 
 export default () => {
-  const dateRef = useRef(null)
-  const [value, setValue] = useState(null)
+  const dateRef = useRef()
+  const [value, setValue] = useState(new Date('2024-10-30'))
 
   useEffect(() => {
     dateRef.current.open()
@@ -17,8 +17,9 @@ export default () => {
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
+        max={new Date('2024-12-12')}
         // year | quarter | month | date | time | datetime | week
-        type="quarter"
+        type="week"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)

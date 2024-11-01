@@ -1,6 +1,7 @@
 import compareYear from './compareYear'
 import compareQuarter from './compareQuarter'
 import compareMonth from './compareMonth'
+import compareWeek from './compareWeek'
 import compareDate from './compareDate'
 import compareHour from './compareHour'
 import compareMinute from './compareMinute'
@@ -21,6 +22,9 @@ function compare(d1, d2, compareUnit) {
   }
   if (compareUnit === 'month') {
     return compareMonth(d1, d2)
+  }
+  if (compareUnit === 'week') {
+    return compareWeek(d1, d2)
   }
   if (compareUnit === 'date') {
     return compareDate(d1, d2)
