@@ -28,7 +28,7 @@ export default () => {
         // defaultPickerValue={mulValue}
         value={mulValue}
         // year | quarter | month | date | time | datetime | week
-        type="month"
+        type="quarter"
         onChange={(newValue) => {
           console.log(newValue)
           setMulValue(newValue)

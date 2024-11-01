@@ -18,7 +18,7 @@ export default () => {
         // defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
         // year | quarter | month | date | time | datetime | week
-        type="datetime"
+        type="quarter"
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)

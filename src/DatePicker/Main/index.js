@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import WeekMain from './../WeekMain'
 import DateMain from './DateMain'
 
