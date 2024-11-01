@@ -14,13 +14,21 @@ function validateDiff(value, { type, diff, onError }) {
   }
 
   let [startDate, endDate] = value
-  let currentDiff = DateUtil.diff(startDate, endDate, type)
+  let currentDiff = DateUtil.diff(endDate, startDate, type)
+  if (currentDiff > 0) {
+    currentDiff = currentDiff + 1
+  }
   if (currentDiff > diff) {
     if (onError) {
-      locale(`日期区间不能超过${diff}${getTypeLocale(type)}`, 'SeedsUI_dateragne_limit_error', [
-        diff,
-        getTypeLocale(type)
-      ])
+      onError({
+        errMsg: locale(
+          `日期区间不能超过${diff}${getTypeLocale(type)}`,
+          'SeedsUI_dateragne_limit_error',
+          [diff, getTypeLocale(type)]
+        ),
+        diff: diff,
+        value: value
+      })
       return false
     }
     return [startDate, DateUtil.add(startDate, diff, type)]

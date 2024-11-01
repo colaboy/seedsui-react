@@ -17,7 +17,7 @@ export default () => {
         ref={dateRef}
         // year | quarter | month | date | time | datetime | week
         type="date"
-        separator="to"
+        // separator="to"
         // disabledStart
         // disabledEnd
         allowClear
@@ -77,7 +77,7 @@ export default () => {
         }}
         min={new Date()}
         max={new Date('2024-12-12')}
-        diff={30}
+        diff={7}
         value={value}
         // defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         onError={(error) => {
