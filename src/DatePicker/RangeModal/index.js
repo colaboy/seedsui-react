@@ -30,6 +30,7 @@ const Modal = forwardRef(
       defaultPickerValue,
       onError,
       onBeforeChange,
+      onRangeIdChange,
 
       // Main
       MainComponent,
@@ -129,6 +130,7 @@ const Modal = forwardRef(
 
       // 若rangeId和日期不匹配则清空rangeId
       currentRangeId = matchRangeId(currentValue, { type, rangeId: currentRangeId, ranges })
+      onRangeIdChange && onRangeIdChange(currentRangeId)
 
       // 修改提示
       if (typeof onBeforeChange === 'function') {
@@ -190,11 +192,17 @@ const Modal = forwardRef(
             disabledStart={disabledStart}
             disabledEnd={disabledEnd}
             allowClear={allowClear}
-            onChange={(newValue, { rangeId: newRangeId } = {}) => {
+            onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
+              MainProps?.onChange && MainProps?.onChange(newValue, { rangeId: newRangeId, ranges })
+
               // 无标题时更新标题
               updateTitle()
-              // 修改值
+
+              // 修改快捷方式
               setCurrentRangeId(newRangeId)
+              onRangeIdChange && onRangeIdChange(newRangeId)
+
+              // 修改值
               setCurrentValue(newValue)
             }}
             rangeId={currentRangeId}

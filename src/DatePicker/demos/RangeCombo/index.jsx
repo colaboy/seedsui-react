@@ -17,6 +17,7 @@ export default () => {
         ref={dateRef}
         // year | quarter | month | date | time | datetime | week
         type="date"
+        separator="to"
         // disabledStart
         // disabledEnd
         allowClear
@@ -37,6 +38,15 @@ export default () => {
               zIndex: 999
             }
           }
+          // MainProps: {
+          //   onChange: (value, { rangeId, ranges }) => {
+          //     console.log(value, rangeId, ranges)
+          //     if (ranges && rangeId && Array.isArray(ranges[rangeId])) {
+          //       setValue(ranges[rangeId])
+          //       dateRef.current.close()
+          //     }
+          //   }
+          // }
         }}
         // 自定义渲染
         // comboRender={({ displayValue }) => {

@@ -165,6 +165,8 @@ const Modal = forwardRef(
             max={max}
             allowClear={allowClear}
             onChange={(newValue) => {
+              MainProps?.onChange && MainProps?.onChange(newValue)
+
               // 无标题时更新标题
               updateTitle()
 

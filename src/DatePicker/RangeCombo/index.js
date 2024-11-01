@@ -65,7 +65,7 @@ const RangeCombo = forwardRef(
         value={value}
         allowClear={allowClear}
         onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
-          // 记录选中项
+          // 清空时需要记录空选中项
           if (!rangeId) {
             rangeIdRef.current = newRangeId
           }
@@ -79,6 +79,12 @@ const RangeCombo = forwardRef(
           diff: diff,
           onError: onError,
           onBeforeChange: onBeforeChange,
+          // 记录选中项
+          onRangeIdChange: (newRangeId) => {
+            if (!rangeId) {
+              rangeIdRef.current = newRangeId
+            }
+          },
           min: min,
           max: max,
           disabledStart: disabledStart,
