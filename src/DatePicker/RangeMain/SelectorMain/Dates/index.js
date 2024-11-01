@@ -12,6 +12,8 @@ export default function CustomDates({
   portal,
   type,
   value,
+  min,
+  max,
   disabledStart,
   disabledEnd,
   allowClear,
@@ -30,6 +32,8 @@ export default function CustomDates({
         type={type}
         value={startDate}
         disabled={disabledStart}
+        min={type === 'week' ? min : undefined}
+        max={type === 'week' ? max : undefined}
         onChange={(argStartDate) => {
           let newStartDate = argStartDate || null
           if (onChange) onChange(newStartDate || endDate ? [newStartDate, endDate] : null)
@@ -43,6 +47,8 @@ export default function CustomDates({
         ModalProps={{ ...(DatePickerModalProps || {}), portal: portal }}
         type={type}
         value={endDate}
+        min={type === 'week' ? min : undefined}
+        max={type === 'week' ? max : undefined}
         disabled={disabledEnd}
         onChange={(argEndDate) => {
           let newEndDate = argEndDate || null

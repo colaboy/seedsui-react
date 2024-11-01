@@ -15,7 +15,8 @@ export default () => {
       {icon}
       <DatePicker.RangeCombo
         ref={dateRef}
-        type="week"
+        // year | quarter | month | date | time | datetime | week
+        type="date"
         // disabledStart
         // disabledEnd
         allowClear
@@ -46,6 +47,7 @@ export default () => {
           custom: '自定义选择',
           selector: '快捷选择'
         }}
+        // ranges={null}
         ranges={{
           [locale('今日')]: [new Date(), new Date()],
           [locale('今天')]: [new Date(), new Date()],
@@ -67,7 +69,7 @@ export default () => {
         max={new Date('2024-12-12')}
         diff={30}
         value={value}
-        defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
+        // defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         onError={(error) => {
           console.log(error)
         }}

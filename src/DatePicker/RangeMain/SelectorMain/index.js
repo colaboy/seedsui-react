@@ -34,7 +34,7 @@ function RangeMain(
 
   // 当前选中项id
   let defaultRangeId = getDefaultRangeId(value, ranges, type)
-  let currentRangeId = rangeId || defaultRangeId
+  let currentRangeId = rangeId ?? defaultRangeId
 
   const mainRef = useRef(null)
   useImperativeHandle(ref, () => {

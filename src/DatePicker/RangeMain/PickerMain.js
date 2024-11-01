@@ -69,6 +69,8 @@ const PickerMain = function (
         }
         return item
       })}
+      min={type === 'week' ? min : undefined}
+      max={type === 'week' ? max : undefined}
       onChange={handleChange}
       {...props}
     />

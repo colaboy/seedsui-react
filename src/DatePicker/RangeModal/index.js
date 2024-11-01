@@ -128,7 +128,7 @@ const Modal = forwardRef(
       currentValue = newValue
 
       // 若rangeId和日期不匹配则清空rangeId
-      currentRangeId = matchRangeId(currentValue, { type, rangeId, ranges })
+      currentRangeId = matchRangeId(currentValue, { type, rangeId: currentRangeId, ranges })
 
       // 修改提示
       if (typeof onBeforeChange === 'function') {
