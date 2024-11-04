@@ -113,6 +113,8 @@ let Device = (function () {
     // 其它浏览器
     else {
       platform = 'browser'
+      const platformMatch = ua.match(/version\/([\d.]+)/)
+      platformVersion = platformMatch?.[1] || ''
     }
   }
   updatePlatform()
@@ -168,41 +170,6 @@ let Device = (function () {
     window.addEventListener('offline', handleOffline, false)
   }
 
-  // 适配刘海屏和android5.0以下的手机
-  function adapterIPhoneX(el) {
-    let root = document.getElementById('root')
-    if (el && Object.prototype.toString.call(el).indexOf('[object HTML') === 0) root = el
-    if (!root) return
-    // 适配iPhoneX
-    let isX = getAppleDevice().indexOf('iPhoneX') >= 0
-    function changeSafeArea() {
-      if (isX && root) {
-        switch (window.orientation) {
-          case 0: // 竖屏
-            root.style.left = '0'
-            root.style.right = '0'
-            root.style.bottom = '34px'
-            break
-          case 90: // 向左横屏
-            root.style.left = '40px'
-            root.style.right = '40px'
-            root.style.bottom = '34px'
-            break
-          case -90: // 向右横屏
-            root.style.left = '40px'
-            root.style.right = '40px'
-            root.style.bottom = '34px'
-            break
-          default:
-            break
-        }
-      }
-    }
-    // 刘海屏自适应
-    changeSafeArea()
-    window.removeEventListener('orientationchange', changeSafeArea, false)
-    window.addEventListener('orientationchange', changeSafeArea, false)
-  }
   // 获取地址栏参数
   function getUrlParameter(argName, argSearch) {
     let url = window.location.href
@@ -265,6 +232,29 @@ let Device = (function () {
     return model
   }
   return {
+    /**
+     * @deprecated since version 5.2.8
+     * 请勿使用此属性
+     */
+    appleDevice: getAppleDevice(),
+    /**
+     * @deprecated since version 5.2.8
+     * 请勿使用此属性
+     */
+    appVersion: window.navigator.appVersion,
+    /**
+     * @deprecated since version 5.2.8
+     * 请勿使用此属性
+     */
+    onLine: onLine,
+    /**
+     * @deprecated since version 5.2.8
+     * 请勿使用此属性
+     */
+    ua: ua,
+
+    // 应用程序判断
+    language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
     protocol: window.location.protocol,
     host: window.location.host,
     domain: window.location.protocol + '//' + window.location.host,
@@ -275,54 +265,27 @@ let Device = (function () {
     model: getModel(),
     platform: platform,
     platformVersion: platformVersion,
-    appleDevice: getAppleDevice(),
-    // 应用程序判断
-    language: (window.navigator.browserLanguage || window.navigator.language).toLowerCase(),
-    appVersion: window.navigator.appVersion,
-    onLine: onLine,
     isOnLine: window.navigator.onLine || true,
-    ua: ua,
-    orientation: window.orientation || '请在真机上测试', // 设备方向0:竖屏,90:左横屏,-90:右横屏
-    adapterIPhoneX: adapterIPhoneX, // 适配iPhoneX
+    userAgent: ua,
     getUrlParameter: getUrlParameter,
     screenWidth: getScreenWidth(),
     screenHeight: getScreenHeight(),
-    compareVersion: function (s1, s2) {
-      // 比较版本号, -1小于 0等于 1大于
-      // 不考虑字母
-      function s2i(s) {
-        return s
-          .split('')
-          .reduce(function (a, c) {
-            let code = c.charCodeAt(0)
-            if (48 <= code && code < 58) {
-              a.push(code - 48)
-            }
-            return a
-          }, [])
-          .reduce(function (a, c) {
-            return 10 * a + c
-          }, 0)
+    // 比较版本号, -1小于 0等于 1大于
+    compareVersion: function (v1, v2, separator = '.') {
+      const v1Parts = v1.split(separator).map(Number)
+      const v2Parts = v2.split(separator).map(Number)
+
+      const length = Math.max(v1Parts.length, v2Parts.length)
+
+      for (let i = 0; i < length; i++) {
+        const part1 = v1Parts[i] || 0 // 如果没有该部分，默认为0
+        const part2 = v2Parts[i] || 0 // 如果没有该部分，默认为0
+
+        if (part1 < part2) return -1
+        if (part1 > part2) return 1
       }
-      let a = s1.split('.').map(function (s) {
-        return s2i(s)
-      })
-      let b = s2.split('.').map(function (s) {
-        return s2i(s)
-      })
-      let n = a.length < b.length ? a.length : b.length
-      for (let i = 0; i < n; i++) {
-        if (a[i] < b[i]) {
-          return -1
-        } else if (a[i] > b[i]) {
-          return 1
-        }
-      }
-      if (a.length < b.length) return -1
-      if (a.length > b.length) return 1
-      let last1 = s1.charCodeAt(s1.length - 1) | 0x20
-      let last2 = s2.charCodeAt(s2.length - 1) | 0x20
-      return last1 > last2 ? 1 : last1 < last2 ? -1 : 0
+
+      return 0 // 如果所有部分都相等
     }
   }
 })()
