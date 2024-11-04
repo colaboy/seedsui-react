@@ -53,10 +53,10 @@ export default () => {
         //   return icon + displayValue
         // }}
         // Main props
-        titles={{
-          custom: '自定义选择',
-          selector: '快捷选择'
-        }}
+        // titles={{
+        //   custom: '自定义选择',
+        //   selector: '快捷选择'
+        // }}
         // ranges={null}
         ranges={{
           [locale('今日')]: [new Date(), new Date()],

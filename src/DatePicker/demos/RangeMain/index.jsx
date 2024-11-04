@@ -17,7 +17,6 @@ export default () => {
             selector: '快捷选择'
           }}
           // type="datetime"
-          customModal="dates" // dates | picker
           // ranges={{
           //   [locale('自定义')]: 10
           // }}

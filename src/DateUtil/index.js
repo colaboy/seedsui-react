@@ -7,6 +7,9 @@ import diff from './diff'
 import add from './add'
 import format from './format'
 import quarter from './quarter'
+import firstDayOfYear from './firstDayOfYear'
+import firstDayOfQuarter from './firstDayOfQuarter'
+import lastDayOfYear from './lastDayOfYear'
 
 // 日期工具类
 const dateUtil = {
@@ -23,7 +26,10 @@ const dateUtil = {
   // 格式化日期
   format: format,
   // 获取当前季度
-  quarter: quarter
+  quarter: quarter,
+  firstDayOfYear: firstDayOfYear,
+  firstDayOfQuarter: firstDayOfQuarter,
+  lastDayOfYear: lastDayOfYear
 }
 
 export default dateUtil
