@@ -1,5 +1,4 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 import getCustomRangeId from './getCustomRangeId'
 import getDefaultRangeId from './getDefaultRangeId'
 

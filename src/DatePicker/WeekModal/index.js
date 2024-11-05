@@ -100,7 +100,7 @@ const Modal = forwardRef(
       // 校验
       if (min || max) {
         let newValue = validateMaxMin(currentValue, {
-          type: type,
+          type: 'week',
           min: min,
           max: max,
           onError: onError
