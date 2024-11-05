@@ -5,6 +5,7 @@ import en_US from './../../../assets/seedsui/locale/en_US.json'
 window.localeData = en_US
 
 export default () => {
+  const [rangeId, setRangeId] = useState(null)
   const [value, setValue] = useState([new Date(), new Date()])
   return (
     <Layout className="full">
@@ -59,17 +60,15 @@ export default () => {
           // min={new Date('2023-08-08')}
           // max={new Date()}
           // allowClear="exclusion-ricon"
+          rangeId={rangeId}
           value={value}
           onError={(error) => {
             console.log(error)
           }}
-          onBeforeChange={(newValue) => {
-            console.log('修改前:', newValue)
-            return true
-          }}
-          onChange={(newValue) => {
+          onChange={(newValue, { rangeId }) => {
             console.log('修改:', newValue)
             setValue(newValue)
+            setRangeId(rangeId)
           }}
         />
       </Layout.Main>
