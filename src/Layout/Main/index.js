@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import TopContainer from './TopContainer'
 import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk.js'
@@ -16,7 +16,7 @@ const Main = forwardRef(
     const isLoadingRef = useRef(null)
     const topContainerRef = useRef(null)
 
-    // 节点
+    // Expose api
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
@@ -24,19 +24,9 @@ const Main = forwardRef(
       }
     })
 
-    // 若父级元素有safe-area, 启用安全区
-    useEffect(() => {
-      let mainDOM = rootRef.current
-      let layoutDOM = mainDOM?.parentNode
-
-      if (layoutDOM && layoutDOM.classList.contains('safe-area')) {
-        mainDOM.classList.add('safe-area', 'after')
-      }
-    }, [])
-
     /* ----------------------
-  Events
-  ---------------------- */
+    Events
+    ---------------------- */
     // Touch信息
     let touchesRef = useRef({
       isTop: true,
