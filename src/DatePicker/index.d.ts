@@ -7,6 +7,9 @@ import MultipleMain from './MultipleMain'
 import RangeCombo from './RangeCombo'
 import RangeModal from './RangeModal'
 import RangeMain from './RangeMain'
+import WeekCombo from './WeekCombo'
+import WeekModal from './WeekModal'
+import WeekMain from './WeekMain'
 import Types from './Types'
 
 // eslint-disable-next-line
@@ -20,5 +23,8 @@ export default {
   RangeCombo: RangeCombo,
   RangeModal: RangeModal,
   RangeMain: RangeMain,
+  WeekCombo: WeekCombo,
+  WeekModal: WeekModal,
+  WeekMain: WeekMain,
   Types: Types
 }
