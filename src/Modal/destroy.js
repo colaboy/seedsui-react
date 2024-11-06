@@ -1,5 +1,5 @@
 // 移除Modal
-export default function destroy(mask) {
+function destroy(mask) {
   let modalId = '__SeedsUI_modal_el__'
   if (!mask) {
     // eslint-disable-next-line
@@ -13,7 +13,9 @@ export default function destroy(mask) {
     // DOM移除
     if (mask.timeout) window.clearTimeout(mask.timeout)
     mask.timeout = setTimeout(() => {
-      mask.parentNode.removeChild(mask)
+      mask?.parentNode?.removeChild?.(mask)
     }, 300)
   }
 }
+
+export default destroy

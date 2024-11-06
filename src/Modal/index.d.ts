@@ -2,6 +2,7 @@ import Modal from './Modal'
 import Dropdown from './Dropdown'
 import Alert from './Alert/index'
 import Confirm from './Confirm/index'
+import Combo from './Combo'
 import Picker from './Picker'
 
 import alert from './alert'
@@ -12,6 +13,7 @@ import destroy from './destroy'
 Modal.Dropdown = Dropdown
 Modal.Alert = Alert
 Modal.Confirm = Confirm
+Modal.Combo = Combo
 Modal.Picker = Picker
 
 // Js Api
