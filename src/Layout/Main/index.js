@@ -106,7 +106,6 @@ const Main = forwardRef(
     async function handleScroll(e) {
       if (onScroll) onScroll(e)
       if (!onBottomRefresh || isLoadingRef.current) return
-      console.log(e.currentTarget.scrollTop)
       if (isBottom(rootRef.current)) {
         isLoadingRef.current = true
         await onBottomRefresh()
@@ -119,10 +118,10 @@ const Main = forwardRef(
         {...props}
         className={`layout-main${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onScroll={handleScroll}
+        onTouchStart={onTopRefresh ? handleTouchStart : undefined}
+        onTouchMove={onTopRefresh ? handleTouchMove : undefined}
+        onTouchEnd={onTopRefresh ? handleTouchEnd : undefined}
+        onScroll={onScroll || onBottomRefresh ? handleScroll : undefined}
       >
         {/* 头部刷新 */}
         <TopContainer ref={topContainerRef} />
