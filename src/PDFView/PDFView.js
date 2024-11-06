@@ -84,7 +84,7 @@ const PDFView = forwardRef(
       if (params.onLoad) params.onLoad(s)
       if (zoom) {
         // 若允许放大, 使用better-scroll
-        if (refEl.current.bscroll) {
+        if (refEl.current?.bscroll) {
           console.log('加载完成, bscroll刷新')
           refEl.current.bscroll.finishPullUp()
           refEl.current.bscroll.refresh()
