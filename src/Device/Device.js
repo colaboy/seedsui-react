@@ -102,6 +102,12 @@ let Device = (function () {
       platformMatch = ua.match(/dingtalk\/([\w.]*)/)
       if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
     }
+    // 飞书
+    else if (ua.indexOf('lark') > -1) {
+      platform = 'lark'
+      platformMatch = ua.match(/lark\/([\w.]*)/)
+      if (platformMatch && platformMatch[1]) platformVersion = platformMatch[1]
+    }
     // QQ
     else if (ua.indexOf('mqqbrowser') > -1) {
       platform = 'qq'
@@ -231,6 +237,7 @@ let Device = (function () {
     }
     return model
   }
+
   return {
     /**
      * @deprecated since version 5.2.8

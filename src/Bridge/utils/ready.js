@@ -24,10 +24,11 @@ function ready(callback, options = {}, Bridge) {
     platform === 'weworkMiniprogram' ||
     platform === 'alipay' ||
     platform === 'alipayMiniprogram' ||
-    platform === 'dingtalk'
+    platform === 'dingtalk' ||
+    platform === 'lark'
   ) {
     // 初始化完成不需要重复加载
-    if (window.top.wx || window.top.ap || window.top.dd) {
+    if (window.top.wx || window.top.ap || window.top.dd || window.top.tt) {
       if (callback) callback()
       return
     }
@@ -47,6 +48,8 @@ function ready(callback, options = {}, Bridge) {
     } else if (platform === 'dingtalk') {
       script.src =
         options.dingtalkLibSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
+    } else if (platform === 'lark') {
+      script.src = options.larkLibSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.32.js'
     }
 
     // 加载完成
@@ -83,7 +86,17 @@ function ready(callback, options = {}, Bridge) {
         window.top.dd = window.dd
       }
 
-      if (callback) callback()
+      // 飞书
+      if (window.tt) {
+        // eslint-disable-next-line
+        window.top.tt = window.tt
+      }
+
+      if (window.tt) {
+        Bridge.init(callback)
+      } else {
+        if (callback) callback()
+      }
     }
     if (options.fail) {
       script.onerror = function () {

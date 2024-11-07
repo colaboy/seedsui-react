@@ -365,13 +365,25 @@ let Bridge = {
   goHome: function () {
     window.history.go(-1)
   },
-  // 退出到登陆页面
-  logOut: function logOut() {
-    console.log('logOut方法仅在app上工作')
-  },
   // 打开新的窗口
   openWindow: function (params = {}) {
     if (params.url) window.location.href = params.url
+  },
+  // 兼容方法
+  logOut: function () {
+    console.log('logOut方法仅在app上工作')
+  },
+  openLocation: function () {
+    console.log('openLocation方法仅在app上工作')
+  },
+  chooseImage: function () {
+    console.log('chooseImage方法仅在app上工作')
+  },
+  uploadImage: function () {
+    console.log('uploadImage方法仅在app上工作')
+  },
+  previewFile: function () {
+    console.log('previewFile方法仅在app上工作')
   }
 }
 export default Bridge

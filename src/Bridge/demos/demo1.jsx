@@ -196,6 +196,9 @@ export default () => {
               scanType: ['barCode'],
               success: (res) => {
                 alert(JSON.stringify(res))
+              },
+              fail: (res) => {
+                alert(JSON.stringify(res))
               }
             })
           }}
