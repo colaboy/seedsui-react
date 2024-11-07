@@ -46,6 +46,7 @@ const Main = forwardRef(
       topContainerRef.current.style.webkitTransitionDuration = '0ms'
 
       touchesRef.current.startY = e.clientY || e.touches[0].clientY
+      touchesRef.current.diffY = 0
     }
     // 标识头部正在拖动
     function handleTouchMove(e) {
@@ -56,7 +57,7 @@ const Main = forwardRef(
       touchesRef.current.diffY = touchesRef.current.currentY - touchesRef.current.startY
 
       // 向下滚动
-      if (touchesRef.current.diffY < 0) {
+      if (touchesRef.current.diffY < 20) {
         return
       }
 
@@ -121,6 +122,9 @@ const Main = forwardRef(
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}
         onTouchMove={onTopRefresh ? handleTouchMove : undefined}
         onTouchEnd={onTopRefresh ? handleTouchEnd : undefined}
+        // onClick={(e) => {
+        //   e.stopPropagation()
+        // }}
         onScroll={onScroll || onBottomRefresh ? handleScroll : undefined}
       >
         {/* 头部刷新 */}

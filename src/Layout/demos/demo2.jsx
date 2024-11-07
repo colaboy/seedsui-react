@@ -31,7 +31,11 @@ export default () => {
       <Layout.Header style={{ height: 50, backgroundColor: 'white' }}>Header</Layout.Header>
       <Layout.Main onTopRefresh={handleTopRefresh} onBottomRefresh={handleBottomRefresh}>
         {list.map((item, index) => {
-          return <div key={index}>{item.name}</div>
+          return (
+            <div key={index} style={{ height: 40 }}>
+              {item.name}
+            </div>
+          )
         })}
         <Layout.MainBottomLoading type="failure" />
       </Layout.Main>
