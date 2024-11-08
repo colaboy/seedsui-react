@@ -1,3 +1,6 @@
+import validateRange from './RangeModal/validateRange'
+import validateMaxMin from './utils/validateMaxMin'
+
 import Combo from './Combo'
 import Modal from './Modal'
 import Main from './Main'
@@ -14,6 +17,8 @@ import Types from './Types'
 
 // eslint-disable-next-line
 export default {
+  validateRange: validateRange,
+  validateMaxMin: validateMaxMin,
   Combo: Combo,
   Modal: Modal,
   Main: Main,
