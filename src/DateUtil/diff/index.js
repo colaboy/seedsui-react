@@ -25,14 +25,14 @@ function diff(d1, d2, diffUnit) {
   if (diffUnit === 'hour') {
     return diffHour(d1, d2)
   }
-  if (diffUnit === 'minute') {
+  if (diffUnit === 'minute' || compareUnit === 'datetime') {
     return diffMinute(d1, d2)
   }
   if (diffUnit === 'second') {
     return diffSecond(d1, d2)
   }
   // Partial diff hour minute
-  if (diffUnit === 'partHourMinute') {
+  if (diffUnit === 'partHourMinute' || compareUnit === 'time') {
     return partDiffHourMinute(d1, d2)
   }
 

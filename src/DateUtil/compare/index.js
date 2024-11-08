@@ -32,14 +32,14 @@ function compare(d1, d2, compareUnit) {
   if (compareUnit === 'hour') {
     return compareHour(d1, d2)
   }
-  if (compareUnit === 'datetime' || compareUnit === 'minute') {
+  if (compareUnit === 'minute' || compareUnit === 'datetime') {
     return compareMinute(d1, d2)
   }
   if (compareUnit === 'second') {
     return compareSecond(d1, d2)
   }
   // Partial compare hour minute
-  if (compareUnit === 'time' || compareUnit === 'partHourMinute') {
+  if (compareUnit === 'partHourMinute' || compareUnit === 'time') {
     return partCompareHourMinute(d1, d2)
   }
 
