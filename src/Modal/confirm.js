@@ -65,10 +65,10 @@ export default function confirm({
     let captionDOM = mask.querySelector('.modal-caption')
     updateStyle({ target: captionDOM, props: captionProps, baseClassName: 'modal-caption' })
     if (captionProps?.caption) {
-      captionDOM.classList.remove('hide')
+      captionDOM?.classList?.remove?.('hide')
       captionDOM.innerHTML = captionProps.caption
     } else {
-      captionDOM.classList.add('hide')
+      captionDOM?.classList?.add?.('hide')
     }
 
     // 更新内容
@@ -88,20 +88,20 @@ export default function confirm({
     let submitDOM = mask.querySelector('.modal-ok')
     updateStyle({ target: submitDOM, props: submitProps, baseClassName: 'modal-ok' })
     if (submitProps || submitProps?.caption) {
-      submitDOM.classList.remove('hide')
+      submitDOM?.classList?.remove?.('hide')
       submitDOM.innerHTML = submitProps?.caption || locale('确定', 'SeedsUI_ok')
     } else {
-      submitDOM.classList.add('hide')
+      submitDOM?.classList?.add?.('hide')
     }
 
     // 取消按钮
     let cancelDOM = mask.querySelector('.modal-cancel')
     updateStyle({ target: cancelDOM, props: cancelProps, baseClassName: 'modal-cancel' })
     if (cancelProps || cancelProps?.caption) {
-      cancelDOM.classList.remove('hide')
+      cancelDOM?.classList?.remove?.('hide')
       cancelDOM.innerHTML = cancelProps?.caption || locale('取消', 'SeedsUI_cancel')
     } else {
-      cancelDOM.classList.add('hide')
+      cancelDOM?.classList?.add?.('hide')
     }
 
     // 更新事件中用到的属性（否则事件中将永远读取到的是闭包中的属性，即上次的属性）

@@ -114,7 +114,7 @@ const InputText = forwardRef(
     useEffect(() => {
       if (disabled === 'exclusion-ricon') {
         let ricon = rootRef?.current?.querySelector('.ricon')
-        ricon && ricon.classList.add('hide')
+        ricon?.classList?.add?.('hide')
       }
       // eslint-disable-next-line
     }, [disabled])
@@ -145,9 +145,7 @@ const InputText = forwardRef(
       }
       // 不显示清空
       if (!allowClear) {
-        if (clearRef?.current?.classList?.add) {
-          clearRef.current.classList.add('hide')
-        }
+        clearRef?.current?.classList?.add?.('hide')
         return
       }
 
@@ -166,7 +164,7 @@ const InputText = forwardRef(
 
           // 清除图标显示时, 隐藏右侧图标
           if (allowClear === 'exclusion-ricon' && ricon) {
-            ricon.classList?.add?.('hide')
+            ricon?.classList?.add?.('hide')
           }
         }
         // 无值显示清除
@@ -176,7 +174,7 @@ const InputText = forwardRef(
 
           // 清除图标隐藏时, 显示右侧图标
           if (allowClear === 'exclusion-ricon' && ricon) {
-            ricon.classList.remove('hide')
+            ricon?.classList?.remove?.('hide')
           }
         }
       }
