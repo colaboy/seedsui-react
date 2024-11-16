@@ -13,8 +13,10 @@ export default () => {
   }, [])
   return (
     <>
-      <Input.Text
+      <Input.Number
+        trim
         ref={inputTextRef}
+        precision={2}
         inputProps={{
           // visible: false,
           style: {

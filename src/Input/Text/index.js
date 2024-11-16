@@ -18,7 +18,7 @@ const InputText = forwardRef(
       formatter,
       // 小数精度, 只有数值框才生效
       precision,
-      // 小数位补0, true: 不补0; false: 补0;
+      // [Number框]小数位补0, true: 不补0; false: 补0。 [Text框]影响左右空格;
       trim,
       max,
       min,
@@ -292,11 +292,16 @@ const InputText = forwardRef(
 
         // 赋值
         target.value = val
+      }
 
-        // 修改完回调
-        if (val !== value) {
-          if (onChange) onChange(val, { action: 'blur' })
-        }
+      // trim
+      if (trim && val && typeof val === 'string' && val.trim() !== val) {
+        val = val.trim()
+      }
+
+      // 修改完回调
+      if (val !== value) {
+        if (onChange) onChange(val, { action: 'blur' })
       }
 
       if (onBlur) onBlur(e)
