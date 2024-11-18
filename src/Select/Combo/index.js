@@ -230,7 +230,6 @@ const Combo = forwardRef(
             value={displayValue}
             readOnly
             onChange={onChange}
-            onBeforeChange={onBeforeChange}
             {...props}
             onClick={handleInputClick}
             ref={comboRef}

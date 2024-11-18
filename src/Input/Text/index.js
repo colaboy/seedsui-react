@@ -49,11 +49,6 @@ const InputText = forwardRef(
       onChange,
       onBlur,
       onFocus,
-      /**
-       * @deprecated since version 5.8.42
-       * This property will be deprecated and will be removed in future version
-       */
-      onBeforeChange,
       ...props
     },
     ref
@@ -255,12 +250,6 @@ const InputText = forwardRef(
         }
       }
 
-      // 修改前
-      if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(val)
-        if (goOn !== undefined && !goOn) return
-      }
-
       // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
       if (onChange) {
         onChange(val, { action: 'change' })
@@ -310,12 +299,6 @@ const InputText = forwardRef(
     // 点击清除
     async function handleClear(e) {
       e.stopPropagation()
-
-      // 修改前
-      if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange('')
-        if (goOn !== undefined && !goOn) return
-      }
 
       // 获取焦点
       focus()
