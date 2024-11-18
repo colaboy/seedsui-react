@@ -18,6 +18,7 @@ const Combo = forwardRef(
     {
       // Modal
       value,
+      onBeforeChange,
       onChange,
       ModalComponent,
       ModalProps,
@@ -170,7 +171,9 @@ const Combo = forwardRef(
             return comboRef.current
           }}
           value={value}
+          onBeforeChange={onBeforeChange}
           onChange={onChange}
+          allowClear={allowClear}
           {...ModalProps}
           onVisibleChange={setVisible}
           visible={ModalProps?.visible === undefined ? visible : ModalProps.visible}

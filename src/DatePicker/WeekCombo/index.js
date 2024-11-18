@@ -19,13 +19,11 @@ const WeekCombo = forwardRef(
 
       defaultPickerValue,
       onError,
-      onBeforeChange,
 
       value,
       type,
       min,
       max,
-      allowClear,
       ...props
     },
     ref
@@ -39,18 +37,15 @@ const WeekCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        allowClear={allowClear}
         ModalComponent={Modal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,
           onError: onError,
-          onBeforeChange: onBeforeChange,
 
           type: type,
           min: min,
-          max: max,
-          allowClear: allowClear
+          max: max
         }}
       />
     )

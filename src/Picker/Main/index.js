@@ -31,8 +31,12 @@ let Main = forwardRef(
     let dimensional = dimensionalArray(list)
     if (dimensional === 2) {
       listCount = list.length
-    } else {
+    } else if (dimensional === 1) {
+      listCount = 1
       lists = [list]
+    } else {
+      listCount = 0
+      lists = null
     }
 
     // 节点

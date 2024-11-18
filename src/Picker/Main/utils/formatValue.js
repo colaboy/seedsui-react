@@ -2,6 +2,8 @@ import _ from 'lodash'
 
 // 格式化值
 function formatValue(value, { lists, listCount }) {
+  if (!Array.isArray(lists)) return null
+
   let newValue = null
   if (!Array.isArray(value)) {
     newValue = [...Array(listCount)].map((item, slotIndex) => {

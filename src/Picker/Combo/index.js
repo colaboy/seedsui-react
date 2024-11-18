@@ -2,15 +2,39 @@ import React, { forwardRef } from 'react'
 import Modal from './../Modal'
 
 // 内库使用
-import Combo from './../../Select/Combo'
+import Combo from './../../Modal/Combo'
 
 // 测试使用
-// import { Select } from 'seedsui-react'
-// const Combo = Select.Combo
+// import { Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
 
 // Picker
-const Picker = forwardRef(({ multiple, ...props }, ref) => {
-  return <Combo ref={ref} ModalComponent={Modal} {...props} />
-})
+const PickerCombo = forwardRef(
+  (
+    {
+      // Modal
+      ModalProps,
 
-export default Picker
+      defaultPickerValue,
+      list,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Combo
+        ref={ref}
+        {...props}
+        // Modal
+        ModalComponent={Modal}
+        ModalProps={{
+          ...ModalProps,
+          defaultPickerValue: defaultPickerValue,
+          list: list
+        }}
+      />
+    )
+  }
+)
+
+export default PickerCombo

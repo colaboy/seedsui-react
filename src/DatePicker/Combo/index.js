@@ -19,7 +19,6 @@ const DatePickerCombo = forwardRef(
 
       defaultPickerValue,
       onError,
-      onBeforeChange,
 
       value,
       type = 'date',
@@ -27,7 +26,6 @@ const DatePickerCombo = forwardRef(
       max,
       hourStep,
       minuteStep,
-      allowClear,
       ...props
     },
     ref
@@ -41,7 +39,6 @@ const DatePickerCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        allowClear={allowClear}
         ModalComponent={Modal}
         ModalProps={{
           ...ModalProps,
@@ -49,12 +46,10 @@ const DatePickerCombo = forwardRef(
           minuteStep,
           defaultPickerValue: defaultPickerValue,
           onError: onError,
-          onBeforeChange: onBeforeChange,
 
           type: type,
           min: min,
-          max: max,
-          allowClear: allowClear
+          max: max
         }}
       />
     )

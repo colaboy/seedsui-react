@@ -25,7 +25,6 @@ const RangeCombo = forwardRef(
       diff,
       defaultPickerValue,
       onError,
-      onBeforeChange,
 
       value,
       type,
@@ -33,7 +32,6 @@ const RangeCombo = forwardRef(
       max,
       disabledStart,
       disabledEnd,
-      allowClear,
       onChange,
 
       rangeId,
@@ -63,7 +61,6 @@ const RangeCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        allowClear={allowClear}
         onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
           // 清空时需要记录空选中项
           if (!rangeId) {
@@ -78,7 +75,6 @@ const RangeCombo = forwardRef(
           type: type,
           diff: diff,
           onError: onError,
-          onBeforeChange: onBeforeChange,
           // 记录选中项
           onRangeIdChange: (newRangeId) => {
             if (!rangeId) {
@@ -89,7 +85,6 @@ const RangeCombo = forwardRef(
           max: max,
           disabledStart: disabledStart,
           disabledEnd: disabledEnd,
-          allowClear: allowClear,
           rangeId: rangeId || rangeIdRef.current,
           ranges: ranges,
           titles: titles,
