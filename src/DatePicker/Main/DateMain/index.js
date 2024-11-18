@@ -10,6 +10,8 @@ import Picker from './../../../Picker'
 function Main(
   {
     type = 'date', // year | quarter | month | date | time | datetime
+    hourStep,
+    minuteStep,
     value,
     onChange
   },
@@ -24,7 +26,7 @@ function Main(
     <Picker.Main
       ref={ref}
       value={valueToList(value, type)}
-      list={getList(value, type)}
+      list={getList(value, type, { hourStep, minuteStep })}
       onChange={handleChange}
     />
   )

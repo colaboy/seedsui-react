@@ -37,6 +37,8 @@ const Modal = forwardRef(
       type,
       min,
       max,
+      hourStep,
+      minuteStep,
       allowClear,
       onChange,
 
@@ -169,6 +171,8 @@ const Modal = forwardRef(
             type={type}
             min={min}
             max={max}
+            hourStep={hourStep}
+            minuteStep={minuteStep}
             allowClear={allowClear}
             onChange={(newValue) => {
               MainProps?.onChange && MainProps?.onChange(newValue)

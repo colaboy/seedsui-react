@@ -19,7 +19,9 @@ export default () => {
         min={new Date()}
         max={new Date('2024-12-12')}
         // year | quarter | month | date | time | datetime | week
-        type="week"
+        type="datetime"
+        hourStep={5}
+        minuteStep={5}
         value={value}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)

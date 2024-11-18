@@ -16,6 +16,8 @@ function Main(
     allowClear,
     min,
     max,
+    hourStep,
+    minuteStep,
     onChange
   },
   ref
@@ -47,7 +49,16 @@ function Main(
     return <WeekMain ref={pickerMainRef} value={value} min={min} max={max} onChange={onChange} />
   }
 
-  return <DateMain ref={pickerMainRef} value={value} type={type} onChange={onChange} />
+  return (
+    <DateMain
+      ref={pickerMainRef}
+      value={value}
+      type={type}
+      hourStep={hourStep}
+      minuteStep={minuteStep}
+      onChange={onChange}
+    />
+  )
 }
 
 export default forwardRef(Main)

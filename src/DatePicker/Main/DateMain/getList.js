@@ -2,7 +2,16 @@
 import DateUtil from './../../../DateUtil'
 
 // 数据
-function getList(value, type) {
+function getList(value, type, { hourStep, minuteStep }) {
+  if (!hourStep || typeof hourStep !== 'number') {
+    // eslint-disable-next-line
+    hourStep = 1
+  }
+  if (!minuteStep || typeof minuteStep !== 'number') {
+    // eslint-disable-next-line
+    minuteStep = 1
+  }
+
   // Year
   let years = []
   for (let item = new Date().getFullYear() - 120; item <= new Date().getFullYear() + 120; item++) {
@@ -32,7 +41,7 @@ function getList(value, type) {
 
   // Hour
   let hours = []
-  for (let item = 0; item <= 23; item++) {
+  for (let item = 0; item <= 23; item += hourStep) {
     hours.push({
       id: item,
       name: item
@@ -41,7 +50,7 @@ function getList(value, type) {
 
   // Minute
   let minutes = []
-  for (let item = 0; item <= 59; item++) {
+  for (let item = 0; item <= 59; item += minuteStep) {
     minutes.push({
       id: item,
       name: item
