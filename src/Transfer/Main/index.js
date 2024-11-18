@@ -7,7 +7,23 @@ import Card from './../../Card'
 import Item from './Item'
 
 // 穿梭框
-const Transfer = ({ visible, list, value, onChange, titles, footerRender, ...props }, ref) => {
+const Transfer = (
+  {
+    // Modal
+    visible,
+
+    // Main: common
+    value,
+    allowClear,
+    onChange,
+
+    list,
+    titles,
+    footerRender,
+    ...props
+  },
+  ref
+) => {
   // 容器
   const mainRef = useRef(null)
 

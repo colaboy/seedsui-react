@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Layout, Button } from 'seedsui-react'
 import { Transfer } from 'seedsui-react'
 // import Transfer from 'library/components/Transfer'
 
 export default () => {
+  const transferRef = useRef(null)
   const [value, setValue] = useState([
     { id: '1', name: '1' },
     { id: '2', name: '2' }
@@ -14,8 +15,7 @@ export default () => {
       <Layout.Main className="bg-white">
         <div className="demo-title">Transfer Combo</div>
         <Transfer.Combo
-          modal="page"
-          multiple
+          ref={transferRef}
           className="border-b"
           placeholder="Select"
           list={[
@@ -32,12 +32,20 @@ export default () => {
             console.log(newValue)
             setValue(newValue)
           }}
-          footerRender={() => {
-            return (
-              <Layout.Footer className="listpicker-footer border-t">
-                <Button className="listpicker-footer-submit primary">确定</Button>
-              </Layout.Footer>
-            )
+          ModalProps={{
+            footerRender: ({ value: newValue, onChange }) => {
+              return (
+                <Layout.Footer
+                  className="listpicker-footer border-t"
+                  onClick={() => {
+                    transferRef.current.close()
+                    setValue(newValue)
+                  }}
+                >
+                  <Button className="listpicker-footer-submit primary">确定</Button>
+                </Layout.Footer>
+              )
+            }
           }}
         />
       </Layout.Main>

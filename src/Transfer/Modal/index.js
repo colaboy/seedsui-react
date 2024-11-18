@@ -1,18 +1,167 @@
-import React, { forwardRef } from 'react'
-
-import BaseModal from './../../Select/Modal'
+import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import formatValue from './formatValue'
 import Main from './../Main'
 
-const Modal = forwardRef(({ titles, ...props }, ref) => {
-  // 扩展非标准属性
-  if (titles) {
-    if (!props.MainProps) {
-      props.MainProps = {}
-    }
-    props.MainProps.titles = titles
-  }
+// 内库使用
+import ModalPicker from './../../Modal/Picker'
 
-  return <BaseModal ref={ref} {...props} MainComponent={Main} />
-})
+// Modal
+const Modal = forwardRef(
+  (
+    {
+      // 无用的属性
+      getComboDOM,
+
+      // Modal fixed properties
+      portal,
+      animation = 'slideUp',
+      maskProps,
+      captionProps,
+      submitProps,
+      cancelProps,
+      maskClosable = true,
+      visible,
+      onVisibleChange,
+
+      // Modal current properties
+      onBeforeChange,
+
+      // Main
+      MainComponent,
+      MainProps,
+
+      // Main properties
+      value,
+      allowClear,
+      onChange,
+
+      list, // [{id: '', name: ''}]
+      titles,
+      footerRender,
+
+      // 纯渲染时不渲染Main
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    // 当前标题，如日期
+    let [currentTitle, setCurrentTitle] = useState('')
+
+    // 当前选中项
+    let [currentValue, setCurrentValue] = useState([])
+
+    // 节点
+    const modalRef = useRef(null)
+    const mainRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
+      return {
+        rootDOM: modalRef?.current?.rootDOM,
+        getRootDOM: () => modalRef?.current?.rootDOM,
+
+        mainDOM: mainDOM,
+        getMainDOM: getMainDOM,
+        ...otherMainRef
+      }
+    })
+
+    useEffect(() => {
+      if (visible === null) return
+      if (onVisibleChange) onVisibleChange(visible)
+
+      // 显示弹窗，更新标题和显示值
+      if (visible) {
+        updateTitle()
+        setCurrentValue(formatValue(value))
+      }
+      // eslint-disable-next-line
+    }, [visible])
+
+    // 没有传入标题时, 需要动态更新标题（如果日期）
+    function updateTitle() {
+      if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
+        // Main渲染完成后取标题, 否则将会取到上次的值
+        setTimeout(() => {
+          currentTitle = mainRef?.current?.getTitle?.()
+          setCurrentTitle(currentTitle)
+        }, 100)
+      }
+    }
+
+    // 事件
+    async function handleSubmitClick(e) {
+      if (submitProps?.onClick) submitProps.onClick(e)
+      // 更新选中的值
+      if (mainRef?.current?.getValue) {
+        currentValue = mainRef.current.getValue()
+      }
+      // 修改提示
+      if (typeof onBeforeChange === 'function') {
+        let goOn = await onBeforeChange(currentValue)
+        if (goOn === false) return
+        // 修改值
+        if (typeof goOn === 'object') {
+          currentValue = goOn
+        }
+      }
+      if (onChange) {
+        let goOn = await onChange(currentValue)
+        if (goOn === false) return
+      }
+      if (onVisibleChange) onVisibleChange(false)
+    }
+
+    // Main Render
+    let MainNode = Main
+    if (MainComponent) {
+      MainNode = MainComponent
+    }
+
+    return (
+      <ModalPicker
+        ref={modalRef}
+        // Modal fixed properties
+        visible={visible}
+        onVisibleChange={onVisibleChange}
+        // Modal: display properties
+        animation={animation}
+        maskProps={maskProps}
+        captionProps={{ caption: currentTitle, ...captionProps }}
+        submitProps={{
+          ...submitProps,
+          onClick: handleSubmitClick
+        }}
+        cancelProps={cancelProps}
+        maskClosable={maskClosable}
+        {...props}
+        portal={portal || document.getElementById('root') || document.body}
+      >
+        {/* 纯渲染 */}
+        {children}
+        {/* 主体 */}
+        {!children && (
+          <MainNode
+            ref={mainRef}
+            {...(MainProps || {})}
+            visible={visible}
+            value={currentValue}
+            allowClear={allowClear}
+            list={list}
+            titles={titles}
+            footerRender={footerRender}
+            onChange={(newValue) => {
+              // 无标题时更新标题
+              updateTitle()
+
+              // 修改值
+              setCurrentValue(newValue)
+            }}
+          />
+        )}
+      </ModalPicker>
+    )
+  }
+)
 
 export default Modal

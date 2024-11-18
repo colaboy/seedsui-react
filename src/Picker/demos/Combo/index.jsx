@@ -33,7 +33,7 @@ export default () => {
         { id: '9', name: '9' },
         { id: '10', name: '10' }
       ])
-      setValue('2')
+      setValue([{ id: '2', name: '2' }])
     }, 2000)
   }, [])
   return (

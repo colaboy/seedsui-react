@@ -1,18 +1,40 @@
 import React, { forwardRef } from 'react'
-
-import BaseCombo from './../../Select/Combo'
 import Modal from './../Modal'
 
-const Combo = forwardRef(({ titles, ...props }, ref) => {
-  // 扩展非标准属性
-  if (titles) {
-    if (!props.MainProps) {
-      props.MainProps = {}
-    }
-    props.MainProps.titles = titles
+// 内库使用
+import Combo from './../../Modal/Combo'
+
+// 测试使用
+// import { Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
+
+// Transfer
+const TransferCombo = forwardRef(
+  (
+    {
+      // Modal
+      ModalProps,
+
+      titles,
+      list,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Combo
+        ref={ref}
+        {...props}
+        // Modal
+        ModalComponent={Modal}
+        ModalProps={{
+          ...ModalProps,
+          titles: titles,
+          list: list
+        }}
+      />
+    )
   }
+)
 
-  return <BaseCombo ref={ref} ModalComponent={Modal} {...(props || {})} />
-})
-
-export default Combo
+export default TransferCombo

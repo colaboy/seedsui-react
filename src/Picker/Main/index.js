@@ -10,16 +10,12 @@ let Main = forwardRef(
       // Modal
       visible = true,
 
-      // Main
-      // MainComponent,
-      // MainProps,
-
       // Main: common
       value,
-      list,
       allowClear,
       onChange,
 
+      list,
       ...props
     },
     ref
