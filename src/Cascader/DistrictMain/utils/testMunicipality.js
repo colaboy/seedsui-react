@@ -1,5 +1,8 @@
 // 判断是否是直辖市
-function testMunicipality(current) {
+function testMunicipality(current, isMunicipality) {
+  if (typeof isMunicipality === 'function') {
+    return isMunicipality(current)
+  }
   if (!current?.id) return false
   if (typeof current?.id === 'number') current.id = '' + current.id
   return (

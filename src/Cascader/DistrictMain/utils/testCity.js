@@ -6,7 +6,7 @@ function testCity(current, isCity) {
   if (current.isCity) {
     return true
   }
-  for (let city of window?.AreaLevel?.cities || []) {
+  for (let city of window?.districtLevelData?.cities || []) {
     if (current.id === city.id) {
       return true
     }

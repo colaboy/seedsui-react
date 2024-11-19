@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
-import countriesData from './../../DistrictMain/countriesData'
-import chinaData from './../../DistrictMain/chinaData'
+import countriesData from './countriesData'
+import chinaData from './chinaData'
 
 import { Cascader, Loading } from 'seedsui-react'
 
@@ -76,60 +76,6 @@ export default () => {
           console.log(newValue)
           setValue(newValue)
         }}
-        footerRender={({ value, onChange, currentValue, onChangeCurrentValue }) => {
-          return (
-            <div
-              onClick={() => {
-                onChange(currentValue)
-              }}
-            >
-              提交
-            </div>
-          )
-        }}
-        headerRender={({ value, onChange, currentValue, onChangeCurrentValue }) => {
-          return (
-            <div
-              onClick={() => {
-                onChangeCurrentValue([
-                  {
-                    name: '中国',
-                    id: '86',
-                    type: ['country']
-                  },
-                  {
-                    id: '320000',
-                    name: '江苏省',
-                    parentid: '86',
-                    type: ['province']
-                  },
-                  {
-                    id: '320100',
-                    name: '南京市',
-                    parentid: '320000',
-                    type: ['city']
-                  },
-                  {
-                    id: '320105',
-                    name: '建邺区',
-                    parentid: '320100',
-                    isDistrict: true,
-                    type: ['district']
-                  },
-                  {
-                    parentid: '320105',
-                    name: '街道1',
-                    id: 'street1',
-                    isStreet: true,
-                    type: ['street']
-                  }
-                ])
-              }}
-            >
-              点击还原
-            </div>
-          )
-        }}
         // clearProps={{
         //   className: 'hide-important'
         // }}
@@ -146,9 +92,7 @@ export default () => {
         //     }, 2000)
         //   })
         // }}
-        captionProps={{
-          caption: '级联选择'
-        }}
+
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
@@ -160,6 +104,67 @@ export default () => {
           // city: { editable: false },
           // district: { editable: false }
           // street: { editable: true }
+        }}
+        ModalProps={{
+          captionProps: {
+            caption: '级联选择'
+          },
+          MainProps: {
+            footerRender: ({ value, onChange, currentValue, onChangeCurrentValue }) => {
+              return (
+                <div
+                  onClick={() => {
+                    onChange(currentValue)
+                  }}
+                >
+                  提交
+                </div>
+              )
+            },
+            headerRender: ({ value, onChange, currentValue, onChangeCurrentValue }) => {
+              return (
+                <div
+                  onClick={() => {
+                    onChangeCurrentValue([
+                      {
+                        name: '中国',
+                        id: '86',
+                        type: ['country']
+                      },
+                      {
+                        id: '320000',
+                        name: '江苏省',
+                        parentid: '86',
+                        type: ['province']
+                      },
+                      {
+                        id: '320100',
+                        name: '南京市',
+                        parentid: '320000',
+                        type: ['city']
+                      },
+                      {
+                        id: '320105',
+                        name: '建邺区',
+                        parentid: '320100',
+                        isDistrict: true,
+                        type: ['district']
+                      },
+                      {
+                        parentid: '320105',
+                        name: '街道1',
+                        id: 'street1',
+                        isStreet: true,
+                        type: ['street']
+                      }
+                    ])
+                  }}
+                >
+                  点击还原
+                </div>
+              )
+            }
+          }
         }}
       />
     </div>

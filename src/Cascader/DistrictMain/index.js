@@ -3,8 +3,8 @@ import { getParentTypes, matchType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
-// window.__SeedsUI_Cascader_DistrictCombo_areaLevel__: {countries: [], provinces: [], cities: [], districts: [因数据量庞大, seedsui本地数据没有记录此数据]}
-// window.__SeedsUI_Cascader_DistrictCombo_list__: [{id: '', name: '', children: []}]
+// window.districtLevelData: {countries: [], provinces: [], cities: [], districts: [因数据量庞大, seedsui本地数据没有记录此数据]}
+// window.districtData: [{id: '', name: '', children: []}]
 // 级联选择
 const DistrictMain = forwardRef(
   (
@@ -74,14 +74,7 @@ const DistrictMain = forwardRef(
       }
 
       // 读取默认列表或者缓存
-      if (Object.isEmptyObject(window.__SeedsUI_Cascader_DistrictCombo_list__)) {
-        window.__SeedsUI_Cascader_DistrictCombo_list__ = require('./chinaData')
-        if (window.__SeedsUI_Cascader_DistrictCombo_list__.default) {
-          window.__SeedsUI_Cascader_DistrictCombo_list__ =
-            window.__SeedsUI_Cascader_DistrictCombo_list__.default
-        }
-      }
-      listData = window.__SeedsUI_Cascader_DistrictCombo_list__ || null
+      listData = window.districtData || null
 
       if (typeof onListLoad === 'function') onListLoad(listData)
       setListData(listData)

@@ -1,12 +1,13 @@
 import React, { forwardRef, useState } from 'react'
 import { getChildTypes, matchType } from './../DistrictMain/utils'
+import DistrictMain from './../DistrictMain'
+
+// 内库使用
+import ModalPicker from './../../Modal/MainPicker'
 
 // 测试使用
-// import BaseModal from 'seedsui-react/lib/Select/Modal'
-// 内库使用
-import BaseModal from './../../Select/Modal'
-
-import DistrictMain from './../DistrictMain'
+// import { Modal } from 'seedsui-react'
+// const ModalPicker = Modal.MainPicker
 
 // 级联选择
 const DistrictModal = forwardRef(
@@ -111,13 +112,17 @@ const DistrictModal = forwardRef(
     props.MainProps.editableOptions = editableOptions
 
     return (
-      <BaseModal
+      <ModalPicker
         ref={ref}
         visible={visible}
         value={value}
-        submitProps={submitProps}
+        changeClosable
+        submitProps={{
+          visible: false,
+          ...(submitProps || {})
+        }}
         {...props}
-        className={`cascader${props.className ? ' ' + props.className : ''}`}
+        className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={DistrictMain}
       />
     )

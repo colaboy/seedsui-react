@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useContext, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import treeData from './../Cascader/DistrictMain/chinaData.js'
 import Instance from './instance.js'
 import Context from '../Context/instance.js'
 
@@ -143,7 +142,7 @@ const PickerCity = forwardRef(
       let defaultKeys = getDefaultKeys()
       // render数据
       instance.current = new Instance({
-        data: data || treeData,
+        data: data || window.districtData,
         idPropertyName: dataFormat.idPropertyName,
         namePropertyName: dataFormat.namePropertyName,
         childPropertyName: dataFormat.childPropertyName,

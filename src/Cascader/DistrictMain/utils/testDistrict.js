@@ -6,7 +6,7 @@ function testDistrict(current, isDistrict) {
   if (current.isDistrict) {
     return true
   }
-  for (let district of window?.AreaLevel?.districts || []) {
+  for (let district of window?.districtLevelData?.districts || []) {
     if (current.id === district.id) {
       return true
     }

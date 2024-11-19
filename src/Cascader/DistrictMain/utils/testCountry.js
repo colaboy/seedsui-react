@@ -7,7 +7,7 @@ function testCountry(current, isCountry) {
     return true
   }
 
-  for (let country of window?.AreaLevel?.countries || []) {
+  for (let country of window?.districtLevelData?.countries || []) {
     if (current.id === country.id) {
       return true
     }

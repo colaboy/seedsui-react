@@ -6,7 +6,7 @@ function testProvince(current, isProvince) {
   if (current.isProvince) {
     return true
   }
-  for (let province of window?.AreaLevel?.provinces || []) {
+  for (let province of window?.districtLevelData?.provinces || []) {
     if (current.id === province.id) {
       return true
     }

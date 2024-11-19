@@ -9,8 +9,6 @@ import testNodeData from './testNodeData'
 // 主方法: 匹配当前选中项的类型, tabs支持array和object两种方式, array匹配将会更准确
 function matchType(tabs, config) {
   const { data, isCountry, isProvince, isMunicipality, isCity, isDistrict, isStreet } = config || {}
-  if (!window.AreaLevel) return null
-
   // Array type parameter is invalid
   if (Array.isArray(tabs) && !tabs.length) {
     return null

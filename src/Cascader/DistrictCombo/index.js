@@ -1,11 +1,13 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import { testEditableOptions } from './../DistrictMain/utils'
-// 测试使用
-// import BaseCombo from 'seedsui-react/lib/Select/Combo'
-// 内库使用
-import BaseCombo from './../../Select/Combo'
-
 import DistrictModal from './../DistrictModal'
+
+// 内库使用
+import Combo from './../../Modal/Combo'
+
+// 测试使用
+// import { Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
 
 // 级联选择
 const DistrictCombo = forwardRef(
@@ -25,7 +27,6 @@ const DistrictCombo = forwardRef(
       isStreet,
       loadList,
       loadData,
-      optionProps,
       editableOptions,
       ModalProps,
 
@@ -81,7 +82,7 @@ const DistrictCombo = forwardRef(
     }
 
     return (
-      <BaseCombo
+      <Combo
         ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
@@ -96,9 +97,16 @@ const DistrictCombo = forwardRef(
           isStreet,
           loadList,
           loadData,
-          optionProps,
           editableOptions,
-          ...ModalProps
+          ...ModalProps,
+          // MainProps
+          MainProps: {
+            async: async,
+            onListLoad: (listData) => {
+              listDataRef.current = listData
+            },
+            ...(ModalProps?.MainProps || {})
+          }
         }}
         value={value}
         onChange={
@@ -124,13 +132,6 @@ const DistrictCombo = forwardRef(
             (Array.isArray(value) && getReadOnlyValue(value).length === value.length
               ? 'hide-important '
               : '') + (props?.clearProps?.className || '')
-        }}
-        MainProps={{
-          async: async,
-          onListLoad: (listData) => {
-            listDataRef.current = listData
-          },
-          ...(props.MainProps || {})
         }}
       />
     )

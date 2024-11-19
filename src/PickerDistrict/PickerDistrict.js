@@ -2,7 +2,6 @@
 import React, { useContext, useState, useEffect, useRef, forwardRef } from 'react'
 import { createPortal } from 'react-dom'
 import Context from '../Context/instance.js'
-import treeData from './../Cascader/DistrictMain/chinaData.js'
 
 // 数据
 let initTabs = [] // 根据key或者name获取tabs, property用于区分是key还是value比较
@@ -28,7 +27,7 @@ const PickerDistrict = forwardRef(
       getCountries,
 
       // 获取省市区数据
-      data = treeData,
+      data = window.districtData,
       dataFormat,
       /*
       {
