@@ -13,26 +13,26 @@ import Combo from './../../Modal/Combo'
 const DistrictCombo = forwardRef(
   (
     {
-      // Modal: Cascader.DistrictModal Control properties
-      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
-      min = '',
+      // Modal
+      value,
+      onChange,
 
-      // Main: DistrictMain Control properties
-      async,
+      min = '',
       isCountry,
       isProvince,
       isMunicipality,
       isCity,
       isDistrict,
       isStreet,
+      ModalProps,
+
+      // Main
+      async,
+      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      list,
       loadList,
       loadData,
       editableOptions,
-      ModalProps,
-
-      value,
-      onChange,
-      // Standard properties
       ...props
     },
     ref
@@ -86,6 +86,7 @@ const DistrictCombo = forwardRef(
         ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
+          list,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
           min,
           // 判断是否是国省市区

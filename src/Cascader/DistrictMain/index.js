@@ -12,17 +12,16 @@ const DistrictMain = forwardRef(
       // Modal
       visible = true,
 
-      // Main: common
-      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      // Main
       value,
-      list,
 
-      // Main: Cascader.DistrictMain Control properties
       async,
+      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      list,
       loadList,
+      loadData,
       onListLoad,
       editableOptions,
-      loadData,
       // 判断是否是国省市区
       isCountry,
       isProvince,
@@ -65,19 +64,19 @@ const DistrictMain = forwardRef(
     async function initList() {
       listData = list
       // 异步加载列表
-      if (typeof loadList === 'function') {
+      if (list) {
+        listData = list
+      } else if (typeof loadList === 'function') {
         listData = await loadList()
+      } else if (window.districtData) {
+        listData = window.districtData
       }
+
+      // 设置列表
       if (Array.isArray(listData) && listData.length) {
         setListData(listData)
-        return
+        if (typeof onListLoad === 'function') onListLoad(listData)
       }
-
-      // 读取默认列表或者缓存
-      listData = window.districtData || null
-
-      if (typeof onListLoad === 'function') onListLoad(listData)
-      setListData(listData)
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区

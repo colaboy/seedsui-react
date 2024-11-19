@@ -13,28 +13,27 @@ import ModalPicker from './../../Modal/MainPicker'
 const DistrictModal = forwardRef(
   (
     {
-      // Modal fixed properties
-      visible,
-
-      // Modal: DistrictModal Control properties
-      min = '',
-      submitProps,
-
-      // Main: common
+      // Modal
       value,
-      allowClear,
 
-      // Main: DistrictMain Control properties
-      loadList,
-      loadData,
+      visible,
+      submitProps,
+      min = '',
       isCountry,
       isProvince,
       isMunicipality,
       isCity,
       isDistrict,
       isStreet,
-      onDrillDown,
+
+      // Main
+      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      async,
+      list,
+      loadList,
+      loadData,
       editableOptions,
+      onDrillDown,
       ...props
     },
     ref
@@ -106,10 +105,19 @@ const DistrictModal = forwardRef(
     if (!props.MainProps) {
       props.MainProps = {}
     }
-    props.MainProps.onDrillDown = handleDrillDown
+    props.MainProps.type = type
+    props.MainProps.async = async
+    props.MainProps.list = list
     props.MainProps.loadList = loadList
     props.MainProps.loadData = loadData
     props.MainProps.editableOptions = editableOptions
+    props.MainProps.isCountry = isCountry
+    props.MainProps.isProvince = isProvince
+    props.MainProps.isMunicipality = isMunicipality
+    props.MainProps.isCity = isCity
+    props.MainProps.isDistrict = isDistrict
+    props.MainProps.isStreet = isStreet
+    props.MainProps.onDrillDown = handleDrillDown
 
     return (
       <ModalPicker
