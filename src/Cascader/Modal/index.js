@@ -33,6 +33,9 @@ const Modal = forwardRef(
       <ModalPicker
         ref={ref}
         changeClosable
+        submitProps={{
+          visible: false
+        }}
         {...props}
         value={formatValue(value)}
         className={`cascader${props.className ? ' ' + props.className : ''}`}
