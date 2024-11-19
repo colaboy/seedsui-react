@@ -1,35 +1,10 @@
-// 省市区选择
+// Modal
 .cascader-modal {
-  .flex;
-  .flex-vertical;
-  position: absolute;
-  bottom: 0;
+  height: 504px;
+}
 
-  box-sizing: border-box;
-  width: 100%;
-  height: 460px;
-  background-color: white;
-  border-radius: 4px 4px 0 0;
-  // 动画使用.popup-animation
-  // .picker-header {
-  //   height: auto;
-  //   background-image: none;
-  // }
-  // .picker-header-title {
-  //   flex: 1;
-  //   height: 48px;
-  //   font-size: 16px;
-  //   line-height: 48px;
-  //   text-align: center;
-  // }
-}
-.cascader-modal-list {
-  position: relative;
-  padding: 10px 0px;
-  overflow: auto;
-  .flex-1;
-}
-.cascader-modal-option {
+// Main List
+.cascader-option {
   .flex;
   .flex-middle;
   padding: 0 12px;
@@ -40,19 +15,19 @@
   }
   &.active {
     background-color: #f8f9f9;
-    .cascader-modal-option-icon {
+    .cascader-option-icon {
       display: block;
     }
-    .cascader-modal-option-caption {
+    .cascader-option-caption {
       color: @primary;
       // font-weight: 600;
     }
   }
 }
-.cascader-modal-option-caption {
+.cascader-option-caption {
   .flex-1;
 }
-.cascader-modal-option-icon {
+.cascader-option-icon {
   display: none;
   width: 14px;
   height: 14px;
@@ -63,6 +38,8 @@
   line-height: 14px;
   &:extend(.icon-ok-fill all);
 }
+
+// Main Tabs
 .cascader-tabs {
   display: flex;
   margin: 0 12px;
@@ -72,7 +49,7 @@
   overflow-x: auto;
   // tab禁用又选中的情况下，不允许点击列表
   &:has(.active.disabled) {
-    + .cascader .cascader-modal-option {
+    + .cascader .cascader-option {
       pointer-events: none;
       opacity: 0.5;
     }

@@ -111,7 +111,8 @@
 // 弹窗安全区域
 .safe-area-picker {
   // 匹配滚动弹窗选择控件: Select 控件(无picker-modal)
-  #root > .picker-mask .picker:not(.picker-modal) .picker-main {
+  #root > .picker-mask .picker.transfer-modal,
+  #root > .picker-mask .picker.cascader-modal {
     &::after {
       content: '';
       display: block;

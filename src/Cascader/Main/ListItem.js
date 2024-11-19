@@ -20,7 +20,7 @@ const ListItem = forwardRef(
     return (
       <div
         {...props}
-        className={`picker-main cascader${props?.className ? ' ' + props.className : ''}`}
+        className={`picker-main${props?.className ? ' ' + props.className : ''}`}
         ref={ref}
       >
         {typeof list === 'string' && <Notice caption={list} />}
@@ -30,7 +30,7 @@ const ListItem = forwardRef(
               <div
                 key={index}
                 {...optionProps}
-                className={`cascader-modal-option${
+                className={`cascader-option${
                   optionProps.className ? ' ' + optionProps.className : ''
                 }${
                   value?.some((selected) => {
@@ -45,8 +45,8 @@ const ListItem = forwardRef(
                   onSelect(item)
                 }}
               >
-                <p className="cascader-modal-option-caption">{item.name}</p>
-                <i className="cascader-modal-option-icon"></i>
+                <p className="cascader-option-caption">{item.name}</p>
+                <i className="cascader-option-icon"></i>
               </div>
             )
           })}

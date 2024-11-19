@@ -38,7 +38,7 @@ const Modal = forwardRef(
         }}
         {...props}
         value={formatValue(value)}
-        className={`cascader${props.className ? ' ' + props.className : ''}`}
+        className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={Main}
       />
     )
