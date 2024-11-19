@@ -1,21 +1,23 @@
 import React, { forwardRef } from 'react'
-
-// 测试使用
-// import BaseModal from 'seedsui-react/lib/Select/Modal'
-// 内库使用
-import BaseModal from './../../Select/Modal'
-
+import formatValue from './formatValue'
 import Main from './../Main'
 
+// 内库使用
+import ModalPicker from './../../Modal/MainPicker'
+
+// 测试使用
+// import { Modal } from 'seedsui-react'
+// const ModalPicker = Modal.MainPicker
+
+// Modal
 const Modal = forwardRef(
   (
     {
-      loadData,
-      optionProps,
-
       // Main: common
-      allowClear,
-      // Modal standard properties
+      value,
+
+      list,
+      loadData,
       ...props
     },
     ref
@@ -24,14 +26,16 @@ const Modal = forwardRef(
     if (!props.MainProps) {
       props.MainProps = {}
     }
+    if (list) props.MainProps.list = list
     if (loadData) props.MainProps.loadData = loadData
-    if (optionProps) props.MainProps.optionProps = optionProps
+
     return (
-      <BaseModal
+      <ModalPicker
         ref={ref}
+        changeClosable
         {...props}
+        value={formatValue(value)}
         className={`cascader${props.className ? ' ' + props.className : ''}`}
-        multiple={undefined}
         MainComponent={Main}
       />
     )

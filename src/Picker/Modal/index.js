@@ -33,10 +33,10 @@ const Modal = forwardRef(
 
       // Main properties
       value,
-      list, // [{id: '', name: ''}]
       allowClear,
       onChange,
 
+      list, // [{id: '', name: ''}]
       // 纯渲染时不渲染Main
       children,
       ...props

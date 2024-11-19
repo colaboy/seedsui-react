@@ -1,25 +1,10 @@
 import React, { useState } from 'react'
-import { Cascader, Loading } from 'seedsui-react'
-import CountriesData from './../CountriesData'
+import { Loading } from 'seedsui-react'
+import { Cascader } from 'seedsui-react'
+// import Cascader from 'library/components/Cascader'
 
 export default () => {
-  const [value, setValue] = useState([
-    {
-      id: '86',
-      name: '中国'
-    },
-    {
-      name: '北京市',
-      id: '110000',
-      parentid: '86'
-    },
-    {
-      name: '东城区',
-      id: '110101',
-      isDistrict: true,
-      parentid: '110000'
-    }
-  ])
+  const [value, setValue] = useState(null)
 
   // 加载街道
   function loadData(tabs) {
@@ -28,9 +13,8 @@ export default () => {
         resolve(null)
         return
       }
-
       let lastTab = tabs[tabs.length - 1]
-      if (lastTab.isDistrict !== true) {
+      if (lastTab.id !== '1-1') {
         resolve(null)
         return
       }
@@ -39,8 +23,8 @@ export default () => {
       let streets = [
         {
           parentid: lastTab.id,
-          name: '街道1',
-          id: 'street1'
+          name: '孙子节点',
+          id: '1-1-1'
         }
       ]
       setTimeout(() => {
@@ -56,29 +40,32 @@ export default () => {
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.Combo
+        allowClear
         // multiple={false}
-        list={CountriesData}
+        list={[
+          {
+            id: '1',
+            name: '根节点',
+            children: [
+              {
+                id: '1-1',
+                name: '子节点'
+              }
+            ]
+          }
+        ]}
         loadData={loadData}
         value={value}
-        onChange={(newValue) => {
-          console.log('newValue:', newValue)
-          setValue(newValue)
-        }}
-        allowClear="exclusion-ricon"
         placeholder={`Select`}
-        ricon={<i className="ricon shape-arrow-right sm"></i>}
-        captionProps={{
-          caption: '级联选择'
-        }}
-        // Main支持此属性
-        // onDrillDown={() => {
-        //   return false
-        // }}
-        // onBeforeChange={() => {
-        //   return false
-        // }}
-        onVisibleChange={(visible) => {
-          console.log('visible:', visible)
+        ricon={<i className="shape-arrow-right sm"></i>}
+        onChange={setValue}
+        ModalProps={{
+          captionProps: {
+            caption: '级联选择'
+          },
+          onVisibleChange: (visible) => {
+            console.log('visible:', visible)
+          }
         }}
       />
     </div>

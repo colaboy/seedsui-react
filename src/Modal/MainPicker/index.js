@@ -1,12 +1,10 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
-import formatValue from './formatValue'
-import Main from './../Main'
 
 // 内库使用
-import ModalPicker from './../../Modal/Picker'
+import ModalPicker from './../Picker'
 
-// Modal
-const Modal = forwardRef(
+// MainPicker
+const MainPicker = forwardRef(
   (
     {
       // 无用的属性
@@ -24,6 +22,7 @@ const Modal = forwardRef(
       onVisibleChange,
 
       // Modal current properties
+      changeClosable,
       onBeforeChange,
 
       // Main
@@ -34,8 +33,6 @@ const Modal = forwardRef(
       value,
       allowClear,
       onChange,
-
-      list, // [{id: '', name: ''}]
 
       // 纯渲染时不渲染Main
       children,
@@ -71,7 +68,7 @@ const Modal = forwardRef(
       // 显示弹窗，更新标题和显示值
       if (visible) {
         updateTitle()
-        setCurrentValue(formatValue(value))
+        setCurrentValue(value)
       }
       // eslint-disable-next-line
     }, [visible])
@@ -88,8 +85,9 @@ const Modal = forwardRef(
     }
 
     // 事件
-    async function handleSubmitClick(e) {
-      if (submitProps?.onClick) submitProps.onClick(e)
+    async function handleChange(newValue) {
+      if (newValue) currentValue = newValue
+
       // 更新选中的值
       if (mainRef?.current?.getValue) {
         currentValue = mainRef.current.getValue()
@@ -109,11 +107,9 @@ const Modal = forwardRef(
       }
       if (onVisibleChange) onVisibleChange(false)
     }
-
-    // Main Render
-    let MainNode = Main
-    if (MainComponent) {
-      MainNode = MainComponent
+    function handleSubmitClick(e) {
+      if (submitProps?.onClick) submitProps.onClick(e)
+      handleChange()
     }
 
     return (
@@ -133,31 +129,36 @@ const Modal = forwardRef(
         cancelProps={cancelProps}
         maskClosable={maskClosable}
         {...props}
+        className={`cascader${props.className ? ' ' + props.className : ''}`}
         portal={portal || document.getElementById('root') || document.body}
       >
         {/* 纯渲染 */}
         {children}
         {/* 主体 */}
-        {!children && (
-          <MainNode
+        {!children && MainComponent ? (
+          <MainComponent
             ref={mainRef}
             {...(MainProps || {})}
             visible={visible}
             value={currentValue}
             allowClear={allowClear}
-            list={list}
             onChange={(newValue) => {
               // 无标题时更新标题
               updateTitle()
 
               // 修改值
               setCurrentValue(newValue)
+
+              // 修改即关闭
+              if (changeClosable) {
+                handleChange(newValue)
+              }
             }}
           />
-        )}
+        ) : null}
       </ModalPicker>
     )
   }
 )
 
-export default Modal
+export default MainPicker

@@ -17,19 +17,17 @@ const Main = forwardRef(
 
       // Main: common
       value,
-      list: externalList,
-      multiple,
-      onDrillDown,
+      allowClear,
       onBeforeChange,
       onChange,
 
-      // Main: Cascader.Main Control properties
-      headerRender,
-      footerRender,
-
-      TabsComponent,
+      list: externalList,
       loadData,
       optionProps = {},
+      headerRender,
+      footerRender,
+      TabsComponent,
+      onDrillDown,
       ...props
     },
     ref
