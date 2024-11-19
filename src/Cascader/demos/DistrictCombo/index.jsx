@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react'
+import districtLevelData from './chinaLvlData'
 import countriesData from './countriesData'
 import chinaData from './chinaData'
 
 import { Cascader, Loading } from 'seedsui-react'
 
 countriesData[0].children = chinaData
+window.districtLevelData = districtLevelData
 
 export default () => {
   const districtComboRef = useRef(null)
