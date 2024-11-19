@@ -129,7 +129,6 @@ const MainPicker = forwardRef(
         cancelProps={cancelProps}
         maskClosable={maskClosable}
         {...props}
-        className={`cascader${props.className ? ' ' + props.className : ''}`}
         portal={portal || document.getElementById('root') || document.body}
       >
         {/* 纯渲染 */}
