@@ -35,7 +35,7 @@ const Modal = forwardRef(
         ref={ref}
         {...props}
         value={formatValue(value || defaultPickerValue)}
-        className={`slots${props.className ? ' ' + props.className : ''}`}
+        className={`picker-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={Main}
       />
     )

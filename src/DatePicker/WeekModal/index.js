@@ -149,7 +149,7 @@ const Modal = forwardRef(
         cancelProps={cancelProps}
         maskClosable={maskClosable}
         {...props}
-        className={`slots${props.className ? ' ' + props.className : ''}`}
+        className={`picker-modal${props.className ? ' ' + props.className : ''}`}
         portal={portal || document.getElementById('root') || document.body}
       >
         {/* 纯渲染 */}

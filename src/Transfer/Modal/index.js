@@ -27,7 +27,15 @@ const Modal = forwardRef(
     }
     if (list) props.MainProps.list = list
 
-    return <ModalPicker ref={ref} {...props} value={formatValue(value)} MainComponent={Main} />
+    return (
+      <ModalPicker
+        ref={ref}
+        {...props}
+        className={`transfer-modal${props.className ? ' ' + props.className : ''}`}
+        value={formatValue(value)}
+        MainComponent={Main}
+      />
+    )
   }
 )
 
