@@ -8,6 +8,7 @@ export default () => {
   const [icon, setIcon] = useState('1')
 
   useEffect(() => {
+    console.log(dateRef.current)
     dateRef.current.open()
   }, [])
 
@@ -96,7 +97,7 @@ export default () => {
           ]
         }}
         min={new Date()}
-        // max={new Date('2024-12-12')}
+        max={new Date('2025-1-1')}
         value={value}
         // defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
         // onError={(error) => {

@@ -1,8 +1,7 @@
-import React, { forwardRef, useState } from 'react'
+import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 import defaultRanges from './../RangeMain/defaultRanges'
 import validateRange from './validateRange'
 import matchRangeId from './matchRangeId'
-import formatValue from './../MultipleMain/formatValue'
 import RangeMain from './../RangeMain'
 
 // 内库使用
@@ -41,6 +40,7 @@ const Modal = forwardRef(
     },
     ref
   ) => {
+    const modalRef = useRef(null)
     // 当前选中项
     let [currentRangeId, setCurrentRangeId] = useState(rangeId)
 
@@ -57,20 +57,32 @@ const Modal = forwardRef(
     if (disabledEnd) props.MainProps.disabledEnd = disabledEnd
     if (ranges) props.MainProps.ranges = ranges
     if (titles) props.MainProps.titles = titles
-    props.MainProps.rangeId = currentRangeId || rangeId
+
+    props.MainProps.portal = modalRef?.current?.rootDOM
+    props.MainProps.rangeId = currentRangeId
     props.MainProps.onChange = (newValue, { rangeId: newRangeId, ranges } = {}) => {
       setCurrentRangeId(newRangeId)
     }
 
+    useImperativeHandle(ref, () => {
+      return modalRef.current
+    })
+
     return (
       <ModalPicker
-        ref={ref}
+        ref={modalRef}
         {...props}
-        onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
-          onRangeIdChange && onRangeIdChange(newRangeId)
-          onChange && onChange(newValue, { rangeId: newRangeId, ranges })
+        onChange={(newValue, { rangeId: newRangeId } = {}) => {
+          // 隐藏时校验rangeId和日期不匹配, 则清空rangeId
+          currentRangeId = matchRangeId(newValue, {
+            type,
+            rangeId: newRangeId,
+            ranges
+          })
+          onRangeIdChange && onRangeIdChange(currentRangeId)
+          onChange && onChange(newValue, { rangeId: currentRangeId })
         }}
-        onBeforeChange={async (newValue, { rangeId: newRangeId, ranges } = {}) => {
+        onBeforeChange={async (newValue, { rangeId: newRangeId } = {}) => {
           // 校验
           let currentValue = validateRange(newValue, {
             type: type,
@@ -80,33 +92,37 @@ const Modal = forwardRef(
             onError: onError
           })
 
-          if (currentValue === false) return
+          if (currentValue === false) return false
 
           // 修改提示
           if (typeof onBeforeChange === 'function') {
             let goOn = await onBeforeChange(currentValue, { rangeId: newRangeId, ranges })
-            if (goOn !== false) {
-              return goOn || currentValue
+            // 只有合法值才需要处理, 其它值概不处理
+            if (goOn === false || typeof goOn === 'object') {
+              return goOn
             }
-            return goOn
           }
 
           return currentValue
         }}
         onVisibleChange={(visible, { currentArgumentsRef } = {}) => {
+          // 显示时校验rangeId和日期不匹配, 则清空rangeId
           if (visible) {
-            // 若rangeId和日期不匹配则清空rangeId
             currentRangeId = matchRangeId(value, {
               type,
-              rangeId: rangeId || currentRangeId,
+              rangeId: currentRangeId,
               ranges
             })
-            currentArgumentsRef.current = currentRangeId
+            if (!currentArgumentsRef.current) currentArgumentsRef.current = {}
+            currentArgumentsRef.current = {
+              rangeId: currentRangeId
+            }
+
             setCurrentRangeId(currentRangeId)
           }
           onVisibleChange && onVisibleChange(visible)
         }}
-        value={formatValue(value || defaultPickerValue)}
+        value={value || defaultPickerValue}
         className={`picker-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={RangeMain}
       />

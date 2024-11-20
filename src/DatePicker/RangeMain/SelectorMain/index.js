@@ -76,7 +76,6 @@ function RangeMain(
           onChange={(newValue) => {
             onChange &&
               onChange(newValue, {
-                ranges: ranges,
                 rangeId: customRangeId
               })
           }}

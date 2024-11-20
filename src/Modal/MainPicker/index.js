@@ -98,6 +98,9 @@ const MainPicker = forwardRef(
         if (goOn === false) return
       }
 
+      // 清空额外参数
+      currentArgumentsRef.current = null
+
       onVisibleChange &&
         onVisibleChange(false, {
           currentArgumentsRef: currentArgumentsRef
@@ -120,9 +123,10 @@ const MainPicker = forwardRef(
             updateTitle()
             setCurrentValue(value)
           }
+
+          // 需要业务初始化其它参数: currentArgumentsRef
           onVisibleChange &&
             onVisibleChange(visible, {
-              // 需要业务初始化其它参数
               currentArgumentsRef: currentArgumentsRef
             })
         }}

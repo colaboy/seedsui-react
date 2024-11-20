@@ -51,7 +51,7 @@ const RangeCombo = forwardRef(
           return getDisplayValue({
             value,
             type: format || type,
-            rangeId: rangeId || rangeIdRef.current,
+            rangeId: rangeIdRef.current,
             ranges,
             separator
           })
@@ -61,9 +61,7 @@ const RangeCombo = forwardRef(
         value={value}
         onChange={(newValue, { rangeId: newRangeId, ranges } = {}) => {
           // 清空时需要记录空选中项
-          if (!rangeId) {
-            rangeIdRef.current = newRangeId
-          }
+          rangeIdRef.current = newRangeId
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
         ModalComponent={Modal}
@@ -75,15 +73,13 @@ const RangeCombo = forwardRef(
           onError: onError,
           // 记录选中项
           onRangeIdChange: (newRangeId) => {
-            if (!rangeId) {
-              rangeIdRef.current = newRangeId
-            }
+            rangeIdRef.current = newRangeId
           },
           min: min,
           max: max,
           disabledStart: disabledStart,
           disabledEnd: disabledEnd,
-          rangeId: rangeId || rangeIdRef.current,
+          rangeId: rangeIdRef.current,
           ranges: ranges,
           titles: titles
         }}
