@@ -1,3 +1,5 @@
+import getDefaultRangeId from './../RangeMain/SelectorMain/getDefaultRangeId'
+
 // 内库使用
 import DateUtil from './../../DateUtil'
 
@@ -20,6 +22,13 @@ function matchRangeId(value, { type, rangeId, ranges }) {
       return rangeId
     }
   }
+
+  // rangeId未匹配成功, 则显示默认别名
+  let defaultRangeId = getDefaultRangeId(value, ranges, type)
+  if (defaultRangeId && Array.isArray(ranges[defaultRangeId])) {
+    return defaultRangeId
+  }
+
   return ''
 }
 

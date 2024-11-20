@@ -44,7 +44,6 @@ const MainPicker = forwardRef(
     let [currentTitle, setCurrentTitle] = useState('')
 
     // 当前选中项
-    let currentArgumentsRef = useRef(null)
     let [currentValue, setCurrentValue] = useState([])
 
     // 节点
@@ -84,7 +83,7 @@ const MainPicker = forwardRef(
 
       // 修改前校验
       if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(currentValue, currentArgumentsRef.current)
+        let goOn = await onBeforeChange(currentValue)
         if (goOn === false) return
 
         // 修改值
@@ -94,17 +93,11 @@ const MainPicker = forwardRef(
       }
 
       if (onChange) {
-        let goOn = await onChange(currentValue, currentArgumentsRef.current)
+        let goOn = await onChange(currentValue)
         if (goOn === false) return
       }
 
-      // 清空额外参数
-      currentArgumentsRef.current = null
-
-      onVisibleChange &&
-        onVisibleChange(false, {
-          currentArgumentsRef: currentArgumentsRef
-        })
+      onVisibleChange && onVisibleChange(false)
     }
 
     function handleSubmitClick(e) {
@@ -124,11 +117,7 @@ const MainPicker = forwardRef(
             setCurrentValue(value)
           }
 
-          // 需要业务初始化其它参数: currentArgumentsRef
-          onVisibleChange &&
-            onVisibleChange(visible, {
-              currentArgumentsRef: currentArgumentsRef
-            })
+          onVisibleChange && onVisibleChange(visible)
         }}
         // Modal: display properties
         animation={animation}
@@ -158,7 +147,6 @@ const MainPicker = forwardRef(
               updateTitle()
 
               // 修改值
-              currentArgumentsRef.current = newArguments
               setCurrentValue(newValue)
 
               // 修改即关闭
