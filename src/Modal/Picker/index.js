@@ -35,23 +35,24 @@ const Picker = forwardRef(
     })
 
     useEffect(() => {
-      if (visible === null) return
-
-      if (onVisibleChange) onVisibleChange(visible)
-
+      if (visible) {
+        if (onVisibleChange) onVisibleChange(true)
+      }
       // eslint-disable-next-line
     }, [visible])
 
     // 事件
     function handleCancelClick(e) {
       if (cancelProps?.onClick) cancelProps.onClick(e)
-      if (onVisibleChange) onVisibleChange(false)
+      onVisibleChange && onVisibleChange(false)
     }
     function handleMaskClick(e) {
       e.stopPropagation()
       if (!e.target.classList.contains('mask')) return
       if (maskProps?.onClick) maskProps.onClick(e)
-      if (maskClosable && onVisibleChange) onVisibleChange(false)
+      if (maskClosable) {
+        onVisibleChange && onVisibleChange(false)
+      }
     }
 
     let Node = (

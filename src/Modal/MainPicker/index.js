@@ -44,6 +44,7 @@ const MainPicker = forwardRef(
     let [currentTitle, setCurrentTitle] = useState('')
 
     // 当前选中项
+    let currentArgumentsRef = useRef(null)
     let [currentValue, setCurrentValue] = useState([])
 
     // 节点
@@ -60,18 +61,6 @@ const MainPicker = forwardRef(
         ...otherMainRef
       }
     })
-
-    useEffect(() => {
-      if (visible === null) return
-      if (onVisibleChange) onVisibleChange(visible)
-
-      // 显示弹窗，更新标题和显示值
-      if (visible) {
-        updateTitle()
-        setCurrentValue(value)
-      }
-      // eslint-disable-next-line
-    }, [visible])
 
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
@@ -95,21 +84,26 @@ const MainPicker = forwardRef(
 
       // 修改前校验
       if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(currentValue)
+        let goOn = await onBeforeChange(currentValue, currentArgumentsRef.current)
         if (goOn === false) return
 
         // 修改值
-        if (goOn) {
+        if (typeof goOn === 'object') {
           currentValue = goOn
         }
       }
 
       if (onChange) {
-        let goOn = await onChange(currentValue)
+        let goOn = await onChange(currentValue, currentArgumentsRef.current)
         if (goOn === false) return
       }
-      if (onVisibleChange) onVisibleChange(false)
+
+      onVisibleChange &&
+        onVisibleChange(false, {
+          currentArgumentsRef: currentArgumentsRef
+        })
     }
+
     function handleSubmitClick(e) {
       if (submitProps?.onClick) submitProps.onClick(e)
       handleChange(currentValue)
@@ -120,7 +114,18 @@ const MainPicker = forwardRef(
         ref={modalRef}
         // Modal fixed properties
         visible={visible}
-        onVisibleChange={onVisibleChange}
+        onVisibleChange={(visible) => {
+          // 显示弹窗，更新标题和显示值
+          if (visible) {
+            updateTitle()
+            setCurrentValue(value)
+          }
+          onVisibleChange &&
+            onVisibleChange(visible, {
+              // 需要业务初始化其它参数
+              currentArgumentsRef: currentArgumentsRef
+            })
+        }}
         // Modal: display properties
         animation={animation}
         maskProps={maskProps}
@@ -144,17 +149,20 @@ const MainPicker = forwardRef(
             visible={visible}
             value={currentValue}
             allowClear={allowClear}
-            onChange={(newValue) => {
+            onChange={(newValue, newArguments) => {
               // 无标题时更新标题
               updateTitle()
 
               // 修改值
+              currentArgumentsRef.current = newArguments
               setCurrentValue(newValue)
 
               // 修改即关闭
               if (changeClosable) {
                 handleChange(newValue)
               }
+
+              MainProps?.onChange && MainProps.onChange(newValue, newArguments)
             }}
           />
         ) : null}

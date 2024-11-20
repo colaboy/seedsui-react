@@ -41,14 +41,6 @@ const DistrictModal = forwardRef(
     // 是否显示右上角确认按钮
     let [submitVisible, setSubmitVisible] = useState(null)
 
-    // 显示时更新
-    // useEffect(() => {
-    //   if (visible) {
-    //     updateSubmitVisible(value)
-    //   }
-    //   // eslint-disable-next-line
-    // }, [visible])
-
     // 根据min判断是否显示确定按钮
     function updateSubmitVisible(tabs, { data }) {
       let submitVisible = null

@@ -37,8 +37,6 @@ const RangeCombo = forwardRef(
       rangeId,
       ranges = defaultRanges,
       titles,
-      SelectorProps,
-      DatePickerModalProps,
       ...props
     },
     ref
@@ -87,9 +85,7 @@ const RangeCombo = forwardRef(
           disabledEnd: disabledEnd,
           rangeId: rangeId || rangeIdRef.current,
           ranges: ranges,
-          titles: titles,
-          SelectorProps: SelectorProps,
-          DatePickerModalProps: DatePickerModalProps
+          titles: titles
         }}
       />
     )

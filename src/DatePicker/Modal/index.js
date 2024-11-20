@@ -54,7 +54,7 @@ const Modal = forwardRef(
               onError: onError
             })
 
-            if (!newValue) return false
+            if (newValue === false) return false
 
             // eslint-disable-next-line
             currentValue = newValue
