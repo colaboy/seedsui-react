@@ -46,7 +46,7 @@ export default () => {
         // }}
         ModalProps={{
           captionProps: {
-            caption: ''
+            caption: '自定义'
           }
         }}
       />

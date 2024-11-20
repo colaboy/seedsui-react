@@ -86,7 +86,7 @@ const MainPicker = forwardRef(
 
     // 事件
     async function handleChange(newValue) {
-      if (newValue) currentValue = newValue
+      currentValue = newValue
 
       // 更新选中的值
       if (mainRef?.current?.getValue) {
@@ -109,7 +109,7 @@ const MainPicker = forwardRef(
     }
     function handleSubmitClick(e) {
       if (submitProps?.onClick) submitProps.onClick(e)
-      handleChange()
+      handleChange(currentValue)
     }
 
     return (

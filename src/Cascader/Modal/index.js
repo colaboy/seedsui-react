@@ -13,7 +13,7 @@ import ModalPicker from './../../Modal/MainPicker'
 const Modal = forwardRef(
   (
     {
-      // Main: common
+      // Main
       value,
 
       list,

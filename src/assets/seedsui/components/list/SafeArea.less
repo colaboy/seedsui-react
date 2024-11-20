@@ -111,8 +111,8 @@
 // 弹窗安全区域
 .safe-area-picker {
   // 匹配滚动弹窗选择控件: Transfer、Cascader
-  #root > .picker-mask .picker.transfer-modal,
-  #root > .picker-mask .picker.cascader-modal {
+  #root > .picker-mask .transfer-modal,
+  #root > .picker-mask .cascader-modal {
     &::after {
       content: '';
       display: block;
@@ -121,7 +121,7 @@
     }
   }
   // 匹配无滚动弹窗选择控件: Picker、DatePicker 控件(有picker-modal)
-  #root > .picker-mask .picker.picker-modal {
+  #root > .picker-mask .picker-modal {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
   }
