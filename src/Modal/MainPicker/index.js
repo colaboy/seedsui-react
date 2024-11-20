@@ -92,15 +92,18 @@ const MainPicker = forwardRef(
       if (mainRef?.current?.getValue) {
         currentValue = mainRef.current.getValue()
       }
-      // 修改提示
+
+      // 修改前校验
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(currentValue)
         if (goOn === false) return
+
         // 修改值
-        if (typeof goOn === 'object') {
+        if (goOn) {
           currentValue = goOn
         }
       }
+
       if (onChange) {
         let goOn = await onChange(currentValue)
         if (goOn === false) return

@@ -63,8 +63,12 @@ const Modal = forwardRef(
           // 修改提示
           if (typeof onBeforeChange === 'function') {
             let goOn = await onBeforeChange(currentValue)
+            if (goOn !== false) {
+              return goOn || currentValue
+            }
             return goOn
           }
+
           return currentValue
         }}
         value={formatValue(value || defaultPickerValue)}
