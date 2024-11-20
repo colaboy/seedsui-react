@@ -16,9 +16,11 @@ function MultipleMain(
     // Main fixed properties
     value,
     type = 'date', // year | quarter | month | date | time | datetime | week
+    allowClear,
     min,
     max,
-    allowClear,
+    hourStep,
+    minuteStep,
     onChange
   },
   ref
@@ -72,6 +74,8 @@ function MultipleMain(
                 type={type}
                 min={min}
                 max={max}
+                hourStep={hourStep}
+                minuteStep={minuteStep}
                 onChange={(date) => {
                   tab.value = date
                   tab.sndcaption = DateUtil.format(tab.value, type)

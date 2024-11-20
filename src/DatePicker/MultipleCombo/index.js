@@ -1,10 +1,14 @@
 import React, { forwardRef } from 'react'
-import Combo from './../../Modal/Combo'
-// 测试使用
-// import Combo from 'seedsui-react/lib/Modal/Combo'
 
 import Modal from './../MultipleModal'
 import getDisplayValue from './getDisplayValue'
+
+// 内库使用
+import Combo from './../../Modal/Combo'
+
+// 测试使用
+// import { Modal } from 'seedsui-react'
+// const Combo = Modal.Combo
 
 // DatePicker
 const MultipleCombo = forwardRef(
@@ -23,6 +27,8 @@ const MultipleCombo = forwardRef(
       type,
       min,
       max,
+      hourStep,
+      minuteStep,
       ...props
     },
     ref
@@ -48,7 +54,9 @@ const MultipleCombo = forwardRef(
 
           type: type,
           min: min,
-          max: max
+          max: max,
+          hourStep: hourStep,
+          minuteStep: minuteStep
         }}
       />
     )

@@ -28,7 +28,7 @@ export default () => {
         // defaultPickerValue={mulValue}
         value={mulValue}
         // year | quarter | month | date | time | datetime | week
-        type="quarter"
+        type="datetime"
         onChange={(newValue) => {
           console.log(newValue)
           setMulValue(newValue)
@@ -43,6 +43,8 @@ export default () => {
         }}
         allowClear
         min={new Date()}
+        hourStep={5}
+        minuteStep={5}
         onError={(err) =>
           Toast.show({
             content: err.errMsg || '',
