@@ -25,6 +25,7 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
+      getType = matchType,
 
       // Main
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
@@ -46,7 +47,7 @@ const DistrictModal = forwardRef(
       let submitVisible = null
 
       // 获取末级类型
-      let currentType = matchType(tabs, {
+      let currentType = getType(tabs, {
         data,
         isCountry,
         isProvince,

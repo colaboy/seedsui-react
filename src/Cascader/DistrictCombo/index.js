@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import { testEditableOptions } from './../DistrictMain/utils'
+import { testEditableOptions, matchType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用
@@ -24,6 +24,7 @@ const DistrictCombo = forwardRef(
       isCity,
       isDistrict,
       isStreet,
+      getType = matchType,
       ModalProps,
 
       // Main
@@ -72,7 +73,8 @@ const DistrictCombo = forwardRef(
           isMunicipality,
           isCity,
           isDistrict,
-          isStreet
+          isStreet,
+          getType
         })
         if (isEditable === false) {
           newValue.push(item)
@@ -96,6 +98,7 @@ const DistrictCombo = forwardRef(
           isCity,
           isDistrict,
           isStreet,
+          getType,
           loadList,
           loadData,
           editableOptions,

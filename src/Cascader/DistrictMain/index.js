@@ -29,6 +29,7 @@ const DistrictMain = forwardRef(
       isCity,
       isDistrict,
       isStreet,
+      getType = matchType,
       onDrillDown,
       ...props
     },
@@ -96,7 +97,7 @@ const DistrictMain = forwardRef(
       if (!type) return true
 
       // 获取当前选中项
-      let currentType = matchType(tabs, {
+      let currentType = getType(tabs, {
         data: listData,
         isCountry,
         isProvince,
@@ -135,6 +136,7 @@ const DistrictMain = forwardRef(
               isCity={isCity}
               isDistrict={isDistrict}
               isStreet={isStreet}
+              getType={getType}
             />
           )
         }}
@@ -151,7 +153,8 @@ const DistrictMain = forwardRef(
                   isMunicipality,
                   isCity,
                   isDistrict,
-                  isStreet
+                  isStreet,
+                  getType
                 })
               }
             : null

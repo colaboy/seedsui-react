@@ -13,7 +13,8 @@ function Tabs({
   isMunicipality,
   isCity,
   isDistrict,
-  isStreet
+  isStreet,
+  getType
 }) {
   return (
     <div className="cascader-tabs">
@@ -35,7 +36,8 @@ function Tabs({
                     isMunicipality,
                     isCity,
                     isDistrict,
-                    isStreet
+                    isStreet,
+                    getType
                   })
                     ? ''
                     : ' disabled'

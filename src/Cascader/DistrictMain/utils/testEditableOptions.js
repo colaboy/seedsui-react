@@ -3,7 +3,7 @@ import matchType from './matchType'
 import getSiblingType from './getSiblingType'
 
 // 校验只读
-function validateEditableOptions(
+function testEditableOptions(
   item,
   index,
   {
@@ -15,12 +15,18 @@ function validateEditableOptions(
     isMunicipality,
     isCity,
     isDistrict,
-    isStreet
+    isStreet,
+    getType
   }
 ) {
   // 未配置是否可编辑，默认为可编辑
   if (!editableOptions || _.isEmpty(editableOptions)) {
     return true
+  }
+
+  if (!getType) {
+    // eslint-disable-next-line
+    getType = matchType
   }
 
   let type = null
@@ -32,7 +38,7 @@ function validateEditableOptions(
   }
   // 已知项
   else {
-    type = matchType(tabs.slice(0, index + 1), {
+    type = getType(tabs.slice(0, index + 1), {
       data: listData,
       isCountry,
       isProvince,
@@ -55,4 +61,4 @@ function validateEditableOptions(
   return true
 }
 
-export default validateEditableOptions
+export default testEditableOptions
