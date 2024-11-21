@@ -193,6 +193,16 @@ let Bridge = {
   },
   // 以上API均废弃，请使用其它方法代替, 勿使用
   platform: Device.platform,
+  // 初始化配置, 例如wx.config, wx.ready后回调cb, 代表着桥接加载完成
+  init: function (cb) {
+    if (typeof cb === 'function') cb({ errMsg: 'config:ok' })
+  },
+  // 自定义操作
+  invoke: function () {
+    Toast.show({
+      content: locale('invoke仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['invoke'])
+    })
+  },
   // 获得版本信息
   getAppVersion: function () {
     return Device.platformVersion
@@ -373,17 +383,48 @@ let Bridge = {
   logOut: function () {
     console.log('logOut方法仅在app上工作')
   },
-  openLocation: function () {
-    console.log('openLocation方法仅在app上工作')
+  openLocation: function (params) {
+    let errMsg = locale('openLocation仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
+      'openLocation'
+    ])
+    Toast.show({
+      content: errMsg
+    })
+    params?.fail && params.fail({ errMsg: errMsg })
   },
-  chooseImage: function () {
-    console.log('chooseImage方法仅在app上工作')
+  chooseImage: function (params) {
+    let errMsg = locale('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+      'chooseImage'
+    ])
+    Toast.show({
+      content: errMsg
+    })
+    params?.fail && params.fail({ errMsg: errMsg })
   },
-  uploadImage: function () {
-    console.log('uploadImage方法仅在app上工作')
+  uploadImage: function (params) {
+    let errMsg = locale('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+      'uploadImage'
+    ])
+    Toast.show({
+      content: errMsg
+    })
+    params?.fail && params.fail({ errMsg: errMsg })
   },
-  previewFile: function () {
-    console.log('previewFile方法仅在app上工作')
+  previewImage: function (params = {}) {
+    let errMsg = locale('previewImage仅可在APP中使用', 'SeedsUI_only_app_wechat', ['previewImage'])
+    Toast.show({
+      content: errMsg
+    })
+    params?.fail && params.fail({ errMsg: errMsg })
+  },
+  previewFile: function (params = {}) {
+    let errMsg = locale('previewFile仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
+      'previewFile'
+    ])
+    Toast.show({
+      content: errMsg
+    })
+    params?.fail && params.fail({ errMsg: errMsg })
   }
 }
 export default Bridge

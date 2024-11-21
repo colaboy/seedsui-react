@@ -51,14 +51,14 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     // 微信PC端不支持地图查看
-    if (Device.device === 'pc') {
+    if (Device.device === 'pc' || this.platform === 'wechat') {
+      let errMsg = locale('openLocation仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
+        'openLocation'
+      ])
       Toast.show({
-        content: locale(
-          '请在手机端微信中使用打开地图',
-          'SeedsUI_wechat_use_error',
-          locale('', 'SeedsUI_openmap')
-        )
+        content: errMsg
       })
+      params?.fail && params.fail({ errMsg: errMsg })
       return
     }
 
@@ -232,14 +232,14 @@ let Bridge = {
    */
   previewFile: function (params) {
     // 微信PC端不支持预览文件
-    if (Device.device === 'pc') {
+    if (Device.device === 'pc' || this.platform === 'wechat') {
+      let errMsg = locale('previewFile仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
+        'previewFile'
+      ])
       Toast.show({
-        content: locale(
-          '请在手机端微信中使用文件预览',
-          'SeedsUI_wechat_use_error',
-          locale('', 'SeedsUI_previewfile')
-        )
+        content: errMsg
       })
+      params?.fail && params.fail({ errMsg: errMsg })
       return
     }
 
