@@ -8,7 +8,7 @@ function validateRange(value, { type, min, max, diff, onError }) {
     return null
   }
 
-  let newValue = value
+  let newValue = [...value]
 
   // 校验最大最小值
   if (min || max) {
