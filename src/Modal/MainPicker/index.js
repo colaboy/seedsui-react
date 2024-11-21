@@ -59,6 +59,13 @@ const MainPicker = forwardRef(
       }
     })
 
+    useEffect(() => {
+      if (visible) {
+        setCurrentValue(value)
+      }
+      // eslint-disable-next-line
+    }, [value])
+
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
       if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {

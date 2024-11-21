@@ -112,7 +112,7 @@ export default () => {
             caption: '级联选择'
           },
           MainProps: {
-            footerRender: ({ value, onChange, currentValue, onChangeCurrentValue }) => {
+            footerRender: ({ value, onChange, currentValue }) => {
               return (
                 <div
                   onClick={() => {
@@ -123,11 +123,11 @@ export default () => {
                 </div>
               )
             },
-            headerRender: ({ value, onChange, currentValue, onChangeCurrentValue }) => {
+            headerRender: ({ value, onChange, currentValue }) => {
               return (
                 <div
                   onClick={() => {
-                    onChangeCurrentValue([
+                    setValue([
                       {
                         name: '中国',
                         id: '86',

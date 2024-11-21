@@ -246,7 +246,7 @@ const Main = forwardRef(
       if (typeof onDrillDown === 'function') {
         let goOn = await onDrillDown(tabsRef.current, { data })
         // 禁止下钻
-        if (goOn !== undefined && !goOn) {
+        if (goOn === false) {
           onChange && onChange(tabsRef.current)
           activeTab = tabsRef.current[tabsRef.current.length - 1]
           setActiveTab(activeTab)
@@ -302,11 +302,7 @@ const Main = forwardRef(
     if (typeof headerRender === 'function') {
       HeaderNode = headerRender({
         value,
-        onChange: handleChange,
-        currentValue: tabsRef.current,
-        onChangeCurrentValue: (newValue) => {
-          initData(newValue)
-        }
+        onChange
       })
     }
     // 渲染底部
@@ -314,11 +310,7 @@ const Main = forwardRef(
     if (typeof footerRender === 'function') {
       FooterNode = footerRender({
         value,
-        onChange: handleChange,
-        currentValue: tabsRef.current,
-        onChangeCurrentValue: (newValue) => {
-          initData(newValue)
-        }
+        onChange
       })
     }
 

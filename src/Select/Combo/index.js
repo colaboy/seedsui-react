@@ -166,11 +166,11 @@ const Combo = forwardRef(
       if (readOnly || disabled) return
       if (!visible && typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
-        if (goOn !== undefined && !goOn) return
+        if (goOn === false) return
       }
       if (visible && typeof onBeforeClose === 'function') {
         let goOn = await onBeforeClose()
-        if (goOn !== undefined && !goOn) return
+        if (goOn === false) return
       }
       if (typeof onClick === 'function') {
         onClick(e)
