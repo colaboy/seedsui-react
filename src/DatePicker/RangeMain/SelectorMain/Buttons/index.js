@@ -6,7 +6,7 @@ import getSelectorOptions from './getSelectorOptions'
 import Selector from './../../../../Selector'
 
 // 测试使用
-// import Selector from 'seedsui-react/lib/Selector'
+// import { Selector } from 'seedsui-react'
 
 // 日期快捷选择
 function Buttons({
@@ -46,7 +46,10 @@ function Buttons({
         })}
         onChange={(newRange) => {
           let newRangeId = newRange?.[0]?.id || ''
-          let newValue = newRangeId ? ranges[newRangeId] || value : null
+          let newValue =
+            newRangeId && Array.isArray(ranges[newRangeId]) && ranges[newRangeId].length === 2
+              ? ranges[newRangeId]
+              : value
 
           onChange &&
             onChange(newValue, {
@@ -72,7 +75,10 @@ function Buttons({
             list={[{ id: customRangeId, name: customRangeId }]}
             onChange={(newRange) => {
               let newRangeId = newRange?.[0]?.id || ''
-              let newValue = newRangeId ? ranges[newRangeId] || value : null
+              let newValue =
+                newRangeId && Array.isArray(ranges[newRangeId]) && ranges[newRangeId].length === 2
+                  ? ranges[newRangeId]
+                  : value
 
               onChange &&
                 onChange(newValue, {

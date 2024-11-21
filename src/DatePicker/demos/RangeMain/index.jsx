@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import { DatePicker, Layout, DateUtil, locale } from 'seedsui-react'
-import en_US from './../../../assets/seedsui/locale/en_US.json'
-window.localeData = en_US
 
 export default () => {
   const [rangeId, setRangeId] = useState(null)

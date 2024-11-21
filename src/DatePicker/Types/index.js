@@ -1,13 +1,15 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
-import Tabs from './../../Tabs'
-import locale from './../../locale'
-// 测试使用
-// import Tabs from 'seedsui-react/lib/Tabs'
-// import locale from 'seedsui-react/lib/locale'
 
 import { validateMaxMin } from './../utils'
 import WeekCombo from './WeekCombo'
 import DateCombo from './DateCombo'
+
+// 内库使用
+import Tabs from './../../Tabs'
+import locale from './../../locale'
+
+// 测试使用
+// import { Tabs, locale } from 'seedsui-react'
 
 // 日期类型选择控件: 年月日季
 const Types = forwardRef(

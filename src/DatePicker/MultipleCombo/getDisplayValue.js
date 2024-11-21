@@ -1,6 +1,9 @@
 // 内库使用
 import DateUtil from './../../DateUtil'
 
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // 显示多选名称
 function getMultipleDisplayValue({ type, value, separator }) {
   if (!Array.isArray(value) || value.length < 2) {

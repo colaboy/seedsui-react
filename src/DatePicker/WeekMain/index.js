@@ -5,6 +5,9 @@ import locale from './../../locale'
 import DateUtil from './../../DateUtil'
 import Calendar from './../../Calendar'
 
+// 测试使用
+// import { locale, DateUtil, Calendar } from 'seedsui-react'
+
 // 日期快捷选择
 function WeekMain(
   {

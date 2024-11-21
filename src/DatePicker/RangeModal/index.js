@@ -7,8 +7,12 @@ import RangeMain from './../RangeMain'
 // 内库使用
 import ModalPicker from './../../Modal/Picker'
 
-// Modal
-const Modal = forwardRef(
+// 测试使用
+// import { Modal } from 'seedsui-react'
+// const ModalPicker = Modal.Picker
+
+// RangeModal
+const RangeModal = forwardRef(
   (
     {
       // 无用的属性
@@ -218,4 +222,4 @@ const Modal = forwardRef(
   }
 )
 
-export default Modal
+export default RangeModal

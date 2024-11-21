@@ -1,6 +1,9 @@
 // 内库使用
 import DateUtil from './../../../DateUtil'
 
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // 数据
 function getList(value, type) {
   // Year

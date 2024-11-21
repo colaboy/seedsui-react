@@ -5,6 +5,10 @@ import MultipleMain from './../MultipleMain'
 // 内库使用
 import ModalPicker from './../../Modal/Picker'
 
+// 测试使用
+// import { Modal as BaseModal } from 'seedsui-react'
+// const ModalPicker = BaseModal.Picker
+
 // Modal
 const Modal = forwardRef(
   (
