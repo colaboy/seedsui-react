@@ -64,10 +64,10 @@ const Modal = forwardRef(
           // 修改提示
           if (typeof onBeforeChange === 'function') {
             let goOn = await onBeforeChange(currentValue)
-            if (goOn !== false) {
-              return goOn || currentValue
+            // 只有合法值才需要处理, 其它值概不处理
+            if (goOn === false || typeof goOn === 'object') {
+              return goOn
             }
-            return goOn
           }
 
           return currentValue

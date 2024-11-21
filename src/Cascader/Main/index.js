@@ -210,7 +210,11 @@ const Main = forwardRef(
     async function handleChange(newValue) {
       if (typeof onBeforeChange === 'function') {
         let goOn = await onBeforeChange(newValue)
-        if (goOn !== undefined && !goOn) return
+        if (goOn === false) return
+        if (typeof goOn === 'object') {
+          // eslint-disable-next-line
+          newValue = goOn
+        }
       }
       if (onChange) onChange(newValue)
     }
