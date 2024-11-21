@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import { DatePicker, Layout, DateUtil, locale } from 'seedsui-react'
-import en_US from './../../../assets/seedsui/locale/en_US.json'
-window.localeData = en_US
 
 export default () => {
   const [rangeId, setRangeId] = useState(null)
@@ -13,58 +11,31 @@ export default () => {
       <Layout.Main className="bg-white">
         <DatePicker.RangeMain
           // style={{ padding: 0 }}
-          allowClear
-          titles={{
-            custom: '自定义选择',
-            selector: '快捷选择'
-          }}
+          // allowClear
+          // titles={{
+          //   custom: '自定义选择',
+          //   selector: '快捷选择'
+          // }}
           // type="datetime"
           // ranges={{
           //   [locale('自定义')]: 10
           // }}
           ranges={{
-            [locale('今日', 'SeedsUI_today')]: [new Date(), new Date()],
-            [locale('今天')]: [new Date(), new Date()],
-            [locale('昨日', 'SeedsUI_yesterday')]: [
-              dayjs().subtract(1, 'day').toDate(),
-              dayjs().subtract(1, 'day').toDate()
-            ],
-            [locale('近7日', 'SeedsUI_last_days', ['7'])]: [
-              dayjs().subtract(6, 'day').toDate(),
-              new Date()
-            ],
-            [locale('近30日', 'SeedsUI_last_days', ['30'])]: [
-              dayjs().subtract(29, 'day').toDate(),
-              new Date()
-            ],
-            [locale('近90日', 'SeedsUI_last_days', ['90'])]: [
-              dayjs().subtract(89, 'day').toDate(),
-              new Date()
-            ],
-            [locale('本周', 'SeedsUI_this_week')]: [dayjs().day(1).toDate(), new Date()],
-            [locale('本月', 'SeedsUI_this_month')]: [dayjs().date(1).toDate(), new Date()],
-            [locale('上月', 'SeedsUI_last_month')]: [
-              dayjs().date(1).subtract(1, 'month').toDate(),
-              dayjs().date(1).subtract(1, 'day').toDate()
-            ],
-            [locale('本季度', 'SeedsUI_this_quarter')]: [
-              DateUtil.firstDayOfQuarter(new Date()),
-              new Date()
-            ],
-            [locale('自定义', 'SeedsUI_custom')]: 0,
-            [locale('今年', 'SeedsUI_this_year')]: [
-              DateUtil.firstDayOfYear(new Date()),
-              DateUtil.lastDayOfYear(new Date())
-            ]
+            ['今日']: [dayjs().toDate(), dayjs().toDate()],
+            ['未来一个月']: [new Date(), dayjs().add(29, 'day').toDate()],
+
+            ['未来三个月']: [new Date(), dayjs().add(89, 'day').toDate()],
+
+            ['自定义']: 365
           }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
           // allowClear="exclusion-ricon"
           rangeId={rangeId}
           value={value}
-          onError={(error) => {
-            console.log(error)
-          }}
+          // onError={(error) => {
+          //   console.log(error)
+          // }}
           onChange={(newValue, { rangeId }) => {
             console.log('修改:', newValue)
             setValue(newValue)

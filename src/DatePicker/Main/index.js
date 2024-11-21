@@ -6,6 +6,9 @@ import DateMain from './DateMain'
 import locale from './../../locale'
 import DateUtil from './../../DateUtil'
 
+// 测试使用
+// import { DateUtil, locale } from 'seedsui-react'
+
 // 日期选择
 function Main(
   {

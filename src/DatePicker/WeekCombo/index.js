@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-import Modal from './../WeekModal'
+import WeekModal from './../WeekModal'
 
 // 内库使用
 import DateUtil from './../../DateUtil'
@@ -37,7 +37,7 @@ const WeekCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        ModalComponent={Modal}
+        ModalComponent={WeekModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

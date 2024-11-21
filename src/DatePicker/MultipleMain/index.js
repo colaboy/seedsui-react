@@ -8,6 +8,9 @@ import locale from './../../locale'
 import DateUtil from './../../DateUtil'
 import Tabs from './../../Tabs'
 
+// 测试使用
+// import { locale, DateUtil, Tabs } from 'seedsui-react'
+
 // 日期多选
 function MultipleMain(
   {

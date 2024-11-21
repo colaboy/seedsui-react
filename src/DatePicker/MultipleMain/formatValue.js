@@ -1,6 +1,9 @@
 // 内库使用
 import DateUtil from './../../DateUtil'
 
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // Format value
 function formatValue(value, type) {
   if (!Array.isArray(value) || !value.length) {

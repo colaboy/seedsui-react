@@ -8,7 +8,7 @@ function RangeMain(
   {
     visible,
 
-    // Main properties
+    // Main
     value,
     type = 'date', // year | quarter | month | date | time | datetime
     min,

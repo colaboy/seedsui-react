@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef } from 'react'
 import defaultRanges from './../RangeMain/defaultRanges'
-import Modal from './../RangeModal'
+import RangeModal from './../RangeModal'
 import getDisplayValue from './getDisplayValue'
 
 // 内库使用
@@ -66,7 +66,7 @@ const RangeCombo = forwardRef(
           rangeIdRef.current = newRangeId
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
-        ModalComponent={Modal}
+        ModalComponent={RangeModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

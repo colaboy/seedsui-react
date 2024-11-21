@@ -4,6 +4,9 @@ import getDefaultRangeId from './../RangeMain/SelectorMain/getDefaultRangeId'
 // 内库使用
 import DateUtil from './../../DateUtil'
 
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // 显示名称
 function getDisplayValue({ value, type, rangeId, ranges, separator }) {
   if (!Array.isArray(value) || value.length !== 2) {

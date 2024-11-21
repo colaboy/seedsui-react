@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
-
-import Modal from './../MultipleModal'
+import MultipleModal from './../MultipleModal'
 import getDisplayValue from './getDisplayValue'
 
 // 内库使用
@@ -46,7 +45,7 @@ const MultipleCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        ModalComponent={Modal}
+        ModalComponent={MultipleModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

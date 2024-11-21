@@ -6,6 +6,9 @@ import listToValue from './listToValue'
 // 内库使用
 import Picker from './../../../Picker'
 
+// 测试使用
+// import { Picker } from 'seedsui-react'
+
 // 日期选择
 function Main(
   {

@@ -10,6 +10,10 @@ import ModalPicker from './../../Modal/MainPicker'
 // import { Modal } from 'seedsui-react'
 // const ModalPicker = Modal.MainPicker
 
+// 测试使用
+// import { Modal as BaseModal } from 'seedsui-react'
+// const ModalPicker = BaseModal.Picker
+
 // Modal
 const Modal = forwardRef(
   (

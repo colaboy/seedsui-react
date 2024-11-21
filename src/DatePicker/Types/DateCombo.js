@@ -6,6 +6,9 @@ import Combo from './../Combo'
 // 内库使用
 import DateUtil from './../../DateUtil'
 
+// 测试使用
+// import { DateUtil } from 'seedsui-react'
+
 // 日期类型选择控件: 年月日季
 const DateCombo = forwardRef(
   (

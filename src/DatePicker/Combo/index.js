@@ -7,8 +7,8 @@ import DateUtil from './../../DateUtil'
 import Combo from './../../Modal/Combo'
 
 // 测试使用
-// import { DateUtil, Modal } from 'seedsui-react'
-// const Combo = Modal.Combo
+// import { DateUtil, Modal as BaseModal } from 'seedsui-react'
+// const Combo = BaseModal.Combo
 
 // DatePicker
 const DatePickerCombo = forwardRef(

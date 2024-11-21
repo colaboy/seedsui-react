@@ -12,8 +12,8 @@ import ModalPicker from './../../Modal/MainPicker'
 // import { Modal } from 'seedsui-react'
 // const ModalPicker = Modal.MainPicker
 
-// Modal
-const Modal = forwardRef(
+// RangeModal
+const RangeModal = forwardRef(
   (
     {
       // Modal
@@ -131,4 +131,4 @@ const Modal = forwardRef(
   }
 )
 
-export default Modal
+export default RangeModal
