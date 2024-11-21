@@ -13,6 +13,8 @@ function RangeMain(
     type,
     min,
     max,
+    hourStep,
+    minuteStep,
     disabledStart,
     disabledEnd,
     allowClear,
@@ -71,12 +73,15 @@ function RangeMain(
           value={value}
           min={min}
           max={max}
+          hourStep={hourStep}
+          minuteStep={minuteStep}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
           onChange={(newValue) => {
             onChange &&
               onChange(newValue, {
-                rangeId: customRangeId
+                rangeId: customRangeId,
+                ranges: ranges
               })
           }}
         />

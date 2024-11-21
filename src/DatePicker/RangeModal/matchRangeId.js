@@ -25,7 +25,7 @@ function matchRangeId(value, { type, rangeId, ranges }) {
 
   // rangeId未匹配成功, 则显示默认别名
   let defaultRangeId = getDefaultRangeId(value, ranges, type)
-  if (defaultRangeId && Array.isArray(ranges[defaultRangeId])) {
+  if (defaultRangeId) {
     return defaultRangeId
   }
 

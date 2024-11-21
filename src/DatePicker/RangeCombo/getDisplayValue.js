@@ -26,7 +26,7 @@ function getDisplayValue({ value, type, rangeId, ranges, separator }) {
 
   // 显示默认别名
   let defaultRangeId = getDefaultRangeId(value, ranges, type)
-  if (Array.isArray(ranges[defaultRangeId])) {
+  if (defaultRangeId && Array.isArray(ranges[defaultRangeId])) {
     return defaultRangeId
   }
 

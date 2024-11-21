@@ -14,6 +14,8 @@ export default function CustomDates({
   value,
   min,
   max,
+  hourStep,
+  minuteStep,
   disabledStart,
   disabledEnd,
   allowClear,
@@ -34,6 +36,8 @@ export default function CustomDates({
         disabled={disabledStart}
         min={type === 'week' ? min : undefined}
         max={type === 'week' ? max : undefined}
+        hourStep={hourStep}
+        minuteStep={minuteStep}
         onChange={(argStartDate) => {
           let newStartDate = argStartDate || null
           if (onChange) onChange(newStartDate || endDate ? [newStartDate, endDate] : null)
@@ -49,6 +53,8 @@ export default function CustomDates({
         value={endDate}
         min={type === 'week' ? min : undefined}
         max={type === 'week' ? max : undefined}
+        hourStep={hourStep}
+        minuteStep={minuteStep}
         disabled={disabledEnd}
         onChange={(argEndDate) => {
           let newEndDate = argEndDate || null

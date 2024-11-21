@@ -50,7 +50,8 @@ function Buttons({
 
           onChange &&
             onChange(newValue, {
-              rangeId: newRangeId
+              rangeId: newRangeId,
+              ranges: ranges
             })
         }}
       />
@@ -75,7 +76,8 @@ function Buttons({
 
               onChange &&
                 onChange(newValue, {
-                  rangeId: newRangeId
+                  rangeId: newRangeId,
+                  ranges: ranges
                 })
             }}
           />

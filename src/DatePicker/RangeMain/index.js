@@ -13,6 +13,8 @@ function RangeMain(
     type = 'date', // year | quarter | month | date | time | datetime
     min,
     max,
+    hourStep,
+    minuteStep,
     disabledStart,
     disabledEnd,
     allowClear,
@@ -48,6 +50,8 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
+          hourStep={hourStep}
+          minuteStep={minuteStep}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
           allowClear={allowClear}
@@ -68,6 +72,8 @@ function RangeMain(
           type={type}
           min={min}
           max={max}
+          hourStep={hourStep}
+          minuteStep={minuteStep}
           disabledStart={disabledStart}
           disabledEnd={disabledEnd}
           allowClear={allowClear}

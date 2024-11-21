@@ -61,7 +61,7 @@ const Modal = forwardRef(
     props.MainProps.ranges = ranges
     props.MainProps.portal = modalRef?.current?.rootDOM
     props.MainProps.rangeId = currentRangeId
-    props.MainProps.onChange = (newValue, { rangeId: newRangeId, ranges } = {}) => {
+    props.MainProps.onChange = (newValue, { rangeId: newRangeId } = {}) => {
       setCurrentRangeId(newRangeId)
     }
 
