@@ -76,6 +76,7 @@ function MultipleMain(
                 max={max}
                 hourStep={hourStep}
                 minuteStep={minuteStep}
+                className={tab.disabled ? 'disabled' : ''}
                 onChange={(date) => {
                   tab.value = date
                   tab.sndcaption = DateUtil.format(tab.value, type)

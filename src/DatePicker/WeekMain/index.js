@@ -15,7 +15,8 @@ function WeekMain(
     max,
     weekStart = 'Monday', // Monday | Sunday
     allowClear,
-    onChange
+    onChange,
+    ...props
   },
   ref
 ) {
@@ -60,7 +61,6 @@ function WeekMain(
   return (
     <Calendar
       ref={weekMainRef}
-      className="datepicker-weekmain-calendar"
       min={min}
       max={max}
       draggable={['horizontal']}
@@ -69,6 +69,8 @@ function WeekMain(
       value={rangeValueRef.current}
       // header={false}
       onChange={handleChange}
+      {...props}
+      className={`datepicker-weekmain-calendar${props.className ? ' ' + props.className : ''}`}
     />
   )
 }

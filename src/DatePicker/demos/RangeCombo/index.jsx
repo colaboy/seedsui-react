@@ -19,7 +19,7 @@ export default () => {
         ref={dateRef}
         diff={40}
         // year | quarter | month | date | time | datetime | week
-        type="datetime"
+        type="week"
         // separator="to"
         disabledStart
         disabledEnd

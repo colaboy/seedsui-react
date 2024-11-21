@@ -10,7 +10,7 @@ let Main = forwardRef(
       // Modal
       visible = true,
 
-      // Main: common
+      // Main
       value,
       allowClear,
       onChange,

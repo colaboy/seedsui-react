@@ -4,6 +4,12 @@
   overflow: hidden;
   background-color: white;
   transition-property: height;
+
+  // 禁用
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
 }
 // 区间选择模式
 .calendar-mode-range {

@@ -18,7 +18,8 @@ function Main(
     max,
     hourStep,
     minuteStep,
-    onChange
+    onChange,
+    ...props
   },
   ref
 ) {
@@ -46,7 +47,16 @@ function Main(
   })
 
   if (type === 'week') {
-    return <WeekMain ref={pickerMainRef} value={value} min={min} max={max} onChange={onChange} />
+    return (
+      <WeekMain
+        ref={pickerMainRef}
+        value={value}
+        min={min}
+        max={max}
+        onChange={onChange}
+        {...props}
+      />
+    )
   }
 
   return (
@@ -57,6 +67,7 @@ function Main(
       hourStep={hourStep}
       minuteStep={minuteStep}
       onChange={onChange}
+      {...props}
     />
   )
 }

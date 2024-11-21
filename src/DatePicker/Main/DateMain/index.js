@@ -13,7 +13,8 @@ function Main(
     hourStep,
     minuteStep,
     value,
-    onChange
+    onChange,
+    ...props
   },
   ref
 ) {
@@ -28,6 +29,7 @@ function Main(
       value={valueToList(value, type)}
       list={getList(value, type, { hourStep, minuteStep })}
       onChange={handleChange}
+      {...props}
     />
   )
 }
