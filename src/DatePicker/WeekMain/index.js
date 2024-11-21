@@ -37,7 +37,7 @@ function WeekMain(
         return title
       },
       getValue: () => {
-        return value instanceof Date ? value : new Date()
+        return value instanceof Date ? value : null
       }
     }
   })

@@ -1,6 +1,4 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
-
-// 内库使用
 import ModalPicker from './../Picker'
 
 // MainPicker
