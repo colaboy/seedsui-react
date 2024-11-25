@@ -156,7 +156,7 @@ const Main = forwardRef(
 
       let newList = null
       // 有children, 直接显示子级
-      if (Array.isArray(item.children)) {
+      if (Array.isArray(item?.children) || item?.children?.length) {
         newList = item.children
       }
       // 无children, 动态获取子级
