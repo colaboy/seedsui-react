@@ -14,7 +14,7 @@ export default () => {
         return
       }
       let lastTab = tabs[tabs.length - 1]
-      debugger
+      console.log('请求子级:', lastTab)
       if (lastTab.id !== '1-1') {
         resolve(null)
         return
@@ -24,8 +24,13 @@ export default () => {
       let streets = [
         {
           parentid: lastTab.id,
-          name: '孙子节点',
+          name: '孙子节点1',
           id: '1-1-1'
+        },
+        {
+          parentid: lastTab.id,
+          name: '孙子节点2',
+          id: '1-1-2'
         }
       ]
       setTimeout(() => {
@@ -50,7 +55,11 @@ export default () => {
             children: [
               {
                 id: '1-1',
-                name: '子节点'
+                name: '子节点1'
+              },
+              {
+                id: '1-2',
+                name: '子节点1'
               }
             ]
           }
@@ -59,7 +68,29 @@ export default () => {
         value={value}
         placeholder={`Select`}
         ricon={<i className="shape-arrow-right sm"></i>}
-        onChange={setValue}
+        onChange={(newValue) => {
+          console.log('修改:', newValue)
+          setValue(newValue)
+          // setTimeout(() => {
+          //   setValue([
+          //     {
+          //       id: '1',
+          //       name: '根节点',
+          //       parentid: null
+          //     }
+          //     // {
+          //     //   id: '1-1',
+          //     //   name: '子节点1',
+          //     //   parentid: '1'
+          //     // },
+          //     // {
+          //     //   parentid: '1-1',
+          //     //   name: '孙子节点1',
+          //     //   id: '1-1-1'
+          //     // }
+          //   ])
+          // }, 2000)
+        }}
         ModalProps={{
           captionProps: {
             caption: '级联选择'

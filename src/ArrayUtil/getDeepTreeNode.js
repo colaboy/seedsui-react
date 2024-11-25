@@ -6,7 +6,7 @@ function getDeepTreeNode(tree, id) {
     }
     if (node.children) {
       // 如果有子节点，递归查找
-      const result = findNodeById(node.children, id)
+      const result = getDeepTreeNode(node.children, id)
       if (result) return result // 如果找到目标节点，返回结果
     }
   }

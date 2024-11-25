@@ -1,19 +1,15 @@
 // 补充parentid
-function setDeepTreeParentId(list) {
-  function loopDeepTree(list, parentId) {
-    for (let item of list) {
-      // 补充parentid
-      if (parentId) {
-        item['parentid'] = parentId
-      }
-      //　有子项继续遍历子项
-      if (Array.isArray(item['children']) && item['children'].length) {
-        loopDeepTree(item['children'], item['id'])
-      }
+function setDeepTreeParentId(tree, parentid = null) {
+  for (const node of tree) {
+    // 为当前节点补充 parentid
+    node.parentid = parentid
+
+    // 如果存在子节点，递归处理子节点
+    if (node.children && Array.isArray(node.children)) {
+      setDeepTreeParentId(node.children, node.id)
     }
   }
-  loopDeepTree(list)
-  return list
+  return tree
 }
 
 export default setDeepTreeParentId
