@@ -14,6 +14,7 @@ export default () => {
         return
       }
       let lastTab = tabs[tabs.length - 1]
+      debugger
       if (lastTab.id !== '1-1') {
         resolve(null)
         return
