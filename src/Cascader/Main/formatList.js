@@ -7,7 +7,7 @@ import ArrayUtil from '../../ArrayUtil'
 // 格式化数据
 function formatList(tree) {
   if (!Array.isArray(tree) || !tree.length) return []
-  return ArrayUtil.setDeepTreeParentId(tree)
+  return ArrayUtil.updateDeepTreeParentId(tree)
 }
 
 export default formatList

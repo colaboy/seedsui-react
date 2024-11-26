@@ -4,7 +4,23 @@ import { Cascader } from 'seedsui-react'
 // import Cascader from 'library/components/Cascader'
 
 export default () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState([
+    {
+      id: '1',
+      name: '根节点',
+      parentid: null
+    },
+    {
+      id: '1-1',
+      name: '子节点1',
+      parentid: '1'
+    },
+    {
+      parentid: '1-1',
+      name: '孙子节点1',
+      id: '1-1-1'
+    }
+  ])
 
   // 加载街道
   function loadData(tabs) {
@@ -77,17 +93,17 @@ export default () => {
           //       id: '1',
           //       name: '根节点',
           //       parentid: null
+          //     },
+          //     {
+          //       id: '1-1',
+          //       name: '子节点1',
+          //       parentid: '1'
+          //     },
+          //     {
+          //       parentid: '1-1',
+          //       name: '孙子节点1',
+          //       id: '1-1-1'
           //     }
-          //     // {
-          //     //   id: '1-1',
-          //     //   name: '子节点1',
-          //     //   parentid: '1'
-          //     // },
-          //     // {
-          //     //   parentid: '1-1',
-          //     //   name: '孙子节点1',
-          //     //   id: '1-1-1'
-          //     // }
           //   ])
           // }, 2000)
         }}

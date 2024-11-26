@@ -42,7 +42,7 @@ const MainPicker = forwardRef(
     let [currentTitle, setCurrentTitle] = useState('')
 
     // 当前选中项
-    let [currentValue, setCurrentValue] = useState([])
+    let [currentValue, setCurrentValue] = useState(value)
 
     // 节点
     const modalRef = useRef(null)

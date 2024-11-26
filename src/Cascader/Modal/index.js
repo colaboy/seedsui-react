@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import formatValue from './formatValue'
+import formatValue from './../Main/formatValue'
 import Main from './../Main'
 
 // 内库使用
@@ -32,7 +32,7 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        changeClosable
+        // changeClosable
         submitProps={{
           visible: false
         }}
