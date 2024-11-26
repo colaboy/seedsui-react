@@ -25,9 +25,10 @@ const Upload = ({
   }
 
   // 点击选择框
-  async function handleUploadClick(e) {
-    let target = e.currentTarget
-    e.stopPropagation()
+  async function handleUploadClick(event) {
+    event.stopPropagation()
+    let e = event.nativeEvent
+    let target = event.currentTarget
 
     // 前置校验
     if (typeof onBeforeChoose === 'function') {
