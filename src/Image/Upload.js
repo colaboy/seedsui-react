@@ -26,6 +26,8 @@ const Upload = ({
 
   // 点击选择框
   async function handleUploadClick(e) {
+    // Fix react 16 sync events lost issues
+    if (e.persist && typeof e.persist === 'function') e.persist()
     let target = e.currentTarget
     e.stopPropagation()
 
