@@ -22,10 +22,10 @@ export default () => {
     { id: '320100', name: '南京市', parentid: '320000' },
     { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
   ])
-  console.log('districtComboRef:', districtComboRef)
 
   // 加载街道
   function loadData(tabs) {
+    debugger
     return new Promise((resolve) => {
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
@@ -55,6 +55,8 @@ export default () => {
       resolve(streets)
     })
   }
+
+  console.log('列表:', districtComboRef, countriesData)
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
