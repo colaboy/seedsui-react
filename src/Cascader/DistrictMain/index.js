@@ -30,6 +30,7 @@ const DistrictMain = forwardRef(
       isDistrict,
       isStreet,
       getType = matchType,
+      onChange,
       ...props
     },
     ref

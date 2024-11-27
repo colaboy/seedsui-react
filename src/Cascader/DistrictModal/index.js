@@ -113,12 +113,18 @@ const DistrictModal = forwardRef(
         ref={ref}
         visible={visible}
         value={value}
-        changeClosable
+        {...props}
+        changeClosable={(newValue, newArguments, { submit }) => {
+          let lastTab =
+            Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
+          if (lastTab?.isLeaf) {
+            submit(newValue)
+          }
+        }}
         submitProps={{
           visible: false,
           ...(submitProps || {})
         }}
-        {...props}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={DistrictMain}
       />

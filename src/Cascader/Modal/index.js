@@ -32,6 +32,10 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
+        submitProps={{
+          visible: false
+        }}
+        {...props}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
@@ -39,10 +43,6 @@ const Modal = forwardRef(
             submit(newValue)
           }
         }}
-        submitProps={{
-          visible: false
-        }}
-        {...props}
         value={formatValue(value)}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={Main}
