@@ -89,6 +89,14 @@ const Main = forwardRef(
 
     // 初始化数据
     async function update() {
+      // 无值渲染根节点
+      if (!Array.isArray(value) || !value.length) {
+        tabsRef.current = null
+        setActiveTab(null)
+        setList(externalList)
+        return
+      }
+
       // 获取当前列表
       let newList = await getChildrenList(value)
       if (!newList) return null
@@ -96,7 +104,7 @@ const Main = forwardRef(
       // 如果有子级, 则增加请选择
       tabsRef.current = _.cloneDeep(value)
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
-      if (!lastTab.isLeaf) {
+      if (!lastTab?.isLeaf) {
         // 请选择
         lastTab = {
           parentid: lastTab.id,
@@ -194,17 +202,17 @@ const Main = forwardRef(
         newValue = [item]
       }
 
-      // 获取当前列表
-      let newList = await getChildrenList(newValue, {
-        onError: (error) => {
-          if (error.errMsg) {
+      // 不是末级节点, 则获取当前列表, 补充标识: value中的isLeaf和externalList中的children
+      if (!newValue[newValue.length - 1].isLeaf) {
+        let newList = await getChildrenList(newValue, {
+          onError: (error) => {
             Toast.show({
               content: error.errMsg
             })
           }
-        }
-      })
-      if (!newList) return
+        })
+        if (!newList) return
+      }
 
       onChange && onChange(newValue, { list: externalList })
     }

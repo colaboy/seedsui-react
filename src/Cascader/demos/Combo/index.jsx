@@ -1,9 +1,26 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Loading } from 'seedsui-react'
 import { Cascader } from 'seedsui-react'
 // import Cascader from 'library/components/Cascader'
 
 export default () => {
+  const listRef = useRef([
+    {
+      id: '1',
+      name: '根节点',
+      children: [
+        {
+          id: '1-1',
+          name: '子节点1'
+        },
+        {
+          id: '1-2',
+          name: '子节点2'
+        }
+      ]
+    }
+  ])
+
   const [value, setValue] = useState([
     {
       id: '1',
@@ -58,28 +75,14 @@ export default () => {
       resolve(streets)
     })
   }
+  console.log('列表:', listRef.current)
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.Combo
         allowClear
         // multiple={false}
-        list={[
-          {
-            id: '1',
-            name: '根节点',
-            children: [
-              {
-                id: '1-1',
-                name: '子节点1'
-              },
-              {
-                id: '1-2',
-                name: '子节点2'
-              }
-            ]
-          }
-        ]}
+        list={listRef.current}
         loadData={loadData}
         value={value}
         placeholder={`Select`}
