@@ -28,7 +28,6 @@ const Main = forwardRef(
       // Main: common
       value,
       allowClear,
-      onBeforeChange,
       onChange,
 
       list: externalList,
@@ -37,7 +36,6 @@ const Main = forwardRef(
       headerRender,
       footerRender,
       TabsComponent,
-      onDrillDown,
       ...props
     },
     ref

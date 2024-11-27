@@ -34,7 +34,6 @@ const DistrictModal = forwardRef(
       loadList,
       loadData,
       editableOptions,
-      onDrillDown,
       ...props
     },
     ref
@@ -43,12 +42,12 @@ const DistrictModal = forwardRef(
     let [submitVisible, setSubmitVisible] = useState(null)
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible(tabs, { data }) {
+    function updateSubmitVisible(tabs, { list }) {
       let submitVisible = null
 
       // 获取末级类型
       let currentType = getType(tabs, {
-        data,
+        data: list,
         isCountry,
         isProvince,
         isMunicipality,
@@ -74,13 +73,10 @@ const DistrictModal = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleDrillDown(tabs, parameters) {
+    function handleDrillDown(tabs, otherArguments) {
       if (min) {
-        updateSubmitVisible(tabs, parameters)
+        updateSubmitVisible(tabs, otherArguments)
       }
-
-      // 点击选项
-      if (onDrillDown) return onDrillDown(tabs, parameters)
     }
 
     // 显示右上角的按钮
@@ -110,7 +106,7 @@ const DistrictModal = forwardRef(
     props.MainProps.isCity = isCity
     props.MainProps.isDistrict = isDistrict
     props.MainProps.isStreet = isStreet
-    props.MainProps.onDrillDown = handleDrillDown
+    props.MainProps.onChange = handleDrillDown
 
     return (
       <ModalPicker

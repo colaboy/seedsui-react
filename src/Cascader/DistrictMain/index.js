@@ -30,7 +30,6 @@ const DistrictMain = forwardRef(
       isDistrict,
       isStreet,
       getType = matchType,
-      onDrillDown,
       ...props
     },
     ref
@@ -81,24 +80,25 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleDrillDown(tabs, parameters) {
-      // 自定义是否允许下钻
-      if (onDrillDown) {
-        let goOn = await onDrillDown(tabs, parameters)
-        if (goOn !== undefined) return goOn
-      }
+    async function handleChange(tabs) {
+      let lastTab = Array.isArray(tabs) && tabs.length ? tabs[tabs.length - 1] : null
 
       // 街道无需再发请求
       if (Array.isArray(tabs) && tabs.length && testStreet(tabs[tabs.length - 1], isStreet)) {
+        lastTab.isLeaf = true
+        onChange && onChange(tabs)
         return false
       }
 
       // 匹配类型，没传类型则允许下钻
-      if (!type) return true
+      if (!type) {
+        onChange && onChange(tabs)
+        return true
+      }
 
       // 获取当前选中项
       let currentType = getType(tabs, {
-        data: listData,
+        data: list,
         isCountry,
         isProvince,
         isMunicipality,
@@ -112,15 +112,18 @@ const DistrictMain = forwardRef(
         currentType?.length &&
         getParentTypes(currentType[currentType.length - 1]).includes(type)
       ) {
+        lastTab.isLeaf = true
+        onChange && onChange(tabs)
         return false
       }
+
+      onChange && onChange(tabs)
       return true
     }
 
     return (
       <Main
         ref={ref}
-        onDrillDown={handleDrillDown}
         TabsComponent={({ tabs, activeTab, onActiveTab }) => {
           return (
             <Tabs
@@ -160,6 +163,7 @@ const DistrictMain = forwardRef(
             : null
         }
         {...props}
+        onChange={handleChange}
       />
     )
   }
