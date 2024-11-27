@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
+import _ from 'lodash'
 
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
@@ -11,10 +12,11 @@ import ListItem from './ListItem'
 // 内库使用
 import locale from './../../locale'
 import ArrayUtil from './../../ArrayUtil'
+import Toast from './../../Toast'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
-// import { ArrayUtil } from 'seedsui-react'
+// import { ArrayUtil, Toast } from 'seedsui-react'
 
 // 主体
 const Main = forwardRef(
@@ -62,9 +64,9 @@ const Main = forwardRef(
         rootDOM: mainRef.current,
         getRootDOM: () => mainRef.current,
         // 当选择到叶子节点时，不触发onChange，允许用户手动点击确定提前获取最新的value
-        getValue: () => {
-          return value
-        },
+        // getValue: () => {
+        //   return value
+        // },
         // 更新数据
         update: update
       }
@@ -89,17 +91,10 @@ const Main = forwardRef(
     async function update() {
       // 获取当前列表
       let newList = await getChildrenList(value)
-
-      // 接口报错
-      if (typeof newList === 'string' || newList === false) {
-        setList(
-          typeof newList === 'string' ? newList : locale('获取数据失败', 'SeedsUI_get_data_failed')
-        )
-        return
-      }
+      if (!newList) return null
 
       // 如果有子级, 则增加请选择
-      tabsRef.current = value
+      tabsRef.current = _.cloneDeep(value)
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
       if (!lastTab.isLeaf) {
         // 请选择
@@ -116,7 +111,7 @@ const Main = forwardRef(
     }
 
     // 获取指定级别的列表数据
-    async function getChildrenList(tabs) {
+    async function getChildrenList(tabs, config) {
       let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
       let lastTab =
         Array.isArray(requestTabs) && requestTabs.length
@@ -139,18 +134,31 @@ const Main = forwardRef(
 
         // 接口报错
         if (typeof newList === 'string' || newList === false) {
-          return false
+          let errMsg =
+            typeof newList === 'string'
+              ? newList
+              : locale('获取数据失败', 'SeedsUI_get_data_failed')
+          if (typeof config?.onError === 'function') {
+            config.onError({ errMsg: errMsg })
+          } else {
+            setActiveTab(lastTab)
+            setList(errMsg)
+          }
+          return null
         }
         // 无值则为叶子节点
         else if (newList === null) {
+          // 标识isLeaf
           for (let tab of tabs) {
             if (tab.id === lastTab.id) {
               tab.isLeaf = true
+              break
             }
           }
           for (let tab of value) {
             if (tab.id === lastTab.id) {
               tab.isLeaf = true
+              break
             }
           }
           ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
@@ -186,6 +194,18 @@ const Main = forwardRef(
         newValue = [item]
       }
 
+      // 获取当前列表
+      let newList = await getChildrenList(newValue, {
+        onError: (error) => {
+          if (error.errMsg) {
+            Toast.show({
+              content: error.errMsg
+            })
+          }
+        }
+      })
+      if (!newList) return
+
       onChange && onChange(newValue, { list: externalList })
     }
 
@@ -197,6 +217,7 @@ const Main = forwardRef(
           onActiveTab: async (tab) => {
             activeTab = tab
             let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+            if (!newList) return
 
             setActiveTab(activeTab)
             setList(newList)
@@ -212,6 +233,7 @@ const Main = forwardRef(
           onActiveTab={async (tab) => {
             activeTab = tab
             let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+            if (!newList) return
 
             setActiveTab(activeTab)
             setList(newList)

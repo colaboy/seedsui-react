@@ -155,8 +155,10 @@ const MainPicker = forwardRef(
               setCurrentValue(newValue)
 
               // 修改即关闭
-              if (changeClosable) {
+              if (changeClosable === true) {
                 handleChange(newValue)
+              } else if (typeof changeClosable === 'function') {
+                changeClosable(newValue, newArguments, { submit: handleChange })
               }
 
               MainProps?.onChange && MainProps.onChange(newValue, newArguments)

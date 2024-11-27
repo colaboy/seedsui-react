@@ -32,7 +32,13 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        // changeClosable
+        changeClosable={(newValue, newArguments, { submit }) => {
+          let lastTab =
+            Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
+          if (lastTab?.isLeaf) {
+            submit(newValue)
+          }
+        }}
         submitProps={{
           visible: false
         }}
