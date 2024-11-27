@@ -75,7 +75,7 @@ export default () => {
               },
               {
                 id: '1-2',
-                name: '子节点1'
+                name: '子节点2'
               }
             ]
           }

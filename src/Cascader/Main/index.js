@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 
+import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
 import formatValue from './formatValue'
 import formatList from './formatList'
@@ -51,7 +52,7 @@ const Main = forwardRef(
     // 选中tab
     let [activeTab, setActiveTab] = useState(null)
 
-    // 选中列表
+    // 选中列表, 文本则为错误
     let [list, setList] = useState(externalList)
 
     // 节点
@@ -71,7 +72,12 @@ const Main = forwardRef(
 
     // 初始化tabs、选中tab、列表
     useEffect(() => {
-      if (!visible || !Array.isArray(externalList) || !externalList.length) {
+      if (
+        !visible ||
+        !Array.isArray(externalList) ||
+        !externalList.length ||
+        JSON.stringify(tabsRef.current) === JSON.stringify(value)
+      ) {
         return
       }
 
@@ -81,38 +87,23 @@ const Main = forwardRef(
 
     // 初始化数据
     async function update() {
-      tabsRef.current = [...(value || [])]
-      // 选中末级选中项
-      let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
-
-      debugger
-      // 初次进入页面
-      if (!lastTab) {
-        setList(externalList)
-        return
-      }
-
-      let newList = null
-      // 末级节点加载兄弟节点
-      if (lastTab.isLeaf) {
-        newList = await getChildrenList(lastTab?.parentid || '')
-      }
-      // 非末级节点加载子级
-      else {
-        newList = await getChildrenList(lastTab.id || '')
-      }
+      // 获取当前列表
+      let newList = await getChildrenList(value)
 
       // 接口报错
       if (typeof newList === 'string' || newList === false) {
+        setList(
+          typeof newList === 'string' ? newList : locale('获取数据失败', 'SeedsUI_get_data_failed')
+        )
         return
       }
-      // 无值则为叶子节点
-      else if (newList === null) {
-        lastTab.isLeaf = true
-      }
-      // 有值则为子项, 请选择
-      else {
-        let lastTab = {
+
+      // 如果有子级, 则增加请选择
+      tabsRef.current = value
+      let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
+      if (!lastTab.isLeaf) {
+        // 请选择
+        lastTab = {
           parentid: lastTab.id,
           id: '',
           name: locale('请选择', 'SeedsUI_placeholder_select')
@@ -121,63 +112,51 @@ const Main = forwardRef(
       }
 
       setActiveTab(lastTab)
-
-      // 渲染子级
       setList(newList)
     }
 
     // 获取指定级别的列表数据
-    async function getChildrenList(id) {
+    async function getChildrenList(tabs) {
+      let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
+      let lastTab =
+        Array.isArray(requestTabs) && requestTabs.length
+          ? requestTabs[requestTabs.length - 1]
+          : null
+
       // 初次渲染列表, 没有选中项
-      if (!id) {
+      if (!lastTab?.id) {
         return externalList
       }
 
       // 渲染子级
-      let newList = await getTreeChildren(externalList, id)
+      let newList = getTreeChildren(externalList, lastTab.id)
 
       // 无children, 动态获取子级
       if (!newList) {
-        let tabIndex = value.findIndex((tab) => tab.id === id)
-        let selectedOptions = value.slice(0, tabIndex + 1)
-        newList = await loadData(selectedOptions, { list: externalList })
-      }
-      return newList
-    }
-
-    // 点击选项
-    async function handleDrillDown(item) {
-      // 选中中间的tabs, 并截取后续的选中项
-      let parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
-
-      let newValue = [...(value || [])]
-      // 已经存在于tabs上
-      if (parentTabIndex !== -1) {
-        newValue = newValue.slice(0, parentTabIndex + 1)
-        newValue.push(item)
-      }
-      // 不在tabs上, 为第一项
-      else {
-        newValue = [item]
-      }
-
-      let newList = null
-      // 有children, 直接显示子级
-      if (Array.isArray(item?.children) || item?.children?.length) {
-        newList = item.children
-      }
-      // 无children, 动态获取子级
-      else {
-        newList = await loadData(newValue, { list: externalList })
-        let lastTab = newValue[newValue.length - 1]
+        if (typeof loadData === 'function') {
+          newList = await loadData(requestTabs, { list: externalList })
+        }
 
         // 接口报错
         if (typeof newList === 'string' || newList === false) {
-          return
+          return false
         }
         // 无值则为叶子节点
         else if (newList === null) {
-          lastTab.isLeaf = true
+          for (let tab of tabs) {
+            if (tab.id === lastTab.id) {
+              tab.isLeaf = true
+            }
+          }
+          for (let tab of value) {
+            if (tab.id === lastTab.id) {
+              tab.isLeaf = true
+            }
+          }
+          ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
+            node.isLeaf = true
+          })
+          return getChildrenList(tabs)
         }
         // 有值则为子项, 添加到原始list中
         else {
@@ -187,20 +166,27 @@ const Main = forwardRef(
         }
       }
 
+      return newList
+    }
+
+    // 点击选项
+    async function handleDrillDown(item) {
+      let newValue = value
+
+      // 点击项的父级为选中项
+      let parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
+
+      // 已经存在于tabs上, 截取
+      if (parentTabIndex !== -1) {
+        newValue = newValue.slice(0, parentTabIndex + 1)
+        newValue.push(item)
+      }
+      // 不在tabs上, 为第一项
+      else {
+        newValue = [item]
+      }
+
       onChange && onChange(newValue, { list: externalList })
-
-      // 更新选中项
-      // activeTab = newValue[newValue.length - 1]
-      // setActiveTab(activeTab)
-
-      // 无子级, 则回落值
-      // if (!newList) {
-      //   handleChange(tabsRef.current)
-      // }
-      // // 有子级, 则展示子级
-      // else {
-      //   setList(newList)
-      // }
     }
 
     function getTabsNode() {
@@ -210,8 +196,9 @@ const Main = forwardRef(
           activeTab: activeTab,
           onActiveTab: async (tab) => {
             activeTab = tab
+            let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+
             setActiveTab(activeTab)
-            let newList = await getChildrenList(tab?.parentid)
             setList(newList)
           }
         })
@@ -224,8 +211,9 @@ const Main = forwardRef(
           activeTab={activeTab}
           onActiveTab={async (tab) => {
             activeTab = tab
+            let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+
             setActiveTab(activeTab)
-            let newList = await getChildrenList(tab?.parentid)
             setList(newList)
           }}
         />
