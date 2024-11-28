@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 import { testEditableOptions, matchType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
@@ -39,7 +39,7 @@ const DistrictCombo = forwardRef(
     ref
   ) => {
     // 获取DistrictMain加载的list
-    const listRef = useRef(list)
+    let [asyncList, setAsyncList] = useState(null)
 
     // 暴露方法
     const comboRef = useRef(null)
@@ -62,7 +62,7 @@ const DistrictCombo = forwardRef(
         let isEditable = testEditableOptions(item, index, {
           tabs: value,
           editableOptions,
-          list: listRef.current,
+          list: list || asyncList,
           isCountry,
           isProvince,
           isMunicipality,
@@ -103,9 +103,7 @@ const DistrictCombo = forwardRef(
           MainProps: {
             async: async,
             onListLoad: (listData) => {
-              listRef.current = listData
-              // 更新type
-              getReadOnlyValue(value)
+              setAsyncList(listData)
             },
             ...(ModalProps?.MainProps || {})
           }
