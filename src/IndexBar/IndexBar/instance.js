@@ -1,32 +1,22 @@
 // Indexbar 索引控件
-var Indexbar = function (params) {
+const Indexbar = function (params) {
   /* -----------------------
   Model
   ----------------------- */
-  var defaults = {
+  let defaults = {
     overflowContainer: null,
     container: null,
-    tooltipContainer: null,
-
-    buttonClass: 'indexbar-button',
-    buttonActiveClass: 'active',
-
-    containerActiveClass: 'active',
-
-    tooltipClass: 'indexbar-tooltip',
-    tooltipActiveClass: 'active',
-
-    linkAnchorAttr: 'data-indexbar-link',
-    anchorAttr: 'data-indexbar-anchor'
+    tooltipContainer: null
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
   // Indexbar
-  var s = this
+  let s = this
 
   // Params
   s.params = params
@@ -72,9 +62,9 @@ var Indexbar = function (params) {
   // 获取所有锚点
   s.getAnchors = function () {
     let anchors = []
-    let anchorsDOM = s.overflowContainer.querySelectorAll('[' + s.params.anchorAttr + ']')
+    let anchorsDOM = s.overflowContainer.querySelectorAll('[data-indexbar-anchor]')
     for (let i = 0, anchorDOM; (anchorDOM = anchorsDOM[i++]); ) {
-      let anchorName = anchorDOM.getAttribute(s.params.anchorAttr)
+      let anchorName = anchorDOM.getAttribute('data-indexbar-anchor')
       anchors.push(anchorName)
     }
     return anchors
@@ -82,25 +72,25 @@ var Indexbar = function (params) {
 
   // 选中button
   s.activeButton = function (button) {
-    let buttonsDOM = s.container.querySelectorAll('.' + s.params.buttonClass)
+    let buttonsDOM = s.container.querySelectorAll('.indexbar-button')
     if (buttonsDOM && buttonsDOM.length) {
       for (let i = 0, buttonDOM; (buttonDOM = buttonsDOM[i++]); ) {
-        buttonDOM.classList.remove(s.params.buttonActiveClass)
+        buttonDOM.classList.remove('active')
       }
     }
 
     if (button) {
-      button.classList.add(s.params.buttonActiveClass)
+      button.classList.add('active')
     }
   }
 
   // 滚动到指定位置
   s.goAnchor = function (y) {
-    var button = document.elementFromPoint(s.touches.startX, y)
+    let button = document.elementFromPoint(s.touches.startX, y)
     if (!button || !button.parentNode || button.parentNode !== s.container) return
 
     // 获取link文本
-    let linkName = button.getAttribute(s.params.linkAnchorAttr)
+    let linkName = button.getAttribute('data-indexbar-link')
     if (!linkName) return
 
     // 选中button
@@ -110,9 +100,7 @@ var Indexbar = function (params) {
     s.tooltipContainer.innerHTML = linkName || ''
 
     // 对应滚动容器中的目标元素
-    var anchor = s.overflowContainer.querySelector(
-      '[' + s.params.anchorAttr + '="' + linkName + '"]'
-    )
+    let anchor = s.overflowContainer.querySelector('[data-indexbar-anchor="' + linkName + '"]')
 
     // 移动位置
     if (anchor) s.overflowContainer.scrollTop = anchor.offsetTop
@@ -123,8 +111,8 @@ var Indexbar = function (params) {
 	----------------------- */
   // body事件绑定
   s.events = function (detach) {
-    var touchTarget = s.container
-    var action = detach ? 'removeEventListener' : 'addEventListener'
+    let touchTarget = s.container
+    let action = detach ? 'removeEventListener' : 'addEventListener'
     touchTarget[action]('touchstart', s.onTouchStart, false)
     touchTarget[action]('touchmove', s.onTouchMove, false)
     touchTarget[action]('touchend', s.onTouchEnd, false)
@@ -161,8 +149,8 @@ var Indexbar = function (params) {
     // 滚动到指定位置
     s.goAnchor(s.touches.startY)
     // 激活indexbar
-    s.container.classList.add(s.params.containerActiveClass)
-    s.tooltipContainer.classList.add(s.params.tooltipActiveClass)
+    s.container.classList.add('active')
+    s.tooltipContainer.classList.add('active')
   }
   s.onTouchMove = function (e) {
     e.preventDefault()
@@ -174,8 +162,8 @@ var Indexbar = function (params) {
     // e.currentTarget.removeEventListener('touchmove', preventDefault, false)
     // 移除激活indexbar
     s.activeButton()
-    s.container.classList.remove(s.params.containerActiveClass)
-    s.tooltipContainer.classList.remove(s.params.tooltipActiveClass)
+    s.container.classList.remove('active')
+    s.tooltipContainer.classList.remove('active')
   }
   s.attach()
 }
