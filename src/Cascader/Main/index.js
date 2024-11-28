@@ -281,7 +281,7 @@ const Main = forwardRef(
         {getTabsNode()}
 
         {/* 主体 */}
-        <IndexBar>
+        <IndexBar className="cascader-indexbar">
           <ListItem
             ref={mainRef}
             optionProps={optionProps}
