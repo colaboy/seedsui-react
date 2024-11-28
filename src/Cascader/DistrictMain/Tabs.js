@@ -7,7 +7,7 @@ function Tabs({
   onActiveTab,
   // 禁用判断
   editableOptions,
-  listData,
+  list,
   isCountry,
   isProvince,
   isMunicipality,
@@ -30,7 +30,7 @@ function Tabs({
                   testEditableOptions(tab, index, {
                     tabs,
                     editableOptions,
-                    listData,
+                    list,
                     isCountry,
                     isProvince,
                     isMunicipality,

@@ -43,7 +43,7 @@ const Main = forwardRef(
     // 格式化value: value未传parentid, 补充parentid
     formatValue(value)
 
-    // 格式化data
+    // 格式化list
     formatList(externalList)
 
     // 全部tab

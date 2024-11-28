@@ -39,7 +39,7 @@ const DistrictCombo = forwardRef(
     ref
   ) => {
     // 获取DistrictMain加载的list
-    const listDataRef = useRef(null)
+    const listRef = useRef(list)
 
     // 暴露方法
     const comboRef = useRef(null)
@@ -51,23 +51,18 @@ const DistrictCombo = forwardRef(
     })
 
     // 清空操作，保留只读项，清空非只读项
-    function getReadOnlyValue(argValue) {
-      let val = argValue
-      if (val === undefined) {
-        val = value
-      }
-
-      if (!Array.isArray(val)) {
-        return argValue
+    function getReadOnlyValue(value) {
+      if (!Array.isArray(value)) {
+        return value
       }
 
       // 清空只能清空非只读项
       let newValue = []
-      for (let [index, item] of val.entries()) {
+      for (let [index, item] of value.entries()) {
         let isEditable = testEditableOptions(item, index, {
-          tabs: val,
+          tabs: value,
           editableOptions,
-          listData: listDataRef.current,
+          list: listRef.current,
           isCountry,
           isProvince,
           isMunicipality,
@@ -80,6 +75,7 @@ const DistrictCombo = forwardRef(
           newValue.push(item)
         }
       }
+
       return newValue
     }
 
@@ -107,7 +103,9 @@ const DistrictCombo = forwardRef(
           MainProps: {
             async: async,
             onListLoad: (listData) => {
-              listDataRef.current = listData
+              listRef.current = listData
+              // 更新type
+              getReadOnlyValue(value)
             },
             ...(ModalProps?.MainProps || {})
           }

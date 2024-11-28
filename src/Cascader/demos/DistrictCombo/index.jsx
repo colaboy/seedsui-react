@@ -20,19 +20,19 @@ export default () => {
     { name: '中国', id: '86' },
     { id: '320000', name: '江苏省', parentid: '86' },
     { id: '320100', name: '南京市', parentid: '320000' },
-    { id: '320105', name: '建邺区', parentid: '320100', isDistrict: true }
+    { id: '320105', name: '建邺区', parentid: '320100' }
   ])
 
   // 加载街道
   function loadData(tabs) {
-    debugger
     return new Promise((resolve) => {
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
         return
       }
       let lastTab = tabs[tabs.length - 1]
-      if (lastTab.isDistrict !== true) {
+      debugger
+      if (lastTab.type.includes('district')) {
         resolve(null)
         return
       }
@@ -60,12 +60,12 @@ export default () => {
 
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
-      <Cascader.DistrictCombo
+      {/* <Cascader.DistrictCombo
         // type="city"
         value={value2}
         onChange={setValue2}
         placeholder="Please Select"
-      />
+      /> */}
       <Cascader.DistrictCombo
         ref={districtComboRef}
         // 编辑控制
@@ -130,37 +130,10 @@ export default () => {
                 <div
                   onClick={() => {
                     setValue([
-                      {
-                        name: '中国',
-                        id: '86',
-                        type: ['country']
-                      },
-                      {
-                        id: '320000',
-                        name: '江苏省',
-                        parentid: '86',
-                        type: ['province']
-                      },
-                      {
-                        id: '320100',
-                        name: '南京市',
-                        parentid: '320000',
-                        type: ['city']
-                      },
-                      {
-                        id: '320105',
-                        name: '建邺区',
-                        parentid: '320100',
-                        isDistrict: true,
-                        type: ['district']
-                      },
-                      {
-                        parentid: '320105',
-                        name: '街道1',
-                        id: 'street1',
-                        isStreet: true,
-                        type: ['street']
-                      }
+                      { name: '中国', id: '86' },
+                      { id: '320000', name: '江苏省', parentid: '86' },
+                      { id: '320100', name: '南京市', parentid: '320000' },
+                      { id: '320105', name: '建邺区', parentid: '320100' }
                     ])
                   }}
                 >

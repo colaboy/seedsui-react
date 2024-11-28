@@ -9,7 +9,7 @@ function testEditableOptions(
   {
     tabs,
     editableOptions,
-    listData,
+    list,
     isCountry,
     isProvince,
     isMunicipality,
@@ -39,7 +39,7 @@ function testEditableOptions(
   // 已知项
   else {
     type = getType(tabs.slice(0, index + 1), {
-      data: listData,
+      list,
       isCountry,
       isProvince,
       isMunicipality,

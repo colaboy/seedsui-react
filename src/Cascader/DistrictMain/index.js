@@ -99,7 +99,7 @@ const DistrictMain = forwardRef(
 
       // 获取当前选中项
       let currentType = getType(tabs, {
-        data: list,
+        list,
         isCountry,
         isProvince,
         isMunicipality,
@@ -133,7 +133,7 @@ const DistrictMain = forwardRef(
               onActiveTab={onActiveTab}
               // 禁用判断
               editableOptions={editableOptions}
-              listData={listData}
+              list={listData}
               isCountry={isCountry}
               isProvince={isProvince}
               isMunicipality={isMunicipality}

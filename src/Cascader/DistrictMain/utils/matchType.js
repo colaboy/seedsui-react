@@ -8,7 +8,7 @@ import testNodeData from './testNodeData'
 
 // 主方法: 匹配当前选中项的类型, tabs支持array和object两种方式, array匹配将会更准确
 function matchType(tabs, config) {
-  const { data, isCountry, isProvince, isMunicipality, isCity, isDistrict, isStreet } = config || {}
+  const { list, isCountry, isProvince, isMunicipality, isCity, isDistrict, isStreet } = config || {}
   // Array type parameter is invalid
   if (Array.isArray(tabs) && !tabs.length) {
     return null
@@ -27,8 +27,8 @@ function matchType(tabs, config) {
   }
 
   // Neither id and nor parentid, It's root
-  if (!current?.id && !current?.parentid && Array.isArray(data) && data.length) {
-    current = data[0]
+  if (!current?.id && !current?.parentid && Array.isArray(list) && list.length) {
+    current = list[0]
   }
 
   if (testMunicipality(current, isMunicipality)) {
@@ -49,8 +49,8 @@ function matchType(tabs, config) {
   if (testDistrict(current, isDistrict)) {
     return ['district']
   }
-  // 不是省市，但在data中，则认为是区；不在data中，则认为是街道(街道在data中, 会有isStreet，所以在isStreet时就返回了)
-  let hasData = testNodeData(current, data)
+  // 不是省市，但在list中，则认为是区；不在list中，则认为是街道(街道在list中, 会有isStreet，所以在isStreet时就返回了)
+  let hasData = testNodeData(current, list)
   if (hasData) {
     if (hasData === 'street') {
       return ['street']

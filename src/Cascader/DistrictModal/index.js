@@ -47,7 +47,7 @@ const DistrictModal = forwardRef(
 
       // 获取末级类型
       let currentType = getType(tabs, {
-        data: list,
+        list,
         isCountry,
         isProvince,
         isMunicipality,
