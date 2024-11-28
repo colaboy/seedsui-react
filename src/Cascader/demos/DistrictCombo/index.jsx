@@ -10,11 +10,6 @@ window.districtLevelData = districtLevelData
 
 export default () => {
   const districtComboRef = useRef(null)
-  const [value2, setValue2] = useState([
-    { id: '320000', name: '江苏省', parentid: '86' },
-    { id: '320100', name: '南京市', parentid: '320000' }
-  ])
-
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([
     { name: '中国', id: '86' },
@@ -31,7 +26,6 @@ export default () => {
         return
       }
       let lastTab = tabs[tabs.length - 1]
-      debugger
       if (!lastTab?.type?.includes?.('district')) {
         resolve(null)
         return
@@ -71,7 +65,7 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        // min="province" // ['country', 'province', 'city', 'district', 'street']
+        min="province" // ['country', 'province', 'city', 'district', 'street']
         // type="district"
         loadData={loadData}
         value={value}
@@ -102,45 +96,45 @@ export default () => {
         }}
         // 未弹出选择框便加载
         async={false}
-        editableOptions={{
-          country: { editable: false },
-          province: { editable: false }
-          // city: { editable: false },
-          // district: { editable: false }
-          // street: { editable: true }
-        }}
+        // editableOptions={{
+        //   country: { editable: false },
+        //   province: { editable: false },
+        //   city: { editable: false },
+        //   district: { editable: false },
+        //   street: { editable: false }
+        // }}
         ModalProps={{
           captionProps: {
             caption: '级联选择'
           },
           MainProps: {
-            footerRender: ({ value, onChange, currentValue }) => {
+            footerRender: ({ value, onChange }) => {
               return (
                 <div
                   onClick={() => {
-                    onChange(currentValue)
+                    onChange(value)
                   }}
                 >
                   提交
                 </div>
               )
-            },
-            headerRender: ({ value, onChange, currentValue }) => {
-              return (
-                <div
-                  onClick={() => {
-                    setValue([
-                      { name: '中国', id: '86' },
-                      { id: '320000', name: '江苏省', parentid: '86' },
-                      { id: '320100', name: '南京市', parentid: '320000' },
-                      { id: '320105', name: '建邺区', parentid: '320100' }
-                    ])
-                  }}
-                >
-                  点击还原
-                </div>
-              )
             }
+            // headerRender: ({ value, onChange }) => {
+            //   return (
+            //     <div
+            //       onClick={() => {
+            //         setValue([
+            //           { name: '中国', id: '86' },
+            //           { id: '320000', name: '江苏省', parentid: '86' },
+            //           { id: '320100', name: '南京市', parentid: '320000' },
+            //           { id: '320105', name: '建邺区', parentid: '320100' }
+            //         ])
+            //       }}
+            //     >
+            //       点击还原
+            //     </div>
+            //   )
+            // }
           }
         }}
       />

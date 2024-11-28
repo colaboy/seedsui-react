@@ -185,7 +185,7 @@ const Main = forwardRef(
 
     // 点击选项
     async function handleDrillDown(item) {
-      let newValue = value
+      let newValue = _.cloneDeep(value)
 
       // 点击项的父级为选中项
       let parentTabIndex = (value || [])?.findIndex?.((tab) => tab.id === item?.parentid)
@@ -201,8 +201,9 @@ const Main = forwardRef(
       }
 
       // 不是末级节点, 则获取当前列表, 补充标识: value中的isLeaf和externalList中的children
+      let newList = null
       if (!newValue[newValue.length - 1].isLeaf) {
-        let newList = await getChildrenList(newValue, {
+        newList = await getChildrenList(newValue, {
           onError: (error) => {
             Toast.show({
               content: error.errMsg
@@ -213,6 +214,11 @@ const Main = forwardRef(
       }
 
       onChange && onChange(newValue, { list: externalList })
+
+      // 如果值未发生变化不会触发useEffect更新, 需要强制更新, 否则列表和tabs不会更新
+      if (JSON.stringify(newValue) === JSON.stringify(value)) {
+        update()
+      }
     }
 
     function getTabsNode() {

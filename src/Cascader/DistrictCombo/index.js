@@ -41,7 +41,7 @@ const DistrictCombo = forwardRef(
     // 获取DistrictMain加载的list
     let [asyncList, setAsyncList] = useState(null)
 
-    // 暴露方法
+    // Expose api
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
@@ -57,8 +57,7 @@ const DistrictCombo = forwardRef(
       }
 
       // 没有type, 则先获取type
-      if (value.some((item) => !item.type)) {
-        debugger
+      if (value?.some?.((item) => !item.type)) {
         setValueType(value, {
           list: list || asyncList,
           isCountry,
@@ -135,7 +134,7 @@ const DistrictCombo = forwardRef(
         clearProps={{
           ...(props?.clearProps || {}),
           className:
-            (readOnlyValue?.length === value.length ? 'hide-important ' : '') +
+            (readOnlyValue?.length === value?.length ? 'hide-important ' : '') +
             (props?.clearProps?.className || '')
         }}
       />

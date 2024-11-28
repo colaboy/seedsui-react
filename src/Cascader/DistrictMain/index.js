@@ -82,9 +82,9 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    async function handleChange(tabs) {
+    async function handleChange(tabs, otherArguments) {
       if (!Array.isArray(tabs) || !tabs.length) {
-        onChange && onChange(null)
+        onChange && onChange(null, otherArguments)
         return true
       }
 
@@ -93,13 +93,13 @@ const DistrictMain = forwardRef(
       // 街道无需再发请求
       if (testStreet(tabs[tabs.length - 1], isStreet)) {
         lastTab.isLeaf = true
-        onChange && onChange(tabs)
+        onChange && onChange(tabs, otherArguments)
         return false
       }
 
       // 匹配类型，没传类型则允许下钻
       if (!type) {
-        onChange && onChange(tabs)
+        onChange && onChange(tabs, otherArguments)
         return true
       }
 
@@ -116,17 +116,17 @@ const DistrictMain = forwardRef(
       // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
       if (currentType && getParentTypes(currentType).includes(type)) {
         lastTab.isLeaf = true
-        onChange && onChange(tabs)
+        onChange && onChange(tabs, otherArguments)
         return false
       }
 
-      onChange && onChange(tabs)
+      onChange && onChange(tabs, otherArguments)
       return true
     }
 
     // 设置value的type属性
     function updateValueType(tabs) {
-      if (tabs.some((item) => !item.type)) {
+      if (tabs?.some?.((item) => !item.type)) {
         setValueType(tabs, {
           list,
           isCountry,

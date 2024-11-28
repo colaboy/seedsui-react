@@ -46,8 +46,7 @@ const DistrictModal = forwardRef(
       let submitVisible = null
 
       // 获取末级类型
-      if (tabs.some((item) => !item.type)) {
-        debugger
+      if (tabs?.some?.((item) => !item.type)) {
         setValueType(tabs, {
           list,
           isCountry,

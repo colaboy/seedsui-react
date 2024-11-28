@@ -17,8 +17,7 @@ function Tabs({
   setValueType
 }) {
   // 没有type, 则先获取type
-  if (tabs.some((item) => !item.type)) {
-    debugger
+  if (tabs?.some?.((item) => !item.type)) {
     setValueType(tabs, {
       list,
       isCountry,
