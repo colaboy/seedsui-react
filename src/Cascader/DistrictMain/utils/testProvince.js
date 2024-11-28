@@ -3,7 +3,7 @@ function testProvince(current, isProvince) {
   if (typeof isProvince === 'function') {
     return isProvince(current)
   }
-  if (current.isProvince) {
+  if (current.isProvince || current.type?.includes?.('province')) {
     return true
   }
   for (let province of window?.districtLevelData?.provinces || []) {

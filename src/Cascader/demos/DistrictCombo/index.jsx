@@ -32,7 +32,7 @@ export default () => {
       }
       let lastTab = tabs[tabs.length - 1]
       debugger
-      if (lastTab.type.includes('district')) {
+      if (!lastTab?.type?.includes?.('district')) {
         resolve(null)
         return
       }

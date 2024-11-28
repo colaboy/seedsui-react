@@ -3,7 +3,7 @@ function testCity(current, isCity) {
   if (typeof isCity === 'function') {
     return isCity(current)
   }
-  if (current.isCity) {
+  if (current.isCity || current.type?.includes?.('city')) {
     return true
   }
   for (let city of window?.districtLevelData?.cities || []) {

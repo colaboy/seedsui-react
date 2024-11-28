@@ -3,7 +3,7 @@ function testDistrict(current, isDistrict) {
   if (typeof isDistrict === 'function') {
     return isDistrict(current)
   }
-  if (current.isDistrict) {
+  if (current.isDistrict || current.type?.includes?.('district')) {
     return true
   }
   for (let district of window?.districtLevelData?.districts || []) {

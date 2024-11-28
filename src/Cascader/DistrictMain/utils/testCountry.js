@@ -3,7 +3,7 @@ function testCountry(current, isCountry) {
   if (typeof isCountry === 'function') {
     return isCountry(current)
   }
-  if (current.isCountry) {
+  if (current.isCountry || current.type?.includes?.('country')) {
     return true
   }
 

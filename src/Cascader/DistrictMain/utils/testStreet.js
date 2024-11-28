@@ -3,7 +3,7 @@ function testStreet(current, isStreet) {
   if (typeof isStreet === 'function') {
     return isStreet(current)
   }
-  if (current.isStreet) {
+  if (current.isStreet || current.type?.includes?.('street')) {
     return true
   }
   return false
