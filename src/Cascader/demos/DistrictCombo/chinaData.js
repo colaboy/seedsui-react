@@ -85,6 +85,7 @@ export default [
     ],
     name: '北京市',
     id: '110000',
+    anchor: 'B',
     parentid: '-1'
   },
   {
@@ -172,6 +173,7 @@ export default [
     ],
     name: '天津市',
     id: '120000',
+    anchor: 'T',
     parentid: '-1'
   },
   {
@@ -1091,6 +1093,7 @@ export default [
     ],
     name: '河北省',
     id: '130000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -1760,6 +1763,7 @@ export default [
     ],
     name: '山西省',
     id: '140000',
+    anchor: 'S',
     parentid: '-1'
   },
   {
@@ -2366,6 +2370,7 @@ export default [
     ],
     name: '内蒙古自治区',
     id: '150000',
+    anchor: 'N',
     parentid: '-1'
   },
   {
@@ -2971,6 +2976,7 @@ export default [
     ],
     name: '辽宁省',
     id: '210000',
+    anchor: 'L',
     parentid: '-1'
   },
   {
@@ -3341,6 +3347,7 @@ export default [
     ],
     name: '吉林省',
     id: '220000',
+    anchor: 'J',
     parentid: '-1'
   },
   {
@@ -4064,6 +4071,7 @@ export default [
     ],
     name: '黑龙江省',
     id: '230000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -4151,6 +4159,7 @@ export default [
     ],
     name: '上海市',
     id: '310000',
+    anchor: 'S',
     parentid: '-1'
   },
   {
@@ -4729,6 +4738,7 @@ export default [
     ],
     name: '江苏省',
     id: '320000',
+    anchor: 'J',
     parentid: '-1'
   },
   {
@@ -5263,6 +5273,7 @@ export default [
     ],
     name: '浙江省',
     id: '330000',
+    anchor: 'Z',
     parentid: '-1'
   },
   {
@@ -5902,6 +5913,7 @@ export default [
     ],
     name: '安徽省',
     id: '340000',
+    anchor: 'A',
     parentid: '-1'
   },
   {
@@ -6392,6 +6404,7 @@ export default [
     ],
     name: '福建省',
     id: '350000',
+    anchor: 'F',
     parentid: '-1'
   },
   {
@@ -6976,6 +6989,7 @@ export default [
     ],
     name: '江西省',
     id: '360000',
+    anchor: 'J',
     parentid: '-1'
   },
   {
@@ -7775,6 +7789,7 @@ export default [
     ],
     name: '山东省',
     id: '370000',
+    anchor: 'S',
     parentid: '-1'
   },
   {
@@ -8691,6 +8706,7 @@ export default [
     ],
     name: '河南省',
     id: '410000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -9304,6 +9320,7 @@ export default [
     ],
     name: '湖北省',
     id: '420000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -10024,6 +10041,7 @@ export default [
     ],
     name: '湖南省',
     id: '430000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -10784,6 +10802,7 @@ export default [
     ],
     name: '广东省',
     id: '440000',
+    anchor: 'G',
     parentid: '-1'
   },
   {
@@ -11444,6 +11463,7 @@ export default [
     ],
     name: '广西壮族自治区',
     id: '450000',
+    anchor: 'G',
     parentid: '-1'
   },
   {
@@ -11597,6 +11617,7 @@ export default [
     ],
     name: '海南省',
     id: '460000',
+    anchor: 'H',
     parentid: '-1'
   },
   {
@@ -11794,6 +11815,7 @@ export default [
     ],
     name: '重庆市',
     id: '500000',
+    anchor: 'C',
     parentid: '-1'
   },
   {
@@ -12863,6 +12885,7 @@ export default [
     ],
     name: '四川省',
     id: '510000',
+    anchor: 'S',
     parentid: '-1'
   },
   {
@@ -13373,6 +13396,7 @@ export default [
     ],
     name: '贵州省',
     id: '520000',
+    anchor: 'G',
     parentid: '-1'
   },
   {
@@ -14137,6 +14161,7 @@ export default [
     ],
     name: '云南省',
     id: '530000',
+    anchor: 'Y',
     parentid: '-1'
   },
   {
@@ -14563,6 +14588,7 @@ export default [
     ],
     name: '西藏自治区',
     id: '540000',
+    anchor: 'X',
     parentid: '-1'
   },
   {
@@ -15175,6 +15201,7 @@ export default [
     ],
     name: '陕西省',
     id: '610000',
+    anchor: 'S',
     parentid: '-1'
   },
   {
@@ -15708,6 +15735,7 @@ export default [
     ],
     name: '甘肃省',
     id: '620000',
+    anchor: 'G',
     parentid: '-1'
   },
   {
@@ -15991,6 +16019,7 @@ export default [
     ],
     name: '青海省',
     id: '630000',
+    anchor: 'Q',
     parentid: '-1'
   },
   {
@@ -16143,6 +16172,7 @@ export default [
     ],
     name: '宁夏回族自治区',
     id: '640000',
+    anchor: 'N',
     parentid: '-1'
   },
   {
@@ -16778,6 +16808,7 @@ export default [
     ],
     name: '新疆维吾尔自治区',
     id: '650000',
+    anchor: 'X',
     parentid: '-1'
   },
   {
@@ -18811,6 +18842,7 @@ export default [
     ],
     name: '台湾省',
     id: '710000',
+    anchor: 'T',
     parentid: '-1'
   },
   {
@@ -18908,6 +18940,7 @@ export default [
     ],
     name: '香港特别行政区',
     id: '810000',
+    anchor: 'X',
     parentid: '-1'
   },
   {
@@ -18955,6 +18988,7 @@ export default [
     ],
     name: '澳门特别行政区',
     id: '820000',
+    anchor: 'A',
     parentid: '-1'
   }
 ]

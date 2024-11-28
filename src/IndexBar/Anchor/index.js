@@ -2,6 +2,10 @@ import React from 'react'
 
 // 序列控件的锚点
 const Anchor = ({ name, children }) => {
+  if (!name) {
+    return children
+  }
+
   // 为子元素增加data-indexbar-anchor属性
   let newChildren = React.Children.toArray(children)
   if (newChildren.length === 1) {

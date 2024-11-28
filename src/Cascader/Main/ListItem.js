@@ -1,8 +1,11 @@
-import React, { forwardRef } from 'react'
-// 测试使用
-// import { Notice } from 'seedsui-react'
+import React, { Fragment, forwardRef } from 'react'
+
 // 内库使用
 import Notice from './../../Notice'
+import IndexBar from './../../IndexBar'
+
+// 测试使用
+// import { Notice, IndexBar } from 'seedsui-react'
 
 const ListItem = forwardRef(
   (
@@ -17,6 +20,9 @@ const ListItem = forwardRef(
     },
     ref
   ) => {
+    // 显示分栏
+    const indexs = {}
+
     return (
       <div
         {...props}
@@ -26,28 +32,40 @@ const ListItem = forwardRef(
         {typeof list === 'string' && <Notice caption={list} />}
         {Array.isArray(list) &&
           list.map((item, index) => {
+            // 字母分栏
+            let anchorBar = null
+            if (item.anchor && !indexs[item.anchor]) {
+              indexs[item.anchor] = true
+              anchorBar = (
+                <IndexBar.Anchor name={item.anchor}>
+                  <p className="indexbar-list-header">{item.anchor}</p>
+                </IndexBar.Anchor>
+              )
+            }
+
             return (
-              <div
-                key={index}
-                {...optionProps}
-                className={`cascader-option${
-                  optionProps.className ? ' ' + optionProps.className : ''
-                }${
-                  value?.some((selected) => {
-                    return selected.id === item.id
-                  })
-                    ? ' active'
-                    : ''
-                }`}
-                data-index={index}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  onSelect(item)
-                }}
-              >
-                <p className="cascader-option-caption">{item.name}</p>
-                <i className="cascader-option-icon"></i>
-              </div>
+              <Fragment key={item.id}>
+                {anchorBar}
+                <div
+                  {...optionProps}
+                  className={`cascader-option${
+                    optionProps.className ? ' ' + optionProps.className : ''
+                  }${
+                    value?.some((selected) => {
+                      return selected.id === item.id
+                    })
+                      ? ' active'
+                      : ''
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onSelect(item)
+                  }}
+                >
+                  <p className="cascader-option-caption">{item.name}</p>
+                  <i className="cascader-option-icon"></i>
+                </div>
+              </Fragment>
             )
           })}
       </div>

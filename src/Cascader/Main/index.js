@@ -13,10 +13,11 @@ import ListItem from './ListItem'
 import locale from './../../locale'
 import ArrayUtil from './../../ArrayUtil'
 import Toast from './../../Toast'
+import IndexBar from './../../IndexBar'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
-// import { ArrayUtil, Toast } from 'seedsui-react'
+// import { ArrayUtil, Toast, IndexBar } from 'seedsui-react'
 
 // 主体
 const Main = forwardRef(
@@ -276,18 +277,22 @@ const Main = forwardRef(
         {/* 头部 */}
         {HeaderNode}
 
-        {/* 主体 */}
+        {/* Tab */}
         {getTabsNode()}
-        <ListItem
-          ref={mainRef}
-          optionProps={optionProps}
-          // 选中列表
-          list={list}
-          value={value}
-          // 阻止选择
-          onSelect={(item) => handleDrillDown(item)}
-          {...props}
-        />
+
+        {/* 主体 */}
+        <IndexBar>
+          <ListItem
+            ref={mainRef}
+            optionProps={optionProps}
+            // 选中列表
+            list={list}
+            value={value}
+            // 阻止选择
+            onSelect={(item) => handleDrillDown(item)}
+            {...props}
+          />
+        </IndexBar>
 
         {/* 底部 */}
         {FooterNode}

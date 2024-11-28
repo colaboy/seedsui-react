@@ -65,8 +65,8 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        min="province" // ['country', 'province', 'city', 'district', 'street']
-        // type="district"
+        min="city" // ['country', 'province', 'city', 'district', 'street']
+        type="city"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
