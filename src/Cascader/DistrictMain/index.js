@@ -65,18 +65,19 @@ const DistrictMain = forwardRef(
     async function initList() {
       listData = list
       // 异步加载列表
-      if (list) {
-        listData = list
-      } else if (typeof loadList === 'function') {
+      if (typeof loadList === 'function') {
         listData = await loadList()
-      } else if (window.districtData) {
+      }
+      // 默认的全局数据
+      else if (window.districtData) {
         listData = window.districtData
       }
 
-      // 设置列表
+      // 更新列表
       if (Array.isArray(listData) && listData.length) {
         setListData(listData)
-        if (typeof onListLoad === 'function') onListLoad(listData)
+        // 回调
+        if (typeof loadList === 'function' && typeof onListLoad === 'function') onListLoad(listData)
       }
     }
 
