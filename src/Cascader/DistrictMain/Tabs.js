@@ -14,8 +14,22 @@ function Tabs({
   isCity,
   isDistrict,
   isStreet,
-  getType
+  setValueType
 }) {
+  // 没有type, 则先获取type
+  if (tabs.some((item) => !item.type)) {
+    debugger
+    setValueType(tabs, {
+      list,
+      isCountry,
+      isProvince,
+      isMunicipality,
+      isCity,
+      isDistrict,
+      isStreet
+    })
+  }
+
   return (
     <div className="cascader-tabs">
       {Array.isArray(tabs) && tabs.length
@@ -27,17 +41,8 @@ function Tabs({
                   onActiveTab && onActiveTab(tab)
                 }}
                 className={`cascader-tab${tab?.id === activeTab?.id ? ' active' : ''}${
-                  testEditableOptions(tab, index, {
-                    tabs,
-                    editableOptions,
-                    list,
-                    isCountry,
-                    isProvince,
-                    isMunicipality,
-                    isCity,
-                    isDistrict,
-                    isStreet,
-                    getType
+                  testEditableOptions(tab, {
+                    editableOptions
                   })
                     ? ''
                     : ' disabled'

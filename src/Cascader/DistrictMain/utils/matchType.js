@@ -14,56 +14,51 @@ function matchType(tabs, config) {
     return null
   }
 
-  let current = Array.isArray(tabs) ? tabs[tabs.length - 1] : tabs
-
-  // 最后一级为请选择, 向上选一级
-  if (!current?.id && current.parentid) {
-    current = tabs[tabs.length - 2]
-  }
-
-  // No id is invalid
-  if (!current?.id) {
-    return null
-  }
-
-  // Neither id and nor parentid, It's root
-  if (!current?.id && !current?.parentid && Array.isArray(list) && list.length) {
-    current = list[0]
-  }
-
-  if (testMunicipality(current, isMunicipality)) {
-    return ['province', 'city']
-  }
-  if (testCountry(current, isCountry)) {
-    return ['country']
-  }
-  if (testProvince(current, isProvince)) {
-    return ['province']
-  }
-  if (testCity(current, isCity)) {
-    return ['city']
-  }
-  if (testStreet(current, isStreet)) {
-    return ['street']
-  }
-  if (testDistrict(current, isDistrict)) {
-    return ['district']
-  }
-  // 不是省市，但在list中，则认为是区；不在list中，则认为是街道(街道在list中, 会有isStreet，所以在isStreet时就返回了)
-  let hasData = testNodeData(current, list)
-  if (hasData) {
-    if (hasData === 'street') {
-      return ['street']
+  for (let current of tabs) {
+    // No id is invalid
+    if (!current?.id) {
+      continue
     }
-    return ['district']
+
+    if (testMunicipality(current, isMunicipality)) {
+      current.type = ['province', 'city']
+      continue
+    } else if (testCountry(current, isCountry)) {
+      current.type = ['country']
+      continue
+    } else if (testProvince(current, isProvince)) {
+      current.type = ['province']
+      continue
+    } else if (testCity(current, isCity)) {
+      current.type = ['city']
+      continue
+    } else if (testStreet(current, isStreet)) {
+      current.type = ['street']
+      continue
+    } else if (testDistrict(current, isDistrict)) {
+      current.type = ['district']
+      continue
+    }
+
+    // 不是省市，但在list中，则认为是区；不在list中，则认为是街道(街道在list中, 会有isStreet，所以在isStreet时就返回了)
+    let hasData = testNodeData(current, list)
+    if (hasData) {
+      if (hasData === 'street') {
+        current.type = ['street']
+        continue
+      }
+      current.type = ['district']
+      continue
+    }
+
+    // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
+    if (Array.isArray(tabs) && tabs.length > 2) {
+      current.type = ['street']
+      continue
+    }
   }
 
-  // 没有类型则可能是街道，如果上级是区或者市，则必定是街道
-  if (Array.isArray(tabs) && tabs.length > 2) {
-    return ['street']
-  }
-
-  return null
+  return tabs
 }
 
 export default matchType

@@ -25,7 +25,7 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      getType = matchType,
+      setValueType = matchType,
 
       // Main
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
@@ -46,15 +46,20 @@ const DistrictModal = forwardRef(
       let submitVisible = null
 
       // 获取末级类型
-      let currentType = getType(tabs, {
-        list,
-        isCountry,
-        isProvince,
-        isMunicipality,
-        isCity,
-        isDistrict,
-        isStreet
-      })
+      if (tabs.some((item) => !item.type)) {
+        debugger
+        setValueType(tabs, {
+          list,
+          isCountry,
+          isProvince,
+          isMunicipality,
+          isCity,
+          isDistrict,
+          isStreet
+        })
+      }
+
+      let currentType = tabs[tabs.length - 1].type
 
       // 最小支持的类型集合
       if (

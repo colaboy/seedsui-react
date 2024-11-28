@@ -24,7 +24,7 @@ const DistrictCombo = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      getType = matchType,
+      setValueType = matchType,
       ModalProps,
 
       // Main
@@ -56,20 +56,25 @@ const DistrictCombo = forwardRef(
         return value
       }
 
-      // 清空只能清空非只读项
-      let newValue = []
-      for (let [index, item] of value.entries()) {
-        let isEditable = testEditableOptions(item, index, {
-          tabs: value,
-          editableOptions,
+      // 没有type, 则先获取type
+      if (value.some((item) => !item.type)) {
+        debugger
+        setValueType(value, {
           list: list || asyncList,
           isCountry,
           isProvince,
           isMunicipality,
           isCity,
           isDistrict,
-          isStreet,
-          getType
+          isStreet
+        })
+      }
+
+      // 清空只能清空非只读项
+      let newValue = []
+      for (let item of value) {
+        let isEditable = testEditableOptions(item, {
+          editableOptions
         })
         if (isEditable === false) {
           newValue.push(item)
@@ -78,6 +83,8 @@ const DistrictCombo = forwardRef(
 
       return newValue
     }
+
+    let readOnlyValue = getReadOnlyValue(value)
 
     return (
       <Combo
@@ -94,7 +101,7 @@ const DistrictCombo = forwardRef(
           isCity,
           isDistrict,
           isStreet,
-          getType,
+          setValueType,
           loadList,
           loadData,
           editableOptions,
@@ -114,9 +121,8 @@ const DistrictCombo = forwardRef(
             ? (newValue, ...other) => {
                 // 清空操作，公能清空非只读项
                 if (editableOptions && !newValue && Array.isArray(value) && value.length) {
-                  let readOnlyValue = getReadOnlyValue(value)
                   // 清空完成
-                  if (Array.isArray(readOnlyValue) && readOnlyValue.length) {
+                  if (readOnlyValue?.length) {
                     // eslint-disable-next-line
                     newValue = readOnlyValue
                   }
@@ -129,9 +135,8 @@ const DistrictCombo = forwardRef(
         clearProps={{
           ...(props?.clearProps || {}),
           className:
-            (Array.isArray(value) && getReadOnlyValue(value).length === value.length
-              ? 'hide-important '
-              : '') + (props?.clearProps?.className || '')
+            (readOnlyValue?.length === value.length ? 'hide-important ' : '') +
+            (props?.clearProps?.className || '')
         }}
       />
     )
