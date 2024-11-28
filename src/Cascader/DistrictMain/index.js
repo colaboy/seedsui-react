@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef } from 'react'
 import { getParentTypes, matchType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
@@ -15,12 +15,9 @@ const DistrictMain = forwardRef(
       // Main
       value,
 
-      async,
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       list,
-      loadList,
       loadData,
-      onListLoad,
       editableOptions,
       // 判断是否是国省市区
       isCountry,
@@ -35,52 +32,6 @@ const DistrictMain = forwardRef(
     },
     ref
   ) => {
-    let [listData, setListData] = useState(list)
-
-    // 初始化数据
-    useEffect(() => {
-      // 隐藏时初始化列表
-      if (!visible) {
-        // 第一次不加载
-        if (ref.notFirstLoad && ref.current?.update) {
-          ref.current.update()
-        }
-        ref.notFirstLoad = true
-        return
-      }
-
-      initList()
-      // eslint-disable-next-line
-    }, [visible])
-
-    // 如果设置为同步加载，则不显示也需要加载
-    useEffect(() => {
-      if (async === false) {
-        initList()
-      }
-      // eslint-disable-next-line
-    }, [async])
-
-    // 初始化列表
-    async function initList() {
-      listData = list
-      // 异步加载列表
-      if (typeof loadList === 'function') {
-        listData = await loadList()
-      }
-      // 默认的全局数据
-      else if (window.districtData) {
-        listData = window.districtData
-      }
-
-      // 更新列表
-      if (Array.isArray(listData) && listData.length) {
-        setListData(listData)
-        // 回调
-        if (typeof loadList === 'function' && typeof onListLoad === 'function') onListLoad(listData)
-      }
-    }
-
     // 点击选项前判断是否指定类型: 省, 市, 区
     async function handleChange(tabs, otherArguments) {
       if (!Array.isArray(tabs) || !tabs.length) {
@@ -150,7 +101,7 @@ const DistrictMain = forwardRef(
               onActiveTab={onActiveTab}
               // 禁用判断
               editableOptions={editableOptions}
-              list={listData}
+              list={list}
               isCountry={isCountry}
               isProvince={isProvince}
               isMunicipality={isMunicipality}
@@ -163,7 +114,7 @@ const DistrictMain = forwardRef(
         }}
         visible={visible}
         value={value}
-        list={listData}
+        list={list}
         loadData={
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {

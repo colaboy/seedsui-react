@@ -1,5 +1,6 @@
-import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
-import { testEditableOptions, matchType } from './../DistrictMain/utils'
+import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
+import _ from 'lodash'
+import { getAsyncList, testEditableOptions, matchType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用
@@ -28,7 +29,6 @@ const DistrictCombo = forwardRef(
       ModalProps,
 
       // Main
-      async,
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       list,
       loadList,
@@ -39,7 +39,7 @@ const DistrictCombo = forwardRef(
     ref
   ) => {
     // 获取DistrictMain加载的list
-    let [asyncList, setAsyncList] = useState(null)
+    let [asyncList, setAsyncList] = useState(list)
 
     // Expose api
     const comboRef = useRef(null)
@@ -50,6 +50,19 @@ const DistrictCombo = forwardRef(
       }
     })
 
+    useEffect(() => {
+      initList()
+      // eslint-disable-next-line
+    }, [])
+
+    async function initList() {
+      if (!_.isEmpty(list)) {
+        return
+      }
+      asyncList = await getAsyncList(loadList)
+      setAsyncList(asyncList)
+    }
+
     // 清空操作，保留只读项，清空非只读项
     function getReadOnlyValue(value) {
       if (!Array.isArray(value)) {
@@ -59,7 +72,7 @@ const DistrictCombo = forwardRef(
       // 没有type, 则先获取type
       if (value?.some?.((item) => !item.type)) {
         setValueType(value, {
-          list: list || asyncList,
+          list: asyncList,
           isCountry,
           isProvince,
           isMunicipality,
@@ -90,7 +103,7 @@ const DistrictCombo = forwardRef(
         ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
-          list: list || asyncList,
+          list: asyncList,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
           min,
           // 判断是否是国省市区
@@ -101,18 +114,11 @@ const DistrictCombo = forwardRef(
           isDistrict,
           isStreet,
           setValueType,
-          loadList,
           loadData,
           editableOptions,
           ...ModalProps,
           // MainProps
-          MainProps: {
-            async: async,
-            onListLoad: (listData) => {
-              setAsyncList(listData)
-            },
-            ...(ModalProps?.MainProps || {})
-          }
+          MainProps: ModalProps?.MainProps || {}
         }}
         value={value}
         onChange={

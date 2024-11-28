@@ -1,3 +1,4 @@
+import getAsyncList from './getAsyncList'
 import getChildTypes from './getChildTypes'
 import getParentTypes from './getParentTypes'
 import getSiblingType from './getSiblingType'
@@ -11,6 +12,7 @@ import testNodeData from './testNodeData'
 import testEditableOptions from './testEditableOptions'
 
 export {
+  getAsyncList,
   getChildTypes,
   getParentTypes,
   getSiblingType,

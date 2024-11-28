@@ -50,8 +50,6 @@ export default () => {
     })
   }
 
-  console.log('列表:', districtComboRef, countriesData)
-
   return (
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       {/* <Cascader.DistrictCombo
@@ -80,17 +78,16 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        list={countriesData}
-        // loadList={() => {
-        //   return new Promise((resolve) => {
-        //     Loading.show()
-        //     setTimeout(() => {
-        //       Loading.hide()
-        //       resolve(chinaData)
-        //     }, 2000)
-        //   })
-        // }}
-
+        // list={countriesData}
+        loadList={() => {
+          return new Promise((resolve) => {
+            Loading.show()
+            setTimeout(() => {
+              Loading.hide()
+              resolve(chinaData)
+            }, 2000)
+          })
+        }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
@@ -112,6 +109,7 @@ export default () => {
               return (
                 <div
                   onClick={() => {
+                    debugger
                     onChange(value)
                   }}
                 >

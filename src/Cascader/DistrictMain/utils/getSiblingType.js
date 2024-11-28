@@ -1,4 +1,4 @@
-// 获取最小类型
+// 原用于min和editableOptions属性判断, 暂时无用
 function getSiblingType(type, step = 1) {
   if (!type || typeof type !== 'string') return null
   const types = ['country', 'province', 'city', 'district', 'street']

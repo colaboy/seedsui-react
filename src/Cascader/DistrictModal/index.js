@@ -29,9 +29,7 @@ const DistrictModal = forwardRef(
 
       // Main
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
-      async,
       list,
-      loadList,
       loadData,
       editableOptions,
       ...props
@@ -44,13 +42,13 @@ const DistrictModal = forwardRef(
     useEffect(() => {
       if (_.isEmpty(list) || _.isEmpty(value)) return
 
-      updateSubmitVisible(value, { list })
+      updateSubmitVisible(value)
 
       // eslint-disable-next-line
     }, [list, value])
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible(tabs, { list }) {
+    function updateSubmitVisible(tabs) {
       if (!min) return
 
       let submitVisible = null
@@ -87,8 +85,8 @@ const DistrictModal = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleDrillDown(tabs, otherArguments) {
-      updateSubmitVisible(tabs, otherArguments)
+    function handleDrillDown(tabs) {
+      updateSubmitVisible(tabs)
     }
 
     // 显示右上角的按钮
@@ -107,9 +105,7 @@ const DistrictModal = forwardRef(
       props.MainProps = {}
     }
     props.MainProps.type = type
-    props.MainProps.async = async
     props.MainProps.list = list
-    props.MainProps.loadList = loadList
     props.MainProps.loadData = loadData
     props.MainProps.editableOptions = editableOptions
     props.MainProps.isCountry = isCountry
