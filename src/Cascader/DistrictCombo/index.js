@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
-import { getAsyncList, testEditableOptions, matchType } from './../DistrictMain/utils'
+import { getAsyncList, testEditableOptions, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用
@@ -25,7 +25,7 @@ const DistrictCombo = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType = matchType,
+      setValueType = defaultSetValueType,
       ModalProps,
 
       // Main

@@ -2,7 +2,7 @@ import getAsyncList from './getAsyncList'
 import getChildTypes from './getChildTypes'
 import getParentTypes from './getParentTypes'
 import getSiblingType from './getSiblingType'
-import matchType from './matchType'
+import defaultSetValueType from './defaultSetValueType'
 import testCountry from './testCountry'
 import testProvince from './testProvince'
 import testCity from './testCity'
@@ -16,7 +16,7 @@ export {
   getChildTypes,
   getParentTypes,
   getSiblingType,
-  matchType,
+  defaultSetValueType,
   testCountry,
   testProvince,
   testCity,

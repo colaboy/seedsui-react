@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react'
-import { getChildTypes, matchType } from './../DistrictMain/utils'
+import { getChildTypes, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用
@@ -25,7 +25,7 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType = matchType,
+      setValueType = defaultSetValueType,
 
       // Main
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)

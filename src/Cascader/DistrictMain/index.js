@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { getParentTypes, matchType, testStreet } from './utils'
+import { getParentTypes, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
@@ -26,7 +26,7 @@ const DistrictMain = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType = matchType,
+      setValueType = defaultSetValueType,
       onChange,
       ...props
     },
