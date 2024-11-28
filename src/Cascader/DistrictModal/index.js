@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import { getChildTypes, matchType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
@@ -41,8 +41,18 @@ const DistrictModal = forwardRef(
     // 是否显示右上角确认按钮
     let [submitVisible, setSubmitVisible] = useState(null)
 
+    useEffect(() => {
+      if (_.isEmpty(list) || _.isEmpty(value)) return
+
+      updateSubmitVisible(value, { list })
+
+      // eslint-disable-next-line
+    }, [list, value])
+
     // 根据min判断是否显示确定按钮
     function updateSubmitVisible(tabs, { list }) {
+      if (!min) return
+
       let submitVisible = null
 
       // 获取末级类型
@@ -78,9 +88,7 @@ const DistrictModal = forwardRef(
 
     // 点击选项前判断是否指定类型: 省, 市, 区
     function handleDrillDown(tabs, otherArguments) {
-      if (min) {
-        updateSubmitVisible(tabs, otherArguments)
-      }
+      updateSubmitVisible(tabs, otherArguments)
     }
 
     // 显示右上角的按钮

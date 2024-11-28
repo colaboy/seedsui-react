@@ -90,7 +90,7 @@ const DistrictCombo = forwardRef(
         ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
-          list,
+          list: list || asyncList,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
           min,
           // 判断是否是国省市区
