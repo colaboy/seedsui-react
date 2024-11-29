@@ -103,7 +103,7 @@ export default () => {
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
         min="country" // ['country', 'province', 'city', 'district', 'street']
-        // type="city"
+        type="country"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -124,7 +124,7 @@ export default () => {
             setTimeout(() => {
               Loading.hide()
               resolve(list)
-            }, 2000)
+            }, 100)
           })
         }}
         onVisibleChange={(visible) => {

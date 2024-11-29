@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { getParentTypes, defaultSetValueType, testStreet } from './utils'
+import { getPredecessorTypes, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
@@ -73,6 +73,7 @@ const DistrictMain = forwardRef(
         return true
       }
 
+      updateValueType(tabs)
       let currentType = tabs[tabs.length - 1].type
       if (currentType?.length) {
         currentType = currentType[currentType.length - 1]
@@ -80,8 +81,9 @@ const DistrictMain = forwardRef(
         currentType = null
       }
 
+      debugger
       // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
-      if (currentType && getParentTypes(currentType).includes(type)) {
+      if (currentType && getPredecessorTypes(currentType).includes(type)) {
         lastTab.isLeaf = true
         onChange && onChange(tabs, otherArguments)
         return false

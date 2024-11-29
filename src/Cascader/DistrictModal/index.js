@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react'
-import { getChildTypes, defaultSetValueType } from './../DistrictMain/utils'
+import { getDescendantTypes, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用
@@ -73,7 +73,7 @@ const DistrictModal = forwardRef(
       if (
         Array.isArray(currentType) &&
         currentType.length &&
-        getChildTypes(min).some((minType) => {
+        getDescendantTypes(min).some((minType) => {
           return currentType?.includes(minType)
         })
       ) {

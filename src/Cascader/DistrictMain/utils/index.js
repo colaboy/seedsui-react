@@ -1,7 +1,6 @@
 import getAsyncList from './getAsyncList'
-import getChildTypes from './getChildTypes'
-import getParentTypes from './getParentTypes'
-import getSiblingType from './getSiblingType'
+import getDescendantTypes from './getDescendantTypes'
+import getPredecessorTypes from './getPredecessorTypes'
 import defaultSetValueType from './defaultSetValueType'
 import testCountry from './testCountry'
 import testProvince from './testProvince'
@@ -13,9 +12,8 @@ import testEditableOptions from './testEditableOptions'
 
 export {
   getAsyncList,
-  getChildTypes,
-  getParentTypes,
-  getSiblingType,
+  getDescendantTypes,
+  getPredecessorTypes,
   defaultSetValueType,
   testCountry,
   testProvince,

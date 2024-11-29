@@ -1,3 +1,4 @@
+// 获取指定节点
 function getDeepTreeNodes(tree, filter) {
   const result = []
 
@@ -8,7 +9,7 @@ function getDeepTreeNodes(tree, filter) {
         result.push(node)
       }
       // 如果有子节点，递归遍历子节点
-      if (node.children && Array.isArray(node.children)) {
+      if (Array.isArray(node.children) && node.children.length) {
         traverse(node.children)
       }
     }
