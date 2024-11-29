@@ -60,11 +60,9 @@ const MainPicker = forwardRef(
     })
 
     useEffect(() => {
-      if (visible) {
-        setCurrentValue(value)
-      }
+      setCurrentValue(value)
       // eslint-disable-next-line
-    }, [value])
+    }, [JSON.stringify(value)])
 
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
@@ -119,7 +117,10 @@ const MainPicker = forwardRef(
           // 显示弹窗，更新标题和显示值
           if (visible) {
             updateTitle()
-            setCurrentValue(value)
+            if (JSON.stringify(value) !== JSON.stringify(currentValue)) {
+              debugger
+              setCurrentValue(value)
+            }
           }
 
           onVisibleChange && onVisibleChange(visible)

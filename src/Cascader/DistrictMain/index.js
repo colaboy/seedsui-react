@@ -32,6 +32,18 @@ const DistrictMain = forwardRef(
     },
     ref
   ) => {
+    if (value?.some?.((item) => !item.type)) {
+      setValueType(value, {
+        list,
+        isCountry,
+        isProvince,
+        isMunicipality,
+        isCity,
+        isDistrict,
+        isStreet
+      })
+    }
+
     // 点击选项前判断是否指定类型: 省, 市, 区
     async function handleChange(tabs, otherArguments) {
       if (!Array.isArray(tabs) || !tabs.length) {
@@ -54,9 +66,6 @@ const DistrictMain = forwardRef(
         return true
       }
 
-      // 设置value的type属性
-      updateValueType(tabs)
-
       let currentType = tabs[tabs.length - 1].type
       if (currentType?.length) {
         currentType = currentType[currentType.length - 1]
@@ -73,21 +82,6 @@ const DistrictMain = forwardRef(
 
       onChange && onChange(tabs, otherArguments)
       return true
-    }
-
-    // 设置value的type属性
-    function updateValueType(tabs) {
-      if (tabs?.some?.((item) => !item.type)) {
-        setValueType(tabs, {
-          list,
-          isCountry,
-          isProvince,
-          isMunicipality,
-          isCity,
-          isDistrict,
-          isStreet
-        })
-      }
     }
 
     return (
@@ -118,8 +112,6 @@ const DistrictMain = forwardRef(
         loadData={
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {
-                // 设置value的type属性
-                updateValueType(tabs)
                 return loadData(tabs, {
                   list,
                   isCountry,

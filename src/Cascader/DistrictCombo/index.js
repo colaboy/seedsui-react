@@ -41,6 +41,20 @@ const DistrictCombo = forwardRef(
     // 获取DistrictMain加载的list
     let [asyncList, setAsyncList] = useState(list)
 
+    // 没有type, 则先获取type
+    if (value?.some?.((item) => !item.type)) {
+      setValueType(value, {
+        list: asyncList,
+        isCountry,
+        isProvince,
+        isMunicipality,
+        isCity,
+        isDistrict,
+        isStreet
+      })
+      console.log('value:', list, value)
+    }
+
     // Expose api
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -67,19 +81,6 @@ const DistrictCombo = forwardRef(
     function getReadOnlyValue(value) {
       if (!Array.isArray(value)) {
         return value
-      }
-
-      // 没有type, 则先获取type
-      if (value?.some?.((item) => !item.type)) {
-        setValueType(value, {
-          list: asyncList,
-          isCountry,
-          isProvince,
-          isMunicipality,
-          isCity,
-          isDistrict,
-          isStreet
-        })
       }
 
       // 清空只能清空非只读项

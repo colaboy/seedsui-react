@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { ArrayUtil } from 'seedsui-react'
 import districtLevelData from './chinaLvlData'
 import countriesData from './countriesData'
 import chinaData from './chinaData'
 
 import { Cascader, Loading } from 'seedsui-react'
 
-countriesData[0].children = chinaData
 window.districtLevelData = districtLevelData
 
 export default () => {
@@ -17,15 +17,40 @@ export default () => {
     { id: '320100', name: '南京市', parentid: '320000' },
     { id: '320105', name: '建邺区', parentid: '320100' }
   ])
+  loadCountry(value)
+
+  // 加载国家
+  function loadCountry(value) {
+    if (!Array.isArray(value) || !value.length) return
+    if (value[value.length - 1].id === '86' && !value[value.length - 1].children) {
+      countriesData[0].children = chinaData
+    }
+  }
 
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
+      debugger
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
         return
       }
+
+      // 国家没有省市区, 则先补充省市区
+      let country = ArrayUtil.getDeepTreeNode(countriesData, tabs[0].id)
+      if (!country.children) {
+        let countryId = tabs[0].id
+        for (let country of countriesData) {
+          if (country.id === countryId) {
+            debugger
+            country.children = chinaData
+            break
+          }
+        }
+      }
+
       let lastTab = tabs[tabs.length - 1]
+
       if (!lastTab?.type?.includes?.('district')) {
         resolve(null)
         return
@@ -63,8 +88,8 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        min="city" // ['country', 'province', 'city', 'district', 'street']
-        type="city"
+        min="country" // ['country', 'province', 'city', 'district', 'street']
+        // type="city"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}
@@ -78,16 +103,16 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        // list={countriesData}
-        loadList={() => {
-          return new Promise((resolve) => {
-            Loading.show()
-            setTimeout(() => {
-              Loading.hide()
-              resolve(chinaData)
-            }, 2000)
-          })
-        }}
+        list={countriesData}
+        // loadList={() => {
+        //   return new Promise((resolve) => {
+        //     Loading.show()
+        //     setTimeout(() => {
+        //       Loading.hide()
+        //       resolve(chinaData)
+        //     }, 2000)
+        //   })
+        // }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
@@ -109,7 +134,6 @@ export default () => {
               return (
                 <div
                   onClick={() => {
-                    debugger
                     onChange(value)
                   }}
                 >

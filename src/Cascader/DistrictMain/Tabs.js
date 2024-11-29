@@ -16,19 +16,6 @@ function Tabs({
   isStreet,
   setValueType
 }) {
-  // 没有type, 则先获取type
-  if (tabs?.some?.((item) => !item.type)) {
-    setValueType(tabs, {
-      list,
-      isCountry,
-      isProvince,
-      isMunicipality,
-      isCity,
-      isDistrict,
-      isStreet
-    })
-  }
-
   return (
     <div className="cascader-tabs">
       {Array.isArray(tabs) && tabs.length
