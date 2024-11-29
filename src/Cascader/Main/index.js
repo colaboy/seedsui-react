@@ -4,7 +4,6 @@ import _ from 'lodash'
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
 import formatValue from './formatValue'
-import formatList from './formatList'
 
 import Tabs from './Tabs'
 import ListItem from './ListItem'
@@ -43,9 +42,6 @@ const Main = forwardRef(
   ) => {
     // 格式化value: value未传parentid, 补充parentid
     formatValue(value)
-
-    // 格式化list
-    formatList(externalList)
 
     // 全部tab
     let tabsRef = useRef([])
@@ -157,13 +153,13 @@ const Main = forwardRef(
         else if (newList === null) {
           // 标识isLeaf
           for (let tab of tabs) {
-            if (tab.id === lastTab.id) {
+            if (tab && tab.id === lastTab.id) {
               tab.isLeaf = true
               break
             }
           }
           for (let tab of value) {
-            if (tab.id === lastTab.id) {
+            if (tab && tab.id === lastTab.id) {
               tab.isLeaf = true
               break
             }
@@ -185,7 +181,7 @@ const Main = forwardRef(
     }
 
     // 点击选项
-    async function handleDrillDown(item) {
+    async function handleDrill(item) {
       let newValue = _.cloneDeep(value)
 
       // 点击项的父级为选中项
@@ -198,6 +194,9 @@ const Main = forwardRef(
       }
       // 不在tabs上, 为第一项
       else {
+        if (value?.length) {
+          console.log(`SeedsUI Cascader.Main: 下钻项未匹配到上级, 请检查数据是否正确`, item, value)
+        }
         newValue = [item]
       }
 
@@ -289,7 +288,7 @@ const Main = forwardRef(
             list={list}
             value={value}
             // 阻止选择
-            onSelect={(item) => handleDrillDown(item)}
+            onSelect={(item) => handleDrill(item)}
             {...props}
           />
         </IndexBar>

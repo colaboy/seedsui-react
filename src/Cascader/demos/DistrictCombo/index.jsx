@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import _ from 'lodash'
 import { ArrayUtil } from 'seedsui-react'
 import districtLevelData from './chinaLvlData'
 import countriesData from './countriesData'
@@ -8,6 +9,23 @@ import { Cascader, Loading } from 'seedsui-react'
 
 window.districtLevelData = districtLevelData
 
+const list = countriesData
+
+function getStreet(id) {
+  return new Promise((resolve) => {
+    let streets = [
+      {
+        parentid: id,
+        name: '街道1',
+        id: 'street1',
+        isStreet: true
+      }
+    ]
+    setTimeout(() => {
+      resolve(streets)
+    }, 100)
+  })
+}
 export default () => {
   const districtComboRef = useRef(null)
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
@@ -17,62 +35,53 @@ export default () => {
     { id: '320100', name: '南京市', parentid: '320000' },
     { id: '320105', name: '建邺区', parentid: '320100' }
   ])
-  loadCountry(value)
-
-  // 加载国家
-  function loadCountry(value) {
-    if (!Array.isArray(value) || !value.length) return
-    if (value[value.length - 1].id === '86' && !value[value.length - 1].children) {
-      countriesData[0].children = chinaData
-    }
-  }
 
   // 加载街道
-  function loadData(tabs) {
-    return new Promise((resolve) => {
-      if (!Array.isArray(tabs) || !tabs.length) {
-        resolve(null)
-        return
-      }
+  async function loadData(tabs) {
+    console.log(list)
+    debugger
+    if (!Array.isArray(tabs) || !tabs.length) {
+      return null
+    }
 
-      // 国家没有省市区, 则先补充省市区
-      let country = ArrayUtil.getDeepTreeNode(countriesData, tabs[0].id)
-      if (!country.children) {
-        let countryId = tabs[0].id
-        for (let country of countriesData) {
-          if (country.id === countryId) {
-            country.children = chinaData
-            // 更新value的type属性
-            districtComboRef?.current?.updateValueType?.()
-            break
-          }
+    // 国家没有省市区, 则先补充省市区
+    let country = ArrayUtil.getDeepTreeNode(list, tabs[0].id)
+    if (!country.children) {
+      let countryId = tabs[0].id
+      for (let country of list) {
+        if (country.id === countryId) {
+          // country.children = await DistrictUtil.getDistricts(country.id)
+          // 此处替换成各个国家的省市区数据
+          country.children = _.cloneDeep(chinaData)
+
+          // 更新parentid
+          ArrayUtil.updateDeepTreeParentId(list)
+          // 更新value的type属性
+          districtComboRef?.current?.updateValueType?.()
+          break
         }
       }
+    }
 
-      let lastTab = tabs[tabs.length - 1]
+    // 获取下钻的子级
+    let lastTab = tabs[tabs.length - 1]
 
-      if (!lastTab?.type?.includes?.('district')) {
-        resolve(null)
-        return
-      }
-      Loading.show()
-      // let streets = await DistrictUtil.getStreet(lastTab.id)
-      let streets = [
-        {
-          parentid: lastTab.id,
-          name: '街道1',
-          id: 'street1',
-          isStreet: true
-        }
-      ]
-      setTimeout(() => {
-        Loading.hide()
-      }, 100)
-      if (typeof streets === 'string') {
-        Toast.show({ content: streets })
-      }
-      resolve(streets)
-    })
+    // 获取下钻的子级: 同步获取
+    let currentNode = ArrayUtil.getDeepTreeNode(list, lastTab.id)
+    if (!_.isEmpty(currentNode.children)) {
+      return currentNode.children
+    }
+
+    // 获取下钻的子级: 异步获取
+    Loading.show()
+    // let streets = await DistrictUtil.getStreet(lastTab.id)
+    // 此处换为真实的接口请求
+    let streets = await getStreet(lastTab.id)
+    if (typeof streets === 'string') {
+      Toast.show({ content: streets })
+    }
+    Loading.hide()
+    return streets
   }
 
   return (
@@ -103,7 +112,7 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        list={countriesData}
+        list={list}
         // loadList={() => {
         //   return new Promise((resolve) => {
         //     Loading.show()
