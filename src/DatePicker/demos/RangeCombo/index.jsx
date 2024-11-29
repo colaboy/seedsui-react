@@ -99,9 +99,10 @@ export default () => {
         // max={new Date('2024-12-12')}
         value={value}
         // defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
-        // onError={(error) => {
-        //   console.log(error)
-        // }}
+        onError={(error) => {
+          console.log(error)
+          // return true
+        }}
         onBeforeChange={(newValue) => {
           console.log('修改前:', newValue)
           return true

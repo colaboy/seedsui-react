@@ -20,7 +20,7 @@ function validateDiff(value, { type, diff, onError }) {
   }
   if (currentDiff > diff) {
     if (onError) {
-      onError({
+      let isOk = onError({
         errMsg: locale(
           `日期区间不能超过${diff}${getTypeLocale(type)}`,
           'SeedsUI_dateragne_limit_error',
@@ -29,6 +29,7 @@ function validateDiff(value, { type, diff, onError }) {
         diff: diff,
         value: value
       })
+      if (isOk === true) return value
       return false
     }
     return [startDate, DateUtil.add(startDate, diff, type)]
