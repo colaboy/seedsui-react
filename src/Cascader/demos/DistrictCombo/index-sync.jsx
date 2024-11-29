@@ -63,7 +63,7 @@ export default () => {
         if (country.id === countryId) {
           // country.children = await DistrictUtil.getProvinces(country.id)
           // 此处替换成各个国家的省市区数据
-          country.children = await getProvinces(country.id)
+          country.children = getProvinces(country.id)
 
           // 更新parentid
           ArrayUtil.updateDeepTreeParentId(list)
@@ -117,16 +117,16 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        // list={list}
-        loadList={() => {
-          return new Promise((resolve) => {
-            Loading.show()
-            setTimeout(() => {
-              Loading.hide()
-              resolve(list)
-            }, 2000)
-          })
-        }}
+        list={list}
+        // loadList={() => {
+        //   return new Promise((resolve) => {
+        //     Loading.show()
+        //     setTimeout(() => {
+        //       Loading.hide()
+        //       resolve(chinaData)
+        //     }, 2000)
+        //   })
+        // }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}

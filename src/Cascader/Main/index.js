@@ -84,6 +84,11 @@ const Main = forwardRef(
 
     // 初始化数据
     async function update() {
+      // 滚动条还原
+      if (mainRef.current) {
+        mainRef.current.scrollTop = 0
+      }
+
       // 无值渲染根节点
       if (!Array.isArray(value) || !value.length) {
         tabsRef.current = null
@@ -227,6 +232,11 @@ const Main = forwardRef(
           tabs: tabsRef.current,
           activeTab: activeTab,
           onActiveTab: async (tab) => {
+            // 滚动条还原
+            if (mainRef.current) {
+              mainRef.current.scrollTop = 0
+            }
+
             activeTab = tab
             let newList = await getChildrenList(sliceArray(value, tab?.parentid))
             if (!newList) return
@@ -237,12 +247,16 @@ const Main = forwardRef(
         })
       }
 
-      console.log('tabsRef.current:', tabsRef.current, activeTab)
       return (
         <Tabs
           tabs={tabsRef.current}
           activeTab={activeTab}
           onActiveTab={async (tab) => {
+            // 滚动条还原
+            if (mainRef.current) {
+              mainRef.current.scrollTop = 0
+            }
+
             activeTab = tab
             let newList = await getChildrenList(sliceArray(value, tab?.parentid))
             if (!newList) return
