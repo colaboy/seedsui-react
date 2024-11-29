@@ -15,10 +15,11 @@ function validateStartEnd(value, { type, onError }) {
   let greater = DateUtil.compare(startDate, endDate, type)
   if (greater > 0) {
     if (onError) {
-      onError({
+      let isOk = onError({
         errMsg: locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime'),
         value: value
       })
+      if (isOk === true) return value
       return false
     }
     return [endDate, startDate]
