@@ -6,15 +6,7 @@ function Tabs({
   activeTab,
   onActiveTab,
   // 禁用判断
-  editableOptions,
-  list,
-  isCountry,
-  isProvince,
-  isMunicipality,
-  isCity,
-  isDistrict,
-  isStreet,
-  setValueType
+  editableOptions
 }) {
   return (
     <div className="cascader-tabs">

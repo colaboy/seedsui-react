@@ -10,8 +10,8 @@ function testNodeData(current, list) {
 
   let node = ArrayUtil.getDeepTreeNode(list, current.id)
   if (node?.isStreet) return 'street'
-  if (node) return true
-  return false
+  if (node) return 'district'
+  return null
 }
 
 export default testNodeData

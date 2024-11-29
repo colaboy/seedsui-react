@@ -30,7 +30,6 @@ export default () => {
   // 加载街道
   function loadData(tabs) {
     return new Promise((resolve) => {
-      debugger
       if (!Array.isArray(tabs) || !tabs.length) {
         resolve(null)
         return
@@ -42,8 +41,9 @@ export default () => {
         let countryId = tabs[0].id
         for (let country of countriesData) {
           if (country.id === countryId) {
-            debugger
             country.children = chinaData
+            // 更新value的type属性
+            districtComboRef?.current?.updateValueType?.()
             break
           }
         }

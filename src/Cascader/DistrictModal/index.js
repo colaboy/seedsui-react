@@ -22,6 +22,7 @@ const DistrictModal = forwardRef(
       isCountry,
       isProvince,
       isMunicipality,
+      isPrefecture,
       isCity,
       isDistrict,
       isStreet,
@@ -111,6 +112,7 @@ const DistrictModal = forwardRef(
     props.MainProps.isCountry = isCountry
     props.MainProps.isProvince = isProvince
     props.MainProps.isMunicipality = isMunicipality
+    props.MainProps.isPrefecture = isPrefecture
     props.MainProps.isCity = isCity
     props.MainProps.isDistrict = isDistrict
     props.MainProps.isStreet = isStreet

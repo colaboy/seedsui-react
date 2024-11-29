@@ -23,6 +23,7 @@ const DistrictMain = forwardRef(
       isCountry,
       isProvince,
       isMunicipality,
+      isPrefecture,
       isCity,
       isDistrict,
       isStreet,
@@ -32,16 +33,22 @@ const DistrictMain = forwardRef(
     },
     ref
   ) => {
-    if (value?.some?.((item) => !item.type)) {
-      setValueType(value, {
-        list,
-        isCountry,
-        isProvince,
-        isMunicipality,
-        isCity,
-        isDistrict,
-        isStreet
-      })
+    // 更新value的type
+    function updateValueType(newValue) {
+      let tabs = newValue || value
+      // 没有type, 则先获取type
+      if (tabs?.some?.((item) => !item.type)) {
+        setValueType(tabs, {
+          list: list,
+          isCountry,
+          isProvince,
+          isMunicipality,
+          isPrefecture,
+          isCity,
+          isDistrict,
+          isStreet
+        })
+      }
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
@@ -84,6 +91,7 @@ const DistrictMain = forwardRef(
       return true
     }
 
+    updateValueType(value)
     return (
       <Main
         ref={ref}
@@ -95,14 +103,6 @@ const DistrictMain = forwardRef(
               onActiveTab={onActiveTab}
               // 禁用判断
               editableOptions={editableOptions}
-              list={list}
-              isCountry={isCountry}
-              isProvince={isProvince}
-              isMunicipality={isMunicipality}
-              isCity={isCity}
-              isDistrict={isDistrict}
-              isStreet={isStreet}
-              setValueType={setValueType}
             />
           )
         }}
@@ -112,11 +112,13 @@ const DistrictMain = forwardRef(
         loadData={
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {
+                updateValueType(tabs)
                 return loadData(tabs, {
                   list,
                   isCountry,
                   isProvince,
                   isMunicipality,
+                  isPrefecture,
                   isCity,
                   isDistrict,
                   isStreet,
