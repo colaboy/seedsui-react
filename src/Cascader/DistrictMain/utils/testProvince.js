@@ -6,18 +6,10 @@ function testProvince(current, isProvince) {
   if (current.isProvince || current.type?.includes?.('province')) {
     return true
   }
-  for (let province of window?.districtLevelData?.provinces || []) {
-    if (current.id === province.id) {
-      return true
-    }
-    if (
-      current.name &&
-      (province.name?.indexOf(current.name) !== -1 || current.name?.indexOf(province.name) !== -1)
-    ) {
-      return true
-    }
-  }
-  return false
+
+  if (!current?.id) return false
+  if (typeof current?.id === 'number') current.id = '' + current.id
+  return (window.provinceIds || []).includes(current.id)
 }
 
 export default testProvince

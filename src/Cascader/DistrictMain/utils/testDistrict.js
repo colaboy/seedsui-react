@@ -6,18 +6,10 @@ function testDistrict(current, isDistrict) {
   if (current.isDistrict || current.type?.includes?.('district')) {
     return true
   }
-  for (let district of window?.districtLevelData?.districts || []) {
-    if (current.id === district.id) {
-      return true
-    }
-    if (
-      current.name &&
-      (district.name?.indexOf(current.name) !== -1 || current.name?.indexOf(district.name) !== -1)
-    ) {
-      return true
-    }
-  }
-  return false
+
+  if (!current?.id) return false
+  if (typeof current?.id === 'number') current.id = '' + current.id
+  return (window.districtIds || []).includes(current.id)
 }
 
 export default testDistrict

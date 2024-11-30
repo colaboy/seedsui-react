@@ -6,18 +6,10 @@ function testCity(current, isCity) {
   if (current.isCity || current.type?.includes?.('city')) {
     return true
   }
-  for (let city of window?.districtLevelData?.cities || []) {
-    if (current.id === city.id) {
-      return true
-    }
-    if (
-      current.name &&
-      (city.name?.indexOf(current.name) !== -1 || current.name?.indexOf(city.name) !== -1)
-    ) {
-      return true
-    }
-  }
-  return false
+
+  if (!current?.id) return false
+  if (typeof current?.id === 'number') current.id = '' + current.id
+  return (window.cityIds || []).includes(current.id)
 }
 
 export default testCity

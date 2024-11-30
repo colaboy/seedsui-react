@@ -6,7 +6,10 @@ function testStreet(current, isStreet) {
   if (current.isStreet || current.type?.includes?.('street')) {
     return true
   }
-  return false
+
+  if (!current?.id) return false
+  if (typeof current?.id === 'number') current.id = '' + current.id
+  return (window.streetIds || []).includes(current.id)
 }
 
 export default testStreet

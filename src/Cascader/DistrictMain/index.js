@@ -3,8 +3,7 @@ import { getPredecessorTypes, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
-// window.districtLevelData: {countries: [], provinces: [], cities: [], districts: [因数据量庞大, seedsui本地数据没有记录此数据]}
-// window.districtData: [{id: '', name: '', children: []}]
+// 默认读取渲染数据window.districtData: [{id: '', name: '', children: []}]
 // 级联选择
 const DistrictMain = forwardRef(
   (

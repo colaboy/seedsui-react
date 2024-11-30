@@ -1,14 +1,28 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import _ from 'lodash'
-import { ArrayUtil } from 'seedsui-react'
-import districtLevelData from './chinaLvlData'
-import countriesData from './countriesData'
-import chinaData from './chinaData'
+import { ArrayUtil, Cascader, Loading } from 'seedsui-react'
 
-import { Cascader, Loading } from 'seedsui-react'
+// 判断省市区的数据
+import countryIds from './data/countryIds'
+import provinceIds from './data/provinceIds'
+import municipalityIds from './data/municipalityIds'
+import cityIds from './data/cityIds'
+import districtIds from './data/districtIds'
 
-window.districtLevelData = districtLevelData
+// 渲染数据
+import countriesData from './data/countriesData'
+import chinaData from './data/chinaData'
 
+// 判断省市区的数据
+window.countryIds = countryIds
+window.provinceIds = provinceIds
+window.municipalityIds = municipalityIds
+window.cityIds = cityIds
+window.municipalityIds = municipalityIds
+window.districtIds = districtIds
+window.streetIds = streetIds
+
+// 渲染数据
 const list = countriesData
 
 // 获取国家的省市区

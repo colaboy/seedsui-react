@@ -9,45 +9,7 @@ function testPrefecture(current, isPrefecture) {
 
   if (!current?.id) return false
   if (typeof current?.id === 'number') current.id = '' + current.id
-  return (
-    [
-      '419001',
-      '429004',
-      '429005',
-      '429006',
-      '429021',
-      '441900',
-      '442000',
-      '460400',
-      '469001',
-      '469002',
-      '469005',
-      '469006',
-      '469007',
-      '469007',
-      '469021',
-      '469022',
-      '469023',
-      '469024',
-      '469025',
-      '469026',
-      '469027',
-      '469028',
-      '469029',
-      '469030',
-      '620200',
-      '659001',
-      '659002',
-      '659003',
-      '659004',
-      '659005',
-      '659006',
-      '659007',
-      '659008',
-      '659009',
-      '659010'
-    ].indexOf(current.id) !== -1
-  )
+  return (window.prefectureIds || []).includes(current.id)
 }
 
 export default testPrefecture
