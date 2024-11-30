@@ -8,6 +8,7 @@ import provinceIds from './data/provinceIds'
 import municipalityIds from './data/municipalityIds'
 import cityIds from './data/cityIds'
 import districtIds from './data/districtIds'
+import streetIds from './data/streetIds'
 
 // 渲染数据
 import countriesData from './data/countriesData'
