@@ -83,8 +83,9 @@ export default () => {
 
           // 更新parentid
           ArrayUtil.updateDeepTreeParentId(list)
+
           // 更新value的type属性
-          districtComboRef?.current?.updateValueType?.()
+          districtComboRef?.current?.updateValueType?.(tabs, list)
           break
         }
       }

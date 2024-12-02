@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react'
-import { compareType, defaultSetValueType } from './../DistrictMain/utils'
+import { updateValueType, compareType, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用
@@ -51,6 +51,24 @@ const DistrictModal = forwardRef(
       // eslint-disable-next-line
     }, [visible])
 
+    // 更新value的type, 截取超出type部分
+    function _updateValueType(newValue, newList, { forceUpdate } = {}) {
+      let tabs = newValue || value
+      let data = newList || list
+      return updateValueType(tabs, data, {
+        forceUpdate,
+        type,
+        isCountry,
+        isProvince,
+        isMunicipality,
+        isPrefecture,
+        isCity,
+        isDistrict,
+        isStreet,
+        setValueType
+      })
+    }
+
     // 根据min判断是否显示确定按钮
     function updateSubmitVisible(tabs) {
       if (!min) return
@@ -58,17 +76,7 @@ const DistrictModal = forwardRef(
       let submitVisible = null
 
       // 获取末级类型
-      if (tabs?.some?.((item) => !item.type)) {
-        setValueType(tabs, {
-          list,
-          isCountry,
-          isProvince,
-          isMunicipality,
-          isCity,
-          isDistrict,
-          isStreet
-        })
-      }
+      _updateValueType()
 
       // 最小支持的类型集合
       let currentTypes = tabs[tabs.length - 1].type

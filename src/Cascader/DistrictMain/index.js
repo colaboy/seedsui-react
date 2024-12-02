@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { compareType, defaultSetValueType, testStreet } from './utils'
+import { updateValueType, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
@@ -32,35 +32,22 @@ const DistrictMain = forwardRef(
     },
     ref
   ) => {
-    // 更新value的type
-    function updateValueType(newValue) {
+    // 更新value的type, 截取超出type部分
+    function _updateValueType(newValue, newList, { forceUpdate } = {}) {
       let tabs = newValue || value
-      // 没有type, 则先获取type
-      if (tabs?.some?.((item) => !item.type)) {
-        setValueType(tabs, {
-          list: list,
-          isCountry,
-          isProvince,
-          isMunicipality,
-          isPrefecture,
-          isCity,
-          isDistrict,
-          isStreet
-        })
-      }
-    }
-
-    // 校验选中类型是否已经符合传入的type, 符合则增加isLeaf
-    function validateType(tabs) {
-      let currentTypes = tabs[tabs.length - 1].type
-      // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
-      for (let currentType of currentTypes) {
-        if (compareType(currentType, type) >= 0) {
-          tabs[tabs.length - 1].isLeaf = true
-          return true
-        }
-      }
-      return false
+      let data = newList || list
+      return updateValueType(tabs, data, {
+        forceUpdate,
+        type,
+        isCountry,
+        isProvince,
+        isMunicipality,
+        isPrefecture,
+        isCity,
+        isDistrict,
+        isStreet,
+        setValueType
+      })
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区, otherArguments: { list: externalList }
@@ -85,17 +72,14 @@ const DistrictMain = forwardRef(
         return true
       }
 
-      updateValueType(tabs)
-
-      // 校验选中类型是否已经符合传入的type, 符合则增加isLeaf
-      validateType(tabs)
+      _updateValueType(tabs)
 
       onChange && onChange(tabs, otherArguments)
       return true
     }
 
-    updateValueType(value)
-    validateType(value)
+    // eslint-disable-next-line
+    value = _updateValueType(value)
 
     return (
       <Main
@@ -117,7 +101,8 @@ const DistrictMain = forwardRef(
         loadData={
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {
-                updateValueType(tabs)
+                // eslint-disable-next-line
+                tabs = _updateValueType(tabs, list)
 
                 return loadData(tabs, {
                   list,

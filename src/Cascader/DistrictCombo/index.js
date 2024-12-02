@@ -1,6 +1,11 @@
 import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
-import { getAsyncList, testEditableOptions, defaultSetValueType } from './../DistrictMain/utils'
+import {
+  updateValueType,
+  getAsyncList,
+  testEditableOptions,
+  defaultSetValueType
+} from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用
@@ -47,7 +52,7 @@ const DistrictCombo = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         getReadOnlyValue: getReadOnlyValue,
-        updateValueType: updateValueType,
+        updateValueType: _updateValueType,
         ...comboRef.current
       }
     })
@@ -65,22 +70,22 @@ const DistrictCombo = forwardRef(
       setAsyncList(asyncList)
     }
 
-    // 更新value的type
-    function updateValueType(newValue) {
+    // 更新value的type, 截取超出type部分
+    function _updateValueType(newValue, newList, { forceUpdate } = {}) {
       let tabs = newValue || value
-      // 没有type, 则先获取type
-      if (tabs?.some?.((item) => !item.type)) {
-        setValueType(tabs, {
-          list: asyncList,
-          isCountry,
-          isProvince,
-          isMunicipality,
-          isPrefecture,
-          isCity,
-          isDistrict,
-          isStreet
-        })
-      }
+      let data = newList || asyncList
+      return updateValueType(tabs, data, {
+        forceUpdate,
+        type,
+        isCountry,
+        isProvince,
+        isMunicipality,
+        isPrefecture,
+        isCity,
+        isDistrict,
+        isStreet,
+        setValueType
+      })
     }
 
     // 清空操作，保留只读项，清空非只读项
@@ -103,7 +108,8 @@ const DistrictCombo = forwardRef(
       return newValue
     }
 
-    updateValueType()
+    // eslint-disable-next-line
+    value = _updateValueType(value)
     let readOnlyValue = getReadOnlyValue(value)
 
     return (
