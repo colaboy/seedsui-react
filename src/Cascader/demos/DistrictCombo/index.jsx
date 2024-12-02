@@ -85,6 +85,16 @@ export default () => {
           // 更新parentid
           ArrayUtil.updateDeepTreeParentId(list)
 
+          console.log(
+            ArrayUtil.deepTree([
+              { id: '1', name: 'Root 1', parentid: null },
+              { id: '2', name: 'Child 1-1', parentid: '1' },
+              { id: '3', name: 'Child 1-2', parentid: '1' },
+              { id: '4', name: 'Root 2', parentid: null },
+              { id: '5', name: 'Child 2-1', parentid: '4' },
+              { id: '6', name: 'Grandchild 1-1-1', parentid: '2' }
+            ])
+          )
           // 更新value的type属性
           districtComboRef?.current?.updateValueType?.(tabs, list)
           break

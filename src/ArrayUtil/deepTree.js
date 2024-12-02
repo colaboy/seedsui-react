@@ -1,36 +1,29 @@
-import getFlattenTreeChildren from './getFlattenTreeChildren'
-
 /* -----------------------------------------------------
   树数据深度化, 将树的parentid深度为children, 必须有id和parentid
   @格式 [{id: '', name: '', parentid: ''}, {id: '', name: '', parentid: ''}]
   @return [{id: '', name: '', children: {}}]
  ----------------------------------------------------- */
-function deepTree(list) {
-  if (!Array.isArray(list) || !list.length) return list
+function deepTree(flattenTree) {
+  const idMap = {} // 用对象字面量存储节点映射
+  const result = [] // 用于存储最终的层级树
 
-  // 深度化, 修改trees
-  function _buildTreeToDeep(item) {
-    let children = getFlattenTreeChildren(list, item['id'])
-    if (children && children.length) {
-      if (item.children) {
-        item.children = item.children.concat(children)
-      } else {
-        item.children = children
-      }
-      for (let i = 0, child; (child = children[i++]); ) {
-        // eslint-disable-line
-        _buildTreeToDeep(child)
-      }
+  // 初始化节点映射
+  flattenTree.forEach((node) => {
+    idMap[node.id] = { ...node, children: [] } // 为每个节点添加 children 属性
+  })
+
+  // 构建层级树
+  flattenTree.forEach((node) => {
+    if (node.parentid && idMap[node.parentid]) {
+      // 如果节点有父节点，将其挂到父节点的 children 上
+      idMap[node.parentid].children.push(idMap[node.id])
     } else {
-      item.isLeaf = true
+      // 如果没有父节点，作为顶级节点
+      result.push(idMap[node.id])
     }
-  }
-  let trees = getFlattenTreeRoots(list)
-  for (let i = 0, tree; (tree = trees[i++]); ) {
-    // eslint-disable-line
-    _buildTreeToDeep(tree)
-  }
-  return trees
+  })
+
+  return result
 }
 
 export default deepTree
