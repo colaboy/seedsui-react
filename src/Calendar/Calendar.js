@@ -15,10 +15,11 @@ import Header from './Header'
 import Body from './Body'
 
 // 内库使用
+import locale from './../locale'
 import DateUtil from './../DateUtil'
 
 // 测试使用
-// import { DateUtil } from 'seedsui-react'
+// import { locale, DateUtil } from 'seedsui-react'
 
 const cellHeight = 40
 const duration = 300
@@ -45,6 +46,7 @@ const Calendar = forwardRef(
       onChange,
       // Event: view change
       onSlideChange,
+      onError,
       ...props
     },
     ref
@@ -145,7 +147,8 @@ const Calendar = forwardRef(
         container: rootRef.current,
         bodyX: rootRef.current.querySelector('.calendar-body-x'),
         bodyY: rootRef.current.querySelector('.calendar-body-y'),
-        cellHeight: cellHeight
+        cellHeight: cellHeight,
+        onError: onError
       })
 
       return newDrawDate
@@ -170,6 +173,20 @@ const Calendar = forwardRef(
 
       // 访问禁止日期
       if (DateUtil.compare(newDrawDate, drawDate) === 0) {
+        // 是否需要校验
+        let error = {
+          errCode: 'CALENDAR_PREVIOUS_MONTH_ERROR',
+          errMsg: locale(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        }
+        if (typeof onError === 'function') {
+          let isOk = onError(error)
+          if (isOk === true) error = null
+        }
+        if (error) {
+          console.log(error.errMsg)
+          return
+        }
+
         console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
         return
       }
@@ -184,8 +201,18 @@ const Calendar = forwardRef(
 
       // 访问禁止日期
       if (DateUtil.compare(newDrawDate, drawDate) === 0) {
-        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
-        return
+        // 是否需要校验
+        let error = {
+          errCode: 'CALENDAR_NEXT_MONTH_ERROR',
+          errMsg: locale(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+        }
+        if (typeof onError === 'function') {
+          let isOk = onError(error)
+          if (isOk === true) error = null
+        }
+        if (error) {
+          return
+        }
       }
 
       // Trigger onSlideChange
@@ -198,8 +225,9 @@ const Calendar = forwardRef(
       let newDrawDate = lastYear.toDate()
 
       // 访问禁止日期
-      if (isDisabledDate(newDrawDate, { min, max })) {
-        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+      let error = isDisabledDate(newDrawDate, { min, max })
+      if (error) {
+        console.log(error?.errMsg)
         return
       }
 
@@ -213,8 +241,9 @@ const Calendar = forwardRef(
       let newDrawDate = nextYear.toDate()
 
       // 访问禁止日期
-      if (isDisabledDate(newDrawDate, { min, max })) {
-        console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+      let error = isDisabledDate(newDrawDate, { min, max })
+      if (error) {
+        console.log(error?.errMsg)
         return
       }
 
