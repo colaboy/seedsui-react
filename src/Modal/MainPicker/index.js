@@ -55,6 +55,8 @@ const MainPicker = forwardRef(
 
         mainDOM: mainDOM,
         getMainDOM: getMainDOM,
+
+        submit: handleChange,
         ...otherMainRef
       }
     })
@@ -77,7 +79,9 @@ const MainPicker = forwardRef(
 
     // 事件
     async function handleChange(newValue) {
-      currentValue = newValue
+      if (newValue !== undefined) {
+        currentValue = newValue
+      }
 
       // 更新选中的值
       if (mainRef?.current?.getValue) {
@@ -118,7 +122,6 @@ const MainPicker = forwardRef(
           if (visible) {
             updateTitle()
             if (JSON.stringify(value) !== JSON.stringify(currentValue)) {
-              debugger
               setCurrentValue(value)
             }
           }

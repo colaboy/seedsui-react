@@ -81,7 +81,6 @@ export default () => {
         //     }, 1000)
         //   })
         // }}
-        // modal="page"
         MainProps={{
           autoLocation: false
         }}

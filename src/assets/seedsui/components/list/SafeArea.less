@@ -121,7 +121,8 @@
     }
   }
   // 匹配无滚动弹窗选择控件: Picker、DatePicker 控件(有picker-modal)
-  #root > .picker-mask .picker-modal {
+  #root > .picker-mask .picker-modal,
+  #root > .picker-mask .map-modal {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
   }

@@ -36,7 +36,7 @@ const Picker = forwardRef(
 
     useEffect(() => {
       if (visible) {
-        if (onVisibleChange) onVisibleChange(true)
+        if (onVisibleChange) onVisibleChange(visible)
       }
       // eslint-disable-next-line
     }, [visible])

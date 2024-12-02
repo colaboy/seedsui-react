@@ -7,7 +7,9 @@ import GeoUtil from './../../../GeoUtil'
 // 百度地图瓦片图层插件
 function loadBMapLayer() {
   return new Promise((resolve) => {
-    initPlugin()
+    if (!window.L.tileLayer.baiduTileLayer) {
+      initPlugin()
+    }
     resolve(window.L.tileLayer.baiduTileLayer)
   })
 }

@@ -53,9 +53,6 @@ const LocationCombo = forwardRef(
       editable = false,
       value, // {latitude: '纬度', longitude: '经度', value: '地址'}
 
-      // 弹窗类型: page页面; 其它弹窗(默认);
-      modal,
-
       portal = document.getElementById('root') || document.body,
       onVisibleChange,
       onLocationStatusChange,
@@ -373,10 +370,9 @@ const LocationCombo = forwardRef(
         />
         {/* 地图预览与选择 */}
         <ModalNode
-          ak={config?.key}
+          config={config}
           portal={portal}
           value={value}
-          modal={modal}
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onChange={(newValue) => {

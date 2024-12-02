@@ -39,6 +39,11 @@ const APILoader = forwardRef(
 
     // 加载
     async function loadData() {
+      // 保持单例
+      if (config) {
+        window.APILoaderConfig = config
+      }
+
       // Load map resource
       let result = await loadSource(config)
       let isOk = true
