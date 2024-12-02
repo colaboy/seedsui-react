@@ -5,7 +5,6 @@ function updateValueType(
   tabs,
   list,
   {
-    forceUpdate = false,
     type,
     isCountry,
     isProvince,
@@ -18,18 +17,16 @@ function updateValueType(
   }
 ) {
   // 没有type, 则先获取type
-  if (forceUpdate || tabs?.some?.((item) => !item.type)) {
-    setValueType(tabs, {
-      list: list,
-      isCountry,
-      isProvince,
-      isMunicipality,
-      isPrefecture,
-      isCity,
-      isDistrict,
-      isStreet
-    })
-  }
+  setValueType(tabs, {
+    list: list,
+    isCountry,
+    isProvince,
+    isMunicipality,
+    isPrefecture,
+    isCity,
+    isDistrict,
+    isStreet
+  })
 
   // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
   for (let tab of tabs) {

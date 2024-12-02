@@ -120,7 +120,7 @@ export default () => {
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
         min="city" // ['country', 'province', 'city', 'district', 'street']
-        type="province"
+        type="district"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}

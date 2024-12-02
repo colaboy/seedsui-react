@@ -71,11 +71,10 @@ const DistrictCombo = forwardRef(
     }
 
     // 更新value的type, 截取超出type部分
-    function _updateValueType(newValue, newList, { forceUpdate } = {}) {
+    function _updateValueType(newValue, newList) {
       let tabs = newValue || value
       let data = newList || asyncList
       return updateValueType(tabs, data, {
-        forceUpdate,
         type,
         isCountry,
         isProvince,
