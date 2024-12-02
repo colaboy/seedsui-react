@@ -54,7 +54,7 @@ function getStreets(id) {
 
 export default () => {
   const districtComboRef = useRef(null)
-  // 控件将会补充parentid和isDistrict, 所以顺序不能传错
+  // 控件将会补充parentid, 所以顺序不能传错
   const [value, setValue] = useState([
     { name: '中国', id: '86' },
     { id: '320000', name: '江苏省', parentid: '86' },
@@ -65,7 +65,7 @@ export default () => {
   // 加载街道
   async function loadData(tabs) {
     console.log(list)
-    debugger
+    // debugger
     if (!Array.isArray(tabs) || !tabs.length) {
       return null
     }
@@ -117,8 +117,8 @@ export default () => {
         // 编辑控制
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
-        min="country" // ['country', 'province', 'city', 'district', 'street']
-        type="country"
+        min="city" // ['country', 'province', 'city', 'district', 'street']
+        type="province"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}

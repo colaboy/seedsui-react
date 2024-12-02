@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { getPredecessorTypes, defaultSetValueType, testStreet } from './utils'
+import { compareType, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
@@ -50,7 +50,7 @@ const DistrictMain = forwardRef(
       }
     }
 
-    // 点击选项前判断是否指定类型: 省, 市, 区
+    // 点击选项前判断是否指定类型: 省, 市, 区, otherArguments: { list: externalList }
     async function handleChange(tabs, otherArguments) {
       if (!Array.isArray(tabs) || !tabs.length) {
         onChange && onChange(null, otherArguments)
@@ -73,19 +73,14 @@ const DistrictMain = forwardRef(
       }
 
       updateValueType(tabs)
-      let currentType = tabs[tabs.length - 1].type
-      if (currentType?.length) {
-        currentType = currentType[currentType.length - 1]
-      } else {
-        currentType = null
-      }
-
-      debugger
+      let currentTypes = tabs[tabs.length - 1].type
       // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
-      if (currentType && getPredecessorTypes(currentType).includes(type)) {
-        lastTab.isLeaf = true
-        onChange && onChange(tabs, otherArguments)
-        return false
+      for (let currentType of currentTypes) {
+        if (compareType(currentType, type) >= 0) {
+          lastTab.isLeaf = true
+          onChange && onChange(tabs, otherArguments)
+          return false
+        }
       }
 
       onChange && onChange(tabs, otherArguments)

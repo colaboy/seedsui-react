@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useEffect } from 'react'
-import { getDescendantTypes, defaultSetValueType } from './../DistrictMain/utils'
+import { compareType, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用
@@ -41,12 +41,15 @@ const DistrictModal = forwardRef(
     let [submitVisible, setSubmitVisible] = useState(null)
 
     useEffect(() => {
-      if (_.isEmpty(list) || _.isEmpty(value)) return
+      if (!visible || _.isEmpty(list) || _.isEmpty(value)) {
+        min && setSubmitVisible(false)
+        return
+      }
 
       updateSubmitVisible(value)
 
       // eslint-disable-next-line
-    }, [list, value])
+    }, [visible])
 
     // 根据min判断是否显示确定按钮
     function updateSubmitVisible(tabs) {
@@ -67,19 +70,14 @@ const DistrictModal = forwardRef(
         })
       }
 
-      let currentType = tabs[tabs.length - 1].type
-
       // 最小支持的类型集合
-      if (
-        Array.isArray(currentType) &&
-        currentType.length &&
-        getDescendantTypes(min).some((minType) => {
-          return currentType?.includes(minType)
-        })
-      ) {
-        submitVisible = true
-      } else {
-        submitVisible = false
+      let currentTypes = tabs[tabs.length - 1].type
+      submitVisible = false
+      for (let currentType of currentTypes) {
+        if (compareType(currentType, min) >= 0) {
+          submitVisible = true
+          break
+        }
       }
 
       setSubmitVisible(submitVisible)

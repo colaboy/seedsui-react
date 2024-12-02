@@ -1,7 +1,6 @@
 import getAsyncList from './getAsyncList'
-import getDescendantTypes from './getDescendantTypes'
-import getPredecessorTypes from './getPredecessorTypes'
 import defaultSetValueType from './defaultSetValueType'
+import compareType from './compareType'
 import testCountry from './testCountry'
 import testProvince from './testProvince'
 import testCity from './testCity'
@@ -12,9 +11,8 @@ import testEditableOptions from './testEditableOptions'
 
 export {
   getAsyncList,
-  getDescendantTypes,
-  getPredecessorTypes,
   defaultSetValueType,
+  compareType,
   testCountry,
   testProvince,
   testCity,
