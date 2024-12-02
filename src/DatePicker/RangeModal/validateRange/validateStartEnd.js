@@ -16,6 +16,7 @@ function validateStartEnd(value, { type, onError }) {
   if (greater > 0) {
     if (onError) {
       let isOk = onError({
+        errCode: 'DATE_RANGE_START_GREATER_THAN_END_ERROR',
         errMsg: locale('开始时间不能大于结束时间', 'SeedsUI_starttime_greater_than_endtime'),
         value: value
       })
