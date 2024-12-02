@@ -27,7 +27,6 @@ const DistrictMain = forwardRef(
       isDistrict,
       isStreet,
       setValueType = defaultSetValueType,
-      onChange,
       ...props
     },
     ref
@@ -50,10 +49,9 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区, otherArguments: { list: externalList }
-    async function handleChange(tabs, otherArguments) {
+    async function handleSelect(tabs) {
       if (!Array.isArray(tabs) || !tabs.length) {
-        onChange && onChange(null, otherArguments)
-        return true
+        return tabs
       }
 
       let lastTab = tabs[tabs.length - 1]
@@ -61,20 +59,17 @@ const DistrictMain = forwardRef(
       // 街道无需再发请求
       if (testStreet(tabs[tabs.length - 1], isStreet)) {
         lastTab.isLeaf = true
-        onChange && onChange(tabs, otherArguments)
-        return false
+        return tabs
       }
 
       // 匹配类型，没传类型则允许下钻
       if (!type) {
-        onChange && onChange(tabs, otherArguments)
         return true
       }
 
       _updateValueType(tabs)
 
-      onChange && onChange(tabs, otherArguments)
-      return true
+      return tabs
     }
 
     // eslint-disable-next-line
@@ -118,7 +113,7 @@ const DistrictMain = forwardRef(
             : null
         }
         {...props}
-        onChange={handleChange}
+        onSelect={handleSelect}
       />
     )
   }

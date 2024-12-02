@@ -125,7 +125,7 @@ export default () => {
         value={value}
         placeholder={`Select District`}
         onChange={(newValue) => {
-          console.log(newValue)
+          console.log('修改:', newValue)
           setValue(newValue)
         }}
         // clearProps={{

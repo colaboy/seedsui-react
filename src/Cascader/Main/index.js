@@ -29,6 +29,7 @@ const Main = forwardRef(
       value,
       allowClear,
       onChange,
+      onSelect,
 
       list: externalList,
       loadData,
@@ -205,7 +206,15 @@ const Main = forwardRef(
         newValue = [item]
       }
 
-      // 不是末级节点, 则获取当前列表, 补充标识: value中的isLeaf和externalList中的children
+      // 选中项
+      if (typeof onSelect === 'function') {
+        let isOk = await onSelect(newValue, { list: externalList })
+        if (Array.isArray(isOk)) {
+          newValue = isOk
+        }
+      }
+
+      // 不是末级节点, 则获取下级列表, 补充标识: value中的isLeaf和externalList中的children
       let newList = null
       if (!newValue[newValue.length - 1].isLeaf) {
         newList = await getChildrenList(newValue, {
@@ -220,7 +229,7 @@ const Main = forwardRef(
 
       onChange && onChange(newValue, { list: externalList })
 
-      // 如果值未发生变化不会触发useEffect更新, 需要强制更新, 否则列表和tabs不会更新
+      // 如果值未发生变化不会触发useEffect更新, 需要强制更新, 否则列表和activeTab不会更新
       if (JSON.stringify(newValue) === JSON.stringify(value)) {
         update()
       }
