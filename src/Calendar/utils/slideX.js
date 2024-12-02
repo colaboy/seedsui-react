@@ -5,7 +5,7 @@ import Months from './Months'
 // 左右滑动
 function slideX(
   op,
-  { type, min, max, duration, weekStart, drawDate, container, bodyX, bodyY, cellHeight }
+  { type, min, max, duration, weekStart, drawDate, container, bodyX, bodyY, cellHeight, onError }
 ) {
   // 添加动画
   bodyX.style.transitionDuration = duration + 'ms'
@@ -41,13 +41,17 @@ function slideX(
   }
 
   // 使用禁用当天作为选中项
-  let disabledDate = isDisabledDate(newDrawDate, { min, max })
-
-  // 禁止日期
-  if (disabledDate) {
-    console.log('禁止访问' + new Date().toLocaleDateString() + '前的日期')
-    newDrawDate = drawDate
-    translateX = -container.clientWidth
+  let error = isDisabledDate(newDrawDate, { min, max })
+  if (error) {
+    if (typeof onError === 'function') {
+      let isOk = onError(error)
+      if (isOk === true) error = null
+    }
+    if (error) {
+      console.log(error?.errMsg)
+      newDrawDate = drawDate
+      translateX = -container.clientWidth
+    }
   }
 
   // 横向移动面板

@@ -1,11 +1,5 @@
 import isDisabledDate from './isDisabledDate'
 
-// 内库使用
-import DateUtil from './../../DateUtil'
-
-// 测试使用
-// import { DateUtil } from 'seedsui-react'
-
 // 获取当前绘制日期
 function formatDrawDate(newValue, { min, max }) {
   let newDrawDate = newValue
@@ -17,10 +11,10 @@ function formatDrawDate(newValue, { min, max }) {
   }
 
   // 访问禁止日期
-  let disabledDate = isDisabledDate(newDrawDate, { min, max })
-  if (disabledDate) {
-    console.log(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
-    return disabledDate
+  let error = isDisabledDate(newDrawDate, { min, max })
+  if (error) {
+    console.log(error?.errMsg)
+    return error.date
   }
 
   return newDrawDate
