@@ -3,7 +3,7 @@ function setDeepTreeNode(tree, id, updateNode) {
   for (const node of tree) {
     if (node.id === id) {
       // 找到目标节点，调用 updateNode 方法更新其属性
-      updateNode(node)
+      updateNode && updateNode(node)
       break
     }
     if (Array.isArray(node.children) && node.children.length) {

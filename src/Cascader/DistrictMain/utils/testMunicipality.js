@@ -9,7 +9,7 @@ function testMunicipality(current, isMunicipality) {
 
   if (!current?.id) return false
   if (typeof current?.id === 'number') current.id = '' + current.id
-  return (window.cityIds || []).includes(current.id)
+  return (window.municipalityIds || []).includes(current.id)
 }
 
 export default testMunicipality

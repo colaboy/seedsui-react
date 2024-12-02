@@ -5,7 +5,7 @@ function setDeepTreeLeafNode(tree, updateNode) {
       // 递归查找子节点
       setDeepTreeLeafNode(node.children, updateNode)
     } else {
-      updateNode(node)
+      updateNode && updateNode(node)
     }
   }
   return tree

@@ -1,9 +1,9 @@
 // import deepTree from './deepTree'
 import getDeepTreeNode from './getDeepTreeNode'
 import getDeepTreeNodes from './getDeepTreeNodes'
+import getDeepTreeLeafNodes from './getDeepTreeLeafNodes'
 // import getDeepTreeParent from './getDeepTreeParent'
 // import getDeepTreePredecessor from './getDeepTreePredecessor'
-// import setDeepTreeLeafProp from './setDeepTreeLeafProp'
 import setDeepTreeNode from './setDeepTreeNode'
 import setDeepTreeLeafNode from './setDeepTreeLeafNode'
 import updateDeepTreeParentId from './updateDeepTreeParentId'
@@ -23,6 +23,7 @@ const ArrayUtil = {
   // deepTree,
   getDeepTreeNode,
   getDeepTreeNodes,
+  getDeepTreeLeafNodes,
   // getDeepTreeParent,
   // getDeepTreePredecessor,
   setDeepTreeLeafNode,

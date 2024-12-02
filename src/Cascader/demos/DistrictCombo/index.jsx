@@ -24,6 +24,7 @@ window.districtIds = districtIds
 window.streetIds = streetIds
 
 // 渲染数据
+window.districtData = countriesData
 const list = countriesData
 
 // 获取国家的省市区

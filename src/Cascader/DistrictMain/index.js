@@ -95,6 +95,8 @@ const DistrictMain = forwardRef(
     }
 
     updateValueType(value)
+    validateType(value)
+
     return (
       <Main
         ref={ref}
@@ -116,10 +118,6 @@ const DistrictMain = forwardRef(
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {
                 updateValueType(tabs)
-                // 校验选中类型是否已经符合传入的type, 符合则阻止loadData
-                let isOk = validateType(tabs)
-                debugger
-                if (isOk) return
 
                 return loadData(tabs, {
                   list,
