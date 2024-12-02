@@ -109,6 +109,7 @@ const DistrictCombo = forwardRef(
 
     // eslint-disable-next-line
     value = _updateValueType(value)
+    console.log('val:', value)
     let readOnlyValue = getReadOnlyValue(value)
 
     return (

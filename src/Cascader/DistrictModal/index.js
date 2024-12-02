@@ -70,20 +70,23 @@ const DistrictModal = forwardRef(
 
     // 根据min判断是否显示确定按钮
     function updateSubmitVisible(tabs) {
-      if (!min) return
+      if (!min || !Array.isArray(tabs) || !tabs.length) return
 
       let submitVisible = null
 
       // 获取末级类型
-      _updateValueType()
+      _updateValueType(tabs)
 
-      // 最小支持的类型集合
-      let currentTypes = tabs[tabs.length - 1].type
       submitVisible = false
-      for (let currentType of currentTypes) {
-        if (compareType(currentType, min) >= 0) {
-          submitVisible = true
-          break
+
+      // 比较类型, 判断是否显示确定按钮
+      let currentTypes = tabs[tabs.length - 1]?.type
+      if (currentTypes) {
+        for (let currentType of currentTypes) {
+          if (compareType(currentType, min) >= 0) {
+            submitVisible = true
+            break
+          }
         }
       }
 

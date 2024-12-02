@@ -44,7 +44,8 @@ function getStreets(id) {
         parentid: id,
         name: '街道1',
         id: 'street1',
-        isStreet: true
+        isStreet: true,
+        isLeaf: true
       }
     ]
     setTimeout(() => {
@@ -120,7 +121,7 @@ export default () => {
         allowClear="exclusion-ricon"
         ricon={<i className="ricon shape-arrow-right sm"></i>}
         min="city" // ['country', 'province', 'city', 'district', 'street']
-        type="district"
+        // type="district"
         loadData={loadData}
         value={value}
         placeholder={`Select District`}

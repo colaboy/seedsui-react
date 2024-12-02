@@ -28,13 +28,15 @@ function updateValueType(
     isStreet
   })
 
-  // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
-  for (let tab of tabs) {
-    let currentTypes = tab.type
-    for (let currentType of currentTypes) {
-      if (compareType(currentType, type) >= 0) {
-        tab.isLeaf = true
-        break
+  // 比较类型, 若符合type要求, 则增加isLeaf
+  if (type) {
+    for (let tab of tabs) {
+      let currentTypes = tab.type
+      for (let currentType of currentTypes) {
+        if (compareType(currentType, type) >= 0) {
+          tab.isLeaf = true
+          break
+        }
       }
     }
   }
