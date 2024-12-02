@@ -50,6 +50,19 @@ const DistrictMain = forwardRef(
       }
     }
 
+    // 校验选中类型是否已经符合传入的type, 符合则增加isLeaf
+    function validateType(tabs) {
+      let currentTypes = tabs[tabs.length - 1].type
+      // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
+      for (let currentType of currentTypes) {
+        if (compareType(currentType, type) >= 0) {
+          tabs[tabs.length - 1].isLeaf = true
+          return true
+        }
+      }
+      return false
+    }
+
     // 点击选项前判断是否指定类型: 省, 市, 区, otherArguments: { list: externalList }
     async function handleChange(tabs, otherArguments) {
       if (!Array.isArray(tabs) || !tabs.length) {
@@ -73,15 +86,9 @@ const DistrictMain = forwardRef(
       }
 
       updateValueType(tabs)
-      let currentTypes = tabs[tabs.length - 1].type
-      // 选中到目标类型，大于等于设定的类型, 不再下钻，直接onChange
-      for (let currentType of currentTypes) {
-        if (compareType(currentType, type) >= 0) {
-          lastTab.isLeaf = true
-          onChange && onChange(tabs, otherArguments)
-          return false
-        }
-      }
+
+      // 校验选中类型是否已经符合传入的type, 符合则增加isLeaf
+      validateType(tabs)
 
       onChange && onChange(tabs, otherArguments)
       return true
@@ -109,6 +116,11 @@ const DistrictMain = forwardRef(
           typeof loadData === 'function'
             ? (tabs, { list = null }) => {
                 updateValueType(tabs)
+                // 校验选中类型是否已经符合传入的type, 符合则阻止loadData
+                let isOk = validateType(tabs)
+                debugger
+                if (isOk) return
+
                 return loadData(tabs, {
                   list,
                   isCountry,
