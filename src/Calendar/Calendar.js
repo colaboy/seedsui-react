@@ -15,10 +15,11 @@ import Header from './Header'
 import Body from './Body'
 
 // 内库使用
+import locale from './../locale'
 import DateUtil from './../DateUtil'
 
 // 测试使用
-// import { DateUtil } from 'seedsui-react'
+// import { locale, DateUtil } from 'seedsui-react'
 
 const cellHeight = 40
 const duration = 300
