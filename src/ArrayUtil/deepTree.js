@@ -9,13 +9,13 @@ function deepTree(flattenTree) {
 
   // 初始化节点映射
   flattenTree.forEach((node) => {
-    idMap[node.id] = { ...node, children: [] } // 为每个节点添加 children 属性
+    idMap[node.id] = { ...node }
   })
 
   // 构建层级树
   flattenTree.forEach((node) => {
     if (node.parentid && idMap[node.parentid]) {
-      // 如果节点有父节点，将其挂到父节点的 children 上
+      if (!idMap[node.parentid].children) idMap[node.parentid].children = []
       idMap[node.parentid].children.push(idMap[node.id])
     } else {
       // 如果没有父节点，作为顶级节点
