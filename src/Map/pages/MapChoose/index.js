@@ -159,7 +159,7 @@ function MapChoose(
       {/* 缩放控件 */}
       <ZoomControl
         ref={zoomRef}
-        style={{ bottom: readOnly ? '105px' : '135px' }}
+        style={{ bottom: readOnly ? '115px' : '145px' }}
         onZoomIn={(map) => {
           setTimeout(() => {
             console.log('放大', map.getZoom())
@@ -177,7 +177,7 @@ function MapChoose(
       {readOnly ? null : (
         <LocationControl
           ref={locationRef}
-          style={{ bottom: '135px' }}
+          style={{ bottom: '145px' }}
           onChange={(result) => {
             // console.log('定位完成:', result)
             setValue(result)
@@ -199,13 +199,13 @@ function MapChoose(
           onChange && onChange(item)
         }}
         onLoad={(list) => {
-          // 间距调整
-          let bottom = nearbyRef.current.rootDOM.clientHeight
-          if (bottom) {
-            bottom = bottom + 20 + 'px'
-            if (locationRef.current?.rootDOM) locationRef.current.rootDOM.style.bottom = bottom
-            if (zoomRef.current?.rootDOM) zoomRef.current.rootDOM.style.bottom = bottom
-          }
+          // 间距调整, 附件面板的高度在展开后会很高会出问题
+          // let bottom = nearbyRef.current.rootDOM.clientHeight
+          // if (bottom) {
+          //   bottom = bottom + 20 + 'px'
+          //   if (locationRef.current?.rootDOM) locationRef.current.rootDOM.style.bottom = bottom
+          //   if (zoomRef.current?.rootDOM) zoomRef.current.rootDOM.style.bottom = bottom
+          // }
           setPoints(list)
         }}
         {...NearbyControlProps}
