@@ -69,6 +69,7 @@ function MapChoose(
 
   useEffect(() => {
     if (JSON.stringify(externalValue) === JSON.stringify(value)) return
+    debugger
     setValue(externalValue)
     // eslint-disable-next-line
   }, [JSON.stringify(externalValue)])

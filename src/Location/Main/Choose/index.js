@@ -54,7 +54,7 @@ const LocationChoose = forwardRef(
             autoLocation={autoLocation}
             getLocation={getLocation}
             getAddress={getAddress}
-            value={coordsToWgs84(value)}
+            value={value}
             onChange={(newValue) => {
               console.log('修改:', newValue)
               debugger

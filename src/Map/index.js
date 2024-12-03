@@ -1,5 +1,6 @@
 // Utils
 import coordsToWgs84 from './utils/coordsToWgs84'
+import wgs84ToCoords from './utils/wgs84ToCoords'
 import getAddress from './utils/getAddress'
 import getLocation from './utils/getLocation'
 import queryNearby from './utils/queryNearby'
@@ -20,6 +21,7 @@ import MapMarkers from './pages/MapMarkers'
 const Map = {
   // utils
   coordsToWgs84,
+  wgs84ToCoords,
   getAddress,
   getLocation,
   queryNearby,

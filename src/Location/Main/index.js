@@ -1,13 +1,24 @@
 import React, { forwardRef } from 'react'
+import _ from 'lodash'
+
 import Preview from './Preview'
 import Choose from './Choose'
+
+// 内库使用
+import Map from './../../Map'
+
+// 测试使用
+// import { Map } from 'seedsui-react'
+
+const { coordsToWgs84, wgs84ToCoords } = Map
 
 // 地图标注
 const Main = forwardRef(
   (
     {
+      // 显示类型: preview、choose
+      visible,
       config,
-      // 类型: preview、choose
       type,
       autoLocation = true,
       getLocation,
@@ -23,10 +34,15 @@ const Main = forwardRef(
     },
     ref
   ) => {
-    if (type === 'preview') {
+    if (!_.isEmpty(value)) {
+      // eslint-disable-next-line
+      value = coordsToWgs84(value, type)
+    }
+
+    if (visible === 'preview') {
       return <Preview ref={ref} value={value} {...props} />
     }
-    if (type === 'choose') {
+    if (visible === 'choose') {
       return (
         <Choose
           ref={ref}
@@ -35,7 +51,13 @@ const Main = forwardRef(
           getLocation={getLocation}
           getAddress={getAddress}
           value={value}
-          onChange={onChange}
+          onChange={(newValue) => {
+            if (!_.isEmpty(newValue)) {
+              // eslint-disable-next-line
+              newValue = wgs84ToCoords(newValue, type)
+            }
+            onChange && onChange(newValue)
+          }}
           {...props}
         />
       )

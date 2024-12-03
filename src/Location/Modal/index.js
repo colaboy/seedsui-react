@@ -19,6 +19,7 @@ const LocationModal = forwardRef(
       value,
 
       // Main
+      type,
       config,
       getLocation,
       getAddress,
@@ -30,8 +31,8 @@ const LocationModal = forwardRef(
     if (!props.MainProps) {
       props.MainProps = {}
     }
+    if (type) props.MainProps.type = type
     if (config) props.MainProps.config = config
-    if (visible) props.MainProps.type = visible
     if (getLocation) props.MainProps.getLocation = getLocation
     if (getAddress) props.MainProps.getAddress = getAddress
 

@@ -6,7 +6,6 @@ import React, {
   useEffect,
   Fragment
 } from 'react'
-import _ from 'lodash'
 import Modal from './../Modal'
 
 // 测试使用
@@ -373,7 +372,8 @@ const LocationCombo = forwardRef(
         <ModalNode
           config={config}
           portal={portal}
-          value={_.isEmpty(value) ? null : Object.assign({}, value, { type: type })}
+          value={value}
+          type={type}
           visible={modalVisible}
           onVisibleChange={setModalVisible}
           onChange={(newValue) => {
