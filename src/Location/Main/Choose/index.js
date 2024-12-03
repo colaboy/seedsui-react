@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useEffect, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
 // 内库使用
 import Map from './../../../Map'

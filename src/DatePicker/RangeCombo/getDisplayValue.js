@@ -1,4 +1,3 @@
-import getCustomRangeId from './../RangeMain/SelectorMain/getCustomRangeId'
 import getDefaultRangeId from './../RangeMain/SelectorMain/getDefaultRangeId'
 
 // 内库使用
