@@ -1,6 +1,5 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import dayjs from 'dayjs'
-import { useUpdateEffect } from 'ahooks'
 import {
   getTitle,
   formatDrawDate,
@@ -104,10 +103,11 @@ const Calendar = forwardRef(
         })
       }
 
-      // 更新三页数据, 以及选中日期
+      // 更新Y轴位置会读取drawDate, 所以要先更新
+      // eslint-disable-next-line
       drawDate = newDrawDate
 
-      // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
+      // 更新Y轴位置, X轴位置已经固定无需矫正
       if (drawTypeRef.current === 'month') {
         handleSlideY('expand')
       } else {

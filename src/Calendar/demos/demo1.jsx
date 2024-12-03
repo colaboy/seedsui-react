@@ -70,11 +70,11 @@ export default () => {
           }}
           onChange={handleChange}
           onSlideChange={(drawDate, { action, type, monthDates }) => {
-            console.log('视图变化:', drawDate, action, type, monthDates)
+            console.log('视图变化:', action, type)
             setData({ '2024-04-10': '1' })
           }}
           onLoad={(drawDate, { action, type, monthDates }) => {
-            console.log('日历初始化', drawDate, action, type, monthDates)
+            console.log('日历初始化', action, type)
           }}
         />
         <div
