@@ -40,7 +40,7 @@ const Main = forwardRef(
     }
 
     if (visible === 'preview') {
-      return <Preview ref={ref} value={value} {...props} />
+      return <Preview ref={ref} config={config} value={value} {...props} />
     }
     if (visible === 'choose') {
       return (

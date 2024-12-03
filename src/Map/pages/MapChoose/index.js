@@ -124,15 +124,17 @@ function MapChoose(
       }}
     >
       {/* 搜索控件 */}
-      <SearchControl
-        onChange={(item) => {
-          // console.log('选择搜索项:', item)
-          setValue(item)
+      {readOnly ? null : (
+        <SearchControl
+          onChange={(item) => {
+            // console.log('选择搜索项:', item)
+            setValue(item)
 
-          onChange && onChange(item)
-        }}
-        {...SearchControlProps}
-      />
+            onChange && onChange(item)
+          }}
+          {...SearchControlProps}
+        />
+      )}
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
