@@ -1,29 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Bridge, Location, MapUtil, Input } from 'seedsui-react'
 import VConsole from 'vconsole'
-window.getAddressDefault = function (data) {
-  if (data?.value) {
-    console.log(data)
-    return data
-  }
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        longitude: 118.74,
-        latitude: 31.99,
-        province: '江苏',
-        provinceNumber: '',
-        city: '南京',
-        cityNumber: '',
-        district: '建邺',
-        districtNumber: '',
-        street: '街道',
-        streetNumber: '',
-        address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
-      })
-    }, 1000)
-  })
-}
+// window.getAddressDefault = function (data) {
+//   if (data?.value) {
+//     console.log(data)
+//     return data
+//   }
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve({
+//         longitude: 118.74,
+//         latitude: 31.99,
+//         province: '江苏',
+//         provinceNumber: '',
+//         city: '南京',
+//         cityNumber: '',
+//         district: '建邺',
+//         districtNumber: '',
+//         street: '街道',
+//         streetNumber: '',
+//         address: '江苏省南京市建邺区云龙山路88号烽火科技大厦'
+//       })
+//     }, 1000)
+//   })
+// }
 
 export default () => {
   Bridge.debug = true
@@ -55,9 +55,9 @@ export default () => {
           key: '7b6e260fc45a67b31a265e22575f1c5e',
           type: 'bmap'
         }}
-        getLocation={({ type }) => {
-          return { longitude: 116.397451, latitude: 39.909187, type: type }
-        }}
+        // getLocation={({ type }) => {
+        //   return { longitude: 116.397451, latitude: 39.909187, type: type }
+        // }}
         // getAddress={(data) => {
         //   if (data?.value) {
         //     console.log(data)

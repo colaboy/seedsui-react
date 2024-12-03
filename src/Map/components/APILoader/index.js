@@ -43,6 +43,11 @@ const APILoader = forwardRef(
       if (config) {
         window.APILoaderConfig = config
       }
+      // 没有设置config，则读取默认配置
+      else if (window.APILoaderConfig) {
+        // eslint-disable-next-line
+        config = window.APILoaderConfig
+      }
 
       // Load map resource
       let result = await loadSource(config)

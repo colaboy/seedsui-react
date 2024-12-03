@@ -32,7 +32,7 @@ function coordsToWgs84(points, type) {
     return points.map((point) => {
       return getPoint(point, type)
     })
-  } else if (toString.call(points) !== '[object Object]') {
+  } else if (toString.call(points) === '[object Object]') {
     return getPoint(points, type)
   }
   return null

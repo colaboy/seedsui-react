@@ -56,7 +56,8 @@ const LocationChoose = forwardRef(
             getAddress={getAddress}
             value={coordsToWgs84(value)}
             onChange={(newValue) => {
-              console.log('newValue:', newValue)
+              console.log('修改:', newValue)
+              debugger
               onChange && onChange(newValue)
             }}
           />

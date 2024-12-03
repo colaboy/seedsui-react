@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from 'react'
 
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
@@ -26,7 +26,7 @@ function MapChoose(
     getLocation,
     queryNearby,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
-    value: defaultValue,
+    value: externalValue,
     onLoad,
     onChange,
     onMarkerClick,
@@ -57,7 +57,7 @@ function MapChoose(
   const zoomRef = useRef(null)
 
   // Map center and NearbyControl
-  let [value, setValue] = useState(defaultValue)
+  let [value, setValue] = useState(externalValue)
 
   // Marker
   let [points, setPoints] = useState(null)
@@ -66,6 +66,12 @@ function MapChoose(
   useImperativeHandle(ref, () => {
     return mapRef?.current
   })
+
+  useEffect(() => {
+    if (JSON.stringify(externalValue) === JSON.stringify(value)) return
+    setValue(externalValue)
+    // eslint-disable-next-line
+  }, [JSON.stringify(externalValue)])
 
   // 获取当前位置
   async function handleAutoLocation() {
