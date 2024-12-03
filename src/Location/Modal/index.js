@@ -16,6 +16,7 @@ const LocationModal = forwardRef(
     {
       // Modal
       visible,
+      submitProps,
       value,
 
       // Main
@@ -50,7 +51,6 @@ const LocationModal = forwardRef(
       ) : null
     }
 
-    console.log('visible:', visible)
     return (
       <ModalPicker
         ref={ref}
@@ -61,6 +61,10 @@ const LocationModal = forwardRef(
               : locale('查看地址', 'SeedsUI_view_address')
         }}
         {...props}
+        submitProps={{
+          visible: visible === 'choose' ? true : false,
+          ...submitProps
+        }}
         visible={visible}
         value={value}
         className={`map-modal${props.className ? ' ' + props.className : ''}`}
