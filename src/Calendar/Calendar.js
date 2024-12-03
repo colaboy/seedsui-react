@@ -79,13 +79,33 @@ const Calendar = forwardRef(
       }
     })
 
-    // 初始化信息
+    // 修改选中值时需要刷新日历的位置
     useEffect(() => {
+      if (drawDate && JSON.stringify(drawDate) === JSON.stringify(value)) {
+        return
+      }
+
       // 更新pages
-      // eslint-disable-next-line
-      drawDate = formatDrawDate(value, { min, max })
-      drawTypeRef.current = type
-      updatePages(drawDate)
+      let newDrawDate = formatDrawDate(value, { min, max })
+      updatePages(newDrawDate)
+
+      // 第一次加载
+      if (!drawDate) {
+        console.log('onLoad', newDrawDate, {
+          action: 'load',
+          type: drawTypeRef.current,
+          monthDates: pagesRef.current?.[1]?.flat?.() || null
+        })
+        drawTypeRef.current = type
+        onLoad(newDrawDate, {
+          action: 'load',
+          type: drawTypeRef.current,
+          monthDates: pagesRef.current?.[1]?.flat?.() || null
+        })
+      }
+
+      // 更新三页数据, 以及选中日期
+      drawDate = newDrawDate
 
       // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
       if (drawTypeRef.current === 'month') {
@@ -94,22 +114,6 @@ const Calendar = forwardRef(
         handleSlideY('collapse')
       }
 
-      // 加载事件
-      if (onLoad) {
-        onLoad(drawDate, {
-          action: 'load',
-          type: drawTypeRef.current,
-          monthDates: pagesRef.current?.[1]?.flat?.() || null
-        })
-      }
-      // eslint-disable-next-line
-    }, [])
-
-    // 修改选中值时需要刷新日历的位置
-    useUpdateEffect(() => {
-      let newDrawDate = formatDrawDate(value, { min, max })
-      // 更新pages
-      updatePages(newDrawDate)
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
@@ -156,8 +160,10 @@ const Calendar = forwardRef(
     }
 
     // 更新视图后, 触发SlideChange
-    function handleSlideChange(action, newDrawDate) {
-      updatePages(newDrawDate)
+    function triggerSlideChange(action, { drawDate: newDrawDate } = {}) {
+      if (newDrawDate) {
+        updatePages(newDrawDate)
+      }
       if (onSlideChange) {
         onSlideChange(newDrawDate || drawDate, {
           action: action,
@@ -193,7 +199,7 @@ const Calendar = forwardRef(
       }
 
       // Trigger onSlideChange
-      handleSlideChange('previousMonth', newDrawDate)
+      triggerSlideChange('previousMonth', { drawDate: newDrawDate })
     }
     // Next month or week
     async function handleNextMonth(e) {
@@ -217,7 +223,7 @@ const Calendar = forwardRef(
       }
 
       // Trigger onSlideChange
-      handleSlideChange('nextMonth', newDrawDate)
+      triggerSlideChange('nextMonth', { drawDate: newDrawDate })
     }
     // Last year
     function handlePreviousYear(e) {
@@ -233,7 +239,7 @@ const Calendar = forwardRef(
       }
 
       // Trigger onSlideChange
-      handleSlideChange('previousYear', newDrawDate)
+      triggerSlideChange('previousYear', { drawDate: newDrawDate })
     }
     // Next year
     function handleNextYear(e) {
@@ -249,7 +255,7 @@ const Calendar = forwardRef(
       }
 
       // Trigger onSlideChange
-      handleSlideChange('nextYear', newDrawDate)
+      triggerSlideChange('nextYear', { drawDate: newDrawDate })
     }
     // Collapse and expand
     async function handleCollapse() {
@@ -257,14 +263,14 @@ const Calendar = forwardRef(
       drawTypeRef.current = newDrawType
 
       // Trigger onSlideChange
-      handleSlideChange('collapse', drawDate)
+      triggerSlideChange('collapse')
     }
     async function handleExpand() {
       let newDrawType = await handleSlideY('expand')
       drawTypeRef.current = newDrawType
 
       // Trigger onSlideChange
-      handleSlideChange('expand', drawDate)
+      triggerSlideChange('expand')
     }
 
     // 更新三页数据, 以及选中日期
@@ -351,7 +357,15 @@ const Calendar = forwardRef(
 
             // 跨月视图发生变化, 需要触发onSlideChange
             if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
-              handleSlideChange('change', date)
+              // drawDate = newDrawDate
+              triggerSlideChange('change')
+
+              // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
+              // if (drawTypeRef.current === 'month') {
+              //   handleSlideY('expand')
+              // } else {
+              //   handleSlideY('collapse')
+              // }
             }
           }}
           // Event: view change

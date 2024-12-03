@@ -58,10 +58,6 @@ const Body = forwardRef(
       bodyYRef.current = rootRef.current.querySelector('.calendar-body-y')
     }, [])
 
-    useEffect(() => {
-      console.log('更新视力')
-    }, [JSON.stringify(value)])
-
     /* --------------------
     Events handle
     -------------------- */
