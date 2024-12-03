@@ -7,17 +7,15 @@ const Main = forwardRef(
   (
     {
       config,
+      // 类型: preview、choose
+      type,
       autoLocation = true,
-      // 自定义地址逆解析
-      geocoder,
+      getLocation,
+      getAddress,
       // 值: {latitude: '纬度', longitude: '经度', value: '地址'}
       value,
       onChange,
 
-      type, // preview、choose
-
-      // 标注配置
-      markerConfig,
       // 渲染
       footerRender,
 
@@ -26,26 +24,18 @@ const Main = forwardRef(
     ref
   ) => {
     if (type === 'preview') {
-      return (
-        <Preview
-          ref={ref}
-          markerConfig={markerConfig}
-          value={value}
-          footerRender={footerRender}
-          {...props}
-        />
-      )
+      return <Preview ref={ref} value={value} {...props} />
     }
     if (type === 'choose') {
       return (
         <Choose
           ref={ref}
-          markerConfig={markerConfig}
+          config={config}
           autoLocation={autoLocation}
+          getLocation={getLocation}
+          getAddress={getAddress}
           value={value}
           onChange={onChange}
-          geocoder={geocoder}
-          footerRender={footerRender}
           {...props}
         />
       )

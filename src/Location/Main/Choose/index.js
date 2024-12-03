@@ -15,6 +15,8 @@ const LocationChoose = forwardRef(
       config,
       readOnly,
       autoLocation,
+      getLocation,
+      getAddress,
       value,
       onChange,
       // 渲染
@@ -25,15 +27,11 @@ const LocationChoose = forwardRef(
   ) => {
     // 根节点
     const mapRef = useRef(null)
-    const rootRef = useRef(null)
     useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef?.current?.rootDOM,
-        getRootDOM: rootRef?.current?.getRootDOM
-      }
+      return mapRef.current
     })
 
-    console.log('mapRef:', mapRef)
+    console.log('config:', value, config, window.APILoaderConfig)
     return (
       <APILoader
         config={config || window.APILoaderConfig}
@@ -49,11 +47,13 @@ const LocationChoose = forwardRef(
           )
         }}
       >
-        <div ref={rootRef} style={{ position: 'relative', width: '100%', height: '500px' }}>
+        <div style={{ position: 'relative', width: '100%', height: '500px' }}>
           <MapChoose
             ref={mapRef}
             readOnly={readOnly}
             autoLocation={autoLocation}
+            getLocation={getLocation}
+            getAddress={getAddress}
             value={coordsToWgs84(value)}
             onChange={(newValue) => {
               console.log('newValue:', newValue)

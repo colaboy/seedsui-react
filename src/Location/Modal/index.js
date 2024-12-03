@@ -17,11 +17,11 @@ const LocationModal = forwardRef(
       // Modal
       visible,
       value,
-      defaultPickerValue,
-      onError,
 
       // Main
       config,
+      getLocation,
+      getAddress,
       ...props
     },
     ref
@@ -32,6 +32,8 @@ const LocationModal = forwardRef(
     }
     if (config) props.MainProps.config = config
     if (visible) props.MainProps.type = visible
+    if (getLocation) props.MainProps.getLocation = getLocation
+    if (getAddress) props.MainProps.getAddress = getAddress
 
     // 底部
     props.MainProps.footerRender = () => {
