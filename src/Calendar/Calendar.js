@@ -85,7 +85,7 @@ const Calendar = forwardRef(
       // eslint-disable-next-line
       drawDate = formatDrawDate(value, { min, max })
       drawTypeRef.current = type
-      updateDrawDate(drawDate)
+      updatePages(drawDate)
 
       // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
       if (drawTypeRef.current === 'month') {
@@ -108,7 +108,8 @@ const Calendar = forwardRef(
     // 修改选中值时需要刷新日历的位置
     useUpdateEffect(() => {
       let newDrawDate = formatDrawDate(value, { min, max })
-      updateDrawDate(newDrawDate)
+      // 更新pages
+      updatePages(newDrawDate)
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
@@ -156,7 +157,7 @@ const Calendar = forwardRef(
 
     // 更新视图后, 触发SlideChange
     function handleSlideChange(action, newDrawDate) {
-      updateDrawDate(newDrawDate)
+      updatePages(newDrawDate)
       if (onSlideChange) {
         onSlideChange(newDrawDate || drawDate, {
           action: action,
@@ -266,8 +267,8 @@ const Calendar = forwardRef(
       handleSlideChange('expand', drawDate)
     }
 
-    // 更新日期
-    function updateDrawDate(newDrawDate) {
+    // 更新三页数据, 以及选中日期
+    function updatePages(newDrawDate) {
       if (!newDrawDate) {
         // eslint-disable-next-line
         newDrawDate = value || new Date()
@@ -279,8 +280,9 @@ const Calendar = forwardRef(
         drawDate: newDrawDate,
         type: drawTypeRef.current
       })
-      pagesRef.current = pages
 
+      // 更新三页数据, 以及选中日期
+      pagesRef.current = pages
       setDrawDate(newDrawDate)
     }
 
