@@ -52,7 +52,6 @@ function Nearby(
     // 只读、参数不全、加载中则不加载数据
     if (readOnly || !tab?.name || !value?.longitude || !value?.latitude || Loading.exists()) return
 
-    debugger
     loadData()
     // eslint-disable-next-line
   }, [JSON.stringify(tab), JSON.stringify(value)])
@@ -65,7 +64,6 @@ function Nearby(
 
   // 获取附近的点
   async function loadData() {
-    debugger
     Loading.show({
       content: locale('搜索中', 'SeedsUI_searching')
     })

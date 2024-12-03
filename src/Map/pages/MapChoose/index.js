@@ -68,8 +68,14 @@ function MapChoose(
   })
 
   useEffect(() => {
-    if (JSON.stringify(externalValue) === JSON.stringify(value)) return
-    debugger
+    if (
+      externalValue?.latitude === value?.latitude &&
+      externalValue?.longitude === value?.longitude &&
+      externalValue?.address === value?.address
+    ) {
+      return
+    }
+
     setValue(externalValue)
     // eslint-disable-next-line
   }, [JSON.stringify(externalValue)])

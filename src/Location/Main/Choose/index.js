@@ -6,7 +6,7 @@ import Map from './../../../Map'
 // 测试使用
 // import { Map } from 'seedsui-react'
 
-const { APILoader, MapChoose, coordsToWgs84 } = Map
+const { APILoader, MapChoose } = Map
 
 // 地图位置选择
 const LocationChoose = forwardRef(

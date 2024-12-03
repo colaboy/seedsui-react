@@ -17,6 +17,8 @@ import locale from './../../locale'
 
 const { getAddress: defaultGetAddress, getLocation: defaultGetLocation } = Map
 
+// window.APILoaderConfig = { key: '7b6e260fc45a67b31a265e22575f1c5e', type: 'bmap' }
+
 // 定位控件
 const LocationCombo = forwardRef(
   (

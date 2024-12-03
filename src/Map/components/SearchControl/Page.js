@@ -41,7 +41,6 @@ function Page({ map, visible, onVisibleChange, onChange }) {
 
   // 搜索
   async function handleSearch() {
-    debugger
     let inputText = inputRef.current.inputDOM
     let center = map.getCenter()
     Loading.show({
