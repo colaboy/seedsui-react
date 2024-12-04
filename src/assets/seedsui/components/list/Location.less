@@ -13,10 +13,15 @@
   }
 }
 
-// .location-combo, .location-combo-error{
-// }
-.location-combo,
-.location-combo textarea {
+// 加载中时图标不允许点击
+.location-combo.positioning {
+  .location-combo-icon {
+    pointer-events: none;
+  }
+}
+
+.location-combo-positioning,
+.location-combo-positioning textarea {
   color: @secondary;
 }
 .location-combo-error,
@@ -27,6 +32,7 @@
 .location-combo-success textarea {
   color: @link;
 }
+
 .location-combo-icon {
   width: 24px;
   height: 24px;
