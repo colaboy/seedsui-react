@@ -14,8 +14,12 @@
   }
 }
 
-// 子级安全区
-.layout.safe-area:not(:has(> .layout-footer)) > .layout-main {
+// 子级安全区: has兼容性有问题
+// .layout.safe-area:not(:has(> .layout-footer)) > .layout-main {
+//   &:extend(.safe-area all);
+//   &:extend(.safe-area.after all);
+// }
+.layout.safe-area > .layout-main {
   &:extend(.safe-area all);
   &:extend(.safe-area.after all);
 }
