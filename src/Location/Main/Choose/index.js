@@ -18,9 +18,7 @@ const LocationChoose = forwardRef(
       getLocation,
       getAddress,
       value,
-      onChange,
-      // 渲染
-      footerRender
+      onChange
       // ...props
     },
     ref
@@ -31,7 +29,6 @@ const LocationChoose = forwardRef(
       return mapRef.current
     })
 
-    console.log('config:', value, config, window.APILoaderConfig)
     return (
       <APILoader
         config={config || window.APILoaderConfig}
@@ -47,21 +44,18 @@ const LocationChoose = forwardRef(
           )
         }}
       >
-        <div style={{ position: 'relative', width: '100%', height: '500px' }}>
-          <MapChoose
-            ref={mapRef}
-            readOnly={readOnly}
-            autoLocation={autoLocation}
-            getLocation={getLocation}
-            getAddress={getAddress}
-            value={value}
-            onChange={(newValue) => {
-              console.log('修改:', newValue)
-              debugger
-              onChange && onChange(newValue)
-            }}
-          />
-        </div>
+        <MapChoose
+          ref={mapRef}
+          readOnly={readOnly}
+          autoLocation={autoLocation}
+          getLocation={getLocation}
+          getAddress={getAddress}
+          value={value}
+          onChange={(newValue) => {
+            console.log('地址选点:', newValue)
+            onChange && onChange(newValue)
+          }}
+        />
       </APILoader>
     )
   }

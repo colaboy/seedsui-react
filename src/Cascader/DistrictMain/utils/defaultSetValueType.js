@@ -20,7 +20,7 @@ function defaultSetValueType(tabs, config) {
     isStreet
   } = config || {}
   // Array type parameter is invalid
-  if (Array.isArray(tabs) && !tabs.length) {
+  if (!Array.isArray(tabs) || !tabs.length) {
     return null
   }
 
@@ -56,7 +56,7 @@ function defaultSetValueType(tabs, config) {
       continue
     }
 
-    // 不是省市，但在list中，则认为是区；不在list中，则认为是街道(街道在list中, 会有isStreet，所以在isStreet时就返回了)
+    // 获取对应列表中的节点类型
     let type = testNodeData(current, list)
     if (type) {
       current.type = [type]
@@ -66,17 +66,22 @@ function defaultSetValueType(tabs, config) {
     // 有国的情况
     if (testCountry(tabs[0], isCountry)) {
       // 省市将在上面被匹配到
-      // if (index === 1) {
-      //   current.type = ['province']
-      //   continue
-      // }
-      // if (index === 2) {
-      //   current.type = ['city']
-      //   continue
-      // }
+      if (index === 1) {
+        current.type = ['province']
+        continue
+      }
+      if (index === 2) {
+        // 直辖市的下级为区
+        if (tabs[1].type.includes('municipality')) {
+          current.type = ['district']
+        } else {
+          current.type = ['city']
+        }
+        continue
+      }
       if (index === 3) {
         // 直辖市或者直筒子市, 第3级为街道
-        if (tabs[2].type.includes('municipality') || tabs[2].type.includes('prefecture')) {
+        if (tabs[1].type.includes('municipality') || tabs[2].type.includes('prefecture')) {
           current.type = ['street']
         } else {
           current.type = ['district']
@@ -89,17 +94,22 @@ function defaultSetValueType(tabs, config) {
       }
     } else {
       // 省市将在上面被匹配到
-      // if (index === 0) {
-      //   current.type = ['province']
-      //   continue
-      // }
-      // if (index === 1) {
-      //   current.type = ['city']
-      //   continue
-      // }
+      if (index === 0) {
+        current.type = ['province']
+        continue
+      }
+      if (index === 1) {
+        // 直辖市的下级为区
+        if (tabs[0].type.includes('municipality')) {
+          current.type = ['district']
+        } else {
+          current.type = ['city']
+        }
+        continue
+      }
       if (index === 2) {
         // 直辖市或者直筒子市, 第3级为街道
-        if (tabs[1].type.includes('municipality') || tabs[2].type.includes('prefecture')) {
+        if (tabs[0].type.includes('municipality') || tabs[1].type.includes('prefecture')) {
           current.type = ['street']
         } else {
           current.type = ['district']

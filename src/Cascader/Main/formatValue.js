@@ -1,4 +1,4 @@
-// 格式化选中项
+// 格式化选中项, 补充parentid
 function formatValue(value) {
   if (!Array.isArray(value) || !value.length) return null
   for (let [index, item] of value.entries()) {

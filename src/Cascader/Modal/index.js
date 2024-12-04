@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react'
-import formatValue from './../Main/formatValue'
 import Main from './../Main'
 
 // 内库使用
@@ -10,7 +9,7 @@ import ModalPicker from './../../Modal/MainPicker'
 // const ModalPicker = Modal.MainPicker
 
 // Modal
-const Modal = forwardRef(
+const CascaderModal = forwardRef(
   (
     {
       // Main
@@ -43,7 +42,7 @@ const Modal = forwardRef(
             submit(newValue)
           }
         }}
-        value={formatValue(value)}
+        value={value}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
         MainComponent={Main}
       />
@@ -51,4 +50,4 @@ const Modal = forwardRef(
   }
 )
 
-export default Modal
+export default CascaderModal

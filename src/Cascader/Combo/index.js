@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Modal from './../Modal'
+import CascaderModal from './../Modal'
 
 // 内库使用
 import Combo from './../../Modal/Combo'
@@ -26,7 +26,7 @@ const CascaderCombo = forwardRef(
         ref={ref}
         {...props}
         // Modal
-        ModalComponent={Modal}
+        ModalComponent={CascaderModal}
         ModalProps={{
           ...ModalProps,
           list: list,

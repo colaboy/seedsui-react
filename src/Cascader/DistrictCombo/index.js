@@ -1,11 +1,5 @@
-import React, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
-import {
-  updateValueType,
-  getAsyncList,
-  testEditableOptions,
-  defaultSetValueType
-} from './../DistrictMain/utils'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import { updateValueType, testEditableOptions, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用
@@ -44,9 +38,6 @@ const DistrictCombo = forwardRef(
     },
     ref
   ) => {
-    // 获取DistrictMain加载的list
-    let [asyncList, setAsyncList] = useState(list)
-
     // Expose api
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
@@ -57,23 +48,10 @@ const DistrictCombo = forwardRef(
       }
     })
 
-    useEffect(() => {
-      initList()
-      // eslint-disable-next-line
-    }, [])
-
-    async function initList() {
-      if (!_.isEmpty(list)) {
-        return
-      }
-      asyncList = await getAsyncList(loadList)
-      setAsyncList(asyncList)
-    }
-
     // 更新value的type, 截取超出type部分
     function _updateValueType(newValue, newList) {
       let tabs = newValue || value
-      let data = newList || asyncList
+      let data = newList || list
       return updateValueType(tabs, data, {
         type,
         isCountry,
@@ -117,7 +95,7 @@ const DistrictCombo = forwardRef(
         ref={comboRef}
         ModalComponent={DistrictModal}
         ModalProps={{
-          list: asyncList,
+          list,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
           min,
           // 判断是否是国省市区

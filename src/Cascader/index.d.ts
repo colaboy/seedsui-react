@@ -5,7 +5,7 @@ import DistrictCombo from './DistrictCombo'
 import DistrictModal from './DistrictModal'
 import DistrictMain from './DistrictMain'
 // 导出工具
-import districtUtils from './DistrictMain/utils'
+import * as districtUtils from './DistrictMain/utils'
 
 // eslint-disable-next-line
 export default {

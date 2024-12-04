@@ -8,16 +8,15 @@ import React, {
 } from 'react'
 import Modal from './../Modal'
 
-// 测试使用
-// import { locale, Input, Map } from 'seedsui-react'
 // 内库使用
 import Map from './../../Map'
 import Input from './../../Input'
 import locale from './../../locale'
 
-const { getAddress: defaultGetAddress, getLocation: defaultGetLocation } = Map
+// 测试使用
+// import { locale, Input, Map } from 'seedsui-react'
 
-// window.APILoaderConfig = { key: '7b6e260fc45a67b31a265e22575f1c5e', type: 'bmap' }
+const { getAddress: defaultGetAddress, getLocation: defaultGetLocation } = Map
 
 // 定位控件
 const LocationCombo = forwardRef(
@@ -26,14 +25,7 @@ const LocationCombo = forwardRef(
       // 坐标类型
       type = 'gcj02',
       // 地图加载修改
-      config = {
-        // type类型 google, bmap, amap, 默认osm
-        // key: '',
-        // type: 'google'
-        // 百度地图
-        key: '',
-        type: 'bmap'
-      },
+      config,
       // 获取定位和地址工具类
       getAddress,
       getLocation,
@@ -315,7 +307,7 @@ const LocationCombo = forwardRef(
     if (locationStatus === '-1') {
       statusNode = (
         <div
-          className={`input-text ${inputProps?.className || ''} location-combo`}
+          className={`input-text ${inputProps?.className || ''} location-combo-positioning`}
           style={inputProps?.style || {}}
         >
           {loadingText}
@@ -365,9 +357,13 @@ const LocationCombo = forwardRef(
           inputProps={Object.assign({}, inputProps, {
             // 定位中和定位失败时隐藏text框, 显示定位中或者定位失败的div
             visible: statusNode ? false : true,
-            className:
-              'location-combo-success' + (inputProps?.className ? '' + inputProps?.className : '')
+            className: `location-combo-success${
+              inputProps?.className ? ' ' + inputProps?.className : ''
+            }`
           })}
+          className={`location-combo${props?.className ? props.className : ''}${
+            locationStatus === '-1' ? ' positioning' : ''
+          }`}
           ref={rootRef}
         />
         {/* 地图预览与选择 */}

@@ -3,7 +3,6 @@ import { updateValueType, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
-// 默认读取渲染数据window.districtData: [{id: '', name: '', children: []}]
 // 级联选择
 const DistrictMain = forwardRef(
   (

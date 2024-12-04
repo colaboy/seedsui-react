@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 import Footer from './Footer'
 
@@ -28,6 +28,12 @@ const LocationModal = forwardRef(
     },
     ref
   ) => {
+    const modalRef = useRef(null)
+
+    useImperativeHandle(ref, () => {
+      return modalRef.current
+    })
+
     // 扩展非标准属性
     if (!props.MainProps) {
       props.MainProps = {}
@@ -38,28 +44,31 @@ const LocationModal = forwardRef(
     if (getAddress) props.MainProps.getAddress = getAddress
 
     // 底部
-    props.MainProps.footerRender = () => {
-      return visible === 'choose' ? (
-        <Footer
-          onOk={() => {
-            ref.current?.submit?.()
-          }}
-          onClear={() => {
-            ref.current?.submit?.(null)
-          }}
-        />
-      ) : null
+    if (!props.MainProps?.footerRender) {
+      props.MainProps.footerRender = () => {
+        return visible === 'choose' ? (
+          <Footer
+            onOk={() => {
+              modalRef.current?.submit?.()
+            }}
+            onClear={() => {
+              modalRef.current?.submit?.(null)
+            }}
+          />
+        ) : null
+      }
     }
 
     return (
       <ModalPicker
-        ref={ref}
+        ref={modalRef}
         captionProps={{
           caption:
             visible === 'choose'
               ? locale('选择地址', 'SeedsUI_choose_address')
               : locale('查看地址', 'SeedsUI_view_address')
         }}
+        MainComponent={Main}
         {...props}
         submitProps={{
           visible: visible === 'choose' ? true : false,
@@ -68,7 +77,6 @@ const LocationModal = forwardRef(
         visible={visible}
         value={value}
         className={`map-modal${props.className ? ' ' + props.className : ''}`}
-        MainComponent={Main}
       />
     )
   }

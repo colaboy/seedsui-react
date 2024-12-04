@@ -1,4 +1,3 @@
-import getAsyncList from './getAsyncList'
 import defaultSetValueType from './defaultSetValueType'
 import updateValueType from './updateValueType'
 import compareType from './compareType'
@@ -11,7 +10,6 @@ import testNodeData from './testNodeData'
 import testEditableOptions from './testEditableOptions'
 
 export {
-  getAsyncList,
   defaultSetValueType,
   updateValueType,
   compareType,

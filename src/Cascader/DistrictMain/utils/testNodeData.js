@@ -6,11 +6,11 @@ import ArrayUtil from '../../../ArrayUtil'
 
 // 判断是否在list中，在list中被认为是省市区，不在则是街道
 function testNodeData(current, list) {
-  if (!current?.id || !Array.isArray(list) || !list?.length) return false
+  if (!current?.id || !Array.isArray(list) || !list?.length) return null
 
   let node = ArrayUtil.getDeepTreeNode(list, current.id)
   if (node?.isStreet) return 'street'
-  if (node) return 'district'
+  if (node?.isDistrict) return 'district'
   return null
 }
 

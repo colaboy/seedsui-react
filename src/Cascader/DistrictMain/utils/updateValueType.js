@@ -16,6 +16,11 @@ function updateValueType(
     setValueType
   }
 ) {
+  // Array type parameter is invalid
+  if (!Array.isArray(tabs) || !tabs.length) {
+    return null
+  }
+
   // 没有type, 则先获取type
   setValueType(tabs, {
     list: list,

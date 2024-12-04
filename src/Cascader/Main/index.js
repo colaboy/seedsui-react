@@ -4,6 +4,7 @@ import _ from 'lodash'
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
 import formatValue from './formatValue'
+import formatList from './formatList'
 
 import Tabs from './Tabs'
 import ListItem from './ListItem'
@@ -41,8 +42,9 @@ const Main = forwardRef(
     },
     ref
   ) => {
-    // 格式化value: value未传parentid, 补充parentid
+    // 格式化value和list: 补充parentid
     formatValue(value)
+    formatList(externalList)
 
     // 全部tab
     let tabsRef = useRef([])
@@ -164,7 +166,7 @@ const Main = forwardRef(
               break
             }
           }
-          for (let tab of value) {
+          for (let tab of value || []) {
             if (tab && tab.id === lastTab.id) {
               tab.isLeaf = true
               break
