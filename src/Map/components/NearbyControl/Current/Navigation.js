@@ -61,9 +61,9 @@ function Navigation({
   }
 
   return (
-    <span className="mappage-navigation" onClick={handleClick}>
-      <i className="mappage-navigation-icon"></i>
-      <span className="mappage-navigation-text">{locale('导航', 'SeedsUI_navigation')}</span>
+    <span className="map-navigation-button" onClick={handleClick}>
+      <i className="map-navigation-button-icon"></i>
+      <span className="map-navigation-button-text">{locale('导航', 'SeedsUI_navigation')}</span>
     </span>
   )
 }
