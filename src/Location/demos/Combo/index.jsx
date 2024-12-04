@@ -81,8 +81,10 @@ export default () => {
         //     }, 1000)
         //   })
         // }}
-        MainProps={{
-          autoLocation: false
+        ModalProps={{
+          MainProps: {
+            autoLocation: false
+          }
         }}
         // disabled
         allowClear
