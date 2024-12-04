@@ -90,17 +90,13 @@ const Calendar = forwardRef(
 
       // 第一次加载
       if (!drawDate) {
-        console.log('onLoad', newDrawDate, {
-          action: 'load',
-          type: drawTypeRef.current,
-          monthDates: pagesRef.current?.[1]?.flat?.() || null
-        })
         drawTypeRef.current = type
-        onLoad(newDrawDate, {
-          action: 'load',
-          type: drawTypeRef.current,
-          monthDates: pagesRef.current?.[1]?.flat?.() || null
-        })
+        onLoad &&
+          onLoad(newDrawDate, {
+            action: 'load',
+            type: drawTypeRef.current,
+            monthDates: pagesRef.current?.[1]?.flat?.() || null
+          })
       }
 
       // 更新Y轴位置会读取drawDate, 所以要先更新
