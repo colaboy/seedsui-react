@@ -34,8 +34,8 @@ const CascaderModal = forwardRef(
         submitProps={{
           visible: false
         }}
-        MainComponent={Main}
         {...props}
+        MainComponent={props?.MainComponent || Main}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null

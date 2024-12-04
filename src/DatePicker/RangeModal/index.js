@@ -72,8 +72,8 @@ const RangeModal = forwardRef(
     return (
       <ModalPicker
         ref={modalRef}
-        MainComponent={RangeMain}
         {...props}
+        MainComponent={props?.MainComponent || RangeMain}
         onChange={(newValue) => {
           // 隐藏时校验rangeId和日期不匹配, 则清空rangeId
           currentRangeId = matchRangeId(newValue, {

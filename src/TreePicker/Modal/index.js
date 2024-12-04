@@ -9,7 +9,7 @@ import BaseModal from './../../Select/Modal'
 // const BaseModal = Select.Modal
 
 const Modal = forwardRef(({ ...props }, ref) => {
-  return <BaseModal ref={ref} MainComponent={Tree} {...props} />
+  return <BaseModal ref={ref} {...props} MainComponent={props?.MainComponent || Tree} />
 })
 
 export default Modal

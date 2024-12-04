@@ -68,8 +68,8 @@ const LocationModal = forwardRef(
               ? locale('选择地址', 'SeedsUI_choose_address')
               : locale('查看地址', 'SeedsUI_view_address')
         }}
-        MainComponent={Main}
         {...props}
+        MainComponent={props?.MainComponent || Main}
         submitProps={{
           visible: visible === 'choose' ? true : false,
           ...submitProps

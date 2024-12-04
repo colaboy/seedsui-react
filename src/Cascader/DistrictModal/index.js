@@ -132,8 +132,8 @@ const DistrictModal = forwardRef(
         ref={ref}
         visible={visible}
         value={value}
-        MainComponent={DistrictMain}
         {...props}
+        MainComponent={props?.MainComponent || DistrictMain}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null

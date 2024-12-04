@@ -57,10 +57,6 @@ const LocationCombo = forwardRef(
       // Modal
       ModalComponent,
       ModalProps,
-
-      // Main
-      MainComponent,
-      MainProps,
       ...props
     },
     ref
@@ -384,8 +380,6 @@ const LocationCombo = forwardRef(
               onChange && onChange(null)
             }
           }}
-          MainProps={MainProps}
-          MainComponent={MainComponent}
           getAddress={getAddress}
           getLocation={getLocation}
           {...(ModalProps || {})}

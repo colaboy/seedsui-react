@@ -37,8 +37,8 @@ const WeekModal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        MainComponent={WeekMain}
         {...props}
+        MainComponent={props?.MainComponent || WeekMain}
         onBeforeChange={async (currentValue) => {
           // 校验
           if ((min || max) && currentValue) {

@@ -42,9 +42,9 @@ const MultipleCombo = forwardRef(
             separator: separator
           })
         }}
-        ModalComponent={MultipleModal}
         {...props}
         // Modal
+        ModalComponent={props?.ModalComponent || MultipleModal}
         value={value}
         ModalProps={{
           ...ModalProps,

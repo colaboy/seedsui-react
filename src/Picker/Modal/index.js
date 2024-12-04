@@ -32,8 +32,8 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        MainComponent={Main}
         {...props}
+        MainComponent={props?.MainComponent || Main}
         value={formatValue(value || defaultPickerValue)}
         className={`picker-modal${props.className ? ' ' + props.className : ''}`}
       />

@@ -47,8 +47,8 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        MainComponent={MultipleMain}
         {...props}
+        MainComponent={props?.MainComponent || MultipleMain}
         onBeforeChange={async (currentValue) => {
           // 校验
           if (min || max) {

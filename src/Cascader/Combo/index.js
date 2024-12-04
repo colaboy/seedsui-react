@@ -24,9 +24,9 @@ const CascaderCombo = forwardRef(
     return (
       <Combo
         ref={ref}
-        ModalComponent={CascaderModal}
         {...props}
         // Modal
+        ModalComponent={props?.ModalComponent || CascaderModal}
         ModalProps={{
           ...ModalProps,
           list: list,

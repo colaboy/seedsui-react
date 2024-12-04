@@ -10,7 +10,7 @@ import Combo from './../../Select/Combo'
 
 // 树选择
 const TreePickerCombo = forwardRef(({ ...props }, ref) => {
-  return <Combo ref={ref} ModalComponent={Modal} {...props} />
+  return <Combo ref={ref} {...props} ModalComponent={props?.ModalComponent || Modal} />
 })
 
 export default TreePickerCombo

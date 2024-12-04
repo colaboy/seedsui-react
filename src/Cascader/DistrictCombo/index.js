@@ -93,7 +93,6 @@ const DistrictCombo = forwardRef(
     return (
       <Combo
         ref={comboRef}
-        ModalComponent={DistrictModal}
         ModalProps={{
           list,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
@@ -130,6 +129,7 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
+        ModalComponent={props?.ModalComponent || DistrictModal}
         clearProps={{
           ...(props?.clearProps || {}),
           className:

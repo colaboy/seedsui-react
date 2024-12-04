@@ -58,7 +58,6 @@ const RangeCombo = forwardRef(
             separator
           })
         }}
-        ModalComponent={RangeModal}
         {...props}
         // Modal
         value={value}
@@ -67,6 +66,7 @@ const RangeCombo = forwardRef(
           rangeIdRef.current = newRangeId
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
+        ModalComponent={props?.ModalComponent || RangeModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,
