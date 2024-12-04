@@ -58,24 +58,26 @@ const Main = forwardRef(
         className={`map-main${props?.className ? ' ' + props.className : ''}`}
         ref={mainRef}
       >
-        {visible === 'preview' && <Preview ref={mapRef} config={config} value={value} />}
-        {visible === 'choose' && (
-          <Choose
-            ref={mapRef}
-            config={config}
-            autoLocation={autoLocation}
-            getLocation={getLocation}
-            getAddress={getAddress}
-            value={value}
-            onChange={(newValue) => {
-              if (!_.isEmpty(newValue)) {
-                // eslint-disable-next-line
-                newValue = wgs84ToCoords(newValue, type)
-              }
-              onChange && onChange(newValue)
-            }}
-          />
-        )}
+        <div className="map-main-map">
+          {visible === 'preview' && <Preview ref={mapRef} config={config} value={value} />}
+          {visible === 'choose' && (
+            <Choose
+              ref={mapRef}
+              config={config}
+              autoLocation={autoLocation}
+              getLocation={getLocation}
+              getAddress={getAddress}
+              value={value}
+              onChange={(newValue) => {
+                if (!_.isEmpty(newValue)) {
+                  // eslint-disable-next-line
+                  newValue = wgs84ToCoords(newValue, type)
+                }
+                onChange && onChange(newValue)
+              }}
+            />
+          )}
+        </div>
         {footerRender && footerRender()}
       </div>
     )
