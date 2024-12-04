@@ -30,10 +30,10 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
+        MainComponent={Main}
         {...props}
         className={`transfer-modal${props.className ? ' ' + props.className : ''}`}
         value={formatValue(value)}
-        MainComponent={Main}
       />
     )
   }

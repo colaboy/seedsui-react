@@ -34,10 +34,10 @@ const WeekCombo = forwardRef(
         displayValueFormatter={() => {
           return DateUtil.format(value, 'week')
         }}
+        ModalComponent={WeekModal}
         {...props}
         // Modal
         value={value}
-        ModalComponent={WeekModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

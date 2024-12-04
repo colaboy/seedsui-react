@@ -34,6 +34,7 @@ const CascaderModal = forwardRef(
         submitProps={{
           visible: false
         }}
+        MainComponent={Main}
         {...props}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
@@ -44,7 +45,6 @@ const CascaderModal = forwardRef(
         }}
         value={value}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
-        MainComponent={Main}
       />
     )
   }

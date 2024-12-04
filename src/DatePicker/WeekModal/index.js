@@ -37,6 +37,7 @@ const WeekModal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
+        MainComponent={WeekMain}
         {...props}
         onBeforeChange={async (currentValue) => {
           // 校验
@@ -67,7 +68,6 @@ const WeekModal = forwardRef(
         }}
         value={formatValue(value || defaultPickerValue)}
         className={`picker-modal${props.className ? ' ' + props.className : ''}`}
-        MainComponent={WeekMain}
       />
     )
   }

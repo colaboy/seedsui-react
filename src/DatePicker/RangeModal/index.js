@@ -72,6 +72,7 @@ const RangeModal = forwardRef(
     return (
       <ModalPicker
         ref={modalRef}
+        MainComponent={RangeMain}
         {...props}
         onChange={(newValue) => {
           // 隐藏时校验rangeId和日期不匹配, 则清空rangeId
@@ -125,7 +126,6 @@ const RangeModal = forwardRef(
         }}
         value={formatValue(value || defaultPickerValue)}
         className={`picker-modal${props.className ? ' ' + props.className : ''}`}
-        MainComponent={RangeMain}
       />
     )
   }

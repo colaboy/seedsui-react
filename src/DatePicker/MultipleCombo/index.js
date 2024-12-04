@@ -42,10 +42,10 @@ const MultipleCombo = forwardRef(
             separator: separator
           })
         }}
+        ModalComponent={MultipleModal}
         {...props}
         // Modal
         value={value}
-        ModalComponent={MultipleModal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

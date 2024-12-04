@@ -47,6 +47,7 @@ const Modal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
+        MainComponent={Main}
         {...props}
         onBeforeChange={async (currentValue) => {
           // 校验
@@ -77,7 +78,6 @@ const Modal = forwardRef(
         }}
         value={formatValue(value || defaultPickerValue)}
         className={`picker-modal${props.className ? ' ' + props.className : ''}`}
-        MainComponent={Main}
       />
     )
   }

@@ -24,9 +24,9 @@ const PickerCombo = forwardRef(
     return (
       <Combo
         ref={ref}
+        ModalComponent={Modal}
         {...props}
         // Modal
-        ModalComponent={Modal}
         ModalProps={{
           ...ModalProps,
           defaultPickerValue: defaultPickerValue,

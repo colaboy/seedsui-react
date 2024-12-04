@@ -36,10 +36,10 @@ const DatePickerCombo = forwardRef(
         displayValueFormatter={() => {
           return DateUtil.format(value, type)
         }}
+        ModalComponent={Modal}
         {...props}
         // Modal
         value={value}
-        ModalComponent={Modal}
         ModalProps={{
           ...ModalProps,
           hourStep,
