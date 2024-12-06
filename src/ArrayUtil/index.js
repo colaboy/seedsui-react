@@ -4,6 +4,7 @@ import getDeepTreeNodes from './getDeepTreeNodes'
 import getDeepTreeLeafNodes from './getDeepTreeLeafNodes'
 import getDeepTreePredecessorNodes from './getDeepTreePredecessorNodes'
 import setDeepTreeNode from './setDeepTreeNode'
+import setDeepTreeNodes from './setDeepTreeNodes'
 import setDeepTreeLeafNode from './setDeepTreeLeafNode'
 import updateDeepTreeParentId from './updateDeepTreeParentId'
 
@@ -26,6 +27,7 @@ const ArrayUtil = {
   getDeepTreePredecessorNodes,
   setDeepTreeLeafNode,
   setDeepTreeNode,
+  setDeepTreeNodes,
   updateDeepTreeParentId
 
   // flattenTree,

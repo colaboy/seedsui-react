@@ -9,8 +9,8 @@ function testNodeData(current, list) {
   if (!current?.id || !Array.isArray(list) || !list?.length) return null
 
   let node = ArrayUtil.getDeepTreeNode(list, current.id)
-  if (node?.isStreet) return 'street'
-  if (node?.isDistrict) return 'district'
+  if (node?.isStreet || node?.type?.includes?.('street')) return 'street'
+  if (node?.isDistrict || node?.type?.includes?.('district')) return 'district'
   return null
 }
 
