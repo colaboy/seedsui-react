@@ -72,19 +72,25 @@ function initPlugin() {
         return window.L.TileLayer.prototype.getTileUrl.call(this, coords)
       }
     },
-    // wgs84转bd09
+    // 国外不纠，国内wgs84转bd09
     _setZoomTransform: function (level, center, zoom) {
-      // eslint-disable-next-line
-      center = window.L.latLng(
-        GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
-      ) // 采用 gcoord 库进行纠偏
+      // 采用 gcoord 库进行纠偏
+      if (GeoUtil.isInChina([center.lng, center.lat]) === true) {
+        // eslint-disable-next-line
+        center = window.L.latLng(
+          GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
+        )
+      }
       window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
     },
     _getTiledPixelBounds: function (center) {
-      // eslint-disable-next-line
-      center = window.L.latLng(
-        GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
-      ) // 采用 gcoord 库进行纠偏
+      // 采用 gcoord 库进行纠偏
+      if (GeoUtil.isInChina([center.lng, center.lat]) === true) {
+        // eslint-disable-next-line
+        center = window.L.latLng(
+          GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
+        )
+      }
       return window.L.TileLayer.prototype._getTiledPixelBounds.call(this, center)
     }
   })

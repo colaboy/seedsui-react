@@ -28,7 +28,12 @@ import VConsole from 'vconsole'
 export default () => {
   Bridge.debug = true
   const comboRef = useRef(null)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState({
+    longitude: '116.397451',
+    latitude: '39.909187',
+    value: '天安门',
+    address: '天安门'
+  })
   // const [value, setValue] = useState({
   //   errMsg: 'getLocation:ok',
   //   longitude: 118.74,
@@ -55,6 +60,10 @@ export default () => {
           key: '7b6e260fc45a67b31a265e22575f1c5e',
           type: 'bmap'
         }}
+        // config={{
+        //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        //   type: 'google'
+        // }}
         // getLocation={({ type }) => {
         //   return { longitude: 116.397451, latitude: 39.909187, type: type }
         // }}

@@ -16,12 +16,20 @@ export default () => {
   const mapRef = useRef(null)
   // Bridge.debug = true
   let [value, setValue] = useState({
-    // latitude: 39.907783490367706,
-    // longitude: 116.39120737493609,
+    // latitude: 34.007479447064824,
+    // longitude: -118.5000352126432,
+    // type: 'wgs84',
+    // address: '太平洋公园'
+
     latitude: 39.909187,
     longitude: 116.397451,
     type: 'gcj02',
     address: '天安门'
+
+    // latitude: 39.907783490367706,
+    // longitude: 116.39120737493609,
+    // type: 'wgs84',
+    // address: '天安门'
   })
   /*
   useState()
@@ -34,13 +42,13 @@ export default () => {
 
   return (
     <APILoader
+      // config={{
+      //   key: '7b6e260fc45a67b31a265e22575f1c5e',
+      //   type: 'bmap'
+      // }}
       config={{
-        // type类型 google, bmap, amap, 默认osm
-        // key: '',
-        // type: 'google'
-        // 百度地图
-        key: '7b6e260fc45a67b31a265e22575f1c5e',
-        type: 'bmap'
+        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        type: 'google'
       }}
       onSuccess={() => {
         console.log('地图加载成功')
