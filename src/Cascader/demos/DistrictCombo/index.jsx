@@ -97,7 +97,7 @@ export default () => {
 
     // 获取下钻的子级: 同步获取
     let currentNode = ArrayUtil.getDeepTreeNode(list, lastTab.id)
-    if (!_.isEmpty(currentNode.children)) {
+    if (currentNode && !_.isEmpty(currentNode.children)) {
       return currentNode.children
     }
 
@@ -135,16 +135,7 @@ export default () => {
         // submitProps={{
         //   visible: true
         // }}
-        // list={list}
-        loadList={() => {
-          return new Promise((resolve) => {
-            Loading.show()
-            setTimeout(() => {
-              Loading.hide()
-              resolve(list)
-            }, 100)
-          })
-        }}
+        list={list}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
         }}
