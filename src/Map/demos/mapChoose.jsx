@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { Bridge } from 'seedsui-react'
 
 // 内库使用
 import { Map } from 'seedsui-react'
@@ -42,14 +41,14 @@ export default () => {
 
   return (
     <APILoader
-      config={{
-        key: '7b6e260fc45a67b31a265e22575f1c5e',
-        type: 'bmap'
-      }}
       // config={{
-      //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-      //   type: 'google'
+      //   key: '',
+      //   type: 'bmap'
       // }}
+      config={{
+        key: '',
+        type: 'google'
+      }}
       onSuccess={() => {
         console.log('地图加载成功')
       }}
@@ -66,6 +65,7 @@ export default () => {
         <MapChoose
           ref={mapRef}
           readOnly
+          zoom={16}
           value={coordsToWgs84(value)}
           onChange={(newValue) => {
             console.log('newValue:', newValue)

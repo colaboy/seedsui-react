@@ -4,7 +4,7 @@ function setDeepTreeNodes(tree, updateNode) {
     updateNode && updateNode(node)
     if (Array.isArray(node.children) && node.children.length) {
       // 递归查找子节点
-      setDeepTreeNode(node.children, id, updateNode)
+      setDeepTreeNodes(node.children, updateNode)
     }
   }
   return tree
