@@ -42,14 +42,14 @@ export default () => {
 
   return (
     <APILoader
-      // config={{
-      //   key: '7b6e260fc45a67b31a265e22575f1c5e',
-      //   type: 'bmap'
-      // }}
       config={{
-        key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
-        type: 'google'
+        key: '7b6e260fc45a67b31a265e22575f1c5e',
+        type: 'bmap'
       }}
+      // config={{
+      //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+      //   type: 'google'
+      // }}
       onSuccess={() => {
         console.log('地图加载成功')
       }}

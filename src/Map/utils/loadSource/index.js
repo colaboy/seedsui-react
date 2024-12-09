@@ -1,8 +1,7 @@
 import loadLeaflet from './loadLeaflet'
 import loadGoogle from './loadGoogle'
-import loadGoogleMutant from './loadGoogleMutant'
-import loadBMap from './loadBMap'
-import loadBMapLayer from './loadBMapLayer'
+import loadBaidu from './loadBaidu'
+import loadOpenstreet from './loadOpenstreet'
 
 // Load leaflet map source
 async function loadSource(
@@ -23,43 +22,17 @@ async function loadSource(
   // Load google js
   if (options.type === 'google') {
     isOk = await loadGoogle(options?.key)
-    if (typeof isOk === 'string') {
-      return {
-        errCode: 'GOOGLE_LOAD_ERROR',
-        errMsg: isOk
-      }
-    }
-
-    // Load google tileLayer plugin js
-    isOk = await loadGoogleMutant()
-    if (typeof isOk === 'string') {
-      return {
-        errCode: 'GOOGLE_MUTANT_LOAD_ERROR',
-        errMsg: isOk
-      }
-    }
+    return isOk
   }
 
   // Load bmap js
   if (options.type === 'bmap') {
-    isOk = await loadBMap(options?.key)
-    if (typeof isOk === 'string') {
-      return {
-        errCode: 'BMAP_LOAD_ERROR',
-        errMsg: isOk
-      }
-    }
-
-    // Load bmap tileLayer plugin js
-    isOk = await loadBMapLayer()
-    if (typeof isOk === 'string') {
-      return {
-        errCode: 'BMAP_LAYER_LOAD_ERROR',
-        errMsg: isOk
-      }
-    }
+    isOk = await loadBaidu(options?.key)
+    return isOk
   }
 
+  // Load open street
+  await loadOpenstreet()
   return true
 }
 

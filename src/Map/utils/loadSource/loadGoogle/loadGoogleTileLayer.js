@@ -1,8 +1,8 @@
 // 加载google地图leaflet插件
 function loadGoogleMutant() {
   return new Promise((resolve) => {
-    if (window.L?.GridLayer?.GoogleMutant) {
-      resolve(window.L?.GridLayer?.GoogleMutant)
+    if (window.L.tileLayer.currentTileLayer) {
+      resolve(true)
       return
     }
 
@@ -25,7 +25,10 @@ function loadGoogleMutant() {
         if (!result) {
           resolve(`googleMutant地图加载失败`)
         } else {
-          resolve(window.L?.GridLayer?.GoogleMutant)
+          window.L.tileLayer.currentTileLayer = function () {
+            return window.L.gridLayer.googleMutant({ type: 'roadmap' })
+          }
+          resolve(true)
         }
       }
     )

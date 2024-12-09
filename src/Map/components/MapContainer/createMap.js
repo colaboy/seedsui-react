@@ -4,6 +4,10 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     return '请在Map组件需要使用APILoader包裹'
   }
 
+  if (!window.L?.tileLayer?.currentTileLayer) {
+    return '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期'
+  }
+
   // 百度地图最小3
   if (window.BMap && minZoom < 3) {
     // eslint-disable-next-line
@@ -27,7 +31,16 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
   }
 
   map = window.L.map(container, config)
-  return map
+
+  // Add tileLayer
+  let tileLayer = window.L.tileLayer.currentTileLayer()
+  tileLayer.addTo(map)
+
+  return new Promise((resolve) => {
+    tileLayer.on('load', function () {
+      resolve(map)
+    })
+  })
 }
 
 export default createMap

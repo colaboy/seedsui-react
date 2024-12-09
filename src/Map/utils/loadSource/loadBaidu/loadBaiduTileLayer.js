@@ -1,5 +1,5 @@
 // 内库使用
-import GeoUtil from './../../../GeoUtil'
+import GeoUtil from './../../../../GeoUtil'
 
 // 测试使用
 // import { GeoUtil } from 'seedsui-react'
@@ -10,7 +10,7 @@ const mapUrl =
 
 // 加载百度插件
 function loadBMapLayer() {
-  if (window.L.tileLayer.baiduTileLayer) {
+  if (window.L.tileLayer.currentTileLayer) {
     return
   }
 
@@ -95,7 +95,7 @@ function loadBMapLayer() {
   })
 
   // 出口样式
-  window.L.tileLayer.baiduTileLayer = function () {
+  window.L.tileLayer.currentTileLayer = function () {
     return new BaiduTileLayer()
   }
 }

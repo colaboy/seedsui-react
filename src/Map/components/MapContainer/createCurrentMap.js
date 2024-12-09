@@ -5,7 +5,7 @@ import GeoUtil from './../../../GeoUtil'
 // import { GeoUtil } from 'seedsui-react'
 
 // Create bmap,amap,etc map to use invoke api
-async function createCurrentMap(container, { center } = {}) {
+function createCurrentMap(container, { center } = {}) {
   // center for search feature
   let wgs84Center = null
   // Get the first point if array center

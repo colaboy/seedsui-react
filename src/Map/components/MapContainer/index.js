@@ -4,7 +4,6 @@ import { createIcon as createMarkerIcon } from './../Markers'
 import getMapType from './../../utils/getMapType'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
-import createTileLayer from './createTileLayer'
 import injectChildrenProps from './injectChildrenProps'
 import defaultGetAddress from './../../utils/getAddress'
 import defaultGetLocation from './../../utils/getLocation'
@@ -286,12 +285,13 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       // Create leaflet leafletMap
-      leafletMap = createMap(rootRef.current.querySelector('.map-container'), {
+      leafletMap = await createMap(rootRef.current.querySelector('.map-container'), {
         center,
         zoom,
         minZoom,
         maxZoom
       })
+
       let currentMapContainer = rootRef.current.querySelector('.map-api-container')
       // Create bmap,amap,etc current map to use invoke api
       const currentMap = await createCurrentMap(currentMapContainer, {
@@ -307,7 +307,7 @@ const MapContainer = forwardRef(
       }
 
       // Display tile layer
-      await createTileLayer(leafletMap)
+      // await createTileLayer(leafletMap)
 
       // Init leafletMap events
       events()
