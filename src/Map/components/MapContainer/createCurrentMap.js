@@ -1,8 +1,4 @@
-// 内库使用
-import GeoUtil from './../../../GeoUtil'
-
-// 测试使用
-// import { GeoUtil } from 'seedsui-react'
+import coordToFit from '../../utils/coordToFit'
 
 // Create bmap,amap,etc map to use invoke api
 function createCurrentMap(container, { center } = {}) {
@@ -29,12 +25,10 @@ function createCurrentMap(container, { center } = {}) {
   // Init baidu map
   if (window.BMap) {
     wgs84Center = wgs84Center || { longitude: 116.39120737493609, latitude: 39.907783490367706 }
-    let bdPoint = GeoUtil.coordtransform(
-      [wgs84Center.longitude, wgs84Center.latitude],
-      'wgs84',
-      'bd09'
-    )
-    let bmapCenter = new window.BMap.Point(bdPoint[0], bdPoint[1])
+
+    let bdPoint = coordToFit(wgs84Center)
+
+    let bmapCenter = new window.BMap.Point(bdPoint.longitude, bdPoint.latitude)
     currentMap = new window.BMap.Map(container)
     currentMap.centerAndZoom(bmapCenter, 12)
 

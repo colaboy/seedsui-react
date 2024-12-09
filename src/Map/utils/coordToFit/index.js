@@ -4,11 +4,25 @@ import GeoUtil from './../../../GeoUtil'
 // 测试使用
 // import { GeoUtil } from 'seedsui-react'
 
-// 坐标转换
-function coordTransform({ longitude, latitude, from }) {
-  // 转为百度坐标
+// 坐标自动转换
+function coordToFit({ longitude, latitude, from = 'wgs84', to }) {
+  // 定向转换
+  if (from && to) {
+    let coord = GeoUtil.coordtransform([longitude, latitude], from, to)
+    return {
+      longitude: coord[0],
+      latitude: coord[1]
+    }
+  }
+
+  // 自动转换: 在中国转, 国外不转
+  let isInChina = GeoUtil.isInChina([longitude, latitude]) === true
+
+  // 转为百度坐标: 中国转, 国外不转
   if (window.BMap) {
-    let bdPoint = GeoUtil.coordtransform([longitude, latitude], from, 'bd09')
+    let bdPoint = isInChina
+      ? GeoUtil.coordtransform([longitude, latitude], from, 'bd09')
+      : [longitude, latitude]
     // eslint-disable-next-line
     longitude = bdPoint[0]
     // eslint-disable-next-line
@@ -30,7 +44,7 @@ function coordTransform({ longitude, latitude, from }) {
     // eslint-disable-next-line
     latitude = wgs84Point[1]
   }
-  return { longitude, latitude }
+  return { longitude, latitude, isInChina }
 }
 
-export default coordTransform
+export default coordToFit

@@ -47,6 +47,7 @@ const CenterMarker = forwardRef(
       // eslint-disable-next-line
     }, [longitude, latitude])
 
+    // 拖拽过程时显示的点, 拖拽结束隐藏
     return (
       <span
         {...props}

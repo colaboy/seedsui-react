@@ -1,9 +1,10 @@
+import coordToFit from './../coordToFit'
+
 // 内库使用
 import locale from './../../../locale'
-import GeoUtil from './../../../GeoUtil'
 
 // 测试使用
-// import { locale, GeoUtil } from 'seedsui-react'
+// import { locale } from 'seedsui-react'
 
 // 搜索附近, keyword:搜索关键词
 function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
@@ -11,11 +12,10 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
     return null
   }
   return new Promise((resolve) => {
-    let bdPoint = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'bd09')
-    bdPoint = new window.BMap.Point(bdPoint[0], bdPoint[1])
-
+    let centerCoord = coordToFit({ longitude, latitude })
+    let centerPoint = new window.BMap.Point(centerCoord.longitude, centerCoord.latitude)
     // 定位到当前位置
-    map.currentMap.panTo(bdPoint)
+    map.currentMap.panTo(centerPoint)
 
     // 创建本地搜索对象
     let local = new window.BMap.LocalSearch(map.currentMap, {
@@ -29,12 +29,17 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
 
             if (!item.title && !item.address) continue
             // Leaflet only support wgs84
-            let point = GeoUtil.coordtransform([item.point.lng, item.point.lat], 'bd09', 'wgs84')
+            let coord = coordToFit({
+              longitude: item.point.lng,
+              latitude: item.point.lat,
+              from: centerCoord.isInChina ? 'bd09' : 'wgs84',
+              to: 'wgs84'
+            })
             list.push({
               name: item.title,
               address: item.address,
-              longitude: point[0],
-              latitude: point[1]
+              longitude: coord.longitude,
+              latitude: coord.latitude
             })
           }
           resolve(list)
@@ -45,8 +50,8 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
     })
 
     // 搜索附近
-    if (bdPoint && radius) {
-      local.searchNearby(keyword, bdPoint, radius)
+    if (centerPoint && radius) {
+      local.searchNearby(keyword, centerPoint, radius)
     }
     // 搜索全部
     else {

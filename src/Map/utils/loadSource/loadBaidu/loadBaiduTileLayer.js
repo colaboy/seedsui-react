@@ -1,8 +1,4 @@
-// 内库使用
-import GeoUtil from './../../../../GeoUtil'
-
-// 测试使用
-// import { GeoUtil } from 'seedsui-react'
+import coordToFit from './../../coordToFit'
 
 // CRS
 const mapUrl =
@@ -72,24 +68,20 @@ function loadBMapLayer() {
       }
     },
     // 国外不纠，国内wgs84转bd09
-    _setZoomTransform: function (level, center, zoom) {
-      // 采用 gcoord 库进行纠偏
-      if (GeoUtil.isInChina([center.lng, center.lat]) === true) {
-        // eslint-disable-next-line
-        center = window.L.latLng(
-          GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
-        )
-      }
+    _setZoomTransform: function (level, _center, zoom) {
+      let center = coordToFit({
+        longitude: _center.lng,
+        latitude: _center.lat
+      })
+      center = window.L.latLng([center.latitude, center.longitude])
       window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
     },
-    _getTiledPixelBounds: function (center) {
-      // 采用 gcoord 库进行纠偏
-      if (GeoUtil.isInChina([center.lng, center.lat]) === true) {
-        // eslint-disable-next-line
-        center = window.L.latLng(
-          GeoUtil.coordtransform([center.lng, center.lat], 'wgs84', 'bd09').reverse()
-        )
-      }
+    _getTiledPixelBounds: function (_center) {
+      let center = coordToFit({
+        longitude: _center.lng,
+        latitude: _center.lat
+      })
+      center = window.L.latLng([center.latitude, center.longitude])
       return window.L.TileLayer.prototype._getTiledPixelBounds.call(this, center)
     }
   })
