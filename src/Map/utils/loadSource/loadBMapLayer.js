@@ -4,27 +4,26 @@ import GeoUtil from './../../../GeoUtil'
 // 测试使用
 // import { GeoUtil } from 'seedsui-react'
 
-// 百度地图瓦片图层插件
-function loadBMapLayer() {
-  return new Promise((resolve) => {
-    if (!window.L.tileLayer.baiduTileLayer) {
-      initPlugin()
-    }
-    resolve(window.L.tileLayer.baiduTileLayer)
-  })
-}
+// CRS
 const mapUrl =
   'https://maponline{s}.bdimg.com/onlinelabel/?qt=vtile&x={x}&y={y}&z={z}&styles=pl&scaler=2&udt='
 
-// 初始化插件
-function initPlugin() {
+// 加载百度插件
+function loadBMapLayer() {
+  if (window.L.tileLayer.baiduTileLayer) {
+    return
+  }
+
   const projection = window.L.Util.extend({}, window.L.Projection.Mercator, {
-    R: 6378206, //百度椭球赤道半径 a=6378206，相当于在 WGS84 椭球赤道半径上加了 69 米
-    R_MINOR: 6356584.314245179, //百度椭球极半径 b=6356584.314245179，相当于在 WGS84 椭球极半径上减了 168 米
+    // 百度椭球赤道半径 a=6378206，相当于在 WGS84 椭球赤道半径上加了 69 米
+    R: 6378206,
+    // 百度椭球极半径 b=6356584.314245179，相当于在 WGS84 椭球极半径上减了 168 米
+    R_MINOR: 6356584.314245179,
+    // 数据覆盖范围在经度[-180°,180°]，纬度[-85.051129°, 85.051129°]之间
     bounds: new window.L.Bounds(
       [-20037725.11268234, -19994619.55417086],
       [20037725.11268234, 19994619.55417086]
-    ) //数据覆盖范围在经度[-180°,180°]，纬度[-85.051129°, 85.051129°]之间
+    )
   })
 
   window.L.CRS.Baidu = window.L.Util.extend({}, window.L.CRS.Earth, {
@@ -40,7 +39,7 @@ function initPlugin() {
     wrapLng: undefined
   })
 
-  window.L.TileLayer.BaiduTileLayer = window.L.TileLayer.extend({
+  const BaiduTileLayer = window.L.TileLayer.extend({
     initialize: function (options) {
       // eslint-disable-next-line
       options = window.L.extend(
@@ -97,7 +96,7 @@ function initPlugin() {
 
   // 出口样式
   window.L.tileLayer.baiduTileLayer = function () {
-    return new window.L.TileLayer.BaiduTileLayer()
+    return new BaiduTileLayer()
   }
 }
 export default loadBMapLayer

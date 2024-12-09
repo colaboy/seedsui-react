@@ -21,15 +21,15 @@ export default () => {
     // type: 'wgs84',
     // address: '太平洋公园'
 
-    latitude: 39.909187,
-    longitude: 116.397451,
-    type: 'gcj02',
-    address: '天安门'
-
-    // latitude: 39.907783490367706,
-    // longitude: 116.39120737493609,
-    // type: 'wgs84',
+    // latitude: 39.909187,
+    // longitude: 116.397451,
+    // type: 'gcj02',
     // address: '天安门'
+
+    latitude: 39.907783490367706,
+    longitude: 116.39120737493609,
+    type: 'wgs84',
+    address: '天安门'
   })
   /*
   useState()
@@ -65,7 +65,7 @@ export default () => {
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MapChoose
           ref={mapRef}
-          // readOnly
+          readOnly
           value={coordsToWgs84(value)}
           onChange={(newValue) => {
             console.log('newValue:', newValue)
