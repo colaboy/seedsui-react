@@ -306,9 +306,6 @@ const MapContainer = forwardRef(
         return
       }
 
-      // Display tile layer
-      // await createTileLayer(leafletMap)
-
       // Init leafletMap events
       events()
 
