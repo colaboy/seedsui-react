@@ -29,9 +29,19 @@ export default () => {
   Bridge.debug = true
   const comboRef = useRef(null)
   const [value, setValue] = useState({
-    longitude: '116.397451',
-    latitude: '39.909187',
-    value: '天安门',
+    // latitude: 34.007479447064824,
+    // longitude: -118.5000352126432,
+    // type: 'wgs84',
+    // address: '太平洋公园'
+
+    // latitude: 39.909187,
+    // longitude: 116.397451,
+    // type: 'gcj02',
+    // address: '天安门'
+
+    latitude: 39.907783490367706,
+    longitude: 116.39120737493609,
+    type: 'wgs84',
     address: '天安门'
   })
   // const [value, setValue] = useState({
@@ -55,13 +65,13 @@ export default () => {
       <Location.Combo
         // editable
         // 获取定位和地址工具类
-        // type="wgs84"
+        type="gcj02"
         config={{
-          key: '7b6e260fc45a67b31a265e22575f1c5e',
+          key: '',
           type: 'bmap'
         }}
         // config={{
-        //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        //   key: '',
         //   type: 'google'
         // }}
         // getLocation={({ type }) => {
@@ -92,7 +102,8 @@ export default () => {
         // }}
         ModalProps={{
           MainProps: {
-            autoLocation: false
+            autoLocation: false,
+            zoom: 16
           }
         }}
         // disabled

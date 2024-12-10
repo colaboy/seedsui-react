@@ -4,14 +4,6 @@ import _ from 'lodash'
 import Preview from './Preview'
 import Choose from './Choose'
 
-// 内库使用
-import Map from './../../Map'
-
-// 测试使用
-// import { Map } from 'seedsui-react'
-
-const { coordsToWgs84, wgs84ToCoords } = Map
-
 // 地图标注
 const Main = forwardRef(
   (
@@ -21,7 +13,7 @@ const Main = forwardRef(
       allowClear,
 
       config,
-      type,
+      zoom,
       autoLocation = true,
       getLocation,
       getAddress,
@@ -38,11 +30,6 @@ const Main = forwardRef(
   ) => {
     const mainRef = useRef(null)
     const mapRef = useRef(null)
-
-    if (!_.isEmpty(value)) {
-      // eslint-disable-next-line
-      value = coordsToWgs84(value, type)
-    }
 
     useImperativeHandle(ref, () => {
       return {
@@ -64,15 +51,12 @@ const Main = forwardRef(
             <Choose
               ref={mapRef}
               config={config}
+              zoom={zoom}
               autoLocation={autoLocation}
               getLocation={getLocation}
               getAddress={getAddress}
               value={value}
               onChange={(newValue) => {
-                if (!_.isEmpty(newValue)) {
-                  // eslint-disable-next-line
-                  newValue = wgs84ToCoords(newValue, type)
-                }
                 onChange && onChange(newValue)
               }}
             />

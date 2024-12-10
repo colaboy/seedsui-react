@@ -12,8 +12,9 @@ const { APILoader, MapChoose } = Map
 const LocationChoose = forwardRef(
   (
     {
-      config,
       readOnly,
+      config,
+      zoom,
       autoLocation,
       getLocation,
       getAddress,
@@ -47,6 +48,7 @@ const LocationChoose = forwardRef(
         <MapChoose
           ref={mapRef}
           readOnly={readOnly}
+          zoom={zoom}
           autoLocation={autoLocation}
           getLocation={getLocation}
           getAddress={getAddress}

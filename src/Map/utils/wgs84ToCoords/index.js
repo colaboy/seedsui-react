@@ -11,16 +11,16 @@ function getPoint(point, type) {
     return null
   }
   // 无需要转换
-  if (!point.type && !type) return point
+  if (!type) return point
 
   let newPoint = GeoUtil.coordtransform(
     [point.longitude, point.latitude],
-    'wgs84',
-    point.type || type
+    point.type || 'wgs84',
+    type
   )
   return {
     ...point,
-    type: point.type || type,
+    type: type,
     longitude: newPoint[0],
     latitude: newPoint[1]
   }

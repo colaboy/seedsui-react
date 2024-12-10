@@ -41,14 +41,14 @@ export default () => {
 
   return (
     <APILoader
-      // config={{
-      //   key: '',
-      //   type: 'bmap'
-      // }}
       config={{
         key: '',
-        type: 'google'
+        type: 'bmap'
       }}
+      // config={{
+      //   key: '',
+      //   type: 'google'
+      // }}
       onSuccess={() => {
         console.log('地图加载成功')
       }}
@@ -64,7 +64,7 @@ export default () => {
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MapChoose
           ref={mapRef}
-          readOnly
+          // readOnly
           zoom={16}
           value={coordsToWgs84(value)}
           onChange={(newValue) => {

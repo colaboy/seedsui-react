@@ -16,7 +16,12 @@ import locale from './../../locale'
 // 测试使用
 // import { locale, Input, Map } from 'seedsui-react'
 
-const { getAddress: defaultGetAddress, getLocation: defaultGetLocation } = Map
+const {
+  getAddress: defaultGetAddress,
+  getLocation: defaultGetLocation,
+  coordsToWgs84,
+  wgs84ToCoords
+} = Map
 
 // 定位控件
 const LocationCombo = forwardRef(
@@ -124,8 +129,8 @@ const LocationCombo = forwardRef(
       let newValue = value
       if (typeof newValue === 'object' && newValue?.longitude && newValue?.latitude) {
         let addrRes = await getAddress({
-          ...newValue,
-          type: type
+          type: type,
+          ...newValue
         })
         if (addrRes?.address) {
           newValue = {
@@ -366,11 +371,13 @@ const LocationCombo = forwardRef(
         <ModalNode
           config={config}
           portal={portal}
-          value={value}
-          type={type}
+          value={coordsToWgs84(value, type)}
           visible={modalVisible}
           onVisibleChange={setModalVisible}
-          onChange={(newValue) => {
+          onChange={(_newValue) => {
+            // 转坐标
+            let newValue = wgs84ToCoords(_newValue, type)
+
             // 选择地址后，更新显示状态
             if (newValue) {
               updateValue(newValue)
