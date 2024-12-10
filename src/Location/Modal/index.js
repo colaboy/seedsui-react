@@ -1,6 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Main from './../Main'
-import Footer from './Footer'
 
 // 内库使用
 import locale from './../../locale'
@@ -18,6 +17,7 @@ const LocationModal = forwardRef(
       visible,
       submitProps,
       value,
+      footerRender,
 
       // Main
       config,
@@ -40,22 +40,6 @@ const LocationModal = forwardRef(
     if (config) props.MainProps.config = config
     if (getLocation) props.MainProps.getLocation = getLocation
     if (getAddress) props.MainProps.getAddress = getAddress
-
-    // 底部
-    if (!props.MainProps?.footerRender) {
-      props.MainProps.footerRender = () => {
-        return visible === 'choose' ? (
-          <Footer
-            onOk={() => {
-              modalRef.current?.submit?.()
-            }}
-            onClear={() => {
-              modalRef.current?.submit?.(null)
-            }}
-          />
-        ) : null
-      }
-    }
 
     return (
       <ModalPicker

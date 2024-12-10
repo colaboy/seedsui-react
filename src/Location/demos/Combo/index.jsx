@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Bridge, Location, MapUtil, Input } from 'seedsui-react'
 import VConsole from 'vconsole'
+import Footer from './Footer'
 // window.getAddressDefault = function (data) {
 //   if (data?.value) {
 //     console.log(data)
@@ -67,11 +68,11 @@ export default () => {
         // 获取定位和地址工具类
         type="gcj02"
         config={{
-          key: '',
+          key: '7b6e260fc45a67b31a265e22575f1c5e',
           type: 'bmap'
         }}
         // config={{
-        //   key: '',
+        //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
         //   type: 'google'
         // }}
         // getLocation={({ type }) => {
@@ -101,6 +102,18 @@ export default () => {
         //   })
         // }}
         ModalProps={{
+          footer: ({ visible, submit }) => {
+            return visible === 'choose' ? (
+              <Footer
+                onOk={() => {
+                  submit()
+                }}
+                onClear={() => {
+                  submit(null)
+                }}
+              />
+            ) : null
+          },
           MainProps: {
             autoLocation: false,
             zoom: 16

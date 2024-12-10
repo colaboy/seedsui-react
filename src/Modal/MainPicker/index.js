@@ -32,6 +32,9 @@ const MainPicker = forwardRef(
       allowClear,
       onChange,
 
+      // Footer
+      footer,
+
       // 纯渲染时不渲染Main
       children,
       ...props
@@ -169,6 +172,9 @@ const MainPicker = forwardRef(
             }}
           />
         ) : null}
+
+        {/* 底部 */}
+        {footer && footer({ visible, value: currentValue, submit: handleChange })}
       </ModalPicker>
     )
   }

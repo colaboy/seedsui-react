@@ -13,7 +13,7 @@ function bmapGetAddress({ longitude, latitude }) {
     let geocoder = new window.BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {
       let result = {}
-      if (!res.address) {
+      if (!res?.address) {
         resolve(locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
         return
       }

@@ -4,9 +4,9 @@ import React from 'react'
 // import { locale, Layout, Button } from 'seedsui-react'
 
 // 内库使用
-import locale from './../../../locale'
-import Layout from './../../../Layout'
-import Button from './../../../Button'
+import locale from './../../../../locale'
+import Layout from './../../../../Layout'
+import Button from './../../../../Button'
 
 // 底部
 function Foot({ onOk, onClear }) {

@@ -279,10 +279,11 @@ const LocationCombo = forwardRef(
           <i
             key="preview"
             className={`ricon location-combo-icon location-combo-icon-preview${
-              modalVisible === 'preview' ? ' active' : ''
-            }`}
+              _.isEmpty(value) ? ' disabled' : ''
+            }${modalVisible === 'preview' ? ' active' : ''}`}
             onClick={(e) => {
               e.stopPropagation()
+              if (e.currentTarget.classList.contains('disabled')) return
               setModalVisible('preview')
             }}
           ></i>
