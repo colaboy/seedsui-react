@@ -21,8 +21,8 @@ export default () => {
         // year | quarter | month | date | time | datetime | week
         type="week"
         // separator="to"
-        disabledStart
-        disabledEnd
+        // disabledStart
+        // disabledEnd
         allowClear
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
@@ -97,14 +97,14 @@ export default () => {
         //   ]
         // }}
         min={new Date()}
-        max={new Date('2025-1-1')}
+        // max={new Date('2025-1-1')}
         hourStep={5}
         minuteStep={5}
         value={value}
         defaultPickerValue={[new Date('2022-08-22 00:00'), new Date('2022-09-22 12:12')]}
-        onError={(error) => {
-          console.log(error)
-        }}
+        // onError={(error) => {
+        //   console.log(error)
+        // }}
         onBeforeChange={(newValue, newArguments) => {
           console.log('修改前:', newValue, newArguments)
           return true

@@ -17,7 +17,7 @@ export default () => {
         // style={{ height: 215, overflow: 'hidden', backgroundColor: 'white' }}
         defaultPickerValue={new Date('2022-08-22 00:00')}
         min={new Date()}
-        max={new Date('2024-12-12')}
+        // max={new Date('2025-12-12')}
         // year | quarter | month | date | time | datetime | week
         type="week"
         hourStep={5}
