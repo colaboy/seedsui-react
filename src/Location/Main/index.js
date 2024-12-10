@@ -1,5 +1,4 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import _ from 'lodash'
 
 import Preview from './Preview'
 import Choose from './Choose'
