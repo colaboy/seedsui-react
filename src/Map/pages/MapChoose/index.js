@@ -109,6 +109,17 @@ function MapChoose(
     onChange && onChange(newValue)
   }
 
+  const handleLoadRef = useRef(null)
+  handleLoadRef.current = function (map) {
+    // value没值时，开启自动定位，则先定位
+    if (typeof map === 'string') return
+    onLoad && onLoad(map)
+
+    // 当前位置
+    if (readOnly || !autoLocation) return
+    handleAutoLocation()
+  }
+
   return (
     <MapContainer
       // api
@@ -124,13 +135,7 @@ function MapChoose(
       queryNearby={queryNearby}
       {...props}
       onLoad={(map) => {
-        // value没值时，开启自动定位，则先定位
-        if (typeof map === 'string') return
-        onLoad && onLoad(map)
-
-        // 当前位置
-        if (readOnly || !autoLocation) return
-        handleAutoLocation()
+        handleLoadRef.current(map)
       }}
     >
       {/* 搜索控件 */}
