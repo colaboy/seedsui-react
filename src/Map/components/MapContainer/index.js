@@ -284,6 +284,11 @@ const MapContainer = forwardRef(
 
     // Load data
     async function loadData() {
+      if (!rootRef.current?.querySelector) {
+        setLeafletMap(locale('No Container'))
+        return
+      }
+
       // Create leaflet leafletMap
       leafletMap = await createMap(rootRef.current.querySelector('.map-container'), {
         center,
