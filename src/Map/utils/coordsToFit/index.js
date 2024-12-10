@@ -51,10 +51,10 @@ function coordToFit({ longitude, latitude, from = 'wgs84', to }) {
 function coordsToFit(coords) {
   if (Array.isArray(coords) && coords.length) {
     return coords.map((coord) => {
-      return coordToFit(coord, type)
+      return coordToFit(coord)
     })
   } else if (toString.call(coords) === '[object Object]') {
-    return coordToFit(coords, type)
+    return coordToFit(coords)
   }
   return null
 }
