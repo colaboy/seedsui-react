@@ -1,4 +1,4 @@
-import coordToFit from './../../coordToFit'
+import coordsToFit from './../../coordsToFit'
 
 // CRS
 const mapUrl =
@@ -69,7 +69,7 @@ function loadBMapLayer() {
     },
     // 国外不纠，国内wgs84转bd09
     _setZoomTransform: function (level, _center, zoom) {
-      let center = coordToFit({
+      let center = coordsToFit({
         longitude: _center.lng,
         latitude: _center.lat
       })
@@ -77,7 +77,7 @@ function loadBMapLayer() {
       window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
     },
     _getTiledPixelBounds: function (_center) {
-      let center = coordToFit({
+      let center = coordsToFit({
         longitude: _center.lng,
         latitude: _center.lat
       })

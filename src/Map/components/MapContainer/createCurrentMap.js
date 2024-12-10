@@ -1,4 +1,4 @@
-import coordToFit from '../../utils/coordToFit'
+import coordsToFit from '../../utils/coordsToFit'
 
 // Create bmap,amap,etc map to use invoke api
 function createCurrentMap(container, { center } = {}) {
@@ -26,7 +26,7 @@ function createCurrentMap(container, { center } = {}) {
   if (window.BMap) {
     wgs84Center = wgs84Center || { longitude: 116.39120737493609, latitude: 39.907783490367706 }
 
-    let bdPoint = coordToFit(wgs84Center)
+    let bdPoint = coordsToFit(wgs84Center)
 
     let bmapCenter = new window.BMap.Point(bdPoint.longitude, bdPoint.latitude)
     currentMap = new window.BMap.Map(container)

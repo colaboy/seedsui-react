@@ -47,4 +47,16 @@ function coordToFit({ longitude, latitude, from = 'wgs84', to }) {
   return { longitude, latitude, isInChina }
 }
 
-export default coordToFit
+// 国内转gcj02, 国外转wgs84
+function coordsToFit(coords) {
+  if (Array.isArray(coords) && coords.length) {
+    return coords.map((coord) => {
+      return coordToFit(coord, type)
+    })
+  } else if (toString.call(coords) === '[object Object]') {
+    return coordToFit(coords, type)
+  }
+  return null
+}
+
+export default coordsToFit

@@ -1,4 +1,4 @@
-import coordToFit from './../coordToFit'
+import coordsToFit from './../coordsToFit'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
@@ -19,7 +19,7 @@ async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' 
   }
 
   // 坐标转换
-  let { longitude, latitude } = coordToFit({ longitude: lng, latitude: lat, from: type })
+  let { longitude, latitude } = coordsToFit({ longitude: lng, latitude: lat, from: type })
 
   if (window.google) {
     result = await googleGetAddress({ longitude, latitude })
