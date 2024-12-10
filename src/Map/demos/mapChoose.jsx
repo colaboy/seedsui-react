@@ -25,10 +25,15 @@ export default () => {
     // type: 'gcj02',
     // address: '天安门'
 
-    latitude: 39.907783490367706,
-    longitude: 116.39120737493609,
-    type: 'wgs84',
-    address: '天安门'
+    // latitude: 39.907783490367706,
+    // longitude: 116.39120737493609,
+    // type: 'wgs84',
+    // address: '天安门'
+
+    latitude: 31.990374883871525,
+    longitude: 118.73769931504451,
+    type: 'gcj02',
+    address: '南京烽火科技'
   })
   /*
   useState()

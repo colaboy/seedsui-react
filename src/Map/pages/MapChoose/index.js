@@ -26,7 +26,7 @@ function MapChoose(
     getLocation,
     queryNearby,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
-    value: externalValue,
+    value,
     onLoad,
     onChange,
     onMarkerClick,
@@ -56,9 +56,6 @@ function MapChoose(
   // 放大缩小
   const zoomRef = useRef(null)
 
-  // Map center and NearbyControl
-  let [value, setValue] = useState(externalValue)
-
   // Marker
   let [points, setPoints] = useState(null)
 
@@ -67,36 +64,49 @@ function MapChoose(
     return mapRef?.current
   })
 
-  useEffect(() => {
-    if (
-      externalValue?.latitude === value?.latitude &&
-      externalValue?.longitude === value?.longitude &&
-      externalValue?.address === value?.address
-    ) {
+  // 获取当前位置
+  async function handleAutoLocation() {
+    if (value?.longitude && value?.latitude && value?.address) {
       return
     }
 
-    setValue(externalValue)
-    // eslint-disable-next-line
-  }, [JSON.stringify(externalValue)])
+    let newValue = value ? { ...value } : null
 
-  // 获取当前位置
-  async function handleAutoLocation() {
     // 默认选中当前位置
-    Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
-    let result = await mapRef.current?.getLocation?.()
-    result = await mapRef.current?.getAddress?.(result)
-    Loading.hide()
-
-    if (typeof result === 'string') {
-      Toast.show({
-        content: result
-      })
-    } else {
-      setValue(result)
-
-      onChange && onChange(result)
+    if (!newValue?.longitude || !newValue?.latitude) {
+      Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
+      let result = await mapRef.current?.getLocation?.()
+      Loading.hide()
+      if (typeof result === 'string') {
+        Toast.show({
+          content: result
+        })
+        return
+      }
+      newValue = {
+        ...(newValue || {}),
+        ...result
+      }
     }
+
+    // 获取地址
+    if (!newValue?.address) {
+      Loading.show({ content: locale('获取地址中...', 'SeedsUI_getting_address') })
+      let result = await mapRef.current?.getAddress?.(newValue)
+      Loading.hide()
+      if (typeof result === 'string') {
+        Toast.show({
+          content: result
+        })
+        return
+      }
+      newValue = {
+        ...(newValue || {}),
+        ...result
+      }
+    }
+
+    onChange && onChange(newValue)
   }
 
   return (
@@ -119,7 +129,7 @@ function MapChoose(
         onLoad && onLoad(map)
 
         // 当前位置
-        if (readOnly || !autoLocation || value?.address) return
+        if (readOnly || !autoLocation) return
         handleAutoLocation()
       }}
     >
@@ -127,9 +137,6 @@ function MapChoose(
       {readOnly ? null : (
         <SearchControl
           onChange={(item) => {
-            // console.log('选择搜索项:', item)
-            setValue(item)
-
             onChange && onChange(item)
           }}
           {...SearchControlProps}
@@ -153,8 +160,6 @@ function MapChoose(
                 Loading.show({ content: locale('获取地址中...', 'SeedsUI_getting_address') })
                 result = await map.getAddress(result)
                 Loading.hide()
-
-                setValue(result)
 
                 onChange && onChange(result)
               }
@@ -188,9 +193,6 @@ function MapChoose(
           ref={locationRef}
           style={{ bottom: '145px' }}
           onChange={(result) => {
-            // console.log('定位完成:', result)
-            setValue(result)
-
             onChange && onChange(result)
           }}
           {...LocationControlProps}

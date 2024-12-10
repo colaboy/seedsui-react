@@ -69,6 +69,14 @@ const MainPicker = forwardRef(
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
+    // 隐藏时恢复选值
+    useEffect(() => {
+      if (!visible) {
+        setCurrentValue(value)
+      }
+      // eslint-disable-next-line
+    }, [visible])
+
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
       if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {

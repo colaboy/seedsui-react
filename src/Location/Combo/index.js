@@ -67,6 +67,13 @@ const LocationCombo = forwardRef(
     },
     ref
   ) => {
+    let address = value?.value || value?.address
+    // 格式化值
+    if (address && (!value?.value || !value?.address)) {
+      value.address = address
+      value.value = address
+    }
+
     // 获取定位和地址工具类
     // eslint-disable-next-line
     if (typeof getAddress !== 'function') getAddress = defaultGetAddress
@@ -208,7 +215,10 @@ const LocationCombo = forwardRef(
     }
 
     // Update new value
-    function updateValue(newValue) {
+    function updateValue(_newValue) {
+      // 转为国测局坐标
+      let newValue = wgs84ToCoords(_newValue, type)
+
       // 定位失败
       if (!newValue || typeof newValue === 'string') {
         errMsgRef.current = typeof newValue === 'string' ? newValue : failText
