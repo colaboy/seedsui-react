@@ -64,10 +64,11 @@ const MainPicker = forwardRef(
       }
     })
 
-    useEffect(() => {
-      setCurrentValue(value)
-      // eslint-disable-next-line
-    }, [JSON.stringify(value)])
+    // 不能加此更新, 因为Cascader组件会改原对象, 加isLeaf, 导致每次改动都会触发
+    // useEffect(() => {
+    //   setCurrentValue(value)
+    //   // eslint-disable-next-line
+    // }, [JSON.stringify(value)])
 
     // 隐藏时恢复选值
     useEffect(() => {

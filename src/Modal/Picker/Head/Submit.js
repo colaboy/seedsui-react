@@ -1,5 +1,10 @@
 import React from 'react'
+
+// 内库使用
 import locale from './../../../locale'
+
+// 测试使用
+// import { locale } from 'seedsui-react'
 
 const Submit = ({ submitProps, onSubmitClick }) => {
   let {

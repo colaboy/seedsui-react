@@ -47,7 +47,7 @@ const DistrictMain = forwardRef(
       })
     }
 
-    // 点击选项前判断是否指定类型: 省, 市, 区, otherArguments: { list: externalList }
+    // 点击选项前判断是否指定类型和isLeaf
     async function handleSelect(tabs) {
       if (!Array.isArray(tabs) || !tabs.length) {
         return tabs
@@ -66,6 +66,7 @@ const DistrictMain = forwardRef(
         return true
       }
 
+      // 末级增加isLeaf
       _updateValueType(tabs)
 
       return tabs

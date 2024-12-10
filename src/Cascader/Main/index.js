@@ -66,7 +66,9 @@ const Main = forwardRef(
         //   return value
         // },
         // 更新数据
-        update: update
+        update: update,
+        // 设置叶子节点标识
+        updateIsLeaf: updateIsLeaf
       }
     })
 
@@ -121,13 +123,17 @@ const Main = forwardRef(
       setList(newList)
     }
 
+    // 设置叶子节点
+    function updateIsLeaf(list, id) {
+      ArrayUtil.setDeepTreeNode(list, id, (node) => {
+        node.isLeaf = true
+      })
+      return list
+    }
+
     // 获取指定级别的列表数据
     async function getChildrenList(tabs, config) {
-      let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
-      let lastTab =
-        Array.isArray(requestTabs) && requestTabs.length
-          ? requestTabs[requestTabs.length - 1]
-          : null
+      let lastTab = Array.isArray(tabs) && tabs.length ? tabs[tabs.length - 1] : null
 
       // 初次渲染列表, 没有选中项
       if (!lastTab?.id) {
@@ -140,7 +146,7 @@ const Main = forwardRef(
       // 无children, 动态获取子级
       if (!newList) {
         if (typeof loadData === 'function') {
-          newList = await loadData(requestTabs, { list: externalList })
+          newList = await loadData(tabs, { list: externalList })
         }
 
         // 接口报错
@@ -159,23 +165,10 @@ const Main = forwardRef(
         }
         // 无值则为叶子节点
         else if (newList === null) {
-          // 标识isLeaf
-          for (let tab of tabs) {
-            if (tab && tab.id === lastTab.id) {
-              tab.isLeaf = true
-              break
-            }
-          }
-          for (let tab of value || []) {
-            if (tab && tab.id === lastTab.id) {
-              tab.isLeaf = true
-              break
-            }
-          }
-          ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-            node.isLeaf = true
-          })
-          return getChildrenList(tabs)
+          updateIsLeaf(externalList, lastTab.id)
+          updateIsLeaf(tabs, lastTab.id)
+          updateIsLeaf(value, lastTab.id)
+          return newList
         }
         // 有值则为子项, 添加到原始list中
         else {
