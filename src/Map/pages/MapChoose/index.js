@@ -1,4 +1,4 @@
-import React, { useRef, useState, forwardRef, useImperativeHandle, useEffect } from 'react'
+import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useRef, useImperativeHandle, useEffect } from 'react'
+import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import ModalPicker from './../Picker'
 
 // MainPicker
