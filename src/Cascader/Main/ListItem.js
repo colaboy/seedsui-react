@@ -1,11 +1,12 @@
 import React, { Fragment, forwardRef } from 'react'
 
 // 内库使用
+import locale from '../../locale'
 import Notice from './../../Notice'
 import IndexBar from './../../IndexBar'
 
 // 测试使用
-// import { Notice, IndexBar } from 'seedsui-react'
+// import { locale, Notice, IndexBar } from 'seedsui-react'
 
 const ListItem = forwardRef(
   (
@@ -22,6 +23,11 @@ const ListItem = forwardRef(
   ) => {
     // 显示分栏
     const indexs = {}
+
+    if (Array.isArray(list) && !list.length) {
+      // eslint-disable-next-line
+      list = locale('暂无数据', 'SeedsUI_no_data')
+    }
 
     return (
       <div

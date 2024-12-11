@@ -3,8 +3,6 @@ import _ from 'lodash'
 
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
-import formatValue from './formatValue'
-import formatList from './formatList'
 
 import Tabs from './Tabs'
 import ListItem from './ListItem'
@@ -42,10 +40,6 @@ const Main = forwardRef(
     },
     ref
   ) => {
-    // 格式化value和list: 补充parentid
-    formatValue(value)
-    formatList(externalList)
-
     // 全部tab
     let tabsRef = useRef([])
 
@@ -133,7 +127,11 @@ const Main = forwardRef(
 
     // 获取指定级别的列表数据
     async function getChildrenList(tabs, config) {
-      let lastTab = Array.isArray(tabs) && tabs.length ? tabs[tabs.length - 1] : null
+      let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
+      let lastTab =
+        Array.isArray(requestTabs) && requestTabs.length
+          ? requestTabs[requestTabs.length - 1]
+          : null
 
       // 初次渲染列表, 没有选中项
       if (!lastTab?.id) {
@@ -146,7 +144,7 @@ const Main = forwardRef(
       // 无children, 动态获取子级
       if (!newList) {
         if (typeof loadData === 'function') {
-          newList = await loadData(tabs, { list: externalList })
+          newList = await loadData(requestTabs, { list: externalList })
         }
 
         // 接口报错
