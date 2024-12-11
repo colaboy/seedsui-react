@@ -1,3 +1,5 @@
+import defaultCountryCenter from './defaultCountryCenter'
+
 // Create leaflet map
 function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) {
   if (!window.L) {
@@ -16,6 +18,18 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
 
   let map = null
 
+  let centerPoint = []
+  if (center?.latitude && center?.longitude) {
+    centerPoint = [center?.latitude, center?.longitude]
+  }
+  // 中国默认天安门
+  else if (window.BMap) {
+    centerPoint = [defaultCountryCenter['zh_CN'].latitude, defaultCountryCenter['zh_CN'].longitude]
+  }
+  // 国外默认白宫
+  else {
+    centerPoint = [defaultCountryCenter['other'].latitude, defaultCountryCenter['other'].longitude]
+  }
   // Init leaflet map
   let config = {
     attributionControl: false, // 隐藏版权控件
@@ -23,7 +37,7 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     maxZoom: maxZoom,
     minZoom: minZoom,
     zoom: zoom,
-    center: [center?.latitude || 53.895658919017706, center?.longitude || -132.7236492753227]
+    center: centerPoint
   }
   // 百度tile layer插件
   if (window?.L?.CRS?.Baidu) {

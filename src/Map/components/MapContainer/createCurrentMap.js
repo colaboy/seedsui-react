@@ -1,4 +1,5 @@
 import coordsToFit from '../../utils/coordsToFit'
+import defaultCountryCenter from './defaultCountryCenter'
 
 // Create bmap,amap,etc map to use invoke api
 function createCurrentMap(container, { center } = {}) {
@@ -24,7 +25,7 @@ function createCurrentMap(container, { center } = {}) {
 
   // Init baidu map
   if (window.BMap) {
-    wgs84Center = wgs84Center || { longitude: 116.39120737493609, latitude: 39.907783490367706 }
+    wgs84Center = wgs84Center || defaultCountryCenter['zh_CN']
 
     let bdPoint = coordsToFit(wgs84Center)
 
@@ -42,7 +43,7 @@ function createCurrentMap(container, { center } = {}) {
   }
   // Init google map
   else if (window.google) {
-    wgs84Center = wgs84Center || { longitude: 51.508742, latitude: -0.12085 }
+    wgs84Center = wgs84Center || defaultCountryCenter['other']
     let googleCenter = new window.google.maps.LatLng(wgs84Center.longitude, wgs84Center.latitude)
 
     currentMap = new window.google.maps.Map(container, {

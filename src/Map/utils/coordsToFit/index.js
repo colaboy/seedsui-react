@@ -5,6 +5,12 @@ import GeoUtil from './../../../GeoUtil'
 // import { GeoUtil } from 'seedsui-react'
 
 // 坐标自动转换
+/*
+绘制地图瓦片: 1.国内百度, 转为bd09坐标绘制; 2.国内高德与google转为gcj02坐标绘制; 3.国外一律使用默认的wgs84绘制;
+leaflet绘制点L.marker: 一律使用wgs84绘制
+搜索附近: 1.国内百度, 由bd09转为wgs84; 2.国内高德和google由gcj02转为wgs84; 3.国外一律不用转, 默认返回都是wgs84;
+定位: 一律获取wgs84坐标位置
+*/
 function coordToFit({ longitude, latitude, from = 'wgs84', to }) {
   // 定向转换
   if (from && to) {

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Bridge, Location, MapUtil, Input } from 'seedsui-react'
+import { Bridge, Location, Input } from 'seedsui-react'
 import VConsole from 'vconsole'
 import Footer from './Footer'
 // window.getAddressDefault = function (data) {
@@ -73,11 +73,11 @@ export default () => {
         // 获取定位和地址工具类
         type="gcj02"
         config={{
-          key: '7b6e260fc45a67b31a265e22575f1c5e',
+          key: '',
           type: 'bmap'
         }}
         // config={{
-        //   key: 'AIzaSyDy9St7a2h8cZVCof5sEITCxjPhE0llfCo',
+        //   key: '',
         //   type: 'google'
         // }}
         // getLocation={({ type }) => {
