@@ -119,9 +119,31 @@ const Main = forwardRef(
 
     // 设置叶子节点
     function updateIsLeaf(list, id) {
+      // 更新当前列表叶子节点
       ArrayUtil.setDeepTreeNode(list, id, (node) => {
         node.isLeaf = true
       })
+
+      // 更新总列表叶子节点
+      ArrayUtil.setDeepTreeNode(externalList, id, (node) => {
+        node.isLeaf = true
+      })
+
+      // 更新value叶子节点
+      for (let tab of value || []) {
+        if (tab && tab.id === id) {
+          tab.isLeaf = true
+          break
+        }
+      }
+
+      // 更新tabs叶子节点
+      for (let tab of tabsRef.current || []) {
+        if (tab && tab.id === id) {
+          tab.isLeaf = true
+          break
+        }
+      }
       return list
     }
 
@@ -159,17 +181,15 @@ const Main = forwardRef(
             setActiveTab(lastTab)
             setList(errMsg)
           }
-          return null
+          return false
         }
         // 无值则为叶子节点
         else if (newList === null) {
-          updateIsLeaf(externalList, lastTab.id)
           updateIsLeaf(tabs, lastTab.id)
-          updateIsLeaf(value, lastTab.id)
-          return newList
+          return null
         }
-        // 有值则为子项, 添加到原始list中
-        else {
+        // 若当前项不为叶子节点, 有值则为子项, 添加到原始list中
+        else if (!lastTab.isLeaf) {
           ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
             node.children = newList
           })
@@ -208,24 +228,23 @@ const Main = forwardRef(
       }
 
       // 不是末级节点, 则获取下级列表, 补充标识: value中的isLeaf和externalList中的children
-      let newList = null
       if (!newValue[newValue.length - 1].isLeaf) {
-        newList = await getChildrenList(newValue, {
+        let isOK = await getChildrenList(newValue, {
           onError: (error) => {
             Toast.show({
               content: error.errMsg
             })
           }
         })
-        if (!newList) return
+        if (isOK === false) return
       }
 
       onChange && onChange(newValue, { list: externalList })
 
       // 如果值未发生变化不会触发useEffect更新, 需要强制更新, 否则列表和activeTab不会更新
-      if (JSON.stringify(newValue) === JSON.stringify(value)) {
-        update()
-      }
+      // if (JSON.stringify(newValue) === JSON.stringify(value)) {
+      //   update()
+      // }
     }
 
     function getTabsNode() {
