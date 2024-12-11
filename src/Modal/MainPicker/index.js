@@ -42,10 +42,10 @@ const MainPicker = forwardRef(
     ref
   ) => {
     // 当前标题，如日期
-    let [currentTitle, setCurrentTitle] = useState('')
+    let [currentTitle, setCurrentTitle] = useState(undefined)
 
     // 当前选中项, 默认不能为value, 因为子组件Main先执行, Cascader.DistrictCombo中: 无值update同步加载, 有值在update异步加载, 先有值再无值会导致setList的顺序先set无值, 再set有值
-    let [currentValue, setCurrentValue] = useState(null)
+    let [currentValue, setCurrentValue] = useState(undefined)
 
     // 节点
     const modalRef = useRef(null)

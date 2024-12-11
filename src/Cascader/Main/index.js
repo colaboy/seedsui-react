@@ -69,6 +69,7 @@ const Main = forwardRef(
     // 初始化tabs、选中tab、列表
     useEffect(() => {
       if (
+        value === undefined ||
         !visible ||
         !Array.isArray(externalList) ||
         !externalList.length ||

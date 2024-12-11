@@ -18,6 +18,7 @@ export default () => {
           ref={transferRef}
           className="border-b"
           placeholder="Select"
+          allowClear
           list={[
             { id: '1', name: '1' },
             { id: '2', name: '2' },
