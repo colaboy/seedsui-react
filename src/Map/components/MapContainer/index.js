@@ -57,6 +57,9 @@ const MapContainer = forwardRef(
 
     const rootRef = useRef(null)
 
+    // Latest center coordinate
+    const centerRef = useRef(null)
+
     // Marker layer canvas plugin: high-performance mode
     const markersCanvasLayerRef = useRef(null)
     // Marker layer
@@ -268,6 +271,7 @@ const MapContainer = forwardRef(
     // Pan to center
     useEffect(() => {
       if (!center) return
+      centerRef.current = center
       APIRef?.current?.panTo?.(center)
       // eslint-disable-next-line
     }, [JSON.stringify(center || '')])
@@ -291,7 +295,7 @@ const MapContainer = forwardRef(
 
       // Create leaflet leafletMap
       leafletMap = await createMap(rootRef.current.querySelector('.map-container'), {
-        center,
+        center: centerRef.current,
         zoom,
         minZoom,
         maxZoom
@@ -300,7 +304,7 @@ const MapContainer = forwardRef(
       let currentMapContainer = rootRef.current.querySelector('.map-api-container')
       // Create bmap,amap,etc current map to use invoke api
       const currentMap = await createCurrentMap(currentMapContainer, {
-        center: center
+        center: centerRef.current
       })
       APIRef.current.currentMap = currentMap
 
@@ -346,6 +350,11 @@ const MapContainer = forwardRef(
         let maxBounds = window.L.latLngBounds(southWest, northEast)
 
         leafletMap.setMaxBounds(maxBounds)
+      }
+
+      // onLoad success panTo center
+      if (centerRef.current) {
+        APIRef?.current?.panTo?.(centerRef.current)
       }
 
       // onLoad event
