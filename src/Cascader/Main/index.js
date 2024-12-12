@@ -242,10 +242,10 @@ const Main = forwardRef(
 
       onChange && onChange(newValue, { list: externalList })
 
-      // 如果值未发生变化不会触发useEffect更新, 需要强制更新, 否则列表和activeTab不会更新
-      // if (JSON.stringify(newValue) === JSON.stringify(value)) {
-      //   update()
-      // }
+      // 点击"请选择"左边一级的tab(不是isLeaf代表末级是请选择), 点击相同选项值相同, 即不会触发关窗, 也不会触发更新, 需要强制触发更新
+      if (!newValue.isLeaf && JSON.stringify(newValue) === JSON.stringify(value)) {
+        update()
+      }
     }
 
     function getTabsNode() {
