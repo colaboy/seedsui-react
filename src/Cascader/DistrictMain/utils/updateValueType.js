@@ -18,7 +18,7 @@ function updateValueType(
 ) {
   // Array type parameter is invalid
   if (!Array.isArray(tabs) || !tabs.length) {
-    return null
+    return tabs
   }
 
   // 没有type, 则先获取type
