@@ -97,13 +97,19 @@ const Main = forwardRef(
         return
       }
 
-      // 获取当前列表
-      let newList = await getChildrenList(value)
-      if (!newList) return null
-
-      // 如果有子级, 则增加请选择
+      // 更新tabs
       tabsRef.current = _.cloneDeep(value)
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
+
+      // 获取当前列表
+      let newList = await getChildrenList(value)
+      if (!newList) {
+        // 空数据选中末项, false接口报错不需要渲染
+        if (newList === null) setActiveTab(lastTab)
+        return null
+      }
+
+      // 如果有子级, 则增加请选择
       if (!lastTab?.isLeaf) {
         // 请选择
         lastTab = {
