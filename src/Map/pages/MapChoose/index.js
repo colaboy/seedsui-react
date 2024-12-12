@@ -75,7 +75,7 @@ function MapChoose(
     // 默认选中当前位置
     if (!newValue?.longitude || !newValue?.latitude) {
       Loading.show({ content: locale('定位中...', 'SeedsUI_positioning') })
-      let result = await mapRef.current?.getLocation?.()
+      let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
       if (typeof result === 'string') {
         Toast.show({
