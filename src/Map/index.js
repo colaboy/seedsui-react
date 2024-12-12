@@ -1,3 +1,4 @@
+// 说明: Map使用leaflet绘制, 一律使用wgs84坐标, 只有在绘制瓦片和搜索时需要纠偏转坐标
 // Utils
 import coordsToWgs84 from './utils/coordsToWgs84'
 import wgs84ToCoords from './utils/wgs84ToCoords'
