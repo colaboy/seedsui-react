@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import _ from 'lodash'
-import { ArrayUtil, Cascader, Loading } from 'seedsui-react'
+import { ArrayUtil, Cascader, Loading, Layout, Button } from 'seedsui-react'
 
 // 判断省市区的数据
 import countryIds from './data/countryIds'
@@ -149,37 +149,22 @@ export default () => {
         //   street: { editable: false }
         // }}
         ModalProps={{
+          header: () => {
+            return <div>自定义头</div>
+          },
+          footer: ({ value, submit }) => {
+            return (
+              <Layout.Footer
+                onClick={() => {
+                  submit()
+                }}
+              >
+                <Button className="listpicker-footer-submit primary">确定</Button>
+              </Layout.Footer>
+            )
+          },
           captionProps: {
             caption: '级联选择'
-          },
-          MainProps: {
-            footerRender: ({ value, onChange }) => {
-              return (
-                <div
-                  onClick={() => {
-                    onChange(value)
-                  }}
-                >
-                  提交
-                </div>
-              )
-            }
-            // headerRender: ({ value, onChange }) => {
-            //   return (
-            //     <div
-            //       onClick={() => {
-            //         setValue([
-            //           { name: '中国', id: '86' },
-            //           { id: '320000', name: '江苏省', parentid: '86' },
-            //           { id: '320100', name: '南京市', parentid: '320000' },
-            //           { id: '320105', name: '建邺区', parentid: '320100' }
-            //         ])
-            //       }}
-            //     >
-            //       点击还原
-            //     </div>
-            //   )
-            // }
           }
         }}
       />

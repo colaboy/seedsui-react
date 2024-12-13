@@ -20,9 +20,6 @@ const Main = forwardRef(
       value,
       onChange,
 
-      // 渲染
-      footerRender,
-
       ...props
     },
     ref
@@ -61,7 +58,6 @@ const Main = forwardRef(
             />
           )}
         </div>
-        {footerRender && footerRender()}
       </div>
     )
   }

@@ -33,8 +33,6 @@ const Main = forwardRef(
       list: externalList,
       loadData,
       optionProps = {},
-      headerRender,
-      footerRender,
       TabsComponent,
       ...props
     },
@@ -296,28 +294,8 @@ const Main = forwardRef(
       )
     }
 
-    // 渲染头部
-    let HeaderNode = null
-    if (typeof headerRender === 'function') {
-      HeaderNode = headerRender({
-        value,
-        onChange
-      })
-    }
-    // 渲染底部
-    let FooterNode = null
-    if (typeof footerRender === 'function') {
-      FooterNode = footerRender({
-        value,
-        onChange
-      })
-    }
-
     return (
       <>
-        {/* 头部 */}
-        {HeaderNode}
-
         {/* Tab */}
         {getTabsNode()}
 
@@ -334,9 +312,6 @@ const Main = forwardRef(
             {...props}
           />
         </IndexBar>
-
-        {/* 底部 */}
-        {FooterNode}
       </>
     )
   }

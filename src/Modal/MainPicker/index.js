@@ -32,7 +32,8 @@ const MainPicker = forwardRef(
       allowClear,
       onChange,
 
-      // Footer
+      // Header and Footer
+      header,
       footer,
 
       // 纯渲染时不渲染Main
@@ -145,6 +146,9 @@ const MainPicker = forwardRef(
         {...props}
         portal={portal || document.getElementById('root') || document.body}
       >
+        {/* 头部 */}
+        {header && header({ visible, value: currentValue, submit: handleChange })}
+
         {/* 纯渲染 */}
         {children}
         {/* 主体 */}

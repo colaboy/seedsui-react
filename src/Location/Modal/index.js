@@ -17,7 +17,6 @@ const LocationModal = forwardRef(
       visible,
       submitProps,
       value,
-      footerRender,
 
       // Main
       config,
