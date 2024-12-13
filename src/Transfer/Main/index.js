@@ -19,7 +19,6 @@ const Transfer = (
 
     list,
     titles,
-    footerRender,
     ...props
   },
   ref
@@ -127,12 +126,6 @@ const Transfer = (
           </>
         ) : null}
       </div>
-      {typeof footerRender === 'function' &&
-        footerRender({
-          value,
-          list,
-          onChange
-        })}
     </>
   )
 }

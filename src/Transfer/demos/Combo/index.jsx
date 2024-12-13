@@ -46,21 +46,19 @@ export default () => {
             setValue(newValue)
           }}
           ModalProps={{
+            footer: ({ value, submit }) => {
+              return (
+                <Layout.Footer
+                  onClick={() => {
+                    submit()
+                  }}
+                >
+                  <Button className="listpicker-footer-submit primary">确定</Button>
+                </Layout.Footer>
+              )
+            },
             MainProps: {
-              titles: { selected: '标题1', unSelected: '标题2' },
-              footerRender: ({ value: newValue, onChange }) => {
-                return (
-                  <Layout.Footer
-                    className="listpicker-footer border-t"
-                    onClick={() => {
-                      transferRef.current.close()
-                      setValue(newValue)
-                    }}
-                  >
-                    <Button className="listpicker-footer-submit primary">确定</Button>
-                  </Layout.Footer>
-                )
-              }
+              titles: { selected: '标题1', unSelected: '标题2' }
             }
           }}
         />
