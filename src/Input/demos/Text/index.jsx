@@ -13,7 +13,7 @@ export default () => {
   }, [])
   return (
     <>
-      <Input.Number
+      <Input.Text
         trim
         ref={inputTextRef}
         precision={2}
@@ -27,7 +27,8 @@ export default () => {
         // readOnly
         value={value}
         // maxLength={10}
-        allowClear={'exclusion-ricon'}
+        allowClear="exclusion-ricon"
+        // disabled="exclusion-ricon"
         onChange={(val) => {
           console.log(val)
           setValue(val)
@@ -41,7 +42,12 @@ export default () => {
           }
         }}
         // riconProps={{ className: 'icon shape-arrow-right sm' }}
-        ricon={<i className="ricon icon shape-arrow-right sm" />}
+        ricon={
+          <>
+            <i className="ricon icon shape-arrow-right sm" />
+            <i className="ricon icon shape-arrow-right sm" />
+          </>
+        }
       />
     </>
   )

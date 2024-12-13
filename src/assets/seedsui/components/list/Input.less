@@ -25,6 +25,20 @@
   }
 }
 
+// 清空或者禁用对右侧图标互斥逻辑
+.input-wrapper.exclusion-ricon {
+  .input-clear:not(.hide) {
+    & ~ .ricon {
+      display: none;
+    }
+  }
+  &.disabled {
+    .ricon {
+      display: none;
+    }
+  }
+}
+
 // 清除按钮
 .input-clear {
   margin-left: 4px;

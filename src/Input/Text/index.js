@@ -105,15 +105,6 @@ const InputText = forwardRef(
       updateContainer()
     }, [value]) // eslint-disable-line
 
-    // 禁用时不显示ricon
-    useEffect(() => {
-      if (disabled === 'exclusion-ricon') {
-        let ricon = rootRef?.current?.querySelector('.ricon')
-        ricon?.classList?.add?.('hide')
-      }
-      // eslint-disable-next-line
-    }, [disabled])
-
     // 更新文本框高度和清空按钮
     function updateContainer() {
       if (!rootRef?.current) return
@@ -146,31 +137,15 @@ const InputText = forwardRef(
 
       // 根据值判断是否显示清空
       if (clearRef?.current?.classList) {
-        // 右侧图标, 当allowClear为exclusion-ricon时，则与ricon互斥
-        let ricon = clearRef.current.nextElementSibling
-        if (!ricon || !ricon?.classList?.contains('ricon')) {
-          ricon = null
-        }
-
         // 有值隐藏清除
         if (val) {
           clearRef.current?.classList?.remove?.('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(true)
-
-          // 清除图标显示时, 隐藏右侧图标
-          if (allowClear === 'exclusion-ricon' && ricon) {
-            ricon?.classList?.add?.('hide')
-          }
         }
         // 无值显示清除
         else {
           clearRef.current?.classList?.add?.('hide')
           typeof onClearVisibleChange === 'function' && onClearVisibleChange(false)
-
-          // 清除图标隐藏时, 显示右侧图标
-          if (allowClear === 'exclusion-ricon' && ricon) {
-            ricon?.classList?.remove?.('hide')
-          }
         }
       }
     }
@@ -402,13 +377,14 @@ const InputText = forwardRef(
       )
     }
 
+    let exclusionRicon = disabled === 'exclusion-ricon' || allowClear === 'exclusion-ricon'
     return (
       <div
         {...props}
         style={style}
         className={`input-wrapper${className ? ' ' + className : ''}${disabled ? ' disabled' : ''}${
           readOnly ? ' readonly' : ''
-        }`}
+        }${exclusionRicon ? ' exclusion-ricon' : ''}`}
         onClick={onClick}
         ref={rootRef}
       >

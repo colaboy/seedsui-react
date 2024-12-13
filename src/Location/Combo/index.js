@@ -274,7 +274,7 @@ const LocationCombo = forwardRef(
         riconNode.push(
           <i
             key="choose"
-            className={`ricon location-combo-icon location-combo-icon-choose${
+            className={`location-combo-icon location-combo-icon-choose${
               modalVisible === 'choose' ? ' active' : ''
             }`}
             onClick={(e) => {
@@ -289,7 +289,7 @@ const LocationCombo = forwardRef(
         riconNode.push(
           <i
             key="preview"
-            className={`ricon location-combo-icon location-combo-icon-preview${
+            className={`location-combo-icon location-combo-icon-preview${
               _.isEmpty(value) ? ' disabled' : ''
             }${modalVisible === 'preview' ? ' active' : ''}`}
             onClick={(e) => {
@@ -305,7 +305,7 @@ const LocationCombo = forwardRef(
         riconNode.push(
           <i
             key="location"
-            className={`ricon location-combo-icon location-combo-icon-location${
+            className={`location-combo-icon location-combo-icon-location${
               locationStatus === '-1' ? ' active' : ''
             }`}
             onClick={handleLocation}
