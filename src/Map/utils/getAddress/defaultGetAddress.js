@@ -5,15 +5,19 @@ import locale from './../../../locale'
 // import { locale } from 'seedsui-react'
 
 // 地址逆解析函数
-function osmGetAddress({ longitude, latitude }) {
+function osmGetAddress(params) {
   const url =
-    'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude
+    'https://nominatim.openstreetmap.org/reverse?format=json&lat=' +
+    params.latitude +
+    '&lon=' +
+    params.longitude
 
   return new Promise((resolve) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         resolve({
+          ...params,
           address: data.display_name
         })
       })

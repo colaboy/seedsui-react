@@ -1,4 +1,5 @@
 import coordsToFit from './../coordsToFit'
+import coordsToWgs84 from './../coordsToWgs84'
 
 // 内库使用
 import locale from './../../../locale'
@@ -12,8 +13,10 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
     return null
   }
   return new Promise((resolve) => {
-    let centerCoord = coordsToFit({ longitude, latitude })
+    // 中国转bd09再搜索
+    let centerCoord = coordsToFit({ longitude, latitude, type: 'wgs84', inChinaTo: 'bd09' })
     let centerPoint = new window.BMap.Point(centerCoord.longitude, centerCoord.latitude)
+
     // 定位到当前位置
     map.currentMap.panTo(centerPoint)
 
@@ -28,18 +31,19 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
             const item = results.getPoi(i)
 
             if (!item.title && !item.address) continue
-            // Leaflet only support wgs84
-            let coord = coordsToFit({
+            // 坐标一律转成wgs84
+            let coord = coordsToWgs84({
               longitude: item.point.lng,
               latitude: item.point.lat,
-              from: centerCoord.isInChina ? 'bd09' : 'wgs84',
-              to: 'wgs84'
+              type: centerCoord.isInChina ? 'bd09' : 'wgs84'
             })
+
             list.push({
               name: item.title,
               address: item.address,
               longitude: coord.longitude,
-              latitude: coord.latitude
+              latitude: coord.latitude,
+              type: 'wgs84'
             })
           }
           resolve(list)

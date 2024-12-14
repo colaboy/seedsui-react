@@ -34,7 +34,8 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
               name: name,
               latitude: item.lat,
               longitude: item.lon,
-              address: address
+              address: address,
+              type: 'wgs84'
             })
           }
           resolve(list)

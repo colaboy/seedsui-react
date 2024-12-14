@@ -71,7 +71,9 @@ function loadBMapLayer() {
     _setZoomTransform: function (level, _center, zoom) {
       let center = coordsToFit({
         longitude: _center.lng,
-        latitude: _center.lat
+        latitude: _center.lat,
+        type: 'wgs84',
+        inChinaTo: 'bd09'
       })
       center = window.L.latLng([center.latitude, center.longitude])
       window.L.TileLayer.prototype._setZoomTransform.call(this, level, center, zoom)
@@ -79,7 +81,9 @@ function loadBMapLayer() {
     _getTiledPixelBounds: function (_center) {
       let center = coordsToFit({
         longitude: _center.lng,
-        latitude: _center.lat
+        latitude: _center.lat,
+        type: 'wgs84',
+        inChinaTo: 'bd09'
       })
       center = window.L.latLng([center.latitude, center.longitude])
       return window.L.TileLayer.prototype._getTiledPixelBounds.call(this, center)

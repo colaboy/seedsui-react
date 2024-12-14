@@ -1,4 +1,3 @@
-import coordsToFit from '../../utils/coordsToFit'
 import defaultCountryCenter from './defaultCountryCenter'
 
 // Create bmap,amap,etc map to use invoke api
@@ -26,10 +25,9 @@ function createCurrentMap(container, { center } = {}) {
   // Init baidu map
   if (window.BMap) {
     wgs84Center = wgs84Center || defaultCountryCenter['zh_CN']
+    // currentMap不需要展示, 搜索时会panTo, 所以点在什么位置并不重要
 
-    let bdPoint = coordsToFit(wgs84Center)
-
-    let bmapCenter = new window.BMap.Point(bdPoint.longitude, bdPoint.latitude)
+    let bmapCenter = new window.BMap.Point(wgs84Center.longitude, wgs84Center.latitude)
     currentMap = new window.BMap.Map(container)
     currentMap.centerAndZoom(bmapCenter, 12)
 

@@ -1,3 +1,5 @@
+import coordsToFit from './../coordsToFit'
+
 // 内库使用
 import locale from './../../../locale'
 
@@ -5,10 +7,18 @@ import locale from './../../../locale'
 // import { locale } from 'seedsui-react'
 
 // 百度地址逆解析
-function bmapGetAddress({ longitude, latitude }) {
+function bmapGetAddress(params) {
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    let bdPoint = new window.BMap.Point(longitude, latitude)
+    // 国内转为bd09
+    let coord = coordsToFit({
+      longitude: params.longitude,
+      latitude: params.latitude,
+      type: params.type,
+      inChinaTo: 'bd09'
+    })
+    let bdPoint = new window.BMap.Point(coord.longitude, coord.latitude)
+
     // 逆解析
     let geocoder = new window.BMap.Geocoder()
     geocoder.getLocation(bdPoint, (res) => {
@@ -18,8 +28,10 @@ function bmapGetAddress({ longitude, latitude }) {
         return
       }
 
-      result.address = res.address
-      resolve(result)
+      resolve({
+        ...params,
+        address: res.address
+      })
     })
   })
 }

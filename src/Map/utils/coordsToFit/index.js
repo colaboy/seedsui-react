@@ -6,50 +6,82 @@ import GeoUtil from './../../../GeoUtil'
 
 // 坐标自动转换
 /*
-绘制地图瓦片: 1.国内百度, 转为bd09坐标绘制; 2.国内高德与google转为gcj02坐标绘制; 3.国外一律使用默认的wgs84绘制;
-leaflet绘制点L.marker: 一律使用wgs84绘制
-搜索附近: 1.国内百度, 由bd09转为wgs84; 2.国内高德和google由gcj02转为wgs84; 3.国外一律不用转, 默认返回都是wgs84;
-定位: 一律获取wgs84坐标位置
+# 绘制地图瓦片
+## 百度
+- 国内: wgs84转为bd09渲染
+- 国外: wgs84直接渲染
+
+## 高德与Google
+- 国内: wgs84转为gcj02渲染
+- 国外: wgs84直接渲染
+
+
+
+# 搜索附近
+## 百度
+- 国内搜索: wgs84转bd09后搜索
+- 国内搜索结果: bd09转wgs84返回
+- 国外搜索: wgs84搜索
+- 国外搜索结果: wgs84直接返回
+
+## 高德与Google
+- 国内搜索: wgs84转gcj02后搜索
+- 国内搜索结果: gcj02转wgs84返回
+- 国外搜索: wgs84搜索
+- 国外搜索结果: wgs84直接返回
+
+
+
+
+
+
+# 地址逆解析
+## 百度
+- 国内: wgs84转bd09后解析
+- 国内解析结果: bd09转wgs84返回
+- 国外: wgs84解析
+- 国外解析结果: wgs84直接返回
+
+## 高德与Google
+- 国内: wgs84转gcj02后解析
+- 国内解析结果: gcj02转wgs84返回
+- 国外: wgs84解析
+- 国外解析结果: wgs84直接返回
+
+
+
+
+# 获取当前位置
+- 国内,国外: wgs84定位
+
+
+
+# Leaflet API
+# Leaflet绘制点L.marker
+- 国内,国外: 使用wgs84绘点
+
+# Leaflet中心位置panTo
+- 国内,国外: wgs84
 */
-function coordToFit({ longitude, latitude, from = 'wgs84', to }) {
-  // 定向转换
-  if (from && to) {
-    let coord = GeoUtil.coordtransform([longitude, latitude], from, to)
-    return {
-      longitude: coord[0],
-      latitude: coord[1]
-    }
+function coordToFit({ longitude, latitude, type = 'wgs84', inChinaTo }) {
+  // 参数不合法
+  if (!inChinaTo || !longitude || !latitude || !type) {
+    return { longitude, latitude }
   }
 
-  // 自动转换: 在中国转, 国外不转
+  // 是否在中国
   let isInChina = GeoUtil.isInChina([longitude, latitude]) === true
 
-  // 转为百度坐标: 中国转, 国外不转
-  if (window.BMap) {
-    let bdPoint = isInChina
-      ? GeoUtil.coordtransform([longitude, latitude], from, 'bd09')
-      : [longitude, latitude]
-    // eslint-disable-next-line
-    longitude = bdPoint[0]
-    // eslint-disable-next-line
-    latitude = bdPoint[1]
-  }
-  // 转国测局坐标
-  else if (window.AMap) {
-    let gcjPoint = GeoUtil.coordtransform([longitude, latitude], from, 'gcj02')
-    // eslint-disable-next-line
-    longitude = gcjPoint[0]
-    // eslint-disable-next-line
-    latitude = gcjPoint[1]
-  }
-  // 转为GPS坐标
-  else {
-    let wgs84Point = GeoUtil.coordtransform([longitude, latitude], from, 'wgs84')
-    // eslint-disable-next-line
-    longitude = wgs84Point[0]
-    // eslint-disable-next-line
-    latitude = wgs84Point[1]
-  }
+  // 在中国转为中国坐标bd09或gcj02
+  let newPoint = isInChina
+    ? GeoUtil.coordtransform([longitude, latitude], type, inChinaTo)
+    : [longitude, latitude]
+
+  // eslint-disable-next-line
+  longitude = newPoint[0]
+  // eslint-disable-next-line
+  latitude = newPoint[1]
+
   return { longitude, latitude, isInChina }
 }
 

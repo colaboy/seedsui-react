@@ -1,4 +1,4 @@
-import coordsToFit from './../coordsToFit'
+import coordsToWgs84 from './../coordsToWgs84'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
@@ -9,42 +9,35 @@ import Toast from './../../../Toast'
 // 测试使用
 // import { Toast } from 'seedsui-react'
 
-async function mapApiGetAddress({ longitude: lng, latitude: lat, type = 'wgs84' }) {
+// 地址逆解析
+async function getAddress(params) {
+  // 已存在地址则不需要解析
+  if (params?.address) {
+    return params
+  }
+
   let result = null
 
   // 默认优先使用系统级定位
   if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
-    result = await window.getAddressDefault({ longitude: lng, latitude: lat, type: type })
+    result = await window.getAddressDefault(params)
     return result
   }
 
-  // 坐标转换
-  let { longitude, latitude } = coordsToFit({ longitude: lng, latitude: lat, from: type })
+  // 坐标转换, 统一使用wgs84获取位置
+  let wgs84Coord = coordsToWgs84({
+    longitude: params.longitude,
+    latitude: params.latitude,
+    from: params.type || 'wgs84'
+  })
 
   if (window.google) {
-    result = await googleGetAddress({ longitude, latitude })
+    result = await googleGetAddress(wgs84Coord)
   } else if (window.BMap) {
-    result = await bmapGetAddress({ longitude, latitude })
+    result = await bmapGetAddress(wgs84Coord)
   } else {
-    result = await defaultGetAddress({ longitude, latitude })
+    result = await defaultGetAddress(wgs84Coord)
   }
-  return result
-}
-
-// 地址逆解析
-async function getAddress(options) {
-  const { longitude, latitude, type = 'wgs84' } = options || {}
-
-  // 已存在地址则不需要解析
-  if (options?.address) {
-    return options
-  }
-
-  let result = await mapApiGetAddress({
-    longitude,
-    latitude,
-    type
-  })
 
   // getAddress failed
   if (typeof result === 'string') {
@@ -53,10 +46,8 @@ async function getAddress(options) {
   }
 
   return {
-    longitude,
-    latitude,
-    type,
-    ...result
+    ...result,
+    ...params
   }
 }
 
