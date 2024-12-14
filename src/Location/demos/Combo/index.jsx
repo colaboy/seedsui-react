@@ -64,6 +64,9 @@ export default () => {
   // })
   useEffect(() => {
     new VConsole()
+    Bridge.ready(() => {
+      console.log('加载桥接')
+    })
   }, [])
 
   return (

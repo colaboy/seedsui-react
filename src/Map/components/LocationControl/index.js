@@ -31,6 +31,12 @@ function LocationControl({ map, onChange, ...props }, ref) {
       // 当前位置
       let result = await map.getLocation({ type: 'wgs84' })
       result = await map.getAddress(result)
+
+      // Location success but value no change
+      if (typeof result !== 'string') {
+        map.panTo(result)
+      }
+
       resolve(result)
       Loading.hide()
     })
