@@ -50,6 +50,9 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
   let tileLayer = window.L.tileLayer.currentTileLayer()
   tileLayer.addTo(map)
 
+  // Update tileLayer size
+  // map.invalidateSize()
+
   return new Promise((resolve) => {
     tileLayer.on('load', function () {
       resolve(map)
