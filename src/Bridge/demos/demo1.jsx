@@ -4,15 +4,15 @@ import vconsole from 'vconsole'
 import { Loading, Button } from 'seedsui-react'
 
 // 内库使用
-import { Layout, Bridge, Location, Image as ImageUploader } from 'seedsui-react'
+// import { Layout, Location, Image as ImageUploader, Bridge } from 'seedsui-react'
 
 // 测试使用
-// import Bridge from 'library/utils/Bridge'
-// import Layout from 'library/components/Layout'
-// import Location from 'library/components/Location'
-// import ImageUploader from 'library/components/ImageUploader'
-
+import Layout from 'library/components/Layout'
+import Location from 'library/components/Location'
+import ImageUploader from 'library/components/ImageUploader'
+import Bridge from 'library/utils/Bridge'
 new vconsole()
+
 export default () => {
   const [photos, setPhotos] = useState([])
   const [location, setLocation] = useState([])
@@ -69,6 +69,7 @@ export default () => {
             setLocation(result)
           }}
         />
+
         <p className="demo-title">拍照</p>
         <ImageUploader
           uploadPosition="start"
@@ -99,6 +100,7 @@ export default () => {
           onChange={setPhotos}
           onDelete={setPhotos}
         />
+
         <h2>界面接口</h2>
         <p className="demo-title">打开新窗口接口</p>
         <Button
@@ -196,9 +198,6 @@ export default () => {
               scanType: ['barCode'],
               success: (res) => {
                 alert(JSON.stringify(res))
-              },
-              fail: (res) => {
-                alert(JSON.stringify(res))
               }
             })
           }}
@@ -275,6 +274,7 @@ export default () => {
                 'https://res.waiqin365.com/d/static/images/logo.png',
                 'https://res.waiqin365.com/d/qince-web/platform/home/banner/shootOver.png'
               ],
+
               index: 0,
               current: 'https://res.waiqin365.com/d/static/images/logo.png'
             })
@@ -334,7 +334,25 @@ export default () => {
             })
           }}
         >
-          getLocation
+          getLocation gcj02
+        </Button>
+
+        <Button
+          className="primary flex"
+          style={{ margin: '12px 10px' }}
+          onClick={() => {
+            Bridge.getLocation({
+              type: 'gcj02',
+              success: (res) => {
+                alert(JSON.stringify(res))
+              },
+              fail: (res) => {
+                alert(JSON.stringify(res))
+              }
+            })
+          }}
+        >
+          getLocation wgs84
         </Button>
       </Layout.Main>
     </Layout>
