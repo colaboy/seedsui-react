@@ -342,7 +342,7 @@ export default () => {
           style={{ margin: '12px 10px' }}
           onClick={() => {
             Bridge.getLocation({
-              type: 'gcj02',
+              type: 'wgs84',
               success: (res) => {
                 alert(JSON.stringify(res))
               },
