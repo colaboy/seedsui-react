@@ -334,7 +334,7 @@ export default () => {
             })
           }}
         >
-          getLocation gcj02
+          getLocation(gcj02)
         </Button>
 
         <Button
@@ -352,7 +352,7 @@ export default () => {
             })
           }}
         >
-          getLocation wgs84
+          getLocation(wgs84)
         </Button>
       </Layout.Main>
     </Layout>
