@@ -4,13 +4,13 @@ import vconsole from 'vconsole'
 import { Loading, Button } from 'seedsui-react'
 
 // 内库使用
-// import { Layout, Location, Image as ImageUploader, Bridge } from 'seedsui-react'
+import { Layout, Location, Image as ImageUploader, Bridge } from 'seedsui-react'
 
 // 测试使用
-import Layout from 'library/components/Layout'
-import Location from 'library/components/Location'
-import ImageUploader from 'library/components/ImageUploader'
-import Bridge from 'library/utils/Bridge'
+// import Layout from 'library/components/Layout'
+// import Location from 'library/components/Location'
+// import ImageUploader from 'library/components/ImageUploader'
+// import Bridge from 'library/utils/Bridge'
 new vconsole()
 
 export default () => {

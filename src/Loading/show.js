@@ -7,11 +7,13 @@ export default function (props) {
     ...(this?.defaultProps || {}),
     ...(props || {})
   }
+
   // 渲染
   function render() {
-    let loadingId = id || '__SeedsUI_loading_el__'
-    // 如果没生成成功, 则强制生成
+    let loadingId = id || '__SeedsUI_loading_mask__'
     let mask = document.getElementById(loadingId)
+
+    // 如果没生成成功, 则强制生成
     if (!mask) {
       mask = document.createElement('div')
       mask.innerHTML = `<div class="loading-container">
@@ -31,8 +33,10 @@ export default function (props) {
           </div>
           <div class="loading-floating-caption loading-content"></div>
         </div>`
+
       // 添加到dom上
-      ;(document.getElementById('root') || document.body).appendChild(mask)
+      let root = document.getElementById('root') || document.body
+      root.appendChild(mask)
     }
 
     // 更新mask

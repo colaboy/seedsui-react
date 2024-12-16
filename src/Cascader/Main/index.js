@@ -12,10 +12,11 @@ import locale from './../../locale'
 import ArrayUtil from './../../ArrayUtil'
 import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
+import Loading from './../../Loading'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
-// import { ArrayUtil, Toast, IndexBar } from 'seedsui-react'
+// import { ArrayUtil, Toast, IndexBar, Loading } from 'seedsui-react'
 
 // 主体
 const Main = forwardRef(
@@ -206,6 +207,13 @@ const Main = forwardRef(
 
     // 点击选项
     async function handleDrill(item) {
+      // 防止用户快速点击多次触发
+      Loading.show({
+        id: '__SeedsUI_loading_cascader_drill_mask__', content: 'Get children...', style: {
+          opacity: 0
+        }
+      })
+
       let newValue = _.cloneDeep(value)
 
       // 点击项的父级为选中项
@@ -232,7 +240,7 @@ const Main = forwardRef(
         }
       }
 
-      // 不是末级节点, 则获取下级列表, 补充标识: value中的isLeaf和externalList中的children
+      // 不是末级节点, 则获取下级列表, 用于校验是否能下钻, 补充标识: value中的isLeaf和externalList中的children
       if (!newValue[newValue.length - 1].isLeaf) {
         let isOK = await getChildrenList(newValue, {
           onError: (error) => {
@@ -241,15 +249,28 @@ const Main = forwardRef(
             })
           }
         })
-        if (isOK === false) return
+
+        // 接口报错停止下钻
+        if (isOK === false) {
+          setTimeout(() => {
+            Loading.hide({ id: '__SeedsUI_loading_cascader_drill_mask__' })
+          }, 300)
+          return
+        }
       }
 
+      // 触发tab与列表更新
       onChange && onChange(newValue, { list: externalList })
 
-      // 点击"请选择"左边一级的tab(不是isLeaf代表末级是请选择), 点击相同选项值相同, 即不会触发关窗, 也不会触发更新, 需要强制触发更新
+      // 点击"请选择"左边一级的tab(不是isLeaf代表末级是请选择), 点击相同选项值, 既不会触发关窗, 也不会触发tab更新, 需要强制触发更新
       if (!newValue.isLeaf && JSON.stringify(newValue) === JSON.stringify(value)) {
         update()
       }
+
+      // 防止用户快速点击多次触发
+      setTimeout(() => {
+        Loading.hide({ id: '__SeedsUI_loading_cascader_drill_mask__' })
+      }, 300)
     }
 
     function getTabsNode() {
