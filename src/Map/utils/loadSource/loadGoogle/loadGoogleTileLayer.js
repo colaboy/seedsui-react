@@ -1,3 +1,15 @@
+/*
+// 瓦片绘制也可以
+return new L.tileLayer(
+  'https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}&scale=2',
+  {
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+    minZoom: 1,
+    maxZoom: 19
+  }
+)
+*/
+
 // 加载google地图leaflet插件
 function loadGoogleMutant() {
   return new Promise((resolve) => {
