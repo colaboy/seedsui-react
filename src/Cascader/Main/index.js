@@ -170,7 +170,7 @@ const Main = forwardRef(
       let newList = getTreeChildren(externalList, lastTab.id)
 
       // 无children, 动态获取子级
-      if (!newList) {
+      if (_.isEmpty(newList)) {
         if (typeof loadData === 'function') {
           newList = await loadData(requestTabs, { list: externalList })
         }
@@ -190,7 +190,7 @@ const Main = forwardRef(
           return false
         }
         // 无值则为叶子节点
-        else if (newList === null) {
+        else if (_.isEmpty(newList)) {
           updateIsLeaf(tabs, lastTab.id)
           return null
         }
