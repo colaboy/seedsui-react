@@ -15,7 +15,7 @@ import locale from './../../../locale'
 // 地图标注
 function MapMarkers(
   {
-    points,
+    points: externalPoints,
     icon,
     // 获取定位和地址工具类
     getAddress,
@@ -31,8 +31,19 @@ function MapMarkers(
   },
   ref
 ) {
-  if (!Array.isArray(points) || !points.length)
+  if (!Array.isArray(externalPoints) || !externalPoints.length) {
     return <Result title={`${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`} />
+  }
+
+  let points = externalPoints
+  // 百度国内使用bd09
+  if (window.BMap) {
+    points = coordsToFit(externalPoints, { inChinaTo: 'bd09' })
+  }
+  // 高德和google国内使用gcj02
+  else if (window.AMap || window.google) {
+    points = coordsToFit(externalPoints, { inChinaTo: 'gcj02' })
+  }
 
   return (
     <MapContainer

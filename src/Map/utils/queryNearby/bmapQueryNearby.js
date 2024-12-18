@@ -7,13 +7,19 @@ import locale from './../../../locale'
 // import { locale } from 'seedsui-react'
 
 // 搜索附近, keyword:搜索关键词
-function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
-  if (!map?.currentMap || !longitude || !latitude) {
+function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
+  if (!map?.currentMap || !longitude || !latitude || !type) {
     return null
   }
   return new Promise((resolve) => {
     // 中国转bd09再搜索
-    let centerCoord = coordsToFit({ longitude, latitude, type: 'wgs84', inChinaTo: 'bd09' })
+    let centerCoord = coordsToFit({
+      longitude,
+      latitude,
+      type,
+      inChinaTo: 'bd09',
+      outChinaTo: 'wgs84'
+    })
     let centerPoint = new window.BMap.Point(centerCoord.longitude, centerCoord.latitude)
 
     // 定位到当前位置

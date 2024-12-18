@@ -87,23 +87,28 @@ const MapContainer = forwardRef(
       currentMap: null,
       leafletMap: null,
       // 指定获取定位和地址的方法
-      getAddress: async (latlng) => {
-        let result = latlng
-        if (typeof result === 'object' && result?.longitude && result?.latitude) {
-          if (!result.type) result.type = 'wgs84'
-          let addrRes = await getAddress(result)
-          if (addrRes?.address) {
+      getAddress: async (coord) => {
+        if (typeof coord === 'object' && coord?.longitude && coord?.latitude) {
+          let result = await getAddress(coord)
+
+          // Get address success
+          if (result?.address) {
             result = {
-              ...result,
-              ...addrRes
+              ...coord,
+              ...result
             }
-          } else {
-            result = locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
           }
-        } else {
-          result = locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+          // Get address fail
+          else {
+            result =
+              typeof result === 'string'
+                ? result
+                : locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+          }
+          return result
         }
-        return result
+
+        return 'getAddress must pass longitude and latitude'
       },
       getLocation: getLocation,
       // 搜索附近与搜索

@@ -72,6 +72,7 @@ function Nearby(
       keyword: tab.id || tab.name,
       longitude: value?.longitude,
       latitude: value?.latitude,
+      type: value?.type,
       radius: radius
     })
     Loading.hide()

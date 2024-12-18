@@ -1,4 +1,3 @@
-import coordsToWgs84 from './../coordsToWgs84'
 import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
@@ -24,19 +23,17 @@ async function getAddress(params) {
     return result
   }
 
-  // 坐标转换, 统一使用wgs84获取位置
-  let wgs84Coord = coordsToWgs84({
-    longitude: params.longitude,
-    latitude: params.latitude,
-    from: params.type || 'wgs84'
-  })
+  // 参数不全
+  if (!params?.longitude || !params?.latitude || !params?.type) {
+    return 'getAddress must pass longitude and latitude'
+  }
 
   if (window.google) {
-    result = await googleGetAddress(wgs84Coord)
+    result = await googleGetAddress(params)
   } else if (window.BMap) {
-    result = await bmapGetAddress(wgs84Coord)
+    result = await bmapGetAddress(params)
   } else {
-    result = await defaultGetAddress(wgs84Coord)
+    result = await defaultGetAddress(params)
   }
 
   // getAddress failed

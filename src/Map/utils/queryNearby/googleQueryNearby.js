@@ -8,15 +8,21 @@ import locale from './../../../locale'
 // import { locale } from 'seedsui-react'
 
 // 搜索附近
-function nearbySearch({ map, keyword, longitude, latitude, radius }) {
-  if (!map?.currentMap || !longitude || !latitude) {
+function nearbySearch({ map, keyword, longitude, latitude, type, radius }) {
+  if (!map?.currentMap || !longitude || !latitude || !type) {
     return null
   }
 
   // eslint-disable-next-line
   return new Promise(async (resolve) => {
-    // 中国转bd09再搜索
-    let centerCoord = coordsToFit({ longitude, latitude, type: 'wgs84', inChinaTo: 'gcj02' })
+    // 中国转gcj02再搜索
+    let centerCoord = coordsToFit({
+      longitude,
+      latitude,
+      type: type,
+      inChinaTo: 'gcj02',
+      outChinaTo: 'wgs84'
+    })
 
     const service = new window.google.maps.places.PlacesService(map.currentMap)
     let center =
@@ -50,20 +56,15 @@ function nearbySearch({ map, keyword, longitude, latitude, radius }) {
 
           let longitude = place.geometry?.location?.lng?.()
           let latitude = place.geometry?.location?.lat?.()
+          let type = centerCoord.isInChina ? 'gcj02' : 'wgs84'
+
           if (longitude && latitude) {
-            // 坐标一律转成wgs84
-            let coord = coordsToWgs84({
+            list.push({
               longitude: longitude,
               latitude: latitude,
-              type: centerCoord.isInChina ? 'gcj02' : 'wgs84'
-            })
-
-            list.push({
-              longitude: coord.longitude,
-              latitude: coord.latitude,
               name: place.name,
               address: place.vicinity,
-              type: 'wgs84'
+              type: type
             })
           }
         }

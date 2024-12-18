@@ -50,7 +50,8 @@ function Page({ map, visible, onVisibleChange, onChange }) {
       map: map,
       keyword: inputText.value,
       latitude: center.latitude,
-      longitude: center.longitude
+      longitude: center.longitude,
+      type: center.type
     })
     Loading.hide()
 

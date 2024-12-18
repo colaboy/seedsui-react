@@ -49,7 +49,11 @@ function MapChoose(
   let value = externalValue
   // 百度国内使用bd09
   if (window.BMap) {
-    value = coordsToFit(externalValue, 'bd09')
+    value = coordsToFit(externalValue, { inChinaTo: 'bd09' })
+  }
+  // 高德和google国内使用gcj02
+  else if (window.AMap || window.google) {
+    value = coordsToFit(externalValue, { inChinaTo: 'gcj02' })
   }
 
   // 地图容器

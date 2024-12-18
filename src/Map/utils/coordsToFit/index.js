@@ -6,29 +6,31 @@ import GeoUtil from './../../../GeoUtil'
 
 // 坐标自动转换
 /*
-# 绘制地图瓦片
+# 绘制地图瓦片 currentTileLayer
 ## 百度
-- 国内: wgs84转为bd09渲染
-- 国外: wgs84直接渲染
+- 国内: bd09渲染
+- 国外: wgs84渲染
 
 ## 高德与Google
-- 国内: wgs84转为gcj02渲染
-- 国外: wgs84直接渲染
+- 国内: gcj02渲染
+- 国外: wgs84渲染
 
 
 
-# 搜索附近
+
+
+# 搜索与搜索附近 queryNearby
 ## 百度
-- 国内搜索: wgs84转bd09后搜索
-- 国内搜索结果: bd09转wgs84返回
+- 国内搜索: bd09搜索
+- 国内搜索结果: bd09
 - 国外搜索: wgs84搜索
-- 国外搜索结果: wgs84直接返回
+- 国外搜索结果: wgs84
 
 ## 高德与Google
-- 国内搜索: wgs84转gcj02后搜索
-- 国内搜索结果: gcj02转wgs84返回
+- 国内搜索: gcj02搜索
+- 国内搜索结果: 返回gcj02
 - 国外搜索: wgs84搜索
-- 国外搜索结果: wgs84直接返回
+- 国外搜索结果: 返回wgs84
 
 
 
@@ -65,7 +67,12 @@ import GeoUtil from './../../../GeoUtil'
 */
 function coordToFit(coord) {
   // 参数不合法
-  if (!coord?.inChinaTo || !coord?.longitude || !coord?.latitude || !coord?.type) {
+  if (
+    (!coord?.inChinaTo && !coord?.outChinaTo) ||
+    !coord?.longitude ||
+    !coord?.latitude ||
+    !coord?.type
+  ) {
     return coord
   }
 
@@ -73,38 +80,59 @@ function coordToFit(coord) {
   let isInChina = GeoUtil.isInChina([coord.longitude, coord.latitude]) === true
   coord.isInChina = isInChina
 
-  // 不在中国原样返回
+  // 不在中国
   if (!isInChina) {
+    // 不在中国转为指定坐标
+    if (coord.outChinaTo) {
+      let [longitude, latitude] = GeoUtil.coordtransform(
+        [coord.longitude, coord.latitude],
+        coord.type,
+        coord.outChinaTo
+      )
+
+      return {
+        ...coord,
+        longitude,
+        latitude,
+        type: coord.outChinaTo
+      }
+    }
     return coord
   }
-
-  // 在中国转为中国坐标bd09或gcj02
-  let newPoint = isInChina
-    ? GeoUtil.coordtransform([coord.longitude, coord.latitude], coord.type, coord.inChinaTo)
-    : [coord.longitude, coord.latitude]
-
-  let longitude = newPoint[0]
-  let latitude = newPoint[1]
-  return {
-    ...coord,
-    longitude,
-    latitude,
-    type: coord.inChinaTo
+  // 在中国
+  else {
+    let [longitude, latitude] = GeoUtil.coordtransform(
+      [coord.longitude, coord.latitude],
+      coord.type,
+      coord.inChinaTo
+    )
+    return {
+      ...coord,
+      longitude,
+      latitude,
+      type: coord.inChinaTo
+    }
   }
 }
 
 // 国内转gcj02, 国外转wgs84
-function coordsToFit(coords, inChinaTo) {
+function coordsToFit(coords, { inChinaTo, outChinaTo } = {}) {
   if (Array.isArray(coords) && coords.length) {
     return coords.map((coord) => {
-      if (!coord.inChinaTo) {
+      if (!coord.inChinaTo && inChinaTo) {
         coord.inChinaTo = inChinaTo
+      }
+      if (!coord.outChinaTo && outChinaTo) {
+        coord.outChinaTo = outChinaTo
       }
       return coordToFit(coord)
     })
   } else if (toString.call(coords) === '[object Object]') {
-    if (!coords.inChinaTo) {
+    if (!coords.inChinaTo && inChinaTo) {
       coords.inChinaTo = inChinaTo
+    }
+    if (!coords.outChinaTo && outChinaTo) {
+      coords.outChinaTo = outChinaTo
     }
     return coordToFit(coords)
   }
