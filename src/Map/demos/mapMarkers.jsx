@@ -38,13 +38,13 @@ const points = coordsToWgs84([
     type: 'wgs84'
   },
   {
-    address: '江苏省南京市建邺区金洲路62号',
-    latitude: 31.983171307798603,
-    longitude: 118.72896443172527,
+    latitude: 31.990374883871525,
+    longitude: 118.73769931504451,
+    type: 'gcj02',
+    address: '南京烽火科技',
     icon: {
-      html: '<div>江苏省南京市建邺区金洲路62号</div>'
-    },
-    type: 'wgs84'
+      html: '<div style="width:100px;background-color:red;">南京烽火科技</div>'
+    }
   }
 ])
 
@@ -54,11 +54,11 @@ export default () => {
     <APILoader
       config={{
         // type类型 google, bmap, amap, 默认osm
-        // key: '',
-        // type: 'google'
+        key: '',
+        type: 'google'
         // 百度地图
-        key: '7b6e260fc45a67b31a265e22575f1c5e',
-        type: 'bmap'
+        // key: '',
+        // type: 'bmap'
       }}
       onSuccess={() => {
         console.log('地图加载成功')

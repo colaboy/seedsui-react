@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 
+import coordsToFit from './../../utils/coordsToFit'
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import Markers, { createIcon as createMarkerIcon } from './../../components/Markers'

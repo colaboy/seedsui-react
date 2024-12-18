@@ -15,21 +15,22 @@ export default () => {
   const mapRef = useRef(null)
   // Bridge.debug = true
   let [value, setValue] = useState({
+    // address: '美国白宫',
+    // latitude: 38.8976763,
+    // longitude: -77.0365298,
+    // type: 'wgs84'
     // latitude: 34.007479447064824,
     // longitude: -118.5000352126432,
     // type: 'wgs84',
     // address: '太平洋公园'
-
     // latitude: 39.909187,
     // longitude: 116.397451,
     // type: 'gcj02',
     // address: '天安门'
-
     // latitude: 39.907783490367706,
     // longitude: 116.39120737493609,
     // type: 'wgs84',
     // address: '天安门'
-
     latitude: 31.990374883871525,
     longitude: 118.73769931504451,
     type: 'gcj02',
@@ -69,7 +70,8 @@ export default () => {
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MapChoose
           ref={mapRef}
-          // readOnly
+          readOnly
+          // autoLocation={false}
           zoom={16}
           value={coordsToWgs84(value)}
           onChange={(newValue) => {
