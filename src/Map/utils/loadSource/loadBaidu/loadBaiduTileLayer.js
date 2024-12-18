@@ -72,7 +72,17 @@ function loadBMapLayer() {
     return new BaiduTileLayer()
   }
 
+  // crs
   window.L.tileLayer.currentTileLayer.crs = getCrs()
+
+  // maxBounds
+  let southWest = window.L.latLng(-80, -180)
+  let northEast = window.L.latLng(84, 180)
+  window.L.tileLayer.currentTileLayer.maxBounds = window.L.latLngBounds(southWest, northEast)
+
+  // maxZoom, minZoom
+  window.L.tileLayer.currentTileLayer.maxZoom = 19
+  window.L.tileLayer.currentTileLayer.minZoom = 3
 }
 
 export default loadBMapLayer

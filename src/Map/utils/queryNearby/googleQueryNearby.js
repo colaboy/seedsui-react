@@ -63,7 +63,7 @@ function nearbySearch({ map, keyword, longitude, latitude, type, radius }) {
               longitude: longitude,
               latitude: latitude,
               name: place.name,
-              address: place.vicinity,
+              address: place.formatted_address || place.vicinity || place.name,
               type: type
             })
           }

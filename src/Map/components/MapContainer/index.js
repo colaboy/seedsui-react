@@ -358,23 +358,6 @@ const MapContainer = forwardRef(
       // Render children
       setLeafletMap(leafletMap)
 
-      // Set BMap max bounds
-      if (window.BMap) {
-        let southWest = window.L.latLng(-80, -180)
-        let northEast = window.L.latLng(84, 180)
-        let maxBounds = window.L.latLngBounds(southWest, northEast)
-
-        leafletMap.setMaxBounds(maxBounds)
-      }
-      // Set google max bounds
-      else if (window.google) {
-        let southWest = window.L.latLng(-85.05112878, -Infinity)
-        let northEast = window.L.latLng(85.05112878, Infinity)
-        let maxBounds = window.L.latLngBounds(southWest, northEast)
-
-        leafletMap.setMaxBounds(maxBounds)
-      }
-
       // onLoad success panTo center
       if (centerRef.current) {
         APIRef?.current?.panTo?.(centerRef.current)

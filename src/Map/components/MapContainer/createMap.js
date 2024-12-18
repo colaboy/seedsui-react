@@ -1,7 +1,7 @@
 import defaultCountryCenter from './defaultCountryCenter'
 
 // Create leaflet map
-function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) {
+function createMap(container, { center, minZoom, maxZoom, zoom }) {
   if (!window.L) {
     return '请在Map组件需要使用APILoader包裹'
   }
@@ -16,8 +16,6 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     minZoom = 3
   }
 
-  let map = null
-
   let centerPoint = []
   if (center?.latitude && center?.longitude) {
     centerPoint = [center?.latitude, center?.longitude]
@@ -30,21 +28,32 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
   else {
     centerPoint = [defaultCountryCenter['other'].latitude, defaultCountryCenter['other'].longitude]
   }
-  // Init leaflet map
+  // Init leaflet map config
   let config = {
     attributionControl: false, // 隐藏版权控件
     zoomControl: false, // 隐藏放大缩小控件
-    maxZoom: maxZoom,
-    minZoom: minZoom,
-    zoom: zoom,
+    maxZoom: maxZoom || window.L.tileLayer?.currentTileLayer?.maxZoom || 20,
+    minZoom: minZoom || window.L.tileLayer?.currentTileLayer?.minZoom || 1,
+    zoom: zoom || window.L.tileLayer?.currentTileLayer?.zoom || 13,
     center: centerPoint
   }
-  // crs配置
-  if (window.L.tileLayer.currentTileLayer?.crs) {
+
+  // Init leaflet map config: crs
+  if (window.L.tileLayer?.currentTileLayer?.crs) {
     config.crs = window.L.tileLayer.currentTileLayer.crs
   }
+  // Init leaflet map config: maxBounds
+  if (window.L.tileLayer.currentTileLayer?.maxBounds) {
+    config.maxBounds = window.L.tileLayer.currentTileLayer.maxBounds
+  }
 
-  map = window.L.map(container, config)
+  // Leaflet map
+  let map = window.L.map(container, config)
+
+  // TileLayer error
+  if (!window.L.tileLayer?.currentTileLayer) {
+    return map
+  }
 
   // Add tileLayer
   let tileLayer = window.L.tileLayer.currentTileLayer()
