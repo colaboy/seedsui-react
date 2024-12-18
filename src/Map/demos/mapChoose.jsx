@@ -70,7 +70,7 @@ export default () => {
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MapChoose
           ref={mapRef}
-          readOnly
+          // readOnly
           // autoLocation={false}
           zoom={16}
           value={coordsToWgs84(value)}
