@@ -39,9 +39,9 @@ function createMap(container, { center, minZoom = 1, maxZoom = 20, zoom = 13 }) 
     zoom: zoom,
     center: centerPoint
   }
-  // 百度tile layer插件
-  if (window?.L?.CRS?.Baidu) {
-    config.crs = window.L.CRS.Baidu
+  // crs配置
+  if (window.L.tileLayer.currentTileLayer?.crs) {
+    config.crs = window.L.tileLayer.currentTileLayer.crs
   }
 
   map = window.L.map(container, config)

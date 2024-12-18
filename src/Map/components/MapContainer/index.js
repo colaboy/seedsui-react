@@ -15,9 +15,10 @@ import Result from './../Result'
 
 // 内库使用
 import locale from './../../../locale'
+import GeoUtil from './../../../GeoUtil'
 
 // 测试使用
-// import { locale } from 'seedsui-react'
+// import { locale, GeoUtil } from 'seedsui-react'
 
 const MapContainer = forwardRef(
   (
@@ -151,11 +152,21 @@ const MapContainer = forwardRef(
       },
       getCenter: () => {
         let latlng = leafletMap?.getCenter()
-        return {
+        let center = {
           latitude: latlng.lat,
-          longitude: latlng.lng,
-          type: 'wgs84'
+          longitude: latlng.lng
         }
+
+        // 百度国内坐标为gcj02和bd09
+        let isInChina = GeoUtil.isInChina([center.longitude, center.latitude])
+        if (isInChina) {
+          if (window.BMap) center.type = 'bd09'
+          if (window.google || window.AMap) center.type = 'gcj02'
+        } else {
+          center.type = 'wgs84'
+        }
+
+        return center
       },
       zoomIn: () => {
         leafletMap?.zoomIn()

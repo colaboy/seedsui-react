@@ -1,9 +1,11 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 
+import coordsToFit from './../../utils/coordsToFit'
+
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import SearchControl from './../../components/SearchControl'
-import CenterMarker, { createIcon as createCenterMarkerIcon } from './../../components/CenterMarker'
+import CenterMarker from './../../components/CenterMarker'
 import LocationControl from './../../components/LocationControl'
 import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
@@ -26,7 +28,7 @@ function MapChoose(
     getLocation,
     queryNearby,
     // value: {latitude: '纬度', longitude: '经度', address: '地址'}
-    value,
+    value: externalValue,
     onLoad,
     onChange,
     onMarkerClick,
@@ -44,6 +46,12 @@ function MapChoose(
   },
   ref
 ) {
+  let value = externalValue
+  // 百度国内使用bd09
+  if (window.BMap) {
+    value = coordsToFit(externalValue, 'bd09')
+  }
+
   // 地图容器
   const mapRef = useRef(null)
 
@@ -150,9 +158,7 @@ function MapChoose(
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
-        icon={createCenterMarkerIcon(value?.icon)}
-        longitude={value?.longitude}
-        latitude={value?.latitude}
+        value={value}
         onDragEnd={
           readOnly
             ? null

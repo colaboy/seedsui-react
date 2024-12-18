@@ -1,5 +1,4 @@
 import coordsToFit from './../coordsToFit'
-import coordsToWgs84 from './../coordsToWgs84'
 
 // 内库使用
 import locale from './../../../locale'
@@ -31,19 +30,17 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, radius }) {
             const item = results.getPoi(i)
 
             if (!item.title && !item.address) continue
-            // 坐标一律转成wgs84
-            let coord = coordsToWgs84({
-              longitude: item.point.lng,
-              latitude: item.point.lat,
-              type: centerCoord.isInChina ? 'bd09' : 'wgs84'
-            })
+
+            let longitude = item.point.lng
+            let latitude = item.point.lat
+            let type = centerCoord.isInChina ? 'bd09' : 'wgs84'
 
             list.push({
               name: item.title,
               address: item.address,
-              longitude: coord.longitude,
-              latitude: coord.latitude,
-              type: 'wgs84'
+              longitude: longitude,
+              latitude: latitude,
+              type: type
             })
           }
           resolve(list)
