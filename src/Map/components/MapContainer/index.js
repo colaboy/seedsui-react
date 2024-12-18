@@ -88,29 +88,36 @@ const MapContainer = forwardRef(
       leafletMap: null,
       // 指定获取定位和地址的方法
       getAddress: async (coord) => {
-        if (typeof coord === 'object' && coord?.longitude && coord?.latitude) {
-          let result = await getAddress(coord)
-
-          // Get address success
-          if (result?.address) {
-            result = {
-              ...coord,
-              ...result
-            }
-          }
-          // Get address fail
-          else {
-            result =
-              typeof result === 'string'
-                ? result
-                : locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
-          }
-          return result
+        if (typeof coord !== 'object' || !coord?.longitude || !coord?.latitude || !coord?.type) {
+          return 'getAddress must pass longitude, latitude and type'
         }
 
-        return 'getAddress must pass longitude and latitude'
+        let result = await getAddress(coord)
+
+        // Get address success
+        if (result?.address) {
+          result = {
+            ...coord,
+            ...result
+          }
+        }
+        // Get address fail
+        else {
+          result =
+            typeof result === 'string'
+              ? result
+              : locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+        }
+        return result
       },
-      getLocation: getLocation,
+      // Get location
+      getLocation: async (params) => {
+        let result = await getLocation(params)
+        if (!result.type && params.type) {
+          result.type = params.type
+        }
+        return result
+      },
       // 搜索附近与搜索
       /*
       入参:
