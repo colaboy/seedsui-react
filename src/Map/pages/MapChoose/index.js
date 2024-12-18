@@ -1,6 +1,7 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 
 import coordsToFit from './../../utils/coordsToFit'
+import coordsToWgs84 from './../../utils/coordsToWgs84'
 
 import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
@@ -118,7 +119,7 @@ function MapChoose(
       }
     }
 
-    onChange && onChange(newValue)
+    handleChange(newValue)
   }
 
   const handleLoadRef = useRef(null)
@@ -130,6 +131,12 @@ function MapChoose(
     // 当前位置
     if (readOnly || !autoLocation) return
     handleAutoLocation()
+  }
+
+  // Format coord to wgs84 before change
+  function handleChange(newValue) {
+    let fmtNewValue = coordsToWgs84(newValue)
+    onChange && onChange(fmtNewValue)
   }
 
   return (
@@ -151,14 +158,7 @@ function MapChoose(
       }}
     >
       {/* 搜索控件 */}
-      {readOnly ? null : (
-        <SearchControl
-          onChange={(item) => {
-            onChange && onChange(item)
-          }}
-          {...SearchControlProps}
-        />
-      )}
+      {readOnly ? null : <SearchControl onChange={handleChange} {...SearchControlProps} />}
 
       {/* 中心标注点: 仅用于显示 */}
       <CenterMarker
@@ -176,7 +176,7 @@ function MapChoose(
                 result = await map.getAddress(result)
                 Loading.hide()
 
-                onChange && onChange(result)
+                handleChange(result)
               }
         }
         {...CenterMarkerProps}
@@ -207,9 +207,7 @@ function MapChoose(
         <LocationControl
           ref={locationRef}
           style={{ bottom: '145px' }}
-          onChange={(result) => {
-            onChange && onChange(result)
-          }}
+          onChange={handleChange}
           {...LocationControlProps}
         />
       )}
@@ -220,10 +218,7 @@ function MapChoose(
         readOnly={readOnly}
         value={value}
         radius={1000}
-        onChange={(item) => {
-          // console.log('选中点:', item)
-          onChange && onChange(item)
-        }}
+        onChange={handleChange}
         onLoad={(list) => {
           // 间距调整, 附件面板的高度在展开后会很高会出问题
           // let bottom = nearbyRef.current.rootDOM.clientHeight
