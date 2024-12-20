@@ -1,7 +1,7 @@
 // 加载google地图leaflet插件
 function loadGoogleTileLayer() {
   window.L.tileLayer.currentTileLayer = function () {
-    return new L.tileLayer(
+    return new window.L.tileLayer(
       'https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}&scale=2'
     )
   }

@@ -1,5 +1,4 @@
 import coordsToFit from './../coordsToFit'
-import coordsToWgs84 from './../coordsToWgs84'
 
 // 内库使用
 import locale from './../../../locale'
