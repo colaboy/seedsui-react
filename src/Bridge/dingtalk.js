@@ -8,7 +8,7 @@ import back from './utils/back'
 import ready from './utils/ready'
 
 // 内库使用
-// import GeoUtil from './../GeoUtil'
+import GeoUtil from './../GeoUtil'
 
 // 测试使用
 // import { GeoUtil } from 'seedsui-react'

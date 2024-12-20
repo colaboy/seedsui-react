@@ -1,20 +1,19 @@
 import LocationTask from './utils/LocationTask'
 
+// Deprecated
+import Alert from './deprecated/alertInstance.js'
+import ToastInstance from './deprecated/toastInstance.js'
+import LoadingInstance from './deprecated/loadingInstance.js'
+
 // 内库使用
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
-import LoadingInstance from './../Loading/instance.js'
 import GeoUtil from './../GeoUtil'
-import Alert from './../Alert/instance.js'
-import ToastInstance from './../Toast/instance.js'
 import locale from './../locale'
 
 // 测试使用
 // import { GeoUtil, Device, MapUtil, Toast, locale } from 'seedsui-react'
-// import Alert from 'seedsui-react/lib/Alert/instance.js'
-// import ToastInstance from 'seedsui-react/lib/Toast/instance.js'
-// import LoadingInstance from 'seedsui-react/lib/Loading/instance.js'
 
 let Bridge = {
   // 判断是否是主页
@@ -193,10 +192,6 @@ let Bridge = {
   },
   // 以上API均废弃，请使用其它方法代替, 勿使用
   platform: Device.platform,
-  // 初始化配置, 例如wx.config, wx.ready后回调cb, 代表着桥接加载完成
-  init: function (cb) {
-    if (typeof cb === 'function') cb({ errMsg: 'config:ok' })
-  },
   // 自定义操作
   invoke: function () {
     Toast.show({

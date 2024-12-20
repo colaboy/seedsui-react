@@ -13,7 +13,45 @@ import locale from './../locale'
 let Bridge = {
   ...BridgeBase,
   ready: function (callback, options) {
-    ready(callback, options, Bridge)
+    ready(
+      () => {
+        if (window.wq && !window.top.wq) {
+          window.top.wq = window.wq
+        }
+
+        let isReady = false
+        if (window.top.wq) {
+          console.log('桥接文件已加载!')
+          window.top.wq.config({ auth: false })
+          console.log('桥接已配置, 调用ready')
+          window.top.wq.ready(function (response) {
+            // 单例
+            if (isReady) return
+
+            console.log('桥接ready完成!')
+            isReady = true
+            // 初始化完成回调
+            if (response.errMsg === 'config:ok') {
+              console.log('桥接加载完成')
+            } else {
+              console.error('桥接失败, 如果无法返回请左滑返回')
+            }
+            if (typeof callback === 'function') callback(response)
+          })
+          console.log('已调用ready')
+        }
+        setTimeout(() => {
+          // 单例
+          if (isReady) return
+
+          isReady = true
+          console.error('桥接超时, 如果无法使用本地能力, 请退出重试')
+          if (typeof callback === 'function') callback({ errMsg: 'config:fail timeout' })
+        }, 2000)
+      },
+      options,
+      Bridge
+    )
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)
@@ -25,37 +63,6 @@ let Bridge = {
   // 自定义操作
   invoke: function (api, params, callback) {
     window.top.wq.invoke(api, params, callback)
-  },
-  // 配置鉴权
-  init: function (cb) {
-    if (window.wq && !window.top.wq) {
-      window.top.wq = window.wq
-    }
-
-    let isReady = false
-    if (window.top.wq) {
-      console.log('桥接文件已加载!')
-      window.top.wq.config({ auth: false })
-      console.log('桥接已配置, 调用ready')
-      window.top.wq.ready(function (response) {
-        console.log('桥接ready完成!')
-        isReady = true
-        // 初始化完成回调
-        if (response.errMsg === 'config:ok') {
-          console.log('桥接加载完成')
-        } else {
-          console.error('桥接失败, 如果无法返回请左滑返回')
-        }
-        if (typeof cb === 'function') cb(response)
-      })
-      console.log('已调用ready')
-    }
-    setTimeout(() => {
-      if (!isReady) {
-        console.error('桥接超时, 如果无法使用本地能力, 请退出重试')
-        if (typeof cb === 'function') cb({ errMsg: 'config:fail timeout' })
-      }
-    }, 2000)
   },
   // 判断是否是主页
   isHomePage: function (callback) {

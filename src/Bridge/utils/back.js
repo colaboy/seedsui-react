@@ -10,10 +10,8 @@ import Modal from './../../Modal'
 
 // 客户端默认返回控制
 async function back(backLvl, options, Bridge) {
-  const { history, success, fail } = options || {}
+  const { success, fail } = options || {}
   // 返回操作对象与返回层级
-  let _history = window.history
-  if (history && history.go) _history = history
   let _backLvl = backLvl || -1
 
   // 清空无效的h5返回
@@ -94,8 +92,8 @@ async function back(backLvl, options, Bridge) {
           }
           // 提示后返回上一页
           else {
-            console.log('back:confirm-close, history')
-            _history.go(_backLvl)
+            console.log('back:confirm, history')
+            window.history.go(_backLvl)
           }
           success && success()
           return true
@@ -111,7 +109,7 @@ async function back(backLvl, options, Bridge) {
   }
   // 返回上一页
   else {
-    _history.go(_backLvl)
+    window.history.go(_backLvl)
     success && success()
     return true
   }

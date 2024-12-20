@@ -14,7 +14,20 @@ import locale from './../locale'
 let Bridge = {
   ...BridgeBase,
   ready: function (callback, options) {
-    ready(callback, options, Bridge)
+    ready(
+      () => {
+        document.addEventListener(
+          'deviceready',
+          () => {
+            // 初始化完成回调
+            if (typeof callback === 'function') callback()
+          },
+          false
+        )
+      },
+      options,
+      Bridge
+    )
   },
   back: function (backLvl, options) {
     back(backLvl, options, Bridge)
@@ -23,16 +36,6 @@ let Bridge = {
    * 定制功能
    */
   platform: 'waiqin',
-  init: function (cb) {
-    document.addEventListener(
-      'deviceready',
-      () => {
-        // 初始化完成回调
-        if (typeof cb === 'function') cb()
-      },
-      false
-    )
-  },
   // 获得版本信息
   getAppVersion: function () {
     return Device.platformVersion

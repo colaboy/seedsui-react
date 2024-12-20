@@ -28,7 +28,7 @@ function ready(callback, options = {}, Bridge) {
     platform === 'lark'
   ) {
     // 初始化完成不需要重复加载
-    if (window.top.wx || window.top.ap || window.top.dd || window.top.tt) {
+    if (window.top.wx || window.top.ap || window.top.dd || (window.top.tt && window.top.h5sdk)) {
       if (callback) callback()
       return
     }
@@ -49,7 +49,7 @@ function ready(callback, options = {}, Bridge) {
       script.src =
         options.dingtalkLibSrc || '//g.alicdn.com/dingding/dingtalk-jsapi/3.0.25/dingtalk.open.js'
     } else if (platform === 'lark') {
-      script.src = options.larkLibSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.32.js'
+      script.src = options.larkLibSrc || '//lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.34.js'
     }
 
     // 加载完成
@@ -87,16 +87,14 @@ function ready(callback, options = {}, Bridge) {
       }
 
       // 飞书
-      if (window.tt) {
+      if (window.tt && window.h5sdk) {
         // eslint-disable-next-line
         window.top.tt = window.tt
+        // eslint-disable-next-line
+        window.top.h5sdk = window.h5sdk
       }
 
-      if (window.tt) {
-        Bridge.init(callback)
-      } else {
-        if (callback) callback()
-      }
+      if (callback) callback()
     }
     if (options.fail) {
       script.onerror = function () {
@@ -111,9 +109,7 @@ function ready(callback, options = {}, Bridge) {
     script.src =
       options.wqCordovaSrc || '//res.waiqin365.com/d/common_mobile/component/cordova/cordova.js'
     script.onload = function () {
-      Bridge.init(() => {
-        if (callback) callback()
-      })
+      if (typeof callback === 'function') callback()
     }
     if (options.fail) {
       script.onerror = function () {
@@ -133,7 +129,7 @@ function ready(callback, options = {}, Bridge) {
     // 用开发d目录可以使用新功能
     script.src = options.wqSrc || `//res.waiqin365.com/p/open/js/waiqin365.min-2.0.4.js`
     script.onload = function () {
-      Bridge.init(callback)
+      if (typeof callback === 'function') callback()
     }
     if (options.fail) {
       script.onerror = function () {

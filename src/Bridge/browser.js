@@ -8,7 +8,7 @@ import Toast from './../Toast'
 import locale from './../locale'
 
 // 测试使用
-// import { Device, Loading, Toast, locale } from 'seedsui-react'
+// import { Device, Toast, locale } from 'seedsui-react'
 
 let Bridge = {
   ...BridgeBase,

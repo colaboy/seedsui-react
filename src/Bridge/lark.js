@@ -17,36 +17,7 @@ let Bridge = {
   /**
    * 定制功能
    */
-  // 配置鉴权
-  init: function (cb) {
-    if (window.h5sdk && !window.top.h5sdk) {
-      window.top.h5sdk = window.h5sdk
-    }
-    if (window.tt && !window.top.tt) {
-      window.top.tt = window.tt
-    }
 
-    let isReady = false
-    if (window.top.h5sdk) {
-      console.log('桥接文件已加载,调用ready!')
-      window.top.h5sdk.ready(function () {
-        isReady = true
-        if (typeof cb === 'function') cb()
-      })
-      window.h5sdk.error((err) => {
-        isReady = true
-        console.log('飞书桥接初始化失败:', err)
-        if (typeof cb === 'function') cb({ errMsg: 'Bridge ready fail' })
-      })
-      console.log('已调用ready')
-    }
-    setTimeout(() => {
-      if (!isReady) {
-        console.error('桥接超时, 如果无法使用本地能力, 请退出重试')
-        if (typeof cb === 'function') cb({ errMsg: 'Bridge ready timeout' })
-      }
-    }, 2000)
-  },
   /**
    * 获取当前地理位置
    * @param {Object} params
