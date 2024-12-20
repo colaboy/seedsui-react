@@ -73,16 +73,20 @@ function loadBMapLayer() {
   }
 
   // crs
-  window.L.tileLayer.currentTileLayer.crs = getCrs()
+  const crs = getCrs()
 
   // maxBounds
   let southWest = window.L.latLng(-80, -180)
   let northEast = window.L.latLng(84, 180)
-  window.L.tileLayer.currentTileLayer.maxBounds = window.L.latLngBounds(southWest, northEast)
+  const maxBounds = window.L.latLngBounds(southWest, northEast)
 
   // maxZoom, minZoom
-  window.L.tileLayer.currentTileLayer.maxZoom = 19
-  window.L.tileLayer.currentTileLayer.minZoom = 3
+  window.L.tileLayer.currentTileLayer.config = {
+    crs,
+    maxBounds,
+    maxZoom: 19,
+    minZoom: 3
+  }
 }
 
 export default loadBMapLayer

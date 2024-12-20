@@ -9,11 +9,14 @@ function loadGoogleTileLayer() {
   // maxBounds
   let southWest = window.L.latLng(-85.05112878, -Infinity)
   let northEast = window.L.latLng(85.05112878, Infinity)
-  window.L.tileLayer.currentTileLayer.maxBounds = window.L.latLngBounds(southWest, northEast)
+  const maxBounds = window.L.latLngBounds(southWest, northEast)
 
   // maxZoom, minZoom
-  window.L.tileLayer.currentTileLayer.maxZoom = 18
-  window.L.tileLayer.currentTileLayer.minZoom = 1
+  window.L.tileLayer.currentTileLayer.config = {
+    maxBounds,
+    maxZoom: 18,
+    minZoom: 1
+  }
 }
 
 export default loadGoogleTileLayer

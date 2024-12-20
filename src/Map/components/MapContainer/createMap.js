@@ -32,19 +32,11 @@ function createMap(container, { center, minZoom, maxZoom, zoom }) {
   let config = {
     attributionControl: false, // 隐藏版权控件
     zoomControl: false, // 隐藏放大缩小控件
-    maxZoom: maxZoom || window.L.tileLayer?.currentTileLayer?.maxZoom || 20,
-    minZoom: minZoom || window.L.tileLayer?.currentTileLayer?.minZoom || 1,
-    zoom: zoom || window.L.tileLayer?.currentTileLayer?.zoom || 13,
-    center: centerPoint
-  }
-
-  // Init leaflet map config: crs
-  if (window.L.tileLayer?.currentTileLayer?.crs) {
-    config.crs = window.L.tileLayer.currentTileLayer.crs
-  }
-  // Init leaflet map config: maxBounds
-  if (window.L.tileLayer.currentTileLayer?.maxBounds) {
-    config.maxBounds = window.L.tileLayer.currentTileLayer.maxBounds
+    center: centerPoint,
+    ...(window.L.tileLayer?.currentTileLayer?.config || {}),
+    maxZoom: maxZoom || window.L.tileLayer?.currentTileLayer?.config?.maxZoom || 20,
+    minZoom: minZoom || window.L.tileLayer?.currentTileLayer?.config?.minZoom || 1,
+    zoom: zoom || window.L.tileLayer?.currentTileLayer?.config?.zoom || 13
   }
 
   // Leaflet map
