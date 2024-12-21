@@ -6,6 +6,12 @@ import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
+// 内库使用
+import GeoUtil from './../GeoUtil'
+
+// 测试使用
+// import { GeoUtil } from 'seedsui-react'
+
 let Bridge = {
   ...BridgeBase,
   ready: function (callback, options) {
@@ -35,12 +41,25 @@ let Bridge = {
     }
     LocationTask.locationTask = []
     console.log('调用飞书定位...', params)
+    let currentType = type || 'gcj02'
     window.top.tt.getLocation({
       ...otherParams,
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      type: type || 'gcj02',
+      type: currentType,
       success: (res) => {
         if (res.longitude && res.latitude) {
+          // 飞书API骗人,type根本无效, 需要自己转换
+          if (res.type && res.type !== currentType) {
+            const points = GeoUtil.coordtransform(
+              [res.longitude, res.latitude],
+              res.type,
+              currentType
+            )
+            res.longitude = points[0]
+            res.latitude = points[1]
+            res.type = currentType
+          }
+
           if (success) success(res)
         } else {
           if (fail) fail(res)
