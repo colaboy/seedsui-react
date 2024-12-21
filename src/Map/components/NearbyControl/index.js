@@ -113,7 +113,7 @@ function Nearby(
               list={list}
               active={active}
               onChange={(item) => {
-                map.panTo({ longitude: item.longitude, latitude: item.latitude })
+                map.panTo({ longitude: item.longitude, latitude: item.latitude, type: item.type })
                 setActive(item)
                 onChange && onChange(item)
               }}

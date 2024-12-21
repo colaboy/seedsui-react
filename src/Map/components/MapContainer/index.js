@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { createIcon as createCenterMarkerIcon } from './../CenterMarker'
 import { createIcon as createMarkerIcon } from './../Markers'
+import convertToRenderCoord from './../../utils/convertToRenderCoord'
 import getMapType from './../../utils/getMapType'
 import createMap from './createMap'
 import createCurrentMap from './createCurrentMap'
@@ -141,25 +142,26 @@ const MapContainer = forwardRef(
       setView: (...params) => {
         leafletMap?.setView(...params)
       },
-      panTo: (points) => {
+      panTo: (coords) => {
         if (!leafletMap) return
-        if (Array.isArray(points)) {
-          // eslint-disable-next-line
-          points = points.map((point) => {
-            if (!point?.latitude || !point?.longitude) {
-              console.error('MapContainer center invalid parameter:', point)
+        if (Array.isArray(coords)) {
+          let points = coords.map((coord) => {
+            if (!coord?.latitude || !coord?.longitude || !coord?.type) {
+              console.error('MapContainer panTo invalid parameter:', coord)
               return null
             }
-            return [point.latitude, point.longitude]
+            let newCoord = convertToRenderCoord(coord)
+            return [newCoord.latitude, newCoord.longitude]
           })
-          // eslint-disable-next-line
           points = points.filter((point) => point)
           leafletMap.fitBounds(points, { padding: [1, 1] })
-        } else if (typeof points === 'object') {
-          if (!points?.latitude || !points?.longitude) {
+        } else if (typeof coords === 'object') {
+          if (!coords?.latitude || !coords?.longitude || !coords?.type) {
+            console.error('MapContainer panTo invalid parameter:', coords)
             return
           }
-          leafletMap.panTo([points.latitude, points.longitude])
+          let newCoord = convertToRenderCoord(coords)
+          leafletMap.panTo([newCoord.latitude, newCoord.longitude])
         }
       },
       getCenter: () => {

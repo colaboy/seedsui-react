@@ -163,6 +163,9 @@ let Bridge = {
       success: (res) => {
         // 将位置信息存储到cookie中60秒
         if (res.longitude && res.latitude) {
+          if (!res.type) {
+            res.type = type || 'gcj02'
+          }
           if (success) success(res)
         } else {
           if (fail) fail(res)

@@ -58,6 +58,7 @@ let Bridge = {
     //       latitude = points[1]
     //     }
     //     let res = {
+    //       type: type || 'gcj02',
     //       latitude: latitude,
     //       longitude: longitude,
     //       address: result.address,

@@ -92,6 +92,9 @@ let Bridge = {
       type: type || 'gcj02',
       success: (res) => {
         if (res.longitude && res.latitude) {
+          if (!res.type) {
+            res.type = type || 'gcj02'
+          }
           if (success) success(res)
         } else {
           if (fail) fail(res)

@@ -57,7 +57,8 @@ let Bridge = {
           success({
             ...res,
             longitude: longitude,
-            latitude: latitude
+            latitude: latitude,
+            type: type || 'gcj02'
           })
         }
         LocationTask.getLocationTask(res)

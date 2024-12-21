@@ -14,7 +14,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
     <div
       className={`map-nearbyControl-item`}
       onClick={(e) => {
-        map.panTo({ longitude: value.longitude, latitude: value.latitude })
+        map.panTo({ longitude: value.longitude, latitude: value.latitude, type: value.type })
         if (!readOnly) {
           onChange && onChange(value)
         }

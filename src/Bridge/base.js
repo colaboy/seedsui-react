@@ -230,7 +230,8 @@ let Bridge = {
         let res = {
           errMsg: 'getLocation:ok',
           speed: '0.0',
-          accuracy: '3.0.0'
+          accuracy: '3.0.0',
+          type: params.type || 'wgs84'
         }
         if (params?.type === 'gcj02') {
           res.latitude = 39.909187
@@ -278,7 +279,8 @@ let Bridge = {
             speed: position.coords.speed,
             accuracy: position.coords.accuracy,
             longitude: longitude,
-            latitude: latitude
+            latitude: latitude,
+            type: params.type || 'wgs84'
           }
           if (params.success) params.success(res)
           LocationTask.getLocationTask(res)

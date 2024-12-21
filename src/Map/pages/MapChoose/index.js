@@ -1,6 +1,6 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from 'react'
 
-import coordsToFit from './../../utils/coordsToFit'
+import convertToRenderCoord from './../../utils/convertToRenderCoord'
 import coordsToWgs84 from './../../utils/coordsToWgs84'
 
 import MapContainer from './../../components/MapContainer'
@@ -47,15 +47,7 @@ function MapChoose(
   },
   ref
 ) {
-  let value = externalValue
-  // 百度国内使用bd09
-  if (window.BMap) {
-    value = coordsToFit(externalValue, { inChinaTo: 'bd09' })
-  }
-  // 高德和google国内使用gcj02
-  else if (window.AMap || window.google) {
-    value = coordsToFit(externalValue, { inChinaTo: 'gcj02' })
-  }
+  let value = convertToRenderCoord(externalValue)
 
   // 地图容器
   const mapRef = useRef(null)
