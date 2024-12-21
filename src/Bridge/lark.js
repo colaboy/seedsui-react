@@ -103,7 +103,11 @@ let Bridge = {
    * 关闭窗口
    */
   closeWindow: function () {
-    window.top.dd.biz.navigation.close()
+    window.top.tt.closeWindow({
+      fail: function (res) {
+        console.log(`closeWindow fail: `, res)
+      }
+    })
   },
   /**
    * 返回监听
