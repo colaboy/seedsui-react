@@ -54,16 +54,20 @@ import GeoUtil from './../../../GeoUtil'
 
 
 # 获取当前位置
-- 国内,国外: wgs84定位
+- 国内,国外: wgs84定位, panTo时转为对应的坐标系即可
 
 
 
 # Leaflet API
 # Leaflet绘制点L.marker
-- 国内,国外: 使用wgs84绘点
+- 国内百度: 使用bd09绘点
+- 国内google与高德: 使用gcj02绘点
+- 国外百度,google与高德: 使用wgs84绘点
 
 # Leaflet中心位置panTo
-- 国内,国外: wgs84
+- 国内百度: 使用bd09绘点
+- 国内google与高德: 使用gcj02绘点
+- 国外百度,google与高德: 使用wgs84绘点
 */
 function coordToFit(coord) {
   // 参数不合法
