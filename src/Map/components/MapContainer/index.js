@@ -114,7 +114,7 @@ const MapContainer = forwardRef(
       // Get location
       getLocation: async (params) => {
         let result = await getLocation(params)
-        if (!result.type && params.type) {
+        if (result && typeof result === 'object' && !result.type && params.type) {
           result.type = params.type
         }
         return result
