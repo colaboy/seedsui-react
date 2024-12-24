@@ -1,8 +1,10 @@
-// 内库使用
+// 内库使用-start
 import ArrayUtil from '../../../ArrayUtil'
+// 内库使用-end
 
-// 测试使用
-// import { ArrayUtil } from 'seedsui-react'
+/* 测试使用-start
+import { ArrayUtil } from 'seedsui-react'
+测试使用-end */
 
 // 判断是否在list中，在list中被认为是省市区，不在则是街道
 function testNodeData(current, list) {

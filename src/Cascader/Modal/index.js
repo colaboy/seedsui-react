@@ -1,12 +1,14 @@
 import React, { forwardRef } from 'react'
 import Main from './../Main'
 
-// 内库使用
+// 内库使用-start
 import ModalPicker from './../../Modal/MainPicker'
+// 内库使用-end
 
-// 测试使用
-// import { Modal } from 'seedsui-react'
-// const ModalPicker = Modal.MainPicker
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const ModalPicker = Modal.MainPicker
+测试使用-end */
 
 // Modal
 const CascaderModal = forwardRef(

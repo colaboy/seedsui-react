@@ -3,12 +3,14 @@ import _ from 'lodash'
 import { updateValueType, compareType, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
-// 内库使用
+// 内库使用-start
 import ModalPicker from './../../Modal/MainPicker'
+// 内库使用-end
 
-// 测试使用
-// import { Modal } from 'seedsui-react'
-// const ModalPicker = Modal.MainPicker
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const ModalPicker = Modal.MainPicker
+测试使用-end */
 
 // 级联选择
 const DistrictModal = forwardRef(

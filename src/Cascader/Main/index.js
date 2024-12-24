@@ -7,16 +7,18 @@ import getTreeChildren from './getTreeChildren'
 import Tabs from './Tabs'
 import ListItem from './ListItem'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../locale'
 import ArrayUtil from './../../ArrayUtil'
 import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
 import Loading from './../../Loading'
+// 内库使用-end
 
-// 测试使用
-// import { locale } from 'seedsui-react'
-// import { ArrayUtil, Toast, IndexBar, Loading } from 'seedsui-react'
+/* 测试使用-start
+import { locale } from 'seedsui-react'
+import { ArrayUtil, Toast, IndexBar, Loading } from 'seedsui-react'
+测试使用-end */
 
 // 主体
 const Main = forwardRef(
@@ -209,7 +211,9 @@ const Main = forwardRef(
     async function handleDrill(item) {
       // 防止用户快速点击多次触发
       Loading.show({
-        id: '__SeedsUI_loading_cascader_drill_mask__', content: 'Get children...', style: {
+        id: '__SeedsUI_loading_cascader_drill_mask__',
+        content: 'Get children...',
+        style: {
           opacity: 0
         }
       })

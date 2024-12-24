@@ -2,12 +2,14 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import { updateValueType, testEditableOptions, defaultSetValueType } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
-// 内库使用
+// 内库使用-start
 import Combo from './../../Modal/Combo'
+// 内库使用-end
 
-// 测试使用
-// import { Modal } from 'seedsui-react'
-// const Combo = Modal.Combo
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const Combo = Modal.Combo
+测试使用-end */
 
 // 级联选择
 const DistrictCombo = forwardRef(
