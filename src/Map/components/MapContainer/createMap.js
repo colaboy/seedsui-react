@@ -10,12 +10,6 @@ function createMap(container, { center, minZoom, maxZoom, zoom }) {
     return '缺少必要地图资源, 请检查APILoader参数是否正确, 或者key是否过期'
   }
 
-  // 百度地图最小3
-  if (window.BMap && minZoom < 3) {
-    // eslint-disable-next-line
-    minZoom = 3
-  }
-
   let centerPoint = []
   if (center?.latitude && center?.longitude) {
     centerPoint = [center?.latitude, center?.longitude]
@@ -34,8 +28,8 @@ function createMap(container, { center, minZoom, maxZoom, zoom }) {
     zoomControl: false, // 隐藏放大缩小控件
     center: centerPoint,
     ...(window.L.tileLayer?.currentTileLayer?.config || {}),
-    maxZoom: maxZoom || window.L.tileLayer?.currentTileLayer?.config?.maxZoom || 20,
-    minZoom: minZoom || window.L.tileLayer?.currentTileLayer?.config?.minZoom || 1,
+    maxZoom: maxZoom || window.L.tileLayer?.currentTileLayer?.config?.maxZoom || 18,
+    minZoom: minZoom || window.L.tileLayer?.currentTileLayer?.config?.minZoom || 3,
     zoom: zoom || window.L.tileLayer?.currentTileLayer?.config?.zoom || 13
   }
 

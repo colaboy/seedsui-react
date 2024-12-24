@@ -1,9 +1,11 @@
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import Bridge from './../../../Bridge'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale, Bridge } from 'seedsui-react'
+// 测试使用-end
 
 // 定位
 function getLocation(options) {

@@ -1,10 +1,12 @@
 import coordsToFit from './../coordsToFit'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale } from 'seedsui-react'
+// 测试使用-end
 
 // 百度地址逆解析
 function bmapGetAddress(params) {

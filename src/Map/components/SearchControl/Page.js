@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import Loading from './../../../Loading'
 import Input from './../../../Input'
@@ -8,9 +8,11 @@ import Layout from './../../../Layout'
 import Header from './../../../Header'
 import Notice from './../../../Notice'
 import HighlightKeyword from './../../../HighlightKeyword'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale, Loading, Input, Layout, Header, Notice, HighlightKeyword } from 'seedsui-react'
+// 测试使用-end
 
 // 搜索
 function Page({ map, visible, onVisibleChange, onChange }) {

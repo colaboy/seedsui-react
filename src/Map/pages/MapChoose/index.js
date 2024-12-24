@@ -11,13 +11,15 @@ import LocationControl from './../../components/LocationControl'
 import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
 
-// 内库使用
+// 内库使用-start
 import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 import locale from './../../../locale'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { Loading, Toast, locale } from 'seedsui-react'
+// 测试使用-end
 
 // 地图选点
 function MapChoose(

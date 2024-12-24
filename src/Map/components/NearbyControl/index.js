@@ -6,12 +6,14 @@ import Toggle from './Toggle'
 import Tabs from './Tabs'
 import Main from './Main'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import Loading from './../../../Loading'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale, Loading } from 'seedsui-react'
+// 测试使用-end
 
 // 附近推荐
 function Nearby(

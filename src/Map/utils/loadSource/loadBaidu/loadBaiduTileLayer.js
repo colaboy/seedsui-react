@@ -28,7 +28,7 @@ function getCrs() {
 }
 // 加载百度插件
 function loadBMapLayer() {
-  if (window.L.tileLayer.currentTileLayer) {
+  if (window.L?.tileLayer?.currentTileLayer) {
     return
   }
 

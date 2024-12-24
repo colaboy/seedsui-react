@@ -1,18 +1,26 @@
 import React from 'react'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import Checkbox from './../../../Checkbox'
 import Notice from './../../../Notice'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { Checkbox, Notice, locale } from 'seedsui-react'
+// 测试使用-end
 
 // 附近结果
 function Main({ active, list, onChange }) {
+  let errMsg = typeof list === 'string' ? list : null
+  if (Array.isArray(list) && list.length === 0) {
+    errMsg = locale('暂无数据', 'SeedsUI_no_data')
+  }
   return (
     <div className="map-nearbyControl-main">
-      {Array.isArray(list) && list.length ? (
+      {errMsg && <Notice caption={errMsg} />}
+      {Array.isArray(list) &&
+        list.length &&
         list.map((item, index) => {
           return (
             <div
@@ -36,10 +44,7 @@ function Main({ active, list, onChange }) {
               />
             </div>
           )
-        })
-      ) : (
-        <Notice caption={locale('暂无数据', 'SeedsUI_no_data')} />
-      )}
+        })}
     </div>
   )
 }

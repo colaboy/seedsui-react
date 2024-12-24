@@ -1,10 +1,12 @@
 import coordsToFit from './../coordsToFit'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale } from 'seedsui-react'
+// 测试使用-end
 
 // 搜索附近, keyword:搜索关键词
 function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {

@@ -2,11 +2,13 @@ import bmapGetAddress from './bmapGetAddress'
 import googleGetAddress from './googleGetAddress'
 import defaultGetAddress from './defaultGetAddress'
 
-// 内库使用
+// 内库使用-start
 import Toast from './../../../Toast'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { Toast } from 'seedsui-react'
+// 测试使用-end
 
 // 地址逆解析
 async function getAddress(params) {

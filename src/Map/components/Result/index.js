@@ -1,11 +1,13 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import Button from './../../../Button'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale, Button } from 'seedsui-react'
+// 测试使用-end
 
 const Result = forwardRef(({ retry, title, subTitle, extra, ...props }, ref) => {
   const rootRef = useRef(null)

@@ -7,11 +7,13 @@ import Markers, { createIcon as createMarkerIcon } from './../../components/Mark
 
 import Result from './../../components/Result'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale } from 'seedsui-react'
+// 测试使用-end
 
 // 地图标注
 function MapMarkers(
@@ -37,13 +39,14 @@ function MapMarkers(
   }
 
   let points = externalPoints
-  // 百度国内使用bd09
-  if (window.BMap) {
-    points = coordsToFit(externalPoints, { inChinaTo: 'bd09' })
-  }
+
   // 高德和google国内使用gcj02
-  else if (window.AMap || window.google) {
+  if (window.AMap || window.google) {
     points = coordsToFit(externalPoints, { inChinaTo: 'gcj02' })
+  }
+  // 百度国内使用bd09
+  else if (window.BMap) {
+    points = coordsToFit(externalPoints, { inChinaTo: 'bd09' })
   }
 
   return (

@@ -14,12 +14,14 @@ import markerClickCanvas from './markerClickCanvas'
 
 import Result from './../Result'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../../locale'
 import GeoUtil from './../../../GeoUtil'
+// 内库使用-end
 
-// 测试使用
+// 测试使用-start
 // import { locale, GeoUtil } from 'seedsui-react'
+// 测试使用-end
 
 const MapContainer = forwardRef(
   (
@@ -174,8 +176,11 @@ const MapContainer = forwardRef(
         // 百度国内坐标为gcj02和bd09
         let isInChina = GeoUtil.isInChina([center.longitude, center.latitude])
         if (isInChina) {
-          if (window.BMap) center.type = 'bd09'
-          if (window.google || window.AMap) center.type = 'gcj02'
+          if (window.google || window.AMap) {
+            center.type = 'gcj02'
+          } else if (window.BMap) {
+            center.type = 'bd09'
+          }
         } else {
           center.type = 'wgs84'
         }

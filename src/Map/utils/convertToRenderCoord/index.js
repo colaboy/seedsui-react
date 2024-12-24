@@ -8,14 +8,15 @@ function convertToRenderCoord(coord) {
   }
 
   let renderCoord = coord
-  // 百度国内使用bd09
-  if (window.BMap) {
-    renderCoord = coordsToFit(coord, { inChinaTo: 'bd09' })
-  }
   // 高德和google国内使用gcj02
-  else if (window.AMap || window.google) {
+  if (window.AMap || window.google) {
     renderCoord = coordsToFit(coord, { inChinaTo: 'gcj02' })
   }
+  // 百度国内使用bd09
+  else if (window.BMap) {
+    renderCoord = coordsToFit(coord, { inChinaTo: 'bd09' })
+  }
+
   return renderCoord
 }
 
