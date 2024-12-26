@@ -36,51 +36,55 @@ let Bridge = {
     // 钉钉定位需要鉴权, 使用浏览器定位代替
     BridgeBase.getBrowserLocation(params)
     // 钉钉定位需要鉴权
-    // const { type, success, fail, complete } = params || {}
-    // // 调用定位
-    // if (LocationTask.locationTask) {
-    //   LocationTask.locationTask.push(params)
-    //   return
-    // }
-    // LocationTask.locationTask = []
-    // console.log('调用钉钉定位...', params)
-    // window.top.dd.device.geolocation.get({
-    //   targetAccuracy: 200, // 精度200米
-    //   coordinate: 1, // 高德坐标, 会加地址
-    //   withReGeocode: false, // 不需要逆向解析
-    //   useCache: false,
-    //   onSuccess: (result) => {
-    //     let latitude = result.latitude
-    //     let longitude = result.longitude
-    //     if (type === 'wgs84') {
-    //       const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
-    //       longitude = points[0]
-    //       latitude = points[1]
-    //     }
-    //     let res = {
-    //       type: type || 'gcj02',
-    //       latitude: latitude,
-    //       longitude: longitude,
-    //       address: result.address,
-    //       accuracy: result.accuracy
-    //     }
-    //     if (success) success(res)
+    /*
+    const { type, success, fail, complete } = params || {}
+    // 调用定位
+    if (LocationTask.locationTask) {
+      LocationTask.locationTask.push(params)
+      return
+    }
+    LocationTask.locationTask = []
+    console.log('调用钉钉定位...', params)
+    window.top.dd.getLocation({
+      type: 0,
+      useCache: false,
+      coordinate: '0',
+      cacheTimeout: 20,
+      withReGeocode: false,
+      targetAccuracy: '200',
+      success: (result) => {
+        alert(JSON.stringify(result))
+        let latitude = result.latitude
+        let longitude = result.longitude
+        if (type === 'wgs84') {
+          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+          longitude = points[0]
+          latitude = points[1]
+        }
+        let res = {
+          type: type || 'gcj02',
+          latitude: latitude,
+          longitude: longitude,
+          accuracy: result.accuracy
+        }
+        if (success) success(res)
 
-    //     if (complete) complete(res)
-    //     LocationTask.getLocationTask(res)
-    //   },
-    //   onFail: (res) => {
-    //     if (fail) {
-    //       fail({
-    //         errCode: res.errorCode,
-    //         errMsg: res.errorMessage
-    //       })
-    //     }
-
-    //     if (complete) complete(res)
-    //     LocationTask.getLocationTask(res)
-    //   }
-    // })
+        LocationTask.getLocationTask(res)
+      },
+      fail: (res) => {
+        alert(JSON.stringify(res))
+        if (fail) {
+          fail({
+            errCode: res.errorCode,
+            errMsg: res.errorMessage
+          })
+        }
+      },
+      complete: (res) => {
+        if (complete) complete(res)
+      }
+    })
+    */
   },
   /**
    * 扫码
