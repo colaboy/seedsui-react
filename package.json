@@ -34,18 +34,27 @@
     "prepublishOnly": "npm run build",
     "start": "npm run dev"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": "eslint --max-warnings=0"
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "dependencies": {
     "ahooks": "^3.8.0",
@@ -53,28 +62,29 @@
     "better-scroll": "^2.5.0",
     "dayjs": "^1.11.12",
     "html-react-parser": "^3.0.4",
+    "leaflet-canvas-marker": "^0.2.0",
+    "less": "^4.2.0",
     "lodash": "^4.17.21",
     "rc-tree": "^5.7.2",
     "react-sortablejs": "^6.1.4",
     "vconsole": "^3.15.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
-    "dumi": "^2.0.2",
-    "dumi-theme-mobile": "^2.0.2",
+    "dumi": "^2.4.17",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
-    "husky": "^8.0.3",
-    "leaflet-canvas-marker": "^0.2.0",
-    "less": "^4.2.0",
-    "lint-staged": "^13.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.0.0",
     "prettier-plugin-packagejson": "^2.2.18",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "stylelint": "^14.9.1"
   },
   "publishConfig": {
