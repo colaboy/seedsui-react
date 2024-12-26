@@ -5,15 +5,16 @@ import Alert from './deprecated/alertInstance.js'
 import ToastInstance from './deprecated/toastInstance.js'
 import LoadingInstance from './deprecated/loadingInstance.js'
 
-// 内库使用
+// 内库使用-start
 import Device from './../Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
 import GeoUtil from './../GeoUtil'
-import locale from './../locale'
+import locale from './../locale' // 内库使用-end
 
-// 测试使用
-// import { GeoUtil, Device, MapUtil, Toast, locale } from 'seedsui-react'
+/* 测试使用-start
+import { GeoUtil, Device, MapUtil, Toast, locale } from 'seedsui-react'
+测试使用-end */
 
 let Bridge = {
   // 判断是否是主页

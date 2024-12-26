@@ -7,11 +7,13 @@ import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
 
-// 内库使用
+// 内库使用-start
 import GeoUtil from './../GeoUtil'
+// 内库使用-end
 
-// 测试使用
-// import { GeoUtil } from 'seedsui-react'
+/* 测试使用-start
+import { GeoUtil } from 'seedsui-react'
+测试使用-end */
 
 let Bridge = {
   ...BridgeBase,
@@ -25,7 +27,7 @@ let Bridge = {
    * 定制功能
    */
   /**
-   * 获取当前地理位置
+   * 钉钉定位需要鉴权, 获取当前地理位置
    * @param {Object} params
    * params: {
    * type {String}: 'wgs84'|'gcj02'坐标类型微信默认使用国际坐标'wgs84',
@@ -34,9 +36,7 @@ let Bridge = {
    */
   getLocation: function (params = {}) {
     // 钉钉定位需要鉴权, 使用浏览器定位代替
-    BridgeBase.getBrowserLocation(params)
-    // 钉钉定位需要鉴权
-    /*
+    // BridgeBase.getBrowserLocation(params)
     const { type, success, fail, complete } = params || {}
     // 调用定位
     if (LocationTask.locationTask) {
@@ -84,7 +84,6 @@ let Bridge = {
         if (complete) complete(res)
       }
     })
-    */
   },
   /**
    * 扫码
@@ -132,16 +131,24 @@ let Bridge = {
       index = params.urls.indexOf(params.current)
       if (index < 0) index = 0
     }
-    window.top.dd.biz.util.previewImage({
+
+    window.top.dd.previewImage({
       urls: params.urls,
-      current: params.urls[index]
+      current: index,
+      fail: (error) => {
+        console.log('DingTalk previewImage fail:', error)
+      }
     })
   },
   /**
    * 关闭窗口
    */
   closeWindow: function () {
-    window.top.dd.biz.navigation.close()
+    window.top.dd.closePage({
+      fail: (error) => {
+        console.log('DingTalk closeWindow fail:', error)
+      }
+    })
   },
   /**
    * 修改原生标题

@@ -1,8 +1,10 @@
-// 内库使用
+// 内库使用-start
 import locale from './../../locale'
+// 内库使用-end
 
-// 测试使用
-// import { locale } from 'seedsui-react'
+/* 测试使用-start
+import { locale } from 'seedsui-react'
+测试使用-end */
 
 /**
  * 动态加载桥接库

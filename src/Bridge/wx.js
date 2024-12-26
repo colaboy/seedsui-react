@@ -5,13 +5,15 @@ import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
-// 内库使用
+// 内库使用-start
 import locale from './../locale'
 import Device from './../Device'
 import Toast from './../Toast'
+// 内库使用-end
 
-// 测试使用
-// import { locale, Device, Toast } from 'seedsui-react'
+/* 测试使用-start
+import { locale, Device, Toast } from 'seedsui-react'
+测试使用-end */
 
 let Bridge = {
   ...BridgeBase,

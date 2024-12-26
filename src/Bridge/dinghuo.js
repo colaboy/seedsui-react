@@ -3,12 +3,14 @@ import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
-// 内库使用
+// 内库使用-start
 import Device from './../Device'
 import locale from './../locale'
+// 内库使用-end
 
-// 测试使用
-// import { Device, locale } from 'seedsui-react'
+/* 测试使用-start
+import { Device, locale } from 'seedsui-react'
+测试使用-end */
 
 let Bridge = {
   ...BridgeBase,

@@ -1,12 +1,14 @@
 import _ from 'lodash'
 
-// 内库使用
+// 内库使用-start
 import locale from './../../locale'
 import Device from './../../Device'
 import Modal from './../../Modal'
+// 内库使用-end
 
-// 测试使用
-// import { Device, Modal, locale } from 'seedsui-react'
+/* 测试使用-start
+import { Device, Modal, locale } from 'seedsui-react'
+测试使用-end */
 
 // 客户端默认返回控制
 async function back(backLvl, options, Bridge) {

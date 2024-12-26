@@ -7,11 +7,13 @@ import BridgeDinghuo from './dinghuo'
 import BridgeWq from './wq'
 import BridgeWqCordova from './cordova'
 
-// 内库使用
+// 内库使用-start
 import Device from './../Device'
+// 内库使用-end
 
-// 测试使用
-// import { Device } from 'seedsui-react'
+/* 测试使用-start
+import { Device } from 'seedsui-react'
+测试使用-end */
 
 let Bridge = {}
 if (
