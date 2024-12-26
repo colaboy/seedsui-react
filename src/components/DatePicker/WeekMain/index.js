@@ -2,8 +2,8 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
 import locale from './../../../locale'
-import DateUtil from './../../../DateUtil'
-import Calendar from './../../../Calendar'
+import DateUtil from './../../DateUtil'
+import Calendar from './../../Calendar'
 // 内库使用-end
 
 /* 测试使用-start

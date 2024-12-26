@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react'
 import Modal from './../Modal'
 
 // 内库使用-start
-import DateUtil from './../../../DateUtil'
+import DateUtil from './../../DateUtil'
 import Combo from './../../../Modal/Combo'
 // 内库使用-end
 

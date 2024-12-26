@@ -1,9 +1,11 @@
-// 内库使用
-import locale from './../../locale'
+// 内库使用-start
+import locale from './../../../locale'
 import DateUtil from './../../DateUtil'
+// 内库使用-end
 
-// 测试使用
-// import { locale, DateUtil } from 'seedsui-react'
+/* 测试使用-start
+import { locale, DateUtil } from 'seedsui-react'
+测试使用-end */
 
 // 是否为禁用日期
 function isDisabledDate(date, { min, max }) {

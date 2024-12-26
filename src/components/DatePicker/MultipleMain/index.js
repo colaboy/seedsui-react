@@ -5,7 +5,7 @@ import getActiveTab from './getActiveTab'
 
 // 内库使用-start
 import locale from './../../../locale'
-import DateUtil from './../../../DateUtil'
+import DateUtil from './../../DateUtil'
 import Tabs from './../../../Tabs'
 // 内库使用-end
 

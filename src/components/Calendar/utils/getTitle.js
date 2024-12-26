@@ -1,8 +1,10 @@
-// 内库使用
+// 内库使用-start
 import DateUtil from './../../DateUtil'
+// 内库使用-end
 
-// 测试使用
-// import { DateUtil } from 'seedsui-react'
+/* 测试使用-start
+import { DateUtil } from 'seedsui-react'
+测试使用-end */
 
 // 获取标题字符串
 function getTitle(drawDate, titleFormatter, otherInfo) {

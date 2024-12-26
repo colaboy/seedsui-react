@@ -44,7 +44,7 @@ export { default as BiClock } from './BiClock' // 不常用
 export { default as BiDoughnut } from './BiDoughnut' // 不常用
 export { default as BiGauge } from './BiGauge' // 不常用
 export { default as Button } from './Button'
-export { default as Calendar } from './Calendar' // 不常用
+export { default as Calendar } from './components/Calendar' // 不常用
 export { default as Camera } from './Camera' // 不常用
 export { default as Card } from './Card'
 export { default as Carrousel } from './Carrousel'
@@ -180,7 +180,7 @@ export { default as PubSub } from './PubSub' // 不常用
 // export { default as Validator } from './Validator' // 不常用
 export { default as ArrayUtil } from './ArrayUtil'
 export { default as MathUtil } from './MathUtil'
-export { default as DateUtil } from './DateUtil'
+export { default as DateUtil } from './components/DateUtil'
 export { default as useSyncCallback } from './useSyncCallback'
 export { default as ReduxRequestMiddleware } from './ReduxRequestMiddleware'
 export { default as Bridge } from './Bridge'
