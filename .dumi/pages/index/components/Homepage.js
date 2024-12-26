@@ -79,7 +79,7 @@ export default () => {
             </p>
             <p className="buttons">
               <a href={trans('/seedsui-react/en-US/guide', '/seedsui-react/guide')}>
-                {trans('Get Started', '开始使用')}
+                {trans('Install', '安装')}
               </a>
               <a href={trans('/seedsui-react/en-US/components', '/seedsui-react/components')}>
                 {trans('Components', '组件列表')}

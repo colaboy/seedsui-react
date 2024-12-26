@@ -1,6 +1,5 @@
-import React, { forwardRef, useContext } from 'react'
+import React, { forwardRef } from 'react'
 import { createPortal } from 'react-dom'
-import Context from './../../Context/instance.js'
 
 const Actionsheet = forwardRef(
   (
@@ -24,14 +23,6 @@ const Actionsheet = forwardRef(
     },
     ref
   ) => {
-    // context
-    const context = useContext(Context) || {}
-    const locale =
-      context.locale ||
-      function (remark) {
-        return remark || ''
-      }
-
     function handleClick(e) {
       var target = e.target
       // 获取值
@@ -169,7 +160,7 @@ const Actionsheet = forwardRef(
                 otherCancelAttribute.className ? ' ' + otherCancelAttribute.className : ''
               }`}
             >
-              {cancelCaption || locale('取消', 'SeedsUI_cancel')}
+              {cancelCaption || '取消'}
             </div>
           )}
         </div>

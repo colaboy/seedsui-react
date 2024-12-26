@@ -1,3 +1,3 @@
-# Components Overview
+# FAQ
 
 This is an example component.

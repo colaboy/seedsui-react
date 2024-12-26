@@ -19,12 +19,16 @@ export default defineConfig({
     // 导航
     nav: {
       'zh-CN': [
-        { title: '开始使用', link: '/guide' },
-        { title: '组件', link: '/components' }
+        { title: '安装', link: '/guide' },
+        { title: '组件', link: '/components' },
+        { title: '工具', link: '/utils' },
+        { title: '问答', link: '/faq' }
       ],
       'en-US': [
-        { title: 'Ready', link: '/en-US/guide' },
-        { title: 'Components', link: '/en-US/components' }
+        { title: 'Install', link: '/en-US/guide' },
+        { title: 'Components', link: '/en-US/components' },
+        { title: 'Utils', link: '/en-US/utils' },
+        { title: 'FAQ', link: '/en-US/faq' }
       ]
     },
     // 底部
@@ -43,7 +47,10 @@ export default defineConfig({
   },
   resolve: {
     // 原子资产
-    atomDirs: [{ type: 'component', dir: 'src' }]
+    atomDirs: [
+      { type: 'components', dir: 'src/components' },
+      { type: 'utils', dir: 'src/utils' }
+    ]
     // codeBlockMode: 'passive',
   },
   alias: {

@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
-import locale from './../../locale'
+import locale from './../../../locale'
 import getIsActive from './getIsActive'
 
 const Modal = forwardRef(
