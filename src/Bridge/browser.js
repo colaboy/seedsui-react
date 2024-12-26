@@ -3,7 +3,7 @@ import back from './utils/back'
 import ready from './utils/ready'
 
 // 内库使用-start
-import Device from './../Device'
+import Device from './../utils/Device'
 import Toast from './../Toast'
 import locale from './../locale'
 // 内库使用-end

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Device from './../Device'
+import Device from './../utils/Device'
 import Bridge from './../Bridge'
 
 export default class Titlebar extends Component {
@@ -43,6 +43,7 @@ export default class Titlebar extends Component {
     const { backButtonAttribute = {} } = this.props
     return arr.map((item, index) => {
       if (item === '$back') {
+        // eslint-disable-next-line
         item = {
           className: backButtonAttribute.className || null,
           style: backButtonAttribute.style || null,

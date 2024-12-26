@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 // 内库使用-start
 import locale from './../../locale'
-import Device from './../../Device'
+import Device from './../../utils/Device'
 import Modal from './../../Modal'
 // 内库使用-end
 

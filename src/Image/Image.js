@@ -6,7 +6,7 @@ import Upload from './Upload'
 import Preview from './Preview'
 
 // 内库使用
-import Device from './../Device'
+import Device from './../utils/Device'
 import Bridge from './../Bridge'
 
 // 测试使用

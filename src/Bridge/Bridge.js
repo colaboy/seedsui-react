@@ -8,7 +8,7 @@ import BridgeWq from './wq'
 import BridgeWqCordova from './cordova'
 
 // 内库使用-start
-import Device from './../Device'
+import Device from './../utils/Device'
 // 内库使用-end
 
 /* 测试使用-start

@@ -5,7 +5,7 @@ import ready from './utils/ready'
 
 // 内库使用-start
 import Toast from './../Toast'
-import Device from './../Device'
+import Device from './../utils/Device'
 import locale from './../locale'
 // 内库使用-end
 

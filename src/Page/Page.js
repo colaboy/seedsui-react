@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Device from './../Device'
+import Device from './../utils/Device'
 import Header from './../Header'
 import Titlebar from './../Titlebar'
 

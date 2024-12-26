@@ -6,7 +6,7 @@ import ToastInstance from './deprecated/toastInstance.js'
 import LoadingInstance from './deprecated/loadingInstance.js'
 
 // 内库使用-start
-import Device from './../Device'
+import Device from './../utils/Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
 import GeoUtil from './../GeoUtil'
