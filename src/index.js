@@ -157,7 +157,7 @@ export { default as ApiAxios } from './ApiAxios'
 export { default as BackboneRoute } from './BackboneRoute' // 不常用
 export { default as CanvasUtil } from './CanvasUtil' // 不常用
 export { default as DB } from './DB'
-export { default as Debugger } from './Debugger'
+export { default as Debugger } from './utils/Debugger'
 export { default as Device } from './Device'
 export { default as Form } from './Form' // 不常用
 export { default as FullScreen } from './FullScreen' // 不常用
