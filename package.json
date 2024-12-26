@@ -76,6 +76,7 @@
     "@types/react-dom": "^18.0.0",
     "@umijs/lint": "^4.0.0",
     "dumi": "~2.4.17",
+    "dumi-theme-mobile": "^2.3.5",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
     "husky": "^9.1.7",
