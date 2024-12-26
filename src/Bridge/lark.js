@@ -1,6 +1,7 @@
 // 官方文档: https://open.feishu.cn/document/client-docs/h5/
 // 鉴权: https://open.feishu.cn/document/uYjL24iN/uQjMuQjMuQjM/authentication/h5sdkconfig
 
+import _ from 'lodash'
 import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'

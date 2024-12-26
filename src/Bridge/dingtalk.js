@@ -4,7 +4,7 @@
 
 import _ from 'lodash'
 import BridgeBase from './base'
-// import LocationTask from './utils/LocationTask'
+import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 

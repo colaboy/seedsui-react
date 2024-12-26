@@ -57,7 +57,10 @@ function Navigation({
     Bridge.platform !== 'wechat' &&
     Bridge.platform !== 'wework' &&
     Bridge.platform !== 'dinghuo' &&
-    Bridge.platform !== 'wq'
+    Bridge.platform !== 'wq' &&
+    Bridge.platform !== 'alipay' &&
+    Bridge.platform !== 'dingtalk' &&
+    Bridge.platform !== 'lark'
   ) {
     return null
   }

@@ -301,7 +301,7 @@ export default () => {
         </Button>
 
         <h2>地理位置接口</h2>
-        <p className="demo-title">查看地理位置接口(仅客户端与企微)</p>
+        <p className="demo-title">查看地理位置接口(客户端、企微、支付宝生活号、飞书、钉钉)</p>
         <Button
           className="primary flex"
           style={{ margin: '12px 10px' }}
