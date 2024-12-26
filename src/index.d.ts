@@ -39,7 +39,7 @@ export { default as Alert } from './Alert' // (废弃, 使用Modal代替)
 export { default as Modal } from './Modal'
 export { default as Attach } from './Attach'
 export { default as Upload } from './Upload'
-export { default as Badge } from './Badge'
+export { default as Badge } from './components/Badge'
 export { default as BiClock } from './BiClock' // 不常用
 export { default as BiDoughnut } from './BiDoughnut' // 不常用
 export { default as BiGauge } from './BiGauge' // 不常用
