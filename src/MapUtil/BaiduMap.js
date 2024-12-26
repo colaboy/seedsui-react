@@ -2,7 +2,7 @@
 // 引入 PrototypeObject.js: Object.getUnitNum, Object.loadScript
 // 引入 PrototypeString.js: Object.getUnitNum方法中使用toNumber()
 import locale from './../locale'
-import GeoUtil from './../GeoUtil'
+import GeoUtil from './../utils/GeoUtil'
 
 /**
  * 初始化百度地图

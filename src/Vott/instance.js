@@ -1,13 +1,13 @@
 // Vott (require GeoUtil)
-import GeoUtil from '../GeoUtil'
+import GeoUtil from '../utils/GeoUtil'
 
 import locale from './../locale' // 国际化
 
-var Vott = function (container, params) {
+let Vott = function (container, params) {
   /* --------------------
   Model
   -------------------- */
-  var defaults = {
+  let defaults = {
     readOnly: false, // 是否只读
     data: null, // 渲染形状: [{polygon: [[x,y]], css: '', class: ''}]
     src: '',
@@ -47,20 +47,21 @@ var Vott = function (container, params) {
     onError:function(s)
     */
   }
+  // eslint-disable-next-line
   params = params || {}
-  for (var def in defaults) {
+  for (let def in defaults) {
     if (params[def] === undefined) {
       params[def] = defaults[def]
     }
   }
   // Vott
-  var s = this
+  let s = this
 
   // Params
   s.params = params
   // 更改params
   s.updateParams = function (params) {
-    for (var n in params) {
+    for (let n in params) {
       s.params[n] = params[n]
     }
   }
@@ -86,7 +87,7 @@ var Vott = function (container, params) {
   // 更新svg属性
   s.updateSvg = function (svg, attr) {
     if (!attr) return
-    for (var key in attr) {
+    for (let key in attr) {
       switch (key) {
         case 'xlink:href': // 文本路径添加属性特有
           svg.setAttributeNS('http://www.w3.org/1999/xlink', key, attr[key])
@@ -100,7 +101,7 @@ var Vott = function (container, params) {
   // 创建svg相关元素
   s.createSvg = function (tag, attr) {
     if (!document.createElementNS) return // 防止IE8报错
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', tag)
+    let svg = document.createElementNS('http://www.w3.org/2000/svg', tag)
     s.updateSvg(svg, attr)
     return svg
   }
@@ -153,7 +154,7 @@ var Vott = function (container, params) {
   }
   // 图片加载完成或者错误
   s.onLoad = function (e) {
-    var target = e.target
+    let target = e.target
     // 显隐
     if (s.loadingContainer) s.loadingContainer.classList.remove(s.params.activeClass)
     if (s.errorContainer) s.errorContainer.classList.remove(s.params.activeClass)
@@ -174,8 +175,8 @@ var Vott = function (container, params) {
     } else {
       s.scale = heightScale
     }
-    var width = target.width * s.scale
-    var height = target.height * s.scale
+    let width = target.width * s.scale
+    let height = target.height * s.scale
     if (!s.container.style.width) s.container.style.width = width + 'px'
     s.svg.setAttribute('style', `width:${width}px;height:${height}px`)
     // 设置背景图
@@ -206,16 +207,16 @@ var Vott = function (container, params) {
     // 更新容器
     s.svg.innerHTML = ''
     // 更新缩放圆圈
-    var xMinYMin = s.svg.querySelector('.' + s.params.xMinYMinClass) // 左上
-    var xMinYMid = s.svg.querySelector('.' + s.params.xMinYMidClass) // 左中
-    var xMinYMax = s.svg.querySelector('.' + s.params.xMinYMaxClass) // 左下
+    let xMinYMin = s.svg.querySelector('.' + s.params.xMinYMinClass) // 左上
+    let xMinYMid = s.svg.querySelector('.' + s.params.xMinYMidClass) // 左中
+    let xMinYMax = s.svg.querySelector('.' + s.params.xMinYMaxClass) // 左下
 
-    var xMidYMin = s.svg.querySelector('.' + s.params.xMidYMinClass) // 中上
-    var xMidYMax = s.svg.querySelector('.' + s.params.xMidYMaxClass) // 中下
+    let xMidYMin = s.svg.querySelector('.' + s.params.xMidYMinClass) // 中上
+    let xMidYMax = s.svg.querySelector('.' + s.params.xMidYMaxClass) // 中下
 
-    var xMaxYMin = s.svg.querySelector('.' + s.params.xMaxYMinClass) // 右上
-    var xMaxYMid = s.svg.querySelector('.' + s.params.xMaxYMidClass) // 右中
-    var xMaxYMax = s.svg.querySelector('.' + s.params.xMaxYMaxClass) // 右下
+    let xMaxYMin = s.svg.querySelector('.' + s.params.xMaxYMinClass) // 右上
+    let xMaxYMid = s.svg.querySelector('.' + s.params.xMaxYMidClass) // 右中
+    let xMaxYMax = s.svg.querySelector('.' + s.params.xMaxYMaxClass) // 右下
 
     if (
       xMinYMin &&
@@ -242,7 +243,7 @@ var Vott = function (container, params) {
     }
 
     // 创建图片
-    var img = new Image()
+    let img = new Image()
     img.src = s.params.src
     img.addEventListener('load', s.onLoad, false)
     img.addEventListener('error', s.onError, false)
@@ -252,7 +253,7 @@ var Vott = function (container, params) {
   s.createShape = function (svg, shapeName, attr) {
     if (!attr || !svg) return
     // 创建形状
-    var shape = s.createSvg(shapeName || 'polygon', attr)
+    let shape = s.createSvg(shapeName || 'polygon', attr)
     svg.shape = shape
     svg.appendChild(shape)
 
@@ -276,7 +277,7 @@ var Vott = function (container, params) {
   }
   // 创建圆形
   s.createCircle = function (svg, attr) {
-    var shape = s.createSvg('circle', attr)
+    let shape = s.createSvg('circle', attr)
     svg.shape = shape
     svg.appendChild(shape)
 
@@ -290,12 +291,13 @@ var Vott = function (container, params) {
     }
 
     if (type === 'new') {
+      // eslint-disable-next-line
       type = 'xMaxYMax'
     }
     // 4个坐标
-    var polygon = s.sortPoints(target.getAttribute('points'))
+    let polygon = s.sortPoints(target.getAttribute('points'))
     // 坐标字符串
-    var points = ''
+    let points = ''
 
     // 等比缩放, 并构建四个点
     if (type === 'xMinYMin') {
@@ -475,7 +477,7 @@ var Vott = function (container, params) {
   // 显示缩放控件
   s.showBullets = function () {
     if (!s.bullets) return
-    for (var bulletName in s.bullets) {
+    for (let bulletName in s.bullets) {
       s.bullets[bulletName].classList.add(s.params.bulletActiveClass)
     }
     s.bulletsShow = true
@@ -483,7 +485,7 @@ var Vott = function (container, params) {
   // 隐藏缩放控件
   s.hideBullets = function () {
     if (!s.bullets) return
-    for (var bulletName in s.bullets) {
+    for (let bulletName in s.bullets) {
       s.bullets[bulletName].classList.remove(s.params.bulletActiveClass)
     }
     s.bulletsShow = false
@@ -491,16 +493,16 @@ var Vott = function (container, params) {
   // 移动形状
   s.moveShape = function (target, x, y, diffX, diffY) {
     // 构建points
-    var points = target.getAttribute('points').split(',')
+    let points = target.getAttribute('points').split(',')
     // 获取左上角的点
-    var startX = Number(points[2] || 0)
-    var startY = Number(points[3] || 0)
+    let startX = Number(points[2] || 0)
+    let startY = Number(points[3] || 0)
     // 获取右下角的点
-    var endX = Number(points[6] || 0)
-    var endY = Number(points[7] || 0)
+    let endX = Number(points[6] || 0)
+    let endY = Number(points[7] || 0)
     // 获取宽高
-    var width = Math.abs(endX - startX || 0)
-    var height = Math.abs(endY - startY || 0)
+    let width = Math.abs(endX - startX || 0)
+    let height = Math.abs(endY - startY || 0)
 
     // 计算8个点的位置
     points = [
@@ -525,17 +527,17 @@ var Vott = function (container, params) {
       return
     }
     // 从右上角开始到右下角结束
-    var points = target.getAttribute('points').split(',')
+    let points = target.getAttribute('points').split(',')
 
     // 获取左上角的点
-    var startX = Number(points[2] || 0)
-    var startY = Number(points[3] || 0)
+    let startX = Number(points[2] || 0)
+    let startY = Number(points[3] || 0)
     // 获取右下角的点
-    var endX = Number(points[6] || 0)
-    var endY = Number(points[7] || 0)
+    let endX = Number(points[6] || 0)
+    let endY = Number(points[7] || 0)
 
-    var width = Math.abs(endX - startX || 0)
-    var height = Math.abs(endY - startY || 0)
+    let width = Math.abs(endX - startX || 0)
+    let height = Math.abs(endY - startY || 0)
 
     // 计算8个点的位置
     points = {
@@ -551,12 +553,12 @@ var Vott = function (container, params) {
       xMaxYMax: [startX + width, startY + height] // 右下
     }
 
-    var hasBullets = !!s.bullets
-    for (var pointName in points) {
-      var point = points[pointName]
+    let hasBullets = !!s.bullets
+    for (let pointName in points) {
+      let point = points[pointName]
       if (!hasBullets) {
         // 如果没有缩放小圆圈, 则构建
-        var svg = s.createCircle(s.svg, {
+        let svg = s.createCircle(s.svg, {
           cx: point[0],
           cy: point[1],
           r: 5,
@@ -579,8 +581,8 @@ var Vott = function (container, params) {
   // 点转成多边形[[x,y]]
   s.toPolygon = function (points) {
     if (!points) return
-    var polygon = []
-    var page = 0
+    let polygon = []
+    let page = 0
     points.split(',').forEach(function (point, i) {
       if (i !== 0 && i % 2 === 0) {
         page++
@@ -592,20 +594,20 @@ var Vott = function (container, params) {
   }
   // 多边形坐标点按逆时针排序, 从右上角开始到右下角结束
   s.sortPoints = function (points) {
-    var polygon = s.toPolygon(points)
-    var sorts = GeoUtil.sortPoints(polygon)
+    let polygon = s.toPolygon(points)
+    let sorts = GeoUtil.sortPoints(polygon)
     return sorts
   }
   // 获取单个图形的信息
   s.getShapeData = function (shape) {
     if (!shape) return
     // 还原比例
-    var polygon = s.toPolygon(shape.getAttribute('points')).map(function (points) {
+    let polygon = s.toPolygon(shape.getAttribute('points')).map(function (points) {
       return points.map(function (point) {
         return point / s.scale
       })
     })
-    var params = shape.getAttribute('data-params')
+    let params = shape.getAttribute('data-params')
       ? JSON.parse(shape.getAttribute('data-params'))
       : {}
     return {
@@ -618,9 +620,9 @@ var Vott = function (container, params) {
   }
   // 获取选中
   s.getSelected = function () {
-    var shapes = s.svg.querySelectorAll('.' + s.params.shapeClass)
-    var selected = []
-    for (var shape of shapes) {
+    let shapes = s.svg.querySelectorAll('.' + s.params.shapeClass)
+    let selected = []
+    for (let shape of shapes) {
       let item = s.getShapeData(shape)
       selected.push(item)
     }
@@ -632,8 +634,8 @@ var Vott = function (container, params) {
   // 是否支持触摸事件
   s.isSupportTouch = 'ontouchstart' in window
   s.events = function (detach) {
-    var touchTarget = s.svg
-    var action = detach ? 'removeEventListener' : 'addEventListener'
+    let touchTarget = s.svg
+    let action = detach ? 'removeEventListener' : 'addEventListener'
     // touch兼容pc事件
     if (s.isSupportTouch) {
       touchTarget[action]('touchstart', s.onTouchStart, false)
@@ -705,7 +707,7 @@ var Vott = function (container, params) {
       else s.touches.type = 'xMaxYMax' // 右下
 
       // 新增时, 左上角的点为固定点
-      var points = s.toPolygon(s.touches.target.getAttribute('points'))
+      let points = s.toPolygon(s.touches.target.getAttribute('points'))
       s.touches.startX = points[1][0]
       s.touches.startY = points[1][1]
     } else if (e.target.classList.contains(s.params.shapeClass)) {
@@ -768,7 +770,7 @@ var Vott = function (container, params) {
       // 已有形状拖动位置
       // 记录的鼠标位置距离左上角的位置
       if (!s.touches.moveDiffX || !s.touches.moveDiffY) {
-        var points = s.touches.target.getAttribute('points').split(',')
+        let points = s.touches.target.getAttribute('points').split(',')
         s.touches.moveDiffX = Number(points[2] || 0) - s.touches.currentX
         s.touches.moveDiffY = Number(points[3] || 0) - s.touches.currentY
       }
@@ -795,12 +797,12 @@ var Vott = function (container, params) {
 
     // 矫正多边形点坐标, 使其坐标位置从左上角顺时针开始
     if (s.touches.target) {
-      var points = s.sortPoints(s.touches.target.getAttribute('points')).join(',')
+      let points = s.sortPoints(s.touches.target.getAttribute('points')).join(',')
       s.touches.target.setAttribute('points', points)
     }
 
     // 如果点击新增的形状, 则删除此形状
-    var bbox = s.touches.target.getBBox()
+    let bbox = s.touches.target.getBBox()
     if (s.touches.type === 'new' && (bbox.height < 10 || bbox.width < 10)) {
       s.touches.target.parentNode.removeChild(s.touches.target)
       s.touches.target = null
@@ -821,9 +823,9 @@ var Vott = function (container, params) {
     // Callback
     s.event = e
     if (s.params.onChange) {
-      var shapeData = s.getShapeData(s.touches.target)
+      let shapeData = s.getShapeData(s.touches.target)
       if (shapeData) {
-        var shapes = s.getSelected()
+        let shapes = s.getSelected()
         s.params.onChange(s, shapeData, shapes)
       }
     }

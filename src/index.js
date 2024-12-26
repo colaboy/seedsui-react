@@ -161,7 +161,7 @@ export { default as Debugger } from './utils/Debugger'
 export { default as Device } from './utils/Device'
 export { default as Form } from './Form' // 不常用
 export { default as FullScreen } from './FullScreen' // 不常用
-export { default as GeoUtil } from './GeoUtil' // 不常用
+export { default as GeoUtil } from './utils/GeoUtil' // 不常用
 export { default as ImgLazy } from './ImgLazy'
 export { default as Row } from './Row'
 export { default as Col } from './Col'

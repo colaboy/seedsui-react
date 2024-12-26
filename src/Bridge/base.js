@@ -9,7 +9,7 @@ import LoadingInstance from './deprecated/loadingInstance.js'
 import Device from './../utils/Device'
 import MapUtil from './../MapUtil'
 import Toast from './../Toast'
-import GeoUtil from './../GeoUtil'
+import GeoUtil from './../utils/GeoUtil'
 import locale from './../locale' // 内库使用-end
 
 /* 测试使用-start

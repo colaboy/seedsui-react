@@ -1,12 +1,12 @@
 import MapUtil from './../MapUtil'
-import GeoUtil from './../GeoUtil'
+import GeoUtil from './../utils/GeoUtil'
 import Loading from './../Loading'
 import Bridge from './../Bridge'
 import locale from './../locale' // 国际化
 
 // eslint-disable-next-line
 export default function () {
-  var s = this
+  let s = this
   s.mapUtil = null
   // 是否中断未完成的绘制
   s.abort = false
@@ -25,7 +25,7 @@ export default function () {
   s.circle = null
   // 初始化地图
   s.initMap = function (container, center, callback) {
-    var self = this
+    let self = this
     Loading.show()
     const mapUtil = new MapUtil(container, {
       // 缩放导航
@@ -80,7 +80,7 @@ export default function () {
   }
   // 获取中心点
   s.getCenterPoint = function (marker) {
-    var self = this
+    let self = this
     let bdPoint = self.mapUtil.map.getCenter()
     if (marker) marker.setPosition(bdPoint)
     let point = [bdPoint.lng, bdPoint.lat]
@@ -88,7 +88,7 @@ export default function () {
   }
   // 绘制临时标记, 拖拽显示, 停止拖拽隐藏
   s.drawTempMarker = function (show) {
-    var self = this
+    let self = this
     if (!self.tempMarker) {
       self.tempMarker = document.createElement('span')
       self.tempMarker.className = 'map-marker-center'
@@ -101,20 +101,20 @@ export default function () {
     }
   }
   s.showTempMarker = function () {
-    var self = this
+    let self = this
     if (self.tempMarker) {
       self.tempMarker.classList.remove('hide')
     }
   }
   s.hideTempMarker = function () {
-    var self = this
+    let self = this
     if (self.tempMarker) {
       self.tempMarker.classList.add('hide')
     }
   }
   // 初始化标记, 并逆解析地址
   s.initMarker = async function (point, callback) {
-    var self = this
+    let self = this
     if (!point) {
       console.error('初始化标记: 定位坐标参数不能为空')
       return null
@@ -136,7 +136,7 @@ export default function () {
   }
   // 绘制坐标点, point为国测局坐标
   s.drawMarker = function (point) {
-    var self = this
+    let self = this
     if (!point) {
       console.error('绘制标记: 定位坐标参数不能为空')
       return null
@@ -173,19 +173,20 @@ export default function () {
     }, 500)
   }
   s.hideMarker = function () {
-    var self = this
+    let self = this
     if (self.marker) {
       self.marker.setOffset(new window.BMap.Size(10000, 10000))
     }
   }
   s.showMarker = function () {
-    var self = this
+    let self = this
     if (self.marker) {
       self.marker.setOffset(new window.BMap.Size(0, 0))
     }
   }
   // 地址逆解析
   s.getAddress = async function (point, params = {}) {
+    // eslint-disable-next-line
     return new Promise(async (resolve) => {
       const result = await Bridge.getAddress({
         // 只支持gcj02
@@ -197,7 +198,7 @@ export default function () {
     })
   }
   s.destroy = function () {
-    var self = this
+    let self = this
     console.log('移除标注')
     self.mapUtil = null
     // 标记

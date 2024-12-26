@@ -7,7 +7,7 @@ import back from './utils/back'
 import ready from './utils/ready'
 
 // 内库使用-start
-import GeoUtil from './../GeoUtil'
+import GeoUtil from './../utils/GeoUtil'
 // 内库使用-end
 
 /* 测试使用-start

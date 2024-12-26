@@ -1,12 +1,12 @@
 import MapUtil from './../MapUtil'
-import GeoUtil from './../GeoUtil'
+import GeoUtil from './../utils/GeoUtil'
 import Loading from './../Loading'
 import Toast from './../Toast'
 import locale from './../locale' // 国际化
 
 // eslint-disable-next-line
 export default function () {
-  var s = this
+  let s = this
   s.mapUtil = null
   // 是否中断未完成的绘制
   s.abort = false
@@ -24,7 +24,7 @@ export default function () {
   s.circle = null
   // 初始化地图
   s.initMap = function (container, center, callback) {
-    var self = this
+    let self = this
     Loading.show()
     const mapUtil = new MapUtil(container, {
       onError: (s, err) => {
@@ -64,7 +64,7 @@ export default function () {
 
   // 标记: 绘制全部标记
   s.drawMarkers = function (points) {
-    var self = this
+    let self = this
     if (!points || !points.length) {
       console.error('绘制标记: 定位坐标参数不能为空')
       return null
@@ -98,7 +98,7 @@ export default function () {
 
   // 标记: 绘制标记, 更新原marker, 则传入marker
   s.drawMarker = function (point, marker) {
-    var self = this
+    let self = this
     self.marker = marker
     // 国测局转百度坐标
     let bdPoint = GeoUtil.coordtransform(point, 'gcj02', 'bd09')
@@ -125,7 +125,7 @@ export default function () {
 
   // 圆形: 绘制标签
   s.drawLabel = function (point, radius) {
-    var self = this
+    let self = this
     if (self.abort) return
     if (!self.mapUtil) {
       setTimeout(() => {
@@ -159,7 +159,7 @@ export default function () {
 
   // 绘制圆形
   s.drawCircle = function (point, radius) {
-    var self = this
+    let self = this
     if (self.abort) return
     if (!point || point.length !== 2) {
       console.log(`point参数${JSON.stringify(point)}格式不正确, 请传入[lng, lat]`)
@@ -191,7 +191,7 @@ export default function () {
 
   // 绘制多边形
   s.drawPolygon = function (polygon) {
-    var self = this
+    let self = this
     if (self.abort) return
     if (!polygon || !polygon.length) return
     if (!self.mapUtil) {
@@ -215,7 +215,7 @@ export default function () {
    * 地区
    */
   s.drawDistrict = function (districtName) {
-    var self = this
+    let self = this
     if (self.abort) return
     if (!districtName) return
     if (!self.mapUtil) {
@@ -245,7 +245,7 @@ export default function () {
   }
 
   s.destroy = function () {
-    var self = this
+    let self = this
     console.log('移除标注')
     self.mapUtil = null
     // 标记

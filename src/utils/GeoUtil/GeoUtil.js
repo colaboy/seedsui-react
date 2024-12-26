@@ -235,6 +235,7 @@ GeoUtil.getDistance = function (p0, p1) {
  * 参考:https://cs.stackexchange.com/questions/52606/sort-a-list-of-points-to-form-a-non-self-intersecting-polygon
  */
 GeoUtil.sortPoints = function (points) {
+  // eslint-disable-next-line
   points = points.splice(0)
   let p0 = {}
   p0[1] = Math.min.apply(

@@ -16,7 +16,7 @@ import Result from './../Result'
 
 // 内库使用-start
 import locale from './../../../locale'
-import GeoUtil from './../../../GeoUtil'
+import GeoUtil from './../../../utils/GeoUtil'
 // 内库使用-end
 
 // 测试使用-start
