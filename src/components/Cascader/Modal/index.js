@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import Main from './../Main'
 
 // 内库使用-start
-import ModalPicker from './../../Modal/MainPicker'
+import ModalPicker from './../../../Modal/MainPicker'
 // 内库使用-end
 
 /* 测试使用-start

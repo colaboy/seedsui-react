@@ -48,7 +48,7 @@ export { default as Calendar } from './components/Calendar' // 不常用
 export { default as Camera } from './Camera' // 不常用
 export { default as Card } from './Card'
 export { default as Carrousel } from './Carrousel'
-export { default as Cascader } from './Cascader'
+export { default as Cascader } from './components/Cascader'
 export { default as Chat } from './Chat'
 export { default as Checkbox } from './Checkbox' // (废弃, 使用Select.Checkbox代替)
 export { default as ConfigProvider } from './ConfigProvider' // 不常用
@@ -178,7 +178,7 @@ export { default as MediaUtil } from './MediaUtil' // 不常用
 export { default as PubSub } from './PubSub' // 不常用
 // export { default as ValidateID } from './ValidateID' // 不常用
 // export { default as Validator } from './Validator' // 不常用
-export { default as ArrayUtil } from './ArrayUtil'
+export { default as ArrayUtil } from './utils/ArrayUtil'
 export { default as MathUtil } from './MathUtil'
 export { default as DateUtil } from './components/DateUtil'
 export { default as useSyncCallback } from './useSyncCallback'
