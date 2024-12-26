@@ -33,10 +33,6 @@ let Bridge = {
   getAppVersion: function () {
     return ''
   },
-  // 回到主页
-  goHome: function () {
-    window.history.go(-1)
-  },
   // 退出到登陆页面
   logOut: function logOut() {
     console.log('logOut方法仅在app上工作')
@@ -59,7 +55,6 @@ let Bridge = {
   closeWindow: function () {
     window.history.go(-1)
   },
-  // setTitle: '已在base中实现'
   // 返回监听
   onHistoryBack: function () {
     Toast.show({
@@ -68,7 +63,7 @@ let Bridge = {
       ])
     })
   },
-
+  // setTitle: '已在base中实现'
   /**
    * 扫描二维码并返回结果
    * @param {Object} params

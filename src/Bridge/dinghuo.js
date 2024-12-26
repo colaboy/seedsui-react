@@ -104,6 +104,10 @@ let Bridge = {
   closeWindow: function (params) {
     window.top.wq.closeWindow(params) // eslint-disable-line
   },
+  // 返回监听
+  onHistoryBack: function (params) {
+    window.top.wq.onHistoryBack(params) // eslint-disable-line
+  },
   /**
    * 修改原生标题
    * @param {Object} params {title: '自定义标题', visiable: '0' 隐藏  '1' 展示, left: { show: false 隐藏返回按钮 true 显示返回按钮}}
@@ -117,10 +121,6 @@ let Bridge = {
         params.title()
       }
     }
-  },
-  // 返回监听
-  onHistoryBack: function (params) {
-    window.top.wq.onHistoryBack(params) // eslint-disable-line
   },
   // 导航
   openLocation: function (params) {

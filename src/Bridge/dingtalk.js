@@ -2,6 +2,7 @@
 // https://open.dingtalk.com/document/orgapp/jsapi-overview
 // 鉴权: https://open.dingtalk.com/document/orgapp/jsapi-authentication
 
+import _ from 'lodash'
 import BridgeBase from './base'
 // import LocationTask from './utils/LocationTask'
 import back from './utils/back'
@@ -26,6 +27,42 @@ let Bridge = {
   /**
    * 定制功能
    */
+  // 关闭窗口
+  closeWindow: function () {
+    window.top.dd.closePage({
+      fail: (error) => {
+        console.log('DingTalk closeWindow fail:', error)
+      }
+    })
+  },
+  // 返回监听
+  onHistoryBack: function (params) {
+    console.log('钉钉不支持监听物理返回')
+  },
+  /**
+   * 修改原生标题
+   * @param {Object} params {title: '自定义标题'}
+   */
+  setTitle: function (params) {
+    if (typeof params?.title === 'string') {
+      window.top.dd.setNavigationTitle({
+        title: params?.title
+      })
+    }
+  },
+  // 地图查看
+  openLocation: function (params) {
+    if (_.isEmpty(params)) return
+    window.top.dd.openLocation({
+      title: params.name || '',
+      address: params.address || '',
+      latitude: params.latitude,
+      longitude: params.longitude,
+      fail: (error) => {
+        console.log('DingTalk openLocation fail:', error)
+      }
+    })
+  },
   /**
    * 钉钉定位需要鉴权, 获取当前地理位置
    * @param {Object} params
@@ -139,33 +176,6 @@ let Bridge = {
         console.log('DingTalk previewImage fail:', error)
       }
     })
-  },
-  /**
-   * 关闭窗口
-   */
-  closeWindow: function () {
-    window.top.dd.closePage({
-      fail: (error) => {
-        console.log('DingTalk closeWindow fail:', error)
-      }
-    })
-  },
-  /**
-   * 修改原生标题
-   * @param {Object} params {title: '自定义标题'}
-   */
-  setTitle: function (params) {
-    if (typeof params?.title === 'string') {
-      window.top.dd.setNavigationTitle({
-        title: params?.title
-      })
-    }
-  },
-  /**
-   * 返回监听
-   */
-  onHistoryBack: function (params) {
-    console.log('钉钉不支持监听物理返回')
   }
 }
 

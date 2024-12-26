@@ -42,10 +42,6 @@ let Bridge = {
   getAppVersion: function () {
     return Device.platformVersion
   },
-  // 返回首页
-  goHome: function () {
-    window.history.go(-1)
-  },
   // 退出到登陆页面
   logOut: function (msg) {
     // eslint-disable-next-line

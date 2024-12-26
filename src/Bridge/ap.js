@@ -1,6 +1,6 @@
 // 官方文档: https://myjsapi.alipay.com/alipayjsapi/media/image/chooseImage.html
 // 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
-
+import _ from 'lodash'
 import BridgeBase from './base'
 import LocationTask from './utils/LocationTask'
 import back from './utils/back'
@@ -25,6 +25,27 @@ let Bridge = {
   /**
    * 定制功能
    */
+  // 关闭窗口
+  closeWindow: function () {
+    window.top.ap?.popWindow()
+  },
+  // 返回监听
+  onHistoryBack: function (params) {
+    console.log('支付宝不支持监听物理返回')
+  },
+  // 地图查看
+  openLocation: function (params) {
+    if (_.isEmpty(params)) return
+    window.top.ap.openLocation({
+      latitude: params.latitude,
+      longitude: params.longitude,
+      name: params.name || '',
+      address: params.address || '',
+      fail: (error) => {
+        console.log('Alipay openLocation fail:', error)
+      }
+    })
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -125,18 +146,6 @@ let Bridge = {
       urls: params.urls,
       current: index
     })
-  },
-  /**
-   * 关闭窗口
-   */
-  closeWindow: function () {
-    window.top.ap?.popWindow()
-  },
-  /**
-   * 返回监听
-   */
-  onHistoryBack: function (params) {
-    console.log('支付宝不支持监听物理返回')
   }
 }
 

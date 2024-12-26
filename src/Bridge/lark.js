@@ -25,7 +25,32 @@ let Bridge = {
   /**
    * 定制功能
    */
-
+  // 关闭窗口
+  closeWindow: function () {
+    window.top.tt.closeWindow({
+      fail: function (res) {
+        console.log(`closeWindow fail: `, res)
+      }
+    })
+  },
+  // 返回监听
+  onHistoryBack: function (params) {
+    console.log('飞书不支持监听物理返回')
+  },
+  // 地图查看
+  openLocation: function (params) {
+    if (_.isEmpty(params)) return
+    window.top.tt.openLocation({
+      latitude: params.latitude,
+      longitude: params.longitude,
+      scale: params.scale || 12,
+      name: params.name,
+      address: params.address,
+      fail: (error) => {
+        console.log('Lark openLocation fail:', error)
+      }
+    })
+  },
   /**
    * 获取当前地理位置
    * @param {Object} params
@@ -119,22 +144,6 @@ let Bridge = {
         params.fail && params.fail(res)
       }
     })
-  },
-  /**
-   * 关闭窗口
-   */
-  closeWindow: function () {
-    window.top.tt.closeWindow({
-      fail: function (res) {
-        console.log(`closeWindow fail: `, res)
-      }
-    })
-  },
-  /**
-   * 返回监听
-   */
-  onHistoryBack: function (params) {
-    console.log('飞书不支持监听物理返回')
   }
 }
 
