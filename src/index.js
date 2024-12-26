@@ -57,7 +57,7 @@ export { default as ContainerPull } from './ContainerPull'
 export { default as Body } from './Body'
 export { default as Context } from './Context' // 不常用
 export { default as Counter } from './Counter' // 不常用
-export { default as DatePicker } from './DatePicker'
+export { default as DatePicker } from './components/DatePicker'
 export { default as DateRangePopover } from './DateRangePopover' // (废弃, 使用Tooltip代替)
 export { default as DateType } from './DateType' // (废弃, 使用DatePicker.Types代替)
 export { default as Dialog } from './Dialog' // (废弃, 使用Modal代替)
