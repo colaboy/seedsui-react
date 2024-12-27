@@ -1,8 +1,8 @@
 import getTypeLocale from './getTypeLocale'
 
 // 内库使用-start
-import locale from './../../../../locale'
-import DateUtil from './../../../DateUtil'
+import locale from './../../../../utils/locale'
+import DateUtil from './../../../../utils/DateUtil'
 // 内库使用-end
 
 /* 测试使用-start

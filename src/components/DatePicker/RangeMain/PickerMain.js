@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } f
 import MultipleMain from './../MultipleMain'
 
 // 内库使用-start
-import locale from '../../../locale'
+import locale from '../../../utils/locale'
 // 内库使用-end
 
 /* 测试使用-start

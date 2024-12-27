@@ -5,8 +5,8 @@ import WeekCombo from './WeekCombo'
 import DateCombo from './DateCombo'
 
 // 内库使用-start
-import Tabs from './../../../Tabs'
-import locale from './../../../locale'
+import Tabs from './../../Tabs'
+import locale from './../../../utils/locale'
 // 内库使用-end
 
 /* 测试使用-start

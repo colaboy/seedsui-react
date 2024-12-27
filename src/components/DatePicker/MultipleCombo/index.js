@@ -3,7 +3,7 @@ import MultipleModal from './../MultipleModal'
 import getDisplayValue from './getDisplayValue'
 
 // 内库使用-start
-import Combo from './../../../Modal/Combo'
+import Combo from './../../Modal/Combo'
 // 内库使用-end
 
 /* 测试使用-start

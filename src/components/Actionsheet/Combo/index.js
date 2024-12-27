@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import Combo from './../../../Select/Combo'
+import Combo from './../../Select/Combo'
 import Modal from './../Modal'
 
 // 卡片选择

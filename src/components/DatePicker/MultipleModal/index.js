@@ -4,7 +4,7 @@ import formatValue from './../MultipleMain/formatValue'
 import MultipleMain from './../MultipleMain'
 
 // 内库使用-start
-import ModalPicker from './../../../Modal/MainPicker'
+import ModalPicker from './../../Modal/MainPicker'
 // 内库使用-end
 
 /* 测试使用-start

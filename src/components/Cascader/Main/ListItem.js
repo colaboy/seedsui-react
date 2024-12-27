@@ -1,9 +1,9 @@
 import React, { Fragment, forwardRef } from 'react'
 
 // 内库使用-start
-import locale from '../../../locale'
-import Notice from './../../../Notice'
-import IndexBar from './../../../IndexBar'
+import locale from '../../../utils/locale'
+import Notice from './../../../deprecated/Notice'
+import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start

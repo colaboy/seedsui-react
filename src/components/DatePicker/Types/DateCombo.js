@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import Combo from './../Combo'
 
 // 内库使用-start
-import DateUtil from './../../DateUtil'
+import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
 
 /* 测试使用-start

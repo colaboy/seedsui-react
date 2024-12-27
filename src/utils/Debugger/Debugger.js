@@ -1,9 +1,9 @@
-import locale from './../../locale'
+import locale from './../locale'
 import createDebugElement from './createDebugElement'
 import triggerClickLimit from './triggerClickLimit'
 
 // 内库使用-start
-import Toast from './../../Toast'
+import Toast from './../Toast'
 // 内库使用-end
 
 /* 测试使用-start

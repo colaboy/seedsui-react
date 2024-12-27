@@ -165,7 +165,7 @@ const Actionsheet = forwardRef(
           )}
         </div>
       </div>,
-      portal || context.portal || document.getElementById('root') || document.body
+      portal || document.getElementById('root') || document.body
     )
   }
 )

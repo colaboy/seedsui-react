@@ -2,7 +2,7 @@ import React from 'react'
 import Combo from './../../../Combo'
 
 // 内库使用-start
-import locale from './../../../../../locale'
+import locale from './../../../../../utils/locale'
 
 // 内库使用-end
 

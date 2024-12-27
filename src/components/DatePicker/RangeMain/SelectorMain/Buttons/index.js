@@ -3,7 +3,7 @@ import getCustomRangeId from './../getCustomRangeId'
 import getSelectorOptions from './getSelectorOptions'
 
 // 内库使用-start
-import Selector from './../../../../../Selector'
+import Selector from './../../../../Selector'
 // 内库使用-end
 
 /* 测试使用-start
