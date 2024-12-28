@@ -1,7 +1,12 @@
 const fs = require('fs')
 
 // foo目录
-const fooCatalog = `./dist`
+const componentsCatalog = `./dist/components`
+const deprecatedCatalog = `./dist/deprecated`
+const utilsCatalog = `./dist/utils`
+const indexJsCatalog = `./dist/index.js`
+const indexTsCatalog = `./dist/index.d.ts`
+
 // out目录
 const outCatalog = `./lib`
 
@@ -24,7 +29,26 @@ try {
 }
 
 // 复制目录
-fs.cp(fooCatalog, outCatalog, { recursive: true }, (err) => {
+fs.cp(componentsCatalog, outCatalog, { recursive: true }, (err) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+})
+fs.cp(deprecatedCatalog, outCatalog, { recursive: true }, (err) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+})
+fs.cp(utilsCatalog, outCatalog, { recursive: true }, (err) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+})
+
+fs.cp(indexJsCatalog, `${outCatalog}/index.js`, { recursive: true }, (err) => {
   if (err) {
     console.error(err)
     return
@@ -38,6 +62,26 @@ fs.cp(fooCatalog, outCatalog, { recursive: true }, (err) => {
         if (err) throw err
         console.log(
           `successfully delete 'src/lib/index.js code 'import "./assets/style/index.less"'`
+        )
+      })
+    }
+  })
+})
+
+fs.cp(indexTsCatalog, `${outCatalog}/index.d.ts`, { recursive: true }, (err) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+
+  // 删除src/index中加载less的代码
+  fs.readFile(`${outCatalog}/index.d.ts`, 'utf8', function (err, data) {
+    if (typeof data === 'string') {
+      let newContent = data.replace(`import "./assets/style/index.less";\n`, '')
+      fs.writeFile(`${outCatalog}/index.d.ts`, newContent, 'utf8', (err) => {
+        if (err) throw err
+        console.log(
+          `successfully delete 'src/lib/index.d.ts code 'import "./assets/style/index.less"'`
         )
       })
     }
