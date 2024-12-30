@@ -116,7 +116,7 @@ export { default as PDFView } from './deprecated/PDFView' // 不常用
 export { default as Peg } from './deprecated/Peg' // 不常用
 export { default as Photos } from './deprecated/Photos' // 废弃，使用Image代替
 export { default as Image } from './components/Image'
-export { default as Picker } from './deprecated/Picker'
+export { default as Picker } from './components/Picker'
 export { default as PickerCity } from './deprecated/PickerCity'
 export { default as PickerDistrict } from './deprecated/PickerDistrict'
 export { default as PickerDate } from './deprecated/PickerDate'

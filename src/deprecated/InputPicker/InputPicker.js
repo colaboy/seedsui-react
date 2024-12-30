@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, Fragment, useState } from 'react'
 import InputText from './../InputText'
-import Picker from './../Picker'
+import Picker from './../../components/Picker'
 
 /**
  * @deprecated since version 5.2.8

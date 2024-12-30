@@ -1,12 +1,6 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect, useContext } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Instance from './instance.js'
-
-// 测试使用
-// import { Context } from 'seedsui-react'
-
-// 内库使用
-import Context from '../../Context/instance.js'
 
 const Picker = forwardRef(
   (
@@ -119,13 +113,6 @@ const Picker = forwardRef(
       return { ...otherProps }
     }
 
-    // context
-    const context = useContext(Context) || {}
-    const locale =
-      context.locale ||
-      function (remark) {
-        return remark || ''
-      }
     // 剔除掉onClick事件, 因为在instance时已经回调了
     const otherMaskAttribute = filterProps(maskAttribute)
     const otherSubmitAttribute = filterProps(submitAttribute)
@@ -146,7 +133,7 @@ const Picker = forwardRef(
                 cancelAttribute.className ? ' ' + cancelAttribute.className : ''
               }`}
             >
-              {cancelAttribute.caption || locale('取消', 'SeedsUI_cancel')}
+              {cancelAttribute.caption || '取消'}
             </a>
             <div className="picker-header-title"></div>
             <a
@@ -155,7 +142,7 @@ const Picker = forwardRef(
                 submitAttribute.className ? ' ' + submitAttribute.className : ''
               }`}
             >
-              {submitAttribute.caption || locale('完成', 'SeedsUI_finish')}
+              {submitAttribute.caption || '完成'}
             </a>
           </div>
           <div className="picker-wrapper">

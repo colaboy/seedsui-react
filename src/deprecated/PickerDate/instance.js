@@ -1,4 +1,4 @@
-import Picker from './../Picker/Deprecated/instance.js'
+import Picker from './../../components/Picker/Deprecated/instance.js'
 import locale from './../../utils/locale'
 
 var PickerDate = function (params) {

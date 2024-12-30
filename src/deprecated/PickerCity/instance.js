@@ -1,4 +1,5 @@
-import Picker from './../Picker/Deprecated/instance.js'
+import Picker from './../../components/Picker/Deprecated/instance.js'
+
 var PickerCity = function (params) {
   /* --------------------
     Model

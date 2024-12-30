@@ -4,7 +4,7 @@ import valueToList from './valueToList'
 import listToValue from './listToValue'
 
 // 内库使用-start
-import Picker from './../../../../deprecated/Picker'
+import Picker from './../../../Picker'
 // 内库使用-end
 
 /* 测试使用-start
