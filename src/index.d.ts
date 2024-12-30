@@ -49,7 +49,7 @@ export { default as Camera } from './deprecated/Camera' // 不常用
 export { default as Card } from './components/Card'
 export { default as Carrousel } from './deprecated/Carrousel'
 export { default as Cascader } from './components/Cascader'
-export { default as Chat } from './deprecated/Chat'
+export { default as Chat } from './components/Chat'
 export { default as Checkbox } from './components/Checkbox' // (废弃, 使用Select.Checkbox代替)
 export { default as ConfigProvider } from './deprecated/ConfigProvider' // 不常用
 export { default as Container } from './deprecated/Container'
@@ -163,8 +163,8 @@ export { default as Form } from './deprecated/Form' // 不常用
 export { default as FullScreen } from './utils/FullScreen' // 不常用
 export { default as GeoUtil } from './utils/GeoUtil' // 不常用
 export { default as ImgLazy } from './deprecated/ImgLazy'
-export { default as Row } from './deprecated/Row'
-export { default as Col } from './deprecated/Col'
+export { default as Row } from './components/Row'
+export { default as Col } from './components/Col'
 
 export { default as MapUtil } from './deprecated/MapUtil' // 不常用
 export { default as Map } from './components/Map'
