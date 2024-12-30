@@ -1,11 +1,7 @@
 ---
 category: Components
+group: 数据展示
 title: QRCode
-
-group:
-  title: 数据展示
-  order: 5
-tag: 5.1.0
 ---
 
 # QRCode

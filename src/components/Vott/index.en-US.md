@@ -1,3 +1,11 @@
-# Vott
+---
+category: Components
+group: Data Entry
+title: Vott
+---
 
-This is an example component.
+# Vott 标注
+
+## 示例
+
+<code src="./demos/demo1.jsx"></code>

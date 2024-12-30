@@ -1,6 +1,6 @@
 ---
 category: Components
-group: 反馈
+group: Feedback
 title: Actionsheet
 ---
 

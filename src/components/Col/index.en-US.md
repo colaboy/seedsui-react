@@ -1,6 +1,6 @@
 ---
 category: Components
-group: 布局
+group: Layout
 title: Col
 ---
 

@@ -1,3 +1,17 @@
+---
+category: Components
+group: Data Entry
+title: Location
+---
+
 # Location
 
-This is an example component.
+## 示例
+
+### Location.Combo
+
+<code src="./demos/Combo/index.jsx"></code>
+
+### Location.Main
+
+<code src="./demos/Main/index.jsx"></code>
