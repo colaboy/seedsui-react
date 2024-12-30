@@ -12,7 +12,7 @@ import NearbyControl from './../../components/NearbyControl'
 import Markers from './../../components/Markers'
 
 // 内库使用-start
-import Toast from './../../../../utils/Toast'
+import Toast from './../../../Toast'
 import Loading from './../../../Loading'
 import locale from './../../../../utils/locale'
 // 内库使用-end

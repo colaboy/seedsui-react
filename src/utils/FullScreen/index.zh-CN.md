@@ -1,10 +1,10 @@
 ---
 category: Utils
-group: 平台工具
-title: Debugger
+group: 基本工具
+title: FullScreen
 ---
 
-# Debugger
+# FullScreen
 
 ## 示例
 

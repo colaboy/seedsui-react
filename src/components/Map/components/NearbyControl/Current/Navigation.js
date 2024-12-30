@@ -2,7 +2,7 @@ import React from 'react'
 
 // 内库使用-start
 import Loading from './../../../../Loading'
-import Toast from './../../../../../utils/Toast'
+import Toast from './../../../../Toast'
 import Bridge from './../../../../../utils/Bridge'
 import locale from './../../../../../utils/locale'
 // 内库使用-end

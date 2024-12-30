@@ -4,7 +4,7 @@ import ready from './utils/ready'
 
 // 内库使用-start
 import Device from './../Device'
-import Toast from './../Toast'
+import Toast from './../../components/Toast'
 import locale from './../locale'
 // 内库使用-end
 

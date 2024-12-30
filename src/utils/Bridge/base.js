@@ -8,7 +8,7 @@ import LoadingInstance from './deprecated/loadingInstance.js'
 // 内库使用-start
 import Device from './../Device'
 import MapUtil from './../../deprecated/MapUtil'
-import Toast from './../Toast'
+import Toast from './../../components/Toast'
 import GeoUtil from './../GeoUtil'
 import locale from './../locale' // 内库使用-end
 

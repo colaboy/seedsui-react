@@ -1,4 +1,10 @@
-# 国际化
+---
+category: Utils
+group: 平台工具
+title: locale
+---
+
+# locale
 
 locale 的数据来源于 window.localeData，格式为{'key': 'value'}, 所以在使用 locale 时必须先确保 window.localeData 是有数据的
 

@@ -3,7 +3,7 @@ import React from 'react'
 // 内库使用-start
 import locale from './../../utils/locale'
 import Clipboard from './../../utils/Clipboard'
-import Toast from './../../utils/Toast'
+import Toast from './../Toast'
 import Bridge from './../../utils/Bridge'
 import Modal from './../../components/Modal'
 // 内库使用-end

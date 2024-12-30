@@ -10,7 +10,7 @@ import ListItem from './ListItem'
 // 内库使用-start
 import locale from './../../../utils/locale'
 import ArrayUtil from './../../../utils/ArrayUtil'
-import Toast from './../../../utils/Toast'
+import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
 import Loading from './../../Loading'
 // 内库使用-end

@@ -1,10 +1,10 @@
 ---
 category: Utils
-group: 平台工具
-title: Debugger
+group: 基本工具
+title: ArrayUtil
 ---
 
-# Debugger
+# ArrayUtil
 
 ## 示例
 

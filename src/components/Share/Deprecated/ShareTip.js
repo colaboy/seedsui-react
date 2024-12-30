@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import Toast from './../../../utils/Toast'
+import Toast from './../../Toast'
 
 function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {}, onHide }) {
   // 生命周期

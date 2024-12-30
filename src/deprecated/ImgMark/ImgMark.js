@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Instance from './instance.js'
-import Toast from './../../utils/Toast'
+import Toast from './../../components/Toast'
 import Bridge from './../../utils/Bridge'
 import BridgeBrowser from './../../utils/Bridge/browser'
 import locale from './../../utils/locale' // 国际化

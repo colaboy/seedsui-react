@@ -1,7 +1,7 @@
 import MapUtil from './../MapUtil'
 import GeoUtil from './../../utils/GeoUtil'
 import Loading from './../../components/Loading'
-import Toast from './../../utils/Toast'
+import Toast from './../../components/Toast'
 import locale from './../../utils/locale' // 国际化
 
 // eslint-disable-next-line

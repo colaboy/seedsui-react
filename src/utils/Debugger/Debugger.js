@@ -3,7 +3,7 @@ import createDebugElement from './createDebugElement'
 import triggerClickLimit from './triggerClickLimit'
 
 // 内库使用-start
-import Toast from './../Toast'
+import Toast from './../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start

@@ -1,3 +1,11 @@
+---
+category: Utils
+group: 平台工具
+title: Bridge
+---
+
 # Bridge
 
-This is an example component.
+## 示例
+
+<code src="./demos/demo1.jsx"></code>

@@ -143,7 +143,7 @@ export { default as Ticket } from './deprecated/Ticket' // 不常用
 export { default as Timeline } from './deprecated/Timeline' // 不常用
 export { default as Timepart } from './deprecated/Timepart' // 不常用
 export { default as Titlebar } from './deprecated/Titlebar'
-export { default as Toast } from './utils/Toast'
+export { default as Toast } from './components/Toast'
 export { default as Tooltip } from './components/Tooltip'
 export { default as Tree } from './deprecated/Tree' // (废弃, 使用TreePicker代替)
 export { default as TreePicker } from './components/TreePicker'

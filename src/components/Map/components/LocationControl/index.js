@@ -3,7 +3,7 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 // 内库使用-start
 import locale from './../../../../utils/locale'
 import Loading from './../../../Loading'
-import Toast from './../../../../utils/Toast'
+import Toast from './../../../Toast'
 // 内库使用-end
 
 // 测试使用-start

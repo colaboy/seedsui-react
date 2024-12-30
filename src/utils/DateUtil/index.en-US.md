@@ -1,9 +1,9 @@
 ---
 category: Utils
 group: 基本工具
-title: EventUtil
+title: Clipboard
 ---
 
-# EventUtil
+# DateUtil
 
 This is an example component.
