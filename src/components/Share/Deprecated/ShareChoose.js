@@ -96,7 +96,7 @@ function ShareChoose({
           return (
             <div className="share-item" key={index}>
               <i className={`share-icon ${share}`}></i>
-              <p className="share-caption">
+              <p className="share-title">
                 {share === 'wechat' && '微信好友'}
                 {share === 'wework' && '企业微信好友'}
                 {share === 'moments' && '微信朋友圈'}

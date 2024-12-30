@@ -1,7 +1,7 @@
 import React from 'react'
 import locale from './../../utils/locale'
 
-function Result({ caption, image, imageProps, children, ...props }) {
+function Result({ title, image, imageProps, children, ...props }) {
   return (
     <div className="result" {...props}>
       {/* Image */}
@@ -16,9 +16,9 @@ function Result({ caption, image, imageProps, children, ...props }) {
         />
       )}
 
-      {/* Caption */}
-      {caption === undefined || caption ? (
-        <div className="result-caption">{caption || locale('暂无数据', 'SeedsUI_no_data')}</div>
+      {/* Title */}
+      {title === undefined || title ? (
+        <div className="result-title">{title || locale('暂无数据', 'SeedsUI_no_data')}</div>
       ) : null}
 
       {children}

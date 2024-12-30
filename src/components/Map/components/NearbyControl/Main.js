@@ -18,7 +18,7 @@ function Main({ active, list, onChange }) {
   }
   return (
     <div className="map-nearbyControl-main">
-      {errMsg && <Result caption={errMsg} />}
+      {errMsg && <Result title={errMsg} />}
       {Array.isArray(list) &&
         list.length &&
         list.map((item, index) => {

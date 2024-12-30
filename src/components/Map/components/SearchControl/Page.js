@@ -122,10 +122,10 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           : null}
 
         {/* Query error */}
-        {typeof searchList === 'string' && <Result caption={searchList} />}
+        {typeof searchList === 'string' && <Result title={searchList} />}
         {/* List is empty */}
         {Array.isArray(searchList) && searchList.length === 0 ? (
-          <Result caption={locale('暂无数据', 'SeedsUI_no_data')} />
+          <Result title={locale('暂无数据', 'SeedsUI_no_data')} />
         ) : null}
       </div>
     </Layout>

@@ -19,7 +19,7 @@ export default () => {
         min={new Date()}
         // max={new Date('2025-12-12')}
         // year | quarter | month | date | time | datetime | week
-        type="datetime"
+        type="week"
         hourStep={5}
         minuteStep={5}
         value={value}

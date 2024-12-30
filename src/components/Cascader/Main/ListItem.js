@@ -37,7 +37,7 @@ const ListItem = forwardRef(
         className={`picker-main${props?.className ? ' ' + props.className : ''}`}
         ref={ref}
       >
-        {typeof list === 'string' && <Result caption={list} />}
+        {typeof list === 'string' && <Result title={list} />}
         {Array.isArray(list) &&
           list.map((item, index) => {
             // 字母分栏
