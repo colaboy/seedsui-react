@@ -1,3 +1,9 @@
+---
+category: Components
+group: 反馈
+title: Button
+---
+
 # Button
 
 用于开始一个即时操作。

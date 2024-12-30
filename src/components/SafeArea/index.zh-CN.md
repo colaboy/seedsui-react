@@ -1,3 +1,9 @@
+---
+category: Components
+group: 布局
+title: SafeArea
+---
+
 # SafeArea
 
 ## 示例

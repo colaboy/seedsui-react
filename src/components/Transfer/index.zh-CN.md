@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: Transfer
+---
+
 # Transfer 穿梭框
 
 ## Transfer.Combo

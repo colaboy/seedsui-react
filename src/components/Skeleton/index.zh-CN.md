@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据展示
+title: Skeleton
+---
+
 # Skeleton
 
 骨架屏

@@ -1,10 +1,10 @@
 ---
+group: 数据展示
 category: Components
-group: 反馈
-title: Tabs
+title: Result
 ---
 
-# Tabs
+# Result
 
 ## 示例
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, NoData } from 'seedsui-react'
+import { Layout, Result } from 'seedsui-react'
 
 const titleStyle = {
   padding: '12px 12px 8px',
@@ -13,7 +13,7 @@ export default () => {
     <Layout className="full">
       <Layout.Main>
         <div style={titleStyle}>Page notice</div>
-        <NoData />
+        <Result />
       </Layout.Main>
     </Layout>
   )

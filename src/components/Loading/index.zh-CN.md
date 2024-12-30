@@ -1,3 +1,9 @@
+---
+category: Components
+group: 反馈
+title: Loading
+---
+
 # Loading
 
 ## 示例

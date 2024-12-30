@@ -1,3 +1,9 @@
+---
+category: Components
+group: 反馈
+title: Share
+---
+
 # Share
 
 ## 示例

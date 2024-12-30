@@ -106,7 +106,7 @@ export { default as MenuTree } from './deprecated/MenuTree'
 export { default as VideoFull } from './deprecated/VideoFull' // 不常用
 export { default as Videos } from './deprecated/Videos' // 不常用
 export { default as Vott } from './components/Vott' // 不常用
-export { default as NoData } from './components/NoData'
+export { default as Result } from './components/Result'
 export { default as Notice } from './deprecated/Notice'
 export { default as NumBox } from './deprecated/NumBox' // (废弃, 使用Input.NumberBox代替)
 export { default as OnOff } from './deprecated/OnOff' // (废弃, 使用Switch代替)

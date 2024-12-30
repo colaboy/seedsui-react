@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
 import { formatList } from './../utils'
 
-import NoData from './../../NoData'
+import Result from './../../Result'
 import List from './List'
 
 // Main
@@ -100,7 +100,7 @@ const Main = forwardRef(
           className={`picker-main${props?.className ? ' ' + props.className : ''}`}
           ref={mainRef}
         >
-          {Object.isEmptyObject(list) && <NoData />}
+          {Object.isEmptyObject(list) && <Result />}
           {/* 列表上方扩展 */}
           {typeof listExtraHeaderRender === 'function' &&
             listExtraHeaderRender({

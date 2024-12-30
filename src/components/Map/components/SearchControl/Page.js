@@ -5,12 +5,12 @@ import locale from './../../../../utils/locale'
 import Loading from './../../../Loading'
 import Input from './../../../Input'
 import Layout from './../../../../components/Layout'
-import NoData from './../../../NoData'
+import Result from './../../../Result'
 import HighlightKeyword from './../../../HighlightKeyword'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, Loading, Input, Layout, NoData, HighlightKeyword } from 'seedsui-react'
+// import { locale, Loading, Input, Layout, Result, HighlightKeyword } from 'seedsui-react'
 // 测试使用-end
 
 // 搜索
@@ -122,10 +122,10 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           : null}
 
         {/* Query error */}
-        {typeof searchList === 'string' && <NoData caption={searchList} />}
+        {typeof searchList === 'string' && <Result caption={searchList} />}
         {/* List is empty */}
         {Array.isArray(searchList) && searchList.length === 0 ? (
-          <NoData caption={locale('暂无数据', 'SeedsUI_no_data')} />
+          <Result caption={locale('暂无数据', 'SeedsUI_no_data')} />
         ) : null}
       </div>
     </Layout>

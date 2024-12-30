@@ -1,3 +1,11 @@
+---
+category: Components
+group: 数据展示
+title: HighlightKeyword
+---
+
 # HighlightKeyword
 
-This is an example component.
+## 示例
+
+<code src="./demos/demo1.jsx"></code>

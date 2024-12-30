@@ -1,3 +1,9 @@
+---
+category: Components
+group: 反馈
+title: IndexBar
+---
+
 # IndexBar
 
 IndexBar 需要包裹滚动容器

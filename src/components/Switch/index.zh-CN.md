@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: Switch
+---
+
 # Switch
 
 ## 示例

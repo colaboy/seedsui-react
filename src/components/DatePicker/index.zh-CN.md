@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: DatePicker
+---
+
 # DatePicker
 
 ## 示例

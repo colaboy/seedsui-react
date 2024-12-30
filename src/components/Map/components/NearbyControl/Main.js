@@ -3,11 +3,11 @@ import React from 'react'
 // 内库使用-start
 import locale from './../../../../utils/locale'
 import Checkbox from './../../../Checkbox'
-import NoData from './../../../NoData'
+import Result from './../../../Result'
 // 内库使用-end
 
 // 测试使用-start
-// import { Checkbox, NoData, locale } from 'seedsui-react'
+// import { Checkbox, Result, locale } from 'seedsui-react'
 // 测试使用-end
 
 // 附近结果
@@ -18,7 +18,7 @@ function Main({ active, list, onChange }) {
   }
   return (
     <div className="map-nearbyControl-main">
-      {errMsg && <NoData caption={errMsg} />}
+      {errMsg && <Result caption={errMsg} />}
       {Array.isArray(list) &&
         list.length &&
         list.map((item, index) => {

@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据展示
+title: Chat
+---
+
 # Chat
 
 ## 示例

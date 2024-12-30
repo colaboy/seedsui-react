@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: Map
+---
+
 # Map
 
 支持国际化的地图。

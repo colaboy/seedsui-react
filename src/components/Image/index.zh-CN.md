@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: Image
+---
+
 # Image
 
 ## 示例

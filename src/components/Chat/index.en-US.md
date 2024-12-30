@@ -1,3 +1,11 @@
+---
+category: Components
+group: 数据展示
+title: Chat
+---
+
 # Chat
 
-This is an example component.
+## 示例
+
+<code src="./demos/demo1.jsx"></code>

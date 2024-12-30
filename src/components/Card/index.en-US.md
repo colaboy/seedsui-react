@@ -1,3 +1,11 @@
+---
+category: Components
+group: 布局
+title: Card
+---
+
 # Card
 
-This is an example component.
+## 示例
+
+<code src="./demos/demo1.jsx"></code>

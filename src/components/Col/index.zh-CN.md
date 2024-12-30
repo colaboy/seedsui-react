@@ -1,3 +1,9 @@
+---
+category: Components
+group: 布局
+title: Col
+---
+
 # Col
 
 ## 示例

@@ -1,3 +1,9 @@
+---
+category: Components
+group: 数据录入
+title: Checkbox
+---
+
 # Checkbox
 
 ## 示例

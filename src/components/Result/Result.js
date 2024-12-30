@@ -1,10 +1,9 @@
 import React from 'react'
 import locale from './../../utils/locale'
 
-// 暂无数据
-function NoData({ caption, image, imageProps, children, ...props }) {
+function Result({ caption, image, imageProps, children, ...props }) {
   return (
-    <div className="nodata" {...props}>
+    <div className="result" {...props}>
       {/* Image */}
       {image ? (
         image
@@ -12,14 +11,14 @@ function NoData({ caption, image, imageProps, children, ...props }) {
         <img
           alt=""
           src={'//res.waiqin365.com/d/waiqin365_h5/components/no-data.png'}
-          className="nodata-image"
+          className="result-image"
           {...imageProps}
         />
       )}
 
       {/* Caption */}
       {caption === undefined || caption ? (
-        <div className="nodata-caption">{caption || locale('暂无数据', 'SeedsUI_no_data')}</div>
+        <div className="result-caption">{caption || locale('暂无数据', 'SeedsUI_no_data')}</div>
       ) : null}
 
       {children}
@@ -27,4 +26,4 @@ function NoData({ caption, image, imageProps, children, ...props }) {
   )
 }
 
-export default NoData
+export default Result
