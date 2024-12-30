@@ -1,48 +1,94 @@
-# 准备
+<div align="center"><a name="readme-top"></a>
 
-SeedsUI 不同于其它 UI 库，为了解决样式的可控性，它的样式是 copy 到项目中的，避免了样式难改的问题，copy 样式、安装 ui 库即可使用
+<img height="180" src="https://res.waiqin365.com/d/seedsui/logo.png">
 
-## 安装
+<h1>SeedsUI for React</h1>
+
+An enterprise-class UI design language and React UI library.
+
+![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+</div>
+
+## 📦 Install
+
+### NPM
 
 ```bash
-$ npm install --save seedsui-react
-# or
-$ yarn add seedsui-react
+npm install seedsui-react
 ```
 
-## 引入组件
+```bash
+yarn add seedsui-react
+```
 
-直接引入组件即可
+```bash
+pnpm add seedsui-react
+```
+
+### UMD
+
+Add scripts to `index.html`
+
+```html
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react.18.2.0.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-dom.18.2.0.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/axios.1.6.2.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/dayjs.1.11.8.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/ahooks.3.8.1.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/lodash.4.17.21.min.js"></script>
+<!-- The UMD router used to resolve the conflict errors between the UMD version of @ahooksjs/use-url-state and react-router in the project. -->
+<!--
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.6.26.1.min.js"></script>
+<script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.5.1.2.min.js"></script>
+-->
+
+<!-- SeedsUI must defer -->
+<script
+  defer
+  src="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.8.52.min.js"
+></script>
+
+<!-- The UMD tool unpkg can get the latest base library, example:  -->
+<!-- <script src="https://unpkg.com/react-routers"></script> -->
+
+<script>
+  // The UMD version of lodash must have reference to window.lodash
+  window.lodash = window._
+</script>
+```
+
+Config webpack.config.js
 
 ```js
-import { Button } from 'seedsui-react'
+return {
+  // [自定义修改]公共cdn文件 start
+  // externalsType: 'umd',
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter',
+    axios: 'axios',
+    dayjs: 'dayjs',
+    lodash: '_',
+    ahooks: 'ahooks',
+    'seedsui-react': 'SeedsUI'
+  },
+  // [自定义修改]公共cdn文件 end
+  target: ['browserslist'],
+  ...
+}
 ```
 
-## 引入样式
+## 🔨 Usage
 
-- copy`seedsui-react/lib/assets`到自己的工程
+```tsx
+import { Button, DatePicker } from 'seedsui-react'
 
-```bash
-├─assets
-│ ├─seedsui（不允许修改, 更新 seedsui 时只需要更新此文件夹即可）
-│ └─style（允许定制：包含皮肤`variables.less`、文字图标`iconfont`等）
-```
-
-- 引入样式
-
-```less
-// 全局样式
-import './library/assets/style/index.less'
-```
-
-## 源码下载
-
-```bash
-git clone https://github.com/colaboy/seedsui-react.git
-```
-
-## 启动项目
-
-```bash
-npm run start
+export default () => (
+  <>
+    <Button className="primary">PRESS ME</Button>
+    <DatePicker.Combo type="date" placeholder="select date" />
+  </>
+)
 ```
