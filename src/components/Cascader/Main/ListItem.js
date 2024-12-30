@@ -2,12 +2,12 @@ import React, { Fragment, forwardRef } from 'react'
 
 // 内库使用-start
 import locale from '../../../utils/locale'
-import Notice from './../../../deprecated/Notice'
+import NoData from './../../NoData'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Notice, IndexBar } from 'seedsui-react'
+import { locale, NoData, IndexBar } from 'seedsui-react'
 测试使用-end */
 
 const ListItem = forwardRef(
@@ -37,7 +37,7 @@ const ListItem = forwardRef(
         className={`picker-main${props?.className ? ' ' + props.className : ''}`}
         ref={ref}
       >
-        {typeof list === 'string' && <Notice caption={list} />}
+        {typeof list === 'string' && <NoData caption={list} />}
         {Array.isArray(list) &&
           list.map((item, index) => {
             // 字母分栏
