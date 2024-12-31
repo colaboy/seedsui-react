@@ -1,4 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
+import support from './../utils/support'
 import Modal from './../Modal'
 
 // Combo
@@ -36,6 +37,7 @@ const Combo = (
   const modalRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
+      ...modalRef.current,
       rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
       getRootDOM: () => {
         // div
@@ -56,6 +58,14 @@ const Combo = (
     setVisible(true)
   }
 
+  // 显示项
+  function getChildren() {
+    if (support(shareTo)) {
+      return children ? children : 'Share to'
+    }
+    return null
+  }
+
   return (
     <>
       <div
@@ -64,7 +74,7 @@ const Combo = (
         className={`share-button${props?.className ? ' ' + props.className : ''}`}
         onClick={handleClick}
       >
-        {children ? children : 'Share'}
+        {getChildren()}
       </div>
       {typeof modal === 'function' ? (
         modal({

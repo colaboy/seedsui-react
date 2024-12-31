@@ -22,6 +22,7 @@ const Modal = forwardRef(
     // 节点
     const modalRef = useRef(null)
     const mainRef = useRef(null)
+
     useImperativeHandle(ref, () => {
       const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
       return {
@@ -37,9 +38,10 @@ const Modal = forwardRef(
 
     return (
       <BaseModal
+        {...props}
+        ref={modalRef}
         animation={animation}
         className={`share-modal${className ? ' ' + className : ''}`}
-        {...props}
       >
         {typeof main === 'function' ? (
           main({

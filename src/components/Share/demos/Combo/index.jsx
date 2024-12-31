@@ -6,7 +6,7 @@ export default () => {
   console.log(shareComboRef)
   return (
     <Layout className="full">
-      <Layout.Header className="text-center">Share To</Layout.Header>
+      <Layout.Header>When this platform is not supported, nothing will appear</Layout.Header>
       <Layout.Main className="bg-white">
         <Share.Combo
           ref={shareComboRef}
