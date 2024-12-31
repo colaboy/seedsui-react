@@ -1,0 +1,43 @@
+@input-text-height: 22px; // 共用变量: InputPre
+@input-text-padding: 10px 0; // 共用变量: InputPre
+// InputPre自增高文本框(@deprecated废弃,使用Input.AutoFit代替)
+.input-pre-box {
+  position: relative;
+  box-sizing: border-box;
+  line-height: 0;
+
+  pre {
+    min-height: @input-text-height;
+    visibility: hidden;
+    span {
+      display: inline;
+    }
+  }
+
+  // 自适应标签与多行文本框文字间距一致
+  pre,
+  textarea {
+    line-height: @input-text-height;
+  }
+}
+
+// 多行文本框容器
+.input-pre {
+  // position: relative; // 为了解决ios输入时白屏的BUG
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  &,
+  + pre {
+    padding: 4px 0 0 0; // 文字距离上面的间隙
+  }
+
+  // 容器内多行文本框宽高100%
+  textarea {
+    width: 100%;
+    height: 100%;
+    &:extend(.appearance);
+  }
+}

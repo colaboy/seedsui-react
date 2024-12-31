@@ -1,0 +1,93 @@
+// Card
+.skeleton-card {
+  .flex;
+  gap: 12px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px 0px rgba(223, 221, 225, 0.45);
+  border-radius: 12px;
+  margin: 12px;
+  padding: 16px 12px;
+}
+.skeleton-card-content {
+  .flex-1;
+}
+
+@keyframes animate-skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  to {
+    background-position: 0 50%;
+  }
+}
+
+// Base block
+.skeleton-block {
+  position: relative;
+  background-color: rgba(190, 190, 190, 0.2);
+
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+  &.animated {
+    background: linear-gradient(
+      90deg,
+      rgba(190, 190, 190, 0.2) 25%,
+      rgba(129, 129, 129, 0.24) 37%,
+      rgba(190, 190, 190, 0.2) 63%
+    );
+    background-size: 400% 100%;
+    animation: animate-skeleton-loading 1.4s ease infinite;
+  }
+}
+.skeleton-block-darken {
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+// Item
+.skeleton-item {
+  width: 100%;
+  height: 18px;
+  margin: 12px 0;
+}
+.skeleton-item:first-child {
+  margin-top: 0;
+}
+.skeleton-item:last-child {
+  margin-bottom: 0;
+}
+.skeleton-title {
+  height: 24px;
+  width: 132px;
+  border-radius: 6px;
+}
+
+// Avatar
+.skeleton-avatar {
+  width: 80px;
+  height: 60px;
+}
+
+// Tabs
+.skeleton-tabs {
+  white-space: nowrap;
+  gap: 16px;
+  overflow: hidden;
+  margin-left: 12px;
+}
+.skeleton-tab {
+  display: inline-block;
+  width: 90px;
+  height: 20px;
+  margin-right: 16px;
+}
+.skeleton-tab:last-child {
+  margin-right: 0;
+}

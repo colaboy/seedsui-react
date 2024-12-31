@@ -1,0 +1,132 @@
+// Mark标签
+// 基础样式
+.mark {
+  padding: 2px 5px;
+
+  color: white;
+  font-size: @font-size-s;
+  border-radius: 3px;
+  border-width: 0;
+  border-style: solid;
+}
+
+// 填充模式
+.mark {
+  // 默认取color颜色
+  color: white;
+  background-color: var(--color);
+  border-color: var(--color);
+
+  &.default {
+    color: @mark-default-color;
+    background-color: @mark-default-bg-color;
+    border-color: @mark-default-border-color;
+  }
+  &.primary {
+    color: @mark-primary-color;
+    background-color: @mark-primary-bg-color;
+    border-color: @mark-primary-border-color;
+  }
+  &.link {
+    color: @mark-link-color;
+    background-color: @mark-link-bg-color;
+    border-color: @mark-link-border-color;
+  }
+  &.warning {
+    color: @mark-warning-color;
+    background-color: @mark-warning-bg-color;
+    border-color: @mark-warning-border-color;
+  }
+  &.danger {
+    color: @mark-danger-color;
+    background-color: @mark-danger-bg-color;
+    border-color: @mark-danger-border-color;
+  }
+  &.success {
+    color: @mark-success-color;
+    background-color: @mark-success-bg-color;
+    border-color: @mark-success-border-color;
+  }
+}
+
+// 线框模式
+.mark.outline {
+  border-width: 1px;
+
+  // 默认取color颜色
+  color: var(--color);
+  background-color: transparent;
+  border-color: var(--color);
+
+  &.default {
+    color: @mark-default-outline-color;
+    background-color: @mark-default-outline-bg-color;
+    border-color: @mark-default-outline-border-color;
+  }
+  &.primary {
+    color: @mark-primary-outline-color;
+    background-color: @mark-primary-outline-bg-color;
+    border-color: @mark-primary-outline-border-color;
+  }
+  &.link {
+    color: @mark-link-outline-color;
+    background-color: @mark-link-outline-bg-color;
+    border-color: @mark-link-outline-border-color;
+  }
+  &.warning {
+    color: @mark-warning-outline-color;
+    background-color: @mark-warning-outline-bg-color;
+    border-color: @mark-warning-outline-border-color;
+  }
+  &.danger {
+    color: @mark-danger-outline-color;
+    background-color: @mark-danger-outline-bg-color;
+    border-color: @mark-danger-outline-border-color;
+  }
+  &.success {
+    color: @mark-success-outline-color;
+    background-color: @mark-success-outline-bg-color;
+    border-color: @mark-success-outline-border-color;
+  }
+}
+
+// light-outline
+.mark.light-outline {
+  border-width: 1px;
+
+  // 默认取color颜色
+  color: var(--color);
+  background-color: transparent;
+  border-color: var(--color);
+
+  &.default {
+    color: @mark-default-outline-color;
+    background-color: @mark-default-light-bg-color;
+    border-color: @mark-default-outline-border-color;
+  }
+  &.primary {
+    color: @mark-primary-outline-color;
+    background-color: @mark-primary-light-bg-color;
+    border-color: @mark-primary-outline-border-color;
+  }
+  &.link {
+    color: @mark-link-outline-color;
+    background-color: @mark-link-light-bg-color;
+    border-color: @mark-link-outline-border-color;
+  }
+  &.warning {
+    color: @mark-warning-outline-color;
+    background-color: @mark-warning-light-bg-color;
+    border-color: @mark-warning-outline-border-color;
+  }
+  &.danger {
+    color: @mark-danger-outline-color;
+    background-color: @mark-danger-light-bg-color;
+    border-color: @mark-danger-outline-border-color;
+  }
+  &.success {
+    color: @mark-success-outline-color;
+    background-color: @mark-success-light-bg-color;
+    border-color: @mark-success-outline-border-color;
+  }
+}

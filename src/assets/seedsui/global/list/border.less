@@ -1,0 +1,503 @@
+// border 共公边框
+/*
+@border-t-1:-webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @border));
+@border-b-1:-webkit-gradient(linear, left top, left bottom, color-stop(0, @border), color-stop(1, @border));
+@border-l-1:-webkit-gradient(linear, right top, left top, color-stop(0, @border), color-stop(1, @border));
+@border-r-1:-webkit-gradient(linear, left top, right top, color-stop(0, @border), color-stop(1, @border));
+
+@border-t-2:-webkit-gradient(linear, left bottom, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-b-2:-webkit-gradient(linear, left top, left bottom, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-l-2:-webkit-gradient(linear, right top, left top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+@border-r-2:-webkit-gradient(linear, left top, right top, color-stop(.5, rgba(0, 0, 0, 0)), color-stop(.5, @border));
+*/
+
+/*
+样式定义-----------------------------------------------------------------------------------------
+*/
+
+/* 一倍屏 */
+// 上
+.border-1 (@color: @border, @position: 'top') when (@position = 'top') {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.5, rgba(0, 0, 0, 0)),
+    color-stop(0.5, @color)
+  );
+}
+// 下
+.border-1 (@color: @border, @position: 'top') when (@position = 'bottom') {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0, @color),
+    color-stop(1, @color)
+  );
+}
+// 上下
+.border-1 (@color: @border, @position: 'top') when (@position = 'top-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0, @color), color-stop(1, @color));
+}
+
+// 左
+.border-1 (@color: @border, @position: 'left') when (@position = 'left') {
+  background-image: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    color-stop(0, @color),
+    color-stop(1, @color)
+  );
+}
+// 左上
+.border-1 (@color: @border, @position: 'left') when (@position = 'left-top') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0, @color),
+      color-stop(1, @color)
+    ),
+    -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+// 左下
+.border-1 (@color: @border, @position: 'left') when (@position = 'left-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0, @color),
+      color-stop(1, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0, @color), color-stop(1, @color));
+}
+
+// 左右(未使用)
+.border-1 (@color: @border, @position: 'left') when (@position = 'left-right') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0, @color),
+      color-stop(1, @color)
+    ),
+    -webkit-gradient(linear, left top, right top, color-stop(0, @border), color-stop(1, @border));
+}
+
+// 右
+.border-1 (@color: @border, @position: 'left') when (@position = 'right') {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0, @color),
+    color-stop(1, @color)
+  );
+}
+// 右上
+.border-1 (@color: @border, @position: 'left') when (@position = 'right-top') {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0, @color),
+      color-stop(1, @color)
+    ),
+    -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+// 右下
+.border-1 (@color: @border, @position: 'left') when (@position = 'right-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0, @color),
+      color-stop(1, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0, @border), color-stop(1, @border));
+}
+// 四边
+.border-1 (@color: @border, @position: 'left') when (@position = 'border') {
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0, @color), color-stop(1, @color)),
+    -webkit-gradient(linear, right top, left top, color-stop(0, @color), color-stop(1, @color)),
+    -webkit-gradient(linear, left top, right top, color-stop(0, @color), color-stop(1, @color));
+}
+
+/* 二倍屏 */
+// 上
+.border-2 (@color: @border, @position: 'top') when (@position = 'top') {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.5, rgba(0, 0, 0, 0)),
+    color-stop(0.5, @color)
+  );
+}
+// 下
+.border-2 (@color: @border, @position: 'top') when (@position = 'bottom') {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.5, rgba(0, 0, 0, 0)),
+    color-stop(0.5, @color)
+  );
+}
+// 上下
+.border-2 (@color: @border, @position: 'top') when (@position = 'top-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+
+// 左
+.border-2 (@color: @border, @position: 'left') when (@position = 'left') {
+  background-image: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    color-stop(0.5, rgba(0, 0, 0, 0)),
+    color-stop(0.5, @color)
+  );
+}
+// 左上
+.border-2 (@color: @border, @position: 'left') when (@position = 'left-top') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+// 左下
+.border-2 (@color: @border, @position: 'left') when (@position = 'left-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+
+// 左右(未使用)
+.border-2 (@color: @border, @position: 'left') when (@position = 'left-right') {
+  background-image: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+
+// 右
+.border-2 (@color: @border, @position: 'left') when (@position = 'right') {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0.5, rgba(0, 0, 0, 0)),
+    color-stop(0.5, @color)
+  );
+}
+// 右上
+.border-2 (@color: @border, @position: 'left') when (@position = 'right-top') {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left bottom, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+// 右下
+.border-2 (@color: @border, @position: 'left') when (@position = 'right-bottom') {
+  background-image: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+
+// 四边:上右下左
+.border-2 (@color: @border, @position: 'left') when (@position = 'border') {
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.5, rgba(0, 0, 0, 0)),
+      color-stop(0.5, @color)
+    ),
+    -webkit-gradient(linear, left top, right top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color)),
+    -webkit-gradient(linear, left top, left bottom, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color)),
+    -webkit-gradient(linear, right top, left top, color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, @color));
+}
+
+// 横线共用样式: 上、下、上下
+.setBorderX() {
+  background-repeat: repeat-x;
+  background-size: 100% 1px;
+}
+
+// 横线共用样式: 左、右
+.setBorderY() {
+  background-repeat: repeat-y;
+  background-size: 1px 100%;
+}
+
+// 开放API
+.setBorderT (@color: @border) {
+  .setBorderX();
+  background-position: left top;
+  .border-1(@color, 'top');
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'top');
+  }
+}
+.setBorderB (@color: @border) {
+  .setBorderX();
+  background-position: left bottom;
+  .border-1(@color, 'bottom');
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'bottom');
+  }
+}
+.setBorderTB (@color: @border) {
+  .setBorderX();
+  .border-1(@color, 'top-bottom');
+  background-position: top, bottom;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'top-bottom');
+  }
+}
+
+.setBorderL (@color: @border) {
+  .setBorderY();
+  background-position: left top;
+  .border-1(@color, 'left');
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'left');
+  }
+}
+.setBorderLT (@color: @border) {
+  .border-1(@color, 'left-top');
+  background-repeat: no-repeat;
+  background-position: left, top;
+
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'left-top');
+  }
+}
+.setBorderLB (@color: @border) {
+  .border-1(@color, 'left-bottom');
+  background-repeat: no-repeat;
+  background-position: left, bottom;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'left-bottom');
+  }
+}
+
+.setBorderR (@color: @border) {
+  .setBorderY();
+  background-position: right top;
+  .border-1(@color, 'right');
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'right');
+  }
+}
+
+.setBorderRT (@color: @border) {
+  .border-1(@color, 'right-bottom');
+  background-repeat: no-repeat;
+  background-position: right, top;
+
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'right-top');
+  }
+}
+.setBorderRB (@color: @border) {
+  .border-1(@color, 'right-bottom');
+  background-repeat: no-repeat;
+  background-position: right, bottom;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+  background-size: 1px 100%, 100% 1px;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'right-bottom');
+  }
+}
+
+.setBorder (@color: @border) {
+  .border-1(@color, 'border');
+  background-repeat: no-repeat;
+  background-position: top, right, bottom, left;
+
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+  background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%;
+
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
+    .border-2(@color, 'border');
+  }
+}
+
+/*
+样式实例-----------------------------------------------------------------------------------------
+*/
+
+.border-0 {
+  background-image: none;
+  border: 0;
+}
+
+.border-t {
+  .setBorderT();
+}
+
+.border-b {
+  .setBorderB();
+}
+
+.border-tb {
+  .setBorderTB();
+}
+
+.border-l {
+  .setBorderL();
+}
+.border-lt {
+  .setBorderLT();
+}
+.border-lb {
+  .setBorderLB();
+}
+
+.border-r {
+  .setBorderR();
+}
+
+.border-rt {
+  .setBorderRT();
+}
+.border-rb {
+  .setBorderRB();
+}
+
+.border {
+  .setBorder();
+}
+
+hr:extend(.border-b) {
+  display: block;
+  clear: both;
+  height: 1px;
+  border: 0;
+}
+
+// 篮子线
+.basketline:extend(.border-b) {
+  position: relative;
+  // 左右边线
+  &:before,
+  &:after {
+    position: absolute;
+
+    bottom: 0;
+    // 兼容UC线条不显示的BUG
+    z-index: 1;
+    display: block;
+    width: 1px;
+    height: 10px;
+    overflow: hidden;
+    background-color: @border;
+    -webkit-backface-visibility: hidden;
+    content: '';
+  }
+  &:before {
+    left: 0;
+    transform-origin: left center;
+  }
+  &:after {
+    right: 0;
+    transform-origin: right center;
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .basketline:before,
+  .basketline:after {
+    transform: scaleX(0.5);
+  }
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .basketline:before,
+  .basketline:after {
+    transform: scaleX(0.33);
+  }
+}
+
+.bordered {
+  border-color: @border;
+  border-style: solid;
+  border-width: 1px;
+}
+.dotted {
+  border-style: dotted;
+}
+.dashed {
+  border-style: dashed;
+}
+.splitter {
+  display: block;
+  width: 1px;
+  height: 24px;
+  .border-l;
+}

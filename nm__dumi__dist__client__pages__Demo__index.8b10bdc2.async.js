@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkseedsui_react=self.webpackChunkseedsui_react||[]).push([[1009],{12535:function(i,n,e){e.r(n),e.d(n,{default:function(){return u}});var a=e(32345),r=e(67294),s=function(){var d=(0,a.UO)(),o=d.id,m=(0,a.WF)(),c=m.demos,f=c[o]||{},t=f.component;return t&&(0,r.createElement)(t)},u=s}}]);

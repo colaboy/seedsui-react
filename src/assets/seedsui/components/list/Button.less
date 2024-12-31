@@ -1,0 +1,191 @@
+// Button按钮
+// 基础样式
+.button {
+  position: relative;
+  box-sizing: border-box;
+
+  height: 32px;
+  padding: 0 12px;
+  font-size: @font-size-m;
+  &.xs {
+    .button-xs();
+  }
+  &.s {
+    .button-s();
+  }
+  &.m {
+    .button-m();
+  }
+  &.l {
+    .button-l();
+  }
+  &.xl {
+    .button-xl();
+  }
+  vertical-align: middle;
+
+  border-style: solid;
+  border-width: 1px;
+  &:extend(.appearance);
+  .inline-flex;
+  .flex-middle;
+  .flex-center;
+
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
+// 填充模式
+.button {
+  // 默认按钮
+  &,
+  &.default {
+    color: @button-default-color;
+    background-color: @button-default-bg-color;
+    border-color: @button-default-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-default-disabled-color;
+      background-color: @button-default-disabled-bg-color;
+      border-color: @button-default-disabled-border-color;
+    }
+  }
+  // 主色按钮
+  &.primary {
+    color: @button-primary-color;
+    background-color: @button-primary-bg-color;
+    border-color: @button-primary-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-primary-disabled-color;
+      background-color: @button-primary-disabled-bg-color;
+      border-color: @button-primary-disabled-border-color;
+    }
+  }
+  // 链接按钮
+  &.link {
+    color: @button-link-color;
+    background-color: @button-link-bg-color;
+    border-color: @button-link-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-link-disabled-color;
+      background-color: @button-link-disabled-bg-color;
+      border-color: @button-link-disabled-border-color;
+    }
+  }
+  // 警告按钮
+  &.warning {
+    color: @button-warning-color;
+    background-color: @button-warning-bg-color;
+    border-color: @button-warning-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-warning-disabled-color;
+      background-color: @button-warning-disabled-bg-color;
+      border-color: @button-warning-disabled-border-color;
+    }
+  }
+  // 危险按钮
+  &.danger {
+    color: @button-danger-color;
+    background-color: @button-danger-bg-color;
+    border-color: @button-danger-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-danger-disabled-color;
+      background-color: @button-danger-disabled-bg-color;
+      border-color: @button-danger-disabled-border-color;
+    }
+  }
+  // 完成按钮
+  &.success {
+    color: @button-success-color;
+    background-color: @button-success-bg-color;
+    border-color: @button-success-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-success-disabled-color;
+      background-color: @button-success-disabled-bg-color;
+      border-color: @button-success-disabled-border-color;
+    }
+  }
+}
+
+// 线框模式
+.button.outline {
+  // 默认按钮
+  &,
+  &.default {
+    color: @button-default-outline-color;
+    background-color: @button-default-outline-bg-color;
+    border-color: @button-default-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-default-outline-disabled-color;
+      background-color: @button-default-outline-disabled-bg-color;
+      border-color: @button-default-outline-disabled-border-color;
+    }
+  }
+  // 主色按钮
+  &.primary {
+    color: @button-primary-outline-color;
+    background-color: @button-primary-outline-bg-color;
+    border-color: @button-primary-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-primary-outline-disabled-color;
+      background-color: @button-primary-outline-disabled-bg-color;
+      border-color: @button-primary-outline-disabled-border-color;
+    }
+  }
+  // 链接按钮
+  &.link {
+    color: @button-link-outline-color;
+    background-color: @button-link-outline-bg-color;
+    border-color: @button-link-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-link-outline-disabled-color;
+      background-color: @button-link-outline-disabled-bg-color;
+      border-color: @button-link-outline-disabled-border-color;
+    }
+  }
+  // 警告按钮
+  &.warning {
+    color: @button-warning-outline-color;
+    background-color: @button-warning-outline-bg-color;
+    border-color: @button-warning-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-warning-outline-disabled-color;
+      background-color: @button-warning-outline-disabled-bg-color;
+      border-color: @button-warning-outline-disabled-border-color;
+    }
+  }
+  // 危险按钮
+  &.danger {
+    color: @button-danger-outline-color;
+    background-color: @button-danger-outline-bg-color;
+    border-color: @button-danger-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-danger-outline-disabled-color;
+      background-color: @button-danger-outline-disabled-bg-color;
+      border-color: @button-danger-outline-disabled-border-color;
+    }
+  }
+  // 完成按钮
+  &.success {
+    color: @button-success-outline-color;
+    background-color: @button-success-outline-bg-color;
+    border-color: @button-success-outline-border-color;
+    &.disabled,
+    &[disabled] {
+      color: @button-success-outline-disabled-color;
+      background-color: @button-success-outline-disabled-bg-color;
+      border-color: @button-success-outline-disabled-border-color;
+    }
+  }
+}

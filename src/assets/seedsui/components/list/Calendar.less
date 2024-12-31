@@ -1,0 +1,211 @@
+// Calendar日历
+.calendar {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  transition-property: height;
+
+  // 禁用
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}
+// 区间选择模式
+.calendar-mode-range {
+  .calendar-date .calendar-date-num {
+    width: 100%;
+    border-radius: 0;
+  }
+  .calendar-date-today {
+    .calendar-date-num {
+      border-radius: 8px;
+    }
+  }
+  .calendar-date-selected {
+    .calendar-date-num {
+      border-radius: 0;
+    }
+  }
+}
+
+// 头部
+.calendar-header {
+  .flex;
+  .flex-middle;
+  padding: 6px 0;
+  margin: 0 2px;
+}
+// 标题
+.calendar-title {
+  .flex-1;
+  padding: 6px 0;
+  text-align: center;
+}
+// 左右箭头
+.calendar-previous-month,
+.calendar-next-month,
+.calendar-previous-year,
+.calendar-next-year {
+  height: 38px;
+  width: 38px;
+
+  color: #b6b6b6;
+  font-size: 16px;
+  .flex;
+  .flex-middle;
+  .flex-center;
+}
+
+// 周
+.calendar-day {
+  display: inline-block;
+  float: left;
+  width: 14%;
+  height: 24px;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+
+// 一格
+.calendar-date {
+  display: inline-block;
+  float: left;
+  width: 14%;
+  // 由js控制高度与line-height
+  // height:40px;
+  // line-height: 40px;
+  text-align: center;
+  &:nth-of-type(1),
+  &:nth-last-of-type(1) {
+    width: 15%;
+  }
+}
+
+// New Styles
+
+// Used to replace old class .calendar-day-box
+.calendar-days {
+  color: @secondary;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+    zoom: 1;
+  }
+}
+
+// Used to replace old class .calendar-wrapper
+.calendar-body {
+  overflow: hidden;
+}
+.calendar-body-y {
+  transition-property: transform;
+}
+.calendar-body-x {
+  display: flex;
+  width: 300%;
+  transition-property: transform;
+}
+// Used to replace old class .calendar-month
+.calendar-page {
+  flex: 1;
+}
+// Used to replace old class .calendar-monthrow
+.calendar-row:after {
+  display: table;
+  clear: both;
+  content: '';
+  zoom: 1;
+}
+
+// Used to replace old class .calendar-current
+.calendar-date-in-view {
+  color: @default;
+}
+// Used to replace old class .calendar-notcurrent
+.calendar-date-out-view {
+  color: @secondary;
+}
+// Used to replace old class .calendar-today
+.calendar-date-today {
+  .calendar-date-num {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 100%;
+    border-color: @primary;
+    color: @primary;
+    box-sizing: border-box;
+  }
+}
+// Used to replace old class .calendar-active
+.calendar-date-selected {
+  .calendar-date-num {
+    color: white;
+    font-weight: 600;
+    background-color: @primary;
+    border-color: @primary;
+    border-radius: 100%;
+  }
+
+  // Range start and end date radius
+  &.calendar-date-selected-start {
+    .calendar-date-num {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+  &.calendar-date-selected-end {
+    .calendar-date-num {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+// Used to replace old class .calendar-datenum
+.calendar-date-num {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
+// Used to replace old class .calendar-disabled
+.calendar-date-disabled {
+  color: @disabled;
+  font-weight: normal;
+  background-color: transparent;
+  border-color: transparent;
+  pointer-events: none;
+}
+// Calendar slide
+.calendar-footer {
+}
+svg.calendar-toggle {
+  // pointer-events: none;
+  margin: 0 auto;
+  width: 30px;
+  height: 12px;
+  display: block;
+  polyline,
+  line,
+  path {
+    fill: none;
+    stroke-width: 24;
+    stroke: #ddd;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: 0.5s;
+  }
+}
+
+.calendar.expand svg.calendar-toggle {
+  path {
+    // d: path('M31.5,39L150,39l118.5,0');
+    d: path('M31.5,61L150,17l118.5,44');
+  }
+}

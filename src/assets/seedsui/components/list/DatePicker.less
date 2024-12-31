@@ -1,0 +1,127 @@
+// DatePicker
+// DatePicker.RangeCombo日期快捷选择弹窗
+// .datepicker-tooltip {
+// }
+// // 下拉选项
+// .datepicker-tooltip-option {
+//   padding: 10px 12px;
+// }
+// 自定义时间弹出框中的日期选择控件
+// .datepicker-modal-combo {
+//   width: 100%;
+//   text-align: center;
+//   background: #f7f9fc;
+//   border: 1px solid #e0e0e0;
+//   border-radius: 4px;
+//   & + .datepicker-modal-combo {
+//     margin-top: 8px;
+//   }
+//   .input-text {
+//     margin: 0 12px;
+//   }
+// }
+
+// 快捷选择容器
+.datepicker-selector {
+  padding: 12px;
+}
+
+// 时间区间控件：标题与按钮
+.datepicker-selector-caption {
+  margin: 12px 0px;
+}
+
+// DatePicker.RangeModal
+.datepicker-rangemodal-modal {
+  background-color: white;
+}
+// DatePicker.RangeModal: dropdown
+.datepicker-rangemodal-modal-dropdown {
+  width: 100%;
+  &[data-animation='slideDown'] {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  .datepicker-rangemodal-main {
+    padding: 12px;
+  }
+}
+// DatePicker.RangeModal: picker
+.datepicker-rangemodal-modal-picker {
+  .datepicker-rangemodal-main {
+    padding: 0 18px 18px 18px;
+  }
+}
+
+// // @deprecated 5.7.19废弃
+// .datepicker-rangemodal-modal-card-buttons {
+//   display: flex;
+//   flex-flow: row wrap;
+//   min-width: 0;
+//   padding: 6px 5px;
+// }
+// // @deprecated 5.7.19废弃
+// .datepicker-rangemodal-modal-card-button {
+//   margin: 6px 5px;
+//   padding: 4px 20px;
+//   background-color: rgba(242, 242, 242, 1);
+//   border: 1px solid rgba(242, 242, 242, 1);
+//   border-radius: 20px;
+//   &.active,
+//   &:active {
+//     color: @primary;
+//     background-color: transparent;
+//     border: 1px solid @primary;
+//   }
+// }
+
+// DatePicker.Tabs
+.datepicker-types {
+  .flex;
+  .flex-middle;
+  height: 44px;
+  padding: 0 12px;
+}
+.datepicker-types-tabs {
+  height: 24px;
+  margin: 0 !important;
+  border-radius: 4px;
+}
+.datepicker-types-content {
+  .flex;
+  .flex-right;
+  .flex-middle;
+  .flex-1;
+}
+.datepicker-types-date {
+  display: inline-block;
+}
+.datepicker-types-prev {
+}
+.datepicker-types-next {
+}
+
+// 日期区间控件-自定义
+.datepicker-rangemain-custom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .input-wrapper {
+    background-color: #f3f4f5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+  .input-text {
+    padding: 8px 0;
+  }
+}
+// 日期区间控件距离选项组间距
+.selector + .datepicker-rangemain-custom {
+  margin-top: 8px;
+}
+
+// 周
+.datepicker-weekmain-calendar {
+  margin: 0 12px;
+}

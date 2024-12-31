@@ -1,0 +1,78 @@
+// Modal
+.cascader-modal {
+  height: 504px;
+}
+
+// Main Indexbar
+.cascader-indexbar {
+  top: 120px !important;
+  bottom: 40px !important;
+}
+
+// Main List
+.cascader-option {
+  .flex;
+  .flex-middle;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+  * {
+    pointer-events: none;
+  }
+  &.active {
+    background-color: #f8f9f9;
+    .cascader-option-icon {
+      display: block;
+      margin-right: 24px;
+    }
+    .cascader-option-caption {
+      color: @primary;
+      // font-weight: 600;
+    }
+  }
+}
+.cascader-option-caption {
+  .flex-1;
+}
+.cascader-option-icon {
+  display: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  color: @primary;
+  font-size: 14px;
+  font-family: 'iconfont';
+  line-height: 14px;
+  &:extend(.icon-ok-fill all);
+}
+
+// Main Tabs
+.cascader-tabs {
+  display: flex;
+  margin: 0 12px;
+  overflow-x: auto;
+  // text-wrap: nowrap;
+  white-space: nowrap;
+  overflow-x: auto;
+  // tab禁用又选中的情况下，不允许点击列表
+  &:has(.active.disabled) {
+    + .cascader .cascader-option {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+.cascader-tab {
+  height: 32px;
+  margin-right: 20px;
+  line-height: 32px;
+  &.active {
+    font-weight: 600;
+    border-bottom: 2px solid @primary;
+  }
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

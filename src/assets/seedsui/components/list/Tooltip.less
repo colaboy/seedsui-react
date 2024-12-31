@@ -1,0 +1,103 @@
+// Tooltip
+.tooltip-mask {
+  z-index: 2;
+  background-color: transparent;
+}
+.tooltip {
+  position: absolute;
+  display: block;
+
+  background-color: #ffffff;
+  border-color: @border;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px 5px 5px 5px;
+
+  visibility: visible;
+}
+
+// 内容
+.tooltip-content {
+  font-size: 14px;
+}
+
+// 箭头
+.tooltip-arrow-outer,
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 6px;
+}
+
+// 箭头竖向位置
+.top-center,
+.top-right,
+.top-left {
+  // 箭头
+  .tooltip-arrow {
+    top: -11px;
+    border-bottom-color: white;
+  }
+  // 箭头边框
+  .tooltip-arrow-outer {
+    top: -12px;
+    border-bottom-color: @border;
+  }
+}
+
+.bottom-center,
+.bottom-right,
+.bottom-left {
+  // 箭头
+  .tooltip-arrow {
+    bottom: -11px;
+    border-top-color: white;
+  }
+  // 箭头边框
+  .tooltip-arrow-outer {
+    bottom: -12px;
+    border-top-color: @border;
+  }
+}
+
+// 箭头横向位置
+.top-center,
+.bottom-center {
+  // 箭头
+  .tooltip-arrow {
+    left: 50%;
+    margin-left: -6px;
+  }
+  // 箭头边框
+  .tooltip-arrow-outer {
+    left: 50%;
+    margin-left: -6px;
+  }
+}
+.top-right,
+.bottom-right {
+  // 箭头
+  .tooltip-arrow {
+    right: 12px;
+  }
+  // 箭头边框
+  .tooltip-arrow-outer {
+    right: 12px;
+  }
+}
+.top-left,
+.bottom-left {
+  // 箭头
+  .tooltip-arrow {
+    left: 12px;
+  }
+  // 箭头边框
+  .tooltip-arrow-outer {
+    left: 12px;
+  }
+}

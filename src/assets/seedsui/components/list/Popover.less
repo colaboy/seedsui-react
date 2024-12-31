@@ -1,0 +1,132 @@
+// Popover
+// 遮罩, 基于.mask
+.popover-mask {
+  z-index: 2;
+  background-color: transparent;
+}
+// 弹框
+.popover {
+  position: absolute;
+  z-index: 10;
+  width: 140px;
+  padding: 1px 0;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+  // 动画使用.popup-animation
+  &:after {
+    position: absolute;
+    width: @popover-arrow-width;
+    height: @popover-arrow-height;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAICAMAAADKtv/iAAAAM1BMVEUAAAANDQ3h4eHh4eH09PTx8fHr6+vg4ODd3d3T09PBwcGnp6eAgIDa2tra2tr////4+PheEDUZAAAAD3RSTlMABPPp/fr31bxFMSASU1I6UmnJAAAAR0lEQVQI14XKSQ6AMAxDUZx0bsG5/2lBBZQukPjLZ2+/AV92qO7v4lrFTOrtrk2MNGnAql0Dr4L2xTFy5CzmAT+XxKdU5v0EeBUCRPUTlMsAAAAASUVORK5CYII=');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+    content: '';
+  }
+  // 箭头
+  // top
+  &[class*='top-']:after {
+    top: -@popover-arrow-height;
+  }
+  &.top-right:after {
+    right: @popover-arrow-corner;
+  }
+  &.top-left:after {
+    left: @popover-arrow-corner;
+  }
+  &.top-center:after {
+    left: 50%;
+    margin-left: -(@popover-arrow-width / 2);
+  }
+  // bottom
+  &[class*='bottom-']:after {
+    bottom: -@popover-arrow-height;
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+  &.bottom-right:after {
+    right: @popover-arrow-corner;
+  }
+  &.bottom-left:after {
+    left: @popover-arrow-corner;
+  }
+  &.bottom-center:after {
+    left: 50%;
+    margin-left: -(@popover-arrow-width / 2);
+    transform: rotate(180deg);
+  }
+  // left
+  &[class*='left-']:after {
+    transform: rotate(-90deg);
+  }
+  &.left-top:after {
+    top: @popover-arrow-corner;
+    left: -@popover-arrow-height;
+    transform-origin: bottom;
+  }
+  &.left-bottom:after {
+    bottom: @popover-arrow-corner;
+    left: 0;
+    transform-origin: left bottom;
+  }
+  &.left-middle:after {
+    top: 50%;
+    left: -@popover-arrow-height;
+    margin-top: -(@popover-arrow-width / 2);
+    transform-origin: bottom;
+  }
+  // right
+  &[class*='right-']:after {
+    transform: rotate(90deg);
+  }
+  &.right-top:after {
+    top: @popover-arrow-corner;
+    right: -@popover-arrow-height;
+    transform-origin: bottom;
+  }
+  &.right-bottom:after {
+    right: 0;
+    bottom: @popover-arrow-corner;
+    transform-origin: right bottom;
+  }
+  &.right-middle:after {
+    top: 50%;
+    right: -@popover-arrow-height;
+    margin-top: -(@popover-arrow-width / 2);
+    transform-origin: bottom;
+  }
+}
+// 弹框箭头
+@popover-arrow-height: 10px;
+@popover-arrow-width: 20px;
+@popover-arrow-corner: 8px; // 箭头角落间距
+.popover li {
+  position: relative;
+  height: 46px;
+  .flex;
+  .flex-middle;
+  .flex-center;
+  &:last-child {
+    border-width: 0;
+  }
+  &:last-child:after {
+    height: 0;
+  }
+  &:active {
+    background-color: #f8f8f8;
+  }
+  i {
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    pointer-events: none;
+  }
+  label {
+    height: 22px;
+    margin: 0 8px 0 8px;
+    line-height: 24px;
+    pointer-events: none;
+    .flex-1;
+  }
+}

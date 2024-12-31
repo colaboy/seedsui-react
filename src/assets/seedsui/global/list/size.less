@@ -1,0 +1,36 @@
+// Size 正方形尺寸大小和文字大小
+// 定义size, 从size8开始
+.setSize(@n, @i:8) when(@i<@n) {
+  .size@{i} {
+    width: unit(@i, px);
+    height: unit(@i, px);
+  }
+  .icon.size@{i} {
+    width: unit(@i, px);
+    height: unit(@i, px);
+    font-size: unit(@i, px);
+  }
+  .setSize(@n,(@i+2));
+}
+
+.setSize(100);
+
+// 文字大小
+.font-size-xxl {
+  font-size: @font-size-xxl;
+}
+.font-size-xl {
+  font-size: @font-size-xl;
+}
+.font-size-l {
+  font-size: @font-size-l;
+}
+.font-size-m {
+  font-size: @font-size-m;
+}
+.font-size-s {
+  font-size: @font-size-s;
+}
+.font-size-xs {
+  font-size: @font-size-s;
+}
