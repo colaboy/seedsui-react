@@ -46,6 +46,8 @@ export default defineConfig({
     exclude: [new RegExp('index/components/')]
   },
   resolve: {
+    // 文档目录
+    docDirs: ['src-docs'],
     // 原子资产
     atomDirs: [
       { type: 'components', dir: 'src/components' },
