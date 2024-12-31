@@ -5,7 +5,7 @@ import { defineConfig } from 'dumi'
 
 // 导出配置，国际化有问题所以暂时只用中文
 export default defineConfig({
-  outputPath: 'docs-dist',
+  outputPath: 'docs',
   favicons: ['https://res.waiqin365.com/d/seedsui/favicon.png'],
   logo: 'https://res.waiqin365.com/d/seedsui/logo.png',
   // 设置html引用资源路径
@@ -46,6 +46,8 @@ export default defineConfig({
     exclude: [new RegExp('index/components/')]
   },
   resolve: {
+    // 文档目录
+    docDirs: ['src-docs'],
     // 原子资产
     atomDirs: [
       { type: 'components', dir: 'src/components' },
