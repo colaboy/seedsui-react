@@ -1,15 +1,37 @@
-import React, { useRef, useState } from 'react'
-import { Signature, Layout } from 'seedsui-react'
+import React from 'react'
+import { Share, Layout } from 'seedsui-react'
 
 export default () => {
   return (
     <Layout className="full">
-      <Layout.Header className="text-center">手写签名</Layout.Header>
+      <Layout.Header className="text-center">Share To</Layout.Header>
       <Layout.Main className="bg-white">
-        <Signature.Modal
-          visible={true}
-          onChange={(base64) => {
-            console.log(base64)
+        <Share.Modal
+          shareTo={{
+            wechat: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            wecom: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            dingtalk: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            lark: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            }
           }}
         />
       </Layout.Main>

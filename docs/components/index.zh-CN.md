@@ -46,15 +46,3 @@
 | [TreePicker](/components/tree-picker) | 树选择      |
 | [Upload](/components/upload)          | 上传        |
 | [Vott](/components/vott)              | 标注        |
-
-## 数据录入
-
-| Name                                              | Description |
-| ------------------------------------------------- | ----------- |
-| [Badge](/components/badge)                        | 数值角标    |
-| [Chat](/components/chat)                          | 聊天        |
-| [HighlightKeyword](/components/highlight-keyword) | 高亮        |
-| [Mark](/components/mark)                          | 标注        |
-| [QRCode](/components/qr-code)                     | 生成二维码  |
-| [Result](/components/result)                      | 结果提示    |
-| [Skeleton](/components/skeleton)                  | 骨架屏      |

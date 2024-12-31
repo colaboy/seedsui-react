@@ -88,7 +88,7 @@ function ShareChoose({
       <div
         data-animation={animation}
         {...others}
-        className={`share-panel${animationClassName ? ' ' + animationClassName : ''}${
+        className={`share-main${animationClassName ? ' ' + animationClassName : ''}${
           others.className ? ' ' + others.className : ''
         }${show ? ' active' : ''}`}
       >
