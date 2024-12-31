@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Share, Layout } from 'seedsui-react'
 
 export default () => {
+  const shareComboRef = useRef(null)
+  console.log(shareComboRef)
   return (
     <Layout className="full">
       <Layout.Header className="text-center">Share To</Layout.Header>
       <Layout.Main className="bg-white">
         <Share.Combo
+          ref={shareComboRef}
           shareTo={{
             wechat: {
               title: '标题',

@@ -13,6 +13,8 @@ const Modal = forwardRef(
       onSuccess,
 
       // Modal
+      animation = 'slideUp',
+      className,
       ...props
     },
     ref
@@ -34,7 +36,11 @@ const Modal = forwardRef(
     })
 
     return (
-      <BaseModal {...props}>
+      <BaseModal
+        animation={animation}
+        className={`share-modal${className ? ' ' + className : ''}`}
+        {...props}
+      >
         {typeof main === 'function' ? (
           main({
             ref: mainRef,

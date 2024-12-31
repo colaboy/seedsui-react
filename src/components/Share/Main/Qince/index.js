@@ -11,12 +11,14 @@ import { Toast } from 'seedsui-react'
 
 // 企业微信只支持分享到企业微信
 function Qince({ shareTo }) {
-  // 微信
-  if (shareTo.wechat) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wechat
-    return (
-      <>
+  function getShareNodes() {
+    let shareNodes = []
+    // 微信
+    if (shareTo.wechat) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wechat
+      shareNodes.push(
         <Type
+          key="wechat"
           type="wechat"
           onClick={() => {
             top.window.wq.invoke(
@@ -47,15 +49,14 @@ function Qince({ shareTo }) {
             )
           }}
         />
-      </>
-    )
-  }
-  // 企业微信
-  if (shareTo.wecom) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wecom
-    return (
-      <>
+      )
+    }
+    // 企业微信
+    if (shareTo.wecom) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wecom
+      shareNodes.push(
         <Type
+          key="wecom"
           type="wecom"
           onClick={() => {
             top.window.wq.invoke(
@@ -85,16 +86,15 @@ function Qince({ shareTo }) {
             )
           }}
         />
-      </>
-    )
-  }
+      )
+    }
 
-  // 钉钉
-  if (shareTo.shareDingTalkMessage) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.dingtalk
-    return (
-      <>
+    // 钉钉
+    if (shareTo.dingtalk) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.dingtalk
+      shareNodes.push(
         <Type
+          key="dingtalk"
           type="dingtalk"
           onClick={() => {
             top.window.wq.invoke(
@@ -124,16 +124,15 @@ function Qince({ shareTo }) {
             )
           }}
         />
-      </>
-    )
-  }
+      )
+    }
 
-  // 飞书
-  if (shareTo.shareFeishuMessage) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.lark
-    return (
-      <>
+    // 飞书
+    if (shareTo.lark) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.lark
+      shareNodes.push(
         <Type
+          key="lark"
           type="lark"
           onClick={() => {
             top.window.wq.invoke(
@@ -163,10 +162,14 @@ function Qince({ shareTo }) {
             )
           }}
         />
-      </>
-    )
+      )
+    }
+    return shareNodes
   }
-  return null
+
+  let shareNodes = getShareNodes()
+
+  return shareNodes
 }
 
 export default Qince

@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
-import Bridge from './../../../utils/Bridge'
 import ShareChoose from './ShareChoose'
 import ShareTip from './ShareTip'
 import ShareType from './ShareType'
+
+// 内库使用-start
+import Bridge from './../../../utils/Bridge'
+// 内库使用-end
+
+/* 测试使用-start
+import { Bridge } from 'seedsui-react'
+测试使用-end */
 
 function Share({
   children,

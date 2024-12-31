@@ -8,14 +8,14 @@ title: Share
 
 ## 示例
 
-### Signature.Combo
+### Share.Combo
 
 <code src="./demos/Combo/index.jsx"></code>
 
-### Signature.Modal
+### Share.Modal
 
 <code src="./demos/Modal/index.jsx"></code>
 
-### Signature.Main
+### Share.Main
 
 <code src="./demos/Main/index.jsx"></code>

@@ -1,16 +1,33 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import support from './../utils/support'
 import WeChat from './WeChat'
 import WeCom from './WeCom'
+import Lark from './Lark'
+import DingTalk from './DingTalk'
+import Qince from './Qince'
+
+// 内库使用-start
+import locale from './../../../utils/locale'
+import Bridge from './../../../utils/Bridge'
+import Result from './../../Result'
+// 内库使用-end
+
+/* 测试使用-start
+import { locale, Bridge, Result } from 'seedsui-react'
+测试使用-end */
 
 // 分享
-const Main = ({ shareTo }, ref) => {
+function Main({ shareTo, ...props }, ref) {
   const rootRef = useRef(null)
 
   // Expose
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
+      getRootDOM: () => rootRef.current,
+      support: () => {
+        return support(shareTo)
+      }
     }
   })
 
@@ -22,18 +39,18 @@ const Main = ({ shareTo }, ref) => {
       return <WeCom {...props} shareTo={shareTo} />
     }
     if (Bridge.platform === 'lark') {
-      return <Lark {...props} shareTo={shareTo} ref={rootRef} />
+      return <Lark {...props} shareTo={shareTo} />
     }
     if (Bridge.platform === 'dingtalk') {
-      return <DingTalk {...props} shareTo={shareTo} ref={rootRef} />
+      return <DingTalk {...props} shareTo={shareTo} />
     }
     if (Bridge.platform === 'wq') {
-      return <Qince {...props} shareTo={shareTo} ref={rootRef} />
+      return <Qince {...props} shareTo={shareTo} />
     }
-    return <div>此平台暂不支持分享</div>
+    return <Result title={locale('此平台暂不支持分享')} />
   }
   return (
-    <div className="share-main" ref={rootRef}>
+    <div className="share" ref={rootRef}>
       {getShareNodes()}
     </div>
   )

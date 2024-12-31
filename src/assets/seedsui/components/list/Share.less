@@ -1,6 +1,7 @@
 // Share控件
 // 分享(基于.mask)
 .share-mask {
+  // doing something
 }
 // 微信弹出提示
 .share-tip-arrow {
@@ -41,16 +42,17 @@
     vertical-align: bottom;
   }
 }
-// 企业微信和外勤JSBridge弹出分享面板
-.share-panel {
-  .flex;
-  position: absolute;
-  box-sizing: border-box;
+// Modal
+.share-modal {
+  background-color: white;
   width: 100%;
-  max-height: 100%;
-  padding: 20px;
-  overflow: auto;
-  background: white;
+  padding: 30px 0;
+  border-radius: 16px 16px 0px 0px;
+}
+// Main
+.share {
+  .flex;
+  .flex-center;
 }
 .share-item {
   .flex-1;
@@ -71,8 +73,8 @@
   &.moments {
     background-image: url('//res.waiqin365.com/d/seedsui/share/moments.png');
   }
-  &.dintalk {
-    background-image: url('//res.waiqin365.com/d/seedsui/share/dintalk.png');
+  &.dingtalk {
+    background-image: url('//res.waiqin365.com/d/seedsui/share/dingtalk.png');
   }
   &.lark {
     background-image: url('//res.waiqin365.com/d/seedsui/share/lark.png');
@@ -85,9 +87,22 @@
   line-height: 16px;
 }
 
+// deprecated
+// 企业微信和外勤JSBridge弹出分享面板
+.share-panel {
+  .flex;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  padding: 20px;
+  overflow: auto;
+  background: white;
+}
+
 // Share 控件安全区
 .safe-area-picker {
-  #root > .share-mask .share-main {
+  #root > .share-mask .share-panel {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
   }

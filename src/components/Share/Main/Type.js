@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 function Type({ type }) {
   return (
-    <Fragment>
+    <div className="share-item">
       <i className={`share-icon ${type}`}></i>
       <p className="share-title">
         {type === 'wechat' && '微信'}
@@ -10,7 +10,7 @@ function Type({ type }) {
         {type === 'dingtalk' && '钉钉'}
         {type === 'lark' && '飞书'}
       </p>
-    </Fragment>
+    </div>
   )
 }
 
