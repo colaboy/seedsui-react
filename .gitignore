@@ -6,6 +6,6 @@ node_modules
 .DS_Store
 
 # 自定义修改
-docs-dist
+docs
 lib
 umd
