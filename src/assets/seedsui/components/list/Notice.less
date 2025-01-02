@@ -1,6 +1,6 @@
 // Notice提示页
 @notice-color: @secondary;
-// @notice-bg: @body-bg-color;
+
 .notice {
   position: absolute;
   top: 0;
@@ -9,20 +9,21 @@
   left: 0;
   z-index: 1;
   color: @notice-color;
-  // background-color: @notice-bg;
   .flex;
   .flex-middle;
 }
 
 .notice-wrapper {
-  margin: 0 auto;
-  padding-bottom: 20px;
+  width: 100%;
+  margin-top: -20px;
   text-align: center;
 }
 
 .notice-icon {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  line-height: 140px;
   font-size: 120px;
 }
 
