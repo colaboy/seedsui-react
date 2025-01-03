@@ -2,7 +2,6 @@
 // 小程序文档: https://opendocs.alipay.com/mini/component?pathHash=0cf5b4c0
 
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
@@ -35,11 +34,6 @@ let Bridge = {
     const { type, success, fail, complete, ...otherParams } = params || {}
 
     // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
     console.log('调用支付宝定位...', params)
     window.top.ap.getLocation({
       ...otherParams,
@@ -61,11 +55,9 @@ let Bridge = {
             type: type || 'gcj02'
           })
         }
-        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
         if (fail) fail(res)
-        LocationTask.getLocationTask(res)
       },
       complete: (res) => {
         if (complete) complete(res)

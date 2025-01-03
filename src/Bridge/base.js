@@ -1,5 +1,3 @@
-import LocationTask from './utils/LocationTask'
-
 // Deprecated
 import Alert from './deprecated/alertInstance.js'
 import ToastInstance from './deprecated/toastInstance.js'
@@ -218,14 +216,13 @@ let Bridge = {
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getBrowserLocation: function (params) {
+    if (!params.type) {
+      params.type = 'gcj02'
+    }
+
     // debug模拟定位
     if (this.debug) {
-      if (LocationTask.locationTask) {
-        LocationTask.locationTask.push(params)
-        return
-      }
-      LocationTask.locationTask = []
-      console.log('模拟浏览器定位...')
+      console.log('模拟浏览器定位...', params)
       setTimeout(() => {
         let res = {
           errMsg: 'getLocation:ok',
@@ -242,20 +239,13 @@ let Bridge = {
         }
         if (params.success) params.success(res)
         if (params.complete) params.complete(res)
-        LocationTask?.getLocationTask?.(res)
       }, 2000)
       return
     }
 
     // 调用浏览器定位
     if (navigator.geolocation) {
-      // 调用定位
-      if (LocationTask.locationTask) {
-        LocationTask.locationTask.push(params)
-        return
-      }
-      LocationTask.locationTask = []
-      console.log('调用浏览器定位...')
+      console.log('调用浏览器定位...', params)
       navigator.geolocation.getCurrentPosition(
         (position) => {
           let longitude = position.coords.longitude
@@ -283,7 +273,6 @@ let Bridge = {
             type: params.type || 'wgs84'
           }
           if (params.success) params.success(res)
-          LocationTask.getLocationTask(res)
         },
         (error) => {
           let errCode = ''
@@ -334,7 +323,6 @@ let Bridge = {
           let res = { errCode: errCode, errMsg: errMsg }
           console.log('调用浏览器定位失败', res)
           if (params.fail) params.fail(res)
-          LocationTask?.getLocationTask?.(res)
         },
         {
           enableHighAccuracy: true, // 指示浏览器获取高精度的位置，默认为false
@@ -351,7 +339,6 @@ let Bridge = {
         )}`
       }
       if (params.fail) params.fail(res)
-      LocationTask.getLocationTask(res)
     }
     return
   },
