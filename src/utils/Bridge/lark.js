@@ -3,7 +3,6 @@
 
 import _ from 'lodash'
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
@@ -61,17 +60,10 @@ let Bridge = {
    * @returns {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
-    const { type, success, fail, ...otherParams } = params || {}
-    // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
+    const { type, success, fail } = params || {}
     console.log('调用飞书定位...', params)
     let currentType = type || 'gcj02'
     window.top.tt.getLocation({
-      ...otherParams,
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: currentType,
       success: (res) => {
@@ -92,11 +84,9 @@ let Bridge = {
         } else {
           if (fail) fail(res)
         }
-        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
         if (fail) fail(res)
-        LocationTask.getLocationTask(res)
       }
     })
   },

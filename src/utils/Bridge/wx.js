@@ -1,7 +1,6 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
@@ -73,6 +72,9 @@ let Bridge = {
    * @return {Object} {latitude: '纬度', longitude: '经度', speed:'速度', accuracy:'位置精度'}
    */
   getLocation: function (params = {}) {
+    if (!params.type) {
+      params.type = 'gcj02'
+    }
     // 微信PC端不支持定位
     if (Device.device === 'pc') {
       console.log('PC端微信定位...', params)
@@ -80,37 +82,8 @@ let Bridge = {
       return
     }
 
-    const { type, success, fail, complete, ...otherParams } = params || {}
-    // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
     console.log('调用微信定位...', params)
-    window.top.wx.getLocation({
-      ...otherParams,
-      // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      type: type || 'gcj02',
-      success: (res) => {
-        if (res.longitude && res.latitude) {
-          if (!res.type) {
-            res.type = type || 'gcj02'
-          }
-          if (success) success(res)
-        } else {
-          if (fail) fail(res)
-        }
-        LocationTask.getLocationTask(res)
-      },
-      fail: (res) => {
-        if (fail) fail(res)
-        LocationTask.getLocationTask(res)
-      },
-      complete: (res) => {
-        if (complete) complete(res)
-      }
-    })
+    window.top.wx.getLocation(params)
   },
   /*
    * 扫描二维码并返回结果

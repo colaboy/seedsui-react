@@ -25,33 +25,6 @@ export default () => {
     Bridge.ready(
       (params) => {
         console.log('鉴权完成', params)
-        Bridge.getLocation({
-          type: 'gcj02',
-          success: (res) => {
-            console.log('定位1成功', res)
-          },
-          fail: (res) => {
-            console.log('定位1失败')
-          }
-        })
-        Bridge.getLocation({
-          type: 'gcj02',
-          success: (res) => {
-            console.log('定位2成功', res)
-          },
-          fail: (res) => {
-            console.log('定位2失败')
-          }
-        })
-        Bridge.getLocation({
-          type: 'gcj02',
-          success: (res) => {
-            console.log('定位3成功', res)
-          },
-          fail: (res) => {
-            console.log('定位3失败')
-          }
-        })
       },
       {
         wqSrc: 'https://res.waiqin365.com/p/open/js/waiqin365.min-2.0.4.js'
@@ -326,6 +299,7 @@ export default () => {
           className="primary flex"
           style={{ margin: '12px 10px' }}
           onClick={() => {
+            alert('开始定位')
             Bridge.getLocation({
               type: 'gcj02',
               success: (res) => {
@@ -344,6 +318,7 @@ export default () => {
           className="primary flex"
           style={{ margin: '12px 10px' }}
           onClick={() => {
+            alert('开始定位')
             Bridge.getLocation({
               type: 'wgs84',
               success: (res) => {

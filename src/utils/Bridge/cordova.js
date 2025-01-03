@@ -1,5 +1,4 @@
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
@@ -393,12 +392,6 @@ let Bridge = {
     }
   ----------------------------------------------------- */
   getLocation: function (params = {}) {
-    // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
     console.log('调用cordova定位...', params)
     // 调用定位
     // eslint-disable-next-line
@@ -419,7 +412,6 @@ let Bridge = {
         // result.street = res.street
         result.fake = res.mokelocation === 'true' || res.mokelocation === true
         if (params.success) params.success(result)
-        LocationTask.getLocationTask(result)
       } else {
         let res = {
           errMsg: `getLocation:fail${locale(
@@ -432,7 +424,6 @@ let Bridge = {
           Toast.show({
             content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
           })
-        LocationTask.getLocationTask(res)
       }
     }, JSON.stringify({ locationType: '1' })) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
   },
