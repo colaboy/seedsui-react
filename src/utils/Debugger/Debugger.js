@@ -19,7 +19,7 @@ if (window.sessionStorage.getItem('_debug_')) {
 let Debugger = {
   debugVisible: undefined,
   // Add bind: click debug element 10 times and then show debug panel
-  bindDebug: function (container) {
+  addTrigger: function (container) {
     let target = container || document.getElementById('_debug_trigger_')
     if (!target) {
       target = createDebugElement()
