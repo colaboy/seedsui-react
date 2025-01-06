@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+
+// 内库使用-start
 import Toast from './../../Toast'
+// 内库使用-end
+
+/* 测试使用-start
+import { Toast } from 'seedsui-react'
+测试使用-end */
 
 function ShareTip({ portal, show, config = {}, originConfig, maskAttribute = {}, onHide }) {
   // 生命周期

@@ -8,7 +8,6 @@ const Combo = (
     // Modal
     portal,
     modalProps,
-    modal,
 
     // Main
     shareTo,
@@ -76,33 +75,20 @@ const Combo = (
       >
         {getChildren()}
       </div>
-      {typeof modal === 'function' ? (
-        modal({
-          modalProps,
-          ref,
-          portal,
-          visible,
-          onVisibleChange,
-          // Main
-          shareTo,
-          onError,
-          onSuccess
-        })
-      ) : (
-        <Modal
-          {...(modalProps || {})}
-          ref={modalRef}
-          portal={portal}
-          visible={visible}
-          onVisibleChange={(newVisible) => {
-            setVisible(newVisible)
-          }}
-          // Main
-          shareTo={shareTo}
-          onError={onError}
-          onSuccess={onSuccess}
-        />
-      )}
+
+      <Modal
+        {...(modalProps || {})}
+        ref={modalRef}
+        portal={portal}
+        visible={visible}
+        onVisibleChange={(newVisible) => {
+          setVisible(newVisible)
+        }}
+        // Main
+        shareTo={shareTo}
+        onError={onError}
+        onSuccess={onSuccess}
+      />
     </>
   )
 }

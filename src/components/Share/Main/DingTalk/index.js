@@ -17,7 +17,7 @@ function DingTalk({ shareTo }) {
       <Type
         type="dingtalk"
         onClick={() => {
-          top.window.dd.biz.util.share({
+          window.top.dd.biz.util.share({
             type: 0, // 分享类型，0:全部组件 默认；1:只能分享到钉钉；2:不能分享，只有刷新按钮
             url: url,
             title: title,
@@ -28,11 +28,11 @@ function DingTalk({ shareTo }) {
             },
             onFail: function (err) {
               Toast.show({
-                content: res?.errMsg || '分享失败'
+                content: err?.errMsg || '分享失败'
               })
               onFail &&
                 onFail({
-                  errMsg: res?.errMsg || '分享失败'
+                  errMsg: err?.errMsg || '分享失败'
                 })
             }
           })

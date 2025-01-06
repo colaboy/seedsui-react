@@ -20,7 +20,7 @@ function WeChat({ shareTo }) {
         <Type
           type="wechat"
           onClick={() => {
-            top.window.wx.updateAppMessageShareData({
+            window.top.wx.updateAppMessageShareData({
               title: title || '',
               desc: description || '',
               link: url || '',

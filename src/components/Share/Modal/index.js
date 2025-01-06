@@ -1,6 +1,13 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import BaseModal from './../../Modal'
 import Main from './../Main'
+
+// 内库使用-start
+import BaseModal from './../../Modal'
+// 内库使用-end
+
+/* 测试使用-start
+import { Modal as BaseModal } from 'seedsui-react'
+测试使用-end */
 
 const Modal = forwardRef(
   (

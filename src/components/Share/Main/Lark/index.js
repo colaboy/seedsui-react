@@ -17,7 +17,7 @@ function Lark({ shareTo }) {
       <Type
         type="lark"
         onClick={() => {
-          top.window.tt.share({
+          window.top.tt.share({
             channelType: ['wx', 'wx_timeline', 'system'],
             contentType: 'url',
             title: title,

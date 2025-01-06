@@ -21,7 +21,7 @@ function Qince({ shareTo }) {
           key="wechat"
           type="wechat"
           onClick={() => {
-            top.window.wq.invoke(
+            window.top.wq.invoke(
               'shareWechatMessage',
               {
                 title: title || '',
@@ -59,7 +59,7 @@ function Qince({ shareTo }) {
           key="wecom"
           type="wecom"
           onClick={() => {
-            top.window.wq.invoke(
+            window.top.wq.invoke(
               'shareAppMessage',
               {
                 title: title || '',
@@ -97,7 +97,7 @@ function Qince({ shareTo }) {
           key="dingtalk"
           type="dingtalk"
           onClick={() => {
-            top.window.wq.invoke(
+            window.top.wq.invoke(
               'shareDingTalkMessage',
               {
                 title: title || '',
@@ -135,7 +135,7 @@ function Qince({ shareTo }) {
           key="lark"
           type="lark"
           onClick={() => {
-            top.window.wq.invoke(
+            window.top.wq.invoke(
               'shareFeishuMessage',
               {
                 title: title || '',

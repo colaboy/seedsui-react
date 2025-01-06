@@ -9,11 +9,12 @@ import Qince from './Qince'
 // 内库使用-start
 import locale from './../../../utils/locale'
 import Bridge from './../../../utils/Bridge'
+import Device from './../../../utils/Device'
 import Result from './../../Result'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Bridge, Result } from 'seedsui-react'
+import { locale, Bridge, Device, Result } from 'seedsui-react'
 测试使用-end */
 
 // 分享
@@ -44,7 +45,7 @@ function Main({ shareTo, ...props }, ref) {
     if (Bridge.platform === 'dingtalk') {
       return <DingTalk {...props} shareTo={shareTo} />
     }
-    if (Bridge.platform === 'wq') {
+    if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
       return <Qince {...props} shareTo={shareTo} />
     }
     return <Result title={locale('此平台暂不支持分享')} />

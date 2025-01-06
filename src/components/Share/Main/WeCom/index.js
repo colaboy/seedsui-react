@@ -18,7 +18,7 @@ function WeCom({ shareTo }) {
         <Type
           type="wecom"
           onClick={() => {
-            top.window.wx.invoke(
+            window.top.wx.invoke(
               'shareAppMessage',
               {
                 title: title || '',
