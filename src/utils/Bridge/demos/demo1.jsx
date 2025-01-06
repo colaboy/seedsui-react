@@ -3,6 +3,8 @@ import vconsole from 'vconsole'
 
 import { Loading, Button } from 'seedsui-react'
 
+import { Share } from 'seedsui-react'
+
 // 内库使用-start
 import { Layout, Location, Image as ImageUploader, Bridge } from 'seedsui-react'
 // 内库使用-end
@@ -332,6 +334,9 @@ export default () => {
         >
           getLocation(wgs84)
         </Button>
+
+        <p className="demo-title">分享: 支持勤策(ios、android)、微信、企微、小程序、飞书、钉钉</p>
+        <Share.Combo />
       </Layout.Main>
     </Layout>
   )
