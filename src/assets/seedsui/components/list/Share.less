@@ -46,9 +46,23 @@
 .share-modal {
   background-color: white;
   width: 100%;
-  padding: 30px 0;
   border-radius: 16px 16px 0px 0px;
 }
+
+.share-modal-title {
+  text-align: center;
+  padding: 18px 0;
+}
+.share-modal-main {
+  padding: 30px 0;
+}
+.share-modal-footer-button-cancel {
+  .font-size-xl;
+  text-align: center;
+  padding: 20px 0;
+  .border-t;
+}
+
 // Main
 .share {
   .flex;
@@ -98,12 +112,4 @@
   padding: 20px;
   overflow: auto;
   background: white;
-}
-
-// Share 控件安全区
-.safe-area-picker {
-  #root > .share-mask .share-panel {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
 }

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import vconsole from 'vconsole'
 
-import { Loading, Button } from 'seedsui-react'
-
-import { Share } from 'seedsui-react'
+import { Loading, Button, Share } from 'seedsui-react'
 
 // 内库使用-start
 import { Layout, Location, Image as ImageUploader, Bridge } from 'seedsui-react'
@@ -336,7 +334,38 @@ export default () => {
         </Button>
 
         <p className="demo-title">分享: 支持勤策(ios、android)、微信、企微、小程序、飞书、钉钉</p>
-        <Share.Combo />
+        <Share.Combo
+          shareTo={{
+            wechat: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            wecom: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            dingtalk: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            },
+            lark: {
+              title: '标题',
+              description: '描述',
+              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+              url: 'https://www.baidu.com'
+            }
+          }}
+        >
+          <Button className="primary flex" style={{ margin: '12px 10px' }}>
+            分享
+          </Button>
+        </Share.Combo>
       </Layout.Main>
     </Layout>
   )
