@@ -97,6 +97,7 @@
   "SeedsUI_click": "Click",
   "SeedsUI_sent_to_friend_or": "sent to friend or",
   "SeedsUI_share_to_moments": "share to moments",
+  "SeedsUI_share_to": "Share to",
   "SeedsUI_no_videosrc_error": "No param src",
   "SeedsUI_video_sdk_load_failed": "failed to load video sdk",
   "SeedsUI_no_bdmap_ak": "Please set param \"ak\"",

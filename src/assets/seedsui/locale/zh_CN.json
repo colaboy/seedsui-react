@@ -97,6 +97,7 @@
   "SeedsUI_click": "点击",
   "SeedsUI_sent_to_friend_or": "发送给朋友或",
   "SeedsUI_share_to_moments": "分享给朋友圈",
+  "SeedsUI_share_to": "分享到",
   "SeedsUI_no_videosrc_error": "请传入视频源",
   "SeedsUI_video_sdk_load_failed": "加载播放器库出错, 请稍后再试",
   "SeedsUI_no_bdmap_ak": "请传入百度地图ak",
