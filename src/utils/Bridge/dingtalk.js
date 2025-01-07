@@ -1,10 +1,9 @@
 // 官方文档: https://open.dingtalk.com/document/isvapp/read-before-development
-// https://open.dingtalk.com/document/orgapp/jsapi-overview
+// API总览: https://open.dingtalk.com/document/orgapp/jsapi-overview-client-org
 // 鉴权: https://open.dingtalk.com/document/orgapp/jsapi-authentication
 
 import _ from 'lodash'
 import BridgeBase from './base'
-import LocationTask from './utils/LocationTask'
 import back from './utils/back'
 import ready from './utils/ready'
 
@@ -75,12 +74,6 @@ let Bridge = {
     // 钉钉定位需要鉴权, 使用浏览器定位代替
     // BridgeBase.getBrowserLocation(params)
     const { type, success, fail, complete } = params || {}
-    // 调用定位
-    if (LocationTask.locationTask) {
-      LocationTask.locationTask.push(params)
-      return
-    }
-    LocationTask.locationTask = []
     console.log('调用钉钉定位...', params)
     window.top.dd.getLocation({
       type: 0,
@@ -90,7 +83,6 @@ let Bridge = {
       withReGeocode: false,
       targetAccuracy: '200',
       success: (result) => {
-        alert(JSON.stringify(result))
         let latitude = result.latitude
         let longitude = result.longitude
         if (type === 'wgs84') {
@@ -105,11 +97,8 @@ let Bridge = {
           accuracy: result.accuracy
         }
         if (success) success(res)
-
-        LocationTask.getLocationTask(res)
       },
       fail: (res) => {
-        alert(JSON.stringify(res))
         if (fail) {
           fail({
             errCode: res.errorCode,
