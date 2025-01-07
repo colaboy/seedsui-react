@@ -9,31 +9,31 @@ import { Bridge } from 'seedsui-react'
 function support(shareTo) {
   // WeChat only support wechat
   if (Bridge.platform === 'wechat') {
-    if (shareTo.wechat) return true
+    if (shareTo?.wechat) return true
     return false
   }
 
   // WeCom only support wecom
   if (Bridge.platform === 'wework') {
-    if (shareTo.wecom) return true
+    if (shareTo?.wecom) return true
     return false
   }
 
   // DingTalk only support dingtalk
   if (Bridge.platform === 'dingtalk') {
-    if (shareTo.dingtalk) return true
+    if (shareTo?.dingtalk) return true
     return false
   }
 
   // Lark only support lark
   if (Bridge.platform === 'lark') {
-    if (shareTo.lark) return true
+    if (shareTo?.lark) return true
     return false
   }
 
   // Qince support wechat,wecom,dingtalk,lark
   if (Bridge.platform === 'wq') {
-    if (shareTo.wechat || shareTo.wecom || shareTo.dingtalk || shareTo.lark) return true
+    if (shareTo?.wechat || shareTo?.wecom || shareTo?.dingtalk || shareTo?.lark) return true
     return false
   }
 

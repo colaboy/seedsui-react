@@ -1,6 +1,15 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
 import support from './../utils/support'
 import Modal from './../Modal'
+import share from './../utils/share'
+
+// 内库使用-start
+import Bridge from './../../../utils/Bridge'
+// 内库使用-end
+
+/* 测试使用-start
+import { Bridge } from 'seedsui-react'
+测试使用-end */
 
 // Combo
 const Combo = (
@@ -52,8 +61,16 @@ const Combo = (
     }
   })
 
-  // 点击签名
+  // 点击分享
   function handleClick() {
+    if (Bridge.platform === 'lark' && shareTo?.lark) {
+      share(shareTo?.lark || {})
+      return
+    }
+    if (Bridge.platform === 'dingtalk' && shareTo?.dingtalk) {
+      share(shareTo?.dingtalk || {})
+      return
+    }
     setVisible(true)
   }
 

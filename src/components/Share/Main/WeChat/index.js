@@ -13,8 +13,8 @@ import { Toast } from 'seedsui-react'
 // 微信只支持分享到微信和朋友圈
 function WeChat({ shareTo }) {
   const [visible, setVisible] = useState(false)
-  if (shareTo.wechat) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wechat
+  if (shareTo?.wechat) {
+    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.wechat || {}
     return (
       <>
         <Type

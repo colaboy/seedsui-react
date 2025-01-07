@@ -11,8 +11,8 @@ import { Toast } from 'seedsui-react'
 
 // 企业微信只支持分享到企业微信
 function WeCom({ shareTo }) {
-  if (shareTo.wecom) {
-    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wecom
+  if (shareTo?.wecom) {
+    let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.wecom || {}
     return (
       <>
         <Type

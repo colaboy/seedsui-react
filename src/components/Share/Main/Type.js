@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Type({ type }) {
+function Type({ type, onClick }) {
   return (
-    <div className="share-item">
+    <div className="share-item" onClick={onClick}>
       <i className={`share-icon ${type}`}></i>
       <p className="share-title">
         {type === 'wechat' && '微信'}

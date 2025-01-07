@@ -2,18 +2,18 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
 // 内库使用-start
+import locale from './../../../utils/locale'
 import BaseModal from './../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
-import { Modal as BaseModal } from 'seedsui-react'
+import { locale, Modal as BaseModal } from 'seedsui-react'
 测试使用-end */
 
 const Modal = forwardRef(
   (
     {
       // Main
-      main,
       mainProps,
       shareTo,
       onError,
@@ -22,6 +22,7 @@ const Modal = forwardRef(
       // Modal
       animation = 'slideUp',
       className,
+      onVisibleChange,
       ...props
     },
     ref
@@ -47,18 +48,12 @@ const Modal = forwardRef(
       <BaseModal
         {...props}
         ref={modalRef}
+        onVisibleChange={onVisibleChange}
         animation={animation}
         className={`share-modal${className ? ' ' + className : ''}`}
       >
-        {typeof main === 'function' ? (
-          main({
-            ref: mainRef,
-            mainProps,
-            shareTo,
-            onError,
-            onSuccess
-          })
-        ) : (
+        <div className="share-modal-title">{locale('分享到', 'SeedsUI_share_to')}</div>
+        <div className="share-modal-main">
           <Main
             {...(mainProps || {})}
             ref={mainRef}
@@ -66,7 +61,15 @@ const Modal = forwardRef(
             onError={onError}
             onSuccess={onSuccess}
           />
-        )}
+        </div>
+        <div
+          className="share-modal-footer-button-cancel"
+          onClick={() => {
+            onVisibleChange && onVisibleChange(false)
+          }}
+        >
+          {locale('取消', 'SeedsUI_cancel')}
+        </div>
       </BaseModal>
     )
   }

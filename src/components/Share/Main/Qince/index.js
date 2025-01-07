@@ -2,11 +2,13 @@ import React from 'react'
 import Type from './../Type'
 
 // 内库使用-start
+import locale from './../../../../utils/locale'
+import Device from './../../../../utils/Device'
 import Toast from './../../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast } from 'seedsui-react'
+import { locale, Device, Toast } from 'seedsui-react'
 测试使用-end */
 
 // 企业微信只支持分享到企业微信
@@ -14,8 +16,8 @@ function Qince({ shareTo }) {
   function getShareNodes() {
     let shareNodes = []
     // 微信
-    if (shareTo.wechat) {
-      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wechat
+    if (shareTo?.wechat) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.wechat || {}
       shareNodes.push(
         <Type
           key="wechat"
@@ -33,16 +35,16 @@ function Qince({ shareTo }) {
                 //  返回格式 {errMsg: "shareWechatMessage:fail, the permission value is offline verifying"}
                 if (res.errMsg === 'shareWechatMessage:ok') {
                   Toast.show({
-                    content: res?.errMsg || '分享成功'
+                    content: res?.errMsg || locale('分享成功')
                   })
                   onSuccess && onSuccess()
                 } else {
                   Toast.show({
-                    content: res?.errMsg || '分享失败'
+                    content: res?.errMsg || locale('分享失败')
                   })
                   onFail &&
                     onFail({
-                      errMsg: res?.errMsg || '分享失败'
+                      errMsg: res?.errMsg || locale('分享失败')
                     })
                 }
               }
@@ -52,8 +54,8 @@ function Qince({ shareTo }) {
       )
     }
     // 企业微信
-    if (shareTo.wecom) {
-      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.wecom
+    if (shareTo?.wecom) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.wecom || {}
       shareNodes.push(
         <Type
           key="wecom"
@@ -70,16 +72,16 @@ function Qince({ shareTo }) {
               function (res) {
                 if (res.errMsg === 'shareAppMessage:ok') {
                   Toast.show({
-                    content: res?.errMsg || '分享成功'
+                    content: res?.errMsg || locale(locale('分享成功'))
                   })
                   onSuccess && onSuccess()
                 } else {
                   Toast.show({
-                    content: res?.errMsg || '分享失败'
+                    content: res?.errMsg || locale('分享失败')
                   })
                   onFail &&
                     onFail({
-                      errMsg: res?.errMsg || '分享失败'
+                      errMsg: res?.errMsg || locale('分享失败')
                     })
                 }
               }
@@ -90,8 +92,8 @@ function Qince({ shareTo }) {
     }
 
     // 钉钉
-    if (shareTo.dingtalk) {
-      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.dingtalk
+    if (shareTo?.dingtalk && Device.compareVersion(Device.platformVersion, '7.2.65') >= 0) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.dingtalk || {}
       shareNodes.push(
         <Type
           key="dingtalk"
@@ -108,16 +110,16 @@ function Qince({ shareTo }) {
               function (res) {
                 if (res.errMsg === 'shareDingTalkMessage:ok') {
                   Toast.show({
-                    content: res?.errMsg || '分享成功'
+                    content: res?.errMsg || locale('分享成功')
                   })
                   onSuccess && onSuccess()
                 } else {
                   Toast.show({
-                    content: res?.errMsg || '分享失败'
+                    content: res?.errMsg || locale('分享失败')
                   })
                   onFail &&
                     onFail({
-                      errMsg: res?.errMsg || '分享失败'
+                      errMsg: res?.errMsg || locale('分享失败')
                     })
                 }
               }
@@ -128,8 +130,8 @@ function Qince({ shareTo }) {
     }
 
     // 飞书
-    if (shareTo.lark) {
-      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo.lark
+    if (shareTo?.lark && Device.compareVersion(Device.platformVersion, '7.2.65') >= 0) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.lark || {}
       shareNodes.push(
         <Type
           key="lark"
@@ -146,16 +148,16 @@ function Qince({ shareTo }) {
               function (res) {
                 if (res.errMsg === 'shareFeishuMessage:ok') {
                   Toast.show({
-                    content: res?.errMsg || '分享成功'
+                    content: res?.errMsg || locale('分享成功')
                   })
                   onSuccess && onSuccess()
                 } else {
                   Toast.show({
-                    content: res?.errMsg || '分享失败'
+                    content: res?.errMsg || locale('分享失败')
                   })
                   onFail &&
                     onFail({
-                      errMsg: res?.errMsg || '分享失败'
+                      errMsg: res?.errMsg || locale('分享失败')
                     })
                 }
               }
