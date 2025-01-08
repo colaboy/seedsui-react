@@ -5,6 +5,7 @@ import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
+import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
@@ -40,16 +41,26 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    window.top.tt.openLocation({
-      latitude: params.latitude,
-      longitude: params.longitude,
-      scale: params.scale || 12,
-      name: params.name,
-      address: params.address,
-      fail: (error) => {
-        console.log('Lark openLocation fail:', error)
-      }
-    })
+    let scale = params.scale
+    if (!scale) {
+      scale = 12
+    } else if (scale < 5) {
+      scale = 5
+    } else if (scale > 18) {
+      scale = 18
+    }
+    window.top.tt.openLocation(
+      coordToFit({
+        latitude: params.latitude,
+        longitude: params.longitude,
+        scale: scale,
+        name: params.name,
+        address: params.address,
+        fail: (error) => {
+          console.log('Lark openLocation fail:', error)
+        }
+      })
+    )
   },
   /**
    * 获取当前地理位置

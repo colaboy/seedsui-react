@@ -1,6 +1,7 @@
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
+import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
 import Device from './../Device'
@@ -136,7 +137,7 @@ let Bridge = {
   },
   // 导航
   openLocation: function (params) {
-    window.top.wq.openLocation(params) // eslint-disable-line
+    window.top.wq.openLocation(coordToFit(params))
   },
   /**
    * 获取当前地理位置

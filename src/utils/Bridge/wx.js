@@ -3,6 +3,7 @@
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
+import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
 import locale from './../locale'
@@ -63,7 +64,7 @@ let Bridge = {
       return
     }
 
-    window.top.wx.openLocation(params) // eslint-disable-line
+    window.top.wx.openLocation(coordToFit(params)) // eslint-disable-line
   },
   /**
    * 获取当前地理位置

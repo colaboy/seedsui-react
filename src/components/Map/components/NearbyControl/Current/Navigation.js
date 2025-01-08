@@ -15,6 +15,7 @@ import locale from './../../../../../utils/locale'
 function Navigation({
   map,
   // 终点位置
+  type,
   longitude,
   latitude,
   name,
@@ -44,6 +45,7 @@ function Navigation({
       sname: result.address || locale('当前位置', 'SeedsUI_current_location'), // 起点名
       latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
       longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
+      type: type,
       name: name || address, // 终点位置名
       address: address, // 地址详情说明
       scale: 1 // 地图缩放级别,整形值,范围从1~28。默认为16

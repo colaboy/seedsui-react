@@ -30,6 +30,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
           </div>
           <Navigation
             map={map}
+            type={value?.type}
             longitude={value?.longitude}
             latitude={value?.latitude}
             address={value?.address}

@@ -6,6 +6,7 @@ import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
+import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
 import GeoUtil from './../GeoUtil'
@@ -52,15 +53,17 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    window.top.dd.openLocation({
-      title: params.name || '',
-      address: params.address || '',
-      latitude: params.latitude,
-      longitude: params.longitude,
-      fail: (error) => {
-        console.log('DingTalk openLocation fail:', error)
-      }
-    })
+    window.top.dd.openLocation(
+      coordToFit({
+        title: params.name || '',
+        address: params.address || '',
+        latitude: params.latitude,
+        longitude: params.longitude,
+        fail: (error) => {
+          console.log('DingTalk openLocation fail:', error)
+        }
+      })
+    )
   },
   /**
    * 钉钉定位需要鉴权, 获取当前地理位置
