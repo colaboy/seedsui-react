@@ -72,18 +72,21 @@ let Bridge = {
 
         if (success) {
           success({
-            ...res,
+            errMsg: 'getLocation:ok',
             longitude: longitude,
             latitude: latitude,
-            type: type || 'gcj02'
+            type: type || 'gcj02',
+            accuracy: res.accuracy
           })
         }
       },
-      fail: (res) => {
-        if (fail) fail(res)
-      },
-      complete: (res) => {
-        if (complete) complete(res)
+      fail: (err) => {
+        console.log('getLocation:fail', err)
+        if (fail) {
+          fail({
+            errMsg: 'getLocation:fail'
+          })
+        }
       }
     })
   },

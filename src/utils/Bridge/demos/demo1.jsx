@@ -22,14 +22,9 @@ export default () => {
 
   const imageLocalIds = useRef(null)
   useEffect(() => {
-    Bridge.ready(
-      (params) => {
-        console.log('鉴权完成', params)
-      },
-      {
-        wqSrc: 'https://res.waiqin365.com/p/open/js/waiqin365.min-2.0.4.js'
-      }
-    )
+    Bridge.ready((params) => {
+      console.log('鉴权完成', params)
+    })
   }, [])
 
   return (
@@ -38,8 +33,14 @@ export default () => {
         <h2>组件</h2>
         <p className="demo-title">定位</p>
         <Location.Combo
+          // config={{
+          //   key: '',
+          //   type: 'bmap'
+          // }}
           placeholder={'点击定位'}
           value={location}
+          previewVisible
+          chooseVisible
           onChange={(result) => {
             console.log(result)
             setLocation(result)
@@ -49,30 +50,13 @@ export default () => {
         <p className="demo-title">拍照</p>
         <ImageUploader
           uploadPosition="start"
-          captureException={(props) => {
-            console.log('captureException:', ...props)
-          }}
-          // 缩略图显示
-          visibleCount={1}
-          ModalProps={{
-            captionProps: {
-              caption: '商品照片'
-            },
-            listExtraHeaderRender: () => {
-              return <div>修改前</div>
-            }
-          }}
-          type="browser"
           timeout={2000}
-          uploadDir={`businessName`}
-          sizeType={['compressed']}
-          // width={100}
-          sourceType={['camera']}
           list={photos}
           count={4}
-          watermarkConfig={{ showTime: '1', type: '1' }}
           // 离北京天安门差不多2.4公里
-          watermark={['$address $distance:116.37,39.91', 'aaa', '$address', '$datetime']}
+          // watermark={['$address $distance:116.37,39.91', 'aaa', '$address', '$datetime']}
+          // watermarkConfig={{ showTime: '1', type: '1' }}
+          // uploadDir={`businessName`}
           onChange={setPhotos}
           onDelete={setPhotos}
         />
@@ -299,13 +283,17 @@ export default () => {
           className="primary flex"
           style={{ margin: '12px 10px' }}
           onClick={() => {
-            alert('开始定位')
+            Loading.show({
+              content: '定位中...'
+            })
             Bridge.getLocation({
               type: 'gcj02',
               success: (res) => {
+                Loading.hide()
                 alert(JSON.stringify(res))
               },
               fail: (res) => {
+                Loading.hide()
                 alert(JSON.stringify(res))
               }
             })
@@ -318,13 +306,17 @@ export default () => {
           className="primary flex"
           style={{ margin: '12px 10px' }}
           onClick={() => {
-            alert('开始定位')
+            Loading.show({
+              content: '定位中...'
+            })
             Bridge.getLocation({
               type: 'wgs84',
               success: (res) => {
+                Loading.hide()
                 alert(JSON.stringify(res))
               },
               fail: (res) => {
+                Loading.hide()
                 alert(JSON.stringify(res))
               }
             })

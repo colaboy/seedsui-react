@@ -1,20 +1,24 @@
 import React from 'react'
-import locale from './../../utils/locale'
 
-function Result({ title, image, imageProps, children, ...props }) {
+// 内库使用-start
+import locale from './../../utils/locale'
+// 内库使用-end
+
+/* 测试使用-start
+import { locale } from 'seedsui-react'
+测试使用-end */
+
+function Result({
+  title,
+  image,
+  imageUrl = '//res.waiqin365.com/d/waiqin365_h5/components/empty.png',
+  children,
+  ...props
+}) {
   return (
-    <div className="result" {...props}>
+    <div {...props} className={`result${props?.className ? ' ' + props.className : ''}`}>
       {/* Image */}
-      {image ? (
-        image
-      ) : (
-        <img
-          alt=""
-          src={'//res.waiqin365.com/d/waiqin365_h5/components/empty.png'}
-          className="result-image"
-          {...imageProps}
-        />
-      )}
+      {image ? image : <img alt="" src={imageUrl} className="result-image" />}
 
       {/* Title */}
       {title === undefined || title ? (

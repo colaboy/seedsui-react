@@ -73,41 +73,41 @@ let Bridge = {
   getLocation: function (params = {}) {
     // 钉钉定位需要鉴权, 使用浏览器定位代替
     // BridgeBase.getBrowserLocation(params)
-    const { type, success, fail, complete } = params || {}
+    const { type, success, fail } = params || {}
+    let currentType = type || 'gcj02'
     console.log('调用钉钉定位...', params)
     window.top.dd.getLocation({
       type: 0,
       useCache: false,
-      coordinate: '0',
+      coordinate: '0', // 标准坐标wgs84定位
       cacheTimeout: 20,
       withReGeocode: false,
       targetAccuracy: '200',
-      success: (result) => {
-        let latitude = result.latitude
-        let longitude = result.longitude
-        if (type === 'wgs84') {
-          const points = GeoUtil.coordtransform([longitude, latitude], 'gcj02', 'wgs84')
+      success: (res) => {
+        let latitude = res.latitude
+        let longitude = res.longitude
+        if (currentType === 'gcj02') {
+          const points = GeoUtil.coordtransform([longitude, latitude], 'wgs84', 'gcj02')
           longitude = points[0]
           latitude = points[1]
         }
-        let res = {
-          type: type || 'gcj02',
+        let result = {
+          errMsg: 'getLocation:ok',
+          type: currentType,
           latitude: latitude,
           longitude: longitude,
-          accuracy: result.accuracy
+          accuracy: res.accuracy
         }
-        if (success) success(res)
+        if (success) success(result)
       },
-      fail: (res) => {
+      fail: (err) => {
+        console.log('getLocation:fail', err)
         if (fail) {
           fail({
-            errCode: res.errorCode,
-            errMsg: res.errorMessage
+            errCode: err.errorCode,
+            errMsg: err.errorMessage
           })
         }
-      },
-      complete: (res) => {
-        if (complete) complete(res)
       }
     })
   },

@@ -61,32 +61,46 @@ let Bridge = {
    */
   getLocation: function (params = {}) {
     const { type, success, fail } = params || {}
-    console.log('调用飞书定位...', params)
     let currentType = type || 'gcj02'
+    console.log('调用飞书定位...', params)
     window.top.tt.getLocation({
       // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
       type: currentType,
       success: (res) => {
-        if (res.longitude && res.latitude) {
-          // 飞书API骗人,type根本无效, 需要自己转换
-          if (res.type && res.type !== currentType) {
-            const points = GeoUtil.coordtransform(
-              [res.longitude, res.latitude],
-              res.type,
-              currentType
-            )
-            res.longitude = points[0]
-            res.latitude = points[1]
-            res.type = currentType
-          }
-
-          if (success) success(res)
-        } else {
-          if (fail) fail(res)
+        let result = {
+          errMsg: 'getLocation:ok',
+          longitude: res.longitude,
+          latitude: res.latitude,
+          type: res.type,
+          accuracy: res.accuracy
         }
+
+        // If result type not params type, transform result type to params type
+        if (res.type && res.type !== currentType) {
+          const points = GeoUtil.coordtransform(
+            [res.longitude, res.latitude],
+            res.type,
+            currentType
+          )
+
+          result = {
+            errMsg: 'getLocation:ok',
+            longitude: points[0],
+            latitude: points[1],
+            type: currentType,
+            accuracy: res.accuracy
+          }
+        }
+
+        if (success) success(result)
       },
-      fail: (res) => {
-        if (fail) fail(res)
+      fail: (err) => {
+        console.log('getLocation:fail', err)
+        if (fail) {
+          fail({
+            errMsg: 'getLocation:fail'
+          })
+        }
       }
     })
   },

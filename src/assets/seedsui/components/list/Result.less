@@ -2,15 +2,36 @@
 .result {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+
+  &.full {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.result-image {
+  width: 160px;
+  margin: 0 auto;
 }
 
 .result-title {
   color: #949ca4;
-  margin-top: 12px;
+  margin: 12px 20px 0;
+  text-align: center;
 }
 
-.result-image {
-  width: 200px;
+.result-button {
+  display: flex;
+  height: 40px;
+  margin: 0 12px;
+  border-radius: 10px;
+  font-size: @font-size-l;
+}
+
+.result-button + .result-button {
+  margin-top: 16px;
 }
