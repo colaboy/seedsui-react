@@ -32,11 +32,11 @@ function WeChat({ shareTo }) {
               fail: function (err) {
                 console.log('WeChat Share fail:', err)
                 Toast.show({
-                  content: res?.errMsg || '分享失败'
+                  content: err?.errMsg || '分享失败'
                 })
                 onFail &&
                   onFail({
-                    errMsg: res?.errMsg || '分享失败'
+                    errMsg: err?.errMsg || '分享失败'
                   })
               }
             })
