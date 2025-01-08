@@ -36,17 +36,18 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    window.top.ap.openLocation(
-      coordToFit({
-        latitude: params.latitude,
-        longitude: params.longitude,
-        name: params.name || '',
-        address: params.address || '',
-        fail: (error) => {
-          console.log('Alipay openLocation fail:', error)
-        }
-      })
-    )
+    let newParams = coordToFit(params)
+    console.log('调用支付宝地图...', newParams)
+
+    window.top.ap.openLocation({
+      latitude: newParams.latitude,
+      longitude: newParams.longitude,
+      name: newParams.name || '',
+      address: newParams.address || '',
+      fail: (error) => {
+        console.log('Alipay openLocation fail:', error)
+      }
+    })
   },
   /**
    * 获取当前地理位置

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
@@ -137,7 +138,11 @@ let Bridge = {
   },
   // 导航
   openLocation: function (params) {
-    window.top.wq.openLocation(coordToFit(params))
+    if (_.isEmpty(params)) return
+    let newParams = coordToFit(params)
+    console.log('调用勤策地图...', newParams)
+
+    window.top.wq.openLocation(newParams)
   },
   /**
    * 获取当前地理位置

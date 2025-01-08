@@ -41,6 +41,9 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
+    let newParams = coordToFit(params)
+    console.log('调用飞书地图...', newParams)
+
     let scale = params.scale
     if (!scale) {
       scale = 12
@@ -49,18 +52,16 @@ let Bridge = {
     } else if (scale > 18) {
       scale = 18
     }
-    window.top.tt.openLocation(
-      coordToFit({
-        latitude: params.latitude,
-        longitude: params.longitude,
-        scale: scale,
-        name: params.name,
-        address: params.address,
-        fail: (error) => {
-          console.log('Lark openLocation fail:', error)
-        }
-      })
-    )
+    window.top.tt.openLocation({
+      latitude: newParams.latitude,
+      longitude: newParams.longitude,
+      scale: scale,
+      name: newParams.name,
+      address: newParams.address,
+      fail: (error) => {
+        console.log('Lark openLocation fail:', error)
+      }
+    })
   },
   /**
    * 获取当前地理位置

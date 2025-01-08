@@ -1,5 +1,6 @@
 // 官方文档: https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
 
+import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
@@ -64,7 +65,11 @@ let Bridge = {
       return
     }
 
-    window.top.wx.openLocation(coordToFit(params)) // eslint-disable-line
+    if (_.isEmpty(params)) return
+    let newParams = coordToFit(params)
+    console.log('调用企业微信地图...', newParams)
+
+    window.top.wx.openLocation(newParams) // eslint-disable-line
   },
   /**
    * 获取当前地理位置

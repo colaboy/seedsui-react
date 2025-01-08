@@ -53,17 +53,18 @@ let Bridge = {
   // 地图查看
   openLocation: function (params) {
     if (_.isEmpty(params)) return
-    window.top.dd.openLocation(
-      coordToFit({
-        title: params.name || '',
-        address: params.address || '',
-        latitude: params.latitude,
-        longitude: params.longitude,
-        fail: (error) => {
-          console.log('DingTalk openLocation fail:', error)
-        }
-      })
-    )
+    let newParams = coordToFit(params)
+    console.log('调用支付宝地图...', newParams)
+
+    window.top.dd.openLocation({
+      title: newParams.name || '',
+      address: newParams.address || '',
+      latitude: newParams.latitude,
+      longitude: newParams.longitude,
+      fail: (error) => {
+        console.log('DingTalk openLocation fail:', error)
+      }
+    })
   },
   /**
    * 钉钉定位需要鉴权, 获取当前地理位置
