@@ -1,9 +1,10 @@
 // 内库使用-start
 import Bridge from './../../../utils/Bridge'
+import Device from './../../../utils/Device'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge } from 'seedsui-react'
+import { Device, Bridge } from 'seedsui-react'
 测试使用-end */
 
 function support(shareTo) {
@@ -32,7 +33,7 @@ function support(shareTo) {
   }
 
   // Qince support wechat,wecom,dingtalk,lark
-  if (Bridge.platform === 'wq') {
+  if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
     if (shareTo?.wechat || shareTo?.wecom || shareTo?.dingtalk || shareTo?.lark) return true
     return false
   }
