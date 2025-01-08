@@ -13,6 +13,20 @@ import { locale, Device, Toast } from 'seedsui-react'
 
 // 企业微信只支持分享到企业微信
 function Qince({ shareTo }) {
+  // 低版本安卓提示分享失败
+  function handleFail(err, onFail) {
+    if (Device.os === 'android' && Device.compareVersion(Device.platformVersion, '7.2.65') < 0) {
+      Toast.show({
+        content: locale('分享失败')
+      })
+    }
+    onFail &&
+      onFail({
+        errMsg: err?.errMsg || locale('分享失败')
+      })
+  }
+
+  // Render Nodes
   function getShareNodes() {
     let shareNodes = []
     // 微信
@@ -32,20 +46,12 @@ function Qince({ shareTo }) {
                 imgUrl: imageUrl || ''
               },
               function (res) {
+                console.log('QinCe Share result:', res)
                 //  返回格式 {errMsg: "shareWechatMessage:fail, the permission value is offline verifying"}
                 if (res.errMsg === 'shareWechatMessage:ok') {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享成功')
-                  })
                   onSuccess && onSuccess()
                 } else {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享失败')
-                  })
-                  onFail &&
-                    onFail({
-                      errMsg: res?.errMsg || locale('分享失败')
-                    })
+                  handleFail(res, onFail)
                 }
               }
             )
@@ -70,19 +76,11 @@ function Qince({ shareTo }) {
                 imgUrl: imageUrl || ''
               },
               function (res) {
+                console.log('QinCe Share result:', res)
                 if (res.errMsg === 'shareAppMessage:ok') {
-                  Toast.show({
-                    content: res?.errMsg || locale(locale('分享成功'))
-                  })
                   onSuccess && onSuccess()
                 } else {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享失败')
-                  })
-                  onFail &&
-                    onFail({
-                      errMsg: res?.errMsg || locale('分享失败')
-                    })
+                  handleFail(res, onFail)
                 }
               }
             )
@@ -108,19 +106,11 @@ function Qince({ shareTo }) {
                 imgUrl: imageUrl || ''
               },
               function (res) {
+                console.log('QinCe Share result:', res)
                 if (res.errMsg === 'shareDingTalkMessage:ok') {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享成功')
-                  })
                   onSuccess && onSuccess()
                 } else {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享失败')
-                  })
-                  onFail &&
-                    onFail({
-                      errMsg: res?.errMsg || locale('分享失败')
-                    })
+                  handleFail(res, onFail)
                 }
               }
             )
@@ -146,19 +136,11 @@ function Qince({ shareTo }) {
                 imgUrl: imageUrl || ''
               },
               function (res) {
+                console.log('QinCe Share result:', res)
                 if (res.errMsg === 'shareFeishuMessage:ok') {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享成功')
-                  })
                   onSuccess && onSuccess()
                 } else {
-                  Toast.show({
-                    content: res?.errMsg || locale('分享失败')
-                  })
-                  onFail &&
-                    onFail({
-                      errMsg: res?.errMsg || locale('分享失败')
-                    })
+                  handleFail(res, onFail)
                 }
               }
             )

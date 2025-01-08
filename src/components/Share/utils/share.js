@@ -1,11 +1,10 @@
 // 内库使用-start
 import locale from './../../../utils/locale'
 import Bridge from './../../../utils/Bridge'
-import Toast from './../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Bridge, Toast } from 'seedsui-react'
+import { locale, Bridge } from 'seedsui-react'
 测试使用-end */
 
 // 分享至
@@ -24,9 +23,8 @@ function share(params) {
         onSuccess && onSuccess()
       },
       fail(err) {
-        Toast.show({
-          content: err?.errMsg || locale('分享失败')
-        })
+        console.log('Lark Share fail:', err)
+
         onFail &&
           onFail({
             errMsg: err?.errMsg || locale('分享失败')
@@ -44,9 +42,7 @@ function share(params) {
         onSuccess && onSuccess()
       },
       onFail: function (err) {
-        Toast.show({
-          content: err?.errMsg || locale('分享失败')
-        })
+        console.log('DingTalk Share fail:', err)
         onFail &&
           onFail({
             errMsg: err?.errMsg || locale('分享失败')

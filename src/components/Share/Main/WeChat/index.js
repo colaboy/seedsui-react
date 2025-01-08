@@ -29,7 +29,8 @@ function WeChat({ shareTo }) {
                 setVisible(true)
                 onSuccess && onSuccess()
               },
-              fail: function (res) {
+              fail: function (err) {
+                console.log('WeChat Share fail:', err)
                 Toast.show({
                   content: res?.errMsg || '分享失败'
                 })
