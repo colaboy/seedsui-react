@@ -4,12 +4,12 @@ import { updateValueType, compareType, defaultSetValueType } from './../District
 import DistrictMain from './../DistrictMain'
 
 // 内库使用-start
-import ModalPicker from './../../Modal/MainPicker'
+import ModalPicker from './../../Modal/Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const ModalPicker = Modal.MainPicker
+const ModalPicker = Modal.Modal
 测试使用-end */
 
 // 级联选择

@@ -4,12 +4,12 @@ import formatValue from './formatValue'
 import WeekMain from './../WeekMain'
 
 // 内库使用-start
-import ModalPicker from './../../Modal/MainPicker'
+import ModalPicker from './../../Modal/Modal'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const ModalPicker = Modal.MainPicker
+const ModalPicker = Modal.Modal
 测试使用-end */
 
 // WeekModal

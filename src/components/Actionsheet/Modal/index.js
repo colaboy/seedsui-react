@@ -47,7 +47,7 @@ const Modal = forwardRef(
       }
     })
 
-    const { visible: cancelVisible, caption: cancelCaption, ...otherCancelProps } = cancelProps
+    const { visible: cancelVisible, title: cancelTitle, ...otherCancelProps } = cancelProps
 
     // 点击选项
     async function handleClickOption(e, item) {
@@ -134,7 +134,7 @@ const Modal = forwardRef(
               }`}
               onClick={handleClickCancel}
             >
-              {cancelCaption || locale('取消', 'SeedsUI_cancel')}
+              {cancelTitle || locale('取消', 'SeedsUI_cancel')}
             </div>
           )}
         </div>

@@ -1,8 +1,8 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
 import ModalPicker from './../Picker'
 
-// MainPicker
-const MainPicker = forwardRef(
+// Modal
+const Modal = forwardRef(
   (
     {
       // 无用的属性
@@ -185,4 +185,4 @@ const MainPicker = forwardRef(
   }
 )
 
-export default MainPicker
+export default Modal

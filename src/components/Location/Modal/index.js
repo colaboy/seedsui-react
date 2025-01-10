@@ -3,11 +3,11 @@ import Main from './../Main'
 
 // 内库使用
 import locale from './../../../utils/locale'
-import ModalPicker from './../../Modal/MainPicker'
+import ModalPicker from './../../Modal/Modal'
 
 // 测试使用
 // import { locale, Modal } from 'seedsui-react'
-// const ModalPicker = Modal.MainPicker
+// const ModalPicker = Modal.Modal
 
 // Modal
 const LocationModal = forwardRef(

@@ -3,11 +3,11 @@ import formatValue from './formatValue'
 import Main from './../Main'
 
 // 内库使用
-import ModalPicker from './../../../components/Modal/MainPicker'
+import ModalPicker from './../../../components/Modal/Modal'
 
 // 测试使用
 // import { Modal } from 'seedsui-react'
-// const ModalPicker = Modal.MainPicker
+// const ModalPicker = Modal.Modal
 
 // Modal
 const Modal = forwardRef(
