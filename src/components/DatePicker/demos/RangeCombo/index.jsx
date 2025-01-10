@@ -32,7 +32,7 @@ export default () => {
             setIcon('1')
           }
         }}
-        ModalProps={{
+        modalProps={{
           captionProps: {
             caption: '选择日期'
           },

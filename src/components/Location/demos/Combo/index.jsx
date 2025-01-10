@@ -109,7 +109,7 @@ export default () => {
         //     }, 1000)
         //   })
         // }}
-        ModalProps={{
+        modalProps={{
           footer: ({ visible, submit }) => {
             return visible === 'choose' ? (
               <Footer

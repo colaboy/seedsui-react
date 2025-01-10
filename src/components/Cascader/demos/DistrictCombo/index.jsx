@@ -148,7 +148,7 @@ export default () => {
         //   district: { editable: false },
         //   street: { editable: false }
         // }}
-        ModalProps={{
+        modalProps={{
           header: () => {
             return <div>自定义头</div>
           },

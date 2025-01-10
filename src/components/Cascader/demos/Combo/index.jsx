@@ -110,7 +110,7 @@ export default () => {
           //   ])
           // }, 2000)
         }}
-        ModalProps={{
+        modalProps={{
           captionProps: {
             caption: '级联选择'
           },

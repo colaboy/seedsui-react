@@ -28,7 +28,7 @@ const DistrictCombo = forwardRef(
       isDistrict,
       isStreet,
       setValueType = defaultSetValueType,
-      ModalProps,
+      modalProps,
 
       // Main
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
@@ -94,7 +94,7 @@ const DistrictCombo = forwardRef(
     return (
       <Combo
         ref={comboRef}
-        ModalProps={{
+        modalProps={{
           list,
           type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
           min,
@@ -109,9 +109,9 @@ const DistrictCombo = forwardRef(
           setValueType,
           loadData,
           editableOptions,
-          ...ModalProps,
+          ...modalProps,
           // MainProps
-          MainProps: ModalProps?.MainProps || {}
+          MainProps: modalProps?.MainProps || {}
         }}
         value={value}
         onChange={
@@ -130,7 +130,7 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
-        ModalComponent={props?.ModalComponent || DistrictModal}
+        modal={DistrictModal}
         clearProps={{
           ...(props?.clearProps || {}),
           className:

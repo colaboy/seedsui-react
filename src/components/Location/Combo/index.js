@@ -61,8 +61,8 @@ const LocationCombo = forwardRef(
       inputProps,
 
       // Modal
-      ModalComponent,
-      ModalProps,
+      modal,
+      modalProps,
       ...props
     },
     ref
@@ -339,8 +339,8 @@ const LocationCombo = forwardRef(
 
     // Modal Render
     let ModalNode = Modal
-    if (ModalComponent) {
-      ModalNode = ModalComponent
+    if (modal) {
+      ModalNode = modal
     }
 
     return (
@@ -401,7 +401,7 @@ const LocationCombo = forwardRef(
           }}
           getAddress={getAddress}
           getLocation={getLocation}
-          {...(ModalProps || {})}
+          {...(modalProps || {})}
         />
       </Fragment>
     )

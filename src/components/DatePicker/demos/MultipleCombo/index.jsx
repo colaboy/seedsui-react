@@ -33,7 +33,7 @@ export default () => {
           console.log(newValue)
           setMulValue(newValue)
         }}
-        ModalProps={{
+        modalProps={{
           captionProps: {
             caption: '选择日期'
           },

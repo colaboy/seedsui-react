@@ -44,7 +44,7 @@ export default () => {
         //   }
         //   return displayValue
         // }}
-        // ModalProps={{
+        // modalProps={{
         //   captionProps: {
         //     caption: '自定义'
         //   }

@@ -13,7 +13,7 @@ const TransferCombo = forwardRef(
   (
     {
       // Modal
-      ModalProps,
+      modalProps,
 
       list,
       ...props
@@ -25,9 +25,9 @@ const TransferCombo = forwardRef(
         ref={ref}
         {...props}
         // Modal
-        ModalComponent={props?.ModalComponent || Modal}
-        ModalProps={{
-          ...ModalProps,
+        modal={Modal}
+        modalProps={{
+          ...modalProps,
           list: list
         }}
       />

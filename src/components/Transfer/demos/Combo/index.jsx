@@ -45,7 +45,7 @@ export default () => {
             console.log(newValue)
             setValue(newValue)
           }}
-          ModalProps={{
+          modalProps={{
             footer: ({ value, submit }) => {
               return (
                 <Layout.Footer

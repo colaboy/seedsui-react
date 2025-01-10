@@ -41,7 +41,7 @@ export default () => {
       <Picker.Combo
         ref={pickerRef}
         allowClear
-        // ModalProps={{
+        // modalProps={{
         //   captionProps: {
         //     caption: '标题'
         //   },

@@ -21,7 +21,7 @@ const RangeCombo = forwardRef(
       separator,
 
       // Modal
-      ModalProps,
+      modalProps,
 
       // Modal properties
       diff,
@@ -68,9 +68,9 @@ const RangeCombo = forwardRef(
           rangeIdRef.current = newRangeId
           onChange && onChange(newValue, { rangeId: newRangeId, ranges })
         }}
-        ModalComponent={props?.ModalComponent || RangeModal}
-        ModalProps={{
-          ...ModalProps,
+        modal={RangeModal}
+        modalProps={{
+          ...modalProps,
           defaultPickerValue: defaultPickerValue,
           type: type,
           diff: diff,
