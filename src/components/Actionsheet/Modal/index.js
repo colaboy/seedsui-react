@@ -1,7 +1,14 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
-import locale from './../../../utils/locale'
 import getIsActive from './getIsActive'
+
+// 内库使用-start
+import locale from './../../../utils/locale'
+// 内库使用-end
+
+/* 测试使用-start
+import { locale } from 'seedsui-react'
+测试使用-end */
 
 const Modal = forwardRef(
   (
