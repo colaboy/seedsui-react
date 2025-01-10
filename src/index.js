@@ -34,7 +34,7 @@ if (packageJson?.version) {
 }
 
 export { default as locale } from './utils/locale'
-export { default as Actionsheet } from './components/Actionsheet'
+export { default as ActionSheet } from './components/ActionSheet'
 export { default as Alert } from './deprecated/Alert' // (废弃, 使用Modal代替)
 export { default as Modal } from './components/Modal'
 export { default as Attach } from './deprecated/Attach'

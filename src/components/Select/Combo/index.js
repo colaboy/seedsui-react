@@ -88,7 +88,7 @@ const Combo = forwardRef(
       modal, // 弹出方式dropdown
       separator,
 
-      // Main: Actionsheet Control properties
+      // Main: ActionSheet Control properties
       groupProps,
       optionProps,
 
@@ -303,7 +303,7 @@ const Combo = forwardRef(
             modal, // 快捷选择弹出方式
             separator,
 
-            // Main: Actionsheet Control properties
+            // Main: ActionSheet Control properties
             groupProps,
             optionProps,
 

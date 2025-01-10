@@ -20,7 +20,7 @@ export default () => {
       </div>
       <div>
         {`If you want to set part safe area, you can invoke
-          1.Actionsheet and DatePicker etc. controls: setPickerSafeArea()
+          1.ActionSheet and DatePicker etc. controls: setPickerSafeArea()
           2.Layout: pass safeArea={true}, It will help you decide use safe area
         `}
       </div>
