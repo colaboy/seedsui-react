@@ -7,8 +7,8 @@ const Tabs = forwardRef(
       // 内部tab宽度平均分配
       average = false,
       contentProps = {},
-      captionProps = {},
-      sndcaptionProps = {},
+      titleProps = {},
+      subtitleProps = {},
 
       value,
       list = [],
@@ -19,11 +19,10 @@ const Tabs = forwardRef(
       //     ricon: node,
       //     riconActive: node,
 
-      //     name: string, // 与caption完全相同, 允许传入name或者caption
-      //     caption: string,
-      //     sndcaption: string,
+      //     name: string,
+      //     subtitle: string,
 
-      //     attribute: object // tab属性
+      //     props: object // tab属性
       //   }
       // ]
 
@@ -57,8 +56,6 @@ const Tabs = forwardRef(
           return item.id === value.id
         } else if (item.name && value.name) {
           return item.name === value.name
-        } else if (item.caption && value.caption) {
-          return item.caption === value.caption
         } else {
           return false
         }
@@ -89,16 +86,7 @@ const Tabs = forwardRef(
       }
       // 遍历
       return list.map((item, index) => {
-        const {
-          icon,
-          iconActive,
-          ricon,
-          riconActive,
-          name,
-          caption,
-          sndcaption,
-          props: attribute = {}
-        } = item
+        const { icon, iconActive, ricon, riconActive, name, subtitle, props: attribute = {} } = item
         let isActive = getIsActive(item)
         let liconDOM = null
         if (icon) {
@@ -121,21 +109,19 @@ const Tabs = forwardRef(
             {liconDOM && liconDOM}
             <div className="tab-content" {...contentProps}>
               <div
-                {...captionProps}
-                className={`tab-caption${
-                  captionProps.className ? ' ' + captionProps.className : ''
-                }`}
+                {...titleProps}
+                className={`tab-title${titleProps.className ? ' ' + titleProps.className : ''}`}
               >
-                {caption || name}
+                {name}
               </div>
-              {sndcaption && (
+              {subtitle && (
                 <div
-                  {...sndcaptionProps}
-                  className={`tab-sndcaption${
-                    sndcaptionProps.className ? ' ' + sndcaptionProps.className : ''
+                  {...subtitleProps}
+                  className={`tab-subtitle${
+                    subtitleProps.className ? ' ' + subtitleProps.className : ''
                   }`}
                 >
-                  {sndcaption}
+                  {subtitle}
                 </div>
               )}
             </div>

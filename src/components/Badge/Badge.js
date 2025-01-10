@@ -21,14 +21,14 @@ const Badge = forwardRef(
     })
 
     // 标题
-    let caption = children
+    let text = children
     if (maxLength && children && (typeof children === 'string' || typeof children === 'number')) {
-      caption = caption.toString()
+      text = text.toString()
       // 数字大于99,则显示99+
-      if (!isNaN(caption)) {
-        caption = caption.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : caption
+      if (!isNaN(text)) {
+        text = text.length > maxLength ? '99999'.substring(0, maxLength) + ellipsis : text
       } else {
-        caption = caption.length > maxLength ? caption.substring(0, maxLength) + ellipsis : caption
+        text = text.length > maxLength ? text.substring(0, maxLength) + ellipsis : text
       }
     }
     return (
@@ -37,7 +37,7 @@ const Badge = forwardRef(
         className={`badge${others.className ? ' ' + others.className : ''}`}
         ref={rootRef}
       >
-        {caption}
+        {text}
       </span>
     )
   }

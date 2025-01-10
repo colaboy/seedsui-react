@@ -114,15 +114,15 @@
   vertical-align: middle;
   pointer-events: none;
 }
-.tab-caption,
-.tab-sndcaption {
+.tab-title,
+.tab-subtitle {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.tab-caption {
+.tab-title {
 }
-.tab-sndcaption {
+.tab-subtitle {
   font-size: @font-size-s;
 }
 
@@ -402,4 +402,17 @@
     color: @tabs-footer-reverse-color-active;
     background-color: @tabs-footer-reverse-bg-active;
   }
+}
+
+// 将废弃(Deprecated)
+.tab-caption,
+.tab-sndcaption {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.tab-caption {
+}
+.tab-sndcaption {
+  font-size: @font-size-s;
 }
