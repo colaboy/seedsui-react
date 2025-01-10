@@ -1,6 +1,6 @@
 // 获取选中项
-function getCheckedKeysProp(value, defaultValue) {
-  let val = value || defaultValue
+function getCheckedKeysProp(value) {
+  let val = value
   let checkedKeys = []
   if (Array.isArray(val) && val.length) {
     // 半选不能加到选中项中
@@ -11,15 +11,11 @@ function getCheckedKeysProp(value, defaultValue) {
       }
     }
   }
-  // value or defaultValue
+  // value
   let valueProp = {}
   if (value) {
     valueProp = {
       checkedKeys: checkedKeys
-    }
-  } else if (defaultValue) {
-    valueProp = {
-      defaultCheckedKeys: checkedKeys
     }
   }
   return valueProp

@@ -13,6 +13,11 @@ import Tree from 'rc-tree'
 // 树控件
 function TreePicker(
   {
+    list,
+    value,
+    onChange,
+    onSelect,
+
     // multiple未传则为必选单选, multiple为false时为可取消单选
     multiple,
     // 级联 true: 不级联, false: 级联, children: 子级不级联父级
@@ -25,32 +30,24 @@ function TreePicker(
     preserveValue,
     // 仅允许选中末级节点: true|false|(item) => true|false
     onlyLeafCheck,
+    // 是否显示checkbox
     checkable = true,
-
-    // 过滤selectable, 根据checkable判断是否启用selectable, 没有checkbox时则启用
-    selectable,
-
-    list,
-    defaultValue,
-    value,
-    // 节流时长
-    onChange,
-    onSelect,
+    // 默认展开
+    defaultExpandAll,
+    TreeProps,
 
     // 自定义渲染
     itemRender,
-
-    // 展开动作(过滤此属性，只保留一种交互：即点击展开)
-    expandAction,
-    // 默认展开
-    defaultExpandAll,
     ...props
   },
   ref
 ) {
+  const mainRef = useRef(null)
   const treeRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
+      rootDOM: mainRef.current,
+      getRootDOM: () => mainRef.current,
       instance: treeRef.current,
       search: search
     }
@@ -238,9 +235,9 @@ function TreePicker(
 
   // 构建选中项
   const checkedKeysProp = useMemo(() => {
-    // defaultCheckedKeys|checkedKeys: checkedKeys
-    return getCheckedKeysProp(value, defaultValue)
-  }, [value, defaultValue])
+    // checkedKeys: checkedKeys
+    return getCheckedKeysProp(value)
+  }, [value])
 
   // 异步加载时需要判断哪些不需要再次加载(isLoaded)
   const loadProp =
@@ -257,7 +254,11 @@ function TreePicker(
   if (!treeData) return null
 
   return (
-    <div className="treepicker-tree picker-main">
+    <div
+      {...props}
+      className={`treepicker-tree${props.className ? ' ' + props.className : ''}`}
+      ref={mainRef}
+    >
       <Tree
         ref={treeRef}
         fieldNames={{ key: 'id' }}
@@ -282,7 +283,7 @@ function TreePicker(
         checkStrictly={checkStrictly === false ? false : true}
         checkable={checkable}
         selectable={checkable ? false : true}
-        {...props}
+        {...(TreeProps || {})}
       ></Tree>
     </div>
   )

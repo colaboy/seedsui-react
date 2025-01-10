@@ -2,14 +2,58 @@ import React, { forwardRef } from 'react'
 import Tree from './../Tree'
 
 // 内库使用
-import BaseModal from './../../Select/Modal'
+import BaseModal from './../../Modal/Modal'
 
 // 测试使用
-// import { Select } from 'seedsui-react'
-// const BaseModal = Select.Modal
+// import { Modal } from 'seedsui-react'
+// const BaseModal = Modal.Modal
 
-const Modal = forwardRef(({ ...props }, ref) => {
-  return <BaseModal ref={ref} {...props} MainComponent={props?.MainComponent || Tree} />
-})
+const Modal = forwardRef(
+  (
+    {
+      // Main
+      mainProps,
+
+      // Main Props
+      list,
+      onSelect,
+
+      multiple,
+      checkStrictly = false,
+      showCheckedStrategy,
+      enableHalfChecked,
+      preserveValue,
+      onlyLeafCheck,
+      checkable = true,
+      defaultExpandAll,
+      TreeProps,
+
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <BaseModal
+        ref={ref}
+        {...props}
+        mainProps={{
+          ...mainProps,
+          list,
+          onSelect,
+          multiple,
+          checkStrictly,
+          showCheckedStrategy,
+          enableHalfChecked,
+          preserveValue,
+          onlyLeafCheck,
+          checkable,
+          defaultExpandAll,
+          TreeProps
+        }}
+        main={props?.main || Tree}
+      />
+    )
+  }
+)
 
 export default Modal
