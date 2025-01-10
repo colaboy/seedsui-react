@@ -1,5 +1,4 @@
 import Modal from './Modal'
-import Dropdown from './Dropdown'
 import Alert from './Alert/index'
 import Confirm from './Confirm/index'
 import Combo from './Combo'
@@ -11,7 +10,6 @@ import confirm from './confirm'
 import destroy from './destroy'
 
 // Components
-Modal.Dropdown = Dropdown
 Modal.Alert = Alert
 Modal.Confirm = Confirm
 Modal.Combo = Combo

@@ -12,10 +12,6 @@ title: Modal
 
 <code src="./demos/Modal/index.jsx"></code>
 
-### Modal.Dropdown
-
-<code src="./demos/Dropdown/index.jsx"></code>
-
 ### Modal.Alert
 
 <code src="./demos/Alert1/index.jsx"></code>

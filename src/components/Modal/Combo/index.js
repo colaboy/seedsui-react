@@ -20,8 +20,8 @@ const Combo = forwardRef(
       value,
       onBeforeChange,
       onChange,
-      ModalComponent,
-      ModalProps,
+      modal: ModalNode,
+      modalProps,
 
       // Combo
       displayValueFormatter,
@@ -111,7 +111,7 @@ const Combo = forwardRef(
 
     useEffect(() => {
       if (visible === null) return
-      typeof ModalProps?.onVisibleChange === 'function' && ModalProps.onVisibleChange(visible)
+      typeof modalProps?.onVisibleChange === 'function' && modalProps.onVisibleChange(visible)
       typeof onVisibleChange === 'function' && onVisibleChange(visible)
 
       // eslint-disable-next-line
@@ -165,7 +165,7 @@ const Combo = forwardRef(
           />
         )}
         {/* Modal */}
-        <ModalComponent
+        <ModalNode
           ref={modalRef}
           getComboDOM={() => {
             return comboRef.current
@@ -174,9 +174,9 @@ const Combo = forwardRef(
           onBeforeChange={onBeforeChange}
           onChange={onChange}
           allowClear={allowClear}
-          {...ModalProps}
+          {...modalProps}
           onVisibleChange={setVisible}
-          visible={ModalProps?.visible === undefined ? visible : ModalProps.visible}
+          visible={modalProps?.visible === undefined ? visible : modalProps.visible}
         />
       </Fragment>
     )
