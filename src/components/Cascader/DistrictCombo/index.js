@@ -110,8 +110,8 @@ const DistrictCombo = forwardRef(
           loadData,
           editableOptions,
           ...modalProps,
-          // MainProps
-          MainProps: modalProps?.MainProps || {}
+          // Main Props
+          mainProps: modalProps?.mainProps || {}
         }}
         value={value}
         onChange={
@@ -130,7 +130,7 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
-        modal={DistrictModal}
+        modal={props?.modal || DistrictModal}
         clearProps={{
           ...(props?.clearProps || {}),
           className:

@@ -28,7 +28,7 @@ const CascaderCombo = forwardRef(
         ref={ref}
         {...props}
         // Modal
-        modal={CascaderModal}
+        modal={props?.modal || CascaderModal}
         modalProps={{
           ...modalProps,
           list: list,

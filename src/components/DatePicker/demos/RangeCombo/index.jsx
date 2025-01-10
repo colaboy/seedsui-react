@@ -41,7 +41,7 @@ export default () => {
               zIndex: 999
             }
           }
-          // MainProps: {
+          // mainProps: {
           //   onChange: (value, { rangeId, ranges }) => {
           //     console.log(value, rangeId, ranges)
           //     if (ranges && rangeId && Array.isArray(ranges[rangeId])) {

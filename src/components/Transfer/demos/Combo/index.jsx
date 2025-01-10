@@ -57,7 +57,7 @@ export default () => {
                 </Layout.Footer>
               )
             },
-            MainProps: {
+            mainProps: {
               titles: { selected: '标题1', unSelected: '标题2' }
             }
           }}

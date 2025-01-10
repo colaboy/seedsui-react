@@ -46,7 +46,7 @@ const MultipleCombo = forwardRef(
         }}
         {...props}
         // Modal
-        modal={MultipleModal}
+        modal={props?.modal || MultipleModal}
         value={value}
         modalProps={{
           ...modalProps,

@@ -30,17 +30,17 @@ const WeekModal = forwardRef(
     ref
   ) => {
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (min) props.MainProps.min = min
-    if (max) props.MainProps.max = max
+    if (min) props.mainProps.min = min
+    if (max) props.mainProps.max = max
 
     return (
       <ModalPicker
         ref={ref}
         {...props}
-        MainComponent={props?.MainComponent || WeekMain}
+        main={props?.main || WeekMain}
         onBeforeChange={async (currentValue) => {
           // 校验
           if ((min || max) && currentValue) {

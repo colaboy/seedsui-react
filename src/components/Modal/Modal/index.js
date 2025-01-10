@@ -24,8 +24,8 @@ const Modal = forwardRef(
       onBeforeChange,
 
       // Main
-      MainComponent,
-      MainProps,
+      main: MainNode,
+      mainProps,
 
       // Main properties
       value,
@@ -152,10 +152,10 @@ const Modal = forwardRef(
         {/* 纯渲染 */}
         {children}
         {/* 主体 */}
-        {!children && MainComponent ? (
-          <MainComponent
+        {!children && MainNode ? (
+          <MainNode
             ref={mainRef}
-            {...(MainProps || {})}
+            {...(mainProps || {})}
             visible={visible}
             value={currentValue}
             allowClear={allowClear}
@@ -173,7 +173,7 @@ const Modal = forwardRef(
                 changeClosable(newValue, newArguments, { submit: handleChange })
               }
 
-              MainProps?.onChange && MainProps.onChange(newValue, newArguments)
+              mainProps?.onChange && mainProps.onChange(newValue, newArguments)
             }}
           />
         ) : null}

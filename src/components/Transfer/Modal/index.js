@@ -22,16 +22,16 @@ const Modal = forwardRef(
     ref
   ) => {
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (list) props.MainProps.list = list
+    if (list) props.mainProps.list = list
 
     return (
       <ModalPicker
         ref={ref}
         {...props}
-        MainComponent={props?.MainComponent || Main}
+        main={props?.main || Main}
         className={`transfer-modal${props.className ? ' ' + props.className : ''}`}
         value={formatValue(value)}
       />

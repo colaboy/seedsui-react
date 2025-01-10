@@ -33,12 +33,12 @@ const LocationModal = forwardRef(
     })
 
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (config) props.MainProps.config = config
-    if (getLocation) props.MainProps.getLocation = getLocation
-    if (getAddress) props.MainProps.getAddress = getAddress
+    if (config) props.mainProps.config = config
+    if (getLocation) props.mainProps.getLocation = getLocation
+    if (getAddress) props.mainProps.getAddress = getAddress
 
     return (
       <ModalPicker
@@ -50,7 +50,7 @@ const LocationModal = forwardRef(
               : locale('查看地址', 'SeedsUI_view_address')
         }}
         {...props}
-        MainComponent={props?.MainComponent || Main}
+        main={props?.main || Main}
         submitProps={{
           visible: visible === 'choose' ? true : false,
           ...submitProps

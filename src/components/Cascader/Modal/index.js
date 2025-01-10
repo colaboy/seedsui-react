@@ -24,11 +24,11 @@ const CascaderModal = forwardRef(
     ref
   ) => {
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (list) props.MainProps.list = list
-    if (loadData) props.MainProps.loadData = loadData
+    if (list) props.mainProps.list = list
+    if (loadData) props.mainProps.loadData = loadData
 
     return (
       <ModalPicker
@@ -37,7 +37,7 @@ const CascaderModal = forwardRef(
           visible: false
         }}
         {...props}
-        MainComponent={props?.MainComponent || Main}
+        main={props?.main || Main}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null

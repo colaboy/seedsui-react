@@ -122,7 +122,7 @@ export default () => {
               />
             ) : null
           },
-          MainProps: {
+          mainProps: {
             // autoLocation: false,
             zoom: 16
           }

@@ -48,22 +48,22 @@ const RangeModal = forwardRef(
     let [currentRangeId, setCurrentRangeId] = useState(rangeId)
 
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (type) props.MainProps.type = type
-    if (min) props.MainProps.min = min
-    if (max) props.MainProps.max = max
-    if (hourStep) props.MainProps.hourStep = hourStep
-    if (minuteStep) props.MainProps.minuteStep = minuteStep
-    if (disabledStart) props.MainProps.disabledStart = disabledStart
-    if (disabledEnd) props.MainProps.disabledEnd = disabledEnd
-    if (titles) props.MainProps.titles = titles
+    if (type) props.mainProps.type = type
+    if (min) props.mainProps.min = min
+    if (max) props.mainProps.max = max
+    if (hourStep) props.mainProps.hourStep = hourStep
+    if (minuteStep) props.mainProps.minuteStep = minuteStep
+    if (disabledStart) props.mainProps.disabledStart = disabledStart
+    if (disabledEnd) props.mainProps.disabledEnd = disabledEnd
+    if (titles) props.mainProps.titles = titles
 
-    props.MainProps.ranges = ranges
-    props.MainProps.portal = modalRef?.current?.rootDOM
-    props.MainProps.rangeId = currentRangeId
-    props.MainProps.onChange = (newValue, { rangeId: newRangeId } = {}) => {
+    props.mainProps.ranges = ranges
+    props.mainProps.portal = modalRef?.current?.rootDOM
+    props.mainProps.rangeId = currentRangeId
+    props.mainProps.onChange = (newValue, { rangeId: newRangeId } = {}) => {
       setCurrentRangeId(newRangeId)
     }
 
@@ -75,7 +75,7 @@ const RangeModal = forwardRef(
       <ModalPicker
         ref={modalRef}
         {...props}
-        MainComponent={props?.MainComponent || RangeMain}
+        main={props?.main || RangeMain}
         onChange={(newValue) => {
           // 隐藏时校验rangeId和日期不匹配, 则清空rangeId
           currentRangeId = matchRangeId(newValue, {

@@ -33,20 +33,20 @@ const Modal = forwardRef(
     ref
   ) => {
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    if (type) props.MainProps.type = type
-    if (min) props.MainProps.min = min
-    if (max) props.MainProps.max = max
-    if (hourStep) props.MainProps.hourStep = hourStep
-    if (minuteStep) props.MainProps.minuteStep = minuteStep
+    if (type) props.mainProps.type = type
+    if (min) props.mainProps.min = min
+    if (max) props.mainProps.max = max
+    if (hourStep) props.mainProps.hourStep = hourStep
+    if (minuteStep) props.mainProps.minuteStep = minuteStep
 
     return (
       <ModalPicker
         ref={ref}
         {...props}
-        MainComponent={props?.MainComponent || MultipleMain}
+        main={props?.main || MultipleMain}
         onBeforeChange={async (currentValue) => {
           // 校验
           if (min || max) {

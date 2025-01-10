@@ -39,7 +39,7 @@ const WeekCombo = forwardRef(
         {...props}
         // Modal
         value={value}
-        modal={WeekModal}
+        modal={props?.modal || WeekModal}
         modalProps={{
           ...modalProps,
           defaultPickerValue: defaultPickerValue,

@@ -113,21 +113,21 @@ const DistrictModal = forwardRef(
     }
 
     // 扩展非标准属性
-    if (!props.MainProps) {
-      props.MainProps = {}
+    if (!props.mainProps) {
+      props.mainProps = {}
     }
-    props.MainProps.type = type
-    props.MainProps.list = list
-    props.MainProps.loadData = loadData
-    props.MainProps.editableOptions = editableOptions
-    props.MainProps.isCountry = isCountry
-    props.MainProps.isProvince = isProvince
-    props.MainProps.isMunicipality = isMunicipality
-    props.MainProps.isPrefecture = isPrefecture
-    props.MainProps.isCity = isCity
-    props.MainProps.isDistrict = isDistrict
-    props.MainProps.isStreet = isStreet
-    props.MainProps.onChange = handleDrillDown
+    props.mainProps.type = type
+    props.mainProps.list = list
+    props.mainProps.loadData = loadData
+    props.mainProps.editableOptions = editableOptions
+    props.mainProps.isCountry = isCountry
+    props.mainProps.isProvince = isProvince
+    props.mainProps.isMunicipality = isMunicipality
+    props.mainProps.isPrefecture = isPrefecture
+    props.mainProps.isCity = isCity
+    props.mainProps.isDistrict = isDistrict
+    props.mainProps.isStreet = isStreet
+    props.mainProps.onChange = handleDrillDown
 
     return (
       <ModalPicker
@@ -135,7 +135,7 @@ const DistrictModal = forwardRef(
         visible={visible}
         value={value}
         {...props}
-        MainComponent={props?.MainComponent || DistrictMain}
+        main={props?.main || DistrictMain}
         changeClosable={(newValue, newArguments, { submit }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
