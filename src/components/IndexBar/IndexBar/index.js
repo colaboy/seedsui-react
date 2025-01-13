@@ -7,7 +7,10 @@ import React, {
   useState
 } from 'react'
 import getAnchors from './getAnchors'
-import goAnchor from './goAnchor'
+import getAnchorByPoint from './getAnchorByPoint'
+import getAnchorByViewport from './getAnchorByViewport'
+import activeAnchor from './activeAnchor'
+import scrollToAnchor from './scrollToAnchor'
 import preventDefault from './preventDefault'
 
 const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
@@ -35,15 +38,22 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
   useEffect(() => {
     // 获取滚动容器
     scrollerRef.current = scrollerDOM || sidebarRef.current?.previousElementSibling
+    if (!scrollerRef.current) return
 
-    // 直接在dom上touchStart
-    // sidebarRef.current.addEventListener('touchstart', s.onTouchStart, false)
-    // sidebarRef.current.addEventListener('touchmove', s.onTouchMove, false)
-    // sidebarRef.current.addEventListener('touchend', s.onTouchEnd, false)
-    // sidebarRef.current.addEventListener('touchcancel', s.onTouchEnd, false)
+    // 滚动事件
+    scrollerRef.current.addEventListener('scroll', handleScroll, false)
 
     // 更新锚记
     updateAnchors()
+
+    // 锚记渲染完成后更新右侧选中效果
+    setTimeout(() => {
+      handleScroll()
+    }, 0)
+
+    return () => {
+      scrollerRef.current && scrollerRef.current.removeEventListener('scroll', handleScroll, false)
+    }
     // eslint-disable-next-line
   }, [])
 
@@ -60,35 +70,51 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
     setAnchors(anchors)
   }
 
+  // Scroller scroll to position sidebar
+  function handleScroll() {
+    let currentAnchor = getAnchorByViewport(scrollerRef.current)
+    currentAnchor &&
+      activeAnchor({
+        anchor: currentAnchor,
+        sidebarDOM: sidebarRef.current,
+        tooltipDOM: tooltipRef.current
+      })
+  }
+
+  // 触摸时滚动至anchor
+  function goAnchor(currentAnchor) {
+    if (!currentAnchor) return
+    scrollToAnchor({
+      scrollerDOM: scrollerRef.current,
+      anchor: currentAnchor
+    })
+    activeAnchor({
+      anchor: currentAnchor,
+      sidebarDOM: sidebarRef.current,
+      tooltipDOM: tooltipRef.current
+    })
+  }
+
+  // Sidebar touch move to position Anchor
   function handleTouchStart(e) {
     e.stopPropagation()
     // 解决拖动时影响document弹性
     e.currentTarget.addEventListener('touchmove', preventDefault, false)
 
-    touchesRef.current.startX = e.touches[0].clientX
-
-    // 滚动到指定位置
-    goAnchor({
-      scrollerDOM: scrollerRef.current,
-      sidebarDOM: sidebarRef.current,
-      tooltipDOM: tooltipRef.current,
-      x: touchesRef.current.startX,
-      y: e.touches[0].clientY
-    })
-
     // 激活indexbar
     sidebarRef.current.classList.add('active')
-    tooltipRef.current.classList.add('active')
+
+    // 滚动到指定位置
+    touchesRef.current.startX = e.touches[0].clientX
+    let currentAnchor = getAnchorByPoint({ x: touchesRef.current.startX, y: e.touches[0].clientY })
+    goAnchor(currentAnchor)
   }
   function handleTouchMove(e) {
     e.stopPropagation()
-    goAnchor({
-      scrollerDOM: scrollerRef.current,
-      sidebarDOM: sidebarRef.current,
-      tooltipDOM: tooltipRef.current,
-      x: touchesRef.current.startX,
-      y: e.touches[0].clientY
-    })
+
+    // 滚动到指定位置
+    let currentAnchor = getAnchorByPoint({ x: touchesRef.current.startX, y: e.touches[0].clientY })
+    goAnchor(currentAnchor)
   }
   function handleTouchEnd(e) {
     e.stopPropagation()
@@ -96,7 +122,6 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
     e.currentTarget.removeEventListener('touchmove', preventDefault, false)
 
     sidebarRef.current.classList.remove('active')
-    tooltipRef.current.classList.remove('active')
   }
 
   const DOM = (
@@ -112,9 +137,9 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
       >
         {(anchors || []).map((anchor, i) => {
           return (
-            <span className="indexbar-button" data-indexbar-link={anchor} key={`btn${i}`}>
-              <span className="indexbar-button-caption">{anchor}</span>
-            </span>
+            <div className="indexbar-button" data-indexbar-anchor-button={anchor} key={`btn${i}`}>
+              <div className="indexbar-button-name">{anchor}</div>
+            </div>
           )
         })}
       </div>

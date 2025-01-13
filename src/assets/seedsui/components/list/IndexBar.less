@@ -2,25 +2,23 @@
 @indexbar-color: #b6b6b6;
 @indexbar-color-active: @default;
 @indexbar-font-size: @font-size-s;
+
 .indexbar {
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   right: 0;
-  bottom: 0;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   font-size: @indexbar-font-size;
 }
+
 .indexbar-button {
-  .flex;
-  .flex-1;
-  .flex-middle;
-  .flex-center;
-  .indexbar-button-caption {
+  width: 40px;
+  text-align: center;
+
+  .indexbar-button-name {
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,11 +31,12 @@
 }
 
 .indexbar-button.active {
-  .indexbar-button-caption {
+  .indexbar-button-name {
     color: white;
     background-color: @primary;
   }
 }
+
 .indexbar-tooltip {
   position: absolute;
   top: 50%;
@@ -52,12 +51,12 @@
   font-size: 35px;
   line-height: 80px;
   text-align: center;
-
   background-color: @mask-bg-color;
   border-radius: 40px;
   transition: 200ms;
 }
-.indexbar-tooltip.active {
+
+.indexbar.active + .indexbar-tooltip {
   display: block;
 }
 

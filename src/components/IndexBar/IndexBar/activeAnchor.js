@@ -1,5 +1,5 @@
 // 选中button
-function activeButton(currentButtonDOM, sidebarDOM) {
+function activeAnchor({ anchor, sidebarDOM, tooltipDOM }) {
   let buttonsDOM = sidebarDOM.querySelectorAll('.indexbar-button')
   if (buttonsDOM && buttonsDOM.length) {
     for (let i = 0, buttonDOM; (buttonDOM = buttonsDOM[i++]); ) {
@@ -7,9 +7,11 @@ function activeButton(currentButtonDOM, sidebarDOM) {
     }
   }
 
+  let currentButtonDOM = sidebarDOM.querySelector(`[data-indexbar-anchor-button="${anchor}"]`)
   if (currentButtonDOM) {
     currentButtonDOM.classList.add('active')
+    tooltipDOM.innerHTML = anchor || ''
   }
 }
 
-export default activeButton
+export default activeAnchor
