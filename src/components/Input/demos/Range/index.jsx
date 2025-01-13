@@ -8,6 +8,7 @@ export default () => {
       <Input.Range
         style={{ marginTop: '50px' }}
         value={value}
+        disabled
         onChange={(val) => {
           console.log(val)
           setValue(val)

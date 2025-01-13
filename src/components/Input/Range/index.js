@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import Instance from './instance'
+import showTooltip from './showTooltip'
+import hideTooltip from './hideTooltip'
 
 const Range = forwardRef(
   (
@@ -20,46 +21,49 @@ const Range = forwardRef(
     const rootRef = useRef(null)
     const inputRef = useRef(null)
     const tooltipRef = useRef(null)
-    const instance = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
         inputDOM: inputRef.current,
         tooltipDOM: tooltipRef.current,
-        instance: instance.current,
         getRootDOM: () => rootRef.current,
         getInputDOM: () => inputRef.current,
-        getTooltipDOM: () => tooltipRef.current,
-        getInstance: () => instance.current
+        getTooltipDOM: () => tooltipRef.current
       }
     })
-    useEffect(() => {
-      if (instance.current) return
-      initInstance()
-    }, []) // eslint-disable-line
 
-    // 更新句柄, 防止synchronization模式, 每次组件在render的时候都生成上次render的state、function、effects
-    if (instance.current) {
-      instance.current.params.onChange = handleChange
-    }
-    function initInstance() {
-      instance.current = new Instance(rootRef.current, {
-        onChange: handleChange
-      })
-    }
-
-    function handleChange() {
-      let newValue = inputRef.current.value
+    function handleChange(e) {
+      if (disabled || readOnly) return
+      let newValue = e.currentTarget.value
+      showTooltip(tooltipRef.current, inputRef.current)
       if (newValue) newValue = Number(newValue || 0)
       if (onChange) {
         onChange(newValue)
       }
     }
+
+    function handleClick(e) {
+      if (disabled || readOnly) {
+        showTooltip(tooltipRef.current, inputRef.current)
+        setTimeout(() => {
+          hideTooltip(tooltipRef.current)
+        }, 300)
+      }
+    }
+
+    function handleTouchEnd() {
+      hideTooltip(tooltipRef.current)
+    }
+
     return (
       <div
         {...props}
-        className={`input-range${props.className ? ' ' + props.className : ''}`}
+        className={`input-range${props.className ? ' ' + props.className : ''}${
+          readOnly ? ' ' + 'readOnly' : ''
+        }${disabled ? ' ' + 'disabled' : ''}`}
         ref={rootRef}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleClick}
       >
         <input
           ref={inputRef}
@@ -72,6 +76,7 @@ const Range = forwardRef(
           max={max}
           step={step}
           defaultValue={value}
+          onChange={handleChange}
         />
         <div
           ref={tooltipRef}

@@ -178,6 +178,12 @@ input[type='color'] {
   height: @input-range-height;
   .flex;
   .flex-middle;
+  &.disabled,
+  &.readOnly {
+    .input-range-input {
+      pointer-events: none;
+    }
+  }
 }
 .input-range-input {
   position: relative;
