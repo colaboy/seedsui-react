@@ -19,8 +19,8 @@ const Toast = forwardRef(
       onVisibleChange,
 
       // 左右图标
-      licon,
-      ricon,
+      leftIcon,
+      rightIcon,
 
       maskProps = {},
       children,
@@ -82,9 +82,9 @@ const Toast = forwardRef(
           }${getActiveClass()}`}
         >
           <div className="toast-wrapper">
-            {licon && licon}
+            {leftIcon && leftIcon}
             <div className="toast-content">{children}</div>
-            {ricon && ricon}
+            {rightIcon && rightIcon}
           </div>
         </div>
       </div>,
