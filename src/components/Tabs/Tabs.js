@@ -8,19 +8,19 @@ const Tabs = forwardRef(
       average = false,
       contentProps = {},
       titleProps = {},
-      subtitleProps = {},
+      subTitleProps = {},
 
       value,
       list = [],
       // [
       //   {
-      //     icon: node,
-      //     iconActive: node,
-      //     ricon: node,
-      //     riconActive: node,
+      //     leftIcon: node,
+      //     leftIconActive: node,
+      //     rightIcon: node,
+      //     rightIconActive: node,
 
       //     name: string,
-      //     subtitle: string,
+      //     subTitle: string,
 
       //     props: object // tab属性
       //   }
@@ -86,15 +86,23 @@ const Tabs = forwardRef(
       }
       // 遍历
       return list.map((item, index) => {
-        const { icon, iconActive, ricon, riconActive, name, subtitle, props: attribute = {} } = item
+        const {
+          leftIcon,
+          leftIconActive,
+          rightIcon,
+          rightIconActive,
+          name,
+          subTitle,
+          props: tabProps = {}
+        } = item
         let isActive = getIsActive(item)
-        let liconDOM = null
-        if (icon) {
-          liconDOM = getIcon(icon, iconActive, isActive)
+        let leftIconDOM = null
+        if (leftIcon) {
+          leftIconDOM = getIcon(leftIcon, leftIconActive, isActive)
         }
-        let riconDOM = null
-        if (ricon) {
-          riconDOM = getIcon(ricon, riconActive, isActive)
+        let rightIconDOM = null
+        if (rightIcon) {
+          rightIconDOM = getIcon(rightIcon, rightIconActive, isActive)
         }
 
         return (
@@ -102,11 +110,11 @@ const Tabs = forwardRef(
             className={`tab${item?.disabled ? ' disabled' : ''}${isActive ? ' active' : ''}`}
             data-index={index}
             key={index}
-            {...attribute}
-            style={Object.assign({}, tabStyle, attribute?.style || {})}
+            {...tabProps}
+            style={Object.assign({}, tabStyle, tabProps?.style || {})}
             onClick={(e) => handleClick(e, item)}
           >
-            {liconDOM && liconDOM}
+            {leftIconDOM && leftIconDOM}
             <div className="tab-content" {...contentProps}>
               <div
                 {...titleProps}
@@ -114,18 +122,18 @@ const Tabs = forwardRef(
               >
                 {name}
               </div>
-              {subtitle && (
+              {subTitle && (
                 <div
-                  {...subtitleProps}
+                  {...subTitleProps}
                   className={`tab-subtitle${
-                    subtitleProps.className ? ' ' + subtitleProps.className : ''
+                    subTitleProps.className ? ' ' + subTitleProps.className : ''
                   }`}
                 >
-                  {subtitle}
+                  {subTitle}
                 </div>
               )}
             </div>
-            {riconDOM && riconDOM}
+            {rightIconDOM && rightIconDOM}
           </li>
         )
       })

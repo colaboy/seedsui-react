@@ -16,7 +16,7 @@ function formatValue(value, type) {
     return {
       ...tab,
       value: date,
-      sndcaption: DateUtil.format(date, type)
+      subTitle: DateUtil.format(date, type)
     }
   })
 }

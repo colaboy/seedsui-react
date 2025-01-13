@@ -84,7 +84,7 @@ function MultipleMain(
                 className={tab.disabled ? 'disabled' : ''}
                 onChange={(date) => {
                   tab.value = date
-                  tab.sndcaption = DateUtil.format(tab.value, type)
+                  tab.subTitle = DateUtil.format(tab.value, type)
                   onChange && onChange(tabsRef.current)
                 }}
               />
