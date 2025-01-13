@@ -15,9 +15,9 @@ export default () => {
         min={0.1}
         max={0.5}
         allowClear
-        // liconProps={{ className: 'icon icon-rdo-emoji' }}
-        // licon={<i className="icon icon-rdo-emoji"></i>}
-        // ricon={<i className="icon icon-rdo-emoji"></i>}
+        // leftIconProps={{ className: 'icon icon-rdo-emoji' }}
+        // leftIcon={<i className="icon icon-rdo-emoji"></i>}
+        // rightIcon={<i className="icon icon-rdo-emoji"></i>}
         onChange={(val) => {
           console.log(val)
           setValue(val)

@@ -47,7 +47,9 @@ export default function CustomDates({
         }}
         placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
+        rightIcon={
+          <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />
+        }
       />
       —
       <Combo
@@ -65,7 +67,9 @@ export default function CustomDates({
         }}
         placeholder={locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        ricon={<i className="ricon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />}
+        rightIcon={
+          <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />
+        }
       />
     </div>
   )

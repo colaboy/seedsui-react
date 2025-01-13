@@ -10,7 +10,7 @@ const InputText = forwardRef(
       className,
       autoFit, // 自动高度文本框
       readOnly,
-      disabled, // exclusion-ricon
+      disabled, // excludeRightIcon
       // 文本框
       inputProps = {},
       defaultValue,
@@ -28,16 +28,14 @@ const InputText = forwardRef(
       autoFocus, // 渲染时自动获取焦点
       autoSelect, // 渲染时自动选中
       // 左右图标
-      licon,
-      liconProps,
-      ricon,
-      riconProps,
+      leftIcon,
+      leftIconProps,
+      rightIcon,
+      rightIconProps,
       // 清除按键
-      allowClear, // exclusion-ricon
+      allowClear, // excludeRightIcon
       clearProps,
       onClearVisibleChange,
-      // 右侧内容
-      rcaption,
       // 子内容
       children,
       // events
@@ -377,22 +375,24 @@ const InputText = forwardRef(
       )
     }
 
-    let exclusionRicon = disabled === 'exclusion-ricon' || allowClear === 'exclusion-ricon'
+    let excludeRightIcon = disabled === 'excludeRightIcon' || allowClear === 'excludeRightIcon'
     return (
       <div
         {...props}
         style={style}
         className={`input-wrapper${className ? ' ' + className : ''}${disabled ? ' disabled' : ''}${
           readOnly ? ' readonly' : ''
-        }${exclusionRicon ? ' exclusion-ricon' : ''}`}
+        }${excludeRightIcon ? ' exclude-right-icon' : ''}`}
         onClick={onClick}
         ref={rootRef}
       >
-        {licon && licon}
-        {liconProps && (
+        {leftIcon && leftIcon}
+        {leftIconProps && (
           <i
-            {...liconProps}
-            className={`licon icon${liconProps?.className ? ' ' + liconProps?.className : ''}`}
+            {...leftIconProps}
+            className={`left-icon icon${
+              leftIconProps?.className ? ' ' + leftIconProps?.className : ''
+            }`}
           ></i>
         )}
         {getInputDOM()}
@@ -403,14 +403,15 @@ const InputText = forwardRef(
           className={`input-clear hide${clearProps?.className ? ' ' + clearProps?.className : ''}`}
           onClick={handleClear}
         ></i>
-        {riconProps && (
+        {rightIconProps && (
           <i
-            {...riconProps}
-            className={`ricon icon${riconProps?.className ? ' ' + riconProps?.className : ''}`}
+            {...rightIconProps}
+            className={`right-icon icon${
+              rightIconProps?.className ? ' ' + rightIconProps?.className : ''
+            }`}
           ></i>
         )}
-        {ricon && ricon}
-        {rcaption && rcaption}
+        {rightIcon && rightIcon}
       </div>
     )
   }

@@ -88,7 +88,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
             ref={inputRef}
             type="search"
             // placeholder={locale('搜索地点', 'SeedsUI_search_place')}
-            licon={<i className="map-searchControl-header-input-icon"></i>}
+            leftIcon={<i className="map-searchControl-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
             style={{ marginRight: '8px' }}

@@ -27,8 +27,8 @@ export default () => {
         // readOnly
         value={value}
         // maxLength={10}
-        allowClear="exclusion-ricon"
-        // disabled="exclusion-ricon"
+        allowClear="excludeRightIcon"
+        // disabled="excludeRightIcon"
         onChange={(val) => {
           console.log(val)
           setValue(val)
@@ -41,11 +41,11 @@ export default () => {
             console.log(e)
           }
         }}
-        // riconProps={{ className: 'icon shape-arrow-right sm' }}
-        ricon={
+        // rightIconProps={{ className: 'icon shape-arrow-right sm' }}
+        rightIcon={
           <>
-            <i className="ricon icon shape-arrow-right sm" />
-            <i className="ricon icon shape-arrow-right sm" />
+            <i className="right-icon icon shape-arrow-right sm" />
+            <i className="right-icon icon shape-arrow-right sm" />
           </>
         }
       />

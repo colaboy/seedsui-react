@@ -266,12 +266,12 @@ const LocationCombo = forwardRef(
     }
 
     // 定位和选择按钮
-    function getRiconNode() {
+    function getRightIconNode() {
       if (disabled) return null
-      let riconNode = []
+      let rightIconNode = []
       // 显示选择
       if (chooseVisible) {
-        riconNode.push(
+        rightIconNode.push(
           <i
             key="choose"
             className={`location-combo-icon location-combo-icon-choose${
@@ -286,7 +286,7 @@ const LocationCombo = forwardRef(
       }
       // 显示预览
       if (previewVisible) {
-        riconNode.push(
+        rightIconNode.push(
           <i
             key="preview"
             className={`location-combo-icon location-combo-icon-preview${
@@ -302,7 +302,7 @@ const LocationCombo = forwardRef(
       }
       // 显示定位
       if (locationVisible) {
-        riconNode.push(
+        rightIconNode.push(
           <i
             key="location"
             className={`location-combo-icon location-combo-icon-location${
@@ -312,7 +312,7 @@ const LocationCombo = forwardRef(
           ></i>
         )
       }
-      return riconNode
+      return rightIconNode
     }
 
     // 加载和错误面板, 显示这些面板时将会隐藏文本框, 样式必须与文本框一致
@@ -366,7 +366,7 @@ const LocationCombo = forwardRef(
           children={statusNode}
           value={value?.value || value?.address || ''}
           {...props}
-          ricon={<>{getRiconNode()}</>}
+          rightIcon={<>{getRightIconNode()}</>}
           inputProps={Object.assign({}, inputProps, {
             // 定位中和定位失败时隐藏text框, 显示定位中或者定位失败的div
             visible: statusNode ? false : true,

@@ -30,7 +30,7 @@ export default () => {
           }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
-          // allowClear="exclusion-ricon"
+          // allowClear="excludeRightIcon"
           rangeId={rangeId}
           value={value}
           // onError={(error) => {

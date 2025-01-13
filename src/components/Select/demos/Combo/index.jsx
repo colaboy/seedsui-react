@@ -22,11 +22,11 @@ export default () => {
       <Select.Combo
         ref={selectRef}
         // autoSize
-        // disabled="exclusion-ricon"
+        // disabled="excludeRightIcon"
         // animation="zoom"
         // 自定义主体
         // MainComponent={CustomMain}
-        riconProps={{
+        rightIconProps={{
           className: 'icon shape-arrow-right sm'
         }}
         listExtraHeaderRender={() => {
@@ -35,7 +35,7 @@ export default () => {
         listExtraFooterRender={() => {
           return <p>列表底部扩展</p>
         }}
-        allowClear="exclusion-ricon"
+        allowClear="excludeRightIcon"
         // multiple={true}
         placeholder="Please select"
         value={value}

@@ -4,6 +4,15 @@
   .flex;
   .flex-middle;
   .flex-1;
+  .left-icon {
+    margin-right: 4px;
+  }
+  .right-icon {
+    margin-left: 12px;
+    color: #c2c6cd;
+  }
+
+  // 废弃(deprecated)
   .licon {
     margin-right: 4px;
   }
@@ -11,6 +20,7 @@
     margin-left: 12px;
     color: #c2c6cd;
   }
+
   .input-text,
   .input-textarea {
     width: 100%;
@@ -25,7 +35,7 @@
   }
 }
 
-// 清空或者禁用对右侧图标互斥逻辑
+// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)
 .input-wrapper.exclusion-ricon {
   .input-clear:not(.hide) {
     & ~ .ricon {
@@ -34,6 +44,20 @@
   }
   &.disabled {
     .ricon {
+      display: none;
+    }
+  }
+}
+
+// 清空或者禁用对右侧图标互斥逻辑
+.input-wrapper.exclude-right-icon {
+  .input-clear:not(.hide) {
+    & ~ .right-icon {
+      display: none;
+    }
+  }
+  &.disabled {
+    .right-icon {
       display: none;
     }
   }

@@ -118,8 +118,8 @@ export default () => {
       <Cascader.DistrictCombo
         ref={districtComboRef}
         // 编辑控制
-        allowClear="exclusion-ricon"
-        ricon={<i className="ricon shape-arrow-right sm"></i>}
+        allowClear="excludeRightIcon"
+        rightIcon={<i className="right-icon shape-arrow-right sm"></i>}
         min="city" // ['country', 'province', 'city', 'district', 'street']
         // type="district"
         loadData={loadData}

@@ -34,16 +34,14 @@ const NumberBox = forwardRef(
       autoFocus, // 渲染时自动获取焦点
       autoSelect, // 渲染时自动选中
       // 左右图标
-      licon,
-      liconProps,
-      ricon,
-      riconProps,
+      leftIcon,
+      leftIconProps,
+      rightIcon,
+      rightIconProps,
       // 清除按键
       allowClear,
       clearProps,
       onClearVisibleChange,
-      // 右侧内容
-      rcaption,
       // 子内容
       children,
       // 事件
@@ -190,14 +188,13 @@ const NumberBox = forwardRef(
           maxLength={maxLength}
           autoFocus={autoFocus} // 渲染时自动获取焦点
           autoSelect={autoSelect} // 渲染时自动选中
-          licon={licon}
-          liconProps={liconProps}
-          ricon={ricon}
-          riconProps={riconProps}
+          leftIcon={leftIcon}
+          leftIconProps={leftIconProps}
+          rightIcon={rightIcon}
+          rightIconProps={rightIconProps}
           allowClear={allowClear}
           clearProps={clearProps}
           onClearVisibleChange={onClearVisibleChange}
-          rcaption={rcaption}
           onClick={onClick}
           onCompositionStart={onCompositionStart} // 输入开始时
           onCompositionUpdate={onCompositionUpdate} // 输入进行中

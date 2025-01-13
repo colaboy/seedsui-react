@@ -32,10 +32,6 @@ title: Input
 
 <code src="./demos/Range/index.jsx"></code>
 
-### Input.Star
-
-<code src="./demos/Star/index.jsx"></code>
-
 ### Input.Tel
 
 <code src="./demos/Tel/index.jsx"></code>

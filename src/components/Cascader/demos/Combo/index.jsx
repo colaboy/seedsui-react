@@ -86,7 +86,7 @@ export default () => {
         loadData={loadData}
         value={value}
         placeholder={`Select`}
-        ricon={<i className="shape-arrow-right sm"></i>}
+        rightIcon={<i className="shape-arrow-right sm"></i>}
         onChange={(newValue) => {
           console.log('修改:', newValue)
           setValue(newValue)
