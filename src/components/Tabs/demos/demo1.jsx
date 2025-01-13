@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tabs } from 'seedsui-react'
+import Tabs from 'library/components/Tabs'
 
 export default () => {
   const list = [
