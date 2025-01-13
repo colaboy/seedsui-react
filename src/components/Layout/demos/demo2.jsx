@@ -11,6 +11,7 @@ for (let i = 0; i < 100; i++) {
 
 export default () => {
   function handleTopRefresh() {
+    console.log('onTopRefresh')
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve('自定义提示')

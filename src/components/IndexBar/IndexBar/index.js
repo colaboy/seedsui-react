@@ -6,28 +6,44 @@ import React, {
   useEffect,
   useState
 } from 'react'
-import Instance from './instance.js'
+import getAnchors from './getAnchors'
+import goAnchor from './goAnchor'
+import preventDefault from './preventDefault'
 
-const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
+const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
   let [anchors, setAnchors] = useState(null)
-  // 节点
-  const rootRef = useRef(null)
+
+  // Nodes
+  const scrollerRef = useRef(null)
+  const sidebarRef = useRef(null)
   const tooltipRef = useRef(null)
-  const instance = useRef(null)
+
+  // Touches
+  let touchesRef = useRef({
+    startX: 0
+  })
+
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
+      rootDOM: sidebarRef.current,
       tooltipDOM: tooltipRef.current,
-      instance: instance.current,
-      getRootDOM: () => rootRef.current,
-      getTooltipDOM: () => rootRef.current,
-      getInstance: () => instance.current
+      getRootDOM: () => sidebarRef.current,
+      getTooltipDOM: () => sidebarRef.current
     }
   })
 
   useEffect(() => {
-    // 实例化
-    initInstance()
+    // 获取滚动容器
+    scrollerRef.current = scrollerDOM || sidebarRef.current?.previousElementSibling
+
+    // 直接在dom上touchStart
+    // sidebarRef.current.addEventListener('touchstart', s.onTouchStart, false)
+    // sidebarRef.current.addEventListener('touchmove', s.onTouchMove, false)
+    // sidebarRef.current.addEventListener('touchend', s.onTouchEnd, false)
+    // sidebarRef.current.addEventListener('touchcancel', s.onTouchEnd, false)
+
+    // 更新锚记
+    updateAnchors()
     // eslint-disable-next-line
   }, [])
 
@@ -37,22 +53,50 @@ const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
     // eslint-disable-next-line
   }, [children])
 
-  // 实例化
-  function initInstance() {
-    instance.current = new Instance({
-      overflowContainer: container,
-      container: rootRef.current,
-      tooltipContainer: tooltipRef.current
-    })
-    // 更新锚记
-    updateAnchors()
-  }
-
   // 获取所有锚点
   function updateAnchors() {
-    if (!instance.current || !instance.current.getAnchors) return
-    anchors = instance.current.getAnchors()
+    if (!scrollerRef.current) return
+    anchors = getAnchors(scrollerRef.current)
     setAnchors(anchors)
+  }
+
+  function handleTouchStart(e) {
+    e.stopPropagation()
+    // 解决拖动时影响document弹性
+    e.currentTarget.addEventListener('touchmove', preventDefault, false)
+
+    touchesRef.current.startX = e.touches[0].clientX
+
+    // 滚动到指定位置
+    goAnchor({
+      scrollerDOM: scrollerRef.current,
+      sidebarDOM: sidebarRef.current,
+      tooltipDOM: tooltipRef.current,
+      x: touchesRef.current.startX,
+      y: e.touches[0].clientY
+    })
+
+    // 激活indexbar
+    sidebarRef.current.classList.add('active')
+    tooltipRef.current.classList.add('active')
+  }
+  function handleTouchMove(e) {
+    e.stopPropagation()
+    goAnchor({
+      scrollerDOM: scrollerRef.current,
+      sidebarDOM: sidebarRef.current,
+      tooltipDOM: tooltipRef.current,
+      x: touchesRef.current.startX,
+      y: e.touches[0].clientY
+    })
+  }
+  function handleTouchEnd(e) {
+    e.stopPropagation()
+    // 解除对move时的弹性对当前div的锁定
+    e.currentTarget.removeEventListener('touchmove', preventDefault, false)
+
+    sidebarRef.current.classList.remove('active')
+    tooltipRef.current.classList.remove('active')
   }
 
   const DOM = (
@@ -61,7 +105,10 @@ const IndexBar = forwardRef(({ container, children, ...props }, ref) => {
       <div
         {...props}
         className={`indexbar${props.className ? ' ' + props.className : ''}`}
-        ref={rootRef}
+        ref={sidebarRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {(anchors || []).map((anchor, i) => {
           return (
