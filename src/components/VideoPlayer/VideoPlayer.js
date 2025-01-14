@@ -3,18 +3,14 @@ import { createPortal } from 'react-dom'
 import locale from './../../utils/locale'
 
 // 视频预览
-const VideoFull = forwardRef(
+const VideoPlayer = forwardRef(
   (
     {
       portal,
 
-      scriptSDK = '//g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js',
-      cssSDK = '//g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css',
-
       poster = '',
       src,
       autoPlay = true,
-      pause,
       isLive,
       params,
       onError,
@@ -22,7 +18,7 @@ const VideoFull = forwardRef(
 
       bar, // 状态栏
       children,
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -31,20 +27,28 @@ const VideoFull = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
-        instance: instance.current,
         getRootDOM: () => rootRef.current,
-        getInstance: () => instance.current
+        pause: () => {
+          if (instance.current) {
+            instance.current.pause()
+          }
+        },
+        play: () => {
+          if (instance.current) {
+            instance.current.play()
+          }
+        }
       }
     })
 
     let idSdkPlayer = ''
-    const idSdkCss = '_seedsui_videofull_css_'
-    const idSdkScript = '_seedsui_videofull_script_'
+    const idSdkCss = '_seedsui_videoplayer_css_'
+    const idSdkScript = '_seedsui_videoplayer_script_'
 
     // 设置播放器容器
     function setIdSdkPlayer(id) {
       if (!rootRef.current) return
-      let player = rootRef.current.querySelector('.videofull-page-player')
+      let player = rootRef.current.querySelector('.videoplayer-page-player')
       if (player) {
         player.setAttribute('id', id)
       }
@@ -57,7 +61,7 @@ const VideoFull = forwardRef(
           var head = document.getElementsByTagName('head')[0]
           var link = document.createElement('link')
           link.id = idSdkCss
-          link.href = cssSDK
+          link.href = '//g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css'
           link.setAttribute('rel', 'stylesheet')
           link.setAttribute('type', 'text/css')
           head.appendChild(link)
@@ -68,7 +72,7 @@ const VideoFull = forwardRef(
           script.id = idSdkScript
           script.type = 'text/javascript'
           script.charset = 'utf-8'
-          script.src = scriptSDK
+          script.src = '//g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js'
           document.body.appendChild(script)
           script.onload = function () {
             resolve(true)
@@ -239,11 +243,11 @@ const VideoFull = forwardRef(
     }
 
     useEffect(() => {
-      window._seedsui_videofull_player_ = window._seedsui_videofull_player_
-        ? window._seedsui_videofull_player_ + 1
+      window._seedsui_videoplayer_player_ = window._seedsui_videoplayer_player_
+        ? window._seedsui_videoplayer_player_ + 1
         : 1
       // eslint-disable-next-line
-      idSdkPlayer = `_seedsui_videofull_player_${window._seedsui_videofull_player_}`
+      idSdkPlayer = `_seedsui_videoplayer_player_${window._seedsui_videoplayer_player_}`
       setIdSdkPlayer(idSdkPlayer)
       if (instance.current) return
       initInstance()
@@ -253,21 +257,15 @@ const VideoFull = forwardRef(
       }
     }, []) // eslint-disable-line
 
-    useEffect(() => {
-      if (instance.current && pause === true) {
-        instance.current.pause()
-      }
-    }, [pause])
-
     const DOM = (
       <div
-        className={`videofull-page${others.className ? ' ' + others.className : ''}`}
-        {...others}
+        className={`videoplayer-page${props.className ? ' ' + props.className : ''}`}
+        {...props}
         ref={rootRef}
       >
         <div
           x5-video-player-type="h5"
-          className="videofull-page-player prism-player"
+          className="videoplayer-page-player prism-player"
           webkit-playsinline="true"
           playsInline={true}
           style={{ width: '100%', height: '100%' }}
@@ -283,4 +281,4 @@ const VideoFull = forwardRef(
   }
 )
 
-export default VideoFull
+export default VideoPlayer

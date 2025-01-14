@@ -102,7 +102,7 @@ export { default as Mark } from './components/Mark'
 export { default as Marquee } from './deprecated/Marquee'
 export { default as MenuTiled } from './deprecated/MenuTiled'
 export { default as MenuTree } from './deprecated/MenuTree'
-export { default as VideoFull } from './deprecated/VideoFull' // 不常用
+export { default as VideoPlayer } from './components/VideoPlayer' // 不常用
 export { default as Videos } from './deprecated/Videos' // 不常用
 export { default as Vott } from './components/Vott' // 不常用
 export { default as Result } from './components/Result'

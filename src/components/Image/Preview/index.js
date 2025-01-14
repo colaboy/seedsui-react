@@ -3,10 +3,10 @@ import Swipe from './Swipe'
 
 // 内库使用
 import Modal from './../../Modal'
-import VideoFull from './../../../deprecated/VideoFull'
+import VideoPlayer from './../../VideoPlayer'
 
 // 测试使用
-// import { Modal, VideoFull } from 'seedsui-react'
+// import { Modal, VideoPlayer } from 'seedsui-react'
 
 const Preview = forwardRef(
   (
@@ -77,12 +77,12 @@ const Preview = forwardRef(
                     <img alt="" className="swiper-zoom-target" src={source.src} />
                   )}
                   {type === 'video' && (
-                    <VideoFull
+                    <VideoPlayer
                       pause={pauseList[index]}
                       poster={source.thumb}
                       src={source.src}
                       autoPlay={false}
-                      bar={<div className="videofull-close" onClick={onClose}></div>}
+                      bar={<div className="videoplayer-close" onClick={onClose}></div>}
                     />
                   )}
                   {source.children}

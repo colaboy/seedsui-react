@@ -34,7 +34,6 @@ if (packageJson?.version) {
 }
 
 export { default as locale } from './utils/locale'
-export { default as ActionSheet } from './components/ActionSheet'
 export { default as Alert } from './deprecated/Alert' // (废弃, 使用Modal代替)
 export { default as Modal } from './components/Modal'
 export { default as Attach } from './deprecated/Attach'
@@ -103,7 +102,7 @@ export { default as Mark } from './components/Mark'
 export { default as Marquee } from './deprecated/Marquee'
 export { default as MenuTiled } from './deprecated/MenuTiled'
 export { default as MenuTree } from './deprecated/MenuTree'
-export { default as VideoFull } from './deprecated/VideoFull' // 不常用
+export { default as VideoPlayer } from './components/VideoPlayer' // 不常用
 export { default as Videos } from './deprecated/Videos' // 不常用
 export { default as Vott } from './components/Vott' // 不常用
 export { default as Result } from './components/Result'

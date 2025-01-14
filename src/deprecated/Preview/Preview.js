@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react'
 import Modal from './../../components/Modal'
 import Swipe from './Swipe'
-import VideoFull from './../VideoFull'
+import VideoPlayer from './../../components/VideoPlayer'
 
 const Preview = forwardRef(
   (
@@ -73,12 +73,12 @@ const Preview = forwardRef(
                     <img alt="" className="swiper-zoom-target" src={source.src} />
                   )}
                   {type === 'video' && (
-                    <VideoFull
+                    <VideoPlayer
                       pause={pauseList[index]}
                       poster={source.thumb}
                       src={source.src}
                       autoPlay={false}
-                      bar={<div className="videofull-close" onClick={onHide}></div>}
+                      bar={<div className="videoplayer-close" onClick={onHide}></div>}
                     />
                   )}
                   {source.children}
