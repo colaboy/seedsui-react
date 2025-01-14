@@ -1,8 +1,4 @@
 // Indexbar索引栏
-@indexbar-color: #b6b6b6;
-@indexbar-color-active: @default;
-@indexbar-font-size: @font-size-s;
-
 .indexbar {
   position: absolute;
   top: 50%;
@@ -10,7 +6,7 @@
   right: 0;
   z-index: 2;
   width: 40px;
-  font-size: @indexbar-font-size;
+  font-size: var(--font-size-s);
 }
 
 .indexbar-button {
@@ -24,7 +20,7 @@
     justify-content: center;
     width: 16px;
     height: 16px;
-    color: @indexbar-color;
+    color: var(--default);
     border-radius: 100%;
     pointer-events: none;
   }
@@ -32,8 +28,7 @@
 
 .indexbar-button.active {
   .indexbar-button-name {
-    color: white;
-    background-color: @primary;
+    color: var(--primary);
   }
 }
 
@@ -51,7 +46,7 @@
   font-size: 35px;
   line-height: 80px;
   text-align: center;
-  background-color: @mask-bg-color;
+  background-color: var(--mask-bg);
   border-radius: 40px;
   transition: 200ms;
 }

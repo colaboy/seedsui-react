@@ -1,18 +1,15 @@
 /*
 定义变量-----------------------------------------------------------------------------------------
 */
-// 动画时长(例如遮等)
-@animation-duration: 400ms;
-
-// 遮罩颜色
-/* prettier-ignore */
-@mask-bg-color: rgba(0,0,0,.4);
 
 // 基础颜色(控件多基于如下几种颜色)
 :root {
+  // 动画时长(例如遮等)
+  --animation-duration: 400ms;
   // 全局背景色
   --app-background-color: #f1f2f5;
   // 颜色
+  --mask-bg: rgba(0, 0, 0, 0.4);
   --default: #1a1c1f;
   --secondary: #77818c;
   --tertiary: #a9b1b9;
@@ -61,6 +58,13 @@
   --radius-xs: 4px;
 }
 
+// 动画时长(例如遮等)
+@animation-duration: var(--animation-duration);
+
+// 遮罩颜色
+/* prettier-ignore */
+@mask-bg-color: var(--mask-bg);
+
 // body颜色
 @body-bg-color: var(--app-background-color);
 
@@ -95,9 +99,3 @@
 @radius-m: var(--radius-m);
 @radius-s: var(--radius-s);
 @radius-xs: var(--radius-xs);
-
-// 按钮
-@import 'variables/Button.less';
-
-// 标记
-@import 'variables/Mark.less';
