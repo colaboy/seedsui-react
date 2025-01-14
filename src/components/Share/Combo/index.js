@@ -14,6 +14,9 @@ import { Bridge } from 'seedsui-react'
 // Combo
 const Combo = (
   {
+    // Combo
+    onBeforeOpen,
+
     // Modal
     portal,
     modalProps,
@@ -22,7 +25,7 @@ const Combo = (
     shareTo,
     /*
     {
-      wechat|wecom|dingtalk|lark: {
+      wechat|moments|miniprogram|wecom|dingtalk|lark: {
         title = '', // 分享标题
         description = '', // 分享描述
         imageUrl = '', // 分享图标
@@ -62,7 +65,12 @@ const Combo = (
   })
 
   // 点击分享
-  function handleClick() {
+  async function handleClick() {
+    if (typeof onBeforeOpen === 'function') {
+      let goOn = await onBeforeOpen()
+      if (goOn === false) return
+    }
+
     if (Bridge.platform === 'lark' && shareTo?.lark) {
       share(shareTo?.lark || {})
       return

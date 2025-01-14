@@ -26,8 +26,8 @@ function Main({ shareTo, ...props }, ref) {
     return {
       rootDOM: rootRef.current,
       getRootDOM: () => rootRef.current,
-      support: () => {
-        return support(shareTo)
+      support: (externalShareTo) => {
+        return support(externalShareTo || shareTo)
       }
     }
   })

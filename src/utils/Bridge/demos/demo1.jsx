@@ -19,6 +19,32 @@ new vconsole()
 export default () => {
   const [photos, setPhotos] = useState([])
   const [location, setLocation] = useState([])
+  const [shareTo, setShareTo] = useState({
+    wechat: {
+      title: '标题',
+      description: '描述',
+      imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+      url: 'https://www.baidu.com'
+    },
+    wecom: {
+      title: '标题',
+      description: '描述',
+      imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+      url: 'https://www.baidu.com'
+    },
+    dingtalk: {
+      title: '标题',
+      description: '描述',
+      imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+      url: 'https://www.baidu.com'
+    },
+    lark: {
+      title: '标题',
+      description: '描述',
+      imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+      url: 'https://www.baidu.com'
+    }
+  })
 
   const imageLocalIds = useRef(null)
   useEffect(() => {
@@ -327,32 +353,59 @@ export default () => {
 
         <p className="demo-title">分享: 支持勤策(ios、android)、微信、企微、小程序、飞书、钉钉</p>
         <Share.Combo
-          shareTo={{
-            wechat: {
-              title: '标题',
-              description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
-              url: 'https://www.baidu.com'
-            },
-            wecom: {
-              title: '标题',
-              description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
-              url: 'https://www.baidu.com'
-            },
-            dingtalk: {
-              title: '标题',
-              description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
-              url: 'https://www.baidu.com'
-            },
-            lark: {
-              title: '标题',
-              description: '描述',
-              imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
-              url: 'https://www.baidu.com'
-            }
+          onBeforeOpen={() => {
+            Loading.show({
+              content: '获取小程序分享链接'
+            })
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                Loading.hide()
+                setShareTo({
+                  wechat: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://www.baidu.com'
+                  },
+                  miniprogram: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://servicewechat.com/wxascheme/jump_wxa?url=weixin://dl/business/?t=IUGVzjsue7u',
+                    miniProgramId: 'gh_00011085b545',
+                    miniProgramPath:
+                      '/pages/Login/index?sharePath=%2Fpages%2FBlog%2FShareDetail%2Findex%3Finfoid%3D5083717378142702100&tenantid=6019160693176440421'
+                  },
+                  moments: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://www.baidu.com'
+                  },
+                  wecom: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://www.baidu.com'
+                  },
+                  dingtalk: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://www.baidu.com'
+                  },
+                  lark: {
+                    title: '标题',
+                    description: '描述',
+                    imageUrl: 'https://res.waiqin365.com/d/seedsui/logo.png',
+                    url: 'https://www.baidu.com'
+                  }
+                })
+                resolve(true)
+              }, 2000)
+            })
           }}
+          shareTo={shareTo}
         >
           <Button className="primary flex" style={{ margin: '12px 10px' }}>
             分享
