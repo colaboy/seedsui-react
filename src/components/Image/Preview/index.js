@@ -1,5 +1,7 @@
 import React, { forwardRef, useRef } from 'react'
-import Swipe from './Swipe'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Zoom, Pagination } from 'swiper/modules'
+import preventDefault from './preventDefault'
 
 // 内库使用
 import Modal from './../../Modal'
@@ -53,23 +55,53 @@ const Preview = forwardRef(
       }
     }
 
+    function handleTouchStart(e) {
+      e.stopPropagation()
+      // 解决拖动时影响document弹性
+      if (e.currentTarget.touchMovePreventDefault) return
+      e.currentTarget.touchMovePreventDefault = true
+      e.currentTarget.addEventListener('touchmove', preventDefault, false)
+    }
+    // touchEnd解绑后, 发现不能拖动放大缩小了, 所以不能加
+    // function handleTouchEnd(e) {
+    //   e.stopPropagation()
+    //   // 解决拖动时影响document弹性
+    //   e.currentTarget.removeEventListener('touchmove', preventDefault, false)
+    // }
+
     return (
       <Modal.Picker
         visible
         animation="slideUp"
         className="preview-modal"
         onVisibleChange={handleVisibleChange}
+        onTouchStart={handleTouchStart}
+        // onTouchEnd={handleTouchEnd}
       >
-        <Swipe
+        <Swiper
           ref={ref}
-          containerChildren={children}
-          defaultIndex={activeIndex}
-          onChange={handleSwipe}
-          {...others}
+          spaceBetween={0}
+          slidesPerView={1}
+          initialSlide={activeIndex}
+          navigation={false}
+          zoom={type !== 'video' ? true : false}
+          // Bullet pagination
+          pagination={true}
+          modules={[Zoom, Pagination]}
+          onSlideChange={handleSwipe}
+          style={{
+            height: '100%',
+            backgroundColor: 'black'
+          }}
+          // fix touch move
+          touchMoveStopPropagation={true}
+          touchStartForcePreventDefault={true}
+          touchStartPreventDefault={true}
+          passiveListeners={true}
         >
           {list.map((source, index) => {
             return (
-              <div className="swiper-slide" key={index}>
+              <SwiperSlide key={index}>
                 <div className="swiper-zoom-container">
                   {type !== 'video' && (
                     <img alt="" className="swiper-zoom-target" src={source.src} />
@@ -82,15 +114,14 @@ const Preview = forwardRef(
                       poster={source.thumb}
                       src={source.src}
                       autoPlay={false}
-                      header={<div className="videoplayer-header-close" onClick={onClose}></div>}
                     />
                   )}
                   {source.children}
                 </div>
-              </div>
+              </SwiperSlide>
             )
           })}
-        </Swipe>
+        </Swiper>
       </Modal.Picker>
     )
   }

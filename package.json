@@ -67,6 +67,7 @@
     "lodash": "^4.17.21",
     "rc-tree": "^5.7.2",
     "react-sortablejs": "^6.1.4",
+    "swiper": "^11.2.1",
     "vconsole": "^3.15.0"
   },
   "devDependencies": {
