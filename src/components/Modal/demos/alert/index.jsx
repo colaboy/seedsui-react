@@ -15,7 +15,6 @@ export default () => {
         <div className="demo-title" onClick={handleToggle}>
           Modal visible toggle
         </div>
-        <iframe src="http://localhost:8000/seedsui-react/~demos/src-modal-demo-confirm?" />
       </Layout.Main>
     </Layout>
   )

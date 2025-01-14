@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import locale from './../../../utils/locale'
-import Modal from './../Modal'
+import BaseModal from './../BaseModal'
 import { getChildren } from './../utils'
 
 // Alert
@@ -29,9 +29,9 @@ const Alert = forwardRef(
       ...props
     }
     return (
-      <Modal ref={ref} className="modal-alert" maskClosable={maskClosable} {...props}>
+      <BaseModal ref={ref} className="modal-alert" maskClosable={maskClosable} {...props}>
         {getChildren(newProps)}
-      </Modal>
+      </BaseModal>
     )
   }
 )

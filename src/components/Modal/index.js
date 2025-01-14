@@ -1,9 +1,9 @@
-import Modal from './Modal'
+import Modal from './BaseModal'
 import Alert from './Alert/index'
 import Confirm from './Confirm/index'
 import Combo from './Combo'
 import Picker from './Picker'
-import SubModal from './Modal'
+import ComboModal from './Modal'
 
 import alert from './alert'
 import confirm from './confirm'
@@ -14,7 +14,7 @@ Modal.Alert = Alert
 Modal.Confirm = Confirm
 Modal.Combo = Combo
 Modal.Picker = Picker
-Modal.Modal = SubModal
+Modal.Modal = ComboModal
 
 // Js Api
 Modal.alert = alert
