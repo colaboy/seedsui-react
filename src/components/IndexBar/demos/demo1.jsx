@@ -1,116 +1,95 @@
-import React from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Layout, IndexBar } from 'seedsui-react'
 
 export default () => {
+  const [list, setList] = useState([])
+
+  useEffect(() => {
+    // Mock request list
+    setTimeout(() => {
+      let newList = queryList(['A', 'B', 'C'])
+      setList(newList)
+    }, 1000)
+
+    // eslint-disable-next-line
+  }, [])
+
+  // 获取A-Z
+  function queryList(letter) {
+    let newList = []
+    for (let i = 0; i < letter.length; i++) {
+      for (let j = 0; j < 15; j++) {
+        newList.push({
+          letter: letter[i],
+          name: `${letter[i]}姓人名`
+        })
+      }
+    }
+    return newList
+  }
+
+  console.log('list:', list)
+
+  // Render list
+  function getListNodes() {
+    let letter = {}
+    return list.map((item, index) => {
+      if (!letter[item.letter]) {
+        letter[item.letter] = true
+        return (
+          <Fragment key={index}>
+            <IndexBar.Anchor name={item.letter}>
+              <li>{item.letter}</li>
+            </IndexBar.Anchor>
+            <li>{item.name}</li>
+          </Fragment>
+        )
+      }
+      return <li key={index}>{item.name}</li>
+    })
+  }
   return (
     <Layout className="full">
       <IndexBar>
         <Layout.Main
-          onTopRefresh={() => {
-            console.log('onTopRefresh')
+          onBottomRefresh={() => {
             return new Promise((resolve) => {
               setTimeout(() => {
+                let newList = queryList([
+                  'A',
+                  'B',
+                  'C',
+                  'D',
+                  'E',
+                  'F',
+                  'G',
+                  'H',
+                  'I',
+                  'J',
+                  'K',
+                  'L',
+                  'M',
+                  'N',
+                  'O',
+                  'P',
+                  'Q',
+                  'R',
+                  'S',
+                  'T',
+                  'U',
+                  'V',
+                  'W',
+                  'X',
+                  'Y',
+                  'Z'
+                ])
+                setList(newList)
                 resolve(true)
               }, 2000)
             })
           }}
         >
-          <ul>
-            <IndexBar.Anchor name={'A'}>
-              <li>A</li>
-            </IndexBar.Anchor>
-            <li>阿华</li>
-            <li>阿敏</li>
-            <li>阿全</li>
-            <li>阿达</li>
-
-            <IndexBar.Anchor name={'B'}>
-              <li>B</li>
-            </IndexBar.Anchor>
-            <li>白起</li>
-            <li>白旭</li>
-            <li>冰冰</li>
-            <IndexBar.Anchor name={'C'}>
-              <li>C</li>
-            </IndexBar.Anchor>
-            <li>曹操</li>
-            <li>曹鸣</li>
-            <li>曹捷</li>
-            <li>陈真</li>
-            <li>陈进</li>
-            <li>陈明</li>
-            <li>陈伟</li>
-            <li>陈文</li>
-            <li>陈晓</li>
-            <li>陈娟</li>
-            <li>成勇</li>
-            <li>成婷</li>
-            <li>成龙</li>
-            <IndexBar.Anchor name={'D'}>
-              <li>D</li>
-            </IndexBar.Anchor>
-            <li>大成子</li>
-            <li>大舅子</li>
-            <li>戴笠</li>
-            <li>戴坤</li>
-            <li>戴成虎</li>
-            <li>邓小平</li>
-            <li>邓稼先</li>
-            <li>邓文迪</li>
-            <li>邓等</li>
-            <li>狄仁杰</li>
-            <li>狄弟</li>
-            <li>董文华</li>
-            <li>董事</li>
-            <IndexBar.Anchor name={'E'}>
-              <li>E</li>
-            </IndexBar.Anchor>
-            <li>大成子</li>
-            <li>大舅子</li>
-            <li>戴笠</li>
-            <li>戴坤</li>
-            <li>戴成虎</li>
-            <li>邓小平</li>
-            <li>邓稼先</li>
-            <li>邓文迪</li>
-            <li>邓等</li>
-            <li>狄仁杰</li>
-            <li>狄弟</li>
-            <li>董文华</li>
-            <li>董事</li>
-            <IndexBar.Anchor name={'F'}>
-              <li>F</li>
-            </IndexBar.Anchor>
-            <li>樊哙</li>
-            <li>樊心</li>
-            <li>冯晨晨</li>
-            <li>冯敬尧</li>
-            <li>冯成虎</li>
-            <li>冯小平</li>
-            <li>冯稼先</li>
-            <li>冯文迪</li>
-            <li>冯晨</li>
-            <li>福尔杰</li>
-            <li>福尔康</li>
-            <li>福文华</li>
-            <li>方文山</li>
-            <IndexBar.Anchor name={'G'}>
-              <li>G</li>
-            </IndexBar.Anchor>
-            <li>樊哙</li>
-            <li>樊心</li>
-            <li>冯晨晨</li>
-            <li>冯敬尧</li>
-            <li>冯成虎</li>
-            <li>冯小平</li>
-            <li>冯稼先</li>
-            <li>冯文迪</li>
-            <li>冯晨</li>
-            <li>福尔杰</li>
-            <li>福尔康</li>
-            <li>福文华</li>
-            <li>方文山</li>
-          </ul>
+          <ul>{getListNodes()}</ul>
         </Layout.Main>
       </IndexBar>
     </Layout>

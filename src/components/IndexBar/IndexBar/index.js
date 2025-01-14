@@ -31,7 +31,8 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
       rootDOM: sidebarRef.current,
       tooltipDOM: tooltipRef.current,
       getRootDOM: () => sidebarRef.current,
-      getTooltipDOM: () => sidebarRef.current
+      getTooltipDOM: () => sidebarRef.current,
+      update: updateAnchors
     }
   })
 
@@ -45,11 +46,6 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
 
     // 更新锚记
     updateAnchors()
-
-    // 锚记渲染完成后更新右侧选中效果
-    setTimeout(() => {
-      handleScroll()
-    }, 0)
 
     return () => {
       scrollerRef.current && scrollerRef.current.removeEventListener('scroll', handleScroll, false)
@@ -68,6 +64,11 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
     if (!scrollerRef.current) return
     anchors = getAnchors(scrollerRef.current)
     setAnchors(anchors)
+
+    // 锚记渲染完成后更新右侧选中效果
+    setTimeout(() => {
+      handleScroll()
+    }, 0)
   }
 
   // Scroller scroll to position sidebar
