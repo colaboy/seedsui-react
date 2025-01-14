@@ -1,10 +1,10 @@
 // import getKeywordIdsByPinyin from './getKeywordIdsByPinyin'
 
 // 获取关键字的所有匹配的keys
-function getKeywordIds(keyword, flattenTree) {
+function getKeywordIds(keyword, flatTree) {
   if (!keyword || typeof keyword !== 'string') return []
   let keys = []
-  for (let node of flattenTree) {
+  for (let node of flatTree) {
     if (node.name && node?.name?.indexOf(keyword) !== -1) {
       keys.push(node.id)
     }
@@ -13,7 +13,7 @@ function getKeywordIds(keyword, flattenTree) {
   // 如果没有匹配到, 再根据拼音匹配
   /*
   if (keys.length < 1 && keyword && /^[a-zA-Z]+$/.test(keyword)) {
-    for (let item of flattenTree) {
+    for (let item of flatTree) {
       if (getKeywordIdsByPinyin(keyword, item.name)) {
         keys.push(item.id)
         break

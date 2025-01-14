@@ -9,13 +9,15 @@ import setDeepTreeLeafNode from './setDeepTreeLeafNode'
 import updateDeepTreeParentId from './updateDeepTreeParentId'
 
 import flattenTree from './flattenTree'
-import getFlattenTreeNode from './getFlattenTreeNode'
-import getFlattenTreeNodes from './getFlattenTreeNodes'
+import getFlatTreeNode from './getFlatTreeNode'
+import getFlatTreeNodes from './getFlatTreeNodes'
+import getFlatTreePredecessorNode from './getFlatTreePredecessorNode'
+import getFlatTreePredecessorNodes from './getFlatTreePredecessorNodes'
+
 // import getFlattenTreeChildren from './getFlattenTreeChildren'
 // import getFlattenTreeDescendants from './getFlattenTreeDescendants'
 // import getFlattenTreeParent from './getFlattenTreeParent'
-// import getFlattenTreePredecessor from './getFlattenTreePredecessor'
-// import getFlattenTreePredecessors from './getFlattenTreePredecessors'
+
 // import getFlattenTreeRootIds from './getFlattenTreeRootIds'
 // import getFlattenTreeRoots from './getFlattenTreeRoots'
 // import setFlattenTreeNodeProp from './setFlattenTreeNodeProp'
@@ -32,8 +34,10 @@ const ArrayUtil = {
   updateDeepTreeParentId,
 
   flattenTree,
-  getFlattenTreeNode,
-  getFlattenTreeNodes
+  getFlatTreeNode,
+  getFlatTreeNodes,
+  getFlatTreePredecessorNode,
+  getFlatTreePredecessorNodes
   // getFlattenTreeChildren,
   // getFlattenTreeDescendants,
   // getFlattenTreeParent,
