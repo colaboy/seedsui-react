@@ -59,6 +59,67 @@ function Qince({ shareTo }) {
         />
       )
     }
+    // 微信小程序
+    if (shareTo?.miniprogram && Device.compareVersion(Device.platformVersion, '7.2.65') >= 0) {
+      let { title, description, url, imageUrl, miniProgramId, miniProgramPath, onSuccess, onFail } =
+        shareTo?.miniprogram || {}
+      shareNodes.push(
+        <Type
+          key="miniprogram"
+          type="miniprogram"
+          onClick={() => {
+            window.top.wq.invoke(
+              'shareWeChatMiniProgram',
+              {
+                title: title || '',
+                desc: description || '',
+                link: url || '',
+                imgUrl: imageUrl || '',
+                miniProgramId: miniProgramId || '', // 小程序的原始ID
+                miniProgramPath: miniProgramPath || '' // 小程序的路径，用户点击后打开的小程序页面
+              },
+              function (res) {
+                console.log('QinCe Share result:', res)
+                if (res.errMsg === 'shareWeChatMiniProgram:ok') {
+                  onSuccess && onSuccess()
+                } else {
+                  handleFail(res, onFail)
+                }
+              }
+            )
+          }}
+        />
+      )
+    }
+    // 微信朋友圈
+    if (shareTo?.moments) {
+      let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.moments || {}
+      shareNodes.push(
+        <Type
+          key="moments"
+          type="moments"
+          onClick={() => {
+            window.top.wq.invoke(
+              'shareTimeline',
+              {
+                title: title || '',
+                desc: description || '',
+                link: url || '',
+                imgUrl: imageUrl || ''
+              },
+              function (res) {
+                console.log('QinCe Share result:', res)
+                if (res.errMsg === 'shareTimeline:ok') {
+                  onSuccess && onSuccess()
+                } else {
+                  handleFail(res, onFail)
+                }
+              }
+            )
+          }}
+        />
+      )
+    }
     // 企业微信
     if (shareTo?.wecom) {
       let { title, description, url, imageUrl, onSuccess, onFail } = shareTo?.wecom || {}
