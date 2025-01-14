@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Modal } from 'seedsui-react'
+import { Layout, Modal, Button } from 'seedsui-react'
 
 export default () => {
   function handleToggle() {
@@ -12,9 +12,9 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Modal.alert</Layout.Header>
       <Layout.Main className="bg-white">
-        <div className="demo-title" onClick={handleToggle}>
+        <Button className="flex l primary" onClick={handleToggle}>
           Modal visible toggle
-        </div>
+        </Button>
       </Layout.Main>
     </Layout>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Modal } from 'seedsui-react'
+import { Layout, Modal, Button } from 'seedsui-react'
 
 export default () => {
   function handleToggle() {
@@ -11,7 +11,8 @@ export default () => {
         // },
         caption: '第一层'
       },
-      portal: top.document.body,
+      // 透传至外层
+      // portal: top.document.body,
       content:
         '最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度最大高度',
       // contentProps: {
@@ -79,9 +80,9 @@ export default () => {
             'url(https://cdn.pixabay.com/photo/2014/12/16/08/32/cherry-blossoms-570046_1280.jpg)'
         }}
       >
-        <div className="demo-title" onClick={handleToggle}>
+        <Button className="flex l primary" onClick={handleToggle}>
           Modal visible toggle
-        </div>
+        </Button>
       </Layout.Main>
     </Layout>
   )
