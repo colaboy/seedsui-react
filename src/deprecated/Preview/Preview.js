@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import Modal from './../../components/Modal'
 import Swipe from './Swipe'
 import VideoPlayer from './../../components/VideoPlayer'
@@ -18,7 +18,7 @@ const Preview = forwardRef(
     },
     ref
   ) => {
-    const [pauseList, setPauseList] = useState(new Array(list.length))
+    const videoPlayers = useRef([])
 
     if (!list || !list.length || !list[0].src) return null
 
@@ -40,17 +40,16 @@ const Preview = forwardRef(
     }
 
     // 滑动视频需要暂停其它视频
-    function handleChange(s) {
+    function handleSwipe() {
       // 暂停所有视频
       if (type === 'video') {
-        let newPauseList = list.map(() => true)
-        setPauseList(newPauseList)
-        setTimeout(() => {
-          setPauseList(new Array(list.length))
-        }, 500)
+        for (let videoPlayer of videoPlayers.current) {
+          videoPlayer?.pause?.()
+        }
       }
       if (onChange) onChange(s, list[s.activeIndex], s.activeIndex)
     }
+
     return (
       <Modal
         visible
@@ -62,7 +61,7 @@ const Preview = forwardRef(
           ref={ref}
           containerChildren={children}
           defaultIndex={activeIndex}
-          onChange={handleChange}
+          onChange={handleSwipe}
           {...others}
         >
           {list.map((source, index) => {
@@ -74,7 +73,9 @@ const Preview = forwardRef(
                   )}
                   {type === 'video' && (
                     <VideoPlayer
-                      pause={pauseList[index]}
+                      ref={(currentVideoPlayer) =>
+                        (videoPlayers.current[index] = currentVideoPlayer)
+                      }
                       poster={source.thumb}
                       src={source.src}
                       autoPlay={false}
