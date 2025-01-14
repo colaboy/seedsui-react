@@ -354,7 +354,7 @@ const LocationCombo = forwardRef(
               if (onChange) onChange(null)
               return
             }
-            let newValue = Object.clone(value)
+            let newValue = _.cloneDeep(value)
             if (!newValue) {
               newValue = {}
             }

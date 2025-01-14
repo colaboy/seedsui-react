@@ -1,17 +1,11 @@
 // 根据id, 取出此id节点的数据, 即{id: '', name: '', parentid: ''}
-function getFlattenTreeNode(id, propertyConfig) {
-  // eslint-disable-next-line
-  if (typeof id === 'number') id = String(id)
-
-  let list = this
-  let item = list.filter(function (option) {
-    if (option['id'] === id) return true
-    return false
-  })
-  if (item && item.length > 0) {
-    item = item[0]
+function getFlattenTreeNode(tree, id) {
+  for (const node of tree) {
+    if (node.id === id) {
+      return node // 找到目标节点，直接返回
+    }
   }
-  return item
+  return null // 如果整个树中都没有找到，返回 null
 }
 
 export default getFlattenTreeNode

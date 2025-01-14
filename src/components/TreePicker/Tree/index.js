@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useEffect, useMemo, useState, useRef } from 'react'
+import _ from 'lodash'
 import {
   getTreeData,
   getAllExpandedKeys,
@@ -9,6 +10,14 @@ import {
 } from './utils/index'
 
 import Tree from 'rc-tree'
+
+// 内库使用-start
+import ArrayUtil from '../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ArrayUtil } from 'seedsui-react'
+测试使用-end */
 
 // 树控件
 function TreePicker(
@@ -34,6 +43,8 @@ function TreePicker(
     checkable = true,
     // 默认展开
     defaultExpandAll,
+    // 动态加载数据
+    loadData,
     TreeProps,
 
     // 自定义渲染
@@ -75,7 +86,7 @@ function TreePicker(
     if (!Array.isArray(list) || !list.length) return
 
     // 更新平铺的列表, 搜索时使用
-    flattenListRef.current = Object.clone(list).flattenTree()
+    flattenListRef.current = ArrayUtil.flattenTree(list)
 
     // 默认全部展开
     if (defaultExpandAll) {
@@ -84,7 +95,7 @@ function TreePicker(
     }
 
     // 异步加载时需要判断哪些不需要再次加载(isLoaded)
-    if (typeof props.loadData === 'function') {
+    if (typeof loadData === 'function') {
       let newLoadedKeys = [...new Set(getLoadedKeys(list))]
 
       // 展开项必须为isLoaded项
@@ -130,7 +141,7 @@ function TreePicker(
   function updateTreeData() {
     return getTreeData({
       // 异步加载需要传入加载完成的节点，用于判断是否有子节点
-      loadedKeys: typeof props.loadData === 'function' ? loadedKeys : null,
+      loadedKeys: typeof loadData === 'function' ? loadedKeys : null,
       list,
       onlyLeafCheck,
       keyword: keywordRef.current || '',
@@ -241,7 +252,7 @@ function TreePicker(
 
   // 异步加载时需要判断哪些不需要再次加载(isLoaded)
   const loadProp =
-    typeof props.loadData === 'function'
+    typeof loadData === 'function'
       ? {
           loadedKeys: loadedKeys,
           onLoad: (newLoadedKeys) => {
@@ -283,6 +294,7 @@ function TreePicker(
         checkStrictly={checkStrictly === false ? false : true}
         checkable={checkable}
         selectable={checkable ? false : true}
+        loadData={loadData}
         {...(TreeProps || {})}
       ></Tree>
     </div>

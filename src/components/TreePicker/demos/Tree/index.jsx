@@ -76,9 +76,6 @@ export default () => {
           onSelect={(item) => {
             console.log('select:', item)
           }}
-          onVisibleChange={(visible) => {
-            console.log('visible:', visible)
-          }}
           loadData={(node) => {
             return new Promise((resolve) => {
               // 假设西城区有子节点

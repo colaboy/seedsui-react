@@ -8,10 +8,11 @@ import setDeepTreeNodes from './setDeepTreeNodes'
 import setDeepTreeLeafNode from './setDeepTreeLeafNode'
 import updateDeepTreeParentId from './updateDeepTreeParentId'
 
-// import flattenTree from './flattenTree'
+import flattenTree from './flattenTree'
+import getFlattenTreeNode from './getFlattenTreeNode'
+import getFlattenTreeNodes from './getFlattenTreeNodes'
 // import getFlattenTreeChildren from './getFlattenTreeChildren'
 // import getFlattenTreeDescendants from './getFlattenTreeDescendants'
-// import getFlattenTreeNode from './getFlattenTreeNode'
 // import getFlattenTreeParent from './getFlattenTreeParent'
 // import getFlattenTreePredecessor from './getFlattenTreePredecessor'
 // import getFlattenTreePredecessors from './getFlattenTreePredecessors'
@@ -28,12 +29,13 @@ const ArrayUtil = {
   setDeepTreeLeafNode,
   setDeepTreeNode,
   setDeepTreeNodes,
-  updateDeepTreeParentId
+  updateDeepTreeParentId,
 
-  // flattenTree,
+  flattenTree,
+  getFlattenTreeNode,
+  getFlattenTreeNodes
   // getFlattenTreeChildren,
   // getFlattenTreeDescendants,
-  // getFlattenTreeNode,
   // getFlattenTreeParent,
   // getFlattenTreePredecessor,
   // getFlattenTreePredecessors,

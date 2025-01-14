@@ -37,7 +37,7 @@ function formatList(list, keyword, onSearch) {
   }
 
   // Default filter
-  let newList = Object.clone(list)
+  let newList = _.cloneDeep(list)
   return newList.filter((item) => {
     // filter children in list item
     if (Array.isArray(item.children) && item.children.length) {
