@@ -15,7 +15,7 @@ export default () => {
           autoPlay={false}
           header={
             <div
-              className="videoplayer-close"
+              className="videoplayer-header-close"
               onClick={() => {
                 alert('close')
               }}

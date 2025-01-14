@@ -82,7 +82,7 @@ const Preview = forwardRef(
                       poster={source.thumb}
                       src={source.src}
                       autoPlay={false}
-                      header={<div className="videoplayer-close" onClick={onClose}></div>}
+                      header={<div className="videoplayer-header-close" onClick={onClose}></div>}
                     />
                   )}
                   {source.children}

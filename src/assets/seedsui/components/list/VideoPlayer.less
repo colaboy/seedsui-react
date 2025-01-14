@@ -12,36 +12,22 @@
   .flex;
   .flex-bottom;
 }
-.videoplayer-caption,
-.videoplayer-close {
+
+.videoplayer-header-close {
+  position: absolute;
   z-index: 999;
-}
-.videoplayer-caption {
-  position: absolute;
-  top: 16px;
-  right: 58px;
-  height: 32px;
-  padding: 0 12px;
-  color: white;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  .flex;
-  .flex-middle;
-  .flex-center;
-}
-.videoplayer-close {
-  position: absolute;
   top: 16px;
   right: 16px;
   width: 32px;
   height: 32px;
   color: white;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 30%);
   border-radius: 100%;
   .flex;
   .flex-middle;
   .flex-center;
-  &:before {
+
+  &::before {
     display: block;
     width: 1px;
     height: 15px;
@@ -49,7 +35,8 @@
     transform: rotate(-45deg) translateX(1px);
     content: '';
   }
-  &:after {
+
+  &::after {
     display: block;
     width: 1px;
     height: 15px;
