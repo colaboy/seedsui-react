@@ -1,10 +1,19 @@
+// 内库使用-start
+import ArrayUtil from '../../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ArrayUtil } from 'seedsui-react'
+测试使用-end */
+
 // 获取先辈节点
 function getPredecessorDOM({ rootRef, ids, list }) {
   if (!ids || !ids.length) return null
   // 获取所有需要选中展开项
   let nodes = []
   for (let id of ids) {
-    nodes = nodes.concat(list.getDeepTreePredecessor(id))
+    let predecessorNodes = ArrayUtil.getDeepTreePredecessorNodes(list, id) || []
+    nodes = nodes.concat(predecessorNodes || [])
     nodes = nodes.concat({ id: id })
   }
 

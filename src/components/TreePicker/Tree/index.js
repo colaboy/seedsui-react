@@ -213,9 +213,11 @@ function TreePicker(
 
     // 只级联子级
     if (checkStrictly === 'children' && checkedObject?.node?.id) {
-      const descendants = flattenListRef.current.getFlattenTreeDescendants(
-        checkedObject?.node?.id ?? ''
-      )
+      const descendants =
+        ArrayUtil.getFlatTreeDescendantNodes(
+          flattenListRef.current,
+          checkedObject?.node?.id ?? ''
+        ) || []
 
       const checked = {}
       const unchecked = {}
@@ -263,6 +265,7 @@ function TreePicker(
       ? {
           loadedKeys: loadedKeys,
           onLoad: (newLoadedKeys) => {
+            console.log('onLoad')
             loadedKeys.push(...newLoadedKeys)
             // 异步加载会修改列表, 所以在列表监听处处理loadedKeys即可
           }

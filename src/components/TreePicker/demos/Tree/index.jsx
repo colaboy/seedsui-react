@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import treeData from './../simpleData.js'
 // import treeData from './../data.js'
-import { Input, TreePicker, Layout, locale } from 'seedsui-react'
+import { ArrayUtil, Input, TreePicker, Layout, locale } from 'seedsui-react'
 
 export default () => {
   const [data, setData] = useState(treeData)
@@ -84,7 +84,7 @@ export default () => {
                 return
               }
               if (!node.children) {
-                data.setDeepTreeNodeProp(node.id, (item) => {
+                ArrayUtil.setDeepTreeNode(data, node.id, (item) => {
                   item.isLoaded = true
                   item.children = [
                     {
