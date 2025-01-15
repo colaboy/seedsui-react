@@ -27,6 +27,7 @@ const Modal = forwardRef(
       checkable = true,
       defaultExpandAll,
       TreeProps,
+      itemRender,
 
       ...props
     },
@@ -48,7 +49,8 @@ const Modal = forwardRef(
           onlyLeafCheck,
           checkable,
           defaultExpandAll,
-          TreeProps
+          TreeProps,
+          itemRender
         }}
         main={props?.main || Tree}
       />

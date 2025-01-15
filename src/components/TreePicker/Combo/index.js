@@ -6,8 +6,8 @@ import Combo from './../../Modal/Combo'
 // 内库使用-end
 
 /* 测试使用-start
-import { Modal } from 'seedsui-react'
-const Combo = Modal.Combo
+import { Modal: BaseModal } from 'seedsui-react'
+const Combo = BaseModal.Combo
 测试使用-end */
 
 // 树选择
@@ -30,6 +30,9 @@ const TreePickerCombo = forwardRef(
       checkable = true,
       defaultExpandAll,
       TreeProps,
+
+      // 自定义渲染
+      itemRender,
       ...props
     },
     ref
@@ -51,7 +54,8 @@ const TreePickerCombo = forwardRef(
           onlyLeafCheck,
           checkable,
           defaultExpandAll,
-          TreeProps
+          TreeProps,
+          itemRender
         }}
       />
     )

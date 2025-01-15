@@ -11,9 +11,12 @@ export default () => {
         value={value}
         list={treeData}
         multiple={true}
-        captionProps={{
-          caption: 'aaa'
+        modalProps={{
+          captionProps: {
+            caption: 'aaa'
+          }
         }}
+        allowClear
         // defaultExpandAll={true}
         itemRender={(item, { keyword }) => {
           return (
@@ -37,6 +40,8 @@ export default () => {
         // preserveValue
         // 仅允许选中末级节点
         // onlyLeafCheck={true}
+        // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点
+        showCheckedStrategy="leaf"
         // 级联 true: 不级联, false: 级联, children: 子级不级联父级
         // checkStrictly={'children'}
         // 启用半选功能

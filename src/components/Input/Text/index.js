@@ -282,13 +282,10 @@ const InputText = forwardRef(
 
       // 非受控组件需要操作DOM
       if (value === undefined) {
-        updateContainer()
         if (inputRef?.current?.value) {
           inputRef.current.value = ''
         }
-      } else {
-        // 正常onChange会触发value监听, 但有可能value未变, 手动再触发一遍清空
-        updateClear('')
+        updateContainer()
       }
     }
 

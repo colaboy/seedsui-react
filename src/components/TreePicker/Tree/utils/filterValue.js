@@ -1,3 +1,11 @@
+// 内库使用-start
+import ArrayUtil from '../../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ArrayUtil } from 'seedsui-react'
+测试使用-end */
+
 // 过滤值
 function filterValue(value, type) {
   if (Array.isArray(value) === false || !value.length) return value
@@ -5,7 +13,7 @@ function filterValue(value, type) {
   if (type === 'parent') {
     for (let item of value) {
       if (item.halfChecked || !item.id || item.disabled) continue
-      let descendants = value.getFlattenTreeDescendants(item.id)
+      let descendants = ArrayUtil.getFlatTreeDescendantNodes(value, item.id) || []
       let descendantIds = descendants.map((descendant) => descendant.id)
       // eslint-disable-next-line
       value = value.filter((n) => {
@@ -20,7 +28,7 @@ function filterValue(value, type) {
   else if (type === 'leaf') {
     for (let item of value) {
       if (item.halfChecked || !item.id || item.disabled) continue
-      let predecessors = value.getFlattenTreePredecessor(item.id)
+      let predecessors = ArrayUtil.getFlatTreePredecessorNodes(value, item.id) || []
       let predecessorIds = predecessors.map((predecessor) => predecessor.id)
       // eslint-disable-next-line
       value = value.filter((n) => {

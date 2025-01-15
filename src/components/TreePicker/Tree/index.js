@@ -22,16 +22,20 @@ import { ArrayUtil } from 'seedsui-react'
 // 树控件
 function TreePicker(
   {
+    // Modal
+    visible = true,
+
+    // Main: common
     list,
+    allowClear,
+    multiple,
     value,
     onChange,
     onSelect,
 
-    // multiple未传则为必选单选, multiple为false时为可取消单选
-    multiple,
     // 级联 true: 不级联, false: 级联, children: 子级不级联父级
     checkStrictly = false,
-    // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点
+    // 定义选中项回填的方式: leaf仅显示所有末级节点; parent仅显示父级节点, 默认无
     showCheckedStrategy,
     // 是否启用半选功能
     enableHalfChecked,
@@ -166,13 +170,16 @@ function TreePicker(
   // 修改
   function handleChange(ids, checkedObject) {
     let checkedNodes = checkedObject?.checkedNodes || []
-    // multiple未传则为必选单选
-    if (multiple === undefined) {
-      if (checkedObject?.node) checkedNodes = [checkedObject.node]
-    }
-    // multiple为false时为可取消单选
-    else if (multiple === false) {
-      if (checkedNodes.length > 1) {
+    // 单选
+    if (!multiple) {
+      // 允许清空
+      if (allowClear) {
+        if (checkedNodes.length > 1) {
+          if (checkedObject?.node) checkedNodes = [checkedObject.node]
+        }
+      }
+      // 不允许清空
+      else {
         if (checkedObject?.node) checkedNodes = [checkedObject.node]
       }
     }
