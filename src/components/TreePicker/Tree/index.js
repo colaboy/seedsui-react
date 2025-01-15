@@ -127,7 +127,7 @@ function TreePicker(
   function search(keyword) {
     keywordRef.current = keyword
     // 没有关键字则没有展开项
-    if (!keywordRef.current || Object.isEmptyObject(list)) {
+    if (!keywordRef.current || _.isEmpty(list)) {
       expandedKeysRef.current = []
       setExpandedKeys(expandedKeysRef.current)
     } else {

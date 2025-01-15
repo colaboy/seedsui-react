@@ -270,7 +270,7 @@ let Bridge = {
       return
     }
 
-    let uploadParams = Object.clone(params)
+    let uploadParams = _.cloneDeep(params)
     if (params.tenantId) uploadParams.tenantId = params.tenantId
     // ext参数: isAutoCheck: '0'/'1'是否自动识别|cmId: 客户Id|appId：应用Id|menuId: 菜单Id(必填)|funcId: 表单Id
     let menuId = Device.getUrlParameter('menuId') || ''

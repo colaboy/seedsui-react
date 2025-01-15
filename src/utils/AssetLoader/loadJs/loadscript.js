@@ -1,14 +1,18 @@
 // https://github.com/eldargab/load-script
 module.exports = function load(src, opts, cb) {
-  var head = document.head || document.getElementsByTagName('head')[0]
-  var script = document.createElement('script')
+  let head = document.head || document.getElementsByTagName('head')[0]
+  let script = document.createElement('script')
 
   if (typeof opts === 'function') {
+    // eslint-disable-next-line
     cb = opts
+    // eslint-disable-next-line
     opts = {}
   }
 
+  // eslint-disable-next-line
   opts = opts || {}
+  // eslint-disable-next-line
   cb = cb || function () {}
 
   script.type = opts.type || 'text/javascript'
@@ -23,7 +27,7 @@ module.exports = function load(src, opts, cb) {
     script.text = '' + opts.text
   }
 
-  var onend = 'onload' in script ? stdOnEnd : ieOnEnd
+  let onend = 'onload' in script ? stdOnEnd : ieOnEnd
   onend(script, cb)
 
   // some good legacy browsers (firefox) fail the 'in' detection above
@@ -37,7 +41,7 @@ module.exports = function load(src, opts, cb) {
 }
 
 function setAttributes(script, attrs) {
-  for (var attr in attrs) {
+  for (let attr in attrs) {
     script.setAttribute(attr, attrs[attr])
   }
 }

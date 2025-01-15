@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import BridgeBase from './base'
 import back from './utils/back'
 import ready from './utils/ready'
@@ -500,7 +501,7 @@ let Bridge = {
     * }
     */
   chooseImage: function (params) {
-    let chooseParams = Object.clone(params)
+    let chooseParams = _.cloneDeep(params)
     if (params.isAI !== '1') delete chooseParams.isAI
     // 格式化sourceType
     let operation = '2'
@@ -600,7 +601,7 @@ let Bridge = {
       Toast.show({ content: locale('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir') })
       return
     }
-    if (!params.localId || Object.isEmptyObject(params.localId)) {
+    if (!params.localId || _.isEmpty(params.localId)) {
       Toast.show({ content: locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
       return
     }

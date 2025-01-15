@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import extractNumber from './extractNumber'
 import Instance from './instance.js'
 
 // 生成二维码
@@ -20,16 +21,16 @@ const QRCode = forwardRef(({ style, text, children, ...props }, ref) => {
     if (!instance.current) {
       instance.current = new Instance(rootRef.current, {
         text: text || '',
-        width: Object.getUnitNum(style?.width || 230),
-        height: Object.getUnitNum(style?.width || 230),
+        width: extractNumber(style?.width || 230),
+        height: extractNumber(style?.width || 230),
         colorDark: style?.color || '#000000',
         colorLight: style?.backgroundColor || '#ffffff',
         correctLevel: Instance.CorrectLevel.M // L,M,Q,H
       })
     }
 
-    const width = Object.getUnitNum(style?.width || 0)
-    const height = Object.getUnitNum(style?.height || 0)
+    const width = extractNumber(style?.width || 0)
+    const height = extractNumber(style?.height || 0)
     const color = style?.color
     const backgroundColor = style?.backgroundColor
     if (width) instance.current._htOption.width = width

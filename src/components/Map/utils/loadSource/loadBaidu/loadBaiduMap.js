@@ -1,9 +1,10 @@
 // 内库使用-start
 import locale from './../../../../../utils/locale'
+import AssetLoader from './../../../../../utils/AssetLoader'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale } from 'seedsui-react'
+// import { locale, AssetLoader } from 'seedsui-react'
 // 测试使用-end
 
 // 加载BMap地图资源
@@ -21,20 +22,21 @@ function loadBMap(key) {
     }
 
     // Load js
-    Object.loadScript(
+    AssetLoader.loadJs(
       `https://api.map.baidu.com/api?v=3.0&ak=${key}&callback=&callback=onBMapLoad`,
       {
-        attrs: {
-          id: 'bmap-map-js'
-        }
-      },
-      (result) => {
-        window.onBMapLoad = function () {
-          if (window.BMap) {
-            resolve(window.BMap)
-          } else {
-            resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+        id: 'bmap-map-js',
+        success: () => {
+          window.onBMapLoad = function () {
+            if (window.BMap) {
+              resolve(window.BMap)
+            } else {
+              resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+            }
           }
+        },
+        fail: () => {
+          resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
         }
       }
     )

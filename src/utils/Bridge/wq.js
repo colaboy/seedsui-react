@@ -197,7 +197,7 @@ let Bridge = {
     * }
     */
   uploadImage: function (params = {}) {
-    let uploadParams = Object.clone(params)
+    let uploadParams = _.cloneDeep(params)
     if (!params.uploadDir) {
       if (params.fail)
         params.fail({

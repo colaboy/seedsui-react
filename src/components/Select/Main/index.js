@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState } from 'react'
+import _ from 'lodash'
 import { formatList } from './../utils'
 
 import Result from './../../Result'
@@ -100,7 +101,7 @@ const Main = forwardRef(
           className={`picker-main${props?.className ? ' ' + props.className : ''}`}
           ref={mainRef}
         >
-          {Object.isEmptyObject(list) && <Result />}
+          {_.isEmpty(list) && <Result />}
           {/* 列表上方扩展 */}
           {typeof listExtraHeaderRender === 'function' &&
             listExtraHeaderRender({

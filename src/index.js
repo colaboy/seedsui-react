@@ -34,6 +34,7 @@ if (packageJson?.version) {
 }
 
 export { default as locale } from './utils/locale'
+export { default as ActionSheet1 } from './components/ActionSheet1'
 export { default as Alert } from './deprecated/Alert' // (废弃, 使用Modal代替)
 export { default as Modal } from './components/Modal'
 export { default as Attach } from './deprecated/Attach'
@@ -167,6 +168,7 @@ export { default as Col } from './components/Col'
 
 export { default as MapUtil } from './deprecated/MapUtil' // 不常用
 export { default as Map } from './components/Map'
+export { default as AssetLoader } from './utils/AssetLoader'
 export { default as Clipboard } from './utils/Clipboard'
 export { default as EditUtil } from './deprecated/EditUtil' // 不常用
 export { default as EventUtil } from './utils/EventUtil' // 不常用

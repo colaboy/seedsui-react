@@ -1,9 +1,9 @@
 ---
 category: Utils
 group: 基本工具
-title: DateUtil
+title: AssetLoader
 ---
 
-# DateUtil
+# AssetLoader
 
 This is an example component.
