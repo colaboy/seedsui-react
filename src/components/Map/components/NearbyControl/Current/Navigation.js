@@ -48,7 +48,7 @@ function Navigation({
       type: type,
       name: name || address, // 终点位置名
       address: address, // 地址详情说明
-      scale: 1 // 地图缩放级别,整形值,范围从1~28。默认为16
+      scale: 16 // 地图缩放级别,整形值,范围从1~28。默认为16
     })
   }
 
