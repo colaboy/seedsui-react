@@ -1,6 +1,13 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
-import MathJs from './../../../utils/MathUtil'
 import InputNumber from './../Number'
+
+// 内库使用-start
+import MathJs from './../../../utils/MathUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { MathJs } from 'seedsui-react'
+测试使用-end */
 
 // 数值框
 const NumberBox = forwardRef(

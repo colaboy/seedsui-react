@@ -1,4 +1,10 @@
+// 内库使用-start
 import MathJs from './../../../../utils/MathUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { MathJs } from 'seedsui-react'
+测试使用-end */
 
 // 矫正小数位截取
 function precisionFormatter(value, { precision, trim }) {
