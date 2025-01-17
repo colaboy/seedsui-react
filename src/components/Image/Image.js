@@ -83,6 +83,7 @@ const Image = forwardRef(
           Bridge.platform === 'wework' ||
           Bridge.platform === 'alipay' ||
           Bridge.platform === 'dingtalk' ||
+          Bridge.platform === 'lark' ||
           Bridge.platform === 'wechatMiniprogram' ||
           Bridge.platform === 'weworkMiniprogram' ||
           Bridge.platform === 'alipayMiniprogram')
