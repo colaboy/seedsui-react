@@ -2,7 +2,9 @@
 function getKeywordIdsByPinyin(keyword, name) {
   if (!name || typeof name !== 'string') return ''
   if (!keyword) return name
-  let pinyinIndex = name?.toPinyin?.()?.indexOf(keyword.toLowerCase())
+  // 转成拼音
+  let namePinyin = name
+  let pinyinIndex = namePinyin?.indexOf(keyword.toLowerCase())
   if (pinyinIndex !== -1) {
     return name
   }

@@ -2,7 +2,7 @@ import getCheckedKeysProp from './getCheckedKeysProp'
 import getAllExpandedKeys from './getAllExpandedKeys'
 import getExpandedKeys from './getExpandedKeys'
 import getKeywordIds from './getKeywordIds'
-import getKeywordIdsByPinyin from './getKeywordIdsByPinyin'
+// import getKeywordIdsByPinyin from './getKeywordIdsByPinyin'
 import getLoadedKeys from './getLoadedKeys'
 import getTreeData from './getTreeData'
 import filterValue from './filterValue'
@@ -12,7 +12,7 @@ export {
   getAllExpandedKeys,
   getExpandedKeys,
   getKeywordIds,
-  getKeywordIdsByPinyin,
+  // getKeywordIdsByPinyin,
   getLoadedKeys,
   getTreeData,
   filterValue
