@@ -1,5 +1,5 @@
 import React from 'react'
-import { AssetUtil, Toast } from 'seedsui-react'
+import { AssetUtil } from 'seedsui-react'
 
 export default () => {
   function handleLoadJsByCallback() {

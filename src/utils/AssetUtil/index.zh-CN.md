@@ -8,4 +8,6 @@ title: AssetUtil
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/loadJs.jsx"></code>
+
+<code src="./demos/getFileExtension.jsx"></code>
