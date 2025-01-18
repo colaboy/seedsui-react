@@ -1,10 +1,10 @@
 ---
 category: Utils
 group: 基本工具
-title: AssetLoader
+title: AssetUtil
 ---
 
-# AssetLoader
+# AssetUtil
 
 ## 示例
 

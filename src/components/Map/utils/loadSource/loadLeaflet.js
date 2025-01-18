@@ -1,9 +1,9 @@
 // 内库使用-start
-import AssetLoader from '../../../../utils/AssetLoader'
+import AssetUtil from '../../../../utils/AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { AssetLoader } from 'seedsui-react'
+import { AssetUtil } from 'seedsui-react'
 测试使用-end */
 
 // 加载地图资源
@@ -36,7 +36,7 @@ function loadLeaflet() {
 
     // Load js
     // 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-    AssetLoader.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
+    AssetUtil.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
       id: 'leaflet-js',
       // integrity: 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
       // crossorigin: '',

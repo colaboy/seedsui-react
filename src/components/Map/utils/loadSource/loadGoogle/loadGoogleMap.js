@@ -1,9 +1,9 @@
 // 内库使用-start
-import AssetLoader from '../../../../../utils/AssetLoader'
+import AssetUtil from '../../../../../utils/AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { AssetLoader } from 'seedsui-react'
+import { AssetUtil } from 'seedsui-react'
 测试使用-end */
 
 // 加载google地图资源
@@ -21,7 +21,7 @@ function loadGoogle(key) {
     }
 
     // Load js
-    AssetLoader.loadJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
+    AssetUtil.loadJs(`https://maps.googleapis.com/maps/api/js?key=${key}`, {
       id: 'google-map-js',
       success: () => {
         resolve(window.google)

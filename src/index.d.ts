@@ -168,7 +168,7 @@ export { default as Col } from './components/Col'
 
 export { default as MapUtil } from './deprecated/MapUtil' // 不常用
 export { default as Map } from './components/Map'
-export { default as AssetLoader } from './utils/AssetLoader'
+export { default as AssetUtil } from './utils/AssetUtil'
 export { default as Clipboard } from './utils/Clipboard'
 export { default as EditUtil } from './deprecated/EditUtil' // 不常用
 export { default as EventUtil } from './utils/EventUtil' // 不常用

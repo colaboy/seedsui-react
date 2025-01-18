@@ -1,10 +1,10 @@
 // 内库使用-start
 import locale from './../../locale'
-import AssetLoader from './../../AssetLoader'
+import AssetUtil from './../../AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, AssetLoader } from 'seedsui-react'
+import { locale, AssetUtil } from 'seedsui-react'
 测试使用-end */
 
 /**
@@ -59,7 +59,7 @@ function ready(callback, options = {}, Bridge) {
     script.onload = async function () {
       // 支付小程序还需要加载一个js
       if (platform === 'alipayMiniprogram') {
-        await AssetLoader.loadJs(options.alipayMiniprogramLibSrc || 'https://appx/web-view.min.js')
+        await AssetUtil.loadJs(options.alipayMiniprogramLibSrc || 'https://appx/web-view.min.js')
         if (window.my) {
           window.top.my = window.my
         }

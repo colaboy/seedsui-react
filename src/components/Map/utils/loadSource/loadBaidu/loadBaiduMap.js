@@ -1,10 +1,10 @@
 // 内库使用-start
 import locale from './../../../../../utils/locale'
-import AssetLoader from './../../../../../utils/AssetLoader'
+import AssetUtil from './../../../../../utils/AssetUtil'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, AssetLoader } from 'seedsui-react'
+// import { locale, AssetUtil } from 'seedsui-react'
 // 测试使用-end
 
 // 加载BMap地图资源
@@ -22,7 +22,7 @@ function loadBMap(key) {
     }
 
     // Load js
-    AssetLoader.loadJs(
+    AssetUtil.loadJs(
       `https://api.map.baidu.com/api?v=3.0&ak=${key}&callback=&callback=onBMapLoad`,
       {
         id: 'bmap-map-js',

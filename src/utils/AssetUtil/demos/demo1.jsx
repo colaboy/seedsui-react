@@ -1,9 +1,9 @@
 import React from 'react'
-import { AssetLoader, Toast } from 'seedsui-react'
+import { AssetUtil, Toast } from 'seedsui-react'
 
 export default () => {
   function handleLoadJsByCallback() {
-    AssetLoader.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
+    AssetUtil.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
       id: 'leaflet-js',
       success: () => {
         alert('Js load succeeded')
@@ -14,7 +14,7 @@ export default () => {
     })
   }
   async function handleLoadJsByAsync() {
-    let isOk = await AssetLoader.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
+    let isOk = await AssetUtil.loadJs('//res.waiqin365.com/d/seedsui/leaflet/js/leaflet.js', {
       id: 'leaflet-js'
     })
     if (isOk) {

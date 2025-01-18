@@ -358,7 +358,7 @@ Object.loadScript = function (src, opts, cb) {
     opts = {}
   }
   return new Promise((resolve) => {
-    const loadScript = require('./../utils/AssetLoader/loadJs/loadscript.js')
+    const loadScript = require('./../utils/AssetUtil/loadJs/loadscript.js')
     loadScript(src, opts, (error, script) => {
       if (error) {
         resolve(null)
