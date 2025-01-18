@@ -165,19 +165,21 @@ const Combo = forwardRef(
           />
         )}
         {/* Modal */}
-        <ModalNode
-          ref={modalRef}
-          getComboDOM={() => {
-            return comboRef.current
-          }}
-          value={value}
-          onBeforeChange={onBeforeChange}
-          onChange={onChange}
-          allowClear={allowClear}
-          {...modalProps}
-          onVisibleChange={setVisible}
-          visible={modalProps?.visible === undefined ? visible : modalProps.visible}
-        />
+        {ModalNode && (
+          <ModalNode
+            ref={modalRef}
+            getComboDOM={() => {
+              return comboRef.current
+            }}
+            value={value}
+            onBeforeChange={onBeforeChange}
+            onChange={onChange}
+            allowClear={allowClear}
+            {...modalProps}
+            onVisibleChange={setVisible}
+            visible={modalProps?.visible === undefined ? visible : modalProps.visible}
+          />
+        )}
       </Fragment>
     )
   }

@@ -40,7 +40,7 @@ const DatePickerCombo = forwardRef(
         }}
         {...props}
         // Modal
-        main={Modal}
+        modal={Modal}
         value={value}
         modalProps={{
           ...modalProps,

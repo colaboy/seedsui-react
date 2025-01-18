@@ -6,7 +6,8 @@ export default () => {
   const [value, setValue] = useState(new Date('2024-10-30'))
 
   useEffect(() => {
-    dateRef.current.open()
+    console.log(dateRef)
+    dateRef?.current?.open?.()
   }, [])
 
   return (
