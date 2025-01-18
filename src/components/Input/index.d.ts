@@ -2,7 +2,7 @@ import AutoFit from './AutoFit'
 import Number from './Number'
 import NumberBox from './NumberBox'
 import Password from './Password'
-import PasswordStrong from './PasswordStrong'
+import PasswordStrength from './PasswordStrength'
 import Range from './Range'
 import Tel from './Tel'
 import Text from './Text'
@@ -14,7 +14,7 @@ export default {
   Number: Number,
   NumberBox: NumberBox,
   Password: Password,
-  PasswordStrong: PasswordStrong,
+  PasswordStrength: PasswordStrength,
   Range: Range,
   Tel: Tel,
   Text: Text,

@@ -24,9 +24,9 @@ title: Input
 
 <code src="./demos/Password/index.jsx"></code>
 
-### Input.PasswordStrong
+### Input.PasswordStrength
 
-<code src="./demos/PasswordStrong/index.jsx"></code>
+<code src="./demos/PasswordStrength/index.jsx"></code>
 
 ### Input.Range
 

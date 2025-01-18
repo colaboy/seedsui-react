@@ -241,68 +241,68 @@ input[type='color'] {
 }
 
 // 密码强度
-@input-password-strong-color: white;
-@input-password-strong-height: 30px;
-@input-password-strong-wing: 1px;
-@input-password-strong-bg: #b6b6b6;
-@input-password-strong-bg1: @danger;
-@input-password-strong-bg2: @warning;
-@input-password-strong-bg3: @success;
-.input-password-strong {
+@input-password-strength-color: white;
+@input-password-strength-height: 30px;
+@input-password-strength-wing: 1px;
+@input-password-strength-bg: #b6b6b6;
+@input-password-strength-bg1: @danger;
+@input-password-strength-bg2: @warning;
+@input-password-strength-bg3: @success;
+.input-password-strength {
   .flex;
-  height: @input-password-strong-height;
-  color: @input-password-strong-color;
+  height: @input-password-strength-height;
+  color: @input-password-strength-color;
   li {
     position: relative;
-    margin-left: @input-password-strong-wing;
-    background-color: @input-password-strong-bg;
+    margin-left: @input-password-strength-wing;
+    background-color: @input-password-strength-bg;
     .flex;
     .flex-1;
     .flex-middle;
     .flex-center;
     &:nth-of-type(1) {
       margin-left: 0px;
-      .input-password-strong-progress {
-        background-color: @input-password-strong-bg1;
+      .input-password-strength-progress {
+        background-color: @input-password-strength-bg1;
       }
     }
     &:nth-of-type(2) {
-      .input-password-strong-progress {
-        background-color: @input-password-strong-bg2;
+      .input-password-strength-progress {
+        background-color: @input-password-strength-bg2;
       }
     }
     &:nth-of-type(3) {
-      .input-password-strong-progress {
-        background-color: @input-password-strong-bg3;
+      .input-password-strength-progress {
+        background-color: @input-password-strength-bg3;
       }
     }
   }
-  &.lvl1 {
-    li:nth-of-type(1) .input-password-strong-progress {
+  &.level1 {
+    li:nth-of-type(1) .input-password-strength-progress {
       width: 100%;
     }
   }
-  &.lvl2 {
-    li:nth-of-type(1) .input-password-strong-progress {
+  &.level2 {
+    li:nth-of-type(1) .input-password-strength-progress {
       width: 100%;
     }
-    li:nth-of-type(2) .input-password-strong-progress {
+    li:nth-of-type(2) .input-password-strength-progress {
       width: 100%;
     }
   }
-  &.lvl3 {
-    li:nth-of-type(1) .input-password-strong-progress {
+  &.level3 {
+    li:nth-of-type(1) .input-password-strength-progress {
       width: 100%;
     }
-    li:nth-of-type(2) .input-password-strong-progress {
+    li:nth-of-type(2) .input-password-strength-progress {
       width: 100%;
     }
-    li:nth-of-type(3) .input-password-strong-progress {
+    li:nth-of-type(3) .input-password-strength-progress {
       width: 100%;
     }
   }
 }
-.input-password-strong-progress {
+.input-password-strength-progress {
   position: absolute;
   top: 0;
   left: 0;
@@ -311,7 +311,7 @@ input[type='color'] {
   transition-duration: @animation-duration;
   transition-property: width;
 }
-.input-password-strong-caption {
+.input-password-strength-caption {
   position: relative;
   display: block;
 }

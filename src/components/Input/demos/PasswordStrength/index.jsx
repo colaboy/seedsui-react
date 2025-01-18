@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Input } from 'seedsui-react'
 
 export default () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('abcdefgAbcd$')
   return (
     <>
-      <Input.PasswordStrong
+      <Input.PasswordStrength
         value={value}
         onChange={(val) => {
           console.log(val)

@@ -1,3 +1,4 @@
+import toDate from './toDate'
 import getWeekDates from './getWeekDates'
 import previousWeek from './previousWeek'
 import nextWeek from './nextWeek'
@@ -13,6 +14,8 @@ import lastDayOfYear from './lastDayOfYear'
 
 // 日期工具类
 const dateUtil = {
+  // 转为日期格式
+  toDate: toDate,
   // 周操作
   getWeekDates: getWeekDates,
   previousWeek: previousWeek,
