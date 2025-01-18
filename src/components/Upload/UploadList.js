@@ -3,13 +3,14 @@ import React from 'react'
 // 内库使用-start
 import locale from './../../utils/locale'
 import Clipboard from './../../utils/Clipboard'
-import Toast from './../Toast'
+import AssetUtil from './../../utils/AssetUtil'
 import Bridge from './../../utils/Bridge'
-import Modal from './../../components/Modal'
+import Toast from './../Toast'
+import Modal from './../Modal'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Clipboard, Toast, Bridge, Modal } from 'seedsui-react'
+import { locale, Clipboard, AssetUtil, Bridge, Toast, Modal } from 'seedsui-react'
 测试使用-end */
 
 // 上传按钮
@@ -114,7 +115,7 @@ const UploadList = ({
 
   // 获取附件类型图标
   function getIcon(src) {
-    let suffix = typeof src === 'string' ? src.getSuffix() : null
+    let suffix = typeof src === 'string' ? AssetUtil.getFileExtension(src) : null
     if (!suffix) return 'unknown'
     if (suffix.indexOf('?') !== -1) {
       suffix = suffix.substring(0, suffix.indexOf('?'))
