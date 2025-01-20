@@ -1,13 +1,4 @@
-import './assets/style/index.less'
-// import BScroll from 'better-scroll'
-import './deprecated/PrototypeArray.js'
-import './deprecated/PrototypeMath.js'
-import './deprecated/PrototypeObject.js'
-import './deprecated/PrototypeString.js'
-import './deprecated/PrototypeNumber.js'
-import './deprecated/PrototypeDate.js'
-// import './deprecated/PrototypePinyin.js' // 不常用
-
+import './assets/index.less'
 import DateUtil from './utils/DateUtil'
 DateUtil.initialize()
 
@@ -18,7 +9,7 @@ if (packageJson?.version) {
 }
 
 // 记录平台: window.seedsPlatform
-// 记录语言: window.seedsLocaleLanguage
+// 记录语言: window.seedsLocaleLanguage, window.seedsLocaleData
 
 export { default as locale } from './deprecated/locale'
 export { default as LocaleUtil } from './utils/LocaleUtil'
