@@ -67,7 +67,6 @@ export default () => {
   // 加载街道
   async function loadData(tabs) {
     console.log(list)
-    // debugger
     if (!Array.isArray(tabs) || !tabs.length) {
       return null
     }
