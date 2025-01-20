@@ -18,7 +18,7 @@ if (packageJson?.version) {
 }
 
 // 记录平台: window.seedsPlatform
-// 记录语言: window.seedsLocaleLanguage
+// 记录语言: window.seedsLocaleLanguage, window.seedsLocaleData
 
 export { default as locale } from './deprecated/locale'
 export { default as LocaleUtil } from './utils/LocaleUtil'
