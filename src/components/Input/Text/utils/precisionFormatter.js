@@ -1,9 +1,9 @@
 // 内库使用-start
-import MathJs from './../../../../utils/MathUtil'
+import MathUtil from './../../../../utils/MathUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathJs } from 'seedsui-react'
+import { MathUtil } from 'seedsui-react'
 测试使用-end */
 
 // 矫正小数位截取
@@ -14,7 +14,7 @@ function precisionFormatter(value, { precision, trim }) {
     if (trim) {
       val = Number(val || 0)
     }
-    val = MathJs.fixed(val, precision)
+    val = MathUtil.fixed(val, precision)
   }
   return val
 }

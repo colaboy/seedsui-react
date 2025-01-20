@@ -2,11 +2,11 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import InputNumber from './../Number'
 
 // 内库使用-start
-import MathJs from './../../../utils/MathUtil'
+import MathUtil from './../../../utils/MathUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { MathJs } from 'seedsui-react'
+import { MathUtil } from 'seedsui-react'
 测试使用-end */
 
 // 数值框
@@ -134,7 +134,7 @@ const NumberBox = forwardRef(
       let inputDOM = _getInputDOM()
       if (!inputDOM) return
       let val = inputRef?.current?.correctValue(
-        MathJs.strip(Number(inputDOM.value || 0) - 1),
+        MathUtil.strip(Number(inputDOM.value || 0) - 1),
         'blur'
       )
       // Callback
@@ -154,7 +154,7 @@ const NumberBox = forwardRef(
       if (!inputDOM) return
       if (isNaN(inputDOM?.value)) return
       let val = inputRef?.current?.correctValue(
-        MathJs.strip(Number(inputDOM.value || 0) + 1),
+        MathUtil.strip(Number(inputDOM.value || 0) + 1),
         'blur'
       )
       // Callback

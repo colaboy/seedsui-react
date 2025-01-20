@@ -1,5 +1,5 @@
 // United language list
-const language = {
+const languageMap = {
   // 阿拉伯语
   ar_EG: { dayjs: 'ar' },
   // 阿塞拜疆语
@@ -140,4 +140,4 @@ const language = {
   zh_TW: { dayjs: 'zh-tw' }
 }
 
-module.exports = language
+module.exports = languageMap
