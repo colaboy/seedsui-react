@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DatePicker, locale } from 'seedsui-react'
+import { DatePicker, LocaleUtil } from 'seedsui-react'
 import dayjs from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'

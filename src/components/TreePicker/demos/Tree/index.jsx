@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import treeData from './../simpleData.js'
 // import treeData from './../data.js'
-import { ArrayUtil, Input, TreePicker, Layout, locale } from 'seedsui-react'
+import { ArrayUtil, Input, TreePicker, Layout, LocaleUtil } from 'seedsui-react'
 
 export default () => {
   const [data, setData] = useState(treeData)

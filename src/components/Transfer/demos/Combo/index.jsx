@@ -46,7 +46,7 @@ export default () => {
             setValue(newValue)
           }}
           modalProps={{
-            footer: ({ value, submit }) => {
+            footerRender: ({ value, submit }) => {
               return (
                 <Layout.Footer
                   onClick={() => {

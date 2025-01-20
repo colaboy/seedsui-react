@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Input, TreePicker, Badge, locale } from 'seedsui-react'
+import { Input, TreePicker, Badge, LocaleUtil } from 'seedsui-react'
 import treeData from './../data.js'
 
 export default () => {
