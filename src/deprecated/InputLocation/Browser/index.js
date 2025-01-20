@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import InputText from './../../InputText'
 import Dialog from './../../Dialog'
-import locale from './../../../utils/locale'
+import locale from './../../locale'
 import MapSearch from './../../MapSearch'
 import helper from './helper'
 

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import getIsActive from './getIsActive'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -141,7 +141,7 @@ const Modal = forwardRef(
               }`}
               onClick={handleClickCancel}
             >
-              {cancelName || locale('取消', 'SeedsUI_cancel')}
+              {cancelName || LocaleUtil.text('取消', 'SeedsUI_cancel')}
             </div>
           )}
         </div>

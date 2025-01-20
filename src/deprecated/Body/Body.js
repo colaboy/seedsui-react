@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import Instance from './instance.js'
-import locale from './../../utils/locale'
+import locale from './../locale'
 import TopContainer from './TopContainer'
 
 // 下拉刷新容器

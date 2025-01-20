@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import getLocaleValue from './../../utils/locale'
+import getLocaleValue from './../locale'
 
 export default class ConfigProvider extends Component {
   static propTypes = {

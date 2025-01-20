@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import Toast from './../../../Toast'
 // 内库使用-end
@@ -28,7 +28,7 @@ function LocationControl({ map, onChange, ...props }, ref) {
     // eslint-disable-next-line
     return new Promise(async (resolve) => {
       Loading.show({
-        content: locale('定位中...', 'SeedsUI_positioning')
+        content: LocaleUtil.text('定位中...', 'SeedsUI_positioning')
       })
       // 当前位置
       let result = await map.getLocation({ type: 'wgs84' })

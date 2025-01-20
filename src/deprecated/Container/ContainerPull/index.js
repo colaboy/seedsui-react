@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 import Container from './../Container'
 import Instance from './instance.js'
-import locale from './../../../utils/locale'
+import locale from './../../locale'
 
 const ContainerPull = forwardRef(
   (

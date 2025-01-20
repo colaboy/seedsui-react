@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 import Input from './../../../Input'
 import Layout from './../../../../components/Layout'
@@ -45,7 +45,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
     let inputText = inputRef.current.inputDOM
     let center = map.getCenter()
     Loading.show({
-      content: locale('搜索中', 'SeedsUI_searching')
+      content: LocaleUtil.text('搜索中', 'SeedsUI_searching')
     })
     let list = await map.queryNearby({
       map: map,
@@ -87,7 +87,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           <Input.Text
             ref={inputRef}
             type="search"
-            // placeholder={locale('搜索地点', 'SeedsUI_search_place')}
+            // placeholder={LocaleUtil.text('搜索地点', 'SeedsUI_search_place')}
             leftIcon={<i className="map-searchControl-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
@@ -95,7 +95,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           />
         </form>
         <span className="map-searchControl-header-cancel" onClick={handleBack}>
-          {locale('取消', 'SeedsUI_cancel')}
+          {LocaleUtil.text('取消', 'SeedsUI_cancel')}
         </span>
       </Layout.Header>
       <div className="map-searchControl-body">
@@ -125,7 +125,7 @@ function Page({ map, visible, onVisibleChange, onChange }) {
         {typeof searchList === 'string' && <Result title={searchList} />}
         {/* List is empty */}
         {Array.isArray(searchList) && searchList.length === 0 ? (
-          <Result title={locale('暂无数据', 'SeedsUI_no_data')} />
+          <Result title={LocaleUtil.text('暂无数据', 'SeedsUI_no_data')} />
         ) : null}
       </div>
     </Layout>

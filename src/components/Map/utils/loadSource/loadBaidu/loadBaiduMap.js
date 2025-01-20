@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../../../utils/locale'
+import LocaleUtil from './../../../../../utils/LocaleUtil'
 import AssetUtil from './../../../../../utils/AssetUtil'
 // 内库使用-end
 
@@ -31,12 +31,12 @@ function loadBMap(key) {
             if (window.BMap) {
               resolve(window.BMap)
             } else {
-              resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+              resolve(LocaleUtil.text(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
             }
           }
         },
         fail: () => {
-          resolve(locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+          resolve(LocaleUtil.text(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
         }
       }
     )

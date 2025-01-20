@@ -4,7 +4,7 @@ import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk.js'
 
 // 内库使用
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
@@ -68,10 +68,12 @@ const Main = forwardRef(
       let topCaption = topContainerRef.current.querySelector('.layout-main-pull-push-caption')
       if (touchesRef.current.diffY >= threshold) {
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-down')
-        if (topCaption) topCaption.innerHTML = locale('释放立即刷新', 'SeedsUI_release_refresh')
+        if (topCaption)
+          topCaption.innerHTML = LocaleUtil.text('释放立即刷新', 'SeedsUI_release_refresh')
       } else {
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
-        if (topCaption) topCaption.innerHTML = locale('下拉刷新', 'SeedsUI_pull_down_refresh')
+        if (topCaption)
+          topCaption.innerHTML = LocaleUtil.text('下拉刷新', 'SeedsUI_pull_down_refresh')
       }
     }
     async function handleTouchEnd(e) {
@@ -91,7 +93,7 @@ const Main = forwardRef(
         topContainerRef.current.style.height = threshold + 'px'
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-loading')
-        if (topCaption) topCaption.innerHTML = locale('加载中...', 'SeedsUI_refreshing')
+        if (topCaption) topCaption.innerHTML = LocaleUtil.text('加载中...', 'SeedsUI_refreshing')
 
         // Trigger Events
         if (onTopRefresh) {

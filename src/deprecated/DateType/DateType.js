@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle } from 'react'
 import Tabbar from './../Tabbar'
 import InputDate from './../InputDate'
-import locale from './../../utils/locale'
+import locale from './../locale'
 import helper from './../InputDate/helper'
 
 // 日期类型选择控件: 年月日季

@@ -1,4 +1,4 @@
-import locale from './../locale'
+import LocaleUtil from './../LocaleUtil'
 import createDebugElement from './createDebugElement'
 import triggerClickLimit from './triggerClickLimit'
 
@@ -46,7 +46,7 @@ let Debugger = {
         })
         .catch((error) => {
           Toast.show({
-            content: locale('打开调试面板失败'),
+            content: LocaleUtil.text('打开调试面板失败'),
             maskClickable: true
           })
           resolve(false)

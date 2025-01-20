@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 内库使用
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
@@ -30,7 +30,7 @@ const Submit = ({ submitProps, onSubmitClick }) => {
       }${submitDisabled === true ? ' disabled' : ''}`}
       onClick={handleSubmitClick}
     >
-      {submitCaption || locale('确定', 'SeedsUI_ok')}
+      {submitCaption || LocaleUtil.text('确定', 'SeedsUI_ok')}
       {typeof total === 'number' && `(${total})`}
     </div>
   )

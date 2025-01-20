@@ -7,7 +7,7 @@ import ready from './utils/ready'
 import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
-import locale from './../locale'
+import LocaleUtil from './../LocaleUtil'
 import Device from './../Device'
 import Toast from './../../components/Toast'
 // 内库使用-end
@@ -55,9 +55,11 @@ let Bridge = {
   openLocation: function (params) {
     // 微信PC端不支持地图查看
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = locale('openLocation仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
-        'openLocation'
-      ])
+      let errMsg = LocaleUtil.text(
+        'openLocation仅可在企业微信或APP中使用',
+        'SeedsUI_only_app_wechat',
+        ['openLocation']
+      )
       Toast.show({
         content: errMsg
       })
@@ -99,10 +101,10 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
-        content: locale(
+        content: LocaleUtil.text(
           '请在手机端微信中使用扫码',
           'SeedsUI_wechat_use_error',
-          locale('', 'SeedsUI_scancode')
+          LocaleUtil.text('', 'SeedsUI_scancode')
         )
       })
       return
@@ -161,10 +163,10 @@ let Bridge = {
   chooseImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = locale(
+      let errMsg = LocaleUtil.text(
         '请在手机端微信中使用选择图片',
         'SeedsUI_wechat_use_error',
-        locale('', 'SeedsUI_chooseimage')
+        LocaleUtil.text('', 'SeedsUI_chooseimage')
       )
       Toast.show({
         content: errMsg
@@ -178,10 +180,10 @@ let Bridge = {
   uploadImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = locale(
+      let errMsg = LocaleUtil.text(
         '请在手机端微信中使用上传图片',
         'SeedsUI_wechat_use_error',
-        locale('', 'SeedsUI_uploadimage')
+        LocaleUtil.text('', 'SeedsUI_uploadimage')
       )
       Toast.show({
         content: errMsg
@@ -195,10 +197,10 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
-        content: locale(
+        content: LocaleUtil.text(
           '请在手机端微信中使用照片预览',
           'SeedsUI_wechat_use_error',
-          locale('', 'SeedsUI_previewimage')
+          LocaleUtil.text('', 'SeedsUI_previewimage')
         )
       })
       return
@@ -217,9 +219,11 @@ let Bridge = {
   previewFile: function (params) {
     // 微信PC端不支持预览文件
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = locale('previewFile仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
-        'previewFile'
-      ])
+      let errMsg = LocaleUtil.text(
+        'previewFile仅可在企业微信或APP中使用',
+        'SeedsUI_only_app_wechat',
+        ['previewFile']
+      )
       Toast.show({
         content: errMsg
       })

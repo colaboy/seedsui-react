@@ -1,6 +1,6 @@
 // require (PrototypeString.js), 使用了getSuffix
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 /**
  * @deprecated since version 5.4.9

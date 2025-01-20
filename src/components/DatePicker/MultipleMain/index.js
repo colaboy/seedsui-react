@@ -4,7 +4,7 @@ import formatValue from './formatValue'
 import getActiveTab from './getActiveTab'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
 import Tabs from './../../Tabs'
 // 内库使用-end
@@ -43,7 +43,7 @@ function MultipleMain(
       getRootDOM: () => mainRef.current,
       // 获取标题
       getTitle: () => {
-        let title = locale('选择日期', 'SeedsUI_placeholder_select')
+        let title = LocaleUtil.text('选择日期', 'SeedsUI_placeholder_select')
         return title
       },
       getValue: () => {

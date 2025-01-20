@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 const TopContainer = forwardRef(({ children, caption, type, ...others }, ref) => {
   const rootRef = useRef(null)

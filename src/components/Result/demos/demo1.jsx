@@ -26,7 +26,7 @@ export default () => {
               window.location.reload()
             }}
           >
-            {locale('重试')}
+            {LocaleUtil.text('重试')}
           </Button>
           <Button
             className="result-button bg-white"
@@ -34,7 +34,7 @@ export default () => {
               Bridge.back()
             }}
           >
-            {locale('返回')}
+            {LocaleUtil.text('返回')}
           </Button>
         </Result>
       </Layout.Main>

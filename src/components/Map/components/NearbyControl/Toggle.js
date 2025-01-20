@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -18,7 +18,7 @@ function Toggle() {
       }}
     >
       <span className="map-nearbyControl-toggle-label">
-        {locale('附近推荐', 'SeedsUI_nearby_recommendation')}
+        {LocaleUtil.text('附近推荐', 'SeedsUI_nearby_recommendation')}
       </span>
       <i className="map-nearbyControl-toggle-arrow"></i>
     </div>

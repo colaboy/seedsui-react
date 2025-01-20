@@ -1,5 +1,5 @@
 // CanvasUtil canvas操作
-import locale from './../../utils/locale' // 国际化数据
+import locale from './../locale' // 国际化数据
 
 var CanvasUtil = {
   cropImg: function (opts = {}) {

@@ -8,7 +8,7 @@ import Tabs from './Tabs'
 import ListItem from './ListItem'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import ArrayUtil from './../../../utils/ArrayUtil'
 import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
@@ -116,7 +116,7 @@ const Main = forwardRef(
         lastTab = {
           parentid: lastTab.id,
           id: '',
-          name: locale('请选择', 'SeedsUI_placeholder_select')
+          name: LocaleUtil.text('请选择', 'SeedsUI_placeholder_select')
         }
         tabsRef.current.push(lastTab)
       }
@@ -182,7 +182,7 @@ const Main = forwardRef(
           let errMsg =
             typeof newList === 'string'
               ? newList
-              : locale('获取数据失败', 'SeedsUI_get_data_failed')
+              : LocaleUtil.text('获取数据失败', 'SeedsUI_get_data_failed')
           if (typeof config?.onError === 'function') {
             config.onError({ errMsg: errMsg })
           } else {

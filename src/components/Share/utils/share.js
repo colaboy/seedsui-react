@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Bridge from './../../../utils/Bridge'
 // 内库使用-end
 
@@ -27,7 +27,7 @@ function share(params) {
 
         onFail &&
           onFail({
-            errMsg: err?.errMsg || locale('分享失败')
+            errMsg: err?.errMsg || LocaleUtil.text('分享失败')
           })
       }
     })
@@ -45,7 +45,7 @@ function share(params) {
         console.log('DingTalk Share fail:', err)
         onFail &&
           onFail({
-            errMsg: err?.errMsg || locale('分享失败')
+            errMsg: err?.errMsg || LocaleUtil.text('分享失败')
           })
       }
     })

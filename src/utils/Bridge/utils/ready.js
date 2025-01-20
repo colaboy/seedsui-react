@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../locale'
+import LocaleUtil from './../../LocaleUtil'
 import AssetUtil from './../../AssetUtil'
 // 内库使用-end
 
@@ -66,7 +66,7 @@ function ready(callback, options = {}, Bridge) {
         // js加载失败
         else {
           console.error('支付小程序js加载失败')
-          options?.fail?.({ errMsg: locale('支付小程序js加载失败') })
+          options?.fail?.({ errMsg: LocaleUtil.text('支付小程序js加载失败') })
           return
         }
       }
@@ -101,7 +101,7 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: locale('微信js加载失败', 'SeedsUI_wechat_js_load_failed') })
+        options.fail({ errMsg: LocaleUtil.text('微信js加载失败', 'SeedsUI_wechat_js_load_failed') })
       }
     }
   }
@@ -116,7 +116,9 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: locale('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed') })
+        options.fail({
+          errMsg: LocaleUtil.text('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed')
+        })
       }
     }
   }
@@ -136,7 +138,7 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
+        options.fail({ errMsg: LocaleUtil.text('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
       }
     }
   }

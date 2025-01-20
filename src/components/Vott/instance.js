@@ -1,7 +1,7 @@
 // Vott (require GeoUtil)
 import GeoUtil from '../../utils/GeoUtil'
 
-import locale from './../../utils/locale' // 国际化
+import LocaleUtil from './../../utils/LocaleUtil' // 国际化
 
 let Vott = function (container, params) {
   /* --------------------
@@ -199,7 +199,9 @@ let Vott = function (container, params) {
     s.svg.classList.remove(s.params.activeClass)
     // Callback
     if (s.params.onError)
-      s.params.onError(e, { errMsg: `${locale('图片地址无效', 'SeedsUI_invalid_image_src')}` })
+      s.params.onError(e, {
+        errMsg: `${LocaleUtil.text('图片地址无效', 'SeedsUI_invalid_image_src')}`
+      })
   }
   // 更新DOM
   s.update = function () {

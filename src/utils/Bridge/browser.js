@@ -5,7 +5,7 @@ import ready from './utils/ready'
 // 内库使用-start
 import Device from './../Device'
 import Toast from './../../components/Toast'
-import locale from './../locale'
+import LocaleUtil from './../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -58,9 +58,11 @@ let Bridge = {
   // 返回监听
   onHistoryBack: function () {
     Toast.show({
-      content: locale('onHistoryBack仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
-        'onHistoryBack'
-      ])
+      content: LocaleUtil.text(
+        'onHistoryBack仅可在企业微信或APP中使用',
+        'SeedsUI_only_app_wechat',
+        ['onHistoryBack']
+      )
     })
   },
   // setTitle: '已在base中实现'
@@ -72,14 +74,16 @@ let Bridge = {
   scanQRCode: function (params = {}) {
     if (!this.debug) {
       Toast.show({
-        content: locale('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['scanQRCode'])
+        content: LocaleUtil.text('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+          'scanQRCode'
+        ])
       })
       if (params.fail)
         params.fail({
-          errMsg: `scanQRCode:${locale('扫码失败', 'SeedsUI_scancode_failed')}, ${locale(
-            '请稍后重试',
-            'SeedsUI_try_again_later'
-          )}`
+          errMsg: `scanQRCode:${LocaleUtil.text(
+            '扫码失败',
+            'SeedsUI_scancode_failed'
+          )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
         })
       return
     }
@@ -90,7 +94,9 @@ let Bridge = {
   // 视频文件上传
   uploadFile: function () {
     Toast.show({
-      content: locale('uploadFile仅可在APP中使用', 'SeedsUI_only_app_wechat', ['uploadFile'])
+      content: LocaleUtil.text('uploadFile仅可在APP中使用', 'SeedsUI_only_app_wechat', [
+        'uploadFile'
+      ])
     })
   }
 }

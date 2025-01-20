@@ -1,7 +1,7 @@
 // BaiduMap 百度地图使用库
 // 引入 PrototypeObject.js: Object.getUnitNum, Object.loadScript
 // 引入 PrototypeString.js: Object.getUnitNum方法中使用toNumber()
-import locale from './../../utils/locale'
+import locale from './../locale'
 import GeoUtil from './../../utils/GeoUtil'
 
 /**

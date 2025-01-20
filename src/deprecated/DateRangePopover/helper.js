@@ -1,5 +1,5 @@
 import Toast from './../../components/Toast'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 // eslint-disable-next-line
 export default {

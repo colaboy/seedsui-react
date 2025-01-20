@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
+import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import showTooltip from './showTooltip'
 import hideTooltip from './hideTooltip'
 

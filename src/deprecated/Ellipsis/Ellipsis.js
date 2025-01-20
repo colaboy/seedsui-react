@@ -1,5 +1,5 @@
 import React, { forwardRef, useImperativeHandle, useRef, useEffect } from 'react'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 const TOGGLE_EXPAND_TEXT = locale('展开', 'SeedsUI_expand')
 const TOGGLE_COLLAPSE_TEXT = locale('收缩', 'SeedsUI_collapse')

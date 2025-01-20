@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import MapUtil from './../../MapUtil'
 import Notice from './../../Notice'
-import locale from './../../../utils/locale'
+import locale from './../../locale'
 import helper from './helper'
 
 const BMap = ({ errMsg, changeState, list = [], defaultChecked, onMapClose, callback }) => {

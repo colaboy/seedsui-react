@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Button from './../../../Button'
 // 内库使用-end
 
@@ -31,7 +31,7 @@ const Result = forwardRef(({ retry, title, subTitle, extra, ...props }, ref) => 
       {extra}
       {typeof retry === 'function' && (
         <Button className="map-result-button-retry primary" onClick={retry}>
-          {locale('重试')}
+          {LocaleUtil.text('重试')}
         </Button>
       )}
     </div>

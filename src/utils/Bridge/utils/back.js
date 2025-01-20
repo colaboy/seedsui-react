@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 // 内库使用-start
-import locale from './../../locale'
+import LocaleUtil from './../../LocaleUtil'
 import Device from './../../Device'
 import Modal from './../../../components/Modal'
 // 内库使用-end
@@ -69,7 +69,7 @@ async function back(backLvl, options, Bridge) {
   // 提示后，关闭返回，或者历史返回
   else if (isFromApp.indexOf('confirm-close') !== -1 || isFromApp.indexOf('confirm') !== -1) {
     // 默认提示信息
-    let confirmCaption = locale('您确定要离开此页面吗?', 'SeedsUI_quit_page_confirm')
+    let confirmCaption = LocaleUtil.text('您确定要离开此页面吗?', 'SeedsUI_quit_page_confirm')
     // 地址栏动态提示信息
     if (isFromApp.indexOf('confirm-close:') !== -1) {
       let newConfirmCaption = isFromApp.replace('confirm-close:', '')

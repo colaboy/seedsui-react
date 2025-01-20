@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Alert from './../Alert'
 import InputDate from './../InputDate'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 // 自定义时间
 function DateRange({

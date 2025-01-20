@@ -1,5 +1,5 @@
 // Clipboard 剪贴板
-import locale from './../locale' // 国际化数据
+import LocaleUtil from './../LocaleUtil' // 国际化数据
 
 const Clipboard = {
   // 选择元素的内容
@@ -62,13 +62,14 @@ const Clipboard = {
     if (success) {
       if (params && params.success)
         params.success(
-          params.successMsg || locale('复制到剪贴板成功', 'SeedsUI_copy_clipboard_success')
+          params.successMsg || LocaleUtil.text('复制到剪贴板成功', 'SeedsUI_copy_clipboard_success')
         )
     } else {
       if (params && params.fail)
         params.fail({
           errMsg:
-            params.errorMsg || locale('当前设备不允许访问剪贴板', 'SeedsUI_copy_clipboard_refuse')
+            params.errorMsg ||
+            LocaleUtil.text('当前设备不允许访问剪贴板', 'SeedsUI_copy_clipboard_refuse')
         })
     }
   }

@@ -8,24 +8,8 @@ import './deprecated/PrototypeNumber.js'
 import './deprecated/PrototypeDate.js'
 // import './deprecated/PrototypePinyin.js' // 不常用
 
-// dayjs国际化, 常用插件: https://day.js.org/docs/en/plugin/plugin
-import 'dayjs/locale/zh-cn'
-import dayjs from 'dayjs'
-import isoWeek from 'dayjs/plugin/isoWeek'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
-
-// Test locale: start
-// import 'dayjs/locale/zh-cn'
-// dayjs.locale('zh-cn')
-// Test locale: end
-
-// 引入插件
-dayjs.extend(isoWeek) // 用于解决format时报错:isoWeek
-dayjs.extend(weekOfYear) // 用于解决format时报错:week
-dayjs.extend(quarterOfYear)
-dayjs.extend(advancedFormat) // 支持高级format
+import DateUtil from './utils/DateUtil'
+DateUtil.initialize()
 
 // 记录版本号
 const packageJson = require('./../package.json')
@@ -33,7 +17,11 @@ if (packageJson?.version) {
   window.seedsVersion = packageJson.version
 }
 
-export { default as locale } from './utils/locale'
+// 记录平台: window.seedsPlatform
+// 记录语言: window.seedsLocaleLanguage
+
+export { default as locale } from './deprecated/locale'
+export { default as LocaleUtil } from './utils/LocaleUtil'
 export { default as ActionSheet1 } from './components/ActionSheet1'
 export { default as Alert } from './deprecated/Alert' // (废弃, 使用Modal代替)
 export { default as Modal } from './components/Modal'
@@ -180,7 +168,7 @@ export { default as PubSub } from './deprecated/PubSub' // 不常用
 // export { default as Validator } from './deprecated/Validator' // 不常用
 export { default as ArrayUtil } from './utils/ArrayUtil'
 export { default as MathUtil } from './utils/MathUtil'
-export { default as DateUtil } from './utils/DateUtil'
+export { DateUtil }
 export { default as useSyncCallback } from './deprecated/useSyncCallback'
 export { default as ReduxRequestMiddleware } from './deprecated/ReduxRequestMiddleware'
 export { default as Bridge } from './utils/Bridge'

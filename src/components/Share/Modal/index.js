@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import BaseModal from './../../Modal'
 // 内库使用-end
 
@@ -52,7 +52,7 @@ const Modal = forwardRef(
         animation={animation}
         className={`share-modal${className ? ' ' + className : ''}`}
       >
-        <div className="share-modal-title">{locale('分享到', 'SeedsUI_share_to')}</div>
+        <div className="share-modal-title">{LocaleUtil.text('分享到', 'SeedsUI_share_to')}</div>
         <div className="share-modal-main">
           <Main
             {...(mainProps || {})}
@@ -68,7 +68,7 @@ const Modal = forwardRef(
             onVisibleChange && onVisibleChange(false)
           }}
         >
-          {locale('取消', 'SeedsUI_cancel')}
+          {LocaleUtil.text('取消', 'SeedsUI_cancel')}
         </div>
       </BaseModal>
     )

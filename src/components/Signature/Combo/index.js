@@ -3,7 +3,7 @@ import Preview from './Preview'
 import Modal from './../Modal'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Button from './../../Button'
 // 内库使用-end
 
@@ -73,7 +73,7 @@ const Combo = (
       >
         <i className={`signature-button-icon-add`}></i>
         {/* 文字 */}
-        <div className="signature-button-label">{locale('签名', 'SeedsUI_signature')}</div>
+        <div className="signature-button-label">{LocaleUtil.text('签名', 'SeedsUI_signature')}</div>
       </Button>
       <Modal
         ref={modalRef}

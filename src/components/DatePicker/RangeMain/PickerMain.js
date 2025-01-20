@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } f
 import MultipleMain from './../MultipleMain'
 
 // 内库使用-start
-import locale from '../../../utils/locale'
+import LocaleUtil from '../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -37,12 +37,12 @@ const PickerMain = function (
     setMultipleDate([
       {
         id: 'start',
-        name: locale('开始时间', 'SeedsUI_start_time'),
+        name: LocaleUtil.text('开始时间', 'SeedsUI_start_time'),
         value: startDate
       },
       {
         id: 'end',
-        name: locale('结束时间', 'SeedsUI_end_time'),
+        name: LocaleUtil.text('结束时间', 'SeedsUI_end_time'),
         value: endDate
       }
     ])

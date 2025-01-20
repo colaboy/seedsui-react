@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 
 const TopContainer = forwardRef(({ children, caption, type, ...props }, ref) => {
   const rootRef = useRef(null)
@@ -11,7 +11,7 @@ const TopContainer = forwardRef(({ children, caption, type, ...props }, ref) => 
       <div className="layout-main-pull-push-wrapper">
         <div className="layout-main-pull-push-icon"></div>
         <div className="layout-main-pull-push-caption">
-          {locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
+          {LocaleUtil.text('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
         </div>
       </div>
     </div>

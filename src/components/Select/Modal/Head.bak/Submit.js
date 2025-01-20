@@ -1,5 +1,5 @@
 import React from 'react'
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 
 const Submit = ({ submitProps, onSubmitClick }) => {
   let {
@@ -25,7 +25,7 @@ const Submit = ({ submitProps, onSubmitClick }) => {
       }${submitDisabled === true ? ' disabled' : ''}`}
       onClick={handleSubmitClick}
     >
-      {submitCaption || locale('确定', 'SeedsUI_ok')}
+      {submitCaption || LocaleUtil.text('确定', 'SeedsUI_ok')}
       {typeof total === 'number' && `(${total})`}
     </div>
   )

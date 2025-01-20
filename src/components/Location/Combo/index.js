@@ -12,7 +12,7 @@ import Modal from './../Modal'
 // 内库使用
 import Map from './../../Map'
 import Input from './../../Input'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 
 // 测试使用
 // import { locale, Input, Map } from 'seedsui-react'
@@ -44,8 +44,8 @@ const LocationCombo = forwardRef(
       // 显示预览按钮
       previewVisible = false,
       // 提示信息配置
-      failText = locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'),
-      loadingText = locale('定位中...', 'SeedsUI_positioning'),
+      failText = LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'),
+      loadingText = LocaleUtil.text('定位中...', 'SeedsUI_positioning'),
 
       // 点击整行触发的动作: location | choose | preview
       clickAction,
@@ -146,7 +146,7 @@ const LocationCombo = forwardRef(
             ...addrRes
           }
         } else {
-          newValue = locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+          newValue = LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
         }
       }
       return newValue

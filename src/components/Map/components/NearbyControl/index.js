@@ -7,7 +7,7 @@ import Tabs from './Tabs'
 import Main from './Main'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Loading from './../../../Loading'
 // 内库使用-end
 
@@ -67,7 +67,7 @@ function Nearby(
   // 获取附近的点
   async function loadData() {
     Loading.show({
-      content: locale('搜索中', 'SeedsUI_searching')
+      content: LocaleUtil.text('搜索中', 'SeedsUI_searching')
     })
     let result = await map.queryNearby({
       map: map,

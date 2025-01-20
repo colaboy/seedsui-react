@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 // import Sortable from 'sortablejs'
 import { ReactSortable } from 'react-sortablejs'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 
 import Card from './../../Card'
 import Item from './Item'
@@ -74,7 +74,7 @@ const Transfer = (
           <>
             <div className="transfer-title">
               <div className="transfer-title-content">
-                {titles?.selected || locale('已添加', 'ZKGJ003058')}
+                {titles?.selected || LocaleUtil.text('已添加', 'ZKGJ003058')}
               </div>
               {`${value.length}/${list?.length || 0}`}
             </div>
@@ -110,7 +110,7 @@ const Transfer = (
           <>
             <div className="transfer-title">
               <div className="transfer-title-content">
-                {titles?.unSelected || locale('未添加', 'ZKGJ002658')}
+                {titles?.unSelected || LocaleUtil.text('未添加', 'ZKGJ002658')}
               </div>
               {`${unSelectedList.length}/${list?.length || 0}`}
             </div>

@@ -1,5 +1,5 @@
 import Picker from './../../components/Picker/Deprecated/instance.js'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 var PickerDate = function (params) {
   var nowDate = new Date()

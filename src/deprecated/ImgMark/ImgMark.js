@@ -4,7 +4,7 @@ import Instance from './instance.js'
 import Toast from './../../components/Toast'
 import Bridge from './../../utils/Bridge'
 import BridgeBrowser from './../../utils/Bridge/browser'
-import locale from './../../utils/locale' // 国际化
+import locale from './../locale' // 国际化
 
 export default class ImgMark extends Component {
   static propTypes = {

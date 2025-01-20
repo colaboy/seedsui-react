@@ -2,7 +2,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
 // 内库使用
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import ModalPicker from './../../Modal/Modal'
 
 // 测试使用
@@ -46,8 +46,8 @@ const LocationModal = forwardRef(
         captionProps={{
           caption:
             visible === 'choose'
-              ? locale('选择地址', 'SeedsUI_choose_address')
-              : locale('查看地址', 'SeedsUI_view_address')
+              ? LocaleUtil.text('选择地址', 'SeedsUI_choose_address')
+              : LocaleUtil.text('查看地址', 'SeedsUI_view_address')
         }}
         {...props}
         main={props?.main || Main}

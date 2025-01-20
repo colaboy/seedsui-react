@@ -2,7 +2,7 @@ import React from 'react'
 import Type from './../Type'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Device from './../../../../utils/Device'
 import Toast from './../../../Toast'
 // 内库使用-end
@@ -17,12 +17,12 @@ function Qince({ shareTo }) {
   function handleFail(err, onFail) {
     if (Device.os === 'android' && Device.compareVersion(Device.platformVersion, '7.2.65') < 0) {
       Toast.show({
-        content: locale('分享失败')
+        content: LocaleUtil.text('分享失败')
       })
     }
     onFail &&
       onFail({
-        errMsg: err?.errMsg || locale('分享失败')
+        errMsg: err?.errMsg || LocaleUtil.text('分享失败')
       })
   }
 

@@ -6,7 +6,7 @@ import DateCombo from './DateCombo'
 
 // 内库使用-start
 import Tabs from './../../Tabs'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -22,24 +22,24 @@ const Types = forwardRef(
       list = [
         {
           type: 'date',
-          name: locale('日', 'SeedsUI_unit_date')
+          name: LocaleUtil.text('日', 'SeedsUI_unit_date')
         },
         {
           type: 'week',
           id: 'week',
-          name: locale('周', 'datetype_unit_week')
+          name: LocaleUtil.text('周', 'datetype_unit_week')
         },
         {
           type: 'month',
-          name: locale('月', 'SeedsUI_unit_month')
+          name: LocaleUtil.text('月', 'SeedsUI_unit_month')
         },
         {
           type: 'quarter',
-          name: locale('季', 'SeedsUI_unit_quarter')
+          name: LocaleUtil.text('季', 'SeedsUI_unit_quarter')
         },
         {
           type: 'year',
-          name: locale('年', 'SeedsUI_unit_year')
+          name: LocaleUtil.text('年', 'SeedsUI_unit_year')
         }
       ],
       value,

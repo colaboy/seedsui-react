@@ -6,7 +6,7 @@ import ready from './utils/ready'
 // 内库使用-start
 import Toast from './../../components/Toast'
 import Device from './../Device'
-import locale from './../locale'
+import LocaleUtil from './../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -232,7 +232,10 @@ let Bridge = {
         if (res.flag === '1') {
           if (params.success)
             params.success({
-              errMsg: `previewFile:ok${locale('预览文件成功', 'SeedsUI_previewfile_success')}`
+              errMsg: `previewFile:ok${LocaleUtil.text(
+                '预览文件成功',
+                'SeedsUI_previewfile_success'
+              )}`
             })
         } else {
           if (params.fail) params.fail({ errMsg: `previewFile:fail${res.msg}` })
@@ -278,7 +281,7 @@ let Bridge = {
   videoRecord: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: locale('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2')
       })
       return
     }
@@ -288,7 +291,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoRecord:录制失败' })
-        else Toast.show({ content: locale('record failed') })
+        else Toast.show({ content: LocaleUtil.text('record failed') })
       }
     }, JSON.stringify(params))
   },
@@ -300,7 +303,7 @@ let Bridge = {
   videoUpload: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: locale('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2')
       })
       return
     }
@@ -310,7 +313,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoUpload:上传失败' })
-        else Toast.show({ content: locale('upload failed') })
+        else Toast.show({ content: LocaleUtil.text('upload failed') })
       }
     }, JSON.stringify(params))
   },
@@ -322,7 +325,7 @@ let Bridge = {
   videoInfo: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: locale('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2')
       })
       return
     }
@@ -333,7 +336,7 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `videoInfo:${locale('videoInfo failed')}`
+            errMsg: `videoInfo:${LocaleUtil.text('videoInfo failed')}`
           })
       }
     }, JSON.stringify(params))
@@ -352,17 +355,17 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `scanQRCode:${locale('扫码失败', 'SeedsUI_scancode_failed')}, ${locale(
-              '请稍后重试',
-              'SeedsUI_try_again_later'
-            )}`
+            errMsg: `scanQRCode:${LocaleUtil.text(
+              '扫码失败',
+              'SeedsUI_scancode_failed'
+            )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
           })
         else
           Toast.show({
-            content: `scanQRCode:${locale('扫码失败', 'SeedsUI_scancode_failed')}, ${locale(
-              '请稍后重试',
-              'SeedsUI_try_again_later'
-            )}`
+            content: `scanQRCode:${LocaleUtil.text(
+              '扫码失败',
+              'SeedsUI_scancode_failed'
+            )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
           })
       }
     })
@@ -415,7 +418,7 @@ let Bridge = {
         if (params.success) params.success(result)
       } else {
         let res = {
-          errMsg: `getLocation:fail${locale(
+          errMsg: `getLocation:fail${LocaleUtil.text(
             '定位失败,请检查定位权限是否开启',
             'SeedsUI_location_failed'
           )}`
@@ -423,7 +426,7 @@ let Bridge = {
         if (params.fail) params.fail(res)
         else
           Toast.show({
-            content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+            content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
           })
       }
     }, JSON.stringify({ locationType: '1' })) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
@@ -469,14 +472,17 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `getLocationMap:fail${locale(
+            errMsg: `getLocationMap:fail${LocaleUtil.text(
               '定位失败, 请检查外勤365定位权限是否开启',
               'SeedsUI_location_failed'
             )}`
           })
         else
           Toast.show({
-            content: locale('定位失败, 请检查外勤365定位权限是否开启', 'SeedsUI_location_failed')
+            content: LocaleUtil.text(
+              '定位失败, 请检查外勤365定位权限是否开启',
+              'SeedsUI_location_failed'
+            )
           })
       }
     }, JSON.stringify(Object.assign({ editable: '1' }, params))) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
@@ -598,11 +604,11 @@ let Bridge = {
     */
   uploadImage: function (params = {}) {
     if (!params.uploadDir) {
-      Toast.show({ content: locale('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir') })
+      Toast.show({ content: LocaleUtil.text('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir') })
       return
     }
     if (!params.localId || _.isEmpty(params.localId)) {
-      Toast.show({ content: locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
+      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
       return
     }
     let filePathList = [
@@ -657,7 +663,7 @@ let Bridge = {
    */
   previewImage: function (params) {
     if (!params.urls || !params.urls.length) {
-      Toast.show({ content: locale('没有预览图片地址', 'SeedsUI_previewimage_no_url') })
+      Toast.show({ content: LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewimage_no_url') })
       return
     }
     // 格式化index
@@ -697,17 +703,17 @@ let Bridge = {
   uploadFile: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: locale('uploadFile need more than 6.6.0')
+        content: LocaleUtil.text('uploadFile need more than 6.6.0')
       })
       return
     }
     if (!params.localId) {
-      Toast.show({ content: locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
+      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
       return
     }
     let localIds = params.localId.split(':')
     if (localIds.length !== 2) {
-      Toast.show({ content: locale('localeIds error') })
+      Toast.show({ content: LocaleUtil.text('localeIds error') })
       return
     }
     window.wq.wqio.uploadFile(
@@ -740,7 +746,7 @@ let Bridge = {
   chooseVideo: function (argParams = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: locale('chooseVideo more than 6.6.0')
+        content: LocaleUtil.text('chooseVideo more than 6.6.0')
       })
       return
     }
@@ -810,7 +816,7 @@ let Bridge = {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: locale('getCustomerAreaMore more than 6.2.2')
+        content: LocaleUtil.text('getCustomerAreaMore more than 6.2.2')
       })
       return
     }
@@ -869,12 +875,12 @@ let Bridge = {
   ----------------------------------------------------- */
   openNativePage: function (params = { ios: {}, android: {} }) {
     if (!params.ios.url) {
-      Toast.show({ content: locale('openNativePage ios need url') })
+      Toast.show({ content: LocaleUtil.text('openNativePage ios need url') })
       return
     }
     if (!params.android.url) {
       Toast.show({
-        content: locale('openNativePage android need url')
+        content: LocaleUtil.text('openNativePage android need url')
       })
       return
     }

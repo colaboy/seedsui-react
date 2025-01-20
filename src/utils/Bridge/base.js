@@ -8,7 +8,7 @@ import Device from './../Device'
 import MapUtil from './../../deprecated/MapUtil'
 import Toast from './../../components/Toast'
 import GeoUtil from './../GeoUtil'
-import locale from './../locale' // 内库使用-end
+import LocaleUtil from './../LocaleUtil' // 内库使用-end
 
 /* 测试使用-start
 import { GeoUtil, Device, MapUtil, Toast, locale } from 'seedsui-react'
@@ -71,13 +71,13 @@ let Bridge = {
     if (!this.loading) {
       this.loading = new LoadingInstance({
         ...params,
-        caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
+        caption: params.caption || LocaleUtil.text('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     } else {
       this.loading.updateParams({
         ...params,
-        caption: params.caption || locale('正在加载...', 'SeedsUI_loading'),
+        caption: params.caption || LocaleUtil.text('正在加载...', 'SeedsUI_loading'),
         maskClass: 'mask loading-mask ' + (params.mask === false ? ' loading-propagation' : '')
       })
     }
@@ -109,8 +109,8 @@ let Bridge = {
   showAlert: function (msg, params = {}) {
     if (!this.alert) {
       this.alert = new Alert({
-        buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
-        buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
+        buttonSubmitHTML: LocaleUtil.text('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+        buttonCancelHTML: LocaleUtil.text('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
           if (params.success) params.success(e)
           else e.hide()
@@ -121,8 +121,8 @@ let Bridge = {
     } else {
       if (params) {
         this.alert.updateParams({
-          buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
-          buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
+          buttonSubmitHTML: LocaleUtil.text('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+          buttonCancelHTML: LocaleUtil.text('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
             if (params.success) params.success(e)
             else e.hide()
@@ -143,8 +143,8 @@ let Bridge = {
   showConfirm: function (msg, params = {}) {
     if (!this.confirm) {
       this.confirm = new Alert({
-        buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
-        buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
+        buttonSubmitHTML: LocaleUtil.text('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+        buttonCancelHTML: LocaleUtil.text('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
         onClickSubmit: function (e) {
           if (params.success) params.success(e)
           else e.hide()
@@ -160,8 +160,8 @@ let Bridge = {
     } else {
       if (params) {
         this.confirm.updateParams({
-          buttonSubmitHTML: locale('确定', 'SeedsUI_ok'), // 实例化时需要国际化
-          buttonCancelHTML: locale('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
+          buttonSubmitHTML: LocaleUtil.text('确定', 'SeedsUI_ok'), // 实例化时需要国际化
+          buttonCancelHTML: LocaleUtil.text('取消', 'SeedsUI_cancel'), // 实例化时需要国际化
           onClickSubmit: function (e) {
             if (params.success) params.success(e)
           },
@@ -194,7 +194,7 @@ let Bridge = {
   // 自定义操作
   invoke: function () {
     Toast.show({
-      content: locale('invoke仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['invoke'])
+      content: LocaleUtil.text('invoke仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['invoke'])
     })
   },
   // 获得版本信息
@@ -204,7 +204,7 @@ let Bridge = {
   // 拨打电话
   tel: function (number) {
     if (Device.device === 'pc') {
-      Toast.show({ content: locale('此功能仅可在手机中使用', 'SeedsUI_only_mobile') })
+      Toast.show({ content: LocaleUtil.text('此功能仅可在手机中使用', 'SeedsUI_only_mobile') })
       return
     }
     if (isNaN(number)) return
@@ -255,7 +255,7 @@ let Bridge = {
             if (params.fail)
               params.fail({
                 errCode: 'LATLNG_ERROR',
-                errMsg: `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
+                errMsg: `getLocation:fail ${LocaleUtil.text('定位失败', 'SeedsUI_location_failed')}`
               })
           }
 
@@ -281,7 +281,7 @@ let Bridge = {
           switch (error.code) {
             case error.PERMISSION_DENIED:
               errCode = 'PERMISSION_DENIED'
-              errMsg = `getLocation:fail ${locale(
+              errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,用户拒绝请求地理定位',
                 'SeedsUI_location_permission_denied_error'
               )}`
@@ -289,9 +289,12 @@ let Bridge = {
             case error.POSITION_UNAVAILABLE:
               errCode = 'POSITION_UNAVAILABLE'
               console.log(
-                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unavailable_error')}`
+                `${LocaleUtil.text(
+                  '定位失败,位置信息是不可用',
+                  'SeedsUI_location_unavailable_error'
+                )}`
               )
-              errMsg = `getLocation:fail ${locale(
+              errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,位置信息是不可用',
                 'SeedsUI_location_unavailable_error'
               )}`
@@ -299,9 +302,9 @@ let Bridge = {
             case error.TIMEOUT:
               errCode = 'TIMEOUT'
               console.log(
-                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
+                `${LocaleUtil.text('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
               )
-              errMsg = `getLocation:fail ${locale(
+              errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,请求获取用户位置超时',
                 'SeedsUI_location_overtime_error'
               )}`
@@ -309,17 +312,17 @@ let Bridge = {
             case error.UNKNOWN_ERROR:
               errCode = 'UNKNOWN_ERROR'
               console.log(
-                `${locale('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
+                `${LocaleUtil.text('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
               )
-              errMsg = `getLocation:fail ${locale(
+              errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,定位系统失效',
                 'SeedsUI_location_unknown_error'
               )}`
               break
             default:
               errCode = 'LOCATION_ERROR'
-              console.log(`${locale('定位失败', 'SeedsUI_location_failed')}`)
-              errMsg = `getLocation:fail ${locale('定位失败', 'SeedsUI_location_failed')}`
+              console.log(`${LocaleUtil.text('定位失败', 'SeedsUI_location_failed')}`)
+              errMsg = `getLocation:fail ${LocaleUtil.text('定位失败', 'SeedsUI_location_failed')}`
           }
           let res = { errCode: errCode, errMsg: errMsg }
           console.log('调用浏览器定位失败', res)
@@ -332,9 +335,9 @@ let Bridge = {
         }
       )
     } else {
-      console.log(`${locale('当前浏览器不支持定位', 'SeedsUI_location_not_supported')}`)
+      console.log(`${LocaleUtil.text('当前浏览器不支持定位', 'SeedsUI_location_not_supported')}`)
       let res = {
-        errMsg: `getLocation:fail ${locale(
+        errMsg: `getLocation:fail ${LocaleUtil.text(
           '当前浏览器不支持定位',
           'SeedsUI_location_not_supported'
         )}`
@@ -369,16 +372,18 @@ let Bridge = {
     console.log('logOut方法仅在app上工作')
   },
   openLocation: function (params) {
-    let errMsg = locale('openLocation仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
-      'openLocation'
-    ])
+    let errMsg = LocaleUtil.text(
+      'openLocation仅可在企业微信或APP中使用',
+      'SeedsUI_only_app_wechat',
+      ['openLocation']
+    )
     Toast.show({
       content: errMsg
     })
     params?.fail && params.fail({ errMsg: errMsg })
   },
   chooseImage: function (params) {
-    let errMsg = locale('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+    let errMsg = LocaleUtil.text('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
       'chooseImage'
     ])
     Toast.show({
@@ -387,7 +392,7 @@ let Bridge = {
     params?.fail && params.fail({ errMsg: errMsg })
   },
   uploadImage: function (params) {
-    let errMsg = locale('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+    let errMsg = LocaleUtil.text('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
       'uploadImage'
     ])
     Toast.show({
@@ -396,16 +401,20 @@ let Bridge = {
     params?.fail && params.fail({ errMsg: errMsg })
   },
   previewImage: function (params = {}) {
-    let errMsg = locale('previewImage仅可在APP中使用', 'SeedsUI_only_app_wechat', ['previewImage'])
+    let errMsg = LocaleUtil.text('previewImage仅可在APP中使用', 'SeedsUI_only_app_wechat', [
+      'previewImage'
+    ])
     Toast.show({
       content: errMsg
     })
     params?.fail && params.fail({ errMsg: errMsg })
   },
   previewFile: function (params = {}) {
-    let errMsg = locale('previewFile仅可在企业微信或APP中使用', 'SeedsUI_only_app_wechat', [
-      'previewFile'
-    ])
+    let errMsg = LocaleUtil.text(
+      'previewFile仅可在企业微信或APP中使用',
+      'SeedsUI_only_app_wechat',
+      ['previewFile']
+    )
     Toast.show({
       content: errMsg
     })

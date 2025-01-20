@@ -1,5 +1,5 @@
 // 内库使用
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
@@ -13,7 +13,7 @@ function topRefreshOk(topContainer, isOk) {
     let finishMsg = ''
     // 失败
     if (isOk === false) {
-      finishMsg = locale('刷新失败', 'SeedsUI_refresh_failed')
+      finishMsg = LocaleUtil.text('刷新失败', 'SeedsUI_refresh_failed')
     }
     // 自定义提示信息
     else if (typeof isOk === 'string') {
@@ -21,7 +21,7 @@ function topRefreshOk(topContainer, isOk) {
     }
     // 成功
     else {
-      finishMsg = locale('刷新成功', 'SeedsUI_refresh_success')
+      finishMsg = LocaleUtil.text('刷新成功', 'SeedsUI_refresh_success')
     }
     if (topCaption) topCaption.innerHTML = finishMsg
 

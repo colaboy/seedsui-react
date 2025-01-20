@@ -2,7 +2,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Signature from './Signature'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -42,7 +42,7 @@ const Main = (
       {/* 按钮区域 */}
       <div className="signature-main-buttons">
         <div className="signature-main-button signature-main-button-cancel" onClick={onCancel}>
-          <p>{locale('取消', 'SeedsUI_cancel')}</p>
+          <p>{LocaleUtil.text('取消', 'SeedsUI_cancel')}</p>
         </div>
         <div className="flex-1"></div>
         <div
@@ -51,7 +51,7 @@ const Main = (
             signatureRef?.current?.clear?.()
           }}
         >
-          <p>{locale('清除', 'SeedsUI_clear')}</p>
+          <p>{LocaleUtil.text('清除', 'SeedsUI_clear')}</p>
         </div>
         <div
           className="signature-main-button signature-main-button-submit"
@@ -66,7 +66,7 @@ const Main = (
             onChange?.(base64)
           }}
         >
-          <p>{locale('确认', 'SeedsUI_confirm')}</p>
+          <p>{LocaleUtil.text('确认', 'SeedsUI_confirm')}</p>
         </div>
       </div>
     </div>

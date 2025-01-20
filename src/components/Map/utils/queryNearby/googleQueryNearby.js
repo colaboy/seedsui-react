@@ -1,7 +1,7 @@
 import coordsToFit from './../coordsToFit'
 
 // 内库使用-start
-// import locale from './../../../../../utils/locale'
+// import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -77,7 +77,7 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
     return list
   }
 
-  return locale('查询失败')
+  return LocaleUtil.text('查询失败')
 }
 
 export default nearbySearch

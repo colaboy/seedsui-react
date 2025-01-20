@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { DatePicker, DateUtil } from 'seedsui-react'
+import { DatePicker, LocaleUtil } from 'seedsui-react'
 
 export default () => {
   const dateRef = useRef()
   const [value, setValue] = useState(new Date('2024-10-30'))
 
   useEffect(() => {
+    LocaleUtil.setLanguage('zh_CN')
     console.log(dateRef)
     dateRef?.current?.open?.()
   }, [])

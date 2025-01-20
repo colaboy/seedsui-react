@@ -1,7 +1,7 @@
 import getTypeLocale from './getTypeLocale'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import DateUtil from './../../../../utils/DateUtil'
 // 内库使用-end
 
@@ -24,7 +24,7 @@ function validateDiff(value, { type, diff, onError }) {
     if (onError) {
       let isOk = onError({
         errCode: 'DATE_RANGE_DAYS_ERROR',
-        errMsg: locale(
+        errMsg: LocaleUtil.text(
           `日期区间不能超过${diff}${getTypeLocale(type)}`,
           'SeedsUI_dateragne_limit_error',
           [diff, getTypeLocale(type)]

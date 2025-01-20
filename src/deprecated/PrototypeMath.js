@@ -1,4 +1,4 @@
-import locale from './../utils/locale' // 国际化
+import locale from './locale' // 国际化
 
 /* -------------------
 解决加减乘除精度

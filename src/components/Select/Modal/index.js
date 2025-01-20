@@ -3,7 +3,7 @@ import { formatValue, getDynamicProps } from './../utils'
 import Main from './../Main'
 
 // 内库使用
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import ModalPicker from './../../Modal/Picker'
 
 // Modal
@@ -165,9 +165,9 @@ const Modal = forwardRef(
       }
       // 多选带选中数量
       if (multiple) {
-        return locale('确定', 'SeedsUI_ok') + (value?.length ? `(${value.length})` : '')
+        return LocaleUtil.text('确定', 'SeedsUI_ok') + (value?.length ? `(${value.length})` : '')
       }
-      return locale('确定', 'SeedsUI_ok')
+      return LocaleUtil.text('确定', 'SeedsUI_ok')
     }
 
     // 事件

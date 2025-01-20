@@ -1,7 +1,7 @@
 import React, { Fragment, forwardRef } from 'react'
 
 // 内库使用-start
-import locale from '../../../utils/locale'
+import LocaleUtil from '../../../utils/LocaleUtil'
 import Result from './../../Result'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
@@ -28,7 +28,7 @@ const ListItem = forwardRef(
 
     if (Array.isArray(list) && !list.length) {
       // eslint-disable-next-line
-      list = locale('暂无数据', 'SeedsUI_no_data')
+      list = LocaleUtil.text('暂无数据', 'SeedsUI_no_data')
     }
 
     return (

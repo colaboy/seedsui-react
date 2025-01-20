@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -13,12 +13,12 @@ function Type({ type, onClick }) {
     <div className="share-item" onClick={onClick}>
       <i className={`share-icon ${type}`}></i>
       <p className="share-title">
-        {type === 'wechat' && locale('微信')}
-        {type === 'moments' && locale('朋友圈')}
-        {type === 'miniprogram' && locale('小程序')}
-        {type === 'wecom' && locale('企业微信')}
-        {type === 'dingtalk' && locale('钉钉')}
-        {type === 'lark' && locale('飞书')}
+        {type === 'wechat' && LocaleUtil.text('微信')}
+        {type === 'moments' && LocaleUtil.text('朋友圈')}
+        {type === 'miniprogram' && LocaleUtil.text('小程序')}
+        {type === 'wecom' && LocaleUtil.text('企业微信')}
+        {type === 'dingtalk' && LocaleUtil.text('钉钉')}
+        {type === 'lark' && LocaleUtil.text('飞书')}
       </p>
     </div>
   )

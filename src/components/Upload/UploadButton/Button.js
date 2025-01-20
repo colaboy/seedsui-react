@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Button from './../../Button'
 // 内库使用-end
 
@@ -27,7 +27,7 @@ const UploadButton = ({ ...props }, ref) => {
         </div>
       </div>
       {/* 文字 */}
-      <div className="upload-button-label">{locale('附件', 'SeedsUI_attach')}</div>
+      <div className="upload-button-label">{LocaleUtil.text('附件', 'SeedsUI_attach')}</div>
     </Button>
   )
 }

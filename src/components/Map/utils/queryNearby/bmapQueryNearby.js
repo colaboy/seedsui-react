@@ -1,7 +1,7 @@
 import coordsToFit from './../coordsToFit'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -53,7 +53,7 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
           }
           resolve(list)
         } else {
-          resolve(locale('查询失败'))
+          resolve(LocaleUtil.text('查询失败'))
         }
       }
     })

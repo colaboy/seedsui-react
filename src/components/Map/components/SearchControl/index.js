@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import Page from './Page'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -35,7 +35,9 @@ function SearchControl({ map, onChange }, ref) {
         }}
       >
         <div className="map-searchControl-navigation-icon"></div>
-        <div className="map-searchControl-navigation-label">{locale('搜索', 'SeedsUI_search')}</div>
+        <div className="map-searchControl-navigation-label">
+          {LocaleUtil.text('搜索', 'SeedsUI_search')}
+        </div>
       </div>
       <Page visible={visible} onVisibleChange={setVisible} map={map} onChange={onChange} />
     </>

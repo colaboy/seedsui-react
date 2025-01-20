@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, Fragment } from 'react'
 import Popover from './../Popover'
-import locale from './../../utils/locale'
+import locale from './../locale'
 import DateRange from './DateRange'
 import helper from './helper'
 

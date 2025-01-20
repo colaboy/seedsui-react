@@ -5,7 +5,7 @@ import updatePlayerId from './updatePlayerId'
 import getSkinLayout from './getSkinLayout'
 
 // 内库使用-start
-import locale from './../../utils/locale'
+import LocaleUtil from './../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -70,15 +70,18 @@ const VideoPlayer = forwardRef(
     // 实例化
     async function initInstance(playerId) {
       if (!src) {
-        console.error(locale('请传入视频源', 'SeedsUI_no_videosrc_error'))
-        if (onError) onError({ errMsg: locale('请传入视频源', 'SeedsUI_no_videosrc_error') })
+        console.error(LocaleUtil.text('请传入视频源', 'SeedsUI_no_videosrc_error'))
+        if (onError)
+          onError({ errMsg: LocaleUtil.text('请传入视频源', 'SeedsUI_no_videosrc_error') })
         return
       }
       if (!(await loadSdk())) {
-        console.error(locale('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed'))
+        console.error(
+          LocaleUtil.text('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
+        )
         if (onError)
           onError({
-            errMsg: locale('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
+            errMsg: LocaleUtil.text('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
           })
         return
       }

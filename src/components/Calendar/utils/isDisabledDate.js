@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
 
@@ -13,21 +13,21 @@ function isDisabledDate(date, { min, max }) {
     let errDate = new Date()
     return {
       errCode: 'CALENDAR_INVALID_DATE',
-      errMsg: locale(`非法的日期格式`),
+      errMsg: LocaleUtil.text(`非法的日期格式`),
       date: errDate
     }
   }
   if (min instanceof Date && date.setHours(0, 0, 0, 0) < min.setHours(0, 0, 0, 0)) {
     return {
       errCode: 'CALENDAR_MIN_ERROR',
-      errMsg: locale(`禁止访问小于${DateUtil.format(min, 'YYYY年MM月DD日')}`),
+      errMsg: LocaleUtil.text(`禁止访问小于${DateUtil.format(min, 'YYYY年MM月DD日')}`),
       date: min
     }
   }
   if (max instanceof Date && date.setHours(0, 0, 0, 0) > max.setHours(0, 0, 0, 0)) {
     return {
       errCode: 'CALENDAR_MAX_ERROR',
-      errMsg: locale(`禁止访问大于${DateUtil.format(max, 'YYYY年MM月DD日')}`),
+      errMsg: LocaleUtil.text(`禁止访问大于${DateUtil.format(max, 'YYYY年MM月DD日')}`),
       date: max
     }
   }

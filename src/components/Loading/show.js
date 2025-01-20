@@ -1,4 +1,4 @@
-import locale from './../../utils/locale'
+import LocaleUtil from './../../utils/LocaleUtil'
 
 // 显示Loading
 // eslint-disable-next-line
@@ -64,7 +64,8 @@ export default function (props) {
     }
 
     let caption = captionProps?.caption || content
-    caption = typeof caption === 'string' ? caption : locale('加载中...', 'SeedsUI_loading')
+    caption =
+      typeof caption === 'string' ? caption : LocaleUtil.text('加载中...', 'SeedsUI_loading')
     mask.querySelector('.loading-content').innerHTML = caption
 
     // 显示

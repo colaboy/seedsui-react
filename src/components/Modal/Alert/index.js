@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import BaseModal from './../BaseModal'
 import { getChildren } from './../utils'
 
@@ -23,7 +23,7 @@ const Alert = forwardRef(
       contentProps: contentProps,
       footerProps: footerProps,
       submitProps: submitProps || {
-        caption: locale('确定', 'SeedsUI_ok')
+        caption: LocaleUtil.text('确定', 'SeedsUI_ok')
       },
       cancelProps: cancelProps,
       ...props

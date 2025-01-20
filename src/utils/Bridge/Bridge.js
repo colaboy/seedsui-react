@@ -39,4 +39,6 @@ if (
   Bridge = BridgeBrowser
 }
 
+window.seedsPlatform = Device.platform
+
 export default Bridge

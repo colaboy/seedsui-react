@@ -4,7 +4,7 @@ import React from 'react'
 import Loading from './../../../../Loading'
 import Toast from './../../../../Toast'
 import Bridge from './../../../../../utils/Bridge'
-import locale from './../../../../../utils/locale'
+import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -23,7 +23,7 @@ function Navigation({
 }) {
   async function handleClick() {
     Loading.show({
-      content: locale('定位中...', 'SeedsUI_positioning')
+      content: LocaleUtil.text('定位中...', 'SeedsUI_positioning')
     })
     // 当前位置
     let result = await map.getLocation({ type: 'wgs84' })
@@ -34,7 +34,7 @@ function Navigation({
     if (typeof result === 'string') {
       // 赋值
       Toast.show({
-        content: locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+        content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
       })
       return
     }
@@ -42,7 +42,7 @@ function Navigation({
     Bridge.openLocation({
       slatitude: result.latitude, // 起点纬度
       slongitude: result.longitude, // 起点经度
-      sname: result.address || locale('当前位置', 'SeedsUI_current_location'), // 起点名
+      sname: result.address || LocaleUtil.text('当前位置', 'SeedsUI_current_location'), // 起点名
       latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
       longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
       type: type,
@@ -70,7 +70,9 @@ function Navigation({
   return (
     <span className="map-navigation-button" onClick={handleClick}>
       <i className="map-navigation-button-icon"></i>
-      <span className="map-navigation-button-text">{locale('导航', 'SeedsUI_navigation')}</span>
+      <span className="map-navigation-button-text">
+        {LocaleUtil.text('导航', 'SeedsUI_navigation')}
+      </span>
     </span>
   )
 }

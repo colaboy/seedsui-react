@@ -1,4 +1,5 @@
-import config from './config'
+import initialize from './initialize'
+import setLanguage from './setLanguage'
 import toDate from './toDate'
 import getWeekDates from './getWeekDates'
 import previousWeek from './previousWeek'
@@ -15,7 +16,8 @@ import lastDayOfYear from './lastDayOfYear'
 
 // 日期工具类
 const dateUtil = {
-  config: config,
+  initialize: initialize,
+  setLanguage: setLanguage,
   // 转为日期格式
   toDate: toDate,
   // 周操作

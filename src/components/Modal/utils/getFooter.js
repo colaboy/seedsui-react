@@ -1,5 +1,5 @@
 import React from 'react'
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 
 // 底部
 function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
@@ -29,7 +29,7 @@ function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
           otherCancelProps.className ? ' ' + otherCancelProps.className : ''
         }`}
       >
-        {cancelText || locale('取消', 'SeedsUI_cancel')}
+        {cancelText || LocaleUtil.text('取消', 'SeedsUI_cancel')}
       </div>
     )
   }
@@ -46,7 +46,7 @@ function getFooter({ cancelProps, submitProps, footerProps, onVisibleChange }) {
         {...otherSubmitProps}
         className={`modal-ok${otherSubmitProps.className ? ' ' + otherSubmitProps.className : ''}`}
       >
-        {submitText || locale('确定', 'SeedsUI_ok')}
+        {submitText || LocaleUtil.text('确定', 'SeedsUI_ok')}
       </div>
     )
   }

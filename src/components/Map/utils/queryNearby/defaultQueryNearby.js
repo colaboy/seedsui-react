@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -46,7 +46,7 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         }
       })
       .catch((error) => {
-        resolve(locale('查询失败'))
+        resolve(LocaleUtil.text('查询失败'))
       })
   })
 }

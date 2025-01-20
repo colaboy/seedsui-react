@@ -8,7 +8,7 @@ import Markers, { createIcon as createMarkerIcon } from './../../components/Mark
 import Result from './../../components/Result'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -35,7 +35,11 @@ function MapMarkers(
   ref
 ) {
   if (!Array.isArray(externalPoints) || !externalPoints.length) {
-    return <Result title={`${locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`} />
+    return (
+      <Result
+        title={`${LocaleUtil.text('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`}
+      />
+    )
   }
 
   let points = externalPoints

@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -24,7 +24,7 @@ function osmGetAddress(params) {
         })
       })
       .catch((error) => {
-        resolve(locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
+        resolve(LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
       })
   })
 }

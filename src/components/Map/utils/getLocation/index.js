@@ -1,5 +1,5 @@
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import Bridge from './../../../../utils/Bridge'
 // 内库使用-end
 
@@ -23,7 +23,7 @@ function getLocation(options) {
       fail: (error) => {
         console.error(error)
         // 赋值
-        resolve(locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'))
+        resolve(LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'))
       }
     })
   })

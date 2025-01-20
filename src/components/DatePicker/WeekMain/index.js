@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 // 内库使用-start
-import locale from './../../../utils/locale'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
 import Calendar from './../../Calendar'
 // 内库使用-end
@@ -35,7 +35,7 @@ function WeekMain(
       ...weekMainRef.current,
       // 获取标题
       getTitle: () => {
-        let title = locale('选择日期', 'SeedsUI_placeholder_select')
+        let title = LocaleUtil.text('选择日期', 'SeedsUI_placeholder_select')
         if (value instanceof Date) {
           title = DateUtil.format(value, 'week')
         }

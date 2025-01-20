@@ -8,7 +8,7 @@ let Bridge = {
     if (!params.urls || !params.urls.length) {
       if (params.fail)
         params.fail({
-          errMsg: 'previewImage:fail' + locale('没有预览图片地址', 'SeedsUI_previewimage_no_url')
+          errMsg: 'previewImage:fail' + LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewimage_no_url')
         })
       return
     }
@@ -16,7 +16,7 @@ let Bridge = {
     if (!src) {
       if (params.fail)
         params.fail({
-          errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
+          errMsg: 'previewImage:fail' + LocaleUtil.text('图片地址无效', 'SeedsUI_invalid_image_src')
         })
       return
     }
@@ -32,7 +32,7 @@ let Bridge = {
         onError: function () {
           if (params.fail)
             params.fail({
-              errMsg: 'previewImage:fail' + locale('图片地址无效', 'SeedsUI_invalid_image_src')
+              errMsg: 'previewImage:fail' + LocaleUtil.text('图片地址无效', 'SeedsUI_invalid_image_src')
             })
         }
       })

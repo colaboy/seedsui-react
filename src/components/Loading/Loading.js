@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
 
 // 内库使用
-import locale from './../../utils/locale'
+import LocaleUtil from './../../utils/LocaleUtil'
 
 // 测试使用
 // import { locale } from 'seedsui-react'
@@ -38,7 +38,8 @@ const Loading = forwardRef(
       }
     })
 
-    let { caption = locale('加载中...', 'SeedsUI_loading'), ...otherCaptionProps } = captionProps
+    let { caption = LocaleUtil.text('加载中...', 'SeedsUI_loading'), ...otherCaptionProps } =
+      captionProps
     if (typeof content === 'string') {
       caption = content
     }

@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import InputText from './../InputText'
 import Bridge from './../../utils/Bridge'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 import Map from './Map'
 

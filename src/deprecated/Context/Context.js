@@ -1,6 +1,6 @@
 import React from 'react'
 import Instance from './instance'
-import getLocaleValue from './../../utils/locale'
+import getLocaleValue from './../locale'
 
 // 加载基本库
 import './../PrototypeArray.js'

@@ -14,7 +14,7 @@ import Header from './Header'
 import Body from './Body'
 
 // 内库使用-start
-import locale from './../../utils/locale'
+import LocaleUtil from './../../utils/LocaleUtil'
 import DateUtil from './../../utils/DateUtil'
 // 内库使用-end
 
@@ -181,7 +181,7 @@ const Calendar = forwardRef(
         // 是否需要校验
         let error = {
           errCode: 'CALENDAR_PREVIOUS_MONTH_ERROR',
-          errMsg: locale(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+          errMsg: LocaleUtil.text(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
         }
         if (typeof onError === 'function') {
           let isOk = onError(error)
@@ -209,7 +209,7 @@ const Calendar = forwardRef(
         // 是否需要校验
         let error = {
           errCode: 'CALENDAR_NEXT_MONTH_ERROR',
-          errMsg: locale(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+          errMsg: LocaleUtil.text(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
         }
         if (typeof onError === 'function') {
           let isOk = onError(error)

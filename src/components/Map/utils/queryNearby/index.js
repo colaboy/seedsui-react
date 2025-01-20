@@ -3,7 +3,7 @@ import googleQueryNearby from './googleQueryNearby'
 import defaultQueryNearby from './defaultQueryNearby'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
@@ -18,7 +18,7 @@ async function queryNearby({ map, keyword, longitude, latitude, type, radius }) 
     // Search error protect: google and bmap error no callback
     let errorTimeout = window.setTimeout(() => {
       isTimeout = true
-      resolve(locale('查询超时'))
+      resolve(LocaleUtil.text('查询超时'))
     }, 5000)
 
     let result = null

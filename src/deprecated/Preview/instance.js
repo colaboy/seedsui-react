@@ -1,6 +1,6 @@
 import PinchZoom from './pinch-zoom.js'
 
-import locale from './../../utils/locale' // 国际化
+import locale from './../locale' // 国际化
 
 var Preview = function (params) {
   /* ----------------------

@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 内库使用-start
-import locale from './../../utils/locale'
+import LocaleUtil from './../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -22,7 +22,9 @@ function Result({
 
       {/* Title */}
       {title === undefined || title ? (
-        <div className="result-title">{title || locale('暂无数据', 'SeedsUI_no_data')}</div>
+        <div className="result-title">
+          {title || LocaleUtil.text('暂无数据', 'SeedsUI_no_data')}
+        </div>
       ) : null}
 
       {children}

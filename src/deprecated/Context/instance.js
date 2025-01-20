@@ -1,5 +1,5 @@
 import React from 'react'
-import getLocaleValue from './../../utils/locale'
+import getLocaleValue from './../locale'
 
 const Context = React.createContext({
   locale: function (...params) {

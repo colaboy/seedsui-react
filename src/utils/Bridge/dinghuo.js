@@ -6,7 +6,7 @@ import coordToFit from './utils/coordToFit'
 
 // 内库使用-start
 import Device from './../Device'
-import locale from './../locale'
+import LocaleUtil from './../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
@@ -231,14 +231,16 @@ let Bridge = {
     if (!params.uploadDir) {
       if (params.fail)
         params.fail({
-          errMsg: 'uploadImage:fail' + locale('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir')
+          errMsg:
+            'uploadImage:fail' + LocaleUtil.text('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir')
         })
       return
     }
     if (typeof params.localId !== 'string' || !params.localId) {
       if (params.fail)
         params.fail({
-          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
+          errMsg:
+            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
         })
       return
     }
@@ -323,7 +325,8 @@ let Bridge = {
     if (!localId) {
       if (fail)
         fail({
-          errMsg: 'uploadImage:fail' + locale('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
+          errMsg:
+            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
         })
       return
     }
@@ -367,7 +370,7 @@ let Bridge = {
     } = params
 
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
-      if (fail) fail(locale('chooseVideo need more than 6.6.0'))
+      if (fail) fail(LocaleUtil.text('chooseVideo need more than 6.6.0'))
       return
     }
     console.log('外勤WK内核chooseVideo', params)

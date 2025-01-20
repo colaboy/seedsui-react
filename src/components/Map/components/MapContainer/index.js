@@ -15,7 +15,7 @@ import markerClickCanvas from './markerClickCanvas'
 import Result from './../Result'
 
 // 内库使用-start
-import locale from './../../../../utils/locale'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 import GeoUtil from './../../../../utils/GeoUtil'
 // 内库使用-end
 
@@ -109,7 +109,7 @@ const MapContainer = forwardRef(
           result =
             typeof result === 'string'
               ? result
-              : locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+              : LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
         }
         return result
       },
@@ -319,7 +319,7 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(locale('No Container'))
+        setLeafletMap(LocaleUtil.text('No Container'))
         return
       }
 

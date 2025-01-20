@@ -1,7 +1,7 @@
 // require PrototypeArray.js
 import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react'
 import Tree from './../Tree'
-import locale from './../../utils/locale'
+import locale from './../locale'
 
 const slotClass = 'menutiled-slot'
 const slotSubClass = 'menutiled-slot-sub'
