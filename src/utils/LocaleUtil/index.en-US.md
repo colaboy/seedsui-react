@@ -1,9 +1,9 @@
 ---
 category: Utils
 group: 平台工具
-title: locale
+title: LocaleUtil
 ---
 
-## locale
+## LocaleUtil
 
 This is an example component.
