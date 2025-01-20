@@ -149,10 +149,10 @@ export default () => {
         //   street: { editable: false }
         // }}
         modalProps={{
-          header: () => {
+          headerRender: () => {
             return <div>自定义头</div>
           },
-          footer: ({ value, submit }) => {
+          footerRender: ({ value, submit }) => {
             return (
               <Layout.Footer
                 onClick={() => {
