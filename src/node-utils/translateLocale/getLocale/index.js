@@ -6,10 +6,10 @@ const generate = require('@babel/generator').default
 const t = require('@babel/types')
 const generateKey = require('./generateKey')
 const chalk = require('chalk')
-const formatAndWriteFile = require('./../../utils/formatAndWriteFile')
+const formatFileSync = require('./../../formatFileSync')
 
-module.exports = async function getLocale(srcFolderPath, ignore) {
-  if (!srcFolderPath) {
+module.exports = async function getLocale({ folderPath, ignore, onGenerateKey }) {
+  if (!folderPath) {
     console.log(chalk.red(`+++++ getLocale: 无法提取locale, 未传srcFolderPath +++++\n`))
     return null
   }
@@ -22,7 +22,7 @@ module.exports = async function getLocale(srcFolderPath, ignore) {
     glob(
       '**/*.{js,ts,jsx,tsx}',
       {
-        cwd: srcFolderPath,
+        cwd: folderPath,
         ignore: [
           '**/scripts/**',
           '**/demos/**',
@@ -39,7 +39,7 @@ module.exports = async function getLocale(srcFolderPath, ignore) {
           return
         }
         files.forEach((file) => {
-          const filePath = `${srcFolderPath}/${file}`
+          const filePath = `${folderPath}/${file}`
 
           // 读取文件内容
           let content = fs.readFileSync(filePath, 'utf8')
@@ -59,7 +59,11 @@ module.exports = async function getLocale(srcFolderPath, ignore) {
                 let text = path.node.quasi.quasis[0].value.cooked
                 let searchKey = baseData[text]?.key
                 if (!searchKey) {
-                  searchKey = generateKey({ filePath: filePath, value: text })
+                  searchKey = generateKey({
+                    onGenerateKey: onGenerateKey,
+                    filePath: filePath,
+                    value: text
+                  })
                   baseData[text] = {
                     key: searchKey
                   }
@@ -132,7 +136,7 @@ module.exports = async function getLocale(srcFolderPath, ignore) {
           // 保存替换后的文件内容(等测试通过后再放开)
           if (modified) {
             const { code } = generate(ast, { retainLines: true, comments: true }, content)
-            formatAndWriteFile(filePath, code)
+            formatFileSync(filePath, code)
             /*
             .then(() => {
               // ${filePath}文件替换完成
@@ -141,7 +145,7 @@ module.exports = async function getLocale(srcFolderPath, ignore) {
           }
         })
 
-        console.log(chalk.green(`getLocale:【${srcFolderPath}】中文提取和替换完成\n`))
+        console.log(chalk.green(`getLocale:【${folderPath}】中文提取和替换完成\n`))
         resolve(baseData)
       }
     )

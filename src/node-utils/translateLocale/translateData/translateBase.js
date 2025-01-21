@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const translate = require('./../../utils/translate/index')
+const translate = require('./translate/index')
 const chalk = require('chalk')
 
 // 翻译baseJson

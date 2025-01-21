@@ -32,7 +32,8 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "npm run build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "translate": "node scripts/translate-src.js"
   },
   "commitlint": {
     "extends": [

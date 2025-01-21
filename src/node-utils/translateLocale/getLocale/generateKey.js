@@ -1,23 +1,12 @@
 const os = require('os')
 const crypto = require('crypto')
-// 读取package.json文件
-const params = require('./../../../../../package.json')
 
 /**
  * 生成页面地址和随机码的组合作为 key
  * @param {string} filePath 文件路径
  * @returns {string} key
  */
-module.exports = function ({ prefix, filePath, value }) {
-  // 国际化前缀
-  if (!prefix) {
-    // eslint-disable-next-line
-    prefix =
-      params?.locale?.prefix ||
-      params?.name?.replace?.('qince-h5-', '').replace?.('dinghuo-h5-', '') ||
-      ''
-  }
-
+module.exports = function ({ onGenerateKey, filePath, value }) {
   // 有filePath时, 命令则根据filePath取三层目录
   let url = ''
   if (filePath) {
@@ -34,17 +23,24 @@ module.exports = function ({ prefix, filePath, value }) {
       url = url.split('/')
     }
 
-    // 如果前缀与path
-    if (prefix && prefix === url[0]) {
-      // eslint-disable-next-line
-      prefix = ''
-    }
+    // 如果前缀与path相同, 则无需prefix
+    // if (prefix && prefix === url[0]) {
+    //   // eslint-disable-next-line
+    //   prefix = ''
+    // }
 
-    // 过滤文件, 并生成: 第一层目录.第二层目录.第三层目录(没有prefix).
-    url = url
-      .slice(0, prefix ? 2 : 3)
-      .filter((item) => !/\.\w+$/.test(item))
-      .join('.')
+    // 过滤文件, 并生成: 第一层目录.第二层目录.第三层目录
+    if (typeof onGenerateKey === 'function') {
+      let newUrl = onGenerateKey(url)
+      if (typeof newUrl === 'string') {
+        url = newUrl
+      }
+    } else {
+      url = url
+        .slice(0, 3)
+        .filter((item) => !/\.\w+$/.test(item))
+        .join('.')
+    }
   }
 
   // hash: 截取前8位
