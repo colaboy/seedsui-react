@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const chalk = require('chalk')
-const translateLocale = require('./../src/node-utils/translateLocale')
+const translateFolder = require('./../src/node-utils/translateFolder')
 const writeFileSync = require('./../src/node-utils/writeFileSync')
 
 async function translateSrc() {
@@ -13,7 +13,8 @@ async function translateSrc() {
   }
 
   console.log(chalk.yellow(`+++++ \u{1F44D} 开始翻译 +++++\n`))
-  let { baseData, diffData } = await translateLocale({
+  let { baseData, diffData } = await translateFolder({
+    ignore: ['**/deprecated/**'],
     folderPath: path.resolve(__dirname, 'src'),
     lastBaseData: lastBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],

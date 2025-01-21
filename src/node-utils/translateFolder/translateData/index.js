@@ -4,8 +4,8 @@ const translateBase = require('./translateBase')
 
 // 翻译并生成json文件
 module.exports = async function translate(baseData, localeOptions = []) {
-  if (!baseData || _.isEmpty(baseData)) {
-    console.log('translate: 无法生成Json数据, 未传baseData')
+  if (_.isEmpty(baseData)) {
+    console.log(chalk.red('translate: No baseData, abort translation'))
     return null
   }
 
