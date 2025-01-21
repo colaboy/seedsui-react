@@ -13,7 +13,7 @@ async function translateSrc() {
   }
 
   console.log(chalk.yellow(`+++++ \u{1F44D} 开始翻译 +++++\n`))
-  let { baseData, diffData } = await translateFolder({
+  let data = await translateFolder({
     ignore: ['**/deprecated/**'],
     folderPath: path.resolve(__dirname, 'src'),
     lastBaseData: lastBaseData,
@@ -28,6 +28,10 @@ async function translateSrc() {
       )
     }
   })
+
+  if (!data) return
+
+  let { baseData, diffData } = data
 
   // 写入base.json
   await writeFileSync(basePath, JSON.stringify(baseData, null, 2))
