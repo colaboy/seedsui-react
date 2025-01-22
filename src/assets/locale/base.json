@@ -1,223 +1,644 @@
 {
-  "取消": { "key": "SeedsUI_cancel", "zh_CN": "取消" },
-  "确定": { "key": "SeedsUI_ok", "zh_CN": "确定" },
-  "关闭": { "key": "SeedsUI_close", "zh_CN": "关闭" },
-  "完成": { "key": "SeedsUI_finish", "zh_CN": "完成" },
-  "提交": { "key": "SeedsUI_submit", "zh_CN": "提交" },
-  "展开": { "key": "SeedsUI_expand", "zh_CN": "展开" },
-  "收缩": { "key": "SeedsUI_collapse", "zh_CN": "收缩" },
-  "附件": { "key": "SeedsUI_attach", "zh_CN": "附件" },
-  "上传完成": { "key": "SeedsUI_upload_finished", "zh_CN": "上传完成" },
-  "无法预览": { "key": "SeedsUI_cannot_preview", "zh_CN": "无法预览" },
-  "图片地址无效": { "key": "SeedsUI_invalid_image_src", "zh_CN": "图片地址无效" },
-  "图片加载失败": { "key": "SeedsUI_image_load_failed", "zh_CN": "图片加载失败" },
-  "微信js加载失败": { "key": "SeedsUI_wechat_js_load_failed", "zh_CN": "微信js加载失败" },
-  "企业微信js加载失败": { "key": "SeedsUI_wework_js_load_failed", "zh_CN": "企业微信js加载失败" },
-  "外勤cordova加载失败": {
-    "key": "SeedsUI_cordova_js_load_failed",
-    "zh_CN": "外勤cordova加载失败"
+  "取消": {
+    "key": "SeedsUI_cancel",
+    "zh_CN": "取消",
+    "en_US": "Cancel"
   },
-  "外勤js加载失败": { "key": "SeedsUI_qince_js_load_failed", "zh_CN": "外勤js加载失败" },
-  "打开地图": { "key": "SeedsUI_openmap", "zh_CN": "打开地图" },
-  "选择图片": { "key": "SeedsUI_chooseimage", "zh_CN": "选择图片" },
-  "上传图片": { "key": "SeedsUI_uploadimage", "zh_CN": "上传图片" },
-  "没有上传目录": { "key": "SeedsUI_uploadimage_no_uploaddir", "zh_CN": "没有上传目录" },
-  "没有上传地址": { "key": "SeedsUI_uploadimage_no_localeid", "zh_CN": "没有上传地址" },
-  "没有上传企业id": { "key": "SeedsUI_uploadimage_no_tenantid", "zh_CN": "没有上传企业id" },
-  "预览图片": { "key": "SeedsUI_previewimage", "zh_CN": "预览图片" },
-  "没有预览图片地址": { "key": "SeedsUI_previewimage_no_url", "zh_CN": "没有预览图片地址" },
-  "此功能仅可在微信或APP中使用": {
-    "key": "SeedsUI_only_app_wechat",
-    "zh_CN": "{0}此功能仅可在微信或APP中使用"
+  "禁止访问{0}": {
+    "key": "SeedsUI_access_error",
+    "en_US": "Forbidden access {0}"
   },
-  "此功能仅可在手机中使用": { "key": "SeedsUI_only_mobile", "zh_CN": "此功能仅可在手机中使用" },
-  "扫码": { "key": "SeedsUI_scancode", "zh_CN": "扫码" },
-  "扫码失败": { "key": "SeedsUI_scancode_failed", "zh_CN": "扫码失败" },
-  "预览文件": { "key": "SeedsUI_previewfile", "zh_CN": "预览文件" },
-  "预览文件失败": { "key": "SeedsUI_previewfile_failed", "zh_CN": "预览文件失败" },
-  "预览文件成功": { "key": "SeedsUI_previewfile_success", "zh_CN": "预览文件成功" },
-  "请稍后重试": { "key": "SeedsUI_try_again_later", "zh_CN": "请稍后重试" },
-  "最多只能传": { "key": "SeedsUI_uploadimage_maxcount", "zh_CN": "最多只能传" },
-  "不能小于": { "key": "SeedsUI_cannot_less_than", "zh_CN": "不能小于" },
-  "不能大于": { "key": "SeedsUI_cannot_greater_than", "zh_CN": "不能大于" },
+  "非法的日期格式": {
+    "key": "SeedsUI_date_format_error",
+    "en_US": "Illegal date format"
+  },
+  "禁止访问小于{0}": {
+    "key": "SeedsUI_access_min_error",
+    "en_US": "Forbidden access is less than {0}"
+  },
+  "禁止访问大于{0}": {
+    "key": "SeedsUI_access_max_error",
+    "en_US": "Forbidden access greater than {0}"
+  },
+  "一": {
+    "key": "SeedsUI_calendar_week_monday",
+    "zh_CN": "一",
+    "en_US": "One"
+  },
+  "二": {
+    "key": "SeedsUI_calendar_week_tuesday",
+    "zh_CN": "二",
+    "en_US": "Two"
+  },
+  "三": {
+    "key": "SeedsUI_calendar_week_wednesday",
+    "zh_CN": "三",
+    "en_US": "Three"
+  },
+  "四": {
+    "key": "SeedsUI_calendar_week_thursday",
+    "zh_CN": "四",
+    "en_US": "Four"
+  },
+  "五": {
+    "key": "SeedsUI_calendar_week_friday",
+    "zh_CN": "五",
+    "en_US": "Five"
+  },
+  "六": {
+    "key": "SeedsUI_calendar_week_saturday",
+    "zh_CN": "六",
+    "en_US": "Six"
+  },
+  "日": {
+    "key": "SeedsUI_unit_date",
+    "zh_CN": "日",
+    "en_US": "day"
+  },
+  "请选择": {
+    "key": "SeedsUI_placeholder_select",
+    "zh_CN": "请选择",
+    "en_US": "Please select"
+  },
+  "获取数据失败": {
+    "key": "SeedsUI_data_error",
+    "en_US": "Failed to get data"
+  },
+  "暂无数据": {
+    "key": "SeedsUI_no_data",
+    "zh_CN": "暂无数据",
+    "en_US": "No data yet"
+  },
+  "选择日期": {
+    "key": "SeedsUI_date_modal_title",
+    "en_US": "Select a date"
+  },
+  "今日": {
+    "key": "SeedsUI_today",
+    "zh_CN": "今日",
+    "en_US": "today"
+  },
+  "昨日": {
+    "key": "SeedsUI_yesterday",
+    "zh_CN": "昨日",
+    "en_US": "yesterday"
+  },
+  "近{0}日": {
+    "key": "SeedsUI_last_days",
+    "en_US": "Nearly {0} days"
+  },
+  "本周": {
+    "key": "SeedsUI_this_week",
+    "zh_CN": "本周",
+    "en_US": "Week"
+  },
+  "本月": {
+    "key": "SeedsUI_this_month",
+    "zh_CN": "本月",
+    "en_US": "Month"
+  },
+  "上月": {
+    "key": "SeedsUI_last_month",
+    "zh_CN": "上月",
+    "en_US": "last month"
+  },
+  "本季度": {
+    "key": "SeedsUI_this_quarter",
+    "zh_CN": "本季度",
+    "en_US": "This quarter"
+  },
+  "今年": {
+    "key": "SeedsUI_this_year",
+    "zh_CN": "今年",
+    "en_US": "this year"
+  },
+  "自定义": {
+    "key": "SeedsUI_custom",
+    "zh_CN": "自定义",
+    "en_US": "Customize"
+  },
+  "开始时间": {
+    "key": "SeedsUI_start_time",
+    "zh_CN": "开始时间",
+    "en_US": "Start time"
+  },
+  "结束时间": {
+    "key": "SeedsUI_end_time",
+    "zh_CN": "结束时间",
+    "en_US": "End time"
+  },
+  "年": {
+    "key": "SeedsUI_unit_year",
+    "zh_CN": "年",
+    "en_US": "year"
+  },
+  "季": {
+    "key": "SeedsUI_unit_quarter",
+    "zh_CN": "季",
+    "en_US": "season"
+  },
+  "月": {
+    "key": "SeedsUI_unit_month",
+    "zh_CN": "月",
+    "en_US": "month"
+  },
+  "分": {
+    "key": "SeedsUI_unit_minute",
+    "zh_CN": "分",
+    "en_US": "divide"
+  },
+  "周": {
+    "key": "SeedsUI_unit_week",
+    "zh_CN": "周",
+    "en_US": "week"
+  },
+  "日期区间不能超过{0}{1}": {
+    "key": "SeedsUI_dateragne_limit_error",
+    "zh_CN": "日期区间不能超过{0}{1}",
+    "en_US": "The date range cannot exceed {0}{1}"
+  },
   "开始时间不能大于结束时间": {
     "key": "SeedsUI_starttime_greater_than_endtime",
-    "zh_CN": "开始时间不能大于结束时间"
+    "zh_CN": "开始时间不能大于结束时间",
+    "en_US": "The start time cannot be greater than the end time"
   },
-  "必须要输入数字哦": { "key": "SeedsUI_must_number", "zh_CN": "必须要输入数字哦" },
-  "无效的日期格式": { "key": "SeedsUI_dateformat_error", "zh_CN": "无效的日期格式" },
-  "不能小于{0}颗星": { "key": "SeedsUI_min_star_error", "zh_CN": "不能小于{0}颗星" },
-  "不能大于{0}颗星": { "key": "SeedsUI_max_star_error", "zh_CN": "不能大于{0}颗星" },
-  "正在加载...": { "key": "SeedsUI_loading", "zh_CN": "正在加载..." },
-  "文件加载失败": { "key": "SeedsUI_file_load_failed", "zh_CN": "文件加载失败" },
-  "获取地址中...": { "key": "SeedsUI_getting_address", "zh_CN": "获取地址中..." },
-  "获取地址失败, 请稍后重试": {
-    "key": "SeedsUI_get_address_failed",
-    "zh_CN": "获取地址失败, 请稍后重试"
+  "不能小于": {
+    "key": "SeedsUI_cannot_less_than",
+    "zh_CN": "不能小于",
+    "en_US": "It can't be less than"
   },
-  "坐标不正确, 预览失败": {
-    "key": "SeedsUI_location_preview_failed",
-    "zh_CN": "坐标不正确, 预览失败"
+  "不能大于": {
+    "key": "SeedsUI_cannot_greater_than",
+    "zh_CN": "不能大于",
+    "en_US": "Can't be greater than"
   },
-  "定位成功": { "key": "SeedsUI_location_success", "zh_CN": "定位成功" },
-  "定位失败, 用户拒绝请求地理定位": {
-    "key": "SeedsUI_location_permission_denied_error",
-    "zh_CN": "定位失败, 用户拒绝请求地理定位"
+  "弱": {
+    "key": "SeedsUI_password_weak",
+    "zh_CN": "弱",
+    "en_US": "weak"
   },
-  "定位失败, 用户拒绝请求地理定位": {
-    "key": "SeedsUI_location_unavailable_error",
-    "zh_CN": "定位失败, 用户拒绝请求地理定位"
+  "中": {
+    "key": "SeedsUI_password_medium",
+    "zh_CN": "中",
+    "en_US": "middle"
   },
-  "定位超时": { "key": "SeedsUI_location_overtime_error", "zh_CN": "定位超时" },
-  "定位失败, 用户拒绝请求地理定位": {
-    "key": "SeedsUI_location_unknown_error",
-    "zh_CN": "定位失败, 用户拒绝请求地理定位"
+  "强": {
+    "key": "SeedsUI_password_strong",
+    "zh_CN": "强",
+    "en_US": "strong"
   },
-  "当前浏览器不支持定位": {
-    "key": "SeedsUI_location_not_supported",
-    "zh_CN": "当前浏览器不支持定位"
+  "正在加载...": {
+    "key": "SeedsUI_loading",
+    "zh_CN": "正在加载...",
+    "en_US": "Loading..."
+  },
+  "没有更多数据了": {
+    "key": "SeedsUI_no_more_data",
+    "zh_CN": "没有更多数据了",
+    "en_US": "There is no more data"
+  },
+  "加载失败, 请稍后再试": {
+    "key": "SeedsUI_load_failed",
+    "zh_CN": "加载失败, 请稍后再试",
+    "en_US": "Failed to load, please try again later"
+  },
+  "释放立即刷新": {
+    "key": "SeedsUI_release_refresh",
+    "zh_CN": "释放立即刷新",
+    "en_US": "Release to refresh immediately"
+  },
+  "下拉刷新": {
+    "key": "SeedsUI_pull_down_refresh",
+    "zh_CN": "下拉刷新",
+    "en_US": "Pull down to refresh"
+  },
+  "加载中...": {
+    "key": "SeedsUI_refreshing",
+    "zh_CN": "加载中...",
+    "en_US": "Loading..."
+  },
+  "下拉可以刷新": {
+    "key": "SeedsUI_refresh",
+    "en_US": "The drop-down can be refreshed"
+  },
+  "刷新失败": {
+    "key": "SeedsUI_refresh_failed",
+    "zh_CN": "刷新失败",
+    "en_US": "Refresh failed"
+  },
+  "刷新成功": {
+    "key": "SeedsUI_refresh_success",
+    "zh_CN": "刷新成功",
+    "en_US": "The refresh was successful"
   },
   "定位失败, 请检查定位权限是否开启": {
     "key": "SeedsUI_location_failed",
-    "zh_CN": "定位失败, 请检查定位权限是否开启"
+    "zh_CN": "定位失败, 请检查定位权限是否开启",
+    "en_US": "If the location fails, check whether the location permission is enabled"
   },
-  "当前位置": { "key": "SeedsUI_current_location", "zh_CN": "当前位置" },
-  "重新定位": { "key": "SeedsUI_relocation", "zh_CN": "重新定位" },
-  "获取数据失败, 请稍后重试": {
-    "key": "SeedsUI_get_data_failed",
-    "zh_CN": "获取数据失败, 请稍后重试"
+  "定位中...": {
+    "key": "SeedsUI_positioning",
+    "zh_CN": "定位中...",
+    "en_US": "Positioning..."
   },
-  "您确定要离开此页面吗?": { "key": "SeedsUI_quit_page_confirm", "zh_CN": "您确定要离开此页面吗?" },
-  "年": { "key": "SeedsUI_picker_unit_year", "zh_CN": "年" },
-  "季度": { "key": "SeedsUI_picker_unit_quarter", "zh_CN": "季度" },
-  "月": { "key": "SeedsUI_picker_unit_month", "zh_CN": "月" },
-  "日": { "key": "SeedsUI_picker_unit_day", "zh_CN": "日" },
-  "时": { "key": "SeedsUI_picker_unit_hour", "zh_CN": "时" },
-  "分": { "key": "SeedsUI_picker_unit_minute", "zh_CN": "分" },
-  "周一": { "key": "SeedsUI_picker_monday", "zh_CN": "周一" },
-  "周二": { "key": "SeedsUI_picker_tuesday", "zh_CN": "周二" },
-  "周三": { "key": "SeedsUI_picker_wednesday", "zh_CN": "周三" },
-  "周四": { "key": "SeedsUI_picker_thursday", "zh_CN": "周四" },
-  "周五": { "key": "SeedsUI_picker_friday", "zh_CN": "周五" },
-  "周六": { "key": "SeedsUI_picker_saturday", "zh_CN": "周六" },
-  "周日": { "key": "SeedsUI_picker_sunday", "zh_CN": "周日" },
-  "复制到剪贴板成功": { "key": "SeedsUI_copy_clipboard_success", "zh_CN": "复制到剪贴板成功" },
-  "当前设备不允许访问剪贴板": {
-    "key": "SeedsUI_copy_clipboard_refuse",
-    "zh_CN": "当前设备不允许访问剪贴板"
+  "获取地址失败, 请稍后重试": {
+    "key": "SeedsUI_get_address_failed",
+    "zh_CN": "获取地址失败, 请稍后重试",
+    "en_US": "Failed to get the address, please try again later"
   },
-  "加载中...": { "key": "SeedsUI_refreshing", "zh_CN": "加载中..." },
-  "没有更多数据了": { "key": "SeedsUI_no_more_data", "zh_CN": "没有更多数据了" },
-  "下拉刷新": { "key": "SeedsUI_pull_down_refresh", "zh_CN": "下拉刷新" },
-  "释放立即刷新": { "key": "SeedsUI_release_refresh", "zh_CN": "释放立即刷新" },
-  "加载失败, 请稍后再试": { "key": "SeedsUI_load_failed", "zh_CN": "加载失败, 请稍后再试" },
-  "刷新成功": { "key": "SeedsUI_refresh_success", "zh_CN": "刷新成功" },
-  "刷新失败": { "key": "SeedsUI_refresh_failed", "zh_CN": "刷新失败" },
-  "说点什么吧...": { "key": "SeedsUI_say_something", "zh_CN": "说点什么吧..." },
-  "定位中...": { "key": "SeedsUI_positioning", "zh_CN": "定位中..." },
-  "弱": { "key": "SeedsUI_password_weak", "zh_CN": "弱" },
-  "中": { "key": "SeedsUI_password_medium", "zh_CN": "中" },
-  "强": { "key": "SeedsUI_password_strong", "zh_CN": "强" },
-  "请传入参数": { "key": "SeedsUI_need_pass_parameter_error", "zh_CN": "请传入参数" },
-  "参数不正确": { "key": "SeedsUI_wrong_parameter_error", "zh_CN": "参数不正确" },
-  "方法": { "key": "SeedsUI_method", "zh_CN": "方法" },
-  "菜单": { "key": "SeedsUI_menu", "zh_CN": "菜单" },
-  "例如“江苏省南京市建邺区”": {
-    "key": "SeedsUI_example_address",
-    "zh_CN": "例如“江苏省南京市建邺区”"
+  "选择地址": {
+    "key": "SeedsUI_choose_address",
+    "zh_CN": "选择地址",
+    "en_US": "Select an address"
   },
-  "暂无数据": { "key": "SeedsUI_no_data", "zh_CN": "暂无数据" },
-  "查询失败": { "key": "SeedsUI_query_failed", "zh_CN": "查询失败" },
-  "微信好友": { "key": "SeedsUI_wechat_friend", "zh_CN": "微信好友" },
-  "企业微信好友": { "key": "SeedsUI_wework_friend", "zh_CN": "企业微信好友" },
-  "微信朋友圈": { "key": "SeedsUI_wechat_moments", "zh_CN": "微信朋友圈" },
-  "请在手机端微信中使用{0}": {
-    "key": "SeedsUI_wechat_use_error",
-    "zh_CN": "请在手机端微信中使用{0}"
+  "查看地址": {
+    "key": "SeedsUI_view_address",
+    "zh_CN": "查看地址",
+    "en_US": "Check the address"
   },
-  "点击右上角": { "key": "SeedsUI_click_top_right", "zh_CN": "点击右上角" },
-  "点击": { "key": "SeedsUI_click", "zh_CN": "点击" },
-  "发送给朋友或": { "key": "SeedsUI_sent_to_friend_or", "zh_CN": "发送给朋友或" },
-  "分享给朋友圈": { "key": "SeedsUI_share_to_moments", "zh_CN": "分享给朋友圈" },
-  "分享到": { "key": "SeedsUI_share_to", "zh_CN": "分享到" },
-  "请传入视频源": { "key": "SeedsUI_no_videosrc_error", "zh_CN": "请传入视频源" },
-  "加载播放器库出错, 请稍后再试": {
-    "key": "SeedsUI_video_sdk_load_failed",
-    "zh_CN": "加载播放器库出错, 请稍后再试"
+  "No Container": {
+    "key": "SeedsUI_map_no_container",
+    "en_US": "No Container"
   },
-  "请传入百度地图ak": { "key": "SeedsUI_no_bdmap_ak", "zh_CN": "请传入百度地图ak" },
+  "当前位置": {
+    "key": "SeedsUI_current_location",
+    "zh_CN": "当前位置",
+    "en_US": "You are here"
+  },
+  "导航": {
+    "key": "SeedsUI_navigation",
+    "zh_CN": "导航",
+    "en_US": "navigation"
+  },
+  "搜索中": {
+    "key": "SeedsUI_searching",
+    "zh_CN": "搜索中",
+    "en_US": "Searching"
+  },
+  "附近推荐": {
+    "key": "SeedsUI_nearby_recommendation",
+    "zh_CN": "附近推荐",
+    "en_US": "Recommended nearby"
+  },
+  "购物": {
+    "key": "SeedsUI_map_nearby_shop",
+    "zh_CN": "购物",
+    "en_US": "Shopping"
+  },
+  "吃喝": {
+    "key": "SeedsUI_map_nearby_restaurant",
+    "zh_CN": "吃喝",
+    "en_US": "diet"
+  },
+  "娱乐": {
+    "key": "SeedsUI_map_nearby_recreation",
+    "zh_CN": "娱乐",
+    "en_US": "amusement"
+  },
+  "景点": {
+    "key": "SeedsUI_map_nearby_scenery",
+    "zh_CN": "景点",
+    "en_US": "Attractions"
+  },
+  "出行": {
+    "key": "SeedsUI_map_nearby_trip",
+    "zh_CN": "出行",
+    "en_US": "Travel"
+  },
+  "住宿": {
+    "key": "SeedsUI_map_nearby_lodgings",
+    "zh_CN": "住宿",
+    "en_US": "lodging"
+  },
+  "生活": {
+    "key": "SeedsUI_map_nearby_live",
+    "zh_CN": "生活",
+    "en_US": "life"
+  },
+  "重试": {
+    "key": "SeedsUI_retry",
+    "en_US": "retry"
+  },
+  "搜索": {
+    "key": "SeedsUI_search",
+    "zh_CN": "搜索",
+    "en_US": "Search"
+  },
+  "获取地址中...": {
+    "key": "SeedsUI_getting_address",
+    "zh_CN": "获取地址中...",
+    "en_US": "Get Address..."
+  },
+  "请传入参数": {
+    "key": "SeedsUI_need_pass_parameter_error",
+    "zh_CN": "请传入参数",
+    "en_US": "Please pass in the parameters"
+  },
   "地图库加载失败, 请稍后再试": {
     "key": "SeedsUI_map_js_load_failed",
-    "zh_CN": "地图库加载失败, 请稍后再试"
+    "zh_CN": "地图库加载失败, 请稍后再试",
+    "en_US": "The map gallery failed to load, please try again later"
   },
-  "地图容器不存在": { "key": "SeedsUI_no_mapcontainer_error", "zh_CN": "地图容器不存在" },
-  "初始化地图超时, 请检查当前网络是否稳定": {
-    "key": "SeedsUI_mapinit_overtime_error",
-    "zh_CN": "初始化地图超时, 请检查当前网络是否稳定"
+  "查询失败": {
+    "key": "SeedsUI_query_failed",
+    "zh_CN": "查询失败",
+    "en_US": "The query failed"
   },
-  "购物": { "key": "SeedsUI_map_nearby_shop", "zh_CN": "购物" },
-  "吃喝": { "key": "SeedsUI_map_nearby_restaurant", "zh_CN": "吃喝" },
-  "生活": { "key": "SeedsUI_map_nearby_live", "zh_CN": "生活" },
-  "娱乐": { "key": "SeedsUI_map_nearby_recreation", "zh_CN": "娱乐" },
-  "景点": { "key": "SeedsUI_map_nearby_scenery", "zh_CN": "景点" },
-  "出行": { "key": "SeedsUI_map_nearby_trip", "zh_CN": "出行" },
-  "住宿": { "key": "SeedsUI_map_nearby_lodgings", "zh_CN": "住宿" },
-  "暂无{0}的边界数据": { "key": "SeedsUI_no_map_boundary_data", "zh_CN": "暂无{0}的边界数据" },
-  "半径{0}米": { "key": "SeedsUI_radius_meters", "zh_CN": "半径{0}米" },
-  "请选择所在地区": { "key": "SeedsUI_choose_district", "zh_CN": "请选择所在地区" },
-  "选择地址": { "key": "SeedsUI_choose_address", "zh_CN": "选择地址" },
-  "查看地址": { "key": "SeedsUI_view_address", "zh_CN": "查看地址" },
-  "一": { "key": "SeedsUI_calendar_week_monday", "zh_CN": "一" },
-  "二": { "key": "SeedsUI_calendar_week_tuesday", "zh_CN": "二" },
-  "三": { "key": "SeedsUI_calendar_week_wednesday", "zh_CN": "三" },
-  "四": { "key": "SeedsUI_calendar_week_thursday", "zh_CN": "四" },
-  "五": { "key": "SeedsUI_calendar_week_friday", "zh_CN": "五" },
-  "六": { "key": "SeedsUI_calendar_week_saturday", "zh_CN": "六" },
-  "日": { "key": "SeedsUI_calendar_week_sunday", "zh_CN": "日" },
-  "年": { "key": "SeedsUI_unit_year", "zh_CN": "年" },
-  "月": { "key": "SeedsUI_unit_month", "zh_CN": "月" },
-  "周": { "key": "SeedsUI_unit_week", "zh_CN": "周" },
-  "日": { "key": "SeedsUI_unit_date", "zh_CN": "日" },
-  "季": { "key": "SeedsUI_unit_quarter", "zh_CN": "季" },
-  "时": { "key": "SeedsUI_unit_hour", "zh_CN": "时" },
-  "分": { "key": "SeedsUI_unit_minute", "zh_CN": "分" },
-  "今日": { "key": "SeedsUI_today", "zh_CN": "今日" },
-  "昨日": { "key": "SeedsUI_yesterday", "zh_CN": "昨日" },
-  "本月": { "key": "SeedsUI_this_month", "zh_CN": "本月" },
-  "上月": { "key": "SeedsUI_last_month", "zh_CN": "上月" },
-  "本周": { "key": "SeedsUI_this_week", "zh_CN": "本周" },
-  "今年": { "key": "SeedsUI_this_year", "zh_CN": "今年" },
-  "本季度": { "key": "SeedsUI_this_quarter", "zh_CN": "本季度" },
-  "最近{0}天": { "key": "SeedsUI_last_days", "zh_CN": "最近{0}天" },
-  "自定义": { "key": "SeedsUI_custom", "zh_CN": "自定义" },
-  "自定义日期": { "key": "SeedsUI_custom_date", "zh_CN": "自定义日期" },
-  "日期区间不能超过{0}{1}": {
-    "key": "SeedsUI_dateragne_limit_error",
-    "zh_CN": "日期区间不能超过{0}{1}"
+  "查询超时": {
+    "key": "SeedsUI_query_time_out",
+    "en_US": "The query timed out"
   },
-  "搜索": { "key": "SeedsUI_search", "zh_CN": "搜索" },
-  "开始时间": { "key": "SeedsUI_start_time", "zh_CN": "开始时间" },
-  "结束时间": { "key": "SeedsUI_end_time", "zh_CN": "结束时间" },
-  "搜索地点": { "key": "SeedsUI_search_place", "zh_CN": "搜索地点" },
-  "搜索中": { "key": "SeedsUI_searching", "zh_CN": "搜索中" },
-  "请选择": { "key": "SeedsUI_placeholder_select", "zh_CN": "请选择" },
-  "上传成功后才可预览": {
-    "key": "SeedsUI_upload_fail_preview_src_error",
-    "zh_CN": "上传成功后才可预览"
+  "确定": {
+    "key": "SeedsUI_ok",
+    "zh_CN": "确定",
+    "en_US": "Are you sure"
   },
-  "预览地址不合法": { "key": "SeedsUI_preview_src_error", "zh_CN": "预览地址不合法" },
+  "此平台暂不支持分享": {
+    "key": "SeedsUI_share_no_support",
+    "en_US": "This platform does not support sharing"
+  },
+  "分享失败": {
+    "key": "SeedsUI_share_failed",
+    "en_US": "Failed to share"
+  },
+  "微信": {
+    "key": "SeedsUI_we_chat",
+    "en_US": "WeChat"
+  },
+  "朋友圈": {
+    "key": "SeedsUI_we_moment",
+    "en_US": "Circle of friends"
+  },
+  "小程序": {
+    "key": "SeedsUI_we_mini_program",
+    "en_US": "Mini programs"
+  },
+  "企业微信": {
+    "key": "SeedsUI_we_com",
+    "en_US": "WeCom"
+  },
+  "钉钉": {
+    "key": "SeedsUI_ding_talk",
+    "en_US": "DingTalk"
+  },
+  "飞书": {
+    "key": "SeedsUI_lark",
+    "en_US": "Lark"
+  },
+  "分享到": {
+    "key": "SeedsUI_share_to",
+    "zh_CN": "分享到",
+    "en_US": "Share on:"
+  },
+  "签名": {
+    "key": "SeedsUI_signature",
+    "zh_CN": "签名",
+    "en_US": "signature"
+  },
+  "清除": {
+    "key": "SeedsUI_clear",
+    "zh_CN": "清除",
+    "en_US": "purge"
+  },
+  "确认": {
+    "key": "SeedsUI_confirm",
+    "zh_CN": "确认",
+    "en_US": "Confirm"
+  },
+  "已添加": {
+    "key": "SeedsUI_added",
+    "en_US": "Added"
+  },
+  "未添加": {
+    "key": "SeedsUI_not_added",
+    "en_US": "Not added"
+  },
+  "附件": {
+    "key": "SeedsUI_attach",
+    "zh_CN": "附件",
+    "en_US": "annex"
+  },
+  "图片未上传成功, 无法预览": {
+    "key": "SeedsUI_upload_preview_error",
+    "en_US": "The image has not been uploaded successfully and cannot be previewed"
+  },
+  "预览地址不合法": {
+    "key": "SeedsUI_preview_src_error",
+    "zh_CN": "预览地址不合法",
+    "en_US": "The preview address is invalid"
+  },
   "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载": {
     "key": "SeedsUI_clipboard_success",
-    "zh_CN": "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载"
+    "zh_CN": "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载",
+    "en_US": "The link to the file has been copied to the clipboard, please paste it on your system browser to download"
   },
   "文件链接复制到剪贴板失败, 请长按复制<br/>{0}": {
     "key": "SeedsUI_clipboard_fail_confirm",
-    "zh_CN": "文件链接复制到剪贴板失败, 请长按复制<br/>{0}"
+    "zh_CN": "文件链接复制到剪贴板失败, 请长按复制<br/>{0}",
+    "en_US": "The file link to the clipboard failed, please long press to copy<br/>{0}"
   },
-  "签名": { "key": "SeedsUI_signature", "zh_CN": "签名" },
-  "附近推荐": { "key": "SeedsUI_nearby_recommendation", "zh_CN": "附近推荐" },
-  "清空标注": { "key": "SeedsUI_empty_marker", "zh_CN": "清空标注" },
-  "清除": { "key": "SeedsUI_clear", "zh_CN": "清除" },
-  "确认": { "key": "SeedsUI_confirm", "zh_CN": "确认" },
-  "导航": { "key": "SeedsUI_navigation", "zh_CN": "导航" }
+  "请传入视频源": {
+    "key": "SeedsUI_no_videosrc_error",
+    "zh_CN": "请传入视频源",
+    "en_US": "Please pass in the video source"
+  },
+  "加载播放器库出错, 请稍后再试": {
+    "key": "SeedsUI_video_sdk_load_failed",
+    "zh_CN": "加载播放器库出错, 请稍后再试",
+    "en_US": "There was an error loading the player library, please try again later"
+  },
+  "图片地址无效": {
+    "key": "SeedsUI_invalid_image_src",
+    "zh_CN": "图片地址无效",
+    "en_US": "The image address is invalid"
+  },
+  "图片加载失败": {
+    "key": "SeedsUI_image_load_failed",
+    "zh_CN": "图片加载失败",
+    "en_US": "The image failed to load"
+  },
+  "invoke仅可在微信或APP中使用": {
+    "key": "SeedsUI_invoke_prompt",
+    "en_US": "invoke can only be used in WeChat or APP"
+  },
+  "此功能仅可在手机中使用": {
+    "key": "SeedsUI_only_mobile",
+    "zh_CN": "此功能仅可在手机中使用",
+    "en_US": "This feature is only available on mobile phones"
+  },
+  "定位失败": {
+    "key": "SeedsUI_location_failed",
+    "en_US": "Positioning failed"
+  },
+  "定位失败,用户拒绝请求地理定位": {
+    "key": "SeedsUI_location_permission_denied_error",
+    "en_US": "Targeting fails, and the user rejects the request for geolocation"
+  },
+  "定位失败,位置信息是不可用": {
+    "key": "SeedsUI_location_unavailable_error",
+    "en_US": "Location failed, location information is unavailable"
+  },
+  "定位失败,请求获取用户位置超时": {
+    "key": "SeedsUI_location_timeout_error",
+    "en_US": "The location failed, and the request to get the user's location timed out"
+  },
+  "定位失败,定位系统失效": {
+    "key": "SeedsUI_location_unknown_error",
+    "en_US": "The positioning system fails, and the positioning system fails"
+  },
+  "当前浏览器不支持定位": {
+    "key": "SeedsUI_location_not_supported",
+    "zh_CN": "当前浏览器不支持定位",
+    "en_US": "The current browser does not support positioning"
+  },
+  "openLocation仅可在企业微信或APP中使用": {
+    "key": "SeedsUI_open_location_prompt",
+    "en_US": "openLocation can only be used in WeCom or APP"
+  },
+  "chooseImage仅可在微信或APP中使用": {
+    "key": "SeedsUI_chooseImage_prompt",
+    "en_US": "chooseImage can only be used in WeChat or APP"
+  },
+  "uploadImage仅可在微信或APP中使用": {
+    "key": "SeedsUI_uploadImage_prompt",
+    "en_US": "uploadImage can only be used in WeChat or APP"
+  },
+  "previewImage仅可在APP中使用": {
+    "key": "SeedsUI_previewImage_prompt",
+    "en_US": "previewImage can only be used in the app"
+  },
+  "previewFile仅可在企业微信或APP中使用": {
+    "key": "SeedsUI_previewFile_prompt",
+    "en_US": "previewFile can only be used in WeCom or APP"
+  },
+  "onHistoryBack仅可在企业微信或APP中使用": {
+    "key": "SeedsUI_onHistory_back_prompt",
+    "en_US": "onHistoryBack can only be used in WeCom or APP"
+  },
+  "此功能仅可在微信或APP中使用": {
+    "key": "SeedsUI_only_app_wechat",
+    "zh_CN": "{0}此功能仅可在微信或APP中使用",
+    "en_US": "This feature is only available on WeChat or APP"
+  },
+  "扫码失败": {
+    "key": "SeedsUI_scanCode_failed",
+    "zh_CN": "扫码失败",
+    "en_US": "Failed to scan the code"
+  },
+  "请稍后重试": {
+    "key": "SeedsUI_try_again_later",
+    "zh_CN": "请稍后重试",
+    "en_US": "Please try again later"
+  },
+  "uploadFile仅可在APP中使用": {
+    "key": "SeedsUI_uploadFile_prompt",
+    "en_US": "uploadFile can only be used in the app"
+  },
+  "预览文件成功": {
+    "key": "SeedsUI_previewFile_success",
+    "zh_CN": "预览文件成功",
+    "en_US": "The preview file is successful"
+  },
+  "more than 6.2.2": {
+    "key": "SeedsUI_version_min_prompt",
+    "en_US": "{0} more than {1}"
+  },
+  "record failed": {
+    "key": "SeedsUI_record_failed",
+    "en_US": "record failed"
+  },
+  "upload failed": {
+    "key": "SeedsUI_upload_failed",
+    "en_US": "upload failed"
+  },
+  "videoInfo failed": {
+    "key": "SeedsUI_videoInfo_failed",
+    "en_US": "videoInfo failed"
+  },
+  "定位失败,请检查定位权限是否开启": {
+    "key": "SeedsUI_location_failed",
+    "zh_CN": "定位失败, 请检查定位权限是否开启",
+    "en_US": "If the location fails, check whether the location permission is enabled"
+  },
+  "没有上传目录": {
+    "key": "SeedsUI_uploadimage_no_uploaddir",
+    "zh_CN": "没有上传目录",
+    "en_US": "No directory was uploaded"
+  },
+  "没有上传地址": {
+    "key": "SeedsUI_uploadimage_no_localeid",
+    "zh_CN": "没有上传地址",
+    "en_US": "There is no upload address"
+  },
+  "没有预览图片地址": {
+    "key": "SeedsUI_previewimage_no_url",
+    "zh_CN": "没有预览图片地址",
+    "en_US": "There is no preview image address"
+  },
+  "localeIds error": {
+    "key": "SeedsUI_localeIds_error",
+    "en_US": "localeIds error"
+  },
+  "openNativePage ios need url": {
+    "key": "SeedsUI_ios_openNativePage_url_error",
+    "en_US": "openNativePage ios need url"
+  },
+  "openNativePage android need url": {
+    "key": "SeedsUI_android_openNativePage_url_error",
+    "en_US": "openNativePage android need url"
+  },
+  "您确定要离开此页面吗?": {
+    "key": "SeedsUI_quit_page_confirm",
+    "zh_CN": "您确定要离开此页面吗?",
+    "en_US": "Are you sure you want to leave this page?"
+  },
+  "支付小程序js加载失败": {
+    "key": "SeedsUI_alipayMiniProgram_js_load_failed",
+    "en_US": "The js of the payment applet failed to load"
+  },
+  "微信js加载失败": {
+    "key": "SeedsUI_weChat_js_load_failed",
+    "zh_CN": "微信js加载失败",
+    "en_US": "WeChat js failed to load"
+  },
+  "外勤cordova加载失败": {
+    "key": "SeedsUI_cordova_js_load_failed",
+    "zh_CN": "外勤cordova加载失败",
+    "en_US": "Field cordova loading failed"
+  },
+  "外勤js加载失败": {
+    "key": "SeedsUI_qince_js_load_failed",
+    "zh_CN": "外勤js加载失败",
+    "en_US": "Field JS failed to load"
+  },
+  "请在手机端微信中使用扫码": {
+    "key": "noKey_45271ba236d735f2414212df8b7aac4a",
+    "en_US": "Please use the QR code on WeChat on your mobile phone"
+  },
+  "请在手机端微信中使用选择图片": {
+    "key": "noKey_19d98c2f31d42936fcf9438c387a00fe",
+    "en_US": "Please use the selection image in WeChat on your mobile phone"
+  },
+  "请在手机端微信中使用上传图片": {
+    "key": "noKey_33bb5782ef12cad3986c86f795e295e8",
+    "en_US": "Please upload a picture on WeChat on your mobile phone"
+  },
+  "请在手机端微信中使用照片预览": {
+    "key": "noKey_74a78bdfa8f229909e09ea1a817d5cb1",
+    "en_US": "Please use the photo preview on WeChat on your mobile phone"
+  },
+  "复制到剪贴板成功": {
+    "key": "SeedsUI_copy_clipboard_success",
+    "zh_CN": "复制到剪贴板成功",
+    "en_US": "Copied to clipboard successfully"
+  },
+  "当前设备不允许访问剪贴板": {
+    "key": "SeedsUI_copy_clipboard_refuse",
+    "zh_CN": "当前设备不允许访问剪贴板",
+    "en_US": "The current device does not allow access to the clipboard"
+  },
+  "打开调试面板失败": {
+    "key": "SeedsUI_open_debugger_failed",
+    "en_US": "Failed to open the debug panel"
+  }
 }

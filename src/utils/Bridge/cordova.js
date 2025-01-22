@@ -281,7 +281,7 @@ let Bridge = {
   videoRecord: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -303,7 +303,7 @@ let Bridge = {
   videoUpload: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -325,7 +325,7 @@ let Bridge = {
   videoInfo: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2')
+        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -473,16 +473,13 @@ let Bridge = {
         if (params.fail)
           params.fail({
             errMsg: `getLocationMap:fail${LocaleUtil.text(
-              '定位失败, 请检查外勤365定位权限是否开启',
+              '定位失败, 请检查定位权限是否开启',
               'SeedsUI_location_failed'
             )}`
           })
         else
           Toast.show({
-            content: LocaleUtil.text(
-              '定位失败, 请检查外勤365定位权限是否开启',
-              'SeedsUI_location_failed'
-            )
+            content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
           })
       }
     }, JSON.stringify(Object.assign({ editable: '1' }, params))) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
@@ -703,7 +700,10 @@ let Bridge = {
   uploadFile: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('uploadFile need more than 6.6.0')
+        content: LocaleUtil.text('uploadFile need more than 6.6.0', 'SeedsUI_version_min_prompt', [
+          '',
+          '6.2.0'
+        ])
       })
       return
     }
@@ -746,7 +746,10 @@ let Bridge = {
   chooseVideo: function (argParams = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('chooseVideo more than 6.6.0')
+        content: LocaleUtil.text('chooseVideo more than 6.6.0', 'SeedsUI_version_min_prompt', [
+          '',
+          '6.2.0'
+        ])
       })
       return
     }
@@ -816,7 +819,11 @@ let Bridge = {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('getCustomerAreaMore more than 6.2.2')
+        content: LocaleUtil.text(
+          'getCustomerAreaMore more than 6.2.2',
+          'SeedsUI_version_min_prompt',
+          ['', '6.2.2']
+        )
       })
       return
     }
