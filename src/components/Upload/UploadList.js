@@ -34,10 +34,7 @@ const UploadList = ({
     // 失败的照片用localId预览
     if (item.status === 'fail') {
       Toast.show({
-        content: LocaleUtil.text(
-          '图片未上传成功, 无法预览',
-          'SeedsUI_upload_fail_preview_src_error'
-        )
+        content: LocaleUtil.text('图片未上传成功, 无法预览', 'SeedsUI_upload_preview_error')
       })
       return
     }

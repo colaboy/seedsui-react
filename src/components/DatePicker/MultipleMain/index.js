@@ -43,7 +43,7 @@ function MultipleMain(
       getRootDOM: () => mainRef.current,
       // 获取标题
       getTitle: () => {
-        let title = LocaleUtil.text('选择日期', 'SeedsUI_placeholder_select')
+        let title = LocaleUtil.text('选择日期', 'SeedsUI_date_modal_title')
         return title
       },
       getValue: () => {
@@ -68,6 +68,7 @@ function MultipleMain(
             value={activeTab}
             onChange={setActiveTab}
           />
+
           {tabsRef.current.map((tab, index) => {
             // 主体内容(wrapper)是否显示
             let contentVisible = tab?.id === activeTab?.id

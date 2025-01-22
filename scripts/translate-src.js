@@ -18,7 +18,12 @@ async function translateSrc() {
     folderPath: folderPath,
     localeFunctionName: 'LocaleUtil.text',
     oldBaseData: oldBaseData,
-    translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
+    translateOptions: [
+      { from: 'zh_CN', to: 'zh_CN' },
+      { from: 'zh_CN', to: 'en_US' },
+      { from: 'zh_CN', to: 'zh_HK' },
+      { from: 'zh_CN', to: 'vi_VN' }
+    ],
     onGenerateKey: ({ folders, value, oldKey, newKey }) => {
       if (oldKey) return oldKey
       return `noKey_${newKey}`

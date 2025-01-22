@@ -182,7 +182,7 @@ const Main = forwardRef(
           let errMsg =
             typeof newList === 'string'
               ? newList
-              : LocaleUtil.text('获取数据失败', 'SeedsUI_get_data_failed')
+              : LocaleUtil.text('获取数据失败', 'SeedsUI_data_error')
           if (typeof config?.onError === 'function') {
             config.onError({ errMsg: errMsg })
           } else {

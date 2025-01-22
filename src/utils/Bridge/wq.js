@@ -272,10 +272,7 @@ let Bridge = {
         fail({
           errMsg:
             'uploadImage:fail' +
-            LocaleUtil.text('uploadFile need more than 6.6.0', 'SeedsUI_version_min_prompt', [
-              'uploadFile',
-              '6.2.0'
-            ])
+            LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['uploadFile', '6.2.0'])
         })
       return
     }
@@ -328,12 +325,7 @@ let Bridge = {
 
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       if (fail)
-        fail(
-          LocaleUtil.text('chooseVideo need more than 6.6.0', 'SeedsUI_version_min_prompt', [
-            'chooseVideo',
-            '6.6.0'
-          ])
-        )
+        fail(LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['chooseVideo', '6.6.0']))
       return
     }
     console.log('外勤WK内核chooseVideo', params)

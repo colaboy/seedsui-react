@@ -57,7 +57,8 @@ let Bridge = {
     if (Device.device === 'pc' || this.platform === 'wechat') {
       let errMsg = LocaleUtil.text(
         'openLocation仅可在企业微信或APP中使用',
-        'SeedsUI_only_app_wechat',
+        'SeedsUI_open_location_prompt',
+
         ['openLocation']
       )
       Toast.show({
@@ -102,8 +103,9 @@ let Bridge = {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.text(
-          '请在手机端微信中使用扫码',
-          'SeedsUI_wechat_use_error',
+          'scanQRCode仅可在移动端微信或APP中使用',
+          'SeedsUI_scanQRCode_prompt',
+
           LocaleUtil.text('', 'SeedsUI_scancode')
         )
       })
@@ -164,8 +166,9 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       let errMsg = LocaleUtil.text(
-        '请在手机端微信中使用选择图片',
-        'SeedsUI_wechat_use_error',
+        'chooseImage仅可在移动端微信或APP中使用',
+        'SeedsUI_chooseImage_prompt',
+
         LocaleUtil.text('', 'SeedsUI_chooseimage')
       )
       Toast.show({
@@ -181,8 +184,9 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       let errMsg = LocaleUtil.text(
-        '请在手机端微信中使用上传图片',
-        'SeedsUI_wechat_use_error',
+        'uploadImage仅可在移动端微信或APP中使用',
+        'SeedsUI_uploadImage_prompt',
+
         LocaleUtil.text('', 'SeedsUI_uploadimage')
       )
       Toast.show({
@@ -198,8 +202,9 @@ let Bridge = {
     if (Device.device === 'pc') {
       Toast.show({
         content: LocaleUtil.text(
-          '请在手机端微信中使用照片预览',
-          'SeedsUI_wechat_use_error',
+          'previewImage仅可在移动端微信或APP中使用',
+          'SeedsUI_previewImage_prompt',
+
           LocaleUtil.text('', 'SeedsUI_previewimage')
         )
       })
@@ -221,7 +226,8 @@ let Bridge = {
     if (Device.device === 'pc' || this.platform === 'wechat') {
       let errMsg = LocaleUtil.text(
         'previewFile仅可在企业微信或APP中使用',
-        'SeedsUI_only_app_wechat',
+        'SeedsUI_previewFile_prompt',
+
         ['previewFile']
       )
       Toast.show({

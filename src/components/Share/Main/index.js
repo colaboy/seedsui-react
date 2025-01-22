@@ -48,7 +48,7 @@ function Main({ shareTo, ...props }, ref) {
     if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
       return <Qince {...props} shareTo={shareTo} />
     }
-    return <Result title={LocaleUtil.text('此平台暂不支持分享')} />
+    return <Result title={LocaleUtil.text('此平台暂不支持分享', 'SeedsUI_share_no_support')} />
   }
   return (
     <div className="share" ref={rootRef}>

@@ -38,7 +38,7 @@ const Loading = forwardRef(
       }
     })
 
-    let { caption = LocaleUtil.text('加载中...', 'SeedsUI_loading'), ...otherCaptionProps } =
+    let { caption = LocaleUtil.text('加载中...', 'SeedsUI_refreshing'), ...otherCaptionProps } =
       captionProps
     if (typeof content === 'string') {
       caption = content
@@ -134,6 +134,7 @@ const Loading = forwardRef(
         {children}
       </div>
     )
+
     if (portal) {
       return createPortal(Node, portal)
     }

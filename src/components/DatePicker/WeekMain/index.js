@@ -35,7 +35,7 @@ function WeekMain(
       ...weekMainRef.current,
       // 获取标题
       getTitle: () => {
-        let title = LocaleUtil.text('选择日期', 'SeedsUI_placeholder_select')
+        let title = LocaleUtil.text('选择日期', 'SeedsUI_date_modal_title')
         if (value instanceof Date) {
           title = DateUtil.format(value, 'week')
         }

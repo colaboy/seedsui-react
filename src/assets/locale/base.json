@@ -2,643 +2,946 @@
   "取消": {
     "key": "SeedsUI_cancel",
     "zh_CN": "取消",
-    "en_US": "Cancel"
+    "en_US": "Cancel",
+    "zh_HK": "取消",
+    "vi_VN": "Hủy"
   },
   "禁止访问{0}": {
     "key": "SeedsUI_access_error",
-    "en_US": "Forbidden access {0}"
+    "en_US": "Forbidden access {0}",
+    "zh_HK": "禁止訪問{0}",
+    "vi_VN": "Truy cập bị cấm {0}",
+    "zh_CN": "禁止访问{0}"
   },
   "非法的日期格式": {
     "key": "SeedsUI_date_format_error",
-    "en_US": "Illegal date format"
+    "en_US": "Illegal date format",
+    "zh_HK": "非法嘅日期格式",
+    "vi_VN": "Định dạng ngày bất hợp pháp",
+    "zh_CN": "非法的日期格式"
   },
   "禁止访问小于{0}": {
     "key": "SeedsUI_access_min_error",
-    "en_US": "Forbidden access is less than {0}"
+    "en_US": "Forbidden access is less than {0}",
+    "zh_HK": "禁止訪問小於{0}",
+    "vi_VN": "Truy cập bị cấm ít hơn {0}",
+    "zh_CN": "禁止访问小于{0}"
   },
   "禁止访问大于{0}": {
     "key": "SeedsUI_access_max_error",
-    "en_US": "Forbidden access greater than {0}"
+    "en_US": "Forbidden access greater than {0}",
+    "zh_HK": "禁止訪問大於{0}",
+    "vi_VN": "Truy cập bị cấm lớn hơn {0}",
+    "zh_CN": "禁止访问大于{0}"
   },
   "一": {
     "key": "SeedsUI_calendar_week_monday",
     "zh_CN": "一",
-    "en_US": "One"
+    "en_US": "One",
+    "zh_HK": "一",
+    "vi_VN": "Một"
   },
   "二": {
     "key": "SeedsUI_calendar_week_tuesday",
     "zh_CN": "二",
-    "en_US": "Two"
+    "en_US": "Two",
+    "zh_HK": "二",
+    "vi_VN": "Hai"
   },
   "三": {
     "key": "SeedsUI_calendar_week_wednesday",
     "zh_CN": "三",
-    "en_US": "Three"
+    "en_US": "Three",
+    "zh_HK": "三",
+    "vi_VN": "Ba"
   },
   "四": {
     "key": "SeedsUI_calendar_week_thursday",
     "zh_CN": "四",
-    "en_US": "Four"
+    "en_US": "Four",
+    "zh_HK": "四",
+    "vi_VN": "Bốn"
   },
   "五": {
     "key": "SeedsUI_calendar_week_friday",
     "zh_CN": "五",
-    "en_US": "Five"
+    "en_US": "Five",
+    "zh_HK": "五",
+    "vi_VN": "Năm"
   },
   "六": {
     "key": "SeedsUI_calendar_week_saturday",
     "zh_CN": "六",
-    "en_US": "Six"
+    "en_US": "Six",
+    "zh_HK": "六",
+    "vi_VN": "Sáu"
   },
   "日": {
     "key": "SeedsUI_unit_date",
     "zh_CN": "日",
-    "en_US": "day"
+    "en_US": "day",
+    "zh_HK": "日",
+    "vi_VN": "ngày"
   },
   "请选择": {
     "key": "SeedsUI_placeholder_select",
     "zh_CN": "请选择",
-    "en_US": "Please select"
+    "en_US": "Please select",
+    "zh_HK": "請選擇",
+    "vi_VN": "Vui lòng chọn"
   },
   "获取数据失败": {
     "key": "SeedsUI_data_error",
-    "en_US": "Failed to get data"
+    "en_US": "Failed to get data",
+    "zh_HK": "獲取數據失敗",
+    "vi_VN": "Không lấy được dữ liệu",
+    "zh_CN": "获取数据失败"
   },
   "暂无数据": {
     "key": "SeedsUI_no_data",
     "zh_CN": "暂无数据",
-    "en_US": "No data yet"
+    "en_US": "No data yet",
+    "zh_HK": "暫無數據",
+    "vi_VN": "Chưa có dữ liệu"
   },
   "选择日期": {
     "key": "SeedsUI_date_modal_title",
-    "en_US": "Select a date"
+    "en_US": "Select a date",
+    "zh_HK": "選擇日期",
+    "vi_VN": "Chọn ngày",
+    "zh_CN": "选择日期"
   },
   "今日": {
     "key": "SeedsUI_today",
     "zh_CN": "今日",
-    "en_US": "today"
+    "en_US": "today",
+    "zh_HK": "今日",
+    "vi_VN": "Hôm nay"
   },
   "昨日": {
     "key": "SeedsUI_yesterday",
     "zh_CN": "昨日",
-    "en_US": "yesterday"
+    "en_US": "yesterday",
+    "zh_HK": "昨日",
+    "vi_VN": "Hôm qua"
   },
   "近{0}日": {
     "key": "SeedsUI_last_days",
-    "en_US": "Nearly {0} days"
+    "en_US": "Nearly {0} days",
+    "zh_HK": "近 {0} 日",
+    "vi_VN": "Gần {0} ngày",
+    "zh_CN": "近{0}日"
   },
   "本周": {
     "key": "SeedsUI_this_week",
     "zh_CN": "本周",
-    "en_US": "Week"
+    "en_US": "Week",
+    "zh_HK": "本周",
+    "vi_VN": "Tuần"
   },
   "本月": {
     "key": "SeedsUI_this_month",
     "zh_CN": "本月",
-    "en_US": "Month"
+    "en_US": "Month",
+    "zh_HK": "本月",
+    "vi_VN": "Tháng"
   },
   "上月": {
     "key": "SeedsUI_last_month",
     "zh_CN": "上月",
-    "en_US": "last month"
+    "en_US": "last month",
+    "zh_HK": "上月",
+    "vi_VN": "tháng trước"
   },
   "本季度": {
     "key": "SeedsUI_this_quarter",
     "zh_CN": "本季度",
-    "en_US": "This quarter"
+    "en_US": "This quarter",
+    "zh_HK": "本季度",
+    "vi_VN": "Quý này"
   },
   "今年": {
     "key": "SeedsUI_this_year",
     "zh_CN": "今年",
-    "en_US": "this year"
+    "en_US": "this year",
+    "zh_HK": "今年",
+    "vi_VN": "năm nay"
   },
   "自定义": {
     "key": "SeedsUI_custom",
     "zh_CN": "自定义",
-    "en_US": "Customize"
+    "en_US": "Customize",
+    "zh_HK": "自定義",
+    "vi_VN": "Tùy chỉnh"
   },
   "开始时间": {
     "key": "SeedsUI_start_time",
     "zh_CN": "开始时间",
-    "en_US": "Start time"
+    "en_US": "Start time",
+    "zh_HK": "開始時間",
+    "vi_VN": "Thời gian bắt đầu"
   },
   "结束时间": {
     "key": "SeedsUI_end_time",
     "zh_CN": "结束时间",
-    "en_US": "End time"
+    "en_US": "End time",
+    "zh_HK": "結束時間",
+    "vi_VN": "Thời gian kết thúc"
   },
   "年": {
     "key": "SeedsUI_unit_year",
     "zh_CN": "年",
-    "en_US": "year"
+    "en_US": "year",
+    "zh_HK": "年",
+    "vi_VN": "năm"
   },
   "季": {
     "key": "SeedsUI_unit_quarter",
     "zh_CN": "季",
-    "en_US": "season"
+    "en_US": "season",
+    "zh_HK": "季",
+    "vi_VN": "mùa"
   },
   "月": {
     "key": "SeedsUI_unit_month",
     "zh_CN": "月",
-    "en_US": "month"
+    "en_US": "month",
+    "zh_HK": "月",
+    "vi_VN": "tháng"
   },
   "分": {
     "key": "SeedsUI_unit_minute",
     "zh_CN": "分",
-    "en_US": "divide"
+    "en_US": "divide",
+    "zh_HK": "分",
+    "vi_VN": "chia"
   },
   "周": {
     "key": "SeedsUI_unit_week",
     "zh_CN": "周",
-    "en_US": "week"
+    "en_US": "week",
+    "zh_HK": "周",
+    "vi_VN": "tuần"
   },
   "日期区间不能超过{0}{1}": {
     "key": "SeedsUI_dateragne_limit_error",
     "zh_CN": "日期区间不能超过{0}{1}",
-    "en_US": "The date range cannot exceed {0}{1}"
+    "en_US": "The date range cannot exceed {0}{1}",
+    "zh_HK": "日期區間唔可以超過{0}{1}",
+    "vi_VN": "Phạm vi ngày không được vượt quá {0}{1}"
   },
   "开始时间不能大于结束时间": {
     "key": "SeedsUI_starttime_greater_than_endtime",
     "zh_CN": "开始时间不能大于结束时间",
-    "en_US": "The start time cannot be greater than the end time"
+    "en_US": "The start time cannot be greater than the end time",
+    "zh_HK": "開始時間不能大於結束時間",
+    "vi_VN": "Thời gian bắt đầu không được lớn hơn thời gian kết thúc"
   },
   "不能小于": {
     "key": "SeedsUI_cannot_less_than",
     "zh_CN": "不能小于",
-    "en_US": "It can't be less than"
+    "en_US": "It can't be less than",
+    "zh_HK": "唔可以小於",
+    "vi_VN": "Nó không thể ít hơn"
   },
   "不能大于": {
     "key": "SeedsUI_cannot_greater_than",
     "zh_CN": "不能大于",
-    "en_US": "Can't be greater than"
+    "en_US": "Can't be greater than",
+    "zh_HK": "不能大於",
+    "vi_VN": "Không thể lớn hơn"
   },
   "弱": {
     "key": "SeedsUI_password_weak",
     "zh_CN": "弱",
-    "en_US": "weak"
+    "en_US": "weak",
+    "zh_HK": "弱",
+    "vi_VN": "yếu"
   },
   "中": {
     "key": "SeedsUI_password_medium",
     "zh_CN": "中",
-    "en_US": "middle"
+    "en_US": "middle",
+    "zh_HK": "中",
+    "vi_VN": "trung"
   },
   "强": {
     "key": "SeedsUI_password_strong",
     "zh_CN": "强",
-    "en_US": "strong"
+    "en_US": "strong",
+    "zh_HK": "強",
+    "vi_VN": "mạnh"
   },
   "正在加载...": {
     "key": "SeedsUI_loading",
     "zh_CN": "正在加载...",
-    "en_US": "Loading..."
+    "en_US": "Loading...",
+    "zh_HK": "正在加載...",
+    "vi_VN": "Tải..."
   },
   "没有更多数据了": {
     "key": "SeedsUI_no_more_data",
     "zh_CN": "没有更多数据了",
-    "en_US": "There is no more data"
+    "en_US": "There is no more data",
+    "zh_HK": "冇更多數據咗",
+    "vi_VN": "Không còn dữ liệu nào nữa"
   },
   "加载失败, 请稍后再试": {
     "key": "SeedsUI_load_failed",
     "zh_CN": "加载失败, 请稍后再试",
-    "en_US": "Failed to load, please try again later"
+    "en_US": "Failed to load, please try again later",
+    "zh_HK": "加載失敗，請稍後再試",
+    "vi_VN": "Không tải được, vui lòng thử lại sau"
   },
   "释放立即刷新": {
     "key": "SeedsUI_release_refresh",
     "zh_CN": "释放立即刷新",
-    "en_US": "Release to refresh immediately"
+    "en_US": "Release to refresh immediately",
+    "zh_HK": "釋放立即刷新",
+    "vi_VN": "Phát hành để làm mới ngay lập tức"
   },
   "下拉刷新": {
     "key": "SeedsUI_pull_down_refresh",
     "zh_CN": "下拉刷新",
-    "en_US": "Pull down to refresh"
+    "en_US": "Pull down to refresh",
+    "zh_HK": "下拉刷新",
+    "vi_VN": "Kéo xuống để làm mới"
   },
   "加载中...": {
     "key": "SeedsUI_refreshing",
     "zh_CN": "加载中...",
-    "en_US": "Loading..."
+    "en_US": "Loading...",
+    "zh_HK": "加載中...",
+    "vi_VN": "Tải..."
   },
   "下拉可以刷新": {
     "key": "SeedsUI_refresh",
-    "en_US": "The drop-down can be refreshed"
+    "en_US": "The drop-down can be refreshed",
+    "zh_HK": "下拉可以刷新",
+    "vi_VN": "Menu thả xuống có thể được làm mới",
+    "zh_CN": "下拉可以刷新"
   },
   "刷新失败": {
     "key": "SeedsUI_refresh_failed",
     "zh_CN": "刷新失败",
-    "en_US": "Refresh failed"
+    "en_US": "Refresh failed",
+    "zh_HK": "刷新失敗",
+    "vi_VN": "Làm mới không thành công"
   },
   "刷新成功": {
     "key": "SeedsUI_refresh_success",
     "zh_CN": "刷新成功",
-    "en_US": "The refresh was successful"
+    "en_US": "The refresh was successful",
+    "zh_HK": "刷新成功",
+    "vi_VN": "Việc làm mới thành công"
   },
   "定位失败, 请检查定位权限是否开启": {
     "key": "SeedsUI_location_failed",
     "zh_CN": "定位失败, 请检查定位权限是否开启",
-    "en_US": "If the location fails, check whether the location permission is enabled"
+    "en_US": "If the location fails, check whether the location permission is enabled",
+    "zh_HK": "定位失敗，請檢查定位權限是否開啟",
+    "vi_VN": "Nếu vị trí không thành công, hãy kiểm tra xem quyền vị trí có được bật hay không"
   },
   "定位中...": {
     "key": "SeedsUI_positioning",
     "zh_CN": "定位中...",
-    "en_US": "Positioning..."
+    "en_US": "Positioning...",
+    "zh_HK": "定位中...",
+    "vi_VN": "Vị trí..."
   },
   "获取地址失败, 请稍后重试": {
     "key": "SeedsUI_get_address_failed",
     "zh_CN": "获取地址失败, 请稍后重试",
-    "en_US": "Failed to get the address, please try again later"
+    "en_US": "Failed to get the address, please try again later",
+    "zh_HK": "獲取地址失敗，請稍後重試",
+    "vi_VN": "Không lấy được địa chỉ, vui lòng thử lại sau"
   },
   "选择地址": {
     "key": "SeedsUI_choose_address",
     "zh_CN": "选择地址",
-    "en_US": "Select an address"
+    "en_US": "Select an address",
+    "zh_HK": "選擇地址",
+    "vi_VN": "Chọn một địa chỉ"
   },
   "查看地址": {
     "key": "SeedsUI_view_address",
     "zh_CN": "查看地址",
-    "en_US": "Check the address"
+    "en_US": "Check the address",
+    "zh_HK": "查看地址",
+    "vi_VN": "Kiểm tra địa chỉ"
   },
   "No Container": {
     "key": "SeedsUI_map_no_container",
-    "en_US": "No Container"
+    "en_US": "No Container",
+    "zh_HK": "No Container",
+    "vi_VN": "Không có container",
+    "zh_CN": "No Container"
   },
   "当前位置": {
     "key": "SeedsUI_current_location",
     "zh_CN": "当前位置",
-    "en_US": "You are here"
+    "en_US": "You are here",
+    "zh_HK": "當前位置",
+    "vi_VN": "Bạn đang ở đây"
   },
   "导航": {
     "key": "SeedsUI_navigation",
     "zh_CN": "导航",
-    "en_US": "navigation"
+    "en_US": "navigation",
+    "zh_HK": "導航",
+    "vi_VN": "Menu"
   },
   "搜索中": {
     "key": "SeedsUI_searching",
     "zh_CN": "搜索中",
-    "en_US": "Searching"
+    "en_US": "Searching",
+    "zh_HK": "搜索中",
+    "vi_VN": "Tìm kiếm"
   },
   "附近推荐": {
     "key": "SeedsUI_nearby_recommendation",
     "zh_CN": "附近推荐",
-    "en_US": "Recommended nearby"
+    "en_US": "Recommended nearby",
+    "zh_HK": "附近舉薦",
+    "vi_VN": "Đề xuất gần đó"
   },
   "购物": {
     "key": "SeedsUI_map_nearby_shop",
     "zh_CN": "购物",
-    "en_US": "Shopping"
+    "en_US": "Shopping",
+    "zh_HK": "買嘢",
+    "vi_VN": "Mua sắm"
   },
   "吃喝": {
     "key": "SeedsUI_map_nearby_restaurant",
     "zh_CN": "吃喝",
-    "en_US": "diet"
+    "en_US": "diet",
+    "zh_HK": "吃喝",
+    "vi_VN": "Chế độ ăn uống"
   },
   "娱乐": {
     "key": "SeedsUI_map_nearby_recreation",
     "zh_CN": "娱乐",
-    "en_US": "amusement"
+    "en_US": "amusement",
+    "zh_HK": "娛樂",
+    "vi_VN": "Giải trí"
   },
   "景点": {
     "key": "SeedsUI_map_nearby_scenery",
     "zh_CN": "景点",
-    "en_US": "Attractions"
+    "en_US": "Attractions",
+    "zh_HK": "景點",
+    "vi_VN": "Hấp dẫn"
   },
   "出行": {
     "key": "SeedsUI_map_nearby_trip",
     "zh_CN": "出行",
-    "en_US": "Travel"
+    "en_US": "Travel",
+    "zh_HK": "出行",
+    "vi_VN": "Du lịch"
   },
   "住宿": {
     "key": "SeedsUI_map_nearby_lodgings",
     "zh_CN": "住宿",
-    "en_US": "lodging"
+    "en_US": "lodging",
+    "zh_HK": "住宿",
+    "vi_VN": "Nơi tạm trú"
   },
   "生活": {
     "key": "SeedsUI_map_nearby_live",
     "zh_CN": "生活",
-    "en_US": "life"
+    "en_US": "life",
+    "zh_HK": "生活",
+    "vi_VN": "cuộc sống"
   },
   "重试": {
     "key": "SeedsUI_retry",
-    "en_US": "retry"
+    "en_US": "retry",
+    "zh_HK": "重試",
+    "vi_VN": "Thử lại",
+    "zh_CN": "重试"
   },
   "搜索": {
     "key": "SeedsUI_search",
     "zh_CN": "搜索",
-    "en_US": "Search"
+    "en_US": "Search",
+    "zh_HK": "搜尋",
+    "vi_VN": "Tìm kiếm"
   },
   "获取地址中...": {
     "key": "SeedsUI_getting_address",
     "zh_CN": "获取地址中...",
-    "en_US": "Get Address..."
+    "en_US": "Get Address...",
+    "zh_HK": "獲取地址中...",
+    "vi_VN": "Nhận địa chỉ..."
   },
   "请传入参数": {
     "key": "SeedsUI_need_pass_parameter_error",
     "zh_CN": "请传入参数",
-    "en_US": "Please pass in the parameters"
+    "en_US": "Please pass in the parameters",
+    "zh_HK": "請傳入參數",
+    "vi_VN": "Vui lòng chuyển các thông số"
   },
   "地图库加载失败, 请稍后再试": {
     "key": "SeedsUI_map_js_load_failed",
     "zh_CN": "地图库加载失败, 请稍后再试",
-    "en_US": "The map gallery failed to load, please try again later"
+    "en_US": "The map gallery failed to load, please try again later",
+    "zh_HK": "地圖庫加載失敗，請稍後再試",
+    "vi_VN": "Thư viện bản đồ không tải được, vui lòng thử lại sau"
   },
   "查询失败": {
     "key": "SeedsUI_query_failed",
     "zh_CN": "查询失败",
-    "en_US": "The query failed"
+    "en_US": "The query failed",
+    "zh_HK": "查詢失敗",
+    "vi_VN": "Truy vấn không thành công"
   },
   "查询超时": {
     "key": "SeedsUI_query_time_out",
-    "en_US": "The query timed out"
+    "en_US": "The query timed out",
+    "zh_HK": "查詢超時",
+    "vi_VN": "Truy vấn hết thời gian chờ",
+    "zh_CN": "查询超时"
   },
   "确定": {
     "key": "SeedsUI_ok",
     "zh_CN": "确定",
-    "en_US": "Are you sure"
+    "en_US": "Are you sure",
+    "zh_HK": "確定",
+    "vi_VN": "Bạn có chắc không"
   },
   "此平台暂不支持分享": {
     "key": "SeedsUI_share_no_support",
-    "en_US": "This platform does not support sharing"
+    "en_US": "This platform does not support sharing",
+    "zh_HK": "此平台暫不支持分享",
+    "vi_VN": "Nền tảng này không hỗ trợ chia sẻ",
+    "zh_CN": "此平台暂不支持分享"
   },
   "分享失败": {
     "key": "SeedsUI_share_failed",
-    "en_US": "Failed to share"
+    "en_US": "Failed to share",
+    "zh_HK": "分享失敗",
+    "vi_VN": "Không chia sẻ được",
+    "zh_CN": "分享失败"
   },
   "微信": {
     "key": "SeedsUI_we_chat",
-    "en_US": "WeChat"
+    "en_US": "WeChat",
+    "zh_HK": "微信",
+    "vi_VN": "Trò chuyện qua mạng",
+    "zh_CN": "微信"
   },
   "朋友圈": {
     "key": "SeedsUI_we_moment",
-    "en_US": "Circle of friends"
+    "en_US": "Circle of friends",
+    "zh_HK": "朋友圈",
+    "vi_VN": "Vòng kết nối bạn bè",
+    "zh_CN": "朋友圈"
   },
   "小程序": {
     "key": "SeedsUI_we_mini_program",
-    "en_US": "Mini programs"
+    "en_US": "Mini programs",
+    "zh_HK": "細程序",
+    "vi_VN": "Các chương trình nhỏ",
+    "zh_CN": "小程序"
   },
   "企业微信": {
     "key": "SeedsUI_we_com",
-    "en_US": "WeCom"
+    "en_US": "WeCom",
+    "zh_HK": "企業微信",
+    "vi_VN": "WeCom",
+    "zh_CN": "企业微信"
   },
   "钉钉": {
     "key": "SeedsUI_ding_talk",
-    "en_US": "DingTalk"
+    "en_US": "DingTalk",
+    "zh_HK": "釘釘",
+    "vi_VN": "DingTalk",
+    "zh_CN": "钉钉"
   },
   "飞书": {
     "key": "SeedsUI_lark",
-    "en_US": "Lark"
+    "en_US": "Lark",
+    "zh_HK": "飛書",
+    "vi_VN": "Phi Thư",
+    "zh_CN": "飞书"
   },
   "分享到": {
     "key": "SeedsUI_share_to",
     "zh_CN": "分享到",
-    "en_US": "Share on:"
+    "en_US": "Share on:",
+    "zh_HK": "分享到",
+    "vi_VN": "Chia sẻ trên:"
   },
   "签名": {
     "key": "SeedsUI_signature",
     "zh_CN": "签名",
-    "en_US": "signature"
+    "en_US": "signature",
+    "zh_HK": "簽名",
+    "vi_VN": "chữ ký"
   },
   "清除": {
     "key": "SeedsUI_clear",
     "zh_CN": "清除",
-    "en_US": "purge"
+    "en_US": "purge",
+    "zh_HK": "清除",
+    "vi_VN": "tẩy"
   },
   "确认": {
     "key": "SeedsUI_confirm",
     "zh_CN": "确认",
-    "en_US": "Confirm"
+    "en_US": "Confirm",
+    "zh_HK": "確認",
+    "vi_VN": "Xác nhận"
   },
   "已添加": {
     "key": "SeedsUI_added",
-    "en_US": "Added"
+    "en_US": "Added",
+    "zh_HK": "已添加",
+    "vi_VN": "Thêm",
+    "zh_CN": "已添加"
   },
   "未添加": {
     "key": "SeedsUI_not_added",
-    "en_US": "Not added"
+    "en_US": "Not added",
+    "zh_HK": "未添加",
+    "vi_VN": "Không thêm vào",
+    "zh_CN": "未添加"
   },
   "附件": {
     "key": "SeedsUI_attach",
     "zh_CN": "附件",
-    "en_US": "annex"
+    "en_US": "annex",
+    "zh_HK": "附件",
+    "vi_VN": "Annex"
   },
   "图片未上传成功, 无法预览": {
     "key": "SeedsUI_upload_preview_error",
-    "en_US": "The image has not been uploaded successfully and cannot be previewed"
+    "en_US": "The image has not been uploaded successfully and cannot be previewed",
+    "zh_HK": "圖片未上傳成功，無法預覽",
+    "vi_VN": "Hình ảnh chưa được tải lên thành công và không thể xem trước",
+    "zh_CN": "图片未上传成功, 无法预览"
   },
   "预览地址不合法": {
     "key": "SeedsUI_preview_src_error",
     "zh_CN": "预览地址不合法",
-    "en_US": "The preview address is invalid"
+    "en_US": "The preview address is invalid",
+    "zh_HK": "預覽地址唔合法",
+    "vi_VN": "Địa chỉ xem trước không hợp lệ"
   },
   "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载": {
     "key": "SeedsUI_clipboard_success",
     "zh_CN": "文件链接已复制到剪贴板，请粘贴到系统浏览器上下载",
-    "en_US": "The link to the file has been copied to the clipboard, please paste it on your system browser to download"
+    "en_US": "The link to the file has been copied to the clipboard, please paste it on your system browser to download",
+    "zh_HK": "文件連結已複製到剪貼板，請粘貼到系統瀏覽器上下載",
+    "vi_VN": "Liên kết đến tệp đã được sao chép vào khay nhớ tạm, vui lòng dán nó vào trình duyệt hệ thống của bạn để tải xuống"
   },
   "文件链接复制到剪贴板失败, 请长按复制<br/>{0}": {
     "key": "SeedsUI_clipboard_fail_confirm",
     "zh_CN": "文件链接复制到剪贴板失败, 请长按复制<br/>{0}",
-    "en_US": "The file link to the clipboard failed, please long press to copy<br/>{0}"
+    "en_US": "The file link to the clipboard failed, please long press to copy<br/>{0}",
+    "zh_HK": "文件連結複製到剪貼板失敗，請長按複製<br/>{0}",
+    "vi_VN": "Tệp liên kết đến khay nhớ tạm không thành công, vui lòng nhấn và giữ để sao chép<br/>{0}"
   },
   "请传入视频源": {
     "key": "SeedsUI_no_videosrc_error",
     "zh_CN": "请传入视频源",
-    "en_US": "Please pass in the video source"
+    "en_US": "Please pass in the video source",
+    "zh_HK": "請傳入視頻源",
+    "vi_VN": "Vui lòng chuyển nguồn video"
   },
   "加载播放器库出错, 请稍后再试": {
     "key": "SeedsUI_video_sdk_load_failed",
     "zh_CN": "加载播放器库出错, 请稍后再试",
-    "en_US": "There was an error loading the player library, please try again later"
+    "en_US": "There was an error loading the player library, please try again later",
+    "zh_HK": "加載播放器庫出錯，請稍後再試",
+    "vi_VN": "Đã xảy ra lỗi khi tải thư viện trình phát, vui lòng thử lại sau"
   },
   "图片地址无效": {
     "key": "SeedsUI_invalid_image_src",
     "zh_CN": "图片地址无效",
-    "en_US": "The image address is invalid"
+    "en_US": "The image address is invalid",
+    "zh_HK": "圖片地址無效",
+    "vi_VN": "Địa chỉ hình ảnh không hợp lệ"
   },
   "图片加载失败": {
     "key": "SeedsUI_image_load_failed",
     "zh_CN": "图片加载失败",
-    "en_US": "The image failed to load"
+    "en_US": "The image failed to load",
+    "zh_HK": "圖片加載失敗",
+    "vi_VN": "Không tải được hình ảnh"
   },
   "invoke仅可在微信或APP中使用": {
     "key": "SeedsUI_invoke_prompt",
-    "en_US": "invoke can only be used in WeChat or APP"
+    "en_US": "invoke can only be used in WeChat or APP",
+    "zh_HK": "invoke僅可在微信或APP中使用",
+    "vi_VN": "gọi chỉ có thể được sử dụng trong WeChat hoặc APP",
+    "zh_CN": "invoke仅可在微信或APP中使用"
   },
   "此功能仅可在手机中使用": {
     "key": "SeedsUI_only_mobile",
     "zh_CN": "此功能仅可在手机中使用",
-    "en_US": "This feature is only available on mobile phones"
+    "en_US": "This feature is only available on mobile phones",
+    "zh_HK": "此功能僅可在手機中使用",
+    "vi_VN": "Tính năng này chỉ khả dụng trên điện thoại di động"
   },
   "定位失败": {
     "key": "SeedsUI_location_failed",
-    "en_US": "Positioning failed"
+    "en_US": "Positioning failed",
+    "zh_HK": "定位失敗",
+    "vi_VN": "Định vị không thành công",
+    "zh_CN": "定位失败"
   },
   "定位失败,用户拒绝请求地理定位": {
     "key": "SeedsUI_location_permission_denied_error",
-    "en_US": "Targeting fails, and the user rejects the request for geolocation"
+    "en_US": "Targeting fails, and the user rejects the request for geolocation",
+    "zh_HK": "定位失敗，用戶拒絕請求地理定位",
+    "vi_VN": "Nhắm mục tiêu không thành công và người dùng từ chối yêu cầu vị trí địa lý",
+    "zh_CN": "定位失败,用户拒绝请求地理定位"
   },
   "定位失败,位置信息是不可用": {
     "key": "SeedsUI_location_unavailable_error",
-    "en_US": "Location failed, location information is unavailable"
+    "en_US": "Location failed, location information is unavailable",
+    "zh_HK": "定位失敗，位置信息係不可用",
+    "vi_VN": "Vị trí không thành công, thông tin vị trí không có sẵn",
+    "zh_CN": "定位失败,位置信息是不可用"
   },
   "定位失败,请求获取用户位置超时": {
     "key": "SeedsUI_location_timeout_error",
-    "en_US": "The location failed, and the request to get the user's location timed out"
+    "en_US": "The location failed, and the request to get the user's location timed out",
+    "zh_HK": "定位失敗，請求獲取用戶位置超時",
+    "vi_VN": "Vị trí không thành công và yêu cầu lấy vị trí của người dùng hết thời gian chờ",
+    "zh_CN": "定位失败,请求获取用户位置超时"
   },
   "定位失败,定位系统失效": {
     "key": "SeedsUI_location_unknown_error",
-    "en_US": "The positioning system fails, and the positioning system fails"
+    "en_US": "The positioning system fails, and the positioning system fails",
+    "zh_HK": "定位失敗，定位系統失效",
+    "vi_VN": "Hệ thống định vị bị lỗi và hệ thống định vị bị lỗi",
+    "zh_CN": "定位失败,定位系统失效"
   },
   "当前浏览器不支持定位": {
     "key": "SeedsUI_location_not_supported",
     "zh_CN": "当前浏览器不支持定位",
-    "en_US": "The current browser does not support positioning"
+    "en_US": "The current browser does not support positioning",
+    "zh_HK": "當前瀏覽器唔支持定位",
+    "vi_VN": "Trình duyệt hiện tại không hỗ trợ định vị"
   },
   "openLocation仅可在企业微信或APP中使用": {
     "key": "SeedsUI_open_location_prompt",
-    "en_US": "openLocation can only be used in WeCom or APP"
+    "en_US": "openLocation can only be used in WeCom or APP",
+    "zh_HK": "openLocation僅可在企業微信或APP中使用",
+    "vi_VN": "openLocation chỉ có thể được sử dụng trong WeCom hoặc APP",
+    "zh_CN": "openLocation仅可在企业微信或APP中使用"
   },
-  "chooseImage仅可在微信或APP中使用": {
+  "chooseImage仅可在移动端微信或APP中使用": {
     "key": "SeedsUI_chooseImage_prompt",
-    "en_US": "chooseImage can only be used in WeChat or APP"
+    "en_US": "chooseImage can only be used in WeChat or APP",
+    "zh_HK": "chooseImage僅可在移動端微信或APP中使用",
+    "vi_VN": "chooseImage chỉ có thể được sử dụng trên WeChat hoặc APP di động",
+    "zh_CN": "chooseImage仅可在移动端微信或APP中使用"
   },
-  "uploadImage仅可在微信或APP中使用": {
+  "uploadImage仅可在移动端微信或APP中使用": {
     "key": "SeedsUI_uploadImage_prompt",
-    "en_US": "uploadImage can only be used in WeChat or APP"
+    "en_US": "uploadImage can only be used in WeChat or APP",
+    "zh_HK": "uploadImage僅可在移動端微信或APP中使用",
+    "vi_VN": "uploadImage chỉ có thể được sử dụng trên WeChat hoặc APP trên thiết bị di động",
+    "zh_CN": "uploadImage仅可在移动端微信或APP中使用"
   },
-  "previewImage仅可在APP中使用": {
+  "previewImage仅可在移动端微信或APP中使用": {
     "key": "SeedsUI_previewImage_prompt",
-    "en_US": "previewImage can only be used in the app"
+    "en_US": "previewImage can only be used in the app",
+    "zh_HK": "previewImage僅可在移動端微信或APP中使用",
+    "vi_VN": "previewImage chỉ có thể được sử dụng trên điện thoại di động, WeChat hoặc APP",
+    "zh_CN": "previewImage仅可在移动端微信或APP中使用"
   },
   "previewFile仅可在企业微信或APP中使用": {
     "key": "SeedsUI_previewFile_prompt",
-    "en_US": "previewFile can only be used in WeCom or APP"
+    "en_US": "previewFile can only be used in WeCom or APP",
+    "zh_HK": "previewFile僅可在企業微信或APP中使用",
+    "vi_VN": "previewFile chỉ có thể được sử dụng trong WeCom hoặc APP",
+    "zh_CN": "previewFile仅可在企业微信或APP中使用"
   },
   "onHistoryBack仅可在企业微信或APP中使用": {
     "key": "SeedsUI_onHistory_back_prompt",
-    "en_US": "onHistoryBack can only be used in WeCom or APP"
+    "en_US": "onHistoryBack can only be used in WeCom or APP",
+    "zh_HK": "onHistoryBack僅可在企業微信或APP中使用",
+    "vi_VN": "onHistoryBack chỉ có thể được sử dụng trong WeCom hoặc APP",
+    "zh_CN": "onHistoryBack仅可在企业微信或APP中使用"
   },
   "此功能仅可在微信或APP中使用": {
     "key": "SeedsUI_only_app_wechat",
-    "zh_CN": "{0}此功能仅可在微信或APP中使用",
-    "en_US": "This feature is only available on WeChat or APP"
+    "zh_CN": "此功能仅可在微信或APP中使用",
+    "en_US": "This feature is only available on WeChat or APP",
+    "zh_HK": "此功能僅可在微信或APP中使用",
+    "vi_VN": "Tính năng này chỉ khả dụng trên WeChat hoặc APP"
   },
   "扫码失败": {
     "key": "SeedsUI_scanCode_failed",
     "zh_CN": "扫码失败",
-    "en_US": "Failed to scan the code"
+    "en_US": "Failed to scan the code",
+    "zh_HK": "掃碼失敗",
+    "vi_VN": "Không thể quét mã"
   },
   "请稍后重试": {
     "key": "SeedsUI_try_again_later",
     "zh_CN": "请稍后重试",
-    "en_US": "Please try again later"
+    "en_US": "Please try again later",
+    "zh_HK": "請稍後重試",
+    "vi_VN": "Vui lòng thử lại sau"
   },
   "uploadFile仅可在APP中使用": {
     "key": "SeedsUI_uploadFile_prompt",
-    "en_US": "uploadFile can only be used in the app"
+    "en_US": "uploadFile can only be used in the app",
+    "zh_HK": "uploadFile僅可在APP中使用",
+    "vi_VN": "uploadFile chỉ có thể được sử dụng trong ứng dụng",
+    "zh_CN": "uploadFile仅可在APP中使用"
   },
   "预览文件成功": {
     "key": "SeedsUI_previewFile_success",
     "zh_CN": "预览文件成功",
-    "en_US": "The preview file is successful"
+    "en_US": "The preview file is successful",
+    "zh_HK": "預覽文件成功",
+    "vi_VN": "Tệp xem trước thành công"
   },
-  "more than 6.2.2": {
+  "more than": {
     "key": "SeedsUI_version_min_prompt",
-    "en_US": "{0} more than {1}"
+    "en_US": "{0} more than {1}",
+    "zh_HK": "more than",
+    "vi_VN": "hơn",
+    "zh_CN": "more than"
   },
   "record failed": {
     "key": "SeedsUI_record_failed",
-    "en_US": "record failed"
+    "en_US": "record failed",
+    "zh_HK": "record failed",
+    "vi_VN": "Bản ghi không thành công",
+    "zh_CN": "record failed"
   },
   "upload failed": {
     "key": "SeedsUI_upload_failed",
-    "en_US": "upload failed"
+    "en_US": "upload failed",
+    "zh_HK": "upload failed",
+    "vi_VN": "Tải lên không thành công",
+    "zh_CN": "upload failed"
   },
   "videoInfo failed": {
     "key": "SeedsUI_videoInfo_failed",
-    "en_US": "videoInfo failed"
+    "en_US": "videoInfo failed",
+    "zh_HK": "videoInfo failed",
+    "vi_VN": "videoInfo không thành công",
+    "zh_CN": "videoInfo failed"
   },
   "定位失败,请检查定位权限是否开启": {
     "key": "SeedsUI_location_failed",
-    "zh_CN": "定位失败, 请检查定位权限是否开启",
-    "en_US": "If the location fails, check whether the location permission is enabled"
+    "zh_CN": "定位失败,请检查定位权限是否开启",
+    "en_US": "If the location fails, check whether the location permission is enabled",
+    "zh_HK": "定位失敗，請檢查定位權限是否開啟",
+    "vi_VN": "Nếu vị trí không thành công, hãy kiểm tra xem quyền vị trí có được bật hay không"
   },
   "没有上传目录": {
     "key": "SeedsUI_uploadimage_no_uploaddir",
     "zh_CN": "没有上传目录",
-    "en_US": "No directory was uploaded"
+    "en_US": "No directory was uploaded",
+    "zh_HK": "冇上傳目錄",
+    "vi_VN": "Không có thư mục nào được tải lên"
   },
   "没有上传地址": {
     "key": "SeedsUI_uploadimage_no_localeid",
     "zh_CN": "没有上传地址",
-    "en_US": "There is no upload address"
+    "en_US": "There is no upload address",
+    "zh_HK": "冇上傳地址",
+    "vi_VN": "Không có địa chỉ tải lên"
   },
   "没有预览图片地址": {
     "key": "SeedsUI_previewimage_no_url",
     "zh_CN": "没有预览图片地址",
-    "en_US": "There is no preview image address"
+    "en_US": "There is no preview image address",
+    "zh_HK": "冇預覽圖地址",
+    "vi_VN": "Không có địa chỉ hình ảnh xem trước"
   },
   "localeIds error": {
     "key": "SeedsUI_localeIds_error",
-    "en_US": "localeIds error"
+    "en_US": "localeIds error",
+    "zh_HK": "localeIds error",
+    "vi_VN": "Lỗi localeIds",
+    "zh_CN": "localeIds error"
   },
   "openNativePage ios need url": {
     "key": "SeedsUI_ios_openNativePage_url_error",
-    "en_US": "openNativePage ios need url"
+    "en_US": "openNativePage ios need url",
+    "zh_HK": "openNativePage ios need url",
+    "vi_VN": "openNativePage ios cần url",
+    "zh_CN": "openNativePage ios need url"
   },
   "openNativePage android need url": {
     "key": "SeedsUI_android_openNativePage_url_error",
-    "en_US": "openNativePage android need url"
+    "en_US": "openNativePage android need url",
+    "zh_HK": "openNativePage android need url",
+    "vi_VN": "openNativePage android cần url",
+    "zh_CN": "openNativePage android need url"
   },
   "您确定要离开此页面吗?": {
     "key": "SeedsUI_quit_page_confirm",
     "zh_CN": "您确定要离开此页面吗?",
-    "en_US": "Are you sure you want to leave this page?"
+    "en_US": "Are you sure you want to leave this page?",
+    "zh_HK": "你確定要離開此頁面啊？",
+    "vi_VN": "Bạn có chắc chắn muốn rời khỏi trang này không?"
   },
   "支付小程序js加载失败": {
     "key": "SeedsUI_alipayMiniProgram_js_load_failed",
-    "en_US": "The js of the payment applet failed to load"
+    "en_US": "The js of the payment applet failed to load",
+    "zh_HK": "支付細程序js加載失敗",
+    "vi_VN": "js của applet thanh toán không tải được",
+    "zh_CN": "支付小程序js加载失败"
   },
   "微信js加载失败": {
     "key": "SeedsUI_weChat_js_load_failed",
     "zh_CN": "微信js加载失败",
-    "en_US": "WeChat js failed to load"
+    "en_US": "WeChat js failed to load",
+    "zh_HK": "微信js加载失敗",
+    "vi_VN": "WeChat js không tải được"
   },
   "外勤cordova加载失败": {
     "key": "SeedsUI_cordova_js_load_failed",
     "zh_CN": "外勤cordova加载失败",
-    "en_US": "Field cordova loading failed"
+    "en_US": "Field cordova loading failed",
+    "zh_HK": "外勤cordova加載失敗",
+    "vi_VN": "Tải cordova trường không thành công"
   },
   "外勤js加载失败": {
     "key": "SeedsUI_qince_js_load_failed",
     "zh_CN": "外勤js加载失败",
-    "en_US": "Field JS failed to load"
+    "en_US": "Field JS failed to load",
+    "zh_HK": "外勤js加載失敗",
+    "vi_VN": "Không tải trường JS"
   },
-  "请在手机端微信中使用扫码": {
-    "key": "noKey_45271ba236d735f2414212df8b7aac4a",
-    "en_US": "Please use the QR code on WeChat on your mobile phone"
-  },
-  "请在手机端微信中使用选择图片": {
-    "key": "noKey_19d98c2f31d42936fcf9438c387a00fe",
-    "en_US": "Please use the selection image in WeChat on your mobile phone"
-  },
-  "请在手机端微信中使用上传图片": {
-    "key": "noKey_33bb5782ef12cad3986c86f795e295e8",
-    "en_US": "Please upload a picture on WeChat on your mobile phone"
-  },
-  "请在手机端微信中使用照片预览": {
-    "key": "noKey_74a78bdfa8f229909e09ea1a817d5cb1",
-    "en_US": "Please use the photo preview on WeChat on your mobile phone"
+  "scanQRCode仅可在移动端微信或APP中使用": {
+    "key": "SeedsUI_scanQRCode_prompt",
+    "en_US": "Please use the QR code on WeChat on your mobile phone",
+    "zh_HK": "scanQRCode僅可在移動端微信或APP中使用",
+    "vi_VN": "scanQRCode chỉ có thể được sử dụng trên WeChat hoặc APP trên thiết bị di động",
+    "zh_CN": "scanQRCode仅可在移动端微信或APP中使用"
   },
   "复制到剪贴板成功": {
     "key": "SeedsUI_copy_clipboard_success",
     "zh_CN": "复制到剪贴板成功",
-    "en_US": "Copied to clipboard successfully"
+    "en_US": "Copied to clipboard successfully",
+    "zh_HK": "複製到剪貼板成功",
+    "vi_VN": "Đã sao chép thành công vào khay nhớ tạm"
   },
   "当前设备不允许访问剪贴板": {
     "key": "SeedsUI_copy_clipboard_refuse",
     "zh_CN": "当前设备不允许访问剪贴板",
-    "en_US": "The current device does not allow access to the clipboard"
+    "en_US": "The current device does not allow access to the clipboard",
+    "zh_HK": "當前設備唔允許訪問剪貼板",
+    "vi_VN": "Thiết bị hiện tại không cho phép truy cập vào khay nhớ tạm"
   },
   "打开调试面板失败": {
     "key": "SeedsUI_open_debugger_failed",
-    "en_US": "Failed to open the debug panel"
+    "en_US": "Failed to open the debug panel",
+    "zh_HK": "打開調試面板失敗",
+    "vi_VN": "Không mở được bảng gỡ lỗi",
+    "zh_CN": "打开调试面板失败"
   }
 }

@@ -181,7 +181,11 @@ const Calendar = forwardRef(
         // 是否需要校验
         let error = {
           errCode: 'CALENDAR_PREVIOUS_MONTH_ERROR',
-          errMsg: LocaleUtil.text(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+          errMsg: LocaleUtil.text(
+            `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
+            'SeedsUI_access_error',
+            [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
+          )
         }
         if (typeof onError === 'function') {
           let isOk = onError(error)
@@ -209,7 +213,11 @@ const Calendar = forwardRef(
         // 是否需要校验
         let error = {
           errCode: 'CALENDAR_NEXT_MONTH_ERROR',
-          errMsg: LocaleUtil.text(`禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`)
+          errMsg: LocaleUtil.text(
+            `禁止访问${DateUtil.format(newDrawDate, 'YYYY年MM月DD日')}`,
+            'SeedsUI_access_error',
+            [DateUtil.format(newDrawDate, 'YYYY年MM月DD日')]
+          )
         }
         if (typeof onError === 'function') {
           let isOk = onError(error)

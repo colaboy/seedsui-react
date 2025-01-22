@@ -46,7 +46,7 @@ function overpassQueryNearby({ map, keyword, longitude, latitude, radius }) {
         }
       })
       .catch((error) => {
-        resolve(LocaleUtil.text('查询失败'))
+        resolve(LocaleUtil.text('查询失败', 'SeedsUI_query_failed'))
       })
   })
 }

@@ -53,7 +53,7 @@ function bmapQueryNearby({ map, keyword, longitude, latitude, type, radius }) {
           }
           resolve(list)
         } else {
-          resolve(LocaleUtil.text('查询失败'))
+          resolve(LocaleUtil.text('查询失败', 'SeedsUI_query_failed'))
         }
       }
     })

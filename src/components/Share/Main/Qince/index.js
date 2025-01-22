@@ -17,12 +17,12 @@ function Qince({ shareTo }) {
   function handleFail(err, onFail) {
     if (Device.os === 'android' && Device.compareVersion(Device.platformVersion, '7.2.65') < 0) {
       Toast.show({
-        content: LocaleUtil.text('分享失败')
+        content: LocaleUtil.text('分享失败', 'SeedsUI_share_failed')
       })
     }
     onFail &&
       onFail({
-        errMsg: err?.errMsg || LocaleUtil.text('分享失败')
+        errMsg: err?.errMsg || LocaleUtil.text('分享失败', 'SeedsUI_share_failed')
       })
   }
 

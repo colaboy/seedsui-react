@@ -194,7 +194,7 @@ let Bridge = {
   // 自定义操作
   invoke: function () {
     Toast.show({
-      content: LocaleUtil.text('invoke仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', ['invoke'])
+      content: LocaleUtil.text('invoke仅可在微信或APP中使用', 'SeedsUI_invoke_prompt', ['invoke'])
     })
   },
   // 获得版本信息
@@ -302,17 +302,23 @@ let Bridge = {
             case error.TIMEOUT:
               errCode = 'TIMEOUT'
               console.log(
-                `${LocaleUtil.text('定位失败,位置信息是不可用', 'SeedsUI_location_overtime_error')}`
+                `${LocaleUtil.text(
+                  '定位失败,位置信息是不可用',
+                  'SeedsUI_location_unavailable_error'
+                )}`
               )
               errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,请求获取用户位置超时',
-                'SeedsUI_location_overtime_error'
+                'SeedsUI_location_timeout_error'
               )}`
               break
             case error.UNKNOWN_ERROR:
               errCode = 'UNKNOWN_ERROR'
               console.log(
-                `${LocaleUtil.text('定位失败,位置信息是不可用', 'SeedsUI_location_unknown_error')}`
+                `${LocaleUtil.text(
+                  '定位失败,位置信息是不可用',
+                  'SeedsUI_location_unavailable_error'
+                )}`
               )
               errMsg = `getLocation:fail ${LocaleUtil.text(
                 '定位失败,定位系统失效',
@@ -374,7 +380,8 @@ let Bridge = {
   openLocation: function (params) {
     let errMsg = LocaleUtil.text(
       'openLocation仅可在企业微信或APP中使用',
-      'SeedsUI_only_app_wechat',
+      'SeedsUI_open_location_prompt',
+
       ['openLocation']
     )
     Toast.show({
@@ -383,27 +390,34 @@ let Bridge = {
     params?.fail && params.fail({ errMsg: errMsg })
   },
   chooseImage: function (params) {
-    let errMsg = LocaleUtil.text('chooseImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
-      'chooseImage'
-    ])
+    let errMsg = LocaleUtil.text(
+      'chooseImage仅可在移动端微信或APP中使用',
+      'SeedsUI_chooseImage_prompt',
+
+      ['chooseImage']
+    )
     Toast.show({
       content: errMsg
     })
     params?.fail && params.fail({ errMsg: errMsg })
   },
   uploadImage: function (params) {
-    let errMsg = LocaleUtil.text('uploadImage仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
-      'uploadImage'
-    ])
+    let errMsg = LocaleUtil.text(
+      'uploadImage仅可在移动端微信或APP中使用',
+      'SeedsUI_uploadImage_prompt',
+      ['uploadImage']
+    )
     Toast.show({
       content: errMsg
     })
     params?.fail && params.fail({ errMsg: errMsg })
   },
   previewImage: function (params = {}) {
-    let errMsg = LocaleUtil.text('previewImage仅可在APP中使用', 'SeedsUI_only_app_wechat', [
-      'previewImage'
-    ])
+    let errMsg = LocaleUtil.text(
+      'previewImage仅可在移动端微信或APP中使用',
+      'SeedsUI_previewImage_prompt',
+      ['previewImage']
+    )
     Toast.show({
       content: errMsg
     })
@@ -412,7 +426,8 @@ let Bridge = {
   previewFile: function (params = {}) {
     let errMsg = LocaleUtil.text(
       'previewFile仅可在企业微信或APP中使用',
-      'SeedsUI_only_app_wechat',
+      'SeedsUI_previewFile_prompt',
+
       ['previewFile']
     )
     Toast.show({

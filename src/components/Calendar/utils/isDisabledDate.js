@@ -13,21 +13,29 @@ function isDisabledDate(date, { min, max }) {
     let errDate = new Date()
     return {
       errCode: 'CALENDAR_INVALID_DATE',
-      errMsg: LocaleUtil.text(`非法的日期格式`),
+      errMsg: LocaleUtil.text(`非法的日期格式`, 'SeedsUI_date_format_error'),
       date: errDate
     }
   }
   if (min instanceof Date && date.setHours(0, 0, 0, 0) < min.setHours(0, 0, 0, 0)) {
     return {
       errCode: 'CALENDAR_MIN_ERROR',
-      errMsg: LocaleUtil.text(`禁止访问小于${DateUtil.format(min, 'YYYY年MM月DD日')}`),
+      errMsg: LocaleUtil.text(
+        `禁止访问小于${DateUtil.format(min, 'YYYY年MM月DD日')}`,
+        'SeedsUI_access_min_error',
+        [DateUtil.format(min, 'YYYY年MM月DD日')]
+      ),
       date: min
     }
   }
   if (max instanceof Date && date.setHours(0, 0, 0, 0) > max.setHours(0, 0, 0, 0)) {
     return {
       errCode: 'CALENDAR_MAX_ERROR',
-      errMsg: LocaleUtil.text(`禁止访问大于${DateUtil.format(max, 'YYYY年MM月DD日')}`),
+      errMsg: LocaleUtil.text(
+        `禁止访问大于${DateUtil.format(max, 'YYYY年MM月DD日')}`,
+        'SeedsUI_access_max_error',
+        [DateUtil.format(max, 'YYYY年MM月DD日')]
+      ),
       date: max
     }
   }

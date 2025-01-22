@@ -13,12 +13,12 @@ function Type({ type, onClick }) {
     <div className="share-item" onClick={onClick}>
       <i className={`share-icon ${type}`}></i>
       <p className="share-title">
-        {type === 'wechat' && LocaleUtil.text('微信')}
-        {type === 'moments' && LocaleUtil.text('朋友圈')}
-        {type === 'miniprogram' && LocaleUtil.text('小程序')}
-        {type === 'wecom' && LocaleUtil.text('企业微信')}
-        {type === 'dingtalk' && LocaleUtil.text('钉钉')}
-        {type === 'lark' && LocaleUtil.text('飞书')}
+        {type === 'wechat' && LocaleUtil.text('微信', 'SeedsUI_we_chat')}
+        {type === 'moments' && LocaleUtil.text('朋友圈', 'SeedsUI_we_moment')}
+        {type === 'miniprogram' && LocaleUtil.text('小程序', 'SeedsUI_we_mini_program')}
+        {type === 'wecom' && LocaleUtil.text('企业微信', 'SeedsUI_we_com')}
+        {type === 'dingtalk' && LocaleUtil.text('钉钉', 'SeedsUI_ding_talk')}
+        {type === 'lark' && LocaleUtil.text('飞书', 'SeedsUI_lark')}
       </p>
     </div>
   )

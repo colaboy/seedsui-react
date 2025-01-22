@@ -68,15 +68,15 @@ export default () => {
         //     dayjs().subtract(1, 'day').toDate(),
         //     dayjs().subtract(1, 'day').toDate()
         //   ],
-        //   [LocaleUtil.text('近7日', 'SeedsUI_last_days', ['7'])]: [
+        //   [LocaleUtil.text('近{0}日', 'SeedsUI_last_days', ['7'])]: [
         //     dayjs().subtract(6, 'day').toDate(),
         //     new Date()
         //   ],
-        //   [LocaleUtil.text('近30日', 'SeedsUI_last_days', ['30'])]: [
+        //   [LocaleUtil.text('近{0}日', 'SeedsUI_last_days', ['30'])]: [
         //     dayjs().subtract(29, 'day').toDate(),
         //     new Date()
         //   ],
-        //   [LocaleUtil.text('近90日', 'SeedsUI_last_days', ['90'])]: [
+        //   [LocaleUtil.text('近{0}日', 'SeedsUI_last_days', ['90'])]: [
         //     dayjs().subtract(89, 'day').toDate(),
         //     new Date()
         //   ],

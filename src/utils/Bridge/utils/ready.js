@@ -66,7 +66,12 @@ function ready(callback, options = {}, Bridge) {
         // js加载失败
         else {
           console.error('支付小程序js加载失败')
-          options?.fail?.({ errMsg: LocaleUtil.text('支付小程序js加载失败') })
+          options?.fail?.({
+            errMsg: LocaleUtil.text(
+              '支付小程序js加载失败',
+              'SeedsUI_alipayMiniProgram_js_load_failed'
+            )
+          })
           return
         }
       }
@@ -101,7 +106,7 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: LocaleUtil.text('微信js加载失败', 'SeedsUI_wechat_js_load_failed') })
+        options.fail({ errMsg: LocaleUtil.text('微信js加载失败', 'SeedsUI_weChat_js_load_failed') })
       }
     }
   }

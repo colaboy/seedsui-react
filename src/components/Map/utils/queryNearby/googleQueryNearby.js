@@ -77,7 +77,7 @@ async function nearbySearch({ map, keyword, longitude, latitude, type, radius })
     return list
   }
 
-  return LocaleUtil.text('查询失败')
+  return LocaleUtil.text('查询失败', 'SeedsUI_query_failed')
 }
 
 export default nearbySearch

@@ -11,7 +11,7 @@ const TopContainer = forwardRef(({ children, caption, type, ...props }, ref) => 
       <div className="layout-main-pull-push-wrapper">
         <div className="layout-main-pull-push-icon"></div>
         <div className="layout-main-pull-push-caption">
-          {LocaleUtil.text('下拉可以刷新', 'SeedsUI_pull_down_refresh')}
+          {LocaleUtil.text('下拉可以刷新', 'SeedsUI_refresh')}
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const Types = forwardRef(
         {
           type: 'week',
           id: 'week',
-          name: LocaleUtil.text('周', 'datetype_unit_week')
+          name: LocaleUtil.text('周', 'SeedsUI_unit_week')
         },
         {
           type: 'month',
@@ -42,14 +42,15 @@ const Types = forwardRef(
           name: LocaleUtil.text('年', 'SeedsUI_unit_year')
         }
       ],
+
       value,
       /*
-      {
-        type: 'date',
-        name: '日',
-        value: new Date()
-      }
-      */
+    {
+      type: 'date',
+      name: '日',
+      value: new Date()
+    }
+    */
 
       // 渲染tab右边的选择器
       pickerRender,

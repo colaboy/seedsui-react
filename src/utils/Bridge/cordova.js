@@ -151,9 +151,9 @@ let Bridge = {
     fileName: 'ss.txt',
     size: 200
   }，(result) => { // result => {isExists: '', filePath: '', fileName: ''}，isExists:'0'不存在，'1'存在
-
-  })
+   })
   */
+
   isExistsFile: function (params, callback) {
     // eslint-disable-next-line
     wq.wqio.verifyFileHasExist(
@@ -170,8 +170,8 @@ let Bridge = {
     downloadUrl: "http://...", // 必填
     size: 200 // 必填
   }，(result) => { // result => {{flag:'', filePath: '', msg: ''}, flag:'0'失败，'1'成功，msg失败原因
+   }) */
 
-  }) */
   downloadFile: function (params, callback) {
     // eslint-disable-next-line
     wq.wqio.downloadFile(
@@ -185,8 +185,8 @@ let Bridge = {
   openFile({
     filePath: ''
   }，(result) => { // result => {flag:'', msg:''} flag:'0'失败, '1'成功, msg失败原因
+   }） */
 
-  }） */
   openFile: function (params, callback) {
     // eslint-disable-next-line
     wq.wqio.openFile(
@@ -201,8 +201,8 @@ let Bridge = {
     path: ['', ''],
     destroy: '1' // '0'转完后删除, '1'转完后不删除
   }, (result) => { // result => [{path:'', name:'', src:'base64'}]
+   }） */
 
-  }） */
   wqUrlToBase64: function (params, callback) {
     // eslint-disable-next-line
     wq.wqphoto.wqUrlToBase64(
@@ -234,7 +234,7 @@ let Bridge = {
             params.success({
               errMsg: `previewFile:ok${LocaleUtil.text(
                 '预览文件成功',
-                'SeedsUI_previewfile_success'
+                'SeedsUI_previewFile_success'
               )}`
             })
         } else {
@@ -281,7 +281,7 @@ let Bridge = {
   videoRecord: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -291,7 +291,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoRecord:录制失败' })
-        else Toast.show({ content: LocaleUtil.text('record failed') })
+        else Toast.show({ content: LocaleUtil.text('record failed', 'SeedsUI_record_failed') })
       }
     }, JSON.stringify(params))
   },
@@ -303,7 +303,7 @@ let Bridge = {
   videoUpload: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -313,7 +313,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoUpload:上传失败' })
-        else Toast.show({ content: LocaleUtil.text('upload failed') })
+        else Toast.show({ content: LocaleUtil.text('upload failed', 'SeedsUI_upload_failed') })
       }
     }, JSON.stringify(params))
   },
@@ -325,7 +325,7 @@ let Bridge = {
   videoInfo: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than 6.2.2', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -336,7 +336,7 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `videoInfo:${LocaleUtil.text('videoInfo failed')}`
+            errMsg: `videoInfo:${LocaleUtil.text('videoInfo failed', 'SeedsUI_videoInfo_failed')}`
           })
       }
     }, JSON.stringify(params))
@@ -357,14 +357,14 @@ let Bridge = {
           params.fail({
             errMsg: `scanQRCode:${LocaleUtil.text(
               '扫码失败',
-              'SeedsUI_scancode_failed'
+              'SeedsUI_scanCode_failed'
             )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
           })
         else
           Toast.show({
             content: `scanQRCode:${LocaleUtil.text(
               '扫码失败',
-              'SeedsUI_scancode_failed'
+              'SeedsUI_scanCode_failed'
             )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
           })
       }
@@ -613,6 +613,7 @@ let Bridge = {
         path: params.localId
       }
     ]
+
     if (params.ext && params.ext.isAutoCheck === '1') {
       filePathList = [
         {
@@ -700,10 +701,7 @@ let Bridge = {
   uploadFile: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('uploadFile need more than 6.6.0', 'SeedsUI_version_min_prompt', [
-          '',
-          '6.2.0'
-        ])
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
       })
       return
     }
@@ -713,7 +711,7 @@ let Bridge = {
     }
     let localIds = params.localId.split(':')
     if (localIds.length !== 2) {
-      Toast.show({ content: LocaleUtil.text('localeIds error') })
+      Toast.show({ content: LocaleUtil.text('localeIds error', 'SeedsUI_localeIds_error') })
       return
     }
     window.wq.wqio.uploadFile(
@@ -746,10 +744,7 @@ let Bridge = {
   chooseVideo: function (argParams = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('chooseVideo more than 6.6.0', 'SeedsUI_version_min_prompt', [
-          '',
-          '6.2.0'
-        ])
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
       })
       return
     }
@@ -819,11 +814,7 @@ let Bridge = {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text(
-          'getCustomerAreaMore more than 6.2.2',
-          'SeedsUI_version_min_prompt',
-          ['', '6.2.2']
-        )
+        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -882,12 +873,20 @@ let Bridge = {
   ----------------------------------------------------- */
   openNativePage: function (params = { ios: {}, android: {} }) {
     if (!params.ios.url) {
-      Toast.show({ content: LocaleUtil.text('openNativePage ios need url') })
+      Toast.show({
+        content: LocaleUtil.text(
+          'openNativePage ios need url',
+          'SeedsUI_ios_openNativePage_url_error'
+        )
+      })
       return
     }
     if (!params.android.url) {
       Toast.show({
-        content: LocaleUtil.text('openNativePage android need url')
+        content: LocaleUtil.text(
+          'openNativePage android need url',
+          'SeedsUI_android_openNativePage_url_error'
+        )
       })
       return
     }

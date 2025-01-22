@@ -319,7 +319,7 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(LocaleUtil.text('No Container'))
+        setLeafletMap(LocaleUtil.text('No Container', 'SeedsUI_map_no_container'))
         return
       }
 

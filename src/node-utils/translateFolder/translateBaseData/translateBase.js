@@ -8,12 +8,12 @@ module.exports = async function translateBase(baseData, config) {
   let from = config?.from
   let to = config?.to
   if (!from || !to) {
-    console.log(`translateBase: 未传翻译配置from或to, 跳过翻译`)
+    console.log(chalk.red(`translateBase: No from or to`))
     return baseData
   }
 
   if (from === to) {
-    console.log(`translateBase: ${from}翻译${to}, 无需翻译`)
+    console.log(`translateBase: ${from} to ${to}. Assign values directly`)
     for (let id in baseData) {
       baseData[id][from] = id
     }
@@ -61,15 +61,13 @@ module.exports = async function translateBase(baseData, config) {
 
   // 按分页翻译
   if (!chunks.length) {
-    console.log(`translateBase: All translations have been completed`)
+    console.log(`translateBase: ${from} to ${to}. All translations have been completed`)
     return baseData
   }
 
   console.log(
     chalk.green(
-      `translateBase: Start to translate ${config?.from || ''} into ${
-        config?.to || ''
-      }, Total pages: ${chunks.length}`
+      `translateBase: Start to translate ${from} into ${to}, Total pages: ${chunks.length}`
     )
   )
   for (let chunk of chunks) {
@@ -84,18 +82,13 @@ module.exports = async function translateBase(baseData, config) {
         unTranslated[id][to] = translatedValue[index]
       }
     } else {
-      console.log(
-        chalk.red(
-          `translateBase: ${config?.from || ''}翻译成${config?.to || ''}出错:\n`,
-          translatedValue
-        )
-      )
+      console.log(chalk.red(`translateBase: translate ${from} to ${to} error:\n`, translatedValue))
     }
   }
 
   // Build base json
   if (_.isEmpty(unTranslated)) {
-    console.log(`translateBase: 已全部翻译完成, 无需翻译`)
+    console.log(`translateBase: All translations have been completed`)
   }
 
   return { ...baseData, ...unTranslated }
