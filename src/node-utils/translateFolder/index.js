@@ -23,7 +23,8 @@ async function translateFolder({
     return null
   }
 
-  console.log(chalk.yellow(`+++++ \u{1F44D} Start translating, directory: ${folderPath} +++++\n`))
+  console.log(chalk.yellow(`+++++ \u{1F44D} Start translating +++++\n`))
+  console.log(`Read directory: ${folderPath}`)
 
   // 构建全量数据baseData, 差量数据diffData
   let newBaseData = await getBaseData({

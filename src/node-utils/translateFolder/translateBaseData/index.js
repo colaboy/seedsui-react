@@ -15,7 +15,6 @@ module.exports = async function translate(baseData, localeOptions = []) {
   // baseData注入json中的值
   for (let localeOption of localeOptions) {
     // 注入完成后翻译baseData
-    console.log(chalk.green(`\n[Translate] ${localeOption.from} to ${localeOption.to}\n`))
     translateBaseData = await translateBase(translateBaseData, {
       from: localeOption.from,
       to: localeOption.to

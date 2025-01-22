@@ -61,13 +61,15 @@ module.exports = async function translateBase(baseData, config) {
 
   // 按分页翻译
   if (!chunks.length) {
-    console.log(`translateBase: 已全部翻译完成, 无需翻译`)
+    console.log(`translateBase: All translations have been completed`)
     return baseData
   }
 
   console.log(
     chalk.green(
-      `translateBase: 准备将${config?.from || ''}翻译成${config?.to || ''}, 共${chunks.length}页`
+      `translateBase: Start to translate ${config?.from || ''} into ${
+        config?.to || ''
+      }, Total pages: ${chunks.length}`
     )
   )
   for (let chunk of chunks) {
