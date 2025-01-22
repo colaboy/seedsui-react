@@ -21,7 +21,7 @@ async function translateSrc() {
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
     onGenerateKey: ({ folders, value, oldKey, newKey }) => {
       if (oldKey) return oldKey
-      return `SeedsUI_${newKey}`
+      return `noKey_${newKey}`
     }
   })
 
