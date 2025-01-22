@@ -8,9 +8,18 @@ const generateKey = require('./generateKey')
 const chalk = require('chalk')
 const formatFileSync = require('./../../formatFileSync')
 
-module.exports = async function getLocale({ folderPath, ignore, onGenerateKey }) {
+module.exports = async function getLocale({
+  localeFunctionName,
+  folderPath,
+  ignore,
+  onGenerateKey
+}) {
   if (!folderPath) {
-    console.log(chalk.red(`+++++ getLocale: 无法提取locale, 未传srcFolderPath +++++\n`))
+    console.log(chalk.red(`+++++ getLocale: No folderPath +++++\n`))
+    return null
+  }
+  if (!localeFunctionName) {
+    console.log(chalk.red(`+++++ getLocale: No localeFunctionName +++++\n`))
     return null
   }
 
@@ -55,7 +64,41 @@ module.exports = async function getLocale({ folderPath, ignore, onGenerateKey })
           // 遍历AST，寻找所有locale调用
           traverse(ast, {
             TaggedTemplateExpression(path) {
-              if (path.node.tag.name === 'locale') {
+              console.log(path.node.name)
+              // const name = path.node.name
+              // let isMatchComponent = false
+
+              // // 组件名称
+              // let nodeName = ''
+              // let subNodeName = ''
+              // // 检查是否为 DatePicker.XXX 格式
+              // if (name.type === 'JSXMemberExpression') {
+              //   nodeName = name.object.name
+              //   subNodeName = name.property.name
+              // } else if (name.type === 'JSXIdentifier') {
+              //   nodeName = name.name
+              // }
+
+              // // 带.组件
+              // if (localeFunctionName.indexOf('.') !== -1) {
+              //   // 检查是否为 DatePicker.XXX 格式
+              //   if (name.type !== 'JSXMemberExpression') {
+              //     return
+              //   }
+
+              //   let componentNames = localeFunctionName.split('.')
+              //   if (nodeName === localeFunctionName[0] && subNodeName === localeFunctionName[1]) {
+              //     isMatchComponent = true
+              //   }
+              // }
+              // // 不带.组件
+              // else {
+              //   if (nodeName === componentName) {
+              //     isMatchComponent = true
+              //   }
+              // }
+
+              if (path.node.tag.name === localeFunctionName) {
                 let text = path.node.quasi.quasis[0].value.cooked
                 let searchKey = baseData[text]?.key
                 if (!searchKey) {
@@ -145,7 +188,6 @@ module.exports = async function getLocale({ folderPath, ignore, onGenerateKey })
           }
         })
 
-        console.log(chalk.green(`getLocale:【${folderPath}】中文提取和替换完成\n`))
         resolve(baseData)
       }
     )

@@ -5,17 +5,17 @@ const translateFolder = require('./../src/node-utils/translateFolder')
 const writeFileSync = require('./../src/node-utils/writeFileSync')
 
 async function translateSrc() {
+  const folderPath = path.resolve(__dirname, './../src/components')
   // 读取上次数据用于做合并与统计差量
-  let basePath = path.resolve(__dirname, `src/assets/locale/base.json`)
+  let basePath = path.resolve(__dirname, `./../src/assets/locale/base.json`)
   let lastBaseData = null
   if (fs.existsSync(basePath)) {
     lastBaseData = require(basePath)
   }
 
-  console.log(chalk.yellow(`+++++ \u{1F44D} 开始翻译 +++++\n`))
   let data = await translateFolder({
     ignore: ['**/deprecated/**'],
-    folderPath: path.resolve(__dirname, 'src'),
+    folderPath: folderPath,
     lastBaseData: lastBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
     onGenerateKey: (url) => {
