@@ -7,10 +7,10 @@ const writeFileSync = require('./../src/node-utils/writeFileSync')
 async function translateSrc() {
   const folderPath = path.resolve(__dirname, './../src')
   // 读取上次数据用于做合并与统计差量
-  let basePath = path.resolve(__dirname, `./../src/assets/locale/base.json`)
+  let oldBaseDataPath = path.resolve(__dirname, `./../src/utils/LocaleUtil/base.json`)
   let oldBaseData = null
-  if (fs.existsSync(basePath)) {
-    oldBaseData = require(basePath)
+  if (fs.existsSync(oldBaseDataPath)) {
+    oldBaseData = require(oldBaseDataPath)
   }
 
   let data = await translateFolder({
@@ -35,7 +35,22 @@ async function translateSrc() {
   let { baseData, diffData } = data
 
   // 写入base.json
-  await writeFileSync(basePath, JSON.stringify(baseData, null, 2))
+  await writeFileSync(oldBaseDataPath, JSON.stringify(baseData, null, 2))
+
+  // 释放base.json
+  let files = {}
+  for (let key in baseData) {
+    let item = baseData[key]
+    // 排除key, 其它的key为国际化文件名称
+    for (let filaName in item) {
+      if (filaName === 'key') {
+        continue
+      }
+      if (!files[filaName]) files[filaName] = {}
+      files[filaName][key] = item[filaName]
+    }
+  }
+  console.log(files)
 
   // 写入diff.json
   // writeFileSync(
