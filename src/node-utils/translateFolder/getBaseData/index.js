@@ -67,28 +67,28 @@ module.exports = async function getBaseData({
             TaggedTemplateExpression(path) {
               console.log('模板字符串:', path)
 
-              if (path.node.tag.name === localeFunctionName) {
-                let text = path.node.quasi.quasis[0].value.cooked
-                let searchKey = baseData[text]?.key
-                if (!searchKey) {
-                  searchKey = generateKey({
-                    oldKey: oldBaseData?.[text]?.key || null,
-                    onGenerateKey: onGenerateKey,
-                    filePath: filePath,
-                    value: text
-                  })
-                  baseData[text] = {
-                    key: searchKey
-                  }
-                }
-                path.replaceWith(
-                  t.callExpression(t.identifier('locale'), [
-                    t.templateLiteral([t.templateElement({ raw: text, cooked: text }, true)], []),
-                    t.stringLiteral(searchKey)
-                  ])
-                )
-                modified = true
-              }
+              // if (path.node.tag.name === localeFunctionName) {
+              //   let text = path.node.quasi.quasis[0].value.cooked
+              //   let searchKey = baseData[text]?.key
+              //   if (!searchKey) {
+              //     searchKey = generateKey({
+              //       filePath: filePath,
+              //       oldKey: oldBaseData?.[text]?.key || null,
+              //       value: text,
+              //       onGenerateKey: onGenerateKey
+              //     })
+              //     baseData[text] = {
+              //       key: searchKey
+              //     }
+              //   }
+              //   path.replaceWith(
+              //     t.callExpression(t.identifier('locale'), [
+              //       t.templateLiteral([t.templateElement({ raw: text, cooked: text }, true)], []),
+              //       t.stringLiteral(searchKey)
+              //     ])
+              //   )
+              //   modified = true
+              // }
             },
             CallExpression(path) {
               let nodeName = ''
@@ -141,8 +141,10 @@ module.exports = async function getBaseData({
                   let searchKey = baseData[text]?.key
                   if (!searchKey) {
                     searchKey = generateKey({
-                      // filePath: filePath,
-                      value: text
+                      filePath: filePath,
+                      oldKey: oldBaseData?.[text]?.key || null,
+                      value: text,
+                      onGenerateKey: onGenerateKey
                     })
                     baseData[text] = {
                       key: searchKey
