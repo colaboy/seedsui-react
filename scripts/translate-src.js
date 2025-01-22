@@ -16,16 +16,11 @@ async function translateSrc() {
   let data = await translateFolder({
     ignore: ['**/deprecated/**'],
     folderPath: folderPath,
+    localeFunctionName: 'LocalUtil.text',
     lastBaseData: lastBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
-    onGenerateKey: (url) => {
-      return (
-        'SeedsUI_' +
-        url
-          .slice(0, 2)
-          .filter((item) => !/\.\w+$/.test(item))
-          .join('.')
-      )
+    onGenerateKey: ({ folders, value, hash }) => {
+      return `SeedsUI_${hash}`
     }
   })
 
@@ -37,12 +32,12 @@ async function translateSrc() {
   await writeFileSync(basePath, JSON.stringify(baseData, null, 2))
 
   // 写入diff.json
-  writeFileSync(
-    path.resolve(
-      __dirname,
-      `${srcFolder}/assets/locale/base.diff.${dayjs().format('YYYY-MM-DD hh:mm')}.json`
-    ),
-    JSON.stringify(diffData, null, 2)
-  )
+  // writeFileSync(
+  //   path.resolve(
+  //     __dirname,
+  //     `${srcFolder}/assets/locale/base.diff.${dayjs().format('YYYY-MM-DD hh:mm')}.json`
+  //   ),
+  //   JSON.stringify(diffData, null, 2)
+  // )
 }
 translateSrc()

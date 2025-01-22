@@ -8,43 +8,30 @@ const crypto = require('crypto')
  */
 module.exports = function ({ onGenerateKey, filePath, value }) {
   // 有filePath时, 命令则根据filePath取三层目录
-  let url = ''
+  let folders = null
   if (filePath) {
-    url = filePath
+    let url = filePath
     // 区分windows和mac的分割符
     if (os.type() === 'Windows_NT') {
-      url = filePath.replace(/\\/g, '/')
+      folders = filePath.replace(/\\/g, '/')
     }
 
     // 如果src目录下，则截取src后面的路径
-    if (url.includes(`src/`)) {
-      url = url.split(`src/`)[1]
-      // 按分割符分割路径
-      url = url.split('/')
-    }
-
-    // 如果前缀与path相同, 则无需prefix
-    // if (prefix && prefix === url[0]) {
-    //   // eslint-disable-next-line
-    //   prefix = ''
-    // }
-
-    // 过滤文件, 并生成: 第一层目录.第二层目录.第三层目录
-    if (typeof onGenerateKey === 'function') {
-      let newUrl = onGenerateKey(url)
-      if (typeof newUrl === 'string') {
-        url = newUrl
-      }
-    } else {
-      url = url
-        .slice(0, 3)
-        .filter((item) => !/\.\w+$/.test(item))
-        .join('.')
+    if (filePath.includes(`src/`)) {
+      folders = filePath.split(`src/`)[1].split('/')
     }
   }
 
-  // hash: 截取前8位
+  // value的hash值
   const hash = crypto.createHash('md5').update(value).digest('hex')
 
-  return `${prefix ? prefix + '.' : ''}${url ? url + '.' : ''}${hash}`
+  // 自定义key
+  if (typeof onGenerateKey === 'function') {
+    let key = onGenerateKey({ folders, value, hash })
+    if (typeof key === 'string') {
+      return key
+    }
+  }
+
+  return hash
 }

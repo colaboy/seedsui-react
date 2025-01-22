@@ -64,39 +64,7 @@ module.exports = async function getLocale({
           // 遍历AST，寻找所有locale调用
           traverse(ast, {
             TaggedTemplateExpression(path) {
-              console.log(path.node.name)
-              // const name = path.node.name
-              // let isMatchComponent = false
-
-              // // 组件名称
-              // let nodeName = ''
-              // let subNodeName = ''
-              // // 检查是否为 DatePicker.XXX 格式
-              // if (name.type === 'JSXMemberExpression') {
-              //   nodeName = name.object.name
-              //   subNodeName = name.property.name
-              // } else if (name.type === 'JSXIdentifier') {
-              //   nodeName = name.name
-              // }
-
-              // // 带.组件
-              // if (localeFunctionName.indexOf('.') !== -1) {
-              //   // 检查是否为 DatePicker.XXX 格式
-              //   if (name.type !== 'JSXMemberExpression') {
-              //     return
-              //   }
-
-              //   let componentNames = localeFunctionName.split('.')
-              //   if (nodeName === localeFunctionName[0] && subNodeName === localeFunctionName[1]) {
-              //     isMatchComponent = true
-              //   }
-              // }
-              // // 不带.组件
-              // else {
-              //   if (nodeName === componentName) {
-              //     isMatchComponent = true
-              //   }
-              // }
+              console.log('模板字符串:', path)
 
               if (path.node.tag.name === localeFunctionName) {
                 let text = path.node.quasi.quasis[0].value.cooked
@@ -121,7 +89,36 @@ module.exports = async function getLocale({
               }
             },
             CallExpression(path) {
-              if (path.node.callee.name === 'locale') {
+              let nodeName = ''
+              let subNodeName = ''
+              // 带.组件
+              if (path.node.callee.type === 'MemberExpression') {
+                nodeName = path.node.callee.object.name
+                subNodeName = path.node.callee.property.name
+              }
+              // 不带.组件 type ==== 'Identifier'
+              else {
+                nodeName = path.node.callee.name
+              }
+
+              let isMatch = false
+              // 匹配带.组件
+              if (localeFunctionName.indexOf('.')) {
+                if (
+                  nodeName === localeFunctionName.split('.')[0] &&
+                  subNodeName === localeFunctionName.split('.')[1]
+                ) {
+                  isMatch = true
+                }
+              }
+              // 匹配不带.组件
+              else {
+                if (nodeName === localeFunctionName) {
+                  isMatch = true
+                }
+              }
+
+              if (isMatch) {
                 const args = path.node.arguments
                 let key = args.length > 1 && args[1].type === 'StringLiteral' ? args[1].value : null
                 let text = ''

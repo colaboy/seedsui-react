@@ -34,8 +34,6 @@ async function translateFolder({
     return null
   }
 
-  console.log(newBaseData)
-
   let { baseData, diffData } = updateBase(newBaseData, lastBaseData)
 
   // 翻译并生成json文件
