@@ -16,7 +16,7 @@ async function translateSrc() {
   let data = await translateFolder({
     ignore: ['**/deprecated/**'],
     folderPath: folderPath,
-    localeFunctionName: 'LocalUtil.text',
+    localeFunctionName: 'LocaleUtil.text',
     oldBaseData: oldBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
     onGenerateKey: ({ folders, value, hash }) => {

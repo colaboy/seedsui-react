@@ -103,7 +103,7 @@ module.exports = async function getBaseData({
 
               let isMatch = false
               // 匹配带.组件
-              if (localeFunctionName.indexOf('.')) {
+              if (localeFunctionName.indexOf('.') !== -1) {
                 if (
                   nodeName === localeFunctionName.split('.')[0] &&
                   subNodeName === localeFunctionName.split('.')[1]
