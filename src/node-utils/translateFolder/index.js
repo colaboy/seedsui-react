@@ -26,7 +26,13 @@ async function translateFolder({
   console.log(chalk.yellow(`+++++ \u{1F44D} Start translating, directory: ${folderPath} +++++\n`))
 
   // 构建全量数据baseData, 差量数据diffData
-  let newBaseData = await getBaseData({ localeFunctionName, folderPath, ignore, onGenerateKey })
+  let newBaseData = await getBaseData({
+    folderPath,
+    ignore,
+    oldBaseData,
+    localeFunctionName,
+    onGenerateKey
+  })
   if (_.isEmpty(newBaseData)) {
     console.log(
       chalk.red(`Not found function ${localeFunctionName}(..) in directory: ${folderPath} \n`)

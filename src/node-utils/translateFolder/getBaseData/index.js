@@ -9,9 +9,10 @@ const chalk = require('chalk')
 const formatFileSync = require('./../../formatFileSync')
 
 module.exports = async function getBaseData({
-  localeFunctionName,
-  folderPath,
   ignore,
+  folderPath,
+  oldBaseData,
+  localeFunctionName,
   onGenerateKey
 }) {
   if (!folderPath) {
@@ -71,6 +72,7 @@ module.exports = async function getBaseData({
                 let searchKey = baseData[text]?.key
                 if (!searchKey) {
                   searchKey = generateKey({
+                    oldKey: oldBaseData?.[text]?.key || null,
                     onGenerateKey: onGenerateKey,
                     filePath: filePath,
                     value: text

@@ -6,11 +6,10 @@ const crypto = require('crypto')
  * @param {string} filePath 文件路径
  * @returns {string} key
  */
-module.exports = function ({ onGenerateKey, filePath, value }) {
-  // 有filePath时, 命令则根据filePath取三层目录
+module.exports = function ({ filePath, oldKey, value, onGenerateKey }) {
+  // 获取目录结构, 为了自定义场景时可能会根据目录生成key
   let folders = null
   if (filePath) {
-    let url = filePath
     // 区分windows和mac的分割符
     if (os.type() === 'Windows_NT') {
       folders = filePath.replace(/\\/g, '/')
@@ -27,7 +26,7 @@ module.exports = function ({ onGenerateKey, filePath, value }) {
 
   // 自定义key
   if (typeof onGenerateKey === 'function') {
-    let key = onGenerateKey({ folders, value, hash })
+    let key = onGenerateKey({ folders, oldKey, newKey: hash, value })
     if (typeof key === 'string') {
       return key
     }

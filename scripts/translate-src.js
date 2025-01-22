@@ -19,7 +19,8 @@ async function translateSrc() {
     localeFunctionName: 'LocaleUtil.text',
     oldBaseData: oldBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
-    onGenerateKey: ({ folders, value, hash }) => {
+    onGenerateKey: ({ folders, value, oldKey, newKey }) => {
+      if (oldKey) return oldKey
       return `SeedsUI_${hash}`
     }
   })
