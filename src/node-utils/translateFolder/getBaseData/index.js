@@ -8,18 +8,18 @@ const generateKey = require('./generateKey')
 const chalk = require('chalk')
 const formatFileSync = require('./../../formatFileSync')
 
-module.exports = async function getLocale({
+module.exports = async function getBaseData({
   localeFunctionName,
   folderPath,
   ignore,
   onGenerateKey
 }) {
   if (!folderPath) {
-    console.log(chalk.red(`+++++ getLocale: No folderPath +++++\n`))
+    console.log(chalk.red(`+++++ getBaseData: No folderPath +++++\n`))
     return null
   }
   if (!localeFunctionName) {
-    console.log(chalk.red(`+++++ getLocale: No localeFunctionName +++++\n`))
+    console.log(chalk.red(`+++++ getBaseData: No localeFunctionName +++++\n`))
     return null
   }
 

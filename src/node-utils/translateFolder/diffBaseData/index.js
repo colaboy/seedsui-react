@@ -4,7 +4,7 @@ const chalk = require('chalk')
 module.exports = function (newBaseData, oldBaseData) {
   // 数据为空
   if (!newBaseData && !oldBaseData) {
-    console.log(chalk.red(`+++++ updateBase: Either newBaseData nor oldBaseData +++++\n`))
+    console.log(chalk.red(`+++++ diffBaseData: Either newBaseData nor oldBaseData +++++\n`))
     return null
   }
 

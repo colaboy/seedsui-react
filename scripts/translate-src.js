@@ -8,16 +8,16 @@ async function translateSrc() {
   const folderPath = path.resolve(__dirname, './../src/components')
   // 读取上次数据用于做合并与统计差量
   let basePath = path.resolve(__dirname, `./../src/assets/locale/base.json`)
-  let lastBaseData = null
+  let oldBaseData = null
   if (fs.existsSync(basePath)) {
-    lastBaseData = require(basePath)
+    oldBaseData = require(basePath)
   }
 
   let data = await translateFolder({
     ignore: ['**/deprecated/**'],
     folderPath: folderPath,
     localeFunctionName: 'LocalUtil.text',
-    lastBaseData: lastBaseData,
+    oldBaseData: oldBaseData,
     translateOptions: [{ from: 'zh_CN', to: 'en_US' }],
     onGenerateKey: ({ folders, value, hash }) => {
       return `SeedsUI_${hash}`
