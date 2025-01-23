@@ -1,6 +1,6 @@
 ---
 category: Utils
-group: 平台工具
+group: Locale
 title: LocaleUtil
 ---
 

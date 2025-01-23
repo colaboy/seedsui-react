@@ -1,6 +1,6 @@
 ---
 category: Utils
-group: 平台工具
+group: 国际化
 title: LocaleUtil
 ---
 
@@ -37,3 +37,9 @@ LocaleUtil.locale('半径1000米', 'key', [1000]) // => 半径1000米
 - zh_CN
 - zh_HK
 - vi_VN
+
+## 示例
+
+### LocaleUtil.locale
+
+<code src="./demos/locale/index.jsx"></code>

@@ -33,9 +33,7 @@ function locale(remark, key, variables) {
   }
 
   // Has node, return node
-  if (hasNode(variables)) {
-    return <>{valuesToText(values, variables)}</>
-  }
+  return <>{valuesToText(values, variables)}</>
 }
 
 export default locale
