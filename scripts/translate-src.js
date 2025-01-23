@@ -6,9 +6,9 @@ const writeFileSync = require('./../src/node-utils/writeFileSync')
 async function translateSrc() {
   const folderPath = path.resolve(__dirname, './../src')
   // 生成文件的目录
-  let localesPath = path.resolve(folderPath, `utils/LocaleUtil`)
+  let localesPath = path.resolve(folderPath, `utils/LocaleUtil/locales`)
   // 读取上次数据用于做合并与统计差量
-  let oldBaseDataPath = path.resolve(folderPath, `utils/LocaleUtil/base.json`)
+  let oldBaseDataPath = path.resolve(folderPath, `utils/LocaleUtil/locales/base.json`)
   let oldBaseData = null
   if (fs.existsSync(oldBaseDataPath)) {
     oldBaseData = require(oldBaseDataPath)
@@ -46,8 +46,8 @@ async function translateSrc() {
   await writeFileSync(oldBaseDataPath, JSON.stringify(baseData, null, 2))
 
   // 生成files
-  for (let fileName of files) {
-    let localeFilePath = path.resolve(localesPath, fileName)
+  for (let fileName in files) {
+    let localeFilePath = path.resolve(localesPath, `${fileName}.json`)
     writeFileSync(localeFilePath, JSON.stringify(files[fileName], null, 2))
   }
 }

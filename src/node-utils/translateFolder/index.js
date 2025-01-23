@@ -64,15 +64,15 @@ async function translateFolder({
 
   // baseData转为files: {zh_CN : {key: value}, en_US: {key: value}}
   let files = {}
-  for (let key in baseData) {
-    let item = baseData[key]
+  for (let remark in baseData) {
+    let item = baseData[remark]
     // 排除key, 其它的key为国际化文件名称
     for (let filaName in item) {
       if (filaName === 'key') {
         continue
       }
       if (!files[filaName]) files[filaName] = {}
-      files[filaName][key] = item[filaName]
+      files[filaName][item.key] = item[filaName]
     }
   }
 
