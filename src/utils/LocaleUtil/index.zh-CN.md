@@ -30,7 +30,10 @@ LocaleUtil.text('半径1000米', 'key', [1000]) // => 半径1000米
 
 ## SeedsUI 内部国际化文件
 
-- assets/seedsui/locales/en_US.js
-- assets/seedsui/locales/zh_CN.js
-- assets/seedsui/locales/zh_HK.js
-- assets/seedsui/locales/vi_VN.js
+目录: src/utils/LocaleUtil/resources/\*.json
+文件:
+
+- en_US
+- zh_CN
+- zh_HK
+- vi_VN
