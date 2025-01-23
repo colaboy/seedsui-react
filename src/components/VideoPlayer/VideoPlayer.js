@@ -70,9 +70,9 @@ const VideoPlayer = forwardRef(
     // 实例化
     async function initInstance(playerId) {
       if (!src) {
-        console.error(LocaleUtil.text('请传入视频源', 'SeedsUI_no_videosrc_error'))
+        console.error(LocaleUtil.text('请传入视频源', 'SeedsUI_no_video_src_error'))
         if (onError)
-          onError({ errMsg: LocaleUtil.text('请传入视频源', 'SeedsUI_no_videosrc_error') })
+          onError({ errMsg: LocaleUtil.text('请传入视频源', 'SeedsUI_no_video_src_error') })
         return
       }
       if (!(await loadSdk())) {

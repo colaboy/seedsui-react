@@ -232,7 +232,7 @@ let Bridge = {
       if (params.fail)
         params.fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir')
+            'uploadImage:fail' + LocaleUtil.text('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir')
         })
       return
     }
@@ -240,7 +240,7 @@ let Bridge = {
       if (params.fail)
         params.fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
+            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
         })
       return
     }
@@ -326,7 +326,7 @@ let Bridge = {
       if (fail)
         fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid')
+            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
         })
       return
     }

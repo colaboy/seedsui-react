@@ -601,11 +601,11 @@ let Bridge = {
     */
   uploadImage: function (params = {}) {
     if (!params.uploadDir) {
-      Toast.show({ content: LocaleUtil.text('没有上传目录', 'SeedsUI_uploadimage_no_uploaddir') })
+      Toast.show({ content: LocaleUtil.text('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir') })
       return
     }
     if (!params.localId || _.isEmpty(params.localId)) {
-      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
+      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
       return
     }
     let filePathList = [
@@ -661,7 +661,7 @@ let Bridge = {
    */
   previewImage: function (params) {
     if (!params.urls || !params.urls.length) {
-      Toast.show({ content: LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewimage_no_url') })
+      Toast.show({ content: LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewImage_no_url') })
       return
     }
     // 格式化index
@@ -706,7 +706,7 @@ let Bridge = {
       return
     }
     if (!params.localId) {
-      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadimage_no_localeid') })
+      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
       return
     }
     let localIds = params.localId.split(':')

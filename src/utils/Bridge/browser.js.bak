@@ -8,7 +8,7 @@ let Bridge = {
     if (!params.urls || !params.urls.length) {
       if (params.fail)
         params.fail({
-          errMsg: 'previewImage:fail' + LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewimage_no_url')
+          errMsg: 'previewImage:fail' + LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewImage_no_url')
         })
       return
     }

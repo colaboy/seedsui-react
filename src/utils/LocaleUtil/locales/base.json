@@ -224,7 +224,7 @@
     "vi_VN": "tuần"
   },
   "日期区间不能超过{0}{1}": {
-    "key": "SeedsUI_dateragne_limit_error",
+    "key": "SeedsUI_dateRange_limit_error",
     "zh_CN": "日期区间不能超过{0}{1}",
     "en_US": "The date range cannot exceed {0}{1}",
     "zh_HK": "日期區間唔可以超過{0}{1}",
@@ -644,7 +644,7 @@
     "vi_VN": "Tệp liên kết đến khay nhớ tạm không thành công, vui lòng nhấn và giữ để sao chép<br/>{0}"
   },
   "请传入视频源": {
-    "key": "SeedsUI_no_videosrc_error",
+    "key": "SeedsUI_no_video_src_error",
     "zh_CN": "请传入视频源",
     "en_US": "Please pass in the video source",
     "zh_HK": "請傳入視頻源",
@@ -840,21 +840,21 @@
     "vi_VN": "Nếu vị trí không thành công, hãy kiểm tra xem quyền vị trí có được bật hay không"
   },
   "没有上传目录": {
-    "key": "SeedsUI_uploadimage_no_uploaddir",
+    "key": "SeedsUI_uploadImage_no_uploadDir",
     "zh_CN": "没有上传目录",
     "en_US": "No directory was uploaded",
     "zh_HK": "冇上傳目錄",
     "vi_VN": "Không có thư mục nào được tải lên"
   },
   "没有上传地址": {
-    "key": "SeedsUI_uploadimage_no_localeid",
+    "key": "SeedsUI_uploadImage_no_localeId",
     "zh_CN": "没有上传地址",
     "en_US": "There is no upload address",
     "zh_HK": "冇上傳地址",
     "vi_VN": "Không có địa chỉ tải lên"
   },
   "没有预览图片地址": {
-    "key": "SeedsUI_previewimage_no_url",
+    "key": "SeedsUI_previewImage_no_url",
     "zh_CN": "没有预览图片地址",
     "en_US": "There is no preview image address",
     "zh_HK": "冇預覽圖地址",
