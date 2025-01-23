@@ -4,3 +4,23 @@
   min-width: 0;
   box-sizing: border-box;
 }
+
+.col {
+  position: relative;
+  max-width: 100%;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+
+// 定义col, 从col-1开始到col-24结束
+.setCol(@n, @i:1) when(@i<=@n) {
+  .col-@{i} {
+    display: block;
+    // 计算百分比 = @i 除以 @n
+    flex: 0 0 ((@i / @n) * 100%);
+    max-width: ((@i / @n) * 100%);
+  }
+  .setCol(@n,(@i+1));
+}
+
+.setCol(24);

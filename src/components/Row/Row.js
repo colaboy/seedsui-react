@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react'
+import Col from './Col'
 
 const Row = forwardRef(({ span, className, children, ...props }, ref) => {
   return (
@@ -8,4 +9,5 @@ const Row = forwardRef(({ span, className, children, ...props }, ref) => {
   )
 })
 
+Row.Col = Col
 export default Row

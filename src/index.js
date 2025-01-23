@@ -53,7 +53,6 @@ export { default as Tooltip } from './components/Tooltip'
 export { default as TreePicker } from './components/TreePicker'
 export { default as Transfer } from './components/Transfer'
 export { default as Row } from './components/Row'
-export { default as Col } from './components/Col'
 export { default as Map } from './components/Map'
 
 // utils
