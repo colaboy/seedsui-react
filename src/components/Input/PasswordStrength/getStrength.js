@@ -5,7 +5,7 @@
 等级3（强密码）：包含三类字符及以上，且长度大于等于8位。
 */
 
-function getLevel(password) {
+function getStrength(password) {
   let strength = 0
   password.match(/[a-z]/g) && strength++
   password.match(/[A-Z]/g) && strength++
@@ -26,4 +26,4 @@ function getLevel(password) {
   return strength
 }
 
-export default getLevel
+export default getStrength

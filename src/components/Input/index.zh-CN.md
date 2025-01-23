@@ -43,3 +43,7 @@ title: Input
 ### Input.Textarea
 
 <code src="./demos/Textarea/index.jsx"></code>
+
+### Input.Url
+
+<code src="./demos/Url/index.jsx"></code>

@@ -12,7 +12,7 @@
     color: #c2c6cd;
   }
 
-  // 废弃(deprecated)
+  // 废弃(deprecated)-start
   .licon {
     margin-right: 4px;
   }
@@ -20,6 +20,7 @@
     margin-left: 12px;
     color: #c2c6cd;
   }
+  // 废弃(deprecated)-end
 
   .input-text,
   .input-textarea {
@@ -35,7 +36,7 @@
   }
 }
 
-// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)
+// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)-start
 .input-wrapper.exclusion-ricon {
   .input-clear:not(.hide) {
     & ~ .ricon {
@@ -48,6 +49,7 @@
     }
   }
 }
+// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)-end
 
 // 清空或者禁用对右侧图标互斥逻辑
 .input-wrapper.exclude-right-icon {
@@ -80,7 +82,7 @@
 @input-height: 22px;
 @input-text-padding: 10px 0;
 
-// 单行文本框
+// 控件: 单行文本框
 .input-text {
   display: block;
   position: relative; // 为了解决ios输入时白屏的BUG
@@ -99,7 +101,12 @@
   }
 }
 
-// 多行文本框
+// 控件: url文本框
+input[type='url'][readOnly] {
+  color: var(--link);
+}
+
+// 控件: 多行文本框
 @input-textarea-height: 60px;
 .input-textarea {
   display: block;
@@ -229,15 +236,6 @@ input[type='color'] {
   opacity: 0.8;
   transition-duration: 300ms;
   transition-property: visibility;
-}
-
-// 评星控件
-.input-star {
-  .flex;
-  .flex-middle;
-  .star {
-    margin-right: 18px;
-  }
 }
 
 // 密码强度

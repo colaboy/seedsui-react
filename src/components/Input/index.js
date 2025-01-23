@@ -7,6 +7,7 @@ import Range from './Range'
 import Tel from './Tel'
 import Text from './Text'
 import Textarea from './Textarea'
+import Url from './Url'
 
 // eslint-disable-next-line
 export default {
@@ -18,5 +19,6 @@ export default {
   Range: Range,
   Tel: Tel,
   Text: Text,
-  Textarea: Textarea
+  Textarea: Textarea,
+  Url: Url
 }

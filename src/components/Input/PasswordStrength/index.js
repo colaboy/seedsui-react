@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-import getLevel from './getLevel'
+import getStrength from './getStrength'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -10,7 +10,7 @@ import { locale } from 'seedsui-react'
 测试使用-end */
 
 const PasswordStrength = ({ value = '', ...props }, ref) => {
-  let level = getLevel(value)
+  let strength = getStrength(value)
 
   const rootRef = useRef(null)
   // Expose
@@ -20,8 +20,8 @@ const PasswordStrength = ({ value = '', ...props }, ref) => {
       getRootDOM: () => {
         return rootRef.current
       },
-      getLevel: (newValue) => {
-        return getLevel(newValue || value)
+      getStrength: (newValue) => {
+        return getStrength(newValue || value)
       }
     }
   })
@@ -29,7 +29,7 @@ const PasswordStrength = ({ value = '', ...props }, ref) => {
   return (
     <ul
       {...props}
-      className={`input-password-strength level${level}${
+      className={`input-password-strength level${strength}${
         props.className ? ' ' + props.className : ''
       }`}
       ref={rootRef}
