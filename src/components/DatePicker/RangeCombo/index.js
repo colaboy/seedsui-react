@@ -1,5 +1,5 @@
 import React, { forwardRef, useRef } from 'react'
-import defaultRanges from './../RangeMain/defaultRanges'
+import getDefaultRanges from './../RangeMain/getDefaultRanges'
 import RangeModal from './../RangeModal'
 import getDisplayValue from './getDisplayValue'
 
@@ -39,12 +39,16 @@ const RangeCombo = forwardRef(
       onChange,
 
       rangeId,
-      ranges = defaultRanges,
+      ranges,
       titles,
       ...props
     },
     ref
   ) => {
+    if (!ranges) {
+      // eslint-disable-next-line
+      ranges = getDefaultRanges()
+    }
     const rangeIdRef = useRef(rangeId)
 
     return (

@@ -20,14 +20,14 @@ export default () => {
           // ranges={{
           //   [LocaleUtil.text('自定义')]: 10
           // }}
-          ranges={{
-            ['今日']: [dayjs().toDate(), dayjs().toDate()],
-            ['未来一个月']: [new Date(), dayjs().add(29, 'day').toDate()],
+          // ranges={{
+          //   ['今日']: [dayjs().toDate(), dayjs().toDate()],
+          //   ['未来一个月']: [new Date(), dayjs().add(29, 'day').toDate()],
 
-            ['未来三个月']: [new Date(), dayjs().add(89, 'day').toDate()],
+          //   ['未来三个月']: [new Date(), dayjs().add(89, 'day').toDate()],
 
-            ['自定义']: 365
-          }}
+          //   ['自定义']: 365
+          // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
           // allowClear="excludeRightIcon"

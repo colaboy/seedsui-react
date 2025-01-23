@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState } from 'react'
-import defaultRanges from './../RangeMain/defaultRanges'
+import getDefaultRanges from './../RangeMain/getDefaultRanges'
 import formatValue from './formatValue'
 import validateRange from './validateRange'
 import matchRangeId from './matchRangeId'
@@ -37,12 +37,17 @@ const RangeModal = forwardRef(
       disabledStart,
       disabledEnd,
       rangeId,
-      ranges = defaultRanges,
+      ranges,
       titles,
       ...props
     },
     ref
   ) => {
+    if (!ranges) {
+      // eslint-disable-next-line
+      ranges = getDefaultRanges()
+    }
+
     const modalRef = useRef(null)
     // 当前选中项
     let [currentRangeId, setCurrentRangeId] = useState(rangeId)

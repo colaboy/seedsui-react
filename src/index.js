@@ -1,7 +1,9 @@
 import './assets/index.less'
 
 import DateUtil from './utils/DateUtil'
+import LocaleUtil from './utils/LocaleUtil'
 DateUtil.initialize()
+// LocaleUtil.setLanguage('en_US')
 
 // 记录版本号
 const packageJson = require('./../package.json')
@@ -12,7 +14,6 @@ if (packageJson?.version) {
 // 记录平台: window.seedsPlatform
 // 记录语言: window.seedsLocaleLanguage, window.seedsLocaleData
 
-export { default as LocaleUtil } from './utils/LocaleUtil'
 export { default as ActionSheet1 } from './components/ActionSheet1'
 export { default as Modal } from './components/Modal'
 export { default as Upload } from './components/Upload'
@@ -65,5 +66,5 @@ export { default as Clipboard } from './utils/Clipboard'
 export { default as EventUtil } from './utils/EventUtil' // 不常用
 export { default as ArrayUtil } from './utils/ArrayUtil'
 export { default as MathUtil } from './utils/MathUtil'
-export { DateUtil }
+export { DateUtil, LocaleUtil }
 export { default as Bridge } from './utils/Bridge'

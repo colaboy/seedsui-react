@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import SelectorMain from './SelectorMain'
-import defaultRanges from './defaultRanges'
+import getDefaultRanges from './getDefaultRanges'
 import PickerMain from './PickerMain'
 
 // 日期快捷选择
@@ -21,7 +21,7 @@ function RangeMain(
     onChange,
 
     rangeId,
-    ranges = defaultRanges,
+    ranges,
     titles,
     portal,
     SelectorProps,
@@ -31,6 +31,11 @@ function RangeMain(
   },
   ref
 ) {
+  if (!ranges) {
+    // eslint-disable-next-line
+    ranges = getDefaultRanges()
+  }
+
   // 判断有没有快捷选择
   let hasSelector = false
   if (ranges) {
