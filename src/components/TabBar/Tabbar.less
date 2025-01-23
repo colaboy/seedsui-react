@@ -1,0 +1,14 @@
+@import 'Line/TabbarTabs.less';
+
+// Tabbar-line
+.tabbar {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+
+  // 禁用
+  &.disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

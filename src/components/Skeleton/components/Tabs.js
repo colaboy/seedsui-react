@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import Block from './Block'
 
-const Tabs = ({ length, animated = true, tabProps = {}, ...props }, ref) => {
+const TabBar = ({ length, animated = true, tabProps = {}, ...props }, ref) => {
   return (
     <div className={`skeleton-tabs`} ref={ref} {...props}>
       {Array.from({ length: length || 4 }).map((_, index) => (
@@ -18,4 +18,4 @@ const Tabs = ({ length, animated = true, tabProps = {}, ...props }, ref) => {
   )
 }
 
-export default forwardRef(Tabs)
+export default forwardRef(TabBar)

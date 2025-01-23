@@ -1,10 +1,10 @@
 ---
 category: Components
-group: 反馈
-title: Tabs
+group: Feedback
+title: TabBar
 ---
 
-# Tabs
+# TabBar
 
 ## 示例
 

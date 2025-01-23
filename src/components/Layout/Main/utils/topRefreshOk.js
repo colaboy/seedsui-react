@@ -7,7 +7,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 刷新完成
 function topRefreshOk(topContainer, isOk) {
   return new Promise((resolve) => {
-    let topCaption = topContainer.querySelector('.layout-main-pull-push-caption')
+    let topCaption = topContainer?.querySelector?.('.layout-main-pull-push-caption')
 
     // 完成提示信息
     let finishMsg = ''
@@ -27,12 +27,12 @@ function topRefreshOk(topContainer, isOk) {
 
     setTimeout(() => {
       // 重置样式
-      let topIcon = topContainer.querySelector('.layout-main-pull-push-icon')
+      let topIcon = topContainer?.querySelector?.('.layout-main-pull-push-icon')
       if (topIcon) {
         topIcon.classList.remove('layout-main-pull-push-icon-down')
         topIcon.classList.remove('layout-main-pull-push-icon-loading')
       }
-      topContainer.style.height = '0'
+      if (topContainer) topContainer.style.height = '0'
 
       resolve(true)
     }, 1000)

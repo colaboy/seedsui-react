@@ -331,7 +331,12 @@ const MapContainer = forwardRef(
         maxZoom
       })
 
-      let currentMapContainer = rootRef.current.querySelector('.map-api-container')
+      let currentMapContainer = rootRef?.current?.querySelector?.('.map-api-container')
+      if (!currentMapContainer) {
+        setLeafletMap(LocaleUtil.locale('No Container', 'SeedsUI_map_no_container'))
+        return
+      }
+
       // Create bmap,amap,etc current map to use invoke api
       const currentMap = await createCurrentMap(currentMapContainer, {
         center: centerRef.current

@@ -1,6 +1,6 @@
 import Block from './components/Block'
 import Paragraph from './components/Paragraph'
-import Tabs from './components/Tabs'
+import TabBar from './components/TabBar'
 import List from './List'
 import Detail from './Detail'
 import Edit from './Edit'
@@ -8,7 +8,7 @@ import Edit from './Edit'
 const Skeleton = {
   Block,
   Paragraph,
-  Tabs,
+  TabBar,
   List,
   Detail,
   Edit

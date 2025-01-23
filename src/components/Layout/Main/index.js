@@ -64,8 +64,8 @@ const Main = forwardRef(
       // 拉动高度
       if (touchesRef.current.diffY > 100) touchesRef.current.diffY = 100
       topContainerRef.current.style.height = touchesRef.current.diffY + 'px'
-      let topIcon = topContainerRef.current.querySelector('.layout-main-pull-push-icon')
-      let topCaption = topContainerRef.current.querySelector('.layout-main-pull-push-caption')
+      let topIcon = topContainerRef.current?.querySelector?.('.layout-main-pull-push-icon')
+      let topCaption = topContainerRef.current?.querySelector?.('.layout-main-pull-push-caption')
       if (touchesRef.current.diffY >= threshold) {
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-down')
         if (topCaption)

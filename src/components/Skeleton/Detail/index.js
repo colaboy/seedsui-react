@@ -2,7 +2,7 @@ import React from 'react'
 
 import Layout from './../../Layout'
 import Paragraph from './../components/Paragraph'
-import Tabs from './../components/Tabs'
+import TabBar from './../components/TabBar'
 
 const Detail = ({ animated, ...props }) => {
   return (
@@ -24,7 +24,7 @@ const Detail = ({ animated, ...props }) => {
           }}
           avatarProps={{}}
         />
-        <Tabs />
+        <TabBar />
         {Array.from({ length: 2 }).map((_, index) => (
           <Paragraph
             key={index}

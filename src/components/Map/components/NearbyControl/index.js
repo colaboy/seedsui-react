@@ -3,7 +3,7 @@ import React, { forwardRef, useImperativeHandle, useEffect, useState, useRef } f
 import getTabs from './utils/getTabs'
 import Current from './Current'
 import Toggle from './Toggle'
-import Tabs from './Tabs'
+import TabBar from './TabBar'
 import Main from './Main'
 
 // 内库使用-start
@@ -110,7 +110,7 @@ function Nearby(
           <Toggle />
           {/* 附近的点 */}
           <div className={`map-nearbyControl-body`}>
-            <Tabs tab={tab} onChange={setTab} />
+            <TabBar tab={tab} onChange={setTab} />
             <Main
               list={list}
               active={active}

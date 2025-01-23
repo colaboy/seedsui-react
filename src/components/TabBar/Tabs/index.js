@@ -1,11 +1,9 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const Tabs = forwardRef(
+const Line = forwardRef(
   (
     {
-      className = 'tabs-line tabs-line-width-percent70 border-b', // tabs-line | tabs-rect | tabs-lump | tabs-dropdown | tabs-footer
-      // 内部tab宽度平均分配
-      average = false,
+      className = 'tabbar-line',
       contentProps = {},
       titleProps = {},
       subTitleProps = {},
@@ -72,9 +70,9 @@ const Tabs = forwardRef(
     }
 
     // 内容DOM
-    function getTabsContent() {
+    function getTabBarContent() {
       if (!Array.isArray(list)) {
-        console.log('SeedsUI: Tabs的传入参数list类型不正确')
+        console.log('SeedsUI: TabBar的传入参数list类型不正确')
         return null
       }
       // tabStyle高度
@@ -139,22 +137,22 @@ const Tabs = forwardRef(
       })
     }
 
-    // 获取tabs的DOM
-    const tabsContent = getTabsContent()
+    // 获取tabBar的DOM
+    const tabBarContent = getTabBarContent()
 
     return (
       <ul
         {...props}
-        className={`tabs animated${average ? ' tabs-tab-average' : ''}${
+        className={`tabbar animated${average ? ' tabbar-tab-average' : ''}${
           className ? ' ' + className : ''
         }`}
         disabled={disabled}
         ref={rootRef}
       >
-        {tabsContent}
+        {tabBarContent}
       </ul>
     )
   }
 )
 
-export default Tabs
+export default Line

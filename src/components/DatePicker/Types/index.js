@@ -5,12 +5,12 @@ import WeekCombo from './WeekCombo'
 import DateCombo from './DateCombo'
 
 // 内库使用-start
-import Tabs from './../../Tabs'
+import TabBar from './../../TabBar'
 import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Tabs, locale } from 'seedsui-react'
+import { TabBar, locale } from 'seedsui-react'
 测试使用-end */
 
 // 日期类型选择控件: 年月日季
@@ -148,7 +148,7 @@ const Types = forwardRef(
         ref={rootRef}
       >
         {Array.isArray(list) && (
-          <Tabs
+          <TabBar
             onChange={handleTabs}
             list={list}
             value={value}

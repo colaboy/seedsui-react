@@ -4,7 +4,7 @@ import _ from 'lodash'
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
 
-import Tabs from './Tabs'
+import TabBar from './TabBar'
 import ListItem from './ListItem'
 
 // 内库使用-start
@@ -299,7 +299,7 @@ const Main = forwardRef(
       }
 
       return (
-        <Tabs
+        <TabBar
           tabs={tabsRef.current}
           activeTab={activeTab}
           onActiveTab={async (tab) => {

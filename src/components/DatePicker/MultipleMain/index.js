@@ -6,11 +6,11 @@ import getActiveTab from './getActiveTab'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import DateUtil from './../../../utils/DateUtil'
-import Tabs from './../../Tabs'
+import TabBar from './../../TabBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, DateUtil, Tabs } from 'seedsui-react'
+import { locale, DateUtil, TabBar } from 'seedsui-react'
 测试使用-end */
 
 // 日期多选
@@ -62,7 +62,7 @@ function MultipleMain(
     <div ref={mainRef} className="picker-multiple-main">
       {Array.isArray(tabsRef.current) && tabsRef.current.length ? (
         <>
-          <Tabs
+          <TabBar
             className="picker-tabs"
             list={tabsRef.current}
             value={activeTab}

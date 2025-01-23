@@ -1,0 +1,52 @@
+// tabbar-tabs
+.tabbar-tabs-tab {
+  white-space: nowrap;
+  padding: var(--space-s) 0 var(--space-m);
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin: 0 auto;
+  font-size: var(--font-size-m);
+  position: relative;
+  cursor: pointer;
+
+  &.active {
+    color: var(--primary);
+  }
+
+  // 禁用
+  &.disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.tabbar-tabs-line {
+  position: absolute;
+  bottom: 0;
+  height: var(--active-line-height);
+  background: var(--active-line-color);
+  border-radius: var(--active-line-border-radius);
+}
+
+// .tab-icon {
+//   margin: 0 4px;
+//   pointer-events: none;
+// }
+// .tab-content {
+//   display: inline-block;
+//   vertical-align: middle;
+//   pointer-events: none;
+// }
+// .tab-title,
+// .tab-subtitle {
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// }
+// .tab-title {
+// }
+// .tab-subtitle {
+//   font-size: @font-size-s;
+// }
