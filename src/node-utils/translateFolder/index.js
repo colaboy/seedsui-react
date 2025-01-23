@@ -62,9 +62,23 @@ async function translateFolder({
     }
   }
 
+  // baseData转为files: {zh_CN : {key: value}, en_US: {key: value}}
+  let files = {}
+  for (let key in baseData) {
+    let item = baseData[key]
+    // 排除key, 其它的key为国际化文件名称
+    for (let filaName in item) {
+      if (filaName === 'key') {
+        continue
+      }
+      if (!files[filaName]) files[filaName] = {}
+      files[filaName][key] = item[filaName]
+    }
+  }
+
   console.log(chalk.yellow(`\n+++++ \u{1F44C}  Translation Finish +++++\n`))
 
-  return { baseData: baseData, diffData: diffData }
+  return { baseData: baseData, diffData: diffData, files: files }
 }
 
 module.exports = translateFolder

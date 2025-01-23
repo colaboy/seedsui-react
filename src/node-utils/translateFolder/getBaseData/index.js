@@ -33,14 +33,7 @@ module.exports = async function getBaseData({
       '**/*.{js,ts,jsx,tsx}',
       {
         cwd: folderPath,
-        ignore: [
-          '**/scripts/**',
-          '**/demos/**',
-          '**/locale/**', // 忽略 locale 目录
-          '**/locales/**', // 忽略 locales 目录
-          '**/*.d.ts',
-          ...(ignore || [])
-        ],
+        ignore: ignore,
         dot: true // 包括以 . 开头的文件
       },
       (err, files) => {
