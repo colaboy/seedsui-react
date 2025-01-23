@@ -34,7 +34,7 @@ const UploadList = ({
     // 失败的照片用localId预览
     if (item.status === 'fail') {
       Toast.show({
-        content: LocaleUtil.text('图片未上传成功, 无法预览', 'SeedsUI_upload_preview_error')
+        content: LocaleUtil.locale('图片未上传成功, 无法预览', 'SeedsUI_upload_preview_error')
       })
       return
     }
@@ -43,7 +43,7 @@ const UploadList = ({
     let previewUrl = decodeURIComponent(decodeURIComponent(item.src))
     if (!previewUrl || typeof previewUrl !== 'string') {
       Toast.show({
-        content: LocaleUtil.text('预览地址不合法', 'SeedsUI_preview_src_error')
+        content: LocaleUtil.locale('预览地址不合法', 'SeedsUI_preview_src_error')
       })
       return
     }
@@ -93,7 +93,7 @@ const UploadList = ({
       Clipboard.copy(previewUrl, {
         success: () => {
           Toast.show({
-            content: LocaleUtil.text(
+            content: LocaleUtil.locale(
               '文件链接已复制到剪贴板，请粘贴到系统浏览器上下载',
               'SeedsUI_clipboard_success'
             )
@@ -101,7 +101,7 @@ const UploadList = ({
         },
         fail: () => {
           Modal.confirm({
-            content: LocaleUtil.text(
+            content: LocaleUtil.locale(
               `文件链接复制到剪贴板失败, 请长按复制<br/>${previewUrl}`,
               'SeedsUI_clipboard_fail_confirm',
               [previewUrl],

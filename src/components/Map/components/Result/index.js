@@ -31,7 +31,7 @@ const Result = forwardRef(({ retry, title, subTitle, extra, ...props }, ref) => 
       {extra}
       {typeof retry === 'function' && (
         <Button className="map-result-button-retry primary" onClick={retry}>
-          {LocaleUtil.text('重试', 'SeedsUI_retry')}
+          {LocaleUtil.locale('重试', 'SeedsUI_retry')}
         </Button>
       )}
     </div>

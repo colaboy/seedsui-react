@@ -81,7 +81,7 @@ function MapChoose(
 
     // 默认选中当前位置
     if (!newValue?.longitude || !newValue?.latitude) {
-      Loading.show({ content: LocaleUtil.text('定位中...', 'SeedsUI_positioning') })
+      Loading.show({ content: LocaleUtil.locale('定位中...', 'SeedsUI_positioning') })
       let result = await mapRef.current?.getLocation?.({ type: 'wgs84' })
       Loading.hide()
       if (typeof result === 'string') {
@@ -98,7 +98,7 @@ function MapChoose(
 
     // 获取地址
     if (!newValue?.address) {
-      Loading.show({ content: LocaleUtil.text('获取地址中...', 'SeedsUI_getting_address') })
+      Loading.show({ content: LocaleUtil.locale('获取地址中...', 'SeedsUI_getting_address') })
       let result = await mapRef.current?.getAddress?.(newValue)
       Loading.hide()
       if (typeof result === 'string') {
@@ -167,7 +167,7 @@ function MapChoose(
                 }
 
                 Loading.show({
-                  content: LocaleUtil.text('获取地址中...', 'SeedsUI_getting_address')
+                  content: LocaleUtil.locale('获取地址中...', 'SeedsUI_getting_address')
                 })
                 result = await map.getAddress(result)
                 Loading.hide()

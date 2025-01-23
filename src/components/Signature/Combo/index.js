@@ -73,7 +73,9 @@ const Combo = (
       >
         <i className={`signature-button-icon-add`}></i>
         {/* 文字 */}
-        <div className="signature-button-label">{LocaleUtil.text('签名', 'SeedsUI_signature')}</div>
+        <div className="signature-button-label">
+          {LocaleUtil.locale('签名', 'SeedsUI_signature')}
+        </div>
       </Button>
       <Modal
         ref={modalRef}

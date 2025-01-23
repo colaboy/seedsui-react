@@ -20,7 +20,7 @@ function validateMaxMin(value, { type, min, max, onError } = {}) {
         let isOk = onError({
           errCode: 'DATE_MIN_ERROR',
           errMsg:
-            LocaleUtil.text('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
+            LocaleUtil.locale('不能小于', 'SeedsUI_cannot_less_than') + DateUtil.format(min, type),
           min: min,
           value: value
         })
@@ -36,7 +36,8 @@ function validateMaxMin(value, { type, min, max, onError } = {}) {
         let isOk = onError({
           errCode: 'DATE_MAX_ERROR',
           errMsg:
-            LocaleUtil.text('不能大于', 'SeedsUI_cannot_greater_than') + DateUtil.format(max, type),
+            LocaleUtil.locale('不能大于', 'SeedsUI_cannot_greater_than') +
+            DateUtil.format(max, type),
           max: max,
           value: value
         })

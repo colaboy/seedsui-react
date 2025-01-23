@@ -23,7 +23,7 @@ function Navigation({
 }) {
   async function handleClick() {
     Loading.show({
-      content: LocaleUtil.text('定位中...', 'SeedsUI_positioning')
+      content: LocaleUtil.locale('定位中...', 'SeedsUI_positioning')
     })
     // 当前位置
     let result = await map.getLocation({ type: 'wgs84' })
@@ -34,7 +34,7 @@ function Navigation({
     if (typeof result === 'string') {
       // 赋值
       Toast.show({
-        content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+        content: LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
       })
       return
     }
@@ -42,7 +42,7 @@ function Navigation({
     Bridge.openLocation({
       slatitude: result.latitude, // 起点纬度
       slongitude: result.longitude, // 起点经度
-      sname: result.address || LocaleUtil.text('当前位置', 'SeedsUI_current_location'), // 起点名
+      sname: result.address || LocaleUtil.locale('当前位置', 'SeedsUI_current_location'), // 起点名
       latitude: latitude, // 纬度，浮点数，范围为90 ~ -90
       longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
       type: type,
@@ -71,7 +71,7 @@ function Navigation({
     <span className="map-navigation-button" onClick={handleClick}>
       <i className="map-navigation-button-icon"></i>
       <span className="map-navigation-button-text">
-        {LocaleUtil.text('导航', 'SeedsUI_navigation')}
+        {LocaleUtil.locale('导航', 'SeedsUI_navigation')}
       </span>
     </span>
   )

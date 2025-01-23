@@ -55,7 +55,7 @@ let Bridge = {
   openLocation: function (params) {
     // 微信PC端不支持地图查看
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = LocaleUtil.text(
+      let errMsg = LocaleUtil.locale(
         'openLocation仅可在企业微信或APP中使用',
         'SeedsUI_open_location_prompt',
 
@@ -102,11 +102,11 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
-        content: LocaleUtil.text(
+        content: LocaleUtil.locale(
           'scanQRCode仅可在移动端微信或APP中使用',
           'SeedsUI_scanQRCode_prompt',
 
-          LocaleUtil.text('', 'SeedsUI_scancode')
+          LocaleUtil.locale('', 'SeedsUI_scancode')
         )
       })
       return
@@ -165,11 +165,11 @@ let Bridge = {
   chooseImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = LocaleUtil.text(
+      let errMsg = LocaleUtil.locale(
         'chooseImage仅可在移动端微信或APP中使用',
         'SeedsUI_chooseImage_prompt',
 
-        LocaleUtil.text('', 'SeedsUI_chooseimage')
+        LocaleUtil.locale('', 'SeedsUI_chooseimage')
       )
       Toast.show({
         content: errMsg
@@ -183,11 +183,11 @@ let Bridge = {
   uploadImage: function (params) {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
-      let errMsg = LocaleUtil.text(
+      let errMsg = LocaleUtil.locale(
         'uploadImage仅可在移动端微信或APP中使用',
         'SeedsUI_uploadImage_prompt',
 
-        LocaleUtil.text('', 'SeedsUI_uploadimage')
+        LocaleUtil.locale('', 'SeedsUI_uploadimage')
       )
       Toast.show({
         content: errMsg
@@ -201,11 +201,11 @@ let Bridge = {
     // 微信PC端不支持扫码
     if (Device.device === 'pc') {
       Toast.show({
-        content: LocaleUtil.text(
+        content: LocaleUtil.locale(
           'previewImage仅可在移动端微信或APP中使用',
           'SeedsUI_previewImage_prompt',
 
-          LocaleUtil.text('', 'SeedsUI_previewimage')
+          LocaleUtil.locale('', 'SeedsUI_previewimage')
         )
       })
       return
@@ -224,7 +224,7 @@ let Bridge = {
   previewFile: function (params) {
     // 微信PC端不支持预览文件
     if (Device.device === 'pc' || this.platform === 'wechat') {
-      let errMsg = LocaleUtil.text(
+      let errMsg = LocaleUtil.locale(
         'previewFile仅可在企业微信或APP中使用',
         'SeedsUI_previewFile_prompt',
 

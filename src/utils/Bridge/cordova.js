@@ -232,7 +232,7 @@ let Bridge = {
         if (res.flag === '1') {
           if (params.success)
             params.success({
-              errMsg: `previewFile:ok${LocaleUtil.text(
+              errMsg: `previewFile:ok${LocaleUtil.locale(
                 '预览文件成功',
                 'SeedsUI_previewFile_success'
               )}`
@@ -281,7 +281,7 @@ let Bridge = {
   videoRecord: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -291,7 +291,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoRecord:录制失败' })
-        else Toast.show({ content: LocaleUtil.text('record failed', 'SeedsUI_record_failed') })
+        else Toast.show({ content: LocaleUtil.locale('record failed', 'SeedsUI_record_failed') })
       }
     }, JSON.stringify(params))
   },
@@ -303,7 +303,7 @@ let Bridge = {
   videoUpload: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -313,7 +313,7 @@ let Bridge = {
         if (params.success) params.success(res)
       } else {
         if (params.fail) params.fail({ errMsg: 'videoUpload:上传失败' })
-        else Toast.show({ content: LocaleUtil.text('upload failed', 'SeedsUI_upload_failed') })
+        else Toast.show({ content: LocaleUtil.locale('upload failed', 'SeedsUI_upload_failed') })
       }
     }, JSON.stringify(params))
   },
@@ -325,7 +325,7 @@ let Bridge = {
   videoInfo: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -336,7 +336,7 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `videoInfo:${LocaleUtil.text('videoInfo failed', 'SeedsUI_videoInfo_failed')}`
+            errMsg: `videoInfo:${LocaleUtil.locale('videoInfo failed', 'SeedsUI_videoInfo_failed')}`
           })
       }
     }, JSON.stringify(params))
@@ -355,17 +355,17 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `scanQRCode:${LocaleUtil.text(
+            errMsg: `scanQRCode:${LocaleUtil.locale(
               '扫码失败',
               'SeedsUI_scanCode_failed'
-            )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
+            )}, ${LocaleUtil.locale('请稍后重试', 'SeedsUI_try_again_later')}`
           })
         else
           Toast.show({
-            content: `scanQRCode:${LocaleUtil.text(
+            content: `scanQRCode:${LocaleUtil.locale(
               '扫码失败',
               'SeedsUI_scanCode_failed'
-            )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
+            )}, ${LocaleUtil.locale('请稍后重试', 'SeedsUI_try_again_later')}`
           })
       }
     })
@@ -418,7 +418,7 @@ let Bridge = {
         if (params.success) params.success(result)
       } else {
         let res = {
-          errMsg: `getLocation:fail${LocaleUtil.text(
+          errMsg: `getLocation:fail${LocaleUtil.locale(
             '定位失败,请检查定位权限是否开启',
             'SeedsUI_location_failed'
           )}`
@@ -426,7 +426,10 @@ let Bridge = {
         if (params.fail) params.fail(res)
         else
           Toast.show({
-            content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+            content: LocaleUtil.locale(
+              '定位失败, 请检查定位权限是否开启',
+              'SeedsUI_location_failed'
+            )
           })
       }
     }, JSON.stringify({ locationType: '1' })) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
@@ -472,14 +475,17 @@ let Bridge = {
       } else {
         if (params.fail)
           params.fail({
-            errMsg: `getLocationMap:fail${LocaleUtil.text(
+            errMsg: `getLocationMap:fail${LocaleUtil.locale(
               '定位失败, 请检查定位权限是否开启',
               'SeedsUI_location_failed'
             )}`
           })
         else
           Toast.show({
-            content: LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed')
+            content: LocaleUtil.locale(
+              '定位失败, 请检查定位权限是否开启',
+              'SeedsUI_location_failed'
+            )
           })
       }
     }, JSON.stringify(Object.assign({ editable: '1' }, params))) // "0"双定位百度优先，"1"双定位高德优先，"2"单百度定位，"3"单高德定位
@@ -601,11 +607,11 @@ let Bridge = {
     */
   uploadImage: function (params = {}) {
     if (!params.uploadDir) {
-      Toast.show({ content: LocaleUtil.text('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir') })
+      Toast.show({ content: LocaleUtil.locale('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir') })
       return
     }
     if (!params.localId || _.isEmpty(params.localId)) {
-      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
+      Toast.show({ content: LocaleUtil.locale('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
       return
     }
     let filePathList = [
@@ -661,7 +667,7 @@ let Bridge = {
    */
   previewImage: function (params) {
     if (!params.urls || !params.urls.length) {
-      Toast.show({ content: LocaleUtil.text('没有预览图片地址', 'SeedsUI_previewImage_no_url') })
+      Toast.show({ content: LocaleUtil.locale('没有预览图片地址', 'SeedsUI_previewImage_no_url') })
       return
     }
     // 格式化index
@@ -701,17 +707,17 @@ let Bridge = {
   uploadFile: function (params = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
       })
       return
     }
     if (!params.localId) {
-      Toast.show({ content: LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
+      Toast.show({ content: LocaleUtil.locale('没有上传地址', 'SeedsUI_uploadImage_no_localeId') })
       return
     }
     let localIds = params.localId.split(':')
     if (localIds.length !== 2) {
-      Toast.show({ content: LocaleUtil.text('localeIds error', 'SeedsUI_localeIds_error') })
+      Toast.show({ content: LocaleUtil.locale('localeIds error', 'SeedsUI_localeIds_error') })
       return
     }
     window.wq.wqio.uploadFile(
@@ -744,7 +750,7 @@ let Bridge = {
   chooseVideo: function (argParams = {}) {
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.0'])
       })
       return
     }
@@ -814,7 +820,7 @@ let Bridge = {
     // {selectedIds: 'id,id', success([{id: '', name: ''}])}
     if (Device.compareVersion(Device.platformVersion, '6.2.2') < 0) {
       Toast.show({
-        content: LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
+        content: LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['', '6.2.2'])
       })
       return
     }
@@ -874,7 +880,7 @@ let Bridge = {
   openNativePage: function (params = { ios: {}, android: {} }) {
     if (!params.ios.url) {
       Toast.show({
-        content: LocaleUtil.text(
+        content: LocaleUtil.locale(
           'openNativePage ios need url',
           'SeedsUI_ios_openNativePage_url_error'
         )
@@ -883,7 +889,7 @@ let Bridge = {
     }
     if (!params.android.url) {
       Toast.show({
-        content: LocaleUtil.text(
+        content: LocaleUtil.locale(
           'openNativePage android need url',
           'SeedsUI_android_openNativePage_url_error'
         )

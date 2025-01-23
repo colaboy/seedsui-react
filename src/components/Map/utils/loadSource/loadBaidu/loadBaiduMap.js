@@ -31,12 +31,12 @@ function loadBMap(key) {
             if (window.BMap) {
               resolve(window.BMap)
             } else {
-              resolve(LocaleUtil.text(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+              resolve(LocaleUtil.locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
             }
           }
         },
         fail: () => {
-          resolve(LocaleUtil.text(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
+          resolve(LocaleUtil.locale(`地图库加载失败, 请稍后再试`, 'SeedsUI_map_js_load_failed'))
         }
       }
     )

@@ -23,7 +23,7 @@ function Result({
       {/* Title */}
       {title === undefined || title ? (
         <div className="result-title">
-          {title || LocaleUtil.text('暂无数据', 'SeedsUI_no_data')}
+          {title || LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')}
         </div>
       ) : null}
 

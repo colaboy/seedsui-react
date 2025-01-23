@@ -24,7 +24,7 @@ function validateDiff(value, { type, diff, onError }) {
     if (onError) {
       let isOk = onError({
         errCode: 'DATE_RANGE_DAYS_ERROR',
-        errMsg: LocaleUtil.text(
+        errMsg: LocaleUtil.locale(
           `日期区间不能超过${diff}${getTypeLocale(type)}`,
           'SeedsUI_dateRange_limit_error',
           [diff, getTypeLocale(type)]

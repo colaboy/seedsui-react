@@ -28,7 +28,7 @@ const ListItem = forwardRef(
 
     if (Array.isArray(list) && !list.length) {
       // eslint-disable-next-line
-      list = LocaleUtil.text('暂无数据', 'SeedsUI_no_data')
+      list = LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
     }
 
     return (

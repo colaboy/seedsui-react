@@ -20,7 +20,7 @@ export default () => {
     <>
       <Input.Text
         type="search"
-        placeholder={LocaleUtil.text('搜索', 'input_search_placeholder')}
+        placeholder={LocaleUtil.locale('搜索', 'input_search_placeholder')}
         onChange={(keyword) => {
           if (window.timeout) window.clearTimeout(window.timeout)
           window.timeout = setTimeout(() => {

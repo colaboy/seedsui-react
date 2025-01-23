@@ -14,7 +14,7 @@ import Result from './../../../Result'
 function Main({ active, list, onChange }) {
   let errMsg = typeof list === 'string' ? list : null
   if (Array.isArray(list) && list.length === 0) {
-    errMsg = LocaleUtil.text('暂无数据', 'SeedsUI_no_data')
+    errMsg = LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
   }
   return (
     <div className="map-nearbyControl-main">

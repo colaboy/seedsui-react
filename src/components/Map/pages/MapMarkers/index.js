@@ -37,7 +37,7 @@ function MapMarkers(
   if (!Array.isArray(externalPoints) || !externalPoints.length) {
     return (
       <Result
-        title={`${LocaleUtil.text('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`}
+        title={`${LocaleUtil.locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`}
       />
     )
   }

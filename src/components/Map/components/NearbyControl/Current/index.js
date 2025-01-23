@@ -26,7 +26,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
       <div className="map-nearbyControl-item-content">
         <div className="map-nearbyControl-item-content-title">
           <div className="flex-1">
-            {value?.name || LocaleUtil.text('当前位置', 'SeedsUI_current_location')}
+            {value?.name || LocaleUtil.locale('当前位置', 'SeedsUI_current_location')}
           </div>
           <Navigation
             map={map}

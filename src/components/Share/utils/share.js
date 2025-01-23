@@ -27,7 +27,7 @@ function share(params) {
 
         onFail &&
           onFail({
-            errMsg: err?.errMsg || LocaleUtil.text('分享失败', 'SeedsUI_share_failed')
+            errMsg: err?.errMsg || LocaleUtil.locale('分享失败', 'SeedsUI_share_failed')
           })
       }
     })
@@ -45,7 +45,7 @@ function share(params) {
         console.log('DingTalk Share fail:', err)
         onFail &&
           onFail({
-            errMsg: err?.errMsg || LocaleUtil.text('分享失败', 'SeedsUI_share_failed')
+            errMsg: err?.errMsg || LocaleUtil.locale('分享失败', 'SeedsUI_share_failed')
           })
       }
     })

@@ -8,13 +8,13 @@ import { locale } from 'seedsui-react'
 
 function getTypeLocale(type) {
   const typeLocale = {
-    year: LocaleUtil.text('年', 'SeedsUI_unit_year'),
-    quarter: LocaleUtil.text('季', 'SeedsUI_unit_quarter'),
-    month: LocaleUtil.text('月', 'SeedsUI_unit_month'),
-    date: LocaleUtil.text('日', 'SeedsUI_unit_date'),
-    time: LocaleUtil.text('分', 'SeedsUI_unit_minute'),
-    datetime: LocaleUtil.text('分', 'SeedsUI_unit_minute'),
-    week: LocaleUtil.text('周', 'SeedsUI_unit_week')
+    year: LocaleUtil.locale('年', 'SeedsUI_unit_year'),
+    quarter: LocaleUtil.locale('季', 'SeedsUI_unit_quarter'),
+    month: LocaleUtil.locale('月', 'SeedsUI_unit_month'),
+    date: LocaleUtil.locale('日', 'SeedsUI_unit_date'),
+    time: LocaleUtil.locale('分', 'SeedsUI_unit_minute'),
+    datetime: LocaleUtil.locale('分', 'SeedsUI_unit_minute'),
+    week: LocaleUtil.locale('周', 'SeedsUI_unit_week')
   }
   return typeLocale[type]
 }

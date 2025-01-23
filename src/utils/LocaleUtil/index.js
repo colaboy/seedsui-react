@@ -1,9 +1,9 @@
-import text from './text'
+import locale from './locale'
 import languageMap from './languageMap'
 import setLanguage from './setLanguage'
 
 export default {
-  text: text,
+  locale: locale,
   languageMap: languageMap,
   setLanguage: setLanguage
 }

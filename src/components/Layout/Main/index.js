@@ -69,11 +69,11 @@ const Main = forwardRef(
       if (touchesRef.current.diffY >= threshold) {
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-down')
         if (topCaption)
-          topCaption.innerHTML = LocaleUtil.text('释放立即刷新', 'SeedsUI_release_refresh')
+          topCaption.innerHTML = LocaleUtil.locale('释放立即刷新', 'SeedsUI_release_refresh')
       } else {
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topCaption)
-          topCaption.innerHTML = LocaleUtil.text('下拉刷新', 'SeedsUI_pull_down_refresh')
+          topCaption.innerHTML = LocaleUtil.locale('下拉刷新', 'SeedsUI_pull_down_refresh')
       }
     }
     async function handleTouchEnd(e) {
@@ -93,7 +93,7 @@ const Main = forwardRef(
         topContainerRef.current.style.height = threshold + 'px'
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-loading')
-        if (topCaption) topCaption.innerHTML = LocaleUtil.text('加载中...', 'SeedsUI_refreshing')
+        if (topCaption) topCaption.innerHTML = LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
 
         // Trigger Events
         if (onTopRefresh) {

@@ -67,7 +67,7 @@ function ready(callback, options = {}, Bridge) {
         else {
           console.error('支付小程序js加载失败')
           options?.fail?.({
-            errMsg: LocaleUtil.text(
+            errMsg: LocaleUtil.locale(
               '支付小程序js加载失败',
               'SeedsUI_alipayMiniProgram_js_load_failed'
             )
@@ -106,7 +106,9 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: LocaleUtil.text('微信js加载失败', 'SeedsUI_weChat_js_load_failed') })
+        options.fail({
+          errMsg: LocaleUtil.locale('微信js加载失败', 'SeedsUI_weChat_js_load_failed')
+        })
       }
     }
   }
@@ -122,7 +124,7 @@ function ready(callback, options = {}, Bridge) {
     if (options.fail) {
       script.onerror = function () {
         options.fail({
-          errMsg: LocaleUtil.text('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed')
+          errMsg: LocaleUtil.locale('外勤cordova加载失败', 'SeedsUI_cordova_js_load_failed')
         })
       }
     }
@@ -143,7 +145,9 @@ function ready(callback, options = {}, Bridge) {
     }
     if (options.fail) {
       script.onerror = function () {
-        options.fail({ errMsg: LocaleUtil.text('外勤js加载失败', 'SeedsUI_qince_js_load_failed') })
+        options.fail({
+          errMsg: LocaleUtil.locale('外勤js加载失败', 'SeedsUI_qince_js_load_failed')
+        })
       }
     }
   }

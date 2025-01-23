@@ -23,7 +23,7 @@ const Alert = forwardRef(
       contentProps: contentProps,
       footerProps: footerProps,
       submitProps: submitProps || {
-        caption: LocaleUtil.text('确定', 'SeedsUI_ok')
+        caption: LocaleUtil.locale('确定', 'SeedsUI_ok')
       },
       cancelProps: cancelProps,
       ...props

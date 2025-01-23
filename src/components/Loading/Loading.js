@@ -38,7 +38,7 @@ const Loading = forwardRef(
       }
     })
 
-    let { caption = LocaleUtil.text('加载中...', 'SeedsUI_refreshing'), ...otherCaptionProps } =
+    let { caption = LocaleUtil.locale('加载中...', 'SeedsUI_refreshing'), ...otherCaptionProps } =
       captionProps
     if (typeof content === 'string') {
       caption = content

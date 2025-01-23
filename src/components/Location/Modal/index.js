@@ -46,8 +46,8 @@ const LocationModal = forwardRef(
         captionProps={{
           caption:
             visible === 'choose'
-              ? LocaleUtil.text('选择地址', 'SeedsUI_choose_address')
-              : LocaleUtil.text('查看地址', 'SeedsUI_view_address')
+              ? LocaleUtil.locale('选择地址', 'SeedsUI_choose_address')
+              : LocaleUtil.locale('查看地址', 'SeedsUI_view_address')
         }}
         {...props}
         main={props?.main || Main}

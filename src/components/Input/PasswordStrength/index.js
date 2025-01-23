@@ -37,19 +37,19 @@ const PasswordStrength = ({ value = '', ...props }, ref) => {
       <li>
         <div className="input-password-strength-progress"></div>
         <span className="input-password-strength-caption">
-          {LocaleUtil.text('弱', 'SeedsUI_password_weak')}
+          {LocaleUtil.locale('弱', 'SeedsUI_password_weak')}
         </span>
       </li>
       <li>
         <div className="input-password-strength-progress"></div>
         <span className="input-password-strength-caption">
-          {LocaleUtil.text('中', 'SeedsUI_password_medium')}
+          {LocaleUtil.locale('中', 'SeedsUI_password_medium')}
         </span>
       </li>
       <li>
         <div className="input-password-strength-progress"></div>
         <span className="input-password-strength-caption">
-          {LocaleUtil.text('强', 'SeedsUI_password_strong')}
+          {LocaleUtil.locale('强', 'SeedsUI_password_strong')}
         </span>
       </li>
     </ul>

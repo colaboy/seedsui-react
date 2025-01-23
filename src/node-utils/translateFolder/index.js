@@ -7,10 +7,10 @@ const translateBaseData = require('./translateBaseData/index')
 async function translateFolder({
   // 过滤规则
   ignore,
-  // 需要翻译的文件夹, LocaleUtil.text()和locale()
+  // 需要翻译的文件夹, LocaleUtil.locale()和locale()
   folderPath,
   // 国际化的方法名
-  localeFunctionName = 'LocaleUtil.text',
+  localeFunctionName = 'LocaleUtil.locale',
   // 读取上次数据用于做合并与统计差量, {'remark': {key: '', value: ''}}
   oldBaseData,
   // 翻译配置, [{from: '', to: ''}, {from: '', to: ''}]

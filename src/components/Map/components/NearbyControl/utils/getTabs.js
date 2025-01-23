@@ -10,27 +10,27 @@ const tabs = function getTabs() {
   if (window.google) {
     return [
       {
-        name: LocaleUtil.text('购物', 'SeedsUI_map_nearby_shop'),
+        name: LocaleUtil.locale('购物', 'SeedsUI_map_nearby_shop'),
         id: 'store'
       },
       {
-        name: LocaleUtil.text('吃喝', 'SeedsUI_map_nearby_restaurant'),
+        name: LocaleUtil.locale('吃喝', 'SeedsUI_map_nearby_restaurant'),
         id: 'restaurant'
       },
       {
-        name: LocaleUtil.text('娱乐', 'SeedsUI_map_nearby_recreation'),
+        name: LocaleUtil.locale('娱乐', 'SeedsUI_map_nearby_recreation'),
         id: 'amusement_park,aquarium,movie_theater,museum,night_club,park,zoo'
       },
       {
-        name: LocaleUtil.text('景点', 'SeedsUI_map_nearby_scenery'),
+        name: LocaleUtil.locale('景点', 'SeedsUI_map_nearby_scenery'),
         id: 'library,park,rv_park'
       },
       {
-        name: LocaleUtil.text('出行', 'SeedsUI_map_nearby_trip'),
+        name: LocaleUtil.locale('出行', 'SeedsUI_map_nearby_trip'),
         id: 'airport,bus_station,subway_station,taxi_stand,train_station,transit_station'
       },
       {
-        name: LocaleUtil.text('住宿', 'SeedsUI_map_nearby_lodgings'),
+        name: LocaleUtil.locale('住宿', 'SeedsUI_map_nearby_lodgings'),
         id: 'hotel,motel,campground,rv_park'
       }
     ]
@@ -39,37 +39,37 @@ const tabs = function getTabs() {
   if (window.BMap) {
     return [
       {
-        name: LocaleUtil.text('购物', 'SeedsUI_map_nearby_shop')
+        name: LocaleUtil.locale('购物', 'SeedsUI_map_nearby_shop')
       },
       {
-        name: LocaleUtil.text('吃喝', 'SeedsUI_map_nearby_restaurant')
+        name: LocaleUtil.locale('吃喝', 'SeedsUI_map_nearby_restaurant')
       },
       {
-        name: LocaleUtil.text('生活', 'SeedsUI_map_nearby_live')
+        name: LocaleUtil.locale('生活', 'SeedsUI_map_nearby_live')
       },
       {
-        name: LocaleUtil.text('娱乐', 'SeedsUI_map_nearby_recreation')
+        name: LocaleUtil.locale('娱乐', 'SeedsUI_map_nearby_recreation')
       },
       {
-        name: LocaleUtil.text('景点', 'SeedsUI_map_nearby_scenery')
+        name: LocaleUtil.locale('景点', 'SeedsUI_map_nearby_scenery')
       },
       {
-        name: LocaleUtil.text('出行', 'SeedsUI_map_nearby_trip'),
+        name: LocaleUtil.locale('出行', 'SeedsUI_map_nearby_trip'),
         id: '公交地铁'
       },
       {
-        name: LocaleUtil.text('住宿', 'SeedsUI_map_nearby_lodgings')
+        name: LocaleUtil.locale('住宿', 'SeedsUI_map_nearby_lodgings')
       }
     ]
   }
 
   return [
     {
-      name: LocaleUtil.text('购物', 'SeedsUI_map_nearby_shop'),
+      name: LocaleUtil.locale('购物', 'SeedsUI_map_nearby_shop'),
       id: 'shop'
     },
     {
-      name: LocaleUtil.text('吃喝', 'SeedsUI_map_nearby_restaurant'),
+      name: LocaleUtil.locale('吃喝', 'SeedsUI_map_nearby_restaurant'),
       id: 'restaurant'
     }
   ]

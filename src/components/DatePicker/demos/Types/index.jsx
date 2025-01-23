@@ -19,27 +19,27 @@ export default () => {
           {
             type: 'date',
             id: 'date',
-            name: LocaleUtil.text('日', 'datetype_unit_date')
+            name: LocaleUtil.locale('日', 'datetype_unit_date')
           },
           {
             type: 'month',
             id: 'month',
-            name: LocaleUtil.text('月', 'datetype_unit_month')
+            name: LocaleUtil.locale('月', 'datetype_unit_month')
           },
           {
             type: 'quarter',
             id: 'quarter',
-            name: LocaleUtil.text('季', 'datetype_unit_quarter')
+            name: LocaleUtil.locale('季', 'datetype_unit_quarter')
           },
           {
             type: 'year',
             id: 'year',
-            name: LocaleUtil.text('年', 'datetype_unit_year')
+            name: LocaleUtil.locale('年', 'datetype_unit_year')
           },
           {
             type: 'week',
             id: 'week',
-            name: LocaleUtil.text('周', 'datetype_unit_week')
+            name: LocaleUtil.locale('周', 'datetype_unit_week')
           }
         ]}
         onChange={(newValue) => {

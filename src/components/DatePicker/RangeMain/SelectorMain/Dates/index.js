@@ -45,7 +45,7 @@ export default function CustomDates({
           let newStartDate = argStartDate || null
           if (onChange) onChange(newStartDate || endDate ? [newStartDate, endDate] : null)
         }}
-        placeholder={LocaleUtil.text('请选择', 'SeedsUI_placeholder_select')}
+        placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         rightIcon={
           <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />
@@ -65,7 +65,7 @@ export default function CustomDates({
           let newEndDate = argEndDate || null
           if (onChange) onChange(startDate || newEndDate ? [startDate, newEndDate] : null)
         }}
-        placeholder={LocaleUtil.text('请选择', 'SeedsUI_placeholder_select')}
+        placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
         rightIcon={
           <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />

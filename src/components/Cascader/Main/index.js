@@ -116,7 +116,7 @@ const Main = forwardRef(
         lastTab = {
           parentid: lastTab.id,
           id: '',
-          name: LocaleUtil.text('请选择', 'SeedsUI_placeholder_select')
+          name: LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')
         }
         tabsRef.current.push(lastTab)
       }
@@ -182,7 +182,7 @@ const Main = forwardRef(
           let errMsg =
             typeof newList === 'string'
               ? newList
-              : LocaleUtil.text('获取数据失败', 'SeedsUI_data_error')
+              : LocaleUtil.locale('获取数据失败', 'SeedsUI_data_error')
           if (typeof config?.onError === 'function') {
             config.onError({ errMsg: errMsg })
           } else {

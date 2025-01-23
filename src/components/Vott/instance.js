@@ -200,7 +200,7 @@ let Vott = function (container, params) {
     // Callback
     if (s.params.onError)
       s.params.onError(e, {
-        errMsg: `${LocaleUtil.text('图片地址无效', 'SeedsUI_invalid_image_src')}`
+        errMsg: `${LocaleUtil.locale('图片地址无效', 'SeedsUI_invalid_image_src')}`
       })
   }
   // 更新DOM

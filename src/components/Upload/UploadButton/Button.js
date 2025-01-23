@@ -27,7 +27,7 @@ const UploadButton = ({ ...props }, ref) => {
         </div>
       </div>
       {/* 文字 */}
-      <div className="upload-button-label">{LocaleUtil.text('附件', 'SeedsUI_attach')}</div>
+      <div className="upload-button-label">{LocaleUtil.locale('附件', 'SeedsUI_attach')}</div>
     </Button>
   )
 }

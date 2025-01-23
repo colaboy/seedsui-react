@@ -42,7 +42,7 @@ const Main = (
       {/* 按钮区域 */}
       <div className="signature-main-buttons">
         <div className="signature-main-button signature-main-button-cancel" onClick={onCancel}>
-          <p>{LocaleUtil.text('取消', 'SeedsUI_cancel')}</p>
+          <p>{LocaleUtil.locale('取消', 'SeedsUI_cancel')}</p>
         </div>
         <div className="flex-1"></div>
         <div
@@ -51,7 +51,7 @@ const Main = (
             signatureRef?.current?.clear?.()
           }}
         >
-          <p>{LocaleUtil.text('清除', 'SeedsUI_clear')}</p>
+          <p>{LocaleUtil.locale('清除', 'SeedsUI_clear')}</p>
         </div>
         <div
           className="signature-main-button signature-main-button-submit"
@@ -66,7 +66,7 @@ const Main = (
             onChange?.(base64)
           }}
         >
-          <p>{LocaleUtil.text('确认', 'SeedsUI_confirm')}</p>
+          <p>{LocaleUtil.locale('确认', 'SeedsUI_confirm')}</p>
         </div>
       </div>
     </div>

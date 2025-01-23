@@ -22,24 +22,24 @@ const Types = forwardRef(
       list = [
         {
           type: 'date',
-          name: LocaleUtil.text('日', 'SeedsUI_unit_date')
+          name: LocaleUtil.locale('日', 'SeedsUI_unit_date')
         },
         {
           type: 'week',
           id: 'week',
-          name: LocaleUtil.text('周', 'SeedsUI_unit_week')
+          name: LocaleUtil.locale('周', 'SeedsUI_unit_week')
         },
         {
           type: 'month',
-          name: LocaleUtil.text('月', 'SeedsUI_unit_month')
+          name: LocaleUtil.locale('月', 'SeedsUI_unit_month')
         },
         {
           type: 'quarter',
-          name: LocaleUtil.text('季', 'SeedsUI_unit_quarter')
+          name: LocaleUtil.locale('季', 'SeedsUI_unit_quarter')
         },
         {
           type: 'year',
-          name: LocaleUtil.text('年', 'SeedsUI_unit_year')
+          name: LocaleUtil.locale('年', 'SeedsUI_unit_year')
         }
       ],
 

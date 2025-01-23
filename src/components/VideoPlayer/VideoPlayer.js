@@ -70,18 +70,21 @@ const VideoPlayer = forwardRef(
     // 实例化
     async function initInstance(playerId) {
       if (!src) {
-        console.error(LocaleUtil.text('请传入视频源', 'SeedsUI_no_video_src_error'))
+        console.error(LocaleUtil.locale('请传入视频源', 'SeedsUI_no_video_src_error'))
         if (onError)
-          onError({ errMsg: LocaleUtil.text('请传入视频源', 'SeedsUI_no_video_src_error') })
+          onError({ errMsg: LocaleUtil.locale('请传入视频源', 'SeedsUI_no_video_src_error') })
         return
       }
       if (!(await loadSdk())) {
         console.error(
-          LocaleUtil.text('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
+          LocaleUtil.locale('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
         )
         if (onError)
           onError({
-            errMsg: LocaleUtil.text('加载播放器库出错, 请稍后再试', 'SeedsUI_video_sdk_load_failed')
+            errMsg: LocaleUtil.locale(
+              '加载播放器库出错, 请稍后再试',
+              'SeedsUI_video_sdk_load_failed'
+            )
           })
         return
       }

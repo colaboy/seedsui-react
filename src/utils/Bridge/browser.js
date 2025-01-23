@@ -58,7 +58,7 @@ let Bridge = {
   // 返回监听
   onHistoryBack: function () {
     Toast.show({
-      content: LocaleUtil.text(
+      content: LocaleUtil.locale(
         'onHistoryBack仅可在企业微信或APP中使用',
         'SeedsUI_onHistory_back_prompt'
       )
@@ -73,16 +73,16 @@ let Bridge = {
   scanQRCode: function (params = {}) {
     if (!this.debug) {
       Toast.show({
-        content: LocaleUtil.text('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
+        content: LocaleUtil.locale('此功能仅可在微信或APP中使用', 'SeedsUI_only_app_wechat', [
           'scanQRCode'
         ])
       })
       if (params.fail)
         params.fail({
-          errMsg: `scanQRCode:${LocaleUtil.text(
+          errMsg: `scanQRCode:${LocaleUtil.locale(
             '扫码失败',
             'SeedsUI_scanCode_failed'
-          )}, ${LocaleUtil.text('请稍后重试', 'SeedsUI_try_again_later')}`
+          )}, ${LocaleUtil.locale('请稍后重试', 'SeedsUI_try_again_later')}`
         })
       return
     }
@@ -93,7 +93,7 @@ let Bridge = {
   // 视频文件上传
   uploadFile: function () {
     Toast.show({
-      content: LocaleUtil.text('uploadFile仅可在APP中使用', 'SeedsUI_uploadFile_prompt', [
+      content: LocaleUtil.locale('uploadFile仅可在APP中使用', 'SeedsUI_uploadFile_prompt', [
         'uploadFile'
       ])
     })

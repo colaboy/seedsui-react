@@ -109,7 +109,7 @@ const MapContainer = forwardRef(
           result =
             typeof result === 'string'
               ? result
-              : LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+              : LocaleUtil.locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
         }
         return result
       },
@@ -319,7 +319,7 @@ const MapContainer = forwardRef(
     // Load data
     async function loadData() {
       if (!rootRef.current?.querySelector) {
-        setLeafletMap(LocaleUtil.text('No Container', 'SeedsUI_map_no_container'))
+        setLeafletMap(LocaleUtil.locale('No Container', 'SeedsUI_map_no_container'))
         return
       }
 

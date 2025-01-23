@@ -24,7 +24,7 @@ function osmGetAddress(params) {
         })
       })
       .catch((error) => {
-        resolve(LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
+        resolve(LocaleUtil.locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed'))
       })
   })
 }

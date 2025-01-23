@@ -23,7 +23,7 @@ function getLocation(options) {
       fail: (error) => {
         console.error(error)
         // 赋值
-        resolve(LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'))
+        resolve(LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'))
       }
     })
   })

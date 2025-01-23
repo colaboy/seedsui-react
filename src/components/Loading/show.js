@@ -65,7 +65,7 @@ export default function (props) {
 
     let caption = captionProps?.caption || content
     caption =
-      typeof caption === 'string' ? caption : LocaleUtil.text('加载中...', 'SeedsUI_refreshing')
+      typeof caption === 'string' ? caption : LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
     mask.querySelector('.loading-content').innerHTML = caption
 
     // 显示

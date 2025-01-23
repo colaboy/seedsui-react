@@ -13,10 +13,10 @@ function Foot({ onOk, onClear }) {
   return (
     <Layout.Footer className="mappage-footer">
       <Button className="mappage-footer-ok" onClick={onOk}>
-        {LocaleUtil.text('确定', 'SeedsUI_ok')}
+        {LocaleUtil.locale('确定', 'SeedsUI_ok')}
       </Button>
       <Button className="mappage-footer-clear" onClick={onClear}>
-        {LocaleUtil.text('清空标注', 'SeedsUI_empty_marker')}
+        {LocaleUtil.locale('清空标注', 'SeedsUI_empty_marker')}
       </Button>
     </Layout.Footer>
   )

@@ -36,7 +36,7 @@ function SearchControl({ map, onChange }, ref) {
       >
         <div className="map-searchControl-navigation-icon"></div>
         <div className="map-searchControl-navigation-label">
-          {LocaleUtil.text('搜索', 'SeedsUI_search')}
+          {LocaleUtil.locale('搜索', 'SeedsUI_search')}
         </div>
       </div>
       <Page visible={visible} onVisibleChange={setVisible} map={map} onChange={onChange} />

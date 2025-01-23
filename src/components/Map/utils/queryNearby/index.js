@@ -18,7 +18,7 @@ async function queryNearby({ map, keyword, longitude, latitude, type, radius }) 
     // Search error protect: google and bmap error no callback
     let errorTimeout = window.setTimeout(() => {
       isTimeout = true
-      resolve(LocaleUtil.text('查询超时', 'SeedsUI_query_time_out'))
+      resolve(LocaleUtil.locale('查询超时', 'SeedsUI_query_time_out'))
     }, 5000)
 
     let result = null

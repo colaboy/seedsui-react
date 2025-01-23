@@ -52,7 +52,7 @@ const Modal = forwardRef(
         animation={animation}
         className={`share-modal${className ? ' ' + className : ''}`}
       >
-        <div className="share-modal-title">{LocaleUtil.text('分享到', 'SeedsUI_share_to')}</div>
+        <div className="share-modal-title">{LocaleUtil.locale('分享到', 'SeedsUI_share_to')}</div>
         <div className="share-modal-main">
           <Main
             {...(mainProps || {})}
@@ -68,7 +68,7 @@ const Modal = forwardRef(
             onVisibleChange && onVisibleChange(false)
           }}
         >
-          {LocaleUtil.text('取消', 'SeedsUI_cancel')}
+          {LocaleUtil.locale('取消', 'SeedsUI_cancel')}
         </div>
       </BaseModal>
     )

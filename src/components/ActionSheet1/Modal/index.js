@@ -141,7 +141,7 @@ const Modal = forwardRef(
               }`}
               onClick={handleClickCancel}
             >
-              {cancelName || LocaleUtil.text('取消', 'SeedsUI_cancel')}
+              {cancelName || LocaleUtil.locale('取消', 'SeedsUI_cancel')}
             </div>
           )}
         </div>

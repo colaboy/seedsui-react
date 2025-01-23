@@ -202,7 +202,8 @@ let Bridge = {
       if (params.fail)
         params.fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir')
+            'uploadImage:fail' +
+            LocaleUtil.locale('没有上传目录', 'SeedsUI_uploadImage_no_uploadDir')
         })
       return
     }
@@ -210,7 +211,8 @@ let Bridge = {
       if (params.fail)
         params.fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
+            'uploadImage:fail' +
+            LocaleUtil.locale('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
         })
       return
     }
@@ -272,7 +274,7 @@ let Bridge = {
         fail({
           errMsg:
             'uploadImage:fail' +
-            LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['uploadFile', '6.2.0'])
+            LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['uploadFile', '6.2.0'])
         })
       return
     }
@@ -280,7 +282,8 @@ let Bridge = {
       if (fail)
         fail({
           errMsg:
-            'uploadImage:fail' + LocaleUtil.text('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
+            'uploadImage:fail' +
+            LocaleUtil.locale('没有上传地址', 'SeedsUI_uploadImage_no_localeId')
         })
       return
     }
@@ -325,7 +328,7 @@ let Bridge = {
 
     if (Device.compareVersion(Device.platformVersion, '6.6.0') < 0) {
       if (fail)
-        fail(LocaleUtil.text('more than', 'SeedsUI_version_min_prompt', ['chooseVideo', '6.6.0']))
+        fail(LocaleUtil.locale('more than', 'SeedsUI_version_min_prompt', ['chooseVideo', '6.6.0']))
       return
     }
     console.log('外勤WK内核chooseVideo', params)

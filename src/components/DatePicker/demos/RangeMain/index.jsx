@@ -18,7 +18,7 @@ export default () => {
           // }}
           // type="datetime"
           // ranges={{
-          //   [LocaleUtil.text('自定义')]: 10
+          //   [LocaleUtil.locale('自定义')]: 10
           // }}
           // ranges={{
           //   ['今日']: [dayjs().toDate(), dayjs().toDate()],

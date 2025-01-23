@@ -44,8 +44,8 @@ const LocationCombo = forwardRef(
       // 显示预览按钮
       previewVisible = false,
       // 提示信息配置
-      failText = LocaleUtil.text('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'),
-      loadingText = LocaleUtil.text('定位中...', 'SeedsUI_positioning'),
+      failText = LocaleUtil.locale('定位失败, 请检查定位权限是否开启', 'SeedsUI_location_failed'),
+      loadingText = LocaleUtil.locale('定位中...', 'SeedsUI_positioning'),
 
       // 点击整行触发的动作: location | choose | preview
       clickAction,
@@ -146,7 +146,7 @@ const LocationCombo = forwardRef(
             ...addrRes
           }
         } else {
-          newValue = LocaleUtil.text('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
+          newValue = LocaleUtil.locale('获取地址失败, 请稍后重试', 'SeedsUI_get_address_failed')
         }
       }
       return newValue

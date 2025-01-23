@@ -74,7 +74,7 @@ const Transfer = (
           <>
             <div className="transfer-title">
               <div className="transfer-title-content">
-                {titles?.selected || LocaleUtil.text('已添加', 'SeedsUI_added')}
+                {titles?.selected || LocaleUtil.locale('已添加', 'SeedsUI_added')}
               </div>
               {`${value.length}/${list?.length || 0}`}
             </div>
@@ -110,7 +110,7 @@ const Transfer = (
           <>
             <div className="transfer-title">
               <div className="transfer-title-content">
-                {titles?.unSelected || LocaleUtil.text('未添加', 'SeedsUI_not_added')}
+                {titles?.unSelected || LocaleUtil.locale('未添加', 'SeedsUI_not_added')}
               </div>
               {`${unSelectedList.length}/${list?.length || 0}`}
             </div>

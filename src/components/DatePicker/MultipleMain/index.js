@@ -43,7 +43,7 @@ function MultipleMain(
       getRootDOM: () => mainRef.current,
       // 获取标题
       getTitle: () => {
-        let title = LocaleUtil.text('选择日期', 'SeedsUI_date_modal_title')
+        let title = LocaleUtil.locale('选择日期', 'SeedsUI_date_modal_title')
         return title
       },
       getValue: () => {
