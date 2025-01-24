@@ -203,7 +203,7 @@ export default class Dragrefresh extends Component {
       // 底部加载中
       bottomLoadingCaption = locale('正在加载...', 'SeedsUI_loading'),
       // 底部加载完成
-      bottomNoDataCaption = locale('没有更多数据了', 'SeedsUI_no_more_data'),
+      bottomNoDataCaption = locale('没有更多了', 'SeedsUI_no_more_data'),
       // 底部加载错误
       bottomErrorCaption = locale('加载失败, 请稍后再试', 'SeedsUI_load_failed'),
       onClickBottomError,

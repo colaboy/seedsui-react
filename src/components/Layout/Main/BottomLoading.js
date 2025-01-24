@@ -17,7 +17,7 @@ const BottomLoading = forwardRef(({ children, type, ...props }, ref) => {
       <div className="layout-main-bottom-loading-wrapper">
         <div className="layout-main-bottom-loading-caption">
           {type === 'loading' && LocaleUtil.locale('正在加载...', 'SeedsUI_loading')}
-          {type === 'complete' && LocaleUtil.locale('没有更多数据了', 'SeedsUI_no_more_data')}
+          {type === 'complete' && LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')}
           {type === 'failure' && LocaleUtil.locale('加载失败, 请稍后再试', 'SeedsUI_load_failed')}
         </div>
       </div>

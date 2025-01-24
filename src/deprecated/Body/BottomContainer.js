@@ -23,7 +23,7 @@ const BottomFinish = forwardRef(({ children, caption, type, ...others }, ref) =>
         <div className="body-pull-push-box">
           <div className="body-pull-push-caption">
             {type === 'noMore'
-              ? locale('没有更多数据了', 'SeedsUI_no_more_data')
+              ? locale('没有更多了', 'SeedsUI_no_more_data')
               : locale('加载失败, 请稍后再试', 'SeedsUI_load_failed')}
           </div>
         </div>
