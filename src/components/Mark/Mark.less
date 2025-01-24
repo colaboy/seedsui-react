@@ -1,54 +1,3 @@
-/* Mark variables: start */
-// default
-@mark-default-color: @default;
-@mark-default-bg-color: white;
-@mark-default-border-color: @border;
-// primary
-@mark-primary-color: white;
-@mark-primary-bg-color: @primary;
-@mark-primary-border-color: @primary;
-// link
-@mark-link-color: white;
-@mark-link-bg-color: @link;
-@mark-link-border-color: @link;
-// warning
-@mark-warning-color: white;
-@mark-warning-bg-color: @warning;
-@mark-warning-border-color: @warning;
-// danger
-@mark-danger-color: white;
-@mark-danger-bg-color: @danger;
-@mark-danger-border-color: @danger;
-// success
-@mark-success-color: white;
-@mark-success-bg-color: @success;
-@mark-success-border-color: @success;
-// default + outline
-@mark-default-outline-color: @default;
-@mark-default-outline-bg-color: transparent;
-@mark-default-outline-border-color: @border;
-// primary + outline
-@mark-primary-outline-color: @primary;
-@mark-primary-outline-bg-color: transparent;
-@mark-primary-outline-border-color: @primary;
-// link + outline
-@mark-link-outline-color: @link;
-@mark-link-outline-bg-color: transparent;
-@mark-link-outline-border-color: @link;
-// warning + outline
-@mark-warning-outline-color: @warning;
-@mark-warning-outline-bg-color: transparent;
-@mark-warning-outline-border-color: @warning;
-// danger + outline
-@mark-danger-outline-color: @danger;
-@mark-danger-outline-bg-color: transparent;
-@mark-danger-outline-border-color: @danger;
-// success + outline
-@mark-success-outline-color: @success;
-@mark-success-outline-bg-color: transparent;
-@mark-success-outline-border-color: @success;
-// default + light
-@mark-default-light-bg-color: white;
 // primary + light
 @mark-primary-light-bg-color: #fff7e6;
 // link + light
@@ -81,34 +30,34 @@
   border-color: var(--color);
 
   &.default {
-    color: @mark-default-color;
-    background-color: @mark-default-bg-color;
-    border-color: @mark-default-border-color;
+    color: var(--default);
+    background-color: white;
+    border-color: var(--border);
   }
   &.primary {
-    color: @mark-primary-color;
-    background-color: @mark-primary-bg-color;
-    border-color: @mark-primary-border-color;
+    color: white;
+    background-color: var(--primary);
+    border-color: var(--primary);
   }
   &.link {
-    color: @mark-link-color;
-    background-color: @mark-link-bg-color;
-    border-color: @mark-link-border-color;
+    color: white;
+    background-color: var(--link);
+    border-color: var(--link);
   }
   &.warning {
-    color: @mark-warning-color;
-    background-color: @mark-warning-bg-color;
-    border-color: @mark-warning-border-color;
+    color: white;
+    background-color: var(--warning);
+    border-color: var(--warning);
   }
   &.danger {
-    color: @mark-danger-color;
-    background-color: @mark-danger-bg-color;
-    border-color: @mark-danger-border-color;
+    color: white;
+    background-color: var(--danger);
+    border-color: var(--danger);
   }
   &.success {
-    color: @mark-success-color;
-    background-color: @mark-success-bg-color;
-    border-color: @mark-success-border-color;
+    color: white;
+    background-color: var(--success);
+    border-color: var(--success);
   }
 }
 
@@ -122,34 +71,34 @@
   border-color: var(--color);
 
   &.default {
-    color: @mark-default-outline-color;
-    background-color: @mark-default-outline-bg-color;
-    border-color: @mark-default-outline-border-color;
+    color: var(--default);
+    background-color: transparent;
+    border-color: var(--border);
   }
   &.primary {
-    color: @mark-primary-outline-color;
-    background-color: @mark-primary-outline-bg-color;
-    border-color: @mark-primary-outline-border-color;
+    color: var(--primary);
+    background-color: transparent;
+    border-color: var(--primary);
   }
   &.link {
-    color: @mark-link-outline-color;
-    background-color: @mark-link-outline-bg-color;
-    border-color: @mark-link-outline-border-color;
+    color: var(--link);
+    background-color: transparent;
+    border-color: var(--link);
   }
   &.warning {
-    color: @mark-warning-outline-color;
-    background-color: @mark-warning-outline-bg-color;
-    border-color: @mark-warning-outline-border-color;
+    color: var(--warning);
+    background-color: transparent;
+    border-color: var(--warning);
   }
   &.danger {
-    color: @mark-danger-outline-color;
-    background-color: @mark-danger-outline-bg-color;
-    border-color: @mark-danger-outline-border-color;
+    color: var(--danger);
+    background-color: transparent;
+    border-color: var(--danger);
   }
   &.success {
-    color: @mark-success-outline-color;
-    background-color: @mark-success-outline-bg-color;
-    border-color: @mark-success-outline-border-color;
+    color: var(--success);
+    background-color: transparent;
+    border-color: var(--success);
   }
 }
 
@@ -163,33 +112,33 @@
   border-color: var(--color);
 
   &.default {
-    color: @mark-default-outline-color;
-    background-color: @mark-default-light-bg-color;
-    border-color: @mark-default-outline-border-color;
+    color: var(--default);
+    background-color: white;
+    border-color: var(--border);
   }
   &.primary {
-    color: @mark-primary-outline-color;
+    color: var(--primary);
     background-color: @mark-primary-light-bg-color;
-    border-color: @mark-primary-outline-border-color;
+    border-color: var(--primary);
   }
   &.link {
-    color: @mark-link-outline-color;
+    color: var(--link);
     background-color: @mark-link-light-bg-color;
-    border-color: @mark-link-outline-border-color;
+    border-color: var(--link);
   }
   &.warning {
-    color: @mark-warning-outline-color;
+    color: var(--warning);
     background-color: @mark-warning-light-bg-color;
-    border-color: @mark-warning-outline-border-color;
+    border-color: var(--warning);
   }
   &.danger {
-    color: @mark-danger-outline-color;
+    color: var(--danger);
     background-color: @mark-danger-light-bg-color;
-    border-color: @mark-danger-outline-border-color;
+    border-color: var(--danger);
   }
   &.success {
-    color: @mark-success-outline-color;
+    color: var(--success);
     background-color: @mark-success-light-bg-color;
-    border-color: @mark-success-outline-border-color;
+    border-color: var(--success);
   }
 }

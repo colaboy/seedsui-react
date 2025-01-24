@@ -1,115 +1,11 @@
 /* Button variables: start */
-// 尺寸
-.button-xs() {
-  height: 20px;
-  padding: 0 5px;
-  font-size: 12px;
-}
-.button-s() {
-  height: 24px;
-  padding: 0 12px;
-  font-size: 12px;
-}
-.button-m() {
-}
-.button-l() {
-  height: 44px;
-  padding: 0 12px;
-  font-size: @font-size-l;
-}
-.button-xl() {
-  height: 54px;
-  padding: 0 15px;
-  // 字号太大会不好看
-  font-size: @font-size-l;
-}
-
-// 颜色
 // default
-@button-default-color: @default;
-@button-default-bg-color: transparent;
-@button-default-border-color: @border;
 @button-default-disabled-color: #adadad;
 @button-default-disabled-bg-color: #f3f4f5;
 @button-default-disabled-border-color: #e5e5e5;
-// primary
-@button-primary-color: white;
-@button-primary-bg-color: @primary;
-@button-primary-border-color: @primary;
-@button-primary-disabled-color: white;
-@button-primary-disabled-bg-color: @disabled;
-@button-primary-disabled-border-color: @disabled;
-// link
-@button-link-color: white;
-@button-link-bg-color: @link;
-@button-link-border-color: @link;
-@button-link-disabled-color: white;
-@button-link-disabled-bg-color: @disabled;
-@button-link-disabled-border-color: @disabled;
-// warning
-@button-warning-color: white;
-@button-warning-bg-color: @warning;
-@button-warning-border-color: @warning;
-@button-warning-disabled-color: white;
-@button-warning-disabled-bg-color: @disabled;
-@button-warning-disabled-border-color: @disabled;
-// danger
-@button-danger-color: white;
-@button-danger-bg-color: @danger;
-@button-danger-border-color: @danger;
-@button-danger-disabled-color: white;
-@button-danger-disabled-bg-color: @disabled;
-@button-danger-disabled-border-color: @disabled;
-// success
-@button-success-color: white;
-@button-success-bg-color: @success;
-@button-success-border-color: @success;
-@button-success-disabled-color: white;
-@button-success-disabled-bg-color: @disabled;
-@button-success-disabled-border-color: @disabled;
 // default + outline
-@button-default-outline-color: @default;
-@button-default-outline-bg-color: transparent;
-@button-default-outline-border-color: @border;
 @button-default-outline-disabled-color: #adadad;
-@button-default-outline-disabled-bg-color: transparent;
 @button-default-outline-disabled-border-color: #e5e5e5;
-
-// primary + outline
-@button-primary-outline-color: @primary;
-@button-primary-outline-bg-color: transparent;
-@button-primary-outline-border-color: @primary;
-@button-primary-outline-disabled-color: @disabled;
-@button-primary-outline-disabled-bg-color: transparent;
-@button-primary-outline-disabled-border-color: @disabled;
-// link + outline
-@button-link-outline-color: @link;
-@button-link-outline-bg-color: transparent;
-@button-link-outline-border-color: @link;
-@button-link-outline-disabled-color: @disabled;
-@button-link-outline-disabled-bg-color: transparent;
-@button-link-outline-disabled-border-color: @disabled;
-// warning + outline
-@button-warning-outline-color: @warning;
-@button-warning-outline-bg-color: transparent;
-@button-warning-outline-border-color: @warning;
-@button-warning-outline-disabled-color: @disabled;
-@button-warning-outline-disabled-bg-color: transparent;
-@button-warning-outline-disabled-border-color: @disabled;
-// danger + outline
-@button-danger-outline-color: @danger;
-@button-danger-outline-bg-color: transparent;
-@button-danger-outline-border-color: @danger;
-@button-danger-outline-disabled-color: @disabled;
-@button-danger-outline-disabled-bg-color: transparent;
-@button-danger-outline-disabled-border-color: @disabled;
-// success + outline
-@button-success-outline-color: @success;
-@button-success-outline-bg-color: transparent;
-@button-success-outline-border-color: @success;
-@button-success-outline-disabled-color: @disabled;
-@button-success-outline-disabled-bg-color: transparent;
-@button-success-outline-disabled-border-color: @disabled;
 /* Button variables: end */
 
 // Button按钮
@@ -122,19 +18,27 @@
   padding: 0 12px;
   font-size: @font-size-m;
   &.xs {
-    .button-xs();
+    height: 20px;
+    padding: 0 5px;
+    font-size: 12px;
   }
   &.s {
-    .button-s();
+    height: 24px;
+    padding: 0 12px;
+    font-size: 12px;
   }
   &.m {
-    .button-m();
   }
   &.l {
-    .button-l();
+    height: 44px;
+    padding: 0 12px;
+    font-size: @font-size-l;
   }
   &.xl {
-    .button-xl();
+    height: 54px;
+    padding: 0 15px;
+    // 字号太大会不好看
+    font-size: @font-size-l;
   }
   vertical-align: middle;
 
@@ -155,9 +59,9 @@
   // 默认按钮
   &,
   &.default {
-    color: @button-default-color;
-    background-color: @button-default-bg-color;
-    border-color: @button-default-border-color;
+    color: var(--default);
+    background-color: transparent;
+    border-color: var(--border);
     &.disabled,
     &[disabled] {
       color: @button-default-disabled-color;
@@ -167,62 +71,62 @@
   }
   // 主色按钮
   &.primary {
-    color: @button-primary-color;
-    background-color: @button-primary-bg-color;
-    border-color: @button-primary-border-color;
+    color: white;
+    background-color: var(--primary);
+    border-color: var(--primary);
     &.disabled,
     &[disabled] {
-      color: @button-primary-disabled-color;
-      background-color: @button-primary-disabled-bg-color;
-      border-color: @button-primary-disabled-border-color;
+      color: white;
+      background-color: var(--disabled);
+      border-color: var(--disabled);
     }
   }
   // 链接按钮
   &.link {
-    color: @button-link-color;
-    background-color: @button-link-bg-color;
-    border-color: @button-link-border-color;
+    color: white;
+    background-color: var(--link);
+    border-color: var(--link);
     &.disabled,
     &[disabled] {
-      color: @button-link-disabled-color;
-      background-color: @button-link-disabled-bg-color;
-      border-color: @button-link-disabled-border-color;
+      color: white;
+      background-color: var(--disabled);
+      border-color: var(--disabled);
     }
   }
   // 警告按钮
   &.warning {
-    color: @button-warning-color;
-    background-color: @button-warning-bg-color;
-    border-color: @button-warning-border-color;
+    color: white;
+    background-color: var(--warning);
+    border-color: var(--warning);
     &.disabled,
     &[disabled] {
-      color: @button-warning-disabled-color;
-      background-color: @button-warning-disabled-bg-color;
-      border-color: @button-warning-disabled-border-color;
+      color: white;
+      background-color: var(--disabled);
+      border-color: var(--disabled);
     }
   }
   // 危险按钮
   &.danger {
-    color: @button-danger-color;
-    background-color: @button-danger-bg-color;
-    border-color: @button-danger-border-color;
+    color: white;
+    background-color: var(--danger);
+    border-color: var(--danger);
     &.disabled,
     &[disabled] {
-      color: @button-danger-disabled-color;
-      background-color: @button-danger-disabled-bg-color;
-      border-color: @button-danger-disabled-border-color;
+      color: white;
+      background-color: var(--disabled);
+      border-color: var(--disabled);
     }
   }
   // 完成按钮
   &.success {
-    color: @button-success-color;
-    background-color: @button-success-bg-color;
-    border-color: @button-success-border-color;
+    color: white;
+    background-color: var(--success);
+    border-color: var(--success);
     &.disabled,
     &[disabled] {
-      color: @button-success-disabled-color;
-      background-color: @button-success-disabled-bg-color;
-      border-color: @button-success-disabled-border-color;
+      color: white;
+      background-color: var(--disabled);
+      border-color: var(--disabled);
     }
   }
 }
@@ -232,74 +136,74 @@
   // 默认按钮
   &,
   &.default {
-    color: @button-default-outline-color;
-    background-color: @button-default-outline-bg-color;
-    border-color: @button-default-outline-border-color;
+    color: var(--default);
+    background-color: transparent;
+    border-color: var(--border);
     &.disabled,
     &[disabled] {
       color: @button-default-outline-disabled-color;
-      background-color: @button-default-outline-disabled-bg-color;
+      background-color: transparent;
       border-color: @button-default-outline-disabled-border-color;
     }
   }
   // 主色按钮
   &.primary {
-    color: @button-primary-outline-color;
-    background-color: @button-primary-outline-bg-color;
-    border-color: @button-primary-outline-border-color;
+    color: var(--primary);
+    background-color: transparent;
+    border-color: var(--primary);
     &.disabled,
     &[disabled] {
-      color: @button-primary-outline-disabled-color;
-      background-color: @button-primary-outline-disabled-bg-color;
-      border-color: @button-primary-outline-disabled-border-color;
+      color: var(--disabled);
+      background-color: transparent;
+      border-color: var(--disabled);
     }
   }
   // 链接按钮
   &.link {
-    color: @button-link-outline-color;
-    background-color: @button-link-outline-bg-color;
-    border-color: @button-link-outline-border-color;
+    color: var(--link);
+    background-color: transparent;
+    border-color: var(--link);
     &.disabled,
     &[disabled] {
-      color: @button-link-outline-disabled-color;
-      background-color: @button-link-outline-disabled-bg-color;
-      border-color: @button-link-outline-disabled-border-color;
+      color: var(--disabled);
+      background-color: transparent;
+      border-color: var(--disabled);
     }
   }
   // 警告按钮
   &.warning {
-    color: @button-warning-outline-color;
-    background-color: @button-warning-outline-bg-color;
-    border-color: @button-warning-outline-border-color;
+    color: var(--warning);
+    background-color: transparent;
+    border-color: var(--warning);
     &.disabled,
     &[disabled] {
-      color: @button-warning-outline-disabled-color;
-      background-color: @button-warning-outline-disabled-bg-color;
-      border-color: @button-warning-outline-disabled-border-color;
+      color: var(--disabled);
+      background-color: transparent;
+      border-color: var(--disabled);
     }
   }
   // 危险按钮
   &.danger {
-    color: @button-danger-outline-color;
-    background-color: @button-danger-outline-bg-color;
-    border-color: @button-danger-outline-border-color;
+    color: var(--danger);
+    background-color: transparent;
+    border-color: var(--danger);
     &.disabled,
     &[disabled] {
-      color: @button-danger-outline-disabled-color;
-      background-color: @button-danger-outline-disabled-bg-color;
-      border-color: @button-danger-outline-disabled-border-color;
+      color: var(--disabled);
+      background-color: transparent;
+      border-color: var(--disabled);
     }
   }
   // 完成按钮
   &.success {
-    color: @button-success-outline-color;
-    background-color: @button-success-outline-bg-color;
-    border-color: @button-success-outline-border-color;
+    color: var(--success);
+    background-color: transparent;
+    border-color: var(--success);
     &.disabled,
     &[disabled] {
-      color: @button-success-outline-disabled-color;
-      background-color: @button-success-outline-disabled-bg-color;
-      border-color: @button-success-outline-disabled-border-color;
+      color: var(--disabled);
+      background-color: transparent;
+      border-color: var(--disabled);
     }
   }
 }
