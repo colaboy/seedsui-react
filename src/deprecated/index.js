@@ -1,5 +1,6 @@
 export { default as locale } from './deprecated/locale'
 // export { default as ApiSuperagent } from './deprecated/ApiSuperagent'; // 与Axios同类型,推荐使用Axios
+export { default as Actionsheet } from './deprecated/Actionsheet' // (废弃, 使用Modal代替)
 export { default as Alert } from './deprecated/Alert' // (废弃, 使用Modal代替)
 export { default as Attach } from './deprecated/Attach'
 export { default as BiClock } from './deprecated/BiClock' // 不常用
@@ -72,6 +73,7 @@ export { default as Stencil } from './deprecated/Stencil' // 不常用
 export { default as Sticker } from './deprecated/Sticker' // 不常用
 export { default as Swiper } from './deprecated/Swiper' // 使用了第三方插件的组件
 export { default as Tabbar } from './deprecated/Tabbar' // (废弃, 使用Tabs代替)
+export { default as Tabs } from './deprecated/Tabs' // (废弃, 使用Tabs代替)
 export { default as Ticket } from './deprecated/Ticket' // 不常用
 export { default as Timeline } from './deprecated/Timeline' // 不常用
 export { default as Timepart } from './deprecated/Timepart' // 不常用
