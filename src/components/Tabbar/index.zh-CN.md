@@ -8,4 +8,6 @@ title: TabBar
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Tabs.jsx"></code>
+
+<code src="./demos/Group.jsx"></code>

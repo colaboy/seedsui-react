@@ -13,7 +13,7 @@ export default () => {
             className="color-white"
             style={{
               backgroundColor: 'var(--primary)',
-              padding: 'var(--space-s)',
+              padding: 'var(--space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
             }}
@@ -25,7 +25,7 @@ export default () => {
             className="color-white"
             style={{
               backgroundColor: 'var(--primary)',
-              padding: 'var(--space-s)',
+              padding: 'var(--space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
             }}
@@ -37,7 +37,7 @@ export default () => {
             className="color-white"
             style={{
               backgroundColor: 'var(--primary)',
-              padding: 'var(--space-s)',
+              padding: 'var(--space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
             }}
@@ -49,7 +49,7 @@ export default () => {
             className="color-white"
             style={{
               backgroundColor: 'var(--primary)',
-              padding: 'var(--space-s)',
+              padding: 'var(--space-m)',
               border: '1px solid white',
               boxSizing: 'border-box'
             }}

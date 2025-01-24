@@ -31,7 +31,7 @@ function RangeMain(
   },
   ref
 ) {
-  if (!ranges) {
+  if (ranges === undefined) {
     // eslint-disable-next-line
     ranges = getDefaultRanges()
   }

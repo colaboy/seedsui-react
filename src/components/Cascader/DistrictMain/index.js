@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { updateValueType, defaultSetValueType, testStreet } from './utils'
 import Main from './../Main'
-import TabBar from './TabBar'
+import Tabs from './Tabs'
 
 // 级联选择
 const DistrictMain = forwardRef(
@@ -80,7 +80,7 @@ const DistrictMain = forwardRef(
         ref={ref}
         TabsComponent={({ tabs, activeTab, onActiveTab }) => {
           return (
-            <TabBar
+            <Tabs
               tabs={tabs}
               activeTab={activeTab}
               onActiveTab={onActiveTab}

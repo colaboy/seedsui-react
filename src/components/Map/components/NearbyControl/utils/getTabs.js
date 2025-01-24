@@ -1,10 +1,10 @@
 // 内库使用-start
-// import LocaleUtil from './../../../../../../utils/LocaleUtil'
+import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
-// 测试使用-start
+/* 测试使用-start
 import { locale } from 'seedsui-react'
-// 测试使用-end
+测试使用-end */
 
 const tabs = function getTabs() {
   if (window.google) {

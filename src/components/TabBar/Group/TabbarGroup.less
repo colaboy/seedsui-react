@@ -1,0 +1,90 @@
+.tabbar-group {
+  max-width: 96%;
+
+  position: relative;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  color: var(--secondary);
+}
+
+.tabbar-group-tab-wrapper {
+  border: 1px solid var(--border);
+  border-left-width: 0;
+
+  position: relative;
+  flex: auto;
+  padding: 0 var(--space-xl);
+}
+
+.tabbar-group-tab-wrapper.active {
+  color: var(--primary);
+  background-color: #fff;
+  border-color: var(--primary);
+}
+
+// 每块只有上右下有边框, 选中时需要补充左边框
+.tabbar-group-tab-wrapper.active:not(:first-child):before {
+  position: absolute;
+  content: '';
+  left: -1px;
+  top: -1px;
+  bottom: -1px;
+  width: 1px;
+  background-color: var(--primary);
+}
+
+// Tab
+.tabbar-group-tab {
+  white-space: nowrap;
+  padding: var(--space-m) 0;
+  text-align: center;
+}
+
+// 圆角
+.tabbar-group-tab-wrapper:first-child {
+  border-start-start-radius: var(--radius-m);
+  border-end-start-radius: var(--radius-m);
+  border-left-width: 1px;
+}
+.tabbar-group-tab-wrapper:last-child {
+  border-start-end-radius: var(--radius-m);
+  border-end-end-radius: var(--radius-m);
+}
+
+// 文本
+.tabbar-group-tab-name {
+  font-size: var(--font-size-m);
+}
+.tabbar-group-tab-description {
+  color: var(--secondary);
+  font-size: var(--font-size-s);
+}
+.tabbar-group-tab-name + .tabbar-group-tab-description,
+.tabbar-group-tab-description + .tabbar-group-tab-name {
+  margin-top: var(--space-m);
+}
+
+// 尺寸
+.tabbar-group.s {
+  // 圆角
+  .tabbar-group-tab-wrapper:first-child {
+    border-start-start-radius: var(--radius-xs);
+    border-end-start-radius: var(--radius-xs);
+  }
+  .tabbar-group-tab-wrapper:last-child {
+    border-start-end-radius: var(--radius-xs);
+    border-end-end-radius: var(--radius-xs);
+  }
+
+  // 宽度
+  .tabbar-group-tab-wrapper {
+    padding: 0 var(--space-s);
+  }
+  // 高度
+  .tabbar-group-tab {
+    padding: var(--space-xxs) 0;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TabBar({ tabs, activeTab, onActiveTab }) {
+function Tabs({ tabs, activeTab, onActiveTab }) {
   return (
     <div className="cascader-tabs">
       {Array.isArray(tabs) && tabs.length
@@ -23,4 +23,4 @@ function TabBar({ tabs, activeTab, onActiveTab }) {
   )
 }
 
-export default TabBar
+export default Tabs

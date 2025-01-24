@@ -62,8 +62,9 @@ function MultipleMain(
     <div ref={mainRef} className="picker-multiple-main">
       {Array.isArray(tabsRef.current) && tabsRef.current.length ? (
         <>
-          <TabBar
+          <TabBar.Tabs
             className="picker-tabs"
+            descriptionPosition="top"
             list={tabsRef.current}
             value={activeTab}
             onChange={setActiveTab}
@@ -85,7 +86,7 @@ function MultipleMain(
                 className={tab.disabled ? 'disabled' : ''}
                 onChange={(date) => {
                   tab.value = date
-                  tab.subTitle = DateUtil.format(tab.value, type)
+                  tab.name = DateUtil.format(tab.value, type)
                   onChange && onChange(tabsRef.current)
                 }}
               />

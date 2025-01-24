@@ -1,17 +1,23 @@
 // tabbar-tabs
-.tabbar-tabs-tab {
-  white-space: nowrap;
-  padding: var(--space-s) 0 var(--space-m);
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  margin: 0 auto;
-  font-size: var(--font-size-m);
+.tabbar-tabs {
   position: relative;
-  cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  border-bottom: 1px solid var(--border);
+  background-color: white;
+}
+.tabbar-tabs-tab-wrapper {
+  flex: auto;
+  padding: 0 var(--space-xl);
 
   &.active {
     color: var(--primary);
+    .tabbar-tabs-tab::after {
+      display: block;
+    }
   }
 
   // 禁用
@@ -21,32 +27,37 @@
     pointer-events: none;
   }
 }
+.tabbar-tabs-tab {
+  white-space: nowrap;
+  padding: var(--space-l) 0 var(--space-xl);
+  margin: 0 auto;
+  font-size: var(--font-size-m);
+  position: relative;
+  cursor: pointer;
+  text-align: center;
 
-.tabbar-tabs-line {
-  position: absolute;
-  bottom: 0;
-  height: var(--active-line-height);
-  background: var(--active-line-color);
-  border-radius: var(--active-line-border-radius);
+  // 选中状态下横线,由无到有动画
+  &:after {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+    transform-origin: center center;
+    content: '';
+  }
 }
 
-// .tab-icon {
-//   margin: 0 4px;
-//   pointer-events: none;
-// }
-// .tab-content {
-//   display: inline-block;
-//   vertical-align: middle;
-//   pointer-events: none;
-// }
-// .tab-title,
-// .tab-subtitle {
-//   overflow: hidden;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-// }
-// .tab-title {
-// }
-// .tab-subtitle {
-//   font-size: @font-size-s;
-// }
+.tabbar-tabs-tab-name {
+  color: var(--default);
+  font-size: var(--font-size-m);
+}
+.tabbar-tabs-tab-description {
+  color: var(--secondary);
+  font-size: var(--font-size-s);
+}
+.tabbar-tabs-tab-name + .tabbar-tabs-tab-description,
+.tabbar-tabs-tab-description + .tabbar-tabs-tab-name {
+  margin-top: var(--space-s);
+}

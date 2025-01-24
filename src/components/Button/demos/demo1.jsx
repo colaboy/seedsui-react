@@ -3,7 +3,7 @@ import React from 'react'
 import { Layout, Divider, Button } from 'seedsui-react'
 
 const buttonStyle = {
-  margin: 'var(--space-s)'
+  margin: 'var(--space-m)'
 }
 
 export default () => {

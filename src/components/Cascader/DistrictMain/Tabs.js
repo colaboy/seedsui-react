@@ -1,7 +1,7 @@
 import React from 'react'
 import { testEditableOptions } from './utils'
 
-function TabBar({
+function Tabs({
   tabs,
   activeTab,
   onActiveTab,
@@ -36,4 +36,4 @@ function TabBar({
   )
 }
 
-export default TabBar
+export default Tabs

@@ -37,12 +37,12 @@ const PickerMain = function (
     setMultipleDate([
       {
         id: 'start',
-        name: LocaleUtil.locale('开始时间', 'SeedsUI_start_time'),
+        description: LocaleUtil.locale('开始时间', 'SeedsUI_start_time'),
         value: startDate
       },
       {
         id: 'end',
-        name: LocaleUtil.locale('结束时间', 'SeedsUI_end_time'),
+        description: LocaleUtil.locale('结束时间', 'SeedsUI_end_time'),
         value: endDate
       }
     ])

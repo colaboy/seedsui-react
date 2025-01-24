@@ -148,11 +148,11 @@ const Types = forwardRef(
         ref={rootRef}
       >
         {Array.isArray(list) && (
-          <TabBar
+          <TabBar.Group
             onChange={handleTabs}
             list={list}
             value={value}
-            className="tabs-rect datepicker-types-tabs"
+            className="s"
             {...TabsProps}
           />
         )}

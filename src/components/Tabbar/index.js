@@ -1,9 +1,9 @@
 import Tabs from './Tabs'
 import Group from './Group'
-import Menus from './Menus'
+// import Menus from './Menus'
 
 export default {
   Tabs,
-  Group,
-  Menus
+  Group
+  // Menus
 }

@@ -5,18 +5,18 @@ export default () => {
   const [mulValue, setMulValue] = useState([
     {
       id: 'start',
-      name: 'Start',
+      description: 'Start',
       value: new Date()
       // disabled: true
     },
     {
       id: 'middle',
-      name: 'Middle',
+      description: 'Middle',
       value: new Date()
     },
     {
       id: 'end',
-      name: 'End',
+      description: 'End',
       value: new Date()
     }
   ])
