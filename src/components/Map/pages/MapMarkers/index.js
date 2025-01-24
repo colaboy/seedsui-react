@@ -11,9 +11,9 @@ import Result from './../../components/Result'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
-// 测试使用-start
-// import { locale } from 'seedsui-react'
-// 测试使用-end
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
 
 // 地图标注
 function MapMarkers(

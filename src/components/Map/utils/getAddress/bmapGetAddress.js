@@ -4,9 +4,9 @@ import coordsToFit from './../coordsToFit'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
-// 测试使用-start
-// import { locale } from 'seedsui-react'
-// 测试使用-end
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
 
 // 百度地址逆解析
 function bmapGetAddress(params) {

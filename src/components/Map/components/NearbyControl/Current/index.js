@@ -7,7 +7,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, Checkbox } from 'seedsui-react'
+// import { LocaleUtil, Checkbox } from 'seedsui-react'
 // 测试使用-end
 
 // 当前位置

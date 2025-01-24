@@ -5,7 +5,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale } from 'seedsui-react'
+import { LocaleUtil } from 'seedsui-react'
 测试使用-end */
 
 function Type({ type, onClick }) {

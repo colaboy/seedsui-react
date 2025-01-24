@@ -10,7 +10,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { TabBar, locale } from 'seedsui-react'
+import { TabBar, LocaleUtil } from 'seedsui-react'
 测试使用-end */
 
 // 日期类型选择控件: 年月日季

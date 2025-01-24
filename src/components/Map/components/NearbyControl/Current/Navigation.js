@@ -8,7 +8,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
-// import { Loading, Toast, Bridge, locale } from 'seedsui-react'
+// import { Loading, Toast, Bridge, LocaleUtil } from 'seedsui-react'
 // 测试使用-end
 
 // 导航

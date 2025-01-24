@@ -7,7 +7,7 @@ import Toast from './../../../Toast'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, Loading, Toast } from 'seedsui-react'
+// import { LocaleUtil, Loading, Toast } from 'seedsui-react'
 // 测试使用-end
 
 // 定位控件

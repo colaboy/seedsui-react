@@ -7,7 +7,7 @@ import Modal from './../../../components/Modal'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Modal, locale } from 'seedsui-react'
+import { Device, Modal, LocaleUtil } from 'seedsui-react'
 测试使用-end */
 
 // 客户端默认返回控制

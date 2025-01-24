@@ -1,7 +1,7 @@
 import React from 'react'
 
 // 测试使用
-// import { locale, Layout, Button } from 'seedsui-react'
+// import { LocaleUtil, Layout, Button } from 'seedsui-react'
 
 // 内库使用
 import LocaleUtil from './../../../../../utils/LocaleUtil'

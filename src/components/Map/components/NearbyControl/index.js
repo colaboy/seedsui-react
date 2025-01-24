@@ -12,7 +12,7 @@ import Loading from './../../../Loading'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, Loading } from 'seedsui-react'
+// import { LocaleUtil, Loading } from 'seedsui-react'
 // 测试使用-end
 
 // 附近推荐

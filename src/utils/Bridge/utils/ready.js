@@ -4,7 +4,7 @@ import AssetUtil from './../../AssetUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, AssetUtil } from 'seedsui-react'
+import { LocaleUtil, AssetUtil } from 'seedsui-react'
 测试使用-end */
 
 /**

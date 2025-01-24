@@ -1,8 +1,9 @@
 // 内库使用
 import LocaleUtil from './../../../../utils/LocaleUtil'
 
-// 测试使用
-// import { locale } from 'seedsui-react'
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
 
 // 刷新完成
 function topRefreshOk(topContainer, isOk) {

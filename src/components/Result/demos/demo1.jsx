@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Result, Button, locale } from 'seedsui-react'
+import { Layout, Result, Button, LocaleUtil } from 'seedsui-react'
 
 const titleStyle = {
   padding: '12px 12px 8px',

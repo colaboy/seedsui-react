@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import dayjs from 'dayjs'
-import { DatePicker, DateUtil, locale } from 'seedsui-react'
+import { DatePicker, DateUtil, LocaleUtil } from 'seedsui-react'
 
 export default () => {
   const dateRef = useRef(null)

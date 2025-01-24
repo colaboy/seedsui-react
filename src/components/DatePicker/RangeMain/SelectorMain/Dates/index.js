@@ -7,7 +7,7 @@ import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale } from 'seedsui-react'
+import { LocaleUtil } from 'seedsui-react'
 测试使用-end */
 
 // 自定义日期选择弹窗: 两框选择

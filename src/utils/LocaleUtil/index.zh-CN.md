@@ -20,7 +20,7 @@ LocaleUtil.setLanguage 后, LocaleUtil.locale 默认读取 window.seedsLocaleDat
 
 ```javascript
 import React from 'react'
-import { locale } from 'seedsui-react'
+import { LocaleUtil } from 'seedsui-react'
 
 // 其中key的值为: 半径{0}米
 LocaleUtil.locale('半径1000米', 'key', [1000]) // => 半径1000米

@@ -10,7 +10,7 @@ import HighlightKeyword from './../../../HighlightKeyword'
 // 内库使用-end
 
 // 测试使用-start
-// import { locale, Loading, Input, Layout, Result, HighlightKeyword } from 'seedsui-react'
+// import { LocaleUtil, Loading, Input, Layout, Result, HighlightKeyword } from 'seedsui-react'
 // 测试使用-end
 
 // 搜索

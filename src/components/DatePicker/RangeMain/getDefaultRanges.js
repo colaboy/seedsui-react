@@ -6,7 +6,7 @@ import DateUtil from './../../../utils/DateUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, DateUtil } from 'seedsui-react'
+import { LocaleUtil, DateUtil } from 'seedsui-react'
 测试使用-end */
 
 // 默认日期区间

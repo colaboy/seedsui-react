@@ -10,7 +10,7 @@ import LocaleUtil from './../LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, locale } from 'seedsui-react'
+import { Device, LocaleUtil } from 'seedsui-react'
 测试使用-end */
 
 let Bridge = {

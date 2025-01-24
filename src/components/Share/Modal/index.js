@@ -7,7 +7,7 @@ import BaseModal from './../../Modal'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Modal as BaseModal } from 'seedsui-react'
+import { LocaleUtil, Modal as BaseModal } from 'seedsui-react'
 测试使用-end */
 
 const Modal = forwardRef(

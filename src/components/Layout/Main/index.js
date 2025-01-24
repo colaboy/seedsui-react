@@ -3,11 +3,13 @@ import TopContainer from './TopContainer'
 import isBottom from './utils/isBottom'
 import topRefreshOk from './utils/topRefreshOk.js'
 
-// 内库使用
+// 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+// 内库使用-end
 
-// 测试使用
-// import { locale } from 'seedsui-react'
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
 
 // 下拉刷新容器
 const Main = forwardRef(

@@ -8,7 +8,7 @@ import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Button } from 'seedsui-react'
+import { LocaleUtil, Button } from 'seedsui-react'
 测试使用-end */
 
 // Combo

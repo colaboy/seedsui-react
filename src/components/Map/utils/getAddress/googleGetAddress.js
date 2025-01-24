@@ -4,9 +4,9 @@ import coordsToFit from './../coordsToFit'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
-// 测试使用-start
-// import { locale } from 'seedsui-react'
-// 测试使用-end
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
 
 // 地址逆解析
 function googleGetAddress(params) {

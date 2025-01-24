@@ -15,7 +15,7 @@ import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
 
 // 测试使用
-// import { locale, Input, Map } from 'seedsui-react'
+// import { LocaleUtil, Input, Map } from 'seedsui-react'
 
 const {
   getAddress: defaultGetAddress,

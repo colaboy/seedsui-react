@@ -18,7 +18,7 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
-// import { Loading, Toast, locale } from 'seedsui-react'
+// import { Loading, Toast, LocaleUtil } from 'seedsui-react'
 // 测试使用-end
 
 // 地图选点

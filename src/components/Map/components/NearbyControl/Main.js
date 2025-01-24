@@ -7,7 +7,7 @@ import Result from './../../../Result'
 // 内库使用-end
 
 // 测试使用-start
-// import { Checkbox, Result, locale } from 'seedsui-react'
+// import { Checkbox, Result, LocaleUtil } from 'seedsui-react'
 // 测试使用-end
 
 // 附近结果

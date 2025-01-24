@@ -7,7 +7,7 @@ import Calendar from './../../Calendar'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, DateUtil, Calendar } from 'seedsui-react'
+import { LocaleUtil, DateUtil, Calendar } from 'seedsui-react'
 测试使用-end */
 
 // 日期快捷选择

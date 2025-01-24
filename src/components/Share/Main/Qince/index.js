@@ -8,7 +8,7 @@ import Toast from './../../../Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Device, Toast } from 'seedsui-react'
+import { LocaleUtil, Device, Toast } from 'seedsui-react'
 测试使用-end */
 
 // 企业微信只支持分享到企业微信

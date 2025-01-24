@@ -10,7 +10,7 @@ import Modal from './../Modal'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Clipboard, AssetUtil, Bridge, Toast, Modal } from 'seedsui-react'
+import { LocaleUtil, Clipboard, AssetUtil, Bridge, Toast, Modal } from 'seedsui-react'
 测试使用-end */
 
 // 上传按钮

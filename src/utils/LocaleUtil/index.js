@@ -3,7 +3,7 @@ import languageMap from './languageMap'
 import setLanguage from './setLanguage'
 
 export default {
-  locale: locale,
+  locale: LocaleUtil,
   languageMap: languageMap,
   setLanguage: setLanguage
 }

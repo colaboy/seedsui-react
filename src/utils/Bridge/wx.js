@@ -13,7 +13,7 @@ import Toast from './../../components/Toast'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Device, Toast } from 'seedsui-react'
+import { LocaleUtil, Device, Toast } from 'seedsui-react'
 测试使用-end */
 
 let Bridge = {

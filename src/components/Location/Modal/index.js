@@ -6,7 +6,7 @@ import LocaleUtil from './../../../utils/LocaleUtil'
 import ModalPicker from './../../Modal/Modal'
 
 // 测试使用
-// import { locale, Modal } from 'seedsui-react'
+// import { LocaleUtil, Modal } from 'seedsui-react'
 // const ModalPicker = Modal.Modal
 
 // Modal

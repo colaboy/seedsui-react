@@ -7,7 +7,7 @@ import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Result, IndexBar } from 'seedsui-react'
+import { LocaleUtil, Result, IndexBar } from 'seedsui-react'
 测试使用-end */
 
 const ListItem = forwardRef(

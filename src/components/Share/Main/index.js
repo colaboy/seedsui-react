@@ -14,7 +14,7 @@ import Result from './../../Result'
 // 内库使用-end
 
 /* 测试使用-start
-import { locale, Bridge, Device, Result } from 'seedsui-react'
+import { LocaleUtil, Bridge, Device, Result } from 'seedsui-react'
 测试使用-end */
 
 // 分享
