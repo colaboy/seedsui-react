@@ -1,0 +1,64 @@
+.tabbar-menus {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background-color: white;
+}
+
+.tabbar-menus-tab-wrapper {
+  flex: auto;
+  padding: 0 var(--space-xl);
+
+  &.active {
+    color: var(--primary);
+
+    .tabbar-menus-tab-icon {
+      color: var(--primary);
+    }
+  }
+
+  // 禁用
+  &.disabled,
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.tabbar-menus-tab {
+  white-space: nowrap;
+  padding: var(--space-l) 0 var(--space-xl);
+  margin: 0 auto;
+  font-size: var(--font-size-m);
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tabbar-menus-tab-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--navbar-icon);
+}
+
+.tabbar-menus-tab-icon + .tabbar-menus-tab-name,
+.tabbar-menus-tab-icon + .tabbar-menus-tab-description {
+  margin-top: var(--space-xxs);
+}
+
+.tabbar-menus-tab-name {
+  font-size: var(--font-size-s);
+}
+
+.tabbar-menus-tab-description {
+  color: var(--secondary);
+  font-size: var(--font-size-xs);
+}
+
+.tabbar-menus-tab-name + .tabbar-menus-tab-description,
+.tabbar-menus-tab-description + .tabbar-menus-tab-name {
+  margin-top: var(--space-s);
+}

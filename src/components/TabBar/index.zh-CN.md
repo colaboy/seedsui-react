@@ -11,3 +11,5 @@ title: TabBar
 <code src="./demos/Tabs.jsx"></code>
 
 <code src="./demos/Group.jsx"></code>
+
+<code src="./demos/Menus.jsx"></code>

@@ -8,9 +8,11 @@ const Group = forwardRef(
       /*
       [
         {
+          icon: Node,
           name: string,
           description: string,
           disabled
+          children: Node,
         }
       ]
       */
@@ -65,7 +67,7 @@ const Group = forwardRef(
             }}
           >
             <div className="tabbar-group-tab">
-              {item.icon && item.icon}
+              {typeof item.icon === 'function' ? item.icon(isActive) : item.icon}
               {description && descriptionPosition === 'top' ? (
                 <div className={`tabbar-group-tab-description`}>{description}</div>
               ) : null}

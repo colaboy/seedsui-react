@@ -1,20 +1,20 @@
-// tabbar-tabs
 .tabbar-tabs {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
-
   border-bottom: 1px solid var(--border);
   background-color: white;
 }
+
 .tabbar-tabs-tab-wrapper {
   flex: auto;
   padding: 0 var(--space-xl);
 
   &.active {
     color: var(--primary);
+
     .tabbar-tabs-tab::after {
       display: block;
     }
@@ -27,6 +27,7 @@
     pointer-events: none;
   }
 }
+
 .tabbar-tabs-tab {
   white-space: nowrap;
   padding: var(--space-l) 0 var(--space-xl);
@@ -37,7 +38,7 @@
   text-align: center;
 
   // 选中状态下横线,由无到有动画
-  &:after {
+  &::after {
     display: none;
     position: absolute;
     bottom: 0;
@@ -53,10 +54,12 @@
   color: var(--default);
   font-size: var(--font-size-m);
 }
+
 .tabbar-tabs-tab-description {
   color: var(--secondary);
   font-size: var(--font-size-s);
 }
+
 .tabbar-tabs-tab-name + .tabbar-tabs-tab-description,
 .tabbar-tabs-tab-description + .tabbar-tabs-tab-name {
   margin-top: var(--space-s);

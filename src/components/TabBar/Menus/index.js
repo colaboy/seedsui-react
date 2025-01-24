@@ -1,30 +1,24 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
-const Group = forwardRef(
+const Menus = forwardRef(
   (
     {
-      className = 'tabbar-line',
-      contentProps = {},
-      titleProps = {},
-      subTitleProps = {},
-
       value,
       list = [],
-      // [
-      //   {
-      //     leftIcon: node,
-      //     leftIconActive: node,
-      //     rightIcon: node,
-      //     rightIconActive: node,
-
-      //     name: string,
-      //     subTitle: string,
-
-      //     props: object // tab属性
-      //   }
-      // ]
-
+      /*
+      [
+        {
+          icon: Node,
+          name: string,
+          description: string,
+          disabled
+          children: Node,
+        }
+      ]
+      */
+      className,
       disabled,
+      descriptionPosition,
       onChange,
       ...props
     },
@@ -40,119 +34,65 @@ const Group = forwardRef(
       }
     })
 
-    function handleClick(e, item) {
-      if (onChange) {
-        onChange(item, { event: e })
-        e.stopPropagation()
-      }
-    }
-
     // 根据value判断此项是否为选中状态
     function getIsActive(item) {
-      if (Object.prototype.toString.call(value) === '[object Object]') {
-        if (item.id && value.id) {
-          return item.id === value.id
-        } else if (item.name && value.name) {
-          return item.name === value.name
-        } else {
-          return false
-        }
+      if (item?.id && value?.id) {
+        return item.id === value.id
       }
       return false
     }
 
-    // 图标DOM
-    function getIcon(icon, iconActive, isActive) {
-      if (isActive) {
-        return iconActive ? iconActive : icon
-      }
-      return icon
-    }
-
     // 内容DOM
-    function getTabBarContent() {
+    function getMenus() {
       if (!Array.isArray(list)) {
-        console.log('SeedsUI: TabBar的传入参数list类型不正确')
+        console.log('SeedsUI TabBar: Parameter list is wrong')
         return null
       }
-      // tabStyle高度
-      let tabStyle = {}
-      if (props?.style && props?.style?.height) {
-        tabStyle = {
-          height: props.style.height
-        }
-      }
+
       // 遍历
       return list.map((item, index) => {
-        const {
-          leftIcon,
-          leftIconActive,
-          rightIcon,
-          rightIconActive,
-          name,
-          subTitle,
-          props: tabProps = {}
-        } = item
+        const { name, description, props: tabProps = {} } = item
         let isActive = getIsActive(item)
-        let leftIconDOM = null
-        if (leftIcon) {
-          leftIconDOM = getIcon(leftIcon, leftIconActive, isActive)
-        }
-        let rightIconDOM = null
-        if (rightIcon) {
-          rightIconDOM = getIcon(rightIcon, rightIconActive, isActive)
-        }
-
         return (
-          <li
-            className={`tab${item?.disabled ? ' disabled' : ''}${isActive ? ' active' : ''}`}
+          <div
+            className={`tabbar-menus-tab-wrapper${item?.disabled ? ' disabled' : ''}${
+              isActive ? ' active' : ''
+            }`}
             data-index={index}
             key={index}
             {...tabProps}
-            style={Object.assign({}, tabStyle, tabProps?.style || {})}
-            onClick={(e) => handleClick(e, item)}
+            onClick={(e) => {
+              e.stopPropagation()
+              onChange && onChange(item)
+            }}
           >
-            {leftIconDOM && leftIconDOM}
-            <div className="tab-content" {...contentProps}>
-              <div
-                {...titleProps}
-                className={`tab-title${titleProps.className ? ' ' + titleProps.className : ''}`}
-              >
-                {name}
-              </div>
-              {subTitle && (
-                <div
-                  {...subTitleProps}
-                  className={`tab-subtitle${
-                    subTitleProps.className ? ' ' + subTitleProps.className : ''
-                  }`}
-                >
-                  {subTitle}
-                </div>
-              )}
+            <div className="tabbar-menus-tab">
+              {typeof item.icon === 'function' ? item.icon(isActive) : item.icon}
+              {description && descriptionPosition === 'top' ? (
+                <div className={`tabbar-menus-tab-description`}>{description}</div>
+              ) : null}
+              <div className={`tabbar-menus-tab-name`}>{name}</div>
+              {description && descriptionPosition !== 'top' ? (
+                <div className={`tabbar-menus-tab-description`}>{description}</div>
+              ) : null}
+              {item.children && item.children}
             </div>
-            {rightIconDOM && rightIconDOM}
-          </li>
+          </div>
         )
       })
     }
 
-    // 获取tabBar的DOM
-    const tabBarContent = getTabBarContent()
-
     return (
-      <ul
+      <div
         {...props}
-        className={`tabbar animated${average ? ' tabbar-tab-average' : ''}${
-          className ? ' ' + className : ''
-        }`}
+        className={`tabbar tabbar-menus${className ? ' ' + className : ''}`}
         disabled={disabled}
         ref={rootRef}
       >
-        {tabBarContent}
-      </ul>
+        {getMenus()}
+      </div>
     )
   }
 )
 
-export default Group
+export default Menus
