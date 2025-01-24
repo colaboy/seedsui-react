@@ -14,18 +14,15 @@ export default defineConfig({
   base: '/seedsui-react/',
   styles: [
     `
-    body { background-color: #eee; }
+    /* windows滚动条样式 */
+    * { scrollbar-width: thin !important; }
+
     /* 主体宽度 */
     .dumi-default-header-content,
     .dumi-default-doc-layout > main {
       max-width: none !important;
     }
 
-    /* windows滚动条样式 */
-    .dumi-default-sidebar,
-    .dumi-default-content {
-      scrollbar-width: thin !important;
-    }
   `
   ],
   metas: [{ name: 'viewport', content: 'width=device-width,viewport-fit=cover' }],
@@ -37,12 +34,16 @@ export default defineConfig({
         { title: '安装', link: '/guide' },
         { title: '组件', link: '/components' },
         { title: '工具', link: '/utils' },
+        { title: '开发规范', link: '/dev' },
+        { title: '交互规范', link: '/ux' },
         { title: '问答', link: '/faq' }
       ],
       'en-US': [
         { title: 'Install', link: '/en-US/guide' },
         { title: 'Components', link: '/en-US/components' },
         { title: 'Utils', link: '/en-US/utils' },
+        { title: 'Dev Standards', link: '/en-US/dev' },
+        { title: 'UX Standards', link: '/en-US/ux' },
         { title: 'FAQ', link: '/en-US/faq' }
       ]
     },

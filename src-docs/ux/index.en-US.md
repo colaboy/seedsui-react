@@ -1,3 +1,3 @@
-# UI/UX Standards
+# FAQ
 
 This is an example component.
