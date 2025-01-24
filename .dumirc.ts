@@ -12,7 +12,22 @@ export default defineConfig({
   publicPath: '/seedsui-react/',
   // 设置路由前缀，通常用于部署到非根目录
   base: '/seedsui-react/',
-  styles: [`body { background-color: #eee; }`],
+  styles: [
+    `
+    body { background-color: #eee; }
+    /* 主体宽度 */
+    .dumi-default-header-content,
+    .dumi-default-doc-layout > main {
+      max-width: none !important;
+    }
+
+    /* windows滚动条样式 */
+    .dumi-default-sidebar,
+    .dumi-default-content {
+      scrollbar-width: thin !important;
+    }
+  `
+  ],
   metas: [{ name: 'viewport', content: 'width=device-width,viewport-fit=cover' }],
   themeConfig: {
     name: 'SeedsUI',
