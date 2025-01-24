@@ -1,0 +1,129 @@
+.numberbox,
+.numberbox.m {
+  width: 100px;
+  height: 26px;
+}
+.numberbox.xl {
+  width: 170px;
+  height: 40px;
+  .numberbox-button {
+    width: 40px;
+  }
+}
+.numberbox.l {
+  width: 120px;
+  height: 32px;
+  .numberbox-button {
+    width: 32px;
+  }
+}
+.numberbox.s {
+  width: 80px;
+  height: 22px;
+  .numberbox-button {
+    width: 22px;
+  }
+  .numberbox-input {
+    font-size: 12px;
+  }
+}
+
+.numberbox-input,
+.numberbox-button {
+  height: 100%;
+}
+.numberbox-button {
+  line-height: 100%;
+}
+
+.numberbox {
+  .inline-flex;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  border-radius: 4px;
+  &:extend(.flex-middle);
+  &:extend(.bordered);
+  .ricon {
+    display: block;
+    margin-right: 4px;
+    margin-left: 4px;
+    color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+// 文本框
+.numberbox-input-wrapper {
+  &:extend(.flex-1);
+  .numberbox-input {
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    &:extend(.appearance);
+    &:extend(.flex-1);
+  }
+}
+
+// 按钮
+.numberbox-button {
+  display: block;
+  width: 26px;
+
+  font-size: 20px;
+  background-color: white;
+  border-width: 0;
+  &:extend(.appearance);
+}
+.numberbox-button-minus {
+  left: 0;
+  color: @primary;
+  border-right: 1px solid var(--border);
+  background-color: #f3f4f5;
+  &[disabled] {
+    .setMinusDisabled();
+  }
+}
+.numberbox-button-plus {
+  right: 0;
+  color: white;
+  background-color: @primary;
+  border-left: 1px solid @primary;
+  &[disabled] {
+    .setPlusDisabled();
+  }
+}
+
+// 禁用
+.setPlusDisabled() {
+  // color: #ccc;
+  // background-color: white;
+  // border-left: 1px solid var(--border);
+  opacity: 0.6;
+}
+.setMinusDisabled() {
+  color: #ccc;
+}
+.setInputDisabled() {
+  color: #ccc;
+  opacity: 1;
+  -webkit-text-fill-color: #ccc;
+}
+.numberbox[disabled] {
+  pointer-events: none;
+  .numberbox-input,
+  input[type='number']:disabled {
+    .setInputDisabled();
+  }
+
+  .numberbox-button-minus {
+    .setMinusDisabled();
+  }
+  .numberbox-button-plus {
+    .setPlusDisabled();
+  }
+}

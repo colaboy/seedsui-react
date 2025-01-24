@@ -98,8 +98,8 @@ const NumberBox = forwardRef(
 
     // 更新禁用状态
     function updateState(val) {
-      let minus = rootRef.current.querySelector('.numbox-button-minus')
-      let plus = rootRef.current.querySelector('.numbox-button-plus')
+      let minus = rootRef.current.querySelector('.numberbox-button-minus')
+      let plus = rootRef.current.querySelector('.numberbox-button-plus')
       if (!isNaN(min) && !isNaN(val) && Number(val) <= Number(min)) {
         minus.setAttribute('disabled', 'true')
       } else {
@@ -171,15 +171,15 @@ const NumberBox = forwardRef(
       inputProps = {}
     }
     inputProps.className = inputProps.className
-      ? `${inputProps.className} numbox-input`
-      : 'numbox-input'
+      ? `${inputProps.className} numberbox-input`
+      : 'numberbox-input'
 
     // render
     function getInputDOM() {
       return (
         <InputNumber
           ref={inputRef}
-          className="numbox-input-wrapper"
+          className="numberbox-input-wrapper"
           type="number"
           readOnly={readOnly}
           disabled={disabled}
@@ -220,7 +220,7 @@ const NumberBox = forwardRef(
       <div
         {...props}
         disabled={(!isNaN(min) && !isNaN(max) ? Number(min) >= Number(max) : false) || disabled}
-        className={`numbox${props.className ? ' ' + props.className : ''}`}
+        className={`numberbox${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
         <input
@@ -228,7 +228,7 @@ const NumberBox = forwardRef(
           // disabled={minDisabled}
           {...minusProps}
           type="button"
-          className={`numbox-button numbox-button-minus${
+          className={`numberbox-button numberbox-button-minus${
             minusProps.className ? ' ' + minusProps.className : ''
           }`}
           onClick={handleMinus}
@@ -239,7 +239,7 @@ const NumberBox = forwardRef(
           // disabled={maxDisabled}
           {...plusProps}
           type="button"
-          className={`numbox-button numbox-button-plus${
+          className={`numberbox-button numberbox-button-plus${
             plusProps.className ? ' ' + plusProps.className : ''
           }`}
           onClick={handlePlus}

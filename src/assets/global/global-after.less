@@ -36,53 +36,7 @@
   height: 100%;
 }
 
-// flex 共用的弹性布局, 因为可能要覆盖原display, 所以要放到下面
-// .flex{
-//   display:-webkit-box;
-// }
-// .inline-flex{
-//   display:-webkit-inline-box;
-// }
-// .flex-initial{
-//   -webkit-box-flex: initial;
-// }
-// .flex-0{
-//   -webkit-box-flex:	0.0;
-// }
-// .flex-1{
-//   -webkit-box-flex:1.0;
-// }
-// .flex-vertical{ // box方向
-//   /* autoprefixer: off */
-//   -webkit-box-orient:vertical;
-// }
-// .flex-horizontal{
-//   /* autoprefixer: off */
-//   -webkit-box-orient:horizontal;
-// }
-// .flex-left{ // box内部水平对齐
-//   -webkit-box-pack:start;
-// }
-// .flex-center{
-//   -webkit-box-pack:center;
-// }
-// .flex-right{
-//   -webkit-box-pack:end;
-// }
-// .flex-top{ // box内部垂直对齐
-//   -webkit-box-align:start;
-// }
-// .flex-middle{
-//   -webkit-box-align:center;
-// }
-// .flex-bottom{
-//   -webkit-box-align:end;
-// }
-// .flex-middlecenter{ // box对齐方式
-//   -webkit-box-pack:center;
-//   -webkit-box-align:center;
-// }
-// 如果不考虑android4, 支持flex的话, 则使用flex代替box
+// Flex
 .flex {
   display: flex;
 }
@@ -273,10 +227,25 @@
   text-align: left;
 }
 
-// @import 'list/animate.less'; // 不常用
+// 文字大小
+.font-size-xxl {
+  font-size: @font-size-xxl;
+}
+.font-size-xl {
+  font-size: @font-size-xl;
+}
+.font-size-l {
+  font-size: @font-size-l;
+}
+.font-size-m {
+  font-size: @font-size-m;
+}
+.font-size-s {
+  font-size: @font-size-s;
+}
+.font-size-xs {
+  font-size: @font-size-s;
+}
+
 @import 'list/border.less';
 @import 'list/color.less';
-// @import 'list/filter.less'; // 不常用
-// @import 'list/row.less'; // 不常用
-@import 'list/size.less';
-// @import 'list/space.less'; // 不常用
