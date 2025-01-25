@@ -2,8 +2,10 @@ import Tabs from './Tabs'
 import Group from './Group'
 import Menus from './Menus'
 
-export default {
+const TabBar = {
   Tabs,
   Group,
   Menus
 }
+
+export default TabBar

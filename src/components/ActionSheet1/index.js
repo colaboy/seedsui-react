@@ -1,7 +1,9 @@
 import Combo from './Combo'
 import Modal from './Modal'
 
-export default {
+const ActionSheet1 = {
   Combo: Combo,
   Modal: Modal
 }
+
+export default ActionSheet1

@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useState, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
 import Thumbnail from './Thumbnail'
 

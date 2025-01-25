@@ -11,28 +11,28 @@ const Combo = BaseModal.Combo
 测试使用-end */
 
 // 卡片选择
-export default forwardRef(
-  (
-    {
-      // Modal
-      modalProps,
+const ActionSheetCombo = (
+  {
+    // Modal
+    modalProps,
 
-      list,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <Combo
-        ref={ref}
-        {...props}
-        // Modal
-        modal={Modal}
-        modalProps={{
-          ...modalProps,
-          list: list
-        }}
-      />
-    )
-  }
-)
+    list,
+    ...props
+  },
+  ref
+) => {
+  return (
+    <Combo
+      ref={ref}
+      {...props}
+      // Modal
+      modal={Modal}
+      modalProps={{
+        ...modalProps,
+        list: list
+      }}
+    />
+  )
+}
+
+export default forwardRef(ActionSheetCombo)

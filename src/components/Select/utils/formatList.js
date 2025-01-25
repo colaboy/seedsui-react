@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 // 判断此项是否过滤
 function filterItem(item, keyword) {
   // When have children display parent

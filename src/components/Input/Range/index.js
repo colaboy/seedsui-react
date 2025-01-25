@@ -59,8 +59,8 @@ const Range = forwardRef(
       <div
         {...props}
         className={`input-range${props.className ? ' ' + props.className : ''}${
-          readOnly ? ' ' + 'readOnly' : ''
-        }${disabled ? ' ' + 'disabled' : ''}`}
+          readOnly ? ' readOnly' : ''
+        }${disabled ? ' disabled' : ''}`}
         ref={rootRef}
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}

@@ -1,12 +1,12 @@
 import coordsToFit from './../coordsToFit'
 
 // 内库使用-start
-// import LocaleUtil from './../../../../../utils/LocaleUtil'
+import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
-// 测试使用-start
+/* 测试使用-start
 import { LocaleUtil } from 'seedsui-react'
-// 测试使用-end
+测试使用-end */
 
 // 搜索附近
 async function nearbySearch({ map, keyword, longitude, latitude, type, radius }) {
