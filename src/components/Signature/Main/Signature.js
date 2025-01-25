@@ -16,7 +16,6 @@ const Signature = (
 ) => {
   const rootRef = useRef(null)
   const canvasRef = useRef(null)
-  const canvasCtxRef = useRef(null)
   const isDrewRef = useRef(false)
   // canvas坐标信息
   let clientRectRef = useRef(null)
@@ -58,8 +57,10 @@ const Signature = (
   function updateContainer() {
     let width = rootRef.current.clientWidth
     let height = rootRef.current.clientHeight
-    canvasRef.current.width = width
-    canvasRef.current.height = height
+    if (canvasRef.current.width !== width || canvasRef.current.height !== height) {
+      canvasRef.current.width = width
+      canvasRef.current.height = height
+    }
   }
 
   function handleTouchStart(e) {
@@ -67,7 +68,18 @@ const Signature = (
     // 解决拖动时影响document弹性
     e.currentTarget.addEventListener('touchmove', preventDefault, false)
 
-    // window.getSelection() ? window.getSelection().removeAllRanges() : document.selection.empty()
+    // 防止尺寸变化
+    updateContainer()
+    // console.log(
+    //   'updateContainer',
+    //   canvasRef.current.width,
+    //   rootRef.current.clientWidth,
+    //   canvasRef.current.height,
+    //   rootRef.current.clientHeight
+    // )
+
+    // 防止下层还有焦点
+    window.getSelection() ? window.getSelection().removeAllRanges() : document.selection.empty()
     canvasRef.current.ctx.strokeStyle = color
     canvasRef.current.ctx.lineWidth = lineWidth
     clientRectRef.current = canvasRef.current.getBoundingClientRect()
