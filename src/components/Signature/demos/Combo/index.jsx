@@ -26,7 +26,6 @@ export default () => {
               return false
             }
           }}
-          // portal={document.body}
         />
       </Layout.Main>
     </Layout>
