@@ -1,10 +1,12 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
-// 内库使用
+// 内库使用-start
 import Map from './../../../Map'
+// 内库使用-end
 
-// 测试使用
-// import { Map } from 'seedsui-react'
+/* 测试使用-start
+import { Map } from 'seedsui-react'
+测试使用-end */
 
 const { APILoader, MapChoose } = Map
 

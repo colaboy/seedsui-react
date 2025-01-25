@@ -2,12 +2,14 @@ import React, { forwardRef } from 'react'
 import formatValue from './formatValue'
 import Main from './../Main'
 
-// 内库使用
+// 内库使用-start
 import ModalPicker from './../../Modal/Modal'
+// 内库使用-end
 
-// 测试使用
-// import { Modal } from 'seedsui-react'
-// const ModalPicker = Modal.Modal
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const ModalPicker = Modal.Modal
+测试使用-end */
 
 // Modal
 const Modal = forwardRef(

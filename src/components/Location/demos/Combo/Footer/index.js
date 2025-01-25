@@ -1,12 +1,14 @@
 import React from 'react'
 
-// 测试使用
-// import { LocaleUtil, Layout, Button } from 'seedsui-react'
-
-// 内库使用
+// 内库使用-start
 import LocaleUtil from './../../../../../utils/LocaleUtil'
 import Layout from './../../../../Layout'
 import Button from './../../../../Button'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil, Layout, Button } from 'seedsui-react'
+测试使用-end */
 
 // 底部
 function Foot({ onOk, onClear }) {

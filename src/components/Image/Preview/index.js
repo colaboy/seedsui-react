@@ -3,12 +3,14 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Zoom, Pagination } from 'swiper/modules'
 import preventDefault from './preventDefault'
 
-// 内库使用
+// 内库使用-start
 import Modal from './../../Modal'
 import VideoPlayer from './../../VideoPlayer'
+// 内库使用-end
 
-// 测试使用
-// import { Modal, VideoPlayer } from 'seedsui-react'
+/* 测试使用-start
+import { Modal, VideoPlayer } from 'seedsui-react'
+测试使用-end */
 
 const Preview = forwardRef(
   (

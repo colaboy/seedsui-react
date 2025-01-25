@@ -9,13 +9,15 @@ import React, {
 import _ from 'lodash'
 import Modal from './../Modal'
 
-// 内库使用
+// 内库使用-start
 import Map from './../../Map'
 import Input from './../../Input'
 import LocaleUtil from './../../../utils/LocaleUtil'
+// 内库使用-end
 
-// 测试使用
-// import { LocaleUtil, Input, Map } from 'seedsui-react'
+/* 测试使用-start
+import { LocaleUtil, Input, Map } from 'seedsui-react'
+测试使用-end */
 
 const {
   getAddress: defaultGetAddress,

@@ -1,12 +1,14 @@
 import React, { forwardRef } from 'react'
 import Tree from './../Tree'
 
-// 内库使用
+// 内库使用-start
 import BaseModal from './../../Modal/Modal'
+// 内库使用-end
 
-// 测试使用
-// import { Modal } from 'seedsui-react'
-// const BaseModal = Modal.Modal
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const BaseModal = Modal.Modal
+测试使用-end */
 
 const Modal = forwardRef(
   (

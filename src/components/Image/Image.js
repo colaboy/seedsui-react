@@ -5,12 +5,14 @@ import Status from './Status'
 import Upload from './Upload'
 import Preview from './Preview'
 
-// 内库使用
+// 内库使用-start
 import Device from './../../utils/Device'
 import Bridge from './../../utils/Bridge'
+// 内库使用-end
 
-// 测试使用
-// import { Bridge, Device } from 'seedsui-react'
+/* 测试使用-start
+import { Bridge, Device } from 'seedsui-react'
+测试使用-end */
 
 // 照片视频预览
 const Image = forwardRef(

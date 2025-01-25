@@ -1,13 +1,15 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 import Main from './../Main'
 
-// 内库使用
+// 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import ModalPicker from './../../Modal/Modal'
+// 内库使用-end
 
-// 测试使用
-// import { LocaleUtil, Modal } from 'seedsui-react'
-// const ModalPicker = Modal.Modal
+/* 测试使用-start
+import { LocaleUtil, Modal } from 'seedsui-react'
+const ModalPicker = Modal.Modal
+测试使用-end */
 
 // Modal
 const LocationModal = forwardRef(
