@@ -364,14 +364,11 @@ const LocationCombo = forwardRef(
             newValue.address = address
             if (onChange) onChange(newValue)
           }}
-          // eslint-disable-next-line
-          children={statusNode}
           value={value?.value || value?.address || ''}
           {...props}
           rightIcon={<>{getRightIconNode()}</>}
+          input={statusNode ? statusNode : undefined}
           inputProps={Object.assign({}, inputProps, {
-            // 定位中和定位失败时隐藏text框, 显示定位中或者定位失败的div
-            visible: statusNode ? false : true,
             className: `location-combo-success${
               inputProps?.className ? ' ' + inputProps?.className : ''
             }`

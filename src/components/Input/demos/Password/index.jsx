@@ -8,6 +8,7 @@ export default () => {
       <Input.Password
         placeholder="Select"
         value={value}
+        allowClear
         onChange={(val) => {
           console.log(val)
           setValue(val)

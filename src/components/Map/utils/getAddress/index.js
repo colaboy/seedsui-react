@@ -20,7 +20,7 @@ async function getAddress(params) {
   let result = null
 
   // 默认优先使用系统级定位
-  if (window.getAddressDefault && typeof window.getAddressDefault === 'function') {
+  if (typeof window.getAddressDefault === 'function') {
     result = await window.getAddressDefault(params)
     return result
   }

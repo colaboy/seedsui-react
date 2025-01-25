@@ -131,12 +131,7 @@ const DistrictCombo = forwardRef(
         }
         {...props}
         modal={props?.modal || DistrictModal}
-        clearProps={{
-          ...(props?.clearProps || {}),
-          className:
-            (readOnlyValue?.length === value?.length ? 'hide-important ' : '') +
-            (props?.clearProps?.className || '')
-        }}
+        clear={readOnlyValue?.length === value?.length ? null : undefined}
       />
     )
   }

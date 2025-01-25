@@ -13,6 +13,7 @@ import { LocaleUtil } from 'seedsui-react'
 const Modal = forwardRef(
   (
     {
+      allowClear,
       // 通用属性
       portal,
       getComboDOM,
@@ -26,10 +27,8 @@ const Modal = forwardRef(
       onVisibleChange,
 
       // 定制属性
+      cancel,
       maskProps = {},
-      cancelProps = {
-        visible: true
-      },
       groupProps = {},
       optionProps = {},
       animation = 'slideUp', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
@@ -54,8 +53,6 @@ const Modal = forwardRef(
       }
     })
 
-    const { visible: cancelVisible, name: cancelName, ...otherCancelProps } = cancelProps
-
     // 点击选项
     async function handleClickOption(e, item) {
       e.stopPropagation()
@@ -72,18 +69,6 @@ const Modal = forwardRef(
       if (onVisibleChange) onVisibleChange(false)
     }
 
-    // 点击取消
-    async function handleClickCancel(e) {
-      e.stopPropagation()
-      if (cancelProps?.onClick) {
-        let goOn = cancelProps.onClick(e)
-        if (goOn === false) {
-          return
-        }
-      }
-      if (onVisibleChange) onVisibleChange(false)
-    }
-
     // 点击遮罩
     async function handleClickMask(e) {
       e.stopPropagation()
@@ -97,6 +82,24 @@ const Modal = forwardRef(
       if (maskClosable && onVisibleChange) onVisibleChange(false)
     }
 
+    // 获取取消按钮节点
+    function getCancelNode() {
+      if (typeof cancel === 'function') {
+        return cancel()
+      } else if (cancel !== undefined) {
+        return cancel
+      }
+      return (
+        <div
+          className={`actionsheet-cancel`}
+          onClick={() => {
+            if (onVisibleChange) onVisibleChange(false)
+          }}
+        >
+          {LocaleUtil.locale('取消', 'SeedsUI_cancel')}
+        </div>
+      )
+    }
     return createPortal(
       <div
         {...maskProps}
@@ -133,17 +136,7 @@ const Modal = forwardRef(
                 )
               })}
           </div>
-          {cancelVisible && (
-            <div
-              {...otherCancelProps}
-              className={`actionsheet-cancel${
-                otherCancelProps.className ? ' ' + otherCancelProps.className : ''
-              }`}
-              onClick={handleClickCancel}
-            >
-              {cancelName || LocaleUtil.locale('取消', 'SeedsUI_cancel')}
-            </div>
-          )}
+          {getCancelNode()}
         </div>
       </div>,
       portal || document.getElementById('root') || document.body

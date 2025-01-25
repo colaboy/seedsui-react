@@ -3,7 +3,7 @@ import { ActionSheet1 } from 'seedsui-react'
 
 export default () => {
   const list = [
-    { id: '1', name: <div>测试Node</div> },
+    { id: '1', name: '测试Node' },
     { id: '2', name: '测试1' },
     { id: '3', name: '测试2' },
     { id: '4', name: '测试3' },
@@ -35,10 +35,9 @@ export default () => {
           console.log('visible:', visible)
         }}
         // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
-        // comboRender={({ value }) => {
-        //   console.log(value)
-        //   return value?.[0]?.name || ''
-        // }}
+        modalProps={{
+          cancel: null
+        }}
       />
     </>
   )

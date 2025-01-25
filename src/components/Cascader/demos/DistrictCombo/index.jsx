@@ -140,13 +140,13 @@ export default () => {
         }}
         // 未弹出选择框便加载
         async={false}
-        // editableOptions={{
-        //   country: { editable: false },
-        //   province: { editable: false },
-        //   city: { editable: false },
-        //   district: { editable: false },
-        //   street: { editable: false }
-        // }}
+        editableOptions={{
+          country: { editable: false },
+          province: { editable: false }
+          // city: { editable: false },
+          // district: { editable: false },
+          // street: { editable: false }
+        }}
         modalProps={{
           headerRender: () => {
             return <div>自定义头</div>

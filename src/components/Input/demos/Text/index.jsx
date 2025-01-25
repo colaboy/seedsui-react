@@ -27,27 +27,18 @@ export default () => {
         // readOnly
         value={value}
         // maxLength={10}
-        allowClear="excludeRightIcon"
+        rightIcon={({ value }) => {
+          return value ? null : <i className="right-icon icon shape-arrow-right sm" />
+        }}
+        allowClear
+        clear={({ value }) => {
+          return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
+        }}
         // disabled="excludeRightIcon"
         onChange={(val) => {
           console.log(val)
           setValue(val)
         }}
-        onClearVisibleChange={(visible) => {
-          console.log('visible:', visible)
-        }}
-        clearProps={{
-          onClick: (e) => {
-            console.log(e)
-          }
-        }}
-        // rightIconProps={{ className: 'icon shape-arrow-right sm' }}
-        rightIcon={
-          <>
-            <i className="right-icon icon shape-arrow-right sm" />
-            <i className="right-icon icon shape-arrow-right sm" />
-          </>
-        }
       />
     </>
   )

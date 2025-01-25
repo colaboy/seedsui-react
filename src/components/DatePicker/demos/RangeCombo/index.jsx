@@ -51,10 +51,6 @@ export default () => {
           //   }
           // }
         }}
-        // 自定义渲染
-        // comboRender={({ displayValue }) => {
-        //   return icon + displayValue
-        // }}
         // Main props
         // titles={{
         //   custom: '自定义选择',

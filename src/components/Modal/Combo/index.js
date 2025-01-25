@@ -10,7 +10,7 @@ import getDisplayValue from './getDisplayValue'
 
 import Input from './../../Input'
 
-import ChildrenWrapper from './ChildrenWrapper'
+import ComboWrapper from './ComboWrapper'
 
 // Combo
 const Combo = forwardRef(
@@ -32,7 +32,7 @@ const Combo = forwardRef(
       onClick,
       onBeforeOpen,
       onBeforeClose,
-      comboRender,
+      combo,
       onVisibleChange,
 
       children,
@@ -131,39 +131,43 @@ const Combo = forwardRef(
       InputNode = Input.AutoFit
     }
 
+    function getComboNode() {
+      if (combo || children) {
+        return (
+          <ComboWrapper {...props} onClick={handleInputClick} ref={comboRef}>
+            {typeof combo === 'function'
+              ? combo({
+                  value,
+                  displayValue
+                })
+              : combo || children}
+          </ComboWrapper>
+        )
+      }
+
+      return (
+        <InputNode
+          disabled={disabled}
+          allowClear={allowClear}
+          value={displayValue}
+          readOnly
+          {...props}
+          onClick={handleInputClick}
+          onChange={(text) => {
+            // 清空操作
+            if (!text) {
+              onChange && onChange(null)
+            }
+          }}
+          ref={comboRef}
+        />
+      )
+    }
     return (
       <Fragment>
         {/* Combo */}
-        {typeof comboRender === 'function' && (
-          <ChildrenWrapper {...props} onClick={handleInputClick} ref={comboRef}>
-            {comboRender({
-              value,
-              displayValue
-            })}
-          </ChildrenWrapper>
-        )}
-        {children && (
-          <ChildrenWrapper {...props} onClick={handleInputClick} ref={comboRef}>
-            {children}
-          </ChildrenWrapper>
-        )}
-        {!children && typeof comboRender !== 'function' && (
-          <InputNode
-            disabled={disabled}
-            allowClear={allowClear}
-            value={displayValue}
-            readOnly
-            {...props}
-            onClick={handleInputClick}
-            onChange={(text) => {
-              // 清空操作
-              if (!text) {
-                onChange && onChange(null)
-              }
-            }}
-            ref={comboRef}
-          />
-        )}
+        {getComboNode()}
+
         {/* Modal */}
         {ModalNode && (
           <ModalNode

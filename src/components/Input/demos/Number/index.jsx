@@ -13,12 +13,11 @@ export default () => {
       <Input.Number
         ref={inputNumberRef}
         placeholder="Input"
-        // defaultValue={value}
-        // value={value}
-        // precision={2}
+        value={value}
+        onChange={setValue}
         precision={2}
         maxLength={8}
-        // trim={true}
+        trim={true}
         allowClear
         // formatter={(num) => {
         //   if (!num) return num

@@ -33,8 +33,8 @@ const Modal = forwardRef(
       onChange,
 
       // Header and Footer
-      headerRender,
-      footerRender,
+      header,
+      footer,
 
       // 纯渲染时不渲染Main
       children,
@@ -147,7 +147,9 @@ const Modal = forwardRef(
         portal={portal || document.getElementById('root') || document.body}
       >
         {/* 头部 */}
-        {headerRender && headerRender({ visible, value: currentValue, submit: handleChange })}
+        {typeof header === 'function'
+          ? header({ visible, value: currentValue, submit: handleChange })
+          : header}
 
         {/* 纯渲染 */}
         {children}
@@ -179,7 +181,9 @@ const Modal = forwardRef(
         ) : null}
 
         {/* 底部 */}
-        {footerRender && footerRender({ visible, value: currentValue, submit: handleChange })}
+        {typeof footer === 'function'
+          ? footer({ visible, value: currentValue, submit: handleChange })
+          : footer}
       </ModalPicker>
     )
   }

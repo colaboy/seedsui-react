@@ -67,7 +67,7 @@ const Menus = forwardRef(
             }}
           >
             <div className="tabbar-menus-tab">
-              {typeof item.icon === 'function' ? item.icon(isActive) : item.icon}
+              {typeof item.icon === 'function' ? item.icon({ active: isActive }) : item.icon}
               {description && descriptionPosition === 'top' ? (
                 <div className={`tabbar-menus-tab-description`}>{description}</div>
               ) : null}

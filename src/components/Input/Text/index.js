@@ -10,10 +10,9 @@ const InputText = forwardRef(
       className,
       autoFit, // 自动高度文本框
       readOnly,
-      disabled, // excludeRightIcon
+      disabled,
       // 文本框
-      inputProps = {},
-      defaultValue,
+      input,
       value,
       formatter,
       // 小数精度, 只有数值框才生效
@@ -29,24 +28,16 @@ const InputText = forwardRef(
       autoSelect, // 渲染时自动选中
       // 左右图标
       leftIcon,
-      leftIconProps,
       rightIcon,
-      rightIconProps,
       // 清除按键
-      allowClear, // excludeRightIcon
-      clearProps,
-      onClearVisibleChange,
-      // 子内容
-      children,
+      clear,
+      allowClear,
       // events
       onClick,
-      onCompositionStart, // 输入开始时
-      onCompositionUpdate, // 输入进行中
-      onCompositionEnd, // 输入完成时
-      onInput,
       onChange,
       onBlur,
       onFocus,
+      inputProps = {},
       ...props
     },
     ref
@@ -54,8 +45,6 @@ const InputText = forwardRef(
     // 节点
     const rootRef = useRef(null)
     const inputRef = useRef(null)
-    const fitRef = useRef(null)
-    const clearRef = useRef(null)
 
     useImperativeHandle(ref, () => {
       return {
@@ -68,93 +57,31 @@ const InputText = forwardRef(
           return inputRef.current
         },
         correctValue: correctValue,
-        focus: focus,
-        updateClear: updateClear
+        focus: focus
       }
     })
 
     useEffect(() => {
-      let val = inputRef.current.value
-
+      if (!inputRef.current) return
       // 自动获取焦点
       if (autoFocus) {
         focus()
       }
 
+      if (!value) return
+
+      let val = ''
+
       // 矫正为正确的值
-      if (inputRef.current) {
-        // 矫正为正确的值
-        val = correctValue(val)
-        // 格式化输入
-        val = externalFormatter(val, { formatter })
+      val = correctValue(value)
+      // 格式化输入
+      val = externalFormatter(value, { formatter })
 
-        // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
-        if (inputRef.current && val !== inputRef.current.value) {
-          inputRef.current.value = val
-        }
+      // 矫正后的值和矫正前的值不一致, 需要强制修改文本框内的值
+      if (val !== value) {
+        onChange(val)
       }
-
-      // 更新清除按钮和自适应的高度
-      updateClear(val)
-      updateAutoFit(val)
     }, []) // eslint-disable-line
-
-    useEffect(() => {
-      updateContainer()
-    }, [value]) // eslint-disable-line
-
-    // 更新文本框高度和清空按钮
-    function updateContainer() {
-      if (!rootRef?.current) return
-      if (rootRef.current.inputTimeout) {
-        clearTimeout(rootRef.current.inputTimeout)
-      }
-      rootRef.current.inputTimeout = setTimeout(() => {
-        if (!inputRef?.current) return
-        let val = inputRef.current.value
-        // 更新清除按钮和自适应的高度
-        updateClear(val)
-        updateAutoFit(val)
-      }, 100)
-    }
-
-    // 更新清除按钮
-    function updateClear(val) {
-      if (val === undefined) {
-        // eslint-disable-next-line
-        val = inputRef?.current?.value || ''
-      } else if (typeof val === 'number') {
-        // eslint-disable-next-line
-        val = String(val)
-      }
-      // 不显示清空
-      if (!allowClear) {
-        clearRef?.current?.classList?.add?.('hide')
-        return
-      }
-
-      // 根据值判断是否显示清空
-      if (clearRef?.current?.classList) {
-        // 有值隐藏清除
-        if (val) {
-          clearRef.current?.classList?.remove?.('hide')
-          typeof onClearVisibleChange === 'function' && onClearVisibleChange(true)
-        }
-        // 无值显示清除
-        else {
-          clearRef.current?.classList?.add?.('hide')
-          typeof onClearVisibleChange === 'function' && onClearVisibleChange(false)
-        }
-      }
-    }
-
-    // 自动扩充功能
-    function updateAutoFit(val) {
-      if (!autoFit) return
-      fitRef.current.children[0].innerText = val
-      // 多行文本框使用样式宽高100%, 放弃使用js控制高度
-      // inputRef.current.style.height = fitRef.current.clientHeight + 'px'
-    }
 
     // 矫正最大长度和小数位截取
     function correctValue(val) {
@@ -195,17 +122,6 @@ const InputText = forwardRef(
       if (onFocus) onFocus(e)
     }
 
-    // 清空按钮控制
-    function handleInput(e) {
-      // 非受控组件需要操作DOM
-      if (value === undefined) {
-        updateContainer()
-      }
-
-      // Callback
-      if (onInput) onInput(e)
-    }
-
     // 修改值
     async function handleChange(e) {
       let target = e.target
@@ -224,9 +140,7 @@ const InputText = forwardRef(
       }
 
       // 触发onChange: 使用defaultValue时, 删除到点时会直接把点清空
-      if (onChange) {
-        onChange(val, { action: 'change' })
-      }
+      if (onChange) onChange(val, { action: 'change' })
     }
 
     // 数值框失去焦点, 校验最大值和最小值
@@ -278,46 +192,36 @@ const InputText = forwardRef(
 
       // Callback
       typeof onChange === 'function' && onChange('', { action: 'clickClear' })
-      typeof clearProps?.onClick === 'function' && clearProps.onClick(e, '')
-
-      // 非受控组件需要操作DOM
-      if (value === undefined) {
-        if (inputRef?.current?.value) {
-          inputRef.current.value = ''
-        }
-        updateContainer()
-      }
     }
 
     // render
-    function getInputDOM() {
-      // 剔除掉onClick事件, 因为在容器onClick已经回调了
-      let { visible: inputVisible, ...otherInputProps } = inputProps
-      // if (inputVisible === false) return null
+    function getInputNode() {
+      if (typeof input === 'function') {
+        return input({ allowClear, value })
+      } else if (input !== undefined) {
+        return input
+      }
+
       // autoFit类型
       if (autoFit) {
-        const { style: inputStyle, className: inputClassName, ...otherFitProps } = otherInputProps
         return (
-          <div className={`input-fit-wrapper${inputVisible === false ? ' hide' : ''}`}>
+          <div className={`input-fit-wrapper`}>
             <textarea
               ref={inputRef}
-              className={`input-fit${inputClassName ? ' ' + inputClassName : ''}`}
-              style={inputStyle}
-              {...otherFitProps}
+              {...inputProps}
+              className={`input-fit${inputProps?.className ? ' ' + inputProps?.className : ''}`}
               autoFocus={autoFocus}
               value={value}
-              defaultValue={defaultValue}
               maxLength={maxLength}
               readOnly={readOnly}
               disabled={disabled}
               placeholder={placeholder}
               onChange={handleChange}
-              onInput={handleInput}
               onBlur={handleBlur}
               onFocus={handleFocus}
             ></textarea>
-            <pre ref={fitRef} style={inputStyle} className={inputClassName}>
-              <span></span>
+            <pre style={inputProps?.style} className={inputProps?.className}>
+              <span>{value}</span>
             </pre>
           </div>
         )
@@ -328,21 +232,17 @@ const InputText = forwardRef(
         return (
           <textarea
             ref={inputRef}
-            {...otherInputProps}
+            {...inputProps}
             autoFocus={autoFocus}
             value={value}
-            defaultValue={defaultValue}
             maxLength={maxLength}
             readOnly={readOnly}
             disabled={disabled}
             placeholder={placeholder}
             onChange={handleChange}
-            onInput={handleInput}
             onBlur={handleBlur}
             onFocus={handleFocus}
-            className={`input-textarea${
-              otherInputProps.className ? ' ' + otherInputProps.className : ''
-            }${inputVisible === false ? ' hide' : ''}`}
+            className={`input-textarea${inputProps.className ? ' ' + inputProps.className : ''}`}
           ></textarea>
         )
       }
@@ -351,11 +251,8 @@ const InputText = forwardRef(
         <input
           ref={inputRef}
           type={type}
-          {...otherInputProps}
-          className={`input-text${
-            otherInputProps.className ? ' ' + otherInputProps.className : ''
-          }${inputVisible === false ? ' hide' : ''}`}
-          defaultValue={defaultValue}
+          {...inputProps}
+          className={`input-text${inputProps.className ? ' ' + inputProps.className : ''}`}
           value={value}
           min={typeof min === 'number' ? min : ''}
           max={typeof max === 'number' ? max : ''}
@@ -364,7 +261,6 @@ const InputText = forwardRef(
           readOnly={readOnly}
           placeholder={placeholder}
           onChange={handleChange}
-          onInput={handleInput}
           autoFocus={autoFocus}
           onBlur={handleBlur}
           onFocus={handleFocus}
@@ -372,43 +268,32 @@ const InputText = forwardRef(
       )
     }
 
-    let excludeRightIcon = disabled === 'excludeRightIcon' || allowClear === 'excludeRightIcon'
+    // 渲染清除按钮
+    function getClearNode() {
+      if (!allowClear || !value) return
+
+      if (typeof clear === 'function') {
+        return clear({ allowClear, value })
+      } else if (clear !== undefined) {
+        return clear
+      }
+      return <i className={`input-clear`} onClick={handleClear}></i>
+    }
+
     return (
       <div
         {...props}
         style={style}
         className={`input-wrapper${className ? ' ' + className : ''}${disabled ? ' disabled' : ''}${
           readOnly ? ' readonly' : ''
-        }${excludeRightIcon ? ' exclude-right-icon' : ''}`}
+        }`}
         onClick={onClick}
         ref={rootRef}
       >
-        {leftIcon && leftIcon}
-        {leftIconProps && (
-          <i
-            {...leftIconProps}
-            className={`left-icon icon${
-              leftIconProps?.className ? ' ' + leftIconProps?.className : ''
-            }`}
-          ></i>
-        )}
-        {getInputDOM()}
-        {children && children}
-        <i
-          ref={clearRef}
-          {...clearProps}
-          className={`input-clear hide${clearProps?.className ? ' ' + clearProps?.className : ''}`}
-          onClick={handleClear}
-        ></i>
-        {rightIconProps && (
-          <i
-            {...rightIconProps}
-            className={`right-icon icon${
-              rightIconProps?.className ? ' ' + rightIconProps?.className : ''
-            }`}
-          ></i>
-        )}
-        {rightIcon && rightIcon}
+        {typeof leftIcon === 'function' ? leftIcon({ value }) : leftIcon}
+        {getInputNode()}
+        {getClearNode()}
+        {typeof rightIcon === 'function' ? rightIcon({ value }) : rightIcon}
       </div>
     )
   }

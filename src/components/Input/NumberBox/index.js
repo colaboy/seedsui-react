@@ -26,7 +26,6 @@ const NumberBox = forwardRef(
       disabled,
       // 文本框
       inputProps = {},
-      defaultValue,
       value,
       formatter,
       // 小数精度, 只有数值框才生效
@@ -42,13 +41,10 @@ const NumberBox = forwardRef(
       autoSelect, // 渲染时自动选中
       // 左右图标
       leftIcon,
-      leftIconProps,
       rightIcon,
-      rightIconProps,
       // 清除按键
+      clear,
       allowClear,
-      clearProps,
-      onClearVisibleChange,
       // 子内容
       children,
       // 事件
@@ -184,7 +180,6 @@ const NumberBox = forwardRef(
           readOnly={readOnly}
           disabled={disabled}
           inputProps={inputProps}
-          defaultValue={defaultValue}
           value={value}
           formatter={formatter}
           precision={precision}
@@ -196,12 +191,9 @@ const NumberBox = forwardRef(
           autoFocus={autoFocus} // 渲染时自动获取焦点
           autoSelect={autoSelect} // 渲染时自动选中
           leftIcon={leftIcon}
-          leftIconProps={leftIconProps}
           rightIcon={rightIcon}
-          rightIconProps={rightIconProps}
           allowClear={allowClear}
-          clearProps={clearProps}
-          onClearVisibleChange={onClearVisibleChange}
+          clear={clear}
           onClick={onClick}
           onCompositionStart={onCompositionStart} // 输入开始时
           onCompositionUpdate={onCompositionUpdate} // 输入进行中

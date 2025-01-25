@@ -67,7 +67,7 @@ const Group = forwardRef(
             }}
           >
             <div className="tabbar-group-tab">
-              {typeof item.icon === 'function' ? item.icon(isActive) : item.icon}
+              {typeof item.icon === 'function' ? item.icon({ active: isActive }) : item.icon}
               {description && descriptionPosition === 'top' ? (
                 <div className={`tabbar-group-tab-description`}>{description}</div>
               ) : null}

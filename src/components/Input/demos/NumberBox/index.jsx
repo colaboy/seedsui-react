@@ -6,25 +6,23 @@ export default () => {
   return (
     <>
       <Input.NumberBox
-        // disabled
-        // defaultValue={value}
+        placeholder="Input"
         value={value}
-        precision={3}
-        // trim={true}
-        style={{ width: '200px' }}
+        onChange={setValue}
+        precision={2}
+        maxLength={8}
         min={0.1}
-        max={0.5}
+        trim={true}
         allowClear
-        // leftIconProps={{ className: 'icon icon-rdo-emoji' }}
-        // leftIcon={<i className="icon icon-rdo-emoji"></i>}
-        // rightIcon={<i className="icon icon-rdo-emoji"></i>}
-        onChange={(val) => {
-          console.log(val)
-          setValue(val)
-        }}
-      >
-        {/* 1234 */}
-      </Input.NumberBox>
+        // formatter={(num) => {
+        //   if (!num) return num
+        //   return parseFloat(num)
+        // }}
+        // onChange={(val) => {
+        //   console.log('得到的值:', val)
+        //   setValue(val)
+        // }}
+      />
     </>
   )
 }

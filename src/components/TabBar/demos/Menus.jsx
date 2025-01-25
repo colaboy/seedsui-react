@@ -63,7 +63,7 @@ export default () => {
               id: 'Vegetable'
             },
             {
-              icon: (active) =>
+              icon: ({ active }) =>
                 active ? (
                   <i className="tabbar-menus-tab-icon icon-close"></i>
                 ) : (

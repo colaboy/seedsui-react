@@ -75,7 +75,7 @@ const Range = forwardRef(
           min={min}
           max={max}
           step={step}
-          defaultValue={value}
+          value={value}
           onChange={handleChange}
         />
         <div

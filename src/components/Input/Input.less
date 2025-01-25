@@ -1,4 +1,8 @@
 @import 'NumberBox/InputNumberBox.less';
+@import 'Color/InputColor.less';
+@import 'PasswordStrength/InputPasswordStrength.less';
+@import 'Range/InputRange.less';
+@import 'Url/InputUrl.less';
 
 // Input输入框控件
 // 输入框容器
@@ -14,16 +18,6 @@
     color: #c2c6cd;
   }
 
-  // 废弃(deprecated)-start
-  .licon {
-    margin-right: 4px;
-  }
-  .ricon {
-    margin-left: 12px;
-    color: #c2c6cd;
-  }
-  // 废弃(deprecated)-end
-
   .input-text,
   .input-textarea {
     width: 100%;
@@ -33,35 +27,6 @@
     color: rgba(0, 0, 0, 0.25);
     border-color: #d9d9d9;
     .input-clear {
-      display: none;
-    }
-  }
-}
-
-// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)-start
-.input-wrapper.exclusion-ricon {
-  .input-clear:not(.hide) {
-    & ~ .ricon {
-      display: none;
-    }
-  }
-  &.disabled {
-    .ricon {
-      display: none;
-    }
-  }
-}
-// 清空或者禁用对右侧图标互斥逻辑, 废弃(deprecated)-end
-
-// 清空或者禁用对右侧图标互斥逻辑
-.input-wrapper.exclude-right-icon {
-  .input-clear:not(.hide) {
-    & ~ .right-icon {
-      display: none;
-    }
-  }
-  &.disabled {
-    .right-icon {
       display: none;
     }
   }
@@ -80,18 +45,14 @@
   text-align: center;
 }
 
-// 共用变量: Input.AutoFit
-@input-height: 22px;
-@input-text-padding: 10px 0;
-
 // 控件: 单行文本框
 .input-text {
   display: block;
   position: relative; // 为了解决ios输入时白屏的BUG
   box-sizing: border-box;
-  min-height: @input-height;
-  padding: @input-text-padding;
-  line-height: @input-height;
+  min-height: 22px;
+  padding: 10px 0;
+  line-height: 22px;
   text-align: left;
   -webkit-transform: translate3d(0, 0, 0); // 据说可以解决输入不显示文字的问题
   -webkit-backface-visibility: hidden;
@@ -103,19 +64,13 @@
   }
 }
 
-// 控件: url文本框
-input[type='url'][readOnly] {
-  color: var(--link);
-}
-
 // 控件: 多行文本框
-@input-textarea-height: 60px;
 .input-textarea {
   display: block;
-  min-height: @input-height;
-  line-height: @input-height;
-  padding: @input-text-padding;
-  height: @input-textarea-height;
+  min-height: 22px;
+  line-height: 22px;
+  padding: 10px 0;
+  height: 60px;
   &:extend(.appearance);
 }
 
@@ -137,9 +92,9 @@ input[type='url'][readOnly] {
   pre,
   .input-fit {
     display: block;
-    min-height: @input-height;
-    line-height: @input-height;
-    padding: @input-text-padding;
+    min-height: 22px;
+    line-height: 22px;
+    padding: 10px 0;
     &:extend(.appearance);
   }
 }
@@ -154,164 +109,4 @@ input[type='url'][readOnly] {
   left: 0;
   // 部分手机上宽度显示不全
   width: 100%;
-}
-
-// 拾色器
-input[type='color'] {
-  width: 44px;
-  height: 24px;
-  padding: 0;
-  background-color: #eee;
-  border-width: 0;
-}
-::-webkit-color-swatch-wrapper {
-  background-color: white;
-  border-color: @border;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-}
-::-webkit-color-swatch {
-  position: relative;
-  top: -2px;
-  left: 0;
-  height: 18px;
-  border: none;
-}
-
-// 范围拖动条
-@input-range-height: 35px;
-@input-range-border: @border;
-.input-range {
-  position: relative;
-  height: @input-range-height;
-  .flex;
-  .flex-middle;
-  &.disabled,
-  &.readOnly {
-    .input-range-input {
-      pointer-events: none;
-    }
-  }
-}
-.input-range-input {
-  position: relative;
-  display: block;
-  height: 1px;
-  background-color: @input-range-border;
-  border-width: 0;
-  border-radius: 3px;
-  outline: 0;
-  cursor: pointer;
-  &:extend(.appearance);
-  .flex-1;
-
-  &::-webkit-slider-thumb {
-    width: 28px;
-    height: 28px;
-
-    background-color: @primary;
-    background-clip: padding-box;
-    border-width: 0;
-    border-radius: 50%;
-    &:extend(.appearance);
-  }
-}
-.input-range-tooltip {
-  position: absolute;
-
-  top: -60px;
-  left: 0;
-  display: block;
-  width: 48px;
-  height: 48px;
-  font-size: 20px;
-  line-height: 48px;
-  text-align: center;
-  text-shadow: 0 1px 0 #f3f3f3;
-  background-color: white;
-  border-color: @border;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 6px;
-  visibility: hidden;
-  opacity: 0.8;
-  transition-duration: 300ms;
-  transition-property: visibility;
-}
-
-// 密码强度
-@input-password-strength-color: white;
-@input-password-strength-height: 30px;
-@input-password-strength-wing: 1px;
-@input-password-strength-bg: #b6b6b6;
-@input-password-strength-bg1: @danger;
-@input-password-strength-bg2: @warning;
-@input-password-strength-bg3: @success;
-.input-password-strength {
-  .flex;
-  height: @input-password-strength-height;
-  color: @input-password-strength-color;
-  li {
-    position: relative;
-    margin-left: @input-password-strength-wing;
-    background-color: @input-password-strength-bg;
-    .flex;
-    .flex-1;
-    .flex-middle;
-    .flex-center;
-    &:nth-of-type(1) {
-      margin-left: 0px;
-      .input-password-strength-progress {
-        background-color: @input-password-strength-bg1;
-      }
-    }
-    &:nth-of-type(2) {
-      .input-password-strength-progress {
-        background-color: @input-password-strength-bg2;
-      }
-    }
-    &:nth-of-type(3) {
-      .input-password-strength-progress {
-        background-color: @input-password-strength-bg3;
-      }
-    }
-  }
-  &.level1 {
-    li:nth-of-type(1) .input-password-strength-progress {
-      width: 100%;
-    }
-  }
-  &.level2 {
-    li:nth-of-type(1) .input-password-strength-progress {
-      width: 100%;
-    }
-    li:nth-of-type(2) .input-password-strength-progress {
-      width: 100%;
-    }
-  }
-  &.level3 {
-    li:nth-of-type(1) .input-password-strength-progress {
-      width: 100%;
-    }
-    li:nth-of-type(2) .input-password-strength-progress {
-      width: 100%;
-    }
-    li:nth-of-type(3) .input-password-strength-progress {
-      width: 100%;
-    }
-  }
-}
-.input-password-strength-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  transition-duration: @animation-duration;
-  transition-property: width;
-}
-.input-password-strength-caption {
-  position: relative;
-  display: block;
 }
