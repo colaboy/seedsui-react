@@ -1,4 +1,4 @@
-import rotateBase64 from './rotateBase64'
-import drawBgColor from './drawBgColor'
+import CanvasUtil from './CanvasUtil'
+import preventDefault from './preventDefault'
 
-export { rotateBase64, drawBgColor }
+export { CanvasUtil, preventDefault }

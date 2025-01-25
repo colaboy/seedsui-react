@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
-import { rotateBase64 } from './utils'
-import Instance from './instance.js'
+import { CanvasUtil, preventDefault } from './utils'
 
 // 手写签名
 const Signature = (
@@ -16,77 +15,97 @@ const Signature = (
   ref
 ) => {
   const rootRef = useRef(null)
-  const instanceRef = useRef(null)
+  const canvasRef = useRef(null)
+  const canvasCtxRef = useRef(null)
+  const isDrewRef = useRef(false)
+  // canvas坐标信息
+  let clientRectRef = useRef(null)
+  // 触摸信息
+  let touchesRef = useRef({
+    beginX: 0,
+    beginY: 0,
+    endX: 0,
+    endY: 0
+  })
+
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,
       getRootDOM: () => rootRef.current,
       getBase64: async () => {
-        if (instanceRef?.current?.isBlank?.()) {
+        if (CanvasUtil.isBlank(canvasRef.current)) {
           return null
         }
-        let base64 = instanceRef?.current?.getBase64?.()
+        let base64 = CanvasUtil.toBase64(canvasRef.current, { suffix, quality })
 
         // 旋转90度后返回
-        base64 = await rotateBase64(base64, { backgroundColor })
+        base64 = await CanvasUtil.rotateBase64(base64, { backgroundColor })
         return base64
       },
       clear: () => {
-        instanceRef?.current?.clear?.()
+        CanvasUtil.clear(canvasRef)
+        isDrewRef.current = false
       }
     }
   })
 
   useEffect(() => {
-    if (instanceRef.current) {
-      let s = instanceRef.current
-      let params = {}
-      if (s.params.strokeStyle !== color) {
-        params.strokeStyle = color
-      }
-      if (s.params.lineWidth !== lineWidth) {
-        params.lineWidth = lineWidth
-      }
-      if (s.params.quality !== quality) {
-        params.quality = quality
-      }
-      if (s.params.suffix !== suffix) {
-        params.suffix = suffix
-      }
-      if (Object.getOwnPropertyNames(params) && Object.getOwnPropertyNames(params).length) {
-        s.updateParams(params)
-      }
-
-      updateContainer()
-    }
-    // eslint-disable-next-line
-  }, [color, lineWidth, quality, suffix])
-
-  useEffect(() => {
-    instanceRef.current = new Instance(rootRef.current.querySelector('canvas'), {
-      strokeStyle: color,
-      lineWidth: lineWidth,
-      quality: quality,
-      suffix: suffix
-    })
-
     updateContainer()
+    canvasRef.current.ctx = canvasRef.current.getContext('2d')
     // eslint-disable-next-line
   }, [])
 
   function updateContainer() {
     let width = rootRef.current.clientWidth
     let height = rootRef.current.clientHeight
-    instanceRef.current.width = width
-    instanceRef.current.height = height
+    canvasRef.current.width = width
+    canvasRef.current.height = height
+  }
 
-    rootRef.current.querySelector('canvas').width = width
-    rootRef.current.querySelector('canvas').height = height
+  function handleTouchStart(e) {
+    e.stopPropagation()
+    // 解决拖动时影响document弹性
+    e.currentTarget.addEventListener('touchmove', preventDefault, false)
+
+    // window.getSelection() ? window.getSelection().removeAllRanges() : document.selection.empty()
+    canvasRef.current.ctx.strokeStyle = color
+    canvasRef.current.ctx.lineWidth = lineWidth
+    clientRectRef.current = canvasRef.current.getBoundingClientRect()
+    canvasRef.current.ctx.beginPath()
+    canvasRef.current.ctx.moveTo(
+      e.changedTouches[0].clientX - clientRectRef.current.left,
+      e.changedTouches[0].clientY - clientRectRef.current.top
+    )
+    touchesRef.beginX = e.changedTouches[0].clientX - clientRectRef.current.left
+    touchesRef.beginY = e.changedTouches[0].clientY - clientRectRef.current.top
+  }
+  function handleTouchMove(e) {
+    e.stopPropagation()
+    canvasRef.current.ctx.lineTo(
+      e.changedTouches[0].clientX - clientRectRef.current.left,
+      e.changedTouches[0].clientY - clientRectRef.current.top
+    )
+    touchesRef.endX = e.changedTouches[0].clientX - clientRectRef.current.left
+    touchesRef.endY = e.changedTouches[0].clientY - clientRectRef.current.top
+    canvasRef.current.ctx.stroke()
+    // 标识是否绘制过
+    isDrewRef.current = true
+  }
+  function handleTouchEnd(e) {
+    // 解除对move时的弹性对当前div的锁定
+    e.currentTarget.removeEventListener('touchmove', preventDefault, false)
   }
 
   return (
     <div className="signature-main-canvas" ref={rootRef} {...props}>
-      <canvas>Canvas画板</canvas>
+      <canvas
+        ref={canvasRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        Canvas画板
+      </canvas>
     </div>
   )
 }
