@@ -8,4 +8,5 @@ title: Checkbox
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Checkbox.jsx"></code>
+<code src="./demos/Group.jsx"></code>

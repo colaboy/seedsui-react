@@ -19,7 +19,3 @@ title: Select
 ### Select.Main
 
 <code src="./demos/Main/index.jsx"></code>
-
-### Select.Checkbox
-
-<code src="./demos/Checkbox/index.jsx"></code>

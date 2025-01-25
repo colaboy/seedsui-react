@@ -8,4 +8,5 @@ title: Radio
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/Radio.jsx"></code>
+<code src="./demos/Group.jsx"></code>

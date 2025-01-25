@@ -35,7 +35,7 @@ const Group = forwardRef(
     })
 
     // 根据value判断此项是否为选中状态
-    function getIsActive(item) {
+    function getIsChecked(item) {
       if (item?.id && value?.id) {
         return item.id === value.id
       }
@@ -52,11 +52,11 @@ const Group = forwardRef(
       // 遍历
       return list.map((item, index) => {
         const { name, description, props: tabProps = {} } = item
-        let isActive = getIsActive(item)
+        let checked = getIsChecked(item)
         return (
           <div
             className={`tabbar-group-tab-wrapper${item?.disabled ? ' disabled' : ''}${
-              isActive ? ' active' : ''
+              checked ? ' active' : ''
             }`}
             data-index={index}
             key={index}
@@ -67,7 +67,7 @@ const Group = forwardRef(
             }}
           >
             <div className="tabbar-group-tab">
-              {typeof item.icon === 'function' ? item.icon({ active: isActive }) : item.icon}
+              {typeof item.icon === 'function' ? item.icon({ checked: checked }) : item.icon}
               {description && descriptionPosition === 'top' ? (
                 <div className={`tabbar-group-tab-description`}>{description}</div>
               ) : null}

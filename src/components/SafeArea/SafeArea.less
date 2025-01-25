@@ -110,9 +110,10 @@
 
 // 弹窗安全区域
 .safe-area-picker {
-  // 匹配滚动弹窗选择控件: Transfer、Cascader
+  // 匹配滚动弹窗选择控件: Transfer、Cascader、Select
   #root > .picker-mask .transfer-modal,
-  #root > .picker-mask .cascader-modal {
+  #root > .picker-mask .cascader-modal,
+  #root > .picker-mask .select-modal {
     &::after {
       content: '';
       display: block;

@@ -30,6 +30,7 @@ const Modal = forwardRef(
       // Main properties
       value,
       allowClear,
+      multiple,
       onChange,
 
       // Header and Footer
@@ -161,6 +162,7 @@ const Modal = forwardRef(
             visible={visible}
             value={currentValue}
             allowClear={allowClear}
+            multiple={multiple}
             onChange={(newValue, newArguments) => {
               // 无标题时更新标题
               updateTitle()

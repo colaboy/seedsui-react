@@ -27,6 +27,7 @@ const Combo = forwardRef(
       displayValueFormatter,
       autoSize,
       allowClear,
+      multiple,
       readOnly,
       disabled,
       onClick,
@@ -179,6 +180,7 @@ const Combo = forwardRef(
             onBeforeChange={onBeforeChange}
             onChange={onChange}
             allowClear={allowClear}
+            multiple={multiple}
             {...modalProps}
             onVisibleChange={setVisible}
             visible={modalProps?.visible === undefined ? visible : modalProps.visible}

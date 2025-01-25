@@ -4,75 +4,62 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 const Checkbox = forwardRef(
   (
     {
-      type, // checkbox或者radio, 不对外开放
-      value,
+      icon,
+      iconPosition = 'left',
+
       checked,
 
       readOnly,
       disabled,
 
-      inputProps = {},
-
-      captionProps = {},
       children,
       onChange,
       ...props
     },
     ref
   ) => {
-    // 节点
+    // Expose
     const rootRef = useRef(null)
-    const inputRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef.current,
-        inputDOM: inputRef.current,
         getRootDOM: () => {
           return rootRef.current
-        },
-        getInputDOM: () => {
-          return inputRef.current
         }
       }
     })
 
     // 点击回调
-    function handleClick(e) {
+    function handleClick() {
       if (disabled || readOnly) return
-      if (onChange) onChange(e.currentTarget.getAttribute('data-checked') !== 'true')
+      if (onChange) onChange(!checked)
     }
 
-    // 类型样式前缀
-    let typeClassPrefix = type === 'radio' ? 'radio' : 'checkbox'
+    // 获取选中状态的Node
+    function getInputNode(checked) {
+      if (typeof icon === 'function') {
+        return icon({ checked })
+      }
+      if (icon !== undefined) {
+        return icon
+      }
+      return <span className={`checkbox-icon default`} />
+    }
+
     return (
       <div
         {...props}
         onClick={handleClick}
         disabled={disabled}
         readOnly={readOnly}
-        data-checked={checked}
-        data-value={value}
-        className={`${typeClassPrefix}${props.className ? ' ' + props.className : ''}`}
+        className={`checkbox${props.className ? ' ' + props.className : ''}${
+          checked ? ' checked' : ''
+        }`}
         ref={rootRef}
       >
-        <span
-          ref={inputRef}
-          {...inputProps}
-          className={`${typeClassPrefix}-input${
-            inputProps.className ? ' ' + inputProps.className : ''
-          }`}
-        />
-        {(children || captionProps?.caption) && (
-          <div
-            {...captionProps}
-            className={`${typeClassPrefix}-caption${
-              captionProps.className ? ' ' + captionProps.className : ''
-            }`}
-          >
-            {captionProps?.caption}
-            {children}
-          </div>
-        )}
+        {iconPosition !== 'right' && getInputNode(checked)}
+        {children && <span className={`checkbox-content`}>{children}</span>}
+        {iconPosition === 'right' && getInputNode(checked)}
       </div>
     )
   }

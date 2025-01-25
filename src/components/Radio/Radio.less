@@ -1,50 +1,26 @@
-// Radio控件
-@radio-color: #b6b6b6;
-@radio-color-active: @primary;
-@radio-color-disabled: @disabled;
-.radio {
-  .inline-flex;
-  .flex-middle;
-  &[disabled] {
-    color: @radio-color-disabled;
-    &:extend(.events-none);
-    .radio-input {
-      opacity: 0.5;
-    }
-    .radio-caption {
-      opacity: 0.5;
-    }
-  }
-  &[data-checked='true'] {
-    .radio-input {
-      color: @radio-color-active;
-      font-family: 'iconfont';
-      &:extend(.icon-rdo-ok-fill all);
-    }
+// input图标
+.checkbox-icon {
+  &.radio {
+    line-height: 14px;
+    border: 1px solid #ced2d8;
+    border-radius: 100%;
   }
 }
-.radio-input {
-  width: 22px;
-  height: 22px;
 
-  color: @radio-color;
-  font-size: 22px;
-
-  font-family: 'iconfont';
-  line-height: 22px;
-  vertical-align: middle;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: auto 100%;
-  border: none;
-  border-radius: 0;
-  outline: none;
-  &:extend(.events-none);
-  &:extend(.icon-rdo all);
-}
-// caption
-.radio-caption {
-  margin-left: 4px;
-  &:extend(.events-none);
+// input图标选中状态
+.checkbox.checked {
+  .checkbox-icon.radio {
+    border: 0;
+    background-color: var(--primary);
+    color: white;
+    font-family: 'iconfont';
+    &:extend(.icon-ok-fill all);
+    &:before {
+      width: 12px;
+      height: 12px;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: bold;
+    }
+  }
 }

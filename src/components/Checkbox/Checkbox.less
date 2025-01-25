@@ -1,3 +1,5 @@
+@import 'Group/CheckboxGroup.less';
+
 // Checkbox控件
 .checkbox {
   .inline-flex;
@@ -5,56 +7,71 @@
   vertical-align: middle;
   // 禁用状态
   &[disabled] {
-    .checkbox-input {
+    .checkbox-icon {
       background-color: #f8f7f7;
       border-color: #e5e5e5;
     }
-    .checkbox-caption,
-    &[data-checked='true'] {
+    .checkbox-content,
+    &.checked {
       opacity: 0.5;
     }
   }
 }
 
-// 选中状态
-.checkbox[data-checked='true'] {
-  .checkbox-input {
-    .checkbox-input-checked;
-  }
-}
-
-// 圆框
-.checkbox-input {
+// input图标
+.checkbox-icon {
   .inline-flex;
   .flex-middle;
   .flex-center;
-  line-height: 14px;
-  width: 22px;
-  height: 22px;
   box-sizing: border-box;
   vertical-align: middle;
-  border: 1px solid #ced2d8;
-  border-radius: 100%;
-}
+  width: 22px;
+  height: 22px;
 
-// 圆框-选中
-.checkbox-input-checked {
-  border: 0;
-  background-color: @primary;
-  color: white;
-  // 勾
-  font-family: 'iconfont';
-  &:extend(.icon-ok-fill all);
-  &:before {
-    width: 12px;
-    height: 12px;
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: bold;
+  // 默认样式
+  &.default {
+    line-height: 14px;
+    border: 1px solid #ced2d8;
+    border-radius: 100%;
+  }
+  // 勾子样式
+  &.tick {
   }
 }
 
-// caption
-.checkbox-caption {
-  margin-left: 4px;
+// input图标选中状态
+.checkbox.checked {
+  // 默认样式
+  .checkbox-icon.default {
+    border: 0;
+    background-color: var(--primary);
+    color: white;
+    font-family: 'iconfont';
+    &:extend(.icon-ok-fill all);
+    &:before {
+      width: 12px;
+      height: 12px;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: bold;
+    }
+  }
+  // 勾子样式
+  .checkbox-icon.tick {
+    color: var(--primary);
+    font-family: 'iconfont';
+    &:extend(.icon-ok-fill all);
+    &:before {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+// content
+.checkbox-content {
+  margin-left: var(--space-xs);
 }

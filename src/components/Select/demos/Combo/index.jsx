@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Select } from 'seedsui-react'
+import { Select, Checkbox } from 'seedsui-react'
 
 export default () => {
   const selectRef = useRef(null)
@@ -21,20 +21,25 @@ export default () => {
     <>
       <Select.Combo
         ref={selectRef}
+        modalProps={{
+          header: () => {
+            return <p>列表头部扩展</p>
+          },
+          footer: () => {
+            return <p>列表底部扩展</p>
+          },
+          mainProps: {
+            leftIcon: function ({ checked }) {
+              return <Checkbox checked={checked} />
+            },
+            rightIcon: function ({ checked }) {
+              return <Checkbox checked={checked} />
+            }
+          }
+        }}
         // autoSize
         // disabled="excludeRightIcon"
         // animation="zoom"
-        // 自定义主体
-        // MainComponent={CustomMain}
-        rightIconProps={{
-          className: 'icon shape-arrow-right sm'
-        }}
-        listExtraHeaderRender={() => {
-          return <p>列表头部扩展</p>
-        }}
-        listExtraFooterRender={() => {
-          return <p>列表底部扩展</p>
-        }}
         allowClear="excludeRightIcon"
         // multiple={true}
         placeholder="Please select"

@@ -1,9 +1,9 @@
 ---
 category: Components
 group: Data Entry
-title: Checkbox
+title: List
 ---
 
-# Checkbox
+# List
 
 ## 示例

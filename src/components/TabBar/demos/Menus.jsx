@@ -63,8 +63,8 @@ export default () => {
               id: 'Vegetable'
             },
             {
-              icon: ({ active }) =>
-                active ? (
+              icon: ({ checked }) =>
+                checked ? (
                   <i className="tabbar-menus-tab-icon icon-close"></i>
                 ) : (
                   <i className="tabbar-menus-tab-icon icon-plus"></i>

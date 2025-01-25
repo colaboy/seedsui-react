@@ -6,13 +6,24 @@ export default () => {
 
   return (
     <>
-      <Checkbox checked={value} onChange={setValue}>
-        普通
+      <Checkbox
+        checked={value}
+        onChange={setValue}
+        icon={<span className={`checkbox-icon tick`} />}
+      >
+        Common
       </Checkbox>
+      <br />
+      <Checkbox checked={value} onChange={setValue} iconPosition="right">
+        Common iconPosition=right
+      </Checkbox>
+      <br />
       <Checkbox checked={true}>选中</Checkbox>
+      <br />
       <Checkbox checked={false} disabled>
         普通-禁用
       </Checkbox>
+      <br />
       <Checkbox checked={true} disabled>
         选中-禁用
       </Checkbox>
