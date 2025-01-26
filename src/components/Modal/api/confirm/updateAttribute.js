@@ -32,9 +32,9 @@ function updateAttribute(
     footerProps,
 
     // 确定, 默认显示确定按钮
-    submit,
-    onSubmit,
-    submitProps,
+    ok,
+    onOk,
+    okProps,
 
     // 取消, confirm默认显示取消按钮
     cancel,
@@ -69,9 +69,9 @@ function updateAttribute(
   updateStyle(footerDOM, { ...footerProps, baseClassName: 'modal-footer' })
 
   // 提交按钮
-  let submitDOM = mask.querySelector('.modal-ok')
-  updateStyle(submitDOM, { ...submitProps, baseClassName: 'modal-ok' })
-  submitDOM.innerHTML = submit || LocaleUtil.locale('确定', 'SeedsUI_ok')
+  let okDOM = mask.querySelector('.modal-ok')
+  updateStyle(okDOM, { ...okProps, baseClassName: 'modal-ok' })
+  okDOM.innerHTML = ok || LocaleUtil.locale('确定', 'SeedsUI_ok')
 
   // 取消按钮
   let cancelDOM = mask.querySelector('.modal-cancel')
@@ -86,7 +86,7 @@ function updateAttribute(
 
   // 更新事件中用到的属性（否则事件中将永远读取到的是闭包中的属性，即上次的属性）
   mask.maskClosable = maskClosable
-  mask.onSubmit = onSubmit
+  mask.onOk = onOk
   mask.onCancel = onCancel
   mask.onVisibleChange = onVisibleChange
 

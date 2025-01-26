@@ -11,12 +11,25 @@ const Modal = forwardRef(
       // Modal fixed properties
       portal,
       animation = 'slideUp',
+
+      // 遮罩
       maskProps,
+      maskClosable = true,
+
+      // 标题
       title,
       titleProps,
-      submitProps,
+
+      // 确定按钮
+      ok,
+      onOk,
+      okProps,
+
+      // 取消按钮
+      cancel,
+      onCancel,
       cancelProps,
-      maskClosable = true,
+
       visible,
       onVisibleChange,
 
@@ -62,7 +75,7 @@ const Modal = forwardRef(
         mainDOM: mainDOM,
         getMainDOM: getMainDOM,
 
-        submit: handleChange,
+        triggerOk: handleChange,
         ...otherMainRef
       }
     })
@@ -114,8 +127,8 @@ const Modal = forwardRef(
       onVisibleChange && onVisibleChange(false)
     }
 
-    function handleSubmitClick(e) {
-      if (submitProps?.onClick) submitProps.onClick(e)
+    function handleOkClick(e) {
+      if (onOk) onOk(e)
       handleChange(currentValue)
     }
 
@@ -140,10 +153,11 @@ const Modal = forwardRef(
         maskProps={maskProps}
         title={currentTitle}
         titleProps={titleProps}
-        submitProps={{
-          ...submitProps,
-          onClick: handleSubmitClick
-        }}
+        ok={ok}
+        onOk={handleOkClick}
+        okProps={okProps}
+        cancel={cancel}
+        onCancel={onCancel}
         cancelProps={cancelProps}
         maskClosable={maskClosable}
         {...props}
@@ -151,7 +165,7 @@ const Modal = forwardRef(
       >
         {/* 头部 */}
         {typeof header === 'function'
-          ? header({ visible, value: currentValue, submit: handleChange })
+          ? header({ visible, value: currentValue, ok: handleChange })
           : header}
 
         {/* 纯渲染 */}
@@ -176,7 +190,7 @@ const Modal = forwardRef(
               if (changeClosable === true) {
                 handleChange(newValue)
               } else if (typeof changeClosable === 'function') {
-                changeClosable(newValue, newArguments, { submit: handleChange })
+                changeClosable(newValue, newArguments, { ok: handleChange })
               }
 
               mainProps?.onChange && mainProps.onChange(newValue, newArguments)
@@ -186,7 +200,7 @@ const Modal = forwardRef(
 
         {/* 底部 */}
         {typeof footer === 'function'
-          ? footer({ visible, value: currentValue, submit: handleChange })
+          ? footer({ visible, value: currentValue, ok: handleChange })
           : footer}
       </ModalPicker>
     )

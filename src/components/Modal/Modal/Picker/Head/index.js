@@ -1,20 +1,15 @@
 import React, { forwardRef } from 'react'
 import getCancelVisible from './getCancelVisible'
-import getSubmitVisible from './getSubmitVisible'
+import getOkVisible from './getOkVisible'
 
 import Cancel from './Cancel'
-import Submit from './Submit'
+import Ok from './Ok'
 import Title from './Title'
 
 const Head = forwardRef(
-  ({ title, titleProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
-    // 是否隐藏取消
-    let cancelVisible = getCancelVisible(cancelProps, onCancelClick)
-    // 是否隐藏确认, 隐藏确认按钮时, 取消按钮要在右侧显示
-    let submitVisible = getSubmitVisible(submitProps, onSubmitClick)
-
+  ({ title, titleProps, ok, onOk, okProps, cancel, onCancel, cancelProps }, ref) => {
     // 只显示标题
-    if (!cancelVisible && !submitVisible) {
+    if (cancel === null && ok === null) {
       return (
         <div className="picker-header" ref={ref}>
           {/* 标题 */}
@@ -28,19 +23,19 @@ const Head = forwardRef(
       <div className="picker-header" ref={ref}>
         <div className="picker-header-button left">
           {/* 确认显示时，取消在左侧 */}
-          {submitVisible && cancelVisible ? (
-            <Cancel cancelProps={cancelProps} onCancelClick={onCancelClick} />
+          {ok !== null && cancel !== null ? (
+            <Cancel text={cancel} onClick={onCancel} {...cancelProps} />
           ) : null}
         </div>
         {/* 标题 */}
         <Title title={title} {...titleProps} />
         <div className="picker-header-button right">
           {/* 确认隐藏时，取消在右侧 */}
-          {!submitVisible && cancelVisible ? (
-            <Cancel cancelProps={cancelProps} onCancelClick={onCancelClick} />
+          {ok === null && cancel !== null ? (
+            <Cancel text={cancel} onClick={onCancel} {...cancelProps} />
           ) : null}
           {/* 确认 */}
-          {submitVisible && <Submit submitProps={submitProps} onSubmitClick={onSubmitClick} />}
+          {ok !== null && <Ok {...okProps} text={ok} onClick={onOk} />}
         </div>
       </div>
     )

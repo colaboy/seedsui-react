@@ -25,9 +25,9 @@ export default function confirm({
   footerProps,
 
   // 确定, 默认显示确定按钮
-  submit,
-  onSubmit,
-  submitProps,
+  ok,
+  onOk,
+  okProps,
 
   // 取消, confirm默认显示取消按钮
   cancel,
@@ -64,7 +64,7 @@ export default function confirm({
     let isOk = e.target.classList.contains('modal-ok')
 
     // 读取更新后的属性
-    const onClick = isOk ? mask?.onSubmit : mask?.onCancel
+    const onClick = isOk ? mask?.onOk : mask?.onCancel
     const onVisibleChange = mask?.onVisibleChange
 
     if (typeof onClick === 'function') {
@@ -108,9 +108,9 @@ export default function confirm({
     footerProps,
 
     // 确定, 默认显示确定按钮
-    submit,
-    onSubmit,
-    submitProps,
+    ok,
+    onOk,
+    okProps,
 
     // 取消, confirm默认显示取消按钮
     cancel,

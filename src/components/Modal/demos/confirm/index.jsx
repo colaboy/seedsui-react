@@ -30,13 +30,13 @@ export default () => {
           color: 'red'
         }
       },
-      submitProps: {
+      okProps: {
         className: 'text-left',
         style: {
           color: 'red'
         }
       },
-      onSubmit: () => {
+      onOk: () => {
         console.log('第二层')
         Modal.confirm({
           title: '第二层',
@@ -48,7 +48,7 @@ export default () => {
           },
           maskClosable: true,
           content: 'confirm content2',
-          onSubmit: () => {
+          onOk: () => {
             console.log('第三层')
             Modal.alert({
               portal: document.body,

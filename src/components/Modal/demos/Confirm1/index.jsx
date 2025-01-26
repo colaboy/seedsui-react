@@ -26,7 +26,7 @@ export default () => {
             captionProps={{
               caption: '标题'
             }}
-            submitProps={{
+            okProps={{
               caption: '确定',
               onClick: (e) => {
                 console.log('ok')

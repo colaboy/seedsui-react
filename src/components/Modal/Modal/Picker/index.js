@@ -16,7 +16,11 @@ const Picker = forwardRef(
       maskProps,
       title,
       titleProps,
-      submitProps,
+      ok,
+      onOk,
+      okProps,
+      cancel,
+      onCancel,
       cancelProps,
       maskClosable = true,
 
@@ -44,7 +48,7 @@ const Picker = forwardRef(
 
     // 事件
     function handleCancelClick(e) {
-      if (cancelProps?.onClick) cancelProps.onClick(e)
+      onCancel && onCancel(e)
       onVisibleChange && onVisibleChange(false)
     }
     function handleMaskClick(e) {
@@ -77,9 +81,12 @@ const Picker = forwardRef(
           <Head
             title={title}
             titleProps={titleProps}
+            cancel={cancel}
+            onCancel={handleCancelClick}
             cancelProps={cancelProps}
-            submitProps={submitProps}
-            onCancelClick={handleCancelClick}
+            ok={ok}
+            onOk={onOk}
+            okProps={okProps}
           />
           {/* 主体 */}
           {children}

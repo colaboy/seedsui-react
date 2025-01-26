@@ -1,5 +1,5 @@
 // 是否显示确认按钮, 默认不显示确定按钮
-function getSubmitVisible(props, onClick) {
+function getOkVisible(props, onClick) {
   if (props?.visible !== undefined) {
     return props.visible
   }
@@ -9,4 +9,4 @@ function getSubmitVisible(props, onClick) {
   return false
 }
 
-export default getSubmitVisible
+export default getOkVisible
