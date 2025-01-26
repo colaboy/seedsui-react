@@ -117,7 +117,9 @@ export default () => {
       <Cascader.DistrictCombo
         ref={districtComboRef}
         // 编辑控制
-        allowClear="excludeRightIcon"
+        clear={({ value }) => {
+          return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
+        }}
         rightIcon={<i className="right-icon shape-arrow-right sm"></i>}
         min="city" // ['country', 'province', 'city', 'district', 'street']
         // type="district"

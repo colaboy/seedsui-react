@@ -1,10 +1,3 @@
-// Picker选择器
-@picker-bg: white;
-@picker-button-primary-color: @primary;
-@picker-button-default-color: #62666c;
-
-@picker-button-disabled-color: #d1d1d1;
-@picker-header-bg: #fff;
 // picker遮罩, 基于.mask
 .picker-mask {
 }
@@ -17,7 +10,7 @@
   bottom: 0;
   z-index: 10;
 
-  background-color: @picker-bg;
+  background-color: white;
   // transform: translate3d(0, 100%, 0);
   // transition-duration: @animation-duration;
   // transition-property: transform, opacity, visibility;
@@ -31,7 +24,7 @@
   position: relative;
   padding: 8px 0;
   margin: 0 18px;
-  background-color: @picker-header-bg;
+  background-color: white;
   justify-content: space-between;
 }
 
@@ -59,15 +52,15 @@
   line-height: 32px;
   font-size: 15px;
   &.disabled {
-    color: @picker-button-disabled-color;
+    color: #d1d1d1;
     pointer-events: none;
   }
 }
 .picker-ok {
-  color: @picker-button-primary-color;
+  color: var(--primary);
 }
 .picker-cancel {
-  color: @picker-button-default-color;
+  color: #62666c;
 }
 .picker-close {
   display: flex;
@@ -86,7 +79,7 @@
   height: 12px;
   line-height: 12px;
   &:extend(.icon-close-fill all);
-  color: @picker-button-default-color;
+  color: #62666c;
 }
 .picker-header-title {
   .text-center;
@@ -209,7 +202,7 @@
   }
   &:before {
     top: 0;
-    // background: fade(@picker-bg, 70%);
+    // background: fade(#white, 70%);
     width: 100%;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
@@ -220,7 +213,7 @@
   }
   &:after {
     bottom: 0;
-    // background: fade(@picker-bg, 70%);
+    // background: fade(#white, 70%);
     width: 100%;
     -webkit-box-flex: 1;
     -webkit-flex: 1;

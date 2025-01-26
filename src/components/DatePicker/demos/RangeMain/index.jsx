@@ -30,7 +30,9 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
-          // allowClear="excludeRightIcon"
+          clear={({ value }) => {
+            return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
+          }}
           rangeId={rangeId}
           value={value}
           // onError={(error) => {

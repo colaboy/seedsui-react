@@ -34,7 +34,6 @@ export default () => {
         clear={({ value }) => {
           return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
         }}
-        // disabled="excludeRightIcon"
         onChange={(val) => {
           console.log(val)
           setValue(val)

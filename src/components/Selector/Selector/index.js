@@ -12,7 +12,6 @@ const Selector = forwardRef(
       allowClear,
       value,
       list,
-      onBeforeChange,
       onChange,
 
       // 样式
@@ -87,11 +86,7 @@ const Selector = forwardRef(
           })
         }
       }
-      // 修改提示
-      if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange(newValue)
-        if (goOn === false) return
-      }
+
       if (onChange) onChange(newValue)
     }
 

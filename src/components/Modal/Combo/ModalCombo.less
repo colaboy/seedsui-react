@@ -1,0 +1,36 @@
+// 多选框样式
+.modal-combo-tags {
+  display: flex;
+  align-items: center;
+}
+.modal-combo-tags-content {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+  &.nowrap {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+.modal-combo-tags-item {
+  display: inline-flex;
+  align-items: center;
+  // background: #fff4e6;
+  background: var(--primary-lighten);
+  border-radius: 8px;
+  padding: 8px;
+}
+.modal-combo-tags-item-clear {
+  margin-left: 4px;
+  color: var(--primary);
+  font-family: 'iconfont';
+  font-size: 16px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  font-family: 'iconfont';
+  &:extend(.icon-rdo-close-fill all);
+}

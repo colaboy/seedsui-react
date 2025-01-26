@@ -1,6 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import { createPortal } from 'react-dom'
-import getIsActive from './getIsActive'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
@@ -54,18 +53,28 @@ const Modal = forwardRef(
     })
 
     // 点击选项
-    async function handleClickOption(e, item) {
+    async function handleChange(item) {
       e.stopPropagation()
 
-      // 触发点击事件
-      if (optionProps?.onClick) optionProps.onClick(e)
+      let currentValue = item
+      if (allowClear) {
+        if (item.id === value?.id) {
+          currentValue = null
+        }
+      }
+
       // 修改提示
       if (typeof onBeforeChange === 'function') {
-        let goOn = await onBeforeChange([item])
+        let goOn = await onBeforeChange(currentValue)
         if (goOn === false) return
+
+        // 修改值
+        if (typeof goOn === 'object') {
+          currentValue = goOn
+        }
       }
       // 触发onChange事件
-      if (onChange) onChange([item])
+      if (onChange) onChange(currentValue)
       if (onVisibleChange) onVisibleChange(false)
     }
 
@@ -126,10 +135,13 @@ const Modal = forwardRef(
                 return (
                   <div
                     {...optionProps}
-                    className={`actionsheet-option${getIsActive(item, value) ? ' active' : ''}`}
+                    className={`actionsheet-option${value?.[item.id] ? ' active' : ''}`}
                     key={index}
                     data-index={index}
-                    onClick={(e) => handleClickOption(e, item, index)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleChange(item)
+                    }}
                   >
                     {item.name}
                   </div>
@@ -144,7 +156,4 @@ const Modal = forwardRef(
   }
 )
 
-export default React.memo(Modal, (prevProps, nextProps) => {
-  if (nextProps.visible === prevProps.visible) return true
-  return false
-})
+export default Modal

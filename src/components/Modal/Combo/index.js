@@ -11,6 +11,7 @@ import getDisplayValue from './getDisplayValue'
 import Input from './../../Input'
 
 import ComboWrapper from './ComboWrapper'
+import Tags from './Tags'
 
 // Combo
 const Combo = forwardRef(
@@ -143,6 +144,25 @@ const Combo = forwardRef(
                 })
               : combo || children}
           </ComboWrapper>
+        )
+      }
+
+      if (multiple === 'tags') {
+        return (
+          <Tags
+            leftIcon={props?.leftIcon}
+            rightIcon={props?.rightIcon}
+            className={props?.className}
+            style={props?.style}
+            placeholder={props?.placeholder}
+            allowClear={allowClear}
+            value={value}
+            onAdd={() => setVisible(true)}
+            onEdit={() => setVisible(true)}
+            onDelete={(current) => {
+              onChange && onChange(value.filter((item) => item.id !== current.id))
+            }}
+          />
         )
       }
 

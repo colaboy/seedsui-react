@@ -1,0 +1,78 @@
+import React from 'react'
+
+// 内库使用-start
+import LocaleUtil from './../../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-end */
+
+// 标签模式
+const Tags = ({
+  leftIcon,
+  rightIcon,
+  className,
+  style,
+  contentProps,
+  placeholder,
+  allowClear,
+  value,
+  onAdd,
+  onEdit,
+  onDelete
+}) => {
+  return (
+    <>
+      <div
+        className={`modal-combo-tags${className ? ' ' + className : ''}`}
+        style={style}
+        onClick={onAdd}
+      >
+        {typeof leftIcon === 'function' ? leftIcon({ value }) : leftIcon}
+        {/* 主体 */}
+        <div
+          {...contentProps}
+          className={`modal-combo-tags-content${
+            contentProps?.className ? ' ' + contentProps.className : ''
+          }`}
+        >
+          {Array.isArray(value)
+            ? value.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="modal-combo-tags-item"
+                    onClick={(e) => {
+                      onEdit && onEdit(index)
+                      e.stopPropagation()
+                    }}
+                  >
+                    {item.name}
+                    {allowClear && (
+                      <i
+                        className="modal-combo-tags-item-clear"
+                        onClick={(e) => {
+                          onDelete && onDelete(item)
+                          e.stopPropagation()
+                        }}
+                      ></i>
+                    )}
+                  </div>
+                )
+              })
+            : null}
+          {(!Array.isArray(value) || !value?.length) && (
+            <p className="color-placeholder" style={{ padding: '10px 0' }}>
+              {placeholder ||
+                LocaleUtil.locale('Please Select', 'library.3569a4e76b94b20ef0ab338fa87ec981')}
+            </p>
+          )}
+        </div>
+        {typeof rightIcon === 'function' ? rightIcon({ value }) : rightIcon}
+      </div>
+    </>
+  )
+}
+
+export default Tags

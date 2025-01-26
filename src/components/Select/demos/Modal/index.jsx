@@ -32,23 +32,6 @@ export default () => {
         onVisibleChange={(visible) => {
           console.log(visible)
         }}
-        // 搜索
-        headerRender={() => {
-          return (
-            <input
-              type="text"
-              placeholder="搜索"
-              onChange={(e) => {
-                if (selectRef.current.rootDOM.timeout) {
-                  window.clearTimeout(selectRef.current.rootDOM.timeout)
-                }
-                selectRef.current.rootDOM.timeout = window.setTimeout(() => {
-                  selectRef?.current?.search && selectRef.current.search(e.target.value)
-                }, 1000)
-              }}
-            />
-          )
-        }}
       />
     </>
   )
