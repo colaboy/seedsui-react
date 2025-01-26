@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import ModalPicker from './../Picker'
+import ModalPicker from './Picker'
 
 // Modal
 const Modal = forwardRef(

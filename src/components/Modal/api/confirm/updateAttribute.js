@@ -4,6 +4,10 @@ import updateStyle from './updateStyle'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-start */
+
 // 更新属性
 function updateAttribute(
   mask,
@@ -42,13 +46,13 @@ function updateAttribute(
   updateStyle(mask, { ...maskProps, baseClassName: 'mask modal-mask' })
 
   // 更新标题
-  let captionDOM = mask.querySelector('.modal-caption')
-  updateStyle(captionDOM, { ...titleProps, baseClassName: 'modal-caption' })
+  let titleDOM = mask.querySelector('.modal-caption')
+  updateStyle(titleDOM, { ...titleProps, baseClassName: 'modal-caption' })
   if (title) {
-    captionDOM?.classList?.remove?.('hide')
-    captionDOM.innerHTML = title
+    titleDOM?.classList?.remove?.('hide')
+    titleDOM.innerHTML = title
   } else {
-    captionDOM?.classList?.add?.('hide')
+    titleDOM?.classList?.add?.('hide')
   }
 
   // 更新内容
