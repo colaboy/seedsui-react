@@ -1,0 +1,63 @@
+import LocaleUtil from './../../../utils/LocaleUtil'
+
+import updateStyle from './updateStyle'
+
+// 更新属性
+function updateAttribute(mask) {
+  // 更新遮罩
+  updateStyle(mask, { ...maskProps, baseClassName: 'mask modal-mask' })
+
+  // 更新标题
+  let captionDOM = mask.querySelector('.modal-caption')
+  updateStyle(captionDOM, { ...titleProps, baseClassName: 'modal-caption' })
+  if (title) {
+    captionDOM?.classList?.remove?.('hide')
+    captionDOM.innerHTML = title
+  } else {
+    captionDOM?.classList?.add?.('hide')
+  }
+
+  // 更新内容
+  let contentDOM = mask.querySelector('.modal-content')
+  updateStyle(contentDOM, { ...contentProps, baseClassName: 'modal-content' })
+  if (content) {
+    contentDOM.innerHTML = content
+  } else {
+    contentDOM.innerHTML = ''
+  }
+
+  // 更新底部
+  let footerDOM = mask.querySelector('.modal-footer')
+  updateStyle(footerDOM, { ...footerProps, baseClassName: 'modal-footer' })
+
+  // 提交按钮
+  let submitDOM = mask.querySelector('.modal-ok')
+  updateStyle(submitDOM, { ...submitProps, baseClassName: 'modal-ok' })
+  submitDOM.innerHTML = submit || LocaleUtil.locale('确定', 'SeedsUI_ok')
+
+  // 取消按钮
+  let cancelDOM = mask.querySelector('.modal-cancel')
+  updateStyle(cancelDOM, { ...cancelProps, baseClassName: 'modal-cancel' })
+  cancelDOM.innerHTML = cancel || LocaleUtil.locale('取消', 'SeedsUI_cancel')
+
+  if (cancel === null) {
+    cancelDOM?.classList?.add?.('hide')
+  } else {
+    cancelDOM?.classList?.remove?.('hide')
+  }
+
+  // 更新事件中用到的属性（否则事件中将永远读取到的是闭包中的属性，即上次的属性）
+  mask.maskClosable = maskClosable
+  mask.onSubmit = onSubmit
+  mask.onCancel = onCancel
+  mask.onVisibleChange = onVisibleChange
+
+  // dom透传
+  if (toString.call(portal).indexOf('HTML') !== -1) {
+    portal.appendChild(mask)
+  } else {
+    ;(document.getElementById('root') || document.body).appendChild(mask)
+  }
+}
+
+export default updateAttribute
