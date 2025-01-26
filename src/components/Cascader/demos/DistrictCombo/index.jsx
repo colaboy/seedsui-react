@@ -131,9 +131,6 @@ export default () => {
         // clearProps={{
         //   className: 'hide-important'
         // }}
-        // submitProps={{
-        //   visible: true
-        // }}
         list={list}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
@@ -141,21 +138,21 @@ export default () => {
         // 未弹出选择框便加载
         async={false}
         editableOptions={{
-          country: { editable: false },
-          province: { editable: false }
+          country: { editable: false }
+          // province: { editable: false },
           // city: { editable: false },
           // district: { editable: false },
           // street: { editable: false }
         }}
         modalProps={{
-          headerRender: () => {
+          header: () => {
             return <div>自定义头</div>
           },
-          footerRender: ({ value, submit }) => {
+          footer: ({ value, triggerOk }) => {
             return (
               <Layout.Footer
                 onClick={() => {
-                  submit()
+                  triggerOk()
                 }}
               >
                 <Button className="listpicker-footer-submit primary">确定</Button>

@@ -45,12 +45,8 @@ export default () => {
         //   captionProps: {
         //     caption: '标题'
         //   },
-        //   cancelProps: {
-        //     visible: false
-        //   },
-        //   submitProps: {
-        //     visible: false
-        //   }
+        //   cancel: null,
+        //   ok: null
         // }}
         placeholder="Please select"
         value={value}

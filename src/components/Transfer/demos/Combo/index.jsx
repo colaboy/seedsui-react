@@ -46,11 +46,11 @@ export default () => {
             setValue(newValue)
           }}
           modalProps={{
-            footerRender: ({ value, submit }) => {
+            footer: ({ value, triggerOk }) => {
               return (
                 <Layout.Footer
                   onClick={() => {
-                    submit()
+                    triggerOk()
                   }}
                 >
                   <Button className="listpicker-footer-submit primary">确定</Button>

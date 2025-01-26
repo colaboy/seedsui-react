@@ -20,7 +20,6 @@ const DistrictModal = forwardRef(
       value,
 
       visible,
-      submitProps,
       min = '',
       isCountry,
       isProvince,
@@ -41,15 +40,15 @@ const DistrictModal = forwardRef(
     ref
   ) => {
     // 是否显示右上角确认按钮
-    let [submitVisible, setSubmitVisible] = useState(null)
+    let [okVisible, setOkVisible] = useState(null)
 
     useEffect(() => {
       if (!visible || _.isEmpty(list) || _.isEmpty(value)) {
-        min && setSubmitVisible(false)
+        min && setOkVisible(false)
         return
       }
 
-      updateSubmitVisible(value)
+      updateOkVisible(value)
 
       // eslint-disable-next-line
     }, [visible])
@@ -72,44 +71,33 @@ const DistrictModal = forwardRef(
     }
 
     // 根据min判断是否显示确定按钮
-    function updateSubmitVisible(tabs) {
+    function updateOkVisible(tabs) {
       if (!min || !Array.isArray(tabs) || !tabs.length) return
 
-      let submitVisible = null
+      let newOkVisible = null
 
       // 获取末级类型
       _updateValueType(tabs)
 
-      submitVisible = false
+      newOkVisible = false
 
       // 比较类型, 判断是否显示确定按钮
       let currentTypes = tabs[tabs.length - 1]?.type
       if (currentTypes) {
         for (let currentType of currentTypes) {
           if (compareType(currentType, min) >= 0) {
-            submitVisible = true
+            newOkVisible = true
             break
           }
         }
       }
 
-      setSubmitVisible(submitVisible)
+      setOkVisible(newOkVisible)
     }
 
     // 点击选项前判断是否指定类型: 省, 市, 区
     function handleDrillDown(tabs) {
-      updateSubmitVisible(tabs)
-    }
-
-    // 显示右上角的按钮
-    // eslint-disable-next-line
-    if (!submitProps) submitProps = {}
-    if (submitVisible !== null) {
-      // eslint-disable-next-line
-      submitProps = {
-        visible: submitVisible,
-        ...submitProps
-      }
+      updateOkVisible(tabs)
     }
 
     // 扩展非标准属性
@@ -136,17 +124,14 @@ const DistrictModal = forwardRef(
         value={value}
         {...props}
         main={props?.main || DistrictMain}
-        changeClosable={(newValue, newArguments, { submit }) => {
+        changeClosable={(newValue, newArguments, { triggerOk }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
           if (lastTab?.isLeaf) {
-            submit(newValue)
+            triggerOk(newValue)
           }
         }}
-        submitProps={{
-          visible: false,
-          ...(submitProps || {})
-        }}
+        ok={okVisible ? '' : null}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
       />
     )

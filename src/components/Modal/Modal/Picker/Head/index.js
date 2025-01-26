@@ -1,6 +1,4 @@
 import React, { forwardRef } from 'react'
-import getCancelVisible from './getCancelVisible'
-import getOkVisible from './getOkVisible'
 
 import Cancel from './Cancel'
 import Ok from './Ok'

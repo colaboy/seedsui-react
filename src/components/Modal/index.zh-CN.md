@@ -8,17 +8,13 @@ title: Modal
 
 ## 示例
 
+### Combo
+
+<code src="./demos/Combo/index.jsx"></code>
+
 ### Modal
 
 <code src="./demos/Modal/index.jsx"></code>
-
-### Modal.Alert
-
-<code src="./demos/Alert1/index.jsx"></code>
-
-### Modal.Confirm
-
-<code src="./demos/Confirm1/index.jsx"></code>
 
 ### Modal.alert
 
@@ -27,7 +23,3 @@ title: Modal
 ### Modal.confirm
 
 <code src="./demos/confirm/index.jsx"></code>
-
-### Modal.Picker
-
-<code src="./demos/Picker/index.jsx"></code>

@@ -54,7 +54,7 @@ const Main = (
           <p>{LocaleUtil.locale('清除', 'SeedsUI_clear')}</p>
         </div>
         <div
-          className="signature-main-button signature-main-button-submit"
+          className="signature-main-button signature-main-button-ok"
           onClick={async () => {
             let base64 = await signatureRef?.current?.getBase64?.()
             if (onBeforeChange) {

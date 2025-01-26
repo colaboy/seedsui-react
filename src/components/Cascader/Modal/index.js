@@ -33,16 +33,14 @@ const CascaderModal = forwardRef(
     return (
       <ModalPicker
         ref={ref}
-        submitProps={{
-          visible: false
-        }}
+        ok={null}
         {...props}
         main={props?.main || Main}
-        changeClosable={(newValue, newArguments, { submit }) => {
+        changeClosable={(newValue, newArguments, { triggerOk }) => {
           let lastTab =
             Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
           if (lastTab?.isLeaf) {
-            submit(newValue)
+            triggerOk(newValue)
           }
         }}
         value={value}

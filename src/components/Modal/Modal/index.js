@@ -165,7 +165,7 @@ const Modal = forwardRef(
       >
         {/* 头部 */}
         {typeof header === 'function'
-          ? header({ visible, value: currentValue, ok: handleChange })
+          ? header({ visible, value: currentValue, triggerOk: handleChange })
           : header}
 
         {/* 纯渲染 */}
@@ -190,7 +190,7 @@ const Modal = forwardRef(
               if (changeClosable === true) {
                 handleChange(newValue)
               } else if (typeof changeClosable === 'function') {
-                changeClosable(newValue, newArguments, { ok: handleChange })
+                changeClosable(newValue, newArguments, { triggerOk: handleChange })
               }
 
               mainProps?.onChange && mainProps.onChange(newValue, newArguments)
@@ -200,7 +200,7 @@ const Modal = forwardRef(
 
         {/* 底部 */}
         {typeof footer === 'function'
-          ? footer({ visible, value: currentValue, ok: handleChange })
+          ? footer({ visible, value: currentValue, triggerOk: handleChange })
           : footer}
       </ModalPicker>
     )

@@ -17,7 +17,6 @@ const LocationModal = forwardRef(
     {
       // Modal
       visible,
-      submitProps,
       value,
 
       // Main
@@ -53,10 +52,7 @@ const LocationModal = forwardRef(
         }}
         {...props}
         main={props?.main || Main}
-        submitProps={{
-          visible: visible === 'choose' ? true : false,
-          ...submitProps
-        }}
+        ok={visible === 'choose' ? '' : null}
         visible={visible}
         value={value}
         className={`map-modal${props.className ? ' ' + props.className : ''}`}

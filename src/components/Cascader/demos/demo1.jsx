@@ -12,7 +12,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
         cancelProps={{ disabled: true }}
-        submitProps={{ disabled: false }}
+        okProps={{ disabled: false }}
         list={CountriesData}
         placeholder="请选择"
         value={cascader}

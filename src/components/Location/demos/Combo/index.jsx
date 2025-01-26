@@ -110,14 +110,14 @@ export default () => {
         //   })
         // }}
         modalProps={{
-          footer: ({ visible, submit }) => {
+          footer: ({ visible, triggerOk }) => {
             return visible === 'choose' ? (
               <Footer
                 onOk={() => {
-                  submit()
+                  triggerOk()
                 }}
                 onClear={() => {
-                  submit(null)
+                  triggerOk(null)
                 }}
               />
             ) : null
