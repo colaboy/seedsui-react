@@ -5,6 +5,8 @@ import Card from './../Card'
 // 内库使用-end
 
 const Item = ({
+  itemData,
+  layout,
   wrapper,
   disabled,
   checkbox,
@@ -12,18 +14,30 @@ const Item = ({
   avatar,
   title,
   description,
+  note,
   content,
   action,
   checked,
   onChange
 }) => {
   // 获取checkbox
-  function getCheckboxNode(checked) {
+  function getCheckboxNode() {
     if (typeof checkbox === 'function') {
-      return checkbox({ checked })
+      return checkbox({ ...(itemData || {}), checked })
     }
     if (checkbox !== undefined) {
       return checkbox
+    }
+    return null
+  }
+
+  // 获取note
+  function getNoteNode() {
+    if (typeof note === 'function') {
+      return note({ ...(itemData || {}), checked })
+    }
+    if (note !== undefined) {
+      return note
     }
     return null
   }
@@ -33,11 +47,11 @@ const Item = ({
     if (!avatar) return
 
     if (typeof avatar === 'function') {
-      return avatar({ checked })
+      return avatar({ ...(itemData || {}), checked })
     }
     if (typeof avatar === 'string') {
       return (
-        <div className={`list-option-main-avatar`}>
+        <div className={`list-item-meta-avatar`}>
           <img
             alt=""
             src={avatar}
@@ -55,10 +69,24 @@ const Item = ({
     return avatar
   }
 
+  // 获取action
+  function getActionNode() {
+    if (typeof action === 'function') {
+      return action({ ...(itemData || {}), checked })
+    }
+    if (action !== undefined) {
+      return action
+    }
+    return null
+  }
+
+  // 获取item节点
   function getItemNode() {
     return (
       <div
-        className={`list-option${disabled ? ' disabled' : ''}${checked ? ' active' : ''}`}
+        className={`list-item${disabled ? ' disabled' : ''}${checked ? ' active' : ''}${
+          layout ? ' ' + layout : ''
+        }`}
         onClick={(e) => {
           e.stopPropagation()
           onChange && onChange(!checked)
@@ -68,20 +96,25 @@ const Item = ({
         {checkboxPosition !== 'right' && getCheckboxNode(checked)}
 
         {/* Main */}
-        <div className="list-option-main">
-          {getAvatarNode()}
+        <div className="list-item-main">
+          {/* Meta */}
+          <div className="list-item-meta">
+            {getAvatarNode()}
 
-          <div className="list-option-main-content">
-            <p className="list-option-main-title">{title}</p>
-            {description && <div className="list-option-main-description">{description}</div>}
+            <div className="list-item-meta-content">
+              <p className="list-item-meta-title">{title}</p>
+              {description && <div className="list-item-meta-description">{description}</div>}
+            </div>
+
+            {getNoteNode()}
           </div>
+
+          {/* Content */}
+          {content && <div className="list-item-content">{content}</div>}
+
+          {/* Action */}
+          {action && <div className="list-item-action">{getActionNode()}</div>}
         </div>
-
-        {/* Content */}
-        {content && <div className="list-option-content">{content}</div>}
-
-        {/* Action */}
-        {action && <div className="list-option-action">{action}</div>}
 
         {/* Right Checkbox */}
         {checkboxPosition === 'right' && getCheckboxNode(checked)}
@@ -90,7 +123,7 @@ const Item = ({
   }
 
   if (wrapper === 'card') {
-    return <Card className="list-option-wrapper">{getItemNode()}</Card>
+    return <Card className="list-item-wrapper">{getItemNode()}</Card>
   }
   return getItemNode()
 }

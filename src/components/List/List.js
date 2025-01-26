@@ -29,6 +29,7 @@ const List = (
     */
     // Group 配置项
     // Item 配置项
+    layout, // vertical
     wrapper, // card
     checkbox,
     checkboxPosition,
@@ -52,6 +53,8 @@ const List = (
     return (
       <Item
         key={item.id ?? index}
+        itemData={item}
+        layout={layout}
         wrapper={wrapper}
         disabled={item.disabled}
         checkbox={item.checkbox || checkbox}
@@ -59,6 +62,7 @@ const List = (
         avatar={item.avatar}
         title={item.name}
         description={item.description}
+        note={item.note}
         content={item.content}
         action={item.action}
         checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
@@ -97,7 +101,7 @@ const List = (
                 <div className="list-title">{item.name}</div>
                 {item.description && <div className="list-description">{item.description}</div>}
               </div>
-              <div className="list-options">
+              <div className="list-items">
                 {item.children.map((option, optionIndex) => {
                   return getItemNode(option, optionIndex)
                 })}

@@ -1,19 +1,86 @@
 import React, { useRef, useState } from 'react'
-import { List, Checkbox } from 'seedsui-react'
+import { List, Checkbox, Button } from 'seedsui-react'
 
 export default () => {
   const checkboxRef = useRef(null)
   const [list, setList] = useState([
-    { id: '1', name: '1' },
-    { id: '2', name: '2' },
-    { id: '3', name: '3' },
-    { id: '4', name: '4' },
-    { id: '5', name: '5' },
-    { id: '6', name: '6' },
-    { id: '7', name: '7' },
-    { id: '8', name: '8' },
-    { id: '9', name: '9' },
-    { id: '10', name: '10' }
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '1',
+      name: '1',
+      description: 'description',
+      note: <div className="list-item-meta-node">note</div>,
+      content: 'content',
+      action: () => {
+        return <Button>action</Button>
+      }
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '2',
+      name: '2',
+      description: 'description',
+      content: 'content',
+      action: () => {
+        return <Button>action</Button>
+      }
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '3',
+      name: '3',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '4',
+      name: '4',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '5',
+      name: '5',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '6',
+      name: '6',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '7',
+      name: '7',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '8',
+      name: '8',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '9',
+      name: '9',
+      description: 'description',
+      content: 'content'
+    },
+    {
+      avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+      id: '10',
+      name: '10',
+      description: 'description',
+      content: 'content'
+    }
   ])
   const [value, setValue] = useState(null)
 
@@ -21,7 +88,7 @@ export default () => {
     <>
       <List
         ref={checkboxRef}
-        // allowClear
+        allowClear
         multiple={false}
         value={value}
         list={list}
@@ -30,6 +97,7 @@ export default () => {
           setValue(newValue)
         }}
         // Item 配置
+        layout="vertical"
         checkbox={({ checked }) => {
           return <Checkbox checked={checked} />
         }}

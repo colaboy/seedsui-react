@@ -1,4 +1,4 @@
-// 列表分组
+// 分组
 .list-headline {
   padding: 12px 4px 0 4px;
   margin: 0 12px;
@@ -13,18 +13,18 @@
   margin-top: 4px;
 }
 
-.list-options {
-  // 分组选项容器
+// 分组选项容器
+.list-items {
 }
 
 // 选项
-.list-option-wrapper.card {
+.list-item-wrapper.card {
   padding: 0 8px;
-  .list-option {
+  .list-item {
     .border-0;
   }
 }
-.list-option {
+.list-item {
   position: relative;
   display: flex;
   align-items: center;
@@ -32,14 +32,40 @@
   gap: 8px;
   font-size: 16px;
   .border-b;
+
+  // 竖向布局
+  &.vertical {
+    .list-item-main {
+      display: block;
+    }
+    .list-item-content,
+    .list-item-action {
+      margin-left: 0;
+      margin-top: var(--space-l);
+    }
+  }
 }
+.list-item.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 // 主体
-.list-option-main {
-  .flex;
-  .flex-1;
+.list-item-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
-// 主体-Avatar
-.list-option-main-avatar {
+
+// 元数据
+.list-item-meta {
+  display: flex;
+  flex: 1 1;
+  align-items: center;
+}
+// 元数据-Avatar
+.list-item-meta-avatar {
   .bg-no-img;
   background-size: cover;
   background-position: center;
@@ -55,24 +81,35 @@
     }
   }
 }
-// 主体-内容
-.list-option-main-avatar + .list-option-main-content {
+// 元数据-内容
+.list-item-meta-avatar + .list-item-meta-content {
   margin-left: 10px;
 }
-.list-option-main-content {
+.list-item-meta-content {
+  flex: 1 1;
 }
-.list-option-main-title {
+.list-item-meta-title {
   position: relative;
   display: block;
   pointer-events: none;
 }
-.list-option-main-description {
+.list-item-meta-description {
   color: @tertiary;
   font-size: @font-size-s;
   margin-top: 4px;
 }
-// 选项-禁用
-.list-option.disabled {
-  opacity: 0.5;
-  pointer-events: none;
+.list-item-meta-node {
+  // 高度100%
+  align-self: stretch;
+  color: var(--tertiary);
+  font-size: var(--font-size-s);
+}
+
+// 内容
+.list-item-content {
+  margin-left: var(--space-l);
+}
+// 操作
+.list-item-action {
+  margin-left: var(--space-l);
 }
