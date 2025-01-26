@@ -36,10 +36,10 @@ const Item = ({
     if (typeof note === 'function') {
       return note({ ...(itemData || {}), checked })
     }
-    if (note !== undefined) {
-      return note
+    if (typeof note === 'string') {
+      return <div className="list-item-meta-node">{note}</div>
     }
-    return null
+    return note
   }
 
   // 渲染头像

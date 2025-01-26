@@ -9,7 +9,7 @@ export default () => {
       id: '1',
       name: '1',
       description: 'description',
-      note: <div className="list-item-meta-node">note</div>,
+      note: 'note',
       content: 'content',
       action: () => {
         return <Button>action</Button>
