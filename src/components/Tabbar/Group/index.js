@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
+import getContextNode from './../utils/getContextNode'
 
 const Group = forwardRef(
   (
@@ -12,7 +13,7 @@ const Group = forwardRef(
           name: string,
           description: string,
           disabled
-          children: Node,
+          context: Node,
         }
       ]
       */
@@ -75,7 +76,7 @@ const Group = forwardRef(
               {description && descriptionPosition !== 'top' ? (
                 <div className={`tabbar-group-tab-description`}>{description}</div>
               ) : null}
-              {item.children && item.children}
+              {getContextNode(item.context, { ...item, checked: checked })}
             </div>
           </div>
         )

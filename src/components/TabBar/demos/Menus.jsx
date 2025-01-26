@@ -87,21 +87,21 @@ export default () => {
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
-              children: 'children'
+              context: 'context'
             },
             {
               icon: <i className="icon-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
-              children: 'children'
+              context: 'context'
             },
             {
               icon: <i className="icon-file-text"></i>,
               id: 'Animal',
               name: 'Animal',
               description: 'description',
-              children: 'children'
+              context: 'context'
             }
           ]}
           value={value}
