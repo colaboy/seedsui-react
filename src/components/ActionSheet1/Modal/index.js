@@ -54,8 +54,6 @@ const Modal = forwardRef(
 
     // 点击选项
     async function handleChange(item) {
-      e.stopPropagation()
-
       let currentValue = item
       if (allowClear) {
         if (item.id === value?.id) {

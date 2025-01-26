@@ -1,7 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import LocaleUtil from './../../../utils/LocaleUtil'
 
-const TopContainer = forwardRef(({}, ref) => {
+const TopContainer = forwardRef((props, ref) => {
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return rootRef.current
