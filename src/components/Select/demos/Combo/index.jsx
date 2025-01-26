@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Select, Checkbox } from 'seedsui-react'
+import { Select, Checkbox, Modal } from 'seedsui-react'
 
 const list = [
   {
@@ -125,18 +125,10 @@ export default () => {
         // autoSize
         // animation="zoom"
         allowClear
-        clear={({ value }) => {
-          return value ? (
-            <i
-              className="input-clear"
-              onClick={(e) => {
-                e.stopPropagation()
-                setValue(null)
-              }}
-            />
-          ) : null
+        clear={({ value, triggerClear }) => {
+          return value ? <i className="input-clear" onClick={triggerClear} /> : null
         }}
-        // multiple={'tags'}
+        multiple={'tags'}
         placeholder="Please select"
         value={value}
         list={list}
@@ -150,11 +142,17 @@ export default () => {
         //   return list
         // }}
         onBeforeChange={(newValue) => {
-          console.log('修改前')
           return new Promise((resolve) => {
-            setTimeout(() => {
-              resolve(true)
-            }, 1000)
+            Modal.confirm({
+              title: '你确定要修改吗？',
+              content: `你确定要修改吗`,
+              onOk() {
+                resolve(true)
+              },
+              onCancel() {
+                resolve(false)
+              }
+            })
           })
         }}
         onVisibleChange={(visible) => {

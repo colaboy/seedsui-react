@@ -159,8 +159,19 @@ const Combo = forwardRef(
             value={value}
             onAdd={() => setVisible(true)}
             onEdit={() => setVisible(true)}
-            onDelete={(current) => {
-              onChange && onChange(value.filter((item) => item.id !== current.id))
+            onDelete={async (current) => {
+              let currentValue = value.filter((item) => item.id !== current.id)
+              // 修改前校验
+              if (typeof onBeforeChange === 'function') {
+                let goOn = await onBeforeChange(currentValue)
+                if (goOn === false) return
+
+                // 修改值
+                if (typeof goOn === 'object') {
+                  currentValue = goOn
+                }
+              }
+              onChange && onChange(currentValue)
             }}
           />
         )
@@ -174,9 +185,20 @@ const Combo = forwardRef(
           readOnly
           {...props}
           onClick={handleInputClick}
-          onChange={(text) => {
+          onChange={async (text) => {
             // 清空操作
             if (!text) {
+              let currentValue = null
+              // 修改前校验
+              if (typeof onBeforeChange === 'function') {
+                let goOn = await onBeforeChange(currentValue)
+                if (goOn === false) return
+
+                // 修改值
+                if (typeof goOn === 'object') {
+                  currentValue = goOn
+                }
+              }
               onChange && onChange(null)
             }
           }}

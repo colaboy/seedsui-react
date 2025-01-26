@@ -185,7 +185,7 @@ const InputText = forwardRef(
 
     // 点击清除
     async function handleClear(e) {
-      e.stopPropagation()
+      e && e?.stopPropagation?.()
 
       // 获取焦点
       focus()
@@ -273,7 +273,7 @@ const InputText = forwardRef(
       if (!allowClear || !value) return
 
       if (typeof clear === 'function') {
-        return clear({ allowClear, disabled, readOnly, value })
+        return clear({ allowClear, disabled, readOnly, value, triggerClear: handleClear })
       } else if (clear !== undefined) {
         return clear
       }
