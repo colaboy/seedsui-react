@@ -4,10 +4,10 @@ import getSubmitVisible from './getSubmitVisible'
 
 import Cancel from './Cancel'
 import Submit from './Submit'
-import Caption from './Caption'
+import Title from './Title'
 
 const Head = forwardRef(
-  ({ captionProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
+  ({ title, titleProps, submitProps, cancelProps, onSubmitClick, onCancelClick }, ref) => {
     // 是否隐藏取消
     let cancelVisible = getCancelVisible(cancelProps, onCancelClick)
     // 是否隐藏确认, 隐藏确认按钮时, 取消按钮要在右侧显示
@@ -18,7 +18,7 @@ const Head = forwardRef(
       return (
         <div className="picker-header" ref={ref}>
           {/* 标题 */}
-          <Caption captionProps={captionProps} />
+          <Title title={title} {...titleProps} />
         </div>
       )
     }
@@ -33,7 +33,7 @@ const Head = forwardRef(
           ) : null}
         </div>
         {/* 标题 */}
-        <Caption captionProps={captionProps} />
+        <Title title={title} {...titleProps} />
         <div className="picker-header-button right">
           {/* 确认隐藏时，取消在右侧 */}
           {!submitVisible && cancelVisible ? (

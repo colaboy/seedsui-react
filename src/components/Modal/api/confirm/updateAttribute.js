@@ -46,8 +46,8 @@ function updateAttribute(
   updateStyle(mask, { ...maskProps, baseClassName: 'mask modal-mask' })
 
   // 更新标题
-  let titleDOM = mask.querySelector('.modal-caption')
-  updateStyle(titleDOM, { ...titleProps, baseClassName: 'modal-caption' })
+  let titleDOM = mask.querySelector('.modal-title')
+  updateStyle(titleDOM, { ...titleProps, baseClassName: 'modal-title' })
   if (title) {
     titleDOM?.classList?.remove?.('hide')
     titleDOM.innerHTML = title

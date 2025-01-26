@@ -12,7 +12,8 @@ const Modal = forwardRef(
       portal,
       animation = 'slideUp',
       maskProps,
-      captionProps,
+      title,
+      titleProps,
       submitProps,
       cancelProps,
       maskClosable = true,
@@ -74,7 +75,7 @@ const Modal = forwardRef(
 
     // 没有传入标题时, 需要动态更新标题（如果日期）
     function updateTitle() {
-      if (captionProps?.caption === undefined && mainRef?.current?.getTitle) {
+      if (title === undefined && mainRef?.current?.getTitle) {
         // Main渲染完成后取标题, 否则将会取到上次的值
         setTimeout(() => {
           currentTitle = mainRef?.current?.getTitle?.()
@@ -137,7 +138,8 @@ const Modal = forwardRef(
         // Modal: display properties
         animation={animation}
         maskProps={maskProps}
-        captionProps={{ caption: currentTitle, ...captionProps }}
+        title={currentTitle}
+        titleProps={titleProps}
         submitProps={{
           ...submitProps,
           onClick: handleSubmitClick

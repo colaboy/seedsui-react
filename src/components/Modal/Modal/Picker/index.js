@@ -14,7 +14,8 @@ const Picker = forwardRef(
       portal,
       animation = 'slideUp',
       maskProps,
-      captionProps,
+      title,
+      titleProps,
       submitProps,
       cancelProps,
       maskClosable = true,
@@ -74,7 +75,8 @@ const Picker = forwardRef(
         >
           {/* 头 */}
           <Head
-            captionProps={captionProps}
+            title={title}
+            titleProps={titleProps}
             cancelProps={cancelProps}
             submitProps={submitProps}
             onCancelClick={handleCancelClick}

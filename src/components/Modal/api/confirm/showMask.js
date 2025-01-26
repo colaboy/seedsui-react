@@ -12,7 +12,7 @@ function showMask({ portal, onMaskClick }) {
     mask.innerHTML = `
       <div class="popup-animation modal modal-alert middle" data-animation="zoom">
         <div class="modal-body">
-          <div class="modal-caption hide"></div>
+          <div class="modal-title hide"></div>
           <div class="modal-content"></div>
         </div>
         <div class="modal-footer">
