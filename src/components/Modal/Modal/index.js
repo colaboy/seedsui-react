@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react'
-import ModalPicker from './Picker'
+import MainWrapper from './MainWrapper'
 
 // Modal
 const Modal = forwardRef(
@@ -133,7 +133,7 @@ const Modal = forwardRef(
     }
 
     return (
-      <ModalPicker
+      <MainWrapper
         ref={modalRef}
         // Modal fixed properties
         visible={visible}
@@ -202,7 +202,7 @@ const Modal = forwardRef(
         {typeof footer === 'function'
           ? footer({ visible, value: currentValue, triggerOk: handleChange })
           : footer}
-      </ModalPicker>
+      </MainWrapper>
     )
   }
 )
