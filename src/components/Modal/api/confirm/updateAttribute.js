@@ -1,6 +1,8 @@
-import LocaleUtil from './../../../utils/LocaleUtil'
-
 import updateStyle from './updateStyle'
+
+// 内库使用-start
+import LocaleUtil from './../../../../utils/LocaleUtil'
+// 内库使用-end
 
 // 更新属性
 function updateAttribute(mask) {

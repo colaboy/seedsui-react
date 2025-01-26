@@ -1,4 +1,4 @@
-import globalModalId from './../confirm1/globalModalId'
+import globalModalId from './../confirm/globalModalId'
 
 // 移除Modal
 function destroy(mask) {

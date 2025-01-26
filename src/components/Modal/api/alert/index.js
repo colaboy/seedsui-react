@@ -1,4 +1,4 @@
-import confirm from './../confirm1'
+import confirm from './../confirm'
 
 // 弹出alert框
 let alert = (props) => {
