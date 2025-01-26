@@ -17,8 +17,8 @@ const List = (
     },
     // No Group
     {
-      leftIcon: '',
-      rightIcon: '',
+      checkbox: ({ checked }) => { return null },
+      checkboxPosition: 'left',
       avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
       id: '选项1',
       name: '选项1',
@@ -27,8 +27,11 @@ const List = (
       action: ''
     }
     */
-    leftIcon,
-    rightIcon,
+    // Group 配置项
+    // Item 配置项
+    wrapper, // card
+    checkbox,
+    checkboxPosition,
     onChange
   },
   ref
@@ -49,9 +52,10 @@ const List = (
     return (
       <Item
         key={item.id ?? index}
+        wrapper={wrapper}
         disabled={item.disabled}
-        leftIcon={leftIcon || item.leftIcon}
-        rightIcon={rightIcon || item.rightIcon}
+        checkbox={item.checkbox || checkbox}
+        checkboxPosition={item.checkboxPosition || checkboxPosition}
         avatar={item.avatar}
         title={item.name}
         description={item.description}

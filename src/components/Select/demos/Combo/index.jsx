@@ -29,12 +29,10 @@ export default () => {
             return <p>列表底部扩展</p>
           },
           mainProps: {
-            leftIcon: function ({ checked }) {
+            checkbox: function ({ checked }) {
               return <Checkbox checked={checked} />
             },
-            rightIcon: function ({ checked }) {
-              return <Checkbox checked={checked} />
-            }
+            checkboxPosition: 'right'
           }
         }}
         // autoSize

@@ -23,10 +23,10 @@ const Main = forwardRef(
 
       list,
 
-      leftIcon = function ({ checked }) {
+      checkbox = function ({ checked }) {
         return <Checkbox checked={checked} icon={<span className={`checkbox-icon tick`} />} />
       },
-      rightIcon,
+      checkboxPosition,
       ...props
     },
     ref
@@ -55,8 +55,8 @@ const Main = forwardRef(
           value={value}
           list={list}
           onChange={onChange}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
+          checkbox={checkbox}
+          checkboxPosition={checkboxPosition}
         />
       </div>
     )

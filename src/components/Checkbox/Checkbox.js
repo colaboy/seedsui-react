@@ -36,7 +36,7 @@ const Checkbox = forwardRef(
     }
 
     // 获取选中状态的Node
-    function getInputNode(checked) {
+    function getIconNode(checked) {
       if (typeof icon === 'function') {
         return icon({ checked })
       }
@@ -57,9 +57,9 @@ const Checkbox = forwardRef(
         }`}
         ref={rootRef}
       >
-        {iconPosition !== 'right' && getInputNode(checked)}
+        {iconPosition !== 'right' && getIconNode(checked)}
         {children && <span className={`checkbox-content`}>{children}</span>}
-        {iconPosition === 'right' && getInputNode(checked)}
+        {iconPosition === 'right' && getIconNode(checked)}
       </div>
     )
   }

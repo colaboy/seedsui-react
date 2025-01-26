@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { List } from 'seedsui-react'
+import { List, Checkbox } from 'seedsui-react'
 
 export default () => {
   const checkboxRef = useRef(null)
@@ -29,6 +29,11 @@ export default () => {
           console.log('onChange:', newValue)
           setValue(newValue)
         }}
+        // Item 配置
+        checkbox={({ checked }) => {
+          return <Checkbox checked={checked} />
+        }}
+        wrapper="card"
       />
     </>
   )
