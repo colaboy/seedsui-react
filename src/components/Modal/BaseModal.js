@@ -1,6 +1,13 @@
 import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import TooltipUtils from './../Tooltip/Utils'
+
+// 内库使用-start
+import Tooltip from './../Tooltip'
+// 内库使用-end
+
+/* 测试使用-start
+import { Tooltip } from 'seedsui-react'
+测试使用-end */
 
 const Modal = forwardRef(
   (
@@ -49,7 +56,7 @@ const Modal = forwardRef(
       if (typeof sourceDOM === 'function') sourceDOM = sourceDOM()
       if (!sourceDOM || !maskDOM) return
       if (visible && sourceDOM && maskDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
-        TooltipUtils.updateContainerPosition({
+        Tooltip.updateContainerPosition({
           source: sourceDOM,
           target: maskDOM,
           animation: animation,
@@ -59,7 +66,7 @@ const Modal = forwardRef(
     }
 
     // 构建动画
-    let position = TooltipUtils.getAnimationPosition(animation)
+    let position = Tooltip.getAnimationPosition(animation)
 
     // 点击遮罩
     function handleMaskClick(e) {

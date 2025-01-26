@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import { createPortal } from 'react-dom'
-import Utils from './Utils'
+import getAnimationPosition from './api/getAnimationPosition'
+import getDataAnimation from './api/getDataAnimation'
 
 const Popup = forwardRef(
   (
@@ -25,8 +26,8 @@ const Popup = forwardRef(
     ref
   ) => {
     // 构建动画
-    let position = Utils.getAnimationPosition(animation)
-    let dataAnimation = Utils.getDataAnimation(animation)
+    let position = getAnimationPosition(animation)
+    let dataAnimation = getDataAnimation(animation)
 
     // 点击遮罩
     function handleMaskClick(e) {

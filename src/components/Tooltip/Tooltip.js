@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import Popup from './Popup'
-import Utils from './Utils'
+import updateContainerPosition from './api/updateContainerPosition'
 
 const Tooltip = forwardRef(
   (
@@ -59,7 +59,7 @@ const Tooltip = forwardRef(
       if (sourceDOM && targetDOM) {
         // 没有自定义位置时生效
         if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
-          Utils.updateContainerPosition({
+          updateContainerPosition({
             source: sourceDOM,
             target: targetDOM,
             animation: animation,
