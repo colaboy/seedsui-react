@@ -1,9 +1,10 @@
+import globalModalId from './../confirm1/globalModalId'
+
 // 移除Modal
 function destroy(mask) {
-  let modalId = '__SeedsUI_modal_el__'
   if (!mask) {
     // eslint-disable-next-line
-    mask = document.getElementById(modalId)
+    mask = document.getElementById(globalModalId)
   }
   if (mask) {
     // 动画移除
