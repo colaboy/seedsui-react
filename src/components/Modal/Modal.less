@@ -1,9 +1,12 @@
+@import 'api/ModalAlert.less';
+
 // Modal遮罩, 基于.mask
 .modal-mask {
   &.active {
     z-index: 2;
   }
 }
+
 .modal {
   position: absolute;
   box-sizing: border-box;
@@ -11,135 +14,4 @@
   max-height: 100%;
   overflow: auto;
   // 动画使用.popup-animation
-}
-
-// 带按钮的对话框
-.modal-alert {
-  width: auto;
-  width: 75%;
-  max-height: 70%;
-  margin: 0 auto;
-  overflow: hidden;
-
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px); /* 背景模糊效果，可以根据需求调整模糊半径 */
-
-  border-radius: 16px;
-  // 动画使用.popup-animation
-}
-// 身体
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  max-height: 300px;
-  padding: 20px 12px;
-  overflow: auto;
-  line-height: 1.2em;
-  text-align: center;
-}
-// 身体-标题
-.modal-caption {
-  font-weight: 500;
-  font-size: 18px;
-  color: #1a1c1f;
-}
-.modal-caption + .modal-content {
-  margin-top: 10px;
-}
-// 身体-内容区域
-.modal-content {
-  display: block;
-  flex: 1;
-  overflow: auto;
-  font-size: 15px;
-  color: #35393e;
-  text-align: center;
-  line-height: 20px;
-  font-weight: 400;
-  word-wrap: break-word;
-}
-// 底部
-.modal-footer {
-  font-weight: 500;
-  display: flex;
-  border-top: 1px solid @border;
-  box-sizing: border-box;
-
-  // 垂直排列按钮
-  &.vertical {
-    flex-direction: column;
-
-    .modal-cancel + .modal-ok {
-      border-left: 0;
-      border-top: 1px solid @border;
-    }
-  }
-}
-
-// 确定和取消按钮
-.modal-cancel,
-.modal-ok {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-  box-sizing: border-box;
-
-  font-size: 18px;
-  text-align: center;
-  line-height: 22px;
-  padding: 12px 0;
-  font-weight: 400;
-
-  * {
-    pointer-events: none;
-  }
-}
-.modal-cancel {
-  color: #36383a;
-
-  * {
-    pointer-events: none;
-  }
-}
-.modal-ok {
-  color: @primary;
-
-  * {
-    pointer-events: none;
-  }
-}
-.modal-cancel + .modal-ok {
-  border-left: 1px solid @border;
-}
-
-// Dropdown
-.modal-dropdown-nav {
-  display: inline-flex;
-  align-items: center;
-  height: 32px;
-  &.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  &.active {
-    .modal-dropdown-title-arrow {
-      transform: rotate(-180deg) translateY(-1px);
-    }
-  }
-}
-.modal-dropdown-title-text {
-}
-.modal-dropdown-title-arrow {
-  .shape-triangle-down;
-  margin-left: 8px;
-  transition: all 0.2s ease;
-  transform: rotate(0deg) translateY(1px);
-}
-.modal-dropdown-modal {
-  width: 100%;
-  max-height: 350px;
-  background-color: white;
-  border-radius: 0 0 16px 16px;
 }
