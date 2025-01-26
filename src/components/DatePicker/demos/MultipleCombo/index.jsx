@@ -34,9 +34,7 @@ export default () => {
           setMulValue(newValue)
         }}
         modalProps={{
-          captionProps: {
-            caption: '选择日期'
-          },
+          title: '选择日期',
           onVisibleChange: (visible) => {
             console.log('visible:', visible)
           }

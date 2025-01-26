@@ -30,7 +30,7 @@ function Buttons({
     <>
       {/* 快捷选择: 标题 */}
       {typeof titles?.selector === 'string' ? (
-        <p className="datepicker-selector-caption">{titles.selector}</p>
+        <p className="datepicker-selector-title">{titles.selector}</p>
       ) : null}
 
       {/* 快捷选择 */}
@@ -66,7 +66,7 @@ function Buttons({
         <>
           {/* 标题 */}
           {typeof titles?.custom === 'string' ? (
-            <p className="datepicker-selector-caption">{titles.custom}</p>
+            <p className="datepicker-selector-title">{titles.custom}</p>
           ) : null}
           {/* 按钮 */}
           <Selector

@@ -44,12 +44,11 @@ const LocationModal = forwardRef(
     return (
       <ModalPicker
         ref={modalRef}
-        captionProps={{
-          caption:
-            visible === 'choose'
-              ? LocaleUtil.locale('选择地址', 'SeedsUI_choose_address')
-              : LocaleUtil.locale('查看地址', 'SeedsUI_view_address')
-        }}
+        title={
+          visible === 'choose'
+            ? LocaleUtil.locale('选择地址', 'SeedsUI_choose_address')
+            : LocaleUtil.locale('查看地址', 'SeedsUI_view_address')
+        }
         {...props}
         main={props?.main || Main}
         ok={visible === 'choose' ? '' : null}

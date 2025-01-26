@@ -145,7 +145,7 @@ const Vott = forwardRef(
         </div>
         <div className={`vott-error`}>
           <div className={`vott-error-icon`}></div>
-          <div className={`vott-error-caption`}>
+          <div className={`vott-error-text`}>
             {LocaleUtil.locale('图片加载失败', 'SeedsUI_image_load_failed')}
           </div>
         </div>

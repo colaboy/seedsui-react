@@ -28,9 +28,7 @@ const Url = forwardRef(({ onClick, type, ...props }, ref) => {
               zIndex: 100
             }
           },
-          captionProps: {
-            caption: LocaleUtil.locale('提示')
-          },
+          title: LocaleUtil.locale('提示'),
           content: LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制') + `<br/>${url}`
         })
       }

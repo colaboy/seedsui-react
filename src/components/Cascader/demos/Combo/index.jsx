@@ -62,9 +62,7 @@ export default () => {
           setValue(newValue)
         }}
         modalProps={{
-          captionProps: {
-            caption: '级联选择'
-          }
+          title: '级联选择'
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)

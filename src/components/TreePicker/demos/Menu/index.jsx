@@ -36,7 +36,7 @@ export default () => {
         itemRender={(item, { keyword }) => {
           if (badge && badge[item.id]) {
             return (
-              <div className="treepicker-menu-item-caption">
+              <div className="treepicker-menu-item-content">
                 {item.name}
                 <Badge maxLength={3}>{badge[item.id]}</Badge>
               </div>

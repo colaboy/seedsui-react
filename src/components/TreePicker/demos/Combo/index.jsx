@@ -12,9 +12,7 @@ export default () => {
         list={treeData}
         multiple={true}
         modalProps={{
-          captionProps: {
-            caption: 'aaa'
-          }
+          title: 'aaa'
         }}
         allowClear
         // defaultExpandAll={true}

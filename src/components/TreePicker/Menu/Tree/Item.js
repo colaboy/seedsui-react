@@ -87,12 +87,12 @@ const Item = ({
     }
     if (hasKeyword(item.name, keyword) !== -1) {
       return (
-        <div className="treepicker-menu-item-caption">
+        <div className="treepicker-menu-item-content">
           <HighlightKeyword text={item.name} keyword={keyword} />
         </div>
       )
     }
-    return <div className="treepicker-menu-item-caption">{item.name}</div>
+    return <div className="treepicker-menu-item-content">{item.name}</div>
   }
 
   // 渲染

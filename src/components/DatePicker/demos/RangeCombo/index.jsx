@@ -33,9 +33,7 @@ export default () => {
           }
         }}
         modalProps={{
-          captionProps: {
-            caption: '选择日期'
-          },
+          title: '选择日期',
           maskProps: {
             style: {
               zIndex: 999

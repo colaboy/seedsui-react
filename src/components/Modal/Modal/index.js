@@ -151,7 +151,7 @@ const Modal = forwardRef(
         // Modal: display properties
         animation={animation}
         maskProps={maskProps}
-        title={currentTitle}
+        title={title || currentTitle}
         titleProps={titleProps}
         ok={ok}
         onOk={handleOkClick}

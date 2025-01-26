@@ -2,7 +2,7 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 
 const Chat = forwardRef(
   (
-    { avatar, caption, captionProps = {}, contentProps = {}, bubbleProps = {}, children, ...props },
+    { avatar, title, titleProps = {}, contentProps = {}, bubbleProps = {}, children, ...props },
     ref
   ) => {
     // 节点
@@ -25,14 +25,14 @@ const Chat = forwardRef(
           {...contentProps}
           className={`chat-content${contentProps.className ? ' ' + contentProps.className : ''}`}
         >
-          {caption && (
+          {title && (
             <div
-              {...captionProps}
-              className={`chat-content-caption${
-                captionProps.className ? ' ' + captionProps.className : ''
+              {...titleProps}
+              className={`chat-content-title${
+                titleProps.className ? ' ' + titleProps.className : ''
               }`}
             >
-              {caption}
+              {title}
             </div>
           )}
           <div

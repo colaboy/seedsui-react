@@ -159,9 +159,7 @@ export default () => {
               </Layout.Footer>
             )
           },
-          captionProps: {
-            caption: '级联选择'
-          }
+          title: '级联选择'
         }}
       />
     </div>

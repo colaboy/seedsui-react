@@ -70,7 +70,7 @@ const ListItem = forwardRef(
                     onSelect(item)
                   }}
                 >
-                  <p className="cascader-option-caption">{item.name}</p>
+                  <p className="cascader-option-title">{item.name}</p>
                   <i className="cascader-option-icon"></i>
                 </div>
               </Fragment>

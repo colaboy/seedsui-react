@@ -22,6 +22,7 @@ export default () => {
       <Select.Combo
         ref={selectRef}
         modalProps={{
+          title: '选择',
           header: () => {
             return <p>列表头部扩展</p>
           },
@@ -147,9 +148,6 @@ export default () => {
         }}
         onVisibleChange={(visible) => {
           console.log('visible:', visible)
-        }}
-        captionProps={{
-          caption: '选择'
         }}
         // 搜索
         headerRender={() => {

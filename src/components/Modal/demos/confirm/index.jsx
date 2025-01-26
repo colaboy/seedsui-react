@@ -52,9 +52,7 @@ export default () => {
             console.log('第三层')
             Modal.alert({
               portal: document.body,
-              captionProps: {
-                caption: '第三层'
-              },
+              title: '第三层',
               content: 'confirm content3',
               onVisibleChange: (visible) => {
                 console.log('onVisibleChange:', visible)

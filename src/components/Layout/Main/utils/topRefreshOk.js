@@ -9,7 +9,7 @@ import { LocaleUtil } from 'seedsui-react'
 // 刷新完成
 function topRefreshOk(topContainer, isOk) {
   return new Promise((resolve) => {
-    let topCaption = topContainer?.querySelector?.('.layout-main-pull-push-caption')
+    let topText = topContainer?.querySelector?.('.layout-main-pull-push-text')
 
     // 完成提示信息
     let finishMsg = ''
@@ -25,7 +25,7 @@ function topRefreshOk(topContainer, isOk) {
     else {
       finishMsg = LocaleUtil.locale('刷新成功', 'SeedsUI_refresh_success')
     }
-    if (topCaption) topCaption.innerHTML = finishMsg
+    if (topText) topText.innerHTML = finishMsg
 
     setTimeout(() => {
       // 重置样式
