@@ -3,7 +3,7 @@ import globalModalId from './globalModalId'
 // 渲染
 function showMask({ portal, onMaskClick }) {
   // 如果没生成成功, 则强制生成
-  mask = document.querySelector('#' + globalModalId)
+  let mask = document.querySelector('#' + globalModalId)
   if (!mask) {
     // 创建dom
     mask = document.createElement('div')
@@ -45,3 +45,5 @@ function showMask({ portal, onMaskClick }) {
 
   return mask
 }
+
+export default showMask

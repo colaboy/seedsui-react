@@ -64,11 +64,11 @@ export default function confirm({
     let isOk = e.target.classList.contains('modal-ok')
 
     // 读取更新后的属性
-    const buttonProps = isOk ? mask?.onSubmit : mask?.onCancel
+    const onClick = isOk ? mask?.onSubmit : mask?.onCancel
     const onVisibleChange = mask?.onVisibleChange
 
-    if (typeof buttonProps?.onClick === 'function') {
-      let close = buttonProps.onClick() ?? true
+    if (typeof onClick === 'function') {
+      let close = onClick() ?? true
       if (close) {
         if (onVisibleChange) onVisibleChange(false)
         destroy(e.currentTarget.closest('.modal-mask'))

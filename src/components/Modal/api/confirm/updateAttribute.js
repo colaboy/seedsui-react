@@ -5,7 +5,39 @@ import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 更新属性
-function updateAttribute(mask) {
+function updateAttribute(
+  mask,
+  {
+    portal,
+
+    maskClosable,
+    onVisibleChange,
+
+    // 遮罩
+    maskProps,
+
+    // 标题
+    title,
+    titleProps,
+
+    // 内容
+    content,
+    contentProps,
+
+    // 底部
+    footerProps,
+
+    // 确定, 默认显示确定按钮
+    submit,
+    onSubmit,
+    submitProps,
+
+    // 取消, confirm默认显示取消按钮
+    cancel,
+    onCancel,
+    cancelProps
+  }
+) {
   // 更新遮罩
   updateStyle(mask, { ...maskProps, baseClassName: 'mask modal-mask' })
 
