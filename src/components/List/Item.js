@@ -44,7 +44,7 @@ const Item = ({
 
   // 渲染头像
   function getAvatarNode() {
-    if (!avatar) return
+    if (!avatar) return null
 
     if (typeof avatar === 'function') {
       return avatar({ ...(itemData || {}), checked })

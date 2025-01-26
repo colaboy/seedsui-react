@@ -15,10 +15,23 @@ function Result({
   children,
   ...props
 }) {
+  // 渲染头像
+  function getImageNode() {
+    if (!image) return null
+
+    if (typeof image === 'function') {
+      return image()
+    }
+    if (typeof image === 'string') {
+      return <img alt="" src={image} className="result-image" />
+    }
+    return image
+  }
+
   return (
     <div {...props} className={`result${props?.className ? ' ' + props.className : ''}`}>
       {/* Image */}
-      {image ? image : <img alt="" src={imageUrl} className="result-image" />}
+      {getImageNode()}
 
       {/* Title */}
       {title === undefined || title ? (
