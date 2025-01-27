@@ -1,12 +1,12 @@
-// 获取context
-function getContextNode(context, params) {
-  if (typeof context === 'function') {
-    return context(params)
+// 获取content
+function getContextNode(content, params) {
+  if (typeof content === 'function') {
+    return content(params)
   }
-  if (typeof context === 'string') {
-    return <div className="tabbar-group-tab-context">{context}</div>
+  if (typeof content === 'string') {
+    return <div className="tabbar-group-tab-content">{content}</div>
   }
-  return context
+  return content
 }
 
 export default getContextNode

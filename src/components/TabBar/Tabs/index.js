@@ -13,7 +13,7 @@ const Tabs = forwardRef(
           name: string,
           description: string,
           disabled
-          context: Node,
+          content: Node,
         }
       ]
       */
@@ -76,7 +76,7 @@ const Tabs = forwardRef(
               {description && descriptionPosition !== 'top' ? (
                 <div className={`tabbar-tabs-tab-description`}>{description}</div>
               ) : null}
-              {getContextNode(item.context, { ...item, checked: checked })}
+              {getContextNode(item.content, { ...item, checked: checked })}
             </div>
           </div>
         )
