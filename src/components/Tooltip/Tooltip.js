@@ -47,11 +47,8 @@ const Tooltip = forwardRef(
 
       if (!referenceDOM) {
         let childrenDOM = childrenRef.current
-        if (typeof getChildrenDOM === 'function') {
-          childrenDOM = getChildrenDOM()
-          if (typeof childrenDOM?.getRootDOM === 'function') {
-            childrenDOM = childrenDOM.getRootDOM()
-          }
+        if (typeof childrenRef.current?.getRootDOM === 'function') {
+          childrenDOM = childrenRef.current.getRootDOM()
         }
         referenceDOM = childrenDOM
       }
