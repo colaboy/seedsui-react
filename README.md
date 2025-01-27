@@ -6,21 +6,19 @@
 
 An enterprise-class UI design language and React UI library.
 
-![](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+<img height="8" width="100%" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png"/>
 
 </div>
 
-## 📦 Install
+## 📦 CSS
 
-### Css
-
-#### Less import
+### Less import
 
 ```bash
 @import '//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css';
 ```
 
-#### CSS import
+### CSS import
 
 ```html
 <link
@@ -28,6 +26,8 @@ An enterprise-class UI design language and React UI library.
   href="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css"
 />
 ```
+
+## 📦 Install
 
 ### NPM
 
