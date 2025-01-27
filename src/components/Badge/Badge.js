@@ -7,7 +7,7 @@ const Badge = forwardRef(
       children = '0',
       maxLength = 2,
       ellipsis = '+', // 有maxLength属性时ellipsis才生效
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -33,8 +33,8 @@ const Badge = forwardRef(
     }
     return (
       <span
-        {...others}
-        className={`badge${others.className ? ' ' + others.className : ''}`}
+        {...props}
+        className={`badge${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
       >
         {text}

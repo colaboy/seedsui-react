@@ -1,6 +1,6 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 
-const Button = forwardRef(({ children, ...others }, ref) => {
+const Button = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -13,8 +13,8 @@ const Button = forwardRef(({ children, ...others }, ref) => {
 
   return (
     <div
-      {...others}
-      className={'button' + (others.className ? ' ' + others.className : '')}
+      {...props}
+      className={'button' + (props.className ? ' ' + props.className : '')}
       ref={rootRef}
     >
       {children}

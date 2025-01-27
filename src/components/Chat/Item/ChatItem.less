@@ -1,0 +1,147 @@
+// Chat
+// 聊天框
+.chat-item {
+  margin-bottom: 24px;
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+.chat-item-main {
+  display: flex;
+}
+// 作者容器
+// .chat-author {
+//   display: inline-block;
+//   float: left;
+//   width: 40px;
+//   text-align: center;
+//   img {
+//     width: 100%;
+//     border-radius: 100%;
+//   }
+// }
+// 作者-头像
+// .chat-author-avatar {
+//   position: relative;
+//   box-sizing: border-box;
+//   width: 40px;
+//   height: 40px;
+
+//   margin: 0 auto;
+
+//   color: var(--auxiliary);
+//   background-color: #ddd;
+//   background-repeat: no-repeat;
+//   background-position: center center;
+
+//   background-size: cover;
+//   border-radius: 100%;
+
+//   .inline-flex;
+//   .flex-center;
+//   .flex-middle;
+// }
+// 作者-姓名
+// .chat-author-name {
+//   color: #b6b6b6;
+//   font-size: @font-size-s;
+//   font-style: normal;
+// }
+
+// 头像
+.chat-item-avatar {
+  background-image: url(//res.waiqin365.com/d/seedsui/no-img.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 36px;
+  height: 36px;
+}
+// 内容框
+.chat-item-content {
+  display: inline-block;
+  width: 70%;
+  margin-left: 12px;
+}
+// 作者
+.chat-item-content-author {
+  margin-bottom: 4px;
+  color: #666;
+  font-size: 12px;
+}
+.chat-item-content-author + .chat-item-content-bubble {
+  &:after {
+    top: 10px;
+  }
+}
+// 汽泡
+.chat-item-content-bubble {
+  position: relative;
+  display: inline-block;
+  max-width: 96%;
+  padding: 10px;
+  word-break: normal;
+
+  background-color: #ddd;
+  border-radius: 3px;
+  // 箭头
+  &:after {
+    position: absolute;
+    top: 18px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px;
+    border-right-color: #ddd;
+    content: ' ';
+  }
+  p {
+    margin: 0;
+    padding-top: 3px;
+    line-height: 24px;
+    text-align: left;
+    [data-emoji] {
+      width: 26px;
+      height: 24px;
+    }
+  }
+}
+
+// 右对齐
+.chat-item.right {
+  .chat-item-main {
+    flex-direction: row-reverse;
+  }
+  .chat-item-content {
+    text-align: right;
+    width: 70%;
+    margin-right: 12px;
+  }
+  .chat-item-content-bubble {
+    background-color: #b8daff;
+    &:after {
+      left: 100%;
+      border-color: transparent;
+      border-left-color: #b8daff;
+    }
+  }
+}
+// 聊天时间
+.chat-time {
+  .flex;
+  .flex-center;
+}
+.chat-time-text {
+  display: block;
+  padding: 4px;
+  color: white;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
