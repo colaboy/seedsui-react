@@ -1,8 +1,6 @@
 import Tooltip from './Tooltip.js'
-import getDataAnimation from './api/getDataAnimation'
-import updateContainerPosition from './api/updateContainerPosition'
+import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
 
-Tooltip.getDataAnimation = getDataAnimation
-Tooltip.updateContainerPosition = updateContainerPosition
+Tooltip.updatePositionByReferenceDOM = updatePositionByReferenceDOM
 
 export default Tooltip

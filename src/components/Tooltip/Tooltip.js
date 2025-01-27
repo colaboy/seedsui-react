@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useEffect, useImperativeHandle, useState } from 'react'
 import Popup from './Popup'
-import updateContainerPosition from './api/updateContainerPosition'
+import updatePositionByReferenceDOM from './api/updatePositionByReferenceDOM'
 
 const Tooltip = forwardRef(
   (
@@ -8,7 +8,7 @@ const Tooltip = forwardRef(
       // 动画
       animation = 'slideDownLeft',
       style,
-      getChildrenDOM,
+      referenceDOM: externalReferenceDOM,
       children,
       onVisibleChange,
       ...props
@@ -37,10 +37,15 @@ const Tooltip = forwardRef(
     }, [visible]) // eslint-disable-line
 
     // 更新位置
-    function updatePosition(source) {
-      // 源元素
-      let sourceDOM = source
-      if (!sourceDOM) {
+    function updatePosition(argReferenceDOM) {
+      // 参考元素
+      let referenceDOM =
+        typeof externalReferenceDOM === 'function' ? externalReferenceDOM() : externalReferenceDOM
+      if (argReferenceDOM) {
+        referenceDOM = argReferenceDOM
+      }
+
+      if (!referenceDOM) {
         let childrenDOM = childrenRef.current
         if (typeof getChildrenDOM === 'function') {
           childrenDOM = getChildrenDOM()
@@ -48,21 +53,20 @@ const Tooltip = forwardRef(
             childrenDOM = childrenDOM.getRootDOM()
           }
         }
-        sourceDOM = childrenDOM
+        referenceDOM = childrenDOM
       }
 
       // 位移元素
-      let targetDOM =
+      let tooltipDOM =
         rootRef?.current?.children && rootRef?.current?.children[0]
           ? rootRef?.current?.children[0]
           : null
 
-      if (sourceDOM && targetDOM) {
+      if (referenceDOM && tooltipDOM) {
         // 没有自定义位置时生效
         if (!style?.left && !style?.top && !style?.right && !style?.bottom) {
-          updateContainerPosition({
-            source: sourceDOM,
-            target: targetDOM,
+          updatePositionByReferenceDOM(tooltipDOM, {
+            referenceDOM: referenceDOM,
             animation: animation,
             offset: {
               top: 8,

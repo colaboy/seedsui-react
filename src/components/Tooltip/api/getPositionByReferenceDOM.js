@@ -8,10 +8,11 @@ const getClassNameByAnimation = Modal.getClassNameByAnimation
 测试使用-end */
 
 // 根据源位置计算弹框位置
-function getCoordinate(source, animation) {
-  if (!source || Object.prototype.toString.call(source).indexOf('[object HTML') === -1) return null
+function getPositionByReferenceDOM({ referenceDOM, animation }) {
+  if (!referenceDOM || Object.prototype.toString.call(referenceDOM).indexOf('[object HTML') === -1)
+    return null
   // 获取子元素的位置
-  let rect = source.getBoundingClientRect()
+  let rect = referenceDOM.getBoundingClientRect()
   let top = null
   let bottom = null
   let left = null
@@ -43,4 +44,4 @@ function getCoordinate(source, animation) {
   }
 }
 
-export default getCoordinate
+export default getPositionByReferenceDOM

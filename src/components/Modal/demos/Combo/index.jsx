@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Layout, Modal } from 'seedsui-react'
 
 export default () => {
-  const sourceRef = useRef(null)
+  const referenceRef = useRef(null)
   const modalRef = useRef(null)
   const [visible, setVisible] = useState(false)
   function handleToggle() {
@@ -14,11 +14,11 @@ export default () => {
       <Layout className="full">
         <Layout.Header className="text-center">Modal</Layout.Header>
         <Layout.Main className="bg-white">
-          <div ref={sourceRef} className="demo-title" onClick={handleToggle}>
+          <div ref={referenceRef} className="demo-title" onClick={handleToggle}>
             Modal visible toggle
           </div>
           <Modal
-            sourceDOM={sourceRef.current}
+            referenceDOM={referenceRef.current}
             // 这里可以更换动画方向
             animation="slideDown"
             ref={modalRef}

@@ -2,13 +2,21 @@ import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react
 import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './api/getClassNameByAnimation'
 
+// 内库使用-start
+import Tooltip from './../Tooltip'
+// 内库使用-end
+
+/* 测试使用-start
+import { Tooltip } from 'seedsui-react'
+测试使用-end */
+
 const Modal = forwardRef(
   (
     {
       portal,
       animation = 'zoom', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
       // 自动调整位置
-      sourceDOM = null,
+      referenceDOM: externalReferenceDOM = null,
       offset = null,
 
       visible,
@@ -45,13 +53,21 @@ const Modal = forwardRef(
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
       let maskDOM = rootRef?.current
-      // eslint-disable-next-line
-      if (typeof sourceDOM === 'function') sourceDOM = sourceDOM()
-      if (!sourceDOM || !maskDOM) return
-      if (visible && sourceDOM && maskDOM && !maskProps?.style?.top && !maskProps?.style?.bottom) {
-        Tooltip.updateContainerPosition({
-          source: sourceDOM,
-          target: maskDOM,
+
+      // 参考元素
+      let referenceDOM =
+        typeof externalReferenceDOM === 'function' ? externalReferenceDOM() : externalReferenceDOM
+
+      if (!referenceDOM || !maskDOM) return
+      if (
+        visible &&
+        referenceDOM &&
+        maskDOM &&
+        !maskProps?.style?.top &&
+        !maskProps?.style?.bottom
+      ) {
+        Tooltip.updatePositionByReferenceDOM(maskDOM, {
+          referenceDOM: referenceDOM,
           animation: animation,
           offset: offset
         })
