@@ -34,6 +34,7 @@ export default defineConfig({
         { title: '安装', link: '/guide' },
         { title: '组件', link: '/components' },
         { title: '工具', link: '/utils' },
+        { title: '页面', link: '/pages' },
         { title: '开发规范', link: '/dev' },
         { title: '交互规范', link: '/ux' },
         { title: '问答', link: '/faq' }
@@ -42,6 +43,7 @@ export default defineConfig({
         { title: 'Install', link: '/en-US/guide' },
         { title: 'Components', link: '/en-US/components' },
         { title: 'Utils', link: '/en-US/utils' },
+        { title: 'Pages', link: '/en-US/pages' },
         { title: 'Dev Standards', link: '/en-US/dev' },
         { title: 'UX Standards', link: '/en-US/ux' },
         { title: 'FAQ', link: '/en-US/faq' }
@@ -67,6 +69,7 @@ export default defineConfig({
     // 原子资产
     atomDirs: [
       { type: 'components', dir: 'src/components' },
+      { type: 'pages', dir: 'src/pages' },
       { type: 'utils', dir: 'src/utils' }
     ]
     // codeBlockMode: 'passive',
