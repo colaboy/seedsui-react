@@ -1,4 +1,11 @@
-import getAnimationPosition from './getAnimationPosition'
+// 内库使用-start
+import getClassNameByAnimation from './../../Modal/api/getClassNameByAnimation'
+// 内库使用-end
+
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const getClassNameByAnimation = Modal.getClassNameByAnimation
+测试使用-end */
 
 // 根据源位置计算弹框位置
 function getCoordinate(source, animation) {
@@ -10,7 +17,7 @@ function getCoordinate(source, animation) {
   let left = null
   let right = null
   // 根据不同位置的弹窗，计算位置
-  let position = getAnimationPosition(animation)
+  let position = getClassNameByAnimation(animation)
   // 从下往上弹
   if (position.indexOf('bottom') === 0) {
     bottom = window.innerHeight - rect.top

@@ -1,13 +1,6 @@
 import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-
-// 内库使用-start
-import Tooltip from './../Tooltip'
-// 内库使用-end
-
-/* 测试使用-start
-import { Tooltip } from 'seedsui-react'
-测试使用-end */
+import getClassNameByAnimation from './api/getClassNameByAnimation'
 
 const Modal = forwardRef(
   (
@@ -66,7 +59,7 @@ const Modal = forwardRef(
     }
 
     // 构建动画
-    let position = Tooltip.getAnimationPosition(animation)
+    let animationClassName = getClassNameByAnimation(animation)
 
     // 点击遮罩
     function handleMaskClick(e) {
@@ -96,7 +89,7 @@ const Modal = forwardRef(
       >
         <div
           {...props}
-          className={`popup-animation modal${position ? ' ' + position : ''}${
+          className={`popup-animation modal${animationClassName ? ' ' + animationClassName : ''}${
             props.className ? ' ' + props.className : ''
           }${getActiveClass()}`}
           data-animation={animation}

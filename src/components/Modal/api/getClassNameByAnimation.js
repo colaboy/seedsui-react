@@ -1,5 +1,5 @@
 // 根据动画判定方向
-function getAnimationPosition(animation) {
+function getClassNameByAnimation(animation) {
   // 构建动画
   let position = ''
   switch (animation) {
@@ -48,4 +48,4 @@ function getAnimationPosition(animation) {
   return position
 }
 
-export default getAnimationPosition
+export default getClassNameByAnimation

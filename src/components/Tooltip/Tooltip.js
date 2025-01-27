@@ -56,6 +56,7 @@ const Tooltip = forwardRef(
         rootRef?.current?.children && rootRef?.current?.children[0]
           ? rootRef?.current?.children[0]
           : null
+
       if (sourceDOM && targetDOM) {
         // 没有自定义位置时生效
         if (!style?.left && !style?.top && !style?.right && !style?.bottom) {

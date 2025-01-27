@@ -1,7 +1,15 @@
 import React, { forwardRef } from 'react'
 import { createPortal } from 'react-dom'
-import getAnimationPosition from './api/getAnimationPosition'
 import getDataAnimation from './api/getDataAnimation'
+
+// 内库使用-start
+import getClassNameByAnimation from './../Modal/api/getClassNameByAnimation'
+// 内库使用-end
+
+/* 测试使用-start
+import { Modal } from 'seedsui-react'
+const getClassNameByAnimation = Modal.getClassNameByAnimation
+测试使用-end */
 
 const Popup = forwardRef(
   (
@@ -26,7 +34,7 @@ const Popup = forwardRef(
     ref
   ) => {
     // 构建动画
-    let position = getAnimationPosition(animation)
+    let position = getClassNameByAnimation(animation)
     let dataAnimation = getDataAnimation(animation)
 
     // 点击遮罩
