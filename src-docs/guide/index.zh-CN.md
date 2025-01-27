@@ -12,6 +12,23 @@ An enterprise-class UI design language and React UI library.
 
 ## 📦 Install
 
+### Css
+
+#### Less import
+
+```bash
+@import '//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css';
+```
+
+#### CSS import
+
+```html
+<link
+  rel="stylesheet"
+  href="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css"
+/>
+```
+
 ### NPM
 
 ```bash
@@ -37,7 +54,7 @@ Add scripts to `index.html`
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/dayjs.1.11.8.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/ahooks.3.8.1.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/lodash.4.17.21.min.js"></script>
-<!-- The UMD router used to resolve the conflict errors between the UMD version of @ahooksjs/use-url-state and react-router in the project. -->
+<!-- The react-router cannot use the UMD mode.  Because @ahooksjs/use-url-state not supported. -->
 <!--
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.6.26.1.min.js"></script>
 <script src="//res.waiqin365.com/d/waiqin365_h5/externals/react-router.5.1.2.min.js"></script>

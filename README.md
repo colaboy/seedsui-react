@@ -12,6 +12,23 @@ An enterprise-class UI design language and React UI library.
 
 ## 📦 Install
 
+### Css
+
+#### Less import
+
+```bash
+@import '//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css';
+```
+
+#### CSS import
+
+```html
+<link
+  rel="stylesheet"
+  href="//res.waiqin365.com/d/waiqin365_h5/externals/seedsui-react.5.9.17.min.css"
+/>
+```
+
 ### NPM
 
 ```bash
