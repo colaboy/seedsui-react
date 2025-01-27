@@ -12,14 +12,24 @@ export default () => {
               id: '1',
               name: '1',
               content: 'content',
-              position: 'left'
+              position: 'left',
+              time: new Date()
             },
             {
               avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
               id: '2',
-              name: '2',
+              name: '张三',
               content: 'content',
-              position: 'right'
+              position: 'right',
+              time: new Date()
+            },
+            {
+              avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
+              id: '3',
+              name: '张三',
+              content: 'content',
+              position: 'right',
+              time: new Date('2025-08-08')
             }
           ]}
         />

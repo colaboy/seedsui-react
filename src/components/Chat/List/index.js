@@ -1,10 +1,20 @@
-import React, { forwardRef, useRef, useImperativeHandle } from 'react'
-
+import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
+import getSpaceDates from './getSpaceDates'
 import Item from './../Item'
+
+// 内库使用-start
+import DateUtil from './../../../utils/DateUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { DateUtil } from 'seedsui-react'
+测试使用-end */
 
 // List
 const List = (
   {
+    // 时间间隔, 单位 ms, 默认1分钟
+    timeSpace = 60000,
     value,
     list,
     /*
@@ -15,7 +25,8 @@ const List = (
       avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
       id: '选项1',
       name: '选项1',
-      content: '自定义内容'
+      content: '自定义内容',
+      time: new Date()
     }
     */
     // Item 配置项
@@ -62,10 +73,30 @@ const List = (
     )
   }
 
+  // 时间分栏
+  let dates = []
+
   return (
     <div className="chat-list" ref={rootRef}>
       {list.map((item, index) => {
-        return getItemNode(item, index)
+        let bar = null
+        if (item.time) {
+          let spaceDates = getSpaceDates(item.time, dates, timeSpace)
+          dates = spaceDates.dates
+          // 超过时间间隔，则显示时间分栏
+          if (spaceDates.isOverTime) {
+            bar = (
+              <div className={`chat-time`}>{DateUtil.format(item.time, 'YYYY-MM-DD hh:mm')}</div>
+            )
+          }
+        }
+
+        return (
+          <Fragment key={index}>
+            {bar}
+            {getItemNode(item, index)}
+          </Fragment>
+        )
       })}
     </div>
   )
