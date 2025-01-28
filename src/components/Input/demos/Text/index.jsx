@@ -32,7 +32,11 @@ export default () => {
         }}
         allowClear
         clear={({ value }) => {
-          return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
+          return value ? (
+            <i className="input-clear" onClick={() => setValue('')} />
+          ) : (
+            <i className="right-icon shape-arrow-right sm"></i>
+          )
         }}
         onChange={(val) => {
           console.log(val)

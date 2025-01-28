@@ -60,12 +60,13 @@ export { default as Map } from './components/Map'
 // export { default as ApiSuperagent } from './ApiSuperagent'; // 与Axios同类型,推荐使用Axios
 export { default as Debugger } from './utils/Debugger'
 export { default as Device } from './utils/Device'
-export { default as FullScreen } from './utils/FullScreen' // 不常用
-export { default as GeoUtil } from './utils/GeoUtil' // 不常用
+export { default as FullScreen } from './utils/FullScreen'
+export { default as GeoUtil } from './utils/GeoUtil'
 export { default as AssetUtil } from './utils/AssetUtil'
+export { default as Bridge } from './utils/Bridge'
 export { default as Clipboard } from './utils/Clipboard'
-export { default as EventUtil } from './utils/EventUtil' // 不常用
+export { default as EventUtil } from './utils/EventUtil'
 export { default as ArrayUtil } from './utils/ArrayUtil'
 export { default as MathUtil } from './utils/MathUtil'
+export { default as Request } from './utils/Request'
 export { DateUtil, LocaleUtil }
-export { default as Bridge } from './utils/Bridge'

@@ -31,7 +31,11 @@ export default () => {
           // min={new Date('2023-08-08')}
           // max={new Date()}
           clear={({ value }) => {
-            return value ? <i className="input-clear" onClick={() => setValue('')} /> : null
+            return value ? (
+              <i className="input-clear" onClick={() => setValue('')} />
+            ) : (
+              <i className="right-icon shape-arrow-right sm"></i>
+            )
           }}
           rangeId={rangeId}
           value={value}

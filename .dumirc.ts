@@ -3,6 +3,12 @@ import { defineConfig } from 'dumi'
 // 读取package.json文件
 // const packageJson = require('./package.json')
 
+// 代理服务
+const proxyServer = 'https://sftcloud.qince.com'
+/*
+'http://172.31.3.215:6020'
+*/
+
 // 导出配置，国际化有问题所以暂时只用中文
 export default defineConfig({
   outputPath: 'docs',
@@ -95,31 +101,42 @@ export default defineConfig({
   proxy: {
     // 代理-api(访问 /api/users 就能访问到 http://jsonplaceholder.typicode.com/users 的数据。)
     '/api': {
-      target: 'http://172.31.3.231:6020',
+      target: proxyServer,
       changeOrigin: true,
       pathRewrite: { '^/api': '' }
     },
     // 代理登录
     '/login': {
-      target: 'http://172.31.3.231:6020',
+      target: proxyServer,
       changeOrigin: true,
       pathRewrite: {
         '^/login': '/'
       }
     },
-    // 代理登录资源与接口
+    /* 代理登录: 登陆页面的其它请求start */
     '/auth': {
-      target: 'http://172.31.3.231:6020',
+      target: proxyServer,
       changeOrigin: true
     },
     '/platform': {
-      target: 'http://172.31.3.231:6020',
+      target: proxyServer,
       changeOrigin: true
+    },
+    '/app/apaas': {
+      target: proxyServer,
+      changeOrigin: true,
+      pathRewrite: { '^/api/app/apaas': '' }
+    },
+    '/apaas': {
+      target: proxyServer,
+      changeOrigin: true,
+      pathRewrite: { '^/api/apaas': '' }
     },
     '/portal': {
-      target: 'http://172.31.3.231:6020',
+      target: proxyServer,
       changeOrigin: true
     },
+    /* 代理登录: 登陆页面的其它请求end */
     // 代理-pdf
     '/contract_redirect/': {
       // target: 'https://contract.waiqin365.com',

@@ -126,7 +126,11 @@ export default () => {
         // animation="zoom"
         allowClear
         clear={({ value, triggerClear }) => {
-          return value ? <i className="input-clear" onClick={triggerClear} /> : null
+          return value ? (
+            <i className="input-clear" onClick={triggerClear} />
+          ) : (
+            <i className="right-icon shape-arrow-right sm"></i>
+          )
         }}
         multiple={'tags'}
         placeholder="Please select"
