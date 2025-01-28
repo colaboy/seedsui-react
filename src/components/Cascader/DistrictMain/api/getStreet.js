@@ -8,11 +8,15 @@ import { Request } from 'seedsui-react'
 
 function getStreet(districtId) {
   return new Promise((resolve) => {
-    if (window.streetsMap && window.streetsMap[districtId]) {
-      resolve(window.streetsMap[districtId])
+    // 优先读取缓存
+    window.districtStreets =
+      window.districtStreets || JSON.parse(window.sessionStorage.getItem('districtStreets') || '{}')
+    if (window.districtStreets?.[districtId]) {
+      resolve(window.districtStreets[districtId])
       return
     }
 
+    // 加载语言对应的文件
     Request.post(
       '/platform/combo/v1/getComboBox.do?comboCode=district_street',
       {
@@ -25,23 +29,13 @@ function getStreet(districtId) {
       }
     )
       .then(function (list) {
-        if (!Array.isArray(list) || !list.length) {
-          resolve(null)
-          return
-        }
-        let data = list.map((item) => {
-          return {
-            parentid: districtId,
-            name: item.text,
-            id: item.id,
-            type: ['street'],
-            isStreet: true,
-            isLeaf: true
-          }
-        })
-        if (!window.streetsMap) window.streetsMap = {}
-        window.streetsMap[districtId] = data
-        resolve(data)
+        // 存到缓存中
+        window.districtStreets = JSON.parse(
+          window.sessionStorage.getItem('districtStreets') || '{}'
+        )
+        window.districtStreets[districtId] = list || []
+        window.sessionStorage.setItem('districtStreets', JSON.stringify(window.districtStreets))
+        resolve(window.districtStreets[districtId])
       })
       .catch(() => {
         resolve('获取街道异常')

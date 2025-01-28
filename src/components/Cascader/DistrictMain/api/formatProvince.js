@@ -9,11 +9,19 @@ import { ArrayUtil } from 'seedsui-react'
 // 测试，后台完成后删除此段
 // import chinaData from 'library/components/Cascader/utils/data/chinaData'
 
-function formatProvinceData(tree) {
+function formatProvince(tree, countryId) {
   // 测试，后台完成后删除此段
   // return chinaData
 
-  if (!tree) return null
+  if (typeof tree === 'string') return tree
+  if (!Array.isArray(tree) || tree.length === 0) return null
+
+  // 补充parentId
+  for (let item of tree) {
+    item.parentid = countryId
+  }
+
+  // 补充层级
   ArrayUtil.setDeepTreeNodes(tree, (node) => {
     if (node.anchor) delete node.anchor
     if (node.level === '3') {
@@ -23,4 +31,4 @@ function formatProvinceData(tree) {
   return tree
 }
 
-export default formatProvinceData
+export default formatProvince

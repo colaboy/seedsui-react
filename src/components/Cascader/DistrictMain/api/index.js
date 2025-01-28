@@ -1,8 +1,9 @@
 import getCountry from './getCountry'
 import formatCountry from './formatCountry'
 import getProvince from './getProvince'
-import formatProvinceData from './formatProvinceData'
+import formatProvince from './formatProvince'
 import getStreet from './getStreet'
+import formatStreet from './formatStreet'
 
 const api = {
   // 获取国家
@@ -17,7 +18,7 @@ const api = {
    */
   getProvince: async function (countryId) {
     let result = await getProvince(countryId)
-    return formatProvinceData(result)
+    return formatProvince(result, countryId)
   },
   /**
    * @description: 获取街道
@@ -26,7 +27,7 @@ const api = {
    */
   getStreet: async function (districtId) {
     let result = await getStreet(districtId)
-    return result
+    return formatStreet(result, districtId)
   }
 }
 

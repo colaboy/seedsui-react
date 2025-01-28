@@ -67,17 +67,21 @@ const CascaderDistrictCombo = forwardRef(
 
     // 初始列表
     async function initList() {
-      if (Array.isArray(list) && list.length) return false
+      if (Array.isArray(list) && list.length) return
 
       // 起始类型: 国家
       if (startType === 'country') {
         list = await getCountry()
+        if (typeof list === 'string') {
+          setList(list)
+          return false
+        }
 
         // 没有选中项，不知道补充哪个国家数据
         let currentCountryId = externalValue?.[0]?.id
         if (!currentCountryId) {
           setList(list)
-          return
+          return true
         }
 
         // 获取国家省市区
@@ -85,18 +89,18 @@ const CascaderDistrictCombo = forwardRef(
         let countryChildren = await loadCountryChildren(country)
         if (typeof countryChildren === 'string') {
           setList(countryChildren)
-          return
+          return false
         }
       }
       // 起始类型: 省
       else {
         list = await getProvinceCityDistrict()
+        if (typeof list === 'string') {
+          setList(list)
+          return false
+        }
       }
 
-      if (!list) {
-        setList('地区信息获取失败，请求成功支持用户选择地区')
-        return false
-      }
       setList(list)
       return true
     }
@@ -111,7 +115,11 @@ const CascaderDistrictCombo = forwardRef(
       }
 
       if (_.isEmpty(country.children) && country?.id) {
-        country.children = await getProvinceCityDistrict(country.id)
+        let regionData = await getProvinceCityDistrict(country.id)
+        if (typeof regionData === 'string') {
+          return regionData
+        }
+        country.children = regionData
       }
       return country.children
     }
@@ -240,7 +248,6 @@ const CascaderDistrictCombo = forwardRef(
         {...props}
         loadData={loadData}
         onChange={(newValue) => {
-          console.log('给业务的值:', newValue)
           onChange && onChange(newValue)
         }}
         ref={districtComboRef}

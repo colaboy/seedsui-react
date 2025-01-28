@@ -1,11 +1,12 @@
 import _ from 'lodash'
 
 // 内库使用-start
+import LocaleUtil from '../../../../utils/LocaleUtil'
 import Request from './../../../../utils/Request'
 // 内库使用-end
 
 /* 测试使用-start
-import { Request } from 'seedsui-react'
+import { LocaleUtil, Request } from 'seedsui-react'
 测试使用-end */
 
 function getCountry() {
@@ -32,7 +33,7 @@ function getCountry() {
         resolve(window.countryData)
       })
       .catch(() => {
-        resolve(null)
+        resolve(LocaleUtil.locale('获取国家数据失败'))
       })
   })
 }

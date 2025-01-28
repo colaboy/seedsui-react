@@ -13,30 +13,33 @@ function getProvince(countryId = '86') {
     const language = window.seedsLocaleLanguage || 'zh_CN'
 
     // 测试，后台完成后删除此段
-    // window.provinceData = {
+    // window.countryProvinces = {
     //   86: require('library/components/Cascader/utils/data/chinaData')
     // }
 
     // 优先读取缓存
-    window.provinceData =
-      window.provinceData || JSON.parse(window.sessionStorage.getItem('provinceData') || '{}')
-    if (window.provinceData?.[countryId]) {
-      resolve(window.provinceData[countryId])
+    window.countryProvinces =
+      window.countryProvinces ||
+      JSON.parse(window.sessionStorage.getItem('countryProvinces') || '{}')
+    if (window.countryProvinces?.[countryId]) {
+      resolve(window.countryProvinces[countryId])
       return
     }
 
     // 加载语言对应的文件
     Request.get(`https://res.waiqin365.com/p/platform/district/${language}/${countryId}.json`)
       // ApiAxios.get(`http://waiqin365-test.oss-cn-hangzhou.aliyuncs.com/p/platform/district/${language}/${countryId}.json`)
-      .then(function (json) {
+      .then(function (list) {
         // 存到缓存中
-        window.provinceData = JSON.parse(window.sessionStorage.getItem('provinceData') || '{}')
-        window.provinceData[countryId] = json || []
-        window.sessionStorage.setItem('provinceData', JSON.stringify(window.provinceData))
-        resolve(window.provinceData[countryId])
+        window.countryProvinces = JSON.parse(
+          window.sessionStorage.getItem('countryProvinces') || '{}'
+        )
+        window.countryProvinces[countryId] = list || []
+        window.sessionStorage.setItem('countryProvinces', JSON.stringify(window.countryProvinces))
+        resolve(window.countryProvinces[countryId])
       })
       .catch(() => {
-        resolve(null)
+        resolve(LocaleUtil.locale('获取省市区数据失败'))
       })
   })
 }
