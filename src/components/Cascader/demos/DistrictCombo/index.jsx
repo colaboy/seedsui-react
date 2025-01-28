@@ -2,6 +2,24 @@ import React, { useState, useEffect } from 'react'
 
 import { Cascader } from 'seedsui-react'
 
+// 判断省市区的数据
+import countryIds from './data/countryIds'
+import provinceIds from './data/provinceIds'
+import municipalityIds from './data/municipalityIds'
+import cityIds from './data/cityIds'
+import prefectureIds from './data/prefectureIds'
+import districtIds from './data/districtIds'
+import streetIds from './data/streetIds'
+
+// 判断省市区的数据
+window.countryIds = countryIds
+window.provinceIds = provinceIds
+window.municipalityIds = municipalityIds
+window.cityIds = cityIds
+window.prefectureIds = prefectureIds
+window.districtIds = districtIds
+window.streetIds = streetIds
+
 export default () => {
   // 控件将会补充parentid和isDistrict, 所以顺序不能传错
   const [value, setValue] = useState([])
