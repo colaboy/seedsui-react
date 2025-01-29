@@ -1,4 +1,5 @@
 function formatStreet(list, districtId) {
+  if (typeof list === 'string') return list
   return list.map((item) => {
     return {
       parentid: districtId,
