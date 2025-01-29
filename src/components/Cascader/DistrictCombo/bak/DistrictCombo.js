@@ -27,7 +27,7 @@ const DistrictCombo = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType = defaultSetValueType,
+      setValueType,
       modalProps,
 
       // Main

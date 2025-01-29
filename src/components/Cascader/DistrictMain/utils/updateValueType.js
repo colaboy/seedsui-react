@@ -1,4 +1,5 @@
 import compareType from './compareType'
+import defaultSetValueType from './defaultSetValueType'
 
 // 更新value的type和isLeaf
 function updateValueType(
@@ -13,7 +14,7 @@ function updateValueType(
     isCity,
     isDistrict,
     isStreet,
-    setValueType
+    setValueType: externalSetValueType
   }
 ) {
   // Array type parameter is invalid
@@ -22,6 +23,7 @@ function updateValueType(
   }
 
   // 没有type, 则先获取type
+  let setValueType = externalSetValueType || defaultSetValueType
   setValueType(tabs, {
     list: list,
     isCountry,

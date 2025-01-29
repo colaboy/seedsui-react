@@ -28,12 +28,15 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType = defaultSetValueType,
+      setValueType,
 
       // Main
+      startType,
       type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
       list,
-      loadData,
+      getCountry,
+      getProvinceCityDistrict,
+      getStreet,
       editableOptions,
       ...props
     },
@@ -104,9 +107,12 @@ const DistrictModal = forwardRef(
     if (!props.mainProps) {
       props.mainProps = {}
     }
+    props.mainProps.startType = startType
     props.mainProps.type = type
     props.mainProps.list = list
-    props.mainProps.loadData = loadData
+    props.mainProps.getCountry = getCountry
+    props.mainProps.getProvinceCityDistrict = getProvinceCityDistrict
+    props.mainProps.getStreet = getStreet
     props.mainProps.editableOptions = editableOptions
     props.mainProps.isCountry = isCountry
     props.mainProps.isProvince = isProvince
