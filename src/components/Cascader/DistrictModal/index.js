@@ -123,7 +123,6 @@ const DistrictModal = forwardRef(
     props.mainProps.isStreet = isStreet
     props.mainProps.onChange = handleDrillDown
 
-    console.log('DistrictModal props', visible, props.mainProps)
     return (
       <ModalPicker
         ref={ref}

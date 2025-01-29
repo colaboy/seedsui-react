@@ -89,7 +89,7 @@ const Main = forwardRef(
         return
       }
 
-      setList(externalList)
+      update()
       // eslint-disable-next-line
     }, [visible, JSON.stringify(externalList)])
 
