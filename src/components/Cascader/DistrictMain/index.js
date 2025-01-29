@@ -1,7 +1,6 @@
 import React, { useRef, useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 import _ from 'lodash'
 import { Toast, Loading, ArrayUtil } from 'seedsui-react'
-import formatValue from './formatValue'
 import formatList from './formatList'
 import DistrictMain from './DistrictMain'
 import api from './api'

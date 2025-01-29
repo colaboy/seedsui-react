@@ -27,23 +27,21 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setValue([
-        // {
-        //   id: '86',
-        //   name: '中国',
-        //   type: ['country']
-        // },
         {
-          id: '810000',
-          name: '香港特别行政区',
-          parentid: '86',
-          type: ['province', 'city', 'municipality']
+          name: '中国',
+          id: '86'
         },
         {
-          id: '810107',
-          name: '九龙城区',
-          parentid: '810000',
-          type: ['district'],
-          isLeaf: true
+          name: '北京市',
+          id: '110000'
+        },
+        {
+          name: '东城区',
+          id: '110101'
+        },
+        {
+          name: '东华门街道',
+          id: '110101001'
         }
       ])
     }, 2000)

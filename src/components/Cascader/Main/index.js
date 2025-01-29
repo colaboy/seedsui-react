@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
-
+import formatValue from './formatValue'
 import Tabs from './Tabs'
 import ListItem from './ListItem'
 
@@ -120,7 +120,7 @@ const Main = forwardRef(
         return null
       }
 
-      tabsRef.current = _.cloneDeep(value)
+      tabsRef.current = _.cloneDeep(formatValue(value))
 
       // 如果有子级, 则增加请选择
       if (!lastTab?.isLeaf) {
