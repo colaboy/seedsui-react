@@ -52,7 +52,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
         // readOnly
-        // startType={'country'}
+        startType={'country'}
         multiple
         // type="country"
         // type="province"

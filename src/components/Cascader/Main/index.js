@@ -84,7 +84,7 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [visible, JSON.stringify(value)])
 
-    // 更新列表(新增)
+    // 更新列表, 初始列表与上面的useEffect是分开执行的, 但下钻会导致同时执行(新增)
     useEffect(() => {
       if (!visible || JSON.stringify(list) === JSON.stringify(externalList)) {
         return
@@ -110,7 +110,6 @@ const Main = forwardRef(
       }
 
       // 更新tabs
-      tabsRef.current = _.cloneDeep(value)
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
 
       // 获取当前列表
@@ -120,6 +119,8 @@ const Main = forwardRef(
         if (newList === null) setActiveTab(lastTab)
         return null
       }
+
+      tabsRef.current = _.cloneDeep(value)
 
       // 如果有子级, 则增加请选择
       if (!lastTab?.isLeaf) {

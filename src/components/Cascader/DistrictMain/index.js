@@ -11,7 +11,7 @@ const CascaderDistrictMain = forwardRef(
   (
     {
       visible,
-      value: externalValue,
+      value,
       // 初始列表, 国家或省市区数据
       list: externalList,
       // 开始于国家country, 省份province
@@ -24,10 +24,6 @@ const CascaderDistrictMain = forwardRef(
     ref
   ) => {
     let [list, setList] = useState(formatList(externalList))
-
-    // 格式化value和list: 补充parentid, 外部更新value时, 内部使用最新的value
-    let valueRef = useRef(null)
-    valueRef.current = formatValue(externalValue)
 
     // Expose api
     const districtMainRef = useRef(null)
@@ -57,7 +53,7 @@ const CascaderDistrictMain = forwardRef(
         }
 
         // 没有选中项，不知道补充哪个国家数据, 列表为国家数据
-        let currentCountryId = externalValue?.[0]?.id
+        let currentCountryId = value?.[0]?.id
         if (!currentCountryId) {
           Loading.hide()
           setList(formatList(list))
@@ -203,7 +199,7 @@ const CascaderDistrictMain = forwardRef(
     return (
       <DistrictMain
         visible={visible}
-        value={valueRef.current}
+        value={value}
         list={list}
         {...props}
         loadData={loadData}
