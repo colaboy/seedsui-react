@@ -45,11 +45,13 @@ const CascaderDistrictMain = forwardRef(
     // 初始列表
     async function initList() {
       if (Array.isArray(list) && list.length) return
+      Loading.show()
 
       // 起始类型: 国家
       if (startType === 'country') {
         list = await getCountry()
         if (typeof list === 'string') {
+          Loading.hide()
           setList(list)
           return false
         }
@@ -57,6 +59,7 @@ const CascaderDistrictMain = forwardRef(
         // 没有选中项，不知道补充哪个国家数据, 列表为国家数据
         let currentCountryId = externalValue?.[0]?.id
         if (!currentCountryId) {
+          Loading.hide()
           setList(formatList(list))
           return true
         }
@@ -65,6 +68,7 @@ const CascaderDistrictMain = forwardRef(
         let country = list.filter((item) => item.id === currentCountryId)?.[0]
         let countryChildren = await loadCountryChildren(country)
         if (typeof countryChildren === 'string') {
+          Loading.hide()
           setList(countryChildren)
           return false
         }
@@ -73,11 +77,13 @@ const CascaderDistrictMain = forwardRef(
       else {
         list = await getProvinceCityDistrict()
         if (typeof list === 'string') {
+          Loading.hide()
           setList(list)
           return false
         }
       }
 
+      Loading.hide()
       setList(formatList(list))
       return true
     }
@@ -201,6 +207,9 @@ const CascaderDistrictMain = forwardRef(
         list={list}
         {...props}
         loadData={loadData}
+        onReLoad={() => {
+          initList()
+        }}
         ref={districtMainRef}
       />
     )

@@ -32,6 +32,7 @@ const Main = forwardRef(
       allowClear,
       onChange,
       onSelect,
+      onReLoad,
 
       list: externalList,
       loadData,
@@ -342,6 +343,7 @@ const Main = forwardRef(
             // 选中列表
             list={list}
             value={value}
+            onReLoad={onReLoad}
             // 阻止选择
             onSelect={(item) => handleDrill(item)}
             {...props}
