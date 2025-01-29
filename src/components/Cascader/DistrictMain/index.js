@@ -196,6 +196,7 @@ const CascaderDistrictMain = forwardRef(
 
     return (
       <DistrictMain
+        visible={visible}
         value={valueRef.current}
         list={list}
         {...props}

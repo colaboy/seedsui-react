@@ -24,7 +24,7 @@ const ListItem = forwardRef(
     ref
   ) => {
     // 显示分栏
-    const indexs = {}
+    const indexes = {}
 
     if (Array.isArray(list) && !list.length) {
       // eslint-disable-next-line
@@ -42,8 +42,8 @@ const ListItem = forwardRef(
           list.map((item, index) => {
             // 字母分栏
             let anchorBar = null
-            if (item.anchor && !indexs[item.anchor]) {
-              indexs[item.anchor] = true
+            if (item.anchor && !indexes[item.anchor]) {
+              indexes[item.anchor] = true
               anchorBar = (
                 <IndexBar.Anchor name={item.anchor}>
                   <p className="indexbar-list-header">{item.anchor}</p>

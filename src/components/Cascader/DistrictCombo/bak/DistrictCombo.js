@@ -1,5 +1,5 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react'
-import { updateValueType, testEditableOptions, defaultSetValueType } from './../DistrictMain/utils'
+import { updateValueType, testEditableOptions } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start

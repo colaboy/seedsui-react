@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from 'react'
 import _ from 'lodash'
-import { updateValueType, compareType, defaultSetValueType } from './../DistrictMain/utils'
+import { updateValueType, compareType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
 
 // 内库使用-start
@@ -123,6 +123,7 @@ const DistrictModal = forwardRef(
     props.mainProps.isStreet = isStreet
     props.mainProps.onChange = handleDrillDown
 
+    console.log('DistrictModal props', visible, props.mainProps)
     return (
       <ModalPicker
         ref={ref}

@@ -83,6 +83,16 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [visible, JSON.stringify(value)])
 
+    // 更新列表(新增)
+    useEffect(() => {
+      if (!visible || JSON.stringify(list) === JSON.stringify(externalList)) {
+        return
+      }
+
+      setList(externalList)
+      // eslint-disable-next-line
+    }, [visible, JSON.stringify(externalList)])
+
     // 初始化数据
     async function update() {
       // 滚动条还原

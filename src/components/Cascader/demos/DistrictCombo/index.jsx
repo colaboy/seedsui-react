@@ -27,11 +27,11 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setValue([
-        {
-          id: '86',
-          name: '中国',
-          type: ['country']
-        },
+        // {
+        //   id: '86',
+        //   name: '中国',
+        //   type: ['country']
+        // },
         {
           id: '810000',
           name: '香港特别行政区',
@@ -52,7 +52,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
         // readOnly
-        startType={'country'}
+        // startType={'country'}
         multiple
         // type="country"
         // type="province"
@@ -60,13 +60,13 @@ export default () => {
         // type="district"
         // type="street"
         max="city"
-        // editableOptions={{
-        //   country: { editable: false },
-        //   province: { editable: false },
-        //   city: { editable: false },
-        //   district: { editable: false },
-        //   street: { editable: true }
-        // }}
+        editableOptions={{
+          country: { editable: false },
+          province: { editable: true },
+          city: { editable: true },
+          district: { editable: true },
+          street: { editable: true }
+        }}
         value={value}
         onChange={(newValue) => {
           console.log('修改: ', newValue)

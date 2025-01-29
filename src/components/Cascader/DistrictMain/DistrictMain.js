@@ -1,5 +1,5 @@
 import React, { useRef, useImperativeHandle, forwardRef } from 'react'
-import { updateValueType, defaultSetValueType, testStreet } from './utils'
+import { updateValueType, testStreet } from './utils'
 import Main from './../Main'
 import Tabs from './Tabs'
 
