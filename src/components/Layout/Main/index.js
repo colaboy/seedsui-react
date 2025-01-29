@@ -13,7 +13,10 @@ import { LocaleUtil } from 'seedsui-react'
 
 // 下拉刷新容器
 const Main = forwardRef(
-  ({ threshold = 50, onTopRefresh, onBottomRefresh, onScroll, children, ...props }, ref) => {
+  (
+    { safeArea, threshold = 50, onTopRefresh, onBottomRefresh, onScroll, children, ...props },
+    ref
+  ) => {
     const rootRef = useRef(null)
     const isLoadingRef = useRef(null)
     const topContainerRef = useRef(null)
@@ -120,7 +123,9 @@ const Main = forwardRef(
     return (
       <main
         {...props}
-        className={`layout-main${props.className ? ' ' + props.className : ''}`}
+        className={`layout-main${safeArea ? ' safe-area' : ''}${
+          props.className ? ' ' + props.className : ''
+        }`}
         ref={rootRef}
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}
         onTouchMove={onTopRefresh ? handleTouchMove : undefined}

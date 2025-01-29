@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Aside = forwardRef(({ children, ...props }, ref) => {
+const Aside = forwardRef(({ safeArea, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // 节点
@@ -14,7 +14,9 @@ const Aside = forwardRef(({ children, ...props }, ref) => {
   return (
     <aside
       {...props}
-      className={`layout-aside${props.className ? ' ' + props.className : ''}`}
+      className={`layout-aside${safeArea ? ' safe-area' : ''}${
+        props.className ? ' ' + props.className : ''
+      }`}
       ref={rootRef}
     >
       {children}

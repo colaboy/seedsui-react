@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Footer = forwardRef(({ children, ...props }, ref) => {
+const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose tools
@@ -14,7 +14,9 @@ const Footer = forwardRef(({ children, ...props }, ref) => {
   return (
     <footer
       {...props}
-      className={`layout-footer${props.className ? ' ' + props.className : ''}`}
+      className={`layout-footer${safeArea ? ' safe-area' : ''}${
+        props.className ? ' ' + props.className : ''
+      }`}
       ref={rootRef}
     >
       {children}

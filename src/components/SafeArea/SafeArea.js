@@ -4,7 +4,7 @@ import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 const SafeArea = forwardRef((props, ref) => {
   const rootRef = useRef(null)
 
-  // 节点
+  // Expose
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,

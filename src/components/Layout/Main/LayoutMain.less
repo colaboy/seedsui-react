@@ -1,0 +1,144 @@
+/*
+* Main
+*/
+.layout-main {
+  // 绝对定布局
+  // position:absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  // overflow: auto;
+
+  // flex布局
+  position: relative;
+  overflow: auto;
+  .flex-1;
+}
+
+// 底部刷新
+.layout-main-bottom-loading {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  overflow: hidden;
+}
+.layout-main-bottom-loading-wrapper {
+}
+.layout-main-bottom-loading-text {
+  color: #999999;
+}
+
+// 下拉刷新-下拉或触底刷新样式
+@keyframes layout-main-pull-animation-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+// 下拉刷新-pull类型(头部和底部刷新同一个样式)
+.layout-main-pull-push {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+}
+.layout-main-pull-push-wrapper {
+  .flex;
+  .flex-middle;
+  .flex-center;
+  width: 100%;
+  height: 40px;
+  font-size: 13px;
+  color: #999999;
+}
+.layout-main-pull-push-text {
+  display: block;
+  height: 20px;
+  line-height: 20px;
+}
+// 按照ue要求改为不显示图标的样式
+.layout-main-pull-push-icon {
+  display: none;
+
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-image: url(//res.waiqin365.com/d/seedsui/dragrefresh/pull.png);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: cover;
+  transition-timing-function: ease-in;
+  transition-duration: @animation-duration;
+  transition-property: transform;
+
+  &.layout-main-pull-push-icon-up {
+    transform: rotate(0deg);
+  }
+  &.layout-main-pull-push-icon-down {
+    transform: rotate(180deg);
+  }
+  &.layout-main-pull-push-icon-none {
+    display: none;
+  }
+  &.layout-main-pull-push-icon-loading {
+    background-position: left bottom;
+    transition-duration: 0ms;
+    animation: layout-main-pull-animation-spinner 1000ms infinite linear;
+  }
+}
+// 下拉刷新-circle类型
+.layout-main-pull-circle {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  margin-left: -20px;
+  color: @primary;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 32px 32px;
+  border-radius: 100%;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+
+  transition-timing-function: ease-in;
+  transition-duration: @animation-duration;
+  transition-property: transform;
+  .flex;
+  .flex-middle;
+  .flex-center;
+  &.layout-main-pull-circle-show {
+    transform: translate3d(0, 120px, 0) rotate(0deg);
+  }
+}
+.layout-main-pull-circle-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+  background-image: url(//res.waiqin365.com/d/seedsui/dragrefresh/circle.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  transition-timing-function: ease-in;
+  transition-duration: @animation-duration;
+  transition-property: transform;
+  &.layout-main-pull-circle-icon-loading {
+    animation: layout-main-pull-animation-spinner 1000ms infinite linear;
+  }
+}
+.layout-main-pull-circle-icon-none {
+  display: none;
+}

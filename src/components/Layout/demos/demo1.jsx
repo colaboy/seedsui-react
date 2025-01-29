@@ -27,7 +27,7 @@ export default () => {
 
   return createPortal(
     // <div id="root" style={{ height: '300px', position: 'relative' }}>
-    <Layout safeArea className="full">
+    <Layout className="full">
       <Header style={{ height: '44px', backgroundColor: '#7dbcea' }}>Header</Header>
       {/* <Main style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}>Main</Main> */}
       <Layout>
@@ -41,8 +41,9 @@ export default () => {
           })}
         </Main>
       </Layout>
-      <Footer style={{ height: '44px', backgroundColor: '#7dbcea' }}>Footer</Footer>
-      {/* {safeArea && <SafeArea />} */}
+      <Footer safeArea style={{ height: '44px', backgroundColor: '#7dbcea' }}>
+        Footer
+      </Footer>
     </Layout>,
     // </div>
     document.body

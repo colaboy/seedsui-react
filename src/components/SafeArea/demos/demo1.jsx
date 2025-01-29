@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { SafeArea } from 'seedsui-react'
+import needsSafeArea from './needsSafeArea'
 
-const { hasSafeArea, setRootSafeArea, setPickerSafeArea } = SafeArea
 console.log(SafeArea)
 export default () => {
   useEffect(() => {
-    let isSafeArea = hasSafeArea()
-    console.log('是否需要安全区:', isSafeArea)
+    console.log('是否需要安全区:', needsSafeArea())
   }, [])
 
   return (

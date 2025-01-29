@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Header = forwardRef(({ children, ...props }, ref) => {
+const Header = forwardRef(({ safeArea, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose

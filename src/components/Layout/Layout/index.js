@@ -1,20 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
-import SafeArea from './../../SafeArea'
-
-const { hasSafeArea } = SafeArea
 
 const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
-  // 安全区设置
-  let safeAreaClassName = ''
-  if (hasSafeArea() && safeArea === true) {
-    safeAreaClassName = 'safe-area'
-  } else {
-    safeAreaClassName = ''
-  }
-
-  // 节点
+  // Expose
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,
@@ -44,7 +33,7 @@ const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => 
   return (
     <section
       {...props}
-      className={`layout${safeAreaClassName ? ' ' + safeAreaClassName : ''}${
+      className={`layout${safeArea ? ' safe-area' : ''}${
         props.className ? ' ' + props.className : ''
       }`}
       data-animation={animation}
