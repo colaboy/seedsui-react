@@ -18,6 +18,19 @@ export default defineConfig({
   publicPath: '/seedsui-react/',
   // 设置路由前缀，通常用于部署到非根目录
   base: '/seedsui-react/',
+  headScripts: [
+    `window.onload = function(){
+      let root = document.getElementById('root')
+      if (root) {
+        root.addEventListener('click', function (e) {
+          // 点击编辑按钮, 激活编辑器
+          if (e.target.classList.contains('dumi-default-previewer-editor-tip-btn')) {
+            e.target.closest('.dumi-default-previewer-meta').classList.toggle('active')
+          }
+        }, false)
+      }
+    }`
+  ],
   styles: [
     `
     /* windows滚动条样式 */
@@ -29,6 +42,28 @@ export default defineConfig({
       max-width: none !important;
     }
 
+    /* 编辑按钮修改 */
+    .dumi-default-previewer-editor-tip-btn {
+      cursor: pointer !important;
+    }
+    .dumi-default-previewer-editor-tip-btn * {
+      pointer-events: none;
+    }
+
+    .dumi-default-previewer-meta{
+      .dumi-default-source-code-editor-textarea {
+        display: none;
+      }
+    }
+
+    /* 点击编辑按钮, 激活编辑器 */
+    .dumi-default-previewer-meta.active{
+      .dumi-default-source-code-editor-textarea {
+        display: block;
+        background: #fff;
+        color: #000;
+      }
+    }
   `
   ],
   metas: [{ name: 'viewport', content: 'width=device-width,viewport-fit=cover' }],
