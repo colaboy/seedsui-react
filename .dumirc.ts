@@ -116,7 +116,7 @@ export default defineConfig({
     // codeBlockMode: 'passive',
   },
   alias: {
-    library: '/src'
+    src: '/src'
   },
   chainWebpack(memo: any) {
     // 设置 alias

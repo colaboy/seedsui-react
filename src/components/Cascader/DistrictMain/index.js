@@ -1,9 +1,19 @@
 import React, { useRef, useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 import _ from 'lodash'
-import { Toast, Loading, ArrayUtil } from 'seedsui-react'
+
 import formatList from './formatList'
 import DistrictMain from './DistrictMain'
 import api from './api'
+
+// 内库使用-start
+import Toast from './../../Toast'
+import Loading from './../../Loading'
+import ArrayUtil from './../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { Toast, Loading, ArrayUtil } from 'seedsui-react'
+测试使用-end */
 
 // 地址选择
 const CascaderDistrictMain = forwardRef(
@@ -22,6 +32,7 @@ const CascaderDistrictMain = forwardRef(
     },
     ref
   ) => {
+    // Cascader.Main并不记录与修改外部传入的list, 所以只能在外部格式化好再传入
     let [list, setList] = useState(formatList(externalList))
 
     // Expose api

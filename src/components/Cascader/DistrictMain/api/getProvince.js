@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import Request from './../../../../utils/Request'
