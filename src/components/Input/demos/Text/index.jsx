@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import _ from 'lodash'
 import { Input } from 'seedsui-react'
 
 export default () => {
@@ -31,9 +32,9 @@ export default () => {
           return value ? null : <i className="right-icon icon shape-arrow-right sm" />
         }}
         allowClear
-        clear={({ value }) => {
-          return value ? (
-            <i className="input-clear" onClick={() => setValue('')} />
+        clear={({ triggerClear }) => {
+          return !_.isEmpty(value) ? (
+            <i className="input-clear" onClick={triggerClear} />
           ) : (
             <i className="right-icon shape-arrow-right sm"></i>
           )

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import _ from 'lodash'
 import { Select, Checkbox, Modal } from 'seedsui-react'
 
 const list = [
@@ -125,8 +126,8 @@ export default () => {
         // autoSize
         // animation="zoom"
         allowClear
-        clear={({ value, triggerClear }) => {
-          return value ? (
+        clear={({ triggerClear }) => {
+          return !_.isEmpty(value) ? (
             <i className="input-clear" onClick={triggerClear} />
           ) : (
             <i className="right-icon shape-arrow-right sm"></i>

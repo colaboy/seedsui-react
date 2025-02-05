@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import _ from 'lodash'
 import { Cascader } from 'seedsui-react'
 
 // 判断省市区的数据
@@ -73,7 +73,7 @@ export default () => {
         placeholder={'点击选择'}
         allowClear
         clear={({ triggerClear }) => {
-          return value?.length ? (
+          return !_.isEmpty(value) ? (
             <i className="input-clear" onClick={triggerClear} />
           ) : (
             <i className="right-icon shape-arrow-right sm"></i>

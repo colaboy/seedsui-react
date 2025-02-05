@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import dayjs from 'dayjs'
+import _ from 'lodash'
 import { DatePicker, Layout, DateUtil, LocaleUtil } from 'seedsui-react'
 
 export default () => {
@@ -30,9 +30,9 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
-          clear={({ value }) => {
-            return value ? (
-              <i className="input-clear" onClick={() => setValue('')} />
+          clear={({ triggerClear }) => {
+            return !_.isEmpty(value) ? (
+              <i className="input-clear" onClick={triggerClear} />
             ) : (
               <i className="right-icon shape-arrow-right sm"></i>
             )
