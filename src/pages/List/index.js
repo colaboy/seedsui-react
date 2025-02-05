@@ -112,7 +112,7 @@ export default function List() {
       <FloatButton
         list={[
           { id: '1', name: '1' },
-          { id: '2', name: '2', icon: 'icon-map-zoom-in', type: 'primary', group: false }
+          { id: '2', name: '2', icon: 'seeds-icon-map-zoom-in', type: 'primary', group: false }
         ]}
         onChange={(value) => {
           console.log(value)

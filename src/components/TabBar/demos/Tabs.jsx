@@ -63,16 +63,16 @@ export default () => {
         <TabBar.Tabs
           list={[
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit'
             },
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable'
             },
-            { icon: <i className="icon-file-text"></i>, id: 'Animal', name: 'Animal' }
+            { icon: <i className="seeds-icon-file-text"></i>, id: 'Animal', name: 'Animal' }
           ]}
           value={value}
           onChange={(newValue) => {
@@ -85,21 +85,21 @@ export default () => {
         <TabBar.Tabs
           list={[
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Animal',
               name: 'Animal',
               description: 'description',

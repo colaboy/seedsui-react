@@ -55,19 +55,19 @@ export default () => {
         <TabBar.Menus
           list={[
             {
-              icon: <i className="tabbar-menus-tab-icon icon-file-text"></i>,
+              icon: <i className="tabbar-menus-tab-icon seeds-icon-file-text"></i>,
               id: 'Fruit'
             },
             {
-              icon: <i className="tabbar-menus-tab-icon icon-file-text"></i>,
+              icon: <i className="tabbar-menus-tab-icon seeds-icon-file-text"></i>,
               id: 'Vegetable'
             },
             {
               icon: ({ checked }) =>
                 checked ? (
-                  <i className="tabbar-menus-tab-icon icon-close"></i>
+                  <i className="tabbar-menus-tab-icon seeds-icon-close"></i>
                 ) : (
-                  <i className="tabbar-menus-tab-icon icon-plus"></i>
+                  <i className="tabbar-menus-tab-icon seeds-icon-plus"></i>
                 ),
               id: 'Animal'
             }
@@ -83,21 +83,21 @@ export default () => {
         <TabBar.Menus
           list={[
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Fruit',
               name: 'Fruit',
               description: 'description',
               content: 'content'
             },
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Vegetable',
               name: 'Vegetable',
               description: 'description',
               content: 'content'
             },
             {
-              icon: <i className="icon-file-text"></i>,
+              icon: <i className="seeds-icon-file-text"></i>,
               id: 'Animal',
               name: 'Animal',
               description: 'description',
