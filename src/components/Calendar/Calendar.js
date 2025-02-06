@@ -117,8 +117,16 @@ const Calendar = forwardRef(
 
     // 上下滑动
     async function handleSlideY(action) {
-      let newType = slideY(action, {
-        type: drawTypeRef.current,
+      let newType = ''
+      if (action === 'expand') {
+        newType = 'month'
+      } else if (action === 'collapse') {
+        newType = 'week'
+      } else {
+        newType = drawTypeRef.current
+      }
+
+      slideY(action, {
         duration: duration,
         weekStart: weekStart,
         cellHeight: cellHeight,
@@ -127,13 +135,6 @@ const Calendar = forwardRef(
         body: rootRef.current.querySelector('.calendar-body'),
         bodyY: rootRef.current.querySelector('.calendar-body-y')
       })
-
-      // 样式标记展开和收缩
-      if (action) {
-        rootRef.current.classList.remove('expand')
-        rootRef.current.classList.remove('collapse')
-        rootRef.current.classList.add(action)
-      }
 
       return newType
     }
@@ -339,7 +340,6 @@ const Calendar = forwardRef(
           cellHeight={cellHeight}
           pages={pagesRef.current}
           value={value}
-          selectionMode={selectionMode}
           min={min}
           max={max}
           draggable={draggable}
@@ -363,15 +363,13 @@ const Calendar = forwardRef(
 
             // 跨月视图发生变化, 需要触发onSlideChange
             if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
-              // drawDate = newDrawDate
+              drawDate = newDrawDate
               triggerSlideChange('change', { drawDate: newDrawDate })
 
-              // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
-              // if (drawTypeRef.current === 'month') {
-              //   handleSlideY('expand')
-              // } else {
-              //   handleSlideY('collapse')
-              // }
+              // 更新Y轴位置, X轴位轴在Body组件内位移
+              if (drawTypeRef.current === 'week') {
+                handleSlideY('collapse')
+              }
             }
           }}
           // Event: view change
