@@ -75,7 +75,7 @@ const Picker = forwardRef(
           data-animation={animation}
           onClick={(e) => e.stopPropagation()}
           {...props}
-          className={`popup-animation picker${safeArea ? ' safe-area' : ''}${
+          className={`popup-animation picker${safeArea ? ' safeArea' : ''}${
             props.className ? ' ' + props.className : ''
           }${visible ? ' active' : ''}`}
         >

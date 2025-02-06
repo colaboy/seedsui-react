@@ -13,7 +13,14 @@
 }
 
 // 安全区适配
-.actionsheet.safe-area {
+.actionsheet:not(:has(.actionsheet-cancel)) .actionsheet-group {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.after all);
+  &::after {
+    background-color: white;
+  }
+}
+.actionsheet.safeArea .actionsheet-cancel {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
 }

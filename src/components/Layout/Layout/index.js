@@ -33,7 +33,7 @@ const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => 
   return (
     <section
       {...props}
-      className={`layout${safeArea ? ' safe-area' : ''}${
+      className={`layout${safeArea ? ' safeArea' : ''}${
         props.className ? ' ' + props.className : ''
       }`}
       data-animation={animation}

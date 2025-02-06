@@ -162,6 +162,7 @@ const Modal = forwardRef(
         onCancel={onCancel}
         cancelProps={cancelProps}
         maskClosable={maskClosable}
+        safeArea={safeArea}
         {...props}
         portal={portal || document.getElementById('root') || document.body}
       >

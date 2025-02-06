@@ -62,6 +62,7 @@ export default () => {
           setValue(newValue)
         }}
         modalProps={{
+          safeArea: true,
           title: '级联选择'
         }}
         onVisibleChange={(visible) => {

@@ -79,7 +79,7 @@ export default () => {
             <i className="right-icon shape-arrow-right sm"></i>
           )
         }}
-        modalProps={{ maskProps: { style: { zIndex: '9' } } }}
+        modalProps={{ safeArea: true, maskProps: { style: { zIndex: '9' } } }}
       />
     </div>
   )

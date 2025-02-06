@@ -56,7 +56,7 @@ const LocationModal = forwardRef(
         ok={visible === 'choose' ? '' : null}
         visible={visible}
         value={value}
-        className={`map-modal${safeArea ? ' safe-area' : ''}${
+        className={`map-modal${safeArea ? ' safeArea' : ''}${
           props.className ? ' ' + props.className : ''
         }`}
       />

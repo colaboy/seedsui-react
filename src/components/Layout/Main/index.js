@@ -123,7 +123,7 @@ const Main = forwardRef(
     return (
       <main
         {...props}
-        className={`layout-main${safeArea ? ' safe-area' : ''}${
+        className={`layout-main${safeArea ? ' safeArea' : ''}${
           props.className ? ' ' + props.className : ''
         }`}
         ref={rootRef}

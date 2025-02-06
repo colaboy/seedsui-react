@@ -42,6 +42,7 @@ export default () => {
         ref={pickerRef}
         allowClear
         modalProps={{
+          safeArea: true,
           title: '标题',
           cancel: null,
           ok: ''

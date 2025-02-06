@@ -33,6 +33,7 @@ export default () => {
       <Layout>
         <Aside style={{ width: '80px', backgroundColor: '#3ba0e9' }}>Aside</Aside>
         <Main
+          safeArea
           style={{ backgroundColor: 'rgba(16, 142, 233, 1)' }}
           onBottomRefresh={handleBottomRefresh}
         >

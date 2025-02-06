@@ -69,7 +69,9 @@ let Lists = forwardRef(
       touchesRef.current.diffY = touchesRef.current.startY - touchesRef.current.currentY
       touchesRef.current.currentPosY = touchesRef.current.posY - touchesRef.current.diffY
 
-      slotRef.current.slotDOM.style.webkitTransform = `translateY(${touchesRef.current.currentPosY}px)`
+      if (slotRef?.current?.slotDOM) {
+        slotRef.current.slotDOM.style.webkitTransform = `translateY(${touchesRef.current.currentPosY}px)`
+      }
     }
     function handleTouchEnd(e) {
       e.stopPropagation()
