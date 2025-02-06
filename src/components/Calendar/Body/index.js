@@ -187,7 +187,7 @@ const Body = forwardRef(
     }
 
     // 若视窗大小变化, 需要更新x轴的位置
-    function handleResize() {
+    function handleWindowResize() {
       let width = rootRef.current?.parentNode?.clientWidth
       if (!width) return
 
@@ -200,7 +200,7 @@ const Body = forwardRef(
 
       console.log(`Calendar: 更新x轴位移-${width}`)
     }
-    requestAnimationFrame(handleResize)
+    requestAnimationFrame(handleWindowResize)
 
     return (
       <>
