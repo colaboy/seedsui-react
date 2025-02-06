@@ -34,9 +34,7 @@ fs.cp(fooCatalog, outCatalog, { recursive: true }, (err) => {
   function deleteIndexLess(indexFileName) {
     fs.readFile(`${outCatalog}/${indexFileName}`, 'utf8', function (err, data) {
       if (typeof data === 'string') {
-        let newContent = data
-          .replace(`import "./assets/style/index.less";\n`, '')
-          .replace(`import './assets/style/index.less'\n`, '')
+        let newContent = data.replace(`import "./assets/index.less";\n`, '')
         fs.writeFile(`${outCatalog}/${indexFileName}`, newContent, 'utf8', (err) => {
           if (err) throw err
           console.log(
@@ -47,5 +45,4 @@ fs.cp(fooCatalog, outCatalog, { recursive: true }, (err) => {
     })
   }
   deleteIndexLess('index.js')
-  deleteIndexLess('index.d.ts')
 })

@@ -1,6 +1,6 @@
 ---
 category: Components
-group: Layout
+group: Common
 title: Icon
 ---
 

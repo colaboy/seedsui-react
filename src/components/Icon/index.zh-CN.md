@@ -1,6 +1,6 @@
 ---
 category: Components
-group: 布局
+group: 通用
 title: Icon
 ---
 
