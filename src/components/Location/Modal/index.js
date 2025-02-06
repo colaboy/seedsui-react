@@ -15,6 +15,8 @@ const ModalPicker = Modal.Modal
 const LocationModal = forwardRef(
   (
     {
+      safeArea,
+
       // Modal
       visible,
       value,
@@ -54,7 +56,9 @@ const LocationModal = forwardRef(
         ok={visible === 'choose' ? '' : null}
         visible={visible}
         value={value}
-        className={`map-modal${props.className ? ' ' + props.className : ''}`}
+        className={`map-modal${safeArea ? ' safe-area' : ''}${
+          props.className ? ' ' + props.className : ''
+        }`}
       />
     )
   }

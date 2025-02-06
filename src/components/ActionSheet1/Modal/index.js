@@ -12,6 +12,8 @@ import { LocaleUtil } from 'seedsui-react'
 const Modal = forwardRef(
   (
     {
+      safeArea,
+
       allowClear,
       // 通用属性
       portal,
@@ -120,9 +122,9 @@ const Modal = forwardRef(
         <div
           data-animation={animation}
           {...props}
-          className={`popup-animation actionsheet${props.className ? ' ' + props.className : ''}${
-            visible ? ' active' : ''
-          }`}
+          className={`popup-animation actionsheet${safeArea ? ' safe-area' : ''}${
+            props.className ? ' ' + props.className : ''
+          }${visible ? ' active' : ''}`}
         >
           <div
             {...groupProps}

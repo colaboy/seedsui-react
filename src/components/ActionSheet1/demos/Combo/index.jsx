@@ -36,7 +36,8 @@ export default () => {
         }}
         // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
         modalProps={{
-          cancel: null
+          safeArea: true
+          // cancel: null
         }}
       />
     </>

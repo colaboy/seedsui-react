@@ -6,6 +6,8 @@ import Head from './Head'
 const Picker = forwardRef(
   (
     {
+      safeArea,
+
       // Modal fixed properties
       visible,
       onVisibleChange,
@@ -73,9 +75,9 @@ const Picker = forwardRef(
           data-animation={animation}
           onClick={(e) => e.stopPropagation()}
           {...props}
-          className={`popup-animation picker${props.className ? ' ' + props.className : ''}${
-            visible ? ' active' : ''
-          }`}
+          className={`popup-animation picker${safeArea ? ' safe-area' : ''}${
+            props.className ? ' ' + props.className : ''
+          }${visible ? ' active' : ''}`}
         >
           {/* 头 */}
           <Head

@@ -12,6 +12,12 @@
   // 动画使用.popup-animation
 }
 
+// 安全区适配
+.actionsheet.safe-area {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
 .actionsheet-option,
 .actionsheet-cancel {
   display: block;

@@ -49,6 +49,12 @@
   border-radius: 16px 16px 0px 0px;
 }
 
+// 安全区适配
+.share-modal.safe-area {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
 .share-modal-title {
   text-align: center;
   padding: 18px 0;

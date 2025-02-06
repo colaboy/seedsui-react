@@ -13,6 +13,8 @@ import { LocaleUtil, Modal as BaseModal } from 'seedsui-react'
 const Modal = forwardRef(
   (
     {
+      safeArea,
+
       // Main
       mainProps,
       shareTo,
@@ -50,7 +52,7 @@ const Modal = forwardRef(
         ref={modalRef}
         onVisibleChange={onVisibleChange}
         animation={animation}
-        className={`share-modal${className ? ' ' + className : ''}`}
+        className={`share-modal${safeArea ? ' safe-area' : ''}${className ? ' ' + className : ''}`}
       >
         <div className="share-modal-title">{LocaleUtil.locale('分享到', 'SeedsUI_share_to')}</div>
         <div className="share-modal-main">

@@ -5,6 +5,8 @@ import MainWrapper from './MainWrapper'
 const Modal = forwardRef(
   (
     {
+      safeArea,
+
       // 无用的属性
       getComboDOM,
 

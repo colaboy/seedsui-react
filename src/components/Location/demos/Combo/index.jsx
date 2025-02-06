@@ -110,6 +110,7 @@ export default () => {
         //   })
         // }}
         modalProps={{
+          safeArea: true,
           footer: ({ visible, triggerOk }) => {
             return visible === 'choose' ? (
               <Footer

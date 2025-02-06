@@ -22,6 +22,11 @@
   height: 95%;
   max-height: 95% !important;
 }
+// 安全区适配
+.map-modal.safe-area {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
 
 // Main
 .map-main {

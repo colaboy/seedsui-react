@@ -1,32 +1,31 @@
 // SafeArea安全区域
 .safe-area {
-  --multiple: var(--safe-area-multiple, 1);
   // 定位
   &.top {
-    top: calc(env(safe-area-inset-top) * var(--multiple));
+    top: env(safe-area-inset-top);
   }
   &.bottom {
-    bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+    bottom: env(safe-area-inset-bottom);
   }
   // 间距
   &.padding-top {
-    padding-top: calc(env(safe-area-inset-top) * var(--multiple));
+    padding-top: env(safe-area-inset-top);
   }
   &.padding-bottom {
-    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+    padding-bottom: env(safe-area-inset-bottom);
   }
   &.margin-top {
-    padding-top: calc(env(safe-area-inset-top) * var(--multiple));
+    padding-top: env(safe-area-inset-top);
   }
   &.margin-bottom {
-    padding-bottom: calc(env(safe-area-inset-bottom) * var(--multiple));
+    padding-bottom: env(safe-area-inset-bottom);
   }
   // 高度
   &.height-top {
-    height: calc(env(safe-area-inset-top) * var(--multiple));
+    height: env(safe-area-inset-top);
   }
   &.height-bottom {
-    height: calc(env(safe-area-inset-bottom) * var(--multiple));
+    height: env(safe-area-inset-bottom);
   }
   // 边框
   &.border-top,
@@ -36,10 +35,10 @@
     border-color: transparent;
   }
   &.border-top {
-    border-top-width: calc(env(safe-area-inset-top) * var(--multiple));
+    border-top-width: env(safe-area-inset-top);
   }
   &.border-bottom {
-    border-bottom-width: calc(env(safe-area-inset-bottom) * var(--multiple));
+    border-bottom-width: env(safe-area-inset-bottom);
   }
   // before&after
   &.before::before,
@@ -48,10 +47,10 @@
     display: block;
   }
   &.before::before {
-    height: calc(env(safe-area-inset-top) * var(--multiple));
+    height: env(safe-area-inset-top);
   }
   &.after::after {
-    height: calc(env(safe-area-inset-bottom) * var(--multiple));
+    height: env(safe-area-inset-bottom);
   }
 }
 
@@ -97,58 +96,5 @@
   }
   &.after::after {
     height: 0;
-  }
-}
-
-// 根元素安全区，业务无需控制安全区
-.safe-area-root {
-  #root {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
-}
-
-// 弹窗安全区域
-.safe-area-picker {
-  // 匹配滚动弹窗选择控件: Transfer、Cascader、Select
-  #root > .picker-mask .transfer-modal,
-  #root > .picker-mask .cascader-modal,
-  #root > .picker-mask .select-modal {
-    &::after {
-      content: '';
-      display: block;
-      height: 100px;
-      height: env(safe-area-inset-bottom);
-    }
-  }
-  // 匹配无滚动弹窗选择控件: Picker、DatePicker、Share 控件(有picker-modal)
-  #root > .picker-mask .picker-modal,
-  #root > .picker-mask .map-modal,
-  #root > .picker-mask .share-modal {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
-
-  // Share 控件
-  #root > .mask .share-modal {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
-
-  // 老Share 控件安全区(deprecated)
-  #root > .share-mask .share-panel {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
-
-  // ActionSheet 控件
-  #root > .actionsheet-mask .actionsheet {
-    &::after {
-      content: '';
-      display: block;
-      height: 100px;
-      height: env(safe-area-inset-bottom);
-      background-color: white;
-    }
   }
 }
