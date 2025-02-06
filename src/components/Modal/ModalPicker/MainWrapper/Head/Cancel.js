@@ -10,12 +10,12 @@ const Cancel = ({ disabled, text, onClick, ...props }) => {
   return (
     <div
       {...props}
-      className={`${text ? 'picker-cancel' : 'picker-close'}${
-        props.className ? ' ' + props.className : ''
-      }${disabled === true ? ' disabled' : ''}`}
+      className={`${
+        text ? 'modal-picker-header-button-cancel' : 'modal-picker-header-button-close'
+      }${props.className ? ' ' + props.className : ''}${disabled === true ? ' disabled' : ''}`}
       onClick={handleClick}
     >
-      {text || <div className="picker-icon-close"></div>}
+      {text || <div className="modal-picker-icon-close"></div>}
     </div>
   )
 }

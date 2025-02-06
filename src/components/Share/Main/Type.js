@@ -11,8 +11,8 @@ import { LocaleUtil } from 'seedsui-react'
 function Type({ type, onClick }) {
   return (
     <div className="share-item" onClick={onClick}>
-      <i className={`share-icon ${type}`}></i>
-      <p className="share-title">
+      <i className={`share-item-icon ${type}`}></i>
+      <p className="share-item-label">
         {type === 'wechat' && LocaleUtil.locale('微信', 'SeedsUI_we_chat')}
         {type === 'moments' && LocaleUtil.locale('朋友圈', 'SeedsUI_we_moment')}
         {type === 'miniprogram' && LocaleUtil.locale('小程序', 'SeedsUI_we_mini_program')}

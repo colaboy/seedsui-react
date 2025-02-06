@@ -18,7 +18,7 @@ const Ok = ({ disabled, total, text, onClick, ...props }) => {
   return (
     <div
       {...props}
-      className={`picker-ok${props.className ? ' ' + props.className : ''}${
+      className={`modal-picker-header-button-ok${props.className ? ' ' + props.className : ''}${
         disabled === true ? ' disabled' : ''
       }`}
       onClick={handleOkClick}

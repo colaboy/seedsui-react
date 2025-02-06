@@ -73,7 +73,7 @@ let Main = forwardRef(
     return (
       <div
         {...props}
-        className={`picker-main${props.className ? ' ' + props.className : ''}`}
+        className={`modal-picker-main picker-main${props.className ? ' ' + props.className : ''}`}
         ref={mainRef}
       >
         <div className="picker-layer">

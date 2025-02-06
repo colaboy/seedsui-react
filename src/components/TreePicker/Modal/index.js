@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react'
 import Tree from './../Tree'
 
 // 内库使用-start
-import BaseModal from './../../Modal/Modal'
+import ModalPicker from './../../Modal/ModalPicker'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const BaseModal = Modal.Modal
+const ModalPicker = Modal.ModalPicker
 测试使用-end */
 
 const Modal = forwardRef(
@@ -36,7 +36,7 @@ const Modal = forwardRef(
     ref
   ) => {
     return (
-      <BaseModal
+      <ModalPicker
         ref={ref}
         {...props}
         mainProps={{

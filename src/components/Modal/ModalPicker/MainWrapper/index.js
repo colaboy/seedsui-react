@@ -65,7 +65,7 @@ const Picker = forwardRef(
     let Node = (
       <div
         {...maskProps}
-        className={`mask picker-mask${maskProps?.className ? ' ' + maskProps.className : ''}${
+        className={`mask modal-picker-mask${maskProps?.className ? ' ' + maskProps.className : ''}${
           visible ? ' active' : ''
         }`}
         onClick={handleMaskClick}
@@ -75,7 +75,7 @@ const Picker = forwardRef(
           data-animation={animation}
           onClick={(e) => e.stopPropagation()}
           {...props}
-          className={`popup-animation picker${safeArea ? ' safeArea' : ''}${
+          className={`popup-animation modal-picker${safeArea ? ' safeArea' : ''}${
             props.className ? ' ' + props.className : ''
           }${visible ? ' active' : ''}`}
         >

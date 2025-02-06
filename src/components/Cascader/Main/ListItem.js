@@ -40,7 +40,7 @@ const ListItem = forwardRef(
     return (
       <div
         {...props}
-        className={`picker-main${props?.className ? ' ' + props.className : ''}`}
+        className={`modal-picker-main${props?.className ? ' ' + props.className : ''}`}
         ref={ref}
       >
         {typeof list === 'string' && (

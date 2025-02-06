@@ -9,7 +9,7 @@ const Head = forwardRef(
     // 只显示标题
     if (cancel === null && ok === null) {
       return (
-        <div className="picker-header" ref={ref}>
+        <div className="modal-picker-header" ref={ref}>
           {/* 标题 */}
           <Title title={title} {...titleProps} />
         </div>
@@ -18,8 +18,8 @@ const Head = forwardRef(
 
     // 带按钮
     return (
-      <div className="picker-header" ref={ref}>
-        <div className="picker-header-button left">
+      <div className="modal-picker-header" ref={ref}>
+        <div className="modal-picker-header-button left">
           {/* 确认显示时，取消在左侧 */}
           {ok !== null && cancel !== null ? (
             <Cancel text={cancel} onClick={onCancel} {...cancelProps} />
@@ -27,7 +27,7 @@ const Head = forwardRef(
         </div>
         {/* 标题 */}
         <Title title={title} {...titleProps} />
-        <div className="picker-header-button right">
+        <div className="modal-picker-header-button right">
           {/* 确认隐藏时，取消在右侧 */}
           {ok === null && cancel !== null ? (
             <Cancel text={cancel} onClick={onCancel} {...cancelProps} />

@@ -66,7 +66,7 @@ const Transfer = (
     <>
       <div
         {...props}
-        className={`picker-main${props?.className ? ' ' + props.className : ''}`}
+        className={`modal-picker-main${props?.className ? ' ' + props.className : ''}`}
         ref={mainRef}
       >
         {/* 已添加列表 */}

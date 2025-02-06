@@ -1,0 +1,116 @@
+// picker遮罩, 基于.mask
+.modal-picker-mask {
+}
+
+// 安全区适配
+.modal-picker.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
+.modal-picker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 80%;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+
+  background-color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+
+  // transform: translate3d(0, 100%, 0);
+  // transition-duration: @animation-duration;
+  // transition-property: transform, opacity, visibility;
+  // &.active {
+  //   transform: translate3d(0, 0, 0);
+  // }
+}
+
+.modal-picker-header {
+  .flex;
+  .flex-middle;
+  position: relative;
+  padding: 8px 0;
+  margin: 0 18px;
+  background-color: white;
+  justify-content: space-between;
+}
+
+// 按钮
+.modal-picker-header-button {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  min-width: 60px;
+  &.right {
+    justify-content: flex-end;
+  }
+}
+
+.modal-picker-header-button-ok,
+.modal-picker-header-button-cancel {
+  display: block;
+  height: 32px;
+
+  line-height: 32px;
+  font-size: 15px;
+  &.disabled {
+    color: #d1d1d1;
+    pointer-events: none;
+  }
+}
+.modal-picker-header-button-ok {
+  color: var(--primary);
+}
+.modal-picker-header-button-cancel {
+  color: #62666c;
+}
+.modal-picker-header-button-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background-color: #f3f3f6;
+  border-radius: 100%;
+}
+
+.modal-picker-icon-close {
+  font-family: 'seeds-icons';
+  text-align: center;
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  &:extend(.seeds-icon-close-fill all);
+  color: #62666c;
+}
+.modal-picker-header-title {
+  .text-center;
+  font-size: 16px;
+  left: 50px;
+  right: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  flex: 1;
+}
+
+// 主体部分
+.modal-picker-main {
+  position: relative;
+  overflow: auto;
+  .flex-1;
+
+  min-height: 200px;
+
+  // 禁用
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}
