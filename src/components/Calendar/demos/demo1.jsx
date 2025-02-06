@@ -62,21 +62,23 @@ export default () => {
             }
             return DateUtil.format(date, `YYYY年MM月DD日 d 第W周`)
           }}
-          dateRender={(date) => {
+          dateRender={(date, { isSelected, isDisabled, isCurrent }) => {
+            // console.log({ date, isSelected, isDisabled, isCurrent })
             return (
               <div className="calendar-date-num">
                 {date.getDate()}
+                {isCurrent && <span>.</span>}
                 {data[DateUtil.format(date, 'YYYY-MM-DD')] ? 'M' : ''}
               </div>
             )
           }}
           onChange={handleChange}
           onSlideChange={(drawDate, { action, type, monthDates }) => {
-            console.log('视图变化:', action, type)
+            console.log('视图变化:', { data: drawDate, action, type, monthDates })
             setData({ '2024-04-10': '1' })
           }}
           onLoad={(drawDate, { action, type, monthDates }) => {
-            console.log('日历初始化', action, type)
+            console.log('日历初始化', { data: drawDate, action, type, monthDates })
           }}
         />
         <div

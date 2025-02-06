@@ -356,7 +356,7 @@ const Calendar = forwardRef(
             // 跨月视图发生变化, 需要触发onSlideChange
             if (DateUtil.compare(newDrawDate, drawDate, 'month') !== 0) {
               // drawDate = newDrawDate
-              triggerSlideChange('change')
+              triggerSlideChange('change', { drawDate: newDrawDate })
 
               // 更新Y轴位置, X轴位轴在Body组件内位移(为了解决display none to block issues)
               // if (drawTypeRef.current === 'month') {

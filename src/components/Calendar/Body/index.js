@@ -237,6 +237,7 @@ const Body = forwardRef(
                             }
                             selectedClassNames = selectedClassNames.join(' ')
 
+                            let isDisabled = isDisabledDate(date, { min, max })
                             return (
                               <div
                                 key={dateIndex}
@@ -249,9 +250,7 @@ const Body = forwardRef(
                                     ? ' calendar-date-today'
                                     : ''
                                 }${selectedClassNames ? ' ' + selectedClassNames : ''}${
-                                  isDisabledDate(date, { min, max })
-                                    ? ' calendar-date-disabled'
-                                    : ''
+                                  isDisabled ? ' calendar-date-disabled' : ''
                                 }`}
                                 style={{ height: cellHeight + 'px' }}
                                 onClick={(e) => {
@@ -260,7 +259,11 @@ const Body = forwardRef(
                                 }}
                               >
                                 {typeof dateRender === 'function' ? (
-                                  dateRender(date)
+                                  dateRender(date, {
+                                    isSelected,
+                                    isDisabled,
+                                    isCurrent: date.isCurrent
+                                  })
                                 ) : (
                                   <div className="calendar-date-num">{date.getDate()}</div>
                                 )}
