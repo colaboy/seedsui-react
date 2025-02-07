@@ -18,6 +18,7 @@ export default () => {
   useEffect(() => {
     Bridge.ready(() => {
       console.log('加载桥接')
+      console.log(Upload.supportTypes('a.png', ['image']))
     })
   }, [])
 
