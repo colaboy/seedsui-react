@@ -72,8 +72,8 @@ export default () => {
         }}
         placeholder={'点击选择'}
         allowClear
-        clear={({ triggerClear }) => {
-          return !_.isEmpty(value) ? (
+        clear={({ allowClear, triggerClear }) => {
+          return allowClear ? (
             <i className="input-clear" onClick={triggerClear} />
           ) : (
             <i className="right-icon shape-arrow-right sm"></i>

@@ -137,7 +137,17 @@ const DistrictCombo = forwardRef(
         }
         {...props}
         modal={props?.modal || DistrictModal}
-        clear={readOnlyValue?.length === value?.length ? null : undefined}
+        clear={(clearParams) => {
+          if (typeof props?.clear !== 'function') {
+            return props?.clear
+          }
+          // 只读项一样长, 并不能清空
+          if (readOnlyValue?.length === value?.length) {
+            return props?.clear({ ...clearParams, allowClear: false })
+          } else {
+            return props?.clear(clearParams)
+          }
+        }}
       />
     )
   }
