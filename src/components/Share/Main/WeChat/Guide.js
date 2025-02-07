@@ -20,9 +20,9 @@ function Guide({ portal, visible, maskProps = {}, onVisibleChange }) {
         <p>1.点击右上角</p>
         <p>
           2.点击
-          <img alt="" src="//res.waiqin365.com/d/seedsui/share/tip_friend.png" />
+          <img alt="" src="//res.waiqin365.com/d/seedsui/images/share/tip_friend.png" />
           发送给朋友或
-          <img alt="" src="//res.waiqin365.com/d/seedsui/share/tip_moments.png" />
+          <img alt="" src="//res.waiqin365.com/d/seedsui/images/share/tip_moments.png" />
           分享给朋友圈
         </p>
       </div>

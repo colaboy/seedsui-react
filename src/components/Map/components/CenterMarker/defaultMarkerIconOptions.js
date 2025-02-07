@@ -2,10 +2,10 @@
 const defaultMarkerIconOptions = {
   active: true,
   className: 'map-center-marker-icon',
-  iconUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-  iconRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-custom-shop.png`,
-  shadowUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
-  shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/leaflet/images/marker-shadow.png`,
+  iconUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-custom-shop.png`,
+  iconRetinaUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-custom-shop.png`,
+  shadowUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png`,
+  shadowRetinaUrl: `//res.waiqin365.com/d/seedsui/plugin/leaflet/images/marker-shadow.png`,
   shadowSize: [39, 39],
   iconSize: [30, 49],
   iconAnchor: [15, 25]
