@@ -122,9 +122,9 @@ const Modal = forwardRef(
         <div
           data-animation={animation}
           {...props}
-          className={`popup-animation actionsheet${safeArea ? ' safeArea' : ''}${
-            props.className ? ' ' + props.className : ''
-          }${visible ? ' active' : ''}`}
+          className={`popup-animation actionsheet-modal${
+            (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+          }${props.className ? ' ' + props.className : ''}${visible ? ' active' : ''}`}
         >
           <div
             {...groupProps}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { ActionSheet1 } from 'seedsui-react'
+import { Layout, ActionSheet1, SafeArea } from 'seedsui-react'
+// SafeArea.autoSafeArea()
 
 export default () => {
   const list = [
@@ -22,24 +23,26 @@ export default () => {
   ]
   const [value, setValue] = useState(null)
   return (
-    <>
-      <ActionSheet1.Combo
-        placeholder="Please select"
-        value={value}
-        list={list}
-        onChange={(newValue) => {
-          console.log('onChange:', newValue)
-          setValue(newValue)
-        }}
-        onVisibleChange={(visible) => {
-          console.log('visible:', visible)
-        }}
-        // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
-        modalProps={{
-          safeArea: true,
-          cancel: null
-        }}
-      />
-    </>
+    <Layout className="full">
+      <Layout.Main>
+        <ActionSheet1.Combo
+          placeholder="Please select"
+          value={value}
+          list={list}
+          onChange={(newValue) => {
+            console.log('onChange:', newValue)
+            setValue(newValue)
+          }}
+          onVisibleChange={(visible) => {
+            console.log('visible:', visible)
+          }}
+          // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
+          modalProps={{
+            safeArea: true
+            // cancel: null
+          }}
+        />
+      </Layout.Main>
+    </Layout>
   )
 }

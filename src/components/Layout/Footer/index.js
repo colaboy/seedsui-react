@@ -14,9 +14,9 @@ const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
   return (
     <footer
       {...props}
-      className={`layout-footer${safeArea ? ' safeArea' : ''}${
-        props.className ? ' ' + props.className : ''
-      }`}
+      className={`layout-footer${
+        (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+      }${props.className ? ' ' + props.className : ''}`}
       ref={rootRef}
     >
       {children}
