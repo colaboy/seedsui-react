@@ -11,6 +11,7 @@ const Item = ({
   disabled,
   checkbox,
   checkboxPosition = 'left',
+  image,
   avatar,
   title,
   description,
@@ -42,6 +43,33 @@ const Item = ({
     return note
   }
 
+  // 渲染图片
+  function getImageNode() {
+    if (!image) return null
+
+    if (typeof image === 'function') {
+      return image({ ...(itemData || {}), checked })
+    }
+    if (typeof image === 'string') {
+      return (
+        <div className={`list-item-meta-image`}>
+          <img
+            alt=""
+            src={image}
+            onError={(e) => {
+              e.target.parentNode.classList.add('fail')
+            }}
+            onLoad={(e) => {
+              e.target.parentNode.classList.add('success')
+            }}
+            className="avatar"
+          />
+        </div>
+      )
+    }
+    return image
+  }
+
   // 渲染头像
   function getAvatarNode() {
     if (!avatar) return null
@@ -56,10 +84,10 @@ const Item = ({
             alt=""
             src={avatar}
             onError={(e) => {
-              e.target.classList.add('fail')
+              e.target.parentNode.classList.add('fail')
             }}
             onLoad={(e) => {
-              e.target.classList.add('success')
+              e.target.parentNode.classList.add('success')
             }}
             className="avatar"
           />
@@ -99,6 +127,8 @@ const Item = ({
         <div className="list-item-main">
           {/* Meta */}
           <div className="list-item-meta">
+            {getImageNode()}
+
             {getAvatarNode()}
 
             <div className="list-item-meta-content">

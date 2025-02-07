@@ -59,6 +59,7 @@ const List = (
         disabled={item.disabled}
         checkbox={item.checkbox || checkbox}
         checkboxPosition={item.checkboxPosition || checkboxPosition}
+        image={item.image}
         avatar={item.avatar}
         title={item.name}
         description={item.description}

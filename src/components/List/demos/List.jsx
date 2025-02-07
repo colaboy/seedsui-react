@@ -5,6 +5,7 @@ export default () => {
   const checkboxRef = useRef(null)
   const [list, setList] = useState([
     {
+      image: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
       avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=3',
       id: '1',
       name: '1',
