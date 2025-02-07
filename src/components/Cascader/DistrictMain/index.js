@@ -50,7 +50,9 @@ const CascaderDistrictMain = forwardRef(
 
     // 初始列表
     async function initList() {
-      if (Array.isArray(list) && list.length) return
+      if (Array.isArray(list) && list.length) {
+        return true
+      }
       Loading.show()
 
       // 起始类型: 国家
@@ -213,8 +215,12 @@ const CascaderDistrictMain = forwardRef(
         list={list}
         {...props}
         loadData={loadData}
-        onReLoad={() => {
-          initList()
+        onReLoad={async () => {
+          let isListOk = await initList()
+          // 列表加载完成, 则街道没有加载
+          if (isListOk && Array.isArray(value) && value.length) {
+            loadData(value)
+          }
         }}
         ref={districtMainRef}
       />

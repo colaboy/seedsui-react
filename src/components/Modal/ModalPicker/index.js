@@ -65,6 +65,9 @@ const Modal = forwardRef(
     // 当前选中项, 默认不能为value, 因为子组件Main先执行, Cascader.DistrictCombo中: 无值update同步加载, 有值在update异步加载, 先有值再无值会导致setList的顺序先set无值, 再set有值
     let [currentValue, setCurrentValue] = useState(undefined)
 
+    // 主体的visible, 若不加此变量, 主体(子节点)会先执行visible, 导致里面拿到的value是上次的
+    let [currentVisible, setCurrentVisible] = useState(undefined)
+
     // 节点
     const modalRef = useRef(null)
     const mainRef = useRef(null)
@@ -127,6 +130,7 @@ const Modal = forwardRef(
       }
 
       onVisibleChange && onVisibleChange(false)
+      setCurrentVisible(false)
     }
 
     function handleOkClick(e) {
@@ -149,6 +153,7 @@ const Modal = forwardRef(
           }
 
           onVisibleChange && onVisibleChange(visible)
+          setCurrentVisible(visible)
         }}
         // Modal: display properties
         animation={animation}
@@ -178,7 +183,7 @@ const Modal = forwardRef(
           <MainNode
             ref={mainRef}
             {...(mainProps || {})}
-            visible={visible}
+            visible={currentVisible}
             value={currentValue}
             allowClear={allowClear}
             multiple={multiple}
