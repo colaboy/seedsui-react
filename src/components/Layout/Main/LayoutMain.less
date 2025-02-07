@@ -73,7 +73,7 @@
   width: 20px;
   height: 20px;
   margin-right: 10px;
-  background-image: url(//res.waiqin365.com/d/seedsui/dragrefresh/pull.png);
+  background-image: url(//res.waiqin365.com/d/seedsui/images/layout/pull.png);
   background-repeat: no-repeat;
   background-position: left top;
   background-size: cover;
@@ -95,50 +95,4 @@
     transition-duration: 0ms;
     animation: layout-main-pull-animation-spinner 1000ms infinite linear;
   }
-}
-// 下拉刷新-circle类型
-.layout-main-pull-circle {
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  width: 48px;
-  height: 48px;
-  margin-left: -20px;
-  color: @primary;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 32px 32px;
-  border-radius: 100%;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-
-  transition-timing-function: ease-in;
-  transition-duration: @animation-duration;
-  transition-property: transform;
-  .flex;
-  .flex-middle;
-  .flex-center;
-  &.layout-main-pull-circle-show {
-    transform: translate3d(0, 120px, 0) rotate(0deg);
-  }
-}
-.layout-main-pull-circle-icon {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 0 auto;
-  background-image: url(//res.waiqin365.com/d/seedsui/dragrefresh/circle.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  transition-timing-function: ease-in;
-  transition-duration: @animation-duration;
-  transition-property: transform;
-  &.layout-main-pull-circle-icon-loading {
-    animation: layout-main-pull-animation-spinner 1000ms infinite linear;
-  }
-}
-.layout-main-pull-circle-icon-none {
-  display: none;
 }
