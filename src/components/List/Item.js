@@ -26,9 +26,7 @@ const Item = ({
     if (typeof checkbox === 'function') {
       return checkbox({ ...(itemData || {}), checked })
     }
-    if (checkbox !== undefined) {
-      return checkbox
-    }
+
     return null
   }
 
@@ -102,9 +100,7 @@ const Item = ({
     if (typeof action === 'function') {
       return action({ ...(itemData || {}), checked })
     }
-    if (action !== undefined) {
-      return action
-    }
+
     return null
   }
 

@@ -198,8 +198,6 @@ const InputText = forwardRef(
     function getInputNode() {
       if (typeof input === 'function') {
         return input({ allowClear, value })
-      } else if (input !== undefined) {
-        return input
       }
 
       // autoFit类型

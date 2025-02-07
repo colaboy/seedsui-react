@@ -37,7 +37,7 @@ const Main = forwardRef(
       list: externalList,
       loadData,
       optionProps = {},
-      TabsComponent,
+      tabbar,
       ...props
     },
     ref
@@ -290,11 +290,11 @@ const Main = forwardRef(
     }
 
     function getTabsNode() {
-      if (typeof TabsComponent === 'function') {
-        return TabsComponent({
+      if (typeof tabbar === 'function') {
+        return tabbar({
           tabs: tabsRef.current,
           activeTab: activeTab,
-          onActiveTab: async (tab) => {
+          triggerActiveTab: async (tab) => {
             // 滚动条还原
             if (mainRef.current) {
               mainRef.current.scrollTop = 0

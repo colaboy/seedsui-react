@@ -40,9 +40,7 @@ const Checkbox = forwardRef(
       if (typeof icon === 'function') {
         return icon({ checked })
       }
-      if (icon !== undefined) {
-        return icon
-      }
+
       return <span className={`checkbox-icon default`} />
     }
 

@@ -95,9 +95,8 @@ const Modal = forwardRef(
     function getCancelNode() {
       if (typeof cancel === 'function') {
         return cancel()
-      } else if (cancel !== undefined) {
-        return cancel
       }
+
       return (
         <div
           className={`actionsheet-cancel`}

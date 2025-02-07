@@ -2,7 +2,7 @@ import React from 'react'
 import getTabs from './utils/getTabs'
 
 // 选项卡
-function TabsComponent({ tab, onChange }) {
+function Tabs({ tab, onChange }) {
   let tabs = getTabs()
   return (
     <div className="map-nearbyControl-tabs">
@@ -22,4 +22,4 @@ function TabsComponent({ tab, onChange }) {
     </div>
   )
 }
-export default TabsComponent
+export default Tabs

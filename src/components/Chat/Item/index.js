@@ -69,9 +69,7 @@ const Chat = (
     if (typeof checkbox === 'function') {
       return checkbox({ ...(itemData || {}), checked })
     }
-    if (checkbox !== undefined) {
-      return checkbox
-    }
+
     return null
   }
   return (
