@@ -58,13 +58,13 @@ export default () => {
         // type="district"
         // type="street"
         max="city"
-        editableOptions={{
-          country: { editable: false },
-          province: { editable: true },
-          city: { editable: true },
-          district: { editable: true },
-          street: { editable: true }
-        }}
+        // editableOptions={{
+        //   country: { editable: false },
+        //   province: { editable: true },
+        //   city: { editable: true },
+        //   district: { editable: true },
+        //   street: { editable: true }
+        // }}
         value={value}
         onChange={(newValue) => {
           console.log('修改: ', newValue)

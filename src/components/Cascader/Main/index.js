@@ -84,9 +84,15 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [visible, JSON.stringify(value)])
 
-    // 更新列表, 初始列表与上面的useEffect是分开执行的, 但下钻会导致同时执行(新增)
+    // 列表从无到有, 需要更新内部列表
     useEffect(() => {
-      if (!visible || JSON.stringify(list) === JSON.stringify(externalList)) {
+      if (
+        value === undefined ||
+        !visible ||
+        !Array.isArray(externalList) ||
+        !externalList.length ||
+        (Array.isArray(list) && list.length)
+      ) {
         return
       }
 
@@ -110,6 +116,7 @@ const Main = forwardRef(
       }
 
       // 更新tabs
+      tabsRef.current = _.cloneDeep(formatValue(value))
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
 
       // 获取当前列表
@@ -119,8 +126,6 @@ const Main = forwardRef(
         if (newList === null) setActiveTab(lastTab)
         return null
       }
-
-      tabsRef.current = _.cloneDeep(formatValue(value))
 
       // 如果有子级, 则增加请选择
       if (!lastTab?.isLeaf) {
@@ -342,9 +347,9 @@ const Main = forwardRef(
             ref={mainRef}
             optionProps={optionProps}
             // 选中列表
-            list={list}
+            list={typeof externalList === 'string' ? externalList : list}
             value={value}
-            onReLoad={onReLoad}
+            onReLoad={typeof onReLoad === 'function' ? () => onReLoad({ update }) : null}
             // 阻止选择
             onSelect={(item) => handleDrill(item)}
             {...props}

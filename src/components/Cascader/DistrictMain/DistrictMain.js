@@ -25,7 +25,6 @@ const DistrictMain = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType,
       ...props
     },
     ref
@@ -51,8 +50,7 @@ const DistrictMain = forwardRef(
         isPrefecture,
         isCity,
         isDistrict,
-        isStreet,
-        setValueType
+        isStreet
       })
     }
 
@@ -115,8 +113,7 @@ const DistrictMain = forwardRef(
                   isPrefecture,
                   isCity,
                   isDistrict,
-                  isStreet,
-                  setValueType
+                  isStreet
                 })
               }
             : null

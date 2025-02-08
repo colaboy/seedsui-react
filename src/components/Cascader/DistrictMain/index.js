@@ -25,6 +25,7 @@ const CascaderDistrictMain = forwardRef(
       list: externalList,
       // 开始于国家country, 省份province
       startType,
+      type = 'street', // 'country', 'province', 'city', 'district', 'street'
       getCountry = api.getCountry,
       getProvinceCityDistrict = api.getProvince,
       getStreet = api.getStreet,
@@ -55,12 +56,13 @@ const CascaderDistrictMain = forwardRef(
       }
       Loading.show()
 
+      let newList = null
       // 起始类型: 国家
       if (startType === 'country') {
-        list = await getCountry()
-        if (typeof list === 'string') {
+        newList = await getCountry()
+        if (typeof newList === 'string') {
           Loading.hide()
-          setList(list)
+          setList(newList)
           return false
         }
 
@@ -68,12 +70,12 @@ const CascaderDistrictMain = forwardRef(
         let currentCountryId = value?.[0]?.id
         if (!currentCountryId) {
           Loading.hide()
-          setList(formatList(list))
+          setList(formatList(newList))
           return true
         }
 
         // 获取国家省市区
-        let country = list.filter((item) => item.id === currentCountryId)?.[0]
+        let country = newList.filter((item) => item.id === currentCountryId)?.[0]
         let countryChildren = await loadCountryChildren(country)
         if (typeof countryChildren === 'string') {
           Loading.hide()
@@ -83,16 +85,16 @@ const CascaderDistrictMain = forwardRef(
       }
       // 起始类型: 省
       else {
-        list = await getProvinceCityDistrict()
-        if (typeof list === 'string') {
+        newList = await getProvinceCityDistrict()
+        if (typeof newList === 'string') {
           Loading.hide()
-          setList(list)
+          setList(newList)
           return false
         }
       }
 
       Loading.hide()
-      setList(formatList(list))
+      setList(formatList(newList))
       return true
     }
 
@@ -114,6 +116,7 @@ const CascaderDistrictMain = forwardRef(
       }
       return country.children
     }
+
     // 没有省市区数据先加载省市区
     // 加载街道
     async function loadData(tabs) {
@@ -130,12 +133,17 @@ const CascaderDistrictMain = forwardRef(
         return null
       }
 
-      // 没有children, 肯定是country, 更新国家的children
-      if (!countryOrProvince.children) {
+      // 加载国家子级
+      if (startType === 'country' && !countryOrProvince.children) {
         let country = countryOrProvince
         Loading.show()
-        country.children = await getProvinceCityDistrict(country.id)
+        let countryChildren = await loadCountryChildren(country)
         Loading.hide()
+
+        if (typeof countryChildren === 'string') {
+          return countryChildren
+        }
+        country.children = countryChildren
         if (_.isEmpty(country.children)) {
           return null
         }
@@ -208,18 +216,26 @@ const CascaderDistrictMain = forwardRef(
       return streets
     }
 
+    console.log('externalList:', list)
     return (
       <DistrictMain
         visible={visible}
         value={value}
-        list={list}
+        type={type}
+        list={
+          ['country', 'province', 'city', 'district', 'street'].includes(type)
+            ? list
+            : LocaleUtil.locale(
+                'Incorrect parameter. type can only pass country, province, city, district, street'
+              )
+        }
         {...props}
         loadData={loadData}
-        onReLoad={async () => {
+        onReLoad={async ({ update }) => {
           let isListOk = await initList()
           // 列表加载完成, 则街道没有加载
           if (isListOk && Array.isArray(value) && value.length) {
-            loadData(value)
+            update()
           }
         }}
         ref={districtMainRef}

@@ -27,12 +27,11 @@ const DistrictCombo = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType,
       modalProps,
 
       // Main
       startType, // 开始于国家country, 省份province
-      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      type = 'street', // 'country', 'province', 'city', 'district', 'street'
       list,
       getCountry,
       getProvinceCityDistrict,
@@ -47,16 +46,18 @@ const DistrictCombo = forwardRef(
     useImperativeHandle(ref, () => {
       return {
         getReadOnlyValue: getReadOnlyValue,
-        updateValueType: _updateValueType,
         ...comboRef.current
       }
     })
 
-    // 更新value的type, 截取超出type部分
-    function _updateValueType(newValue, newList) {
-      let tabs = newValue || value
-      let data = newList || list
-      return updateValueType(tabs, data, {
+    // 清空操作，保留只读项，清空非只读项
+    function getReadOnlyValue(value) {
+      if (!Array.isArray(value)) {
+        return value
+      }
+
+      // 更新value的type属性
+      updateValueType(value, list, {
         type,
         isCountry,
         isProvince,
@@ -64,16 +65,8 @@ const DistrictCombo = forwardRef(
         isPrefecture,
         isCity,
         isDistrict,
-        isStreet,
-        setValueType
+        isStreet
       })
-    }
-
-    // 清空操作，保留只读项，清空非只读项
-    function getReadOnlyValue(value) {
-      if (!Array.isArray(value)) {
-        return value
-      }
 
       // 清空只能清空非只读项
       let newValue = []
@@ -89,9 +82,6 @@ const DistrictCombo = forwardRef(
       return newValue
     }
 
-    // eslint-disable-next-line
-    value = _updateValueType(value)
-    console.log('val:', value)
     let readOnlyValue = getReadOnlyValue(value)
 
     return (
@@ -100,7 +90,7 @@ const DistrictCombo = forwardRef(
         modalProps={{
           list,
           startType,
-          type, // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+          type, // 'country', 'province', 'city', 'district', 'street'
           min,
           // 判断是否是国省市区
           isCountry,
@@ -110,7 +100,6 @@ const DistrictCombo = forwardRef(
           isCity,
           isDistrict,
           isStreet,
-          setValueType,
           getCountry,
           getProvinceCityDistrict,
           getStreet,

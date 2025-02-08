@@ -28,11 +28,10 @@ const DistrictModal = forwardRef(
       isCity,
       isDistrict,
       isStreet,
-      setValueType,
 
       // Main
       startType,
-      type = '', // 'country', 'province', 'city', 'district', 'street' (只有中国时才生效, 因为只有中国有省市区)
+      type = '', // 'country', 'province', 'city', 'district', 'street'
       list,
       getCountry,
       getProvinceCityDistrict,
@@ -68,8 +67,7 @@ const DistrictModal = forwardRef(
         isPrefecture,
         isCity,
         isDistrict,
-        isStreet,
-        setValueType
+        isStreet
       })
     }
 
