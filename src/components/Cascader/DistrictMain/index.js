@@ -39,7 +39,10 @@ const CascaderDistrictMain = forwardRef(
     // Expose api
     const districtMainRef = useRef(null)
     useImperativeHandle(ref, () => {
-      return districtMainRef.current
+      return {
+        ...districtMainRef.current,
+        getList: getList
+      }
     })
 
     useEffect(() => {
@@ -51,51 +54,77 @@ const CascaderDistrictMain = forwardRef(
 
     // 初始列表
     async function initList() {
+      list = await getList()
+      setList(list)
+      return typeof list === 'string' ? false : true
+    }
+
+    // 获取国家省市区
+    async function getList(countryId) {
       if (Array.isArray(list) && list.length) {
-        return true
+        // 起始类型: 国家, 加载国家内的省市区数据
+        if (startType === 'country' && countryId) {
+          let country = null
+          for (let item of list) {
+            if (item.id === countryId) {
+              country = item
+              break
+            }
+          }
+          if (country?.children) {
+            return list
+          }
+
+          // 无省市区数据, 加载省市区数据
+          let province = await getProvinceCityDistrict(country?.id)
+          if (typeof province === 'string') {
+            return province
+          }
+          country.children = province
+        }
+        // 起始类型: 省, 直接返回列表即可
+        else {
+          return list
+        }
       }
-      Loading.show()
 
       let newList = null
       // 起始类型: 国家
       if (startType === 'country') {
         newList = await getCountry()
         if (typeof newList === 'string') {
-          Loading.hide()
-          setList(newList)
-          return false
+          return newList
         }
 
         // 没有选中项，不知道补充哪个国家数据, 列表为国家数据
         let currentCountryId = value?.[0]?.id
         if (!currentCountryId) {
-          Loading.hide()
-          setList(formatList(newList))
-          return true
+          return formatList(newList)
         }
 
         // 获取国家省市区
         let country = newList.filter((item) => item.id === currentCountryId)?.[0]
-        let countryChildren = await loadCountryChildren(country)
-        if (typeof countryChildren === 'string') {
-          Loading.hide()
-          setList(countryChildren)
-          return false
+
+        // 没有此国家, list或者value不正确
+        if (!country) {
+          return `value参数错误, value开始应当为国家`
         }
+
+        let province = await getProvinceCityDistrict(country?.id)
+        if (typeof province === 'string') {
+          return province
+        }
+        country.children = province
       }
       // 起始类型: 省
       else {
         newList = await getProvinceCityDistrict()
         if (typeof newList === 'string') {
-          Loading.hide()
-          setList(newList)
-          return false
+          return newList
         }
       }
 
-      Loading.hide()
-      setList(formatList(newList))
-      return true
+      return formatList(newList)
     }
 
     // 加载国家children省市区
@@ -119,42 +148,21 @@ const CascaderDistrictMain = forwardRef(
 
     // 没有省市区数据先加载省市区
     // 加载街道
-    async function loadData(tabs) {
+    async function loadData(tabs, { action } = {}) {
       if (!Array.isArray(tabs) || !tabs.length) {
         return null
       }
 
-      // 国家没有省市区, 则先补充省市区
-      let countryOrProvince = list.filter((item) => item.id === tabs[0].id)?.[0]
-
-      // value的第一项在list中找不到, 则报错
-      if (!countryOrProvince) {
-        console.error(`value参数错误, value应当从${startType === 'country' ? '国家' : '省'}开始`)
-        return null
-      }
-
-      // 加载国家子级
-      if (startType === 'country' && !countryOrProvince.children) {
-        let country = countryOrProvince
+      // 没有国家省市区, 则先加载国家省市区
+      if (!Array.isArray(list) || !list.length) {
         Loading.show()
-        let countryChildren = await loadCountryChildren(country)
+        list = await getList()
         Loading.hide()
-
-        if (typeof countryChildren === 'string') {
-          return countryChildren
+        if (typeof list === 'string') {
+          // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
+          action === 'load' && setList(list)
+          return list
         }
-        country.children = countryChildren
-        if (_.isEmpty(country.children)) {
-          return null
-        }
-
-        // 后台返回的省市区数据parentid不正确, 强行纠正
-        for (let child of country.children) {
-          child.parentid = country.id
-        }
-
-        // 更新value的type属性
-        districtMainRef?.current?.updateValueType?.(tabs, list)
       }
 
       // 获取下钻的子级
@@ -169,11 +177,13 @@ const CascaderDistrictMain = forwardRef(
 
       // 获取下钻的子级: 异步获取
       Loading.show()
-      let streets = await getStreet(lastTab.id)
+      let streets = await getStreet(lastTab.id, { parent: lastTab })
 
       // 接口报错
       if (typeof streets === 'string') {
         Loading.hide()
+        // 只有加载和重新加载时, 错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
+        action === 'load' && setList(list)
         return streets
       }
 
@@ -192,7 +202,7 @@ const CascaderDistrictMain = forwardRef(
         }
         // 获取同级街道
         else {
-          streets = await getStreet(parentTab.id)
+          streets = await getStreet(parentTab.id, { parent: parentTab })
 
           // 街道
           if (Array.isArray(streets) && streets.length) {
@@ -232,11 +242,7 @@ const CascaderDistrictMain = forwardRef(
         {...props}
         loadData={loadData}
         onReLoad={async ({ update }) => {
-          let isListOk = await initList()
-          // 列表加载完成, 则街道没有加载
-          if (isListOk && Array.isArray(value) && value.length) {
-            update()
-          }
+          update({ action: 'load' })
         }}
         ref={districtMainRef}
       />

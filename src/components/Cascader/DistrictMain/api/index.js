@@ -25,7 +25,11 @@ const api = {
    * @param {Number} id 区ID
    * @return {{id: '100200300', name: '沙洲街道', parentid: '100200', isStreet: true}}
    */
-  getStreet: async function (districtId) {
+  getStreet: async function (districtId, { parent } = {}) {
+    // 非市或区没有街道
+    if (!parent?.type?.includes('city') && !parent?.type?.includes('district')) {
+      return null
+    }
     let result = await getStreet(districtId)
     return formatStreet(result, districtId)
   }

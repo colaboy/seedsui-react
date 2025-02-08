@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import { updateValueType, testEditableOptions } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
@@ -50,10 +50,16 @@ const DistrictCombo = forwardRef(
       }
     })
 
+    // 获取readOnlyValue
+    useEffect(() => {
+      console.log(comboRef.current)
+      // eslint-disable-next-line
+    }, [JSON.stringify(value)])
+
     // 清空操作，保留只读项，清空非只读项
     function getReadOnlyValue(value) {
-      if (!Array.isArray(value)) {
-        return value
+      if (!editableOptions || !Array.isArray(value)) {
+        return null
       }
 
       // 更新value的type属性

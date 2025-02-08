@@ -80,7 +80,7 @@ const Main = forwardRef(
         return
       }
 
-      update()
+      update({ action: 'load' })
       // eslint-disable-next-line
     }, [visible, JSON.stringify(value)])
 
@@ -96,12 +96,12 @@ const Main = forwardRef(
         return
       }
 
-      update()
+      update({ action: 'load' })
       // eslint-disable-next-line
     }, [visible, JSON.stringify(externalList)])
 
     // 初始化数据
-    async function update() {
+    async function update({ action, onError } = {}) {
       // 滚动条还原
       if (mainRef.current) {
         mainRef.current.scrollTop = 0
@@ -120,7 +120,7 @@ const Main = forwardRef(
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
 
       // 获取当前列表
-      let newList = await getChildrenList(value)
+      let newList = await getChildrenList(value, { action, onError })
       if (!newList) {
         // 空数据选中末项, false接口报错不需要渲染
         if (newList === null) setActiveTab(lastTab)
@@ -173,7 +173,7 @@ const Main = forwardRef(
     }
 
     // 获取指定级别的列表数据
-    async function getChildrenList(tabs, config) {
+    async function getChildrenList(tabs, { action, onError } = {}) {
       let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
       let lastTab =
         Array.isArray(requestTabs) && requestTabs.length
@@ -191,7 +191,7 @@ const Main = forwardRef(
       // 无children, 动态获取子级
       if (_.isEmpty(newList)) {
         if (typeof loadData === 'function') {
-          newList = await loadData(requestTabs, { list: externalList })
+          newList = await loadData(requestTabs, { list: externalList, action })
         }
 
         // 接口报错
@@ -200,8 +200,8 @@ const Main = forwardRef(
             typeof newList === 'string'
               ? newList
               : LocaleUtil.locale('获取数据失败', 'SeedsUI_data_error')
-          if (typeof config?.onError === 'function') {
-            config.onError({ errMsg: errMsg })
+          if (typeof onError === 'function') {
+            onError({ errMsg: errMsg })
           } else {
             setActiveTab(lastTab)
             setList(errMsg)
@@ -264,6 +264,7 @@ const Main = forwardRef(
       // 不是末级节点, 则获取下级列表, 用于校验是否能下钻, 补充标识: value中的isLeaf和externalList中的children
       if (!newValue[newValue.length - 1].isLeaf) {
         let isOK = await getChildrenList(newValue, {
+          action: 'clickItem',
           onError: (error) => {
             Toast.show({
               content: error.errMsg
@@ -285,7 +286,7 @@ const Main = forwardRef(
 
       // 点击"请选择"左边一级的tab(不是isLeaf代表末级是请选择), 点击相同选项值, 既不会触发关窗, 也不会触发tab更新, 需要强制触发更新
       if (!newValue.isLeaf && JSON.stringify(newValue) === JSON.stringify(value)) {
-        update()
+        update({ action: 'clickItem' })
       }
 
       // 防止用户快速点击多次触发
@@ -295,6 +296,8 @@ const Main = forwardRef(
     }
 
     function getTabsNode() {
+      if (typeof list === 'string') return null
+
       if (typeof tabbar === 'function') {
         return tabbar({
           tabs: tabsRef.current,
@@ -306,7 +309,9 @@ const Main = forwardRef(
             }
 
             activeTab = tab
-            let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+            let newList = await getChildrenList(sliceArray(value, tab?.parentid), {
+              action: 'clickTab'
+            })
             if (!newList) return
 
             setActiveTab(activeTab)
@@ -326,7 +331,9 @@ const Main = forwardRef(
             }
 
             activeTab = tab
-            let newList = await getChildrenList(sliceArray(value, tab?.parentid))
+            let newList = await getChildrenList(sliceArray(value, tab?.parentid), {
+              action: 'clickTab'
+            })
             if (!newList) return
 
             setActiveTab(activeTab)
