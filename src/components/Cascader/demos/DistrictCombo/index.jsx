@@ -27,10 +27,10 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       setValue([
-        {
-          name: '中国',
-          id: '86'
-        },
+        // {
+        //   name: '中国',
+        //   id: '86'
+        // },
         {
           name: '北京市',
           id: '110000'
@@ -50,7 +50,7 @@ export default () => {
     <div id="root" className="position-relative" style={{ height: '300px' }}>
       <Cascader.DistrictCombo
         // readOnly
-        startType={'country'}
+        // startType={'country'}
         multiple
         // type="country"
         // type="province"

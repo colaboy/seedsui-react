@@ -60,13 +60,20 @@ const CascaderDistrictMain = forwardRef(
     }
 
     // 获取国家省市区
-    async function getList(countryId) {
+    async function getList({ countryId } = {}) {
       if (Array.isArray(list) && list.length) {
         // 起始类型: 国家, 加载国家内的省市区数据
-        if (startType === 'country' && countryId) {
+        if (startType === 'country') {
+          let currentCountryId = countryId || value?.[0]?.id
+          // 未选国家, 则先选国家
+          if (!currentCountryId) {
+            return list
+          }
+
+          // 已选国家, 补充国家省市区
           let country = null
           for (let item of list) {
-            if (item.id === countryId) {
+            if (item.id === currentCountryId) {
               country = item
               break
             }
@@ -75,7 +82,7 @@ const CascaderDistrictMain = forwardRef(
             return list
           }
 
-          // 无省市区数据, 加载省市区数据
+          // 国家无省市区数据, 加载省市区数据
           let province = await getProvinceCityDistrict(country?.id)
           if (typeof province === 'string') {
             return province
@@ -153,21 +160,20 @@ const CascaderDistrictMain = forwardRef(
         return null
       }
 
-      // 没有国家省市区, 则先加载国家省市区
-      if (!Array.isArray(list) || !list.length) {
-        Loading.show()
-        list = await getList()
-        Loading.hide()
-        if (typeof list === 'string') {
-          // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
-          action === 'load' && setList(list)
-          return list
-        }
-      }
-
       // 获取下钻的子级
       let lastTab = tabs[tabs.length - 1]
       let parentTab = tabs?.[tabs.length - 2]
+
+      // 没有国家省市区, 则先加载国家省市区
+      Loading.show()
+      list = await getList(startType === 'country' ? { countryId: tabs[0].id } : undefined)
+      Loading.hide()
+
+      // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
+      if (typeof list === 'string') {
+        action === 'load' && setList(list)
+        return list
+      }
 
       // 获取下钻的子级: 同步获取
       let currentNode = ArrayUtil.getDeepTreeNode(list, lastTab.id)
@@ -183,7 +189,7 @@ const CascaderDistrictMain = forwardRef(
       if (typeof streets === 'string') {
         Loading.hide()
         // 只有加载和重新加载时, 错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
-        action === 'load' && setList(list)
+        action === 'load' && setList(streets)
         return streets
       }
 
@@ -192,7 +198,7 @@ const CascaderDistrictMain = forwardRef(
         // 标识isLeaf
         districtMainRef.current.updateIsLeaf(tabs, lastTab.id)
 
-        // 如果是区获取不到街道, 则返回上级列表
+        // 如果上级是区市, 则根据区市获取街道
         if (lastTab.type.includes('district')) {
           if (parentTab?.id) {
             let node = ArrayUtil.getDeepTreeNode(list, parentTab?.id)
@@ -226,7 +232,6 @@ const CascaderDistrictMain = forwardRef(
       return streets
     }
 
-    console.log('externalList:', list)
     return (
       <DistrictMain
         visible={visible}
