@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import _ from 'lodash'
 import { updateValueType, testEditableOptions } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
@@ -41,29 +42,51 @@ const DistrictCombo = forwardRef(
     },
     ref
   ) => {
+    // 未传list时, editableOptions需要根据list计算value的type, 自动请求getList
+    const listRef = useRef(list)
+    let [readOnlyValue, setReadOnlyValue] = useState(null)
+
     // Expose api
     const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        getReadOnlyValue: getReadOnlyValue,
+        getReadOnlyValue: () => {
+          return readOnlyValue
+        },
         ...comboRef.current
       }
     })
 
     // 获取readOnlyValue
     useEffect(() => {
-      console.log(comboRef.current)
+      if (_.isEmpty(value)) return
+
+      // 已有列表
+      if (Array.isArray(list) && list.length) {
+        listRef.current = list
+        updateReadOnlyValue()
+        return
+      }
+
+      // 无列表, 查询列表后再更新readOnlyValue
+      if (!comboRef.current?.getList) return
+      queryList()
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
+    async function queryList() {
+      listRef.current = await comboRef.current?.getList()
+      updateReadOnlyValue()
+    }
+
     // 清空操作，保留只读项，清空非只读项
-    function getReadOnlyValue(value) {
+    async function updateReadOnlyValue() {
       if (!editableOptions || !Array.isArray(value)) {
         return null
       }
 
       // 更新value的type属性
-      updateValueType(value, list, {
+      await updateValueType(value, listRef.current, {
         type,
         isCountry,
         isProvince,
@@ -85,10 +108,11 @@ const DistrictCombo = forwardRef(
         }
       }
 
+      // 设置只读的值
+      setReadOnlyValue(newValue)
+
       return newValue
     }
-
-    let readOnlyValue = getReadOnlyValue(value)
 
     return (
       <Combo

@@ -8,7 +8,7 @@ import testStreet from './testStreet'
 import testNodeData from './testNodeData'
 
 // 主方法: 匹配当前选中项的类型, tabs支持array和object两种方式, array匹配将会更准确
-function defaultSetValueType(tabs, config) {
+async function setValueType(tabs, config) {
   const {
     list,
     isCountry,
@@ -127,4 +127,4 @@ function defaultSetValueType(tabs, config) {
   return tabs
 }
 
-export default defaultSetValueType
+export default setValueType

@@ -1,5 +1,5 @@
 // 内库使用-start
-import ArrayUtil from '../../../../utils/ArrayUtil'
+import ArrayUtil from '../../../../../utils/ArrayUtil'
 // 内库使用-end
 
 /* 测试使用-start

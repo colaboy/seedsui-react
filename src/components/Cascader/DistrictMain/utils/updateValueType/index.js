@@ -1,5 +1,5 @@
-import compareType from './compareType'
-import setValueType from './defaultSetValueType'
+import compareType from './../compareType'
+import setValueType from './setValueType'
 
 // 更新value的type和isLeaf
 function updateValueType(
