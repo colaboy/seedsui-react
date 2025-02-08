@@ -30,8 +30,8 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
-          clear={({ triggerClear }) => {
-            return !_.isEmpty(value) ? (
+          clear={({ clearable, triggerClear }) => {
+            return clearable ? (
               <i className="input-clear" onClick={triggerClear} />
             ) : (
               <i className="right-icon shape-arrow-right sm"></i>

@@ -268,13 +268,22 @@ const InputText = forwardRef(
 
     // 渲染清除按钮
     function getClearNode() {
+      let clearable = allowClear && (value || typeof value === 'number')
+
       // 自定义渲染清空按钮
       if (typeof clear === 'function') {
-        return clear({ allowClear, disabled, readOnly, value, triggerClear: handleClear })
+        return clear({
+          allowClear,
+          clearable: clearable,
+          disabled,
+          readOnly,
+          value,
+          triggerClear: handleClear
+        })
       }
 
       // 默认渲染
-      if (!allowClear || !value) return null
+      if (!clearable) return null
       return <i className={`input-clear`} onClick={handleClear}></i>
     }
 

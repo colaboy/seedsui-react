@@ -3,7 +3,7 @@ import { Input } from 'seedsui-react'
 
 export default () => {
   const inputNumberRef = useRef(null)
-  const [value, setValue] = useState('100.000')
+  const [value, setValue] = useState(0)
 
   useEffect(() => {
     console.log(inputNumberRef.current)
@@ -19,6 +19,13 @@ export default () => {
         maxLength={8}
         trim={true}
         allowClear
+        clear={({ clearable, triggerClear }) => {
+          return clearable ? (
+            <i className="input-clear" onClick={triggerClear} />
+          ) : (
+            <i className="right-icon shape-arrow-right sm"></i>
+          )
+        }}
         // formatter={(num) => {
         //   if (!num) return num
         //   return parseFloat(num)

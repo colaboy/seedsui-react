@@ -132,7 +132,7 @@ const DistrictCombo = forwardRef(
           }
           // 只读项一样长, 并不能清空
           if (readOnlyValue?.length === value?.length) {
-            return props?.clear({ ...clearParams, allowClear: false })
+            return props?.clear({ ...clearParams, clearable: false })
           } else {
             return props?.clear(clearParams)
           }
