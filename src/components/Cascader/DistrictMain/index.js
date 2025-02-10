@@ -166,7 +166,7 @@ const CascaderDistrictMain = forwardRef(
 
       // 渲染根列表, 需要setList, 用于更新Main中的externalList
       if (!Array.isArray(tabs) || !tabs.length) {
-        // debugger
+        // 虽然Main没有useEffect(list), 但此方法执行后在Main中会执行内部的setList, 这将会联动更新内部的externalList
         setList(list)
         return list
       }
