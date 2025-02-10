@@ -3,7 +3,8 @@ import _ from 'lodash'
 
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
-import formatValue from './formatValue'
+import formatValue from './../utils/formatValue'
+import formatList from './../utils/formatList'
 import Tabs from './Tabs'
 import ListItem from './ListItem'
 
@@ -49,7 +50,7 @@ const Main = forwardRef(
     let [activeTab, setActiveTab] = useState(null)
 
     // 选中列表, 文本则为错误
-    let [list, setList] = useState(externalList)
+    let [list, setList] = useState(formatList(externalList))
 
     // 节点
     const mainRef = useRef(null)
@@ -111,6 +112,9 @@ const Main = forwardRef(
       if (mainRef.current) {
         mainRef.current.scrollTop = 0
       }
+
+      // 格式化列表
+      formatList(externalList)
 
       // 无值渲染根节点
       if (!Array.isArray(value) || !value.length) {
@@ -223,6 +227,7 @@ const Main = forwardRef(
           ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
             node.children = newList
           })
+          formatList(externalList)
         }
       }
 

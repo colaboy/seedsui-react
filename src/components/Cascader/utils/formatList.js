@@ -8,7 +8,7 @@ import { ArrayUtil } from 'seedsui-react'
 
 // 格式化列表, 补充parentid
 function formatList(tree) {
-  if (!Array.isArray(tree) || !tree.length) return []
+  if (!Array.isArray(tree) || !tree.length) return tree
   ArrayUtil.updateDeepTreeParentId(tree)
   return tree
 }

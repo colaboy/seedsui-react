@@ -1,7 +1,7 @@
 import React, { useRef, useImperativeHandle, forwardRef, useEffect, useState } from 'react'
 import _ from 'lodash'
 
-import formatList from './formatList'
+import formatList from './../utils/formatList'
 import DistrictMain from './DistrictMain'
 import api from './api'
 
@@ -61,6 +61,8 @@ const CascaderDistrictMain = forwardRef(
     // 获取国家省市区
     async function getList(customValue) {
       let currentValue = customValue || value
+
+      // 已有列表, 则检查列表数据是否完整(国家省市区), 不完整则补充完成再返回
       if (Array.isArray(list) && list.length) {
         // 起始类型: 国家, 加载国家内的省市区数据
         if (startType === 'country') {
@@ -89,6 +91,8 @@ const CascaderDistrictMain = forwardRef(
             return province
           }
           country.children = province
+
+          return formatList(list)
         }
         // 起始类型: 省, 直接返回列表即可
         else {

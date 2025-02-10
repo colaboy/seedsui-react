@@ -74,7 +74,7 @@ const ListItem = forwardRef(
             }
 
             return (
-              <Fragment key={item.id}>
+              <Fragment key={item.id || index}>
                 {anchorBar}
                 <div
                   {...optionProps}
