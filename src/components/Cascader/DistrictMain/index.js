@@ -21,8 +21,6 @@ const CascaderDistrictMain = forwardRef(
     {
       visible,
       value,
-      // 初始列表, 国家或省市区数据
-      list: externalList,
       // 开始于国家country, 省份province
       startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
@@ -34,7 +32,7 @@ const CascaderDistrictMain = forwardRef(
     ref
   ) => {
     // Cascader.Main并不记录与修改外部传入的list, 所以只能在外部格式化好再传入
-    let [list, setList] = useState(formatList(externalList))
+    let [list, setList] = useState(null)
 
     // Expose api
     const districtMainRef = useRef(null)
@@ -60,11 +58,12 @@ const CascaderDistrictMain = forwardRef(
     }
 
     // 获取国家省市区
-    async function getList({ countryId } = {}) {
+    async function getList(customValue) {
+      let currentValue = customValue || value
       if (Array.isArray(list) && list.length) {
         // 起始类型: 国家, 加载国家内的省市区数据
         if (startType === 'country') {
-          let currentCountryId = countryId || value?.[0]?.id
+          let currentCountryId = currentValue?.[0]?.id
           // 未选国家, 则先选国家
           if (!currentCountryId) {
             return list
@@ -104,7 +103,7 @@ const CascaderDistrictMain = forwardRef(
         }
 
         // 没有选中项，不知道补充哪个国家数据, 列表为国家数据
-        let currentCountryId = value?.[0]?.id
+        let currentCountryId = currentValue?.[0]?.id
         if (!currentCountryId) {
           return formatList(newList)
         }
@@ -166,7 +165,7 @@ const CascaderDistrictMain = forwardRef(
 
       // 没有国家省市区, 则先加载国家省市区
       Loading.show()
-      list = await getList(startType === 'country' ? { countryId: tabs[0].id } : undefined)
+      list = await getList(startType === 'country' ? tabs : undefined)
       Loading.hide()
 
       // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData

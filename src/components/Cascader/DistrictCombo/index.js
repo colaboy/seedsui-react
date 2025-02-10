@@ -33,7 +33,6 @@ const DistrictCombo = forwardRef(
       // Main
       startType, // 开始于国家country, 省份province
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
-      list,
       getCountry,
       getProvinceCityDistrict,
       getStreet,
@@ -42,8 +41,8 @@ const DistrictCombo = forwardRef(
     },
     ref
   ) => {
-    // 未传list时, editableOptions需要根据list计算value的type, 自动请求getList
-    const listRef = useRef(list)
+    // editableOptions需要根据list计算value的type, getList后才能计算value的type
+    const listRef = useRef(null)
     let [readOnlyValue, setReadOnlyValue] = useState(null)
 
     // Expose api
@@ -59,34 +58,25 @@ const DistrictCombo = forwardRef(
 
     // 获取readOnlyValue
     useEffect(() => {
-      if (_.isEmpty(value)) return
-
-      // 已有列表
-      if (Array.isArray(list) && list.length) {
-        listRef.current = list
-        updateReadOnlyValue()
-        return
-      }
-
-      // 无列表, 查询列表后再更新readOnlyValue
+      if (_.isEmpty(value) || _.isEmpty(editableOptions)) return
       if (!comboRef.current?.getList) return
+
+      // 查询列表后再更新readOnlyValue
       queryList()
       // eslint-disable-next-line
     }, [JSON.stringify(value)])
 
     async function queryList() {
-      listRef.current = await comboRef.current?.getList()
+      listRef.current = await comboRef.current?.getList(value)
       updateReadOnlyValue()
     }
 
     // 清空操作，保留只读项，清空非只读项
     async function updateReadOnlyValue() {
-      if (!editableOptions || !Array.isArray(value)) {
-        return null
-      }
+      if (_.isEmpty(value) || _.isEmpty(editableOptions)) return null
 
       // 更新value的type属性
-      await updateValueType(value, listRef.current, {
+      updateValueType(value, listRef.current, {
         type,
         isCountry,
         isProvince,
@@ -118,7 +108,6 @@ const DistrictCombo = forwardRef(
       <Combo
         ref={comboRef}
         modalProps={{
-          list,
           startType,
           type, // 'country', 'province', 'city', 'district', 'street'
           min,

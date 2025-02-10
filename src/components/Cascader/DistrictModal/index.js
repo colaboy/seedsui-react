@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
 import { updateValueType, compareType } from './../DistrictMain/utils'
 import DistrictMain from './../DistrictMain'
@@ -32,7 +32,6 @@ const DistrictModal = forwardRef(
       // Main
       startType,
       type = '', // 'country', 'province', 'city', 'district', 'street'
-      list,
       getCountry,
       getProvinceCityDistrict,
       getStreet,
@@ -41,25 +40,46 @@ const DistrictModal = forwardRef(
     },
     ref
   ) => {
+    // min需要根据list计算value的type, getList后才能计算value的type
+    const listRef = useRef(null)
+
     // 是否显示右上角确认按钮
     let [okVisible, setOkVisible] = useState(null)
 
+    // Expose api
+    const modalRef = useRef(null)
+    useImperativeHandle(ref, () => {
+      return {
+        ...modalRef.current
+      }
+    })
+
     useEffect(() => {
-      if (!visible || _.isEmpty(list) || _.isEmpty(value)) {
-        min && setOkVisible(false)
+      if (!visible || !min || _.isEmpty(value)) {
         return
       }
+      if (!modalRef.current?.getList) return
 
-      updateOkVisible(value)
+      // 查询列表后再Ok按钮显示状态
+      queryList()
 
       // eslint-disable-next-line
     }, [visible])
 
-    // 更新value的type, 截取超出type部分
-    function _updateValueType(newValue, newList) {
-      let tabs = newValue || value
-      let data = newList || list
-      return updateValueType(tabs, data, {
+    // 查询列表后再Ok按钮显示状态
+    async function queryList() {
+      listRef.current = await modalRef.current?.getList(value)
+      updateOkVisible(value, listRef.current)
+    }
+
+    // 根据min判断是否显示确定按钮
+    function updateOkVisible(tabs, list) {
+      if (!min || !Array.isArray(tabs) || !tabs.length) return
+
+      let newOkVisible = null
+
+      // 获取末级类型
+      updateValueType(tabs, list, {
         type,
         isCountry,
         isProvince,
@@ -69,16 +89,6 @@ const DistrictModal = forwardRef(
         isDistrict,
         isStreet
       })
-    }
-
-    // 根据min判断是否显示确定按钮
-    function updateOkVisible(tabs) {
-      if (!min || !Array.isArray(tabs) || !tabs.length) return
-
-      let newOkVisible = null
-
-      // 获取末级类型
-      _updateValueType(tabs)
 
       newOkVisible = false
 
@@ -96,9 +106,9 @@ const DistrictModal = forwardRef(
       setOkVisible(newOkVisible)
     }
 
-    // 点击选项前判断是否指定类型: 省, 市, 区
-    function handleDrillDown(tabs) {
-      updateOkVisible(tabs)
+    // 下钻根据min更新Ok按钮显示状态
+    function handleDrillDown(tabs, { list } = {}) {
+      updateOkVisible(tabs, list)
     }
 
     // 扩展非标准属性
@@ -107,7 +117,6 @@ const DistrictModal = forwardRef(
     }
     props.mainProps.startType = startType
     props.mainProps.type = type
-    props.mainProps.list = list
     props.mainProps.getCountry = getCountry
     props.mainProps.getProvinceCityDistrict = getProvinceCityDistrict
     props.mainProps.getStreet = getStreet
@@ -123,7 +132,7 @@ const DistrictModal = forwardRef(
 
     return (
       <ModalPicker
-        ref={ref}
+        ref={modalRef}
         visible={visible}
         value={value}
         {...props}

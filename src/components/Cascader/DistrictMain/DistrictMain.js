@@ -41,9 +41,9 @@ const DistrictMain = forwardRef(
 
     // 更新value的type, 截取超出type部分
     function _updateValueType(newValue, newList) {
-      let tabs = newValue || value
-      let data = newList || list
-      return updateValueType(tabs, data, {
+      let currentValue = newValue || value
+      let currentList = newList || list
+      return updateValueType(currentValue, currentList, {
         type,
         isCountry,
         isProvince,
