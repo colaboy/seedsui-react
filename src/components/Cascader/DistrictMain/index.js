@@ -85,10 +85,6 @@ const CascaderDistrictMain = forwardRef(
           // 国家无省市区数据, 加载省市区数据
           let province = await getProvinceCityDistrict(country?.id)
 
-          if (_.isEmpty(province)) {
-            return []
-          }
-
           if (typeof province === 'string') {
             return province
           }
@@ -104,9 +100,12 @@ const CascaderDistrictMain = forwardRef(
       // 起始类型: 国家
       if (startType === 'country') {
         newList = await getCountry()
+        // 国家为第一级不可能没有数据, 为空则显示暂无数据
         if (_.isEmpty(newList)) {
           return []
         }
+
+        // 获取国家接口报错
         if (typeof newList === 'string') {
           return newList
         }
@@ -134,9 +133,6 @@ const CascaderDistrictMain = forwardRef(
       // 起始类型: 省
       else {
         newList = await getProvinceCityDistrict()
-        if (_.isEmpty(newList)) {
-          return []
-        }
         if (typeof newList === 'string') {
           return newList
         }
@@ -161,9 +157,10 @@ const CascaderDistrictMain = forwardRef(
       list = await getList(startType === 'country' ? tabs : undefined)
       Loading.hide()
 
-      // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
-      if (typeof list === 'string') {
-        action === 'load' && setList(list)
+      // list不可能为空, 若无list显示暂无数据
+      if (typeof list === 'string' || _.isEmpty(list)) {
+        // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
+        action === 'load' && setList(list || [])
         return list
       }
 
