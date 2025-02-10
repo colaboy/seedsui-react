@@ -174,13 +174,6 @@ const Main = forwardRef(
       // externalList为空, 或者不合法, 需要重新获取
       if (!Array.isArray(externalList) || !externalList.length) {
         newList = await loadData(tabs, { externalLoadData, externalList, action })
-
-        // 接口报错; 根节点都没有值; 返回报错暂无数据
-        if (typeof newList === 'string' || _.isEmpty(newList)) {
-          let errMsg = newList || LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
-          return errMsg
-        }
-
         return newList
       }
 
