@@ -60,11 +60,13 @@ const CascaderDistrictMain = forwardRef(
       setList(list)
 
       // 设置初始基础列表
-      setTimeout(() => {
-        if (districtMainRef.current?.update) {
-          districtMainRef.current.update({ action: 'load' })
-        }
-      }, 10)
+      if (Array.isArray(list) && list.length) {
+        setTimeout(() => {
+          if (districtMainRef.current?.update) {
+            districtMainRef.current.update({ action: 'load' })
+          }
+        }, 10)
+      }
     }
 
     // 获取国家省市区
@@ -156,14 +158,15 @@ const CascaderDistrictMain = forwardRef(
 
     // 没有省市区数据先加载省市区
     // 加载街道
-    async function loadData(tabs, { action } = {}) {
+    async function loadData(tabs) {
       // 没有国家省市区, 则先加载国家省市区
       Loading.show()
       list = await getList(startType === 'country' ? tabs : undefined)
       Loading.hide()
 
-      // 渲染根列表
+      // 渲染根列表, 需要setList, 用于更新Main中的externalList
       if (!Array.isArray(tabs) || !tabs.length) {
+        // debugger
         setList(list)
         return list
       }
@@ -172,10 +175,8 @@ const CascaderDistrictMain = forwardRef(
       let lastTab = tabs[tabs.length - 1]
       let parentTab = tabs?.[tabs.length - 2]
 
-      // list不可能为空, 若无list显示暂无数据
+      // list不可能为空, 返回的信息将被Main setList设置提示
       if (typeof list === 'string' || _.isEmpty(list)) {
-        // 只有加载和重新加载时, 只有错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
-        action === 'load' && setList(list || [])
         return list
       }
 
@@ -192,8 +193,6 @@ const CascaderDistrictMain = forwardRef(
       // 接口报错
       if (typeof streets === 'string') {
         Loading.hide()
-        // 只有加载和重新加载时, 错误时才能setList更新错误信息, setList([..])会触发Main中的useEffect list, 会再次执行update->loadData
-        action === 'load' && setList(streets)
         return streets
       }
 
