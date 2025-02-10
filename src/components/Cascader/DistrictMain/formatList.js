@@ -10,7 +10,6 @@ import { ArrayUtil } from 'seedsui-react'
 function formatList(tree) {
   if (!Array.isArray(tree) || !tree.length) return []
   ArrayUtil.updateDeepTreeParentId(tree)
-  console.log(tree)
   return tree
 }
 
