@@ -271,7 +271,7 @@ const InputText = forwardRef(
       // 禁用时不显示清空按钮
       if (disabled) return null
 
-      let clearable = allowClear && (value || typeof value === 'number')
+      let clearable = allowClear && (value || typeof value === 'number') ? true : false
 
       // 自定义渲染清空按钮
       if (typeof clear === 'function') {

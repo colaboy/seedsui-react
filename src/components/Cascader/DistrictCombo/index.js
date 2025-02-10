@@ -149,12 +149,12 @@ const DistrictCombo = forwardRef(
           let clearable = clearParams?.clearable
 
           // 只读项一样长, 并不能清空
-          if (readOnlyValue?.length === value?.length) {
+          if (readOnlyValue && readOnlyValue?.length === value?.length) {
             clearable = false
           }
 
           // 自定义清空按钮
-          if (props?.clear === 'function') {
+          if (typeof props?.clear === 'function') {
             return props?.clear({ ...clearParams, clearable: clearable })
           }
 
