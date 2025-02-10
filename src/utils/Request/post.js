@@ -1,4 +1,5 @@
 import axios from 'axios'
+import formatResponse from './formatResponse'
 import serializeParams from './serializeParams'
 
 function post(url, params, config) {
@@ -16,7 +17,7 @@ function post(url, params, config) {
     axios
       .post(url, newParams, config)
       .then((response) => {
-        resolve(response?.data)
+        resolve(formatResponse(response))
       })
       .catch((error) => {
         reject(error)
