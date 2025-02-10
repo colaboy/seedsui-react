@@ -3,9 +3,11 @@ import Modal from './Modal'
 import Main from './Main'
 import support from './utils/support'
 
-export default {
+const Share = {
   Combo,
   Modal,
   Main,
   support
 }
+
+export default Share

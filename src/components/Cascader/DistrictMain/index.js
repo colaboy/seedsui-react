@@ -8,11 +8,12 @@ import api from './api'
 // 内库使用-start
 import Toast from './../../Toast'
 import Loading from './../../Loading'
+import LocaleUtil from './../../../utils/LocaleUtil'
 import ArrayUtil from './../../../utils/ArrayUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Loading, ArrayUtil } from 'seedsui-react'
+import { Toast, Loading, LocaleUtil, ArrayUtil } from 'seedsui-react'
 测试使用-end */
 
 // 地址选择
@@ -131,25 +132,6 @@ const CascaderDistrictMain = forwardRef(
       }
 
       return formatList(newList)
-    }
-
-    // 加载国家children省市区
-    async function loadCountryChildren(country) {
-      // 没有此国家, list或者value不正确
-      if (!country) {
-        let errMsg = `value或者list参数错误, list和value开始应当为国家`
-        console.error(errMsg)
-        return errMsg
-      }
-
-      if (_.isEmpty(country.children) && country?.id) {
-        let regionData = await getProvinceCityDistrict(country.id)
-        if (typeof regionData === 'string') {
-          return regionData
-        }
-        country.children = regionData
-      }
-      return country.children
     }
 
     // 没有省市区数据先加载省市区
