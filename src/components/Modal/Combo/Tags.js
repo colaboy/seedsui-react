@@ -16,6 +16,8 @@ const Tags = ({
   style,
   contentProps,
   placeholder,
+  readOnly,
+  disabled,
   allowClear,
   value,
   onAdd,
@@ -43,13 +45,17 @@ const Tags = ({
                   <div
                     key={index}
                     className="modal-combo-tags-item"
-                    onClick={(e) => {
-                      onEdit && onEdit(index)
-                      e.stopPropagation()
-                    }}
+                    onClick={
+                      readOnly || disabled
+                        ? undefined
+                        : (e) => {
+                            onEdit && onEdit(index)
+                            e.stopPropagation()
+                          }
+                    }
                   >
                     {item.name}
-                    {allowClear && (
+                    {readOnly || disabled || !allowClear ? null : (
                       <i
                         className="modal-combo-tags-item-clear"
                         onClick={(e) => {

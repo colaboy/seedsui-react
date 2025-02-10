@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
-import { Cascader } from 'seedsui-react'
+import { Layout, Cascader } from 'seedsui-react'
 
 // 判断省市区的数据
 import countryIds from './data/countryIds'
@@ -47,40 +47,42 @@ export default () => {
     }, 2000)
   }, [])
   return (
-    <div id="root" className="position-relative" style={{ height: '300px' }}>
-      <Cascader.DistrictCombo
-        // readOnly
-        startType={'country'}
-        multiple
-        // type="country"
-        // type="province"
-        // type="district"
-        // type="district"
-        // type="street"
-        min="province"
-        // editableOptions={{
-        //   country: { editable: false },
-        //   province: { editable: true },
-        //   city: { editable: true },
-        //   district: { editable: true },
-        //   street: { editable: true }
-        // }}
-        value={value}
-        onChange={(newValue) => {
-          console.log('修改: ', newValue)
-          setValue(newValue)
-        }}
-        placeholder={'点击选择'}
-        allowClear
-        clear={({ clearable, triggerClear }) => {
-          return clearable ? (
-            <i className="input-clear" onClick={triggerClear} />
-          ) : (
-            <i className="right-icon shape-arrow-right sm"></i>
-          )
-        }}
-        modalProps={{ safeArea: true, maskProps: { style: { zIndex: '9' } } }}
-      />
-    </div>
+    <Layout className="full">
+      <Layout.Main>
+        <Cascader.DistrictCombo
+          // readOnly
+          startType={'country'}
+          // multiple
+          // type="country"
+          // type="province"
+          // type="district"
+          // type="district"
+          // type="street"
+          min="province"
+          editableOptions={{
+            country: { editable: false },
+            province: { editable: true },
+            city: { editable: true },
+            district: { editable: true },
+            street: { editable: true }
+          }}
+          value={value}
+          onChange={(newValue) => {
+            console.log('修改: ', newValue)
+            setValue(newValue)
+          }}
+          placeholder={'点击选择'}
+          allowClear
+          clear={({ clearable, triggerClear }) => {
+            return clearable ? (
+              <i className="input-clear" onClick={triggerClear} />
+            ) : (
+              <i className="right-icon shape-arrow-right sm"></i>
+            )
+          }}
+          modalProps={{ maskProps: { style: { zIndex: '9' } } }}
+        />
+      </Layout.Main>
+    </Layout>
   )
 }

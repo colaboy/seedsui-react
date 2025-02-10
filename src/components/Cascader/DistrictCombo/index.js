@@ -146,15 +146,20 @@ const DistrictCombo = forwardRef(
         {...props}
         modal={props?.modal || DistrictModal}
         clear={(clearParams) => {
-          if (typeof props?.clear !== 'function') {
-            return props?.clear
-          }
+          let clearable = clearParams?.clearable
+
           // 只读项一样长, 并不能清空
           if (readOnlyValue?.length === value?.length) {
-            return props?.clear({ ...clearParams, clearable: false })
-          } else {
-            return props?.clear(clearParams)
+            clearable = false
           }
+
+          // 自定义清空按钮
+          if (props?.clear === 'function') {
+            return props?.clear({ ...clearParams, clearable: clearable })
+          }
+
+          // 默认不能清空时, 不显示清空按钮
+          return clearable === false ? null : undefined
         }}
       />
     )

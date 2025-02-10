@@ -31,7 +31,7 @@ const DistrictModal = forwardRef(
 
       // Main
       startType,
-      type = '', // 'country', 'province', 'city', 'district', 'street'
+      type = 'street', // 'country', 'province', 'city', 'district', 'street'
       getCountry,
       getProvinceCityDistrict,
       getStreet,

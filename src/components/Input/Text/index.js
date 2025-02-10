@@ -268,18 +268,22 @@ const InputText = forwardRef(
 
     // 渲染清除按钮
     function getClearNode() {
+      // 禁用时不显示清空按钮
+      if (disabled) return null
+
       let clearable = allowClear && (value || typeof value === 'number')
 
       // 自定义渲染清空按钮
       if (typeof clear === 'function') {
-        return clear({
+        let clearNode = clear({
           allowClear,
           clearable: clearable,
-          disabled,
           readOnly,
           value,
           triggerClear: handleClear
         })
+
+        if (clearNode !== undefined) return clearNode
       }
 
       // 默认渲染

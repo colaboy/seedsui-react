@@ -119,14 +119,6 @@ const Combo = forwardRef(
       // eslint-disable-next-line
     }, [visible])
 
-    // 允许清空
-    if (allowClear) {
-      if (readOnly || disabled) {
-        // eslint-disable-next-line
-        allowClear = false
-      }
-    }
-
     // 文本框
     let InputNode = Input.Text
     if (autoSize) {
@@ -155,6 +147,8 @@ const Combo = forwardRef(
             className={props?.className}
             style={props?.style}
             placeholder={props?.placeholder}
+            readOnly={readOnly}
+            disabled={disabled}
             allowClear={allowClear}
             value={value}
             onAdd={() => setVisible(true)}
@@ -184,6 +178,19 @@ const Combo = forwardRef(
           value={displayValue}
           readOnly
           {...props}
+          clear={(clearParams) => {
+            // 只读不显示清空按钮
+            if (readOnly || disabled) {
+              return null
+            }
+
+            // 自定义清空按钮
+            if (typeof props?.clear === 'function') {
+              return props?.clear({ ...clearParams, value: value, readOnly: readOnly })
+            }
+
+            return undefined
+          }}
           onClick={handleInputClick}
           onChange={async (text) => {
             // 清空操作
