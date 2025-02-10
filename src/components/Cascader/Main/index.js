@@ -90,9 +90,14 @@ const Main = forwardRef(
         value === undefined ||
         !visible ||
         !Array.isArray(externalList) ||
-        !externalList.length ||
         (Array.isArray(list) && list.length)
       ) {
+        return
+      }
+
+      // 暂无数据
+      if (!externalList.length) {
+        setList([])
         return
       }
 

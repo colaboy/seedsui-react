@@ -84,6 +84,11 @@ const CascaderDistrictMain = forwardRef(
 
           // 国家无省市区数据, 加载省市区数据
           let province = await getProvinceCityDistrict(country?.id)
+
+          if (_.isEmpty(province)) {
+            return []
+          }
+
           if (typeof province === 'string') {
             return province
           }
@@ -99,6 +104,9 @@ const CascaderDistrictMain = forwardRef(
       // 起始类型: 国家
       if (startType === 'country') {
         newList = await getCountry()
+        if (_.isEmpty(newList)) {
+          return []
+        }
         if (typeof newList === 'string') {
           return newList
         }
@@ -126,6 +134,9 @@ const CascaderDistrictMain = forwardRef(
       // 起始类型: 省
       else {
         newList = await getProvinceCityDistrict()
+        if (_.isEmpty(newList)) {
+          return []
+        }
         if (typeof newList === 'string') {
           return newList
         }
