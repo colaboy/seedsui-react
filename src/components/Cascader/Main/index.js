@@ -1,6 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useState, useEffect } from 'react'
 import _ from 'lodash'
-
+import loadData from './loadData'
 import sliceArray from './sliceArray'
 import getTreeChildren from './getTreeChildren'
 import formatValue from './../utils/formatValue'
@@ -36,7 +36,7 @@ const Main = forwardRef(
       onReLoad,
 
       list: externalList,
-      loadData,
+      loadData: externalLoadData,
       optionProps = {},
       tabbar,
       ...props
@@ -85,59 +85,38 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [visible, JSON.stringify(value)])
 
-    // 列表从无到有, 需要更新内部列表
+    // 更新错误信息
     useEffect(() => {
-      if (
-        value === undefined ||
-        !visible ||
-        !Array.isArray(externalList) ||
-        (Array.isArray(list) && list.length)
-      ) {
+      if (!visible || typeof externalList !== 'string') {
         return
       }
 
-      // 暂无数据
-      if (!externalList.length) {
-        setList([])
-        return
-      }
-
-      update({ action: 'load' })
+      setList(externalList)
       // eslint-disable-next-line
     }, [visible, JSON.stringify(externalList)])
 
-    // 初始化数据
-    async function update({ action, onError } = {}) {
-      // 滚动条还原
-      if (mainRef.current) {
-        mainRef.current.scrollTop = 0
-      }
-
-      // 格式化列表
-      formatList(externalList)
-
-      // 无值渲染根节点
-      if (!Array.isArray(value) || !value.length) {
-        tabsRef.current = null
-        setActiveTab(null)
-        setList(externalList)
-        return
-      }
-
+    // 初始化tabs、选中tab、列表
+    async function update({ action } = {}) {
       // 更新tabs
       tabsRef.current = _.cloneDeep(formatValue(value))
       let lastTab = Array.isArray(value) && value.length ? value[value.length - 1] : null
 
+      // 滚动条还原
+      if (mainRef.current) {
+        mainRef.current.scrollTop = 0
+      }
       // 获取当前列表
-      let newList = await getChildrenList(value, { action, onError })
-      if (!newList) {
-        // 空数据选中末项, false接口报错不需要渲染
-        if (newList === null) setActiveTab(lastTab)
-        return null
+      let newList = await getChildrenList(value, { action })
+
+      // 接口报错或无数据
+      if (typeof newList === 'string' || _.isEmpty(newList)) {
+        setActiveTab(lastTab)
+        setList(newList)
+        return
       }
 
       // 如果有子级, 则增加请选择
-      if (!lastTab?.isLeaf) {
+      if (lastTab && !lastTab?.isLeaf) {
         // 请选择
         lastTab = {
           parentid: lastTab.id,
@@ -181,54 +160,52 @@ const Main = forwardRef(
       return list
     }
 
-    // 获取指定级别的列表数据
-    async function getChildrenList(tabs, { action, onError } = {}) {
+    // 获取指定级别的列表数据, 最后一级则获取兄弟节点列表
+    async function getChildrenList(tabs, { action } = {}) {
       let requestTabs = tabs?.filter?.((tab) => !tab.isLeaf)
       let lastTab =
         Array.isArray(requestTabs) && requestTabs.length
           ? requestTabs[requestTabs.length - 1]
           : null
 
-      // 初次渲染列表, 没有选中项
+      // 下级或兄弟列表
+      let newList = null
+
+      // externalList为空, 或者不合法, 需要重新获取
+      if (!Array.isArray(externalList) || !externalList.length) {
+        newList = await loadData(tabs, { externalLoadData, externalList, action })
+
+        // 接口报错; 根节点都没有值; 返回报错暂无数据
+        if (typeof newList === 'string' || _.isEmpty(newList)) {
+          let errMsg = newList || LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
+          return errMsg
+        }
+
+        return newList
+      }
+
+      // 无值渲染根节点
       if (!lastTab?.id) {
         return externalList
       }
 
       // 渲染子级
-      let newList = getTreeChildren(externalList, lastTab.id)
+      newList = getTreeChildren(externalList, lastTab.id)
 
       // 无children, 动态获取子级
       if (_.isEmpty(newList)) {
-        if (typeof loadData === 'function') {
-          newList = await loadData(requestTabs, { list: externalList, action })
-        }
+        newList = await loadData(tabs, { externalLoadData, externalList, action })
 
         // 接口报错
-        if (typeof newList === 'string' || newList === false) {
-          let errMsg =
-            typeof newList === 'string'
-              ? newList
-              : LocaleUtil.locale('获取数据失败', 'SeedsUI_data_error')
-          if (typeof onError === 'function') {
-            onError({ errMsg: errMsg })
-          } else {
-            setActiveTab(lastTab)
-            setList(errMsg)
-          }
-          return false
+        if (typeof newList === 'string') {
+          return newList
         }
         // 无值则为叶子节点
-        else if (_.isEmpty(newList)) {
+        if (_.isEmpty(newList)) {
           updateIsLeaf(tabs, lastTab.id)
           return null
         }
-        // 若当前项不为叶子节点, 有值则为子项, 添加到原始list中
-        else if (!lastTab.isLeaf) {
-          ArrayUtil.setDeepTreeNode(externalList, lastTab.id, (node) => {
-            node.children = newList
-          })
-          formatList(externalList)
-        }
+        // 接口没报错, 也有值, 则正常返回
       }
 
       return newList
@@ -273,17 +250,17 @@ const Main = forwardRef(
 
       // 不是末级节点, 则获取下级列表, 用于校验是否能下钻, 补充标识: value中的isLeaf和externalList中的children
       if (!newValue[newValue.length - 1].isLeaf) {
-        let isOK = await getChildrenList(newValue, {
-          action: 'clickItem',
-          onError: (error) => {
-            Toast.show({
-              content: error.errMsg
-            })
-          }
+        let isOk = await getChildrenList(newValue, {
+          action: 'clickItem'
         })
 
         // 接口报错停止下钻
-        if (isOK === false) {
+        if (typeof isOk === 'string') {
+          Toast.show({
+            content: isOk
+          })
+
+          // 挡住不让快速点击
           setTimeout(() => {
             Loading.hide({ id: '__SeedsUI_loading_cascader_drill_mask__' })
           }, 300)
@@ -322,7 +299,6 @@ const Main = forwardRef(
             let newList = await getChildrenList(sliceArray(value, tab?.parentid), {
               action: 'clickTab'
             })
-            if (!newList) return
 
             setActiveTab(activeTab)
             setList(newList)
@@ -344,7 +320,6 @@ const Main = forwardRef(
             let newList = await getChildrenList(sliceArray(value, tab?.parentid), {
               action: 'clickTab'
             })
-            if (!newList) return
 
             setActiveTab(activeTab)
             setList(newList)
@@ -364,7 +339,7 @@ const Main = forwardRef(
             ref={mainRef}
             optionProps={optionProps}
             // 选中列表
-            list={typeof externalList === 'string' ? externalList : list}
+            list={list}
             value={value}
             onReLoad={typeof onReLoad === 'function' ? () => onReLoad({ update }) : null}
             // 阻止选择

@@ -45,9 +45,12 @@ const CascaderDistrictMain = forwardRef(
     })
 
     useEffect(() => {
-      if (visible) {
-        initList()
+      if (!visible || (Array.isArray(list) && list.length)) {
+        return
       }
+
+      // 没有合法的基础列表, 则更新列表
+      initList()
       // eslint-disable-next-line
     }, [visible])
 
@@ -55,7 +58,13 @@ const CascaderDistrictMain = forwardRef(
     async function initList() {
       list = await getList()
       setList(list)
-      return typeof list === 'string' ? false : true
+
+      // 设置初始基础列表
+      setTimeout(() => {
+        if (districtMainRef.current?.update) {
+          districtMainRef.current.update({ action: 'load' })
+        }
+      }, 10)
     }
 
     // 获取国家省市区
@@ -148,18 +157,20 @@ const CascaderDistrictMain = forwardRef(
     // 没有省市区数据先加载省市区
     // 加载街道
     async function loadData(tabs, { action } = {}) {
+      // 没有国家省市区, 则先加载国家省市区
+      Loading.show()
+      list = await getList(startType === 'country' ? tabs : undefined)
+      Loading.hide()
+
+      // 渲染根列表
       if (!Array.isArray(tabs) || !tabs.length) {
-        return null
+        setList(list)
+        return list
       }
 
       // 获取下钻的子级
       let lastTab = tabs[tabs.length - 1]
       let parentTab = tabs?.[tabs.length - 2]
-
-      // 没有国家省市区, 则先加载国家省市区
-      Loading.show()
-      list = await getList(startType === 'country' ? tabs : undefined)
-      Loading.hide()
 
       // list不可能为空, 若无list显示暂无数据
       if (typeof list === 'string' || _.isEmpty(list)) {
