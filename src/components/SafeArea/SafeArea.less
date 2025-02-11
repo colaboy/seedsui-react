@@ -109,17 +109,25 @@
 }
 
 // 自定义元素安全区
-[data-safe-area='true'] {
+[data-safe-area='border-bottom'] {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
+}
+[data-safe-area='after'] {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.after all);
 }
 
 // 子元素自动安全区
 .auto-safe-area-children {
   // 自定义元素安全区
-  [data-safe-area='auto'] {
+  [data-safe-area='auto-border-bottom'] {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
+  }
+  [data-safe-area='auto-after'] {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.after all);
   }
 
   // 滚动弹窗选择控件: Transfer,Cascader,Select
