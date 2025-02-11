@@ -1,4 +1,5 @@
 import needsSafeArea from './needsSafeArea'
+import onResize from './onResize'
 
 // Set global safe area
 function autoSafeArea(className = 'auto-safe-area-children') {
@@ -9,4 +10,10 @@ function autoSafeArea(className = 'auto-safe-area-children') {
   }
 }
 
-export default autoSafeArea
+function init(className) {
+  onResize(() => {
+    autoSafeArea(className)
+  })
+}
+
+export default init

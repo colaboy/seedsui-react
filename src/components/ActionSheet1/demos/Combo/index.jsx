@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout, ActionSheet1, SafeArea } from 'seedsui-react'
-// SafeArea.autoSafeArea()
 
 export default () => {
   const list = [
@@ -22,8 +21,13 @@ export default () => {
     { id: '16', name: '测试14' }
   ]
   const [value, setValue] = useState(null)
+
+  useEffect(() => {
+    SafeArea.autoSafeArea()
+  }, [])
+
   return (
-    <Layout className="full" style={{ backgroundColor: 'green' }}>
+    <Layout className="full">
       <Layout.Main>
         <ActionSheet1.Combo
           placeholder="Please select"
@@ -37,10 +41,12 @@ export default () => {
             console.log('visible:', visible)
           }}
           // style={{ height: '100px', backgroundColor: '#f8f8f8' }}
-          modalProps={{
-            safeArea: true
-            // cancel: null
-          }}
+          modalProps={
+            {
+              // safeArea: true
+              // cancel: null
+            }
+          }
         />
       </Layout.Main>
     </Layout>

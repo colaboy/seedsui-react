@@ -108,8 +108,20 @@
   }
 }
 
+// 自定义元素安全区
+[data-safe-area='true'] {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
 // 子元素自动安全区
 .auto-safe-area-children {
+  // 自定义元素安全区
+  [data-safe-area='auto'] {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+
   // 滚动弹窗选择控件: Transfer,Cascader,Select
   // 无滚动弹窗选择控件: Picker,DatePicker,Map,Share
   #root > .mask .transfer-modal,
