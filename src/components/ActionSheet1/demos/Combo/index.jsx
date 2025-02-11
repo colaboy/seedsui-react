@@ -23,7 +23,7 @@ export default () => {
   ]
   const [value, setValue] = useState(null)
   return (
-    <Layout className="full">
+    <Layout className="full" style={{ backgroundColor: 'green' }}>
       <Layout.Main>
         <ActionSheet1.Combo
           placeholder="Please select"
