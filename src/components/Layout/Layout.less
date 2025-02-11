@@ -29,27 +29,20 @@
   z-index: 0;
 }
 
-// 安全区适配
-.layout-main.safeArea,
-.layout-aside.safeArea {
-  &:extend(.safe-area all);
-  &:extend(.safe-area.after all);
-}
-
-.layout.safeArea,
-.layout-footer.safeArea {
+// Adapt to the safe area
+.layout.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
 }
 
-.layout-main.clearSafeArea,
-.layout-aside.clearSafeArea {
-  &:extend(.clear-safe-area all);
-  &:extend(.clear-safe-area.after all);
-}
-
-.layout.clearSafeArea,
-.layout-footer.clearSafeArea {
+.layout.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .layout.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
 }

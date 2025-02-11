@@ -96,3 +96,21 @@
     animation: layout-main-pull-animation-spinner 1000ms infinite linear;
   }
 }
+
+// Adapt to the safe area
+.layout-main.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.after all);
+}
+
+.layout-main.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.after all);
+}
+
+.auto-safe-area-children {
+  .layout-main.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.after all);
+  }
+}

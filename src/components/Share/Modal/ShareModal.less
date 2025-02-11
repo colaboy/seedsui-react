@@ -1,0 +1,48 @@
+// Share控件
+// 分享(基于.mask)
+.share-mask {
+  // doing something
+}
+
+// Modal
+.share-modal {
+  background-color: white;
+  width: 100%;
+  border-radius: 16px 16px 0px 0px;
+}
+
+.share-modal-title {
+  text-align: center;
+  padding: 18px 0;
+  color: var(--default);
+  font-size: var(--font-size-m);
+}
+.share-modal-main {
+  padding: 30px 0;
+}
+.share-modal-footer-button-cancel {
+  .font-size-xl;
+  text-align: center;
+  padding: 20px 0;
+  .border-t;
+  color: var(--secondary);
+  font-size: var(--font-size-xl);
+}
+
+// Adapt to the safe area
+.share-modal.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
+.share-modal.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .share-modal.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+}

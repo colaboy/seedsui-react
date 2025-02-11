@@ -1,0 +1,81 @@
+// Main
+.share {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  row-gap: 20px;
+}
+.share-item {
+  box-sizing: border-box;
+  text-align: center;
+}
+.share-item-icon {
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: contain;
+  &.wechat {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/wechat.png');
+  }
+  &.miniprogram {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/miniprogram.png');
+  }
+  &.wecom {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/wework.png');
+  }
+  &.moments {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/moments.png');
+  }
+  &.dingtalk {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/dingtalk.png');
+  }
+  &.lark {
+    background-image: url('//res.waiqin365.com/d/seedsui/images/share/lark.png');
+  }
+}
+.share-item-label {
+  margin-top: 10px;
+  color: #666;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+// 微信弹出提示
+.share-tip-arrow {
+  position: absolute;
+  top: 15.15px;
+  right: 19.85px;
+  width: 58.15px;
+  height: 74.35px;
+  background-image: url('//res.waiqin365.com/d/seedsui/images/share/tip_arrow.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+.share-tip {
+  position: absolute;
+  top: 104.5px;
+  left: 50%;
+  display: inline-block;
+  width: auto;
+  min-width: 50%;
+  max-width: 85%;
+  padding: 20px 15px;
+  text-align: left;
+  background: #fff;
+  border-radius: 4px;
+  transform: translate(-50%, 0);
+  p {
+    color: #151515;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  p:nth-of-type(even) {
+    margin-top: 10px;
+  }
+  img {
+    display: inline-block;
+    height: 20px;
+    vertical-align: bottom;
+  }
+}

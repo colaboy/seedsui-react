@@ -4,3 +4,21 @@
 .layout-footer {
   position: relative;
 }
+
+// Adapt to the safe area
+.layout-footer.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+
+.layout-footer.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .layout-footer.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
+}

@@ -57,7 +57,10 @@ const LocationModal = forwardRef(
         visible={visible}
         value={value}
         className={`map-modal${
-          (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+          (safeArea === 'auto' && ' autoSafeArea') ||
+          (safeArea === true && ' safeArea') ||
+          (safeArea === false && ' clearSafeArea') ||
+          ''
         }${props.className ? ' ' + props.className : ''}`}
       />
     )

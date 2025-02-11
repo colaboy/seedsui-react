@@ -76,7 +76,10 @@ const Picker = forwardRef(
           onClick={(e) => e.stopPropagation()}
           {...props}
           className={`popup-animation modal-picker${
-            (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+            (safeArea === 'auto' && ' autoSafeArea') ||
+            (safeArea === true && ' safeArea') ||
+            (safeArea === false && ' clearSafeArea') ||
+            ''
           }${props.className ? ' ' + props.className : ''}${visible ? ' active' : ''}`}
         >
           {/* 头 */}

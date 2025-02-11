@@ -1,0 +1,31 @@
+// 定位
+.map-locationControl {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  .inline-flex;
+  .flex-center;
+  .flex-middle;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  background: #ffffff;
+  box-shadow: 0px 2px 6px 0px rgba(118, 163, 210, 0.2);
+  border-radius: 8px;
+}
+.map-locationControl-icon {
+  .flex;
+  .flex-center;
+  .flex-middle;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-map-location all);
+  font-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+.map-locationControl-label {
+  margin-top: 4px;
+  text-align: center;
+  &:extend(.font-size-s);
+}

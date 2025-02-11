@@ -124,7 +124,10 @@ const Main = forwardRef(
       <main
         {...props}
         className={`layout-main${
-          (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+          (safeArea === 'auto' && ' autoSafeArea') ||
+          (safeArea === true && ' safeArea') ||
+          (safeArea === false && ' clearSafeArea') ||
+          ''
         }${props.className ? ' ' + props.className : ''}`}
         ref={rootRef}
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}

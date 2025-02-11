@@ -12,23 +12,6 @@
   // 动画使用.popup-animation
 }
 
-// 安全区适配
-.actionsheet-modal.safeArea:not(:has(.actionsheet-cancel)) .actionsheet-group {
-  &:extend(.safe-area all);
-  &:extend(.safe-area.after all);
-  &::after {
-    background-color: white;
-  }
-}
-.actionsheet-modal.safeArea .actionsheet-cancel {
-  &:extend(.safe-area all);
-  &:extend(.safe-area.border-bottom all);
-}
-.actionsheet-modal.clearSafeArea {
-  &:extend(.clear-safe-area all);
-  &:extend(.clear-safe-area.border-bottom all);
-}
-
 .actionsheet-option,
 .actionsheet-cancel {
   display: block;
@@ -61,4 +44,23 @@
   overflow: auto;
 
   background-color: rgba(255, 255, 255, 0.85);
+}
+
+// Adapt to the safe area
+.actionsheet-modal.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+  border-color: white;
+}
+.actionsheet-modal.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .actionsheet-modal.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+    border-color: white;
+  }
 }

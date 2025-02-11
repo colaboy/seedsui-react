@@ -5,3 +5,21 @@
   position: relative;
   overflow: auto;
 }
+
+// Adapt to the safe area
+.layout-aside.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.after all);
+}
+
+.layout-aside.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.after all);
+}
+
+.auto-safe-area-children {
+  .layout-aside.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.after all);
+  }
+}

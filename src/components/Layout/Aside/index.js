@@ -15,7 +15,10 @@ const Aside = forwardRef(({ safeArea, children, ...props }, ref) => {
     <aside
       {...props}
       className={`layout-aside${
-        (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+        (safeArea === 'auto' && ' autoSafeArea') ||
+        (safeArea === true && ' safeArea') ||
+        (safeArea === false && ' clearSafeArea') ||
+        ''
       }${props.className ? ' ' + props.className : ''}`}
       ref={rootRef}
     >

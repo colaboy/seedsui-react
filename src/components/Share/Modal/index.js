@@ -53,7 +53,10 @@ const Modal = forwardRef(
         onVisibleChange={onVisibleChange}
         animation={animation}
         className={`share-modal${
-          (safeArea === true && ' safeArea') || (safeArea === false && ' clearSafeArea') || ''
+          (safeArea === 'auto' && ' autoSafeArea') ||
+          (safeArea === true && ' safeArea') ||
+          (safeArea === false && ' clearSafeArea') ||
+          ''
         }${className ? ' ' + className : ''}`}
       >
         <div className="share-modal-title">{LocaleUtil.locale('分享到', 'SeedsUI_share_to')}</div>

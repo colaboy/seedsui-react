@@ -2,16 +2,6 @@
 .modal-picker-mask {
 }
 
-// 安全区适配
-.modal-picker.safeArea {
-  &:extend(.safe-area all);
-  &:extend(.safe-area.border-bottom all);
-}
-.modal-picker.clearSafeArea {
-  &:extend(.clear-safe-area all);
-  &:extend(.clear-safe-area.border-bottom all);
-}
-
 .modal-picker {
   display: flex;
   flex-direction: column;
@@ -116,5 +106,22 @@
   &.disabled {
     pointer-events: none;
     opacity: 0.2;
+  }
+}
+
+// Adapt to the safe area
+.modal-picker.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+}
+.modal-picker.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .modal-picker.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
   }
 }
