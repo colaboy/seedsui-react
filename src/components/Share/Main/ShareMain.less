@@ -3,36 +3,49 @@
   display: grid;
   grid-template-columns: repeat(4, 25%);
   row-gap: 20px;
+
+  &.error {
+    grid-template-columns: none;
+  }
 }
+
 .share-item {
   box-sizing: border-box;
   text-align: center;
 }
+
 .share-item-icon {
   width: 48px;
   height: 48px;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: contain;
+
   &.wechat {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/wechat.png');
   }
+
   &.miniprogram {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/miniprogram.png');
   }
+
   &.wecom {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/wework.png');
   }
+
   &.moments {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/moments.png');
   }
+
   &.dingtalk {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/dingtalk.png');
   }
+
   &.lark {
     background-image: url('//res.waiqin365.com/d/seedsui/images/share/lark.png');
   }
 }
+
 .share-item-label {
   margin-top: 10px;
   color: #666;
@@ -52,6 +65,7 @@
   background-position: 50%;
   background-size: 100% 100%;
 }
+
 .share-tip {
   position: absolute;
   top: 104.5px;
@@ -65,14 +79,17 @@
   background: #fff;
   border-radius: 4px;
   transform: translate(-50%, 0);
+
   p {
     color: #151515;
     font-size: 16px;
     white-space: nowrap;
   }
+
   p:nth-of-type(even) {
     margin-top: 10px;
   }
+
   img {
     display: inline-block;
     height: 20px;

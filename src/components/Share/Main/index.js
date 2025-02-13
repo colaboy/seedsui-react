@@ -18,7 +18,7 @@ import { LocaleUtil, Bridge, Device, Result } from 'seedsui-react'
 测试使用-end */
 
 // 分享
-function Main({ shareTo, ...props }, ref) {
+function Main({ className, style, shareTo, ...props }, ref) {
   const rootRef = useRef(null)
 
   // Expose
@@ -48,11 +48,25 @@ function Main({ shareTo, ...props }, ref) {
     if (Bridge.platform === 'wq' && Device.os !== 'harmony') {
       return <Qince {...props} shareTo={shareTo} />
     }
-    return <Result title={LocaleUtil.locale('此平台暂不支持分享', 'SeedsUI_share_no_support')} />
+    return null
   }
+
+  let isSupport = support(shareTo)
   return (
-    <div className="share" ref={rootRef}>
-      {getShareNodes()}
+    <div
+      className={`share${className ? ' ' + className : ''}${isSupport ? '' : ' error'}`}
+      style={style}
+      ref={rootRef}
+    >
+      {isSupport ? (
+        getShareNodes()
+      ) : (
+        <Result
+          className="share-error"
+          image="//res.waiqin365.com/d/waiqin365_h5/components/empty.png"
+          title={LocaleUtil.locale('此平台暂不支持分享')}
+        />
+      )}
     </div>
   )
 }
