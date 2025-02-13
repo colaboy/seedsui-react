@@ -3,30 +3,30 @@
 .auto-safe-area-children .auto-safe-area {
   // 定位
   &.top {
-    top: env(safe-area-inset-top);
+    top: var(--safe-area-inset-top);
   }
   &.bottom {
-    bottom: env(safe-area-inset-bottom);
+    bottom: var(--safe-area-inset-bottom);
   }
   // 间距
   &.padding-top {
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--safe-area-inset-top);
   }
   &.padding-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: var(--safe-area-inset-bottom);
   }
   &.margin-top {
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--safe-area-inset-top);
   }
   &.margin-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: var(--safe-area-inset-bottom);
   }
   // 高度
   &.height-top {
-    height: env(safe-area-inset-top);
+    height: var(--safe-area-inset-top);
   }
   &.height-bottom {
-    height: env(safe-area-inset-bottom);
+    height: var(--safe-area-inset-bottom);
   }
   // 边框
   &.border-top,
@@ -36,10 +36,10 @@
     border-color: transparent;
   }
   &.border-top {
-    border-top-width: env(safe-area-inset-top);
+    border-top-width: var(--safe-area-inset-top);
   }
   &.border-bottom {
-    border-bottom-width: env(safe-area-inset-bottom);
+    border-bottom-width: var(--safe-area-inset-bottom);
   }
   // before&after
   &.before::before,
@@ -48,10 +48,10 @@
     display: block;
   }
   &.before::before {
-    height: env(safe-area-inset-top);
+    height: var(--safe-area-inset-top);
   }
   &.after::after {
-    height: env(safe-area-inset-bottom);
+    height: var(--safe-area-inset-bottom);
   }
 }
 

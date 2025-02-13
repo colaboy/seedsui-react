@@ -2,7 +2,13 @@ import needsSafeArea from './needsSafeArea'
 import onResize from './onResize'
 
 // Set global safe area
-function autoSafeArea(className = 'auto-safe-area-children') {
+function autoSafeArea({ className = 'auto-safe-area-children', debug } = {}) {
+  if (debug) {
+    document.documentElement.classList.add(className)
+    document.documentElement.style.setProperty('--safe-area-inset-top', '44px')
+    document.documentElement.style.setProperty('--safe-area-inset-bottom', '34px')
+    return
+  }
   if (needsSafeArea()) {
     document.documentElement.classList.add(className)
   } else {
@@ -10,9 +16,10 @@ function autoSafeArea(className = 'auto-safe-area-children') {
   }
 }
 
-function init(className) {
+function init(config) {
+  autoSafeArea(config)
   onResize(() => {
-    autoSafeArea(className)
+    autoSafeArea(config)
   })
 }
 
