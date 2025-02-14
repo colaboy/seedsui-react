@@ -17,8 +17,11 @@ const CascaderModal = forwardRef(
       // Main
       value,
 
+      multiple,
       list,
       loadList,
+      pull,
+      pagination,
       ...props
     },
     ref
@@ -27,24 +30,19 @@ const CascaderModal = forwardRef(
     if (!props.mainProps) {
       props.mainProps = {}
     }
+    if (multiple) props.mainProps.multiple = multiple
     if (list) props.mainProps.list = list
     if (loadList) props.mainProps.loadList = loadList
+    if (pull !== undefined) props.mainProps.pull = pull
+    if (pagination !== undefined) props.mainProps.pagination = pagination
 
     return (
       <ModalPicker
         ref={ref}
-        ok={null}
         {...props}
         main={props?.main || Main}
-        changeClosable={(newValue, newArguments, { triggerOk }) => {
-          let lastTab =
-            Array.isArray(newValue) && newValue.length ? newValue[newValue.length - 1] : null
-          if (lastTab?.isLeaf) {
-            triggerOk(newValue)
-          }
-        }}
         value={value}
-        className={`listpicker-modal${props.className ? ' ' + props.className : ''}`}
+        className={`list-modal${props.className ? ' ' + props.className : ''}`}
       />
     )
   }

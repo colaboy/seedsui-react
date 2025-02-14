@@ -21,7 +21,7 @@ const InfiniteScroll = ({ type }) => {
     }
   }
 
-  return <div className={`listpicker-infinite-scroll`}>{getStatusNode()}</div>
+  return <div className={`list-main-infinite-scroll`}>{getStatusNode()}</div>
 }
 
 export default InfiniteScroll

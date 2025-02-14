@@ -1,6 +1,6 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 
-import Item from './Item'
+import Item from './../Item'
 
 // List
 const List = (

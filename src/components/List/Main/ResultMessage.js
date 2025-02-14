@@ -12,7 +12,7 @@ import { LocaleUtil, Result } from 'seedsui-react'
 const ResultMessage = ({ type }) => {
   return (
     <Result
-      className="listpicker-main-error"
+      className="list-result-message"
       image={`${
         type === 'noData'
           ? '//res.waiqin365.com/d/waiqin365_h5/components/empty.png'

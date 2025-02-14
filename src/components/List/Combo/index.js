@@ -10,15 +10,18 @@ import { Modal } from 'seedsui-react'
 const Combo = Modal.Combo
 测试使用-end */
 
-// ListPicker
-const ListPickerCombo = forwardRef(
+// List
+const ListCombo = forwardRef(
   (
     {
       // Modal
       modalProps,
 
+      multiple,
       list,
       loadList,
+      pull,
+      pagination,
       ...props
     },
     ref
@@ -31,12 +34,15 @@ const ListPickerCombo = forwardRef(
         modal={props?.modal || CascaderModal}
         modalProps={{
           ...modalProps,
-          list: list,
-          loadList: loadList
+          multiple,
+          list,
+          loadList,
+          pull,
+          pagination
         }}
       />
     )
   }
 )
 
-export default ListPickerCombo
+export default ListCombo

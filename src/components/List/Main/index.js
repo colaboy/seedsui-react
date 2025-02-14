@@ -18,15 +18,19 @@ const Main = forwardRef(
   (
     {
       allowClear,
+      multiple,
       value,
       onChange,
       onScroll,
       // 请求属性
       list: externalList, // 离线数据
       loadList,
-      // 是否允许下拉刷新
-      pull = true,
+      pull = true, // 是否允许下拉刷新
       pagination,
+
+      // 列表设置
+      checkbox,
+      checkboxPosition,
       ...props
     },
     ref
