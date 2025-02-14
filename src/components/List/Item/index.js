@@ -1,6 +1,14 @@
 import React from 'react'
 import Wrapper from './Wrapper'
 
+// 内库使用-start
+import Checkbox from './../../Checkbox'
+// 内库使用-end
+
+/* 测试使用-start
+import { Checkbox } from 'seedsui-react'
+测试使用-end */
+
 const Item = ({
   // Custom Wrapper or Item
   wrapper,
@@ -27,11 +35,13 @@ const Item = ({
 }) => {
   // 获取checkbox
   function getCheckboxNode() {
+    if (!checkbox) return null
+
     if (typeof checkbox === 'function') {
       return checkbox({ ...(itemData || {}), checked })
     }
 
-    return null
+    return <Checkbox checked={checked} />
   }
 
   // 获取note

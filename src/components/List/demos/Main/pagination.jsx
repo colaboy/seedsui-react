@@ -8,6 +8,9 @@ export default () => {
       <Layout.Header className="text-center">List.Main</Layout.Header>
       <List.Main
         pagination
+        // allowClear
+        multiple
+        checkbox
         value={value}
         loadList={({ page, action }) => {
           console.log({ page, action })

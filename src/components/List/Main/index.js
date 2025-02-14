@@ -7,11 +7,10 @@ import ResultMessage from './ResultMessage'
 import Device from './../../../utils/Device'
 import Layout from './../../Layout'
 import List from './../../List'
-import Checkbox from './../../Checkbox'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Layout, Result, List, Checkbox } from 'seedsui-react'
+import { Device, Layout, Result, List } from 'seedsui-react'
 测试使用-end */
 
 // 列表
@@ -33,9 +32,8 @@ const Main = forwardRef(
       pull = true, // 是否允许下拉刷新
       pagination,
 
-      // List custom Wrapper or Item
+      // List config
       wrapper,
-      // List global config
       layout,
       checkbox,
       checkboxPosition,
@@ -168,17 +166,10 @@ const Main = forwardRef(
             value={value}
             list={list}
             onChange={onChange}
-            // Custom Wrapper or Item
+            // List config
             wrapper={wrapper}
-            // Global config
             layout={layout}
-            checkbox={
-              checkbox
-                ? checkbox
-                : ({ checked }) => {
-                    return <Checkbox checked={checked} />
-                  }
-            }
+            checkbox={checkbox}
             checkboxPosition={checkboxPosition}
           />
         )}

@@ -11,41 +11,48 @@ const ModalPicker = Modal.ModalPicker
 测试使用-end */
 
 // Modal
-const CascaderModal = forwardRef(
+const ListModal = forwardRef(
   (
     {
       // Main
-      value,
+      mainProps,
 
       multiple,
       list,
       loadList,
       pull,
       pagination,
+
+      // List config
+      wrapper,
+      layout,
+      checkbox,
+      checkboxPosition,
       ...props
     },
     ref
   ) => {
-    // 扩展非标准属性
-    if (!props.mainProps) {
-      props.mainProps = {}
-    }
-    if (multiple) props.mainProps.multiple = multiple
-    if (list) props.mainProps.list = list
-    if (loadList) props.mainProps.loadList = loadList
-    if (pull !== undefined) props.mainProps.pull = pull
-    if (pagination !== undefined) props.mainProps.pagination = pagination
-
     return (
       <ModalPicker
         ref={ref}
         {...props}
         main={props?.main || Main}
-        value={value}
+        mainProps={{
+          ...mainProps,
+          multiple,
+          list,
+          loadList,
+          pull,
+          pagination,
+          wrapper,
+          layout,
+          checkbox: checkbox ?? true,
+          checkboxPosition
+        }}
         className={`list-modal${props.className ? ' ' + props.className : ''}`}
       />
     )
   }
 )
 
-export default CascaderModal
+export default ListModal

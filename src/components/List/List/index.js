@@ -74,7 +74,7 @@ const List = (
         onChange={(checked) => {
           let newValue = null
           // 多选
-          if (multiple !== false) {
+          if (multiple) {
             if (!checked) {
               newValue = value.filter((valueItem) => valueItem?.id !== item.id)
             } else {

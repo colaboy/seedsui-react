@@ -22,6 +22,12 @@ const ListCombo = forwardRef(
       loadList,
       pull,
       pagination,
+
+      // List config
+      wrapper,
+      layout,
+      checkbox,
+      checkboxPosition,
       ...props
     },
     ref
@@ -38,7 +44,11 @@ const ListCombo = forwardRef(
           list,
           loadList,
           pull,
-          pagination
+          pagination,
+          wrapper,
+          layout,
+          checkbox,
+          checkboxPosition
         }}
       />
     )
