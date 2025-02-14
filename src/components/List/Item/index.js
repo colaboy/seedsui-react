@@ -1,12 +1,5 @@
 import React from 'react'
-
-// 内库使用-start
-import Card from './../../Card'
-// 内库使用-end
-
-/* 测试使用-start
-import { Card } from 'seedsui-react'
-测试使用-end */
+import Wrapper from './Wrapper'
 
 const Item = ({
   itemData,
@@ -152,9 +145,18 @@ const Item = ({
     )
   }
 
-  if (wrapper === 'card') {
-    return <Card className="list-item-wrapper">{getItemNode()}</Card>
+  if (wrapper) {
+    let WrapperNode = Wrapper
+    if (typeof wrapper === 'function') {
+      return wrapper({ children: getItemNode() })
+    }
+
+    if (React.isValidElement(wrapper)) {
+      WrapperNode = wrapper
+    }
+    return <WrapperNode>{getItemNode()}</WrapperNode>
   }
+
   return getItemNode()
 }
 

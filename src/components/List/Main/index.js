@@ -7,16 +7,21 @@ import ResultMessage from './ResultMessage'
 import Device from './../../../utils/Device'
 import Layout from './../../Layout'
 import List from './../../List'
+import Checkbox from './../../Checkbox'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Layout, Result, List } from 'seedsui-react'
+import { Device, Layout, Result, List, Checkbox } from 'seedsui-react'
 测试使用-end */
 
 // 列表
 const Main = forwardRef(
   (
     {
+      // Modal
+      visible = true,
+
+      // Main: common
       allowClear,
       multiple,
       value,
@@ -31,6 +36,7 @@ const Main = forwardRef(
       // 列表设置
       checkbox,
       checkboxPosition,
+      wrapper,
       ...props
     },
     ref
@@ -86,7 +92,7 @@ const Main = forwardRef(
       if (typeof newList === 'string') {
         return 'error'
       }
-      if (Array.isArray(newList) && newList.length) {
+      if (Array.isArray(newList) && !newList.length) {
         return 'noData'
       }
       return ''
@@ -119,8 +125,11 @@ const Main = forwardRef(
       <Layout.Main
         ref={mainRef}
         {...props}
-        onTopRefresh={pull ? handleTopRefresh : null}
-        onBottomRefresh={pagination ? handleBottomRefresh : undefined}
+        className={`list-main${props.className ? ' ' + props.className : ''}`}
+        onTopRefresh={pull && typeof loadList === 'function' ? handleTopRefresh : null}
+        onBottomRefresh={
+          pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
+        }
         onScroll={(e) => {
           // Callback
           onScroll && onScroll(e)
@@ -146,13 +155,24 @@ const Main = forwardRef(
             value={value}
             list={list}
             onChange={onChange}
-            checkbox={checkbox}
+            // 显示设置
+            layout="vertical"
+            checkbox={
+              checkbox
+                ? checkbox
+                : ({ checked }) => {
+                    return <Checkbox checked={checked} />
+                  }
+            }
             checkboxPosition={checkboxPosition}
+            wrapper={wrapper}
           />
         )}
 
         {/* 底部错误提示 */}
-        {pagination && <InfiniteScroll type={bottomStatus || 'loading'} />}
+        {pagination && typeof loadList === 'function' && (
+          <InfiniteScroll type={bottomStatus || 'loading'} />
+        )}
 
         {/* 页面级错误提示 */}
         {mainStatus && <ResultMessage type={mainStatus} />}

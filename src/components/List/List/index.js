@@ -30,7 +30,7 @@ const List = (
     // Group 配置项
     // Item 配置项
     layout, // vertical
-    wrapper, // card
+    wrapper,
     checkbox,
     checkboxPosition,
     onChange

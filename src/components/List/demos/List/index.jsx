@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
-import { List, Checkbox, Button } from 'seedsui-react'
+import { Layout, List, Checkbox, Button } from 'seedsui-react'
+import Wrapper from './Wrapper'
 
 export default () => {
   const checkboxRef = useRef(null)
@@ -86,24 +87,31 @@ export default () => {
   const [value, setValue] = useState(null)
 
   return (
-    <>
-      <List
-        ref={checkboxRef}
-        allowClear
-        multiple={false}
-        value={value}
-        list={list}
-        onChange={(newValue) => {
-          console.log('onChange:', newValue)
-          setValue(newValue)
-        }}
-        // Item 配置
-        layout="vertical"
-        checkbox={({ checked }) => {
-          return <Checkbox checked={checked} />
-        }}
-        wrapper="card"
-      />
-    </>
+    <Layout className="full">
+      <Layout.Main>
+        <List
+          ref={checkboxRef}
+          allowClear
+          multiple={false}
+          value={value}
+          list={list}
+          onChange={(newValue) => {
+            console.log('onChange:', newValue)
+            setValue(newValue)
+          }}
+          // Item 配置
+          layout="vertical"
+          checkbox={({ checked }) => {
+            return <Checkbox checked={checked} />
+          }}
+          // true: 默认Card包裹Item
+          wrapper={true}
+          // wrapper={Wrapper}
+          // wrapper={function ({ children }) {
+          //   return <div className="list-wrapper-custom">{children}</div>
+          // }}
+        />
+      </Layout.Main>
+    </Layout>
   )
 }

@@ -8,7 +8,7 @@ title: List
 
 ## 示例
 
-<code src="./demos/List.jsx"></code>
+<code src="./demos/List/index.jsx"></code>
 
 ## List.Combo
 

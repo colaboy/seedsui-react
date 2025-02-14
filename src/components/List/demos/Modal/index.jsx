@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout, List } from 'seedsui-react'
 import list from './../data'
 
 export default () => {
+  const [value, setValue] = useState(null)
   return (
     <Layout className="full">
       <Layout.Header className="text-center">List.Modal</Layout.Header>
-      <Layout.Main className="bg-white">
+      <Layout.Main>
         <List.Modal
           visible={true}
-          multiple={true}
           pagination
+          value={value}
           list={list}
           onChange={(value) => {
             console.log(value)
+            setValue(value)
           }}
         />
       </Layout.Main>
