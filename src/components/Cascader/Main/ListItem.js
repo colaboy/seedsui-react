@@ -68,7 +68,7 @@ const ListItem = forwardRef(
               indexes[item.anchor] = true
               anchorBar = (
                 <IndexBar.Anchor name={item.anchor}>
-                  <p className="indexbar-list-header">{item.anchor}</p>
+                  <p className="indexbar-list-divider">{item.anchor}</p>
                 </IndexBar.Anchor>
               )
             }

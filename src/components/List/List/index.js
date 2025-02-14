@@ -102,7 +102,7 @@ const List = (
         if (Array.isArray(item.children)) {
           return (
             <Fragment key={item.id ?? index}>
-              <div className="list-headline">
+              <div className="list-divider">
                 <div className="list-title">{item.name}</div>
                 {item.description && <div className="list-description">{item.description}</div>}
               </div>
