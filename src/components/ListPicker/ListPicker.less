@@ -1,0 +1,185 @@
+// ListPicker
+// DatePicker.Modal弹窗
+// .listpicker-modal {
+//   display: flex;
+//   flex-direction: column;
+//   height: 80%;
+// }
+// DatePicker.Modal弹窗-内容
+// .listpicker-modal-wrapper {
+//   display: flex;
+//   position: relative;
+//   flex: 1;
+//   flex-direction: column;
+//   overflow: auto;
+// }
+
+// 安卓弹出软键盘时，底部不显示(安卓不支持has, 改为js实现)
+.keyboard-active {
+  .listpicker-page:not(.hide) {
+    .layout-footer {
+      .hide;
+    }
+  }
+}
+// 页面显示模式
+.listpicker-page {
+  // 安卓弹出软键盘时，底部不显示(安卓不支持has, 改为js实现)
+  // &:has(.toolbar-search-form .input-text[type='search']:focus) {
+  //   .layout-footer {
+  //     display: none;
+  //   }
+  // }
+}
+
+.listpicker-modal {
+  height: 80%;
+}
+
+.listpicker-modal-main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1 1;
+  overflow: hidden;
+}
+// 单条容器（非控件默认class，控件默认class是select-option)
+.listpicker-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+
+// 禁用容器
+.listpicker-item-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// 列表-右上角三角形
+// .listpicker-item-checked {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 30px;
+//   height: 30px;
+//   z-index: 1;
+//   text-align: right;
+//   padding-right: 2px;
+//   &::before {
+//     display: block;
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     width: 0;
+//     height: 0;
+//     content: '';
+//     border-bottom: 30px solid transparent;
+//     border-right: 30px solid #ffe8cd;
+//   }
+// }
+
+// 底部
+.listpicker-footer {
+  display: flex;
+  align-items: center;
+  // background-color: white;
+  padding: 10px 12px;
+  background: rgba(253, 254, 255, 70%);
+  box-shadow: inset 0 0.5px 0 0 rgba(230, 232, 235, 100%);
+
+  &.fixed {
+    display: fixed;
+    bottom: 0;
+  }
+}
+// 有内容时距离右边42个像素
+.listpicker-footer-content {
+  .flex;
+
+  align-items: center;
+  padding-right: 42px;
+}
+
+.listpicker-footer-content:empty {
+  padding-right: 0;
+}
+
+.listpicker-footer-selected {
+  .color-primary;
+
+  margin-right: 6px;
+}
+
+.listpicker-footer-button {
+  .inline-flex;
+
+  align-items: center;
+  .flex-center;
+  .flex-1;
+  .font-size-l;
+
+  box-sizing: border-box;
+  font-weight: bold;
+  min-width: 90px;
+  padding: 0 8px !important;
+  height: 40px;
+  color: #727a83;
+  background-color: #eeeff0;
+  border-radius: 8px;
+
+  &.primary {
+    color: white;
+    background-color: @primary;
+  }
+
+  &.primary.outline {
+    color: @primary;
+    background-color: white;
+    border: 1px solid @primary;
+  }
+}
+
+.listpicker-footer-button + .listpicker-footer-button {
+  margin-left: 10px;
+}
+
+// 扁平风格底部
+.listpicker-flat-footer {
+  display: flex;
+  background: rgba(253, 254, 255, 70%);
+  box-shadow: inset 0 0.5px 0 0 rgba(230, 232, 235, 100%);
+}
+
+.listpicker-flat-footer-button {
+  font-size: 16px;
+  color: #727a83;
+  text-align: center;
+  line-height: 48px;
+  height: 48px;
+  font-weight: 500;
+}
+
+// 合计
+.listpicker-summary {
+  // Form
+  .listpicker-summary-label {
+    // width: 70px;
+  }
+
+  .listpicker-summary-content {
+    color: @primary;
+  }
+  // Form: clear Form default style
+  .adm-list-body {
+    background-color: transparent;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  // Link
+  .listpicker-summary-link {
+    color: @link;
+  }
+}
