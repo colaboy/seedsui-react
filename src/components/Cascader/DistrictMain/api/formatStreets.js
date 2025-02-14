@@ -1,4 +1,4 @@
-function formatStreet(list, districtId) {
+function formatStreets(list, districtId) {
   if (typeof list === 'string') return list
   if (!Array.isArray(list) || list.length === 0) return null
 
@@ -14,4 +14,4 @@ function formatStreet(list, districtId) {
   })
 }
 
-export default formatStreet
+export default formatStreets

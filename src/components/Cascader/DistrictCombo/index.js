@@ -33,9 +33,9 @@ const DistrictCombo = forwardRef(
       // Main
       startType, // 开始于国家country, 省份province
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
-      getCountry,
-      getProvinceCityDistrict,
-      getStreet,
+      loadCountries,
+      loadCountryRegions,
+      loadStreets,
       editableOptions,
       ...props
     },
@@ -119,9 +119,9 @@ const DistrictCombo = forwardRef(
           isCity,
           isDistrict,
           isStreet,
-          getCountry,
-          getProvinceCityDistrict,
-          getStreet,
+          loadCountries,
+          loadCountryRegions,
+          loadStreets,
           editableOptions,
           ...modalProps,
           // Main Props

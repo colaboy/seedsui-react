@@ -25,9 +25,9 @@ const CascaderDistrictMain = forwardRef(
       // 开始于国家country, 省份province
       startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
-      getCountry = api.getCountry,
-      getProvinceCityDistrict = api.getProvince,
-      getStreet = api.getStreet,
+      loadCountries = api.loadCountries,
+      loadCountryRegions = api.loadCountryRegions,
+      loadStreets = api.loadStreets,
       ...props
     },
     ref
@@ -96,7 +96,7 @@ const CascaderDistrictMain = forwardRef(
           }
 
           // 国家无省市区数据, 加载省市区数据
-          let province = await getProvinceCityDistrict(country?.id)
+          let province = await loadCountryRegions(country?.id)
 
           if (typeof province === 'string') {
             return province
@@ -114,7 +114,7 @@ const CascaderDistrictMain = forwardRef(
       let newList = null
       // 起始类型: 国家
       if (startType === 'country') {
-        newList = await getCountry()
+        newList = await loadCountries()
         // 国家为第一级不可能没有数据, 为空则显示暂无数据
         if (_.isEmpty(newList)) {
           return []
@@ -139,7 +139,7 @@ const CascaderDistrictMain = forwardRef(
           return `value参数错误, value开始应当为国家`
         }
 
-        let province = await getProvinceCityDistrict(country?.id)
+        let province = await loadCountryRegions(country?.id)
         if (typeof province === 'string') {
           return province
         }
@@ -147,7 +147,7 @@ const CascaderDistrictMain = forwardRef(
       }
       // 起始类型: 省
       else {
-        newList = await getProvinceCityDistrict()
+        newList = await loadCountryRegions()
         if (typeof newList === 'string') {
           return newList
         }
@@ -188,7 +188,7 @@ const CascaderDistrictMain = forwardRef(
 
       // 获取下钻的子级: 异步获取
       Loading.show()
-      let streets = await getStreet(lastTab.id, { parent: lastTab })
+      let streets = await loadStreets(lastTab.id, { parent: lastTab })
 
       // 接口报错
       if (typeof streets === 'string') {
@@ -211,7 +211,7 @@ const CascaderDistrictMain = forwardRef(
         }
         // 获取同级街道
         else {
-          streets = await getStreet(parentTab.id, { parent: parentTab })
+          streets = await loadStreets(parentTab.id, { parent: parentTab })
 
           // 街道
           if (Array.isArray(streets) && streets.length) {

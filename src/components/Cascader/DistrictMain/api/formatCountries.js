@@ -1,4 +1,4 @@
-function formatCountry(tree) {
+function formatCountries(tree) {
   if (typeof tree === 'string') return tree
   if (!Array.isArray(tree) || tree.length === 0) return null
 
@@ -8,4 +8,4 @@ function formatCountry(tree) {
   })
 }
 
-export default formatCountry
+export default formatCountries

@@ -32,9 +32,9 @@ const DistrictModal = forwardRef(
       // Main
       startType,
       type = 'street', // 'country', 'province', 'city', 'district', 'street'
-      getCountry,
-      getProvinceCityDistrict,
-      getStreet,
+      loadCountries,
+      loadCountryRegions,
+      loadStreets,
       editableOptions,
       ...props
     },
@@ -117,9 +117,9 @@ const DistrictModal = forwardRef(
     }
     props.mainProps.startType = startType
     props.mainProps.type = type
-    props.mainProps.getCountry = getCountry
-    props.mainProps.getProvinceCityDistrict = getProvinceCityDistrict
-    props.mainProps.getStreet = getStreet
+    props.mainProps.loadCountries = loadCountries
+    props.mainProps.loadCountryRegions = loadCountryRegions
+    props.mainProps.loadStreets = loadStreets
     props.mainProps.editableOptions = editableOptions
     props.mainProps.isCountry = isCountry
     props.mainProps.isProvince = isProvince

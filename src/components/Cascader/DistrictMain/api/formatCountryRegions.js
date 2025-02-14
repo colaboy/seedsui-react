@@ -9,7 +9,7 @@ import { ArrayUtil } from 'seedsui-react'
 // 测试，后台完成后删除此段
 // import chinaData from 'library/components/Cascader/utils/data/chinaData'
 
-function formatProvince(tree, countryId) {
+function formatCountryRegions(tree, countryId) {
   // 测试，后台完成后删除此段
   // return chinaData
 
@@ -31,4 +31,4 @@ function formatProvince(tree, countryId) {
   return tree
 }
 
-export default formatProvince
+export default formatCountryRegions

@@ -6,7 +6,7 @@ import Request from './../../../../utils/Request'
 import { Request } from 'seedsui-react'
 测试使用-end */
 
-function getStreet(districtId) {
+function loadStreets(districtId) {
   return new Promise((resolve) => {
     // 优先读取缓存
     window.districtStreets =
@@ -43,4 +43,4 @@ function getStreet(districtId) {
   })
 }
 
-export default getStreet
+export default loadStreets

@@ -9,7 +9,7 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'seedsui-react'
 测试使用-end */
 
-function getCountry() {
+function loadCountries() {
   return new Promise((resolve) => {
     const language = window.seedsLocaleLanguage || 'zh_CN'
 
@@ -38,4 +38,4 @@ function getCountry() {
   })
 }
 
-export default getCountry
+export default loadCountries

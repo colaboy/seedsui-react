@@ -7,7 +7,7 @@ import Request from './../../../../utils/Request'
 import { LocaleUtil, Request } from 'seedsui-react'
 测试使用-end */
 
-function getProvince(countryId = '86') {
+function loadCountryRegions(countryId = '86') {
   return new Promise((resolve) => {
     const language = window.seedsLocaleLanguage || 'zh_CN'
 
@@ -43,4 +43,4 @@ function getProvince(countryId = '86') {
   })
 }
 
-export default getProvince
+export default loadCountryRegions

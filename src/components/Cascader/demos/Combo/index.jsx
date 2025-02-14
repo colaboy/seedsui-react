@@ -17,7 +17,6 @@ export default () => {
         return
       }
       Loading.show()
-      // let streets = await DistrictUtil.getStreet(lastTab.id)
       let streets = [
         {
           name: '孙子节点',

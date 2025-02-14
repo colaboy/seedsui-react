@@ -1,5 +1,4 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
-import _ from 'lodash'
 import InfiniteScroll from './InfiniteScroll'
 import ResultMessage from './ResultMessage'
 
