@@ -21,3 +21,4 @@ title: List
 ## List.Main
 
 <code src="./demos/Main/index.jsx"></code>
+<code src="./demos/Main/pagination.jsx"></code>

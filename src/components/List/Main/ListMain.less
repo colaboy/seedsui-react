@@ -3,6 +3,25 @@
     margin: 0 12px;
   }
 }
+
+// Bottom message
+.list-main-infinite-scroll {
+  color: var(--auxiliary);
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Main message
 .list-result-message {
   &:extend(.result.full all);
+}
+.list-result-message-button {
+  &:extend(.button.primary all);
+  display: flex;
+  height: 40px;
+  margin: 40px 12px 0 12px;
+  border-radius: 10px;
+  font-size: @font-size-l;
 }

@@ -72,7 +72,7 @@ const Main = forwardRef(
       // eslint-disable-next-line
     }, [])
 
-    // 初始化
+    // // 顶部刷新和初始化
     async function init() {
       let newList = null
       if (Array.isArray(externalList)) {
@@ -82,42 +82,53 @@ const Main = forwardRef(
         newList = await loadList({ page: pageRef.current, action: 'load' })
       }
 
-      let status = getStatus(newList)
-      setMainStatus(status)
-      setList(newList)
-    }
+      // Initialize bottomStatus
+      setBottomStatus('')
 
-    // 根据数据值返回类型
-    function getStatus(newList) {
-      if (typeof newList === 'string') {
-        return 'error'
+      // Succeed to get first page list
+      if (Array.isArray(newList)) {
+        if (newList.length) {
+          setList(newList)
+          setMainStatus('')
+        } else {
+          setList(null)
+          setMainStatus('noData')
+        }
       }
-      if (Array.isArray(newList) && !newList.length) {
-        return 'noData'
+      // Failed to get first page list
+      else {
+        setList(null)
+        setMainStatus('error')
       }
-      return ''
-    }
 
-    // 顶部刷新
-    async function handleTopRefresh() {
-      pageRef.current = 1
-      let newList = await loadList({ page: pageRef.current, action: 'topRefresh' })
-      setList(newList)
       return true
     }
 
     // 底部刷新
-    function handleBottomRefresh() {
-      // 全局有报错, 不再底部加载
-      if (mainStatus) return
+    async function handleBottomRefresh() {
+      // 全局有报错, 或者无数据了不再底部加载
+      if (mainStatus || bottomStatus === 'noMore') return
 
       // 底部加载
       pageRef.current++
-      let nextList = loadList({ page: pageRef.current, action: 'bottomRefresh' })
-      newList = list.concat(nextList)
-      let status = getStatus(newList)
-      setBottomStatus(status)
-      setList(newList)
+      let nextList = await loadList({ page: pageRef.current, action: 'bottomRefresh' })
+
+      // Succeed to get next page list
+      if (Array.isArray(nextList)) {
+        if (nextList.length) {
+          let newList = list.concat(nextList)
+          setList(newList)
+          setBottomStatus('')
+        } else {
+          setBottomStatus('noMore')
+        }
+      }
+      // Failed to get the next page list
+      else {
+        pageRef.current--
+        setBottomStatus('error')
+      }
+
       return true
     }
 
@@ -126,7 +137,7 @@ const Main = forwardRef(
         ref={mainRef}
         {...props}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
-        onTopRefresh={pull && typeof loadList === 'function' ? handleTopRefresh : null}
+        onTopRefresh={pull && typeof loadList === 'function' ? init : null}
         onBottomRefresh={
           pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
         }
@@ -175,7 +186,7 @@ const Main = forwardRef(
         )}
 
         {/* 页面级错误提示 */}
-        {mainStatus && <ResultMessage type={mainStatus} />}
+        {mainStatus && <ResultMessage type={mainStatus} onRetry={init} />}
       </Layout.Main>
     )
   }
