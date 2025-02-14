@@ -33,10 +33,12 @@ const Main = forwardRef(
       pull = true, // 是否允许下拉刷新
       pagination,
 
-      // 列表设置
+      // List custom Wrapper or Item
+      wrapper,
+      // List global config
+      layout,
       checkbox,
       checkboxPosition,
-      wrapper,
       ...props
     },
     ref
@@ -166,8 +168,10 @@ const Main = forwardRef(
             value={value}
             list={list}
             onChange={onChange}
-            // 显示设置
-            layout="vertical"
+            // Custom Wrapper or Item
+            wrapper={wrapper}
+            // Global config
+            layout={layout}
             checkbox={
               checkbox
                 ? checkbox
@@ -176,7 +180,6 @@ const Main = forwardRef(
                   }
             }
             checkboxPosition={checkboxPosition}
-            wrapper={wrapper}
           />
         )}
 

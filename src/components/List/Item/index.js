@@ -2,12 +2,11 @@ import React from 'react'
 import Wrapper from './Wrapper'
 
 const Item = ({
-  itemData,
-  layout,
+  // Custom Wrapper or Item
   wrapper,
+
+  // Display Item
   disabled,
-  checkbox,
-  checkboxPosition = 'left',
   image,
   avatar,
   title,
@@ -15,6 +14,14 @@ const Item = ({
   note,
   content,
   action,
+
+  // Item Data
+  itemData,
+
+  // GLobal Config
+  layout,
+  checkbox,
+  checkboxPosition = 'left',
   checked,
   onChange
 }) => {
@@ -145,16 +152,41 @@ const Item = ({
     )
   }
 
+  // Custom Wrapper or Item
   if (wrapper) {
     let WrapperNode = Wrapper
     if (typeof wrapper === 'function') {
-      return wrapper({ children: getItemNode() })
+      return wrapper({
+        checked,
+        onChange,
+        // data
+        itemData,
+        // config
+        layout,
+        checkbox,
+        checkboxPosition,
+        // Node
+        children: getItemNode()
+      })
     }
 
     if (React.isValidElement(wrapper)) {
       WrapperNode = wrapper
     }
-    return <WrapperNode>{getItemNode()}</WrapperNode>
+    return (
+      <WrapperNode
+        checked={checked}
+        onChange={onChange}
+        // data
+        itemData={itemData}
+        // config
+        layout={layout}
+        checkbox={checkbox}
+        checkboxPosition={checkboxPosition}
+      >
+        {getItemNode()}
+      </WrapperNode>
+    )
   }
 
   return getItemNode()

@@ -53,12 +53,10 @@ const List = (
     return (
       <Item
         key={item.id ?? index}
-        itemData={item}
-        layout={layout}
+        // Custom Wrapper or Item
         wrapper={wrapper}
+        // Display Item
         disabled={item.disabled}
-        checkbox={item.checkbox || checkbox}
-        checkboxPosition={item.checkboxPosition || checkboxPosition}
         image={item.image}
         avatar={item.avatar}
         title={item.name}
@@ -66,6 +64,12 @@ const List = (
         note={item.note}
         content={item.content}
         action={item.action}
+        // Item Data
+        itemData={item}
+        // Global Config
+        layout={layout}
+        checkbox={item.checkbox || checkbox}
+        checkboxPosition={item.checkboxPosition || checkboxPosition}
         checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
         onChange={(checked) => {
           let newValue = null
