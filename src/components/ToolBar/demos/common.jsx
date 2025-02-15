@@ -50,6 +50,7 @@ export default () => {
           />
           <Space.Compact>
             <ToolBar.Button>Button1</ToolBar.Button>
+            <ToolBar.Button>Button2</ToolBar.Button>
           </Space.Compact>
         </ToolBar>
       </Layout.Main>
