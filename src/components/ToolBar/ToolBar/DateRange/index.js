@@ -1,16 +1,10 @@
 import React, { useRef, useEffect } from 'react'
-import { closeAllDropdown } from './../utils'
+import closeAllDropdown from './../utils/closeAllDropdown'
 
 import DateRange from './DateRange'
 
 // 日期区间
-function DateRangeBar({
-  type,
-  value,
-  // 事件
-  onChange,
-  ...props
-}) {
+function DateRangeBar({ value, onChange, ...props }) {
   const dateRangeRef = useRef(null)
 
   // 将所有dropdown合并到一个数组里, 用于全量关闭

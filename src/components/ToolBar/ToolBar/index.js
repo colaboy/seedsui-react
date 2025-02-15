@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 
-const ToolBar = forwardRef(({ span, className, children, ...props }, ref) => {
+const ToolBar = forwardRef(({ className, children, ...props }, ref) => {
   return (
     <div ref={ref} {...props} className={`toolbar` + (className ? ' ' + className : '')}>
       {children}

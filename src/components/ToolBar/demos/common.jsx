@@ -6,8 +6,32 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
-        <Divider>ToolBar</Divider>
-        <ToolBar></ToolBar>
+        <ToolBar>
+          <ToolBar.DateRange />
+          <ToolBar.List
+            value={[
+              {
+                id: '1',
+                name: 'Option1'
+              }
+            ]}
+            list={[
+              {
+                disabled: true,
+                id: '',
+                name: 'Disabled'
+              },
+              {
+                id: '1',
+                name: 'Option1'
+              },
+              {
+                id: '2',
+                name: 'Option2'
+              }
+            ]}
+          />
+        </ToolBar>
       </Layout.Main>
     </Layout>
   )

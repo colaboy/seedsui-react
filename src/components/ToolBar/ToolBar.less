@@ -1,26 +1,53 @@
-.row {
-  display: flex;
-  flex-flow: row wrap;
-  min-width: 0;
-  box-sizing: border-box;
+.toolbar {
+  gap: 8px;
+  padding: 0 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--navbar-bg);
+  .flex;
+  align-items: center;
+  min-height: 44px;
+  .border-b;
 }
 
-.col {
-  position: relative;
-  max-width: 100%;
-  min-height: 1px;
-  box-sizing: border-box;
-}
-
-// 定义col, 从col-1开始到col-24结束
-.setCol(@n, @i:1) when(@i<=@n) {
-  .col-@{i} {
-    display: block;
-    // 计算百分比 = @i 除以 @n
-    flex: 0 0 ((@i / @n) * 100%);
-    max-width: ((@i / @n) * 100%);
+// ToolBar dropdown
+.toolbar-dropdown {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  &.disabled {
+    opacity: 0.5;
   }
-  .setCol(@n,(@i+1));
 }
-
-.setCol(24);
+.toolbar-dropdown-title {
+  white-space: nowrap;
+  max-width: 58px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toolbar-dropdown-arrow {
+  .shape-triangle-down;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+  transform: rotate(0deg) translateY(1px);
+  margin-left: 8px;
+}
+.toolbar-dropdown-modal {
+  width: 100%;
+  max-height: 350px;
+  background-color: white;
+  border-radius: 0 0 16px 16px;
+  // 列表
+  .list {
+    margin: 0 8px;
+  }
+  .list-item.active {
+    color: var(--primary);
+    .toolbar-dropdown-list-item-checkbox {
+      font-family: 'seeds-icons';
+      font-size: 18px;
+      &:extend(.seeds-icon-ok-fill all);
+    }
+  }
+}
