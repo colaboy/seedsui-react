@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Card = forwardRef(({ children, ...props }, ref) => {
+const Compact = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Expose
@@ -12,10 +12,14 @@ const Card = forwardRef(({ children, ...props }, ref) => {
   })
 
   return (
-    <div {...props} className={`card${props.className ? ' ' + props.className : ''}`} ref={rootRef}>
+    <div
+      {...props}
+      className={`space-compact${props.className ? ' ' + props.className : ''}`}
+      ref={rootRef}
+    >
       {children}
     </div>
   )
 })
 
-export default Card
+export default Compact
