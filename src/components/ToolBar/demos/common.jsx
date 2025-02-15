@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Layout, ToolBar } from 'seedsui-react'
+import { Layout, ToolBar, Space } from 'seedsui-react'
 
 export default () => {
   const [dateRange, setDateRange] = useState(null)
@@ -36,16 +36,21 @@ export default () => {
             ]}
           />
           <ToolBar.Search
+            // Display config
             ok
             cancel
             qrcode
             collapse
+            // value
             value={search}
             onChange={setSearch}
             onSearch={(keyword) => {
               console.log('search keyword:' + keyword)
             }}
           />
+          <Space.Compact>
+            <ToolBar.Button>Button1</ToolBar.Button>
+          </Space.Compact>
         </ToolBar>
       </Layout.Main>
     </Layout>

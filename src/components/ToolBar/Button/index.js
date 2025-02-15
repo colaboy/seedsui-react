@@ -1,26 +1,23 @@
-import React from 'react'
+import React, { useRef, forwardRef } from 'react'
+
+// 内库使用-start
+import Button from './../../Button'
+// 内库使用-end
+
+/* 测试使用-start
 import { Button } from 'seedsui-react'
+测试使用-end */
 
-// 按钮
-function ButtonCommponet({ type, name, titleRender, noStyle, ...props }) {
-  // 获取标题
-  function getTitle() {
-    if (typeof titleRender === 'function') {
-      return titleRender({
-        type,
-        name: name
-      })
-    }
-    if (name) {
-      return name
-    }
-    return ''
-  }
+const ButtonBar = forwardRef(({ ...props }, ref) => {
+  const rootRef = useRef(null)
 
-  if (noStyle) {
-    return getTitle()
-  }
+  return (
+    <Button
+      {...props}
+      className={'toolbar-button' + (props.className ? ' ' + props.className : '')}
+      ref={rootRef}
+    />
+  )
+})
 
-  return <Button {...props}>{getTitle()}</Button>
-}
-export default ButtonCommponet
+export default ButtonBar

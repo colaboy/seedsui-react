@@ -3,7 +3,7 @@ import React, { useRef, forwardRef, useImperativeHandle } from 'react'
 const Button = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
-  // 节点
+  // Expose
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,
