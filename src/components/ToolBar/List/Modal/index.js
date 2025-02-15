@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, useRef, forwardRef, useState, useEffect } from 'react'
 
 // 内库使用-start
-import Modal from './../../../../Modal'
+import Modal from './../../../Modal'
 // 内库使用-end
 
 /* 测试使用-start

@@ -5,6 +5,7 @@ import { Layout, ToolBar } from 'seedsui-react'
 export default () => {
   const [dateRange, setDateRange] = useState(null)
   const [item, setItem] = useState(null)
+  const [search, setSearch] = useState('')
   return (
     <Layout className="full">
       <Layout.Main>
@@ -33,6 +34,17 @@ export default () => {
                 name: 'Option2'
               }
             ]}
+          />
+          <ToolBar.Search
+            ok
+            cancel
+            qrcode
+            collapse
+            value={search}
+            onChange={setSearch}
+            onSearch={(keyword) => {
+              console.log('search keyword:' + keyword)
+            }}
           />
         </ToolBar>
       </Layout.Main>
