@@ -38,17 +38,19 @@ const Search = forwardRef(
         getValue: () => {
           return value
         },
-        collapse: collapseSearch,
-        expand: expandSearch
+        collapse: collapseContainer,
+        expand: expandContainer
       }
     })
 
     // 展开和收缩
-    function collapseSearch() {
+    function collapseContainer() {
+      if (!collapse) return
       rootRef.current.classList.add('collapse')
       rootRef.current.classList.remove('expand')
     }
-    function expandSearch() {
+    function expandContainer() {
+      if (!collapse) return
       rootRef.current.classList.remove('collapse')
       rootRef.current.classList.add('expand')
     }
@@ -85,7 +87,7 @@ const Search = forwardRef(
             className="toolbar-search-collapse-icon"
             onClick={() => {
               rootRef.current.querySelector('[type=search]').focus()
-              expandSearch()
+              expandContainer()
             }}
           ></i>
         </div>
@@ -114,7 +116,7 @@ const Search = forwardRef(
         {/* 二维码 */}
         {qrcode && (
           <Button className="toolbar-search-button-qrcode" onClick={handleQrocde}>
-            <i className="icon icon-barcode size20 events-none"></i>
+            <i className="toolbar-search-button-qrcode-icon"></i>
           </Button>
         )}
 
@@ -135,7 +137,7 @@ const Search = forwardRef(
           <span
             className="toolbar-search-button-cancel"
             onClick={(e) => {
-              collapseSearch()
+              collapseContainer()
               onCancel && onCancel()
             }}
           >

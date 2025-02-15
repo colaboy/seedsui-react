@@ -1,6 +1,7 @@
 // ToolBar search
 .toolbar-search {
   display: flex;
+  flex: auto;
   align-items: center;
   gap: 8px;
 
@@ -12,7 +13,7 @@
     left: 0;
     bottom: 0;
     z-index: 1;
-    padding: 12px 0;
+    padding: 0 12px;
     background-color: white;
   }
 
@@ -77,4 +78,13 @@
   border-radius: 8px;
   width: 30px;
   height: 30px;
+}
+
+.toolbar-search-button-qrcode-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  pointer-events: none;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-barcode all);
 }
