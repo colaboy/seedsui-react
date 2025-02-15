@@ -51,6 +51,7 @@ export { default as Share } from './components/Share' // 不常用
 export { default as Switch } from './components/Switch'
 export { default as TabBar } from './components/TabBar'
 export { default as Toast } from './components/Toast'
+export { default as ToolBar } from './components/ToolBar'
 export { default as Tooltip } from './components/Tooltip'
 export { default as TreePicker } from './components/TreePicker'
 export { default as Transfer } from './components/Transfer'

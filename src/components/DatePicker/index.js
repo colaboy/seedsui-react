@@ -1,3 +1,4 @@
+import getDefaultRanges from './RangeMain/getDefaultRanges'
 import validateRange from './RangeModal/validateRange'
 import validateMaxMin from './utils/validateMaxMin'
 
@@ -17,6 +18,7 @@ import Types from './Types'
 
 // eslint-disable-next-line
 export default {
+  getDefaultRanges: getDefaultRanges,
   validateRange: validateRange,
   validateMaxMin: validateMaxMin,
   Combo: Combo,
