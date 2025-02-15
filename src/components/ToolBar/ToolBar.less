@@ -19,6 +19,11 @@
   &.disabled {
     opacity: 0.5;
   }
+  &.active {
+    .toolbar-dropdown-arrow {
+      transform: rotate(180deg) translateY(-1px);
+    }
+  }
 }
 .toolbar-dropdown-title {
   white-space: nowrap;

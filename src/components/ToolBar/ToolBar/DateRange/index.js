@@ -4,7 +4,7 @@ import closeAllDropdown from './../utils/closeAllDropdown'
 import DateRange from './DateRange'
 
 // 日期区间
-function DateRangeBar({ value, onChange, ...props }) {
+function DateRangeBar({ title, value, onChange, ...props }) {
   const dateRangeRef = useRef(null)
 
   // 将所有dropdown合并到一个数组里, 用于全量关闭
@@ -30,6 +30,7 @@ function DateRangeBar({ value, onChange, ...props }) {
   return (
     <DateRange
       ref={dateRangeRef}
+      title={title}
       value={value}
       onBeforeOpen={handleBeforeOpen}
       onChange={handleChange}

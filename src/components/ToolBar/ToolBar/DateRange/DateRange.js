@@ -12,12 +12,12 @@ import { LocaleUtil, Toast, DatePicker } from 'seedsui-react'
 
 const getDefaultRanges = DatePicker.getDefaultRanges
 
-const DateRangeBar = ({ ranges, ...props }, ref) => {
+const DateRangeBar = ({ title, ranges, ...props }, ref) => {
   if (ranges === undefined) {
     // eslint-disable-next-line
     ranges = getDefaultRanges()
   }
-  const [icon, setIcon] = useState('toolbar-dropdown-arrow')
+  const [active, setActive] = useState(false)
   return (
     <DatePicker.RangeCombo
       ref={ref}
@@ -27,14 +27,13 @@ const DateRangeBar = ({ ranges, ...props }, ref) => {
         custom: LocaleUtil.locale('自定义选择'),
         selector: LocaleUtil.locale('快捷选择')
       }}
-      className="toolbar-dropdown"
+      className={`toolbar-dropdown${active ? ' active' : ''}`}
       // 自定义渲染
       combo={({ displayValue }) => {
         return (
           <>
             <span className="toolbar-dropdown-title">
-              {displayValue ||
-                LocaleUtil.locale('自定义区间', 'library.51024203e56c956c2ea5f50e61220f62')}
+              {title || displayValue || LocaleUtil.locale('自定义区间')}
             </span>
             <i className={`toolbar-dropdown-arrow`} />
           </>
@@ -48,11 +47,7 @@ const DateRangeBar = ({ ranges, ...props }, ref) => {
           }
         },
         onVisibleChange: (visible) => {
-          if (visible) {
-            setIcon('shape-triangle-up')
-          } else {
-            setIcon('shape-triangle-down')
-          }
+          setActive(visible)
         }
       }}
       onError={(err) =>
