@@ -116,8 +116,8 @@ export default defineConfig({
     // codeBlockMode: 'passive',
   },
   alias: {
-    src: '/src',
-    locale: '/locale'
+    'src/': '/src/',
+    'seedsui-react/locale': '/locale'
   },
   chainWebpack(memo: any) {
     // 设置 alias
