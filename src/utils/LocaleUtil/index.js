@@ -1,11 +1,11 @@
 import locale from './locale'
 import languageMap from './languageMap'
-import setLanguage from './setLanguage'
+import setLocale from './setLocale'
 
 const LocaleUtil = {
   locale: locale,
   languageMap: languageMap,
-  setLanguage: setLanguage
+  setLocale: setLocale
 }
 
 export default LocaleUtil

@@ -2,15 +2,15 @@ import languageMap from '../languageMap'
 import DateUtil from './../../DateUtil'
 
 // Set locale
-function setLanguage(language) {
+function setLocale(language, data) {
   if (languageMap?.[language]) {
     // Set date language
-    DateUtil.setLanguage(language)
+    DateUtil.setLocale(language)
 
     // Set SeedsUI internal language
     window.seedsLocaleLanguage = language
-    // window.seedsLocaleData load as needed
+    window.seedsLocaleData = data
   }
 }
 
-export default setLanguage
+export default setLocale

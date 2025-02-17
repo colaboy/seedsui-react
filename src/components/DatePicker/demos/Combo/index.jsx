@@ -6,7 +6,7 @@ export default () => {
   const [value, setValue] = useState(new Date('2024-10-30'))
 
   useEffect(() => {
-    LocaleUtil.setLanguage('zh_CN')
+    LocaleUtil.setLocale('zh_CN')
     console.log(dateRef)
     dateRef?.current?.open?.()
   }, [])

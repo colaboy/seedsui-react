@@ -1,4 +1,5 @@
 // United language list
+// dayjs: https://github.com/iamkun/dayjs/tree/dev/src/locale
 const languageMap = {
   // 阿拉伯语
   ar_EG: { dayjs: 'ar', translate: { google: 'ar', bing: 'ar' } },

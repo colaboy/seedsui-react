@@ -5,7 +5,7 @@ import { Layout, LocaleUtil, Divider, Card } from 'seedsui-react'
 import 'dayjs/locale/zh-cn'
 import 'seedsui-react/locale/zh_CN'
 
-LocaleUtil.setLanguage('en_US')
+LocaleUtil.setLocale('en_US')
 
 export default () => {
   return (

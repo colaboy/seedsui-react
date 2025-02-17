@@ -2,8 +2,7 @@ import './assets/index.less'
 
 import DateUtil from './utils/DateUtil'
 import LocaleUtil from './utils/LocaleUtil'
-DateUtil.initialize()
-// LocaleUtil.setLanguage('en_US')
+DateUtil.plugin()
 
 // 记录版本号
 const packageJson = require('./../package.json')
