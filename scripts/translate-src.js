@@ -30,7 +30,8 @@ async function translateSrc() {
       { from: 'zh_CN', to: 'zh_CN' },
       { from: 'zh_CN', to: 'en_US' },
       { from: 'zh_CN', to: 'zh_HK' },
-      { from: 'zh_CN', to: 'vi_VN' }
+      { from: 'zh_CN', to: 'vi_VN' },
+      { from: 'zh_CN', to: 'ja_JP' }
     ],
     onGenerateKey: ({ folders, value, oldKey, newKey }) => {
       if (oldKey) return oldKey
