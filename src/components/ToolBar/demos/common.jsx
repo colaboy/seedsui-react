@@ -39,9 +39,9 @@ export default () => {
           <ToolBar.Search
             // Display config
             ok
-            cancel
+            // cancel
             barCode
-            // collapse
+            collapse
             // value
             value={search}
             onChange={setSearch}
@@ -61,12 +61,6 @@ export default () => {
             inputProps={{
               style: { background: '#F1F2F5' }
             }}
-            // Display config
-            // ok
-            // cancel
-            // barCode
-            // collapse
-            // value
             value={search}
             onChange={setSearch}
             onSearch={(keyword) => {

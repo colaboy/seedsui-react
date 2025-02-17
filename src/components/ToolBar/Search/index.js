@@ -128,7 +128,7 @@ const Search = forwardRef(
           )}
 
           {/* 折叠模式: 取消按钮 */}
-          {cancel && (
+          {(cancel || toggle) && (
             <span
               className="toolbar-search-button-cancel"
               onClick={(e) => {
