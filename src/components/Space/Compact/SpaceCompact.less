@@ -2,7 +2,17 @@
   display: flex;
 }
 
-.button-compact-item:not(.button-compact-last-item).button-compact-last-item {
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 0;
+// Button
+.button.button-compact-item {
+  // Sibling border merge
+  margin-inline-end: -1px;
+  border-radius: 0;
+}
+.button.button-compact-first-item {
+  border-top-left-radius: var(--radius-m);
+  border-bottom-left-radius: var(--radius-m);
+}
+.button.button-compact-last-item {
+  border-top-right-radius: var(--radius-m);
+  border-bottom-right-radius: var(--radius-m);
 }
