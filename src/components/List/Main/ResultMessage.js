@@ -21,13 +21,16 @@ const ResultMessage = ({ type, onRetry }) => {
       }`}
       title={`${
         type === 'error'
-          ? LocaleUtil.locale('获取数据失败，请稍后再试！')
-          : LocaleUtil.locale('暂无数据')
+          ? LocaleUtil.locale(
+              '获取数据失败，请稍后再试！',
+              'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
+            )
+          : LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
       }`}
     >
       {type === 'error' && (
         <Button className="list-result-message-button" onClick={onRetry}>
-          {LocaleUtil.locale('重试')}
+          {LocaleUtil.locale('重试', 'SeedsUI_retry')}
         </Button>
       )}
     </Result>

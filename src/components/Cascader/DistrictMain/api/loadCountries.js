@@ -33,7 +33,7 @@ function loadCountries() {
         resolve(window.countryData)
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取国家数据失败'))
+        resolve(LocaleUtil.locale('获取国家数据失败', 'noKey_12c1c752c3d8f3ce8f3c687cabd4a626'))
       })
   })
 }

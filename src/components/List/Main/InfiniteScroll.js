@@ -11,13 +11,16 @@ import { LocaleUtil } from 'seedsui-react'
 const InfiniteScroll = ({ type }) => {
   function getStatusNode() {
     if (type === 'loading') {
-      return LocaleUtil.locale('加载中...')
+      return LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
     }
     if (type === 'error') {
-      return LocaleUtil.locale('获取数据失败，请稍后再试！')
+      return LocaleUtil.locale(
+        '获取数据失败，请稍后再试！',
+        'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
+      )
     }
     if (type === 'noMore') {
-      return LocaleUtil.locale('没有更多了')
+      return LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')
     }
   }
 

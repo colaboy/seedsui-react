@@ -35,7 +35,7 @@ async function loadData(tabs, { externalLoadData, externalList, action }) {
   else if (_.isEmpty(newList)) {
     // 无根列表, 接口返回空, 则提示暂无数据
     if (_.isEmpty(externalList) || typeof externalList === 'string') {
-      return LocaleUtil.locale('暂无数据')
+      return LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
     }
 
     // 需要更新externalList、value、tabRef.current的树结构, 增加标识isLeaf

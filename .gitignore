@@ -6,6 +6,7 @@ node_modules
 .DS_Store
 
 # 自定义修改
+locale
 docs
 lib
 umd

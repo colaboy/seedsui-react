@@ -108,7 +108,7 @@ const Search = forwardRef(
             className="toolbar-search-input"
             leftIcon={<i className="toolbar-search-input-left-icon" />}
             type="search"
-            placeholder={LocaleUtil.locale('搜索')}
+            placeholder={LocaleUtil.locale('搜索', 'SeedsUI_search')}
             allowClear
           />
         </form>
@@ -128,7 +128,7 @@ const Search = forwardRef(
               onSearch && onSearch()
             }}
           >
-            {LocaleUtil.locale('搜索')}
+            {LocaleUtil.locale('搜索', 'SeedsUI_search')}
           </span>
         )}
 
@@ -141,7 +141,7 @@ const Search = forwardRef(
               onCancel && onCancel()
             }}
           >
-            {LocaleUtil.locale('取消')}
+            {LocaleUtil.locale('取消', 'SeedsUI_cancel')}
           </span>
         )}
       </div>

@@ -55,7 +55,7 @@ const ListItem = forwardRef(
           >
             {errCode === 'ERROR' && (
               <Button className="primary cascader-exception-button" onClick={onReLoad}>
-                {LocaleUtil.locale('重新加载')}
+                {LocaleUtil.locale('重新加载', 'noKey_64ca9bab920a2983bcf270320d850d00')}
               </Button>
             )}
           </Result>

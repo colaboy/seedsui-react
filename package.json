@@ -18,7 +18,8 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "locale"
   ],
   "scripts": {
     "build": "father build && node scripts/build-after.js",

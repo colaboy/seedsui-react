@@ -38,7 +38,7 @@ function loadCountryRegions(countryId = '86') {
         resolve(window.countryProvinces[countryId])
       })
       .catch(() => {
-        resolve(LocaleUtil.locale('获取省市区数据失败'))
+        resolve(LocaleUtil.locale('获取省市区数据失败', 'noKey_6779a06b0961e051e7b3ea0296305d18'))
       })
   })
 }
