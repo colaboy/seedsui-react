@@ -1,11 +1,19 @@
 import React from 'react'
 
-import { Layout, LocaleUtil, Divider, Card } from 'seedsui-react'
+import { Layout, LocaleUtil, Divider, Card, DateUtil } from 'seedsui-react'
+import dayjs from 'dayjs'
 
+// 中文
+// import 'dayjs/locale/zh-cn'
+// import zhCN from 'seedsui-react/locale/zh_CN.json'
+// dayjs.locale('zh-cn')
+// LocaleUtil.setLocale('zh_CN', zhCN)
+
+// 英文
 import 'dayjs/locale/zh-cn'
-import 'seedsui-react/locale/zh_CN'
-
-LocaleUtil.setLocale('en_US')
+import enUS from 'seedsui-react/locale/en_US.json'
+dayjs.locale('en')
+LocaleUtil.setLocale('en_US', enUS)
 
 export default () => {
   return (
@@ -27,6 +35,9 @@ export default () => {
 
         <Divider>No locale data</Divider>
         <Card style={{ padding: 'var(--space-l)' }}>{LocaleUtil.locale('近{0}日', '', ['7'])}</Card>
+
+        <Divider>Dayjs locale</Divider>
+        <Card style={{ padding: 'var(--space-l)' }}>{DateUtil.format(new Date(), 'week')}</Card>
       </Layout.Main>
     </Layout>
   )
