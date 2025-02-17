@@ -40,8 +40,8 @@ export default () => {
             // Display config
             ok
             cancel
-            qrcode
-            collapse
+            barCode
+            // collapse
             // value
             value={search}
             onChange={setSearch}
@@ -64,7 +64,7 @@ export default () => {
             // Display config
             // ok
             // cancel
-            // qrcode
+            // barCode
             // collapse
             // value
             value={search}

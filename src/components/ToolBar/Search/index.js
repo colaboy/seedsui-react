@@ -19,7 +19,7 @@ const Search = forwardRef(
       onSearch,
       // Config
       collapse, // 折叠模式, true|false
-      qrcode,
+      barCode,
       ok,
       onOk,
       cancel,
@@ -71,7 +71,7 @@ const Search = forwardRef(
     }
 
     // 扫描二维码
-    function handleQrocde() {
+    function handleBarCode() {
       Bridge.scanQRCode({
         // desc: '',
         scanType: ['barCode'],
@@ -109,9 +109,9 @@ const Search = forwardRef(
           </form>
 
           {/* 二维码 */}
-          {qrcode && (
-            <Button className="toolbar-search-button-qrcode" onClick={handleQrocde}>
-              <i className="toolbar-search-button-qrcode-icon"></i>
+          {barCode && (
+            <Button className="toolbar-search-button-barcode" onClick={handleBarCode}>
+              <i className="toolbar-search-button-barcode-icon"></i>
             </Button>
           )}
 
