@@ -59,7 +59,7 @@ export default () => {
         <ToolBar className="bg-white">
           <ToolBar.Search
             inputProps={{
-              style: { background: '#F1F2F5' }
+              style: { background: 'var(--app-background-color)' }
             }}
             value={search}
             onChange={setSearch}
