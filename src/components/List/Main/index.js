@@ -32,6 +32,8 @@ const Main = forwardRef(
       pagination,
 
       // List config
+      header,
+      footer,
       wrapper,
       layout,
       checkbox,
@@ -157,6 +159,9 @@ const Main = forwardRef(
           }
         }}
       >
+        {/* 头部 */}
+        {typeof header === 'function' ? header({ list, value, onChange, pagination }) : null}
+
         {/* 列表 */}
         {Array.isArray(list) && list.length && (
           <List
@@ -172,6 +177,9 @@ const Main = forwardRef(
             checkboxPosition={checkboxPosition}
           />
         )}
+
+        {/* 底部 */}
+        {typeof footer === 'function' ? footer({ list, value, onChange, pagination }) : null}
 
         {/* 底部错误提示 */}
         {pagination && typeof loadList === 'function' && (
