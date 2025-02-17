@@ -1,4 +1,4 @@
-import initialize from './initialize'
+import plugin from './plugin'
 import setLanguage from './setLanguage'
 import toDate from './toDate'
 import getWeekDates from './getWeekDates'
@@ -16,7 +16,7 @@ import lastDayOfYear from './lastDayOfYear'
 
 // 日期工具类
 const dateUtil = {
-  initialize: initialize,
+  plugin: plugin,
   setLanguage: setLanguage,
   // 转为日期格式
   toDate: toDate,
