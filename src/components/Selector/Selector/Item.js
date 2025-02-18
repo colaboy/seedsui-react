@@ -34,7 +34,8 @@ const Item = forwardRef(
         className={`selector-item`}
         ref={rootRef}
       >
-        {children}
+        <div className="selector-item-name">{children}</div>
+
         <div className="selector-item-checked-mark">
           <i className="selector-item-checked-mark-icon"></i>
         </div>

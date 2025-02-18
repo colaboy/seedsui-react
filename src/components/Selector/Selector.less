@@ -13,11 +13,25 @@
   border-radius: 4px;
   box-sizing: border-box;
   height: 37px;
-  line-height: 37px;
   padding: 0 8px;
   position: relative;
   text-align: center;
+
+  display: flex; /* 使用 Flexbox */
+  flex-direction: column; /* 确保文本从上到下排列 */
+  justify-content: center; /* 垂直居中 */
+
+  .selector-item-name {
+    max-height: 100%;
+    // 超出两行换行
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 限制显示两行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
+
 // 选中标记
 .selector-item-checked-mark {
   display: none;

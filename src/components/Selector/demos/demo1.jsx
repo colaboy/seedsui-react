@@ -24,7 +24,7 @@ export default () => {
           },
           {
             id: '2',
-            name: '选项2'
+            name: 'Option 2 is very very very very very long'
           },
           {
             id: '3',
