@@ -1,5 +1,13 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
+// 内库使用-start
+import SafeArea from './../../SafeArea'
+// 内库使用-end
+
+/* 测试使用-start
+import { SafeArea } from 'seedsui-react'
+测试使用-end */
+
 const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
@@ -14,12 +22,9 @@ const Footer = forwardRef(({ safeArea, children, ...props }, ref) => {
   return (
     <footer
       {...props}
-      className={`layout-footer${
-        (safeArea === 'auto' && ' autoSafeArea') ||
-        (safeArea === true && ' safeArea') ||
-        (safeArea === false && ' clearSafeArea') ||
-        ''
-      }${props.className ? ' ' + props.className : ''}`}
+      className={`layout-footer${SafeArea.getSafeAreaClassName(safeArea)}${
+        props.className ? ' ' + props.className : ''
+      }`}
       ref={rootRef}
     >
       {children}

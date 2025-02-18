@@ -1,5 +1,13 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 
+// 内库使用-start
+import SafeArea from './../../SafeArea'
+// 内库使用-end
+
+/* 测试使用-start
+import { SafeArea } from 'seedsui-react'
+测试使用-end */
+
 const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
@@ -33,12 +41,9 @@ const Layout = forwardRef(({ safeArea, animation, children, ...props }, ref) => 
   return (
     <section
       {...props}
-      className={`layout${
-        (safeArea === 'auto' && ' autoSafeArea') ||
-        (safeArea === true && ' safeArea') ||
-        (safeArea === false && ' clearSafeArea') ||
-        ''
-      }${props.className ? ' ' + props.className : ''}`}
+      className={`layout${SafeArea.getSafeAreaClassName(safeArea)}${
+        props.className ? ' ' + props.className : ''
+      }`}
       data-animation={animation}
       ref={rootRef}
     >

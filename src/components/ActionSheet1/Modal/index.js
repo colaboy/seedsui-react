@@ -3,10 +3,11 @@ import { createPortal } from 'react-dom'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'seedsui-react'
+import { LocaleUtil, SafeArea } from 'seedsui-react'
 测试使用-end */
 
 const Modal = forwardRef(
@@ -121,12 +122,9 @@ const Modal = forwardRef(
         <div
           data-animation={animation}
           {...props}
-          className={`popup-animation actionsheet-modal${
-            (safeArea === 'auto' && ' autoSafeArea') ||
-            (safeArea === true && ' safeArea') ||
-            (safeArea === false && ' clearSafeArea') ||
-            ''
-          }${props.className ? ' ' + props.className : ''}${visible ? ' active' : ''}`}
+          className={`popup-animation actionsheet-modal${SafeArea.getSafeAreaClassName(safeArea)}${
+            props.className ? ' ' + props.className : ''
+          }${visible ? ' active' : ''}`}
         >
           <div
             {...groupProps}

@@ -4,10 +4,11 @@ import Main from './../Main'
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
 import SelectModal from './../../Modal/SelectModal'
+import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Modal } from 'seedsui-react'
+import { LocaleUtil, Modal, SafeArea } from 'seedsui-react'
 const SelectModal = Modal.SelectModal
 测试使用-end */
 
@@ -56,12 +57,9 @@ const LocationModal = forwardRef(
         ok={visible === 'choose' ? '' : null}
         visible={visible}
         value={value}
-        className={`map-modal${
-          (safeArea === 'auto' && ' autoSafeArea') ||
-          (safeArea === true && ' safeArea') ||
-          (safeArea === false && ' clearSafeArea') ||
-          ''
-        }${props.className ? ' ' + props.className : ''}`}
+        className={`map-modal${SafeArea.getSafeAreaClassName(safeArea)}${
+          props.className ? ' ' + props.className : ''
+        }`}
       />
     )
   }

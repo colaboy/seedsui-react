@@ -5,10 +5,11 @@ import topRefreshOk from './utils/topRefreshOk.js'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
+import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'seedsui-react'
+import { LocaleUtil, SafeArea } from 'seedsui-react'
 测试使用-start */
 
 // 下拉刷新容器
@@ -123,12 +124,9 @@ const Main = forwardRef(
     return (
       <main
         {...props}
-        className={`layout-main${
-          (safeArea === 'auto' && ' autoSafeArea') ||
-          (safeArea === true && ' safeArea') ||
-          (safeArea === false && ' clearSafeArea') ||
-          ''
-        }${props.className ? ' ' + props.className : ''}`}
+        className={`layout-main${SafeArea.getSafeAreaClassName(safeArea)}${
+          props.className ? ' ' + props.className : ''
+        }`}
         ref={rootRef}
         onTouchStart={onTopRefresh ? handleTouchStart : undefined}
         onTouchMove={onTopRefresh ? handleTouchMove : undefined}

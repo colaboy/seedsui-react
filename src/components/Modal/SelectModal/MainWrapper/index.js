@@ -2,6 +2,14 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import { createPortal } from 'react-dom'
 import Head from './Head'
 
+// 内库使用-start
+import SafeArea from './../../../SafeArea'
+// 内库使用-end
+
+/* 测试使用-start
+import { SafeArea } from 'seedsui-react'
+测试使用-end */
+
 // MainWrapper
 const MainWrapper = forwardRef(
   (
@@ -75,12 +83,9 @@ const MainWrapper = forwardRef(
           data-animation={animation}
           onClick={(e) => e.stopPropagation()}
           {...props}
-          className={`popup-animation modal-selectmodal${
-            (safeArea === 'auto' && ' autoSafeArea') ||
-            (safeArea === true && ' safeArea') ||
-            (safeArea === false && ' clearSafeArea') ||
-            ''
-          }${props.className ? ' ' + props.className : ''}${visible ? ' active' : ''}`}
+          className={`popup-animation modal-selectmodal${SafeArea.getSafeAreaClassName(safeArea)}${
+            props.className ? ' ' + props.className : ''
+          }${visible ? ' active' : ''}`}
         >
           {/* 头 */}
           <Head
