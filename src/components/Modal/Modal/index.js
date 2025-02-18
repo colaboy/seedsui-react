@@ -1,10 +1,10 @@
 import React, { useImperativeHandle, useRef, forwardRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import getClassNameByAnimation from './api/getClassNameByAnimation'
+import getClassNameByAnimation from './../api/getClassNameByAnimation'
 
 // 内库使用-start
-import SafeArea from './../SafeArea'
-import Tooltip from './../Tooltip'
+import SafeArea from './../../SafeArea'
+import Tooltip from './../../Tooltip'
 // 内库使用-end
 
 /* 测试使用-start
