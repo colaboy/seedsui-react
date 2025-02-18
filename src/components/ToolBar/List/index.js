@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import closeAllDropdown from './../utils/closeAllDropdown'
 
-import Modal from './Modal'
+import Combo from './Combo'
 import List from './List'
 
 // 列表下拉
@@ -23,15 +22,6 @@ function ListBar({
     // eslint-disable-next-line
   }, [])
 
-  // 伸展时, 若已经展开了dropdown, 则隐藏
-  function handleBeforeOpen() {
-    if (document.querySelector('.dropdown-mask.active')) {
-      closeAllDropdown()
-      return false
-    }
-    return true
-  }
-
   // 修改
   async function handleChange(newValue) {
     if (typeof onBeforeChange === 'function') {
@@ -42,19 +32,8 @@ function ListBar({
     close()
   }
 
-  // 隐藏
-  function close(dRef) {
-    if (!dRef) {
-      // eslint-disable-next-line
-      dRef = dropdownRef
-    }
-    if (dRef?.current?.close) {
-      dRef.current.close()
-    }
-  }
-
   return (
-    <Modal
+    <Combo
       offset={{
         top: 6
       }}
@@ -66,11 +45,22 @@ function ListBar({
       }}
       title={title || value?.[0]?.name}
       {...props}
+      onVisibleChange={(visible) => {
+        props?.onBeforeChange && props?.onBeforeChange?.(visible)
+
+        let toolbarDOM = dropdownRef.current?.comboDOM?.closest?.('.toolbar')
+        if (!toolbarDOM) return
+
+        if (visible) {
+          toolbarDOM.classList.add('active')
+        } else {
+          toolbarDOM.classList.remove('active')
+        }
+      }}
       ref={dropdownRef}
-      onBeforeOpen={handleBeforeOpen}
     >
       <List value={value} list={list} onChange={handleChange} />
-    </Modal>
+    </Combo>
   )
 }
 export default ListBar

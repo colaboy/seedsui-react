@@ -36,12 +36,12 @@ const Modal = forwardRef(
     // eslint-disable-next-line
     if (!maskProps) maskProps = {}
 
-    const rootRef = useRef(null)
+    const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => {
-          return rootRef.current
+        modalDOM: modalRef.current,
+        getModalDOM: () => {
+          return modalRef.current
         }
       }
     })
@@ -54,7 +54,7 @@ const Modal = forwardRef(
 
     // 受控显隐时, 需要更新容器位置
     function updateModalPosition() {
-      let maskDOM = rootRef?.current
+      let maskDOM = modalRef?.current
 
       // 参考元素
       let referenceDOM =
@@ -103,7 +103,7 @@ const Modal = forwardRef(
           maskProps?.className ? ' ' + maskProps.className : ''
         }${getActiveClass()}`}
         onClick={handleMaskClick}
-        ref={rootRef}
+        ref={modalRef}
       >
         <div
           {...props}

@@ -35,15 +35,9 @@ const Modal = forwardRef(
     const mainRef = useRef(null)
 
     useImperativeHandle(ref, () => {
-      const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = mainRef?.current || {}
       return {
-        rootDOM: modalRef?.current?.rootDOM,
-        getRootDOM: () => modalRef?.current?.rootDOM,
-
-        mainDOM: mainDOM,
-        getMainDOM: getMainDOM,
-
-        ...otherMainRef
+        ...modalRef?.current,
+        ...mainRef?.current
       }
     })
 

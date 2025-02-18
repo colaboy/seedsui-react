@@ -28,6 +28,18 @@ const DateRangeBar = ({ title, ranges, ...props }, ref) => {
         selector: LocaleUtil.locale('快捷选择', 'noKey_0537a64d8786690887268a38e2adcee7')
       }}
       className={`toolbar-dropdown${active ? ' active' : ''}`}
+      onVisibleChange={(visible) => {
+        props?.onBeforeChange && props?.onBeforeChange?.(visible)
+
+        let toolbarDOM = ref.current?.comboDOM?.closest?.('.toolbar')
+        if (!toolbarDOM) return
+
+        if (visible) {
+          toolbarDOM.classList.add('active')
+        } else {
+          toolbarDOM.classList.remove('active')
+        }
+      }}
       // 自定义渲染
       combo={({ displayValue }) => {
         return (

@@ -56,8 +56,8 @@ const Main = forwardRef(
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: mainRef.current,
-        getRootDOM: () => mainRef.current,
+        mainDOM: mainRef.current,
+        getMainDOM: () => mainRef.current,
         // 当选择到叶子节点时，不触发onChange，允许用户手动点击确定提前获取最新的value
         // getValue: () => {
         //   return value

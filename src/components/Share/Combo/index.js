@@ -49,18 +49,12 @@ const Combo = (
   useImperativeHandle(ref, () => {
     return {
       ...modalRef.current,
-      rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
-      getRootDOM: () => {
-        // div
-        let rootDOM = comboRef?.current
-        // Input.Text
-        if (comboRef?.current?.getRootDOM) {
-          rootDOM = comboRef.current.getRootDOM()
-        }
-        return rootDOM
+      comboDOM: comboRef?.current,
+      getComboDOM: () => {
+        return comboRef?.current
       },
-      modalDOM: modalRef?.current?.rootDOM,
-      getModalDOM: modalRef?.current?.getRootDOM
+      modalDOM: modalRef?.current?.modalDOM,
+      getModalDOM: modalRef?.current?.getModalDOM
     }
   })
 

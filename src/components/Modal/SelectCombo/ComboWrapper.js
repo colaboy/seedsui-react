@@ -4,7 +4,7 @@ import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 const ChildrenWrapper = forwardRef(({ id, style, className, onClick, children }, ref) => {
   const rootRef = useRef(null)
 
-  // Expose
+  // Expose, As Input.Text expose
   useImperativeHandle(ref, () => {
     return {
       rootDOM: rootRef.current,

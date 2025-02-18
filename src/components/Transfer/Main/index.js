@@ -29,8 +29,8 @@ const Transfer = (
   // 暴露方法
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: mainRef.current,
-      getRootDOM: () => mainRef.current
+      mainDOM: mainRef.current,
+      getMainDOM: () => mainRef.current
     }
   })
 

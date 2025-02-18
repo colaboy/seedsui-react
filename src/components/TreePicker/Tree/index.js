@@ -61,8 +61,8 @@ function TreePicker(
   const treeRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: mainRef.current,
-      getRootDOM: () => mainRef.current,
+      mainDOM: mainRef.current,
+      getMainDOM: () => mainRef.current,
       instance: treeRef.current,
       search: search
     }

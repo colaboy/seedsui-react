@@ -17,8 +17,8 @@ const PickerMain = function (
   const mainRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: mainRef.current,
-      getRootDOM: () => mainRef.current,
+      mainDOM: mainRef.current,
+      getMainDOM: () => mainRef.current,
       getValue: () => {
         let multipleValue = mainRef?.current?.getValue?.()
         if (!multipleValue) {

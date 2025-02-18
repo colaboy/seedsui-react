@@ -97,18 +97,18 @@ const LocationCombo = forwardRef(
     onErrorRef.current = onError
 
     // 节点
-    const rootRef = useRef(null)
+    const comboRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef?.current?.getRootDOM ? rootRef.current.getRootDOM() : rootRef?.current,
-        getRootDOM: () => {
+        comboDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef?.current,
+        getComboDOM: () => {
           // div
-          let rootDOM = rootRef?.current
+          let comboDOM = comboRef?.current
           // Input.Text
-          if (rootRef?.current?.getRootDOM) {
-            rootDOM = rootRef.current.getRootDOM()
+          if (comboRef?.current?.getRootDOM) {
+            comboDOM = comboRef.current.getRootDOM()
           }
-          return rootDOM
+          return comboDOM
         }
       }
     })
@@ -376,7 +376,7 @@ const LocationCombo = forwardRef(
           className={`location-combo${props?.className ? props.className : ''}${
             locationStatus === '-1' ? ' positioning' : ''
           }`}
-          ref={rootRef}
+          ref={comboRef}
         />
         {/* 地图预览与选择 */}
         <ModalNode

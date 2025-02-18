@@ -7,18 +7,18 @@ import Thumbnail from './Thumbnail'
 
 // 照片视频预览
 const Edit = forwardRef(({ value, onDelete }, ref) => {
-  const rootRef = useRef(null)
+  const comboRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef?.current,
-      getRootDOM: () => {
-        return rootRef?.current
+      comboDOM: comboRef?.current,
+      getComboDOM: () => {
+        return comboRef?.current
       }
     }
   })
 
   return (
-    <div className="signature-edit-container" ref={rootRef}>
+    <div className="signature-edit-container" ref={comboRef}>
       {/* 缩略图 */}
       <Thumbnail src={value} />
 

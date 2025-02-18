@@ -50,8 +50,8 @@ const Modal = forwardRef(
     // 节点
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
+        modalDOM: rootRef.current,
+        getModalDOM: () => rootRef.current
       }
     })
 

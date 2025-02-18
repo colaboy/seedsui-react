@@ -32,28 +32,9 @@ const FilterCombo = forwardRef(
     const comboRef = useRef(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
-      const {
-        rootDOM: modalDOM,
-        getRootDOM: getModalDOM,
-        ...otherModalRef
-      } = modalRef?.current || {}
-
       return {
-        rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
-        getRootDOM: () => {
-          // div
-          let rootDOM = comboRef?.current
-          // Input.Text
-          if (comboRef?.current?.getRootDOM) {
-            rootDOM = comboRef.current.getRootDOM()
-          }
-          return rootDOM
-        },
-
-        modalDOM: modalDOM,
-        getModalDOM: getModalDOM,
-        ...otherModalRef,
-
+        ...comboRef?.current,
+        ...modalRef?.current,
         close: () => {
           setVisible(false)
         },

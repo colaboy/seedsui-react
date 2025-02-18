@@ -30,13 +30,6 @@ export default () => {
           // }}
           // min={new Date('2023-08-08')}
           // max={new Date()}
-          clear={({ clearable, triggerClear }) => {
-            return clearable ? (
-              <i className="input-clear" onClick={triggerClear} />
-            ) : (
-              <i className="right-icon shape-arrow-right sm"></i>
-            )
-          }}
           rangeId={rangeId}
           value={value}
           // onError={(error) => {

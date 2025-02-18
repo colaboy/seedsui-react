@@ -31,8 +31,11 @@ function WeekMain(
   // Expose tools
   const weekMainRef = useRef(null)
   useImperativeHandle(ref, () => {
+    const { rootDOM: mainDOM, getRootDOM: getMainDOM, ...otherMainRef } = weekMainRef?.current || {}
     return {
-      ...weekMainRef.current,
+      mainDOM: mainDOM,
+      getMainDOM: getMainDOM,
+      ...otherMainRef,
       // 获取标题
       getTitle: () => {
         let title = LocaleUtil.locale('选择日期', 'SeedsUI_date_modal_title')

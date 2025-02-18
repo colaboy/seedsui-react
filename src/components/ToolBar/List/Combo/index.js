@@ -8,7 +8,7 @@ import Modal from './../../../Modal'
 import { Modal } from 'seedsui-react'
 测试使用-end */
 
-const ModalWrapper = forwardRef(
+const Combo = forwardRef(
   (
     {
       // Modal
@@ -23,12 +23,12 @@ const ModalWrapper = forwardRef(
     },
     ref
   ) => {
-    const rootRef = useRef(null)
+    const comboRef = useRef(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current,
+        comboDOM: comboRef.current,
+        getComboDOM: () => comboRef.current,
         modalDOM: modalRef?.current?.modalDOM,
         getModalDOM: modalRef?.current?.getRootDOM,
         close: () => {
@@ -61,7 +61,7 @@ const ModalWrapper = forwardRef(
     return (
       <>
         <div
-          ref={rootRef}
+          ref={comboRef}
           {...props}
           className={`toolbar-dropdown${visible ? ' active' : ''}${
             props?.className ? ' ' + props.className : ''
@@ -73,7 +73,7 @@ const ModalWrapper = forwardRef(
         </div>
         <Modal
           ref={modalRef}
-          referenceDOM={rootRef.current}
+          referenceDOM={comboRef.current}
           {...maskProps}
           offset={offset}
           visible={visible}
@@ -88,4 +88,4 @@ const ModalWrapper = forwardRef(
   }
 )
 
-export default ModalWrapper
+export default Combo

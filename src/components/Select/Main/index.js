@@ -35,8 +35,8 @@ const Main = forwardRef(
     const mainRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: mainRef.current,
-        getRootDOM: () => mainRef.current
+        mainDOM: mainRef.current,
+        getMainDOM: () => mainRef.current
       }
     })
 

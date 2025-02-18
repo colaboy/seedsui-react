@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 
-const Space = forwardRef(({ size, ...props }, ref) => {
+const Space = forwardRef(({ size, children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   // Space

@@ -30,20 +30,20 @@ const Modal = forwardRef(
     },
     ref
   ) => {
-    // 节点
-    const rootRef = useRef(null)
+    // Expose
+    const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: rootRef?.current?.rootDOM || rootRef?.current,
-        getRootDOM: rootRef?.current?.getRootDOM
-          ? rootRef?.current?.getRootDOM
-          : () => rootRef.current
+        modalDOM: modalRef?.current?.rootDOM || modalRef?.current,
+        getModalDOM: modalRef?.current?.getRootDOM
+          ? modalRef?.current?.getRootDOM
+          : () => modalRef.current
       }
     })
 
     let Node = (
       <Layout
-        ref={rootRef}
+        ref={modalRef}
         safeArea
         // 显示在其它page前面渲染
         style={{ zIndex: document.querySelectorAll('layout').length + 5 }}

@@ -39,8 +39,8 @@ function MultipleMain(
   const mainRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: mainRef.current,
-      getRootDOM: () => mainRef.current,
+      mainDOM: mainRef.current,
+      getMainDOM: () => mainRef.current,
       // 获取标题
       getTitle: () => {
         let title = LocaleUtil.locale('选择日期', 'SeedsUI_date_modal_title')

@@ -1,18 +1,18 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 
 const ComboWrapper = forwardRef(({ id, style, className, onClick, children }, ref) => {
-  const rootRef = useRef(null)
+  const comboRef = useRef(null)
 
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
+      comboDOM: comboRef.current,
+      getComboDOM: () => comboRef.current
     }
   })
 
   return (
-    <div id={id} style={style} className={className} onClick={onClick} ref={rootRef}>
+    <div id={id} style={style} className={className} onClick={onClick} ref={comboRef}>
       {children}
     </div>
   )

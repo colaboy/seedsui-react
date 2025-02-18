@@ -22,8 +22,7 @@ const Menu = (
   const rootRef = useRef(null)
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef?.current?.current,
-      getRootDOM: () => rootRef?.current?.current,
+      ...rootRef?.current,
       search: (newKeyword) => {
         setKeyword(newKeyword)
       }

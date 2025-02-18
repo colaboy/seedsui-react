@@ -50,8 +50,8 @@ const Main = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        rootDOM: mainRef?.current?.rootDOM,
-        getRootDOM: mainRef?.current?.getRootDOM,
+        mainDOM: mainRef?.current?.rootDOM,
+        getMainDOM: mainRef?.current?.getRootDOM,
         // 重新加载
         reload: init,
         // 获取设置列表

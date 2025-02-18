@@ -19,13 +19,13 @@ import { LocaleUtil, Bridge, Device, Result } from 'seedsui-react'
 
 // 分享
 function Main({ className, style, shareTo, ...props }, ref) {
-  const rootRef = useRef(null)
+  const mainRef = useRef(null)
 
   // Expose
   useImperativeHandle(ref, () => {
     return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current,
+      mainDOM: mainRef.current,
+      getMainDOM: () => mainRef.current,
       support: (externalShareTo) => {
         return support(externalShareTo || shareTo)
       }
@@ -56,7 +56,7 @@ function Main({ className, style, shareTo, ...props }, ref) {
     <div
       className={`share${className ? ' ' + className : ''}${isSupport ? '' : ' error'}`}
       style={style}
-      ref={rootRef}
+      ref={mainRef}
     >
       {isSupport ? (
         getShareNodes()

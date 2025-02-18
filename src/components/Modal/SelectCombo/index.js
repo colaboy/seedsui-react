@@ -6,7 +6,7 @@ import React, {
   useState,
   useEffect
 } from 'react'
-import getDisplayValue from './getDisplayValue'
+import getDisplayValue from './displayValueFormatter'
 
 import Input from './../../Input'
 
@@ -52,34 +52,23 @@ const Combo = forwardRef(
     const comboRef = useRef(null)
     const modalRef = useRef(null)
     useImperativeHandle(ref, () => {
-      const {
-        rootDOM: modalDOM,
-        getRootDOM: getModalDOM,
-        ...otherModalRef
-      } = modalRef?.current || {}
-
       return {
         // 显示文本
         displayValue: displayValue,
         getDisplayValue: (newValue) => {
           return displayValue
         },
-
-        rootDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
-        getRootDOM: () => {
+        comboDOM: comboRef?.current?.getRootDOM ? comboRef.current.getRootDOM() : comboRef.current,
+        getComboDOM: () => {
           // div
-          let rootDOM = comboRef?.current
+          let comboDOM = comboRef?.current
           // Input.Text
           if (comboRef?.current?.getRootDOM) {
-            rootDOM = comboRef.current.getRootDOM()
+            comboDOM = comboRef.current.getRootDOM()
           }
-          return rootDOM
+          return comboDOM
         },
-
-        modalDOM: modalDOM,
-        getModalDOM: getModalDOM,
-        ...otherModalRef,
-
+        ...modalRef?.current,
         close: () => {
           setVisible(false)
         },
