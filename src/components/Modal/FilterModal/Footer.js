@@ -16,7 +16,7 @@ export default function FilterContent({ onConfig, onReset, onOk }) {
     <Layout.Footer className="modal-filtermodal-footer">
       {onConfig && (
         <div className="modal-filtermodal-footer-config" onClick={onConfig}>
-          <div className="modal-filtermodal-footer-config-icon"></div>
+          <i className="modal-filtermodal-footer-config-icon" />
           <div className="modal-filtermodal-footer-config-name">{LocaleUtil.locale('设置')}</div>
         </div>
       )}

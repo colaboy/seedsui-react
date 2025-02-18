@@ -3,11 +3,13 @@ import Modal from './../Modal'
 import Footer from './Footer'
 
 // 内库使用-start
+import LocaleUtil from './../../../utils/LocaleUtil'
 import Layout from './../../Layout'
+import NavBar from './../../NavBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { Layout } from 'seedsui-react'
+import { LocaleUtil, Layout, NavBar } from 'seedsui-react'
 测试使用-start */
 
 // 侧边查询
@@ -30,6 +32,13 @@ function FilterModal(
       }}
     >
       <Layout className="full modal-filtermodal-layout">
+        <Layout.Header>
+          <NavBar>
+            <NavBar.Button onClick={onCancel}>{LocaleUtil.locale('取消')}</NavBar.Button>
+            <NavBar.Title>{LocaleUtil.locale('筛选')}</NavBar.Title>
+            <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
+          </NavBar>
+        </Layout.Header>
         <Layout.Main>{children}</Layout.Main>
         {/* 底部 */}
         <Footer onReset={onReset} onOk={onOk} onConfig={onConfig} />
