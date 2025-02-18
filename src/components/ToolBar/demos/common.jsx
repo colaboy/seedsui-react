@@ -56,11 +56,8 @@ export default () => {
         </ToolBar>
 
         <Divider>SearchBar</Divider>
-        <ToolBar className="bg-white">
+        <ToolBar className="searchbar">
           <ToolBar.Search
-            inputProps={{
-              style: { background: 'var(--app-background-color)' }
-            }}
             value={search}
             onChange={setSearch}
             onSearch={(keyword) => {
