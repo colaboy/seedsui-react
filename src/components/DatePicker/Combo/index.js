@@ -4,12 +4,12 @@ import Modal from './../Modal'
 
 // 内库使用-start
 import DateUtil from './../../../utils/DateUtil'
-import Combo from './../../Modal/Combo'
+import Combo from './../../Modal/SelectCombo'
 // 内库使用-end
 
 /* 测试使用-start
 import { DateUtil, Modal as BaseModal } from 'seedsui-react'
-const Combo = BaseModal.Combo
+const Combo = BaseModal.SelectCombo
 测试使用-end */
 
 // DatePicker

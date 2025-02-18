@@ -4,12 +4,12 @@ import { updateValueType, testEditableOptions } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start
-import Combo from './../../Modal/Combo'
+import Combo from './../../Modal/SelectCombo'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const Combo = Modal.Combo
+const Combo = Modal.SelectCombo
 测试使用-end */
 
 // 级联选择

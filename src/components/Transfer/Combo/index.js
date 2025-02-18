@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react'
 import Modal from './../Modal'
 
 // 内库使用-start
-import Combo from './../../Modal/Combo'
+import Combo from './../../Modal/SelectCombo'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const Combo = Modal.Combo
+const Combo = Modal.SelectCombo
 测试使用-end */
 
 // Transfer

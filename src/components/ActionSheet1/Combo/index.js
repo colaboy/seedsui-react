@@ -2,12 +2,12 @@ import React, { forwardRef } from 'react'
 import Modal from './../Modal'
 
 // 内库使用-start
-import Combo from './../../Modal/Combo'
+import Combo from './../../Modal/SelectCombo'
 // 内库使用-end
 
 /* 测试使用-start
 import { BaseModal } from 'seedsui-react'
-const Combo = BaseModal.Combo
+const Combo = BaseModal.SelectCombo
 测试使用-end */
 
 // 卡片选择
