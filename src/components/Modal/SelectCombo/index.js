@@ -33,7 +33,6 @@ const Combo = forwardRef(
       disabled,
       onClick,
       onBeforeOpen,
-      onBeforeClose,
       combo,
       onVisibleChange,
 
@@ -98,10 +97,6 @@ const Combo = forwardRef(
       if (readOnly || disabled) return
       if (!visible && typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
-        if (goOn === false) return
-      }
-      if (visible && typeof onBeforeClose === 'function') {
-        let goOn = await onBeforeClose()
         if (goOn === false) return
       }
       if (typeof onClick === 'function') {

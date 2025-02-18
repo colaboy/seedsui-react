@@ -17,7 +17,6 @@ const ModalWrapper = forwardRef(
       // Title
       title = '',
       onBeforeOpen,
-      onBeforeClose,
       onVisibleChange,
       children,
       ...props
@@ -53,10 +52,6 @@ const ModalWrapper = forwardRef(
     async function handleClick(e) {
       if (!visible && typeof onBeforeOpen === 'function') {
         let goOn = await onBeforeOpen()
-        if (goOn === false) return
-      }
-      if (visible && typeof onBeforeClose === 'function') {
-        let goOn = await onBeforeClose()
         if (goOn === false) return
       }
 

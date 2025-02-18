@@ -16,6 +16,10 @@ title: Modal
 
 <code src="./demos/Modal/index.jsx"></code>
 
+### Modal.FilterCombo
+
+<code src="./demos/FilterCombo/index.jsx"></code>
+
 ### Modal.FilterModal
 
 <code src="./demos/FilterModal/index.jsx"></code>

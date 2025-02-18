@@ -303,7 +303,7 @@ const Calendar = forwardRef(
       <div
         ref={rootRef}
         {...props}
-        className={`calendar ${props?.className ? ' ' + props.className : ''}${
+        className={`calendar${props?.className ? ' ' + props.className : ''}${
           selectionMode ? ` calendar-mode-${selectionMode}` : ''
         }`}
       >

@@ -2,6 +2,7 @@ import Modal from './Modal'
 import SelectCombo from './SelectCombo'
 import SelectModal from './SelectModal'
 
+import FilterCombo from './FilterCombo'
 import FilterModal from './FilterModal'
 
 import alert from './api/alert'
@@ -14,6 +15,7 @@ Modal.SelectCombo = SelectCombo
 Modal.SelectModal = SelectModal
 
 // Filter
+Modal.FilterCombo = FilterCombo
 Modal.FilterModal = FilterModal
 
 // Js Api
