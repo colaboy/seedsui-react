@@ -27,7 +27,7 @@ const Tags = ({
   return (
     <>
       <div
-        className={`modal-combo-tags${className ? ' ' + className : ''}`}
+        className={`modal-selectcombo-tags${className ? ' ' + className : ''}`}
         style={style}
         onClick={onAdd}
       >
@@ -35,7 +35,7 @@ const Tags = ({
         {/* 主体 */}
         <div
           {...contentProps}
-          className={`modal-combo-tags-content${
+          className={`modal-selectcombo-tags-content${
             contentProps?.className ? ' ' + contentProps.className : ''
           }`}
         >
@@ -44,7 +44,7 @@ const Tags = ({
                 return (
                   <div
                     key={index}
-                    className="modal-combo-tags-item"
+                    className="modal-selectcombo-tags-item"
                     onClick={
                       readOnly || disabled
                         ? undefined
@@ -57,7 +57,7 @@ const Tags = ({
                     {item.name}
                     {readOnly || disabled || !allowClear ? null : (
                       <i
-                        className="modal-combo-tags-item-clear"
+                        className="modal-selectcombo-tags-item-clear"
                         onClick={(e) => {
                           onDelete && onDelete(item)
                           e.stopPropagation()
