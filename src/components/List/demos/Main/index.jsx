@@ -10,7 +10,7 @@ export default () => {
       <List.Main
         pagination
         value={value}
-        list={list}
+        list={'错误'}
         onChange={(value) => {
           console.log(value)
           setValue(value)

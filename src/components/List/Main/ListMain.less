@@ -1,4 +1,7 @@
 .list-main {
+  display: flex;
+  flex-direction: column;
+  // 列表每项的间距
   .list > .list-item {
     margin: 0 12px;
   }
@@ -15,7 +18,8 @@
 
 // Main message
 .list-result-message {
-  &:extend(.result.full all);
+  display: flex;
+  flex: 1;
 }
 .list-result-message-button {
   &:extend(.button.primary all);

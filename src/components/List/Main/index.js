@@ -76,9 +76,9 @@ const Main = forwardRef(
     // // 顶部刷新和初始化
     async function init() {
       let newList = null
-      if (Array.isArray(externalList)) {
+      if (externalList) {
         newList = externalList
-      } else {
+      } else if (typeof loadList === 'function') {
         pageRef.current = 1
         newList = await loadList({ page: pageRef.current, action: 'load' })
       }
@@ -99,7 +99,7 @@ const Main = forwardRef(
       // Failed to get first page list
       else {
         setList(null)
-        setMainStatus('error')
+        setMainStatus(newList && typeof newList === 'string' ? newList : 'error')
       }
 
       return true
@@ -127,7 +127,7 @@ const Main = forwardRef(
       // Failed to get the next page list
       else {
         pageRef.current--
-        setBottomStatus('error')
+        setBottomStatus(newList && typeof newList === 'string' ? newList : 'error')
       }
 
       return true

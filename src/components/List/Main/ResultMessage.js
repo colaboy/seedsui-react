@@ -10,25 +10,36 @@ import Button from './../../Button'
 import { LocaleUtil, Result, Button } from 'seedsui-react'
 测试使用-end */
 
+// 暂无数据或者错误
 const ResultMessage = ({ type, onRetry }) => {
+  function getErrMsg() {
+    if (type === 'noData') {
+      return LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
+    }
+    if (type === 'error') {
+      return LocaleUtil.locale(
+        '获取数据失败，请稍后再试！',
+        'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
+      )
+    }
+
+    // Custom error message
+    return type
+  }
+
+  if (!type) return null
+
   return (
     <Result
       className="list-result-message"
       image={`${
-        type === 'error'
-          ? '//res.waiqin365.com/d/waiqin365_h5/components/error.png'
-          : '//res.waiqin365.com/d/waiqin365_h5/components/empty.png'
+        type === 'noData'
+          ? '//res.waiqin365.com/d/waiqin365_h5/components/empty.png'
+          : '//res.waiqin365.com/d/waiqin365_h5/components/error.png'
       }`}
-      title={`${
-        type === 'error'
-          ? LocaleUtil.locale(
-              '获取数据失败，请稍后再试！',
-              'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
-            )
-          : LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
-      }`}
+      title={getErrMsg()}
     >
-      {type === 'error' && (
+      {type !== 'noData' && (
         <Button className="list-result-message-button" onClick={onRetry}>
           {LocaleUtil.locale('重试', 'SeedsUI_retry')}
         </Button>
