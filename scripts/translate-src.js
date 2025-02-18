@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
-const translateFolder = require('./../src/node-utils/translateFolder')
-const writeFileSync = require('./../src/node-utils/writeFileSync')
+const translateFolder = require('./utils/translateFolder')
+const writeFileSync = require('./utils/writeFileSync')
 
 async function translateSrc() {
   const folderPath = path.resolve(__dirname, './../src')
