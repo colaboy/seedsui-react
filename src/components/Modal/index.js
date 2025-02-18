@@ -2,14 +2,19 @@ import Modal from './Modal'
 import SelectCombo from './SelectCombo'
 import SelectModal from './SelectModal'
 
+import FilterModal from './FilterModal'
+
 import alert from './api/alert'
 import confirm from './api/confirm'
 import destroy from './api/destroy'
 import getClassNameByAnimation from './api/getClassNameByAnimation'
 
-// Select Combo
+// Select
 Modal.SelectCombo = SelectCombo
 Modal.SelectModal = SelectModal
+
+// Filter
+Modal.FilterModal = FilterModal
 
 // Js Api
 Modal.alert = alert

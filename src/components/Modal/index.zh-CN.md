@@ -16,6 +16,10 @@ title: Modal
 
 <code src="./demos/Modal/index.jsx"></code>
 
+### Modal.FilterModal
+
+<code src="./demos/FilterModal/index.jsx"></code>
+
 ### Modal.alert
 
 <code src="./demos/alert/index.jsx"></code>
