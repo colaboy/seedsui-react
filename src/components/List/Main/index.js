@@ -32,8 +32,8 @@ const Main = forwardRef(
       pagination,
 
       // List config
-      header,
-      footer,
+      prepend,
+      append,
       wrapper,
       layout,
       checkbox,
@@ -127,7 +127,7 @@ const Main = forwardRef(
       // Failed to get the next page list
       else {
         pageRef.current--
-        setBottomStatus(newList && typeof newList === 'string' ? newList : 'error')
+        setBottomStatus(nextList && typeof nextList === 'string' ? nextList : 'error')
       }
 
       return true
@@ -160,7 +160,7 @@ const Main = forwardRef(
         }}
       >
         {/* 头部 */}
-        {typeof header === 'function' ? header({ list, value, onChange, pagination }) : null}
+        {typeof prepend === 'function' ? prepend({ list, value, onChange, pagination }) : null}
 
         {/* 列表 */}
         {Array.isArray(list) && list.length && (
@@ -179,7 +179,7 @@ const Main = forwardRef(
         )}
 
         {/* 底部 */}
-        {typeof footer === 'function' ? footer({ list, value, onChange, pagination }) : null}
+        {typeof append === 'function' ? append({ list, value, onChange, pagination }) : null}
 
         {/* 底部错误提示 */}
         {pagination && typeof loadList === 'function' && (

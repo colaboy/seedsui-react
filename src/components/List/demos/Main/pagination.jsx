@@ -13,7 +13,7 @@ export default () => {
         checkbox
         value={value}
         loadList={({ page, action }) => {
-          console.log({ page, action })
+          console.log('bottom load:', { page, action })
           return new Promise((resolve) => {
             // 第一页就报错
             // console.log('获取数据失败')
