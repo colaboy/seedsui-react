@@ -18,9 +18,9 @@ const Ok = ({ disabled, total, text, onClick, ...props }) => {
   return (
     <div
       {...props}
-      className={`modal-picker-header-button-ok${props.className ? ' ' + props.className : ''}${
-        disabled === true ? ' disabled' : ''
-      }`}
+      className={`modal-selectmodal-header-button-ok${
+        props.className ? ' ' + props.className : ''
+      }${disabled === true ? ' disabled' : ''}`}
       onClick={handleOkClick}
     >
       {text || LocaleUtil.locale('确定', 'SeedsUI_ok')}

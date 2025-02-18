@@ -1,8 +1,8 @@
 // picker遮罩, 基于.mask
-.modal-picker-mask {
+.modal-selectmodal-mask {
 }
 
-.modal-picker {
+.modal-selectmodal {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,7 +23,7 @@
   // }
 }
 
-.modal-picker-header {
+.modal-selectmodal-header {
   .flex;
   .flex-middle;
   position: relative;
@@ -34,7 +34,7 @@
 }
 
 // 按钮
-.modal-picker-header-button {
+.modal-selectmodal-header-button {
   display: flex;
   align-items: center;
   height: 32px;
@@ -44,8 +44,8 @@
   }
 }
 
-.modal-picker-header-button-ok,
-.modal-picker-header-button-cancel {
+.modal-selectmodal-header-button-ok,
+.modal-selectmodal-header-button-cancel {
   display: block;
   height: 32px;
 
@@ -56,13 +56,13 @@
     pointer-events: none;
   }
 }
-.modal-picker-header-button-ok {
+.modal-selectmodal-header-button-ok {
   color: var(--primary);
 }
-.modal-picker-header-button-cancel {
+.modal-selectmodal-header-button-cancel {
   color: #62666c;
 }
-.modal-picker-header-button-close {
+.modal-selectmodal-header-button-close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +72,7 @@
   border-radius: 100%;
 }
 
-.modal-picker-icon-close {
+.modal-selectmodal-icon-close {
   font-family: 'seeds-icons';
   text-align: center;
   font-size: 12px;
@@ -82,7 +82,7 @@
   &:extend(.seeds-icon-close-fill all);
   color: #62666c;
 }
-.modal-picker-header-title {
+.modal-selectmodal-header-title {
   .text-center;
   font-size: 16px;
   left: 50px;
@@ -95,7 +95,7 @@
 }
 
 // 主体部分
-.modal-picker-main {
+.modal-selectmodal-main {
   position: relative;
   overflow: auto;
   .flex-1;
@@ -110,17 +110,17 @@
 }
 
 // Adapt to the safe area
-.modal-picker.safeArea {
+.modal-selectmodal.safeArea {
   &:extend(.safe-area all);
   &:extend(.safe-area.border-bottom all);
 }
-.modal-picker.clearSafeArea {
+.modal-selectmodal.clearSafeArea {
   &:extend(.clear-safe-area all);
   &:extend(.clear-safe-area.border-bottom all);
 }
 
 .auto-safe-area-children {
-  .modal-picker.autoSafeArea {
+  .modal-selectmodal.autoSafeArea {
     &:extend(.safe-area all);
     &:extend(.safe-area.border-bottom all);
   }

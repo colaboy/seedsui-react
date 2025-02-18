@@ -5,7 +5,7 @@ const Title = ({ title, props }) => {
   return (
     <div
       {...props}
-      className={`modal-picker-header-title${props?.className ? ' ' + props?.className : ''}`}
+      className={`modal-selectmodal-header-title${props?.className ? ' ' + props?.className : ''}`}
     >
       {title}
     </div>
