@@ -2,8 +2,8 @@ import React, { forwardRef, useRef, useImperativeHandle, useEffect } from 'react
 import { createPortal } from 'react-dom'
 import Head from './Head'
 
-// Picker
-const Picker = forwardRef(
+// MainWrapper
+const MainWrapper = forwardRef(
   (
     {
       safeArea,
@@ -106,4 +106,4 @@ const Picker = forwardRef(
   }
 )
 
-export default Picker
+export default MainWrapper

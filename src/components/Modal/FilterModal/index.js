@@ -14,7 +14,18 @@ import { LocaleUtil, Layout, NavBar } from 'seedsui-react'
 
 // 侧边查询
 function FilterModal(
-  { visible, onVisibleChange, onOk, onCancel, onReset, onConfig, children, ...props },
+  {
+    safeArea,
+
+    // Modal fixed properties
+    visible,
+    onVisibleChange,
+    onOk,
+    onReset,
+    onConfig,
+    children,
+    ...props
+  },
   ref
 ) {
   return (
@@ -25,16 +36,18 @@ function FilterModal(
       {...props}
       className={`modal-filtermodal${props?.className ? ' ' + props.className : ''}`}
       visible={visible}
-      onVisibleChange={(currentVisible) => {
-        if (!currentVisible) {
-          onCancel && onCancel()
-        }
-      }}
+      onVisibleChange={onVisibleChange}
     >
       <Layout className="full modal-filtermodal-layout">
         <Layout.Header>
           <NavBar>
-            <NavBar.Button onClick={onCancel}>{LocaleUtil.locale('取消')}</NavBar.Button>
+            <NavBar.Button
+              onClick={() => {
+                onVisibleChange && onVisibleChange(false)
+              }}
+            >
+              {LocaleUtil.locale('取消')}
+            </NavBar.Button>
             <NavBar.Title>{LocaleUtil.locale('筛选')}</NavBar.Title>
             <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
           </NavBar>

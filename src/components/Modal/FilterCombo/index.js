@@ -116,7 +116,7 @@ const FilterCombo = forwardRef(
         <FilterModal
           ref={modalRef}
           {...modalProps}
-          onCancel={() => setVisible(false)}
+          onVisibleChange={setVisible}
           visible={visible}
         />
       </Fragment>
