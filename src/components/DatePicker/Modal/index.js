@@ -4,12 +4,12 @@ import formatValue from './formatValue'
 import Main from './../Main'
 
 // 内库使用-start
-import ModalPicker from './../../Modal/ModalPicker'
+import SelectModal from './../../Modal/SelectModal'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal as BaseModal } from 'seedsui-react'
-const ModalPicker = BaseModal.Picker
+const SelectModal = BaseModal.Picker
 测试使用-end */
 
 // Modal
@@ -43,7 +43,7 @@ const Modal = forwardRef(
     if (minuteStep) props.mainProps.minuteStep = minuteStep
 
     return (
-      <ModalPicker
+      <SelectModal
         ref={ref}
         {...props}
         main={props?.main || Main}

@@ -1,6 +1,6 @@
 import Modal from './Modal'
 import Combo from './Combo'
-import ModalPicker from './ModalPicker'
+import SelectModal from './SelectModal'
 
 import alert from './api/alert'
 import confirm from './api/confirm'
@@ -9,7 +9,7 @@ import getClassNameByAnimation from './api/getClassNameByAnimation'
 
 // Components
 Modal.Combo = Combo
-Modal.ModalPicker = ModalPicker
+Modal.SelectModal = SelectModal
 
 // Js Api
 Modal.alert = alert

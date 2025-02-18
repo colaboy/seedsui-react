@@ -6,12 +6,12 @@ import matchRangeId from './matchRangeId'
 import RangeMain from './../RangeMain'
 
 // 内库使用-start
-import ModalPicker from './../../Modal/ModalPicker'
+import SelectModal from './../../Modal/SelectModal'
 // 内库使用-end
 
 /* 测试使用-start
 import { Modal } from 'seedsui-react'
-const ModalPicker = Modal.ModalPicker
+const SelectModal = Modal.SelectModal
 测试使用-end */
 
 // RangeModal
@@ -77,7 +77,7 @@ const RangeModal = forwardRef(
     })
 
     return (
-      <ModalPicker
+      <SelectModal
         ref={modalRef}
         {...props}
         main={props?.main || RangeMain}
