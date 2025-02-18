@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 
 // 内库使用-start
 import Button from './../../Button'
@@ -9,13 +9,11 @@ import { Button } from 'seedsui-react'
 测试使用-end */
 
 const ButtonBar = forwardRef(({ ...props }, ref) => {
-  const rootRef = useRef(null)
-
   return (
     <Button
       {...props}
       className={'toolbar-button' + (props.className ? ' ' + props.className : '')}
-      ref={rootRef}
+      ref={ref}
     />
   )
 })

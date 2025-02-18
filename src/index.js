@@ -15,6 +15,7 @@ if (packageJson?.version) {
 
 export { default as ActionSheet1 } from './components/ActionSheet1'
 export { default as Modal } from './components/Modal'
+export { default as NavBar } from './components/NavBar'
 export { default as Upload } from './components/Upload'
 export { default as Badge } from './components/Badge'
 export { default as Button } from './components/Button'
