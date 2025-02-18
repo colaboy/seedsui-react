@@ -18,7 +18,7 @@ const Url = forwardRef(({ onClick, type, ...props }, ref) => {
     Clipboard.copy(url, {
       success: () => {
         Toast.show({
-          content: LocaleUtil.locale('链接已复制到剪贴板', 'noKey_deb26c26fbaafab1dfa6c902a0ffad75')
+          content: LocaleUtil.locale('链接已复制到剪贴板', 'SeedsUI_link_copy_success')
         })
       },
       fail: () => {
@@ -28,12 +28,10 @@ const Url = forwardRef(({ onClick, type, ...props }, ref) => {
               zIndex: 100
             }
           },
-          title: LocaleUtil.locale('提示', 'noKey_02d9819ddaaaeb1b7b22b12608c7e5ca'),
+          title: LocaleUtil.locale('提示', 'SeedsUI_alert_title'),
           content:
-            LocaleUtil.locale(
-              '链接复制到剪贴板失败, 请长按复制',
-              'noKey_8c1958b63a87bd3e1fa1e550c058ffe1'
-            ) + `<br/>${url}`
+            LocaleUtil.locale('链接复制到剪贴板失败, 请长按复制', 'SeedsUI_link_copy_error') +
+            `<br/>${url}`
         })
       }
     })

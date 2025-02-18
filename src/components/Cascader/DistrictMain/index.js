@@ -245,7 +245,7 @@ const CascaderDistrictMain = forwardRef(
             ? list
             : LocaleUtil.locale(
                 'Incorrect parameter. type can only pass country, province, city, district, street',
-                'noKey_0ee104fe2ba4ebea6b0445097b3d4429'
+                'SeedsUI_cascader_incorrect_parameter'
               )
         }
         {...props}

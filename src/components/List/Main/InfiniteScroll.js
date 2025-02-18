@@ -19,10 +19,7 @@ const InfiniteScroll = ({ type }) => {
       return LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')
     }
     if (type === 'error') {
-      return LocaleUtil.locale(
-        '获取数据失败，请稍后再试！',
-        'noKey_f4ae45effbbfb4b71e6690bd1ce12904'
-      )
+      return LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error')
     }
     // Custom error message
     return type

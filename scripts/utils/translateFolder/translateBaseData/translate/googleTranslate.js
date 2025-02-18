@@ -1,6 +1,6 @@
 const google = require('@vitalets/google-translate-api')
 const HttpProxyAgent = require('http-proxy-agent')
-const languageMap = require('./../../../../utils/LocaleUtil/languageMap')
+const languageMap = require('./../../../../../src/utils/LocaleUtil/languageMap')
 
 // 翻译文本，支持的语言:https://cloud.google.com/translate/docs/languages
 module.exports = async function googleTranslate(text, config) {

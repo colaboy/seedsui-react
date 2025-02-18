@@ -24,8 +24,8 @@ const DateRangeBar = ({ title, ranges, ...props }, ref) => {
       style={{ height: 44 }}
       ranges={ranges}
       titles={{
-        custom: LocaleUtil.locale('自定义选择', 'noKey_3733ac33a1087df33ac8f3caa45d21f4'),
-        selector: LocaleUtil.locale('快捷选择', 'noKey_0537a64d8786690887268a38e2adcee7')
+        custom: LocaleUtil.locale('自定义选择', 'SeedsUI_date_range_custom_title'),
+        selector: LocaleUtil.locale('快捷选择', 'SeedsUI_date_range_selector_title')
       }}
       className={`toolbar-dropdown${active ? ' active' : ''}`}
       onVisibleChange={(visible) => {
@@ -47,7 +47,7 @@ const DateRangeBar = ({ title, ranges, ...props }, ref) => {
             <span className="toolbar-dropdown-title">
               {title ||
                 displayValue ||
-                LocaleUtil.locale('自定义区间', 'noKey_51024203e56c956c2ea5f50e61220f62')}
+                LocaleUtil.locale('自定义区间', 'SeedsUI_toolbar_date_range_default_display_value')}
             </span>
             <i className={`toolbar-dropdown-arrow`} />
           </>

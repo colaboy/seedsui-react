@@ -1,6 +1,6 @@
 const axios = require('axios')
 const chalk = require('chalk')
-const languageMap = require('./../../../../utils/LocaleUtil/languageMap')
+const languageMap = require('./../../../../../src/utils/LocaleUtil/languageMap')
 
 module.exports = async function bingTranslate(text, config) {
   const from = languageMap[config.from].translate.bing

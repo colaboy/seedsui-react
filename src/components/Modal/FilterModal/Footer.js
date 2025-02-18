@@ -17,7 +17,9 @@ export default function FilterContent({ onConfig, onReset, onOk }) {
       {onConfig && (
         <div className="modal-filtermodal-footer-config" onClick={onConfig}>
           <i className="modal-filtermodal-footer-config-icon" />
-          <div className="modal-filtermodal-footer-config-name">{LocaleUtil.locale('设置')}</div>
+          <div className="modal-filtermodal-footer-config-name">
+            {LocaleUtil.locale('设置', 'SeedsUI_config')}
+          </div>
         </div>
       )}
       {onReset && (
@@ -25,7 +27,7 @@ export default function FilterContent({ onConfig, onReset, onOk }) {
           className="modal-filtermodal-footer-button modal-filtermodal-footer-button-reset"
           onClick={onReset}
         >
-          {LocaleUtil.locale('重置', 'SeedsUI_cancel')}
+          {LocaleUtil.locale('重置', 'SeedsUI_reset')}
         </Button>
       )}
       {onOk && (

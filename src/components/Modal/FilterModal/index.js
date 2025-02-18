@@ -44,9 +44,9 @@ function FilterModal(
                 onVisibleChange && onVisibleChange(false)
               }}
             >
-              {LocaleUtil.locale('取消')}
+              {LocaleUtil.locale('取消', 'SeedsUI_cancel')}
             </NavBar.Button>
-            <NavBar.Title>{LocaleUtil.locale('筛选')}</NavBar.Title>
+            <NavBar.Title>{LocaleUtil.locale('筛选', 'SeedsUI_filter')}</NavBar.Title>
             <NavBar.Button>&nbsp;&nbsp;</NavBar.Button>
           </NavBar>
         </Layout.Header>

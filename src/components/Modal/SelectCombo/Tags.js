@@ -70,8 +70,7 @@ const Tags = ({
             : null}
           {(!Array.isArray(value) || !value?.length) && (
             <p className="color-placeholder" style={{ padding: '10px 0' }}>
-              {placeholder ||
-                LocaleUtil.locale('Please Select', 'noKey_3569a4e76b94b20ef0ab338fa87ec981')}
+              {placeholder || LocaleUtil.locale('Please Select', 'SeedsUI_select_placeholder')}
             </p>
           )}
         </div>
