@@ -3,16 +3,18 @@ import { createPortal } from 'react-dom'
 import getClassNameByAnimation from './api/getClassNameByAnimation'
 
 // 内库使用-start
+import SafeArea from './../SafeArea'
 import Tooltip from './../Tooltip'
 // 内库使用-end
 
 /* 测试使用-start
-import { Tooltip } from 'seedsui-react'
+import { SafeArea, Tooltip } from 'seedsui-react'
 测试使用-end */
 
 const Modal = forwardRef(
   (
     {
+      safeArea,
       portal,
       animation = 'zoom', // slideLeft | slideRight | slideUp | slideDown | zoom | fade
       // 自动调整位置
@@ -105,9 +107,9 @@ const Modal = forwardRef(
       >
         <div
           {...props}
-          className={`popup-animation modal${animationClassName ? ' ' + animationClassName : ''}${
-            props.className ? ' ' + props.className : ''
-          }${getActiveClass()}`}
+          className={`popup-animation modal${SafeArea.getSafeAreaClassName(safeArea)}${
+            animationClassName ? ' ' + animationClassName : ''
+          }${props.className ? ' ' + props.className : ''}${getActiveClass()}`}
           data-animation={animation}
           onClick={handleModalClick}
         >

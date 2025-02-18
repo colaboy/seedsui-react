@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
-import { Layout, Modal } from 'seedsui-react'
+import { Layout, Modal, SafeArea } from 'seedsui-react'
+
+SafeArea.autoSafeArea({ debug: true })
 
 export default () => {
   const referenceRef = useRef(null)
@@ -18,9 +20,10 @@ export default () => {
         </div>
         <Modal.FilterCombo
           modalProps={{
+            // safeArea: 'auto',
             children: (
               <div className="bg-white" style={{ height: '300px' }}>
-                Test
+                Modal Content
               </div>
             ),
             onConfig: () => {

@@ -15,8 +15,6 @@ import { LocaleUtil, Layout, NavBar } from 'seedsui-react'
 // 侧边查询
 function FilterModal(
   {
-    safeArea,
-
     // Modal fixed properties
     visible,
     onVisibleChange,
