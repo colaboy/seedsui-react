@@ -27,6 +27,7 @@ const CascaderModal = forwardRef(
       <SelectModal
         ref={ref}
         ok={null}
+        {...props}
         main={props?.main || Main}
         mainProps={{
           ...mainProps,

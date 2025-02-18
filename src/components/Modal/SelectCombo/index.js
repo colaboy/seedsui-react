@@ -232,7 +232,7 @@ const Combo = forwardRef(
             multiple={multiple}
             {...modalProps}
             onVisibleChange={setVisible}
-            visible={modalProps?.visible === undefined ? visible : modalProps.visible}
+            visible={visible}
           />
         )}
       </Fragment>
