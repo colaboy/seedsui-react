@@ -38,10 +38,6 @@ const Search = forwardRef(
       return {
         rootDOM: rootRef?.current,
         getRootDOM: () => rootRef?.current,
-        setValue: setValue,
-        getValue: () => {
-          return value
-        },
         collapse: collapseContainer,
         expand: expandContainer
       }

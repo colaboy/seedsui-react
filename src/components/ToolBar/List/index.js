@@ -29,7 +29,9 @@ function ListBar({
       if (!goOn) return
     }
     if (onChange) onChange(newValue)
-    close()
+
+    // 关闭下拉
+    dropdownRef.current?.close?.()
   }
 
   return (
