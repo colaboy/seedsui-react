@@ -8804,7 +8804,7 @@
     "zh_TW": "previewFile僅可在企業微信或APP中使用"
   },
   "onHistoryBack仅可在企业微信或APP中使用": {
-    "key": "SeedsUI_onHistory_back_prompt",
+    "key": "SeedsUI_onHistoryBack_prompt",
     "en_US": "onHistoryBack can only be used in WeCom or APP",
     "zh_HK": "onHistoryBack僅可在企業微信或APP中使用",
     "vi_VN": "onHistoryBack chỉ có thể được sử dụng trong WeCom hoặc APP",

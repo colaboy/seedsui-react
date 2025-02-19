@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImagea voi käyttää vain WeChat- tai APP-mobiilisovelluksessa",
   "SeedsUI_previewImage_prompt": "previewImagea voi käyttää vain WeChat- tai APP-mobiilisovelluksessa",
   "SeedsUI_previewFile_prompt": "previewFileä voi käyttää vain WeComissa tai APP:ssä",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBackia voidaan käyttää vain WeComissa tai APP: ssä",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBackia voidaan käyttää vain WeComissa tai APP: ssä",
   "SeedsUI_only_app_wechat": "Tämä ominaisuus on käytettävissä vain WeChatissa tai APP: ssä",
   "SeedsUI_scanCode_failed": "Koodin skannaus epäonnistui",
   "SeedsUI_try_again_later": "Yritä myöhemmin uudelleen",

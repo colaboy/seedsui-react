@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
   "SeedsUI_previewImage_prompt": "previewImage is féidir é a úsáid ach amháin ar WeChat soghluaiste nó APP",
   "SeedsUI_previewFile_prompt": "ní féidir previewFile a úsáid ach amháin i WeCom nó APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack is féidir é a úsáid ach amháin i WeCom nó APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack is féidir é a úsáid ach amháin i WeCom nó APP",
   "SeedsUI_only_app_wechat": "Níl an ghné seo ar fáil ach ar WeChat nó APP",
   "SeedsUI_scanCode_failed": "Theip ar scanadh an chóid",
   "SeedsUI_try_again_later": "Bain triail eile as níos déanaí",

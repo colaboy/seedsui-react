@@ -1,3 +1,4 @@
+import React from 'react'
 import hasNode from './hasNode'
 import splitValue from './splitValue'
 

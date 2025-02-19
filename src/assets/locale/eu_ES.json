@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "WeChat mugikorrean edo app-an bakarrik erabil daiteke uploadImage",
   "SeedsUI_previewImage_prompt": "WeChat mugikorrean edo app-an bakarrik erabil daiteke.",
   "SeedsUI_previewFile_prompt": "WeCom edo APP-n bakarrik erabil daiteke",
-  "SeedsUI_onHistory_back_prompt": "OnHistoryBack WeCom edo APP-n bakarrik erabil daiteke",
+  "SeedsUI_onHistoryBack_prompt": "OnHistoryBack WeCom edo APP-n bakarrik erabil daiteke",
   "SeedsUI_only_app_wechat": "Funtzio hau WeChat edo APP-n baino ez eskuragarri",
   "SeedsUI_scanCode_failed": "Ezin izan zen kodea eskaneatu",
   "SeedsUI_try_again_later": "Mesedez, saia zaitez berriro geroago",

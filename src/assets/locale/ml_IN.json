@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ അപ് ലോഡ് ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
   "SeedsUI_previewImage_prompt": "മൊബൈൽ WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ പ്രിവ്യൂ ഇമേജ് ഉപയോഗിക്കാൻ കഴിയൂ",
   "SeedsUI_previewFile_prompt": "പ്രിവ്യൂഫൈൽ WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
-  "SeedsUI_onHistory_back_prompt": "OnHistoryBack WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
+  "SeedsUI_onHistoryBack_prompt": "OnHistoryBack WeCom അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ഉപയോഗിക്കാൻ കഴിയൂ",
   "SeedsUI_only_app_wechat": "ഈ സവിശേഷത WeChat അല്ലെങ്കിൽ APP-ൽ മാത്രമേ ലഭ്യമാകൂ",
   "SeedsUI_scanCode_failed": "കോഡ് സ്കാൻ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു",
   "SeedsUI_try_again_later": "ദയവായി പിന്നീട് വീണ്ടും ശ്രമിക്കുക",

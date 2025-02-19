@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage poate fi folosit numai pe mobil WeChat sau APP",
   "SeedsUI_previewImage_prompt": "previzualizareImaginea poate fi utilizată numai pe mobil, WeChat sau APP",
   "SeedsUI_previewFile_prompt": "previzualizareFișierul poate fi utilizat numai în WeCom sau APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack poate fi utilizat numai în WeCom sau APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack poate fi utilizat numai în WeCom sau APP",
   "SeedsUI_only_app_wechat": "Această funcție este disponibilă numai pe WeChat sau APP",
   "SeedsUI_scanCode_failed": "Scanarea codului nu a reușit",
   "SeedsUI_try_again_later": "Vă rugăm să încercați din nou mai târziu",

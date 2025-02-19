@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage فقط در تلفن همراه قابل استفاده است WeChat یا APP",
   "SeedsUI_previewImage_prompt": "previewImage فقط در تلفن همراه WeChat یا APP قابل استفاده است",
   "SeedsUI_previewFile_prompt": "previewFile فقط در WeCom یا APP قابل استفاده است",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack فقط در WeCom یا APP قابل استفاده است",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack فقط در WeCom یا APP قابل استفاده است",
   "SeedsUI_only_app_wechat": "این ویژگی فقط در WeChat یا APP در دسترس است",
   "SeedsUI_scanCode_failed": "اسکن کد انجام نشد",
   "SeedsUI_try_again_later": "لطفا بعدا دوباره امتحان کنید",

@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage нь зөвхөн гар утасны WeChat эсвэл APP дээр ашиглаж болно",
   "SeedsUI_previewImage_prompt": "previewImage нь зөвхөн гар утасны WeChat эсвэл APP дээр ашиглаж болно",
   "SeedsUI_previewFile_prompt": "previewFile нь зөвхөн WeCom эсвэл APP-д ашиглаж болно",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack-ийг зөвхөн WeCom эсвэл APP-д ашиглаж болно",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack-ийг зөвхөн WeCom эсвэл APP-д ашиглаж болно",
   "SeedsUI_only_app_wechat": "Энэ онцлог нь зөвхөн WeChat эсвэл APP дээр боломжтой",
   "SeedsUI_scanCode_failed": "Кодыг гүйлгэж чадаагүй",
   "SeedsUI_try_again_later": "Дараа нь дахин оролдоод үзээрэй",

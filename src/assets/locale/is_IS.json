@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage er aðeins hægt að nota á farsíma WeChat eða APP",
   "SeedsUI_previewImage_prompt": "previewImage er aðeins hægt að nota á farsíma WeChat eða APP",
   "SeedsUI_previewFile_prompt": "previewFile er aðeins hægt að nota í WeCom eða APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack er aðeins hægt að nota í WeCom eða APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack er aðeins hægt að nota í WeCom eða APP",
   "SeedsUI_only_app_wechat": "Þessi eiginleiki er aðeins fáanlegur á WeChat eða APP",
   "SeedsUI_scanCode_failed": "Mistókst að skanna kóðann",
   "SeedsUI_try_again_later": "Vinsamlegast reyndu aftur síðar",

@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage สามารถใช้ได้บนมือถือ WeChat หรือ APP เท่านั้น",
   "SeedsUI_previewImage_prompt": "previewImage สามารถใช้ได้บนมือถือ WeChat หรือ APP เท่านั้น",
   "SeedsUI_previewFile_prompt": "previewFile สามารถใช้ได้ใน WeCom หรือ APP เท่านั้น",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack สามารถใช้ได้ใน WeCom หรือ APP เท่านั้น",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack สามารถใช้ได้ใน WeCom หรือ APP เท่านั้น",
   "SeedsUI_only_app_wechat": "คุณลักษณะนี้มีเฉพาะใน WeChat หรือ APP เท่านั้น",
   "SeedsUI_scanCode_failed": "สแกนรหัสไม่สําเร็จ",
   "SeedsUI_try_again_later": "โปรดลองอีกครั้งในภายหลัง",

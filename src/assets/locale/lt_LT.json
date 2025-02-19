@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage galima naudoti tik mobiliajame \"WeChat\" arba APP",
   "SeedsUI_previewImage_prompt": "previewImage galima naudoti tik mobiliajame \"WeChat\" arba APP",
   "SeedsUI_previewFile_prompt": "previewFile galima naudoti tik WeCom arba APP",
-  "SeedsUI_onHistory_back_prompt": "\"onHistoryBack\" galima naudoti tik \"WeCom\" arba \"APP\"",
+  "SeedsUI_onHistoryBack_prompt": "\"onHistoryBack\" galima naudoti tik \"WeCom\" arba \"APP\"",
   "SeedsUI_only_app_wechat": "Ši funkcija pasiekiama tik \"WeChat\" arba APP",
   "SeedsUI_scanCode_failed": "Nepavyko nuskaityti kodo",
   "SeedsUI_try_again_later": "Bandykite dar kartą vėliau",

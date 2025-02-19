@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "ניתן להשתמש ב- uploadImage רק בנייד, WeChat או APP",
   "SeedsUI_previewImage_prompt": "ניתן להשתמש בתצוגה מקדימהImage רק בנייד, WeChat או APP",
   "SeedsUI_previewFile_prompt": "ניתן להשתמש בקובץ תצוגה מקדימה רק ב- WeCom או ב- APP",
-  "SeedsUI_onHistory_back_prompt": "ניתן להשתמש ב- onHistoryBack רק ב- WeCom או ב- APP",
+  "SeedsUI_onHistoryBack_prompt": "ניתן להשתמש ב- onHistoryBack רק ב- WeCom או ב- APP",
   "SeedsUI_only_app_wechat": "תכונה זו זמינה רק ב- WeChat או באפליקציה",
   "SeedsUI_scanCode_failed": "סריקת הקוד נכשלה",
   "SeedsUI_try_again_later": "נסה שוב מאוחר יותר",

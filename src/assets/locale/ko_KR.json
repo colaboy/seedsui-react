@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage는 모바일 WeChat 또는 APP에서만 사용할 수 있습니다.",
   "SeedsUI_previewImage_prompt": "미리보기이미지는 모바일 WeChat 또는 APP에서만 사용할 수 있습니다.",
   "SeedsUI_previewFile_prompt": "previewFile은 WeCom 또는 APP에서만 사용할 수 있습니다.",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack은 WeCom 또는 APP에서만 사용할 수 있습니다.",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack은 WeCom 또는 APP에서만 사용할 수 있습니다.",
   "SeedsUI_only_app_wechat": "이 기능은 WeChat 또는 APP에서만 사용할 수 있습니다.",
   "SeedsUI_scanCode_failed": "코드를 스캔하지 못했습니다.",
   "SeedsUI_try_again_later": "나중에 다시 시도하십시오.",

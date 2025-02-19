@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage тек мобильді WeChat немесе APP бағдарламасында пайдаланылуы мүмкін",
   "SeedsUI_previewImage_prompt": "алдын ала қарауДы тек мобильді WeChat немесе APP бағдарламасында пайдалануға болады",
   "SeedsUI_previewFile_prompt": "алдын ала қарауFile тек WeCom немесе APP бағдарламасында пайдалануға болады",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack тек WeCom немесе APP бағдарламасында пайдалануға болады",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack тек WeCom немесе APP бағдарламасында пайдалануға болады",
   "SeedsUI_only_app_wechat": "Бұл мүмкіндік тек WeChat немесе APP бағдарламасында қолжетімді",
   "SeedsUI_scanCode_failed": "Кодты сканерлеу жаңылысы",
   "SeedsUI_try_again_later": "Кейінірек қайталап көріңіз",

@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage yalnızca mobil WeChat veya APP'de kullanılabilir",
   "SeedsUI_previewImage_prompt": "previewImage yalnızca mobil WeChat veya APP'de kullanılabilir",
   "SeedsUI_previewFile_prompt": "previewFile yalnızca WeCom veya APP'de kullanılabilir",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack yalnızca WeCom veya APP'de kullanılabilir",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack yalnızca WeCom veya APP'de kullanılabilir",
   "SeedsUI_only_app_wechat": "Bu özellik yalnızca WeChat veya APP'de mevcuttur",
   "SeedsUI_scanCode_failed": "Kod taranamadı",
   "SeedsUI_try_again_later": "Lütfen daha sonra tekrar deneyin",

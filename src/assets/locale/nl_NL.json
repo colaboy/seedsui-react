@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage kan alleen worden gebruikt op mobiele WeChat of APP",
   "SeedsUI_previewImage_prompt": "previewImage kan alleen worden gebruikt op mobiele WeChat of APP",
   "SeedsUI_previewFile_prompt": "previewFile kan alleen worden gebruikt in WeCom of APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack kan alleen worden gebruikt in WeCom of APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack kan alleen worden gebruikt in WeCom of APP",
   "SeedsUI_only_app_wechat": "Deze functie is alleen beschikbaar op WeChat of APP",
   "SeedsUI_scanCode_failed": "Kan de code niet scannen",
   "SeedsUI_try_again_later": "Probeer het later opnieuw",

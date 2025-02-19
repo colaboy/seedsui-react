@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage se može koristiti samo na mobilnom VeChat-u ili APP-u",
   "SeedsUI_previewImage_prompt": "previevImage se može koristiti samo na mobilnom VeChat-u ili APP-u",
   "SeedsUI_previewFile_prompt": "previevFile se može koristiti samo u VeCom ili APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack se može koristiti samo u WeCom ili APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack se može koristiti samo u WeCom ili APP",
   "SeedsUI_only_app_wechat": "Ova funkcija je dostupna samo na VeChat ili APP",
   "SeedsUI_scanCode_failed": "Failed to skeniranje koda",
   "SeedsUI_try_again_later": "Molimo Vas da pokušate ponovo kasnije",

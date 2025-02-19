@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
   "SeedsUI_previewImage_prompt": "previewImage შეიძლება გამოყენებულ იქნას მხოლოდ მობილური WeChat ან APP",
   "SeedsUI_previewFile_prompt": "previewFile შეიძლება გამოყენებულ იქნას მხოლოდ WeCom ან APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack შეიძლება გამოყენებულ იქნას მხოლოდ WeCom-ში ან APP-ში",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack შეიძლება გამოყენებულ იქნას მხოლოდ WeCom-ში ან APP-ში",
   "SeedsUI_only_app_wechat": "ეს ფუნქცია ხელმისაწვდომია მხოლოდ WeChat ან APP- ზე",
   "SeedsUI_scanCode_failed": "კოდის სკანირება ვერ მოხერხდა",
   "SeedsUI_try_again_later": "გაიმეორეთ მცდელობა მოგვიანებით",

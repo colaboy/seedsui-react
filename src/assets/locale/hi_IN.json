@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage का उपयोग केवल मोबाइल WeChat या APP पर किया जा सकता है",
   "SeedsUI_previewImage_prompt": "पूर्वावलोकनछवि का उपयोग केवल मोबाइल वीचैट या एपीपी पर किया जा सकता है",
   "SeedsUI_previewFile_prompt": "पूर्वावलोकनफ़ाइल का उपयोग केवल WeCom या APP में किया जा सकता है",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack का उपयोग केवल WeCom या APP में किया जा सकता है",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack का उपयोग केवल WeCom या APP में किया जा सकता है",
   "SeedsUI_only_app_wechat": "यह सुविधा केवल WeChat या APP पर उपलब्ध है",
   "SeedsUI_scanCode_failed": "कोड को स्कैन करने में विफल",
   "SeedsUI_try_again_later": "कृपया बाद में पुन: प्रयास करें",

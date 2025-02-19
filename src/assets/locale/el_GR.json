@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage μπορεί να χρησιμοποιηθεί μόνο σε κινητά WeChat ή APP",
   "SeedsUI_previewImage_prompt": "Το previewImage μπορεί να χρησιμοποιηθεί μόνο σε κινητά, WeChat ή APP",
   "SeedsUI_previewFile_prompt": "Το previewFile μπορεί να χρησιμοποιηθεί μόνο σε WeCom ή APP",
-  "SeedsUI_onHistory_back_prompt": "Το onHistoryBack μπορεί να χρησιμοποιηθεί μόνο σε WeCom ή APP",
+  "SeedsUI_onHistoryBack_prompt": "Το onHistoryBack μπορεί να χρησιμοποιηθεί μόνο σε WeCom ή APP",
   "SeedsUI_only_app_wechat": "Αυτή η λειτουργία είναι διαθέσιμη μόνο σε WeChat ή APP",
   "SeedsUI_scanCode_failed": "Αποτυχία σάρωσης του κωδικού",
   "SeedsUI_try_again_later": "Προσπαθήστε ξανά αργότερα",

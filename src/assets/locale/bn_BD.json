@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "আপলোডচিত্র শুধুমাত্র মোবাইল উইচ্যাট বা অ্যাপে ব্যবহার করা যাবে",
   "SeedsUI_previewImage_prompt": "পূর্বরূপচিত্র শুধুমাত্র মোবাইল WeChat বা APP এ ব্যবহার করা যাবে",
   "SeedsUI_previewFile_prompt": "পূর্বরূপফাইল কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack কেবল ওয়েকম বা অ্যাপে ব্যবহার করা যেতে পারে",
   "SeedsUI_only_app_wechat": "এই বৈশিষ্ট্যটি কেবল WeChat বা অ্যাপে সুলভ",
   "SeedsUI_scanCode_failed": "কোডটি স্ক্যান করতে ব্যর্থ হয়েছে",
   "SeedsUI_try_again_later": "অনুগ্রহ করে পরে আবার চেষ্টা করুন",

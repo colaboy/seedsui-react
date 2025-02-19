@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage csak mobil WeChat vagy APP rendszeren használható",
   "SeedsUI_previewImage_prompt": "A previewImage csak mobil WeChat vagy APP rendszeren használható",
   "SeedsUI_previewFile_prompt": "A previewFile csak WeComban vagy APP-ben használható",
-  "SeedsUI_onHistory_back_prompt": "Az onHistoryBack csak a WeComban vagy az APP-ben használható",
+  "SeedsUI_onHistoryBack_prompt": "Az onHistoryBack csak a WeComban vagy az APP-ben használható",
   "SeedsUI_only_app_wechat": "Ez a funkció csak a WeChat vagy az APP alkalmazásban érhető el",
   "SeedsUI_scanCode_failed": "Nem sikerült beolvasni a kódot",
   "SeedsUI_try_again_later": "Kérjük, próbálja újra később",

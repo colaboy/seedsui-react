@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "अपलोड छविमोबाइल वीच्याट वा एपीपीमा मात्र प्रयोग गर्न सकिन्छ",
   "SeedsUI_previewImage_prompt": "पूर्वावलोकन छविमोबाइल वीच्याट वा अनुप्रयोगमा मात्र प्रयोग गर्न सकिन्छ",
   "SeedsUI_previewFile_prompt": "पूर्वावलोकन फाइल वेबकम वा अनुप्रयोगमा मात्र प्रयोग गर्न सकिन्छ",
-  "SeedsUI_onHistory_back_prompt": "अनहिस्ट्रीब्याक केवल वीकम वा एपीपीमा प्रयोग गर्न सकिन्छ",
+  "SeedsUI_onHistoryBack_prompt": "अनहिस्ट्रीब्याक केवल वीकम वा एपीपीमा प्रयोग गर्न सकिन्छ",
   "SeedsUI_only_app_wechat": "यो सुविधा वीच्याट वा एपीपीमा मात्र उपलब्ध छ ।",
   "SeedsUI_scanCode_failed": "कोड स्क्यान गर्न असफल भयो",
   "SeedsUI_try_again_later": "कृपया पछि फेरि प्रयास गर्नुहोस्",

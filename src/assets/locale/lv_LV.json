@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage var izmantot tikai mobilajā ierīcē WeChat vai APP",
   "SeedsUI_previewImage_prompt": "previewImage var izmantot tikai mobilajā ierīcē WeChat vai APP",
   "SeedsUI_previewFile_prompt": "previewFile var izmantot tikai WeCom vai APP",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack var izmantot tikai WeCom vai APP",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack var izmantot tikai WeCom vai APP",
   "SeedsUI_only_app_wechat": "Šī funkcija ir pieejama tikai WeChat vai APP",
   "SeedsUI_scanCode_failed": "Neizdevās noskenēt kodu",
   "SeedsUI_try_again_later": "Lūdzu, vēlāk mēģiniet vēlreiz",

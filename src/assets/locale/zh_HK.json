@@ -122,7 +122,7 @@
   "SeedsUI_uploadImage_prompt": "uploadImage僅可在移動端微信或APP中使用",
   "SeedsUI_previewImage_prompt": "previewImage僅可在移動端微信或APP中使用",
   "SeedsUI_previewFile_prompt": "previewFile僅可在企業微信或APP中使用",
-  "SeedsUI_onHistory_back_prompt": "onHistoryBack僅可在企業微信或APP中使用",
+  "SeedsUI_onHistoryBack_prompt": "onHistoryBack僅可在企業微信或APP中使用",
   "SeedsUI_only_app_wechat": "此功能僅可在微信或APP中使用",
   "SeedsUI_scanCode_failed": "掃碼失敗",
   "SeedsUI_try_again_later": "請稍後重試",

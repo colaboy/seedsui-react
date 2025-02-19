@@ -60,7 +60,7 @@ let Bridge = {
     Toast.show({
       content: LocaleUtil.locale(
         'onHistoryBack仅可在企业微信或APP中使用',
-        'SeedsUI_onHistory_back_prompt'
+        'SeedsUI_onHistoryBack_prompt'
       )
     })
   },
