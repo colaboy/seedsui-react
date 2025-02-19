@@ -69,18 +69,18 @@ const Main = forwardRef(
     const [bottomStatus, setBottomStatus] = useState('')
 
     useEffect(() => {
-      init()
+      init('load')
       // eslint-disable-next-line
     }, [])
 
-    // // 顶部刷新和初始化
-    async function init() {
+    // 顶部刷新和初始化, action: 'load | reload | topRefresh'
+    async function init(action) {
       let newList = null
       if (externalList) {
         newList = externalList
       } else if (typeof loadList === 'function') {
         pageRef.current = 1
-        newList = await loadList({ page: pageRef.current, action: 'load' })
+        newList = await loadList({ page: pageRef.current, action: action })
       }
 
       // Initialize bottomStatus
@@ -138,7 +138,7 @@ const Main = forwardRef(
         ref={mainRef}
         {...props}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
-        onTopRefresh={pull && typeof loadList === 'function' ? init : null}
+        onTopRefresh={pull && typeof loadList === 'function' ? () => init('topRefresh') : null}
         onBottomRefresh={
           pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
         }
@@ -187,7 +187,7 @@ const Main = forwardRef(
         )}
 
         {/* 页面级错误提示 */}
-        {mainStatus && <ResultMessage type={mainStatus} onRetry={init} />}
+        {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('reload')} />}
       </Layout.Main>
     )
   }
