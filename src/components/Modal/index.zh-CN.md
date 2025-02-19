@@ -8,13 +8,10 @@ title: Modal
 
 ## 示例
 
-### Combo
-
-<code src="./demos/Combo/index.jsx"></code>
-
 ### Modal
 
-<code src="./demos/Modal/index.jsx"></code>
+<code src="./demos/Modal/demo1.jsx"></code>
+<code src="./demos/Modal/demo2.jsx"></code>
 
 ### Modal.FilterCombo
 

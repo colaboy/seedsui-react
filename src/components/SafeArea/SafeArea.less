@@ -100,14 +100,6 @@
   }
 }
 
-// 根元素自动安全区，业务无需控制安全区
-.auto-safe-area-root {
-  #root {
-    &:extend(.safe-area all);
-    &:extend(.safe-area.border-bottom all);
-  }
-}
-
 // 自定义元素安全区
 [data-safe-area='border-bottom'] {
   &:extend(.safe-area all);
@@ -116,4 +108,12 @@
 [data-safe-area='after'] {
   &:extend(.safe-area all);
   &:extend(.safe-area.after all);
+}
+
+// 根元素自动安全区，业务无需控制安全区
+.auto-safe-area-root {
+  #root {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+  }
 }

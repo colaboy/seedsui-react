@@ -1,9 +1,5 @@
 import './assets/index.less'
 
-import DateUtil from './utils/DateUtil'
-import LocaleUtil from './utils/LocaleUtil'
-DateUtil.plugin()
-
 // 记录版本号
 const packageJson = require('./../package.json')
 if (packageJson?.version) {
@@ -60,7 +56,6 @@ export { default as Row } from './components/Row'
 export { default as Map } from './components/Map'
 
 // utils
-// export { default as ApiSuperagent } from './ApiSuperagent'; // 与Axios同类型,推荐使用Axios
 export { default as Debugger } from './utils/Debugger'
 export { default as Device } from './utils/Device'
 export { default as FullScreen } from './utils/FullScreen'
@@ -72,4 +67,5 @@ export { default as EventUtil } from './utils/EventUtil'
 export { default as ArrayUtil } from './utils/ArrayUtil'
 export { default as MathUtil } from './utils/MathUtil'
 export { default as Request } from './utils/Request'
-export { DateUtil, LocaleUtil }
+export { default as DateUtil } from './utils/DateUtil'
+export { default as LocaleUtil } from './utils/LocaleUtil'

@@ -13,6 +13,9 @@ import firstDayOfYear from './firstDayOfYear'
 import firstDayOfQuarter from './firstDayOfQuarter'
 import lastDayOfYear from './lastDayOfYear'
 
+// 初始化插件, 没有插件无法使用此库
+plugin()
+
 // 日期工具类
 const dateUtil = {
   plugin: plugin,
