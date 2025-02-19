@@ -97,27 +97,28 @@ const List = (
 
   return (
     <div className="list" ref={rootRef}>
-      {list.map((item, index) => {
-        // 渲染分组列表
-        if (Array.isArray(item.children)) {
-          return (
-            <Fragment key={item.id ?? index}>
-              <div className="list-divider">
-                <div className="list-title">{item.name}</div>
-                {item.description && <div className="list-description">{item.description}</div>}
-              </div>
-              <div className="list-items">
-                {item.children.map((option, optionIndex) => {
-                  return getItemNode(option, optionIndex)
-                })}
-              </div>
-            </Fragment>
-          )
-        }
+      {Array.isArray(list) &&
+        list.map((item, index) => {
+          // 渲染分组列表
+          if (Array.isArray(item.children)) {
+            return (
+              <Fragment key={item.id ?? index}>
+                <div className="list-divider">
+                  <div className="list-title">{item.name}</div>
+                  {item.description && <div className="list-description">{item.description}</div>}
+                </div>
+                <div className="list-items">
+                  {item.children.map((option, optionIndex) => {
+                    return getItemNode(option, optionIndex)
+                  })}
+                </div>
+              </Fragment>
+            )
+          }
 
-        // 渲染列表
-        return getItemNode(item, index)
-      })}
+          // 渲染列表
+          return getItemNode(item, index)
+        })}
     </div>
   )
 }
