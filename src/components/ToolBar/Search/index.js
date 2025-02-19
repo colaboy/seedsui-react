@@ -89,7 +89,7 @@ const Search = forwardRef(
             onSubmit={(e) => {
               e.preventDefault()
               let input = e.currentTarget.querySelector('.input-text')
-              handleSearch(input?.value || '')
+              handleSearch(value)
               input && input.blur()
               e.stopPropagation()
             }}
@@ -100,6 +100,8 @@ const Search = forwardRef(
               type="search"
               placeholder={LocaleUtil.locale('搜索', 'SeedsUI_search')}
               allowClear
+              value={value}
+              onChange={onChange}
               {...inputProps}
             />
           </form>
@@ -152,7 +154,6 @@ const Search = forwardRef(
       )
     }
 
-    console.log(toggle)
     function getNode() {
       if (!toggle) {
         return getMainNode()
