@@ -103,6 +103,30 @@ const List = (
     )
   }
 
+  // 获取分组标题
+  function getGroupTitleNode(item) {
+    let TitleNode = (
+      <>
+        {item.name && <div className="list-title">{item.name}</div>}
+        {item.description && <div className="list-description">{item.description}</div>}
+      </>
+    )
+
+    if (item.anchor) {
+      return (
+        <IndexBar.Anchor className="list-divider" {...(item.elementProps || {})} name={item.anchor}>
+          {TitleNode}
+        </IndexBar.Anchor>
+      )
+    }
+
+    return (
+      <div className="list-divider" {...(item.elementProps || {})}>
+        {TitleNode}
+      </div>
+    )
+  }
+
   return (
     <div className="list" ref={rootRef}>
       {Array.isArray(list) &&
@@ -111,10 +135,8 @@ const List = (
           if (Array.isArray(item.children)) {
             return (
               <Fragment key={item.id ?? index}>
-                <IndexBar.Anchor name={item.anchor} className="list-divider">
-                  <div className="list-title">{item.name}</div>
-                  {item.description && <div className="list-description">{item.description}</div>}
-                </IndexBar.Anchor>
+                {getGroupTitleNode(item)}
+
                 <div className="list-items">
                   {item.children.map((option, optionIndex) => {
                     return getItemNode(option, optionIndex)
