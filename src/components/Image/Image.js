@@ -202,14 +202,17 @@ const Image = forwardRef(
         {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
 
         {/* 预览 */}
-        {typeof previewCurrent === 'number' && (
-          <Preview
-            type={type}
-            onClose={() => setPreviewCurrent(null)}
-            list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
-            current={previewCurrent}
-          />
-        )}
+        <Preview
+          visible={typeof previewCurrent === 'number'}
+          type={type}
+          onVisibleChange={(visible) => {
+            if (!visible) {
+              setPreviewCurrent(null)
+            }
+          }}
+          list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
+          current={previewCurrent}
+        />
       </div>
     )
   }

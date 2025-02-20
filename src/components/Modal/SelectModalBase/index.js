@@ -3,15 +3,15 @@ import { createPortal } from 'react-dom'
 import Head from './Head'
 
 // 内库使用-start
-import SafeArea from './../../../SafeArea'
+import SafeArea from './../../SafeArea'
 // 内库使用-end
 
 /* 测试使用-start
 import { SafeArea } from 'seedsui-react'
 测试使用-end */
 
-// MainWrapper
-const MainWrapper = forwardRef(
+// SelectModalBase
+const SelectModalBase = forwardRef(
   (
     {
       safeArea,
@@ -111,4 +111,4 @@ const MainWrapper = forwardRef(
   }
 )
 
-export default MainWrapper
+export default SelectModalBase

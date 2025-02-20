@@ -1,6 +1,7 @@
 import Modal from './Modal'
 import SelectCombo from './SelectCombo'
 import SelectModal from './SelectModal'
+import SelectModalBase from './SelectModalBase'
 
 import FilterCombo from './FilterCombo'
 import FilterModal from './FilterModal'
@@ -13,6 +14,7 @@ import getClassNameByAnimation from './api/getClassNameByAnimation'
 // Select
 Modal.SelectCombo = SelectCombo
 Modal.SelectModal = SelectModal
+Modal.SelectModalBase = SelectModalBase
 
 // Filter
 Modal.FilterCombo = FilterCombo

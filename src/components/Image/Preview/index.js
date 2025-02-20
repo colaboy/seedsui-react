@@ -4,28 +4,31 @@ import { Zoom, Pagination } from 'swiper/modules'
 import preventDefault from './preventDefault'
 
 // 内库使用-start
-import Modal from './../../Modal/SelectModal/MainWrapper'
+import SelectModal from './../../Modal/SelectModalBase'
 import VideoPlayer from './../../VideoPlayer'
 // 内库使用-end
 
 /* 测试使用-start
-import { Modal, VideoPlayer } from 'seedsui-react'
+import { Modal as BaseM, VideoPlayer } from 'seedsui-react'
+const SelectModal = Modal.SelectModalBase
 测试使用-end */
 
 const Preview = forwardRef(
   (
     {
+      visible,
       type, // video | image
       list, // 需要预览的资源列表{src: '图片或视频的地址', thumb: '封面地址', type: 'video|image, 默认image', children: node}
       current, // 当前显示的资源序号或者当前资源的src链接
 
-      onClose,
+      onVisibleChange,
 
       children,
       ...props
     },
     ref
   ) => {
+    console.log('visible:', visible)
     const videoPlayers = useRef([])
 
     if (!list || !list.length || !list[0].src) return null
@@ -43,7 +46,7 @@ const Preview = forwardRef(
     // 图片单击隐藏, 视频单击无反应
     function handleVisibleChange(visible) {
       if (!visible) {
-        if (onClose) onClose()
+        if (onVisibleChange) onVisibleChange(false)
       }
     }
 
@@ -72,14 +75,15 @@ const Preview = forwardRef(
     // }
 
     return (
-      <Modal
-        visible
+      <SelectModal
+        visible={visible}
         animation="slideUp"
         className="image-preview-modal"
         onVisibleChange={handleVisibleChange}
         ok={false}
         onTouchStart={handleTouchStart}
         // onTouchEnd={handleTouchEnd}
+        {...props}
       >
         <Swiper
           ref={ref}
@@ -125,7 +129,7 @@ const Preview = forwardRef(
             )
           })}
         </Swiper>
-      </Modal>
+      </SelectModal>
     )
   }
 )
