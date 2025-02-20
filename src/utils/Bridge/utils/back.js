@@ -85,7 +85,7 @@ async function back(backLvl, options, Bridge) {
 
     Modal.confirm({
       content: confirmCaption,
-      submitProps: {
+      okProps: {
         onClick: () => {
           // 提示后关闭当前页面
           if (isFromApp.indexOf('confirm-close') !== -1) {
