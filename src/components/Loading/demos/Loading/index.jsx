@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Loading } from 'seedsui-react'
+import { Layout } from 'seedsui-react'
+// import { Loading } from 'seedsui-react'
+import Loading from './../../Loading/index.js'
 
 export default () => {
   const [visible, setVisible] = useState(true)
@@ -23,7 +25,11 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Customer.Loading</Layout.Header>
       <Layout.Main className="bg-white">
-        <Loading content="自定义内容" />
+        <Loading
+          // 自定义图标和内容
+          icon={<Loading.Ouroboros />}
+          content="自定义内容"
+        />
       </Layout.Main>
     </Layout>
   )

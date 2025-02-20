@@ -67,8 +67,8 @@ const ListItem = forwardRef(
             if (item.anchor && !indexes[item.anchor]) {
               indexes[item.anchor] = true
               anchorBar = (
-                <IndexBar.Anchor name={item.anchor}>
-                  <p className="indexbar-list-divider">{item.anchor}</p>
+                <IndexBar.Anchor className="cascader-list-divider" name={item.anchor}>
+                  {item.anchor}
                 </IndexBar.Anchor>
               )
             }

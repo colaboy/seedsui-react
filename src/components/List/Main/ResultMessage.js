@@ -24,7 +24,7 @@ const ResultMessage = ({ type, onRetry }) => {
     return type
   }
 
-  if (!type) return null
+  if (!type || typeof type !== 'string') return null
 
   return (
     <Result

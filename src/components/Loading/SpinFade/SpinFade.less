@@ -1,0 +1,85 @@
+// 流光
+.loading-spinfade {
+  color: white;
+}
+.loading-spinfade .loading-spinfade-item {
+  animation-play-state: running;
+}
+.loading-spinfade {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+.loading-spinfade-item {
+  background-color: currentcolor;
+}
+.loading-spinfade-item {
+  position: absolute;
+  top: 37%;
+  left: 44.5%;
+  width: 8.57143%;
+  height: 25.71429%;
+  border-radius: 50%/16.67%;
+  animation: loading-spinfade-item 1s linear infinite;
+  animation-play-state: paused;
+}
+.loading-spinfade-item:nth-child(1) {
+  transform: rotate(30deg) translate(0, -150%);
+  animation-delay: -1.66667s;
+}
+.loading-spinfade-item:nth-child(2) {
+  transform: rotate(60deg) translate(0, -150%);
+  animation-delay: -1.58333s;
+}
+.loading-spinfade-item:nth-child(3) {
+  transform: rotate(90deg) translate(0, -150%);
+  animation-delay: -1.5s;
+}
+.loading-spinfade-item:nth-child(4) {
+  transform: rotate(120deg) translate(0, -150%);
+  animation-delay: -1.41667s;
+}
+.loading-spinfade-item:nth-child(5) {
+  transform: rotate(150deg) translate(0, -150%);
+  animation-delay: -1.33333s;
+}
+.loading-spinfade-item:nth-child(6) {
+  transform: rotate(180deg) translate(0, -150%);
+  animation-delay: -1.25s;
+}
+.loading-spinfade-item:nth-child(7) {
+  transform: rotate(210deg) translate(0, -150%);
+  animation-delay: -1.16667s;
+}
+.loading-spinfade-item:nth-child(8) {
+  transform: rotate(240deg) translate(0, -150%);
+  animation-delay: -1.08333s;
+}
+.loading-spinfade-item:nth-child(9) {
+  transform: rotate(270deg) translate(0, -150%);
+  animation-delay: -1s;
+}
+.loading-spinfade-item:nth-child(10) {
+  transform: rotate(300deg) translate(0, -150%);
+  animation-delay: -0.91667s;
+}
+.loading-spinfade-item:nth-child(11) {
+  transform: rotate(330deg) translate(0, -150%);
+  animation-delay: -0.83333s;
+}
+.loading-spinfade-item:nth-child(12) {
+  transform: rotate(360deg) translate(0, -150%);
+  animation-delay: -0.75s;
+}
+
+@keyframes loading-spinfade-item {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}

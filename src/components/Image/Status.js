@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
 
+// 内库使用-start
+import Loading from './../Loading'
+// 内库使用-end
+
+/* 测试使用-start
+import { Loading } from 'seedsui-react'
+测试使用-end */
+
 // 状态:choose|uploading|fail|success
 const Status = ({ onReUpload, statusRender }) => {
   const [statusDOM, setStatusDOM] = useState(null)
@@ -31,9 +39,7 @@ const Status = ({ onReUpload, statusRender }) => {
         {/* 失败图标 */}
         <div className="image-status-icon-fail"></div>
         {/* 加载图标 */}
-        <svg viewBox="25 25 50 50" className="image-status-icon-loading">
-          <circle cx="50" cy="50" r="20"></circle>
-        </svg>
+        <Loading.Ouroboros className="image-status-icon-loading" />
       </div>
     )
   }

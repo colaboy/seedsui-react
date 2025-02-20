@@ -10,19 +10,29 @@ import { LocaleUtil } from 'seedsui-react'
 
 const InfiniteScroll = ({ type }) => {
   function getStatusNode() {
-    if (!type) return null
+    if (!type || typeof type !== 'string') return null
 
     if (type === 'loading') {
-      return LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
+      return (
+        <div className={`list-main-infinite-scroll-wrapper`}>
+          {LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')}
+        </div>
+      )
     }
     if (type === 'noMore') {
-      return LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')
+      return (
+        <div className={`list-main-infinite-scroll-wrapper`}>
+          {LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')}
+        </div>
+      )
     }
-    if (type === 'error') {
-      return LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error')
-    }
-    // Custom error message
-    return type
+    return (
+      <div className={`list-main-infinite-scroll-wrapper`}>
+        {type === 'error'
+          ? LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error')
+          : type}
+      </div>
+    )
   }
 
   return <div className={`list-main-infinite-scroll`}>{getStatusNode()}</div>

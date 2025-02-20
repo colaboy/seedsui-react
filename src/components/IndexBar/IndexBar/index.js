@@ -6,10 +6,10 @@ import React, {
   useEffect,
   useState
 } from 'react'
-import getAnchors from './getAnchors'
+import getAnchorsByScroller from './getAnchorsByScroller'
 import getAnchorByPoint from './getAnchorByPoint'
 import getAnchorByViewport from './getAnchorByViewport'
-import activeAnchor from './activeAnchor'
+import activeButton from './activeButton'
 import scrollToAnchor from './scrollToAnchor'
 import preventDefault from './preventDefault'
 
@@ -32,7 +32,8 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
       tooltipDOM: tooltipRef.current,
       getRootDOM: () => sidebarRef.current,
       getTooltipDOM: () => sidebarRef.current,
-      update: updateAnchors
+      update: updateAnchors,
+      scrollToAnchor: goAnchor
     }
   })
 
@@ -62,7 +63,7 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
   // 获取所有锚点
   function updateAnchors() {
     if (!scrollerRef.current) return
-    anchors = getAnchors(scrollerRef.current)
+    anchors = getAnchorsByScroller(scrollerRef.current)
     setAnchors(anchors)
 
     // 锚记渲染完成后更新右侧选中效果
@@ -75,7 +76,7 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
   function handleScroll() {
     let currentAnchor = getAnchorByViewport(scrollerRef.current)
     currentAnchor &&
-      activeAnchor({
+      activeButton({
         anchor: currentAnchor,
         sidebarDOM: sidebarRef.current,
         tooltipDOM: tooltipRef.current
@@ -89,7 +90,7 @@ const IndexBar = forwardRef(({ scrollerDOM, children, ...props }, ref) => {
       scrollerDOM: scrollerRef.current,
       anchor: currentAnchor
     })
-    activeAnchor({
+    activeButton({
       anchor: currentAnchor,
       sidebarDOM: sidebarRef.current,
       tooltipDOM: tooltipRef.current

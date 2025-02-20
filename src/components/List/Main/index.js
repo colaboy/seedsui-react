@@ -1,11 +1,14 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
+import hasMoreItems from './hasMoreItems'
+import scrollToTop from './scrollToTop'
 import InfiniteScroll from './InfiniteScroll'
 import ResultMessage from './ResultMessage'
+import Loading from './Loading'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
 import Layout from './../../Layout'
-import List from './../../List'
+import List from './../List'
 // 内库使用-end
 
 /* 测试使用-start
@@ -25,11 +28,14 @@ const Main = forwardRef(
       value,
       onChange,
       onScroll,
+      // 显示
+      loading,
       // 请求属性
       list: externalList, // 离线数据
       loadList,
       pull = true, // 是否允许下拉刷新
-      pagination,
+      pagination, // {totalPages: 10, totalItems: 100, rows: 100}
+      onLoad,
 
       // List config
       prepend,
@@ -47,13 +53,22 @@ const Main = forwardRef(
     // 分页
     const pageRef = useRef(1)
 
+    // 列表
+    const [list, setList] = useState(null)
+    // 全屏提示: noData | error<String>
+    const [mainStatus, setMainStatus] = useState('')
+    // 底部提示: loading | noMore | error<String>
+    const [bottomStatus, setBottomStatus] = useState('')
+    // 加载显示: load | reload | topRefresh | bottomRefresh
+    const [loadAction, setLoadAction] = useState('')
+
     // Expose
     useImperativeHandle(ref, () => {
       return {
         mainDOM: mainRef?.current?.rootDOM,
         getMainDOM: mainRef?.current?.getRootDOM,
         // 重新加载
-        reload: init,
+        reload: (action) => init(action || 'reload'),
         // 获取设置列表
         getList: () => {
           return list
@@ -61,12 +76,12 @@ const Main = forwardRef(
       }
     })
 
-    // 列表
-    const [list, setList] = useState(null)
-    // 全屏提示
-    const [mainStatus, setMainStatus] = useState('')
-    // 底部提示
-    const [bottomStatus, setBottomStatus] = useState('')
+    // 渲染完成执行onLoad
+    useEffect(() => {
+      if (Array.isArray(list) && list.length) {
+        onLoad && onLoad()
+      }
+    }, [list])
 
     useEffect(() => {
       init('load')
@@ -80,19 +95,37 @@ const Main = forwardRef(
         newList = externalList
       } else if (typeof loadList === 'function') {
         pageRef.current = 1
+
+        setLoadAction(action)
         newList = await loadList({ page: pageRef.current, action: action })
+        setLoadAction('')
       }
 
-      // Initialize bottomStatus
-      setBottomStatus('')
+      // Scroll to top
+      scrollToTop(mainRef.current?.rootDOM)
 
       // Succeed to get first page list
       if (Array.isArray(newList)) {
         if (newList.length) {
           setList(newList)
           setMainStatus('')
+
+          // Check if there are more items
+          if (
+            hasMoreItems({
+              list: newList,
+              currentPage: 1,
+              currentList: newList,
+              ...(typeof pagination === 'object' ? pagination : {})
+            }) === false
+          ) {
+            setBottomStatus('noMore')
+          } else {
+            setBottomStatus('loading')
+          }
         } else {
           setList(null)
+          setBottomStatus('')
           setMainStatus('noData')
         }
       }
@@ -112,14 +145,30 @@ const Main = forwardRef(
 
       // 底部加载
       pageRef.current++
-      let nextList = await loadList({ page: pageRef.current, action: 'bottomRefresh' })
+      let action = 'bottomRefresh'
+      setLoadAction(action)
+      let nextList = await loadList({ page: pageRef.current, action: action })
+      setLoadAction(action)
 
       // Succeed to get next page list
       if (Array.isArray(nextList)) {
         if (nextList.length) {
           let newList = list.concat(nextList)
           setList(newList)
-          setBottomStatus('')
+
+          // Check if there are more items
+          if (
+            hasMoreItems({
+              list: newList,
+              currentPage: 1,
+              currentList: nextList,
+              ...(typeof pagination === 'object' ? pagination : {})
+            }) === false
+          ) {
+            setBottomStatus('noMore')
+          } else {
+            setBottomStatus('loading')
+          }
         } else {
           setBottomStatus('noMore')
         }
@@ -182,12 +231,13 @@ const Main = forwardRef(
         {typeof append === 'function' ? append({ list, value, onChange, pagination }) : null}
 
         {/* 底部错误提示 */}
-        {pagination && typeof loadList === 'function' && (
-          <InfiniteScroll type={bottomStatus || 'loading'} />
-        )}
+        {pagination && typeof loadList === 'function' && <InfiniteScroll type={bottomStatus} />}
 
         {/* 页面级错误提示 */}
-        {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('reload')} />}
+        {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('retry')} />}
+
+        {/* 页面加载遮罩 */}
+        <Loading type={loadAction} loading={loading} />
       </Layout.Main>
     )
   }

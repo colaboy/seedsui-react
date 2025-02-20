@@ -1,5 +1,7 @@
 import React from 'react'
-import { Layout, Loading } from 'seedsui-react'
+import { Layout } from 'seedsui-react'
+// import { Loading } from 'seedsui-react'
+import Loading from './../../../Loading/index.js'
 
 export default () => {
   function handleToggle() {
@@ -17,10 +19,10 @@ export default () => {
     console.log(loading)
     setTimeout(() => {
       Loading.show()
-    }, 1000)
+    }, 3000)
     setTimeout(() => {
       Loading.hide()
-    }, 3000)
+    }, 6000)
   }
 
   return (

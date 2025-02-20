@@ -1,9 +1,15 @@
+// 内库使用-start
 import LocaleUtil from './../../utils/LocaleUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { LocaleUtil } from 'seedsui-react'
+测试使用-end */
 
 // 显示Loading
 // eslint-disable-next-line
 export default function (props) {
-  const { id, maskProps, captionProps, className, style, content, onVisibleChange } = {
+  const { id, maskProps, className, style, content, onVisibleChange } = {
     ...(this?.defaultProps || {}),
     ...(props || {})
   }
@@ -16,22 +22,22 @@ export default function (props) {
     // 如果没生成成功, 则强制生成
     if (!mask) {
       mask = document.createElement('div')
-      mask.innerHTML = `<div class="loading-container">
-          <div class="loading-floating-icon">
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
-            <div class="loading-floating-blade"></div>
+      mask.innerHTML = `<div class="loading">
+          <div class="loading-spinfade">
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
+            <div class="loading-spinfade-item"></div>
           </div>
-          <div class="loading-floating-caption loading-content"></div>
+          <div class="loading-content"></div>
         </div>`
 
       // 添加到dom上
@@ -51,19 +57,16 @@ export default function (props) {
     }
 
     // 更新container
-    let container = mask.querySelector('.loading-container')
+    let container = mask.querySelector('.loading')
     if (container) {
-      container?.setAttribute(
-        'class',
-        `loading-container loading-floating animated${className ? ' ' + className : ''}`
-      )
+      container?.setAttribute('class', `loading${className ? ' ' + className : ''}`)
       container?.setAttribute('style', '')
       for (let key in style || {}) {
         container.style[key] = style[key]
       }
     }
 
-    let caption = captionProps?.caption || content
+    let caption = content
     caption =
       typeof caption === 'string' ? caption : LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
     mask.querySelector('.loading-content').innerHTML = caption

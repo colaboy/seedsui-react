@@ -2,6 +2,14 @@ import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
 
 import Item from './../Item'
 
+// 内库使用-start
+import IndexBar from './../../IndexBar'
+// 内库使用-end
+
+/* 测试使用-start
+import { IndexBar } from 'seedsui-react'
+测试使用-end */
+
 // List
 const List = (
   {
@@ -103,10 +111,10 @@ const List = (
           if (Array.isArray(item.children)) {
             return (
               <Fragment key={item.id ?? index}>
-                <div className="list-divider">
+                <IndexBar.Anchor name={item.anchor} className="list-divider">
                   <div className="list-title">{item.name}</div>
                   {item.description && <div className="list-description">{item.description}</div>}
-                </div>
+                </IndexBar.Anchor>
                 <div className="list-items">
                   {item.children.map((option, optionIndex) => {
                     return getItemNode(option, optionIndex)

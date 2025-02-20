@@ -1,0 +1,45 @@
+// 追逐式旋转
+.loading-ouroboros {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+  svg {
+    width: 100%;
+    transform-origin: center;
+    animation: loading-ouroboros-rotate 2s linear infinite;
+  }
+
+  circle {
+    fill: none;
+    stroke: currentcolor;
+    stroke-width: 4;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: loading-ouroboros-dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes loading-ouroboros-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes loading-ouroboros-dash {
+    0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 200;
+      stroke-dashoffset: -35px;
+    }
+    100% {
+      stroke-dashoffset: -125px;
+    }
+  }
+}
