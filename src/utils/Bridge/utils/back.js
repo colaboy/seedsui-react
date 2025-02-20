@@ -85,27 +85,23 @@ async function back(backLvl, options, Bridge) {
 
     Modal.confirm({
       content: confirmCaption,
-      okProps: {
-        onClick: () => {
-          // 提示后关闭当前页面
-          if (isFromApp.indexOf('confirm-close') !== -1) {
-            console.log('back:confirm-close', Bridge.closeWindow)
-            Bridge.closeWindow()
-          }
-          // 提示后返回上一页
-          else {
-            console.log('back:confirm, history')
-            window.history.go(_backLvl)
-          }
-          success && success()
-          return true
+      onOk: () => {
+        // 提示后关闭当前页面
+        if (isFromApp.indexOf('confirm-close') !== -1) {
+          console.log('back:confirm-close', Bridge.closeWindow)
+          Bridge.closeWindow()
         }
+        // 提示后返回上一页
+        else {
+          console.log('back:confirm, history')
+          window.history.go(_backLvl)
+        }
+        success && success()
+        return true
       },
-      cancelProps: {
-        onClick: () => {
-          fail && fail()
-          return true
-        }
+      onCancel: () => {
+        fail && fail()
+        return true
       }
     })
   }

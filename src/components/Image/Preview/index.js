@@ -4,7 +4,7 @@ import { Zoom, Pagination } from 'swiper/modules'
 import preventDefault from './preventDefault'
 
 // 内库使用-start
-import Modal from './../../Modal'
+import Modal from './../../Modal/SelectModal/MainWrapper'
 import VideoPlayer from './../../VideoPlayer'
 // 内库使用-end
 
@@ -22,7 +22,7 @@ const Preview = forwardRef(
       onClose,
 
       children,
-      ...others
+      ...props
     },
     ref
   ) => {
@@ -72,11 +72,12 @@ const Preview = forwardRef(
     // }
 
     return (
-      <Modal.Picker
+      <Modal
         visible
         animation="slideUp"
-        className="preview-modal"
+        className="image-preview-modal"
         onVisibleChange={handleVisibleChange}
+        ok={false}
         onTouchStart={handleTouchStart}
         // onTouchEnd={handleTouchEnd}
       >
@@ -124,7 +125,7 @@ const Preview = forwardRef(
             )
           })}
         </Swiper>
-      </Modal.Picker>
+      </Modal>
     )
   }
 )

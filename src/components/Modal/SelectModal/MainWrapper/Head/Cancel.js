@@ -7,6 +7,8 @@ const Cancel = ({ disabled, text, onClick, ...props }) => {
     if (onClick) onClick(e)
   }
 
+  if (text === false) return null
+
   return (
     <div
       {...props}
@@ -15,7 +17,7 @@ const Cancel = ({ disabled, text, onClick, ...props }) => {
       }${props.className ? ' ' + props.className : ''}${disabled === true ? ' disabled' : ''}`}
       onClick={handleClick}
     >
-      {text || <div className="modal-selectmodal-icon-close"></div>}
+      {typeof text === 'string' ? text : <div className="modal-selectmodal-icon-close"></div>}
     </div>
   )
 }

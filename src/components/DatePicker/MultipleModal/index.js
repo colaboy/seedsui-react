@@ -9,7 +9,7 @@ import SelectModal from './../../Modal/SelectModal'
 
 /* 测试使用-start
 import { Modal as BaseModal } from 'seedsui-react'
-const SelectModal = BaseModal.Picker
+const SelectModal = BaseModal.SelectModal
 测试使用-end */
 
 // Modal

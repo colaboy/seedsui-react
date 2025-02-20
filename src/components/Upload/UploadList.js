@@ -104,8 +104,7 @@ const UploadList = ({
             content: LocaleUtil.locale(
               `文件链接复制到剪贴板失败, 请长按复制<br/>${previewUrl}`,
               'SeedsUI_clipboard_fail_confirm',
-              [previewUrl],
-              true
+              [previewUrl]
             )
           })
         }
