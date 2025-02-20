@@ -81,6 +81,7 @@ const Main = forwardRef(
       if (Array.isArray(list) && list.length) {
         onLoad && onLoad()
       }
+      // eslint-disable-next-line
     }, [list])
 
     useEffect(() => {
