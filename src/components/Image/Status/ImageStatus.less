@@ -1,0 +1,103 @@
+// 照片状态: 失败和转圈
+.image-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  display: none;
+}
+.image-status-icon {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+// 照片状态: 转圈图标
+.image-status-icon-loading {
+  display: none;
+  width: 24px;
+  height: 24px;
+}
+
+// 照片状态: 失败图标
+.image-status-icon-fail {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-redo all);
+  border-radius: 100%;
+}
+
+// 照片视频列表
+.image {
+  // 上传中上传按钮需要转圈
+  &.uploading .image-upload {
+    .image-status {
+      display: block;
+    }
+    .image-status-icon-loading {
+      display: flex;
+    }
+  }
+}
+
+// 单个照片
+.image-item {
+  // 照片状态: 选择
+  &.choose {
+  }
+
+  // 照片状态: 上传中
+  &.uploading {
+    .image-status {
+      display: block;
+    }
+
+    // 显示转圈
+    .image-status-icon-loading {
+      display: flex;
+    }
+
+    // 上传中不允许删除
+    .image-delete {
+      display: none;
+    }
+
+    // 项上传中上传按钮也要显示转圈
+    ~ .image-upload {
+      .image-status {
+        display: block;
+      }
+      .image-status-icon-loading {
+        display: flex;
+      }
+    }
+  }
+
+  // 照片状态: 上传失败
+  &.fail {
+    .image-status {
+      display: block;
+    }
+
+    // 显示重传按钮
+    .image-status-icon-fail {
+      display: flex;
+    }
+  }
+
+  // 照片状态: 上传成功
+  &.success {
+  }
+}

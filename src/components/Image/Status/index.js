@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // 内库使用-start
-import Loading from './../Loading'
+import Loading from './../../Loading'
 // 内库使用-end
 
 /* 测试使用-start

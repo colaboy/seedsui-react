@@ -1,5 +1,5 @@
 import React from 'react'
-import Status from './Status'
+import Status from './../Status'
 
 // 上传按钮
 const Upload = ({

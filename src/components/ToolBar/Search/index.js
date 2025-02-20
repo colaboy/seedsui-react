@@ -14,6 +14,7 @@ import { LocaleUtil, Bridge, Input, Button } from 'seedsui-react'
 const Search = forwardRef(
   (
     {
+      placeholder,
       value,
       onChange,
       onSearch,
@@ -98,7 +99,7 @@ const Search = forwardRef(
               className="toolbar-search-input"
               leftIcon={<i className="toolbar-search-input-left-icon" />}
               type="search"
-              placeholder={LocaleUtil.locale('搜索', 'SeedsUI_search')}
+              placeholder={placeholder || LocaleUtil.locale('搜索', 'SeedsUI_search')}
               allowClear
               value={value}
               onChange={onChange}
