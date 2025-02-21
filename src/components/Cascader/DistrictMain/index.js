@@ -250,10 +250,13 @@ const CascaderDistrictMain = forwardRef(
         list={typeErrMsg ? typeErrMsg : list}
         {...props}
         loadData={loadData}
-        onReLoad={async ({ update }) => {
-          if (typeErrMsg) return
-          update({ action: 'load' })
-        }}
+        onReLoad={
+          typeErrMsg
+            ? null
+            : async ({ update }) => {
+                update({ action: 'load' })
+              }
+        }
         ref={districtMainRef}
       />
     )

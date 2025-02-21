@@ -15,8 +15,6 @@ const Ok = ({ disabled, total, text, onClick, ...props }) => {
     if (onClick) onClick(e)
   }
 
-  if (text === false) return null
-
   return (
     <div
       {...props}
@@ -25,7 +23,7 @@ const Ok = ({ disabled, total, text, onClick, ...props }) => {
       }${disabled === true ? ' disabled' : ''}`}
       onClick={handleOkClick}
     >
-      {typeof text === 'string' ? text : LocaleUtil.locale('确定', 'SeedsUI_ok')}
+      {text && typeof text === 'string' ? text : LocaleUtil.locale('确定', 'SeedsUI_ok')}
       {typeof total === 'number' && `(${total})`}
     </div>
   )
