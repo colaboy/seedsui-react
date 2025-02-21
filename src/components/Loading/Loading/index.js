@@ -23,7 +23,7 @@ const Loading = forwardRef(
     })
 
     // render icon
-    function getIcon() {
+    function getIconNode() {
       if (typeof icon === 'function') {
         return icon()
       }
@@ -48,7 +48,7 @@ const Loading = forwardRef(
           children
         ) : (
           <div className="loading" {...props}>
-            <div className="loading-icon">{getIcon()}</div>
+            <div className="loading-icon">{getIconNode()}</div>
             <div className="loading-content">
               {content || LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')}
             </div>

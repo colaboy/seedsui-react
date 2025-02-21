@@ -36,5 +36,11 @@
   font-size: var(--font-size-s);
 }
 .loading-icon {
+  // Sometime loading icon on .loading-icon
+  color: white;
+  // Sometime loading icon in .loading-icon
+  & > div {
+    color: white;
+  }
   margin: 10px auto 10px;
 }

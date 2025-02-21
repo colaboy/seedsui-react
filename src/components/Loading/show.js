@@ -23,7 +23,7 @@ export default function (props) {
     if (!mask) {
       mask = document.createElement('div')
       mask.innerHTML = `<div class="loading">
-          <div class="loading-spinfade">
+          <div class="loading-icon loading-spinfade">
             <div class="loading-spinfade-item"></div>
             <div class="loading-spinfade-item"></div>
             <div class="loading-spinfade-item"></div>
