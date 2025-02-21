@@ -46,7 +46,7 @@
   "SeedsUI_alert_title": "提示",
   "SeedsUI_link_copy_error": "链接复制到剪贴板失败, 请长按复制",
   "SeedsUI_release_refresh": "释放立即刷新",
-  "SeedsUI_pull_down_refresh": "下拉刷新",
+  "SeedsUI_pull_down_refresh": "下拉可以刷新",
   "SeedsUI_refreshing": "加载中",
   "SeedsUI_refresh": "下拉可以刷新",
   "SeedsUI_refresh_failed": "刷新失败",

@@ -78,7 +78,8 @@ const Main = forwardRef(
           topText.innerHTML = LocaleUtil.locale('释放立即刷新', 'SeedsUI_release_refresh')
       } else {
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
-        if (topText) topText.innerHTML = LocaleUtil.locale('下拉刷新', 'SeedsUI_pull_down_refresh')
+        if (topText)
+          topText.innerHTML = LocaleUtil.locale('下拉可以刷新', 'SeedsUI_pull_down_refresh')
       }
     }
     async function handleTouchEnd(e) {
