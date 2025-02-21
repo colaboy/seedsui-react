@@ -21,8 +21,11 @@ title: List
 ## List.Main
 
 <code src="./demos/Main/index.jsx"></code>
-<code src="./demos/Main/pagination.jsx"></code>
 
-## List.Main Request
+## List.Main Pagination Simple
+
+<code src="./demos/Main/pagination-simple.jsx"></code>
+
+## List.Main Pagination Common
 
 <code src="./demos/Main/Pagination/index.jsx"></code>
