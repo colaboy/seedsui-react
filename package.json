@@ -65,7 +65,7 @@
     "dayjs": "^1.11.12",
     "html-react-parser": "^3.0.4",
     "leaflet-canvas-marker": "^0.2.0",
-    "less": "^4.2.0",
+    "less": "^4.2.2",
     "lodash": "^4.17.21",
     "rc-tree": "^5.7.2",
     "react-sortablejs": "^6.1.4",
