@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import hasMoreItems from './hasMoreItems'
 import scrollToTop from './scrollToTop'
-import InfiniteScroll from './InfiniteScroll'
+import InfiniteScroll from './../InfiniteScroll'
 import ResultMessage from './ResultMessage'
 import Loading from './Loading'
 

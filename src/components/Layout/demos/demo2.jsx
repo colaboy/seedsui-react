@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from 'seedsui-react'
+import { Layout, List } from 'seedsui-react'
 
 const list = []
 for (let i = 0; i < 100; i++) {
@@ -38,7 +38,7 @@ export default () => {
             </div>
           )
         })}
-        <Layout.MainBottomLoading type="failure" />
+        <List.InfiniteScroll />
       </Layout.Main>
       <Layout.Footer style={{ height: 50, backgroundColor: 'white' }}>Footer</Layout.Footer>
     </Layout>

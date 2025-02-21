@@ -98,7 +98,7 @@ const Main = forwardRef(
         topContainerRef.current.style.height = threshold + 'px'
         if (topIcon) topIcon.classList.remove('layout-main-pull-push-icon-down')
         if (topIcon) topIcon.classList.add('layout-main-pull-push-icon-loading')
-        if (topText) topText.innerHTML = LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')
+        if (topText) topText.innerHTML = `${LocaleUtil.locale('加载中', 'SeedsUI_refreshing')}...`
 
         // Trigger Events
         if (onTopRefresh) {

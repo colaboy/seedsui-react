@@ -50,7 +50,7 @@ const Loading = forwardRef(
           <div className="loading" {...props}>
             <div className="loading-icon">{getIconNode()}</div>
             <div className="loading-content">
-              {content || LocaleUtil.locale('加载中...', 'SeedsUI_refreshing')}
+              {content || `${LocaleUtil.locale('加载中', 'SeedsUI_refreshing')}...`}
             </div>
           </div>
         )}

@@ -3620,7 +3620,7 @@
     "uz_UZ": "Yangilash uchun pastga torting",
     "zh_TW": "下拉刷新"
   },
-  "加载中...": {
+  "加载中": {
     "key": "SeedsUI_refreshing",
     "zh_CN": "加载中...",
     "en_US": "Loading...",

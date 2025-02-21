@@ -9,17 +9,18 @@ import Loading from './../../Loading'
 import { LocaleUtil, Loading } from 'seedsui-react'
 测试使用-end */
 
+// type: loading | noMore | [error|自定义错误信息]
 const InfiniteScroll = ({ type }) => {
   function getStatusNode() {
     if (!type || typeof type !== 'string') return null
 
     if (type === 'loading') {
       return (
-        <div className={`list-main-infinite-scroll-wrapper`}>
-          <div className="list-main-infinite-scroll-text">
+        <div className={`list-infinitescroll-wrapper`}>
+          <div className="list-infinitescroll-text">
             {LocaleUtil.locale('加载中', 'SeedsUI_refreshing')}
           </div>
-          <div className="list-main-infinite-scroll-icon">
+          <div className="list-infinitescroll-icon">
             <Loading.BallWave />
           </div>
         </div>
@@ -27,16 +28,16 @@ const InfiniteScroll = ({ type }) => {
     }
     if (type === 'noMore') {
       return (
-        <div className={`list-main-infinite-scroll-wrapper`}>
-          <div className="list-main-infinite-scroll-text">
+        <div className={`list-infinitescroll-wrapper`}>
+          <div className="list-infinitescroll-text">
             {LocaleUtil.locale('没有更多了', 'SeedsUI_no_more_data')}
           </div>
         </div>
       )
     }
     return (
-      <div className={`list-main-infinite-scroll-wrapper`}>
-        <div className="list-main-infinite-scroll-text">
+      <div className={`list-infinitescroll-wrapper`}>
+        <div className="list-infinitescroll-text">
           {type === 'error'
             ? LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error')
             : type}
@@ -45,7 +46,7 @@ const InfiniteScroll = ({ type }) => {
     )
   }
 
-  return <div className={`list-main-infinite-scroll`}>{getStatusNode()}</div>
+  return <div className={`list-infinitescroll`}>{getStatusNode()}</div>
 }
 
 export default InfiniteScroll
