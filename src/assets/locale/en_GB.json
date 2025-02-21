@@ -13,7 +13,7 @@
   "SeedsUI_unit_date": "day",
   "SeedsUI_cascader_countries_error": "Failed to get national data",
   "SeedsUI_cascader_countryRegions_error": "Failed to obtain provincial and municipal data",
-  "SeedsUI_cascader_incorrect_parameter": "Incorrect parameter. type can only pass country, province, city, district, street",
+  "SeedsUI_cascader_incorrect_parameter": "参数错误, type只支持: province, city, district, street",
   "SeedsUI_placeholder_select": "Please select",
   "SeedsUI_no_data": "No data yet",
   "SeedsUI_reload": "reload",

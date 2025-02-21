@@ -993,7 +993,7 @@
     "zh_HK": "獲取省市區數據失敗",
     "zh_TW": "獲取省市區數據失敗"
   },
-  "Incorrect parameter. type can only pass country, province, city, district, street": {
+  "参数错误, type只支持: province, city, district, street": {
     "key": "SeedsUI_cascader_incorrect_parameter",
     "ar_EG": "معلمة غير صحيحة. يمكن أن يمر النوع فقط البلد ، المقاطعة ، المدينة ، المنطقة ، الشارع",
     "az_AZ": "Səhv parametr. növü yalnız ölkə, əyalət, şəhər, rayon, küçə keçə bilər",
@@ -1004,8 +1004,8 @@
     "da_DK": "Forkert parameter. Type kan kun passere land, provins, by, distrikt, gade",
     "de_DE": "Falscher Parameter. Typ kann nur Land, Provinz, Stadt, Bezirk, Straße passieren",
     "el_GR": "Εσφαλμένη παράμετρος. Ο τύπος μπορεί να περάσει μόνο χώρα, επαρχία, πόλη, περιοχή, οδός",
-    "en_GB": "Incorrect parameter. type can only pass country, province, city, district, street",
-    "en_US": "Incorrect parameter. type can only pass country, province, city, district, street",
+    "en_GB": "参数错误, type只支持: province, city, district, street",
+    "en_US": "参数错误, type只支持: province, city, district, street",
     "es_ES": "Parámetro incorrecto. El tipo solo puede pasar país, provincia, ciudad, distrito, calle",
     "eu_ES": "Parametro okerra. Tipoak herrialdea, probintzia, hiria, barrutia, kalea bakarrik igaro dezake",
     "et_EE": "Vale parameeter. tüüp võib läbida ainult riigi, provintsi, linna, linnaosa, tänava",
@@ -1060,9 +1060,9 @@
     "uk_UA": "Неправильний параметр. тип може проїхати тільки країна, область, місто, район, вулиця",
     "uz_UZ": "Noto'g'ri parametr. turi faqat mamlakat, viloyat, shahar, tuman, ko'cha o'tishi mumkin",
     "vi_VN": "Thông số không chính xác. Loại chỉ có thể đi qua quốc gia, tỉnh, thành phố, huyện, đường phố",
-    "zh_CN": "Incorrect parameter. type can only pass country, province, city, district, street",
-    "zh_HK": "Incorrect parameter. type can only pass country, province, city, district, street",
-    "zh_TW": "Incorrect parameter. type can only pass country, province, city, district, street"
+    "zh_CN": "参数错误, type只支持: province, city, district, street",
+    "zh_HK": "参数错误, type只支持: province, city, district, street",
+    "zh_TW": "参数错误, type只支持: province, city, district, street"
   },
   "请选择": {
     "key": "SeedsUI_placeholder_select",

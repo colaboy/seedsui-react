@@ -244,7 +244,7 @@ const CascaderDistrictMain = forwardRef(
           ['country', 'province', 'city', 'district', 'street'].includes(type)
             ? list
             : LocaleUtil.locale(
-                'Incorrect parameter. type can only pass country, province, city, district, street',
+                '参数错误, type只支持: province, city, district, street',
                 'SeedsUI_cascader_incorrect_parameter'
               )
         }
