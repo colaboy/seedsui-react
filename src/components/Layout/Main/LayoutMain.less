@@ -28,7 +28,6 @@
 .layout-main-bottom-loading-wrapper {
 }
 .layout-main-bottom-loading-text {
-  color: #999999;
 }
 
 // 下拉刷新-下拉或触底刷新样式
@@ -47,10 +46,13 @@
 .layout-main-pull-push {
   display: flex;
   align-items: flex-end;
+  // 解决在flex父级下高度无法撑开的问题
+  flex: none;
   position: relative;
   width: 100%;
   height: 0;
   overflow: hidden;
+  color: var(--tertiary);
 }
 .layout-main-pull-push-wrapper {
   .flex;
@@ -59,7 +61,6 @@
   width: 100%;
   height: 40px;
   font-size: 13px;
-  color: #999999;
 }
 .layout-main-pull-push-text {
   display: block;

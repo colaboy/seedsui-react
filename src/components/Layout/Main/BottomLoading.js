@@ -1,6 +1,8 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import LocaleUtil from './../../../utils/LocaleUtil'
 
+// deprecated 废弃, 使用InfiniteScroll代替
+
 // type: loading,complete,failed
 const BottomLoading = forwardRef(({ children, type, ...props }, ref) => {
   const rootRef = useRef(null)

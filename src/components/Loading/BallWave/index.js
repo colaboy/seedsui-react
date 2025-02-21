@@ -16,7 +16,7 @@ const BallWave = (props, ref) => {
       className={`loading-ballwave${props?.className ? ' ' + props.className : ''}`}
       ref={rootRef}
     >
-      <svg viewBox="0 0 80 40">
+      <svg viewBox="20 0 60 40">
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g transform="translate(-100.000000, -71.000000)">
             <g transform="translate(95.000000, 71.000000)">

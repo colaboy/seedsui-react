@@ -25,9 +25,12 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Loading</Layout.Header>
       <Layout.Main className="bg-white">
+        <Loading.SpinFade />
+        <Loading.Ouroboros />
+        <Loading.BallWave />
         <Loading
           // 自定义图标和内容
-          icon={<Loading.BallWave />}
+          icon={<Loading.Ouroboros />}
           content="自定义内容"
         />
       </Layout.Main>

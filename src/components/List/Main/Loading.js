@@ -14,7 +14,7 @@ const MainLoading = ({ type, loading }) => {
   if (loading === 'function') {
     return loading({ action: type })
   }
-  if (type === 'load') {
+  if (type === 'load' || type === 'retry') {
     return <Skeleton.List animated={false} />
   }
   if (type === 'reload') {
