@@ -18,7 +18,7 @@ const MainLoading = ({ type, loading }) => {
     return <Skeleton.List animated={false} />
   }
   if (type === 'reload') {
-    return <Loading portal={portal || document.getElementById('root') || document.body} />
+    return <Loading portal={document.getElementById('root') || document.body} />
   }
   return null
 }
