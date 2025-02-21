@@ -3,17 +3,17 @@ import _ from 'lodash'
 
 import formatList from './../utils/formatList'
 import DistrictMain from './DistrictMain'
+import validateType from './validateType'
 import api from './api'
 
 // 内库使用-start
 import Toast from './../../Toast'
 import Loading from './../../Loading'
-import LocaleUtil from './../../../utils/LocaleUtil'
 import ArrayUtil from './../../../utils/ArrayUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { Toast, Loading, LocaleUtil, ArrayUtil } from 'seedsui-react'
+import { Toast, Loading, ArrayUtil } from 'seedsui-react'
 测试使用-end */
 
 // 地址选择
@@ -24,7 +24,7 @@ const CascaderDistrictMain = forwardRef(
       value,
       // 开始于国家country, 省份province
       startType,
-      type = 'street', // 'country', 'province', 'city', 'district', 'street'
+      type, // 'country', 'province', 'city', 'district', 'street'
       loadCountries = api.loadCountries,
       loadCountryRegions = api.loadCountryRegions,
       loadStreets = api.loadStreets,
@@ -32,8 +32,13 @@ const CascaderDistrictMain = forwardRef(
     },
     ref
   ) => {
+    // eslint-disable-next-line
+    if (!type) type = 'street'
+
     // Cascader.Main并不记录与修改外部传入的list, 所以只能在外部格式化好再传入
     let [list, setList] = useState(null)
+
+    let typeErrMsg = validateType(type) || ''
 
     // Expose api
     const districtMainRef = useRef(null)
@@ -56,6 +61,8 @@ const CascaderDistrictMain = forwardRef(
 
     // 初始列表
     async function initList() {
+      if (typeErrMsg) return
+
       list = await getList()
       setList(list)
 
@@ -240,17 +247,11 @@ const CascaderDistrictMain = forwardRef(
         visible={visible}
         value={value}
         type={type}
-        list={
-          ['country', 'province', 'city', 'district', 'street'].includes(type)
-            ? list
-            : LocaleUtil.locale(
-                '参数错误, type只支持: province, city, district, street',
-                'SeedsUI_cascader_incorrect_parameter'
-              )
-        }
+        list={typeErrMsg ? typeErrMsg : list}
         {...props}
         loadData={loadData}
         onReLoad={async ({ update }) => {
+          if (typeErrMsg) return
           update({ action: 'load' })
         }}
         ref={districtMainRef}

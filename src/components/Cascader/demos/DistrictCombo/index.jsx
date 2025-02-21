@@ -51,6 +51,7 @@ export default () => {
       <Layout.Main>
         <Cascader.DistrictCombo
           // readOnly
+          type="a"
           startType={'country'}
           // multiple
           // type="country"

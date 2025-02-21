@@ -13,7 +13,7 @@
   "SeedsUI_unit_date": "日",
   "SeedsUI_cascader_countries_error": "獲取國家數據失敗",
   "SeedsUI_cascader_countryRegions_error": "獲取省市區數據失敗",
-  "SeedsUI_cascader_incorrect_parameter": "参数错误, type只支持: province, city, district, street",
+  "SeedsUI_cascader_incorrect_parameter": "type只支持: province, city, district, street",
   "SeedsUI_placeholder_select": "請選擇",
   "SeedsUI_no_data": "暫無數據",
   "SeedsUI_reload": "重新加載",

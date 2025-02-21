@@ -53,7 +53,7 @@ const ListItem = forwardRef(
             }
             className={`cascader-exception`}
           >
-            {errCode === 'ERROR' && (
+            {errCode === 'ERROR' && onReLoad && (
               <Button className="primary cascader-exception-button" onClick={onReLoad}>
                 {LocaleUtil.locale('重新加载', 'SeedsUI_reload')}
               </Button>
