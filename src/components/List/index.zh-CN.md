@@ -28,4 +28,4 @@ title: List
 
 ## List.Main Pagination Common
 
-<code src="./demos/Main/Pagination/index.jsx"></code>
+<code src="./demos/Main/pagination-common/index.jsx"></code>

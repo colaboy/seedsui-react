@@ -24,9 +24,9 @@ const Modal = forwardRef(
       // 绘画配置
       color,
       backgroundColor,
+      mainProps,
 
-      // 页面属性
-      pageProps = {}
+      ...props
     },
     ref
   ) => {
@@ -41,19 +41,17 @@ const Modal = forwardRef(
       }
     })
 
-    let Node = (
+    return createPortal(
       <Layout
         ref={modalRef}
-        safeArea
-        // 显示在其它page前面渲染
-        style={{ zIndex: document.querySelectorAll('layout').length + 5 }}
-        {...pageProps}
-        className={`full bg-white${pageProps?.className ? ' ' + pageProps.className : ''}${
+        {...props}
+        className={`signature-modal${props?.className ? ' ' + props.className : ''}${
           visible === true ? '' : ' hide'
         }`}
       >
         {visible && (
           <Main
+            {...(mainProps || {})}
             value={value}
             onBeforeChange={onBeforeChange}
             onChange={onChange}
@@ -65,13 +63,9 @@ const Modal = forwardRef(
             backgroundColor={backgroundColor}
           />
         )}
-      </Layout>
+      </Layout>,
+      portal || document.getElementById('root') || document.body
     )
-
-    if (portal) {
-      return createPortal(Node, portal)
-    }
-    return Node
   }
 )
 

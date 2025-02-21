@@ -1,0 +1,23 @@
+.signature-modal {
+  &:extend(.layout.full all);
+  background-color: white;
+}
+
+// Adapt to the safe area
+.actionsheet-modal.safeArea {
+  &:extend(.safe-area all);
+  &:extend(.safe-area.border-bottom all);
+  border-color: white !important;
+}
+.actionsheet-modal.clearSafeArea {
+  &:extend(.clear-safe-area all);
+  &:extend(.clear-safe-area.border-bottom all);
+}
+
+.auto-safe-area-children {
+  .actionsheet-modal.autoSafeArea {
+    &:extend(.safe-area all);
+    &:extend(.safe-area.border-bottom all);
+    border-color: white !important;
+  }
+}
