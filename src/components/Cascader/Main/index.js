@@ -32,7 +32,7 @@ const Main = forwardRef(
       value,
       allowClear,
       onChange,
-      onSelect,
+      onBeforeChange,
       onReLoad,
 
       list: externalList,
@@ -233,9 +233,9 @@ const Main = forwardRef(
         newValue = [item]
       }
 
-      // 选中项
-      if (typeof onSelect === 'function') {
-        let isOk = await onSelect(newValue, { list: externalList })
+      // 选中项, 允许修改值Array | 继续true | 停止false
+      if (typeof onBeforeChange === 'function') {
+        let isOk = await onBeforeChange(newValue, { list: externalList })
         if (Array.isArray(isOk)) {
           newValue = isOk
         }
@@ -264,8 +264,11 @@ const Main = forwardRef(
       // 触发tab与列表更新
       onChange && onChange(newValue, { list: externalList })
 
-      // 点击"请选择"左边一级的tab(不是isLeaf代表末级是请选择), 点击相同选项值, 既不会触发关窗, 也不会触发tab更新, 需要强制触发更新
-      if (!newValue.isLeaf && JSON.stringify(newValue) === JSON.stringify(value)) {
+      // 点击"请选择"上级选项, 点击相同选项值, 既不会触发关窗, 也不会触发tab更新, 需要强制触发更新(不是末级节点, 即使值相同, 也要触发更新下级列表)
+      if (
+        !newValue[newValue.length - 1].isLeaf &&
+        JSON.stringify(newValue) === JSON.stringify(value)
+      ) {
         update({ action: 'clickItem' })
       }
 

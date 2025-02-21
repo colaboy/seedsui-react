@@ -1,5 +1,6 @@
 @import './SpinFade/SpinFade.less';
 @import './Ouroboros/Ouroboros.less';
+@import './BallWave/BallWave.less';
 
 // Loading
 // 是否允许点击
@@ -11,30 +12,36 @@
 .loading-mask {
   background-color: transparent;
   transition-duration: 0ms;
+
   &.active {
     .flex;
     .flex-middle;
     .flex-center;
   }
+
   z-index: 11;
 }
+
 .loading {
   .flex;
   .flex-middle;
   .flex-center;
   .flex-vertical;
+
   min-width: 80px;
   max-width: 90%;
   height: 80px;
   margin-top: -50px;
   padding: 0 12px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 50%);
   border-radius: 12px;
 }
+
 .loading-content {
   font-size: var(--font-size-s);
 }
+
 .loading-icon {
   // Sometime loading icon on .loading-icon
   color: white;
@@ -42,5 +49,6 @@
   & > div {
     color: white;
   }
-  margin: 10px auto 10px;
+
+  margin: 10px auto;
 }

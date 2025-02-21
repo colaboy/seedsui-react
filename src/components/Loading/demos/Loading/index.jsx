@@ -23,11 +23,11 @@ export default () => {
 
   return (
     <Layout className="full">
-      <Layout.Header className="text-center">Customer.Loading</Layout.Header>
+      <Layout.Header className="text-center">Loading</Layout.Header>
       <Layout.Main className="bg-white">
         <Loading
           // 自定义图标和内容
-          icon={<Loading.Ouroboros />}
+          icon={<Loading.BallWave />}
           content="自定义内容"
         />
       </Layout.Main>

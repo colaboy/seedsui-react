@@ -56,7 +56,7 @@ const DistrictMain = forwardRef(
     }
 
     // 点击选项前判断是否指定类型和isLeaf
-    async function handleSelect(tabs) {
+    async function handleBeforeChange(tabs) {
       if (!Array.isArray(tabs) || !tabs.length) {
         return tabs
       }
@@ -120,7 +120,7 @@ const DistrictMain = forwardRef(
             : null
         }
         {...props}
-        onSelect={handleSelect}
+        onBeforeChange={handleBeforeChange}
       />
     )
   }
