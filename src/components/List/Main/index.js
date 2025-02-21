@@ -4,15 +4,15 @@ import scrollToTop from './scrollToTop'
 import InfiniteScroll from './../InfiniteScroll'
 import ResultMessage from './ResultMessage'
 import Loading from './Loading'
+import List from './../List'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
 import Layout from './../../Layout'
-import List from './../List'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Layout, Result, List } from 'seedsui-react'
+import { Device, Layout, Result } from 'seedsui-react'
 测试使用-end */
 
 // 列表

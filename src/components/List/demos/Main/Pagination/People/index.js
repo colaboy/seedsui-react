@@ -15,6 +15,7 @@ const People = forwardRef(
       footerBar,
 
       multiple,
+      allowClear,
       checkable = true
 
       // ...props
@@ -50,6 +51,7 @@ const People = forwardRef(
         <List.Main
           ref={mainRef}
           multiple={multiple}
+          allowClear={allowClear}
           checkbox={checkable}
           className="employee-people-main"
           loadList={({ page, action }) => {

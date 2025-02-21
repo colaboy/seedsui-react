@@ -8,11 +8,12 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Employee.Combo</Layout.Header>
       <People
-        multiple={true}
+        // multiple={true}
         // checkable={false}
+        allowClear={true}
         value={value}
-        onChange={(value) => {
-          console.log(value)
+        onChange={(value, { checked, item }) => {
+          console.log(value, { checked, item })
           setValue(value)
         }}
       />

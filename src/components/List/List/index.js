@@ -97,7 +97,7 @@ const List = (
               newValue = [item]
             }
           }
-          onChange && onChange(newValue)
+          onChange && onChange(newValue, { checked: checked, item: item })
         }}
       />
     )
