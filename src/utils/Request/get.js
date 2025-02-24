@@ -1,5 +1,6 @@
 import axios from 'axios'
 import formatResponse from './formatResponse'
+import formatError from './formatError'
 
 function get(url, params, config) {
   return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ function get(url, params, config) {
         resolve(formatResponse(response))
       })
       .catch((error) => {
-        reject(error)
+        reject(formatError(error))
       })
   })
 }
