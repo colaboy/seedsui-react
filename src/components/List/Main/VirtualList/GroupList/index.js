@@ -1,6 +1,6 @@
 import React, { useMemo, forwardRef } from 'react'
+import _ from 'lodash'
 import { GroupedVirtuoso } from 'react-virtuoso'
-import getItemIndex from './getItemIndex'
 import GroupTitle from './../../../GroupTitle'
 
 // 分组列表
@@ -8,6 +8,10 @@ const GroupList = forwardRef(({ list, itemContent, Scroller }, ref) => {
   // 每组的数据个数
   const groupCounts = useMemo(() => {
     return list.map((item) => item.children.length)
+  }, [])
+
+  const items = useMemo(() => {
+    return _.flatten(list.map((item) => item.children))
   }, [])
 
   console.log('groupCounts:', groupCounts)
@@ -32,10 +36,12 @@ const GroupList = forwardRef(({ list, itemContent, Scroller }, ref) => {
           />
         )
       }}
-      itemContent={(index, groupIndex) => {
-        let item = list[groupIndex].children[index]
-        let itemIndex = getItemIndex(groupCounts, groupIndex, index)
-        return itemContent(itemIndex, item)
+      itemContent={(index) => {
+        let item = items[index]
+        return itemContent(index, item)
+      }}
+      onScroll={(e) => {
+        e.stopPropagation()
       }}
     />
   )

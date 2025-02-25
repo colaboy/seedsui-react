@@ -228,7 +228,16 @@ const Main = forwardRef(
           // 列表
           list={list}
           // 底部
-          append={append}
+          append={() => {
+            return (
+              <>
+                {typeof append === 'function'
+                  ? append({ list, value, onChange, pagination })
+                  : null}
+                {pagination && <InfiniteScroll type={bottomStatus} />}
+              </>
+            )
+          }}
         />
       )
     }

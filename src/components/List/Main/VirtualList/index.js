@@ -1,8 +1,9 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import hasChildren from './hasChildren'
+import getListTotal from './getListTotal'
 import GroupTitle from './../../GroupTitle'
 import Item from './../../Item'
-import GroupList from './GroupList/index.js'
+import GroupList from './GroupList'
 import List from './List'
 
 // 内库使用-start
@@ -57,42 +58,52 @@ const VirtualList = forwardRef(
     // 单项渲染
     function itemContent(index, item) {
       return (
-        <Item
-          key={item.id ?? index}
-          // Custom Wrapper or Item
-          wrapper={wrapper}
-          // Display Item
-          title={item.name}
-          // Other Item
-          {...item}
-          // Item Data
-          itemData={item}
-          // Global Config
-          layout={layout}
-          checkbox={item.checkbox || checkbox}
-          checkboxPosition={item.checkboxPosition || checkboxPosition}
-          checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
-          onChange={(checked) => {
-            let newValue = null
-            // 多选
-            if (multiple) {
-              if (!checked) {
-                newValue = value.filter((valueItem) => valueItem?.id !== item.id)
-              } else {
-                newValue = [...(value || []), item]
+        <>
+          {/* 头部 */}
+          {index === 0 && typeof prepend === 'function'
+            ? prepend({ list, value, onChange, pagination })
+            : null}
+          <Item
+            key={item.id ?? index}
+            // Custom Wrapper or Item
+            wrapper={wrapper}
+            // Display Item
+            title={item.name}
+            // Other Item
+            {...item}
+            // Item Data
+            itemData={item}
+            // Global Config
+            layout={layout}
+            checkbox={item.checkbox || checkbox}
+            checkboxPosition={item.checkboxPosition || checkboxPosition}
+            checked={value?.findIndex?.((valueItem) => valueItem?.id === item.id) >= 0}
+            onChange={(checked) => {
+              let newValue = null
+              // 多选
+              if (multiple) {
+                if (!checked) {
+                  newValue = value.filter((valueItem) => valueItem?.id !== item.id)
+                } else {
+                  newValue = [...(value || []), item]
+                }
               }
-            }
-            // 单选
-            else {
-              if (!checked) {
-                allowClear ? (newValue = null) : (newValue = [item])
-              } else {
-                newValue = [item]
+              // 单选
+              else {
+                if (!checked) {
+                  allowClear ? (newValue = null) : (newValue = [item])
+                } else {
+                  newValue = [item]
+                }
               }
-            }
-            onChange && onChange(newValue, { checked: checked, item: item })
-          }}
-        />
+              onChange && onChange(newValue, { checked: checked, item: item })
+            }}
+          />
+          {/* 底部 */}
+          {index === getListTotal(list) - 1 && typeof append === 'function'
+            ? append({ list, value, onChange, pagination })
+            : null}
+        </>
       )
     }
 
