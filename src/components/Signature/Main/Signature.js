@@ -42,7 +42,7 @@ const Signature = (
         return base64
       },
       clear: () => {
-        CanvasUtil.clear(canvasRef)
+        CanvasUtil.clear(canvasRef.current)
         isDrewRef.current = false
       }
     }

@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import hasChildren from './hasChildren'
-import getListTotal from './getListTotal'
 import GroupTitle from './../../GroupTitle'
 import Item from './../../Item'
 import GroupList from './GroupList'
@@ -99,10 +98,6 @@ const VirtualList = forwardRef(
               onChange && onChange(newValue, { checked: checked, item: item })
             }}
           />
-          {/* 底部 */}
-          {index === getListTotal(list) - 1 && typeof append === 'function'
-            ? append({ list, value, onChange, pagination })
-            : null}
         </>
       )
     }
@@ -119,6 +114,11 @@ const VirtualList = forwardRef(
             }}
             list={list}
             itemContent={itemContent}
+            Footer={() => {
+              return typeof append === 'function'
+                ? append({ list, value, onChange, pagination })
+                : null
+            }}
           />
         )
       }
