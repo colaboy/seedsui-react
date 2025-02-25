@@ -5,14 +5,14 @@ import InfiniteScroll from './../InfiniteScroll'
 import ResultMessage from './ResultMessage'
 import Loading from './Loading'
 import List from './List'
+import VirtualList from './VirtualList'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
-import Layout from './../../Layout'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, Layout, Result } from 'seedsui-react'
+import { Device } from 'seedsui-react'
 测试使用-end */
 
 // 列表
@@ -197,6 +197,42 @@ const Main = forwardRef(
       return true
     }
 
+    if (virtual) {
+      return (
+        <VirtualList
+          ref={mainRef}
+          {...props}
+          className={`list-main${props.className ? ' ' + props.className : ''}`}
+          onTopRefresh={pull && typeof loadList === 'function' ? () => init('topRefresh') : null}
+          onBottomRefresh={
+            pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
+          }
+          onScroll={(e) => {
+            // Callback
+            onScroll && onScroll(e)
+
+            // ios滚动过程中不允许点击tab，否则可能会局部白屏
+            if (Device.os === 'ios') {
+              document.body.classList.add('ios-scrolling')
+
+              if (window.timeout) {
+                window.clearTimeout(window.timeout)
+              }
+              window.timeout = setTimeout(() => {
+                document.body.classList.remove('ios-scrolling')
+              }, 500)
+            }
+          }}
+          // 头部
+          prepend={prepend}
+          // 列表
+          list={list}
+          // 底部
+          append={append}
+        />
+      )
+    }
+
     return (
       <List
         ref={mainRef}
@@ -231,10 +267,8 @@ const Main = forwardRef(
       >
         {/* 底部错误提示 */}
         {pagination && <InfiniteScroll type={bottomStatus} />}
-
         {/* 页面级错误提示 */}
         {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('retry')} />}
-
         {/* 页面加载遮罩 */}
         <Loading type={loadAction} loading={loading} />
       </List>

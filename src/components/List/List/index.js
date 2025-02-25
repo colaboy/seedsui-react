@@ -1,14 +1,6 @@
 import React, { Fragment, forwardRef, useRef, useImperativeHandle } from 'react'
-
+import GroupTitle from './../GroupTitle'
 import Item from './../Item'
-
-// 内库使用-start
-import IndexBar from './../../IndexBar'
-// 内库使用-end
-
-/* 测试使用-start
-import { IndexBar } from 'seedsui-react'
-测试使用-end */
 
 // List
 const List = (
@@ -64,14 +56,9 @@ const List = (
         // Custom Wrapper or Item
         wrapper={wrapper}
         // Display Item
-        disabled={item.disabled}
-        image={item.image}
-        avatar={item.avatar}
         title={item.name}
-        description={item.description}
-        note={item.note}
-        content={item.content}
-        action={item.action}
+        // Other Item
+        {...item}
         // Item Data
         itemData={item}
         // Global Config
@@ -103,30 +90,6 @@ const List = (
     )
   }
 
-  // 获取分组标题
-  function getGroupTitleNode(item) {
-    let TitleNode = (
-      <>
-        {item.name && <div className="list-title">{item.name}</div>}
-        {item.description && <div className="list-description">{item.description}</div>}
-      </>
-    )
-
-    if (item.anchor) {
-      return (
-        <IndexBar.Anchor className="list-divider" {...(item.elementProps || {})} name={item.anchor}>
-          {TitleNode}
-        </IndexBar.Anchor>
-      )
-    }
-
-    return (
-      <div className="list-divider" {...(item.elementProps || {})}>
-        {TitleNode}
-      </div>
-    )
-  }
-
   return (
     <div className="list" ref={rootRef}>
       {Array.isArray(list) &&
@@ -135,7 +98,12 @@ const List = (
           if (Array.isArray(item.children)) {
             return (
               <Fragment key={item.id ?? index}>
-                {getGroupTitleNode(item)}
+                <GroupTitle
+                  title={item.name}
+                  anchor={item.anchor}
+                  description={item.description}
+                  elementProps={item.elementProps}
+                />
 
                 <div className="list-items">
                   {item.children.map((option, optionIndex) => {

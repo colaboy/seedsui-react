@@ -50,6 +50,7 @@ const People = forwardRef(
 
         <List.Main
           ref={mainRef}
+          virtual
           multiple={multiple}
           allowClear={allowClear}
           checkbox={checkable}
