@@ -1,18 +1,11 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
+import getListTotal from './getListTotal'
 import hasChildren from './hasChildren'
 import ScrollerContainer from './Scroller'
 import GroupTitle from './../../GroupTitle'
 import Item from './../../Item'
 import GroupList from './GroupList'
 import List from './List'
-
-// 内库使用-start
-import Layout from './../../../Layout'
-// 内库使用-end
-
-/* 测试使用-start
-import { Layout } from 'seedsui-react'
-测试使用-end */
 
 // 列表
 const VirtualList = forwardRef(
@@ -57,9 +50,11 @@ const VirtualList = forwardRef(
 
     // 自定义滚动容器（监听下拉手势）
     const Scroller = React.forwardRef(({ style, children, ...scrollerProps }, ref) => {
+      rootRef.current = ref.current
       return (
         <ScrollerContainer
-          style={{ ...style, border: '5px solid gray' }}
+          {...props}
+          style={{ ...style, ...props?.style }}
           ref={ref}
           {...scrollerProps}
           className={`list-main${props.className ? ' ' + props.className : ''}`}
@@ -70,19 +65,6 @@ const VirtualList = forwardRef(
           {children}
         </ScrollerContainer>
       )
-      // return (
-      //   <Layout.Main
-      //     {...props}
-      //     style={{ overflow: 'hidden' }}
-      //     ref={ref}
-      //     className={`list-main${props.className ? ' ' + props.className : ''}`}
-      //     onTopRefresh={onTopRefresh}
-      //     onBottomRefresh={onBottomRefresh}
-      //     onScroll={onScroll}
-      //   >
-      //     {children}
-      //   </Layout.Main>
-      // )
     })
 
     // 单项渲染
@@ -162,21 +144,19 @@ const VirtualList = forwardRef(
     }
 
     return getList()
-    // return (
-    //   <Layout.Main
-    //     {...props}
-    //     style={{ overflow: 'hidden' }}
-    //     ref={rootRef}
-    //     className={`list-main${props.className ? ' ' + props.className : ''}`}
-    //     onTopRefresh={onTopRefresh}
-    //     onBottomRefresh={onBottomRefresh}
-    //     onScroll={onScroll}
-    //   >
-    //     {getList()}
-    //     {children}
-    //   </Layout.Main>
-    // )
   }
 )
 
-export default VirtualList
+// 列表长度不等重新渲染页面
+const equal = (prevProps, nextProps) => {
+  // 不刷新
+  if (getListTotal(prevProps.list) === getListTotal(nextProps.list)) {
+    console.log('不刷新:', getListTotal(prevProps.list), getListTotal(nextProps.list))
+    return true
+  }
+  // 刷新
+  console.log('刷新:', getListTotal(prevProps.list), getListTotal(nextProps.list))
+  return false
+}
+
+export default React.memo(VirtualList, equal)
