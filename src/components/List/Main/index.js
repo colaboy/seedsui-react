@@ -4,7 +4,7 @@ import scrollToTop from './scrollToTop'
 import InfiniteScroll from './../InfiniteScroll'
 import ResultMessage from './ResultMessage'
 import Loading from './Loading'
-import List from './../List'
+import List from './List'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
@@ -38,12 +38,26 @@ const Main = forwardRef(
       onLoad,
 
       // List config
-      prepend,
-      append,
       wrapper,
       layout,
       checkbox,
       checkboxPosition,
+
+      // Render
+      prepend,
+      append,
+      // Virtual list config
+      virtual,
+      /*
+      {
+        prependHeight: 100,
+        appendHeight: 100,
+        groupItemHeight: 50,
+        groupItemCount: 10,
+        itemHeight: 50,
+        itemCount: 100
+      }
+      */
       ...props
     },
     ref
@@ -184,7 +198,7 @@ const Main = forwardRef(
     }
 
     return (
-      <Layout.Main
+      <List
         ref={mainRef}
         {...props}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
@@ -208,38 +222,22 @@ const Main = forwardRef(
             }, 500)
           }
         }}
+        // 头部
+        prepend={prepend}
+        // 列表
+        list={list}
+        // 底部
+        append={append}
       >
-        {/* 头部 */}
-        {typeof prepend === 'function' ? prepend({ list, value, onChange, pagination }) : null}
-
-        {/* 列表 */}
-        {Array.isArray(list) && list.length && (
-          <List
-            allowClear={allowClear}
-            multiple={multiple}
-            value={value}
-            list={list}
-            onChange={onChange}
-            // List config
-            wrapper={wrapper}
-            layout={layout}
-            checkbox={checkbox}
-            checkboxPosition={checkboxPosition}
-          />
-        )}
-
-        {/* 底部 */}
-        {typeof append === 'function' ? append({ list, value, onChange, pagination }) : null}
-
         {/* 底部错误提示 */}
-        {pagination && typeof loadList === 'function' && <InfiniteScroll type={bottomStatus} />}
+        {pagination && <InfiniteScroll type={bottomStatus} />}
 
         {/* 页面级错误提示 */}
         {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('retry')} />}
 
         {/* 页面加载遮罩 */}
         <Loading type={loadAction} loading={loading} />
-      </Layout.Main>
+      </List>
     )
   }
 )
