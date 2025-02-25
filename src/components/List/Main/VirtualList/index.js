@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import hasChildren from './hasChildren'
+import ScrollerContainer from './Scroller'
 import GroupTitle from './../../GroupTitle'
 import Item from './../../Item'
 import GroupList from './GroupList'
@@ -52,6 +53,36 @@ const VirtualList = forwardRef(
         rootDOM: rootRef?.current?.rootDOM,
         getRootDOM: rootRef?.current?.getRootDOM
       }
+    })
+
+    // 自定义滚动容器（监听下拉手势）
+    const Scroller = React.forwardRef(({ style, children, ...scrollerProps }, ref) => {
+      return (
+        <ScrollerContainer
+          style={{ ...style, border: '5px solid gray' }}
+          ref={ref}
+          {...scrollerProps}
+          className={`list-main${props.className ? ' ' + props.className : ''}`}
+          onTopRefresh={onTopRefresh}
+          onBottomRefresh={onBottomRefresh}
+          onScroll={onScroll}
+        >
+          {children}
+        </ScrollerContainer>
+      )
+      // return (
+      //   <Layout.Main
+      //     {...props}
+      //     style={{ overflow: 'hidden' }}
+      //     ref={ref}
+      //     className={`list-main${props.className ? ' ' + props.className : ''}`}
+      //     onTopRefresh={onTopRefresh}
+      //     onBottomRefresh={onBottomRefresh}
+      //     onScroll={onScroll}
+      //   >
+      //     {children}
+      //   </Layout.Main>
+      // )
     })
 
     // 单项渲染
@@ -114,6 +145,7 @@ const VirtualList = forwardRef(
             }}
             list={list}
             itemContent={itemContent}
+            Scroller={Scroller}
             Footer={() => {
               return typeof append === 'function'
                 ? append({ list, value, onChange, pagination })
@@ -129,20 +161,21 @@ const VirtualList = forwardRef(
       // return <List list={list} itemContent={itemContent} Scroller={Scroller} />
     }
 
-    return (
-      <Layout.Main
-        {...props}
-        style={{ overflow: 'hidden' }}
-        ref={rootRef}
-        className={`list-main${props.className ? ' ' + props.className : ''}`}
-        onTopRefresh={onTopRefresh}
-        onBottomRefresh={onBottomRefresh}
-        onScroll={onScroll}
-      >
-        {getList()}
-        {children}
-      </Layout.Main>
-    )
+    return getList()
+    // return (
+    //   <Layout.Main
+    //     {...props}
+    //     style={{ overflow: 'hidden' }}
+    //     ref={rootRef}
+    //     className={`list-main${props.className ? ' ' + props.className : ''}`}
+    //     onTopRefresh={onTopRefresh}
+    //     onBottomRefresh={onBottomRefresh}
+    //     onScroll={onScroll}
+    //   >
+    //     {getList()}
+    //     {children}
+    //   </Layout.Main>
+    // )
   }
 )
 

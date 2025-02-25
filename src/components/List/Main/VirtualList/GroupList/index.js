@@ -4,7 +4,7 @@ import { GroupedVirtuoso } from 'react-virtuoso'
 import GroupTitle from './../../../GroupTitle'
 
 // 分组列表
-const GroupList = forwardRef(({ list, itemContent, Footer }, ref) => {
+const GroupList = forwardRef(({ list, itemContent, Scroller, Footer }, ref) => {
   const rootRef = useRef(null)
 
   // 每组的数据个数: [1000, 10, ...]
@@ -38,6 +38,7 @@ const GroupList = forwardRef(({ list, itemContent, Footer }, ref) => {
         return itemContent(index, item)
       }}
       components={{
+        Scroller: Scroller,
         Footer: Footer
       }}
     />
