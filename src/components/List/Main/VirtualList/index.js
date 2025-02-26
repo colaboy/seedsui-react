@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import memoRerender from './memoRerender'
 import getAnchorsMap from './getAnchorsMap'
-import hasChildren from './hasChildren'
+import isGroups from './../isGroups'
 import ScrollerContainer from './Scroller'
 import Item from './../../Item'
 import GroupList from './GroupList'
@@ -137,7 +137,7 @@ const VirtualList = forwardRef(
     function getList() {
       if (!Array.isArray(list) || !list.length) return null
 
-      if (hasChildren(list)) {
+      if (isGroups(list)) {
         anchorsMap.current = getAnchorsMap(list)
 
         return (

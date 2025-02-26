@@ -13,6 +13,7 @@ function localData(list) {
 
   // Convert Map to array of objects in required format
   const result = Array.from(groupMap.entries()).map(([anchor, children]) => ({
+    id: anchor,
     anchor: anchor,
     name: anchor,
     children: children

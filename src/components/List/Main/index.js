@@ -1,4 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
+import mergeGroups from './mergeGroups'
+import isGroups from './isGroups'
 import hasMoreItems from './hasMoreItems'
 import scrollToTop from './scrollToTop'
 import InfiniteScroll from './../InfiniteScroll'
@@ -170,7 +172,9 @@ const Main = forwardRef(
       // Succeed to get next page list
       if (Array.isArray(nextList)) {
         if (nextList.length) {
-          let newList = list.concat(nextList)
+          // 非分组列表直接合并, 分组列表合并分组
+          let newList = isGroups(list) ? mergeGroups(nextList, list) : list.concat(nextList)
+
           setList(newList)
 
           // Check if there are more items
