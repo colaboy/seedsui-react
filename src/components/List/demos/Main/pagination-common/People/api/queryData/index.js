@@ -4,7 +4,7 @@ import localData from './localData'
 
 // 获取详情
 function queryData(url, params, config) {
-  const rows = 20
+  const rows = 500
 
   return new Promise((resolve) => {
     // 查询
@@ -32,7 +32,7 @@ function queryData(url, params, config) {
               name: item.name,
               description: item.dept_name + ' ' + item.position_name,
               // 排序号小于9999，则锚点为'*'，否则为拼音首字母
-              anchor: item.sequ <= 9999 ? '*' : item.name_spell
+              anchor: item.sequ < 99999 ? '*' : item.name_spell
             }
           })
           let groupList = localData(list)

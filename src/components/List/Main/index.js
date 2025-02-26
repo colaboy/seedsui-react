@@ -173,7 +173,7 @@ const Main = forwardRef(
       if (Array.isArray(nextList)) {
         if (nextList.length) {
           // 非分组列表直接合并, 分组列表合并分组
-          let newList = isGroups(list) ? mergeGroups(nextList, list) : list.concat(nextList)
+          let newList = isGroups(list) ? mergeGroups(list, nextList) : list.concat(nextList)
 
           setList(newList)
 
