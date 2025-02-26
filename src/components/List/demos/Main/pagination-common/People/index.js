@@ -12,6 +12,7 @@ const People = forwardRef(
       onChange,
 
       // 显示
+      virtual,
       footerBar,
 
       multiple,
@@ -50,7 +51,7 @@ const People = forwardRef(
 
         <List.Main
           ref={mainRef}
-          virtual
+          virtual={virtual}
           multiple={multiple}
           allowClear={allowClear}
           checkbox={checkable}

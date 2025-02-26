@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
-import getListTotal from './getListTotal'
+import memoRerender from './memoRerender'
 import hasChildren from './hasChildren'
 import ScrollerContainer from './Scroller'
 import GroupTitle from './../../GroupTitle'
@@ -147,16 +147,4 @@ const VirtualList = forwardRef(
   }
 )
 
-// 列表长度不等重新渲染页面
-const equal = (prevProps, nextProps) => {
-  // 不刷新
-  if (getListTotal(prevProps.list) === getListTotal(nextProps.list)) {
-    console.log('不刷新:', getListTotal(prevProps.list), getListTotal(nextProps.list))
-    return true
-  }
-  // 刷新
-  console.log('刷新:', getListTotal(prevProps.list), getListTotal(nextProps.list))
-  return false
-}
-
-export default React.memo(VirtualList, equal)
+export default React.memo(VirtualList, memoRerender)

@@ -8,6 +8,7 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Employee.Combo</Layout.Header>
       <People
+        virtual={true}
         // multiple={true}
         // checkable={false}
         allowClear={true}

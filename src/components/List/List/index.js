@@ -105,11 +105,10 @@ const List = (
                   elementProps={item.elementProps}
                 />
 
-                <div className="list-items">
-                  {item.children.map((option, optionIndex) => {
-                    return getItemNode(option, optionIndex)
-                  })}
-                </div>
+                {/* list-items: 原本想包一层, 但VirtualList无法分组包裹 */}
+                {item.children.map((option, optionIndex) => {
+                  return getItemNode(option, optionIndex)
+                })}
               </Fragment>
             )
           }
