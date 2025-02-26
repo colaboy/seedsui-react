@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import memoRerender from './memoRerender'
-import getAnchorMap from './getAnchorMap'
+import getAnchorsMap from './getAnchorsMap'
 import hasChildren from './hasChildren'
 import ScrollerContainer from './Scroller'
 import Item from './../../Item'
@@ -39,7 +39,7 @@ const VirtualList = forwardRef(
     ref
   ) => {
     // 分组时的锚点索引: {A: 100, B: 300}
-    const anchorMap = useRef({})
+    const anchorsMap = useRef({})
     // 容器
     const rootRef = useRef({})
 
@@ -49,11 +49,17 @@ const VirtualList = forwardRef(
         rootDOM: rootRef?.current?.rootDOM,
         getRootDOM: () => rootRef?.current?.rootDOM,
         getAnchors: () => {
-          return Object.keys(anchorMap.current)
+          return anchorsMap?.current?.map?.((group) => group.anchor) || []
         },
         scrollToAnchor: (anchor) => {
-          // debugger
-          rootRef.current.scrollToIndex(anchorMap.current[anchor])
+          let anchorIndex = null
+          for (let group of anchorsMap.current) {
+            if (group.anchor === anchor) {
+              anchorIndex = group.index
+              break
+            }
+          }
+          typeof anchorIndex === 'number' && rootRef.current.scrollToIndex(anchorIndex)
         }
       }
     })
@@ -131,7 +137,7 @@ const VirtualList = forwardRef(
       if (!Array.isArray(list) || !list.length) return null
 
       if (hasChildren(list)) {
-        anchorMap.current = getAnchorMap(list)
+        anchorsMap.current = getAnchorsMap(list)
 
         return (
           <GroupList
