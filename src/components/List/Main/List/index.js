@@ -13,16 +13,16 @@ import { Layout } from 'seedsui-react'
 const Main = forwardRef(
   (
     {
+      // Request
+      onTopRefresh,
+      onBottomRefresh,
+
       // Main: common
       allowClear,
       multiple,
       value,
       onChange,
-      onTopRefresh,
-      onBottomRefresh,
       onScroll,
-      // 请求属性
-      pagination, // {totalPages: 10, totalItems: 100, rows: 100}
 
       // List config
       wrapper,
@@ -50,7 +50,7 @@ const Main = forwardRef(
         onScroll={onScroll}
       >
         {/* 头部 */}
-        {typeof prepend === 'function' ? prepend({ list, value, onChange, pagination }) : null}
+        {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
 
         {/* 列表 */}
         {Array.isArray(list) && list.length && (
@@ -69,7 +69,7 @@ const Main = forwardRef(
         )}
 
         {/* 底部 */}
-        {typeof append === 'function' ? append({ list, value, onChange, pagination }) : null}
+        {typeof append === 'function' ? append({ list, value, onChange }) : null}
 
         {/* 其它公共的提示信息 */}
         {children}

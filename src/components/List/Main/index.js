@@ -17,7 +17,6 @@ import Device from './../../../utils/Device'
 import { Device } from 'seedsui-react'
 测试使用-end */
 
-// 列表
 const Main = forwardRef(
   (
     {
@@ -69,7 +68,6 @@ const Main = forwardRef(
     // 分页
     const pageRef = useRef(1)
 
-    // 列表
     const [list, setList] = useState(null)
     // 全屏提示: noData | error<String>
     const [mainStatus, setMainStatus] = useState('')
@@ -231,7 +229,6 @@ const Main = forwardRef(
     //       }}
     //       // 头部
     //       prepend={prepend}
-    //       // 列表
     //       list={list}
     //       // 底部
     //       append={() => {
@@ -253,10 +250,16 @@ const Main = forwardRef(
         ref={mainRef}
         {...props}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
+        // Request
         onTopRefresh={pull && typeof loadList === 'function' ? () => init('topRefresh') : null}
         onBottomRefresh={
           pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
         }
+        // Main: common
+        allowClear={allowClear}
+        multiple={multiple}
+        value={value}
+        onChange={onChange}
         onScroll={(e) => {
           // Callback
           onScroll && onScroll(e)
@@ -273,11 +276,14 @@ const Main = forwardRef(
             }, 500)
           }
         }}
-        // 头部
+        // List config
+        wrapper={wrapper}
+        layout={layout}
+        checkbox={checkbox}
+        checkboxPosition={checkboxPosition}
+        // Render
         prepend={prepend}
-        // 列表
         list={list}
-        // 底部
         append={append}
       >
         {/* 底部错误提示 */}
