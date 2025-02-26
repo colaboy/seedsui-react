@@ -1,8 +1,8 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
 import memoRerender from './memoRerender'
+import getAnchorMap from './getAnchorMap'
 import hasChildren from './hasChildren'
 import ScrollerContainer from './Scroller'
-import GroupTitle from './../../GroupTitle'
 import Item from './../../Item'
 import GroupList from './GroupList'
 import List from './List'
@@ -38,19 +38,29 @@ const VirtualList = forwardRef(
     },
     ref
   ) => {
+    // 分组时的锚点索引: {A: 100, B: 300}
+    const anchorMap = useRef({})
     // 容器
     const rootRef = useRef(null)
     // Expose
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef?.current?.rootDOM,
-        getRootDOM: rootRef?.current?.getRootDOM
+        getRootDOM: rootRef?.current?.getRootDOM,
+        getAnchors: () => {
+          return Object.keys(anchorMap.current)
+        },
+        scrollToAnchor: (anchor) => {
+          rootRef.current.scrollToIndex(anchorMap.current[anchor])
+        }
       }
     })
 
+    console.log(rootRef)
+
     // 自定义滚动容器（监听下拉手势）
     const Scroller = React.forwardRef(({ style, children, ...scrollerProps }, ref) => {
-      rootRef.current = ref.current
+      // rootRef.current = ref.current
       return (
         <ScrollerContainer
           {...props}
@@ -119,12 +129,11 @@ const VirtualList = forwardRef(
       if (!Array.isArray(list) || !list.length) return null
 
       if (hasChildren(list)) {
-        console.log('1')
+        anchorMap.current = getAnchorMap(list)
+
         return (
           <GroupList
-            groupContent={(index) => {
-              return <GroupTitle />
-            }}
+            ref={rootRef}
             list={list}
             itemContent={itemContent}
             Scroller={Scroller}

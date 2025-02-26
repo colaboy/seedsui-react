@@ -13,7 +13,6 @@ const GroupList = forwardRef(({ list, itemContent, Scroller, Footer }, ref) => {
   return (
     <GroupedVirtuoso
       ref={ref}
-      style={{ flex: 1 }}
       groupCounts={groupCounts}
       groupContent={(groupIndex) => {
         let group = list[groupIndex]
