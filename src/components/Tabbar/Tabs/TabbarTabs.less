@@ -4,8 +4,9 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
-  border-bottom: 1px solid var(--border);
+  // border-bottom: 1px solid var(--border);
   background-color: white;
+  .border-b;
 }
 
 .tabbar-tabs-tab-wrapper {
@@ -32,6 +33,7 @@
   white-space: nowrap;
   padding: var(--space-l) 0 var(--space-xl);
   margin: 0 auto;
+  width: min-content;
   font-size: var(--font-size-m);
   position: relative;
   cursor: pointer;
@@ -47,11 +49,11 @@
     background-color: var(--primary);
     transform-origin: center center;
     content: '';
+    border-radius: 2px;
   }
 }
 
 .tabbar-tabs-tab-name {
-  color: var(--default);
   font-size: var(--font-size-m);
 }
 

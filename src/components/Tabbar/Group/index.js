@@ -86,7 +86,7 @@ const Group = forwardRef(
     return (
       <div
         {...props}
-        className={`tabbar tabbar-group${className ? ' ' + className : ''}`}
+        className={`tabbar-group${className ? ' ' + className : ''}`}
         disabled={disabled}
         ref={rootRef}
       >

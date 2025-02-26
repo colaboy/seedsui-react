@@ -86,7 +86,7 @@ const Menus = forwardRef(
     return (
       <div
         {...props}
-        className={`tabbar tabbar-menus${className ? ' ' + className : ''}`}
+        className={`tabbar-menus${className ? ' ' + className : ''}`}
         disabled={disabled}
         ref={rootRef}
       >

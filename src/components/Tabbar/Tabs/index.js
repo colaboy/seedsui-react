@@ -86,7 +86,7 @@ const Tabs = forwardRef(
     return (
       <div
         {...props}
-        className={`tabbar tabbar-tabs${className ? ' ' + className : ''}`}
+        className={`tabbar-tabs${className ? ' ' + className : ''}`}
         disabled={disabled}
         ref={rootRef}
       >
