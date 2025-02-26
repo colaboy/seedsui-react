@@ -81,6 +81,8 @@ const Main = forwardRef(
       return {
         mainDOM: mainRef?.current?.rootDOM,
         getMainDOM: mainRef?.current?.getRootDOM,
+        getAnchors: mainRef?.current?.getAnchors,
+        scrollToAnchor: mainRef?.current?.scrollToAnchor,
         // 重新加载
         reload: (action) => init(action || 'reload'),
         // 获取设置列表

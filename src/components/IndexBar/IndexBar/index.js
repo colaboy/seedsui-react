@@ -80,6 +80,14 @@ const IndexBar = forwardRef(
       // eslint-disable-next-line
     }, [children])
 
+    useEffect(() => {
+      // 更新锚记
+      if (Array.isArray(externalAnchors) && externalAnchors.length) {
+        setAnchors(externalAnchors)
+      }
+      // eslint-disable-next-line
+    }, [externalAnchors])
+
     // 获取所有锚点
     function updateAnchors() {
       // 自定义anchors

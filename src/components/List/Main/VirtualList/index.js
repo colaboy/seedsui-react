@@ -41,26 +41,28 @@ const VirtualList = forwardRef(
     // 分组时的锚点索引: {A: 100, B: 300}
     const anchorMap = useRef({})
     // 容器
-    const rootRef = useRef(null)
+    const rootRef = useRef({})
+
     // Expose
     useImperativeHandle(ref, () => {
       return {
         rootDOM: rootRef?.current?.rootDOM,
-        getRootDOM: rootRef?.current?.getRootDOM,
+        getRootDOM: () => rootRef?.current?.rootDOM,
         getAnchors: () => {
           return Object.keys(anchorMap.current)
         },
         scrollToAnchor: (anchor) => {
+          // debugger
           rootRef.current.scrollToIndex(anchorMap.current[anchor])
         }
       }
     })
 
-    console.log(rootRef)
-
     // 自定义滚动容器（监听下拉手势）
     const Scroller = React.forwardRef(({ style, children, ...scrollerProps }, ref) => {
-      // rootRef.current = ref.current
+      if (ref.current) {
+        rootRef.current.rootDOM = ref.current
+      }
       return (
         <ScrollerContainer
           {...props}

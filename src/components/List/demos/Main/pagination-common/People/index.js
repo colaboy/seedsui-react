@@ -25,6 +25,7 @@ const People = forwardRef(
   ) => {
     const [keyword, setKeyword] = useState('')
 
+    const [anchors, setAnchors] = useState(null)
     const [indexBarVisible, setIndexBarVisible] = useState(undefined)
     const indexBarRef = useRef(null)
 
@@ -80,11 +81,21 @@ const People = forwardRef(
           onLoad={() => {
             console.log('更新IndexBar数据...')
             indexBarRef?.current?.update()
+            // 虚拟滚动获取anchors
+            let newAnchors = mainRef?.current?.getAnchors?.()
+            setAnchors(newAnchors)
           }}
           pagination={true}
         />
         {indexBarVisible && (
-          <IndexBar scrollerDOM={mainRef?.current?.rootDOM} ref={indexBarRef}></IndexBar>
+          <IndexBar
+            // 虚拟滚动
+            anchors={anchors}
+            onTouchAnchor={mainRef?.current?.scrollToAnchor}
+            // 实体滚动
+            scrollerDOM={mainRef?.current?.rootDOM}
+            ref={indexBarRef}
+          ></IndexBar>
         )}
       </>
     )
