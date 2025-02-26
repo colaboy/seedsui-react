@@ -1,4 +1,4 @@
-import { LocaleUtil, Request } from 'seedsui-react'
+import { Request, Device } from 'seedsui-react'
 
 import localData from './localData'
 
@@ -13,6 +13,7 @@ function queryData(url, params, config) {
       {
         rows: rows,
         isControl: '0',
+        menuId: Device.getUrlParameter('menuId') || '',
         ...params
       },
       {
@@ -27,6 +28,7 @@ function queryData(url, params, config) {
         if (Array.isArray(result.rows)) {
           let list = result.rows.map((item) => {
             return {
+              ...item,
               id: item.id,
               avatar: item.face_pic,
               name: item.name,
@@ -41,19 +43,11 @@ function queryData(url, params, config) {
           config.success && config.success({ list: list, rows: rows })
           resolve(groupList)
         } else {
-          resolve(
-            result.message ||
-              LocaleUtil.locale(
-                '服务器繁忙，请稍后重试',
-                'library.3adc7cd58b0694f0078804a786a33bde'
-              )
-          )
+          resolve(result.message || '服务器繁忙，请稍后重试')
         }
       })
       .catch((err) => {
-        resolve(
-          LocaleUtil.locale('服务器繁忙，请稍后重试', 'library.3adc7cd58b0694f0078804a786a33bde')
-        )
+        resolve(err?.data?.message || '服务器繁忙，请稍后重试')
       })
   })
 }
