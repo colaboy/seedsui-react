@@ -1,3 +1,5 @@
+import React from 'react'
+
 // 内库使用-start
 import IndexBar from './../../IndexBar'
 // 内库使用-end
