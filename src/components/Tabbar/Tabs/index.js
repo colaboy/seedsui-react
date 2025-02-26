@@ -37,7 +37,7 @@ const Tabs = forwardRef(
 
     // 根据value判断此项是否为选中状态
     function getIsChecked(item) {
-      if (item?.id && value?.id) {
+      if (item?.id !== undefined && value?.id !== undefined) {
         return item.id === value.id
       }
       return false
