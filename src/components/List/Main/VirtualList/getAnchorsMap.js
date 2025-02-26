@@ -1,5 +1,6 @@
 // 获取锚点索引
 function getAnchorsMap(list) {
+  if (!Array.isArray(list) || !list.length) return null
   const anchorsMap = []
   let currentIndex = 0
 
