@@ -11,7 +11,7 @@ function getAnchorsMap(list) {
       index: currentIndex
     })
     // 计算下一个分组的起始索引：当前索引 + 当前标题(1) + 子项数量
-    currentIndex += 1 + (group.children?.length || 0)
+    currentIndex += group.children?.length || 0
   }
 
   return anchorsMap

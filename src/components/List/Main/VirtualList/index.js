@@ -59,6 +59,7 @@ const VirtualList = forwardRef(
               break
             }
           }
+          console.log('scrollToAnchor:', anchor, anchorIndex)
           typeof anchorIndex === 'number' && rootRef.current.scrollToIndex(anchorIndex)
         }
       }
