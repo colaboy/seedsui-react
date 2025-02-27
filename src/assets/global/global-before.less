@@ -9,6 +9,10 @@
 ::-webkit-input-placeholder {
   color: #b6b6b6;
 }
+input::placeholder,
+textarea::placeholder {
+  color: var(--tertiary);
+}
 // 清除默认样式
 input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
