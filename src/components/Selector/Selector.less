@@ -10,7 +10,7 @@
 }
 .selector-item {
   background-color: #f3f4f5;
-  border-radius: 4px;
+  border-radius: 8px;
   box-sizing: border-box;
   height: 37px;
   padding: 0 8px;
@@ -63,9 +63,13 @@
 
 // 选中
 .selector-item[data-checked='true'] {
-  background-color: @primary-lighten;
-  color: @primary;
-  .selector-item-checked-mark {
-    display: block;
-  }
+  background-color: white;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+
+  // background-color: var(--primary-lighten);
+  // color: var(--primary);
+  // .selector-item-checked-mark {
+  //   display: block;
+  // }
 }

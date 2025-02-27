@@ -11,6 +11,17 @@
     opacity: 0.2;
   }
 }
+// 日历上的点
+.calendar-date-dot {
+  position: absolute;
+  width: 4px;
+  left: 50%;
+  margin-left: -2px;
+  height: 4px;
+  border-radius: 100%;
+  bottom: 0px;
+  background-color: var(--primary);
+}
 // 区间选择模式
 .calendar-mode-range {
   .calendar-date .calendar-date-num {
@@ -169,10 +180,11 @@
 }
 // Used to replace old class .calendar-datenum
 .calendar-date-num {
+  position: relative;
   display: inline-block;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
 }
 // Used to replace old class .calendar-disabled
 .calendar-date-disabled {

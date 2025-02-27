@@ -63,11 +63,11 @@ export default () => {
             return DateUtil.format(date, `YYYY年MM月DD日 d 第W周`)
           }}
           dateRender={(date, { isSelected, isDisabled, isCurrent }) => {
-            // console.log({ date, isSelected, isDisabled, isCurrent })
+            console.log({ date, isSelected, isDisabled, isCurrent })
             return (
               <div className="calendar-date-num">
                 {date.getDate()}
-                {isCurrent && <span>.</span>}
+                {isCurrent && <span className="calendar-date-dot"></span>}
                 {data[DateUtil.format(date, 'YYYY-MM-DD')] ? 'M' : ''}
               </div>
             )
