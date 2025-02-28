@@ -398,6 +398,15 @@ const Calendar = forwardRef(
               handleCollapse()
             }
           }}
+          // Expand or collapse
+          onToggle={(e) => {
+            if (drawTypeRef.current === 'month') {
+              handleCollapse()
+            } else {
+              handleExpand()
+            }
+            e.stopPropagation()
+          }}
         />
       </div>
     )

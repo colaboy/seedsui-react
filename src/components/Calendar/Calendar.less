@@ -28,11 +28,13 @@
     width: 100%;
     border-radius: 0;
   }
+
   .calendar-date-today {
     .calendar-date-num {
       border-radius: 8px;
     }
   }
+
   .calendar-date-selected {
     .calendar-date-num {
       border-radius: 0;
@@ -44,12 +46,14 @@
 .calendar-header {
   .flex;
   .flex-middle;
+
   padding: 6px 0;
   margin: 0 2px;
 }
 // 标题
 .calendar-title {
   .flex-1;
+
   padding: 6px 0;
   text-align: center;
 }
@@ -60,7 +64,6 @@
 .calendar-next-year {
   height: 38px;
   width: 38px;
-
   color: #b6b6b6;
   font-size: 16px;
   .flex;
@@ -77,6 +80,7 @@
   font-size: 12px;
   line-height: 24px;
   text-align: center;
+
   &:nth-of-type(1),
   &:nth-last-of-type(1) {
     width: 15%;
@@ -91,6 +95,7 @@
   float: left;
   width: 14%;
   text-align: center;
+
   &:nth-of-type(1),
   &:nth-last-of-type(1) {
     width: 15%;
@@ -102,7 +107,8 @@
 // Used to replace old class .calendar-day-box
 .calendar-days {
   color: var(--auxiliary);
-  &:after {
+
+  &::after {
     display: table;
     clear: both;
     content: '';
@@ -114,9 +120,11 @@
 .calendar-body {
   overflow: hidden;
 }
+
 .calendar-body-y {
   transition-property: transform;
 }
+
 .calendar-body-x {
   display: flex;
   width: 300%;
@@ -127,7 +135,7 @@
   flex: 1;
 }
 // Used to replace old class .calendar-monthrow
-.calendar-row:after {
+.calendar-row::after {
   display: table;
   clear: both;
   content: '';
@@ -162,6 +170,7 @@
     border-color: @primary;
     border-radius: 100%;
   }
+
   .calendar-date-dot {
     background-color: white;
   }
@@ -173,6 +182,7 @@
       border-bottom-left-radius: 8px;
     }
   }
+
   &.calendar-date-selected-end {
     .calendar-date-num {
       border-top-right-radius: 8px;
@@ -199,13 +209,21 @@
 }
 // Calendar slide
 .calendar-footer {
+  display: flex;
+  justify-content: center;
 }
-svg.calendar-toggle {
+
+.calendar-toggle-button {
+  padding: 2px 0 10px;
+}
+
+.calendar-toggle-svg {
   // pointer-events: none;
   margin: 0 auto;
   width: 30px;
   height: 12px;
   display: block;
+
   polyline,
   line,
   path {
@@ -218,7 +236,7 @@ svg.calendar-toggle {
   }
 }
 
-.calendar.expand svg.calendar-toggle {
+.calendar.expand .calendar-toggle-svg {
   path {
     // d: path('M31.5,39L150,39l118.5,0');
     d: path('M31.5,61L150,17l118.5,44');

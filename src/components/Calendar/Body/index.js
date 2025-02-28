@@ -30,7 +30,8 @@ const Body = forwardRef(
       onChange,
       // Event: view change
       onSlideX,
-      onSlideY
+      onSlideY,
+      onToggle
     },
     ref
   ) => {
@@ -286,7 +287,7 @@ const Body = forwardRef(
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <Toggle />
+            <Toggle onClick={onToggle} />
           </div>
         )}
       </>

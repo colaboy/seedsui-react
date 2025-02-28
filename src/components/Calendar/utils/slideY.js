@@ -11,9 +11,9 @@ function slideY(op, { duration, weekStart, drawDate, cellHeight, bodyHeight, bod
 
   // 样式标记展开和收缩, 暂时无意义
   if (op) {
-    body.classList.remove('expand')
-    body.classList.remove('collapse')
-    body.classList.add(op)
+    body.parentNode.classList.remove('expand')
+    body.parentNode.classList.remove('collapse')
+    body.parentNode.classList.add(op)
   }
 
   // 展开
