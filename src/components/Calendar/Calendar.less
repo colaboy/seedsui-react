@@ -15,11 +15,11 @@
 .calendar-date-dot {
   position: absolute;
   width: 4px;
+  height: 4px;
   left: 50%;
   margin-left: -2px;
-  height: 4px;
   border-radius: 100%;
-  bottom: 0px;
+  bottom: 3px;
   background-color: var(--primary);
 }
 // 区间选择模式
@@ -85,12 +85,11 @@
 
 // 一格
 .calendar-date {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   float: left;
   width: 14%;
-  // 由js控制高度与line-height
-  // height:40px;
-  // line-height: 40px;
   text-align: center;
   &:nth-of-type(1),
   &:nth-last-of-type(1) {
@@ -163,6 +162,9 @@
     border-color: @primary;
     border-radius: 100%;
   }
+  .calendar-date-dot {
+    background-color: white;
+  }
 
   // Range start and end date radius
   &.calendar-date-selected-start {
@@ -181,10 +183,11 @@
 // Used to replace old class .calendar-datenum
 .calendar-date-num {
   position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
 }
 // Used to replace old class .calendar-disabled
 .calendar-date-disabled {
