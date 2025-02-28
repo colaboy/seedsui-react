@@ -38,7 +38,6 @@ function Nearby(
 
   const [list, setList] = useState(null)
   const [tab, setTab] = useState(getTabs()[0])
-  const [active, setActive] = useState(value)
 
   // 节点
   useImperativeHandle(ref, () => {
@@ -57,12 +56,6 @@ function Nearby(
     loadData()
     // eslint-disable-next-line
   }, [JSON.stringify(tab), JSON.stringify(value)])
-
-  // Update value linkage update active
-  useEffect(() => {
-    setActive(value)
-    // eslint-disable-next-line
-  }, [JSON.stringify(value)])
 
   // 获取附近的点
   async function loadData() {
@@ -98,9 +91,7 @@ function Nearby(
         map={map}
         readOnly={readOnly}
         value={value}
-        active={active}
         onChange={(item) => {
-          setActive(item)
           onChange && onChange(item)
         }}
       />
@@ -113,10 +104,9 @@ function Nearby(
             <Tabs tab={tab} onChange={setTab} />
             <Main
               list={list}
-              active={active}
+              value={value}
               onChange={(item) => {
                 map.panTo({ longitude: item.longitude, latitude: item.latitude, type: item.type })
-                setActive(item)
                 onChange && onChange(item)
               }}
             />

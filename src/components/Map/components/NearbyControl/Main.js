@@ -11,7 +11,11 @@ import Result from './../../../Result'
 // 测试使用-end
 
 // 附近结果
-function Main({ active, list, onChange }) {
+function Main({
+  // value,
+  list,
+  onChange
+}) {
   let errMsg = typeof list === 'string' ? list : null
   if (Array.isArray(list) && list.length === 0) {
     errMsg = LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
@@ -35,13 +39,13 @@ function Main({ active, list, onChange }) {
                 <p className="map-nearbyControl-item-content-title">{item.name}</p>
                 <p className="map-nearbyControl-item-content-description">{item.address || ''}</p>
               </div>
-              <Checkbox
+              {/* <Checkbox
                 checked={
                   active?.latitude &&
                   active?.latitude === item?.latitude &&
                   active?.longitude === item?.longitude
                 }
-              />
+              /> */}
             </div>
           )
         })}

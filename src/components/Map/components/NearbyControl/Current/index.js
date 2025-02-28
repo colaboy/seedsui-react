@@ -2,16 +2,15 @@ import React, { forwardRef } from 'react'
 import Navigation from './Navigation'
 
 // 内库使用-start
-import Checkbox from './../../../../Checkbox'
 import LocaleUtil from './../../../../../utils/LocaleUtil'
 // 内库使用-end
 
 // 测试使用-start
-// import { LocaleUtil, Checkbox } from 'seedsui-react'
+// import { LocaleUtil } from 'seedsui-react'
 // 测试使用-end
 
 // 当前位置
-function Current({ map, active, value, readOnly, onChange }, ref) {
+function Current({ map, value, readOnly, onChange }, ref) {
   return (
     <div
       className={`map-nearbyControl-item`}
@@ -38,7 +37,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
         </div>
         <div className="map-nearbyControl-item-content-description">
           <div className="flex-1">{value?.address || ''}</div>
-          <div className="map-nearbyControl-item-checkbox">
+          {/* <div className="map-nearbyControl-item-checkbox">
             {!readOnly && (
               <Checkbox
                 checked={
@@ -48,7 +47,7 @@ function Current({ map, active, value, readOnly, onChange }, ref) {
                 }
               />
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
