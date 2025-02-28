@@ -180,9 +180,10 @@ br {
   background-color: @mask-bg-color;
   visibility: hidden;
   opacity: 0;
-  transition-duration: @animation-duration;
+  transition-duration: var(--animation-duration-close);
   transition-property: transform, opacity, visibility;
   &.active {
+    transition-duration: var(--animation-duration-open);
     visibility: visible;
     opacity: 1;
   }
@@ -193,9 +194,10 @@ br {
   position: absolute;
   &[data-animation] {
     visibility: hidden;
-    transition-duration: @animation-duration;
+    transition-duration: var(--animation-duration-close);
     transition-property: transform, opacity, visibility;
     &.active {
+      transition-duration: var(--animation-duration-open);
       visibility: visible;
     }
     &.transition-duration-0 {

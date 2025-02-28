@@ -5,11 +5,13 @@
 // 基础颜色(控件多基于如下几种颜色)
 :root {
   // 动画时长(例如遮等)
-  --animation-duration: 400ms;
+  --animation-duration: 300ms;
+  --animation-duration-open: 300ms;
+  --animation-duration-close: 250ms;
   // 全局背景色
   --app-background-color: #f1f2f5;
   // 颜色
-  --mask-bg: rgba(0, 0, 0, 40%);
+  --mask-bg: rgba(0, 0, 0, 30%);
   --default: #1a1c1f;
   --secondary: #5c646c;
   --auxiliary: #77818c;
@@ -71,9 +73,6 @@
   --safe-area-inset-top: env(safe-area-inset-top);
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }
-
-// 动画时长(例如遮等)
-@animation-duration: var(--animation-duration);
 
 // 遮罩颜色
 
