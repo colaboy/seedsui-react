@@ -27,12 +27,6 @@ function Page({ map, visible, onVisibleChange, onChange }) {
 
   // 返回
   function handleBack() {
-    // Clear keyword and update clear button
-    if (inputRef?.current?.inputDOM) {
-      inputRef.current.inputDOM.value = ''
-      inputRef.current.updateClear()
-    }
-
     // Reset list
     setSearchList(null)
 
