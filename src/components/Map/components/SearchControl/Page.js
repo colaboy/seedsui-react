@@ -37,6 +37,9 @@ function Page({ map, visible, onVisibleChange, onChange }) {
   // 搜索
   async function handleSearch() {
     let inputText = inputRef.current.inputDOM
+    if (!inputText.value) {
+      return
+    }
     let center = map.getCenter()
     Loading.show({
       content: LocaleUtil.locale('搜索中', 'SeedsUI_searching')
