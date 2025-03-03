@@ -4,7 +4,7 @@ import localData from './localData'
 
 // 获取详情
 function queryData(url, params, config) {
-  const rows = 500
+  const rows = 20
 
   return new Promise((resolve) => {
     // 查询
