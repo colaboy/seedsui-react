@@ -166,7 +166,6 @@ const Main = forwardRef(
       // Succeed to get next page list
       if (Array.isArray(nextList)) {
         if (nextList.length) {
-          console.log(list)
           // 非分组列表直接合并, 分组列表合并分组
           let newList = isGroups(list) ? mergeGroups(list, nextList) : list.concat(nextList)
           setList(newList)

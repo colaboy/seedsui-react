@@ -18,8 +18,12 @@ function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, contain
 
   // 计算可见区域的起始索引
   let startIndex = 0
-  while (items[startIndex].virtualData.top < scrollTop - prependHeight - buffer) {
-    startIndex++
+  try {
+    while (items[startIndex].virtualData.top < scrollTop - prependHeight - buffer) {
+      startIndex++
+    }
+  } catch (error) {
+    console.error('List.VirtualList calculate startIndex error: ', error)
   }
 
   // 计算可见区域的结束索引
