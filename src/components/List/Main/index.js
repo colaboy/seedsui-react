@@ -7,7 +7,7 @@ import InfiniteScroll from './../InfiniteScroll'
 import ResultMessage from './ResultMessage'
 import Loading from './Loading'
 import List from './List'
-// import VirtualList from './VirtualList'
+import VirtualList from './VirtualList'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
@@ -51,12 +51,9 @@ const Main = forwardRef(
       virtual,
       /*
       {
-        prependHeight: 100,
-        appendHeight: 100,
-        groupItemHeight: 50,
-        groupItemCount: 10,
-        itemHeight: 50,
-        itemCount: 100
+        getPrependHeight: () => Number,
+        getGroupTitleHeight: () => Number,
+        getItemHeight: () => Number
       }
       */
       ...props
@@ -201,54 +198,13 @@ const Main = forwardRef(
       return true
     }
 
-    // if (virtual) {
-    //   return (
-    //     <VirtualList
-    //       ref={mainRef}
-    //       {...props}
-    //       className={`list-main${props.className ? ' ' + props.className : ''}`}
-    //       onTopRefresh={pull && typeof loadList === 'function' ? () => init('topRefresh') : null}
-    //       onBottomRefresh={
-    //         pagination && typeof loadList === 'function' ? handleBottomRefresh : undefined
-    //       }
-    //       onScroll={(e) => {
-    //         // Callback
-    //         onScroll && onScroll(e)
-
-    //         // ios滚动过程中不允许点击tab，否则可能会局部白屏
-    //         if (Device.os === 'ios') {
-    //           document.body.classList.add('ios-scrolling')
-
-    //           if (window.timeout) {
-    //             window.clearTimeout(window.timeout)
-    //           }
-    //           window.timeout = setTimeout(() => {
-    //             document.body.classList.remove('ios-scrolling')
-    //           }, 500)
-    //         }
-    //       }}
-    //       // 头部
-    //       prepend={prepend}
-    //       list={list}
-    //       // 底部
-    //       append={() => {
-    //         return (
-    //           <>
-    //             {typeof append === 'function'
-    //               ? append({ list, value, onChange, pagination })
-    //               : null}
-    //             {pagination && <InfiniteScroll type={bottomStatus} />}
-    //           </>
-    //         )
-    //       }}
-    //     />
-    //   )
-    // }
+    const ListNode = virtual?.getItemHeight ? VirtualList : List
 
     return (
-      <List
+      <ListNode
         ref={mainRef}
         {...props}
+        virtual={virtual}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
         // Request
         onTopRefresh={pull && typeof loadList === 'function' ? () => init('topRefresh') : null}
@@ -292,7 +248,7 @@ const Main = forwardRef(
         {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('retry')} />}
         {/* 页面加载遮罩 */}
         <Loading type={loadAction} loading={loading} />
-      </List>
+      </ListNode>
     )
   }
 )
