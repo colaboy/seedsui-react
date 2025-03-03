@@ -8,7 +8,14 @@ export default () => {
     <Layout className="full">
       <Layout.Header className="text-center">Employee.Combo</Layout.Header>
       <People
-        virtual={true}
+        virtual={{
+          getItemHeight: (item) => {
+            if (item?.virtualData?.type === 'group') {
+              return 30
+            }
+            return 80
+          }
+        }}
         // multiple={true}
         // checkable={false}
         allowClear={true}

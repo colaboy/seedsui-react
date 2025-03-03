@@ -7,7 +7,6 @@ function flattenList(list) {
   let flatList = []
   for (let group of list) {
     let { children, ...groupItem } = group
-    debugger
     groupItem.virtualData = {
       type: 'group'
     }

@@ -22,6 +22,7 @@ const List = ({
     <div
       style={{
         position: 'relative',
+        flex: 'none',
         height: height
       }}
     >

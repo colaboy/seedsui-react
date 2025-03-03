@@ -1,11 +1,13 @@
 function getVisibleItems({ items, itemHeights, scrollTop, containerHeight }) {
   // 计算每一项的 top 值和高度
+  let top = 0
   for (let [index, item] of items.entries()) {
     let itemHeight = itemHeights[index]
+    top = index === 0 ? 0 : items[index - 1].virtualData.top + items[index - 1].virtualData.height
     item.virtualData = {
       type: item.virtualData?.type || undefined,
       height: itemHeight,
-      top: itemHeight * index,
+      top: top,
       index: index
     }
   }
@@ -18,16 +20,14 @@ function getVisibleItems({ items, itemHeights, scrollTop, containerHeight }) {
 
   // 计算可见区域的结束索引
   let endIndex = startIndex
-  while (
-    endIndex < items.length &&
-    items[startIndex].virtualData.top < scrollTop + containerHeight
-  ) {
+  while (endIndex < items.length && items[endIndex].virtualData.top < scrollTop + containerHeight) {
     endIndex++
   }
 
   // 渲染可见区域的元素
   const visibleItems = items.slice(startIndex, endIndex)
 
+  debugger
   return visibleItems
 }
 

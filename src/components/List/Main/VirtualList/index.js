@@ -1,4 +1,4 @@
-import React, { useMemo, forwardRef } from 'react'
+import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import List from './List'
 import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
@@ -44,11 +44,18 @@ const Main = forwardRef(
     },
     ref
   ) => {
+    const rootRef = useRef(null)
+
     // 拉平数据, And set virtualData.type
     const items = useMemo(() => flattenList(list), [list])
 
     // 计算每一项的高度并缓存
-    const itemHeights = useMemo(() => items.map(getItemHeight), [list])
+    const itemHeights = useMemo(() => {
+      if (Array.isArray(items) && items.length) {
+        return items.map(virtual.getItemHeight)
+      }
+      return []
+    }, [list])
 
     // 计算总高度
     const totalHeight = itemHeights.reduce((sum, h) => sum + h, 0)
@@ -59,7 +66,7 @@ const Main = forwardRef(
     // Expose
     useImperativeHandle(ref, () => {
       return {
-        ...ref.current,
+        ...rootRef.current,
         getAnchors: () => {
           let anchors = []
           for (let item of items) {
@@ -80,25 +87,37 @@ const Main = forwardRef(
       }
     })
 
-    // 滚动
-    function handleScroll(e) {
-      // Set visible items and set virtualData
+    // 初始化完成时更新显示容器
+    useEffect(() => {
+      if (Array.isArray(list) && list.length) {
+        updateVisibleItems()
+      }
+    }, [list])
+
+    // 更新显示容器
+    function updateVisibleItems() {
       requestAnimationFrame(() => {
         let newVisibleItems = getVisibleItems({
           items,
           itemHeights,
-          scrollTop: e.currentTarget.scrollTop,
-          containerHeight: containerRef.current?.clientHeight || 0
+          scrollTop: rootRef.current?.rootDOM?.scrollTop,
+          containerHeight: rootRef.current?.rootDOM?.clientHeight || 0
         })
         setVisibleItems(newVisibleItems)
       })
+    }
+
+    // 滚动
+    function handleScroll(e) {
+      // Set visible items and set virtualData
+      updateVisibleItems()
       onScroll && onScroll(e)
     }
 
     return (
       <Layout.Main
         {...props}
-        ref={ref}
+        ref={rootRef}
         className={`list-main${props.className ? ' ' + props.className : ''}`}
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
@@ -108,7 +127,7 @@ const Main = forwardRef(
         {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
 
         {/* 列表 */}
-        {Array.isArray(list) && list.length && (
+        {Array.isArray(visibleItems) && visibleItems.length ? (
           <List
             allowClear={allowClear}
             multiple={multiple}
@@ -123,7 +142,7 @@ const Main = forwardRef(
             // virtual config
             height={totalHeight}
           />
-        )}
+        ) : null}
 
         {/* 底部 */}
         {typeof append === 'function' ? append({ list, value, onChange }) : null}
