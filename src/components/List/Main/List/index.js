@@ -13,6 +13,7 @@ import { Layout } from 'seedsui-react'
 const Main = forwardRef(
   (
     {
+      virtual,
       // Request
       onTopRefresh,
       onBottomRefresh,
