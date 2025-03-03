@@ -25,16 +25,15 @@ function equalItems(prevItems, nextItems) {
 
   // 数组长度不同刷新
   if (prevItems.length !== nextItems.length) {
-    console.log('数组长度不同刷新:', prevItems.length, nextItems.length)
+    // console.log('数组长度不同刷新:', prevItems.length, nextItems.length)
     return false
   }
   // id不同刷新
   if (equalId(prevItems, nextItems) === false) {
-    console.log('id不同刷新', prevItems, nextItems)
+    // console.log('id不同刷新', prevItems, nextItems)
     return false
   }
   // 刷新
-  console.log('不刷新')
   return true
 }
 
