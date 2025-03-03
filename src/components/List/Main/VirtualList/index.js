@@ -69,6 +69,7 @@ const VirtualList = forwardRef(
       return {
         ...rootRef.current,
         getAnchors: () => {
+          if (!Array.isArray(items) || !items.length) return []
           let anchors = []
           for (let item of items) {
             if (item.anchor) {

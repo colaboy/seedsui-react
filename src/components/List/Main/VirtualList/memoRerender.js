@@ -19,6 +19,10 @@ function equalId(prevItems, nextItems) {
 
 // 比较列表
 function equalItems(prevItems, nextItems) {
+  if ((prevItems || '') === (nextItems || '')) {
+    return true
+  }
+
   // 数组长度不同刷新
   if (prevItems.length !== nextItems.length) {
     console.log('数组长度不同刷新:', prevItems.length, nextItems.length)
