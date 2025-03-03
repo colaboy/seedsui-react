@@ -70,10 +70,12 @@ const VirtualList = forwardRef(
         ...rootRef.current,
         getAnchors: () => {
           if (!Array.isArray(items) || !items.length) return []
+          let anchorsMap = {}
           let anchors = []
           for (let item of items) {
             if (item.anchor) {
-              anchors.push(item.anchor)
+              if (!anchorsMap[item.anchor]) anchors.push(item.anchor)
+              anchorsMap[item.anchor] = 1
             }
           }
           return anchors
@@ -81,8 +83,10 @@ const VirtualList = forwardRef(
         scrollToAnchor: (anchor) => {
           for (let item of items) {
             if (item.anchor === anchor) {
-              ref.rootDOM.scrollTop = items[index]?.top
-              return
+              if (typeof item?.virtualData.top === 'number') {
+                rootRef.current.rootDOM.scrollTop = item?.virtualData.top
+                return
+              }
             }
           }
         }
