@@ -104,7 +104,6 @@ const VirtualList = forwardRef(
     function updateVisibleItems() {
       if (!rootRef.current?.rootDOM) return
       requestAnimationFrame(() => {
-        console.log('scrollTop:', rootRef.current?.rootDOM?.scrollTop)
         let newVisibleItems = getVisibleItems({
           items,
           itemHeights,
