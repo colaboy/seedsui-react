@@ -31,7 +31,10 @@ const Item = ({
   checkbox,
   checkboxPosition = 'left',
   checked,
-  onChange
+  onChange,
+
+  // Item Style
+  style
 }) => {
   // 获取checkbox
   function getCheckboxNode() {
@@ -122,6 +125,7 @@ const Item = ({
   function getItemNode() {
     return (
       <div
+        style={wrapper ? undefined : style}
         className={`list-item${disabled ? ' disabled' : ''}${checked ? ' active' : ''}${
           layout ? ' ' + layout : ''
         }`}
@@ -176,13 +180,16 @@ const Item = ({
         checkbox,
         checkboxPosition,
         // Node
-        children: getItemNode()
+        children: getItemNode(),
+        // Item style
+        style: style
       })
     }
 
     if (React.isValidElement(wrapper)) {
       WrapperNode = wrapper
     }
+
     return (
       <WrapperNode
         checked={checked}
@@ -193,6 +200,8 @@ const Item = ({
         layout={layout}
         checkbox={checkbox}
         checkboxPosition={checkboxPosition}
+        // Item style
+        style={style}
       >
         {getItemNode()}
       </WrapperNode>

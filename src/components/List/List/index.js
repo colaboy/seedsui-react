@@ -98,12 +98,7 @@ const List = (
           if (Array.isArray(item.children)) {
             return (
               <Fragment key={item.id ?? index}>
-                <GroupTitle
-                  title={item.name}
-                  anchor={item.anchor}
-                  description={item.description}
-                  elementProps={item.elementProps}
-                />
+                <GroupTitle title={item.name} anchor={item.anchor} description={item.description} />
 
                 {/* list-items: 原本想包一层, 但VirtualList无法分组包裹 */}
                 {item.children.map((option, optionIndex) => {

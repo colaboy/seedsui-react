@@ -9,7 +9,7 @@ import { IndexBar } from 'seedsui-react'
 测试使用-end */
 
 // 获取分组标题
-function GroupTitle({ anchor, title, description, elementProps }) {
+function GroupTitle({ anchor, title, description, ...props }) {
   let TitleNode = (
     <>
       {title && <div className="list-title">{title}</div>}
@@ -19,14 +19,14 @@ function GroupTitle({ anchor, title, description, elementProps }) {
 
   if (anchor) {
     return (
-      <IndexBar.Anchor className="list-divider" {...(elementProps || {})} name={anchor}>
+      <IndexBar.Anchor className="list-divider" {...(props || {})} name={anchor}>
         {TitleNode}
       </IndexBar.Anchor>
     )
   }
 
   return (
-    <div className="list-divider" {...(elementProps || {})}>
+    <div className="list-divider" {...(props || {})}>
       {TitleNode}
     </div>
   )

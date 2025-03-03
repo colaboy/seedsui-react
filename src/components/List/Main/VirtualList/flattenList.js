@@ -1,0 +1,20 @@
+import isGroups from './../isGroups'
+function flattenList(list) {
+  if (isGroups(list) === false) {
+    return list
+  }
+
+  let flatList = []
+  for (let group of list) {
+    let { children, ...groupItem } = group
+    debugger
+    groupItem.virtualData = {
+      type: 'group'
+    }
+    flatList.push(groupItem)
+    flatList.push(...children)
+  }
+  return flatList
+}
+
+export default flattenList

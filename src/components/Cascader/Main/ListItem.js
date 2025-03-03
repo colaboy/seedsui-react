@@ -81,7 +81,7 @@ const ListItem = forwardRef(
                   className={`cascader-option${
                     optionProps.className ? ' ' + optionProps.className : ''
                   }${
-                    value?.some((selected) => {
+                    value?.some?.((selected) => {
                       return selected.id === item.id
                     })
                       ? ' active'

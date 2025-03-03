@@ -52,7 +52,6 @@ const Main = forwardRef(
       /*
       {
         getPrependHeight: () => Number,
-        getGroupTitleHeight: () => Number,
         getItemHeight: () => Number
       }
       */

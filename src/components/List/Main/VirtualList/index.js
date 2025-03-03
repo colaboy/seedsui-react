@@ -1,5 +1,7 @@
-import React, { forwardRef } from 'react'
-import List from './../../List'
+import React, { useMemo, forwardRef } from 'react'
+import List from './List'
+import flattenList from './flattenList'
+import getVisibleItems from './getVisibleItems'
 
 // 内库使用-start
 import Layout from './../../../Layout'
@@ -13,6 +15,8 @@ import { Layout } from 'seedsui-react'
 const Main = forwardRef(
   (
     {
+      virtual,
+
       // Request
       onTopRefresh,
       onBottomRefresh,
@@ -40,6 +44,57 @@ const Main = forwardRef(
     },
     ref
   ) => {
+    // 拉平数据, And set virtualData.type
+    const items = useMemo(() => flattenList(list), [list])
+
+    // 计算每一项的高度并缓存
+    const itemHeights = useMemo(() => items.map(getItemHeight), [list])
+
+    // 计算总高度
+    const totalHeight = itemHeights.reduce((sum, h) => sum + h, 0)
+
+    // Visible Items and set virtualData style
+    const [visibleItems, setVisibleItems] = useState(null)
+
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        ...ref.current,
+        getAnchors: () => {
+          let anchors = []
+          for (let item of items) {
+            if (item.anchor) {
+              anchors.push(item.anchor)
+            }
+          }
+          return anchors
+        },
+        scrollToAnchor: (anchor) => {
+          for (let item of items) {
+            if (item.anchor === anchor) {
+              ref.rootDOM.scrollTop = items[index]?.top
+              return
+            }
+          }
+        }
+      }
+    })
+
+    // 滚动
+    function handleScroll(e) {
+      // Set visible items and set virtualData
+      requestAnimationFrame(() => {
+        let newVisibleItems = getVisibleItems({
+          items,
+          itemHeights,
+          scrollTop: e.currentTarget.scrollTop,
+          containerHeight: containerRef.current?.clientHeight || 0
+        })
+        setVisibleItems(newVisibleItems)
+      })
+      onScroll && onScroll(e)
+    }
+
     return (
       <Layout.Main
         {...props}
@@ -47,7 +102,7 @@ const Main = forwardRef(
         className={`list-main${props.className ? ' ' + props.className : ''}`}
         onTopRefresh={onTopRefresh}
         onBottomRefresh={onBottomRefresh}
-        onScroll={onScroll}
+        onScroll={handleScroll}
       >
         {/* 头部 */}
         {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
@@ -58,13 +113,15 @@ const Main = forwardRef(
             allowClear={allowClear}
             multiple={multiple}
             value={value}
-            list={list}
+            list={visibleItems}
             onChange={onChange}
             // List config
             wrapper={wrapper}
             layout={layout}
             checkbox={checkbox}
             checkboxPosition={checkboxPosition}
+            // virtual config
+            height={totalHeight}
           />
         )}
 
