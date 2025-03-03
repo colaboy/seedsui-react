@@ -17,9 +17,9 @@ const People = forwardRef(
 
       multiple,
       allowClear,
-      checkable = true
+      checkable = true,
 
-      // ...props
+      ...props
     },
     ref
   ) => {
@@ -56,6 +56,7 @@ const People = forwardRef(
           multiple={multiple}
           allowClear={allowClear}
           checkbox={checkable}
+          {...props}
           className="employee-people-main"
           loadList={({ page, action }) => {
             console.log('action:', action)

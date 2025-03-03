@@ -50,6 +50,9 @@ const VirtualList = forwardRef(
     // 拉平数据, And set virtualData.type
     const items = useMemo(() => flattenList(list), [list])
 
+    // 计算头部扩展高度
+    const prependHeight = virtual.getPrependHeight?.({ list, value })
+
     // 计算每一项的高度并缓存
     const itemHeights = useMemo(() => {
       if (Array.isArray(items) && items.length) {
@@ -105,6 +108,7 @@ const VirtualList = forwardRef(
       if (!rootRef.current?.rootDOM) return
       requestAnimationFrame(() => {
         let newVisibleItems = getVisibleItems({
+          prependHeight: prependHeight || 0,
           items,
           itemHeights,
           scrollTop: rootRef.current?.rootDOM?.scrollTop,
