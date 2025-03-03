@@ -1,3 +1,7 @@
+// 缓冲区大小
+const buffer = 80
+
+// 计算可见区域元素
 function getVisibleItems({ items, itemHeights, scrollTop, containerHeight }) {
   // 计算每一项的 top 值和高度
   let top = 0
@@ -14,7 +18,7 @@ function getVisibleItems({ items, itemHeights, scrollTop, containerHeight }) {
 
   // 计算可见区域的起始索引
   let startIndex = 0
-  while (items[startIndex].virtualData.top < scrollTop) {
+  while (items[startIndex].virtualData.top < scrollTop - buffer) {
     startIndex++
   }
 
@@ -27,7 +31,6 @@ function getVisibleItems({ items, itemHeights, scrollTop, containerHeight }) {
   // 渲染可见区域的元素
   const visibleItems = items.slice(startIndex, endIndex)
 
-  debugger
   return visibleItems
 }
 

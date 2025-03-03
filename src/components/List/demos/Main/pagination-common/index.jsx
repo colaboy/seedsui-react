@@ -11,9 +11,9 @@ export default () => {
         virtual={{
           getItemHeight: (item) => {
             if (item?.virtualData?.type === 'group') {
-              return 30
+              return 33
             }
-            return 80
+            return 71
           }
         }}
         // multiple={true}

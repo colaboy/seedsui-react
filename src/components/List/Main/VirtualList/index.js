@@ -2,6 +2,7 @@ import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeH
 import List from './List'
 import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
+import memoRerender from './memoRerender'
 
 // 内库使用-start
 import Layout from './../../../Layout'
@@ -12,7 +13,7 @@ import { Layout } from 'seedsui-react'
 测试使用-end */
 
 // 列表
-const Main = forwardRef(
+const VirtualList = forwardRef(
   (
     {
       virtual,
@@ -96,7 +97,9 @@ const Main = forwardRef(
 
     // 更新显示容器
     function updateVisibleItems() {
+      if (!rootRef.current?.rootDOM) return
       requestAnimationFrame(() => {
+        console.log('scrollTop:', rootRef.current?.rootDOM?.scrollTop)
         let newVisibleItems = getVisibleItems({
           items,
           itemHeights,
@@ -154,4 +157,4 @@ const Main = forwardRef(
   }
 )
 
-export default Main
+export default React.memo(VirtualList, memoRerender)

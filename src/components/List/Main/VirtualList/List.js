@@ -2,6 +2,11 @@ import React from 'react'
 import Item from './../../Item'
 import GroupTitle from './../../GroupTitle'
 
+const itemAbsoluteStyle = {
+  position: 'absolute',
+  left: 0,
+  right: 0
+}
 // 普通列表
 const List = ({
   allowClear,
@@ -38,9 +43,8 @@ const List = ({
               // Virtual style
               style={{
                 ...item?.style,
-                position: 'absolute',
-                top: item.virtualData.top,
-                height: item.virtualData.height
+                ...itemAbsoluteStyle,
+                top: item.virtualData.top
               }}
             />
           )
@@ -84,9 +88,8 @@ const List = ({
             // Virtual style
             style={{
               ...item?.style,
-              position: 'absolute',
-              top: item.virtualData.top,
-              height: item.virtualData.height
+              ...itemAbsoluteStyle,
+              top: item.virtualData.top
             }}
           />
         )
