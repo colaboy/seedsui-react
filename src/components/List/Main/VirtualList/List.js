@@ -27,7 +27,7 @@ const List = ({
     >
       {/* 可见项容器 */}
       {list.map((item) => {
-        if (item.type === 'group') {
+        if (item.virtualData.type === 'group') {
           return (
             <GroupTitle
               key={item.id || item.virtualData.index}
