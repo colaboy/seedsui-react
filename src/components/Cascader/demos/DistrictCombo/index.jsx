@@ -51,15 +51,15 @@ export default () => {
       <Layout.Main>
         <Cascader.DistrictCombo
           // readOnly
-          type="a"
-          startType={'country'}
+          // type="a"
+          // startType={'country'}
           // multiple
           // type="country"
           // type="province"
-          // type="district"
+          type="city"
           // type="district"
           // type="street"
-          min="province"
+          // min="province"
           // editableOptions={{
           //   country: { editable: false },
           //   province: { editable: true },

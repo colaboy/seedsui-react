@@ -10,7 +10,7 @@ import ListItem from './ListItem'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
-import ArrayUtil from './../../../utils/ArrayUtil'
+// import ArrayUtil from './../../../utils/ArrayUtil'
 import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
 import Loading from './../../Loading'
@@ -132,15 +132,18 @@ const Main = forwardRef(
 
     // 设置叶子节点
     function updateIsLeaf(list, id) {
-      // 更新当前列表叶子节点
-      ArrayUtil.setDeepTreeNode(list, id, (node) => {
-        node.isLeaf = true
-      })
+      // 更新总列表叶子节点(外部列表数据变化会引起多个组件isLeaf相互影响)
+      // ArrayUtil.setDeepTreeNode(externalList, id, (node) => {
+      //   node.isLeaf = true
+      // })
 
-      // 更新总列表叶子节点
-      ArrayUtil.setDeepTreeNode(externalList, id, (node) => {
-        node.isLeaf = true
-      })
+      // 更新当前列表叶子节点
+      for (let tab of list || []) {
+        if (tab && tab.id === id) {
+          tab.isLeaf = true
+          break
+        }
+      }
 
       // 更新value叶子节点
       for (let tab of value || []) {
@@ -204,8 +207,8 @@ const Main = forwardRef(
       return newList
     }
 
-    // 点击选项
-    async function handleDrill(item) {
+    // 点击选项, value不包含children
+    async function handleDrill({ children, ...item }) {
       // 防止用户快速点击多次触发
       Loading.show({
         id: '__SeedsUI_loading_cascader_drill_mask__',
@@ -223,14 +226,14 @@ const Main = forwardRef(
       // 已经存在于tabs上, 截取
       if (parentTabIndex !== -1) {
         newValue = newValue.slice(0, parentTabIndex + 1)
-        newValue.push(item)
+        newValue.push({ ...item })
       }
       // 不在tabs上, 为第一项
       else {
         if (value?.length) {
           console.log(`SeedsUI Cascader.Main: 下钻项未匹配到上级, 请检查数据是否正确`, item, value)
         }
-        newValue = [item]
+        newValue = [{ ...item }]
       }
 
       // 选中项, 允许修改值Array | 继续true | 停止false
