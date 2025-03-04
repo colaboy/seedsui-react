@@ -57,7 +57,7 @@
   overflow-x: auto;
   // tab禁用又选中的情况下，不允许点击列表
   &:has(.active.disabled) {
-    + .cascader .cascader-option {
+    & + .modal-selectmodal-main .cascader-option {
       pointer-events: none;
       opacity: 0.5;
     }

@@ -14,6 +14,9 @@ import getFlatTreeNodes from './getFlatTreeNodes'
 import getFlatTreePredecessorNodes from './getFlatTreePredecessorNodes'
 import getFlatTreeDescendantNodes from './getFlatTreeDescendantNodes'
 
+import isEqual from './isEqual'
+import isEqualById from './isEqualById'
+
 const ArrayUtil = {
   deepTree,
   getDeepTreeNode,
@@ -29,7 +32,10 @@ const ArrayUtil = {
   getFlatTreeNode,
   getFlatTreeNodes,
   getFlatTreePredecessorNodes,
-  getFlatTreeDescendantNodes
+  getFlatTreeDescendantNodes,
+
+  isEqual,
+  isEqualById
 }
 
 export default ArrayUtil

@@ -1,4 +1,10 @@
-import equalItemsId from './equalItemsId'
+// 内库使用-start
+import ArrayUtil from './../../../../../utils/ArrayUtil'
+// 内库使用-end
+
+/* 测试使用-start
+import { ArrayUtil } from 'seedsui-react'
+测试使用-end */
 
 // 比较列表
 function equalItems(prevItems, nextItems) {
@@ -6,18 +12,7 @@ function equalItems(prevItems, nextItems) {
     return true
   }
 
-  // 数组长度不同刷新
-  if (prevItems.length !== nextItems.length) {
-    // console.log('数组长度不同刷新:', prevItems.length, nextItems.length)
-    return false
-  }
-  // id不同刷新
-  if (equalItemsId(prevItems, nextItems) === false) {
-    // console.log('id不同刷新', prevItems, nextItems)
-    return false
-  }
-  // 刷新
-  return true
+  return ArrayUtil.isEqual(prevItems, nextItems)
 }
 
 export default equalItems

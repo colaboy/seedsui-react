@@ -38,11 +38,11 @@ export default () => {
         {
           name: '东城区',
           id: '110101'
-        },
-        {
-          name: '东华门街道',
-          id: '110101001'
         }
+        // {
+        //   name: '东华门街道',
+        //   id: '110101001'
+        // }
       ])
     }, 2000)
   }, [])
@@ -52,21 +52,21 @@ export default () => {
         <Cascader.DistrictCombo
           // readOnly
           // type="a"
-          // startType={'country'}
+          startType={'country'}
           // multiple
           // type="country"
           // type="province"
-          type="city"
-          // type="district"
+          // type="city"
+          type="district"
           // type="street"
           // min="province"
-          // editableOptions={{
-          //   country: { editable: false },
-          //   province: { editable: true },
-          //   city: { editable: true },
-          //   district: { editable: true },
-          //   street: { editable: true }
-          // }}
+          editableOptions={{
+            country: { editable: false },
+            province: { editable: false }
+            // city: { editable: true },
+            // district: { editable: true },
+            // street: { editable: true }
+          }}
           value={value}
           onChange={(newValue) => {
             console.log('修改: ', newValue)

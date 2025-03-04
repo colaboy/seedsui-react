@@ -4,11 +4,12 @@ import { updateValueType, testEditableOptions } from './../DistrictMain/utils'
 import DistrictModal from './../DistrictModal'
 
 // 内库使用-start
+import ArrayUtil from './../../../utils/ArrayUtil'
 import Combo from './../../Modal/SelectCombo'
 // 内库使用-end
 
 /* 测试使用-start
-import { Modal } from 'seedsui-react'
+import { ArrayUtil, Modal } from 'seedsui-react'
 const Combo = Modal.SelectCombo
 测试使用-end */
 
@@ -144,21 +145,29 @@ const DistrictCombo = forwardRef(
             : null
         }
         {...props}
+        // 只读项与值一致, 并且已经下钻到最末经, 只读
+        readOnly={
+          Array.isArray(readOnlyValue) &&
+          ArrayUtil.isEqual(readOnlyValue, value) &&
+          readOnlyValue?.[readOnlyValue?.length - 1]?.isLeaf
+            ? true
+            : props?.readOnly
+        }
         modal={props?.modal || DistrictModal}
         clear={(clearParams) => {
           let clearable = clearParams?.clearable
 
-          // 只读项一样长, 并不能清空
-          if (readOnlyValue && readOnlyValue?.length === value?.length) {
+          // 只读项与值一致, 不允许清空
+          if (Array.isArray(readOnlyValue) && ArrayUtil.isEqual(readOnlyValue, value)) {
             clearable = false
           }
 
-          // 自定义清空按钮
+          // 自定义显隐清空按钮
           if (typeof props?.clear === 'function') {
             return props?.clear({ ...clearParams, clearable: clearable })
           }
 
-          // 默认不能清空时, 不显示清空按钮
+          // 默认清空按钮显隐
           return clearable === false ? null : undefined
         }}
       />
