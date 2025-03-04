@@ -81,7 +81,9 @@ const SelectModalBase = forwardRef(
       >
         <div
           data-animation={animation}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
           {...props}
           className={`popup-animation modal-selectmodal${SafeArea.getSafeAreaClassName(safeArea)}${
             props.className ? ' ' + props.className : ''
