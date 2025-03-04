@@ -16,7 +16,6 @@ const Head = forwardRef(
       )
     }
 
-    console.log('ok:', ok, 'cancel:', cancel)
     // 带按钮
     return (
       <div className="modal-selectmodal-header" ref={ref}>

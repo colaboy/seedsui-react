@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import { Field } from 'rc-field-form'
 
-const FormItem = forwardRef(({ safeArea, children, ...props }, ref) => {
+const FormItem = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
   console.log('FormItem', rootRef)
 
@@ -14,7 +14,7 @@ const FormItem = forwardRef(({ safeArea, children, ...props }, ref) => {
   })
 
   return (
-    <Field ref={rootRef} name="password">
+    <Field ref={rootRef} {...props}>
       {children}
     </Field>
   )

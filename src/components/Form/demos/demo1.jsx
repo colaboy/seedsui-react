@@ -2,10 +2,25 @@ import React from 'react'
 import { Layout, Form, Select, Input, LocaleUtil } from 'seedsui-react'
 
 export default () => {
+  // 表单
+  const [form] = Form.useForm()
+
+  // 保存
+  async function handleSave() {
+    form
+      .validateFields()
+      .then(() => {
+        console.log('Right!')
+      })
+      .catch((err) => {
+        console.log('Wrong!', err)
+      })
+  }
+
   return (
     <Layout className="full">
       <Layout.Main>
-        <Form form={form} {...props}>
+        <Form form={form}>
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
@@ -46,6 +61,11 @@ export default () => {
           </Form.Item>
         </Form>
       </Layout.Main>
+      <Layout.Footer className="listpicker-footer border-t">
+        <div className="listpicker-footer-button primary" onClick={handleSave}>
+          {LocaleUtil.locale('确定')}
+        </div>
+      </Layout.Footer>
     </Layout>
   )
 }

@@ -1,10 +1,10 @@
 ---
 category: Components
-group: 布局
-title: Layout
+group: 数据录入
+title: Form
 ---
 
-# Layout
+# Form
 
 ## 示例
 

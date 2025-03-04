@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import Form from 'rc-field-form'
 
-const FormComponent = forwardRef(({ safeArea, animation, children, ...props }, ref) => {
+const FormComponent = forwardRef(({ children, ...props }, ref) => {
   const rootRef = useRef(null)
 
   console.log('form:', rootRef.current)
@@ -15,12 +15,9 @@ const FormComponent = forwardRef(({ safeArea, animation, children, ...props }, r
   })
 
   return (
-    <Form
-      ref={rootRef}
-      onFinish={(values) => {
-        console.log('Finish:', values)
-      }}
-    ></Form>
+    <Form ref={rootRef} {...props}>
+      {children}
+    </Form>
   )
 })
 
