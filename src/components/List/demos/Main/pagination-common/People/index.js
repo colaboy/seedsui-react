@@ -64,16 +64,19 @@ const People = forwardRef(
               null,
               { page: page, keyword: keyword },
               {
-                success:
-                  typeof indexBarVisible === 'boolean'
-                    ? undefined
-                    : ({ list, rows }) => {
-                        if (list.length < rows) {
-                          setIndexBarVisible(true)
-                        } else {
-                          setIndexBarVisible(false)
-                        }
-                      }
+                success: () => {
+                  setIndexBarVisible(true)
+                }
+                // success:
+                //   typeof indexBarVisible === 'boolean'
+                //     ? undefined
+                //     : ({ list, rows }) => {
+                //         if (list.length < rows) {
+                //           setIndexBarVisible(true)
+                //         } else {
+                //           setIndexBarVisible(false)
+                //         }
+                //       }
               }
             )
           }}
