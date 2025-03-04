@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import Form from 'rc-field-form'
 
 const FormComponent = forwardRef(({ children, ...props }, ref) => {

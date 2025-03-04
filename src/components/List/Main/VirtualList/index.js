@@ -1,4 +1,5 @@
 import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
+import _ from 'lodash'
 import constant from './constant'
 import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
@@ -56,6 +57,7 @@ const VirtualList = (
       return items.map(virtual.getItemHeight)
     }
     return []
+    // eslint-disable-next-line
   }, [list])
 
   // 计算总高度
@@ -110,6 +112,7 @@ const VirtualList = (
       // 更新显示容器
       updateVisibleItems()
     }
+    // eslint-disable-next-line
   }, [list])
 
   // 更新显示容器
