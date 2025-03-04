@@ -67,6 +67,7 @@
     "leaflet-canvas-marker": "^0.2.0",
     "less": "^4.2.2",
     "lodash": "^4.17.21",
+    "rc-field-form": "^2.7.0",
     "rc-tree": "^5.7.2",
     "react-sortablejs": "^6.1.4",
     "swiper": "^11.2.1",
