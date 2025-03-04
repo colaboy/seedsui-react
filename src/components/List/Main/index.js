@@ -51,7 +51,6 @@ const Main = forwardRef(
       virtual,
       /*
       {
-        getPrependHeight: () => Number,
         getItemHeight: () => Number
       }
       */

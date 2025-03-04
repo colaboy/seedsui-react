@@ -4,30 +4,14 @@ import People from './People'
 
 export default () => {
   const [value, setValue] = useState(null)
-  const calendarTypeRef = useRef('week')
   return (
     <Layout className="full">
       <Layout.Header className="text-center">Employee.Combo</Layout.Header>
       <People
         prepend={({ list, value, onChange }) => {
-          return (
-            <Calendar
-              type="week"
-              style={{ flex: 'none' }}
-              onSlideChange={(date, { type }) => {
-                console.log(type)
-                calendarTypeRef.current = type
-              }}
-            />
-          )
+          return <Calendar type="week" style={{ flex: 'none' }} />
         }}
         virtual={{
-          getPrependHeight: () => {
-            if (calendarTypeRef.current === 'month') {
-              return 338
-            }
-            return 138
-          },
           getItemHeight: (item) => {
             if (item?.virtualData?.type === 'group') {
               return 33

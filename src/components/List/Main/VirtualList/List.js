@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import Item from './../../Item'
 import GroupTitle from './../../GroupTitle'
 
@@ -8,23 +8,27 @@ const itemAbsoluteStyle = {
   right: 0
 }
 // 普通列表
-const List = ({
-  allowClear,
-  multiple,
-  value,
-  list,
-  onChange,
-  // List config
-  wrapper,
-  layout,
-  checkbox,
-  checkboxPosition,
-  // virtual config
-  height
-}) => {
+const List = (
+  {
+    allowClear,
+    multiple,
+    value,
+    list,
+    onChange,
+    // List config
+    wrapper,
+    layout,
+    checkbox,
+    checkboxPosition,
+    // virtual config
+    height
+  },
+  ref
+) => {
   return (
     // 滚动占位元素
     <div
+      ref={ref}
       style={{
         position: 'relative',
         flex: 'none',
@@ -32,7 +36,7 @@ const List = ({
       }}
     >
       {/* 可见项容器 */}
-      {list.map((item) => {
+      {(list || []).map((item) => {
         if (item.virtualData.type === 'group') {
           return (
             <GroupTitle
@@ -98,4 +102,4 @@ const List = ({
   )
 }
 
-export default List
+export default forwardRef(List)

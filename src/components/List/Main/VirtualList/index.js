@@ -44,12 +44,10 @@ const VirtualList = (
   ref
 ) => {
   const rootRef = useRef(null)
+  const listRef = useRef(null)
 
   // 拉平数据, And set virtualData.type
   const items = useMemo(() => flattenList(list), [list])
-
-  // 计算头部扩展高度
-  const prependHeight = virtual.getPrependHeight?.({ list, value })
 
   // 计算每一项的高度并缓存
   const itemHeights = useMemo(() => {
@@ -104,6 +102,7 @@ const VirtualList = (
   // 更新显示容器
   function updateVisibleItems() {
     if (!rootRef.current?.rootDOM) return
+    let prependHeight = listRef.current?.offsetTop
     requestAnimationFrame(() => {
       let newVisibleItems = getVisibleItems({
         prependHeight: prependHeight || 0,
@@ -136,22 +135,21 @@ const VirtualList = (
       {typeof prepend === 'function' ? prepend({ list, value, onChange }) : null}
 
       {/* 列表 */}
-      {Array.isArray(visibleItems) && visibleItems.length ? (
-        <List
-          allowClear={allowClear}
-          multiple={multiple}
-          value={value}
-          list={visibleItems}
-          onChange={onChange}
-          // List config
-          wrapper={wrapper}
-          layout={layout}
-          checkbox={checkbox}
-          checkboxPosition={checkboxPosition}
-          // virtual config
-          height={totalHeight}
-        />
-      ) : null}
+      <List
+        ref={listRef}
+        allowClear={allowClear}
+        multiple={multiple}
+        value={value}
+        list={visibleItems}
+        onChange={onChange}
+        // List config
+        wrapper={wrapper}
+        layout={layout}
+        checkbox={checkbox}
+        checkboxPosition={checkboxPosition}
+        // virtual config
+        height={totalHeight}
+      />
 
       {/* 底部 */}
       {typeof append === 'function' ? append({ list, value, onChange }) : null}
