@@ -1,7 +1,8 @@
 import React, { useRef, useMemo, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
-import List from './List'
+import constant from './constant'
 import flattenList from './flattenList'
 import getVisibleItems from './getVisibleItems'
+import List from './List'
 
 // 内库使用-start
 import Layout from './../../../Layout'
@@ -95,6 +96,18 @@ const VirtualList = (
   // 初始化完成时更新显示容器
   useEffect(() => {
     if (Array.isArray(list) && list.length) {
+      // 列表更新, 底部自定义区域超过一屏高度, 即使列表高度增加, 也会一直保持在底部, 需要滚动到列表可视区域, 避免一直底部刷新
+      if (_.isEmpty(visibleItems) && totalHeight > constant.buffer) {
+        let appendHeight =
+          rootRef.current.rootDOM.scrollHeight -
+          (listRef.current.offsetTop + listRef.current.offsetHeight)
+        if (appendHeight > rootRef.current?.rootDOM.clientHeight) {
+          rootRef.current.rootDOM.scrollTop =
+            rootRef.current.rootDOM.scrollTop - appendHeight - constant.buffer
+        }
+      }
+
+      // 更新显示容器
       updateVisibleItems()
     }
   }, [list])

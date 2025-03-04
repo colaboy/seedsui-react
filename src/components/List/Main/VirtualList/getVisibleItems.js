@@ -1,5 +1,4 @@
-// 缓冲区大小
-const buffer = 80
+import constant from './constant'
 
 // 计算可见区域元素
 function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, containerHeight }) {
@@ -18,17 +17,16 @@ function getVisibleItems({ prependHeight, items, itemHeights, scrollTop, contain
 
   // 计算可见区域的起始索引
   let startIndex = 0
-  try {
-    while (items[startIndex].virtualData.top < scrollTop - prependHeight - buffer) {
-      startIndex++
-    }
-  } catch (error) {
-    console.error('List.VirtualList calculate startIndex error: ', error)
+  while (
+    items[startIndex] &&
+    items[startIndex].virtualData.top < scrollTop - prependHeight - constant.buffer
+  ) {
+    startIndex++
   }
 
   // 计算可见区域的结束索引
   let endIndex = startIndex
-  while (endIndex < items.length && items[endIndex].virtualData.top < scrollTop + containerHeight) {
+  while (items[endIndex] && items[endIndex].virtualData.top < scrollTop + containerHeight) {
     endIndex++
   }
 

@@ -11,6 +11,13 @@ export default () => {
         prepend={({ list, value, onChange }) => {
           return <Calendar type="week" style={{ flex: 'none' }} />
         }}
+        append={({ list, value, onChange }) => {
+          return (
+            <div style={{ height: '800px', backgroundColor: '#ff8800', flex: 'none' }}>
+              Bottom Extra
+            </div>
+          )
+        }}
         virtual={{
           getItemHeight: (item) => {
             if (item?.virtualData?.type === 'group') {
