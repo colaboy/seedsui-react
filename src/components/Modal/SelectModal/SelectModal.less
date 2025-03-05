@@ -87,21 +87,6 @@
   flex: 1;
 }
 
-// 主体部分(用于自适应内容高度的弹窗, 如Select、Transfer), 固定高度组件自写样式: .组件-main
-.modal-selectmodal-main {
-  position: relative;
-  overflow: auto;
-  .flex-1;
-
-  min-height: 200px;
-
-  // 禁用
-  &.disabled {
-    pointer-events: none;
-    opacity: 0.2;
-  }
-}
-
 // Adapt to the safe area
 .modal-selectmodal.safeArea {
   &:extend(.safe-area all);

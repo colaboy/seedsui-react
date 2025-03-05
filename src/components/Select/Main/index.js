@@ -46,9 +46,7 @@ const Main = forwardRef(
     return (
       <div
         {...props}
-        className={`modal-selectmodal-main select-main${
-          props?.className ? ' ' + props.className : ''
-        }`}
+        className={`select-main${props?.className ? ' ' + props.className : ''}`}
         ref={mainRef}
       >
         {_.isEmpty(list) && <Result className="select-main-result" status="empty" />}
