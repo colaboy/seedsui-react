@@ -47,9 +47,7 @@ export default function CustomDates({
         }}
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        rightIcon={
-          <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />
-        }
+        rightIcon={<i className="right-icon shape-arrow-right sm" />}
       />
       —
       <Combo
@@ -67,9 +65,7 @@ export default function CustomDates({
         }}
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        rightIcon={
-          <i className="right-icon icon shape-arrow-right sm" style={{ marginRight: '4px' }} />
-        }
+        rightIcon={<i className="right-icon shape-arrow-right sm" />}
       />
     </div>
   )
