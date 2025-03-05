@@ -1,12 +1,15 @@
 import React, { forwardRef, useRef, useImperativeHandle } from 'react'
 import _ from 'lodash'
 
-import Result from './../../Result'
-
 // 内库使用-start
+import Result from './../../Result'
 import List from './../../List'
 import Checkbox from './../../Checkbox'
-// 内库使用-emd
+// 内库使用-end
+
+/* 测试使用-start
+import { Result, List, Checkbox } from 'seedsui-react'
+测试使用-end */
 
 // Main
 const Main = forwardRef(

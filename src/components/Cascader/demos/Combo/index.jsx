@@ -54,7 +54,6 @@ export default () => {
           loadData={loadData}
           value={value}
           placeholder={`Select`}
-          rightIcon={<i className="shape-arrow-right sm"></i>}
           onChange={(newValue) => {
             console.log('修改:', newValue)
             setValue(newValue)
@@ -65,6 +64,13 @@ export default () => {
           }}
           onVisibleChange={(visible) => {
             console.log('visible:', visible)
+          }}
+          clear={({ clearable, triggerClear }) => {
+            return clearable ? (
+              <i className="input-clear" onClick={triggerClear} />
+            ) : (
+              <i className="right-icon shape-arrow-right sm"></i>
+            )
           }}
         />
       </Layout.Main>
