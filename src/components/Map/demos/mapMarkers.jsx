@@ -63,10 +63,10 @@ export default () => {
       onSuccess={() => {
         console.log('地图加载成功')
       }}
-      onError={(errMsg) => {
-        console.log('地图加载失败:', errMsg)
-        return '错误地址'
-      }}
+      // onError={(errMsg) => {
+      //   console.log('地图加载失败:', errMsg)
+      //   return '错误地址'
+      // }}
     >
       <div style={{ position: 'relative', width: '100%', height: '500px' }}>
         <MapMarkers

@@ -15,13 +15,16 @@ function Main({
   list,
   onChange
 }) {
+  // 错误信息
+  let status = '500'
   let errMsg = typeof list === 'string' ? list : null
   if (Array.isArray(list) && list.length === 0) {
+    status = 'empty'
     errMsg = LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
   }
   return (
     <div className="map-nearbyControl-main">
-      {errMsg && <Result title={errMsg} />}
+      {errMsg && <Result className="map-main-result" status={status} title={errMsg} />}
       {Array.isArray(list) &&
         list.length &&
         list.map((item, index) => {

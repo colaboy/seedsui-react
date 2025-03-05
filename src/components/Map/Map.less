@@ -2,7 +2,6 @@
 @import 'components/LocationControl/MapLocationControl.less';
 @import 'components/NearbyControl/MapNearbyControl.less';
 @import 'components/NearbyControl/Current/MapNavigation.less';
-@import 'components/Result/MapResult.less';
 @import 'components/SearchControl/MapSearchControl.less';
 @import 'components/ZoomControl/MapZoomControl.less';
 
@@ -23,6 +22,20 @@
   .leaflet-bottom.leaflet-right {
     display: none;
   }
+}
+
+// 地图报错提示
+.map-container-result,
+.map-main-result {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+.map-container-result {
+  background-color: var(--app-background-color);
 }
 
 // Modal

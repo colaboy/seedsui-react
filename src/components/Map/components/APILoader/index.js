@@ -2,7 +2,15 @@ import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } f
 import loadSource from './../../utils/loadSource'
 import canvasMarkers from './leaflet.canvas-markers'
 
-import Result from './../Result'
+// 内库使用-start
+import LocaleUtil from './../../../../utils/LocaleUtil'
+import Result from './../../../Result'
+import Button from './../../../Button'
+// 内库使用-end
+
+// 测试使用-start
+// import { LocaleUtil, Result, Button } from 'seedsui-react'
+// 测试使用-end
 
 // Load map js and css source
 const APILoader = forwardRef(
@@ -80,7 +88,18 @@ const APILoader = forwardRef(
 
     // 加载失败
     if (typeof errMsg === 'string') {
-      return <Result title={errMsg} retry={loadData} />
+      return (
+        <Result title={errMsg} className="map-container-result" status={'500'}>
+          <Button
+            className="result-button primary"
+            onClick={() => {
+              loadData()
+            }}
+          >
+            {LocaleUtil.locale('重试', 'SeedsUI_retry')}
+          </Button>
+        </Result>
+      )
     }
 
     // 渲染自定义DOM

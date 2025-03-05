@@ -119,10 +119,12 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           : null}
 
         {/* Query error */}
-        {typeof searchList === 'string' && <Result title={searchList} />}
+        {typeof searchList === 'string' && (
+          <Result className="map-main-result" status="500" title={searchList} />
+        )}
         {/* List is empty */}
         {Array.isArray(searchList) && searchList.length === 0 ? (
-          <Result title={LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')} />
+          <Result className="map-main-result" status="empty" />
         ) : null}
       </div>
     </Layout>

@@ -5,14 +5,13 @@ import MapContainer from './../../components/MapContainer'
 import ZoomControl from './../../components/ZoomControl'
 import Markers, { createIcon as createMarkerIcon } from './../../components/Markers'
 
-import Result from './../../components/Result'
-
 // 内库使用-start
+import Result from './../../../Result'
 import LocaleUtil from './../../../../utils/LocaleUtil'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'seedsui-react'
+import { Result, LocaleUtil } from 'seedsui-react'
 测试使用-start */
 
 // 地图标注
@@ -37,6 +36,7 @@ function MapMarkers(
   if (!Array.isArray(externalPoints) || !externalPoints.length) {
     return (
       <Result
+        status="500"
         title={`${LocaleUtil.locale('请传入参数', 'SeedsUI_need_pass_parameter_error')}points`}
       />
     )

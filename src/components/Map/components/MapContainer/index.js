@@ -12,15 +12,14 @@ import defaultQueryNearby from './../../utils/queryNearby'
 import markerClickLeaflet from './markerClickLeaflet'
 import markerClickCanvas from './markerClickCanvas'
 
-import Result from './../Result'
-
 // 内库使用-start
 import LocaleUtil from './../../../../utils/LocaleUtil'
 import GeoUtil from './../../../../utils/GeoUtil'
+import Result from './../../../Result'
 // 内库使用-end
 
 // 测试使用-start
-// import { LocaleUtil, GeoUtil } from 'seedsui-react'
+// import { LocaleUtil, GeoUtil, Result } from 'seedsui-react'
 // 测试使用-end
 
 const MapContainer = forwardRef(
@@ -432,7 +431,7 @@ const MapContainer = forwardRef(
     }
     // 加载失败
     else if (typeof leafletMap === 'string') {
-      newChildren = <Result title={leafletMap} />
+      newChildren = <Result className="map-container-result" status="500" title={leafletMap} />
     }
     // 加载成功
     else {
@@ -452,7 +451,7 @@ const MapContainer = forwardRef(
         {/* 百度、高德地图容器用于调用api使用，并不展现 */}
         <div className="map-api-container"></div>
         {/* 其它控件 */}
-        {leafletMap && typeof leafletMap !== 'string' ? newChildren : null}
+        {leafletMap ? newChildren : null}
       </div>
     )
   }
