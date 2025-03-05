@@ -26,7 +26,7 @@ const ListItem = forwardRef(
     ref
   ) => {
     // 错误信息
-    let errCode = 'ERROR'
+    let status = 500
 
     // 显示分栏
     const indexes = {}
@@ -34,7 +34,7 @@ const ListItem = forwardRef(
     if (Array.isArray(list) && !list.length) {
       // eslint-disable-next-line
       list = LocaleUtil.locale('暂无数据', 'SeedsUI_no_data')
-      errCode = 'NO_DATA'
+      status = 'empty'
     }
 
     return (
@@ -44,17 +44,9 @@ const ListItem = forwardRef(
         ref={ref}
       >
         {typeof list === 'string' && (
-          <Result
-            title={list}
-            image={
-              errCode === 'ERROR'
-                ? '//res.waiqin365.com/d/waiqin365_h5/components/error.png'
-                : '//res.waiqin365.com/d/waiqin365_h5/components/empty.png'
-            }
-            className={`cascader-exception`}
-          >
-            {errCode === 'ERROR' && onReLoad && (
-              <Button className="primary cascader-exception-button" onClick={onReLoad}>
+          <Result title={list} status={status} className={`cascader-exception`}>
+            {status === 500 && onReLoad && (
+              <Button className="primary result-button" onClick={onReLoad}>
                 {LocaleUtil.locale('重新加载', 'SeedsUI_reload')}
               </Button>
             )}
