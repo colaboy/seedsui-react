@@ -6,6 +6,6 @@ title: 详情
 
 # Detail
 
-## 示例
+## 布局示例
 
-<code src="./demos/Badge.jsx"></code>
+<code src="./demos/Layout/index.jsx"></code>

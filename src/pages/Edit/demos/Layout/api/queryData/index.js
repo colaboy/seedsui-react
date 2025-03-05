@@ -17,17 +17,9 @@ function queryData() {
 
     // 修改或者复制
     Loading.show()
-    Request.post(
-      '/platform/param/v1/getLoginUser.do',
-      {
-        id: id
-      },
-      {
-        headers: {
-          contentType: 'application/json'
-        }
-      }
-    )
+    Request.post('/platform/param/v1/getLoginUser.do', {
+      id: id
+    })
       .then((result) => {
         Loading.hide()
         if (result.code === '1') {

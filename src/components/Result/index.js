@@ -1,3 +1,3 @@
-import Result from './Result.js'
+import Result from './Result'
 
 export default Result
