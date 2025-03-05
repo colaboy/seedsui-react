@@ -6,6 +6,6 @@ title: 编辑
 
 # Edit
 
-## 示例
+## 布局示例
 
-<code src="./demos/Edit.jsx"></code>
+<code src="./demos/Layout/index.jsx"></code>

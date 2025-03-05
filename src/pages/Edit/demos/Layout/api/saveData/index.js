@@ -1,6 +1,4 @@
-import { Device, Loading, Toast } from 'seedsui-react'
-import ApiAxios from 'library/deprecated/ApiAxios'
-import locale from 'library/utils/locale'
+import { LocaleUtil, Request, Device, Loading, Toast } from 'seedsui-react'
 
 import serverData from './serverData'
 
@@ -31,12 +29,11 @@ async function saveData({ formData, tokenRef }) {
   }
 
   return new Promise((resolve) => {
-    ApiAxios.post(url, {
+    Request.post(url, params, {
       headers: {
-        tokenDup: tokenRef.current
-      },
-      contentType: 'application/json',
-      data: params
+        tokenDup: tokenRef.current,
+        contentType: 'application/json'
+      }
     })
       .then((result) => {
         Loading.hide()
@@ -48,7 +45,7 @@ async function saveData({ formData, tokenRef }) {
 
         if (result.code === '1') {
           Toast.show({
-            content: locale('提交成功!', 'library.8149522e59382cf0d07185296fcc87b2'),
+            content: LocaleUtil.locale('提交成功!', 'library.8149522e59382cf0d07185296fcc87b2'),
             onVisibleChange: (visible) => {
               // 提交完成后处理逻辑
               if (visible === false) resolve(true)
@@ -57,7 +54,8 @@ async function saveData({ formData, tokenRef }) {
         } else {
           Toast.show({
             content:
-              result.message || locale('提交数据失败！', 'library.c1f9adb330715bccdee0731409c712d2')
+              result.message ||
+              LocaleUtil.locale('提交数据失败！', 'library.c1f9adb330715bccdee0731409c712d2')
           })
           resolve(false)
         }
@@ -65,7 +63,7 @@ async function saveData({ formData, tokenRef }) {
       .catch(() => {
         Loading.hide()
         Toast.show({
-          content: locale('提交数据异常！', 'library.6626f193336b7664a4eb3443c12f8df7')
+          content: LocaleUtil.locale('提交数据异常！', 'library.6626f193336b7664a4eb3443c12f8df7')
         })
         resolve(false)
       })

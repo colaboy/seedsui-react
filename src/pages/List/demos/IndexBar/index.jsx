@@ -45,7 +45,6 @@ const IndexBarList = () => {
         loadList={({ page, action }) => {
           console.log('action:', action)
           return queryData(
-            null,
             { page: page, keyword: keyword },
             {
               success: () => {

@@ -3,13 +3,13 @@ import { Request, Device } from 'seedsui-react'
 import localData from './localData'
 
 // 获取详情
-function queryData(url, params, config) {
+function queryData(params) {
   const rows = 10000
 
   return new Promise((resolve) => {
     // 查询
     Request.post(
-      url || '/combo/v1/getComboGrid.do?comboCode=employee',
+      '/combo/v1/getComboGrid.do?comboCode=employee',
       {
         rows: rows,
         isControl: '0',
@@ -17,11 +17,9 @@ function queryData(url, params, config) {
         ...params
       },
       {
-        headers: config?.headers
-          ? config?.headers
-          : {
-              'Content-Type': 'application/x-www-form-urlencoded' // application/json;charset=UTF-8
-            }
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded' // application/json;charset=UTF-8
+        }
       }
     )
       .then((result) => {

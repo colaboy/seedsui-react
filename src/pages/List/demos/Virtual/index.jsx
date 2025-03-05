@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { queryData } from './api'
 import { LocaleUtil, Layout } from 'seedsui-react'
-import { IndexBar, ToolBar, List } from 'seedsui-react'
+import { ToolBar, List } from 'seedsui-react'
 import './index.less'
 
 // Virtual虚拟列表
@@ -42,7 +42,7 @@ const VirtualList = () => {
         className="employee-people-main"
         loadList={({ page, action }) => {
           console.log('action:', action)
-          return queryData(null, { page: page, keyword: keyword })
+          return queryData({ page: page, keyword: keyword })
         }}
         // value={value}
         onChange={() => {
