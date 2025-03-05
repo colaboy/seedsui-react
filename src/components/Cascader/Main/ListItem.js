@@ -3,13 +3,12 @@ import React, { Fragment, forwardRef } from 'react'
 // 内库使用-start
 import LocaleUtil from '../../../utils/LocaleUtil'
 import Result from './../../Result'
-import Layout from './../../Layout'
 import Button from './../../Button'
 import IndexBar from './../../IndexBar'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil, Result, Layout, Button, IndexBar } from 'seedsui-react'
+import { LocaleUtil, Result, Button, IndexBar } from 'seedsui-react'
 测试使用-end */
 
 const ListItem = forwardRef(
