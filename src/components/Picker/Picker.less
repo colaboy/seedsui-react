@@ -1,14 +1,9 @@
-// 选择容器高度(定制样式, 各个组件替换此样式)
-.picker-modal {
-  .picker-main {
-    height: 215px;
-    overflow: hidden;
-    flex: none;
-  }
-}
-
 // 选择控件
 .picker-main {
+  position: relative;
+  height: 215px;
+  overflow: hidden;
+  flex: none;
   // 禁用
   &.disabled {
     .picker-layer {
