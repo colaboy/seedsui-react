@@ -1,0 +1,28 @@
+@import '../../../../assets/variables.less';
+
+// 选员工
+.employee-people-main {
+  background-color: white;
+
+  .list-divider {
+    padding: var(--space-m) var(--space-xl);
+    color: var(--default-color);
+    background-color: var(--divider-bg);
+  }
+
+  .list-item {
+    margin-left: var(--space-xl);
+    padding: 14px 0;
+    background-image: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 30px;
+      height: 1px;
+      background-color: @border;
+    }
+  }
+}

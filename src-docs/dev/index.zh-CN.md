@@ -1,12 +1,20 @@
-[TOC]
+# 规范总览
 
-# 典型页面
+---
+
+category: Pages
+group: 典型页面
+title: 典型页面
+
+---
+
+## 典型页面
 
 典型页面不仅符合代码规范，也符合上百条的 ue 规范，一定要使用典型页面开发，即使不使用典型页面，也要使用其开发的风格开发
 
-## 典型页面规则
+#### 典型页面规则
 
-### 请求
+###### 请求
 
 页面级请求：对整个页面进行保存、审批、删除、查询等操作
 
@@ -16,7 +24,7 @@
 - 文件夹位置：1.“页面级请求”放到单独文件夹 api；2.“组件级请求”放组件即可；
 - 代码位置：1.“页面级请求”放第一级；2.“组件级请求”放组件；
 
-### 数据要求
+###### 数据要求
 
 - 唯一性： 原数据不要重复，比如列表 list，页面需要对 list 进行分组展示，不要再定义一个变量 group 仅用于渲染，数据与 list 交织。正确的处理方法是将 list 传给 Group 组件, 在组件内部去分组渲染。
 
@@ -36,13 +44,13 @@
 
 业务前端开发，页面渲染本身没什么难度，本质上就是在数据处理上见高低，后期维护也主要难在数据处理上，数据定义的越好，后期维护就越简单
 
-### 数据格式
+###### 数据格式
 
 - 选择控件数据与组件对应，对象{id: '', name: '', ...}、{longitude: '', latitude: '', address:'', ...}、{src: '', thumb: '', ...}等
 
 - 基本数据类型不做要求
 
-### 变量命名
+###### 变量命名
 
 - 根据组件命名：
   Goods.Combo: 列表 goodsList, 值 goods;
@@ -52,12 +60,12 @@
 
 - baseData: 不参与页面渲染，提交时或者其它请求时需要的参数
 
-### 组件入参
+###### 组件入参
 
 - 跨组件严禁相互传组件 ref（不限于两表单之间频繁联动）：
   跨组件，一律通过 onXX 来调用外部的 ref，严禁把 ref 传入其它组件中
 
-## web 端
+#### web 端
 
 - 表格列表页
   plugin/example/tablelist?menuId=6914481038969933719
@@ -68,21 +76,21 @@
 - 表格详情页
   plugin/example/tabledetail?menuId=6914481038969933719&id=8651980132904030320
 
-## 手机端
+#### 手机端
 
 library/components/example
 
-# 开发规范
+## 开发规范
 
-## 开发工具
+#### 开发工具
 
 - 使用`vscode`，禁止使用其它开发工具
 
-## 格式化
+#### 格式化
 
 - 使用`prettier`格式化代码，并开启 vscode 中保存格式化功能（防止忘记格式化）
 
-## 提交校验
+#### 提交校验
 
 - 使用`husky,lint-staged`做提交校验
 
@@ -101,7 +109,7 @@ library/components/example
 }
 ```
 
-## 支持 ts
+#### 支持 ts
 
 - 安装
 
@@ -115,15 +123,15 @@ npm i --save-dev typescript @types/node @types/react @types/react-dom @types/jes
 补充 tsconfig.json
 ```
 
-## 注释
+#### 注释
 
-### 方法注释
+###### 方法注释
 
 ```javascript
 /**
  * 功能，如：保存
  * @param {Object} params // 如果文档齐全，入参简单描述一下就行
- * @document http://172.31.3.113:8080/workspace/myWorkspace.do?projectId=150#4951 // 文档地址
+ * @document http://172.31.3.113:8080/workspace/myWorkspace.do?projectId=150##4951 // 文档地址
  * @returns {Promise} 返回描述
  */
 function fetchSave(params) {
@@ -131,7 +139,7 @@ function fetchSave(params) {
 }
 ```
 
-### 注释上方空一行
+###### 注释上方空一行
 
 ```javascript
 const a = 1
@@ -140,7 +148,7 @@ const a = 1
 const b = 2
 ```
 
-## 模块目录
+#### 模块目录
 
 routes、页面路径必须一致，并使用下钻式的规范，如下：
 
@@ -149,35 +157,35 @@ routes、页面路径必须一致，并使用下钻式的规范，如下：
 页面：/SalesManage/SalesSwapOrder/Edit/index.js
 ```
 
-## web 端联动标签刷新
+#### web 端联动标签刷新
 
 使用 useResume
 
-## 不使用使用 zustand
+#### 不使用使用 zustand
 
 使用 useCache 代替
 
-## 不使用使用子路由超过两层
+#### 不使用使用子路由超过两层
 
 返回不刷新使用 useCache 代替
 
-## 返回不刷新标识
+#### 返回不刷新标识
 
 window.isReloadList
 
-## React 使用 hook 模式
+#### React 使用 hook 模式
 
 新页面一律使用 hook，老页面修改时如果工作量不大也要修改为 hook
 
-## 严禁地址栏直接传递中文
+#### 严禁地址栏直接传递中文
 
 无数次惨痛的教训告诉我们地址栏传递中文需要遵循如下规则： 1.尽量不要在地址栏传递中文 2.如一定要中文，请编码两次，是两次
 
-## 不要重复造轮子
+#### 不要重复造轮子
 
 缺轮子找组长，不要自己造
 
-## 不要使用 es 方式引入
+#### 不要使用 es 方式引入
 
 ```javascript
 import Layout from 'seedsui-react/lib/Layout'
@@ -189,11 +197,11 @@ import Layout from 'seedsui-react/lib/Layout'
 import { Layout } from 'seedsui-react'
 ```
 
-## 不要使用 redux
+#### 不要使用 redux
 
 redux 非必要情况下，不要使用，业务逻辑层在 utils 文件夹处理
 
-## 不要使用 withRouter
+#### 不要使用 withRouter
 
 ```javascript
 import { withRouter } from 'react-router'
@@ -207,13 +215,13 @@ import { useHistory } from 'react-router-dom'
 const history = useHistory()
 ```
 
-## 不要使用全局函数名做函数
+#### 不要使用全局函数名做函数
 
 ```
 call、apply、decodeURIComponent、encodeURIComponent、isNaN等
 ```
 
-## 不要使用私有属性
+#### 不要使用私有属性
 
 百度地图的私有属性是经常变的，比如下面的代码 r.Cr，这里的 Cr 没过多久就去掉了，一定要用
 
@@ -226,7 +234,7 @@ let local = new BMap.LocalSearch(self.mapUtil.map, {
 })
 ```
 
-## 不要使用 Decorator
+#### 不要使用 Decorator
 
 [装饰器](https://github.com/tc39/proposal-decorators)还没有转正，[tc39](https://medium.com/@justjavac/tc39-ecmascript-proposals-future-of-javascript-386b12149880)提案中处于 stage2，它的路还很长，使用方法也一直在变(15 升 16 脚手架时吃过一次亏)
 
@@ -237,12 +245,12 @@ let local = new BMap.LocalSearch(self.mapUtil.map, {
 @connent
 ```
 
-## 不要改组件（需要授权）
+#### 不要改组件（需要授权）
 
 - 手机端组件（library）需要修改找柱子
 - WEB 端组件（componets、utils）需要修改找健健
 
-## 不要使用 rest 风格路由/:id
+#### 不要使用 rest 风格路由/:id
 
 - 使用传统的?id=，而不是/id 这种 rest 风格的传参（这种传参顺序还有子路由会产生极大的影响，并且也不方便阅读）
 
@@ -255,17 +263,17 @@ let local = new BMap.LocalSearch(self.mapUtil.map, {
 
 - 参数越少越好
 
-## 国际化
+#### 国际化
 
 中文使用`locale('中文')`包裹
 
-## 缩进
+#### 缩进
 
 缩进一律使用`空格:2`，禁止使用其它空格数缩进
 
-## 页面书写顺序
+#### 页面书写顺序
 
-### import 顺序
+###### import 顺序
 
 1. React 相关，例如`import React from 'react'`
 
@@ -308,13 +316,13 @@ import Search from './Search'
 import '/main.less'
 ```
 
-### 实现体顺序
+###### 实现体顺序
 
 1. 声明和变量，例如：const state = useState(null)
 2. 生命周期，例如：useEffect
 3. 事件/普通方法
 
-## 命名
+#### 命名
 
 - 页面命名：List（列表）、Record（明细）、Edit（编辑）、Detail（详情）
 - class 全名：组件为全局样式、业务需要加上业务标识，例如：merp-或者 dms-等
@@ -335,7 +343,7 @@ import '/main.less'
 
 命名的规则： 1.参考主流命名；2.意义贴切的英文
 
-## 容错
+#### 容错
 
 - 数组
   <br/>
@@ -458,12 +466,12 @@ ApiAxios.get('xx')
   })
 ```
 
-## 分支
+#### 分支
 
 - 分支以版本号命名，子分支以版本号-功能名-人名命名
 - 非特殊情况不要在两个分支上改相同的代码（改问题在一个分支上改，通过合并的方式解决）
 
-# 数据规范
+## 数据规范
 
 - 保存时间一律使用`YYYY-MM-DD hh:mm:ss`的格式保存
 - 页面跳转一律透传`menuId`
@@ -471,9 +479,9 @@ ApiAxios.get('xx')
 - web 端下页带入筛选条件，一律通过 top.window.唯一 key 透传
 - 最后 7 天要传 6，dayjs().subtract(6, 'day')
 
-# GIT
+## GIT
 
-## 注意事项
+#### 注意事项
 
 为防止出现代码还原的情况
 
@@ -486,13 +494,13 @@ ApiAxios.get('xx')
 
 通常我们发现上个版本修复的问题下个版本又出现了：原因大多是因为没有多合代码
 
-## 查看主分支创建者
+#### 查看主分支创建者
 
 ```bash
 git log --oneline master | cut -d " " -f 1 | tail -1 | xargs git log
 ```
 
-## 修改提交用户名
+#### 修改提交用户名
 
 ```bash
 // 查看当前用户名
@@ -511,7 +519,7 @@ git config user.email
 git config --global user.email 'xx@qince.com'
 ```
 
-## 一律使用命令
+#### 一律使用命令
 
 因为工具有时候会自动补充-f，使用命令则不会
 
@@ -551,7 +559,7 @@ git checkout 分支名
 git branch 分支名 -D
 ```
 
-## Git commit 规范
+#### Git commit 规范
 
 git commit 格式如下：
 
@@ -586,7 +594,7 @@ git commit -m 'feat(core): new nx starter'
 - 第一个字母不要大写
 - 末尾没有点 (.)
 
-## 注意事项
+#### 注意事项
 
 1.push 命令执行后，注意观察 vscode 下方同步数，同步完成后再切分支
 
@@ -594,7 +602,7 @@ git commit -m 'feat(core): new nx starter'
 
 3. 严禁使用-f 或者其它暴力型命令更新和提交，使用上面提供的命令即可
 
-## 合并分支
+#### 合并分支
 
 1.保持每日向上合并分支，防止在出错的情况下无法抢救
 
@@ -602,7 +610,7 @@ git commit -m 'feat(core): new nx starter'
 
 3.并行开发，改完立刻合
 
-## 危急处理
+#### 危急处理
 
 - 还原到某个提交记录
 
@@ -628,7 +636,7 @@ git push -f
 
 最后向上合并，注意合并前把向上分支做个备份，最后再覆盖合并后的向上分支
 
-# 严禁的事情
+## 严禁的事情
 
 - 无视资源大小，无视渲染性能
 
@@ -701,7 +709,7 @@ L index.js
 return (
   <Page>
     {tabs && tabs.length > 0 && (
-      <Header style={{ marginBottom: '10px', backgroundColor: '#fff' }}>
+      <Header style={{ marginBottom: '10px', backgroundColor: '##fff' }}>
         <Tabs tabActiveIndex={tabActiveIndex} tabs={tabs} onChange={handleTabs} />
       </Header>
     )}
@@ -718,7 +726,7 @@ return (
 )
 ```
 
-# 高质量的定义
+## 高质量
 
 - 命名：文件命名、变量命名、函数命名（1.参考主流命名；2.意义贴切的英文）
 - 页面：10 秒内能够读懂并能解释清楚自己的页面功能划分
@@ -727,33 +735,7 @@ return (
 - 复用：业务代码业务内复用，通用功能提升后复用
 - BUG：多加保护
 
-# 低质量的示例
-
-- 变量或方法冗余
-
-```bash
-let isShow = xx
-let visible = isShow
-setVisible(visible)
-```
-
-- url 冗余
-
-```javascript
-function handleClick(item) {
-  history.push(`xx.html?=${getUrl(...item)}`)
-}
-```
-
-- 重复请求
-- 页面全是警告
-- 明显的交互体验很差，例如：
-
-```
-页面白屏
-按钮点击无反馈
-正常的请求不转圈也无反馈
-```
+## 注意事项
 
 - 过度复用：详情、新增、编辑使用同一个页面
 - 不管异常情况，只处理接口正确的情况，接口出错直接白屏
