@@ -4,17 +4,19 @@ import isGroups from './utils/isGroups'
 import hasMoreItems from './utils/hasMoreItems'
 import scrollToTop from './utils/scrollToTop'
 import InfiniteScroll from './../InfiniteScroll'
-import ResultMessage from './components/ResultMessage'
 import Loading from './components/Loading'
 import List from './List'
 import VirtualList from './VirtualList'
 
 // 内库使用-start
 import Device from './../../../utils/Device'
+import LocaleUtil from './../../../utils/LocaleUtil'
+import Result from './../../Result'
+import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device } from 'seedsui-react'
+import { Device, LocaleUtil, Result, Button } from 'seedsui-react'
 测试使用-end */
 
 const Main = forwardRef(
@@ -64,9 +66,9 @@ const Main = forwardRef(
     const pageRef = useRef(1)
 
     const [list, setList] = useState(null)
-    // 全屏提示: noData | error<String>
-    const [mainStatus, setMainStatus] = useState('')
-    // 底部提示: loading | noMore | error<String>
+    // 全屏提示: {status: 'empty|500', title: ''}
+    const [mainStatus, setMainStatus] = useState(null)
+    // 底部提示: loading | noMore | error
     const [bottomStatus, setBottomStatus] = useState('')
     // 加载显示: load | reload | topRefresh | bottomRefresh
     const [loadAction, setLoadAction] = useState('')
@@ -120,7 +122,7 @@ const Main = forwardRef(
       if (Array.isArray(newList)) {
         if (newList.length) {
           setList(newList)
-          setMainStatus('')
+          setMainStatus(null)
 
           // Check if there are more items
           if (
@@ -138,13 +140,18 @@ const Main = forwardRef(
         } else {
           setList(null)
           setBottomStatus('')
-          setMainStatus('noData')
+          setMainStatus({
+            status: 'empty'
+          })
         }
       }
       // Failed to get first page list
       else {
         setList(null)
-        setMainStatus(newList && typeof newList === 'string' ? newList : 'error')
+        setMainStatus({
+          status: 500,
+          title: newList && typeof newList === 'string' ? newList : ''
+        })
       }
 
       return true
@@ -240,9 +247,21 @@ const Main = forwardRef(
         append={append}
       >
         {/* 底部错误提示 */}
-        {pagination && <InfiniteScroll type={bottomStatus} />}
+        {pagination && <InfiniteScroll status={bottomStatus} />}
         {/* 页面级错误提示 */}
-        {mainStatus && <ResultMessage type={mainStatus} onRetry={() => init('retry')} />}
+        {mainStatus && (
+          <Result
+            className="list-result-message"
+            status={mainStatus?.status}
+            title={mainStatus?.title}
+          >
+            {mainStatus?.status !== 'empty' && (
+              <Button className="primary result-button" onClick={() => init('retry')}>
+                {LocaleUtil.locale('重试', 'SeedsUI_retry')}
+              </Button>
+            )}
+          </Result>
+        )}
         {/* 页面加载遮罩 */}
         <Loading type={loadAction} loading={loading} />
       </ListNode>

@@ -9,12 +9,12 @@ import Loading from './../../Loading'
 import { LocaleUtil, Loading } from 'seedsui-react'
 测试使用-end */
 
-// type: loading | noMore | [error|自定义错误信息]
-const InfiniteScroll = ({ type }) => {
+// status: loading | noMore | [error|自定义错误信息]
+const InfiniteScroll = ({ status }) => {
   function getStatusNode() {
-    if (!type || typeof type !== 'string') return null
+    if (!status || typeof status !== 'string') return null
 
-    if (type === 'loading') {
+    if (status === 'loading') {
       return (
         <div className={`list-infinitescroll-wrapper`}>
           <div className="list-infinitescroll-text">
@@ -26,7 +26,7 @@ const InfiniteScroll = ({ type }) => {
         </div>
       )
     }
-    if (type === 'noMore') {
+    if (status === 'noMore') {
       return (
         <div className={`list-infinitescroll-wrapper`}>
           <div className="list-infinitescroll-text">
@@ -38,9 +38,9 @@ const InfiniteScroll = ({ type }) => {
     return (
       <div className={`list-infinitescroll-wrapper`}>
         <div className="list-infinitescroll-text">
-          {type === 'error'
+          {status === 'error'
             ? LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error')
-            : type}
+            : status}
         </div>
       </div>
     )
