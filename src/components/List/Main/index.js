@@ -149,7 +149,7 @@ const Main = forwardRef(
       else {
         setList(null)
         setMainStatus({
-          status: 500,
+          status: '500',
           title: newList && typeof newList === 'string' ? newList : ''
         })
       }
@@ -251,7 +251,7 @@ const Main = forwardRef(
         {/* 页面级错误提示 */}
         {mainStatus && (
           <Result
-            className="list-result-message"
+            className="list-main-result"
             status={mainStatus?.status}
             title={mainStatus?.title}
           >

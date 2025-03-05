@@ -1,7 +1,7 @@
 import React from 'react'
 import getStatusDefault from './getStatusDefault'
 
-// 结果页, status: empty|success|waiting|info|warning|error
+// 结果页, status: empty|500|success|waiting|info|warning|error
 function Result({ status, title, description, image, children, ...props }) {
   let statusDefault = getStatusDefault(status)
   if (statusDefault) {

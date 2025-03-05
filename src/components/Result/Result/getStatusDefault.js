@@ -21,7 +21,7 @@ function getStatusDefault(status) {
       )
     }
   }
-  if (status === 500) {
+  if (status === '500') {
     return {
       title: LocaleUtil.locale('获取数据失败，请稍后再试！', 'SeedsUI_query_data_error'),
       image: (

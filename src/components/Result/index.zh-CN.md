@@ -6,6 +6,10 @@ title: Result
 
 # Result
 
-## 示例
+## Empty
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/empty.jsx"></code>
+
+## 500
+
+<code src="./demos/500.jsx"></code>

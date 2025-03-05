@@ -66,7 +66,9 @@ const Transfer = (
     <>
       <div
         {...props}
-        className={`modal-selectmodal-main${props?.className ? ' ' + props.className : ''}`}
+        className={`modal-selectmodal-main transfer-main${
+          props?.className ? ' ' + props.className : ''
+        }`}
         ref={mainRef}
       >
         {/* 已添加列表 */}

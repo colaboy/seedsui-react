@@ -1,0 +1,73 @@
+// 项
+.transfer-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+  height: 48px;
+  // transition: 0.3s;
+
+  padding-left: 16px;
+}
+.transfer-item:not(:last-child) {
+  // 底线
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 0;
+    height: 1px;
+    background-color: @border;
+  }
+}
+
+// 操作按钮: 添加和删除
+.transfer-item-operate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.transfer-item-operate-icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+  font-size: 17px;
+  font-family: 'seeds-icons';
+  &.add {
+    &:extend(.seeds-icon-transfer-add all);
+    color: #fb8d38;
+  }
+  &.delete {
+    &:extend(.seeds-icon-transfer-minus all);
+    color: #f94f57;
+  }
+}
+
+// 拖拽按钮
+.transfer-item-drop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 100%;
+  text-align: center;
+  * {
+    pointer-events: none;
+  }
+}
+.transfer-item-drop-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #919ba5;
+  font-family: 'seeds-icons';
+  &:extend(.seeds-icon-transfer-drop all);
+}
+
+// 内容
+.transfer-item-content {
+  flex: 1;
+  margin-left: 12px;
+}

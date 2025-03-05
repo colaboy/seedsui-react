@@ -26,7 +26,7 @@ const ListItem = forwardRef(
     ref
   ) => {
     // 错误信息
-    let status = 500
+    let status = '500'
 
     // 显示分栏
     const indexes = {}
@@ -44,8 +44,8 @@ const ListItem = forwardRef(
         ref={ref}
       >
         {typeof list === 'string' && (
-          <Result title={list} status={status} className={`cascader-exception`}>
-            {status === 500 && onReLoad && (
+          <Result title={list} status={status} className={`cascader-main-result`}>
+            {status === '500' && onReLoad && (
               <Button className="primary result-button" onClick={onReLoad}>
                 {LocaleUtil.locale('重新加载', 'SeedsUI_reload')}
               </Button>

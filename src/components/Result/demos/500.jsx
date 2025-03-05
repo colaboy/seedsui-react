@@ -1,23 +1,11 @@
 import React from 'react'
 import { Layout, Result, Button, LocaleUtil } from 'seedsui-react'
 
-const titleStyle = {
-  padding: '12px 12px 8px',
-  color: '#697b8c',
-  fontSize: '14px',
-  backgroundColor: 'rgba(250,251,252)'
-}
-
 export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
-        <div style={titleStyle}>Page notice</div>
-        <Result
-          className="full"
-          image="https://res.waiqin365.com/d/waiqin365_h5/components/error.png"
-          title="This is a title"
-        >
+        <Result className="full" status={'500'}>
           <Button
             className="result-button primary"
             style={{ marginTop: 77 }}

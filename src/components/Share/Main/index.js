@@ -62,8 +62,8 @@ function Main({ className, style, shareTo, ...props }, ref) {
         getShareNodes()
       ) : (
         <Result
-          className="share-error"
-          image="//res.waiqin365.com/d/waiqin365_h5/components/empty.png"
+          className="share-main-result"
+          status="empty"
           title={LocaleUtil.locale('此平台暂不支持分享', 'SeedsUI_share_no_support')}
         />
       )}
