@@ -13,3 +13,7 @@ title: 列表
 ## 虚拟滚动
 
 <code src="./demos/Virtual/index.jsx"></code>
+
+## 分页加载
+
+<code src="./demos/Pagination/index.jsx"></code>
