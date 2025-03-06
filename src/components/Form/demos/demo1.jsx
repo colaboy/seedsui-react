@@ -20,7 +20,7 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
-        <Form form={form}>
+        <Form layout="vertical" form={form}>
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
