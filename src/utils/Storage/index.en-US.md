@@ -1,9 +1,9 @@
 ---
 category: Utils
 group: 基本工具
-title: Request
+title: Storage
 ---
 
-# Request
+# Storage
 
 This is an example component.

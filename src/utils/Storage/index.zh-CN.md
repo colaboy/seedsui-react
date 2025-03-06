@@ -1,11 +1,11 @@
 ---
 category: Utils
 group: 基本工具
-title: Request
+title: Storage
 ---
 
-# Request
+# Storage
 
 ## 示例
 
-<code src="./demos/demo1.jsx"></code>
+<code src="./demos/useCacheState.jsx"></code>

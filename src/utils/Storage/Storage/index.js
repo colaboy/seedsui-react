@@ -3,7 +3,7 @@ import LocalStorage from './LocalStorage'
 import SessionStorage from './SessionStorage'
 
 // 内库使用-start
-import Device from './../Device'
+import Device from './../../Device'
 // 内库使用-end
 
 /* 测试使用-start
