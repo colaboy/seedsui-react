@@ -18,6 +18,7 @@ const FormItem = forwardRef(
       help,
       name,
       // Own properties
+      extra,
       label,
       rules,
       children,
@@ -33,6 +34,7 @@ const FormItem = forwardRef(
             {children}
           </Field>
         </Value>
+        {extra && <div className="list-item-extra">{extra}</div>}
       </Item>
     )
   }
