@@ -26,12 +26,17 @@ const LocalStorage = {
   removeLocalStorages: function (filter) {
     if (typeof filter !== 'function') return false
 
+    let removeKeys = []
     let storages = window.localStorage.valueOf()
     for (let i = 0; i < storages.length; i++) {
       let key = storages.key(i)
       if (filter(key)) {
-        window.localStorage.removeItem(key)
+        removeKeys.push(key)
       }
+    }
+
+    for (let removeKey of removeKeys) {
+      window.localStorage.removeItem(removeKey)
     }
     return true
   },
