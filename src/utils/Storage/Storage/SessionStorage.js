@@ -23,6 +23,18 @@ const SessionStorage = {
     window.sessionStorage.removeItem(key)
     return true
   },
+  removeSessionStorages: function (filter) {
+    if (typeof filter !== 'function') return false
+
+    let storages = window.sessionStorage.valueOf()
+    for (let i = 0; i < storages.length; i++) {
+      let key = storages.key(i)
+      if (filter(key)) {
+        window.sessionStorage.removeItem(key)
+      }
+    }
+    return true
+  },
   clearSessionStorage: function () {
     window.sessionStorage.clear()
     return true

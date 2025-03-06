@@ -23,6 +23,18 @@ const LocalStorage = {
     window.localStorage.removeItem(key)
     return true
   },
+  removeLocalStorages: function (filter) {
+    if (typeof filter !== 'function') return false
+
+    let storages = window.localStorage.valueOf()
+    for (let i = 0; i < storages.length; i++) {
+      let key = storages.key(i)
+      if (filter(key)) {
+        window.localStorage.removeItem(key)
+      }
+    }
+    return true
+  },
   clearLocalStorage: function () {
     window.localStorage.clear()
     return true

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { queryData } from './api'
-import { LocaleUtil, Layout } from 'seedsui-react'
-import { ToolBar, List } from 'seedsui-react'
+import { LocaleUtil, Storage, Layout, ToolBar, List, Button } from 'seedsui-react'
 import './index.less'
 
 // 分页列表
@@ -40,6 +39,18 @@ const PaginationList = () => {
         }}
         pagination={true}
       />
+
+      <Layout.Footer>
+        <Button
+          className="flex primary radius-l"
+          onClick={() => {
+            Storage.clearCache('cache_pageName_list')
+            alert('Clear success!')
+          }}
+        >
+          Clear cache
+        </Button>
+      </Layout.Footer>
     </Layout>
   )
 }

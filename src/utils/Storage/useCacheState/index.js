@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import getStorage from './getCache'
 import setStorage from './setCache'
-import clearStorage from './clearCache'
 
 /**
  * 页面数据缓存功能
@@ -29,5 +28,4 @@ function useCacheState(value, options) {
   ]
 }
 
-export { setStorage as setCache, getStorage as getCache, clearStorage as clearCache }
 export default useCacheState
