@@ -43,7 +43,7 @@ const FormItemName = forwardRef(
         }`}
         ref={rootRef}
       >
-        {children}
+        <div className="form-item-name-text">{children}</div>
         {help && (
           <i
             className="form-item-help"

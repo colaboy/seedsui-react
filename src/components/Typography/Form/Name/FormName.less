@@ -3,19 +3,28 @@
   vertical-align: middle;
   overflow: hidden;
   white-space: nowrap;
+  color: #6a737c;
 }
-.form-item-required {
-  color: var(--danger);
+.form-item-name-text {
+  display: inline-block;
   vertical-align: middle;
 }
+.form-item-required {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  line-height: 20px;
+  color: var(--danger);
+}
 .form-item-help {
+  display: inline-block;
   font-family: 'iconfont';
+  vertical-align: middle;
   font-size: 20px;
   width: 20px;
   height: 20px;
   line-height: 20px;
   margin: 0 2px;
-  vertical-align: middle;
   font-family: 'seeds-icons';
   &:extend(.seeds-icon-rdo-question-fill all);
   color: #b1b8c0;
