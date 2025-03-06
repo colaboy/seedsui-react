@@ -22,7 +22,7 @@ function useCacheState(value, options) {
     cache,
     cacheName
       ? (newValue) => {
-          if (newValue === undefined) {
+          if (newValue === undefined || newValue === null || newValue === '') {
             if (persist) Storage.removeLocalStorage(cacheName)
             delete window[cacheName]
           } else {

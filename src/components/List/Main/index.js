@@ -11,12 +11,13 @@ import VirtualList from './VirtualList'
 // 内库使用-start
 import Device from './../../../utils/Device'
 import LocaleUtil from './../../../utils/LocaleUtil'
+import Storage from './../../../utils/Storage'
 import Result from './../../Result'
 import Button from './../../Button'
 // 内库使用-end
 
 /* 测试使用-start
-import { Device, LocaleUtil, Result, Button } from 'seedsui-react'
+import { Device, LocaleUtil, Storage, Result, Button } from 'seedsui-react'
 测试使用-end */
 
 const Main = forwardRef(
@@ -34,7 +35,6 @@ const Main = forwardRef(
       // 显示
       loading,
       // 请求属性
-      list: externalList, // 离线数据
       loadList,
       pull = true, // 是否允许下拉刷新
       pagination, // {totalPages: 10, totalItems: 100, rows: 100}
@@ -49,6 +49,7 @@ const Main = forwardRef(
       // Render
       prepend,
       append,
+      cache,
       // Virtual list config
       virtual,
       /*
@@ -65,13 +66,25 @@ const Main = forwardRef(
     // 分页
     const pageRef = useRef(1)
 
-    const [list, setList] = useState(null)
+    const [list, setList] = Storage.useCacheState(
+      null,
+      cache?.name ? { name: cache?.name + '_list', persist: cache?.persist } : null
+    )
     // 全屏提示: {status: 'empty|500', title: ''}
-    const [mainStatus, setMainStatus] = useState(null)
+    const [mainStatus, setMainStatus] = Storage.useCacheState(
+      null,
+      cache?.name ? { name: cache?.name + '_mainStatus', persist: cache?.persist } : null
+    )
     // 底部提示: loading | noMore | error
-    const [bottomStatus, setBottomStatus] = useState('')
+    const [bottomStatus, setBottomStatus] = Storage.useCacheState(
+      '',
+      cache?.name ? { name: cache?.name + '_bottomStatus', persist: cache?.persist } : null
+    )
     // 加载显示: load | reload | topRefresh | bottomRefresh
-    const [loadAction, setLoadAction] = useState('')
+    const [loadAction, setLoadAction] = Storage.useCacheState(
+      '',
+      cache?.name ? { name: cache?.name + '_loadAction', persist: cache?.persist } : null
+    )
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -98,6 +111,17 @@ const Main = forwardRef(
     }, [list])
 
     useEffect(() => {
+      // 有缓存数据, 直接渲染
+      if (cache?.name && Array.isArray(list) && list.length) {
+        // 滚动条位置
+        if (mainRef?.current?.rootDOM) {
+          mainRef.current.rootDOM.scrollTop =
+            window[`${cache.name}_scrollTop`] ||
+            Storage.getLocalStorage(`${cache.name}_scrollTop`) ||
+            0
+        }
+        return
+      }
       init('load')
       // eslint-disable-next-line
     }, [])
@@ -105,9 +129,7 @@ const Main = forwardRef(
     // 顶部刷新和初始化, action: 'load | reload | topRefresh'
     async function init(action) {
       let newList = null
-      if (externalList) {
-        newList = externalList
-      } else if (typeof loadList === 'function') {
+      if (typeof loadList === 'function') {
         pageRef.current = 1
 
         setLoadAction(action)
@@ -233,6 +255,13 @@ const Main = forwardRef(
             }
             window.timeout = setTimeout(() => {
               document.body.classList.remove('ios-scrolling')
+              // 记录滚动条位置
+              if (cache?.name && typeof e?.target?.scrollTop === 'number') {
+                window[`${cache.name}_scrollTop`] = e.target.scrollTop
+                if (cache?.persist) {
+                  Storage.setLocalStorage(`${cache.name}_scrollTop`, e.target.scrollTop)
+                }
+              }
             }, 500)
           }
         }}

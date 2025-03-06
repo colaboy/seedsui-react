@@ -17,3 +17,7 @@ title: 列表
 ## 分页加载
 
 <code src="./demos/Pagination/index.jsx"></code>
+
+## 页面缓存
+
+<code src="./demos/Cache/index.jsx"></code>
