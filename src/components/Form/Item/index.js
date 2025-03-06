@@ -11,12 +11,12 @@ import { Typography } from 'seedsui-react'
 
 const { Item, Name, Value } = Typography.Form
 
-const FormItem = forwardRef(({ label, rules, children, ...props }, ref) => {
+const FormItem = forwardRef(({ label, rules, name, children, ...props }, ref) => {
   return (
-    <Item ref={ref}>
-      <Name>{label}</Name>
+    <Item ref={ref} name={name}>
+      <Name required={(rules || []).some((rule) => rule.required)}>{label}</Name>
       <Value>
-        <Field ref={ref} {...props} rules={rules}>
+        <Field ref={ref} {...props} rules={rules} name={name}>
           {children}
         </Field>
       </Value>

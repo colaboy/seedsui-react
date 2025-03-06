@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 import FormContext from './../FormContext'
 
-const FormItemName = forwardRef(({ required, children, ...props }, ref) => {
+const FormItemName = forwardRef(({ name, required, children, ...props }, ref) => {
   // 获取全局配置
   const { layout, nameCol } = useContext(FormContext)
 
@@ -23,7 +23,10 @@ const FormItemName = forwardRef(({ required, children, ...props }, ref) => {
       }`}
       ref={rootRef}
     >
-      <label className={`form-item-name-label${required ? ' form-item-required' : ''}`}>
+      <label
+        className={`form-item-name-label${required ? ' form-item-required' : ''}`}
+        htmlFor={name}
+      >
         {children}
       </label>
     </div>
