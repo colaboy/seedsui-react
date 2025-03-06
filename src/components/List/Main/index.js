@@ -68,22 +68,22 @@ const Main = forwardRef(
 
     const [list, setList] = Storage.useCacheState(
       null,
-      cache?.name ? { name: cache?.name + '_list', persist: cache?.persist } : null
+      cache?.name ? { name: cache?.name + ':list', persist: cache?.persist } : null
     )
     // 全屏提示: {status: 'empty|500', title: ''}
     const [mainStatus, setMainStatus] = Storage.useCacheState(
       null,
-      cache?.name ? { name: cache?.name + '_mainStatus', persist: cache?.persist } : null
+      cache?.name ? { name: cache?.name + ':mainStatus', persist: cache?.persist } : null
     )
     // 底部提示: loading | noMore | error
     const [bottomStatus, setBottomStatus] = Storage.useCacheState(
       '',
-      cache?.name ? { name: cache?.name + '_bottomStatus', persist: cache?.persist } : null
+      cache?.name ? { name: cache?.name + ':bottomStatus', persist: cache?.persist } : null
     )
     // 加载显示: load | reload | topRefresh | bottomRefresh
     const [loadAction, setLoadAction] = Storage.useCacheState(
       '',
-      cache?.name ? { name: cache?.name + '_loadAction', persist: cache?.persist } : null
+      cache?.name ? { name: cache?.name + ':loadAction', persist: cache?.persist } : null
     )
 
     // Expose
@@ -116,8 +116,8 @@ const Main = forwardRef(
         // 滚动条位置
         if (mainRef?.current?.rootDOM) {
           mainRef.current.rootDOM.scrollTop =
-            window[`${cache.name}_scrollTop`] ||
-            Storage.getLocalStorage(`${cache.name}_scrollTop`) ||
+            window[`${cache.name}:scrollTop`] ||
+            Storage.getLocalStorage(`${cache.name}:scrollTop`) ||
             0
         }
         return
@@ -257,9 +257,9 @@ const Main = forwardRef(
               document.body.classList.remove('ios-scrolling')
               // 记录滚动条位置
               if (cache?.name && typeof e?.target?.scrollTop === 'number') {
-                window[`${cache.name}_scrollTop`] = e.target.scrollTop
+                window[`${cache.name}:scrollTop`] = e.target.scrollTop
                 if (cache?.persist) {
-                  Storage.setLocalStorage(`${cache.name}_scrollTop`, e.target.scrollTop)
+                  Storage.setLocalStorage(`${cache.name}:scrollTop`, e.target.scrollTop)
                 }
               }
             }, 500)
