@@ -11,17 +11,31 @@ import { Typography } from 'seedsui-react'
 
 const { Item, Name, Value } = Typography.Form
 
-const FormItem = forwardRef(({ label, rules, name, children, ...props }, ref) => {
-  return (
-    <Item ref={ref} name={name}>
-      <Name required={(rules || []).some((rule) => rule.required)}>{label}</Name>
-      <Value>
-        <Field ref={ref} {...props} rules={rules} name={name}>
-          {children}
-        </Field>
-      </Value>
-    </Item>
-  )
-})
+const FormItem = forwardRef(
+  (
+    {
+      // Transparent flow properties to children
+      help,
+      name,
+      // Own properties
+      label,
+      rules,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Item ref={ref} help={help} name={name}>
+        <Name required={(rules || []).some((rule) => rule.required)}>{label}</Name>
+        <Value>
+          <Field ref={ref} {...props} rules={rules} name={name}>
+            {children}
+          </Field>
+        </Value>
+      </Item>
+    )
+  }
+)
 
 export default FormItem

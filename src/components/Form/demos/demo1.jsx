@@ -24,6 +24,7 @@ export default () => {
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
+            help="提示信息"
             rules={[
               {
                 required: true,

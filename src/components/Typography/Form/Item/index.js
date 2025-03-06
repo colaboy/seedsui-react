@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 import FormContext from './../FormContext'
 
-const FormItem = forwardRef(({ required, children, name, ...props }, ref) => {
+const FormItem = forwardRef(({ help, children, name, ...props }, ref) => {
   // 获取全局配置
   const { layout } = useContext(FormContext)
 
@@ -21,10 +21,13 @@ const FormItem = forwardRef(({ required, children, name, ...props }, ref) => {
       className={`form-item${props.className ? ' ' + props.className : ''}${
         layout === 'horizontal' ? ` row` : ''
       }`}
+      id={`${name ? `form-item-${name}` : props?.id || ''}`}
       ref={rootRef}
     >
+      {/* {children} */}
+      {/* 子组件塞入name属性 */}
       {React.Children.map(children, (child) =>
-        React.isValidElement(child) ? React.cloneElement(child, { name: name }) : child
+        React.isValidElement(child) ? React.cloneElement(child, { name: name, help: help }) : child
       )}
     </div>
   )
