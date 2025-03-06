@@ -8,6 +8,12 @@ const PaginationList = () => {
   // Cache config
   const cache = { name: 'cache_pageName_list', persist: true }
 
+  // Forward history clear cache
+  // const history = useHistory()
+  // if (Storage.getCache(`${cache.name}:list`) && history.action !== 'POP') {
+  //   Storage.clearCache(cache.name)
+  // }
+
   const [keyword, setKeyword] = useState(Storage.getCache(`${cache.name}:keyword`) || '')
 
   // Expose

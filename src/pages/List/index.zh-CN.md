@@ -6,18 +6,18 @@ title: 列表
 
 # List
 
-## IndexBar
+## IndexBar 列表
 
 <code src="./demos/IndexBar/index.jsx"></code>
 
-## 虚拟滚动
+## 虚拟滚动列表
 
 <code src="./demos/Virtual/index.jsx"></code>
 
-## 分页加载
+## 分页列表
 
 <code src="./demos/Pagination/index.jsx"></code>
 
-## 页面缓存
+## 缓存列表
 
 <code src="./demos/Cache/index.jsx"></code>
