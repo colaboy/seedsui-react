@@ -5,7 +5,10 @@ import './index.less'
 
 // 分页列表
 const PaginationList = () => {
-  const [keyword, setKeyword] = useState('')
+  // Cache config
+  const cache = { name: 'cache_pageName_list', persist: true }
+
+  const [keyword, setKeyword] = useState(Storage.getCache(`${cache.name}:keyword`) || '')
 
   // Expose
   const mainRef = useRef(null)
@@ -19,6 +22,7 @@ const PaginationList = () => {
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {
+              Storage.setCache(keyword, { name: `${cache.name}:keyword`, persist: cache.persist })
               mainRef.current.reload()
             }}
           />
@@ -27,7 +31,7 @@ const PaginationList = () => {
 
       <List.Main
         ref={mainRef}
-        cache={{ name: 'cache_pageName_list', persist: true }}
+        cache={cache}
         className="employee-people-main"
         loadList={({ page, action }) => {
           console.log('action:', action)
@@ -44,7 +48,7 @@ const PaginationList = () => {
         <Button
           className="flex primary radius-l"
           onClick={() => {
-            Storage.clearCache('cache_pageName_list')
+            Storage.clearCache(cache.name)
             alert('Clear success!')
           }}
         >
