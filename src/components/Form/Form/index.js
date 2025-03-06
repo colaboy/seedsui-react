@@ -1,23 +1,22 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { forwardRef } from 'react'
 import Form from 'rc-field-form'
 
-const FormComponent = forwardRef(({ children, ...props }, ref) => {
-  const rootRef = useRef(null)
+// 内库使用-start
+import Typography from '../../Typography'
+// 内库使用-end
 
-  console.log('form:', rootRef.current)
+/* 测试使用-start
+import { Typography } from 'seedsui-react'
+测试使用-end */
 
-  // Expose
-  useImperativeHandle(ref, () => {
-    return {
-      rootDOM: rootRef.current,
-      getRootDOM: () => rootRef.current
-    }
-  })
-
+// layout: horizontal | vertical | inline
+const FormComponent = forwardRef(({ layout = 'horizontal', children, ...props }, ref) => {
   return (
-    <Form ref={rootRef} {...props}>
-      {children}
-    </Form>
+    <Typography.Form ref={ref} layout={layout}>
+      <Form className={`form`} {...props}>
+        {children}
+      </Form>
+    </Typography.Form>
   )
 })
 
