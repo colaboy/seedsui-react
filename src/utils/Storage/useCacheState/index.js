@@ -20,16 +20,18 @@ function useCacheState(value, options) {
 
   return [
     cache,
-    (newValue) => {
-      if (newValue === undefined) {
-        if (persist) Storage.removeLocalStorage(cacheName)
-        delete window[cacheName]
-      } else {
-        if (persist) Storage.setLocalStorage(cacheName, newValue)
-        window[cacheName] = newValue
-      }
-      setCache(newValue)
-    }
+    cacheName
+      ? (newValue) => {
+          if (newValue === undefined) {
+            if (persist) Storage.removeLocalStorage(cacheName)
+            delete window[cacheName]
+          } else {
+            if (persist) Storage.setLocalStorage(cacheName, newValue)
+            window[cacheName] = newValue
+          }
+          setCache(newValue)
+        }
+      : setCache
   ]
 }
 

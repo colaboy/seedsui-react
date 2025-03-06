@@ -14,7 +14,7 @@ export default () => {
         }}
         pagination
         value={value}
-        list={'错误'}
+        loadList={() => '错误'}
         onChange={(value) => {
           console.log(value)
           setValue(value)

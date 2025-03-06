@@ -18,7 +18,6 @@ const ListCombo = forwardRef(
       modalProps,
 
       multiple,
-      list,
       loadList,
       pull,
       pagination,
@@ -41,7 +40,6 @@ const ListCombo = forwardRef(
         modalProps={{
           ...modalProps,
           multiple,
-          list,
           loadList,
           pull,
           pagination,

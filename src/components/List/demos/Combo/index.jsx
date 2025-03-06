@@ -11,7 +11,7 @@ export default () => {
         <List.Combo
           pagination
           value={value}
-          list={list}
+          loadList={() => list}
           onChange={(value) => {
             console.log(value)
             setValue(value)

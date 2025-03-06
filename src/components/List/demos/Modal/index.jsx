@@ -12,7 +12,7 @@ export default () => {
           visible={true}
           pagination
           value={value}
-          list={list}
+          loadList={() => list}
           onChange={(value) => {
             console.log(value)
             setValue(value)

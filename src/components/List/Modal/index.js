@@ -18,7 +18,6 @@ const ListModal = forwardRef(
       mainProps,
 
       multiple,
-      list,
       loadList,
       pull,
       pagination,
@@ -40,7 +39,6 @@ const ListModal = forwardRef(
         mainProps={{
           ...mainProps,
           multiple,
-          list,
           loadList,
           pull,
           pagination,
