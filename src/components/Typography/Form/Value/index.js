@@ -1,6 +1,10 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
+import FormContext from './../FormContext'
 
 const FormName = forwardRef(({ required, children, ...props }, ref) => {
+  // 获取全局配置
+  const { layout, nameCol, valueCol } = useContext(FormContext)
+
   const rootRef = useRef(null)
 
   // Expose
@@ -14,7 +18,9 @@ const FormName = forwardRef(({ required, children, ...props }, ref) => {
   return (
     <div
       {...props}
-      className={`form-item-value${props.className ? ' ' + props.className : ''}`}
+      className={`form-item-value${props.className ? ' ' + props.className : ''}${
+        layout === 'horizontal' ? ` col-${valueCol}` : ''
+      }`}
       ref={rootRef}
     >
       {children}

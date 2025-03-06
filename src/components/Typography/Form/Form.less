@@ -2,9 +2,20 @@
 @import 'Name/FormName.less';
 @import 'Value/FormValue.less';
 
-.form {
+.form-wrapper {
   position: relative;
   display: block;
-  padding-left: var(--space-l);
   line-height: 1.5;
+}
+
+.form-layout-horizontal {
+  .form-item {
+    padding: var(--space-m) 0;
+  }
+}
+
+.form-layout-vertical {
+  .form-item-name {
+    margin-bottom: var(--space-m);
+  }
 }

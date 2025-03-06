@@ -4,4 +4,15 @@
   flex-direction: column;
   flex: 1 1 0;
   min-width: 0;
+
+  // 消除控件间距
+  .input-text,
+  textarea.input-fit,
+  .input-fit + pre {
+    padding: 0;
+  }
+
+  .input-fit {
+    height: inherit;
+  }
 }
