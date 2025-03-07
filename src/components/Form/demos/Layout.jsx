@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Form, Select, Input, LocaleUtil } from 'seedsui-react'
+import { Layout, Form, Divider, Select, Input, LocaleUtil } from 'seedsui-react'
 
 export default () => {
   // 表单
@@ -20,7 +20,51 @@ export default () => {
   return (
     <Layout className="full">
       <Layout.Main>
+        <Divider>Horizontal</Divider>
         <Form layout="horizontal" form={form}>
+          <Form.Item
+            name="input"
+            label={LocaleUtil.locale('单行文本框')}
+            help="提示信息"
+            rules={[
+              {
+                required: true,
+                message: LocaleUtil.locale('单行文本框不能为空')
+              }
+            ]}
+          >
+            <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
+          </Form.Item>
+          <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
+            <Select.Combo
+              placeholder={LocaleUtil.locale('请选择')}
+              list={[
+                {
+                  id: '1',
+                  name: '选项1'
+                },
+                {
+                  id: '2',
+                  name: '选项2'
+                }
+              ]}
+              // 互斥图标
+              clear={({ clearable, triggerClear }) => {
+                return clearable ? (
+                  <i className="input-clear" onClick={triggerClear} />
+                ) : (
+                  <i className="right-icon shape-arrow-right sm"></i>
+                )
+              }}
+            />
+          </Form.Item>
+          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
+            <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
+          </Form.Item>
+        </Form>
+
+        <Divider>Vertical</Divider>
+        <Form layout="vertical">
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
