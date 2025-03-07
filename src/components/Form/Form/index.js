@@ -10,14 +10,41 @@ import { Typography } from 'seedsui-react'
 测试使用-end */
 
 // layout: horizontal | vertical | inline
-const FormComponent = forwardRef(({ layout = 'horizontal', children, ...props }, ref) => {
-  return (
-    <Typography.Form ref={ref} layout={layout}>
-      <Form className={`form`} {...props}>
-        {children}
-      </Form>
-    </Typography.Form>
-  )
-})
+const FormComponent = forwardRef(
+  (
+    {
+      // Transparent to children properties
+      layout = 'horizontal',
+      nameCol,
+      valueCol,
+      scrollerDOM,
+      // Own properties
+      onFieldsChange,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <Typography.Form
+        ref={ref}
+        layout={layout}
+        nameCol={nameCol}
+        valueCol={valueCol}
+        scrollerDOM={scrollerDOM}
+      >
+        <Form
+          className={`form`}
+          {...props}
+          onFieldsChange={(changedFields, allFields) => {
+            console.log('changedFields', changedFields, 'allFields', allFields)
+          }}
+        >
+          {children}
+        </Form>
+      </Typography.Form>
+    )
+  }
+)
 
 export default FormComponent

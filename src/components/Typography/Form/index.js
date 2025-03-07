@@ -6,7 +6,7 @@ import Value from './Value'
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
-  ({ layout = 'horizontal', nameCol = 8, valueCol = 16, children, ...props }, ref) => {
+  ({ layout = 'horizontal', nameCol = 8, valueCol = 16, scrollerDOM, children, ...props }, ref) => {
     const rootRef = useRef(null)
 
     // Expose
@@ -18,7 +18,9 @@ const Form = forwardRef(
     })
 
     return (
-      <FormContext.Provider value={{ layout, nameCol, valueCol }}>
+      <FormContext.Provider
+        value={{ layout, nameCol, valueCol, scrollerDOM: scrollerDOM || rootRef.current }}
+      >
         <div ref={rootRef} className={`form-wrapper form-layout-${layout}`} {...props}>
           {children}
         </div>

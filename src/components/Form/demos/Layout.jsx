@@ -64,9 +64,9 @@ export default () => {
         </Form>
 
         <Divider>Vertical</Divider>
-        <Form layout="vertical">
+        <Form layout="vertical" form={form}>
           <Form.Item
-            name="input"
+            name="input2"
             label={LocaleUtil.locale('单行文本框')}
             help="提示信息"
             rules={[
@@ -78,7 +78,7 @@ export default () => {
           >
             <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
           </Form.Item>
-          <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
+          <Form.Item name="select2" label={LocaleUtil.locale('下拉选择框')}>
             <Select.Combo
               placeholder={LocaleUtil.locale('请选择')}
               list={[
@@ -101,7 +101,7 @@ export default () => {
               }}
             />
           </Form.Item>
-          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
+          <Form.Item name="textarea2" label={LocaleUtil.locale('多行文本框')}>
             <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
           </Form.Item>
         </Form>
