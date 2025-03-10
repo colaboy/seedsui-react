@@ -15,8 +15,8 @@ const FormComponent = forwardRef(
     {
       // Transparent to children properties
       layout = 'horizontal',
-      nameCol,
-      valueCol,
+      labelCol,
+      mainCol,
       scrollerDOM,
       // Own properties
       onFieldsChange,
@@ -29,8 +29,8 @@ const FormComponent = forwardRef(
       <Typography.Form
         ref={ref}
         layout={layout}
-        nameCol={nameCol}
-        valueCol={valueCol}
+        labelCol={labelCol}
+        mainCol={mainCol}
         scrollerDOM={scrollerDOM}
       >
         <Form

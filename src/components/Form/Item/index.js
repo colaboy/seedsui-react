@@ -9,7 +9,7 @@ import Typography from '../../Typography'
 import { Typography } from 'seedsui-react'
 测试使用-end */
 
-const { Item, Name, Value } = Typography.Form
+const { Item, Label, Main } = Typography.Form
 
 const FormItem = forwardRef(
   (
@@ -28,13 +28,15 @@ const FormItem = forwardRef(
   ) => {
     return (
       <Item ref={ref} help={help} name={name}>
-        <Name required={(rules || []).some((rule) => rule.required)}>{label}</Name>
-        <Value>
-          <Field ref={ref} {...props} rules={rules} name={name}>
-            {children}
-          </Field>
-        </Value>
-        {extra && <div className="list-item-extra">{extra}</div>}
+        <Label required={(rules || []).some((rule) => rule.required)}>{label}</Label>
+        <Main>
+          <div className="form-item-main-input">
+            <Field ref={ref} {...props} rules={rules} name={name}>
+              {children}
+            </Field>
+          </div>
+          {extra && <div className="list-item-main-extra">{extra}</div>}
+        </Main>
       </Item>
     )
   }

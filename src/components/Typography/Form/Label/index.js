@@ -9,7 +9,7 @@ import Toast from './../../../Toast'
 import { Toast } from 'seedsui-react'
 测试使用-end */
 
-const FormItemName = forwardRef(
+const FormLabel = forwardRef(
   (
     {
       // Parent transparent properties
@@ -23,7 +23,7 @@ const FormItemName = forwardRef(
     ref
   ) => {
     // 获取全局配置
-    const { layout, nameCol } = useContext(FormContext)
+    const { layout, labelCol } = useContext(FormContext)
 
     const rootRef = useRef(null)
 
@@ -38,12 +38,12 @@ const FormItemName = forwardRef(
     return (
       <div
         {...props}
-        className={`form-item-name${props.className ? ' ' + props.className : ''}${
-          layout === 'horizontal' ? ` col-${nameCol}` : ''
+        className={`form-item-label${props.className ? ' ' + props.className : ''}${
+          layout === 'horizontal' ? ` col-${labelCol?.span || 8}` : ''
         }`}
         ref={rootRef}
       >
-        <div className="form-item-name-text">{children}</div>
+        <div className="form-item-label-text">{children}</div>
         {help && (
           <i
             className="form-item-help"
@@ -58,4 +58,4 @@ const FormItemName = forwardRef(
   }
 )
 
-export default FormItemName
+export default FormLabel

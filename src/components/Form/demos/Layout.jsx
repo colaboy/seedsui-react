@@ -21,11 +21,12 @@ export default () => {
     <Layout className="full">
       <Layout.Main>
         <Divider>Horizontal</Divider>
-        <Form layout="horizontal" form={form}>
+        <Form layout="horizontal" form={form} labelCol={{ span: 10 }} mainCol={{ span: 14 }}>
           <Form.Item
             name="input"
             label={LocaleUtil.locale('单行文本框')}
-            help="提示信息"
+            help="Help info"
+            extra={<div>Extra Info</div>}
             rules={[
               {
                 required: true,

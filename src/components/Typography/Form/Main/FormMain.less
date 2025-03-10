@@ -1,4 +1,4 @@
-.form-item-value {
+.form-item-main {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -15,4 +15,16 @@
   .input-fit {
     height: inherit;
   }
+}
+
+.form-item-main-extra {
+  > .description {
+    color: var(--tertiary);
+  }
+  > .error {
+    color: var(--danger);
+  }
+}
+.form-item-main-input {
+  display: flex;
 }

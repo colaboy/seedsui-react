@@ -1,12 +1,12 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
 import FormContext from './FormContext'
 import Item from './Item'
-import Name from './Name'
-import Value from './Value'
+import Label from './Label'
+import Main from './Main'
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
-  ({ layout = 'horizontal', nameCol = 8, valueCol = 16, scrollerDOM, children, ...props }, ref) => {
+  ({ layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, ...props }, ref) => {
     const rootRef = useRef(null)
 
     // Expose
@@ -19,7 +19,7 @@ const Form = forwardRef(
 
     return (
       <FormContext.Provider
-        value={{ layout, nameCol, valueCol, scrollerDOM: scrollerDOM || rootRef.current }}
+        value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM || rootRef.current }}
       >
         <div ref={rootRef} className={`form-wrapper form-layout-${layout}`} {...props}>
           {children}
@@ -30,6 +30,6 @@ const Form = forwardRef(
 )
 
 Form.Item = Item
-Form.Name = Name
-Form.Value = Value
+Form.Label = Label
+Form.Main = Main
 export default Form
