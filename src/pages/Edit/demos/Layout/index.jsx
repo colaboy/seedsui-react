@@ -12,12 +12,14 @@ import {
   Card,
   Input,
   Select,
+  Picker,
   Checkbox,
   Radio,
   Selector,
   DatePicker,
   Cascader,
-  Location
+  Location,
+  Signature
 } from 'seedsui-react'
 import Footer from './Footer'
 
@@ -115,6 +117,29 @@ const Edit = () => {
             </Form.Item>
             <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
               <Select.Combo
+                placeholder={LocaleUtil.locale('请选择')}
+                list={[
+                  {
+                    id: '1',
+                    name: '选项1'
+                  },
+                  {
+                    id: '2',
+                    name: '选项2'
+                  }
+                ]}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="picker" label={LocaleUtil.locale('滑动选择框')}>
+              <Picker.Combo
                 placeholder={LocaleUtil.locale('请选择')}
                 list={[
                   {
@@ -301,13 +326,22 @@ const Edit = () => {
                 allowClear
                 previewVisible
                 chooseVisible
-                // clear={({ clearable, triggerClear }) => {
-                //   return clearable ? (
-                //     <i className="input-clear" onClick={triggerClear} />
-                //   ) : (
-                //     <i className="right-icon shape-arrow-right sm"></i>
-                //   )
-                // }}
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? <i className="input-clear" onClick={triggerClear} /> : null
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="signature" label={LocaleUtil.locale('签名')}>
+              <Signature.Combo
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
               />
             </Form.Item>
           </Form>
