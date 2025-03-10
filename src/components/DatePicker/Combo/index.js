@@ -23,7 +23,7 @@ const DatePickerCombo = forwardRef(
       onError,
 
       value,
-      type = 'date',
+      type = 'date', // year | quarter | month | date | time | datetime | week
       min,
       max,
       hourStep,

@@ -290,7 +290,6 @@ const Edit = () => {
             </Form.Item>
             <Form.Item name="dateRange" label={LocaleUtil.locale('日期区间')}>
               <DatePicker.RangeCombo
-                type="dateRange"
                 placeholder={LocaleUtil.locale('请选择')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
