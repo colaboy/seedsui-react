@@ -9,10 +9,11 @@ function useForm(form) {
       form ?? {
         ...rcForm,
         scrollToField: (name, options) => {
-          console.log(document.querySelector(`#form-item-${name}`))
-          document
-            .querySelector(`#form-item-${name}`)
-            .scrollIntoView({ behavior: 'smooth', block: 'start', ...options })
+          let fieldDOM = document.getElementById(`form-item-${name}`)
+
+          if (fieldDOM) {
+            fieldDOM.scrollIntoView({ behavior: 'smooth', block: 'start', ...options })
+          }
         }
       },
     [form, rcForm]
