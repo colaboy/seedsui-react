@@ -11,7 +11,13 @@ import {
   Form,
   Card,
   Input,
-  Select
+  Select,
+  Checkbox,
+  Radio,
+  Selector,
+  DatePicker,
+  Cascader,
+  Location
 } from 'seedsui-react'
 import Footer from './Footer'
 
@@ -80,8 +86,8 @@ const Edit = () => {
     <Layout className="full">
       <Layout.Main>
         <Divider>Horizontal Layout</Divider>
-        <Form form={form} mainCol={{ style: { paddingRight: '10px' } }}>
-          <Card>
+        <Card style={{ paddingLeft: '12px' }}>
+          <Form form={form} mainCol={{ style: { paddingRight: '10px' } }}>
             <Form.Item
               name="input"
               label={LocaleUtil.locale('单行文本框')}
@@ -93,6 +99,19 @@ const Edit = () => {
               ]}
             >
               <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
+            </Form.Item>
+            <Form.Item
+              name="textarea"
+              maxLength={150}
+              label={LocaleUtil.locale('多行文本框')}
+              extra={({ value }) => {
+                return <div className="text-right">{`${value?.length || '0'} / 150`}</div>
+              }}
+            >
+              <Input.Textarea placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="autoFit" label={LocaleUtil.locale('多行文本框')}>
+              <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
             </Form.Item>
             <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
               <Select.Combo
@@ -107,7 +126,7 @@ const Edit = () => {
                     name: '选项2'
                   }
                 ]}
-                // 互斥图标
+                allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
                     <i className="input-clear" onClick={triggerClear} />
@@ -117,18 +136,61 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item
-              name="textarea"
-              maxLength={150}
-              label={LocaleUtil.locale('多行文本框')}
-              extra={({ value }) => {
-                return <div className="text-right">{`${value?.length || '0'} / 150`}</div>
-              }}
-            >
-              <Input.Textarea placeholder={LocaleUtil.locale('请输入')} />
+            <Form.Item name="checkbox" label={LocaleUtil.locale('多选')}>
+              <Checkbox.Group
+                placeholder={LocaleUtil.locale('请选择')}
+                list={[
+                  {
+                    id: '1',
+                    name: '选项1'
+                  },
+                  {
+                    id: '2',
+                    name: '选项2'
+                  }
+                ]}
+                allowClear
+              />
             </Form.Item>
-            <Form.Item name="autoFit" label={LocaleUtil.locale('多行文本框')}>
-              <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
+            <Form.Item name="radio" label={LocaleUtil.locale('单选')}>
+              <Radio.Group
+                placeholder={LocaleUtil.locale('请选择')}
+                list={[
+                  {
+                    id: '1',
+                    name: '选项1'
+                  },
+                  {
+                    id: '2',
+                    name: '选项2'
+                  }
+                ]}
+                allowClear
+              />
+            </Form.Item>
+            <Form.Item name="selector" label={LocaleUtil.locale('多选-平铺')}>
+              <Selector
+                placeholder={LocaleUtil.locale('请选择')}
+                list={[
+                  {
+                    id: '1',
+                    name: '选项1'
+                  },
+                  {
+                    id: '2',
+                    name: '选项2'
+                  },
+                  {
+                    id: '3',
+                    name: '选项3'
+                  },
+                  {
+                    id: '4',
+                    name: '选项4'
+                  }
+                ]}
+                allowClear
+              />
             </Form.Item>
             <Form.Item name="number" label={LocaleUtil.locale('数值框')}>
               <Input.Number placeholder={LocaleUtil.locale('请输入')} />
@@ -154,8 +216,102 @@ const Edit = () => {
             <Form.Item name="url" label={LocaleUtil.locale('链接')}>
               <Input.Url placeholder={LocaleUtil.locale('请输入')} />
             </Form.Item>
-          </Card>
-        </Form>
+          </Form>
+        </Card>
+
+        <Divider>Vertical Layout</Divider>
+        <Card style={{ paddingLeft: '12px' }}>
+          <Form form={form} layout="vertical" mainCol={{ style: { paddingRight: '10px' } }}>
+            <Form.Item name="datetime" label={LocaleUtil.locale('日期时间')}>
+              <DatePicker.Combo
+                type="datetime"
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="date" label={LocaleUtil.locale('日期')}>
+              <DatePicker.Combo
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="time" label={LocaleUtil.locale('时间')}>
+              <DatePicker.Combo
+                type="time"
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="dateRange" label={LocaleUtil.locale('日期区间')}>
+              <DatePicker.RangeCombo
+                type="dateRange"
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="district" label={LocaleUtil.locale('地区选择')}>
+              <Cascader.DistrictCombo
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item name="location" label={LocaleUtil.locale('定位')}>
+              <Location.Combo
+                type="gcj02"
+                config={{
+                  key: '7b6e260fc45a67b31a265e22575f1c5e',
+                  type: 'bmap'
+                }}
+                placeholder={LocaleUtil.locale('请选择')}
+                allowClear
+                previewVisible
+                chooseVisible
+                // clear={({ clearable, triggerClear }) => {
+                //   return clearable ? (
+                //     <i className="input-clear" onClick={triggerClear} />
+                //   ) : (
+                //     <i className="right-icon shape-arrow-right sm"></i>
+                //   )
+                // }}
+              />
+            </Form.Item>
+          </Form>
+        </Card>
       </Layout.Main>
 
       {/* 底部 */}
