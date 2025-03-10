@@ -21,7 +21,6 @@ const FormComponent = forwardRef(
       // Own properties
       style,
       className,
-      onFieldsChange,
       children,
       ...props
     },
@@ -37,20 +36,7 @@ const FormComponent = forwardRef(
         style={style}
         className={className}
       >
-        <Form
-          className={`form`}
-          {...props}
-          onFieldsChange={(changedFields, allFields) => {
-            onFieldsChange && onFieldsChange(changedFields, allFields)
-            // 错误处理
-            if (changedFields?.[0]?.errors) {
-              let errorDOM = document.querySelector(
-                `#form-item-${changedFields?.[0]?.name} .form-item-main-error`
-              )
-              errorDOM.innerHTML = changedFields[0].errors?.[0] || ''
-            }
-          }}
-        >
+        <Form className={`form`} {...props}>
           {children}
         </Form>
       </Typography.Form>

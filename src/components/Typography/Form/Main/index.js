@@ -1,5 +1,6 @@
 import React, { useImperativeHandle, forwardRef, useRef, useContext } from 'react'
 import FormContext from './../FormContext'
+import getExtraNode from './getExtraNode'
 
 const FormMain = forwardRef(
   (
@@ -8,10 +9,9 @@ const FormMain = forwardRef(
       help,
       name,
       // Own properties
-      value,
-      onChange,
       inputExtra,
       extra,
+      error,
       children,
       ...props
     },
@@ -30,18 +30,6 @@ const FormMain = forwardRef(
       }
     })
 
-    function getExtraNode(extra, { className } = {}) {
-      let ExtraNode = null
-      if (React.isValidElement(extra)) {
-        ExtraNode = extra
-      } else if (typeof extra === 'function') {
-        ExtraNode = extra({ value, onChange })
-      } else {
-        return null
-      }
-      return <div className={className}>{ExtraNode}</div>
-    }
-
     const { span, ...mainColProps } = mainCol || {}
 
     return (
@@ -54,33 +42,13 @@ const FormMain = forwardRef(
         ref={rootRef}
       >
         <div className="form-item-main-input">
-          {/* In Form, Set value and onChange props to children: */}
-          {value || onChange
-            ? React.Children.map(children, (child) => {
-                // 检查是否是一个 React 组件（函数组件或类组件），而不是原生元素
-                if (React.isValidElement(child) && typeof child.type !== 'string') {
-                  // 克隆该组件并注入新的属性
-                  return React.cloneElement(child, {
-                    value,
-                    onChange: (...changeProps) => {
-                      // 调用原有onChange（如果存在）
-                      if (typeof child.props.onChange === 'function') {
-                        child.props.onChange(...changeProps)
-                      }
-                      // 执行父组件的逻辑
-                      onChange && onChange(...changeProps)
-                    }
-                  })
-                }
-                // 如果是原生元素，直接返回
-                return child
-              })
-            : children}
+          {/* Children */}
+          {children}
           {/* Input extra */}
           {getExtraNode(inputExtra, { className: 'form-item-main-input-extra' })}
         </div>
         {/* Error */}
-        <div className="form-item-main-error"></div>
+        {error && <div className="form-item-main-error">{error}</div>}
         {/* Main extra */}
         {getExtraNode(extra, { className: 'form-item-main-extra' })}
       </div>

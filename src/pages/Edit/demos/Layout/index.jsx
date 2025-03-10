@@ -13,6 +13,7 @@ import {
   Input,
   Select,
   Picker,
+  Switch,
   Checkbox,
   Radio,
   Selector,
@@ -160,6 +161,9 @@ const Edit = () => {
                   )
                 }}
               />
+            </Form.Item>
+            <Form.Item name="switch" valuePropName="checked" label={LocaleUtil.locale('开关')}>
+              <Switch />
             </Form.Item>
             <Form.Item name="checkbox" label={LocaleUtil.locale('多选')}>
               <Checkbox.Group
