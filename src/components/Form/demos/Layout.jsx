@@ -34,7 +34,7 @@ export default () => {
             name="input"
             label={LocaleUtil.locale('单行文本框')}
             help="Help info"
-            mainExtra={<div>Main Extra Info</div>}
+            extra={<div>Main Extra Info</div>}
             inputExtra={<div>Input Extra Info</div>}
             rules={[
               {
@@ -71,7 +71,7 @@ export default () => {
           <Form.Item
             name="textarea"
             label={LocaleUtil.locale('多行文本框')}
-            mainExtra={({ value }) => {
+            extra={({ value }) => {
               return <div className="description">{value?.length}</div>
             }}
           >

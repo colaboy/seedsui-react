@@ -19,6 +19,8 @@ const FormComponent = forwardRef(
       mainCol,
       scrollerDOM,
       // Own properties
+      style,
+      className,
       onFieldsChange,
       children,
       ...props
@@ -32,6 +34,8 @@ const FormComponent = forwardRef(
         labelCol={labelCol}
         mainCol={mainCol}
         scrollerDOM={scrollerDOM}
+        style={style}
+        className={className}
       >
         <Form
           className={`form`}

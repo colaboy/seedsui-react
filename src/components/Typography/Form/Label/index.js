@@ -35,11 +35,14 @@ const FormLabel = forwardRef(
       }
     })
 
+    const { span, ...labelColProps } = labelCol || {}
+
     return (
       <div
+        {...labelColProps}
         {...props}
         className={`form-item-label${props.className ? ' ' + props.className : ''}${
-          layout === 'horizontal' ? ` col-${labelCol?.span || 8}` : ''
+          layout === 'horizontal' ? ` col-${span || 8}` : ''
         }`}
         ref={rootRef}
       >

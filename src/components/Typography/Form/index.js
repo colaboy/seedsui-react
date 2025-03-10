@@ -6,7 +6,10 @@ import Main from './Main'
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
-  ({ layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, ...props }, ref) => {
+  (
+    { layout = 'horizontal', labelCol, mainCol, scrollerDOM, children, className, ...props },
+    ref
+  ) => {
     const rootRef = useRef(null)
 
     // Expose
@@ -21,7 +24,11 @@ const Form = forwardRef(
       <FormContext.Provider
         value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM || rootRef.current }}
       >
-        <div ref={rootRef} className={`form-wrapper form-layout-${layout}`} {...props}>
+        <div
+          ref={rootRef}
+          className={`form-wrapper form-layout-${layout}${className ? ' ' + className : ''}`}
+          {...props}
+        >
           {children}
         </div>
       </FormContext.Provider>

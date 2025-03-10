@@ -2,7 +2,17 @@ import React, { useRef, useEffect, useState } from 'react'
 import { queryData, saveData } from './api'
 import validateForm from './utils/validateForm'
 
-import { LocaleUtil, Toast, Divider, Layout, Result, Form, Input, Select } from 'seedsui-react'
+import {
+  LocaleUtil,
+  Toast,
+  Divider,
+  Layout,
+  Result,
+  Form,
+  Card,
+  Input,
+  Select
+} from 'seedsui-react'
 import Footer from './Footer'
 
 // 表单编辑页面
@@ -70,45 +80,81 @@ const Edit = () => {
     <Layout className="full">
       <Layout.Main>
         <Divider>Horizontal Layout</Divider>
-        <Form form={form}>
-          <Form.Item
-            name="input"
-            label={LocaleUtil.locale('单行文本框')}
-            rules={[
-              {
-                required: true,
-                message: LocaleUtil.locale('单行文本框不能为空')
-              }
-            ]}
-          >
-            <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
-          </Form.Item>
-          <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
-            <Select.Combo
-              placeholder={LocaleUtil.locale('请选择')}
-              list={[
+        <Form form={form} mainCol={{ style: { paddingRight: '10px' } }}>
+          <Card>
+            <Form.Item
+              name="input"
+              label={LocaleUtil.locale('单行文本框')}
+              rules={[
                 {
-                  id: '1',
-                  name: '选项1'
-                },
-                {
-                  id: '2',
-                  name: '选项2'
+                  required: true,
+                  message: LocaleUtil.locale('单行文本框不能为空')
                 }
               ]}
-              // 互斥图标
-              clear={({ clearable, triggerClear }) => {
-                return clearable ? (
-                  <i className="input-clear" onClick={triggerClear} />
-                ) : (
-                  <i className="right-icon shape-arrow-right sm"></i>
-                )
+            >
+              <Input.Text placeholder={LocaleUtil.locale('请输入')} maxLength={50} />
+            </Form.Item>
+            <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
+              <Select.Combo
+                placeholder={LocaleUtil.locale('请选择')}
+                list={[
+                  {
+                    id: '1',
+                    name: '选项1'
+                  },
+                  {
+                    id: '2',
+                    name: '选项2'
+                  }
+                ]}
+                // 互斥图标
+                clear={({ clearable, triggerClear }) => {
+                  return clearable ? (
+                    <i className="input-clear" onClick={triggerClear} />
+                  ) : (
+                    <i className="right-icon shape-arrow-right sm"></i>
+                  )
+                }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="textarea"
+              maxLength={150}
+              label={LocaleUtil.locale('多行文本框')}
+              extra={({ value }) => {
+                return <div className="text-right">{`${value?.length || '0'} / 150`}</div>
               }}
-            />
-          </Form.Item>
-          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
-            <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
-          </Form.Item>
+            >
+              <Input.Textarea placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="autoFit" label={LocaleUtil.locale('多行文本框')}>
+              <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="number" label={LocaleUtil.locale('数值框')}>
+              <Input.Number placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="numberBox" label={LocaleUtil.locale('数值框')}>
+              <Input.NumberBox placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label={LocaleUtil.locale('密码框')}
+              extra={({ value }) => {
+                return <Input.PasswordStrength value={value} />
+              }}
+            >
+              <Input.Password placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="range" label={LocaleUtil.locale('范围选择')}>
+              <Input.Range />
+            </Form.Item>
+            <Form.Item name="tel" label={LocaleUtil.locale('电话框')}>
+              <Input.Tel placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+            <Form.Item name="url" label={LocaleUtil.locale('链接')}>
+              <Input.Url placeholder={LocaleUtil.locale('请输入')} />
+            </Form.Item>
+          </Card>
         </Form>
       </Layout.Main>
 

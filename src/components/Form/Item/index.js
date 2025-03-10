@@ -18,7 +18,7 @@ const FormItem = forwardRef(
       help,
       name, // field required property
       // Own properties
-      mainExtra,
+      extra,
       inputExtra,
       label,
       // Field properties
@@ -41,7 +41,7 @@ const FormItem = forwardRef(
           initialValue={initialValue}
           validateTrigger={validateTrigger}
         >
-          <Main mainExtra={mainExtra} inputExtra={inputExtra}>
+          <Main extra={extra} inputExtra={inputExtra}>
             {children}
           </Main>
         </Field>

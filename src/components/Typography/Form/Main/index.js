@@ -11,7 +11,7 @@ const FormMain = forwardRef(
       value,
       onChange,
       inputExtra,
-      mainExtra,
+      extra,
       children,
       ...props
     },
@@ -42,11 +42,14 @@ const FormMain = forwardRef(
       return <div className={className}>{ExtraNode}</div>
     }
 
+    const { span, ...mainColProps } = mainCol || {}
+
     return (
       <div
+        {...mainColProps}
         {...props}
         className={`form-item-main${props.className ? ' ' + props.className : ''}${
-          layout === 'horizontal' ? ` col-${mainCol?.span || 16}` : ''
+          layout === 'horizontal' ? ` col-${span || 16}` : ''
         }`}
         ref={rootRef}
       >
@@ -69,7 +72,7 @@ const FormMain = forwardRef(
         {/* Error */}
         <div className="form-item-main-error"></div>
         {/* Main extra */}
-        {getExtraNode(mainExtra, { className: 'form-item-main-extra' })}
+        {getExtraNode(extra, { className: 'form-item-main-extra' })}
       </div>
     )
   }

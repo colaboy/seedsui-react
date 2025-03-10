@@ -25,7 +25,7 @@ function queryData() {
         if (result.code === '1') {
           resolve({
             baseData: { test: 'test' },
-            formData: {}
+            formData: { input: '单行', select: [{ id: '1', name: '选项1' }] }
           })
         } else {
           resolve(LocaleUtil.locale('获取数据错误！'))
