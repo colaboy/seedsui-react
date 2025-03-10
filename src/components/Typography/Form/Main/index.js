@@ -30,7 +30,7 @@ const FormMain = forwardRef(
       }
     })
 
-    function getExtraNode(extra) {
+    function getExtraNode(extra, { className } = {}) {
       let ExtraNode = null
       if (React.isValidElement(extra)) {
         ExtraNode = extra
@@ -39,7 +39,7 @@ const FormMain = forwardRef(
       } else {
         return null
       }
-      return <div className="list-item-main-extra">{ExtraNode}</div>
+      return <div className={className}>{ExtraNode}</div>
     }
 
     return (
@@ -64,10 +64,12 @@ const FormMain = forwardRef(
               })
             : children}
           {/* Input extra */}
-          {getExtraNode(inputExtra)}
+          {getExtraNode(inputExtra, { className: 'form-item-main-input-extra' })}
         </div>
+        {/* Error */}
+        <div className="form-item-main-error"></div>
         {/* Main extra */}
-        {getExtraNode(mainExtra)}
+        {getExtraNode(mainExtra, { className: 'form-item-main-extra' })}
       </div>
     )
   }

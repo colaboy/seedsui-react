@@ -19,6 +19,7 @@ const FormComponent = forwardRef(
       mainCol,
       scrollerDOM,
       // Own properties
+      onFieldsChange,
       children,
       ...props
     },
@@ -32,7 +33,20 @@ const FormComponent = forwardRef(
         mainCol={mainCol}
         scrollerDOM={scrollerDOM}
       >
-        <Form className={`form`} {...props}>
+        <Form
+          className={`form`}
+          {...props}
+          onFieldsChange={(changedFields, allFields) => {
+            onFieldsChange && onFieldsChange(changedFields, allFields)
+            // 错误处理
+            if (changedFields?.[0]?.errors) {
+              let errorDOM = document.querySelector(
+                `#form-item-${changedFields?.[0]?.name} .form-item-main-error`
+              )
+              errorDOM.innerHTML = changedFields[0].errors?.[0] || ''
+            }
+          }}
+        >
           {children}
         </Form>
       </Typography.Form>

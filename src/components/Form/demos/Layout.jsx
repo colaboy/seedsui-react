@@ -68,7 +68,13 @@ export default () => {
               }}
             />
           </Form.Item>
-          <Form.Item name="textarea" label={LocaleUtil.locale('多行文本框')}>
+          <Form.Item
+            name="textarea"
+            label={LocaleUtil.locale('多行文本框')}
+            mainExtra={({ value }) => {
+              return <div className="description">{value?.length}</div>
+            }}
+          >
             <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
           </Form.Item>
         </Form>
