@@ -5,7 +5,7 @@ import { CanvasUtil, preventDefault } from './utils'
 const Signature = (
   {
     color = '#000',
-    backgroundColor,
+    backgroundColor = '#fff',
     lineWidth = 3,
     quality = 0.92,
     suffix = 'png',
