@@ -22,6 +22,7 @@ const FormComponent = forwardRef(
       style,
       className,
       children,
+      // Form properties
       ...props
     },
     ref

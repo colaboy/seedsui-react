@@ -1,8 +1,8 @@
-import RcFieldForm from 'rc-field-form'
 import Form from './Form'
 import Item from './Item'
+import useForm from './useForm'
 
 Form.Item = Item
-Form.useForm = RcFieldForm.useForm
+Form.useForm = useForm
 
 export default Form

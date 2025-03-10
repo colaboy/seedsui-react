@@ -224,7 +224,16 @@ const Edit = () => {
             <Form.Item name="number" label={LocaleUtil.locale('数值框')}>
               <Input.Number placeholder={LocaleUtil.locale('请输入')} />
             </Form.Item>
-            <Form.Item name="numberBox" label={LocaleUtil.locale('数值框')}>
+            <Form.Item
+              name="numberBox"
+              label={LocaleUtil.locale('Number box')}
+              rules={[
+                {
+                  required: true,
+                  message: LocaleUtil.locale('Number box can not empty')
+                }
+              ]}
+            >
               <Input.NumberBox placeholder={LocaleUtil.locale('请输入')} />
             </Form.Item>
             <Form.Item

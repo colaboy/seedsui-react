@@ -28,7 +28,7 @@ function validateForm({ form, errorType }) {
           // 定位到错误的位置
           let fieldName = err?.errorFields?.[0]?.name
           if (fieldName && form?.scrollToField) {
-            form.scrollToField(fieldName, { behavior: 'smooth', block: 'center' })
+            form.scrollToField(fieldName)
           } else {
             setTimeout(() => {
               scrollToErrorDOM()
