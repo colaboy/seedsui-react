@@ -24,7 +24,7 @@ export default function CustomDates({
   allowClear,
   onChange,
 
-  DatePickerModalProps
+  datePickerModalProps
 }) {
   // 开始和结束日期
   let startDate = Array.isArray(value) && value[0] instanceof Date ? value[0] : null
@@ -33,7 +33,7 @@ export default function CustomDates({
   return (
     <div className={`datepicker-rangemain-custom`}>
       <Combo
-        modalProps={{ ...(DatePickerModalProps || {}), portal: portal }}
+        modalProps={{ ...(datePickerModalProps || {}), portal: portal }}
         type={type}
         value={startDate}
         disabled={disabledStart}
@@ -47,11 +47,17 @@ export default function CustomDates({
         }}
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        rightIcon={<i className="right-icon shape-arrow-right sm" />}
+        clear={({ clearable, triggerClear }) => {
+          return clearable ? (
+            <i className="input-clear" onClick={triggerClear} />
+          ) : (
+            <i className="right-icon shape-arrow-right sm"></i>
+          )
+        }}
       />
       —
       <Combo
-        modalProps={{ ...(DatePickerModalProps || {}), portal: portal }}
+        modalProps={{ ...(datePickerModalProps || {}), portal: portal }}
         type={type}
         value={endDate}
         min={type === 'week' ? min : undefined}
@@ -65,7 +71,13 @@ export default function CustomDates({
         }}
         placeholder={LocaleUtil.locale('请选择', 'SeedsUI_placeholder_select')}
         allowClear={allowClear}
-        rightIcon={<i className="right-icon shape-arrow-right sm" />}
+        clear={({ clearable, triggerClear }) => {
+          return clearable ? (
+            <i className="input-clear" onClick={triggerClear} />
+          ) : (
+            <i className="right-icon shape-arrow-right sm"></i>
+          )
+        }}
       />
     </div>
   )

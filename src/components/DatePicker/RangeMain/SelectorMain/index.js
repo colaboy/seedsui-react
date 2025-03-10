@@ -24,8 +24,8 @@ function RangeMain(
     ranges,
     titles,
     portal,
-    SelectorProps,
-    DatePickerModalProps,
+    selectorProps,
+    datePickerModalProps,
     ...props
   },
   ref
@@ -59,14 +59,14 @@ function RangeMain(
         rangeId={currentRangeId}
         ranges={ranges}
         titles={titles}
-        SelectorProps={SelectorProps}
+        selectorProps={selectorProps}
         allowClear={allowClear}
       />
 
       {/* 自定义区间: 文本框选择 */}
       {customRangeId && currentRangeId === customRangeId && (
         <Dates
-          DatePickerModalProps={DatePickerModalProps}
+          datePickerModalProps={datePickerModalProps}
           portal={portal}
           type={type}
           allowClear={allowClear}

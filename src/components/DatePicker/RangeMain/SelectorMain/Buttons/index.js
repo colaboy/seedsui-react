@@ -20,7 +20,7 @@ function Buttons({
   rangeId,
   ranges,
   titles,
-  SelectorProps,
+  selectorProps,
   allowClear
 }) {
   // 获取自定义项的key，不是数组则为自定义项:
@@ -37,7 +37,7 @@ function Buttons({
       <Selector
         columns={3}
         allowClear={allowClear}
-        {...SelectorProps}
+        {...selectorProps}
         value={[{ id: rangeId }]}
         list={getSelectorOptions(ranges, (item) => {
           if (!titles?.custom) {
@@ -72,7 +72,7 @@ function Buttons({
           <Selector
             columns={1}
             allowClear={allowClear}
-            {...SelectorProps}
+            {...selectorProps}
             value={[{ id: rangeId }]}
             list={[{ id: customRangeId, name: customRangeId }]}
             onChange={(newRange) => {

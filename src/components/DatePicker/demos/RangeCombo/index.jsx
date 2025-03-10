@@ -17,13 +17,13 @@ export default () => {
       {icon}
       <DatePicker.RangeCombo
         ref={dateRef}
-        diff={40}
+        // diff={40}
         // year | quarter | month | date | time | datetime | week
-        type="week"
+        // type="week"
         // separator="to"
         // disabledStart
         // disabledEnd
-        allowClear
+        // allowClear
         onVisibleChange={(visible) => {
           console.log('visible2:', visible)
           if (visible) {
@@ -54,7 +54,7 @@ export default () => {
         //   custom: '自定义选择',
         //   selector: '快捷选择'
         // }}
-        ranges={null}
+        // ranges={null}
         // ranges={{
         //   [LocaleUtil.locale('今日', 'SeedsUI_today')]: [new Date(), new Date()],
         //   [LocaleUtil.locale('今天')]: [new Date(), new Date()],

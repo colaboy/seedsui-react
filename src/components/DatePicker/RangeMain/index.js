@@ -24,8 +24,8 @@ function RangeMain(
     ranges,
     titles,
     portal,
-    SelectorProps,
-    DatePickerModalProps,
+    selectorProps,
+    datePickerModalProps,
 
     ...props
   },
@@ -62,8 +62,8 @@ function RangeMain(
           allowClear={allowClear}
           value={value}
           onChange={onChange}
-          SelectorProps={SelectorProps}
-          DatePickerModalProps={DatePickerModalProps}
+          selectorProps={selectorProps}
+          datePickerModalProps={datePickerModalProps}
           titles={titles}
           rangeId={rangeId}
           ranges={ranges}
