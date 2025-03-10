@@ -14,8 +14,8 @@ export default () => {
       <Layout.Header className="text-center">手写签名</Layout.Header>
       <Layout.Main className="bg-white">
         <Signature.Combo
-          color="#000000"
-          backgroundColor="white"
+          // color="#000000"
+          // backgroundColor="white"
           // disabled={true}
           value={value}
           modalProps={{

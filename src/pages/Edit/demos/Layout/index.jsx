@@ -332,17 +332,7 @@ const Edit = () => {
               />
             </Form.Item>
             <Form.Item name="signature" label={LocaleUtil.locale('签名')}>
-              <Signature.Combo
-                placeholder={LocaleUtil.locale('请选择')}
-                allowClear
-                clear={({ clearable, triggerClear }) => {
-                  return clearable ? (
-                    <i className="input-clear" onClick={triggerClear} />
-                  ) : (
-                    <i className="right-icon shape-arrow-right sm"></i>
-                  )
-                }}
-              />
+              <Signature.Combo />
             </Form.Item>
           </Form>
         </Card>

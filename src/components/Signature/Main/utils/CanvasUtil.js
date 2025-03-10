@@ -16,31 +16,22 @@ const CanvasUtil = {
 
     ctx.clearRect(0, 0, width, height)
   },
-  drawBackgroundColor: function (fillStyle, { ctx }) {
-    ctx.fillStyle = fillStyle
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-  },
-  rotateBase64: function (data, { backgroundColor }) {
-    //传入需要旋转的base64图片
-    // 生成图片，将图片旋转指定角度后绘制到canvas上
+  // 旋转base64图片-90度
+  rotateBase64: function (base64, { backgroundColor }) {
     return new Promise((resolve) => {
-      let img = document.createElement('img')
-
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      const cutCoor = { sx: 0, sy: 0, ex: 0, ey: 0 } // 裁剪坐标
+      const img = new Image()
       img.onload = () => {
-        const imgWidth = img.width
-        const imgHeight = img.height
-        const size = imgHeight
-        canvas.width = size * 2
-        canvas.height = size * 2
-        cutCoor.sx = size
-        cutCoor.sy = size - imgWidth
-        cutCoor.ex = size + imgHeight
-        cutCoor.ey = size + imgWidth
-        ctx.translate(size, size)
-        ctx.rotate(-Math.PI / 2) // 旋转-90度
+        // 创建画布并调整尺寸
+        const canvas = document.createElement('canvas')
+        canvas.width = img.height // 交换宽高
+        canvas.height = img.width
+
+        // 获取绘图上下文
+        const ctx = canvas.getContext('2d')
+
+        // 应用变换：移动到画布底部 + 逆时针旋转90度
+        ctx.translate(0, canvas.height)
+        ctx.rotate(-Math.PI / 2)
 
         // 绘制背景
         if (
@@ -48,18 +39,21 @@ const CanvasUtil = {
           typeof backgroundColor === 'string' &&
           backgroundColor !== 'transparent'
         ) {
-          this.drawBackgroundColor(backgroundColor, { ctx })
+          ctx.fillStyle = backgroundColor
+          ctx.fillRect(0, 0, ctx.canvas.height, ctx.canvas.width)
         }
 
-        // 绘制图片
+        // 绘制原始图像
         ctx.drawImage(img, 0, 0)
-        const imgData = ctx.getImageData(cutCoor.sx, cutCoor.sy, cutCoor.ex, cutCoor.ey)
-        canvas.width = imgHeight
-        canvas.height = imgWidth
-        ctx.putImageData(imgData, 0, 0)
-        resolve(canvas.toDataURL('image/png'))
+
+        // 导出为Base64
+        resolve(canvas.toDataURL())
       }
-      img.setAttribute('src', data)
+      img.onerror = () => {
+        console.error('CanvasUtil.rotateBase64 failed')
+        resolve('')
+      }
+      img.src = base64
     })
   }
 }

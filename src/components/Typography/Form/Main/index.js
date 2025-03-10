@@ -60,7 +60,17 @@ const FormMain = forwardRef(
                 // 检查是否是一个 React 组件（函数组件或类组件），而不是原生元素
                 if (React.isValidElement(child) && typeof child.type !== 'string') {
                   // 克隆该组件并注入新的属性
-                  return React.cloneElement(child, { value, onChange })
+                  return React.cloneElement(child, {
+                    value,
+                    onChange: (...changeProps) => {
+                      // 调用原有onChange（如果存在）
+                      if (typeof child.props.onChange === 'function') {
+                        child.props.onChange(...changeProps)
+                      }
+                      // 执行父组件的逻辑
+                      onChange && onChange(...changeProps)
+                    }
+                  })
                 }
                 // 如果是原生元素，直接返回
                 return child
