@@ -16,10 +16,15 @@ const FormItem = forwardRef(
     {
       // Transparent flow properties to children
       help,
-      name,
+      name, // field required property
       // Own properties
-      extra,
+      mainExtra,
+      inputExtra,
       label,
+      // Field properties
+      shouldUpdate,
+      initialValue,
+      validateTrigger, // onBlur
       rules,
       children,
       ...props
@@ -27,16 +32,19 @@ const FormItem = forwardRef(
     ref
   ) => {
     return (
-      <Item ref={ref} help={help} name={name}>
+      <Item ref={ref} help={help} name={name} {...props}>
         <Label required={(rules || []).some((rule) => rule.required)}>{label}</Label>
-        <Main>
-          <div className="form-item-main-input">
-            <Field ref={ref} {...props} rules={rules} name={name}>
-              {children}
-            </Field>
-          </div>
-          {extra && <div className="list-item-main-extra">{extra}</div>}
-        </Main>
+        <Field
+          rules={rules}
+          name={name}
+          shouldUpdate={shouldUpdate}
+          initialValue={initialValue}
+          validateTrigger={validateTrigger}
+        >
+          <Main mainExtra={mainExtra} inputExtra={inputExtra}>
+            {children}
+          </Main>
+        </Field>
       </Item>
     )
   }

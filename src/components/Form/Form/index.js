@@ -19,7 +19,6 @@ const FormComponent = forwardRef(
       mainCol,
       scrollerDOM,
       // Own properties
-      onFieldsChange,
       children,
       ...props
     },
@@ -33,13 +32,7 @@ const FormComponent = forwardRef(
         mainCol={mainCol}
         scrollerDOM={scrollerDOM}
       >
-        <Form
-          className={`form`}
-          {...props}
-          onFieldsChange={(changedFields, allFields) => {
-            console.log('changedFields', changedFields, 'allFields', allFields)
-          }}
-        >
+        <Form className={`form`} {...props}>
           {children}
         </Form>
       </Typography.Form>

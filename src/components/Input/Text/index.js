@@ -13,7 +13,7 @@ const InputText = forwardRef(
       disabled,
       // 文本框
       input,
-      value,
+      value = '',
       formatter,
       // 小数精度, 只有数值框才生效
       precision,
