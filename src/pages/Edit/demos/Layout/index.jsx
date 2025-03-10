@@ -90,7 +90,18 @@ const Edit = () => {
       <Layout.Main>
         <Divider>Horizontal Layout</Divider>
         <Card style={{ paddingLeft: '12px' }}>
-          <Form form={form} mainCol={{ style: { paddingRight: '10px' } }}>
+          <Form
+            form={form}
+            mainCol={{ style: { paddingRight: '10px' } }}
+            virtual={{
+              getItemHeight: (item) => {
+                if (item?.virtualData?.type === 'group') {
+                  return 33
+                }
+                return 71
+              }
+            }}
+          >
             <Form.Item
               name="input"
               label={LocaleUtil.locale('单行文本框')}
@@ -116,7 +127,7 @@ const Edit = () => {
             <Form.Item name="autoFit" label={LocaleUtil.locale('多行文本框')}>
               <Input.AutoFit placeholder={LocaleUtil.locale('请输入')} />
             </Form.Item>
-            <Form.Item name="select" label={LocaleUtil.locale('下拉选择框')}>
+            <Form.Item name="select" label={LocaleUtil.locale('Select')}>
               <Select.Combo
                 placeholder={LocaleUtil.locale('请选择')}
                 list={[
