@@ -5,13 +5,14 @@ import Status from './Status'
 import Upload from './Upload'
 import Preview from './Preview'
 
+import getPreviewType from './getPreviewType'
+
 // 内库使用-start
-import Device from './../../utils/Device'
 import Bridge from './../../utils/Bridge'
 // 内库使用-end
 
 /* 测试使用-start
-import { Bridge, Device } from 'seedsui-react'
+import { Bridge } from 'seedsui-react'
 测试使用-end */
 
 // 照片视频预览
@@ -35,6 +36,10 @@ const Image = forwardRef(
     },
     ref
   ) => {
+    // 预览类型: browser|native
+    const previewTypeRef = useRef(getPreviewType(type))
+    console.log('previewTypeRef:', previewTypeRef.current)
+
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onBeforeChooseRef = useRef()
     const onChooseRef = useRef()
@@ -76,34 +81,20 @@ const Image = forwardRef(
       }
 
       // 本地能力预览照片
-      if (
-        type !== 'video' &&
-        Device.device === 'mobile' &&
-        (Bridge.platform === 'wq' ||
-          Bridge.platform === 'waiqin' ||
-          Bridge.platform === 'wechat' ||
-          Bridge.platform === 'wework' ||
-          Bridge.platform === 'alipay' ||
-          Bridge.platform === 'dingtalk' ||
-          Bridge.platform === 'lark' ||
-          Bridge.platform === 'wechatMiniprogram' ||
-          Bridge.platform === 'weworkMiniprogram' ||
-          Bridge.platform === 'alipayMiniprogram')
-      ) {
+      if (previewTypeRef.current === 'nativeImage') {
         Bridge.previewImage({
           urls: list.map((item) => item.src),
           current: list[index].src,
           index: index
         })
       }
-      // 预览视频或照片
+      // 勤策视频使用previewFile预览
+      else if (previewTypeRef.current === 'nativeFile') {
+        Bridge.previewFile({ url: item.src })
+      }
+      // 浏览器预览
       else {
-        // 勤策视频使用previewFile预览
-        if (Bridge.platform === 'wq' && type === 'video') {
-          Bridge.previewFile({ url: item.src })
-        } else {
-          setPreviewCurrent(Number(index))
-        }
+        setPreviewCurrent(Number(index))
       }
     }
 
@@ -202,17 +193,19 @@ const Image = forwardRef(
         {uploadPosition === 'end' && (onChoose || onFileChange) && getUploadNode()}
 
         {/* 预览 */}
-        <Preview
-          visible={typeof previewCurrent === 'number'}
-          type={type}
-          onVisibleChange={(visible) => {
-            if (!visible) {
-              setPreviewCurrent(null)
-            }
-          }}
-          list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
-          current={previewCurrent}
-        />
+        {previewTypeRef.current === 'browser' && (
+          <Preview
+            visible={typeof previewCurrent === 'number'}
+            type={type}
+            onVisibleChange={(visible) => {
+              if (!visible) {
+                setPreviewCurrent(null)
+              }
+            }}
+            list={list} // 需要预览的资源列表{src: '图片或视频的地址', type: 'video|image, 默认image', thumb: '封面地址'}
+            current={previewCurrent}
+          />
+        )}
       </div>
     )
   }

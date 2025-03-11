@@ -28,7 +28,6 @@ const Preview = forwardRef(
     },
     ref
   ) => {
-    console.log('visible:', visible)
     const videoPlayers = useRef([])
 
     if (!list || !list.length || !list[0].src) return null
