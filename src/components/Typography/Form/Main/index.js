@@ -18,7 +18,7 @@ const FormMain = forwardRef(
     ref
   ) => {
     // 获取全局配置
-    const { layout, labelCol, mainCol } = useContext(FormContext)
+    const { layout, mainCol } = useContext(FormContext)
 
     const rootRef = useRef(null)
 

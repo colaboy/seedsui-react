@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef, useRef, useEffect, useState } from 'react'
+import React, { useImperativeHandle, forwardRef, useRef, useEffect } from 'react'
 import mergeGroups from './utils/mergeGroups'
 import isGroups from './utils/isGroups'
 import hasMoreItems from './utils/hasMoreItems'
