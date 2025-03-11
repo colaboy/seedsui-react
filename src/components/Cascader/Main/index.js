@@ -107,6 +107,11 @@ const Main = forwardRef(
       // 获取当前列表
       let newList = await getChildrenList(value, { action })
 
+      // 无数据, 且为叶子节点, 则渲染兄弟节点
+      if (_.isEmpty(newList) && Array.isArray(value) && value[value.length - 1].isLeaf) {
+        newList = await getSiblingList(value)
+      }
+
       // 接口报错或无数据
       if (typeof newList === 'string' || _.isEmpty(newList)) {
         setActiveTab(lastTab)
@@ -160,6 +165,12 @@ const Main = forwardRef(
         }
       }
       return list
+    }
+
+    // 获取兄弟节点列表
+    async function getSiblingList(tabs) {
+      let newList = await getChildrenList(tabs.splice(0, tabs.length - 1))
+      return newList
     }
 
     // 获取指定级别的列表数据, 最后一级则获取兄弟节点列表
