@@ -169,7 +169,7 @@ const Main = forwardRef(
 
     // 获取兄弟节点列表
     async function getSiblingList(tabs) {
-      let newList = await getChildrenList(tabs.splice(0, tabs.length - 1))
+      let newList = await getChildrenList(tabs.slice(0, tabs.length - 1))
       return newList
     }
 
