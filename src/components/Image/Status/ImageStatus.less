@@ -41,17 +41,17 @@
 }
 
 // 照片视频列表
-.image {
-  // 上传中上传按钮需要转圈
-  &.uploading .image-upload {
-    .image-status {
-      display: block;
-    }
-    .image-status-icon-loading {
-      display: flex;
-    }
-  }
-}
+// .image {
+//   // 上传中上传按钮需要转圈
+//   &.uploading .image-upload {
+//     .image-status {
+//       display: block;
+//     }
+//     .image-status-icon-loading {
+//       display: flex;
+//     }
+//   }
+// }
 
 // 单个照片
 .image-item {
@@ -95,6 +95,11 @@
     // 显示重传按钮
     .image-status-icon-fail {
       display: flex;
+    }
+
+    // 隐藏转圈按钮
+    .image-status-icon-loading {
+      display: none;
     }
   }
 
