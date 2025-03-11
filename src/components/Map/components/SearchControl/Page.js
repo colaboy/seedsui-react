@@ -17,6 +17,7 @@ import HighlightKeyword from './../../../HighlightKeyword'
 function Page({ map, visible, onVisibleChange, onChange }) {
   const inputRef = useRef(null)
   let [searchList, setSearchList] = useState(null)
+  const [keyword, setKeyword] = useState('')
 
   useEffect(() => {
     if (visible && inputRef?.current?.inputDOM) {
@@ -84,11 +85,13 @@ function Page({ map, visible, onVisibleChange, onChange }) {
           <Input.Text
             ref={inputRef}
             type="search"
+            value={keyword}
             // placeholder={LocaleUtil.locale('搜索地点', 'SeedsUI_search_place')}
             leftIcon={<i className="map-searchControl-header-input-icon"></i>}
             inputProps={{ style: { padding: '2px 0' } }}
             allowClear
             style={{ marginRight: '8px' }}
+            onChange={setKeyword}
           />
         </form>
         <span className="map-searchControl-header-cancel" onClick={handleBack}>
