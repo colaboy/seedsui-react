@@ -144,7 +144,7 @@ const DistrictModal = forwardRef(
             triggerOk(newValue)
           }
         }}
-        ok={okVisible ? '' : null}
+        ok={props?.hasOwnProperty?.('ok') ? props?.ok : okVisible ? '' : null}
         className={`cascader-modal${props.className ? ' ' + props.className : ''}`}
       />
     )

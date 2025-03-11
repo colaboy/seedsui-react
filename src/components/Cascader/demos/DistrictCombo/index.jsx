@@ -59,7 +59,7 @@ export default () => {
           // type="city"
           type="district"
           // type="street"
-          // min="province"
+          min="province"
           editableOptions={
             {
               // country: { editable: false },
