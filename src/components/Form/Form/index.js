@@ -19,6 +19,7 @@ const FormComponent = forwardRef(
       mainCol,
       scrollerDOM,
       // Own properties
+      virtual,
       style,
       className,
       children,
@@ -28,19 +29,20 @@ const FormComponent = forwardRef(
     ref
   ) => {
     return (
-      <Typography.Form
-        ref={ref}
-        layout={layout}
-        labelCol={labelCol}
-        mainCol={mainCol}
-        scrollerDOM={scrollerDOM}
-        style={style}
-        className={className}
-      >
-        <Form className={`form`} {...props}>
+      <Form className={`form`} {...props}>
+        <Typography.Form
+          ref={ref}
+          virtual={virtual}
+          layout={layout}
+          labelCol={labelCol}
+          mainCol={mainCol}
+          scrollerDOM={scrollerDOM}
+          style={style}
+          className={className}
+        >
           {children}
-        </Form>
-      </Typography.Form>
+        </Typography.Form>
+      </Form>
     )
   }
 )

@@ -24,7 +24,7 @@ const Form = forwardRef(
       <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
         <div
           ref={rootRef}
-          className={`form-wrapper form-layout-${layout}${className ? ' ' + className : ''}`}
+          className={`form-items form-layout-${layout}${className ? ' ' + className : ''}`}
           {...props}
         >
           {children}

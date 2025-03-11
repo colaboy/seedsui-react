@@ -24,10 +24,7 @@ const FormItem = forwardRef(({ help, children, name, ...props }, ref) => {
       id={`${name ? `form-item-${name}` : props?.id || ''}`}
       ref={rootRef}
     >
-      {/* 子组件塞入name属性 */}
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child) ? React.cloneElement(child, { name: name, help: help }) : child
-      )}
+      {children}
     </div>
   )
 })

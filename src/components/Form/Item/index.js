@@ -35,8 +35,10 @@ const FormItem = forwardRef(
     ref
   ) => {
     return (
-      <Item ref={ref} help={help} name={name} {...props}>
-        <Label required={(rules || []).some((rule) => rule.required)}>{label}</Label>
+      <Item ref={ref} name={name} {...props}>
+        <Label help={help} required={(rules || []).some((rule) => rule.required)}>
+          {label}
+        </Label>
 
         <Field
           rules={rules}
