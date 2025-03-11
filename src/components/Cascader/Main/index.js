@@ -10,15 +10,14 @@ import ListItem from './ListItem'
 
 // 内库使用-start
 import LocaleUtil from './../../../utils/LocaleUtil'
-// import ArrayUtil from './../../../utils/ArrayUtil'
+import ArrayUtil from './../../../utils/ArrayUtil'
 import Toast from './../../Toast'
 import IndexBar from './../../IndexBar'
 import Loading from './../../Loading'
 // 内库使用-end
 
 /* 测试使用-start
-import { LocaleUtil } from 'seedsui-react'
-import { ArrayUtil, Toast, IndexBar, Loading } from 'seedsui-react'
+import { LocaleUtil, ArrayUtil, Toast, IndexBar, Loading } from 'seedsui-react'
 测试使用-end */
 
 // 主体
@@ -76,7 +75,7 @@ const Main = forwardRef(
         !visible ||
         !Array.isArray(externalList) ||
         !externalList.length ||
-        JSON.stringify(tabsRef.current) === JSON.stringify(value)
+        ArrayUtil.isEqual(tabsRef.current, value, ['id', 'name'])
       ) {
         return
       }
