@@ -1,8 +1,5 @@
 import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import FormContext from './FormContext'
-import Item from './Item'
-import Label from './Label'
-import Main from './Main'
+import FormContext from './../FormContext'
 
 // layout: horizontal | vertical | inline
 const Form = forwardRef(
@@ -43,7 +40,4 @@ const Form = forwardRef(
   }
 )
 
-Form.Item = Item
-Form.Label = Label
-Form.Main = Main
 export default Form
