@@ -1,4 +1,4 @@
-import isEqualItems from './isEqualItems'
+import isEqualFields from './isEqualFields'
 
 function isEqual(array1, array2, fieldNames = ['id']) {
   // 数组长度
@@ -6,7 +6,7 @@ function isEqual(array1, array2, fieldNames = ['id']) {
     return false
   }
   // id不同
-  if (isEqualItems(array1, array2, fieldNames) === false) {
+  if (isEqualFields(array1, array2, fieldNames) === false) {
     return false
   }
   // 相同
