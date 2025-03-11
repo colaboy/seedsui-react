@@ -1,43 +1,13 @@
-import React, { useImperativeHandle, forwardRef, useRef } from 'react'
-import FormContext from './../FormContext'
+import React, { forwardRef } from 'react'
+import CommonForm from './Form'
+import VirtualForm from './VirtualForm'
 
 // layout: horizontal | vertical | inline
-const Form = forwardRef(
-  (
-    {
-      virtual,
-      layout = 'horizontal',
-      labelCol,
-      mainCol,
-      scrollerDOM,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const rootRef = useRef(null)
-
-    // Expose
-    useImperativeHandle(ref, () => {
-      return {
-        rootDOM: rootRef.current,
-        getRootDOM: () => rootRef.current
-      }
-    })
-
-    return (
-      <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
-        <div
-          ref={rootRef}
-          className={`form-items form-layout-${layout}${className ? ' ' + className : ''}`}
-          {...props}
-        >
-          {children}
-        </div>
-      </FormContext.Provider>
-    )
+const Form = forwardRef(({ virtual, ...props }, ref) => {
+  if (virtual) {
+    return <VirtualForm ref={ref} {...props} />
   }
-)
+  return <CommonForm ref={ref} {...props} />
+})
 
 export default Form

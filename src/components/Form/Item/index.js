@@ -15,10 +15,9 @@ const { Item, Label, Main } = Typography.Form
 const FormItem = forwardRef(
   (
     {
-      // Transparent flow properties to children
+      // Own properties
       help,
       name, // field required property
-      // Own properties
       extra,
       inputExtra,
       label,

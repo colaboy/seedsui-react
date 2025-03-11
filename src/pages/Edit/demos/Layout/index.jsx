@@ -90,18 +90,7 @@ const Edit = () => {
       <Layout.Main>
         <Divider>Horizontal Layout</Divider>
         <Card style={{ paddingLeft: '12px' }}>
-          <Form
-            form={form}
-            mainCol={{ style: { paddingRight: '10px' } }}
-            virtual={{
-              getItemHeight: (item) => {
-                if (item?.virtualData?.type === 'group') {
-                  return 33
-                }
-                return 71
-              }
-            }}
-          >
+          <Form form={form} mainCol={{ style: { paddingRight: '10px' } }} virtual={true}>
             <Form.Item
               name="input"
               label={LocaleUtil.locale('单行文本框')}
