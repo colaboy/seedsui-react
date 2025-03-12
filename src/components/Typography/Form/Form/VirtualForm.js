@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, forwardRef, useRef, useState } from 'react'
+import React, { useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
 import FormContext from './../FormContext'
 
 // layout: horizontal | vertical | inline
@@ -10,7 +10,6 @@ const VirtualForm = forwardRef(
     const rootRef = useRef(null)
 
     // Virtual
-    const [visibleItems, setVisibleItems] = useState(new Set())
     const observerRef = useRef(null)
 
     // Expose
@@ -22,30 +21,27 @@ const VirtualForm = forwardRef(
     })
 
     useEffect(() => {
-      // 创建 IntersectionObserver 实例
+      // 创建IntersectionObserver实例
       observerRef.current = new IntersectionObserver(
         (entries) => {
-          console.log(entries)
           entries.forEach((entry) => {
-            const index = parseInt(entry.target.dataset.index)
             if (entry.isIntersecting) {
-              setVisibleItems((prev) => new Set([...prev, index]))
+              // 元素进入视图
+              entry.target.dataset.inView = 'true'
             } else {
-              setVisibleItems((prev) => {
-                const next = new Set(prev)
-                next.delete(index)
-                return next
-              })
+              // 元素离开视图
+              entry.target.dataset.inView = 'false'
             }
           })
         },
         {
-          root: rootRef.current,
-          rootMargin: '50px 0px',
-          threshold: 0
+          root: null, // 使用视口作为根
+          rootMargin: '0px',
+          threshold: 0.1 // 当10%的元素可见时触发
         }
       )
 
+      // 组件卸载时清理
       return () => {
         if (observerRef.current) {
           observerRef.current.disconnect()
@@ -53,22 +49,22 @@ const VirtualForm = forwardRef(
       }
     }, [])
 
-    const renderChildren = React.Children.map(children, (child, index) => {
-      return React.cloneElement(child, {
-        index,
-        observer: observerRef.current,
-        inViewArea: visibleItems.has(index)
-      })
-    })
-
     return (
-      <FormContext.Provider value={{ layout, labelCol, mainCol, scrollerDOM: scrollerDOM }}>
+      <FormContext.Provider
+        value={{
+          layout,
+          labelCol,
+          mainCol,
+          scrollerDOM: scrollerDOM,
+          virtual: { observer: observerRef.current }
+        }}
+      >
         <div
           ref={rootRef}
           className={`form-items form-layout-${layout}${className ? ' ' + className : ''}`}
           {...props}
         >
-          {renderChildren}
+          {children}
         </div>
       </FormContext.Provider>
     )
