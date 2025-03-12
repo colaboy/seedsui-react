@@ -38,7 +38,6 @@ const Image = forwardRef(
   ) => {
     // 预览类型: browser|native
     const previewTypeRef = useRef(getPreviewType(type))
-    console.log('previewTypeRef:', previewTypeRef.current)
 
     // 因为在click事件内改变数据的可能性, 所以更新句柄, 防止synchronization模式读取创建时的状态
     const onBeforeChooseRef = useRef()
