@@ -32,9 +32,9 @@ const VirtualForm = forwardRef(
           })
         },
         {
-          root: null // 使用视口作为根
+          root: null, // 使用视口作为根
+          threshold: 0.1 // 当10%的元素可见时触发
           // rootMargin: '0px',
-          // threshold: 0.1 // 当10%的元素可见时触发
         }
       )
       setObserver(observer)
@@ -59,7 +59,7 @@ const VirtualForm = forwardRef(
       >
         <div
           ref={rootRef}
-          className={`form-items form-layout-${layout}${className ? ' ' + className : ''}`}
+          className={`form-items virtual form-layout-${layout}${className ? ' ' + className : ''}`}
           {...props}
         >
           {children}

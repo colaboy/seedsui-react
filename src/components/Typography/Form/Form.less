@@ -5,6 +5,24 @@
 .form-items {
   position: relative;
   display: block;
+  &.virtual {
+    // 虚拟滚动时高度必须是固定的, 所有错误信息不能占空间
+    .form-item-main-error {
+      position: absolute;
+      bottom: -16px;
+      left: 0;
+      z-index: 1;
+    }
+    // 自适应文本框不支持编辑
+    .input-fit {
+      pointer-events: none;
+      color: rgba(0, 0, 0, 0.25);
+      border-color: #d9d9d9;
+      .input-clear {
+        display: none;
+      }
+    }
+  }
 }
 
 // .form-layout-horizontal {

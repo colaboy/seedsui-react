@@ -5,7 +5,6 @@ import validateForm from './utils/validateForm'
 import {
   LocaleUtil,
   Toast,
-  Divider,
   Layout,
   Result,
   Form,
@@ -90,47 +89,46 @@ const Edit = () => {
   return (
     <Layout className="full">
       <Layout.Main>
-        <Divider>Horizontal Layout</Divider>
         <Form form={form} mainCol={{ style: { paddingRight: '10px' } }} virtual={true}>
           <Card style={{ paddingLeft: '12px' }}>
             <Form.Item
               height={42}
               name="input"
-              label={locale('单行文本框')}
+              label={locale('Input')}
               rules={[
                 {
                   required: true,
-                  message: locale('单行文本框不能为空')
+                  message: locale('Input cannot be empty')
                 }
               ]}
             >
-              <Input.Text placeholder={locale('请输入')} maxLength={50} />
+              <Input.Text placeholder={locale('Please input')} maxLength={50} />
             </Form.Item>
             <Form.Item
               height={97}
               name="textarea"
               maxLength={150}
-              label={locale('多行文本框')}
+              label={locale('Textarea')}
               extra={({ value }) => {
                 return <div className="text-right">{`${value?.length || '0'} / 150`}</div>
               }}
             >
-              <Input.Textarea placeholder={locale('请输入')} />
+              <Input.Textarea placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item height={42} name="autoFit" label={locale('多行文本框')}>
-              <Input.AutoFit placeholder={locale('请输入')} />
+            <Form.Item height={42} name="autoFit" label={locale('Auto fit')}>
+              <Input.AutoFit placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item height={42} name="select" label={locale('Select')}>
               <Select.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
@@ -143,17 +141,17 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="picker" label={locale('滑动选择框')}>
+            <Form.Item height={42} name="picker" label={locale('Picker')}>
               <Picker.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
@@ -166,67 +164,67 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={50} name="switch" valuePropName="checked" label={locale('开关')}>
+            <Form.Item height={50} name="switch" valuePropName="checked" label={locale('Switch')}>
               <Switch />
             </Form.Item>
-            <Form.Item height={74} name="checkbox" label={locale('多选')}>
+            <Form.Item height={74} name="checkbox" label={locale('Checkbox')}>
               <Checkbox.Group
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item height={74} name="radio" label={locale('单选')}>
+            <Form.Item height={74} name="radio" label={locale('Radio')}>
               <Radio.Group
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item height={102} name="selector" label={locale('多选-平铺')}>
+            <Form.Item height={102} name="selector" label={locale('Selector')}>
               <Selector
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   },
                   {
                     id: '3',
-                    name: '选项3'
+                    name: 'Option3'
                   },
                   {
                     id: '4',
-                    name: '选项4'
+                    name: 'Option4'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item height={42} name="number" label={locale('数值框')}>
-              <Input.Number placeholder={locale('请输入')} />
+            <Form.Item height={42} name="number" label={locale('Number')}>
+              <Input.Number placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item
               height={48}
@@ -239,33 +237,33 @@ const Edit = () => {
                 }
               ]}
             >
-              <Input.NumberBox placeholder={locale('请输入')} />
+              <Input.NumberBox placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item
               height={72}
               name="password"
-              label={locale('密码框')}
+              label={locale('Password')}
               extra={({ value }) => {
                 return <Input.PasswordStrength value={value} />
               }}
             >
-              <Input.Password placeholder={locale('请输入')} />
+              <Input.Password placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item height={55} name="range" label={locale('范围选择')}>
+            <Form.Item height={55} name="range" label={locale('Range')}>
               <Input.Range />
             </Form.Item>
-            <Form.Item height={42} name="tel" label={locale('电话框')}>
-              <Input.Tel placeholder={locale('请输入')} />
+            <Form.Item height={42} name="tel" label={locale('Tel')}>
+              <Input.Tel placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item height={42} name="url" label={locale('链接')}>
-              <Input.Url placeholder={locale('请输入')} />
+            <Form.Item height={42} name="url" label={locale('Url')}>
+              <Input.Url placeholder={locale('Please input')} />
             </Form.Item>
           </Card>
           <Card style={{ paddingLeft: '12px' }}>
-            <Form.Item height={42} name="datetime" label={locale('日期时间')}>
+            <Form.Item height={42} name="datetime" label={locale('Datetime')}>
               <DatePicker.Combo
                 type="datetime"
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -276,9 +274,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="date" label={locale('日期')}>
+            <Form.Item height={42} name="date" label={locale('Date')}>
               <DatePicker.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -289,10 +287,10 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="time" label={locale('时间')}>
+            <Form.Item height={42} name="time" label={locale('Time')}>
               <DatePicker.Combo
                 type="time"
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -303,9 +301,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="dateRange" label={locale('日期区间')}>
+            <Form.Item height={42} name="dateRange" label={locale('Date range')}>
               <DatePicker.RangeCombo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -316,9 +314,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="district" label={locale('地区选择')}>
+            <Form.Item height={42} name="district" label={locale('District')}>
               <Cascader.DistrictCombo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -329,14 +327,14 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="location" label={locale('定位')}>
+            <Form.Item height={44} name="location" label={locale('Location')}>
               <Location.Combo
                 type="gcj02"
                 config={{
                   key: '7b6e260fc45a67b31a265e22575f1c5e',
                   type: 'bmap'
                 }}
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 previewVisible
                 chooseVisible
@@ -345,17 +343,17 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item height={42} name="signature" label={locale('签名')}>
+            <Form.Item height={52} name="signature" label={locale('Signature')}>
               <Signature.Combo />
             </Form.Item>
           </Card>
         </Form>
       </Layout.Main>
 
-      {/* 底部 */}
+      {/* Footer */}
       <Footer onOk={handleSave} />
 
-      {/* 数据加载失败 */}
+      {/* Error */}
       {errMsg && <Result title={errMsg} style={{ margin: '20px 0' }} />}
     </Layout>
   )
