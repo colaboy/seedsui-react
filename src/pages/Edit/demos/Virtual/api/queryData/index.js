@@ -26,7 +26,13 @@ function queryData() {
         if (result.code === '1') {
           resolve({
             baseData: { test: 'test' },
-            formData: { input: '单行', select: [{ id: '1', name: '选项1' }] }
+            formData: {
+              input: 'Input content',
+              textarea: 'Input content',
+              autoFit:
+                'AutoFit overlength content: AI as a feature involves incorporating AI technologies into existing products to improve their functionalities. On the other hand, AI as a product entails creating standalone AI-driven applications (AI Copilots or Agents) intended to perform specific tasks or deliver unique services',
+              select: [{ id: '2', name: 'Option2' }]
+            }
           })
         } else {
           resolve(locale('获取数据错误！'))

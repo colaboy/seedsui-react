@@ -22,7 +22,6 @@ import {
   Signature
 } from 'seedsui-react'
 import Footer from './Footer'
-
 const locale = LocaleUtil.locale
 
 // 表单编辑页面
@@ -36,8 +35,8 @@ const Edit = () => {
   // 基础数据
   const baseDataRef = useRef(null)
 
-  // 错误: null加载中, ''加载成功, '错误信息'加载失败
-  const [errMsg, setErrMsg] = useState(null)
+  // 全屏提示: {status: 'empty|500', title: ''}
+  const [mainStatus, setMainStatus] = useState(null)
 
   useEffect(() => {
     // 初始化数据
@@ -59,7 +58,10 @@ const Edit = () => {
 
     // 加载数据失败
     if (typeof data === 'string') {
-      setErrMsg(data)
+      setMainStatus({
+        status: '500',
+        title: data
+      })
     }
     // 加载数据成功
     else {
@@ -353,8 +355,10 @@ const Edit = () => {
       {/* Footer */}
       <Footer onOk={handleSave} />
 
-      {/* Error */}
-      {errMsg && <Result title={errMsg} style={{ margin: '20px 0' }} />}
+      {/* Main tip info */}
+      {mainStatus && (
+        <Result className="full" status={mainStatus.status} title={mainStatus.title} />
+      )}
     </Layout>
   )
 }
