@@ -13,3 +13,7 @@ title: 编辑
 ## 虚拟滚动
 
 <code src="./demos/Virtual/index.jsx"></code>
+
+## 缓存
+
+<code src="./demos/Cache/index.jsx"></code>
