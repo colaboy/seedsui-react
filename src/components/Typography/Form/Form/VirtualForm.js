@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
+import React, { useState, useEffect, useImperativeHandle, forwardRef, useRef } from 'react'
 import FormContext from './../FormContext'
 
 // layout: horizontal | vertical | inline
@@ -10,7 +10,7 @@ const VirtualForm = forwardRef(
     const rootRef = useRef(null)
 
     // Virtual
-    const observerRef = useRef(null)
+    let [observer, setObserver] = useState(null)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -22,7 +22,7 @@ const VirtualForm = forwardRef(
 
     useEffect(() => {
       // 创建IntersectionObserver实例
-      observerRef.current = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -40,11 +40,12 @@ const VirtualForm = forwardRef(
           threshold: 0.1 // 当10%的元素可见时触发
         }
       )
+      setObserver(observer)
 
       // 组件卸载时清理
       return () => {
-        if (observerRef.current) {
-          observerRef.current.disconnect()
+        if (observer) {
+          observer.disconnect()
         }
       }
     }, [])
@@ -56,7 +57,7 @@ const VirtualForm = forwardRef(
           labelCol,
           mainCol,
           scrollerDOM: scrollerDOM,
-          virtual: { observer: observerRef.current }
+          virtual: { observer: observer }
         }}
       >
         <div

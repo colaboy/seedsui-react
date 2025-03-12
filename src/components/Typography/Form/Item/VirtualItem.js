@@ -1,4 +1,11 @@
-import React, { useEffect, useImperativeHandle, forwardRef, useRef, useContext } from 'react'
+import React, {
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+  useRef,
+  useContext,
+  useState
+} from 'react'
 import FormContext from './../FormContext'
 
 const FormItem = forwardRef(
@@ -12,9 +19,12 @@ const FormItem = forwardRef(
     },
     ref
   ) => {
-    // 获取全局配置
-    const { layout, virtual } = useContext(FormContext)
     const rootRef = useRef(null)
+    // Context config
+    const { layout, virtual } = useContext(FormContext)
+
+    // In view area to display
+    const [inViewArea, setInViewArea] = useState(false)
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -37,11 +47,7 @@ const FormItem = forwardRef(
           mutations.forEach((mutation) => {
             if (mutation.type === 'attributes' && mutation.attributeName === 'data-in-view') {
               const isInView = currentElement.dataset.inView === 'true'
-              if (isInView) {
-                console.log(name + ':inViewArea')
-              } else {
-                console.log(name + ':outViewArea')
-              }
+              setInViewArea(isInView)
             }
           })
         })
