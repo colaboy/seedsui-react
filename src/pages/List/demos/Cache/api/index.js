@@ -1,3 +1,4 @@
+import cacheConfig from './cacheConfig'
 import queryData from './queryData'
 
-export { queryData }
+export { cacheConfig, queryData }

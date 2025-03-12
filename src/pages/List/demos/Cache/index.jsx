@@ -1,21 +1,18 @@
 import React, { useState, useRef } from 'react'
-import { queryData } from './api'
+import { cacheConfig, queryData } from './api'
 import { LocaleUtil, Storage, Layout, ToolBar, List, Button } from 'seedsui-react'
 import './index.less'
 const locale = LocaleUtil.locale
 
 // 分页列表
-const PaginationList = () => {
-  // Cache config
-  const cache = { name: 'cache_pageName_list', persist: true }
-
+const Cache = () => {
   // Forward history clear cache
   // const history = useHistory()
   // if (Storage.getCache(`${cache.name}:list`) && history.action !== 'POP') {
   //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
-  const [keyword, setKeyword] = useState(Storage.getCache(`${cache.name}:keyword`) || '')
+  const [keyword, setKeyword] = useState(Storage.getCache(`${cacheConfig.name}:keyword`) || '')
 
   // Expose
   const mainRef = useRef(null)
@@ -29,7 +26,9 @@ const PaginationList = () => {
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {
-              Storage.setCache(`${cache.name}:keyword`, keyword, { persist: cache.persist })
+              Storage.setCache(`${cacheConfig.name}:keyword`, keyword, {
+                persist: cacheConfig.persist
+              })
               mainRef.current.reload()
             }}
           />
@@ -38,7 +37,7 @@ const PaginationList = () => {
 
       <List.Main
         ref={mainRef}
-        cache={cache}
+        cache={cacheConfig}
         className="employee-people-main"
         loadList={({ page, action }) => {
           console.log('action:', action)
@@ -55,7 +54,7 @@ const PaginationList = () => {
         <Button
           className="flex primary radius-l"
           onClick={() => {
-            Storage.clearCache(cache.name, { match: 'prefix' })
+            Storage.clearCache(cacheConfig.name, { match: 'prefix' })
             alert('Clear success!')
           }}
         >
@@ -66,4 +65,4 @@ const PaginationList = () => {
   )
 }
 
-export default PaginationList
+export default Cache

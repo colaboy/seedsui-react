@@ -116,9 +116,7 @@ const Main = forwardRef(
         // 滚动条位置
         if (mainRef?.current?.rootDOM) {
           mainRef.current.rootDOM.scrollTop =
-            window[`${cache.name}:scrollTop`] ||
-            Storage.getLocalStorage(`${cache.name}:scrollTop`) ||
-            0
+            window[`${cache.name}:scrollTop`] || Storage.getCache(`${cache.name}:scrollTop`) || 0
         }
         return
       }
@@ -247,23 +245,23 @@ const Main = forwardRef(
           onScroll && onScroll(e)
 
           // ios滚动过程中不允许点击tab，否则可能会局部白屏
-          if (Device.os === 'ios') {
-            document.body.classList.add('ios-scrolling')
+          document.body.classList.add(`${Device.os}-scrolling`)
 
-            if (window.timeout) {
-              window.clearTimeout(window.timeout)
-            }
-            window.timeout = setTimeout(() => {
-              document.body.classList.remove('ios-scrolling')
-              // 记录滚动条位置
-              if (cache?.name && typeof e?.target?.scrollTop === 'number') {
-                window[`${cache.name}:scrollTop`] = e.target.scrollTop
-                if (cache?.persist) {
-                  Storage.setLocalStorage(`${cache.name}:scrollTop`, e.target.scrollTop)
-                }
-              }
-            }, 500)
+          if (window.timeout) {
+            window.clearTimeout(window.timeout)
           }
+          window.timeout = setTimeout(() => {
+            document.body.classList.remove(`${Device.os}-scrolling`)
+            // 记录滚动条位置
+            if (cache?.name && typeof e?.target?.scrollTop === 'number') {
+              window[`${cache.name}:scrollTop`] = e.target.scrollTop
+              if (cache?.persist) {
+                Storage.setCache(`${cache.name}:scrollTop`, e.target.scrollTop, {
+                  persist: cache?.persist
+                })
+              }
+            }
+          }, 500)
         }}
         // List config
         wrapper={wrapper}

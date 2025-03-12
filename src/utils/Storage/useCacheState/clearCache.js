@@ -15,6 +15,7 @@ function clearCache(cacheName, { match } = {}) {
 
     // 清除所有以 cache: 开头的项
     Storage.removeLocalStorages((keyName) => keyName.startsWith(`${cacheName}:`))
+    Storage.removeSessionStorages((keyName) => keyName.startsWith(`${cacheName}:`))
   }
 }
 
