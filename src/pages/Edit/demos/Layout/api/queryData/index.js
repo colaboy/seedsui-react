@@ -1,4 +1,5 @@
 import { LocaleUtil, Request, Device, Loading } from 'seedsui-react'
+const locale = LocaleUtil.locale
 
 // 获取数据
 function queryData() {
@@ -28,12 +29,12 @@ function queryData() {
             formData: { input: '单行', select: [{ id: '1', name: '选项1' }] }
           })
         } else {
-          resolve(LocaleUtil.locale('获取数据错误！'))
+          resolve(locale('获取数据错误！'))
         }
       })
       .catch(() => {
         Loading.hide()
-        resolve(LocaleUtil.locale('获取数据异常！'))
+        resolve(locale('获取数据异常！'))
       })
   })
 }

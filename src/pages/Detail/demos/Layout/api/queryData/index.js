@@ -1,5 +1,6 @@
 import { Request, LocaleUtil } from 'seedsui-react'
 import localData from './localData'
+const locale = LocaleUtil.locale
 
 // 获取详情
 function queryData(params) {
@@ -13,17 +14,12 @@ function queryData(params) {
         } else {
           resolve(
             result.message ||
-              LocaleUtil.locale(
-                '服务器繁忙，请稍后重试',
-                'library.3adc7cd58b0694f0078804a786a33bde'
-              )
+              locale('服务器繁忙，请稍后重试', 'library.3adc7cd58b0694f0078804a786a33bde')
           )
         }
       })
       .catch((err) => {
-        resolve(
-          LocaleUtil.locale('服务器繁忙，请稍后重试', 'library.3adc7cd58b0694f0078804a786a33bde')
-        )
+        resolve(locale('服务器繁忙，请稍后重试', 'library.3adc7cd58b0694f0078804a786a33bde'))
       })
   })
 }

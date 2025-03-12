@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { queryData } from './api'
 import { LocaleUtil, Storage, Layout, ToolBar, List, Button } from 'seedsui-react'
 import './index.less'
+const locale = LocaleUtil.locale
 
 // 分页列表
 const PaginationList = () => {
@@ -24,7 +25,7 @@ const PaginationList = () => {
       <Layout.Header>
         <ToolBar className="search">
           <ToolBar.Search
-            placeholder={LocaleUtil.locale('按名称/拼音/拼音首字母查询')}
+            placeholder={locale('按名称/拼音/拼音首字母查询')}
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {

@@ -1,6 +1,6 @@
 import { LocaleUtil, Request, Device, Loading, Toast } from 'seedsui-react'
-
 import serverData from './serverData'
+const locale = LocaleUtil.locale
 
 // 提交数据
 async function saveData({ formData, tokenRef }) {
@@ -45,7 +45,7 @@ async function saveData({ formData, tokenRef }) {
 
         if (result.code === '1') {
           Toast.show({
-            content: LocaleUtil.locale('提交成功!', 'library.8149522e59382cf0d07185296fcc87b2'),
+            content: locale('提交成功!', 'library.8149522e59382cf0d07185296fcc87b2'),
             onVisibleChange: (visible) => {
               // 提交完成后处理逻辑
               if (visible === false) resolve(true)
@@ -54,8 +54,7 @@ async function saveData({ formData, tokenRef }) {
         } else {
           Toast.show({
             content:
-              result.message ||
-              LocaleUtil.locale('提交数据失败！', 'library.c1f9adb330715bccdee0731409c712d2')
+              result.message || locale('提交数据失败！', 'library.c1f9adb330715bccdee0731409c712d2')
           })
           resolve(false)
         }
@@ -63,7 +62,7 @@ async function saveData({ formData, tokenRef }) {
       .catch(() => {
         Loading.hide()
         Toast.show({
-          content: LocaleUtil.locale('提交数据异常！', 'library.6626f193336b7664a4eb3443c12f8df7')
+          content: locale('提交数据异常！', 'library.6626f193336b7664a4eb3443c12f8df7')
         })
         resolve(false)
       })

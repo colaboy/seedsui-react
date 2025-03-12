@@ -12,6 +12,7 @@ import {
   Device,
   Row
 } from 'seedsui-react'
+const locale = LocaleUtil.locale
 
 const { Col } = Row
 
@@ -34,7 +35,7 @@ function Detail() {
     if (!id) {
       setResult({
         status: 500,
-        title: LocaleUtil.locale('地址栏未找到参数id，无法加载数据')
+        title: locale('地址栏未找到参数id，无法加载数据')
       })
       return
     }
@@ -66,42 +67,42 @@ function Detail() {
         <Layout.Main>
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={24} className="color-sub">
-              {LocaleUtil.locale('客户', 'library.ff0b207718d78924989384356166e4a3')}
+              {locale('客户', 'library.ff0b207718d78924989384356166e4a3')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.customer)}</Col>
           </Row>
 
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={8} className="color-sub">
-              {LocaleUtil.locale('退货单号', 'library.2efaa8fe48e4efd421dad5b7fde1aa00')}
+              {locale('退货单号', 'library.2efaa8fe48e4efd421dad5b7fde1aa00')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.orderNo)}</Col>
           </Row>
 
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={8} className="color-sub">
-              {LocaleUtil.locale('提交日期', 'library.1de8349a0ae081c3b8c4d4a1951e8562')}
+              {locale('提交日期', 'library.1de8349a0ae081c3b8c4d4a1951e8562')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.dateRange)}</Col>
           </Row>
 
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={8} className="color-sub">
-              {LocaleUtil.locale('客户经理', 'library.bd839db0d5d951346fdc0d235811039b')}
+              {locale('客户经理', 'library.bd839db0d5d951346fdc0d235811039b')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.employee)}</Col>
           </Row>
 
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={8} className="color-sub">
-              {LocaleUtil.locale('订单备注', 'library.bb84d6eab6156242125acd22d08f367d')}
+              {locale('订单备注', 'library.bb84d6eab6156242125acd22d08f367d')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.remark)}</Col>
           </Row>
 
           <Row className="border-b" style={{ padding: '10px 0', marginLeft: '12px' }}>
             <Col span={8} className="color-sub">
-              {LocaleUtil.locale('状态', 'library.3fea7ca76cdece641436d7ab0d02ab1b')}
+              {locale('状态', 'library.3fea7ca76cdece641436d7ab0d02ab1b')}
             </Col>
             <Col span={16}>{Typography.getDisplayValue(data?.orderStatus)}</Col>
           </Row>

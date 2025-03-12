@@ -3,6 +3,7 @@ import { queryData } from './api'
 import { LocaleUtil, Layout } from 'seedsui-react'
 import { ToolBar, List } from 'seedsui-react'
 import './index.less'
+const locale = LocaleUtil.locale
 
 // Virtual虚拟列表
 const VirtualList = () => {
@@ -16,7 +17,7 @@ const VirtualList = () => {
       <Layout.Header>
         <ToolBar className="search">
           <ToolBar.Search
-            placeholder={LocaleUtil.locale('按名称/拼音/拼音首字母查询')}
+            placeholder={locale('按名称/拼音/拼音首字母查询')}
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {
