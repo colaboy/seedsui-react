@@ -61,6 +61,9 @@ const Main = forwardRef(
     },
     ref
   ) => {
+    // 滚动节流定时器
+    const scrollThrottleRef = useRef(null)
+
     // 容器
     const mainRef = useRef(null)
     // 分页
@@ -247,19 +250,16 @@ const Main = forwardRef(
           // ios滚动过程中不允许点击tab，否则可能会局部白屏
           document.body.classList.add(`${Device.os}-scrolling`)
 
-          if (window.timeout) {
-            window.clearTimeout(window.timeout)
+          if (scrollThrottleRef.current) {
+            window.clearTimeout(scrollThrottleRef.current)
           }
-          window.timeout = setTimeout(() => {
+          scrollThrottleRef.current = setTimeout(() => {
             document.body.classList.remove(`${Device.os}-scrolling`)
             // 记录滚动条位置
             if (cache?.name && typeof e?.target?.scrollTop === 'number') {
-              window[`${cache.name}:scrollTop`] = e.target.scrollTop
-              if (cache?.persist) {
-                Storage.setCache(`${cache.name}:scrollTop`, e.target.scrollTop, {
-                  persist: cache?.persist
-                })
-              }
+              Storage.setCache(`${cache.name}:scrollTop`, e.target.scrollTop, {
+                persist: cache?.persist
+              })
             }
           }, 500)
         }}

@@ -12,7 +12,7 @@ function queryData() {
     if (!id) {
       resolve({
         baseData: { test: 'test' },
-        formData: Storage.getCache(cacheConfig.name)
+        formData: Storage.getCache(`${cacheConfig.name}:data`)
       })
       return
     }

@@ -32,6 +32,9 @@ const Edit = () => {
   // 表单
   const [form] = Form.useForm()
 
+  // 滚动节流定时器
+  const scrollThrottleRef = useRef(null)
+
   // 防重复提交token
   const tokenRef = useRef('' + Date.now())
 
@@ -44,7 +47,7 @@ const Edit = () => {
   useEffect(() => {
     // 前进需要清除缓存
     // const history = useHistory()
-    // if (Storage.getCache(`${cacheConfig.name}:list`) && history.action !== 'POP') {
+    // if (Storage.getCache(`${cacheConfig.name}:scrollTop`) && history.action !== 'POP') {
     //   Storage.clearCache(cacheConfig.name, { match: 'prefix' })
     // }
 
@@ -113,7 +116,21 @@ const Edit = () => {
 
   return (
     <Layout className="full">
-      <Layout.Main>
+      <Layout.Main
+        onScroll={function (e) {
+          if (scrollThrottleRef.current) {
+            window.clearTimeout(scrollThrottleRef.current)
+          }
+          scrollThrottleRef.current = setTimeout(() => {
+            // 记录滚动条位置
+            if (cacheConfig?.name && typeof e?.target?.scrollTop === 'number') {
+              Storage.setCache(`${cacheConfig.name}:scrollTop`, e.target.scrollTop, {
+                persist: cacheConfig?.persist
+              })
+            }
+          }, 500)
+        }}
+      >
         <Form
           form={form}
           style={{ marginLeft: '12px' }}
@@ -124,7 +141,9 @@ const Edit = () => {
               window.clearTimeout(window.formCacheTimeout)
             }
             window.formCacheTimeout = setTimeout(() => {
-              Storage.setCache(cacheConfig.name, formData, { persist: cacheConfig.persist })
+              Storage.setCache(`${cacheConfig.name}:data}`, formData, {
+                persist: cacheConfig.persist
+              })
             }, 1000)
           }}
         >
