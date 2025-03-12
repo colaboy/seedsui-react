@@ -34,22 +34,21 @@ const FormItem = forwardRef(
     ref
   ) => {
     return (
-      <Item ref={ref} name={name} {...props}>
-        <Label help={help} required={(rules || []).some((rule) => rule.required)}>
-          {label}
-        </Label>
-
-        <Field
-          rules={rules}
-          name={name}
-          getValueProps={getValueProps}
-          valuePropName={valuePropName}
-          shouldUpdate={shouldUpdate}
-          initialValue={initialValue}
-          validateTrigger={validateTrigger}
-        >
-          {(control, renderMeta, context) => {
-            return (
+      <Field
+        rules={rules}
+        name={name}
+        getValueProps={getValueProps}
+        valuePropName={valuePropName}
+        shouldUpdate={shouldUpdate}
+        initialValue={initialValue}
+        validateTrigger={validateTrigger}
+      >
+        {(control, renderMeta, context) => {
+          return (
+            <Item ref={ref} name={name} {...props}>
+              <Label help={help} required={(rules || []).some((rule) => rule.required)}>
+                {label}
+              </Label>
               <Main
                 extra={() => {
                   return getExtraNode(extra, {
@@ -86,10 +85,10 @@ const FormItem = forwardRef(
                   return child
                 })}
               </Main>
-            )
-          }}
-        </Field>
-      </Item>
+            </Item>
+          )
+        }}
+      </Field>
     )
   }
 )
