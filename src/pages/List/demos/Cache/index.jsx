@@ -12,7 +12,7 @@ const Cache = () => {
   //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
-  const [keyword, setKeyword] = useState(Storage.getCache(`${cacheConfig.name}:keyword`) || '')
+  const [keyword, setKeyword] = Storage.useCacheState('', { name: `${cacheConfig.name}:keyword` })
 
   // Expose
   const mainRef = useRef(null)
@@ -26,9 +26,6 @@ const Cache = () => {
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {
-              Storage.setCache(`${cacheConfig.name}:keyword`, keyword, {
-                persist: cacheConfig.persist
-              })
               mainRef.current.reload()
             }}
           />
