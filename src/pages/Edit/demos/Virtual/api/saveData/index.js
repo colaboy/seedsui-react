@@ -3,68 +3,39 @@ import serverData from './serverData'
 const locale = LocaleUtil.locale
 
 // 提交数据
-async function saveData({ formData, tokenRef }) {
+async function saveData({ baseData, data, token }) {
   Loading.show()
 
-  // 自定义校验
-  // let isOk = await validateData({ formData })
-  // if (isOk === 'string') {
-  //   Toast.show({
-  //     content: isOk
-  //   })
-  //   return
-  // }
-
   // 构建服务器参数
-  let params = await serverData({ formData })
+  let params = await serverData({ baseData, data })
 
   // 新增
-  let url = '/app/esss/web/purchase_order/add.do'
+  let url = '/platform/param/v1/getLoginUser.do'
 
   // 编辑
   let id = Device.getUrlParameter('id')
   if (id) {
     params.id = id
-    url = '/app/esss/web/purchase_order/edit.do'
+    url = '/platform/param/v1/getLoginUser.do'
   }
 
   return new Promise((resolve) => {
     Request.post(url, params, {
       headers: {
-        tokenDup: tokenRef.current,
+        tokenDup: token,
         contentType: 'application/json'
       }
     })
       .then((result) => {
         Loading.hide()
-
-        // 发生错误并且非重复提交的错误时，重新生成token
-        if (result.code === '0') {
-          tokenRef.current = '' + Date.now()
-        }
-
-        if (result.code === '1') {
-          Toast.show({
-            content: locale('提交成功!', 'library.8149522e59382cf0d07185296fcc87b2'),
-            onVisibleChange: (visible) => {
-              // 提交完成后处理逻辑
-              if (visible === false) resolve(true)
-            }
-          })
-        } else {
-          Toast.show({
-            content:
-              result.message || locale('提交数据失败！', 'library.c1f9adb330715bccdee0731409c712d2')
-          })
-          resolve(false)
-        }
+        resolve(result)
       })
       .catch(() => {
         Loading.hide()
-        Toast.show({
-          content: locale('提交数据异常！', 'library.6626f193336b7664a4eb3443c12f8df7')
+        resolve({
+          code: '0',
+          message: err?.data?.message || locale('服务器繁忙，请稍后重试！')
         })
-        resolve(false)
       })
   })
 }

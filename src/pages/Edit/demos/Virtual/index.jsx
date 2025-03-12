@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { queryData, saveData } from './api'
-import validateForm from './utils/validateForm'
+import { queryData, validateData, saveData } from './api'
 
 import {
   LocaleUtil,
@@ -73,18 +72,32 @@ const Edit = () => {
   // 保存
   async function handleSave() {
     // 校验表单数据
-    let errMsg = await validateForm({ form })
-    if (errMsg) {
-      Toast.show({ content: errMsg })
+    let data = await validateData({ form })
+    if (typeof data === 'string') {
+      Toast.show({ content: data })
       return
     }
 
-    // 获取表单数据
-    let formData = form.getFieldsValue()
+    // 保存表单数据
+    let result = await saveData({ baseData: baseDataRef.current, data, token: tokenRef.current })
+    if (result.code === '1') {
+      Toast.show({
+        content: locale('提交成功!'),
+        onVisibleChange: (visible) => {
+          if (visible === false) {
+            // 提交完成后操作: 返回等
+          }
+        }
+      })
+    }
+    // 保存出错
+    else {
+      // 重复请求需要重新生成token
+      if (result.code === '2') tokenRef.current = '' + Date.now()
 
-    let isOk = await saveData({ baseData: baseDataRef.current, formData, tokenRef: tokenRef })
-    if (!isOk) {
-      console.log('保存成功, 清空数据')
+      Toast.show({
+        content: result.message || locale('提交失败!')
+      })
     }
   }
 

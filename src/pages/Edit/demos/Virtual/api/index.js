@@ -1,4 +1,5 @@
-import saveData from './saveData'
 import queryData from './queryData'
+import validateData from './validateData'
+import saveData from './saveData'
 
-export { saveData, queryData }
+export { queryData, validateData, saveData }
