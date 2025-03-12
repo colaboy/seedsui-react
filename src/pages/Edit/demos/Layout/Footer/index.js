@@ -8,12 +8,12 @@ function Footer({ onOk, onCancel }) {
     <Layout.Footer className="bg-white padding">
       {onCancel && (
         <Button className="primary flex radius-m" onClick={onCancel}>
-          {locale('打回', 'library.9a7b15dccc5cda2e3db1110678576104')}
+          {locale('Back')}
         </Button>
       )}
       {onOk && (
         <Button className="primary flex radius-m" onClick={onOk}>
-          {locale('确定', 'library.38cf16f2204ffab8a6e0187070558721')}
+          {locale('Ok')}
         </Button>
       )}
     </Layout.Footer>

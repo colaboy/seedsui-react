@@ -1,7 +1,5 @@
+// 第三方库导入
 import React, { useRef, useEffect, useState } from 'react'
-import { queryData, saveData } from './api'
-import validateForm from './utils/validateForm'
-
 import {
   LocaleUtil,
   Toast,
@@ -22,7 +20,12 @@ import {
   Location,
   Signature
 } from 'seedsui-react'
+
+// 项目内部模块导入
+import { queryData, validateData, saveData } from './api'
 import Footer from './Footer'
+
+// 样式图片等资源文件导入
 
 const locale = LocaleUtil.locale
 
@@ -37,8 +40,8 @@ const Edit = () => {
   // 基础数据
   const baseDataRef = useRef(null)
 
-  // 错误: null加载中, ''加载成功, '错误信息'加载失败
-  const [errMsg, setErrMsg] = useState(null)
+  // 全屏提示: {status: 'empty|500', title: ''}
+  const [mainStatus, setMainStatus] = useState(null)
 
   useEffect(() => {
     // 初始化数据
@@ -47,10 +50,7 @@ const Edit = () => {
     // eslint-disable-next-line
   }, [])
 
-  /**
-   * queryData初始化数据方法
-   * @return {Object} {baseData: xx, formData: xx}
-   */
+  // 加载数据
   async function loadData() {
     // 加载详情数据
     let data = await queryData()
@@ -60,7 +60,10 @@ const Edit = () => {
 
     // 加载数据失败
     if (typeof data === 'string') {
-      setErrMsg(data)
+      setMainStatus({
+        status: '500',
+        title: data
+      })
     }
     // 加载数据成功
     else {
@@ -72,63 +75,81 @@ const Edit = () => {
   // 保存
   async function handleSave() {
     // 校验表单数据
-    let errMsg = await validateForm({ form })
-    if (errMsg) {
-      Toast.show({ content: errMsg })
+    let data = await validateData({ form })
+    if (typeof data === 'string') {
+      Toast.show({ content: data })
       return
     }
 
-    // 获取表单数据
-    let formData = form.getFieldsValue()
+    // 保存表单数据
+    let result = await saveData({ baseData: baseDataRef.current, data, token: tokenRef.current })
+    if (result.code === '1') {
+      Toast.show({
+        content: locale('提交成功!'),
+        onVisibleChange: (visible) => {
+          if (visible === false) {
+            // 提交完成后操作: 返回等
+          }
+        }
+      })
+    }
+    // 保存出错
+    else {
+      // 重复请求需要重新生成token
+      if (result.code === '2') tokenRef.current = '' + Date.now()
 
-    let isOk = await saveData({ baseData: baseDataRef.current, formData, tokenRef: tokenRef })
-    if (!isOk) {
-      console.log('保存成功, 清空数据')
+      Toast.show({
+        content: result.message || locale('提交失败!')
+      })
     }
   }
 
   return (
     <Layout className="full">
       <Layout.Main>
-        <Divider>Horizontal Layout</Divider>
-        <Card style={{ paddingLeft: '12px' }}>
-          <Form form={form} mainCol={{ style: { paddingRight: '10px' } }}>
+        <Card>
+          <Divider>Horizontal Layout</Divider>
+          <Form
+            form={form}
+            style={{ marginLeft: '12px' }}
+            mainCol={{ style: { paddingRight: '10px' } }}
+          >
             <Form.Item
               name="input"
-              label={locale('单行文本框')}
+              label={locale('Input')}
               rules={[
                 {
                   required: true,
-                  message: locale('单行文本框不能为空')
+                  message: locale('Input cannot be empty')
                 }
               ]}
             >
-              <Input.Text placeholder={locale('请输入')} maxLength={50} />
+              <Input.Text placeholder={locale('Please input')} maxLength={50} />
             </Form.Item>
             <Form.Item
               name="textarea"
               maxLength={150}
-              label={locale('多行文本框')}
+              label={locale('Textarea')}
               extra={({ value }) => {
                 return <div className="text-right">{`${value?.length || '0'} / 150`}</div>
               }}
             >
-              <Input.Textarea placeholder={locale('请输入')} />
+              <Input.Textarea placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item name="autoFit" label={locale('多行文本框')}>
-              <Input.AutoFit placeholder={locale('请输入')} />
+            <Form.Item name="autoFit" label={locale('Auto fit')}>
+              <Input.AutoFit placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item name="select" label={locale('Select')}>
               <Select.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
@@ -141,17 +162,17 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="picker" label={locale('滑动选择框')}>
+            <Form.Item name="picker" label={locale('Picker')}>
               <Picker.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
@@ -164,67 +185,67 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="switch" valuePropName="checked" label={locale('开关')}>
+            <Form.Item name="switch" valuePropName="checked" label={locale('Switch')}>
               <Switch />
             </Form.Item>
-            <Form.Item name="checkbox" label={locale('多选')}>
+            <Form.Item name="checkbox" label={locale('Checkbox')}>
               <Checkbox.Group
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="radio" label={locale('单选')}>
+            <Form.Item name="radio" label={locale('Radio')}>
               <Radio.Group
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="selector" label={locale('多选-平铺')}>
+            <Form.Item name="selector" label={locale('Selector')}>
               <Selector
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 list={[
                   {
                     id: '1',
-                    name: '选项1'
+                    name: 'Option1'
                   },
                   {
                     id: '2',
-                    name: '选项2'
+                    name: 'Option2'
                   },
                   {
                     id: '3',
-                    name: '选项3'
+                    name: 'Option3'
                   },
                   {
                     id: '4',
-                    name: '选项4'
+                    name: 'Option4'
                   }
                 ]}
                 allowClear
               />
             </Form.Item>
-            <Form.Item name="number" label={locale('数值框')}>
-              <Input.Number placeholder={locale('请输入')} />
+            <Form.Item name="number" label={locale('Number')}>
+              <Input.Number placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item
               name="numberBox"
@@ -236,36 +257,40 @@ const Edit = () => {
                 }
               ]}
             >
-              <Input.NumberBox placeholder={locale('请输入')} />
+              <Input.NumberBox placeholder={locale('Please input')} />
             </Form.Item>
             <Form.Item
               name="password"
-              label={locale('密码框')}
+              label={locale('Password')}
               extra={({ value }) => {
                 return <Input.PasswordStrength value={value} />
               }}
             >
-              <Input.Password placeholder={locale('请输入')} />
+              <Input.Password placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item name="range" label={locale('范围选择')}>
+            <Form.Item name="range" label={locale('Range')}>
               <Input.Range />
             </Form.Item>
-            <Form.Item name="tel" label={locale('电话框')}>
-              <Input.Tel placeholder={locale('请输入')} />
+            <Form.Item name="tel" label={locale('Tel')}>
+              <Input.Tel placeholder={locale('Please input')} />
             </Form.Item>
-            <Form.Item name="url" label={locale('链接')}>
-              <Input.Url placeholder={locale('请输入')} />
+            <Form.Item name="url" label={locale('Url')}>
+              <Input.Url placeholder={locale('Please input')} />
             </Form.Item>
           </Form>
         </Card>
-
-        <Divider>Vertical Layout</Divider>
-        <Card style={{ paddingLeft: '12px' }}>
-          <Form form={form} layout="vertical" mainCol={{ style: { paddingRight: '10px' } }}>
-            <Form.Item name="datetime" label={locale('日期时间')}>
+        <Card>
+          <Divider>Vertical Layout</Divider>
+          <Form
+            form={form}
+            layout="vertical"
+            style={{ marginLeft: '12px' }}
+            mainCol={{ style: { paddingRight: '10px' } }}
+          >
+            <Form.Item name="datetime" label={locale('Datetime')}>
               <DatePicker.Combo
                 type="datetime"
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -276,9 +301,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="date" label={locale('日期')}>
+            <Form.Item name="date" label={locale('Date')}>
               <DatePicker.Combo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -289,10 +314,10 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="time" label={locale('时间')}>
+            <Form.Item name="time" label={locale('Time')}>
               <DatePicker.Combo
                 type="time"
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -303,9 +328,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="dateRange" label={locale('日期区间')}>
+            <Form.Item name="dateRange" label={locale('Date range')}>
               <DatePicker.RangeCombo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -316,9 +341,9 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="district" label={locale('地区选择')}>
+            <Form.Item name="district" label={locale('District')}>
               <Cascader.DistrictCombo
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 clear={({ clearable, triggerClear }) => {
                   return clearable ? (
@@ -329,14 +354,14 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="location" label={locale('定位')}>
+            <Form.Item name="location" label={locale('Location')}>
               <Location.Combo
                 type="gcj02"
                 config={{
                   key: '7b6e260fc45a67b31a265e22575f1c5e',
                   type: 'bmap'
                 }}
-                placeholder={locale('请选择')}
+                placeholder={locale('Please select')}
                 allowClear
                 previewVisible
                 chooseVisible
@@ -345,18 +370,20 @@ const Edit = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="signature" label={locale('签名')}>
+            <Form.Item name="signature" label={locale('Signature')}>
               <Signature.Combo />
             </Form.Item>
           </Form>
         </Card>
       </Layout.Main>
 
-      {/* 底部 */}
+      {/* Footer */}
       <Footer onOk={handleSave} />
 
-      {/* 数据加载失败 */}
-      {errMsg && <Result title={errMsg} style={{ margin: '20px 0' }} />}
+      {/* Main tip info */}
+      {mainStatus && (
+        <Result className="full" status={mainStatus.status} title={mainStatus.title} />
+      )}
     </Layout>
   )
 }

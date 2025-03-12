@@ -6,7 +6,7 @@ title: 编辑
 
 # Edit
 
-## 布局示例
+## 布局
 
 <code src="./demos/Layout/index.jsx"></code>
 
