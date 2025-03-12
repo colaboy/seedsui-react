@@ -12,7 +12,10 @@ const Cache = () => {
   //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
-  const [keyword, setKeyword] = Storage.useCacheState('', { name: `${cacheConfig.name}:keyword` })
+  const [keyword, setKeyword] = Storage.useCacheState('', {
+    name: `${cacheConfig.name}:keyword`,
+    persist: cacheConfig.persist
+  })
 
   // Expose
   const mainRef = useRef(null)
