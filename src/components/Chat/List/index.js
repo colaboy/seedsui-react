@@ -86,7 +86,9 @@ const List = (
           // 超过时间间隔，则显示时间分栏
           if (spaceDates.isOverTime) {
             bar = (
-              <div className={`chat-time`}>{DateUtil.format(item.time, 'YYYY-MM-DD hh:mm')}</div>
+              <div className={`chat-divider-time`}>
+                {DateUtil.format(item.time, 'YYYY-MM-DD hh:mm')}
+              </div>
             )
           }
         }
