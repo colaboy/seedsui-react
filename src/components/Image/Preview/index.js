@@ -1,7 +1,8 @@
-import React, { forwardRef, useRef } from 'react'
+import React, { useEffect, forwardRef, useImperativeHandle, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Zoom, Pagination } from 'swiper/modules'
 import preventDefault from './preventDefault'
+import getActiveIndex from './getActiveIndex'
 
 // 内库使用-start
 import SelectModal from './../../Modal/SelectModalBase'
@@ -29,18 +30,20 @@ const Preview = forwardRef(
     ref
   ) => {
     const videoPlayers = useRef([])
+    const swiperRef = useRef(null)
 
-    if (!list || !list.length || !list[0].src) return null
-
-    // 当前选中项
-    let activeIndex = 0
-    if (typeof current === 'number') {
-      activeIndex = current
-    } else if (typeof current === 'string') {
-      for (let [index, source] of list.entries()) {
-        if (source.src === current) activeIndex = index
+    // Expose
+    useImperativeHandle(ref, () => {
+      return {
+        rootDOM: swiperRef.current,
+        getRootDOM: () => swiperRef.current
       }
-    }
+    })
+    useEffect(() => {
+      if (!visible || typeof swiperRef?.current?.swiper?.slideTo !== 'function') return
+      swiperRef.current.swiper.slideTo(getActiveIndex({ current, list }), 0)
+      // eslint-disable-next-line
+    }, [visible])
 
     // 图片单击隐藏, 视频单击无反应
     function handleVisibleChange(visible) {
@@ -73,6 +76,8 @@ const Preview = forwardRef(
     //   e.currentTarget.removeEventListener('touchmove', preventDefault, false)
     // }
 
+    if (!list || !list.length || !list[0].src) return null
+
     return (
       <SelectModal
         visible={visible}
@@ -85,10 +90,10 @@ const Preview = forwardRef(
         {...props}
       >
         <Swiper
-          ref={ref}
+          ref={swiperRef}
           spaceBetween={0}
           slidesPerView={1}
-          initialSlide={activeIndex}
+          // initialSlide={activeIndex}
           navigation={false}
           zoom={type !== 'video' ? true : false}
           // Bullet pagination
