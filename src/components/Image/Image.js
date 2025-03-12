@@ -78,6 +78,9 @@ const Image = forwardRef(
       if (typeof onPreviewRef.current === 'function') {
         let goOn = await onPreviewRef.current(item, index, otherOptions)
         if (goOn === false) return
+        if (goOn === 'browser') {
+          previewTypeRef.current = 'browser'
+        }
       }
 
       // 本地能力预览照片
@@ -145,7 +148,6 @@ const Image = forwardRef(
                     event: e,
                     rootDOM: rootRef.current,
                     itemDOM: e.currentTarget,
-                    setPreviewCurrent: setPreviewCurrent,
                     list: list
                   })
                 }}
