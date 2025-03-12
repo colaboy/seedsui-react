@@ -21,7 +21,7 @@ import {
 } from 'seedsui-react'
 
 // 项目内部模块导入
-import { queryData, validateData, saveData } from './api'
+import { cacheConfig, queryData, validateData, saveData } from './api'
 import Footer from './Footer'
 
 // 样式图片等资源文件导入
@@ -42,6 +42,12 @@ const Edit = () => {
   const [mainStatus, setMainStatus] = useState(null)
 
   useEffect(() => {
+    // 前进需要清除缓存
+    // const history = useHistory()
+    // if (Storage.getCache(`${cacheConfig.name}:list`) && history.action !== 'POP') {
+    //   Storage.clearCache(cacheConfig.name, { match: 'prefix' })
+    // }
+
     // 初始化数据
     loadData()
 
@@ -118,7 +124,7 @@ const Edit = () => {
               window.clearTimeout(window.formCacheTimeout)
             }
             window.formCacheTimeout = setTimeout(() => {
-              Storage.setLocalStorage('form-cache:formData', formData)
+              Storage.setCache(cacheConfig.name, formData, { persist: cacheConfig.persist })
             }, 1000)
           }}
         >

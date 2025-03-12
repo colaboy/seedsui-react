@@ -1,4 +1,5 @@
 import { LocaleUtil, Storage, Request, Device, Loading } from 'seedsui-react'
+import cacheConfig from './../cacheConfig'
 const locale = LocaleUtil.locale
 
 // 获取数据
@@ -11,7 +12,7 @@ function queryData() {
     if (!id) {
       resolve({
         baseData: { test: 'test' },
-        formData: Storage.getLocalStorage('form-cache:formData')
+        formData: Storage.getCache(cacheConfig.name)
       })
       return
     }

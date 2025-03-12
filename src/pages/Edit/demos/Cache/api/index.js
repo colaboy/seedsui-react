@@ -1,5 +1,6 @@
+import cacheConfig from './cacheConfig'
 import queryData from './queryData'
 import validateData from './validateData'
 import saveData from './saveData'
 
-export { queryData, validateData, saveData }
+export { cacheConfig, queryData, validateData, saveData }

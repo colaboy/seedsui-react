@@ -12,7 +12,7 @@ const PaginationList = () => {
   // Forward history clear cache
   // const history = useHistory()
   // if (Storage.getCache(`${cache.name}:list`) && history.action !== 'POP') {
-  //   Storage.clearCache(cache.name)
+  //   Storage.clearCache(cache.name, { match: 'prefix' })
   // }
 
   const [keyword, setKeyword] = useState(Storage.getCache(`${cache.name}:keyword`) || '')
@@ -29,7 +29,7 @@ const PaginationList = () => {
             value={keyword}
             onChange={setKeyword}
             onSearch={() => {
-              Storage.setCache(keyword, { name: `${cache.name}:keyword`, persist: cache.persist })
+              Storage.setCache(`${cache.name}:keyword`, keyword, { persist: cache.persist })
               mainRef.current.reload()
             }}
           />
@@ -55,7 +55,7 @@ const PaginationList = () => {
         <Button
           className="flex primary radius-l"
           onClick={() => {
-            Storage.clearCache(cache.name)
+            Storage.clearCache(cache.name, { match: 'prefix' })
             alert('Clear success!')
           }}
         >
