@@ -11,6 +11,7 @@ const VirtualForm = forwardRef(
 
     // Virtual
     let [observer, setObserver] = useState(null)
+    const observerCallbacksRef = useRef(new WeakMap())
 
     // Expose
     useImperativeHandle(ref, () => {
@@ -25,19 +26,15 @@ const VirtualForm = forwardRef(
       observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // 元素进入视图
-              entry.target.dataset.inView = 'true'
-            } else {
-              // 元素离开视图
-              entry.target.dataset.inView = 'false'
-            }
+            // console.log(entry.target.classList.contains('form-item'))
+            const callback = observerCallbacksRef.current.get(entry.target)
+            callback?.(entry.isIntersecting)
           })
         },
         {
-          root: null, // 使用视口作为根
-          rootMargin: '0px',
-          threshold: 0.1 // 当10%的元素可见时触发
+          root: null // 使用视口作为根
+          // rootMargin: '0px',
+          // threshold: 0.1 // 当10%的元素可见时触发
         }
       )
       setObserver(observer)
@@ -57,7 +54,7 @@ const VirtualForm = forwardRef(
           labelCol,
           mainCol,
           scrollerDOM: scrollerDOM,
-          virtual: { observer: observer }
+          virtual: { observer: observer, observerCallbacks: observerCallbacksRef.current }
         }}
       >
         <div
