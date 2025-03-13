@@ -1,4 +1,5 @@
-import { Request, Device } from 'seedsui-react'
+import { Request, Device, LocaleUtil } from 'seedsui-react'
+const locale = LocaleUtil.locale
 
 // 获取列表
 function queryData(params) {
@@ -30,11 +31,11 @@ function queryData(params) {
           })
           resolve(list)
         } else {
-          resolve(result.message || '服务器繁忙，请稍后重试')
+          resolve(result.message || locale('获取数据错误！'))
         }
       })
       .catch((err) => {
-        resolve(err?.data?.message || '服务器繁忙，请稍后重试')
+        resolve(err?.data?.message || locale('获取数据异常！'))
       })
   })
 }
