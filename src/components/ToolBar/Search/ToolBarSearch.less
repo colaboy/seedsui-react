@@ -1,44 +1,37 @@
 // ToolBar search
-.toolbar-search {
+.toolbar-search,
+.toolbar-search-expand {
   display: flex;
   flex: auto;
   align-items: center;
   gap: 8px;
+}
 
-  // 折叠模式: 展开时要占满
-  &.expand {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
-    padding: 0 12px;
-    background-color: var(--navbar-bg);
-  }
+.toolbar-search-icon {
+  flex: none;
+}
 
-  // 折叠模式: 仅显示一个搜索图标
-  &.collapse {
-    flex: none;
-
-    .toolbar-search-collapse {
-      display: block;
-      color: var(--tertiary);
-      .toolbar-search-collapse-icon {
-        width: 22px;
-        height: 22px;
-        font-size: 22px;
-        font-family: 'seeds-icons';
-        &:extend(.seeds-icon-search all);
-      }
-    }
-
-    .toolbar-search-form,
-    .toolbar-search-button-ok,
-    .toolbar-search-button-cancel,
-    .toolbar-search-button-barcode {
-      display: none;
-    }
+// 展开时要占满
+.toolbar-search-expand {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0 12px;
+  background-color: white;
+}
+// 折叠模式: 仅显示一个图标
+.toolbar-search-collapse {
+  display: block;
+  color: var(--tertiary);
+  .toolbar-search-collapse-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    font-family: 'seeds-icons';
+    &:extend(.seeds-icon-search all);
   }
 }
 
