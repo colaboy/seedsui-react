@@ -17,7 +17,6 @@ const Search = forwardRef(
     {
       placeholder,
       value,
-      onChange,
       onSearch,
       // Config
       barCode,
@@ -63,7 +62,6 @@ const Search = forwardRef(
         scanType: ['barCode'],
         success: (res) => {
           let newValue = res.resultStr
-          onChange && onChange(newValue)
           onSearch && onSearch(newValue)
         }
       })
@@ -110,7 +108,6 @@ const Search = forwardRef(
             placeholder={placeholder}
             value={value}
             onSearch={(newValue) => {
-              onChange && onChange(newValue)
               onSearch && onSearch(newValue)
             }}
             onBarCode={handleBarCode}

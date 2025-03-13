@@ -18,14 +18,12 @@ const QueryBar = ({ queryParams, onChange }) => {
         <ToolBar.Search
           placeholder={locale('按名称/拼音/拼音首字母查询')}
           value={query.keyword}
-          onChange={(value) => {
+          onSearch={(value) => {
             setQuery({
               ...query,
               keyword: value
             })
-          }}
-          onSearch={() => {
-            onChange && onChange({ ...query })
+            onChange && onChange({ ...query, keyword: value })
           }}
         />
         {/* 筛选弹窗 */}

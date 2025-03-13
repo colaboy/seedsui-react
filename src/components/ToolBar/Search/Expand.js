@@ -28,7 +28,7 @@ const Expand = ({ placeholder, value, onSearch, onBarCode, onCancel, barCode }) 
         onSubmit={(e) => {
           e.preventDefault()
           let input = e.currentTarget.querySelector('.input-text')
-          onSearch && onSearch(value)
+          onSearch && onSearch(keyword)
           input && input.blur()
           e.stopPropagation()
         }}
