@@ -11,7 +11,7 @@ function useCacheState(value, options) {
    * @param {String} name - 唯一的缓存名称, 必填项, 默认无
    * @param {Boolean} persist - 是否永久缓存, 默认false
    */
-  const { name: cacheName, persist, sync } = options || {}
+  const { name: cacheName, persist } = options || {}
   let cacheValue = cacheName ? getStorage(cacheName) || value : value
 
   // 非永久缓存直接读取window变量缓存
@@ -22,7 +22,6 @@ function useCacheState(value, options) {
     cacheName
       ? (newValue) => {
           setStorage(cacheName, newValue, { persist })
-          cache = newValue
           setCache(newValue)
         }
       : setCache
